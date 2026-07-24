@@ -11,8 +11,29 @@ const MAX_REFERENCE_LENGTH = 2048;
 
 type WovenWorkspaceMigrationField = 'navigatorWidth' | 'navigatorCollapsed';
 
+/**
+ * Presentation theme. `light` is the product default; `dark` and `system` are
+ * explicit human choices. `system` is the only value that consults the
+ * operating system, and it does so purely in CSS.
+ */
+export type WovenWorkspaceTheme = 'light' | 'dark' | 'system';
+
+export const WOVEN_WORKSPACE_THEMES: readonly WovenWorkspaceTheme[] = [
+  'light',
+  'dark',
+  'system'
+];
+
+export const DEFAULT_WOVEN_WORKSPACE_THEME: WovenWorkspaceTheme = 'light';
+
 export type WovenWorkspaceState = {
   schema: typeof WOVEN_WORKSPACE_SCHEMA;
+  /**
+   * Additive field under the unchanged `chirality.woven-workspace/v1` schema
+   * string: stored v1 blobs written before the theme control existed still
+   * load, falling back to the `light` default.
+   */
+  theme: WovenWorkspaceTheme;
   navigatorWidth: number;
   coordinationWidth: number;
   activityHeight: number;
@@ -84,6 +105,12 @@ function readCoordinationView(value: unknown): CoordinationPanelView {
   return value === 'agents' ? 'agents' : 'work';
 }
 
+export function readWovenWorkspaceTheme(value: unknown): WovenWorkspaceTheme {
+  return WOVEN_WORKSPACE_THEMES.includes(value as WovenWorkspaceTheme)
+    ? (value as WovenWorkspaceTheme)
+    : DEFAULT_WOVEN_WORKSPACE_THEME;
+}
+
 function readFocusedArtifact(
   value: unknown
 ): WovenWorkspaceState['focusedArtifact'] {
@@ -127,6 +154,7 @@ function readMigration(value: unknown): WovenWorkspaceState['migration'] {
 export function createDefaultWovenWorkspaceState(): WovenWorkspaceState {
   return {
     schema: WOVEN_WORKSPACE_SCHEMA,
+    theme: DEFAULT_WOVEN_WORKSPACE_THEME,
     navigatorWidth: 280,
     coordinationWidth: 360,
     activityHeight: 220,
@@ -167,6 +195,7 @@ function sanitizeWovenWorkspaceState(value: unknown): WovenWorkspaceState | null
   const fallback = createDefaultWovenWorkspaceState();
   return {
     schema: WOVEN_WORKSPACE_SCHEMA,
+    theme: readWovenWorkspaceTheme(value.theme),
     navigatorWidth: clampNumber(
       value.navigatorWidth,
       fallback.navigatorWidth,
@@ -270,8 +299,33 @@ export function readWovenWorkspaceStateFromStorage(
   }
 }
 
+type WovenWorkspaceWriteStorage = Pick<Storage, 'setItem'> &
+  Partial<Pick<Storage, 'getItem'>>;
+
+function readStoredTheme(
+  storage: WovenWorkspaceWriteStorage
+): WovenWorkspaceTheme | null {
+  if (typeof storage.getItem !== 'function') {
+    return null;
+  }
+
+  try {
+    const raw = storage.getItem(WOVEN_WORKSPACE_STORAGE_KEY);
+    if (!raw) {
+      return null;
+    }
+    const parsed = JSON.parse(raw) as unknown;
+    if (!isRecord(parsed) || parsed.schema !== WOVEN_WORKSPACE_SCHEMA) {
+      return null;
+    }
+    return readWovenWorkspaceTheme(parsed.theme);
+  } catch {
+    return null;
+  }
+}
+
 export function writeWovenWorkspaceStateToStorage(
-  storage: Pick<Storage, 'setItem'> | undefined,
+  storage: WovenWorkspaceWriteStorage | undefined,
   state: WovenWorkspaceState
 ): void {
   if (!storage) {
@@ -283,9 +337,32 @@ export function writeWovenWorkspaceStateToStorage(
     return;
   }
 
+  // `theme` is owned by the theme control, not by the surfaces that persist
+  // layout state: a caller holding a snapshot taken before the human changed
+  // the theme must never write that stale value back. When the storage is
+  // readable, the stored theme wins; `writeWovenWorkspaceThemeToStorage` is
+  // the one writer that changes it.
+  const storedTheme = readStoredTheme(storage);
+  const next = storedTheme ? { ...sanitized, theme: storedTheme } : sanitized;
+
   try {
-    storage.setItem(WOVEN_WORKSPACE_STORAGE_KEY, JSON.stringify(sanitized));
+    storage.setItem(WOVEN_WORKSPACE_STORAGE_KEY, JSON.stringify(next));
   } catch {
     // Workspace presentation state is optional convenience state.
   }
+}
+
+export function writeWovenWorkspaceThemeToStorage(
+  storage: Pick<Storage, 'getItem' | 'setItem'> | undefined,
+  theme: WovenWorkspaceTheme
+): void {
+  if (!storage) {
+    return;
+  }
+
+  const current = readWovenWorkspaceStateFromStorage(storage);
+  writeWovenWorkspaceStateToStorage(
+    { setItem: (key, value) => storage.setItem(key, value) },
+    { ...current, theme }
+  );
 }

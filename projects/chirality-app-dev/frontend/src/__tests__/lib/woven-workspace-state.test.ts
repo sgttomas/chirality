@@ -5,7 +5,8 @@ import {
   clearProjectScopedWovenWorkspaceState,
   createDefaultWovenWorkspaceState,
   readWovenWorkspaceStateFromStorage,
-  writeWovenWorkspaceStateToStorage
+  writeWovenWorkspaceStateToStorage,
+  writeWovenWorkspaceThemeToStorage
 } from '../../lib/woven-dialogue/woven-workspace-state';
 
 describe('Woven Dialogue workspace state', () => {
@@ -38,6 +39,7 @@ describe('Woven Dialogue workspace state', () => {
   it('creates reference-only defaults for the new versioned schema', () => {
     expect(createDefaultWovenWorkspaceState()).toEqual({
       schema: WOVEN_WORKSPACE_SCHEMA,
+      theme: 'light',
       navigatorWidth: 280,
       coordinationWidth: 360,
       activityHeight: 220,
@@ -192,5 +194,80 @@ describe('Woven Dialogue workspace state', () => {
         state
       )
     ).not.toThrow();
+  });
+  it('defaults the theme to light and keeps stored v1 blobs loadable', () => {
+    const legacyBlob = {
+      ...createDefaultWovenWorkspaceState(),
+      navigatorWidth: 340
+    } as Record<string, unknown>;
+    delete legacyBlob.theme;
+
+    const storage = {
+      getItem: vi.fn((key: string) =>
+        key === WOVEN_WORKSPACE_STORAGE_KEY ? JSON.stringify(legacyBlob) : null
+      ),
+      setItem: vi.fn()
+    };
+
+    const state = readWovenWorkspaceStateFromStorage(storage);
+
+    expect(state.theme).toBe('light');
+    expect(state.navigatorWidth).toBe(340);
+    expect(state.schema).toBe(WOVEN_WORKSPACE_SCHEMA);
+  });
+
+  it('falls back to light for an unrecognised stored theme', () => {
+    const storage = {
+      getItem: vi.fn((key: string) =>
+        key === WOVEN_WORKSPACE_STORAGE_KEY
+          ? JSON.stringify({ ...createDefaultWovenWorkspaceState(), theme: 'sepia' })
+          : null
+      ),
+      setItem: vi.fn()
+    };
+
+    expect(readWovenWorkspaceStateFromStorage(storage).theme).toBe('light');
+  });
+
+  it('persists a chosen theme without bumping the schema string', () => {
+    const store = new Map<string, string>();
+    const storage = {
+      getItem: (key: string) => store.get(key) ?? null,
+      setItem: (key: string, value: string) => {
+        store.set(key, value);
+      }
+    };
+
+    writeWovenWorkspaceThemeToStorage(storage, 'dark');
+
+    const persisted = JSON.parse(
+      store.get(WOVEN_WORKSPACE_STORAGE_KEY) as string
+    ) as Record<string, unknown>;
+    expect(persisted.theme).toBe('dark');
+    expect(persisted.schema).toBe(WOVEN_WORKSPACE_SCHEMA);
+    expect(readWovenWorkspaceStateFromStorage(storage).theme).toBe('dark');
+  });
+
+  it('never lets a stale layout snapshot revert the stored theme', () => {
+    const store = new Map<string, string>();
+    const storage = {
+      getItem: (key: string) => store.get(key) ?? null,
+      setItem: (key: string, value: string) => {
+        store.set(key, value);
+      }
+    };
+    const staleSnapshot = createDefaultWovenWorkspaceState();
+
+    writeWovenWorkspaceThemeToStorage(storage, 'system');
+    writeWovenWorkspaceStateToStorage(storage, {
+      ...staleSnapshot,
+      navigatorWidth: 300
+    });
+
+    const persisted = JSON.parse(
+      store.get(WOVEN_WORKSPACE_STORAGE_KEY) as string
+    ) as Record<string, unknown>;
+    expect(persisted.theme).toBe('system');
+    expect(persisted.navigatorWidth).toBe(300);
   });
 });
