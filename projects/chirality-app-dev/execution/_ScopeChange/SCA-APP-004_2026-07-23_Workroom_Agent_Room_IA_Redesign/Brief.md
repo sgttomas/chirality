@@ -1,6 +1,6 @@
 # SCA-APP-004 Brief — Workroom and Agent Room Information Architecture
 
-**Status:** `GATE_5_GOVERNANCE_PROPAGATION_IN_PROGRESS`
+**Status:** `GOVERNANCE_PROPAGATED_IMPLEMENTATION_PENDING`
 **Date:** `2026-07-23`
 **Requested by:** owner
 **Decomposition variant:** `SOFTWARE`

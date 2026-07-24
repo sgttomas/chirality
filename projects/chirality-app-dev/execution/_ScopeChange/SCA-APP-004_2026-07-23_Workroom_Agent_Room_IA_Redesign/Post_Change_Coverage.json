@@ -1,0 +1,46 @@
+{
+  "amendmentId": "SCA-APP-004",
+  "gate": "GATE_5",
+  "status": "WARNINGS",
+  "sourceAudit": "execution/_Evaluation/DecompCoverage/COV_SCA_APP_004_POSTCHANGE_2026-07-23_2027/coverage_summary.json",
+  "sourceCommit": "416b29033bbacb0bc3648d84033272b7ab4e6e11",
+  "decompositionRevision": "v3.2",
+  "authorities": ["D-APP-74", "DEC-020", "SCA-APP-004"],
+  "topologyCounts": {
+    "packages": 10,
+    "deliverables": 51,
+    "scopeItems": 78,
+    "ledgerRows": 78,
+    "objectives": 10
+  },
+  "topologyChangeApplied": false,
+  "lifecycleChangeApplied": false,
+  "runtimeSourceChanged": false,
+  "browserApiOrPublicSseChanged": false,
+  "dependencyTruthChanged": false,
+  "affectedStatusRecords": 6,
+  "affectedStatus": "IN_PROGRESS",
+  "supersession": {
+    "deltaRows": 5,
+    "cumulativeMapRows": 16,
+    "findings": 0
+  },
+  "authorityCorpus": {
+    "version": "v16",
+    "status": "MATCH",
+    "registeredSources": 8,
+    "affectedDeliverableReferenceFiles": 6
+  },
+  "coverage": {
+    "packagesDeclared": 3,
+    "packagesFound": 3,
+    "deliverablesDeclared": 15,
+    "deliverablesFound": 15,
+    "blockers": 0,
+    "warnings": 15,
+    "lifecycleDistribution": {
+      "IN_PROGRESS": 15
+    }
+  },
+  "nextGate": "owner activation of bounded WORKING_ITEMS implementation"
+}

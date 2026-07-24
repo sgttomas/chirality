@@ -7,7 +7,7 @@
 | Concept-selection hold | `SELECTED` | On 2026-07-23 the owner accepted Woven Dialogue with a Work/Agents Coordination Panel; exact selected basis is recorded at `plans/artifacts/DIALOGUE_CENTRED_CONCEPTS_2026-07-24_0121Z/Selected_Concept_Woven_Dialogue_Coordination_Panel.md`. |
 | Gate 3 — amendment | `APPROVED` | On 2026-07-23 the owner approved the exact amendments in `Amendment_Preview.md`. |
 | Gate 4 — propagation | `APPROVED` | On 2026-07-23 the owner approved the exact `Propagation_Plan.md` and what it entails. |
-| Gate 5 — execute/validate | `IN_PROGRESS` | D-APP-74, authority/decomposition/reliance propagation, affected execution records, supersession evidence, and closure validation are being applied. Implementation remains separately pending. |
+| Gate 5 — execute/validate | `GOVERNANCE_PROPAGATED_IMPLEMENTATION_PENDING` | D-APP-74, authority/decomposition/reliance propagation, affected execution records, supersession evidence, post-change coverage, and independent AUDIT_DECOMP are complete. Implementation remains separately pending. |
 
 ## Fixed intake constraints
 
@@ -132,3 +132,18 @@ This authorizes only the exact Gate-5 `DIRECT_EDIT`, `RECOMPUTE`, and
 `NO_CHANGE` classifications in `Propagation_Plan.md`. It does not authorize
 runtime expansion, old-UI retirement, lifecycle change, release, or
 professional reliance.
+
+## Gate-5 closure
+
+The exact propagation payload was committed as
+`416b29033bbacb0bc3648d84033272b7ab4e6e11`. Independent AUDIT_DECOMP found
+closure-bookkeeping gaps; the integration owner corrected the decomposition
+v16 reference table and PKG-02 heading, appended `PLAN_COMPLETION_LOG.md`, and
+materialized the required post-change coverage and handoff artifacts. The
+auditor's read-only rerun confirmed the other blockers resolved.
+
+Gate 5 therefore closes `CLOSED_FOR_SCOPE_CHANGE_ONLY` with 15 carried
+folder-local anticipated-artifact warnings. Those warnings and all
+implementation acceptance checks transfer to WORKING_ITEMS; no lifecycle,
+runtime, route/API/SSE, dependency, release, or professional-reliance claim is
+created.

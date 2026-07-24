@@ -36,13 +36,13 @@ Revision-number note: this decomposition revision is **v3.2**. That is separate 
 
 | RefID | Source | Role | SHA-256 |
 |---|---|---|---|
-| REF-001 | `docs/DIRECTIVE.md` | Intent, authority, professional boundaries | `465843cb4e0dd13de8592e09639f85839b2e9b5e48ed308119dab6a70037baeb` |
-| REF-002 | `docs/CONTRACT.md` | Invariants and enforcement surfaces | `6ae3ef2591d021fed497734d4b0226d2f0022ba40ce317bfc32432ef1817a0e5` |
-| REF-003 | `docs/SPEC.md` | Physical structures, runtime mechanics, API/file contracts | `e6d7b94819cac07029643bc22f925f23f6df5fa9e7e52b7b5891833ac4e687f6` |
-| REF-004 | `docs/TYPES.md` | Vocabulary, identifiers, enums, type targets | `8cada69823c10ca3a7e2ff4d6528c257a72d0f4bcd9e67db54aba1a9c5233517` |
-| REF-005 | `docs/PLAN.md` | Roadmap and implementation sequencing | `1960161b63a608dc21f88f7cc9c53f70de7403a8ca732621e944e79df029f776` |
-| REF-006 | `docs/PRD.md` | Product requirements, runtime direction, and approved vNext scope | `fb9939b59275db1ef07a0b46f13cf902647322aa59426efb2ed3ccd3ec63cfe0` |
-| REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method, gate protocol, package/deliverable structure, and Context Envelope discipline | `4f2c0a662fcd9eafdb20664997d05ce4734d99dd55a7ca2bb760ed9c94a60fab` |
+| REF-001 | `docs/DIRECTIVE.md` | Intent, authority, professional boundaries | `e1a3d00b18fa728f0886f036774c4825ad8f65f3245b56b4545da2714a903031` |
+| REF-002 | `docs/CONTRACT.md` | Invariants and enforcement surfaces | `6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7` |
+| REF-003 | `docs/SPEC.md` | Physical structures, runtime mechanics, API/file contracts | `eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990` |
+| REF-004 | `docs/TYPES.md` | Vocabulary, identifiers, enums, type targets | `998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169` |
+| REF-005 | `docs/PLAN.md` | Roadmap and implementation sequencing | `c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff` |
+| REF-006 | `docs/PRD.md` | Product requirements, runtime direction, and approved vNext scope | `d9bcdcb701de08942242425a085e39dad3cba07396cbcf64970a1c4433541485` |
+| REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method, gate protocol, package/deliverable structure, and Context Envelope discipline | `ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409` |
 
 ### 2.1 Source Authority and Reading Order
 
@@ -284,7 +284,7 @@ The next implementation objective is to mature the existing desktop shell into a
 | DEL-01-03 | Product Identity and Professional Boundary Copy | TBD | DOC_UPDATE | Preserve Chirality identity and human-only professional authority across UI, docs, packaging, runtime messages, and future domain notices. | UI copy guidelines; release review checklist; boundary notice examples | SOW-071, SOW-074 | OBJ-009, OBJ-010 | S | Focused copy and review deliverable. |
 | DEL-01-04 | Scope Boundary and Retired Scope Register | TBD | DOC_UPDATE | Keep remote MCP, plugins, shipped bypass, non-macOS packaging, domain operations, and retired PKG-08 items outside active scope unless amended. | Out-of-scope register; retired-scope notes; amendment triggers | SOW-065, SOW-076, SOW-077, SOW-078 | OBJ-009 | S | Focused scope guard. |
 
-### PKG-02 Desktop Shell, Navigation, and Operator State
+### PKG-02 Woven Dialogue Shell, Navigation, and Operator State
 
 | DeliverableID | Name | ResponsibleParty | Type | Description | AnticipatedArtifacts | CoversScopeItems | SupportsObjectives | ContextEnvelope | ContextEnvelopeNotes |
 |---|---|---|---|---|---|---|---|---|---|
