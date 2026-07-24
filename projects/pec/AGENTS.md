@@ -50,7 +50,8 @@ Binding on every agent, now and in every future tranche:
 
 `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/`, and the
 workspace manifests (`package.json`, `package-lock.json`, `tsconfig.base.json`)
-are a **frozen reference corpus** (`D-PEC-58` behavior 6; PRD v2 §13):
+are a **frozen reference corpus** (`D-PEC-58` behavior 6 and its 2026-07-24
+fence-amendment paragraph, which names the manifests; PRD v2 §13):
 
 - Read and cite only. No edits, no feature work, no dependency changes.
 - Never run the server or any mutating CLI against a non-scratch database.
@@ -81,7 +82,7 @@ target sequence).
 |---|---:|---|
 | `SOFTWARE_DECOMP` | 1 | **Next owner gate.** Decomposition over PRD v2 with the owner at Gates 1–7 (`{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md`, human-interactive). Gate 7 acceptance is the authoritative downstream basis; no tranche is scoped from the PRD directly. |
 | `PROJECT_SETUP` | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
-| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK skills per `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
+| `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK skills (roster: root `AGENTS.md` agent index and `{REPO_ROOT}/skills/software-*`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
 | `TASK` | 2 | Executes one sealed implementation, assessment, docs, or evidence sub-scope with explicit read/write bounds. |
 | `CHANGE` | 1 | Performs scoped Git/file-state closeout for validated tranches. CHANGE owns Git state; PEC never will. |
 | `REVIEW` | 1 | Reviews outputs against scope, validation evidence, product invariants, and acceptance criteria. |
@@ -92,7 +93,10 @@ target sequence).
 ## Write Scopes And Fences
 
 Default writable project-local surfaces are only `execution/_Coordination/**`,
-this `AGENTS.md`, and `docs/STATUS.md` status upkeep at tranche closeout.
+this `AGENTS.md`, and the one-time `docs/STATUS.md` governance pointer
+section (F-PEC-1). Per-tranche `docs/STATUS.md` upkeep beyond that pointer
+requires an explicit packet clause (as `D-PEC-58`/`D-PEC-59` supplied for
+their tranches).
 
 **Every other write under `projects/pec` — including any new v2 source tree,
 scaffolding, manifest, or configuration — requires an owner-ruled `D-PEC`
@@ -127,8 +131,9 @@ PEC v2 is **content-minimal** (PEC-K-10): paths, counts, SHAs, states, hashes
 — never file or diff content. No agent may design, brief, or implement a
 surface that captures file or diff content.
 
-`D-T0-14` and `D-T0-20` are unchanged: the enumerated read surface remains as
-ruled, and mutation basis for any real (non-scratch) database remains an
+`D-T0-14` and `D-T0-20` are unchanged as rulings; item (iii) of the D-T0-20
+enumeration tracks the profile's `chirality_readable_artifacts` set,
+re-pointed 2026-07-24 for the docs archive (`D-PEC-59`). Mutation basis for any real (non-scratch) database remains an
 unopened future row. Agent validation stays scratch/demo-only.
 
 ## Governance Pointers
@@ -160,7 +165,9 @@ not fix, stage, revert, or interpret them unless the owner directs that work.
 
 If concrete, actionable issues are discovered that would improve PEC's agentic
 development loop, project governance, agents, or skills, record them in at most
-one timestamped plan under `{WORKING_ROOT}/plans/` for the session. Do not
+one timestamped plan under `{WORKING_ROOT}/execution/_Coordination/` for the
+session (in-fence; the legacy `plans/` target is outside the default
+writable surfaces). Do not
 create a plan merely to satisfy this instruction when no actionable issue was
 found.
 

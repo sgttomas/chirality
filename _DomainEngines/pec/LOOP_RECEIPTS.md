@@ -2,7 +2,7 @@
 
 > **Epistemic status: derivative handoff ledger — not authority.** Append-only.
 > Current state is always re-derived from the live tree, the decision registers,
-> the pec profile (`_DomainEngines/profiles/pec.yaml`; DRAFT until owner Gate 2), git history, and the
+> the pec profile (`_DomainEngines/profiles/pec.yaml`; ADOPTED 2026-07-05 Gate 2, v0.2 as amended 2026-07-24 under `D-PEC-59`), git history, and the
 > deterministic checks; on any disagreement those sources govern (K-AUTH-1). A
 > receipt records only what tools cannot re-derive: owner directions given
 > outside governed artifacts, gate outcomes and their rationale, deltas found in
@@ -1135,5 +1135,6 @@
   - Owner direction (verbatim): "In the same manner, complete the follow-ons under a new self-merge PR." Recorded and ruled in `D-PEC-59_pivot_followons.md`; self-merge rides the session authorization quoted in the D-PEC-58 packet.
   - Executed pointers: commit `08fabff60` — `_DomainEngines/profiles/pec.yaml` amended 0.1→0.2 (post-archive `chirality_readable_artifacts`, frozen-corpus provenance, pivot notes; validator VALID at `_DomainEngines/pec/PEC_2026-07-24_profile-amendment-01/validation_report.md`); `projects/pec/AGENTS.md` rewritten for the coordination-plane posture; `projects/pec/.gitignore` guard for `pec-demo.db*`; STATUS governance section updated; D-PEC-59 packet + register row.
   - Full profile supersession remains a future act (once v2 has implementation shape); the tier-0 register was not written (outside PEC-loop fences) — the amendment's adoption basis is the quoted owner direction, recorded in D-PEC-59 per the D-T0-12 lifecycle note.
+  - Stale-map delta: the profile amendment shifts line-anchored `pec.yaml` citations in `D-PEC-01:29` (107-125 → 113-131), `D-PEC-17:261` (:23 → :27), and `projects/chirality-app-dev/.../D-APP-51_PACKET_MULTI_ENGINE_PROFILE_REGISTRY_2026-07-06.md:38` (17/22/23 → 21/26/27). Historical records are not edited; verify by field name, not line number.
   - Gate outcome: EXECUTED. The D-PEC-58 coordination notices are closed. Next owner gate: decomposition — SOFTWARE_DECOMP over PRD v2, Gates 1–7.
-  - Checks: profile validator VALID; `git diff --check` pass; documentation/configuration-only tranche — no runtime source or dependency changed.
+  - Checks: profile validator VALID; harness self-check pass (no BLOCK); `git diff --check` pass; documentation/configuration-only tranche — no runtime source or dependency changed.

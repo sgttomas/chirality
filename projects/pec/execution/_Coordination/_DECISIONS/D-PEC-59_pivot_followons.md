@@ -23,7 +23,9 @@ authorization quoted in the `D-PEC-58` packet.
 1. **Profile amendment (not supersession).** `_DomainEngines/profiles/pec.yaml`
    is amended in place: `profile_version` 0.1 → 0.2;
    `chirality_readable_artifacts` re-pointed at the post-archive paths
-   (adding the archive index and the archived PRD v1.0); the provenance
+   (adding the archive index, the archived PRD v1.0, and the archived
+   prototype README/STATUS, so the enumerated-OPEN surface matches what the
+   live README/AGENTS.md invite agents to read); the provenance
    header rewritten to bind the profile to the frozen v0.4-baseline
    reference corpus and point at PRD v2.0; `open_issues` gains the pivot
    record and the decomposition-loop clarification. The amendment is
@@ -64,8 +66,10 @@ authorization quoted in the `D-PEC-58` packet.
 - `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`
 - `_DomainEngines/pec/LOOP_RECEIPTS.md`
 
-No runtime source, dependency, database, demo input, report, `docs/**`
-surface, workplan, or external system change is authorized by this row.
+No runtime source, dependency, database, demo input, report, root
+`docs/**` surface, workplan, or external system change is authorized by
+this row (the `projects/pec/docs/STATUS.md` upkeep entry above is the sole
+docs exception).
 
 ## Verification and rollback
 

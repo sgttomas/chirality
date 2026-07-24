@@ -12,7 +12,8 @@
 # now the FROZEN v0.4-baseline reference corpus; the adopted product is PRD
 # v2.0 (coordination plane) at projects/pec/docs/PRD.md. Retired product docs
 # live under projects/pec/docs/.archive/ (SPEC.md, TRACEABILITY.md, PILOT.md,
-# adr/ADR.md). Source behavior of the frozen corpus remains the committed PEC
+# adr/ADR.md, the archived PRD v1.0, and the prototype README/STATUS; index
+# at projects/pec/docs/.archive/README.md). Source behavior of the frozen corpus remains the committed PEC
 # tree: package scripts, server routes, and tools.
 # No PEC server or mutating live database command is invoked by this file.
 
@@ -52,6 +53,8 @@ domain_profile:
     - "projects/pec/docs/.archive/adr/ADR.md"
     - "projects/pec/docs/.archive/README.md"
     - "projects/pec/docs/.archive/PRD_v1.0_2026-07-09_team_information_hub.md"
+    - "projects/pec/docs/.archive/README_v0.4_prototype.md"
+    - "projects/pec/docs/.archive/STATUS_2026-07-04_prototype.md"
     - "projects/pec/fixtures/*.csv"
     - "<human-exported PEC register CSVs: mdl, rail, decisions, risks, approvals, interfaces, intake, commitments, schedule, lookahead, log>"
     - "<human-exported sponsor brief HTML and package-pack HTML>"
