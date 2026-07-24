@@ -50,8 +50,8 @@ export function ToolStreamList({ rows }: { rows: ToolActivityRow[] }): JSX.Eleme
       <div className="panel-body">
         {rows.length === 0 ? (
           <p className="panel-empty">
-            No tool activity yet. Tool calls appear here as the agent runs (requires the
-            `agentSdk` provider).
+            No tool activity yet. Governed tool calls appear here when the selected engine
+            exposes them.
           </p>
         ) : (
           <ul className="harness-stream-list">

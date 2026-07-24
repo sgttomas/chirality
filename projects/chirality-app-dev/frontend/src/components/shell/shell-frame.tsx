@@ -25,6 +25,7 @@ type ShellFrameProps = {
   title: string;
   subtitle: string;
   children: ReactNode;
+  variant?: 'default' | 'workspace';
 };
 
 /**
@@ -33,7 +34,13 @@ type ShellFrameProps = {
  * from `AppShell` so the loop-first `LoopShell` reuses the same chrome and
  * working-root control without duplicating it.
  */
-export function ShellFrame({ section, title, subtitle, children }: ShellFrameProps): JSX.Element {
+export function ShellFrame({
+  section,
+  title,
+  subtitle,
+  children,
+  variant = 'default'
+}: ShellFrameProps): JSX.Element {
   const pathname = usePathname();
   const {
     projectRoot,
@@ -66,8 +73,12 @@ export function ShellFrame({ section, title, subtitle, children }: ShellFramePro
   }
 
   return (
-    <main className="shell">
-      <header className="shell-header">
+    <main className={variant === 'workspace' ? 'shell shell--workspace' : 'shell'}>
+      <header
+        className={
+          variant === 'workspace' ? 'shell-header shell-header--workspace' : 'shell-header'
+        }
+      >
         <div className="shell-header-main">
           <div className="shell-brand-row">
             <img
@@ -85,23 +96,37 @@ export function ShellFrame({ section, title, subtitle, children }: ShellFramePro
           <p className="shell-subtitle">{subtitle}</p>
         </div>
 
-        <nav className="shell-nav" aria-label="Primary navigation">
-          {NAVIGATION_ITEMS.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                className={active ? 'shell-nav-link shell-nav-link--active' : 'shell-nav-link'}
-                href={item.href}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
+        {variant === 'workspace' ? (
+          <div className="shell-nav" aria-label="Current workspace">
+            <span className="shell-nav-link shell-nav-link--active">WORKSPACE</span>
+          </div>
+        ) : (
+          <nav className="shell-nav" aria-label="Primary navigation">
+            {NAVIGATION_ITEMS.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  className={
+                    active ? 'shell-nav-link shell-nav-link--active' : 'shell-nav-link'
+                  }
+                  href={item.href}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+        )}
       </header>
 
-      <section className="working-root-bar">
+      <section
+        className={
+          variant === 'workspace'
+            ? 'working-root-bar working-root-bar--workspace'
+            : 'working-root-bar'
+        }
+      >
         <div className="working-root-fields">
           <label htmlFor="project-root-input">Working Root (`projectRoot`)</label>
           <div className="working-root-controls">
@@ -135,10 +160,20 @@ export function ShellFrame({ section, title, subtitle, children }: ShellFramePro
           </p>
           {errorMessage ? <p className="working-root-error">{errorMessage}</p> : null}
         </div>
-        <div className="working-root-settings">
-          <RuntimeSettings />
-          <ApiKeySettings />
-        </div>
+        {variant === 'workspace' ? (
+          <details className="working-root-settings working-root-settings--disclosure">
+            <summary>Runtime &amp; credentials</summary>
+            <div className="working-root-settings-disclosure-body">
+              <RuntimeSettings />
+              <ApiKeySettings />
+            </div>
+          </details>
+        ) : (
+          <div className="working-root-settings">
+            <RuntimeSettings />
+            <ApiKeySettings />
+          </div>
+        )}
       </section>
 
       {children}

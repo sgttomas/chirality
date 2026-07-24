@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "chirality.agent-run-basis/v1",
+  "runId": "APPDEV_WOVEN_DIALOGUE_IMPLEMENTATION_2026-07-23",
+  "status": "IMPLEMENTATION_VALIDATED_PR_PENDING",
+  "selectionAuthority": "Owner activation in the current Codex session on 2026-07-23",
+  "approvalReference": "OWNER_ACTIVATE_BOUNDED_WORKING_ITEMS_2026-07-23",
+  "repositoryCommit": "3c783be3b9cd4fa5bc19259e7c82ca2fa0a33195",
+  "acceptedBasis": [
+    "execution/_ScopeChange/SCA-APP-004_2026-07-23_Workroom_Agent_Room_IA_Redesign/Handoff_State.md",
+    "execution/_ScopeChange/SCA-APP-004_2026-07-23_Workroom_Agent_Room_IA_Redesign/Amendment_Preview.md",
+    "execution/_Coordination/_DECISIONS/D-APP-74_RULING_2026-07-23.md",
+    "docs/SPEC.md#173-woven-dialogue-shell",
+    "plans/artifacts/DIALOGUE_CENTRED_CONCEPTS_2026-07-24_0121Z/Selected_Concept_Woven_Dialogue_Coordination_Panel.md"
+  ],
+  "softwareWorkflowProfile": "software-workflow.json",
+  "packages": [
+    {
+      "packageId": "PKG-02",
+      "selectedDeliverables": ["DEL-02-01", "DEL-02-02", "DEL-02-04"]
+    },
+    {
+      "packageId": "PKG-05",
+      "selectedDeliverables": ["DEL-05-04"]
+    },
+    {
+      "packageId": "PKG-08",
+      "selectedDeliverables": ["DEL-08-02", "DEL-08-03"]
+    }
+  ],
+  "objective": "Implement the first bounded Woven Dialogue shell with a mounted primary human-agent dialogue, provenance-bearing artifact work, a Work/Agents coordination panel, isolated selected-session replay, compatibility-preserving navigation and dispatch, and rollback-safe local layout state.",
+  "completionCriteria": [
+    "Primary dialogue remains mounted across artifact and coordination operations.",
+    "Work and Agents surfaces project only admitted recorded evidence with source, authority class, currency, and explicit unknown states.",
+    "Recorded agent selection opens an isolated read-only replay lens without transferring live draft, context, permission, or session state.",
+    "Existing routes, query parameters, browser APIs, public SSE names/order, dispatch semantics, and provider ownership remain compatible.",
+    "Keyboard, focus, landmarks, resize controls, reduced-motion, and narrow-window behavior receive automated or recorded evidence.",
+    "Registered checks, full frontend regression, production build, and packaged Desktop validation pass before closeout."
+  ],
+  "exclusions": [
+    "Old-UI or route retirement",
+    "Runtime, daemon, API, SSE, engine, delegation, or model-residency expansion",
+    "Arbitrary orchestration graphs, scheduling, direct child messaging, or global AgentRun discovery",
+    "Automatic shared-intent summarization",
+    "Dependency, lifecycle, release, publication, or professional-reliance changes"
+  ],
+  "modelAttribution": {
+    "supervisor": "Current Codex session model; exact platform model identifier is not exposed to repository tooling.",
+    "children": "Inherited current Codex session model unless a child return records a more specific identifier.",
+    "measurementLimitation": "Token/context occupancy is not exposed by the collaboration runtime."
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 6
+  },
+  "counts": {
+    "category": {
+      "IMPLEMENTATION": 6,
+      "ORCHESTRATION": 2,
+      "REVIEW": 4,
+      "VALIDATION": 1
+    },
+    "event_type": {
+      "FINISH": 6,
+      "MILESTONE": 1,
+      "START": 6
+    },
+    "outcome": {
+      "PASS": 7,
+      "STARTED": 6
+    },
+    "reason_code": {
+      "BOUNDED_TRANCHE_VALIDATED": 1,
+      "CONTRACT_FREEZE": 3,
+      "IMPLEMENTATION_TRANCHE_COMPLETE": 1,
+      "INDEPENDENT_BACKCHECK_PASS": 1,
+      "INDEPENDENT_REVIEW_DISPATCH": 2,
+      "INDEPENDENT_REVIEW_FANIN": 1,
+      "OWNER_ACTIVATION": 1,
+      "PACKAGE_RETURN_ACCEPTED": 3
+    }
+  },
+  "events": 13,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 3345.837,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "ROOT-INTEGRATION",
+      "package_id": null,
+      "remediations": 0,
+      "retries": 0,
+      "role": "HELP_HUMAN",
+      "session_id": "CODEX-CURRENT-THREAD"
+    },
+    {
+      "duration_seconds": 962.703,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "EVAL-BOUNDARY",
+      "package_id": null,
+      "remediations": 0,
+      "retries": 0,
+      "role": "EVALUATION",
+      "session_id": "CODEX-SUBAGENT-boundary_review"
+    },
+    {
+      "duration_seconds": 2759.46,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "PKG02-MANAGER",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "CODEX-SUBAGENT-pkg02"
+    },
+    {
+      "duration_seconds": 2759.513,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "PKG05-MANAGER",
+      "package_id": "PKG-05",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "CODEX-SUBAGENT-pkg05"
+    },
+    {
+      "duration_seconds": 2759.57,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "PKG08-MANAGER",
+      "package_id": "PKG-08",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "CODEX-SUBAGENT-pkg08"
+    },
+    {
+      "duration_seconds": 962.783,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "EVAL-UX",
+      "package_id": null,
+      "remediations": 0,
+      "retries": 0,
+      "role": "EVALUATION",
+      "session_id": "CODEX-SUBAGENT-ux_review"
+    }
+  ],
+  "sessions": 6,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

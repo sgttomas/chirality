@@ -118,7 +118,11 @@ function isHarnessEvent(value: unknown): value is HarnessEvent {
   );
 }
 
-export function ChatPanel(): JSX.Element {
+type ChatPanelProps = {
+  onActiveSessionChange?: (sessionId: string | undefined) => void;
+};
+
+export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.Element {
   const { projectRoot } = useWorkspace();
   const { optsPayload } = useToolkit();
   const { appendEvent, clearEvents, setStreaming } = useHarnessEventActions();
@@ -141,6 +145,10 @@ export function ChatPanel(): JSX.Element {
       text: 'Harness chat wiring is active. Select a Working Root and send a prompt.'
     }
   ]);
+
+  useEffect(() => {
+    onActiveSessionChange?.(activeSession?.sessionId);
+  }, [activeSession?.sessionId, onActiveSessionChange]);
 
   const activePersona = useMemo(
     () => resolvePersona(searchParams.get('agent')),

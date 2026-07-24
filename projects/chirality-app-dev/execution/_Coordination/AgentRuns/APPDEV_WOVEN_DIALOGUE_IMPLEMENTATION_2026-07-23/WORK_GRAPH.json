@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "chirality.work-graph/v1",
+  "runId": "APPDEV_WOVEN_DIALOGUE_IMPLEMENTATION_2026-07-23",
+  "version": 2,
+  "status": "IMPLEMENTATION_VALIDATED_PR_PENDING",
+  "selectionAuthority": "Owner activation; manager graph selected under accepted SCA-APP-004 handoff",
+  "posture": "MIXED",
+  "nodes": [
+    {
+      "id": "R-PKG02",
+      "role": "WORKING_ITEMS",
+      "packageId": "PKG-02",
+      "deliverableIds": ["DEL-02-01", "DEL-02-02", "DEL-02-04"],
+      "objective": "Read-only repository reconnaissance for the dialogue shell, artifact work, coordination presentation, and local state.",
+      "dependencies": [],
+      "concurrency": "parallel",
+      "writeTargets": [],
+      "return": "PKG-02 component map, acceptance map, risks, and proposed disjoint implementation targets"
+    },
+    {
+      "id": "R-PKG05",
+      "role": "WORKING_ITEMS",
+      "packageId": "PKG-05",
+      "deliverableIds": ["DEL-05-04"],
+      "objective": "Read-only reconnaissance for canonical session/event projection and selected-session replay isolation.",
+      "dependencies": [],
+      "concurrency": "parallel",
+      "writeTargets": [],
+      "return": "PKG-05 event/replay map, missing inputs, projection contract, risks, and proposed new-file targets"
+    },
+    {
+      "id": "R-PKG08",
+      "role": "WORKING_ITEMS",
+      "packageId": "PKG-08",
+      "deliverableIds": ["DEL-08-02", "DEL-08-03"],
+      "objective": "Read-only reconnaissance for recorded hierarchy, guarded selection, routing/query compatibility, and dispatch preservation.",
+      "dependencies": [],
+      "concurrency": "parallel",
+      "writeTargets": [],
+      "return": "PKG-08 routing/hierarchy/dispatch map, risks, and proposed new-file/test targets"
+    },
+    {
+      "id": "C-SHARED",
+      "role": "INTEGRATION_OWNER",
+      "objective": "Freeze shared UI/projection/local-state contracts and exact write fences.",
+      "dependencies": ["R-PKG02", "R-PKG05", "R-PKG08"],
+      "concurrency": "serialized",
+      "writeTargets": [
+        "frontend/src/app/**",
+        "frontend/src/components/shell/**",
+        "frontend/src/app/globals.css",
+        "frontend/src/lib/layout-state.ts",
+        "execution/_Coordination/AgentRuns/APPDEV_WOVEN_DIALOGUE_IMPLEMENTATION_2026-07-23/**"
+      ],
+      "return": "Work graph v2 and frozen implementation briefs"
+    },
+    {
+      "id": "I-PACKAGES",
+      "role": "WORKING_ITEMS",
+      "objective": "Execute disjoint package implementation nodes under frozen briefs.",
+      "dependencies": ["C-SHARED"],
+      "concurrency": "parallel where write targets are disjoint",
+      "writeTargets": [
+        "PKG-02: frontend/src/lib/woven-dialogue/woven-workspace-state.ts; frontend/src/components/woven-dialogue/work-projection.tsx; paired tests",
+        "PKG-05: frontend/src/lib/woven-dialogue/operator-projection.ts; selected-session-replay.ts; selected-session-replay-lens.tsx; paired tests",
+        "PKG-08: frontend/src/lib/woven-dialogue/recorded-agent-hierarchy.ts; guarded-session-selection.ts; frontend/src/lib/pipeline/pipeline-dispatch-contract.ts; paired tests"
+      ],
+      "return": "Package-scoped diffs, tests, evidence, and coordination notices"
+    },
+    {
+      "id": "F-INTEGRATE",
+      "role": "INTEGRATION_OWNER",
+      "objective": "Validate and integrate accepted package returns.",
+      "dependencies": ["I-PACKAGES"],
+      "concurrency": "serialized",
+      "writeTargets": "Shared entry points, styles, tests, and run closeout records",
+      "return": "Integrated candidate and normalized validation evidence"
+    },
+    {
+      "id": "V-REVIEW",
+      "role": "EVALUATION",
+      "objective": "Independent code, projection-boundary, accessibility, compatibility, and regression review.",
+      "dependencies": ["F-INTEGRATE"],
+      "concurrency": "parallel read-only review",
+      "writeTargets": [],
+      "return": "Findings and fan-in verdict"
+    }
+  ],
+  "escalation": [
+    "Scope or acceptance expansion",
+    "Runtime/API/SSE/dependency/lifecycle change",
+    "Shared-write conflict outside the frozen integration owner",
+    "Old-UI or route retirement",
+    "Missing canonical evidence required for a promised projection"
+  ]
+}
