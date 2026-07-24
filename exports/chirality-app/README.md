@@ -20,6 +20,12 @@ continues to exclude credentials,
 user-data and machine-registration state, logs, downloaded models, private PEC
 or Piping adapters, and private project manifests/evidence.
 
+`PUBLIC_README.md` is the authored landing page for the public repository.
+The exporter deliberately maps it to root `README.md`; the canonical
+repository's root README is not copied. Boundary validation fails if the
+public README is missing its release/source-boundary markers or contains
+private canonical-repository framing.
+
 Every entry in `ROOT_FILES`/`ROOT_DIRS` must exist at the repo root; the
 exporter fails with an error listing any missing entries rather than silently
 skipping them (owner ruling, 2026-07-01). When the tree is reorganized, update
