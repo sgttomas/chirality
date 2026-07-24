@@ -1,6 +1,6 @@
-# D-PEC-49 - PROPOSAL: Week-over-week deliverable progress
+# D-PEC-49 - RULED (closed as moot): Week-over-week deliverable progress
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-24 — closed as moot by D-PEC-58 (no option selected); see Closure section
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-49
 **Prepared by:** PEC work loop agent. The ruling act is the owner's

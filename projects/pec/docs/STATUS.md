@@ -31,7 +31,7 @@ read and cite only, no further feature work, retired product docs under
 ## What's next (owner gates, in order)
 
 1. **Decomposition** — SOFTWARE_DECOMP over PRD v2 with the owner at
-   Gates 1–7 (`docs/DECOMPOSITION_STANDARD.md`); Gate 7 acceptance becomes
+   Gates 1–7 (repo-root `docs/DECOMPOSITION_STANDARD.md`); Gate 7 acceptance becomes
    the downstream basis for all build tranches.
 2. **P1 — one-loop reconciler** (per-tranche packets): reconciler +
    orientation store + read-only API for one loop; parity-diffed against the

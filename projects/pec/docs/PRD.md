@@ -364,8 +364,8 @@ scratch-only validation bridge.
 | Surface | Disposition |
 |---|---|
 | `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/` | Frozen as reference implementation; quarried by citation in deliverable briefs; archived from the working tree once P2 is useful. Never deleted (v1.0 I-11 spirit; Git preserves regardless). |
-| SPEC / TRACEABILITY / PILOT / ADR-001..014 | Historical baseline retained with existing disclaimers; v2 SPEC is born from the decomposition; live postures (ADR-002, ADR-014) re-cited in v2's first ADRs. |
-| Decision register D-PEC-01..56 | Continues (numbering never resets; historical row gaps predate this PRD). `D-PEC-49` closed as moot at the D-PEC-58 gate. |
+| SPEC / TRACEABILITY / PILOT / ADR-001..014 | Historical baseline retained under `docs/.archive/` with existing disclaimers; v2 SPEC is born from the decomposition; live postures (ADR-002, ADR-014) re-cited in v2's first ADRs. |
+| Decision register D-PEC-01..58 | Continues (numbering never resets; historical row gaps predate this PRD). `D-PEC-49` closed as moot at the D-PEC-58 gate. |
 | Domain-engine registration (`pec.yaml`, L3 import lane) | L3 operation-proposal lane sunset with the old product; profile superseded when v2 has shape; the `_DomainEngines/pec` loop continues as the governing development loop. |
 | Demo DB, fixtures, seed/drill tooling | Retired; scratch-guard discipline carries as a pattern. |
 | Tests (347 per the receipt-sourced breakdown: 74 core / 169 server / 104 sidecar) | Retired with the product; invariant-test style and server test-harness pattern carry as conventions. |
@@ -379,7 +379,7 @@ specific reference modules.
 
 ## 14. Supersession and carry-forward
 
-Upon adoption:
+On adoption (2026-07-24, `D-PEC-58`):
 
 - PRD v1.0 is superseded and preserved at its Git object (recorded in the
   adopting packet), exactly as v0.4 is preserved at `7e8312172`.
@@ -416,7 +416,7 @@ Upon adoption:
 - **`D-GOV-20` — complemented.** The daemon remains sole owner of execution;
   PEC creates no second loop and holds no session authority.
   Checkout-contained evidence remains authoritative over any PEC store.
-- **`D-PEC-56` — partially superseded upon adoption.** Its ruled behavior 1
+- **`D-PEC-56` — partially superseded on adoption (2026-07-24).** Its ruled behavior 1
   (retain PEC's deterministic acts, RBAC, reporting, and domain tools as a
   project adapter service) does not survive the product retirement in
   §8/§13. Its no-dual-loop boundary (behavior 4) and human-only-act
@@ -429,8 +429,9 @@ Upon adoption:
   `AGENTS.md` question, flagged at §5 and not resolved by this PRD.
 - **Residency** — content-minimal (PEC-K-10): PEC indexes only repo files
   agents already read, plus operational presence; no new data class egresses.
-- **Fences** — this candidate is authored within currently lawful write
-  scope. All implementation writes await their own packets.
+- **Fences** — this PRD was authored within then-lawful write scope and
+  promoted under the `D-PEC-58` fence. All implementation writes await
+  their own packets.
 - The practitioner harness's cache half remains closed by its own record
   (`tools/practitioner_harness/README.md` §Cache contract): its query-pain
   precondition was measured **unmet** on 2026-07-02 (slowest command ~4 s).

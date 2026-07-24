@@ -137,11 +137,28 @@ database `projects/pec/pec-demo.db` (preserved in Git history). The frozen
 reference corpus (`core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`,
 `fixtures/`, workspace manifests) and the live loop launcher
 (`init/init-prompt.md`) are deliberately NOT touched; source-tree archival
-remains a future packet per PRD v2 §13.
+remains a future packet per PRD v2 §13. Ruled behavior 3 is superseded by
+this amendment: `SPEC.md`/`TRACEABILITY.md` are archived rather than
+re-noticed, and their v1.0/T0-rebaseline notices are accepted as permanently
+stale historical text, indexed by `docs/.archive/README.md`. A `.gitignore`
+guard against `pec-demo.db` reappearing (the path is not currently ignored
+and old runbooks still name it) is outside this fence and is noted for the
+follow-on packet.
 
 **Coordination notice (agent-index change-notice rule):**
 `_DomainEngines/profiles/pec.yaml` `chirality_readable_artifacts` still
 enumerates pre-archive paths for `SPEC.md`, `TRACEABILITY.md`, `PILOT.md`,
-and `adr/ADR.md`; that enumeration is stale as of this row's execution and
+and `adr/ADR.md` (the file's header comment names the same pre-archive
+paths); that enumeration is stale as of this row's execution and
 is not edited here (profile edits are outside this fence). Resolution
 belongs to the named profile-supersession follow-on (item 10).
+
+Additionally (recorded at execution, 2026-07-24): historical decision
+records — at minimum `D-T0-12..15`, which cite `projects/pec/docs/SPEC.md` —
+now carry archive-induced unresolved-reference findings in the practitioner
+harness (K-PROV-1 WARN, non-gating; observed 2026-07-24 via
+`python3 tools/practitioner_harness/harness.py self-check` — WARN never
+gates per D-GOV-02). Historical records are not edited to
+match reality; the references were true when written and the cited content
+is retained at `projects/pec/docs/.archive/`. This staleness is accepted as
+permanent on those records.
