@@ -1,0 +1,45 @@
+[
+  {
+    "scene": "_bootstrap",
+    "result": "{\"current\":\"Active root: /Users/ryan/dev/chirality\",\"error\":null,\"stored\":\"/Users/ryan/dev/chirality\"}",
+    "projectRoot": "/Users/ryan/dev/chirality"
+  },
+  {
+    "scene": "navigator",
+    "route": "/",
+    "theme": "system",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "system",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 1,
+      "dataTheme": "system",
+      "scrollWidthOverflow": false
+    },
+    "states": "Dialogue:true Workbench:false Pipeline:false",
+    "file": "navigator-system-1440-osdark.png"
+  },
+  {
+    "scene": "dialogue",
+    "route": "/",
+    "theme": "system",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "system",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 1,
+      "dataTheme": "system",
+      "scrollWidthOverflow": false
+    },
+    "states": "empty transcript + composer dock mounted",
+    "file": "dialogue-system-1440-osdark.png"
+  }
+]

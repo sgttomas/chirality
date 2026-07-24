@@ -3691,3 +3691,63 @@ button:disabled {
     transform: none;
   }
 }
+
+/* ==========================================================================
+   Round 7 — V2 render-evidence remediation (F-1 blocking, F-2/F-3 cosmetic)
+   (TRB-APPDEV-WOVEN-REDESIGN-2026-07-24 §6 accessibility/responsive gate)
+
+   Appended section: no rule above is edited. Every value resolves from the
+   Stage A token layer.
+   ========================================================================== */
+
+/* ── F-1 (BLOCKING). The root-chip disclosure panel is absolutely positioned
+   with `right: 0` against `.shell-root-disclosure`, so its right edge tracks
+   the chip rather than the viewport. The chip's right edge sits a fixed 276px
+   in from the viewport edge (measured identical at 1440/1180/900), so once the
+   viewport falls below 680 + 276 + 19.2 ≈ 975px the 680px panel is pushed off
+   the left edge — 56px off-screen at 900px, taking half of `Apply Path` with
+   it.
+
+   Fix: in the affected band only, move the panel's containing block from the
+   chip to the whole top bar and let it span that bar. `top: calc(100% + 0.6rem)`
+   then resolves against the 48px bar instead of the chip, so the panel drops
+   just below the bar. Wide viewports (>1024px) keep the verified chip-anchored
+   behaviour untouched, and <=860px keeps its existing compact 420px panel,
+   which already fits. Absolute positioning is retained deliberately — a
+   `fixed` panel would detach from the bar while the non-workspace shell
+   scrolls. */
+@media (min-width: 861px) and (max-width: 1024px) {
+  .shell-header {
+    position: relative;
+  }
+
+  /* `.working-root-bar` is the only absolutely positioned descendant, so
+     releasing this containing block affects nothing else. */
+  .shell-root-disclosure {
+    position: static;
+  }
+
+  .working-root-bar {
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+}
+
+/* ── F-2. The composer placeholder is longer than the field at narrow widths
+   and was cut mid-glyph at the input's right edge. Inputs clip by default but
+   do not ellipsize unless asked. */
+.chat-input-row input {
+  text-overflow: ellipsis;
+}
+
+/* ── F-3. The replay provenance value broke mid-token (`…/even` / `ts`).
+   `overflow-wrap: anywhere` is already set on the value and is what permits an
+   arbitrary break point, so adding it is not the remedy; V2's alternative — a
+   wider value column — is. The widest label is `Disclosure`, so the 7rem label
+   track was over-reserved; releasing it to the label's own max-content width
+   hands the difference to the value and lets the string stay on one line at
+   the widths captured. `overflow-wrap` stays as the anti-overflow backstop. */
+.woven-replay-provenance dl {
+  grid-template-columns: minmax(4.5rem, max-content) minmax(0, 1fr);
+}

@@ -1,0 +1,642 @@
+{
+  "tag": "a11y-checks-normal-motion",
+  "reducedMotionForced": false,
+  "steps": [],
+  "bootstrap": "Active root: /Users/ryan/dev/chirality",
+  "motion": {
+    "matchesReduce": false,
+    "resizeHandleAfter": {
+      "transitionDuration": "0.12s, 0.12s",
+      "transitionProperty": "background, transform",
+      "animationDuration": "0s"
+    },
+    "navItem": {
+      "transitionDuration": "0s",
+      "animationDuration": "0s"
+    },
+    "htmlScrollBehavior": "auto"
+  },
+  "brand": {
+    "brandImgAlt": "",
+    "brandImgAltIsEmptyString": true,
+    "brandImgAriaHidden": null,
+    "wordmarkText": "Chirality",
+    "brandRowAccessibleText": "Chirality"
+  },
+  "contrast": {
+    "light": {
+      "theme": "light",
+      "pairs": {
+        "--sage-ink on --sage-soft": {
+          "fg": "color(srgb 0.310431 0.380078 0.299608)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "rgb(230, 236, 222)",
+          "bgRgb": [
+            230,
+            236,
+            222
+          ],
+          "ratio": 5.54
+        },
+        "--rose-ink on --rose-soft": {
+          "fg": "color(srgb 0.48549 0.320784 0.370196)",
+          "fgRgb": [
+            124,
+            82,
+            94
+          ],
+          "bg": "rgb(242, 228, 234)",
+          "bgRgb": [
+            242,
+            228,
+            234
+          ],
+          "ratio": 5.29
+        },
+        "--slate-ink on --slate-soft": {
+          "fg": "color(srgb 0.301961 0.340549 0.404078)",
+          "fgRgb": [
+            77,
+            87,
+            103
+          ],
+          "bg": "rgb(230, 234, 240)",
+          "bgRgb": [
+            230,
+            234,
+            240
+          ],
+          "ratio": 6.05
+        },
+        "--accent-ink on --accent-soft": {
+          "fg": "color(srgb 0.520941 0.298039 0.16949)",
+          "fgRgb": [
+            133,
+            76,
+            43
+          ],
+          "bg": "rgb(241, 229, 214)",
+          "bgRgb": [
+            241,
+            229,
+            214
+          ],
+          "ratio": 5.52
+        },
+        "--ink on --surface": {
+          "fg": "rgb(41, 35, 26)",
+          "fgRgb": [
+            41,
+            35,
+            26
+          ],
+          "bg": "rgb(252, 250, 244)",
+          "bgRgb": [
+            252,
+            250,
+            244
+          ],
+          "ratio": 14.91
+        },
+        "--ink on --card": {
+          "fg": "rgb(41, 35, 26)",
+          "fgRgb": [
+            41,
+            35,
+            26
+          ],
+          "bg": "rgb(255, 253, 248)",
+          "bgRgb": [
+            255,
+            253,
+            248
+          ],
+          "ratio": 15.31
+        },
+        "--ink-soft on --surface": {
+          "fg": "rgb(95, 88, 74)",
+          "fgRgb": [
+            95,
+            88,
+            74
+          ],
+          "bg": "rgb(252, 250, 244)",
+          "bgRgb": [
+            252,
+            250,
+            244
+          ],
+          "ratio": 6.75
+        },
+        "--ink-soft on --card": {
+          "fg": "rgb(95, 88, 74)",
+          "fgRgb": [
+            95,
+            88,
+            74
+          ],
+          "bg": "rgb(255, 253, 248)",
+          "bgRgb": [
+            255,
+            253,
+            248
+          ],
+          "ratio": 6.93
+        },
+        "--ink-faint on --surface": {
+          "fg": "rgb(120, 111, 95)",
+          "fgRgb": [
+            120,
+            111,
+            95
+          ],
+          "bg": "rgb(252, 250, 244)",
+          "bgRgb": [
+            252,
+            250,
+            244
+          ],
+          "ratio": 4.75
+        },
+        "--ink-faint on --card": {
+          "fg": "rgb(120, 111, 95)",
+          "fgRgb": [
+            120,
+            111,
+            95
+          ],
+          "bg": "rgb(255, 253, 248)",
+          "bgRgb": [
+            255,
+            253,
+            248
+          ],
+          "ratio": 4.87
+        },
+        "--ink-faint on --ground": {
+          "fg": "rgb(120, 111, 95)",
+          "fgRgb": [
+            120,
+            111,
+            95
+          ],
+          "bg": "rgb(248, 245, 238)",
+          "bgRgb": [
+            248,
+            245,
+            238
+          ],
+          "ratio": 4.55
+        },
+        "--cta-ink on --cta": {
+          "fg": "rgb(246, 240, 226)",
+          "fgRgb": [
+            246,
+            240,
+            226
+          ],
+          "bg": "rgb(51, 41, 29)",
+          "bgRgb": [
+            51,
+            41,
+            29
+          ],
+          "ratio": 12.52
+        },
+        "--danger on --surface": {
+          "fg": "rgb(163, 46, 46)",
+          "fgRgb": [
+            163,
+            46,
+            46
+          ],
+          "bg": "rgb(252, 250, 244)",
+          "bgRgb": [
+            252,
+            250,
+            244
+          ],
+          "ratio": 6.73
+        },
+        "--accent on --surface": {
+          "fg": "rgb(153, 85, 47)",
+          "fgRgb": [
+            153,
+            85,
+            47
+          ],
+          "bg": "rgb(252, 250, 244)",
+          "bgRgb": [
+            252,
+            250,
+            244
+          ],
+          "ratio": 5.45
+        },
+        "--sage on --surface": {
+          "fg": "rgb(94, 121, 96)",
+          "fgRgb": [
+            94,
+            121,
+            96
+          ],
+          "bg": "rgb(252, 250, 244)",
+          "bgRgb": [
+            252,
+            250,
+            244
+          ],
+          "ratio": 4.59
+        },
+        "--rose on --surface": {
+          "fg": "rgb(156, 100, 121)",
+          "fgRgb": [
+            156,
+            100,
+            121
+          ],
+          "bg": "rgb(252, 250, 244)",
+          "bgRgb": [
+            252,
+            250,
+            244
+          ],
+          "ratio": 4.46
+        },
+        "--slate on --surface": {
+          "fg": "rgb(91, 107, 133)",
+          "fgRgb": [
+            91,
+            107,
+            133
+          ],
+          "bg": "rgb(252, 250, 244)",
+          "bgRgb": [
+            252,
+            250,
+            244
+          ],
+          "ratio": 5.18
+        }
+      }
+    },
+    "dark": {
+      "theme": "dark",
+      "pairs": {
+        "--sage-ink on --sage-soft": {
+          "fg": "color(srgb 0.683294 0.755765 0.652863)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "rgb(35, 43, 31)",
+          "bgRgb": [
+            35,
+            43,
+            31
+          ],
+          "ratio": 7.64
+        },
+        "--rose-ink on --rose-soft": {
+          "fg": "color(srgb 0.818824 0.671059 0.720627)",
+          "fgRgb": [
+            209,
+            171,
+            184
+          ],
+          "bg": "rgb(48, 33, 40)",
+          "bgRgb": [
+            48,
+            33,
+            40
+          ],
+          "ratio": 7.44
+        },
+        "--slate-ink on --slate-soft": {
+          "fg": "color(srgb 0.652235 0.702118 0.771451)",
+          "fgRgb": [
+            166,
+            179,
+            197
+          ],
+          "bg": "rgb(35, 42, 53)",
+          "bgRgb": [
+            35,
+            42,
+            53
+          ],
+          "ratio": 6.79
+        },
+        "--accent-ink on --accent-soft": {
+          "fg": "color(srgb 0.801882 0.559686 0.408314)",
+          "fgRgb": [
+            204,
+            143,
+            104
+          ],
+          "bg": "rgb(50, 35, 22)",
+          "bgRgb": [
+            50,
+            35,
+            22
+          ],
+          "ratio": 5.55
+        },
+        "--ink on --surface": {
+          "fg": "rgb(234, 228, 214)",
+          "fgRgb": [
+            234,
+            228,
+            214
+          ],
+          "bg": "rgb(28, 26, 21)",
+          "bgRgb": [
+            28,
+            26,
+            21
+          ],
+          "ratio": 13.71
+        },
+        "--ink on --card": {
+          "fg": "rgb(234, 228, 214)",
+          "fgRgb": [
+            234,
+            228,
+            214
+          ],
+          "bg": "rgb(33, 30, 24)",
+          "bgRgb": [
+            33,
+            30,
+            24
+          ],
+          "ratio": 13.11
+        },
+        "--ink-soft on --surface": {
+          "fg": "rgb(168, 159, 140)",
+          "fgRgb": [
+            168,
+            159,
+            140
+          ],
+          "bg": "rgb(28, 26, 21)",
+          "bgRgb": [
+            28,
+            26,
+            21
+          ],
+          "ratio": 6.63
+        },
+        "--ink-soft on --card": {
+          "fg": "rgb(168, 159, 140)",
+          "fgRgb": [
+            168,
+            159,
+            140
+          ],
+          "bg": "rgb(33, 30, 24)",
+          "bgRgb": [
+            33,
+            30,
+            24
+          ],
+          "ratio": 6.33
+        },
+        "--ink-faint on --surface": {
+          "fg": "rgb(143, 133, 112)",
+          "fgRgb": [
+            143,
+            133,
+            112
+          ],
+          "bg": "rgb(28, 26, 21)",
+          "bgRgb": [
+            28,
+            26,
+            21
+          ],
+          "ratio": 4.77
+        },
+        "--ink-faint on --card": {
+          "fg": "rgb(143, 133, 112)",
+          "fgRgb": [
+            143,
+            133,
+            112
+          ],
+          "bg": "rgb(33, 30, 24)",
+          "bgRgb": [
+            33,
+            30,
+            24
+          ],
+          "ratio": 4.56
+        },
+        "--ink-faint on --ground": {
+          "fg": "rgb(143, 133, 112)",
+          "fgRgb": [
+            143,
+            133,
+            112
+          ],
+          "bg": "rgb(23, 21, 17)",
+          "bgRgb": [
+            23,
+            21,
+            17
+          ],
+          "ratio": 5
+        },
+        "--cta-ink on --cta": {
+          "fg": "rgb(41, 34, 22)",
+          "fgRgb": [
+            41,
+            34,
+            22
+          ],
+          "bg": "rgb(232, 220, 193)",
+          "bgRgb": [
+            232,
+            220,
+            193
+          ],
+          "ratio": 11.57
+        },
+        "--danger on --surface": {
+          "fg": "rgb(211, 112, 95)",
+          "fgRgb": [
+            211,
+            112,
+            95
+          ],
+          "bg": "rgb(28, 26, 21)",
+          "bgRgb": [
+            28,
+            26,
+            21
+          ],
+          "ratio": 5.18
+        },
+        "--accent on --surface": {
+          "fg": "rgb(198, 124, 80)",
+          "fgRgb": [
+            198,
+            124,
+            80
+          ],
+          "bg": "rgb(28, 26, 21)",
+          "bgRgb": [
+            28,
+            26,
+            21
+          ],
+          "ratio": 5.3
+        },
+        "--sage on --surface": {
+          "fg": "rgb(151, 179, 148)",
+          "fgRgb": [
+            151,
+            179,
+            148
+          ],
+          "bg": "rgb(28, 26, 21)",
+          "bgRgb": [
+            28,
+            26,
+            21
+          ],
+          "ratio": 7.61
+        },
+        "--rose on --surface": {
+          "fg": "rgb(199, 149, 172)",
+          "fgRgb": [
+            199,
+            149,
+            172
+          ],
+          "bg": "rgb(28, 26, 21)",
+          "bgRgb": [
+            28,
+            26,
+            21
+          ],
+          "ratio": 6.89
+        },
+        "--slate on --surface": {
+          "fg": "rgb(140, 160, 190)",
+          "fgRgb": [
+            140,
+            160,
+            190
+          ],
+          "bg": "rgb(28, 26, 21)",
+          "bgRgb": [
+            28,
+            26,
+            21
+          ],
+          "ratio": 6.53
+        }
+      }
+    }
+  },
+  "keyboard": [
+    {
+      "step": "focus first navigator group",
+      "tag": "BUTTON",
+      "cls": "woven-nav-item woven-nav-item--active",
+      "text": "Dialogue | Primary human–agent conversation | ▾",
+      "ariaExpanded": "true",
+      "ariaPressed": null,
+      "dataThemeOption": null,
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Enter on active group",
+      "beforeExpanded": "true",
+      "afterEnter": "false"
+    },
+    {
+      "step": "Enter again (re-expand)",
+      "afterEnter": "true"
+    },
+    {
+      "step": "focus second navigator group",
+      "tag": "BUTTON",
+      "cls": "woven-nav-item",
+      "text": "Workbench | Documents, evidence & contracts | ▸",
+      "ariaExpanded": "false",
+      "ariaPressed": null,
+      "dataThemeOption": null,
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Space on inactive group",
+      "surface": "workbench"
+    },
+    {
+      "step": "focus theme Light",
+      "tag": "BUTTON",
+      "cls": "shell-theme-option",
+      "text": "LIGHT",
+      "ariaExpanded": null,
+      "ariaPressed": "true",
+      "dataThemeOption": "light",
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Tab → next theme option",
+      "tag": "BUTTON",
+      "cls": "shell-theme-option",
+      "text": "DARK",
+      "ariaExpanded": null,
+      "ariaPressed": "false",
+      "dataThemeOption": "dark",
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Space activates focused theme option",
+      "dataTheme": "dark",
+      "pressedStates": [
+        "light=false",
+        "dark=true",
+        "system=false"
+      ]
+    },
+    {
+      "step": "focus first session row",
+      "tag": "BUTTON",
+      "cls": "woven-navigator-session",
+      "text": "HELP_HUMAN | Jul 24",
+      "ariaExpanded": null,
+      "ariaPressed": "false",
+      "dataThemeOption": null,
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Enter on session row → replay lens",
+      "lens": true,
+      "lensHeading": "REPLAY — READ-ONLY\n\nRecorded session\n\nSelected session: ses_9f21c4a7\n\nReturn to primary dialogue\nSource\nsession:ses_9f21c4a7/events\nObserved\n2026-07-24T23:09:49"
+    }
+  ]
+}

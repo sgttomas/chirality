@@ -1,0 +1,642 @@
+{
+  "tag": "a11y-checks-reduced-motion",
+  "reducedMotionForced": true,
+  "steps": [],
+  "bootstrap": "Active root: /Users/ryan/dev/chirality",
+  "motion": {
+    "matchesReduce": true,
+    "resizeHandleAfter": {
+      "transitionDuration": "1e-05s",
+      "transitionProperty": "none",
+      "animationDuration": "1e-05s"
+    },
+    "navItem": {
+      "transitionDuration": "1e-05s",
+      "animationDuration": "1e-05s"
+    },
+    "htmlScrollBehavior": "auto"
+  },
+  "brand": {
+    "brandImgAlt": "",
+    "brandImgAltIsEmptyString": true,
+    "brandImgAriaHidden": null,
+    "wordmarkText": "Chirality",
+    "brandRowAccessibleText": "Chirality"
+  },
+  "contrast": {
+    "light": {
+      "theme": "light",
+      "pairs": {
+        "--sage-ink on --sage-soft": {
+          "fg": "color(srgb 0.310431 0.380078 0.299608)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--rose-ink on --rose-soft": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--slate-ink on --slate-soft": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--accent-ink on --accent-soft": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--ink on --surface": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--ink on --card": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--ink-soft on --surface": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--ink-soft on --card": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--ink-faint on --surface": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--ink-faint on --card": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--ink-faint on --ground": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--cta-ink on --cta": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--danger on --surface": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--accent on --surface": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--sage on --surface": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--rose on --surface": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        },
+        "--slate on --surface": {
+          "fg": "oklab(0.471167 -0.0304809 0.024422)",
+          "fgRgb": [
+            79,
+            97,
+            76
+          ],
+          "bg": "oklab(0.471167 -0.0304809 0.024422)",
+          "bgRgb": [
+            79,
+            97,
+            76
+          ],
+          "ratio": 1
+        }
+      }
+    },
+    "dark": {
+      "theme": "dark",
+      "pairs": {
+        "--sage-ink on --sage-soft": {
+          "fg": "color(srgb 0.683294 0.755765 0.652863)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--rose-ink on --rose-soft": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--slate-ink on --slate-soft": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--accent-ink on --accent-soft": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--ink on --surface": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--ink on --card": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--ink-soft on --surface": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--ink-soft on --card": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--ink-faint on --surface": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--ink-faint on --card": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--ink-faint on --ground": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--cta-ink on --cta": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--danger on --surface": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--accent on --surface": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--sage on --surface": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--rose on --surface": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        },
+        "--slate on --surface": {
+          "fg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "fgRgb": [
+            174,
+            193,
+            166
+          ],
+          "bg": "oklab(0.788631 -0.0301175 0.0287659)",
+          "bgRgb": [
+            174,
+            193,
+            166
+          ],
+          "ratio": 1
+        }
+      }
+    }
+  },
+  "keyboard": [
+    {
+      "step": "focus first navigator group",
+      "tag": "BUTTON",
+      "cls": "woven-nav-item woven-nav-item--active",
+      "text": "Dialogue | Primary human–agent conversation | ▾",
+      "ariaExpanded": "true",
+      "ariaPressed": null,
+      "dataThemeOption": null,
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Enter on active group",
+      "beforeExpanded": "true",
+      "afterEnter": "false"
+    },
+    {
+      "step": "Enter again (re-expand)",
+      "afterEnter": "true"
+    },
+    {
+      "step": "focus second navigator group",
+      "tag": "BUTTON",
+      "cls": "woven-nav-item",
+      "text": "Workbench | Documents, evidence & contracts | ▸",
+      "ariaExpanded": "false",
+      "ariaPressed": null,
+      "dataThemeOption": null,
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Space on inactive group",
+      "surface": "workbench"
+    },
+    {
+      "step": "focus theme Light",
+      "tag": "BUTTON",
+      "cls": "shell-theme-option",
+      "text": "LIGHT",
+      "ariaExpanded": null,
+      "ariaPressed": "true",
+      "dataThemeOption": "light",
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Tab → next theme option",
+      "tag": "BUTTON",
+      "cls": "shell-theme-option",
+      "text": "DARK",
+      "ariaExpanded": null,
+      "ariaPressed": "false",
+      "dataThemeOption": "dark",
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Space activates focused theme option",
+      "dataTheme": "dark",
+      "pressedStates": [
+        "light=false",
+        "dark=true",
+        "system=false"
+      ]
+    },
+    {
+      "step": "focus first session row",
+      "tag": "BUTTON",
+      "cls": "woven-navigator-session",
+      "text": "HELP_HUMAN | Jul 24",
+      "ariaExpanded": null,
+      "ariaPressed": "false",
+      "dataThemeOption": null,
+      "focusVisible": true,
+      "outline": "rgb(153, 85, 47) solid 2px",
+      "outlineOffset": "2px",
+      "boxShadow": "none"
+    },
+    {
+      "step": "Enter on session row → replay lens",
+      "lens": true,
+      "lensHeading": "REPLAY — READ-ONLY\n\nRecorded session\n\nSelected session: ses_9f21c4a7\n\nReturn to primary dialogue\nSource\nsession:ses_9f21c4a7/events\nObserved\n2026-07-24T23:10:34"
+    }
+  ]
+}
