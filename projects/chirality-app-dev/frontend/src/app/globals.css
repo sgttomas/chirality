@@ -47,8 +47,13 @@
   --rule: #e6e0d1;
   --rule-strong: #d0c8b5;
 
-  /* Interaction accent (dusty sienna) — strokes and markers only, never fills */
-  --accent: #9c5730;
+  /* Interaction accent (dusty sienna) — strokes and markers only, never fills.
+     Darkened from the §3.1 table value #9c5730 to #99552f (Round 6 AA remedy):
+     the three selected-state chip rules put accent text ON --accent-soft, where
+     #9c5730 measured 4.43:1. Hue (21.7deg) and saturation (52.9%) are preserved
+     and the shift is imperceptible (dE00 0.88); dark --accent already passes at
+     4.61 and is unchanged. */
+  --accent: #99552f;
   --accent-soft: #f1e5d6;
 
   /* Primary actions — the only filled emphasis in the system */
