@@ -1108,3 +1108,10 @@
   - D-GOV-20, D-APP-73, D-T0-23, D-PEC-56, and SCA-APP-003 govern the tranche.
   - PEC retains deterministic acts, RBAC, reporting, human-only acts, visibility, and data boundaries; independent LLM/session/delegation ownership retires prospectively. The legacy endpoint is a one-cycle proxy only.
   - Scratch/demo-only pilot; D-PEC-49, T0 rebaseline, and production authority remain open. No source, dependency, database, data, lifecycle, or release state changed.
+
+- **2026-07-24 — Receipt 99** (coordination-plane pivot ruled; PRD v2 candidate authored).
+  - Owner direction (verbatim): "I rule D-PEC-57 O-A, commit and proceed to D-PEC-58 using subagents where effective and using the `opus-5` model when doing so." Earlier same-session direction is transcribed in the packet (CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING).
+  - Executed pointers: commit `e3d696423` — `D-PEC-57_coordination_plane_pivot.md` (RULED O-A), register row, and `PRD_V2_CANDIDATE_2026-07-24_coordination_plane.md` under `projects/pec/execution/_Coordination/`.
+  - Product delta: team-information-hub framing retired by direction; PEC v2 = deterministic coordination plane (loop Step 0 + deterministic Step 1; harness-owned polling; file-native rulings; rebuildable projection per D-GOV-01; no second execution loop per D-GOV-20/D-PEC-56). Old PEC becomes a cited reference corpus; v2 is a greenfield pipeline build.
+  - Gate outcome: EXECUTED (direction transcription + candidate authoring); AWAITING_OWNER on D-PEC-58 — PRD v2 text adoption is the next owner gate. The standing plan is superseded only upon D-PEC-58; its replacement is staged as a candidate, not written into this directory before ruling.
+  - Checks: `git diff --check` pass; documentation-only tranche — no source, dependency, database, demo input, or report changed.
