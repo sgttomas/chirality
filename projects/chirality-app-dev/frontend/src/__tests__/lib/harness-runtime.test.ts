@@ -150,7 +150,7 @@ describe('harness runtime provider mode', () => {
       adapterId: 'pi',
       providerId: 'omlx',
       packageName: '@earendil-works/pi-coding-agent',
-      packageVersion: '0.80.10'
+      packageVersion: '0.82.0'
     });
     expect(defaultEngine.port.descriptor.adapterId).toBe('stub');
     expect(defaultEngine.port).not.toBe(pi.port);

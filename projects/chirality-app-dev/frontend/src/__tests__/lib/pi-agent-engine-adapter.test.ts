@@ -167,7 +167,7 @@ describe('PiAgentEngineAdapter', () => {
       adapterId: 'pi',
       providerId: 'omlx',
       packageName: '@earendil-works/pi-coding-agent',
-      packageVersion: '0.80.10'
+      packageVersion: '0.82.0'
     });
     expect(events).toHaveLength(2);
     expect(events[0]).toMatchObject({

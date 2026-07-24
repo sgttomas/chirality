@@ -327,7 +327,7 @@ describe('agentSdk scripted dev turn validation', () => {
     expect(process.env.ANTHROPIC_API_KEY).toBe(priorEnvKey);
 
     const sessionResponse = await routes.idRoute.GET(new Request('http://localhost'), {
-      params: { id: session.sessionId }
+      params: Promise.resolve({ id: session.sessionId })
     });
     expect(sessionResponse.status).toBe(200);
     const sessionBody = (await sessionResponse.json()) as { session: SessionRecord };
