@@ -5,8 +5,8 @@
 | Gate 1 — intake | `CONFIRMED` | Owner confirmed on 2026-07-23 that the parsed action envelope matches the intended change. |
 | Gate 2 — impact | `ACCEPTED` | Owner accepted the `Impact_Assessment.md` maximum envelope on 2026-07-23. |
 | Concept-selection hold | `SELECTED` | On 2026-07-23 the owner accepted Woven Dialogue with a Work/Agents Coordination Panel; exact selected basis is recorded at `plans/artifacts/DIALOGUE_CENTRED_CONCEPTS_2026-07-24_0121Z/Selected_Concept_Woven_Dialogue_Coordination_Panel.md`. |
-| Gate 3 — amendment | `PENDING_HUMAN_APPROVAL` | Exact before/after decomposition amendment preview is complete in `Amendment_Preview.md`; no decomposition or authority mutation is authorized until the owner approves it. |
-| Gate 4 — propagation | `NOT_RUN` | Requires approved Gate-3 amendment. |
+| Gate 3 — amendment | `APPROVED` | On 2026-07-23 the owner approved the exact amendments in `Amendment_Preview.md`. |
+| Gate 4 — propagation | `PENDING_HUMAN_APPROVAL` | Exact `DIRECT_EDIT`, `RECOMPUTE`, and `NO_CHANGE` classifications are presented in `Propagation_Plan.md`; Gate 5 remains blocked. |
 | Gate 5 — execute/validate | `NOT_RUN` | No authority or implementation change is authorized. |
 
 ## Fixed intake constraints
@@ -112,4 +112,12 @@ The exact amendment is now presented in `Amendment_Preview.md`. It includes:
 - exact semantic ownership and prospective decision-supersession boundaries;
 - compatibility, acceptance, and explicit no-change terms.
 
-Gate 3 remains a non-delegable owner decision.
+## Gate-3 owner decision
+
+On 2026-07-23 the owner stated:
+
+> I approve the exact amendments in `Amendment_Preview.md` to the Chirality
+> App decomposition.
+
+This approves the exact amendment but does not authorize propagation or
+implementation. Gate 4 remains a non-delegable owner decision.

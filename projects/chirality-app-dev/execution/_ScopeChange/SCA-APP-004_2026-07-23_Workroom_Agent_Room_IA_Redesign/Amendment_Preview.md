@@ -1,7 +1,7 @@
 # SCA-APP-004 Amendment Preview
 
 **Gate:** 3 — Amendment Approval
-**Status:** `PENDING_HUMAN_APPROVAL`
+**Status:** `APPROVED`
 **Date:** `2026-07-23`
 **Selected concept:** Woven Dialogue with Work/Agents Coordination Panel
 **Topology:** unchanged — 10 packages / 51 deliverables
@@ -10,6 +10,9 @@
 This is the exact proposed amendment to
 `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`.
 No decomposition or authority file has yet been changed.
+
+**Owner approval:** On 2026-07-23 the owner stated, “I approve the exact
+amendments in `Amendment_Preview.md` to the Chirality App decomposition.”
 
 ## Selected product constraints
 
