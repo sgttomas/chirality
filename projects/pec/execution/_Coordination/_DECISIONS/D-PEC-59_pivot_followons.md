@@ -28,7 +28,9 @@ authorization quoted in the `D-PEC-58` packet.
    reference corpus and point at PRD v2.0; `open_issues` gains the pivot
    record and the decomposition-loop clarification. The amendment is
    validated by `tools/validation/validate_domain_engine_profile.py`
-   (evidence: `_DomainEngines/pec/PEC_2026-07-24_profile-amendment-01/validation_report.md`,
+   (machine-readable report regenerated at its conventional home,
+   `_DomainEngines/profiles/_validation/pec.validation.json`; pointer note at
+   `_DomainEngines/pec/PEC_2026-07-24_profile-amendment-01/validation_report.md`;
    result VALID). **Full profile supersession remains a future act** once
    PEC v2 has implementation shape; the L3 import-lane semantics are left
    textually intact as the frozen instance's binding and are product-moot.
@@ -53,7 +55,8 @@ authorization quoted in the `D-PEC-58` packet.
 ## Exact fence
 
 - `_DomainEngines/profiles/pec.yaml` (amendment per item 1 only)
-- `_DomainEngines/pec/PEC_2026-07-24_profile-amendment-01/**` (validation evidence)
+- `_DomainEngines/pec/PEC_2026-07-24_profile-amendment-01/**` (validation evidence pointer)
+- `_DomainEngines/profiles/_validation/pec.validation.json` (regenerated machine-readable validation report, conventional home)
 - `projects/pec/AGENTS.md` (rewrite)
 - `projects/pec/.gitignore` (guard lines only)
 - `projects/pec/docs/STATUS.md` (governance-section status upkeep only)
