@@ -28,6 +28,8 @@ import {
   clearProjectScopedWovenWorkspaceState,
   createDefaultWovenWorkspaceState,
   readWovenWorkspaceStateFromStorage,
+  recordWovenSessionSurface,
+  toggleWovenNavigatorExpandedSurface,
   writeWovenWorkspaceStateToStorage,
   type WovenWorkspaceState
 } from '../../lib/woven-dialogue/woven-workspace-state';
@@ -75,9 +77,10 @@ export function WovenDialogueShell({
   const streaming = useHarnessStreaming();
   const [activeSurface, setActiveSurface] = useState<WovenSurface>(defaultSurface);
   const [primarySessionId, setPrimarySessionId] = useState<string>();
-  const [workspaceState, setWorkspaceState] = useState<WovenWorkspaceState>(
-    createDefaultWovenWorkspaceState
-  );
+  const [workspaceState, setWorkspaceState] = useState<WovenWorkspaceState>(() => ({
+    ...createDefaultWovenWorkspaceState(),
+    navigatorExpandedSurfaces: [defaultSurface]
+  }));
   const [stateHydrated, setStateHydrated] = useState(false);
   const [sessions, setSessions] = useState<SessionRecord[]>([]);
   const [sessionsLoading, setSessionsLoading] = useState(false);
@@ -85,6 +88,8 @@ export function WovenDialogueShell({
   const [sessionRefreshToken, setSessionRefreshToken] = useState(0);
   const replayLoaderRef = useRef<SelectedSessionReplayLoader>();
   const previousProjectRootRef = useRef(projectRoot);
+  const activeSurfaceRef = useRef(defaultSurface);
+  const routeSurfaceRef = useRef(defaultSurface);
   const [replayState, setReplayState] = useState<SelectedSessionReplayState>({
     status: 'IDLE'
   });
@@ -113,7 +118,15 @@ export function WovenDialogueShell({
     if (typeof window === 'undefined') {
       return;
     }
-    setWorkspaceState(readWovenWorkspaceStateFromStorage(window.localStorage));
+    const stored = readWovenWorkspaceStateFromStorage(window.localStorage);
+    // The stored expansion set is honoured, but the mode group the route
+    // actually opened on is never left collapsed.
+    const routeSurface = routeSurfaceRef.current;
+    setWorkspaceState(
+      stored.navigatorExpandedSurfaces.includes(routeSurface)
+        ? stored
+        : { ...stored, navigatorExpandedSurfaces: [routeSurface] }
+    );
     setStateHydrated(true);
   }, []);
 
@@ -123,6 +136,23 @@ export function WovenDialogueShell({
     }
     writeWovenWorkspaceStateToStorage(window.localStorage, workspaceState);
   }, [stateHydrated, workspaceState]);
+
+  useEffect(() => {
+    activeSurfaceRef.current = activeSurface;
+  }, [activeSurface]);
+
+  // The recorded session list carries no surface field, so the shell tags the
+  // surface that was active when a session was first observed. Local
+  // annotation only (no project truth); first attribution wins, so this is a
+  // no-op — same state reference — for every session already tagged.
+  useEffect(() => {
+    if (!stateHydrated || !primarySessionId) {
+      return;
+    }
+    setWorkspaceState((current) =>
+      recordWovenSessionSurface(current, primarySessionId, activeSurfaceRef.current)
+    );
+  }, [primarySessionId, stateHydrated]);
 
   useEffect(() => {
     setActiveSurface(defaultSurface);
@@ -208,6 +238,16 @@ export function WovenDialogueShell({
     },
     []
   );
+
+  // On mount the stored expansion state governs; a later route change expands
+  // the newly active mode group and collapses the others.
+  useEffect(() => {
+    if (routeSurfaceRef.current === defaultSurface) {
+      return;
+    }
+    routeSurfaceRef.current = defaultSurface;
+    updateWorkspaceState({ navigatorExpandedSurfaces: [defaultSurface] });
+  }, [defaultSurface, updateWorkspaceState]);
 
   const returnToPrimaryDialogue = useCallback((): void => {
     replayLoaderRef.current?.cancel();
@@ -450,11 +490,28 @@ export function WovenDialogueShell({
             <Navigator
               activeSurface={activeSurface}
               legacyHref={legacyHref}
+              sessions={sessions}
+              sessionSurfaces={workspaceState.sessionSurfaces}
+              expandedSurfaces={workspaceState.navigatorExpandedSurfaces}
+              liveSessionId={primarySessionId}
+              selectedSessionId={selectedReplayId(replayState)}
+              selectionDisabled={streaming}
+              sessionsLoading={sessionsLoading}
+              sessionsError={sessionsError}
               onOpenSurface={(surface) => {
                 replayLoaderRef.current?.cancel();
-                updateWorkspaceState({ selectedReplaySessionId: null });
+                updateWorkspaceState({
+                  selectedReplaySessionId: null,
+                  navigatorExpandedSurfaces: [surface]
+                });
                 setActiveSurface(surface);
               }}
+              onToggleSurfaceExpanded={(surface) => {
+                setWorkspaceState((current) =>
+                  toggleWovenNavigatorExpandedSurface(current, surface)
+                );
+              }}
+              onSelectSession={loadReplay}
             />
           ) : (
             <span className="woven-collapsed-label">Navigator</span>

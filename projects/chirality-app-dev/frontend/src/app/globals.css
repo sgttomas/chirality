@@ -3184,3 +3184,129 @@ button:disabled {
     transition: none;
   }
 }
+
+/* ==========================================================================
+   Stage B2 — Navigator mode-scoped session history
+   (TRB-APPDEV-WOVEN-REDESIGN-2026-07-24 §3.4)
+
+   Appended section: no rule above is edited. Every value resolves from the
+   Stage A token layer. Sessions are list rows, not cards — they carry no
+   provenance box, and the only colour they use is the sage live marker.
+   ========================================================================== */
+
+.woven-navigator-group {
+  position: relative;
+}
+
+.woven-navigator-chevron {
+  position: absolute;
+  top: 0.42rem;
+  right: 0.5rem;
+  font-size: 0.6rem;
+  line-height: 1;
+  color: var(--ink-faint);
+}
+
+.woven-navigator-sessions {
+  display: grid;
+  gap: 0.1rem;
+  margin: 0.15rem 0 0.4rem;
+}
+
+.woven-navigator-session-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.woven-navigator-session {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-align: left;
+  padding: 0.24rem 0.6rem 0.24rem 1.5rem;
+}
+
+.woven-navigator-session:hover {
+  filter: none;
+  background: transparent;
+  color: var(--ink);
+}
+
+.woven-navigator-session[aria-pressed='true'] {
+  color: var(--ink);
+  background: linear-gradient(90deg, var(--accent-soft), transparent 85%);
+}
+
+.woven-navigator-session--live {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.woven-navigator-session-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sage);
+  flex: none;
+  align-self: center;
+  margin-left: -0.72rem;
+}
+
+.woven-navigator-session-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.woven-navigator-session-when {
+  flex: none;
+  font-size: 0.66rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.woven-navigator-session-notice,
+.woven-navigator-sessions .panel-empty {
+  margin: 0;
+  padding: 0.12rem 0.6rem 0.12rem 1.5rem;
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+
+.woven-navigator-sessions .panel-error {
+  margin: 0;
+  padding: 0.12rem 0.6rem 0.12rem 1.5rem;
+  font-size: 0.7rem;
+}
+
+.woven-navigator-more {
+  margin: 0;
+  padding: 0.1rem 0.6rem 0 1.5rem;
+}
+
+.woven-navigator-more button {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.woven-navigator-more button:hover {
+  filter: none;
+  background: transparent;
+  color: var(--accent);
+}

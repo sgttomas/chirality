@@ -9,6 +9,13 @@ const MAX_PANE_SIZE = 2000;
 const MAX_REFERENCE_COUNT = 200;
 const MAX_REFERENCE_LENGTH = 2048;
 
+/**
+ * Upper bound on the local session→surface attribution map. The map is a
+ * projection convenience only (no project truth), so the oldest attributions
+ * are evicted rather than growing the stored blob without limit.
+ */
+export const MAX_SESSION_SURFACE_ATTRIBUTIONS = 500;
+
 type WovenWorkspaceMigrationField = 'navigatorWidth' | 'navigatorCollapsed';
 
 /**
@@ -25,6 +32,32 @@ export const WOVEN_WORKSPACE_THEMES: readonly WovenWorkspaceTheme[] = [
 ];
 
 export const DEFAULT_WOVEN_WORKSPACE_THEME: WovenWorkspaceTheme = 'light';
+
+/**
+ * Navigator surface. Declared here rather than in the navigator component
+ * because the versioned workspace state is the durable home of the
+ * client-side session→surface attribution map; `WovenSurface` aliases it.
+ */
+export type WovenWorkspaceSurface = 'dialogue' | 'workbench' | 'pipeline';
+
+export const WOVEN_WORKSPACE_SURFACES: readonly WovenWorkspaceSurface[] = [
+  'dialogue',
+  'workbench',
+  'pipeline'
+];
+
+export const DEFAULT_WOVEN_WORKSPACE_SURFACE: WovenWorkspaceSurface = 'dialogue';
+
+/**
+ * Local annotation only: `sessionId → surface active when that session was
+ * first observed`. Recorded session records carry no surface field, so this
+ * map is a client-side tag-forward convenience and never project truth.
+ * Sessions absent from the map stay unattributed and surface only in the
+ * navigator's "All sessions" list.
+ */
+export type WovenSessionSurfaceMap = Readonly<
+  Record<string, WovenWorkspaceSurface>
+>;
 
 export type WovenWorkspaceState = {
   schema: typeof WOVEN_WORKSPACE_SCHEMA;
@@ -49,6 +82,17 @@ export type WovenWorkspaceState = {
   expandedObjectIds: string[];
   selectedReplaySessionId: string | null;
   contextReferences: string[];
+  /**
+   * Additive v1 field (no schema-string bump): client-side session→surface
+   * attribution for the navigator's mode-scoped history lists.
+   */
+  sessionSurfaces: WovenSessionSurfaceMap;
+  /**
+   * Additive v1 field: which navigator mode groups are expanded. An empty
+   * array is a real state (the human collapsed everything); a missing field
+   * falls back to the default surface.
+   */
+  navigatorExpandedSurfaces: WovenWorkspaceSurface[];
   migration: {
     sourceKey: typeof LEGACY_LAYOUT_STORAGE_KEY | null;
     mappedFields: WovenWorkspaceMigrationField[];
@@ -111,6 +155,85 @@ export function readWovenWorkspaceTheme(value: unknown): WovenWorkspaceTheme {
     : DEFAULT_WOVEN_WORKSPACE_THEME;
 }
 
+export function readWovenWorkspaceSurface(
+  value: unknown
+): WovenWorkspaceSurface | null {
+  return WOVEN_WORKSPACE_SURFACES.includes(value as WovenWorkspaceSurface)
+    ? (value as WovenWorkspaceSurface)
+    : null;
+}
+
+function readSessionSurfaces(value: unknown): WovenSessionSurfaceMap {
+  if (!isRecord(value)) {
+    return {};
+  }
+
+  const entries: Array<[string, WovenWorkspaceSurface]> = [];
+  for (const [key, raw] of Object.entries(value)) {
+    const sessionId = readReference(key);
+    const surface = readWovenWorkspaceSurface(raw);
+    if (sessionId && surface) {
+      entries.push([sessionId, surface]);
+    }
+  }
+  // Insertion order is oldest-first, so the tail holds the newest attributions.
+  return Object.fromEntries(entries.slice(-MAX_SESSION_SURFACE_ATTRIBUTIONS));
+}
+
+function readNavigatorExpandedSurfaces(value: unknown): WovenWorkspaceSurface[] {
+  if (!Array.isArray(value)) {
+    return [DEFAULT_WOVEN_WORKSPACE_SURFACE];
+  }
+
+  const surfaces = new Set<WovenWorkspaceSurface>();
+  for (const entry of value) {
+    const surface = readWovenWorkspaceSurface(entry);
+    if (surface) {
+      surfaces.add(surface);
+    }
+  }
+  return [...surfaces];
+}
+
+/**
+ * First attribution wins: a session is tagged with the surface that was active
+ * when it was first observed and is never retagged. Returns the same state
+ * reference when nothing changes so callers can rely on identity.
+ */
+export function recordWovenSessionSurface(
+  state: WovenWorkspaceState,
+  sessionId: string | null | undefined,
+  surface: WovenWorkspaceSurface
+): WovenWorkspaceState {
+  const normalized = readReference(sessionId);
+  if (!normalized || state.sessionSurfaces[normalized]) {
+    return state;
+  }
+
+  const entries: Array<[string, WovenWorkspaceSurface]> = [
+    ...Object.entries(state.sessionSurfaces),
+    [normalized, surface]
+  ];
+  return {
+    ...state,
+    sessionSurfaces: Object.fromEntries(
+      entries.slice(-MAX_SESSION_SURFACE_ATTRIBUTIONS)
+    )
+  };
+}
+
+export function toggleWovenNavigatorExpandedSurface(
+  state: WovenWorkspaceState,
+  surface: WovenWorkspaceSurface
+): WovenWorkspaceState {
+  return {
+    ...state,
+    navigatorExpandedSurfaces: state.navigatorExpandedSurfaces.includes(surface)
+      ? state.navigatorExpandedSurfaces.filter((entry) => entry !== surface)
+      : [...state.navigatorExpandedSurfaces, surface]
+  };
+}
+
 function readFocusedArtifact(
   value: unknown
 ): WovenWorkspaceState['focusedArtifact'] {
@@ -167,6 +290,8 @@ export function createDefaultWovenWorkspaceState(): WovenWorkspaceState {
     expandedObjectIds: [],
     selectedReplaySessionId: null,
     contextReferences: [],
+    sessionSurfaces: {},
+    navigatorExpandedSurfaces: [DEFAULT_WOVEN_WORKSPACE_SURFACE],
     migration: {
       sourceKey: null,
       mappedFields: []
@@ -174,6 +299,13 @@ export function createDefaultWovenWorkspaceState(): WovenWorkspaceState {
   };
 }
 
+/**
+ * `sessionSurfaces` is deliberately retained here: session ids are globally
+ * unique and the map is only ever consulted for sessions the active Working
+ * Root actually enumerates, so returning to a previous root keeps its local
+ * grouping instead of silently dropping it. `navigatorExpandedSurfaces` is a
+ * layout preference, like the pane widths, and is likewise not project-scoped.
+ */
 export function clearProjectScopedWovenWorkspaceState(
   state: WovenWorkspaceState
 ): WovenWorkspaceState {
@@ -225,6 +357,10 @@ function sanitizeWovenWorkspaceState(value: unknown): WovenWorkspaceState | null
     expandedObjectIds: readReferenceArray(value.expandedObjectIds),
     selectedReplaySessionId: readReference(value.selectedReplaySessionId),
     contextReferences: readReferenceArray(value.contextReferences),
+    sessionSurfaces: readSessionSurfaces(value.sessionSurfaces),
+    navigatorExpandedSurfaces: readNavigatorExpandedSurfaces(
+      value.navigatorExpandedSurfaces
+    ),
     migration: readMigration(value.migration)
   };
 }

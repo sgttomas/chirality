@@ -127,6 +127,22 @@ describe('WovenDialogueShell composition', () => {
     expect(html).not.toContain('data-workbench-surface="mounted"');
   });
 
+  it('renders the navigator surfaces as expandable mode groups', () => {
+    const html = renderToStaticMarkup(<WovenDialogueShell defaultSurface="dialogue" />);
+
+    expect((html.match(/aria-expanded="true"/g) ?? [])).toHaveLength(1);
+    expect((html.match(/aria-expanded="false"/g) ?? [])).toHaveLength(2);
+    expect(html).toContain('No recorded sessions for this surface.');
+    expect(html).not.toContain('role="tab"');
+  });
+
+  it('expands the mode group matching the route surface', () => {
+    const html = renderToStaticMarkup(<WovenDialogueShell defaultSurface="pipeline" />);
+
+    expect(html).toContain('aria-current="page" aria-expanded="true"');
+    expect(html).toContain('<span>Pipeline</span>');
+  });
+
   it('preserves the legacy compatibility link with the current query string', () => {
     shellState.pathname = '/workbench';
     shellState.query = 'agent=CHANGE';
