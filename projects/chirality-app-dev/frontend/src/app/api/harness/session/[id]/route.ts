@@ -6,14 +6,15 @@ import {
 import { getDaemonHarnessPort } from '../../../../../lib/runtime-client/daemon-harness-port';
 
 type RouteContext = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 export async function GET(request: Request, context: RouteContext): Promise<Response> {
   try {
-    const sessionId = requireNonEmptyString(context.params.id, 'id');
+    const { id } = await context.params;
+    const sessionId = requireNonEmptyString(id, 'id');
     const result = await getDaemonHarnessPort().getSession(sessionId, {
       signal: request.signal
     });
@@ -25,7 +26,8 @@ export async function GET(request: Request, context: RouteContext): Promise<Resp
 
 export async function DELETE(request: Request, context: RouteContext): Promise<Response> {
   try {
-    const sessionId = requireNonEmptyString(context.params.id, 'id');
+    const { id } = await context.params;
+    const sessionId = requireNonEmptyString(id, 'id');
     const result = await getDaemonHarnessPort().deleteSession(sessionId, {
       signal: request.signal
     });

@@ -42,7 +42,7 @@ function makeFakeClient(): FakeClient {
     refreshProposal: vi.fn(async () => ({ ...ENGINE_PROPOSAL, version: 3 })),
     getProposal: vi.fn(async () => ENGINE_PROPOSAL),
     endpointDescriptor: () => ({ host: '127.0.0.1', port: 4899 }),
-    dispose: vi.fn()
+    dispose: vi.fn<() => void>()
   };
 }
 

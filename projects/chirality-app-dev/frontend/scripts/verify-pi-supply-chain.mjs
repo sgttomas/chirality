@@ -7,14 +7,31 @@ const packageJson = JSON.parse(await readFile(path.join(frontendRoot, 'package.j
 const lock = JSON.parse(await readFile(path.join(frontendRoot, 'package-lock.json'), 'utf8'));
 const notice = await readFile(path.join(frontendRoot, 'THIRD_PARTY_NOTICES_PI.md'), 'utf8');
 const piRoot = 'node_modules/@earendil-works/pi-coding-agent';
-const expectedVersion = '0.80.10';
+const expectedVersion = '0.82.0';
+const piPackages = [
+  '@earendil-works/pi-agent-core',
+  '@earendil-works/pi-ai',
+  '@earendil-works/pi-coding-agent',
+  '@earendil-works/pi-tui'
+];
 
 function fail(message) {
   throw new Error(`[pi-supply-chain] ${message}`);
 }
 
-if (packageJson.dependencies?.['@earendil-works/pi-coding-agent'] !== expectedVersion) {
-  fail(`Pi must be exactly pinned to ${expectedVersion}`);
+for (const packageName of piPackages) {
+  if (packageJson.dependencies?.[packageName] !== expectedVersion) {
+    fail(`${packageName} must be exactly pinned to ${expectedVersion}`);
+  }
+
+  const entry = lock.packages?.[`node_modules/${packageName}`];
+  if (
+    entry?.version !== expectedVersion ||
+    !entry?.resolved?.startsWith('https://registry.npmjs.org/') ||
+    !entry?.integrity?.startsWith('sha512-')
+  ) {
+    fail(`${packageName} is not protected by the expected registry SHA-512 lock`);
+  }
 }
 
 const closure = Object.entries(lock.packages ?? {}).filter(

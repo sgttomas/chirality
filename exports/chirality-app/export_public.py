@@ -22,11 +22,14 @@ ROOT_FILES = [
     ".gitignore",
     "AGENTS.md",
     "CLAUDE.md",
-    "README.md",
     "CHIRALITY_FRAMEWORK.md",
     "PROFESSIONAL_ENGINEERING.md",
     "LICENSE.md",
 ]
+
+PUBLIC_ROOT_FILES = {
+    "README.md": PROFILE_DIR / "PUBLIC_README.md",
+}
 
 ROOT_DIRS = [
     ".github",
@@ -118,6 +121,20 @@ PUBLIC_REPLACEMENTS = [
     ("/Users/ryan/ai-env/projects/chirality", "<chirality-root>"),
 ]
 
+PUBLIC_README_REQUIRED_MARKERS = (
+    "https://github.com/sgttomas/chirality-app/releases/latest",
+    "The desktop application source is not currently included",
+    "runtime/",
+)
+
+PUBLIC_README_FORBIDDEN_MARKERS = (
+    "This repository is the private canonical source tree",
+    "## Private Canonical Repository",
+    "Private maintainer and development roots",
+    "projects/chirality-app-dev",
+    "exports/chirality-app",
+)
+
 
 def should_skip(path: Path) -> bool:
     if any(part in SKIP_DIRS for part in path.parts):
@@ -192,6 +209,11 @@ def sanitize_text_files(stage: Path) -> int:
 
 def build_stage(stage: Path) -> int:
     missing = [name for name in ROOT_FILES + ROOT_DIRS if not (REPO_ROOT / name).exists()]
+    missing.extend(
+        str(source.relative_to(REPO_ROOT))
+        for source in PUBLIC_ROOT_FILES.values()
+        if not source.exists()
+    )
     if missing:
         raise SystemExit(
             "allowlisted roots missing from repo root: "
@@ -209,6 +231,9 @@ def build_stage(stage: Path) -> int:
 
     for name in ROOT_FILES:
         shutil.copy2(REPO_ROOT / name, stage / name)
+
+    for public_name, source in PUBLIC_ROOT_FILES.items():
+        shutil.copy2(source, stage / public_name)
 
     for name in ROOT_DIRS:
         copy_tree(REPO_ROOT / name, stage / name, name)
@@ -249,6 +274,18 @@ def write_manifest(stage: Path, output: Path) -> int:
 
 def boundary_findings(stage: Path) -> list[str]:
     findings: list[str] = []
+    public_readme = stage / "README.md"
+    if not public_readme.is_file():
+        findings.append("public README is missing: README.md")
+    else:
+        public_readme_text = public_readme.read_text(encoding="utf-8")
+        for marker in PUBLIC_README_REQUIRED_MARKERS:
+            if marker not in public_readme_text:
+                findings.append(f"public README missing required marker: {marker}")
+        for marker in PUBLIC_README_FORBIDDEN_MARKERS:
+            if marker.casefold() in public_readme_text.casefold():
+                findings.append(f"private canonical README marker in public README: {marker}")
+
     forbidden_top = {"projects", "domains", "migration", "plans", "exports"}
     for path in stage.rglob("*"):
         rel = path.relative_to(stage).as_posix()
