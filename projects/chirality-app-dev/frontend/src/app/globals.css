@@ -34,10 +34,14 @@
   --card: #fffdf8;
   --composer: #fffdf8;
 
-  /* Ink */
+  /* Ink. `--ink-faint` is darkened from the §3.1 table value #948b79 to
+     #786f5f (Round 5 AA remedy): the tranche uses it for functional labels at
+     9.6-12px, where #948b79 measured 3.10-3.32:1 against --ground/--surface/
+     --card. Hue (40deg) and saturation (11%) are preserved, and it stays
+     visibly lighter than --ink-soft, so the three-tier hierarchy holds. */
   --ink: #29231a;
   --ink-soft: #5f584a;
-  --ink-faint: #948b79;
+  --ink-faint: #786f5f;
 
   /* Hairline rules */
   --rule: #e6e0d1;
@@ -98,7 +102,9 @@
 
   --ink: #eae4d6;
   --ink-soft: #a89f8c;
-  --ink-faint: #79715f;
+  /* Round 5 AA remedy: lightened from the §3.1 table value #79715f (3.43-3.77:1)
+     to #8f8570. Hue/saturation preserved; still the darkest of the three inks. */
+  --ink-faint: #8f8570;
 
   --rule: #2c2921;
   --rule-strong: #3d392d;
@@ -136,7 +142,8 @@
 
     --ink: #eae4d6;
     --ink-soft: #a89f8c;
-    --ink-faint: #79715f;
+    /* Round 5 AA remedy — mirrors the `[data-theme="dark"]` block above. */
+    --ink-faint: #8f8570;
 
     --rule: #2c2921;
     --rule-strong: #3d392d;
@@ -2569,11 +2576,15 @@ button:disabled {
   display: none;
 }
 
+/* Four rows, always: header / transcript / composer dock / composer. The row
+   list used to be six positional `auto` tracks against a child count that
+   changed with state; see the Stage C section for the defect this fixes. */
 .woven-primary-dialogue > .panel--chat {
   height: 100%;
+  min-width: 0;
   min-height: 0;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto auto auto;
+  grid-template-rows: auto minmax(0, 1fr) fit-content(38%) auto;
   overflow: hidden;
   box-shadow: none;
 }
@@ -3309,4 +3320,369 @@ button:disabled {
   filter: none;
   background: transparent;
   color: var(--accent);
+}
+
+/* ==========================================================================
+   Stage C — defect fix, density, reduced motion, Documents provenance block
+   (TRB-APPDEV-WOVEN-REDESIGN-2026-07-24 §5 Stage C)
+
+   Appended section. Exactly one rule above this section was edited — the
+   `.woven-primary-dialogue > .panel--chat` grid-row list (see the comment
+   there) — because the defect is a grid-track defect and cannot be corrected
+   from a lower-cascade override alone. Everything else here is additive and
+   every value resolves from the Stage A token layer (no literal colours).
+   ========================================================================== */
+
+/* ── C1. Composer overlap (browser-diagnosed) ────────────────────────────
+   Repro before the fix, at 1280x720 on the Dialogue surface: the chat panel
+   was a six-track grid whose child count changed with state (draft-storage
+   warning / runtime status / runtime error appear and disappear). Once more
+   than the attachment block occupied the trailing tracks, the transcript's
+   `minmax(0, 1fr)` track was squeezed to ~4px while the transcript element
+   itself cannot be shorter than its own block padding (~27px): the box then
+   overflowed its track and drew on top of the Attachments row, and the
+   transcript content — the "Select a Working Root…" empty state and the
+   seeded turn — was clipped out of sight.
+
+   Fix, in three parts:
+     a. the trailing notices are wrapped in one `.chat-composer-dock`, so the
+        panel is always exactly four rows regardless of state;
+     b. the dock track is capped with `fit-content(38%)` and scrolls inside
+        itself, so notices can never consume the whole panel;
+     c. the transcript carries no block padding in this context — the inset
+        comes from its first/last child margins, which are scrollable content
+        rather than an incompressible part of the box. The transcript track
+        can therefore reach 0 without the box ever overflowing it, which
+        makes the overlap structurally impossible at any panel height. */
+
+.chat-composer-dock {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-composer-dock {
+  overflow: auto;
+  border-top: 1px solid var(--rule);
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-composer-dock > .chat-attachment-preview {
+  border-top: 0;
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-transcript {
+  padding-block: 0;
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-transcript > :first-child {
+  margin-top: 0.85rem;
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-transcript > :last-child {
+  margin-bottom: 0.85rem;
+}
+
+/* The empty state is a quiet note above the transcript, not a turn: it keeps
+   the transcript's reading measure and never sits on the composer. It stays on
+   `--ink-soft` — `--ink-faint` at this size is 3.2:1 light / 3.6:1 dark and
+   would fail AA. */
+.woven-primary-dialogue > .panel--chat > .chat-transcript > .panel-empty {
+  max-width: 74ch;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+/* ── C2. Density: the woven chat panel is chrome inside an already-titled
+   region. "Dialogue" and the persona are stated by the toolbar directly
+   above it, so the panel's own heading and meta line are removed from view
+   but kept in the accessibility tree, and the header collapses to the single
+   row that carries a live control. This returns ~65px to the transcript. */
+
+.woven-primary-dialogue > .panel--chat > .panel-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.34rem 1rem;
+}
+
+.woven-primary-dialogue > .panel--chat > .panel-header > h2,
+.woven-primary-dialogue > .panel--chat > .panel-header > .chat-meta {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.woven-primary-dialogue > .panel--chat > .panel-header > .chat-mode-selector {
+  margin-top: 0;
+}
+
+/* ── C3. Intrinsic density: nothing in the dialogue column may impose a
+   min-content floor wider than the column. Before this, the composer row and
+   the persona select forced ~374px of min-content into a 312px column
+   between 861px and 1180px, and `.woven-dialogue-region`'s `overflow:hidden`
+   silently clipped the Attach Files / Clear / Interrupt controls. */
+
+.woven-primary-dialogue,
+.woven-focused-surface,
+.woven-replay-lens {
+  min-width: 0;
+}
+
+.woven-dialogue-toolbar,
+.woven-region-header,
+.woven-activity-header,
+.woven-focused-header,
+.woven-replay-header {
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+/* Rail headers carry a title and a segmented control; below ~1180px the rail
+   is narrower than their combined min-content, and the rail's own
+   `overflow: hidden` was clipping the trailing control. */
+.woven-region-header > *,
+.woven-activity-header > *,
+.woven-focused-header > *,
+.woven-replay-header > * {
+  min-width: 0;
+}
+
+.woven-dialogue-toolbar .persona-picker,
+.woven-dialogue-toolbar .persona-picker select {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.chat-input-row {
+  flex-wrap: wrap;
+}
+
+.chat-input-row input {
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+
+.chat-attachment-header {
+  flex-wrap: wrap;
+}
+
+.chat-attachment-header > div {
+  flex-wrap: wrap;
+}
+
+/* Top bar: give the squeeze an explicit order. The surface subtitle yields
+   first, then the working-root chip value (both already ellipsize); the
+   navigation and the theme control never shrink, because between ~880px and
+   ~1024px the theme control was being clipped by the bar's own bounds. */
+.shell-header-main {
+  flex: 1 1 auto;
+}
+
+.shell-header-controls {
+  flex: 0 1 auto;
+}
+
+.shell-root-disclosure {
+  flex: 0 1 auto;
+}
+
+.shell-header-controls > .shell-nav,
+.shell-header-controls > .shell-theme {
+  flex: 0 0 auto;
+}
+
+/* ── C4. Responsive: the three-column workspace keeps its rails between
+   861px and 1180px, so the rails have to give the dialogue column real room
+   before the layout stacks at 860px. */
+
+@media (max-width: 1180px) {
+  .woven-workspace {
+    --woven-navigator-width: 216px !important;
+    --woven-coordination-width: 264px !important;
+  }
+
+  .woven-dialogue-region {
+    padding: 0.55rem;
+  }
+
+  .woven-dialogue-toolbar .persona-picker label {
+    display: none;
+  }
+
+  .shell-header {
+    gap: 0.85rem;
+  }
+
+  .shell-subtitle {
+    max-width: 30ch;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Stacking is still at 860px; this band only relieves the rails further so
+     the dialogue column stays legible right up to the stacking point. */
+  .woven-workspace {
+    --woven-navigator-width: 196px !important;
+    --woven-coordination-width: 232px !important;
+  }
+
+  .shell-subtitle {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  /* Stacked: the dialogue pane is full width, so the composer dock no longer
+     needs to compete with the transcript for a fixed pane height. */
+  .woven-primary-dialogue > .panel--chat {
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+  }
+
+  .woven-dialogue-toolbar .persona-picker select {
+    width: 100%;
+  }
+}
+
+/* ── C5. Workbench "Documents" block (Stage B1 carry-forward).
+   Documents, evidence and contracts are provenance-bearing objects, so the
+   block takes the reference's object-card treatment: one frame, a ruled head,
+   a body, and no nested box. `DocumentView` keeps its own markup — it is only
+   de-boxed here so the card reads as a single object. */
+
+.workbench-documents-block {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-color: var(--rule-strong);
+  background: var(--card);
+  padding: 0;
+}
+
+.workbench-documents-block > header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.workbench-documents-block > header h3 {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.workbench-documents-block > .pipeline-note {
+  margin: 0;
+  padding: 0.6rem 0.9rem 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.workbench-documents-block > .panel--document {
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.workbench-documents-block .panel--document > .panel-header {
+  position: relative;
+  border-bottom: 0;
+  padding: 0.6rem 0.9rem 0;
+}
+
+/* "Document" restates the block heading one line above it. */
+.workbench-documents-block .panel--document > .panel-header > h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* With no deliverables the header holds only the hidden heading, so it should
+   not reserve a band of its own. */
+.workbench-documents-block .panel--document > .panel-header:not(:has(.document-view-controls)) {
+  padding: 0;
+}
+
+.workbench-documents-block .document-view-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.workbench-documents-block .document-view-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+  flex: 1 1 14rem;
+}
+
+/* These label live controls, so they take `--ink-soft` rather than the
+   decorative-eyebrow `--ink-faint`, which does not reach AA at this size. */
+.workbench-documents-block .document-view-selector > span {
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.workbench-documents-block .document-view-selector select {
+  min-width: 0;
+  width: 100%;
+  font-size: 0.78rem;
+}
+
+.workbench-documents-block .document-view-body {
+  padding: 0.6rem 0.9rem 0.85rem;
+  min-width: 0;
+  max-height: 26rem;
+}
+
+.workbench-documents-block .document-view-body > .panel-empty,
+.workbench-documents-block .document-view-body > .panel-error {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.74rem;
+}
+
+/* ── C6. Reduced motion. The stylesheet carries one transition
+   (`.woven-resize-handle::after`) and no keyframes; this block states the
+   whole-document policy so any future motion inherits it, and covers the
+   transform the earlier block left running. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .woven-resize-handle:hover::after,
+  .woven-resize-handle:focus-visible::after {
+    transform: none;
+  }
 }
