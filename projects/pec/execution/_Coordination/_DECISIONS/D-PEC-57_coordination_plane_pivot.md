@@ -7,8 +7,9 @@
 
 ## Context and owner direction under framing
 
-Owner direction recorded from the 2026-07-24 session (CHAT_TRANSCRIPTION —
-EVIDENCE, NOT RULING):
+Owner direction from the 2026-07-24 session, recorded in summary by the
+framing agent — NOT A VERBATIM TRANSCRIPT (EVIDENCE, NOT RULING; the only
+verbatim owner quotation in this packet is in the Human ruling section):
 
 > PEC should morph into the core agentic workflow coordination substrate for
 > Chirality — deterministic tooling, data arriving from workflow/agent events,
@@ -57,22 +58,31 @@ team-information-hub framing; (2) route PRD v2 through candidate review to a
 
 ## Recommendation (non-binding)
 
-O-A. Compliance posture is already designed in: no `D-GOV-01` supersession is
-sought (PEC v2 is the sanctioned rebuildable projection); no second execution
-loop is created (`D-GOV-20`/`D-PEC-56` boundaries preserved); rulings remain
-file-native (K-AUTH-1). The practitioner-harness cache precondition ("closed
-until the owner directs otherwise") is satisfied by ruling this row.
+O-A. Compliance posture is designed in rather than sought by exception: the
+record tier is `D-GOV-01` Option A's rebuildable projection, and Option A's
+adjacent constraints ("no coordinator process, no leases, no database-owned
+status") are addressed head-on in PRD v2 §15, with the presence-tier
+"coordinator process" question expressly reserved for the owner at D-PEC-58;
+no second execution loop is created (`D-GOV-20`; D-PEC-56's no-dual-loop
+boundary and human-only-act restrictions survive, while its adapter-retention
+behavior is partially superseded at D-PEC-58, declared there); rulings remain
+file-native (K-AUTH-1). The practitioner harness's cache half remains closed
+by its own record (query-pain precondition measured unmet 2026-07-02); this
+row directs the PEC product, not the harness.
 
 ## Exact fence (this packet, if ruled O-A)
 
-- `projects/pec/execution/_Coordination/PRD_V2_CANDIDATE_2026-07-24_coordination_plane.md` (status fields upon review outcomes)
+- `projects/pec/execution/_Coordination/PRD_V2_CANDIDATE_2026-07-24_coordination_plane.md` (authored under this row; thereafter status fields and review-outcome corrections only)
 - `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57_coordination_plane_pivot.md`
+- `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-58_prd_v2_adoption.md` (packet preparation only; unruled)
+- `projects/pec/execution/_Coordination/WORKPLAN_CANDIDATE_2026-07-24_pec_coordination_plane.md` (candidate only; does not replace the standing plan)
 - `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`
 - `_DomainEngines/pec/LOOP_RECEIPTS.md`
 
 No runtime source, dependency, database, demo input, report, `docs/**`
-surface, workplan, profile, or external system change is authorized by this
-row. PRD v2 adoption, workplan replacement, `docs/PRD.md` replacement,
+surface, the standing workplan
+(`_DomainEngines/pec/WORKPLAN_2026-07-09_pec_team_information_hub.md`),
+profile, or external system change is authorized by this row. PRD v2 adoption, workplan replacement, `docs/PRD.md` replacement,
 decomposition, and all implementation writes require their own packets
 (`D-PEC-58` onward).
 
@@ -82,8 +92,9 @@ decomposition, and all implementation writes require their own packets
   reads CANDIDATE (this row does not adopt it).
 - Verify `D-GOV-01`, `D-GOV-20`, `D-PEC-55`, `D-PEC-56` are cited accurately
   (compliance-by-design claims in PRD §15).
-- Roll back by marking this row REJECTED; the candidate PRD remains on disk
-  as an unadopted artifact with no force.
+- Reversal is an owner act on a new successor row (residual-work convention,
+  `_REGISTER.md`); a ruled row is not reopened or annotated. The candidate
+  PRD remains on disk as an unadopted artifact with no force until D-PEC-58.
 
 ## Human ruling
 

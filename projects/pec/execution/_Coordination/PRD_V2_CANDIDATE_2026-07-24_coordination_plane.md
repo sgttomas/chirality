@@ -30,7 +30,7 @@ through dashboards. It is the coordination plane that **does not need to
 exist**: every consumer has a file-native fallback, and deleting PEC degrades
 throughput, never correctness.
 
-### 1.2 Chirality interpretation (carried forward from v1.0 §1.2)
+### 1.2 Chirality interpretation (adapted from v1.0 §1.2; first sentence verbatim)
 
 Claims are not trustworthy merely because a person, import routine, or
 language model stated them. PEC serves oriented work by making the derivation
@@ -68,9 +68,13 @@ cost:
   AgentRun records) and "a deliverable moved" (`_STATUS.md`, Git) other than
   prose written by hand.
 
-The practitioner harness answers parts of this read-only per invocation, and
-its plan deliberately reserved a queryable-cache half, closed until the owner
-directs otherwise. This product is that direction, with a service and a UI.
+The practitioner harness answers parts of this read-only per invocation. Its
+plan reserved an optional cache half, gated on measured query pain; that
+precondition was recorded **unmet** on 2026-07-02 (slowest command ~4 s) and
+the cache half remains closed by the harness's own record. PEC v2 is a
+separate tool addressing the same class of pain at OS scale (five loops,
+concurrent sessions) — it does not open, direct, or replace the harness's
+cache half, and Step-0 cost is re-measured before P1 (§11).
 
 ---
 
@@ -149,7 +153,7 @@ sibling-messaging rule. PEC is that surface.
 | ID | Invariant |
 |---|---|
 | **PEC-K-01** | **Graceful absence.** No governed act may require a PEC read or write. Deleting PEC blocks nothing. The kill test (§12) passes at every release. |
-| **PEC-K-02** | **Files govern.** PEC is regenerated from sources by one command; its database is gitignored and safe to delete; its output is never citable as authority; rulings and lifecycle state remain file-native. |
+| **PEC-K-02** | **Files govern.** The record tier is regenerated from sources by one command; the presence tier is expected to be lost on rebuild; the database is gitignored and safe to delete; PEC output is never citable as authority; rulings and lifecycle state remain file-native. |
 | **PEC-K-03** | **Harness-owned consumption.** Polling is performed by harnesses at moments of consequence (session start, mode transition, claim, write, dispatch, fan-in) and injected as labeled non-authoritative data. The only agent behavior is verify-before-rely. |
 | **PEC-K-04** | **Staleness is a comparison.** Every response carries the examined-through commit SHA and per-feed freshness; consumers detect staleness structurally. |
 | **PEC-K-05** | **Two trust tiers, never blurred.** Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations. |
@@ -161,9 +165,12 @@ sibling-messaging rule. PEC is that surface.
 | **PEC-K-11** | **Mode-proportional.** Consumption follows §5; zero-coordination modes remain zero-contact. |
 
 Invariant lineage: PEC-K-02/-08 carry v1.0 PEC-I-01/-04 (factual-or-absent;
-source and authority visible); PEC-K-07 carries PEC-I-03 (coverage explicit);
-PEC-K-05/-09 carry PEC-I-13 (agent work bounded and observable); the
-append-only discipline of v1.0 PEC-I-11 applies to PEC's own event log.
+source and authority visible); PEC-K-08 also carries PEC-I-02 (one state,
+many views: dashboards, API, and orientation project the same reconciled
+snapshot); PEC-K-07 carries PEC-I-03 (coverage explicit); PEC-K-05/-09 carry
+PEC-I-13 (agent work bounded and observable); PEC-K-06 carries PEC-I-12
+(verification creates findings, never rewrites sources — cf. PEC-RCN-004);
+the append-only discipline of v1.0 PEC-I-11 applies to PEC's own event log.
 
 ---
 
@@ -175,12 +182,12 @@ append-only discipline of v1.0 PEC-I-11 applies to PEC's own event log.
 |---|---|
 | Loop | Tenancy unit, above Project: a LOOP_INIT/workplan-governed work loop (root, app-dev, piping, pec, bridge, …) |
 | Workplan / Step / Gate | The standing plan's protocol steps and owner gates, with gate state |
-| Receipt | Parsed `LOOP_RECEIPTS.md` entries: Receipt-ID, Examined-Through SHA, Parent-Receipt, Gate-Outcome |
-| DecisionRow | Register row + packet reference + status (RULED / AWAITING_RULING / …) |
+| Receipt | Parsed `LOOP_RECEIPTS.md` entries. Field availability is per-loop: the app-dev ledger carries the D-APP-57 contract (Receipt-ID, Examined-Through SHA, Parent-Receipt, Gate-Outcome); the pec/bridge ledgers are prose-structured with no validated schema — coverage limits stated per PEC-ORI-006 |
+| DecisionRow | Register-row identity and status only (decision ID, packet path, anchor, state — never the row's prose; PEC-K-10) |
 | Fence | Declared write-scope constraints from rulings and briefs |
 | Package / Deliverable | Lifecycle census from `_STATUS.md` (OPEN→ISSUED), stuck-age, remaining items |
 | DependencyEdge | From `Dependencies.csv` registers and `WORK_GRAPH.json` |
-| RunRecord | Summaries of AgentRun / instance records (`STATUS.json`, `RUNTIME_SUMMARY.json`) |
+| RunRecord | Summaries of checkout-contained AgentRun evidence (`STATUS.json`, `RUNTIME_SUMMARY.json` under `execution/**`); runtime-daemon state under user data is operational and non-authoritative (D-GOV-20 §5), is never record-tier citable, and enters only the presence tier |
 | CandidateBrief | Adopted-but-unexecuted and proposed briefs (the work-selection queue) |
 | OrientationSnapshot | A generated orientation return, stamped with examined SHA — the machine generalization of a receipt |
 | DriftFinding | A classified difference between the current reconcile and the prior snapshot, or between PEC and harness parity output |
@@ -212,9 +219,10 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
   status events.
 - **Agents** — never call PEC directly by instruction; they receive
   harness-injected orientation as labeled data (PEC-K-03).
-- Access is local-only (loopback / Unix socket), token-scoped. The v1.0 role
-  ontology (14 EPC roles) is retired; access classes are owner, harness, and
-  admin.
+- Access is local-only (Unix socket; any loopback listener is a §16 open
+  decision), token-scoped. The v1.0 role ontology (12 roles, v1.0 §8) and
+  the prototype's implemented 14-role RBAC set (`core/src/types.ts`) are
+  retired; access classes are owner, harness, and admin.
 
 ---
 
@@ -235,8 +243,8 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 
 | ID | Requirement |
 |---|---|
-| PEC-RCN-001 | The full store shall be rebuildable from sources by one command; the database is gitignored and safe to delete (PEC-K-02). |
-| PEC-RCN-002 | The reconciler shall ingest, at minimum: `_STATUS.md` (declared parser dialect), decision registers and packets, `LOOP_RECEIPTS.md` (validated contract), `WORK_GRAPH.json` / `STATUS.json` / `RUNTIME_SUMMARY.json`, dependency registers, workplans/LOOP_INIT, and per-project `_harness/adapter.yaml` as the feed manifest. |
+| PEC-RCN-001 | The record tier shall be rebuildable in full from sources by one command; the presence tier is not reconstructible and is expected to be lost on rebuild (PEC-K-05); the database is gitignored and safe to delete (PEC-K-02). |
+| PEC-RCN-002 | The reconciler shall ingest, at minimum: `_STATUS.md` (declared parser dialect), decision registers and packets, `LOOP_RECEIPTS.md` (per-loop grammar; the D-APP-57 contract where a ledger has adopted it), `WORK_GRAPH.json` / `STATUS.json` / `RUNTIME_SUMMARY.json`, dependency registers, workplans/LOOP_INIT, and per-project `_harness/adapter.yaml` as the feed manifest. |
 | PEC-RCN-003 | Reconciliation shall run incrementally, keyed on Git delta since the last examined SHA. |
 | PEC-RCN-004 | The reconciler shall classify drift between successive snapshots and report it; it shall never modify a source file. |
 | PEC-RCN-005 | PEC derivations shall be parity-diffable against practitioner-harness output; discrepancies are surfaced as DriftFindings and resolved against live sources. |
@@ -249,13 +257,13 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 | PEC-GAT-001 | PEC shall deterministically evaluate gate preconditions that reduce to file/Git facts: ruling presence, ruling-SHA commit reachability, receipt ancestry, snapshot/freeze presence, register-row status. |
 | PEC-GAT-002 | Gate verdicts shall be Explain-shaped (rule, threshold, contributing citations) and advisory only. |
 | PEC-GAT-003 | PEC shall render a cross-loop decision slate: every AWAITING_RULING row and every parked lane awaiting an owner act, linking to the authored file content rather than restating it. |
-| PEC-GAT-004 | PEC shall provide no write path that records adoption, ruling, or direction (PEC-K-06; K-AUTH-1). |
+| PEC-GAT-004 | PEC shall provide no write path that records adoption, ruling, or direction (PEC-K-02; K-AUTH-1). |
 
 ### 9.4 Presence (PEC-PRS)
 
 | ID | Requirement |
 |---|---|
-| PEC-PRS-001 | PEC shall register sessions with harness kind, engine/model attribution when known, role, loop/package binding, and declared write scopes. |
+| PEC-PRS-001 | PEC shall record presence for sessions reported by their owning harness (harness kind, engine/model attribution when known, role, loop/package binding, declared write scopes); session identity and lifecycle remain daemon-owned (D-GOV-20). |
 | PEC-PRS-002 | PEC shall scan Git for worktrees, branches, HEAD, ahead/behind counts, and dirty path names/counts; file and diff content shall never be captured (PEC-K-10). |
 | PEC-PRS-003 | PEC shall correlate sessions to worktrees/branches (the session × worktree × scope join). |
 | PEC-PRS-004 | PEC shall maintain live parent→child hierarchy edges from daemon and hook feeds. |
@@ -268,7 +276,7 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 | ID | Requirement |
 |---|---|
 | PEC-STR-001 | PEC shall accept idempotent, append-only event ingest keyed on event id. |
-| PEC-STR-002 | Event contract types shall be versioned and live with the shared runtime contracts, consumable by daemon, hooks CLI, and adapters alike. |
+| PEC-STR-002 | Event contract types shall be versioned and consumable by daemon, hooks CLI, and adapters alike; their home (shared runtime contracts vs a PEC-local schema with a pinned mirror) is a cross-loop placement decision (§16) — writes into root `runtime/` are outside PEC's fences and require their own coordination. |
 | PEC-STR-003 | Supported bridges: runtime-daemon SSE subscriber; harness hooks CLI (session start/stop, status, scope declaration); cmux socket adapter as an optional enricher. Each bridge is declared and attributable. |
 | PEC-STR-004 | Stream loss is recovered by reconciliation; no record-tier fact may rest on a stream event alone (PEC-K-07). |
 | PEC-STR-005 | Every ingested message is durable and queryable; PEC provides no ephemeral relay (PEC-K-09). |
@@ -277,7 +285,7 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 
 | ID | Requirement |
 |---|---|
-| PEC-API-001 | The service binds local-only (loopback or Unix socket) with token-scoped access. |
+| PEC-API-001 | The service binds local-only, Unix socket by default, with token-scoped access; any loopback TCP listener is a §16 open decision in light of D-GOV-20's no-TCP-control-listener posture. |
 | PEC-API-002 | Orientation reads shall complete in ≤100 ms at p95 against the current corpus (session-start critical path). |
 | PEC-API-003 | The API schema is versioned; evolution is additive. |
 | PEC-API-004 | Responses are compact, machine-first, and citation-bearing. |
@@ -289,7 +297,7 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 |---|---|
 | PEC-DSH-001 | Overview: the orientation return per loop (git state, newest receipt, gates that matter, open tranches, parked lanes + unparking act). |
 | PEC-DSH-002 | Lifecycle census across all registered loops' packages/deliverables, with stuck-age and workflow-completeness views. |
-| PEC-DSH-003 | Register views: decisions, receipts, dependencies, run records — read-only, source-linked. |
+| PEC-DSH-003 | Register views: decisions, receipts, dependencies, run records — read-only, link-only, source-linked (no restatement of authored text; PEC-K-10). |
 | PEC-DSH-004 | "Waiting on you": the aggregated decision slate (PEC-GAT-003). |
 | PEC-DSH-005 | Presence board: sessions × worktrees × live hierarchy, with heartbeat age and advisory overlap warnings. |
 | PEC-DSH-006 | Every displayed value drills down to its cited source (PEC-K-08). |
@@ -312,7 +320,10 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 
 ## 11. Success metrics (measured in system behavior, not human behavior)
 
-1. Step-0 cost: LLM tokens per loop-iteration orientation, before vs after.
+1. Step-0 cost: LLM tokens per loop-iteration orientation, before vs after;
+   the "before" baseline is measured before P1 begins (this also re-tests the
+   query-pain precondition the practitioner harness recorded unmet on
+   2026-07-02).
 2. Orientation defect rate: claims failing source spot-check per 100 claims.
 3. Collision incidents: write-scope/branch conflicts discovered at Git time
    rather than surfaced in advance, per week of concurrent operation.
@@ -351,12 +362,12 @@ scratch-only validation bridge.
 
 | Surface | Disposition |
 |---|---|
-| `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/` | Frozen as reference implementation; quarried by citation in deliverable briefs; archived from the working tree once P2 is useful. Never deleted (v1.0 I-10 spirit; Git preserves regardless). |
+| `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/` | Frozen as reference implementation; quarried by citation in deliverable briefs; archived from the working tree once P2 is useful. Never deleted (v1.0 I-11 spirit; Git preserves regardless). |
 | SPEC / TRACEABILITY / PILOT / ADR-001..014 | Historical baseline retained with existing disclaimers; v2 SPEC is born from the decomposition; live postures (ADR-002, ADR-014) re-cited in v2's first ADRs. |
-| Decision register D-PEC-01..56 | Continuous; never resets. `D-PEC-49` closed as moot by the pivot packet. |
+| Decision register D-PEC-01..56 | Continues (numbering never resets; historical row gaps predate this PRD). `D-PEC-49` closed as moot at the D-PEC-58 gate. |
 | Domain-engine registration (`pec.yaml`, L3 import lane) | L3 operation-proposal lane sunset with the old product; profile superseded when v2 has shape; the `_DomainEngines/pec` loop continues as the governing development loop. |
 | Demo DB, fixtures, seed/drill tooling | Retired; scratch-guard discipline carries as a pattern. |
-| Tests (~356) | Retired with the product; invariant-test style and server test-harness pattern carry as conventions. |
+| Tests (347 per the receipt-sourced breakdown: 74 core / 169 server / 104 sidecar) | Retired with the product; invariant-test style and server test-harness pattern carry as conventions. |
 | Shared-runtime client seam (D-PEC-56) | Concept carries directly; reimplemented against v2 entities. |
 | `chirality.project.json`, daemon registration, project identity | Continue unchanged. |
 
@@ -371,13 +382,16 @@ Upon adoption:
 
 - PRD v1.0 is superseded and preserved at its Git object (recorded in the
   adopting packet), exactly as v0.4 is preserved at `7e8312172`.
-- Carried forward in spirit: v1.0 §1.2 (Chirality interpretation, quoted at
-  §1.2 above); invariants PEC-I-01/-02/-03/-04/-11/-12/-13 (mapped at §6);
+- Carried forward in spirit: v1.0 §1.2 (Chirality interpretation, adapted at
+  §1.2 above; first sentence retained verbatim); invariants
+  PEC-I-01/-02/-03/-04/-11/-12/-13 (each mapped at §6);
   the information-model discipline of §9; the verification/reporting
   machinery concepts of §10.4/§10.9 (reborn as PEC-RCN/PEC-DSH); coverage
   honesty (§5.3/§6) as PEC-ORI-006.
 - Retired: v1.0 §5 (declarations, attestation), §10.1–10.3, §10.8, §8/§12
-  role ontology, §13 integrations, §15 metrics, §16 phases.
+  role ontology, §13 integrations, §15 metrics, §16 phases. Any v1.0 section
+  not named in the carried-forward list above is retired by default; the
+  carry list is exhaustive.
 - **No identifier is reused.** v2 identifiers are `PEC-K-*` (invariants) and
   `PEC-{ORI,RCN,GAT,PRS,STR,API,DSH,SVC}-NNN` (requirements); no family
   overlaps v1.0 or v0.4, so a bare ID is always unambiguous.
@@ -386,22 +400,42 @@ Upon adoption:
 
 ## 15. Governance and compliance posture
 
-- **`D-GOV-01` — complied with by design, no supersession sought.** PEC is
-  the sanctioned pattern verbatim: "a rebuildable, gitignored projection:
-  safe to delete, regenerated from files by one command, never cited as
-  authority." PEC-K-01/-02 encode this as product invariants.
-- **`D-GOV-20` / `D-PEC-56` — complemented, not contested.** The daemon
-  remains sole owner of execution; PEC creates no second loop and holds no
-  session authority. Checkout-contained evidence remains authoritative over
-  any PEC store.
-- **Doctrine** — PEC is the declared, durable surface the sibling-messaging
-  rule requires; parent mediation and human gates are untouched.
+- **`D-GOV-01` — complied with by design for the record tier; one question
+  expressly reserved for the owner.** Option A's sanctioning clause — "a
+  rebuildable, gitignored projection: safe to delete, regenerated from files
+  by one command, never cited as authority" — is encoded as PEC-K-01/-02.
+  The same ruled option also states: "No coordinator process, no leases, no
+  database-owned status, no CLI-owned governance writes." PEC takes no
+  leases (PEC-K-06), owns no governance status (rulings and lifecycle remain
+  file-native, PEC-K-02), and writes no governance surface. The presence
+  tier is operational-only, TTL'd, non-authoritative, and never citable.
+  Whether a persistent presence service falls within Option A's "no
+  coordinator process" clause is presented to the owner at `D-PEC-58`, not
+  settled by this document.
+- **`D-GOV-20` — complemented.** The daemon remains sole owner of execution;
+  PEC creates no second loop and holds no session authority.
+  Checkout-contained evidence remains authoritative over any PEC store.
+- **`D-PEC-56` — partially superseded upon adoption.** Its ruled behavior 1
+  (retain PEC's deterministic acts, RBAC, reporting, and domain tools as a
+  project adapter service) does not survive the product retirement in
+  §8/§13. Its no-dual-loop boundary (behavior 4) and human-only-act
+  restrictions (behavior 7) survive unchanged. The partial supersession is
+  declared in the `D-PEC-58` packet.
+- **Doctrine** — the sibling rule prohibits hidden or undeclared direct
+  messaging under a mediating parent (`AGENTS.md`); PEC is a declared,
+  durable, recorded surface and therefore not hidden messaging. Whether
+  concurrent Agent 0 operation without a common parent is lawful is an open
+  `AGENTS.md` question, flagged at §5 and not resolved by this PRD.
 - **Residency** — content-minimal (PEC-K-10): PEC indexes only repo files
   agents already read, plus operational presence; no new data class egresses.
 - **Fences** — this candidate is authored within currently lawful write
   scope. All implementation writes await their own packets.
-- The practitioner harness's cache-precondition clause ("closed until the
-  owner directs otherwise") is satisfied by the owner ruling on `D-PEC-57`.
+- The practitioner harness's cache half remains closed by its own record
+  (`tools/practitioner_harness/README.md` §Cache contract): its query-pain
+  precondition was measured **unmet** on 2026-07-02 (slowest command ~4 s).
+  A `D-PEC-57`/`D-PEC-58` ruling directs the PEC product; it neither directs
+  the harness nor remeasures that precondition. §11 metric 1 re-measures
+  Step-0 cost before P1.
 
 ---
 
@@ -419,6 +453,13 @@ Upon adoption:
 6. Auth reuse: PEC tokens vs the daemon's project-scoped token registry.
 7. Whether "PEC" is re-expanded (e.g., Project Execution *Coordination*) or
    kept as a legacy name.
+8. Whether non-app-dev loop ledgers adopt the D-APP-57 receipt contract
+   (today only the app-dev ledger is schema-validated; pec/bridge are
+   prose-structured).
+9. Event-contract home (shared `runtime/packages/contracts` vs a PEC-local
+   schema with a pinned mirror) and API transport (Unix socket only vs an
+   additional loopback listener, given D-GOV-20's no-TCP-control-listener
+   posture).
 
 None of these blocks P0–P2.
 
