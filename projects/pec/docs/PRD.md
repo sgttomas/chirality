@@ -1,142 +1,95 @@
-# PEC — Project Execution Control
+# PEC — Product Requirements Document
 
-**Product Requirements Document — team information hub**
-
-| Field | Value |
+| | |
 |---|---|
-| Version | 1.0 |
-| Date | 2026-07-09 |
-| Status | **Adopted 2026-07-10** by owner ruling (`D-PEC-55`); product definition of record |
-| Product stage | Working demo exists; team product is not yet implemented |
-| Supersession | PRD v0.4 product framing deprecated and superseded 2026-07-10 (catalogue preserved at `7e8312172`) |
-| Conceptual basis | Chirality thesis and the owner clarifications recorded in this PRD |
+| **Version** | 2.0 |
+| **Date** | 2026-07-24 |
+| **Status** | **Adopted 2026-07-24** by owner ruling (`D-PEC-58`); product definition of record |
+| **Product stage** | Prototype of the prior product exists (v0.4 baseline code); the coordination plane defined here is not yet implemented |
+| **Supersession** | Supersedes PRD v1.0 ("team information hub", adopted 2026-07-10 by `D-PEC-55`), preserved at `c31be74c2:projects/pec/docs/PRD.md` and archived at `docs/.archive/PRD_v1.0_2026-07-09_team_information_hub.md`. The v0.4 catalogue remains preserved at `7e8312172:projects/pec/docs/PRD.md`. |
 
-This document defines the product PEC is to become. It intentionally resets the
-centre of gravity of PRD v0.4. The existing application remains useful prototype
-evidence, but task management, planning, and report generation are supporting
-capabilities rather than the product thesis.
-
-The historical v0.4 requirement catalogue remains available in Git at commit
-`7e8312172`. `SPEC.md` and `TRACEABILITY.md` describe that implemented prototype
-baseline. They do not establish conformance to this PRD, and remain the
-implementation basis until the post-adoption T0 rebaseline (see
-`_DomainEngines/pec/WORKPLAN_2026-07-09_pec_team_information_hub.md`) replaces
-them. Adoption does not convert any requirement below into an implementation
-mandate; tranches remain individually owner-gated.
+> **Epistemic status:** authored from owner-directed design (session
+> 2026-07-24); adopted 2026-07-24 (`D-PEC-58`). Adoption makes this the
+> product definition of record only — nothing in this document is an
+> implementation mandate; each build tranche still requires its own
+> owner-ruled packet.
 
 ---
 
 ## 1. Product definition
 
-PEC is a multi-user project information-control application for multidisciplinary
-engineering teams. It gathers the same structured declaration from each discipline
-on a regular cadence, reconciles those declarations with project records and source
-documents, and maintains a sufficiently current, relevant, and detailed shared
-project state that project leadership and downstream participants can rely upon it.
+### 1.1 Thesis
 
-The application exists to reduce avoidable many-to-many coordination. Instead of
-every discipline repeatedly contacting every other discipline to discover what
-changed, what is at risk, what is needed, and what is about to be issued, each
-discipline maintains its part of a common information contract. PEC makes the
-resulting state visible, interrogable, and actionable across the project.
+PEC is the **coordination plane** of the Chirality operating system: a
+deterministic, rebuildable projection of governed file truth, plus an
+ephemeral presence layer, that embodies **Step 0 (Discover)** and the
+deterministic parts of **Step 1 (gate review and decision-slate
+presentation)** of the canonical development loop.
 
-PEC's distinctive value is not that it can summarize uploaded files. A general
-chatbot can do that. PEC adds value by preserving identity, coverage, provenance,
-history, relationships, decision authority, verification results, and the closure
-path from a decision to the documentation on which other people rely.
+It is consumed by harnesses on behalf of agents, and by the human owner
+through dashboards. It is the coordination plane that **does not need to
+exist**: every consumer has a file-native fallback, and deleting PEC degrades
+throughput, never correctness.
 
-### 1.1 Product thesis
+### 1.2 Chirality interpretation (adapted from v1.0 §1.2; first sentence verbatim)
 
-> PEC is the hub for critical project information flow. It helps project leadership
-> maintain a shared project state that others can rely upon without requiring
-> recurring N x N coordination events.
+Claims are not trustworthy merely because a person, import routine, or
+language model stated them. PEC serves oriented work by making the derivation
+of every presented value explicit and citable, and by keeping authority where
+it already lives: in Git-tracked files and in the human owner's recorded acts.
 
-That thesis has four parts:
+### 1.3 What changed since v1.0
 
-1. Each discipline makes a small, explicit, recurring declaration about change,
-   risk, needs, deliverable events, and development state.
-2. PEC reconciles those declarations into one current project state while
-   preserving sources, gaps, conflicts, and honest absences.
-3. Leadership uses that state to identify where decisions are required and what
-   consequences follow from decisions already made.
-4. Consequential change is triaged and assigned to the right relied-upon project
-   documentation, such as a scope of work, design basis memorandum, master
-   deliverables list, schedule basis, register, or controlled deliverable.
-
-### 1.2 Chirality interpretation
-
-PEC applies the Chirality thesis to project execution. Claims are not trustworthy
-merely because a person, import routine, or language model stated them. The product
-must expose the claim, its basis, its coverage, any conflict, and the human act that
-authorizes a consequential change.
-
-The gap between the recorded state and the state needed to proceed is where a
-decision occurs. A decision is not complete merely because its outcome was entered.
-Its consequences must be identified, assigned to the appropriate relied-upon
-artifact, reflected there by an authorized owner, and made visible to affected
-participants.
-
-This PRD uses the thesis as a product-design basis, not as a claim that every thesis
-document is binding project governance. See `../../../docs/thesis/README.md`,
-`../../../docs/thesis/05_epistemic_architecture.md`, and
-`../../../docs/thesis/bigger-picture/CHIRALITY_PRD_Amendment_Domain_Engine_Integration.md`.
+PRD v1.0 defined a team information hub for human discipline declarations. It
+was adopted 2026-07-10 and never piloted; none of its §20 open product
+decisions was answered. The owner's understanding of the user changed: the
+user of this system is the owner plus a fleet of agents operating across
+concurrent sessions, not a multidiscipline human team. This PRD supersedes
+v1.0 for that reason — a change in the understood user, not a failure of the
+v1.0 design. Sections of v1.0 that survive in spirit are listed in §14.
 
 ---
 
 ## 2. Problem
 
-Multidisciplinary projects generate more coordination paths than project leadership
-can continuously service. Important changes often remain local to a discipline until
-they cause rework, delay, scope disagreement, budget pressure, or an avoidable review
-cycle. Meanwhile, status reports are assembled from inconsistent files and verbal
-updates, and their polished prose can conceal stale coverage or unresolved
-contradictions.
+Chirality coordinates work through Git-tracked plain files by ruling
+(`D-GOV-01`). This is correct and remains unchanged. But it has a measured
+cost:
 
-The recurring leadership problem is not a lack of data. It is the inability to know,
-with reasonable confidence:
+- **Step 0 is the most expensive, most repeated computation in the OS.**
+  Every iteration of every loop re-derives the live lawful work surface from
+  prose: >1,200 `_STATUS.md` files, ~230 decision records, receipts ledgers,
+  workplans. Each derivation burns an LLM session, and the loop archives
+  document the recurring failure mode: "a fluent draft grounded on stale
+  facts."
+- **Sessions cannot see each other.** Concurrent agents in different sessions
+  coordinate today through files, Git collisions, and owner memory. Current
+  guidance is literally to look away from other sessions' dirty files.
+- **There is no join** between "a run happened" (daemon/user-data events,
+  AgentRun records) and "a deliverable moved" (`_STATUS.md`, Git) other than
+  prose written by hand.
 
-- whether every relevant discipline has reported for the same period;
-- what materially changed and who else may be affected;
-- where budget, scope, or schedule exposure is emerging;
-- what information, resources, decisions, approvals, or clarifications are needed;
-- what will be issued or checked soon;
-- whether reported progress follows an agreed rule of credit;
-- which statements conflict with other sources or prior state;
-- what decisions are required; and
-- whether the consequences of past decisions have reached the documents and people
-  that depend upon them.
-
-Current tools divide this problem across spreadsheets, email, meetings, document
-systems, schedules, action logs, and individual memory. A report summarizes some of
-those surfaces but does not maintain their relationships or prove that the state is
-complete and current.
+The practitioner harness answers parts of this read-only per invocation. Its
+plan reserved an optional cache half, gated on measured query pain; that
+precondition was recorded **unmet** on 2026-07-02 (slowest command ~4 s) and
+the cache half remains closed by the harness's own record. PEC v2 is a
+separate tool addressing the same class of pain at OS scale (five loops,
+concurrent sessions) — it does not open, direct, or replace the harness's
+cache half, and Step-0 cost is re-measured before P1 (§11).
 
 ---
 
 ## 3. Product outcomes
 
-PEC shall produce the following outcomes for a project team:
-
-1. **A current shared state.** Team members can determine the latest attested state
-   for each active discipline, package, and deliverable, including the reporting
-   period and source basis.
-2. **Exception-focused coordination.** Routine no-change declarations remain cheap;
-   material changes, risks, needs, conflicts, decisions, and unreflected consequences
-   become prominent.
-3. **Leadership decision support.** Leadership sees decision gaps with enough context
-   to assign authority, obtain missing information, and record a decision without
-   treating an AI summary as the decision.
-4. **Consequence placement.** Decisions and material changes are connected to the
-   specific relied-upon artifacts that must change, their owners, and the affected
-   consumers.
-5. **Verification and validation.** The system checks completeness, consistency,
-   identity, rules of credit, source alignment, and change closure without silently
-   rewriting attested facts.
-6. **Reliable projections.** Dashboards, discipline views, package views, registers,
-   and reports are projections of the same governed state and drill to their basis.
-7. **Reduced coordination load.** The shared state replaces status-discovery meetings
-   and repeated bilateral queries while escalating the human conversations that
-   actually require judgment.
+1. Orientation for any loop is a sub-second query with per-claim citations,
+   not a session-length prose derivation.
+2. Staleness is detected structurally (SHA comparison), not by judgment.
+3. Concurrent sessions have a declared, durable surface for presence and
+   status — write-scope collisions are surfaced before they land in Git.
+4. The human owner has one live view: loops, gates, lifecycle census,
+   decisions waiting on them, and who (human or agent) is working where.
+5. All of the above can be deleted at any moment without blocking any
+   governed act.
 
 ---
 
@@ -144,673 +97,381 @@ PEC shall produce the following outcomes for a project team:
 
 ### 4.1 PEC is
 
-- a recurring discipline-declaration system;
-- a maintained project-state database with provenance and history;
-- a reconciliation and verification surface;
-- a leadership information and decision-support surface;
-- a change-consequence routing surface tied to relied-upon documentation;
-- a generator of role-appropriate, drillable views and editable draft reports; and
-- a platform on which later project-execution workflows can be built.
+- A **rebuildable projection** of governed file truth (record tier).
+- An **ephemeral presence registry** for sessions, worktrees, and live agent
+  hierarchy (presence tier).
+- A **deterministic evaluator** of gate preconditions (ruling presence, SHA
+  reachability, receipt ancestry) — advisory, Explain-shaped, cited.
+- A **renderer of decision slates** authored elsewhere.
+- A **declared coordination surface** satisfying the doctrine that sibling
+  agents use no hidden or undeclared messaging.
 
-### 4.2 PEC is not
+### 4.2 PEC is not (non-goals, permanent)
 
-- a chatbot wrapper whose only durable output is a summary;
-- a generic task manager, Kanban board, or personal to-do list;
-- the engineering document management system or authoring environment;
-- the authoritative schedule, cost ledger, or estimating system;
-- an autonomous decision maker, checker, approver, or issuer;
-- a replacement for engineering conversation when judgment or negotiation is needed;
-- a system that invents missing facts, progress, issue classifications, or document
-  impacts; or
-- a demand that every informal conversation be captured.
-
-Task, notification, and scheduling features may support an information obligation,
-but they are not the core object or value proposition. Closing a task does not, by
-itself, close a decision consequence or prove that a relied-upon artifact was updated.
-
----
-
-## 5. Core information contract
-
-### 5.1 Weekly discipline declaration
-
-For each reporting period, PEC asks every active discipline the same five questions:
-
-1. **Change and cross-discipline impact.** Has anything changed that would affect
-   another discipline?
-2. **Budget, scope, or schedule risk.** Is there a change or a risk of change to the
-   budget, scope, or schedule?
-3. **Needs.** Is any information, resource, decision, approval, or clarification
-   needed?
-4. **Deliverable events.** Has the discipline issued, or will it soon issue, an
-   internal or external deliverable or request a squad check?
-5. **Development state and progress.** What is the current development state of the
-   discipline's deliverables, and what is their percent complete under the applicable
-   rules of credit?
-
-The declaration is the product's minimum recurring information contract. It is not a
-free-form status essay. Each question supports either an explicit `none` response or
-one or more structured observations with optional explanatory prose and evidence.
-
-### 5.2 Declaration header
-
-Every declaration shall identify:
-
-- project;
-- discipline;
-- reporting period;
-- covered packages and deliverables, or an explicit statement that the declaration
-  covers the discipline's full active scope;
-- declaring person and accountable discipline lead;
-- submission and attestation timestamps;
-- source files or records used, when applicable; and
-- whether it is an original, amendment, or superseding declaration.
-
-PEC shall never infer the reporting period or scope coverage from a filename alone.
-
-### 5.3 Minimum observation fields
-
-| Declaration area | Minimum structured content |
-|---|---|
-| Change / impact | Statement; affected scope; known or potentially affected disciplines; effective date or horizon; source/evidence |
-| Budget / scope / schedule risk | Dimension(s); cause; potential consequence; affected scope; owner if known; need-by or decision horizon |
-| Need | Need type; statement; requested party or authority if known; need-by; affected/blocked scope; internal/client/unclassified audience |
-| Deliverable event | Deliverable and revision; event type; internal/external/squad check; actual or forecast date; source/evidence |
-| Development state | Deliverable; controlled state; as-of date; source/evidence |
-| Percent complete | Deliverable; percent; applicable rule-of-credit version; earned milestones/credits; as-of date; attesting person |
-
-The product may make additional fields configurable, but shall not make declaration
-completion onerous. Existing MDL, RAIL, document-control, schedule, and other source
-files may supply the fields through a reviewable import proposal.
-
-### 5.4 No-change declarations
-
-An explicit no-change response is meaningful project information. PEC shall retain
-who made it, the covered scope, and the period. Blank, missing, late, and explicit
-`none` responses are distinct states and shall never be collapsed.
-
-### 5.5 Attestation and amendment
-
-The discipline lead or a delegated person attests that a declaration accurately
-represents the stated scope and period to the best of their knowledge. Attestation is
-not independent verification, approval, or professional sign-off.
-
-After attestation, correction occurs by amendment or supersession. The original
-declaration remains in history, and every downstream snapshot or report identifies
-which version it used.
+- **Not a system of record.** Files and Git remain the sole authority
+  (`D-GOV-01`). PEC output is never citable as authority.
+- **Not a ruling surface.** No write path records adoption, ruling, or
+  direction. Rulings are file-native (K-AUTH-1).
+- **Not an orchestrator.** No dispatch, no queues, no execution. The runtime
+  daemon owns sessions, delegation, and turn locks (`D-GOV-20`); no second
+  loop is created (`D-PEC-56` boundary preserved).
+- **Not a lock manager.** No leases, no claim arbitration, no merge opinions.
+  Conflicts are surfaced loudly and prevented never.
+- **Not the practitioner harness's replacement.** The harness remains an
+  independent deterministic checker; PEC parity-diffs against it permanently.
+- **Not a Git actor.** Read-only plumbing access; CHANGE owns Git state.
+- **Not a human project-management tool.** The v0.4/v1.0 product lineage
+  (declarations, attestation, plan/capacity, EPC role homes) is retired.
 
 ---
 
-## 6. Operating model
+## 5. Operating model — the modes ladder
 
-PEC specifies a small information lifecycle rather than a prescriptive meeting
-workflow:
+PEC's consumption scales with the number of concurrent coordination contexts.
+Modes that need nothing get nothing.
 
-1. **Collect.** A person enters a declaration directly or submits source documents.
-2. **Review.** Mapped data remains a proposal until a human reviews and applies it;
-   direct declarations remain draft until attested.
-3. **Reconcile.** PEC compares the new observations with project identity,
-   prior state, other current sources, and configured rules.
-4. **Publish state.** Accepted observations form a period-bounded, immutable project
-   state snapshot and update the live current-state projection.
-5. **Triage exceptions.** Leadership and coordinators examine material changes,
-   needs, conflicts, decision gaps, and stale or incomplete coverage.
-6. **Record decisions and consequences.** Authorized humans record decisions and
-   identify what project state, obligations, and relied-upon artifacts they change.
-7. **Place change.** Consequences are assigned to the owners of the documents or
-   systems that others rely upon.
-8. **Verify propagation.** PEC records evidence that the change was reflected and
-   identifies affected participants who still need the updated basis.
-9. **Project.** Role views and reports summarize the same state without becoming a
-   second source of truth.
+| Mode | Coordination contexts | PEC consumes | PEC produces | Posture |
+|---|---|---|---|---|
+| Pipeline (determined workflow; PDF2MD, DRAWING_EXTRACT, …) | 0 | nothing | progress/presence (push, optional) | out of the way |
+| Conversation (no broader scope) | 1, unscoped | nothing | nothing | absent |
+| Workbench (WORKING_ITEMS + TASK children, one package) | 1 per package | package-scoped orientation at activation | status, presence | useful |
+| Agent 0, single (human-paired, cross-package) | 1 | loop-scoped orientation + deltas | status, presence, notices | efficiency; frees orchestrator context budget |
+| Agent 1s, concurrent (disjoint scopes) | N | presence, fan-in views | status, presence | helpful; human bridges |
+| Agent 0s, concurrent | N, overlapping scope | orientation, deltas, presence, notices | everything | **essential for throughput** (not for soundness — file fallback remains) |
 
-Teams may perform these acts continuously, in a weekly review, or through existing
-project-control meetings. PEC shall not require a new ceremony when the information
-contract can be satisfied within the team's current cadence.
+The conversation→workbench transition is a polling event: orientation is
+fetched when scope begins to exist, not at session start.
+
+Doctrine note (future `AGENTS.md` amendment, not made by this PRD):
+concurrent Agent 0 operation has no common parent below the human; a
+declared, durable coordination surface is what makes it lawful under the
+sibling-messaging rule. PEC is that surface.
 
 ---
 
-## 7. Product invariants
+## 6. Product invariants
 
 | ID | Invariant |
 |---|---|
-| PEC-I-01 | **Factual or absent.** Unsupported facts are shown as absent, unknown, stale, or conflicting; they are not inferred for presentation quality. |
-| PEC-I-02 | **One state, many views.** Dashboards, registers, reports, exports, and agent responses project the same accepted records and snapshot basis. |
-| PEC-I-03 | **Coverage is explicit.** Every periodic claim names its period and scope. Missing, late, partial, and no-change declarations remain distinguishable. |
-| PEC-I-04 | **Source and authority are visible.** Every material claim drills to its declaration, imported row, source reference, decision, or configured derivation rule. |
-| PEC-I-05 | **Attestation, verification, decision, approval, and issuance are distinct acts.** No status or label may merge them. |
-| PEC-I-06 | **Decisions remain human.** An agent may identify a gap, assemble context, and draft a proposal; only the authorized person records the decision outcome. |
-| PEC-I-07 | **A decision carries consequences.** A material decision identifies affected scope and either creates change obligations against relied-upon artifacts or records why no artifact change is required. |
-| PEC-I-08 | **Consequence closure requires placement.** A task completion or notification is insufficient; closure requires evidence that the assigned authoritative artifact or system reflects the decision, or an authorized supersession/cancellation. |
-| PEC-I-09 | **Authority is defined by data class.** PEC shall not silently replace the authority of a source workbook, controlled document, EDMS, schedule, cost system, or external decision register. |
-| PEC-I-10 | **Rules of credit are versioned.** Percent complete is attested or calculated only against an identifiable rule set; an LLM never guesses it. |
-| PEC-I-11 | **Accepted history is immutable.** Corrections supersede; they do not erase the prior declaration, decision, source basis, or snapshot. |
-| PEC-I-12 | **Verification does not rewrite truth.** Automated checks create findings; a human disposition or accepted source change resolves them. |
-| PEC-I-13 | **Agent work is bounded and observable.** Model, access basis, reads, proposals, refusals, and human gates are visible during and after a turn. |
-| PEC-I-14 | **Shared state reduces, not suppresses, communication.** PEC escalates exceptions and judgment; it does not treat lack of a recorded issue as proof that no conversation is needed. |
+| **PEC-K-01** | **Graceful absence.** No governed act may require a PEC read or write. Deleting PEC blocks nothing. The kill test (§12) passes at every release. |
+| **PEC-K-02** | **Files govern.** The record tier is regenerated from sources by one command; the presence tier is expected to be lost on rebuild; the database is gitignored and safe to delete; PEC output is never citable as authority; rulings and lifecycle state remain file-native. |
+| **PEC-K-03** | **Harness-owned consumption.** Polling is performed by harnesses at moments of consequence (session start, mode transition, claim, write, dispatch, fan-in) and injected as labeled non-authoritative data. The only agent behavior is verify-before-rely. |
+| **PEC-K-04** | **Staleness is a comparison.** Every response carries the examined-through commit SHA and per-feed freshness; consumers detect staleness structurally. |
+| **PEC-K-05** | **Two trust tiers, never blurred.** Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations. |
+| **PEC-K-06** | **Observation, not participation.** Read-only over Git; no leases, no claim arbitration, no merge opinions, no dispatch; conflicts surfaced, never prevented. |
+| **PEC-K-07** | **Ingest is best-effort; reconciliation is guaranteed.** Streams optimize freshness; the reconciler over file truth is the source of every record-tier fact. |
+| **PEC-K-08** | **Everything derived is explainable.** Every status, verdict, and warning carries rule ID, threshold, and contributing cited sources. Drill-down never dead-ends. |
+| **PEC-K-09** | **Declared surface.** Every coordination message is durable and attributable; no ephemeral relay. |
+| **PEC-K-10** | **Content-minimal.** Paths, counts, SHAs, states, hashes — never file or diff content. |
+| **PEC-K-11** | **Mode-proportional.** Consumption follows §5; zero-coordination modes remain zero-contact. |
+
+Invariant lineage: PEC-K-02/-08 carry v1.0 PEC-I-01/-04 (factual-or-absent;
+source and authority visible); PEC-K-08 also carries PEC-I-02 (one state,
+many views: dashboards, API, and orientation project the same reconciled
+snapshot); PEC-K-07 carries PEC-I-03 (coverage explicit); PEC-K-05/-09 carry
+PEC-I-13 (agent work bounded and observable); PEC-K-06 carries PEC-I-12
+(verification creates findings, never rewrites sources — cf. PEC-RCN-004);
+the append-only discipline of v1.0 PEC-I-11 applies to PEC's own event log.
 
 ---
 
-## 8. Users and responsibilities
+## 7. Information model
 
-| Role | Primary responsibility in PEC |
-|---|---|
-| Discipline contributor | Supplies observations and evidence for assigned scope; responds to clarification requests |
-| Discipline lead | Owns declaration coverage and attestation; confirms development state and rules-of-credit basis |
-| Package lead | Reviews package-level impacts, needs, interfaces, and consequences across contributing disciplines |
-| Project coordinator / information manager | Monitors coverage and freshness; routes exceptions; maintains identity and source alignment; does not make technical decisions by default |
-| Project leadership | Prioritizes exceptions, identifies decision authority, records or obtains decisions, and assigns consequential change |
-| Decision authority | Makes and records the authorized decision with rationale, affected scope, and consequences |
-| Artifact owner | Reflects an assigned consequence in the applicable SOW, DBM, MDL, schedule basis, register, controlled deliverable, or other relied-upon artifact |
-| Document controller | Maintains revision/issue references and verifies that controlled-document events are represented accurately |
-| Project controls | Supplies or verifies schedule, cost, progress, and rules-of-credit bases where those systems remain authoritative |
-| Sponsor / client viewer | Reads a restricted, role-appropriate state and follows permitted drill paths; cannot mutate project state |
-| Project administrator | Configures membership, roles, disciplines, calendars, vocabularies, rules, integrations, and retention controls |
-| Agent | Reads only authorized surfaces; maps inputs, finds gaps/conflicts, drafts summaries and proposals; never attests, decides, approves, applies, or issues |
-
-A person may hold several roles. Permissions are evaluated against the project and the
-specific act, not merely the screen being displayed.
-
----
-
-## 9. Information model
-
-### 9.1 Core entities
+### 7.1 Record tier (reconciled from file truth; citable with sources)
 
 | Entity | Purpose |
 |---|---|
-| Project / team / discipline | Membership, responsibility, configuration, and scope |
-| Package | Coordination boundary and package-level impact/need context |
-| Deliverable / revision | Development-state, progress, check, and issue context |
-| Reporting period | Declared time boundary and deadline for a recurring information cycle |
-| Discipline declaration | Attested response for one discipline, period, and coverage scope |
-| Observation | A structured change, risk, need, deliverable event, state, or progress claim within a declaration |
-| Source document | Uploaded or linked file plus hash, metadata, declared coverage, and authority classification |
-| Import proposal | Reviewable mapping from source content to proposed PEC changes |
-| Decision gap | A recorded gap whose resolution requires an authorized judgment rather than more deterministic processing |
-| Decision | Human judgment, authority, rationale, outcome, affected scope, and effective date |
-| Consequence | A material result of a decision or accepted change for project scope, basis, deliverables, interfaces, schedule, cost, or obligations |
-| Change obligation | Assignment to reflect a consequence in a named relied-upon artifact or authoritative external system |
-| Artifact reference | Identity, owner, authority, location, revision, and state of a relied-upon document or external record |
-| Validation finding | Deterministic or human finding about completeness, consistency, identity, currency, or closure |
-| Project-state snapshot | Immutable period-bounded manifest of accepted records, sources, findings, gaps, and supersession pointers |
-| History / audit event | Actor, act, time, before/after state, reason, and authority reference |
+| Loop | Tenancy unit, above Project: a LOOP_INIT/workplan-governed work loop (root, app-dev, piping, pec, bridge, …) |
+| Workplan / Step / Gate | The standing plan's protocol steps and owner gates, with gate state |
+| Receipt | Parsed `LOOP_RECEIPTS.md` entries. Field availability is per-loop: the app-dev ledger carries the D-APP-57 contract (Receipt-ID, Examined-Through SHA, Parent-Receipt, Gate-Outcome); the pec/bridge ledgers are prose-structured with no validated schema — coverage limits stated per PEC-ORI-006 |
+| DecisionRow | Register-row identity and status only (decision ID, packet path, anchor, state — never the row's prose; PEC-K-10) |
+| Fence | Declared write-scope constraints from rulings and briefs |
+| Package / Deliverable | Lifecycle census from `_STATUS.md` (OPEN→ISSUED), stuck-age, remaining items |
+| DependencyEdge | From `Dependencies.csv` registers and `WORK_GRAPH.json` |
+| RunRecord | Summaries of checkout-contained AgentRun evidence (`STATUS.json`, `RUNTIME_SUMMARY.json` under `execution/**`); runtime-daemon state under user data is operational and non-authoritative (D-GOV-20 §5), is never record-tier citable, and enters only the presence tier |
+| CandidateBrief | Adopted-but-unexecuted and proposed briefs (the work-selection queue) |
+| OrientationSnapshot | A generated orientation return, stamped with examined SHA — the machine generalization of a receipt |
+| DriftFinding | A classified difference between the current reconcile and the prior snapshot, or between PEC and harness parity output |
 
-### 9.2 Consequence and change-obligation states
+### 7.2 Presence tier (operational; TTL'd; never citable)
 
-PEC shall distinguish at least the following facts:
-
-- a consequence has been identified;
-- the affected project scope is known or still incomplete;
-- an artifact change is required, not required, or not yet determined;
-- the target artifact and owner are assigned or missing;
-- the artifact owner has acknowledged the obligation;
-- a proposed artifact revision/reference exists;
-- the change has been reflected in the authoritative artifact;
-- the reflection has been verified against the decision; and
-- affected consumers have been notified or have acknowledged the new basis where
-  project policy requires it.
-
-These may be implemented as a state machine or derived states, but the facts shall not
-be collapsed into a single generic `done` flag.
-
-### 9.3 Authority by data class
-
-| Data class | Authority |
+| Entity | Purpose |
 |---|---|
-| A discipline's periodic declaration | The attested PEC declaration and its cited sources |
-| Imported workbook facts | The accepted import proposal bound to the hashed source and declared coverage |
-| Controlled document content/revision | The configured EDMS, repository, or controlled file; PEC stores a reference and verification evidence |
-| Schedule or cost values | The configured schedule/cost system or an explicitly attested imported snapshot |
-| Decision outcome | The authorized decision record in PEC or a linked authoritative external decision register |
-| Live cross-project projection | PEC's database, derived from accepted records and explicit authority mappings |
-| Period close | The immutable PEC project-state snapshot and its source manifest |
-| Report, dashboard, export, or agent response | A derivative projection; never a substitute for the underlying accepted state |
-| Agent-created content | Proposal or draft until the designated human act occurs |
+| Session | id, harness kind, engine/model attribution when known, role (Agent 0/1/2 or human), loop/package binding, last heartbeat |
+| Worktree / GitRef | worktrees, branches, HEAD, ahead/behind, dirty path names and counts (never content) |
+| PresenceRecord | session ↔ worktree ↔ declared write-scope correlation |
+| HierarchyEdge | live parent→child session edges (the in-the-moment org chart) |
+| ScopeClaim | advisory "working here" declarations; overlap detection input |
 
-The relational database supports concurrent team use and live queries. Source hashes,
-immutable snapshots, audit exports, and backup/restore evidence shall make accepted
-state independently inspectable and recoverable. Database mutability must not make
-the project's basis opaque.
+### 7.3 Prototype machinery carried as pattern (not as code)
+
+Lifecycles-as-data transition tables; condition evaluation with
+re-verification at evaluation time; `Explain<V>`-shaped derivation; SQL-level
+append-only enforcement; dry-run-then-apply ingestion; coverage honesty
+("a figure the records don't support is absent and said to be absent").
 
 ---
 
-## 10. Functional requirements
+## 8. Users and access
 
-### 10.1 Team and project setup
-
-| ID | Requirement |
-|---|---|
-| PEC-TEAM-001 | Administrators can create projects, disciplines, teams, packages, deliverables, artifact types, reporting cadences, and project vocabularies without code changes. |
-| PEC-TEAM-002 | Users can belong to multiple projects and hold multiple project roles; every query and mutation is project-scoped. |
-| PEC-TEAM-003 | The product supports invite, deactivate, substitute/delegate, and temporary coverage without rewriting historical actor identity. |
-| PEC-TEAM-004 | Project setup identifies active disciplines, accountable leads, expected declaration scope, declaration due date, and escalation path. |
-| PEC-TEAM-005 | A responsibility view shows declaration ownership, decision authority, artifact ownership, and unassigned obligations. |
-
-### 10.2 Declaration capture
-
-| ID | Requirement |
-|---|---|
-| PEC-DECL-001 | PEC provides a concise form for the five-question weekly discipline declaration in §5.1. |
-| PEC-DECL-002 | Each question supports explicit `none`, structured entries, explanatory text, links, and attachments. |
-| PEC-DECL-003 | Users can save drafts, request input from other contributors, preview the covered scope, and submit for lead attestation. |
-| PEC-DECL-004 | The discipline lead can attest, return for clarification, amend, or supersede a declaration; each act writes history. |
-| PEC-DECL-005 | PEC distinguishes not started, draft, submitted, returned, attested, amended, late, partial, and superseded declarations. |
-| PEC-DECL-006 | A discipline may declare once for its full scope or combine contributor submissions, without double-counting overlapping packages or deliverables. |
-| PEC-DECL-007 | Current declarations and prior periods are viewable side by side with added, changed, removed, and unchanged observations. |
-| PEC-DECL-008 | Reminders and escalation are configurable by role, deadline, and project calendar and never imply attestation. |
-
-### 10.3 Source ingestion and proposals
-
-| ID | Requirement |
-|---|---|
-| PEC-ING-001 | Users can attach XLSX, CSV/TSV, DOCX, PDF, and configured machine-readable exports where authorized. |
-| PEC-ING-002 | Every source receives a hash, uploader, upload time, declared reporting coverage, scope, source type, and authority classification. |
-| PEC-ING-003 | Mapping produces a reviewable proposal showing creates, updates, unchanged rows, conflicts, rejects, unsupported fields, and omitted content. |
-| PEC-ING-004 | No importer or agent may silently drop a populated field or invent an identity, date, status, discipline, issue type, percent complete, or audience. |
-| PEC-ING-005 | Acceptance and apply are distinct authorized human acts; accepted proposals are hash-bound and stale if the source or target state changes. |
-| PEC-ING-006 | Re-import is idempotent, correction-aware, and capable of preserving source-specific observations without erasing other accepted sources. |
-| PEC-ING-007 | Round-trip exports preserve source identifiers and every supported imported field. |
-
-### 10.4 Reconciliation, verification, and validation
-
-| ID | Requirement |
-|---|---|
-| PEC-VV-001 | PEC checks declaration completeness and overlap against the configured active-discipline and scope expectations for the period. |
-| PEC-VV-002 | PEC checks referential integrity among disciplines, packages, deliverables, issues, decisions, events, and artifacts. |
-| PEC-VV-003 | PEC compares current declarations with prior accepted state and flags unexplained regressions, discontinuities, additions, removals, and stale observations. |
-| PEC-VV-004 | PEC can run configurable cross-source rules, including state/issue consistency, duplicated identity, issuance/date alignment, and decision/artifact closure. |
-| PEC-VV-005 | Percent-complete checks identify the rule-of-credit version, earned components, manual attestation, and any arithmetic or state inconsistency. |
-| PEC-VV-006 | Every finding states the rule, records examined, result, severity, and what human disposition or source correction would resolve it. |
-| PEC-VV-007 | Findings can be acknowledged, assigned for clarification, accepted with rationale, corrected by a superseding source, or escalated to a decision gap. |
-| PEC-VV-008 | Validation status shall not be presented as engineering correctness, professional approval, or proof that all relevant facts were supplied. |
-
-### 10.5 Leadership current-state view
-
-| ID | Requirement |
-|---|---|
-| PEC-LEAD-001 | The leadership home shows declaration coverage, freshness, amendments, and explicit no-change responses for the active period. |
-| PEC-LEAD-002 | It foregrounds new material changes, cross-discipline impacts, budget/scope/schedule risks, needs, upcoming/actual deliverable events, and development progress. |
-| PEC-LEAD-003 | It separately shows conflicts, validation findings, decision gaps, unassigned consequences, and overdue artifact change obligations. |
-| PEC-LEAD-004 | Every count, status, and summary drills to contributing records, source, period, and derivation rule. |
-| PEC-LEAD-005 | Users can filter, sort, search, group, resize columns, export the displayed rows, and retain shareable role-safe views. |
-| PEC-LEAD-006 | Sponsor/client views are strictly read-only and expose only configured information classes and drill paths. |
-| PEC-LEAD-007 | Package, discipline, and deliverable views project the same current state using the terminology appropriate to each scope. |
-
-### 10.6 Planning: decision consequences and change placement
-
-The Planning surface is not primarily a task board, capacity planner, or schedule.
-Its foreground is the flow from material project information to decisions and from
-decisions to the documentation on which others rely.
-
-| ID | Requirement |
-|---|---|
-| PEC-PLAN-001 | Planning shows unresolved material changes and decision gaps with their affected scope, basis, missing information, need-by, and identified authority. |
-| PEC-PLAN-002 | An authorized user can record a decision outcome, rationale, effective date, affected scope, and explicit consequences. |
-| PEC-PLAN-003 | Each consequence is classified as requiring an artifact/system change, requiring communication only, having no downstream change, or still needing impact determination. |
-| PEC-PLAN-004 | A required change is assigned to a named target artifact/system, owner, required-by date, affected consumers, and verification method. |
-| PEC-PLAN-005 | PEC exposes consequences with no target, no owner, conflicting targets, unacknowledged ownership, or overdue reflection. |
-| PEC-PLAN-006 | Artifact owners can acknowledge, cite a proposed/current revision, record reflection evidence, and request verification without altering the original decision. |
-| PEC-PLAN-007 | Verification compares the reflected change with the decision consequence and records satisfied, partial, conflicting, superseded, or rejected results. |
-| PEC-PLAN-008 | Optional actions, reminders, or schedule activities may be linked to a change obligation, but cannot substitute for its artifact-reflection evidence. |
-| PEC-PLAN-009 | Affected disciplines and packages can acknowledge receipt of a changed basis where project policy requires it. |
-
-### 10.7 Relied-upon artifacts
-
-| ID | Requirement |
-|---|---|
-| PEC-ART-001 | Teams can register artifact types and instances, including SOW, DBM, MDL, schedule/cost basis, execution plan, design criteria, interface register, controlled deliverable, and client direction. |
-| PEC-ART-002 | Each artifact reference records authority, location, owner, current revision/as-of date, status, and access classification. |
-| PEC-ART-003 | PEC can link project claims, risks, needs, decisions, consequences, deliverables, packages, and validation findings to the artifact sections or records they depend upon. |
-| PEC-ART-004 | Supersession preserves the prior artifact reference, replacement, effective date, affected dependencies, and unresolved propagation obligations. |
-| PEC-ART-005 | PEC shall link to or exchange metadata with the authoritative document system rather than silently treating an uploaded convenience copy as the current controlled document. |
-
-### 10.8 Collaboration and notifications
-
-| ID | Requirement |
-|---|---|
-| PEC-COL-001 | Users can request clarification on a specific declaration entry, finding, decision gap, consequence, or change obligation without creating a parallel private record. |
-| PEC-COL-002 | Mentions, assignments, acknowledgements, and comments retain record context and appear in a role-appropriate inbox. |
-| PEC-COL-003 | Notifications state what changed, why the recipient is involved, the requested act, the due date, and the authoritative record link. |
-| PEC-COL-004 | Digest and event notifications are configurable; urgent judgment requests remain distinguishable from routine status reminders. |
-| PEC-COL-005 | Team members can see who is editing or has changed a controlled record; conflicting saves never silently overwrite one another. |
-
-### 10.9 Reports and projections
-
-| ID | Requirement |
-|---|---|
-| PEC-REP-001 | PEC generates a concise weekly project-status draft from a selected immutable period snapshot, following a configurable organization template. |
-| PEC-REP-002 | The report summarizes rather than dumps rows and covers discipline activities/progress, package needs/issues, decisions, interfaces, and period deliverable events as supported by the selected state. |
-| PEC-REP-003 | Every reported figure and material statement has a drillable or machine-auditable basis; unsupported sections state an honest absence. |
-| PEC-REP-004 | Draft reports are available as editable DOCX and browser preview; issue/approval remains an external or separately authorized human act. |
-| PEC-REP-005 | A regenerated report from the same snapshot and template version is materially reproducible. |
-| PEC-REP-006 | Reports record project, period, snapshot, source coverage, template version, generation time, and draft/issued status without implying issue. |
-| PEC-REP-007 | User-defined reports and agent answers are limited to authorized project state and preserve the same provenance and absence rules. |
-
-### 10.10 Agent assistance
-
-| ID | Requirement |
-|---|---|
-| PEC-AGENT-001 | The agent can explain the project, locate records, compare periods, summarize current state, identify gaps/conflicts, and draft import/report/change proposals within the user's access. |
-| PEC-AGENT-002 | The agent can perform bounded multi-step reads and show the resolved model, turn state, tool activity, access basis, budget, refusals, and final response live. |
-| PEC-AGENT-003 | Agent output distinguishes quoted/attested facts, deterministic derivations, model inferences, proposals, and absences. |
-| PEC-AGENT-004 | The agent cannot attest declarations, accept/apply imports, record decisions, approve, verify professionally, issue documents, change access, or close consequences. |
-| PEC-AGENT-005 | Every proposed mutation previews the affected records and requires the configured human authority act. |
-
-### 10.11 Administration and audit
-
-| ID | Requirement |
-|---|---|
-| PEC-ADM-001 | Administrators manage project roles, visibility classes, cadence, vocabularies, rules of credit, validation rules, artifact types, templates, and integrations. |
-| PEC-ADM-002 | Configuration changes are versioned, effective-dated, auditable, and never retroactively change a historical snapshot. |
-| PEC-ADM-003 | Audit views and exports show actor, act, time, prior/new state, source, authority, and related snapshot without exposing content outside the viewer's permissions. |
-| PEC-ADM-004 | Backup, restore, retention, archive, and legal/project-closeout exports are operable and tested. |
+- **Human owner** — dashboards, decision slate, presence board. Full read.
+- **Harnesses** (runtime daemon; terminal-session hooks CLI) — machine
+  consumers of the API on behalf of agent sessions; producers of presence and
+  status events.
+- **Agents** — never call PEC directly by instruction; they receive
+  harness-injected orientation as labeled data (PEC-K-03).
+- Access is local-only (Unix socket; any loopback listener is a §16 open
+  decision), token-scoped. The v1.0 role ontology (12 roles, v1.0 §8) and
+  the prototype's implemented 14-role RBAC set (`core/src/types.ts`) are
+  retired; access classes are owner, harness, and admin.
 
 ---
 
-## 11. User experience requirements
+## 9. Functional requirements
 
-### 11.1 Navigation model
-
-The primary navigation should reflect the information flow:
-
-| Surface | Governing question |
-|---|---|
-| Current state | What is current, what changed, and how complete is the reporting basis? |
-| Disciplines | What has each discipline declared, and what does its evidence show? |
-| Packages | What package-level impacts, needs, issues, decisions, interfaces, and changes exist? |
-| Deliverables | What is each deliverable's development state, progress basis, and upcoming/actual event? |
-| Planning | What requires a decision, and where must the consequences be reflected? |
-| Verification | What is missing, conflicting, stale, inconsistent, or not yet propagated? |
-| Reports | What derivative view is needed from a selected state snapshot? |
-| Admin | How is the information contract, authority, access, and integration basis configured? |
-
-Personal assignment and notification views may exist, but they are entry points into
-shared records rather than a separate private work system.
-
-### 11.2 Interaction principles
-
-- **Exception first.** Show material changes, decision gaps, conflicts, and overdue
-  propagation before stable detail.
-- **Low declaration burden.** Reuse existing sources, defaults, and prior scope; make
-  an honest no-change declaration fast.
-- **Progressive disclosure.** Leadership summaries stay concise; users can drill to
-  discipline, package, deliverable, observation, source row, and history.
-- **Basis before polish.** Unknown or partial information remains visibly so.
-- **Role-safe by construction.** Hiding a navigation item is not a substitute for
-  server-side authorization and filtered drill payloads.
-- **Direct data control.** Every register supports search, filtering, sorting,
-  resizable columns, local horizontal scrolling, and displayed-view export.
-- **Stable identity.** Human-readable references and source IDs remain visible across
-  imports, links, reports, and exports.
-- **Accessible and responsive.** All critical acts are keyboard operable and usable
-  at desktop and narrow viewports without page-level overflow.
-
----
-
-## 12. Permissions and human authority
-
-1. Authorization is enforced server-side for every read and act.
-2. Project isolation applies to records, history, reports, agent tools, search, and
-   exports.
-3. Visibility is configurable for internal, client, confidential, and other project
-   classifications.
-4. Only a named or role-authorized person may attest a declaration, accept/apply an
-   import, record a decision outcome, approve, accept verification, change access, or
-   issue a controlled output.
-5. Delegation records delegator, delegate, scope, effective dates, and authority
-   basis; it does not rewrite historical identity.
-6. Agent service identities are non-administrative and cannot acquire a user's human
-   authority through prompting.
-7. Sponsor/client users are read-only unless the project deliberately establishes a
-   separate external-contribution workflow.
-
----
-
-## 13. Integrations
-
-### 13.1 Required integration classes
-
-- firm identity and SSO;
-- XLSX/CSV and document upload;
-- MDL and action/issue register exchange;
-- controlled-document/EDMS metadata and links;
-- schedule and cost/progress snapshot import where those systems are authoritative;
-- notifications through email or an enterprise collaboration system; and
-- complete project-state, history, and audit export for archive or migration.
-
-The product shall use adapter contracts so a project can choose SharePoint, an EDMS,
-a scheduling system, or another controlled repository without changing the core
-information model.
-
-### 13.2 Integration rules
-
-- Every integration declares which data classes it reads, proposes, or writes.
-- Live synchronization is not required for the first team release; reliable,
-  reviewable snapshots are acceptable.
-- External writes require a separately authorized operation and shall never be a
-  hidden side effect of report generation or agent conversation.
-- Source-system identifiers and revision/as-of metadata are retained.
-- Integration failure leaves the last accepted state visible with a stale warning;
-  it never presents cached data as current without qualification.
-
----
-
-## 14. Non-functional requirements
+### 9.1 Orientation (PEC-ORI)
 
 | ID | Requirement |
 |---|---|
-| PEC-NFR-001 | Append-only history and tamper-evident audit evidence for accepted declarations, imports, decisions, consequences, artifact references, permissions, configuration, and snapshots. |
-| PEC-NFR-002 | No hard delete of controlled records; cancel, retract, amend, or supersede with reason and authority. |
-| PEC-NFR-003 | Common views render within 2 seconds at the provisional team target of 100 named users, 25 concurrent users, 25,000 deliverables, and 1,000,000 history entries per project. |
-| PEC-NFR-004 | Optimistic concurrency and transactional writes prevent silent last-write-wins or partially applied proposals. |
-| PEC-NFR-005 | Role-based and record-class access is enforced at the query and mutation layers, including agent and export paths. |
-| PEC-NFR-006 | SAML or OIDC SSO, configurable session controls, MFA inheritance, and centralized user deactivation are required for production team use. |
-| PEC-NFR-007 | Multi-project isolation is verified by automated cross-project access tests. |
-| PEC-NFR-008 | The application is deployable single-tenant or in a private cloud suitable for client-confidential engineering projects. |
-| PEC-NFR-009 | Encrypted backup/restore provides an RPO no greater than 24 hours and an RTO no greater than 4 hours; restore is rehearsed before production use and quarterly thereafter. |
-| PEC-NFR-010 | UTC storage, project-local display, reporting calendars, and working-day calculations are consistent across UI, reports, reminders, and APIs. |
-| PEC-NFR-011 | All state-changing APIs are idempotent where retried, validate complete payloads, and return stable conflict/error taxonomies. |
-| PEC-NFR-012 | Availability target is 99.5% during configured project working hours for the first production release. |
-| PEC-NFR-013 | WCAG 2.2 AA is the accessibility target; critical workflows require keyboard and screen-reader verification. |
-| PEC-NFR-014 | Logs and telemetry expose import, reconciliation, report, notification, and agent failures without recording unauthorized project content or secrets. |
-| PEC-NFR-015 | Data retention, residency, encryption in transit/at rest, and deletion policies are configurable to firm and client requirements. |
-| PEC-NFR-016 | The system can export a complete, documented, non-proprietary project package sufficient to reconstruct accepted records, relationships, snapshots, and history. |
-| PEC-NFR-017 | Model providers, model IDs, access basis, and data sent to a model are configurable and observable; no unapproved training or retention assumption is made. |
+| PEC-ORI-001 | PEC shall serve, per loop: the newest applicable receipt, examined-through SHA, gate states, owner directions of record, open tranches/candidate briefs, and parked lanes each with the owner action that would unpark it. |
+| PEC-ORI-002 | PEC shall serve deltas since a caller-supplied commit SHA. |
+| PEC-ORI-003 | Every orientation response shall carry the examined-through SHA, generation time, and per-feed freshness. |
+| PEC-ORI-004 | Every claim in an orientation response shall carry a citation (file path, anchor, and/or SHA) to its live source. |
+| PEC-ORI-005 | Orientation shall be scope-parameterized (loop / project / package) per the modes ladder (§5). |
+| PEC-ORI-006 | Where a feed is unparseable or stale, the response shall state the measurement limitation explicitly; silent omission is prohibited. |
 
-The sizing and service-level values above are provisional release targets and shall be
-confirmed with the sponsor before architecture commitments that materially depend on
-them.
+### 9.2 Reconciliation (PEC-RCN)
 
----
-
-## 15. Success metrics
-
-Pilot baselines shall be measured before rollout. The first eight-week team pilot
-targets are:
-
-| Outcome metric | Target |
+| ID | Requirement |
 |---|---|
-| Active disciplines with an attested declaration or explicit no-change declaration by the reporting deadline | at least 95% |
-| Attested declarations with explicit period and coverage | 100% |
-| Material cross-discipline impacts with a triage disposition and accountable owner | at least 95% within 2 working days |
-| Decision outcomes with explicit affected scope and consequences | 100% |
-| Consequences requiring authoritative change that have a named target artifact and owner | at least 95% within 2 working days of decision |
-| Change obligations closed without artifact-reflection evidence or an authorized no-change/supersession basis | 0 |
-| Reported percent-complete values with an identifiable rule-of-credit basis | 100% |
-| Generated weekly reports whose figures reconcile to the selected snapshot | 100% |
-| Time spent assembling the recurring status report | at least 75% below pilot baseline |
-| Meeting time spent discovering status rather than resolving exceptions | at least 30% below pilot baseline |
-| Material validation findings resolved before the affected artifact is issued | upward trend from week 2; establish numeric target from pilot baseline |
-| Team members who agree that PEC state is current enough to rely upon for their role | at least 80% |
+| PEC-RCN-001 | The record tier shall be rebuildable in full from sources by one command; the presence tier is not reconstructible and is expected to be lost on rebuild (PEC-K-05); the database is gitignored and safe to delete (PEC-K-02). |
+| PEC-RCN-002 | The reconciler shall ingest, at minimum: `_STATUS.md` (declared parser dialect), decision registers and packets, `LOOP_RECEIPTS.md` (per-loop grammar; the D-APP-57 contract where a ledger has adopted it), `WORK_GRAPH.json` / `STATUS.json` / `RUNTIME_SUMMARY.json`, dependency registers, workplans/LOOP_INIT, and per-project `_harness/adapter.yaml` as the feed manifest. |
+| PEC-RCN-003 | Reconciliation shall run incrementally, keyed on Git delta since the last examined SHA. |
+| PEC-RCN-004 | The reconciler shall classify drift between successive snapshots and report it; it shall never modify a source file. |
+| PEC-RCN-005 | PEC derivations shall be parity-diffable against practitioner-harness output; discrepancies are surfaced as DriftFindings and resolved against live sources. |
+| PEC-RCN-006 | The reconciler writes only its own store and generated views. |
 
-Usage volume alone is not a success metric. More tasks, comments, notifications, or
-agent turns do not demonstrate better project control.
+### 9.3 Gate evaluation and decision slate (PEC-GAT)
 
----
-
-## 16. Release strategy
-
-### Phase 0 — information-contract validation
-
-Observe one real weekly cycle with project leadership, discipline leads, project
-controls, and document control. Confirm the five-question declaration, active-scope
-rules, rules of credit, decision authorities, relied-upon artifact classes, visibility
-classes, and current coordination baseline.
-
-**Exit:** the team can answer what must be declared, by whom, for what scope, against
-which sources, and which artifacts must receive consequential change.
-
-### Phase 1 — team current-state foundation
-
-Deliver team identity/roles, project setup, direct declarations, source proposals,
-attestation, completeness/currentness, discipline/package/deliverable views,
-leadership current-state view, report snapshots, concise DOCX generation, audit,
-notifications, and production backup/security fundamentals.
-
-**Value:** one weekly information contract and one dependable state replace manual
-status assembly.
-
-### Phase 2 — decisions and consequence placement
-
-Deliver decision gaps, authorized decisions, affected-scope capture, consequence
-classification, artifact registry, change obligations, owner acknowledgement,
-reflection evidence, propagation verification, and the reoriented Planning page.
-
-**Value:** critical information leads to decisions, and decisions reliably reach the
-documents and people that depend upon them.
-
-### Phase 3 — longitudinal verification and validation
-
-Deliver period comparison, configurable cross-source rules, rules-of-credit engines,
-staleness and regression detection, conflict disposition, supersession impact, and
-project-state archive/export.
-
-**Value:** PEC detects basis drift and incomplete propagation before they become
-downstream rework.
-
-### Phase 4 — integrations and spin-off workflows
-
-Add selected EDMS, schedule, cost, collaboration, portfolio, assurance, interface,
-review, and task-support workflows only where the shared information spine provides a
-clear basis and avoids duplicate authority.
-
-**Value:** PEC becomes a broader execution-control platform without losing the
-information contract that justifies the application.
-
----
-
-## 17. Acceptance scenarios
-
-The target product is acceptable for team use when the following scenarios pass:
-
-1. **Complete weekly cycle.** Every configured discipline either attests entries or
-   explicitly declares no change for a common period; leadership sees complete and
-   incomplete coverage without manual reconciliation.
-2. **Source-assisted declaration.** A discipline attaches current MDL and issue files;
-   the agent proposes a lossless mapping; a human reviews/applies it; the discipline
-   attests the resulting declaration; all views and the report agree.
-3. **Cross-discipline change.** A discipline declares a change affecting two other
-   disciplines. Those impacts appear in leadership and recipient views with source
-   basis, and the recipients can acknowledge or raise a conflict.
-4. **Decision and documentation consequence.** Leadership records a decision that
-   changes scope. PEC captures the consequences, assigns the SOW and DBM changes to
-   their owners, retains revision evidence, and refuses to call the consequence
-   closed merely because an action item was completed.
-5. **Conflict caught.** A deliverable is declared on hold while the current issue
-   source contains no corresponding need/issue. PEC raises a finding, preserves both
-   source claims, and records the human disposition or corrected source.
-6. **Rules-of-credit progress.** Percent complete traces to the applicable rule set
-   and earned components; an unexplained regression or invalid credit combination is
-   visible before report generation.
-7. **Read-only sponsor.** A sponsor sees only permitted current-state and drill
-   surfaces and cannot reach a mutating endpoint through URL, API, export, or agent.
-8. **Concurrent team use.** Two users changing the same controlled record receive an
-   explicit conflict and no accepted state is silently lost.
-9. **Auditable report.** A concise editable report is generated from a named snapshot;
-   every figure reconciles to the UI and missing data is stated honestly.
-10. **Recoverability.** The production-like database is restored from backup, and its
-    accepted records, history, source manifests, and snapshots pass integrity checks.
-
----
-
-## 18. Risks and safeguards
-
-| Risk | Safeguard |
+| ID | Requirement |
 |---|---|
-| PEC becomes a more elaborate weekly report generator | Measure maintained-state, decision, propagation, and verification outcomes; keep reports derivative |
-| Declaration burden causes non-adoption | Five stable questions, explicit none, source reuse, prior-scope defaults, short direct form, role-specific reminders |
-| Task-management gravity returns | Keep tasks optional and subordinate to information gaps, decisions, and artifact change obligations |
-| Leadership treats a polished summary as verified truth | Show coverage, currency, sources, conflicts, and snapshot basis; separate attestation from verification |
-| Database becomes an opaque competing authority | Define authority by data class; preserve source hashes, immutable snapshots, exports, and artifact references |
-| Decisions are recorded but not propagated | Require consequence classification and artifact placement; measure unassigned and unverified obligations |
-| Artificially complete AI output conceals gaps | Factual-or-absent rule, bounded agent authority, observable acts, proposals, and explicit refusals |
-| Too much workflow is designed before observing the team | Phase 0 validates the information contract and authority map; later workflow remains configurable |
-| Notifications recreate N x N noise | Exception-focused routing, digests, explicit recipient basis, and configurable escalation |
-| Integrations duplicate or overwrite authoritative systems | Adapter authority declarations, proposal gates, idempotency, and no hidden external writes |
+| PEC-GAT-001 | PEC shall deterministically evaluate gate preconditions that reduce to file/Git facts: ruling presence, ruling-SHA commit reachability, receipt ancestry, snapshot/freeze presence, register-row status. |
+| PEC-GAT-002 | Gate verdicts shall be Explain-shaped (rule, threshold, contributing citations) and advisory only. |
+| PEC-GAT-003 | PEC shall render a cross-loop decision slate: every AWAITING_RULING row and every parked lane awaiting an owner act, linking to the authored file content rather than restating it. |
+| PEC-GAT-004 | PEC shall provide no write path that records adoption, ruling, or direction (PEC-K-02; K-AUTH-1). |
+
+### 9.4 Presence (PEC-PRS)
+
+| ID | Requirement |
+|---|---|
+| PEC-PRS-001 | PEC shall record presence for sessions reported by their owning harness (harness kind, engine/model attribution when known, role, loop/package binding, declared write scopes); session identity and lifecycle remain daemon-owned (D-GOV-20). |
+| PEC-PRS-002 | PEC shall scan Git for worktrees, branches, HEAD, ahead/behind counts, and dirty path names/counts; file and diff content shall never be captured (PEC-K-10). |
+| PEC-PRS-003 | PEC shall correlate sessions to worktrees/branches (the session × worktree × scope join). |
+| PEC-PRS-004 | PEC shall maintain live parent→child hierarchy edges from daemon and hook feeds. |
+| PEC-PRS-005 | Presence records carry TTLs and last-heartbeat age; liveness shall never be asserted beyond last heartbeat. |
+| PEC-PRS-006 | PEC shall detect and surface advisory overlaps (write scopes, shared branches, same merge target); it shall never block on them (PEC-K-06). |
+| PEC-PRS-007 | Presence data is operational only and shall never appear in record-tier citations (PEC-K-05). |
+
+### 9.5 Streams and ingest (PEC-STR)
+
+| ID | Requirement |
+|---|---|
+| PEC-STR-001 | PEC shall accept idempotent, append-only event ingest keyed on event id. |
+| PEC-STR-002 | Event contract types shall be versioned and consumable by daemon, hooks CLI, and adapters alike; their home (shared runtime contracts vs a PEC-local schema with a pinned mirror) is a cross-loop placement decision (§16) — writes into root `runtime/` are outside PEC's fences and require their own coordination. |
+| PEC-STR-003 | Supported bridges: runtime-daemon SSE subscriber; harness hooks CLI (session start/stop, status, scope declaration); cmux socket adapter as an optional enricher. Each bridge is declared and attributable. |
+| PEC-STR-004 | Stream loss is recovered by reconciliation; no record-tier fact may rest on a stream event alone (PEC-K-07). |
+| PEC-STR-005 | Every ingested message is durable and queryable; PEC provides no ephemeral relay (PEC-K-09). |
+
+### 9.6 API (PEC-API)
+
+| ID | Requirement |
+|---|---|
+| PEC-API-001 | The service binds local-only, Unix socket by default, with token-scoped access; any loopback TCP listener is a §16 open decision in light of D-GOV-20's no-TCP-control-listener posture. |
+| PEC-API-002 | Orientation reads shall complete in ≤100 ms at p95 against the current corpus (session-start critical path). |
+| PEC-API-003 | The API schema is versioned; evolution is additive. |
+| PEC-API-004 | Responses are compact, machine-first, and citation-bearing. |
+| PEC-API-005 | PEC shall offer an SSE subscription for deltas and presence changes (dashboards; long-running managers). |
+
+### 9.7 Dashboards (PEC-DSH)
+
+| ID | Requirement |
+|---|---|
+| PEC-DSH-001 | Overview: the orientation return per loop (git state, newest receipt, gates that matter, open tranches, parked lanes + unparking act). |
+| PEC-DSH-002 | Lifecycle census across all registered loops' packages/deliverables, with stuck-age and workflow-completeness views. |
+| PEC-DSH-003 | Register views: decisions, receipts, dependencies, run records — read-only, link-only, source-linked (no restatement of authored text; PEC-K-10). |
+| PEC-DSH-004 | "Waiting on you": the aggregated decision slate (PEC-GAT-003). |
+| PEC-DSH-005 | Presence board: sessions × worktrees × live hierarchy, with heartbeat age and advisory overlap warnings. |
+| PEC-DSH-006 | Every displayed value drills down to its cited source (PEC-K-08). |
+| PEC-DSH-007 | Derived pressure/status rules (stuck-in-state age, gate-blocked, drift density, staleness, collision risk) are Explain-shaped and individually documented. |
 
 ---
 
-## 19. Current prototype disposition
+## 10. Service requirements (PEC-SVC)
 
-The demo already proves several useful components:
-
-- multi-project membership and role-tailored navigation;
-- populated and blank workflow-demo projects;
-- XLSX upload, proposal, human accept/apply, and source-fidelity controls;
-- discipline, package, deliverable, action/hold, and report projections;
-- multi-discipline package relationships;
-- direct table filtering, sorting, resizing, exporting, and drill paths;
-- concise draft DOCX generation; and
-- a live, observable, bounded LLM sidecar.
-
-Those components should be retained where they satisfy this PRD. The current Plan,
-My Week, generic work-item, capacity, condition, and lifecycle machinery should be
-evaluated as supporting infrastructure, not assumed to define the future product.
-
-Before further feature implementation, `SPEC.md`, `TRACEABILITY.md`, `STATUS.md`, the
-information model, and the delivery plan shall be rebaselined against this PRD. That
-rebaseline must identify what is retained, repurposed, retired, or newly required;
-the existence of prototype code is not, by itself, a reason to preserve a product
-concept.
+| ID | Requirement |
+|---|---|
+| PEC-SVC-001 | The service core has zero third-party runtime dependencies (carries ADR-002); workspace-internal runtime contracts packages are permitted. |
+| PEC-SVC-002 | Local, single-owner posture; no external network egress. |
+| PEC-SVC-003 | Full rebuild of the current corpus completes within a bound confirmed at Phase 1 (target: minutes); incremental reconcile within seconds. |
+| PEC-SVC-004 | The kill test — delete the store, run representative governed workflows, nothing blocks — is a standing release gate (PEC-K-01). |
+| PEC-SVC-005 | The store lives at a gitignored path; the content-minimal rule (PEC-K-10) is enforced at ingest. |
+| PEC-SVC-006 | PEC's own reconcile runs and ingest activity are logged and inspectable (it is observable about itself). |
 
 ---
 
-## 20. Product decisions still requiring confirmation
+## 11. Success metrics (measured in system behavior, not human behavior)
 
-These questions materially affect implementation and should be answered through
-pilot observation or explicit owner/sponsor direction rather than guessed:
+1. Step-0 cost: LLM tokens per loop-iteration orientation, before vs after;
+   the "before" baseline is measured before P1 begins (this also re-tests the
+   query-pain precondition the practitioner harness recorded unmet on
+   2026-07-02).
+2. Orientation defect rate: claims failing source spot-check per 100 claims.
+3. Collision incidents: write-scope/branch conflicts discovered at Git time
+   rather than surfaced in advance, per week of concurrent operation.
+4. Harness poll adoption: fraction of eligible session starts / mode
+   transitions that consume orientation.
+5. Parity: DriftFindings against practitioner-harness output per reconcile.
+6. Kill test: pass, at every release.
 
-1. Which artifacts are relied upon for the first team pilot, and which systems are
-   authoritative for each?
-2. Who may attest on behalf of a discipline, and what delegation is acceptable?
-3. Which rules-of-credit sets apply by discipline and deliverable type, and who owns
-   their versions?
-4. Which decisions must be recorded in PEC versus linked from an existing decision
-   register?
-5. What constitutes adequate evidence that a consequence has been reflected in an
-   artifact, and who verifies it?
-6. Which information classes may sponsors, clients, vendors, and subconsultants see?
-7. What team size, data volume, availability window, residency, and recovery targets
-   apply to the first production deployment?
-8. Which enterprise identity, document, schedule, cost, and collaboration systems
-   are required for the pilot?
-
-None of these questions prevents the product definition in this PRD. They are the
-remaining configuration and authority decisions needed to turn it into an
-implementation specification.
+**Falsification clause:** if, after Phase 3, harness poll adoption remains
+negligible and the owner does not consult the dashboards, the product thesis
+is falsified; PEC is deleted and, by PEC-K-01, nothing breaks.
 
 ---
 
-## 21. Sponsor statement
+## 12. Release strategy
 
-*PEC gives every discipline a simple, repeatable way to declare what changed, what is
-at risk, what is needed, what is being issued, and how the work is progressing. It
-turns those declarations into a shared project state that leadership can interrogate
-and the team can rely upon. When a gap requires a decision, PEC makes the basis and
-authority visible; when that decision changes the project, PEC ensures the
-consequence is assigned to the scope, design basis, deliverable, register, or other
-documentation that must carry it. Reports are useful outputs of that system, but the
-product is the trusted information flow underneath them.*
+| Phase | Scope | Exit test |
+|---|---|---|
+| **P0 — Governance** | `D-PEC-57` ruling; this PRD adopted (`D-PEC-58`); workplan replaced; decomposition authorized | Packets ruled; standing plan live |
+| **P1 — One-loop reconciler** | Reconciler + orientation store + API for one loop (piping or root), read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes |
+| **P2 — Dashboards** | All five loops; Overview, census, registers, decision slate | Owner uses it in place of manual Step 0 for orientation reads |
+| **P3 — Harness integration** | Hooks CLI + daemon polling; presence registry + Git/worktree scanner | Measured poll adoption; overlap warnings fire on seeded conflicts; falsification clause armed |
+| **P4 — Streams** | Daemon SSE bridge; hooks push; live hierarchy tier; optional cmux adapter | Stream loss demonstrably recovered by reconcile; presence TTLs honest under kill/crash tests |
 
-End of PRD v1.0
+The PEC v2 build itself runs through the governed pipeline (SOFTWARE_DECOMP →
+PROJECT_SETUP → WORKING_ITEMS), and the first loop the P1 reconciler ingests
+is **its own build** — the bootstrap is the first validation of the thesis.
+
+---
+
+## 13. Prototype disposition
+
+There is nothing to migrate: the v0.4-baseline application has no users, no
+production data (scratch/demo only by ruling), and no dependents beyond a
+scratch-only validation bridge.
+
+| Surface | Disposition |
+|---|---|
+| `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/` | Frozen as reference implementation; quarried by citation in deliverable briefs; archived from the working tree once P2 is useful. Never deleted (v1.0 I-11 spirit; Git preserves regardless). |
+| SPEC / TRACEABILITY / PILOT / ADR-001..014 | Historical baseline retained with existing disclaimers; v2 SPEC is born from the decomposition; live postures (ADR-002, ADR-014) re-cited in v2's first ADRs. |
+| Decision register D-PEC-01..56 | Continues (numbering never resets; historical row gaps predate this PRD). `D-PEC-49` closed as moot at the D-PEC-58 gate. |
+| Domain-engine registration (`pec.yaml`, L3 import lane) | L3 operation-proposal lane sunset with the old product; profile superseded when v2 has shape; the `_DomainEngines/pec` loop continues as the governing development loop. |
+| Demo DB, fixtures, seed/drill tooling | Retired; scratch-guard discipline carries as a pattern. |
+| Tests (347 per the receipt-sourced breakdown: 74 core / 169 server / 104 sidecar) | Retired with the product; invariant-test style and server test-harness pattern carry as conventions. |
+| Shared-runtime client seam (D-PEC-56) | Concept carries directly; reimplemented against v2 entities. |
+| `chirality.project.json`, daemon registration, project identity | Continue unchanged. |
+
+Machinery carried **as pattern, not code**: §7.3 list, with briefs citing the
+specific reference modules.
+
+---
+
+## 14. Supersession and carry-forward
+
+Upon adoption:
+
+- PRD v1.0 is superseded and preserved at its Git object (recorded in the
+  adopting packet), exactly as v0.4 is preserved at `7e8312172`.
+- Carried forward in spirit: v1.0 §1.2 (Chirality interpretation, adapted at
+  §1.2 above; first sentence retained verbatim); invariants
+  PEC-I-01/-02/-03/-04/-11/-12/-13 (each mapped at §6);
+  the information-model discipline of §9; the verification/reporting
+  machinery concepts of §10.4/§10.9 (reborn as PEC-RCN/PEC-DSH); coverage
+  honesty (§5.3/§6) as PEC-ORI-006.
+- Retired: v1.0 §5 (declarations, attestation), §10.1–10.3, §10.8, §8/§12
+  role ontology, §13 integrations, §15 metrics, §16 phases. Any v1.0 section
+  not named in the carried-forward list above is retired by default; the
+  carry list is exhaustive.
+- **No identifier is reused.** v2 identifiers are `PEC-K-*` (invariants) and
+  `PEC-{ORI,RCN,GAT,PRS,STR,API,DSH,SVC}-NNN` (requirements); no family
+  overlaps v1.0 or v0.4, so a bare ID is always unambiguous.
+
+---
+
+## 15. Governance and compliance posture
+
+- **`D-GOV-01` — complied with by design for the record tier; one question
+  expressly reserved for the owner.** Option A's sanctioning clause — "a
+  rebuildable, gitignored projection: safe to delete, regenerated from files
+  by one command, never cited as authority" — is encoded as PEC-K-01/-02.
+  The same ruled option also states: "No coordinator process, no leases, no
+  database-owned status, no CLI-owned governance writes." PEC takes no
+  leases (PEC-K-06), owns no governance status (rulings and lifecycle remain
+  file-native, PEC-K-02), and writes no governance surface. The presence
+  tier is operational-only, TTL'd, non-authoritative, and never citable.
+  Whether a persistent presence service falls within Option A's "no
+  coordinator process" clause is presented to the owner at `D-PEC-58`, not
+  settled by this document.
+- **`D-GOV-20` — complemented.** The daemon remains sole owner of execution;
+  PEC creates no second loop and holds no session authority.
+  Checkout-contained evidence remains authoritative over any PEC store.
+- **`D-PEC-56` — partially superseded upon adoption.** Its ruled behavior 1
+  (retain PEC's deterministic acts, RBAC, reporting, and domain tools as a
+  project adapter service) does not survive the product retirement in
+  §8/§13. Its no-dual-loop boundary (behavior 4) and human-only-act
+  restrictions (behavior 7) survive unchanged. The partial supersession is
+  declared in the `D-PEC-58` packet.
+- **Doctrine** — the sibling rule prohibits hidden or undeclared direct
+  messaging under a mediating parent (`AGENTS.md`); PEC is a declared,
+  durable, recorded surface and therefore not hidden messaging. Whether
+  concurrent Agent 0 operation without a common parent is lawful is an open
+  `AGENTS.md` question, flagged at §5 and not resolved by this PRD.
+- **Residency** — content-minimal (PEC-K-10): PEC indexes only repo files
+  agents already read, plus operational presence; no new data class egresses.
+- **Fences** — this candidate is authored within currently lawful write
+  scope. All implementation writes await their own packets.
+- The practitioner harness's cache half remains closed by its own record
+  (`tools/practitioner_harness/README.md` §Cache contract): its query-pain
+  precondition was measured **unmet** on 2026-07-02 (slowest command ~4 s).
+  A `D-PEC-57`/`D-PEC-58` ruling directs the PEC product; it neither directs
+  the harness nor remeasures that precondition. §11 metric 1 re-measures
+  Step-0 cost before P1.
+
+---
+
+## 16. Open product decisions (owner)
+
+1. Whether decision registers gain light structure at source (machine-parse
+   aids) or remain prose parsed best-effort.
+2. Design and ownership of a daemon global event feed (today: per-session
+   SSE only).
+3. Home and shape of the loop registry (which loops PEC serves; today five).
+4. Long-term placement: `projects/pec` retained now; root promotion (the
+   `runtime/` precedent) explicitly deferred, not decided here.
+5. Whether the PEC web UI eventually folds into the desktop app or remains a
+   standalone local page.
+6. Auth reuse: PEC tokens vs the daemon's project-scoped token registry.
+7. Whether "PEC" is re-expanded (e.g., Project Execution *Coordination*) or
+   kept as a legacy name.
+8. Whether non-app-dev loop ledgers adopt the D-APP-57 receipt contract
+   (today only the app-dev ledger is schema-validated; pec/bridge are
+   prose-structured).
+9. Event-contract home (shared `runtime/packages/contracts` vs a PEC-local
+   schema with a pinned mirror) and API transport (Unix socket only vs an
+   additional loopback listener, given D-GOV-20's no-TCP-control-listener
+   posture).
+
+None of these blocks P0–P2.
+
+---
+
+## 17. Owner statement
+
+Owner adoption of record (Ryan Tufts, in-session, 2026-07-24), verbatim:
+
+> "…you have approve to proceed with the PRD v2 candidate to promote it and
+> proceed from there accordingly."
+
+The full direction, including the archive-cleanup and PR instructions it
+carries, is quoted in `execution/_Coordination/_DECISIONS/D-PEC-58_prd_v2_adoption.md`.

@@ -1,6 +1,6 @@
-# D-PEC-58 — AWAITING_RULING: adopt PRD v2.0 (coordination plane) and supersede PRD v1.0
+# D-PEC-58 — RULED: adopt PRD v2.0 (coordination plane) and supersede PRD v1.0
 
-**Status:** AWAITING_RULING — framed 2026-07-24; documentation-only fence
+**Status:** RULED 2026-07-24 — owner adoption act; documentation-only fence, owner-amended same day to include the prototype-docs archive cleanup
 **Decision ID:** D-PEC-58
 **FramedBy:** agent (Claude Fable 5), under the ruled `D-PEC-57` O-A path
 **Structure precedent:** `D-PEC-55_prd_v1_adoption.md` (adoption act, exact fence, verification/rollback)
@@ -33,8 +33,9 @@ this ruling.
    preserved in Git at the last commit carrying it as
    `projects/pec/docs/PRD.md`; that SHA is recorded in this packet at
    execution time, per the D-PEC-55 convention of citing the commit that
-   last carried the superseded text (as of framing,
-   `b1fbc38a3:projects/pec/docs/PRD.md` resolves). The carry-forward clause
+   last carried the superseded text (recorded at execution:
+   **`c31be74c2:projects/pec/docs/PRD.md`**; the text is additionally
+   archived at `projects/pec/docs/.archive/PRD_v1.0_2026-07-09_team_information_hub.md`). The carry-forward clause
    is PRD v2 §14. The v0.4 catalogue remains preserved at
    `7e8312172:projects/pec/docs/PRD.md`.
 3. `SPEC.md` and `TRACEABILITY.md` remain the implemented v0.4 prototype
@@ -112,4 +113,35 @@ is not modified at promotion beyond header/status fields.
 
 ## Human ruling
 
-*(open)*
+**RULED (adoption), 2026-07-24.** Owner direction of record (Ryan Tufts,
+in-session, 2026-07-24), verbatim:
+
+> "you should also clean up the current PEC project folder removing all
+> obsolete files along with the current PRD.  You can just move them into the
+> nearest `.archive` folder or something if you want.  You do what's best,
+> but it seems prudent?  Otherwise, you have approve to proceed with the PRD
+> v2 candidate to promote it and proceed from there accordingly.  Then open
+> the PR once that's complete and you can self-merge on this approval given
+> now, for the remainder of this session only.  Continue executing with
+> `opus-5` subagents where it's effective."
+
+PRD v2.0 is adopted; ruled behavior items 1–10 execute under this row.
+
+**Owner-directed fence amendment (2026-07-24, quoted above):** this row's
+fence additionally covers the prototype-docs cleanup — moves of
+`projects/pec/docs/{SPEC,TRACEABILITY,PILOT}.md` and `docs/adr/**` into
+`projects/pec/docs/.archive/**`; archival of the superseded PRD v1.0 and
+prototype `STATUS.md`/`README.md` texts; a replacement `docs/STATUS.md` and
+rewritten `projects/pec/README.md`; and removal of the committed demo
+database `projects/pec/pec-demo.db` (preserved in Git history). The frozen
+reference corpus (`core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`,
+`fixtures/`, workspace manifests) and the live loop launcher
+(`init/init-prompt.md`) are deliberately NOT touched; source-tree archival
+remains a future packet per PRD v2 §13.
+
+**Coordination notice (agent-index change-notice rule):**
+`_DomainEngines/profiles/pec.yaml` `chirality_readable_artifacts` still
+enumerates pre-archive paths for `SPEC.md`, `TRACEABILITY.md`, `PILOT.md`,
+and `adr/ADR.md`; that enumeration is stale as of this row's execution and
+is not edited here (profile edits are outside this fence). Resolution
+belongs to the named profile-supersession follow-on (item 10).

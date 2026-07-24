@@ -1,3 +1,8 @@
+> **SUPERSEDED 2026-07-24 (`D-PEC-58`).** The standing plan is now
+> `WORKPLAN_2026-07-24_pec_coordination_plane.md` in this directory (the
+> coordination-plane pivot, `D-PEC-57`/`D-PEC-58`). Retained for history; do
+> not follow.
+
 # PEC Work Loop — team information-hub standing plan
 
 > **Epistemic status: owner-directed standing plan.** Created 2026-07-09 from

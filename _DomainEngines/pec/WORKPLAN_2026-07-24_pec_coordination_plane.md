@@ -1,10 +1,7 @@
-> **CANDIDATE — not the standing plan.** This file becomes the PEC loop's
-> standing plan only when the owner rules `D-PEC-58` and the file is moved,
-> under that packet's fence, to
-> `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md`.
-> `LOOP_INIT.md` selects the newest `WORKPLAN_*.md` in that directory, so
-> placing it there before the ruling would silently take effect. Until then the
-> 2026-07-09 team-information-hub plan remains the standing plan.
+> **Standing plan.** Activated 2026-07-24 under `D-PEC-58`; replaces
+> `WORKPLAN_2026-07-09_pec_team_information_hub.md` (superseded, retained on
+> disk with its supersession note). Per `LOOP_INIT.md`, the newest
+> `WORKPLAN_*.md` in this directory governs.
 
 # PEC Work Loop — coordination-plane standing plan
 
@@ -41,10 +38,10 @@ store is gitignored, rebuildable by one command, and never citable as authority.
 0. **Discover.** Resolve the repo root; inspect git, receipts, both decision
    registers, the profile, the candidate/adopted PRD, and live checks. Verify
    every inherited claim against the live tree.
-1. **Review the product gate.** The open gate is **`D-PEC-58`** — owner
-   adoption of PRD v2. Until it is ruled: no decomposition, no `docs/**`
-   replacement, no implementation. After adoption the next gate is
-   decomposition acceptance, then one packet per implementation tranche.
+1. **Review the product gate.** The product gate — `D-PEC-58` adoption of
+   PRD v2 — was satisfied 2026-07-24 (gate-state note). The open owner gates
+   are decomposition acceptance (SOFTWARE_DECOMP Gates 1–7), then one packet
+   per implementation tranche.
 2. **Decompose before building.** After adoption, run PRD v2 through
    `SOFTWARE_DECOMP` (Gates 1–7 per `docs/DECOMPOSITION_STANDARD.md`,
    human-interactive). Gate 7 acceptance is the downstream basis; no tranche is
@@ -67,7 +64,7 @@ Phases map to PRD v2 §12.
 
 | Order | Tranche | Completion test |
 |---|---|---|
-| P0 | Governance | `D-PEC-58` ruled and this plan live at `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` |
+| P0 | Governance | `D-PEC-58` ruled and this plan live at `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` — satisfied 2026-07-24 (gate-state note) |
 | D1 | Decomposition (`SOFTWARE_DECOMP` over PRD v2) | Gate 7 accepted; the decomposition is the authoritative downstream basis for all build tranches |
 | P1 | One-loop reconciler + orientation store + read-only API | Parity diff vs practitioner harness clean or explained; rebuild-from-scratch within bound; kill test passes |
 | P2 | Dashboards across all registered loops | Owner uses PEC in place of manual Step 0 for orientation reads |
@@ -104,8 +101,9 @@ The first loop the P1 reconciler ingests is PEC v2's own build.
 
 ## Live pointers
 
-- Product definition: `projects/pec/execution/_Coordination/PRD_V2_CANDIDATE_2026-07-24_coordination_plane.md`
-  — on `D-PEC-58` adoption this moves to `projects/pec/docs/PRD.md`
+- Product definition: `projects/pec/docs/PRD.md` (v2.0, adopted 2026-07-24,
+  `D-PEC-58`); authoring record at
+  `projects/pec/execution/_Coordination/PRD_V2_CANDIDATE_2026-07-24_coordination_plane.md`
 - Direction/fence packet: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57_coordination_plane_pivot.md`
 - Decision registers: `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`
   and `_DomainEngines/_DECISIONS/_REGISTER.md`

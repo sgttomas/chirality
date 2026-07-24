@@ -1,3 +1,7 @@
+> **ADOPTED AND PROMOTED 2026-07-24 (`D-PEC-58`).** The product definition of
+> record now lives at `projects/pec/docs/PRD.md` (with adoption header). This
+> file is retained as the authoring record and is no longer maintained.
+
 # PEC — Product Requirements Document
 
 | | |
