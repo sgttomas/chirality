@@ -6,7 +6,6 @@ import { FileTreePanel } from '../shell/file-tree-panel';
 
 export type WovenSurface =
   | 'dialogue'
-  | 'document'
   | 'workbench'
   | 'pipeline';
 
@@ -18,8 +17,7 @@ type NavigatorProps = {
 
 const SURFACES: ReadonlyArray<{ id: WovenSurface; label: string; note: string }> = [
   { id: 'dialogue', label: 'Dialogue', note: 'Primary human–agent conversation' },
-  { id: 'document', label: 'Artifacts', note: 'Deliverable documents and evidence' },
-  { id: 'workbench', label: 'Workbench', note: 'Context and contract operations' },
+  { id: 'workbench', label: 'Workbench', note: 'Documents, evidence & contracts' },
   { id: 'pipeline', label: 'Pipeline', note: 'DECOMP, PREP, TASK, and AUDIT intent' }
 ];
 

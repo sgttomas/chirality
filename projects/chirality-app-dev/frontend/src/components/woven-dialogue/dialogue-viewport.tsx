@@ -3,7 +3,7 @@
 import React, { type ReactNode } from 'react';
 
 export type FocusedDialogueSurface = {
-  id: 'document' | 'workbench' | 'pipeline';
+  id: 'workbench' | 'pipeline';
   title: string;
   content: ReactNode;
 };

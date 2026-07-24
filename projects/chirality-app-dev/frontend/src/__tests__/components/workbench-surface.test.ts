@@ -19,6 +19,15 @@ vi.mock('../../components/workspace/workspace-provider', () => ({
   useWorkspace: () => ({ projectRoot: mockState.projectRoot })
 }));
 
+// `DocumentView` drags the react-markdown ESM graph plus `fetch` into this node
+// environment; the Workbench Documents block only needs to prove the mount point.
+vi.mock('../../components/shell/document-view', async () => {
+  const { createElement: h } = await import('react');
+  return {
+    DocumentView: () => h('div', { 'data-document-view': 'mounted' }, 'Document view')
+  };
+});
+
 function disabledAttributeCount(html: string): number {
   return (html.match(/disabled=""/g) ?? []).length;
 }
@@ -44,6 +53,25 @@ describe('WorkbenchSurface rendering', () => {
     expect(html).toContain('JUDGING');
     expect(html).toContain('Deliverable Contracts (Read-Only)');
     expect(html).toContain('Transition writes are disabled for this agent.');
+    expect(html).not.toContain('Apply Transition');
+  });
+
+  it('mounts the folded Documents block inside the Workbench surface', () => {
+    const html = renderToStaticMarkup(createElement(WorkbenchSurface));
+
+    expect(html).toContain('aria-label="Documents"');
+    expect(html).toContain('<h3>Documents</h3>');
+    expect(html).toContain('Deliverable documents, evidence, and contracts read from the Working Root.');
+    expect(html).toContain('data-document-view="mounted"');
+  });
+
+  it('keeps the Documents block mounted for read-only agents', () => {
+    mockState.searchParams = new URLSearchParams({ agent: 'HELP_HUMAN' });
+
+    const html = renderToStaticMarkup(createElement(WorkbenchSurface));
+
+    expect(html).toContain('Deliverable Contracts (Read-Only)');
+    expect(html).toContain('data-document-view="mounted"');
     expect(html).not.toContain('Apply Transition');
   });
 });

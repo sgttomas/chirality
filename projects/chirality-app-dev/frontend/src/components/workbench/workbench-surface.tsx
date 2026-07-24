@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import { useEffect, useMemo, useState, type FormEvent } from 'react';
+import { DocumentView } from '../shell/document-view';
 import { useWorkspace } from '../workspace/workspace-provider';
 import {
   canAgentTransitionLifecycle,
@@ -587,6 +588,16 @@ export function WorkbenchSurface(): JSX.Element {
             </>
           )}
         </article>
+
+        <section className="workbench-card workbench-documents-block" aria-label="Documents">
+          <header>
+            <h3>Documents</h3>
+          </header>
+          <p className="pipeline-note">
+            Deliverable documents, evidence, and contracts read from the Working Root.
+          </p>
+          <DocumentView />
+        </section>
       </section>
   );
 }

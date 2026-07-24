@@ -34,7 +34,6 @@ import {
 import { useHarnessStreaming } from '../workspace/harness-events-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatPanel } from '../shell/chat-panel';
-import { DocumentView } from '../shell/document-view';
 import { PersonaPicker } from '../shell/persona-picker';
 import { ShellFrame } from '../shell/shell-frame';
 import { PipelineSurface } from '../pipeline/pipeline-surface';
@@ -371,13 +370,6 @@ export function WovenDialogueShell({
     if (!focusedSurfaceVisible) {
       return undefined;
     }
-    if (activeSurface === 'document') {
-      return {
-        id: 'document',
-        title: 'Artifacts',
-        content: <DocumentView />
-      };
-    }
     if (activeSurface === 'workbench') {
       return {
         id: 'workbench',
@@ -399,7 +391,7 @@ export function WovenDialogueShell({
       subtitle="A shared professional workspace where dialogue produces inspectable artifacts and governed work."
       variant="workspace"
     >
-      <section className="woven-workspace" style={style}>
+      <section className="woven-workspace" style={style} data-woven-surface={activeSurface}>
         <main className="woven-dialogue-region" aria-label="Primary Dialogue and focused views">
           <DialogueViewport
             primaryDialogue={
