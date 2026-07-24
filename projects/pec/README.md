@@ -1,88 +1,47 @@
-# PEC — 9-Domains: Project Execution Control
+# PEC — Chirality Coordination Plane
 
-Web-based, multi-user system of record for multidisciplinary engineering execution control: role homes,
-controlled records, condition-gated transitions, and derived (always explainable) status. The code
-implements the historical PRD v0.4 prototype baseline (preserved at `7e8312172:projects/pec/docs/PRD.md`),
-Phase 1 + P2 scope. The adopted `docs/PRD.md` v1.0 (team information hub, `D-PEC-55` 2026-07-10) defines
-the target product; rebaseline pending.
+PEC is the coordination plane of the Chirality operating system: a
+deterministic, rebuildable projection of governed file truth, plus an
+ephemeral presence layer, embodying **Step 0 (Discover)** and the
+deterministic parts of **Step 1** of the canonical development loop. It is
+consumed by harnesses on behalf of agents and by the human owner through
+dashboards — and it is deliberately **the coordination plane that doesn't
+need to exist**: files and Git remain the sole authority, every consumer has
+a file-native fallback, and deleting PEC degrades throughput, never
+correctness.
 
-**New here? Start with [`docs/STATUS.md`](docs/STATUS.md)** — current state, what's next, and the read-order for the rest of the docs.
+Product definition of record: [`docs/PRD.md`](docs/PRD.md) — v2.0, adopted
+2026-07-24 (`D-PEC-58`). **New here? Read [`docs/STATUS.md`](docs/STATUS.md)
+first.**
+
+## State
+
+Pre-implementation. The next gate is decomposition (SOFTWARE_DECOMP over the
+PRD, human-gated); build phases P1–P4 follow under per-tranche packets. See
+the standing plan at
+`_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md`.
 
 ## Layout
 
 | Path | Contents |
 |---|---|
-| `docs/STATUS.md` | **Status & handoff** — where the project is, what remains; read this first |
-| `docs/PRD.md` | Product requirements (adopted v1.0; code currently implements the historical v0.4 baseline) |
-| `docs/SPEC.md` | Implementation specification: data model, lifecycles, conditions engine, derived status, API, RBAC |
-| `docs/adr/ADR.md` | Architecture decision records (implementer-level; PRD OM-*/D-* taken as given) |
-| `docs/TRACEABILITY.md` | P1 requirement → module + test mapping |
-| `core/` | Pure domain engine (no I/O): lifecycles, conditions, status, permissions, calendar |
-| `server/` | Node 24 + `node:sqlite` API server (zero runtime deps): persistence, history/audit, RBAC, REST, import/export |
-| `web/` | React + Vite SPA: six role homes + registers |
-| `tools/` | seed script (demo FEED project), backup |
-| `fixtures/` | sample CSVs for the §16 import contracts |
+| `docs/PRD.md` | Adopted product definition (v2.0, coordination plane) |
+| `docs/STATUS.md` | Status & handoff — read first |
+| `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
+| `execution/_Coordination/` | Decision packets, register, coordination records |
+| `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/` | **Frozen reference corpus** — the v0.4-baseline prototype; read/cite only, quarried by citation in build briefs (PRD §13); run instructions preserved at `docs/.archive/README_v0.4_prototype.md` |
+| `init/` | Loop launcher prompt (points at `_DomainEngines/pec/LOOP_INIT.md`) |
 
-## Run
+## Principles the build must keep (PRD §6, PEC-K-01..11)
 
-Run these from `projects/pec/`. The seed guard requires `PEC_DB` to point at a **scratch/demo**
-database — a path containing a `scratch` or `demo` token, or one under the system temp dir. Use an
-**absolute** path: `npm run seed` and `npm run dev` execute from different workspace directories, so a
-relative `./pec-demo.db` resolves to two different files — the server would read an empty one it
-auto-creates and every login would fail.
+Graceful absence (no governed act requires PEC) · files govern (rebuildable
+projection; rulings file-native) · harness-owned polling · staleness is a SHA
+comparison · two trust tiers, never blurred · observation, not participation
+· ingest best-effort, reconciliation guaranteed · everything derived is
+explainable · declared surface · content-minimal · mode-proportional.
 
-```bash
-npm install                        # workspace deps (web toolchain; core/server have none at runtime)
-export PEC_DB="$PWD/pec-demo.db"   # absolute path; must contain "scratch"/"demo" (seed guard)
-npm run seed                       # create $PEC_DB with the demo FEED project + users
-npm run dev                        # server on :4810, web dev server on :4811 (proxies /api)
-npm test                           # core unit tests + server invariant/integration suite (own temp DBs)
-npm run build && npm start         # production: server serves built web app (also reads $PEC_DB)
-```
+## Governance
 
-Demo logins are printed by the seed script (all share password `pilot`) — e.g. `pm@aurora.dev`.
-
-### Rebuild the sponsor demo from dated inputs
-
-`rebuild:demo` creates a populated TWD project from date-prefixed `.xlsx`
-files in `pilot-scratch/input` plus a blank TBL workflow-demonstration project.
-Both projects receive the same demo people and role assignments; only TWD
-receives the rebuilt source records. The command uses the same workbook mapper
-and governed proposal → accept → apply services as the UI, retains the full
-workbook capture, and makes a WAL-safe backup before replacing an existing demo
-database. Coverage is mandatory and never inferred.
-
-```bash
-export PEC_DB="$PWD/pec-demo.db"
-export PEC_DEMO_COVERAGE_START=YYYY-MM-DD   # PE-declared
-export PEC_DEMO_COVERAGE_END=YYYY-MM-DD     # PE-declared
-npm run rebuild:demo
-```
-
-The rebuild also fails unless TBL remains empty of packages, deliverables, work
-items, and import proposals. It fails loudly if a dated input has rejected rows
-or identity conflicts; resolve the source/mapping decision rather than silently
-dropping or inventing project records. Operational demo personas use password
-`pilot`.
-
-## Principles the code must keep (from the PRD)
-
-One record, many views (I-1) · no unanchored planned work (I-2) · typed holds (I-3) · derived + explainable
-status (I-4) · condition-gated transitions (I-5) · Approval ≠ Check ≠ Decide (I-6) · append-only history
-(I-7) · waivers are Decisions (I-8) · (P2: check/approve load capacity, I-9) · supersession never deletes
-(I-10). The server invariant test suite names these directly.
-
-## Status
-
-Phase 1 (controlled tracker replacement) under construction in this workspace. Built directly from the
-PRD (see ADR-001 for governance posture).
-
-## Shared runtime note
-
-D-T0-23/D-PEC-56 prospectively move PEC agent engine/session/delegation
-ownership to the root Chirality daemon. PEC keeps deterministic acts, RBAC,
-human-only acts, reporting, visibility, and data boundaries as its project
-adapter. The backend agent route is a one-cycle daemon proxy and the temporary
-`agent-sidecar` package now starts only that deterministic adapter; its
-production entrypoint has no model loop or fallback. Migration validation is
-scratch/demo-only.
+Decisions: `execution/_Coordination/_DECISIONS/_REGISTER.md` (pivot:
+`D-PEC-57`; adoption: `D-PEC-58`). Receipts:
+`_DomainEngines/pec/LOOP_RECEIPTS.md`. Project agent rules: `AGENTS.md`.

@@ -1,6 +1,6 @@
-# D-PEC-49 - PROPOSAL: Week-over-week deliverable progress
+# D-PEC-49 - RULED (closed as moot): Week-over-week deliverable progress
 
-**Status:** AWAITING_RULING
+**Status:** RULED 2026-07-24 — closed as moot by D-PEC-58 (no option selected); see Closure section
 **Date prepared:** 2026-07-09
 **Decision ID:** D-PEC-49
 **Prepared by:** PEC work loop agent. The ruling act is the owner's
@@ -97,3 +97,13 @@ back by ordinary revert; imported MDL source facts remain unchanged.
 ## Human ruling
 
 **OPEN - decision is the owner's (K-AUTH-1).** Rule O-A / O-B / O-C / O-D.
+
+
+## Closure (2026-07-24)
+
+Closed as moot by `D-PEC-58`: week-over-week deliverable progress derived from
+MDL percent-complete imports belongs to the retired reporting product
+(PRD v0.4/v1.0 lineage), superseded by the coordination-plane product
+definition (PRD v2.0). No option (O-A..O-D) was selected. Revival against
+coordination-plane (v2) entities requires a new register row
+(residual-work convention).

@@ -110,6 +110,6 @@ session, delegation, interruption, or residency loop after migration.
 
 The temporary legacy PEC agent endpoint may proxy to the shared daemon for one
 migration cycle, but no production dual execution loop is permitted. Agent
-validation remains scratch/demo-only; D-PEC-49 and production data/mutation
-authority remain open. Daemon state is operational, while PEC project truth,
+validation remains scratch/demo-only; D-PEC-49 was closed as moot 2026-07-24
+(`D-PEC-58`); production data/mutation authority remains open. Daemon state is operational, while PEC project truth,
 AgentRuns, decisions, and acceptance evidence remain checkout-contained.
