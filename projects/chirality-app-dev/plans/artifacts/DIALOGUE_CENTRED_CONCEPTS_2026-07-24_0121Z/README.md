@@ -47,6 +47,7 @@ the accepted runtime, route, API, SSE, state, and migration ceiling.
 - `Comparison_and_Recommendation.md`
 - `Owner_Decision_Memo.md`
 - `Method_and_Attribution.md`
+- `Selected_Concept_Woven_Dialogue_Coordination_Panel.md`
 
 ## Explicit non-goal
 

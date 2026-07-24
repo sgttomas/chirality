@@ -1,6 +1,6 @@
 # Active SCOPE_CHANGE Snapshot
 
-**Status:** `DIALOGUE_CENTRED_CONCEPT_SELECTION_PENDING_OWNER`
+**Status:** `GATE_3_AMENDMENT_PENDING_APPROVAL`
 **Active snapshot:** `execution/_ScopeChange/SCA-APP-004_2026-07-23_Workroom_Agent_Room_IA_Redesign/`
 **Amendment label:** `SCA-APP-004 Workroom and Agent Room Information Architecture`
 **Pre-change audit:** `execution/_Evaluation/DecompCoverage/COV_SCA_APP_004_PRECHANGE_2026-07-23_1330/`
@@ -11,8 +11,10 @@ pre-change baseline. No structural blocker exists; 15 folder-local
 artifact-index warnings and the semantic drift findings are carried into
 Gate 2.
 
-Gate 2 impact assessment is in progress. Concept work, authority edits,
-implementation, route changes, and old-UI retirement are not yet authorized.
+The owner accepted Gate 2 and selected Woven Dialogue with a Work/Agents
+Coordination Panel. The exact Gate-3 amendment preview is complete and awaits
+owner approval. Authority edits, implementation, route changes, and old-UI
+retirement are not yet authorized.
 
 SCA-APP-001 through SCA-APP-003 remain historical. SCA-APP-003 closed with
 owner-accepted observations on 2026-07-23.
