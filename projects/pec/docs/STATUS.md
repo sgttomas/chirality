@@ -51,8 +51,8 @@ read and cite only, no further feature work, retired product docs under
 
 ## Governance & agent harness
 
-Project-local agent rules: `AGENTS.md` (rewrite is a named follow-on packet).
-Domain-engine profile `_DomainEngines/profiles/pec.yaml` is pending
-supersession — its `chirality_readable_artifacts` enumeration predates the
-2026-07-24 docs archive and is partially stale (recorded in the `D-PEC-58`
-packet's coordination notice). Fences F-PEC-1..4 (`D-T0-15`) remain in force.
+Project-local agent rules: `AGENTS.md` (rewritten 2026-07-24, `D-PEC-59`).
+Domain-engine profile `_DomainEngines/profiles/pec.yaml` was amended
+2026-07-24 (`D-PEC-59`: post-archive readable-artifact paths + pivot notes;
+validator VALID); full supersession remains pending v2 implementation shape.
+Fences F-PEC-1..4 (`D-T0-15`) remain in force.

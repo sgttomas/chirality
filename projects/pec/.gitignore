@@ -9,3 +9,8 @@ backups/
 # D-PEC-01 pilot rehearsal surface: real input spreadsheets, scratch DBs, scratch backups.
 # Never committed (owner ruling: manifests/hashes only) — ignored wholesale.
 pilot-scratch/
+# D-PEC-59: the retired demo database must not silently re-enter the tree
+# (removed from tracking 2026-07-24 under D-PEC-58; old runbooks still name it).
+pec-demo.db
+pec-demo.db-shm
+pec-demo.db-wal
