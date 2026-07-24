@@ -1130,3 +1130,10 @@
   - Stale-map delta: `_DomainEngines/profiles/pec.yaml` `chirality_readable_artifacts` now names archived paths for SPEC/TRACEABILITY/PILOT/ADR — stale pending the named profile-supersession follow-on; coordination notice in the D-PEC-58 packet.
   - Gate outcome: EXECUTED (adoption + cleanup). Next owner gate: decomposition — SOFTWARE_DECOMP over PRD v2, Gates 1–7. PR + self-merge authorized for this session by the quoted direction.
   - Checks: `git diff --check` pass; documentation/coordination-only tranche plus the ruled demo-database removal — no source or dependency changed.
+
+- **2026-07-24 — Receipt 102** (D-PEC-59 executed: pivot follow-ons complete).
+  - Owner direction (verbatim): "In the same manner, complete the follow-ons under a new self-merge PR." Recorded and ruled in `D-PEC-59_pivot_followons.md`; self-merge rides the session authorization quoted in the D-PEC-58 packet.
+  - Executed pointers: commit `08fabff60` — `_DomainEngines/profiles/pec.yaml` amended 0.1→0.2 (post-archive `chirality_readable_artifacts`, frozen-corpus provenance, pivot notes; validator VALID at `_DomainEngines/pec/PEC_2026-07-24_profile-amendment-01/validation_report.md`); `projects/pec/AGENTS.md` rewritten for the coordination-plane posture; `projects/pec/.gitignore` guard for `pec-demo.db*`; STATUS governance section updated; D-PEC-59 packet + register row.
+  - Full profile supersession remains a future act (once v2 has implementation shape); the tier-0 register was not written (outside PEC-loop fences) — the amendment's adoption basis is the quoted owner direction, recorded in D-PEC-59 per the D-T0-12 lifecycle note.
+  - Gate outcome: EXECUTED. The D-PEC-58 coordination notices are closed. Next owner gate: decomposition — SOFTWARE_DECOMP over PRD v2, Gates 1–7.
+  - Checks: profile validator VALID; `git diff --check` pass; documentation/configuration-only tranche — no runtime source or dependency changed.
