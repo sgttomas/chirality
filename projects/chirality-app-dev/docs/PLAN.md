@@ -32,7 +32,7 @@ The active vNext development source is the app-development workspace (`chirality
 The issued baseline already provides substantial product scaffolding:
 
 - Electron/Next.js desktop shell.
-- PORTAL, WORKBENCH, PIPELINE, matrix navigation, toolkit, and file-tree surfaces.
+- Live loop-first PORTAL, WORKBENCH, PIPELINE, matrix, toolkit, file-tree, and replay surfaces; these remain the compatibility baseline while the owner-selected Woven Dialogue target is implemented and validated.
 - Working-root selection and validation.
 - Harness session create/boot/list/get/delete APIs.
 - Turn SSE route with session-level active-turn locking.
@@ -47,7 +47,13 @@ The issued baseline already provides substantial product scaffolding:
 - Instruction-root integrity verification.
 - macOS 15+ Apple Silicon unsigned DMG build path.
 
-The baseline is useful and should be preserved while the runtime is refactored.
+The baseline is useful and must be preserved while the runtime and
+owner-selected information architecture evolve. SCA-APP-004 selects Woven
+Dialogue with a right Work/Agents Coordination Panel as the target: actual
+human–agent dialogue remains mounted and primary; artifacts are
+provenance-bearing inline/focused views; Work and Agents are rebuildable,
+evidence-conditional projections; and selected-session replay is read-only
+and distinct from the primary live dialogue.
 
 ---
 
@@ -97,11 +103,22 @@ This plan does not chase feature parity with Claude Code, Pi, or any external ag
 
 ## 3. Immediate Development Objective
 
-The immediate objective is R0/R1:
+The current product-identity/UX objective is the governed SCA-APP-004
+implementation tranche:
 
-> provider-adapter scope confirmation, reliance-boundary register, engine contract, first-adapter TurnEngine, session event log, prompt composer, settings isolation, and redacted run logger.
+> implement Woven Dialogue, provenance-bearing inline/focused artifacts, and
+> the informational Work/Agents Coordination Panel without changing runtime
+> capability or breaking compatibility.
 
-This first slice must preserve current browser-facing SSE behavior and public route shapes. It must not expose new write, bash, remote MCP, plugin, domain-operation, concrete non-Anthropic provider, or subagent execution capability to users.
+The implementation must preserve the mounted primary live dialogue, explicit
+next-turn context, source/provenance/currency labels, exact recorded
+parentage, isolated read-only replay, current browser-facing SSE behavior,
+public route/API/query shapes, provider composition, security boundaries, and
+the loop-first UI through the compatibility period.
+
+The historical R0/R1 sequence below remains strategic history. The accepted
+D-APP-73 shared-runtime execution order in §13.1 remains controlling and is
+not reordered by this frontend information-architecture tranche.
 
 ---
 
@@ -365,6 +382,12 @@ R1 packaging checks must prove:
 ### 6.5 Product Identity and UX
 
 - UI copy describes Chirality’s governed-work posture.
+- Actual human–agent dialogue is the primary workspace; shared intent is not a stored or authoritative UI object.
+- Provenance-bearing artifacts may appear inline and open into focused views that retain a return-to-dialogue anchor.
+- Work/Agents displays only admitted project/runtime records with visible source class/reference, status basis, currency, and exact recorded relationships.
+- Conversational prose is not silently converted into work; runtime completion is not deliverable acceptance.
+- Selected-session replay is clearly labelled, read-only, and isolated from primary dialogue draft, context, permissions, interruption, and interaction authority.
+- Existing routes, queries, aliases/matrix behavior, APIs, SSE, provider composition, and old UI remain compatible until a separate owner retirement decision.
 - Tool-heavy turns remain readable.
 - Permission decisions are visible without overwhelming users.
 - No UI or packaging implies Chirality is Claude Code or an Anthropic product.
@@ -478,6 +501,7 @@ This plan remains acceptable only if:
 | `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. D-APP-12 later clarified that `agentSdk` remains opt-in pending further proof/ruling. |
 | `SCA-APP-002` | 2026-07-21 | Authorizes the bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche, subject to Electron `43.1.1` prerequisite proof, provider-neutral contracts, fail-closed conformance/security validation, and a governed read-only Agent 2 child milestone. |
 | `SCA-APP-003` | 2026-07-22 | Promotes the executable harness to root `runtime/`, then adds one shared daemon, authenticated Unix-socket client/CLI, explicit local-model residency, the app-dev Agent 1 → local Agent 2 pilot, PEC client migration, and public generic-runtime export. |
+| `SCA-APP-004` | 2026-07-23 | Selects Woven Dialogue with a Work/Agents Coordination Panel; preserves runtime/API/SSE/security/history and compatibility while adding provenance-labelled informational projection, explicit context/artifact anchors, and strict primary-dialogue/read-only-replay separation. |
 
 ### 13.1 D-APP-73 execution order
 
@@ -492,3 +516,37 @@ This plan remains acceptable only if:
 
 Piping, automatic scheduling, local Agent 1, multiple simultaneous primary
 local models, and production PEC use remain later governed milestones.
+
+### 13.2 SCA-APP-004 implementation and cutover order
+
+1. Freeze a compatibility matrix for `/`, `/chat`, `/pipeline`, `/workbench`,
+   known and unknown query parameters, browser APIs, SSE names/order, provider
+   singletons, drafts/toolkit/layout state, and packaged Desktop startup.
+2. Add the Woven Dialogue shell behind a reversible compatibility selection
+   while keeping the provider composition and primary dialogue controller
+   singular.
+3. Add provenance-bearing inline/focused artifact presentation and explicit
+   next-turn context references without treating visible material as model
+   context.
+4. Add the Work projection over explicitly recorded project work with source
+   class/reference, status basis, currency, responsibility/relationship
+   references, and explicit stale/empty/conflict/unknown states.
+5. Add the Agents projection over recorded sessions, exact canonical
+   parentage, attribution, and selected-session read-only replay without
+   global AgentRun discovery or runtime expansion.
+6. Re-host Workbench, Pipeline, toolkit, working-root, credential, runtime,
+   and settings surfaces while preserving their existing semantic and
+   security owners.
+7. Apply versioned, non-destructive, rollback-safe local-state migration and
+   complete accessibility, focus, keyboard, responsive, bounded-data, and
+   performance work.
+8. Run component/render, route/query, API/SSE/replay/interruption, runtime,
+   security, build, premerge, instruction-root, and packaged Desktop
+   validation, followed by independent semantic-boundary review.
+
+The existing loop-first UI remains the compatibility implementation after
+this sequence until parity evidence is accepted and the owner separately
+authorizes retirement. SCA-APP-004 does not authorize runtime/API expansion,
+arbitrary graphs, multiple-child execution, scheduling, direct child
+messaging, global AgentRun discovery, automatic intent summarization, or model
+routing/residency control.

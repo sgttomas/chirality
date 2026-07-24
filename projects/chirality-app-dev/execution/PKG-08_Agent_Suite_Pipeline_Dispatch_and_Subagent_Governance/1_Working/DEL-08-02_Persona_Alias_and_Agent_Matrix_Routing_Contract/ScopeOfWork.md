@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-08-02
 package_id: PKG-08
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@ff59428ff27d929bc1172e6c049a5e274d487fc0
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@416b29033bbacb0bc3648d84033272b7ab4e6e11
 project_scope_refs: [SOW-005, SOW-006, SOW-017]
 package_objective_refs: [OBJ-001, OBJ-007]
 ---
@@ -13,13 +13,13 @@ package_objective_refs: [OBJ-001, OBJ-007]
 
 This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW-006, SOW-017] and package objectives [OBJ-001, OBJ-007].
 
-- **OUT-001** — Persona alias and agent matrix routing contract, with alias resolver tests, route fixtures, and matrix mapping tests, that keeps UI aliases, canonical agent names, matrix routes, and persona resolution consistent.
+- **OUT-001** — Persona alias, agent/session routing, and legacy matrix compatibility contract, with alias resolver, guarded session-selection, route/query, persona-resolution, and compatibility tests that keep canonical identity and navigation intent consistent without making a fixed matrix part of the target shell.
 
 ## Deliverable Definition — Ontology
 
-### CLM-001 — Datasheet: DEL-08-02 Persona Alias and Agent Matrix Routing Contract
+### CLM-001 — Datasheet: DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract
 
-> #### Datasheet: DEL-08-02 Persona Alias and Agent Matrix Routing Contract
+> #### Datasheet: DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract
 >
 
 ### CLM-002 — Identification
@@ -29,7 +29,7 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > | Field | Value |
 > |---|---|
 > | DeliverableID | DEL-08-02 |
-> | DeliverableName | Persona Alias and Agent Matrix Routing Contract |
+> | DeliverableName | Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract |
 > | PackageID | PKG-08 |
 > | PackageName | Agent Suite, Pipeline Dispatch, and Subagent Governance |
 > | DecompositionVariant | SOFTWARE_DECOMP |
@@ -46,14 +46,15 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 >
 > | Attribute | Value | Source |
 > |---|---|---|
-> | Scope summary | Keep UI aliases, canonical agent names, matrix routes, and persona resolution consistent. | `_CONTEXT.md`; decomposition entry DEL-08-02 |
-> | Anticipated artifacts | Alias resolver tests; route fixtures; matrix mapping tests. | `_CONTEXT.md`; decomposition entry DEL-08-02 |
+> | Scope summary | Keep UI aliases, canonical agent names, persona resolution, guarded dialogue/session selection, route/query mappings, and legacy matrix behavior consistent. | `_CONTEXT.md`; decomposition entry DEL-08-02; SCA-APP-004 |
+> | Anticipated artifacts | Alias resolver tests; guarded session-selection tests; route/query fixtures; legacy matrix compatibility and unavailable-persona tests. | `_CONTEXT.md`; decomposition entry DEL-08-02 |
 > | Covered scope items | SOW-005, SOW-006, SOW-017. | `_CONTEXT.md`; decomposition scope table |
 > | Supported objectives | OBJ-001, OBJ-007. | `_CONTEXT.md`; decomposition entry DEL-08-02 |
 > | UI alias map | `HELP -> HELP_HUMAN`; `ORCHESTRATE -> ORCHESTRATOR`; `AGENTS -> HELPS_HUMANS`; `DEPENDENCIES -> EVALUATION`. `AGGREGATE` and `RECONCILING` are not compatibility aliases: their former cells were re-pointed to the canonical Type 1 `REVIEW` and `RESEARCH` personas so no alias is needed. | `docs/TYPES.md` Section 3.4; `docs/PRD.md` FR-026; D-APP-28 loop-first routing |
-> | Matrix rows | `NORMATIVE`, `OPERATIVE`, `EVALUATIVE`. | `docs/TYPES.md` Section 4.1; `docs/PRD.md` FR-007 |
-> | Matrix columns | `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING`. | `docs/TYPES.md` Section 4.2; `docs/PRD.md` FR-007 |
-> | Matrix routing destinations | `NORMATIVE` and `EVALUATIVE` produce loop-persona intent; `OPERATIVE` routes to PIPELINE. | `docs/TYPES.md` Section 4.1; `docs/PRD.md` Section 7.2 and FR-008; D-APP-28 |
+> | Legacy matrix rows | `NORMATIVE`, `OPERATIVE`, `EVALUATIVE` remain compatibility vocabulary, not a required target-shell layout. | `docs/TYPES.md` Section 4.1; SCA-APP-004 |
+> | Legacy matrix columns | `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING` remain compatibility vocabulary, not a required target-shell layout. | `docs/TYPES.md` Section 4.2; SCA-APP-004 |
+> | Legacy matrix routing destinations | During compatibility, `NORMATIVE` and `EVALUATIVE` preserve persona/session intent and `OPERATIVE` preserves governed PIPELINE dispatch intent. | D-APP-28/30/31 preserved compatibility; SCA-APP-004 |
+> | Guarded dialogue/session selection | Selecting an already-recorded session may load a labelled read-only replay lens, but must not resume, merge with, or mutate the primary live dialogue; an in-flight selection that could clobber live state remains guarded. | SCA-APP-004; preserved D-APP-30 safety rule |
 > | Persona filename target | Persona names resolve to `agents/AGENT_*.md`; missing personas return `PERSONA_NOT_FOUND`. | `docs/PRD.md` FR-025 |
 > | Persona fallback | Empty or missing request/session persona falls back to the live hardcoded `WORKING_ITEMS` default; unknown non-empty labels pass through normalized for instruction-file resolution. | `docs/SPEC.md` Section 13.1; `frontend/src/lib/shell/persona-resolution.ts` |
 >
@@ -67,7 +68,8 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > | Source authority state | REF-006 `docs/PRD.md` is MATCH under the D-APP-38 authority corpus v2. | `_REFERENCES.md`; D-APP-38 |
 > | Governance posture | Unknown values remain `TBD`, and source conflicts must be surfaced rather than silently resolved. | `docs/CONTRACT.md` K-INVENT-1 and K-CONFLICT-1 |
 > | Route shape constraint | Existing harness route shapes remain stable during SDK adoption and TurnEngine extraction. | `docs/SPEC.md` Section 17.1 |
-> | Unsupported variants | Disabled or unsupported matrix/pipeline variants remain visible as coming soon rather than disappearing. | `docs/PRD.md` Section 7.2 and FR-011 |
+> | Unsupported variants | Disabled or unsupported compatibility/pipeline variants remain visible as coming soon where the product contract requires them rather than disappearing. | `docs/PRD.md`; SCA-APP-004 |
+> | Semantic non-ownership | DEL-08-02 does not own shell presentation, Work-plan authority, dispatch semantics, replay evidence, child-run parentage, lifecycle, or approval. | SCA-APP-004 semantic ownership partition |
 > | Dependency register state | `Dependencies.csv` exists in v3.1 format with 13 ACTIVE extracted rows; declared upstream/downstream human edges remain TBD. | `_DEPENDENCIES.md` Compact Register; `Dependencies.csv` |
 >
 
@@ -79,8 +81,8 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > |---|---|
 > | Alias resolver | MUST encode only sourced UI alias mappings unless amended by governance. |
 > | Canonical agent name target | MUST resolve aliases and personas to canonical instruction-root agent names, with `agents/AGENT_<persona>.md` as the file contract. |
-> | Matrix mapping fixture | MUST cover the canonical 3x4 row/column vocabulary and row-to-surface routing. |
-> | Loop route fixture | MUST preserve selected agent, row, and column context from route state or query parameters. |
+> | Legacy matrix compatibility fixture | MUST cover canonical 3x4 row/column vocabulary and row-intent/query behavior during the compatibility period without requiring the matrix in the target shell. |
+> | Dialogue/session route fixture | MUST preserve canonical agent/session identity, unknown query parameters, and legacy selected agent/row/column context while enforcing guarded selection and live/replay separation. |
 > | Pipeline route fixture | MUST distinguish operative category routing from loop-persona routing. |
 > | Unspecified UI details | TBD until implementation evidence or human ruling defines exact component names, route query keys, and fixture file paths. |
 > | P3 implementation path slot | F-001 remains a TBD implementation slot: selected module paths and fixture/test file paths for alias resolver, matrix mapping, route fixtures, and persona resolver must be filled when implementation begins. |
@@ -104,31 +106,40 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 
 ## Completion and Reliance Basis — Epistemology
 
-### CLM-007 — Specification: DEL-08-02 Persona Alias and Agent Matrix Routing Contract
+### CLM-007 — Specification: DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract
 
-> #### Specification: DEL-08-02 Persona Alias and Agent Matrix Routing Contract
+> #### Specification: DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract
 >
 
 ### CLM-008 — Scope
 
 > ##### Scope
 >
-> This deliverable specifies the routing and persona-resolution contract needed to keep UI aliases, canonical agent names, matrix routes, and persona resolution consistent for Chirality App vNext.
+> This deliverable specifies the routing and persona-resolution contract needed
+> to keep UI aliases, canonical agent names, guarded dialogue/session
+> selection, legacy route/query/matrix behavior, and persona resolution
+> consistent for Chirality App vNext. The fixed matrix is compatibility
+> presentation rather than the target information architecture.
 >
 > In scope:
 >
 > - Alias resolution from UI labels to canonical agent names.
-> - Canonical matrix row, column, and cell vocabulary.
-> - Row-based routing from the agent matrix to loop-persona intent or PIPELINE.
-> - Loop route-state preservation for selected agent, row, and column.
+> - Canonical matrix row, column, and cell vocabulary as legacy compatibility.
+> - Compatibility routing from legacy matrix/query intent to persona/session or governed Pipeline intent.
+> - Guarded selection of recorded dialogues/sessions without clobbering an in-flight primary session.
+> - Route/query preservation for selected agent, row, column, session, and unknown parameters during compatibility.
 > - Persona resolution to instruction-root `agents/AGENT_*.md` files.
-> - Tests and fixtures for alias resolution, matrix mapping, and route behavior.
+> - Tests and fixtures for alias resolution, guarded selection, route/query behavior, persona resolution, and legacy matrix compatibility.
 >
 > Out of scope:
 >
 > - General SDK adapter mechanics.
 > - Full prompt composition implementation owned by DEL-04-04, except for the persona-name contract shared with this deliverable.
 > - Pipeline category and task-scope dispatch owned by DEL-08-03, except for row-level `OPERATIVE -> PIPELINE` routing.
+> - Shell or Work/Agents Coordination Panel presentation, owned by DEL-02-01/02.
+> - Transcript/replay reconstruction, owned by DEL-05-04.
+> - Parent-child records and hierarchy, owned by DEL-08-05.
+> - Project-plan/task status, lifecycle transition, approval, scheduling, direct child messaging, or editable agent graphs.
 > - Dependency extraction authoring; the existing `Dependencies.csv` and `_DEPENDENCIES.md` are consumed as current dependency evidence for this deliverable.
 >
 
@@ -143,18 +154,23 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > | DEL-08-02-REQ-003 | The UI alias resolver MUST NOT map `AGGREGATE` to `AGGREGATION`; `AGGREGATION` is a Type 2 task agent and must not boot as a top-level loop persona. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` Type 2 vocabulary | Negative alias resolver unit test and matrix guard test. |
 > | DEL-08-02-REQ-004 | The UI alias resolver MUST NOT map `RECONCILING` to `RECONCILIATION`; the EVALUATIVE/REVIEWING matrix cell uses the Type 1 `RESEARCH` persona under the loop-first guard. | D-APP-28 loop-first routing; D-APP-24 Type 0/1 direct-chat guard; `docs/TYPES.md` matrix vocabulary | Negative alias resolver unit test and matrix guard test. |
 > | DEL-08-02-REQ-005 | The UI alias resolver MUST map `AGENTS` to `HELPS_HUMANS`. | `docs/TYPES.md` Section 3.4; `docs/PRD.md` FR-026 | Alias resolver unit test. |
-> | DEL-08-02-REQ-006 | PORTAL matrix fixtures MUST use rows `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE`. | `docs/TYPES.md` Section 4.1; `docs/PRD.md` FR-007 | Matrix mapping test. |
-> | DEL-08-02-REQ-007 | PORTAL matrix fixtures MUST use columns `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING`. | `docs/TYPES.md` Section 4.2; `docs/PRD.md` FR-007 | Matrix mapping test. |
-> | DEL-08-02-REQ-008 | NORMATIVE matrix cells MUST route to loop-persona intent for Type 0/1 personas in the mounted loop shell. | `docs/TYPES.md` Section 4.1; D-APP-28 loop-first routing; `docs/PRD.md` Section 7.2 and FR-008 | Route fixture test. |
-> | DEL-08-02-REQ-009 | EVALUATIVE matrix cells MUST route to loop-persona intent for Type 0/1 personas in the mounted loop shell. | `docs/TYPES.md` Section 4.1; D-APP-28 loop-first routing; `docs/PRD.md` Section 7.2 and FR-008 | Route fixture test. |
-> | DEL-08-02-REQ-010 | OPERATIVE matrix cells MUST route to PIPELINE. | `docs/TYPES.md` Section 4.1; `docs/PRD.md` Section 7.2 and FR-008 | Route fixture test. |
-> | DEL-08-02-REQ-011 | Loop-persona routing MUST preserve selected agent, row, and column context. | `docs/PRD.md` Section 7.4 and FR-009; D-APP-28 loop-first routing | Route-state test. |
+> | DEL-08-02-REQ-006 | Legacy PORTAL matrix fixtures MUST preserve rows `NORMATIVE`, `OPERATIVE`, and `EVALUATIVE` during the compatibility period. | `docs/TYPES.md` Section 4.1; SCA-APP-004 | Legacy matrix compatibility test. |
+> | DEL-08-02-REQ-007 | Legacy PORTAL matrix fixtures MUST preserve columns `GUIDING`, `APPLYING`, `JUDGING`, and `REVIEWING` during the compatibility period. | `docs/TYPES.md` Section 4.2; SCA-APP-004 | Legacy matrix compatibility test. |
+> | DEL-08-02-REQ-008 | During compatibility, NORMATIVE matrix/query intent MUST preserve canonical Type 0/1 persona/session routing without making the matrix part of the target shell. | Preserved D-APP-28 routing; SCA-APP-004 | Route/query fixture test. |
+> | DEL-08-02-REQ-009 | During compatibility, EVALUATIVE matrix/query intent MUST preserve canonical Type 0/1 persona/session routing without making the matrix part of the target shell. | Preserved D-APP-28 routing; SCA-APP-004 | Route/query fixture test. |
+> | DEL-08-02-REQ-010 | During compatibility, OPERATIVE matrix/query intent MUST continue to route to the governed PIPELINE dispatch surface owned by DEL-08-03. | Preserved D-APP-31 dispatch; SCA-APP-004 | Route/query fixture test. |
+> | DEL-08-02-REQ-011 | Legacy and target routing MUST preserve exact selected agent/session identity and compatible agent/row/column query context without transferring another session's draft, context, permissions, or interaction authority. | SCA-APP-004; preserved D-APP-30 guard | Route-state and session-isolation test. |
 > | DEL-08-02-REQ-012 | Persona names MUST resolve to instruction files matching `agents/AGENT_*.md`. | `docs/PRD.md` FR-025; `docs/SPEC.md` Section 13.2 | Persona resolver test with existing and missing personas. |
 > | DEL-08-02-REQ-013 | Missing personas MUST return `PERSONA_NOT_FOUND`. | `docs/PRD.md` FR-025 | Negative persona resolver test. |
 > | DEL-08-02-REQ-014 | Request/session persona fallback MUST be deterministic: empty or missing UI persona resolves to `WORKING_ITEMS`, while unknown non-empty persona labels pass through normalized and fail later at instruction-file resolution if no matching `AGENT_*.md` exists. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` FR-023; current loop-first shell contract | Runtime option fallback and negative persona resolver tests. |
 > | DEL-08-02-REQ-015 | Unknown runtime option keys MUST warn without silently mutating behavior. | `docs/SPEC.md` Section 13.1; `docs/PRD.md` FR-024 | Runtime option warning test. |
 > | DEL-08-02-REQ-016 | Unsupported or disabled matrix/pipeline variants MUST remain visible as coming soon rather than silently disappearing. | `docs/PRD.md` Section 7.2; `docs/PRD.md` FR-011 | UI fixture or interaction test. |
 > | DEL-08-02-REQ-017 | The implementation MUST NOT invent additional alias mappings, matrix rows, columns, or canonical persona names without a governed source update. | `docs/CONTRACT.md` K-INVENT-1; `docs/TYPES.md` Sections 3.4 and 4 | Fixture completeness and snapshot tests. |
+> | DEL-08-02-REQ-018 | Selecting a recorded session for inspection MUST be guarded against clobbering an in-flight primary session and MUST route only to a labelled read-only replay lens supplied by DEL-05-04. | SCA-APP-004; preserved D-APP-30 safety rule | Guarded-selection interaction test. |
+> | DEL-08-02-REQ-019 | Session selection MUST NOT resume, merge with, mutate, or transfer the primary live dialogue's draft, attachments, explicit context, permissions, interruption state, session identity, or interaction authority. | SCA-APP-004 selected concept | Session-isolation test. |
+> | DEL-08-02-REQ-020 | Route/query compatibility MUST preserve `agent`, `row`, `column`, Pipeline context keys, and unknown parameters during the compatibility period. | SCA-APP-004 compatibility ceiling | Deep-link and unknown-query regression. |
+> | DEL-08-02-REQ-021 | Agent/session identity and selectable relationships MUST use recorded identifiers; missing, stale, conflicting, or unrecorded relationships MUST remain explicit rather than inferred. | SCA-APP-004 coordination-projection invariant | Projection/source-label test. |
+> | DEL-08-02-REQ-022 | DEL-08-02 MUST NOT own shell presentation, Work-plan status, dispatch semantics, transcript/replay persistence, parent-child records, lifecycle, approval, scheduling, or direct child messaging. | SCA-APP-004 semantic ownership partition | Boundary review and negative interaction tests. |
 >
 
 ### CLM-010 — Standards
@@ -177,9 +193,10 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > Required verification artifacts:
 >
 > - Alias resolver tests covering the active sourced aliases, removed Type-2 alias negative cases, and unknown alias pass-through behavior.
-> - Matrix mapping tests covering all canonical rows, columns, and row destinations.
-> - Route fixtures proving NORMATIVE/EVALUATIVE cells produce loop-persona intent and OPERATIVE cells open PIPELINE.
-> - Loop route-state tests proving selected agent, row, and column survive route-state or query-param handling.
+> - Legacy matrix compatibility tests covering all canonical rows, columns, and row destinations without requiring the matrix in the target shell.
+> - Route fixtures proving legacy NORMATIVE/EVALUATIVE intent resolves to canonical personas/sessions and OPERATIVE intent reaches governed Pipeline dispatch.
+> - Dialogue/session route-state tests proving exact selected identity and compatible query parameters survive while primary-session state remains isolated.
+> - Guarded selected-session tests proving an in-flight primary dialogue is not clobbered and selected replay remains observational/read-only.
 > - Persona resolver tests proving canonical `AGENT_*.md` lookup and `PERSONA_NOT_FOUND` for missing personas.
 > - Runtime fallback tests proving default persona behavior and warning behavior for unknown option keys where this deliverable touches shared runtime option handling.
 >
@@ -208,20 +225,22 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 >
 > Exact implementation file paths are TBD until the owning implementation slice selects or confirms the frontend/runtime module locations.
 
-- **AC-001** — The DEL-08-02 contract is accepted when alias resolver tests, route fixtures, and matrix mapping tests demonstrate that UI aliases, canonical agent names, matrix routes, and persona resolution remain consistent with the complete preserved legacy source and scope items SOW-005, SOW-006, and SOW-017.
+- **AC-001** — The DEL-08-02 contract is accepted when alias, persona, guarded session-selection, route/query, and legacy matrix compatibility tests demonstrate canonical identity and navigation consistency, strict primary-session isolation, exact recorded relationships, and the semantic non-ownership boundaries for SOW-005, SOW-006, and SOW-017.
 
 ## Production and Verification Method — Praxeology
 
-### CLM-013 — Procedure: DEL-08-02 Persona Alias and Agent Matrix Routing Contract
+### CLM-013 — Procedure: DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract
 
-> #### Procedure: DEL-08-02 Persona Alias and Agent Matrix Routing Contract
+> #### Procedure: DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract
 >
 
 ### CLM-014 — Purpose
 
 > ##### Purpose
 >
-> Define the bounded procedure for producing, checking, and using the persona alias and agent matrix routing contract for DEL-08-02.
+> Define the bounded procedure for producing, checking, and using the persona
+> alias, guarded agent/session routing, and legacy matrix compatibility
+> contract for DEL-08-02.
 >
 
 ### CLM-015 — Prerequisites
@@ -259,6 +278,10 @@ This Scope of Work defines `DEL-08-02` in service of project scope [SOW-005, SOW
 > 15. Record selected module paths and fixture/test file paths for alias resolver, matrix mapping, route fixtures, and persona resolver.
 > 16. Record the active loop-first route-state behavior for selected agent, row, and column.
 > 17. Record unknown-alias behavior as normalized pass-through to instruction-file resolution and keep Type 2 alias removals covered by negative tests.
+> 18. Verify guarded recorded-session selection against an in-flight primary dialogue.
+> 19. Verify selected replay remains read-only and cannot receive or overwrite primary draft, context, permission, interruption, or identity state.
+> 20. Verify legacy route/query/matrix inputs remain compatible and unknown query parameters are preserved.
+> 21. Verify all displayed agent/session relationships use exact admitted identifiers and that missing relationships remain unknown.
 >
 
 ### CLM-017 — Verification

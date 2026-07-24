@@ -1,0 +1,42 @@
+{
+  "amendmentId": "SCA-APP-004",
+  "gate": "GATE_1",
+  "status": "WARNINGS",
+  "sourceAudit": "execution/_Evaluation/DecompCoverage/COV_SCA_APP_004_PRECHANGE_2026-07-23_1330/coverage_summary.json",
+  "sourceCommit": "3c9ff297a4037d509bc930d1f607daf56769804d",
+  "decompositionRevision": "v3.2",
+  "scope": {
+    "packages": ["PKG-02", "PKG-05", "PKG-08"],
+    "actionEnvelopeDeliverables": [
+      "DEL-02-01",
+      "DEL-02-02",
+      "DEL-02-03",
+      "DEL-02-04",
+      "DEL-02-05",
+      "DEL-05-04",
+      "DEL-08-02",
+      "DEL-08-03"
+    ],
+    "objectives": ["OBJ-001"],
+    "scopeItems": [
+      "SOW-001",
+      "SOW-004",
+      "SOW-005",
+      "SOW-006",
+      "SOW-007",
+      "SOW-008"
+    ]
+  },
+  "coverage": {
+    "packagesDeclared": 3,
+    "packagesFound": 3,
+    "deliverablesDeclared": 15,
+    "deliverablesFound": 15,
+    "blockers": 0,
+    "warnings": 15,
+    "lifecycleDistribution": {
+      "IN_PROGRESS": 15
+    }
+  },
+  "gate1Ready": true
+}

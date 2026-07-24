@@ -2,14 +2,28 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-07-19
+**Last Updated:** 2026-07-23
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
+- Implement Work as a provenance-bearing projection over explicitly recorded
+  plans/tasks with source class, exact reference, authority class, status
+  basis, currency, and recorded responsible/related references.
+- Implement Agents as a projection over canonical recorded sessions and exact
+  parentage, with explicit empty, unknown, stale, bounded, unavailable, and
+  conflicting states.
+- Re-host Workbench and Pipeline around the central dialogue while preserving
+  deep-link/query intent, DECOMP/PREP/TASK/AUDIT controls, dynamic task scope,
+  lifecycle guards, and visible disabled options.
+- Prove semantic-owner boundaries: no synthesized work, inferred parentage,
+  panel-authored approval/assignment/lifecycle, dispatch mutation, or runtime
+  state creation; selected session uses only DEL-05-04's read-only replay lens.
+
 ## History
+- 2026-07-23 - SCA-APP-004 Gate-5 execution-record propagation added the owner-approved Work/Agents projection and contextual Workbench/Pipeline implementation tranche. State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)
 - 2026-05-23 - State set to SEMANTIC_READY (ORCHESTRATOR_PHASE_2_5_CLOSEOUT)

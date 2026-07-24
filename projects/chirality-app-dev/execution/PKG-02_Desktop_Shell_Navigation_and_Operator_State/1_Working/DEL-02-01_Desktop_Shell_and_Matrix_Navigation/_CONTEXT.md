@@ -1,4 +1,4 @@
-# Context: DEL-02-01 Desktop Shell and Matrix Navigation
+# Context: DEL-02-01 Woven Dialogue Shell and Compatibility Navigation
 
 ## Identity
 
@@ -8,28 +8,41 @@
 | DecompositionRevision | v3.2 |
 | DecompositionPath | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` |
 | PackageID | PKG-02 |
-| PackageName | Desktop Shell, Navigation, and Operator State |
+| PackageName | Woven Dialogue Shell, Navigation, and Operator State |
 | DeliverableID | DEL-02-01 |
-| DeliverableName | Desktop Shell and Matrix Navigation |
+| DeliverableName | Woven Dialogue Shell and Compatibility Navigation |
 | ResponsibleParty | TBD |
 | Type | UX_UI_SLICE |
 | ContextEnvelope | M |
 
 ## Package Scope
 
-**ScopeDescription:** User-facing shell, matrix routing, file tree, toolkit, API key UI, local UI state.
+**ScopeDescription:** Dialogue-centred shell, Woven Dialogue artifact
+presentation, Navigator, Work/Agents Coordination Panel, Activity Shelf,
+re-hosted Workbench/Pipeline/toolkit/settings, compatibility surfaces, and
+non-authoritative local UI state.
 
-**InclusionCriteria:** UI and operator workflow behavior.
+**InclusionCriteria:** Human-agent dialogue, artifact collaboration,
+coordination presentation, and operator workflow behavior.
 
-**Exclusions:** Runtime engine internals.
+**Exclusions:** Runtime engine internals, canonical session/evidence ownership,
+arbitrary orchestration graphs, automatic intent inference, and
+project-control-plane authority.
 
 ## Deliverable Scope
 
-Maintain PORTAL, WORKBENCH, and PIPELINE shell navigation and canonical matrix routing.
+Compose the persistent primary human-agent transcript and composer,
+provenance-bearing inline/focused artifact views, Navigator, Work/Agents
+Coordination Panel, Activity Shelf, and compatibility navigation without
+creating a second evidence store. The primary live dialogue remains mounted;
+recorded-session replay is read-only and observational. Existing routes,
+queries, loop-first surfaces, and matrix launch intents remain compatibility
+obligations until separately retired.
 
 ## Anticipated Artifacts
 
-Navigation components; matrix UI tests; route query handling
+Dialogue shell; inline artifact/focus views; Work/Agents panel; Activity Shelf;
+route/query and compatibility tests
 
 ## Traceability
 
@@ -37,8 +50,13 @@ Navigation components; matrix UI tests; route query handling
 |---|---|
 | CoversScopeItems | SOW-001, SOW-005 |
 | SupportsObjectives | OBJ-001 |
-| ContextEnvelopeNotes | One UI domain with several route states. |
+| ContextEnvelopeNotes | Shell integration owns presentation only; work, hierarchy, transcript, and artifact facts remain governed by their existing semantic owners. |
 
 ## Source Authority
 
-This folder was scaffolded by ORCHESTRATOR from the accepted v3.2 SOFTWARE_DECOMP working surface. Downstream TASK work must preserve `ResponsibleParty: TBD` until a human assigns ownership.
+This folder was scaffolded by ORCHESTRATOR from the accepted v3.2
+SOFTWARE_DECOMP working surface and retains its physical name for compatibility.
+SCA-APP-004 and its owner-approved amendment prospectively control the current
+presentation target. Downstream TASK work must preserve `ResponsibleParty:
+TBD` until a human assigns ownership and must not treat this presentation slice
+as canonical work, session, replay, artifact, lifecycle, or runtime authority.

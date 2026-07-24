@@ -1,4 +1,4 @@
-# Context: DEL-08-02 Persona Alias and Agent Matrix Routing Contract
+# Context: DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract
 
 ## Identity
 
@@ -10,7 +10,7 @@
 | PackageID | PKG-08 |
 | PackageName | Agent Suite, Pipeline Dispatch, and Subagent Governance |
 | DeliverableID | DEL-08-02 |
-| DeliverableName | Persona Alias and Agent Matrix Routing Contract |
+| DeliverableName | Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract |
 | ResponsibleParty | TBD |
 | Type | UX_UI_SLICE |
 | ContextEnvelope | S |
@@ -25,11 +25,15 @@
 
 ## Deliverable Scope
 
-Keep UI aliases, canonical agent names, matrix routes, and persona resolution consistent.
+Keep UI aliases, canonical agent names, persona resolution, guarded
+dialogue/session selection, route/query mappings, and legacy matrix behavior
+consistent. The fixed matrix is a compatibility surface, not target shell
+architecture.
 
 ## Anticipated Artifacts
 
-Alias resolver tests; route fixtures; matrix mapping tests
+Alias resolver tests; guarded session-selection tests; route/query fixtures;
+legacy matrix compatibility and unavailable-persona tests
 
 ## Traceability
 
@@ -37,7 +41,21 @@ Alias resolver tests; route fixtures; matrix mapping tests
 |---|---|
 | CoversScopeItems | SOW-005, SOW-006, SOW-017 |
 | SupportsObjectives | OBJ-001, OBJ-007 |
-| ContextEnvelopeNotes | Focused routing/alias slice. |
+| ContextEnvelopeNotes | Focused routing/alias/selection slice; legacy matrix retained only for compatibility. |
+
+## SCA-APP-004 Ownership Boundary
+
+- DEL-08-02 owns alias resolution, navigation intent, guarded
+  dialogue/session selection, persona resolution, and legacy route/query/matrix
+  compatibility.
+- DEL-02-01 and DEL-02-02 own shell and Coordination Panel presentation.
+- DEL-05-04 owns transcript/replay and selected-session projection.
+- DEL-08-03 owns DECOMP/PREP/TASK/AUDIT dispatch semantics.
+- DEL-08-05 remains the unchanged owner of canonical child-run records and
+  exact parentage/return references.
+- DEL-08-02 does not own Work status, lifecycle, approval, dispatch,
+  transcript persistence, parentage, scheduling, direct child messaging, or
+  shell layout.
 
 ## Source Authority
 

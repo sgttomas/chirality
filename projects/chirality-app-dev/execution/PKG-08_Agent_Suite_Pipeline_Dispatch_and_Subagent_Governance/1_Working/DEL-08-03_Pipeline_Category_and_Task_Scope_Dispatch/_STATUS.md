@@ -1,12 +1,19 @@
 # Status: DEL-08-03
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-07-23
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
+
+- Implement and validate the SCA-APP-004 presentation-neutral dispatch
+  tranche: preserve DECOMP/PREP/TASK/AUDIT taxonomy, dynamic task-scope and
+  disabled-state behavior across existing Pipeline and contextual consumers;
+  prove Work projections use admitted sources with provenance/currency, do
+  not synthesize tasks from dialogue, and keep runtime completion separate
+  from project lifecycle and approval.
 
 ## History
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
@@ -20,3 +27,7 @@
 - 2026-07-11 - Remaining item updated: concordance bootstrap gate flipped and pinned method revision 551f84ef6 substituted per the D-APP-55 ruling (Option A, whole corpus); no state change.
 - 2026-07-12 - D-APP-56 R5 P45 applied UPD-134; generic concordance Remaining item retained for R6; state remains IN_PROGRESS.
 - 2026-07-12 - R6 closeout completed the D-APP-55 concordance bootstrap and removed it from Remaining; surviving deliverable-local items retained; state remains IN_PROGRESS.
+- 2026-07-23 - SCA-APP-004 Gate-5 propagation preserved DEL-08-03 as the
+  presentation-neutral dispatch-semantic owner, recorded DEL-02-02 as its
+  presentation consumer, added contextual/projection regression work, and
+  kept lifecycle IN_PROGRESS.

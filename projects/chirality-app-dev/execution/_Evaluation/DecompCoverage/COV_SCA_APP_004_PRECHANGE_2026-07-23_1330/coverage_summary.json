@@ -1,0 +1,38 @@
+{
+  "run_label": "SCA_APP_004_PRECHANGE",
+  "timestamp": "2026-07-23T13:30:10-06:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "accepted v3.2 decomposition at HEAD 3c9ff297a4037d509bc930d1f607daf56769804d",
+  "expected_handoff_phase": "Gate 1 baseline",
+  "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "decomposition_revision": "v3.2",
+  "scope": "PKG-02;PKG-05;PKG-08 (15 deliverables), with 8 SCA-APP-004 affected rows highlighted",
+  "partitions_declared": 3,
+  "partitions_found": 3,
+  "production_units_declared": 15,
+  "production_units_found": 15,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100.0,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 15,
+  "issues_info": 0,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "IN_PROGRESS": 15
+  },
+  "overall_status": "WARNINGS",
+  "closure_readiness": "WARN",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "run_label": "SCA_APP_004_POSTCHANGE",
+  "timestamp": "2026-07-23T20:27:57-06:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "SCA-APP-004 Gate-5 governance payload 416b29033bbacb0bc3648d84033272b7ab4e6e11",
+  "expected_handoff_phase": "governance propagated / implementation pending",
+  "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "decomposition_revision": "v3.2",
+  "scope": "PKG-02;PKG-05;PKG-08 (15 deliverables), with 6 directly affected records and DEL-08-05 no-change",
+  "repository_topology": {
+    "packages": 10,
+    "deliverables": 51,
+    "objectives": 10,
+    "scope_items": 78,
+    "ledger_rows": 78
+  },
+  "partitions_declared": 3,
+  "partitions_found": 3,
+  "production_units_declared": 15,
+  "production_units_found": 15,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100.0,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "PASS",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 15,
+  "issues_info": 2,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "IN_PROGRESS": 15
+  },
+  "overall_status": "WARNINGS",
+  "closure_readiness": "READY_FOR_IMPLEMENTATION_HANDOFF",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

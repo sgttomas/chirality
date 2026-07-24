@@ -914,6 +914,165 @@ Existing route shapes remain stable during adapter adoption and TurnEngine extra
 | `/api/working-root/deliverable/status/transition` | POST | Apply allowed lifecycle transition. |
 | `/api/working-root/deliverable/dependencies` | GET/PUT | Read/write `Dependencies.csv`. |
 
+### 17.3 Woven Dialogue Physical UI Contract
+
+The target shell is Woven Dialogue with these presentation regions:
+
+1. a Navigator for recorded threads, files, deliverables, packages, and
+   compatibility navigation;
+2. one mounted primary live Dialogue region containing the interactive
+   transcript and composer;
+3. provenance-bearing inline artifact/evidence objects that may open into a
+   focused view and return to their dialogue anchor;
+4. a right Coordination Panel toggling between Work and Agents;
+5. an Activity Shelf for tools, tests, canonical events, evidence, and
+   diagnostics; and
+6. re-hosted Workbench, Pipeline, toolkit, working-root, credential, runtime,
+   and settings controls under their existing semantic and security owners.
+
+Shared intent is emergent from dialogue. The shell MUST NOT store or require
+an authoritative intent object or automatically generated intent summary.
+
+The primary live dialogue MUST remain mounted across inline/focused artifact,
+Work, Agents, Workbench, Pipeline, and compatibility-surface changes. Its
+session identity, draft, attachments, explicit next-turn context references,
+permissions, interruption state, and interaction authority MUST remain its
+own.
+
+### 17.4 Work Projection Admission
+
+The Work view MAY display plans or task lists only when an admitted source
+explicitly records them. Every structured item MUST expose:
+
+- its `CoordinationWorkClass`;
+- exact source reference;
+- status basis;
+- `CURRENT`, `STALE`, `CONFLICTING`, or `UNKNOWN` currency;
+- any recorded responsible reference; and
+- any recorded related references.
+
+Governed project records, human-approved execution bases, agent-authored
+proposals, and ephemeral runtime state MUST remain visibly distinct.
+Conversational prose MUST NOT be silently converted into a plan or task.
+Runtime turn/session/child completion MUST NOT be represented as deliverable
+acceptance or lifecycle advancement.
+
+Rendering, grouping, linking, filtering, selecting, or locally annotating a
+projected item does not create project truth, approve a plan, assign
+authority, transition lifecycle, authenticate a human act, or change runtime
+state. Missing or unrecorded work remains absent or `UNKNOWN`; conflicts
+remain provenance-labelled.
+
+### 17.5 Agents Projection and Parentage
+
+The Agents view MAY display only recorded sessions and relationships supplied
+by current canonical session, event, and child-record contracts. Role, status,
+engine/provider/model, residency, return, approval, and workflow fields are
+evidence-conditional. Missing optional values MUST render as absent or
+`UNKNOWN`; they MUST NOT be inferred from persona, prose, timestamps, model
+identity, or visual layout.
+
+Parent/child presentation MUST use exact canonical parent identifiers from
+the unchanged child-record/session owner. Cards, lanes, connectors, or
+cross-links are informational only and MUST NOT imply editable graphs,
+arbitrary children, concurrency, scheduling, direct child messaging,
+automatic routing, or model-residency authority.
+
+The initial admitted capability remains the current bounded Agent 1 with at
+most one optional read-only Agent 2 pilot. Global AgentRun discovery, a
+project-wide run/work-graph browser, and structured plan-file discovery are
+not provided by the current browser/runtime contracts and remain deferred.
+
+### 17.6 Selected-Session Replay Lens
+
+Selecting a recorded session MAY replace the main region's visible content
+with a persistent `Replay — read-only` lens. Selection MUST NOT:
+
+- resume, boot, switch, merge with, or mutate the primary live session;
+- change the primary dialogue's persona, mode, draft key, attachments,
+  toolkit options, permission broker, interruption target, or composer;
+- make historical permission requests actionable; or
+- expose Send/Continue controls for a recorded child or past session.
+
+The primary dialogue controller remains mounted and a persistent action
+returns to it with its draft, attachments, focus/scroll convenience state,
+and active stream intact where frontend state permits.
+
+Replay MUST expose its selected session ID and provenance. Malformed,
+truncated, bounded, stale, unavailable, or evidence-only replay states MUST be
+disclosed. A session with no transcript items renders an honest empty or
+evidence-only state. The projection MAY consume the existing replay endpoint
+or a separate frontend replay cache, but it MUST NOT overwrite the active
+turn's event projection. Until isolation exists, replay selection remains
+disabled during a live turn.
+
+### 17.7 Explicit Context and Artifact Anchors
+
+Visible artifacts, selected files, expanded objects, and focused evidence are
+not automatically included in model context. The UI MUST show the exact
+references selected for a next turn and MUST preserve the distinction between:
+
+- visible material;
+- selected context references;
+- content actually sent with an accepted turn; and
+- provenance recorded after the turn.
+
+Dialogue anchors, focused-artifact origin references, and return-to-dialogue
+positions are non-authoritative convenience state. They MUST NOT rewrite sent
+turn history or create relationships absent from admitted records.
+
+### 17.8 Local State and Migration
+
+Existing `chirality.projectRoot`, `chirality.toolkit.v1`,
+`chirality.chatDraft.v1`, and `chirality.layout.v1` values MUST remain
+readable and retained through the compatibility period. The Woven Dialogue
+workspace uses a new versioned state key/schema for geometry, anchors,
+expanded objects, selected replay references, context references, and panel
+selection.
+
+Migration MUST be one-time, non-destructive, corrupt-state tolerant, and
+rollback-safe. Existing keys MUST NOT be silently reinterpreted or deleted.
+Convenience state stores references and presentation only; it MUST NOT persist
+authoritative plans, statuses, hierarchy, permissions, approvals, or
+acceptance conclusions.
+
+### 17.9 Route, API, SSE, and Runtime Compatibility
+
+Routes `/`, `/chat`, `/pipeline`, and `/workbench` continue resolving during
+the compatibility period. Existing query parameters `agent`, `row`, `column`,
+`category`, `taskScopeMode`, `scopeKey`, and `targetDeliverableKey`, plus
+unknown parameters, remain round-trippable. Legacy matrix aliases and launch
+guards remain compatible even though the target shell does not require a
+fixed matrix.
+
+Browser API shapes in §17.1-17.2, public SSE names/order in §11, provider
+singleton composition, credential handling, network policy, daemon ownership,
+session storage, permission policy, child capability, and runtime contracts
+remain unchanged. The existing loop-first UI remains a compatibility
+implementation until parity evidence and a separate owner retirement decision
+exist.
+
+### 17.10 Projection Validation
+
+Implementation acceptance MUST prove:
+
+- visible source class/reference, status basis, currency, and exact related
+  identifiers;
+- explicit stale, conflicting, absent, and unknown states;
+- no synthesized plans/tasks, inferred parentage, or panel-authored approval;
+- separate runtime status and project lifecycle/acceptance status;
+- mounted primary dialogue and isolated read-only selected-session replay;
+- no draft, context, attachment, permission, session, or interruption-target
+  transfer;
+- disabled historical controls and a persistent return to primary dialogue;
+- malformed, truncated, bounded, stale, unavailable, and empty replay
+  disclosure;
+- legacy persona/alias/query/matrix and guarded mid-turn selection;
+- unchanged DECOMP/PREP/TASK/AUDIT dispatch and disabled-option semantics;
+- route/API/SSE/provider/runtime/security regression; and
+- keyboard region traversal, focus restoration, accessible resize controls,
+  target size, contrast, reduced motion, and bounded large-data rendering.
+
 ---
 
 ## 18. Domain Engine Future Specification Boundary

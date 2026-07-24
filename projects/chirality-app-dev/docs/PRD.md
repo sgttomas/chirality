@@ -32,6 +32,21 @@ Runtime thesis:
 
 > Agents propose and organize. The runtime records what happened. Deterministic tools validate and transform. Humans decide what can be relied upon. Git-tracked files remember.
 
+Interaction thesis:
+
+> The actual human–agent dialogue is the primary workspace. Shared intent
+> emerges through dialogue; it is not a stored UI authority object. Artifacts,
+> recorded work, and agent evidence remain provenance-bearing views whose
+> admitted sources continue to control.
+
+The owner-selected target information architecture is Woven Dialogue with a
+right Work/Agents Coordination Panel. The primary live dialogue remains
+mounted. Provenance-bearing artifacts may appear inline and open into focused
+views that return to their dialogue anchor. Work and Agents are informational,
+evidence-conditional projections; a selected recorded session may occupy the
+main region only as a clearly labelled, read-only replay lens distinct from
+the primary dialogue.
+
 Runtime implementation direction:
 
 - Chirality should use a provider-adapter architecture where external provider SDKs and APIs remain implementation substrates behind Chirality-owned contracts.
@@ -80,7 +95,7 @@ Revised product direction:
 1. Provide a local desktop application that runs agent workflows against a selected working root without requiring an external database.
 2. Preserve strict separation between bundled instruction root and mutable working root.
 3. Make agent work auditable through plain files, git diffs, lifecycle files, dependency registers, immutable snapshots, and runtime session events.
-4. Provide matrix-based navigation into two execution surfaces: WORKBENCH for interactive persona agents and PIPELINE for operative task categories.
+4. Provide a Woven Dialogue shell in which the mounted human–agent transcript and composer are primary, provenance-bearing artifacts can be inspected inline or in focused views, and Workbench/Pipeline remain governed contextual surfaces.
 5. Support streaming chat turns with session persistence, runtime options, interrupts, multimodal attachments, and current Anthropic provider integration.
 6. Enforce safety and governance boundaries: human authority at gates, no automated issuance, no hidden project memory, fail-closed subagent delegation, and explicit outbound network policy.
 7. Provide deterministic tools and validation workflows for scaffolding, schema checks, dependency closure, harness runtime validation, and release packaging.
@@ -99,6 +114,9 @@ Revised product direction:
 20. Treat SDK subagents as governed runtime entities with Chirality identity, parent-child linkage, restricted capabilities, and stored output artifacts.
 21. Preserve a future path for generic Domain Engine Profiles only after the core governed SDK runtime is stable.
 22. Use OpenPipeStress, if adopted, as the first concrete Domain Engine Profile fixture rather than as Chirality core behavior.
+23. Present recorded plans/tasks, sessions, status, parentage, returns, approvals, models, and workflow activity only from admitted sources with visible provenance, status basis, currency, and exact recorded references.
+24. Preserve a strict interaction boundary between the mounted primary live dialogue and any selected-session read-only replay lens.
+25. Preserve legacy routes, query parameters, aliases, matrix behavior, API/SSE contracts, provider composition, and the existing loop-first UI through a compatibility period.
 
 ### 3.2 Non-Goals
 
@@ -111,6 +129,11 @@ The product must not:
 - Depend on an external project database.
 - Persist project truth in hidden app state, chats, caches, or vendor systems.
 - Treat local UI preferences, API keys, runtime logs, SDK transcripts, or chat drafts as authoritative project state.
+- Store or require shared intent as an authoritative UI object or automatic summary.
+- Convert conversational prose silently into a plan/task or present runtime completion as deliverable acceptance.
+- Let the Work/Agents Coordination Panel create or approve plans, assign responsibility, infer parentage, transition lifecycle, authenticate a human act, or mutate runtime state.
+- Resume or make interactive a recorded child/past-session replay merely because it is selected in the UI.
+- Add global AgentRun discovery, arbitrary Agent 0/1/2 graphs, multi-child execution, scheduling, direct child messaging, or automatic model routing through this information-architecture change.
 - Allow outbound network access beyond the current shipped Anthropic API path and authenticated `127.0.0.1` oMLX path authorized by D-APP-72 unless a later governed tranche explicitly permits it.
 - Treat prompt instructions as the only safety boundary for filesystem writes or tool execution.
 - Add `bash` as a user-enabled capability before permission, hooks, result storage, timeout, audit logging, and packaging checks exist.
@@ -192,6 +215,11 @@ A future accountable reviewer who examines domain-engine proposals, deterministi
 23. **Extensibility follows maturity.** Remote MCP, plugins, broad tool search, and remote execution are later-phase capabilities gated by stable local SDK integration and Chirality governance.
 24. **Domain engines own domain truth.** When a domain engine is integrated, Chirality governs interaction, proposals, records, and human gates; it does not become the solver.
 25. **Fixtures are not core.** OpenPipeStress may be the first useful Domain Engine Profile fixture, but its assumptions belong in profile and adapter layers rather than Chirality core runtime.
+26. **Dialogue is the primary collaboration workspace.** The mounted human–agent transcript and composer remain stable while artifacts and coordination views change around them.
+27. **Shared intent is emergent.** The UI does not store, infer, or require an authoritative intent object.
+28. **Coordination is projection, not authority.** Work/Agents views are rebuilt from admitted sources; missing, stale, conflicting, and unrecorded facts remain visibly absent or unknown.
+29. **Visible material is not automatic context.** The UI distinguishes visible artifacts, explicit next-turn context references, sent-turn content, and recorded provenance.
+30. **Replay is observational.** Selected-session replay is read-only and cannot inherit or mutate primary-session draft, attachment, context, permission, interruption, or interaction state.
 
 ## 6. Scope
 
@@ -201,7 +229,9 @@ Current product scope:
 
 - Desktop shell built with Next.js and Electron.
 - Working-root selection, validation, file tree browsing, and deliverable scanning.
-- GUI for working with agents.
+- Woven Dialogue GUI for human–agent collaboration, provenance-bearing inline/focused artifacts, and contextual Workbench/Pipeline work.
+- Work/Agents Coordination Panel over explicitly recorded work, canonical session records/parentage, and selected-session replay.
+- Versioned non-authoritative workspace state for dialogue drafts, explicit context references, artifact anchors, selected replay references, panel state, and rollback-safe layout migration.
 - Session lifecycle APIs and turn execution via SSE.
 - Anthropic provider path with local UI key storage and environment fallback.
 - Stub provider mode for deterministic local tests.
@@ -237,6 +267,7 @@ New provider-adapter harness-runtime scope:
 - Store `sdkSessionId` and SDK transcript linkage in Chirality `session.json` and resume with explicit `resume` rather than ambiguous `continue`.
 - Prefer SDK transcript placement or mirroring under the working root / parent project folders by using `sessionStore`, `CLAUDE_CONFIG_DIR`, or both where empirically reliable. If unavoidable, treat default `~/.claude/projects/...` transcripts as secondary SDK state cross-referenced from Chirality metadata, not project truth.
 - Preserve the browser-facing `UIEvent` and SSE event names during the runtime pivot.
+- Preserve `/`, `/chat`, `/pipeline`, and `/workbench`, existing/unknown query parameters, legacy aliases/matrix behavior, browser API shapes, and the loop-first implementation through the Woven Dialogue compatibility period.
 - Maintain the default loopback plus Anthropic outbound network policy and add only authenticated `127.0.0.1` oMLX for the D-APP-72 bounded child path; any other non-Anthropic provider, MCP, redirect, or tool network access requires explicit future implementation scope.
 - Add Electron packaging checks for the SDK-spawned Claude Code subprocess, native/bundled binaries, `asarUnpack` requirements, code-signing implications, and API-key environment handling.
 
@@ -262,6 +293,7 @@ The current concrete release target remains:
 
 The reviewed frontend implementation already includes:
 
+- A loop-first, chat-dominant compatibility shell across `/`, `/chat`, `/pipeline`, and `/workbench`; it is the live baseline, not the selected permanent target architecture.
 - Session create/boot/list/get/delete APIs.
 - Turn SSE route with session-level active-turn locking.
 - Stub and Anthropic provider mode selection.
@@ -289,6 +321,8 @@ The reviewed frontend implementation already includes:
 - Shipped `bypassPermissions` operation.
 - Remote MCP, plugins, remote execution, marketplace extension, or shell-network expansion before local SDK governance is reliable.
 - Domain-engine integration as a shipping feature unless a separate amendment activates it.
+- Deleting or retiring the loop-first compatibility UI or any existing route before Woven Dialogue parity, accessibility, migration, performance, runtime regression, packaged Desktop proof, and separate owner acceptance.
+- Global AgentRun discovery, arbitrary orchestration graphs, multiple-child coordination, scheduling, direct child messaging, automatic intent summarization, or model-routing/residency control in the Coordination Panel.
 
 ## 7. User Journeys
 
@@ -306,17 +340,30 @@ Acceptance:
 - Instruction-root conflicts are blocked.
 - Clearing the root disables runtime actions that require `projectRoot`.
 
-### 7.2 Navigate the Agent Matrix
+### 7.2 Collaborate Through Woven Dialogue
 
-1. User enters PORTAL.
-2. User selects a NORMATIVE or EVALUATIVE cell and changes the mounted loop's persona intent in place; an active turn blocks the swap.
-3. User selects an OPERATIVE cell and opens the governed PIPELINE launch form as an in-place tertiary sidebar form.
-4. If deliverables are present, user can click a deliverable row to route to PIPELINE `TASK*` with that deliverable preselected.
+1. User enters the mounted primary human–agent dialogue.
+2. User selects a persona or recorded work reference; an active turn preserves
+   the current dialogue and guards incompatible persona/session selection.
+3. Provenance-bearing artifacts or evidence may appear inline and open into a
+   focused view that returns to the originating dialogue anchor.
+4. The right panel presents Work or Agents from explicitly recorded sources.
+5. Selecting a recorded session may load a clearly labelled, read-only replay
+   lens in the main region; the primary dialogue remains mounted and a
+   persistent action returns to it.
+6. Legacy route/query/alias/matrix launches remain available through the
+   compatibility period.
 
 Acceptance:
 
-- NORMATIVE and EVALUATIVE produce loop-persona intent in the mounted loop shell.
-- OPERATIVE opens PIPELINE as a tertiary form while the live loop remains primary.
+- Shared intent is not represented as a stored or authoritative UI object.
+- Visible artifacts are not automatically included in next-turn model context.
+- Structured Work identifies source class/reference, status basis, currency,
+  and recorded responsible/related references.
+- Agents shows only recorded sessions and exact canonical parentage.
+- Replay is observational and read-only; it cannot mutate or inherit primary
+  dialogue state.
+- Existing aliases, guarded selection, matrix/query behavior, and deep links remain compatible.
 - Disabled or unsupported variants remain visible as coming soon rather than silently disappearing.
 
 ### 7.3 Scaffold an Execution Root
@@ -333,10 +380,10 @@ Acceptance:
 - Failures are fail-fast and include stage, target path, and created paths for recovery.
 - PREPARATION compatibility is reported before the user proceeds.
 
-### 7.4 Run a Workbench Persona Session
+### 7.4 Run a Primary Dialogue Persona Session
 
-1. User routes to WORKBENCH with an agent persona.
-2. Chat panel resolves persona aliases to instruction-file names.
+1. User enters Woven Dialogue directly or through a compatible WORKBENCH/persona deep link.
+2. The dialogue resolves persona aliases to instruction-file names while Workbench may appear as a contextual work view.
 3. User sends a prompt with optional runtime options and attachments.
 4. App creates/boots a harness session if needed.
 5. Runtime persists `turn.accepted` before calling the model.
@@ -346,13 +393,15 @@ Acceptance:
 Acceptance:
 
 - Session identity is preserved across turns for the same root/persona/mode.
+- Inline/focused artifacts, Work/Agents selection, and Workbench/Pipeline presentation do not unmount or replace the primary live dialogue.
+- Explicit next-turn context references remain distinct from merely visible material.
 - Runtime errors preserve the draft and attachments for retry.
 - Interrupt returns a terminal `process:exit` event and updates UI state.
 - Persisted runtime events can reconstruct accepted turns, assistant deltas, terminal outcome, and interruption status.
 
 ### 7.5 Run an Operative Pipeline Intent
 
-1. User opens PIPELINE.
+1. User opens the contextual PIPELINE surface from Woven Dialogue or a compatible `/pipeline` deep link.
 2. User selects one of `DECOMP`, `PREP`, `TASK`, or `AUDIT`.
 3. User selects a category-specific agent or lane.
 4. For `TASK`, user selects scope mode and dynamic scope from the working root.
@@ -363,6 +412,8 @@ Acceptance:
 - Deliverable selections reset when the project root or scan results become stale.
 - `KNOWLEDGE_TYPES` mode is shown only when a knowledge decomposition marker is detected.
 - Lifecycle transitions enforce authorized actors and approval SHA requirements for human gate states.
+- Pipeline presentation does not convert conversational prose into a plan/task or transfer dispatch authority to the Coordination Panel.
+- DECOMP/PREP/TASK/AUDIT semantics, disabled options, task-scope queries, and deep links remain unchanged.
 
 ### 7.6 Attach Files to a Turn
 
@@ -480,24 +531,24 @@ Priority:
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-001 | P0 | The app shall provide a loop-first desktop shell with sidebar-reachable PORTAL, PIPELINE, and WORKBENCH tertiary forms. | The live loop remains mounted as the primary surface; header controls do not make route surfaces primary navigation. |
+| FR-001 | P0 | The app shall provide a Woven Dialogue shell with one mounted primary human–agent transcript/composer, provenance-bearing inline/focused artifacts, a Navigator, a right Work/Agents Coordination Panel, and an Activity Shelf. | Shared intent is not a stored UI object; existing routes and the loop-first UI remain compatibility surfaces until separately retired. |
 | FR-002 | P0 | The app shall expose working-root selection globally. | User can type a path, choose folder in Electron, apply, and clear root. |
 | FR-003 | P0 | The app shall validate working roots before use. | Non-absolute, missing, inaccessible, non-directory, or instruction-root-contained paths fail with typed errors. |
 | FR-004 | P0 | The app shall show a file tree for the selected working root. | Tree API skips `.git`, `.next`, `node_modules`, `dist`, `dist-electron`, and `out`; depth is bounded; inaccessible directories mark truncation. |
-| FR-005 | P1 | The loop-first shell shall support the primary Chat surface and a resizable/collapsible right sidebar containing File Tree, Toolkit, and tertiary forms. | Drag and keyboard resize work; Home collapses; End expands; widths are persisted locally. |
+| FR-005 | P1 | The shell shall support professional resizable/collapsible Navigator, Dialogue, Coordination, artifact-focus, and Activity Shelf layouts with versioned local state. | Drag and keyboard resize work; focus and return anchors are preserved; migration retains prior layout state non-destructively for rollback. |
 | FR-006 | P1 | The UI shall preserve a calm, professional, dense-but-readable interface. | UI polish acceptance from `docs/ui/UI_POLISH_EXECUTION_PLAN.md` remains applicable; no regression in harness behavior. |
 
-### 8.2 Matrix, Workbench, and Pipeline
+### 8.2 Dialogue Routing, Work/Agents Coordination, Workbench, and Pipeline
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-007 | P0 | PORTAL shall render the 3x4 agent matrix using canonical rows and columns. | Rows: `NORMATIVE`, `OPERATIVE`, `EVALUATIVE`; columns: `GUIDING`, `APPLYING`, `JUDGING`, `REVIEWING`. |
-| FR-008 | P0 | Matrix routing shall follow the loop-first contract. | NORMATIVE/EVALUATIVE cells change mounted loop-persona intent; OPERATIVE cells open governed PIPELINE categories in a tertiary form. |
-| FR-009 | P0 | WORKBENCH shall present active agent context. | Selected agent, row, and column are shown from query params with sensible defaults. |
+| FR-007 | P0 | The target shell shall preserve semantic persona/agent/session routing and canonical aliases without requiring a fixed matrix presentation. | Legacy 3x4 matrix, route/query mappings, unavailable-persona behavior, and deep links remain compatible. |
+| FR-008 | P0 | Dialogue/session selection shall preserve the mounted primary dialogue and guard incompatible changes during an active turn. | A recorded-session selection opens only a labelled read-only replay lens; it does not resume, switch, merge with, or mutate the primary session. |
+| FR-009 | P0 | The Work/Agents Coordination Panel shall present active dialogue/persona context, explicitly recorded work, recorded sessions, and evidence-conditional canonical parentage. | Every structured work item shows source class/reference, status basis, currency, and recorded responsible/related references; missing or conflicting facts remain absent, unknown, or provenance-labelled. |
 | FR-010 | P1 | WORKBENCH shall consume deliverable contract APIs for read-only checks and permitted lifecycle transitions. | Status/dependency summaries load for selected deliverables; transition controls are disabled for unsupported agents. |
-| FR-011 | P0 | PIPELINE shall expose `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls. | Each category has documented options; unsupported options are visible and disabled as coming soon. |
-| FR-012 | P0 | PIPELINE `TASK` shall use split selectors for task agent and scope. | Scope mode is `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode. |
-| FR-013 | P1 | Dynamic scope scan shall reset invalid selections. | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state. |
+| FR-011 | P0 | Contextual PIPELINE shall expose presentation-neutral `DECOMP`, `PREP`, `TASK`, and `AUDIT` category controls. | Each category retains documented semantics; unsupported options are visible and disabled, and Coordination presentation does not become dispatch authority. |
+| FR-012 | P0 | PIPELINE `TASK` shall retain split selectors for task agent and scope. | Scope mode remains `DELIVERABLES` or `KNOWLEDGE_TYPES`; target deliverable is required for knowledge-type mode; conversational prose is not inferred as a task. |
+| FR-013 | P1 | Dynamic scope and projected Work state shall disclose stale, conflicting, empty, and unknown selections. | Root changes, removed deliverables, disabled knowledge markers, stale knowledge targets, missing sources, and source conflicts reset or visibly qualify invalid projection state. |
 
 ### 8.3 Harness Sessions and Turns
 
@@ -550,10 +601,10 @@ Priority:
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| FR-041 | P1 | Toolkit panel shall expose per-turn options. | UI can set model/tools/max turns/mode/persona/governance metadata as supported by runtime. |
-| FR-042 | P1 | Toolkit settings shall persist locally and remain non-authoritative. | Local presets do not override governance enforcement or project truth. |
-| FR-043 | P1 | Chat drafts and attachment selections shall persist locally per root/persona/mode. | Malformed records are dropped; storage failures warn without breaking chat. |
-| FR-044 | P1 | Toolkit mode controls shall map to permission policy modes once the policy engine exists. | Modes are not mere prompt hints; runtime enforces read/write/ask/dontAsk behavior. |
+| FR-041 | P1 | Dialogue toolkit shall expose per-turn options and exact explicit next-turn context references. | UI can set supported model/tools/max turns/mode/persona/governance metadata; visible artifacts are not automatically included in model context. |
+| FR-042 | P1 | Toolkit, panel, focus, artifact-anchor, and replay-selection settings shall persist locally and remain non-authoritative. | Convenience state stores references/presentation only and does not override governance, project truth, session truth, permissions, hierarchy, or acceptance. |
+| FR-043 | P1 | Dialogue drafts and attachment selections shall persist locally per root/persona/logical mode and remain isolated from selected-session replay. | Malformed records are dropped; storage failures warn; loading replay does not read, write, submit, or transfer the primary draft/attachments. |
+| FR-044 | P1 | Toolkit mode controls shall map to runtime-enforced permission modes while replay controls remain observational. | Modes are not prompt hints; runtime enforces read/write/ask/dontAsk behavior; historical permission events and recorded child replays expose no actionable approval/composer controls. |
 
 ### 8.8 Filesystem Execution Model
 
@@ -610,7 +661,7 @@ Priority:
 | FR-073 | P0 | Session event storage shall be append-only JSONL. | Event writer appends newline-delimited events and replay ignores malformed trailing writes while preserving valid prior events. |
 | FR-074 | P0 | Browser `UIEvent`s and persisted `HarnessEvent`s shall be separate contracts. | UI contract remains small; runtime log can include richer SDK, permission, hook, tool, transcript, and artifact metadata. |
 | FR-075 | P0 | Runtime logging shall redact secrets. | API keys and configured secret variants are redacted from SDK errors, tool outputs where policy requires, and event records. |
-| FR-076 | P1 | Runtime event replay shall reconstruct a transcript view. | Replay produces accepted user messages, assistant deltas/completions, tool summaries, terminal outcomes, and artifact links. |
+| FR-076 | P1 | Runtime event replay shall reconstruct a provenance-labelled transcript and evidence projection suitable for a selected-session read-only replay lens. | Replay produces accepted user messages, assistant deltas/completions, tool summaries, terminal outcomes, attribution, artifact links, and malformed/bounded/stale disclosure without replacing the mounted primary dialogue or canonical evidence store. |
 | FR-077 | P1 | Legacy session metadata layout shall remain readable during migration. | Existing `.chirality/sessions/*.json` records list/resume while canonical folder layout is introduced. |
 | FR-116 | P0 | SDK messages shall be mapped deterministically into UI and runtime events. | `SDKSystemMessage`, `SDKAssistantMessage`, `SDKPartialAssistantMessage`, `SDKResultMessage`, permission-denial, hook, compact-boundary, tool-progress, and subagent messages map to documented `HarnessEvent` categories. |
 | FR-117 | P0 | SDK settings isolation shall be explicit. | Shipped SDK options use `settingSources: []`; `['project']` is allowed only behind explicit development configuration; `user` and `local` are never used in shipped builds. |
@@ -1103,10 +1154,10 @@ Protected domain-engine paths must not be directly mutated by agents. Any accept
 
 | ID | Priority | Requirement | Acceptance |
 |---|---:|---|---|
-| NFR-019 | P1 | Keyboard users shall be able to resize/collapse panes. | Resize handles are focusable separators with arrow/Home/End behavior. |
-| NFR-020 | P1 | Controls shall expose disabled/loading/error states. | Primary surfaces avoid silent failure and show typed feedback. |
+| NFR-019 | P1 | Keyboard users shall be able to traverse, resize, collapse, focus, and return among Dialogue, Navigator, Work/Agents, focused artifacts, and Activity regions. | Landmarks and skip/region traversal are named; resize handles are focusable separators with arrow/Home/End behavior; focus returns to the originating dialogue/artifact control. |
+| NFR-020 | P1 | Controls and projections shall expose disabled/loading/error/stale/unknown/conflicting/read-only states. | Primary surfaces avoid silent failure; status is not colour-only; historical controls are disabled; malformed, bounded, unavailable, and empty replay states are announced without overstating completeness. |
 | NFR-021 | P1 | UI shall avoid hydration mismatch from local browser state. | Browser-backed state initializes client-side and does not render conflicting server text. |
-| NFR-022 | P1 | Tool-heavy turns shall remain readable. | UI groups model text, tool progress, permission decisions, and terminal status in a scan-friendly way. |
+| NFR-022 | P1 | Tool-heavy and artifact-rich turns shall remain readable. | UI groups dialogue, provenance-bearing artifacts, tool progress, permission decisions, terminal status, and coordination evidence; streaming uses restrained live regions, respects reduced motion, and does not steal focus. |
 
 ### 11.5 Auditability and Compliance
 
@@ -1127,6 +1178,11 @@ Protected domain-engine paths must not be directly mutated by agents. Any accept
 This PRD remains acceptable only if:
 
 - it does not claim automated professional approval, code compliance, external validation, or solver ownership;
+- Woven Dialogue remains the primary human–agent workspace and shared intent is not represented as a stored or authoritative UI object;
+- the Work/Agents Coordination Panel remains a rebuildable informational projection over admitted sources, with visible source class/reference, status basis, currency, and exact recorded relationships;
+- conversational prose is not silently converted into plans/tasks, runtime completion is not deliverable acceptance, and missing/stale/conflicting/unrecorded facts remain absent or unknown;
+- selected-session replay remains clearly labelled, observational, and read-only while the primary live dialogue stays mounted with isolated draft, attachment, context, permission, interruption, and interaction state;
+- legacy routes, known and unknown query parameters, aliases/matrix behavior, browser APIs, SSE names/order, provider composition, security boundaries, and the existing UI remain compatible until separately retired;
 - the first implementation slice remains first-adapter adoption plus `TurnEngine`, adapter option mapping, provider/SDK message mapping, session event log, run logger, prompt composer, settings isolation, and the runtime-engine boundary contract;
 - provider/SDK adapters remain replaceable behind Chirality-owned contracts and conformance tests;
 - no local write/bash/subagent/domain capability is exposed before permission, hooks, result storage, and event logging pass validation;
@@ -1504,13 +1560,13 @@ Acceptance:
 
 ## 14. Success Metrics
 
-1. A first-time operator can select a working root, inspect the file tree, and start a WORKBENCH chat turn within one app session.
+1. A first-time operator can select a working root, enter Woven Dialogue, inspect a provenance-bearing deliverable artifact, and start a primary dialogue turn within one app session.
 2. A decomposition markdown can be used to scaffold a SPEC-conformant execution root without manual folder creation.
 3. A deliverable can be scanned, inspected, and transitioned according to lifecycle rules with approval SHA enforcement for human gate states.
 4. Harness premerge validation passes in CI and produces a stable summary artifact.
 5. Desktop DMG builds locally and passes instruction-root integrity checks.
 6. No API key or project truth is written outside its approved storage zone.
-7. Unsupported PIPELINE variants remain visible as disabled options, preserving operator awareness of roadmap scope.
+7. Unsupported PIPELINE variants remain visible as disabled options, preserving operator awareness of roadmap scope, while deep links and dispatch semantics remain unchanged.
 8. A killed or interrupted turn leaves a replayable accepted-turn record.
 9. A read-file model tool request completes through the SDK loop with Chirality permission and event records.
 10. Denied write/bash actions do not execute and produce auditable permission events.
@@ -1520,6 +1576,10 @@ Acceptance:
 14. No user-facing or documentation claim says Chirality approves professional work, proves code compliance, performs external validation, or owns solver truth.
 15. Shipped SDK options do not load ambient user/local Claude Code settings.
 16. SDK transcripts are linked or mirrored without replacing `.chirality/sessions/<id>/events.jsonl` as the product-owned audit record.
+17. Work/Agents displays no synthesized plans/tasks, inferred parentage, panel-authored approval, or conflated runtime/project lifecycle status.
+18. Selecting a recorded session loads a provenance-labelled read-only replay lens and returning restores the unchanged mounted primary dialogue and its draft/context.
+19. Artifact focus returns to its dialogue anchor; visible artifacts are never included in next-turn model context without explicit reference selection.
+20. Existing routes, queries, APIs, SSE, provider composition, runtime ownership, security controls, and the loop-first compatibility UI pass regression and packaged Desktop checks before any retirement decision.
 
 ---
 
@@ -1559,6 +1619,8 @@ Acceptance:
 | KG-030 | Runtime platform dependency | Provider/SDK pricing, packaging, terms, tool behavior, permission behavior, storage behavior, or session format may change upstream. | Pin versions, run adapter probes and conformance tests on upgrade, and preserve a governed fallback/custom-runtime path. |
 | KG-031 | Reliance-boundary ambiguity | Product-critical boundaries could be accidentally delegated to provider/SDK defaults, prompt text, or noncanonical transcripts. | P0 R0/R1 deliverable: reliance-boundary register with enforcement-surface ownership and tests. |
 | KG-032 | Engine adapter lock-in | If public APIs or internal event schemas become provider/SDK-shaped, replacement becomes impractical even if governance later requires it. | Keep `AgentEnginePort`, `HarnessEvent`, `UIEvent`, session storage, and permission decisions product-owned; reject provider/SDK-shaped leakage in conformance tests. |
+| KG-033 | Woven Dialogue implementation drift | The live loop-first UI does not yet implement the owner-selected Woven Dialogue, inline/focused artifact, or Work/Agents target architecture. | Implement through the governed six-deliverable tranche with compatibility, accessibility, migration, projection-truth, performance, and packaged Desktop evidence; do not retire the existing UI without a separate owner decision. |
+| KG-034 | Coordination projection completeness | Current browser/runtime contracts do not expose global AgentRun discovery, structured plan-file content, arbitrary graphs, scheduling, or complete cross-client live activity. | Present only admitted project/session/replay evidence with explicit empty/stale/unknown states; defer runtime/API expansion to a future governed scope change. |
 
 ## 16. Execution Package Traceability Summary
 
@@ -1586,13 +1648,13 @@ The active decomposition partitions scope into these 10 flat work-domain package
 | Package | Product Area | PRD Coverage |
 |---|---|---|
 | PKG-01 Product Governance and Reliance Boundaries | Product intent, invariants, professional boundary, reliance-boundary ownership, out-of-scope discipline | Goals 6, 9-11, 18, 21-22; PRD Sections 3.2, 5, 6.4, 8.16, 12.1, 15 |
-| PKG-02 Desktop Shell, Navigation, and Operator State | PORTAL, WORKBENCH, PIPELINE, matrix routing, file tree, toolkit, API key UI, local UI state | FR-001 through FR-013, FR-041 through FR-044, relevant user journeys |
+| PKG-02 Woven Dialogue Shell, Navigation, and Operator State | Primary dialogue, inline/focused artifacts, Navigator, Work/Agents Coordination Panel, Activity Shelf, re-hosted WORKBENCH/PIPELINE/toolkit/settings, compatibility navigation, local UI state | Goals 4 and 23-25; FR-001 through FR-013, FR-041 through FR-044, FR-076; Journeys 7.2, 7.4, 7.5 |
 | PKG-03 Runtime Engine Contract and Turn Lifecycle | Product-owned turn lifecycle, route boundary, session locking, SSE compatibility, interrupts | FR-014 through FR-035, FR-070 through FR-077, FR-116, FR-122 through FR-128 |
 | PKG-04 SDK Adapter, Prompt, Provider, and Settings | Provider-adapter adoption probe, first-adapter SDK options, prompt composition, provider integration, settings isolation | FR-021 through FR-035, FR-070 through FR-083, FR-116 through FR-121, NFR-028 through NFR-031 |
-| PKG-05 Session Audit, Replay, and Tool Result Records | Canonical session layout, `HarnessEvent`, JSONL append/replay, redaction, tool result artifacts | FR-071 through FR-077, FR-083, FR-098 through FR-100, data/session requirements |
+| PKG-05 Session Audit, Replay, and Tool Result Records | Canonical session layout, `HarnessEvent`, JSONL append/replay, selected-session read-only transcript/projection, attribution, redaction, tool result artifacts | FR-071 through FR-077, FR-083, FR-098 through FR-100, data/session requirements |
 | PKG-06 Permissioned Tools, MCP, and Hooks | Capability policy / permission overlay with explicit hard-deny precedence, tool exposure, MCP wrappers, hooks, writes, bash, compaction hooks | FR-078 through FR-100, FR-119 through FR-121 |
 | PKG-07 Filesystem Execution, Lifecycle, and Dependencies | Working-root truth, execution-root scaffolding, deliverable files, `_STATUS.md`, `Dependencies.csv`, snapshots | FR-045 through FR-057, filesystem/data requirements, Chirality MCP filesystem tools |
-| PKG-08 Agent Suite, Pipeline Dispatch, and Subagent Governance | Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records | FR-058 through FR-063, FR-101, FR-102, subagent governance requirements |
+| PKG-08 Agent Suite, Pipeline Dispatch, and Subagent Governance | Agent instruction conformance, persona/agent/session aliases and guarded routing, legacy matrix compatibility, presentation-neutral Pipeline dispatch, Type 2 subagent governance and child records | FR-007 through FR-013, FR-026, FR-058 through FR-063, FR-101, FR-102, subagent governance requirements |
 | PKG-09 Validation, Packaging, Security, and Release | Required checks, CI, Section 8/9 validation, network/key security, macOS DMG packaging | FR-064 through FR-069, validation plan, security/privacy NFRs, release verification |
 | PKG-10 Domain Engine Future Boundary | Generic profiles, protected paths, operation proposals, OpenPipeStress fixture posture | FR-106 through FR-115, KG-016 through KG-020, future amendment scope |
 

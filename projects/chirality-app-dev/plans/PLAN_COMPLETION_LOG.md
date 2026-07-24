@@ -6,6 +6,30 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-23 - SCA-APP-004 Woven Dialogue governance propagated
+
+The owner approved the exact SCA-APP-004 amendment and propagation plan.
+Gate 5 applied D-APP-74, authority corpus v16, DEC-020, the Woven Dialogue
+decomposition language, the Work/Agents projection boundary, five prospective
+presentation supersessions, and the six affected deliverable-record updates.
+Topology remains 10 packages / 51 deliverables, lifecycle remains unchanged,
+and all six affected deliverables remain `IN_PROGRESS`.
+
+The governance closeout authorizes the implementation handoff only. It does
+not implement or retire the existing UI, change runtime/API/SSE contracts,
+expand Agent 1/2 capability, change dependency truth, authorize release, or
+create professional reliance. WORKING_ITEMS owns the bounded implementation
+tranche; old-UI retirement remains a later owner decision after parity.
+
+Validation: authority corpus v16 status pass; 16-row cumulative supersession
+map with zero findings; decision-ID and topology checks; instruction-overlay
+validation; six deliverable consistency scans with no structural errors;
+harness contract dependency and pull validation; typecheck; 894 tests passed
+with 4 skipped; production build; packaged Desktop and instruction-root
+integrity proof. Independent `AUDIT_DECOMP` records the carried 15
+folder-local anticipated-artifact warnings as pre-existing implementation
+debt, not a Gate-5 blocker.
+
 ## 2026-07-23 - SCA-APP-003 closure verdict accepted
 
 The independent scope-closure rerun at

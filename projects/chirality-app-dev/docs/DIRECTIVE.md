@@ -37,6 +37,7 @@ The core insight is:
 Chirality exists to:
 
 - accelerate deliverable-heavy professional work by organizing agent activity around packages, deliverables, dependencies, lifecycle files, and review gates;
+- make the real human–agent dialogue the primary collaboration workspace, with provenance-bearing artifacts and evidence available inline or in focused views without turning the dialogue into project truth;
 - make AI-assisted work auditable, reviewable, and controllable in settings where provenance, human accountability, and traceability matter;
 - keep humans in charge of every binding decision while agents perform drafting, extraction, reconciliation, scaffolding, summarization, and routine transformation;
 - provide a desktop harness whose product identity is Chirality, not a vendor CLI, SDK, cloud workflow, or hidden database;
@@ -98,7 +99,7 @@ Required posture:
 
 No hidden memory may become authoritative project state. UI drafts, local presets, SDK transcripts, model context, runtime logs, app caches, API keys, and provider transcripts are non-authoritative unless a governed process imports their relevant content into the project filesystem.
 
-Convenience state is permitted when it is explicitly non-authoritative and cannot override governance. Examples include UI pane widths, local runtime presets, API key storage, draft chat text, and SDK resume metadata.
+Convenience state is permitted when it is explicitly non-authoritative and cannot override governance. Examples include UI pane widths, local runtime presets, API key storage, draft chat text, artifact anchors, explicit next-turn context references, selected replay references, panel state, and SDK resume metadata. Visible artifacts are not automatically model context, and selecting a replay must not transfer draft, attachment, permission, interruption, or interaction authority from the mounted primary live dialogue.
 
 ### 2.7 Instruction Root and Working Root Are Separate
 
@@ -150,6 +151,37 @@ External identifiers, message names, permission modes, tool names, transcript pa
 
 Chirality may use external engines, libraries, and APIs, but it must not become a Claude Code wrapper in identity, copy, behavior, or governance. User-facing text should describe Chirality’s governed-work posture. SDK usage may be disclosed as implementation/provider detail where appropriate, but it must not imply that Chirality is Claude Code, an Anthropic product, or a feature-parity target.
 
+### 2.12 Woven Dialogue and Informational Coordination
+
+The target information architecture centres the actual human–agent dialogue.
+Shared intent emerges through that dialogue; it is not a stored,
+authoritative, or required UI object. Artifacts and evidence may appear as
+provenance-bearing inline objects and open into focused views that return to
+their dialogue anchor.
+
+The right Coordination Panel may present Work and Agents views only as a
+rebuildable projection over admitted project and runtime records. Rendering,
+grouping, linking, filtering, selecting, or locally annotating a plan, task,
+status, assignment, session, or relationship does not create project truth,
+approve a plan, assign authority, transition lifecycle, authenticate a human
+act, or change runtime state. The admitted source remains controlling.
+Missing, stale, conflicting, or unrecorded facts remain explicitly absent,
+unknown, or provenance-labelled.
+
+Structured work must identify its source class and reference, status basis,
+currency, and any recorded responsible or related references. Governed
+project records, human-approved execution bases, agent proposals, and
+ephemeral runtime state remain visibly distinct. Conversational prose is never
+silently converted into a plan or task, and runtime completion is never
+presented as deliverable acceptance.
+
+Selecting a recorded session may replace the main region's visible content
+with a clearly labelled, read-only replay lens. It does not resume, switch,
+merge with, or mutate the primary live dialogue. The primary dialogue remains
+mounted with its own draft, attachments, explicit context, permissions,
+interruption state, and interaction authority, and the operator retains a
+persistent way to return to it.
+
 ---
 
 ## 3. Professional Responsibility Model
@@ -197,7 +229,9 @@ Agent outputs carry no independent professional authority. They are decision sup
 Chirality supports:
 
 - local desktop operation over a selected working root;
-- matrix navigation across PORTAL, WORKBENCH, and PIPELINE;
+- a persistent Woven Dialogue workspace with provenance-bearing inline and focused artifact views;
+- a Work/Agents Coordination Panel over explicitly recorded work, canonical session parentage, and read-only selected-session replay;
+- semantic persona, agent, session, Workbench, and Pipeline routing while preserving legacy PORTAL/WORKBENCH/PIPELINE routes, queries, aliases, and matrix behavior through a compatibility period;
 - working-root validation, file-tree browsing, and deliverable scanning;
 - harness sessions, streamed turns, interrupts, runtime options, and attachments;
 - instruction-root packaging and integrity verification;
@@ -222,6 +256,10 @@ Chirality does not:
 - conduct financial transactions or binding commitments;
 - require a project database or remote project server;
 - treat SDK transcripts, runtime logs, UI state, API keys, or chat drafts as project truth;
+- treat shared intent as a stored or authoritative UI object;
+- let the Work/Agents Coordination Panel synthesize plans, tasks, approvals, assignments, parentage, lifecycle state, or runtime authority;
+- infer structured work from conversational prose or equate runtime completion with deliverable acceptance;
+- provide arbitrary Agent 0/1/2 graphs, multi-child execution, scheduling, direct child messaging, global AgentRun discovery, automatic model routing, or automatic intent summarization under this information-architecture change;
 - load ambient user/global Claude Code settings in shipped builds;
 - use `bypassPermissions` in shipped builds or ordinary operator workflows;
 - expose bash, remote MCP, plugins, marketplace extensions, or remote execution before local SDK governance, hooks, event logging, result storage, and packaging checks are reliable;
@@ -249,6 +287,8 @@ Chirality does not:
 | Deny-first permission semantics | A deny from policy, hook, path check, governance, or human gate overrides any allow. |
 | Runtime code enforces safety | Prompt instructions reinforce policy but are not sufficient enforcement. |
 | MCP is a transport, not a bypass | In-process MCP tools must pass through the same policy as SDK built-ins. |
+| Coordination UI is a rebuildable projection | Admitted project and runtime sources remain controlling; stale, missing, conflicting, and unrecorded facts stay visible as unknown. |
+| Primary dialogue and replay remain distinct | Selected-session replay is observational and read-only; it cannot replace primary-session identity or interaction authority. |
 | Product identity stays Chirality | The app must not present itself as a vendor CLI or external product. |
 | Domain engines own domain truth | Chirality governs interaction and records; it does not become the solver. |
 
