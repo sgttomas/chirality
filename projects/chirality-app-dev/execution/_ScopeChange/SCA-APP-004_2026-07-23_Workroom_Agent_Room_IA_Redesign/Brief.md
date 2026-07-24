@@ -1,6 +1,6 @@
 # SCA-APP-004 Brief — Workroom and Agent Room Information Architecture
 
-**Status:** `CONCEPT_SELECTION_PENDING_OWNER`
+**Status:** `DIALOGUE_CENTRED_CONCEPT_SELECTION_PENDING_OWNER`
 **Date:** `2026-07-23`
 **Requested by:** owner
 **Decomposition variant:** `SOFTWARE`

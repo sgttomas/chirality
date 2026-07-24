@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1620" height="670" viewBox="0 0 1620 670" role="img" aria-labelledby="title desc">
+  <title id="title">Three dialogue-centred Chirality workspace concepts</title>
+  <desc id="desc">Dialogue Studio, Collaborative Bench, and Woven Dialogue, each keeping human-agent dialogue central.</desc>
+  <defs>
+    <style>
+      .bg{fill:#f3f1eb}.frame{fill:#fbfaf7;stroke:#cbc7bd;stroke-width:1.5}
+      .bar{fill:#fff;stroke:#ddd8ce}.nav{fill:#eef3f0;stroke:#d3dcd6}
+      .dialog{fill:#fff;stroke:#b7cfc6;stroke-width:1.4}.work{fill:#f8f5ee;stroke:#dcd3c4}
+      .super{fill:#eef2f7;stroke:#cad5e1}.shelf{fill:#e9e6de;stroke:#d2cec4}
+      .card{fill:#fff;stroke:#c8d3df}.inline{fill:#edf4f1;stroke:#b8d0c8}
+      .accent{fill:#1f7363}.blue{fill:#426b9a}.amber{fill:#9b6a2c}
+      .ink{fill:#252b29;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+      .muted{fill:#68716d;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+      .mono{fill:#59615d;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.08em}
+      .title{font-size:22px;font-weight:650}.subtitle{font-size:13px}.small{font-size:12px}.tiny{font-size:10px}
+      .line{stroke:#8090a2;stroke-width:1.5;fill:none}
+    </style>
+  </defs>
+  <rect class="bg" width="1620" height="670"/>
+  <text class="ink title" x="42" y="44">Dialogue-centred Chirality concepts</text>
+  <text class="muted subtitle" x="42" y="68">The real human–agent conversation stays central in every option</text>
+
+  <!-- 1 Dialogue Studio -->
+  <g transform="translate(40 100)">
+    <rect class="frame" rx="14" width="490" height="520"/>
+    <text class="ink title" x="22" y="36">1 · Dialogue Studio</text>
+    <text class="muted subtitle" x="22" y="58">Stable dialogue with an artifact desk.</text>
+    <rect class="bar" x="18" y="78" rx="7" width="454" height="42"/>
+    <circle class="accent" cx="36" cy="99" r="7"/>
+    <text class="ink small" x="50" y="103">Project / Dialogue Studio</text>
+    <text class="muted tiny" x="378" y="103">Agent Room · ⚙</text>
+    <rect class="nav" x="18" y="132" rx="7" width="102" height="368"/>
+    <text class="mono" x="30" y="155">NAVIGATOR</text>
+    <text class="ink small" x="30" y="184">Deliverables</text>
+    <text class="ink small" x="30" y="208">Files</text>
+    <text class="ink small" x="30" y="232">Changes</text>
+    <rect class="dialog" x="130" y="132" rx="7" width="210" height="368"/>
+    <text class="mono" x="144" y="155">HUMAN–AGENT DIALOGUE</text>
+    <rect fill="#f1eee7" x="144" y="176" rx="7" width="128" height="42"/>
+    <text class="ink tiny" x="155" y="193">Human</text>
+    <text class="muted tiny" x="155" y="207">Review this deliverable.</text>
+    <rect fill="#e7f0ed" x="171" y="230" rx="7" width="155" height="64"/>
+    <text class="ink tiny" x="183" y="247">Agent</text>
+    <text class="muted tiny" x="183" y="262">I found two issues in</text>
+    <text class="muted tiny" x="183" y="278">the current contract…</text>
+    <rect class="inline" x="144" y="312" rx="7" width="182" height="39"/>
+    <text class="muted tiny" x="156" y="336">context: ScopeOfWork.md  ×</text>
+    <rect class="bar" x="144" y="418" rx="7" width="182" height="60"/>
+    <text class="muted tiny" x="156" y="440">Write a message…</text>
+    <rect class="accent" x="255" y="447" rx="5" width="58" height="22"/>
+    <text fill="#fff" font-family="-apple-system,sans-serif" font-size="10" x="274" y="462">Send</text>
+    <rect class="work" x="350" y="132" rx="7" width="122" height="368"/>
+    <text class="mono" x="362" y="155">ARTIFACT DESK</text>
+    <text class="ink small" x="362" y="183">Artifact</text>
+    <text class="ink small" x="362" y="207">Compare</text>
+    <text class="ink small" x="362" y="231">Workbench</text>
+    <text class="ink small" x="362" y="255">Pipeline</text>
+    <text class="ink small" x="362" y="279">Activity</text>
+    <rect class="inline" x="362" y="308" rx="6" width="98" height="74"/>
+    <text class="muted tiny" x="371" y="329">Preview only</text>
+    <text class="ink tiny" x="371" y="347">_STATUS.md</text>
+    <text class="muted tiny" x="371" y="366">Add to next turn</text>
+  </g>
+
+  <!-- 2 Collaborative Bench -->
+  <g transform="translate(565 100)">
+    <rect class="frame" rx="14" width="490" height="520"/>
+    <text class="ink title" x="22" y="36">2 · Collaborative Bench</text>
+    <text class="muted subtitle" x="22" y="58">Dialogue and artifact work visibly paired.</text>
+    <rect class="bar" x="18" y="78" rx="7" width="454" height="42"/>
+    <circle class="blue" cx="36" cy="99" r="7"/>
+    <text class="ink small" x="50" y="103">Project / Bench</text>
+    <text class="muted tiny" x="319" y="103">Pipeline · Workbench · ⚙</text>
+    <rect class="nav" x="18" y="132" rx="7" width="48" height="368"/>
+    <text class="mono" x="31" y="154">ACT</text>
+    <text class="ink tiny" x="30" y="184">Bench</text>
+    <text class="ink tiny" x="30" y="207">Files</text>
+    <text class="ink tiny" x="30" y="230">Pipe</text>
+    <text class="ink tiny" x="30" y="253">Work</text>
+    <rect class="dialog" x="76" y="132" rx="7" width="174" height="368"/>
+    <text class="mono" x="89" y="155">DIALOGUE · ANCHORED</text>
+    <rect fill="#f1eee7" x="89" y="176" rx="7" width="113" height="42"/>
+    <text class="muted tiny" x="101" y="200">Human question</text>
+    <rect fill="#e7f0ed" x="113" y="230" rx="7" width="124" height="63"/>
+    <text class="muted tiny" x="125" y="252">Agent response</text>
+    <text class="muted tiny" x="125" y="270">continues here…</text>
+    <rect class="bar" x="89" y="418" rx="7" width="148" height="60"/>
+    <text class="muted tiny" x="101" y="440">Composer + context</text>
+    <rect class="blue" x="178" y="447" rx="5" width="46" height="22"/>
+    <text fill="#fff" font-family="-apple-system,sans-serif" font-size="10" x="189" y="462">Send</text>
+    <rect class="work" x="260" y="132" rx="7" width="152" height="368"/>
+    <text class="mono" x="273" y="155">ACTIVE ARTIFACT</text>
+    <text class="ink small" x="273" y="184">Runtime Contract</text>
+    <rect fill="#e4e1d9" x="273" y="203" rx="3" width="124" height="7"/>
+    <rect fill="#ece9e2" x="273" y="219" rx="3" width="112" height="7"/>
+    <rect fill="#ece9e2" x="273" y="235" rx="3" width="119" height="7"/>
+    <rect class="inline" x="273" y="270" rx="6" width="124" height="75"/>
+    <text class="muted tiny" x="284" y="292">Markdown · evidence</text>
+    <text class="muted tiny" x="284" y="309">focus expands here</text>
+    <text class="muted tiny" x="284" y="326">dialogue stays visible</text>
+    <rect class="super" x="422" y="132" rx="7" width="50" height="368"/>
+    <text class="mono" x="434" y="154">AGT</text>
+    <circle class="blue" cx="447" cy="184" r="6"/>
+    <path class="line" d="M447 190 L447 224"/>
+    <circle class="amber" cx="447" cy="231" r="6"/>
+    <text class="muted tiny" x="434" y="264">A1</text>
+    <text class="muted tiny" x="434" y="280">↓</text>
+    <text class="muted tiny" x="434" y="296">A2</text>
+    <text class="muted tiny" x="431" y="478">open</text>
+  </g>
+
+  <!-- 3 Woven Dialogue -->
+  <g transform="translate(1090 100)">
+    <rect class="frame" rx="14" width="490" height="520"/>
+    <text class="ink title" x="22" y="36">3 · Woven Dialogue</text>
+    <text class="muted subtitle" x="22" y="58">Artifacts appear inside the conversation.</text>
+    <rect class="bar" x="18" y="78" rx="7" width="454" height="42"/>
+    <circle class="accent" cx="36" cy="99" r="7"/>
+    <text class="ink small" x="50" y="103">Project / Thread</text>
+    <text class="muted tiny" x="356" y="103">Agent Room · ⚙</text>
+    <rect class="nav" x="18" y="132" rx="7" width="100" height="318"/>
+    <text class="mono" x="30" y="155">NAVIGATOR</text>
+    <text class="ink small" x="30" y="184">Threads</text>
+    <text class="ink small" x="30" y="208">Files</text>
+    <text class="ink small" x="30" y="232">Deliverables</text>
+    <text class="ink small" x="30" y="256">Packages</text>
+    <rect class="dialog" x="128" y="132" rx="7" width="224" height="318"/>
+    <text class="mono" x="141" y="155">WOVEN DIALOGUE</text>
+    <rect fill="#f1eee7" x="141" y="176" rx="7" width="134" height="38"/>
+    <text class="muted tiny" x="152" y="199">Human question</text>
+    <rect fill="#e7f0ed" x="166" y="225" rx="7" width="172" height="51"/>
+    <text class="muted tiny" x="178" y="246">Agent proposes a change…</text>
+    <text class="muted tiny" x="178" y="262">with provenance</text>
+    <rect class="inline" x="153" y="290" rx="7" width="185" height="85"/>
+    <text class="ink tiny" x="165" y="311">DIFF · 3 files changed</text>
+    <rect fill="#d6e6e0" x="165" y="323" rx="3" width="130" height="6"/>
+    <rect fill="#eadbd5" x="165" y="337" rx="3" width="113" height="6"/>
+    <text class="muted tiny" x="165" y="360">Inspect · Focus · Provenance</text>
+    <rect class="bar" x="141" y="391" rx="7" width="197" height="43"/>
+    <text class="muted tiny" x="153" y="416">Continue the dialogue…</text>
+    <rect class="work" x="362" y="132" rx="7" width="110" height="318"/>
+    <text class="mono" x="374" y="155">INSPECTOR</text>
+    <text class="ink small" x="374" y="184">Context set</text>
+    <text class="ink small" x="374" y="208">References</text>
+    <text class="ink small" x="374" y="232">Attribution</text>
+    <text class="ink small" x="374" y="256">Permissions</text>
+    <rect class="shelf" x="18" y="462" rx="7" width="454" height="38"/>
+    <text class="mono" x="30" y="485">ACTIVITY · tools · tests · evidence</text>
+  </g>
+</svg>

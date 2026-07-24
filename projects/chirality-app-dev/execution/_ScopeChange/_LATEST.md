@@ -1,6 +1,6 @@
 # Active SCOPE_CHANGE Snapshot
 
-**Status:** `CONCEPT_SELECTION_PENDING_OWNER`
+**Status:** `DIALOGUE_CENTRED_CONCEPT_SELECTION_PENDING_OWNER`
 **Active snapshot:** `execution/_ScopeChange/SCA-APP-004_2026-07-23_Workroom_Agent_Room_IA_Redesign/`
 **Amendment label:** `SCA-APP-004 Workroom and Agent Room Information Architecture`
 **Pre-change audit:** `execution/_Evaluation/DecompCoverage/COV_SCA_APP_004_PRECHANGE_2026-07-23_1330/`
