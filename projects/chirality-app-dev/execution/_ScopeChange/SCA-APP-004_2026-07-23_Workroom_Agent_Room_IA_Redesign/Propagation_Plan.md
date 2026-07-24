@@ -1,7 +1,7 @@
 # SCA-APP-004 Propagation Plan
 
 **Gate:** 4 — Propagation Plan Approval
-**Status:** `PENDING_HUMAN_APPROVAL`
+**Status:** `APPROVED`
 **Date:** `2026-07-23`
 **Approved amendment:** `Amendment_Preview.md`, owner-approved 2026-07-23
 **Topology:** unchanged — 10 packages / 51 deliverables
@@ -10,6 +10,9 @@
 This plan is limited to the owner-approved Gate-3 amendment. It does not apply
 the amendment, authorize implementation, retire the existing UI, or expand
 runtime capability.
+
+**Owner approval:** On 2026-07-23 the owner stated, “I approve this exact
+propagation plan and what it entails.”
 
 ## 1. Gate-5 authority and decomposition writes
 

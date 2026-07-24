@@ -7,16 +7,60 @@ Reference: `chirality/projects/chirality-app-dev/plans/agent-harness-patterns-fr
 
 This plan defines the future development path for the Chirality App harness. It uses the local assessment in `chirality/projects/chirality-app-dev/plans/agent-harness-patterns-from-claw-code-assessment.md` as seed material, but it is not a parity plan.
 
-The current Chirality App has a useful harness shell: typed API routes, session records, attachment validation, provider selection, subagent governance, and Section 8 validation scripts. The next development step is to turn that shell into a real agent runtime. The runtime should be local-first, auditable, permissioned, resumable, and aligned with Chirality's professional-work governance model.
+The current Chirality App has a useful live loop-first compatibility shell and
+a shared-runtime foundation: typed API routes, session records and replay,
+attachment validation, provider selection, subagent governance, and Section
+8/9 validation. The owner-selected product direction is now Woven Dialogue
+with a right Work/Agents Coordination Panel. Runtime evolution remains
+local-first, auditable, permissioned, resumable, and aligned with Chirality's
+professional-work governance model, but this UI tranche does not expand
+runtime capability.
 
 The primary roadmap sequence is:
 
-1. Establish a `TurnEngine`, append-only session event log, and durable runtime event schema.
-2. Define a first-class tool contract, tool registry, and tool pool resolver.
-3. Add a permission policy engine before any powerful local tools.
-4. Add read-only tool execution, then write/edit tools.
-5. Add hooks, tool result storage, context budgeting, and compaction.
-6. Add bash, governed subagent runtime, deferred tool search, and MCP/plugin boundaries later.
+1. Preserve the existing loop-first UI, routes, query parameters, browser
+   APIs, SSE contracts, provider composition, state, and packaged Desktop
+   behavior as the compatibility baseline.
+2. Implement the mounted Woven Dialogue shell and provenance-bearing
+   inline/focused artifact presentation.
+3. Add informational Work and Agents projections over admitted sources, with
+   exact provenance/currency and strict primary-dialogue/read-only-replay
+   separation.
+4. Re-host Workbench, Pipeline, toolkit, settings, and operator state without
+   semantic or security transfer.
+5. Complete non-destructive state migration, accessibility, performance,
+   regression, and packaged Desktop proof.
+6. Retain the runtime phases below as historical/continuing runtime strategy;
+   any new runtime capability remains separately governed.
+
+## Current Controlling UI Direction — SCA-APP-004
+
+The actual human–agent dialogue is the primary workspace. Shared intent
+emerges through dialogue and is not a stored or authoritative UI object.
+Artifacts and evidence may appear as provenance-bearing inline objects and
+open into focused views that return to their dialogue anchor. Visible
+artifacts are not automatically next-turn model context.
+
+The right Coordination Panel toggles between Work and Agents:
+
+- Work displays plans/tasks only when explicitly recorded and visibly
+  distinguishes governed project records, human-approved execution bases,
+  agent-authored proposals, and ephemeral runtime state.
+- Agents displays only recorded sessions and exact canonical parentage.
+- Selecting a recorded session may show a labelled, read-only replay lens in
+  the main region, but it does not resume, switch, merge with, or mutate the
+  mounted primary live dialogue.
+
+Every projection identifies its admitted source/reference, status basis,
+currency, and recorded responsible/related references. Missing, stale,
+conflicting, or unrecorded facts remain absent or unknown. Conversational
+prose does not become a structured task, runtime completion does not become
+deliverable acceptance, and the panel does not author approval or runtime
+state.
+
+Global AgentRun discovery, arbitrary agent graphs, multiple-child execution,
+scheduling, direct child messaging, automatic intent summarization, and model
+routing/residency control remain deferred.
 
 ## Current State
 
@@ -47,6 +91,11 @@ The main architectural gap is that the harness is still mostly a provider stream
 
 Use these principles for all future implementation:
 
+- Keep the actual human–agent dialogue mounted and primary across adjacent work, artifact-focus, and replay selection.
+- Treat inline/focused artifacts and Work/Agents rows as provenance-bearing projections, never a second authority store.
+- Keep visible material distinct from explicit next-turn context and sent-turn content.
+- Keep selected-session replay read-only and isolated from primary draft, attachments, context, permissions, interruption state, and interaction authority.
+- Preserve the loop-first UI and all route/query/API/SSE/provider/state contracts through a reversible compatibility period.
 - Build Chirality-native runtime components. Do not chase feature parity with any external or leaked codebase.
 - Keep routes thin. Routes parse HTTP, handle transport, and forward events; runtime services own behavior.
 - Persist accepted user input before calling the model.
@@ -59,6 +108,35 @@ Use these principles for all future implementation:
 - Delay bash, MCP, plugin systems, and remote execution until the local runtime spine is reliable.
 
 ## Roadmap Phases
+
+### Woven Dialogue Implementation And Compatibility Cutover
+
+This owner-approved frontend program precedes any UI retirement:
+
+1. Capture compatibility fixtures for `/`, `/chat`, `/pipeline`,
+   `/workbench`, known/unknown query parameters, API/SSE behavior, provider
+   singletons, local-state keys, and packaged startup.
+2. Introduce one mounted primary Dialogue controller behind a reversible shell
+   selection.
+3. Add provenance-bearing inline/focused artifacts, dialogue anchors, and
+   explicit next-turn context references within currently admitted content
+   APIs.
+4. Add Work projection with source class/reference, status basis, currency,
+   responsible/related references, and explicit empty/stale/conflict/unknown
+   states.
+5. Add Agents projection with recorded sessions, exact canonical parentage,
+   attribution, and an isolated selected-session read-only replay lens.
+6. Re-host Workbench/Pipeline/toolkit/settings and preserve aliases,
+   DECOMP/PREP/TASK/AUDIT semantics, guarded selection, lifecycle gates,
+   credential boundaries, and runtime ownership.
+7. Add a new versioned workspace-state schema using one-time,
+   non-destructive, rollback-safe migration while retaining existing keys.
+8. Complete keyboard/landmark/focus/resize/contrast/reduced-motion,
+   responsive, bounded-data, performance, runtime regression, premerge, and
+   `desktop:pack` validation.
+
+The existing UI remains available after implementation until parity evidence
+is accepted and the owner separately authorizes retirement.
 
 ### Phase 1 - Turn Engine, Session Event Log, And Runtime Event Schema
 
@@ -501,7 +579,13 @@ Acceptance criteria:
 
 ## Next Concrete Action
 
-Create an implementation plan for the first slice, `Harness Turn Engine And Session Event Log`, inside `chirality/projects/chirality-app-dev/`. That implementation plan should identify the exact route refactor, event file layout, event writer API, replay behavior, tests, and Section 8 validation updates before any code changes begin.
+Create the governed SCA-APP-004 implementation plan for the six affected
+deliverables. It must freeze physical integration ownership, compatibility
+fixtures, projection source rules, primary-dialogue/replay isolation,
+state-migration behavior, accessibility/performance checks, and the staged
+cutover above before frontend code changes begin. It must not change runtime
+contracts, browser API/SSE shapes, provider composition, security boundaries,
+or old-UI retirement state.
 
 ## Non-Goals
 
@@ -511,6 +595,13 @@ Create an implementation plan for the first slice, `Harness Turn Engine And Sess
 - Do not add bash as the first tool.
 - Do not rely on prompt instructions as the only safety boundary.
 - Do not make root `frontend/` the long-term app-development source of truth.
+- Do not infer shared intent, plans, tasks, status, assignments, approvals, or
+  parentage from dialogue or presentation.
+- Do not add a global AgentRun browser, editable orchestration graph,
+  scheduling, direct child messaging, automatic intent summarization, or model
+  routing/residency control through the Woven Dialogue tranche.
+- Do not delete or retire the existing UI or routes without separate owner
+  acceptance after parity and packaged validation.
 
 ## References
 

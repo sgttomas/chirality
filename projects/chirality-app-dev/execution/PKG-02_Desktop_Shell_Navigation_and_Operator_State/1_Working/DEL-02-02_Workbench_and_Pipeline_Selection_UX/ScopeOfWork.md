@@ -4,22 +4,73 @@ deliverable_id: DEL-02-02
 package_id: PKG-02
 decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@0724f26f6ef79d733c8f1c513b29d837fd43c8eb
 project_scope_refs: [SOW-006, SOW-007]
-package_objective_refs: [OBJ-001]
+package_objective_refs: [OBJ-001, OBJ-007]
 ---
 
 # Scope of Work — DEL-02-02
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-02-02` in service of project scope [SOW-006, SOW-007] and package objectives [OBJ-001].
+This Scope of Work defines `DEL-02-02` in service of project scope [SOW-006, SOW-007] and package objectives [OBJ-001, OBJ-007].
 
-- **OUT-001** — Workbench and Pipeline selection UX contract grounded in SOW-006, SOW-007, and OBJ-001.
+- **OUT-001** — Work/Agents Coordination, Workbench, and Pipeline presentation contract grounded in SOW-006, SOW-007, OBJ-001, and OBJ-007.
+
+## SCA-APP-004 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-004 amendment re-hosts Workbench and Pipeline around
+the central dialogue and adds the Work/Agents Coordination presentation.
+Where older clauses below prescribe a fixed matrix/right-sidebar target
+presentation, this section controls. The older clauses and evidence remain
+dated compatibility history.
+
+### Current responsibility
+
+`DEL-02-02 Work/Agents Coordination, Workbench, and Pipeline UX`:
+
+- presents explicitly recorded plans and tasks with source class, exact source
+  reference, authority class, status basis, currency, and recorded responsible
+  or related references;
+- presents recorded agents/sessions and exact canonical parentage;
+- re-hosts Workbench contract/context review and presentation-neutral Pipeline
+  category and task-scope controls around the primary dialogue;
+- preserves deep-link intent, disabled coming-soon states, and stale/empty/
+  unknown/conflict disclosure; and
+- composes selected-session presentation using the replay/projection semantics
+  owned by DEL-05-04.
+
+Governed project records, human-approved execution bases, agent-authored
+proposals, and ephemeral runtime state remain visibly distinct. Conversational
+prose is not silently converted into structured work. Runtime completion is
+not presented as deliverable acceptance.
+
+This deliverable owns presentation only. DEL-08-02 owns alias, persona,
+routing, and guarded selection semantics; DEL-08-03 owns DECOMP/PREP/TASK/AUDIT
+dispatch and dynamic task-scope semantics; DEL-08-05 owns canonical child-run
+records; DEL-05-04 owns replay and transcript projection. The panel cannot
+create project truth, approve plans, assign authority, transition lifecycle,
+infer parentage, or mutate runtime state.
+
+### Current acceptance obligations
+
+1. Work renders only explicitly admitted records and always exposes provenance,
+   authority class, status basis, currency, and recorded responsibility links.
+2. Agents renders only canonical recorded sessions and exact parentage;
+   missing or conflicting relationships remain unknown and provenance-labelled.
+3. Empty, stale, malformed, bounded, unavailable, and conflicting projection
+   states are visible and are not silently synthesized.
+4. Workbench and Pipeline preserve current deep-link/query intent,
+   DECOMP/PREP/TASK/AUDIT categories, dynamic task scope, lifecycle-control
+   guards, and visible disabled options.
+5. Selecting a recorded session invokes only the read-only replay lens and
+   provides a persistent return to the mounted primary dialogue.
+6. Tests prove that the panel cannot author approval, assignments, lifecycle,
+   inferred parentage, or plan/task truth.
 
 ## Deliverable Definition — Ontology
 
-### CLM-001 — Datasheet: DEL-02-02 Workbench and Pipeline Selection UX
+### CLM-001 — Datasheet: DEL-02-02 Work/Agents Coordination, Workbench, and Pipeline UX
 
-> #### Datasheet: DEL-02-02 Workbench and Pipeline Selection UX
+> #### Datasheet: DEL-02-02 Work/Agents Coordination, Workbench, and Pipeline UX
 >
 > > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
 >
@@ -31,9 +82,9 @@ This Scope of Work defines `DEL-02-02` in service of project scope [SOW-006, SOW
 > | Field | Value |
 > |---|---|
 > | DeliverableID | DEL-02-02 |
-> | DeliverableName | Workbench and Pipeline Selection UX |
+> | DeliverableName | Work/Agents Coordination, Workbench, and Pipeline UX |
 > | PackageID | PKG-02 |
-> | PackageName | Desktop Shell, Navigation, and Operator State |
+> | PackageName | Woven Dialogue Shell, Navigation, and Operator State |
 > | DecompositionVariant | SOFTWARE_DECOMP |
 > | DecompositionRevision | v3.2 |
 > | Type | UX_UI_SLICE |
@@ -394,4 +445,4 @@ This Scope of Work defines `DEL-02-02` in service of project scope [SOW-006, SOW
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-006 SOW-007 OBJ-001 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-006 SOW-007 OBJ-001 OBJ-007 | SCA-APP-004 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Projection provenance, semantic-owner boundaries, contextual controls, compatibility, and empty/stale/conflict evidence |

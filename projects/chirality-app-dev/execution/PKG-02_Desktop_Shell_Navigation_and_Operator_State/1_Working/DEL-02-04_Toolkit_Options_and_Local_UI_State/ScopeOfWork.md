@@ -13,13 +13,63 @@ package_objective_refs: [OBJ-001, OBJ-004]
 
 This Scope of Work defines `DEL-02-04` in service of project scope [SOW-004, SOW-008, SOW-016] and package objectives [OBJ-001, OBJ-004].
 
-- **OUT-001** — Toolkit-options and local-UI-state contract for DEL-02-04, traceable to SOW-004, SOW-008, SOW-016, OBJ-001, and OBJ-004.
+- **OUT-001** — Dialogue toolkit, explicit-context, and versioned local-workspace-state contract for DEL-02-04, traceable to SOW-004, SOW-008, SOW-016, OBJ-001, and OBJ-004.
+
+## SCA-APP-004 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-004 amendment expands this deliverable's
+non-authoritative convenience-state responsibilities for the Woven Dialogue
+shell. Where older clauses below prescribe the former fixed pane arrangement,
+this section controls. Prior resize, draft, option, and accessibility evidence
+remains accepted compatibility evidence.
+
+### Current responsibility
+
+`DEL-02-04 Dialogue Toolkit, Context, and Local UI State` owns presentation and
+local persistence for:
+
+- versioned Navigator, dialogue, Coordination Panel, artifact-focus, and
+  Activity Shelf layout state;
+- primary-dialogue drafts, attachments, and local presets;
+- explicit next-turn context references;
+- provenance-bearing artifact anchors and return targets;
+- selected replay references and Work/Agents panel selection; and
+- rollback-safe, non-destructive local-state migration.
+
+The primary live dialogue remains mounted and retains its draft, attachments,
+context, permissions, interruption state, and interaction authority while a
+focus view or replay is visible. Selected replay state is observational only.
+Visible artifacts are not automatically next-turn context.
+
+All state in this deliverable is convenience state. It cannot store or create
+authoritative workflow, hierarchy, parentage, permission, approval,
+assignment, lifecycle, acceptance, transcript, artifact, or runtime
+conclusions. Runtime option validation and permission enforcement remain with
+their existing owners.
+
+### Current acceptance obligations
+
+1. Introduce a versioned workspace-state schema and a one-time,
+   rollback-safe migration that retains the prior state needed for rollback.
+2. Preserve primary-dialogue draft, attachment, explicit-context, permission,
+   interruption, and focus state across panel, artifact-focus, and replay
+   selection.
+3. Keep explicit next-turn context references separate from visible artifacts;
+   no artifact becomes model context merely by being visible.
+4. Persist only references and presentation state for artifacts, recorded
+   sessions, and panel selections; missing targets degrade to explicit
+   unavailable/unknown states.
+5. Preserve accessible resize, collapse, keyboard region traversal, focus
+   restoration, focusable separators, Home/End/Arrow behavior, and
+   reduced-motion handling.
+6. Verify malformed-state discard, storage-failure recovery, per-dialogue
+   draft/context isolation, replay/primary isolation, and rollback behavior.
 
 ## Deliverable Definition — Ontology
 
-### CLM-001 — Datasheet: DEL-02-04 Toolkit Options and Local UI State
+### CLM-001 — Datasheet: DEL-02-04 Dialogue Toolkit, Context, and Local UI State
 
-> #### Datasheet: DEL-02-04 Toolkit Options and Local UI State
+> #### Datasheet: DEL-02-04 Dialogue Toolkit, Context, and Local UI State
 >
 
 ### CLM-002 — Identification
@@ -29,9 +79,9 @@ This Scope of Work defines `DEL-02-04` in service of project scope [SOW-004, SOW
 > | Field | Value |
 > |---|---|
 > | DeliverableID | DEL-02-04 |
-> | DeliverableName | Toolkit Options and Local UI State |
+> | DeliverableName | Dialogue Toolkit, Context, and Local UI State |
 > | PackageID | PKG-02 |
-> | PackageName | Desktop Shell, Navigation, and Operator State |
+> | PackageName | Woven Dialogue Shell, Navigation, and Operator State |
 > | DecompositionVariant | SOFTWARE_DECOMP |
 > | DecompositionRevision | v3.2 |
 > | ResponsibleParty | TBD |
@@ -415,4 +465,4 @@ This Scope of Work defines `DEL-02-04` in service of project scope [SOW-004, SOW
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-004 SOW-008 SOW-016 OBJ-001 OBJ-004 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-004 SOW-008 SOW-016 OBJ-001 OBJ-004 | SCA-APP-004 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Workspace-state migration, primary/replay isolation, explicit-context, focus/keyboard, rollback, and storage-guard evidence |

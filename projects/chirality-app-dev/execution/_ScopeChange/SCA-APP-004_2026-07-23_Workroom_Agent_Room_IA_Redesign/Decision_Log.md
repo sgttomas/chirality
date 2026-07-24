@@ -6,8 +6,8 @@
 | Gate 2 — impact | `ACCEPTED` | Owner accepted the `Impact_Assessment.md` maximum envelope on 2026-07-23. |
 | Concept-selection hold | `SELECTED` | On 2026-07-23 the owner accepted Woven Dialogue with a Work/Agents Coordination Panel; exact selected basis is recorded at `plans/artifacts/DIALOGUE_CENTRED_CONCEPTS_2026-07-24_0121Z/Selected_Concept_Woven_Dialogue_Coordination_Panel.md`. |
 | Gate 3 — amendment | `APPROVED` | On 2026-07-23 the owner approved the exact amendments in `Amendment_Preview.md`. |
-| Gate 4 — propagation | `PENDING_HUMAN_APPROVAL` | Exact `DIRECT_EDIT`, `RECOMPUTE`, and `NO_CHANGE` classifications are presented in `Propagation_Plan.md`; Gate 5 remains blocked. |
-| Gate 5 — execute/validate | `NOT_RUN` | No authority or implementation change is authorized. |
+| Gate 4 — propagation | `APPROVED` | On 2026-07-23 the owner approved the exact `Propagation_Plan.md` and what it entails. |
+| Gate 5 — execute/validate | `IN_PROGRESS` | D-APP-74, authority/decomposition/reliance propagation, affected execution records, supersession evidence, and closure validation are being applied. Implementation remains separately pending. |
 
 ## Fixed intake constraints
 
@@ -121,3 +121,14 @@ On 2026-07-23 the owner stated:
 
 This approves the exact amendment but does not authorize propagation or
 implementation. Gate 4 remains a non-delegable owner decision.
+
+## Gate-4 owner decision
+
+On 2026-07-23 the owner stated:
+
+> I approve this exact propagation plan and what it entails.
+
+This authorizes only the exact Gate-5 `DIRECT_EDIT`, `RECOMPUTE`, and
+`NO_CHANGE` classifications in `Propagation_Plan.md`. It does not authorize
+runtime expansion, old-UI retirement, lifecycle change, release, or
+professional reliance.

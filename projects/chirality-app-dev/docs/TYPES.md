@@ -137,7 +137,13 @@ approve professional work.
 
 ## 4. UI Navigation Vocabulary
 
-### 4.1 Matrix Rows
+The target information architecture is Woven Dialogue with a Work/Agents
+Coordination Panel. The matrix vocabulary in §§4.1-4.3 remains a legacy
+route/query/alias compatibility contract; it is not a required visual matrix
+in the target shell and does not define agent hierarchy, work-plan truth, or
+runtime authority.
+
+### 4.1 Legacy Matrix Rows
 
 | Value | Meaning | Destination |
 |---|---|---|
@@ -145,7 +151,7 @@ approve professional work.
 | `OPERATIVE` | Pipeline execution categories. | PIPELINE |
 | `EVALUATIVE` | Review, evaluation, change, and research support. | Mounted loop-persona intent; tertiary forms stay sidebar-reachable. |
 
-### 4.2 Matrix Columns
+### 4.2 Legacy Matrix Columns
 
 | Value | Meaning |
 |---|---|
@@ -154,7 +160,7 @@ approve professional work.
 | `JUDGING` | Helps inspect, assess, or manage work items. |
 | `REVIEWING` | Helps aggregate, reconcile, or review work. |
 
-### 4.3 Matrix Cells
+### 4.3 Legacy Matrix Cells
 
 | Row | Guiding | Applying | Judging | Reviewing |
 |---|---|---|---|---|
@@ -170,6 +176,53 @@ approve professional work.
 | `TaskScopeMode` | `DELIVERABLES`, `KNOWLEDGE_TYPES` | Dynamic scope mode for `TASK*`. |
 | `KnowledgeTypeOption` | `Datasheet`, `Specification`, `Guidance`, `Procedure`, `Dependencies`, `References`, `Context`, `Status`, `Semantic`, `Memory` | File-type buckets discovered from deliverable content. |
 | `DisabledOption` | any visible but non-selectable option | A coming-soon or unsupported variant intentionally shown without enabling runtime selection. |
+
+### 4.5 Woven Dialogue and Coordination Projection Terms
+
+These are frontend projection types. They do not define an authoritative plan
+schema, create assignments or approvals, transition lifecycle, or change
+runtime state.
+
+| Term | Meaning |
+|---|---|
+| `PrimaryLiveDialogue` | The one mounted, interactive human–agent dialogue with its own session identity, draft, attachments, explicit next-turn context, permissions, interruption state, and interaction authority. |
+| `SelectedSessionReplay` | A clearly labelled, observational, read-only replay lens for one recorded session. It may occupy the main dialogue region but does not resume, switch, merge with, or mutate `PrimaryLiveDialogue`. |
+| `DialogueAnchor` | Non-authoritative reference used to return from an inline or focused artifact view to its originating dialogue position. |
+| `ExplicitNextTurnContextReference` | A visible reference selected for possible inclusion in the next turn. Visibility or selection alone does not transmit content or make the referenced artifact model context. |
+| `ProvenanceBearingArtifact` | An inline or focused artifact/evidence view that identifies its admitted source and origin without converting presentation into project truth. |
+| `CoordinationPanel` | Right-side Work/Agents UI that rebuilds an informational projection from admitted project and runtime records. |
+| `CoordinationWorkClass` | Visible source/authority class distinguishing governed project records, human-approved execution bases, agent-authored proposals, and ephemeral runtime state. |
+| `CoordinationSourceReference` | Exact stable ID, path, event/session ID, or other admitted source identifier from which a projected item was derived. |
+| `CoordinationStatusBasis` | Explicit source that supports the displayed status, such as a project lifecycle record, recorded execution basis, runtime session record, or canonical event. Runtime completion is not deliverable acceptance. |
+| `ProjectionCurrency` | `CURRENT`, `STALE`, `CONFLICTING`, or `UNKNOWN`; absence of sufficient evidence is represented as `UNKNOWN`, not inferred. |
+| `ResponsibleReference` | Recorded reference to a responsible party or owning record. Display does not itself assign responsibility. |
+| `RelatedReference` | Recorded cross-link to a related deliverable, session, event, child record, artifact, or approval reference. Display does not create the relationship. |
+| `CanonicalParentageProjection` | Evidence-conditional parent/child display derived only from exact canonical parent identifiers supplied by the existing child-record/session contract. |
+
+```ts
+type CoordinationWorkClass =
+  | 'GOVERNED_PROJECT_RECORD'
+  | 'HUMAN_APPROVED_EXECUTION_BASIS'
+  | 'AGENT_AUTHORED_PROPOSAL'
+  | 'EPHEMERAL_RUNTIME_STATE';
+
+type ProjectionCurrency = 'CURRENT' | 'STALE' | 'CONFLICTING' | 'UNKNOWN';
+
+type CoordinationProjectionItem = {
+  projectionId: string;
+  workClass: CoordinationWorkClass;
+  sourceReference: string;
+  statusBasis?: string;
+  currency: ProjectionCurrency;
+  responsibleReference?: string;
+  relatedReferences: string[];
+};
+```
+
+`CoordinationProjectionItem` is disposable and rebuildable. It must not be
+persisted or interpreted as project-plan truth, an approval record, a
+lifecycle transition, an authenticated human act, or an AgentRun/session
+mutation.
 
 ---
 

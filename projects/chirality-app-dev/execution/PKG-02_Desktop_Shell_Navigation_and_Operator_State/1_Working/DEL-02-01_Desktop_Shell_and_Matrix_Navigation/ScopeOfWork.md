@@ -13,13 +13,68 @@ package_objective_refs: [OBJ-001]
 
 This Scope of Work defines `DEL-02-01` in service of project scope [SOW-001, SOW-005] and package objectives [OBJ-001].
 
-- **OUT-001** — The converted DEL-02-01 production contract, preserving the exact legacy source content for project scope SOW-001 and SOW-005 and package objective OBJ-001.
+- **OUT-001** — The current Woven Dialogue shell and compatibility-navigation contract for project scope SOW-001 and SOW-005 and package objective OBJ-001, with prior accepted implementation evidence retained as dated compatibility evidence.
+
+## SCA-APP-004 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-004 amendment prospectively changes this
+deliverable's target presentation while preserving its stable ID, lifecycle,
+accepted evidence, routes, query behavior, and compatibility obligations.
+Where the older clauses below require a fixed PORTAL/matrix/right-sidebar
+target layout, this section controls. Those clauses remain in this record as
+dated evidence of the compatibility implementation and are not erased or
+recast as current target authority.
+
+### Current responsibility
+
+`DEL-02-01 Woven Dialogue Shell and Compatibility Navigation` composes:
+
+- the persistent primary human-agent transcript and composer;
+- provenance-bearing inline artifact objects and focused artifact views that
+  return to their dialogue anchors;
+- the Navigator, Work/Agents Coordination Panel, and Activity Shelf;
+- compatibility navigation for the existing routes, query parameters, and
+  matrix-driven launch intents; and
+- presentation over existing canonical work, session, replay, artifact, and
+  runtime records without creating a second evidence store.
+
+The primary live dialogue remains mounted. A selected recorded-session replay
+is observational and read-only, does not resume or replace the primary
+session's authority, and provides a persistent return to the primary dialogue.
+Visible artifacts do not automatically become next-turn model context.
+
+This deliverable owns shell integration and presentation only. It does not own
+canonical work truth, session parentage, transcript reconstruction, artifact
+facts, routing semantics, dispatch semantics, runtime capability, lifecycle,
+approval, arbitrary orchestration graphs, scheduling, direct child messaging,
+or automatic intent inference.
+
+### Current acceptance obligations
+
+1. Preserve `/`, `/chat`, `/workbench`, and `/pipeline`, current deep-link
+   intent, known query parameters, and unknown-parameter preservation during
+   the compatibility period.
+2. Keep the existing loop-first and matrix UI reachable until separately
+   retired; the target shell does not require the matrix to remain its fixed
+   primary gateway.
+3. Keep the primary dialogue mounted across navigation, artifact focus,
+   Coordination Panel selection, and read-only replay selection.
+4. Show provenance and source links for inline/focused artifacts without
+   silently adding visible artifacts to next-turn model context.
+5. Render Work and Agents as rebuildable, evidence-conditional projections;
+   missing, stale, conflicting, or unrecorded relationships remain unknown.
+6. Preserve mid-turn selection guards, drafts, context, permissions,
+   attachments, interruption state, and interaction authority on the primary
+   live dialogue.
+7. Provide component/render, route/query compatibility, focus restoration,
+   keyboard-region, accessible-landmark, reduced-motion, and bounded-projection
+   evidence for the new shell.
 
 ## Deliverable Definition — Ontology
 
-### CLM-001 — Datasheet: DEL-02-01 Desktop Shell and Matrix Navigation
+### CLM-001 — Datasheet: DEL-02-01 Woven Dialogue Shell and Compatibility Navigation
 
-> #### Datasheet: DEL-02-01 Desktop Shell and Matrix Navigation
+> #### Datasheet: DEL-02-01 Woven Dialogue Shell and Compatibility Navigation
 >
 > > **D-APP-56 R5 P40 current-state note (2026-07-12):** REF-006 `docs/PRD.md` is `MATCH` under D-APP-38. Any older warning, bypass, or human-ruling wording about the former hash mismatch in this document is dated drafting history and does not describe current source state.
 >
@@ -33,9 +88,9 @@ This Scope of Work defines `DEL-02-01` in service of project scope [SOW-001, SOW
 > | DecompositionVariant | SOFTWARE_DECOMP |
 > | DecompositionRevision | v3.2 |
 > | PackageID | PKG-02 |
-> | PackageName | Desktop Shell, Navigation, and Operator State |
+> | PackageName | Woven Dialogue Shell, Navigation, and Operator State |
 > | DeliverableID | DEL-02-01 |
-> | DeliverableName | Desktop Shell and Matrix Navigation |
+> | DeliverableName | Woven Dialogue Shell and Compatibility Navigation |
 > | ResponsibleParty | TBD |
 > | Type | UX_UI_SLICE |
 > | ContextEnvelope | M |
@@ -391,4 +446,4 @@ This Scope of Work defines `DEL-02-01` in service of project scope [SOW-001, SOW
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-001 SOW-005 OBJ-001 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-001 | SOW-001 SOW-005 OBJ-001 | SCA-APP-004 Gate-5 Current Contract; CLM-008 | AC-001 | VER-001 | Woven Dialogue shell evidence, compatibility parity, provenance and primary-dialogue isolation checks |

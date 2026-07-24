@@ -13,7 +13,7 @@ package_objective_refs: [OBJ-001, OBJ-007]
 
 This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW-026] and package objectives [OBJ-001, OBJ-007].
 
-- **OUT-001** — Pipeline selector tests; knowledge-type discovery; disabled option handling.
+- **OUT-001** — Presentation-neutral DECOMP/PREP/TASK/AUDIT dispatch semantics, category/task-scope interpretation, dynamic scope, and disabled-option rules with selector, contextual-consumer, knowledge-type discovery, and regression evidence.
 
 ## Deliverable Definition — Ontology
 
@@ -46,13 +46,13 @@ This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW
 >
 > | Attribute | Value | Source |
 > |---|---|---|
-> | Scope | Dispatch DECOMP/PREP/TASK/AUDIT lanes and dynamic task scope from deliverables and knowledge-type buckets. | `_CONTEXT.md`; decomposition entry |
+> | Scope | Own presentation-neutral DECOMP/PREP/TASK/AUDIT lane semantics, category/task-scope interpretation, dynamic scope, and disabled-option rules for contextual Run consumers. | `_CONTEXT.md`; decomposition entry; SCA-APP-004 |
 > | Package scope | Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records. | `_CONTEXT.md`; decomposition PKG-08 row |
 > | Inclusion criteria | Agent OS behavior and delegation. | `_CONTEXT.md`; decomposition PKG-08 row |
 > | Exclusions | General SDK adapter mechanics. | `_CONTEXT.md`; decomposition PKG-08 row |
 > | Covered scope items | SOW-007, SOW-026 | `_CONTEXT.md`; decomposition entry |
 > | Supported objectives | OBJ-001, OBJ-007 | `_CONTEXT.md`; decomposition entry |
-> | Anticipated artifacts | Pipeline selector tests; knowledge-type discovery; disabled option handling | `_CONTEXT.md`; decomposition entry |
+> | Anticipated artifacts | Dispatch contract tests; Pipeline selector and contextual-consumer tests; knowledge-type discovery; dynamic-scope and disabled-option handling | `_CONTEXT.md`; decomposition entry |
 > | Pipeline categories | `DECOMP*`, `PREP*`, `TASK*`, `AUDIT*` | `docs/TYPES.md` Section 4.4 |
 > | TASK scope modes | `DELIVERABLES`, `KNOWLEDGE_TYPES` | `docs/TYPES.md` Section 4.4 |
 > | Knowledge type options | `Datasheet`, `Specification`, `Guidance`, `Procedure`, `Dependencies`, `References`, `Context`, `Status`, `Semantic`, `Memory` | `docs/TYPES.md` Section 4.4 |
@@ -72,6 +72,9 @@ This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW
 > | Dynamic reset | Root changes, removed deliverables, disabled knowledge markers, and stale knowledge targets clear invalid selection state. | `docs/PRD.md` FR-013 |
 > | Knowledge bucket detection | Datasheet, Specification, Guidance, and Procedure are supported as first-class knowledge buckets. | `docs/PRD.md` FR-049 |
 > | Working-root scope API | `/api/project/deliverables` scans deliverables and knowledge types for the active root. | `docs/SPEC.md` Section 17.2; D-APP-56 R4-P21 |
+> | Presentation ownership | DEL-02-02 presents re-hosted Workbench/Pipeline and Coordination Panel consumers; DEL-08-03 remains semantic dispatch owner. | SCA-APP-004 semantic ownership partition |
+> | Work projection boundary | A Work-panel item may display an explicitly recorded dispatch/task basis with provenance and currency, but conversational prose is never silently converted into a plan/task and runtime completion is not project acceptance. | SCA-APP-004 coordination-projection invariant |
+> | Child-record boundary | DEL-08-05 remains the unchanged owner of child-run parentage, assignment, return, and artifact records. | SCA-APP-004 no-change set |
 >
 
 ### CLM-005 — Construction
@@ -158,7 +161,10 @@ This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW
 
 > ##### Scope
 >
-> This deliverable specifies the PIPELINE category and TASK scope dispatch behavior for the Chirality App vNext operative surface.
+> This deliverable specifies presentation-neutral PIPELINE category and TASK
+> scope dispatch behavior for Chirality App vNext. DEL-02-02 may present these
+> semantics in contextual Run, Workbench, Pipeline, or Work-panel surfaces,
+> but presentation does not transfer dispatch authority.
 >
 > In scope:
 >
@@ -168,13 +174,15 @@ This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW
 > - Dynamic TASK scope from deliverables and knowledge-type buckets.
 > - Invalid-selection reset behavior when the active working root or scanned scope changes.
 > - Tests for pipeline selector behavior, knowledge-type discovery, and disabled option handling.
+> - Contract and regression evidence proving contextual consumers preserve the same dispatch semantics and do not synthesize work from conversation.
 >
 > Out of scope:
 >
 > - General SDK adapter mechanics.
 > - Type 2 subagent runtime governance bridge implementation, except where selector behavior must not expand authority.
-> - Dependency extraction for this deliverable run; `Dependencies.csv` remains deferred.
+> - Dependency extraction or modification for this deliverable run; the existing `Dependencies.csv` remains unchanged.
 > - Retired unified pipeline run-record or broader PKG-08 hardening scope unless a governed amendment reactivates it.
+> - Work/Agents Coordination Panel shell presentation, project-plan authority, runtime checklist truth, lifecycle/approval status, replay persistence, parent-child records, scheduling, direct child messaging, or editable agent graphs.
 >
 
 ### CLM-013 — Requirements
@@ -195,6 +203,10 @@ This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW
 > | DEL-08-03-REQ-010 | Scope scanning shall use the active working-root scope surface rather than hard-coded project assumptions, with evidence showing a call, mock contract, or fixture for `/api/project/deliverables`. | P0 | `docs/SPEC.md` Section 17.2; `docs/PRD.md` FR-013; D-APP-56 R4-P21 |
 > | DEL-08-03-REQ-011 | Dispatch behavior shall not expand agent authority or bypass Type 2 governance constraints; pass evidence shall show selector state cannot bypass write-scope, sealed-context, no-ghost-input, approval-reference, or fail-closed delegation gates. | P0 | `docs/CONTRACT.md` K-WRITE-1, K-SEAL-1, K-GHOST-1, K-SUBAGENT-1 |
 > | DEL-08-03-REQ-012 | Selector tests shall cover pipeline selector behavior, knowledge-type discovery, disabled option handling, and invalid-selection reset fixtures for root change, removed deliverable, disabled marker, and stale knowledge target. | P1 | Decomposition anticipated artifacts; `docs/PRD.md` FR-013 |
+> | DEL-08-03-REQ-013 | Dispatch semantics MUST remain presentation-neutral: re-hosted or contextual consumers owned by DEL-02-02 MUST use the same DECOMP/PREP/TASK/AUDIT taxonomy, category options, task-scope rules, dynamic-scope validation, and disabled states. | P0 | SCA-APP-004; SOW-007 |
+> | DEL-08-03-REQ-014 | A Work/Agents consumer MUST display only explicitly recorded dispatch/task sources with provenance, status basis, and currency; it MUST NOT convert conversational prose or UI grouping into a structured plan/task. | P0 | SCA-APP-004 coordination-projection invariant |
+> | DEL-08-03-REQ-015 | Runtime task/check completion MUST remain distinct from governed project-plan completion, deliverable lifecycle state, approval, issuance, or professional reliance. | P0 | `docs/CONTRACT.md` K-FS-1, K-NOMEM-1, K-BIND-1; SCA-APP-004 |
+> | DEL-08-03-REQ-016 | DEL-08-03 MUST NOT own Coordination Panel presentation, general plan authority, replay persistence, child-run parentage, scheduling, direct child messaging, or lifecycle transition. | P0 | SCA-APP-004 semantic ownership partition |
 >
 
 ### CLM-014 — Standards
@@ -226,6 +238,8 @@ This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW
 > | DEL-08-03-REQ-010 | API integration or mocked API contract tests for `/api/project/deliverables`, including evidence that returned deliverables and knowledge buckets come from the active working root. | Scope scan integration tests |
 > | DEL-08-03-REQ-011 | Governance regression tests or review checks proving dispatch does not enable unauthorized Type 2 execution or bypass sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation. | Governance guard tests or review evidence |
 > | DEL-08-03-REQ-012 | Test inventory review with named category, TASK scope, discovery, disabled-option, and reset fixtures. | Named tests or fixtures covering anticipated artifacts |
+> | DEL-08-03-REQ-013 | Cross-surface regression proves existing Pipeline and contextual Run consumers resolve identical categories, options, task scope, dynamic validation, and disabled state. | Dispatch contract and contextual-consumer tests |
+> | DEL-08-03-REQ-014, DEL-08-03-REQ-015, DEL-08-03-REQ-016 | Projection/boundary tests show only admitted work sources are rendered, prose is not synthesized into tasks, runtime/project statuses remain separate, and presentation/parentage/lifecycle controls stay outside DEL-08-03. | Work projection and semantic non-ownership evidence |
 >
 
 ### CLM-016 — Documentation
@@ -242,6 +256,8 @@ This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW
 > - Evidence that invalid selections reset after root and scan changes, including root-change, removed-deliverable, disabled-marker, and stale-target fixtures.
 > - Scope-scan evidence showing `/api/working-root/scope` integration or a mocked equivalent for active-root scanning.
 > - Governance guard evidence showing selector state does not bypass Type 2 sealed context, approval metadata, no-ghost-input limits, write-scope limits, or fail-closed delegation.
+> - Cross-surface dispatch evidence proving contextual Run/Workbench/Work-panel consumers preserve Pipeline taxonomy, scope validation, and disabled states.
+> - Projection evidence proving only explicitly recorded task/dispatch sources appear, conversational prose is not synthesized into structured work, and runtime status is not presented as project acceptance.
 > - ASSUMPTION: implementation notes may be needed once actual frontend component/module paths are selected.
 >
 
@@ -272,7 +288,7 @@ This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW
 >
 > UPD-134 supersedes run-scoped dependency deferral wording: the extracted derivative register exists and is live.
 
-- **AC-001** — Pipeline selector tests; knowledge-type discovery tests or fixtures; disabled option handling tests.
+- **AC-001** — Presentation-neutral dispatch contract, Pipeline/contextual-consumer selector tests, knowledge-type discovery fixtures, dynamic-scope and disabled-option handling, governance guards, and Work-projection non-authority evidence.
 
 ## Production and Verification Method — Praxeology
 
@@ -350,6 +366,16 @@ This Scope of Work defines `DEL-08-03` in service of project scope [SOW-007, SOW
 >    - Cover TASK selector split and required target deliverable behavior.
 >    - Cover knowledge-type discovery for document-kit files.
 >    - Cover stale-selection reset cases.
+>
+> 9. Verify contextual presentation consumers.
+>    - Prove re-hosted Pipeline/Workbench and contextual Run controls consume
+>      the same DECOMP/PREP/TASK/AUDIT semantics and dynamic task-scope rules.
+>    - Prove Work-panel items cite an admitted dispatch/task source, status
+>      basis, and currency.
+>    - Prove conversational prose is not synthesized into structured work and
+>      runtime completion is not mapped to project lifecycle or approval.
+>    - Preserve DEL-02-02 presentation ownership and DEL-08-05 child-record
+>      ownership.
 >
 
 ### CLM-024 — Verification

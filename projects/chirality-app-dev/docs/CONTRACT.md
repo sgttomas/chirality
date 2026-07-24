@@ -21,9 +21,9 @@ Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §
 | **K-HIER-1** | Projects are decomposed as flat **packages containing deliverables**. Packages do not nest; there is no phase or sub-package layer inside the project hierarchy. | PROJECT_DECOMP; scaffold service; deliverable scanner; human review. |
 | **K-ID-1** | Stable identifiers are identity. Package IDs, deliverable IDs, dependency IDs, scope IDs, objective IDs, session IDs, turn IDs, and event IDs persist across renames, path changes, and UI labels. | SPEC/TYPES; scanners; event schema; dependency writer; human review. |
 | **K-PATH-1** | Path is a physical projection of identity, not identity itself. Runtime records and project files must preserve stable IDs when paths change. | Session events; `_CONTEXT.md`; dependency registers; scanners. |
-| **K-FS-1** | Project truth lives in plain files under the working root and accepted git history, not in hidden app state, chats, SDK transcripts, model context, or vendor systems. | DIRECTIVE; SPEC; runtime session store; human review; git workflow. |
+| **K-FS-1** | Project truth lives in plain files under the working root and accepted git history, not in hidden app state, chats, SDK transcripts, model context, vendor systems, or Work/Agents Coordination Panel projections. Rendering or locally organizing a plan, task, status, assignment, session, or relationship does not create project truth; the admitted source remains controlling and missing, stale, conflicting, or unrecorded facts remain explicit. | DIRECTIVE; SPEC; runtime session store; projection source-class/currency/stale/unknown tests; human review; git workflow. |
 | **K-GIT-1** | Accepted project decisions bind to versioned files. Gate-relevant decisions not represented in git-tracked project artifacts are not reliance evidence. | Human gate review; CHANGE workflow; release discipline. |
-| **K-NOMEM-1** | No hidden memory may become authoritative project state. Runtime convenience state is allowed only when explicitly non-authoritative. | Runtime contracts; UI local-state policy; session storage rules. |
+| **K-NOMEM-1** | No hidden memory may become authoritative project state. Runtime and UI convenience state is allowed only when explicitly non-authoritative. Dialogue drafts, explicit next-turn context references, artifact anchors, layout/panel state, and selected replay references store presentation or references only; visible artifacts are not automatic model context, conversational prose is not a structured work record, and selected replay cannot inherit or mutate primary-session state. | Runtime contracts; UI local-state and migration policy; session storage rules; draft/context/replay-separation tests. |
 
 ### 1.2 Human Authority, Approval, and Professional Boundaries
 
@@ -31,7 +31,7 @@ Invariant IDs (`K-*`) are stable and never reused. Retired invariants move to §
 |---|---|---|
 | **K-AUTH-1** | Only humans author binding approval records. No agent, SDK, tool, runtime event, validator, or domain adapter may claim to certify, approve, sign, seal, issue, transmit, or externally validate work for reliance. | Agent instructions; UI copy; status transition API; human review; release checks. |
 | **K-AUTH-2** | Human approvals bind to specific content evidence, normally a git SHA. Content changes after approval void the approval until re-reviewed. | `_STATUS.md` transition rules; CHANGE workflow; human review. |
-| **K-BIND-1** | Binding and non-binding records must not be conflated. Drafts, proposals, summaries, and runtime transcripts are not approval records. | DIRECTIVE; SPEC; UI language; project file templates. |
+| **K-BIND-1** | Binding and non-binding records must not be conflated. Drafts, proposals, summaries, runtime transcripts, projected plans/tasks/statuses/assignments, and locally annotated coordination views are not approval records. Structured Work items must expose source class/reference, status basis, currency, and recorded responsible or related references; runtime completion is not deliverable acceptance, and a selected-session replay is observational and read-only. | DIRECTIVE; SPEC; UI language; project file templates; provenance/exact-link/no-panel-approval/replay-separation tests. |
 | **K-GATE-1** | Human gates are non-delegable. CHECKING, ISSUED, domain-operation acceptance, and other reliance-affecting states require accountable human evidence. | Status transition API; operation-proposal workflow; human review. |
 | **K-PROF-1** | Chirality must not claim code compliance, external validation, solver truth, or professional adequacy by itself. | PRD acceptance checks; DIRECTIVE; UI/documentation review. |
 
@@ -146,9 +146,9 @@ App-dev K-DOMAIN-1..4 specialize framework `docs/CONTRACT.md` §1.12 `K-DOMAIN-*
 
 | Enforcement Point | Invariants Checked |
 |---|---|
-| `DIRECTIVE.md` | K-FS-1, K-GIT-1, K-AUTH-1, K-PROF-1, K-ROOT-1, K-ENGINE-3, K-DOMAIN-1 |
-| `SPEC.md` | K-HIER-1, K-ID-1, K-ROOT-1, K-EVENT-1 through K-EVENT-7, K-STATUS-1, K-DEP-1, K-ATTACH-1 |
-| `TYPES.md` | K-ID-1, K-PATH-1, K-EVENT-1, K-PERM-1, K-TOOL-1, K-DOMAIN-3 |
+| `DIRECTIVE.md` | K-FS-1, K-NOMEM-1, K-GIT-1, K-AUTH-1, K-BIND-1, K-PROF-1, K-ROOT-1, K-ENGINE-3, K-DOMAIN-1 |
+| `SPEC.md` | K-HIER-1, K-ID-1, K-ROOT-1, K-FS-1, K-NOMEM-1, K-BIND-1, K-EVENT-1 through K-EVENT-7, K-STATUS-1, K-DEP-1, K-ATTACH-1 |
+| `TYPES.md` | K-ID-1, K-PATH-1, K-FS-1, K-NOMEM-1, K-BIND-1, K-EVENT-1, K-PERM-1, K-TOOL-1, K-DOMAIN-3 |
 | `PLAN.md` | K-VALIDATE-1, K-RETIRED-1, K-ENGINE-5, K-DOMAIN-1 through K-DOMAIN-4 |
 | Working-root validator | K-ROOT-1, K-PATH-2 |
 | `AgentEnginePort` / `RuntimeEngineContract` | K-ENGINE-1 through K-ENGINE-5 |
@@ -156,6 +156,7 @@ App-dev K-DOMAIN-1..4 specialize framework `docs/CONTRACT.md` §1.12 `K-DOMAIN-*
 | SDK options builder | K-SDK-1, K-SDK-2, K-PERM-3, K-TOOL-1, K-BASH-1 |
 | SDK message mapper | K-EVENT-1, K-EVENT-3, K-ENGINE-4 |
 | Session event store | K-EVENT-2 through K-EVENT-6, K-SDK-3 |
+| Work/Agents projection and selected replay tests | K-FS-1, K-NOMEM-1, K-BIND-1, K-ID-1, K-EVENT-5 |
 | Run logger/redaction | K-EVENT-6, K-KEY-1 |
 | Permission overlay | K-PERM-1 through K-PERM-6 |
 | Chirality hooks | K-PATH-2, K-PATH-3, K-HOOK-1, K-ROOT-2, K-BASH-1, K-SUBAGENT-1 |
@@ -189,6 +190,7 @@ No invariants are retired in this vNext rewrite.
 | `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. D-APP-12 later clarified that `agentSdk` remains opt-in pending further proof/ruling. |
 | `SCA-APP-002` | 2026-07-21 | Prospectively authorizes the D-APP-72 bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche after Electron `43.1.1`; preserves Claude as default/supervisor and excludes Pi-native capabilities, remote providers, automatic fallback, direct Pi supervisors, write/shell/network tools, release, issuance, and lifecycle advancement. |
 | `SCA-APP-003` | 2026-07-22 | Promotes the provider-neutral harness to a root-owned shared runtime; establishes the authenticated Unix-socket daemon/client/CLI boundary, central lazy-migrating sessions, explicit one-primary-model residency, app-dev Agent 1 → local Agent 2 pilot, PEC client migration, and generic public-export boundary. |
+| `SCA-APP-004` | 2026-07-23 | Selects Woven Dialogue with a Work/Agents Coordination Panel as the target information architecture; extends K-FS-1, K-NOMEM-1, and K-BIND-1 for provenance-labelled informational projection and strict primary-dialogue/read-only-replay separation while preserving runtime, API, SSE, security, history, compatibility, and human-authority boundaries. |
 
 ### 5.1 Shared Runtime Invariants
 

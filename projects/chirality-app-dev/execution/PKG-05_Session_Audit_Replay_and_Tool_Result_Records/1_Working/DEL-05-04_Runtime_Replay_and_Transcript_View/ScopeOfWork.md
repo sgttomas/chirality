@@ -3,17 +3,17 @@ schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-05-04
 package_id: PKG-05
 decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@b4d2c9ab2f089224ddd41c849bbd1e4dd22d91b4
-project_scope_refs: [SOW-042, SOW-046]
-package_objective_refs: [OBJ-003]
+project_scope_refs: [SOW-006, SOW-042, SOW-046]
+package_objective_refs: [OBJ-001, OBJ-003]
 ---
 
 # Scope of Work — DEL-05-04
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-05-04` in service of project scope [SOW-042, SOW-046] and package objectives [OBJ-003].
+This Scope of Work defines `DEL-05-04` in service of project scope [SOW-006, SOW-042, SOW-046] and package objectives [OBJ-001, OBJ-003].
 
-- **OUT-001** — A runtime replay and transcript-view contract that reconstructs accepted turns, assistant output, tool summaries, terminal outcomes, diagnostics, artifact links, and secondary SDK transcript linkage from Chirality-owned HarnessEvent records.
+- **OUT-001** — A runtime replay, dialogue, and agent-transcript projection contract that reconstructs accepted turns, recorded-session replay, assistant output, tool summaries, terminal outcomes, attribution, diagnostics, artifact links, and secondary SDK transcript linkage from canonical Chirality records without replacing the mounted primary live dialogue or creating another evidence store.
 
 ## Deliverable Definition — Ontology
 
@@ -29,15 +29,15 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-042, SOW
 > | Field | Value |
 > |---|---|
 > | Deliverable ID | DEL-05-04 |
-> | Deliverable name | Runtime Replay and Transcript View |
+> | Deliverable name | Runtime Replay, Dialogue, and Agent Transcript Projection |
 > | Package | PKG-05 Session Audit, Replay, and Tool Result Records |
 > | Decomposition variant | SOFTWARE_DECOMP v3.2 |
 > | Type | BACKEND_FEATURE_SLICE |
 > | Responsible party | TBD |
 > | Context envelope | M |
-> | Scope items | SOW-042, SOW-046 |
-> | Objective | OBJ-003 |
-> | Anticipated artifacts | Replay parser; transcript model; transcript sidebar view; transcript reconstruction tests; malformed-tail tests |
+> | Scope items | SOW-006, SOW-042, SOW-046 |
+> | Objective | OBJ-001, OBJ-003 |
+> | Anticipated artifacts | Replay parser; transcript model; selected-session read-only replay lens; bounded/stale projection; exact-parentage and transcript reconstruction tests; malformed-tail tests |
 >
 
 ### CLM-003 — Attributes
@@ -68,7 +68,10 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-042, SOW
 > | Canonicality constraint | `events.jsonl` remains canonical for runtime replay; SDK transcripts assist resume/debugging but do not displace Chirality events. | `docs/SPEC.md` Section 8.4; `docs/DIRECTIVE.md` Section 2.3 |
 > | Migration constraint | Replay must account for legacy flat sessions through D-APP-41 eager conversion, then operate on canonical folder records. | `docs/SPEC.md` Section 8.1; `docs/PRD.md` session storage notes; `D-APP-41` |
 > | Exact parser API | `replayHarnessEvents(sessionId)` in `frontend/src/lib/harness/session-events.ts`; transcript projection via `deriveTranscriptView(events, session?)` in `frontend/packages/harness-contract/src/transcript-replay.ts`. | ADQ-09 implementation; D-APP-48 relocation |
-> | Exact transcript view route/UI placement | Replay route: `frontend/src/app/api/harness/session/[id]/events/route.ts`; sidebar UI: `frontend/src/components/shell/transcript-stream-view.tsx`. | ADQ-09 implementation |
+> | Current compatibility transcript route/UI placement | Replay route: `frontend/src/app/api/harness/session/[id]/events/route.ts`; compatibility sidebar UI: `frontend/src/components/shell/transcript-stream-view.tsx`. The Woven Dialogue target placement remains implementation work and must consume the same replay authority. | ADQ-09 implementation; SCA-APP-004 |
+> | Selected-session replay posture | A recorded session may be inspected through a clearly labelled, read-only replay lens. Selection does not resume, switch, merge with, or mutate the mounted primary live dialogue. | SCA-APP-004 Amendment Preview and Propagation Plan |
+> | Projection authority | Transcript and Agent projections are rebuildable, provenance-labelled views. Missing, stale, bounded, malformed, conflicting, or unrecorded evidence remains explicit and the admitted source remains controlling. | SCA-APP-004 coordination-projection invariant |
+> | Parentage consumption | Exact parentage may be displayed only from canonical child-run/session records owned by DEL-08-05; DEL-05-04 does not infer or persist hierarchy. | SCA-APP-004 semantic ownership partition |
 > | Tool summary detail level | ASSUMPTION: replay should expose compact summaries and artifact links rather than raw large payloads, because large payloads are stored as artifacts and referenced by path. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-7 |
 >
 
@@ -130,6 +133,9 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-042, SOW
 > - Reconstruct accepted turns, assistant output, tool summaries, terminal outcomes, artifact links, and SDK transcript links.
 > - Keep SDK transcripts secondary to Chirality `HarnessEvent` records unless imported into `HarnessEvent` form.
 > - Maintain separation between compact browser `UIEvent`s and richer persisted `HarnessEvent`s.
+> - Rebuild evidence-conditioned dialogue and Agent projections from canonical records, including attribution, interruption, terminal state, and exact recorded parentage references when available.
+> - Present a selected recorded session as a clearly labelled, read-only replay lens while the primary live dialogue remains mounted and retains its own draft, attachments, next-turn context, permissions, interruption state, session identity, and interaction authority.
+> - Surface bounded, stale, malformed, unavailable, conflicting, and unknown replay conditions without synthesizing missing work, hierarchy, approval, or runtime state.
 >
 > Out of scope:
 >
@@ -137,6 +143,8 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-042, SOW
 > - Canonical session folder migration and legacy session migration helpers. That is primarily DEL-05-01.
 > - Tool result storage thresholds and raw artifact storage. That is primarily DEL-05-05.
 > - Tool permission semantics, which are excluded by the package context.
+> - Project-plan or task-list authority, human approval, assignment authority, persona/alias routing, Pipeline dispatch semantics, child-run persistence, direct child messaging, or editable hierarchy.
+> - Resuming or mutating a selected historical/child session, transferring primary-session context to it, or creating global AgentRun discovery.
 >
 > Sources: `_CONTEXT.md`; `docs/SPEC.md` Sections 8-11; `docs/CONTRACT.md` K-EVENT and K-SDK invariants; `docs/PRD.md` FR-073, FR-076, FR-118, FR-121. D-APP-38 authority corpus v2 reports these references as `MATCH`.
 >
@@ -160,6 +168,12 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-042, SOW
 > | DEL-05-04-REQ-011 | ASSUMPTION: the transcript view model should represent large tool results by summary and artifact reference rather than raw inline payload. | `docs/SPEC.md` Section 9.2; `docs/CONTRACT.md` K-EVENT-7 |
 > | DEL-05-04-REQ-012 | The accepted parser, model, API, component, and fixture paths are assigned by ADQ-09 implementation and must remain recorded in evidence. | Source gap resolved by ADQ-09 |
 > | DEL-05-04-REQ-013 | The implementation handoff MUST record `frontend/src/lib/harness/session-events.ts`, `frontend/packages/harness-contract/src/transcript-replay.ts`, `frontend/src/app/api/harness/session/[id]/events/route.ts`, `frontend/src/components/shell/transcript-stream-view.tsx`, and the focused replay/transcript fixtures. | `docs/SPEC.md` Sections 8-11; decomposition DEL-05-04 row; P3 items C-001 and D-001 |
+> | DEL-05-04-REQ-014 | A selected recorded session MUST render as a labelled read-only replay lens and MUST NOT resume, switch, merge with, or mutate the mounted primary live dialogue. | SCA-APP-004; SOW-006 |
+> | DEL-05-04-REQ-015 | Selecting replay MUST NOT transfer or overwrite the primary session's draft, attachments, explicit next-turn context, permissions, interruption state, session identity, or interaction authority. | SCA-APP-004 selected concept |
+> | DEL-05-04-REQ-016 | Replay and Agent projections MUST be rebuildable from admitted canonical project/runtime records, MUST identify provenance and currency where available, and MUST render missing, stale, bounded, malformed, conflicting, or unrecorded evidence explicitly. | SCA-APP-004 coordination-projection invariant |
+> | DEL-05-04-REQ-017 | Parentage and return cross-links MUST use exact canonical identifiers supplied by DEL-08-05/session evidence and MUST NOT be inferred from conversational similarity or UI grouping. | SCA-APP-004 semantic ownership partition; DEL-08-05 |
+> | DEL-05-04-REQ-018 | Runtime completion or terminal state MUST remain distinct from project-plan completion, deliverable lifecycle acceptance, approval, or professional reliance. | `docs/CONTRACT.md` K-FS-1, K-NOMEM-1, K-BIND-1; SCA-APP-004 |
+> | DEL-05-04-REQ-019 | Historical or observational controls that could mutate runtime/session state MUST be unavailable in the read-only replay lens, and a persistent action MUST return the operator to the primary live dialogue. | SCA-APP-004 selected concept |
 >
 
 ### CLM-011 — Standards
@@ -190,6 +204,8 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-042, SOW
 > | DEL-05-04-REQ-010 | Section 9 validation coverage includes `section9.session_event_replay` and `section9.sdk_session_link_resume`. |
 > | DEL-05-04-REQ-011 | Tool-result replay fixture confirms compact summary plus artifact link behavior. |
 > | DEL-05-04-REQ-013 | Handoff/review check confirms all replay parser, transcript model, route/component, and fixture path placeholders are filled with accepted ADQ-09 code/test locations. |
+> | DEL-05-04-REQ-014, DEL-05-04-REQ-015, DEL-05-04-REQ-019 | Selected-session tests prove replay is read-only, the primary live dialogue remains mounted, state/context/permissions do not transfer, historical mutation controls are unavailable, and return-to-primary restores the original dialogue. |
+> | DEL-05-04-REQ-016, DEL-05-04-REQ-017, DEL-05-04-REQ-018 | Projection tests cover exact source identifiers, attribution, stale/unknown/bounded/malformed disclosure, exact parentage, and separation of runtime state from project lifecycle and approval. |
 >
 > Minimum fixture coverage before closure includes success, failure, cancellation, interruption, malformed-tail diagnostics, legacy session reads, SDK transcript linkage, redaction behavior, and compact tool-result artifact links. ADQ-09 assigns the replay/transcript fixture paths: `frontend/src/__tests__/lib/session-events.test.ts`, `frontend/src/__tests__/lib/transcript-replay.test.ts`, `frontend/src/__tests__/api/harness/routes.test.ts`, and `frontend/src/__tests__/components/harness-stream-views.test.ts`. Source reread: `docs/SPEC.md` Sections 9.2 and 19.3; `docs/PRD.md` Section 12 validation IDs. Disposition: X-001 incorporated with implementation-specific names filled by ADQ-09.
 >
@@ -204,10 +220,11 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-042, SOW
 > - Transcript reconstruction model and interfaces: `frontend/src/lib/harness/transcript-replay.ts`.
 > - Replay API placement: `frontend/src/app/api/harness/session/[id]/events/route.ts`.
 > - Transcript UI placement: `frontend/src/components/shell/transcript-stream-view.tsx` and the Workspace sidebar Transcript tab.
+> - Woven Dialogue selected-session replay lens and Agent projection component locations: TBD until the governed implementation tranche selects paths.
 > - Transcript, malformed-tail, SDK-linkage, redaction, and artifact-link fixtures: `frontend/src/__tests__/lib/transcript-replay.test.ts`, `frontend/src/__tests__/lib/session-events.test.ts`, `frontend/src/__tests__/api/harness/routes.test.ts`, and `frontend/src/__tests__/components/harness-stream-views.test.ts`.
 > - Source-state note: D-APP-38 authority corpus v2 reports all DEL-05-04 references as `MATCH`.
 
-- **AC-001** — The runtime replay and transcript view preserves canonical Chirality event precedence, valid-event ordering, malformed-tail tolerance, redaction, adapter-only SDK linkage, compact artifact references, and recorded implementation and fixture paths.
+- **AC-001** — The runtime replay, dialogue, and Agent transcript projection preserves canonical Chirality event precedence, valid-event ordering, malformed-tail tolerance, redaction, adapter-only SDK linkage, compact artifact references, exact evidence-conditioned parentage, explicit stale/unknown/bounded state, and strict read-only separation from the mounted primary live dialogue.
 
 ## Production and Verification Method — Praxeology
 
@@ -290,6 +307,13 @@ This Scope of Work defines `DEL-05-04` in service of project scope [SOW-042, SOW
 > 9. **Record accepted implementation locations.**
 >    - Record the replay parser module path, transcript view model/interface name, route or component placement, transcript reconstruction fixture path, malformed-tail fixture path, SDK-linkage fixture path, redaction fixture path, and tool-result artifact fixture path.
 >    - Source reread: `docs/SPEC.md` Sections 8.2, 8.4, 9.2, and 19.3; decomposition DEL-05-04 row. Disposition: D-001 incorporated and filled by ADQ-09 code discovery/implementation.
+>
+> 10. **Implement and verify the Woven Dialogue replay projection.**
+>    - Keep the primary live dialogue mounted when another recorded session is selected.
+>    - Render the selected session as live, replayed, bounded, stale, malformed, unavailable, or unknown according to canonical evidence.
+>    - Disable mutation controls for replay-only sessions and provide a persistent return-to-primary action.
+>    - Prove draft, attachment, explicit context, permission, interruption, and session identity do not transfer.
+>    - Consume exact DEL-08-05 parentage/return references when present and never infer missing relationships.
 >
 
 ### CLM-018 — Verification
