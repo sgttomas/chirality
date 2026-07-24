@@ -392,7 +392,7 @@ async function runChild() {
         updatedSession.engineSelection?.adapterId === 'pi' &&
         updatedSession.engineSelection?.providerId === 'omlx' &&
         updatedSession.engineSelection?.model === modelId &&
-        updatedSession.adapterSession?.packageVersion === '0.80.10' &&
+        updatedSession.adapterSession?.packageVersion === '0.82.0' &&
         !allEvidenceText.includes('KNOWN_PACKAGED_FIXTURE') &&
         !allEvidenceText.includes(apiKey)
           ? 'PASS'
@@ -463,7 +463,7 @@ async function runParent() {
     status:
       exitCode === 0 &&
       childResult?.status === 'PASS' &&
-      childResult?.packageVersion === '0.80.10' &&
+      childResult?.packageVersion === '0.82.0' &&
       childResult?.activeTools?.length === 1 &&
       childResult?.activeTools?.[0] === 'read_file' &&
       childResult?.toolCalls?.length === 1 &&

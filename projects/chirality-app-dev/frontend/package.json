@@ -1,6 +1,6 @@
 {
   "name": "chirality-frontend",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -44,9 +44,12 @@
     "@chirality/runtime-contracts": "file:../../../runtime/packages/contracts",
     "@chirality/runtime-core": "file:../../../runtime/packages/core",
     "@chirality/runtime-daemon": "file:../../../runtime/packages/daemon",
-    "@earendil-works/pi-coding-agent": "0.80.10",
+    "@earendil-works/pi-agent-core": "0.82.0",
+    "@earendil-works/pi-ai": "0.82.0",
+    "@earendil-works/pi-coding-agent": "0.82.0",
+    "@earendil-works/pi-tui": "0.82.0",
     "ansi_up": "^6.0.6",
-    "next": "^14.2.0",
+    "next": "15.5.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^10.1.0",
@@ -65,6 +68,16 @@
     "typescript": "^5.6.3",
     "vitest": "^2.1.8",
     "wait-on": "^8.0.1"
+  },
+  "overrides": {
+    "@hono/node-server": "2.0.11",
+    "body-parser": "2.3.0",
+    "brace-expansion": "5.0.8",
+    "fast-uri": "4.1.1",
+    "hono": "4.12.31",
+    "postcss": "8.5.22",
+    "protobufjs": "8.7.1",
+    "sharp": "0.35.3"
   },
   "engines": {
     "node": ">=22.19.0"

@@ -4,9 +4,9 @@ import { errorResponse, requireNonEmptyString } from '../../../../../../lib/harn
 import { getDaemonHarnessPort } from '../../../../../../lib/runtime-client/daemon-harness-port';
 
 type RouteContext = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 /**
@@ -17,7 +17,8 @@ type RouteContext = {
  */
 export async function GET(request: Request, context: RouteContext): Promise<Response> {
   try {
-    const sessionId = requireNonEmptyString(context.params.id, 'id');
+    const { id } = await context.params;
+    const sessionId = requireNonEmptyString(id, 'id');
     // The id is joined into an on-disk events path; reject separators / `..`
     // so a crafted id can never traverse outside the session store.
     if (sessionId.includes('/') || sessionId.includes('\\') || sessionId.includes('..')) {

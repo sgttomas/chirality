@@ -210,18 +210,18 @@ describe('Harness API baseline routes', () => {
     expect(listBody.sessions.map((item) => item.sessionId)).toContain(createBody.session.sessionId);
 
     const getResponse = await routes.idRoute.GET(new Request('http://localhost'), {
-      params: { id: createBody.session.sessionId }
+      params: Promise.resolve({ id: createBody.session.sessionId })
     });
     expect(getResponse.status).toBe(200);
 
     const deleteResponse = await routes.idRoute.DELETE(new Request('http://localhost'), {
-      params: { id: createBody.session.sessionId }
+      params: Promise.resolve({ id: createBody.session.sessionId })
     });
     expect(deleteResponse.status).toBe(200);
     expect(await deleteResponse.json()).toEqual({ ok: true });
 
     const getAfterDelete = await routes.idRoute.GET(new Request('http://localhost'), {
-      params: { id: createBody.session.sessionId }
+      params: Promise.resolve({ id: createBody.session.sessionId })
     });
     expect(getAfterDelete.status).toBe(404);
     expect(await getAfterDelete.json()).toMatchObject({
@@ -1284,7 +1284,7 @@ AGENT_TYPE: 2
 
     const replayResponse = await routes.eventsRoute.GET(
       new Request(`http://localhost/api/harness/session/${body.session.sessionId}/events`),
-      { params: { id: body.session.sessionId } }
+      { params: Promise.resolve({ id: body.session.sessionId }) }
     );
     const replay = (await replayResponse.json()) as {
       malformedLineCount: number;
@@ -1557,7 +1557,7 @@ describe('session events replay (D-APP-22)', () => {
 
     const response = await routes.eventsRoute.GET(
       new Request(`http://localhost/api/harness/session/${sessionId}/events`),
-      { params: { id: sessionId } }
+      { params: Promise.resolve({ id: sessionId }) }
     );
 
     expect(response.status).toBe(200);
@@ -1598,7 +1598,7 @@ describe('session events replay (D-APP-22)', () => {
 
     const response = await routes.eventsRoute.GET(
       new Request(`http://localhost/api/harness/session/${sessionId}/events`),
-      { params: { id: sessionId } }
+      { params: Promise.resolve({ id: sessionId }) }
     );
 
     expect(response.status).toBe(200);
@@ -1617,7 +1617,7 @@ describe('session events replay (D-APP-22)', () => {
 
     const response = await routes.eventsRoute.GET(
       new Request('http://localhost/api/harness/session/x/events'),
-      { params: { id: '../../etc' } }
+      { params: Promise.resolve({ id: '../../etc' }) }
     );
 
     expect(response.status).toBe(400);

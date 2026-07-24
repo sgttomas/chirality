@@ -21,7 +21,7 @@ import {
 } from './pi-event-mapper';
 
 export const PI_CODING_AGENT_PACKAGE_NAME = '@earendil-works/pi-coding-agent';
-export const PI_CODING_AGENT_PACKAGE_VERSION = '0.80.10';
+export const PI_CODING_AGENT_PACKAGE_VERSION = '0.82.0';
 
 export type PiOmlxModelConfiguration = {
   id: string;
@@ -204,7 +204,7 @@ function isOmlxRequest(input: Parameters<typeof fetch>[0]): boolean {
 }
 
 /**
- * Pi 0.80.10's OpenAI transport does not expose the SDK fetch option. Guard the
+ * Pi 0.82.0's OpenAI transport does not expose the SDK fetch option. Guard the
  * process fetch narrowly so a loopback model server cannot redirect a prompt or
  * bearer credential off the approved oMLX endpoint.
  */

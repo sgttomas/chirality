@@ -1,6 +1,6 @@
 # Pi third-party notice
 
-The bounded local-engine adapter includes these packages at version `0.80.10`:
+The bounded local-engine adapter includes these packages at version `0.82.0`:
 
 - `@earendil-works/pi-coding-agent`
 - `@earendil-works/pi-agent-core`
@@ -31,7 +31,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Source: `https://github.com/earendil-works/pi/blob/v0.80.10/LICENSE`
+Source: `https://github.com/earendil-works/pi/blob/v0.82.0/LICENSE`
 
 This notice covers the four Pi-owned packages above. A release/distribution
 tranche must additionally generate and verify notices for the complete packaged
