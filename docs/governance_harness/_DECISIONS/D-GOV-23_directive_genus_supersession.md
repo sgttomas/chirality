@@ -3,8 +3,8 @@
 Status:       RULED
 HumanRuling:  "I rule APPROVED for O-A against candidate SHA 65bb96378428a86ed8ab8581149ead056d756789" (owner, 2026-07-25)
 AcceptedCandidateSHA: 65bb96378428a86ed8ab8581149ead056d756789
-PublicationSHA: TBD (this record's publication commit, which also applies Annex A; backfilled per the `f1549afb1` precedent)
-EffectiveSHA: TBD (merge of the publication PR into `main`; human merge gate; backfilled per the same precedent)
+PublicationSHA: 9a28c8d378e8d0c949f2426b5c50c97366268b60 (this record's publication commit, which also applies Annex A; backfilled by the obligations-(b)/(c) tranche per the `f1549afb1` precedent)
+EffectiveSHA: b6ae1d5d879a1205179ecedc71c8eecac333443e (merge of PR #342 into `main`, 2026-07-25, performed at explicit owner direction; backfilled by the same tranche)
 Date:         2026-07-25
 FramedBy:     Agent-drafted (Agent 0, `HELP_HUMAN` posture) executing D-GOV-22 packet §5 item 3 at explicit owner direction ("proceed with obligation (a)", 2026-07-25, in-session)
 AcceptedBasis: `main@08f526277` (the D-GOV-22 EffectiveSHA; Annex A.1 verified byte-exact against that state)
