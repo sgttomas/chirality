@@ -72,6 +72,108 @@ export interface RuntimeLaunchAgentOptions {
 const DEFAULT_KEEP_ALIVE: LaunchAgentKeepAlivePolicy = "crash-only";
 const DEFAULT_THROTTLE_INTERVAL_SECONDS = 10;
 
+/**
+ * Environment variables that configure the managed job's posture.
+ *
+ * These exist so a *caller* — the desktop app's generated launcher, an isolated
+ * verification run, an operator shell — can select the posture without this
+ * package carrying any project-specific constant (D-GOV-20). Every name belongs
+ * to this package; nothing here knows about a particular app.
+ *
+ * `CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL` is the load-bearing one for safety: it
+ * governs the plist filename, the plist `Label`, and the `gui/<uid>/<label>`
+ * service name that `bootstrap`/`kickstart`/`bootout`/`print` address. Without it
+ * every CLI invocation resolves to the default label, so a fully isolated
+ * environment (own `HOME`, own `CHIRALITY_USER_DATA`) still reported — and could
+ * have booted out or deleted — an operator's real job, because the launchd
+ * domain is per-uid and honours neither `HOME` nor `CHIRALITY_USER_DATA`.
+ */
+export const RUNTIME_LAUNCH_AGENT_ENV = {
+  label: "CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL",
+  keepAlive: "CHIRALITY_RUNTIME_KEEP_ALIVE",
+  runAtLoad: "CHIRALITY_RUNTIME_RUN_AT_LOAD",
+  throttleIntervalSeconds: "CHIRALITY_RUNTIME_THROTTLE_INTERVAL_SECONDS"
+} as const;
+
+/** Variable pinned into the job so the daemon shares the caller's runtime directory. */
+export const RUNTIME_USER_DATA_ENV = "CHIRALITY_USER_DATA";
+
+function parseBoolean(value: string): boolean | undefined {
+  const normalized = value.trim().toLowerCase();
+  if (["1", "true", "yes", "on"].includes(normalized)) {
+    return true;
+  }
+  if (["0", "false", "no", "off"].includes(normalized)) {
+    return false;
+  }
+  return undefined;
+}
+
+function parseKeepAlive(value: string): LaunchAgentKeepAlivePolicy | undefined {
+  const normalized = value.trim().toLowerCase();
+  return normalized === "always" || normalized === "crash-only" || normalized === "never"
+    ? normalized
+    : undefined;
+}
+
+/**
+ * Build job options from the environment, pinning `userDataDirectory`.
+ *
+ * Unrecognised or blank values are *omitted* rather than rejected, so each
+ * option falls back to the documented default and a typo can never stop the CLI
+ * from managing a job. `userDataDirectory` is always pinned because launchd jobs
+ * inherit almost nothing: an unpinned daemon resolves its own default, which for
+ * an Electron bundle is not the same directory this CLI resolves — the exact
+ * mismatch the pin exists to remove.
+ */
+export function resolveRuntimeLaunchAgentOptions(
+  environment: Readonly<Record<string, string | undefined>>,
+  userDataDirectory: string
+): RuntimeLaunchAgentOptions {
+  const options: RuntimeLaunchAgentOptions = {
+    environmentVariables: { [RUNTIME_USER_DATA_ENV]: resolve(userDataDirectory) }
+  };
+
+  const label = environment[RUNTIME_LAUNCH_AGENT_ENV.label]?.trim();
+  if (label) {
+    options.label = label;
+  }
+
+  const keepAliveRaw = environment[RUNTIME_LAUNCH_AGENT_ENV.keepAlive];
+  const keepAlive = keepAliveRaw === undefined ? undefined : parseKeepAlive(keepAliveRaw);
+  if (keepAlive !== undefined) {
+    options.keepAlive = keepAlive;
+  }
+
+  // The job's environment describes the job. Pinning the effective label and
+  // restart posture — not just the runtime directory — makes the installed job
+  // self-describing, so a process the daemon starts (see the GUI spawned on
+  // `activate`) inherits the *same* label instead of falling back to the default.
+  // Without this, an isolated run driven through the CLI would install an
+  // isolated job whose children silently addressed the operator's job.
+  options.environmentVariables = {
+    ...options.environmentVariables,
+    [RUNTIME_LAUNCH_AGENT_ENV.label]: options.label ?? RUNTIME_LAUNCH_AGENT_LABEL,
+    [RUNTIME_LAUNCH_AGENT_ENV.keepAlive]: options.keepAlive ?? DEFAULT_KEEP_ALIVE
+  };
+
+  const runAtLoadRaw = environment[RUNTIME_LAUNCH_AGENT_ENV.runAtLoad];
+  const runAtLoad = runAtLoadRaw === undefined ? undefined : parseBoolean(runAtLoadRaw);
+  if (runAtLoad !== undefined) {
+    options.runAtLoad = runAtLoad;
+  }
+
+  const throttleRaw = environment[RUNTIME_LAUNCH_AGENT_ENV.throttleIntervalSeconds]?.trim();
+  if (throttleRaw) {
+    const throttle = Number.parseInt(throttleRaw, 10);
+    if (Number.isFinite(throttle) && throttle >= 0) {
+      options.throttleIntervalSeconds = throttle;
+    }
+  }
+
+  return options;
+}
+
 function xml(value: string): string {
   return value
     .replaceAll("&", "&amp;")
@@ -249,19 +351,34 @@ export class LaunchAgentManager {
     );
   }
 
+  /**
+   * Load the job and make sure it is running.
+   *
+   * `bootstrap` on a not-yet-loaded job already starts it when `RunAtLoad` is
+   * set, so the follow-up `kickstart -k` is not merely redundant: it is a
+   * *second* launch inside `ThrottleInterval`, which makes launchd hold the
+   * request for the remainder of the window (measured at 10.07 s for the default
+   * 10 s interval) and doubles the job's launch count. `kickstart` is therefore
+   * reserved for the two cases that genuinely need it — an already-loaded job
+   * (this is the restart path) and a job whose `RunAtLoad` is off.
+   */
   async start(): Promise<void> {
     const bootstrap = await this.runCommand("launchctl", [
       "bootstrap",
       this.domain,
       this.plistPath
     ]);
+    const freshlyLoaded = bootstrap.exitCode === 0;
     if (
-      bootstrap.exitCode !== 0 &&
+      !freshlyLoaded &&
       !/already loaded|service already loaded|bootstrap failed: 5/iu.test(
         `${bootstrap.stdout}\n${bootstrap.stderr}`
       )
     ) {
       throw new Error(bootstrap.stderr.trim() || "Unable to bootstrap runtime LaunchAgent");
+    }
+    if (freshlyLoaded && (this.options.runAtLoad ?? true)) {
+      return;
     }
     const start = await this.runCommand("launchctl", ["kickstart", "-k", this.service]);
     if (start.exitCode !== 0) {

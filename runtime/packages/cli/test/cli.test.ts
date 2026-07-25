@@ -1,13 +1,14 @@
 import { mkdtemp, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import type { RuntimeStream } from "@chirality/runtime-client";
 import type { RuntimeSseFrame } from "@chirality/runtime-contracts";
 import {
   LaunchAgentManager,
   RUNTIME_LAUNCH_AGENT_LABEL,
-  renderRuntimeLaunchAgent
+  renderRuntimeLaunchAgent,
+  resolveRuntimeLaunchAgentOptions
 } from "../src/launch-agent.js";
 import {
   runCli,
@@ -333,15 +334,14 @@ describe("chirality CLI", () => {
     expect(source).toContain("<key>ThrottleInterval</key>");
     expect(source).not.toMatch(/model|activate|omlx/iu);
 
+    // `bootstrap` on a fresh job already starts it under RunAtLoad, so no
+    // kickstart follows: a second launch inside ThrottleInterval would stall the
+    // call for the rest of the window and double the job's launch count.
     await manager.start();
     expect(calls).toEqual([
       {
         executable: "launchctl",
         args: ["bootstrap", "gui/501", manager.plistPath]
-      },
-      {
-        executable: "launchctl",
-        args: ["kickstart", "-k", "gui/501/com.chirality.runtime"]
       }
     ]);
   });
@@ -455,8 +455,189 @@ describe("chirality CLI", () => {
     await manager.stop();
     expect(calls.map((call) => call.args)).toEqual([
       ["bootstrap", "gui/501", manager.plistPath],
-      ["kickstart", "-k", "gui/501/com.chirality.runtime.isolated"],
       ["bootout", "gui/501/com.chirality.runtime.isolated"]
     ]);
+  });
+
+  it("kickstarts only when bootstrap did not itself start the job", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-launch-agent-kickstart-"));
+    temporaryDirectories.push(root);
+    const paths = {
+      launchAgentsDirectory: join(root, "LaunchAgents"),
+      runtimeDirectory: join(root, "user-data", "runtime")
+    };
+
+    // Case 1: already loaded. `bootstrap` fails with launchctl's already-loaded
+    // signal, so a kickstart is the only thing that can (re)start the job.
+    const alreadyLoadedCalls: Array<readonly string[]> = [];
+    const alreadyLoaded = new LaunchAgentManager(
+      paths,
+      async (_executable, args) => {
+        alreadyLoadedCalls.push(args);
+        return args[0] === "bootstrap"
+          ? { exitCode: 5, stdout: "", stderr: "Bootstrap failed: 5: Input/output error" }
+          : { exitCode: 0, stdout: "ok", stderr: "" };
+      },
+      501
+    );
+    await alreadyLoaded.start();
+    expect(alreadyLoadedCalls).toEqual([
+      ["bootstrap", "gui/501", alreadyLoaded.plistPath],
+      ["kickstart", "-k", "gui/501/com.chirality.runtime"]
+    ]);
+
+    // Case 2: RunAtLoad off. A fresh bootstrap loads the job but launchd will not
+    // run it, so the kickstart is genuinely required.
+    const manualCalls: Array<readonly string[]> = [];
+    const manual = new LaunchAgentManager(
+      paths,
+      async (_executable, args) => {
+        manualCalls.push(args);
+        return { exitCode: 0, stdout: "ok", stderr: "" };
+      },
+      501,
+      { runAtLoad: false }
+    );
+    await manual.start();
+    expect(manualCalls).toEqual([
+      ["bootstrap", "gui/501", manual.plistPath],
+      ["kickstart", "-k", "gui/501/com.chirality.runtime"]
+    ]);
+  });
+
+  it("still fails loudly when bootstrap fails for a reason other than already-loaded", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-launch-agent-bootstrap-fail-"));
+    temporaryDirectories.push(root);
+    const manager = new LaunchAgentManager(
+      {
+        launchAgentsDirectory: join(root, "LaunchAgents"),
+        runtimeDirectory: join(root, "user-data", "runtime")
+      },
+      async () => ({ exitCode: 1, stdout: "", stderr: "Operation not permitted" }),
+      501
+    );
+
+    await expect(manager.start()).rejects.toThrow("Operation not permitted");
+  });
+});
+
+describe("resolveRuntimeLaunchAgentOptions", () => {
+  const userData = "/Users/example/Library/Application Support/chirality-frontend";
+
+  it("pins a self-describing job environment: runtime directory, label and posture", () => {
+    // launchd inherits almost nothing, and an unpinned Electron daemon resolves a
+    // different default userData than this CLI does — the mismatch the pin removes.
+    // Label and posture are pinned too so a process the daemon starts inherits the
+    // same job identity rather than falling back to the default label.
+    expect(resolveRuntimeLaunchAgentOptions({}, userData)).toEqual({
+      environmentVariables: {
+        CHIRALITY_USER_DATA: userData,
+        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime",
+        CHIRALITY_RUNTIME_KEEP_ALIVE: "crash-only"
+      }
+    });
+  });
+
+  it("pins the isolated label into the job so children cannot escape isolation", () => {
+    const options = resolveRuntimeLaunchAgentOptions(
+      {
+        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime.tranchetest",
+        CHIRALITY_RUNTIME_KEEP_ALIVE: "always"
+      },
+      userData
+    );
+
+    expect(options.environmentVariables).toEqual({
+      CHIRALITY_USER_DATA: userData,
+      CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime.tranchetest",
+      CHIRALITY_RUNTIME_KEEP_ALIVE: "always"
+    });
+  });
+
+  it("resolves a relative runtime directory so a plist never carries one", () => {
+    const options = resolveRuntimeLaunchAgentOptions({}, "relative/user-data");
+    expect(options.environmentVariables?.CHIRALITY_USER_DATA).toBe(
+      resolve("relative/user-data")
+    );
+  });
+
+  it("reads the full posture from the environment", () => {
+    expect(
+      resolveRuntimeLaunchAgentOptions(
+        {
+          CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: " com.chirality.runtime.tranchetest ",
+          CHIRALITY_RUNTIME_KEEP_ALIVE: "ALWAYS",
+          CHIRALITY_RUNTIME_RUN_AT_LOAD: "yes",
+          CHIRALITY_RUNTIME_THROTTLE_INTERVAL_SECONDS: "30"
+        },
+        userData
+      )
+    ).toEqual({
+      label: "com.chirality.runtime.tranchetest",
+      keepAlive: "always",
+      runAtLoad: true,
+      throttleIntervalSeconds: 30,
+      environmentVariables: {
+        CHIRALITY_USER_DATA: userData,
+        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime.tranchetest",
+        CHIRALITY_RUNTIME_KEEP_ALIVE: "always"
+      }
+    });
+  });
+
+  it("accepts the documented false spellings for RunAtLoad", () => {
+    for (const value of ["0", "false", "no", "OFF"]) {
+      expect(
+        resolveRuntimeLaunchAgentOptions({ CHIRALITY_RUNTIME_RUN_AT_LOAD: value }, userData)
+          .runAtLoad
+      ).toBe(false);
+    }
+  });
+
+  it("omits unrecognised or blank values so each option keeps its default", () => {
+    // A typo must never stop the CLI from managing a job.
+    const options = resolveRuntimeLaunchAgentOptions(
+      {
+        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "   ",
+        CHIRALITY_RUNTIME_KEEP_ALIVE: "sometimes",
+        CHIRALITY_RUNTIME_RUN_AT_LOAD: "perhaps",
+        CHIRALITY_RUNTIME_THROTTLE_INTERVAL_SECONDS: "soon"
+      },
+      userData
+    );
+
+    expect(options).not.toHaveProperty("label");
+    expect(options).not.toHaveProperty("keepAlive");
+    expect(options).not.toHaveProperty("runAtLoad");
+    expect(options).not.toHaveProperty("throttleIntervalSeconds");
+  });
+
+  it("rejects a negative throttle interval", () => {
+    expect(
+      resolveRuntimeLaunchAgentOptions(
+        { CHIRALITY_RUNTIME_THROTTLE_INTERVAL_SECONDS: "-5" },
+        userData
+      )
+    ).not.toHaveProperty("throttleIntervalSeconds");
+  });
+
+  it("renders the intended plist end to end from environment alone", () => {
+    const options = resolveRuntimeLaunchAgentOptions(
+      {
+        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: "com.chirality.runtime",
+        CHIRALITY_RUNTIME_KEEP_ALIVE: "always"
+      },
+      userData
+    );
+    const source = renderRuntimeLaunchAgent({
+      ...options,
+      executablePath: "/Applications/Chirality.app/Contents/MacOS/Chirality",
+      runtimeDirectory: `${userData}/runtime`
+    });
+
+    expect(source).toContain("<key>KeepAlive</key>\n  <true/>");
+    expect(source).toContain("<key>RunAtLoad</key>\n  <true/>");
+    expect(source).toContain("<key>CHIRALITY_USER_DATA</key>");
+    expect(source).not.toContain("<key>SuccessfulExit</key>");
   });
 });
