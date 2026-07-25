@@ -2,8 +2,8 @@
 doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
-status: draft_gate2
-revision: "0.3"
+status: draft_gate3
+revision: "0.4"
 date: 2026-07-24
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
@@ -24,8 +24,8 @@ source_corpus: projects/pec/docs/PRD.md (v2.0, adopted 2026-07-24, D-PEC-58)
 | Gate | Phase | State | Owner confirmation (verbatim) | Date |
 |---|---|---|---|---|
 | 1 | Intake | **CONFIRMED** | "Gate 1 confirmed — proceed to Phase 2." | 2026-07-24 |
-| 2 | SSOW | **PRESENTED** | — | 2026-07-24 |
-| 3 | Objectives | not reached | — | — |
+| 2 | SSOW | **CONFIRMED** | "Gate 2 confirmed — proceed to Phase 3 based on acceptance of your recommendations for OI-010 and OI-011" | 2026-07-24 |
+| 3 | Objectives | **PRESENTED** | — | 2026-07-24 |
 | 4 | Packages | not reached | — | — |
 | 5 | Deliverables | not reached | — | — |
 | 6 | Coverage + Context Budget | not reached | — | — |
@@ -230,7 +230,7 @@ IDs are append-only, so family ordering is not semantic.
 | SOW-061 | IN | Verify overlap warnings fire on seeded conflicts (P3 exit test) | §12 P3 | Tests SOW-031 |
 | SOW-062 | IN | Verify presence TTL honesty under kill/crash tests (P4 exit test) | §12 P4 | Tests SOW-030 |
 | SOW-063 | IN | Demonstrate stream-loss recovery by reconciliation (P4 exit test) | §12 P4 | Tests SOW-038 |
-| SOW-064 | IN | Bootstrap: the first loop the P1 reconciler ingests is PEC v2's own build | §12 | First validation of the thesis; §12-internal tension with the P1 table row is OI-010, owner resolution requested |
+| SOW-064 | IN | Bootstrap: the first loop the P1 reconciler ingests is PEC v2's own build | §12 | First validation of the thesis; §12-internal tension resolved at Gate 2 (OI-010, DL-10) |
 | SOW-084 | IN | Measure collision incidents: write-scope/branch conflicts discovered at Git time rather than surfaced in advance, per week of concurrent operation | §11.3 | Measures effectiveness of SOW-031 |
 | SOW-085 | IN | Log orientation-read and dashboard-consultation activity sufficient to evaluate the §12 P2 exit test ("owner uses PEC in place of manual Step 0") and limb 2 of the §11 falsification clause | §12 P2, §11 | System-behavior observation per §11 preamble; grounded in SOW-057 self-observability |
 | SOW-087 | IN | Reimplement the shared-runtime client seam concept against v2 entities | §13, D-PEC-56 | Named carry-forward: "Concept carries directly; reimplemented against v2 entities" |
@@ -297,7 +297,30 @@ presence surface with pre-Git collision surfacing; one live owner view;
 graceful-absence deletability proven continuously; measured adoption and
 parity keeping the falsification clause honest.
 
-## 3. Objectives (Phase 3) — not started
+## 3. Objectives (Phase 3)
+
+Derived from PRD §3 (product outcomes, one objective each) and §11
+(measurement/falsification posture, one objective). No objective is
+invented beyond those sources. Each is testable through the mapped scope
+items; the §11/§12 measurement items (SOW-058..063, 084, 085) are the
+test instruments.
+
+| ObjectiveID | Statement | SourceRef | Mapped Scope Items (best-effort) |
+|---|---|---|---|
+| OBJ-001 | Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation | §3.1 | SOW-004..009, SOW-041, SOW-043; instruments: SOW-058, SOW-059 |
+| OBJ-002 | Staleness is detected structurally by SHA comparison, never by judgment | §3.2 | SOW-006, SOW-018, SOW-019; supported by SOW-005 |
+| OBJ-003 | Concurrent sessions have a declared, durable surface for presence and status; write-scope collisions are surfaced before they land in Git | §3.3 | SOW-002, SOW-026..032, SOW-039, SOW-049; instruments: SOW-061, SOW-084 |
+| OBJ-004 | The human owner has one live view: loops, gates, lifecycle census, decisions waiting on them, and who is working where | §3.4 | SOW-024, SOW-045..051; instrument: SOW-085 |
+| OBJ-005 | Everything PEC holds can be deleted at any moment without blocking any governed act | §3.5 | SOW-010, SOW-055; bound by C1/C2 across all items |
+| OBJ-006 | The product thesis remains measurable and falsifiable: adoption, parity, defect, and collision metrics are gathered in system behavior and the §11 falsification clause stays armed | §11 | SOW-020, SOW-057..060, SOW-084, SOW-085 |
+
+**Mapping notes:** no unmapped objectives. Ingest/bridge items
+(SOW-033..039) serve OBJ-001/OBJ-003 freshness indirectly through
+PEC-K-07 and are intentionally not force-mapped; parser items
+(SOW-011..017) underlie OBJ-001/OBJ-002 through the record tier
+(SOW-001). Deferred/OUT and TBD items map to no objective by design.
+Full ScopeItem→Objective assignments land in `ScopeLedger.csv` at
+Phase 4–5; this table is the objective-side view.
 
 ## 4. Packages (Phase 4) — not started
 
@@ -348,8 +371,8 @@ parity keeping the falsification clause honest.
 | OI-007 | SOW-081 | §16.7 name re-expansion undecided | §16 ruling |
 | OI-008 | SOW-082 | §16.8 receipt-contract adoption by non-app-dev ledgers undecided | §16 ruling (per-loop) |
 | OI-009 | SOW-083 | §16.9 event-contract home and API transport undecided | §16 ruling |
-| OI-010 | SOW-064 | **PRD §12 internal tension:** the P1 table row scopes the reconciler to "one loop (piping or root)" while §12's closing paragraph (and the standing workplan) say the first ingested loop is PEC v2's own build. Not silently reconciled here | Owner resolution at Gate 2+ |
-| OI-011 | C3, C15 | **Possible PRD tension:** PEC-K-03 lists "session start" among polling moments; §5 says orientation is fetched "when scope begins to exist, not at session start". Proposed reading: session start is a polling moment only when the session starts with scope (e.g., an Agent 0 loop session); unscoped sessions poll at the conversation→workbench transition | Owner confirmation of the reading |
+| OI-010 | SOW-064 | **RESOLVED at Gate 2 (2026-07-24):** the §12 closing paragraph governs — the first loop the P1 reconciler ingests is PEC v2's own build (bootstrap as thesis validation); the P1 table's "(piping or root)" parenthetical does not constrain the first-loop choice. Owner accepted the recommended reading in the Gate 2 confirmation (DL-10) | Closed |
+| OI-011 | C3, C15 | **RESOLVED at Gate 2 (2026-07-24):** session start is a polling moment only when the session starts with scope (e.g., an Agent 0 loop session); unscoped sessions poll at the conversation→workbench transition. Owner accepted the recommended reading in the Gate 2 confirmation (DL-10) | Closed |
 
 ## 11. Decision Log
 
@@ -364,6 +387,7 @@ parity keeping the falsification clause honest.
 | DL-7 | 2026-07-24 | PEC-K invariants and governance rulings are carried as constraints (C1–C15), not scope items, except where they require built or verified behavior (e.g., SOW-025, SOW-055, SOW-056) | Avoids double-counting cross-cutting constraints in coverage arithmetic while keeping buildable obligations countable |
 | DL-8 | 2026-07-24 | IN/OUT twinning convention: a §4.2 boundary row stays OUT as the boundary record; the corresponding built/verified obligation is a separate IN item stating enforcement or verification, never the boundary itself. Pairs: SOW-025↔SOW-066, SOW-056↔SOW-073. Phase 6 telemetry counts rows as written; twins are distinct statements, not duplicates | Keeps "scope item = unit of coverage checking" coherent while satisfying both the boundary record and the buildable-obligation record |
 | DL-9 | 2026-07-24 | Adversarial verification (opus-5, 16 confirmed defects) appended SOW-084..092, C15, OI-001..011, and the §9/§2 corrections; IDs are append-only and family ordering is not semantic (I5) | Notable: §11.3 and §12-P2 obligations had been dropped; PEC-K-11 unrepresented; `PEC-PKG-009` provenance was v0.4, not v1.0; `WORK_GRAPH.json` was routed to the wrong entity; two PRD-internal tensions surfaced as OI-010/011 rather than silently reconciled |
+| DL-10 | 2026-07-24 | Owner resolved OI-010 (first P1 loop = PEC v2's own build; §12 closing paragraph governs over the P1 table parenthetical) and OI-011 (session-start polling applies only to sessions that start with scope) at Gate 2 | Gate 2 confirmation verbatim in the Gate Log: "…based on acceptance of your recommendations for OI-010 and OI-011" |
 
 ## Companion Inventory
 
