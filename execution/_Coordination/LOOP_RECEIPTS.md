@@ -951,3 +951,41 @@
   preflight) — the sole remaining open root-loop lane before the
   D-GOV-21 §6 sequence can advance; export-staging regeneration
   DEFERRED.
+
+### Receipt 45 — 2026-07-25 — Lane B executed: §7 preflight + guard capability G1–G4 (candidate tranche)
+
+- Owner act of record (in-session, 2026-07-25): "Merge PR #345 and proceed
+  with Lane B." PR #345 merged (`ba2b80bf2`); C-2/C-4 corrections live.
+- **§7 preflight (N0, Agent 0):** scratch `PKG-00_Scratch_Preflight`
+  skeleton materialized in a throwaway worktree (never committed,
+  destroyed after); production CI battery + standalone validators run
+  against it. Finding confirmed (D-GOV-21 §5.1): only G0 and its own
+  live-state test detect root materialization — 311 practitioner-harness
+  tests, self-check, path anchors, and the skill/agent/entrypoint
+  validators are all blind. G0's BLOCK recorded as the fence working as
+  designed. Evidence:
+  `AgentRuns/ROOT-LANE-B-20260725/evidence/PREFLIGHT_REPORT.md`.
+- **Guard capability (N1, ephemeral Agent 2, `opus-5`):** G1
+  `validate_root_harness_adapter.py`, G2
+  `validate_root_surface_ownership.py`, G3
+  `validate_root_work_graph_dispatch.py`, G4
+  `validate_instruction_tranche_manifest.py` + four test suites (100
+  tests) + CI wiring + the Lane B tranche manifest (G4 applied to
+  itself). All PASS-idle on the clean tree; guard state deliberately not
+  instantiated (Project Setup's act); IDs match G0's expectations.
+- **Fan-in V1 ACCEPTED:** scope held; battery green (233 validation +
+  311 harness tests; all guards + G0 + path anchors + self-check exit 0).
+  Agent 0 closed at fan-in: M6 pin survey → manifest disposition
+  `none-required` (no loop pins the touched surfaces); `tools/REGISTRY.md`
+  rows for G1–G4 **and G0** (a pre-existing registration gap). Design
+  dispositions and carried open items:
+  `AgentRuns/ROOT-LANE-B-20260725/returns/N1_RETURN.md`.
+- **Gate:** this tranche is an M2 governance action landing through a
+  human-gated PR with no self-merge — the owner merges. On merge, Lane B
+  closes and the D-GOV-21 §6 sequence stands at: steps 1–7 complete
+  (step 7 = D-GOV-22 adoption), step 8 (root decomposition from the
+  adopted PRD + root Project Setup) next, step 9 (materialization) behind
+  the §5.3 gate with full guard capability now in CI.
+- Open after this receipt: PR merge (owner); step-8 sequencing decision
+  (owner); carried open items in the N1 return incl. the CLAUDE.md
+  instruction-surface question; export-staging regeneration DEFERRED.

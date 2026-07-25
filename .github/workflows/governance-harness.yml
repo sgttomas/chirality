@@ -42,3 +42,23 @@ jobs:
         run: |
           python3 -m pytest tools/validation/test_validate_root_materialization_fence.py -q
           python3 tools/validation/validate_root_materialization_fence.py
+      # G1-G4: guard capability per D-GOV-21 §6 step 6. Capability only — guard
+      # state (adapter, ownership register, first accepted work graph) is
+      # instantiated later by root Project Setup, so each guard is PASS-idle on
+      # the clean tree. BLOCK findings exit nonzero and fail the run (D-GOV-02).
+      - name: G1 root harness adapter (D-GOV-21 §5.3; BLOCK fails the run)
+        run: |
+          python3 -m pytest tools/validation/test_validate_root_harness_adapter.py -q
+          python3 tools/validation/validate_root_harness_adapter.py
+      - name: G2 root surface-ownership register (D-GOV-21 §5.3; BLOCK fails the run)
+        run: |
+          python3 -m pytest tools/validation/test_validate_root_surface_ownership.py -q
+          python3 tools/validation/validate_root_surface_ownership.py
+      - name: G3 root work-graph pre-dispatch check (D-GOV-21 §5.3; BLOCK fails the run)
+        run: |
+          python3 -m pytest tools/validation/test_validate_root_work_graph_dispatch.py -q
+          python3 tools/validation/validate_root_work_graph_dispatch.py
+      - name: G4 instruction-surface tranche manifest (D-GOV-21 §5.3; BLOCK fails the run)
+        run: |
+          python3 -m pytest tools/validation/test_validate_instruction_tranche_manifest.py -q
+          python3 tools/validation/validate_instruction_tranche_manifest.py
