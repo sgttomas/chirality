@@ -513,10 +513,56 @@ incl. the two L deliverables surviving; supersession tooling
 values legal; Gate 2 contract outputs complete; fence 3 paths; md5s
 unchanged; §3/register agreement 9/4/12/9/2/9 and 10/4/13/9/2/9.
 
+**R-2b-g3 (2026-07-25, STEP 2b; refuters aecdbaa2131e10179
+[governance/warrants] and a2d9b9cd8c49b6c9e [arithmetic/simulation —
+independently applied the full amendment in scratch], both opus-5, on
+the Gate 3 drafting package).** 26 distinct findings (2 CRIT / 10 MAJ /
+14 MIN), all ACCEPTED at fan-in; revision relayed before presentation:
+G1 (CRIT): A008's "inside the window" claim false — front matter is not
+§3/§7/rev-history/mapping-notes; needs a dated §4.3 amendment (A007
+precedent); Q4 must carry that rider. G2=A-M1 (CRIT): exact text valid
+only under recommended Q1/Q2 answers ("OBJ-003/OBJ-006 unchanged" false
+under 3 of 5 alternatives; Q2-narrow erases the OBJ-002 edit); package
+must state non-recommended rulings force re-derivation + re-simulation
++ re-presentation. G3 (MAJ): DEL-10-03 HIGH unwarranted — SOW-055
+precedent tautological; K-AUTH-1 boundary stated by no §3 objective
+(the DL-14 abstention condition) → escalated to per-row ruling with
+honest framing. G4 (MAJ): DEL-08-02 is MEDIUM (Part-5 "six are
+HIGH/MEDIUM-HIGH" false on its face) and weakest on merits →
+escalated. G5 (MAJ): DEL-01-05 calibration inconsistent with row 1
+(same ADR-002 chain, different treatment) → aligned. G6=A-M2 (MAJ):
+A003d writes a false DL-14 citation into decomposition truth
+(ingest/bridge intentionality lives in §3 notes, not DL-14) → text
+fix. G7 (MAJ): Companion_Inventory/ContextBudgetQA Gate-3
+determinations absent (D-PEC-64 assigns them to Gate 3; SCA-001 had
+explicit sections) → added. G8 (MAJ): A006 defers _LATEST.md body past
+the approval gate vs SCA-001 full-text precedent → full successor text
+with marked to-be-measured slots. G9 (MAJ): Q2-narrow ambiguous on
+SOW-001 → both variants defined. G10 (MAJ): SOW-054 warrant truncated
+at the clause pointing to OBJ-002 ("incremental reconcile within
+seconds") → full quote + alternatives, escalated. G11 (MAJ): A005a
+(§11 Decision Log) outside the narrow §4.3 reading — one consistent
+reading applied; the Q4 dated amendment admits A005a + A008 together;
+A006's authority (§2.3/§3.2, outside byte-window) stated. MINs
+(G12–G18, A-M2..M8): duplicate Gate 3 heading; stale Gate 2 header;
+CSV row 3 non-deterministic ("optionally") → resolved post-Q3;
+DownstreamReruns SCOPE_CHANGE_POSTCHECK restored + NONE replaced;
+"retained verbatim" precision (substring survives, sentence edited);
+Explicit-unchanged-surfaces section added; simulation JSON provenance
+(md5 pins) added; Part-4/Part-5 cross-ref; §8:218 soft-wrap and
+§9.7:300 inserted-bold quote nits; SOW-038/DL-11 tension recorded;
+A008 DownstreamReruns aligned. Clean under attack (arithmetic refuter
+applied the amendment end-to-end): all 16 single-line + 2 multi-line
+old-text pairs byte-exact; union invariant 0 post; residue sets exact;
+20+17 rows only, two columns only; §3 per-objective sets exact
+(22/12/13/10/9/9 items, 20/12/12/10/7/9 dels); §7 metric 11 under
+every alternative; purpose test — wave unmapped 17→0, residue∩wave=∅;
+all 13 PRD warrants verbatim at anchor; I5 append-only held; CSV
+schema byte-identical to SCA-001; fence clean; md5s unchanged.
+
 **Future rounds:** R2 post-B1 (contract quality), R3 post-B2 (upstream
 citation), R4 pre-closure (numbers/receipt/pointer audit) — plus a
-refutation pass on the Gate-3 amendment text (STEP 2b) and on D-PEC-63
-draft v2 (STEP 3). Log all here.
+refutation pass on D-PEC-63 draft v2 (STEP 3). Log all here.
 
 ## §7 Basis freeze + git anchors + re-pin list
 

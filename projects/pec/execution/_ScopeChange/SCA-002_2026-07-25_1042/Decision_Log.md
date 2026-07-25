@@ -211,10 +211,75 @@ contradicted by precedent I had quoted in the same document, and an
 been measured. Gate 3 must measure every claim, cite the measurement, and
 check evidence already in hand for contradiction before presenting.
 
-### Gate 2 owner ruling
+### Gate 2 owner ruling — ACCEPTED 2026-07-25
 
-> _Pending. **Two** questions in `Impact_Assessment.md` §9 (C-4 withdrew the
-> third)._
+Owner (Ryan Tufts) in-session; relayed by Agent 0. Impact assessment
+**ACCEPTED**, both questions as recommended:
+
+| Q | Question | Owner's verbatim selection | Effect |
+|---|---|---|---|
+| 1 | Supersession — no `Supersession_Delta.csv` binding owed under O-A, conditional on Gate 3 attributions remaining PRD-consumptive | **"Accept"** | Condition discharged at Gate 3 — see `Amendment_Preview.md` Part 4. Gate 5 carries SCA-001's header-only map forward via `accumulate_supersession_map.py --allow-empty` |
+| 2 | `OI-B` — 64 `_REFERENCES.md` rev-1.1 pointers, fence-excluded | **"Record as deferred"** | Recorded in `Handoff_State.md` at Gate 5 as a deferred obligation owned by resumed `PROJECT_SETUP`. **No fence change** |
+
+Gate 2 closed. Gate 3 released; write scope still `_ScopeChange/**` only.
+
+---
+
+## Gate 3 — Amendment Approval
+
+**Opened:** 2026-07-25 · **Status:** drafted, awaiting owner approval
+**Outputs:** `Amendment_Preview.md`, `Amendment_Actions.csv`,
+`Gate3_Simulation.json` (all in this snapshot)
+
+### Agent-side resolutions
+
+| Ref | Decision | Rationale |
+|---|---|---|
+| D-14 | Attributions derived from **my own read of `projects/pec/docs/PRD.md`**, every warrant quoted verbatim with a line anchor | The ruled method is `SourceRef` → PRD row → objective. Paraphrasing the PRD would make the warrant unauditable; the owner must be able to check each quote against the source. |
+| D-15 | Four **register precedents** measured and used as attribution anchors | `SOW-010`→`OBJ-005` (rebuild/store cluster), `SOW-055`/`DEL-10-02`→`OBJ-005` (a PKG-10 *verification* deliverable maps to the objective its invariant serves, not to OBJ-006), `DEL-08-03/04`→`OBJ-001` (PKG-08 transport), `SOW-018/019`→`OBJ-002` (reconciler layer). Anchoring to accepted register facts beats inventing a fresh rationale per row. |
+| D-16 | Three rows presented as **genuinely ambiguous** with alternatives rather than given a confident single answer | `DEL-00-03` (LOW), `DEL-00-01` (MEDIUM), `DEL-08-01`/`SOW-003` (MEDIUM-HIGH). The PRD does not settle what an *authoring* deliverable "serves"; presenting a confident mapping would manufacture certainty the source does not support. |
+| D-17 | INDIRECT-8 recommended at the full `[OBJ-001, OBJ-002]` set, **with the narrower alternative stated and evidenced** | §3's derivation is explicit about the set, and applying it is faithful to accepted rationale. But my own measurement shows OBJ-002's register locus is the reconciler layer (`SOW-006/018/019`), which genuinely supports a parsers-are-`OBJ-001`-only reading. The owner should choose knowingly rather than inherit my preference. |
+| D-18 | A002 cells **derived** from A001 by the union invariant, never authored independently | Authoring both sides invites divergence. Deriving one from the other makes the invariant structurally true rather than checked after the fact. |
+| D-19 | `_LATEST.md` handoff-state **body** drafted only as shape, values deferred to Gate 5 | The body states measured facts (closure verdict, audit state, verification results). Those measurements do not exist until Gate 5. Drafting plausible values now would be invention. |
+| D-20 | Simulation run **in memory**, artifact written only inside the session workspace | Verifies the post-state without touching decomposition truth, honouring the Gate 3 write boundary. |
+
+### New finding at Gate 3
+
+| Ref | Finding | Disposition |
+|---|---|---|
+| `F-6` | **The ruled action register A001–A007 does not cover the document's own front matter.** Lines 6–8 and 11 carry `revision: "1.1"`, `date: 2026-07-24`, an `accepted:` line naming the SCA-001 successor, and `session_authorization` naming only SCA-001/D-PEC-61. If unamended, revision 1.2 ships **declaring itself revision 1.1**, contradicting both the amended §7 Revision row (A004) and `_LATEST.md` (A006). | Surfaced as proposed action **A008** with exact text, marked `PROPOSED - NOT YET RULED` in `Amendment_Actions.csv`. `MODIFY`-class and mechanically entailed by A004/A006, but **not** in the ruled register — so it is asked explicitly (Gate 3 Q4) rather than folded silently into A005. |
+
+### Supersession condition — discharged
+
+The Gate 2 acceptance was conditional on the Gate 3 attributions remaining
+PRD-consumptive. Tested against all drafted attributions: none asserts a fact
+absent from the PRD, contradicts a PRD statement, or changes a PRD authority
+fact; A007 corrects toward register truth; A003 **applies** the §3 parser
+derivation and retains the ingest/bridge and `SOW-063` clauses verbatim.
+**Re-affirmed: no binding owed.** Full analysis in `Amendment_Preview.md`
+Part 4. The re-affirmation holds under every alternative on the Gate 3 table.
+
+### Simulation — six checks, all pass
+
+Union invariant 0 violations file-wide · residue (11 IN + 9 deliverables)
+untouched and still unmapped, `OUT`/`TBD` byte-identical · all changed tokens
+match `^OBJ-[0-9]{3}$` after `;`-split · topology unchanged (94/71-14-9/64/11/6,
+S 28 M 34 L 2) · §4.3 window exactly 20 + 17 with `DEL-03-01` unchanged and
+`SOW-021` ⊆ `{OBJ-005}` · no column other than `ObjectiveIDs` /
+`SupportsObjectives` changed. Evidence: `Gate3_Simulation.json`.
+
+### Snapshot-artifact deferral discharged
+
+`Amendment_Actions.csv` was deferred at Gate 1 "until the action register
+finalizes". It is now written (8 rows, SCA-001 schema), with A008 flagged
+`PROPOSED - NOT YET RULED` so the file never implies approval the owner has
+not given. `Pre_Change_Coverage.json` remains deferred to pre-Gate-5.
+
+### Gate 3 owner ruling
+
+> _Pending. Five questions in `Amendment_Preview.md` Part 5 — Q1 (three
+> ambiguous attributions, per row), Q2 (INDIRECT-8 breadth), Q3 (§3 header
+> qualifier), Q4 (A008 front matter), Q5 (everything else as drafted)._
 
 ## Gate 3 — Amendment Approval
 
