@@ -5,8 +5,8 @@ HumanRuling:  "I rule APPROVED for O-A against candidate SHA 90fae458bf485412e9c
 AcceptedCandidateSHA: 90fae458bf485412e9c3a6295df193eb323c9774
 CandidateSubjectSHA: d9ea86f88504cb8d859a4cf3f042bac00d38fe57 (the commit containing the adopted Rev 5 PRD bytes; sha256 pins in the packet header)
 PR340MergeSHA: d0f128647b9fa1800a2d6eda09084f17bfa97d49 (merge of PR #340 into `main`, 2026-07-25, performed at explicit owner direction immediately before the ruling took effect on publication)
-PublicationSHA: TBD (this record's publication commit; backfilled in the implementation tranche per the `f1549afb1` backfill precedent)
-EffectiveSHA: TBD (merge of the publication PR into `main`; human merge gate; backfilled per the same precedent)
+PublicationSHA: c800631d59606e7b80c0c9f247ab867057ac543b (this record's publication commit; backfilled by the obligation-(a) tranche per the `f1549afb1` backfill precedent)
+EffectiveSHA: 08f52627718e8ad12b0e7eb5567adc8e60899229 (merge of PR #341 into `main`, 2026-07-25, performed at explicit owner direction; backfilled by the same tranche)
 Date:         2026-07-25
 FramedBy:     Agent-drafted (Agent 0, `HELP_HUMAN` posture) under the owner's Lane A direction, root-PRD inquiry session, 2026-07-25, after four adversarial-review cycles by an independent second agent and five in-session owner rulings (RD-1..RD-5); run record `execution/_Coordination/AgentRuns/ROOT-PRD-LANE-A-20260725/`
 AcceptedBasis: `d9ea86f88` (packet citations verified against that state)

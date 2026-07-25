@@ -812,3 +812,24 @@
   propagation survey; C-2 and C-4 correction proposals; Lane B (guard
   capability G1–G4 + §7 preflight) — the next open root-loop lane;
   export-staging regeneration remains DEFERRED.
+
+### Receipt 40 — 2026-07-25 — D-GOV-22 effective; obligation (a) candidate staged (D-GOV-23)
+
+- Owner act of record (in-session, 2026-07-25): "Merge PR #341 and proceed
+  with obligation (a)." PR #341 merged; **D-GOV-22 EffectiveSHA
+  `08f526277`**. PublicationSHA `c800631d5` and the EffectiveSHA backfilled
+  into the decision record per the `f1549afb1` precedent. The root PRD
+  adoption is now effective on `main`: adopted copy live at
+  `docs/PRD_ROOT.md`; the 17 PROPOSED items in force; all five RD rulings
+  SHA-bound.
+- Obligation (a) staged as **D-GOV-23** (CANDIDATE — NOT RULED):
+  `docs/governance_harness/_PROPOSALS/D-GOV-23_directive_genus_supersession/PACKET.md`
+  — exact-prose supersession of the DIRECTIVE §1 genus clause with the
+  RD-1 ruled two-level formulation (Annex A current text verified
+  byte-exact against `main@08f526277`; replacement = ruled text verbatim +
+  a provenance parenthetical, remainder of the paragraph unchanged
+  byte-for-byte). An O-A ruling closes C-1. Scope expressly excludes
+  obligations (b)/(c) surfaces.
+- Open after this receipt: the D-GOV-23 owner ruling; obligations (b)
+  README reword and (c) propagation survey; C-2/C-4 correction proposals;
+  Lane B (G1–G4); export-staging regeneration DEFERRED.
