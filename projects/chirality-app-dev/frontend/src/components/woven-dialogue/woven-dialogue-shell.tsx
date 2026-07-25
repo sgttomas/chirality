@@ -37,6 +37,7 @@ import { useHarnessStreaming } from '../workspace/harness-events-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatPanel } from '../shell/chat-panel';
 import { PersonaPicker } from '../shell/persona-picker';
+import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
 import { ShellFrame } from '../shell/shell-frame';
 import { PipelineSurface } from '../pipeline/pipeline-surface';
 import { WorkbenchSurface } from '../workbench/workbench-surface';
@@ -75,6 +76,7 @@ export function WovenDialogueShell({
   const searchParams = useSearchParams();
   const { projectRoot } = useWorkspace();
   const streaming = useHarnessStreaming();
+  const runtimeEpoch = useRuntimeEpoch();
   const [activeSurface, setActiveSurface] = useState<WovenSurface>(defaultSurface);
   const [primarySessionId, setPrimarySessionId] = useState<string>();
   const [workspaceState, setWorkspaceState] = useState<WovenWorkspaceState>(() => ({
@@ -207,7 +209,39 @@ export function WovenDialogueShell({
     return () => {
       cancelled = true;
     };
-  }, [projectRoot, sessionRefreshToken]);
+    // `runtimeEpoch` re-lists after a reconnect. The Navigator's mode groups and
+    // the Coordination panel's hierarchy are both projections of `sessions`, so
+    // one re-list repairs all three surfaces at once.
+  }, [projectRoot, sessionRefreshToken, runtimeEpoch]);
+
+  // Read at reconnect time only, so the recovery effect below can depend on the
+  // epoch alone: depending on the replay state itself would re-arm the effect
+  // with every load it performs.
+  const replayStateRef = useRef(replayState);
+  replayStateRef.current = replayState;
+  const sessionsRef = useRef(sessions);
+  sessionsRef.current = sessions;
+
+  // A replay lens left showing UNAVAILABLE is the same stale-error class as the
+  // panes above, and it is still on screen — the lens is only hidden when the
+  // state is IDLE. Reload it once, straight through the loader: the selection
+  // guard is for operator clicks, and it answers UNCHANGED for a re-request of
+  // the session already selected.
+  useEffect(() => {
+    if (runtimeEpoch === 0) {
+      return;
+    }
+    const current = replayStateRef.current;
+    if (current.status !== 'UNAVAILABLE') {
+      return;
+    }
+    void replayLoaderRef.current?.load(current.selectedSessionId, {
+      observedAt: new Date().toISOString(),
+      availableSessionIds: new Set(
+        sessionsRef.current.map((session) => session.sessionId)
+      )
+    });
+  }, [runtimeEpoch]);
 
   const hierarchy = useMemo(() => {
     const observedAt = new Date().toISOString();

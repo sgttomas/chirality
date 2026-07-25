@@ -1,0 +1,10 @@
+=== 1. stop + uninstall the isolated LaunchAgent ===
+{"stopped":true,"ms":6}
+{"uninstalled":true}
+=== 2. isolated service must be gone ===
+Bad request.
+Could not find service "com.chirality.runtime.f1test" in domain for user gui: 501
+=== 3. kill any straggler test processes ===
+(none)
+after kill:
+(none)

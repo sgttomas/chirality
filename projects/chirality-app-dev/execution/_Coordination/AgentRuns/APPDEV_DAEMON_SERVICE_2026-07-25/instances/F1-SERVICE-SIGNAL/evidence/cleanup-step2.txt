@@ -1,0 +1,11 @@
+=== 4. unregister the test bundles from LaunchServices, then delete the tree ===
+=== 5. test plist removed? ===
+total 0
+drwxr-xr-x@ 2 ryan  staff   64 Jul 24 22:36 .
+drwxr-xr-x@ 4 ryan  staff  128 Jul 24 22:29 ..
+=== 6. delete the isolated tree ===
+1.4G	/Users/ryan/.chirality-tranchetest-f1
+TESTROOT exists: NO
+=== 7. any other temp dirs I created ===
+(eval):15: no matches found: /Users/ryan/.chirality-tranchetest-*
+(no tranchetest dirs remain)

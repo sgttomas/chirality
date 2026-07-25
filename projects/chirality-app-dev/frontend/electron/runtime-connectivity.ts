@@ -39,6 +39,14 @@ export type RuntimeConnectivitySnapshot = {
  * up before an operator notices, slow enough to be a negligible steady-state
  * cost. The final value is reused for every later attempt and for the
  * steady-state liveness probe.
+ *
+ * These are the *fallback* timings. `runtime-socket-watch.ts` drives
+ * `refreshNow()` from the control socket appearing or disappearing, so a
+ * graceful daemon stop and a daemon coming back are both acted on in
+ * milliseconds and never wait for a rung of this ladder. The ladder still
+ * governs the cases the filesystem cannot report — a SIGKILLed daemon leaves
+ * its socket file behind, and a listening-but-unhealthy daemon changes nothing
+ * on disk.
  */
 export const DEFAULT_BIND_RETRY_DELAYS_MS: readonly number[] = [1_000, 2_000, 5_000];
 export const DEFAULT_STEADY_PROBE_INTERVAL_MS = 10_000;
@@ -109,6 +117,15 @@ export function createRuntimeBindingSupervisor(
   let timer: unknown;
   let running = false;
   let cycleInFlight = false;
+  /**
+   * A refresh arrived while a cycle was already running. Without this the
+   * refresh would be dropped *after* its caller had already cancelled the
+   * pending timer, leaving the supervisor with no scheduled work and no cycle
+   * to reschedule it — a permanent stall. Reachable before the socket watcher
+   * existed (two `onDaemonAvailable` calls in quick succession); routine with
+   * it, because filesystem events arrive in bursts.
+   */
+  let refreshPending = false;
 
   const publish = (
     state: RuntimeConnectivityState,
@@ -153,7 +170,12 @@ export function createRuntimeBindingSupervisor(
     retryDelaysMs[failedAttempts - 1] ?? steadyProbeIntervalMs;
 
   async function runCycle(): Promise<void> {
-    if (!running || cycleInFlight) {
+    if (!running) {
+      return;
+    }
+    if (cycleInFlight) {
+      // Coalesce rather than drop: the in-flight cycle re-runs when it finishes.
+      refreshPending = true;
       return;
     }
     cycleInFlight = true;
@@ -203,6 +225,11 @@ export function createRuntimeBindingSupervisor(
     } finally {
       cycleInFlight = false;
     }
+    if (refreshPending && running) {
+      refreshPending = false;
+      clearTimer();
+      await runCycle();
+    }
   }
 
   return {
@@ -216,6 +243,7 @@ export function createRuntimeBindingSupervisor(
     },
     stop(): void {
       running = false;
+      refreshPending = false;
       clearTimer();
     },
     snapshot: () => snapshot,

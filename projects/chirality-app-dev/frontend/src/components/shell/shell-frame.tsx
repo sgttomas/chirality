@@ -7,8 +7,8 @@ import { deriveRuntimeConnectivityPresentation } from '../../lib/shell/runtime-c
 import { ApiKeySettings } from '../settings/api-key-settings';
 import { RuntimeSettings } from '../settings/runtime-settings';
 import { useWorkspace } from '../workspace/workspace-provider';
+import { useRuntimeConnectivitySnapshot } from './runtime-connectivity-provider';
 import { ThemeControl } from './theme-control';
-import { useRuntimeConnectivity } from './use-runtime-connectivity';
 
 export type ShellSection = 'PORTAL' | 'PIPELINE' | 'WORKBENCH' | 'CHAT';
 
@@ -80,7 +80,7 @@ export function ShellFrame({
   // unreachable. It is absent entirely outside the desktop app, where there is no
   // daemon to report on. Class names are kept off the `shell-root-dot` prefix so
   // the two indicators stay independently addressable.
-  const runtimeConnectivity = useRuntimeConnectivity();
+  const runtimeConnectivity = useRuntimeConnectivitySnapshot();
   const runtimeIndicator = deriveRuntimeConnectivityPresentation(runtimeConnectivity);
 
   async function applyDraftPath(): Promise<void> {

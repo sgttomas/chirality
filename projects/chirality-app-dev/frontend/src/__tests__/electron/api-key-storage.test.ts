@@ -1,4 +1,4 @@
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { chmod, mkdtemp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -178,5 +178,32 @@ describe('electron/api-key-storage', () => {
     await expect(storeApiKey('ui-key-123')).rejects.toThrow(
       'Secure storage is not available on this platform'
     );
+  });
+
+  it('stores credentials owner-only', async () => {
+    await storeApiKey('ui-key-123');
+
+    const storagePath = getStoragePath(tmpDir);
+    const { mode: fileMode } = await stat(storagePath);
+    const { mode: dirMode } = await stat(path.dirname(storagePath));
+
+    expect(fileMode & 0o777).toBe(0o600);
+    expect(dirMode & 0o777).toBe(0o700);
+  });
+
+  it('repairs permissions of credentials written before the mode was enforced', async () => {
+    await storeApiKey('ui-key-123');
+
+    const storagePath = getStoragePath(tmpDir);
+    await chmod(path.dirname(storagePath), 0o755);
+    await chmod(storagePath, 0o644);
+
+    await expect(retrieveApiKey()).resolves.toBe('ui-key-123');
+
+    const { mode: fileMode } = await stat(storagePath);
+    const { mode: dirMode } = await stat(path.dirname(storagePath));
+
+    expect(fileMode & 0o777).toBe(0o600);
+    expect(dirMode & 0o777).toBe(0o700);
   });
 });

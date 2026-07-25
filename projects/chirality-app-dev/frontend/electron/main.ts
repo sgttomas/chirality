@@ -37,6 +37,10 @@ import {
   registerRuntimeControlHandlers,
   unregisterRuntimeControlHandlers
 } from './runtime-control-ipc';
+import {
+  createSocketPresenceWatcher,
+  type SocketPresenceWatcher
+} from './runtime-socket-watch';
 
 type RendererServer = {
   close: () => Promise<void>;
@@ -64,6 +68,7 @@ let rendererServer: RendererServer | undefined;
 let runtimeHost: RuntimeHost | undefined;
 let shutdownStarted = false;
 let bindingSupervisor: RuntimeBindingSupervisor | undefined;
+let socketWatcher: SocketPresenceWatcher | undefined;
 /** Monotonic timestamp of the last GUI spawned from daemon mode; see `activate`. */
 let lastGuiSpawnAt = 0;
 let desktopLogger: DesktopLogger = createNoopDesktopLogger();
@@ -618,6 +623,24 @@ async function initializeGui(): Promise<void> {
     },
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
   });
+
+  // The supervisor's timers alone make a daemon bounce cost up to a probe
+  // interval to notice plus a walk up the retry ladder to undo — even when the
+  // daemon came back in milliseconds, which is exactly what a Finder-launch
+  // handoff does. The control socket's appearance and disappearance are the
+  // same two facts, available immediately, so watching it turns both delays
+  // into a single filesystem event. The ladder stays as the fallback for the
+  // cases the filesystem cannot report (a SIGKILLed daemon leaves its socket
+  // behind, and a daemon that is listening but unhealthy changes nothing).
+  socketWatcher = createSocketPresenceWatcher({
+    socketPath: control.socketPath,
+    onChange: () => {
+      void bindingSupervisor?.refreshNow();
+    },
+    log: (level, event, detail) => desktopLogger.log(level, event, detail)
+  });
+  socketWatcher.start();
+
   await bindingSupervisor.start();
 
   const rendererUrl = app.isPackaged
@@ -689,6 +712,8 @@ async function teardown(exitCode: number, reason: string): Promise<number> {
     daemonMode: runtimeDaemonMode,
     pid: process.pid
   });
+  socketWatcher?.stop();
+  socketWatcher = undefined;
   bindingSupervisor?.stop();
   bindingSupervisor = undefined;
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);

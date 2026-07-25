@@ -1,0 +1,4 @@
+[chirality-desktop] 2026-07-25T04:34:24.232Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-f1/userdata-ctl","pid":35600}
+[chirality-desktop] 2026-07-25T04:34:24.262Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-f1/userdata-ctl/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-f1/userdata-ctl/runtime"}
+[chirality-desktop] 2026-07-25T04:34:32.144Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":true,"pid":35600}
+[chirality-desktop] 2026-07-25T04:34:32.146Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}

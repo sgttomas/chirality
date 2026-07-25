@@ -7,7 +7,7 @@
  */
 
 import { app, safeStorage } from 'electron';
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { chmod, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 export const PROVIDER_CREDENTIAL_IDS = ['anthropic', 'omlx'] as const;
@@ -37,7 +37,11 @@ function getStoragePath(providerId: ProviderCredentialId): string {
 }
 
 async function ensureStorageDir(providerId: ProviderCredentialId): Promise<void> {
-  await mkdir(path.dirname(getStoragePath(providerId)), { recursive: true });
+  const directory = path.dirname(getStoragePath(providerId));
+  await mkdir(directory, { recursive: true, mode: 0o700 });
+  // mkdir ignores mode for an existing directory, and process umask can relax
+  // it for a new one, so the private mode is asserted rather than requested.
+  await chmod(directory, 0o700);
 }
 
 function setProviderGlobal(providerId: ProviderCredentialId, key: string | undefined): void {
@@ -64,7 +68,11 @@ export async function storeProviderApiKey(
 
   const encrypted = safeStorage.encryptString(key);
   await ensureStorageDir(providerId);
-  await writeFile(getStoragePath(providerId), encrypted);
+  const storagePath = getStoragePath(providerId);
+  await writeFile(storagePath, encrypted, { mode: 0o600 });
+  // writeFile applies mode only when creating the file, so an existing
+  // credential written before this became owner-only is repaired here.
+  await chmod(storagePath, 0o600);
   setProviderGlobal(providerId, key);
 }
 
@@ -75,12 +83,18 @@ export async function retrieveProviderApiKey(
     return null;
   }
 
+  const storagePath = getStoragePath(providerId);
   let encrypted: Buffer;
   try {
-    encrypted = await readFile(getStoragePath(providerId));
+    encrypted = await readFile(storagePath);
   } catch {
     return null;
   }
+
+  // Repair credentials stored before the owner-only mode was enforced, so an
+  // installation heals on first read rather than only when a key is re-entered.
+  await chmod(storagePath, 0o600).catch(() => undefined);
+  await chmod(path.dirname(storagePath), 0o700).catch(() => undefined);
 
   try {
     return safeStorage.decryptString(encrypted);

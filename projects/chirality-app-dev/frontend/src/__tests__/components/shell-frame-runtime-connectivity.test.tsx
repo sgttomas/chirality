@@ -223,6 +223,42 @@ describe('ShellFrame runtime connectivity indicator', () => {
     expect(bridge.listenerCount()).toBe(0);
   });
 
+  it('reads the shared provider snapshot instead of subscribing again', async () => {
+    // The reconnect epoch and the top-bar chip must come from one subscription:
+    // two independent listeners could report different states for the same
+    // daemon, which is precisely the split the operator saw.
+    const bridge = installBridge(snapshot({ state: 'disconnected', failedAttempts: 1 }));
+    Object.assign(globalThis, { React });
+    const { ShellFrame } = await import('../../components/shell/shell-frame');
+    const { RuntimeConnectivityProvider } = await import(
+      '../../components/shell/runtime-connectivity-provider'
+    );
+
+    let tree!: ReactTestRenderer;
+    await act(async () => {
+      tree = renderer.create(
+        <RuntimeConnectivityProvider>
+          <ShellFrame section="PORTAL" title="Portal" subtitle="Workspace">
+            <div>content</div>
+          </ShellFrame>
+        </RuntimeConnectivityProvider>
+      );
+    });
+
+    expect(bridge.listenerCount()).toBe(1);
+    expect(findRuntimeChip(tree)?.props.className).toBe(
+      'shell-runtime-chip shell-runtime-chip--error'
+    );
+
+    await act(async () => {
+      bridge.push(snapshot({ state: 'connected', changedAt: '2026-07-25T12:00:05.000Z' }));
+    });
+
+    expect(findRuntimeChip(tree)?.props.className).toBe(
+      'shell-runtime-chip shell-runtime-chip--ready'
+    );
+  });
+
   it('leaves the working-root chip and its dot untouched', async () => {
     installBridge(snapshot({ state: 'disconnected', lastError: 'gone' }));
     const tree = await renderShell();
