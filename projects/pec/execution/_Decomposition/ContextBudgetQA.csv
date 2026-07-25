@@ -1,12 +1,13 @@
 DeliverableID,PackageID,ContextEnvelope,Risk,RecommendedAction,Notes
 DEL-00-01,PKG-00,S,LOW,None,
-DEL-00-02,PKG-00,M,LOW,None; single cohesive slice,
-DEL-00-03,PKG-00,M,LOW,None; single cohesive slice,
-DEL-01-01,PKG-01,M,LOW,None; single cohesive slice,
+DEL-00-02,PKG-00,M,MEDIUM,Hold envelope; re-assess on the linked OI's ruling,OI-009 keeps the contract home open; local schema + pinned mirror until ruled — a shared-runtime ruling moves the home under its own instrument (SOW-074)
+DEL-00-03,PKG-00,M,LOW,None; single cohesive slice,M because the seed derives structure from an accepted basis (46 requirements / 64 deliverables) rather than inventing content; grows per phase under governed updates
+DEL-01-01,PKG-01,L,MEDIUM,Hold as L; split by per-loop grammar if any loop proves adversarial,L: 14 entity types and the schema every derivation package depends on; kept one cohesive DDL slice — split (core record entities vs lifecycle/dependency/run entities) only if implementation shows a natural seam
 DEL-01-02,PKG-01,S,LOW,None,
 DEL-01-03,PKG-01,M,LOW,None; single cohesive slice,
 DEL-01-04,PKG-01,S,LOW,None,
 DEL-01-05,PKG-01,S,LOW,None,
+DEL-01-06,PKG-01,S,LOW,None,
 DEL-02-01,PKG-02,M,LOW,None; single cohesive slice,
 DEL-02-02,PKG-02,M,LOW,None; single cohesive slice,
 DEL-02-03,PKG-02,L,MEDIUM,Hold as L; split by per-loop grammar if any loop proves adversarial,"L because grammar varies per loop and SOW-082 (OI-008) keeps the contract-adoption surface open; single domain, but multiple grammars within one parser. Split further only if a loop's grammar proves adversarial"
@@ -37,8 +38,8 @@ DEL-07-01,PKG-07,M,LOW,None; single cohesive slice,
 DEL-07-02,PKG-07,M,LOW,None; single cohesive slice,
 DEL-07-03,PKG-07,M,LOW,None; single cohesive slice,
 DEL-07-04,PKG-07,M,LOW,None; single cohesive slice,
-DEL-07-05,PKG-07,M,LOW,None; single cohesive slice,
-DEL-08-01,PKG-08,M,LOW,None; single cohesive slice,
+DEL-07-05,PKG-07,M,LOW,None; single cohesive slice,"M is provisional: the seam's artifact shape follows the D-PEC-56 concept, not a PEC-*-NNN requirement; re-envelope at WORKING_ITEMS activation if the shape proves larger"
+DEL-08-01,PKG-08,M,MEDIUM,Hold envelope; re-assess on the linked OI's ruling,"OI-006 determines the token mechanism (PEC-local vs daemon registry); the socket+access-class core is stable either way, but the auth half may be reworked on ruling"
 DEL-08-02,PKG-08,S,LOW,None,
 DEL-08-03,PKG-08,S,LOW,None,
 DEL-08-04,PKG-08,S,LOW,None,
@@ -54,9 +55,11 @@ DEL-10-01,PKG-10,S,LOW,None,
 DEL-10-02,PKG-10,M,LOW,None; single cohesive slice,
 DEL-10-03,PKG-10,S,LOW,None,
 DEL-10-04,PKG-10,S,LOW,None,
-DEL-10-05,PKG-10,M,LOW,None; single cohesive slice,
+DEL-10-05,PKG-10,S,LOW,None,
 DEL-10-06,PKG-10,S,LOW,None,
 DEL-10-07,PKG-10,S,LOW,None,
 DEL-10-08,PKG-10,S,LOW,None,
 DEL-10-09,PKG-10,S,LOW,None,
 DEL-10-10,PKG-10,S,LOW,None,
+DEL-10-11,PKG-10,S,LOW,None,
+DEL-10-12,PKG-10,S,LOW,None,
