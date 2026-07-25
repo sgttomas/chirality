@@ -6,9 +6,12 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
-`STEP 1 COMPLETE (R1 refuted, dispositions applied) — paused for context
-compaction. Next: STEP 2a (draft the SCA-002 opening packet and intake
-package; owner rules it; owner invokes SCOPE_CHANGE).`
+`STEP 2a ARTIFACTS DRAFTED AND REFUTED (round R-2a: 25 findings, all
+applied) — D-PEC-64 opening packet + SCA-002 intake committed, AWAITING
+OWNER RULING on D-PEC-64. On ruling: owner invokes SCOPE_CHANGE (STEP
+2b); PROJECT_SETUP yields per D-PEC-64 §2.4. The intake
+(SCA-002_INTAKE_2026-07-25.md) supersedes this plan's §2 where they
+differ (R-2a corrections noted in §2 and logged in §6).`
 
 ---
 
@@ -162,6 +165,26 @@ SCA fence; it must NOT be deferred to D-PEC-63, whose fence excludes
 evidence under `execution/_ScopeChange/SCA-002_*/`; pre/post
 register-integrity comparison bounded to the IN-row + deliverable gap
 (so Gate 5 does not spuriously fail on the by-design OUT/TBD rows).
+
+**R-2a corrections to this section (2026-07-25, STEP 2a; the intake file
+is now the authoritative statement):** (1) **SOW-021** (PEC-RCN-006 →
+DEL-03-01, B4) is an in-wave unmapped IN row on an already-mapped
+deliverable — the only one outside the 17; O-A includes it (20 IN rows
+total; residue 11 rows, all out-of-wave). (2) The intentional-unmapped
+clause lives in **§3 Mapping notes** (not DL-14, which covers only
+SOW-063), and its unmapped members are **SOW-033..038** (SOW-039 is
+mapped to OBJ-003). (3) The operative consistency rule is the **union
+invariant**: deliverable `SupportsObjectives` = union of covered IN
+rows' `ObjectiveIDs` (0 violations at baseline; checker in intake §8).
+(4) Token-mechanism correction: no frontmatter format regex exists; the
+matrix check splits on comma/whitespace only; registers are
+`;`-separated — the binding rule is **brief construction** (split `;`,
+emit inline YAML list of bare tokens); a `;`-joined cell copied verbatim
+into `PACKAGE_OBJECTIVE_REFS` becomes one unusable token. (5) The SCA
+fence must include `execution/_Evaluation/DecompCoverage/**` (AUDIT_DECOMP
+Gate 1/5 baselines) and `ContextBudgetQA.csv`; `_CONTEXT.md` in-fence for
+all 64 with a two-line-class constraint (mapping restatement + rev
+pointer, refresh-or-deferred at Gate 4).
 
 ## §3 Canonical authoring TASK brief (STEP 4; template)
 
@@ -353,10 +376,67 @@ baseline 54/10 with the exact UNBLOCKED set; closure 40/24 all-wave-
 unblocked; DIRECT-15/INDIRECT-8/ATTRIB-9 partition; structural invariant;
 basis md5s; C-08 set; state regex safety; union rule real.
 
+**R-2a (2026-07-25, STEP 2a; refuters a68bdbe6ad25a3551 [governance/
+contract] and abf0b1bf486fc9a2c [data/arithmetic], both opus-5, on the
+D-PEC-64 opening packet + SCA-002 intake).** 25 findings (17 gov + 8
+data, 3 overlapping); all dispositioned ACCEPTED and applied 2026-07-25
+via full rewrites of both artifacts before presentation:
+
+- Gov-1 (CRIT): fence omitted `_Evaluation/DecompCoverage/**`
+  (AUDIT_DECOMP Gate 1/5 baselines — SCA-001 provably wrote it; session
+  would stall at Gate 1) → added to §3.2. Gov-3 (MAJ): yield trigger was
+  keyed to `_ScopeChange/_LATEST.md`, which the protocol writes only at
+  Gate 5 → yield now keyed to the ruling act itself (packet §2.4).
+  Gov-2 (MAJ): all 64 `_CONTEXT.md` pin rev 1.1; ~47 would be left
+  stale → all 64 in-fence with two constrained line classes,
+  refresh-or-recorded-deferral at Gate 4. Gov-4 (MAJ): ContextBudgetQA
+  caveat misquoted (D-PEC-61 has it IN the fence; SCA-001 edited it) →
+  in-fence, expected-unchanged clause; Companion_Inventory caveat kept
+  to that file alone. Gov-5 (MAJ): rollback claim "nothing outside
+  _ScopeChange/** before Gate 5" false → rewritten accurately. Gov-6
+  (MAJ): bounded comparison exempted exactly the rows that must prove
+  unchanged → window now = Gate-1-ruled scope only; residue rows must
+  be byte-identical. Gov-7 (MAJ): no commit actor → §3.6 git-acts
+  clause (opening + closure commits by PROJECT_SETUP; protocol hands
+  off a file list). Gov-8=Data-4 (MAJ): "DL-14" misattribution; range
+  is SOW-033..038 (SOW-039 mapped) → corrected. Gov-9+Data-1 (MAJ):
+  "consistent ObjectiveIDs" undefined / SOW-021 hidden in DIRECT class
+  → union invariant stated + SOW-021 named, O-A includes it. Gov-10
+  (MAJ): CSVs are AUTHORITATIVE_TRUTH not propagation;
+  ALLOWED_PROPAGATION_WRITES narrows only → fence rationale + gate
+  sequencing rewritten. Gov-11 (MAJ): derivative-package classification
+  obligations absent → intake §6.5 + packet §4.5. Gov-12 (MIN):
+  Supersession_Delta.csv (not Map) → fixed. Gov-13=Data-2/3 (MAJ/MIN):
+  claimed token-breakage mechanism false; real hazard is the `;`
+  separator vs comma/whitespace-splitting brief construction →
+  intake §5.1 rewritten with accurate mechanics + conversion rule.
+  Gov-14 (MIN): parser-shapes-truth inversion now surfaced. Gov-15
+  (MIN): ruling text now adopts intake §1 as the owner's own change
+  request. Gov-16+Data-6 (MIN): verification checks made runnable
+  (per-token regex after `;`-split; census command named; git status
+  vs enumerated allowlist; `git diff --check` demoted; scope-
+  conditional endpoint). Gov-17 (MIN): `projects/pec/docs/STATUS.md`
+  exclusion qualified; `_COORDINATION.md` ruling item added; AGENTS.md
+  pointer refresh scheduled; receipt append moved into the resumption
+  sequence. Data-5 (MIN): §7 metric quoted in full. Data-7 (MIN):
+  K-AUTH-1 is Notes, not SourceRef → reworded. Data-8 (MIN):
+  "fed from register truth" restated as a brief-construction
+  convention, not a pipeline.
+
+Clean categories (R-2b independent recomputation): all three md5 pins;
+94=71/14/9; the 31-row block character-exact; 26 = 17+9 partition;
+DIRECT-15 all mapped; 7-of-9 pilot roots; envelope S28/M34/L2; §3/DL-14
+quotes verbatim (location corrected); common.py citations 213-215/
+251-253/266-267 accurate; analyze_dep_closure landing values exact;
+census 64 OPEN; 11 packages / 6 objectives; O-C straggler triples;
+intake §8 commands run verbatim. R-2a-gov clean categories: `_STATUS.md`
+narrowing legitimate and correct; Agent1→Agent1 prohibition correctly
+stated; `_CONTEXT.md` claimed by exactly one packet.
+
 **Future rounds:** R2 post-B1 (contract quality), R3 post-B2 (upstream
 citation), R4 pre-closure (numbers/receipt/pointer audit) — plus a
-refutation pass on the SCA-002 opening packet (STEP 2a) and on the Gate-3
-amendment text (STEP 2b), and on D-PEC-63 draft v2 (STEP 3). Log all here.
+refutation pass on the Gate-3 amendment text (STEP 2b) and on D-PEC-63
+draft v2 (STEP 3). Log all here.
 
 ## §7 Basis freeze + git anchors + re-pin list
 
