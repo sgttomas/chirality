@@ -92,6 +92,12 @@ gate. Neither lane materializes anything under root `execution/`.
 
 ### Lane A — Candidate root PRD development (packet §6 step 5)
 
+> **Status: CLOSED 2026-07-25 by D-GOV-22.** The Rev 5 adoption-ready PRD was
+> adopted by owner ruling against candidate SHA `90fae458b` (verbatim fence
+> in `docs/governance_harness/_DECISIONS/D-GOV-22_root_prd_adoption.md`;
+> Receipt 39). Adopted copy: `docs/PRD_ROOT.md` (RD-4-D). Follow-ons routed
+> there: obligations (a)/(b)/(c), C-2/C-4 corrections. Lane B is next.
+
 **Basis:** authorized by D-GOV-21 effect 5 — development of the candidate root
 PRD is authorized on this basis. The candidate PRD may cite
 root-as-working-root as **TRANSCRIBED** rather than carrying it as PROPOSED

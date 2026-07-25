@@ -777,3 +777,38 @@
   §9.1 obligations (a)/(b)/(c) and RD-4-D placement in the
   adoption/implementation tranche. Merging PR #340 records candidates;
   it does not adopt.
+
+### Receipt 39 — 2026-07-25 — D-GOV-22 RULED: the root PRD is ADOPTED; Lane A closed
+
+- Owner acts of record (in-session, 2026-07-25), in order:
+  1. Directed the merge of PR #340 (candidates + instrument packet onto
+     `main`; merge SHA `d0f128647`). Merging recorded candidates; it did
+     not adopt.
+  2. **Confirmed C-3** — verbatim: "the 'roughly three years' lingo is
+     true but it was such a throwaway comment I find it hilarious and
+     depressing that it's still getting mentioned all this time later.
+     Chirality has been in development for some time preceding the first
+     commit evidence available.  Move on." C-3 CLOSED: ID-3 testimony
+     confirmed true, expressly not load-bearing; no further recitation
+     warranted.
+  3. **RULED D-GOV-22** — verbatim: "I rule APPROVED for O-A against
+     candidate SHA 90fae458bf485412e9c3a6295df193eb323c9774." The Rev 5
+     adoption-ready PRD (exact bytes at `d9ea86f88`, sha256-pinned in
+     the packet) is ADOPTED. Per packet §6.2, the uncorrected O-A ruling
+     also confirms the ID-1/ID-2/ID-3 syntheses.
+- Publication tranche (this commit): decision record
+  `docs/governance_harness/_DECISIONS/D-GOV-22_root_prd_adoption.md`
+  (ruling + C-3 statement verbatim-fenced); `_REGISTER.md` row; RD-4-D
+  placement `docs/PRD_ROOT.md` (pointer block + adopted bytes,
+  byte-identity verified by sha256 at placement). PublicationSHA and
+  EffectiveSHA backfilled per the `f1549afb1` precedent after the human
+  merge gate.
+- Effects: the 17 PROPOSED items take effect; all five RD rulings
+  SHA-bound at publication; the Annex A concordance map is the recorded
+  divergence state (one DIVERGENT pair — RD-1 genus; C-1 pending
+  obligation (a)). **D-GOV-21 §6 step 5 (Lane A) is CLOSED.**
+- Open after this receipt: obligations (a) DIRECTIVE §1 exact-prose
+  supersession (closes C-1), (b) README reword, (c) SPEC/TYPES/AGENTS.md
+  propagation survey; C-2 and C-4 correction proposals; Lane B (guard
+  capability G1–G4 + §7 preflight) — the next open root-loop lane;
+  export-staging regeneration remains DEFERRED.
