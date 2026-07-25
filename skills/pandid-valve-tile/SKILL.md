@@ -5,6 +5,7 @@ compatibility: Historical only; not dispatched by DRAWING_EXTRACT for new P_AND_
 metadata:
   chirality-skill-version: "1"
   chirality-task-profile: NONE
+  chirality-skill-status: LEGACY
 ---
 
 # SKILL - pandid-valve-tile

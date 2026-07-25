@@ -2,10 +2,10 @@
 
 This appendix consolidates the three layers of formally stated invariants that govern the Chirality agent instruction architecture. The invariants are organized by their layer of origin and scope of application: workflow design requirements (R1–R17) apply universally to workflow-component designs; decomposition invariants (I1–I10) govern decomposition; and system-wide invariants (K-*) are enforced across the full agent suite.
 
-The R-series is reproduced from the candidate
+The R-series is reproduced from the ratified
 `docs/WORKFLOW_COMPONENT_STANDARD.md`; the I-series is reproduced from the
-candidate `docs/DECOMPOSITION_STANDARD.md`. They remain candidate text pending
-explicit owner acceptance. The ratified K-* catalog in `docs/CONTRACT.md`
+ratified `docs/DECOMPOSITION_STANDARD.md` (both ratified under D-GOV-14,
+owner ruling 2026-07-12). The ratified K-* catalog in `docs/CONTRACT.md`
 governs on divergence.
 
 ---

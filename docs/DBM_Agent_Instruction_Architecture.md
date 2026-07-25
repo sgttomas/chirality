@@ -37,8 +37,9 @@ no child capability becomes available to the parent.
 
 Ratified system invariants, accepted domain standards, and accepted project
 governance constrain all runtime layers. `docs/WORKFLOW_COMPONENT_STANDARD.md`
-and `docs/DECOMPOSITION_STANDARD.md` are candidate external standards pending
-explicit owner acceptance. None of these documents is an agent or Agent 0.
+and `docs/DECOMPOSITION_STANDARD.md` are ratified external standards
+(D-GOV-14 items 1 and 2, owner ruling 2026-07-12). None of these documents is
+an agent or Agent 0.
 
 HELPS_HUMANS is the Agent 1 manager that applies and maintains workflow-component governance. It is not itself the constitutional source.
 

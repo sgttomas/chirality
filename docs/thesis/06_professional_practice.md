@@ -283,11 +283,11 @@ The firm's QC/QA framework for AI-assisted work is implemented through the agent
 | `docs/CONTRACT.md` | The binding K-* invariant catalog with its enforcement map |
 | `docs/SPEC.md` | Physical structures, file formats, schema validation |
 | `docs/TYPES.md` | Controlled vocabulary, enumerated types, lifecycle state machine |
-| `docs/WORKFLOW_COMPONENT_STANDARD.md` | Candidate workflow design requirements (R1–R17), pending explicit owner acceptance |
+| `docs/WORKFLOW_COMPONENT_STANDARD.md` | Ratified workflow design requirements (R1–R17), D-GOV-14 |
 | `docs/DECOMPOSITION_STANDARD.md` | Decomposition invariants (I1–I10) binding on all decomposition agents |
 
-The three-layer model combines candidate R1–R17 workflow requirements,
-candidate I1–I10 decomposition invariants, and the ratified K-* catalog.
+The three-layer model combines the ratified R1–R17 workflow requirements,
+the ratified I1–I10 decomposition invariants, and the ratified K-* catalog.
 Compliance evidence comes from instruction review, managed runtime controls,
 human gates, and deterministic validation; candidate requirements do not
 become authoritative merely through this mapping.
