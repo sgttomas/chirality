@@ -4,7 +4,7 @@ Status:       RULED
 HumanRuling:  "I rule APPROVED for O-A against candidate SHA c038c493e871c95871823281b45890ba9404624b" (owner, 2026-07-25)
 AcceptedCandidateSHA: c038c493e871c95871823281b45890ba9404624b
 PublicationSHA: 75b7aa6d1fb019846ac76fb775df2fc1652ab8a8 (this record's publication commit; backfilled in the implementation tranche per the `f1549afb1` backfill precedent)
-EffectiveSHA: recorded at the human-gated merge of the implementation tranche (PACKET.md §14 step 3); until that merge the Annex A amendments are a candidate tranche only
+EffectiveSHA: ee42157290618e3f84be0e0b651c041387ad6ee0 (merge of PR #338 into `main`, 2026-07-25, performed at explicit owner direction; backfilled by the ROOT-LOOP-REORIENT-20260725 tranche per the `f1549afb1` backfill precedent)
 Date:         2026-07-25
 FramedBy:     Agent-drafted under owner direction, root-PRD inquiry session, 2026-07-25, with independent adversarial review by a second agent (two passes; dispositions in the packet §16)
 AcceptedBasis: `main@1049e011c`
