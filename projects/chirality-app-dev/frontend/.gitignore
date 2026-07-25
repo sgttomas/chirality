@@ -5,6 +5,16 @@ dist/
 dist-electron/
 dist-runtime/
 *.tsbuildinfo
+
+# The repo-root .gitignore excludes `**/build/` as a build-output convention.
+# `frontend/build/` is the opposite: it is electron-builder's `buildResources`
+# INPUT directory, holding committed source artwork (icon-macos.svg) and the
+# committed offline-generated app icon (icon.icns). Re-include it here.
+!/build/
+# ...but `scripts/generate-macos-icon.mjs --keep-iconset` materialises an
+# intermediate iconset there. That is regenerable rasteriser output, not source.
+/build/icon.iconset/
+
 artifacts/harness/section8/latest/summary.json
 artifacts/harness/section9/latest/summary.json
 artifacts/harness/release-quality/latest/
