@@ -45,6 +45,31 @@ fix lands.
    that drift from live documents; heading-text binding was the
    workaround used in SCA-002.
 
+## Canary evidence for item 1 (added 2026-07-25 after the D-PEC-63 canary-3)
+
+Three independent `MODE=INIT` runs (DEL-01-06, DEL-08-02, DEL-00-01) all
+COMPLETED with `PASS format=SOW_V1` — the INIT path works — and returned
+converging contract-text findings (full detail in each deliverable's
+`_run_records/TASK_RUN_2026-07-25_1400.md`):
+- `TOOL_POLICY.md` steps 3–5 order INIT runs to refine/map/finalize an
+  evidence candidate that cannot exist; all three runs called this the
+  clause that would have blocked them absent the brief's pre-ruling. The
+  conversion tools are structurally CONVERT-only (require `--source-dir`
+  / marker-bearing candidates), which makes the gap safe but unstated.
+- `QA_CHECKS.md` item 3 is **actively wrong for INIT**: it requires
+  `_STATUS.md` to remain `IN_PROGRESS`, failing a correct INIT run at
+  `OPEN`. Suggested restatement: "`_STATUS.md` is byte-identical and its
+  state unchanged." Items 1–2, 5–7, 10–12, 14–15, 17 are conversion-only;
+  the INIT-applicable subset (4, 8, 9, 13, 16, 18) passed on all three.
+- `BRIEF_SCHEMA.md`'s write boundary never authorizes a first-authored
+  production `ScopeOfWork.md`; only the dispatching brief's fence did.
+  `ExpectedOutputs` is the one field with correct conditional phrasing
+  ("for conversion, …") — the pattern the other files need.
+- `SKILL.md` Method steps 5–7 and the return contract demand
+  finalization/claim-map/parity hashes unproducible under INIT; step 7's
+  "before/after hash" of `_STATUS.md` is a read-only invariant under
+  `NO_STATUS_TOUCH`, not a pair.
+
 Evidence trail: `projects/pec/execution/_Coordination/PLAN_2026-07-25_pec_phase_2_2_sow_wave.md`
 §6 (refutation logs R1, R-2a, R-2b-g1..g5, R-3);
 `projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Handoff_State.md` §6.
