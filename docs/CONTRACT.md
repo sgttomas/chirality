@@ -16,7 +16,7 @@ Invariant IDs (`K-*`) are **stable and never reused**. Retired invariants are mo
 
 ### K-* Invariant Index
 
-All K-* identifiers defined in this section are listed below with their definition locations. There are **27 stable invariants** across 12 subsections.
+All K-* identifiers defined in this section are listed below with their definition locations. There are **34 stable invariants** across 13 subsections.
 
 | K-* ID | Subsection | Topic |
 |---|---|---|
@@ -47,6 +47,13 @@ All K-* identifiers defined in this section are listed below with their definiti
 | K-DOMAIN-2 | 1.12 | Domain Engine Integration |
 | K-DOMAIN-3 | 1.12 | Domain Engine Integration |
 | K-DOMAIN-4 | 1.12 | Domain Engine Integration |
+| K-RUNTIME-1 | 1.13 | Shared Runtime |
+| K-CONTROL-1 | 1.13 | Shared Runtime |
+| K-PROJECT-1 | 1.13 | Shared Runtime |
+| K-STORE-2 | 1.13 | Shared Runtime |
+| K-RESIDENCY-1 | 1.13 | Shared Runtime |
+| K-ROLE-2 | 1.13 | Shared Runtime |
+| K-EXPORT-1 | 1.13 | Shared Runtime |
 
 ---
 
