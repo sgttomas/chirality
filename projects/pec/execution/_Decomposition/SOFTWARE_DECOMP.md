@@ -2,8 +2,8 @@
 doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
-status: draft_gate3
-revision: "0.4"
+status: draft_gate4
+revision: "0.5"
 date: 2026-07-24
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
@@ -25,8 +25,8 @@ source_corpus: projects/pec/docs/PRD.md (v2.0, adopted 2026-07-24, D-PEC-58)
 |---|---|---|---|---|
 | 1 | Intake | **CONFIRMED** | "Gate 1 confirmed — proceed to Phase 2." | 2026-07-24 |
 | 2 | SSOW | **CONFIRMED** | "Gate 2 confirmed — proceed to Phase 3 based on acceptance of your recommendations for OI-010 and OI-011" | 2026-07-24 |
-| 3 | Objectives | **PRESENTED** | — | 2026-07-24 |
-| 4 | Packages | not reached | — | — |
+| 3 | Objectives | **CONFIRMED** | "Gate 3 confirmed — proceed to Phase 4." | 2026-07-24 |
+| 4 | Packages | **PRESENTED** | — | 2026-07-24 |
 | 5 | Deliverables | not reached | — | — |
 | 6 | Coverage + Context Budget | not reached | — | — |
 | 7 | Final acceptance | not reached | — | — |
@@ -322,7 +322,27 @@ PEC-K-07 and are intentionally not force-mapped; parser items
 Full ScopeItem→Objective assignments land in `ScopeLedger.csv` at
 Phase 4–5; this table is the objective-side view.
 
-## 4. Packages (Phase 4) — not started
+## 4. Packages (Phase 4)
+
+Eleven flat work-domain packages. Each is a cohesive context set grounded
+in the §2.4 domain signals; none is a phase (DL-3). Every IN scope item is
+assigned to exactly one package in `ScopeLedger.csv` (the authoritative
+companion register for assignments); forced boundary decisions are DL-11.
+OUT and TBD items carry no package.
+
+| PackageID | Name | Scope Description (work domain) | Assigned (count) | Exclusions |
+|---|---|---|---|---|
+| PKG-01 | Service Core & Store | The zero-dependency service foundation: record- and presence-tier entity schemas, the gitignored store with ingest-boundary content-minimal enforcement, locality/no-egress posture, self-observability logging | SOW-001, 002, 052, 053, 056, 057 (6) | Parsing, derivation, serving — other packages |
+| PKG-02 | File-Truth Parsers | Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts ledgers, run-evidence JSON, dependency registers, workplans/LOOP_INIT, `adapter.yaml` manifests | SOW-011..017 (7) | Writing anything; interpretation beyond declared grammars |
+| PKG-03 | Reconciliation & Parity | The guaranteed path from file truth to record tier: one-command rebuild, incremental Git-delta reconcile, drift classification, harness parity diffing, stream-loss recovery guarantee, store-only writes, rebuild performance bounds | SOW-010, 018, 019, 020, 021, 038, 054 (7) | Stream ingest mechanics (PKG-07); parsers (PKG-02) |
+| PKG-04 | Orientation Services | Derivation and serving of orientation: per-loop returns, deltas since SHA, SHA/freshness stamping, per-claim citations, scope parameterization, explicit measurement limits | SOW-004..009 (6) | Transport (PKG-08); rendering (PKG-09) |
+| PKG-05 | Gate Evaluation & Decision Slate | Deterministic advisory evaluation of file/Git-reducible gate preconditions; Explain-shaped verdicts; the cross-loop decision slate | SOW-022, 023, 024 (3) | Any ruling write path (SOW-066, permanent OUT) |
+| PKG-06 | Presence & Git Observation | The presence tier's producers: harness-reported session records, Git/worktree scanning, session×worktree×scope correlation, hierarchy edges, TTL/heartbeat discipline, advisory overlap detection, citation-exclusion enforcement | SOW-026..032 (7) | Session lifecycle ownership (daemon's, C13) |
+| PKG-07 | Event Ingest & Bridges | Best-effort freshness inputs: idempotent append-only event ingest, versioned event contracts, the daemon SSE / hooks CLI / cmux bridges, durable message store, the shared-runtime client seam | SOW-033..037, 039, 087 (7) | Record-tier fact creation (PKG-03 guarantee); root `runtime/` writes (SOW-074, deferred) |
+| PKG-08 | API & Access | The machine-consumer surface: Unix-socket binding, token-scoped access classes, p95 latency, versioned additive schema, compact citation-bearing responses, SSE subscription | SOW-003, 040..044 (6) | Dashboard rendering (PKG-09) |
+| PKG-09 | Dashboards | The human-owner surface: overview, lifecycle census, register views, decision slate view, presence board, universal drill-down, documented pressure rules | SOW-045..051 (7) | New data classes; restating authored text (C6) |
+| PKG-10 | Validation & Measurement | Release-gating proof and metrics: kill test, no-ruling-write verification, Step-0 baseline, defect/adoption/collision measurement, seeded-conflict, TTL-honesty and stream-loss tests, usage observability, bootstrap self-ingest | SOW-025, 055, 058..064, 084, 085 (11) | The behaviors under test (their home packages) |
+| PKG-11 | Product Documentation | v2's governed product records: first ADRs re-citing carried postures; the v2 SPEC born from this decomposition | SOW-088, 089 (2) | Decomposition/coordination surfaces (this package's own instruments) |
 
 ## 5. Deliverables (Phase 5) — not started
 
@@ -388,6 +408,7 @@ Phase 4–5; this table is the objective-side view.
 | DL-8 | 2026-07-24 | IN/OUT twinning convention: a §4.2 boundary row stays OUT as the boundary record; the corresponding built/verified obligation is a separate IN item stating enforcement or verification, never the boundary itself. Pairs: SOW-025↔SOW-066, SOW-056↔SOW-073. Phase 6 telemetry counts rows as written; twins are distinct statements, not duplicates | Keeps "scope item = unit of coverage checking" coherent while satisfying both the boundary record and the buildable-obligation record |
 | DL-9 | 2026-07-24 | Adversarial verification (opus-5, 16 confirmed defects) appended SOW-084..092, C15, OI-001..011, and the §9/§2 corrections; IDs are append-only and family ordering is not semantic (I5) | Notable: §11.3 and §12-P2 obligations had been dropped; PEC-K-11 unrepresented; `PEC-PKG-009` provenance was v0.4, not v1.0; `WORK_GRAPH.json` was routed to the wrong entity; two PRD-internal tensions surfaced as OI-010/011 rather than silently reconciled |
 | DL-10 | 2026-07-24 | Owner resolved OI-010 (first P1 loop = PEC v2's own build; §12 closing paragraph governs over the P1 table parenthetical) and OI-011 (session-start polling applies only to sessions that start with scope) at Gate 2 | Gate 2 confirmation verbatim in the Gate Log: "…based on acceptance of your recommendations for OI-010 and OI-011" |
+| DL-11 | 2026-07-24 | Phase 4 forced boundary assignments: SOW-010 (one-command rebuild) → PKG-03 as the reconciler entry point, while the store-path rule (SOW-056) stays PKG-01; SOW-038 (stream-loss recovery) → PKG-03 because the guarantee is reconciliation-side, not ingest mechanics; SOW-025 (no-ruling-write verification) → PKG-10 per DL-8's verification-obligation framing; SOW-087 (client seam) → PKG-07 as daemon-facing integration; SOW-003 (access classes) → PKG-08 with the token-scoped transport; SOW-054 (rebuild bounds) → PKG-03 as reconcile performance; SOW-064 (bootstrap) → PKG-10 as a validation act, not a reconciler feature | Each was assignable to two domains; ledger rows carry `DL-11` in DecisionRef. The `ScopeLedger.csv` register is generated from this document's SSOW tables by script to prevent transcription drift |
 
 ## Companion Inventory
 
@@ -395,7 +416,7 @@ Phase 4–5; this table is the objective-side view.
 |---|---|---|---|
 | `SOFTWARE_DECOMP.md` | working surface | live (this file) | Main decomposition document; amendment surface |
 | `_LATEST.md` | snapshot / handoff artifact | live | Revision pointer; kept current on every revision bump |
-| `ScopeLedger.csv` | authoritative companion register | planned (Phase 4) | SOW→PKG→DEL→OBJ row-level ledger |
+| `ScopeLedger.csv` | authoritative companion register | **live** (Phase 4; DeliverableIDs `TBD` until Phase 5) | SOW→PKG→DEL→OBJ row-level ledger; authoritative for assignments |
 | `Deliverables.csv` | authoritative companion register | planned (Phase 5) | Deliverable register incl. Context Envelope |
 | `ContextBudgetQA.csv` | authoritative companion register | planned (Phase 6) | Per-deliverable envelope/risk/action QA |
 | `Companion_Inventory.csv` | authoritative companion register | planned (Phase 7) | Machine-readable mirror of this table at publication |
