@@ -6,13 +6,20 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
-`STEP 3 COMPLETE THROUGH REFUTATION — SCA-002 closed (rev 1.2 accepted,
-commit 3623b958b, Receipt 109); re-pins EXECUTED (6e558a2c0: §7 pins,
-§3 DECOMPOSITION_BASIS, DAG-exhibit annotation); D-PEC-63 draft v2
-refuted (R-3, 17 findings, all applied — §6) — AWAITING THE D-PEC-63
-OWNER RULING with Q1/Q2. On ruling: STEP 4 wave B1–B8 (canary-3 first;
-watch the §3.1 skill-contract halt risk at the canary). Refutation
-rounds R-2a, R-2b-g1..g5, R-3 in §6.`
+`STEP 4 BATCH B1 COMPLETE AT FAN-IN — D-PEC-63 RULED (64e2923f7;
+Q1=(b) semantic pipeline unused, Q2=HELPS_HUMANS consolidation packet
+routed). Canary-3 clean (c9305aa47; INIT skill-contract gaps documented,
+non-blocking, routed). Main-6 authored 9/9 PASS. Refutation R2 (9 MAJ +
+12 MIN, 0 CRIT — §6) → two sealed revision dispatches, all corrections
+applied and independently re-verified. Status act 9/9 OPEN→INITIALIZED.
+Census 9 INITIALIZED / 55 OPEN (ladder match). Blocker 49 BLOCKED /
+15 UNBLOCKED (baseline 54/10; +5: DEL-00-02, DEL-01-01, DEL-01-02,
+DEL-02-07, DEL-10-03 — all three B2 members unblocked). Fan-in record
+`WAVE_D-PEC-63/BATCH_B1_FANIN.md`. AWAITING THE OWNER B1 HALT-REVIEW
+(required before B2 dispatch: DEL-01-01, DEL-02-07, DEL-10-03 — first
+upstream-citing batch). docs/STATUS.md four-line fix still authorized,
+unexecuted (scheduled at D-PEC-63 closure). Refutation rounds R-2a,
+R-2b-g1..g5, R-3, R2 in §6.`
 
 ---
 
