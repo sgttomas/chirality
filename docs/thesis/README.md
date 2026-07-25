@@ -65,6 +65,22 @@ An owner-revision backlog for the thesis is catalogued in `plans/consistency_aud
 
 *Revision note dated 2026-07-18 (completion pass).* Owner-directed follow-up extending the range correction to the remaining chapters: R1–R12 → R1–R17 in Chapter 1 (two occurrences), Chapter 2, Chapter 9, and Chapter 10. In the same Chapter 2 sentence, the series names "Runtime Invariants" and "Interaction Invariants" were corrected to the catalog's canonical "Workflow Design Requirements" and "Decomposition Invariants" (Appendix A §A.1–A.2) — the same narrative-behind-registry drift class. No other content changed. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
 
+*Revision note dated 2026-07-24 (citations-and-meaning pass).* An
+agent-authored pass applied under owner direction; the prose of this pass is
+the agent's, not the owner's words, and carries the thesis's provisional
+status like everything else here. Scope: four adversarially verified
+references added to `references.md` and the Chapter 2 local blocks
+([Smith1985], [Naur1985], [Collins2010], [MacKenzie2001]); the
+limits-of-verification argument added to §2.3.5 and the software-practice
+precedents (Naur, Collins) to §2.5; [CITE:Smith1985] attached to Chapter 5's
+detection-over-prevention design statement; a positive from–to account of the
+record's subsidiary role added to §3.6.5 with a cross-reference from the
+Chapter 3 warrant lifecycle to Appendix D's interpretive reading (analogue,
+not definition, preserved); §9.2.6 added (over-proceduralization as displaced
+attention) and §9.3.5 sharpened with Collins on answerability-as-status. The
+thesis remains CITED/REVIEWED, not AUTHENTICATED — informative, not
+governance.
+
 ## Five Novel Contributions
 
 1. **Epistemic architecture** — mandatory provenance, no-invention, conflict surfacing, epistemic labeling as a response to the LLM reliability problem

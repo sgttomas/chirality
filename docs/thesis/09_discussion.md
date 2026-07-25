@@ -54,6 +54,31 @@ relevant even as models improve. Better models may produce fewer TBDs and
 ASSUMPTION labels; the architecture still requires detected uncertainty to be
 represented within its declared coverage.
 
+### 9.2.6 Over-Proceduralization and the Displacement of Attention
+
+*Subsection added 2026-07-24.*
+
+The preceding limitations concern enforcement and validation. A further
+limitation concerns attention. The architecture multiplies records —
+statuses, labels, warrants, receipts, findings, snapshots — and records of
+this kind are instruments: in Polanyi's terms, subsidiaries the practitioner
+attends *from* while the work itself remains focal [CITE:Polanyi1975].
+Polanyi's account carries a warning that applies directly: explicitation
+destroys integrated meaning when the particulars become the object of
+attention, and a governance architecture is a standing invitation to exactly
+that displacement. The failure mode is not generic bureaucracy but a specific
+epistemic inversion: process artifacts become what the practitioner looks
+*at*, and the engineering reality recedes to the periphery — the same failure
+Chapter 6 describes as treating gates as boxes to check (§6.9.4) and §9.3.5
+identifies at the authentication gate as capability stress. The architecture
+carries partial mitigations — generated harness output may not claim
+acceptance in its own voice (§6.8.3), review effort is proportioned to
+represented uncertainty (§5.7), and the audit trail is generated as a
+byproduct of normal work rather than as a parallel documentation task
+(§6.7.5) — but the orientation of attention itself is not architecturally
+enforceable. Like the review discipline of §9.2.4, it is a practice
+obligation the architecture can support and evidence but cannot compel.
+
 ---
 
 ## 9.3 Generalizability
@@ -116,6 +141,20 @@ operational allocation is unambiguous: only authorized humans issue binding
 approval records and assume duty of care. Any future reallocation would
 require its own regulatory and governance act; it is not implied by model
 capability or by this explanatory account.
+
+Collins's taxonomy of tacit knowledge sharpens the same boundary from the
+side of acquisition [CITE:Collins2010]. The strong, collective kind of tacit
+knowledge is acquired through socialization into a form of life — a route
+that is not a capability parameter, and for which, in Collins's phrase, "we
+know of no way" to make machines that possess it. The formulation matters for
+the invariance claim: the authority boundary is indexed to answerability — a
+status conferred and held to account by institutions — rather than to
+judgment as a capacity whose presence would have to be re-litigated at each
+model generation. Stated this way, the boundary survives even the
+epistemically cautious reading of Collins: whether or not some future system
+could in principle be socialized into accountable practice, the reallocation
+would be an institutional act, as the preceding paragraph requires, not an
+emergent property of capability.
 
 One caveat is required, and it is the same caveat that runs through this thesis (§6.9.4, §9.2.4). The structure is capability-invariant; the practice at the gate is capability-stressed. As agent outputs improve, the temptation to rubber-stamp them grows, and the architecture cannot compel the professional's commitment to be real — it can only record whether its trace exists. Rising capability therefore makes drift measurement and honest accounting of review effort more important, not less: the better the drafts, the more the integrity of the gate depends on review discipline that the architecture can evidence but cannot enforce.
 

@@ -141,6 +141,10 @@ rulings, and decides whether the aggregate state supports authentication. The
 architecture makes represented warrant states inspectable within its declared
 coverage; it does not guarantee complete claim capture.
 
+Appendix D offers an interpretive reading of the terminal transitions — an
+inner act of assessed assertion and an outer act of binding oneself to that
+stance — as an analogue of, not a definition of, REVIEWED and AUTHENTICATED.
+
 The epistemic architecture is the subject of Chapter 5, which develops the argument in full with worked examples and comparison to alternative approaches. The purpose of this section is to establish that the epistemology is a coherent philosophical commitment with its own formal ontology — not merely a collection of quality rules — and that it addresses a specific, identifiable limitation of LLM-based systems that other approaches do not address at the architectural level.
 
 ### 3.2.3 Praxiology — How Work Is Done
@@ -383,6 +387,21 @@ be delegated away: information may be externalized, while knowing and
 accountable reliance remain situated in persons. The architecture can expose
 the informational substrate and record an accountable relation across the
 gap. It cannot replace the knower with the record.
+
+Polanyi's account of tacit integration gives this limit a positive structure
+[CITE:Polanyi1975]. In the from–to structure of knowing, a person attends
+*from* subsidiary particulars *to* a focal whole, and particulars scrutinized
+in themselves lose the joint meaning they subtend. The governed record is
+designed to occupy the subsidiary position: the practitioner attends from
+claims, warrants, labels, and lifecycle states to the engineering reality
+that remains focal. On this reading, the architecture's program of
+explicitation does not compete with integrated understanding; it fails only
+when the record itself becomes the focal object — a failure mode this thesis
+names directly (§6.9.4, §9.2.6). Several architectural disciplines serve this
+orientation: generated harness output may not claim acceptance in its own
+voice (§6.8.3), and review effort is proportioned to represented uncertainty
+(§5.7), so that the record remains an instrument looked through rather than
+an artifact looked at.
 
 This contribution is narrower than the earlier formulations of the
 framework. `Claim` and `Warrant`, meaning and commitment, and the four
