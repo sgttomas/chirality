@@ -2,9 +2,11 @@
 amendment_id: SCA-002
 doc_kind: scope_change.brief
 decomp_variant: SOFTWARE
-gate: 1
+gate: 2
 created: 2026-07-25
-status: awaiting_gate_1_ruling
+updated: 2026-07-25
+status: gate_1_ruled_awaiting_gate_2
+scope_width: O-A
 authority: D-PEC-64
 ---
 
@@ -86,20 +88,28 @@ by heading text when section numbers are absent; that is what was done.
 | Secondary Entities | `Deliverables` §4 | §4 is *Packages* | **§5 Deliverables** + `Deliverables.csv` (authoritative) |
 | Coverage Basis | `AUDIT_DECOMP` output | — | **§7 Coverage & Telemetry** + this session's baseline |
 
-## Parsed atomic actions
+## Parsed atomic actions (Gate-1-ruled, O-A)
 
-The change request is a single change class applied over a row set whose width
-is the owner's Gate 1 ruling. Actions are stated conditionally on that ruling;
-exact per-row text is Gate 3 work.
+The owner ruled **O-A wave-minimum** and confirmed A001–A006, adding **A007**.
+Row-set widths below are now concrete, not conditional. Exact per-row text
+remains Gate 3 work.
 
 | Ref | ActionType | EntityType | EntityID | Requested change | Affected semantic sections |
 |---|---|---|---|---|---|
-| A001 | `MODIFY` | `OBJECTIVE` | `ScopeLedger.csv` `ObjectiveIDs` — ruled IN-row set (O-A 20 / O-C 24 / O-B 31) | Populate `ObjectiveIDs` with bare `;`-separated `OBJ-NNN` tokens for each unmapped `IN` row in the ruled scope, derived by the intake §4 attribution method | Unit Ledger (§6 + `ScopeLedger.csv`) |
-| A002 | `MODIFY` | `DELIVERABLE` | `Deliverables.csv` `SupportsObjectives` — ruled deliverable set (O-A 17 / O-C 20 / O-B 26, plus any already-mapped deliverable whose union changes) | Populate `SupportsObjectives` so the §3 union invariant holds file-wide | Secondary Entities (§5 + `Deliverables.csv`) |
+| A001 | `MODIFY` | `OBJECTIVE` | `ScopeLedger.csv` `ObjectiveIDs` — **20 IN rows** (`SOW-001, 003, 011..017, 021, 025, 040, 042, 052, 053, 054, 056, 088, 089, 094`) | Populate `ObjectiveIDs` with bare `;`-separated `OBJ-NNN` tokens, derived by the intake §4 attribution method. **Binding constraint: `SOW-021` ⊆ `{OBJ-005}`** (see F-2) | Unit Ledger (§6 + `ScopeLedger.csv`) |
+| A002 | `MODIFY` | `DELIVERABLE` | `Deliverables.csv` `SupportsObjectives` — **17 deliverable rows** (`DEL-00-01, 00-03, 01-01, 01-03, 01-05, 01-06, 02-01..07, 03-06, 08-01, 08-02, 10-03`) | Populate `SupportsObjectives` so the §3 union invariant holds file-wide | Secondary Entities (§5 + `Deliverables.csv`) |
 | A003 | `MODIFY` | `OTHER` | §3 Objectives — `Mapped Scope Items` / `MappedDeliverables` columns and mapping notes | Reconcile the objective-side view to the amended ledger/register truth; amend or explicitly retain the "intentionally not force-mapped" and best-effort clauses per the Gate 1 scope ruling | Objectives (§3) |
 | A004 | `MODIFY` | `OTHER` | §7 Coverage & Telemetry — `IN items without objective mapping` metric row; `Revision` row | Update the metric from 31 to the post-amendment residue; restate the posture; set revision 1.2 | Coverage Basis (§7) |
 | A005 | `MODIFY` | `OTHER` | Change Register — §11 Decision Log + §12 Revision History | Add the SCA-002 decision-log entry and the revision-1.2 history row; requested by owner Ryan Tufts under `D-PEC-64` | Change Register (§11, §12) |
 | A006 | `MODIFY` | `OTHER` | `_Decomposition/_LATEST.md` | Repoint to revision 1.2 with the SCA-002 handoff state on Gate 5 acceptance | Handoff pointer |
+| **A007** | `MODIFY` | `OTHER` | §5 Deliverables — envelope-posture prose line (line 376) | Correct `29 S / 33 M / 2 L / 0 XL` → `28 S / 34 M / 2 L / 0 XL`, reconciling the residual SCA-001 miss (finding `W-1`) to `Deliverables.csv` and §7. **Exactly one line; no other §5 content changes.** | Secondary Entities (§5 prose) |
+
+**A007 provenance.** Added by owner ruling at Gate 1 ("Fix now: add A007")
+after this session's Gate 1 validation surfaced `W-1`. The owner amended
+`D-PEC-64` §4.3 the same day so the byte-identity window admits exactly that
+one §5 prose line. A007 is `MODIFY`-legal on its own terms — it edits an
+attribute of an existing section — and was previously out of scope by the
+**§4.3 window and the intake's subject scope**, not by change class.
 
 No action adds, removes, reclassifies, merges, splits, or renumbers a package,
 deliverable, objective, scope item, product function, dependency edge, or
@@ -121,6 +131,7 @@ best-effort posture is a Gate 2/3 ruling (intake §5.5), not settled here.
 | A004 | `PASS` | §7 exists; the `IN items without objective mapping` metric row (line 528) reads `31`, matching the measured ledger value; the `Revision` row reads `1.1, 2026-07-24 (SCA-001)`. |
 | A005 | `PASS` | §11 Decision Log ends at `DL-16`; §12 Revision History ends at row `1.1`. Both are append-capable. |
 | A006 | `PASS` | `_Decomposition/_LATEST.md` exists and names revision 1.1 as `current_basis`. |
+| **A007** | `PASS` (re-validated post-ruling) | §5 line 376 reads verbatim "Context Envelope posture: **29 S / 33 M / 2 L / 0 XL.**". `Deliverables.csv` yields S 28 / M 34 / L 2 / XL 0; §7 `ContextEnvelopeCounts` reads "S 28 / M 34 / L 2 / XL 0". The replacement value is therefore already-accepted register truth, not a new fact. The two `L` deliverables named in the same sentence (`DEL-02-03`, `DEL-01-01`) remain correct and are untouched. |
 
 **Change-class legality: `PASS`.** Every action is `MODIFY` over an existing
 field, column, or narrative section of an existing entity. No topology
@@ -242,13 +253,19 @@ edges, orphans 2, SCCs 0 — matching the `D-PEC-62` landing values pinned in
 
 ## Warnings and unknowns
 
-1. **`W-1` — stale duplicated count in accepted revision 1.1 (new finding).**
-   §5 line 376 states "Context Envelope posture: **29 S / 33 M / 2 L / 0 XL**",
-   while `Deliverables.csv` and §7 both yield **28 S / 34 M / 2 L / 0 XL**.
-   SCA-001 re-enveloped `DEL-10-10` `S`→`M` and reconciled the registers,
-   `ContextBudgetQA.csv`, and §7, but not the §5 prose. Documentation-
-   consistency defect; no topology impact; **outside SCA-002's declared change
-   class**. Escalated to the owner, not corrected.
+1. **`W-1` — stale duplicated count in accepted revision 1.1.** `RESOLVED AT
+   GATE 1` — the owner ruled "Fix now: add A007". §5 line 376 states
+   "Context Envelope posture: **29 S / 33 M / 2 L / 0 XL**", while
+   `Deliverables.csv` and §7 both yield **28 S / 34 M / 2 L / 0 XL**. SCA-001
+   re-enveloped `DEL-10-10` `S`→`M` and reconciled the registers,
+   `ContextBudgetQA.csv`, and §7, but not the §5 prose.
+   **Characterization corrected (R-2b-g1):** the Gate 1 return described W-1 as
+   "outside SCA-002's declared change class". That was wrong. A007 is
+   `MODIFY` — an attribute edit on an existing section — and `MODIFY` is
+   exactly the declared class. What excluded it was the `D-PEC-64` §4.3
+   byte-identity **window** and the intake's **subject scope**
+   (deliverable→objective mapping), both of which the owner amended/extended
+   at Gate 1. Change class was never the barrier.
 2. **Downstream-parser-shapes-truth flag (intake §5.1) stands.** Bare
    `OBJ-NNN` tokens are required in the registers because brief construction
    splits the cell on `;`. Verified: `common.py:213-215` enforces only
@@ -281,7 +298,19 @@ coordination surface, decision packet, PRD, estimate, schedule, or
 frozen-reference-corpus file. Writes are confined to this session workspace and
 the in-fence `_Evaluation/DecompCoverage/` baseline plus its own pointer.
 
-## Gate 1 confirmation question
+## Gate 1 ruling (owner, 2026-07-25)
 
-**Is this what you intend — and which scope width (O-A / O-B / O-C) do you
-rule?**
+**RULED.** Verbatim selections: six-action list **"Confirmed"** (A001–A006 as
+parsed); scope width **"O-A wave-minimum"**; W-1 **"Fix now: add A007"**.
+Binding constraint carried from this session's F-2 finding: `SOW-021`'s
+`ObjectiveIDs` ⊆ `{OBJ-005}`. `D-PEC-64` §4.3's byte-identity window was
+amended the same day to admit the single §5 prose line.
+
+**Ruled scope, final:** 20 `IN` ledger rows, 17 deliverable rows, §3/§7/
+revision-history/mapping-notes text, the one §5 prose line (A007), and the
+in-fence `_CONTEXT.md` line classes. The 11 residue `IN` rows and 9 residue
+deliverables must remain **untouched** — an unauthorized mapping of the
+intentional class is a verification failure, not a bonus.
+
+Gate 1 is closed. Gate 2 (Impact Assessment) is released; see
+`Impact_Assessment.md`.

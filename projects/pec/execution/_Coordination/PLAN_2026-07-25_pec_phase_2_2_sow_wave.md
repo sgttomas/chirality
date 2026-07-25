@@ -469,6 +469,50 @@ list faithful+complete vs intake and reproduced owner-facing, every
 cited line number, coverage numbers vs disk, dep-closure values,
 _ScopeChange/_LATEST.md untouched.
 
+**R-2b-g2 (2026-07-25, STEP 2b; refuter a19cf58230e2eac7c, opus-5, on
+the SCOPECHANGE-SCA002 Gate 2 return before presentation).** 14 findings
+(8 MAJ / 6 MIN), dispositions applied at Agent 0 fan-in — all relayed to
+the instance as required corrections before the Gate 2 owner
+presentation:
+F1 (MAJ, ACCEPTED): OPEN_PENDING_DERIVATIVE_CLOSURE reasoning refuted by
+SCA-001 precedent (CLOSED_FOR_SCOPE_CHANGE_ONLY coexists with
+DownstreamRerunState=FROZEN out-of-fence obligations; DerivativePackage-
+State scoped to decomposition-local surfaces) → expected verdict
+corrected to CLOSED_FOR_SCOPE_CHANGE_ONLY + FROZEN obligations, final
+call at Gate 5. F2 (MAJ, ACCEPTED): projects/pec/AGENTS.md carries no
+revision pin (deliberately revision-agnostic) — row-10
+STALE_ON_ACCEPTANCE claim false for that file; corrected (the D-PEC-64
+closure pointer refresh is a chosen act, not staleness repair).
+F3+F4+F5 (MAJ, ACCEPTED): owner question 3 withdrawn from Gate 2 —
+DEP-02-01-003's declared EvidenceFile is the frozen DAG exhibit (not
+SOFTWARE_DECOMP.md), so A003 does not break the row's anchor;
+preserve-verbatim conflicts with A003/A004's reconciliation mandate and
+§7:528's changed in-document function; parser-sentence handling routed
+to Gate 3 drafting + its refutation pass. F6 (MAJ, ACCEPTED):
+no-binding supersession recommendation is lawful (refuter-verified:
+self-description is not upstream admitted authority; SCA-001 precedent
+exact) but made CONDITIONAL on Gate 3 attributions remaining
+consumptive of PRD (re-affirmed at Gate 3). F7 (MAJ, ACCEPTED): §3
+classification normalized to the contract enum
+(DIRECT_EDIT|RECOMPUTE|NO_CHANGE) so Gate 5 Handoff_State can carry it.
+F8 (MAJ, ACCEPTED): §2 ContextBudgetQA "must not change" contradiction
+with §3/D-PEC-64 §3.2 corrected to expected-unchanged/Gate-3-text-only.
+F9–F13 (MIN, ACCEPTED): "§7 re-pin point 4" cite fixed (annotation is
+enumerated as not-a-point); DAG-exhibit annotation partly extant (2 of
+8 refs are the annotation); "0 of 255 rows carry SupportsObjectives"
+rephrased (no such column); converter "cannot be invoked" softened
+(argparse requires the flag, not a legal value); §6 removed from A001's
+affected list. F14 (MIN, ACCEPTED): stale W-1 characterization at D-5
+annotated as superseded by C-1 in place. Clean under attack: A001/A002
+sets exact (incl. DEL-03-01 exclusion structurally safe — no A001 row
+touches residue deliverables); package set PKG-00/01/02/03/08/10 both
+sides; union invariant 0; OI-B real (64 _REFERENCES.md, fence-excluded,
+absent from intake §6.5); DEP-02-01-003 1-of-255 verbatim; A007 exact
+incl. the two L deliverables surviving; supersession tooling
+(--allow-empty, no --delta) precedent-exact; both closure-verdict
+values legal; Gate 2 contract outputs complete; fence 3 paths; md5s
+unchanged; §3/register agreement 9/4/12/9/2/9 and 10/4/13/9/2/9.
+
 **Future rounds:** R2 post-B1 (contract quality), R3 post-B2 (upstream
 citation), R4 pre-closure (numbers/receipt/pointer audit) — plus a
 refutation pass on the Gate-3 amendment text (STEP 2b) and on D-PEC-63
