@@ -60,6 +60,6 @@ DEL-10-06,PKG-10,S,LOW,None,
 DEL-10-07,PKG-10,S,LOW,None,
 DEL-10-08,PKG-10,S,LOW,None,
 DEL-10-09,PKG-10,S,LOW,None,
-DEL-10-10,PKG-10,S,LOW,None,
+DEL-10-10,PKG-10,M,MEDIUM,Hold envelope; validate as one standing progression record,"M because the record spans the full DAG, capability cutovers, negative function dispositions, fallback proof, and human-gated amendment routes; split only if evidence volume prevents one coherent progression"
 DEL-10-11,PKG-10,S,LOW,None,
 DEL-10-12,PKG-10,S,LOW,None,

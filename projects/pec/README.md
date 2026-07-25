@@ -10,25 +10,27 @@ need to exist**: files and Git remain the sole authority, every consumer has
 a file-native fallback, and deleting PEC degrades throughput, never
 correctness.
 
-Product definition of record: [`docs/PRD.md`](docs/PRD.md) — v2.0, adopted
-2026-07-24 (`D-PEC-58`). **New here? Read [`docs/STATUS.md`](docs/STATUS.md)
-first.**
+Product definition of record: [`docs/PRD.md`](docs/PRD.md) — v2.1
+(v2.0 adopted by `D-PEC-58`; directed-bootstrap clarification adopted by
+`D-PEC-61`). **New here? Read [`docs/STATUS.md`](docs/STATUS.md) first.**
 
 ## State
 
-Pre-implementation. The next gate is decomposition (SOFTWARE_DECOMP over the
-PRD, human-gated); build phases P1–P4 follow under per-tranche packets. See
-the standing plan at
+Pre-implementation. Decomposition revision 1.1 is the accepted current basis
+after `SCA-001`; PROJECT_SETUP is next and will materialize the owner-selected
+full DAG. Build phases P1–P4 follow under per-tranche packets. See the standing plan at
 `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md`.
 
 ## Layout
 
 | Path | Contents |
 |---|---|
-| `docs/PRD.md` | Adopted product definition (v2.0, coordination plane) |
+| `docs/PRD.md` | Adopted product definition (v2.1, coordination plane) |
 | `docs/STATUS.md` | Status & handoff — read first |
 | `docs/.archive/` | Retired v0.4/v1.0 product docs (PRD v1.0, SPEC, TRACEABILITY, PILOT, ADRs, prototype README/STATUS) |
 | `execution/_Coordination/` | Decision packets, register, coordination records |
+| `execution/_Decomposition/` | Accepted software decomposition revision 1.1 and authoritative companion registers |
+| `execution/_ScopeChange/` | Immutable SCA-001 amendment evidence and active scope-change pointer |
 | `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/` | **Frozen reference corpus** — the v0.4-baseline prototype; read/cite only, quarried by citation in build briefs (PRD §13); run instructions preserved at `docs/.archive/README_v0.4_prototype.md` |
 | `init/` | Loop launcher prompt (points at `_DomainEngines/pec/LOOP_INIT.md`) |
 
@@ -43,5 +45,5 @@ explainable · declared surface · content-minimal · mode-proportional.
 ## Governance
 
 Decisions: `execution/_Coordination/_DECISIONS/_REGISTER.md` (pivot:
-`D-PEC-57`; adoption: `D-PEC-58`). Receipts:
+`D-PEC-57`; adoption: `D-PEC-58`; directed bootstrap: `D-PEC-61`). Receipts:
 `_DomainEngines/pec/LOOP_RECEIPTS.md`. Project agent rules: `AGENTS.md`.

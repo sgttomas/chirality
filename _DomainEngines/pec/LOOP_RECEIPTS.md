@@ -1161,3 +1161,17 @@
   - Init-prompt outcome (no file written — `init/` is outside default writable surfaces; the stale v0.4 `init/init-prompt.md` awaits the next packet): the phase init prompt stays minimal (anchors, four reads incl. the overlay and STATUS, role binding, authority-bounded pursuit, steer slot); it carries no state and no restated rules because this upkeep makes the repo's own pointer chain contradiction-free.
   - Gate outcome: EXECUTED (documentation upkeep). Next owner gate unchanged: per-tranche build packets (PROJECT_SETUP scaffolding, then the P1 slice).
   - Checks: harness self-check pass (no new findings); `git diff --check` pass; documentation-only — no source, dependency, database, or report changed.
+
+- **2026-07-24 — Receipt 106** (D-PEC-61 ruled; PRD v2.1 adopted; SCA-001 opened).
+  - Owner direction (verbatim): "PLEASE IMPLEMENT THIS PLAN:" accompanied by the complete `PEC SCA-001 — Directed Full-DAG Self-Bootstrap` plan. The direction is recorded in `D-PEC-61_directed_full_dag_self_bootstrap.md`.
+  - PRD v2.1 clarifies §12: PEC's own accepted full dependency DAG is its initial file-native coordination state and first self-ingestion corpus; later nodes consume only predecessor-produced accepted capabilities; observed friction creates evidence-linked candidates, not authority or implicit scope; fallback and later heterogeneous-loop validation remain required.
+  - PROJECT_SETUP posture: `FULL_GRAPH` selected; final DAG materialization held until SCA-001 closes. Phase 1.3 maturity-threshold and dependency-storage choices remain a later owner gate.
+  - SCA posture: SOFTWARE `SCA-001` opened against accepted decomposition revision 1.0. Gates 1–5 remain distinct owner acts; no decomposition truth changed by this receipt.
+  - Gate outcome: D-PEC-61 EXECUTED; SCA-001 Gate 1 in progress.
+
+- **2026-07-24 — Receipt 107** (SCA-001 closed; decomposition revision 1.1 accepted).
+  - Owner gate rulings were separately recorded in `execution/_ScopeChange/SCA-001_2026-07-24_2206/Decision_Log.md`; final Gate 5 confirmation, verbatim: "I confirm the post-change state and accept decomposition revision 1.1 as the current basis."
+  - Accepted truth: `projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 `current_basis`; `ScopeLedger.csv` SOW-064, `Deliverables.csv` and `ContextBudgetQA.csv` DEL-10-10, and `_LATEST.md` are in parity. `Companion_Inventory.csv` is byte-identical.
+  - SCA closure: `CLOSED_FOR_SCOPE_CHANGE_ONLY`; immutable evidence at `projects/pec/execution/_ScopeChange/SCA-001_2026-07-24_2206/`. Deterministic pre/post checks preserve 94 scope items (71 IN / 14 OUT / 9 TBD), 64 deliverables, 11 packages, and 6 objectives; `SOW-064 → PKG-10 → DEL-10-10 → OBJ-006`; envelopes S 28 / M 34 / L 2 / XL 0.
+  - Audit state: WARNINGS only because pre/post `AUDIT_DECOMP` correctly returned `FAILED_INPUTS` before package/deliverable scaffolding. OI-013 remains the durable validator follow-on.
+  - Gate outcome: EXECUTED and ACCEPTED. Next owning workflow: PROJECT_SETUP with `FULL_GRAPH` selected; dependency maturity threshold and register storage remain its Phase 1.3 owner gate. No scaffold, dependency graph, estimate, schedule, implementation, staging, or commit occurred in SCA-001.

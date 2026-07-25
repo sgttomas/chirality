@@ -1,0 +1,137 @@
+{
+  "schema_version": "pec-software-register-baseline-v1",
+  "baseline_role": "SCOPE_CHANGE Gate 1 deterministic register-integrity baseline",
+  "captured_at": "2026-07-24T22:06:00-06:00",
+  "amendment_id": "SCA-001",
+  "decomp_variant": "SOFTWARE",
+  "accepted_basis": {
+    "decomposition_path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "revision": "1.0",
+    "latest_pointer": "projects/pec/execution/_Decomposition/_LATEST.md",
+    "source_corpus_declared": "projects/pec/docs/PRD.md v2.0 (D-PEC-58)",
+    "current_prd_state": "v2.1 adopted by D-PEC-61; decomposition successor not yet approved"
+  },
+  "audit_decomp": {
+    "snapshot": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA001_PRECHANGE_2026-07-24_2209",
+    "run_status": "FAILED_INPUTS",
+    "declared_packages": 11,
+    "declared_deliverables": 64,
+    "discovered_deliverable_folders": 0,
+    "interpretation": "Expected pre-scaffold limitation; not filesystem coverage evidence"
+  },
+  "counts": {
+    "scope_items": 94,
+    "scope_status": {
+      "IN": 71,
+      "OUT": 14,
+      "TBD": 9
+    },
+    "packages": 11,
+    "deliverables": 64,
+    "objectives": 6,
+    "context_envelopes": {
+      "S": 29,
+      "M": 33,
+      "L": 2
+    }
+  },
+  "objective_support": {
+    "scope_items": {
+      "OBJ-001": 10,
+      "OBJ-002": 4,
+      "OBJ-003": 13,
+      "OBJ-004": 9,
+      "OBJ-005": 2,
+      "OBJ-006": 8
+    },
+    "deliverables": {
+      "OBJ-001": 9,
+      "OBJ-002": 4,
+      "OBJ-003": 12,
+      "OBJ-004": 9,
+      "OBJ-005": 2,
+      "OBJ-006": 8
+    }
+  },
+  "target_prechange": {
+    "scope_item": {
+      "ScopeItemID": "SOW-064",
+      "InOutStatus": "IN",
+      "ScopeItemStatement": "Bootstrap: the first loop the P1 reconciler ingests is PEC v2's own build",
+      "SourceRef": "§12",
+      "PackageID": "PKG-10",
+      "DeliverableIDs": "DEL-10-10",
+      "ObjectiveIDs": null,
+      "DecisionRef": "DL-10; DL-11",
+      "OpenIssue": "FALSE",
+      "Notes": "First validation of the thesis; §12-internal tension resolved at Gate 2 (OI-010, DL-10)"
+    },
+    "deliverable": {
+      "DeliverableID": "DEL-10-10",
+      "PackageID": "PKG-10",
+      "Name": "Bootstrap self-ingest validation",
+      "Description": "The first loop the P1 reconciler ingests is PEC v2's own build (OI-010 resolution); validated as part of P1 acceptance.",
+      "Type": "TEST_SUITE",
+      "ResponsibleParty": "TBD",
+      "AnticipatedArtifacts": "Self-ingest validation record",
+      "CoversScopeItems": "SOW-064",
+      "SupportsObjectives": null,
+      "ContextEnvelope": "S",
+      "ContextEnvelopeNotes": null,
+      "PhaseHint": "P1"
+    },
+    "qa": {
+      "DeliverableID": "DEL-10-10",
+      "PackageID": "PKG-10",
+      "ContextEnvelope": "S",
+      "Risk": "LOW",
+      "RecommendedAction": "None",
+      "Notes": null
+    }
+  },
+  "checks": {
+    "scope_id_uniqueness": true,
+    "deliverable_id_uniqueness": true,
+    "qa_id_uniqueness": true,
+    "all_in_have_one_package": true,
+    "all_in_have_one_deliverable": true,
+    "scope_to_deliverable_refs_resolve": true,
+    "scope_deliverable_package_lineage": true,
+    "deliverable_to_scope_refs_resolve": true,
+    "bidirectional_scope_mapping": true,
+    "qa_one_to_one_with_deliverables": true,
+    "qa_envelope_parity": true,
+    "companion_inventory_paths_exist": true,
+    "expected_package_set": true,
+    "expected_objective_set": true
+  },
+  "issues": {
+    "duplicate_scope_ids": [],
+    "duplicate_deliverable_ids": [],
+    "unassigned_in_scope": [],
+    "in_without_deliverable": [],
+    "dangling_deliverable_refs": [],
+    "lineage_mismatches": [],
+    "dangling_scope_refs": [],
+    "reverse_mapping_missing": [],
+    "qa_missing": [],
+    "qa_extra": [],
+    "qa_envelope_mismatches": [],
+    "inventory_missing_files": []
+  },
+  "file_sha256": {
+    "SOFTWARE_DECOMP.md": "3825e4a99c2a2edcd2e0de8d60aa465857a9a4c694cd2b66da95e191e1c7d7dc",
+    "ScopeLedger.csv": "590df3b2bafa2d698ea77e58be0abee509aafa4f4ce700d51654070d2d9319c7",
+    "Deliverables.csv": "44c5c41eec89d6915d4112cf3d80afd974def96ea4d74bd2473605ef9d16f66e",
+    "ContextBudgetQA.csv": "35d3d0895566fde287bb6f6c07871752af35ff74bbd9f054c915caaa018b9796",
+    "Companion_Inventory.csv": "18793e150c537371f80d659af2784674d42bac0de37bf7128e484774a557ec23",
+    "_LATEST.md": "2a83995f6a09bb430b4f5265d2f1280c51fba285700976dc8ed0abc690a24a74"
+  },
+  "overall_status": "PASS_WITH_KNOWN_WARNINGS",
+  "known_warnings": [
+    "AUDIT_DECOMP filesystem coverage returned expected FAILED_INPUTS because PROJECT_SETUP has not scaffolded package/deliverable folders.",
+    "SOFTWARE_DECOMP.md front matter and _LATEST.md identify accepted revision 1.0, while the Coverage & Telemetry table retains the Phase 6 validation label Revision 0.9.",
+    "PRD v2.1 is adopted by D-PEC-61 while the accepted decomposition still declares PRD v2.0 as its source corpus; this temporary drift is the subject of SCA-001 and blocks PROJECT_SETUP until closure.",
+    "OI-013 records that the original register generator was session-local and no durable repository validator exists."
+  ]
+}

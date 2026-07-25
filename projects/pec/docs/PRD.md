@@ -2,17 +2,17 @@
 
 | | |
 |---|---|
-| **Version** | 2.0 |
+| **Version** | 2.1 |
 | **Date** | 2026-07-24 |
-| **Status** | **Adopted 2026-07-24** by owner ruling (`D-PEC-58`); product definition of record |
+| **Status** | **Adopted 2026-07-24** by owner ruling (`D-PEC-58`); directed-bootstrap clarification adopted as v2.1 by `D-PEC-61`; product definition of record |
 | **Product stage** | Prototype of the prior product exists (v0.4 baseline code); the coordination plane defined here is not yet implemented |
 | **Supersession** | Supersedes PRD v1.0 ("team information hub", adopted 2026-07-10 by `D-PEC-55`), preserved at `c31be74c2:projects/pec/docs/PRD.md` and archived at `docs/.archive/PRD_v1.0_2026-07-09_team_information_hub.md`. The v0.4 catalogue remains preserved at `7e8312172:projects/pec/docs/PRD.md`. |
 
 > **Epistemic status:** authored from owner-directed design (session
-> 2026-07-24); adopted 2026-07-24 (`D-PEC-58`). Adoption makes this the
-> product definition of record only — nothing in this document is an
-> implementation mandate; each build tranche still requires its own
-> owner-ruled packet.
+> 2026-07-24); adopted 2026-07-24 (`D-PEC-58`) and amended to v2.1 the same
+> day (`D-PEC-61`). Adoption makes this the product definition of record
+> only — nothing in this document is an implementation mandate; each build
+> tranche still requires its own owner-ruled packet.
 
 ---
 
@@ -352,6 +352,18 @@ is falsified; PEC is deleted and, by PEC-K-01, nothing breaks.
 The PEC v2 build itself runs through the governed pipeline (SOFTWARE_DECOMP →
 PROJECT_SETUP → WORKING_ITEMS), and the first loop the P1 reconciler ingests
 is **its own build** — the bootstrap is the first validation of the thesis.
+
+For PEC v2's own build, PROJECT_SETUP materializes the accepted decomposition
+as a **full dependency DAG**, which is the initial file-native coordination
+state and PEC's first self-ingestion corpus. P1 first ingests that build
+graph. Later DAG nodes may consume only PEC capabilities already produced
+and accepted by predecessor nodes; no node depends on the capability it is
+creating. Coordination friction observed during this progression may produce
+evidence-linked candidate functions, boundary decisions, and scope-change
+requests, but it grants no authority and changes no accepted scope without
+human approval. The file-native fallback remains operable throughout.
+Generality is tested against a structurally different loop after
+self-ingestion.
 
 ---
 
