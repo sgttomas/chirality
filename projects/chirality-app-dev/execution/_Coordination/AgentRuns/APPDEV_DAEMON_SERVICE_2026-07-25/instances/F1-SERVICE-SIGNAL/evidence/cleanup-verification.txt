@@ -1,0 +1,14 @@
+=== load-bearing owner artifacts: before vs after ===
+LaunchAgents/com.chirality.runtime.plist   IDENTICAL
+state =                                    IDENTICAL
+runs =                                     IDENTICAL
+last exit code                             IDENTICAL
+program =                                  IDENTICAL
+.local/bin/chirality                       IDENTICAL
+drwx.*\.local/bin                          IDENTICAL
+
+=== the only diffs are the owner's OWN running GUI writing its Chromium caches ===
+owner GUI still alive (pid 17199) and daemon (17236):
+17199 17236 
+my test tree: REMOVED
+my test label: Could not find service "com.chirality.runtime.f1test" in domain for user gui: 501

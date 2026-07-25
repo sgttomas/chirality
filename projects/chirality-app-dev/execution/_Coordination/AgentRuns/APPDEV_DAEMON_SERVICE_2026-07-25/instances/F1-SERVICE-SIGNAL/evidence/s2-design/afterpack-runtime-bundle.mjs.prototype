@@ -1,0 +1,199 @@
+#!/usr/bin/env node
+/**
+ * Give the runtime daemon its own macOS bundle identity.
+ *
+ * ## Why
+ *
+ * The daemon is the same Electron binary as the GUI, relaunched with
+ * `--runtime-daemon`. Because it therefore runs *inside* `Chirality.app`, it
+ * registers with LaunchServices as an instance of `com.chirality.app` — and
+ * `setActivationPolicy('prohibited')` does not change that. Stage V reproduced
+ * the consequence 3/3: opening Chirality from Finder or the Dock while the
+ * daemon runs resolves the launch against the headless daemon, which has no
+ * window, so nothing appears. Round 2 made that survivable by having the daemon
+ * spawn a GUI and then retire, but the runtime still bounces on every such
+ * launch.
+ *
+ * This removes the cause. A minimal nested bundle with its **own**
+ * `CFBundleIdentifier` and `LSUIElement` gives the daemon an identity that is
+ * not `com.chirality.app`, so LaunchServices can never resolve a launch of
+ * Chirality.app to it. A double-click starts the GUI directly.
+ *
+ * ## How, and why it is only three files
+ *
+ * The nested bundle deliberately contains no copy of Electron, no framework and
+ * no resources:
+ *
+ * - `Contents/MacOS/<exe>` is a **byte-for-byte copy** of the app's own main
+ *   executable — a ~34 KB stub whose only job is to load Electron Framework. It
+ *   is copied rather than symlinked because `NSBundle` and LaunchServices
+ *   resolve symlinks, which would collapse the daemon's identity straight back
+ *   into the parent bundle and defeat the entire change. Copying preserves the
+ *   Mach-O's `linker-signed` ad-hoc signature exactly (same cdhash), which is
+ *   what keeps the Keychain identity — and therefore `safeStorage` continuity —
+ *   intact.
+ * - `Contents/Frameworks` and `Contents/Resources` are **directory symlinks**
+ *   back into the parent bundle. The stub's `LC_RPATH` is
+ *   `@executable_path/../Frameworks`, and Electron resolves `app.asar` relative
+ *   to its main bundle, so both must exist at the nested bundle's own depth.
+ *   Symlinking a resource directory does not affect bundle identity the way
+ *   symlinking the executable would.
+ * - `Contents/Info.plist` carries the new identity. `CFBundleName` is copied
+ *   from the parent unchanged: on macOS Chromium derives the `safeStorage`
+ *   Keychain service name from the application name, so changing it would
+ *   orphan every already-encrypted credential.
+ *
+ * Nothing here re-signs anything. The app ships `linker-signed` ad-hoc with
+ * `Info.plist=not bound` and `Sealed Resources=none`, so adding a bundle and
+ * writing its `Info.plist` invalidates no signature — and the copied stub keeps
+ * the signature it was built with.
+ *
+ * ## Usage
+ *
+ * Runs as an electron-builder `afterPack` hook, and standalone for verification:
+ *
+ *   node scripts/afterpack-runtime-bundle.mjs <path-to-Chirality.app>
+ *
+ * Idempotent: an existing nested bundle is replaced.
+ */
+
+import { execFileSync } from 'node:child_process';
+import { copyFileSync, existsSync, mkdirSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import path from 'node:path';
+
+/**
+ * Names shared with `electron/desktop-runtime-executable.ts`, which resolves
+ * this layout at runtime. `src/__tests__/electron/desktop-runtime-executable.test.ts`
+ * asserts the two files still agree, so the pair cannot drift silently.
+ */
+export const RUNTIME_BUNDLE_DIRECTORY_NAME = 'Chirality Runtime.app';
+export const RUNTIME_BUNDLE_EXECUTABLE_NAME = 'Chirality Runtime';
+/** Suffix appended to the parent bundle identifier. */
+export const RUNTIME_BUNDLE_IDENTIFIER_SUFFIX = '.runtime';
+
+function readParentInfoPlist(appPath) {
+  const plistPath = path.join(appPath, 'Contents', 'Info.plist');
+  const json = execFileSync('plutil', ['-convert', 'json', '-o', '-', plistPath], {
+    encoding: 'utf8'
+  });
+  return JSON.parse(json);
+}
+
+function escapeXml(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+}
+
+function renderInfoPlist(entries) {
+  const body = entries
+    .map(([key, value]) => {
+      const rendered =
+        typeof value === 'boolean'
+          ? `<${value}/>`
+          : `<string>${escapeXml(value)}</string>`;
+      return `\t<key>${escapeXml(key)}</key>\n\t${rendered}`;
+    })
+    .join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+${body}
+</dict>
+</plist>
+`;
+}
+
+/**
+ * Create (or replace) the nested runtime bundle inside a packaged `.app`.
+ * Returns a description of what was written, for logging and for drills.
+ */
+export function createRuntimeBundle(appPath) {
+  const parent = readParentInfoPlist(appPath);
+  const parentExecutable = parent.CFBundleExecutable;
+  if (typeof parentExecutable !== 'string' || parentExecutable.length === 0) {
+    throw new Error(`Parent bundle has no CFBundleExecutable: ${appPath}`);
+  }
+  const parentIdentifier = parent.CFBundleIdentifier;
+  if (typeof parentIdentifier !== 'string' || parentIdentifier.length === 0) {
+    throw new Error(`Parent bundle has no CFBundleIdentifier: ${appPath}`);
+  }
+
+  const sourceBinary = path.join(appPath, 'Contents', 'MacOS', parentExecutable);
+  if (!existsSync(sourceBinary)) {
+    throw new Error(`Parent executable is missing: ${sourceBinary}`);
+  }
+
+  const bundlePath = path.join(appPath, 'Contents', 'Frameworks', RUNTIME_BUNDLE_DIRECTORY_NAME);
+  const contents = path.join(bundlePath, 'Contents');
+  rmSync(bundlePath, { recursive: true, force: true });
+  mkdirSync(path.join(contents, 'MacOS'), { recursive: true });
+
+  const targetBinary = path.join(contents, 'MacOS', RUNTIME_BUNDLE_EXECUTABLE_NAME);
+  copyFileSync(sourceBinary, targetBinary);
+
+  // `@executable_path/../Frameworks` from Contents/MacOS, and Electron's
+  // resource lookup relative to this bundle, both have to land in the parent.
+  symlinkSync('../..', path.join(contents, 'Frameworks'));
+  symlinkSync('../../../Resources', path.join(contents, 'Resources'));
+
+  const identifier = `${parentIdentifier}${RUNTIME_BUNDLE_IDENTIFIER_SUFFIX}`;
+  const entries = [
+    ['CFBundleDisplayName', `${parent.CFBundleDisplayName ?? parentExecutable} Runtime`],
+    ['CFBundleExecutable', RUNTIME_BUNDLE_EXECUTABLE_NAME],
+    ['CFBundleIdentifier', identifier],
+    // Unchanged on purpose: the safeStorage Keychain service name is derived
+    // from the application name. See the header note.
+    ['CFBundleName', parent.CFBundleName ?? parentExecutable],
+    ['CFBundlePackageType', 'APPL'],
+    ['CFBundleShortVersionString', parent.CFBundleShortVersionString ?? '0.0.0'],
+    ['CFBundleVersion', parent.CFBundleVersion ?? '0.0.0'],
+    ['CFBundleInfoDictionaryVersion', '6.0'],
+    // Background service: never in the Dock, never in the window server's
+    // foreground rotation, never a Finder/Launchpad target.
+    ['LSUIElement', true],
+    ['LSBackgroundOnly', true],
+    ['LSMinimumSystemVersion', parent.LSMinimumSystemVersion ?? '10.15.0'],
+    ['NSSupportsAutomaticGraphicsSwitching', true],
+    ['NSHighResolutionCapable', true]
+  ];
+  writeFileSync(path.join(contents, 'Info.plist'), renderInfoPlist(entries), { mode: 0o644 });
+  writeFileSync(path.join(contents, 'PkgInfo'), 'APPL????', { mode: 0o644 });
+
+  execFileSync('plutil', ['-lint', path.join(contents, 'Info.plist')], { stdio: 'ignore' });
+
+  return {
+    bundlePath,
+    executablePath: targetBinary,
+    identifier,
+    bundleName: parent.CFBundleName ?? parentExecutable,
+    copiedFrom: sourceBinary
+  };
+}
+
+/** electron-builder `afterPack` hook. */
+export default async function afterPack(context) {
+  if (context.electronPlatformName !== 'darwin') {
+    return;
+  }
+  const appPath = path.join(
+    context.appOutDir,
+    `${context.packager.appInfo.productFilename}.app`
+  );
+  const created = createRuntimeBundle(appPath);
+  console.log(
+    `  • runtime daemon bundle  identifier=${created.identifier} path=${path.relative(context.appOutDir, created.bundlePath)}`
+  );
+}
+
+// Standalone entry point, for drills and for manual verification.
+if (process.argv[1] && import.meta.url === `file://${path.resolve(process.argv[1])}`) {
+  const appPath = process.argv[2];
+  if (!appPath) {
+    console.error('usage: afterpack-runtime-bundle.mjs <path-to-.app>');
+    process.exit(2);
+  }
+  console.log(JSON.stringify(createRuntimeBundle(path.resolve(appPath)), null, 2));
+}

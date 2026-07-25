@@ -1,0 +1,102 @@
+captured: 2026-07-25T04:22:03Z
+--- owner LaunchAgent plist ---
+total 8
+drwxr-xr-x@  3 ryan  staff    96 Jul 24 21:57 .
+drwx------@ 88 ryan  staff  2816 Jul 24 18:30 ..
+-rw-------@  1 ryan  staff  1207 Jul 24 21:57 com.chirality.runtime.plist
+2ebc556673d7dc1232a9e230a88a75355dec6916ad6c432f707a525b29a6c7bc  /Users/ryan/Library/LaunchAgents/com.chirality.runtime.plist
+1784951879 1207 /Users/ryan/Library/LaunchAgents/com.chirality.runtime.plist
+--- owner job ---
+	state = running
+	program = /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+	runs = 1
+	pid = 17236
+	last exit code = (never exited)
+		state = active
+		state = active
+--- owner launcher ---
+592d3d270592d9d1823e32b906c7ef9e0db122de29322915946f1d4ce72c2955  /Users/ryan/.local/bin/chirality
+1784951867 1080 -rwx------
+drwxr-xr-x /Users/ryan/.local/bin
+--- owner userData (2 levels) ---
+1784952154 /Users/ryan/Library/Application Support/chirality-frontend
+1784695282 0 /Users/ryan/Library/Application Support/chirality-frontend/Cookies-journal
+1784695282 0 /Users/ryan/Library/Application Support/chirality-frontend/Session Storage/LOCK
+1784695282 0 /Users/ryan/Library/Application Support/chirality-frontend/Shared Dictionary/db-journal
+1784695282 0 /Users/ryan/Library/Application Support/chirality-frontend/Trust Tokens-journal
+1784695282 128 /Users/ryan/Library/Application Support/chirality-frontend/Cache
+1784695282 128 /Users/ryan/Library/Application Support/chirality-frontend/Code Cache/wasm
+1784695282 128 /Users/ryan/Library/Application Support/chirality-frontend/Shared Dictionary/cache
+1784695282 16 /Users/ryan/Library/Application Support/chirality-frontend/Session Storage/CURRENT
+1784695282 160 /Users/ryan/Library/Application Support/chirality-frontend/Code Cache
+1784695282 160 /Users/ryan/Library/Application Support/chirality-frontend/Shared Dictionary
+1784695282 20480 /Users/ryan/Library/Application Support/chirality-frontend/Cookies
+1784695282 224 /Users/ryan/Library/Application Support/chirality-frontend/DawnGraphiteCache
+1784695282 224 /Users/ryan/Library/Application Support/chirality-frontend/DawnWebGPUCache
+1784695282 224 /Users/ryan/Library/Application Support/chirality-frontend/GPUCache
+1784695282 262512 /Users/ryan/Library/Application Support/chirality-frontend/DawnGraphiteCache/index
+1784695282 262512 /Users/ryan/Library/Application Support/chirality-frontend/DawnWebGPUCache/index
+1784695282 262512 /Users/ryan/Library/Application Support/chirality-frontend/GPUCache/index
+1784695282 36864 /Users/ryan/Library/Application Support/chirality-frontend/Trust Tokens
+1784695282 41 /Users/ryan/Library/Application Support/chirality-frontend/Session Storage/MANIFEST-000001
+1784695282 45056 /Users/ryan/Library/Application Support/chirality-frontend/Shared Dictionary/db
+1784695282 8192 /Users/ryan/Library/Application Support/chirality-frontend/DawnGraphiteCache/data_0
+1784695282 8192 /Users/ryan/Library/Application Support/chirality-frontend/DawnGraphiteCache/data_2
+1784695282 8192 /Users/ryan/Library/Application Support/chirality-frontend/DawnGraphiteCache/data_3
+1784695282 8192 /Users/ryan/Library/Application Support/chirality-frontend/DawnWebGPUCache/data_0
+1784695282 8192 /Users/ryan/Library/Application Support/chirality-frontend/DawnWebGPUCache/data_2
+1784695282 8192 /Users/ryan/Library/Application Support/chirality-frontend/DawnWebGPUCache/data_3
+1784695282 8192 /Users/ryan/Library/Application Support/chirality-frontend/GPUCache/data_0
+1784695282 8192 /Users/ryan/Library/Application Support/chirality-frontend/GPUCache/data_2
+1784695282 8192 /Users/ryan/Library/Application Support/chirality-frontend/GPUCache/data_3
+1784695282 96 /Users/ryan/Library/Application Support/chirality-frontend/Local Storage
+1784695292 57 /Users/ryan/Library/Application Support/chirality-frontend/Local State
+1784695304 111 /Users/ryan/Library/Application Support/chirality-frontend/Network Persistent State
+1784770067 4096 /Users/ryan/Library/Application Support/chirality-frontend/SharedStorage
+1784938457 192 /Users/ryan/Library/Application Support/chirality-frontend/Code Cache/electron-preload
+1784939455 128 /Users/ryan/Library/Application Support/chirality-frontend/runtime/logs
+1784939474 51 /Users/ryan/Library/Application Support/chirality-frontend/credentials/api-key.omlx.enc
+1784939522 115 /Users/ryan/Library/Application Support/chirality-frontend/credentials/api-key.enc
+1784939522 128 /Users/ryan/Library/Application Support/chirality-frontend/credentials
+1784941393 128 /Users/ryan/Library/Application Support/chirality-frontend/runtime/auth
+1784941923 1298 /Users/ryan/Library/Application Support/chirality-frontend/Preferences
+1784951868 322 /Users/ryan/Library/Application Support/chirality-frontend/Session Storage/LOG.old
+1784951880 128 /Users/ryan/Library/Application Support/chirality-frontend/logs
+1784951966 36864 /Users/ryan/Library/Application Support/chirality-frontend/DIPS
+1784952034 128 /Users/ryan/Library/Application Support/chirality-frontend/Cache/No_Vary_Search
+1784952034 256 /Users/ryan/Library/Application Support/chirality-frontend/Local Storage/leveldb
+1784952034 256 /Users/ryan/Library/Application Support/chirality-frontend/Session Storage
+1784952034 2662 /Users/ryan/Library/Application Support/chirality-frontend/Session Storage/000003.log
+1784952034 322 /Users/ryan/Library/Application Support/chirality-frontend/Session Storage/LOG
+1784952034 64 /Users/ryan/Library/Application Support/chirality-frontend/blob_storage/f85f1f49-4271-47a1-bb20-1d8cb89cec19
+1784952034 96 /Users/ryan/Library/Application Support/chirality-frontend/blob_storage
+1784952073 0 /Users/ryan/Library/Application Support/chirality-frontend/runtime/control.sock
+1784952073 1908 /Users/ryan/Library/Application Support/chirality-frontend/logs/desktop-daemon.log
+1784952073 277 /Users/ryan/Library/Application Support/chirality-frontend/runtime/control.sock.owner.json
+1784952077 4796 /Users/ryan/Library/Application Support/chirality-frontend/logs/desktop-main.log
+1784952092 1713 /Users/ryan/Library/Application Support/chirality-frontend/runtime/model-residency.jsonl
+1784952092 256 /Users/ryan/Library/Application Support/chirality-frontend/runtime/model-residency.json
+1784952154 0 /Users/ryan/Library/Application Support/chirality-frontend/SharedStorage-wal
+1784952154 800 /Users/ryan/Library/Application Support/chirality-frontend
+1784952554 128 /Users/ryan/Library/Application Support/chirality-frontend/runtime/projects
+1784952554 320 /Users/ryan/Library/Application Support/chirality-frontend/runtime
+1784952604 4992 /Users/ryan/Library/Application Support/chirality-frontend/Code Cache/js
+1784952609 160 /Users/ryan/Library/Application Support/chirality-frontend/runtime/adapter-events
+1784952612 49472 /Users/ryan/Library/Application Support/chirality-frontend/DIPS-wal
+1784952634 8672 /Users/ryan/Library/Application Support/chirality-frontend/Cache/Cache_Data
+1784953027 270336 /Users/ryan/Library/Application Support/chirality-frontend/DawnGraphiteCache/data_1
+1784953027 270336 /Users/ryan/Library/Application Support/chirality-frontend/DawnWebGPUCache/data_1
+1784953027 270336 /Users/ryan/Library/Application Support/chirality-frontend/GPUCache/data_1
+--- chirality processes ---
+17199 /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+17201 /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/Users/ryan/Library/Application Support/chirality-frontend --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,18309658477272913525,7078361323515298073,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14675760852135677831,5801004066721476550,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=26
+17202 /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/Users/ryan/Library/Application Support/chirality-frontend --shared-files --field-trial-handle=1718379636,r,18309658477272913525,7078361323515298073,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14675760852135677831,5801004066721476550,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=26
+17205 /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/Users/ryan/Library/Application Support/chirality-frontend --app-path=/Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1784758524946423 --launch-time-ticks=193509811905 --shared-files --field-trial-handle=1718379636,r,18309658477272913525,7078361323515298073,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14675760852135677831,5801004066721476550,4 --trace-process-track-uuid=3190708990060038890 --seatbelt-client=56
+17236 /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon
+17239 /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/Users/ryan/Library/Application Support/chirality-frontend --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,6864988929875070566,10679416906182423123,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,13887418453518561729,2354175232909149239,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=26
+17240 /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/Users/ryan/Library/Application Support/chirality-frontend --shared-files --field-trial-handle=1718379636,r,6864988929875070566,10679416906182423123,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,13887418453518561729,2354175232909149239,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=26
+--- keychain safe-storage service names (existence only) ---
+absent  Chirality Safe Storage
+FOUND   chirality-frontend Safe Storage
+absent  Chirality Runtime Safe Storage
+FOUND   Electron Safe Storage

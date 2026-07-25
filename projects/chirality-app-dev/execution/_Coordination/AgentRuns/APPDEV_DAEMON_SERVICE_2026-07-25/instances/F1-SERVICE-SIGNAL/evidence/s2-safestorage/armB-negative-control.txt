@@ -1,0 +1,13 @@
+--- negative control: corrupt the final block, restart the new-identity daemon ---
+flipped last byte
+corrupted-blob status:
+{
+  "providerId": "anthropic",
+  "configured": false
+}
+--- restore the original blob, restart again ---
+restored-blob status:
+{
+  "providerId": "anthropic",
+  "configured": true
+}

@@ -1,0 +1,15 @@
+1c1
+< captured: 2026-07-25T04:22:03Z
+---
+> captured: 2026-07-25T04:37:10Z
+85d84
+< 1784952612 49472 /Users/ryan/Library/Application Support/chirality-frontend/DIPS-wal
+87,89c86,89
+< 1784953027 270336 /Users/ryan/Library/Application Support/chirality-frontend/DawnGraphiteCache/data_1
+< 1784953027 270336 /Users/ryan/Library/Application Support/chirality-frontend/DawnWebGPUCache/data_1
+< 1784953027 270336 /Users/ryan/Library/Application Support/chirality-frontend/GPUCache/data_1
+---
+> 1784953773 57712 /Users/ryan/Library/Application Support/chirality-frontend/DIPS-wal
+> 1784954230 270336 /Users/ryan/Library/Application Support/chirality-frontend/DawnGraphiteCache/data_1
+> 1784954230 270336 /Users/ryan/Library/Application Support/chirality-frontend/DawnWebGPUCache/data_1
+> 1784954230 270336 /Users/ryan/Library/Application Support/chirality-frontend/GPUCache/data_1

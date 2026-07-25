@@ -1,0 +1,6 @@
+total 8
+drwxr-xr-x@ 3 ryan  staff   96 Jul 24 22:35 .
+drwxr-xr-x@ 5 ryan  staff  160 Jul 24 22:35 ..
+-rw-r--r--@ 1 ryan  staff   67 Jul 24 22:35 api-key.enc
+00000000: 7631 30a4 0bba 3201                      v10...2.
+158438dccbfd6aa5a24e29d2caa4d94dc1074bdd66e829be36a4108452da793f  /Users/ryan/.chirality-tranchetest-f1/userdata/credentials/api-key.enc

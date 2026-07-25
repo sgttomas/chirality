@@ -1,0 +1,9 @@
+PARENT (Arm A):
+  "CFBundleIdentifier" => "com.chirality.app.f1test"
+  "CFBundleName" => "Chirality"
+NESTED (Arm B):
+  "CFBundleIdentifier" => "com.chirality.app.f1test.runtime"
+  "CFBundleName" => "Chirality"
+  "LSUIElement" => true
+cdhash parent : CDHash=5c22a19a764af33c82dfc3e3191db283a5b8e376
+cdhash nested : CDHash=5c22a19a764af33c82dfc3e3191db283a5b8e376
