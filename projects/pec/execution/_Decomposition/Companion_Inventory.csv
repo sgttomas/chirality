@@ -1,0 +1,7 @@
+Filename,PackageRole,Description
+SOFTWARE_DECOMP.md,working surface,"Main decomposition document and amendment surface; authoritative for statement text, gates, decisions, open issues"
+_LATEST.md,snapshot / handoff artifact,Revision pointer and Gate 7 handoff-state record
+ScopeLedger.csv,authoritative companion register,94-row SOW->PKG->DEL->OBJ ledger with DecisionRef and OpenIssue columns; authoritative for assignments
+Deliverables.csv,authoritative companion register,"64-row deliverable register: descriptions, types, artifacts, Context Envelopes + notes, PhaseHint"
+ContextBudgetQA.csv,authoritative companion register,Per-deliverable envelope/risk/action QA
+Companion_Inventory.csv,authoritative companion register,This machine-readable package index (mirrors the working surface's Companion Inventory section)

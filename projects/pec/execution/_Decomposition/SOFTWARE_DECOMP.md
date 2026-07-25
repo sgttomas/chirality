@@ -2,8 +2,8 @@
 doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
-status: draft_gate6
-revision: "0.9"
+status: candidate_basis_gate7
+revision: "1.0"
 date: 2026-07-24
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
@@ -28,8 +28,8 @@ source_corpus: projects/pec/docs/PRD.md (v2.0, adopted 2026-07-24, D-PEC-58)
 | 3 | Objectives | **CONFIRMED** | "Gate 3 confirmed — proceed to Phase 4." | 2026-07-24 |
 | 4 | Packages | **CONFIRMED** (as restructured: PKG-00 per DL-12) | "Gate 4 confirmed — proceed to Phase 5." | 2026-07-24 |
 | 5 | Deliverables | **CONFIRMED** | "Gate 5 confirmed — proceed to Phase 6." | 2026-07-24 |
-| 6 | Coverage + Context Budget | **PRESENTED** | — | 2026-07-24 |
-| 7 | Final acceptance | not reached | — | — |
+| 6 | Coverage + Context Budget | **CONFIRMED** | "Gate 6 confirmed — proceed to Phase 7." | 2026-07-24 |
+| 7 | Final acceptance | **PRESENTED** | — | 2026-07-24 |
 
 ---
 
@@ -616,6 +616,20 @@ boundary (permanent vs deferred); TBD items carry their open-issue IDs.
 | DL-14 | 2026-07-24 | Phase 6 adversarial verification (opus-5; 19 confirmed defects, 5 suspicions dispositioned) applied at revision 0.9: SOW-093 (§11.5 parity metric) and SOW-094 (loop-registration config) added with DEL-10-11 and DEL-01-06; DEL-10-05 split (→ DEL-10-12: two instrumentation points, two phases); DEL-01-01 re-enveloped M→L (14 entity types, not "11 entities"); DEL-03-05 moved P4→P3 so ingest never runs without its PEC-K-07 safety invariant; DEL-00-02 P3→P2 and DEL-00-03 P1→pre-P1 (PKG-00 publishes ahead of consumers); OI-coupled risk raised to MEDIUM on DEL-00-02 (OI-009) and DEL-08-01 (OI-006); DEL-09-06 declared a PKG-09-internal shared component sequenced first; DEL-09-07 retyped BACKEND_FEATURE_SLICE (artifacts are rules, not UI); DEL-06-05's cross-package enforcement edge to DEL-04-03 declared; SOW-062 mapped to OBJ-003, SOW-063 left unmapped intentionally (instruments PEC-K-07, which no §3 objective states); SOW-088 flagged OpenIssue=TRUE (OI-012); the false "build-gate generator" claim corrected and recorded as OI-013; §6 stale placeholder replaced; §2.4 amended (observation + authoring signals); §3 gains MappedDeliverables; vocabulary gains the `Package (entity)` disambiguation and this log was reordered; names normalized across doc and registers | Fix-before-gate: all corrections landed before Gate 6 presentation; IDs remain append-only (I5) |
 | DL-15 | 2026-07-24 | Justified duplication (per the standard's companion-register clause): the §2 SSOW tables intentionally duplicate the ledger's identity columns because they are the Gate 2 human-confirmation surface and the generation source — `ScopeLedger.csv` stays authoritative for assignments (PKG/DEL/OBJ/DecisionRef/OpenIssue); §5 duplicates only the compact control fields (ID/name/type/envelope/phase/covers) — `Deliverables.csv` stays authoritative for full deliverable truth. Any conflict resolves to the register for assignment fields and to this document for statement text, pending regeneration | The duplication is directional and declared, not drift-prone parity |
 
+## 12. Revision History (Phase 7 change summary)
+
+| Rev | Gate | What changed |
+|---|---|---|
+| 0.1 | 1 | Intake: title, summary, constraints C1–C14, postures, references |
+| 0.2–0.3 | 2 | SSOW drafted (83 items) then verification errata (16 defects): +SOW-084..092, C15, OI-001..011 |
+| 0.4 | 3 | Six objectives derived and mapped; OI-010/011 owner-resolved at Gate 2 |
+| 0.5 | 4 | Eleven packages; `ScopeLedger.csv` live; forced assignments DL-11 |
+| 0.6 | 4 | Owner-directed restructure: PKG-00 Architecture Runway & Contracts (DL-12, OI-012) |
+| 0.7 | 5 | 61 deliverables; `Deliverables.csv` live; MEASUREMENT type (DL-13) |
+| 0.8 | 6 | Coverage & Telemetry; `ContextBudgetQA.csv` live |
+| 0.9 | 6 | Phase 6 verification errata (19 defects, DL-14/15): +SOW-093/094, +DEL-01-06/10-11/10-12, DEL-10-05 split, re-envelopes, phase corrections, OI-013 |
+| 1.0 | 7 | Publication: `Companion_Inventory.csv` live; handoff state in `_LATEST.md`; presented for final acceptance |
+
 ## Companion Inventory
 
 | Filename | PackageRole | Status | Description |
@@ -625,4 +639,4 @@ boundary (permanent vs deferred); TBD items carry their open-issue IDs.
 | `ScopeLedger.csv` | authoritative companion register | **live** (SOW→DEL mapping filled at Phase 5) | SOW→PKG→DEL→OBJ row-level ledger; authoritative for assignments |
 | `Deliverables.csv` | authoritative companion register | **live** (Phase 5) | Deliverable register: full fields incl. descriptions, artifacts, Context Envelope + notes, PhaseHint |
 | `ContextBudgetQA.csv` | authoritative companion register | **live** (Phase 6) | Per-deliverable envelope/risk/action QA |
-| `Companion_Inventory.csv` | authoritative companion register | planned (Phase 7) | Machine-readable mirror of this table at publication |
+| `Companion_Inventory.csv` | authoritative companion register | **live** (Phase 7) | Machine-readable mirror of this table |
