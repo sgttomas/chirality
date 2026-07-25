@@ -2,8 +2,8 @@
 doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
-status: draft_gate4
-revision: "0.6"
+status: draft_gate5
+revision: "0.7"
 date: 2026-07-24
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
@@ -26,8 +26,8 @@ source_corpus: projects/pec/docs/PRD.md (v2.0, adopted 2026-07-24, D-PEC-58)
 | 1 | Intake | **CONFIRMED** | "Gate 1 confirmed — proceed to Phase 2." | 2026-07-24 |
 | 2 | SSOW | **CONFIRMED** | "Gate 2 confirmed — proceed to Phase 3 based on acceptance of your recommendations for OI-010 and OI-011" | 2026-07-24 |
 | 3 | Objectives | **CONFIRMED** | "Gate 3 confirmed — proceed to Phase 4." | 2026-07-24 |
-| 4 | Packages | **PRESENTED** | — | 2026-07-24 |
-| 5 | Deliverables | not reached | — | — |
+| 4 | Packages | **CONFIRMED** (as restructured: PKG-00 per DL-12) | "Gate 4 confirmed — proceed to Phase 5." | 2026-07-24 |
+| 5 | Deliverables | **PRESENTED** | — | 2026-07-24 |
 | 6 | Coverage + Context Budget | not reached | — | — |
 | 7 | Final acceptance | not reached | — | — |
 
@@ -348,7 +348,134 @@ package.
 | PKG-09 | Dashboards | The human-owner surface: overview, lifecycle census, register views, decision slate view, presence board, universal drill-down, documented pressure rules | SOW-045..051 (7) | New data classes; restating authored text (C6) |
 | PKG-10 | Validation & Measurement | Release-gating proof and metrics: kill test, no-ruling-write verification, Step-0 baseline, defect/adoption/collision measurement, seeded-conflict, TTL-honesty and stream-loss tests, usage observability, bootstrap self-ingest | SOW-025, 055, 058..064, 084, 085 (11) | The behaviors under test (their home packages) |
 
-## 5. Deliverables (Phase 5) — not started
+## 5. Deliverables (Phase 5)
+
+61 deliverables across the 11 packages. **`Deliverables.csv` is the
+authoritative companion register** (full fields: description, responsible
+party, anticipated artifacts, envelope notes); the tables below are the
+compact control view. `PhaseHint` is sequencing metadata per DL-3, never a
+package. ResponsibleParty is `TBD` throughout — assignment happens at
+WORKING_ITEMS activation, not here. Conventions are DL-13.
+
+Context Envelope posture: **25 S / 35 M / 1 L / 0 XL.** The single L
+(DEL-02-03, receipts parser) carries mandatory envelope notes; no XL
+exists, so no Gate 5/6 acceptance-of-risk is required.
+
+### PKG-00 Architecture Runway & Contracts
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-00-01 | v2 first ADRs (core isolation + carried postures) | DOC_UPDATE | S | pre-P1 | SOW-088 |
+| DEL-00-02 | Event-contract schema v1 | API_CONTRACT | M | P3 | SOW-034 |
+| DEL-00-03 | v2 SPEC seed | DOC_UPDATE | M | P1 | SOW-089 |
+
+### PKG-01 Service Core & Store
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-01-01 | Record-tier schema & entity model | DATA_MODEL_CHANGE | M | P1 | SOW-001 |
+| DEL-01-02 | Presence-tier schema & entity model | DATA_MODEL_CHANGE | S | P3 | SOW-002 |
+| DEL-01-03 | Store bootstrap & content-minimal guard | BACKEND_FEATURE_SLICE | M | P1 | SOW-056 |
+| DEL-01-04 | Self-observability logging | OBSERVABILITY | S | P1 | SOW-057 |
+| DEL-01-05 | Zero-dependency & locality enforcement | CI_CD_CHANGE | S | P1 | SOW-052, 053 |
+
+### PKG-02 File-Truth Parsers
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-02-01 | `_STATUS.md` parser | BACKEND_FEATURE_SLICE | M | P1 | SOW-011 |
+| DEL-02-02 | Decision register/packet parser | BACKEND_FEATURE_SLICE | M | P1 | SOW-012 |
+| DEL-02-03 | Receipts ledger parser (per-loop grammars) | BACKEND_FEATURE_SLICE | **L** | P1 | SOW-013 |
+| DEL-02-04 | Run-evidence JSON parser | BACKEND_FEATURE_SLICE | S | P1 | SOW-014 |
+| DEL-02-05 | Dependency register parser | BACKEND_FEATURE_SLICE | S | P1 | SOW-015 |
+| DEL-02-06 | Workplan/LOOP_INIT parser | BACKEND_FEATURE_SLICE | M | P1 | SOW-016 |
+| DEL-02-07 | `adapter.yaml` feed-manifest consumer | BACKEND_FEATURE_SLICE | S | P1 | SOW-017 |
+
+### PKG-03 Reconciliation & Parity
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-03-01 | Full-rebuild reconciler (one command) | BACKEND_FEATURE_SLICE | M | P1 | SOW-010, 021 |
+| DEL-03-02 | Incremental reconcile on Git delta | BACKEND_FEATURE_SLICE | M | P1 | SOW-018 |
+| DEL-03-03 | Drift classification | BACKEND_FEATURE_SLICE | M | P1 | SOW-019 |
+| DEL-03-04 | Practitioner-harness parity diff | BACKEND_FEATURE_SLICE | M | P1 | SOW-020 |
+| DEL-03-05 | Stream-loss recovery guarantee | BACKEND_FEATURE_SLICE | S | P4 | SOW-038 |
+| DEL-03-06 | Rebuild performance bounds | TEST_SUITE | S | P1 | SOW-054 |
+
+### PKG-04 Orientation Services
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-04-01 | Loop orientation return | BACKEND_FEATURE_SLICE | M | P1 | SOW-004 |
+| DEL-04-02 | Delta service since SHA | BACKEND_FEATURE_SLICE | M | P1 | SOW-005 |
+| DEL-04-03 | Citation & freshness stamping | BACKEND_FEATURE_SLICE | M | P1 | SOW-006, 007 |
+| DEL-04-04 | Scope parameterization | BACKEND_FEATURE_SLICE | S | P2 | SOW-008 |
+| DEL-04-05 | Measurement-limitation honesty | BACKEND_FEATURE_SLICE | S | P1 | SOW-009 |
+
+### PKG-05 Gate Evaluation & Decision Slate
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-05-01 | Gate precondition evaluators (Explain-shaped) | BACKEND_FEATURE_SLICE | M | P2 | SOW-022, 023 |
+| DEL-05-02 | Cross-loop decision slate | BACKEND_FEATURE_SLICE | M | P2 | SOW-024 |
+
+### PKG-06 Presence & Git Observation
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-06-01 | Session presence records | BACKEND_FEATURE_SLICE | M | P3 | SOW-026 |
+| DEL-06-02 | Git/worktree scanner | BACKEND_FEATURE_SLICE | M | P3 | SOW-027 |
+| DEL-06-03 | Session×worktree×scope correlation | BACKEND_FEATURE_SLICE | S | P3 | SOW-028 |
+| DEL-06-04 | Live hierarchy edges | BACKEND_FEATURE_SLICE | S | P4 | SOW-029 |
+| DEL-06-05 | TTL/heartbeat discipline & citation exclusion | BACKEND_FEATURE_SLICE | M | P3 | SOW-030, 032 |
+| DEL-06-06 | Advisory overlap detection | BACKEND_FEATURE_SLICE | M | P3 | SOW-031 |
+
+### PKG-07 Event Ingest & Bridges
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-07-01 | Idempotent event ingest + durable message store | BACKEND_FEATURE_SLICE | M | P3 | SOW-033, 039 |
+| DEL-07-02 | Daemon SSE subscriber bridge | BACKEND_FEATURE_SLICE | M | P4 | SOW-035 |
+| DEL-07-03 | Hooks CLI bridge | BACKEND_FEATURE_SLICE | M | P3 | SOW-036 |
+| DEL-07-04 | cmux socket adapter (optional) | BACKEND_FEATURE_SLICE | M | P4 | SOW-037 |
+| DEL-07-05 | Shared-runtime client seam (v2) | BACKEND_FEATURE_SLICE | M | P3 | SOW-087 |
+
+### PKG-08 API & Access
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-08-01 | Unix-socket server + token-scoped access | SECURITY_CONTROL | M | P1 | SOW-003, 040 |
+| DEL-08-02 | Versioned additive API schema | API_CONTRACT | S | P1 | SOW-042 |
+| DEL-08-03 | Compact citation-bearing response format | API_CONTRACT | S | P1 | SOW-043 |
+| DEL-08-04 | Orientation latency budget (p95 ≤ 100 ms) | TEST_SUITE | S | P1 | SOW-041 |
+| DEL-08-05 | SSE delta/presence subscription | BACKEND_FEATURE_SLICE | M | P4 | SOW-044 |
+
+### PKG-09 Dashboards
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-09-01 | Overview dashboard | UX_UI_SLICE | M | P2 | SOW-045 |
+| DEL-09-02 | Lifecycle census dashboard | UX_UI_SLICE | M | P2 | SOW-046 |
+| DEL-09-03 | Register views | UX_UI_SLICE | M | P2 | SOW-047 |
+| DEL-09-04 | Decision-slate view ("waiting on you") | UX_UI_SLICE | S | P2 | SOW-048 |
+| DEL-09-05 | Presence board | UX_UI_SLICE | M | P3 | SOW-049 |
+| DEL-09-06 | Universal drill-down to cited source | UX_UI_SLICE | M | P2 | SOW-050 |
+| DEL-09-07 | Explain-shaped pressure rules | UX_UI_SLICE | M | P2 | SOW-051 |
+
+### PKG-10 Validation & Measurement
+
+| ID | Name | Type | Env | Phase | Covers |
+|---|---|---|---|---|---|
+| DEL-10-01 | Step-0 cost baseline (pre-P1) | MEASUREMENT | S | pre-P1 | SOW-058 |
+| DEL-10-02 | Kill test (standing release gate) | TEST_SUITE | M | P1 | SOW-055 |
+| DEL-10-03 | No-ruling-write verification | TEST_SUITE | S | P1 | SOW-025 |
+| DEL-10-04 | Orientation defect-rate spot-check | MEASUREMENT | S | P2 | SOW-059 |
+| DEL-10-05 | Usage metrics (poll adoption + owner consultation) | MEASUREMENT | M | P2–P3 | SOW-060, 085 |
+| DEL-10-06 | Seeded-conflict overlap test | TEST_SUITE | S | P3 | SOW-061 |
+| DEL-10-07 | Presence TTL honesty tests | TEST_SUITE | S | P4 | SOW-062 |
+| DEL-10-08 | Stream-loss recovery demonstration | TEST_SUITE | S | P4 | SOW-063 |
+| DEL-10-09 | Collision-incident measurement | MEASUREMENT | S | P3 | SOW-084 |
+| DEL-10-10 | Bootstrap self-ingest validation | TEST_SUITE | S | P1 | SOW-064 |
 
 ## 6. Scope Ledger — not started (will be authoritative in `ScopeLedger.csv`)
 
@@ -381,6 +508,7 @@ package.
 | work-domain package | PKG-XX, decomposition package | **Disambiguation:** distinct from the retired product's `*-PKG-*` tokens (`26020-PKG-001` demo/fixture work-package IDs; `PEC-PKG-009` **v0.4** requirement IDs — the v1.0 PRD used no `PEC-PKG` family). In this package, bare "package" means work-domain package |
 | frozen reference corpus | old PEC, v0.4 baseline, prototype | Read/cite only; machinery carries as pattern, never code |
 | content-minimal | residency rule, no-content rule | Paths, counts, SHAs, states, hashes — never file/diff content |
+| MEASUREMENT (deliverable type) | metric deliverable | Added to the suggestive software taxonomy for §11 metric work (DL-13): a deliverable whose artifact is a measurement method, instrumentation, and report — not a feature or test of behavior |
 
 ## 10. Open Issues
 
@@ -413,6 +541,7 @@ package.
 | DL-8 | 2026-07-24 | IN/OUT twinning convention: a §4.2 boundary row stays OUT as the boundary record; the corresponding built/verified obligation is a separate IN item stating enforcement or verification, never the boundary itself. Pairs: SOW-025↔SOW-066, SOW-056↔SOW-073. Phase 6 telemetry counts rows as written; twins are distinct statements, not duplicates | Keeps "scope item = unit of coverage checking" coherent while satisfying both the boundary record and the buildable-obligation record |
 | DL-9 | 2026-07-24 | Adversarial verification (opus-5, 16 confirmed defects) appended SOW-084..092, C15, OI-001..011, and the §9/§2 corrections; IDs are append-only and family ordering is not semantic (I5) | Notable: §11.3 and §12-P2 obligations had been dropped; PEC-K-11 unrepresented; `PEC-PKG-009` provenance was v0.4, not v1.0; `WORK_GRAPH.json` was routed to the wrong entity; two PRD-internal tensions surfaced as OI-010/011 rather than silently reconciled |
 | DL-10 | 2026-07-24 | Owner resolved OI-010 (first P1 loop = PEC v2's own build; §12 closing paragraph governs over the P1 table parenthetical) and OI-011 (session-start polling applies only to sessions that start with scope) at Gate 2 | Gate 2 confirmation verbatim in the Gate Log: "…based on acceptance of your recommendations for OI-010 and OI-011" |
+| DL-13 | 2026-07-24 | Phase 5 conventions: (a) a `MEASUREMENT` deliverable type is added to the software taxonomy for §11 metric work (the base taxonomy is declared suggestive; recorded here and in the Vocabulary Map); (b) `PhaseHint` carries P1–P4 sequencing as metadata per DL-3; (c) ResponsibleParty is `TBD` pending WORKING_ITEMS activation; (d) two-item merges kept single-shape: DEL-03-01 (rebuild+write-restriction), DEL-04-03 (citations+stamps), DEL-05-01 (evaluators+Explain verdicts), DEL-06-05 (TTL+citation exclusion), DEL-07-01 (ingest+durable store), DEL-08-01 (socket+tokens), DEL-01-05 (zero-dep+locality), DEL-10-05 (two usage metrics arming both falsification limbs); (e) `Deliverables.csv` and the ledger's SOW→DEL column are generated from one source of deliverable definitions with asserted single-package coverage and ID coupling | Keeps deliverables agent-executable and the registers drift-free |
 | DL-12 | 2026-07-24 | Gate 4 restructuring on owner direction ("what about adding a PKG-00 addressing the nuances of the architecture…"): PKG-00 Architecture Runway & Contracts created (precedent: piping's PKG-00 Software Architecture Runway); PKG-11 dissolved into it pre-confirmation (Gate 4 was still open, so no post-acceptance renumbering under I5); SOW-034 reassigned PKG-07→PKG-00 as a published cross-consumer contract. Mechanics constraint: PKG-00 deliverables publish artifacts that dependants consume as declared dependencies — a deliverable never writes into another package (disjoint write scopes preserved). OI-012 (core isolation style) recorded for PKG-00's ADR deliverable | The owner's "contributions to other packages" intent is realized through dependency edges, not cross-package writes |
 | DL-11 | 2026-07-24 | Phase 4 forced boundary assignments: SOW-010 (one-command rebuild) → PKG-03 as the reconciler entry point, while the store-path rule (SOW-056) stays PKG-01; SOW-038 (stream-loss recovery) → PKG-03 because the guarantee is reconciliation-side, not ingest mechanics; SOW-025 (no-ruling-write verification) → PKG-10 per DL-8's verification-obligation framing; SOW-087 (client seam) → PKG-07 as daemon-facing integration; SOW-003 (access classes) → PKG-08 with the token-scoped transport; SOW-054 (rebuild bounds) → PKG-03 as reconcile performance; SOW-064 (bootstrap) → PKG-10 as a validation act, not a reconciler feature | Each was assignable to two domains; ledger rows carry `DL-11` in DecisionRef. The `ScopeLedger.csv` register is generated from this document's SSOW tables by script to prevent transcription drift |
 
@@ -422,7 +551,7 @@ package.
 |---|---|---|---|
 | `SOFTWARE_DECOMP.md` | working surface | live (this file) | Main decomposition document; amendment surface |
 | `_LATEST.md` | snapshot / handoff artifact | live | Revision pointer; kept current on every revision bump |
-| `ScopeLedger.csv` | authoritative companion register | **live** (Phase 4; DeliverableIDs `TBD` until Phase 5) | SOW→PKG→DEL→OBJ row-level ledger; authoritative for assignments |
-| `Deliverables.csv` | authoritative companion register | planned (Phase 5) | Deliverable register incl. Context Envelope |
+| `ScopeLedger.csv` | authoritative companion register | **live** (SOW→DEL mapping filled at Phase 5) | SOW→PKG→DEL→OBJ row-level ledger; authoritative for assignments |
+| `Deliverables.csv` | authoritative companion register | **live** (Phase 5) | Deliverable register: full fields incl. descriptions, artifacts, Context Envelope + notes, PhaseHint |
 | `ContextBudgetQA.csv` | authoritative companion register | planned (Phase 6) | Per-deliverable envelope/risk/action QA |
 | `Companion_Inventory.csv` | authoritative companion register | planned (Phase 7) | Machine-readable mirror of this table at publication |
