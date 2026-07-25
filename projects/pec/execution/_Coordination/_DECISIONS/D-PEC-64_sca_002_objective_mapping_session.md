@@ -1,6 +1,7 @@
-# D-PEC-64 — DRAFT: SCA-002 opening (deliverable→objective mapping amendment)
+# D-PEC-64 — RULED: SCA-002 opening (deliverable→objective mapping amendment)
 
-**Status:** DRAFT — AWAITING_RULING. Drafted 2026-07-25 by PROJECT_SETUP
+**Status:** RULED 2026-07-25 (owner in-session; ruling record in §6).
+Drafted 2026-07-25 by PROJECT_SETUP
 (engine/model: claude-fable-5); adversarially refuted (round R-2a, two
 opus-5 refuters, 25 findings — all dispositioned ACCEPTED and applied;
 log in the companion plan §6) before presentation.
@@ -209,11 +210,15 @@ granularity depends on these commits.
 
 ## 6. Human ruling
 
-**PENDING.** Proposed ruling text: "D-PEC-64 is RULED as drafted: I adopt
-the intake §1 change request as my own; SCA-002 may open at Gate 1 under
-the stated fence, entry mechanics, and git-acts clause; Gates 1–5 remain
-distinct in-session owner acts; scope width is ruled at Gate 1 from the
-intake §7 options."
+**RULED 2026-07-25** — owner (Ryan Tufts) in-session, selecting the
+presented ruling option verbatim: **"RULED as drafted (Recommended)"** —
+which carries the proposed ruling text: "D-PEC-64 is RULED as drafted: I
+adopt the intake §1 change request as my own; SCA-002 may open at Gate 1
+under the stated fence, entry mechanics, and git-acts clause; Gates 1–5
+remain distinct in-session owner acts; scope width is ruled at Gate 1
+from the intake §7 options." On the advisory scope-width question the
+owner selected **"Decide at Gate 1"** — no pre-indication; the SCA
+session presents the intake §7 options fresh at Gate 1.
 
 On ruling, the owner invokes SCOPE_CHANGE (suggested invocation: act as
 SCOPE_CHANGE per `agents/AGENT_SCOPE_CHANGE.md` with
