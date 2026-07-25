@@ -68,7 +68,7 @@ quote, and line citation reproduces.
 | D-2 | `AUDIT_DECOMP` executed **inline** rather than dispatched | Agent 2 dispatch is unavailable in this harness. Launch brief: "run the deterministic audit tooling inline and record that substitution". Root `AGENTS.md` single-agent fallback. Read-only invariants preserved; writes confined to the COV snapshot + its pointer. |
 | D-3 | Coverage baseline scoped `ALL`, not to affected packages/deliverables | The affected set is undetermined until the owner rules scope width. `ALL` is the strict superset of O-A/O-C/O-B and the only scoping that keeps the Gate 5 post-change baseline comparable under any ruling. |
 | D-4 | Actions parsed as **six** `MODIFY` actions with conditional row-set width | The change request is one class over a row set the owner sizes at Gate 1. Stating A001/A002 conditionally avoids pre-empting the ruling while keeping the action register complete. Exact per-row text is Gate 3 work. |
-| D-5 | Finding `W-1` recorded and escalated, **not** corrected | Gate 1 holds no write authority over decomposition truth (`D-PEC-64` §2.5, §5). `W-1` is also outside SCA-002's declared `MODIFY` mapping change class, so bringing it in scope requires an explicit owner act. |
+| D-5 | Finding `W-1` recorded and escalated, **not** corrected | Gate 1 holds no write authority over decomposition truth (`D-PEC-64` §2.5, §5). ~~`W-1` is also outside SCA-002's declared `MODIFY` mapping change class~~ — **superseded by C-1 (C-13):** `W-1`/A007 is `MODIFY`, which *is* the declared class; it was excluded by the `D-PEC-64` §4.3 byte-identity **window** and the intake's **subject scope**, both owner-amended at Gate 1. The operative reason to escalate rather than correct was the Gate 1 write-authority boundary alone. |
 | D-6 | `Supersession_Delta.csv` disposition **not** settled at Gate 1 | Intake §5.5 assigns it to Gate 2/3. Recording it here would pre-empt a later gate. |
 | D-7 | Three spurious Check-7 `BLOCKER`s discarded after root-cause | §3's `MappedDeliverables` uses range notation (`DEL-04-01..05`, `DEL-06-01..06`, `DEL-09-01..07`). Literal ID scanning undercounts. After range expansion, §3 and `Deliverables.csv` agree exactly for all six objectives. Recorded so the discarded findings are auditable rather than invisible. |
 | D-8 | `AMENDMENT_ID = SCA-002` confirmed by directory scan **before** workspace creation | `_ScopeChange/` held only `SCA-001_2026-07-24_2206`, making `SCA-002` next-available and consistent with `D-PEC-64`. Note: `tools/query/scan_next_amendment_id.sh` now returns `SCA-003` **because this session's workspace exists** — that is the expected post-creation reading, not a conflict. |
@@ -77,7 +77,7 @@ quote, and line citation reproduces.
 
 | Ref | Finding | Disposition |
 |---|---|---|
-| `W-1` | `SOFTWARE_DECOMP.md` §5 line 376 states "29 S / 33 M / 2 L / 0 XL"; `Deliverables.csv` and §7 both yield "28 S / 34 M / 2 L / 0 XL". SCA-001 re-enveloped `DEL-10-10` `S`→`M` and reconciled the registers, `ContextBudgetQA.csv`, and §7 — but not the §5 prose. A residual reconciliation miss inside accepted revision 1.1. | Escalated to the owner as a Gate 1 open item. Documentation-consistency only; no topology impact; `D-PEC-64` §4.1's invariant agrees with the registers, not §5. Outside SCA-002's change class. |
+| `W-1` | `SOFTWARE_DECOMP.md` §5 line 376 states "29 S / 33 M / 2 L / 0 XL"; `Deliverables.csv` and §7 both yield "28 S / 34 M / 2 L / 0 XL". SCA-001 re-enveloped `DEL-10-10` `S`→`M` and reconciled the registers, `ContextBudgetQA.csv`, and §7 — but not the §5 prose. A residual reconciliation miss inside accepted revision 1.1. | Escalated to the owner as a Gate 1 open item. Documentation-consistency only; no topology impact; `D-PEC-64` §4.1's invariant agrees with the registers, not §5. ~~Outside SCA-002's change class.~~ **Superseded by C-1 (C-13):** `MODIFY`-legal; excluded by the §4.3 window and the intake's subject scope, not by change class. Ruled **"Fix now: add A007"**. |
 | `F-2` | The union invariant makes the **deliverable**-row change count conditional on token choice. `D-PEC-64` §4.3's O-A window of "17 deliverable rows" holds only if `SOW-021` maps to a subset of `{OBJ-005}`. Any other assignment forces `DEL-03-01` to change, widening the window to 18 and breaching the pinned bound. The symmetric case is `SOW-033`/`DEL-07-01` under O-B/O-C. | Carried to Gate 3 as a drafting constraint. Not a Gate 1 blocker. |
 | `F-3` | The §3 parser clause (`SOW-011..017` "underlie OBJ-001/OBJ-002 through the record tier") is a **positive derivation**, whereas the ingest/bridge and `SOW-063` clauses are **abstentions**. Mapping the parser rows *applies* recorded rationale; mapping the ingest/bridge or `SOW-063` rows *supersedes* it. | Sharpens the O-A/O-C/O-B supersession comparison presented at Gate 1. |
 
@@ -160,7 +160,7 @@ on decisions those gates have not yet made.
 | D-10 | `Supersession_Delta.csv` analysed and a recommendation given, but **not written** | The intake §5.5 assigns the owed-or-not question to Gate 2/3 as an owner ruling. Writing the file would pre-empt it; recommending without writing preserves the gate. Analysis in `Impact_Assessment.md` §5. |
 | D-11 | `_REFERENCES.md` recorded as an **out-of-fence** stale surface rather than a propagation target | All 64 pin "revision 1.1" (measured), but `D-PEC-64` §3.3 **explicitly excludes** `_REFERENCES.md`. It cannot be refreshed by this session under any gate. Recorded as a `DEFERRED_BY_FENCE` derivative row with a named downstream owner — see `Impact_Assessment.md` §4 row 3 and open item `OI-B`. |
 | D-12 | `Dependencies.csv` verdict is **conditional `NO_CHANGE`**, not flat `NO_CHANGE` | One row (`DEP-02-01-003`) quotes the §3 parser clause verbatim as both `SourceRef` and `EvidenceQuote` — the exact text A003 may rewrite. The verdict holds only if A003 preserves that sentence. See `Impact_Assessment.md` §4 row 2 and §6 `F-4`. |
-| D-13 | Expected closure verdict recorded as **`OPEN_PENDING_DERIVATIVE_CLOSURE`**, not `CLOSED_FOR_SCOPE_CHANGE_ONLY` | Four derivative rows (`_REFERENCES.md`, DAG exhibit, wave re-pins, `_COORDINATION.md`/`AGENTS.md`) leave live obligations with owners outside this session's fence. SCA-001 could claim the cleaner verdict; SCA-002 cannot without overstating what the artifacts support. |
+| D-13 | ~~Expected closure verdict recorded as **`OPEN_PENDING_DERIVATIVE_CLOSURE`**~~ — **SUPERSEDED BY C-2.** Corrected to **`CLOSED_FOR_SCOPE_CHANGE_ONLY`** with obligations in `DownstreamRerunState = FROZEN`; the final call is a Gate 5 fact | ~~Four derivative rows leave live obligations outside this fence; SCA-001 could claim the cleaner verdict, SCA-002 cannot.~~ **Wrong, and refuted by the precedent quoted in §5 of the same document:** SCA-001's `Handoff_State.md` records `DownstreamRerunState: FROZEN` **together with** `ClosureVerdict: CLOSED_FOR_SCOPE_CHANGE_ONLY` (lines 19, 23) — out-of-fence obligations and the clean verdict coexist by design. `AGENT_SCOPE_CHANGE.md`:685 scopes `DerivativePackageState` to *decomposition-local* surfaces; of the four rows invoked, three are coordination surfaces and the fourth (`_REFERENCES.md`) is fence-excluded. |
 
 ### New findings at Gate 2 (not in the intake)
 
@@ -168,7 +168,7 @@ on decisions those gates have not yet made.
 |---|---|---|
 | `F-4` | `DEP-02-01-003` in `DEL-02-01`'s `Dependencies.csv` quotes the §3 parser clause verbatim in both `SourceRef` and `EvidenceQuote` — the exact sentence A003 may amend. 1 of 255 dependency rows repo-wide. | Gate 3 drafting guidance: preserve the sentence verbatim (O-A *applies* it per `F-3`), keeping all 64 `Dependencies.csv` `NO_CHANGE`. Otherwise `dependency-extract` owes a `DEL-02-01` rerun. Owner question 3 at Gate 2. |
 | `OI-B` | **All 64 `_REFERENCES.md` pin "revision 1.1"** — a basis-pointer surface the intake §6.5 table did not enumerate. `D-PEC-64` §3.3 explicitly excludes `_REFERENCES.md`, so this session cannot refresh it at any gate. | Recorded as `STALE_DEFERRED_BY_FENCE`; must appear in `Handoff_State.md` as an obligation owned by resumed `PROJECT_SETUP`. Owner question 2 at Gate 2. |
-| `F-5` | The four-doc→SOW converter's `--package-objective-ref` is `required=True` (line 202), so an empty mapping means the converter **cannot be invoked at all** — a harder failure mode than the validator's non-emptiness check that the intake cites. | Strengthens the wave-blocker warrant; no action needed. |
+| `F-5` | The four-doc→SOW converter's `--package-objective-ref` is `required=True` (line 202). ~~An empty mapping means the converter **cannot be invoked at all**~~ — **superseded by C-11:** argparse requires the **flag**, not a valid value, so invocation is mechanically possible; what the caller lacks is any legal value to pass. The wall is the same, reached one step earlier than the validator's non-emptiness check. | Strengthens the wave-blocker warrant; no action needed. |
 
 ### Open items carried out of Gate 2
 
@@ -182,9 +182,39 @@ on decisions those gates have not yet made.
 | `OI-A` | Binding-table drift in `AGENT_SCOPE_CHANGE.md` / `AGENT_AUDIT_DECOMP.md` | HELPS_HUMANS, outside this project fence |
 | `OI-013` | No durable repo-native register validator | Pre-existing; Gate 5 deterministic post-checks |
 
+### Corrections to this session's own Gate 2 return (round R-2b-g2)
+
+Fourteen findings, all `ACCEPTED` at fan-in, applied as **C-2 … C-13**. Each
+was independently re-verified against repo state in this session before
+application. Full log with per-correction detail: `Impact_Assessment.md` §10.
+
+| C | Content | Where |
+|---|---|---|
+| C-2 | Closure verdict → `CLOSED_FOR_SCOPE_CHANGE_ONLY` + `DownstreamRerunState = FROZEN`; Gate 5 decides | IA §7 |
+| C-3 | `projects/pec/AGENTS.md` has no revision pin → `CURRENT`; only `_COORDINATION.md` is stale-on-acceptance | IA §4 rows 10 / 10b |
+| C-4 | Owner question 3 withdrawn; `F-4` WITHDRAWN (wrong anchor, mandate conflict, wrong gate); `Dependencies.csv` unconditional `CURRENT` | IA §4/§6/§8/§9 |
+| C-5 | Supersession recommendation made conditional on PRD-consumptive attributions; re-affirmed at Gate 3 | IA §5, §7 |
+| C-6 | §3 dispositions normalized to `DIRECT_EDIT \| RECOMPUTE \| NO_CHANGE` + notes column | IA §3 |
+| C-7 | `ContextBudgetQA.csv` is in-fence writable; removed from the failure-if-changed list | IA §2 |
+| C-8 | Wave plan §7 = three re-pin points + one annotation; phantom "point 4" removed | IA §4 rows 4, 9 |
+| C-9 | DAG-exhibit annotation partly extant (lines 347, 362); scheduled act targets §1 pins only | IA §4 row 4 |
+| C-10 | v3.1 dependency schema has no objective column at all; phrasing corrected | IA §4 row 2 |
+| C-11 | Converter "cannot be invoked" softened — argparse requires the flag, not a valid value | IA §6 |
+| C-12 | §6 Scope Ledger removed from A001's affected sections | IA §1, §2 |
+| C-13 | D-5 and the `W-1` finding row annotated in place as superseded by C-1 | this file, above |
+
+**Pattern worth carrying forward.** Ten of the fourteen were overstatement
+toward more alarm, more coupling, more staleness, and more owner questions
+than the evidence supported — including a pessimistic closure verdict
+contradicted by precedent I had quoted in the same document, and an
+`AGENTS.md` staleness claim presented under a "measured" label without having
+been measured. Gate 3 must measure every claim, cite the measurement, and
+check evidence already in hand for contradiction before presenting.
+
 ### Gate 2 owner ruling
 
-> _Pending. Three questions in `Impact_Assessment.md` §9._
+> _Pending. **Two** questions in `Impact_Assessment.md` §9 (C-4 withdrew the
+> third)._
 
 ## Gate 3 — Amendment Approval
 
