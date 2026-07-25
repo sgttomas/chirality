@@ -646,9 +646,39 @@ ScopeOfWork.md); decomposition_basis @-format passes common.py:224;
 write_status.sh signature/legality; warrant quotes verbatim; Q2 defects
 confirmed still live; canary characterization accurate.
 
-**Future rounds:** R2 post-B1 (contract quality), R3-wave post-B2
-(upstream citation), R4 pre-closure (numbers/receipt/pointer audit).
-Log all here.
+**R2 (2026-07-25, post-B1 authoring, pre-status-act; refuter
+ad48fbbe64301fb2f, opus-5, contract-quality lens over all nine B1
+contracts vs registers/PRD/exhibit/SCA-002 warrant records).**
+Deterministic layer clean: 9/9 independent PASS, 9/9 frontmatter =
+register truth, matrices complete, fence exact. Quality: **no CRIT** —
+nothing invents scope, resolves a carried open issue (OI-012/006/003/009
+all carried), or asserts built state. 9 MAJ + 12 MIN across 5 contracts;
+4 advancement-safe as-is (DEL-00-03, DEL-01-06, DEL-08-01, DEL-10-01,
+MIN-only). MAJ classes, all ACCEPTED at fan-in with revision dispatches
+(no inline repair): F1 DEL-00-01 AC required an out-of-package register
+write its own AC forbade; F2 PROPOSAL/LOW_CONFIDENCE edges called
+"declared"; F3/F16 warrants overstated vs the Gate-3 record (MEDIUM
+"weakly"/"not because the text selects it" omitted) → DEL-00-03-pattern
+qualification + HUMAN_REVIEW routing; F7/F11 kill-test (SOW-055/
+DEL-10-02 scope) leaked into two PKG-01 ACs, one against its own edge
+direction; F8 wrong ingest phase (P4 vs P3, DL-14); F12 DEL-01-05
+claimed C-08 "owner-confirmed governing shape" vs D-PEC-62 §1.4's
+recorded-but-unresolved non-gating annotation (standing FRAMING kept —
+brief-directed — provenance corrected, gating force routed to
+HUMAN_REVIEW); F17 AC bound versions authored after close on a
+non-standing deliverable; F13 OUT-004 exceeded AnticipatedArtifacts.
+MIN classes: wrong section anchors (×4), stratum annotations
+inconsistent/missing (×4), "pending owner acceptance" false vs D-PEC-62
+strata acceptance (×3 contracts), truncated ledger quote, C10/C-10
+token-collision disambiguation. Cross-cutting lessons recorded: warrant
+discipline is the weakest axis ("SCA-002-qualified" must be a
+provenance label, never a strength claim); the kill test has one home.
+Revisions: agent a2f8592517e42c03a (5 MAJ contracts), a42b0e01f10262f30
+(4 MIN-only). Re-validation required post-revision before the status
+act.
+
+**Future rounds:** R3-wave post-B2 (upstream citation), R4 pre-closure
+(numbers/receipt/pointer audit). Log all here.
 
 ## §7 Basis freeze + git anchors + re-pin list
 
