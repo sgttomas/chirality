@@ -2,8 +2,8 @@
 doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
-status: draft_gate5
-revision: "0.7"
+status: draft_gate6
+revision: "0.8"
 date: 2026-07-24
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
@@ -27,8 +27,8 @@ source_corpus: projects/pec/docs/PRD.md (v2.0, adopted 2026-07-24, D-PEC-58)
 | 2 | SSOW | **CONFIRMED** | "Gate 2 confirmed — proceed to Phase 3 based on acceptance of your recommendations for OI-010 and OI-011" | 2026-07-24 |
 | 3 | Objectives | **CONFIRMED** | "Gate 3 confirmed — proceed to Phase 4." | 2026-07-24 |
 | 4 | Packages | **CONFIRMED** (as restructured: PKG-00 per DL-12) | "Gate 4 confirmed — proceed to Phase 5." | 2026-07-24 |
-| 5 | Deliverables | **PRESENTED** | — | 2026-07-24 |
-| 6 | Coverage + Context Budget | not reached | — | — |
+| 5 | Deliverables | **CONFIRMED** | "Gate 5 confirmed — proceed to Phase 6." | 2026-07-24 |
+| 6 | Coverage + Context Budget | **PRESENTED** | — | 2026-07-24 |
 | 7 | Final acceptance | not reached | — | — |
 
 ---
@@ -479,9 +479,44 @@ exists, so no Gate 5/6 acceptance-of-risk is required.
 
 ## 6. Scope Ledger — not started (will be authoritative in `ScopeLedger.csv`)
 
-## 7. Coverage & Telemetry (Phase 6) — not started
+## 7. Coverage & Telemetry (Phase 6)
 
-## 8. Context Budget QA — not started (will be authoritative in `ContextBudgetQA.csv`)
+All structural checks are machine-asserted by the register generator
+(DL-13e) on every regeneration; the assertions fail the build rather than
+degrade silently.
+
+| Metric | Value |
+|---|---|
+| ScopeItemCount | 92 (69 IN / 14 OUT / 9 TBD) |
+| PackageCount | 11 (PKG-00..PKG-10) |
+| DeliverableCount | 61 |
+| ObjectiveCount | 6 |
+| UnassignedScopeItems (IN without package) | **0** |
+| ScopeItemsWithoutDeliverableMapping (IN) | **0** |
+| UnmappedObjectives | **0** (every objective backed by ≥1 deliverable) |
+| IN items without objective mapping | 32 (intentional best-effort posture, §3 mapping notes — parsers/mechanics serve objectives through the record tier) |
+| ContextEnvelopeCounts | S 25 / M 35 / L 1 / XL 0 |
+| OpenIssuesByType | 10 open (9 § 16 owner decisions: OI-001..009; 1 architecture ADR: OI-012) / 2 resolved (OI-010, OI-011 at Gate 2) |
+| Deliverable single-package membership | 61/61; every `DEL-XX-YY` prefix machine-matched to its parent package |
+| Revision | 0.8, 2026-07-24 |
+
+Coverage-check provenance: every IN scope item traces §PRD → SSOW →
+package → deliverable(s) in `ScopeLedger.csv`; OUT items record the
+boundary (permanent vs deferred); TBD items carry their open-issue IDs.
+
+## 8. Context Budget QA (Phase 6)
+
+**Authoritative register: `ContextBudgetQA.csv`.**
+
+- **No XL deliverable exists.** Nothing requires split-or-accept treatment.
+- **One L:** DEL-02-03 (receipts-ledger parser, per-loop grammars). Risk
+  MEDIUM; held as L because the grammar set is per-loop and §16.8 (OI-008)
+  keeps the receipt-contract adoption question open. Recommended action:
+  split by per-loop grammar only if a loop's ledger proves adversarial in
+  practice. Envelope notes carried in both registers.
+- All S/M deliverables assessed LOW risk: single package, single primary
+  artifact shape, bounded file surface; two-item merges (DL-13d) were
+  audited to remain one shape each.
 
 ## 9. Vocabulary Map (seeded at Phase 2)
 
@@ -553,5 +588,5 @@ exists, so no Gate 5/6 acceptance-of-risk is required.
 | `_LATEST.md` | snapshot / handoff artifact | live | Revision pointer; kept current on every revision bump |
 | `ScopeLedger.csv` | authoritative companion register | **live** (SOW→DEL mapping filled at Phase 5) | SOW→PKG→DEL→OBJ row-level ledger; authoritative for assignments |
 | `Deliverables.csv` | authoritative companion register | **live** (Phase 5) | Deliverable register: full fields incl. descriptions, artifacts, Context Envelope + notes, PhaseHint |
-| `ContextBudgetQA.csv` | authoritative companion register | planned (Phase 6) | Per-deliverable envelope/risk/action QA |
+| `ContextBudgetQA.csv` | authoritative companion register | **live** (Phase 6) | Per-deliverable envelope/risk/action QA |
 | `Companion_Inventory.csv` | authoritative companion register | planned (Phase 7) | Machine-readable mirror of this table at publication |
