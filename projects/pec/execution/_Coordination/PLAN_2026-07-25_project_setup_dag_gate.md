@@ -29,6 +29,15 @@ ad944a2bfa7784778afa8558d8f81762  SOFTWARE_DECOMP.md
 ecfb737936bf0e5e82d5408e2889b4ff  _LATEST.md
 ```
 
+> **Historical-provenance annotation (2026-07-25, wave plan §7 / SCA-002
+> closure):** the pins above are the **revision 1.1** basis this exhibit
+> was accepted against and remain its frozen provenance. Decomposition
+> revision **1.2** (SCA-002, `D-PEC-64`, commit `3623b958b`) amended
+> objective mappings only — no topology change; the 120-edge graph and
+> constraints below are unaffected. Current basis is always
+> `execution/_Decomposition/_LATEST.md`; do not re-derive live state
+> from these pins.
+
 **Objective and edge semantics** (declared before edges, per
 `docs/CYCLE_DRIVEN_RESOLUTION.md`): build-order capability-consumption
 precedence for PEC v2's directed self-bootstrap under C16 — an edge

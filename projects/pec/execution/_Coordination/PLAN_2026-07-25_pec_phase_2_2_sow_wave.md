@@ -220,7 +220,7 @@ AllowedWriteTargets:
 RuntimeOverrides:
   MODE: INIT
   DELIVERABLE_PATH: {ScopePath}
-  DECOMPOSITION_BASIS: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@{REV_1_2_COMMIT}
+  DECOMPOSITION_BASIS: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
   PROJECT_SCOPE_REFS: [SOW-094]
   PACKAGE_OBJECTIVE_REFS: [{bare OBJ-NNN tokens from post-SCA registers}]
   SOURCE_STATE: OPEN
@@ -609,16 +609,19 @@ refutation pass on D-PEC-63 draft v2 (STEP 3). Log all here.
 
 ## §7 Basis freeze + git anchors + re-pin list
 
-- Accepted basis now: `SOFTWARE_DECOMP.md` **rev 1.1** md5
-  `ad944a2bfa7784778afa8558d8f81762`; `Deliverables.csv`
-  `6d2b290b0c869fc1d51d626a1714abec`; `ScopeLedger.csv`
-  `49e0cff9af647e41966b7a3334641919`.
-- **Re-pin after SCA-002 (three points + one annotation):** (1) the three
-  md5s + rev-1.2 commit SHA here; (2) `{REV_1_2_COMMIT}` in §3's
-  `DECOMPOSITION_BASIS`; (3) confirm the register representation kept bare
-  `OBJ-NNN` tokens (validator constraint, §2); and annotate
-  `PLAN_2026-07-25_project_setup_dag_gate.md` §1 pins as rev-1.1
-  historical provenance (topology unchanged by SCA-002).
+- Accepted basis now (**RE-PINNED 2026-07-25 post-SCA-002**):
+  `SOFTWARE_DECOMP.md` **rev 1.2** md5
+  `961e8e959b7d1965cd1d4153c69a9c43`; `Deliverables.csv`
+  `3f807d502df3ed1f35326baed890832a`; `ScopeLedger.csv`
+  `9ece6f49fb5fc7f83f72fa897d01a325`; rev-1.2 commit **`3623b958b`**
+  (the SCA-002 closure commit). Historical rev-1.1 md5s are preserved in
+  the DAG gate exhibit §1 and in `_ScopeChange/SCA-002_*/Brief.md`.
+- **Re-pin after SCA-002 — EXECUTED 2026-07-25:** (1) md5s + commit SHA
+  above; (2) `{REV_1_2_COMMIT}` in §3's `DECOMPOSITION_BASIS` =
+  `3623b958b`; (3) bare `OBJ-NNN` tokens confirmed in the amended
+  registers (post-state token scan: 0 non-`^OBJ-[0-9]{3}$` tokens after
+  `;`-split); DAG-exhibit §1 pins annotated as rev-1.1 historical
+  provenance (topology unchanged by SCA-002).
 - D-PEC-62 closeout commit: `c5e3a6ebd` (branch
   `claude/project-setup-agent-config-5c0d34`, fast-forwarded to local
   `main` 2026-07-25; not pushed). Owner note of record: "merge but it may

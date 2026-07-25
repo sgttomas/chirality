@@ -100,7 +100,7 @@ released to their owners, not executed by SCOPE_CHANGE.
 |---|---|---|---|
 | **`OI-B`** — 64 `_REFERENCES.md` pin "revision 1.1" | resumed `PROJECT_SETUP` | `DEFERRED_BY_HUMAN` (Gate 2 ruling) | Fence-forced (§3.3); pointer sweep |
 | **D-PEC-63 draft** | `PROJECT_SETUP` | **BLOCKED → ready-for-re-pin** | All 32 wave members now carry non-empty `SupportsObjectives` |
-| D-PEC-63 re-pins (3 points + 1 annotation) | resumed `PROJECT_SETUP` | SCHEDULED | md5s + rev-1.2 SHA; `{REV_1_2_COMMIT}` in §3; confirm bare `OBJ-NNN` survived; DAG-exhibit §1-pins annotation |
+| D-PEC-63 re-pins (3 points + 1 annotation) | resumed `PROJECT_SETUP` | **DONE 2026-07-25** | md5s + rev-1.2 SHA `3623b958b` pinned (wave plan §7 + §3, D-PEC-63 §2); bare `OBJ-NNN` confirmed by post-state scan; DAG-exhibit §1-pins annotated |
 | `_COORDINATION.md` rev-1.1 citations (lines 16, 50) | resumed `PROJECT_SETUP` | STALE_ON_ACCEPTANCE | §3.1 refresh |
 | `_DECISIONS/_REGISTER.md` row | resumed `PROJECT_SETUP` | SCHEDULED | §3.1 — one row |
 | `D-PEC-64` packet status update | resumed `PROJECT_SETUP` | SCHEDULED | §3.1 |

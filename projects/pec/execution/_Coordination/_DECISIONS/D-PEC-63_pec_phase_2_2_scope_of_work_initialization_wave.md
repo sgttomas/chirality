@@ -1,15 +1,18 @@
-# D-PEC-63 — DRAFT: PEC Phase 2.2 scope-of-work initialization wave
+# D-PEC-63 — DRAFT v2: PEC Phase 2.2 scope-of-work initialization wave
 
-**Status:** DRAFT v1.1 — **CONDITIONED ON SCA-002 ACCEPTANCE** (SCA-002
-itself requires its own owner-ruled opening packet first — see companion
-plan §2 STEP 2a; the owner, not PROJECT_SETUP, invokes SCOPE_CHANGE). Not
-ruled. Re-pins before presentation for ruling: (1) `DECOMPOSITION_BASIS`
-to the accepted revision 1.2 commit; (2) objective-reference clauses read
-the amended registers; (3) confirm the SCA-002 register representation
-kept bare `OBJ-NNN` tokens (the SOW validator token-splits frontmatter
-lists and matrix cells — qualified tokens break both).
+**Status:** DRAFT v2 — AWAITING_RULING. **The SCA-002 precondition is
+DISCHARGED**: decomposition revision 1.2 accepted 2026-07-25 (D-PEC-64
+closure, commit `3623b958b`); every wave deliverable carries non-empty
+bare-token `SupportsObjectives` in register truth. Re-pins executed
+2026-07-25: (1) `DECOMPOSITION_BASIS` = `SOFTWARE_DECOMP.md@3623b958b`
+(companion plan §3); (2) objective-reference clauses read the amended
+registers (union invariant 0 violations); (3) bare `OBJ-NNN` token
+representation confirmed by post-state scan (0 non-conforming tokens
+after `;`-split — the brief-construction rule in intake §5.1 governs the
+`;`→inline-list conversion at dispatch).
 (Drafted 2026-07-25 by PROJECT_SETUP; engine/model: claude-fable-5;
-R1-refuted 2026-07-25, 26 findings dispositioned — log in companion plan §6.)
+R1-refuted [26 findings] as v1.1; v2 refuted before presentation — logs
+in companion plan §6.)
 **Decision ID:** D-PEC-63
 **Structure precedent:** `D-PEC-62` (ruled packet → sealed Agent 2 execution
 → calibrated deterministic verification → receipt + pointers)
@@ -33,19 +36,27 @@ R1-refuted 2026-07-25, 26 findings dispositioned — log in companion plan §6.)
 ## 2. Basis and preconditions
 
 - Accepted decomposition basis at ruling time: `SOFTWARE_DECOMP.md`
-  **revision 1.2** (`current_basis`, SCA-002 successor) — commit and md5s
-  pinned here at draft v2. Wave topology (32 members, tiers) derives from
-  the accepted DAG (D-PEC-62) and is unchanged by SCA-002 (no topology
-  change is in SCA-002's scope).
+  **revision 1.2** (`current_basis`, SCA-002 successor; accepted
+  2026-07-25, D-PEC-64 closure). Pins: commit `3623b958b`; md5s
+  `SOFTWARE_DECOMP.md` `961e8e959b7d1965cd1d4153c69a9c43`,
+  `Deliverables.csv` `3f807d502df3ed1f35326baed890832a`,
+  `ScopeLedger.csv` `9ece6f49fb5fc7f83f72fa897d01a325`. Wave topology
+  (32 members, tiers) derives from the accepted DAG (D-PEC-62) and is
+  unchanged by SCA-002 (verified: dep-closure values identical pre/post).
+  All 32 wave members carry non-empty `SupportsObjectives`
+  (wave-unmapped 17 → 0 at SCA-002 closure).
 - D-GOV-16 **RULED APPROVED** 2026-07-12
   (`docs/governance_harness/_DECISIONS/_REGISTER.md:29`): the deliverable
   SOW standard is active; "New deliverables use `SOW_V1`"
   (`docs/DELIVERABLE_SCOPE_OF_WORK_STANDARD.md` §7). The pending Stage-2
   TYPES/SPEC patches and legacy-corpus conversion do not touch greenfield
   INIT.
-- Precondition checks at ruling: SCA-002 closed with every deliverable
-  carrying non-empty objective refs in register truth; clean `git status`
-  baseline for the wave paths.
+- Precondition checks at ruling: SCA-002 closed
+  (`CLOSED_FOR_SCOPE_CHANGE_ONLY`, evidence
+  `execution/_ScopeChange/SCA-002_2026-07-25_1042/`, Receipt 109) with
+  every wave deliverable carrying non-empty objective refs in register
+  truth — **SATISFIED 2026-07-25**; clean `git status` baseline for the
+  wave paths (satisfied at the SCA-002 closure commit `3623b958b`).
 
 ## 3. Ruled behavior (proposed)
 
