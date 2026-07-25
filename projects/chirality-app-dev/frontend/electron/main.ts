@@ -1,4 +1,5 @@
 import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
@@ -13,6 +14,8 @@ import {
   type DesktopLogger
 } from './desktop-log';
 import {
+  GUI_SPAWN_MIN_INTERVAL_MS,
+  isDaemonGuiSpawnEnabled,
   resolveDaemonActivationPolicy,
   resolveUserDataOverride
 } from './desktop-process-policy';
@@ -60,13 +63,9 @@ const RENDERER_EGRESS_FILTER_URLS = ['http://*/*', 'https://*/*', 'ws://*/*', 'w
 let rendererServer: RendererServer | undefined;
 let runtimeHost: RuntimeHost | undefined;
 let shutdownStarted = false;
-/**
- * Whether an exit has been authorized by a path we control (a signal from
- * launchd, or our own failure handling). Used to veto externally requested
- * quits in daemon mode; see the `before-quit` handler.
- */
-let shutdownAuthorized = false;
 let bindingSupervisor: RuntimeBindingSupervisor | undefined;
+/** Monotonic timestamp of the last GUI spawned from daemon mode; see `activate`. */
+let lastGuiSpawnAt = 0;
 let desktopLogger: DesktopLogger = createNoopDesktopLogger();
 const runtimeDaemonMode = process.argv.includes('--runtime-daemon');
 
@@ -588,9 +587,15 @@ async function initializeGui(): Promise<void> {
   });
 
   if (app.isPackaged) {
-    await installBundledCliLauncher().catch((error) => {
-      desktopLogger.error('desktop.cli_launcher.install_failed', error);
-    });
+    // Log-and-continue, always: a convenience launcher that cannot be written
+    // must never be able to stop the app from starting.
+    await installBundledCliLauncher()
+      .then((result) => {
+        desktopLogger.info('desktop.cli_launcher.install', result);
+      })
+      .catch((error) => {
+        desktopLogger.error('desktop.cli_launcher.install_failed', error);
+      });
   }
 
   // Binding is a supervised main-process concern, not a one-shot startup step:
@@ -662,9 +667,17 @@ async function initializeDaemon(): Promise<void> {
   });
 }
 
-async function shutdown(exitCode = 0, reason = 'unspecified'): Promise<void> {
+/**
+ * Release everything this process owns, without exiting.
+ *
+ * Separate from `shutdown()` because the relaunch path must tear down and then
+ * let Electron's *own* quit sequence finish: the helper that starts the
+ * replacement process runs as part of that sequence, and `app.exit()` skips it.
+ * Returns the exit code, raised to 1 if any teardown step failed.
+ */
+async function teardown(exitCode: number, reason: string): Promise<number> {
   if (shutdownStarted) {
-    return;
+    return exitCode;
   }
   shutdownStarted = true;
   // Logged first: the reason a daemon exited is exactly the evidence that was
@@ -702,8 +715,15 @@ async function shutdown(exitCode = 0, reason = 'unspecified'): Promise<void> {
     }
     rendererServer = undefined;
   }
-  desktopLogger.info('desktop.shutdown.exiting', { reason, exitCode });
-  app.exit(exitCode);
+  desktopLogger.info('desktop.shutdown.completed', { reason, exitCode });
+  return exitCode;
+}
+
+async function shutdown(exitCode = 0, reason = 'unspecified'): Promise<void> {
+  if (shutdownStarted) {
+    return;
+  }
+  app.exit(await teardown(exitCode, reason));
 }
 
 app
@@ -720,7 +740,6 @@ app
       runtimeDaemonMode ? 'runtime.daemon.initialize_failed' : 'desktop.gui.initialize_failed',
       error instanceof Error ? error.message : String(error)
     );
-    shutdownAuthorized = true;
     void shutdown(1, 'initialize-failed');
   });
 
@@ -730,36 +749,93 @@ app.on('window-all-closed', () => {
   }
 });
 
+// The single quit funnel for both modes.
+//
+// This deliberately no longer vetoes quits in daemon mode. The veto was built to
+// refuse a quit AppleEvent thought to accompany a LaunchServices launch; three
+// reproductions showed the daemon receives `activate` and *no* quit at all, so
+// the veto never fired for its intended trigger — while it did swallow SIGTERM,
+// because Chromium's own native signal handler runs before any JS handler and
+// routes the signal into `app.quit()` -> `before-quit`. The result was a daemon
+// that could only be stopped by force: `runtimeHost.stop()` ran on no exit path,
+// every stop left a stale `control.sock`, and `launchctl bootout` took ~5 s to
+// reach launchd's SIGKILL escalation.
+//
+// The stay-dead bug is covered by the restart contract alone: `KeepAlive <true/>`
+// restarts the daemon after *any* exit, clean ones included. So a polite quit is
+// now honoured and made graceful — stop the runtime host (releasing the control
+// socket), then exit — and launchd brings the daemon straight back.
 app.on('before-quit', (event) => {
-  // A service must not be quittable by the window server. The daemon shares its
-  // bundle with the GUI, so anything macOS aims at "Chirality.app" — a Dock
-  // Quit, a Cmd-Q, an AppleEvent quit accompanying a LaunchServices launch —
-  // arrives here and would previously end the daemon with a clean `exit(0)`,
-  // silently and unrecoverably. Only a signal-driven or self-initiated shutdown
-  // is honored; launchd retains full control because `bootout`/`kickstart -k`
-  // work by signal (and SIGKILL remains uncatchable either way).
-  if (runtimeDaemonMode && !shutdownAuthorized) {
-    event.preventDefault();
-    desktopLogger.warn('runtime.daemon.quit_request_vetoed', {
-      pid: process.pid,
-      hint: 'use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon'
-    });
-    return;
-  }
   if (!shutdownStarted && (runtimeHost !== undefined || rendererServer !== undefined)) {
     event.preventDefault();
     void shutdown(0, 'before-quit');
   }
 });
 
+/**
+ * Start the GUI from the daemon, in response to macOS resolving a bundle launch
+ * against this headless process, then retire this daemon.
+ *
+ * `setActivationPolicy('prohibited')` removes the Dock tile and the menu bar but
+ * does *not* remove the daemon as a LaunchServices resolution target: it stays
+ * registered under `com.chirality.app` (reclassified `UIElement`), so a Finder
+ * double-click or Dock click resolves to it, and because it has no window nothing
+ * visible happens. Handling `activate` is what makes the app open again (V-D4).
+ *
+ * Why it also exits — the part that is not obvious. Forking from Chromium's
+ * browser process leaves this process's signal handling broken: measured on the
+ * packaged app, a daemon that had run one `child_process.spawn` stopped receiving
+ * SIGTERM as `before-quit` at all, so `launchctl bootout` degraded to a 5.06 s
+ * SIGKILL escalation with no graceful shutdown and a stale `control.sock`. A
+ * control arm that received the same `activate` with the spawn suppressed stopped
+ * in 0.034 s, gracefully. `app.relaunch()` avoids the fork but produced no GUI at
+ * all here, so it is not an alternative.
+ *
+ * So: spawn the window, then immediately tear down and exit through our *own*
+ * path, where no signal is involved and the broken handling cannot matter. The
+ * fork-damaged process lives for milliseconds; launchd's `KeepAlive` then starts a
+ * fresh daemon that has never forked and whose stop path is intact. The visible
+ * cost is a bounded runtime reconnect (the GUI's supervisor rebinds on its own and
+ * the top-bar chip shows it) instead of a daemon that cannot be stopped cleanly.
+ *
+ * The architecturally correct fix is for the daemon to carry its own bundle
+ * identity so Finder never resolves to it at all — a packaging change, out of
+ * scope here and escalated.
+ */
+function spawnGuiFromDaemon(): void {
+  if (!isDaemonGuiSpawnEnabled(process.env)) {
+    desktopLogger.info('runtime.daemon.gui_spawn_disabled');
+    return;
+  }
+  const now = Date.now();
+  if (now - lastGuiSpawnAt < GUI_SPAWN_MIN_INTERVAL_MS) {
+    desktopLogger.info('runtime.daemon.gui_spawn_throttled', {
+      sinceLastMs: now - lastGuiSpawnAt
+    });
+    return;
+  }
+  lastGuiSpawnAt = now;
+  try {
+    // `detached` puts the GUI in its own session so it outlives this daemon's
+    // exit and launchd's job cleanup. No `--runtime-daemon`: the child is the GUI.
+    // The environment carries over, which is what keeps an isolated run isolated.
+    const child = spawn(app.getPath('exe'), [], { detached: true, stdio: 'ignore' });
+    child.unref();
+    desktopLogger.info('runtime.daemon.gui_spawned', { pid: child.pid });
+  } catch (error) {
+    desktopLogger.error('runtime.daemon.gui_spawn_failed', error);
+    return;
+  }
+  // Retire this process now that it has forked; see the note above.
+  void shutdown(0, 'retire-after-gui-spawn');
+}
+
 if (runtimeDaemonMode) {
-  // Diagnostics only. `activate` firing in the daemon is the direct signature of
-  // macOS resolving a launch of the app bundle against this headless instance
-  // instead of starting the GUI, which is the mechanism the activation policy
-  // above is meant to remove. Recording it makes the hypothesis falsifiable in
-  // an isolated verification run.
+  // `activate` in the daemon is the direct signature of macOS resolving a launch
+  // of the app bundle against this headless instance instead of starting the GUI.
   app.on('activate', () => {
     desktopLogger.warn('runtime.daemon.activate_received', { pid: process.pid });
+    spawnGuiFromDaemon();
   });
   app.on('open-file', (_event, filePath) => {
     desktopLogger.warn('runtime.daemon.open_file_received', { filePath });
@@ -772,9 +848,12 @@ if (runtimeDaemonMode) {
   });
 }
 
+// Retained for the contexts where JS signal handlers do run (unpackaged
+// `npm run desktop`, a plain-Node parent). In the packaged app Chromium's native
+// handler wins and the signal arrives as `before-quit` instead; both routes now
+// end in the same graceful `shutdown()`.
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
   process.once(signal, () => {
-    shutdownAuthorized = true;
     void shutdown(signal === 'SIGINT' ? 130 : 0, `signal:${signal}`);
   });
 }

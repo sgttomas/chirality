@@ -62,6 +62,32 @@ export function resolveUserDataOverride(
 }
 
 /**
+ * Minimum gap between two GUI processes spawned from daemon mode.
+ *
+ * macOS can deliver several `activate` events for one user gesture (and an
+ * impatient operator produces more), so an unthrottled handler could fan out into
+ * a pile of windows. Three seconds is long enough to collapse a burst and short
+ * enough that a deliberate second launch is not swallowed.
+ */
+export const GUI_SPAWN_MIN_INTERVAL_MS = 3_000;
+
+/** Disable the daemon's spawn-a-GUI-on-activate behaviour. */
+export const DAEMON_GUI_SPAWN_ENV = 'CHIRALITY_DAEMON_GUI_SPAWN';
+
+/**
+ * Whether the daemon should start a GUI when macOS resolves a bundle launch
+ * against it. Defaults on; `CHIRALITY_DAEMON_GUI_SPAWN=0` turns it off, which is
+ * both an operator escape hatch and the control arm for isolating spawn-related
+ * behaviour in a verification run.
+ */
+export function isDaemonGuiSpawnEnabled(
+  environment: ProcessPolicyEnvironment = process.env
+): boolean {
+  const requested = environment[DAEMON_GUI_SPAWN_ENV]?.trim().toLowerCase();
+  return !(requested === '0' || requested === 'false' || requested === 'no' || requested === 'off');
+}
+
+/**
  * Resolve the daemon's macOS activation policy, allowing an operator or a
  * verification run to compare postures without a rebuild. An unrecognised value
  * falls back to the default rather than failing the daemon's startup.
