@@ -566,3 +566,39 @@
   strict hardening (`Harness pre-merge` added as a required context plus an
   always-run no-op reporting job in `harness-premerge.yml`); the CHANGE
   merge-verdict standing rule remains a recorded governed-edit follow-on.
+
+### Receipt 33 — 2026-07-25 — D-GOV-21 ruled and effective; loop reoriented to root product development
+
+- Owner acts of record (in-session, 2026-07-25), verbatim where quoted:
+  ruling "I rule APPROVED for O-A against candidate SHA
+  c038c493e871c95871823281b45890ba9404624b" (published:
+  `docs/governance_harness/_DECISIONS/D-GOV-21_root_working_root_exception.md`);
+  "Merge the branch and report the EffectiveSHA" (merge of PR #338 executed
+  at that direction → EffectiveSHA
+  `ee42157290618e3f84be0e0b651c041387ad6ee0`); "Proceed with the
+  reorientation tranche. Remain in the Agent 0 posture, Use `opus-5` models
+  for Agent 1 and Agent 2 instances."
+- This tranche (run `ROOT-LOOP-REORIENT-20260725`, single-node terminal
+  fan-out/fan-in): Agent 1 PROJECT_SETUP (`opus-5`) authored
+  `WORKPLAN_2026-07-25_root_product_development.md` and moved the
+  `CURRENT_WORKPLAN.md` pointer to it (Status `ACTIVE — ROOT PRODUCT
+  DEVELOPMENT`); Agent 0 validated fan-in (V1 gates: exact two-file diff,
+  pointer resolution, G0 PASS idle, path anchors PASS 992) and executed the
+  disjoint N2 record-keeping: EffectiveSHA backfill into the D-GOV-21
+  decision record and implementation handoff (`f1549afb1` precedent).
+- D-GOV-21 sequence state: steps 1–3 complete at the EffectiveSHA; step 4
+  complete when this tranche merges; steps 5 (candidate root PRD) and 6
+  (guard capability G1–G4) open as parallel lanes under the new workplan;
+  steps 7–9 gated downstream, not released.
+- Noted agent reading for owner awareness (recorded in the workplan Lane B
+  and `AgentRuns/ROOT-LOOP-REORIENT-20260725/returns/N1_RETURN.md`): the §7
+  guard-design preflight's scratch `PKG-*` skeleton will trigger a G0 BLOCK
+  in its throwaway worktree by design; recorded as intended fence behavior,
+  not a defect and not the §5.1 finding.
+- Unresolved blockers: none for the live lanes. Standing follow-ons and
+  parked lanes carried into the new workplan (App Dev deflake; optional
+  strict branch-protection hardening; CHANGE merge-verdict rule; class b/c
+  reconciliation; predecessor parked lanes). Export-staging regeneration
+  remains DEFERRED per the implementation handoff.
+- Gate: this tranche merges only through a human-gated PR; never
+  self-merged.

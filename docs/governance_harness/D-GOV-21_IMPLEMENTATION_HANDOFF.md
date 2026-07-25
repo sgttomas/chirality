@@ -11,9 +11,10 @@ the D-GOV-21 implementation tranche (PACKET.md §14 step 3, §6 step 3).
   (PACKET.md Rev 3, `_PROPOSALS/D-GOV-21_root-working-root-exception/`).
 - **PublicationSHA:** `75b7aa6d1fb019846ac76fb775df2fc1652ab8a8`
   (`_DECISIONS/D-GOV-21_root_working_root_exception.md`).
-- **EffectiveSHA:** the human-gated merge of this tranche's branch
-  (`claude/chirality-root-prd-inquiry-799a78`) into `main`. Until that merge,
-  every change in this tranche is a candidate.
+- **EffectiveSHA:** `ee42157290618e3f84be0e0b651c041387ad6ee0` — the
+  human-gated merge of this tranche's branch into `main` (PR #338,
+  2026-07-25, merged at explicit owner direction; backfilled by the
+  ROOT-LOOP-REORIENT-20260725 tranche).
 
 ## Tranche contents (this commit)
 
