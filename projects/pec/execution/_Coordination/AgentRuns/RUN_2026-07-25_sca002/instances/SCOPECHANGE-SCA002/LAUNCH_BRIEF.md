@@ -30,3 +30,12 @@ request `_Coordination/SCA-002_INTAKE_2026-07-25.md`
 ## Amendment log
 
 - v1 2026-07-25: initial Gate 1 dispatch.
+- v2 2026-07-25 (owner Gate 1 ruling relayed): scope width **O-A**;
+  actions A001–A006 confirmed + **A007** added (W-1 §5 envelope-prose
+  fix; D-PEC-64 §4.3 window amended same day to admit it); SOW-021
+  constrained ⊆ {OBJ-005}. R-2b-g1 dispositions relayed: derivative-
+  package status table (intake §6.5) is a mandatory Gate 2 output;
+  record snapshot-artifact deferrals (Amendment_Actions.csv at Gate 3;
+  Pre_Change_Coverage.json copy pre-Gate-5); W-1 characterization
+  corrected (MODIFY-legal, window-excluded). Gate 2 released; write
+  scope unchanged (Gates 1–2 surfaces only).

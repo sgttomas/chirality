@@ -190,6 +190,15 @@ granularity depends on these commits.
    O-A: the 11 residue IN rows and 9 residue deliverables must be
    untouched; an unauthorized mapping of the intentional class is a
    verification failure, not a bonus).
+   **Owner amendment 2026-07-25 (Gate 1 ruling):** the owner ruled
+   **O-A** and confirmed actions A001–A006 **plus A007** (W-1 fix: the
+   §5 envelope-count prose line, "29 S / 33 M / 2 L / 0 XL" →
+   "28 S / 34 M / 2 L / 0 XL", reconciling a residual SCA-001 miss to
+   the registers/§7). The byte-identity window is amended to admit
+   exactly that one §5 prose line. Constraint carried from Gate 1
+   validation: SOW-021's `ObjectiveIDs` must be ⊆ {OBJ-005}, else
+   DEL-03-01's cell is forced by the union invariant and the 17-row
+   window breaks.
 4. **No collateral state change:**
    `python3 tools/coordination/analyze_dep_closure.py projects/pec/execution`
    unchanged from the D-PEC-62 landing values (64 files, 255 rows,
