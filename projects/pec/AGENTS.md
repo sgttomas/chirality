@@ -3,7 +3,7 @@ doc_id: PEC-AGENTS
 doc_kind: governance.agent_index
 status: live
 created: 2026-07-04
-amended: 2026-07-24 (D-PEC-59)
+amended: 2026-07-24 (D-PEC-59; same-day pointer upkeep after D-PEC-60 acceptance)
 ---
 
 # AGENTS - PEC Agent Index
@@ -80,7 +80,7 @@ target sequence).
 
 | Agent | Type | Role in this project |
 |---|---:|---|
-| `SOFTWARE_DECOMP` | 1 | **Next owner gate.** Decomposition over PRD v2 with the owner at Gates 1–7 (`{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md`, human-interactive). Gate 7 acceptance is the authoritative downstream basis; no tranche is scoped from the PRD directly. |
+| `SOFTWARE_DECOMP` | 1 | Ran the decomposition over PRD v2, Gates 1–7 per `{REPO_ROOT}/docs/DECOMPOSITION_STANDARD.md` (session and acceptance state: `D-PEC-60` and `execution/_Decomposition/_LATEST.md` — this table asserts no gate state). The accepted package at `execution/_Decomposition/` is the authoritative downstream basis; no tranche is scoped from the PRD directly; post-acceptance amendment goes through the scope-change machinery, not direct edits. |
 | `PROJECT_SETUP` | 1 | Scaffolds packages/deliverables from the accepted decomposition, after acceptance and under its own packet. |
 | `WORKING_ITEMS` | 1 | Per-package activations and their work graph, using the five `software-*` TASK skills (roster: root `AGENTS.md` agent index and `{REPO_ROOT}/skills/software-*`), conforming to `{REPO_ROOT}/docs/SOFTWARE_WORKFLOW_PROFILE.md`; integrates results, validates, and prepares closeout. |
 | `TASK` | 2 | Executes one sealed implementation, assessment, docs, or evidence sub-scope with explicit read/write bounds. |
@@ -139,7 +139,11 @@ unopened future row. Agent validation stays scratch/demo-only.
 ## Governance Pointers
 
 - `execution/_Coordination/_DECISIONS/_REGISTER.md` — project decision
-  register (`D-PEC-57` pivot, `D-PEC-58` adoption, `D-PEC-59` follow-ons)
+  register (`D-PEC-57` pivot, `D-PEC-58` adoption, `D-PEC-59` follow-ons,
+  `D-PEC-60` decomposition session and acceptance)
+- `execution/_Decomposition/` — the accepted decomposition working package
+  (`SOFTWARE_DECOMP.md` working surface + companion registers;
+  `_LATEST.md` is the revision pointer and handoff state — read it first)
 - `_DomainEngines/_DECISIONS/_REGISTER.md` — tier-0 register (`D-T0-*`)
 - `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` — the
   standing plan (loop protocol, target sequence, parked work, fences)
