@@ -354,4 +354,109 @@ describe("chirality CLI", () => {
     expect(source).toContain("A&amp;B&lt;Dev&gt;");
     expect(source).toContain("/tmp/A&amp;B/logs");
   });
+
+  it("renders KeepAlive=true so launchd also restarts after a clean exit", () => {
+    const source = renderRuntimeLaunchAgent({
+      executablePath: "/Applications/Chirality.app/Chirality",
+      runtimeDirectory: "/tmp/keep-alive-always",
+      keepAlive: "always"
+    });
+    expect(source).toContain("<key>KeepAlive</key>\n  <true/>");
+    // The crash-only semaphore must be gone: it is precisely what suppressed a
+    // relaunch after an externally induced `exit(0)`.
+    expect(source).not.toContain("<key>SuccessfulExit</key>");
+  });
+
+  it("omits KeepAlive entirely when restarts are not wanted", () => {
+    const source = renderRuntimeLaunchAgent({
+      executablePath: "/Applications/Chirality.app/Chirality",
+      runtimeDirectory: "/tmp/keep-alive-never",
+      keepAlive: "never"
+    });
+    expect(source).not.toContain("<key>KeepAlive</key>");
+  });
+
+  it("pins EnvironmentVariables, RunAtLoad and ThrottleInterval when supplied", () => {
+    const source = renderRuntimeLaunchAgent({
+      executablePath: "/Applications/Chirality.app/Chirality",
+      runtimeDirectory: "/tmp/env-pinning",
+      runAtLoad: false,
+      throttleIntervalSeconds: 4,
+      environmentVariables: {
+        CHIRALITY_USER_DATA: "/tmp/A&B/user-data",
+        OTHER: "value"
+      }
+    });
+    expect(source).toContain("<key>RunAtLoad</key>\n  <false/>");
+    expect(source).toContain("<key>ThrottleInterval</key>\n  <integer>4</integer>");
+    expect(source).toContain("<key>EnvironmentVariables</key>");
+    expect(source).toContain("<key>CHIRALITY_USER_DATA</key>");
+    // Values reach the plist through the same XML escaping as every other path.
+    expect(source).toContain("<string>/tmp/A&amp;B/user-data</string>");
+    expect(source).toContain("<key>OTHER</key>");
+  });
+
+  it("omits the EnvironmentVariables block when no variables are pinned", () => {
+    const source = renderRuntimeLaunchAgent({
+      executablePath: "/Applications/Chirality.app/Chirality",
+      runtimeDirectory: "/tmp/no-env"
+    });
+    expect(source).not.toContain("<key>EnvironmentVariables</key>");
+  });
+
+  it("keeps the historical plist as the default so existing callers are unchanged", () => {
+    const source = renderRuntimeLaunchAgent({
+      executablePath: "/Applications/Chirality.app/Chirality",
+      runtimeDirectory: "/tmp/defaults"
+    });
+    expect(source).toContain(`<string>${RUNTIME_LAUNCH_AGENT_LABEL}</string>`);
+    expect(source).toContain("<key>RunAtLoad</key>\n  <true/>");
+    expect(source).toContain("<key>KeepAlive</key>\n  <dict>");
+    expect(source).toContain("<key>SuccessfulExit</key>");
+    expect(source).toContain("<key>ThrottleInterval</key>\n  <integer>10</integer>");
+  });
+
+  it("routes an overridden label through the plist path, service name and plist body", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-launch-agent-label-"));
+    temporaryDirectories.push(root);
+    const calls: Array<{ executable: string; args: readonly string[] }> = [];
+    const manager = new LaunchAgentManager(
+      {
+        launchAgentsDirectory: join(root, "LaunchAgents"),
+        runtimeDirectory: join(root, "user-data", "runtime")
+      },
+      async (executable, args) => {
+        calls.push({ executable, args });
+        return { exitCode: 0, stdout: "ok", stderr: "" };
+      },
+      501,
+      {
+        label: "com.chirality.runtime.isolated",
+        keepAlive: "always",
+        environmentVariables: { CHIRALITY_USER_DATA: join(root, "user-data") }
+      }
+    );
+
+    expect(manager.label).toBe("com.chirality.runtime.isolated");
+    expect(manager.plistPath).toBe(
+      join(root, "LaunchAgents", "com.chirality.runtime.isolated.plist")
+    );
+
+    await manager.install("/Applications/Chirality.app/Contents/MacOS/Chirality");
+    const source = await readFile(manager.plistPath, "utf8");
+    expect(source).toContain("<string>com.chirality.runtime.isolated</string>");
+    expect(source).toContain("<key>KeepAlive</key>\n  <true/>");
+    expect(source).toContain("<key>CHIRALITY_USER_DATA</key>");
+    expect(source).not.toContain(`<string>${RUNTIME_LAUNCH_AGENT_LABEL}</string>`);
+
+    // An isolated job must be startable and stoppable without ever naming the
+    // default service, which is what keeps a verification run off a real agent.
+    await manager.start();
+    await manager.stop();
+    expect(calls.map((call) => call.args)).toEqual([
+      ["bootstrap", "gui/501", manager.plistPath],
+      ["kickstart", "-k", "gui/501/com.chirality.runtime.isolated"],
+      ["bootout", "gui/501/com.chirality.runtime.isolated"]
+    ]);
+  });
 });

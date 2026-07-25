@@ -26,6 +26,52 @@ export interface LaunchAgentStatus {
   detail?: string;
 }
 
+/**
+ * launchd restart posture for the managed job.
+ *
+ * - `"crash-only"` renders `KeepAlive = { SuccessfulExit: false }`: launchd
+ *   relaunches the job only when it exited non-zero. A job that exits 0 is held
+ *   down by launchd's `successful exit` semaphore and stays dead until an
+ *   operator intervenes.
+ * - `"always"` renders `KeepAlive = true`: launchd relaunches the job after
+ *   *any* exit, including a clean `exit(0)`. Use this when a clean exit is
+ *   itself an unwanted outcome (for example an externally induced quit).
+ * - `"never"` omits `KeepAlive` entirely: the job runs once per load.
+ *
+ * `KeepAlive` interacts with `launchctl` verbs in ways that are easy to get
+ * wrong, so callers should note:
+ * - `launchctl bootout <service>` *unloads* the job from the domain, which
+ *   removes the KeepAlive contract with it. Stop semantics therefore keep
+ *   working under `"always"`; the daemon stays stopped until it is bootstrapped
+ *   again. (`launchctl stop`, by contrast, would be immediately undone by
+ *   `KeepAlive = true` — this module deliberately never uses `stop`.)
+ * - `launchctl kickstart -k` kills a running instance and starts a fresh one.
+ *   Under `"always"` launchd would also relaunch the killed instance on its
+ *   own, so `-k` is a redundant-but-harmless restart rather than the only
+ *   restart path. `ThrottleInterval` bounds how fast those relaunches occur.
+ */
+export type LaunchAgentKeepAlivePolicy = "always" | "crash-only" | "never";
+
+export interface RuntimeLaunchAgentOptions {
+  /** Job label; also names the plist file and the `gui/<uid>/<label>` service. */
+  label?: string;
+  /** launchd restart posture. Defaults to `"crash-only"`. */
+  keepAlive?: LaunchAgentKeepAlivePolicy;
+  /** Whether launchd starts the job as soon as it is loaded. Defaults to `true`. */
+  runAtLoad?: boolean;
+  /** Minimum seconds between successive launches. Defaults to `10`. */
+  throttleIntervalSeconds?: number;
+  /**
+   * Environment pinned into the job. launchd jobs inherit almost nothing from
+   * an interactive shell, so any variable the program needs must be declared
+   * here explicitly.
+   */
+  environmentVariables?: Readonly<Record<string, string>>;
+}
+
+const DEFAULT_KEEP_ALIVE: LaunchAgentKeepAlivePolicy = "crash-only";
+const DEFAULT_THROTTLE_INTERVAL_SECONDS = 10;
+
 function xml(value: string): string {
   return value
     .replaceAll("&", "&amp;")
@@ -35,31 +81,71 @@ function xml(value: string): string {
     .replaceAll("'", "&apos;");
 }
 
-export function renderRuntimeLaunchAgent(input: {
-  executablePath: string;
-  runtimeDirectory: string;
-}): string {
+function renderKeepAlive(policy: LaunchAgentKeepAlivePolicy): string {
+  if (policy === "never") {
+    return "";
+  }
+  if (policy === "always") {
+    return `  <key>KeepAlive</key>
+  <true/>
+`;
+  }
+  return `  <key>KeepAlive</key>
+  <dict>
+    <key>SuccessfulExit</key>
+    <false/>
+  </dict>
+`;
+}
+
+function renderEnvironmentVariables(
+  environmentVariables: Readonly<Record<string, string>> | undefined
+): string {
+  const entries = Object.entries(environmentVariables ?? {});
+  if (entries.length === 0) {
+    return "";
+  }
+  const body = entries
+    .map(
+      ([name, value]) =>
+        `    <key>${xml(name)}</key>\n    <string>${xml(value)}</string>`
+    )
+    .join("\n");
+  return `  <key>EnvironmentVariables</key>
+  <dict>
+${body}
+  </dict>
+`;
+}
+
+export function renderRuntimeLaunchAgent(
+  input: {
+    executablePath: string;
+    runtimeDirectory: string;
+  } & RuntimeLaunchAgentOptions
+): string {
   const logs = join(input.runtimeDirectory, "logs");
+  const label = input.label ?? RUNTIME_LAUNCH_AGENT_LABEL;
+  const runAtLoad = input.runAtLoad ?? true;
+  const throttleInterval =
+    input.throttleIntervalSeconds ?? DEFAULT_THROTTLE_INTERVAL_SECONDS;
   return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>${RUNTIME_LAUNCH_AGENT_LABEL}</string>
+  <string>${xml(label)}</string>
   <key>ProgramArguments</key>
   <array>
     <string>${xml(resolve(input.executablePath))}</string>
     <string>--runtime-daemon</string>
   </array>
   <key>RunAtLoad</key>
-  <true/>
-  <key>KeepAlive</key>
-  <dict>
-    <key>SuccessfulExit</key>
-    <false/>
-  </dict>
-  <key>ThrottleInterval</key>
-  <integer>10</integer>
+  <${runAtLoad ? "true" : "false"}/>
+${renderKeepAlive(input.keepAlive ?? DEFAULT_KEEP_ALIVE)}${renderEnvironmentVariables(
+    input.environmentVariables
+  )}  <key>ThrottleInterval</key>
+  <integer>${Math.trunc(throttleInterval)}</integer>
   <key>StandardOutPath</key>
   <string>${xml(join(logs, "daemon.stdout.log"))}</string>
   <key>StandardErrorPath</key>
@@ -128,20 +214,25 @@ async function ensurePrivateDirectory(path: string): Promise<void> {
 
 export class LaunchAgentManager {
   readonly plistPath: string;
+  readonly label: string;
   private readonly domain: string;
   private readonly service: string;
+  private readonly options: RuntimeLaunchAgentOptions;
 
   constructor(
     private readonly paths: LaunchAgentPaths,
     private readonly runCommand: CommandRunner = defaultCommandRunner,
-    userId = process.getuid?.() ?? 0
+    userId = process.getuid?.() ?? 0,
+    options: RuntimeLaunchAgentOptions = {}
   ) {
+    this.options = options;
+    this.label = options.label ?? RUNTIME_LAUNCH_AGENT_LABEL;
     this.plistPath = join(
       resolve(paths.launchAgentsDirectory),
-      `${RUNTIME_LAUNCH_AGENT_LABEL}.plist`
+      `${this.label}.plist`
     );
     this.domain = `gui/${userId}`;
-    this.service = `${this.domain}/${RUNTIME_LAUNCH_AGENT_LABEL}`;
+    this.service = `${this.domain}/${this.label}`;
   }
 
   async install(executablePath: string): Promise<void> {
@@ -150,6 +241,8 @@ export class LaunchAgentManager {
     await atomicWrite(
       this.plistPath,
       renderRuntimeLaunchAgent({
+        ...this.options,
+        label: this.label,
         executablePath,
         runtimeDirectory: this.paths.runtimeDirectory
       })
