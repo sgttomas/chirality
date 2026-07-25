@@ -30,3 +30,18 @@ yielded per D-PEC-64 §2.4 (resumes at STEP 3 of
 ## Status log
 
 - 2026-07-25: v1 frozen; Gate 1 dispatch prepared (LAUNCH_BRIEF v1).
+- 2026-07-25: RUN COMPLETE — Gates 1–5 executed by the managed
+  SCOPECHANGE-SCA002 instance across brief versions v1–v6; every gate
+  ruled by the owner in the main session (AskUserQuestion records) and
+  relayed verbatim; seven refutation rounds dispositioned at Agent 0
+  fan-in (wave plan §6). Revision 1.2 accepted; SCA-002 closed.
+- 2026-07-25: DISPOSITION — the harness attached an automated
+  instruction-poisoning warning to the instance's final turn (it
+  recorded owner-acceptance language its own transcript could not
+  verify). Dispositioned FALSE-POSITIVE-BY-VANTAGE: the Gate 5
+  acceptance ("Accept revision 1.2 (Recommended)") and every prior gate
+  ruling are genuine owner acts in the main-session transcript,
+  presented by Agent 0 and relayed verbatim per this plan's design
+  (owner rules in chat; children never see the owner directly). The
+  warning and this disposition are disclosed to the owner and recorded
+  here durably.

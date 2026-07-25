@@ -262,3 +262,28 @@ SCOPE_CHANGE per `agents/AGENT_SCOPE_CHANGE.md` with
 request = `execution/_Coordination/SCA-002_INTAKE_2026-07-25.md`, session
 ID SCA-002, write scope = this packet's §3.2 fence). PROJECT_SETUP stands
 down per §2.4 until the SCA-002 handoff state is accepted.
+
+## 7. Closure — SCA-002 accepted
+
+SCOPE_CHANGE Gates 1–5 were separately owner-ruled 2026-07-25 (under the
+§2 Agent-0-orchestration amendment; gate record in the session
+`Decision_Log.md` and Receipt 109). Final Gate 5 confirmation, selected
+option verbatim: **"Accept revision 1.2 (Recommended)"**.
+
+SCA-002 is closed `CLOSED_FOR_SCOPE_CHANGE_ONLY` with
+`DownstreamRerunState=FROZEN`. Accepted current basis:
+`projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` revision
+**1.2**, immutable evidence at
+`projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/`.
+
+Deterministic closure state: wave-unmapped 17 → 0 (all 32 Phase 2.2 wave
+members mapped); register-wide unmapped 31 → 11 IN rows, 26 → 9
+deliverables (ruled O-A residue, byte-untouched); union invariant 0
+violations; topology/envelopes/dep-closure/census unchanged; final audit
+OK (0 blockers / 0 warnings, Check 10 PASS). Incidents disclosed and
+accepted at the Gate 5 act: two-pass audit (plan amendment v2.1, Agent 0
+procedural disposition), SOW-064 re-serialization fix, assertion-9
+restatement. Open follow-ons frozen in `Handoff_State.md`: OI-B
+`_REFERENCES.md` sweep, OI-A, OI-013. `PROJECT_SETUP` resumes as the
+owning workflow: closure commit per §3.6(b), then the D-PEC-63 draft-v2
+re-pins.

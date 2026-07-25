@@ -3,7 +3,7 @@ doc_id: PEC-AGENTS
 doc_kind: governance.agent_index
 status: live
 created: 2026-07-04
-amended: 2026-07-24 (D-PEC-61; PRD v2.1 and SCA-001 opening)
+amended: 2026-07-25 (D-PEC-64; SCA-002 closed — decomposition revision 1.2 accepted)
 ---
 
 # AGENTS - PEC Agent Index
@@ -142,7 +142,8 @@ unopened future row. Agent validation stays scratch/demo-only.
 - `execution/_Coordination/_DECISIONS/_REGISTER.md` — project decision
   register (`D-PEC-57` pivot, `D-PEC-58` adoption, `D-PEC-59` follow-ons,
   `D-PEC-60` decomposition acceptance, `D-PEC-61` directed bootstrap /
-  SCA-001 opening)
+  SCA-001 opening, `D-PEC-62` scaffold + local dependency registers,
+  `D-PEC-64` SCA-002 objective-mapping session — revision 1.2 accepted)
 - `execution/_Decomposition/` — the accepted decomposition working package
   (`SOFTWARE_DECOMP.md` working surface + companion registers;
   `_LATEST.md` is the revision pointer and handoff state — read it first)

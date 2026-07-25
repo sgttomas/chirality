@@ -9,7 +9,7 @@
 | ContextEnvelope | M |
 | PhaseHint | P1 |
 | CoversScopeItems | SOW-003;SOW-040 |
-| SupportsObjectives | (none mapped — see §3 mapping notes) |
+| SupportsObjectives | OBJ-001 |
 | ResponsibleParty | TBD (assignment at WORKING_ITEMS activation) |
 
 ## Description
@@ -27,7 +27,8 @@ OI-006 determines the token mechanism (PEC-local vs daemon registry); the socket
 ## Provenance
 
 Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
-`execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (`current_basis`,
-SCA-001 successor). Fields templated deterministically from
+`execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
+successor), superseded by revision 1.2 (`current_basis`, SCA-002
+successor). Fields templated deterministically from
 `Deliverables.csv`; this file restates register truth and is not an
 independent authority.

@@ -1,0 +1,162 @@
+{
+  "schema_version": "pec-software-register-baseline-v1",
+  "baseline_role": "SCOPE_CHANGE Gate 5 deterministic register-integrity baseline (post-change)",
+  "captured_at": "2026-07-25",
+  "amendment_id": "SCA-002",
+  "decomp_variant": "SOFTWARE",
+  "accepted_basis": {
+    "decomposition_path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "revision": "1.2",
+    "latest_pointer": "revision 1.2 (current_basis, SCA-002 successor under D-PEC-64)",
+    "source_corpus_declared": "projects/pec/docs/PRD.md v2.1 (unchanged by SCA-002)",
+    "current_prd_state": "v2.1"
+  },
+  "audit_decomp": {
+    "snapshot": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA002_POSTCHANGE_2026-07-25_1252",
+    "run_status": "BLOCKERS",
+    "declared_packages": 11,
+    "declared_deliverables": 64,
+    "discovered_deliverable_folders": 64,
+    "pass": "interim (first pass)",
+    "interpretation": "Interim pass per plan amendment v2.1. Its single blocker (COV-074, Check 10) is the known v2 ordering circularity: the audit ran before Post_Change_Coverage.json / Handoff_State.md / RUN_SUMMARY.md existed. All other checks clean. Superseded by the final pass cited in audit_decomp_final."
+  },
+  "counts": {
+    "scope_items": 94,
+    "scope_status": {
+      "IN": 71,
+      "OUT": 14,
+      "TBD": 9
+    },
+    "packages": 11,
+    "deliverables": 64,
+    "objectives": 6,
+    "context_envelopes": {
+      "S": 28,
+      "M": 34,
+      "L": 2
+    }
+  },
+  "objective_support": {
+    "scope_items": {
+      "OBJ-001": 22,
+      "OBJ-002": 12,
+      "OBJ-003": 13,
+      "OBJ-005": 9,
+      "OBJ-006": 9,
+      "OBJ-004": 10
+    },
+    "deliverables": {
+      "OBJ-005": 7,
+      "OBJ-001": 20,
+      "OBJ-002": 12,
+      "OBJ-003": 12,
+      "OBJ-006": 9,
+      "OBJ-004": 10
+    },
+    "in_items_without_objective": 11,
+    "deliverables_without_objective": 9,
+    "wave_members_without_objective": 0
+  },
+  "delta_from_pre_change": {
+    "in_items_without_objective": "31 -> 11",
+    "deliverables_without_objective": "26 -> 9",
+    "wave_members_without_objective": "17 -> 0",
+    "ledger_rows_changed": 20,
+    "deliverable_rows_changed": 17,
+    "topology_change": "none"
+  },
+  "checks": {
+    "scope_id_uniqueness": true,
+    "deliverable_id_uniqueness": true,
+    "qa_id_uniqueness": true,
+    "all_in_have_one_package": true,
+    "all_in_have_one_deliverable": true,
+    "scope_to_deliverable_refs_resolve": true,
+    "scope_deliverable_package_lineage": true,
+    "deliverable_to_scope_refs_resolve": true,
+    "qa_one_to_one_with_deliverables": true,
+    "qa_envelope_parity": true,
+    "expected_package_set": true,
+    "expected_objective_set": true,
+    "A1_union_invariant_zero_violations": true,
+    "A2_residue_11_in_rows_untouched": true,
+    "A2_residue_9_deliverables_untouched": true,
+    "A2_out_tbd_unmapped": true,
+    "A3_token_grammar_all_cells": true,
+    "A4_topology_unchanged": true,
+    "A5_window_20_ledger_17_deliverable_rows": true,
+    "A5_DEL_03_01_unchanged": true,
+    "A5_SOW_021_subset_OBJ005": true,
+    "A7_revision_1_2_parity": true,
+    "A9_zero_stale_context_pointers": true
+  },
+  "collateral": {
+    "analyze_dep_closure": {
+      "files": 64,
+      "rows": 255,
+      "anchor": 135,
+      "execution": 120,
+      "nodes": 62,
+      "edges": 120,
+      "orphans": 2,
+      "sccs": 0,
+      "matches_d_pec_62_landing_values": true
+    },
+    "lifecycle_census": {
+      "OPEN": 64,
+      "method": "grep -h '^\\*\\*Current State:\\*\\*' ... | sort | uniq -c",
+      "note": "count_workspace_state.sh deliberately not used (D-PEC-64 \u00a74.4)"
+    }
+  },
+  "issues": {
+    "duplicate_scope_ids": [],
+    "duplicate_deliverable_ids": [],
+    "unassigned_in_scope": [],
+    "in_without_deliverable": [],
+    "dangling_deliverable_refs": [],
+    "lineage_mismatches": [],
+    "dangling_scope_refs": [],
+    "reverse_mapping_missing": [],
+    "qa_missing": [],
+    "qa_extra": [],
+    "qa_envelope_mismatches": [],
+    "inventory_missing_files": []
+  },
+  "file_sha256": {
+    "SOFTWARE_DECOMP.md": "3e5be4e453ed48d7fbfa48ecc486156124bb197798b47f57aa5284698346dd58",
+    "ScopeLedger.csv": "1b2dbf5f8d542f304173c48731c288caf1d3d0338ef772f1eee92fa83d0eb07f",
+    "Deliverables.csv": "90baadeb47b69601b68f5ae54060cb13151ffca5845edbe4251715325dcfb217",
+    "ContextBudgetQA.csv": "5c8d30994a99611b7023f8ac0995ee9a8efa0d2992f3c1a2683f4d2f9e8e2bef",
+    "Companion_Inventory.csv": "18793e150c537371f80d659af2784674d42bac0de37bf7128e484774a557ec23",
+    "_LATEST.md": "d2cfa013f6715a06fe791b6c0f2b25f4d6531536a39647e117cf1f1024afafa2"
+  },
+  "overall_status": "PASS",
+  "known_warnings": [
+    "W-1 resolved by A007: \u00a75 envelope-posture prose now agrees with the registers and \u00a77"
+  ],
+  "audit_decomp_final": {
+    "snapshot": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA002_POSTCHANGE_FINAL_2026-07-25_1257",
+    "run_status": "OK",
+    "pass": "final (second pass, plan amendment v2.1)",
+    "issues_blocker": 0,
+    "issues_warning": 0,
+    "issues_info": 73,
+    "active_snapshot_status": "PASS",
+    "handoff_state_status": "PASS",
+    "objective_evidence_integrity": "PASS",
+    "package_shape_conformance": "PASS",
+    "closure_readiness": "PASS",
+    "forward_coverage_partitions_pct": 100.0,
+    "forward_coverage_production_units_pct": 100.0,
+    "context_fidelity_pct": 100.0,
+    "objective_coverage_pct": 100.0,
+    "interpretation": "Final pass against the completed active snapshot. Check 10 PASS. The 73 info rows are the expected pre-production classes: 64 anticipated-artifact rows (all deliverables OPEN) and 9 residue deliverables without objective mapping (intentional under O-A)."
+  },
+  "audit_state": "NON_BLOCKING_PASS",
+  "fix_pass": {
+    "round": "R-2b-g5",
+    "date": "2026-07-25",
+    "findings": 11,
+    "note": "SOW-064 DecisionRef quoting restored (writer renormalisation, outside the approved window); ledger md5 and sha256 recomputed; assertion 9 restated to its qualified form; see Decision_Log C-54..C-66."
+  }
+}

@@ -381,4 +381,230 @@ Gate 3 closed. Gate 4 released; write scope still `_ScopeChange/**` only.
 
 ## Gate 5 — Execute and Validate
 
-> _Not opened._
+**Opened:** 2026-07-25 · **Status:** **`COMPLETED`** (resumed after an abort at
+step 12 under plan amendment **v2.1**; final audit `OK`).
+
+### Gate 4 owner ruling — APPROVED 2026-07-25
+
+| Q | Ruling |
+|---|---|
+| Q1 | **"(i) All 64, P-supersede"** — full pointer refresh, supersession-note variant |
+| Q2 | **"Approve and release"** — Gate 5 released; write scope widened to the full `D-PEC-64` §3.2 fence |
+
+### Per-step execution record
+
+| Step | Action | Result |
+|---|---|---|
+| 1 | Re-verify basis md5s | **PASS** — all three match the pins |
+| 2 | A001 — 20 `ObjectiveIDs` cells | **PASS** — 20 applied, 20 rows changed, 0 other-column changes |
+| 3 | A002 — 17 `SupportsObjectives` cells | **PASS** — 17 applied, 0 other-column changes, `DEL-03-01` unchanged, union invariant 0 |
+| 4 | 10 `SOFTWARE_DECOMP.md` sites | **PASS** — 12 exact-string replacements each matched exactly once + 2 anchored appends (DL-17, revision row 1.2) |
+| 4v | §3 ↔ register parity | **PASS** — all six objectives MATCH (20/12/12/10/7/9); `OBJ-003` and `OBJ-006` rows untouched; §7 `ContextEnvelopeCounts` unchanged; `status` and `source_corpus` unchanged |
+| 4v | Post-change anchor map | **PASS** — §5→385, §7→537/541, DL-16→634 all as predicted; DL-17 landed at 635 and revision row 1.2 at 651 (the plan's "640→650" anchor was for the *existing* 1.1 row, which is at 650 — correct; my first probe was mislabelled) |
+| 5 | A006 — `_Decomposition/_LATEST.md` | **PASS with a recorded plan gap** — see D-28 |
+| 6 | 17 `_CONTEXT.md` mapping lines | **PASS** — pre-flight matched all 17 exactly once; 17 applied |
+| 7 | 64 `_CONTEXT.md` pointer blocks (P-supersede) | **PASS** — pre-flight matched all 64 exactly once; 64 applied; 0 stale `current_basis` pointers remain; line 29 scaffold provenance untouched in all 64 |
+| 8 | Post-check assertions 1–5, 7 | **PASS** — union 0; residue 11 IN + 9 deliverables still unmapped; `OUT`/`TBD` unmapped; 0 bad tokens; topology 94 (71/14/9), 64, 11, 6, S 28 / M 34 / L 2; 20 changed ledger rows; `DEL-03-01` = `OBJ-005`; `SOW-021` ⊆ `{OBJ-005}`; revision-1.2 parity across front matter, §7 and `_LATEST.md` |
+| 8 | Collateral (assertion 8) | **PASS** — dep-closure 64 files / 255 rows / 135 ANCHOR / 120 EXECUTION / 62 nodes / 120 edges / orphans 2 / SCCs 0, matching D-PEC-62; census `64 OPEN` |
+| 8 | Assertion 9 (option (i) grep) | **PASS** — 0 stale pointers repo-wide |
+| 9 | `Pre_Change_Coverage.json` | **PASS** — `pec-software-register-baseline-v1`; pre-state reconstructed from `git show HEAD:` so the baseline is measured, not asserted; confirms pre 31 IN / 26 deliverables unmapped |
+| 10 | `Supersession_Map.csv` | **PASS** — accumulator, `--allow-empty`, no `--delta`; 0 rows, 0 blocking findings |
+| 11 | Repoint `_ScopeChange/_LATEST.md` → SCA-002 | **PASS** — 0 SCA-001 references remain |
+| **12** | **Post-change `AUDIT_DECOMP`** | **BLOCKER — ABORTED** |
+| 13 | `Post_Change_Coverage.json` (baseline schema) | **PASS** — all register-integrity checks and the six SCA-002 assertions recorded inside; post 11 IN / 9 deliverables unmapped |
+| 13 | `Handoff_State.md` | **PASS** — four contract sections + closure verdict + FROZEN obligations table |
+| 13 | `RUN_SUMMARY.md` | **PASS** — seven state fields |
+| **12b** | **Final `AUDIT_DECOMP` pass** (amendment v2.1) | **PASS** — `COV_SCA002_POSTCHANGE_FINAL_2026-07-25_1257`, `overall_status OK`, **0 blockers / 0 warnings / 73 info**, Check 10 `active_snapshot_status PASS`, closure_readiness `PASS` |
+| 14 | Fill A006 + `RUN_SUMMARY` slots; add `audit_decomp_final` citation | **PASS** — 0 literal slots remain in any artifact |
+| 15 | `Decision_Log.md` Gate 5 record | **PASS** — this section |
+| 16 | Git scope check | **PASS** — see below |
+| 17 | Handoff file list + recommended commit message | **PASS** — returned; **no git operation performed** |
+
+### The abort — step 12
+
+`COV_SCA002_POSTCHANGE_2026-07-25_1252` returned `RUN_STATUS = BLOCKERS`,
+`closure_readiness = FAIL`, 1 blocker:
+
+```
+COV-074,10,BLOCKER,SNAPSHOT,SCA-002_2026-07-25_1042,
+"Active snapshot contract failed: missing ['Post_Change_Coverage.json',
+ 'Handoff_State.md', 'RUN_SUMMARY.md']"
+```
+
+Everything else in that run is clean: forward coverage 11/11 and 64/64,
+reverse 100%, context fidelity 100% (the 64 amended `_CONTEXT.md` all still
+match the registers), objective coverage 100%, objective-evidence integrity
+`PASS`, package-shape `PASS` (**W-1 is gone** — A007 fixed it), 0 warnings,
+73 info, lifecycle `64 OPEN`.
+
+### Root cause — an unsatisfiable ordering in my own Gate 4 plan
+
+This is **not** a defect in the amendment. It is a circular dependency I
+introduced at Gate 4:
+
+- Correction **C-36** moved the audit *after* the `_ScopeChange/_LATEST.md`
+  repoint so Check 10 would validate **SCA-002's** snapshot rather than
+  SCA-001's. That fixed a real problem.
+- But Check 10 requires the **complete** artifact set, and three of those
+  artifacts — `Post_Change_Coverage.json`, `Handoff_State.md`,
+  `RUN_SUMMARY.md` — are written at steps 13–14, *after* the audit.
+- `Post_Change_Coverage.json` cannot be written before the audit because it
+  must cite the audit's output.
+
+So at step 12 the audit can **never** pass Check 10. The plan as written is
+unexecutable at this step, whichever order is chosen, without either running
+the audit twice or accepting a known-incomplete Check 10.
+
+I did **not** improvise a fix. Resolving it meant amending the approved
+propagation plan — an Agent 0 / owner decision. The two candidate resolutions
+put to Agent 0:
+
+1. **Two-pass audit** — keep this run as the coverage//register evidence,
+   complete steps 13–14, then re-run `AUDIT_DECOMP` so Check 10 sees the
+   finished snapshot. Costs one extra immutable COV snapshot; yields a clean
+   final audit.
+2. **Accept Check 10 as expected-incomplete at step 12** — record the blocker
+   as a known sequencing artifact in `RUN_SUMMARY.md`/`Handoff_State.md` and
+   cap `AuditState` accordingly. Cheaper, but ships a `BLOCKERS` audit as the
+   closure evidence, which `AGENT_SCOPE_CHANGE.md` treats as blocking.
+
+I recommended **(1)**: the SCA-001 precedent is a clean post-change baseline,
+and option (2) would leave the active snapshot's own audit asserting failure.
+
+### Agent 0 disposition — plan amendment v2.1 (2026-07-25)
+
+**Abort ruled correct; recommendation (1) ACCEPTED** as propagation-plan
+amendment **v2.1: two-pass audit.** Procedural only — no new write surface
+(the second COV snapshot lands inside the same `D-PEC-64` §3.2
+`_Evaluation/DecompCoverage/**` grant), no amendment-text change, no window
+change. Dispositioned at Agent 0 level and **disclosed to the owner at Gate 5
+acceptance, where the final ruling remains theirs**. Nothing rolled back;
+steps 2–11 stand as verified. Recorded in `Propagation_Plan.md` (v2.1 note).
+
+**Outcome:** the final pass returned `OK` with **0 blockers and 0 warnings**,
+Check 10 `PASS`. The two-pass structure is now the evidence: the interim run
+is retained as first-pass register/coverage evidence and cited in
+`Post_Change_Coverage.json.audit_decomp`; the final run is cited in
+`audit_decomp_final` and is the closure evidence.
+
+### Agent-side resolutions
+
+| Ref | Decision | Rationale |
+|---|---|---|
+| D-28 | **A006 written in two phases** (plan gap recorded, not improvised around) | Step 5 must precede the audit so the audit sees revision 1.2 as `current_basis`, but `_LATEST.md` carries two audit-derived values (`{AUDIT_STATE}`, `{POST_COV_SNAPSHOT}`). Both remain as literal slots pending step 14. The plan's step-5 verification ("no literal `{` remains") is therefore **not yet satisfiable** and moves to step 14. This is a second instance of the same step-12 circularity. |
+| D-29 | Aborted at step 12 rather than completing steps 13–17 and re-running the audit | The binding constraint is explicit: on an audit blocker, stop, write nothing further, report exact state. Re-running the audit after completing the artifacts would be the sensible engineering move **and** exactly the improvisation the rule forbids, because it silently amends the approved plan. |
+| D-31 | Interim COV snapshot **retained**, not deleted | It is immutable evidence of a real run and of the ordering defect. Deleting it to tidy the record would erase the trace of a plan failure that the correction log depends on. Both passes are cited in `Post_Change_Coverage.json`. |
+| D-30 | Decomposition truth left **applied**, not rolled back | The abort rule says stop and report, not revert. Steps 2–11 all passed their verifications; the amendment is internally consistent and validated. Rolling back would discard verified work on the strength of a sequencing artifact. State is reported precisely so Agent 0 can decide. |
+
+
+---
+
+## Gate 5 fix pass — round R-2b-g5 (2026-07-25)
+
+Final refutation round on the executed state. The diff↔approved-text bijection
+held on `SOFTWARE_DECOMP.md`, `Deliverables.csv` and all 64 `_CONTEXT.md`
+(byte-identical to programmatic reconstruction); residue, `OUT`/`TBD` and
+`DEL-03-01` byte-identical; all invariants reproduce; fence clean. **Eleven
+findings** required a fix pass before owner acceptance. All fixes inside the
+existing fence.
+
+| # | Fix | Result |
+|---|---|---|
+| **C-54** | **`ScopeLedger.csv` SOW-064 quoting** — restored byte-identical to HEAD | Ledger diff **21 → 20 lines**; changed rows exactly the 20 approved; **no non-`ObjectiveIDs` field change**; 94 rows parsed |
+| C-55 | Ledger md5 re-computed and **every citation reconciled** | `4bc5dace…` → **`9ece6f49fb5fc7f83f72fa897d01a325`** in `_Decomposition/_LATEST.md` and `Handoff_State.md` |
+| **C-56** | `_ScopeChange/_LATEST.md` `AuditState` `WARNINGS` → **`NON_BLOCKING_PASS`** | Stale from the step-11 repoint, which ran *before* the final audit. Now consistent with `RUN_SUMMARY`, `_Decomposition/_LATEST.md` and `Post_Change_Coverage.json` |
+| **C-57** | Same file pre-declared closure | `Status` → **`EXECUTED_AWAITING_OWNER_CONFIRMATION`**; "Gates 1–5 are owner-ruled" → "Gates 1–4 owner-ruled; Gate 5 executed and verified, awaiting owner confirmation"; `ClosureVerdict` → pending, with the value it takes on acceptance named |
+| **C-58** | **Assertion 9 restated** in `Propagation_Plan.md` §3d with a dated correction note | The literal `grep 'revision 1.1'` returns **64 by design** under P-supersede — the string is retained deliberately. The satisfiable criterion is the **qualified** grep for ``revision 1.1 (`current_basis``, which returns 0. Gate 5 recorded PASS against the qualified form; the substitution is now explicit |
+| C-59 | §2c option rationale qualified | "(i) collapses the post-check to one repo-wide grep" holds only in its **qualified** form. The recommendation stands — still one assertion, still no 47-file exception — but the rationale overstated it as a bare grep |
+| C-60 | `RUN_SUMMARY.md` overstatement removed | "All post-check assertions pass" → "all pass **under the corrected assertion 9**"; the pre/post row reworded to "pointers asserting revision 1.1 as `current_basis`" |
+| **C-61** | Interim COV snapshot marked honestly | `PARTIAL_RUN_NOTE.md` added stating it is the aborted step-12 first pass, **3 of 8 contract artifacts, incomplete by construction, superseded**. **No fake artifacts backfilled.** `Handoff_State` §3 row qualified |
+| C-62 | Markdown defects | Orphaned double-backtick in `_Decomposition/_LATEST.md`; broken nested backticks in `RUN_SUMMARY.md` audit table |
+| **C-63** | **Durable handoff file list** written into `Handoff_State.md` §9 | 90 paths, grouped (4 targets / 64 `_CONTEXT.md` / 9 snapshot / 13 COV) + commit message. §6 previously cited "§7's file list", which did not exist |
+| C-64 | Derivative-**package** state table added (`Handoff_State` §3b) | The contract requires both the surface table and the package table; only the surface table existed |
+| C-65 | `DerivativePackageState = COMPLETE` scoped explicitly | Clause added scoping it to **decomposition-local** surfaces per `AGENT_SCOPE_CHANGE.md`:685, so it cannot be misread as covering `_REFERENCES.md` |
+| C-66 | `Propagation_Plan.md` front-matter status corrected | `awaiting_gate_4_approval` → `gate_4_approved; gate_5_executed_awaiting_owner_confirmation` |
+
+### The SOW-064 incident — writer vs surgical edit
+
+**What happened.** Steps 2–3 applied A001/A002 by parsing the CSVs with
+`csv.DictReader`, mutating the target cells, and re-serialising the whole file
+with `csv.DictWriter`. `DictWriter` applies `QUOTE_MINIMAL`, so it re-derived
+quoting per field rather than preserving it. `SOW-064`'s `DecisionRef` value
+`"DL-10; DL-11; SCA-001"` contains semicolons but no comma, so minimal quoting
+dropped its quotes — a **2-byte change to a row outside the approved window**.
+
+**Why the post-checks missed it.** Every assertion I ran was *semantic*: union
+invariant, residue still unmapped, token grammar, topology, column containment.
+All of those parse the CSV, and the parsed value is identical either way —
+`DL-10; DL-11; SCA-001` reads the same quoted or bare. The one check that would
+have caught it is the **byte-level** one `D-PEC-64` §4.3 actually specifies:
+"everything else is byte-identical". I verified *containment* (which columns
+changed) and never verified *byte-identity* of the untouched rows.
+
+**The lesson, stated plainly.** I wrote the `_CONTEXT.md` propagation as exact
+old→new string replacement precisely because the plan demanded byte-precision
+there — and it came out clean, all 64 byte-identical to reconstruction. Then I
+used a re-serialising writer on the registers, where the same requirement
+applied and I did not carry it across. A round-trip through a parser is not a
+surgical edit: it rewrites every byte it touches and silently renormalises
+anything the writer's conventions disagree with.
+
+**Rule for any future register edit in this project:** edit CSV rows by exact
+line replacement, the same way `_CONTEXT.md` was edited — never by
+parse-mutate-reserialise — and verify with a byte-level diff line count against
+the approved row set, not only with parsed-field assertions.
+
+### Fix-pass verification
+
+- Ledger diff: **20 changed lines**, 20 changed rows, 0 non-`ObjectiveIDs`
+  field changes, `SOW-064` byte-identical to HEAD.
+- `Deliverables.csv` re-checked for the same defect class: **17 lines, 17 rows,
+  0 non-`SupportsObjectives` changes** — clean (no quote-optional field was
+  affected).
+- `_CONTEXT.md`: 64 files, +209/−145 lines — exactly 64 pointer blocks (2→3
+  lines) plus 17 mapping lines.
+- No file outside the fix list changed.
+
+---
+
+## Gate 5 owner confirmation — ACCEPTED 2026-07-25
+
+Owner (Ryan Tufts) in-session; relayed by Agent 0. Selected option, verbatim:
+
+> **"Accept revision 1.2 (Recommended)"** — "Revision 1.2 becomes
+> current_basis; SCA-002 closes CLOSED_FOR_SCOPE_CHANGE_ONLY with frozen
+> downstream obligations; PROJECT_SETUP resumes for the closure commit and the
+> D-PEC-63 re-pins. The three disclosures (two-pass audit, SOW-064 fix,
+> assertion-9 restatement) are accepted as recorded."
+
+**The three disclosures are accepted as recorded:**
+
+| Disclosure | Where recorded |
+|---|---|
+| Two-pass audit (plan amendment v2.1, Agent 0 disposition) | `Propagation_Plan.md` v2.1 note; Gate 5 abort narrative + D-31 above; interim snapshot's `PARTIAL_RUN_NOTE.md` |
+| SOW-064 quoting fix (writer renormalisation outside the approved window) | C-54/C-55 and the incident narrative above |
+| Assertion-9 restatement (qualified grep) | C-58/C-59/C-60; `Propagation_Plan.md` §3d dated correction note |
+
+## Five-gate record — closed
+
+| Gate | Ruling | Date |
+|---|---|---|
+| 1 — Change Intake and Validation | RULED — O-A wave-minimum; A001–A006 confirmed + A007 added; `SOW-021` ⊆ `{OBJ-005}` | 2026-07-25 |
+| 2 — Impact Assessment | ACCEPTED — no `Supersession_Delta.csv` owed (conditional, discharged at Gate 3); `OI-B` recorded as deferred | 2026-07-25 |
+| 3 — Amendment Approval | APPROVED — all seven per-row attributions as recommended; INDIRECT-8 affirmed; header qualifier dropped; A008 + §4.3 amendment #2 | 2026-07-25 |
+| 4 — Propagation Plan Approval | APPROVED — `_CONTEXT.md` option (i) all 64, P-supersede; Gate 5 released | 2026-07-25 |
+| 5 — Execute and Validate | **CONFIRMED — `CLOSED_FOR_SCOPE_CHANGE_ONLY`** | 2026-07-25 |
+
+**Final state.** `SOFTWARE_DECOMP.md` revision **1.2** is `current_basis`.
+Topology unchanged (94 / 71-14-9 / 11 / 64 / 6; S 28 / M 34 / L 2 / XL 0). IN
+items without objective mapping 31 → 11; deliverables without objective mapping
+26 → 9; **Phase 2.2 wave members without objective mapping 17 → 0**. Final
+audit `OK` — 0 blockers, 0 warnings.
+
+**Next owner: `PROJECT_SETUP`**, resuming per `D-PEC-64` §2.4 — receipt,
+closure commit from the `Handoff_State.md` §9 file list (90 paths), D-PEC-63
+re-pins, `AGENTS.md` pointer refresh. Frozen obligations: `OI-B`, `OI-A`,
+`OI-013`, the coordination-surface updates.
+
+**SCOPE_CHANGE's role in SCA-002 is complete.** No git operation was performed
+at any point in this session.

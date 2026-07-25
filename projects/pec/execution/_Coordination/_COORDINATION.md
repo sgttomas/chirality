@@ -36,6 +36,16 @@
    seeded from the frozen gate exhibit (evidence:
    `SEED_D-PEC-62/RUN_LOG.md`, Receipt 108). Blocker computation is active
    in advisory-reporting form from deliverable-local registers only.
+6. **`D-PEC-64` RULED and SCA-002 closed 2026-07-25:** decomposition
+   revision **1.2** accepted (`current_basis`) — deliverable→objective
+   mapping completed for the O-A wave-minimum scope; all 32 Phase 2.2
+   wave members now carry non-empty `SupportsObjectives`; residue 11 IN
+   rows / 9 deliverables retained by design. Evidence:
+   `execution/_ScopeChange/SCA-002_2026-07-25_1042/`, Receipt 109.
+   Executed under owner-directed Agent 0 orchestration (managed
+   SCOPE_CHANGE instance; control plane
+   `AgentRuns/RUN_2026-07-25_sca002/`). Next: D-PEC-63 draft v2 re-pin
+   and ruling.
 
 ## Notes (human-owned)
 

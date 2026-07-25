@@ -67,3 +67,16 @@ request `_Coordination/SCA-002_INTAKE_2026-07-25.md`
   _ScopeChange/** snapshot completion + _LATEST.md repoint,
   _Evaluation/DecompCoverage/** post-change audit. No git operation;
   handoff file list + recommended message returned to Agent 0.
+- v6 2026-07-25 (Agent 0 disposition — plan amendment v2.1, two-pass
+  audit): Gate 5 aborted at step 12 per the abort rule (correct) on a
+  plan-internal circular dependency: Check 10 requires the complete
+  snapshot artifact set, but Post_Change_Coverage.json/Handoff_State/
+  RUN_SUMMARY are written post-audit (one cites the audit). Amendment
+  (procedural only; no new write surface — a second COV snapshot lands
+  in the same §3.2 grant; no text/window change; disclosed to the
+  owner at Gate 5 acceptance): TWO-PASS AUDIT — the step-12 run stands
+  as interim evidence; complete steps 13–14; fill A006's audit-derived
+  slots and Post_Change_Coverage's citation from the FINAL audit;
+  re-run the audit (second COV snapshot) expecting Check 10 PASS;
+  finalize evidence; steps 15–17 unchanged. Resume from current
+  applied state (no rollback — steps 2–11 verified).

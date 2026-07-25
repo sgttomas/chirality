@@ -6,18 +6,15 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
-`STEP 2b IN PROGRESS — D-PEC-64 RULED as drafted 2026-07-25 (scope width
-deferred to Gate 1). Entry mechanics amended by owner direction same day
-(verbatim in the packet §2): the session agent adopted the HELP_HUMAN
-(Agent 0) posture and dispatches SCA-002 as a managed SCOPE_CHANGE
-Agent 1 instance (opus-5); every Gate 1–5 ruling remains an owner act in
-chat. Control-plane records: _Coordination/AgentRuns/RUN_2026-07-25_sca002/.
-The PROJECT_SETUP role remains yielded (no act against
-execution/_Decomposition/** or registers) until Gate 5 acceptance; its
-work resumes at STEP 3 (D-PEC-63 draft v2 re-pins per §7, receipt +
-_COORDINATION.md item, closure commit per D-PEC-64 §3.6b). The intake
-(SCA-002_INTAKE_2026-07-25.md) supersedes this plan's §2 where they
-differ (R-2a corrections noted in §2 and logged in §6).`
+`STEP 2 COMPLETE — SCA-002 CLOSED 2026-07-25: revision 1.2 accepted
+("Accept revision 1.2 (Recommended)", Gate 5). All 32 wave members carry
+non-empty SupportsObjectives (wave-unmapped 17→0); O-A residue 11 IN
+rows / 9 deliverables untouched. Evidence:
+_ScopeChange/SCA-002_2026-07-25_1042/ + Receipt 109; refutation rounds
+R-2a, R-2b-g1..g5 in §6. PROJECT_SETUP RESUMED (closure commit per
+D-PEC-64 §3.6b performed). Next: STEP 3 — D-PEC-63 draft v2 re-pins
+(§7: three pins to rev 1.2 + DAG-exhibit §1 annotation), refutation,
+owner ruling with Q1/Q2; then STEP 4 wave B1–B8.`
 
 ---
 

@@ -1,0 +1,40 @@
+{
+  "run_label": "SCA002_POSTCHANGE",
+  "timestamp": "2026-07-25T12:52:30",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "projects/pec/execution/_Decomposition/_LATEST.md (revision 1.2, current_basis)",
+  "expected_handoff_phase": "SCOPE_CHANGE_GATE_5",
+  "decomposition_path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+  "decomposition_revision": "1.2",
+  "scope": "ALL",
+  "partitions_declared": 11,
+  "partitions_found": 11,
+  "production_units_declared": 64,
+  "production_units_found": 64,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 9,
+  "in_ledger_rows_without_objective_mapping": 11,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "FAIL",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 1,
+  "issues_warning": 0,
+  "issues_info": 73,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "OPEN": 64
+  },
+  "overall_status": "BLOCKERS",
+  "closure_readiness": "FAIL",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

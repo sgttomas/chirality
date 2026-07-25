@@ -3,9 +3,9 @@ amendment_id: SCA-002
 doc_kind: scope_change.propagation_plan
 decomp_variant: SOFTWARE
 gate: 4
-version: v2 (revised under round R-2b-g4; 22 findings ACCEPTED)
+version: v2.1 (v2 + Agent 0 plan amendment: two-pass audit)
 created: 2026-07-25
-status: awaiting_gate_4_approval
+status: gate_4_approved; gate_5_executed_awaiting_owner_confirmation
 scope_width: O-A
 authority: D-PEC-64 (+ §4.3 owner amendments #1 and #2)
 basis: SOFTWARE_DECOMP.md revision 1.1 (current_basis)
@@ -282,8 +282,26 @@ shifting lines 32+ in every touched file. Under **P-swap**, Δ = 0.
 8. Collateral — `analyze_dep_closure.py` unchanged from D-PEC-62 values (64
    files, 255 rows, 135/120, 62 nodes/120 edges, orphans 2, SCCs 0); census
    `64 OPEN` via the `grep` form, **never** `count_workspace_state.sh`.
-9. Under option (i): `grep -rl 'revision 1.1' PKG-*/1_Working/DEL-*/_CONTEXT.md`
+9. Under option (i): **[CORRECTED 2026-07-25]** the satisfiable criterion is
+   `grep -rl 'revision 1.1 (\`current_basis\`' PKG-*/1_Working/DEL-*/_CONTEXT.md`
    returns **0**.
+
+   > **Correction note.** As originally written, assertion 9 grepped for the
+   > bare string `revision 1.1`. Under the ruled **P-supersede** variant that
+   > string is *retained by design* — the new text reads "revision 1.1 (SCA-001
+   > successor), superseded by revision 1.2 (`current_basis`, SCA-002
+   > successor)" — so the literal grep returns **64**, not 0, and always would
+   > have. The check that actually discriminates is the **qualified** one
+   > above: no file may still assert revision 1.1 as `current_basis`. Gate 5
+   > recorded assertion 9 as PASS against the qualified form; this note makes
+   > that substitution explicit rather than leaving a silently changed
+   > criterion in the record.
+   >
+   > **Consequence for the §2c option rationale.** "(i) collapses the
+   > post-check to one repo-wide grep" holds only in its qualified form. The
+   > check is still a single assertion and still leaves no 47-file exception
+   > list, so the (i)-over-(ii) recommendation stands — but it is a *qualified*
+   > grep, not the bare one the rationale implied.
 
 ---
 
