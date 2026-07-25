@@ -684,3 +684,32 @@
   Agent 0 (path anchors PASS 992; G0 PASS idle).
 - Lane A remains at its terminal gate: owner review; then RD-1..RD-5
   rulings; then the final adoption-ready revision per §10.3.
+
+### Receipt 37 — 2026-07-25 — RD-1 RULED (genus); PRD candidate Rev 4
+
+- Owner acts of record (in-session, 2026-07-25): (1) stated intent to
+  resolve the genus before approving the PRD; (2) routed the third
+  adversarial-review pass (verbatim in
+  `AgentRuns/ROOT-PRD-LANE-A-20260725/reviews/ADVERSARIAL-REVIEW-3.md`);
+  (3) **RULED RD-1** — presented the slate (A retain DIRECTIVE genus /
+  B adopt README genus / C two-level formulation), the owner selected,
+  recorded verbatim from the selection interface: "C — Two-level
+  formulation". The ruled genus text is the option-C formulation
+  reproduced exactly in the PRD §9.1 and in Brief Amendment 3.
+  SHA-binding of the ruling occurs at the adoption instrument (RD-3).
+- Ruling consequences recorded, none performed in this tranche: (a)
+  exact-prose human-gated M2 supersession of the ratified
+  `docs/DIRECTIVE.md` §1 genus clause; (b) `README.md` reword; (c)
+  propagation survey of SPEC/TYPES/AGENTS.md "operating system" prose.
+  DIRECTIVE §1 remains in force until (a) lands; PRD C-1 status is
+  `RESOLVED-IN-PRINCIPLE — concordance pending`.
+- Rev 4 (same authoring instance, `opus-5`, Brief Amendment 3): RD-1
+  incorporated (ID-0; §1.2 ruled-pending-concordance; §9.1 ruling
+  record); all eight review items + two wording corrections applied
+  (D-16 narrowed; D-1/D-3 evidenced scope; OBSERVED provenance category;
+  split annex bases; D-14 nine-class accounting; release as third human
+  judgment; OBJ-3/OBJ-5 quantifiers; commentary normalization).
+- Fan-in V1 accepted (two-file diff; path anchors PASS 992; G0 PASS
+  idle; DIRECTIVE-not-amended claims verified by direct inspection).
+- Open: RD-2..RD-5 rulings; C-2/C-3/C-4; then the final adoption-ready
+  revision per PRD §10.3 and the adoption instrument per RD-3.

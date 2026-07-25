@@ -1,15 +1,19 @@
-# Concordance Annex — Chirality Root candidate PRD (Rev 3)
+# Concordance Annex — Chirality Root candidate PRD (Rev 4)
 
 > **Package role: `derived publication artifact` / DERIVATIVE PACKAGE.**
 > **Status: NOT ADOPTED, and never adoptable.**
 >
 > This annex is the companion source-concordance artifact for
-> `execution/_Coordination/PRD_CANDIDATE_2026-07-25_root_product.md` (Rev 3).
+> `execution/_Coordination/PRD_CANDIDATE_2026-07-25_root_product.md` (Rev 4).
 > It carries the detailed transcription inventory that Rev 1 held inline, so
 > the main PRD can hold stable commitments and incorporate dynamic registries
 > by reference.
 >
-> **What that status means, bindingly:**
+> **How this annex is constrained — by upstream rule, not by its own say-so.**
+> This annex cannot make its own status binding. Its use is governed by the
+> **already-binding upstream derivative-package rule in `AGENTS.md`**; the
+> statements below describe how that rule applies here, and would hold whether
+> or not this file restated them.
 >
 > - **Derivative package** under the `AGENTS.md` derivative-package rule:
 >   assembled from accepted upstream truth, citing its accepted upstream
@@ -28,16 +32,26 @@
 >   **Neither is built.** At this basis there is **no generator, no schema,
 >   and no executable check** — regeneration is a documented manual procedure
 >   and D-14 is a PROPOSED obligation whose capability does not yet exist.
->   Two of the six check classes additionally require **semantic judgment**
->   and are not mechanizable as specified (§4). Do not describe this annex as
->   mechanically regenerable or mechanically checked.
->   *(Rev 3 correction: Rev 2 claimed present-tense mechanical regenerability
->   and checking. It had neither.)*
+>   Of the **nine** check classes in §4, **five are mechanical and four
+>   require semantic judgment** and are not mechanizable as specified. Do not
+>   describe this annex as mechanically regenerable or mechanically checked.
 >
-> **Accepted upstream snapshot:** `main@7ac718c7e`. Every anchor below was
-> read and verified against the live file at that basis during run
-> `ROOT-PRD-LANE-A-20260725` (Rev 1 authoring; carried through Rev 2 and
-> Rev 3, with Rev 3's new and changed anchors verified in that revision).
+> ## Bases (recorded separately)
+>
+> These are three different things and Rev 3 conflated the last two:
+>
+> | Basis | Value |
+> |---|---|
+> | **SourceCorpusBasis** | `main@7ac718c7e` — the state of the governance corpus every anchor below was verified against, during run `ROOT-PRD-LANE-A-20260725` (Rev 1 authoring, carried forward with each revision's new and changed anchors re-verified in that revision). |
+> | **Prior candidate revisions** | Main PRD Rev 1 `f15d51277`; Rev 2 `a72c2cd06`; Rev 3 `f9d33fcd9`. Each immutable historical candidate evidence. |
+> | **Current revision (PRD Rev 4 + this annex)** | **The containing commit**, recorded by Agent 0 in the run record and receipt at commit. Neither file asserts its own SHA — the D-GOV-21 packet precedent applies: **no self-referential SHA backfill.** |
+>
+> **Why this matters for D-14.** The currency check pairs the
+> **SourceCorpusBasis** (what the sources said) with the **containing commit**
+> (what the candidate said) — an unambiguous source/candidate pair. Saying the
+> annex is "at the same basis" as the PRD, as Rev 3 did, collapses a corpus
+> basis into a commit identity and leaves the pairing undefined.
+>
 > **Governing decision:** D-GOV-21, RULED 2026-07-25 — candidate
 > `c038c493e871c95871823281b45890ba9404624b`, publication
 > `75b7aa6d1fb019846ac76fb775df2fc1652ab8a8`, effective
@@ -55,7 +69,8 @@ Section 4 **specifies** what a D-14 currency check would inspect, marking each
 class MECHANICAL or SEMANTIC (the capability is unbuilt). Section 5 carries
 previously-recorded items that Rev 1 listed as conflicts C-5 and C-6 but which
 were already recorded elsewhere and are not new finds, plus the durable
-correction history for **Rev 1 → Rev 2** (§5.3) and **Rev 2 → Rev 3** (§5.4).
+correction history for **Rev 1 → Rev 2** (§5.3), **Rev 2 → Rev 3** (§5.4),
+and **Rev 3 → Rev 4** (§5.5).
 Section 6 records the regeneration contract and what building it would take.
 
 Line numbers are given where they were directly verified; they are the most
@@ -99,9 +114,9 @@ check. **Section references govern over line numbers** where the two diverge.
 
 | Commitment | Source anchors (verified at `main@7ac718c7e`) |
 |---|---|
-| **D-1** | `docs/governance_harness/_DECISIONS/` — 21 per-decision records plus `_REGISTER.md`. Register framing (lines 1–10): "this register is a navigational summary — on any disagreement the records govern." Record header pattern: D-GOV-21 lines 3–13. |
+| **D-1** | **Terminal-artifact rule**, `_REGISTER.md` §Terminal-artifact rule (192–195) and its restatement in §Now actionable (181–182): "Design changes from here supersede a `D-GOV-*` record or arrive as PR review — never a new plan document." **Rev 4 narrows D-1 to exactly this scope** — the rule admits PR review as a terminal artifact, so Rev 3's "terminates in a published decision record" overstated it. Record structure where the vehicle *is* a record: `docs/governance_harness/_DECISIONS/` (21 per-decision records plus `_REGISTER.md`); register framing (1–10), header pattern D-GOV-21 (3–13). |
 | **D-2** | D-GOV-21 `RecordConvention` field (line 12: "D-GOV-18/19 exact candidate-SHA ruling pattern; supersede-never-edit") and §Status note (26–28: "Any later correction to the transcription is a superseding act, not an edit"). D-GOV-17 line 168 (recorded supersede-never-edit exception entries). `D-GOV-21_IMPLEMENTATION_HANDOFF.md` (83–87: "amendment would void the AcceptedCandidateSHA"). **No root-wide clause states the absolute formulation.** Rev 2 kept the general rule under a CLARIFIED label; **Rev 3 narrows D-2 to exactly the two classes these anchors govern** — published D-GOV records carrying the convention, and ruled candidate packets bound to an `AcceptedCandidateSHA` — and moves the generalization to **D-16 (PROPOSED)**, so no CLARIFIED label does normative work. |
-| **D-3** | D-GOV-21 packet §14 Ruling mechanics (369–391); D-GOV-21 record §Implementation gates (69–79). Precedents: D-GOV-18 (`_REGISTER.md` row — "I APPROVE D-GOV-18 items 1–8 at commit 9a900b3b76dda415cc4d41185350eb2e5a436302"); D-GOV-19 (Ruling SHA `981149df247fb6564768f8451e3b12dd591d9197`, AcceptedSourceSHA `deab7a961c1a5c9fde771039497e50343b681d46`). |
+| **D-3** | Three instances of record, cited as an **exercised pattern** rather than a governing clause: D-GOV-18 (`_REGISTER.md` row — "I APPROVE D-GOV-18 items 1–8 at commit 9a900b3b76dda415cc4d41185350eb2e5a436302"); D-GOV-19 (Ruling SHA `981149df247fb6564768f8451e3b12dd591d9197`, AcceptedSourceSHA `deab7a961c1a5c9fde771039497e50343b681d46`); D-GOV-21 (packet §14 Ruling mechanics 369–391; record §Implementation gates 69–79). **Rev 4 records the author's choice under review 3 item 2: state the exercised pattern only — no universal aspiration is carried as a separate PROPOSED commitment.** No root-wide clause requires this pattern of every substantial proposal; none is asserted. |
 | **D-4** | D-GOV-04 (RULED 2026-07-01, Ruling SHA `82a35c545282889841ce789c3e24f2ca68991ba1`). `docs/governance_harness/human_actors.md` lines 3–14 (status, refuse-exit-2 behaviour, owner-curated maintenance clause) and line 20 (the single registered actor row). |
 | **D-5** | D-GOV-02 (RULED 2026-07-01) severity table and caveats — five severities with exit-code semantics; "BLOCK means mechanically blocked within the declared observation boundary, never globally proven safe/unsafe"; human-only recorded override. D-GOV-17 M2 floor-plus-corrections. `docs/CONTRACT.md` §1.7 note (line 102). |
 | **D-6** | `AGENTS.md` §Governance Integration Rules (heading line 174; the seven rules at lines 176–182). `docs/DIRECTIVE.md` §2.7 Governed State and Multi-Phase Closure (208–218). |
@@ -150,7 +165,9 @@ check. **Section references govern over line numbers** where the two diverge.
 | §8.1 non-goals | Packet §4 (130–145); D-GOV-19 §Exclusions and limits; `docs/thesis/README.md` §Warrant Status; `docs/DIRECTIVE.md` §Authority chain (PLAN.md as roadmap surface); `_REGISTER.md` §Terminal-artifact rule (192–195). |
 | §8.2 F1–F3 | Packet §9 (305–320); rollback posture §8 (294–303); standing workplan §Stop state falsifier watch (260–264). |
 | §8.3 release authority | PROPOSED. Supporting: K-AUTH-1; D-GOV-02 observation-boundary caveat; `docs/DIRECTIVE.md` §7 (line 335, "release, publication, issuance, or professional reliance" not authorized); K-DOMAIN-4 (line 140). |
-| §9 RD-1..RD-4 | Packet §11 (336–349) items 1–4; standing workplan Lane A (105–119). Packet §16 Rev 2 note (line 416) recording removal of the `human_actors.md` "apex" characterization. |
+| **ID-0 / §9.1 — the ruled genus** *(new in Rev 4)* | **Owner ruling of record**, in-session 2026-07-25, recorded in Receipt 37 and transcribed by Agent 0 in `../briefs/PRD-AUTHOR-BRIEF-AMENDMENT-3.md`. Selection verbatim: "C — Two-level formulation". Ruled text: the option-C formulation originating in `../reviews/ADVERSARIAL-REVIEW-1.md` and carried in RD-1 through Revs 1–3. **Not yet SHA-bound** — binding occurs at the adoption instrument (RD-3), so the label is OWNER_DECLARED, not TRANSCRIBED. The ruling changes no governance file; see the follow-on obligations below. |
+| **§9.1 follow-on obligations** *(new in Rev 4)* | (a) Supersession of `docs/DIRECTIVE.md` §1 requires an exact-prose, human-gated act on the D-GOV-21 pattern (packet §14; Annex A application semantics) and is an **M2 instruction-surface tranche** (packet §5.2 M2, 180–190; G4 manifest 235–240; M6 notices 202–207). (b) `README.md` reword — propagation, not supersession, per packet §3b (line 125). (c) SPEC/TYPES/`AGENTS.md` survey — scope is the survey's output, not assumed. **None performed in this candidate.** |
+| §9 RD-1..RD-4 | Packet §11 (336–349) items 1–4; standing workplan Lane A (105–119). Packet §16 Rev 2 note (line 416) recording removal of the `human_actors.md` "apex" characterization. RD-1 is now RULED; RD-2..RD-4 remain open. |
 | §9.5 RD-5 | Raised by the first independent adversarial review (2026-07-25); not present in packet §11. New reserved decision. Option B reworded in Rev 3 to match §2.2 (review 2 item 6). |
 | §4.2 two judgment loops *(new in Rev 3)* | OWNER_DECLARED synthesis, elaborated at review 2 item 7. Non-delegation grounded in K-AUTH-1; D-GOV-02 (observation-boundary caveat); D-GOV-17 (a validator finding may never mechanically reject owner-ruled content); `AGENTS.md` Tool row (line 33). |
 | §10.3 adoption transformation *(new in Rev 3)* | CLARIFIED. Grounded in the interaction of D-13/D-16 (adopted bytes not edited) with this document's own candidate status and the five open reserved decisions; pattern from the `_PROPOSALS/` → `_DECISIONS/` candidate/ruled split and D-GOV-21 packet §14's exact-candidate mechanics. Prior-revision immutability: Rev 1 `f15d51277`, Rev 2 `a72c2cd06`. |
@@ -201,30 +218,43 @@ Each class is marked **MECHANICAL** (decidable by comparison against the live
 tree) or **SEMANTIC** (requires human or agent judgment about meaning, and
 cannot be settled by a diff).
 
-| Class | Kind | What would be checked | Failure signal |
-|---|---|---|---|
-| **(a1) Invariant IDs exist** | **MECHANICAL** | Every `K-*` ID cited in §2 still exists in `docs/CONTRACT.md` and is not listed in §3 Retired Invariants. | Missing or retired ID |
-| **(a2) Invariant text still supports the commitment** | **SEMANTIC** | Where an invariant's text has changed, whether it still supports the commitment citing it. **This is a judgment about meaning, not a diff**: text can change without changing what it warrants, and can keep its wording while a note or ruling changes its effect. A diff can only *flag* the class for judgment. | Changed invariant text whose effect on the citing commitment is undetermined |
-| **(b) Live registries** | **MECHANICAL** for existence and location; **SEMANTIC** for "still carries the governing rule" | The registries in §3 still exist at their cited locations; whether each still carries the governing rule the PRD relies on is a reading judgment. | Moved, renamed, or removed registry (mechanical); changed governing rule (semantic) |
-| **(c) Source anchors** | **MECHANICAL** | Section references in §2 still resolve. Line numbers are advisory and re-derived; section references govern. | Section heading removed or renumbered (material); line drift alone (informational) |
-| **(d) Repeated enumerations** | **MECHANICAL** | Any list the main PRD or this annex repeats from a registry — notably the §3 snapshot note — still matches its registry, or is still correctly labelled a non-binding snapshot. | Snapshot diverged from registry and is not labelled historical |
-| **(e) Provenance labels and counts** | **MECHANICAL** | The main PRD's §10.4 counts match the labels present in its tables; no label changed without a superseding instrument (F6). | Count mismatch; label changed in place |
-| **(f) DIRECTIVE §1 concordance** | **SEMANTIC** | Whether the adopted PRD and `docs/DIRECTIVE.md` §1 assert incompatible things about what the root product is (F5). Incompatibility is a judgment about claims, not about strings. | Divergence without a recorded superseding act on one of them |
+**Nine classes: five MECHANICAL, four SEMANTIC.** Each class is single-kind —
+Rev 3 left three classes internally mixed and then summarized the whole table
+as "two semantic classes", which did not reconcile.
+
+| # | Class | Kind | What would be checked | Failure signal |
+|---|---|---|---|---|
+| 1 | **(a1) Invariant IDs exist** | **MECHANICAL** | Every `K-*` ID cited in §2 still exists in `docs/CONTRACT.md` and is not listed in §3 Retired Invariants. | Missing or retired ID |
+| 2 | **(a2) Invariant text still supports the commitment** | **SEMANTIC** | Where an invariant's text has changed, whether it still supports the commitment citing it. **A judgment about meaning, not a diff**: text can change without changing what it warrants, and can keep its wording while a note or ruling changes its effect. A diff can only *flag* the class for judgment. | Changed invariant text whose effect on the citing commitment is undetermined |
+| 3 | **(b1) Registries exist where cited** | **MECHANICAL** | Each registry in §3 still exists at its cited location. | Moved, renamed, or removed registry |
+| 4 | **(b2) Registries still carry the relied-on rule** | **SEMANTIC** | Whether each registry still carries the governing rule the PRD's by-reference commitment depends on. | Governing rule changed or removed while the path persists |
+| 5 | **(c) Source anchors resolve** | **MECHANICAL** | Section references in §2 still resolve. Line numbers are advisory and re-derived; section references govern. | Section heading removed or renumbered (material); line drift alone (informational) |
+| 6 | **(d) Repeated enumerations** | **MECHANICAL** | Any list the main PRD or this annex repeats from a registry — notably the §3 snapshot note — still matches its registry, or is still correctly labelled a non-binding snapshot. | Snapshot diverged from registry and is not labelled historical |
+| 7 | **(e1) Label and count recount** | **MECHANICAL** | The main PRD's §10.4 counts match the labels actually present in its tables, and the ID ranges it names are the ones present. | Count or range mismatch |
+| 8 | **(e2) Superseding-instrument linkage for changed labels** | **SEMANTIC** | Where a provenance label has changed between revisions, whether a **valid** superseding instrument accounts for it (F6). Detecting *that* a label changed is mechanical; judging whether the cited instrument validly authorizes the change is not. | Label changed with no linked instrument, or with one that does not cover the change |
+| 9 | **(f) DIRECTIVE §1 concordance** | **SEMANTIC** | Whether the adopted PRD and `docs/DIRECTIVE.md` §1 assert incompatible things about what the root product is (F5). Incompatibility is a judgment about claims, not about strings. | Divergence without a recorded superseding act on one of them |
+
+**Class 9 has a known live instance.** The RD-1 ruling (main PRD §9.1) settles
+a genus that differs from the still-in-force `docs/DIRECTIVE.md` §1 clause.
+That divergence is recorded and routed (C-1, `RESOLVED-IN-PRINCIPLE —
+concordance pending`), so it is a **tracked open item, not an undetected
+drift** — which is the distinction class 9 exists to preserve.
 
 **What a passing check would and would not mean.** Even fully built, the
 D-GOV-02 observation-boundary caveat applies: a pass means "no divergence
 detected within the declared observation boundary", never "the PRD is
-current". The two SEMANTIC classes cannot be discharged by tooling alone —
-tooling can route them for judgment, which is the same division of labour the
-product asserts everywhere else (D-5; O-2 layer (b): deterministic tools are
-never a substitute for semantic judgment).
+current". **The four SEMANTIC classes (2, 4, 8, 9) cannot be discharged by
+tooling alone** — tooling can route them for judgment, which is the same
+division of labour the product asserts everywhere else (D-5; O-2 layer (b):
+deterministic tools are never a substitute for semantic judgment).
 
-**Live demonstration of class (e).** During Rev 2 authoring, the §10.4
+**Live demonstration of class 7 (e1).** During Rev 2 authoring, the §10.4
 provenance counts stated 31 TRANSCRIBED / 8 CLARIFIED against tables actually
 holding 34 / 5 — a hand-maintained count drifted within a single authoring
-session and was caught by manual recount, not by tooling. This is the failure
-mode class (e) exists to catch, and it is evidence that the class is worth
-building.
+session and was caught by manual recount, not by tooling. This is exactly the
+failure mode class 7 exists to catch, and it is evidence the class is worth
+building. Note it is class **7** and not class **8**: the recount is
+mechanical; nothing about it required judging a superseding instrument.
 
 ---
 
@@ -271,6 +301,7 @@ Rev 1 (which remains immutable at `f15d51277`).
 | Applicability (Rev 1 §4.2) | Cited `docs/DIRECTIVE.md` §3's activation clause as the product's applicability boundary. | Corrected in main PRD **§2.2** — activation boundary of the responsibility model, not of the product |
 | R-D-2 | Labelled TRANSCRIBED an absolute supersede-never-edit rule generalized from per-record conventions. | Relabelled **CLARIFIED** as **D-2** — further corrected in Rev 3, see §5.4 |
 | R-E-5 | Conflated the candidate, publication, and effective SHA roles. | Corrected in **E-3** — three distinct roles, recorded distinctly |
+| RD-4 option D | Stated the cost as "two homes to keep concordant", implying a continuous two-way concordance burden. | Corrected in Rev 2: the `execution/` candidate remains immutable historical evidence and a pointer identifies the adopted exact bytes; no two-way burden |
 | ID-1/ID-2/ID-3 presentation | Presented Agent 0 syntheses in verbatim-style blockquotes under an OWNER_DECLARED key that said "not reworded". | OWNER_DECLARED key redefined; blockquote presentation removed from all non-verbatim items; only the D-GOV-21 ruling text remains quote-fenced |
 
 ### 5.4 Rev 2 corrections recorded for traceability
@@ -295,13 +326,45 @@ without editing Rev 2 (immutable at `a72c2cd06`).
 | OBJ-3 *(refinement)* | "Bounded time" had no threshold. | Threshold and tranche sample must be **fixed and recorded before** the evaluation runs |
 | OBJ-5 *(refinement)* | Required an actual promotion, which could force an artificial one to pass v1. | Success is a complete promotion **disposition** — accepted, rejected, or deferred with evidence |
 
+### 5.5 Rev 3 corrections recorded for traceability
+
+Rev 4 integrates two inputs: the **owner's RD-1 ruling** and the third
+adversarial review (eight items plus two wording corrections). Recorded here so
+the history stays durable without editing Rev 3 (immutable at `f9d33fcd9`).
+
+**RD-1 ruling incorporation** (not a defect correction — an owner act):
+
+| Element | Rev 4 treatment |
+|---|---|
+| §9.1 RD-1 | Status **RULED** (owner, in-session 2026-07-25; Receipt 37; SHA-bound at the adoption instrument per RD-3). Selection recorded verbatim — "C — Two-level formulation" — with the ruled genus text reproduced exactly and the four-option slate retained with dispositions. |
+| Follow-on obligations | Three, **routed downstream and not performed**: (a) supersede the ratified `docs/DIRECTIVE.md` §1 genus clause by an exact-prose, human-gated M2 act; (b) reword `README.md`; (c) survey SPEC/TYPES/`AGENTS.md` prose leaning on "operating system". |
+| §1.1 / §1.2 | New **ID-0** carries the ruled genus (OWNER_DECLARED, ruling of record). §1.2 becomes a record of the ruling against the two live surfaces, stating that the DIRECTIVE clause **remains in force** pending (a). |
+| C-1 | Status **`RESOLVED-IN-PRINCIPLE — concordance pending`**; stays listed until the concordance tranche lands. |
+
+**Review 3 items:**
+
+| Rev 3 item | Defect | Rev 4 disposition |
+|---|---|---|
+| D-16 | "Every ruled or adopted governed artifact … never edited in place" conflated immutable approved bytes with living authoritative files that Chirality routinely amends. | Replaced with the reviewer's formulation: any change to previously approved content needs a **new attributable act bound to the resulting SHA**, prior bytes recoverable in Git; only explicitly-declared-immutable classes are never overwritten at their path; living surfaces amend in place. Stays PROPOSED |
+| D-1 | Generalized practice: the terminal-artifact rule permits a decision record **or PR review**, not only records. | Narrowed to the evidenced rule, cited to `_REGISTER.md` §Terminal-artifact rule; stays TRANSCRIBED at that scope |
+| D-3 | Stated the exact-candidate pattern as if root-wide. | Restated as the **exercised pattern of record** (D-GOV-18/19/21). **Author's choice recorded:** no universal aspiration carried as a separate PROPOSED commitment |
+| Genus provenance | "Two accepted surfaces" with TRANSCRIBED on `README.md` wording, while calling README non-binding. | New **OBSERVED** provenance category added; README wording → OBSERVED; DIRECTIVE stays TRANSCRIBED; "two accepted surfaces" → **"two live surfaces"** |
+| Bases | Annex claimed to be "PRD Rev 3 at the same basis", collapsing corpus basis into commit identity. | Split into **SourceCorpusBasis**, prior revision SHAs, and **the containing commit** for the current pair. No self-referential SHA asserted |
+| D-14 accounting | Header said two semantic classes; the table showed semantic work in three, and class (e) was internally mixed. | Class (e) split into **(e1) mechanical recount** and **(e2) semantic superseding-instrument linkage**; (a) and (b) likewise made single-kind. **Nine classes: five mechanical, four semantic**, aligned across the annex header, §4 table, and main PRD D-14 |
+| Release judgment | Release was described as an act of the iteration loop. | Made a **third, separately human-gated lifecycle judgment** drawing on both operative and developmental evidence (§4.2, §8.3); explicitly not iteration |
+| Objective quantifiers | OBJ-3 mixed universal completeness with sampled usability; OBJ-5 asserted an unprovable negative. | OBJ-3 split into **(i) universal structural completeness** and **(ii) sampled retrieval usability**; OBJ-5's negative replaced with **every root change claiming variant-derived provenance used the governed promotion path** |
+| Final-revision normalization | No specification for stripping drafting commentary from the adopted artifact. | Main PRD §10.3 now requires the final revision to **strip in-requirement revision commentary**; Rev 4 moved remaining pure commentary here, keeping in-body notes only where they state a live constraint |
+| Wording — ruling effect | "Its ruling becomes normative basis." | Now: **establishes normative or operative accepted state according to its scope** |
+| Wording — annex status | Annex appeared to declare its own status binding. | Now states its use is constrained by the **already-binding upstream derivative-package rule** in `AGENTS.md`, not by its own declaration |
+
 ---
 
 ## 6. Regeneration contract
 
-**What this annex is derived from.** Accepted upstream snapshot
-`main@7ac718c7e`, plus the main PRD Rev 3 at the same basis. Every anchor was
-read against the live file during run `ROOT-PRD-LANE-A-20260725`.
+**What this annex is derived from.** The **SourceCorpusBasis**
+`main@7ac718c7e` for every cited anchor, paired with the **containing commit**
+of main PRD Rev 4 and this annex (see §Bases). Every anchor was read against
+the live file during run `ROOT-PRD-LANE-A-20260725`.
 
 **Regeneration is a specified manual procedure, not an implemented one.**
 There is no generator and no schema at this basis. What follows is the
