@@ -13,8 +13,12 @@
   PROJECT_SETUP with `FULL_GRAPH` already selected
   (`execution/_Decomposition/_LATEST.md`, `execution/_ScopeChange/_LATEST.md`).
 - Accepted upstream basis: `execution/_Decomposition/SOFTWARE_DECOMP.md`
-  revision 1.1 (`current_basis`), immutable amendment evidence at
-  `execution/_ScopeChange/SCA-001_2026-07-24_2206/`.
+  revision **1.2** (`current_basis`, SCA-002 successor, accepted
+  2026-07-25 under `D-PEC-64`; evidence
+  `execution/_ScopeChange/SCA-002_2026-07-25_1042/`). Historical:
+  revision 1.1 was the basis at this gate's ruling (SCA-001 evidence
+  `execution/_ScopeChange/SCA-001_2026-07-24_2206/`); read
+  `execution/_Decomposition/_LATEST.md` first, always.
 
 ## Phase 1.3 owner rulings (2026-07-25 gate)
 
@@ -44,8 +48,8 @@
    `execution/_ScopeChange/SCA-002_2026-07-25_1042/`, Receipt 109.
    Executed under owner-directed Agent 0 orchestration (managed
    SCOPE_CHANGE instance; control plane
-   `AgentRuns/RUN_2026-07-25_sca002/`). Next: D-PEC-63 draft v2 re-pin
-   and ruling.
+   `AgentRuns/RUN_2026-07-25_sca002/`). Re-pins executed 2026-07-25
+   (`6e558a2c0`). Next: the D-PEC-63 draft-v2 ruling.
 
 ## Notes (human-owned)
 

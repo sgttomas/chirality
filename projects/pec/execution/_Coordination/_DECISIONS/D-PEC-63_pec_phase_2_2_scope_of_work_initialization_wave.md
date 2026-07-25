@@ -56,7 +56,8 @@ in companion plan §6.)
   `execution/_ScopeChange/SCA-002_2026-07-25_1042/`, Receipt 109) with
   every wave deliverable carrying non-empty objective refs in register
   truth — **SATISFIED 2026-07-25**; clean `git status` baseline for the
-  wave paths (satisfied at the SCA-002 closure commit `3623b958b`).
+  wave paths, verified at presentation time (not anchored to a
+  particular commit).
 
 ## 3. Ruled behavior (proposed)
 
@@ -69,6 +70,19 @@ sequence per run: author → `tools/scope_of_work/validate_scope_of_work.py`
 (to PASS) → `derive_review_checklist.py` (stdout; item_count reported).
 Batches B1–B8 per the companion plan §1; concurrency ≤ 4; canary-3 inside
 B1; owner halts after B1 and B2; internal fan-in thereafter if clean.
+
+**Known skill-contract risk (surfaced for this ruling; R1a-F7).**
+`MODE=INIT` has no precedent run in this repo, and the skill's companion
+files are partly CONVERT-shaped: `TOOL_POLICY.md` steps 4–7 are
+unconditional and reference conversion artifacts INIT never produces
+(finalized production candidate), `SKILL.md`'s method mandates the
+finalizer unconditionally, and `BRIEF_SCHEMA.md`'s write-boundary list
+enumerates conversion targets only. The canary-3 exists to test exactly
+this. **A canary failure traceable to those companion contracts is a
+skill-contract defect: the wave HALTS and an AGENT_HELPS_HUMANS request
+is routed for INIT-mode branches** (PROJECT_SETUP may not edit
+`skills/**` — outside every PEC writable surface). This is the Q2 item
+that CAN block the wave; ruling this packet accepts that halt path.
 
 ### 3.2 Status advancement (separate deterministic act)
 The scope-of-work skill's `_STATUS.md` prohibition is **honored, not
@@ -146,7 +160,7 @@ projects/pec/execution/_Coordination/_DECISIONS/D-PEC-63_*.md — this packet's 
 projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md  — one row at closure
 projects/pec/execution/_Coordination/_COORDINATION.md         — one ruling item at closure
 _DomainEngines/pec/LOOP_RECEIPTS.md                           — append one receipt
-projects/pec/docs/STATUS.md                                   — item-1 amendment only
+projects/pec/docs/STATUS.md                                   — item-1 amendment + the four stale rev-1.1 basis lines (≈22, 38, 42, 72: "revision 1.1 is the accepted", "rev 1.1 `current_basis`", "from revision 1.1", "revision 1.1 is `current_basis`") corrected to revision 1.2 / pointer-first wording — authorized by this ruling (R-3 F8: these lines are otherwise unowned false current-basis claims)
 ```
 The 32 folders are exactly the companion plan §1 batch table. Explicitly
 excluded: `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`,
@@ -160,10 +174,20 @@ excluded: `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`,
 2. Census (`grep -h '^\*\*Current State:\*\*' …/_STATUS.md | sort | uniq -c`;
    never `count_workspace_state.sh` post-transition — history-substring
    defect): INITIALIZED ladder after B1→B8 = 9, 12, 18, 19, 25, 29, 31,
-   **32**; final `32 INITIALIZED / 32 OPEN`.
+   **32**; final `32 INITIALIZED / 32 OPEN`. **Tiering convention
+   (load-bearing, companion plan §1):** batch tiers use ALL in-wave
+   EXECUTION/UPSTREAM/ACTIVE edges raw — the C-08 standing-target
+   exclusion applies to blocker arithmetic ONLY, never to tiering
+   (applying it to tiering wrongly moves DEL-10-11 to B1 and yields the
+   ladder 10,13,19,20,26,29,31,32).
 3. Scope: per batch, `git status --porcelain` shows exactly n new
-   `ScopeOfWork.md`, n modified `_STATUS.md`, n run-record additions + the
-   declared coordination artifacts; zero other paths.
+   `ScopeOfWork.md`, n modified `_STATUS.md`, **n+1** run-record
+   additions (n authoring + 1 status act; R1a-F16), the declared
+   coordination artifacts (`WAVE_D-PEC-63/**` batch records + the
+   session plan's position edit), and managed-delegation control-plane
+   records under `execution/_Coordination/AgentRuns/**` (default
+   surface; named here so the scope formula is complete); zero other
+   paths.
 4. Blocker snapshots: baseline **54 BLOCKED / 10 UNBLOCKED** (9 roots +
    DEL-10-11, expected standing-edge divergence); closure **40 UNBLOCKED /
    24 BLOCKED with all 32 wave members UNBLOCKED**.
@@ -185,10 +209,14 @@ which is why batch commits are mandatory.
 
 ## 7. Human ruling
 
-**PENDING — presented after SCA-002 closes and this draft is re-pinned to
-revision 1.2 (draft v2) and refuted.** Proposed ruling text: "D-PEC-63 is
-RULED as drafted: the Phase 2.2 wave (32 deliverables, B1–B8, pilot-first
-cadence) may execute under the stated fence, status mechanism, and
-verification set." The ruling presentation also carries policy questions
-Q1 (semantic-phase posture 2.3–2.5) and Q2 (OI-013 tooling consolidation)
-from the companion plan §5 — both answerable without blocking the wave.
+**PENDING — draft v2, re-pinned to revision 1.2 and refuted (R-3, 17
+findings applied; log in companion plan §6).** Proposed ruling text:
+"D-PEC-63 is RULED as drafted: the Phase 2.2 wave (32 deliverables,
+B1–B8, pilot-first cadence) may execute under the stated fence, status
+mechanism, and verification set, accepting the §3.1 skill-contract halt
+path." The ruling presentation also carries policy questions Q1
+(semantic-phase posture 2.3–2.5) and Q2 (tooling/skill-contract
+consolidation) from the companion plan §5. **Q1 is answerable without
+blocking the wave. Q2 is not fully so:** its INIT-mode companion-file
+item is exactly the §3.1 canary-halt risk — if it bites, the wave halts
+until HELPS_HUMANS lands the skill fix.

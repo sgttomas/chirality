@@ -6,15 +6,13 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
-`STEP 2 COMPLETE — SCA-002 CLOSED 2026-07-25: revision 1.2 accepted
-("Accept revision 1.2 (Recommended)", Gate 5). All 32 wave members carry
-non-empty SupportsObjectives (wave-unmapped 17→0); O-A residue 11 IN
-rows / 9 deliverables untouched. Evidence:
-_ScopeChange/SCA-002_2026-07-25_1042/ + Receipt 109; refutation rounds
-R-2a, R-2b-g1..g5 in §6. PROJECT_SETUP RESUMED (closure commit per
-D-PEC-64 §3.6b performed). Next: STEP 3 — D-PEC-63 draft v2 re-pins
-(§7: three pins to rev 1.2 + DAG-exhibit §1 annotation), refutation,
-owner ruling with Q1/Q2; then STEP 4 wave B1–B8.`
+`STEP 3 COMPLETE THROUGH REFUTATION — SCA-002 closed (rev 1.2 accepted,
+commit 3623b958b, Receipt 109); re-pins EXECUTED (6e558a2c0: §7 pins,
+§3 DECOMPOSITION_BASIS, DAG-exhibit annotation); D-PEC-63 draft v2
+refuted (R-3, 17 findings, all applied — §6) — AWAITING THE D-PEC-63
+OWNER RULING with Q1/Q2. On ruling: STEP 4 wave B1–B8 (canary-3 first;
+watch the §3.1 skill-contract halt risk at the canary). Refutation
+rounds R-2a, R-2b-g1..g5, R-3 in §6.`
 
 ---
 
@@ -28,7 +26,7 @@ You are PROJECT_SETUP for `{WORKING_ROOT}` = `{REPO_ROOT}/projects/pec`
 4. `{REPO_ROOT}/skills/scope-of-work/SKILL.md` + `BRIEF_SCHEMA.md` +
    `TOOL_POLICY.md` + `QA_CHECKS.md` — the INIT authoring contract.
 5. `{WORKING_ROOT}/execution/_Coordination/_DECISIONS/D-PEC-63_pec_phase_2_2_scope_of_work_initialization_wave.md`
-   (DRAFT — conditioned on SCA-002).
+   (DRAFT v2 — SCA-002 precondition discharged; re-pinned to rev 1.2).
 6. `{WORKING_ROOT}/execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md`
    — the accepted-DAG gate exhibit (rev-1.1 frozen provenance; see §7 note).
 
@@ -222,7 +220,7 @@ RuntimeOverrides:
   DELIVERABLE_PATH: {ScopePath}
   DECOMPOSITION_BASIS: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
   PROJECT_SCOPE_REFS: [SOW-094]
-  PACKAGE_OBJECTIVE_REFS: [{bare OBJ-NNN tokens from post-SCA registers}]
+  PACKAGE_OBJECTIVE_REFS: [OBJ-004]
   SOURCE_STATE: OPEN
   RENDER_HTML: false
   DECOMP_VARIANT: SOFTWARE
@@ -238,6 +236,10 @@ CustomInstructions:
     upstream deliverable in Dependencies.csv.
   - Do not modify _STATUS.md, _CONTEXT.md, _REFERENCES.md, _DEPENDENCIES.md, Dependencies.csv,
     _SEMANTIC.md, or anything outside {ScopePath}.
+  - Basis-revision note (OI-B, R-3 F9): _REFERENCES.md still pins "revision 1.1" (a deferred
+    pointer sweep, SCA-002 Handoff_State §6). The accepted basis is revision 1.2 — per
+    DECOMPOSITION_BASIS above and _CONTEXT.md's supersession line. Treat the _REFERENCES.md
+    revision phrase as superseded provenance; cite revision 1.2 in the contract.
   - Frontmatter uses INLINE list syntax ([SOW-094]); YAML block lists fail the parser; no duplicate
     keys; decomposition_basis must contain "@".
   - Exactly these six L2 headings in order: Purpose and Objective Traceability; Deliverable
@@ -266,8 +268,14 @@ ExpectedOutputs:
 Notes: `FORMAT_AUTHORITY_REF` is deliberately omitted (CONVERT-only).
 `STATUS_POLICY: NO_STATUS_TOUCH` is the only defined vocabulary value that
 matches the design (the scope-of-work skill itself has no STATUS_POLICY
-handler — the field is PROJECT_SETUP-mandated brief metadata; the contract
-gap is routed with Q1/Q2).
+handler — the field is PROJECT_SETUP-mandated brief metadata; likewise
+`DECOMP_VARIANT` and `PHASE` are undeclared in the skill's BRIEF_SCHEMA
+and are carried as brief metadata; the contract gap is routed with
+Q1/Q2). **Fan-in cross-check (R-3 F4):** the validator only tests
+`package_objective_refs` non-emptiness — a wrong token passes. At every
+batch fan-in, PROJECT_SETUP re-derives the expected refs from
+`Deliverables.csv` (`;`-split of SupportsObjectives) and compares
+against each contract's frontmatter; mismatch = FAIL.
 
 **Status act (per batch, after fan-in; R1a-F5/F11 shape):** one
 generic-shell TASK (no skill), opus-5:
@@ -330,12 +338,17 @@ APPROVED 2026-07-12, `docs/governance_harness/_DECISIONS/_REGISTER.md:29`).
   2.5 pending a skill-contract fix routed to HELPS_HUMANS; (b) declare the
   semantic pipeline unused for PEC → straight to WORKING_ITEMS activation;
   (c) full chain after the skill fix lands.
-- **Q2 — tooling/skill-contract consolidation packet** (candidate ID after
-  the SCA opening packet): OI-013 register validator; the
+- **Q2 — tooling/skill-contract consolidation packet** (candidate ID
+  after D-PEC-64): OI-013 register validator; the
   `count_workspace_state.sh` history-substring defect; the missing
   `validate_semantic_pipeline_scope.py --step init` guard; the
-  scope-of-work INIT-mode companion-file branches (R1a-F7) — vs
-  review-based verification standing.
+  scope-of-work INIT-mode companion-file branches (R1a-F7 — the one
+  item that CAN halt the wave, per packet §3.1); the AUDIT_DECOMP
+  contract inconsistencies found during SCA-002 (IssueLog CheckNumber
+  schema says 1–11 while SPEC runs 12 checks — the SCA-002 pre-change
+  WARNING row carried invalid CheckNumber=96; two additive
+  coverage-JSON fields beyond the schema template) — vs review-based
+  verification standing.
 
 ## §6 Refutation log
 
@@ -603,9 +616,39 @@ commits; PROJECT_SETUP closure commit per §3.6(b)), fence, md5s,
 coverage-run naming parity, wave-plan §7 obligations fully carried,
 supersession chain, option-(iii) incoherence, D-21.
 
-**Future rounds:** R2 post-B1 (contract quality), R3 post-B2 (upstream
-citation), R4 pre-closure (numbers/receipt/pointer audit) — plus a
-refutation pass on D-PEC-63 draft v2 (STEP 3). Log all here.
+**R-3 (2026-07-25, STEP 3; refuter a2c9a29c93ad2bdb2, opus-5, on
+D-PEC-63 draft v2 + re-pinned plan sections + DAG-exhibit annotation).**
+17 findings (1 CRIT / 10 MAJ / 6 MIN), all ACCEPTED and applied before
+presentation: F1 (CRIT) packet §3.1 now surfaces the INIT
+skill-contract risk + canary-halt path in the ruling instrument itself;
+F2 §7 corrected (Q2's INIT item CAN block the wave); F3 Q2 list
+completed (+AUDIT_DECOMP CheckNumber-96/schema-1–11-vs-12 and additive
+JSON fields); F4 brief sample PACKAGE_OBJECTIVE_REFS concretized
+[OBJ-004] + fan-in register-cross-check added (validator can't catch
+wrong tokens); F5 packet scope formula fixed to n+1 + AgentRuns named;
+F6 stale D-PEC-63 register row updated; F7 _COORDINATION.md:16
+rev-1.1-current_basis corrected (the C-58 qualified grep now truly
+returns 0 outside snapshots); F8 docs/STATUS.md four stale basis lines
+added to the D-PEC-63 fence (unowned otherwise); F9 OI-B read-side
+warning added to the brief CustomInstructions (_REFERENCES.md pins rev
+1.1; cite 1.2); F10 AgentRuns control-plane surface named in the scope
+formula; F11/F12 position marker + §0 item 5 refreshed; F13 packet
+header made true (this log); F14 tiering convention restated in the
+packet §5.2; F15 DECOMP_VARIANT/PHASE undeclared-metadata note; F16
+_COORDINATION.md:47; F17 baseline anchor reworded. Clean (recomputed):
+pins exact at tree AND 3623b958b, zero drift; wave readiness 32/32
+(0 validator-failing members; 0 bad tokens); baseline 54/10 unchanged
+post-SCA (no Dependencies.csv/_STATUS.md touched across all 18
+commits); dep-closure and census unchanged; ladder + closure simulation
+40/24 + 8 beneficiaries reproduce member-for-member; fence globs match
+the 32 members' packages exactly; creation-only holds (0 pre-existing
+ScopeOfWork.md); decomposition_basis @-format passes common.py:224;
+write_status.sh signature/legality; warrant quotes verbatim; Q2 defects
+confirmed still live; canary characterization accurate.
+
+**Future rounds:** R2 post-B1 (contract quality), R3-wave post-B2
+(upstream citation), R4 pre-closure (numbers/receipt/pointer audit).
+Log all here.
 
 ## §7 Basis freeze + git anchors + re-pin list
 
