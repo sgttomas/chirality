@@ -54,6 +54,10 @@ jobs:
           npm run build
         working-directory: runtime
 
+      - name: Test shared runtime
+        run: npm test
+        working-directory: runtime
+
       - name: Install frontend dependencies
         run: npm ci
         working-directory: projects/chirality-app-dev/frontend
