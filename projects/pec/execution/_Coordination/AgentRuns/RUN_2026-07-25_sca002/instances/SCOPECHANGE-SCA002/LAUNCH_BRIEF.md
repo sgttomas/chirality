@@ -39,3 +39,14 @@ request `_Coordination/SCA-002_INTAKE_2026-07-25.md`
   Pre_Change_Coverage.json copy pre-Gate-5); W-1 characterization
   corrected (MODIFY-legal, window-excluded). Gate 2 released; write
   scope unchanged (Gates 1–2 surfaces only).
+- v3 2026-07-25 (owner Gate 2 ruling relayed): impact assessment
+  ACCEPTED — Q1 "Accept": no Supersession_Delta.csv owed under O-A,
+  conditional on Gate 3 attributions remaining PRD-consumptive
+  (re-affirmed at Gate 3); Q2 "Record as deferred": OI-B (64
+  _REFERENCES.md rev-1.1 pointers) recorded in Handoff_State as a
+  deferred obligation owned by resumed PROJECT_SETUP; no fence change.
+  Gate 3 released: draft exact amendment text A001–A007 + the 9
+  attribution candidates with per-row PRD warrants; write
+  Amendment_Preview.md + Amendment_Actions.csv (deferred artifact now
+  due). Write scope still _ScopeChange/** only — no decomposition
+  edits until the Gate 3 approval and Gate 4 plan are relayed.
