@@ -58,3 +58,12 @@ request `_Coordination/SCA-002_INTAKE_2026-07-25.md`
   CLOSED. Gate 4 released: propagation plan (Propagation_Plan.md) incl.
   the _CONTEXT.md refresh-vs-defer decision materials. Write scope
   still _ScopeChange/** only until Gate 4 approval + Gate 5 release.
+- v5 2026-07-25 (owner Gate 4 ruling relayed): Q1 "(i) All 64,
+  P-supersede" — full pointer refresh, supersession-note text variant;
+  Q2 "Approve and release" — the propagation plan v2 is APPROVED and
+  Gate 5 is RELEASED. Write scope now the full D-PEC-64 §3.2 fence:
+  the four amendment targets per the Gate-3-approved exact text only,
+  the 64 _CONTEXT.md files (two line classes, plan v2 exact text),
+  _ScopeChange/** snapshot completion + _LATEST.md repoint,
+  _Evaluation/DecompCoverage/** post-change audit. No git operation;
+  handoff file list + recommended message returned to Agent 0.
