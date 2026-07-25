@@ -32,7 +32,7 @@ SOW-030,IN,Carry TTLs and last-heartbeat age on presence records; never assert l
 SOW-031,IN,"Detect and surface advisory overlaps (write scopes, shared branches, same merge target) without ever blocking",PEC-PRS-006,PKG-06,TBD,OBJ-003,,FALSE,Carries PEC-K-06
 SOW-032,IN,Exclude presence data from record-tier citations (enforced separation),PEC-PRS-007,PKG-06,TBD,OBJ-003,,FALSE,Carries PEC-K-05
 SOW-033,IN,"Accept idempotent, append-only event ingest keyed on event id",PEC-STR-001,PKG-07,TBD,,,FALSE,
-SOW-034,IN,"Define versioned event contract types consumable by daemon, hooks CLI, and adapters",PEC-STR-002,PKG-07,TBD,,,FALSE,Contract home is TBD (SOW-083); root `runtime/` writes out of scope (SOW-074)
+SOW-034,IN,"Define versioned event contract types consumable by daemon, hooks CLI, and adapters",PEC-STR-002,PKG-00,TBD,,DL-12,FALSE,Contract home is TBD (SOW-083); root `runtime/` writes out of scope (SOW-074)
 SOW-035,IN,"Implement the runtime-daemon SSE subscriber bridge, declared and attributable",PEC-STR-003,PKG-07,TBD,,,FALSE,Bridge split per DL-5
 SOW-036,IN,"Implement the harness hooks CLI bridge (session start/stop, status, scope declaration), declared and attributable",PEC-STR-003,PKG-07,TBD,,,FALSE,
 SOW-037,IN,"Implement the cmux socket adapter as an optional, declared and attributable enricher",PEC-STR-003,PKG-07,TBD,,,FALSE,Optional; P4
@@ -66,8 +66,8 @@ SOW-064,IN,Bootstrap: the first loop the P1 reconciler ingests is PEC v2's own b
 SOW-084,IN,"Measure collision incidents: write-scope/branch conflicts discovered at Git time rather than surfaced in advance, per week of concurrent operation",§11.3,PKG-10,TBD,OBJ-003;OBJ-006,,FALSE,Measures effectiveness of SOW-031
 SOW-085,IN,"Log orientation-read and dashboard-consultation activity sufficient to evaluate the §12 P2 exit test (""owner uses PEC in place of manual Step 0"") and limb 2 of the §11 falsification clause","§12 P2, §11",PKG-10,TBD,OBJ-004;OBJ-006,,FALSE,System-behavior observation per §11 preamble; grounded in SOW-057 self-observability
 SOW-087,IN,Reimplement the shared-runtime client seam concept against v2 entities,"§13, D-PEC-56",PKG-07,TBD,,DL-11,FALSE,"Named carry-forward: ""Concept carries directly; reimplemented against v2 entities"""
-SOW-088,IN,"Author v2's first ADRs, re-citing the carried live postures ADR-002 (zero-dependency core) and ADR-014 (shared runtime agent ownership)",§13,PKG-11,TBD,,,FALSE,ADRs cited from `docs/.archive/adr/ADR.md`
-SOW-089,IN,Author the v2 SPEC from the accepted decomposition,§13,PKG-11,TBD,,,FALSE,"""v2 SPEC is born from the decomposition"""
+SOW-088,IN,"Author v2's first ADRs, re-citing the carried live postures ADR-002 (zero-dependency core) and ADR-014 (shared runtime agent ownership)",§13,PKG-00,TBD,,DL-12,FALSE,ADRs cited from `docs/.archive/adr/ADR.md`
+SOW-089,IN,Author the v2 SPEC from the accepted decomposition,§13,PKG-00,TBD,,DL-12,FALSE,"""v2 SPEC is born from the decomposition"""
 SOW-065,OUT,System-of-record function; PEC output citable as authority,§4.2,,,,,FALSE,Permanent. Files and Git remain sole authority (D-GOV-01)
 SOW-066,OUT,"Ruling-surface function: recording adoption, ruling, or direction",§4.2,,,,,FALSE,Permanent. Verification twin: SOW-025 (DL-8)
 SOW-067,OUT,"Orchestration: dispatch, queues, execution, session authority",§4.2,,,,,FALSE,Permanent. Daemon owns execution (C13)

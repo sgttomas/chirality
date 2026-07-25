@@ -3,7 +3,7 @@ doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
 status: draft_gate4
-revision: "0.5"
+revision: "0.6"
 date: 2026-07-24
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
@@ -324,25 +324,29 @@ Phase 4–5; this table is the objective-side view.
 
 ## 4. Packages (Phase 4)
 
-Eleven flat work-domain packages. Each is a cohesive context set grounded
-in the §2.4 domain signals; none is a phase (DL-3). Every IN scope item is
+Eleven flat work-domain packages (PKG-00..PKG-10). Each is a cohesive
+context set grounded in the §2.4 domain signals; none is a phase (DL-3 —
+PKG-00 is an architecture/contract *authoring domain*, not a "design
+phase": its artifacts are consumed as declared dependencies by other
+packages' deliverables, never written into them). Every IN scope item is
 assigned to exactly one package in `ScopeLedger.csv` (the authoritative
-companion register for assignments); forced boundary decisions are DL-11.
-OUT and TBD items carry no package.
+companion register for assignments); forced boundary decisions are DL-11;
+the PKG-00 restructuring at Gate 4 is DL-12. OUT and TBD items carry no
+package.
 
 | PackageID | Name | Scope Description (work domain) | Assigned (count) | Exclusions |
 |---|---|---|---|---|
+| PKG-00 | Architecture Runway & Contracts | Published specifications others consume: v2's first ADRs (incl. the OI-012 core-isolation decision), the v2 SPEC born from this decomposition, and the versioned event-contract types shared by daemon, hooks CLI, and adapters | SOW-034, 088, 089 (3) | Implementation of any contract (consuming packages); cross-package edits — PKG-00 publishes, dependants consume |
 | PKG-01 | Service Core & Store | The zero-dependency service foundation: record- and presence-tier entity schemas, the gitignored store with ingest-boundary content-minimal enforcement, locality/no-egress posture, self-observability logging | SOW-001, 002, 052, 053, 056, 057 (6) | Parsing, derivation, serving — other packages |
 | PKG-02 | File-Truth Parsers | Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts ledgers, run-evidence JSON, dependency registers, workplans/LOOP_INIT, `adapter.yaml` manifests | SOW-011..017 (7) | Writing anything; interpretation beyond declared grammars |
 | PKG-03 | Reconciliation & Parity | The guaranteed path from file truth to record tier: one-command rebuild, incremental Git-delta reconcile, drift classification, harness parity diffing, stream-loss recovery guarantee, store-only writes, rebuild performance bounds | SOW-010, 018, 019, 020, 021, 038, 054 (7) | Stream ingest mechanics (PKG-07); parsers (PKG-02) |
 | PKG-04 | Orientation Services | Derivation and serving of orientation: per-loop returns, deltas since SHA, SHA/freshness stamping, per-claim citations, scope parameterization, explicit measurement limits | SOW-004..009 (6) | Transport (PKG-08); rendering (PKG-09) |
 | PKG-05 | Gate Evaluation & Decision Slate | Deterministic advisory evaluation of file/Git-reducible gate preconditions; Explain-shaped verdicts; the cross-loop decision slate | SOW-022, 023, 024 (3) | Any ruling write path (SOW-066, permanent OUT) |
 | PKG-06 | Presence & Git Observation | The presence tier's producers: harness-reported session records, Git/worktree scanning, session×worktree×scope correlation, hierarchy edges, TTL/heartbeat discipline, advisory overlap detection, citation-exclusion enforcement | SOW-026..032 (7) | Session lifecycle ownership (daemon's, C13) |
-| PKG-07 | Event Ingest & Bridges | Best-effort freshness inputs: idempotent append-only event ingest, versioned event contracts, the daemon SSE / hooks CLI / cmux bridges, durable message store, the shared-runtime client seam | SOW-033..037, 039, 087 (7) | Record-tier fact creation (PKG-03 guarantee); root `runtime/` writes (SOW-074, deferred) |
+| PKG-07 | Event Ingest & Bridges | Best-effort freshness inputs: idempotent append-only event ingest, the daemon SSE / hooks CLI / cmux bridges, durable message store, the shared-runtime client seam — implementing the PKG-00 event contracts | SOW-033, 035..037, 039, 087 (6) | Record-tier fact creation (PKG-03 guarantee); contract definition (PKG-00); root `runtime/` writes (SOW-074, deferred) |
 | PKG-08 | API & Access | The machine-consumer surface: Unix-socket binding, token-scoped access classes, p95 latency, versioned additive schema, compact citation-bearing responses, SSE subscription | SOW-003, 040..044 (6) | Dashboard rendering (PKG-09) |
 | PKG-09 | Dashboards | The human-owner surface: overview, lifecycle census, register views, decision slate view, presence board, universal drill-down, documented pressure rules | SOW-045..051 (7) | New data classes; restating authored text (C6) |
 | PKG-10 | Validation & Measurement | Release-gating proof and metrics: kill test, no-ruling-write verification, Step-0 baseline, defect/adoption/collision measurement, seeded-conflict, TTL-honesty and stream-loss tests, usage observability, bootstrap self-ingest | SOW-025, 055, 058..064, 084, 085 (11) | The behaviors under test (their home packages) |
-| PKG-11 | Product Documentation | v2's governed product records: first ADRs re-citing carried postures; the v2 SPEC born from this decomposition | SOW-088, 089 (2) | Decomposition/coordination surfaces (this package's own instruments) |
 
 ## 5. Deliverables (Phase 5) — not started
 
@@ -393,6 +397,7 @@ OUT and TBD items carry no package.
 | OI-009 | SOW-083 | §16.9 event-contract home and API transport undecided | §16 ruling |
 | OI-010 | SOW-064 | **RESOLVED at Gate 2 (2026-07-24):** the §12 closing paragraph governs — the first loop the P1 reconciler ingests is PEC v2's own build (bootstrap as thesis validation); the P1 table's "(piping or root)" parenthetical does not constrain the first-loop choice. Owner accepted the recommended reading in the Gate 2 confirmation (DL-10) | Closed |
 | OI-011 | C3, C15 | **RESOLVED at Gate 2 (2026-07-24):** session start is a polling moment only when the session starts with scope (e.g., an Agent 0 loop session); unscoped sessions poll at the conversation→workbench transition. Owner accepted the recommended reading in the Gate 2 confirmation (DL-10) | Closed |
+| OI-012 | SOW-088, PKG-00 | Core isolation style — ports-and-adapters (hexagonal) vs functional-core/imperative-shell — is undecided; the PRD's invariants (PEC-K-02/-07, PEC-SVC-001) force the isolation properties either way. To be decided in v2's first ADRs with the Gate 4 exchange as recorded basis | ADR in PKG-00 (downstream); owner review at that ADR |
 
 ## 11. Decision Log
 
@@ -408,6 +413,7 @@ OUT and TBD items carry no package.
 | DL-8 | 2026-07-24 | IN/OUT twinning convention: a §4.2 boundary row stays OUT as the boundary record; the corresponding built/verified obligation is a separate IN item stating enforcement or verification, never the boundary itself. Pairs: SOW-025↔SOW-066, SOW-056↔SOW-073. Phase 6 telemetry counts rows as written; twins are distinct statements, not duplicates | Keeps "scope item = unit of coverage checking" coherent while satisfying both the boundary record and the buildable-obligation record |
 | DL-9 | 2026-07-24 | Adversarial verification (opus-5, 16 confirmed defects) appended SOW-084..092, C15, OI-001..011, and the §9/§2 corrections; IDs are append-only and family ordering is not semantic (I5) | Notable: §11.3 and §12-P2 obligations had been dropped; PEC-K-11 unrepresented; `PEC-PKG-009` provenance was v0.4, not v1.0; `WORK_GRAPH.json` was routed to the wrong entity; two PRD-internal tensions surfaced as OI-010/011 rather than silently reconciled |
 | DL-10 | 2026-07-24 | Owner resolved OI-010 (first P1 loop = PEC v2's own build; §12 closing paragraph governs over the P1 table parenthetical) and OI-011 (session-start polling applies only to sessions that start with scope) at Gate 2 | Gate 2 confirmation verbatim in the Gate Log: "…based on acceptance of your recommendations for OI-010 and OI-011" |
+| DL-12 | 2026-07-24 | Gate 4 restructuring on owner direction ("what about adding a PKG-00 addressing the nuances of the architecture…"): PKG-00 Architecture Runway & Contracts created (precedent: piping's PKG-00 Software Architecture Runway); PKG-11 dissolved into it pre-confirmation (Gate 4 was still open, so no post-acceptance renumbering under I5); SOW-034 reassigned PKG-07→PKG-00 as a published cross-consumer contract. Mechanics constraint: PKG-00 deliverables publish artifacts that dependants consume as declared dependencies — a deliverable never writes into another package (disjoint write scopes preserved). OI-012 (core isolation style) recorded for PKG-00's ADR deliverable | The owner's "contributions to other packages" intent is realized through dependency edges, not cross-package writes |
 | DL-11 | 2026-07-24 | Phase 4 forced boundary assignments: SOW-010 (one-command rebuild) → PKG-03 as the reconciler entry point, while the store-path rule (SOW-056) stays PKG-01; SOW-038 (stream-loss recovery) → PKG-03 because the guarantee is reconciliation-side, not ingest mechanics; SOW-025 (no-ruling-write verification) → PKG-10 per DL-8's verification-obligation framing; SOW-087 (client seam) → PKG-07 as daemon-facing integration; SOW-003 (access classes) → PKG-08 with the token-scoped transport; SOW-054 (rebuild bounds) → PKG-03 as reconcile performance; SOW-064 (bootstrap) → PKG-10 as a validation act, not a reconciler feature | Each was assignable to two domains; ledger rows carry `DL-11` in DecisionRef. The `ScopeLedger.csv` register is generated from this document's SSOW tables by script to prevent transcription drift |
 
 ## Companion Inventory
