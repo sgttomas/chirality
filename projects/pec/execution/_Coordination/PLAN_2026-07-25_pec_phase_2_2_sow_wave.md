@@ -439,6 +439,36 @@ intake §8 commands run verbatim. R-2a-gov clean categories: `_STATUS.md`
 narrowing legitimate and correct; Agent1→Agent1 prohibition correctly
 stated; `_CONTEXT.md` claimed by exactly one packet.
 
+**R-2b-g1 (2026-07-25, STEP 2b; refuter aa51d56df4267951b, opus-5, on
+the SCOPECHANGE-SCA002 Gate 1 return before presentation).** 10 findings
+(4 MAJ), dispositions applied at Agent 0 fan-in:
+F1+F2 (MAJ, ACCEPTED): W-1 "ride along at Gate 3" unlawful as offered —
+Gate 3 admits no unparsed action, and the §5-prose fix breaches D-PEC-64
+§4.3's byte-identity window; corrected owner options = Gate 1 correction
+(add A007 + dated owner amendment of §4.3 window) or separate future
+amendment. F3 (MAJ, ACCEPTED): intake §6.5 derivative-package table
+obligation dropped from carried open items → relayed into the Gate 2
+dispatch brief. F4 (MAJ, ACCEPTED-AS-RECORDED): the sole WARNING row in
+the coverage IssueLog has invalid CheckNumber=96 (schema says 1–11;
+AUDIT_DECOMP contract itself inconsistent: schema 1–11 vs 12 checks) —
+routed to Q2 tooling consolidation. F5 (MIN): W-1 is MODIFY-legal;
+excluded by §4.3 window/subject scope, not change class — presentation
+corrected. F6 (MIN): child's F-3 (applies-vs-supersedes) is interpretive
+(§7:528 folds parser rows into the intentional posture) — presented as
+interpretation. F7 (MIN): Pre_Change_Coverage.json +
+Amendment_Actions.csv missing from snapshot vs precedent → deferral
+recorded; produce at Gate 3/pre-Gate-5 (relayed). F8/F9/F10 (MIN,
+ACCEPTED-AS-RECORDED): coverage SCOPE=ALL over-broad but conservative;
+two additive JSON fields beyond schema (→ Q2); baseline timestamp 2 min
+before gate-open, md5s stable across interval. Clean under attack: fence
+(11 paths, all in-fence; DecompCoverage/_LATEST.md pointer-overwrite
+authorized), all md5s, option widths 20/17, 24/20, 31/26 + residues,
+F-2 union-window constraint (and its symmetric DEL-07-01 case), W-1
+substance real (§5:376 "29 S / 33 M" vs registers 28/34), six-action
+list faithful+complete vs intake and reproduced owner-facing, every
+cited line number, coverage numbers vs disk, dep-closure values,
+_ScopeChange/_LATEST.md untouched.
+
 **Future rounds:** R2 post-B1 (contract quality), R3 post-B2 (upstream
 citation), R4 pre-closure (numbers/receipt/pointer audit) — plus a
 refutation pass on the Gate-3 amendment text (STEP 2b) and on D-PEC-63
