@@ -2,33 +2,34 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-07-24
+**Last Updated:** 2026-07-25
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
-- Record packaged Desktop smoke evidence for the redesigned Woven Dialogue
-  shell. The shell, its compatibility surface, replay isolation, and its
-  component/render, route/query, focus, landmark, reduced-motion, and
-  bounded-projection evidence are implemented and evidenced (PR #323 merge
-  `403f228f4`; redesign tranche 2026-07-24), but no packaged Desktop smoke run
-  was performed for the redesigned shell — the packaging gate was untriggered
-  by that tranche's diff. Evidence:
-  `execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/` and
-  `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md`.
-- Implement a true runtime-connectivity indicator in the compact top bar. The
-  status dot currently reports working-root state, not daemon connectivity
-  (Stage A deviation 4, ratified for the 2026-07-24 tranche only).
 - Record-only note, no code owed: Next `metadata.icons` is intentionally
   satisfied through the `src/app/icon.svg` file convention rather than a
   literal metadata field.
-- Ship the `.icns` / electron-builder packaged application icon (adopted D3
-  residual — the packaged app still uses Electron's default icon).
-  Cross-reference DEL-09-04.
+- Decide whether the top-bar runtime-connectivity chip needs an operator
+  reconnect affordance. The supervisor's immediate-refresh path exists and is
+  reachable only through the runtime panel's daemon actions; a top-bar control
+  was out of scope for the 2026-07-25 daemon-service tranche.
+- Cross-reference, owned by DEL-09-04: opening the app from Finder or the Dock
+  while the daemon runs briefly bounces the runtime, because activation-policy
+  suppression does not stop LaunchServices resolving the launch against the
+  running daemon. Self-healing and visible in the connectivity chip; the causal
+  fix is a daemon helper bundle with its own identity, escalated to the owner as
+  a future tranche.
+- Cross-reference, owned by DEL-02-02 and DEL-08-02: packaged Desktop evidence
+  for the Workbench and Pipeline surfaces and for the navigator
+  recorded-session selection path is still owed. The 2026-07-25 packaged frames
+  show the shell at the Dialogue surface with no recorded sessions in the
+  isolated user data.
 
 ## History
+- 2026-07-25 - Daemon-as-service and packaged-app fix tranche recorded in `_run_records/R7_DAEMON_SERVICE_2026-07-25.md`. Three Remaining items are closed on packaged evidence: packaged Desktop smoke evidence for the redesigned shell (window-scoped frames of the packaged shell, top bar, logo and connectivity transitions plus an end-to-end stub-adapter turn), the true runtime-connectivity indicator (main-process-owned supervisor, connectivity IPC and top-bar chip, transitions observed on the packed app), and the `.icns` / electron-builder packaged application icon (`CFBundleIconFile` = `icon.icns`, packaged icns byte-identical to the committed artifact). The `metadata.icons` record-only note is retained and three residuals are added (connectivity reconnect affordance; the Finder/Dock daemon-resolution bounce cross-referenced to DEL-09-04; the sibling packaged-evidence items owned by DEL-02-02 and DEL-08-02). State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-07-24 - Woven Dialogue visual redesign and IA consolidation tranche recorded in `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md`; the four SCA-APP-004 Remaining items were rewritten to their true residuals (packaged Desktop smoke evidence, true runtime-connectivity indicator, `metadata.icons` record-only note, packaged application icon cross-referenced to DEL-09-04). State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-07-23 - SCA-APP-004 Gate-5 execution-record propagation replaced the obsolete fixed target-IA Remaining basis with the owner-approved Woven Dialogue shell and compatibility tranche. State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-07-20 - D-APP-70 Option A CQ-F1 mappings applied through R5; the CQ-F1 Remaining entry was closed with retained boundaries preserved in the additive applied derivative; no source, lifecycle, Approval SHA, SOW, or dependency change.
