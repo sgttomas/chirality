@@ -44,6 +44,21 @@ fix lands.
    / `AGENT_AUDIT_DECOMP.md` hard-code `SOFTWARE_DECOMP` section numbers
    that drift from live documents; heading-text binding was the
    workaround used in SCA-002.
+7. **(Added 2026-07-25, B2 wave evidence) No upstream-ID citation
+   convention for INIT contracts.** Neither `SKILL.md` nor any companion
+   says how an INIT-authored contract cites an upstream deliverable's
+   local IDs. A bare `DEL-01-06-REQ-004` is scanned by the validator as
+   an unresolved *local* `REQ-004`, or silently collides with the
+   authoring contract's own `REQ-004` (`tools/scope_of_work/common.py`
+   ID extraction). The B2 batch's de facto convention: quote upstream
+   text inside §4-provision blockquotes (blank blockquote lines exempt
+   from ID extraction, `common.py` ~183–187) plus an explicit
+   upstream-context carve-out sentence ("ID-shaped text inside this
+   quotation is upstream source context, not a local definition or
+   reference") and/or `DEL-NN-NN/REQ-NNN` qualified form. If adopted
+   wave-wide it belongs in `SKILL.md`. Evidence: DEL-02-07 CLM-007
+   (origin), DEL-01-01 CLM-009 (collision caught at refutation R3-wave
+   F6), `WAVE_D-PEC-63/BATCH_B2_FANIN.md`.
 
 ## Canary evidence for item 1 (added 2026-07-25 after the D-PEC-63 canary-3)
 

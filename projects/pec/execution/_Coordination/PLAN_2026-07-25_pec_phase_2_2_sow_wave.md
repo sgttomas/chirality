@@ -6,20 +6,23 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
-`STEP 4 BATCH B1 COMPLETE AT FAN-IN — D-PEC-63 RULED (64e2923f7;
-Q1=(b) semantic pipeline unused, Q2=HELPS_HUMANS consolidation packet
-routed). Canary-3 clean (c9305aa47; INIT skill-contract gaps documented,
-non-blocking, routed). Main-6 authored 9/9 PASS. Refutation R2 (9 MAJ +
-12 MIN, 0 CRIT — §6) → two sealed revision dispatches, all corrections
-applied and independently re-verified. Status act 9/9 OPEN→INITIALIZED.
-Census 9 INITIALIZED / 55 OPEN (ladder match). Blocker 49 BLOCKED /
-15 UNBLOCKED (baseline 54/10; +5: DEL-00-02, DEL-01-01, DEL-01-02,
-DEL-02-07, DEL-10-03 — all three B2 members unblocked). Fan-in record
-`WAVE_D-PEC-63/BATCH_B1_FANIN.md`. AWAITING THE OWNER B1 HALT-REVIEW
-(required before B2 dispatch: DEL-01-01, DEL-02-07, DEL-10-03 — first
-upstream-citing batch). docs/STATUS.md four-line fix still authorized,
-unexecuted (scheduled at D-PEC-63 closure). Refutation rounds R-2a,
-R-2b-g1..g5, R-3, R2 in §6.`
+`STEP 4 BATCH B2 COMPLETE AT FAN-IN — B1 owner-cleared (commit
+36816c90f: 9 INITIALIZED, R2 remediated, fan-in BATCH_B1_FANIN.md). B2
+(DEL-01-01, DEL-02-07, DEL-10-03 — first upstream-citing batch) authored
+3/3 first-pass PASS with upstream-contract binding; refutation R3-wave
+(1 CRIT + 3 MAJ + 10 MIN — upstream-citation core clean; CRIT =
+DEL-10-03 manufactured §4 "Depends on" column) → two sealed revision
+dispatches, all corrections applied, independently re-verified. Status
+act 3/3 OPEN→INITIALIZED. Census 12 INITIALIZED / 52 OPEN (ladder
+match). Blocker 43 BLOCKED / 21 UNBLOCKED (+6 = exactly B3 members
+DEL-02-01..06). New contract gap (upstream-ID citation convention)
+routed as REQUEST item 7. Fan-in record `WAVE_D-PEC-63/BATCH_B2_FANIN.md`
+(also the durable carrier of the DEL-10-03 standing-assertion brief
+sentence, X7). AWAITING THE OWNER B2 HALT-REVIEW — on clearance B3–B8
+run on internal fan-in (B3 = DEL-02-01..06). docs/STATUS.md four-line
+fix still authorized, unexecuted (scheduled at D-PEC-63 closure).
+Refutation rounds R-2a, R-2b-g1..g5, R-3, R2, R3-wave in §6 and the
+batch fan-in records.`
 
 ---
 
