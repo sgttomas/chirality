@@ -1,18 +1,18 @@
 # Latest — revision pointer and handoff state
 
 Latest: `execution/_Decomposition/SOFTWARE_DECOMP.md` **revision 1.0**
-(`candidate_basis_gate7`, 2026-07-24).
+(**`current_basis`** — accepted 2026-07-24).
 
-## Handoff state (Gate 7 pending)
+## Handoff state
 
 - **Session:** D-PEC-60 SOFTWARE_DECOMP over PRD v2.0 (adopted 2026-07-24,
-  `D-PEC-58`). Gates 1–6 owner-confirmed (verbatim log in the working
-  surface); **Gate 7 final acceptance is the open owner act.**
+  `D-PEC-58`). Gates 1–7 owner-confirmed (verbatim log in the working
+  surface); **Gate 7 accepted 2026-07-24:** "I rule that this decomposition
+  is now the accepted basis for downstream work."
 - **Package:** working surface + `ScopeLedger.csv` (94 rows) +
   `Deliverables.csv` (64) + `ContextBudgetQA.csv` + `Companion_Inventory.csv`.
-- **Closure verdict:** not yet accepted. On Gate 7 acceptance this file's
-  status line flips to `current_basis`, and the acceptance is recorded in
-  the `D-PEC-60` packet, the project register, and the loop receipt.
+- **Closure verdict: ACCEPTED.** The acceptance is recorded in the
+  `D-PEC-60` packet closure, the project register, and loop Receipt 104.
 - **Verification:** adversarial passes at rev 0.3 (16 defects) and rev
   0.8→0.9 (19 defects), all corrected pre-gate (DL-9, DL-14).
 - **Blockers / open issues:** none blocking acceptance. OI-001..009 are §16

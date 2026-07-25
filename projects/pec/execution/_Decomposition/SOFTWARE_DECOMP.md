@@ -2,9 +2,10 @@
 doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
-status: candidate_basis_gate7
+status: current_basis
 revision: "1.0"
 date: 2026-07-24
+accepted: 2026-07-24 (Gate 7 owner ruling, verbatim in the Gate Log; D-PEC-60 closure)
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
 session_authorization: D-PEC-60
@@ -29,7 +30,7 @@ source_corpus: projects/pec/docs/PRD.md (v2.0, adopted 2026-07-24, D-PEC-58)
 | 4 | Packages | **CONFIRMED** (as restructured: PKG-00 per DL-12) | "Gate 4 confirmed — proceed to Phase 5." | 2026-07-24 |
 | 5 | Deliverables | **CONFIRMED** | "Gate 5 confirmed — proceed to Phase 6." | 2026-07-24 |
 | 6 | Coverage + Context Budget | **CONFIRMED** | "Gate 6 confirmed — proceed to Phase 7." | 2026-07-24 |
-| 7 | Final acceptance | **PRESENTED** | — | 2026-07-24 |
+| 7 | Final acceptance | **ACCEPTED** | "I rule that this decomposition is now the accepted basis for downstream work." | 2026-07-24 |
 
 ---
 

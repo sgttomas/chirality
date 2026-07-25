@@ -76,4 +76,25 @@ root `docs/**`, and all source trees are untouched by this tranche.
 ## Human ruling
 
 **RULED (2026-07-24)** by the quoted direction. Gate log lives in the
-working surface; Gate 7 acceptance will be appended here upon occurrence.
+working surface.
+
+## Closure — Gate 7 acceptance (2026-07-24)
+
+All seven gates were confirmed by the owner in-session the same day, each
+verbatim in the working surface's Gate Log. Gate 7 acceptance, verbatim:
+
+> "I rule that this decomposition is now the accepted basis for downstream
+> work."
+
+The canonical working package at `projects/pec/execution/_Decomposition/`
+(revision 1.0, `current_basis`: `SOFTWARE_DECOMP.md`, `ScopeLedger.csv`
+94 rows, `Deliverables.csv` 64 rows, `ContextBudgetQA.csv`,
+`Companion_Inventory.csv`, `_LATEST.md` handoff state) is the
+**authoritative downstream basis for all build tranches** (standing-plan
+tranche D1 complete). Verification evidence: adversarial passes at
+revisions 0.3 (16 defects) and 0.8→0.9 (19 defects), all corrected before
+the corresponding gate. In-session owner design acts of record: the
+PKG-00 restructuring (DL-12) and the OI-010/OI-011 resolutions (DL-10).
+Open issues at acceptance: OI-001..009 (§16, none blocking P0–P2),
+OI-012 (core-isolation ADR in DEL-00-01), OI-013 (durable register
+validator). Evidence pointers in loop Receipt 104.
