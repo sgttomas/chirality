@@ -602,3 +602,178 @@
   remains DEFERRED per the implementation handoff.
 - Gate: this tranche merges only through a human-gated PR; never
   self-merged.
+
+### Receipt 34 — 2026-07-25 — Lane A executed: candidate root PRD authored
+
+- Owner acts of record (in-session, 2026-07-25): "Merge PR #339 and proceed
+  with Lane A" — PR #339 merged at that direction (step 4 closed at
+  `7ac718c7e`); Lane A executed under the standing posture direction
+  (Agent 0; `opus-5` children).
+- Step 0 preflight: EffectiveSHA contained in `main`; harness 311 passed;
+  self-check exit 0; G0 PASS idle + 9/9 suite. Recorded green before
+  dispatch.
+- Run `ROOT-PRD-LANE-A-20260725` (terminal fan-out/fan-in, single node;
+  executor form: ephemeral Agent 2 generalist under sealed brief — recorded
+  rationale in the run's ORCHESTRATION_PLAN: no live Agent 1 charter covers
+  candidate-PRD authoring): authored
+  `execution/_Coordination/PRD_CANDIDATE_2026-07-25_root_product.md`
+  (CANDIDATE — NOT ADOPTED; 78 labeled requirements: 67 TRANSCRIBED /
+  4 OWNER_DECLARED / 4 CLARIFIED / 3 PROPOSED; falsifiers F1–F3 transcribed,
+  F4–F6 proposed; four reserved decisions RD-1..RD-4 surfaced with options,
+  none resolved).
+- Fan-in V1 accepted; dispositions in the run's `returns/N1_RETURN.md`,
+  including: the issuing brief's in-repo-history date (2026-02-18) was
+  wrong — first commit is `7bee9ae41` 2026-05-18; the child refused the
+  error and the record now carries the verified fact. New conflicts C-2
+  (CONTRACT invariant-index drift 27 vs 34) and C-3 (README omits
+  `runtime/` from its export-boundary description) surfaced in-document and
+  routed to the owner; both need M2/propagation tranches, neither amended
+  here.
+- Lane A terminal gate reached: the candidate stops at owner review.
+  Adoption is a separate instrument (RD-3), expressly not exercised.
+- Gate: this tranche merges only through a human-gated PR; never
+  self-merged.
+
+### Receipt 35 — 2026-07-25 — PRD candidate Rev 2 after adversarial review
+
+- Owner act of record (in-session, 2026-07-25): routed an independent
+  adversarial review of PRD candidate Rev 1 and directed its consideration.
+  Review preserved verbatim in
+  `AgentRuns/ROOT-PRD-LANE-A-20260725/reviews/ADVERSARIAL-REVIEW-1.md`;
+  verdict: not adoption-ready — a governed-basis concordance that must
+  become a directional product definition.
+- Agent 0 accepted all review items (dispositions in
+  `AgentRuns/ROOT-PRD-LANE-A-20260725/briefs/PRD-AUTHOR-BRIEF-AMENDMENT-1.md`,
+  a versioned brief amendment expanding the write scope to two files) and
+  resumed the same authoring instance (`opus-5`) with context intact.
+- Rev 2: main PRD restructured to the reviewer's ten-section shape (~20%
+  shorter; objectives OBJ-1..OBJ-7 with v1 success conditions; generative
+  loop; upward variant promotion; corrected user strata; RD-5 added;
+  release authority; OWNER_DECLARED key relabeled honestly as Agent 0
+  synthesis) plus a companion concordance annex (derivative package,
+  regenerable, never adopted; adoption binds the main PRD bytes only;
+  D-14 six-class source-currency specification).
+- Fan-in V1 accepted; two child-side validator gaps closed by Agent 0
+  re-run (path anchors PASS 992; G0 PASS idle). Top items flagged for
+  owner attention: the PROPOSED v1 boundary (child construction —
+  re-scope if the owner's v1 differs), OBJ-1..OBJ-7, and D-14.
+- Lane A remains at its terminal gate: owner review of the candidate.
+  Adoption instrument and the four+one reserved decisions (RD-1..RD-5)
+  remain owner acts.
+
+### Receipt 36 — 2026-07-25 — PRD candidate Rev 3 after second review pass
+
+- Owner act of record (in-session, 2026-07-25): routed the second
+  adversarial-review pass on Rev 2 ("recognizably a product PRD"; one more
+  revision recommended; issues are precise contradictions). Review
+  verbatim in `AgentRuns/ROOT-PRD-LANE-A-20260725/reviews/ADVERSARIAL-REVIEW-2.md`;
+  Agent 0 accepted all eleven items + two refinements (Brief Amendment 2).
+- Rev 3 (same authoring instance, `opus-5`): genus-neutral ID-1;
+  K-DOMAIN-1 exception stated in N-1 itself; O-10 human-authority
+  correction; OBJ-2 narrowed to consequential acceptance/reliance/issuance
+  judgments; §2.3 separable human capacities; RD-5-B de-narrowed; §4.2 two
+  distinct human judgments (evaluation vs iteration); OBJ-6 population +
+  lifecycle-checkable condition; D-2 narrowed with generalization carried
+  as new D-16 PROPOSED; annex regenerability claims made honest
+  (specified/proposed, MECHANICAL vs SEMANTIC classes); §10.3 final
+  adoption transformation (two-step; prior revisions immutable); OBJ-3
+  pre-fixed thresholds; OBJ-5 promotion-disposition success.
+- Provenance: 43 stable commitments (34/5/4); 17 PROPOSED items total.
+  Flagged closest for owner: D-16, D-14, the PROPOSED v1 boundary.
+- Fan-in V1 accepted; validators green child-side and re-run green by
+  Agent 0 (path anchors PASS 992; G0 PASS idle).
+- Lane A remains at its terminal gate: owner review; then RD-1..RD-5
+  rulings; then the final adoption-ready revision per §10.3.
+
+### Receipt 37 — 2026-07-25 — RD-1 RULED (genus); PRD candidate Rev 4
+
+- Owner acts of record (in-session, 2026-07-25): (1) stated intent to
+  resolve the genus before approving the PRD; (2) routed the third
+  adversarial-review pass (verbatim in
+  `AgentRuns/ROOT-PRD-LANE-A-20260725/reviews/ADVERSARIAL-REVIEW-3.md`);
+  (3) **RULED RD-1** — presented the slate (A retain DIRECTIVE genus /
+  B adopt README genus / C two-level formulation), the owner selected,
+  recorded verbatim from the selection interface: "C — Two-level
+  formulation". The ruled genus text is the option-C formulation
+  reproduced exactly in the PRD §9.1 and in Brief Amendment 3.
+  SHA-binding of the ruling occurs at the adoption instrument (RD-3).
+- Ruling consequences recorded, none performed in this tranche: (a)
+  exact-prose human-gated M2 supersession of the ratified
+  `docs/DIRECTIVE.md` §1 genus clause; (b) `README.md` reword; (c)
+  propagation survey of SPEC/TYPES/AGENTS.md "operating system" prose.
+  DIRECTIVE §1 remains in force until (a) lands; PRD C-1 status is
+  `RESOLVED-IN-PRINCIPLE — concordance pending`.
+- Rev 4 (same authoring instance, `opus-5`, Brief Amendment 3): RD-1
+  incorporated (ID-0; §1.2 ruled-pending-concordance; §9.1 ruling
+  record); all eight review items + two wording corrections applied
+  (D-16 narrowed; D-1/D-3 evidenced scope; OBSERVED provenance category;
+  split annex bases; D-14 nine-class accounting; release as third human
+  judgment; OBJ-3/OBJ-5 quantifiers; commentary normalization).
+- Fan-in V1 accepted (two-file diff; path anchors PASS 992; G0 PASS
+  idle; DIRECTIVE-not-amended claims verified by direct inspection).
+- Open: RD-2..RD-5 rulings; C-2/C-3/C-4; then the final adoption-ready
+  revision per PRD §10.3 and the adoption instrument per RD-3.
+
+### Receipt 38 — 2026-07-25 — RD-2..RD-5 RULED; final review cycle closed; PRD candidate Rev 5 (adoption-ready)
+
+- Owner acts of record (in-session, 2026-07-25):
+  1. Routed the fourth adversarial-review pass (single subject: D-3's
+     authority status; verbatim in
+     `AgentRuns/ROOT-PRD-LANE-A-20260725/reviews/ADVERSARIAL-REVIEW-4.md`)
+     with the direction: "Consider this as the final review cycle.
+     Incorporate what has merit from your perspective and proceed from
+     there." Agent 0 accepted the reviewer's Option 1: D-3 leaves the §5
+     requirements table and is preserved as OBSERVED practice —
+     "practice supplies evidence; evidence informs judgment; judgment
+     alone makes the rule."
+  2. **RULED RD-2** (jurisdiction/accountability) — recorded verbatim
+     from the selection interface: "A1+B2 could seemingly be scaled up
+     to multi-practitioner using the PEC interface and a database, and
+     attribution can be done more securely that way. If you agree I
+     would go that way. And that database and PEC interface are not
+     current scope. That can be something that may be incorporated as
+     Chirality morphs and responds to usage with ongoing development and
+     refinement." The ruling was conditioned on Agent 0 agreement; Agent
+     0 agreed, with the D-GOV-01 caveat recorded as CLARIFIED (a future
+     PEC/database layer supplies the attribution mechanism; the
+     authoritative record stays file-native unless D-GOV-01 is
+     consciously amended).
+  3. **RULED RD-3** (adoption instrument) — selection verbatim: "A+y
+     (Recommended)". Instrument: a D-GOV-* exact-candidate decision
+     record over the adoption-ready bytes, plus a bidirectional
+     concordance map (PRD ↔ DIRECTIVE §1) drawn against DIRECTIVE §1
+     as it stands, the RD-1 divergence recorded; obligation (a) lands in
+     the adoption/implementation tranche.
+  4. **RULED RD-4** (placement) — selection verbatim: "D — Split with
+     pointer". Adopted PRD in root `docs/` through the existing export
+     allowlist; candidates and revision evidence immutable in
+     `execution/`; a pointer identifies the adopted exact bytes.
+  5. **RULED RD-5** (v1 user scope) — recorded verbatim: "It's for all
+     of those, but I see it progressing over time as we start with A and
+     learn from my use to make a better version for B which I can test
+     out locally with multiple computers with multiple Agent 0 instances
+     on each and learn from that and make a better C which is the target
+     level of maturity for the platform." Incorporated as v1 = A with an
+     OWNER_DECLARED A→B→C maturation trajectory, C the target maturity.
+- SHA-binding of all four rulings occurs at the adoption instrument
+  (RD-3), as with RD-1 (Receipt 37).
+- Rev 5 (fresh ephemeral Agent 2 instance, `opus-5`, Brief Amendment 4;
+  the prior instance's transcript had expired and the successor worked
+  from the durable run record): the final adoption-ready revision per
+  PRD §10.3 — banner `ADOPTION-READY — adopted only by the instrument
+  named below`; D-3 removed (identifier retired, not reassigned; §6.2
+  OBSERVED practice statement added; commitments 43 → 42, TRANSCRIBED
+  34 → 33); §9 reduced to records of the five rulings with verbatim
+  fences; drafting commentary stripped; annex §5.6 correction + rulings
+  tables; C-3 expressly flagged for owner confirmation at the
+  instrument.
+- Fan-in V1 accepted (two-file diff; path anchors PASS 992; G0 PASS
+  idle; independent script count 42 = 33/5/4 with D-3 absent and no
+  renumbering; all five verbatim fences verified by direct grep; no
+  adoption claims; DIRECTIVE §1 nowhere claimed amended). Return:
+  `AgentRuns/ROOT-PRD-LANE-A-20260725/returns/N1_RETURN-REV5.md`.
+- Open: the adoption instrument (RD-3-A record + RD-3-y map) and the
+  owner's adoption ruling against the exact candidate SHA; C-2/C-3/C-4;
+  §9.1 obligations (a)/(b)/(c) and RD-4-D placement in the
+  adoption/implementation tranche. Merging PR #340 records candidates;
+  it does not adopt.
