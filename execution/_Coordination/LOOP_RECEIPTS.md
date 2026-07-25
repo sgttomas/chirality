@@ -892,3 +892,29 @@
   DEFERRED. With (b) applied and (c) surveyed, all three §9.1 follow-on
   obligations of the RD-1 ruling are performed or (for P-1..P-4
   application) staged for direction.
+
+### Receipt 43 — 2026-07-25 — D-GOV-24 RULED: genus propagation complete (P-1..P-4 applied)
+
+- Owner act of record (in-session, 2026-07-25) — verbatim: "I rule
+  APPROVED for O-A against candidate SHA
+  444e29359883e50506ac0ea0ee5f6cc3f5f7d7de".
+- Application (this commit): the four Annex A replacements extracted
+  programmatically from the ruled packet, each current sentence
+  re-verified unique in its live file, all four applied byte-faithfully —
+  DIRECTIVE preamble (P-1), CONTRACT :7 (P-2), SPEC :5 (P-3), TYPES :5
+  (P-4). No deviation; no re-approval round required.
+- **The RD-1 genus propagation is complete.** Across D-GOV-23 (DIRECTIVE
+  §1), obligation (b) (README), and D-GOV-24 (four self-descriptions), no
+  governed surface presents the pre-RD-1 top-level identity as current
+  self-description; the six contained-level "agent operating system"
+  usages remain by design under the ruled two-level formulation.
+- Publication tranche (this commit): decision record
+  `docs/governance_harness/_DECISIONS/D-GOV-24_operating_system_prose_propagation.md`;
+  `_REGISTER.md` row; routed M6 change notices to
+  `projects/chirality-app-dev/execution/_Coordination/` and
+  `domains/chirality/_Coordination/` (the app-dev `AUTHORITY_CORPUS.json`
+  pins all four touched files; re-pins on that loop's cadence).
+  PublicationSHA/EffectiveSHA backfilled after the human merge gate.
+- Open after this receipt: C-2 (CONTRACT §1 invariant-index arithmetic)
+  and C-4 (README export description) correction proposals; Lane B
+  (G1–G4); export-staging regeneration DEFERRED.
