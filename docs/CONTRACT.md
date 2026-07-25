@@ -4,7 +4,7 @@
 >
 > **Ratification history.** Per D-GOV-05 (docs/governance_harness/_DECISIONS/), ruled by the owner 2026-07-01, the **minimal harness basis** was ratified first: the source-of-truth rule, K-AUTH-1, K-AUTH-2, the generated-output rule, K-WRITE-2, K-PROV-1, K-STATUS-1, and the D-GOV-02 finding-severity taxonomy. The 2026-07-11 full ratification subsumes that partial basis; D-GOV-05 remains the ruling of record for the earlier partial state.
 
-This document is the authoritative catalog of binding invariants for the Chirality agent operating system.
+This document is the authoritative catalog of binding invariants for Chirality Root and the agent operating system it contains.
 
 Invariants listed here are enforceable constraints that agents, tooling, and human processes must respect. Each invariant includes its enforcement point (where and how compliance is checked).
 
