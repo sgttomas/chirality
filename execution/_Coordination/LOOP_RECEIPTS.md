@@ -602,3 +602,34 @@
   remains DEFERRED per the implementation handoff.
 - Gate: this tranche merges only through a human-gated PR; never
   self-merged.
+
+### Receipt 34 — 2026-07-25 — Lane A executed: candidate root PRD authored
+
+- Owner acts of record (in-session, 2026-07-25): "Merge PR #339 and proceed
+  with Lane A" — PR #339 merged at that direction (step 4 closed at
+  `7ac718c7e`); Lane A executed under the standing posture direction
+  (Agent 0; `opus-5` children).
+- Step 0 preflight: EffectiveSHA contained in `main`; harness 311 passed;
+  self-check exit 0; G0 PASS idle + 9/9 suite. Recorded green before
+  dispatch.
+- Run `ROOT-PRD-LANE-A-20260725` (terminal fan-out/fan-in, single node;
+  executor form: ephemeral Agent 2 generalist under sealed brief — recorded
+  rationale in the run's ORCHESTRATION_PLAN: no live Agent 1 charter covers
+  candidate-PRD authoring): authored
+  `execution/_Coordination/PRD_CANDIDATE_2026-07-25_root_product.md`
+  (CANDIDATE — NOT ADOPTED; 78 labeled requirements: 67 TRANSCRIBED /
+  4 OWNER_DECLARED / 4 CLARIFIED / 3 PROPOSED; falsifiers F1–F3 transcribed,
+  F4–F6 proposed; four reserved decisions RD-1..RD-4 surfaced with options,
+  none resolved).
+- Fan-in V1 accepted; dispositions in the run's `returns/N1_RETURN.md`,
+  including: the issuing brief's in-repo-history date (2026-02-18) was
+  wrong — first commit is `7bee9ae41` 2026-05-18; the child refused the
+  error and the record now carries the verified fact. New conflicts C-2
+  (CONTRACT invariant-index drift 27 vs 34) and C-3 (README omits
+  `runtime/` from its export-boundary description) surfaced in-document and
+  routed to the owner; both need M2/propagation tranches, neither amended
+  here.
+- Lane A terminal gate reached: the candidate stops at owner review.
+  Adoption is a separate instrument (RD-3), expressly not exercised.
+- Gate: this tranche merges only through a human-gated PR; never
+  self-merged.
