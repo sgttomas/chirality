@@ -210,14 +210,15 @@ def test_live_pointer_currency_first_detection_target():
     # Every other live pointer resolves and is the newest of its class.
     assert [f for f in report.findings
             if f.code == "POINTER_TARGET_NOT_NEWEST"] == []
-    # docs/governance_harness and projects/pec carry no pointer files ->
-    # NOT_APPLICABLE.
+    # docs/governance_harness carries no pointer files -> NOT_APPLICABLE.
+    # Conscious pin update 2026-07-24 (was: projects/pec listed here too):
+    # the D-PEC-60 decomposition session created
+    # projects/pec/execution/_Decomposition/_LATEST.md (Gate 7 accepted same
+    # day), so pec entered pointer-currency scope and its pointer must
+    # resolve quietly (asserted by the zero-findings checks above).
     from harness_common import Severity
     na = [f for f in report.findings if f.code == "POINTER_CHECK_NOT_APPLICABLE"]
-    assert {f.source_path for f in na} == {
-        "docs/governance_harness",
-        "projects/pec",
-    }
+    assert {f.source_path for f in na} == {"docs/governance_harness"}
     assert all(f.severity is Severity.NOT_APPLICABLE for f in na)
 
 

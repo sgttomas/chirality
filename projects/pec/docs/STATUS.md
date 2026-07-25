@@ -30,14 +30,19 @@ read and cite only, no further feature work, retired product docs under
 
 ## What's next (owner gates, in order)
 
-1. **Decomposition** — SOFTWARE_DECOMP over PRD v2 with the owner at
-   Gates 1–7 (repo-root `docs/DECOMPOSITION_STANDARD.md`); Gate 7 acceptance becomes
-   the downstream basis for all build tranches.
-2. **P1 — one-loop reconciler** (per-tranche packets): reconciler +
-   orientation store + read-only API for one loop; parity-diffed against the
-   practitioner harness; kill test standing.
-3. P2 dashboards → P3 harness integration (falsification clause armed) →
-   P4 streams, per the standing plan.
+0. ~~Decomposition~~ — **accepted 2026-07-24** (`D-PEC-60`, Gates 1–7).
+   The canonical working package at `execution/_Decomposition/`
+   (`SOFTWARE_DECOMP.md` rev 1.0 `current_basis` + four CSV registers +
+   `_LATEST.md` handoff state) is the authoritative downstream basis:
+   11 packages (PKG-00..PKG-10), 64 deliverables, 94-row scope ledger.
+1. **PROJECT_SETUP / first build tranches** — scaffolding and the P1 slice
+   (32 deliverables: parsers, reconciler + parity, orientation core,
+   socket API, kill test, bootstrap self-ingest; plus pre-P1 DEL-00-01
+   ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **Each tranche
+   requires its own owner-ruled `D-PEC` packet** — nothing is authorized
+   yet; `F-PEC-1` remains the outer fence.
+2. P2 dashboards → P3 harness integration (falsification clause armed) →
+   P4 streams, per the standing plan and the deliverables' PhaseHints.
 
 ## Orient yourself (read-order)
 
@@ -52,6 +57,9 @@ read and cite only, no further feature work, retired product docs under
 ## Governance & agent harness
 
 Project-local agent rules: `AGENTS.md` (rewritten 2026-07-24, `D-PEC-59`).
+Decomposition session ruled and closed 2026-07-24 (`D-PEC-60`, Gates 1–7
+accepted; `execution/_Decomposition/**` opened by its fence for the
+canonical working package).
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` was amended
 2026-07-24 (`D-PEC-59`: post-archive readable-artifact paths + pivot notes;
 validator VALID); full supersession remains pending v2 implementation shape.
