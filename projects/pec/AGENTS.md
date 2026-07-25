@@ -3,7 +3,7 @@ doc_id: PEC-AGENTS
 doc_kind: governance.agent_index
 status: live
 created: 2026-07-04
-amended: 2026-07-24 (D-PEC-59; same-day pointer upkeep after D-PEC-60 acceptance)
+amended: 2026-07-24 (D-PEC-61; PRD v2.1 and SCA-001 opening)
 ---
 
 # AGENTS - PEC Agent Index
@@ -25,9 +25,10 @@ Prompts and TASK briefs must derive paths from the active checkout:
 
 PEC is the Chirality **coordination plane**: a deterministic, rebuildable
 projection of governed file truth plus an ephemeral presence layer, embodying
-loop Step 0 and the deterministic parts of Step 1. `docs/PRD.md` v2.0 is the
-product definition of record (adopted 2026-07-24, `D-PEC-58`). Implementation
-does not exist yet; nothing in the PRD is an implementation mandate.
+loop Step 0 and the deterministic parts of Step 1. `docs/PRD.md` v2.1 is the
+product definition of record (v2.0 adopted by `D-PEC-58`; directed-bootstrap
+clarification adopted by `D-PEC-61`). Implementation does not exist yet;
+nothing in the PRD is an implementation mandate.
 
 Binding on every agent, now and in every future tranche:
 
@@ -140,7 +141,8 @@ unopened future row. Agent validation stays scratch/demo-only.
 
 - `execution/_Coordination/_DECISIONS/_REGISTER.md` — project decision
   register (`D-PEC-57` pivot, `D-PEC-58` adoption, `D-PEC-59` follow-ons,
-  `D-PEC-60` decomposition session and acceptance)
+  `D-PEC-60` decomposition acceptance, `D-PEC-61` directed bootstrap /
+  SCA-001 opening)
 - `execution/_Decomposition/` — the accepted decomposition working package
   (`SOFTWARE_DECOMP.md` working surface + companion registers;
   `_LATEST.md` is the revision pointer and handoff state — read it first)

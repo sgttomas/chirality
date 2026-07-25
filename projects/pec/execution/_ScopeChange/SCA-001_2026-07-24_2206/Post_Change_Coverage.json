@@ -1,0 +1,166 @@
+{
+  "schema_version": "pec-software-register-baseline-v1",
+  "baseline_role": "SCOPE_CHANGE Gate 5 deterministic post-change register-integrity baseline",
+  "captured_at": "2026-07-24T22:30:00-06:00",
+  "amendment_id": "SCA-001",
+  "decomp_variant": "SOFTWARE",
+  "accepted_basis": {
+    "decomposition_path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "revision": "1.1",
+    "state": "current_basis",
+    "source_corpus": "projects/pec/docs/PRD.md v2.1 (D-PEC-58; D-PEC-61)"
+  },
+  "audit_decomp": {
+    "snapshot": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-24_2230",
+    "run_status": "FAILED_INPUTS",
+    "declared_packages": 11,
+    "declared_deliverables": 64,
+    "discovered_package_folders": 0,
+    "discovered_deliverable_folders": 0,
+    "interpretation": "Expected pre-scaffold limitation; not filesystem coverage evidence"
+  },
+  "counts": {
+    "scope_items": 94,
+    "scope_status": {
+      "IN": 71,
+      "OUT": 14,
+      "TBD": 9
+    },
+    "packages": 11,
+    "deliverables": 64,
+    "objectives": 6,
+    "context_envelopes": {
+      "S": 28,
+      "M": 34,
+      "L": 2
+    },
+    "in_without_objective": 31
+  },
+  "objective_support": {
+    "scope_items": {
+      "OBJ-001": 10,
+      "OBJ-002": 4,
+      "OBJ-003": 13,
+      "OBJ-004": 9,
+      "OBJ-005": 2,
+      "OBJ-006": 9
+    },
+    "deliverables": {
+      "OBJ-001": 9,
+      "OBJ-002": 4,
+      "OBJ-003": 12,
+      "OBJ-004": 9,
+      "OBJ-005": 2,
+      "OBJ-006": 9
+    }
+  },
+  "target_postchange": {
+    "scope_item": {
+      "ScopeItemID": "SOW-064",
+      "InOutStatus": "IN",
+      "ScopeItemStatement": "Directed bootstrap: P1 first ingests PEC v2's accepted full dependency DAG as its initial file-native coordination state; later DAG nodes consume only PEC capabilities already produced and accepted by predecessors, while observed coordination friction is captured as evidence for candidate functions and boundary or amendment decisions",
+      "SourceRef": "PRD v2.1 §12, D-PEC-61",
+      "PackageID": "PKG-10",
+      "DeliverableIDs": "DEL-10-10",
+      "ObjectiveIDs": "OBJ-006",
+      "DecisionRef": "DL-10; DL-11; SCA-001",
+      "OpenIssue": "FALSE",
+      "Notes": "Introduced in P1 and standing thereafter; observations grant no authority or scope, the file-native fallback remains operable, and generality is validated against a structurally different loop"
+    },
+    "deliverable": {
+      "DeliverableID": "DEL-10-10",
+      "PackageID": "PKG-10",
+      "Name": "Directed bootstrap self-ingest validation",
+      "Description": "Introduced in P1 and used as a standing validation thereafter. Maintain one bootstrap progression record showing ingestion of PEC's accepted full dependency DAG, capability cutovers only after predecessor acceptance, observed coordination friction, proposed/rejected/unnecessary functions, fallback operation, and routes to human-gated decisions or amendments.",
+      "Type": "TEST_SUITE",
+      "ResponsibleParty": "TBD",
+      "AnticipatedArtifacts": "Bootstrap progression record: DAG ingestion; capability cutovers; observed friction; proposed, rejected, and unnecessary functions; fallback evidence; amendment routes",
+      "CoversScopeItems": "SOW-064",
+      "SupportsObjectives": "OBJ-006",
+      "ContextEnvelope": "M",
+      "ContextEnvelopeNotes": "M because the standing progression evidence spans the full DAG, capability cutovers, negative function dispositions, fallback proof, and human-gated amendment routes; keep one cohesive validation record",
+      "PhaseHint": "P1"
+    },
+    "qa": {
+      "DeliverableID": "DEL-10-10",
+      "PackageID": "PKG-10",
+      "ContextEnvelope": "M",
+      "Risk": "MEDIUM",
+      "RecommendedAction": "Hold envelope; validate as one standing progression record",
+      "Notes": "M because the record spans the full DAG, capability cutovers, negative function dispositions, fallback proof, and human-gated amendment routes; split only if evidence volume prevents one coherent progression"
+    }
+  },
+  "checks": {
+    "scope_id_uniqueness": true,
+    "deliverable_id_uniqueness": true,
+    "qa_id_uniqueness": true,
+    "all_in_have_one_package": true,
+    "all_in_have_one_deliverable": true,
+    "scope_refs_resolve": true,
+    "package_lineage": true,
+    "deliverable_refs_resolve": true,
+    "bidirectional_mapping": true,
+    "qa_one_to_one": true,
+    "qa_envelope_parity": true,
+    "inventory_paths_exist": true,
+    "companion_inventory_byte_identical": true,
+    "expected_package_set": true,
+    "expected_objective_set": true,
+    "target_lineage": true,
+    "target_envelope": true,
+    "target_type_phase": true,
+    "revision_anchor": true,
+    "c16_once": true,
+    "dl16_once": true,
+    "history_1_1_once": true,
+    "plurality_guard": true,
+    "source_anchor": true,
+    "latest_current_basis": true,
+    "expected_counts": true,
+    "git_diff_check": true,
+    "path_fence_check": true
+  },
+  "failed_checks": [],
+  "file_sha256": {
+    "SOFTWARE_DECOMP.md": "cec996baa33ec164be0dc67eab6edc8a966e672825f3f8c06ab349c45a6ed4cf",
+    "ScopeLedger.csv": "73f3d34503beab2e102c62bfb6f3456e007ce1b30b3926e62fa27e6add0fc3bc",
+    "Deliverables.csv": "892125582c05dee54f486e92fb7a0a20e69b2469c6062815f4f8e2f3fc19932c",
+    "ContextBudgetQA.csv": "5c8d30994a99611b7023f8ac0995ee9a8efa0d2992f3c1a2683f4d2f9e8e2bef",
+    "Companion_Inventory.csv": "18793e150c537371f80d659af2784674d42bac0de37bf7128e484774a557ec23",
+    "_LATEST.md": "812967740119de1b06bf256f6c9c1748e62dea05031f84e703982cb0d09d3b46"
+  },
+  "pre_post": {
+    "topology_counts_unchanged": true,
+    "status_counts_unchanged": true,
+    "companion_inventory_unchanged": true,
+    "expected_deltas": {
+      "obj006_scope_items": [
+        8,
+        9
+      ],
+      "obj006_deliverables": [
+        8,
+        9
+      ],
+      "context_envelopes": [
+        {
+          "S": 29,
+          "M": 33,
+          "L": 2
+        },
+        {
+          "S": 28,
+          "M": 34,
+          "L": 2
+        }
+      ],
+      "in_without_objective": [
+        32,
+        31
+      ]
+    }
+  },
+  "overall_status": "PASS_WITH_EXPECTED_AUDIT_WARNING",
+  "closure_state": "CLOSED_FOR_SCOPE_CHANGE_ONLY",
+  "remaining_gate": null
+}
