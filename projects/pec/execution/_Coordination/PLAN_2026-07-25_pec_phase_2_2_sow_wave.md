@@ -6,19 +6,19 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
-`STEP 4 BATCH B3 COMPLETE AT FAN-IN — B2 owner-cleared (bfc741e0d);
-owner released B3–B8 to internal fan-in at the B2 halt-review. B3
-(DEL-02-01..06, six PKG-02 parsers) authored 6/6 first-pass PASS;
-refutation (1 CRIT + 3 MAJ + 8 MIN; CRIT = DEL-02-06 PEC-GAT-004
-mis-assignment) → one sealed revision dispatch, 15/15 applied,
-re-verified; status act 6/6. Census 18 INITIALIZED / 46 OPEN (ladder
-match). Blocker 42/22 (+1 = exactly B4 member DEL-03-01). Deriver
-row-union discovery routed as REQUEST item 8 (back-scan: accepted
-contracts conservative, no revision). Fan-in records
-WAVE_D-PEC-63/BATCH_B{1,2,3}_FANIN.md. NEXT: B4 = DEL-03-01 (single),
-then B5–B8 per §1 tier table, internal fan-in, per-batch refutation;
-owner returns at wave closure unless FAIL/CONFLICT/scope violation
-re-arms a halt. docs/STATUS.md four-line fix still authorized,
+`STEP 4 BATCH B4 COMPLETE AT FAN-IN — B3 committed (75bd4eaee). B4
+(DEL-03-01, convergence node, 11 upstream contracts bound) authored
+first-pass PASS; refutation (0 CRIT + 3 MAJ + 7 MIN; CON-001
+"generated views" negatives corrected to a D-GOV-01-anchored
+instance-level gap) → revision 10/10 applied, re-verified; status act
+1/1. Census 19 INITIALIZED / 45 OPEN (ladder match). Blocker 33/31
+(+9; all six B5 members unblocked; DEL-03-05/DEL-05-01/DEL-05-02
+unblocked but out-of-wave). Fan-in records
+WAVE_D-PEC-63/BATCH_B{1..4}_FANIN.md. NEXT: B5 = DEL-03-02..04,
+DEL-04-01, DEL-10-02, DEL-10-10 (three C-08 standing nodes;
+DEL-04-01 has the wave's first DECLARED edge E-A27), then B6-B8;
+internal fan-in, per-batch refutation; owner returns at wave closure
+unless a halt re-arms. docs/STATUS.md four-line fix still authorized,
 unexecuted (scheduled at D-PEC-63 closure).`
 
 ---
