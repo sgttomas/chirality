@@ -1,5 +1,5 @@
 import { app, BrowserWindow, dialog, ipcMain } from 'electron';
-import { existsSync } from 'node:fs';
+import { existsSync, mkdirSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import type { AddressInfo } from 'node:net';
@@ -8,11 +8,27 @@ import { RuntimeClient } from '@chirality/runtime-client';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
 import { installBundledCliLauncher } from './cli-launcher';
 import {
+  createDesktopLogger,
+  createNoopDesktopLogger,
+  type DesktopLogger
+} from './desktop-log';
+import {
+  resolveDaemonActivationPolicy,
+  resolveUserDataOverride
+} from './desktop-process-policy';
+import {
   applyDesktopProjectBinding,
   prepareDesktopHarnessEnvironment,
   resolveDesktopProjectBinding
 } from './desktop-project-client';
 import { startRuntimeHost, type RuntimeHost } from './runtime-host';
+import {
+  createRuntimeBindingSupervisor,
+  RUNTIME_CONNECTIVITY_CHANGED_CHANNEL,
+  RUNTIME_CONNECTIVITY_QUERY_CHANNEL,
+  type RuntimeBindingSupervisor,
+  type RuntimeConnectivitySnapshot
+} from './runtime-connectivity';
 import {
   createDesktopDaemonLifecycle,
   registerRuntimeControlHandlers,
@@ -44,7 +60,110 @@ const RENDERER_EGRESS_FILTER_URLS = ['http://*/*', 'https://*/*', 'ws://*/*', 'w
 let rendererServer: RendererServer | undefined;
 let runtimeHost: RuntimeHost | undefined;
 let shutdownStarted = false;
+/**
+ * Whether an exit has been authorized by a path we control (a signal from
+ * launchd, or our own failure handling). Used to veto externally requested
+ * quits in daemon mode; see the `before-quit` handler.
+ */
+let shutdownAuthorized = false;
+let bindingSupervisor: RuntimeBindingSupervisor | undefined;
+let desktopLogger: DesktopLogger = createNoopDesktopLogger();
 const runtimeDaemonMode = process.argv.includes('--runtime-daemon');
+
+/**
+ * Honor `CHIRALITY_USER_DATA` for the app itself.
+ *
+ * The bundled `chirality` CLI and `@chirality/runtime-cli` already resolve their
+ * runtime directory from `CHIRALITY_USER_DATA`, but the app hard-coded
+ * Electron's default (`<appData>/chirality-frontend`). The two therefore
+ * disagreed by default, and documented CLI commands pointed at a runtime
+ * directory the app never used. Honoring the same variable here makes one
+ * variable pin *both* sides to one runtime directory, and lets a verification
+ * run drive a fully isolated app + daemon + LaunchAgent triple without touching
+ * an operator's real userData.
+ *
+ * Must run before anything reads `app.getPath('userData')` and before `ready`,
+ * because the value also selects the Chromium profile directory. Relative values
+ * are rejected rather than resolved against an unpredictable cwd (launchd starts
+ * jobs in `/`). `app.setPath` throws when the directory is absent, so create it
+ * first. Applies to packaged and unpackaged runs alike — an env override that
+ * silently only worked in one of them would be worse than none.
+ */
+function applyUserDataOverride(): void {
+  const override = resolveUserDataOverride(process.env);
+  if (override.kind === 'absent') {
+    return;
+  }
+  if (override.kind === 'rejected') {
+    console.warn(
+      'Ignoring CHIRALITY_USER_DATA because it is not an absolute path',
+      JSON.stringify({ requested: override.requested })
+    );
+    return;
+  }
+  try {
+    mkdirSync(override.directory, { recursive: true, mode: 0o700 });
+    app.setPath('userData', override.directory);
+  } catch (error) {
+    console.error(
+      'Failed to apply CHIRALITY_USER_DATA override',
+      error instanceof Error ? error.message : String(error)
+    );
+  }
+}
+
+/**
+ * Shed the daemon's *app* identity while keeping it an Electron process.
+ *
+ * The daemon is the same bundle relaunched with `--runtime-daemon`, so without
+ * this it comes up as an ordinary macOS application: Dock tile, menu bar, and —
+ * decisively — a LaunchServices-visible, activatable instance of
+ * `Chirality.app`. Opening the app from Finder/Dock then resolves against that
+ * headless instance instead of starting the GUI, and the operator-visible effect
+ * is "launching the GUI killed the daemon".
+ *
+ * `'prohibited'` is the strongest available posture ("doesn't appear in the Dock
+ * and may not create windows or be activated") and is safe here precisely
+ * because the daemon never creates a BrowserWindow. `'accessory'` remains
+ * selectable through `CHIRALITY_DAEMON_ACTIVATION_POLICY` for comparison drills.
+ *
+ * safeStorage is unaffected: on macOS `safeStorage.isEncryptionAvailable()`
+ * "returns true if Keychain is available" — it is gated on Keychain access, not
+ * on NSApplication activation, a Dock tile, or a window. (Unlike Linux/Windows
+ * it is not even gated on `ready`.) Keychain prompts are drawn by the system
+ * security agent, not by this process's NSApplication.
+ *
+ * Called both at module scope and again after `ready`: the early call avoids a
+ * visible Dock flash during launch, the later one is the belt-and-braces value
+ * in case activation policy is reset while NSApplication finishes coming up.
+ */
+function applyDaemonActivationPolicy(): void {
+  if (process.platform !== 'darwin') {
+    return;
+  }
+  const policy = resolveDaemonActivationPolicy(process.env);
+  try {
+    app.setActivationPolicy(policy);
+  } catch (error) {
+    console.warn(
+      'Failed to set the runtime daemon activation policy',
+      JSON.stringify({ policy, error: error instanceof Error ? error.message : String(error) })
+    );
+  }
+  if (policy === 'regular') {
+    return;
+  }
+  try {
+    app.dock?.hide();
+  } catch {
+    // A hidden or absent Dock tile is already the desired end state.
+  }
+}
+
+applyUserDataOverride();
+if (runtimeDaemonMode) {
+  applyDaemonActivationPolicy();
+}
 
 type RendererEgressPolicyDecision =
   | { allowed: true }
@@ -430,28 +549,71 @@ async function configureDesktopHarnessClient(
   applyDesktopProjectBinding(process.env, binding);
 }
 
+/** Push a connectivity transition to every live renderer. */
+function broadcastRuntimeConnectivity(snapshot: RuntimeConnectivitySnapshot): void {
+  for (const window of BrowserWindow.getAllWindows()) {
+    if (window.isDestroyed()) {
+      continue;
+    }
+    window.webContents.send(RUNTIME_CONNECTIVITY_CHANGED_CHANNEL, snapshot);
+  }
+}
+
+async function registerRuntimeConnectivityHandler(): Promise<void> {
+  ipcMain.removeHandler(RUNTIME_CONNECTIVITY_QUERY_CHANNEL);
+  ipcMain.handle(
+    RUNTIME_CONNECTIVITY_QUERY_CHANNEL,
+    async (): Promise<RuntimeConnectivitySnapshot | null> =>
+      bindingSupervisor?.snapshot() ?? null
+  );
+}
+
 async function initializeGui(): Promise<void> {
   const control = runtimeControlPaths();
+  desktopLogger = createDesktopLogger({
+    directory: path.join(app.getPath('userData'), 'logs')
+  });
   const runtimeClient = new RuntimeClient({
     socketPath: control.socketPath,
     tokenFile: control.operatorTokenFile
   });
   registerApiKeyHandlers(runtimeClient);
   await registerDirectorySelectionHandler();
+  await registerRuntimeConnectivityHandler();
   process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
+  desktopLogger.info('desktop.gui.starting', {
+    packaged: app.isPackaged,
+    userData: app.getPath('userData'),
+    socketPath: control.socketPath
+  });
 
   if (app.isPackaged) {
     await installBundledCliLauncher().catch((error) => {
-      console.error('Failed to install bundled Chirality CLI launcher', error);
+      desktopLogger.error('desktop.cli_launcher.install_failed', error);
     });
   }
 
-  await configureDesktopHarnessClient(runtimeClient, control).catch((error) => {
-    console.warn(
-      'Desktop harness routes remain disabled until app-dev is registered without drift',
-      error instanceof Error ? error.message : 'project binding unavailable'
-    );
+  // Binding is a supervised main-process concern, not a one-shot startup step:
+  // a daemon that is down at this instant, or that dies later, must not leave the
+  // window permanently unable to reach the runtime. `start()` still awaits the
+  // first attempt so a healthy daemon is fully bound before the window appears.
+  bindingSupervisor = createRuntimeBindingSupervisor({
+    bind: () => configureDesktopHarnessClient(runtimeClient, control),
+    probe: async () => {
+      try {
+        await runtimeClient.daemonStatus();
+        return true;
+      } catch {
+        return false;
+      }
+    },
+    onStateChange: (snapshot) => {
+      desktopLogger.info('runtime.connectivity.state', snapshot);
+      broadcastRuntimeConnectivity(snapshot);
+    },
+    log: (level, event, detail) => desktopLogger.log(level, event, detail)
   });
+  await bindingSupervisor.start();
 
   const rendererUrl = app.isPackaged
     ? (rendererServer = await startPackagedRendererServer()).url
@@ -463,8 +625,10 @@ async function initializeGui(): Promise<void> {
     desktopExecutable: app.getPath('exe'),
     packaged: app.isPackaged,
     rendererOrigin: new URL(rendererUrl).origin,
+    // An operator action that makes the daemon reachable should not have to wait
+    // out the backoff ladder.
     onDaemonAvailable: async () => {
-      await configureDesktopHarnessClient(runtimeClient, control);
+      await bindingSupervisor?.refreshNow();
     }
   });
 
@@ -478,20 +642,44 @@ async function initializeGui(): Promise<void> {
 }
 
 async function initializeDaemon(): Promise<void> {
+  // Re-assert the headless posture now that NSApplication is fully up.
+  applyDaemonActivationPolicy();
+  desktopLogger = createDesktopLogger({
+    directory: path.join(app.getPath('userData'), 'logs'),
+    fileName: 'desktop-daemon.log'
+  });
   process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
+  desktopLogger.info('runtime.daemon.starting', {
+    activationPolicy: resolveDaemonActivationPolicy(process.env),
+    packaged: app.isPackaged,
+    userData: app.getPath('userData'),
+    pid: process.pid
+  });
   runtimeHost = await startRuntimeHost();
-  console.info('[chirality-runtime-daemon]', {
+  desktopLogger.info('runtime.daemon.started', {
     socketPath: runtimeHost.socketPath,
     runtimeDirectory: runtimeHost.runtimeDirectory
   });
 }
 
-async function shutdown(exitCode = 0): Promise<void> {
+async function shutdown(exitCode = 0, reason = 'unspecified'): Promise<void> {
   if (shutdownStarted) {
     return;
   }
   shutdownStarted = true;
+  // Logged first: the reason a daemon exited is exactly the evidence that was
+  // missing when a clean `exit(0)` at GUI-launch time had to be diagnosed from
+  // launchd bookkeeping alone.
+  desktopLogger.info('desktop.shutdown.started', {
+    reason,
+    exitCode,
+    daemonMode: runtimeDaemonMode,
+    pid: process.pid
+  });
+  bindingSupervisor?.stop();
+  bindingSupervisor = undefined;
   ipcMain.removeHandler(SELECT_DIRECTORY_CHANNEL);
+  ipcMain.removeHandler(RUNTIME_CONNECTIVITY_QUERY_CHANNEL);
   unregisterApiKeyHandlers();
   unregisterRuntimeControlHandlers();
 
@@ -500,7 +688,7 @@ async function shutdown(exitCode = 0): Promise<void> {
       await runtimeHost.stop();
     } catch (error) {
       exitCode = 1;
-      console.error('Failed closing shared runtime daemon', error);
+      desktopLogger.error('runtime.daemon.stop_failed', error);
     }
     runtimeHost = undefined;
   }
@@ -510,10 +698,11 @@ async function shutdown(exitCode = 0): Promise<void> {
       await rendererServer.close();
     } catch (error) {
       exitCode = 1;
-      console.error('Failed closing packaged renderer server', error);
+      desktopLogger.error('desktop.renderer_server.close_failed', error);
     }
     rendererServer = undefined;
   }
+  desktopLogger.info('desktop.shutdown.exiting', { reason, exitCode });
   app.exit(exitCode);
 }
 
@@ -527,13 +716,12 @@ app
     await initializeGui();
   })
   .catch((error) => {
-    console.error(
-      runtimeDaemonMode
-        ? 'Failed to initialize shared runtime daemon'
-        : 'Failed to initialize renderer client',
-      error
+    desktopLogger.error(
+      runtimeDaemonMode ? 'runtime.daemon.initialize_failed' : 'desktop.gui.initialize_failed',
+      error instanceof Error ? error.message : String(error)
     );
-    void shutdown(1);
+    shutdownAuthorized = true;
+    void shutdown(1, 'initialize-failed');
   });
 
 app.on('window-all-closed', () => {
@@ -543,14 +731,50 @@ app.on('window-all-closed', () => {
 });
 
 app.on('before-quit', (event) => {
+  // A service must not be quittable by the window server. The daemon shares its
+  // bundle with the GUI, so anything macOS aims at "Chirality.app" — a Dock
+  // Quit, a Cmd-Q, an AppleEvent quit accompanying a LaunchServices launch —
+  // arrives here and would previously end the daemon with a clean `exit(0)`,
+  // silently and unrecoverably. Only a signal-driven or self-initiated shutdown
+  // is honored; launchd retains full control because `bootout`/`kickstart -k`
+  // work by signal (and SIGKILL remains uncatchable either way).
+  if (runtimeDaemonMode && !shutdownAuthorized) {
+    event.preventDefault();
+    desktopLogger.warn('runtime.daemon.quit_request_vetoed', {
+      pid: process.pid,
+      hint: 'use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon'
+    });
+    return;
+  }
   if (!shutdownStarted && (runtimeHost !== undefined || rendererServer !== undefined)) {
     event.preventDefault();
-    void shutdown();
+    void shutdown(0, 'before-quit');
   }
 });
 
+if (runtimeDaemonMode) {
+  // Diagnostics only. `activate` firing in the daemon is the direct signature of
+  // macOS resolving a launch of the app bundle against this headless instance
+  // instead of starting the GUI, which is the mechanism the activation policy
+  // above is meant to remove. Recording it makes the hypothesis falsifiable in
+  // an isolated verification run.
+  app.on('activate', () => {
+    desktopLogger.warn('runtime.daemon.activate_received', { pid: process.pid });
+  });
+  app.on('open-file', (_event, filePath) => {
+    desktopLogger.warn('runtime.daemon.open_file_received', { filePath });
+  });
+  app.on('open-url', () => {
+    desktopLogger.warn('runtime.daemon.open_url_received', { pid: process.pid });
+  });
+  app.on('second-instance', () => {
+    desktopLogger.warn('runtime.daemon.second_instance_received', { pid: process.pid });
+  });
+}
+
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
   process.once(signal, () => {
-    void shutdown(signal === 'SIGINT' ? 130 : 0);
+    shutdownAuthorized = true;
+    void shutdown(signal === 'SIGINT' ? 130 : 0, `signal:${signal}`);
   });
 }

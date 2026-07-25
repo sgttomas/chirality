@@ -3751,3 +3751,97 @@ button:disabled {
 .woven-replay-provenance dl {
   grid-template-columns: minmax(4.5rem, max-content) minmax(0, 1fr);
 }
+
+/* ═══ Runtime-connectivity indicator (Stage A, TRB-APPDEV-DAEMON-SERVICE) ═════
+   The top bar previously reported only the working root, so a valid root plus an
+   unreachable daemon looked identical to a healthy app while every harness
+   request failed. This adds the second axis as a sibling chip.
+
+   Built from the existing chip geometry and the existing semantic tokens only —
+   sage for healthy (matching `.shell-root-dot--ready`), slate for in-progress
+   (matching `.harness-status-badge--running`), danger for offline. No new
+   tokens. */
+.shell-runtime-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  padding: 0.22rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--ground);
+  color: var(--ink-soft);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.shell-runtime-chip--ready {
+  color: var(--sage-ink);
+  border-color: var(--sage-soft);
+  background: var(--sage-soft);
+}
+
+.shell-runtime-chip--pending {
+  color: var(--slate-ink);
+  border-color: var(--slate-soft);
+  background: var(--slate-soft);
+}
+
+.shell-runtime-chip--error {
+  color: var(--danger);
+  border-color: var(--danger-soft);
+  background: var(--danger-soft);
+}
+
+.shell-runtime-chip-key {
+  font-size: 0.66rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.shell-runtime-chip--ready .shell-runtime-chip-key,
+.shell-runtime-chip--pending .shell-runtime-chip-key,
+.shell-runtime-chip--error .shell-runtime-chip-key {
+  color: inherit;
+  opacity: 0.72;
+}
+
+.shell-runtime-chip-value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shell-runtime-dot {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+
+.shell-runtime-dot--ready {
+  background: var(--sage);
+}
+
+.shell-runtime-dot--pending {
+  background: var(--slate);
+}
+
+.shell-runtime-dot--error {
+  background: var(--danger);
+}
+
+/* The top bar is already tight at narrow widths; the dot alone still carries the
+   state, and the full reason stays available through the chip's title. */
+@media (max-width: 860px) {
+  .shell-runtime-chip-key,
+  .shell-runtime-chip-value {
+    display: none;
+  }
+
+  .shell-runtime-chip {
+    padding: 0.22rem 0.4rem;
+  }
+}

@@ -1,4 +1,9 @@
 import { contextBridge, ipcRenderer } from 'electron';
+import {
+  RUNTIME_CONNECTIVITY_CHANGED_CHANNEL,
+  RUNTIME_CONNECTIVITY_QUERY_CHANNEL,
+  type RuntimeConnectivitySnapshot
+} from './runtime-connectivity';
 
 const SELECT_DIRECTORY_CHANNEL = 'chirality:select-directory';
 const API_KEY_STORE_CHANNEL = 'chirality:api-key-store';
@@ -33,6 +38,26 @@ contextBridge.exposeInMainWorld('chirality', {
       ipcRenderer.invoke(PROVIDER_API_KEY_STATUS_CHANNEL, providerId)
   },
   runtime: {
+    /**
+     * Runtime-daemon connectivity as the main process sees it. `get()` is for
+     * mount-time hydration; `subscribe()` receives every later transition so the
+     * top bar reflects a daemon that dies or returns without the renderer
+     * polling. The unsubscribe function must be called on unmount — the listener
+     * is held by `ipcRenderer`, which outlives any React tree.
+     */
+    connectivity: {
+      get: (): Promise<RuntimeConnectivitySnapshot | null> =>
+        ipcRenderer.invoke(RUNTIME_CONNECTIVITY_QUERY_CHANNEL),
+      subscribe: (listener: (snapshot: RuntimeConnectivitySnapshot) => void): (() => void) => {
+        const handler = (_event: unknown, snapshot: RuntimeConnectivitySnapshot): void => {
+          listener(snapshot);
+        };
+        ipcRenderer.on(RUNTIME_CONNECTIVITY_CHANGED_CHANNEL, handler);
+        return () => {
+          ipcRenderer.removeListener(RUNTIME_CONNECTIVITY_CHANGED_CHANNEL, handler);
+        };
+      }
+    },
     daemon: {
       install: () => ipcRenderer.invoke(RUNTIME_DAEMON_CONTROL_CHANNEL, 'install'),
       start: () => ipcRenderer.invoke(RUNTIME_DAEMON_CONTROL_CHANNEL, 'start'),

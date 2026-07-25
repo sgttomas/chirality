@@ -1,0 +1,238 @@
+import React from 'react';
+import renderer, { act, type ReactTestRenderer } from 'react-test-renderer';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import type { RuntimeConnectivitySnapshot } from '../../lib/shell/runtime-connectivity';
+
+/**
+ * Coverage for the runtime-connectivity indicator the top bar gained alongside
+ * the existing working-root chip. Kept in its own file because it needs a
+ * `window` with a desktop bridge, which the working-root tests deliberately run
+ * without.
+ *
+ * Same conventions as `shell-frame.test.tsx`: node environment, react-test-renderer,
+ * class-name traversal, no CSS assertions.
+ */
+
+type WorkspaceFixture = {
+  projectRoot: string | null;
+  hasElectronDirectoryPicker: boolean;
+  errorMessage: string | null;
+  clearError: () => void;
+  applyProjectRoot: (path: string) => Promise<void>;
+  chooseProjectRoot: () => Promise<void>;
+  clearProjectRoot: () => void;
+};
+
+const workspace = vi.hoisted(() => ({ value: null as unknown }));
+
+vi.mock('next/navigation', () => ({ usePathname: () => '/' }));
+vi.mock('next/link', () => ({
+  default: ({ children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) =>
+    React.createElement('a', props, children)
+}));
+vi.mock('../../components/workspace/workspace-provider', () => ({
+  useWorkspace: () => workspace.value
+}));
+vi.mock('../../components/settings/api-key-settings', () => ({ ApiKeySettings: () => null }));
+vi.mock('../../components/settings/runtime-settings', () => ({ RuntimeSettings: () => null }));
+
+function snapshot(
+  overrides: Partial<RuntimeConnectivitySnapshot> = {}
+): RuntimeConnectivitySnapshot {
+  return {
+    state: 'connected',
+    failedAttempts: 0,
+    lastError: null,
+    changedAt: '2026-07-25T12:00:00.000Z',
+    ...overrides
+  };
+}
+
+type BridgeHarness = {
+  push: (next: RuntimeConnectivitySnapshot) => void;
+  unsubscribeCalls: () => number;
+  listenerCount: () => number;
+};
+
+/** Install a fake desktop connectivity bridge on the global `window`. */
+function installBridge(initial: RuntimeConnectivitySnapshot | null): BridgeHarness {
+  const listeners = new Set<(value: RuntimeConnectivitySnapshot) => void>();
+  let unsubscribeCalls = 0;
+  Object.assign(globalThis, {
+    window: {
+      chirality: {
+        runtime: {
+          connectivity: {
+            get: async () => initial,
+            subscribe: (listener: (value: RuntimeConnectivitySnapshot) => void) => {
+              listeners.add(listener);
+              return () => {
+                unsubscribeCalls += 1;
+                listeners.delete(listener);
+              };
+            }
+          }
+        }
+      }
+    }
+  });
+  return {
+    push: (next) => {
+      for (const listener of listeners) {
+        listener(next);
+      }
+    },
+    unsubscribeCalls: () => unsubscribeCalls,
+    listenerCount: () => listeners.size
+  };
+}
+
+async function renderShell(): Promise<ReactTestRenderer> {
+  Object.assign(globalThis, { React });
+  const { ShellFrame } = await import('../../components/shell/shell-frame');
+  let tree!: ReactTestRenderer;
+  await act(async () => {
+    tree = renderer.create(
+      <ShellFrame section="PORTAL" title="Portal" subtitle="Workspace">
+        <div>content</div>
+      </ShellFrame>
+    );
+  });
+  return tree;
+}
+
+function textOf(node: renderer.ReactTestInstance): string {
+  return node.children
+    .map((child) => (typeof child === 'string' ? child : textOf(child)))
+    .join('');
+}
+
+function findRuntimeChip(tree: ReactTestRenderer): renderer.ReactTestInstance | null {
+  const matches = tree.root.findAll(
+    (node) => String(node.props.className ?? '').startsWith('shell-runtime-chip ')
+  );
+  return matches[0] ?? null;
+}
+
+function findRuntimeDot(tree: ReactTestRenderer): renderer.ReactTestInstance | null {
+  const matches = tree.root.findAll(
+    (node) => String(node.props.className ?? '').startsWith('shell-runtime-dot ')
+  );
+  return matches[0] ?? null;
+}
+
+describe('ShellFrame runtime connectivity indicator', () => {
+  beforeEach(() => {
+    workspace.value = {
+      projectRoot: '/tmp/execution-root',
+      hasElectronDirectoryPicker: true,
+      errorMessage: null,
+      clearError: vi.fn(),
+      applyProjectRoot: vi.fn(),
+      chooseProjectRoot: vi.fn(),
+      clearProjectRoot: vi.fn()
+    } satisfies WorkspaceFixture;
+  });
+
+  afterEach(() => {
+    delete (globalThis as { window?: unknown }).window;
+  });
+
+  it('renders no runtime chip when there is no desktop bridge', async () => {
+    const tree = await renderShell();
+    expect(findRuntimeChip(tree)).toBeNull();
+    expect(findRuntimeDot(tree)).toBeNull();
+  });
+
+  it('renders no runtime chip when the bridge reports no snapshot yet', async () => {
+    installBridge(null);
+    const tree = await renderShell();
+    expect(findRuntimeChip(tree)).toBeNull();
+  });
+
+  it('shows a connected runtime with the healthy tone', async () => {
+    installBridge(snapshot());
+    const tree = await renderShell();
+
+    const chip = findRuntimeChip(tree);
+    expect(chip?.props.className).toBe('shell-runtime-chip shell-runtime-chip--ready');
+    expect(chip?.props.title).toBe('Runtime daemon connected');
+    expect(chip?.props.role).toBe('status');
+    expect(findRuntimeDot(tree)?.props.className).toBe(
+      'shell-runtime-dot shell-runtime-dot--ready'
+    );
+    expect(textOf(chip as renderer.ReactTestInstance)).toBe('runtimeconnected');
+  });
+
+  it('shows an offline runtime with the failure reason in the title', async () => {
+    installBridge(
+      snapshot({ state: 'disconnected', failedAttempts: 2, lastError: 'socket refused' })
+    );
+    const tree = await renderShell();
+
+    const chip = findRuntimeChip(tree);
+    expect(chip?.props.className).toBe('shell-runtime-chip shell-runtime-chip--error');
+    expect(chip?.props.title).toBe(
+      'Runtime daemon unreachable after 2 attempts: socket refused'
+    );
+    expect(findRuntimeDot(tree)?.props.className).toBe(
+      'shell-runtime-dot shell-runtime-dot--error'
+    );
+  });
+
+  it('transitions the indicator when the main process pushes a new state', async () => {
+    const bridge = installBridge(snapshot({ state: 'disconnected', failedAttempts: 1 }));
+    const tree = await renderShell();
+    expect(findRuntimeChip(tree)?.props.className).toBe(
+      'shell-runtime-chip shell-runtime-chip--error'
+    );
+
+    // This is the behaviour the previous single-shot binding could not deliver: a
+    // daemon that comes back updates the bar with no renderer-initiated call.
+    await act(async () => {
+      bridge.push(snapshot({ state: 'connected', changedAt: '2026-07-25T12:00:05.000Z' }));
+    });
+
+    expect(findRuntimeChip(tree)?.props.className).toBe(
+      'shell-runtime-chip shell-runtime-chip--ready'
+    );
+    expect(findRuntimeChip(tree)?.props.title).toBe('Runtime daemon connected');
+  });
+
+  it('shows the pending tone while the first bind is still in flight', async () => {
+    installBridge(snapshot({ state: 'connecting' }));
+    const tree = await renderShell();
+    expect(findRuntimeChip(tree)?.props.className).toBe(
+      'shell-runtime-chip shell-runtime-chip--pending'
+    );
+    expect(textOf(findRuntimeChip(tree) as renderer.ReactTestInstance)).toBe(
+      'runtimeconnecting'
+    );
+  });
+
+  it('unsubscribes from the bridge on unmount', async () => {
+    const bridge = installBridge(snapshot());
+    const tree = await renderShell();
+    expect(bridge.listenerCount()).toBe(1);
+
+    await act(async () => {
+      tree.unmount();
+    });
+
+    expect(bridge.unsubscribeCalls()).toBe(1);
+    expect(bridge.listenerCount()).toBe(0);
+  });
+
+  it('leaves the working-root chip and its dot untouched', async () => {
+    installBridge(snapshot({ state: 'disconnected', lastError: 'gone' }));
+    const tree = await renderShell();
+
+    // The two indicators are independent axes; a dead runtime must not restyle a
+    // perfectly valid working root, and the root dot must stay singly addressable.
+    const rootDots = tree.root.findAll((node) =>
+      String(node.props.className ?? '').startsWith('shell-root-dot')
+    );
+    expect(rootDots).toHaveLength(1);
+    expect(rootDots[0]?.props.className).toBe('shell-root-dot shell-root-dot--ready');
+  });
+});

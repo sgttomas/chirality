@@ -122,11 +122,46 @@ async function daemonSnapshot(
   }
 }
 
+/**
+ * Project-specific LaunchAgent posture for Chirality Desktop.
+ *
+ * `@chirality/runtime-cli` stays generic per D-GOV-20: it exposes options whose
+ * defaults preserve the historical plist. The desktop-specific values are
+ * chosen here, in the caller:
+ *
+ * - `keepAlive: 'always'` — the observed failure mode is the daemon exiting
+ *   *cleanly* (`launchctl print` reported `last exit code = 0` with the
+ *   `successful exit` semaphore holding the job down). The previous
+ *   `crash-only` posture is by construction blind to that, so a daemon that was
+ *   quit by the window server / LaunchServices stayed dead. `always` restarts
+ *   the daemon after any exit; `bootout` (which this manager uses for `stop`)
+ *   still unloads the job, so operator stop semantics are unchanged.
+ * - `environmentVariables.CHIRALITY_USER_DATA` — launchd jobs inherit almost no
+ *   environment, and the generic CLI default userData path
+ *   (`~/Library/Application Support/Chirality`) is *not* the packaged app's
+ *   (`.../chirality-frontend`). Pinning it makes the daemon and every
+ *   `chirality` CLI invocation agree on one runtime directory.
+ * - label override — lets an isolated verification run install a parallel job
+ *   (distinct label, distinct userData) without touching an operator's real
+ *   `com.chirality.runtime` agent.
+ */
 export function createDesktopDaemonLifecycle(): RuntimeDaemonLifecycle {
-  return new LaunchAgentManager({
-    launchAgentsDirectory: path.join(app.getPath('home'), 'Library', 'LaunchAgents'),
-    runtimeDirectory: path.join(app.getPath('userData'), 'runtime')
-  });
+  const userData = app.getPath('userData');
+  const label = process.env.CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL?.trim();
+  return new LaunchAgentManager(
+    {
+      launchAgentsDirectory: path.join(app.getPath('home'), 'Library', 'LaunchAgents'),
+      runtimeDirectory: path.join(userData, 'runtime')
+    },
+    undefined,
+    undefined,
+    {
+      ...(label ? { label } : {}),
+      keepAlive: 'always',
+      runAtLoad: true,
+      environmentVariables: { CHIRALITY_USER_DATA: userData }
+    }
+  );
 }
 
 export function registerRuntimeControlHandlers(deps: RuntimeControlDependencies): void {
