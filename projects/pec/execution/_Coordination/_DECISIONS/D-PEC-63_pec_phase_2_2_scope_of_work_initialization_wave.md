@@ -209,14 +209,20 @@ which is why batch commits are mandatory.
 
 ## 7. Human ruling
 
-**PENDING — draft v2, re-pinned to revision 1.2 and refuted (R-3, 17
-findings applied; log in companion plan §6).** Proposed ruling text:
-"D-PEC-63 is RULED as drafted: the Phase 2.2 wave (32 deliverables,
-B1–B8, pilot-first cadence) may execute under the stated fence, status
-mechanism, and verification set, accepting the §3.1 skill-contract halt
-path." The ruling presentation also carries policy questions Q1
-(semantic-phase posture 2.3–2.5) and Q2 (tooling/skill-contract
-consolidation) from the companion plan §5. **Q1 is answerable without
-blocking the wave. Q2 is not fully so:** its INIT-mode companion-file
-item is exactly the §3.1 canary-halt risk — if it bites, the wave halts
-until HELPS_HUMANS lands the skill fix.
+**RULED 2026-07-25** — owner (Ryan Tufts) in-session, selecting the
+presented option verbatim: **"RULED as drafted (Recommended)"** — the
+Phase 2.2 wave (32 deliverables, B1–B8, pilot-first cadence) executes
+under the stated fence, status mechanism, and verification set,
+accepting the §3.1 skill-contract halt path.
+
+Policy rulings in the same act:
+- **Q1 = (b) "Declare semantic pipeline unused"** (verbatim option):
+  PEC skips SOFTWARE phases 2.3–2.5 entirely; after wave closure the
+  next owning workflow is WORKING_ITEMS activation. `_SEMANTIC.md`
+  scaffold files remain inert; no semantic-lensing packet will be
+  drafted for PEC absent a new owner act.
+- **Q2 = "Consolidation packet via HELPS_HUMANS (Recommended)"**
+  (verbatim option): PROJECT_SETUP drafts a routed request
+  (`../REQUEST_2026-07-25_helps_humans_tooling_consolidation.md`);
+  HELPS_HUMANS owns a single consolidation packet for the five defect
+  classes. The INIT-branch item is the wave's canary-halt dependency.
