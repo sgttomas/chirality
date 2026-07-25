@@ -191,6 +191,57 @@ describe('electron/api-key-ipc', () => {
     });
   });
 
+  // A status query used to reject straight into the renderer whenever the daemon
+  // was down: the client throws ENOENT on the operator token, which surfaced as an
+  // unhandled "Error occurred in handler for ..." on every launch without a
+  // running daemon. The state is reported as data instead.
+  it('reports an unreachable daemon as a structured status rather than throwing', async () => {
+    registerApiKeyHandlers(credentialClient);
+    const failure = Object.assign(
+      new Error("ENOENT: no such file or directory, open '/runtime/auth/tokens/operator.token'"),
+      { code: 'ENOENT' }
+    );
+    mocks.credentialStatus.mockRejectedValue(failure);
+
+    await expect(getHandler(API_KEY_STATUS_CHANNEL)({})).resolves.toEqual({
+      hasKey: false,
+      encryptionAvailable: false,
+      source: 'none',
+      unavailable: true,
+      error: failure.message
+    });
+  });
+
+  it('reports an unreachable daemon on the provider status channel too', async () => {
+    registerApiKeyHandlers(credentialClient);
+    mocks.credentialStatus.mockRejectedValue(new Error('connect ENOENT control.sock'));
+
+    await expect(
+      getHandler(PROVIDER_API_KEY_STATUS_CHANNEL)({}, 'omlx')
+    ).resolves.toMatchObject({ unavailable: true, hasKey: false, source: 'none' });
+  });
+
+  it('does not mark a real answer as unavailable', async () => {
+    registerApiKeyHandlers(credentialClient);
+    mocks.credentialStatus.mockResolvedValue({ configured: true });
+
+    const result = await getHandler(API_KEY_STATUS_CHANNEL)({});
+
+    expect(result).not.toHaveProperty('unavailable');
+    expect(result).toMatchObject({ hasKey: true, encryptionAvailable: true });
+  });
+
+  it('still rejects an unsupported provider before consulting the daemon', async () => {
+    registerApiKeyHandlers(credentialClient);
+    mocks.credentialStatus.mockRejectedValue(new Error('should not be called'));
+
+    await expect(getHandler(PROVIDER_API_KEY_STATUS_CHANNEL)({}, 'nope')).resolves.toEqual({
+      ok: false,
+      error: 'Unsupported credential provider'
+    });
+    expect(mocks.credentialStatus).not.toHaveBeenCalled();
+  });
+
   it('unregisters all handlers', () => {
     registerApiKeyHandlers(credentialClient);
     unregisterApiKeyHandlers();

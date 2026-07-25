@@ -14,6 +14,12 @@ export type ApiKeyStatusResult = {
   hasKey: boolean;
   encryptionAvailable: boolean;
   source: 'ui' | 'env' | 'none';
+  /**
+   * Set when the daemon could not be reached at all, so the renderer can tell
+   * "no key stored" apart from "cannot currently tell". Absent on a real answer.
+   */
+  unavailable?: true;
+  error?: string;
 };
 
 export type ApiKeyStoreResult = {
@@ -43,6 +49,43 @@ function invalidProviderResult(): ApiKeyStoreResult {
   return { ok: false, error: 'Unsupported credential provider' };
 }
 
+/**
+ * Credential status when the daemon cannot be reached.
+ *
+ * A status *query* must not reject into the renderer. When the daemon is down the
+ * client throws (`ENOENT` on the operator token or the control socket), which
+ * surfaced as an unhandled `Error occurred in handler for …` on the IPC channel
+ * every time the app started without a running daemon. The connectivity
+ * indicator already reports that state; this returns it as data instead.
+ */
+function unavailableStatusResult(error: unknown): ApiKeyStatusResult {
+  return {
+    hasKey: false,
+    encryptionAvailable: false,
+    source: 'none',
+    unavailable: true,
+    error: error instanceof Error ? error.message : 'Runtime daemon unavailable'
+  };
+}
+
+async function credentialStatusResult(
+  client: DaemonCredentialClient,
+  providerId: ProviderCredentialId
+): Promise<ApiKeyStatusResult> {
+  let status: { configured: boolean };
+  try {
+    status = await client.credentialStatus(providerId);
+  } catch (error) {
+    return unavailableStatusResult(error);
+  }
+  const envKey = hasEnvironmentKey(providerId);
+  return {
+    hasKey: status.configured,
+    encryptionAvailable: true,
+    source: status.configured ? (envKey ? 'env' : 'ui') : 'none'
+  };
+}
+
 export function registerApiKeyHandlers(client: DaemonCredentialClient): void {
   unregisterApiKeyHandlers();
 
@@ -67,15 +110,10 @@ export function registerApiKeyHandlers(client: DaemonCredentialClient): void {
     }
   });
 
-  ipcMain.handle(API_KEY_STATUS_CHANNEL, async (): Promise<ApiKeyStatusResult> => {
-    const status = await client.credentialStatus('anthropic');
-    const envKey = hasEnvironmentKey('anthropic');
-    return {
-      hasKey: status.configured,
-      encryptionAvailable: true,
-      source: status.configured ? (envKey ? 'env' : 'ui') : 'none'
-    };
-  });
+  ipcMain.handle(
+    API_KEY_STATUS_CHANNEL,
+    async (): Promise<ApiKeyStatusResult> => credentialStatusResult(client, 'anthropic')
+  );
 
   ipcMain.handle(
     PROVIDER_API_KEY_STORE_CHANNEL,
@@ -116,13 +154,7 @@ export function registerApiKeyHandlers(client: DaemonCredentialClient): void {
       if (!isProviderCredentialId(providerId)) {
         return invalidProviderResult();
       }
-      const status = await client.credentialStatus(providerId);
-      const envKey = hasEnvironmentKey(providerId);
-      return {
-        hasKey: status.configured,
-        encryptionAvailable: true,
-        source: status.configured ? (envKey ? 'env' : 'ui') : 'none'
-      };
+      return credentialStatusResult(client, providerId);
     }
   );
 }

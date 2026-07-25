@@ -2,6 +2,10 @@ import { app, ipcMain } from 'electron';
 import path from 'node:path';
 import { LaunchAgentManager, type LaunchAgentStatus } from '@chirality/runtime-cli';
 import type { DaemonStatusResponse, ResidencyStatus } from '@chirality/runtime-contracts';
+import {
+  daemonPostureEnvironment,
+  resolveDesktopDaemonPosture
+} from './desktop-daemon-posture';
 
 export const RUNTIME_DAEMON_CONTROL_CHANNEL = 'chirality:runtime-daemon-control';
 export const RUNTIME_MODEL_STATUS_CHANNEL = 'chirality:runtime-model-status';
@@ -123,31 +127,22 @@ async function daemonSnapshot(
 }
 
 /**
- * Project-specific LaunchAgent posture for Chirality Desktop.
+ * Install the desktop daemon's LaunchAgent with the project's posture.
  *
- * `@chirality/runtime-cli` stays generic per D-GOV-20: it exposes options whose
- * defaults preserve the historical plist. The desktop-specific values are
- * chosen here, in the caller:
+ * Values come from `desktop-daemon-posture.ts`, which the generated `chirality`
+ * launcher also exports — so the in-app install and the documented
+ * `chirality daemon install` now render the same plist. They did not before
+ * (Stage V, V-D2).
  *
- * - `keepAlive: 'always'` — the observed failure mode is the daemon exiting
- *   *cleanly* (`launchctl print` reported `last exit code = 0` with the
- *   `successful exit` semaphore holding the job down). The previous
- *   `crash-only` posture is by construction blind to that, so a daemon that was
- *   quit by the window server / LaunchServices stayed dead. `always` restarts
- *   the daemon after any exit; `bootout` (which this manager uses for `stop`)
- *   still unloads the job, so operator stop semantics are unchanged.
- * - `environmentVariables.CHIRALITY_USER_DATA` — launchd jobs inherit almost no
- *   environment, and the generic CLI default userData path
- *   (`~/Library/Application Support/Chirality`) is *not* the packaged app's
- *   (`.../chirality-frontend`). Pinning it makes the daemon and every
- *   `chirality` CLI invocation agree on one runtime directory.
- * - label override — lets an isolated verification run install a parallel job
- *   (distinct label, distinct userData) without touching an operator's real
- *   `com.chirality.runtime` agent.
+ * The whole posture is pinned into the job's `EnvironmentVariables`, not just the
+ * runtime directory. launchd jobs inherit almost nothing, and the daemon needs to
+ * know its own label: when it spawns a GUI in response to an `activate`
+ * (V-D4), the child inherits the label and addresses the same job — which is what
+ * keeps an isolated verification run from reaching the operator's real one.
  */
 export function createDesktopDaemonLifecycle(): RuntimeDaemonLifecycle {
   const userData = app.getPath('userData');
-  const label = process.env.CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL?.trim();
+  const posture = resolveDesktopDaemonPosture(process.env, userData);
   return new LaunchAgentManager(
     {
       launchAgentsDirectory: path.join(app.getPath('home'), 'Library', 'LaunchAgents'),
@@ -156,10 +151,10 @@ export function createDesktopDaemonLifecycle(): RuntimeDaemonLifecycle {
     undefined,
     undefined,
     {
-      ...(label ? { label } : {}),
-      keepAlive: 'always',
-      runAtLoad: true,
-      environmentVariables: { CHIRALITY_USER_DATA: userData }
+      label: posture.label,
+      keepAlive: posture.keepAlive,
+      runAtLoad: posture.runAtLoad,
+      environmentVariables: daemonPostureEnvironment(posture)
     }
   );
 }

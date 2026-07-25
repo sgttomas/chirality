@@ -24,7 +24,11 @@ vi.mock('electron', () => ({
   ipcMain: mocks.ipcMain
 }));
 
-vi.mock('@chirality/runtime-cli', () => ({
+// Only the manager is replaced. The package's env-name and default-label
+// constants stay real, so this asserts against the contract the shipped code
+// reads rather than against a restatement of it.
+vi.mock('@chirality/runtime-cli', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@chirality/runtime-cli')>()),
   LaunchAgentManager: vi.fn()
 }));
 
@@ -245,7 +249,7 @@ describe('createDesktopDaemonLifecycle', () => {
     }
   });
 
-  it('pins always-restart and the app userData into the LaunchAgent', () => {
+  it('pins the whole posture, not just the runtime directory, into the LaunchAgent', () => {
     delete process.env.CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL;
 
     createDesktopDaemonLifecycle();
@@ -260,12 +264,18 @@ describe('createDesktopDaemonLifecycle', () => {
     expect(runner).toBeUndefined();
     expect(userId).toBeUndefined();
     // 'always', not the crash-only default: the observed daemon termination was a
-    // clean exit(0), which a SuccessfulExit=false semaphore never restarts.
+    // clean exit(0), which a SuccessfulExit=false semaphore never restarts. With
+    // the quit veto gone this restart contract is the whole of the stay-dead fix.
+    // The label is pinned into the job environment too, so a GUI the daemon spawns
+    // addresses the same job — the mechanism that keeps an isolated run isolated.
     expect(options).toEqual({
+      label: 'com.chirality.runtime',
       keepAlive: 'always',
       runAtLoad: true,
       environmentVariables: {
-        CHIRALITY_USER_DATA: '/Users/tester/Library/Application Support/Chirality'
+        CHIRALITY_USER_DATA: '/Users/tester/Library/Application Support/Chirality',
+        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: 'com.chirality.runtime',
+        CHIRALITY_RUNTIME_KEEP_ALIVE: 'always'
       }
     });
   });
@@ -276,14 +286,21 @@ describe('createDesktopDaemonLifecycle', () => {
     createDesktopDaemonLifecycle();
 
     const options = vi.mocked(LaunchAgentManager).mock.calls[0]?.[3];
-    expect(options).toMatchObject({ label: 'com.chirality.runtime.tranchetest' });
+    expect(options).toMatchObject({
+      label: 'com.chirality.runtime.tranchetest',
+      environmentVariables: {
+        CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: 'com.chirality.runtime.tranchetest'
+      }
+    });
   });
 
-  it('ignores a blank label override', () => {
+  it('falls back to the package default label when the override is blank', () => {
     process.env.CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL = '   ';
 
     createDesktopDaemonLifecycle();
 
-    expect(vi.mocked(LaunchAgentManager).mock.calls[0]?.[3]).not.toHaveProperty('label');
+    expect(vi.mocked(LaunchAgentManager).mock.calls[0]?.[3]).toMatchObject({
+      label: 'com.chirality.runtime'
+    });
   });
 });
