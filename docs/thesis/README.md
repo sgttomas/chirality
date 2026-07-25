@@ -65,6 +65,41 @@ An owner-revision backlog for the thesis is catalogued in `plans/consistency_aud
 
 *Revision note dated 2026-07-18 (completion pass).* Owner-directed follow-up extending the range correction to the remaining chapters: R1–R12 → R1–R17 in Chapter 1 (two occurrences), Chapter 2, Chapter 9, and Chapter 10. In the same Chapter 2 sentence, the series names "Runtime Invariants" and "Interaction Invariants" were corrected to the catalog's canonical "Workflow Design Requirements" and "Decomposition Invariants" (Appendix A §A.1–A.2) — the same narrative-behind-registry drift class. No other content changed. The thesis remains CITED/REVIEWED, not AUTHENTICATED.
 
+*Revision note dated 2026-07-24 (citations-and-meaning pass).* An
+agent-authored pass applied under owner direction; the prose of this pass is
+the agent's, not the owner's words, and carries the thesis's provisional
+status like everything else here. Scope: four adversarially verified
+references added to `references.md` and the Chapter 2 local blocks
+([Smith1985], [Naur1985], [Collins2010], [MacKenzie2001]); the
+limits-of-verification argument added to §2.3.5 and the software-practice
+precedents (Naur, Collins) to §2.5; [CITE:Smith1985] attached to Chapter 5's
+detection-over-prevention design statement; a positive from–to account of the
+record's subsidiary role added to §3.6.5 with a cross-reference from the
+Chapter 3 warrant lifecycle to Appendix D's interpretive reading (analogue,
+not definition, preserved); §9.2.6 added (over-proceduralization as displaced
+attention) and §9.3.5 sharpened with Collins on answerability-as-status. The
+thesis remains CITED/REVIEWED, not AUTHENTICATED — informative, not
+governance.
+
+*Revision note dated 2026-07-24 (coherence pass).* A second agent-authored
+pass applied under owner direction (the prose is the agent's, not the
+owner's words), resolving five stress points from a four-pillar coherence
+review: (1) the "cannot be mechanized" claim in §6.9.4 clarified as an
+institutional claim about answerability, not a speculation about machine
+cognition, aligning it with §9.3.5's stated agnosticism; (2) the two kinds
+of record — descriptive and constitutive — distinguished explicitly in
+§3.2.1, marking the seam the `Claim`/`Ruling` primitives already track;
+(3) architectural vs. justificatory priority distinguished in §3.4,
+resolving the apparent tension between "pillars serve the epistemology" and
+the axiological grounding of Chapter 6; (4) the category shift at
+REVIEWED → AUTHENTICATED flagged at the Chapter 3 lifecycle (evidential
+standing vs. normative standing), tied to §3.6 and Appendix D; (5) the
+"necessary condition" claim in §6.9.4 narrowed to demonstrable satisfaction
+of the mapped standards, and the axiology's thin formal treatment stated as
+deliberate in §3.2.4 ("thin in the document because it is thick in the
+knower"). The thesis remains CITED/REVIEWED, not AUTHENTICATED —
+informative, not governance.
+
 ## Five Novel Contributions
 
 1. **Epistemic architecture** — mandatory provenance, no-invention, conflict surfacing, epistemic labeling as a response to the LLM reliability problem

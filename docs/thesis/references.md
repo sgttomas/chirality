@@ -90,6 +90,10 @@ References are organized by category. A bibliographic verification pass was appl
 
 [Rushby1999] J. Rushby, "Partitioning in Avionics Architectures: Requirements, Mechanisms, and Assurance," NASA Contractor Report NASA/CR-1999-209347 (also issued as FAA report DOT/FAA/AR-99/58), SRI International, Menlo Park, CA, USA, Jun. 1999. [Online]. Available: https://ntrs.nasa.gov/api/citations/19990052867/downloads/19990052867.pdf
 
+[Smith1985] B. C. Smith, "The Limits of Correctness," *ACM SIGCAS Computers and Society*, vol. 14–15, no. 1–4, pp. 18–26, Jan. 1985. doi: 10.1145/379486.379512. (Also issued as "Limits of Correctness in Computers," Tech. Rep. CSLI-85-36, Center for the Study of Language and Information, Stanford, CA, USA, 1985; prepared for the Symposium on Unintentional Nuclear War, IPPNW Fifth Congress, Budapest, Jun.–Jul. 1985. Reprinted in *Program Verification: Fundamental Issues in Computer Science*, T. R. Colburn, J. H. Fetzer, and T. L. Rankin, Eds., Dordrecht: Kluwer, 1993, pp. 275–293.)
+
+[MacKenzie2001] D. MacKenzie, *Mechanizing Proof: Computing, Risk, and Trust*, Cambridge, MA, USA: MIT Press, 2001. ISBN: 978-0-262-13393-7.
+
 ---
 
 ## Epistemic Frameworks and Knowledge Engineering
@@ -104,6 +108,8 @@ References are organized by category. A bibliographic verification pass was appl
 
 [Toulmin1958] S. E. Toulmin, *The Uses of Argument*, Cambridge, UK: Cambridge University Press, 1958. (Updated ed. 2003, ISBN: 978-0-521-53483-3.)
 
+[Naur1985] P. Naur, "Programming as Theory Building," *Microprocessing and Microprogramming*, vol. 15, no. 5, pp. 253–261, May 1985. doi: 10.1016/0165-6074(85)90032-8. (Reprinted in P. Naur, *Computing: A Human Activity*, New York, NY, USA: ACM Press/Addison-Wesley, 1992, pp. 37–49.)
+
 ---
 
 ## Philosophy of Knowledge (Chirality of Knowledge Precedents)
@@ -117,6 +123,8 @@ References are organized by category. A bibliographic verification pass was appl
 [Polanyi1966] M. Polanyi, *The Tacit Dimension*, Garden City, NY, USA: Doubleday, 1966. (Repr. Chicago: University of Chicago Press, 2009, ISBN: 978-0-226-67298-4.)
 
 [Polanyi1975] M. Polanyi and H. Prosch, *Meaning*, Chicago, IL, USA: University of Chicago Press, 1975. ISBN: 978-0-226-67294-6.
+
+[Collins2010] H. Collins, *Tacit and Explicit Knowledge*, Chicago, IL, USA: University of Chicago Press, 2010. ISBN: 978-0-226-11380-7.
 
 [Smith1996] B. C. Smith, *On the Origin of Objects*, Cambridge, MA, USA: MIT Press (A Bradford Book), 1996. ISBN: 978-0-262-19363-4.
 
