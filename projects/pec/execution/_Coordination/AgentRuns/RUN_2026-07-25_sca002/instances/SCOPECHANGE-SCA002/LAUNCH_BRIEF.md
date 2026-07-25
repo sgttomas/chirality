@@ -50,3 +50,11 @@ request `_Coordination/SCA-002_INTAKE_2026-07-25.md`
   Amendment_Preview.md + Amendment_Actions.csv (deferred artifact now
   due). Write scope still _ScopeChange/** only — no decomposition
   edits until the Gate 3 approval and Gate 4 plan are relayed.
+- v4 2026-07-25 (owner Gate 3 ruling relayed): Q1 all seven per-row
+  attributions AS RECOMMENDED; Q2 INDIRECT-8 affirmed OBJ-001;OBJ-002;
+  Q3 drop "(best-effort)" (3b included); Q4 A008 approved + D-PEC-64
+  §4.3 amendment #2 recorded (front-matter lines + DL-17 append
+  admitted); Q5 complete exact text approved as drafted. Gate 3
+  CLOSED. Gate 4 released: propagation plan (Propagation_Plan.md) incl.
+  the _CONTEXT.md refresh-vs-defer decision materials. Write scope
+  still _ScopeChange/** only until Gate 4 approval + Gate 5 release.

@@ -199,6 +199,18 @@ granularity depends on these commits.
    validation: SOW-021's `ObjectiveIDs` must be ⊆ {OBJ-005}, else
    DEL-03-01's cell is forced by the union invariant and the 17-row
    window breaks.
+   **Owner amendment 2026-07-25 #2 (Gate 3 ruling, Q4):** the window is
+   further amended to admit (i) the `SOFTWARE_DECOMP.md` front-matter
+   revision block (lines 6–8 and 11; action A008 — without it revision
+   1.2 would ship declaring itself 1.1) and (ii) the §11 Decision Log
+   appended entry DL-17 (action A005a; §11 ≠ §12 "revision-history" on
+   the strict window reading). Same instrument as the A007 amendment.
+   Gate 3 record: all seven per-row attributions ruled as recommended
+   (OBJ-005 ×4: DEL-00-01, DEL-01-05, DEL-03-06, DEL-10-03; OBJ-001 ×3:
+   DEL-00-03, DEL-08-01, DEL-08-02); INDIRECT-8 affirmed
+   OBJ-001;OBJ-002; "(best-effort)" header dropped (ActionSeq 3b);
+   complete exact text approved as drafted (Q5) — the only text Gate 5
+   may apply.
 4. **No collateral state change:**
    `python3 tools/coordination/analyze_dep_closure.py projects/pec/execution`
    unchanged from the D-PEC-62 landing values (64 files, 255 rows,
