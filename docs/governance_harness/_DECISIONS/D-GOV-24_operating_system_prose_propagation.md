@@ -3,8 +3,8 @@
 Status:       RULED
 HumanRuling:  "I rule APPROVED for O-A against candidate SHA 444e29359883e50506ac0ea0ee5f6cc3f5f7d7de" (owner, 2026-07-25)
 AcceptedCandidateSHA: 444e29359883e50506ac0ea0ee5f6cc3f5f7d7de
-PublicationSHA: TBD (this record's publication commit, which also applies Annex A; backfilled per the `f1549afb1` precedent)
-EffectiveSHA: TBD (merge of PR #344 into `main`; human merge gate; backfilled per the same precedent)
+PublicationSHA: ed99d8e3e90e1b25de2e464c0faea0944db8722a (this record's publication commit, which also applies Annex A; backfilled by the C-2/C-4 correction tranche per the `f1549afb1` precedent)
+EffectiveSHA: b3bd99863d6cde20060ac7416abd671eaefd510f (merge of PR #344 into `main`, 2026-07-25, performed at explicit owner direction; backfilled by the same tranche)
 Date:         2026-07-25
 FramedBy:     Agent-drafted (Agent 0, `HELP_HUMAN` posture) at explicit owner direction ("proceed with P-1..P-4 as a small exact-prose packet", 2026-07-25, in-session), carrying forward the obligation (c) survey proposals
 AcceptedBasis: `main@628f1728e` (Annex A current quotes verified byte-exact and unique against that state, and re-verified at application)

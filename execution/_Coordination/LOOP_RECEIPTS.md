@@ -918,3 +918,36 @@
 - Open after this receipt: C-2 (CONTRACT §1 invariant-index arithmetic)
   and C-4 (README export description) correction proposals; Lane B
   (G1–G4); export-staging regeneration DEFERRED.
+
+### Receipt 44 — 2026-07-25 — D-GOV-24 effective; C-2 and C-4 corrected
+
+- Owner act of record (in-session, 2026-07-25): "Merge PR #344 and proceed
+  with C-2 and C-4." PR #344 merged; **D-GOV-24 EffectiveSHA
+  `b3bd99863`** — the genus propagation (P-1..P-4) is live on `main`;
+  PublicationSHA `ed99d8e3e` and the EffectiveSHA backfilled into the
+  decision record per the `f1549afb1` precedent.
+- **C-2 CORRECTED (this commit):** `docs/CONTRACT.md` §1 K-* Invariant
+  Index — count line updated from "27 stable invariants across 12
+  subsections" to "**34 across 13**", and seven index rows added for the
+  D-GOV-20 §1.13 Shared Runtime family (K-RUNTIME-1, K-CONTROL-1,
+  K-PROJECT-1, K-STORE-2, K-RESIDENCY-1, K-ROLE-2, K-EXPORT-1).
+  Mechanically verified post-edit: index membership == catalog membership
+  (34 == 34), subsection count 13. No invariant definition changed —
+  index arithmetic only, exactly the M2 correction the adopted PRD §10.2
+  recommended. Routed M6 notice shipped to
+  `projects/chirality-app-dev/execution/_Coordination/` (its
+  `AUTHORITY_CORPUS.json` pins CONTRACT).
+- **C-4 CORRECTED (this commit):** `README.md` now describes root
+  `runtime/` — a row in the root-surface table (root-owned generic
+  executable agent-runtime substrate per D-GOV-20; included in the public
+  export with the standing exclusions) and a mention in the summary
+  sentence — matching the export profile's `ROOT_DIRS`, which has
+  exported `runtime` all along. README is non-binding; the PR merge is
+  the gate, per the obligation (b) precedent.
+- **With C-2 and C-4 closed, every conflict the adopted PRD surfaced
+  (C-1..C-4) is resolved.** C-1 closed by D-GOV-23; C-3 confirmed at the
+  D-GOV-22 ruling; C-2/C-4 corrected here.
+- Open after this receipt: Lane B (guard capability G1–G4 + §7
+  preflight) — the sole remaining open root-loop lane before the
+  D-GOV-21 §6 sequence can advance; export-staging regeneration
+  DEFERRED.
