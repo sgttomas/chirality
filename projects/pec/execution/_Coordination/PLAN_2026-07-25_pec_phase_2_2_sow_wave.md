@@ -6,23 +6,20 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
-`STEP 4 BATCH B2 COMPLETE AT FAN-IN — B1 owner-cleared (commit
-36816c90f: 9 INITIALIZED, R2 remediated, fan-in BATCH_B1_FANIN.md). B2
-(DEL-01-01, DEL-02-07, DEL-10-03 — first upstream-citing batch) authored
-3/3 first-pass PASS with upstream-contract binding; refutation R3-wave
-(1 CRIT + 3 MAJ + 10 MIN — upstream-citation core clean; CRIT =
-DEL-10-03 manufactured §4 "Depends on" column) → two sealed revision
-dispatches, all corrections applied, independently re-verified. Status
-act 3/3 OPEN→INITIALIZED. Census 12 INITIALIZED / 52 OPEN (ladder
-match). Blocker 43 BLOCKED / 21 UNBLOCKED (+6 = exactly B3 members
-DEL-02-01..06). New contract gap (upstream-ID citation convention)
-routed as REQUEST item 7. Fan-in record `WAVE_D-PEC-63/BATCH_B2_FANIN.md`
-(also the durable carrier of the DEL-10-03 standing-assertion brief
-sentence, X7). AWAITING THE OWNER B2 HALT-REVIEW — on clearance B3–B8
-run on internal fan-in (B3 = DEL-02-01..06). docs/STATUS.md four-line
-fix still authorized, unexecuted (scheduled at D-PEC-63 closure).
-Refutation rounds R-2a, R-2b-g1..g5, R-3, R2, R3-wave in §6 and the
-batch fan-in records.`
+`STEP 4 BATCH B3 COMPLETE AT FAN-IN — B2 owner-cleared (bfc741e0d);
+owner released B3–B8 to internal fan-in at the B2 halt-review. B3
+(DEL-02-01..06, six PKG-02 parsers) authored 6/6 first-pass PASS;
+refutation (1 CRIT + 3 MAJ + 8 MIN; CRIT = DEL-02-06 PEC-GAT-004
+mis-assignment) → one sealed revision dispatch, 15/15 applied,
+re-verified; status act 6/6. Census 18 INITIALIZED / 46 OPEN (ladder
+match). Blocker 42/22 (+1 = exactly B4 member DEL-03-01). Deriver
+row-union discovery routed as REQUEST item 8 (back-scan: accepted
+contracts conservative, no revision). Fan-in records
+WAVE_D-PEC-63/BATCH_B{1,2,3}_FANIN.md. NEXT: B4 = DEL-03-01 (single),
+then B5–B8 per §1 tier table, internal fan-in, per-batch refutation;
+owner returns at wave closure unless FAIL/CONFLICT/scope violation
+re-arms a halt. docs/STATUS.md four-line fix still authorized,
+unexecuted (scheduled at D-PEC-63 closure).`
 
 ---
 

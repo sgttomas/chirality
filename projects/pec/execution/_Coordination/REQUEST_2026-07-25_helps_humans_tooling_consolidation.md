@@ -59,6 +59,26 @@ fix lands.
    wave-wide it belongs in `SKILL.md`. Evidence: DEL-02-07 CLM-007
    (origin), DEL-01-01 CLM-009 (collision caught at refutation R3-wave
    F6), `WAVE_D-PEC-63/BATCH_B2_FANIN.md`.
+8. **(Added 2026-07-25, B3 wave evidence)
+   `tools/scope_of_work/derive_review_checklist.py` row-scoped AC→VER
+   union linkage.** The deriver sources AC→VER linkage from Output and
+   Evaluation Matrix *rows* (`matrix_links`, lines ~60–81): every AC in
+   a row receives the **union** of all VER refs in that row. Grouping
+   multiple ACs with distinct VERs in one row therefore inflates each
+   AC's checklist entry with sibling methods (superset — no AC ever
+   loses its own method, so coverage is conservative, but REVIEW
+   checklists carry deterministic over-linkage noise). No validator
+   check and no SKILL.md/QA_CHECKS.md statement of the row semantics;
+   byte-identical re-derivation cannot reveal it. Dispatcher back-scan
+   (2026-07-25): 21 multi-AC/multi-VER rows across 10 of the 12
+   then-accepted wave contracts carry this over-linkage; dispositioned
+   accepted-as-conservative, no revision ordered
+   (`WAVE_D-PEC-63/BATCH_B3_FANIN.md`). DEL-02-03's authoring run
+   self-caught it and split rows to exact 1:1. Needed: either intra-row
+   pairing/a warning in the deriver, or an explicit row-semantics rule
+   in the skill contract (one AC per row, or row VER set = exactly the
+   union of the row's ACs' own methods). Evidence: DEL-02-03
+   `_run_records/TASK_RUN_2026-07-25_2240.md`.
 
 ## Canary evidence for item 1 (added 2026-07-25 after the D-PEC-63 canary-3)
 
