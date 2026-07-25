@@ -1,0 +1,273 @@
+[
+  {
+    "scene": "_bootstrap",
+    "result": "{\"current\":\"Active root: /Users/ryan/dev/chirality\",\"error\":null,\"stored\":\"/Users/ryan/dev/chirality\"}",
+    "projectRoot": "/Users/ryan/dev/chirality"
+  },
+  {
+    "scene": "logo",
+    "route": "/",
+    "theme": "light",
+    "width": 1440,
+    "height": 60,
+    "mounted": true,
+    "themeApplied": "light",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 1,
+      "dataTheme": "light",
+      "scrollWidthOverflow": false
+    },
+    "states": "alt=\"\"",
+    "file": "logo-light-1440.png"
+  },
+  {
+    "scene": "topbar-crop",
+    "route": "/",
+    "theme": "light",
+    "width": 1440,
+    "height": 64,
+    "mounted": true,
+    "themeApplied": "light",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 1,
+      "dataTheme": "light",
+      "scrollWidthOverflow": false
+    },
+    "states": "compact bar, disclosure closed",
+    "file": "topbar-crop-light-1440.png"
+  },
+  {
+    "scene": "navigator-allsessions",
+    "route": "/",
+    "theme": "light",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "light",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 1,
+      "dataTheme": "light",
+      "scrollWidthOverflow": false
+    },
+    "states": "expanded: All sessions (5)",
+    "file": "navigator-allsessions-light-1440.png"
+  },
+  {
+    "scene": "legacy",
+    "route": "/?legacy=1",
+    "theme": "light",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "light",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 1,
+      "dataTheme": "light",
+      "scrollWidthOverflow": false
+    },
+    "states": "data-legacy=absent",
+    "file": "legacy-light-1440.png"
+  },
+  {
+    "scene": "route-chat",
+    "route": "/chat",
+    "theme": "light",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "light",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 1,
+      "dataTheme": "light",
+      "scrollWidthOverflow": false
+    },
+    "states": "route /chat",
+    "file": "route-chat-light-1440.png"
+  },
+  {
+    "scene": "route-workbench",
+    "route": "/workbench",
+    "theme": "light",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "light",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 1,
+      "dataTheme": "light",
+      "scrollWidthOverflow": false
+    },
+    "states": "route /workbench",
+    "file": "route-workbench-light-1440.png"
+  },
+  {
+    "scene": "route-pipeline",
+    "route": "/pipeline",
+    "theme": "light",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "light",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 1,
+      "dataTheme": "light",
+      "scrollWidthOverflow": false
+    },
+    "states": "route /pipeline",
+    "file": "route-pipeline-light-1440.png"
+  },
+  {
+    "scene": "logo",
+    "route": "/",
+    "theme": "dark",
+    "width": 1440,
+    "height": 60,
+    "mounted": true,
+    "themeApplied": "dark",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 1,
+      "dataTheme": "dark",
+      "scrollWidthOverflow": false
+    },
+    "states": "alt=\"\"",
+    "file": "logo-dark-1440.png"
+  },
+  {
+    "scene": "topbar-crop",
+    "route": "/",
+    "theme": "dark",
+    "width": 1440,
+    "height": 64,
+    "mounted": true,
+    "themeApplied": "dark",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 1,
+      "dataTheme": "dark",
+      "scrollWidthOverflow": false
+    },
+    "states": "compact bar, disclosure closed",
+    "file": "topbar-crop-dark-1440.png"
+  },
+  {
+    "scene": "navigator-allsessions",
+    "route": "/",
+    "theme": "dark",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "dark",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 1,
+      "dataTheme": "dark",
+      "scrollWidthOverflow": false
+    },
+    "states": "expanded: All sessions (5)",
+    "file": "navigator-allsessions-dark-1440.png"
+  },
+  {
+    "scene": "legacy",
+    "route": "/?legacy=1",
+    "theme": "dark",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "dark",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 1,
+      "dataTheme": "dark",
+      "scrollWidthOverflow": false
+    },
+    "states": "data-legacy=absent",
+    "file": "legacy-dark-1440.png"
+  },
+  {
+    "scene": "route-chat",
+    "route": "/chat",
+    "theme": "dark",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "dark",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 1,
+      "dataTheme": "dark",
+      "scrollWidthOverflow": false
+    },
+    "states": "route /chat",
+    "file": "route-chat-dark-1440.png"
+  },
+  {
+    "scene": "route-workbench",
+    "route": "/workbench",
+    "theme": "dark",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "dark",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 1,
+      "dataTheme": "dark",
+      "scrollWidthOverflow": false
+    },
+    "states": "route /workbench",
+    "file": "route-workbench-dark-1440.png"
+  },
+  {
+    "scene": "route-pipeline",
+    "route": "/pipeline",
+    "theme": "dark",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "dark",
+    "reducedMotionMatches": false,
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 1,
+      "dataTheme": "dark",
+      "scrollWidthOverflow": false
+    },
+    "states": "route /pipeline",
+    "file": "route-pipeline-dark-1440.png"
+  }
+]

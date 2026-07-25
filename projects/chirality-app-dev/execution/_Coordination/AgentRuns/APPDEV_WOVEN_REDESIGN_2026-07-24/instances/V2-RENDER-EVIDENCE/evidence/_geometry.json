@@ -1,0 +1,446 @@
+{
+  "base": "http://localhost:3002",
+  "measurements": [
+    {
+      "width": 1440,
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentScrollWidth": 1440,
+      "header": {
+        "selector": ".shell-header",
+        "top": 0,
+        "bottom": 48,
+        "left": 0,
+        "right": 1440,
+        "width": 1440,
+        "height": 48
+      },
+      "transcript": {
+        "selector": ".chat-panel .chat-transcript, .chat-transcript",
+        "top": 218,
+        "bottom": 666,
+        "left": 305,
+        "right": 1055,
+        "width": 750,
+        "height": 447
+      },
+      "emptyState": null,
+      "attachments": null,
+      "inputRow": {
+        "selector": ".chat-input-row",
+        "top": 746,
+        "bottom": 807,
+        "left": 305,
+        "right": 1055,
+        "width": 750,
+        "height": 61
+      },
+      "overlaps": {
+        "emptyState↔attachments": null,
+        "emptyState↔inputRow": null,
+        "transcript↔composerDock": {
+          "verticalOverlapPx": 0,
+          "horizontalOverlapPx": 750
+        },
+        "attachments↔inputRow": null
+      },
+      "overflowingElements": [],
+      "overflowingCount": 0
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "documentScrollWidth": 1440,
+      "header": {
+        "selector": ".shell-header",
+        "top": 0,
+        "bottom": 48,
+        "left": 0,
+        "right": 1440,
+        "width": 1440,
+        "height": 48
+      },
+      "transcript": {
+        "selector": ".chat-panel .chat-transcript, .chat-transcript",
+        "top": 218,
+        "bottom": 666,
+        "left": 305,
+        "right": 1055,
+        "width": 750,
+        "height": 447
+      },
+      "emptyState": null,
+      "attachments": null,
+      "inputRow": {
+        "selector": ".chat-input-row",
+        "top": 746,
+        "bottom": 807,
+        "left": 305,
+        "right": 1055,
+        "width": 750,
+        "height": 61
+      },
+      "overlaps": {
+        "emptyState↔attachments": null,
+        "emptyState↔inputRow": null,
+        "transcript↔composerDock": {
+          "verticalOverlapPx": 0,
+          "horizontalOverlapPx": 750
+        },
+        "attachments↔inputRow": null
+      },
+      "overflowingElements": [],
+      "overflowingCount": 0
+    },
+    {
+      "width": 1180,
+      "theme": "light",
+      "viewport": {
+        "width": 1180,
+        "height": 900
+      },
+      "documentScrollWidth": 1180,
+      "header": {
+        "selector": ".shell-header",
+        "top": 0,
+        "bottom": 48,
+        "left": 0,
+        "right": 1180,
+        "width": 1180,
+        "height": 48
+      },
+      "transcript": {
+        "selector": ".chat-panel .chat-transcript, .chat-transcript",
+        "top": 194,
+        "bottom": 669,
+        "left": 238,
+        "right": 894,
+        "width": 656,
+        "height": 475
+      },
+      "emptyState": null,
+      "attachments": null,
+      "inputRow": {
+        "selector": ".chat-input-row",
+        "top": 749,
+        "bottom": 810,
+        "left": 238,
+        "right": 894,
+        "width": 656,
+        "height": 61
+      },
+      "overlaps": {
+        "emptyState↔attachments": null,
+        "emptyState↔inputRow": null,
+        "transcript↔composerDock": {
+          "verticalOverlapPx": 0,
+          "horizontalOverlapPx": 656
+        },
+        "attachments↔inputRow": null
+      },
+      "overflowingElements": [],
+      "overflowingCount": 0
+    },
+    {
+      "width": 1180,
+      "theme": "dark",
+      "viewport": {
+        "width": 1180,
+        "height": 900
+      },
+      "documentScrollWidth": 1180,
+      "header": {
+        "selector": ".shell-header",
+        "top": 0,
+        "bottom": 48,
+        "left": 0,
+        "right": 1180,
+        "width": 1180,
+        "height": 48
+      },
+      "transcript": {
+        "selector": ".chat-panel .chat-transcript, .chat-transcript",
+        "top": 194,
+        "bottom": 669,
+        "left": 238,
+        "right": 894,
+        "width": 656,
+        "height": 475
+      },
+      "emptyState": null,
+      "attachments": null,
+      "inputRow": {
+        "selector": ".chat-input-row",
+        "top": 749,
+        "bottom": 810,
+        "left": 238,
+        "right": 894,
+        "width": 656,
+        "height": 61
+      },
+      "overlaps": {
+        "emptyState↔attachments": null,
+        "emptyState↔inputRow": null,
+        "transcript↔composerDock": {
+          "verticalOverlapPx": 0,
+          "horizontalOverlapPx": 656
+        },
+        "attachments↔inputRow": null
+      },
+      "overflowingElements": [],
+      "overflowingCount": 0
+    },
+    {
+      "width": 900,
+      "theme": "light",
+      "viewport": {
+        "width": 900,
+        "height": 900
+      },
+      "documentScrollWidth": 900,
+      "header": {
+        "selector": ".shell-header",
+        "top": 0,
+        "bottom": 48,
+        "left": 0,
+        "right": 900,
+        "width": 900,
+        "height": 48
+      },
+      "transcript": {
+        "selector": ".chat-panel .chat-transcript, .chat-transcript",
+        "top": 249,
+        "bottom": 669,
+        "left": 218,
+        "right": 646,
+        "width": 428,
+        "height": 420
+      },
+      "emptyState": null,
+      "attachments": null,
+      "inputRow": {
+        "selector": ".chat-input-row",
+        "top": 749,
+        "bottom": 810,
+        "left": 218,
+        "right": 646,
+        "width": 428,
+        "height": 61
+      },
+      "overlaps": {
+        "emptyState↔attachments": null,
+        "emptyState↔inputRow": null,
+        "transcript↔composerDock": {
+          "verticalOverlapPx": 0,
+          "horizontalOverlapPx": 428
+        },
+        "attachments↔inputRow": null
+      },
+      "overflowingElements": [
+        {
+          "tag": "SECTION",
+          "cls": "working-root-bar working-root-bar--workspace",
+          "left": -56,
+          "right": 624
+        },
+        {
+          "tag": "DIV",
+          "cls": "working-root-fields",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "LABEL",
+          "cls": "",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "DIV",
+          "cls": "working-root-controls",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "INPUT",
+          "cls": "",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "left": -39,
+          "right": 54
+        },
+        {
+          "tag": "P",
+          "cls": "working-root-current",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "DETAILS",
+          "cls": "working-root-settings working-root-settings--disclosure",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "SUMMARY",
+          "cls": "",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "DIV",
+          "cls": "working-root-settings-disclosure-body",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "SECTION",
+          "cls": "runtime-settings",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "H3",
+          "cls": "api-key-settings-title",
+          "left": -39,
+          "right": 607
+        }
+      ],
+      "overflowingCount": 22
+    },
+    {
+      "width": 900,
+      "theme": "dark",
+      "viewport": {
+        "width": 900,
+        "height": 900
+      },
+      "documentScrollWidth": 900,
+      "header": {
+        "selector": ".shell-header",
+        "top": 0,
+        "bottom": 48,
+        "left": 0,
+        "right": 900,
+        "width": 900,
+        "height": 48
+      },
+      "transcript": {
+        "selector": ".chat-panel .chat-transcript, .chat-transcript",
+        "top": 249,
+        "bottom": 669,
+        "left": 218,
+        "right": 646,
+        "width": 428,
+        "height": 420
+      },
+      "emptyState": null,
+      "attachments": null,
+      "inputRow": {
+        "selector": ".chat-input-row",
+        "top": 749,
+        "bottom": 810,
+        "left": 218,
+        "right": 646,
+        "width": 428,
+        "height": 61
+      },
+      "overlaps": {
+        "emptyState↔attachments": null,
+        "emptyState↔inputRow": null,
+        "transcript↔composerDock": {
+          "verticalOverlapPx": 0,
+          "horizontalOverlapPx": 428
+        },
+        "attachments↔inputRow": null
+      },
+      "overflowingElements": [
+        {
+          "tag": "SECTION",
+          "cls": "working-root-bar working-root-bar--workspace",
+          "left": -56,
+          "right": 624
+        },
+        {
+          "tag": "DIV",
+          "cls": "working-root-fields",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "LABEL",
+          "cls": "",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "DIV",
+          "cls": "working-root-controls",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "INPUT",
+          "cls": "",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "",
+          "left": -39,
+          "right": 54
+        },
+        {
+          "tag": "P",
+          "cls": "working-root-current",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "DETAILS",
+          "cls": "working-root-settings working-root-settings--disclosure",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "SUMMARY",
+          "cls": "",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "DIV",
+          "cls": "working-root-settings-disclosure-body",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "SECTION",
+          "cls": "runtime-settings",
+          "left": -39,
+          "right": 607
+        },
+        {
+          "tag": "H3",
+          "cls": "api-key-settings-title",
+          "left": -39,
+          "right": 607
+        }
+      ],
+      "overflowingCount": 22
+    }
+  ],
+  "bootstrap": "Active root: /Users/ryan/dev/chirality"
+}

@@ -1,0 +1,167 @@
+[
+  {
+    "scene": "topbar",
+    "theme": "light",
+    "width": 861,
+    "file": "topbar-light-861.png",
+    "states": "root-chip disclosure OPEN",
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "dataTheme": "light",
+      "innerWidth": 861,
+      "styleSheets": 2,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "innerWidth": 861,
+      "detailsOpen": true,
+      "headerComputedPosition": "relative",
+      "disclosureComputedPosition": "static",
+      "chipRect": {
+        "left": 336.51,
+        "right": 585.27,
+        "width": 248.76,
+        "inViewport": true
+      },
+      "panelRect": {
+        "left": 0,
+        "right": 861,
+        "width": 861,
+        "inViewport": true
+      },
+      "panelComputed": {
+        "left": "0px",
+        "right": "0px",
+        "width": "861px"
+      },
+      "applyPathRect": {
+        "left": 17,
+        "right": 110.19,
+        "width": 93.19,
+        "inViewport": true
+      },
+      "labelRect": {
+        "left": 17,
+        "right": 844,
+        "width": 827,
+        "inViewport": true
+      },
+      "labelClipped": false,
+      "activeRootRect": {
+        "left": 17,
+        "right": 844,
+        "width": 827,
+        "inViewport": true
+      },
+      "activeRootClipped": false,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "topbar",
+    "theme": "light",
+    "width": 1025,
+    "file": "topbar-light-1025.png",
+    "states": "root-chip disclosure OPEN",
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "dataTheme": "light",
+      "innerWidth": 1025,
+      "styleSheets": 2,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "innerWidth": 1025,
+      "detailsOpen": true,
+      "headerComputedPosition": "static",
+      "disclosureComputedPosition": "relative",
+      "chipRect": {
+        "left": 535.17,
+        "right": 749.27,
+        "width": 214.09,
+        "inViewport": true
+      },
+      "panelRect": {
+        "left": 69.27,
+        "right": 749.27,
+        "width": 680,
+        "inViewport": true
+      },
+      "panelComputed": {
+        "left": "-465.906px",
+        "right": "0px",
+        "width": "680px"
+      },
+      "applyPathRect": {
+        "left": 450.3,
+        "right": 543.49,
+        "width": 93.19,
+        "inViewport": true
+      },
+      "labelRect": {
+        "left": 86.27,
+        "right": 732.27,
+        "width": 646,
+        "inViewport": true
+      },
+      "labelClipped": false,
+      "activeRootRect": {
+        "left": 86.27,
+        "right": 732.27,
+        "width": 646,
+        "inViewport": true
+      },
+      "activeRootClipped": false,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "dialogue-composer-crop",
+    "theme": "light",
+    "width": 900,
+    "file": "dialogue-composer-crop-light-900.png",
+    "cropRect": {
+      "x": 204,
+      "y": 735,
+      "width": 456,
+      "height": 89
+    },
+    "probe": {
+      "placeholder": "Send prompt as WORKING_ITEMS...",
+      "textOverflow": "ellipsis",
+      "clientWidth": 235
+    },
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "dataTheme": "light",
+      "innerWidth": 900,
+      "styleSheets": 2,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "replay-provenance-crop",
+    "theme": "light",
+    "width": 900,
+    "file": "replay-provenance-crop-light-900.png",
+    "cropRect": {
+      "x": 222,
+      "y": 226,
+      "width": 405,
+      "height": 864
+    },
+    "probe": {
+      "tracks": "145.492px 14.6172px",
+      "sourceText": "session:ses_9f21c4a7/events",
+      "sourceLineCount": 14,
+      "ddOverflows": false
+    },
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "dataTheme": "light",
+      "innerWidth": 900,
+      "styleSheets": 2,
+      "horizontalOverflow": false
+    }
+  }
+]

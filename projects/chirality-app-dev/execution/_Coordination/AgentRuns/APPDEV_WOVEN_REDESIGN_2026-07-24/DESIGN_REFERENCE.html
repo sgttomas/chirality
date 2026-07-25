@@ -1,0 +1,556 @@
+<title>Woven Dialogue — Redesign Mockup</title>
+<style>
+  :root {
+    --ground: #F8F5EE;
+    --surface: #FCFAF4;
+    --ink: #29231A;
+    --ink-soft: #5F584A;
+    --ink-faint: #948B79;
+    --rule: #E6E0D1;
+    --rule-strong: #D0C8B5;
+    --accent: #9C5730;
+    --accent-soft: #F1E5D6;
+    --cta: #33291D;
+    --cta-ink: #F6F0E2;
+    --sage: #5E7960;
+    --sage-soft: #E6ECDE;
+    --rose: #9C6479;
+    --rose-soft: #F2E4EA;
+    --slate: #5B6B85;
+    --slate-soft: #E6EAF0;
+    --card: #FFFDF8;
+    --composer: #FFFDF8;
+    --danger: #A32E2E;
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-body: "Avenir Next", Avenir, "Segoe UI", system-ui, sans-serif;
+    --font-mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  /* Light is the primary theme for this product's audience; the mockup opens
+     light for every viewer. Dark exists behind the in-page Theme button only,
+     keyed to .mock-dark so the host page's theme never overrides the demo. */
+  :root.mock-dark {
+    --ground: #171511; --surface: #1C1A15; --ink: #EAE4D6; --ink-soft: #A89F8C;
+    --ink-faint: #79715F; --rule: #2C2921; --rule-strong: #3D392D;
+    --accent: #C67C50; --accent-soft: #322316; --cta: #E8DCC1; --cta-ink: #292216;
+    --sage: #97B394; --sage-soft: #232B1F; --rose: #C795AC; --rose-soft: #302128;
+    --slate: #8CA0BE; --slate-soft: #232A35; --card: #211E18; --composer: #211E18; --danger: #D3705F;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--ink);
+    background: var(--ground);
+    overflow: hidden auto;
+  }
+  .app { min-width: 1080px; }
+  @media (max-width: 1080px) { body { overflow-x: auto; } }
+  button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; padding: 0; }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
+  .app {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 48px 1fr 34px;
+  }
+
+  /* ── Top bar ─────────────────────────────── */
+  .topbar {
+    display: flex; align-items: center; gap: 20px;
+    padding: 0 18px;
+    border-bottom: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .logo { display: flex; }
+  .logo svg { display: block; }
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: 19px; letter-spacing: .01em;
+  }
+  .wordmark em { font-style: italic; color: var(--accent); }
+  .surface-name {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .14em;
+    color: var(--ink-faint); padding-left: 18px; border-left: 1px solid var(--rule);
+  }
+  .root-chip {
+    margin-left: auto;
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-soft);
+    background: var(--ground); border: 1px solid var(--rule);
+    border-radius: 999px; padding: 4px 12px;
+    max-width: 40ch; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .root-chip .k { color: var(--ink-faint); font-family: var(--font-body); font-size: 10.5px; text-transform: uppercase; letter-spacing: .1em; }
+  .runtime {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 12px; color: var(--ink-soft);
+  }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); }
+  .theme-toggle {
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-faint); border: 1px solid var(--rule); border-radius: 999px;
+    padding: 4px 11px;
+  }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--rule-strong); }
+
+  /* ── Main columns ────────────────────────── */
+  .main {
+    display: grid;
+    grid-template-columns: 200px minmax(0,1fr) 292px;
+    min-height: 0;
+  }
+
+  /* Navigator rail */
+  .rail {
+    padding: 22px 0 16px;
+    border-right: 1px solid var(--rule);
+    display: flex; flex-direction: column;
+    min-height: 0;
+  }
+  .rail-label, .panel-label {
+    font-size: 10.5px; text-transform: uppercase; letter-spacing: .16em;
+    color: var(--ink-faint); padding: 0 20px 10px;
+  }
+  .rail-item {
+    display: block; text-align: left; width: 100%;
+    padding: 7px 20px; font-size: 13.5px; color: var(--ink-soft);
+    border-left: 2px solid transparent;
+  }
+  .rail-item:hover { color: var(--ink); }
+  .rail-item[aria-current="true"] {
+    color: var(--ink); font-weight: 600;
+    border-left-color: var(--accent);
+    background: linear-gradient(90deg, var(--accent-soft), transparent 85%);
+  }
+  .rail-item small { display: block; font-weight: 400; font-size: 11px; color: var(--ink-faint); margin-top: 1px; }
+  .rail-group { position: relative; }
+  .rail-group + .rail-group { margin-top: 2px; }
+  .rail-item .chev {
+    position: absolute; right: 16px; top: 9px;
+    font-size: 10px; color: var(--ink-faint);
+  }
+  .rail-sessions { list-style: none; margin: 2px 0 10px; padding: 0; display: none; }
+  .rail-group--active .rail-sessions { display: block; }
+  .rail-session {
+    display: flex; align-items: baseline; gap: 6px;
+    font-size: 12px; color: var(--ink-soft);
+    padding: 4.5px 16px 4.5px 30px;
+    cursor: pointer;
+  }
+  .rail-session:hover .rs-title { color: var(--ink); }
+  .rs-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rail-session--live { color: var(--ink); font-weight: 600; }
+  .rail-session--live .when { font-weight: 400; }
+  .live-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sage); flex: none; align-self: center; margin-left: -12px; margin-right: 0;
+  }
+  .when { font-size: 10.5px; color: var(--ink-faint); flex: none; }
+  .rail-more { padding: 3px 16px 0 30px; }
+  .rail-more button { font-size: 11px; color: var(--ink-faint); }
+  .rail-more button:hover { color: var(--accent); }
+  .rail-foot { margin-top: auto; padding: 14px 20px 0; border-top: 1px solid var(--rule); }
+  .rail-foot a { font-size: 11.5px; color: var(--ink-faint); text-decoration: none; }
+  .rail-foot a:hover { color: var(--ink-soft); text-decoration: underline; }
+
+  /* ── Dialogue column ─────────────────────── */
+  .dialogue {
+    display: flex; flex-direction: column; min-height: 0; min-width: 0;
+    background: var(--surface);
+  }
+  .transcript {
+    flex: 1; overflow-y: auto; min-height: 0;
+    padding: 30px 0 12px;
+  }
+  .turns { max-width: 74ch; margin: 0 auto; padding: 0 36px; display: flex; flex-direction: column; gap: 26px; }
+
+  .turn { display: grid; grid-template-columns: 86px minmax(0,1fr); gap: 14px; }
+  .speaker {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em;
+    color: var(--ink-faint); text-align: right; padding-top: 4px;
+    text-transform: uppercase;
+  }
+  .turn--human .speaker { color: var(--accent); font-weight: 600; }
+  .turn-body { font-size: 15px; line-height: 1.62; }
+  .turn-body p { margin: 0 0 10px; }
+  .turn-body p:last-child { margin-bottom: 0; }
+  .turn--human .turn-body { font-weight: 500; }
+  .turn-meta { font-size: 11px; color: var(--ink-faint); margin-top: 6px; }
+
+  /* Provenance-bearing objects: the only boxes on the page */
+  .object-card {
+    margin: 12px 0 4px;
+    background: var(--card);
+    border: 1px solid var(--rule-strong);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .object-head {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .object-title { font-weight: 600; font-size: 13.5px; }
+  .object-open { margin-left: auto; font-size: 12px; color: var(--accent); font-weight: 600; }
+  .object-body { padding: 11px 14px; font-size: 13px; color: var(--ink-soft); line-height: 1.55; }
+  .object-src {
+    font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint);
+    padding: 7px 14px; border-top: 1px solid var(--rule);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
+    border-radius: 999px; padding: 2.5px 9px;
+  }
+  .chip--proposal { color: var(--rose); background: var(--rose-soft); }
+  .chip--approved { color: var(--sage); background: var(--sage-soft); }
+  .chip--runtime  { color: var(--slate); background: var(--slate-soft); }
+
+  .permission { border-color: var(--rose); }
+  .permission .object-head { border-bottom-color: var(--rule); }
+  .permission-actions { display: flex; gap: 10px; padding: 0 14px 12px; }
+  .btn {
+    font-size: 12.5px; font-weight: 600; border-radius: 6px; padding: 6px 14px;
+    border: 1px solid var(--rule-strong); color: var(--ink-soft);
+  }
+  .btn:hover { border-color: var(--ink-faint); color: var(--ink); }
+  .btn--primary { background: var(--cta); border-color: var(--cta); color: var(--cta-ink); }
+  .btn--primary:hover { filter: brightness(1.07); color: var(--cta-ink); }
+
+  .cursor {
+    display: inline-block; width: 7px; height: 15px; vertical-align: text-bottom;
+    background: var(--accent); margin-left: 2px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .cursor { animation: blink 1.1s steps(1) infinite; }
+    .dot--busy { animation: pulse 1.6s ease-in-out infinite; }
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  @keyframes pulse { 50% { opacity: .35; } }
+
+  /* Composer */
+  .composer {
+    border-top: 1px solid var(--rule);
+    padding: 12px 36px 14px;
+    background: var(--surface);
+  }
+  .composer-inner { max-width: 74ch; margin: 0 auto; }
+  .context-row {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 7px;
+    margin-bottom: 9px;
+  }
+  .context-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-faint); margin-right: 3px; }
+  .ctx-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft);
+    border: 1px solid var(--rule-strong); border-radius: 999px; padding: 3px 10px;
+    background: var(--ground);
+  }
+  .ctx-chip b { color: var(--ink-faint); font-weight: 400; cursor: pointer; }
+  .ctx-chip b:hover { color: var(--danger); }
+  .composer-box {
+    border: 1px solid var(--rule-strong); border-radius: 10px;
+    background: var(--composer);
+    transition: border-color .15s;
+  }
+  .composer-box:focus-within { border-color: var(--accent); }
+  .composer-box textarea {
+    display: block; width: 100%; border: none; background: none; resize: none;
+    font: inherit; font-size: 14.5px; color: var(--ink);
+    padding: 12px 14px 4px; min-height: 52px; outline: none;
+  }
+  .composer-controls {
+    display: flex; align-items: center; gap: 10px;
+    padding: 6px 10px 9px 14px;
+  }
+  .select {
+    font-size: 12px; color: var(--ink-soft);
+    border: 1px solid var(--rule); border-radius: 6px; padding: 4px 9px;
+    background: var(--ground);
+  }
+  .select b { font-weight: 600; color: var(--ink); }
+  .composer-controls .spacer { flex: 1; }
+  .icon-btn { font-size: 12px; color: var(--ink-faint); padding: 4px 8px; }
+  .icon-btn:hover { color: var(--ink); }
+  .composer-note { font-size: 11px; color: var(--ink-faint); margin-top: 7px; }
+
+  /* ── Coordination panel ──────────────────── */
+  .panel {
+    border-left: 1px solid var(--rule);
+    padding: 22px 0 0;
+    display: flex; flex-direction: column; min-height: 0;
+  }
+  .panel-head { display: flex; align-items: baseline; padding: 0 20px 12px; }
+  .panel-title { font-family: var(--font-display); font-size: 17px; }
+  .seg { margin-left: auto; display: flex; border: 1px solid var(--rule-strong); border-radius: 999px; overflow: hidden; }
+  .seg button { font-size: 11.5px; font-weight: 600; padding: 4px 12px; color: var(--ink-faint); }
+  .seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); }
+  .panel-scroll { overflow-y: auto; min-height: 0; padding-bottom: 16px; }
+  .work-group { padding: 12px 20px 4px; }
+  .work-group + .work-group { border-top: 1px solid var(--rule); margin-top: 10px; }
+  .work-group-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-faint); margin-bottom: 9px; }
+  .work-item { padding: 6px 0 10px; }
+  .work-item-title { font-size: 13px; font-weight: 600; line-height: 1.35; }
+  .work-item-src { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .work-item-row { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+  .work-item-date { font-size: 11px; color: var(--ink-faint); }
+  .panel-foot {
+    margin-top: auto; padding: 10px 20px 14px;
+    border-top: 1px solid var(--rule);
+    font-size: 11px; line-height: 1.5; color: var(--ink-faint);
+  }
+
+  /* ── Activity shelf ──────────────────────── */
+  .shelf {
+    display: flex; align-items: center; gap: 14px;
+    border-top: 1px solid var(--rule);
+    background: var(--surface);
+    padding: 0 18px;
+    font-size: 11.5px; color: var(--ink-soft);
+  }
+  .shelf-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .14em; color: var(--ink-faint); }
+  .shelf-line { font-family: var(--font-mono); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .shelf .expand { margin-left: auto; font-size: 11.5px; color: var(--ink-faint); }
+  .shelf .expand:hover { color: var(--ink); }
+</style>
+
+<div class="app">
+  <header class="topbar">
+    <span class="brand">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="26" height="26" role="img">
+          <rect x="0.5" y="0.5" width="31" height="31" rx="7" fill="#F0E9D8" stroke="#D8CFBA" stroke-width="1"/>
+          <rect x="4.6" y="4.6" width="7.4" height="7.4" rx="1.5" fill="#4A3423" transform="rotate(-3.5 8.3 8.3)"/>
+          <rect x="20" y="4.6" width="7.4" height="7.4" rx="1.5" fill="#543C28" transform="rotate(3 23.7 8.3)"/>
+          <rect x="12.3" y="12.3" width="7.4" height="7.4" rx="1.5" fill="#BC5A28" transform="rotate(3 16 16)"/>
+          <rect x="4.6" y="20" width="7.4" height="7.4" rx="1.5" fill="#503927" transform="rotate(2 8.3 23.7)"/>
+          <rect x="20" y="20" width="7.4" height="7.4" rx="1.5" fill="#46311F" transform="rotate(-2.5 23.7 23.7)"/>
+        </svg>
+      </span>
+      <span class="wordmark">Chira<em>lity</em></span>
+    </span>
+    <span class="surface-name">Woven Dialogue</span>
+    <span class="root-chip"><span class="k">root</span> ~/dev/chirality/projects/chirality-app-dev</span>
+    <span class="runtime"><span class="dot"></span> Claude · daemon connected</span>
+    <button class="theme-toggle" id="themeToggle" type="button">Theme</button>
+  </header>
+
+  <div class="main">
+    <nav class="rail" aria-label="Workspace navigator">
+      <div class="rail-label">Workspace</div>
+
+      <div class="rail-group rail-group--active">
+        <button class="rail-item" aria-current="true" aria-expanded="true" type="button">
+          Dialogue<small>Primary conversation</small><span class="chev" aria-hidden="true">▾</span>
+        </button>
+        <ul class="rail-sessions">
+          <li class="rail-session rail-session--live"><span class="live-dot" aria-hidden="true"></span><span class="rs-title">Render evidence — DEL-02-01</span><span class="when">now</span></li>
+          <li class="rail-session"><span class="rs-title">Redesign tranche planning</span><span class="when">yesterday</span></li>
+          <li class="rail-session"><span class="rs-title">Preload lead follow-ups</span><span class="when">Jul 20</span></li>
+          <li class="rail-session"><span class="rs-title">Concordance repair review</span><span class="when">Jul 19</span></li>
+          <li class="rail-more"><button type="button">All sessions (23)</button></li>
+        </ul>
+      </div>
+
+      <div class="rail-group">
+        <button class="rail-item" aria-expanded="false" type="button">
+          Workbench<small>Documents, evidence &amp; contracts</small><span class="chev" aria-hidden="true">▸</span>
+        </button>
+        <ul class="rail-sessions">
+          <li class="rail-session"><span class="rs-title">DEL-02-01 contract check</span><span class="when">Jul 22</span></li>
+          <li class="rail-session"><span class="rs-title">Working-root evidence sweep</span><span class="when">Jul 21</span></li>
+          <li class="rail-more"><button type="button">All sessions (8)</button></li>
+        </ul>
+      </div>
+
+      <div class="rail-group">
+        <button class="rail-item" aria-expanded="false" type="button">
+          Pipeline<small>DECOMP · PREP · TASK · AUDIT</small><span class="chev" aria-hidden="true">▸</span>
+        </button>
+        <ul class="rail-sessions">
+          <li class="rail-session"><span class="rs-title">AUDIT — corpus v16</span><span class="when">Jul 23</span></li>
+          <li class="rail-session"><span class="rs-title">TASK — render tests</span><span class="when">Jul 22</span></li>
+          <li class="rail-more"><button type="button">All sessions (5)</button></li>
+        </ul>
+      </div>
+
+      <div class="rail-foot"><a href="#">Legacy portal ↗</a></div>
+    </nav>
+
+    <section class="dialogue" aria-label="Primary dialogue">
+      <div class="transcript">
+        <div class="turns">
+
+          <div class="turn turn--human">
+            <div class="speaker">Ryan</div>
+            <div class="turn-body">
+              <p>Where does DEL-02-01 stand on render evidence for the shell tranche?</p>
+            </div>
+          </div>
+
+          <div class="turn">
+            <div class="speaker">Working_<br>Items</div>
+            <div class="turn-body">
+              <p>Three of the four evidence families are recorded. Component-render and route/query
+              tests pass at the D-APP-36 bar; keyboard-region and reduced-motion evidence is still open.
+              I drafted a summary you can inspect:</p>
+
+              <div class="object-card">
+                <div class="object-head">
+                  <span class="object-title">Render Evidence Summary — DEL-02-01</span>
+                  <span class="chip chip--proposal">Agent proposal</span>
+                  <button class="object-open" type="button">Open</button>
+                </div>
+                <div class="object-body">
+                  38 render assertions across 6 components · focus restoration verified for
+                  Navigator and Coordination · 2 open items flagged for keyboard-region coverage.
+                </div>
+                <div class="object-src">draft › not project truth · anchored to turn #14 · 2026-07-24 14:02</div>
+              </div>
+
+              <p>To record the open items in the deliverable ledger I need one gated write:</p>
+
+              <div class="object-card permission">
+                <div class="object-head">
+                  <span class="object-title">Write access requested</span>
+                  <span class="chip chip--proposal">Awaiting you</span>
+                </div>
+                <div class="object-body">
+                  Append run record <code style="font-family:var(--font-mono);font-size:12px;">R7_RENDER_EVIDENCE_2026-07-24.md</code>
+                  under DEL-02-01/_run_records/. No status or lifecycle change.
+                </div>
+                <div class="permission-actions">
+                  <button class="btn btn--primary" type="button">Allow once</button>
+                  <button class="btn" type="button">Deny</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="turn turn--human">
+            <div class="speaker">Ryan</div>
+            <div class="turn-body"><p>Allowed. What's left before the tranche can close?</p></div>
+          </div>
+
+          <div class="turn">
+            <div class="speaker">Working_<br>Items</div>
+            <div class="turn-body">
+              <p>Writing the run record now. After that: keyboard-region sweeps on the two flagged
+              components, then the closeout checks — typecheck, vitest, premerge<span class="cursor"></span></p>
+              <div class="turn-meta">streaming · turn #16</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="composer">
+        <div class="composer-inner">
+          <div class="context-row">
+            <span class="context-label">Next-turn context</span>
+            <span class="ctx-chip">DEL-02-01/_STATUS.md <b title="Remove">×</b></span>
+            <span class="ctx-chip">D-APP-74_RULING.md <b title="Remove">×</b></span>
+            <button class="icon-btn" type="button">+ Add</button>
+          </div>
+          <div class="composer-box">
+            <textarea placeholder="Message WORKING_ITEMS…" aria-label="Chat input"></textarea>
+            <div class="composer-controls">
+              <span class="select">Persona · <b>WORKING_ITEMS</b></span>
+              <span class="select">Mode · <b>Plan (ask)</b></span>
+              <span class="spacer"></span>
+              <button class="icon-btn" type="button">Attach</button>
+              <button class="btn btn--primary" type="button">Send</button>
+            </div>
+          </div>
+          <div class="composer-note">Visible artifacts are not sent with the next turn unless referenced above.</div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel" aria-label="Coordination panel">
+      <div class="panel-head">
+        <span class="panel-title">Coordination</span>
+        <span class="seg" role="tablist">
+          <button aria-pressed="true" type="button">Work</button>
+          <button aria-pressed="false" type="button">Agents</button>
+        </span>
+      </div>
+      <div class="panel-scroll">
+        <div class="work-group">
+          <div class="work-group-label">Human-approved</div>
+          <div class="work-item">
+            <div class="work-item-title">Woven Dialogue IA — D-APP-74</div>
+            <div class="work-item-row"><span class="chip chip--approved">Ruled</span><span class="work-item-date">2026-07-23</span></div>
+            <div class="work-item-src">_DECISIONS/D-APP-74_RULING_2026-07-23.md</div>
+          </div>
+          <div class="work-item">
+            <div class="work-item-title">Preload physical lead — D-APP-71</div>
+            <div class="work-item-row"><span class="chip chip--approved">Ruled</span><span class="work-item-date">2026-07-20</span></div>
+            <div class="work-item-src">_DECISIONS/D-APP-71_RULING_2026-07-20.md</div>
+          </div>
+        </div>
+        <div class="work-group">
+          <div class="work-group-label">Agent proposals</div>
+          <div class="work-item">
+            <div class="work-item-title">Visual redesign tranche brief</div>
+            <div class="work-item-row"><span class="chip chip--proposal">Candidate</span><span class="work-item-date">2026-07-24</span></div>
+            <div class="work-item-src">AgentRuns/…/instances/R1/LAUNCH_BRIEF.md</div>
+          </div>
+        </div>
+        <div class="work-group">
+          <div class="work-group-label">Runtime</div>
+          <div class="work-item">
+            <div class="work-item-title">typecheck — running</div>
+            <div class="work-item-row"><span class="chip chip--runtime"><span class="dot dot--busy" style="background:currentColor"></span> Live</span><span class="work-item-date">started 14:03</span></div>
+            <div class="work-item-src">session ses_04c2 · WORKING_ITEMS</div>
+          </div>
+          <div class="work-item">
+            <div class="work-item-title">vitest — 944 passed, 4 skipped</div>
+            <div class="work-item-row"><span class="chip chip--runtime">Done</span><span class="work-item-date">13:58</span></div>
+            <div class="work-item-src">session ses_04c2 · WORKING_ITEMS</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-foot">
+        Evidence-only projection. Status and authority remain with each recorded source.
+      </div>
+    </aside>
+  </div>
+
+  <footer class="shelf">
+    <span class="shelf-label">Activity</span>
+    <span class="shelf-line">14:03:11 · tool Read DEL-02-01/_STATUS.md · ok &nbsp;·&nbsp; 14:03:09 · turn #16 streaming</span>
+    <button class="expand" type="button">Expand ▴</button>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', function () {
+      document.documentElement.classList.toggle('mock-dark');
+    });
+
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.rail-group'));
+    groups.forEach(function (group) {
+      var header = group.querySelector('.rail-item');
+      header.addEventListener('click', function () {
+        groups.forEach(function (g) {
+          var active = g === group;
+          var b = g.querySelector('.rail-item');
+          var chev = b.querySelector('.chev');
+          g.classList.toggle('rail-group--active', active);
+          b.setAttribute('aria-expanded', active ? 'true' : 'false');
+          if (active) { b.setAttribute('aria-current', 'true'); } else { b.removeAttribute('aria-current'); }
+          if (chev) { chev.textContent = active ? '▾' : '▸'; }
+        });
+      });
+    });
+  })();
+</script>

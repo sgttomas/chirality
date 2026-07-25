@@ -49,8 +49,8 @@ describe('Woven Dialogue viewport', () => {
         <DialogueViewport
           primaryDialogue={<Primary />}
           focusedSurface={{
-            id: 'document',
-            title: 'Artifacts',
+            id: 'workbench',
+            title: 'Workbench',
             content: <div data-artifact="focused">Artifact</div>
           }}
           onReturnToPrimary={onReturn}
@@ -59,7 +59,7 @@ describe('Woven Dialogue viewport', () => {
     });
     expect(mounted).toBe(1);
     expect(unmounted).toBe(0);
-    expect(renderer.root.findByProps({ 'data-focused-surface': 'document' })).toBeTruthy();
+    expect(renderer.root.findByProps({ 'data-focused-surface': 'workbench' })).toBeTruthy();
 
     act(() => {
       renderer.unmount();

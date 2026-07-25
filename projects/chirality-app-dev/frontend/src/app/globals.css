@@ -1,19 +1,178 @@
+/* ==========================================================================
+   Chirality — calm-editorial design tokens
+   (TRB-APPDEV-WOVEN-REDESIGN-2026-07-24 §3.1 / §3.2)
+
+   Light is the primary theme and the `:root` default. Dark applies only when
+   the human has chosen it (`:root[data-theme="dark"]`) or has chosen to follow
+   the operating system (`:root[data-theme="system"]` + `prefers-color-scheme:
+   dark`). There is no silent `prefers-color-scheme` switching.
+
+   Every colour in this stylesheet resolves from the blocks below. Composition
+   rules that govern every styling decision here:
+     1. One voice at a time — `--cta` is the only filled emphasis; `--accent`
+        appears as strokes and markers only; semantic chips stay tinted
+        whispers; everything else is ink on ground.
+     2. Boxes encode provenance — only provenance-bearing objects (artifact
+        cards, permission requests) get borders and cards; panes separate by
+        hairline rules and whitespace.
+     3. Semantic state colours are never the interaction accent. Green reads
+        healthy/approved; orange is never a status.
+   ========================================================================== */
 :root {
-  color-scheme: light dark;
-  --bg-top: #f3f7ff;
-  --bg-bottom: #eef2f9;
-  --panel: #ffffff;
-  --panel-muted: #f6f8fc;
-  --panel-elevated: #f2f6ff;
-  --border: #c9d2e3;
-  --text-primary: #12213a;
-  --text-subtle: #4f5f7d;
-  --accent: #1b4dd8;
-  --accent-soft: #dbe6ff;
-  --surface-assistant: #f5f8ff;
-  --surface-operator: #e8f0ff;
-  --shadow-strong: rgba(18, 33, 58, 0.08);
-  --error: #b42318;
+  color-scheme: light;
+
+  /* Typography — IBM Plex bundled through next/font/local (see layout.tsx),
+     which defines --font-sans / --font-serif / --font-mono on <html>. */
+  --font-body: var(--font-sans, "IBM Plex Sans"), "Avenir Next", "Segoe UI", system-ui,
+    sans-serif;
+  --font-display: var(--font-serif, "IBM Plex Serif"), "Iowan Old Style", Palatino,
+    Georgia, serif;
+
+  /* Ground and surfaces */
+  --ground: #f8f5ee;
+  --surface: #fcfaf4;
+  --card: #fffdf8;
+  --composer: #fffdf8;
+
+  /* Ink. `--ink-faint` is darkened from the §3.1 table value #948b79 to
+     #786f5f (Round 5 AA remedy): the tranche uses it for functional labels at
+     9.6-12px, where #948b79 measured 3.10-3.32:1 against --ground/--surface/
+     --card. Hue (40deg) and saturation (11%) are preserved, and it stays
+     visibly lighter than --ink-soft, so the three-tier hierarchy holds. */
+  --ink: #29231a;
+  --ink-soft: #5f584a;
+  --ink-faint: #786f5f;
+
+  /* Hairline rules */
+  --rule: #e6e0d1;
+  --rule-strong: #d0c8b5;
+
+  /* Interaction accent (dusty sienna) — strokes and markers only, never fills.
+     Darkened from the §3.1 table value #9c5730 to #99552f (Round 6 AA remedy):
+     the three selected-state chip rules put accent text ON --accent-soft, where
+     #9c5730 measured 4.43:1. Hue (21.7deg) and saturation (52.9%) are preserved
+     and the shift is imperceptible (dE00 0.88); dark --accent already passes at
+     4.61 and is unchanged. */
+  --accent: #99552f;
+  --accent-soft: #f1e5d6;
+
+  /* Primary actions — the only filled emphasis in the system */
+  --cta: #33291d;
+  --cta-ink: #f6f0e2;
+
+  /* Semantic states */
+  --sage: #5e7960;
+  --sage-soft: #e6ecde;
+  --rose: #9c6479;
+  --rose-soft: #f2e4ea;
+  --slate: #5b6b85;
+  --slate-soft: #e6eaf0;
+  --danger: #a32e2e;
+
+  /* Derived values — all resolve from the tokens above */
+  --shade: var(--ink);
+  --danger-soft: color-mix(in srgb, var(--danger) 9%, var(--surface));
+
+  /* Readable ink for text sitting on a tinted-whisper chip. Derived rather
+     than authored so the semantic hues stay AA-legible in both themes. */
+  --sage-ink: color-mix(in srgb, var(--sage) 72%, var(--ink));
+  --rose-ink: color-mix(in srgb, var(--rose) 72%, var(--ink));
+  --slate-ink: color-mix(in srgb, var(--slate) 72%, var(--ink));
+  --accent-ink: color-mix(in srgb, var(--accent) 82%, var(--ink));
+
+  --shadow-soft: color-mix(in srgb, var(--shade) 6%, transparent);
+  --shadow-strong: color-mix(in srgb, var(--shade) 11%, transparent);
+  --overlay: color-mix(in srgb, var(--shade) 42%, transparent);
+
+  /* ANSI transcript palette — derived so it re-tunes with the theme */
+  --ansi-black: var(--ink);
+  --ansi-red: var(--danger);
+  --ansi-green: var(--sage);
+  --ansi-yellow: var(--accent);
+  --ansi-blue: var(--slate);
+  --ansi-magenta: var(--rose);
+  --ansi-cyan: color-mix(in srgb, var(--slate) 62%, var(--sage));
+  --ansi-white: var(--ink-soft);
+  --ansi-bright-black: var(--ink-faint);
+}
+
+/* Dark is an explicit in-app choice (D-APP-74 tranche §3.1 rule 3). */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --ground: #171511;
+  --surface: #1c1a15;
+  --card: #211e18;
+  --composer: #211e18;
+
+  --ink: #eae4d6;
+  --ink-soft: #a89f8c;
+  /* Round 5 AA remedy: lightened from the §3.1 table value #79715f (3.43-3.77:1)
+     to #8f8570. Hue/saturation preserved; still the darkest of the three inks. */
+  --ink-faint: #8f8570;
+
+  --rule: #2c2921;
+  --rule-strong: #3d392d;
+
+  --accent: #c67c50;
+  --accent-soft: #322316;
+
+  --cta: #e8dcc1;
+  --cta-ink: #292216;
+
+  --sage: #97b394;
+  --sage-soft: #232b1f;
+  --rose: #c795ac;
+  --rose-soft: #302128;
+  --slate: #8ca0be;
+  --slate-soft: #232a35;
+  --danger: #d3705f;
+
+  --shade: #060504;
+  --danger-soft: color-mix(in srgb, var(--danger) 16%, var(--surface));
+  --shadow-soft: color-mix(in srgb, var(--shade) 32%, transparent);
+  --shadow-strong: color-mix(in srgb, var(--shade) 48%, transparent);
+  --overlay: color-mix(in srgb, var(--shade) 66%, transparent);
+}
+
+/* "System" is the only setting that consults the operating system. */
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] {
+    color-scheme: dark;
+
+    --ground: #171511;
+    --surface: #1c1a15;
+    --card: #211e18;
+    --composer: #211e18;
+
+    --ink: #eae4d6;
+    --ink-soft: #a89f8c;
+    /* Round 5 AA remedy — mirrors the `[data-theme="dark"]` block above. */
+    --ink-faint: #8f8570;
+
+    --rule: #2c2921;
+    --rule-strong: #3d392d;
+
+    --accent: #c67c50;
+    --accent-soft: #322316;
+
+    --cta: #e8dcc1;
+    --cta-ink: #292216;
+
+    --sage: #97b394;
+    --sage-soft: #232b1f;
+    --rose: #c795ac;
+    --rose-soft: #302128;
+    --slate: #8ca0be;
+    --slate-soft: #232a35;
+    --danger: #d3705f;
+
+    --shade: #060504;
+    --danger-soft: color-mix(in srgb, var(--danger) 16%, var(--surface));
+    --shadow-soft: color-mix(in srgb, var(--shade) 32%, transparent);
+    --shadow-strong: color-mix(in srgb, var(--shade) 48%, transparent);
+    --overlay: color-mix(in srgb, var(--shade) 66%, transparent);
+  }
 }
 
 * {
@@ -27,122 +186,303 @@ body {
 }
 
 body {
-  font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
-  color: var(--text-primary);
-  background:
-    radial-gradient(1200px 700px at 0% -10%, rgba(46, 119, 255, 0.16), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, rgba(20, 33, 61, 0.12), transparent 62%),
-    linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--ground);
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
   color: var(--accent);
+  text-underline-offset: 2px;
 }
 
+/* The display face carries wordmark and panel headings (§3.2). */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Panes separate by hairline rules and whitespace; the shell itself is
+   full-bleed so the top bar can span the window. */
 .shell {
   min-height: 100vh;
-  padding: 1.25rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0;
+  background: var(--ground);
 }
 
-.shell-header,
-.working-root-bar,
+.shell > :not(.shell-header) {
+  min-width: 0;
+}
+
+.shell:not(.shell--workspace) > :not(.shell-header) {
+  padding: 1rem 1.15rem 1.25rem;
+}
+
 .panel {
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--panel);
-  box-shadow: 0 18px 42px rgba(18, 33, 58, 0.08);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: none;
 }
 
+/* ── Compact top bar (§3.4): one 48px row carrying brand, surface name,
+   working-root disclosure, navigation and the theme control. ───────────── */
 .shell-header {
   display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1rem 1.1rem;
+  align-items: center;
+  gap: 1.15rem;
+  min-height: 48px;
+  padding: 0 1.15rem;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  background: var(--surface);
+  box-shadow: none;
 }
 
 .shell-header-main {
   min-width: 0;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding-left: 1.15rem;
+  border-left: 1px solid var(--rule);
 }
 
 .shell-brand-row {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-}
-
-.shell-brand-tile {
-  width: 48px;
-  height: 48px;
-  border-radius: 22%;
-  border: 1px solid var(--border);
-  background: var(--panel-elevated);
-  box-shadow: 0 8px 20px var(--shadow-strong);
+  gap: 0.6rem;
   flex: 0 0 auto;
 }
 
-.shell-brand-meta {
-  min-width: 0;
+.shell-brand-tile {
+  width: 26px;
+  height: 26px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  box-shadow: none;
+  flex: 0 0 auto;
+}
+
+.shell-wordmark {
+  font-family: var(--font-display);
+  font-size: 1.19rem;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.shell-wordmark em {
+  font-style: italic;
+  color: var(--accent);
 }
 
 .shell-header-main h1 {
   margin: 0;
-  font-size: clamp(1.4rem, 2.1vw, 2rem);
+  font-family: var(--font-body);
+  font-size: 0.69rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-faint);
+  white-space: nowrap;
 }
 
 .shell-kicker {
   margin: 0;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  font-size: 0.77rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  font-size: 0.63rem;
+  text-transform: uppercase;
   color: var(--accent);
 }
 
 .shell-subtitle {
-  margin: 0.35rem 0 0;
-  color: var(--text-subtle);
-  max-width: 65ch;
+  margin: 0;
+  min-width: 0;
+  max-width: 46ch;
+  color: var(--ink-faint);
+  font-size: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shell-header-controls {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
 }
 
 .shell-update-banner {
   margin: 0;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--panel-muted);
-  padding: 0.35rem 0.55rem;
-  font-size: 0.84rem;
-  color: var(--text-subtle);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--ground);
+  padding: 0.2rem 0.6rem;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
 }
 
 .shell-nav {
   display: flex;
-  gap: 0.6rem;
+  align-items: center;
+  gap: 0.55rem;
 }
 
 .shell-nav-link {
+  border: 0;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  padding: 0.45rem 0.85rem;
+  padding: 0.2rem 0.1rem;
+  font-size: 0.69rem;
   font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-decoration: none;
-  color: var(--text-primary);
-  background: var(--panel-muted);
+  color: var(--ink-faint);
+  background: transparent;
+}
+
+.shell-nav-link:hover {
+  color: var(--ink);
 }
 
 .shell-nav-link--active {
-  border-color: var(--accent);
   color: var(--accent);
+  background: transparent;
+  box-shadow: inset 0 -1px 0 0 var(--accent);
+}
+
+/* Working-root chip: a truncating disclosure that opens the full working-root
+   and runtime controls (§3.4). */
+.shell-root-disclosure {
+  position: relative;
+  min-width: 0;
+}
+
+.shell-root-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 40ch;
+  padding: 0.22rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--ground);
+  color: var(--ink-soft);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.72rem;
+  cursor: pointer;
+  list-style: none;
+  white-space: nowrap;
+}
+
+.shell-root-chip::-webkit-details-marker {
+  display: none;
+}
+
+.shell-root-chip:hover {
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+
+.shell-root-chip-key {
+  flex: 0 0 auto;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.shell-root-chip-value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shell-root-dot {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+}
+
+.shell-root-dot--ready {
+  background: var(--sage);
+}
+
+.shell-root-dot--error {
+  background: var(--danger);
+}
+
+/* Theme control — light default, dark and system as explicit choices. */
+.shell-theme {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.shell-theme-option {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0.24rem 0.62rem;
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.shell-theme-option:hover {
+  filter: none;
+  color: var(--ink);
+}
+
+.shell-theme-option[aria-pressed="true"] {
   background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .working-root-bar {
-  padding: 0.95rem 1.1rem;
+  position: absolute;
+  z-index: 30;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  width: min(680px, calc(100vw - 2.4rem));
+  max-height: min(70vh, 620px);
+  overflow: auto;
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: 0 18px 44px var(--shadow-strong);
 }
 
 .working-root-fields {
@@ -152,8 +492,11 @@ a {
 }
 
 .working-root-fields label {
+  font-size: 0.66rem;
   font-weight: 600;
-  color: var(--text-subtle);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
 }
 
 .working-root-controls {
@@ -163,8 +506,8 @@ a {
 }
 
 .working-root-controls input {
-  flex: 1 1 420px;
-  min-width: 280px;
+  flex: 1 1 320px;
+  min-width: 220px;
 }
 
 input,
@@ -177,51 +520,77 @@ button {
 input,
 select,
 textarea {
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #ffffff;
-  color: var(--text-primary);
-  padding: 0.52rem 0.64rem;
+  border-radius: 7px;
+  border: 1px solid var(--rule-strong);
+  background: var(--composer);
+  color: var(--ink);
+  padding: 0.42rem 0.6rem;
 }
 
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+/* Filled emphasis is the CTA voice only; the accent never fills. */
 button {
-  border-radius: 10px;
-  border: 1px solid var(--accent);
-  background: var(--accent);
-  color: white;
-  padding: 0.48rem 0.82rem;
+  border-radius: 7px;
+  border: 1px solid var(--cta);
+  background: var(--cta);
+  color: var(--cta-ink);
+  padding: 0.38rem 0.85rem;
+  font-size: 0.79rem;
   font-weight: 600;
   cursor: pointer;
 }
 
+button:hover {
+  filter: brightness(1.08);
+}
+
 .button-muted {
-  border-color: var(--border);
-  background: var(--panel-muted);
-  color: var(--text-primary);
+  border-color: var(--rule-strong);
+  background: transparent;
+  color: var(--ink-soft);
+}
+
+.button-muted:hover {
+  filter: none;
+  border-color: var(--ink-faint);
+  color: var(--ink);
 }
 
 button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
+  filter: none;
 }
 
 .working-root-current {
   margin: 0;
-  color: var(--text-subtle);
-  font-size: 0.93rem;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
 }
 
 .working-root-error {
   margin: 0;
-  color: var(--error);
+  color: var(--danger);
   font-weight: 600;
+  font-size: 0.78rem;
 }
 
 .toolkit-checkbox {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.9rem;
 }
 
@@ -272,7 +641,7 @@ button:disabled {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.68rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   pointer-events: none;
   z-index: 2;
 }
@@ -324,10 +693,11 @@ button:disabled {
   display: flex;
   align-items: flex-end;
   gap: 0.75rem;
-  padding: 0.55rem 0.75rem;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--panel-muted);
+  padding: 0.5rem 0.1rem 0.65rem;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
 }
 
 .loop-chat-host {
@@ -354,7 +724,7 @@ button:disabled {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .persona-picker select {
@@ -362,7 +732,7 @@ button:disabled {
 }
 
 .persona-picker-error {
-  color: var(--error);
+  color: var(--danger);
   font-size: 0.78rem;
 }
 
@@ -380,14 +750,11 @@ button:disabled {
 
 .portal-start-session {
   white-space: nowrap;
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-soft);
 }
 
 .portal-launch-notice {
   margin: 0;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.78rem;
 }
 
@@ -400,7 +767,7 @@ button:disabled {
 
 .session-list-notice {
   font-size: 0.78rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   margin: 0 0 0.5rem;
 }
 
@@ -410,7 +777,7 @@ button:disabled {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0;
 }
 
 .session-list-item {
@@ -418,10 +785,11 @@ button:disabled {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.5rem 0.6rem;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--panel-muted);
+  padding: 0.5rem 0.1rem;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
 }
 
 .session-list-meta {
@@ -440,12 +808,12 @@ button:disabled {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .session-list-time {
   font-size: 0.7rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -455,16 +823,12 @@ button:disabled {
   flex-shrink: 0;
 }
 
+/* Panes separate by hairline rules, so the handle is a rule with a grip. */
 .shell-resize-handle {
   align-self: stretch;
-  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--border));
-  border-radius: 999px;
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--accent) 20%, var(--panel-muted)),
-      color-mix(in oklab, var(--accent) 6%, var(--panel-muted))
-    );
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   cursor: col-resize;
   position: relative;
   outline: none;
@@ -473,33 +837,25 @@ button:disabled {
 .shell-resize-handle::before {
   content: "";
   position: absolute;
-  inset: 10px 3px;
+  inset: 0 calc(50% - 0.5px);
   border-radius: 999px;
-  background: repeating-linear-gradient(
-    180deg,
-    color-mix(in oklab, var(--accent) 28%, transparent) 0,
-    color-mix(in oklab, var(--accent) 28%, transparent) 2px,
-    transparent 2px,
-    transparent 5px
-  );
+  background: var(--rule);
 }
 
-.shell-resize-handle:hover {
-  border-color: color-mix(in oklab, var(--accent) 62%, var(--border));
+.shell-resize-handle:hover::before,
+.shell-resize-handle--active::before {
+  inset: 0 calc(50% - 1px);
+  background: var(--accent);
+}
+
+.shell-resize-handle:focus-visible::before {
+  inset: 0 calc(50% - 1px);
+  background: var(--accent);
 }
 
 .shell-resize-handle:focus-visible {
-  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent);
-}
-
-.shell-resize-handle--active {
-  border-color: color-mix(in oklab, var(--accent) 74%, var(--border));
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--accent) 35%, var(--panel-muted)),
-      color-mix(in oklab, var(--accent) 18%, var(--panel-muted))
-    );
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
 
 .panel {
@@ -509,13 +865,16 @@ button:disabled {
 }
 
 .panel-header {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--rule);
   padding: 0.8rem 1rem;
 }
 
 .panel-header h2 {
   margin: 0;
-  font-size: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
 }
 
 .panel-body {
@@ -525,19 +884,17 @@ button:disabled {
 }
 
 .panel--main {
-  background:
-    radial-gradient(700px 350px at 100% 0%, rgba(27, 77, 216, 0.06), transparent 64%),
-    var(--panel);
+  background: var(--surface);
 }
 
 .panel-empty {
   margin: 0;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .panel-error {
   margin: 0;
-  color: var(--error);
+  color: var(--danger);
   font-weight: 600;
 }
 
@@ -559,10 +916,10 @@ button:disabled {
 .tree-toggle {
   width: 1.15rem;
   height: 1.15rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 0.4rem;
-  background: var(--panel-muted);
-  color: var(--text-subtle);
+  background: var(--ground);
+  color: var(--ink-soft);
   line-height: 1;
   font-size: 0.78rem;
   padding: 0;
@@ -587,10 +944,10 @@ button:disabled {
 .tree-item-icon {
   font-size: 0.67rem;
   border-radius: 999px;
-  background: var(--panel-muted);
-  border: 1px solid var(--border);
+  background: var(--ground);
+  border: 1px solid var(--rule);
   padding: 0.13rem 0.36rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .tree-item-name {
@@ -603,39 +960,42 @@ button:disabled {
 .tree-truncated {
   margin: 0.35rem 0 0.35rem 1.45rem;
   font-size: 0.75rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .chat-transcript {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 1.25rem;
 }
 
+/* Turns are dialogue, not objects: no card, no border, just a speaker rule. */
 .chat-bubble {
-  border-radius: 12px;
-  padding: 0.62rem 0.72rem;
-  border: 1px solid var(--border);
-  max-width: 92%;
-  width: fit-content;
+  border: 0;
+  border-left: 2px solid var(--rule);
+  border-radius: 0;
+  padding: 0.05rem 0 0.05rem 0.85rem;
+  background: transparent;
+  max-width: 74ch;
+  width: auto;
 }
 
 .chat-bubble p {
   margin: 0;
-  line-height: 1.45;
+  font-size: 0.94rem;
+  line-height: 1.62;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 
 .chat-bubble--assistant {
   align-self: flex-start;
-  background: var(--surface-assistant);
 }
 
 .chat-bubble--operator {
-  align-self: flex-end;
-  background: var(--surface-operator);
-  border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+  align-self: flex-start;
+  border-left-color: var(--accent);
+  font-weight: 500;
 }
 
 .chat-markdown {
@@ -667,7 +1027,7 @@ button:disabled {
 
 .chat-markdown th,
 .chat-markdown td {
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   padding: 0.28rem 0.42rem;
   text-align: left;
 }
@@ -675,7 +1035,7 @@ button:disabled {
 .chat-markdown blockquote {
   border-left: 3px solid color-mix(in oklab, var(--accent) 35%, transparent);
   padding-left: 0.55rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .chat-markdown a {
@@ -690,22 +1050,22 @@ button:disabled {
 
 .chat-code-block {
   margin: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 10px;
-  background: var(--panel-elevated);
+  background: var(--ground);
   padding: 0.5rem;
   overflow-x: auto;
 }
 
 .chat-code-block code {
-  font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
   font-size: 0.78rem;
   line-height: 1.45;
   white-space: pre;
 }
 
 .chat-code-block--ansi {
-  background: color-mix(in oklab, var(--panel-elevated) 88%, #000000 12%);
+  background: color-mix(in srgb, var(--ground) 90%, var(--ink));
 }
 
 .chat-ansi {
@@ -723,43 +1083,43 @@ button:disabled {
 }
 
 .chat-ansi .ansi-black-fg {
-  color: #131313;
+  color: var(--ansi-black);
 }
 
 .chat-ansi .ansi-red-fg {
-  color: #c03232;
+  color: var(--ansi-red);
 }
 
 .chat-ansi .ansi-green-fg {
-  color: #1f8a53;
+  color: var(--ansi-green);
 }
 
 .chat-ansi .ansi-yellow-fg {
-  color: #7c6100;
+  color: var(--ansi-yellow);
 }
 
 .chat-ansi .ansi-blue-fg {
-  color: #2253c7;
+  color: var(--ansi-blue);
 }
 
 .chat-ansi .ansi-magenta-fg {
-  color: #9947a8;
+  color: var(--ansi-magenta);
 }
 
 .chat-ansi .ansi-cyan-fg {
-  color: #0e7e88;
+  color: var(--ansi-cyan);
 }
 
 .chat-ansi .ansi-white-fg {
-  color: #f5f7fb;
+  color: var(--ansi-white);
 }
 
 .chat-ansi .ansi-bright-black-fg {
-  color: #71809d;
+  color: var(--ansi-bright-black);
 }
 
 .chat-input-row {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--rule);
   padding: 0.75rem 1rem;
   display: flex;
   gap: 0.55rem;
@@ -767,7 +1127,7 @@ button:disabled {
 
 .chat-meta {
   margin: 0.35rem 0 0;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.78rem;
 }
 
@@ -777,17 +1137,17 @@ button:disabled {
 
 .chat-runtime-status {
   margin: 0;
-  border-top: 1px dashed var(--border);
+  border-top: 1px dashed var(--rule);
   padding: 0.55rem 1rem 0;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.82rem;
 }
 
 .chat-runtime-error {
   margin: 0 1rem;
-  border: 1px solid #f0b4b4;
+  border: 1px solid color-mix(in srgb, var(--danger) 34%, var(--rule));
   border-radius: 10px;
-  background: #fff3f3;
+  background: var(--danger-soft);
   padding: 0.55rem 0.62rem;
   display: flex;
   flex-direction: column;
@@ -802,7 +1162,7 @@ button:disabled {
 
 .chat-runtime-error-title {
   font-weight: 700;
-  color: #9b2121;
+  color: var(--danger);
 }
 
 .chat-storage-warning {
@@ -810,7 +1170,7 @@ button:disabled {
 }
 
 .chat-attachment-preview {
-  border-top: 1px dashed var(--border);
+  border-top: 1px dashed var(--rule);
   padding: 0.55rem 1rem;
   display: flex;
   flex-direction: column;
@@ -839,8 +1199,8 @@ button:disabled {
 }
 
 .attachment-chip {
-  border: 1px solid var(--border);
-  background: var(--panel-muted);
+  border: 1px solid var(--rule);
+  background: var(--ground);
   border-radius: 999px;
   padding: 0.2rem 0.45rem;
   display: inline-flex;
@@ -850,7 +1210,7 @@ button:disabled {
 }
 
 .attachment-chip small {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .panel--toolkit .panel-header {
@@ -866,9 +1226,9 @@ button:disabled {
 }
 
 .toolkit-warning {
-  border: 1px solid #f2d496;
+  border: 1px solid color-mix(in srgb, var(--rose) 30%, var(--rule));
   border-radius: 10px;
-  background: #fff8e9;
+  background: var(--rose-soft);
   padding: 0.55rem;
   display: flex;
   flex-direction: column;
@@ -877,7 +1237,7 @@ button:disabled {
 
 .toolkit-warning p {
   margin: 0;
-  color: #7a4b00;
+  color: var(--rose-ink);
   font-size: 0.84rem;
 }
 
@@ -885,7 +1245,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.88rem;
 }
 
@@ -895,7 +1255,7 @@ button:disabled {
 }
 
 .toolkit-subagent {
-  border: 1px dashed var(--border);
+  border: 1px dashed var(--rule);
   border-radius: 10px;
   padding: 0.55rem;
   display: flex;
@@ -909,7 +1269,7 @@ button:disabled {
 }
 
 .toolkit-presets {
-  border-top: 1px dashed var(--border);
+  border-top: 1px dashed var(--rule);
   padding-top: 0.55rem;
   display: flex;
   flex-direction: column;
@@ -932,7 +1292,7 @@ button:disabled {
 }
 
 .toolkit-payload-preview {
-  border-top: 1px dashed var(--border);
+  border-top: 1px dashed var(--rule);
   padding-top: 0.55rem;
   display: flex;
   flex-direction: column;
@@ -941,9 +1301,9 @@ button:disabled {
 
 .toolkit-payload-preview pre {
   margin: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 10px;
-  background: var(--panel-muted);
+  background: var(--ground);
   padding: 0.5rem;
   font-size: 0.78rem;
   overflow-x: auto;
@@ -953,7 +1313,7 @@ button:disabled {
 .file-picker-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(18, 33, 58, 0.45);
+  background: var(--overlay);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -965,10 +1325,10 @@ button:disabled {
   width: min(960px, 100%);
   max-height: 85vh;
   overflow: auto;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 14px;
-  background: var(--panel);
-  box-shadow: 0 24px 48px rgba(18, 33, 58, 0.24);
+  background: var(--surface);
+  box-shadow: 0 24px 48px var(--shadow-strong);
   padding: 0.85rem;
   display: flex;
   flex-direction: column;
@@ -989,11 +1349,11 @@ button:disabled {
 
 .file-picker-path {
   margin: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 10px;
-  background: var(--panel-muted);
+  background: var(--ground);
   padding: 0.42rem 0.52rem;
-  font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
   font-size: 0.8rem;
   overflow-wrap: anywhere;
 }
@@ -1006,7 +1366,7 @@ button:disabled {
 
 .file-picker-meta {
   margin: 0;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.8rem;
 }
 
@@ -1031,10 +1391,10 @@ button:disabled {
 }
 
 .file-picker-file {
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 10px;
   padding: 0.35rem 0.45rem;
-  background: var(--panel-muted);
+  background: var(--ground);
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -1044,11 +1404,11 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 0.45rem;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .file-picker-file small {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.72rem;
 }
 
@@ -1060,7 +1420,7 @@ button:disabled {
 }
 
 .portal-matrix header p {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   margin: 0.45rem 0 0;
 }
 
@@ -1073,8 +1433,8 @@ button:disabled {
 
 .matrix-header-cell {
   border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--panel-muted);
+  border: 1px solid var(--rule);
+  background: var(--ground);
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -1088,8 +1448,8 @@ button:disabled {
 
 .matrix-row-label {
   border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--panel-muted);
+  border: 1px solid var(--rule);
+  background: var(--ground);
   font-size: 0.82rem;
   font-weight: 700;
   padding: 0.56rem 0.5rem;
@@ -1097,10 +1457,10 @@ button:disabled {
 }
 
 .matrix-cell {
-  border-radius: 12px;
-  border: 1px solid #c1d0f2;
-  background: linear-gradient(180deg, #f7faff, #edf3ff);
-  color: #163269;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+  background: var(--ground);
+  color: var(--ink);
   min-height: 58px;
   display: flex;
   flex-direction: column;
@@ -1110,12 +1470,12 @@ button:disabled {
 }
 
 .matrix-cell small {
-  color: #526794;
+  color: var(--ink-faint);
   font-size: 0.68rem;
 }
 
 .matrix-cell:hover {
-  transform: translateY(-1px);
+  border-color: var(--accent);
 }
 
 .matrix-cell:disabled,
@@ -1167,7 +1527,7 @@ button:disabled {
 
 .portal-deliverables {
   margin-top: 0.95rem;
-  border-top: 1px dashed var(--border);
+  border-top: 1px dashed var(--rule);
   padding-top: 0.75rem;
   display: flex;
   flex-direction: column;
@@ -1180,7 +1540,7 @@ button:disabled {
 
 .portal-deliverables header p {
   margin: 0.3rem 0 0;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.86rem;
 }
 
@@ -1191,9 +1551,9 @@ button:disabled {
 }
 
 .portal-deliverable-row {
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 10px;
-  background: var(--panel-muted);
+  background: var(--ground);
   text-align: left;
   padding: 0.45rem 0.55rem;
   display: flex;
@@ -1202,13 +1562,13 @@ button:disabled {
 }
 
 .portal-deliverable-key {
-  font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
   font-size: 0.75rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .portal-deliverable-name {
-  color: var(--text-primary);
+  color: var(--ink);
   font-size: 0.86rem;
 }
 
@@ -1227,9 +1587,9 @@ button:disabled {
 .pipeline-card,
 .pipeline-summary,
 .workbench-card {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--surface);
   padding: 0.85rem 0.9rem;
 }
 
@@ -1241,12 +1601,12 @@ button:disabled {
 
 .pipeline-card--active {
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(27, 77, 216, 0.12);
+  box-shadow: inset 0 0 0 1px var(--accent);
 }
 
 .pipeline-card header p {
   margin: 0.4rem 0 0;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.9rem;
 }
 
@@ -1254,13 +1614,13 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 0.28rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.9rem;
 }
 
 .pipeline-note {
   margin: 0;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.88rem;
 }
 
@@ -1269,9 +1629,9 @@ button:disabled {
 }
 
 .pipeline-contracts {
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--surface);
   padding: 0.85rem 0.9rem;
   display: flex;
   flex-direction: column;
@@ -1282,7 +1642,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 0.28rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.88rem;
 }
 
@@ -1299,11 +1659,11 @@ button:disabled {
 
 .pipeline-contract-path {
   margin: 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 10px;
-  background: var(--panel-muted);
+  background: var(--ground);
   padding: 0.45rem 0.55rem;
-  font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
   font-size: 0.8rem;
   overflow-wrap: anywhere;
 }
@@ -1316,14 +1676,14 @@ button:disabled {
 }
 
 .pipeline-contract-metrics div {
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 10px;
-  background: var(--panel-muted);
+  background: var(--ground);
   padding: 0.42rem 0.5rem;
 }
 
 .pipeline-contract-metrics dt {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -1349,9 +1709,9 @@ button:disabled {
 }
 
 .pipeline-contract-tag {
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 999px;
-  background: var(--panel-muted);
+  background: var(--ground);
   padding: 0.2rem 0.5rem;
   font-size: 0.78rem;
 }
@@ -1362,12 +1722,12 @@ button:disabled {
 }
 
 .pipeline-contract-warnings li {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.87rem;
 }
 
 .pipeline-transition-form {
-  border-top: 1px dashed var(--border);
+  border-top: 1px dashed var(--rule);
   padding-top: 0.7rem;
   display: flex;
   flex-direction: column;
@@ -1384,7 +1744,7 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 0.28rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.88rem;
 }
 
@@ -1403,7 +1763,7 @@ button:disabled {
 
 .workbench-card dt {
   font-size: 0.76rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -1424,92 +1784,9 @@ button:disabled {
   gap: 0.85rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-top: #0f1523;
-    --bg-bottom: #111a2c;
-    --panel: #151f33;
-    --panel-muted: #1b2940;
-    --panel-elevated: #202f49;
-    --border: #33476a;
-    --text-primary: #e7eefb;
-    --text-subtle: #9fb2d3;
-    --accent: #8cb0ff;
-    --accent-soft: #2a3f69;
-    --surface-assistant: #1a2a45;
-    --surface-operator: #223558;
-    --shadow-strong: rgba(4, 8, 16, 0.42);
-    --error: #ff7b7b;
-  }
-
-  .chat-code-block--ansi {
-    background: #101929;
-  }
-
-  .chat-ansi .ansi-black-fg {
-    color: #f4f7ff;
-  }
-
-  .chat-ansi .ansi-yellow-fg {
-    color: #ffe38d;
-  }
-
-  .chat-ansi .ansi-white-fg {
-    color: #f4f7ff;
-  }
-
-  .toolkit-warning {
-    border-color: #74613a;
-    background: #2d2718;
-  }
-
-  .toolkit-warning p {
-    color: #f5dc9f;
-  }
-
-  .harness-stream-item--completed {
-    border-left-color: #5fd38a;
-  }
-
-  .harness-stream-item--permission {
-    border-left-color: #e0b061;
-  }
-
-  .harness-status-badge--completed {
-    border-color: #2f7a4d;
-    background: #14301f;
-    color: #6fdf97;
-  }
-
-  .harness-status-badge--failed {
-    border-color: #7a3a3a;
-    background: #321a1a;
-    color: #ff9b9b;
-  }
-
-  .harness-status-badge--permission {
-    border-color: #74613a;
-    background: #2d2718;
-    color: #e7c98c;
-  }
-
-  .permission-card {
-    border-color: #74613a;
-    border-left-color: #d9a441;
-    background: #2d2718;
-  }
-
-  .permission-card-badge {
-    border-color: #74613a;
-    background: #1b1505;
-    color: #e7c98c;
-  }
-
-  .permission-card-reason,
-  .permission-card-path-field {
-    color: #d8c8a4;
-  }
-}
+/* The former OS-driven dark block is gone: dark is now an explicit human
+   choice expressed entirely through the token blocks at the top of this
+   file, so no component needs a per-theme override. */
 
 @media (max-width: 1180px) {
   .shell-grid {
@@ -1546,12 +1823,27 @@ button:disabled {
 }
 
 @media (max-width: 860px) {
-  .shell {
-    padding: 0.7rem;
+  .shell:not(.shell--workspace) > :not(.shell-header) {
+    padding: 0.75rem 0.7rem 1rem;
   }
 
+  /* The bar keeps its single row of controls and drops the descriptive
+     subtitle rather than stacking. */
   .shell-header {
-    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0 0.75rem;
+  }
+
+  .shell-subtitle {
+    display: none;
+  }
+
+  .shell-header-main {
+    padding-left: 0.75rem;
+  }
+
+  .shell-root-chip {
+    max-width: 18ch;
   }
 
   .shell-nav {
@@ -1630,24 +1922,29 @@ button:disabled {
 
 /* --- API Key Settings (DEL-02-06) --- */
 
+/* Inside the working-root disclosure the fields stack; the runtime and
+   credential controls sit below their own hairline. */
 .working-root-bar {
   display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: stretch;
 }
 
 .working-root-settings {
   flex-shrink: 0;
-  border-left: 1px solid var(--border);
-  padding-left: 1.5rem;
-  min-width: 280px;
+  border-left: 0;
+  border-top: 1px solid var(--rule);
+  padding-left: 0;
+  padding-top: 0.85rem;
+  min-width: 0;
 }
 
 .api-key-settings-title {
   margin: 0 0 0.4rem;
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -1655,16 +1952,16 @@ button:disabled {
 .api-key-status {
   margin: 0 0 0.5rem;
   font-size: 0.88rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .api-key-status[data-source="ui"],
 .api-key-status[data-source="env"] {
-  color: #1a7f37;
+  color: var(--sage-ink);
 }
 
 .api-key-status[data-source="none"] {
-  color: var(--error);
+  color: var(--danger);
 }
 
 .api-key-input-row {
@@ -1678,12 +1975,12 @@ button:disabled {
   flex: 1;
   min-width: 160px;
   padding: 0.35rem 0.55rem;
-  font-family: "IBM Plex Mono", monospace;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
   font-size: 0.85rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 6px;
-  background: var(--panel-muted);
-  color: var(--text-primary);
+  background: var(--ground);
+  color: var(--ink);
 }
 
 .api-key-input:focus {
@@ -1694,23 +1991,23 @@ button:disabled {
 .api-key-remove {
   margin-top: 0.4rem;
   font-size: 0.82rem;
-  color: var(--error);
+  color: var(--danger);
 }
 
 .api-key-warning {
   margin: 0 0 0.5rem;
   font-size: 0.82rem;
-  color: #b45309;
+  color: var(--rose-ink);
 }
 
 .api-key-hint {
   margin: 0;
   font-size: 0.82rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .api-key-hint code {
-  background: var(--panel-muted);
+  background: var(--ground);
   padding: 0.1em 0.3em;
   border-radius: 3px;
   font-size: 0.85em;
@@ -1719,25 +2016,25 @@ button:disabled {
 .api-key-error {
   margin: 0.3rem 0 0;
   font-size: 0.82rem;
-  color: var(--error);
+  color: var(--danger);
   font-weight: 600;
 }
 
 .runtime-settings {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--rule);
 }
 
 .runtime-status,
 .runtime-model-status {
   margin: 0 0 0.5rem;
   font-size: 0.82rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .runtime-status[data-running="true"] {
-  color: #1a7f37;
+  color: var(--sage-ink);
 }
 
 .runtime-control-row {
@@ -1751,10 +2048,10 @@ button:disabled {
   min-width: 220px;
   max-width: 360px;
   padding: 0.35rem 0.55rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 6px;
-  background: var(--panel-muted);
-  color: var(--text-primary);
+  background: var(--ground);
+  color: var(--ink);
 }
 
 .runtime-model-controls {
@@ -1766,7 +2063,7 @@ button:disabled {
 }
 
 .runtime-uninstall {
-  color: var(--error);
+  color: var(--danger);
 }
 
 @media (max-width: 900px) {
@@ -1791,7 +2088,7 @@ button:disabled {
 
   .working-root-settings {
     border-left: none;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--rule);
     padding-left: 0;
     padding-top: 0.75rem;
     min-width: unset;
@@ -1805,42 +2102,43 @@ button:disabled {
   flex-direction: column;
   width: 100%;
   min-height: 0;
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--surface);
   overflow: hidden;
 }
 
 .workspace-sidebar-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.2rem;
-  padding: 0.4rem 0.4rem 0;
-  border-bottom: 1px solid var(--border);
-  background: var(--panel-muted);
+  gap: 0.35rem;
+  padding: 0.4rem 0.55rem 0;
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
 }
 
 .workspace-sidebar-tab {
-  border: 1px solid transparent;
-  border-bottom: none;
+  border: 0;
   background: transparent;
-  color: var(--text-subtle);
-  border-radius: 0.4rem 0.4rem 0 0;
-  padding: 0.32rem 0.6rem;
-  font-size: 0.76rem;
-  letter-spacing: 0.02em;
+  color: var(--ink-faint);
+  border-radius: 0;
+  padding: 0.32rem 0.15rem 0.42rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   cursor: pointer;
+  box-shadow: inset 0 -1px 0 0 transparent;
 }
 
 .workspace-sidebar-tab:hover {
-  color: var(--accent);
+  filter: none;
+  color: var(--ink);
 }
 
 .workspace-sidebar-tab--active {
-  border-color: var(--border);
-  background: var(--panel);
+  background: transparent;
   color: var(--accent);
-  font-weight: 600;
+  box-shadow: inset 0 -1px 0 0 var(--accent);
 }
 
 .workspace-sidebar-body {
@@ -1892,31 +2190,31 @@ button:disabled {
 }
 
 .harness-stream-item {
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--border);
-  border-radius: 0.4rem;
-  background: var(--panel-muted);
-  padding: 0.45rem 0.55rem;
+  border: 0;
+  border-left: 2px solid var(--rule);
+  border-radius: 0;
+  background: transparent;
+  padding: 0.4rem 0.6rem;
 }
 
 .harness-stream-item--queued {
-  border-left-color: var(--text-subtle);
+  border-left-color: var(--ink-soft);
 }
 
 .harness-stream-item--running {
-  border-left-color: var(--accent);
+  border-left-color: var(--slate);
 }
 
 .harness-stream-item--completed {
-  border-left-color: #1a7f37;
+  border-left-color: var(--sage-ink);
 }
 
 .harness-stream-item--failed {
-  border-left-color: var(--error);
+  border-left-color: var(--danger);
 }
 
 .harness-stream-item--permission {
-  border-left-color: #b7791f;
+  border-left-color: var(--rose);
 }
 
 .harness-stream-row {
@@ -1937,44 +2235,40 @@ button:disabled {
 
 .harness-status-badge {
   flex: 0 0 auto;
+  border: 0;
   border-radius: 999px;
-  padding: 0.05rem 0.5rem;
-  font-size: 0.66rem;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.62rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border: 1px solid var(--border);
-  background: var(--panel);
-  color: var(--text-subtle);
+  letter-spacing: 0.09em;
+  background: var(--ground);
+  color: var(--ink-faint);
 }
 
 .harness-status-badge--queued {
-  border-color: var(--border);
-  background: var(--panel-muted);
-  color: var(--text-subtle);
+  background: var(--ground);
+  color: var(--ink-faint);
 }
 
 .harness-status-badge--running {
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: var(--slate-soft);
+  color: var(--slate-ink);
 }
 
 .harness-status-badge--completed {
-  border-color: #1a7f37;
-  background: #e6f4ea;
-  color: #1a7f37;
+  background: var(--sage-soft);
+  color: var(--sage-ink);
 }
 
 .harness-status-badge--failed {
-  border-color: var(--error);
-  background: #fbe9e7;
-  color: var(--error);
+  background: var(--danger-soft);
+  color: var(--danger);
 }
 
 .harness-status-badge--permission {
-  border-color: #b7791f;
-  background: #fdf3e0;
-  color: #b7791f;
+  background: var(--rose-soft);
+  color: var(--rose-ink);
 }
 
 .harness-stream-paths {
@@ -1993,7 +2287,7 @@ button:disabled {
 }
 
 .harness-stream-path-field {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   flex: 0 0 auto;
 }
 
@@ -2008,7 +2302,7 @@ button:disabled {
 .harness-stream-summary {
   margin: 0.35rem 0 0;
   font-size: 0.76rem;
-  color: var(--text-primary);
+  color: var(--ink);
 }
 
 .transcript-text {
@@ -2017,13 +2311,13 @@ button:disabled {
 }
 
 .harness-stream-summary {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .harness-stream-meta {
   margin: 0.35rem 0 0;
   font-size: 0.7rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 /* Operator mode selector (live loop) */
@@ -2033,7 +2327,7 @@ button:disabled {
   gap: 0.4rem;
   margin-top: 0.45rem;
   font-size: 0.74rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .chat-mode-selector select {
@@ -2050,12 +2344,13 @@ button:disabled {
   margin-top: 0.5rem;
 }
 
+/* A permission request is provenance-bearing, so it earns a card and a
+   border — and the rose voice, which reads "awaiting you". */
 .permission-card {
-  border: 1px solid #b7791f;
-  border-left: 3px solid #b7791f;
-  border-radius: 0.5rem;
-  background: #fdf3e0;
-  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--rose);
+  border-radius: 8px;
+  background: var(--card);
+  padding: 0.6rem 0.7rem;
 }
 
 .permission-card-header {
@@ -2081,15 +2376,16 @@ button:disabled {
   font-size: 0.64rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border: 1px solid #b7791f;
-  background: #fff;
-  color: #b7791f;
+  border: 0;
+  background: var(--rose-soft);
+  color: var(--rose-ink);
+  font-weight: 600;
 }
 
 .permission-card-reason {
   margin: 0.4rem 0 0;
   font-size: 0.78rem;
-  color: #5a4a23;
+  color: var(--rose-ink);
 }
 
 .permission-card-paths {
@@ -2108,7 +2404,7 @@ button:disabled {
 }
 
 .permission-card-path-field {
-  color: #5a4a23;
+  color: var(--rose-ink);
   flex: 0 0 auto;
 }
 
@@ -2126,9 +2422,9 @@ button:disabled {
 }
 
 .permission-card-approve {
-  border: 1px solid #1a7f37;
-  background: #1a7f37;
-  color: #fff;
+  border: 1px solid var(--cta);
+  background: var(--cta);
+  color: var(--cta-ink);
 }
 
 .permission-card-approve:disabled,
@@ -2140,7 +2436,7 @@ button:disabled {
 .permission-card-error {
   margin: 0.3rem 0 0;
   font-size: 0.74rem;
-  color: var(--error);
+  color: var(--danger);
 }
 
 /* Woven Dialogue — dialogue-centred workspace (SCA-APP-004 / D-APP-74). */
@@ -2148,60 +2444,24 @@ button:disabled {
   height: 100vh;
   min-height: 720px;
   overflow: hidden;
-  padding: 0.75rem;
-  gap: 0.65rem;
+  padding: 0;
+  gap: 0;
 }
 
 .shell-header--workspace {
-  padding: 0.7rem 0.8rem;
   align-items: center;
-}
-
-.shell-header--workspace .shell-brand-tile {
-  width: 40px;
-  height: 40px;
-}
-
-.shell-header--workspace .shell-header-main {
-  gap: 0.25rem;
-}
-
-.shell-header--workspace .shell-header-main h1 {
-  font-size: 1.35rem;
-}
-
-.shell-header--workspace .shell-subtitle {
-  margin: 0;
-  font-size: 0.8rem;
 }
 
 .working-root-bar--workspace {
-  padding: 0.65rem 0.8rem;
-  align-items: center;
-  gap: 0.75rem;
+  align-items: stretch;
 }
 
 .working-root-bar--workspace .working-root-fields {
-  flex: 1 1 auto;
   min-width: 0;
-  display: grid;
-  grid-template-columns: minmax(11rem, 1fr) auto;
-  gap: 0.35rem 0.55rem;
-  align-items: center;
-}
-
-.working-root-bar--workspace .working-root-fields > label,
-.working-root-bar--workspace .working-root-current,
-.working-root-bar--workspace .working-root-error {
-  grid-column: 1 / -1;
-}
-
-.working-root-bar--workspace .working-root-fields > label {
-  font-size: 0.72rem;
 }
 
 .working-root-bar--workspace .working-root-controls {
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
 }
 
 .working-root-bar--workspace .working-root-controls input {
@@ -2211,38 +2471,42 @@ button:disabled {
 .working-root-bar--workspace .working-root-current {
   max-width: 100%;
   overflow: hidden;
-  font-size: 0.74rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+/* Runtime & credentials stay a disclosure of their own, nested inside the
+   working-root disclosure so the top bar keeps every existing control. */
 .working-root-settings--disclosure {
-  min-width: 190px;
-  max-width: 520px;
+  min-width: 0;
+  max-width: none;
   border-left: 0;
   padding-left: 0;
 }
 
 .working-root-settings--disclosure summary {
   cursor: pointer;
-  color: var(--text-subtle);
-  font-size: 0.76rem;
-  font-weight: 650;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.working-root-settings--disclosure summary:hover {
+  color: var(--ink);
 }
 
 .working-root-settings-disclosure-body {
-  position: absolute;
-  z-index: 20;
-  right: 0.75rem;
-  width: min(520px, calc(100vw - 1.5rem));
-  max-height: min(70vh, 640px);
-  margin-top: 0.65rem;
-  overflow: auto;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 0.85rem;
-  background: var(--panel);
-  box-shadow: 0 22px 54px rgba(18, 33, 58, 0.2);
+  position: static;
+  width: 100%;
+  max-height: none;
+  margin-top: 0.7rem;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .woven-workspace {
@@ -2257,11 +2521,11 @@ button:disabled {
   flex: 1 1 auto;
   min-height: 0;
   height: auto;
-  border: 1px solid var(--border);
-  border-radius: 20px;
+  border: 0;
+  border-radius: 0;
   overflow: hidden;
-  background: color-mix(in srgb, var(--panel-muted) 88%, transparent);
-  box-shadow: 0 22px 54px var(--shadow-strong);
+  background: var(--ground);
+  box-shadow: none;
 }
 
 .woven-region,
@@ -2269,7 +2533,11 @@ button:disabled {
 .woven-activity {
   min-width: 0;
   min-height: 0;
-  background: var(--panel);
+  background: var(--surface);
+}
+
+.woven-region {
+  background: var(--ground);
 }
 
 .woven-region {
@@ -2280,13 +2548,13 @@ button:disabled {
 .woven-region--navigator {
   grid-column: 1;
   grid-row: 1;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--rule);
 }
 
 .woven-region--coordination {
   grid-column: 5;
   grid-row: 1;
-  border-left: 1px solid var(--border);
+  border-left: 1px solid var(--rule);
 }
 
 .woven-dialogue-region {
@@ -2313,11 +2581,15 @@ button:disabled {
   display: none;
 }
 
+/* Four rows, always: header / transcript / composer dock / composer. The row
+   list used to be six positional `auto` tracks against a child count that
+   changed with state; see the Stage C section for the defect this fixes. */
 .woven-primary-dialogue > .panel--chat {
   height: 100%;
+  min-width: 0;
   min-height: 0;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto auto auto;
+  grid-template-rows: auto minmax(0, 1fr) fit-content(38%) auto;
   overflow: hidden;
   box-shadow: none;
 }
@@ -2350,17 +2622,19 @@ button:disabled {
 .woven-region-header h2,
 .woven-activity-header h2 {
   margin: 0;
-  font-size: 1rem;
-  letter-spacing: -0.01em;
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 .woven-eyebrow,
 .woven-replay-eyebrow {
   margin: 0 0 0.12rem;
-  color: var(--text-subtle);
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
@@ -2385,7 +2659,7 @@ button:disabled {
 
 .woven-region.is-collapsed .woven-region-toggle::after {
   content: "+";
-  color: var(--text-primary);
+  color: var(--ink);
   font-size: 1rem;
 }
 
@@ -2395,7 +2669,7 @@ button:disabled {
   left: 50%;
   writing-mode: vertical-rl;
   transform: translateX(-50%);
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -2405,7 +2679,7 @@ button:disabled {
 .woven-resize-handle {
   position: relative;
   z-index: 2;
-  background: color-mix(in srgb, var(--panel-muted) 80%, var(--border));
+  background: color-mix(in srgb, var(--ground) 80%, var(--rule));
   touch-action: none;
 }
 
@@ -2413,7 +2687,7 @@ button:disabled {
   content: "";
   position: absolute;
   border-radius: 999px;
-  background: var(--border);
+  background: var(--rule);
   transition:
     background 120ms ease,
     transform 120ms ease;
@@ -2460,7 +2734,7 @@ button:disabled {
   grid-column: 1 / -1;
   grid-row: 2;
   cursor: row-resize;
-  border-block: 1px solid var(--border);
+  border-block: 1px solid var(--rule);
 }
 
 .woven-resize-handle--horizontal::after {
@@ -2506,32 +2780,40 @@ button:disabled {
   flex-direction: column;
   align-items: flex-start;
   gap: 0.18rem;
-  border: 1px solid transparent;
-  border-radius: 10px;
+  border: 0;
+  border-left: 2px solid transparent;
+  border-radius: 0;
   background: transparent;
-  color: var(--text-primary);
+  color: var(--ink-soft);
+  font-weight: 400;
   text-align: left;
 }
 
-.woven-nav-item {
-  padding: 0.55rem 0.6rem;
+.woven-nav-item:hover,
+.woven-agent-card:hover {
+  filter: none;
+  color: var(--ink);
+  background: transparent;
 }
 
-.woven-nav-item:hover,
+.woven-nav-item {
+  padding: 0.42rem 0.6rem;
+}
+
 .woven-nav-item--active,
-.woven-agent-card:hover,
 .woven-agent-card--selected {
-  border-color: var(--border);
-  background: var(--panel-elevated);
+  color: var(--ink);
+  border-left-color: var(--accent);
+  background: linear-gradient(90deg, var(--accent-soft), transparent 85%);
 }
 
 .woven-nav-item span {
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .woven-nav-item small,
 .woven-agent-card small {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   line-height: 1.25;
 }
 
@@ -2554,13 +2836,13 @@ button:disabled {
 }
 
 .woven-compatibility {
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--rule);
   padding-top: 0.65rem;
 }
 
 .woven-compatibility p {
   margin: 0 0 0.25rem;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.66rem;
   font-weight: 700;
   letter-spacing: 0.07em;
@@ -2583,14 +2865,21 @@ button:disabled {
 .woven-activity-controls > div button {
   border-color: transparent;
   background: transparent;
-  color: var(--text-subtle);
+  color: var(--ink-faint);
+  font-size: 0.72rem;
+}
+
+.woven-coordination-tabs button:hover,
+.woven-activity-controls > div button:hover {
+  filter: none;
+  color: var(--ink);
 }
 
 .woven-coordination-tabs button.is-active,
 .woven-activity-controls > div button.is-active {
-  border-color: var(--border);
+  border-color: transparent;
   background: var(--accent-soft);
-  color: var(--text-primary);
+  color: var(--accent);
 }
 
 .woven-coordination-body {
@@ -2608,7 +2897,7 @@ button:disabled {
 .woven-projection > header p,
 .woven-projection-toolbar p,
 .woven-projection-notice {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.76rem;
 }
 
@@ -2628,10 +2917,10 @@ button:disabled {
 }
 
 .woven-projection > ol > li {
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 12px;
   padding: 0.65rem;
-  background: var(--panel-muted);
+  background: var(--ground);
 }
 
 .woven-projection article h3,
@@ -2657,7 +2946,7 @@ button:disabled {
 
 .woven-projection dt,
 .woven-replay-provenance dt {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .woven-projection dd,
@@ -2676,7 +2965,7 @@ button:disabled {
 .woven-agent-children {
   margin: 0.42rem 0 0 0.72rem;
   padding-left: 0.65rem;
-  border-left: 1px solid var(--border);
+  border-left: 1px solid var(--rule);
 }
 
 .woven-agent-card {
@@ -2689,7 +2978,7 @@ button:disabled {
 }
 
 .woven-agent-card-topline span {
-  color: var(--text-subtle);
+  color: var(--ink-soft);
 }
 
 .woven-agent-diagnostics {
@@ -2697,9 +2986,9 @@ button:disabled {
   gap: 0.2rem;
   margin-top: 0.25rem;
   padding: 0.4rem;
-  border-left: 3px solid #b7791f;
-  background: #fdf3e0;
-  color: #5a4a23;
+  border-left: 3px solid var(--rose);
+  background: var(--rose-soft);
+  color: var(--rose-ink);
 }
 
 .woven-detached-agents,
@@ -2707,13 +2996,13 @@ button:disabled {
 .woven-hierarchy-diagnostics {
   margin-top: 0.8rem;
   padding: 0.65rem;
-  border: 1px dashed var(--border);
+  border: 1px dashed var(--rule);
   border-radius: 10px;
 }
 
 .woven-detached-agents > p {
   margin: 0;
-  color: var(--text-subtle);
+  color: var(--ink-soft);
   font-size: 0.74rem;
 }
 
@@ -2727,9 +3016,9 @@ button:disabled {
 .woven-focused-surface,
 .woven-replay-lens {
   overflow: auto;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--surface);
 }
 
 .woven-focused-header,
@@ -2738,8 +3027,8 @@ button:disabled {
   z-index: 3;
   top: 0;
   padding: 0.8rem 0.9rem;
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--panel) 94%, transparent);
+  border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
   backdrop-filter: blur(10px);
 }
 
@@ -2768,18 +3057,18 @@ button:disabled {
   gap: 1rem;
   margin-top: 1rem;
   padding: 0.8rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 12px;
-  background: var(--panel-muted);
+  background: var(--ground);
 }
 
 .woven-replay-diagnostics {
   display: grid;
   gap: 0.35rem;
   padding: 0.65rem 0.8rem;
-  border-left: 3px solid #b7791f;
-  background: #fdf3e0;
-  color: #5a4a23;
+  border-left: 3px solid var(--rose);
+  background: var(--rose-soft);
+  color: var(--rose-ink);
   font-size: 0.76rem;
 }
 
@@ -2789,10 +3078,10 @@ button:disabled {
 }
 
 .woven-replay-item {
-  border: 1px solid var(--border);
+  border: 1px solid var(--rule);
   border-radius: 12px;
   padding: 0.7rem;
-  background: var(--panel-muted);
+  background: var(--ground);
 }
 
 .woven-replay-item p {
@@ -2854,20 +3143,8 @@ button:disabled {
     overflow: visible;
   }
 
-  .working-root-bar--workspace .working-root-fields {
-    display: flex;
-  }
-
-  .working-root-settings--disclosure {
-    width: 100%;
-    max-width: none;
-    border-top: 1px solid var(--border);
-    padding-top: 0.65rem;
-  }
-
-  .working-root-settings-disclosure-body {
-    position: static;
-    width: 100%;
+  .working-root-bar {
+    width: min(420px, calc(100vw - 1.4rem));
   }
 
   .woven-workspace {
@@ -2922,4 +3199,555 @@ button:disabled {
   .woven-resize-handle::after {
     transition: none;
   }
+}
+
+/* ==========================================================================
+   Stage B2 — Navigator mode-scoped session history
+   (TRB-APPDEV-WOVEN-REDESIGN-2026-07-24 §3.4)
+
+   Appended section: no rule above is edited. Every value resolves from the
+   Stage A token layer. Sessions are list rows, not cards — they carry no
+   provenance box, and the only colour they use is the sage live marker.
+   ========================================================================== */
+
+.woven-navigator-group {
+  position: relative;
+}
+
+.woven-navigator-chevron {
+  position: absolute;
+  top: 0.42rem;
+  right: 0.5rem;
+  font-size: 0.6rem;
+  line-height: 1;
+  color: var(--ink-faint);
+}
+
+.woven-navigator-sessions {
+  display: grid;
+  gap: 0.1rem;
+  margin: 0.15rem 0 0.4rem;
+}
+
+.woven-navigator-session-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.woven-navigator-session {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+  font-weight: 400;
+  text-align: left;
+  padding: 0.24rem 0.6rem 0.24rem 1.5rem;
+}
+
+.woven-navigator-session:hover {
+  filter: none;
+  background: transparent;
+  color: var(--ink);
+}
+
+.woven-navigator-session[aria-pressed='true'] {
+  color: var(--ink);
+  background: linear-gradient(90deg, var(--accent-soft), transparent 85%);
+}
+
+.woven-navigator-session--live {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.woven-navigator-session-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sage);
+  flex: none;
+  align-self: center;
+  margin-left: -0.72rem;
+}
+
+.woven-navigator-session-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.woven-navigator-session-when {
+  flex: none;
+  font-size: 0.66rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.woven-navigator-session-notice,
+.woven-navigator-sessions .panel-empty {
+  margin: 0;
+  padding: 0.12rem 0.6rem 0.12rem 1.5rem;
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+
+.woven-navigator-sessions .panel-error {
+  margin: 0;
+  padding: 0.12rem 0.6rem 0.12rem 1.5rem;
+  font-size: 0.7rem;
+}
+
+.woven-navigator-more {
+  margin: 0;
+  padding: 0.1rem 0.6rem 0 1.5rem;
+}
+
+.woven-navigator-more button {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.woven-navigator-more button:hover {
+  filter: none;
+  background: transparent;
+  color: var(--accent);
+}
+
+/* ==========================================================================
+   Stage C — defect fix, density, reduced motion, Documents provenance block
+   (TRB-APPDEV-WOVEN-REDESIGN-2026-07-24 §5 Stage C)
+
+   Appended section. Exactly one rule above this section was edited — the
+   `.woven-primary-dialogue > .panel--chat` grid-row list (see the comment
+   there) — because the defect is a grid-track defect and cannot be corrected
+   from a lower-cascade override alone. Everything else here is additive and
+   every value resolves from the Stage A token layer (no literal colours).
+   ========================================================================== */
+
+/* ── C1. Composer overlap (browser-diagnosed) ────────────────────────────
+   Repro before the fix, at 1280x720 on the Dialogue surface: the chat panel
+   was a six-track grid whose child count changed with state (draft-storage
+   warning / runtime status / runtime error appear and disappear). Once more
+   than the attachment block occupied the trailing tracks, the transcript's
+   `minmax(0, 1fr)` track was squeezed to ~4px while the transcript element
+   itself cannot be shorter than its own block padding (~27px): the box then
+   overflowed its track and drew on top of the Attachments row, and the
+   transcript content — the "Select a Working Root…" empty state and the
+   seeded turn — was clipped out of sight.
+
+   Fix, in three parts:
+     a. the trailing notices are wrapped in one `.chat-composer-dock`, so the
+        panel is always exactly four rows regardless of state;
+     b. the dock track is capped with `fit-content(38%)` and scrolls inside
+        itself, so notices can never consume the whole panel;
+     c. the transcript carries no block padding in this context — the inset
+        comes from its first/last child margins, which are scrollable content
+        rather than an incompressible part of the box. The transcript track
+        can therefore reach 0 without the box ever overflowing it, which
+        makes the overlap structurally impossible at any panel height. */
+
+.chat-composer-dock {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-composer-dock {
+  overflow: auto;
+  border-top: 1px solid var(--rule);
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-composer-dock > .chat-attachment-preview {
+  border-top: 0;
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-transcript {
+  padding-block: 0;
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-transcript > :first-child {
+  margin-top: 0.85rem;
+}
+
+.woven-primary-dialogue > .panel--chat > .chat-transcript > :last-child {
+  margin-bottom: 0.85rem;
+}
+
+/* The empty state is a quiet note above the transcript, not a turn: it keeps
+   the transcript's reading measure and never sits on the composer. It stays on
+   `--ink-soft` — `--ink-faint` at this size is 3.2:1 light / 3.6:1 dark and
+   would fail AA. */
+.woven-primary-dialogue > .panel--chat > .chat-transcript > .panel-empty {
+  max-width: 74ch;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+/* ── C2. Density: the woven chat panel is chrome inside an already-titled
+   region. "Dialogue" and the persona are stated by the toolbar directly
+   above it, so the panel's own heading and meta line are removed from view
+   but kept in the accessibility tree, and the header collapses to the single
+   row that carries a live control. This returns ~65px to the transcript. */
+
+.woven-primary-dialogue > .panel--chat > .panel-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.34rem 1rem;
+}
+
+.woven-primary-dialogue > .panel--chat > .panel-header > h2,
+.woven-primary-dialogue > .panel--chat > .panel-header > .chat-meta {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.woven-primary-dialogue > .panel--chat > .panel-header > .chat-mode-selector {
+  margin-top: 0;
+}
+
+/* ── C3. Intrinsic density: nothing in the dialogue column may impose a
+   min-content floor wider than the column. Before this, the composer row and
+   the persona select forced ~374px of min-content into a 312px column
+   between 861px and 1180px, and `.woven-dialogue-region`'s `overflow:hidden`
+   silently clipped the Attach Files / Clear / Interrupt controls. */
+
+.woven-primary-dialogue,
+.woven-focused-surface,
+.woven-replay-lens {
+  min-width: 0;
+}
+
+.woven-dialogue-toolbar,
+.woven-region-header,
+.woven-activity-header,
+.woven-focused-header,
+.woven-replay-header {
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+/* Rail headers carry a title and a segmented control; below ~1180px the rail
+   is narrower than their combined min-content, and the rail's own
+   `overflow: hidden` was clipping the trailing control. */
+.woven-region-header > *,
+.woven-activity-header > *,
+.woven-focused-header > *,
+.woven-replay-header > * {
+  min-width: 0;
+}
+
+.woven-dialogue-toolbar .persona-picker,
+.woven-dialogue-toolbar .persona-picker select {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.chat-input-row {
+  flex-wrap: wrap;
+}
+
+.chat-input-row input {
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+
+.chat-attachment-header {
+  flex-wrap: wrap;
+}
+
+.chat-attachment-header > div {
+  flex-wrap: wrap;
+}
+
+/* Top bar: give the squeeze an explicit order. The surface subtitle yields
+   first, then the working-root chip value (both already ellipsize); the
+   navigation and the theme control never shrink, because between ~880px and
+   ~1024px the theme control was being clipped by the bar's own bounds. */
+.shell-header-main {
+  flex: 1 1 auto;
+}
+
+.shell-header-controls {
+  flex: 0 1 auto;
+}
+
+.shell-root-disclosure {
+  flex: 0 1 auto;
+}
+
+.shell-header-controls > .shell-nav,
+.shell-header-controls > .shell-theme {
+  flex: 0 0 auto;
+}
+
+/* ── C4. Responsive: the three-column workspace keeps its rails between
+   861px and 1180px, so the rails have to give the dialogue column real room
+   before the layout stacks at 860px. */
+
+@media (max-width: 1180px) {
+  .woven-workspace {
+    --woven-navigator-width: 216px !important;
+    --woven-coordination-width: 264px !important;
+  }
+
+  .woven-dialogue-region {
+    padding: 0.55rem;
+  }
+
+  .woven-dialogue-toolbar .persona-picker label {
+    display: none;
+  }
+
+  .shell-header {
+    gap: 0.85rem;
+  }
+
+  .shell-subtitle {
+    max-width: 30ch;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Stacking is still at 860px; this band only relieves the rails further so
+     the dialogue column stays legible right up to the stacking point. */
+  .woven-workspace {
+    --woven-navigator-width: 196px !important;
+    --woven-coordination-width: 232px !important;
+  }
+
+  .shell-subtitle {
+    display: none;
+  }
+}
+
+@media (max-width: 860px) {
+  /* Stacked: the dialogue pane is full width, so the composer dock no longer
+     needs to compete with the transcript for a fixed pane height. */
+  .woven-primary-dialogue > .panel--chat {
+    grid-template-rows: auto minmax(0, 1fr) auto auto;
+  }
+
+  .woven-dialogue-toolbar .persona-picker select {
+    width: 100%;
+  }
+}
+
+/* ── C5. Workbench "Documents" block (Stage B1 carry-forward).
+   Documents, evidence and contracts are provenance-bearing objects, so the
+   block takes the reference's object-card treatment: one frame, a ruled head,
+   a body, and no nested box. `DocumentView` keeps its own markup — it is only
+   de-boxed here so the card reads as a single object. */
+
+.workbench-documents-block {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-color: var(--rule-strong);
+  background: var(--card);
+  padding: 0;
+}
+
+.workbench-documents-block > header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.workbench-documents-block > header h3 {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.workbench-documents-block > .pipeline-note {
+  margin: 0;
+  padding: 0.6rem 0.9rem 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.workbench-documents-block > .panel--document {
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.workbench-documents-block .panel--document > .panel-header {
+  position: relative;
+  border-bottom: 0;
+  padding: 0.6rem 0.9rem 0;
+}
+
+/* "Document" restates the block heading one line above it. */
+.workbench-documents-block .panel--document > .panel-header > h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* With no deliverables the header holds only the hidden heading, so it should
+   not reserve a band of its own. */
+.workbench-documents-block .panel--document > .panel-header:not(:has(.document-view-controls)) {
+  padding: 0;
+}
+
+.workbench-documents-block .document-view-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.workbench-documents-block .document-view-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+  flex: 1 1 14rem;
+}
+
+/* These label live controls, so they take `--ink-soft` rather than the
+   decorative-eyebrow `--ink-faint`, which does not reach AA at this size. */
+.workbench-documents-block .document-view-selector > span {
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.workbench-documents-block .document-view-selector select {
+  min-width: 0;
+  width: 100%;
+  font-size: 0.78rem;
+}
+
+.workbench-documents-block .document-view-body {
+  padding: 0.6rem 0.9rem 0.85rem;
+  min-width: 0;
+  max-height: 26rem;
+}
+
+.workbench-documents-block .document-view-body > .panel-empty,
+.workbench-documents-block .document-view-body > .panel-error {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.74rem;
+}
+
+/* ── C6. Reduced motion. The stylesheet carries one transition
+   (`.woven-resize-handle::after`) and no keyframes; this block states the
+   whole-document policy so any future motion inherits it, and covers the
+   transform the earlier block left running. */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .woven-resize-handle:hover::after,
+  .woven-resize-handle:focus-visible::after {
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Round 7 — V2 render-evidence remediation (F-1 blocking, F-2/F-3 cosmetic)
+   (TRB-APPDEV-WOVEN-REDESIGN-2026-07-24 §6 accessibility/responsive gate)
+
+   Appended section: no rule above is edited. Every value resolves from the
+   Stage A token layer.
+   ========================================================================== */
+
+/* ── F-1 (BLOCKING). The root-chip disclosure panel is absolutely positioned
+   with `right: 0` against `.shell-root-disclosure`, so its right edge tracks
+   the chip rather than the viewport. The chip's right edge sits a fixed 276px
+   in from the viewport edge (measured identical at 1440/1180/900), so once the
+   viewport falls below 680 + 276 + 19.2 ≈ 975px the 680px panel is pushed off
+   the left edge — 56px off-screen at 900px, taking half of `Apply Path` with
+   it.
+
+   Fix: in the affected band only, move the panel's containing block from the
+   chip to the whole top bar and let it span that bar. `top: calc(100% + 0.6rem)`
+   then resolves against the 48px bar instead of the chip, so the panel drops
+   just below the bar. Wide viewports (>1024px) keep the verified chip-anchored
+   behaviour untouched, and <=860px keeps its existing compact 420px panel,
+   which already fits. Absolute positioning is retained deliberately — a
+   `fixed` panel would detach from the bar while the non-workspace shell
+   scrolls. */
+@media (min-width: 861px) and (max-width: 1024px) {
+  .shell-header {
+    position: relative;
+  }
+
+  /* `.working-root-bar` is the only absolutely positioned descendant, so
+     releasing this containing block affects nothing else. */
+  .shell-root-disclosure {
+    position: static;
+  }
+
+  .working-root-bar {
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+}
+
+/* ── F-2. The composer placeholder is longer than the field at narrow widths
+   and was cut mid-glyph at the input's right edge. Inputs clip by default but
+   do not ellipsize unless asked. */
+.chat-input-row input {
+  text-overflow: ellipsis;
+}
+
+/* ── F-3. The replay provenance value broke mid-token (`…/even` / `ts`).
+   `overflow-wrap: anywhere` is already set on the value and is what permits an
+   arbitrary break point, so adding it is not the remedy; V2's alternative — a
+   wider value column — is. The widest label is `Disclosure`, so the 7rem label
+   track was over-reserved; releasing it to the label's own max-content width
+   hands the difference to the value and lets the string stay on one line at
+   the widths captured. `overflow-wrap` stays as the anti-overflow backstop. */
+.woven-replay-provenance dl {
+  grid-template-columns: minmax(4.5rem, max-content) minmax(0, 1fr);
 }

@@ -1,0 +1,16 @@
+{
+  "note": "Contrast measured on the ACTUAL rendered controls (computed color vs nearest opaque ancestor background), not token probes. Colours rasterised through a 1x1 canvas because color-mix() tokens serialise as color(srgb ...). Captured on feat/woven-redesign @ 83a3a4733 (post round-6 light --accent #99552F).",
+  "caveat": "'active navigator group' reports the --ground background because its highlight is painted as a background-image (gradient), not backgroundColor; the walk therefore resolves to the nearest opaque backgroundColor ancestor. Its text/background pairing passes with a large margin either way.",
+  "light": {
+    "selected theme chip": { "selector": ".shell-theme-option[aria-pressed=\"true\"]", "fg": "rgb(153, 85, 47)", "bg": "rgb(241, 229, 214)", "ratio": 4.58 },
+    "active coordination tab": { "selector": ".woven-coordination-tabs button.is-active", "fg": "rgb(153, 85, 47)", "bg": "rgb(241, 229, 214)", "ratio": 4.58 },
+    "active navigator group": { "selector": ".woven-nav-item--active", "fg": "rgb(41, 35, 26)", "bg": "rgb(248, 245, 238)", "ratio": 14.29 },
+    "active shell nav link": { "selector": ".shell-nav-link--active", "fg": "rgb(153, 85, 47)", "bg": "rgb(252, 250, 244)", "ratio": 5.45 }
+  },
+  "dark": {
+    "selected theme chip": { "selector": ".shell-theme-option[aria-pressed=\"true\"]", "fg": "rgb(198, 124, 80)", "bg": "rgb(50, 35, 22)", "ratio": 4.61 },
+    "active coordination tab": { "selector": ".woven-coordination-tabs button.is-active", "fg": "rgb(198, 124, 80)", "bg": "rgb(50, 35, 22)", "ratio": 4.61 },
+    "active navigator group": { "selector": ".woven-nav-item--active", "fg": "rgb(234, 228, 214)", "bg": "rgb(23, 21, 17)", "ratio": 14.38 },
+    "active shell nav link": { "selector": ".shell-nav-link--active", "fg": "rgb(198, 124, 80)", "bg": "rgb(28, 26, 21)", "ratio": 5.3 }
+  }
+}

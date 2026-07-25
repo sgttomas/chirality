@@ -2,27 +2,34 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-07-23
+**Last Updated:** 2026-07-24
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
-- Implement the owner-approved Woven Dialogue shell: mounted primary transcript
-  and composer, provenance-bearing inline/focused artifacts, Navigator,
-  Work/Agents Coordination Panel, Activity Shelf, and persistent return from
-  focus/replay to the primary dialogue.
-- Preserve and prove compatibility for `/`, `/chat`, `/workbench`,
-  `/pipeline`, existing deep-link/query behavior, unknown query parameters,
-  and the reachable legacy loop-first/matrix surfaces.
-- Prove that selected replay remains read-only and observational and does not
-  transfer or mutate the primary dialogue's draft, attachments, explicit
-  context, permissions, interruption state, or interaction authority.
-- Record component/render, route/query, provenance, focus restoration,
-  keyboard-region, landmark, reduced-motion, and bounded-projection evidence.
+- Record packaged Desktop smoke evidence for the redesigned Woven Dialogue
+  shell. The shell, its compatibility surface, replay isolation, and its
+  component/render, route/query, focus, landmark, reduced-motion, and
+  bounded-projection evidence are implemented and evidenced (PR #323 merge
+  `403f228f4`; redesign tranche 2026-07-24), but no packaged Desktop smoke run
+  was performed for the redesigned shell — the packaging gate was untriggered
+  by that tranche's diff. Evidence:
+  `execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/` and
+  `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md`.
+- Implement a true runtime-connectivity indicator in the compact top bar. The
+  status dot currently reports working-root state, not daemon connectivity
+  (Stage A deviation 4, ratified for the 2026-07-24 tranche only).
+- Record-only note, no code owed: Next `metadata.icons` is intentionally
+  satisfied through the `src/app/icon.svg` file convention rather than a
+  literal metadata field.
+- Ship the `.icns` / electron-builder packaged application icon (adopted D3
+  residual — the packaged app still uses Electron's default icon).
+  Cross-reference DEL-09-04.
 
 ## History
+- 2026-07-24 - Woven Dialogue visual redesign and IA consolidation tranche recorded in `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md`; the four SCA-APP-004 Remaining items were rewritten to their true residuals (packaged Desktop smoke evidence, true runtime-connectivity indicator, `metadata.icons` record-only note, packaged application icon cross-referenced to DEL-09-04). State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-07-23 - SCA-APP-004 Gate-5 execution-record propagation replaced the obsolete fixed target-IA Remaining basis with the owner-approved Woven Dialogue shell and compatibility tranche. State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-07-20 - D-APP-70 Option A CQ-F1 mappings applied through R5; the CQ-F1 Remaining entry was closed with retained boundaries preserved in the additive applied derivative; no source, lifecycle, Approval SHA, SOW, or dependency change.
 - 2026-07-12 - D-APP-56 final code tranche implemented UPD-106 PORTAL active-link render coverage; state remains IN_PROGRESS.

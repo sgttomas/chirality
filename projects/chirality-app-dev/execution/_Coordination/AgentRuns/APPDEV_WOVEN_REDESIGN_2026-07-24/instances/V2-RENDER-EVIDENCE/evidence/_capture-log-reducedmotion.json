@@ -1,0 +1,45 @@
+[
+  {
+    "scene": "_bootstrap",
+    "result": "{\"current\":\"Active root: /Users/ryan/dev/chirality\",\"error\":null,\"stored\":\"/Users/ryan/dev/chirality\"}",
+    "projectRoot": "/Users/ryan/dev/chirality"
+  },
+  {
+    "scene": "navigator",
+    "route": "/",
+    "theme": "light",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "light",
+    "reducedMotionMatches": true,
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 1,
+      "dataTheme": "light",
+      "scrollWidthOverflow": false
+    },
+    "states": "Dialogue:true Workbench:false Pipeline:false",
+    "file": "navigator-light-1440-reducedmotion.png"
+  },
+  {
+    "scene": "dialogue",
+    "route": "/",
+    "theme": "light",
+    "width": 1440,
+    "height": 900,
+    "mounted": true,
+    "themeApplied": "light",
+    "reducedMotionMatches": true,
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 1,
+      "dataTheme": "light",
+      "scrollWidthOverflow": false
+    },
+    "states": "empty transcript + composer dock mounted",
+    "file": "dialogue-light-1440-reducedmotion.png"
+  }
+]

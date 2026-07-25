@@ -523,83 +523,93 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
         <PermissionRequests sessionId={activeSession?.sessionId ?? null} active={isRunning} />
       </div>
 
-      {draftStorageWarning ? (
-        <div className="chat-storage-warning toolkit-warning" role="status" aria-live="polite">
-          <p>{draftStorageWarning}</p>
-          <button
-            type="button"
-            className="button-muted"
-            onClick={() => {
-              setDraftStorageWarning(null);
-            }}
-          >
-            Dismiss
-          </button>
-        </div>
-      ) : null}
-
-      <div className="chat-attachment-preview" aria-live="polite">
-        <div className="chat-attachment-header">
-          <strong>Attachments</strong>
-          <div>
+      {/* Composer dock: every notice that sits between the transcript and the
+          composer lives in one block, so the chat panel always lays out as
+          exactly four rows (header / transcript / dock / composer). Before
+          this wrapper the row count varied with state, the transcript's
+          flexible row was squeezed below its own padding, and its box
+          overflowed on top of the Attachments row (Stage C defect). */}
+      <div className="chat-composer-dock">
+        {draftStorageWarning ? (
+          <div className="chat-storage-warning toolkit-warning" role="status" aria-live="polite">
+            <p>{draftStorageWarning}</p>
             <button
               type="button"
               className="button-muted"
               onClick={() => {
-                setPickerOpen(true);
+                setDraftStorageWarning(null);
               }}
-              disabled={!projectRoot || isRunning}
             >
-              Attach Files
-            </button>
-            <button
-              type="button"
-              className="button-muted"
-              onClick={() => {
-                setAttachments([]);
-              }}
-              disabled={attachments.length === 0 || isRunning}
-            >
-              Clear
+              Dismiss
             </button>
           </div>
+        ) : null}
+
+        <div className="chat-attachment-preview" aria-live="polite">
+          <div className="chat-attachment-header">
+            <strong>Attachments</strong>
+            <div>
+              <button
+                type="button"
+                className="button-muted"
+                onClick={() => {
+                  setPickerOpen(true);
+                }}
+                disabled={!projectRoot || isRunning}
+              >
+                Attach Files
+              </button>
+              <button
+                type="button"
+                className="button-muted"
+                onClick={() => {
+                  setAttachments([]);
+                }}
+                disabled={attachments.length === 0 || isRunning}
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+
+          {attachments.length === 0 ? (
+            <p className="panel-empty">No attachments selected.</p>
+          ) : (
+            <ul className="attachment-chip-list">
+              {attachments.map((item) => (
+                <li key={item.path} className="attachment-chip" title={item.path}>
+                  <span>{item.displayName}</span>
+                  <small>{item.clientType}</small>
+                  <button
+                    type="button"
+                    className="button-muted"
+                    onClick={() => {
+                      setAttachments((existing) =>
+                        existing.filter((entry) => entry.path !== item.path)
+                      );
+                    }}
+                  >
+                    Remove
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
-        {attachments.length === 0 ? (
-          <p className="panel-empty">No attachments selected.</p>
-        ) : (
-          <ul className="attachment-chip-list">
-            {attachments.map((item) => (
-              <li key={item.path} className="attachment-chip" title={item.path}>
-                <span>{item.displayName}</span>
-                <small>{item.clientType}</small>
-                <button
-                  type="button"
-                  className="button-muted"
-                  onClick={() => {
-                    setAttachments((existing) => existing.filter((entry) => entry.path !== item.path));
-                  }}
-                >
-                  Remove
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
+        {runtimeStatus ? <p className="chat-runtime-status">{runtimeStatus}</p> : null}
+
+        {runtimeError ? (
+          <div className="chat-runtime-error">
+            <p className="chat-runtime-error-title">
+              {runtimeError.title}
+              {runtimeError.code ? ` (${runtimeError.code})` : ''}
+            </p>
+            <p>{runtimeError.message}</p>
+            <p>{runtimeError.nextStep}</p>
+          </div>
+        ) : null}
       </div>
-
-      {runtimeStatus ? <p className="chat-runtime-status">{runtimeStatus}</p> : null}
-
-      {runtimeError ? (
-        <div className="chat-runtime-error">
-          <p className="chat-runtime-error-title">
-            {runtimeError.title}
-            {runtimeError.code ? ` (${runtimeError.code})` : ''}
-          </p>
-          <p>{runtimeError.message}</p>
-          <p>{runtimeError.nextStep}</p>
-        </div>
-      ) : null}
 
       <form
         className="chat-input-row"

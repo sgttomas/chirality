@@ -2,27 +2,34 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-07-23
+**Last Updated:** 2026-07-24
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
-- Implement Work as a provenance-bearing projection over explicitly recorded
-  plans/tasks with source class, exact reference, authority class, status
-  basis, currency, and recorded responsible/related references.
-- Implement Agents as a projection over canonical recorded sessions and exact
-  parentage, with explicit empty, unknown, stale, bounded, unavailable, and
-  conflicting states.
-- Re-host Workbench and Pipeline around the central dialogue while preserving
-  deep-link/query intent, DECOMP/PREP/TASK/AUDIT controls, dynamic task scope,
-  lifecycle guards, and visible disabled options.
-- Prove semantic-owner boundaries: no synthesized work, inferred parentage,
-  panel-authored approval/assignment/lifecycle, dispatch mutation, or runtime
-  state creation; selected session uses only DEL-05-04's read-only replay lens.
+The Work/Agents projections (PR #323 merge `403f228f4`), the Workbench and
+Pipeline re-host, the Artifacts fold into a Workbench Documents block, and the
+coordination/activity presentation are implemented and evidenced, with the
+semantic-owner boundaries independently re-proven (2026-07-24 redesign tranche;
+see `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md` and
+`execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`). What
+remains:
+
+- Decide whether to re-style the navigator's "All sessions (N)" presentation:
+  it diverges from the approved mockup's per-group counts because N counts all
+  recorded sessions per Working Root, including unattributed ones. Ratified
+  deviation; the owner may keep or re-style it.
+- Make the expanded "All sessions" label invert when its group is expanded;
+  `aria-expanded` is already correct (V2 finding F-4).
+- Include the year in navigator session timestamps; `formatSessionWhen`
+  currently omits it, leaving cross-year entries ambiguous (round-4 note).
+- Record packaged Desktop smoke evidence for the re-hosted Workbench and
+  Pipeline surfaces.
 
 ## History
+- 2026-07-24 - Woven Dialogue visual redesign and IA consolidation tranche recorded in `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md`; the four SCA-APP-004 Remaining items were rewritten to their true residuals (recorded-session presentation notes for "All sessions (N)", label inversion and session year, plus packaged Desktop smoke evidence). State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-07-23 - SCA-APP-004 Gate-5 execution-record propagation added the owner-approved Work/Agents projection and contextual Workbench/Pipeline implementation tranche. State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)

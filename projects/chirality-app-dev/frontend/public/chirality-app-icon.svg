@@ -1,24 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 32 32" role="img" aria-labelledby="title desc">
   <title id="title">Chirality App Icon</title>
-  <desc id="desc">Rounded-square icon with mirrored swirl lanes representing chirality.</desc>
-  <defs>
-    <linearGradient id="base" x1="120" y1="80" x2="900" y2="940" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2a6bff"/>
-      <stop offset="1" stop-color="#15328f"/>
-    </linearGradient>
-    <linearGradient id="laneA" x1="240" y1="260" x2="760" y2="760" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#d9e6ff"/>
-      <stop offset="1" stop-color="#88aaff"/>
-    </linearGradient>
-    <linearGradient id="laneB" x1="760" y1="260" x2="260" y2="760" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#f6fbff"/>
-      <stop offset="1" stop-color="#bfd2ff"/>
-    </linearGradient>
-  </defs>
-
-  <rect x="64" y="64" width="896" height="896" rx="214" fill="url(#base)"/>
-  <path d="M260 300c95-70 212-86 314-56 62 18 121 53 170 105l-96 79c-72-73-177-102-275-76-56 15-109 45-154 90z" fill="url(#laneA)"/>
-  <path d="M764 724c-95 70-212 86-314 56-62-18-121-53-170-105l96-79c72 73 177 102 275 76 56-15 109-45 154-90z" fill="url(#laneB)"/>
-  <circle cx="512" cy="512" r="68" fill="#f6fbff"/>
-  <circle cx="512" cy="512" r="34" fill="#27489f"/>
+  <desc id="desc">Quincunx tile mark: four umber squares at the corners of a cream tile around a terracotta centre square.</desc>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7" fill="#F0E9D8" stroke="#D8CFBA" stroke-width="1"/>
+  <rect x="4.6" y="4.6" width="7.4" height="7.4" rx="1.5" fill="#4A3423" transform="rotate(-3.5 8.3 8.3)"/>
+  <rect x="20" y="4.6" width="7.4" height="7.4" rx="1.5" fill="#543C28" transform="rotate(3 23.7 8.3)"/>
+  <rect x="12.3" y="12.3" width="7.4" height="7.4" rx="1.5" fill="#BC5A28" transform="rotate(3 16 16)"/>
+  <rect x="4.6" y="20" width="7.4" height="7.4" rx="1.5" fill="#503927" transform="rotate(2 8.3 23.7)"/>
+  <rect x="20" y="20" width="7.4" height="7.4" rx="1.5" fill="#46311F" transform="rotate(-2.5 23.7 23.7)"/>
 </svg>
