@@ -317,9 +317,62 @@ consistently oversold them. For Gate 4: quote sources to their sentence end,
 state an authority basis only after locating it in the packet text, and label
 contingent work contingent.
 
+### Gate 3 owner ruling — APPROVED 2026-07-25
+
+Owner (Ryan Tufts) in-session; relayed by Agent 0. **Every question ruled as
+recommended.**
+
+| Q | Question | Ruling |
+|---|---|---|
+| Q1 | Seven per-row attributions | **All seven as recommended** — `OBJ-005`: DEL-00-01, DEL-01-05, DEL-03-06, DEL-10-03; `OBJ-001`: DEL-00-03, DEL-08-01, DEL-08-02 |
+| Q2 | INDIRECT-8 breadth | **AFFIRM** `OBJ-001;OBJ-002` for all eight (not N1, not N2) |
+| Q3 | §3 table header | **Drop "(best-effort)"** — `ActionSeq 3b` included |
+| Q4 | A008 + window amendment | **Approved**, and `D-PEC-64` §4.3 **amendment #2** is recorded in the packet |
+| Q5 | Complete exact text | **Approved as drafted** |
+
+**Contingency condition satisfied.** Because Q1 and Q2 were ruled as
+recommended, the Part 0 contingency does not fire: the drafted A001/A002/A003b/
+A003d text is **final**, `OBJ-003` and `OBJ-006` §3 rows are confirmed
+unchanged, and no re-derivation or re-simulation is owed. The Gate 3 text is
+the **only** text Gate 5 may apply.
+
+**§4.3 amendment #2, verified in the packet** (lines 202–213) rather than taken
+from the relay. Recorded wording admits (i) the `SOFTWARE_DECOMP.md`
+front-matter revision block, lines 6–8 and 11 (A008) and (ii) the §11 Decision
+Log appended entry DL-17 (A005a), by the same instrument as the A007
+amendment. Both authority gaps raised at Gate 3 are therefore **closed**, and
+`Amendment_Actions.csv` rows 5 and 9 now read `AUTHORITY RESOLVED`.
+
+`Amendment_Actions.csv` finalised: row `3b` conditional → **firm**; A008
+`PROPOSED - NOT YET RULED` → **approved**; contingency notes resolved. No
+`PROPOSED`, `CONTINGENT` or `AUTHORITY GAP` string remains in the register.
+
+Gate 3 closed. Gate 4 released; write scope still `_ScopeChange/**` only.
+
+---
+
 ## Gate 4 — Propagation Plan Approval
 
-> _Not opened._
+**Opened:** 2026-07-25 · **Status:** planned, awaiting owner approval
+**Output:** `Propagation_Plan.md` (this snapshot)
+
+### Agent-side resolutions
+
+| Ref | Decision | Rationale |
+|---|---|---|
+| D-21 | The 17 `SupportsObjectives` `_CONTEXT.md` lines refresh under **every** option — not presented as a question | A file whose stated purpose is to restate register truth cannot be left contradicting the register in the same edit. This is the propagation default; presenting it as a choice would manufacture a decision. |
+| D-22 | `_CONTEXT.md` pointer refresh method is **surgical line replacement**, never regeneration | The provenance block is byte-identical across all 64 (measured: one occurrence per file, zero variants, lines 29–33). A literal match-and-replace has no templating step and therefore no risk of collateral field drift — regeneration from `Deliverables.csv` would re-derive fields the amendment has no authority to touch. |
+| D-23 | Two pointer **text variants** offered (P-swap / P-supersede), P-supersede recommended | The existing sentence conflates *scaffolded-from* (historically revision 1.1, permanently true) with *current basis*. A naive 1.1→1.2 swap fixes the `current_basis` label by making the scaffold claim false. P-supersede keeps both facts true. Surfaced rather than silently choosing, because either is defensible and the owner may prefer the simpler diff. |
+| D-24 | Recommended option **(ii)**, not (i) | (iii) is incoherent — it would leave the 17 edited files pointing at the superseded basis while restating the new mapping. Between (i) and (ii): `OI-B` (64 `_REFERENCES.md`) is fence-excluded and already deferred by owner ruling, so a pointer sweep is owed regardless. (ii) lets the 47 residual `_CONTEXT.md` pointers ride that same sweep. (i) is not wrong and I would apply it without objection; its cost is touching 47 files SCA-002 has no substantive business editing. |
+| D-25 | Post-check enumerated to file + line-class granularity | `D-PEC-64` §4.3's window is prose. Gate 5's verification must be mechanical, so the plan converts it into an explicit allowed-change list including both owner amendments, with the unchanged sites (§3 `OBJ-003`/`OBJ-006`, §7 `ContextEnvelopeCounts`, front-matter `status`/`source_corpus`) named rather than implied. |
+| D-26 | **No git operation at any Gate 5 step** | `AGENT_SCOPE_CHANGE.md` assigns staging to CHANGE; `D-PEC-64` §3.6(b) assigns the SCA-002 closure commit to resumed `PROJECT_SETUP` from this session's handoff file list. Gate 5 step 16 produces the list and a recommended message and stops. |
+| D-27 | Gate 5 sequence is **abort-on-failure**, verification per step | Applying later edits over a failed earlier one would leave decomposition truth in a state neither the pre- nor post-condition describes, with no clean rollback short of revert. |
+
+### Gate 4 owner ruling
+
+> _Pending. Two questions in `Propagation_Plan.md` §6 — Q1 (`_CONTEXT.md`
+> pointer scope: (i)/(ii)/(iii), plus the P-supersede/P-swap text variant),
+> Q2 (approve the plan and release Gate 5)._
 
 ## Gate 5 — Execute and Validate
 

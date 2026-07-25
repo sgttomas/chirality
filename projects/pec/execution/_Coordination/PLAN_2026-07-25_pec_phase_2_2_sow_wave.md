@@ -560,6 +560,52 @@ every alternative; purpose test — wave unmapped 17→0, residue∩wave=∅;
 all 13 PRD warrants verbatim at anchor; I5 append-only held; CSV
 schema byte-identical to SCA-001; fence clean; md5s unchanged.
 
+**R-2b-g4 (2026-07-25, STEP 2b; refuter ab4a462ff0371098e, opus-5, on
+the Gate 4 Propagation Plan).** 22 findings (2 CRIT / 12 MAJ / 8 MIN),
+all ACCEPTED; plan revision ordered before presentation:
+C1: Gate 5 never wrote Decision_Log.md (contract + SCA-001 require it)
+→ added to sequence/manifest. C2: the 17 _CONTEXT.md mapping-line edits
+had no approved/planned exact text (Gate 5 would invent values) → exact
+old→new per file added, derived from the approved A002 cells. M3+M4:
+post-change AUDIT_DECOMP sequenced before the _LATEST writes it
+validates, and without EXPECTED_SOURCE_SNAPSHOT/handoff-phase params →
+re-sequenced post-repoint with rev-1.2 citation params. M5: ambiguous
+pre/post line coordinates on four net-insertion sites → pre-change
+coordinates + post-change anchor map declared. M6: "192 files" wrong
+(row-count arithmetic; correct 256) + _SEMANTIC.md unclassified →
+fixed. M7: CURRENT/STALE_REBUILD_REQUIRED/DEFERRED_BY_HUMAN
+classifications lost between Gates 2 and 4 → restored for
+Handoff_State. M8 (load-bearing): option-(i) cost claim inverted —
+full refresh COLLAPSES the post-check (zero stale pointers repo-wide)
+while partial refresh carries a permanent 47-file exception. M9
+(load-bearing): the OI-B equivalence doesn't hold (OI-B is
+fence-forced; the 47 is elective despite authority) and a 17/47
+partial refresh is a third posture D-PEC-64 §3.2 never contemplated →
+recommendation FLIPPED to (i) full 64-pointer refresh with P-supersede
+text; (ii) presented as alternative requiring an explicit owner
+authorization of the partial posture. M10: Amendment_Actions.csv
+lacked the propagation writes → extended. M11: "finalize CSV" step
+already discharged at Gate 3 → dropped; SCA-001 snapshot-immutability
+posture adopted. M12: Handoff_State scope completed to the contract's
+four sections; seven state fields relocated to RUN_SUMMARY. M13:
+post-change front-matter↔_LATEST parity assertion added. M14:
+register-integrity baseline JSONs restored to SCA-001 schema (citing
+the audit) instead of raw copies. MINs m15–m22: two-line/three-line
+arithmetic (51/145 not 17/64+17); --output-map required arg; 10 not 9
+edit sites; Decision_Log stale rows; CSV DownstreamReruns normalized +
+CHANGE-vs-PROJECT_SETUP owner inconsistency resolved; §4 table gains
+the dropped items (register row, packet update, wave-plan updates,
+OI-A, OI-013, and the plan's entire point: D-PEC-63 BLOCKED→UNBLOCKED
+effect); _REFERENCES.md class corrected to Gate 2's
+STALE_DEFERRED_BY_FENCE; P-swap "false claim" softened (status: field
+reading is defensible; P-supersede still preferred as unambiguous).
+Clean under attack: the 64-file basis-block byte-identity measurement
+(md5-verified 64/64), every §3 line anchor, postcheck↔approved-text
+bijection (no creep, no omission), git posture (no SCOPE_CHANGE
+commits; PROJECT_SETUP closure commit per §3.6(b)), fence, md5s,
+coverage-run naming parity, wave-plan §7 obligations fully carried,
+supersession chain, option-(iii) incoherence, D-21.
+
 **Future rounds:** R2 post-B1 (contract quality), R3 post-B2 (upstream
 citation), R4 pre-closure (numbers/receipt/pointer audit) — plus a
 refutation pass on D-PEC-63 draft v2 (STEP 3). Log all here.
