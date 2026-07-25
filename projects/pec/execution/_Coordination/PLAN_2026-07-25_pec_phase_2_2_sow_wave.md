@@ -6,18 +6,18 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
-`STEP 2a COMPLETE — D-PEC-64 RULED as drafted 2026-07-25 (scope width
-deferred to Gate 1: owner selected "Decide at Gate 1"). PROJECT_SETUP is
-YIELDED per D-PEC-64 §2.4: no act against execution/_Decomposition/** or
-any register surface until the owner confirms SCA-002 Gate 5 and
-_ScopeChange/_LATEST.md names SCA-002 with a closure verdict. Next: STEP
-2b — the OWNER invokes SCOPE_CHANGE (DECOMP_VARIANT=SOFTWARE,
-CONTEXT_ROOT=projects/pec/execution/, change request =
-_Coordination/SCA-002_INTAKE_2026-07-25.md, session ID SCA-002, write
-scope = D-PEC-64 §3.2). On resumption: receipt + _COORDINATION.md item,
-closure commit (§3.6b), then STEP 3 (D-PEC-63 draft v2 re-pins per §7).
-The intake supersedes this plan's §2 where they differ (R-2a corrections
-noted in §2 and logged in §6).`
+`STEP 2b IN PROGRESS — D-PEC-64 RULED as drafted 2026-07-25 (scope width
+deferred to Gate 1). Entry mechanics amended by owner direction same day
+(verbatim in the packet §2): the session agent adopted the HELP_HUMAN
+(Agent 0) posture and dispatches SCA-002 as a managed SCOPE_CHANGE
+Agent 1 instance (opus-5); every Gate 1–5 ruling remains an owner act in
+chat. Control-plane records: _Coordination/AgentRuns/RUN_2026-07-25_sca002/.
+The PROJECT_SETUP role remains yielded (no act against
+execution/_Decomposition/** or registers) until Gate 5 acceptance; its
+work resumes at STEP 3 (D-PEC-63 draft v2 re-pins per §7, receipt +
+_COORDINATION.md item, closure commit per D-PEC-64 §3.6b). The intake
+(SCA-002_INTAKE_2026-07-25.md) supersedes this plan's §2 where they
+differ (R-2a corrections noted in §2 and logged in §6).`
 
 ---
 

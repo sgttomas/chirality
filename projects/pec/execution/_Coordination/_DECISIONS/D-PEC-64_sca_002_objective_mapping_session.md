@@ -72,6 +72,21 @@ quoted direction adopts the supplied plan").
    approval and Gate 4's propagation plan has owner approval, and
    revision 1.2 becomes the accepted basis only on the owner's Gate 5
    confirmation.
+
+**Owner amendment 2026-07-25 (entry mechanics, §2.4).** After ruling,
+the owner directed, verbatim: "you should adopt the Agent 0 posture so
+you can have permission to orchestrate as many Agent 1 instances as you
+see it." Effect: the session agent adopts the **HELP_HUMAN (Agent 0)
+posture** (human entry; D-PEC-60 precedent), under which Agent 0 → 
+SCOPE_CHANGE is an allowed delegation edge. SCA-002 is therefore executed
+by a **managed SCOPE_CHANGE Agent 1 instance** (opus-5, per the standing
+steer) dispatched by Agent 0 with a frozen launch brief, the §3.2 fence
+as its write scope, and durable control-plane records under
+`execution/_Coordination/AgentRuns/`. Unchanged: every Gate 1–5 ruling
+remains an owner act in chat (Agent 0 presents, never rules); the
+PROJECT_SETUP role's yield stands (its work resumes at STEP 3 from the
+accepted handoff); the fence, verification, and rollback sections are
+untouched.
 6. **Representation constraint** (carried to Gate 3): registers keep the
    register-native convention — bare `OBJ-NNN` tokens, `;`-separated
    when multiple; no qualified tokens. The accurate validator mechanics
