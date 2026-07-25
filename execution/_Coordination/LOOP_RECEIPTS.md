@@ -633,3 +633,30 @@
   Adoption is a separate instrument (RD-3), expressly not exercised.
 - Gate: this tranche merges only through a human-gated PR; never
   self-merged.
+
+### Receipt 35 — 2026-07-25 — PRD candidate Rev 2 after adversarial review
+
+- Owner act of record (in-session, 2026-07-25): routed an independent
+  adversarial review of PRD candidate Rev 1 and directed its consideration.
+  Review preserved verbatim in
+  `AgentRuns/ROOT-PRD-LANE-A-20260725/reviews/ADVERSARIAL-REVIEW-1.md`;
+  verdict: not adoption-ready — a governed-basis concordance that must
+  become a directional product definition.
+- Agent 0 accepted all review items (dispositions in
+  `AgentRuns/ROOT-PRD-LANE-A-20260725/briefs/PRD-AUTHOR-BRIEF-AMENDMENT-1.md`,
+  a versioned brief amendment expanding the write scope to two files) and
+  resumed the same authoring instance (`opus-5`) with context intact.
+- Rev 2: main PRD restructured to the reviewer's ten-section shape (~20%
+  shorter; objectives OBJ-1..OBJ-7 with v1 success conditions; generative
+  loop; upward variant promotion; corrected user strata; RD-5 added;
+  release authority; OWNER_DECLARED key relabeled honestly as Agent 0
+  synthesis) plus a companion concordance annex (derivative package,
+  regenerable, never adopted; adoption binds the main PRD bytes only;
+  D-14 six-class source-currency specification).
+- Fan-in V1 accepted; two child-side validator gaps closed by Agent 0
+  re-run (path anchors PASS 992; G0 PASS idle). Top items flagged for
+  owner attention: the PROPOSED v1 boundary (child construction —
+  re-scope if the owner's v1 differs), OBJ-1..OBJ-7, and D-14.
+- Lane A remains at its terminal gate: owner review of the candidate.
+  Adoption instrument and the four+one reserved decisions (RD-1..RD-5)
+  remain owner acts.
