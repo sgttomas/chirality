@@ -1,0 +1,10 @@
+{
+  "drill": "V9", "name": "stub-adapter end-to-end turn", "verdict": "PASS",
+  "surface": "the running test GUI's own Next harness HTTP server, 127.0.0.1:50629 (found via lsof on GUI pid 93675)",
+  "preconditions": "V2's dummy anthropic credential REMOVED first so CompatibilitySessionPolicy resolved configured=false -> adapterId 'stub' (no provider/network path could be selected; F-APP-1 preserved without touching the daemon plist)",
+  "session_create": {"route": "POST /api/harness/session/create", "http": 200, "sessionId": "fd7499d0-f214-4606-88c7-c592cce47194", "engineSelection": {"adapterId": "stub", "providerId": "stub", "model": "haiku"}, "projectId": "chirality-app-dev", "projectRoot": "<worktree>/projects/chirality-app-dev"},
+  "turn": {"route": "POST /api/harness/turn", "sse_events": {"harness:event": 2, "session:init": 1, "chat:delta": 4, "chat:complete": 1, "session:complete": 1, "process:exit": 1}, "process_exit_code": 0, "engineSessionId": "stub_1891f6d2-864b-403f-8aa0-704594da26d8"},
+  "chain_proven": "renderer-facing HTTP route -> DaemonHarnessPort -> RuntimeClient over the isolated UDS -> daemon session store -> stub engine adapter -> SSE stream back to the caller",
+  "persistence": "session.json + events.jsonl under $USERDATA/runtime/projects/chirality-app-dev/sessions/<id>/ — daemon-side under the isolated userData; NO writes into the registered worktree root",
+  "note": "this is the exact failure the tranche was opened for: ENGINE_UNAVAILABLE: Chirality runtime daemon client is not configured. It no longer occurs."
+}

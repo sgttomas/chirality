@@ -1,0 +1,8 @@
+2026-07-25T02:25:18.046Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":0,"lastError":"Runtime daemon stopped responding","changedAt":"2026-07-25T02:25:18.046Z"}
+2026-07-25T02:25:18.046Z [warn] runtime.connectivity.lost
+2026-07-25T02:25:18.047Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","changedAt":"2026-07-25T02:25:18.047Z"}
+2026-07-25T02:25:18.048Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:19.051Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:21.054Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:26.057Z [error] runtime.connectivity.bind_failed {"attempt":4,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:36.060Z [error] runtime.connectivity.bind_failed {"attempt":5,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}

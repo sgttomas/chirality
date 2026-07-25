@@ -1,0 +1,17 @@
+utc=2026-07-25T02:19:23Z
+## owner real label
+	state = not running
+	runs = 4
+	last exit code = 0
+		state = active
+		state = active
+## owner processes
+92414 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+92418 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality
+92419 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality
+## test label
+	state = running
+	runs = 2
+	pid = 92414
+		state = active
+		state = active

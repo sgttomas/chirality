@@ -1,0 +1,26 @@
+[chirality-desktop] 2026-07-25T02:12:16.713Z [error] desktop.cli_launcher.install_failed {"error":"EACCES: permission denied, open '/Users/ryan/.local/bin/.chirality.92162.mrzqhio8.tmp'"}
+[chirality-desktop] 2026-07-25T02:12:16.714Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+(node:92162) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Chirality --trace-deprecation ...` to show where the warning was created)
+Error occurred in handler for 'chirality:provider-api-key-status': [Error: ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'lstat',
+  path: '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'
+}
+Error occurred in handler for 'chirality:provider-api-key-status': [Error: ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'lstat',
+  path: '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'
+}
+[chirality-desktop] 2026-07-25T02:12:17.717Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+[chirality-desktop] 2026-07-25T02:12:19.718Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+[chirality-desktop] 2026-07-25T02:12:24.721Z [error] runtime.connectivity.bind_failed {"attempt":4,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+[chirality-desktop] 2026-07-25T02:12:34.723Z [error] runtime.connectivity.bind_failed {"attempt":5,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+[chirality-desktop] 2026-07-25T02:12:44.725Z [error] runtime.connectivity.bind_failed {"attempt":6,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+[chirality-desktop] 2026-07-25T02:12:54.727Z [error] runtime.connectivity.bind_failed {"attempt":7,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+[chirality-desktop] 2026-07-25T02:13:04.729Z [error] runtime.connectivity.bind_failed {"attempt":8,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+[chirality-desktop] 2026-07-25T02:13:14.731Z [error] runtime.connectivity.bind_failed {"attempt":9,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+[chirality-desktop] 2026-07-25T02:13:24.733Z [error] runtime.connectivity.bind_failed {"attempt":10,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+[chirality-desktop] 2026-07-25T02:13:34.735Z [error] runtime.connectivity.bind_failed {"attempt":11,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}

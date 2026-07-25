@@ -1,0 +1,17 @@
+utc=2026-07-25T02:17:17.3NZ
+## owner real label
+	state = not running
+	runs = 4
+	last exit code = 0
+		state = active
+		state = active
+## owner processes
+92414 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon
+92418 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/Users/ryan/.chirality-tranchetest-v/userdata --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,4849912421410591849,6691866147548034036,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,6992858521879802999,1043023700311641876,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=26
+92419 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/Users/ryan/.chirality-tranchetest-v/userdata --shared-files --field-trial-handle=1718379636,r,4849912421410591849,6691866147548034036,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,6992858521879802999,1043023700311641876,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=26
+## test label
+	state = running
+	runs = 2
+	pid = 92414
+		state = active
+		state = active

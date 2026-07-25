@@ -1,0 +1,4 @@
+2026-07-25T02:17:17.724Z [info] desktop.gui.starting {"packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:17:17.732Z [info] runtime.connectivity.supervisor_started
+2026-07-25T02:17:17.742Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-07-25T02:17:17.742Z"}
+2026-07-25T02:17:17.742Z [info] runtime.connectivity.bound {"priorFailedAttempts":0}

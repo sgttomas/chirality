@@ -1,0 +1,28 @@
+[
+  {
+    "project": {
+      "projectId": "chirality-app-dev",
+      "displayName": "Chirality App Development",
+      "canonicalRoot": "/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev",
+      "manifestPath": "/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/chirality.project.json",
+      "manifestHash": "5a79777038acd2b5fda3b0416c0092e2c980ff0eff7e84a019fdac3bac8fdc04",
+      "registeredAt": "2026-07-25T02:17:00.156Z",
+      "approval": {
+        "approvedBy": "V-PACKAGED-DRILLS",
+        "approvalReference": "TRB-APPDEV-DAEMON-SERVICE-2026-07-25/StageV"
+      },
+      "clientId": "project-59d2be18-b1fc-4b82-8d41-e14aa26ef36a",
+      "enabledAdapterIds": [
+        "stub",
+        "anthropic-direct",
+        "claude-agent-sdk",
+        "pi"
+      ],
+      "legacySessionRoots": [
+        "frontend/.chirality/sessions"
+      ]
+    },
+    "manifestDrift": false,
+    "adaptersEnabled": true
+  }
+]

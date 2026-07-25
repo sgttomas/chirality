@@ -1,0 +1,2 @@
+2026-07-25T03:01:59.951Z [info] desktop.cli_launcher.install {"status":"written","path":"/Users/ryan/.chirality-tranchetest-a1r2/home/.local/bin/chirality"}
+mtime=1784948519 size=1170 mode=-rwx------

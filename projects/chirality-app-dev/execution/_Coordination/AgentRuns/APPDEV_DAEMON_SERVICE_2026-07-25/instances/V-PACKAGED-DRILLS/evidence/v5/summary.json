@@ -1,0 +1,19 @@
+{
+  "drill": "V5", "name": "kill drills", "verdict": "PASS (with a material defect found in the stop path)",
+  "sigkill": {
+    "verdict": "PASS",
+    "target_pid": 94068, "restart_latency_s": 0.098, "new_pid": 94247,
+    "boundaries": {"before": {"runs": 1, "pid": 94068, "last_exit_code": "(never exited)"}, "after": {"runs": 2, "pid": 94247}},
+    "gui_reconnect": "TRANSPARENT — the 98ms launchd restart fell inside the supervisor's 10s liveness-probe interval, so the GUI logged no transition at all and kept serving. Zero observed downtime at probe granularity.",
+    "observed_transition_evidence_instead": "the deliberate 88s bootout outage (V4b) produced the full connected -> offline -> connected cycle with screenshots"
+  },
+  "bootout": {
+    "verdict": "PASS on the requirement (stops and STAYS stopped) / DEFECT on how it stops",
+    "bootout_call_returned_ms": 5,
+    "process_actually_died_after_s": 5.083,
+    "mechanism": "launchctl bootout sends SIGTERM; the daemon's before-quit veto refuses it (runtime.daemon.quit_request_vetoed logged, shutdownAuthorized never set); launchd escalates to SIGKILL after its 'exit timeout = 5' and the process dies UNCLEANLY",
+    "clean_shutdown_logged": false,
+    "note": "NOT ONE daemon exit in the entire drill set produced desktop.shutdown.started / .exiting. runtimeHost.stop() never runs on any stop path; control.sock is left behind as a stale socket file.",
+    "stays_stopped": true, "relaunch_after_bootout": "none (job unloaded, KeepAlive contract removed with it)"
+  }
+}

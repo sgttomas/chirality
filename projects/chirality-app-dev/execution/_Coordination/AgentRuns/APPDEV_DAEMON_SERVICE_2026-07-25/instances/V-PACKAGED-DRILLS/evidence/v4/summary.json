@@ -1,0 +1,20 @@
+{
+  "drill": "V4", "name": "launch-order matrix", "verdict": "PASS (with a material residual finding)",
+  "a_daemon_first": {
+    "direct_exec": {"verdict": "PASS", "a1_outcome": "(a) daemon survived untouched", "detail": "GUI pid 92841/93675 bound in 18ms/30ms; daemon pid 92414 runs=2 unchanged; no activate_received"},
+    "launchservices_open_without_n": {
+      "verdict": "MECHANISM REPRODUCED — A1 outcome (b)",
+      "commands": ["open --env CHIRALITY_USER_DATA=... --env HOME=... <app>", "open <app>", "open -b com.chirality.app"],
+      "observed": "3/3 trials: macOS printed 'Application ... was already running and so the additional environment variables could not be set'; NO GUI process started; NO window appeared; daemon logged runtime.daemon.activate_received (02:19:23.322, 02:19:51.170, 02:19:54.226); daemon survived untouched (pid 92414, runs=2, no quit_request_vetoed)",
+      "interpretation": "setActivationPolicy('prohibited') does NOT remove the daemon as a LaunchServices resolution target. lsappinfo still registers it (ASN 0x0-0x42fc2f8, bundleID com.chirality.app, type=UIElement). A Finder/Dock/open launch of the GUI is still swallowed by the headless daemon. The daemon no longer DIES (that half is fixed), but the operator-visible symptom 'launching the app does nothing' persists.",
+      "a1_hypothesis": "CONFIRMED as the mechanism; NOT neutralized at the cause"
+    },
+    "launchservices_open_with_n": {"verdict": "PASS", "detail": "open -n --env ... started GUI pid 93675 at 02:20:09.543, bound 02:20:09.573 (30ms), daemon untouched (runs=2), owner label untouched"}
+  },
+  "b_gui_first": {
+    "verdict": "PASS",
+    "detail": "GUI 93675 already bound; daemon booted out at 02:20:39 (died 02:20:44); GUI logged runtime.connectivity.lost 02:20:49.908 then backoff 1/2/5/10/10s; daemon re-bootstrapped 02:22:07.649 (ready .661); GUI auto-rebound 02:22:07.949 => 288ms after daemon ready, priorFailedAttempts=10",
+    "gui_restarted": false, "devtools_used": false, "manual_action": false,
+    "second_observation": {"daemon_ready": "02:25:55.212", "bound": "02:25:56.081", "rebind_ms": 869, "priorFailedAttempts": 6}
+  }
+}

@@ -1,0 +1,2 @@
+2026-07-25T03:12:47.590Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":true,"pid":4346}
+2026-07-25T03:12:47.593Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}

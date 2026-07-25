@@ -1,0 +1,15 @@
+{
+  "drill": "V6", "name": "quit veto", "verdict": "PASS on the veto / FAIL on the documented stop contract",
+  "applescript_quit": {"command": "osascript -e 'tell application id \"com.chirality.app\" to quit'", "result": "daemon SURVIVED; runtime.daemon.quit_request_vetoed logged at 02:23:29.125 (pid 94247)", "verdict": "PASS", "side_finding": "the daemon is still an AppleEvent-addressable application under 'prohibited' — further confirmation the LaunchServices registration persists"},
+  "sigterm_1": {"result": "VETOED. runtime.daemon.quit_request_vetoed at 02:23:45.480; process still alive after 30.022s of 50ms polling", "verdict": "DEFECT"},
+  "sigterm_2": {"result": "process died immediately (no shutdown log); launchd restarted it as pid 94460 at 02:24:33.997", "verdict": "kills, but uncleanly"},
+  "defect": {
+    "id": "V-D1",
+    "claim_contradicted": "AGENT1-VALIDATOR/ROUND1_REVIEW.md section 3 paths 1 and 3: 'launchctl bootout -> SIGTERM. process.once(SIGTERM) sets shutdownAuthorized = true, then shutdown(0, signal:SIGTERM) -> app.exit(0)' and 'a second SIGTERM ... Node restores the default signal disposition'",
+    "observed": "The JS process.once('SIGTERM') handler never runs in the packaged Electron main process. Electron/Chromium's own native SIGTERM handler intercepts the signal and calls app.quit() -> before-quit -> our veto -> preventDefault(). shutdownAuthorized is never set, shutdown() is never called, and the first SIGTERM is swallowed entirely. The SECOND SIGTERM terminates the process by default disposition (consistent with a one-shot native handler), still without shutdown().",
+    "working_stop_paths": ["SIGKILL (uncatchable)", "two SIGTERMs (2nd = default disposition)", "launchctl bootout -> launchd SIGKILL escalation after exit timeout = 5s"],
+    "broken_stop_paths": ["a single SIGTERM", "AppleEvent quit", "Cmd-Q / Dock Quit"],
+    "wrong_operator_hint": "the veto's own log line says 'use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon' — SIGTERM does not stop it, and bootout only stops it by forced kill 5s later",
+    "severity": "no daemon is ever unkillable (R-1/R-2 not brickable), but every stop is a forced kill: runtimeHost.stop() never runs, so there is no graceful runtime-host shutdown on any path"
+  }
+}

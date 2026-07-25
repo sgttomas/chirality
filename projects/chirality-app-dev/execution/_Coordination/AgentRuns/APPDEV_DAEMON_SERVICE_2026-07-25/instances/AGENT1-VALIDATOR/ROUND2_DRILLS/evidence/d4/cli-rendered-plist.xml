@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.chirality.runtime</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality</string>
+    <string>--runtime-daemon</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>CHIRALITY_USER_DATA</key>
+    <string>/Users/ryan/.chirality-tranchetest-a1r2/userdata</string>
+    <key>CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL</key>
+    <string>com.chirality.runtime</string>
+    <key>CHIRALITY_RUNTIME_KEEP_ALIVE</key>
+    <string>always</string>
+  </dict>
+  <key>ThrottleInterval</key>
+  <integer>10</integer>
+  <key>StandardOutPath</key>
+  <string>/Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/logs/daemon.stdout.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/logs/daemon.stderr.log</string>
+</dict>
+</plist>

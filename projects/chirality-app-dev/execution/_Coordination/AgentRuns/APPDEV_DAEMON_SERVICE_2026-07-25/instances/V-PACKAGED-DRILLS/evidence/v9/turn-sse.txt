@@ -1,0 +1,30 @@
+event: harness:event
+data: {"sessionId":"fd7499d0-f214-4606-88c7-c592cce47194","turnId":"206cbf2c-ffcd-4fef-b604-d20f110016ea","type":"turn.accepted","data":{"message":"Stage V isolated stub-adapter smoke turn. Reply with a single short line."},"schemaVersion":1,"eventId":"a209ed08-e780-411b-bd04-36902f9ecae8","timestamp":"2026-07-25T02:34:08.793Z"}
+
+event: session:init
+data: {"engineSessionId":"stub_1891f6d2-864b-403f-8aa0-704594da26d8","adapterId":"stub","providerId":"stub","model":"haiku"}
+
+event: chat:delta
+data: {"text":"Stage V isolated stub-ad"}
+
+event: chat:delta
+data: {"text":"apter smoke turn. Reply "}
+
+event: chat:delta
+data: {"text":"with a single short line"}
+
+event: chat:delta
+data: {"text":"."}
+
+event: chat:complete
+data: {"text":"Stage V isolated stub-adapter smoke turn. Reply with a single short line."}
+
+event: session:complete
+data: {}
+
+event: harness:event
+data: {"sessionId":"fd7499d0-f214-4606-88c7-c592cce47194","turnId":"206cbf2c-ffcd-4fef-b604-d20f110016ea","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"b1092c30-e593-4193-b44d-01047006be9f","timestamp":"2026-07-25T02:34:08.960Z"}
+
+event: process:exit
+data: {"exitCode":0}
+

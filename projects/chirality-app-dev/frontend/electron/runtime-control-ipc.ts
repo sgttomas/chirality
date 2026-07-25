@@ -2,6 +2,10 @@ import { app, ipcMain } from 'electron';
 import path from 'node:path';
 import { LaunchAgentManager, type LaunchAgentStatus } from '@chirality/runtime-cli';
 import type { DaemonStatusResponse, ResidencyStatus } from '@chirality/runtime-contracts';
+import {
+  daemonPostureEnvironment,
+  resolveDesktopDaemonPosture
+} from './desktop-daemon-posture';
 
 export const RUNTIME_DAEMON_CONTROL_CHANNEL = 'chirality:runtime-daemon-control';
 export const RUNTIME_MODEL_STATUS_CHANNEL = 'chirality:runtime-model-status';
@@ -122,11 +126,37 @@ async function daemonSnapshot(
   }
 }
 
+/**
+ * Install the desktop daemon's LaunchAgent with the project's posture.
+ *
+ * Values come from `desktop-daemon-posture.ts`, which the generated `chirality`
+ * launcher also exports — so the in-app install and the documented
+ * `chirality daemon install` now render the same plist. They did not before
+ * (Stage V, V-D2).
+ *
+ * The whole posture is pinned into the job's `EnvironmentVariables`, not just the
+ * runtime directory. launchd jobs inherit almost nothing, and the daemon needs to
+ * know its own label: when it spawns a GUI in response to an `activate`
+ * (V-D4), the child inherits the label and addresses the same job — which is what
+ * keeps an isolated verification run from reaching the operator's real one.
+ */
 export function createDesktopDaemonLifecycle(): RuntimeDaemonLifecycle {
-  return new LaunchAgentManager({
-    launchAgentsDirectory: path.join(app.getPath('home'), 'Library', 'LaunchAgents'),
-    runtimeDirectory: path.join(app.getPath('userData'), 'runtime')
-  });
+  const userData = app.getPath('userData');
+  const posture = resolveDesktopDaemonPosture(process.env, userData);
+  return new LaunchAgentManager(
+    {
+      launchAgentsDirectory: path.join(app.getPath('home'), 'Library', 'LaunchAgents'),
+      runtimeDirectory: path.join(userData, 'runtime')
+    },
+    undefined,
+    undefined,
+    {
+      label: posture.label,
+      keepAlive: posture.keepAlive,
+      runAtLoad: posture.runAtLoad,
+      environmentVariables: daemonPostureEnvironment(posture)
+    }
+  );
 }
 
 export function registerRuntimeControlHandlers(deps: RuntimeControlDependencies): void {

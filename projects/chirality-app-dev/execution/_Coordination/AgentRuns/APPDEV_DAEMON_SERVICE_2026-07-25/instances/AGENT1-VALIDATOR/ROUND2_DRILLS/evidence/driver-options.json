@@ -1,0 +1,9 @@
+{
+  "environmentVariables": {
+    "CHIRALITY_USER_DATA": "/Users/ryan/.chirality-tranchetest-a1r2/userdata",
+    "HOME": "/Users/ryan/.chirality-tranchetest-a1r2/home",
+    "CHIRALITY_SKIP_CLI_LAUNCHER": "1"
+  },
+  "label": "com.chirality.runtime.tranchetest.a1r2",
+  "keepAlive": "always"
+}

@@ -1,0 +1,14 @@
+{
+  "drill": "V1", "name": "daemon install+start under isolated label", "verdict": "PASS",
+  "label": "com.chirality.runtime.tranchetest", "plist": "/Users/ryan/.chirality-tranchetest-v/home/Library/LaunchAgents/com.chirality.runtime.tranchetest.plist", "service": "gui/501/com.chirality.runtime.tranchetest",
+  "installer": "node evidence/la-driver.mjs (LaunchAgentManager from runtime/packages/cli/dist, options identical to frontend createDesktopDaemonLifecycle() + test label/dir)",
+  "plist_verified": {"KeepAlive": true, "RunAtLoad": true, "ThrottleInterval": 10, "EnvironmentVariables": {"CHIRALITY_USER_DATA": "/Users/ryan/.chirality-tranchetest-v/userdata"}, "ProgramArguments": ["/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality", "--runtime-daemon"], "plutil_lint": "OK"},
+  "boundaries": {"before": "launchctl print -> Could not find service (not loaded)", "after": {"state": "running", "pid": 92414, "runs": 2, "last_exit_code": null}},
+  "activation_policy_applied": "runtime.daemon.starting activationPolicy=prohibited",
+  "headless_evidence": {"cgwindowlist_windows_for_daemon_pid": 0, "lsappinfo_type": "UIElement", "dock_tile": "absent"},
+  "timings": {"start_call_elapsed_s": 10.07, "note": "start() = bootstrap (RunAtLoad -> run 1) then kickstart -k (run 2); the 10s is ThrottleInterval gating the redundant kickstart"},
+  "findings": [
+    "runs=2 after a single 'start': RunAtLoad already launched the job at bootstrap, then kickstart -k restarted it. Harmless but doubles the launch count and costs one full ThrottleInterval (10s) per start.",
+    "activation policy 'prohibited' does NOT remove the LaunchServices registration: lsappinfo still lists ASN 0x0-0x42f82f4 bundleID com.chirality.app for the daemon pid, reclassified type=UIElement."
+  ]
+}

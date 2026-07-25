@@ -1,0 +1,2 @@
+2026-07-25T03:02:10.040Z [info] desktop.cli_launcher.install {"status":"unchanged","path":"/Users/ryan/.chirality-tranchetest-a1r2/home/.local/bin/chirality"}
+mtime run1=1784948519 run2=1784948519  sha_equal=YES  mtime_equal=YES

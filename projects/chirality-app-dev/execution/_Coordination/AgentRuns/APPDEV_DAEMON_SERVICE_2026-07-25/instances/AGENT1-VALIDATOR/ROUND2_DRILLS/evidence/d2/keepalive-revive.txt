@@ -1,0 +1,1 @@
++  0.005s launchd revived the daemon after a CLEAN exit(0): pid=['1301'] runs=['2']

@@ -1,0 +1,3 @@
++   0.000s SIGKILL sent to 94068
++   0.098s new daemon pid 94247 observed
+restart_latency_s=0.098

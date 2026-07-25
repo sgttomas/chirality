@@ -1,0 +1,4 @@
+before: pid=1362 runs=1
++  0.000s SIGKILL sent to 1362
++  4.031s launchd RESTARTED: runs 1->2 pid=1529
+RESULT sigkill_restart_latency_s=4.031 (Stage V baseline 0.098s)

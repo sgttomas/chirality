@@ -1,7 +1,7 @@
 # Status: DEL-02-05
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-22
+**Last Updated:** 2026-07-25
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -11,6 +11,7 @@
 - Make the daemon the single encrypted credential owner and add daemon/provider/model status plus explicit activation controls to Desktop settings under D-APP-73 (gated: Desktop migration and security review).
 
 ## History
+- 2026-07-25 - Daemon-service tranche recorded in `_run_records/R6_DAEMON_SERVICE_2026-07-25.md`: daemon-down API-key status channels return an explicit unavailable snapshot instead of rejecting into the renderer, runtime feedback gained an observed daemon-connectivity source (chip recorded against DEL-02-01), and packaged drills evidenced an Electron `safeStorage` round trip inside the headless daemon. Remaining is unchanged — the D-APP-73 credential-owner and Desktop settings scope stays open and gated. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-22 - D-APP-72 provider-keyed encrypted oMLX storage/IPC completed with Anthropic compatibility and status-only renderer exposure; credential tests and the G5 closeout return provide evidence. State remains IN_PROGRESS; lifecycle, D-APP-71 ownership, and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added provider-keyed oMLX credential work to Remaining; state remains IN_PROGRESS.
 - 2026-07-20 - D-APP-71 Option 2 applied DEL-02-05 as the physical coordination lead for `frontend/electron/preload.ts`; DEL-02-03 `selectDirectory`, DEL-02-05 `apiKey`, and DEL-09-06 `safeStorage`/security remain distinct semantic boundaries; no source, SOW, dependency, lifecycle, or Approval-SHA change.

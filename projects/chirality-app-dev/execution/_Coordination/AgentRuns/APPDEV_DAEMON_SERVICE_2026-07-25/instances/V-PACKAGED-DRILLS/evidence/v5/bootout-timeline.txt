@@ -1,0 +1,5 @@
++  0.000s bootout invoked
++  0.005s bootout returned rc=0 out='' err=''
++  5.083s daemon pid 94460 gone
++ 10.103s runtime-daemon pids now: (none)
+service loaded after bootout: False Could not find service "com.chirality.runtime.tranchetest" in domain for user gui: 501

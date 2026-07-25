@@ -1,0 +1,13 @@
+export W=/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76
+export EVID="$W/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAEMON_SERVICE_2026-07-25/instances/V-PACKAGED-DRILLS/evidence"
+export APP="$W/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app"
+export APPBIN="$APP/Contents/MacOS/Chirality"
+export CLIENTRY="$APP/Contents/Resources/runtime-cli/chirality-cli.mjs"
+export TESTROOT="$HOME/.chirality-tranchetest-v"
+export USERDATA="$TESTROOT/userdata"
+export TESTHOME="$TESTROOT/home"
+export LABEL="com.chirality.runtime.tranchetest"
+export TESTLA="$TESTHOME/Library/LaunchAgents"
+export PLIST="$TESTLA/$LABEL.plist"
+export SVC="gui/501/$LABEL"
+export MANIFEST="$W/projects/chirality-app-dev/chirality.project.json"

@@ -1,0 +1,8 @@
++  0.004s bootout returned rc=0 
++  0.035s process 1301 DEAD
++  0.035s control.sock removed
+RESULT bootout_death_latency_s=0.035 (Stage V baseline 5.083s via SIGKILL escalation)
+RESULT stale_socket=NO
++ post-bootout launchctl print rc=113: Bad request.
+RESULT stays_stopped=YES
+RESULT daemon_process_present=NO

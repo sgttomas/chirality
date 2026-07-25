@@ -1,0 +1,19 @@
+captured=2026-07-25T02:57:43Z
+--- owner plist ---
+/Users/ryan/Library/LaunchAgents/com.chirality.runtime.plist size=924 mtime=1784939440
+6446817153f0a19003e3e494015652e1884546b74347e5c0316eeb7e733fe9a1  /Users/ryan/Library/LaunchAgents/com.chirality.runtime.plist
+--- owner LaunchAgents listing ---
+com.chirality.runtime.plist
+--- owner real service ---
+	state = not running
+	runs = 4
+	last exit code = 0
+		state = active
+		state = active
+--- owner launcher ---
+/Users/ryan/.local/bin/chirality size=703 mtime=1784941528
+2c0120079831c1d2637e462304ac596044026d551c8d3ae89985da1506838b0d  /Users/ryan/.local/bin/chirality
+--- owner userdata ---
+/Users/ryan/Library/Application Support/chirality-frontend mtime=1784942107
+--- chirality processes ---
+(none)

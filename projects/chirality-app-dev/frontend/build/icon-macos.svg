@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Chirality macOS App Icon</title>
+  <desc id="desc">Quincunx tile mark tuned for the macOS app-icon grid: four umber squares at the corners of a cream tile around a terracotta centre square, inset inside a transparent 1024 canvas.</desc>
+  <!--
+    icns-tuned variant of public/chirality-app-icon.svg. Do not use in-app.
+    macOS app-icon grid: content occupies the central 824x824 of the 1024 canvas
+    (100px transparent margin on each side, ~19.5% of the canvas).
+    Tile outer bounds 100..924; drawn at 104,104,816x816 with an 8px centred
+    stroke so the stroke's outer edge lands exactly on 824.
+    Corner radius 181 on the 816 path + the 4px outward half-stroke gives an
+    outer silhouette radius of 185/824 = 0.2245, matching Apple's ~185.4/824
+    squircle proportion (and the source art's own 7/31 = 0.226).
+    Stroke is 8/824 = 0.97% of the tile, versus 1/31 = 3.23% in the 32-unit
+    source: a naive 32x upscale would land at ~26.6px and read as a fat band
+    instead of the intended hairline.
+    Quincunx geometry is the source 32-unit composition scaled by 824/32 = 25.75
+    and translated by +100, so every square position, size, rotation and colour
+    is preserved exactly.
+  -->
+  <rect x="104" y="104" width="816" height="816" rx="181" fill="#F0E9D8" stroke="#D8CFBA" stroke-width="8"/>
+  <rect x="218.45" y="218.45" width="190.55" height="190.55" rx="38.63" fill="#4A3423" transform="rotate(-3.5 313.73 313.73)"/>
+  <rect x="615" y="218.45" width="190.55" height="190.55" rx="38.63" fill="#543C28" transform="rotate(3 710.28 313.73)"/>
+  <rect x="416.73" y="416.73" width="190.55" height="190.55" rx="38.63" fill="#BC5A28" transform="rotate(3 512 512)"/>
+  <rect x="218.45" y="615" width="190.55" height="190.55" rx="38.63" fill="#503927" transform="rotate(2 313.73 710.28)"/>
+  <rect x="615" y="615" width="190.55" height="190.55" rx="38.63" fill="#46311F" transform="rotate(-2.5 710.28 710.28)"/>
+</svg>

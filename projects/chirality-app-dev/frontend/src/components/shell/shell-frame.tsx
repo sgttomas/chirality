@@ -3,10 +3,12 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { deriveRuntimeConnectivityPresentation } from '../../lib/shell/runtime-connectivity';
 import { ApiKeySettings } from '../settings/api-key-settings';
 import { RuntimeSettings } from '../settings/runtime-settings';
 import { useWorkspace } from '../workspace/workspace-provider';
 import { ThemeControl } from './theme-control';
+import { useRuntimeConnectivity } from './use-runtime-connectivity';
 
 export type ShellSection = 'PORTAL' | 'PIPELINE' | 'WORKBENCH' | 'CHAT';
 
@@ -73,6 +75,14 @@ export function ShellFrame({
       ? 'shell-root-dot shell-root-dot--ready'
       : 'shell-root-dot';
 
+  // Runtime connectivity is a second, independent axis from the working root: the
+  // root can be valid while every harness request fails because the daemon is
+  // unreachable. It is absent entirely outside the desktop app, where there is no
+  // daemon to report on. Class names are kept off the `shell-root-dot` prefix so
+  // the two indicators stay independently addressable.
+  const runtimeConnectivity = useRuntimeConnectivity();
+  const runtimeIndicator = deriveRuntimeConnectivityPresentation(runtimeConnectivity);
+
   async function applyDraftPath(): Promise<void> {
     const nextPath = draftPath.trim();
     if (!nextPath) {
@@ -112,6 +122,21 @@ export function ShellFrame({
         </div>
 
         <div className="shell-header-controls">
+          {runtimeIndicator ? (
+            <span
+              className={`shell-runtime-chip shell-runtime-chip--${runtimeIndicator.tone}`}
+              title={runtimeIndicator.title}
+              role="status"
+            >
+              <span
+                className={`shell-runtime-dot shell-runtime-dot--${runtimeIndicator.tone}`}
+                aria-hidden="true"
+              />
+              <span className="shell-runtime-chip-key">runtime</span>
+              <span className="shell-runtime-chip-value">{runtimeIndicator.label}</span>
+            </span>
+          ) : null}
+
           <details className="shell-root-disclosure">
             <summary className="shell-root-chip" title={currentRootLabel}>
               <span className={rootDotClassName} aria-hidden="true" />

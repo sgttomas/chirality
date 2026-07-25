@@ -1,0 +1,3 @@
+single_sigterm_death_s=0.045 socket_present=False
+2026-07-25T03:20:11.545Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":true,"pid":6783}
+2026-07-25T03:20:11.548Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}

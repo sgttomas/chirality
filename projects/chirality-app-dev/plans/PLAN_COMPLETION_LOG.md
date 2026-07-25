@@ -6,6 +6,83 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-25 - Daemon-as-service and packaged-app fixes landed
+
+The owner opened the session as a debugging run — the redesigned shell showed no
+quincunx logo on the packaged app, and every harness request failed with
+`ENGINE_UNAVAILABLE` because the runtime daemon client was unconfigured. The
+owner rejected per-launch manual workarounds outright and asked whether the
+daemon should instead be a separately running service hosted on the machine,
+then adopted `TRB-APPDEV-DAEMON-SERVICE-2026-07-25` in-session with the same
+Agent 0/1/2 delegation model and `opus-5` models at Agent 1 and Agent 2.
+
+The tranche landed on branch `feat/daemon-service`: a generic, parameterized
+LaunchAgent posture in the shared runtime package (`8c20f214d`); the daemon as a
+real service — headless activation policy, a main-process binding supervisor with
+a retry ladder and liveness probing, a runtime-connectivity chip in the top bar,
+and durable file logging replacing a swallowed console warning (`22752cf67`);
+packaging fixes — `public/**/*` in the electron-builder file allowlist so the
+in-app mark resolves inside the asar, a committed offline-generated macOS icns
+wired to `build.mac.icon`, and a CLI launcher that pins the app's own user-data
+path (`987541fed`); control-plane records and the brief's C-1 correction
+(`071bebf9e`); then a remediation round driven by packaged-app drills —
+environment-configurable job posture for the bundled CLI with no redundant
+throttled restart (`ee2154976`), the quit veto dropped for real graceful teardown
+plus opening the GUI on activation (`c3616aa69`), one daemon posture shared by
+both install surfaces with an idempotent launcher and no daemon-down throw into
+the renderer (`3e7e57e04`), and the evidence archive (`45aeaa465`).
+
+Two record corrections matter more than the code. First, the adopted brief's
+root cause — "the plist has no KeepAlive/RunAtLoad" — was factually wrong for
+both the source and the installed plist; the real defect was semantic, a
+crash-only restart contract blind to the clean exit that was actually observed,
+with launchd reporting the job held down by its successful-exit semaphore. That
+is the direct justification for the restart-always posture. Second, the
+validator's round-1 approval of a daemon quit veto was retracted after drills
+falsified its reasoning: the JS signal handler never runs in a packaged Electron
+main process, so a single SIGTERM was consumed by the veto and no stop path ever
+ran a graceful teardown. Both corrections were appended rather than rewritten.
+
+New run records and updated `## Remaining` sections land for DEL-02-01,
+DEL-02-05, DEL-05-04 and DEL-09-04. Three DEL-02-01 residuals are closed on
+packaged evidence — packaged Desktop smoke evidence for the redesigned shell, the
+true runtime-connectivity indicator, and the `.icns` packaged application icon —
+and DEL-09-04's headless-daemon/LaunchAgent/bundled-CLI item is narrowed to its
+unexercised login-time path and the still-gated DMG scope.
+
+Validation: two drill rounds against the packed app under a strict isolation
+contract — temporary user data, a temporary home relocating the LaunchAgents
+directory and CLI launcher, a distinct job label, and driver guards refusing the
+default label and the operator's LaunchAgents directory. Evidenced on the shipped
+bits: a headless daemon with a full `safeStorage` encrypt/decrypt round trip and
+negative controls; LaunchAgent install, restart after kill, graceful stop, and
+revival after a clean exit; label scoping proved by a recording `launchctl` shim
+and a live status run; the bundled CLI working from a clean environment without
+global Node; asar `public/` presence, `CFBundleIconFile`, and a packaged icns
+byte-identical to the committed artifact; the connectivity chip transitioning
+across a daemon outage with no restart or manual action; and an end-to-end
+stub-adapter turn terminating with a zero process exit, which falsifies the
+reported failure on the shipped bits. Gates on the final tree: typecheck,
+vitest, build, Section 9, `desktop:pack` with dependency and instruction-root
+integrity checks, runtime CLI tests, repository self-check exit 0, and lockfile
+discipline clean. Release quality is `pass_with_skips` with the documented
+premerge evidence-skip reason. The owner's live LaunchAgent, user data, CLI
+launcher and main checkout were verified byte-unchanged after both rounds.
+
+Residuals: the daemon still has no bundle identity of its own, so opening the app
+from Finder or the Dock while the daemon runs bounces the runtime briefly — the
+causal fix is a helper bundle and is escalated to the owner as its own tranche;
+the premerge row for this branch is owed from the CI harness pre-merge workflow
+on the pull request; deployment on the owner's machine is owed post-merge because
+merging alone leaves an earlier-installed plist with the old restart contract;
+SIGKILL still leaves a stale control socket that the next daemon start recovers;
+the packaged daemon's instruction-root divergence is deliberately unaddressed;
+login-time auto-start was never exercised; the connectivity chip has no operator
+reconnect affordance; and packaged evidence for the Workbench, Pipeline and
+navigator-selection surfaces remains owed against DEL-02-02 and DEL-08-02. No
+lifecycle state moved, no release or distribution authority was created, and the
+owner's merge of the pull request is the terminal integration act.
+
 ## 2026-07-24 - Woven Dialogue visual redesign and IA consolidation landed
 
 The owner adopted `TRB-APPDEV-WOVEN-REDESIGN-2026-07-24` as-is in-session on

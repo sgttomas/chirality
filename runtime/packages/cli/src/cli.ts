@@ -15,7 +15,10 @@ import {
   runtimeClientOptions,
   type CliRuntimePaths
 } from "./config.js";
-import { LaunchAgentManager } from "./launch-agent.js";
+import {
+  LaunchAgentManager,
+  resolveRuntimeLaunchAgentOptions
+} from "./launch-agent.js";
 
 export interface CliIo {
   stdout(text: string): void;
@@ -459,10 +462,22 @@ export function createDefaultCliDependencies(): CliDependencies {
   return {
     paths,
     client: new RuntimeClient(runtimeClientOptions(paths)),
-    launchAgent: new LaunchAgentManager({
-      launchAgentsDirectory: paths.launchAgentsDirectory,
-      runtimeDirectory: paths.runtimeDirectory
-    }),
+    // The job posture comes from the environment, not from a hard-coded default.
+    // Constructing this with no options meant two things: `daemon install` could
+    // never render anything but the historical `crash-only` plist with no pinned
+    // environment (so the CLI path silently reinstated the defect the in-app
+    // install fixes), and every verb resolved to the default label — so an
+    // otherwise fully isolated environment still addressed, and could have
+    // booted out or deleted, an operator's real job.
+    launchAgent: new LaunchAgentManager(
+      {
+        launchAgentsDirectory: paths.launchAgentsDirectory,
+        runtimeDirectory: paths.runtimeDirectory
+      },
+      undefined,
+      undefined,
+      resolveRuntimeLaunchAgentOptions(process.env, paths.userData)
+    ),
     executablePath: process.execPath,
     readTextFile: (path) => readFile(path, "utf8")
   };

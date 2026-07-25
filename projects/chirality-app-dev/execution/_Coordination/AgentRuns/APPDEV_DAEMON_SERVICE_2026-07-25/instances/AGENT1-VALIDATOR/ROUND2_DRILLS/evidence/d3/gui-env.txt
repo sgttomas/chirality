@@ -1,0 +1,3 @@
+CHIRALITY_SKIP_CLI_LAUNCHER=1
+CHIRALITY_USER_DATA=/Users/ryan/.chirality-tranchetest-a1r2/userdata
+HOME=/Users/ryan/.chirality-tranchetest-a1r2/home

@@ -1,0 +1,5 @@
+775:    loadedJobs:"com.chirality.runtime.tranchetest" 
+918:132) "Chirality" ASN:0x0-0x42f82f4: 
+919:    bundleID="com.chirality.app"
+920:    bundle path="/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app"
+921:    executable path="/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"

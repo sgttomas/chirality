@@ -1,0 +1,10 @@
+{
+  "drill": "V3", "name": "worktree manifest registration + GUI auto-binding (direct exec)", "verdict": "PASS",
+  "registration": {"projectId": "chirality-app-dev", "canonicalRoot": "/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev", "manifestHash": "5a79777038acd2b5fda3b0416c0092e2c980ff0eff7e84a019fdac3bac8fdc04", "approvedBy": "V-PACKAGED-DRILLS"},
+  "gui_pid": 92841, "gui_env": {"HOME": "/Users/ryan/.chirality-tranchetest-v/home", "CHIRALITY_USER_DATA": "/Users/ryan/.chirality-tranchetest-v/userdata", "CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL": "com.chirality.runtime.tranchetest"},
+  "bind": {"gui_starting_utc": "2026-07-25T02:17:17.724Z", "connected_utc": "2026-07-25T02:17:17.742Z", "elapsed_ms": 18, "failedAttempts": 0, "manual_action_required": false},
+  "daemon_boundary": {"before": {"state": "running", "pid": 92414, "runs": 2}, "after": {"state": "running", "pid": 92414, "runs": 2}, "activate_received": false},
+  "owner_label_boundary": {"before": {"state": "not running", "runs": 4, "last_exit_code": 0}, "after": {"state": "not running", "runs": 4, "last_exit_code": 0}},
+  "cli_launcher": {"rendered_to": "/Users/ryan/.chirality-tranchetest-v/home/.local/bin/chirality", "owner_launcher_sha256": "2c0120079831c1d2637e462304ac596044026d551c8d3ae89985da1506838b0d (unchanged)"},
+  "screenshots": {"window": "v3-window-connected.png", "topbar": "v3-topbar-connected.png (RUNTIME connected, sage; ROOT chip intact)", "logo": "v3-quincunx-logo.png (asar-served /chirality-app-icon.svg renders)"}
+}
