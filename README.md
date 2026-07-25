@@ -83,7 +83,7 @@ Root-level framing documents provide the theoretical and professional-practice b
 
 Chirality separates the **instruction root** from the **working root**.
 
-The instruction root contains release-managed instructions, governance documents, skills, tools, and bootstrap files. The working root is the user-selected project filesystem where agents read and write governed state.
+The instruction root contains release-managed instructions, governance documents, skills, tools, and bootstrap files. The working root is the user-selected project filesystem where agents read and write governed state. One governed exception exists (D-GOV-21): the root product's working root is the repository root itself, under a replacement containment contract with deterministic guards.
 
 Authoritative project state is file-based. Packages, deliverables, references, dependency registers, review records, snapshots, and publication outputs are readable as plain files by humans, agents, and deterministic tools. Runtime convenience state may exist in the harness, but chat context, model memory, browser storage, local UI preferences, and application caches do not override governed project files.
 

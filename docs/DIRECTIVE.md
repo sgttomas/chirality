@@ -10,7 +10,7 @@ This document captures the founding intent, design philosophy, and structural co
 
 ## 1. Founding Intent
 
-Chirality is a governed, filesystem-native agent operating system for deliverable-heavy professional work. It is maintained as a private canonical monorepo whose root is the **shared instruction surface** — a release-managed agent operating system (`AGENTS.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`) — that serves multiple project and domain **working-roots** nested under `projects/*` and `domains/*`. The same instruction surface is also packaged as a desktop harness that runs agents against a user-selected working folder.
+Chirality is a governed, filesystem-native agent operating system for deliverable-heavy professional work. It is maintained as a private canonical monorepo whose root is the **shared instruction surface** — a release-managed agent operating system (`AGENTS.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`) — that serves multiple project and domain **working-roots** nested under `projects/*` and `domains/*`, and — under the D-GOV-21 exception — the root product's own working root at the repository root. The same instruction surface is also packaged as a desktop harness that runs agents against a user-selected working folder.
 
 The core insight: **if the filesystem is the database, architecture is a state-and-authority specification, not a service mesh.**
 
@@ -73,7 +73,7 @@ complement live agency.
 
 Gate-controlled workflows ensure that humans make consequential decisions at defined junctions. Brief-driven pipelines make agent execution bounded, repeatable, and auditable — Type 2 agents receive structured inputs and return structured outputs with no mid-run human decisions required. Write quarantine contains failures within declared zones: every agent has an explicit write scope, tool roots are isolated from source truth, and no agent writes outside its declared zone.
 
-The instruction root (release-managed agent operating system) is physically separated from the working root (user-controlled project state). This ensures that the rules governing agent behavior are stable across projects while execution remains fully filesystem-native. See §2.6.
+The instruction root (release-managed agent operating system) is physically separated from the working root (user-controlled project state). This ensures that the rules governing agent behavior are stable across projects while execution remains fully filesystem-native. See §2.6. The root product itself is the one governed exception: its working root is the repository root (D-GOV-21).
 
 **Axiology — what the system values.**
 
@@ -196,12 +196,12 @@ Clarification:
 
 ### 2.6 Separation of Instruction and Execution
 
-The system separates the **instruction root** (the release-managed agent operating system) from the **working root** (the project state agents read and write):
+The system separates the **instruction root** (the release-managed agent operating system) from the **working root** (the project state agents read and write) — with the single D-GOV-21 exception that the root product's working root is the repository root:
 
 - **Instruction root:** the shared, release-managed surface — `AGENTS.md`, `agents/`, `skills/`, `tools/`, root `docs/`, and `init/`. In this monorepo it is the repository root; in deployable desktop builds it is the app bundle, where `agents/`, `skills/`, `tools/`, `docs/`, and `init/` are packaged as `instruction-root/`.
-- **Working root:** the filesystem location where agents execute and create or update governed state. One instruction root serves **many** working roots — each `projects/<name>/` and `domains/<name>/` in this monorepo, or a user-selected folder under the desktop harness.
+- **Working root:** the filesystem location where agents execute and create or update governed state. One instruction root serves **many** working roots — each `projects/<name>/` and `domains/<name>/` in this monorepo, or a user-selected folder under the desktop harness. Under D-GOV-21, the repository root is additionally the working root for the root product itself.
 
-This preserves a single stable agent operating system across many projects and domains while keeping execution fully filesystem-native in user-controlled state. A working root MUST NOT be located inside the instruction root.
+This preserves a single stable agent operating system across many projects and domains while keeping execution fully filesystem-native in user-controlled state. A working root MUST NOT be located inside the instruction root. Exception (D-GOV-21): the repository root is itself the working root for development of the root product, with root `execution/` as its execution root, under the replacement containment contract of D-GOV-21. No other working root may be located inside the instruction root.
 
 DIRECTIVE establishes the separation as a value; `SPEC.md` (Root Model and Path Anchoring) binds the paths — including the rule that a task's write scope must resolve within the active checkout, which is what makes per-working-root isolation (including git worktrees) safe.
 
@@ -297,8 +297,8 @@ These constraints are hard to change later. They define the boundaries of the sy
 | Flat package hierarchy | No nesting; simplifies automation, coverage checking, and scope assignment |
 | Deliverable-local dependency registers | No central dependency graph to maintain; aggregation is on-demand |
 | Immutable snapshots for task agent outputs | Reruns are safe; historical outputs are preserved |
-| Instruction root separate from working root | Agent instructions are release-managed; project data is user-controlled |
-| One shared instruction root serves many working roots | A single release-managed agent OS governs many projects and domains without per-workspace instruction drift |
+| Instruction root separate from working root (root product excepted per D-GOV-21) | Agent instructions are release-managed; project data is user-controlled; root-product development excepted per D-GOV-21 |
+| One shared instruction root serves many working roots | A single release-managed agent OS governs many projects and domains without per-workspace instruction drift; the instruction root additionally serves as the root product's own working root (D-GOV-21) |
 | Task write scope resolves within the active checkout | Enables per-working-root and git-worktree isolation; prevents cross-workspace writes (see `SPEC.md` Root Model and Path Anchoring) |
 
 ---

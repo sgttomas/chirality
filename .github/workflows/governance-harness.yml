@@ -38,3 +38,7 @@ jobs:
         run: python3 -m pytest tools/practitioner_harness -q
       - name: Self-check (BLOCK findings fail the run per D-GOV-02)
         run: python3 tools/practitioner_harness/harness.py self-check
+      - name: G0 root materialization fence (D-GOV-21 §5.3; BLOCK fails the run)
+        run: |
+          python3 -m pytest tools/validation/test_validate_root_materialization_fence.py -q
+          python3 tools/validation/validate_root_materialization_fence.py

@@ -15,9 +15,13 @@ Plans, receipts, and run records are derivative coordination surfaces only.
 - Read root `AGENTS.md` and the instruction package for the role selected by
   the standing workplan and current human direction.
 - Resolve this loop directory as `{REPO_ROOT}/execution/_Coordination`.
-- Confirm that root `execution/` contains control-plane records only. It is not
-  a project decomposition root and must not acquire `PKG-*` or `DEL-*`
-  structure.
+- Root `execution/` is the root product's execution root (D-GOV-21): the
+  repository root is the root product's working root. Root `execution/` is
+  **eligible** to acquire `PKG-*`/`DEL-*` structure only from an accepted root
+  decomposition derived from an adopted root PRD, and only while guards G0–G4
+  are registered and passing (D-GOV-21 §5.3 gate; G0 is the materialization
+  fence in governance-harness CI). Until that gate closes, confirm it still
+  contains control-plane records only.
 
 ## 2. Hand off to the standing plan
 
@@ -100,9 +104,13 @@ The standing workplan defines the tranche-specific fences. Always stop for:
 - Stage-2 authorization;
 - any uncertainty about whether a change is consequential.
 
-Root control-plane records never authorize project-content writes. Project
-pilots run through their project loops with an explicit accepted variance and
-path-bounded activation.
+Root control-plane records never authorize writes to any *other* working
+root's content (`projects/*`, `domains/*`). Project pilots run through their
+project loops with an explicit accepted variance and path-bounded activation.
+Root-product work runs through root `execution/` under D-GOV-21 and its
+replacement containment contract (M1–M7, G0–G4); root-product instruction-
+surface changes additionally require independent owner authorization through
+a human-gated repo-wide change tranche (D-GOV-21 M2).
 
 ## 7. Closeout
 
