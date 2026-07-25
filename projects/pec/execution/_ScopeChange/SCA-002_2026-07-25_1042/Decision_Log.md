@@ -149,7 +149,7 @@ on decisions those gates have not yet made.
 
 ## Gate 2 — Impact Assessment
 
-**Opened:** 2026-07-25 · **Status:** presented, awaiting owner acceptance
+**Opened:** 2026-07-25 · **Ruled:** 2026-07-25 · **Status:** `CLOSED` (ACCEPTED)
 **Output:** `Impact_Assessment.md` (this snapshot)
 
 ### Agent-side resolutions
@@ -227,8 +227,8 @@ Gate 2 closed. Gate 3 released; write scope still `_ScopeChange/**` only.
 
 ## Gate 3 — Amendment Approval
 
-**Opened:** 2026-07-25 · **Status:** drafted, awaiting owner approval
-**Outputs:** `Amendment_Preview.md`, `Amendment_Actions.csv`,
+**Opened:** 2026-07-25 · **Status:** drafted (preview **v2**), awaiting owner approval
+**Outputs:** `Amendment_Preview.md` (v2), `Amendment_Actions.csv` (10 rows),
 `Gate3_Simulation.json` (all in this snapshot)
 
 ### Agent-side resolutions
@@ -236,7 +236,7 @@ Gate 2 closed. Gate 3 released; write scope still `_ScopeChange/**` only.
 | Ref | Decision | Rationale |
 |---|---|---|
 | D-14 | Attributions derived from **my own read of `projects/pec/docs/PRD.md`**, every warrant quoted verbatim with a line anchor | The ruled method is `SourceRef` → PRD row → objective. Paraphrasing the PRD would make the warrant unauditable; the owner must be able to check each quote against the source. |
-| D-15 | Four **register precedents** measured and used as attribution anchors | `SOW-010`→`OBJ-005` (rebuild/store cluster), `SOW-055`/`DEL-10-02`→`OBJ-005` (a PKG-10 *verification* deliverable maps to the objective its invariant serves, not to OBJ-006), `DEL-08-03/04`→`OBJ-001` (PKG-08 transport), `SOW-018/019`→`OBJ-002` (reconciler layer). Anchoring to accepted register facts beats inventing a fresh rationale per row. |
+| D-15 | Four **register precedents** measured and used as attribution anchors | `SOW-010`→`OBJ-005` (rebuild/store cluster), ~~`SOW-055`/`DEL-10-02`→`OBJ-005`~~ **withdrawn by C-18 as tautological** — `SOW-055` restates OBJ-005 nearly verbatim and selects nothing for `SOW-025`, `DEL-08-03/04`→`OBJ-001` (PKG-08 transport), `SOW-018/019`→`OBJ-002` (reconciler layer). Anchoring to accepted register facts beats inventing a fresh rationale per row. |
 | D-16 | Three rows presented as **genuinely ambiguous** with alternatives rather than given a confident single answer | `DEL-00-03` (LOW), `DEL-00-01` (MEDIUM), `DEL-08-01`/`SOW-003` (MEDIUM-HIGH). The PRD does not settle what an *authoring* deliverable "serves"; presenting a confident mapping would manufacture certainty the source does not support. |
 | D-17 | INDIRECT-8 recommended at the full `[OBJ-001, OBJ-002]` set, **with the narrower alternative stated and evidenced** | §3's derivation is explicit about the set, and applying it is faithful to accepted rationale. But my own measurement shows OBJ-002's register locus is the reconciler layer (`SOW-006/018/019`), which genuinely supports a parsers-are-`OBJ-001`-only reading. The owner should choose knowingly rather than inherit my preference. |
 | D-18 | A002 cells **derived** from A001 by the union invariant, never authored independently | Authoring both sides invites divergence. Deriving one from the other makes the invariant structurally true rather than checked after the fact. |
@@ -247,7 +247,7 @@ Gate 2 closed. Gate 3 released; write scope still `_ScopeChange/**` only.
 
 | Ref | Finding | Disposition |
 |---|---|---|
-| `F-6` | **The ruled action register A001–A007 does not cover the document's own front matter.** Lines 6–8 and 11 carry `revision: "1.1"`, `date: 2026-07-24`, an `accepted:` line naming the SCA-001 successor, and `session_authorization` naming only SCA-001/D-PEC-61. If unamended, revision 1.2 ships **declaring itself revision 1.1**, contradicting both the amended §7 Revision row (A004) and `_LATEST.md` (A006). | Surfaced as proposed action **A008** with exact text, marked `PROPOSED - NOT YET RULED` in `Amendment_Actions.csv`. `MODIFY`-class and mechanically entailed by A004/A006, but **not** in the ruled register — so it is asked explicitly (Gate 3 Q4) rather than folded silently into A005. |
+| `F-6` | **The ruled action register A001–A007 does not cover the document's own front matter.** Lines 6–8 and 11 carry `revision: "1.1"`, `date: 2026-07-24`, an `accepted:` line naming the SCA-001 successor, and `session_authorization` naming only SCA-001/D-PEC-61. If unamended, revision 1.2 ships **declaring itself revision 1.1**, contradicting both the amended §7 Revision row (A004) and `_LATEST.md` (A006). | Surfaced as proposed action **A008** with exact text, marked `PROPOSED - NOT YET RULED` in `Amendment_Actions.csv`. `MODIFY`-class and mechanically entailed by A004/A006, but **not** in the ruled register — **and, per C-14, not inside the §4.3 byte-window either**, so it needs a dated owner amendment of that window — so it is asked explicitly (Gate 3 Q4) rather than folded silently into A005. |
 
 ### Supersession condition — discharged
 
@@ -277,13 +277,45 @@ not given. `Pre_Change_Coverage.json` remains deferred to pre-Gate-5.
 
 ### Gate 3 owner ruling
 
-> _Pending. Five questions in `Amendment_Preview.md` Part 5 — Q1 (three
-> ambiguous attributions, per row), Q2 (INDIRECT-8 breadth), Q3 (§3 header
-> qualifier), Q4 (A008 front matter), Q5 (everything else as drafted)._
+> _Pending. Five questions in `Amendment_Preview.md` **Part 8** — Q1 (**seven**
+> per-row attribution rulings), Q2 (INDIRECT-8 breadth: AFFIRM / N1 / N2),
+> Q3 (§3 header qualifier), Q4 (A008 **plus** the dated §4.3 window
+> amendment), Q5 (everything else, **conditional on Q1/Q2 recommended**)._
 
-## Gate 3 — Amendment Approval
+### Corrections to this session's own Gate 3 package (round R-2b-g3)
 
-> _Not opened._
+26 findings, all `ACCEPTED`, applied as **C-14 … C-33** with the
+`SOW-038`/`DL-11` note below. Full per-correction log:
+`Amendment_Preview.md` Part 7. The refuters confirmed the **byte-level
+mechanics sound** — one applied the whole amendment in scratch and reproduced
+every old-text pair, the union invariant at 0, the 20+17/two-column
+containment, the §3 arithmetic and wave-unmapped 17→0. Every defect was
+framing or calibration.
+
+| Group | Corrections |
+|---|---|
+| **Authority (critical)** | C-14 A008's "inside the window's revision-history text" claim was **false** — front matter is not §3/§7/§12/mapping-notes; requires a dated §4.3 amendment. C-15 A005a (§11 Decision Log) is **also** outside the window on the strict reading; one consistent reading adopted. C-16 A006's basis stated explicitly (§3.2 line 131 + §2.3; outside the byte-window by construction) |
+| **Contingency (critical)** | C-17 the drafted A001/A002/A003b/A003d text is valid **only** under the recommended Q1/Q2 answers; surfaced to Part 0 and into Q5's wording; the unconditional "OBJ-003/OBJ-006 unchanged" sentence conditioned |
+| **Attribution recalibration** | C-18 `SOW-055` precedent **withdrawn as tautological**. C-19 DEL-10-03 HIGH → LOW-MEDIUM, reframed (no §3 objective states K-AUTH-1's boundary — the `DL-14` condition — so O-A forces a least-wrong choice). C-20 DEL-03-06's warrant quote was **truncated at exactly the clause pointing elsewhere**; full PEC-SVC-003 quoted, `OBJ-002` alternatives presented. C-21 DEL-08-02 escalated. C-22 DEL-01-05 aligned with DEL-00-01 at MEDIUM. C-23 the `bound by C1/C2 across all items` convention engaged — constraint-like posture is not itself grounds for an OBJ-005 mapping. C-24 DEL-01-03 reasoned from the full requirement. C-29 the "six are HIGH/MEDIUM-HIGH" sentence withdrawn as false against my own labels |
+| **Text** | C-25 "both intentional per DL-14" removed (`DL-14` covers `SOW-063` only); A004's parenthetical rescoped. C-26 A006 previewed as the complete successor file with marked Gate-5 slots. C-27 Q2's narrow options defined as N1/N2 with exact consequences. C-28 Part 4 added — `ContextBudgetQA.csv` and `Companion_Inventory.csv` determinations demonstrated |
+| **Mechanical** | C-30 A003a split to `ActionSeq 3b`, conditional on Q3. C-31 `SCOPE_CHANGE_POSTCHECK` restored on every row (SCA-001 precedent; v1 dropped it with no rationale) and `NONE` replaced with named owners. C-32 `Gate3_Simulation.json` provenance added. C-33 citation hygiene — §8 anchor `:217–219` (soft-wrap), inserted bold removed from the §9.7:300 quote, Part-4/Part-5 cross-reference fixed |
+
+**Note recorded per the relay — `SOW-038` / `DL-11` tension.** §3's mapping
+notes call `SOW-033..039` "ingest/bridge items", but `SOW-038` (PEC-STR-004,
+stream loss recovered by reconciliation) is assigned to **PKG-03 Reconciliation
+& Parity** in §4, not PKG-07 — it is a reconciliation-side guarantee, not
+ingest mechanics. The §3 grouping label is loose with respect to the package
+assignment (`DL-11` records the forced boundary decisions). SCA-002 does **not**
+resolve it: `SOW-038` is residue under O-A and its row is untouched. Recorded
+so the next amendment touching that class inherits the observation.
+
+**Pattern, third occurrence.** Gate 2's overstatement recurred here in a new
+form: a false authority claim, contingent text presented as settled, a
+tautological precedent dressed as evidence, and a quote cut at the clause that
+disagreed with me. The mechanics have been sound at every gate; the framing has
+consistently oversold them. For Gate 4: quote sources to their sentence end,
+state an authority basis only after locating it in the packet text, and label
+contingent work contingent.
 
 ## Gate 4 — Propagation Plan Approval
 

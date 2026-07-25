@@ -1,4 +1,21 @@
 {
+  "provenance": {
+    "amendment_id": "SCA-002",
+    "gate": 3,
+    "run_date": "2026-07-25",
+    "simulation_version": "v2 (round R-2b-g3 corrections applied)",
+    "basis": "SOFTWARE_DECOMP.md revision 1.1 (current_basis)",
+    "basis_pins_md5": {
+      "SOFTWARE_DECOMP.md": "ad944a2bfa7784778afa8558d8f81762",
+      "Deliverables.csv": "6d2b290b0c869fc1d51d626a1714abec",
+      "ScopeLedger.csv": "49e0cff9af647e41966b7a3334641919"
+    },
+    "method": "A001 assignments applied in memory to ScopeLedger.csv rows; A002 DERIVED from A001 by the union invariant (SupportsObjectives = union of ObjectiveIDs over covered scope items), never authored independently; six checks then run against the mutated in-memory registers. No file outside the SCA-002 session workspace was read for mutation or written.",
+    "validity_condition": "Results hold ONLY for the recommended Q1/Q2 answers. Any non-recommended Gate 3 ruling voids A001/A002/A003b/A003d and requires re-derivation and re-simulation.",
+    "scope_width": "O-A wave-minimum",
+    "authority": "D-PEC-64",
+    "executed_by": "SCOPE_CHANGE (Agent 1) inline; Agent 2 dispatch unavailable in this harness"
+  },
   "A001": {
     "SOW-001": "OBJ-001;OBJ-002",
     "SOW-011": "OBJ-001;OBJ-002",
