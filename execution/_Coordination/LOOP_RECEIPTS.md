@@ -713,3 +713,67 @@
   idle; DIRECTIVE-not-amended claims verified by direct inspection).
 - Open: RD-2..RD-5 rulings; C-2/C-3/C-4; then the final adoption-ready
   revision per PRD §10.3 and the adoption instrument per RD-3.
+
+### Receipt 38 — 2026-07-25 — RD-2..RD-5 RULED; final review cycle closed; PRD candidate Rev 5 (adoption-ready)
+
+- Owner acts of record (in-session, 2026-07-25):
+  1. Routed the fourth adversarial-review pass (single subject: D-3's
+     authority status; verbatim in
+     `AgentRuns/ROOT-PRD-LANE-A-20260725/reviews/ADVERSARIAL-REVIEW-4.md`)
+     with the direction: "Consider this as the final review cycle.
+     Incorporate what has merit from your perspective and proceed from
+     there." Agent 0 accepted the reviewer's Option 1: D-3 leaves the §5
+     requirements table and is preserved as OBSERVED practice —
+     "practice supplies evidence; evidence informs judgment; judgment
+     alone makes the rule."
+  2. **RULED RD-2** (jurisdiction/accountability) — recorded verbatim
+     from the selection interface: "A1+B2 could seemingly be scaled up
+     to multi-practitioner using the PEC interface and a database, and
+     attribution can be done more securely that way. If you agree I
+     would go that way. And that database and PEC interface are not
+     current scope. That can be something that may be incorporated as
+     Chirality morphs and responds to usage with ongoing development and
+     refinement." The ruling was conditioned on Agent 0 agreement; Agent
+     0 agreed, with the D-GOV-01 caveat recorded as CLARIFIED (a future
+     PEC/database layer supplies the attribution mechanism; the
+     authoritative record stays file-native unless D-GOV-01 is
+     consciously amended).
+  3. **RULED RD-3** (adoption instrument) — selection verbatim: "A+y
+     (Recommended)". Instrument: a D-GOV-* exact-candidate decision
+     record over the adoption-ready bytes, plus a bidirectional
+     concordance map (PRD ↔ DIRECTIVE §1) drawn against DIRECTIVE §1
+     as it stands, the RD-1 divergence recorded; obligation (a) lands in
+     the adoption/implementation tranche.
+  4. **RULED RD-4** (placement) — selection verbatim: "D — Split with
+     pointer". Adopted PRD in root `docs/` through the existing export
+     allowlist; candidates and revision evidence immutable in
+     `execution/`; a pointer identifies the adopted exact bytes.
+  5. **RULED RD-5** (v1 user scope) — recorded verbatim: "It's for all
+     of those, but I see it progressing over time as we start with A and
+     learn from my use to make a better version for B which I can test
+     out locally with multiple computers with multiple Agent 0 instances
+     on each and learn from that and make a better C which is the target
+     level of maturity for the platform." Incorporated as v1 = A with an
+     OWNER_DECLARED A→B→C maturation trajectory, C the target maturity.
+- SHA-binding of all four rulings occurs at the adoption instrument
+  (RD-3), as with RD-1 (Receipt 37).
+- Rev 5 (fresh ephemeral Agent 2 instance, `opus-5`, Brief Amendment 4;
+  the prior instance's transcript had expired and the successor worked
+  from the durable run record): the final adoption-ready revision per
+  PRD §10.3 — banner `ADOPTION-READY — adopted only by the instrument
+  named below`; D-3 removed (identifier retired, not reassigned; §6.2
+  OBSERVED practice statement added; commitments 43 → 42, TRANSCRIBED
+  34 → 33); §9 reduced to records of the five rulings with verbatim
+  fences; drafting commentary stripped; annex §5.6 correction + rulings
+  tables; C-3 expressly flagged for owner confirmation at the
+  instrument.
+- Fan-in V1 accepted (two-file diff; path anchors PASS 992; G0 PASS
+  idle; independent script count 42 = 33/5/4 with D-3 absent and no
+  renumbering; all five verbatim fences verified by direct grep; no
+  adoption claims; DIRECTIVE §1 nowhere claimed amended). Return:
+  `AgentRuns/ROOT-PRD-LANE-A-20260725/returns/N1_RETURN-REV5.md`.
+- Open: the adoption instrument (RD-3-A record + RD-3-y map) and the
+  owner's adoption ruling against the exact candidate SHA; C-2/C-3/C-4;
+  §9.1 obligations (a)/(b)/(c) and RD-4-D placement in the
+  adoption/implementation tranche. Merging PR #340 records candidates;
+  it does not adopt.
