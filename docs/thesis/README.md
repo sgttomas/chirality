@@ -81,6 +81,25 @@ attention) and §9.3.5 sharpened with Collins on answerability-as-status. The
 thesis remains CITED/REVIEWED, not AUTHENTICATED — informative, not
 governance.
 
+*Revision note dated 2026-07-24 (coherence pass).* A second agent-authored
+pass applied under owner direction (the prose is the agent's, not the
+owner's words), resolving five stress points from a four-pillar coherence
+review: (1) the "cannot be mechanized" claim in §6.9.4 clarified as an
+institutional claim about answerability, not a speculation about machine
+cognition, aligning it with §9.3.5's stated agnosticism; (2) the two kinds
+of record — descriptive and constitutive — distinguished explicitly in
+§3.2.1, marking the seam the `Claim`/`Ruling` primitives already track;
+(3) architectural vs. justificatory priority distinguished in §3.4,
+resolving the apparent tension between "pillars serve the epistemology" and
+the axiological grounding of Chapter 6; (4) the category shift at
+REVIEWED → AUTHENTICATED flagged at the Chapter 3 lifecycle (evidential
+standing vs. normative standing), tied to §3.6 and Appendix D; (5) the
+"necessary condition" claim in §6.9.4 narrowed to demonstrable satisfaction
+of the mapped standards, and the axiology's thin formal treatment stated as
+deliberate in §3.2.4 ("thin in the document because it is thick in the
+knower"). The thesis remains CITED/REVIEWED, not AUTHENTICATED —
+informative, not governance.
+
 ## Five Novel Contributions
 
 1. **Epistemic architecture** — mandatory provenance, no-invention, conflict surfacing, epistemic labeling as a response to the LLM reliability problem
