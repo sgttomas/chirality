@@ -833,3 +833,31 @@
 - Open after this receipt: the D-GOV-23 owner ruling; obligations (b)
   README reword and (c) propagation survey; C-2/C-4 correction proposals;
   Lane B (G1–G4); export-staging regeneration DEFERRED.
+
+### Receipt 41 — 2026-07-25 — D-GOV-23 RULED: DIRECTIVE §1 genus superseded; C-1 CLOSED
+
+- Owner act of record (in-session, 2026-07-25) — verbatim: "I rule
+  APPROVED for O-A against candidate SHA
+  65bb96378428a86ed8ab8581149ead056d756789". Obligation (a) is performed.
+- Application (this commit): the Annex A.2 replacement prose was extracted
+  programmatically from the ruled packet (not retyped), the A.1 current
+  text verified to occur exactly once in live `docs/DIRECTIVE.md`, and the
+  paragraph replaced byte-faithfully. DIRECTIVE §1 now opens with the RD-1
+  ruled two-level genus verbatim (plus the candidate's provenance
+  parenthetical); the rest of the paragraph is byte-identical. No
+  deviation occurred, so no re-approval round was required.
+- **C-1 CLOSED.** The D-GOV-22 Annex A concordance map's single DIVERGENT
+  pair is concordant. The adopted PRD bytes are not edited (RD-4); its
+  §1.2 "concordance pending" state is satisfied by events, stated in the
+  D-GOV-23 decision record.
+- Publication tranche (this commit): decision record
+  `docs/governance_harness/_DECISIONS/D-GOV-23_directive_genus_supersession.md`;
+  `_REGISTER.md` row; routed change notices (M6, D-GOV-21 precedent) to
+  `projects/chirality-app-dev/execution/_Coordination/` and
+  `domains/chirality/_Coordination/` — the app-dev
+  `AUTHORITY_CORPUS.json` sha256 pin for DIRECTIVE was already stale
+  before this change and re-pins on that loop's own cadence.
+  PublicationSHA/EffectiveSHA backfilled after the human merge gate.
+- Open after this receipt: obligations (b) README genus reword and (c)
+  SPEC/TYPES/AGENTS.md propagation survey; C-2/C-4 correction proposals;
+  Lane B (G1–G4); export-staging regeneration DEFERRED.
