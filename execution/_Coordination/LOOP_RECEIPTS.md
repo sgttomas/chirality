@@ -861,3 +861,34 @@
 - Open after this receipt: obligations (b) README genus reword and (c)
   SPEC/TYPES/AGENTS.md propagation survey; C-2/C-4 correction proposals;
   Lane B (G1–G4); export-staging regeneration DEFERRED.
+
+### Receipt 42 — 2026-07-25 — D-GOV-23 effective; obligations (b) applied and (c) surveyed
+
+- Owner act of record (in-session, 2026-07-25): "Merge PR #342 and proceed
+  with obligations (b) and (c)." PR #342 merged; **D-GOV-23 EffectiveSHA
+  `b6ae1d5d8`** — the DIRECTIVE §1 genus supersession is live on `main`;
+  PublicationSHA `9a28c8d37` and the EffectiveSHA backfilled into the
+  decision record per the `f1549afb1` precedent.
+- **Obligation (b) applied (this commit):** `README.md` genus paragraph
+  reworded to the RD-1 ruled two-level formulation (ruled sentences
+  carried with a provenance pointer to `docs/PRD_ROOT.md`; README's
+  concrete enumeration retained as a third sentence). README is a
+  non-binding surface (D-GOV-21 packet §3b classification); the change is
+  gated by this PR's human merge, per the D-GOV-21 tranche precedent.
+- **Obligation (c) executed (this commit) — proposals only, nothing
+  applied:**
+  `execution/_Coordination/SURVEY_2026-07-25_OBLIGATION_C_operating_system_prose.md`.
+  Universe: all instruction surfaces; ten governed instances, all in the
+  four `docs/` authority files; `AGENTS.md`, `agents/`, `init/`,
+  `skills/`, and both standards have zero. Six instances are consistent
+  contained-level usages (KEEP). Four lean on the pre-RD-1 top-level
+  identity and carry exact candidate replacement prose as PROPOSALS
+  P-1..P-4 (DIRECTIVE:5 preamble, CONTRACT:7, SPEC:5, TYPES:5), awaiting
+  owner direction on both content and vehicle (small exact-prose packet
+  recommended; PR-review approval lawful under K-AUTH-2 per adopted PRD
+  §6.2).
+- Open after this receipt: owner direction on P-1..P-4; C-2/C-4
+  correction proposals; Lane B (G1–G4); export-staging regeneration
+  DEFERRED. With (b) applied and (c) surveyed, all three §9.1 follow-on
+  obligations of the RD-1 ruling are performed or (for P-1..P-4
+  application) staged for direction.

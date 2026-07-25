@@ -1,6 +1,6 @@
 # Chirality
 
-Chirality is a governed application environment for agent-assisted, deliverable-heavy professional work. It contains a filesystem-native agent operating system together with the governance layer, deterministic tool layer, domain applications under declared domain-engine profiles, governed project records, and human gates that let AI agents act on real work without machine output being confused with professional authority.
+Chirality Root is the canonical human-governed application environment and generative operating form for governed professional knowledge work. It contains a filesystem-native agent operating system together with the normative basis, developmental machinery, evidence, and human judgment by which that operating system is formed and governed (RD-1 ruled genus, adopted through D-GOV-22; see `docs/PRD_ROOT.md`). Concretely, that means this repository carries the governance layer, deterministic tool layer, domain applications under declared domain-engine profiles, governed project records, and human gates that let AI agents act on real work without machine output being confused with professional authority.
 
 This repository is the private canonical source tree for Chirality. It holds the shared instruction architecture, governance documents, deterministic tool layer, public-export source surface, private project workspaces, domain workspaces, and export tooling used to produce the sanitized public `chirality-app` package.
 
