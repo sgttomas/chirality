@@ -660,3 +660,27 @@
 - Lane A remains at its terminal gate: owner review of the candidate.
   Adoption instrument and the four+one reserved decisions (RD-1..RD-5)
   remain owner acts.
+
+### Receipt 36 — 2026-07-25 — PRD candidate Rev 3 after second review pass
+
+- Owner act of record (in-session, 2026-07-25): routed the second
+  adversarial-review pass on Rev 2 ("recognizably a product PRD"; one more
+  revision recommended; issues are precise contradictions). Review
+  verbatim in `AgentRuns/ROOT-PRD-LANE-A-20260725/reviews/ADVERSARIAL-REVIEW-2.md`;
+  Agent 0 accepted all eleven items + two refinements (Brief Amendment 2).
+- Rev 3 (same authoring instance, `opus-5`): genus-neutral ID-1;
+  K-DOMAIN-1 exception stated in N-1 itself; O-10 human-authority
+  correction; OBJ-2 narrowed to consequential acceptance/reliance/issuance
+  judgments; §2.3 separable human capacities; RD-5-B de-narrowed; §4.2 two
+  distinct human judgments (evaluation vs iteration); OBJ-6 population +
+  lifecycle-checkable condition; D-2 narrowed with generalization carried
+  as new D-16 PROPOSED; annex regenerability claims made honest
+  (specified/proposed, MECHANICAL vs SEMANTIC classes); §10.3 final
+  adoption transformation (two-step; prior revisions immutable); OBJ-3
+  pre-fixed thresholds; OBJ-5 promotion-disposition success.
+- Provenance: 43 stable commitments (34/5/4); 17 PROPOSED items total.
+  Flagged closest for owner: D-16, D-14, the PROPOSED v1 boundary.
+- Fan-in V1 accepted; validators green child-side and re-run green by
+  Agent 0 (path anchors PASS 992; G0 PASS idle).
+- Lane A remains at its terminal gate: owner review; then RD-1..RD-5
+  rulings; then the final adoption-ready revision per §10.3.

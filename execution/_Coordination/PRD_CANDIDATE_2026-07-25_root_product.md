@@ -1,6 +1,12 @@
 # Product Requirements Document — Chirality Root (the root product)
 
-> **Status: `CANDIDATE — NOT ADOPTED`. Revision 2.**
+> **Status: `CANDIDATE — NOT ADOPTED`. Revision 3.**
+>
+> **This revision is a candidate revision, not the final adoption-ready
+> revision.** Its exact bytes are deliberately not adoptable as they stand:
+> they carry five unresolved reserved decisions. The two-step terminal
+> mechanics — candidate revisions, then a final adoption-ready revision
+> produced after the owner rules RD-1..RD-5 — are specified in §10.3.
 >
 > This document **binds nothing** (`docs/CONTRACT.md` §1.2, **K-AUTH-1**: only
 > humans author binding approval records; no agent may certify, approve, sign,
@@ -14,15 +20,18 @@
 >
 > **Accepted basis:** `main@7ac718c7e`. **Run:** `ROOT-PRD-LANE-A-20260725`
 > (Lane A; D-GOV-21 packet §6 step 5, on the basis of D-GOV-21 effect 5).
-> **Revision history:** Rev 1 committed at `f15d51277` (PR #340); Rev 2
-> incorporates the owner-routed independent adversarial review of 2026-07-25
-> under brief amendment 1
-> (`execution/_Coordination/AgentRuns/ROOT-PRD-LANE-A-20260725/briefs/PRD-AUTHOR-BRIEF-AMENDMENT-1.md`;
-> review verbatim in the same run's `reviews/ADVERSARIAL-REVIEW-1.md`).
+> **Revision history:** Rev 1 at `f15d51277`; Rev 2 at `a72c2cd06`; both
+> remain immutable historical candidate evidence (§10.3). Rev 2 incorporated
+> the first owner-routed independent adversarial review under brief amendment
+> 1; **Rev 3 incorporates the second review** under brief amendment 2. Both
+> amendments and both reviews are in this run's `briefs/` and `reviews/`
+> directories under
+> `execution/_Coordination/AgentRuns/ROOT-PRD-LANE-A-20260725/`.
 > **Authored by:** an ephemeral bounded Agent 2 generalist under sealed brief,
 > dispatched by `HELP_HUMAN` (Agent 0). Agent authorship confers no authority.
 > **Companion:** `execution/_Coordination/PRD_CANDIDATE_2026-07-25_concordance_annex.md`
-> — a **derivative package**, regenerable and never itself adopted (§10.1).
+> — a **derivative package**, specified for regeneration and never itself
+> adopted (§10.1).
 > **Adoption, if it occurs, binds the exact bytes of this file only.**
 > **Placement** of the adopted PRD is reserved (**RD-4**); this candidate sits
 > on a non-exported coordination surface deliberately.
@@ -50,12 +59,18 @@ record cited. Synthesized owner framing is presented as ordinary prose.
 
 ### 1.1 What Chirality Root is
 
-**ID-1 — Dual nature. [OWNER_DECLARED]** The root product is both an operating
-system for governed professional knowledge work and a normative, self-applying
-instance of a generative development pattern: it develops itself under the
-same governance it prescribes. *(Agent 0 synthesis of in-session owner framing
-carried through a context compaction; not warranted verbatim. Owner confirms
-or corrects at adoption.)*
+**ID-1 — Dual nature. [OWNER_DECLARED]** The root product both **governs the
+production of professional knowledge work** and is a **normative,
+self-applying instance of a generative development pattern**: it develops
+itself under the same governance it prescribes. *(Agent 0 synthesis of
+in-session owner framing carried through a context compaction; not warranted
+verbatim. Owner confirms or corrects at adoption.)*
+
+**Genus neutrality (Rev 3).** ID-1 states the product's *dual nature* without
+naming its **genus** — the noun for what kind of thing it is. That noun is
+unresolved and reserved to **RD-1**; it appears in this document only inside
+RD-1's options (§9.1) and in the cited variants at §1.2. Rev 2's ID-1 said
+"operating system", which prematurely settled RD-1 in the body text.
 
 **ID-1a — The self-application half is independently accepted. [TRANSCRIBED]**
 D-GOV-21 (RULED 2026-07-25) makes the repository root both the shared
@@ -152,20 +167,43 @@ applicability boundary of the product. Rev 1 conflated the two.
 
 ### 2.3 Users, actors, and consuming contexts
 
-Agents and working roots are **not users** in the product sense. The four
-strata below are distinguished per the adversarial review.
+Agents and working roots are **not users** in the product sense. Two
+distinctions are drawn below: **strata** (who or what interacts with the
+product) and, first, **capacities** (which authority a person is exercising).
+
+#### Human capacities are separable [CLARIFIED]
+
+Four distinct capacities may be held by four different people. **Holding one
+confers none of the others.**
+
+| Capacity | What it authorizes | Governing source |
+|---|---|---|
+| **Root-governance authority** | Ruling on the root product's own governance: authoring binding governance records, ratifying, superseding. | K-AUTH-1; D-GOV-04 identity matching against `docs/governance_harness/human_actors.md` |
+| **Professional accountability for situated work** | Accepting scope and design basis, adjudicating technical conflicts, accepting residual risk, and issuing situated deliverables for reliance. | `docs/DIRECTIVE.md` §3.2 engineer-of-record principle |
+| **Review** | Assessing whether work may be relied upon; gating a lifecycle transition; returning findings that stop or redirect work. | `docs/DIRECTIVE.md` §2 (epistemic architecture); the REVIEW gate role |
+| **Product maintenance** | Changing the instruction surface, tools, skills, and harness under governance. | D-GOV-21 M2; `docs/SPEC.md` §0.2.1–§0.2.2 |
+
+**Explicitly:** a professional practitioner does **not** thereby obtain
+root-governance authority, and the root owner does **not** thereby become the
+accountable professional for situated work in a variant. At the accepted basis
+all four capacities happen to be held by one person; **that is a fact about
+the present instantiation, not a property of the product.** Which capacities
+v1 must support being *separately held* is part of **RD-5**, and how
+jurisdiction and accountability are scoped is **RD-2**.
+
+#### Strata
 
 | Stratum | Who / what | Notes | Label |
 |---|---|---|---|
-| **Primary human users** | Accountable practitioners directing governed work — the people who rule, approve, adjudicate conflicts, accept residual risk, and issue for reliance. | The only actors who can perform the acts K-AUTH-1 reserves. Presently one person is registered as a permitted author of binding governance records (`docs/governance_harness/human_actors.md`). | CLARIFIED |
-| **Secondary human users** | Reviewers, auditors, maintainers, and people assessing whether work may be relied upon. | They consume the evidence trail without directing the work. Their needs drive the epistemic architecture (`docs/DIRECTIVE.md` §2). | CLARIFIED |
+| **Primary human users** | People exercising root-governance authority or professional accountability for situated work — directing governed work, ruling, approving, adjudicating, accepting residual risk, issuing for reliance. | The only actors who can perform the acts K-AUTH-1 reserves. Presently one person is registered as a permitted author of binding governance records (`docs/governance_harness/human_actors.md`) — which registers *that* capacity only, not the others. | CLARIFIED |
+| **Secondary human users** | People exercising review or product-maintenance capacity: reviewers, auditors, maintainers, and people assessing whether work may be relied upon. | **They act, they do not merely observe** — a reviewer may gate a lifecycle transition or return findings that stop work, and a maintainer changes the instruction surface under governance. They do not thereby acquire root-governance authority. Their needs drive the epistemic architecture (`docs/DIRECTIVE.md` §2). | CLARIFIED |
 | **System actors** (not users) | Agent 0 / Agent 1 / Agent 2 instances; deterministic tools; the runtime daemon and its clients. | `agent = LLM + instructions + declared files/context + tools + permissions` (`AGENTS.md`) — "an operational definition, not a claim of personhood or professional responsibility". They execute within permission boundaries and never hold authority. | TRANSCRIBED |
 | **Consuming contexts** (not users) | `projects/*` and `domains/*` working roots; desktop-harness user-selected folders; other situated working roots; the public export. | They bind `{WORKING_ROOT}` against the one instruction root. They may extend the invariant catalog but MUST NOT weaken it (`docs/CONTRACT.md` §1). | TRANSCRIBED |
 
-**Whom v1 is *for* is reserved as RD-5** (§9.5) — present owner-practitioner,
-accountable professional practitioners generally, or multi-practitioner
-organizations. **RD-2 does not answer this**: RD-2 concerns governance
-jurisdiction and act-level accountability, not product user scope.
+**Whom v1 is *for* is reserved as RD-5** (§9.5) — the present
+owner-practitioner, individual professional knowledge workers generally, or
+multi-practitioner organizations. **RD-2 does not answer this**: RD-2 concerns
+governance jurisdiction and act-level accountability, not product user scope.
 
 ---
 
@@ -194,11 +232,11 @@ machinery); what success *means* lives here.
 | # | Objective | v1 success condition (testable) |
 |---|---|---|
 | **OBJ-1** | **Coherent and discoverable normative authority.** A reader can determine what governs, from the repository alone. | For every governance surface in the instruction root, a reader can determine without asking a person: which document is authoritative for a given question, whether it is ratified, and what superseded it. No ratified clause has an unrecorded conflicting live variant. *(C-1 is the current open instance; C-2 is a current index defect.)* |
-| **OBJ-2** | **Governed production of professional knowledge work.** The product actually produces deliverables under its own governance. | At least one complete deliverable stream runs end to end through the pipeline — decomposition → package/deliverable → checking → issuance — with every gate human-performed and every governed claim carrying provenance sufficient for a reviewer to determine reliance. Demonstrated at root and in at least one situated working root. |
-| **OBJ-3** | **The human iteration and evaluation loop closes.** Humans can evaluate and redirect on evidence. | For any accepted change, a human can retrieve from files alone, in bounded time: the evidence that informed it, the ruling that accepted it, and the state it changed. Verified as a retrieval exercise over a sample of accepted tranches. |
+| **OBJ-2** | **Governed production of professional knowledge work.** The product carries work **to** an issuance decision; the accountable human issues it. | At least one complete deliverable stream runs end to end — decomposition → package/deliverable → checking → issuance decision — where **every consequential acceptance, reliance, and issuance judgment is performed by an accountable human**, and every governed claim carries provenance sufficient for a reviewer to determine reliance. Deterministic guards, fan-in gates, and structural validation gates remain lawful **non-human** gates: they gate on objective preconditions and hygiene and never make the acceptance or issuance judgment (K-GATE-1 with its D-GOV-02 note; K-AUTH-1). Demonstrated at root and in at least one situated working root. |
+| **OBJ-3** | **The human evaluation and iteration loops close.** Humans can evaluate and redirect on evidence. | For any accepted change, a human can retrieve from files alone: the evidence that informed it, the ruling that accepted it, and the state it changed. Verified as a retrieval exercise over a sample of accepted tranches, where **the retrieval-time threshold and the tranche sample are fixed and recorded before the evaluation runs** — not chosen after seeing the results. |
 | **OBJ-4** | **Safe self-application without self-authorization.** The root develops itself without granting itself authority. | Through v1: falsifiers F1–F3 unobserved; every root capability consumed by root development was accepted through the basis or an explicitly accepted predecessor; G0–G4 registered and passing at every materialization. |
-| **OBJ-5** | **Situated specialization with governed convergence.** Variants specialize; useful patterns come back lawfully. | At least one pattern originating in a situated working root is promoted to root through the developmental machinery with its evidence linkage intact, and no variant change reaches root by any other path. |
-| **OBJ-6** | **Coordination remains intelligible as concurrent activity grows.** Concurrency does not outrun legibility. | At any point in time the set of active runs, their declared write ownership, their dependencies, and their pending gates is reconstructible from `_Coordination/` state alone. Concurrent sibling write targets are disjoint or serialized. No run's effect is discoverable only from chat history. |
+| **OBJ-5** | **Situated specialization with governed convergence.** Variants specialize; useful patterns come back lawfully. | At least one candidate pattern originating in a situated working root reaches a **complete promotion disposition — accepted, rejected, or deferred with its evidence recorded** — through the developmental machinery with its evidence linkage intact; and no variant change reaches root by any other path. **A rejection or reasoned deferral satisfies this condition**: the objective tests that the pathway works, not that any particular candidate deserves promotion. No promotion is forced to pass v1. |
+| **OBJ-6** | **Coordination remains intelligible as concurrent activity grows.** Concurrency does not outrun legibility. | **Population and observation boundary:** root-product development runs — the run records under this loop's `execution/_Coordination/`. Situated working roots' coordination remains their own surface and is out of scope here; **any future aggregated cross-root coordination layer would be a new product function, not implied by this objective.** **Condition:** for every run record present in that population, its declared write ownership, dependencies, and pending gates are reconstructible from the recorded state, and runs that were interrupted, abandoned, or crashed are **detectable as stale or orphaned** rather than silently indistinguishable from live ones. Concurrent sibling write targets are disjoint or serialized. No run's effect is discoverable only from chat history. |
 | **OBJ-7** | **File-native continuity and recoverability.** Nothing load-bearing lives outside the checkout. | The full governed state — decisions, approvals, scope, evidence, and each loop's current position — survives loss of every non-file substrate (chat context, model memory, daemon state, local caches) and is recoverable from the checkout alone. |
 
 **[CLARIFIED]** OBJ-1 through OBJ-7 are objectives of the *product*, not of any
@@ -239,6 +277,29 @@ accepted acts          ──change──────▶  normative or operative
 The hinge is human judgment (ID-2): the loop has no closing step that an agent
 can perform.
 
+#### Two distinct human judgments [OWNER_DECLARED]
+
+The single "human judgment" step above resolves into **two loops that must not
+be collapsed** *(Agent 0 synthesis; not verbatim)*:
+
+| Loop | Input | Judgment | Question it answers |
+|---|---|---|---|
+| **Evaluation judgment** | Operative evidence — the artifacts, claims, and records that operative work produced. | Accept, reject, or redirect **the work**. | Is this work good enough, and for what reliance? |
+| **Iteration judgment** | Developmental candidates plus iteration evidence — proposed changes to the product itself and the record of how prior changes fared. | Accept, reject, or redirect **the change to the product**. | Should the product itself change, and in this way? |
+
+**Neither is delegated to machinery.** Deterministic tools, guards, and
+validators supply findings to both loops and gate objective preconditions;
+they never perform either judgment (K-AUTH-1; D-GOV-02's observation-boundary
+caveat; D-GOV-17 — a validator finding may never mechanically reject
+owner-ruled content).
+
+**Why the distinction matters here.** They have different inputs, different
+failure modes, and different evidence needs. Conflating them would let a
+product-level change ride in on deliverable-level evidence, or block a sound
+deliverable because the machinery that produced it is under revision.
+OBJ-3 tests that both loops close; §8.3 release authority is an act of the
+iteration loop, not the evaluation loop.
+
 ### 4.3 What the categories are and are not
 
 **[CLARIFIED]**
@@ -276,7 +337,7 @@ annex (§10.1) and is regenerable from it.
 
 | ID | Commitment | Label and source |
 |---|---|---|
-| **N-1** | Authoritative state is git-tracked plain files. No external database, server state, or configuration holds authoritative truth; rebuildable gitignored projections are permitted and never citable as authority. If a decision is not in a versioned file, it does not exist for purposes of reliance. | TRANSCRIBED — `docs/DIRECTIVE.md` §2.1, §2.2, §5; D-GOV-01 (Option A) |
+| **N-1** | **For authoritative governance and project-coordination state**, the substrate is git-tracked plain files: no external database, server state, or configuration holds that truth; rebuildable gitignored projections are permitted and never citable as authority; if a decision is not in a versioned file it does not exist for purposes of reliance. **Stated exception (K-DOMAIN-1): domain engines own authoritative domain truth** — canonical model files, model states, analysis runs, comparisons, solver outputs, and handoff internals are engine-owned, are sanctioned authoritative domain truth, and are exempt from the rebuildable-projection rule. Chirality governs the work *around* the engine (profiles, manifests, proposals, review notes, gates); it is not the solver and is never the source of accepted engineering truth. | TRANSCRIBED — `docs/DIRECTIVE.md` §2.1, §2.2, §5; D-GOV-01 (Option A) **and its scope note**; K-DOMAIN-1 (`docs/CONTRACT.md` §1.12) and the §1.12 note exempting engine-owned stores. *(Rev 3 correction: Rev 2's N-1 asserted the file-substrate rule without the domain-engine exception. The annex is never adopted, so the exception must appear here.)* |
 | **N-2** | The invariant catalog is the binding constraint set the root product must continue to satisfy. **Incorporated by reference**: the catalog governs its own membership; this PRD maintains no parallel list of `K-*` IDs. | TRANSCRIBED — `docs/CONTRACT.md` §1; K-AGENTS-1 live-registry principle |
 | **N-3** | Human authority at every consequential gate: only humans author binding approvals; approvals bind to a specific git SHA and are voided by content change; approvals are always binding and only binding; gates are dynamic per project with a stated minimum, and no machine BLOCK on the issuance judgment may be non-overridable. | TRANSCRIBED — K-AUTH-1, K-AUTH-2, K-BIND-1, K-GATE-1; `docs/DIRECTIVE.md` §2.3 |
 | **N-4** | Epistemic discipline is architectural, not advisory: mandatory provenance; unknowns become `TBD` rather than guesses; conflicts are surfaced with pointers, never silently resolved; claims are calibrated to their warrant. | TRANSCRIBED — K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1; `docs/DIRECTIVE.md` §2.4 |
@@ -299,14 +360,14 @@ annex (§10.1) and is regenerable from it.
 | **O-7** | Governed work is structured as execution instances containing flat packages and deliverables with stable IDs, a canonical lifecycle state file, and human-triaged staleness propagation. | TRANSCRIBED — `docs/SPEC.md` §1, §3; K-HIER-1, K-ID-1, K-STATUS-1, K-STALE-1/2, K-VAL-1 |
 | **O-8** | Deliverable-local dependency registers are authoritative. **No central dependency graph is *authoritative*** — but derived and aggregated graphs are lawful coordination state: on-demand read-only aggregation is provided for, and `FULL_GRAPH` dependency mode computes blockers from the declared graph. | TRANSCRIBED — K-DEP-1 (which itself provides for on-demand aggregation), K-DEP-2; `agents/AGENT_PROJECT_SETUP.md` (`FULL_GRAPH` mode). *(Rev 2 correction: Rev 1's R-N-17 overstated this as "no central dependency graph".)* |
 | **O-9** | The instruction root is separated from the working root, with **exactly one** governed exception — the root product's working root is the repository root, and root `execution/` is its execution root, **eligible** for `PKG-*`/`DEL-*` only from an accepted root decomposition derived from an adopted PRD and only while the guards pass. The replacement containment contract (mechanisms M1–M7 and guards G0–G4 with the §5.3 gate ordering) is required and **incorporated by reference** to D-GOV-21 §5. | TRANSCRIBED — D-GOV-21 §Effects 1–4; packet §5; `docs/DIRECTIVE.md` §2.6; `docs/SPEC.md` §0.2.2, §1; `docs/TYPES.md` §1.4 |
-| **O-10** | The operative product's boundary is exactly the three layers of O-2. There is no fourth execution substrate, and nothing outside those layers holds project authority — which is why an instruction-surface change is a governance act rather than a code change. | CLARIFIED — interpretation of O-1, O-2 and the D-GOV-21 M2 gate |
+| **O-10** | The operative product's boundary is exactly the three layers of O-2. **No fourth machine execution substrate is claimed; none of the three operative layers holds or grants project authority, which remains with attributable human acts under the governed record.** This is why an instruction-surface change is a governance act rather than a code change. | CLARIFIED — interpretation of O-1, O-2 and the D-GOV-21 M2 gate, with K-AUTH-1. *(Rev 3 correction: Rev 2's "nothing outside those layers holds project authority" excluded the human, who necessarily sits outside the machine layers. Corrected wording adopted from the adversarial review.)* |
 
 ### 5.3 Developmental machinery
 
 | ID | Commitment | Label and source |
 |---|---|---|
 | **D-1** | Consequential governance change terminates in a published decision record carrying status, verbatim owner ruling, SHAs, date, framing, accepted basis, and record convention. The register is navigational; the per-decision records govern. | TRANSCRIBED — `docs/governance_harness/_DECISIONS/` (records + `_REGISTER.md`) |
-| **D-2** | Corrections to ruled content are **superseding acts, not edits**: a later correction supersedes; amending a ruled candidate would void its accepted SHA. | CLARIFIED — the record-level convention (`RecordConvention: … supersede-never-edit`, D-GOV-21; D-GOV-17's recorded-exception protocol) generalized to a product commitment. *(Rev 2 correction: Rev 1 labelled this TRANSCRIBED; no root-wide rule states the absolute formulation, so the generalization is marked as interpretation.)* |
+| **D-2** | **Within the two record classes where the convention already governs**, corrections to ruled content are superseding acts, not edits: **(i)** published D-GOV decision records carrying the `supersede-never-edit` record convention — a later correction to a ruled record supersedes it; and **(ii)** ruled candidate packets bound to an `AcceptedCandidateSHA` — amending the candidate would void the SHA the owner's ruling approved. **This commitment asserts nothing beyond those two classes.** | CLARIFIED — reads the convention as it stands in its own scope: D-GOV-21 `RecordConvention` field and §Status note ("Any later correction to the transcription is a superseding act, not an edit"); D-GOV-17's recorded-exception protocol; the implementation handoff's "amendment would void the AcceptedCandidateSHA". *(Rev 3 correction: Rev 2's D-2 stated a product-wide rule under a CLARIFIED label, which cannot establish a new commitment. Narrowed here; the generalization moved to **D-16** as PROPOSED.)* |
 | **D-3** | Where a proposal contains substantial PROPOSED requirements, the ruling binds to an **exact candidate SHA**: commit the exact candidate, record it, record the owner ruling verbatim in a fence, publish the record, and record the merged implementation commit. Deviation from ruled exact prose returns for exact-prose re-acceptance before merge. | TRANSCRIBED — D-GOV-21 packet §14; D-GOV-18 and D-GOV-19 precedents |
 | **D-4** | Attribution of rulings and adoptions matches an owner-curated identity allowlist; identity-dependent checks **refuse rather than guess**. The list is owner-curated and not extended programmatically. | TRANSCRIBED — D-GOV-04; `docs/governance_harness/human_actors.md` |
 | **D-5** | Validation is deterministic and severity-typed (BLOCK / REVIEW / WARN / INFO / NOT_APPLICABLE, with exit-code semantics and human-only recorded BLOCK override); "BLOCK" never means globally proven safe or unsafe; and a validator finding may **never** mechanically reject content the owner has ruled — where ruled text trips a validator, the validator is defective. | TRANSCRIBED — D-GOV-02; D-GOV-17; `docs/CONTRACT.md` §1.7 note |
@@ -318,8 +379,9 @@ annex (§10.1) and is regenerable from it.
 | **D-11** | A tranche changing surfaces that downstream loops pin or mirror ships a routed coordination notice to each affected loop in the same tranche. The notice is coordination, not authority: the receiving loop adopts, amends, or declines under its own instruments. | TRANSCRIBED — `AGENTS.md` change-notice rule; D-GOV-21 M6 |
 | **D-12** | Developmental machinery is **product scope**, not surrounding process — a legitimate target of decomposition, deliverables, and acceptance rather than exempt overhead. | CLARIFIED — interpretation of §4.1 against D-GOV-21 packet §5.3 ("these guards are preconditions, not future tooling") |
 | **D-13** | Once adopted, this PRD is amended only by a superseding instrument bound to a git SHA. The adopted bytes are never edited in place. | **PROPOSED** |
-| **D-14** | **Source-currency obligation.** An adopted PRD that incorporates accepted doctrine carries a standing currency check covering: (a) referenced invariant IDs still exist and still say what is cited; (b) the live agent and skill registries still support the by-reference commitments; (c) source anchors that have changed; (d) repeated enumerations that have drifted from their registries; (e) provenance labels and counts; and (f) concordance with `docs/DIRECTIVE.md` §1. The check runs against the concordance annex (§10.1). **A currency failure is a REVIEW finding routed to the owner — never an automatic amendment** (K-AUTH-1; D-GOV-02). | **PROPOSED** — expands Rev 1's R-D-16 beyond DIRECTIVE §1 concordance per the review |
+| **D-14** | **Source-currency obligation.** An adopted PRD that incorporates accepted doctrine carries a standing currency check covering: (a) referenced invariant IDs still exist and still say what is cited; (b) the live agent and skill registries still support the by-reference commitments; (c) source anchors that have changed; (d) repeated enumerations that have drifted from their registries; (e) provenance labels and counts; and (f) concordance with `docs/DIRECTIVE.md` §1. **The check is specified in annex §4 and is not yet built** — no generator, schema, or executable check exists at this basis, and classes (a) and (f) require semantic judgment rather than mechanical comparison. Building it is a precondition of relying on it. **A currency failure is a REVIEW finding routed to the owner — never an automatic amendment** (K-AUTH-1; D-GOV-02). | **PROPOSED** — expands Rev 1's R-D-16 beyond DIRECTIVE §1 concordance per review 1; scoped honestly per review 2 item 10 |
 | **D-15** | The first root decomposition demonstrates **coverage across all four categories** of §4.1 — each category has decomposition coverage or a recorded, reasoned deferral. This constrains coverage demonstration only; it does **not** prescribe the partition (§4.3). | **PROPOSED** — strikeable without affecting any other commitment |
+| **D-16** | **Product-wide supersede-never-edit.** Every ruled or adopted governed artifact of the root product — not only the two record classes of D-2 — is corrected by a superseding instrument bound to a git SHA, never edited in place. Prior versions remain immutable historical evidence. | **PROPOSED** — the generalization Rev 2 carried under a CLARIFIED label. Pattern basis: D-2's two classes plus K-SNAP-1 (snapshot folders must not be overwritten); the extension to all governed artifacts is new and takes effect only on adoption |
 
 ### 5.4 Evidence
 
@@ -596,13 +658,14 @@ product user scope.
 | Option | Scope | Consequence |
 |---|---|---|
 | **A** | **The present owner-practitioner.** v1 targets one accountable practitioner running governed loops. | Smallest honest claim; matches the live state and demands no multi-user machinery. Cost: OBJ-2's situated-working-root condition is satisfied by the owner's own variants only, and multi-practitioner needs (concurrent human review, per-act attribution across people, delegation) go undesigned — becoming v2 rework rather than v1 constraint. |
-| **B** | **Accountable professional practitioners generally.** v1 targets any single licensed or accountable practitioner in the target domains. | Aligns with `docs/DIRECTIVE.md` §3's engineer-of-record framing and makes the professional-responsibility model do real work. Cost: raises the bar for onboarding, documentation, and OBJ-1's discoverability condition; implies the product must be intelligible to someone who did not build it. |
+| **B** | **Individual professional knowledge workers generally.** v1 targets any single individual doing governed professional knowledge work, with §2.2's professional-responsibility model activating where applicable rather than defining the audience. | Consistent with §2.2 (the product addresses governed professional knowledge work generally; the responsibility provisions become load-bearing in regulated, safety-significant, or reliance-bearing circumstances). Cost: raises the bar for onboarding, documentation, and OBJ-1's discoverability condition; implies the product must be intelligible to someone who did not build it. *(Rev 3 correction: Rev 2's option B said "licensed or accountable practitioner in the target domains", reintroducing the applicability narrowing §2.2 had just removed.)* |
 | **C** | **Multi-practitioner organizations.** v1 targets teams with several accountable humans. | Largest reach. Cost: requires answering RD-2 Axis 1 with A2 or A3 and Axis 2 with B1, plus concurrent-human-review machinery, per-act attribution across people, and inter-practitioner conflict resolution — none of which exists at the accepted basis. |
 
 **Consequences that cut across.** The choice sets the meaning of "user" in
 OBJ-1 (discoverability *by whom*), OBJ-2 (whose deliverable stream), and OBJ-3
-(whose retrieval, in whose bounded time). It also determines whether §2.3's
-primary-user stratum is one person or a class.
+(whose retrieval, against whose recorded threshold). It also determines
+whether §2.3's primary-user stratum is one person or a class, and **which of
+§2.3's four capacities v1 must support being separately held**.
 
 **Agent recommendation:** none — this is a product-scope judgment for the
 owner. One observation: **B is the smallest scope under which OBJ-1's
@@ -630,10 +693,13 @@ lives in:
   **never a substitute** for that truth.
 - It is a **derived publication artifact** in
   `docs/DECOMPOSITION_STANDARD.md` terms: not the amendment surface,
-  deterministically regenerable, explicitly labelled derived and
-  non-authoritative.
-- It is **mechanically regenerable and checked** — it is the surface the D-14
-  source-currency obligation runs against.
+  explicitly labelled derived and non-authoritative.
+- It is **specified for regeneration and proposed for checking** — annex §6
+  gives the regeneration method and annex §4 specifies the D-14 check classes.
+  **No generator, schema, or executable check exists at this basis**, and two
+  of the six check classes require semantic judgment rather than mechanical
+  comparison. The annex is the surface D-14 *would* run against; D-14 is
+  PROPOSED and its capability is unbuilt.
 - **It is never itself adopted. Adoption, if it occurs, binds the exact bytes
   of this main PRD only.**
 
@@ -668,9 +734,46 @@ matching registered actor (D-GOV-04), SHA-bound at publication (K-AUTH-2); and
 (K-AUTH-1).
 
 **[TRANSCRIBED]** Until adoption, **every PROPOSED item here is inert** — the
-v1 boundary, OBJ-1..OBJ-7, D-13, D-14, D-15, §7.2 governed promotion, §8.3
-release authority, and F4–F6. TRANSCRIBED commitments remain in force
+v1 boundary, OBJ-1..OBJ-7, D-13, D-14, D-15, D-16, §7.2 governed promotion,
+§8.3 release authority, and F4–F6. TRANSCRIBED commitments remain in force
 regardless, because their authority is their own source.
+
+#### The final adoption transformation (two steps) [CLARIFIED]
+
+**This file's exact bytes are not adoptable as they stand**, and that is by
+design. They say `CANDIDATE — NOT ADOPTED`, say they bind nothing, and carry
+five unresolved option sets. Adopting them unchanged would produce an adopted
+artifact that its own text falsifies — and D-13/D-16 would then forbid
+editing it. The terminal mechanics are therefore two steps:
+
+**Step 1 — candidate revision (where this document sits).** Candidate
+revisions iterate under review, as Rev 1 → Rev 2 → Rev 3 have. Each revision
+is committed and each prior revision **remains immutable historical candidate
+evidence** at its own SHA (Rev 1 `f15d51277`; Rev 2 `a72c2cd06`). Revising a
+candidate is not editing an adopted artifact; D-13 and D-16 do not yet apply.
+
+**Step 2 — final adoption-ready revision.** After the owner rules RD-1
+through RD-5, a **final revision is produced that incorporates those
+dispositions**: the selected genus in §1 and §1.2, the selected accountability
+model, the selected adoption instrument and concordance-map form, the selected
+placement, and the selected v1 user scope — with §9 reduced to a record of
+what was decided and by which act, rather than an open slate. That final
+revision is the artifact whose exact bytes the adoption instrument binds.
+
+**Status model that survives adoption.** The final revision's status block
+must remain **truthful after the external adoption act**, which means it
+states its own status by pointing outward rather than asserting a state the
+adoption would change. Two acceptable forms: (i) the status block names the
+adoption instrument and records that **the adoption record — not this file —
+carries the adopted status**, so nothing in the file becomes false when the
+record is published; or (ii) the file carries a status line reading
+`ADOPTION-READY — adopted only by the instrument named below`, which the
+adoption record then supersedes by reference. **Not acceptable:** bytes
+asserting `NOT ADOPTED` or `binds nothing` that the adoption act immediately
+falsifies, since D-13/D-16 would bar correcting them.
+
+**Rev 3 is a candidate revision, not the final adoption-ready revision.** It
+resolves none of RD-1..RD-5 and is not offered for adoption.
 
 **[TRANSCRIBED]** What adoption would **not** do: materialize anything under
 root `execution/` (packet §6 step 9, behind the §5.3 gate), create a root
@@ -680,15 +783,15 @@ decomposition (step 8), or change the public-export boundary (packet §4).
 
 | Field | Value |
 |---|---|
-| Status | `CANDIDATE — NOT ADOPTED`, Revision 2 |
+| Status | `CANDIDATE — NOT ADOPTED`, Revision 3 — a **candidate** revision, not the final adoption-ready revision (§10.3) |
 | Binds | Nothing (K-AUTH-1) |
 | Accepted basis | `main@7ac718c7e` |
-| Rev 1 | `f15d51277` (PR #340) — superseded by this revision, not edited |
+| Prior revisions | Rev 1 `f15d51277`; Rev 2 `a72c2cd06` — immutable historical candidate evidence, superseded by this revision, not edited |
 | Governing decision | D-GOV-21 (RULED 2026-07-25); candidate `c038c493e871c95871823281b45890ba9404624b`; publication `75b7aa6d1fb019846ac76fb775df2fc1652ab8a8`; effective `ee42157290618e3f84be0e0b651c041387ad6ee0` |
 | Authorizing effect | D-GOV-21 effect 5 (PRD-development basis) |
 | Run | `ROOT-PRD-LANE-A-20260725` (Lane A) |
-| Companion | Concordance annex — derivative package, never adopted (§10.1) |
+| Companion | Concordance annex — derivative package, specified for regeneration, never adopted (§10.1) |
 | Reserved decisions | RD-1 .. RD-5, all unresolved |
-| Provenance counts | **§5 stable commitments — 42 total: 34 TRANSCRIBED (N-1..N-8, O-1..O-9, D-1, D-3..D-11, E-1..E-7), 5 CLARIFIED (N-9, O-10, D-2, D-12, E-8), 3 PROPOSED (D-13, D-14, D-15).** Elsewhere: **5 OWNER_DECLARED** framing claims (ID-1, ID-2, ID-3, §4.1 categories, §4.2 loop); **1 TRANSCRIBED** identity fact (ID-4) plus ID-1a; **3 TRANSCRIBED** falsifiers (F1–F3); **13 further PROPOSED** items (v1 boundary, OBJ-1..OBJ-7, §7.2 promotion relationship, §8.3 release authority, F4, F5, F6). |
-| PROPOSED inventory | **16 items, all inert unless adopted:** D-13; D-14; D-15; the v1 boundary (§3); OBJ-1; OBJ-2; OBJ-3; OBJ-4; OBJ-5; OBJ-6; OBJ-7; §7.2 governed-promotion relationship (items 1–4, one commitment); §8.3 release authority; F4; F5; F6. |
-| Next act | Owner review. Adoption, if any, is a separate instrument (RD-3). |
+| Provenance counts | **§5 stable commitments — 43 total: 34 TRANSCRIBED (N-1..N-8, O-1..O-9, D-1, D-3..D-11, E-1..E-7), 5 CLARIFIED (N-9, O-10, D-2, D-12, E-8), 4 PROPOSED (D-13, D-14, D-15, D-16).** Elsewhere: **5 OWNER_DECLARED** framing claims (ID-1, ID-2, ID-3, §4.1 categories, §4.2 loop) plus the §4.2 two-judgment-loops statement; **TRANSCRIBED** identity items ID-1a and ID-4; **3 TRANSCRIBED** falsifiers (F1–F3); **13 further PROPOSED** items (v1 boundary, OBJ-1..OBJ-7, §7.2 promotion relationship, §8.3 release authority, F4, F5, F6). |
+| PROPOSED inventory | **17 items, all inert unless adopted:** D-13; D-14; D-15; **D-16 (new in Rev 3)**; the v1 boundary (§3); OBJ-1; OBJ-2; OBJ-3; OBJ-4; OBJ-5; OBJ-6; OBJ-7; §7.2 governed-promotion relationship (items 1–4, one commitment); §8.3 release authority; F4; F5; F6. |
+| Next act | Owner review and rulings on RD-1..RD-5. A final adoption-ready revision follows those rulings (§10.3); adoption is a separate instrument (RD-3). |
