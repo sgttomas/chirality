@@ -138,7 +138,7 @@ gates, not all at Gate 1. Current state of this snapshot:
 | `Impact_Assessment.md` | present | Gate 2 |
 | `Amendment_Actions.csv` | **DEFERRED** | Gate 3 — written when the action register finalizes against approved exact text, so `AffectedFiles` and per-row `ActionSeq` are accurate rather than provisional |
 | `Pre_Change_Coverage.json` | **DEFERRED** | copied into this snapshot from `COV_SCA002_PRECHANGE_2026-07-25_1040/coverage_summary.json` **before Gate 5**, so the snapshot is self-contained per the active-snapshot integrity rule |
-| `Propagation_Plan.md` | not started | Gate 4 |
+| `Propagation_Plan.md` | present (**v2**) | Gate 4 |
 | `Post_Change_Coverage.json`, `RUN_SUMMARY.md`, `Handoff_State.md` | not started | Gate 5 |
 | `Supersession_Delta.csv` / `Supersession_Map.csv` | pending ruling | Gate 2/3 — see `Impact_Assessment.md` §5 |
 
@@ -228,7 +228,7 @@ Gate 2 closed. Gate 3 released; write scope still `_ScopeChange/**` only.
 ## Gate 3 — Amendment Approval
 
 **Opened:** 2026-07-25 · **Status:** drafted (preview **v2**), awaiting owner approval
-**Outputs:** `Amendment_Preview.md` (v2), `Amendment_Actions.csv` (10 rows),
+**Outputs:** `Amendment_Preview.md` (v2), `Amendment_Actions.csv` (14 rows),
 `Gate3_Simulation.json` (all in this snapshot)
 
 ### Agent-side resolutions
@@ -271,9 +271,10 @@ S 28 M 34 L 2) · §4.3 window exactly 20 + 17 with `DEL-03-01` unchanged and
 ### Snapshot-artifact deferral discharged
 
 `Amendment_Actions.csv` was deferred at Gate 1 "until the action register
-finalizes". It is now written (8 rows, SCA-001 schema), with A008 flagged
-`PROPOSED - NOT YET RULED` so the file never implies approval the owner has
-not given. `Pre_Change_Coverage.json` remains deferred to pre-Gate-5.
+finalizes". It is now written (SCA-001 schema; 10 rows at Gate 3, extended to 14 at Gate 4), with A008 flagged
+`PROPOSED - NOT YET RULED` at the time of writing so the file never implied
+approval the owner had not given (**resolved to approved at the Gate 3
+ruling**). `Pre_Change_Coverage.json` remains deferred to pre-Gate-5.
 
 ### Gate 3 owner ruling
 
@@ -346,6 +347,10 @@ amendment. Both authority gaps raised at Gate 3 are therefore **closed**, and
 `Amendment_Actions.csv` finalised: row `3b` conditional → **firm**; A008
 `PROPOSED - NOT YET RULED` → **approved**; contingency notes resolved. No
 `PROPOSED`, `CONTINGENT` or `AUTHORITY GAP` string remains in the register.
+At Gate 4 it was **extended by appending** four propagation rows (`P1`–`P4`)
+for the `_CONTEXT.md` line classes, snapshot-artifact completion, and the
+`_LATEST.md` repoint + post-change audit — **14 rows total**. The ten
+Gate-3-approved rows were left untouched (snapshot immutability).
 
 Gate 3 closed. Gate 4 released; write scope still `_ScopeChange/**` only.
 
