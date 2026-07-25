@@ -1,0 +1,413 @@
+{
+  "w1180": {
+    "innerWidth": 1180,
+    "matchingRules": [
+      {
+        "media": null,
+        "selector": ".woven-projection dl, .woven-replay-provenance dl",
+        "declaration": "minmax(7rem, auto) minmax(0px, 1fr)"
+      },
+      {
+        "media": null,
+        "selector": ".woven-replay-provenance",
+        "declaration": "repeat(2, minmax(0px, 1fr))"
+      },
+      {
+        "media": "(max-width: 860px)",
+        "selector": ".woven-replay-provenance",
+        "declaration": "1fr"
+      },
+      {
+        "media": null,
+        "selector": ".woven-replay-provenance dl",
+        "declaration": "minmax(4.5rem, max-content) minmax(0px, 1fr)"
+      }
+    ],
+    "labelMaxContent": [
+      {
+        "label": "Source",
+        "maxContentWidth": 36.91
+      },
+      {
+        "label": "Observed",
+        "maxContentWidth": 51.08
+      },
+      {
+        "label": "Disclosure",
+        "maxContentWidth": 55.76
+      },
+      {
+        "label": "Currency",
+        "maxContentWidth": 47.8
+      },
+      {
+        "label": "Events",
+        "maxContentWidth": 35.78
+      },
+      {
+        "label": "Transcript items shown",
+        "maxContentWidth": 123.71
+      },
+      {
+        "label": "Malformed records skipped",
+        "maxContentWidth": 145.49
+      }
+    ],
+    "widestLabel": {
+      "label": "Malformed records skipped",
+      "maxContentWidth": 145.49
+    },
+    "sourceText": "session:ses_9f21c4a7/events",
+    "sourceOneLineWidth": 192.47,
+    "scenarios": {
+      "as-shipped (round 7)": {
+        "tracks": "145.492px 136.117px",
+        "source": {
+          "lineCount": 2,
+          "widths": [
+            135.44,
+            57.03
+          ]
+        }
+      },
+      "pre-round-7 (minmax(7rem, auto))": {
+        "tracks": "145.492px 136.117px",
+        "source": {
+          "lineCount": 2,
+          "widths": [
+            135.44,
+            57.03
+          ]
+        }
+      },
+      "fixed 7rem label track": {
+        "tracks": "112px 169.609px",
+        "source": {
+          "lineCount": 2,
+          "widths": [
+            163.95,
+            28.52
+          ]
+        }
+      },
+      "fixed 4.5rem label track": {
+        "tracks": "72px 209.609px",
+        "source": {
+          "lineCount": 1,
+          "widths": [
+            192.47
+          ]
+        }
+      },
+      "restored": {
+        "tracks": "145.492px 136.117px",
+        "source": {
+          "lineCount": 2,
+          "widths": [
+            135.44,
+            57.03
+          ]
+        }
+      }
+    },
+    "styleSheets": [
+      {
+        "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937389060",
+        "owner": "LINK",
+        "cssText": "@font-face { font-family: plexSans; src: url(\"/_next/static/media/13a15bcdfeddab65-s.p.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: normal; } | @font-face { font-family: plexSans; src: url(\"/_next/static/media/7c7f8877a12f66a2-s.p.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: italic; } | @font-face { font-family: plexSans; src: url(\"/_next/static/media/4cdcd386d2ac59c8-s.p.woff2\") format(\"woff2\"); font-display: swap; font-weight: 500; font-style: normal; } | @font-face { font-family: plexSans; src: url(\"/_next/static/media/1cdb9a2cbcaa"
+      },
+      {
+        "href": null,
+        "owner": "STYLE",
+        "cssText": "@font-face { font-family: __nextjs-Geist; font-style: normal; font-weight: 400 600; font-display: swap; src: url(\"/__nextjs_font/geist-latin-ext.woff2\") format(\"woff2\"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; } | @font-face { font-family: \"__nextjs-Geist Mono\"; font-style: normal; font-weight: 400 600; font-display: swap; src: url(\"/__nextjs_font/geist-mono-latin-ext.woff2\") format(\"woff2\"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC"
+      }
+    ]
+  },
+  "w1440": {
+    "innerWidth": 1440,
+    "matchingRules": [
+      {
+        "media": null,
+        "selector": ".woven-projection dl, .woven-replay-provenance dl",
+        "declaration": "minmax(7rem, auto) minmax(0px, 1fr)"
+      },
+      {
+        "media": null,
+        "selector": ".woven-replay-provenance",
+        "declaration": "repeat(2, minmax(0px, 1fr))"
+      },
+      {
+        "media": "(max-width: 860px)",
+        "selector": ".woven-replay-provenance",
+        "declaration": "1fr"
+      },
+      {
+        "media": null,
+        "selector": ".woven-replay-provenance dl",
+        "declaration": "minmax(4.5rem, max-content) minmax(0px, 1fr)"
+      }
+    ],
+    "labelMaxContent": [
+      {
+        "label": "Source",
+        "maxContentWidth": 36.91
+      },
+      {
+        "label": "Observed",
+        "maxContentWidth": 51.08
+      },
+      {
+        "label": "Disclosure",
+        "maxContentWidth": 55.76
+      },
+      {
+        "label": "Currency",
+        "maxContentWidth": 47.8
+      },
+      {
+        "label": "Events",
+        "maxContentWidth": 35.78
+      },
+      {
+        "label": "Transcript items shown",
+        "maxContentWidth": 123.71
+      },
+      {
+        "label": "Malformed records skipped",
+        "maxContentWidth": 145.49
+      }
+    ],
+    "widestLabel": {
+      "label": "Malformed records skipped",
+      "maxContentWidth": 145.49
+    },
+    "sourceText": "session:ses_9f21c4a7/events",
+    "sourceOneLineWidth": 192.47,
+    "scenarios": {
+      "as-shipped (round 7)": {
+        "tracks": "145.492px 182.914px",
+        "source": {
+          "lineCount": 2,
+          "widths": [
+            178.21,
+            14.26
+          ]
+        }
+      },
+      "pre-round-7 (minmax(7rem, auto))": {
+        "tracks": "145.492px 182.914px",
+        "source": {
+          "lineCount": 2,
+          "widths": [
+            178.21,
+            14.26
+          ]
+        }
+      },
+      "fixed 7rem label track": {
+        "tracks": "112px 216.406px",
+        "source": {
+          "lineCount": 1,
+          "widths": [
+            192.47
+          ]
+        }
+      },
+      "fixed 4.5rem label track": {
+        "tracks": "72px 256.406px",
+        "source": {
+          "lineCount": 1,
+          "widths": [
+            192.47
+          ]
+        }
+      },
+      "restored": {
+        "tracks": "145.492px 182.914px",
+        "source": {
+          "lineCount": 2,
+          "widths": [
+            178.21,
+            14.26
+          ]
+        }
+      }
+    },
+    "styleSheets": [
+      {
+        "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937395027",
+        "owner": "LINK",
+        "cssText": "@font-face { font-family: plexSans; src: url(\"/_next/static/media/13a15bcdfeddab65-s.p.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: normal; } | @font-face { font-family: plexSans; src: url(\"/_next/static/media/7c7f8877a12f66a2-s.p.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: italic; } | @font-face { font-family: plexSans; src: url(\"/_next/static/media/4cdcd386d2ac59c8-s.p.woff2\") format(\"woff2\"); font-display: swap; font-weight: 500; font-style: normal; } | @font-face { font-family: plexSans; src: url(\"/_next/static/media/1cdb9a2cbcaa"
+      },
+      {
+        "href": null,
+        "owner": "STYLE",
+        "cssText": "@font-face { font-family: __nextjs-Geist; font-style: normal; font-weight: 400 600; font-display: swap; src: url(\"/__nextjs_font/geist-latin-ext.woff2\") format(\"woff2\"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; } | @font-face { font-family: \"__nextjs-Geist Mono\"; font-style: normal; font-weight: 400 600; font-display: swap; src: url(\"/__nextjs_font/geist-mono-latin-ext.woff2\") format(\"woff2\"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC"
+      }
+    ]
+  },
+  "w900": {
+    "innerWidth": 900,
+    "matchingRules": [
+      {
+        "media": null,
+        "selector": ".woven-projection dl, .woven-replay-provenance dl",
+        "declaration": "minmax(7rem, auto) minmax(0px, 1fr)"
+      },
+      {
+        "media": null,
+        "selector": ".woven-replay-provenance",
+        "declaration": "repeat(2, minmax(0px, 1fr))"
+      },
+      {
+        "media": "(max-width: 860px)",
+        "selector": ".woven-replay-provenance",
+        "declaration": "1fr"
+      },
+      {
+        "media": null,
+        "selector": ".woven-replay-provenance dl",
+        "declaration": "minmax(4.5rem, max-content) minmax(0px, 1fr)"
+      }
+    ],
+    "labelMaxContent": [
+      {
+        "label": "Source",
+        "maxContentWidth": 36.91
+      },
+      {
+        "label": "Observed",
+        "maxContentWidth": 51.08
+      },
+      {
+        "label": "Disclosure",
+        "maxContentWidth": 55.76
+      },
+      {
+        "label": "Currency",
+        "maxContentWidth": 47.8
+      },
+      {
+        "label": "Events",
+        "maxContentWidth": 35.78
+      },
+      {
+        "label": "Transcript items shown",
+        "maxContentWidth": 123.71
+      },
+      {
+        "label": "Malformed records skipped",
+        "maxContentWidth": 145.49
+      }
+    ],
+    "widestLabel": {
+      "label": "Malformed records skipped",
+      "maxContentWidth": 145.49
+    },
+    "sourceText": "session:ses_9f21c4a7/events",
+    "sourceOneLineWidth": 192.47,
+    "scenarios": {
+      "as-shipped (round 7)": {
+        "tracks": "145.492px 14.6172px",
+        "source": {
+          "lineCount": 14,
+          "widths": [
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            7.13
+          ]
+        }
+      },
+      "pre-round-7 (minmax(7rem, auto))": {
+        "tracks": "145.492px 14.6172px",
+        "source": {
+          "lineCount": 14,
+          "widths": [
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            7.13
+          ]
+        }
+      },
+      "fixed 7rem label track": {
+        "tracks": "112px 55.6094px",
+        "source": {
+          "lineCount": 4,
+          "widths": [
+            49.9,
+            49.9,
+            49.9,
+            42.77
+          ]
+        }
+      },
+      "fixed 4.5rem label track": {
+        "tracks": "72px 95.6094px",
+        "source": {
+          "lineCount": 3,
+          "widths": [
+            92.67,
+            92.67,
+            7.13
+          ]
+        }
+      },
+      "restored": {
+        "tracks": "145.492px 14.6172px",
+        "source": {
+          "lineCount": 14,
+          "widths": [
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            14.26,
+            7.13
+          ]
+        }
+      }
+    },
+    "styleSheets": [
+      {
+        "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937400938",
+        "owner": "LINK",
+        "cssText": "@font-face { font-family: plexSans; src: url(\"/_next/static/media/13a15bcdfeddab65-s.p.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: normal; } | @font-face { font-family: plexSans; src: url(\"/_next/static/media/7c7f8877a12f66a2-s.p.woff2\") format(\"woff2\"); font-display: swap; font-weight: 400; font-style: italic; } | @font-face { font-family: plexSans; src: url(\"/_next/static/media/4cdcd386d2ac59c8-s.p.woff2\") format(\"woff2\"); font-display: swap; font-weight: 500; font-style: normal; } | @font-face { font-family: plexSans; src: url(\"/_next/static/media/1cdb9a2cbcaa"
+      },
+      {
+        "href": null,
+        "owner": "STYLE",
+        "cssText": "@font-face { font-family: __nextjs-Geist; font-style: normal; font-weight: 400 600; font-display: swap; src: url(\"/__nextjs_font/geist-latin-ext.woff2\") format(\"woff2\"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; } | @font-face { font-family: \"__nextjs-Geist Mono\"; font-style: normal; font-weight: 400 600; font-display: swap; src: url(\"/__nextjs_font/geist-mono-latin-ext.woff2\") format(\"woff2\"); unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC"
+      }
+    ]
+  }
+}

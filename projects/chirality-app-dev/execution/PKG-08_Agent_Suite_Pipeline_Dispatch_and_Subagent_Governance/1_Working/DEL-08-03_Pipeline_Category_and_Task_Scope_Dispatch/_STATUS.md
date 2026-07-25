@@ -1,7 +1,7 @@
 # Status: DEL-08-03
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-23
+**Last Updated:** 2026-07-24
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -14,6 +14,16 @@
   prove Work projections use admitted sources with provenance/currency, do
   not synthesize tasks from dialogue, and keep runtime completion separate
   from project lifecycle and approval.
+  - Annotation 2026-07-24: satisfied **for presentation** on the woven
+    surfaces. PR #323 (merge `403f228f4`) added an inert Pipeline dispatch
+    compatibility description only, and the 2026-07-24 redesign tranche
+    restyled Pipeline and the coordination/activity presentation with no
+    dispatch, taxonomy, task-scope or disabled-state logic edited
+    (V1-verified presentation-neutral). **Dispatch validation evidence is
+    unchanged** — no new dispatch or lifecycle-separation validation was
+    produced and none is claimed. See
+    `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md` and
+    `execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`.
 
 ## History
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
@@ -31,3 +41,10 @@
   presentation-neutral dispatch-semantic owner, recorded DEL-02-02 as its
   presentation consumer, added contextual/projection regression work, and
   kept lifecycle IN_PROGRESS.
+- 2026-07-24 - Woven Dialogue visual redesign and IA consolidation tranche
+  recorded as reconciliation-only in
+  `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md`; the SCA-APP-004 Remaining
+  item was retained verbatim with an appended annotation that its presentation
+  clauses are satisfied on the woven surfaces while dispatch validation
+  evidence is unchanged. State remains IN_PROGRESS; accepted historical
+  evidence and Checking Approval SHA are preserved.

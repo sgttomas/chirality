@@ -6,6 +6,62 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-07-24 - Woven Dialogue visual redesign and IA consolidation landed
+
+The owner adopted `TRB-APPDEV-WOVEN-REDESIGN-2026-07-24` as-is in-session on
+2026-07-24 with defaults D1–D4, and ratified the calm-editorial direction as
+the default setting with light mode as the primary target. The tranche
+implemented presentation inside the D-APP-74 / SCA-APP-004 invariants on branch
+`feat/woven-redesign`: bundled IBM Plex latin faces for `next/font/local`
+(`f29b27a1f`); the Artifacts-into-Workbench fold plus the quincunx application
+mark (`b6c6784f3`); the calm-editorial light-first token layer, the single 48px
+compact top bar, and the Light/Dark/Auto theme control persisted in versioned
+workspace state (`2afcd8474`); mode-scoped session history in the navigator
+(`b17ab9d39`); the composer-dock grid-track overlap fix with responsive,
+reduced-motion and dark-parity polish (`04d3b4f5f`); a light `--accent` AA
+remedy from an adversarial verification find (`af52af478`); the root-chip
+disclosure clipping fix and the archived browser-evidence set (`787e18146`);
+and an upstream `main` merge (`1cfd3e293`).
+
+Per adopted default D4, the same closeout reconciles the PR #323 Woven Dialogue
+implementation (merge `403f228f4`, implementation commit `7941722f6`) into the
+deliverable ledger. New run records and rewritten `## Remaining` sections land
+for DEL-02-01, DEL-02-02, DEL-02-04, DEL-05-04, DEL-08-02 and DEL-08-03. The
+Woven Dialogue shell is the default composition for `/`, `/chat`, `/workbench`
+and `/pipeline`; the legacy loop-first UI remains a functional frozen
+compatibility surface and was not retired, which stays a separate owner
+decision.
+
+This tranche changed presentation only. No provider, network, route, API, SSE
+name, runtime, dispatch or lifecycle semantics changed; no lifecycle state
+moved; all six affected deliverables remain `IN_PROGRESS`; nothing here is a
+release-readiness or certification claim.
+
+Validation: two independent adversarial verification instances. The invariant
+sweep returned `CONFIRMED 6/6` over the hook/contract set, routes and query
+parameters, browser-proven legacy click-through, projection non-authority
+wording, live replay isolation, and a fence audit placing all 47 changed paths
+inside `projects/chirality-app-dev/**`; it also raised the light `--accent`
+contrast defect that round 6 remedied. Browser evidence returned `PASS` after
+its one blocking finding was fixed in round 7: 70 PNG plus 10 JSON captures at
+900/1180/1440 in light and dark across the top bar, navigator, dialogue and
+composer, Workbench with its Documents block, Pipeline, coordination panel and
+replay lens, with the overlap defect proven fixed at every width and state,
+zero horizontal overflow in all 48 matrix frames, measured chip contrast,
+reduced-motion honoured, and a full keyboard walk. Reproduced gates at each
+fan-in: typecheck pass; vitest 984 passed with 4 skipped; production build
+pass; `git diff --check` clean; zero external network requests.
+
+Residuals: packaged Desktop smoke evidence for the redesigned shell; a true
+runtime-connectivity indicator for the top-bar status dot; the
+`.icns`/electron-builder packaged application icon (cross-referenced to
+DEL-09-04); replay transcript-item rendering against a real daemon session; the
+mock-only `[data-legacy]` test contract; and the recorded "All sessions (N)",
+label-inversion and session-year presentation notes. The browser-evidence
+figures were measured before the upstream merge, so an authoritative post-merge
+full-gate run and a browser delta re-shoot remain owed, and the owner's merge of
+the pull request is the terminal integration act.
+
 ## 2026-07-23 - SCA-APP-004 Woven Dialogue governance propagated
 
 The owner approved the exact SCA-APP-004 amendment and propagation plan.

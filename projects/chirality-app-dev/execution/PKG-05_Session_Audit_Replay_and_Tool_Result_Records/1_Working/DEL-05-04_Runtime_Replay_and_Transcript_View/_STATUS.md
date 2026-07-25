@@ -1,7 +1,7 @@
 # Status: DEL-05-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-23
+**Last Updated:** 2026-07-24
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -9,12 +9,17 @@
 ## Remaining
 
 - Prove Desktop and CLI replay the same daemon-owned canonical session and preserve manager/child attribution across restart and lazy migration (gated: daemon/client vertical slice).
-- Implement and validate the SCA-APP-004 Woven Dialogue selected-session
-  read-only replay lens and rebuildable Agent projection: preserve the mounted
-  primary live dialogue, prevent draft/context/permission/session transfer,
-  expose exact attribution/parentage only from canonical evidence, disclose
-  stale/bounded/malformed/unknown state, disable historical mutation controls,
-  and provide a persistent return-to-primary action.
+- Evidence replay transcript-item rendering against a real daemon session. The
+  SCA-APP-004 selected-session read-only replay lens and rebuildable Agent
+  projection are implemented (PR #323 merge `403f228f4`) and are now reachable
+  from the woven navigator's recorded-session rows through the existing guarded
+  path, with a live isolation proof (2026-07-24 redesign tranche, Stage B2).
+  The 2026-07-24 browser-evidence pass ran with no runtime daemon available and
+  substituted declared fixtures for `session/list` and `session/:id/events`, so
+  the lens reported `Transcript items shown 0`: its READ-ONLY framing,
+  provenance block and event count are evidenced, but the transcript list
+  itself is not. Evidence: `_run_records/R1_WOVEN_REDESIGN_2026-07-24.md` and
+  `execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`.
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -31,3 +36,10 @@
   Woven Dialogue replay/projection contract; existing daemon/client replay
   residue was preserved, new implementation/validation work was added, and
   lifecycle remained IN_PROGRESS.
+- 2026-07-24 - Woven Dialogue visual redesign and IA consolidation tranche
+  recorded in `_run_records/R1_WOVEN_REDESIGN_2026-07-24.md`; the SCA-APP-004
+  replay-lens Remaining item was rewritten to its residual of unevidenced
+  transcript-item rendering against a real daemon session, and the gated
+  daemon/client vertical-slice item was retained verbatim. State remains
+  IN_PROGRESS; accepted historical evidence and Checking Approval SHA are
+  preserved.

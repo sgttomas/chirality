@@ -1,0 +1,1664 @@
+[
+  {
+    "scene": "_bootstrap",
+    "typedValue": "/Users/ryan/dev/chirality",
+    "typed": "/Users/ryan/dev/chirality",
+    "current": "Active root: /Users/ryan/dev/chirality",
+    "error": null,
+    "stored": "/Users/ryan/dev/chirality"
+  },
+  {
+    "scene": "topbar",
+    "route": "/",
+    "theme": "light",
+    "width": 900,
+    "height": 900,
+    "states": "root-chip disclosure OPEN",
+    "file": "topbar-light-900.png",
+    "themeControl": {
+      "dataTheme": "light",
+      "pressed": "light=true dark=false system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937198831",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "light",
+      "innerWidth": 900,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 900,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "innerWidth": 900,
+      "detailsOpen": true,
+      "headerPaddingLeft": "18.4px",
+      "headerPaddingRight": "18.4px",
+      "headerRect": {
+        "left": 0,
+        "right": 900,
+        "top": 0,
+        "bottom": 48,
+        "width": 900,
+        "inViewport": true
+      },
+      "chipRect": {
+        "left": 370.42,
+        "right": 624.27,
+        "top": 10.34,
+        "bottom": 36.66,
+        "width": 253.84,
+        "inViewport": true
+      },
+      "panelRect": {
+        "left": 0,
+        "right": 900,
+        "top": 56.59,
+        "bottom": 259.37,
+        "width": 900,
+        "inViewport": true
+      },
+      "panelComputed": {
+        "position": "absolute",
+        "left": "0px",
+        "right": "0px",
+        "width": "900px"
+      },
+      "disclosureComputedPosition": "static",
+      "headerComputedPosition": "relative",
+      "controls": {
+        "label": {
+          "left": 17,
+          "right": 883,
+          "top": 71.99,
+          "bottom": 87.84,
+          "width": 866,
+          "inViewport": true,
+          "text": "Working Root (`projectRoot`)",
+          "clippedInternally": false,
+          "scrollWidth": 866,
+          "clientWidth": 866
+        },
+        "pathInput": {
+          "left": 17,
+          "right": 883,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 866,
+          "inViewport": true,
+          "text": "/absolute/path/to/execution/root",
+          "clippedInternally": false,
+          "scrollWidth": 864,
+          "clientWidth": 864
+        },
+        "button_Apply_Path": {
+          "left": 17,
+          "right": 110.19,
+          "top": 139.47,
+          "bottom": 172.59,
+          "width": 93.19,
+          "inViewport": true,
+          "text": "Apply Path",
+          "clippedInternally": false,
+          "scrollWidth": 91,
+          "clientWidth": 91
+        },
+        "button_Choose_Folder": {
+          "left": 118.19,
+          "right": 230.85,
+          "top": 139.47,
+          "bottom": 172.59,
+          "width": 112.66,
+          "inViewport": true,
+          "text": "Choose Folder",
+          "clippedInternally": false,
+          "scrollWidth": 111,
+          "clientWidth": 111
+        },
+        "button_Clear": {
+          "left": 238.85,
+          "right": 298.96,
+          "top": 139.47,
+          "bottom": 172.59,
+          "width": 60.11,
+          "inViewport": true,
+          "text": "Clear",
+          "clippedInternally": false,
+          "scrollWidth": 58,
+          "clientWidth": 58
+        },
+        "activeRootLine": {
+          "left": 17,
+          "right": 883,
+          "top": 179.78,
+          "bottom": 198.49,
+          "width": 866,
+          "inViewport": true,
+          "text": "Active root: /Users/ryan/dev/chirality",
+          "clippedInternally": false,
+          "scrollWidth": 866,
+          "clientWidth": 866
+        },
+        "runtimeCredentialsSummary": {
+          "left": 17,
+          "right": 883,
+          "top": 225.09,
+          "bottom": 242.37,
+          "width": 866,
+          "inViewport": true,
+          "text": "Runtime & credentials",
+          "clippedInternally": false,
+          "scrollWidth": 866,
+          "clientWidth": 866
+        }
+      },
+      "documentScrollWidth": 900,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "topbar",
+    "route": "/",
+    "theme": "dark",
+    "width": 900,
+    "height": 900,
+    "states": "root-chip disclosure OPEN",
+    "file": "topbar-dark-900.png",
+    "themeControl": {
+      "dataTheme": "dark",
+      "pressed": "light=false dark=true system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937202806",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "dark",
+      "innerWidth": 900,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 900,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "innerWidth": 900,
+      "detailsOpen": true,
+      "headerPaddingLeft": "18.4px",
+      "headerPaddingRight": "18.4px",
+      "headerRect": {
+        "left": 0,
+        "right": 900,
+        "top": 0,
+        "bottom": 48,
+        "width": 900,
+        "inViewport": true
+      },
+      "chipRect": {
+        "left": 370.42,
+        "right": 624.27,
+        "top": 10.34,
+        "bottom": 36.66,
+        "width": 253.84,
+        "inViewport": true
+      },
+      "panelRect": {
+        "left": 0,
+        "right": 900,
+        "top": 56.59,
+        "bottom": 259.37,
+        "width": 900,
+        "inViewport": true
+      },
+      "panelComputed": {
+        "position": "absolute",
+        "left": "0px",
+        "right": "0px",
+        "width": "900px"
+      },
+      "disclosureComputedPosition": "static",
+      "headerComputedPosition": "relative",
+      "controls": {
+        "label": {
+          "left": 17,
+          "right": 883,
+          "top": 71.99,
+          "bottom": 87.84,
+          "width": 866,
+          "inViewport": true,
+          "text": "Working Root (`projectRoot`)",
+          "clippedInternally": false,
+          "scrollWidth": 866,
+          "clientWidth": 866
+        },
+        "pathInput": {
+          "left": 17,
+          "right": 883,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 866,
+          "inViewport": true,
+          "text": "/absolute/path/to/execution/root",
+          "clippedInternally": false,
+          "scrollWidth": 864,
+          "clientWidth": 864
+        },
+        "button_Apply_Path": {
+          "left": 17,
+          "right": 110.19,
+          "top": 139.47,
+          "bottom": 172.59,
+          "width": 93.19,
+          "inViewport": true,
+          "text": "Apply Path",
+          "clippedInternally": false,
+          "scrollWidth": 91,
+          "clientWidth": 91
+        },
+        "button_Choose_Folder": {
+          "left": 118.19,
+          "right": 230.85,
+          "top": 139.47,
+          "bottom": 172.59,
+          "width": 112.66,
+          "inViewport": true,
+          "text": "Choose Folder",
+          "clippedInternally": false,
+          "scrollWidth": 111,
+          "clientWidth": 111
+        },
+        "button_Clear": {
+          "left": 238.85,
+          "right": 298.96,
+          "top": 139.47,
+          "bottom": 172.59,
+          "width": 60.11,
+          "inViewport": true,
+          "text": "Clear",
+          "clippedInternally": false,
+          "scrollWidth": 58,
+          "clientWidth": 58
+        },
+        "activeRootLine": {
+          "left": 17,
+          "right": 883,
+          "top": 179.78,
+          "bottom": 198.49,
+          "width": 866,
+          "inViewport": true,
+          "text": "Active root: /Users/ryan/dev/chirality",
+          "clippedInternally": false,
+          "scrollWidth": 866,
+          "clientWidth": 866
+        },
+        "runtimeCredentialsSummary": {
+          "left": 17,
+          "right": 883,
+          "top": 225.09,
+          "bottom": 242.37,
+          "width": 866,
+          "inViewport": true,
+          "text": "Runtime & credentials",
+          "clippedInternally": false,
+          "scrollWidth": 866,
+          "clientWidth": 866
+        }
+      },
+      "documentScrollWidth": 900,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "topbar",
+    "route": "/",
+    "theme": "light",
+    "width": 955,
+    "height": 900,
+    "states": "root-chip disclosure OPEN",
+    "file": "topbar-light-955.png",
+    "themeControl": {
+      "dataTheme": "light",
+      "pressed": "light=true dark=false system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937206766",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "light",
+      "innerWidth": 955,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 955,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "innerWidth": 955,
+      "detailsOpen": true,
+      "headerPaddingLeft": "18.4px",
+      "headerPaddingRight": "18.4px",
+      "headerRect": {
+        "left": 0,
+        "right": 955,
+        "top": 0,
+        "bottom": 48,
+        "width": 955,
+        "inViewport": true
+      },
+      "chipRect": {
+        "left": 504.98,
+        "right": 679.27,
+        "top": 10.34,
+        "bottom": 36.66,
+        "width": 174.28,
+        "inViewport": true
+      },
+      "panelRect": {
+        "left": 0,
+        "right": 955,
+        "top": 56.59,
+        "bottom": 219.84,
+        "width": 955,
+        "inViewport": true
+      },
+      "panelComputed": {
+        "position": "absolute",
+        "left": "0px",
+        "right": "0px",
+        "width": "955px"
+      },
+      "disclosureComputedPosition": "static",
+      "headerComputedPosition": "relative",
+      "controls": {
+        "label": {
+          "left": 17,
+          "right": 938,
+          "top": 71.99,
+          "bottom": 87.84,
+          "width": 921,
+          "inViewport": true,
+          "text": "Working Root (`projectRoot`)",
+          "clippedInternally": false,
+          "scrollWidth": 921,
+          "clientWidth": 921
+        },
+        "pathInput": {
+          "left": 17,
+          "right": 648.04,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 631.04,
+          "inViewport": true,
+          "text": "/absolute/path/to/execution/root",
+          "clippedInternally": false,
+          "scrollWidth": 629,
+          "clientWidth": 629
+        },
+        "button_Apply_Path": {
+          "left": 656.04,
+          "right": 749.23,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 93.19,
+          "inViewport": true,
+          "text": "Apply Path",
+          "clippedInternally": false,
+          "scrollWidth": 91,
+          "clientWidth": 91
+        },
+        "button_Choose_Folder": {
+          "left": 757.23,
+          "right": 869.89,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 112.66,
+          "inViewport": true,
+          "text": "Choose Folder",
+          "clippedInternally": false,
+          "scrollWidth": 111,
+          "clientWidth": 111
+        },
+        "button_Clear": {
+          "left": 877.89,
+          "right": 938,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 60.11,
+          "inViewport": true,
+          "text": "Clear",
+          "clippedInternally": false,
+          "scrollWidth": 58,
+          "clientWidth": 58
+        },
+        "activeRootLine": {
+          "left": 17,
+          "right": 938,
+          "top": 138.66,
+          "bottom": 157.38,
+          "width": 921,
+          "inViewport": true,
+          "text": "Active root: /Users/ryan/dev/chirality",
+          "clippedInternally": false,
+          "scrollWidth": 921,
+          "clientWidth": 921
+        },
+        "runtimeCredentialsSummary": {
+          "left": 17,
+          "right": 938,
+          "top": 185.56,
+          "bottom": 202.84,
+          "width": 921,
+          "inViewport": true,
+          "text": "Runtime & credentials",
+          "clippedInternally": false,
+          "scrollWidth": 921,
+          "clientWidth": 921
+        }
+      },
+      "documentScrollWidth": 955,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "topbar",
+    "route": "/",
+    "theme": "light",
+    "width": 1024,
+    "height": 900,
+    "states": "root-chip disclosure OPEN",
+    "file": "topbar-light-1024.png",
+    "themeControl": {
+      "dataTheme": "light",
+      "pressed": "light=true dark=false system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937210746",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "light",
+      "innerWidth": 1024,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 1024,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "innerWidth": 1024,
+      "detailsOpen": true,
+      "headerPaddingLeft": "18.4px",
+      "headerPaddingRight": "18.4px",
+      "headerRect": {
+        "left": 0,
+        "right": 1024,
+        "top": 0,
+        "bottom": 48,
+        "width": 1024,
+        "inViewport": true
+      },
+      "chipRect": {
+        "left": 534.73,
+        "right": 748.27,
+        "top": 10.34,
+        "bottom": 36.66,
+        "width": 213.53,
+        "inViewport": true
+      },
+      "panelRect": {
+        "left": 0,
+        "right": 1024,
+        "top": 56.59,
+        "bottom": 219.84,
+        "width": 1024,
+        "inViewport": true
+      },
+      "panelComputed": {
+        "position": "absolute",
+        "left": "0px",
+        "right": "0px",
+        "width": "1024px"
+      },
+      "disclosureComputedPosition": "static",
+      "headerComputedPosition": "relative",
+      "controls": {
+        "label": {
+          "left": 17,
+          "right": 1007,
+          "top": 71.99,
+          "bottom": 87.84,
+          "width": 990,
+          "inViewport": true,
+          "text": "Working Root (`projectRoot`)",
+          "clippedInternally": false,
+          "scrollWidth": 990,
+          "clientWidth": 990
+        },
+        "pathInput": {
+          "left": 17,
+          "right": 717.04,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 700.04,
+          "inViewport": true,
+          "text": "/absolute/path/to/execution/root",
+          "clippedInternally": false,
+          "scrollWidth": 698,
+          "clientWidth": 698
+        },
+        "button_Apply_Path": {
+          "left": 725.04,
+          "right": 818.23,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 93.19,
+          "inViewport": true,
+          "text": "Apply Path",
+          "clippedInternally": false,
+          "scrollWidth": 91,
+          "clientWidth": 91
+        },
+        "button_Choose_Folder": {
+          "left": 826.23,
+          "right": 938.89,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 112.66,
+          "inViewport": true,
+          "text": "Choose Folder",
+          "clippedInternally": false,
+          "scrollWidth": 111,
+          "clientWidth": 111
+        },
+        "button_Clear": {
+          "left": 946.89,
+          "right": 1007,
+          "top": 95.03,
+          "bottom": 131.47,
+          "width": 60.11,
+          "inViewport": true,
+          "text": "Clear",
+          "clippedInternally": false,
+          "scrollWidth": 58,
+          "clientWidth": 58
+        },
+        "activeRootLine": {
+          "left": 17,
+          "right": 1007,
+          "top": 138.66,
+          "bottom": 157.38,
+          "width": 990,
+          "inViewport": true,
+          "text": "Active root: /Users/ryan/dev/chirality",
+          "clippedInternally": false,
+          "scrollWidth": 990,
+          "clientWidth": 990
+        },
+        "runtimeCredentialsSummary": {
+          "left": 17,
+          "right": 1007,
+          "top": 185.56,
+          "bottom": 202.84,
+          "width": 990,
+          "inViewport": true,
+          "text": "Runtime & credentials",
+          "clippedInternally": false,
+          "scrollWidth": 990,
+          "clientWidth": 990
+        }
+      },
+      "documentScrollWidth": 1024,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "dialogue",
+    "route": "/",
+    "theme": "light",
+    "width": 900,
+    "height": 900,
+    "states": "empty transcript + composer dock; placeholder longer than field",
+    "file": "dialogue-light-900.png",
+    "themeControl": {
+      "dataTheme": "light",
+      "pressed": "light=true dark=false system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937214708",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "light",
+      "innerWidth": 900,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 900,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "placeholder": "Send prompt as WORKING_ITEMS...",
+      "textOverflow": "ellipsis",
+      "overflow": "clip",
+      "fontSize": "14px",
+      "inputRect": {
+        "left": 233.8,
+        "right": 470.32,
+        "width": 236.52,
+        "inViewport": true
+      },
+      "clientWidth": 235,
+      "contentBoxWidth": 215.8,
+      "placeholderTextWidth": 228.4,
+      "placeholderOverflowsBy": 12.6,
+      "placeholderMustTruncate": true,
+      "ellipsisApplies": true,
+      "dockOverlapsTranscript": false,
+      "transcriptBottom": 668.86,
+      "dockTop": 668.86,
+      "documentScrollWidth": 900,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "dialogue",
+    "route": "/",
+    "theme": "dark",
+    "width": 900,
+    "height": 900,
+    "states": "empty transcript + composer dock; placeholder longer than field",
+    "file": "dialogue-dark-900.png",
+    "themeControl": {
+      "dataTheme": "dark",
+      "pressed": "light=false dark=true system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937218050",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "dark",
+      "innerWidth": 900,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 900,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "placeholder": "Send prompt as WORKING_ITEMS...",
+      "textOverflow": "ellipsis",
+      "overflow": "clip",
+      "fontSize": "14px",
+      "inputRect": {
+        "left": 233.8,
+        "right": 470.32,
+        "width": 236.52,
+        "inViewport": true
+      },
+      "clientWidth": 235,
+      "contentBoxWidth": 215.8,
+      "placeholderTextWidth": 228.4,
+      "placeholderOverflowsBy": 12.6,
+      "placeholderMustTruncate": true,
+      "ellipsisApplies": true,
+      "dockOverlapsTranscript": false,
+      "transcriptBottom": 668.86,
+      "dockTop": 668.86,
+      "documentScrollWidth": 900,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "replay",
+    "route": "/",
+    "theme": "light",
+    "width": 1180,
+    "height": 900,
+    "states": "All sessions expanded (5 rows) -> first row selected -> replay lens mounted",
+    "sessionRows": [
+      "ses_9f21c4a7",
+      "ses_4c81be03",
+      "ses_71d0af59",
+      "ses_2ab6e714",
+      "ses_c530d8b2"
+    ],
+    "file": "replay-light-1180.png",
+    "themeControl": {
+      "dataTheme": "light",
+      "pressed": "light=true dark=false system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937221354",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "light",
+      "innerWidth": 1180,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 1180,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "replayState": "READY",
+      "disclosure": "EVIDENCE_ONLY",
+      "diagnostics": [
+        "REPLAY_SESSION_METADATA_UNAVAILABLE: Canonical session metadata was not included with this replay."
+      ],
+      "transcriptText": "No transcript items were recorded; canonical event evidence may still exist.",
+      "eyebrow": "Replay — read-only",
+      "provenanceRect": {
+        "left": 253.8,
+        "right": 878.2,
+        "width": 624.41,
+        "height": 212.48,
+        "inViewport": true
+      },
+      "dlRect": {
+        "left": 267.59,
+        "right": 558,
+        "width": 290.41,
+        "height": 184.89,
+        "inViewport": true
+      },
+      "dlGridTemplateColumns": "145.492px 136.117px",
+      "labels": [
+        "Source",
+        "Observed",
+        "Disclosure",
+        "Currency",
+        "Events",
+        "Transcript items shown",
+        "Malformed records skipped"
+      ],
+      "labelRects": [
+        {
+          "text": "Source",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 36.53,
+          "inViewport": true
+        },
+        {
+          "text": "Observed",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 35.53,
+          "inViewport": true
+        },
+        {
+          "text": "Disclosure",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Currency",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Events",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Transcript items shown",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Malformed records skipped",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        }
+      ],
+      "sourceValue": "session:ses_9f21c4a7/events",
+      "sourceDdRect": {
+        "left": 421.88,
+        "right": 558,
+        "width": 136.12,
+        "height": 36.53,
+        "inViewport": true
+      },
+      "sourceCodeRect": {
+        "left": 421.88,
+        "right": 557.32,
+        "width": 135.44,
+        "height": 32.27,
+        "inViewport": true
+      },
+      "sourceLines": {
+        "rectCount": 2,
+        "lineCount": 2,
+        "rects": [
+          {
+            "left": 421.88,
+            "right": 557.32,
+            "top": 208.63,
+            "width": 135.44
+          },
+          {
+            "left": 421.88,
+            "right": 478.91,
+            "top": 226.9,
+            "width": 57.03
+          }
+        ]
+      },
+      "sourceDdOverflows": false,
+      "sourceDdScrollWidth": 136,
+      "sourceDdClientWidth": 136,
+      "provenanceOverflows": false,
+      "allValues": [
+        {
+          "label": "Source",
+          "value": "session:ses_9f21c4a7/events",
+          "lines": 2,
+          "overflows": false
+        },
+        {
+          "label": "Observed",
+          "value": "2026-07-24T23:53:45.445Z",
+          "lines": 2,
+          "overflows": false
+        },
+        {
+          "label": "Disclosure",
+          "value": "EVIDENCE_ONLY",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Currency",
+          "value": "UNKNOWN",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Events",
+          "value": "4",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Transcript items shown",
+          "value": "0",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Malformed records skipped",
+          "value": "0",
+          "lines": 1,
+          "overflows": false
+        }
+      ],
+      "documentScrollWidth": 1180,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "replay",
+    "route": "/",
+    "theme": "dark",
+    "width": 1180,
+    "height": 900,
+    "states": "All sessions expanded (5 rows) -> first row selected -> replay lens mounted",
+    "sessionRows": [
+      "ses_9f21c4a7",
+      "ses_4c81be03",
+      "ses_71d0af59",
+      "ses_2ab6e714",
+      "ses_c530d8b2"
+    ],
+    "file": "replay-dark-1180.png",
+    "themeControl": {
+      "dataTheme": "dark",
+      "pressed": "light=false dark=true system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937227902",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "dark",
+      "innerWidth": 1180,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 1180,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "replayState": "READY",
+      "disclosure": "EVIDENCE_ONLY",
+      "diagnostics": [
+        "REPLAY_SESSION_METADATA_UNAVAILABLE: Canonical session metadata was not included with this replay."
+      ],
+      "transcriptText": "No transcript items were recorded; canonical event evidence may still exist.",
+      "eyebrow": "Replay — read-only",
+      "provenanceRect": {
+        "left": 253.8,
+        "right": 878.2,
+        "width": 624.41,
+        "height": 212.48,
+        "inViewport": true
+      },
+      "dlRect": {
+        "left": 267.59,
+        "right": 558,
+        "width": 290.41,
+        "height": 184.89,
+        "inViewport": true
+      },
+      "dlGridTemplateColumns": "145.492px 136.117px",
+      "labels": [
+        "Source",
+        "Observed",
+        "Disclosure",
+        "Currency",
+        "Events",
+        "Transcript items shown",
+        "Malformed records skipped"
+      ],
+      "labelRects": [
+        {
+          "text": "Source",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 36.53,
+          "inViewport": true
+        },
+        {
+          "text": "Observed",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 35.53,
+          "inViewport": true
+        },
+        {
+          "text": "Disclosure",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Currency",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Events",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Transcript items shown",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Malformed records skipped",
+          "left": 267.59,
+          "right": 413.09,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        }
+      ],
+      "sourceValue": "session:ses_9f21c4a7/events",
+      "sourceDdRect": {
+        "left": 421.88,
+        "right": 558,
+        "width": 136.12,
+        "height": 36.53,
+        "inViewport": true
+      },
+      "sourceCodeRect": {
+        "left": 421.88,
+        "right": 557.32,
+        "width": 135.44,
+        "height": 32.27,
+        "inViewport": true
+      },
+      "sourceLines": {
+        "rectCount": 2,
+        "lineCount": 2,
+        "rects": [
+          {
+            "left": 421.88,
+            "right": 557.32,
+            "top": 208.63,
+            "width": 135.44
+          },
+          {
+            "left": 421.88,
+            "right": 478.91,
+            "top": 226.9,
+            "width": 57.03
+          }
+        ]
+      },
+      "sourceDdOverflows": false,
+      "sourceDdScrollWidth": 136,
+      "sourceDdClientWidth": 136,
+      "provenanceOverflows": false,
+      "allValues": [
+        {
+          "label": "Source",
+          "value": "session:ses_9f21c4a7/events",
+          "lines": 2,
+          "overflows": false
+        },
+        {
+          "label": "Observed",
+          "value": "2026-07-24T23:53:51.979Z",
+          "lines": 2,
+          "overflows": false
+        },
+        {
+          "label": "Disclosure",
+          "value": "EVIDENCE_ONLY",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Currency",
+          "value": "UNKNOWN",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Events",
+          "value": "4",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Transcript items shown",
+          "value": "0",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Malformed records skipped",
+          "value": "0",
+          "lines": 1,
+          "overflows": false
+        }
+      ],
+      "documentScrollWidth": 1180,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "replay",
+    "route": "/",
+    "theme": "light",
+    "width": 1440,
+    "height": 900,
+    "states": "All sessions expanded (5 rows) -> first row selected -> replay lens mounted",
+    "sessionRows": [
+      "ses_9f21c4a7",
+      "ses_4c81be03",
+      "ses_71d0af59",
+      "ses_2ab6e714",
+      "ses_c530d8b2"
+    ],
+    "file": "replay-light-1440.png",
+    "themeControl": {
+      "dataTheme": "light",
+      "pressed": "light=true dark=false system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(248, 245, 238)",
+      "bodyColor": "rgb(41, 35, 26)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937234437",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "light",
+      "innerWidth": 1440,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 1440,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "replayState": "READY",
+      "disclosure": "EVIDENCE_ONLY",
+      "diagnostics": [
+        "REPLAY_SESSION_METADATA_UNAVAILABLE: Canonical session metadata was not included with this replay."
+      ],
+      "transcriptText": "No transcript items were recorded; canonical event evidence may still exist.",
+      "eyebrow": "Replay — read-only",
+      "provenanceRect": {
+        "left": 321,
+        "right": 1039,
+        "width": 718,
+        "height": 194.72,
+        "inViewport": true
+      },
+      "dlRect": {
+        "left": 334.8,
+        "right": 672,
+        "width": 337.2,
+        "height": 167.13,
+        "inViewport": true
+      },
+      "dlGridTemplateColumns": "145.492px 182.914px",
+      "labels": [
+        "Source",
+        "Observed",
+        "Disclosure",
+        "Currency",
+        "Events",
+        "Transcript items shown",
+        "Malformed records skipped"
+      ],
+      "labelRects": [
+        {
+          "text": "Source",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 36.53,
+          "inViewport": true
+        },
+        {
+          "text": "Observed",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Disclosure",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Currency",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Events",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Transcript items shown",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Malformed records skipped",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        }
+      ],
+      "sourceValue": "session:ses_9f21c4a7/events",
+      "sourceDdRect": {
+        "left": 489.09,
+        "right": 672,
+        "width": 182.91,
+        "height": 36.53,
+        "inViewport": true
+      },
+      "sourceCodeRect": {
+        "left": 489.09,
+        "right": 667.3,
+        "width": 178.21,
+        "height": 32.27,
+        "inViewport": true
+      },
+      "sourceLines": {
+        "rectCount": 2,
+        "lineCount": 2,
+        "rects": [
+          {
+            "left": 489.09,
+            "right": 667.3,
+            "top": 211.84,
+            "width": 178.21
+          },
+          {
+            "left": 489.09,
+            "right": 503.34,
+            "top": 230.1,
+            "width": 14.26
+          }
+        ]
+      },
+      "sourceDdOverflows": false,
+      "sourceDdScrollWidth": 183,
+      "sourceDdClientWidth": 183,
+      "provenanceOverflows": false,
+      "allValues": [
+        {
+          "label": "Source",
+          "value": "session:ses_9f21c4a7/events",
+          "lines": 2,
+          "overflows": false
+        },
+        {
+          "label": "Observed",
+          "value": "2026-07-24T23:53:58.547Z",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Disclosure",
+          "value": "EVIDENCE_ONLY",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Currency",
+          "value": "UNKNOWN",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Events",
+          "value": "4",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Transcript items shown",
+          "value": "0",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Malformed records skipped",
+          "value": "0",
+          "lines": 1,
+          "overflows": false
+        }
+      ],
+      "documentScrollWidth": 1440,
+      "horizontalOverflow": false
+    }
+  },
+  {
+    "scene": "replay",
+    "route": "/",
+    "theme": "dark",
+    "width": 1440,
+    "height": 900,
+    "states": "All sessions expanded (5 rows) -> first row selected -> replay lens mounted",
+    "sessionRows": [
+      "ses_9f21c4a7",
+      "ses_4c81be03",
+      "ses_71d0af59",
+      "ses_2ab6e714",
+      "ses_c530d8b2"
+    ],
+    "file": "replay-dark-1440.png",
+    "themeControl": {
+      "dataTheme": "dark",
+      "pressed": "light=false dark=true system=false"
+    },
+    "render": {
+      "bodyBackground": "rgb(23, 21, 17)",
+      "bodyColor": "rgb(234, 228, 214)",
+      "styleSheets": 2,
+      "styleSheetsDetail": [
+        {
+          "href": "http://127.0.0.1:3002/_next/static/css/app/layout.css?v=1784937241011",
+          "ownerTag": "LINK",
+          "ownerId": null,
+          "ruleCount": 495
+        },
+        {
+          "href": null,
+          "ownerTag": "STYLE",
+          "ownerId": null,
+          "ruleCount": 4
+        }
+      ],
+      "dataTheme": "dark",
+      "innerWidth": 1440,
+      "innerHeight": 900,
+      "devicePixelRatio": 2,
+      "scrollWidth": 1440,
+      "horizontalOverflow": false
+    },
+    "probe": {
+      "replayState": "READY",
+      "disclosure": "EVIDENCE_ONLY",
+      "diagnostics": [
+        "REPLAY_SESSION_METADATA_UNAVAILABLE: Canonical session metadata was not included with this replay."
+      ],
+      "transcriptText": "No transcript items were recorded; canonical event evidence may still exist.",
+      "eyebrow": "Replay — read-only",
+      "provenanceRect": {
+        "left": 321,
+        "right": 1039,
+        "width": 718,
+        "height": 194.72,
+        "inViewport": true
+      },
+      "dlRect": {
+        "left": 334.8,
+        "right": 672,
+        "width": 337.2,
+        "height": 167.13,
+        "inViewport": true
+      },
+      "dlGridTemplateColumns": "145.492px 182.914px",
+      "labels": [
+        "Source",
+        "Observed",
+        "Disclosure",
+        "Currency",
+        "Events",
+        "Transcript items shown",
+        "Malformed records skipped"
+      ],
+      "labelRects": [
+        {
+          "text": "Source",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 36.53,
+          "inViewport": true
+        },
+        {
+          "text": "Observed",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Disclosure",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Currency",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Events",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Transcript items shown",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        },
+        {
+          "text": "Malformed records skipped",
+          "left": 334.8,
+          "right": 480.29,
+          "width": 145.49,
+          "height": 17.77,
+          "inViewport": true
+        }
+      ],
+      "sourceValue": "session:ses_9f21c4a7/events",
+      "sourceDdRect": {
+        "left": 489.09,
+        "right": 672,
+        "width": 182.91,
+        "height": 36.53,
+        "inViewport": true
+      },
+      "sourceCodeRect": {
+        "left": 489.09,
+        "right": 667.3,
+        "width": 178.21,
+        "height": 32.27,
+        "inViewport": true
+      },
+      "sourceLines": {
+        "rectCount": 2,
+        "lineCount": 2,
+        "rects": [
+          {
+            "left": 489.09,
+            "right": 667.3,
+            "top": 211.84,
+            "width": 178.21
+          },
+          {
+            "left": 489.09,
+            "right": 503.34,
+            "top": 230.1,
+            "width": 14.26
+          }
+        ]
+      },
+      "sourceDdOverflows": false,
+      "sourceDdScrollWidth": 183,
+      "sourceDdClientWidth": 183,
+      "provenanceOverflows": false,
+      "allValues": [
+        {
+          "label": "Source",
+          "value": "session:ses_9f21c4a7/events",
+          "lines": 2,
+          "overflows": false
+        },
+        {
+          "label": "Observed",
+          "value": "2026-07-24T23:54:05.100Z",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Disclosure",
+          "value": "EVIDENCE_ONLY",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Currency",
+          "value": "UNKNOWN",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Events",
+          "value": "4",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Transcript items shown",
+          "value": "0",
+          "lines": 1,
+          "overflows": false
+        },
+        {
+          "label": "Malformed records skipped",
+          "value": "0",
+          "lines": 1,
+          "overflows": false
+        }
+      ],
+      "documentScrollWidth": 1440,
+      "horizontalOverflow": false
+    }
+  }
+]
