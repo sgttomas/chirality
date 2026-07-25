@@ -45,11 +45,11 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 ### 0.2.2 `WORKING_ROOT` — the active workspace
 
-`WORKING_ROOT` is the project or domain workspace an agent is scoped to — `projects/<name>/` or `domains/<name>/` in this monorepo, or the user-selected folder under the desktop harness. It is where governed project truth lives (`{EXECUTION_ROOT}`, tool roots, deliverables, decomposition state).
+`WORKING_ROOT` is the project or domain workspace an agent is scoped to — `projects/<name>/` or `domains/<name>/` in this monorepo, or the user-selected folder under the desktop harness. It is where governed project truth lives (`{EXECUTION_ROOT}`, tool roots, deliverables, decomposition state). For the root product only, `WORKING_ROOT` is `REPO_ROOT` (D-GOV-21).
 
 - `WORKING_ROOT` MUST resolve to an absolute path under `REPO_ROOT` (monorepo) or to the user-selected root (desktop harness).
 - One `REPO_ROOT` instruction surface serves **many** working roots without per-workspace instruction drift.
-- A working root MUST NOT be the shared instruction surface itself; agents operating in a working root MUST NOT write to `agents/`, `skills/`, `tools/`, or root `docs/` except through an explicit, separately-authorized repo-wide instruction change.
+- A working root MUST NOT be the shared instruction surface itself, except that the root product's working root is the repository root under D-GOV-21; agents operating in any working root MUST NOT write to `agents/`, `skills/`, `tools/`, or root `docs/` except through an explicit, separately-authorized repo-wide instruction change (root-product instruction changes obtain that authorization through an independently owner-authorized, human-gated repo-wide change tranche satisfying the D-GOV-21 M2 containment and evidence conditions; the M2 gate does not itself grant authorization).
 
 ### 0.2.3 ScopePath containment (binding)
 
@@ -76,7 +76,7 @@ Agent instructions and skills reference roots through `{*_ROOT}` tokens. Each to
 |---|---|---|
 | `{REPO_ROOT}` | self | `git rev-parse --show-toplevel` (the active checkout) |
 | `{INSTRUCTION_ROOT}` | `REPO_ROOT`-relative | the shared instruction surface; `= REPO_ROOT` in the monorepo, the app bundle in desktop builds |
-| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the active `projects/<name>/` or `domains/<name>/` (or user-selected folder) |
+| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the active `projects/<name>/` or `domains/<name>/` (or user-selected folder); for the root product only, `REPO_ROOT` (D-GOV-21) |
 | `{EXECUTION_ROOT}` | `WORKING_ROOT`-relative | the execution instance root (project-defined; often `WORKING_ROOT` or `WORKING_ROOT/execution`) |
 | `{COORDINATION_ROOT}` | `EXECUTION_ROOT`-relative | `{EXECUTION_ROOT}/_Coordination/` |
 | `{DECOMP_ROOT}` / `{DECOMPOSITION_ROOT}` | `EXECUTION_ROOT`-relative | `{EXECUTION_ROOT}/_Decomposition/` (or a domain pack's `_Decomposition/`) |
@@ -94,7 +94,7 @@ The token vocabulary above is the registry; an agent that introduces a new `{*_R
 
 ## 1. Execution Root Layout
 
-An execution instance is a self-contained project workspace rooted at `{EXECUTION_ROOT}/` (which resolves `WORKING_ROOT`-relative; see §0.2–0.3). The execution root contains packages (work partitions) and tool roots (derived/operational outputs).
+An execution instance is a self-contained project workspace rooted at `{EXECUTION_ROOT}/` (which resolves `WORKING_ROOT`-relative; see §0.2–0.3). The execution root contains packages (work partitions) and tool roots (derived/operational outputs). The root product's execution instance is `REPO_ROOT/execution` (D-GOV-21).
 
 ```
 {EXECUTION_ROOT}/

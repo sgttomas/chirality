@@ -1,0 +1,90 @@
+"""Tests for G0, the D-GOV-21 root materialization fence."""
+
+from pathlib import Path
+
+import validate_root_materialization_fence as g0
+
+
+def _write_registration(root: Path, guards: dict) -> None:
+    harness = root / "execution" / "_harness"
+    harness.mkdir(parents=True, exist_ok=True)
+    lines = ["guards:"]
+    for name, fields in guards.items():
+        lines.append(f"  {name}:")
+        for key, value in fields.items():
+            rendered = "true" if value is True else ("false" if value is False else str(value))
+            lines.append(f"    {key}: {rendered}")
+    (root / "execution" / "_harness" / "root_guards.yaml").write_text(
+        "\n".join(lines) + "\n", encoding="utf-8"
+    )
+
+
+ALL_PASSING = {
+    g: {"registered": True, "status": "passing"} for g in ("G1", "G2", "G3", "G4")
+}
+
+
+def test_pass_when_no_execution_dir(tmp_path):
+    code, lines = g0.check(tmp_path)
+    assert code == 0
+    assert any("fence idle" in line for line in lines)
+
+
+def test_pass_when_execution_has_only_control_plane(tmp_path):
+    (tmp_path / "execution" / "_Coordination").mkdir(parents=True)
+    code, _ = g0.check(tmp_path)
+    assert code == 0
+
+
+def test_block_when_pkg_exists_without_registration(tmp_path):
+    (tmp_path / "execution" / "PKG-01_Example").mkdir(parents=True)
+    code, lines = g0.check(tmp_path)
+    assert code == 1
+    assert any("absent or unreadable" in line for line in lines)
+
+
+def test_block_when_del_exists_without_registration(tmp_path):
+    (tmp_path / "execution" / "DEL-01-01_Example").mkdir(parents=True)
+    code, _ = g0.check(tmp_path)
+    assert code == 1
+
+
+def test_block_when_registration_incomplete(tmp_path):
+    (tmp_path / "execution" / "PKG-01_Example").mkdir(parents=True)
+    partial = {g: {"registered": True, "status": "passing"} for g in ("G1", "G2", "G3")}
+    _write_registration(tmp_path, partial)
+    code, lines = g0.check(tmp_path)
+    assert code == 1
+    assert any("G4: not registered" in line for line in lines)
+
+
+def test_block_when_guard_not_passing(tmp_path):
+    (tmp_path / "execution" / "PKG-01_Example").mkdir(parents=True)
+    guards = dict(ALL_PASSING)
+    guards["G2"] = {"registered": True, "status": "failing"}
+    _write_registration(tmp_path, guards)
+    code, lines = g0.check(tmp_path)
+    assert code == 1
+    assert any("G2: status != passing" in line for line in lines)
+
+
+def test_pass_when_all_guards_registered_and_passing(tmp_path):
+    (tmp_path / "execution" / "PKG-01_Example").mkdir(parents=True)
+    _write_registration(tmp_path, ALL_PASSING)
+    code, lines = g0.check(tmp_path)
+    assert code == 0
+    assert any("materialization gate satisfied" in line for line in lines)
+
+
+def test_pkg_file_not_directory_is_ignored(tmp_path):
+    (tmp_path / "execution").mkdir()
+    (tmp_path / "execution" / "PKG-notes.md").write_text("x", encoding="utf-8")
+    code, _ = g0.check(tmp_path)
+    assert code == 0
+
+
+def test_live_repo_state_is_clean():
+    """The fence must PASS on the actual checkout at the D-GOV-21 EffectiveSHA:
+    nothing materializes at ruling time (packet §10)."""
+    code, _ = g0.check(g0.repo_root())
+    assert code == 0
