@@ -25,6 +25,7 @@ import { useWorkspace } from '../workspace/workspace-provider';
 import { ChatMarkdown } from './chat-markdown';
 import { FilePicker } from './file-picker';
 import { PermissionRequests } from './permission-requests';
+import { useRuntimeEpoch } from './runtime-connectivity-provider';
 
 type ChatMessage = {
   id: string;
@@ -146,9 +147,23 @@ export function ChatPanel({ onActiveSessionChange }: ChatPanelProps = {}): JSX.E
     }
   ]);
 
+  const runtimeEpoch = useRuntimeEpoch();
+
   useEffect(() => {
     onActiveSessionChange?.(activeSession?.sessionId);
   }, [activeSession?.sessionId, onActiveSessionChange]);
+
+  // The red banner under the composer is a record of one failed attempt, not a
+  // live status. Once the main process reports a fresh binding, the reason it
+  // gives ("runtime daemon client is not configured") is no longer true, so it
+  // is dropped rather than left to outlive the outage. Cleared, never retried:
+  // re-sending an operator's prompt without them asking is not ours to do.
+  useEffect(() => {
+    if (runtimeEpoch === 0) {
+      return;
+    }
+    setRuntimeError(null);
+  }, [runtimeEpoch]);
 
   const activePersona = useMemo(
     () => resolvePersona(searchParams.get('agent')),

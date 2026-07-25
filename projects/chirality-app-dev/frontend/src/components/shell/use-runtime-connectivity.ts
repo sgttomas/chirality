@@ -33,11 +33,20 @@ function getConnectivityBridge(): RuntimeConnectivityBridge | undefined {
  * when a renderer asked, which is why a daemon that came back after startup was
  * never noticed. Here the main process owns the polling and this hook only
  * mirrors its state, so one supervisor serves every mounted shell.
+ *
+ * `enabled` exists so `RuntimeConnectivityProvider` can be the app's single
+ * subscriber while this hook stays usable standalone (a `ShellFrame` rendered
+ * without the provider, as several suites do). A disabled call registers no
+ * listener and stays at `null`; the caller is reading the context instead.
  */
-export function useRuntimeConnectivity(): RuntimeConnectivitySnapshot | null {
+export function useRuntimeConnectivity(enabled = true): RuntimeConnectivitySnapshot | null {
   const [snapshot, setSnapshot] = useState<RuntimeConnectivitySnapshot | null>(null);
 
   useEffect(() => {
+    if (!enabled) {
+      return;
+    }
+
     const bridge = getConnectivityBridge();
     if (!bridge) {
       return;
@@ -69,7 +78,7 @@ export function useRuntimeConnectivity(): RuntimeConnectivitySnapshot | null {
       active = false;
       unsubscribe();
     };
-  }, []);
+  }, [enabled]);
 
   return snapshot;
 }

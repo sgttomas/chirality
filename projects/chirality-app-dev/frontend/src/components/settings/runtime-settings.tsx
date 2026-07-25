@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import type { ChangeEvent } from 'react';
+import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
 
 type RuntimeDaemonAction = 'install' | 'start' | 'stop' | 'status' | 'uninstall';
 
@@ -92,6 +93,7 @@ export function RuntimeSettings(): JSX.Element {
   );
   const [error, setError] = useState<string | null>(null);
   const [bridgeAvailable, setBridgeAvailable] = useState(false);
+  const runtimeEpoch = useRuntimeEpoch();
 
   const applyResidency = useCallback((next: RuntimeResidencyStatus) => {
     setResidency(next);
@@ -140,9 +142,13 @@ export function RuntimeSettings(): JSX.Element {
     }
   }, [applyResidency]);
 
+  // Re-probed on reconnect as well as on mount: this panel's whole content is a
+  // claim about the daemon ("not running", "no models"), and a claim captured
+  // while the client was unbound is exactly the one the operator opens it to
+  // check after the daemon comes back.
   useEffect(() => {
     void refresh();
-  }, [refresh]);
+  }, [refresh, runtimeEpoch]);
 
   async function runDaemonAction(action: RuntimeDaemonAction): Promise<void> {
     const bridge = getRuntimeBridge();

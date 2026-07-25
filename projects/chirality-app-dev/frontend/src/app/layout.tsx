@@ -5,6 +5,7 @@ import { WorkspaceProvider } from '../components/workspace/workspace-provider';
 import { ToolkitProvider } from '../components/workspace/toolkit-provider';
 import { DeliverablesProvider } from '../components/workspace/deliverables-provider';
 import { HarnessEventsProvider } from '../components/workspace/harness-events-provider';
+import { RuntimeConnectivityProvider } from '../components/shell/runtime-connectivity-provider';
 import { WOVEN_WORKSPACE_STORAGE_KEY } from '../lib/woven-dialogue/woven-workspace-state';
 
 // IBM Plex ships with the app: the woff2 files under `src/fonts/` are bundled
@@ -70,13 +71,19 @@ export default function RootLayout({
     >
       <body>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
-        <WorkspaceProvider>
-          <DeliverablesProvider>
-            <ToolkitProvider>
-              <HarnessEventsProvider>{children}</HarnessEventsProvider>
-            </ToolkitProvider>
-          </DeliverablesProvider>
-        </WorkspaceProvider>
+        {/* Outermost so every runtime-backed pane below can depend on the
+            reconnect epoch, and so the top bar and the data panes read one
+            shared connectivity snapshot rather than two subscriptions that
+            could disagree. */}
+        <RuntimeConnectivityProvider>
+          <WorkspaceProvider>
+            <DeliverablesProvider>
+              <ToolkitProvider>
+                <HarnessEventsProvider>{children}</HarnessEventsProvider>
+              </ToolkitProvider>
+            </DeliverablesProvider>
+          </WorkspaceProvider>
+        </RuntimeConnectivityProvider>
       </body>
     </html>
   );

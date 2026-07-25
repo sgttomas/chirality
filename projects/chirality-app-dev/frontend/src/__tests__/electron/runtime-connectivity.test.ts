@@ -262,6 +262,107 @@ describe('createRuntimeBindingSupervisor', () => {
     expect(bind).toHaveBeenCalledOnce();
   });
 
+  it('coalesces a refresh that arrives mid-cycle instead of stalling', async () => {
+    // Regression: `refreshNow()` cancels the pending timer *before* running a
+    // cycle. When a cycle was already in flight the new one returned
+    // immediately, so nothing rescheduled the timer and the supervisor stopped
+    // probing forever. Reachable from two quick `onDaemonAvailable` calls;
+    // routine once a filesystem watcher drives refreshes, because fs events
+    // arrive in bursts.
+    // The first bind blocks until released, then fails; the second succeeds. So
+    // a refresh that arrives mid-cycle has real work to do, and dropping it
+    // would leave the supervisor disconnected with no timer pending.
+    let releaseBind: (() => void) | undefined;
+    let bindCalls = 0;
+    const bind = vi.fn(async () => {
+      bindCalls += 1;
+      if (bindCalls === 1) {
+        await new Promise<void>((resolve) => {
+          releaseBind = resolve;
+        });
+        throw new Error('daemon socket refused');
+      }
+    });
+    const { clock, supervisor } = harness({ bind });
+
+    const started = supervisor.start();
+    expect(bind).toHaveBeenCalledOnce();
+
+    // A watcher event lands while the first bind is still awaiting.
+    const refreshed = supervisor.refreshNow();
+    expect(bind).toHaveBeenCalledOnce();
+
+    releaseBind?.();
+    await started;
+    await refreshed;
+
+    // The deferred refresh ran rather than being dropped...
+    expect(bind).toHaveBeenCalledTimes(2);
+    expect(supervisor.snapshot().state).toBe('connected');
+    // ...and the supervisor is still scheduled, not stalled.
+    expect(clock.pending()).toBe(1);
+    expect(clock.delays.at(-1)).toBe(DEFAULT_STEADY_PROBE_INTERVAL_MS);
+
+    supervisor.stop();
+  });
+
+  it('collapses a burst of mid-cycle refreshes into one follow-up cycle', async () => {
+    let releaseBind: (() => void) | undefined;
+    let bindCalls = 0;
+    const bind = vi.fn(async () => {
+      bindCalls += 1;
+      if (bindCalls === 1) {
+        await new Promise<void>((resolve) => {
+          releaseBind = resolve;
+        });
+        throw new Error('daemon socket refused');
+      }
+    });
+    const { clock, supervisor } = harness({ bind });
+
+    const started = supervisor.start();
+    const refreshes = [
+      supervisor.refreshNow(),
+      supervisor.refreshNow(),
+      supervisor.refreshNow()
+    ];
+
+    releaseBind?.();
+    await started;
+    await Promise.all(refreshes);
+
+    // Three events, one extra cycle — a rename storm cannot become a busy loop.
+    expect(bind).toHaveBeenCalledTimes(2);
+    expect(clock.pending()).toBe(1);
+
+    supervisor.stop();
+  });
+
+  it('does not run a deferred refresh after stop', async () => {
+    let releaseBind: (() => void) | undefined;
+    let bindCalls = 0;
+    const bind = vi.fn(async () => {
+      bindCalls += 1;
+      if (bindCalls === 1) {
+        await new Promise<void>((resolve) => {
+          releaseBind = resolve;
+        });
+      }
+    });
+    const { clock, supervisor } = harness({ bind });
+
+    const started = supervisor.start();
+    const refreshed = supervisor.refreshNow();
+    supervisor.stop();
+
+    releaseBind?.();
+    await started;
+    await refreshed;
+
+    expect(bind).toHaveBeenCalledOnce();
+    expect(clock.pending()).toBe(0);
+  });
+
   it('exposes a queryable snapshot before the first cycle completes', () => {
     const { supervisor } = harness({ bind: async () => undefined });
     const snapshot = supervisor.snapshot();

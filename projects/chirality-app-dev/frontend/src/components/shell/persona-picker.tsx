@@ -6,6 +6,7 @@ import type { AgentRosterEntry } from '../../lib/harness/agent-roster';
 import { harnessApiErrorMessage, listDirectChatPersonas } from '../../lib/harness/client';
 import { buildDirectChatHref } from '../../lib/shell/loop-first';
 import { resolvePersona } from '../../lib/shell/persona-resolution';
+import { useRuntimeEpoch } from './runtime-connectivity-provider';
 
 type PersonaPickerProps = {
   buildHref?: (persona: string) => string;
@@ -30,7 +31,12 @@ export function PersonaPicker({
   const [personas, setPersonas] = useState<AgentRosterEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const runtimeEpoch = useRuntimeEpoch();
 
+  // The roster is fetched once per mount and once per reconnect. A roster loaded
+  // while the daemon was unreachable is the "WORKING_ITEMS (unavailable)" state
+  // the operator reported: an empty list plus a permanent error, both of which
+  // this re-run replaces with the real answer.
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
@@ -54,7 +60,7 @@ export function PersonaPicker({
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [runtimeEpoch]);
 
   const selected = resolvePersona(searchParams.get('agent'));
   const selectedInRoster = personas.some((persona) => persona.name === selected);

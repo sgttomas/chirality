@@ -51,6 +51,27 @@ export function isRuntimeConnectivitySnapshot(
 }
 
 /**
+ * True when `next` is the moment the daemon became reachable again.
+ *
+ * "Again" is load-bearing. The first snapshot a renderer ever observes has no
+ * predecessor, so it is never a reconnect: whatever mounted alongside it already
+ * fetched under that state. Only an observed non-connected → connected step means
+ * "requests that failed a moment ago would succeed now", which is the one event
+ * worth re-fetching on.
+ *
+ * `connecting` counts as non-connected on purpose. The live defect was a renderer
+ * that mounted while the first bind was still in flight: its fetches failed with
+ * ENGINE_UNAVAILABLE and nothing ever re-issued them. Treating `connecting` as
+ * connected would leave exactly that case unfixed.
+ */
+export function isRuntimeReconnect(
+  previous: RuntimeConnectivitySnapshot | null,
+  next: RuntimeConnectivitySnapshot
+): boolean {
+  return previous !== null && previous.state !== 'connected' && next.state === 'connected';
+}
+
+/**
  * Derive the top-bar chip from a snapshot.
  *
  * Returns `null` when there is nothing to say — no snapshot at all, which is the

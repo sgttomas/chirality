@@ -12,6 +12,7 @@ import {
   useHarnessStreaming
 } from '../workspace/harness-events-provider';
 import { useWorkspace } from '../workspace/workspace-provider';
+import { useRuntimeEpoch } from './runtime-connectivity-provider';
 
 type SessionListPanelProps = {
   hasProjectRoot: boolean;
@@ -126,6 +127,7 @@ export function SessionListView(): JSX.Element {
   const [notice, setNotice] = useState<string | null>(null);
   const [openingId, setOpeningId] = useState<string | null>(null);
   const [refreshNonce, setRefreshNonce] = useState(0);
+  const runtimeEpoch = useRuntimeEpoch();
 
   // Track the live projectRoot so an in-flight open can detect a switch on
   // resolve and abandon a now-stale hydrate (the shared event buffer is global).
@@ -170,7 +172,10 @@ export function SessionListView(): JSX.Element {
     return () => {
       cancelled = true;
     };
-  }, [projectRoot, refreshNonce]);
+    // `runtimeEpoch` re-lists after a reconnect: a list fetched against a dead
+    // socket is an error banner over an empty list, and the operator has no way
+    // to tell that from "this root genuinely has no sessions".
+  }, [projectRoot, refreshNonce, runtimeEpoch]);
 
   const openSession = useCallback(
     async (sessionId: string): Promise<void> => {
