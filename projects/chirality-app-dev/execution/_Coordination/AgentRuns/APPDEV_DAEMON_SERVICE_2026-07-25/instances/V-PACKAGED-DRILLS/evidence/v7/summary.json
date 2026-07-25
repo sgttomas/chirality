@@ -1,0 +1,10 @@
+{
+  "drill": "V7", "name": "icons", "verdict": "PASS",
+  "info_plist": {"CFBundleIconFile": "icon.icns", "CFBundleIdentifier": "com.chirality.app", "LSUIElement": "absent", "LSBackgroundOnly": "absent"},
+  "icns_identity": {"packaged": "4b85b8f4c7a1a00069108ca808e04c666b4eadf6b2378d24b5a30a25412ff058", "committed_build_icon": "4b85b8f4c7a1a00069108ca808e04c666b4eadf6b2378d24b5a30a25412ff058", "byte_identical": true},
+  "artwork": "iconutil -c iconset extracted 10 PNGs; icon_256x256.png read visually = quincunx (cream rounded tile, 4 dark-brown squares + terracotta centre). NOT the stock Electron atom.",
+  "dock_tile": "v7-dock-tile.png — quincunx tile for the running test GUI (tight 58x58pt crop of the Dock, no desktop capture)",
+  "finder_icon": "v7-finder-window.png — Finder window-scoped capture of dist/mac-arm64 showing Chirality.app rendered with the quincunx",
+  "in_app_logo": "v3-quincunx-logo.png / v3-topbar-connected.png — asar-served /chirality-app-icon.svg renders in the packaged app top bar (asar contains /public/chirality-app-icon.svg)",
+  "daemon_dock_tile": "absent (V1: 0 CGWindowList windows, lsappinfo type=UIElement)"
+}

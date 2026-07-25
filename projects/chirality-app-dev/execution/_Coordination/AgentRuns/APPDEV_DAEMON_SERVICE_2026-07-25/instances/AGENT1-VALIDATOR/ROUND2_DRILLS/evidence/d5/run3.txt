@@ -1,0 +1,2 @@
+2026-07-25T03:02:20.144Z [info] desktop.cli_launcher.install {"status":"skipped","path":"/Users/ryan/.chirality-tranchetest-a1r2/home/.local/bin/chirality","reason":"opted-out"}
+ls: /Users/ryan/.chirality-tranchetest-a1r2/home/.local/bin/chirality: No such file or directory

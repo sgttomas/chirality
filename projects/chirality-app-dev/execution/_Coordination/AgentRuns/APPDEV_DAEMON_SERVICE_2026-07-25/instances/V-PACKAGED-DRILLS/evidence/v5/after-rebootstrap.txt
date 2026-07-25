@@ -1,0 +1,6 @@
+	state = running
+	runs = 1
+	pid = 94611
+	last exit code = (never exited)
+		state = active
+		state = active

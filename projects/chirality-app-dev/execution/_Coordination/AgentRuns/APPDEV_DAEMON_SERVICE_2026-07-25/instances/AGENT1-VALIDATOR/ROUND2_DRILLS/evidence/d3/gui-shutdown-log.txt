@@ -1,0 +1,4 @@
+2026-07-25T03:01:17.132Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":2,"lastError":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock","changedAt":"2026-07-25T03:01:17.132Z"}
+2026-07-25T03:01:17.133Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock"}
+2026-07-25T03:01:34.103Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":1588}
+2026-07-25T03:01:34.104Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}

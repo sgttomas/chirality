@@ -1,0 +1,10 @@
+[chirality-desktop] 2026-07-25T02:15:00.524Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":92414}
+[chirality-desktop] 2026-07-25T02:15:00.538Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}
+[chirality-desktop] 2026-07-25T02:22:07.649Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":94068}
+[chirality-desktop] 2026-07-25T02:22:07.661Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}
+[chirality-desktop] 2026-07-25T02:22:50.759Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":94247}
+[chirality-desktop] 2026-07-25T02:22:50.777Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}
+[chirality-desktop] 2026-07-25T02:24:33.997Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":94460}
+[chirality-desktop] 2026-07-25T02:24:34.008Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}
+[chirality-desktop] 2026-07-25T02:25:55.200Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":94611}
+[chirality-desktop] 2026-07-25T02:25:55.212Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}

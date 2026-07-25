@@ -1,0 +1,17 @@
+{
+  "drill": "V8", "name": "CLI launcher", "verdict": "PASS (with an isolation hazard finding)",
+  "targeting_mechanism": "installBundledCliLauncher() has no destination override; HOME redirection was used, so the packaged GUI rendered the launcher to $TESTHOME/.local/bin/chirality and the owner's ~/.local/bin/chirality was never written (sha256 unchanged all run).",
+  "rendered_pin": "app_user_data='/Users/ryan/.chirality-tranchetest-v/userdata'; exported as CHIRALITY_USER_DATA only when unset",
+  "clean_env_test": {"command": "env -i HOME=$TESTHOME PATH=/usr/bin:/bin:/usr/sbin:/sbin $TESTHOME/.local/bin/chirality project status --project chirality-app-dev", "exit": 0, "result": "returned the registered worktree project against the TEST daemon with no manual CHIRALITY_USER_DATA"},
+  "also_verified": ["project list -> ok", "daemon status -> daemon half ok (pid 94611, isolated socket)"],
+  "hazard": {
+    "id": "V-D2",
+    "finding": "createDefaultCliDependencies() (runtime/packages/cli/src/cli.ts:462) constructs LaunchAgentManager with NO options — no label, no keepAlive, no environmentVariables. The bundled CLI therefore CANNOT address an isolated label, and worse: `chirality daemon status` from the fully isolated run reported the OWNER's job gui/501/com.chirality.runtime (path ~/Library/LaunchAgents/com.chirality.runtime.plist, program in the owner main checkout). A `chirality daemon stop` or `uninstall` from an isolated-userData run would have booted out / deleted the operator's real agent.",
+    "consequences": [
+      "Stage V could NOT use the bundled CLI for install/start/stop as the launch brief assumed; a node driver instantiating LaunchAgentManager with the frontend caller's exact options plus a test label/dir was used instead (evidence/la-driver.mjs).",
+      "the label/keepAlive/env plumbing added in A3 is reachable ONLY through the GUI's runtime-control IPC (createDesktopDaemonLifecycle), never through the CLI the app itself installs.",
+      "corollary: a rebuilt app's `chirality daemon install` still renders KeepAlive={SuccessfulExit:false} and NO EnvironmentVariables — the corrected root cause #2 is NOT fixed on the CLI path, only on the in-app runtime-panel path."
+    ]
+  },
+  "incidental": "the owner plist's launchctl print shows 'exit timeout = 5', which is exactly the 5.083s bootout-to-death latency measured in V5."
+}

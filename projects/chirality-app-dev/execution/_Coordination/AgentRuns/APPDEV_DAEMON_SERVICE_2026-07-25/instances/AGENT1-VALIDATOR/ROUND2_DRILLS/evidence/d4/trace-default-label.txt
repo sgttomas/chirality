@@ -1,0 +1,4 @@
+bootstrap gui/501 /Users/ryan/.chirality-tranchetest-a1r2/home/Library/LaunchAgents/com.chirality.runtime.plist
+print gui/501/com.chirality.runtime
+bootout gui/501/com.chirality.runtime
+bootout gui/501/com.chirality.runtime

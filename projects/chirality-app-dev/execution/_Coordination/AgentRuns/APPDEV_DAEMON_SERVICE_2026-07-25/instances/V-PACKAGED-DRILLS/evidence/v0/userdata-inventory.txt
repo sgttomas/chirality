@@ -1,0 +1,19 @@
+/Users/ryan/.chirality-tranchetest-v/userdata
+/Users/ryan/.chirality-tranchetest-v/userdata/Cache
+/Users/ryan/.chirality-tranchetest-v/userdata/Code Cache
+/Users/ryan/.chirality-tranchetest-v/userdata/Cookies
+/Users/ryan/.chirality-tranchetest-v/userdata/Cookies-journal
+/Users/ryan/.chirality-tranchetest-v/userdata/DIPS
+/Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache
+/Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache
+/Users/ryan/.chirality-tranchetest-v/userdata/GPUCache
+/Users/ryan/.chirality-tranchetest-v/userdata/Local State
+/Users/ryan/.chirality-tranchetest-v/userdata/Local Storage
+/Users/ryan/.chirality-tranchetest-v/userdata/Network Persistent State
+/Users/ryan/.chirality-tranchetest-v/userdata/Preferences
+/Users/ryan/.chirality-tranchetest-v/userdata/Session Storage
+/Users/ryan/.chirality-tranchetest-v/userdata/Shared Dictionary
+/Users/ryan/.chirality-tranchetest-v/userdata/Trust Tokens
+/Users/ryan/.chirality-tranchetest-v/userdata/Trust Tokens-journal
+/Users/ryan/.chirality-tranchetest-v/userdata/blob_storage
+/Users/ryan/.chirality-tranchetest-v/userdata/logs

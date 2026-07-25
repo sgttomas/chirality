@@ -1,0 +1,2 @@
+4b85b8f4c7a1a00069108ca808e04c666b4eadf6b2378d24b5a30a25412ff058  /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/icon.icns
+4b85b8f4c7a1a00069108ca808e04c666b4eadf6b2378d24b5a30a25412ff058  /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/build/icon.icns

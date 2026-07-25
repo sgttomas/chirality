@@ -1,0 +1,20 @@
+{
+  "drill": "V0",
+  "name": "A6 isolation proof (direct GUI exec, absolute CHIRALITY_USER_DATA, real HOME)",
+  "verdict": "PASS",
+  "command": "env CHIRALITY_USER_DATA=/Users/ryan/.chirality-tranchetest-v/userdata /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality",
+  "gui_pid": 92162,
+  "evidence": {
+    "chromium_profile_isolated": "ps shows --user-data-dir=/Users/ryan/.chirality-tranchetest-v/userdata on gpu/network/renderer helpers",
+    "logs_isolated": "/Users/ryan/.chirality-tranchetest-v/userdata/logs/desktop-main.log created; desktop.gui.starting userData=/Users/ryan/.chirality-tranchetest-v/userdata socketPath=/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock",
+    "owner_userdata_unchanged": "~/Library/Application Support/chirality-frontend mtime 1784942107 == baseline",
+    "owner_launcher_unchanged": "sha256 2c0120079831c1d2637e462304ac596044026d551c8d3ae89985da1506838b0d == baseline",
+    "cli_launcher_write_attempt_blocked": "desktop.cli_launcher.install_failed EACCES on ~/.local/bin/.chirality.92162.mrzqhio8.tmp (dir chmod 0500 guard, restored 0755)",
+    "backoff_ladder_observed_ms": [0, 1003, 2001, 5003, 10002],
+    "screenshots": ["v0-window-disconnected.png", "v0-topbar-offline.png"]
+  },
+  "incidental_findings": [
+    "packaged GUI launch unconditionally writes ~/.local/bin/chirality via installBundledCliLauncher() default destination; no env override exists. Isolation required an external guard.",
+    "GUI SIGTERM shutdown logged reason 'before-quit', not 'signal:SIGTERM' -> Electron's own quit path reaches before-quit before the JS signal listener."
+  ]
+}

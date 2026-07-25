@@ -1,0 +1,6 @@
+[chirality-desktop] 2026-07-25T03:00:45.938Z [warn] runtime.daemon.activate_received {"pid":1553}
+[chirality-desktop] 2026-07-25T03:10:25.474Z [warn] runtime.daemon.activate_received {"pid":3364}
+[chirality-desktop] 2026-07-25T03:12:42.507Z [warn] runtime.daemon.activate_received {"pid":4346}
+[chirality-desktop] 2026-07-25T03:15:30.602Z [warn] runtime.daemon.activate_received {"pid":5486}
+[chirality-desktop] 2026-07-25T03:17:23.578Z [warn] runtime.daemon.activate_received {"pid":6316}
+[chirality-desktop] 2026-07-25T03:19:19.731Z [warn] runtime.daemon.activate_received {"pid":6709}

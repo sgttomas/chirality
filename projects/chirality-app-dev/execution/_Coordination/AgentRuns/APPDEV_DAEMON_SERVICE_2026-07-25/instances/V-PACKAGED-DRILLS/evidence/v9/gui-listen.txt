@@ -1,0 +1,130 @@
+COMMAND     PID USER   FD      TYPE             DEVICE  SIZE/OFF                NODE NAME
+rapportd    803 ryan   14u     IPv4  0x58d5d93849e3b2b       0t0                 TCP *:49166 (LISTEN)
+rapportd    803 ryan   17u     IPv6  0x7f5b94342d5b17f       0t0                 TCP *:49166 (LISTEN)
+rapportd    803 ryan   31u     IPv6 0x652f38e052bc169f       0t0                 TCP *:56112 (LISTEN)
+rapportd    803 ryan   33u     IPv6 0x843dbd59e87aab52       0t0                 TCP *:56113 (LISTEN)
+ControlCe   898 ryan   10u     IPv4 0x505dc48fb162e71f       0t0                 TCP *:7000 (LISTEN)
+ControlCe   898 ryan   11u     IPv6 0x82fa8c064ebf7fea       0t0                 TCP *:7000 (LISTEN)
+ControlCe   898 ryan   12u     IPv4  0xb82fafd1192876b       0t0                 TCP *:5000 (LISTEN)
+ControlCe   898 ryan   13u     IPv6 0x50ab44673851656e       0t0                 TCP *:5000 (LISTEN)
+python3.1  5481 ryan    4u     IPv4 0x4d3070f2103bb0bc       0t0                 TCP 127.0.0.1:8000 (LISTEN)
+Chirality 93675 ryan  cwd       DIR               1,15       704                   2 /
+Chirality 93675 ryan  txt       REG               1,15     33968             5470013 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+Chirality 93675 ryan  txt       REG               1,15    145408             5470560 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Squirrel.framework/Versions/A/Squirrel
+Chirality 93675 ryan  txt       REG               1,15    126544             5470568 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Mantle.framework/Versions/A/Mantle
+Chirality 93675 ryan  txt       REG               1,15     72984             1346991 /Library/Preferences/Logging/.plist-cache.I3w6wLIV
+Chirality 93675 ryan  txt       REG               1,15    352864             5470551 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/ReactiveObjC
+Chirality 93675 ryan  txt       REG               1,15    740048             5470332 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/v8_context_snapshot.arm64.bin
+Chirality 93675 ryan  txt       REG               1,15       110 1152921500312103377 /System/Library/CoreServices/SystemVersion.bundle/English.lproj/SystemVersion.strings
+Chirality 93675 ryan  txt       REG               1,15    236112              363922 /private/var/db/timezone/tz/2026b.1.0/icutz/icutz44l.dat
+Chirality 93675 ryan  txt       REG               1,15    161498             5324419 /private/var/db/analyticsd/events.allowlist
+Chirality 93675 ryan  txt       REG               1,15    137016 1152921500312103066 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/SystemAppearance.car
+Chirality 93675 ryan  txt       REG               1,15     73240 1152921500312103051 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/FauxVibrantDark.car
+Chirality 93675 ryan  txt       REG               1,15     60821 1152921500312144241 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/Common.loctable
+Chirality 93675 ryan  txt       REG               1,15    248480 1152921500312573294 /usr/lib/libobjc-trampolines.dylib
+Chirality 93675 ryan  txt       REG               1,15   2374000 1152921500312573276 /usr/lib/dyld
+Chirality 93675 ryan  txt       REG               1,15   2230784             5470538 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libffmpeg.dylib
+Chirality 93675 ryan  txt       REG               1,15    119843             5470181 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_100_percent.pak
+Chirality 93675 ryan  txt       REG               1,15  35444880 1152921500312583777 /usr/share/icu/icudt78l.dat
+Chirality 93675 ryan  txt       REG               1,15  10876560             5470244 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/icudtl.dat
+Chirality 93675 ryan  txt       REG               1,15  11042816             5479950 /private/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/0/com.apple.LaunchServices.dv/com.apple.LaunchServices-20971544-v2.csstore
+Chirality 93675 ryan  txt       REG               1,15   7795064 1152921500312103039 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/DarkAqua.car
+Chirality 93675 ryan  txt       REG               1,15   6742984 1152921500312103070 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/VibrantDark.car
+Chirality 93675 ryan  txt       REG               1,15    196935             5470148 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_200_percent.pak
+Chirality 93675 ryan  txt       REG               1,15    564148             5470139 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/en.lproj/locale.pak
+Chirality 93675 ryan  txt       REG               1,15   7142997             5470373 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/resources.pak
+Chirality 93675 ryan  txt       REG               1,15   7912984 1152921500312103027 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/Aqua.car
+Chirality 93675 ryan  txt       REG               1,15     32768             1349348 /private/var/db/mds/messages/501/se_SecurityMessages
+Chirality 93675 ryan  txt       REG               1,15      6918 1152921500312144319 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/InputManager.loctable
+Chirality 93675 ryan  txt       REG               1,15    177510 1152921500312144325 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/MenuCommands.loctable
+Chirality 93675 ryan  txt       REG               1,15  28437776 1152921500312129986 /System/Library/Extensions/AGXMetalG17X.bundle/Contents/MacOS/AGXMetalG17X
+Chirality 93675 ryan  txt       REG               1,15   7909644 1152921500312142364 /System/Library/Fonts/SFNS.ttf
+Chirality 93675 ryan  txt       REG               1,15   1561920 1152921500312212598 /System/Library/Keyboard Layouts/AppleKeyboardLayouts.bundle/Contents/Resources/AppleKeyboardLayouts-L.dat
+Chirality 93675 ryan  txt       REG               1,15    139252             1347354 /System/Library/Caches/com.apple.IntlDataCache.le.kbdx
+Chirality 93675 ryan  txt       REG               1,15      4978 1152921500312144293 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/DictationManager.loctable
+Chirality 93675 ryan  txt       REG               1,15 192532256             5470084 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework
+Chirality 93675 ryan  txt       REG               1,15  30683800 1152921500312129991 /System/Library/Extensions/AGXMetalG17X.bundle/Contents/Resources/ds.g17s
+Chirality 93675 ryan  txt       REG               1,15    250306 1152921500312212600 /System/Library/Keyboard Layouts/AppleKeyboardLayouts.bundle/Contents/Resources/InfoPlist.loctable
+Chirality 93675 ryan  txt       REG               1,15   3364296 1152921500312103033 /System/Library/CoreServices/SystemAppearance.bundle/Contents/Resources/Assets.car
+Chirality 93675 ryan  txt       REG               1,15   2044376 1152921500312144151 /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/Assets.car
+Chirality 93675 ryan  txt       REG               1,15     85336 1152921500312284738 /System/Library/PrivateFrameworks/DesignLibrary.framework/Versions/A/Resources/Assets.car
+Chirality 93675 ryan  txt       REG               1,15     36864             5478341 /Users/ryan/.chirality-tranchetest-v/userdata/DIPS
+Chirality 93675 ryan  txt       REG               1,15    262512             5478345 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/index
+Chirality 93675 ryan  txt       REG               1,15      8192             5478346 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/data_0
+Chirality 93675 ryan  txt       REG               1,15    270336             5478347 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/data_1
+Chirality 93675 ryan  txt       REG               1,15      8192             5478348 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/data_2
+Chirality 93675 ryan  txt       REG               1,15      8192             5478349 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/data_3
+Chirality 93675 ryan  txt       REG               1,15    262512             5478351 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/index
+Chirality 93675 ryan  txt       REG               1,15      8192             5478352 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/data_0
+Chirality 93675 ryan  txt       REG               1,15    270336             5478353 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/data_1
+Chirality 93675 ryan  txt       REG               1,15      8192             5478354 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/data_2
+Chirality 93675 ryan  txt       REG               1,15      8192             5478355 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/data_3
+Chirality 93675 ryan  txt       REG               1,15    262512             5478357 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/index
+Chirality 93675 ryan  txt       REG               1,15      8192             5478358 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/data_0
+Chirality 93675 ryan  txt       REG               1,15    270336             5478359 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/data_1
+Chirality 93675 ryan  txt       REG               1,15      8192             5478360 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/data_2
+Chirality 93675 ryan  txt       REG               1,15      8192             5478361 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/data_3
+Chirality 93675 ryan  txt       REG               1,15   2369592 1152921500312142288 /System/Library/Fonts/Helvetica.ttc
+Chirality 93675 ryan  txt       REG               1,15 160168520 1152921500312351601 /System/Library/PrivateFrameworks/SFSymbols.framework/Versions/A/Resources/CoreGlyphs.bundle/Contents/Resources/Assets.car
+Chirality 93675 ryan    0r      CHR                3,2       0t0                 336 /dev/null
+Chirality 93675 ryan    1u      CHR                3,2    0t2156                 336 /dev/null
+Chirality 93675 ryan    2u      CHR                3,2    0t3814                 336 /dev/null
+Chirality 93675 ryan    3r      REG               1,15  10876560             5470244 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/icudtl.dat
+Chirality 93675 ryan    4r      REG               1,15    740048             5470332 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/v8_context_snapshot.arm64.bin
+Chirality 93675 ryan    5u   KQUEUE                                                  count=0, state=0x12
+Chirality 93675 ryan    6u   KQUEUE                                                  count=0, state=0x12
+Chirality 93675 ryan    7u   KQUEUE                                                  count=0, state=0x12
+Chirality 93675 ryan    8u   KQUEUE                                                  count=0, state=0x8
+Chirality 93675 ryan    9      PIPE 0x5dcf67b6795e2b24     16384                     ->0xcdeca374775dd00b
+Chirality 93675 ryan   10      PIPE 0xcdeca374775dd00b     16384                     ->0x5dcf67b6795e2b24
+Chirality 93675 ryan   11r      DIR               1,15       704                   2 /
+Chirality 93675 ryan   12u   KQUEUE                                                  count=0, state=0x8
+Chirality 93675 ryan   13r      DIR               1,15       704                   2 /
+Chirality 93675 ryan   14u   KQUEUE                                                  count=0, state=0xa
+Chirality 93675 ryan   15r      DIR               1,15       704                   2 /
+Chirality 93675 ryan   16r      REG               1,15 513638557             5470651 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar
+Chirality 93675 ryan   17      PIPE 0x2996a310e7b9a01f     16384                     ->0x52891cc5bea355bf
+Chirality 93675 ryan   18      PIPE 0x52891cc5bea355bf     16384                     ->0x2996a310e7b9a01f
+Chirality 93675 ryan   19   NPOLICY                                                  
+Chirality 93675 ryan   20      PIPE 0xda3be4584be12292     16384                     ->0xa52fc1841537d58e
+Chirality 93675 ryan   21      PIPE 0xa52fc1841537d58e     16384                     ->0xda3be4584be12292
+Chirality 93675 ryan   22r      REG               1,15    119843             5470181 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_100_percent.pak
+Chirality 93675 ryan   23r      REG               1,15    196935             5470148 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_200_percent.pak
+Chirality 93675 ryan   24r      REG               1,15    564148             5470139 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/en.lproj/locale.pak
+Chirality 93675 ryan   25      PIPE 0xf84c39ee78cc1aa4     16384                     ->0x20e1cb3b5c81410b
+Chirality 93675 ryan   26r      REG               1,15   7142997             5470373 /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/resources.pak
+Chirality 93675 ryan   27      PIPE 0x20e1cb3b5c81410b     16384                     ->0xf84c39ee78cc1aa4
+Chirality 93675 ryan   28u   KQUEUE                                                  count=0, state=0x8
+Chirality 93675 ryan   29r      DIR               1,15       704                   2 /
+Chirality 93675 ryan   30r      DIR               1,15      2464             1345790 /private/etc
+Chirality 93675 ryan   31r      REG               1,15       213             1346032 /private/etc/hosts
+Chirality 93675 ryan   32r      CHR                3,2       0t0                 336 /dev/null
+Chirality 93675 ryan   34u     IPv4  0x6c545b203c902df       0t0                 TCP 127.0.0.1:50629 (LISTEN)
+Chirality 93675 ryan   35w      REG               1,15       308             5480464 /Users/ryan/.chirality-tranchetest-v/userdata/Local Storage/leveldb/LOG
+Chirality 93675 ryan   36u      REG               1,15         0             5478324 /Users/ryan/.chirality-tranchetest-v/userdata/Local Storage/leveldb/LOCK
+Chirality 93675 ryan   37w      REG               1,15        41             5478338 /Users/ryan/.chirality-tranchetest-v/userdata/Local Storage/leveldb/MANIFEST-000001
+Chirality 93675 ryan   38w      REG               1,15      2730             5478340 /Users/ryan/.chirality-tranchetest-v/userdata/Local Storage/leveldb/000003.log
+Chirality 93675 ryan   39u      REG               1,15     36864             5478341 /Users/ryan/.chirality-tranchetest-v/userdata/DIPS
+Chirality 93675 ryan   40u      REG               1,15      8272             5480465 /Users/ryan/.chirality-tranchetest-v/userdata/DIPS-wal
+Chirality 93675 ryan   41u   KQUEUE                                                  count=0, state=0x12
+Chirality 93675 ryan   42u      REG               1,15    262512             5478345 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/index
+Chirality 93675 ryan   43u      REG               1,15      8192             5478346 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/data_0
+Chirality 93675 ryan   44u      REG               1,15    270336             5478347 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/data_1
+Chirality 93675 ryan   45u      REG               1,15      8192             5478348 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/data_2
+Chirality 93675 ryan   46u      REG               1,15      8192             5478349 /Users/ryan/.chirality-tranchetest-v/userdata/GPUCache/data_3
+Chirality 93675 ryan   47u      REG               1,15    262512             5478351 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/index
+Chirality 93675 ryan   48u      REG               1,15      8192             5478352 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/data_0
+Chirality 93675 ryan   49u      REG               1,15    270336             5478353 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/data_1
+Chirality 93675 ryan   50u      REG               1,15      8192             5478354 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/data_2
+Chirality 93675 ryan   51u      REG               1,15      8192             5478355 /Users/ryan/.chirality-tranchetest-v/userdata/DawnWebGPUCache/data_3
+Chirality 93675 ryan   52u      REG               1,15    262512             5478357 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/index
+Chirality 93675 ryan   53u      REG               1,15      8192             5478358 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/data_0
+Chirality 93675 ryan   54u      REG               1,15    270336             5478359 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/data_1
+Chirality 93675 ryan   55u      REG               1,15      8192             5478360 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/data_2
+Chirality 93675 ryan   56u      REG               1,15      8192             5478361 /Users/ryan/.chirality-tranchetest-v/userdata/DawnGraphiteCache/data_3
+Chirality 93675 ryan   57u      REG               1,15      4096             5480820 /Users/ryan/.chirality-tranchetest-v/userdata/SharedStorage
+Chirality 93675 ryan   58w      REG               1,15       296             5480469 /Users/ryan/.chirality-tranchetest-v/userdata/Session Storage/LOG
+Chirality 93675 ryan   59u      REG               1,15         0             5478381 /Users/ryan/.chirality-tranchetest-v/userdata/Session Storage/LOCK
+Chirality 93675 ryan   60w      REG               1,15        41             5478382 /Users/ryan/.chirality-tranchetest-v/userdata/Session Storage/MANIFEST-000001
+Chirality 93675 ryan   61w      REG               1,15       536             5478384 /Users/ryan/.chirality-tranchetest-v/userdata/Session Storage/000003.log
+Chirality 93675 ryan   62u      REG               1,15         0             5480822 /Users/ryan/.chirality-tranchetest-v/userdata/SharedStorage-wal

@@ -1,0 +1,2 @@
++  0.000s SIGTERM sent
++ 30.022s STILL ALIVE after 30s -> SIGTERM did NOT stop the daemon

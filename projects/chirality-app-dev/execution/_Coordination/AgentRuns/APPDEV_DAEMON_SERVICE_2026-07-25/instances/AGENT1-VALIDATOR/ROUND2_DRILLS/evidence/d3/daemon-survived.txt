@@ -1,0 +1,6 @@
+YES daemon pid 1553 still alive
+	state = running
+	runs = 3
+	pid = 1553
+		state = active
+		state = active

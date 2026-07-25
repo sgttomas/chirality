@@ -1,0 +1,30 @@
+{
+  "launchAgent": {
+    "installed": false,
+    "loaded": true,
+    "detail": "gui/501/com.chirality.runtime = {\n\tactive count = 0\n\tpath = /Users/ryan/Library/LaunchAgents/com.chirality.runtime.plist\n\ttype = LaunchAgent\n\tstate = not running\n\n\tprogram = /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality\n\targuments = {\n\t\t/Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality\n\t\t--runtime-daemon\n\t}\n\n\tstdout path = /Users/ryan/Library/Application Support/chirality-frontend/runtime/logs/daemon.stdout.log\n\tstderr path = /Users/ryan/Library/Application Support/chirality-frontend/runtime/logs/daemon.stderr.log\n\tinherited environment = {\n\t\tSSH_AUTH_SOCK => /var/run/com.apple.launchd.QN1Y7JIPlP/Listeners\n\t}\n\n\tdefault environment = {\n\t\tPATH => /usr/bin:/bin:/usr/sbin:/sbin\n\t}\n\n\tenvironment = {\n\t\tOSLogRateLimit => 64\n\t\tXPC_SERVICE_NAME => com.chirality.runtime\n\t}\n\n\tdomain = gui/501 [100016]\n\tasid = 100016\n\tminimum runtime = 10\n\texit timeout = 5\n\truns = 4\n\tlast exit code = 0\n\n\tsemaphores = {\n\t\tsuccessful exit => 0\n\t}\n\n\tevent channels = {\n\t\t\"com.apple.locationd-events\" = {\n\t\t\tport = 0x17e5e3\n\t\t\tactive = 0\n\t\t\tmanaged = 1\n\t\t\treset = 0\n\t\t\thide = 0\n\t\t\twatching = 1\n\t\t}\n\t}\n\n\tresource coalition = {\n\t\tID = 33214\n\t\ttype = resource\n\t\tstate = active\n\t\tactive count = 1\n\t\tname = com.chirality.runtime\n\t}\n\n\tjetsam coalition = {\n\t\tID = 33215\n\t\ttype = jetsam\n\t\tstate = active\n\t\tactive count = 1\n\t\tname = com.chirality.runtime\n\t}\n\n\tspawn type = daemon (3)\n\tjetsam priority = 40\n\tjetsam memory limit (active) = (unlimited)\n\tjetsam memory limit (inactive) = (unlimited)\n\tjetsamproperties category = daemon\n\tjetsam thread limit = 32\n\tcpumon = default\n\tjob state = exited\n\n\tproperties = runatload | inferred program\n}"
+  },
+  "daemon": {
+    "apiVersion": "v1",
+    "status": "ok",
+    "daemonId": "6222d9c0-95f5-4123-9380-f501e7a2e0ab",
+    "pid": 94611,
+    "startedAt": "2026-07-25T02:25:55.201Z",
+    "socketPath": "/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock",
+    "engines": [
+      {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "capabilities": {
+          "credentials": false,
+          "tools": false,
+          "attachments": true,
+          "interruption": true,
+          "durableResume": false,
+          "compaction": false
+        }
+      },
+      {
+        "adapterId": "anthropic-direct",
+        "providerId": "anthropic",
+        "packageName": "@anthropic-ai/sdk",

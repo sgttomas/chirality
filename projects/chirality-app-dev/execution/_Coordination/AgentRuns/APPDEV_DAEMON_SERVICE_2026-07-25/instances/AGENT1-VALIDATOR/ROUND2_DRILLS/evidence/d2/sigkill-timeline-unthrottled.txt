@@ -1,0 +1,4 @@
+before: pid=1529 runs=2 (>13s since last launch, throttle window elapsed)
++  0.000s SIGKILL sent to 1529
++  0.036s launchd RESTARTED: runs 2->3 pid=1553
+RESULT sigkill_restart_latency_unthrottled_s=0.036 (Stage V baseline 0.098s)

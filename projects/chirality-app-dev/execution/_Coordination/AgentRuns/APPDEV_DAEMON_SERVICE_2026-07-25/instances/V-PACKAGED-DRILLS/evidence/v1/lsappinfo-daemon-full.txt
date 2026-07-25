@@ -1,0 +1,8 @@
+"Chirality" ASN:0x0-0x42f82f4: 
+    bundleID="com.chirality.app"
+    bundle path="/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app"
+    executable path="/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+    pid = 92414 type="UIElement" flavor=3 Version="2.0.0" fileType="APPL" creator="????" Arch=ARM64 
+    coalition: 33856
+    checkin time = 25 seconds ago, 2026/07/24 20:15:00 ( 24.7443 seconds ago )
+

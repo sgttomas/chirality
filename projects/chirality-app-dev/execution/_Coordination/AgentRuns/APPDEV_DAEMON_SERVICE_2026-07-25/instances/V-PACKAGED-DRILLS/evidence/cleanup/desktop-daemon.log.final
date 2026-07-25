@@ -1,0 +1,17 @@
+2026-07-25T02:15:00.524Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":92414}
+2026-07-25T02:15:00.538Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}
+2026-07-25T02:19:23.322Z [warn] runtime.daemon.activate_received {"pid":92414}
+2026-07-25T02:19:51.170Z [warn] runtime.daemon.activate_received {"pid":92414}
+2026-07-25T02:19:54.226Z [warn] runtime.daemon.activate_received {"pid":92414}
+2026-07-25T02:20:39.688Z [warn] runtime.daemon.quit_request_vetoed {"pid":92414,"hint":"use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon"}
+2026-07-25T02:22:07.649Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":94068}
+2026-07-25T02:22:07.661Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}
+2026-07-25T02:22:50.759Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":94247}
+2026-07-25T02:22:50.777Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}
+2026-07-25T02:23:29.125Z [warn] runtime.daemon.quit_request_vetoed {"pid":94247,"hint":"use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon"}
+2026-07-25T02:23:45.480Z [warn] runtime.daemon.quit_request_vetoed {"pid":94247,"hint":"use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon"}
+2026-07-25T02:24:33.997Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":94460}
+2026-07-25T02:24:34.008Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}
+2026-07-25T02:25:05.386Z [warn] runtime.daemon.quit_request_vetoed {"pid":94460,"hint":"use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon"}
+2026-07-25T02:25:55.200Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":94611}
+2026-07-25T02:25:55.212Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}

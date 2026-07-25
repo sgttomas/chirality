@@ -1,0 +1,13 @@
+{
+  "drill": "CLEANUP", "verdict": "VERIFIED",
+  "steps": [
+    {"step": "bootout test label", "result": "rc=0; launchctl print -> Could not find service ... in domain for user gui: 501"},
+    {"step": "test daemon process", "result": "dead (bootout + 5s SIGKILL escalation); no shutdown log line, consistent with V5/V6 findings"},
+    {"step": "kill test GUI", "result": "SIGTERM pid 93675; pgrep -fl Chirality -> (none)"},
+    {"step": "rm test plist", "result": "$TESTHOME/Library/LaunchAgents emptied"},
+    {"step": "rm -rf temp root", "result": "3.4M removed; /Users/ryan/.chirality-tranchetest-v absent"},
+    {"step": "restore ~/.local/bin perms", "result": "0755 (as baseline)"}
+  ],
+  "owner_state_diff": "owner-state-before.txt vs owner-state-after.txt differ ONLY in the header/capture-timestamp lines. Every substantive line identical: owner plist sha256+mtime+size, ~/.local/bin/chirality sha256+mtime+size, ~/Library/Application Support/chirality-frontend recursive mtimes, ~/Library/LaunchAgents listing (one file, mtime Jul 24 18:30), launchctl runs=4 / last exit code=0 / state=not running, ~/.local/bin perms.",
+  "evidence_preserved": ["cleanup/desktop-main.log.final", "cleanup/desktop-daemon.log.final", "cleanup/daemon.stdout.log", "cleanup/daemon.stderr.log", "v9/session.json", "v9/events.jsonl"]
+}

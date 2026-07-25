@@ -1,0 +1,14 @@
+2026-07-25T03:19:20.020Z [info] desktop.gui.starting {"packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-a1r2/userdata","socketPath":"/Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock"}
+2026-07-25T03:19:20.020Z [info] desktop.cli_launcher.install {"status":"skipped","path":"/Users/ryan/.chirality-tranchetest-a1r2/home/.local/bin/chirality","reason":"opted-out"}
+2026-07-25T03:19:20.021Z [info] runtime.connectivity.supervisor_started
+2026-07-25T03:19:20.030Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock","changedAt":"2026-07-25T03:19:20.030Z"}
+2026-07-25T03:19:20.030Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock"}
+2026-07-25T03:19:21.033Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock"}
+2026-07-25T03:19:23.046Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":3,"lastError":"Unknown project: chirality-app-dev","changedAt":"2026-07-25T03:19:23.046Z"}
+2026-07-25T03:19:23.047Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"Unknown project: chirality-app-dev"}
+2026-07-25T03:19:28.052Z [error] runtime.connectivity.bind_failed {"attempt":4,"reason":"Unknown project: chirality-app-dev"}
+2026-07-25T03:19:38.058Z [error] runtime.connectivity.bind_failed {"attempt":5,"reason":"Unknown project: chirality-app-dev"}
+2026-07-25T03:19:48.063Z [error] runtime.connectivity.bind_failed {"attempt":6,"reason":"Unknown project: chirality-app-dev"}
+2026-07-25T03:19:58.071Z [error] runtime.connectivity.bind_failed {"attempt":7,"reason":"Unknown project: chirality-app-dev"}
+2026-07-25T03:19:59.308Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":6719}
+2026-07-25T03:19:59.309Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}

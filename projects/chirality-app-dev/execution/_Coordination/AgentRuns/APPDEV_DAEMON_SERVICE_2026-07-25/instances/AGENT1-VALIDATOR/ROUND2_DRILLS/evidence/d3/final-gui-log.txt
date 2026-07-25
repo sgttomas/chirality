@@ -1,0 +1,5 @@
+2026-07-25T03:19:20.030Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock"}
+2026-07-25T03:19:21.033Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock"}
+2026-07-25T03:19:23.046Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":3,"lastError":"Unknown project: chirality-app-dev","changedAt":"2026-07-25T03:19:23.046Z"}
+2026-07-25T03:19:23.047Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"Unknown project: chirality-app-dev"}
+2026-07-25T03:19:28.052Z [error] runtime.connectivity.bind_failed {"attempt":4,"reason":"Unknown project: chirality-app-dev"}

@@ -1,0 +1,19 @@
+{
+  "drill": "V2", "name": "safeStorage round-trip in daemon mode", "verdict": "PASS",
+  "activation_policy_used": "prohibited", "accessory_fallback_needed": false,
+  "route": "daemon control API /v1/credentials/anthropic over the isolated UDS -> SafeStorageCredentialStore -> Electron safeStorage",
+  "sequence": [
+    {"step": "status before", "result": {"configured": false}},
+    {"step": "store dummy (encryptString + write)", "result": {"configured": true}},
+    {"step": "status after (readFile + decryptString)", "result": {"configured": true}}
+  ],
+  "blob": {"path": "/Users/ryan/.chirality-tranchetest-v/userdata/credentials/api-key.enc", "bytes": 67, "prefix_hex": "763130", "prefix_ascii": "v10", "plaintext_len": 60, "plaintext_present_in_blob": false},
+  "negative_controls": [
+    {"mutation": "flip byte at offset 40 (mid ciphertext block)", "configured": true, "interpretation": "AES-CBC unauthenticated; padding survived so decryptString returned a garbled non-empty string. Inconclusive by itself."},
+    {"mutation": "flip byte at offset 60 (last ciphertext block)", "configured": false, "interpretation": "PKCS padding invalid -> decryptString threw -> configured false"},
+    {"mutation": "replace ciphertext with 64 random bytes after v10", "configured": false},
+    {"mutation": "restore original blob", "configured": true}
+  ],
+  "verdict_basis": "launchd job environment is PATH + CHIRALITY_USER_DATA only (launchctl print), so no env credential can produce configured:true; configured flips false when the ciphertext is undecryptable and true when it is restored => encryptString and decryptString both function in a 'prohibited' activation-policy Electron daemon. No Keychain prompt appeared and no call blocked.",
+  "escalation_trigger_gate2": "NOT triggered"
+}

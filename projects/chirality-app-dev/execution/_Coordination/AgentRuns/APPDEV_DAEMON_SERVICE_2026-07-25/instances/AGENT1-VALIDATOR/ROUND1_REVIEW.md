@@ -402,3 +402,51 @@ uncommitted**, for Stage V.
 gate failure) was encountered. The premerge skip is a documented,
 precedented, in-latitude action recorded as a residual rather than a satisfied
 gate; the single defect found (D-1) was a bounded one-line remedy.
+
+---
+
+## APPENDED CORRECTION — 2026-07-25, after Stage V
+
+**Round 1 is not rewritten. This note corrects it.**
+
+**§3 "Quit-veto behaviour review — APPROVED" was wrong, and its reasoning was
+wrong in a way that mattered.** Stage V falsified it empirically
+(`../V-PACKAGED-DRILLS/RETURN.md` V-D1, `evidence/v6/`). The verdict rested on
+four "independent launchd control paths"; paths 1 and 3 do not exist:
+
+- **Path 1 was wrong.** I wrote that `bootout` delivers SIGTERM, that
+  `process.once('SIGTERM')` sets `shutdownAuthorized` and calls `shutdown()`, and
+  that `app.exit()` makes the veto structurally unreachable. **The JS SIGTERM
+  handler never runs in the packaged Electron main process.** Chromium's own
+  native handler intercepts the signal first and calls `app.quit()`, which reaches
+  `before-quit` — the veto — and was refused. `shutdownAuthorized` was never set
+  and `shutdown()` was never called. Measured: a single SIGTERM left the daemon
+  alive after 30.022 s.
+- **Path 3 was wrong.** "A second SIGTERM restores Node's default disposition" was
+  reasoning about a Node listener that was never installed in the first place. The
+  second SIGTERM did kill the process, but by the native handler's one-shot
+  behaviour and *without* any graceful shutdown.
+- **Paths 2 and 4 held** (SIGKILL, and `bootout`'s SIGKILL escalation), which is
+  why the conclusion "nothing is brickable" survived. That conclusion was right
+  for the wrong reasons, and it was the wrong question.
+- **What I missed by asking only "can it be bricked?":** `runtimeHost.stop()` ran
+  on **no exit path in the entire drill set**. Every stop was a forced kill,
+  `control.sock` was left stale after every death, and `bootout` took 5.083 s. My
+  R-2 residual anticipated the 5 s case as a curiosity ("worth Stage V observing")
+  rather than recognising it as the normal stop path. The veto's own hint text —
+  which I read and did not question — told operators to use SIGTERM, which did
+  not work.
+
+**Method lesson, recorded deliberately.** The §3 verdict was reasoned from source
+plus Electron documentation and presented with more confidence than desk analysis
+can carry for signal delivery inside a packaged Chromium process. Round 2 replaced
+that with measurement: every claim below is a timing or a log line from the
+packaged app.
+
+**Disposition.** Agent 0 directed the veto dropped entirely (not narrowed). Done,
+with real graceful shutdown in its place. See `ROUND2_REVIEW.md`.
+
+Two round-1 statements that **stand** as written: the `!/build/` ratification
+(§2a), and the A6 ordering verification (§2b) — Stage V's V0 drill confirmed the
+packaged app honours an absolute `CHIRALITY_USER_DATA` and that the launcher bakes
+the post-override path.

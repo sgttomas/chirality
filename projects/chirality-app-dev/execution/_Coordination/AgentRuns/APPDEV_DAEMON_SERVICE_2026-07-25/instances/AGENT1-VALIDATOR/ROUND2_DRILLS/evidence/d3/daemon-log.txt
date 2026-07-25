@@ -1,0 +1,2 @@
+2026-07-25T03:00:45.938Z [warn] runtime.daemon.activate_received {"pid":1553}
+2026-07-25T03:00:45.940Z [info] runtime.daemon.gui_spawned {"pid":1588}

@@ -1,0 +1,53 @@
+2026-07-25T02:12:16.705Z [info] desktop.gui.starting {"packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:12:16.713Z [error] desktop.cli_launcher.install_failed {"error":"EACCES: permission denied, open '/Users/ryan/.local/bin/.chirality.92162.mrzqhio8.tmp'"}
+2026-07-25T02:12:16.713Z [info] runtime.connectivity.supervisor_started
+2026-07-25T02:12:16.714Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'","changedAt":"2026-07-25T02:12:16.714Z"}
+2026-07-25T02:12:16.714Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:12:17.717Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:12:19.718Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:12:24.721Z [error] runtime.connectivity.bind_failed {"attempt":4,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:12:34.723Z [error] runtime.connectivity.bind_failed {"attempt":5,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:12:44.725Z [error] runtime.connectivity.bind_failed {"attempt":6,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:12:54.727Z [error] runtime.connectivity.bind_failed {"attempt":7,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:13:04.729Z [error] runtime.connectivity.bind_failed {"attempt":8,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:13:14.731Z [error] runtime.connectivity.bind_failed {"attempt":9,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:13:24.733Z [error] runtime.connectivity.bind_failed {"attempt":10,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:13:34.735Z [error] runtime.connectivity.bind_failed {"attempt":11,"reason":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'"}
+2026-07-25T02:13:43.626Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":92162}
+2026-07-25T02:13:43.627Z [info] desktop.shutdown.exiting {"reason":"before-quit","exitCode":0}
+2026-07-25T02:17:17.724Z [info] desktop.gui.starting {"packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:17:17.732Z [info] runtime.connectivity.supervisor_started
+2026-07-25T02:17:17.742Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-07-25T02:17:17.742Z"}
+2026-07-25T02:17:17.742Z [info] runtime.connectivity.bound {"priorFailedAttempts":0}
+2026-07-25T02:19:08.623Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":92841}
+2026-07-25T02:19:08.624Z [info] desktop.shutdown.exiting {"reason":"before-quit","exitCode":0}
+2026-07-25T02:20:09.543Z [info] desktop.gui.starting {"packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:20:09.560Z [info] runtime.connectivity.supervisor_started
+2026-07-25T02:20:09.573Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-07-25T02:20:09.573Z"}
+2026-07-25T02:20:09.573Z [info] runtime.connectivity.bound {"priorFailedAttempts":0}
+2026-07-25T02:20:49.908Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":0,"lastError":"Runtime daemon stopped responding","changedAt":"2026-07-25T02:20:49.908Z"}
+2026-07-25T02:20:49.909Z [warn] runtime.connectivity.lost
+2026-07-25T02:20:49.910Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","changedAt":"2026-07-25T02:20:49.910Z"}
+2026-07-25T02:20:49.911Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:20:50.914Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:20:52.917Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:20:57.921Z [error] runtime.connectivity.bind_failed {"attempt":4,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:21:07.924Z [error] runtime.connectivity.bind_failed {"attempt":5,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:21:17.927Z [error] runtime.connectivity.bind_failed {"attempt":6,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:21:27.931Z [error] runtime.connectivity.bind_failed {"attempt":7,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:21:37.934Z [error] runtime.connectivity.bind_failed {"attempt":8,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:21:47.936Z [error] runtime.connectivity.bind_failed {"attempt":9,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:21:57.938Z [error] runtime.connectivity.bind_failed {"attempt":10,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:22:07.949Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-07-25T02:22:07.949Z"}
+2026-07-25T02:22:07.950Z [info] runtime.connectivity.bound {"priorFailedAttempts":10}
+2026-07-25T02:25:18.046Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":0,"lastError":"Runtime daemon stopped responding","changedAt":"2026-07-25T02:25:18.046Z"}
+2026-07-25T02:25:18.046Z [warn] runtime.connectivity.lost
+2026-07-25T02:25:18.047Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","changedAt":"2026-07-25T02:25:18.047Z"}
+2026-07-25T02:25:18.048Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:19.051Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:21.054Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:26.057Z [error] runtime.connectivity.bind_failed {"attempt":4,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:36.060Z [error] runtime.connectivity.bind_failed {"attempt":5,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:46.064Z [error] runtime.connectivity.bind_failed {"attempt":6,"reason":"Unable to reach the Chirality runtime at /Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+2026-07-25T02:25:56.081Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-07-25T02:25:56.081Z"}
+2026-07-25T02:25:56.081Z [info] runtime.connectivity.bound {"priorFailedAttempts":6}

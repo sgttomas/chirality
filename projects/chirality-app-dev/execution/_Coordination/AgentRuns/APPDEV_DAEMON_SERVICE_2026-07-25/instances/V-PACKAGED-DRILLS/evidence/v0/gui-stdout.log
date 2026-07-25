@@ -1,0 +1,5 @@
+[chirality-desktop] 2026-07-25T02:12:16.705Z [info] desktop.gui.starting {"packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+[chirality-desktop] 2026-07-25T02:12:16.713Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-07-25T02:12:16.714Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"ENOENT: no such file or directory, lstat '/Users/ryan/.chirality-tranchetest-v/userdata/runtime/auth/tokens/operator.token'","changedAt":"2026-07-25T02:12:16.714Z"}
+[chirality-desktop] 2026-07-25T02:13:43.626Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":92162}
+[chirality-desktop] 2026-07-25T02:13:43.627Z [info] desktop.shutdown.exiting {"reason":"before-quit","exitCode":0}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "chirality.session/v2",
+  "projectId": "chirality-app-dev",
+  "projectRoot": "/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev",
+  "sessionId": "fd7499d0-f214-4606-88c7-c592cce47194",
+  "createdAt": "2026-07-25T02:33:11.116Z",
+  "updatedAt": "2026-07-25T02:34:08.968Z",
+  "persona": "WORKING_ITEMS",
+  "mode": "plan",
+  "agentType": 1,
+  "role": "agent1",
+  "engineSelection": {
+    "adapterId": "stub",
+    "providerId": "stub",
+    "model": "haiku"
+  },
+  "status": "completed",
+  "engineSessionId": "stub_1891f6d2-864b-403f-8aa0-704594da26d8",
+  "adapterSession": {
+    "engineSessionId": "stub_1891f6d2-864b-403f-8aa0-704594da26d8"
+  }
+}

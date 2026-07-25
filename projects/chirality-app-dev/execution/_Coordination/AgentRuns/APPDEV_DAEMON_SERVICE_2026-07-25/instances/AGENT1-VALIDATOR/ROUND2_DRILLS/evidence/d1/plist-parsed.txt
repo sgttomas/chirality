@@ -1,0 +1,17 @@
+{
+  "EnvironmentVariables" => {
+    "CHIRALITY_SKIP_CLI_LAUNCHER" => "1"
+    "CHIRALITY_USER_DATA" => "/Users/ryan/.chirality-tranchetest-a1r2/userdata"
+    "HOME" => "/Users/ryan/.chirality-tranchetest-a1r2/home"
+  }
+  "KeepAlive" => true
+  "Label" => "com.chirality.runtime.tranchetest.a1r2"
+  "ProgramArguments" => [
+    0 => "/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+    1 => "--runtime-daemon"
+  ]
+  "RunAtLoad" => true
+  "StandardErrorPath" => "/Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/logs/daemon.stderr.log"
+  "StandardOutPath" => "/Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/logs/daemon.stdout.log"
+  "ThrottleInterval" => 10
+}

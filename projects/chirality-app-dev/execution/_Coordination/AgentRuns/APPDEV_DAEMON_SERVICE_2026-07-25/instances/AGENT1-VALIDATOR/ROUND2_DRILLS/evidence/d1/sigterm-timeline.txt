@@ -1,0 +1,3 @@
++  0.000s SIGTERM sent to pid 1266
++  0.028s process 1266 EXITED after ONE SIGTERM
++  0.028s control.sock removed (graceful runtimeHost.stop)

@@ -1,0 +1,70 @@
+{
+  "launchAgent": {
+    "installed": true,
+    "loaded": true,
+    "detail": "gui/501/com.chirality.runtime.tranchetest.a1r2 = {\n\tactive count = 5\n\tpath = /Users/ryan/.chirality-tranchetest-a1r2/home/Library/LaunchAgents/com.chirality.runtime.tranchetest.a1r2.plist\n\ttype = LaunchAgent\n\tstate = running\n\n\tprogram = /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality\n\targuments = {\n\t\t/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality\n\t\t--runtime-daemon\n\t}\n\n\tstdout path = /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/logs/daemon.stdout.log\n\tstderr path = /Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/logs/daemon.stderr.log\n\tinherited environment = {\n\t\tSSH_AUTH_SOCK => /var/run/com.apple.launchd.QN1Y7JIPlP/Listeners\n\t}\n\n\tdefault environment = {\n\t\tPATH => /usr/bin:/bin:/usr/sbin:/sbin\n\t}\n\n\tenvironment = {\n\t\tOSLogRateLimit => 64\n\t\tCHIRALITY_SKIP_CLI_LAUNCHER => 1\n\t\tCHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL => com.chirality.runtime.tranchetest.a1r2\n\t\tCHIRALITY_USER_DATA => /Users/ryan/.chirality-tranchetest-a1r2/userdata\n\t\tHOME => /Users/ryan/.chirality-tranchetest-a1r2/home\n\t\tCHIRALITY_RUNTIME_KEEP_ALIVE => always\n\t\tXPC_SERVICE_NAME => com.chirality.runtime.tranchetest.a1r2\n\t}\n\n\tdomain = gui/501 [100016]\n\tasid = 100016\n\tminimum runtime = 10\n\texit timeout = 5\n\truns = 1\n\tpid = 2928\n\timmediate reason = speculative\n\tforks = 2\n\texecs = 1\n\tinitialized = 1\n\ttrampolined = 1\n\tstarted suspended = 0\n\tproxy started suspended = 0\n\tchecked allocations = 0 (queried = 1)\n\tchecked allocations reason = no host\n\tchecked allocations flags = 0x0\n\tlast exit code = (never exited)\n\n\tdynamic endpoints = {\n\t\t\"com.chirality.app.MachPortRendezvousServer.2928\" = {\n\t\t\tport = 0xb0d7b\n\t\t\tactive = 1\n\t\t\tmanaged = 0\n\t\t\treset = 0\n\t\t\thide = 0\n\t\t\twatching = 0\n\t\t}\n\t}\n\n\tpid-local endpoints = {\n\t\t\"com.apple.tsm.portname\" = {\n\t\t\tport = 0x17efe7\n\t\t\tactive = 1\n\t\t\tmanaged = 0\n\t\t\treset = 0\n\t\t\thide = 0\n\t\t\twatching = 0\n\t\t}\n\t\t\"com.apple.axserver\" = {\n\t\t\tport = 0x12fb53\n\t\t\tactive = 1\n\t\t\tmanaged = 0\n\t\t\treset = 0\n\t\t\thide = 0\n\t\t\twatching = 0\n\t\t}\n\t}\n\n\tevent channels = {\n\t\t\"com.apple.locationd-events\" = {\n\t\t\tport = 0x14281b\n\t\t\tactive = 1\n\t\t\tmanaged = 1\n\t\t\treset = 0\n\t\t\thide = 0\n\t\t\twatching = 0\n\t\t}\n\t}\n\n\tresource coalition = {\n\t\tID = 34125\n\t\ttype = resource\n\t\tstate = active\n\t\tactive count = 1\n\t\tname = com.chirality.runtime.tranchetest.a1r2\n\t}\n\n\tjetsam coalition = {\n\t\tID = 34126\n\t\ttype = jetsam\n\t\tstate = active\n\t\tactive count = 1\n\t\tname = com.chirality.runtime.tranchetest.a1r2\n\t}\n\n\tspawn type = daemon (3)\n\tjetsam priority = 40\n\tjetsam memory limit (active) = (unlimited)\n\tjetsam memory limit (inactive) = (unlimited)\n\tjetsamproperties category = daemon\n\tjetsam thread limit = 32\n\tcpumon = default\n\tjob state = running\n\n\tproperties = keepalive | runatload | inferred program\n}"
+  },
+  "daemon": {
+    "apiVersion": "v1",
+    "status": "ok",
+    "daemonId": "5375f091-d240-4eb4-97e5-f3698d29f687",
+    "pid": 2928,
+    "startedAt": "2026-07-25T03:09:15.639Z",
+    "socketPath": "/Users/ryan/.chirality-tranchetest-a1r2/userdata/runtime/control.sock",
+    "engines": [
+      {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "capabilities": {
+          "credentials": false,
+          "tools": false,
+          "attachments": true,
+          "interruption": true,
+          "durableResume": false,
+          "compaction": false
+        }
+      },
+      {
+        "adapterId": "anthropic-direct",
+        "providerId": "anthropic",
+        "packageName": "@anthropic-ai/sdk",
+        "capabilities": {
+          "credentials": true,
+          "tools": false,
+          "attachments": true,
+          "interruption": true,
+          "durableResume": true,
+          "compaction": false
+        }
+      },
+      {
+        "adapterId": "claude-agent-sdk",
+        "providerId": "anthropic",
+        "packageName": "@anthropic-ai/claude-agent-sdk",
+        "packageVersion": "0.3.150",
+        "capabilities": {
+          "credentials": true,
+          "tools": true,
+          "attachments": true,
+          "interruption": true,
+          "durableResume": true,
+          "compaction": true
+        }
+      },
+      {
+        "adapterId": "pi",
+        "providerId": "omlx",
+        "packageName": "@earendil-works/pi-coding-agent",
+        "packageVersion": "0.82.0",
+        "capabilities": {
+          "credentials": true,
+          "tools": true,
+          "attachments": false,
+          "interruption": true,
+          "durableResume": false,
+          "compaction": true
+        }
+      }
+    ]
+  }
+}

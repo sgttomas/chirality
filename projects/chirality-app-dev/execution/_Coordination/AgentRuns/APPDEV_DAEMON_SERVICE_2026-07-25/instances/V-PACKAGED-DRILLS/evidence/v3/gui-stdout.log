@@ -1,0 +1,6 @@
+[chirality-desktop] 2026-07-25T02:17:17.724Z [info] desktop.gui.starting {"packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock"}
+[chirality-desktop] 2026-07-25T02:17:17.732Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-07-25T02:17:17.742Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-07-25T02:17:17.742Z"}
+[chirality-desktop] 2026-07-25T02:17:17.742Z [info] runtime.connectivity.bound {"priorFailedAttempts":0}
+[chirality-desktop] 2026-07-25T02:19:08.623Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":92841}
+[chirality-desktop] 2026-07-25T02:19:08.624Z [info] desktop.shutdown.exiting {"reason":"before-quit","exitCode":0}

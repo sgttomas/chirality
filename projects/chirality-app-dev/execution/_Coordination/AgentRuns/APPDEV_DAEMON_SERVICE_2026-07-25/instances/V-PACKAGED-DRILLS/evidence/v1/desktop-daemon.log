@@ -1,0 +1,2 @@
+2026-07-25T02:15:00.524Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/Users/ryan/.chirality-tranchetest-v/userdata","pid":92414}
+2026-07-25T02:15:00.538Z [info] runtime.daemon.started {"socketPath":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime/control.sock","runtimeDirectory":"/Users/ryan/.chirality-tranchetest-v/userdata/runtime"}

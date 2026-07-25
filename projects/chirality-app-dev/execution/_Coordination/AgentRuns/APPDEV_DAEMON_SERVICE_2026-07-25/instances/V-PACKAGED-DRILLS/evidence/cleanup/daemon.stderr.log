@@ -1,0 +1,7 @@
+[chirality-desktop] 2026-07-25T02:19:23.322Z [warn] runtime.daemon.activate_received {"pid":92414}
+[chirality-desktop] 2026-07-25T02:19:51.170Z [warn] runtime.daemon.activate_received {"pid":92414}
+[chirality-desktop] 2026-07-25T02:19:54.226Z [warn] runtime.daemon.activate_received {"pid":92414}
+[chirality-desktop] 2026-07-25T02:20:39.688Z [warn] runtime.daemon.quit_request_vetoed {"pid":92414,"hint":"use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon"}
+[chirality-desktop] 2026-07-25T02:23:29.125Z [warn] runtime.daemon.quit_request_vetoed {"pid":94247,"hint":"use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon"}
+[chirality-desktop] 2026-07-25T02:23:45.480Z [warn] runtime.daemon.quit_request_vetoed {"pid":94247,"hint":"use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon"}
+[chirality-desktop] 2026-07-25T02:25:05.386Z [warn] runtime.daemon.quit_request_vetoed {"pid":94460,"hint":"use launchctl bootout/kickstart, or SIGTERM, to stop the runtime daemon"}
