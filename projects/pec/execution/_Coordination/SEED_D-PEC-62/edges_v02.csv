@@ -1,0 +1,121 @@
+EdgeID,PredecessorID,SuccessorID,Stratum,EdgeKind,Flag,BasisCitation,Rationale
+E-A01,DEL-00-02,DEL-07-01,DECLARED,CONSUMES,,"Deliverables.csv DEL-00-02: ""Published one phase ahead of its P3 consumers (DEL-07-01/-03) per the PKG-00 publish/consume mechanic""",Named consumer of the event-contract schema
+E-A02,DEL-00-02,DEL-07-03,DECLARED,CONSUMES,,"Deliverables.csv DEL-00-02: ""Published one phase ahead of its P3 consumers (DEL-07-01/-03)""",Named consumer of the event-contract schema
+E-A03,DEL-00-02,DEL-07-02,DERIVED,CONSUMES,,"SOFTWARE_DECOMP.md §4 PKG-07: bridges ""implementing the PKG-00 event contracts""; DEL-00-02 description: ""consumable by daemon, hooks CLI, and adapters""",PKG-00's event contract resolves uniquely to DEL-00-02; daemon SSE bridge implements it
+E-A04,DEL-00-02,DEL-07-04,DERIVED,CONSUMES,,"SOFTWARE_DECOMP.md §4 PKG-07: bridges ""implementing the PKG-00 event contracts""; DEL-00-02: ""consumable by daemon, hooks CLI, and adapters""",cmux adapter implements the same contract
+E-A06,DEL-09-06,DEL-09-01,DERIVED,CONSUMES,,"Deliverables.csv DEL-09-06: ""built and sequenced first, consumed by the other six views as a declared dependency (DL-12 publish/consume mechanics, package-internal; DL-14)""",Shared drill-down component
+E-A07,DEL-09-06,DEL-09-02,DERIVED,CONSUMES,,Deliverables.csv DEL-09-06 (as E-A06),Shared drill-down component
+E-A08,DEL-09-06,DEL-09-03,DERIVED,CONSUMES,,Deliverables.csv DEL-09-06 (as E-A06),Shared drill-down component
+E-A09,DEL-09-06,DEL-09-04,DERIVED,CONSUMES,,Deliverables.csv DEL-09-06 (as E-A06),Shared drill-down component
+E-A10,DEL-09-06,DEL-09-05,DERIVED,CONSUMES,,Deliverables.csv DEL-09-06 (as E-A06),Shared drill-down component
+E-A11,DEL-09-06,DEL-09-07,PROPOSAL,CONSUMES,AMBIGUOUS_BASIS,"Deliverables.csv DEL-09-06 (as E-A06): the text says ""six views""; DEL-09-07 is the sixth non-DEL-09-06 PKG-09 deliverable although DL-14 retyped it non-UI",Literal resolution of 'the other six views'; refuters recommend dropping; owner ruling requested
+E-A12,DEL-09-07,DEL-09-01,DECLARED,CONSUMES,,"Deliverables.csv DEL-09-07: ""rendered by the DEL-09-01..05 views""",Views render the documented pressure rules; rules precede their renderers
+E-A13,DEL-09-07,DEL-09-02,DECLARED,CONSUMES,,Deliverables.csv DEL-09-07 (as E-A12),Views render the pressure rules
+E-A14,DEL-09-07,DEL-09-03,DECLARED,CONSUMES,,Deliverables.csv DEL-09-07 (as E-A12),Views render the pressure rules
+E-A15,DEL-09-07,DEL-09-04,DECLARED,CONSUMES,,Deliverables.csv DEL-09-07 (as E-A12),Views render the pressure rules
+E-A16,DEL-09-07,DEL-09-05,DECLARED,CONSUMES,,Deliverables.csv DEL-09-07 (as E-A12),Views render the pressure rules
+E-A17,DEL-05-02,DEL-09-04,DECLARED,CONSUMES,,"Deliverables.csv DEL-09-04: ""Rendering of the PKG-05 slate""; ScopeLedger SOW-048 note: ""Renders SOW-024""",SOW-024 is covered by DEL-05-02
+E-A18,DEL-03-04,DEL-10-11,DECLARED,MEASURES,,"Deliverables.csv DEL-10-11: ""sourced from DEL-03-04's output""; SOW-093 note: ""Measures the output of SOW-020 (DL-14)""",Parity metric reports DEL-03-04's DriftFindings
+E-A20,DEL-03-05,DEL-10-08,DECLARED,TESTS,,"Deliverables.csv DEL-03-05: ""the P4 exit demonstration is DEL-10-08""; SOW-063 note: ""Tests SOW-038""",Exit demonstration of the recovery guarantee
+E-A21,DEL-04-03,DEL-10-04,DECLARED,MEASURES,,"SOW-059 note: ""Method + any needed instrumentation; measures SOW-007""",SOW-007 is covered by DEL-04-03
+E-A22,DEL-04-01,DEL-10-12,DECLARED,MEASURES,,"SOW-060 note: ""Measures uptake of SOW-004; arms limb 1 of the falsification clause""",SOW-004 is covered by DEL-04-01
+E-A23,DEL-06-06,DEL-10-06,DECLARED,TESTS,,"SOW-061 note: ""Tests SOW-031""",SOW-031 is covered by DEL-06-06
+E-A24,DEL-06-05,DEL-10-07,DECLARED,TESTS,,"SOW-062 note: ""Tests SOW-030""",SOW-030 is covered by DEL-06-05
+E-A25,DEL-06-06,DEL-10-09,DECLARED,MEASURES,,"SOW-084 note: ""Measures effectiveness of SOW-031""",SOW-031 is covered by DEL-06-06
+E-A26,DEL-01-04,DEL-10-05,DECLARED,CONSUMES,,"SOW-085 note: ""grounded in SOW-057 self-observability""",SOW-057 is covered by DEL-01-04
+E-A27,DEL-10-01,DEL-04-01,DECLARED,SEQUENCING,,"SOW-058: ""Measure the Step-0 cost baseline ... before P1 begins""; note: ""baselines SOW-004/041""",Declared pre-P1 sequencing against SOW-004
+E-A28,DEL-10-01,DEL-08-04,DECLARED,SEQUENCING,,"SOW-058 note: ""baselines SOW-004/041""",Declared pre-P1 sequencing against SOW-041
+E-P01,DEL-00-01,DEL-01-01,PROPOSAL,CONSUMES,,"OI-012: core-isolation style ""Decided in DEL-00-01's ADR""; ""the one seam to keep crisp is entity schema (core) vs store persistence (adapter) inside PKG-01""",The ADR ruling shapes the PKG-01 schema/persistence seam
+E-P03,DEL-01-01,DEL-02-01,PROPOSAL,CONSUMES,,"§3 mapping notes: ""parser items (SOW-011..017) underlie OBJ-001/OBJ-002 through the record tier (SOW-001)""",Parser emits record-tier entities defined by the entity model
+E-P04,DEL-01-01,DEL-02-02,PROPOSAL,CONSUMES,,§3 mapping notes (as E-P03),Parser emits DecisionRow entities
+E-P05,DEL-01-01,DEL-02-03,PROPOSAL,CONSUMES,,§3 mapping notes (as E-P03),Parser emits Receipt entities
+E-P06,DEL-01-01,DEL-02-04,PROPOSAL,CONSUMES,,§3 mapping notes (as E-P03),Parser emits RunRecord entities
+E-P07,DEL-01-01,DEL-02-05,PROPOSAL,CONSUMES,,§3 mapping notes (as E-P03),Parser emits DependencyEdge entities
+E-P08,DEL-01-01,DEL-02-06,PROPOSAL,CONSUMES,,§3 mapping notes (as E-P03),Parser emits Workplan/Step/Gate entities
+E-P10,DEL-01-01,DEL-03-01,PROPOSAL,CONSUMES,,"DEL-01-01 envelope note: ""the schema every derivation package depends on"" (package-level accepted; deliverable pairing proposed — constraint C-03)",Reconciler entry point of PKG-03
+E-P11,DEL-01-01,DEL-04-01,PROPOSAL,CONSUMES,,DEL-01-01 envelope note (as E-P10),Orientation derivation entry point of PKG-04
+E-P12,DEL-01-01,DEL-05-01,PROPOSAL,CONSUMES,,DEL-01-01 envelope note (as E-P10),Gate-evaluation derivation entry point of PKG-05
+E-P13,DEL-01-01,DEL-05-02,PROPOSAL,CONSUMES,,DEL-01-01 envelope note (as E-P10),Slate derivation in PKG-05
+E-P14,DEL-01-01,DEL-07-05,PROPOSAL,CONSUMES,,"SOW-087: ""Reimplement the shared-runtime client seam concept against v2 entities""",The v2 entities are DEL-01-01's model
+E-P15,DEL-01-03,DEL-03-01,PROPOSAL,CONSUMES,,,Reconciler writes are restricted to the store; store lifecycle must exist
+E-P16,DEL-01-03,DEL-07-01,PROPOSAL,CONSUMES,,,Durable message store lives in the gitignored store
+E-P17,DEL-01-03,DEL-01-02,PROPOSAL,CONSUMES,,,Presence-tier schema is hosted by the same store lifecycle
+E-P18,DEL-01-06,DEL-03-01,PROPOSAL,CONSUMES,,"SOW-094: configuration ""naming the loops PEC serves""",Reconciler needs the loop registry
+E-P19,DEL-02-01,DEL-03-01,PROPOSAL,CONSUMES,,PEC-RCN-002 feed list (DL-4),Full rebuild ingests the _STATUS.md feed
+E-P20,DEL-02-02,DEL-03-01,PROPOSAL,CONSUMES,,PEC-RCN-002 feed list (DL-4),Full rebuild ingests decision registers/packets
+E-P21,DEL-02-03,DEL-03-01,PROPOSAL,CONSUMES,,PEC-RCN-002 feed list (DL-4),Full rebuild ingests receipts ledgers
+E-P22,DEL-02-04,DEL-03-01,PROPOSAL,CONSUMES,,PEC-RCN-002 feed list (DL-4),Full rebuild ingests run-evidence JSON
+E-P23,DEL-02-05,DEL-03-01,PROPOSAL,CONSUMES,,PEC-RCN-002 feed list (DL-4),Full rebuild ingests dependency registers
+E-P24,DEL-02-06,DEL-03-01,PROPOSAL,CONSUMES,,PEC-RCN-002 feed list (DL-4),Full rebuild ingests workplans/LOOP_INIT
+E-P25,DEL-02-07,DEL-03-01,PROPOSAL,CONSUMES,,"SOW-017: adapter.yaml ""as the feed manifest""",Manifest drives which feeds are read per loop
+E-P26,DEL-03-01,DEL-03-02,PROPOSAL,CONSUMES,,,Incremental reconcile presupposes the full-rebuild path and examined-SHA baseline
+E-P27,DEL-03-01,DEL-03-03,PROPOSAL,CONSUMES,,,Drift classification compares successive reconcile snapshots
+E-P28,DEL-03-01,DEL-03-04,PROPOSAL,CONSUMES,,,Parity diff runs over PEC derivations produced by reconcile
+E-P29,DEL-03-01,DEL-03-05,PROPOSAL,CONSUMES,,,Recovery guarantee is reconciliation supremacy; needs the reconcile path
+E-P30,DEL-03-01,DEL-03-06,PROPOSAL,TESTS,,,Perf bounds test the full rebuild
+E-P31,DEL-03-02,DEL-03-06,PROPOSAL,TESTS,,,Perf bounds test incremental reconcile
+E-P32,DEL-03-01,DEL-04-01,PROPOSAL,CONSUMES,,,Orientation derives from a populated record tier
+E-P33,DEL-03-02,DEL-04-02,PROPOSAL,CONSUMES,,,Deltas since SHA ride the incremental examined-SHA machinery
+E-P34,DEL-04-01,DEL-04-03,PROPOSAL,CONSUMES,,,Citation/freshness stamping applies to orientation responses
+E-P35,DEL-04-01,DEL-04-04,PROPOSAL,CONSUMES,,,Scope parameterization parameterizes the orientation return
+E-P36,DEL-04-01,DEL-04-05,PROPOSAL,CONSUMES,,,Limitation honesty is a property of orientation responses
+E-P37,DEL-03-01,DEL-05-01,PROPOSAL,CONSUMES,,,Gate preconditions evaluate record-tier and Git facts
+E-P38,DEL-03-01,DEL-05-02,PROPOSAL,CONSUMES,,,Slate aggregates AWAITING_RULING rows from the record tier
+E-P39,DEL-01-02,DEL-06-01,PROPOSAL,CONSUMES,,,Presence writer needs the presence-tier schema
+E-P40,DEL-01-02,DEL-06-02,PROPOSAL,CONSUMES,,,Worktree scanner writes presence-tier entities
+E-P41,DEL-06-01,DEL-06-03,PROPOSAL,CONSUMES,,,Correlation joins session records
+E-P42,DEL-06-02,DEL-06-03,PROPOSAL,CONSUMES,,,Correlation joins worktree scan results
+E-P43,DEL-06-03,DEL-06-06,PROPOSAL,CONSUMES,,,Overlap detection consumes the session×worktree×scope join
+E-P44,DEL-06-01,DEL-06-05,PROPOSAL,CONSUMES,,,TTL/heartbeat machinery rides presence records
+E-P45,DEL-07-03,DEL-06-01,PROPOSAL,CONSUMES,,"SOW-036: hooks CLI carries ""session start/stop, status, scope declaration""",Session presence facts arrive via the hooks CLI bridge
+E-P46,DEL-07-02,DEL-06-04,DERIVED,CONSUMES,,"SOW-029: hierarchy edges ""from daemon and hook feeds""",Daemon feed input to hierarchy edges
+E-P47,DEL-07-03,DEL-06-04,DERIVED,CONSUMES,,SOW-029 (as E-P46),Hook feed input to hierarchy edges
+E-P48,DEL-07-01,DEL-07-02,PROPOSAL,CONSUMES,,,Bridge delivers into the ingest endpoint/message store
+E-P49,DEL-07-01,DEL-07-03,PROPOSAL,CONSUMES,,,Bridge delivers into the ingest endpoint/message store
+E-P50,DEL-07-01,DEL-07-04,PROPOSAL,CONSUMES,,,Adapter delivers into the ingest endpoint/message store
+E-P51,DEL-04-01,DEL-08-04,PROPOSAL,TESTS,,,Latency budget tests orientation reads
+E-P52,DEL-08-01,DEL-08-04,PROPOSAL,TESTS,,,Latency measured through the API surface
+E-P53,DEL-04-03,DEL-08-03,PROPOSAL,CONSUMES,,,Response format carries citations produced by the citation layer
+E-P54,DEL-08-01,DEL-10-03,PROPOSAL,TESTS,,"SOW-025: ""a tested property of the API surface""",The API surface under negative test is DEL-08-01's server
+E-P55,DEL-08-02,DEL-10-03,PROPOSAL,TESTS,,SOW-025 (as E-P54),The schema defines the surface under negative test
+E-P56,DEL-04-02,DEL-08-05,PROPOSAL,CONSUMES,,"SOW-044: ""SSE subscription for deltas and presence changes""",Delta stream source
+E-P57,DEL-06-01,DEL-08-05,PROPOSAL,CONSUMES,,SOW-044 (as E-P56),Presence-change stream source
+E-P58,DEL-08-01,DEL-08-05,PROPOSAL,CONSUMES,,,SSE endpoint rides the socket server
+E-P59,DEL-04-01,DEL-09-01,DERIVED,CONSUMES,,"SOW-045: ""Dashboard — Overview: the orientation return per loop""",'The orientation return' is DEL-04-01's serve (Vocabulary Map)
+E-P60,DEL-05-01,DEL-09-01,PROPOSAL,CONSUMES,,"SOW-045: overview shows ""gates that matter""",Gate states from the Explain-shaped evaluators
+E-P61,DEL-03-01,DEL-09-02,PROPOSAL,CONSUMES,,,Lifecycle census reads record-tier Package/Deliverable entities
+E-P62,DEL-01-06,DEL-09-02,PROPOSAL,CONSUMES,,"SOW-094 SourceRef ""§12 P2, PEC-DSH-002""; DEL-01-06: ""extended to all five registered loops at P2""",Census spans the registered loops
+E-P63,DEL-03-01,DEL-09-03,PROPOSAL,CONSUMES,,,Register views read record-tier registers
+E-P64,DEL-06-03,DEL-09-05,DERIVED,CONSUMES,,SOW-049: presence board renders sessions × worktrees × hierarchy,Correlation join feeds the board
+E-P65,DEL-06-05,DEL-09-05,DERIVED,CONSUMES,,"SOW-049: ""heartbeat age""",Heartbeat-age facts feed the board
+E-P66,DEL-06-06,DEL-09-05,DERIVED,CONSUMES,,"SOW-049: ""advisory overlap warnings""",Overlap warnings feed the board
+E-P67,DEL-03-03,DEL-09-07,DERIVED,CONSUMES,,"SOW-051: pressure rules include ""drift density""",Drift classification output feeds the rule
+E-P68,DEL-05-01,DEL-09-07,DERIVED,CONSUMES,,"SOW-051: pressure rules include ""gate-blocked""",Gate verdicts feed the rule
+E-P69,DEL-06-06,DEL-09-07,DERIVED,CONSUMES,PHASE_TENSION,"SOW-051: pressure rules include ""collision risk""",P3 producer for a P2 consumer; staged rule set vs soft edge — owner classification requested
+E-P70,DEL-04-03,DEL-09-06,PROPOSAL,CONSUMES,,"SOW-050: drill-down ""from every displayed value to its cited source""",Citation shapes resolved by drill-down are DEL-04-03's artifact
+E-P71,DEL-01-03,DEL-10-02,PROPOSAL,TESTS,,"SOW-055: ""delete the store""",Kill test exercises store safe-delete semantics
+E-P72,DEL-03-01,DEL-10-02,PROPOSAL,TESTS,,SOW-055 + PEC-K-02,Kill test proves rebuildability after deletion
+E-P73,DEL-02-05,DEL-10-10,PROPOSAL,CONSUMES,,"SOW-064: P1 ""ingests PEC v2's accepted full dependency DAG""; SOW-015: dependency registers into DependencyEdge",The DAG's file form is read by the dependency register parser
+E-P74,DEL-03-01,DEL-10-10,PROPOSAL,CONSUMES,,SOW-064 (as E-P73),Self-ingest runs through the reconciler
+E-P75,DEL-04-01,DEL-10-05,PROPOSAL,MEASURES,,"DEL-10-05: ""Orientation-read ... logging""",Orientation reads are a logged consultation surface
+E-P76,DEL-09-01,DEL-10-05,PROPOSAL,MEASURES,,"DEL-10-05: ""dashboard-consultation logging""",Dashboard consultation is the other logged surface
+E-P77,DEL-07-03,DEL-10-12,PROPOSAL,MEASURES,,"SOW-060: ""eligible session starts / mode transitions consuming orientation""",Poll instrumentation observes session starts via the hooks bridge
+E-P78,DEL-07-01,DEL-10-08,PROPOSAL,TESTS,,SOW-063: stream loss requires a live stream to lose,Demonstration needs live ingest to interrupt
+E-N01,DEL-00-02,DEL-07-05,DERIVED,CONSUMES,,"§4 PKG-07: ""...the shared-runtime client seam — implementing the PKG-00 event contracts""",R1-F4/R3-F5: em-dash clause covers the client seam
+E-N02,DEL-06-04,DEL-09-05,DERIVED,CONSUMES,PHASE_TENSION,"SOW-049 / DEL-09-05: ""sessions x worktrees x live hierarchy""; DEL-06-04 is ""Live hierarchy edges""",R1-F5/R3-F8: named input; P4 producer for a P3 view — owner classification requested
+E-N03,DEL-02-03,DEL-04-05,DECLARED,CONSUMES,,"SOW-013 note: ""Per-loop coverage limits stated (SOW-009)""",R1-F7: ID-explicit cross-link
+E-N04,DEL-04-03,DEL-09-07,DERIVED,CONSUMES,,"SOW-051 ""staleness"" + Vocabulary Map: examined-through SHA is ""the staleness comparator (PEC-K-04)""",R1-F10: staleness rule input
+E-N05,DEL-03-01,DEL-09-07,PROPOSAL,CONSUMES,,"SOW-051 ""stuck-in-state age""",R1-F10: lifecycle-state age read from the record tier
+E-N06,DEL-08-01,DEL-09-06,PROPOSAL,CONSUMES,,"DEL-08-05: ""P2/P3 dashboards poll""; PKG-09 exclusion ""New data classes"" bars direct store reads",R1-F12/R3-F1: dashboards consume the API transport via the shared component
+E-N07,DEL-08-03,DEL-09-06,PROPOSAL,CONSUMES,,as E-N06,R3-F1: views consume the citation-bearing envelope
+E-N08,DEL-08-01,DEL-10-12,PROPOSAL,MEASURES,,"SOW-060: sessions ""consuming orientation"" (served over the API)",R3-F1: adoption instrumentation observes API consumption
+E-N09,DEL-01-02,DEL-06-04,PROPOSAL,CONSUMES,,DEL-01-02 defines HierarchyEdge,R3-F3: DEL-06-04 creates HierarchyEdge instances
+E-N10,DEL-06-01,DEL-06-04,PROPOSAL,CONSUMES,,"DEL-06-04: ""Parent-to-child session edges""; sessions are DEL-06-01's records",R3-F3
+E-N11,DEL-08-02,DEL-08-03,PROPOSAL,CONSUMES,,SOW-042 additive versioned schema governs the response surface,R3-F4: envelope is schema-governed
+E-N12,DEL-08-03,DEL-08-04,PROPOSAL,TESTS,,,R3-F4: serializer sits on the measured p95 latency path
+E-N13,DEL-08-02,DEL-07-05,PROPOSAL,CONSUMES,LOW_CONFIDENCE,,R3-F5: a client seam is a client of the versioned API surface; owner may decline
+E-N14,DEL-01-04,DEL-03-01,PROPOSAL,CONSUMES,,"SOW-057: ""Log PEC's own reconcile runs""",R3-F6: facility-first — logging facility precedes its emitting subjects
+E-N15,DEL-01-04,DEL-07-01,PROPOSAL,CONSUMES,,"SOW-057: ""...and ingest activity""",R3-F6: ingest-logging half is phase-staged to P3
+E-N16,DEL-01-06,DEL-02-07,PROPOSAL,CONSUMES,,"DEL-01-06 names ""the loops PEC serves""; DEL-02-07 reads per-project manifests per loop",R3-F13: replaces removed E-P09
+E-N17,DEL-04-03,DEL-04-05,PROPOSAL,CONSUMES,,"SOW-009 ""unparseable or stale""; staleness defined by DEL-04-03's per-feed freshness",R3-F14
+E-N18,DEL-00-01,DEL-00-02,PROPOSAL,CONSUMES,LOW_CONFIDENCE,"OI-012 basis: ""driving edges: PKG-07/08/09""; DEL-00-02 envelope tied to OI-009",R3-F15: owner may prefer PKG-00 unordered
