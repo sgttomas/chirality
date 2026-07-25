@@ -1,0 +1,33 @@
+# _CONTEXT — DEL-07-04
+
+| Field | Value |
+|---|---|
+| DeliverableID | DEL-07-04 |
+| Canonical name | cmux socket adapter (optional) |
+| PackageID | PKG-07 (Event Ingest & Bridges) |
+| Type | BACKEND_FEATURE_SLICE |
+| ContextEnvelope | M |
+| PhaseHint | P4 |
+| CoversScopeItems | SOW-037 |
+| SupportsObjectives | (none mapped — see §3 mapping notes) |
+| ResponsibleParty | TBD (assignment at WORKING_ITEMS activation) |
+
+## Description
+
+Optional declared enricher over the cmux socket API; absence changes nothing.
+
+## Anticipated artifacts
+
+Adapter + tests
+
+## Envelope notes
+
+(none)
+
+## Provenance
+
+Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
+`execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (`current_basis`,
+SCA-001 successor). Fields templated deterministically from
+`Deliverables.csv`; this file restates register truth and is not an
+independent authority.

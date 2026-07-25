@@ -40,6 +40,11 @@ read and cite only, no further feature work, retired product docs under
    11 packages (PKG-00..PKG-10), 64 deliverables, 94-row scope ledger.
 1. **PROJECT_SETUP / first build tranches** — materialize the owner-selected
    full dependency DAG from revision 1.1 before scaffolding and the P1 slice
+   *(amended by `D-PEC-62`, 2026-07-25: owner-ruled deliverable-local
+   storage makes materialization co-land **with** scaffolding — DAG gate
+   ruled, 11 packages / 64 deliverables scaffolded `OPEN`, local
+   `Dependencies.csv` v3.1 registers seeded; P1-slice packets remain the
+   open gate)*
    (32 deliverables: parsers, reconciler + parity, orientation core,
    socket API, kill test, bootstrap self-ingest; plus pre-P1 DEL-00-01
    ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **Each tranche
