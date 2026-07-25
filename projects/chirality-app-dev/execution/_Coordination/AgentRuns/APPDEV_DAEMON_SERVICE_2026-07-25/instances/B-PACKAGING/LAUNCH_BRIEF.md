@@ -1,0 +1,26 @@
+# B-PACKAGING — LAUNCH BRIEF (verbatim prompt as dispatched)
+
+You are Agent 2 "B-PACKAGING" (opus) under TRB-APPDEV-DAEMON-SERVICE-2026-07-25. Work in /Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76 on branch feat/daemon-service (already checked out; base = main @ e9068c87d).
+
+FIRST: Read projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAEMON_SERVICE_2026-07-25/ADOPTED_BRIEF.md in full. It is your authority. Then copy this prompt verbatim into .../APPDEV_DAEMON_SERVICE_2026-07-25/instances/B-PACKAGING/LAUNCH_BRIEF.md before starting work.
+
+YOUR SCOPE = Stage B of the brief:
+
+B1 — frontend/package.json: add "public/**/*" to build.files (one line).
+
+B2 — macOS app icon (.icns), fully offline:
+- Source artwork: frontend/public/chirality-app-icon.svg (32-unit viewBox quincunx: cream tile #F0E9D8, hairline #D8CFBA border, four umber rounded squares #4A3423/#543C28/#503927/#46311F at corners, terracotta #BC5A28 center, slight rotations). DO NOT modify this file — it ships in-app at 26px.
+- Create an icns-tuned VARIANT (new file, e.g. frontend/build/icon-macos.svg): redrawn on a 1024 canvas, mark inset with transparent margin per Apple's macOS icon grid (tile occupying roughly the central ~824px), corner radius tuned toward the macOS squircle feel (approx 185/824 ratio for the tile), stroke weights rebalanced so the hairline border doesn't read as a fat 32px band (a naive 32x upscale is explicitly rejected in the brief). Preserve the palette and the quincunx composition exactly — same five inner squares, same rotations, same colors.
+- Rasterize offline using ONLY tools already on the machine — preferred: `qlmanage -t -s <size>` is unreliable for SVG; use one of: (a) a tiny node script using the sharp binary already present transitively in node_modules (document the transitive reliance in the script header; do NOT add sharp to package.json), or (b) rsvg-convert/inkscape IF already installed (check with `command -v`), or (c) render via Electron/Chromium print? — pick the simplest that works and verify pixel output visually (Read the PNG). NO network access, NO new dependencies.
+- Produce icon.iconset with the 10 Apple-required entries (16,32,128,256,512 + @2x), then `iconutil -c icns icon.iconset -o projects/chirality-app-dev/frontend/build/icon.icns`. Verify: `file` says "Mac OS X icon", `sips -g pixelWidth` on extracted reps or iconutil round-trip succeeds.
+- Commit-ready artifacts: frontend/build/icon.icns (binary, committed), frontend/build/icon-macos.svg (source variant), frontend/scripts/generate-macos-icon.mjs (the one-time generator, documented header stating it is NOT in the build graph and its transitive-sharp caveat if used).
+- frontend/package.json: add "icon": "build/icon.icns" to build.mac.
+- CHECK: electron-builder must not treat frontend/build/** as extra packaged content (directories.buildResources defaults to "build" — confirm that's fine and nothing leaks into the asar; build.files doesn't include build/**, good).
+
+B3 — frontend/electron/cli-launcher.ts: the rendered ~/.local/bin/chirality launcher script must export CHIRALITY_USER_DATA pointing at the app's actual userData path (Electron passes it at render time — the function likely receives or can receive app.getPath('userData'); check renderCliLauncher and its caller installBundledCliLauncher in main.ts... main.ts is owned by Stage A — if the call site needs a new argument, note it in your RETURN as an integration point for Agent 1 instead of editing main.ts yourself; prefer a cli-launcher.ts-internal solution if the userData path is derivable there (it can import { app } from 'electron' if it's main-process code — verify how it's structured). Preserve existing quoting/perms (0700) behavior. Update its existing tests (find them: grep cli-launcher in frontend/src/__tests__ and electron tests) and add coverage for the export line, respecting exact-string assertion style if present.
+
+WRITE SCOPE (hard): frontend/package.json (build block + nothing else), frontend/build/**, frontend/scripts/** (new generator only — do not modify build-electron.mjs, Stage A may touch it), frontend/electron/cli-launcher.ts, tests for cli-launcher. DO NOT touch any other frontend/electron file, frontend/src outside tests for cli-launcher, runtime/**, frontend/public/**. NO git commits, NO package-lock.json changes (git checkout -- if npm mutates it). Stage A works concurrently in this tree on frontend/electron/** and frontend/src — stay off those paths.
+
+VALIDATION before returning: `cd projects/chirality-app-dev/frontend && npm run typecheck && npx vitest run` green (988+ tests). Visually verify your rendered icon PNGs at 1024 and 32 by Reading them (they must look composed: correct palette, centered, proper margins, no clipping/aliasing artifacts). Do NOT run desktop:pack (Agent 1/Stage V own it).
+
+RETURN: write .../instances/B-PACKAGING/RETURN.md — files changed/created, icon design decisions (inset, radius, stroke — before/after numbers), rasterization path chosen + why, verification evidence (commands + outcomes), integration points for Agent 1 (esp. any main.ts call-site need from B3), risks. Final chat text: compressed RETURN.md (raw data, no pleasantries).
