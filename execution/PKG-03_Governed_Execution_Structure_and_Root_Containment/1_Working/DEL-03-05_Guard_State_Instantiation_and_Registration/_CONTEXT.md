@@ -4,7 +4,7 @@
 **Package:** PKG-03 Governed Execution Structure and Root Containment
 **Discipline:** TBD
 **Type:** DATA_MODEL_CHANGE
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 

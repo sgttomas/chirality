@@ -4,7 +4,7 @@
 **Package:** PKG-06 Self-Application, Variants, and Release
 **Discipline:** TBD
 **Type:** REQ_SLICE
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 
@@ -24,7 +24,7 @@ Nothing is inferred here (K-INVENT-1).
 ## Scope Traceability
 
 - Scope items: SOW-067, SOW-068, SOW-069, SOW-075
-- Objectives: OBJ-005
+- Objectives: OBJ-004, OBJ-005
 - ContextEnvelope: M
 - ContextEnvelopeNotes: One relation across an enumerated set of working roots.
 - AnticipatedWriteLocus: execution-tree

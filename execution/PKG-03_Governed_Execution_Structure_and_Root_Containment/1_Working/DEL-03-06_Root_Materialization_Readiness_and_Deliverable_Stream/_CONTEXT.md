@@ -4,7 +4,7 @@
 **Package:** PKG-03 Governed Execution Structure and Root Containment
 **Discipline:** TBD
 **Type:** REQ_SLICE
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 
@@ -24,7 +24,7 @@ Nothing is inferred here (K-INVENT-1).
 ## Scope Traceability
 
 - Scope items: SOW-001, SOW-002, SOW-061, SOW-103
-- Objectives: OBJ-002
+- Objectives: OBJ-002, OBJ-004
 - ContextEnvelope: M
 - ContextEnvelopeNotes: Readiness and evidence collection; authorizes nothing on its own.
 - AnticipatedWriteLocus: execution-tree (gated)

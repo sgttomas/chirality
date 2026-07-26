@@ -4,7 +4,7 @@
 **Package:** PKG-01 Product Definition, Normative Basis, and Authority
 **Discipline:** TBD
 **Type:** DOC_UPDATE
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 

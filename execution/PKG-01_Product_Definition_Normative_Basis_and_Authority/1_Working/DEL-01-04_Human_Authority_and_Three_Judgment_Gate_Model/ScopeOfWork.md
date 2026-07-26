@@ -4,7 +4,7 @@ deliverable_id: DEL-01-04
 package_id: PKG-01
 decomposition_basis: execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md@653fabc9b3e8abf369f5e776a7d3ee24bf235e7a
 project_scope_refs: [SOW-010, SOW-011, SOW-017]
-package_objective_refs: [OBJ-002]
+package_objective_refs: [OBJ-002, OBJ-003]
 ---
 
 # Scope of Work — DEL-01-04
@@ -88,7 +88,10 @@ definitions below are candidate content for owner review.
   item, while SOW-011 and SOW-017 record OBJ-002. The conservative reading
   taken here is that the deliverable-level objective governs the frontmatter
   and the ledger's item-level objective is additional traceability, not a
-  contradiction to reconcile in this document. `HumanRuling = TBD`.
+  contradiction to reconcile in this document. `HumanRuling = TBD`. **Ruled
+  (D-GOV-27, 2026-07-25): additive propagation** — the ledger mapping stands,
+  the register and this frontmatter gained OBJ-003, and this divergence is
+  closed.
 
 ## Completion and Reliance Basis — Epistemology
 

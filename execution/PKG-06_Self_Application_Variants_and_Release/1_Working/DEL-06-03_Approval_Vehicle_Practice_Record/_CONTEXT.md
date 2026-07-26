@@ -4,7 +4,7 @@
 **Package:** PKG-06 Self-Application, Variants, and Release
 **Discipline:** TBD
 **Type:** DOC_UPDATE
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 

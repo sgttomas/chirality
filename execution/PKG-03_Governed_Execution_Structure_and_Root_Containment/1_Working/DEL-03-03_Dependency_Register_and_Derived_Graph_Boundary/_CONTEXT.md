@@ -4,7 +4,7 @@
 **Package:** PKG-03 Governed Execution Structure and Root Containment
 **Discipline:** TBD
 **Type:** REQ_SLICE
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 
