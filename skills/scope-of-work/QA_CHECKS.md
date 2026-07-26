@@ -40,10 +40,11 @@ mode. `VERIFY` runs the mode-applicable subset read-only.
     (`DEL-NN-NN/REQ-NNN`) or inside a blockquote carrying an explicit
     upstream-context carve-out; no own-voice prose carries a bare ID-shaped
     token that is not a local definition or local reference.
-20. No Output and Evaluation Matrix row carries multiple `AC-*` with a
-    verification set larger than the union of those criteria's own methods; the
-    derived checklist entry for each `AC-*` names no method that does not
-    verify it.
+20. No Output and Evaluation Matrix row groups multiple `AC-*` whose own
+    verification method sets differ — grouping is permitted only when every
+    grouped criterion is verified by exactly the same methods, and the row's
+    verification set is exactly that shared set; the derived checklist entry
+    for each `AC-*` names no method that does not verify it.
 
 21. Every act excluded by a boundary-exclusion requirement resolves one-for-one
     to a named owner in a claim that requirement cites, and

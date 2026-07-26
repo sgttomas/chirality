@@ -109,8 +109,12 @@ Read [BRIEF_SCHEMA.md](BRIEF_SCHEMA.md) before accepting a run. Read
 - In the Output and Evaluation Matrix, a row's verification references apply to
   every acceptance criterion in that row. Group acceptance criteria in one row
   only when the row's verification set is exactly the union of those criteria's
-  own methods; otherwise give each acceptance criterion its own row. Checklist
-  derivation is row-scoped and cannot recover a finer pairing.
+  own methods **and those criteria's method sets are identical** — grouping is
+  safe only when every criterion in the row is verified by exactly the same
+  methods. Otherwise give each acceptance criterion its own row. Union equality
+  alone is not sufficient: two criteria with different methods satisfy it while
+  each still inherits the other's non-verifying method. Checklist derivation is
+  row-scoped and cannot recover a finer pairing.
 
 ## Failure semantics
 
