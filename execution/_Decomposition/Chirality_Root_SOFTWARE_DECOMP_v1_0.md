@@ -232,8 +232,8 @@ the source label **PROPOSED**.
 |---|---|---|---|
 | OBJ-001 | OBJ-1 | Coherent and discoverable normative authority — a reader can determine what governs, from the repository alone. | DEL-01-01, DEL-01-02, DEL-01-03, DEL-01-07, DEL-01-08, DEL-02-01, DEL-02-05, DEL-04-07, DEL-04-09 |
 | OBJ-002 | OBJ-2 | Governed production of professional knowledge work — the product carries work to an issuance decision that an accountable human makes. | DEL-01-04, DEL-01-06, DEL-02-02, DEL-02-03, DEL-03-02, DEL-03-06, DEL-04-02, DEL-04-06 |
-| OBJ-003 | OBJ-3 | The human evaluation and iteration loops close — linkage complete universally, retrievable within a pre-registered bound on a pre-registered sample. | DEL-04-01, DEL-04-03, DEL-04-04, DEL-04-05, DEL-04-08, DEL-04-10, DEL-05-02, DEL-05-03, DEL-05-04, DEL-05-05, DEL-05-07, DEL-05-08, DEL-06-03 |
-| OBJ-004 | OBJ-4 | Safe self-application without self-authorization — F1–F3 unobserved, capabilities accepted before consumption, guards registered and passing. | DEL-02-04, DEL-03-04, DEL-03-05, DEL-05-06, DEL-06-01, DEL-06-07 |
+| OBJ-003 | OBJ-3 | The human evaluation and iteration loops close — linkage complete universally, retrievable within a pre-registered bound on a pre-registered sample. | DEL-01-04, DEL-04-01, DEL-04-03, DEL-04-04, DEL-04-05, DEL-04-08, DEL-04-10, DEL-05-02, DEL-05-03, DEL-05-04, DEL-05-05, DEL-05-07, DEL-05-08, DEL-06-03 |
+| OBJ-004 | OBJ-4 | Safe self-application without self-authorization — F1–F3 unobserved, capabilities accepted before consumption, guards registered and passing. | DEL-02-04, DEL-03-01, DEL-03-04, DEL-03-05, DEL-03-06, DEL-05-06, DEL-06-01, DEL-06-07 |
 | OBJ-005 | OBJ-5 | Situated specialization with governed convergence — one candidate reaches a complete promotion disposition; variant-derived changes used the governed path. | DEL-06-04, DEL-06-05, DEL-06-06, DEL-06-08 |
 | OBJ-006 | OBJ-6 | Coordination remains intelligible as concurrent activity grows — ownership, dependencies, and gates reconstructible; stale runs detectable. | DEL-03-03, DEL-05-01, DEL-06-02 |
 | OBJ-007 | OBJ-7 | File-native continuity and recoverability — nothing load-bearing lives outside the checkout. | DEL-01-05, DEL-03-01 |
@@ -291,7 +291,7 @@ executor.
 | DEL-01-01_Genus_Concordance_Closure_and_Standing_Map | Genus Concordance Closure and Standing Bidirectional Map | REQ_SLICE | M | execution-tree; instruction-surface (M2) only if residual drift requires an exact-prose act | OBJ-001 |
 | DEL-01-02_Invariant_Catalog_Conformance_Register | Invariant Catalog Conformance Register | REGISTER | M | execution-tree | OBJ-001 |
 | DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance | Authority Chain and Conflict-Surfacing Conformance | REQ_SLICE | M | execution-tree; instruction-surface (M2) if a chain statement must change | OBJ-001 |
-| DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model | Human Authority and Three-Judgment Gate Model | REQ_SLICE | M | execution-tree | OBJ-002 |
+| DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model | Human Authority and Three-Judgment Gate Model | REQ_SLICE | M | execution-tree | OBJ-002, OBJ-003 |
 | DEL-01-05_File_Native_Authority_Substrate_Conformance | File-Native Authority Substrate Conformance | REQ_SLICE | S | execution-tree | OBJ-007 |
 | DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance | Four Pillars and Professional-Responsibility Conformance | DOC_UPDATE | S | execution-tree | OBJ-002 |
 | DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register | Jurisdiction, Accountability, and v1 User Scope Register | REGISTER | S | execution-tree | OBJ-001 |
@@ -311,12 +311,12 @@ executor.
 
 | DeliverableID | Name | Type | ContextEnvelope | AnticipatedWriteLocus | SupportsObjectives |
 |---|---|---|---|---|---|
-| DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance | Path Model and ScopePath Containment Conformance | SECURITY_CONTROL | M | execution-tree; tools/ (M2) if a check must change | OBJ-007 |
+| DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance | Path Model and ScopePath Containment Conformance | SECURITY_CONTROL | M | execution-tree; tools/ (M2) if a check must change | OBJ-004, OBJ-007 |
 | DEL-03-02_Execution_Structure_and_Lifecycle_Conformance | Execution Structure and Lifecycle Conformance | REQ_SLICE | M | execution-tree | OBJ-002 |
 | DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary | Dependency Register and Derived-Graph Boundary | REQ_SLICE | S | execution-tree | OBJ-006 |
 | DEL-03-04_Root_Working_Root_Exception_Conformance | Root Working-Root Exception Conformance | REQ_SLICE | M | execution-tree | OBJ-004 |
 | DEL-03-05_Guard_State_Instantiation_and_Registration | Guard State Instantiation and Registration | DATA_MODEL_CHANGE | M | execution/_harness (root Project Setup; authorized separately) | OBJ-004 |
-| DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream | Root Materialization Readiness and First Deliverable Stream | REQ_SLICE | M | execution-tree (gated) | OBJ-002 |
+| DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream | Root Materialization Readiness and First Deliverable Stream | REQ_SLICE | M | execution-tree (gated) | OBJ-002, OBJ-004 |
 
 ### PKG-04_Developmental_Machinery_and_Change_Control
 
@@ -353,7 +353,7 @@ executor.
 | DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation | Self-Application Discipline and Falsifier Observation | REQ_SLICE | M | execution-tree | OBJ-004 |
 | DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction | Concurrency Mechanism Legibility and Run-State Reconstruction | OBSERVABILITY | M | execution-tree | OBJ-006 |
 | DEL-06-03_Approval_Vehicle_Practice_Record | Approval Vehicle Practice Record | DOC_UPDATE | S | execution-tree | OBJ-003 |
-| DEL-06-04_Downward_Variant_Service_and_Non_Weakening | Downward Variant Service and Non-Weakening | REQ_SLICE | M | execution-tree | OBJ-005 |
+| DEL-06-04_Downward_Variant_Service_and_Non_Weakening | Downward Variant Service and Non-Weakening | REQ_SLICE | M | execution-tree | OBJ-004, OBJ-005 |
 | DEL-06-05_Domain_Engine_Truth_Boundary | Domain Engine Truth Boundary | REQ_SLICE | S | execution-tree | OBJ-005 |
 | DEL-06-06_Governed_Promotion_Pathway | Governed Promotion Pathway | REQ_SLICE | M | execution-tree | OBJ-005 |
 | DEL-06-07_Release_Authority_Gate | Release Authority Gate | REQ_SLICE | M | execution-tree | OBJ-004 |
@@ -549,6 +549,8 @@ was added, removed, or renumbered.
 | DEC-019 | 2026-07-25 | OI-006, OI-007, OI-010, and OI-012 are closed on the ruled gates that satisfied their own stated resolution conditions (all seven gates; Gate 4; Gate 5; Gate 4). OI-005, OI-008, OI-009, and OI-011 remain open and are carried into the accepted basis. | Each closed issue named a specific gate confirmation as its resolution, and that gate is now ruled; each open issue asked for something the ruling did not do. Closure is claimed per-issue against its own condition, never inferred from acceptance in general. OI-008 in particular is *reaffirmed* by acceptance rather than discharged by it: materialization stays behind the D-GOV-21 §5.3 gate. |
 | DEC-020 | 2026-07-25 | The filename stays `Chirality_Root_SOFTWARE_DECOMP_v1_0.md` and no revision number is bumped. The acceptance binds the content at AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`; the edits in DEC-014..DEC-019 are **the ruled dispositions applied in the publication tranche**, not new decomposition content. | Bumping the revision would imply the accepted content changed. It did not: scope, partition, deliverables, objectives, identifiers, and every count are byte-equivalent in substance to the accepted candidate, and the diff is confined to gate status, ruled dispositions, and cited annotations. Decision IDs continue from DEC-013 rather than restarting at DEC-012, because I5 forbids reusing an assigned identifier. |
 
+| DEC-021 | 2026-07-25 | **Additive objective propagation, ruled by D-GOV-27.** The four ledger/register objective divergences surfaced at initialization fan-in (Receipt 51) are resolved additively: the ledger's item-level mappings stand (SOW-010→OBJ-003; SOW-020, SOW-001, SOW-061, SOW-069→OBJ-004), and the deliverable register's `SupportsObjectives` aggregates gain the missing objective (DEL-01-04 +OBJ-003; DEL-03-01, DEL-03-06, DEL-06-04 +OBJ-004), with the objective register's `MappedDeliverables`, the forward register's `DeliverableIDs` (OBJ-3, OBJ-4), and this surface's two tables updated to match. The telemetry restates no per-objective mapping, so no regeneration was required. | The companion registers are the amendment surface; every item-level mapping was ruled correct on the merits, so the deliverable-level aggregates were incomplete, not wrong — the amendment adds coverage (three of four additions are OBJ-004 safety coverage) and removes none. No scope item, deliverable, or identifier changed. Record: `docs/governance_harness/_DECISIONS/D-GOV-27_initialization_closing_rulings.md`. |
+
 ### Change Log
 
 - 2026-07-25 — v1.0 candidate authored from `docs/PRD_ROOT.md` at basis
@@ -569,6 +571,14 @@ was added, removed, or renumbered.
   the strains retained; OI-006, OI-007, OI-010, OI-012 closed on their ruled
   gates; OI-005, OI-008, OI-009, OI-011 carried open. **No scope, partition,
   deliverable, objective, or identifier changed** (DEC-014..DEC-020).
+- 2026-07-25 — **D-GOV-27 additive objective propagation applied (DEC-021).**
+  Four deliverable-register `SupportsObjectives` aggregates gained the
+  objective their covered ledger items already carried; the objective and
+  forward registers and this surface's tables updated to match. The scope
+  ledger is untouched; no scope item, deliverable, or identifier changed.
+  In the same tranche, `ResponsibleParty` was assigned (`Ryan Tufts`, owner
+  ruling of the initialization phase plan) across the deliverable register
+  and all 45 `_CONTEXT.md` files.
 
 ---
 

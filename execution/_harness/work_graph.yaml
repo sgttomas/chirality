@@ -3,11 +3,11 @@
 # The first accepted root work graph, instantiated by root Project Setup.
 # Guard: tools/validation/validate_root_work_graph_dispatch.py
 #
-# One node per accepted package. All six nodes are `active` for the
+# One node per accepted package. All six nodes are `pending`: the
 # per-deliverable initialization phase (owner-approved plan, 2026-07-25;
-# workplan WORKPLAN_2026-07-25_root_initialization.md; run record
-# AgentRuns/ROOT-INIT-SOW-20260725/). Nodes return to `pending` at the
-# phase's closing tranche — nothing is dispatched between phases.
+# run record AgentRuns/ROOT-INIT-SOW-20260725/) dispatched them `active`
+# after a G3 dispatch-mode PASS and returned them `pending` at its closing
+# tranche (D-GOV-27) — nothing is dispatched between phases.
 #
 # No `depends_on` / `serialized_after` edges are declared. The accepted
 # decomposition §8 states "Six flat work-domain packages. No nesting, no
@@ -27,37 +27,37 @@ accepted_basis: 31b8dc94acca50dbaf9a518a23dad8583c8c6c62
 
 nodes:
   - id: PKG-01_Product_Definition_Normative_Basis_and_Authority
-    status: active
+    status: pending
     owner: PKG-01_Product_Definition_Normative_Basis_and_Authority
     write_targets:
       - execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/**
 
   - id: PKG-02_Operative_Instruction_Surface_and_Runtime_Layers
-    status: active
+    status: pending
     owner: PKG-02_Operative_Instruction_Surface_and_Runtime_Layers
     write_targets:
       - execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/**
 
   - id: PKG-03_Governed_Execution_Structure_and_Root_Containment
-    status: active
+    status: pending
     owner: PKG-03_Governed_Execution_Structure_and_Root_Containment
     write_targets:
       - execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/**
 
   - id: PKG-04_Developmental_Machinery_and_Change_Control
-    status: active
+    status: pending
     owner: PKG-04_Developmental_Machinery_and_Change_Control
     write_targets:
       - execution/PKG-04_Developmental_Machinery_and_Change_Control/**
 
   - id: PKG-05_Evidence_Provenance_and_Audit
-    status: active
+    status: pending
     owner: PKG-05_Evidence_Provenance_and_Audit
     write_targets:
       - execution/PKG-05_Evidence_Provenance_and_Audit/**
 
   - id: PKG-06_Self_Application_Variants_and_Release
-    status: active
+    status: pending
     owner: PKG-06_Self_Application_Variants_and_Release
     write_targets:
       - execution/PKG-06_Self_Application_Variants_and_Release/**

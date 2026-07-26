@@ -4,7 +4,7 @@
 **Package:** PKG-04 Developmental Machinery and Change Control
 **Discipline:** TBD
 **Type:** SECURITY_CONTROL
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 

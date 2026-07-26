@@ -1278,3 +1278,38 @@ amendment; owner ruling required).
   assignment, node deactivation, D-GOV-26 EffectiveSHA backfill, manifest
   ROOT-INIT-CLOSE-20260725); owner reconciliation packet for the register/
   ledger divergences; prior standing items unchanged.
+
+### Receipt 52 — 2026-07-25 — Initialization phase closed: 45× INITIALIZED with ResponsibleParty, D-GOV-27 rulings applied (closing M2 tranche, PR 2)
+
+- **Owner acts of record** (in-session, 2026-07-25): "merge PR #354" (merge
+  `8edb96fb1` — the K-AUTH-2 acceptance of all 45 contracts) after electing
+  merge-first sequencing; then three closing rulings via structured decision
+  prompts, selections verbatim in
+  `docs/governance_harness/_DECISIONS/D-GOV-27_initialization_closing_rulings.md`:
+  additive propagation; update frontmatter + CON now; fold in all four
+  restatements.
+- **Applied (this tranche):** 45× `OPEN → INITIALIZED` via
+  `write_status.sh` (actor `TASK+scope-of-work`; drift 45/0 preserved); live
+  CI pin → `| INITIALIZED | 45 |` (test renamed, same PR); ResponsibleParty
+  `Ryan Tufts` across the deliverable register + 45 `_CONTEXT.md`; additive
+  objective propagation across deliverable/objective/forward registers +
+  working-surface tables (DEC-021; ledger untouched); four contracts amended
+  (frontmatter + ruled-CON annotations) and re-validated PASS; DIRECTIVE
+  §1/§2.6 + TYPES §1.4 enumeration amendments; PRD §5.2 O-1 superseded by
+  instrument (D-13 — pointer-block note only, adopted bytes untouched); six
+  work-graph nodes `active → pending`; D-GOV-26 EffectiveSHA backfilled
+  (`31b8dc94a`); manifest `ROOT-INIT-CLOSE-20260725.yaml` (M6 survey:
+  none-required — app-dev corpus pins resolve to project-local docs copies,
+  verified by hash).
+- **Battery:** validation + harness suites pass with the pin updated in-PR;
+  guards G0–G4 PASS; path anchors PASS; entrypoints PASS; 45× validator
+  PASS; drift root 45 files / 0 mismatches (all INITIALIZED); G4 diff mode
+  vs origin/main PASS with manifest coverage.
+- **Gate:** human-gated M2 PR; no self-merge.
+- Open after this receipt: PR 2 merge (owner) — completes the initialization
+  workplan; D-GOV-27 EffectiveSHA backfill owed to the next tranche; next
+  phase (semantic enrichment `INITIALIZED → SEMANTIC_READY` or production
+  dispatch) is owner-gated future work; standing items: thesis-appendix
+  K-WRITE-2 mirror; export items at next export need; OI-005/OI-008/OI-009
+  open in the accepted decomposition; DEL-06-02 run-record population
+  predicate awaits owner ruling before its OUT-001 is produced.

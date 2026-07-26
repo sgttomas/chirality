@@ -4,7 +4,7 @@ deliverable_id: DEL-03-01
 package_id: PKG-03
 decomposition_basis: execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md@653fabc9b3e8abf369f5e776a7d3ee24bf235e7a
 project_scope_refs: [SOW-020, SOW-031]
-package_objective_refs: [OBJ-007]
+package_objective_refs: [OBJ-004, OBJ-007]
 ---
 
 # Scope of Work — DEL-03-01
@@ -114,7 +114,10 @@ and OUT-003.
   scope-ledger row for SOW-020 records OBJ-004 in its own objective column,
   while this deliverable's `_CONTEXT.md` and register row declare OBJ-007. The
   frontmatter carries OBJ-007 per `_CONTEXT.md` as instructed. The disagreement
-  is recorded, not resolved here; resolution is a human ruling.
+  is recorded, not resolved here; resolution is a human ruling. **Ruled
+  (D-GOV-27, 2026-07-25): additive propagation** — the ledger mapping stands,
+  the register and this frontmatter gained OBJ-004, and this divergence is
+  closed.
 - **CON-002** — Verification gap. No deterministic check for containment
   rejection or for token-registry closure was found in the repository at this
   basis. OUT-002 and OUT-003 therefore verify by human review. Whether to build

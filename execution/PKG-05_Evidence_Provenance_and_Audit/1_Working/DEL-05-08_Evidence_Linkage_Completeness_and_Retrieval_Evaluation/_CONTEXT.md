@@ -4,7 +4,7 @@
 **Package:** PKG-05 Evidence, Provenance, and Audit
 **Discipline:** TBD
 **Type:** OBSERVABILITY
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 
