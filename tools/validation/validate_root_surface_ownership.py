@@ -90,14 +90,17 @@ REGISTER_SCHEMA = "root-surface-ownership/v1"
 VALID_KINDS = ("package", "deliverable")
 TBD = "TBD"
 
-# The shared instruction surface, per `docs/SPEC.md` §0.2.2 (`AGENTS.md`,
-# `agents/`, `skills/`, `tools/`, root `docs/`, `init/`), plus
-# `.github/workflows/` on the basis of the Lane B characterization in
+# The shared instruction surface, per the `docs/SPEC.md` §0.2.1 enumeration as
+# amended by D-GOV-26: `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`,
+# root `docs/`, `init/`, `.github/workflows/`. `CLAUDE.md` (the session-init
+# instruction pointer importing `AGENTS.md`) and `.github/workflows/` (the CI
+# workflow definitions that gate merges) were ratified into the enumeration by
+# D-GOV-26 item 2; `.github/workflows/` had previously been guarded on the Lane B
+# characterization in
 # `execution/_Coordination/WORKPLAN_2026-07-25_root_product_development.md`
 # ("G1-G4 touch tools/, .github/workflows/, and possibly root docs/ - the
-# protected instruction surface"). Additions beyond these require a named
-# basis; `CLAUDE.md` is a recorded open item, not silently included.
-INSTRUCTION_SURFACE_FILES = ("AGENTS.md",)
+# protected instruction surface"). Additions beyond these require a named basis.
+INSTRUCTION_SURFACE_FILES = ("AGENTS.md", "CLAUDE.md")
 INSTRUCTION_SURFACE_DIRS = (
     "agents/",
     "skills/",

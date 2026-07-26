@@ -41,7 +41,7 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 `REPO_ROOT` MUST be resolved at session start and never hard-coded. In a linked **git worktree**, `git rev-parse --show-toplevel` returns *that worktree's* root — so a worktree is a fully isolated checkout, and every path derived from `REPO_ROOT` re-anchors to it automatically. This is the mechanism that makes worktree-based isolation safe.
 
-`REPO_ROOT` is the home of the **shared instruction surface** (`AGENTS.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`) — the release-managed agent operating system (the **instruction root**; see `DIRECTIVE.md` §2.6). The instruction surface is read-mostly: changing it is a repo-wide governance action, not ordinary working-root execution.
+`REPO_ROOT` is the home of the **shared instruction surface** (`AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/`) — the release-managed agent operating system (the **instruction root**; see `DIRECTIVE.md` §2.6). `CLAUDE.md` is the session-initialization instruction pointer: it imports `AGENTS.md` and adds no instruction layer of its own, so editing it changes what every session loads. `.github/workflows/` holds the CI workflow definitions that gate merges, so editing them changes how governance is enforced rather than what it says. The instruction surface is read-mostly: changing it is a repo-wide governance action, not ordinary working-root execution.
 
 ### 0.2.2 `WORKING_ROOT` — the active workspace
 
@@ -143,6 +143,8 @@ An execution instance is a self-contained project workspace rooted at `{EXECUTIO
 | `2_Checking/To/` | Outgoing review items |
 | `3_Issued/` | Released deliverables |
 | `3_Issued/_Archive/` | Archived issued versions |
+
+The `_Archive/` subfolders above are **local working state, not tracked repo content**: the repository ignore policy excludes every `_Archive/` path ("Archives are historical/local, not canonical repo content"), so these folders exist in a working checkout but are not under version control, and nothing canonical may live only in an `_Archive/`.
 
 ### 1.2 Tool Roots
 

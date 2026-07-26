@@ -166,6 +166,46 @@ def test_dot_github_workflows_is_instruction_surface():
     assert not g4.intersects_instruction_surface("projects/demo/docs/x.md")
 
 
+def test_claude_md_is_instruction_surface():
+    """D-GOV-26 item 2: `CLAUDE.md` is the session-init instruction pointer that
+    imports `AGENTS.md`, so a change to it is an instruction-surface change."""
+    assert g4.intersects_instruction_surface("CLAUDE.md")
+    assert g4.intersects_instruction_surface("./CLAUDE.md")
+    assert not g4.intersects_instruction_surface("projects/demo/CLAUDE.md")
+
+
+def test_diff_mode_blocks_uncovered_claude_md_change(tmp_path):
+    _init_repo(tmp_path)
+    _write_manifest(
+        tmp_path, _manifest(instruction_surface_paths=["docs/governance_harness/"])
+    )
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "manifest")
+    base = _git(tmp_path, "rev-parse", "HEAD")
+    (tmp_path / "CLAUDE.md").write_text("@AGENTS.md\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "pointer")
+    head = _git(tmp_path, "rev-parse", "HEAD")
+    code, lines = g4.check(tmp_path, base, head)
+    assert code == 1
+    assert any("CLAUDE.md" in line for line in lines)
+    assert any("is not covered by any declared tranche manifest path" in line for line in lines)
+
+
+def test_diff_mode_pass_when_claude_md_change_is_covered(tmp_path):
+    _init_repo(tmp_path)
+    _write_manifest(tmp_path, _manifest(instruction_surface_paths=["CLAUDE.md"]))
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "manifest")
+    base = _git(tmp_path, "rev-parse", "HEAD")
+    (tmp_path / "CLAUDE.md").write_text("@AGENTS.md\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "pointer")
+    head = _git(tmp_path, "rev-parse", "HEAD")
+    code, lines = g4.check(tmp_path, base, head)
+    assert code == 0, lines
+
+
 def test_note_on_over_declared_non_instruction_path(tmp_path):
     _write_manifest(
         tmp_path,
