@@ -28,13 +28,18 @@ method but may not create scope or acceptance criteria.
 | `RuntimeOverrides.RENDER_HTML` | Produce an on-demand derivative | `false` |
 | `RuntimeOverrides.ISSUED_PREPARATION_BINDING` | Required source commit, four source hashes, status hash, and accepted basis for `ISSUED` preparation; does not satisfy H1 | empty |
 | `CustomInstructions` | Deliverable-specific emphasis within the frozen scope | none |
+| `RuntimeOverrides.STATUS_POLICY` | `PRESERVE_CURRENT`, `ADVANCE_ON_PASS`, or `NO_STATUS_TOUCH`, with the meanings defined in `skills/semantic-matrix-build/SKILL.md`. `ADVANCE_ON_PASS` additionally requires the brief to authorize `_STATUS.md` writes; absent that authorization the run does not edit status and reports the ruling | `NO_STATUS_TOUCH` |
+| `RuntimeOverrides.DECOMP_VARIANT` | `PROJECT` or `SOFTWARE`, matching the accepted decomposition basis; canonical enum `DECOMP_VARIANT` in `tools/validation/validate_enum.py`. `DOMAIN` is out of this skill's scope | inferred from `DECOMPOSITION_BASIS` |
+| `RuntimeOverrides.PHASE` | Project-loop phase label carried for run-record attribution only; it grants no authority and changes no tool behavior | empty |
 
 ## Write boundary
 
 Permitted targets are limited to:
 
-- an evidence-candidate `ScopeOfWork.md` in the isolated conversion workspace;
-- a separate clean production-candidate `ScopeOfWork.md` and external finalization report;
+- for `INIT`, the production `ScopeOfWork.md` at `{ScopePath}/ScopeOfWork.md`;
+- for `CONVERT`, an evidence-candidate `ScopeOfWork.md` in the isolated
+  conversion workspace, plus a separate clean production-candidate
+  `ScopeOfWork.md` and external finalization report;
 - a requested untracked/on-demand `ScopeOfWork.html`; and
 - run-local claim-map, parity, deterministic checklist, receipt, and return
   artifacts.

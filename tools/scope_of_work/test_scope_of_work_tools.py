@@ -516,6 +516,62 @@ def test_review_checklist_is_exact_source_ordered_linked_and_deterministic(tmp_p
     assert sow_only_report["items"] == report["items"]
 
 
+def test_review_checklist_warns_on_row_grouped_acceptance_without_changing_output(tmp_path: Path) -> None:
+    deliverable = fixture(tmp_path)
+    assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0
+    sow = deliverable / "ScopeOfWork.md"
+    text = sow.read_text(encoding="utf-8")
+    text = text.replace(
+        "- **AC-001** — The mapped source content is complete and internally resolvable.\n",
+        "- **AC-001** — The mapped source content is complete and internally resolvable.\n"
+        "- **AC-002** — Human approval is recorded exactly.\n",
+    )
+    text = text.replace(
+        "- **VER-001** — Run the deterministic claim map and parity report.\n",
+        "- **VER-001** — Run the deterministic claim map and parity report.\n"
+        "- **VER-002** — Inspect the recorded approval evidence.\n",
+    )
+    ungrouped = tmp_path / "checklist-ungrouped.json"
+    result = run(
+        CHECKLIST,
+        deliverable,
+        "--isolated-migration",
+        "--migration-authority",
+        MIGRATION_AUTHORITY,
+        "--output",
+        ungrouped,
+    )
+    assert result.returncode == 0, result.stderr
+    assert "WARNING: matrix row" not in result.stderr
+
+    matrix_line = next(line for line in text.splitlines() if "| AC-001 | VER-001 |" in line)
+    grouped_line = matrix_line.replace("| AC-001 | VER-001 |", "| AC-001, AC-002 | VER-001, VER-002 |")
+    sow.write_text(text.replace(matrix_line, grouped_line), encoding="utf-8")
+
+    first = tmp_path / "checklist-grouped-1.json"
+    second = tmp_path / "checklist-grouped-2.json"
+    for output in (first, second):
+        result = run(
+            CHECKLIST,
+            deliverable,
+            "--isolated-migration",
+            "--migration-authority",
+            MIGRATION_AUTHORITY,
+            "--output",
+            output,
+        )
+        assert result.returncode == 0, result.stderr
+        assert "WARNING: matrix row OUT-001 groups 2 acceptance criteria with 2 verification" in result.stderr
+
+    # The warning is stderr-only: derivation stays deterministic and the JSON is
+    # exactly the row-scoped superset it was before the warning existed.
+    assert first.read_bytes() == second.read_bytes()
+    report = json.loads(first.read_text(encoding="utf-8"))
+    assert [item["id"] for item in report["items"]] == ["AC-001", "AC-002"]
+    for item in report["items"]:
+        assert [entry["id"] for entry in item["verification"]] == ["VER-001", "VER-002"]
+
+
 def test_review_checklist_rejects_padded_ruled_authority_without_output(tmp_path: Path) -> None:
     deliverable = fixture(tmp_path)
     assert convert(deliverable, "--isolated-migration", "--migration-authority", MIGRATION_AUTHORITY).returncode == 0

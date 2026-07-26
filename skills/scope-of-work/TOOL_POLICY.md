@@ -6,13 +6,19 @@
 2. In `CONVERT`, run `convert_four_documents_to_scope_of_work.py` only under
    exact accepted path-scoped migration authority. `INIT` is source-grounded
    authoring and `VERIFY` is read-only on production content.
-3. Refine the evidence candidate through bounded reasoning without removing
-   source markers.
-4. Run `map_scope_of_work_claims.py` and
+3. In `CONVERT`, refine the evidence candidate through bounded reasoning
+   without removing source markers. In `INIT`, author the production
+   `ScopeOfWork.md` directly from accepted decomposition and source evidence;
+   there is no evidence candidate to refine.
+4. In `CONVERT`, run `map_scope_of_work_claims.py` and
    `report_scope_of_work_parity.py` independently of the authoring judgment.
-5. Run `finalize_scope_of_work.py` into a distinct production-candidate path;
-   rerun mapping and parity with `--production-scope-of-work` so both bind and
-   verify that exact clean artifact.
+   Both tools require `--source-dir` and are structurally conversion-only; they
+   are not run under `INIT` or `VERIFY`.
+5. In `CONVERT`, run `finalize_scope_of_work.py` into a distinct
+   production-candidate path; rerun mapping and parity with
+   `--production-scope-of-work` so both bind and verify that exact clean
+   artifact. `INIT` has no finalization step: the authored contract is the
+   production contract.
 6. Run `validate_scope_of_work.py` against the clean production candidate.
 7. Run `derive_review_checklist.py` against the clean production SOW; preserve
    its exact `AC-*` order, text, source binding, and matrix linkage.

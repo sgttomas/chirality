@@ -38,18 +38,26 @@ Read [BRIEF_SCHEMA.md](BRIEF_SCHEMA.md) before accepting a run. Read
    evidence. For `CONVERT`, hash the four sources and `_STATUS.md`, then use
    the deterministic converter to create a lossless scaffold. Tests may
    implement verification but never create scope or acceptance criteria.
-4. Refine the evidence candidate without dropping conversion source markers.
-   Define stable IDs, complete the output/evaluation matrix, preserve epistemic
-   labels, and mark substantive ambiguity `CONFLICT`.
-5. Run source mapping and parity on the evidence candidate, then use the
-   deterministic finalizer to create a separate clean production contract and
-   external finalization report. Require the map and parity report to bind the
-   clean production hash.
-6. Validate, derive the REVIEW checklist, and optionally render HTML from the
-   clean production contract only.
-7. Return both candidate paths, source/evidence/production hashes, finalization
-   report, claim map, parity report, checklist, validation result, conflicts,
-   and `_STATUS.md` before/after hash.
+4. Refine the working contract. Define stable IDs, complete the
+   output/evaluation matrix, preserve epistemic labels, and mark substantive
+   ambiguity `CONFLICT`. For `CONVERT`, the working contract is the evidence
+   candidate and its conversion source markers are never dropped. For `INIT`,
+   the working contract is the production `ScopeOfWork.md` itself; there is no
+   evidence candidate and no source marker.
+5. For `CONVERT` only: run source mapping and parity on the evidence candidate,
+   then use the deterministic finalizer to create a separate clean production
+   contract and external finalization report. Require the map and parity report
+   to bind the clean production hash. `INIT` produces no evidence candidate,
+   runs no mapping, parity, or finalization, and authors the production
+   contract directly.
+6. Validate and derive the REVIEW checklist from the production contract, and
+   optionally render HTML from it. Under `CONVERT` the production contract is
+   the clean finalized artifact and no other.
+7. Return the production contract path and hash, validation result, checklist,
+   conflicts, and the `_STATUS.md` hash — unchanged under `NO_STATUS_TOUCH`, or
+   before/after when the brief authorizes a status act. For `CONVERT`,
+   additionally return the evidence-candidate path, source and evidence hashes,
+   finalization report, claim map, and parity report.
 
 ## Non-negotiable constraints
 
@@ -64,12 +72,27 @@ Read [BRIEF_SCHEMA.md](BRIEF_SCHEMA.md) before accepting a run. Read
 - Do not treat `MIGRATION_DUAL` as an accepted deliverable baseline.
 - Never integrate the evidence-rich migration candidate. Production must be
   the exact deterministic finalization and contain no migration-only metadata.
+- Cite an upstream deliverable's local IDs only inside a blockquote. Local-ID
+  syntax is deliverable-scoped: a bare `REQ-004` in contract prose always means
+  *this* contract's `REQ-004`, so an upstream ID written in own-voice prose
+  either collides with a local definition or scans as an unresolved local
+  reference. Quote the upstream text in a `> ` blockquote and add an explicit
+  carve-out sentence — "ID-shaped text inside this quotation is upstream source
+  context, not a local definition or reference" — naming the upstream
+  deliverable in own-voice prose around the quotation.
+  The blockquote marker must sit at column 0–3; a blockquote indented four or
+  more spaces is not exempt from ID extraction.
 - Refuse `ISSUED` preparation unless the brief binds the source commit, all
   four source hashes, `_STATUS.md` hash, and accepted basis. Preparation never
   authorizes integration or reissuance; H1 remains a later human gate.
 - Preserve `LEGACY_FOUR_DOC` compatibility; this skill does not retire it.
 - Do not manually re-extract, summarize, reorder, or renumber `AC-*` records
   for REVIEW; use the registered deterministic checklist artifact.
+- In the Output and Evaluation Matrix, a row's verification references apply to
+  every acceptance criterion in that row. Group acceptance criteria in one row
+  only when the row's verification set is exactly the union of those criteria's
+  own methods; otherwise give each acceptance criterion its own row. Checklist
+  derivation is row-scoped and cannot recover a finer pairing.
 
 ## Failure semantics
 

@@ -182,15 +182,15 @@ SCOPE_CHANGE may interpret findings, decide handoff state, and write human-facin
 
 ### Variant Section Binding
 
-All protocol steps reference sections by **semantic name** and then bind those semantics to the originating decomposition variant.
+All protocol steps reference sections by **semantic name** and then bind those semantics to the originating decomposition variant **by heading text, never by section number**, using the normalization and rank-order matching defined in `AGENT_AUDIT_DECOMP.md`'s Variant Section Binding block. If no rank yields a hit, stop and report an unresolved binding rather than resolving by position.
 
 | Semantic section | PROJECT_DECOMP | SOFTWARE_DECOMP | DOMAIN_DECOMP | Notes |
 |------------------|----------------|-----------------|---------------|-------|
-| Change Register | `Change Log` §3 | `Change Log` §8 | `Decision Log / Change Log` (heading match) | Bind by heading text when section numbers are absent |
-| Unit Ledger | `Scope Ledger` §5 | `Scope Ledger` §5 | `Domain Ledger` | Authoritative row-level mapping table |
-| Objectives | `Objectives` §6 | via `Scope Ledger` §5 | — | `DOMAIN_DECOMP` does not have an Objectives layer; `SOFTWARE` embeds objective mapping in the ledger |
-| Primary Partitions | `Packages` §7 | `Packages` §3 | `Categories` | Flat partition primitive |
-| Secondary Entities | `Deliverables` §8 | `Deliverables` §4 | `Knowledge Types` | Parented to the primary partition |
+| Change Register | `Change Log` | `Decision Log` and/or `Revision History` | `Decision Log / Change Log` | Bind by heading text, never by number. `SOFTWARE_DECOMP` may split this across two headings; read both when both exist |
+| Unit Ledger | `Scope Ledger` | `Scope Ledger` | `Domain Ledger` | Authoritative row-level mapping table |
+| Objectives | `Objectives` | `Objectives` where present, otherwise the `ObjectiveID(s)` column of `Scope Ledger` | — | `DOMAIN_DECOMP` does not have an Objectives layer |
+| Primary Partitions | `Packages` | `Packages` | `Categories` | Flat partition primitive |
+| Secondary Entities | `Deliverables` | `Deliverables` | `Knowledge Types` | Parented to the primary partition |
 | Tertiary Entities | — | — | `Knowledge Subjects` | Parented to `Knowledge Types` |
 | Vocabulary Map | — | — | `Vocabulary Map` | Canonical terms and synonyms |
 | Coverage Basis | `AUDIT_DECOMP` output | `AUDIT_DECOMP` output | `Coverage & Telemetry` + `Domain Ledger` export | Used for pre/post comparison |
