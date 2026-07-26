@@ -1,9 +1,15 @@
 # QA CHECKS — scope-of-work
 
+Items 2, 5–7, 10–12, 14, and 17 apply to `CONVERT` only; under `INIT` they are
+`NOT_APPLICABLE` and are recorded as such rather than passed or failed. Items
+1, 3, 4, 8, 9, 13, 16, and 18 apply to every mode. Item 15 applies whenever an
+HTML derivative was requested, in any mode. Items 19 and 20 apply to every
+mode. `VERIFY` runs the mode-applicable subset read-only.
+
 1. The exact pilot variance covers the deliverable path.
 2. All four source files exist, remain byte-identical, and retain authority.
-3. `_STATUS.md` is byte-identical and remains `IN_PROGRESS`.
-4. Evidence-candidate frontmatter, headings, IDs, references, and matrix validate.
+3. `_STATUS.md` is byte-identical and its lifecycle state is unchanged.
+4. Working-contract frontmatter, headings, IDs, references, and matrix validate.
 5. Every source line is covered by a source marker and disposition.
 6. Every marker binds the current source hash and a defined target ID.
 7. `MERGED` and `SPLIT` mappings preserve all contributing references.
@@ -30,6 +36,13 @@
     candidate is selected for integration.
 18. Repeated checklist derivation is byte-identical, and invalid or ambiguous
     input without the exact variance fails without an output artifact.
+19. Every upstream deliverable's local ID appears only inside a blockquote with
+    an explicit upstream-context carve-out; no own-voice prose carries an
+    ID-shaped token that is not a local definition or local reference.
+20. No Output and Evaluation Matrix row carries multiple `AC-*` with a
+    verification set larger than the union of those criteria's own methods; the
+    derived checklist entry for each `AC-*` names no method that does not
+    verify it.
 
 Any failure produces a failed return and rerun requirements; it does not
 silently weaken the acceptance gate.

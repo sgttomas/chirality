@@ -71,6 +71,15 @@ def matrix_links(doc: SowDocument, width: int) -> dict[str, dict[str, list[str]]
             continue
         acceptance_refs = ac_re.findall(cells[3])
         verification_refs = ver_re.findall(cells[4])
+        if len(acceptance_refs) > 1 and len(verification_refs) > 1:
+            print(
+                f"WARNING: matrix row {cells[0]} groups {len(acceptance_refs)} "
+                f"acceptance criteria with {len(verification_refs)} verification "
+                f"methods; every criterion in this row will receive all "
+                f"{len(verification_refs)} methods. Split the row for exact "
+                f"1:1 linkage.",
+                file=sys.stderr,
+            )
         human_review = re.fullmatch(r"HUMAN_REVIEW:\s*(\S(?:.*\S)?)", cells[4])
         for ac_id in acceptance_refs:
             item = links.setdefault(ac_id, {"outputs": [], "verifications": [], "human_reviews": []})

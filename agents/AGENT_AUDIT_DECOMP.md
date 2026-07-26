@@ -105,14 +105,28 @@ This protocol uses **Package / Deliverable / Scope Ledger / Scope Item** termino
 
 ### Variant Section Binding
 
-Section numbering differs between decomposition variant outputs. All protocol steps reference sections by **semantic name**; resolve to the correct location using this table:
+Section numbering differs between decomposition variant outputs. All protocol steps reference sections by **semantic name**. Resolve to the correct location as follows.
 
-| Semantic section | PROJECT_DECOMP | SOFTWARE_DECOMP | DOMAIN_DECOMP |
-|------------------|----------------|-----------------|---------------|
-| Ledger | §5 (Scope Ledger) | §5 (Scope Ledger) | §2 (Domain Ledger) |
-| Objectives | §6 (dedicated section) | (via Scope Ledger §5 `ObjectiveID(s)` column) | Objectives section (dedicated) |
-| Partitions (Packages / Categories) | §7 | §3 | Categories section |
-| Production Units (Deliverables / Knowledge Types) | §8 | §4 | Knowledge Types section |
+Bind by heading text, never by section number. Section numbers differ between
+variants, differ between documents of the same variant, and drift as documents
+are amended.
+
+To resolve a semantic section, collect the document's `##` headings and
+normalize each one: strip the `## ` marker, strip a leading section number of
+the form `N.` or `NA.` (digits, optional letter suffix, period, trailing
+space — e.g. `10A.`), trim, and case-fold. Normalize the target text the same
+way. Then match in rank order, stopping at the first rank that yields a hit:
+exact, then prefix, then substring. If a rank yields more than one hit, take
+the earliest heading in the document and report the ambiguity. Only when no
+rank yields any hit is the binding unresolved: stop and report it. Never
+resolve by position.
+
+| Semantic section | PROJECT_DECOMP heading | SOFTWARE_DECOMP heading | DOMAIN_DECOMP heading |
+|------------------|------------------------|-------------------------|-----------------------|
+| Ledger | `Scope Ledger` | `Scope Ledger` | `Domain Ledger` |
+| Objectives | `Objectives` | `Objectives`, or the `ObjectiveID(s)` column of `Scope Ledger` where the variant embeds mapping in the ledger | `Objectives` |
+| Partitions (Packages / Categories) | `Packages` | `Packages` | `Categories` |
+| Production Units (Deliverables / Knowledge Types) | `Deliverables` | `Deliverables` | `Knowledge Types` |
 
 When `DECOMP_VARIANT = SOFTWARE`, Check 7 (Objective Mapping) resolves objectives from the Scope Ledger `ObjectiveID(s)` column rather than a dedicated Objectives section.
 
@@ -422,8 +436,10 @@ If `PRIOR_RUN_LABEL` is provided:
      "context_fidelity_pct": 0.0,
      "artifact_presence_pct": 0.0,
      "objective_coverage_pct": 0.0,
+     "deliverables_without_objective_mapping": 0,
+     "in_ledger_rows_without_objective_mapping": 0,
      "package_shape_conformance": "PASS|WARN|FAIL|SKIPPED",
-    "derivative_package_status": "PASS|WARN|FAIL|SKIPPED",
+     "derivative_package_status": "PASS|WARN|FAIL|SKIPPED",
      "active_snapshot_status": "PASS|WARN|FAIL|SKIPPED",
      "handoff_state_status": "PASS|WARN|FAIL|SKIPPED",
      "objective_evidence_integrity": "PASS|FAIL|SKIPPED",
@@ -495,7 +511,7 @@ A run is valid when:
 | Column | Type | Description |
 |--------|------|-------------|
 | `IssueID` | string | `COV-{NNN}` sequential within run |
-| `CheckNumber` | integer | 1–11 (maps to check name) |
+| `CheckNumber` | string | One of `1`–`9`, `9b`, `10`, `11` (maps to check name). Not an integer: check `9b` is a lettered sub-check. Any value outside this set is invalid |
 | `Severity` | enum | `BLOCKER` / `WARNING` / `INFO` |
 | `EntityType` | enum | `PARTITION` / `PRODUCTION_UNIT` / `OBJECTIVE` / `ATOMIC_UNIT` / `CONTEXT` / `ARTIFACT` / `DERIVATIVE_SURFACE` / `SNAPSHOT` / `HANDOFF_STATE` |
 | `ConcreteLabel` | string | Variant-specific name for the entity (e.g., `Package`, `Category`, `Deliverable`, `Knowledge Type`) |

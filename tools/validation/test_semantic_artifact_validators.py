@@ -219,6 +219,28 @@ def test_p3_disposition_rejects_stale_item_reference(tmp_path: Path) -> None:
     assert any(f.category == "UNKNOWN_ITEM_REFERENCE" for f in findings)
 
 
+def test_scope_validator_accepts_init_step_scope() -> None:
+    findings = validate_changed_paths(
+        [
+            "execution/PKG/DEL/ScopeOfWork.md",
+            "execution/PKG/DEL/_STATUS.md",
+            "execution/PKG/DEL/_run_records/TASK_RUN.md",
+        ],
+        "execution/PKG/DEL",
+        "init",
+    )
+    assert findings == []
+
+
+def test_scope_validator_rejects_semantic_file_under_init_step() -> None:
+    findings = validate_changed_paths(
+        ["execution/PKG/DEL/_SEMANTIC.md"],
+        "execution/PKG/DEL",
+        "init",
+    )
+    assert any(f.category == "OUT_OF_SCOPE_PATH" for f in findings)
+
+
 def test_scope_validator_accepts_semantic_step_scope() -> None:
     findings = validate_changed_paths(
         [
