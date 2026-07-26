@@ -6,6 +6,26 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
+`STEP 4 BATCH B6 COMPLETE AT FAN-IN — B5 committed (5d09e2614). B6
+(DEL-03-06, DEL-04-02, DEL-04-03, DEL-10-11) 4/4 first-pass PASS;
+first SCA-002 owner-attributed warrant (DEL-03-06 Q1.4 MEDIUM-LOW,
+ruled, owner-routed AC-014 per DEL-10-03 precedent); second DECLARED
+edge (E-A18) stated from register cells. Refutation 0 CRIT + 2 MAJ +
+5 MIN → revision + v2 amendment, all applied; PLUS F3: accepted
+DEL-03-03 (B5) misstated the PRD falsification clause (limbs =
+SOW-060/SOW-085, not the parity count) — corrected by narrow sealed
+revision within wave authority (2-line diff vs B5 baseline, new hash
+5ce8ab72…, DEL-10-11 citations updated historically). Census 29
+INITIALIZED / 35 OPEN (ladder match). Blocker 26/38 (+3: both B7
+members + out-of-wave DEL-10-04; DEL-08-04 blocked pending B7).
+Fan-in records WAVE_D-PEC-63/BATCH_B{1..6}_FANIN.md. NEXT: B7 =
+DEL-04-05, DEL-08-03; then B8 = DEL-08-04; then STEP 5 closure.
+Internal fan-in, per-batch refutation; owner returns at wave closure
+unless a halt re-arms. docs/STATUS.md four-line fix still authorized,
+unexecuted (scheduled at D-PEC-63 closure).`
+
+Superseded marker (B5):
+
 `STEP 4 BATCH B5 COMPLETE AT FAN-IN — B4 committed (15ac0e7c8). B5
 (DEL-03-02..04, DEL-04-01, DEL-10-02, DEL-10-10; three C-08 standing
 nodes authored on the standing pattern; E-A27 DECLARED edge bound
