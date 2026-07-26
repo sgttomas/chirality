@@ -6,6 +6,28 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
+`D-PEC-63 CLOSED — CLOSURE VERDICT: EXECUTED AND VERIFIED. All 8
+batches committed (B8 = d2232df6a); terminal census 32 INITIALIZED /
+32 OPEN; blocker 24 BLOCKED / 40 UNBLOCKED with all 32 wave members
+UNBLOCKED; dep-closure invariants unchanged; 32/32 contracts validate;
+32/32 final hashes verified. Closure artifacts landed: docs/STATUS.md
+authorized fixes (item-1 amendment + four rev-1.1 lines), Receipt 110,
+_REGISTER.md D-PEC-63 execution note, _COORDINATION.md item 7. R4
+closure refutation 0 CRIT + 4 MAJ + 8 MIN — all four MAJ were
+closure-artifact text defects, corrected pre-commit (§6). Open carries
+for successors: DEL-04-05/DEL-08-03 seam gap (SCA candidate); OI-013
+SYSTEMIC register defect (0/120 EXECUTION rows well-formed — REQUEST
+item 2, 8 items total, dispatch to HELPS_HUMANS a separate act);
+boundary-owner validator candidate; OI-B pointer sweep (deferred);
+stale rev-1.1 sentence in _COORDINATION.md human-owned Notes
+(owner-surfaced, R4-F10); DEL-03-01 CON-001/CON-005 and the other
+owner-routed ACs reach the owner at REVIEW. Next owner gates: P1
+build-slice packets (F-PEC-1 fences source work); WORKING_ITEMS is
+the post-wave owning workflow. Final commit + merge to local main
+executed after this marker; owner presentation follows.`
+
+Superseded marker (B8):
+
 `STEP 4 COMPLETE — WAVE AUTHORING 32/32. B7 committed (e7eac2a5f).
 B8 (DEL-08-04, terminal node, four upstreams incl. DECLARED E-A28)
 first-pass PASS; refutation 0 CRIT + 3 MAJ + 5 MIN (F1 = third
@@ -757,6 +779,36 @@ act.
 
 **Future rounds:** R3-wave post-B2 (upstream citation), R4 pre-closure
 (numbers/receipt/pointer audit). Log all here.
+
+**Carrier change (recorded at closure, R4-F3):** from B2 onward the
+per-batch refutation rounds were logged in the durable batch fan-in
+records rather than here — R3-wave in `WAVE_D-PEC-63/BATCH_B2_FANIN.md`
+§4 (1 CRIT + 3 MAJ + 10 MIN), then B3 §2 (1+3+8), B4 §2 (0+3+7), B5 §3
+(0+3+7 + the F6b refuter-proposal reversal), B6 §2–3 (0+2+5 + F3
+against accepted B5), B7 §3 (0+1+5), B8 §2 (0+3+5). Every finding and
+disposition is in those records; this section remains the carrier for
+the pre-wave rounds (R1, R-2a, R-2b-g1..g5, R-3) and R2 (post-B1,
+0 CRIT + 9 MAJ + 12 MIN, above).
+
+**R4 (closure round, 2026-07-25, sealed opus-5):** 0 CRIT + 4 MAJ +
+8 MIN. All closure numbers, all 32 contract validations, and all 32
+final hashes reproduced independently clean; wave coverage verified
+exact (the 32 members are precisely all 3 pre-P1 + 29 P1 deliverables;
+zero P1 outside the wave). MAJ findings, all closure-artifact text
+defects corrected before the final commit: F1 the OI-013 register
+defect is SYSTEMIC (0/120 EXECUTION rows well-formed: 87 both-cells +
+33 empty; 135/135 ANCHOR clean) — Receipt 110 and REQUEST item 2
+restated to class scale with exemplar framing; F2 "two
+refuter-proposal errors" corrected to one (B5 F6b); F3 this carrier
+note; F4 R4 line added to Receipt 110. MIN: F5 B1 counts added to the
+receipt table; F6 B6 accounting boundary annotated; F7
+"evidence 255/255" qualified as EvidenceFile-presence; F8 closure
+marker names d2232df6a; F9 _COORDINATION.md item 6 supersession note;
+F10 stale rev-1.1 sentence in the human-owned Notes section —
+surfaced to the owner, not edited under agent authority; F11/F12
+verified no-action (B1-clearance quote carried by Receipt 110 per
+receipt practice; the DEL-04-01 intra-run FAIL never met the ruled
+halt trigger).
 
 ## §7 Basis freeze + git anchors + re-pin list
 

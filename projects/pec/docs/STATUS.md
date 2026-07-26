@@ -19,8 +19,9 @@ that doesn't need to exist": no governed act may ever require it.
 2026-07-24 by `D-PEC-58`; directed-bootstrap clarification adopted by
 `D-PEC-61`).**
 
-**Implementation:** none yet. Decomposition revision 1.1 is the accepted
-current basis after `SCA-001`; PROJECT_SETUP is released with `FULL_GRAPH`
+**Implementation:** none yet. Decomposition revision 1.2 is the accepted
+current basis after `SCA-002` (`D-PEC-64`, 2026-07-25; revision 1.1 was the
+`SCA-001` basis); PROJECT_SETUP is released with `FULL_GRAPH`
 already selected. Nothing in the PRD is an implementation mandate (each
 tranche needs its own owner-ruled packet).
 
@@ -35,16 +36,26 @@ read and cite only, no further feature work, retired product docs under
 
 0. ~~Decomposition~~ — **accepted 2026-07-24** (`D-PEC-60`, Gates 1–7).
    The canonical working package at `execution/_Decomposition/`
-   (`SOFTWARE_DECOMP.md` rev 1.1 `current_basis` + four CSV registers +
+   (`SOFTWARE_DECOMP.md` rev 1.2 `current_basis` after `SCA-002`/`D-PEC-64`
+   + four CSV registers +
    `_LATEST.md` handoff state) is the authoritative downstream basis:
    11 packages (PKG-00..PKG-10), 64 deliverables, 94-row scope ledger.
 1. **PROJECT_SETUP / first build tranches** — materialize the owner-selected
-   full dependency DAG from revision 1.1 before scaffolding and the P1 slice
+   full dependency DAG from revision 1.1 (basis since amended to 1.2 by
+   `SCA-002`) before scaffolding and the P1 slice
    *(amended by `D-PEC-62`, 2026-07-25: owner-ruled deliverable-local
    storage makes materialization co-land **with** scaffolding — DAG gate
    ruled, 11 packages / 64 deliverables scaffolded `OPEN`, local
-   `Dependencies.csv` v3.1 registers seeded; P1-slice packets remain the
-   open gate)*
+   `Dependencies.csv` v3.1 registers seeded)*
+   *(amended by `D-PEC-63`, 2026-07-25: the Phase 2.2 scope-of-work
+   initialization wave executed — all 32 wave deliverables (3 pre-P1 +
+   29 P1) carry validated `ScopeOfWork.md` production contracts at
+   `INITIALIZED`; batches B1–B8 each closed with per-batch fan-in,
+   adversarial refutation, and scoped commits; terminal census 32
+   INITIALIZED / 32 OPEN; advisory blocker state 40 UNBLOCKED / 24
+   BLOCKED with all wave members unblocked; P1 build-slice packets
+   remain the open gate — `F-PEC-1` still fences source work, and
+   WORKING_ITEMS is the post-wave owning workflow)*
    (32 deliverables: parsers, reconciler + parity, orientation core,
    socket API, kill test, bootstrap self-ingest; plus pre-P1 DEL-00-01
    ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **Each tranche
@@ -69,8 +80,9 @@ Project-local agent rules: `AGENTS.md` (rewritten 2026-07-24, `D-PEC-59`).
 Decomposition session ruled and closed 2026-07-24 (`D-PEC-60`, Gates 1–7
 accepted; `execution/_Decomposition/**` opened by its fence for the
 canonical working package). Directed-bootstrap amendment `SCA-001` closed
-2026-07-24 under `D-PEC-61`; revision 1.1 is `current_basis` and its
-immutable evidence lives under `execution/_ScopeChange/`.
+2026-07-24 under `D-PEC-61`; objective-mapping amendment `SCA-002` closed
+2026-07-25 under `D-PEC-64`; revision 1.2 is `current_basis` and both
+sessions' immutable evidence lives under `execution/_ScopeChange/`.
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` was amended
 2026-07-24 (`D-PEC-59`: post-archive readable-artifact paths + pivot notes;
 validator VALID); full supersession remains pending v2 implementation shape.

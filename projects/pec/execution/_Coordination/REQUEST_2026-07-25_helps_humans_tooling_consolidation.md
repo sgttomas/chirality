@@ -25,22 +25,26 @@ fix lands.
 2. **OI-013 — no durable register validator** for decomposition
    companion registers (defect class demonstrated by W-1: a §5 prose
    count drifted from register truth inside an accepted revision).
-   *(Evidence extended 2026-07-25, D-PEC-63 wave B4–B7:)* two recurring
-   sub-classes in the D-PEC-62-seeded deliverable-local
-   `Dependencies.csv` rows: (a) **empty `EvidenceQuote` with `SourceRef`
-   "location TBD"** — instances DEP-03-01-006, DEP-03-03-003,
-   DEP-03-06-003/-004, DEP-04-02-003, DEP-04-03-004, DEP-04-05-005,
-   DEP-08-03-004, DEP-08-04-004/-005/-006, typically mirroring an empty
-   exhibit `BasisCitation`; (b) **generator column-mapping defect** —
-   the exhibit's `BasisCitation` text lands in BOTH `SourceRef` and
-   `EvidenceQuote`, and the exhibit's `Rationale` lands in `Statement`
-   — instances DEP-08-03-003, DEP-04-05-003/-004 (flagged by the
-   DEL-08-03 authoring run, confirmed by the B7 refuter); the
-   Rationale→Statement limb alone additionally appears on
-   DEP-04-05-005 (B7 revision-run observation — its exhibit
-   BasisCitation is empty, so the both-cells limb cannot manifest).
-   All carried as in-contract observations, none repaired in place; a
-   register validator should test both classes.
+   *(Evidence extended 2026-07-25, D-PEC-63 wave B4–B8; scale measured
+   at closure refutation R4:)* the defect class is **SYSTEMIC to the
+   D-PEC-62 seeding generator, not instance-level**. R4's independent
+   scan of all 64 deliverable-local `Dependencies.csv` files: **0 of the
+   120 EXECUTION rows are well-formed** — 87 carry the exhibit's
+   `BasisCitation` text in BOTH `SourceRef` and `EvidenceQuote` (with
+   the exhibit's `Rationale` in `Statement`), and 33 have empty
+   `EvidenceQuote` with `SourceRef` "location TBD" (mirroring an empty
+   exhibit `BasisCitation`); **all 135 ANCHOR rows are clean**.
+   Exemplar instances surfaced in-contract during the wave
+   (non-exhaustive): empty-EvidenceQuote — DEP-03-01-006,
+   DEP-03-02-003, DEP-03-03-003, DEP-03-04-003, DEP-03-06-003/-004,
+   DEP-04-01-005, DEP-04-02-003, DEP-04-03-004, DEP-04-05-005,
+   DEP-08-03-004, DEP-08-04-004/-005/-006; both-cells mapping defect —
+   DEP-08-03-003, DEP-04-05-003/-004, DEP-08-04-003. All carried as
+   in-contract observations, none repaired in place. Note also that
+   `analyze_dep_closure.py`'s "Evidence coverage 255/255" tests
+   `EvidenceFile` presence only, not quote quality — a register
+   validator should test both sub-classes and distinguish the two
+   metrics.
 3. **`tools/query/count_workspace_state.sh` history-substring defect** —
    whole-file `grep -l` matches `_STATUS.md` History lines; unusable
    after any lifecycle transition. Census replacement in use:

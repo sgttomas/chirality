@@ -49,7 +49,23 @@
    Executed under owner-directed Agent 0 orchestration (managed
    SCOPE_CHANGE instance; control plane
    `AgentRuns/RUN_2026-07-25_sca002/`). Re-pins executed 2026-07-25
-   (`6e558a2c0`). Next: the D-PEC-63 draft-v2 ruling.
+   (`6e558a2c0`). Next: the D-PEC-63 draft-v2 ruling *(ruled and
+   executed — see item 7)*.
+7. **`D-PEC-63` EXECUTED 2026-07-25:** the Phase 2.2 scope-of-work
+   initialization wave is complete — all 32 wave deliverables (3 pre-P1 +
+   29 P1) carry validated `ScopeOfWork.md` production contracts at
+   `INITIALIZED` (terminal census 32 INITIALIZED / 32 OPEN; advisory
+   blocker state 24 BLOCKED / 40 UNBLOCKED, all wave members unblocked;
+   dep-closure invariants unchanged). Batches B1–B8 each closed with
+   fan-in, sealed adversarial refutation, sealed revisions, deterministic
+   status acts, and scoped commits; durable records at
+   `WAVE_D-PEC-63/BATCH_B{1..8}_FANIN.md`. Evidence: Receipt 110. Open
+   carries: DEL-04-05/DEL-08-03 seam gap (SCA candidate), OI-013
+   register-anomaly inventory + boundary-owner validator candidate
+   (routed, `REQUEST_2026-07-25_helps_humans_tooling_consolidation.md`),
+   OI-B pointer sweep (deferred). Next: P1 build-slice packets
+   (owner-gated; `F-PEC-1` fences source work); WORKING_ITEMS is the
+   post-wave owning workflow.
 
 ## Notes (human-owned)
 
