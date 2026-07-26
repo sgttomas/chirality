@@ -6,6 +6,29 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
+`STEP 4 COMPLETE — WAVE AUTHORING 32/32. B7 committed (e7eac2a5f).
+B8 (DEL-08-04, terminal node, four upstreams incl. DECLARED E-A28)
+first-pass PASS; refutation 0 CRIT + 3 MAJ + 5 MIN (F1 = third
+B6-F2-class recurrence — one-for-one boundary-owner check promoted
+to validator candidate in closure handoff) → revision 6 applied +
+run-record erratum; re-verified PASS, hash ef40833af…. Census 32
+INITIALIZED / 32 OPEN (terminal). Blocker 24/40 — exact calibrated
+closure state, all 32 wave members UNBLOCKED (per-member verified).
+analyze_dep_closure.py unchanged at D-PEC-62 landing values (64
+files / 255 rows / 135+120 / 62 nodes / 120 edges / orphans 2 /
+SCCs 0). Fan-in records BATCH_B{1..8}_FANIN.md. NOW IN STEP 5
+CLOSURE: docs/STATUS.md authorized fixes → R4 refutation →
+LOOP_RECEIPTS receipt → _REGISTER.md row → _COORDINATION.md item →
+closure verdict here → final commit + merge to local main → owner
+presentation. Open wave-level carries for the handoff: DEL-04-05/
+DEL-08-03 seam gap (B7 F1, SCA candidate); DEL-02-03 feed-absence
+narrowness; OI-013 register anomalies (REQUEST item 2, 11+4
+instances); boundary-owner validator candidate; OI-B pointer sweep
+(deferred); DEL-01-05 _DEPENDENCIES.md overstatement; DEL-03-01
+CON-001/CON-005 owner items at REVIEW.`
+
+Superseded marker (B7):
+
 `STEP 4 BATCH B7 COMPLETE AT FAN-IN — B6 committed (cc86cc1d6). B7
 (DEL-04-05, DEL-08-03) 2/2 first-pass PASS; third DECLARED edge
 (E-N03) stated from register cells; B6 lessons applied at authoring
