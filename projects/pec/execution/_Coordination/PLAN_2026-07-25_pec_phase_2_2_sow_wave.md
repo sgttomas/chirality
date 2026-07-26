@@ -6,6 +6,29 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
+`STEP 4 BATCH B7 COMPLETE AT FAN-IN — B6 committed (cc86cc1d6). B7
+(DEL-04-05, DEL-08-03) 2/2 first-pass PASS; third DECLARED edge
+(E-N03) stated from register cells; B6 lessons applied at authoring
+(20/20 and 14/14 boundary-owner enumerations, literal quotation
+records). Refutation 0 CRIT + 1 MAJ + 5 MIN → 5 applied; the MAJ
+(F1) is a wave-level obligation-set hole at the DEL-04-05/DEL-08-03
+seam (rendered limitation not among the envelope's carried classes,
+no edge) — dispositioned SCA candidate, carried to closure handoff.
+OI-013 generator-defect sub-class added to REQUEST item 2 (11
+empty-EvidenceQuote + 4 mapping-defect instances). Census 31
+INITIALIZED / 33 OPEN (ladder match). Blocker 24/40 — already at
+the calibrated closure target; DEL-08-04 (B8) + out-of-wave
+DEL-09-06 newly unblocked. Fan-in records BATCH_B{1..7}_FANIN.md.
+NEXT: B8 = DEL-08-04 (DECLARED E-A28 + three PROPOSAL edges, all
+three with empty-EvidenceQuote anomaly), then STEP 5 closure
+(census 32/32; blocker 40/24 all wave UNBLOCKED;
+analyze_dep_closure.py unchanged; docs/STATUS.md authorized fixes;
+R4; receipts/pointers; final commit + merge to local main; owner
+presentation). docs/STATUS.md four-line fix still authorized,
+unexecuted.`
+
+Superseded marker (B6):
+
 `STEP 4 BATCH B6 COMPLETE AT FAN-IN — B5 committed (5d09e2614). B6
 (DEL-03-06, DEL-04-02, DEL-04-03, DEL-10-11) 4/4 first-pass PASS;
 first SCA-002 owner-attributed warrant (DEL-03-06 Q1.4 MEDIUM-LOW,
