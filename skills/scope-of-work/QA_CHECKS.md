@@ -3,7 +3,7 @@
 Items 2, 5–7, 10–12, 14, and 17 apply to `CONVERT` only; under `INIT` they are
 `NOT_APPLICABLE` and are recorded as such rather than passed or failed. Items
 1, 3, 4, 8, 9, 13, 16, and 18 apply to every mode. Item 15 applies whenever an
-HTML derivative was requested, in any mode. Items 19 and 20 apply to every
+HTML derivative was requested, in any mode. Items 19, 20, and 21 apply to every
 mode. `VERIFY` runs the mode-applicable subset read-only.
 
 1. The exact pilot variance covers the deliverable path.
@@ -36,13 +36,19 @@ mode. `VERIFY` runs the mode-applicable subset read-only.
     candidate is selected for integration.
 18. Repeated checklist derivation is byte-identical, and invalid or ambiguous
     input without the exact variance fails without an output artifact.
-19. Every upstream deliverable's local ID appears only inside a blockquote with
-    an explicit upstream-context carve-out; no own-voice prose carries an
-    ID-shaped token that is not a local definition or local reference.
+19. Every upstream deliverable's local ID is cited either in the qualified form
+    (`DEL-NN-NN/REQ-NNN`) or inside a blockquote carrying an explicit
+    upstream-context carve-out; no own-voice prose carries a bare ID-shaped
+    token that is not a local definition or local reference.
 20. No Output and Evaluation Matrix row carries multiple `AC-*` with a
     verification set larger than the union of those criteria's own methods; the
     derived checklist entry for each `AC-*` names no method that does not
     verify it.
+
+21. Every act excluded by a boundary-exclusion requirement resolves one-for-one
+    to a named owner in a claim that requirement cites, and
+    `check_boundary_owner_resolution.py` reports no `UNRESOLVED_OWNER` or
+    `UNDEFINED_CLAIM` finding for the contract.
 
 Any failure produces a failed return and rerun requirements; it does not
 silently weaken the acceptance gate.

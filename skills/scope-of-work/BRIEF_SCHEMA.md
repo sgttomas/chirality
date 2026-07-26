@@ -41,7 +41,7 @@ Permitted targets are limited to:
   conversion workspace, plus a separate clean production-candidate
   `ScopeOfWork.md` and external finalization report;
 - a requested untracked/on-demand `ScopeOfWork.html`; and
-- run-local claim-map, parity, deterministic checklist, receipt, and return
-  artifacts.
+- run-local claim-map, parity, deterministic checklist, boundary-owner report
+  (`check_boundary_owner_resolution.py --json`), receipt, and return artifacts.
 
 The four legacy documents and `_STATUS.md` are always read-only inputs.
