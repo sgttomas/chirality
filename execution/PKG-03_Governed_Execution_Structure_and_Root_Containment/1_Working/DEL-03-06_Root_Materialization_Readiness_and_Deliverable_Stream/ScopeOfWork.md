@@ -4,7 +4,7 @@ deliverable_id: DEL-03-06
 package_id: PKG-03
 decomposition_basis: execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md@653fabc9b3e8abf369f5e776a7d3ee24bf235e7a
 project_scope_refs: [SOW-001, SOW-002, SOW-061, SOW-103]
-package_objective_refs: [OBJ-002]
+package_objective_refs: [OBJ-002, OBJ-004]
 ---
 
 # Scope of Work — DEL-03-06

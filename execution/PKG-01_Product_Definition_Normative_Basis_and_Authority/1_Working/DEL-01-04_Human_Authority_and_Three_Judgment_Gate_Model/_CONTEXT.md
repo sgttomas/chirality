@@ -4,7 +4,7 @@
 **Package:** PKG-01 Product Definition, Normative Basis, and Authority
 **Discipline:** TBD
 **Type:** REQ_SLICE
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 
@@ -24,7 +24,7 @@ Nothing is inferred here (K-INVENT-1).
 ## Scope Traceability
 
 - Scope items: SOW-010, SOW-011, SOW-017
-- Objectives: OBJ-002
+- Objectives: OBJ-002, OBJ-003
 - ContextEnvelope: M
 - ContextEnvelopeNotes: One coherent authority model over a bounded set of gate points.
 - AnticipatedWriteLocus: execution-tree

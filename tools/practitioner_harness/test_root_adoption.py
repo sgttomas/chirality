@@ -445,11 +445,15 @@ def test_live_root_drift_baseline_0_of_45():
 
 
 @live_root
-def test_live_root_status_reports_45_open_and_no_dag_pointer():
+def test_live_root_status_reports_45_initialized_and_no_dag_pointer():
+    # Live pin: 45 deliverables at INITIALIZED since the initialization
+    # closing tranche (D-GOV-27; all 45 SOW_V1 contracts accepted at PR #354).
+    # A change to the live root tree updates this pin in the same PR — never
+    # silently.
     report = cmd_status.run_status_project(LIVE_REPO, LIVE_REPO)
     md = report.render_markdown()
     assert "# Status — chirality-root" in md
-    assert "| OPEN | 45 |" in md
+    assert "| INITIALIZED | 45 |" in md
     assert report.summary["status_files"] == 45
     assert "not declared by this adapter schema (root-harness-adapter/v1)" in md
 

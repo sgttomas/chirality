@@ -4,7 +4,7 @@
 **Package:** PKG-02 Operative Instruction Surface and Runtime Layers
 **Discipline:** TBD
 **Type:** REQ_SLICE
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 

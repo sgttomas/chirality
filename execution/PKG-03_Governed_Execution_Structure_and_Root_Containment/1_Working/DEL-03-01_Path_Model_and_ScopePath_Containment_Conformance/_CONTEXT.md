@@ -4,7 +4,7 @@
 **Package:** PKG-03 Governed Execution Structure and Root Containment
 **Discipline:** TBD
 **Type:** SECURITY_CONTROL
-**Responsible:** TBD
+**Responsible:** Ryan Tufts
 
 ## Description
 
@@ -24,7 +24,7 @@ Nothing is inferred here (K-INVENT-1).
 ## Scope Traceability
 
 - Scope items: SOW-020, SOW-031
-- Objectives: OBJ-007
+- Objectives: OBJ-004, OBJ-007
 - ContextEnvelope: M
 - ContextEnvelopeNotes: One rule set with existing deterministic checks to extend and evidence.
 - AnticipatedWriteLocus: execution-tree; tools/ (M2) if a check must change

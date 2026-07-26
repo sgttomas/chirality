@@ -11,6 +11,17 @@
 > per RD-4-D. Candidates and revision evidence remain immutable in
 > `execution/_Coordination/`. Future amendments to the adopted PRD are M2
 > instruction-surface tranches, never edits to the candidate history.
+>
+> **Amendment of record (D-GOV-27, 2026-07-25).** §5.2 **O-1**'s
+> instruction-surface enumeration is **superseded by instrument** (D-13:
+> the adopted bytes below are never overwritten at their path): the shared
+> instruction surface is `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`,
+> `tools/`, root `docs/`, `init/`, and `.github/workflows/`, as enumerated
+> by `docs/SPEC.md` §0.2.1 (ruled by D-GOV-26; superseding record
+> `docs/governance_harness/_DECISIONS/D-GOV-27_initialization_closing_rulings.md`).
+> O-1's six-member enumeration below is read through this supersession.
+> Every byte below the horizontal rule remains the adopted Rev 5 candidate
+> bytes, unchanged.
 
 ---
 

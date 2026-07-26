@@ -4,7 +4,7 @@ deliverable_id: DEL-06-04
 package_id: PKG-06
 decomposition_basis: execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md@653fabc9b3e8abf369f5e776a7d3ee24bf235e7a
 project_scope_refs: [SOW-067, SOW-068, SOW-069, SOW-075]
-package_objective_refs: [OBJ-005]
+package_objective_refs: [OBJ-004, OBJ-005]
 ---
 
 # Scope of Work — DEL-06-04
@@ -71,7 +71,9 @@ The three anticipated artifacts transcribed from the register
   this deliverable's `_CONTEXT.md ## Scope Traceability` declares OBJ-005 as the
   package objective. This contract uses the `_CONTEXT.md` value, as required,
   and records the divergence rather than reconciling it. Reconciliation is an
-  owner act. SOW-075 carries no `ObjectiveIDs` value, consistent with its `OUT`
+  owner act. **Ruled (D-GOV-27, 2026-07-25): additive propagation** — the
+  ledger mapping stands, the register and this frontmatter gained OBJ-004,
+  and this divergence is closed. SOW-075 carries no `ObjectiveIDs` value, consistent with its `OUT`
   boundary status.
 
 ## Completion and Reliance Basis — Epistemology
