@@ -1,0 +1,2 @@
+hold_id,deliverable_id,deliverable_id,package_id,sow_path,decomposition_basis,basis_commit,status,prohibited_operations,entry_path_scope,repin_posture,authority_basis
+APP-HOLD-1-DEL-02-01,DEL-02-01,DEL-02-01,PKG-02,invalid,invalid@416b29033bbacb0bc3648d84033272b7ab4e6e11,416b29033bbacb0bc3648d84033272b7ab4e6e11,HELD,reliance|dispatch|checking-promotion|accepted-dependency-consumption,ANY,NO_REPIN,OD-1_2026-07-26

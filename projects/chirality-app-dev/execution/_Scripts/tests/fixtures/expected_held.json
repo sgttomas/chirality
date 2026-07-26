@@ -1,0 +1,13 @@
+{
+  "basis_commit": "918bb48b8fcee66c031d0d6d4040a46089f96067",
+  "held_deliverables": [
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-04",
+    "DEL-05-04",
+    "DEL-08-02",
+    "DEL-08-03"
+  ],
+  "missing_basis_commit": "416b29033bbacb0bc3648d84033272b7ab4e6e11",
+  "unaffected_target": "DEL-03-01"
+}

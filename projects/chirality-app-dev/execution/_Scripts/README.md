@@ -56,6 +56,17 @@ python3 execution/_Scripts/validate_dependencies.py --scan execution/
 
 Add `--format json` for machine-readable CI consumption.
 
+## `app_hold.py` (APP-HOLD-1)
+
+Read-only, idempotent scan-authoritative reliance gate for App ScopeOfWork
+contracts. `scan` verifies every declared decomposition basis and exact hold
+register parity. `check` evaluates one of `reliance`, `dispatch`,
+`checking-promotion`, or `accepted-dependency-consumption` for explicit
+deliverable targets and entry path. Exit 0 permits, 2 rejects invalid input or
+authority evidence, 3 blocks a held target, and 4 blocks register drift.
+There is no runtime exception input. Human override requires a separately
+accepted and applied App-loop amendment to APP-HOLD-1 before the act.
+
 ## Suggested CI Snippets
 
 ```bash

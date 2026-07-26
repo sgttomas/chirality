@@ -91,6 +91,33 @@ Treat unrelated dirty files outside the selected tranche scope as external
 state. Do not fix, stage, revert, or interpret them unless the human directs
 that work.
 
+## APP-HOLD-1 Reliance Preflight
+
+Before relying on, dispatching, promoting to `CHECKING`, or consuming an
+accepted dependency for any App deliverable, every session, agent, and
+workflow must run:
+
+`python3 execution/_Scripts/app_hold.py check --operation <operation> --entry-path <declared-entry-path> --target <DEL-ID> [--target <DEL-ID> ...]`
+
+from the App working root. `operation` is exactly one of `reliance`,
+`dispatch`, `checking-promotion`, or `accepted-dependency-consumption`.
+The execution-time scan and `execution/_Coordination/APP_HOLD_REGISTER.csv`
+must agree. A held target always fails closed. APP-HOLD-1 has no
+runtime-consulted exception registry and does not infer exceptions from owner
+prose. An owner override requires a separately accepted and applied App-loop
+amendment to the hold's live register, tool, and instruction surfaces before
+the prohibited act begins.
+
+The prohibition binds held contracts regardless of entry path. WORKING_ITEMS
+preflight is the primary enforcement mechanism, not the source or limit of
+the prohibition. Direct entry, resumed sessions, API paths, other agents, and
+other workflows remain bound. A fan-in that observes work or dependency use
+without a passing preflight must reject the return and keep dependants held.
+
+APP-HOLD-1 never authorizes repinning. A register/scan mismatch, malformed
+contract basis, missing preflight, or held target is blocking and returns to
+the human through the active manager.
+
 ## Closeout And Git Discipline
 
 When a tranche is complete, validated, and project closeout rules allow it,

@@ -1,0 +1,13 @@
+{
+  "entry_paths": [
+    "WORKING_ITEMS:PKG-02:RUN-NEGATIVE-1",
+    "DIRECT_HUMAN_SESSION:RUN-NEGATIVE-2",
+    "API_OR_OTHER_WORKFLOW:RUN-NEGATIVE-3"
+  ],
+  "operations": [
+    "reliance",
+    "dispatch",
+    "checking-promotion",
+    "accepted-dependency-consumption"
+  ]
+}
