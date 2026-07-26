@@ -2,7 +2,7 @@
 
 Status:       RULED
 HumanRuling:  "Delegate to `opus-5` subagents the closeout of those four owner-gated issues by following your recommendations in each case." (owner, 2026-07-25; verbatim fence below)
-PublicationSHA: (this record's publication commit; backfilled in this tranche per precedent)
+PublicationSHA: ccee1654535375965d92f71e55dd66de0b3eed40 (this record's publication commit; backfilled in the same tranche per precedent)
 EffectiveSHA: (merge of the closeout-application PR into `main`; backfilled by a later tranche per precedent)
 Date:         2026-07-25
 FramedBy:     Agent-drafted (Agent 0, `HELP_HUMAN` posture); the four issues and recommendations were surfaced in the Receipt-49 closeout report, in-session
