@@ -2,7 +2,11 @@
 
 **Date:** 2026-07-25 · **Requesting loop:** PEC PROJECT_SETUP (D-PEC-63
 ruling, Q2 — owner-selected: "Consolidation packet via HELPS_HUMANS")
-**Status:** ROUTED — coordination notice, not authority. HELPS_HUMANS
+**Status:** ROUTED; **INTAKE COMPLETE 2026-07-25** — all 8 items
+dispositioned by HELPS_HUMANS (item 2/OI-013 closed on the tooling
+side; items 1, 3–8 awaiting owner approval as proposals). Response:
+`NOTICE_2026-07-25_helps_humans_oi013_response.md`. Original posture
+stands: coordination notice, not authority. HELPS_HUMANS
 adopts, amends, or declines under its own instruments; every `skills/**`
 and `tools/**` edit follows its own proposal/approval flow. PEC surfaces
 are NOT in scope here.
