@@ -1,0 +1,101 @@
+{
+  "schema_version": "pec-software-register-baseline-v1",
+  "baseline_role": "SCOPE_CHANGE Gate 1 deterministic register-integrity baseline (pre-change)",
+  "captured_at": "2026-07-25",
+  "amendment_id": "SCA-002",
+  "decomp_variant": "SOFTWARE",
+  "accepted_basis": {
+    "decomposition_path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+    "revision": "1.1",
+    "latest_pointer": "revision 1.1 (current_basis, SCA-001 successor under D-PEC-61)",
+    "source_corpus_declared": "projects/pec/docs/PRD.md v2.1",
+    "current_prd_state": "v2.1 (D-PEC-58 + D-PEC-61)"
+  },
+  "audit_decomp": {
+    "snapshot": "projects/pec/execution/_Evaluation/DecompCoverage/COV_SCA002_PRECHANGE_2026-07-25_1040",
+    "run_status": "WARNINGS",
+    "declared_packages": 11,
+    "declared_deliverables": 64,
+    "discovered_deliverable_folders": 64,
+    "interpretation": "First PEC run able to measure filesystem coverage (D-PEC-62 scaffold landed). 0 blockers / 1 warning (W-1 stale \u00a75 envelope prose) / 90 info."
+  },
+  "counts": {
+    "scope_items": 94,
+    "scope_status": {
+      "IN": 71,
+      "OUT": 14,
+      "TBD": 9
+    },
+    "packages": 11,
+    "deliverables": 64,
+    "objectives": 6,
+    "context_envelopes": {
+      "S": 28,
+      "M": 34,
+      "L": 2
+    }
+  },
+  "objective_support": {
+    "scope_items": {
+      "OBJ-003": 13,
+      "OBJ-001": 10,
+      "OBJ-002": 4,
+      "OBJ-005": 2,
+      "OBJ-006": 9,
+      "OBJ-004": 9
+    },
+    "deliverables": {
+      "OBJ-003": 12,
+      "OBJ-006": 9,
+      "OBJ-005": 2,
+      "OBJ-002": 4,
+      "OBJ-001": 9,
+      "OBJ-004": 9
+    },
+    "in_items_without_objective": 31,
+    "deliverables_without_objective": 26
+  },
+  "checks": {
+    "scope_id_uniqueness": true,
+    "deliverable_id_uniqueness": true,
+    "qa_id_uniqueness": true,
+    "all_in_have_one_package": true,
+    "all_in_have_one_deliverable": true,
+    "scope_to_deliverable_refs_resolve": true,
+    "scope_deliverable_package_lineage": true,
+    "deliverable_to_scope_refs_resolve": true,
+    "bidirectional_scope_mapping": true,
+    "qa_one_to_one_with_deliverables": true,
+    "qa_envelope_parity": true,
+    "companion_inventory_paths_exist": true,
+    "expected_package_set": true,
+    "expected_objective_set": true,
+    "union_invariant_zero_violations": true
+  },
+  "issues": {
+    "duplicate_scope_ids": [],
+    "duplicate_deliverable_ids": [],
+    "unassigned_in_scope": [],
+    "in_without_deliverable": [],
+    "dangling_deliverable_refs": [],
+    "lineage_mismatches": [],
+    "dangling_scope_refs": [],
+    "reverse_mapping_missing": [],
+    "qa_missing": [],
+    "qa_extra": [],
+    "qa_envelope_mismatches": [],
+    "inventory_missing_files": []
+  },
+  "file_sha256": {
+    "SOFTWARE_DECOMP.md": "cec996baa33ec164be0dc67eab6edc8a966e672825f3f8c06ab349c45a6ed4cf",
+    "ScopeLedger.csv": "73f3d34503beab2e102c62bfb6f3456e007ce1b30b3926e62fa27e6add0fc3bc",
+    "Deliverables.csv": "892125582c05dee54f486e92fb7a0a20e69b2469c6062815f4f8e2f3fc19932c",
+    "ContextBudgetQA.csv": "5c8d30994a99611b7023f8ac0995ee9a8efa0d2992f3c1a2683f4d2f9e8e2bef",
+    "Companion_Inventory.csv": "18793e150c537371f80d659af2784674d42bac0de37bf7128e484774a557ec23",
+    "_LATEST.md": "812967740119de1b06bf256f6c9c1748e62dea05031f84e703982cb0d09d3b46"
+  },
+  "overall_status": "PASS",
+  "known_warnings": [
+    "W-1: \u00a75 envelope-posture prose stale vs registers/\u00a77 (corrected by A007 in this amendment)"
+  ]
+}

@@ -3,12 +3,12 @@ doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
 status: current_basis
-revision: "1.1"
-date: 2026-07-24
-accepted: 2026-07-24 (original Gate 7 owner ruling under D-PEC-60; revision 1.1 successor accepted through SCA-001 under D-PEC-61)
+revision: "1.2"
+date: 2026-07-25
+accepted: 2026-07-25 (original Gate 7 owner ruling under D-PEC-60; revision 1.2 successor accepted through SCA-002 under D-PEC-64)
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
-session_authorization: D-PEC-60; amended by SCA-001 under D-PEC-61
+session_authorization: D-PEC-60; amended by SCA-001 under D-PEC-61, then by SCA-002 under D-PEC-64
 source_corpus: projects/pec/docs/PRD.md (v2.1; v2.0 adopted 2026-07-24 by D-PEC-58, directed-bootstrap clarification adopted by D-PEC-61)
 ---
 
@@ -315,27 +315,36 @@ invented beyond those sources. Each is testable through the mapped scope
 items; the §11/§12 measurement items (SOW-058..063, 084, 085) are the
 test instruments.
 
-| ObjectiveID | Statement | SourceRef | Mapped Scope Items (best-effort) | MappedDeliverables |
+| ObjectiveID | Statement | SourceRef | Mapped Scope Items | MappedDeliverables |
 |---|---|---|---|---|
-| OBJ-001 | Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation | §3.1 | SOW-004..009, SOW-041, SOW-043; instruments: SOW-058, SOW-059 | DEL-04-01..05, DEL-08-03, DEL-08-04, DEL-10-01, DEL-10-04 |
-| OBJ-002 | Staleness is detected structurally by SHA comparison, never by judgment | §3.2 | SOW-006, SOW-018, SOW-019; supported by SOW-005 | DEL-03-02, DEL-03-03, DEL-04-02, DEL-04-03 |
+| OBJ-001 | Orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation | §3.1 | SOW-001, SOW-003, SOW-004..009, SOW-011..017, SOW-040..043, SOW-089; instruments: SOW-058, SOW-059 | DEL-00-03, DEL-01-01, DEL-02-01..07, DEL-04-01..05, DEL-08-01..04, DEL-10-01, DEL-10-04 |
+| OBJ-002 | Staleness is detected structurally by SHA comparison, never by judgment | §3.2 | SOW-001, SOW-006, SOW-011..019; supported by SOW-005 | DEL-01-01, DEL-02-01..07, DEL-03-02, DEL-03-03, DEL-04-02, DEL-04-03 |
 | OBJ-003 | Concurrent sessions have a declared, durable surface for presence and status; write-scope collisions are surfaced before they land in Git | §3.3 | SOW-002, SOW-026..032, SOW-039, SOW-049; instruments: SOW-061, SOW-062, SOW-084 | DEL-01-02, DEL-06-01..06, DEL-07-01, DEL-09-05, DEL-10-06, DEL-10-07, DEL-10-09 |
-| OBJ-004 | The human owner has one live view: loops, gates, lifecycle census, decisions waiting on them, and who is working where | §3.4 | SOW-024, SOW-045..051; instrument: SOW-085 | DEL-05-02, DEL-09-01..07, DEL-10-05 |
-| OBJ-005 | Everything PEC holds can be deleted at any moment without blocking any governed act | §3.5 | SOW-010, SOW-055; bound by C1/C2 across all items | DEL-03-01, DEL-10-02 |
+| OBJ-004 | The human owner has one live view: loops, gates, lifecycle census, decisions waiting on them, and who is working where | §3.4 | SOW-024, SOW-045..051, SOW-094; instrument: SOW-085 | DEL-01-06, DEL-05-02, DEL-09-01..07, DEL-10-05 |
+| OBJ-005 | Everything PEC holds can be deleted at any moment without blocking any governed act | §3.5 | SOW-010, SOW-021, SOW-025, SOW-052..056, SOW-088; bound by C1/C2 across all items | DEL-00-01, DEL-01-03, DEL-01-05, DEL-03-01, DEL-03-06, DEL-10-02, DEL-10-03 |
 | OBJ-006 | The product thesis remains measurable and falsifiable: adoption, parity, defect, and collision metrics are gathered in system behavior and the §11 falsification clause stays armed | §11 | SOW-020, SOW-057..060, SOW-064, SOW-084, SOW-085, SOW-093 | DEL-01-04, DEL-03-04, DEL-10-01, DEL-10-04, DEL-10-05, DEL-10-09, DEL-10-10, DEL-10-11, DEL-10-12 |
 
 No objective is unmapped at either level (scope items or deliverables);
 SOW-062 was mapped to OBJ-003 at Phase 6 (TTL honesty is a presence-surface
 instrument); SOW-063 remains intentionally unmapped — it instruments
-PEC-K-07, which no §3-derived objective states directly (DL-14).
+PEC-K-07, which no §3-derived objective states directly (DL-14). SCA-002
+mapped the Phase 2.2 wave scope at revision 1.2 (DL-17); the residue below
+is deliberate, not pending.
 
 **Mapping notes:** no unmapped objectives. Ingest/bridge items
 (SOW-033..039) serve OBJ-001/OBJ-003 freshness indirectly through
 PEC-K-07 and are intentionally not force-mapped; parser items
 (SOW-011..017) underlie OBJ-001/OBJ-002 through the record tier
-(SOW-001). Deferred/OUT and TBD items map to no objective by design.
-Full ScopeItem→Objective assignments land in `ScopeLedger.csv` at
-Phase 4–5; this table is the objective-side view.
+(SOW-001) — SCA-002 carried that derivation into the ledger at
+revision 1.2, mapping SOW-001 and SOW-011..017 to OBJ-001/OBJ-002
+rather than superseding the rationale. Deferred/OUT and TBD items map
+to no objective by design. Eleven IN items remain unmapped after
+SCA-002's O-A wave-minimum scope: the unmapped members of the
+ingest/bridge class above (SOW-033..038), SOW-063 (intentional per
+DL-14), and SOW-022, SOW-023, SOW-044, SOW-087, which are out-of-wave
+and left to the packet that authors their deliverables. Full
+ScopeItem→Objective assignments land in `ScopeLedger.csv` at Phase 4–5;
+this table is the objective-side view.
 
 ## 4. Packages (Phase 4)
 
@@ -373,7 +382,7 @@ package. ResponsibleParty is `TBD` throughout — assignment happens at
 WORKING_ITEMS activation, not here. Conventions are DL-13; Phase 6
 verification errata are DL-14.
 
-Context Envelope posture: **29 S / 33 M / 2 L / 0 XL.** Both L
+Context Envelope posture: **28 S / 34 M / 2 L / 0 XL.** Both L
 deliverables (DEL-02-03 receipts parser; DEL-01-01 record-tier schema)
 carry mandatory envelope notes; no XL exists, so no Gate 5/6
 acceptance-of-risk is required.
@@ -525,11 +534,11 @@ instrument.
 | UnassignedScopeItems (IN without package) | **0** |
 | ScopeItemsWithoutDeliverableMapping (IN) | **0** |
 | UnmappedObjectives | **0** (every objective backed at both scope-item and deliverable level, §3) |
-| IN items without objective mapping | 31 (intentional best-effort posture, §3 mapping notes — parsers/mechanics serve objectives through the record tier) |
+| IN items without objective mapping | 11 (SCA-002 O-A residue, §3 mapping notes — the ingest/bridge class SOW-033..038; SOW-063, intentional per DL-14; and out-of-wave SOW-022, SOW-023, SOW-044, SOW-087) |
 | ContextEnvelopeCounts | S 28 / M 34 / L 2 / XL 0 |
 | OpenIssuesByType | 11 open (9 §16 owner decisions: OI-001..009; 1 architecture ADR: OI-012; 1 tooling follow-on: OI-013) / 2 resolved (OI-010, OI-011 at Gate 2) |
 | Deliverable single-package membership | 64/64; every `DEL-XX-YY` prefix matched to its parent package |
-| Revision | 1.1, 2026-07-24 (SCA-001) |
+| Revision | 1.2, 2026-07-25 (SCA-002) |
 
 Coverage-check provenance: every IN scope item traces §PRD → SSOW →
 package → deliverable(s) in `ScopeLedger.csv`; OUT items record the
@@ -623,6 +632,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | DL-14 | 2026-07-24 | Phase 6 adversarial verification (opus-5; 19 confirmed defects, 5 suspicions dispositioned) applied at revision 0.9: SOW-093 (§11.5 parity metric) and SOW-094 (loop-registration config) added with DEL-10-11 and DEL-01-06; DEL-10-05 split (→ DEL-10-12: two instrumentation points, two phases); DEL-01-01 re-enveloped M→L (14 entity types, not "11 entities"); DEL-03-05 moved P4→P3 so ingest never runs without its PEC-K-07 safety invariant; DEL-00-02 P3→P2 and DEL-00-03 P1→pre-P1 (PKG-00 publishes ahead of consumers); OI-coupled risk raised to MEDIUM on DEL-00-02 (OI-009) and DEL-08-01 (OI-006); DEL-09-06 declared a PKG-09-internal shared component sequenced first; DEL-09-07 retyped BACKEND_FEATURE_SLICE (artifacts are rules, not UI); DEL-06-05's cross-package enforcement edge to DEL-04-03 declared; SOW-062 mapped to OBJ-003, SOW-063 left unmapped intentionally (instruments PEC-K-07, which no §3 objective states); SOW-088 flagged OpenIssue=TRUE (OI-012); the false "build-gate generator" claim corrected and recorded as OI-013; §6 stale placeholder replaced; §2.4 amended (observation + authoring signals); §3 gains MappedDeliverables; vocabulary gains the `Package (entity)` disambiguation and this log was reordered; names normalized across doc and registers | Fix-before-gate: all corrections landed before Gate 6 presentation; IDs remain append-only (I5) |
 | DL-15 | 2026-07-24 | Justified duplication (per the standard's companion-register clause): the §2 SSOW tables intentionally duplicate the ledger's identity columns because they are the Gate 2 human-confirmation surface and the generation source — `ScopeLedger.csv` stays authoritative for assignments (PKG/DEL/OBJ/DecisionRef/OpenIssue); §5 duplicates only the compact control fields (ID/name/type/envelope/phase/covers) — `Deliverables.csv` stays authoritative for full deliverable truth. Any conflict resolves to the register for assignment fields and to this document for statement text, pending regeneration | The duplication is directional and declared, not drift-prone parity |
 | DL-16 | 2026-07-24 | SCA-001, requested by owner Ryan Tufts and opened by D-PEC-61, adds construction-specific constraint C16, expands SOW-064 and DEL-10-10 into directed full-DAG bootstrap progression evidence, maps both to OBJ-006, and re-envelopes DEL-10-10 S→M; no package, deliverable, objective, scope item, product function, stable ID, or dependency edge is added or removed | `FULL_GRAPH` supplies direction for PEC's own governed construction without becoming a universal PEC product mode; capability-before-consumption keeps the bootstrap acyclic, observed friction remains evidence rather than authority, the file-native fallback remains operable, and dependency-edge materialization stays with PROJECT_SETUP |
+| DL-17 | 2026-07-25 | SCA-002, requested by owner Ryan Tufts and opened by D-PEC-64, completes the deliverable→objective mapping for the Phase 2.2 scope-of-work wave scope (O-A wave-minimum): 20 IN ledger rows gain ObjectiveIDs and 17 deliverables gain SupportsObjectives, with §3's parser derivation carried into the ledger rather than superseded and the ingest/bridge and SOW-063 intentional rationale retained verbatim for the 11-row residue; §5's stale envelope-posture line is corrected to the register value; no package, deliverable, objective, scope item, product function, stable ID, or dependency edge is added or removed | The wave's SOW briefs require non-empty package_objective_refs from register truth; completing the mapping in decomposition truth (rather than by a SOW-local convention, which the owner declined) keeps objective attribution auditable at its source, and confining the amendment to wave scope leaves the recorded intentional-unmapped rationale standing rather than force-mapping it |
 
 ## 12. Revision History (Phase 7 change summary)
 
@@ -638,6 +648,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | 0.9 | 6 | Phase 6 verification errata (19 defects, DL-14/15): +SOW-093/094, +DEL-01-06/10-11/10-12, DEL-10-05 split, re-envelopes, phase corrections, OI-013 |
 | 1.0 | 7 | Publication: `Companion_Inventory.csv` live; handoff state in `_LATEST.md`; presented for final acceptance |
 | 1.1 | SCA-001 | Directed full-DAG self-bootstrap clarification under D-PEC-61: +C16; expanded SOW-064 and DEL-10-10; OBJ-006 mapping; DEL-10-10 S→M; PRD v2.1 source reconciliation; telemetry and handoff parity; topology unchanged |
+| 1.2 | SCA-002 | Deliverable→objective mapping for the Phase 2.2 wave scope under D-PEC-64 (O-A): +ObjectiveIDs on 20 IN rows, +SupportsObjectives on 17 deliverables, §3 objective-side view and mapping notes reconciled, §7 metric 31→11, §5 envelope-posture line corrected (SCA-001 residual); topology unchanged |
 
 ## Companion Inventory
 
