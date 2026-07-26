@@ -1,0 +1,46 @@
+{
+  "schema": "chirality.tandem-review.challenge-freeze.v1",
+  "review_id": "CHIRALITY-PROGRAM-ARCH-TANDEM-2026-07-26-DA31C19",
+  "review_freeze": "da31c19b5656dd74615e308c4215688971d33dc9",
+  "manager_validation": {
+    "a_on_b": {
+      "verdict": "PASS",
+      "failure_count": 0,
+      "challenge_count": 15
+    },
+    "b_on_a": {
+      "verdict": "PASS",
+      "failure_count": 0,
+      "challenge_count": 18
+    }
+  },
+  "a_on_b": {
+    "report": {
+      "path": "challenges/A_ON_B/REPORT.md",
+      "sha256": "a038c67e326021e143f88b3cdaeea7b467be5dcafde1c785d030a973fef9d132"
+    },
+    "challenge": {
+      "path": "challenges/A_ON_B/CHALLENGE.csv",
+      "sha256": "0a81af18b9887d19fc61bf582cef750a205df32ad66106fb3da36698b76ec1a6"
+    },
+    "return_manifest": {
+      "path": "challenges/A_ON_B/RETURN_MANIFEST.json",
+      "sha256": "6855a70eec3ba3dd2c04046e5f65824261e815913b9b295d19de59f8b6319619"
+    }
+  },
+  "b_on_a": {
+    "report": {
+      "path": "challenges/B_ON_A/REPORT.md",
+      "sha256": "6677c39d43813bbc72955cbefdc79eb00a9f09be33eede6b8e1e331bc4448f4b"
+    },
+    "challenge": {
+      "path": "challenges/B_ON_A/CHALLENGE.csv",
+      "sha256": "59c0827e080ef14df22ae0b84561e55a9cef57b7a8417b52ed5acae235b6b4f8"
+    },
+    "return_manifest": {
+      "path": "challenges/B_ON_A/RETURN_MANIFEST.json",
+      "sha256": "1d53097765d006216b6f7c45960f4ed0ec1c070f280d6ab40f89fdee4c168172"
+    }
+  },
+  "fan_in_gate": "SATISFIED"
+}

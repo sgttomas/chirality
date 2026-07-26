@@ -1,0 +1,9 @@
+FindingID,Class,Status,Summary,Evidence,DispositionOwner,NextGate
+"PF-001","OBSERVATION","CONFIRMED","Root ownership is ruled while specific standing Root runtime stewardship coverage is absent","SUPERVISORY_META_FANIN.md#established-conclusions; returns/DAEMON_CONSUMPTION_CENSUS/RAW_TERMINAL_RETURN.md","Owner","OD-2"
+"PF-002","CONFLICT","CONFIRMED","Accepted App decomposition semantic-ownership prose conflicts with the ruled Root-owner/App-client boundary","SUPERVISORY_META_FANIN.md#established-conclusions","App SCOPE_CHANGE","OD-5"
+"PF-003","BLOCKER","CONFIRMED","Six scan-expected App SOWs bind an absent Git object and cannot support reliance","SUPERVISORY_META_FANIN.md#established-conclusions","App owner","OD-1"
+"PF-004","UNKNOWN","OPEN","Protocol-version incompatibility behavior is not established","returns/DAEMON_CONSUMPTION_CENSUS/RAW_TERMINAL_RETURN.md#4-degraded-mode-and-version-incompatibility","D-APP evidence tranche","OD-6"
+"PF-005","IDENTITY","CONFIRMED","Five completed packages preserved as relied evidence and one incomplete pass preserved as excluded supplemental","SOURCE_PACKAGE_SUMMARY.csv; DERIVATIVE_STATUS.md","EVALUATION","OD-0"
+"PF-006","GIT_DISPOSITION","OWNER_GATE","Two incidental non-relied .pyc snapshot bytes are ignored by ordinary staging","run_records/PRESERVATION_VALIDATOR/RETURN.md; OWNER_DECISION_SLATE.md#od-0--evidence-package-acceptance-and-incidental-byte-disposition","Owner/CHANGE","OD-0"
+"PF-007","ROLE_DISCLOSURE","CONFIRMED","Reviewer convergence carries disclosed prior-participation and engine-identity limitations","ENGINE_IDENTITY_REGISTER.csv; SUPERVISORY_META_FANIN.md#authorship-independence-and-correction-history","Owner","OD-0"
+"PF-008","METHOD","CLOSED","Initial refuter refusal conditions were corrected or acceptably narrowed","run_records/ADVERSARIAL_REFUTER/RETURN.md; run_records/ADVERSARIAL_REFUTER/BACKCHECK_RETURN.md","EVALUATION","ADMIT"

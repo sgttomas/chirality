@@ -1,0 +1,48 @@
+{
+  "schema": "chirality.tandem-review.return-manifest.v1",
+  "review_id": "CHIRALITY-PROGRAM-ARCH-TANDEM-2026-07-26-DA31C19",
+  "reviewer_id": "B",
+  "lens": "HORIZONTAL_ARCHITECTURE_BOUNDARIES_ADVERSARIAL_CONCORDANCE",
+  "review_freeze": "da31c19b5656dd74615e308c4215688971d33dc9",
+  "product_basis_commit": "aeadf5304435e1a4d8b4a26306da9ad4d4519eb6",
+  "input_manifest_sha256": "f569d994156f9585fd100286e43b325116ae473616b1d1bd4f169bd88d632386",
+  "output_filenames": [
+    "REPORT.md",
+    "FINDINGS.csv",
+    "TRACE_MATRIX.csv",
+    "BOUNDARY_MATRIX.csv",
+    "RETURN_MANIFEST.json"
+  ],
+  "outputs": {
+    "REPORT.md": {
+      "sha256": "4692e8bc2c05e0d0bf73e1a8dd9440f80166f77407aa36f5df98bcb4bdcc00f3",
+      "bytes": 24342,
+      "row_count": null
+    },
+    "FINDINGS.csv": {
+      "sha256": "9a14c635a1e7e235e50a6f233b637d4691e05bcb3010889b6cb98e3a38b3df85",
+      "bytes": 14378,
+      "row_count": 15
+    },
+    "TRACE_MATRIX.csv": {
+      "sha256": "cd6124bfe6903d84798f7472abdb0622f85454e2564c55d674f48560103be0e2",
+      "bytes": 28498,
+      "row_count": 88
+    },
+    "BOUNDARY_MATRIX.csv": {
+      "sha256": "e624c3531d032cfb1a4e2eb1935aae7dcf075e2592934b819461e9659ce821bf",
+      "bytes": 14960,
+      "row_count": 22
+    }
+  },
+  "row_counts": {
+    "findings": 15,
+    "trace_matrix": 88,
+    "boundary_matrix": 22,
+    "review_findings": 7,
+    "block_findings": 0
+  },
+  "scoring": null,
+  "other_reviewer_consulted": false,
+  "independence_statement": "No other reviewer return, directory, report, draft, message, or reasoning was consulted."
+}

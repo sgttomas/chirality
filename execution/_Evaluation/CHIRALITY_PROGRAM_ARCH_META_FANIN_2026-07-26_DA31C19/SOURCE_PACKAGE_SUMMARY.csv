@@ -1,0 +1,7 @@
+SourceLabel,SourceRoot,DestinationRoot,SourceRegularFiles,DestinationRegularFiles,SourceBytes,DestinationBytes,IdentityVerdict,RelianceStatus
+"independent_managed","/Users/ryan/.codex/worktrees/d9d0/chirality/execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19","source_reviews/independent_managed",36,36,754498,754498,"PASS","RELIED_UPSTREAM_EVIDENCE_REPLICA"
+"root_managed","/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-chirality-root-prd-inquiry-799a78/2f009cef-c385-4df3-8ea0-196308681f90/scratchpad/TANDEM_REVIEW_2026-07-26","source_reviews/root_managed",13,13,305229,305229,"PASS","RELIED_UPSTREAM_EVIDENCE_REPLICA"
+"pec_managed","/Users/ryan/dev/chirality-tandem-review-2026-07-26","source_reviews/pec_managed",13,13,377322,377322,"PASS","RELIED_UPSTREAM_EVIDENCE_REPLICA"
+"independent_meta_1","/private/tmp/chirality-comparative-meta-review-2026-07-26-codex-root","meta_reviews/independent_meta_1",4,4,72000,72000,"PASS","RELIED_UPSTREAM_EVIDENCE_REPLICA"
+"independent_meta_2","/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-help-human-chirality-app-99df76/673bb00e-6fb9-4780-b9ad-7306bca3325f/scratchpad/META_REVIEW_TANDEM_2026-07-26","meta_reviews/independent_meta_2",5,5,70476,70476,"PASS","RELIED_UPSTREAM_EVIDENCE_REPLICA"
+"excluded_fourth_pass1","/Users/ryan/dev/chirality/.claude/worktrees/help-human-chirality-app-99df76/plans/reviews/tandem_2026-07-26","excluded_supplemental/excluded_fourth_pass1",12,12,303153,303153,"PASS","EXCLUDED_NON_RELIED_SUPPLEMENTAL"

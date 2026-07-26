@@ -1,0 +1,67 @@
+{
+  "artifact_kind": "META_REVIEW_RETURN_MANIFEST",
+  "review": "Independent comparative meta-analysis of three completed Chirality Program Architecture tandem reviews",
+  "date": "2026-07-26",
+  "author": "Independent meta-reviewer (Claude Fable 5 session; Agent 0/1 posture; read-only)",
+  "authority": "Non-governing. No repository file, product artifact, governing instrument, source review package, or pointer was modified. No commit, push, PR, or final-package assembly was performed.",
+  "frozen_basis": {
+    "review_freeze_commit": "da31c19b5656dd74615e308c4215688971d33dc9",
+    "product_basis_commit": "aeadf5304435e1a4d8b4a26306da9ad4d4519eb6",
+    "charter_path": "/Users/ryan/dev/chirality/plans/chirality_program_architecture_and_tandem_review_2026-07-25.html",
+    "charter_sha256": "1756b84400f97d6daa42a6041807fb7ac62b80ac26e3488f7d92697031a9159f",
+    "charter_hash_recomputed": true,
+    "targeted_product_verification": "nine frozen-byte checks via git objects at the freeze commit (worktree HEAD verified equal to freeze); itemized in COMPARATIVE_META_REVIEW.md section 2.3"
+  },
+  "disclosure": {
+    "prior_participation_in_source_packages": "none",
+    "prior_related_work": "Supervised a separate fourth tandem-review pass-1 execution earlier in this session (plans/reviews/tandem_2026-07-26/ in a worktree); not a source, not cited as evidence, findings not imported; owner acknowledged it as background familiarity only.",
+    "other_meta_reviewer": "not contacted, not read; no meta-analysis artifact of theirs was accessed"
+  },
+  "inputs_relied_on": {
+    "independent_codex_review": {
+      "root": "/Users/ryan/.codex/worktrees/d9d0/chirality/execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19",
+      "identity_verification": "ARTIFACT_HASHES.sha256 recomputed: 12/12 OK",
+      "principal_files_sha256": {
+        "EVALUATION_REPORT.md": "0d393a377a979db1a4447f48b0be4eda4dcdb4dcbc86e65a0fdb2790bf8c7782",
+        "HANDOFF.md": "88623da839646b40d7a17aa93ef3d01be10a268e13567238626a7404d7934148",
+        "FINDINGS.csv": "6b8f74a442e6e1b144decac8ba9cc3236a3ed49150e6ed757f18b6f72a3e3859",
+        "returns/A_PASS1/FINDINGS.csv": "b2f7f38ef8e987f8c48117e3c4869051f078555fbb4e52a1438cb3b99da44544",
+        "returns/B_PASS1/FINDINGS.csv": "9a14c635a1e7e235e50a6f233b637d4691e05bcb3010889b6cb98e3a38b3df85"
+      },
+      "limitation": "returns/*/FINDINGS.csv, matrices, and briefs are outside ARTIFACT_HASHES.sha256 coverage; relied on with package-internal attestation only. No engine identity recorded in package."
+    },
+    "root_managed_review": {
+      "root": "/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-chirality-root-prd-inquiry-799a78/2f009cef-c385-4df3-8ea0-196308681f90/scratchpad/TANDEM_REVIEW_2026-07-26",
+      "identity_verification": "DISPATCH_HASHES.txt 7/7 OK; RUN_MANIFEST.md self-recorded hashes for validation x2, FANIN_CLASSIFICATION.md, HANDOFF_STATE.md: 4/4 OK",
+      "principal_files_sha256": {
+        "FANIN_CLASSIFICATION.md": "14d762a6f64f571e84eb6816d0d154f66ee8261861a49fe322bbec5d3905b4a8",
+        "HANDOFF_STATE.md": "1542107d945ea1cc1485218db6162f1a1f33fa2580470400407c4927deb6be23",
+        "RUN_MANIFEST.md": "cbfc891460fe2279128608842113ac3c52a26e8c8317f68194dd42b779fb67d4"
+      },
+      "limitation": "Package resides in session scratchpad (at-risk location, self-disclosed); reviewer harness write-blocks meant reports were persisted by the manager (chain-of-custody rests on manager attestation + immediate hash-freeze). Reviewer engine recorded: opus-5 (both)."
+    },
+    "pec_managed_review": {
+      "root": "/Users/ryan/dev/chirality-tandem-review-2026-07-26",
+      "identity_verification": "recorded hashes in VALIDATION_RECORD.md / HANDOFF_STATE.md / HUMAN_GATE_HANDOFF.md recomputed: 8/8 OK",
+      "principal_files_sha256": {
+        "FANIN_CLASSIFICATION.md": "c95d359c76eb05e02d97338a9974ab76c5b19f8932afe4d649b2dafc6b27c9f7",
+        "HUMAN_GATE_HANDOFF.md": "1f5e3104bd0d7f0a88f85db272289089aea9f36d8a03be77638db2a46f069935",
+        "VALIDATION_RECORD.md": "5d832a007a401e411d82e3a9763eb7fbf26a686021a9b1b7901db794ffca69db"
+      },
+      "limitation": "Reviewer engine identity not recorded in files read (refuter recorded as opus-5)."
+    }
+  },
+  "limitations": [
+    "Model-diversity of the six reviewer instances is unverifiable from the packages; cross-package convergence may carry correlated-prior weight (stated in report section 1).",
+    "Root-managed and PEC-managed pass-1 reviewer reports were consumed primarily through their frozen, refuter/challenge-corrected fan-in layers plus targeted greps, not full line-by-line re-reads; all load-bearing claims relied on were either challenge-verified in-package or meta-verified at frozen bytes.",
+    "The PEC-managed package's silence on the disclosed App acceptance-provenance condition was established by pattern search over its two reports (zero hits for 'implicit approval/acceptance'); an unconventional phrasing could theoretically evade the search.",
+    "No verification of the other meta-reviewer's inputs or outputs (prohibited by brief)."
+  ],
+  "outputs": {
+    "COMPARATIVE_META_REVIEW.md": "40e591dd6476219756f482a342f30cede68223b6303be6496c5305bfe11efd5c",
+    "ISSUE_CROSSWALK.csv": "7fcdde62ccd2c321b5bc867fdde5e3dd96f96698ec7d8af2c570a707675cc203",
+    "OWNER_SEQUENCE_RECOMMENDATION.md": "ed0583d13c9310b8d6b1da606afc2d623873766d614c9278631fa8b92c365086"
+  },
+  "output_notes": "RETURN_MANIFEST.json cannot contain its own hash; its SHA-256 is reported in the session return message.",
+  "stop_state": "Stopped after hashing the four return artifacts. No final evaluation package assembled; relocation of at-risk source packages identified as an owner action (OD-7)."
+}

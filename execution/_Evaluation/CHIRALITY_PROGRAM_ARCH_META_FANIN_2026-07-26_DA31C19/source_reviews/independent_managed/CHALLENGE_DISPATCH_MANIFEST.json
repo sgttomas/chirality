@@ -1,0 +1,54 @@
+{
+  "schema": "chirality.tandem-review.challenge-dispatch.v1",
+  "review_id": "CHIRALITY-PROGRAM-ARCH-TANDEM-2026-07-26-DA31C19",
+  "review_freeze": "da31c19b5656dd74615e308c4215688971d33dc9",
+  "pass1_freeze": {
+    "path": "PASS1_FREEZE.json",
+    "sha256": "485e828b50100786c71e916755e265af0ee92a79453c54734d53e639439f3190"
+  },
+  "gate": "Both independent pass-1 returns are terminal, manager-validated PASS with zero failures, and hash-frozen.",
+  "dispatches": [
+    {
+      "dispatch_id": "A_ON_B",
+      "reviewer": "A",
+      "target_reviewer": "B",
+      "brief": "briefs/REVIEWER_A_CHALLENGE.md",
+      "brief_sha256": "8a4e49ae2a65fae95919cc2c295d4495f51687a7ee45461cb70ea99550c0e0b1",
+      "required_target_ids": [
+        "B-F-001",
+        "B-F-002",
+        "B-F-003",
+        "B-F-004",
+        "B-F-005",
+        "B-F-006",
+        "B-F-008",
+        "B-F-007",
+        "B-F-009"
+      ],
+      "write_target": "challenges/A_ON_B/"
+    },
+    {
+      "dispatch_id": "B_ON_A",
+      "reviewer": "B",
+      "target_reviewer": "A",
+      "brief": "briefs/REVIEWER_B_CHALLENGE.md",
+      "brief_sha256": "b2ab793a2400010a51ada14d7460734bd16f22c2cbdae01f8472b840d76e9fd4",
+      "required_target_ids": [
+        "A-F-001",
+        "A-F-002",
+        "A-F-003",
+        "A-F-004",
+        "A-F-005",
+        "A-F-006",
+        "A-F-008",
+        "A-F-009",
+        "A-F-010",
+        "A-F-007",
+        "A-F-011",
+        "A-F-012"
+      ],
+      "write_target": "challenges/B_ON_A/"
+    }
+  ],
+  "fan_in_rule": "No issue is averaged; challenge outcomes feed AGREED, RESOLVED_BY_EVIDENCE, STANDING_DIVERGENCE, SHARED_BLIND_SPOT_RISK, or STALE_INPUT classifications."
+}
