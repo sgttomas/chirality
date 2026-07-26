@@ -1,0 +1,42 @@
+{
+  "schema": "chirality.tandem-review.dispatch.v1",
+  "review_id": "CHIRALITY-PROGRAM-ARCH-TANDEM-2026-07-26-DA31C19",
+  "review_freeze": "da31c19b5656dd74615e308c4215688971d33dc9",
+  "independence_rule": "Neither reviewer may read or react to the other reviewer return before both pass-1 returns are terminal, validated, and hash-frozen.",
+  "fan_out_authorization": "Explicit human instruction in the initiating request.",
+  "shared_inputs": [
+    {
+      "path": "EVALUATION_PROTOCOL.md",
+      "sha256": "1d5cb0cf5fb8e0556b5ca084b14db17c60d127380614bd20a3064c64b69d317a"
+    },
+    {
+      "path": "FROZEN_BASIS_MANIFEST.json",
+      "sha256": "f569d994156f9585fd100286e43b325116ae473616b1d1bd4f169bd88d632386"
+    },
+    {
+      "path": "plans/chirality_program_architecture_and_tandem_review_2026-07-25.html",
+      "git_blob": "25c19694b64edf4acfb76ac02ce57b23c52d1962",
+      "sha256": "1756b84400f97d6daa42a6041807fb7ac62b80ac26e3488f7d92697031a9159f"
+    }
+  ],
+  "dispatches": [
+    {
+      "dispatch_id": "A_PASS1",
+      "reviewer": "A",
+      "lens": "VERTICAL_AUTHORITY_INTENT_TRACEABILITY",
+      "brief": "briefs/REVIEWER_A_PASS1.md",
+      "brief_sha256": "c00781469ce28f8b9b0dc5714387fa6d2f8b180aca8e3f5ccc5ce602900f9b28",
+      "write_target": "returns/A_PASS1/"
+    },
+    {
+      "dispatch_id": "B_PASS1",
+      "reviewer": "B",
+      "lens": "HORIZONTAL_ARCHITECTURE_BOUNDARIES_ADVERSARIAL_CONCORDANCE",
+      "brief": "briefs/REVIEWER_B_PASS1.md",
+      "brief_sha256": "2b39b0d8431fca84e583b093537cffdb8bebacb9eb631473b460fc443b05db83",
+      "write_target": "returns/B_PASS1/"
+    }
+  ],
+  "scoring": null,
+  "human_gate_after": "Validated reciprocal challenge and non-averaging fan-in."
+}

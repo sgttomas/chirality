@@ -1,0 +1,60 @@
+{
+  "schema": "chirality.tandem-review.challenge-return.v1",
+  "reviewer_id": "B",
+  "target_reviewer": "A",
+  "review_freeze": "da31c19b5656dd74615e308c4215688971d33dc9",
+  "input_freeze": {
+    "path": "PASS1_FREEZE.json",
+    "sha256": "485e828b50100786c71e916755e265af0ee92a79453c54734d53e639439f3190"
+  },
+  "target_pass1": {
+    "report": {
+      "path": "returns/A_PASS1/REPORT.md",
+      "sha256": "1a1c857fd8241c892f7a7009bc44da7313fb00d1f0fee049f73d96da4aa4aa82"
+    },
+    "findings": {
+      "path": "returns/A_PASS1/FINDINGS.csv",
+      "sha256": "b2f7f38ef8e987f8c48117e3c4869051f078555fbb4e52a1438cb3b99da44544"
+    }
+  },
+  "reviewer_pass1": {
+    "report": {
+      "path": "returns/B_PASS1/REPORT.md",
+      "sha256": "4692e8bc2c05e0d0bf73e1a8dd9440f80166f77407aa36f5df98bcb4bdcc00f3"
+    },
+    "findings": {
+      "path": "returns/B_PASS1/FINDINGS.csv",
+      "sha256": "9a14c635a1e7e235e50a6f233b637d4691e05bcb3010889b6cb98e3a38b3df85"
+    }
+  },
+  "outputs": {
+    "REPORT.md": {
+      "sha256": "6677c39d43813bbc72955cbefdc79eb00a9f09be33eede6b8e1e331bc4448f4b",
+      "bytes": 11315,
+      "line_count": 111
+    },
+    "CHALLENGE.csv": {
+      "sha256": "59c0827e080ef14df22ae0b84561e55a9cef57b7a8417b52ed5acae235b6b4f8",
+      "bytes": 14978,
+      "row_count": 18
+    }
+  },
+  "row_count": 18,
+  "disposition_counts": {
+    "CONFIRM": 13,
+    "REFUTE": 0,
+    "NARROW": 5,
+    "ADD-MISSING-EVIDENCE": 0
+  },
+  "pass1_integrity": {
+    "reviewer_a_unchanged": true,
+    "reviewer_b_unchanged": true,
+    "all_ten_hashes_match_input_freeze": true,
+    "confirmation": "Both frozen pass-1 packages remained unchanged throughout the reciprocal challenge."
+  },
+  "return_manifest_self_hash_policy": "RETURN_MANIFEST.json is not self-hashed inside itself; the manager-side validator may compute its detached SHA-256 and byte count.",
+  "delegated": false,
+  "score_assigned": false,
+  "consensus_claimed": false,
+  "product_acceptance_claimed": false
+}

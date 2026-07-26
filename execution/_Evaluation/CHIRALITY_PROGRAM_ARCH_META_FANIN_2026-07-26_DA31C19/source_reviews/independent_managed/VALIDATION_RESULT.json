@@ -1,0 +1,377 @@
+{
+  "checks": [
+    {
+      "detail": "valid",
+      "name": "json:FROZEN_BASIS_MANIFEST.json",
+      "verdict": "PASS"
+    },
+    {
+      "detail": "valid",
+      "name": "json:DISPATCH_MANIFEST.json",
+      "verdict": "PASS"
+    },
+    {
+      "detail": "valid",
+      "name": "json:PASS1_FREEZE.json",
+      "verdict": "PASS"
+    },
+    {
+      "detail": "valid",
+      "name": "json:CHALLENGE_DISPATCH_MANIFEST.json",
+      "verdict": "PASS"
+    },
+    {
+      "detail": "valid",
+      "name": "json:CHALLENGE_FREEZE.json",
+      "verdict": "PASS"
+    },
+    {
+      "detail": "f569d994156f9585fd100286e43b325116ae473616b1d1bd4f169bd88d632386",
+      "name": "frozen-manifest-sha256",
+      "verdict": "PASS"
+    },
+    {
+      "detail": 776,
+      "name": "frozen-manifest-entry-count",
+      "verdict": "PASS"
+    },
+    {
+      "detail": [
+        "plans/chirality_program_architecture_and_tandem_review_2026-07-25.html"
+      ],
+      "name": "product-basis-to-freeze-diff",
+      "verdict": "PASS"
+    },
+    {
+      "detail": {
+        "reviewer_a.boundary_matrix": {
+          "actual": "7b4294f0efabf1c6ae0b66fea06ccafef45cd56770c454e38e2eb4df38fad002",
+          "expected": "7b4294f0efabf1c6ae0b66fea06ccafef45cd56770c454e38e2eb4df38fad002",
+          "match": true
+        },
+        "reviewer_a.findings": {
+          "actual": "b2f7f38ef8e987f8c48117e3c4869051f078555fbb4e52a1438cb3b99da44544",
+          "expected": "b2f7f38ef8e987f8c48117e3c4869051f078555fbb4e52a1438cb3b99da44544",
+          "match": true
+        },
+        "reviewer_a.report": {
+          "actual": "1a1c857fd8241c892f7a7009bc44da7313fb00d1f0fee049f73d96da4aa4aa82",
+          "expected": "1a1c857fd8241c892f7a7009bc44da7313fb00d1f0fee049f73d96da4aa4aa82",
+          "match": true
+        },
+        "reviewer_a.return_manifest": {
+          "actual": "07ee3d2b0e1ebef3ca2d66096ff22d818945cd2e4e9b84a4bfec9fc45d6bdc96",
+          "expected": "07ee3d2b0e1ebef3ca2d66096ff22d818945cd2e4e9b84a4bfec9fc45d6bdc96",
+          "match": true
+        },
+        "reviewer_a.trace_matrix": {
+          "actual": "d4683ce4c9f03554cabcc7f40cc52750b5e95cfb0318f1a194872bf19240c1c0",
+          "expected": "d4683ce4c9f03554cabcc7f40cc52750b5e95cfb0318f1a194872bf19240c1c0",
+          "match": true
+        },
+        "reviewer_b.boundary_matrix": {
+          "actual": "e624c3531d032cfb1a4e2eb1935aae7dcf075e2592934b819461e9659ce821bf",
+          "expected": "e624c3531d032cfb1a4e2eb1935aae7dcf075e2592934b819461e9659ce821bf",
+          "match": true
+        },
+        "reviewer_b.findings": {
+          "actual": "9a14c635a1e7e235e50a6f233b637d4691e05bcb3010889b6cb98e3a38b3df85",
+          "expected": "9a14c635a1e7e235e50a6f233b637d4691e05bcb3010889b6cb98e3a38b3df85",
+          "match": true
+        },
+        "reviewer_b.report": {
+          "actual": "4692e8bc2c05e0d0bf73e1a8dd9440f80166f77407aa36f5df98bcb4bdcc00f3",
+          "expected": "4692e8bc2c05e0d0bf73e1a8dd9440f80166f77407aa36f5df98bcb4bdcc00f3",
+          "match": true
+        },
+        "reviewer_b.return_manifest": {
+          "actual": "4371f68d51c8b3ddac9b9d3414243d86f9b506daf61d5cbd7e2624dd1e704f66",
+          "expected": "4371f68d51c8b3ddac9b9d3414243d86f9b506daf61d5cbd7e2624dd1e704f66",
+          "match": true
+        },
+        "reviewer_b.trace_matrix": {
+          "actual": "cd6124bfe6903d84798f7472abdb0622f85454e2564c55d674f48560103be0e2",
+          "expected": "cd6124bfe6903d84798f7472abdb0622f85454e2564c55d674f48560103be0e2",
+          "match": true
+        }
+      },
+      "name": "pass1-freeze-hashes",
+      "verdict": "PASS"
+    },
+    {
+      "detail": {
+        "a_on_b.challenge": {
+          "actual": "0a81af18b9887d19fc61bf582cef750a205df32ad66106fb3da36698b76ec1a6",
+          "expected": "0a81af18b9887d19fc61bf582cef750a205df32ad66106fb3da36698b76ec1a6",
+          "match": true
+        },
+        "a_on_b.report": {
+          "actual": "a038c67e326021e143f88b3cdaeea7b467be5dcafde1c785d030a973fef9d132",
+          "expected": "a038c67e326021e143f88b3cdaeea7b467be5dcafde1c785d030a973fef9d132",
+          "match": true
+        },
+        "a_on_b.return_manifest": {
+          "actual": "6855a70eec3ba3dd2c04046e5f65824261e815913b9b295d19de59f8b6319619",
+          "expected": "6855a70eec3ba3dd2c04046e5f65824261e815913b9b295d19de59f8b6319619",
+          "match": true
+        },
+        "b_on_a.challenge": {
+          "actual": "59c0827e080ef14df22ae0b84561e55a9cef57b7a8417b52ed5acae235b6b4f8",
+          "expected": "59c0827e080ef14df22ae0b84561e55a9cef57b7a8417b52ed5acae235b6b4f8",
+          "match": true
+        },
+        "b_on_a.report": {
+          "actual": "6677c39d43813bbc72955cbefdc79eb00a9f09be33eede6b8e1e331bc4448f4b",
+          "expected": "6677c39d43813bbc72955cbefdc79eb00a9f09be33eede6b8e1e331bc4448f4b",
+          "match": true
+        },
+        "b_on_a.return_manifest": {
+          "actual": "1d53097765d006216b6f7c45960f4ed0ec1c070f280d6ab40f89fdee4c168172",
+          "expected": "1d53097765d006216b6f7c45960f4ed0ec1c070f280d6ab40f89fdee4c168172",
+          "match": true
+        }
+      },
+      "name": "challenge-freeze-hashes",
+      "verdict": "PASS"
+    },
+    {
+      "detail": [
+        "FindingID",
+        "Concern",
+        "Classification",
+        "Severity",
+        "Scope",
+        "Claim",
+        "EvidenceRefs",
+        "Status",
+        "RecommendedOwner",
+        "RerunRequirement"
+      ],
+      "name": "findings-header",
+      "verdict": "PASS"
+    },
+    {
+      "detail": 19,
+      "name": "findings-count",
+      "verdict": "PASS"
+    },
+    {
+      "detail": [
+        "FAN-001",
+        "FAN-002",
+        "FAN-003",
+        "FAN-004",
+        "FAN-005",
+        "FAN-006",
+        "FAN-007",
+        "FAN-008",
+        "FAN-009",
+        "FAN-010",
+        "FAN-011",
+        "FAN-012",
+        "FAN-013",
+        "FAN-014",
+        "FAN-015",
+        "FAN-016",
+        "FAN-017",
+        "FAN-018",
+        "FAN-019"
+      ],
+      "name": "findings-unique-ids",
+      "verdict": "PASS"
+    },
+    {
+      "detail": "all cells non-empty",
+      "name": "findings-complete",
+      "verdict": "PASS"
+    },
+    {
+      "detail": {
+        "AGREED": 9,
+        "RESOLVED_BY_EVIDENCE": 6,
+        "SHARED_BLIND_SPOT_RISK": 1,
+        "STALE_INPUT": 1,
+        "STANDING_DIVERGENCE": 2
+      },
+      "name": "fan-in-status-counts",
+      "verdict": "PASS"
+    },
+    {
+      "detail": [
+        "## Basis",
+        "## Method",
+        "## Coverage",
+        "## Validated-return inventory",
+        "## Findings",
+        "## Conflicts and unknowns",
+        "## Optional scorecard",
+        "## Recommendations",
+        "## Decision queue",
+        "## Handoff summary"
+      ],
+      "name": "evaluation-report-contract",
+      "verdict": "PASS"
+    },
+    {
+      "detail": "explicit",
+      "name": "evaluation-report-no-score",
+      "verdict": "PASS"
+    },
+    {
+      "detail": [
+        "## State",
+        "## Accepted upstream snapshots",
+        "## Derivative-package status",
+        "## Closure verdict",
+        "## Human decision queue",
+        "## Genuine blockers",
+        "## Rerun requirements",
+        "## Remaining unknowns",
+        "## Next owner"
+      ],
+      "name": "handoff-contract",
+      "verdict": "PASS"
+    },
+    {
+      "detail": [
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/CHALLENGE_DISPATCH_MANIFEST.json",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/CHALLENGE_FREEZE.json",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/DISPATCH_MANIFEST.json",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/EVALUATION_PROTOCOL.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/EVALUATION_REPORT.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/FINDINGS.csv",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/FROZEN_BASIS_MANIFEST.json",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/HANDOFF.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/PASS1_FREEZE.json",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/briefs/REVIEWER_A_CHALLENGE.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/briefs/REVIEWER_A_PASS1.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/briefs/REVIEWER_B_CHALLENGE.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/briefs/REVIEWER_B_PASS1.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/build_frozen_manifest.py",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/challenges/A_ON_B/CHALLENGE.csv",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/challenges/A_ON_B/REPORT.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/challenges/A_ON_B/RETURN_MANIFEST.json",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/challenges/B_ON_A/CHALLENGE.csv",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/challenges/B_ON_A/REPORT.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/challenges/B_ON_A/RETURN_MANIFEST.json",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/finalize_validation.py",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/A_PASS1/BOUNDARY_MATRIX.csv",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/A_PASS1/FINDINGS.csv",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/A_PASS1/REPORT.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/A_PASS1/RETURN_MANIFEST.json",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/A_PASS1/TRACE_MATRIX.csv",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/B_PASS1/BOUNDARY_MATRIX.csv",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/B_PASS1/FINDINGS.csv",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/B_PASS1/REPORT.md",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/B_PASS1/RETURN_MANIFEST.json",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/returns/B_PASS1/TRACE_MATRIX.csv",
+        "execution/_Evaluation/CHIRALITY_PROGRAM_ARCH_TANDEM_2026-07-26_DA31C19/validate_review_artifacts.py"
+      ],
+      "name": "write-scope-containment",
+      "verdict": "PASS"
+    },
+    {
+      "detail": {
+        "baseline_sha256": "3938a86b7c1d503839eb0dd5ad80b8c700faf57769592792cb92023e727f7e23",
+        "final_sha256": "3938a86b7c1d503839eb0dd5ad80b8c700faf57769592792cb92023e727f7e23",
+        "status": [
+          " M plans/chirality_program_architecture_and_tandem_review_2026-07-25.html"
+        ]
+      },
+      "name": "primary-checkout-status-unchanged",
+      "verdict": "PASS"
+    },
+    {
+      "detail": [
+        "plans/chirality_program_architecture_and_tandem_review_2026-07-25.html"
+      ],
+      "name": "git-freeze-diff-recheck",
+      "verdict": "PASS"
+    },
+    {
+      "detail": [
+        "CHALLENGE_DISPATCH_MANIFEST.json",
+        "CHALLENGE_FREEZE.json",
+        "DISPATCH_MANIFEST.json",
+        "EVALUATION_PROTOCOL.md",
+        "EVALUATION_REPORT.md",
+        "FINDINGS.csv",
+        "FROZEN_BASIS_MANIFEST.json",
+        "HANDOFF.md",
+        "PASS1_FREEZE.json",
+        "challenges/A_ON_B/REPORT.md",
+        "challenges/B_ON_A/REPORT.md",
+        "returns/A_PASS1/REPORT.md",
+        "returns/B_PASS1/REPORT.md"
+      ],
+      "name": "required-output-inventory",
+      "verdict": "PASS"
+    }
+  ],
+  "failure_count": 0,
+  "fan_in_status_counts": {
+    "AGREED": 9,
+    "RESOLVED_BY_EVIDENCE": 6,
+    "SHARED_BLIND_SPOT_RISK": 1,
+    "STALE_INPUT": 1,
+    "STANDING_DIVERGENCE": 2
+  },
+  "output_hashes": {
+    "CHALLENGE_DISPATCH_MANIFEST.json": {
+      "bytes": 1682,
+      "sha256": "7047667dc0cb8ef075c74198f64cf991fe4390eca53c4412397bf5377dfb09ea"
+    },
+    "CHALLENGE_FREEZE.json": {
+      "bytes": 1452,
+      "sha256": "49070fd4dab539a5536f78c6fd6553a5e38bd642a1d591b76a8d6da3d6a41d02"
+    },
+    "DISPATCH_MANIFEST.json": {
+      "bytes": 1717,
+      "sha256": "3057d229da6329ea220945391c3eb8593ab17ae95c8313986cd039c79b8d38c7"
+    },
+    "EVALUATION_PROTOCOL.md": {
+      "bytes": 8799,
+      "sha256": "1d5cb0cf5fb8e0556b5ca084b14db17c60d127380614bd20a3064c64b69d317a"
+    },
+    "EVALUATION_REPORT.md": {
+      "bytes": 13544,
+      "sha256": "0d393a377a979db1a4447f48b0be4eda4dcdb4dcbc86e65a0fdb2790bf8c7782"
+    },
+    "FINDINGS.csv": {
+      "bytes": 14902,
+      "sha256": "6b8f74a442e6e1b144decac8ba9cc3236a3ed49150e6ed757f18b6f72a3e3859"
+    },
+    "FROZEN_BASIS_MANIFEST.json": {
+      "bytes": 302522,
+      "sha256": "f569d994156f9585fd100286e43b325116ae473616b1d1bd4f169bd88d632386"
+    },
+    "HANDOFF.md": {
+      "bytes": 5578,
+      "sha256": "88623da839646b40d7a17aa93ef3d01be10a268e13567238626a7404d7934148"
+    },
+    "PASS1_FREEZE.json": {
+      "bytes": 2377,
+      "sha256": "485e828b50100786c71e916755e265af0ee92a79453c54734d53e639439f3190"
+    },
+    "challenges/A_ON_B/REPORT.md": {
+      "bytes": 12548,
+      "sha256": "a038c67e326021e143f88b3cdaeea7b467be5dcafde1c785d030a973fef9d132"
+    },
+    "challenges/B_ON_A/REPORT.md": {
+      "bytes": 11315,
+      "sha256": "6677c39d43813bbc72955cbefdc79eb00a9f09be33eede6b8e1e331bc4448f4b"
+    },
+    "returns/A_PASS1/REPORT.md": {
+      "bytes": 25625,
+      "sha256": "1a1c857fd8241c892f7a7009bc44da7313fb00d1f0fee049f73d96da4aa4aa82"
+    },
+    "returns/B_PASS1/REPORT.md": {
+      "bytes": 24342,
+      "sha256": "4692e8bc2c05e0d0bf73e1a8dd9440f80166f77407aa36f5df98bcb4bdcc00f3"
+    }
+  },
+  "review_freeze": "da31c19b5656dd74615e308c4215688971d33dc9",
+  "review_id": "CHIRALITY-PROGRAM-ARCH-TANDEM-2026-07-26-DA31C19",
+  "schema": "chirality.tandem-review.final-validation.v1",
+  "verdict": "PASS"
+}

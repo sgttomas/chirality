@@ -1,0 +1,56 @@
+{
+  "schema": "chirality.tandem-review.pass1-return.v1",
+  "reviewer_id": "A",
+  "lens": "vertical authority / intent / traceability",
+  "review_freeze": "da31c19b5656dd74615e308c4215688971d33dc9",
+  "product_basis_commit": "aeadf5304435e1a4d8b4a26306da9ad4d4519eb6",
+  "input_manifest_sha256": "f569d994156f9585fd100286e43b325116ae473616b1d1bd4f169bd88d632386",
+  "charter_blob": "25c19694b64edf4acfb76ac02ce57b23c52d1962",
+  "charter_sha256": "1756b84400f97d6daa42a6041807fb7ac62b80ac26e3488f7d92697031a9159f",
+  "initiating_request_sha256": "cea3ab818161afdc0ada267e2a98c69552f99dac0daee426f49023247e92f9c5",
+  "output_filenames": [
+    "REPORT.md",
+    "FINDINGS.csv",
+    "TRACE_MATRIX.csv",
+    "BOUNDARY_MATRIX.csv",
+    "RETURN_MANIFEST.json"
+  ],
+  "outputs": {
+    "REPORT.md": {
+      "sha256": "1a1c857fd8241c892f7a7009bc44da7313fb00d1f0fee049f73d96da4aa4aa82",
+      "bytes": 25625,
+      "line_count": 274
+    },
+    "FINDINGS.csv": {
+      "sha256": "b2f7f38ef8e987f8c48117e3c4869051f078555fbb4e52a1438cb3b99da44544",
+      "bytes": 16427,
+      "row_count": 18
+    },
+    "TRACE_MATRIX.csv": {
+      "sha256": "d4683ce4c9f03554cabcc7f40cc52750b5e95cfb0318f1a194872bf19240c1c0",
+      "bytes": 76318,
+      "row_count": 208
+    },
+    "BOUNDARY_MATRIX.csv": {
+      "sha256": "7b4294f0efabf1c6ae0b66fea06ccafef45cd56770c454e38e2eb4df38fad002",
+      "bytes": 14943,
+      "row_count": 19
+    }
+  },
+  "row_counts": {
+    "findings": 18,
+    "findings_block": 1,
+    "findings_review": 8,
+    "findings_warn": 8,
+    "findings_info": 1,
+    "trace_total": 208,
+    "trace_root": 56,
+    "trace_app": 67,
+    "trace_pec": 85,
+    "boundary_total": 19
+  },
+  "return_manifest_self_hash_policy": "RETURN_MANIFEST.json is named as an output but is not self-hashed inside itself; the manager-side validator computes its detached SHA-256 and byte count.",
+  "other_reviewer_consulted": false,
+  "independence_statement": "No other reviewer directory, report, draft, message, or reasoning was read, listed, searched, inferred from, or used in this pass.",
+  "score_assigned": false
+}
