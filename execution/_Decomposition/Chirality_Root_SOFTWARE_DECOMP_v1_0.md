@@ -1,41 +1,55 @@
-# Chirality Root — Software Decomposition (CANDIDATE v1.0)
+# Chirality Root — Software Decomposition (ACCEPTED v1.0)
 
 **Package Role:** `working surface`
 **Agent Role:** `SOFTWARE_DECOMP` (Agent 1), under a sealed brief from Agent 0
 **Method basis:** `docs/DECOMPOSITION_STANDARD.md` (RATIFIED) extended by `agents/AGENT_SOFTWARE_DECOMP.md`
 **Revision:** v1.0 · **Date:** 2026-07-25
 **Basis commit:** `24726a73c64a849909e3615c32ef1a888b3dfd36`
+**AcceptedCandidateSHA:** `ec62af0700e530c1640698fa406398cb1cb45d29`
+**EffectiveSHA:** `ea0ad7a566ddb51d89297bfcf491636f1fc5dd15` (merge of PR #347)
+**Accepting instrument:** `docs/governance_harness/_DECISIONS/D-GOV-25_root_decomposition_acceptance.md`
 **Run:** `ROOT-STEP8-DECOMP-20260725`, node N1
 
-> **Status: CANDIDATE — NOT ACCEPTED.** Every one of the seven gates is
-> human-gated (I1) and **none is ruled in this run**. Every Gate Log row reads
-> `PENDING_OWNER_RULING`. This document, its companion registers, and every
-> count in them are **offered to the owner's ruling**, not asserted as an
-> accepted basis for downstream work. No package or deliverable directory is
-> created by this candidate, and none may be created from it until Gate 7 is
-> ruled and the D-GOV-21 §5.3 materialization gate is separately satisfied.
-> Authorship by an agent confers no authority (K-AUTH-1); existence,
-> validation, and commit are not approval.
+> **Status: ACCEPTED — this decomposition is the accepted basis for downstream
+> work per the owner ruling recorded in D-GOV-25** (acceptance constituted by
+> the owner's merge-and-proceed direction against the exact candidate SHA
+> `ec62af0700e530c1640698fa406398cb1cb45d29`; vehicle per K-AUTH-2). All seven
+> gates are ruled ACCEPTED (§1). The verbatim ruling lives in D-GOV-25, not
+> here; this file points to it rather than restating it as its own authority.
+>
+> **What acceptance does not do.** It creates no `PKG-*` or `DEL-*` directory
+> and authorizes no materialization: that is D-GOV-21 §6 step 9, behind the
+> §5.3 gate, and remains separately gated. Authorship by an agent still confers
+> no authority (K-AUTH-1); this document is accepted because the owner ruled,
+> not because it exists or validates.
+>
+> **Post-acceptance edit posture.** The acceptance binds the content at the
+> AcceptedCandidateSHA. The edits carried in this revision are the **ruled
+> dispositions applied in the publication tranche** — gate statuses, the ruled
+> deferral, open-issue closures, and label annotations — not new scope. No
+> scope item, package, deliverable, objective, or identifier changed
+> (DEC-014..DEC-020).
 
 ---
 
 ## 1. Gate Log
 
-| Gate | Name | Status | Staged evidence offered to the ruling |
+| Gate | Name | Status | Ruling and evidence |
 |---|---|---|---|
-| Gate 1 | Intake understanding | `PENDING_OWNER_RULING` | §4 Intake Summary and §2 References; the sole scope source is pinned by path, sha256, and basis commit. |
-| Gate 2 | SSOW and vocabulary | `PENDING_OWNER_RULING` | 103 atomic scope items with `IN\|OUT\|TBD` status in `chirality_root_scope_ledger_v1_0.csv`; §5 Vocabulary Map. |
-| Gate 3 | Objectives | `PENDING_OWNER_RULING` | §7 Objectives: OBJ-001..OBJ-007 derived one-to-one from PRD OBJ-1..OBJ-7; `chirality_root_objective_register_v1_0.csv`. |
-| Gate 4 | Packages | `PENDING_OWNER_RULING` | §8 Packages: six flat work-domain packages; every IN-scope item assigned to exactly one. |
-| Gate 5 | Deliverables | `PENDING_OWNER_RULING` | §9 Deliverables: 45 deliverables, each single-package, context-sized, with anticipated artifacts and write locus. |
-| Gate 6 | Coverage and context budget | `PENDING_OWNER_RULING` | §11 and `chirality_root_coverage_telemetry_v1_0.md`: `UnassignedScopeItems` 0, `UnmappedObjectives` 0, no XL deliverable, F4 both directions closed. |
-| Gate 7 | Publish / final acceptance | `PENDING_OWNER_RULING` | This working surface plus six companion registers. **The acceptance phrase — that this decomposition is the accepted basis for downstream work — has not been said by anyone and is not claimed here.** |
+| Gate 1 | Intake understanding | `ACCEPTED` | Owner ruling 2026-07-25, D-GOV-25, AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`. Evidence: §4 Intake Summary and §2 References; the sole scope source is pinned by path, sha256, and basis commit. |
+| Gate 2 | SSOW and vocabulary | `ACCEPTED` | Owner ruling 2026-07-25, D-GOV-25, AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`. Evidence: 103 atomic scope items with `IN\|OUT\|TBD` status in `chirality_root_scope_ledger_v1_0.csv`; §5 Vocabulary Map. |
+| Gate 3 | Objectives | `ACCEPTED` | Owner ruling 2026-07-25, D-GOV-25, AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`. Evidence: §7 Objectives: OBJ-001..OBJ-007 derived one-to-one from PRD OBJ-1..OBJ-7; `chirality_root_objective_register_v1_0.csv`. Ruled with the OBJ-2 situated-working-root deferral of OI-013. |
+| Gate 4 | Packages | `ACCEPTED` | Owner ruling 2026-07-25, D-GOV-25, AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`. Evidence: §8 Packages: six flat work-domain packages; every IN-scope item assigned to exactly one. |
+| Gate 5 | Deliverables | `ACCEPTED` | Owner ruling 2026-07-25, D-GOV-25, AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`. Evidence: §9 Deliverables: 45 deliverables, each single-package, context-sized, with anticipated artifacts and write locus; the one `L` deliverable accepted as proposed. |
+| Gate 6 | Coverage and context budget | `ACCEPTED` | Owner ruling 2026-07-25, D-GOV-25, AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`. Evidence: §11 and `chirality_root_coverage_telemetry_v1_0.md`: `UnassignedScopeItems` 0, `UnmappedObjectives` 0, no XL deliverable, F4 both directions closed with one recorded deferral (OBJ-2). |
+| Gate 7 | Publish / final acceptance | `ACCEPTED` | Owner ruling 2026-07-25, D-GOV-25, AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`. **This decomposition is the accepted basis for downstream work.** The verbatim ruling is in D-GOV-25. |
 
-**Acceptance vehicle.** The vehicle is the owner's to choose. The run was
-staged for a ruling over the exact candidate commit (the pattern of
-`docs/PRD_ROOT.md`'s own adoption), with gate-by-gate review available as an
-alternative. This document takes no position on which is used and records
-neither as having occurred.
+**Acceptance vehicle, as exercised.** The owner ruled over the exact candidate
+commit `ec62af0700e530c1640698fa406398cb1cb45d29` by merge-and-proceed
+direction, with the ruling recorded verbatim in D-GOV-25 and bound to that SHA
+(K-AUTH-2). The applied state is `ea0ad7a566ddb51d89297bfcf491636f1fc5dd15`.
+Gate-by-gate review was the available alternative and was not the vehicle
+used; all seven gates were ruled together against the one candidate.
 
 ---
 
@@ -167,7 +181,7 @@ its scope (D-12).
 | Write locus | anticipated write target | Planning note recording where a deliverable would write. **Not authorization.** |
 | `REGISTER` (deliverable type) | companion register slice | Project-specific type equivalent: a deliverable whose primary artifact is an authoritative companion register of machine truth. Permitted by REF-003's "or project-specific equivalents". |
 | `GOVERNANCE_TRANCHE` (deliverable type) | M2 tranche | Project-specific type equivalent reserved for a deliverable whose artifact is an instruction-surface change tranche. **Declared but unused in v1.0** — every candidate for it was expressible as `REQ_SLICE` or `DOC_UPDATE` with an instruction-surface write locus. |
-| `PENDING_OWNER_RULING` | — | Gate status meaning staged and offered, never accepted. |
+| `ACCEPTED` (gate status) | — | Gate status meaning the owner ruled the gate. It replaced the candidate-era pending status, which meant staged and offered, never accepted. |
 
 ---
 
@@ -249,7 +263,7 @@ appears in (DEC-002).
 partition, and §11.2 shows the result: every category spans four or more of
 these packages, and no package is coextensive with any category —
 participation ranges from two categories (PKG-02) to all four (PKG-01,
-PKG-04, PKG-06). The partition is a work-domain judgment offered under Gate 4
+PKG-04, PKG-06). The partition is a work-domain judgment accepted at Gate 4
 (DEC-003).
 
 ---
@@ -382,7 +396,7 @@ Full telemetry is `chirality_root_coverage_telemetry_v1_0.md`. Summary:
 | ScopeItemsWithoutDeliverableMapping | 0 |
 | UnmappedObjectives | 0 |
 | ContextEnvelopeCounts | S=14, M=30, L=1, XL=0 |
-| OpenIssuesByType | SOURCE_CURRENCY=2, FRAMING_STRAIN=3, UNBUILT_CAPABILITY=1, OWNER_RULING_PENDING=1, PARTITION_BOUNDARY=1, GATE_SEQUENCING=1, SCOPE_TBD=1, CONTEXT_ENVELOPE=1, RESPONSIBILITY_UNASSIGNED=1, OBJECTIVE_GRANULARITY=1 (total 13) |
+| OpenIssuesByType | SOURCE_CURRENCY=2, FRAMING_STRAIN=3, UNBUILT_CAPABILITY=1, OWNER_RULING_PENDING=1, PARTITION_BOUNDARY=1, GATE_SEQUENCING=1, SCOPE_TBD=1, CONTEXT_ENVELOPE=1, RESPONSIBILITY_UNASSIGNED=1, OBJECTIVE_GRANULARITY=1 (total 13: 9 closed at the ruling, 4 carried open) |
 | Revision / Date | v1.0 candidate / 2026-07-25 |
 
 ### 11.1 Context Budget QA
@@ -415,7 +429,7 @@ deliverables), not exempted as overhead.
 
 | Direction | Register | Population | Result |
 |---|---|---:|---|
-| PRD item → decomposition | `chirality_root_prd_coverage_forward_v1_0.csv` | 84 | 84 COVERED, 0 DEFERRED, 0 UNCOVERED |
+| PRD item → decomposition | `chirality_root_prd_coverage_forward_v1_0.csv` | 84 | 83 COVERED, 1 COVERED_WITH_RECORDED_DEFERRAL (OBJ-2), 0 UNCOVERED |
 | decomposition unit → PRD | `chirality_root_trace_reverse_v1_0.csv` | 51 | 51 TRACED, 0 UNTRACED |
 
 The forward population is every addressable PRD item in the enumerated scope
@@ -427,29 +441,74 @@ RD-1..RD-5; §9.1 obligations (a), (b), (c); the §10.1 annex obligation;
 C-1..C-4; and §10.3 adoption mechanics. `D-3` is deliberately absent and never
 reassigned.
 
-**This is a candidate result.** F4 speaks to *accepted* scope units; nothing
-here is accepted, so this is evidence offered to the gate, not a closure
-claim.
+**F4 at the accepted basis.** The units are now accepted (D-GOV-25), so F4
+applies in full — and is **not tripped**: every accepted package and
+deliverable traces back, and every PRD requirement and objective has coverage
+or, in the single case of OBJ-2's situated-working-root clause, an
+owner-ruled **recorded deferral** (§12.1, OI-013). F4 distinguishes a recorded
+deferral from a silent gap; this is the former, and it is machine-visible in
+the forward register's `CoverageStatus`/`DeferralReason`.
 
 ---
 
 ## 12. Open Issues
 
-| IssueID | Type | Affected | Description | Required resolution |
-|---|---|---|---|---|
-| OI-001 | SOURCE_CURRENCY | SOW-060, SOW-089, SOW-090, SOW-091, SOW-098, SOW-099, SOW-100, SOW-101 | Several PRD statements describe the repository as it stood at the PRD's own `SourceCorpusBasis`, and accepted acts recorded in the governance register at the current basis appear to have discharged them — the §9.1 concordance obligations and the §10.2 conflicts. This decomposition **does not adjudicate that**: it derives the scope items from the source as written and sets their coverage to standing verification and maintenance rather than re-performance. | Owner disposition. Under D-14 this is precisely a currency finding — a REVIEW finding routed to the owner, never an automatic amendment, and never an agent edit to adopted bytes (D-13). |
-| OI-002 | SOURCE_CURRENCY | SOW-085, SOW-102, and every PROPOSED-labelled row | The adopted bytes state that PROPOSED items are inert until the adoption instrument's ruling, while the governance register records that the ruling occurred and the PROPOSED items take effect. The ledger therefore carries **the source label** plus a note, and claims no label change. | Owner confirmation of the operative status of the PROPOSED set. F6 exists precisely to catch a label treated as changed without an instrument. |
-| OI-003 | FRAMING_STRAIN | whole package | `SOFTWARE_DECOMP`'s intake framing is a software development SOW. The root product's scope is predominantly normative corpus, governance machinery, and evidence; "artifacts" are largely governance records, registers, and validators rather than code. The standard was conformed to rather than adapted, and the strain is recorded here rather than silently smoothed. | Owner ruling at Gate 1 / Gate 5 on whether this manager remains the right conforming variant for the root product, or whether a root-specific conforming variant should be proposed through the component-design path. |
-| OI-004 | FRAMING_STRAIN | 33 TRANSCRIBED and 5 CLARIFIED commitments | A commitment already in force generates **conformance and verification** work, not construction. Deliverables against such commitments are written as conformance slices; that is a defensible reading of N-9 ("the running system continues to satisfy the invariants") but it makes many deliverables recurring controls rather than one-shot productions. | Owner ruling on whether standing conformance belongs inside the package/deliverable lifecycle or in a separate standing-controls surface. |
-| OI-005 | UNBUILT_CAPABILITY | SOW-049, DEL-04-09 | D-14's source-currency check is not built — no generator, schema, or executable check exists — and four of its nine classes require semantic judgment. Reliance on D-14 before the build is unwarranted. | Build through DEL-04-09, or record an explicit deferral. Until then, currency findings are produced by human reading, as OI-001 was. |
-| OI-006 | OWNER_RULING_PENDING | all seven gates | Nothing in this package is accepted. Every gate reads `PENDING_OWNER_RULING`. | Owner ruling. No agent may close a gate (I1, K-AUTH-1). |
-| OI-007 | PARTITION_BOUNDARY | SOW-065, SOW-066 vs SOW-034 | The §6.3 concurrency mechanisms are implemented as state surfaces owned by PKG-03 but demonstrated for legibility by PKG-06. The scope items are split so each lands in exactly one package, with the relation recorded at DEC-008. | Owner confirmation at Gate 4 that the split is the intended ownership boundary. |
-| OI-008 | GATE_SEQUENCING | SOW-001, SOW-061, SOW-103, DEL-03-06 | Materialization of root packages sits behind the D-GOV-21 §5.3 gate, and this decomposition authorizes none of it. DEL-03-06 is readiness and evidence only. | Keep materialization behind its own gate; the acceptance of this decomposition is a precondition, not the authorization. |
-| OI-009 | SCOPE_TBD | SOW-094 | The referent of the database-backed attribution interface named in the RD-2 evolution path is `TBD` in the source. It is carried as an OUT boundary item without being resolved (I2). | Owner fixes the referent if and when that scope is opened. |
-| OI-010 | CONTEXT_ENVELOPE | DEL-04-09 | One `L` deliverable is proposed: a checker plus a regenerable derivative package. It is single-domain but multi-component. | Accept as `L` with notes, or direct a split by check class (five mechanical, four semantic) at Gate 5. |
-| OI-011 | RESPONSIBILITY_UNASSIGNED | all 45 deliverables | `ResponsibleParty` is `TBD` throughout; this run holds no assignment authority. | Owner or a later planning act assigns responsibility. |
-| OI-012 | FRAMING_STRAIN | 9 OUT items | REF-002 permits a blank partition for OUT units; REF-003 requires every scope item to carry exactly one `PackageID`. The stricter rule was applied (no weakening of the base) and the divergence is surfaced rather than reconciled. | Owner confirmation at Gate 4; no change is proposed to either instruction file by this candidate. |
-| OI-013 | OBJECTIVE_GRANULARITY | OBJ-002 (PRD OBJ-2) | PRD §3 OBJ-2's success condition ends "Demonstrated at root and in at least one situated working root." No deliverable covers the situated-working-root half: `DEL-03-06` carries the deliverable stream **at root only**, and `DEL-06-08` — the one situated-root deliverable — is mapped to OBJ-005, covers only SOW-003, and concerns a *recorded convergence path* (v1 boundary (c)) rather than a deliverable stream reaching an issuance decision in a variant. **No scope item states the missing clause and no reasoned deferral is recorded.** F4 is not formally tripped, because objectives are traced as whole units and OBJ-2 has coverage at objective granularity; the gap is inside the objective, where the registers cannot see it. Raised by the adversarial verification of this candidate (V1, MAJOR-1). | **`PENDING_OWNER_RULING`.** The disposition is the owner's: either cover the clause (a new scope item mapped to an extended `DEL-03-06` or a new PKG-06 deliverable) or record an explicit reasoned deferral to a post-v1 stage. **This candidate chooses neither** — no scope item, deliverable, or deferral is added here, so that the choice reaches Gate 3 / Gate 6 unmade. |
+**Status after the D-GOV-25 ruling: 9 closed, 4 carried open.** Acceptance did
+not close every issue, and the four that remain open are part of what was
+accepted. Closure states are `CLOSED_*` where the ruling or a ruled gate
+satisfied the issue's own stated resolution condition, and `OPEN` where it did
+not. Every closure cites its basis; none is inferred from acceptance in
+general.
+
+| IssueID | Status | Type | Affected | Description | Disposition |
+|---|---|---|---|---|---|
+| OI-001 | `CLOSED_CONFIRMED` — owner decision 2, D-GOV-25 | SOURCE_CURRENCY | SOW-060, SOW-089, SOW-090, SOW-091, SOW-098, SOW-099, SOW-100, SOW-101 | Several PRD statements describe the repository as it stood at the PRD's own `SourceCorpusBasis`, and accepted acts recorded in the governance register at the current basis appear to have discharged them — the §9.1 concordance obligations and the §10.2 conflicts. This decomposition **does not adjudicate that**: it derives the scope items from the source as written and sets their coverage to standing verification and maintenance rather than re-performance. | **Ruled (owner decision 2, D-GOV-25).** The standing-verification-and-maintenance reading stands; the currency finding is recorded as ruled on rather than left outstanding. The adopted PRD bytes remain untouched (D-13) — the ruling disposes of the finding, it does not amend the source. |
+| OI-002 | `CLOSED_CONFIRMED` — owner decision 2, D-GOV-25 | SOURCE_CURRENCY | SOW-085, SOW-102, and every PROPOSED-labelled row | The adopted bytes state that PROPOSED items are inert until the adoption instrument's ruling, while the governance register records that the ruling occurred and the PROPOSED items take effect. The ledger therefore carries **the source label** plus a note, and claims no label change. | **Ruled (owner decision 2, D-GOV-25) — labels updated as warranted, by annotation.** The registers keep the PRD's own source label and gain the effect annotation "in effect per the D-GOV-22 adoption ruling; confirmed at the D-GOV-25 ruling". **No source label was overwritten**: F6 discipline is that a label does not change without an instrument, so the instrument is cited alongside the label rather than replacing it. |
+| OI-003 | `CLOSED_ACCEPTED_AS_STAGED` — owner decision 3, D-GOV-25 | FRAMING_STRAIN | whole package | `SOFTWARE_DECOMP`'s intake framing is a software development SOW. The root product's scope is predominantly normative corpus, governance machinery, and evidence; "artifacts" are largely governance records, registers, and validators rather than code. The standard was conformed to rather than adapted, and the strain is recorded here rather than silently smoothed. | **Ruled (owner decision 3, D-GOV-25) — accepted as staged.** `SOFTWARE_DECOMP` remains the conforming variant for this decomposition; no root-specific variant is directed. **The strain stays on record** rather than being retired by acceptance: it is the reason a future revision might revisit the manager choice, and deleting it would erase the reasoning behind an accepted structure. |
+| OI-004 | `CLOSED_ACCEPTED_AS_STAGED` — owner decision 3, D-GOV-25 | FRAMING_STRAIN | 33 TRANSCRIBED and 5 CLARIFIED commitments | A commitment already in force generates **conformance and verification** work, not construction. Deliverables against such commitments are written as conformance slices; that is a defensible reading of N-9 ("the running system continues to satisfy the invariants") but it makes many deliverables recurring controls rather than one-shot productions. | **Ruled (owner decision 3, D-GOV-25) — accepted as staged.** Standing conformance stays inside the package/deliverable lifecycle as decomposed; no separate standing-controls surface is directed. **The strain stays on record**: it is the largest judgment call in the package and remains the live reason a later revision might move recurring controls elsewhere. |
+| OI-005 | `OPEN` — not ruled on; carried forward | UNBUILT_CAPABILITY | SOW-049, DEL-04-09 | D-14's source-currency check is not built — no generator, schema, or executable check exists — and four of its nine classes require semantic judgment. Reliance on D-14 before the build is unwarranted. | Unchanged and **carried into the accepted basis**: build through DEL-04-09, or record an explicit deferral. Until then, currency findings are produced by human reading, as OI-001 was. Acceptance of the decomposition is not the building of the check. |
+| OI-006 | `CLOSED_BY_RULING` — D-GOV-25, all seven gates | OWNER_RULING_PENDING | all seven gates | Recorded while the package was a candidate: nothing was accepted and every gate was staged pending the owner's ruling. | **Closed by the fact it asked for.** All seven gates are ruled ACCEPTED (§1) by the owner against AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`. The issue is retained rather than deleted so the candidate posture stays legible in the record. |
+| OI-007 | `CLOSED_CONFIRMED_AT_GATE_4` — D-GOV-25 | PARTITION_BOUNDARY | SOW-065, SOW-066 vs SOW-034 | The §6.3 concurrency mechanisms are implemented as state surfaces owned by PKG-03 but demonstrated for legibility by PKG-06. The scope items are split so each lands in exactly one package, with the relation recorded at DEC-008. | **Closed by the Gate 4 acceptance, which is exactly the confirmation this issue asked for.** The PKG-03 / PKG-06 ownership split is the accepted boundary. |
+| OI-008 | `OPEN_STANDING` — reaffirmed, not closed | GATE_SEQUENCING | SOW-001, SOW-061, SOW-103, DEL-03-06 | Materialization of root packages sits behind the D-GOV-21 §5.3 gate, and this decomposition authorizes none of it. DEL-03-06 is readiness and evidence only. | **Reaffirmed by the ruling, not discharged by it.** Acceptance of the decomposition is a precondition of materialization, never the authorization for it; step 9 remains behind the §5.3 gate. This issue stays standing for as long as that gate does. |
+| OI-009 | `OPEN` — not ruled on; carried forward | SCOPE_TBD | SOW-094 | The referent of the database-backed attribution interface named in the RD-2 evolution path is `TBD` in the source. It is carried as an OUT boundary item without being resolved (I2). | Unchanged: the owner fixes the referent if and when that scope is opened. Acceptance did not resolve it and did not need to — the item is OUT. |
+| OI-010 | `CLOSED_ACCEPTED_AT_GATE_5` — D-GOV-25 | CONTEXT_ENVELOPE | DEL-04-09 | One `L` deliverable was proposed: a checker plus a regenerable derivative package. It is single-domain but multi-component. | **Closed by the Gate 5 acceptance**, which took the deliverable as proposed. `DEL-04-09` stands at `L` with its envelope notes; no split was directed. A split by check class remains available at revision if implementation review finds churn. |
+| OI-011 | `OPEN` — not ruled on; carried forward | RESPONSIBILITY_UNASSIGNED | all 45 deliverables | `ResponsibleParty` is `TBD` throughout; this run holds no assignment authority. | Unchanged: a later planning act assigns responsibility. Acceptance of the decomposition assigned no one to anything. |
+| OI-012 | `CLOSED_CONFIRMED_AT_GATE_4` — D-GOV-25 | FRAMING_STRAIN | 9 OUT items | REF-002 permits a blank partition for OUT units; REF-003 requires every scope item to carry exactly one `PackageID`. The stricter rule was applied (no weakening of the base) and the divergence is surfaced rather than reconciled. | **Closed by the Gate 4 acceptance**, which took the ledger with every OUT item assigned. The instruction-file divergence stays surfaced; no change to either instruction file was proposed or directed. |
+| OI-013 | `CLOSED_DEFERRED_BY_RULING` — owner decision 1, D-GOV-25 | OBJECTIVE_GRANULARITY | OBJ-002 (PRD OBJ-2) | PRD §3 OBJ-2's success condition ends "Demonstrated at root and in at least one situated working root." No deliverable covers the situated-working-root half: `DEL-03-06` carries the deliverable stream **at root only**, and `DEL-06-08` — the one situated-root deliverable — is mapped to OBJ-005, covers only SOW-003, and concerns a *recorded convergence path* (v1 boundary (c)) rather than a deliverable stream reaching an issuance decision in a variant. F4 is not formally tripped, because objectives are traced as whole units and OBJ-2 has coverage at objective granularity; the gap is inside the objective, where the registers cannot see it. Raised by the adversarial verification of this candidate (V1, MAJOR-1). | **Ruled: reasoned deferral (owner decision 1, D-GOV-25).** See §12.1 for the recorded deferral and its rationale. The forward register's OBJ-2 row now reads `COVERED_WITH_RECORDED_DEFERRAL`, so F4 is satisfied by a **recorded deferral** rather than by a silent gap — which is the distinction F4 draws. No scope item and no deliverable was added. |
+
+### 12.1 Recorded deferral — OBJ-2's situated-working-root demonstration
+
+**Ruled by the owner, 2026-07-25, decision 1 of the ruling recorded verbatim in
+`docs/governance_harness/_DECISIONS/D-GOV-25_root_decomposition_acceptance.md`,
+against AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`.**
+
+**What is deferred.** The situated-working-root half of PRD §3 OBJ-2's success
+condition — "demonstrated at root **and in at least one situated working
+root**". The root half is not deferred and is carried by
+`DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream`.
+
+**Deferred to.** The stage at which a situated working root runs its own
+deliverable stream to an issuance decision.
+
+**Rationale (three reasons, recorded so a later reader can test them):**
+
+1. **Sequence.** The v1 root demonstration proceeds first, through
+   `DEL-03-06`. A situated-root demonstration that preceded it would have
+   nothing to converge on.
+2. **Cadence is not root's to set.** A situated-root demonstration depends on a
+   variant loop's own cadence and instruments. PRD §7.1 has one instruction
+   root serving many working roots without per-workspace drift; root cannot
+   schedule a variant's deliverable stream without reaching into a working root
+   it does not own.
+3. **F4 discipline.** Recording the deferral now keeps F4 satisfied by an
+   explicit **recorded deferral** rather than by a silent gap. F4 is tripped by
+   a requirement or objective that has *neither* coverage nor a recorded
+   deferral; this clause now has one, and it is visible in the forward register
+   rather than only in prose.
+
+**What this deferral is not.** It is not a claim that the clause is satisfied,
+and it is not a removal of the clause from OBJ-2. OBJ-2 remains partly
+undemonstrated until the deferred stage runs, and the accepted basis says so.
 
 ---
 
@@ -471,12 +530,45 @@ claim.
 | DEC-012 | 2026-07-25 | Objectives are renumbered to `OBJ-001`..`OBJ-007` with the PRD identifier preserved in a binding column. | REF-002/REF-003 specify `OBJ-NNN`; renumbering without preserving the source ID would have broken traceability, and reusing `OBJ-1` would have broken the format. |
 | DEC-013 | 2026-07-25 | Heavy machine truth lives in six companion registers; the working surface stays a control surface carrying the full identifier set. | REF-002's modular-package default, plus the G2 literal-containment requirement that every `PKG-*`/`DEL-*` identifier appear verbatim in the decomposition surface. |
 
+**Ruling-application entries.** DEC-014..DEC-020 record the owner's ruled
+dispositions as applied in the publication tranche. Each cites the verbatim
+ruling in
+`docs/governance_harness/_DECISIONS/D-GOV-25_root_decomposition_acceptance.md`,
+against AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`
+(EffectiveSHA `ea0ad7a566ddb51d89297bfcf491636f1fc5dd15`). **None of them
+changes scope**: no scope item, package, deliverable, objective, or identifier
+was added, removed, or renumbered.
+
+| DecisionRef | Date | Decision | Rationale |
+|---|---|---|---|
+| DEC-014 | 2026-07-25 | All seven Gate Log rows move from the candidate-era pending status to `ACCEPTED`, and the status banner moves from candidate posture to accepted basis, each citing the owner ruling of 2026-07-25, D-GOV-25, and the AcceptedCandidateSHA. | The owner ruled, by merge-and-proceed direction against the exact candidate SHA, with the ruling recorded verbatim in D-GOV-25 and bound to that SHA (K-AUTH-2). The verbatim ruling is not restated here; this file points to the instrument that carries it (D-1: the decision record governs, the pointer is navigational). |
+| DEC-015 | 2026-07-25 | OI-013 is closed `CLOSED_DEFERRED_BY_RULING`: the situated-working-root half of OBJ-2's success condition is deferred, with the reasoned deferral recorded at §12.1 and the forward register's OBJ-2 row set to `COVERED_WITH_RECORDED_DEFERRAL`. | Owner decision 1. F4 distinguishes a recorded deferral from a silent gap; recording it in the register schema — which already carries `CoverageStatus` and `DeferralReason` — makes the deferral machine-visible instead of prose-only. No scope item or deliverable was added, because the ruling chose deferral over coverage. |
+| DEC-016 | 2026-07-25 | OI-001 is closed `CLOSED_CONFIRMED`: the standing-verification-and-maintenance reading of the discharged §9.1 obligations and C-1..C-4 stands, and the currency finding is recorded as ruled on. | Owner decision 2. The finding was raised as a D-14-class REVIEW finding routed to the owner; a ruling is the disposition that closes it. The adopted PRD bytes remain untouched (D-13) — closure disposes of the finding, it does not amend the source. |
+| DEC-017 | 2026-07-25 | OI-002 is closed `CLOSED_CONFIRMED` by **annotation, not overwrite**: rows carrying the PRD's PROPOSED source label gain the effect annotation "in effect per the D-GOV-22 adoption ruling; confirmed at the D-GOV-25 ruling", while the source-label field keeps the PRD's own label. | Owner decision 2 ("update the labels as warranted"). F6 is tripped by a provenance label that changes without a superseding instrument; citing the instrument beside the label satisfies the ruling without performing the act F6 forbids. The annotation is additive and reversible; overwriting would not have been. |
+| DEC-018 | 2026-07-25 | OI-003 and OI-004 are closed `CLOSED_ACCEPTED_AS_STAGED`, and both strains remain on record. | Owner decision 3. Acceptance settles that the staged framing is the accepted one; it does not make the strain untrue. Deleting the strains would erase the reasoning behind an accepted structure and hide the live reasons a later revision might revisit the manager choice or move standing conformance elsewhere. |
+| DEC-019 | 2026-07-25 | OI-006, OI-007, OI-010, and OI-012 are closed on the ruled gates that satisfied their own stated resolution conditions (all seven gates; Gate 4; Gate 5; Gate 4). OI-005, OI-008, OI-009, and OI-011 remain open and are carried into the accepted basis. | Each closed issue named a specific gate confirmation as its resolution, and that gate is now ruled; each open issue asked for something the ruling did not do. Closure is claimed per-issue against its own condition, never inferred from acceptance in general. OI-008 in particular is *reaffirmed* by acceptance rather than discharged by it: materialization stays behind the D-GOV-21 §5.3 gate. |
+| DEC-020 | 2026-07-25 | The filename stays `Chirality_Root_SOFTWARE_DECOMP_v1_0.md` and no revision number is bumped. The acceptance binds the content at AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`; the edits in DEC-014..DEC-019 are **the ruled dispositions applied in the publication tranche**, not new decomposition content. | Bumping the revision would imply the accepted content changed. It did not: scope, partition, deliverables, objectives, identifiers, and every count are byte-equivalent in substance to the accepted candidate, and the diff is confined to gate status, ruled dispositions, and cited annotations. Decision IDs continue from DEC-013 rather than restarting at DEC-012, because I5 forbids reusing an assigned identifier. |
+
 ### Change Log
 
 - 2026-07-25 — v1.0 candidate authored from `docs/PRD_ROOT.md` at basis
   `24726a73c64a849909e3615c32ef1a888b3dfd36` under run
   `ROOT-STEP8-DECOMP-20260725`. First root decomposition; no prior revision
-  exists, so no renumbering question arises. All gates `PENDING_OWNER_RULING`.
+  exists, so no renumbering question arises. All gates staged pending the
+  owner's ruling.
+- 2026-07-25 — fan-in corrections applied after independent adversarial
+  verification (node V1): one false quantitative claim about category
+  participation corrected in §8 and the telemetry, the §6 section tally
+  reconciled to the ledger, and OI-013 opened to carry the OBJ-2
+  situated-working-root gap to the gate unresolved. Committed as the candidate
+  at `ec62af0700e530c1640698fa406398cb1cb45d29`.
+- 2026-07-25 — **owner ruling applied (publication tranche).** All seven gates
+  ACCEPTED per D-GOV-25 against that candidate SHA; OI-013 closed by reasoned
+  deferral (§12.1); OI-001 and OI-002 confirmed, with PROPOSED source labels
+  annotated rather than overwritten; OI-003 and OI-004 accepted as staged with
+  the strains retained; OI-006, OI-007, OI-010, OI-012 closed on their ruled
+  gates; OI-005, OI-008, OI-009, OI-011 carried open. **No scope, partition,
+  deliverable, objective, or identifier changed** (DEC-014..DEC-020).
 
 ---
 

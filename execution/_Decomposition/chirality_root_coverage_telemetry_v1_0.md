@@ -3,7 +3,11 @@
 **Package Role:** `authoritative companion register`
 **Belongs to:** `execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md` (working surface)
 **Revision:** v1.0 · **Date:** 2026-07-25
-**Status:** CANDIDATE — every gate is `PENDING_OWNER_RULING`; nothing here is accepted.
+**Status:** ACCEPTED — all seven gates ruled `ACCEPTED` by the owner,
+2026-07-25, recorded in
+`docs/governance_harness/_DECISIONS/D-GOV-25_root_decomposition_acceptance.md`,
+AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`
+(EffectiveSHA `ea0ad7a566ddb51d89297bfcf491636f1fc5dd15`).
 
 This register is authoritative for the decomposition's counts, coverage
 results, and the D-15 four-category demonstration. The working surface
@@ -29,11 +33,14 @@ summarizes; this file holds the machine truth.
 | UnmappedObjectives | 0 |
 | ContextEnvelopeCounts | S=14, M=30, L=1, XL=0 |
 | PRDForwardItemCount | 84 |
+| PRDItemsCovered | 83 |
+| PRDItemsCoveredWithRecordedDeferral | 1 (OBJ-2) |
 | PRDItemsUncovered | 0 |
-| PRDItemsDeferred | 0 |
+| PRDItemsFullyDeferred | 0 |
 | UnitsUntracedInReverseRegister | 0 |
-| OpenIssueCount | 13 |
-| ScopeLedgerRowsFlaggedOpenIssue | 12 |
+| OpenIssueCount | 13 (9 closed at the D-GOV-25 ruling, 4 carried open) |
+| ScopeLedgerRowsFlaggedOpenIssue | 12 (2 point to still-open issues, 10 to now-closed ones) |
+| ScopeLedgerRowsCarryingLabelEffectAnnotation | 18 |
 
 `UnassignedScopeItems` is 0 as the standard requires for acceptance. `TBD`
 scope items are 0 because no PRD statement in the enumerated source scope was
@@ -105,7 +112,7 @@ coverage nor a recorded deferral. Both directions are computed, not asserted.
 
 | Direction | Register | Population | Result |
 |---|---|---:|---|
-| PRD item → decomposition | `chirality_root_prd_coverage_forward_v1_0.csv` | 84 | 84 COVERED, 0 DEFERRED, 0 UNCOVERED |
+| PRD item → decomposition | `chirality_root_prd_coverage_forward_v1_0.csv` | 84 | 83 COVERED, 1 COVERED_WITH_RECORDED_DEFERRAL (OBJ-2), 0 UNCOVERED |
 | decomposition unit → PRD | `chirality_root_trace_reverse_v1_0.csv` | 51 (6 packages + 45 deliverables) | 51 TRACED, 0 UNTRACED |
 
 Forward population (84 items): OBJ-1..OBJ-7 (7); N-1..N-9 (9); O-1..O-10 (10);
@@ -125,11 +132,38 @@ objective". `DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation`
 is the one deliverable that is objective-derived first (OBJ-3); it also covers
 SOW-009 (DEC-010).
 
-**This is a candidate result over a candidate decomposition.** F4 speaks to
-*accepted* scope units; nothing here is accepted, so the result is evidence
-offered to the gate, not a closure claim.
+**F4 status at the accepted basis.** F4 speaks to *accepted* scope units, and
+the units are now accepted (D-GOV-25). **F4 is not tripped:** every accepted
+package and deliverable traces back, and every PRD requirement and objective
+has either coverage or — in the single case of OBJ-2's situated-working-root
+clause — a **recorded deferral** ruled by the owner (decision 1; working
+surface §12.1; OI-013). The distinction is the one F4 itself draws: a recorded
+deferral is not a gap, and the register carries it in
+`CoverageStatus`/`DeferralReason` rather than in prose alone.
 
-## 6. Open issues by type
+## 6. Open issues by type and closure state
+
+Closure states applied at the D-GOV-25 ruling (working surface §12): **9
+closed, 4 carried open.** Each closure cites its own basis; none is inferred
+from acceptance in general.
+
+| IssueID | Closure state | Basis |
+|---|---|---|
+| OI-001 | `CLOSED_CONFIRMED` | Owner decision 2 |
+| OI-002 | `CLOSED_CONFIRMED` | Owner decision 2 (labels annotated, not overwritten) |
+| OI-003 | `CLOSED_ACCEPTED_AS_STAGED` | Owner decision 3 (strain retained) |
+| OI-004 | `CLOSED_ACCEPTED_AS_STAGED` | Owner decision 3 (strain retained) |
+| OI-005 | `OPEN` | Not ruled on; DEL-04-09 is the build |
+| OI-006 | `CLOSED_BY_RULING` | All seven gates ruled ACCEPTED |
+| OI-007 | `CLOSED_CONFIRMED_AT_GATE_4` | Gate 4 acceptance was its stated resolution |
+| OI-008 | `OPEN_STANDING` | Reaffirmed by the ruling; §5.3 gate still governs materialization |
+| OI-009 | `OPEN` | Not ruled on; the item is OUT |
+| OI-010 | `CLOSED_ACCEPTED_AT_GATE_5` | Gate 5 took DEL-04-09 as proposed at `L` |
+| OI-011 | `OPEN` | Not ruled on; no responsibility assigned |
+| OI-012 | `CLOSED_CONFIRMED_AT_GATE_4` | Gate 4 acceptance was its stated resolution |
+| OI-013 | `CLOSED_DEFERRED_BY_RULING` | Owner decision 1 (reasoned deferral, §12.1) |
+
+
 
 | Type | Count | IDs |
 |---|---:|---|
@@ -152,8 +186,24 @@ check) — SOW-049 (1); OI-009 (unresolved referent) — SOW-094 (1). The
 remaining open issues are package-level rather than row-level and carry no
 ledger flag; **OI-013 is objective-level** — it concerns a condition inside
 OBJ-2 for which no scope item exists, which is precisely why it has no ledger
-row to flag. Full per-row flags are the `OpenIssue` column of the scope
-ledger.
+row to flag and why its ruled deferral is recorded in the forward register
+instead. Full per-row flags are the `OpenIssue` column of the scope ledger.
+
+**Reading the flags after the ruling.** The 12 flags were **not cleared**: a
+flag marks that a row is referenced by an open-issue entry, and the entries are
+retained with closure states rather than deleted. After the ruling, 2 flagged
+rows point to still-open issues (SOW-049 → OI-005; SOW-094 → OI-009) and 10
+point to closed ones (SOW-060, SOW-089, SOW-090, SOW-091, SOW-098, SOW-099,
+SOW-100, SOW-101 → OI-001 `CLOSED_CONFIRMED`; SOW-085, SOW-102 → OI-002
+`CLOSED_CONFIRMED`). Clearing them would have been an unruled edit to accepted
+content; the mapping is stated here instead so no reader has to infer it.
+
+**Label-effect annotations.** 18 ledger rows and all 7 objective-register rows
+carry PROPOSED source labels from the PRD; each now carries the additive
+annotation "in effect per the D-GOV-22 adoption ruling; confirmed at the
+D-GOV-25 ruling" (owner decision 2, DEC-017). **No source label was
+overwritten** — the PRD's own label stands in `SourceRef`, and the instrument
+is cited beside it, which is what F6 requires.
 
 ## 7. Companion register inventory
 

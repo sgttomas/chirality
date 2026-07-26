@@ -1,0 +1,48 @@
+# Root guard registration surface — G0's state surface (D-GOV-21 §5.3).
+#
+# Instantiated by root Project Setup (packet §6 step 8) after each guard was
+# run against the state written in this same act and observed PASS.
+# Guard: tools/validation/validate_root_materialization_fence.py
+#
+# G0 requires no entry for itself; it reads this file only once PKG-*/DEL-*
+# structure exists under root execution/ (packet §6 step 9, still gated).
+# Registration records that a guard is wired and observed passing; it holds no
+# authority and confers none (K-AUTH-1).
+#
+# Entry shapes are verbatim from each guard's own docstring
+# ("Registration entry it will assert in execution/_harness/root_guards.yaml").
+
+guards:
+  G1:
+    registered: true
+    status: passing
+    validator: tools/validation/validate_root_harness_adapter.py
+    tests: tools/validation/test_validate_root_harness_adapter.py
+    state_surface: execution/_harness/adapter.yaml
+    schema: root-harness-adapter/v1
+
+  G2:
+    registered: true
+    status: passing
+    validator: tools/validation/validate_root_surface_ownership.py
+    tests: tools/validation/test_validate_root_surface_ownership.py
+    state_surface: execution/_harness/surface_ownership.yaml
+    schema: root-surface-ownership/v1
+
+  G3:
+    registered: true
+    status: passing
+    validator: tools/validation/validate_root_work_graph_dispatch.py
+    tests: tools/validation/test_validate_root_work_graph_dispatch.py
+    state_surface: execution/_harness/work_graph.yaml
+    schema: root-work-graph/v1
+    dispatch_mode: "--work-graph PATH --brief PATH [--brief PATH ...]"
+
+  G4:
+    registered: true
+    status: passing
+    validator: tools/validation/validate_instruction_tranche_manifest.py
+    tests: tools/validation/test_validate_instruction_tranche_manifest.py
+    state_surface: docs/governance_harness/tranche_manifests/
+    schema: instruction-tranche-manifest/v1
+    diff_mode: "--base REF --head REF [--tranche ID]"

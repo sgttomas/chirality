@@ -19,10 +19,23 @@ step 9 materialization stays behind the §5.3 gate. Standing owner direction:
 | Node | Actor | Work | Write targets | Status |
 |---|---|---|---|---|
 | N0 | Agent 0 + two read-only Explore scouts | Context assembly: decomposition standard, precedents, manager fit, guard-state schemas | `AgentRuns/ROOT-STEP8-DECOMP-20260725/evidence/` | COMPLETE |
-| N1 | Agent 1 — SOFTWARE_DECOMP (`opus-5`), sealed brief | Author the CANDIDATE first root decomposition from `docs/PRD_ROOT.md` | `execution/_Decomposition/**` (new), `returns/N1_RETURN_RAW.md` | DISPATCHED |
-| V1 | Agent 2 — ephemeral verifier (`opus-5`), sealed brief | Adversarial verification: F4 bidirectional traceability, D-15 coverage, I1–I10 + SPEC ID conformance, G2 literal-containment readiness | `returns/V1_RETURN_RAW.md` only | PENDING (after N1) |
-| A0 | Agent 0 | Fan-in: verify scope held, re-run battery, dispositions; stage candidate tranche (receipt, PR) | run record, `LOOP_RECEIPTS.md` | PENDING |
-| GATE | Owner | Ruling over the exact candidate SHA (Gates 1–7 + acceptance) | — | STOP STATE |
+| N1 | Agent 1 — SOFTWARE_DECOMP (`opus-5`), sealed brief | Author the CANDIDATE first root decomposition from `docs/PRD_ROOT.md` | `execution/_Decomposition/**` (new), `returns/N1_RETURN_RAW.md` | COMPLETE (+2 directed continuations: V1 corrections; ruling application) |
+| V1 | Agent 2 — ephemeral verifier (`opus-5`), sealed brief | Adversarial verification: F4 bidirectional traceability, D-15 coverage, I1–I10 + SPEC ID conformance, G2 literal-containment readiness | `returns/V1_RETURN_RAW.md` only | COMPLETE (1 BLOCKER corrected pre-staging; 1 MAJOR routed to owner as OI-013) |
+| A0 | Agent 0 | Fan-in: verify scope held, re-run battery, dispositions; stage candidate tranche (receipt, PR #347) | run record, `LOOP_RECEIPTS.md` | COMPLETE |
+| GATE | Owner | Ruling over the exact candidate SHA (Gates 1–7 + acceptance) | — | **RULED 2026-07-25** — acceptance + 3 dispositions against `ec62af070` (D-GOV-25); PR #347 merged `ea0ad7a56` |
+| N1b | N1 continuation (`opus-5`) | Apply the three ruled dispositions to the decomposition package (publication tranche) | `execution/_Decomposition/**` | COMPLETE |
+| N2 | Agent 1 — PROJECT_SETUP (`opus-5`), sealed brief `briefs/PROJECT-SETUP-BRIEF.md` | Root Project Setup: instantiate guard state (adapter, ownership register, first accepted work graph, guard registration) | `execution/_harness/**` (new), `returns/N2_RETURN_RAW.md` | COMPLETE — G0–G4 all PASS against written state |
+| A0b | Agent 0 | Acceptance-tranche authoring (D-GOV-25 record, register row, tranche manifest) + fan-in, Receipt 47, PR | `docs/governance_harness/**`, run record, `LOOP_RECEIPTS.md` | COMPLETE |
+| GATE2 | Owner | Human-gated merge of the acceptance-application PR | — | STOP STATE |
+
+Fan-in dispositions (A0b): N1b's uncleaned ledger `OpenIssue` flags ACCEPTED
+(clearing them would be an unruled edit to accepted content; the flag→issue
+mapping is stated in telemetry §6); DEC-014..020 numbering ACCEPTED (I5);
+N2's twelve recorded design choices ACCEPTED as read-from-source; N2 open
+items 1–6 carried (practitioner-harness adoption separately gated;
+root_guards first load-bearing at step 9; DEL-level entries at
+materialization; no ordering edges — add via decomposition first; basis pin
+provenance; explicit staging at commit).
 
 Write-target disjointness: N1 alone writes `execution/_Decomposition/`; V1
 writes only its return file; serialized N1 → V1 → A0. No node touches
