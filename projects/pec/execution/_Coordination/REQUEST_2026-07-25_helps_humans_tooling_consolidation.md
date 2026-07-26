@@ -132,3 +132,17 @@ converging contract-text findings (full detail in each deliverable's
 Evidence trail: `projects/pec/execution/_Coordination/PLAN_2026-07-25_pec_phase_2_2_sow_wave.md`
 §6 (refutation logs R1, R-2a, R-2b-g1..g5, R-3);
 `projects/pec/execution/_ScopeChange/SCA-002_2026-07-25_1042/Handoff_State.md` §6.
+
+9. **(Added 2026-07-26, D-PEC-66 act-3 evidence) `skills/scope-of-work`
+   row-semantics clause harmonization.** `SKILL.md`'s authoring rule
+   ("Group … only when the row's verification set is exactly the union of
+   those criteria's own methods") states QA item 20's clause 1 only, which
+   post-repair measurement shows is near-vacuous (it passed on all 21
+   genuinely over-linked rows; it can only fire when a row carries a VER
+   verifying none of its ACs). Item 20's clause 2 (per-AC: no inherited
+   non-verifying method) is the operative test and matches the deriver's
+   row-scoped semantics. Needed: one-sentence SKILL.md amendment ("…and
+   only when those criteria's method sets are identical") and optionally
+   the same tightening in item 20 clause 1. Evidence: D-PEC-66 closure
+   refutation F1/F2 (`FOLLOWON_D-PEC-66/CLOSURE_2026-07-26.md`); 21/21
+   clause-measurement reproduced independently by the closure refuter.

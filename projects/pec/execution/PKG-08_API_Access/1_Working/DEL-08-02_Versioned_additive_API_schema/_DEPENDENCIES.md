@@ -12,7 +12,11 @@ Register storage is deliverable-local by owner ruling (no central register).
 ## Downstream (informational; consumers of this deliverable)
 
 - DEL-08-03 (Compact citation-bearing response format) — CONSUMES [E-N11]
-- DEL-07-05 (Shared-runtime client seam (v2)) — CONSUMES [E-N13]
+- ~~DEL-07-05 (Shared-runtime client seam (v2)) — CONSUMES [E-N13]~~ —
+  **DECLINED 2026-07-26 by owner ruling (D-PEC-66 act 1)**: no warranting
+  source text found at D-PEC-65 repair and SOFTWARE_DECOMP `DL-11`
+  counter-evidence (seam is daemon-facing integration); register row
+  `DEP-07-05-004` removed on the consumer side
 - DEL-10-03 (No-ruling-write verification) — TESTS [E-P55]
 
 ## Non-gating constraints and register-wide rules

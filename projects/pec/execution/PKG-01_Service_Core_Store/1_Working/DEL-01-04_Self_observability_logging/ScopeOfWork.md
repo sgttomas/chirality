@@ -114,6 +114,12 @@ edit.
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-057 OBJ-006 | REQ-001, REQ-002, REQ-003, REQ-004, REQ-006, REQ-007, CLM-005, CLM-007, CON-001 | AC-001, AC-002, AC-003, AC-005, AC-006 | VER-001, VER-002, VER-003, VER-005, VER-006 | Event-schema documentation, recorded fixture events for both subject classes, suppressed-emission and mutation/deletion refusal transcripts, content-minimality check output, and dependency-manifest plus import-graph inspection records |
-| OUT-002 | SOW-057 OBJ-006 | REQ-005, REQ-006, REQ-007, CLM-006, CLM-009, TBD-003 | AC-004, AC-005, AC-006 | VER-004, VER-005, VER-006 | Inspection-command output over populated, single-event, empty, and absent log fixtures, showing recorded order, per-event identity and timestamp, and the explicit absence report; reconcile-run transcripts under deleted, unwritable, and absent log stores showing unblocked completion (the kill-test transcript is DEL-10-02's evidence under SOW-055, not this deliverable's) |
+| OUT-001 | SOW-057 OBJ-006 | REQ-001, CLM-005 | AC-001 | VER-001 | Recorded fixture events for both subject classes, suppressed-emission transcripts |
+| OUT-001 | SOW-057 OBJ-006 | REQ-002, CLM-005, CON-001 | AC-002 | VER-002 | Event-schema documentation, recorded fixture events for both subject classes |
+| OUT-001 | SOW-057 OBJ-006 | REQ-003, REQ-004, CLM-007 | AC-003 | VER-003 | Mutation/deletion refusal transcripts, content-minimality check output |
+| OUT-001 | SOW-057 OBJ-006 | REQ-006 | AC-005 | VER-005 | Reconcile-run transcripts under deleted, unwritable, and absent log stores showing unblocked completion (the kill-test transcript is DEL-10-02's evidence under SOW-055, not this deliverable's) |
+| OUT-001 | SOW-057 OBJ-006 | REQ-007, CLM-007 | AC-006 | VER-006 | Dependency-manifest plus import-graph inspection records |
+| OUT-002 | SOW-057 OBJ-006 | REQ-005, CLM-006, TBD-003 | AC-004 | VER-004, VER-005 | Inspection-command output over populated, single-event, empty, and absent log fixtures, showing recorded order, per-event identity and timestamp, and the explicit absence report |
+| OUT-002 | SOW-057 OBJ-006 | REQ-006, CLM-009 | AC-005 | VER-005 | Reconcile-run transcripts under deleted, unwritable, and absent log stores showing unblocked completion (the kill-test transcript is DEL-10-02's evidence under SOW-055, not this deliverable's) |
+| OUT-002 | SOW-057 OBJ-006 | REQ-007 | AC-006 | VER-006 | Dependency-manifest plus import-graph inspection records |
 | OUT-003 | SOW-057 OBJ-006 | REQ-008, CLM-008 | AC-007 | VER-007 | Service-core test-run output mapping each executed test to its declared verification method |

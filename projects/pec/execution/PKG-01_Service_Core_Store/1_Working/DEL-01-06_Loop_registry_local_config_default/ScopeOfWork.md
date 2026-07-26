@@ -102,6 +102,10 @@ authorizes no register, decomposition, or PRD edit.
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-094 OBJ-004 | REQ-001, REQ-002, REQ-006, CLM-004, CLM-005 | AC-001, AC-002, AC-005 | VER-001, VER-002, VER-005 | Format documentation, the checked-in default instance, the malformed-fixture set, and validation output showing accept/reject per fixture |
-| OUT-002 | SOW-094 OBJ-004 | REQ-003, REQ-004, REQ-005, REQ-006, CLM-006 | AC-003, AC-004, AC-005 | VER-003, VER-004, VER-005 | Loader failure-path transcripts, the consumer-facing interface signature, and dependency-manifest plus import-graph inspection records |
+| OUT-001 | SOW-094 OBJ-004 | REQ-001, CLM-004 | AC-001 | VER-001 | Format documentation, the checked-in default instance, the malformed-fixture set, and validation output showing accept/reject per fixture |
+| OUT-001 | SOW-094 OBJ-004 | REQ-002, CLM-005 | AC-002 | VER-002 | The checked-in default instance |
+| OUT-001 | SOW-094 OBJ-004 | REQ-006 | AC-005 | VER-005 | Dependency-manifest plus import-graph inspection records |
+| OUT-002 | SOW-094 OBJ-004 | REQ-003 | AC-003 | VER-003 | Loader failure-path transcripts |
+| OUT-002 | SOW-094 OBJ-004 | REQ-004, REQ-005, CLM-006 | AC-004 | VER-004 | The consumer-facing interface signature |
+| OUT-002 | SOW-094 OBJ-004 | REQ-006 | AC-005 | VER-005 | Dependency-manifest plus import-graph inspection records |
 | OUT-003 | SOW-094 OBJ-004 | REQ-007, CLM-007 | AC-006 | VER-006 | Service-core test-run output mapping each executed test to its declared verification method |
