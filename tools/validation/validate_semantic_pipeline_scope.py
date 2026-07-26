@@ -24,6 +24,7 @@ resolve_production_format = _common.resolve_production_format
 
 
 STEP_ALLOWED = {
+    "init": {"ScopeOfWork.md", "_STATUS.md"},
     "semantic": {"_SEMANTIC.md", "_STATUS.md"},
     "lens": {"_SEMANTIC_LENSING.md"},
 }
