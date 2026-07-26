@@ -124,6 +124,33 @@ def test_dot_github_workflows_is_instruction_surface():
     assert not g2.intersects_instruction_surface("execution/PKG-01_Example/**")
 
 
+def test_claude_md_is_instruction_surface():
+    """D-GOV-26 item 2: `CLAUDE.md` is the session-init instruction pointer."""
+    assert g2.intersects_instruction_surface("CLAUDE.md")
+    assert g2.intersects_instruction_surface("./CLAUDE.md")
+    assert g2.intersects_instruction_surface("AGENTS.md")
+    assert not g2.intersects_instruction_surface("projects/demo/CLAUDE.md")
+
+
+def test_block_on_unmarked_claude_md_write_target(tmp_path):
+    entry = _entry(write_targets=["execution/PKG-01_Example/**", "CLAUDE.md"])
+    _write_register(tmp_path, _register([entry]))
+    code, lines = g2.check(tmp_path)
+    assert code == 1
+    assert any("intersect the instruction surface" in line for line in lines)
+    assert any("CLAUDE.md" in line for line in lines)
+
+
+def test_pass_on_marked_claude_md_write_target(tmp_path):
+    entry = _entry(
+        write_targets=["execution/PKG-01_Example/**", "CLAUDE.md"],
+        instruction_surface=True,
+    )
+    _write_register(tmp_path, _register([entry]))
+    code, lines = g2.check(tmp_path)
+    assert code == 0, lines
+
+
 def test_block_on_duplicate_entry_ids(tmp_path):
     _write_register(tmp_path, _register([_entry(), _entry()]))
     code, lines = g2.check(tmp_path)

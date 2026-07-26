@@ -49,9 +49,12 @@ that do not intersect the instruction surface are recorded as over-declaration
 note — the M6 routing decision is completed by the accepting agent at fan-in,
 and this guard records rather than pre-empts that act.
 
-The instruction surface is `docs/SPEC.md` §0.2.2's enumeration (`AGENTS.md`,
-`agents/`, `skills/`, `tools/`, root `docs/`, `init/`) plus
-`.github/workflows/`, on the basis of the Lane B characterization in
+The instruction surface is `docs/SPEC.md` §0.2.1's enumeration as amended by
+D-GOV-26: `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root
+`docs/`, `init/`, `.github/workflows/`. `CLAUDE.md` is the session-init
+instruction pointer importing `AGENTS.md`; `.github/workflows/` holds the CI
+workflow definitions that gate merges, and had previously been guarded on the
+Lane B characterization in
 `execution/_Coordination/WORKPLAN_2026-07-25_root_product_development.md`.
 
 Modes and behavior (severity semantics per D-GOV-02)
@@ -121,7 +124,7 @@ REQUIRED_M2_KEYS = (
 )
 REQUIRED_M6_KEYS = ("disposition", "routed_to", "rationale")
 
-INSTRUCTION_SURFACE_FILES = ("AGENTS.md",)
+INSTRUCTION_SURFACE_FILES = ("AGENTS.md", "CLAUDE.md")
 INSTRUCTION_SURFACE_DIRS = (
     "agents/",
     "skills/",

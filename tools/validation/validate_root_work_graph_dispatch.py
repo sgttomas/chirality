@@ -101,11 +101,12 @@ REGISTER_RELPATH = Path("execution/_harness/surface_ownership.yaml")
 VALID_STATUSES = ("active", "pending", "complete", "blocked")
 M2_MARKER_PREFIX = "M2:"
 
-# Instruction surface per `docs/SPEC.md` §0.2.2, plus `.github/workflows/` on
-# the basis of the Lane B characterization in the root workplan. Kept
-# identical to G2's and G4's sets by construction; any change is a governance
-# action, not a local edit.
-INSTRUCTION_SURFACE_FILES = ("AGENTS.md",)
+# Instruction surface per the `docs/SPEC.md` §0.2.1 enumeration as amended by
+# D-GOV-26, which ratified `CLAUDE.md` (the session-init instruction pointer)
+# and `.github/workflows/` (the CI workflow definitions that gate merges) into
+# the set. Kept identical to G2's and G4's sets by construction; any change is
+# a governance action, not a local edit.
+INSTRUCTION_SURFACE_FILES = ("AGENTS.md", "CLAUDE.md")
 INSTRUCTION_SURFACE_DIRS = (
     "agents/",
     "skills/",

@@ -9,6 +9,7 @@ on:
       - "exports/chirality-app/**"
       - "agents/**"
       - "AGENTS.md"
+      - "CLAUDE.md"
       - "README.md"
       - "PROFESSIONAL_ENGINEERING.md"
   workflow_dispatch:

@@ -206,6 +206,29 @@ def test_dot_github_workflows_is_instruction_surface():
     assert not g3.intersects_instruction_surface("execution/PKG-01_Example/**")
 
 
+def test_claude_md_is_instruction_surface():
+    """D-GOV-26 item 2: `CLAUDE.md` is the session-init instruction pointer."""
+    assert g3.intersects_instruction_surface("CLAUDE.md")
+    assert g3.intersects_instruction_surface("./CLAUDE.md")
+    assert g3.intersects_instruction_surface("AGENTS.md")
+    assert not g3.intersects_instruction_surface("projects/demo/CLAUDE.md")
+
+
+def test_block_on_claude_md_target_without_marker(tmp_path):
+    _write_graph(tmp_path, _graph([_node("N1", write_targets=["CLAUDE.md"])]))
+    code, lines = g3.check(tmp_path)
+    assert code == 1
+    assert any("intersect the instruction surface" in line for line in lines)
+
+
+def test_pass_on_claude_md_target_with_valid_m2_marker(tmp_path):
+    marker = _marker_target(tmp_path)
+    node = _node("N1", write_targets=["CLAUDE.md"], m2_marker=f"M2:{marker}")
+    _write_graph(tmp_path, _graph([node]))
+    code, lines = g3.check(tmp_path)
+    assert code == 0, lines
+
+
 def test_block_on_instruction_surface_without_marker(tmp_path):
     _write_graph(tmp_path, _graph([_node("N1", write_targets=["tools/validation/**"])]))
     code, lines = g3.check(tmp_path)

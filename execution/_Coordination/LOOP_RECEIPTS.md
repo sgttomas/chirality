@@ -1187,3 +1187,51 @@ amendment; owner ruling required).
   adapter baselines and harness live pins move together in any future
   materialization change; per-deliverable initialization + ResponsibleParty
   assignment await owner direction.
+
+### Receipt 50 — 2026-07-25 — Owner-gated closeout by adopted recommendation (D-GOV-26)
+
+- Owner ruling of record (in-session, 2026-07-25, verbatim in D-GOV-26):
+  "Delegate to `opus-5` subagents the closeout of those four owner-gated
+  issues by following your recommendations in each case." Approval binds
+  at the human-gated PR merge (K-AUTH-2 vehicle, stated in the record).
+- **S1 (`opus-5`, sealed brief):** `_Archive/` local-working-state note
+  added to SPEC §1.1; instruction-surface enumeration extended with
+  `CLAUDE.md` and `.github/workflows/` — at SPEC **§0.2.1**, the
+  enumeration's actual home (the recommendation's "§0.2.2" label was
+  wrong; substance applied at the true site, discrepancy recorded in
+  D-GOV-26 pre-publication); `CLAUDE.md` added to the G2/G3/G4
+  instruction-surface set with 7 regression tests (validation suite
+  235 → 242). Four now-incomplete verbatim restatements found and
+  REPORTED, not touched: DIRECTIVE §1 + §2.6, TYPES §Instruction Root,
+  PRD O-1 — an owner exact-prose correction packet is the recommended
+  vehicle (PRD C-2 precedent; note DIRECTIVE §2.6's desktop packaging
+  list must NOT gain `.github/workflows/`).
+- **S2 (`opus-5`, sealed brief):** K-WRITE-2 gloss amended in
+  CONTRACT.md — checkout-boundary containment, declared-write-target
+  bounding (M1), root exception noted; invariant sentence byte-identical;
+  supersession trace per the document's own convention; the D-GOV-21
+  §5.1 debt is CLOSED. Residual: the thesis appendix mirrors the old
+  gloss (governed divergence — CONTRACT governs; carried for the thesis
+  instrument).
+- **S3 (`opus-5`, sealed brief, read-only):** export-boundary audit —
+  verdict SAFE-WITH-CAVEATS for the standing deferral; nothing added
+  since the last export crosses into the allowlist; no staging tree can
+  ship stale. Key caveats: the exported CI would fail G4 on the public
+  tree (resolve at next export, not before); PUBLIC_README genus wording
+  will not self-heal; two publication questions flagged for the owner
+  (exported records naming private-tree pin structure; proposal packets
+  exporting as a class). Evidence:
+  `AgentRuns/ROOT-OGC-20260725/evidence/EXPORT_BOUNDARY_AUDIT.md`.
+  Export-staging regeneration is now a STANDING DISPOSITION, no longer
+  carried debt.
+- **Agent 0 fan-in:** D-GOV-26 §0.2.1 correction recorded
+  pre-publication; `harness-premerge` trigger gains `CLAUDE.md`
+  (coherence follow-on of R2, disclosed); routed M6 notice to app-dev
+  (SPEC + CONTRACT sha256-pinned there); tranche manifest
+  `ROOT-OGC-20260725.yaml` (disposition routed).
+- **Gate:** human-gated PR; no self-merge.
+- Open after this receipt: PR merge (owner); owner exact-prose correction
+  packet for the four stale enumeration restatements (recommended, not
+  scheduled); thesis-appendix K-WRITE-2 mirror (thesis instrument);
+  S3's two publication questions + G4-in-public-CI resolution (at next
+  export need); per-deliverable initialization awaits owner direction.
