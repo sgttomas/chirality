@@ -88,3 +88,85 @@ dependency (`EVQ-003` + `EVQ-004`), `DeclaredBy` = `TASK-repair/D-PEC-65`,
 `DeclaredOn` = `2026-07-25`, both rationales well over the EVQ-008 length floor.
 Both files re-read post-edit: 29 columns on every `Dependencies.csv` row, 5 on
 every waiver row.
+
+## E-N13 decline (D-PEC-66, 2026-07-26)
+
+Sealed Agent 2 dispatch (file-tool-only) under
+`execution/_Coordination/_DECISIONS/D-PEC-66_post_repair_followons.md` act 1
+(RULED 2026-07-26). Recorded here rather than in a new run-record file so that
+the full lifecycle of `DEP-07-05-004` — seeded (D-PEC-62), waived (D-PEC-65),
+declined (D-PEC-66) — reads in one place. Files written: `Dependencies.csv`,
+`Dependencies_EvidenceWaivers.csv`, `_DEPENDENCIES.md`, this record.
+
+**Ruling basis:** repair-time evidence search under `D-PEC-65` found no
+warranting source text for the DEL-07-05 → DEL-08-02 edge, and
+SOFTWARE_DECOMP `DL-11` supplies counter-evidence (SOW-087 assigned to PKG-07
+as daemon-facing integration, not as a consumer of PEC's own versioned API
+schema). The row was seeded PROPOSAL / LOW_CONFIDENCE and its own `Statement`
+recorded that the owner may decline.
+
+### 1. `Dependencies.csv` — row deleted
+
+Row `DEP-07-05-004` (EXECUTION, edge `E-N13`) removed. Former content, verbatim
+and complete, for rollback readability:
+
+```csv
+v3.1,DEP-07-05-004,PKG-07,DEL-07-05,Shared-runtime client seam (v2),EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-08,DEL-08-02,DEL-08-02,Versioned additive API schema,execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema,R3-F5: a client seam is a client of the versioned API surface; owner may decline,execution/_Decomposition/SOFTWARE_DECOMP.md,location TBD,,IMPLICIT,INITIALIZED,TBD,PENDING,LOW,EXTRACTED,2026-07-25,2026-07-25,ACTIVE,PROPOSAL; Flag=LOW_CONFIDENCE; EdgeID=E-N13
+```
+
+Post-state: 4 data rows (2 ANCHOR `DEP-07-05-001/-002`, 2 EXECUTION
+`DEP-07-05-003/-005`) plus header; no other row, cell, or byte changed; no
+reordering; no renumbering of the surviving IDs (the `-004` identifier is
+retired, not reused). Re-read post-edit: 29 columns on every remaining row.
+
+### 2. `Dependencies_EvidenceWaivers.csv` — waivers retired
+
+Both `DEP-07-05-004` waiver rows (`EVQ-003`, `EVQ-004`, declared by
+`TASK-repair/D-PEC-65` on 2026-07-25 and revised the same day) are retired with
+the edge they justified. The file now holds the header line only:
+
+```csv
+DependencyID,WaivedCheck,Rationale,DeclaredBy,DeclaredOn
+```
+
+The rationale text remains preserved above in this record's *Waivers declared*
+and *Revision* sections. Removal of the now-empty sidecar file is the
+dispatcher's recorded act at fan-in (this dispatch cannot delete files).
+
+### 3. `_DEPENDENCIES.md` — derivative restatement annotated
+
+The upstream table's `E-N13` row was removed from the live rows and replaced by
+an explicit declined marker below the table (annotated, never silently dropped).
+
+Before (table rows, in order):
+
+```markdown
+| DEL-00-02 (Event-contract schema v1) | DERIVED | CONSUMES |  | E-N01 |
+| DEL-08-02 (Versioned additive API schema) | PROPOSAL | CONSUMES | LOW_CONFIDENCE | E-N13 |
+| DEL-01-01 (Record-tier schema & entity model) | PROPOSAL | CONSUMES |  | E-P14 |
+```
+
+After:
+
+```markdown
+| DEL-00-02 (Event-contract schema v1) | DERIVED | CONSUMES |  | E-N01 |
+| DEL-01-01 (Record-tier schema & entity model) | PROPOSAL | CONSUMES |  | E-P14 |
+
+**DECLINED 2026-07-26 by owner ruling (D-PEC-66 act 1)** — DEL-08-02
+(Versioned additive API schema), edge `E-N13`, register row `DEP-07-05-004`
+(seeded PROPOSAL / LOW_CONFIDENCE): repair-time evidence search (`D-PEC-65`)
+found no warranting source text and SOFTWARE_DECOMP `DL-11` supplies
+counter-evidence (the client seam is daemon-facing integration, not a consumer
+of PEC's own versioned API schema). Register row `DEP-07-05-004` removed and
+its two evidence waivers retired.
+```
+
+Sections *Non-gating constraints and register-wide rules* and *Blocker
+semantics* untouched.
+
+### Rollback
+
+Restoring the edge means re-inserting the verbatim CSV row above between
+`DEP-07-05-003` and `DEP-07-05-005`, restoring the two waiver rows from the
+*Waivers declared* / *Revision* sections above, and reverting the
+`_DEPENDENCIES.md` table to the *Before* block.

@@ -10,8 +10,15 @@ Register storage is deliverable-local by owner ruling (no central register).
 | Predecessor | Stratum | Kind | Flag | EdgeID |
 |---|---|---|---|---|
 | DEL-00-02 (Event-contract schema v1) | DERIVED | CONSUMES |  | E-N01 |
-| DEL-08-02 (Versioned additive API schema) | PROPOSAL | CONSUMES | LOW_CONFIDENCE | E-N13 |
 | DEL-01-01 (Record-tier schema & entity model) | PROPOSAL | CONSUMES |  | E-P14 |
+
+**DECLINED 2026-07-26 by owner ruling (D-PEC-66 act 1)** — DEL-08-02
+(Versioned additive API schema), edge `E-N13`, register row `DEP-07-05-004`
+(seeded PROPOSAL / LOW_CONFIDENCE): repair-time evidence search (`D-PEC-65`)
+found no warranting source text and SOFTWARE_DECOMP `DL-11` supplies
+counter-evidence (the client seam is daemon-facing integration, not a consumer
+of PEC's own versioned API schema). Register row `DEP-07-05-004` removed and
+its two evidence waivers retired.
 
 ## Non-gating constraints and register-wide rules
 

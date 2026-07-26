@@ -136,7 +136,8 @@ that is not already stated in this contract.
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-088 OBJ-005 | REQ-001 REQ-002 REQ-006 REQ-007 CLM-006 CON-001 | AC-001 AC-002 AC-004 AC-005 | VER-001 VER-003 | Published core-isolation ADR plus the read-only cross-check record showing the ADR's self-identified OI-012 resolution consistent with the register's existing disposition, no register edit performed, and no other open issue decided |
+| OUT-001 | SOW-088 OBJ-005 | REQ-001 REQ-002 REQ-006 CLM-006 CON-001 | AC-001 AC-002 AC-005 | VER-001 | Published core-isolation ADR |
+| OUT-001 | SOW-088 OBJ-005 | REQ-007 CON-001 | AC-004 | VER-001 VER-003 | The read-only cross-check record showing the ADR's self-identified OI-012 resolution consistent with the register's existing disposition, no register edit performed, and no other open issue decided |
 | OUT-001 | SOW-088 OBJ-005 | REQ-010 AX-001 CON-001 | AC-007 | HUMAN_REVIEW: accountable owner review at the DEL-00-01 ADR, per the OI-012 disposition recorded in SOFTWARE_DECOMP.md | Dated owner ruling recorded against this deliverable, naming the selected style and confirming the graceful-absence posture |
 | OUT-002 | SOW-088 OBJ-005 | REQ-003 REQ-004 REQ-005 CLM-004 CLM-005 | AC-003 | VER-002 | Carried-posture ADR text with resolvable citations into the archived baseline and no additional live-posture claims |
 | OUT-002 | SOW-088 OBJ-005 | REQ-008 REQ-009 CLM-003 CLM-007 CLM-008 TBD-001 AX-007 | AC-006 | VER-004 | Packet-recorded docs-tree path, ADR files present at that path, a change set confined to PKG-00, and the recorded PROPOSAL/LOW_CONFIDENCE status of the two proposed consumer edges |
