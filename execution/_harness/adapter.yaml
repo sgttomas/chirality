@@ -41,8 +41,9 @@ exclude_globs:
   - ".archive/**"
 
 baselines:
-  # Pre-materialization: no PKG-*/DEL-* structure exists under root execution/,
-  # so the observed status_glob count is 0. Verified against the checkout.
-  status_files: 0
+  # Repinned at D-GOV-21 §6 step-9 materialization (2026-07-25): 6 packages and
+  # 45 deliverables materialized from the accepted decomposition (D-GOV-25), all
+  # at lifecycle state OPEN. Count verified against the checkout via status_glob.
+  status_files: 45
   status_mismatch: 0
-  pinned_at: ea0ad7a566ddb51d89297bfcf491636f1fc5dd15
+  pinned_at: 653fabc9b3e8abf369f5e776a7d3ee24bf235e7a

@@ -83,8 +83,12 @@ def test_pkg_file_not_directory_is_ignored(tmp_path):
     assert code == 0
 
 
-def test_live_repo_state_is_clean():
-    """The fence must PASS on the actual checkout at the D-GOV-21 EffectiveSHA:
-    nothing materializes at ruling time (packet §10)."""
+def test_live_repo_fence_passes():
+    """The fence must PASS on the actual checkout. Before D-GOV-21 §6 step 9
+    this held via the idle branch (no materialized children at ruling time,
+    packet §10); since the step-9 materialization (D-GOV-25) it holds via the
+    registration branch — G1-G4 registered and passing in
+    execution/_harness/root_guards.yaml. Renamed from
+    test_live_repo_state_is_clean in the step-9 tranche; assertion unchanged."""
     code, _ = g0.check(g0.repo_root())
     assert code == 0
