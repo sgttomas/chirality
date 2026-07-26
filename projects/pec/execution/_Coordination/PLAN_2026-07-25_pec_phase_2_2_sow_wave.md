@@ -6,20 +6,25 @@ timestamped session plan (Issue-Plan rule). R1-refuted and revised before
 the pause (see §6).
 **Position marker (update at every stage/batch; §6 must be current before
 any pause):**
-`STEP 4 BATCH B4 COMPLETE AT FAN-IN — B3 committed (75bd4eaee). B4
-(DEL-03-01, convergence node, 11 upstream contracts bound) authored
-first-pass PASS; refutation (0 CRIT + 3 MAJ + 7 MIN; CON-001
-"generated views" negatives corrected to a D-GOV-01-anchored
-instance-level gap) → revision 10/10 applied, re-verified; status act
-1/1. Census 19 INITIALIZED / 45 OPEN (ladder match). Blocker 33/31
-(+9; all six B5 members unblocked; DEL-03-05/DEL-05-01/DEL-05-02
-unblocked but out-of-wave). Fan-in records
-WAVE_D-PEC-63/BATCH_B{1..4}_FANIN.md. NEXT: B5 = DEL-03-02..04,
-DEL-04-01, DEL-10-02, DEL-10-10 (three C-08 standing nodes;
-DEL-04-01 has the wave's first DECLARED edge E-A27), then B6-B8;
-internal fan-in, per-batch refutation; owner returns at wave closure
-unless a halt re-arms. docs/STATUS.md four-line fix still authorized,
-unexecuted (scheduled at D-PEC-63 closure).`
+`STEP 4 BATCH B5 COMPLETE AT FAN-IN — B4 committed (15ac0e7c8). B5
+(DEL-03-02..04, DEL-04-01, DEL-10-02, DEL-10-10; three C-08 standing
+nodes authored on the standing pattern; E-A27 DECLARED edge bound
+distinctly) 5/6 first-pass PASS (DEL-04-01 one transient
+own-voice-ID FAIL, fixed); refutation 0 CRIT + 3 MAJ + 7 MIN →
+revision 9 applied + F6b correctly BLOCKED (refuter's proposed fix
+itself wrong) and resolved by versioned brief amendment v2;
+re-verified 6/6 PASS, register cross-check exact; status act 6/6.
+Census 25 INITIALIZED / 39 OPEN (ladder match). Blocker 29/35 (+4:
+DEL-03-06, DEL-04-02, DEL-04-03 + out-of-wave DEL-04-04; DEL-10-11
+already unblocked via standing-edge exclusion). Fan-in records
+WAVE_D-PEC-63/BATCH_B{1..5}_FANIN.md (B5 carries the standing
+sentence verbatim). Dispatcher brief error recorded (SOW-006/007 →
+DEL-04-03, not DEL-04-02; agents corrected from ledger). NEXT: B6 =
+DEL-03-06, DEL-04-02, DEL-04-03, DEL-10-11 (DEL-03-06 in SCA-002
+owner-attribution set), then B7 (DEL-04-05, DEL-08-03), B8
+(DEL-08-04); internal fan-in, per-batch refutation; owner returns at
+wave closure unless a halt re-arms. docs/STATUS.md four-line fix
+still authorized, unexecuted (scheduled at D-PEC-63 closure).`
 
 ---
 
