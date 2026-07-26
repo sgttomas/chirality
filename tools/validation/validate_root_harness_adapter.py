@@ -27,11 +27,12 @@ adapter at `{REPO_ROOT}/execution/_harness/adapter.yaml`, for three reasons:
    new top-level `_harness/` would sit beside the exported instruction
    surface.
 3. The practitioner harness resolves projects through a hardcoded alias table
-   in `tools/practitioner_harness/harness.py`; the root is not in it, and
-   editing that table is outside this tranche's write scope. Adopting the root
-   into the practitioner-harness project table (or teaching the loader this
-   relpath) is a recorded open item for root Project Setup, not a claim this
-   guard makes.
+   in `tools/practitioner_harness/harness.py`. At authoring time the root was
+   not in it and adoption was a recorded open item; that item closed at the
+   ROOT-CLOSEOUT-20260725 tranche — the harness now loads this adapter from
+   `execution/_harness/adapter.yaml` under aliases `root`/`chirality-root`
+   (status/drift observation only). This guard remains the adapter's
+   authority; the harness loader is a consumer, never a substitute.
 
 Consequently the schema id is `root-harness-adapter/v1`, not
 `practitioner-harness-adapter/v1`: it is key-compatible where the keys carry

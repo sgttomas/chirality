@@ -130,6 +130,12 @@ the gated-downstream section.
 
 ### Lane B — Guard capability G1–G4 (packet §6 step 6)
 
+> **Status: CLOSED 2026-07-25.** Guard capability G1–G4 + the §7 preflight
+> landed through PR #346 (`24726a73c`; Receipt 45; run record
+> `AgentRuns/ROOT-LANE-B-20260725/`). All four guards + 100 tests live in
+> governance-harness CI. Guard state was instantiated later at step 8
+> (D-GOV-25) and became load-bearing at step 9.
+
 **Scope:** implement and validate the deterministic guard *capability* —
 validator code plus CI wiring — for G1 through G4 as specified in packet §5.3:
 
@@ -173,6 +179,16 @@ owner authorization, a single serialized integration owner, a tranche manifest
 loop that pins or mirrors the touched surfaces, and no self-merge.
 
 ## Gated downstream (not released by this workplan)
+
+> **Status: ALL FOUR COMPLETE 2026-07-25**, each released by its own owner
+> act after this workplan was written: (1) PRD adoption — D-GOV-22
+> (`90fae458b` ruled; effective `08f526277`); (2) first root decomposition —
+> D-GOV-25 (candidate `ec62af070` ruled; PR #347 `ea0ad7a56`); (3) root
+> Project Setup — guard state instantiated in the D-GOV-25 publication
+> tranche (PR #348 `653fabc9b`); (4) step-9 materialization — PR #349
+> (`9d0cbc536`), guards load-bearing and passing. Receipts 39–48. The
+> D-GOV-21 §6 sequence is complete; this workplan's lanes and downstream
+> registry are historical record.
 
 The following are recorded so the sequence is legible. **None is released
 here**; each requires its named predecessor and human act.
