@@ -586,6 +586,7 @@
       <div class="meta-row" aria-label="Document properties">
         <span class="tag">Owner: Ryan Tufts</span>
         <span class="tag">Status: active non-governing plan</span>
+        <span class="tag">Updated: 2026-07-26</span>
         <span class="tag">Scope: Root · App · PEC review</span>
         <span class="tag">Target: PRDs · decompositions · ScopeOfWork</span>
       </div>
@@ -665,7 +666,8 @@
         <p class="section-intro">
           The owner’s graph is best read as a capability wheel. A domain
           application sits where Root, the reusable work surface, PEC,
-          resource governance, runtime execution, and domain truth are composed.
+          optional resource governance, runtime execution, and domain truth are
+          composed.
           The edges are first-class contracts, not accidental integration code.
         </p>
 
@@ -674,7 +676,7 @@
             <title id="program-map-title">Chirality Program capability and authority map</title>
             <desc id="program-map-desc">
               Chirality Root supplies the common governing form and owns the
-              shared runtime contract. Chirality App, PEC, and candidate
+              shared runtime contract. Chirality App, PEC, and optional
               resource governance remain distinct product capabilities that
               connect to a situated environment containing a domain interface,
               domain engine, and governed working state. Evidence passes
@@ -729,8 +731,9 @@
 
             <rect class="node node-operative" x="760" y="190" width="250" height="100" rx="18"></rect>
             <text x="885" y="225" text-anchor="middle" font-size="18" font-weight="700">Resource governance</text>
-            <text class="muted-text" x="885" y="250" text-anchor="middle" font-size="13">cost · usage · budget · forecast</text>
-            <text class="muted-text" x="885" y="270" text-anchor="middle" font-size="13">candidate capability</text>
+            <text class="muted-text" x="885" y="248" text-anchor="middle" font-size="12">estimates · sequencing · locks / freeze</text>
+            <text class="muted-text" x="885" y="266" text-anchor="middle" font-size="12">budgets · usage · cost · forecast</text>
+            <text class="muted-text" x="885" y="283" text-anchor="middle" font-size="11">optional service</text>
 
             <rect class="node node-situated" x="260" y="360" width="600" height="230" rx="24"></rect>
             <text x="560" y="398" text-anchor="middle" font-size="21" font-weight="700">Situated application environment</text>
@@ -777,7 +780,7 @@
             <h3>Reciprocity without automatic authority transfer</h3>
             <p>
               Situated applications consume common capabilities and return
-              evidence. Root, App, PEC, runtime, and resource monitoring also
+              evidence. Root, App, PEC, runtime, and resource governance also
               need direct contracts with one another. Feedback may move in
               every direction; authority moves only through attributable human
               acts and accepted records.
@@ -843,9 +846,9 @@
               </tr>
               <tr>
                 <td><strong>Resource governance</strong></td>
-                <td>Usage and cost observation, attribution, budgets and forecasts under accepted policy</td>
-                <td>Runtime events, stable work identities, accepted budget policy</td>
-                <td>Authority to invent budgets, authorize expenditure, or make financial commitments</td>
+                <td>Estimates, sequencing support, resource locks and freezes, budgets, usage and cost attribution, and forecast monitoring under accepted policy</td>
+                <td>Runtime events, stable work identities, accepted work state, system evidence, and budget and control policy</td>
+                <td>A system of record, a correctness dependency, or authority to set priorities, freeze work, invent budgets, authorize expenditure, or make financial commitments</td>
               </tr>
               <tr>
                 <td><strong>Domain application / engine</strong></td>
@@ -894,7 +897,7 @@
             <ul class="clean">
               <li>Standalone, embedded, or sidecar work surface</li>
               <li>PEC availability or requirement</li>
-              <li>Resource-monitoring capability</li>
+              <li>Optional resource-governance service</li>
               <li>Domain engine and operation interfaces</li>
             </ul>
           </article>
@@ -957,8 +960,8 @@
               </tr>
               <tr>
                 <td><span class="status candidate">Candidate capability</span></td>
-                <td>PEC is generally available for complex work and resource governance provides budgets, usage, cost, and forecast monitoring.</td>
-                <td>PEC’s present product contract governs what exists; resource governance needs separate definition before becoming mandatory scope.</td>
+                <td>PEC and resource governance are optional services rather than correctness dependencies. Resource governance consumes accepted system information to provide estimates, sequencing support, locks and freezes, budgets, usage and cost attribution, and forecast monitoring.</td>
+                <td>PEC’s present product contract governs what exists. Resource governance needs its own service, authority, data, and degraded-mode contract before entering product scope; optionality must remain explicit.</td>
               </tr>
               <tr>
                 <td><span class="status open">Open design question</span></td>
@@ -1065,6 +1068,7 @@
               <li>Does every shared function have one semantic owner and one accepted record?</li>
               <li>Has generic infrastructure absorbed domain truth or professional authority?</li>
               <li>Can governed work remain intelligible and recoverable without PEC?</li>
+              <li>Can work continue safely without resource governance, and do its locks or freezes remain attributable to accepted human or workflow authority?</li>
               <li>Has a machine gate, runtime service, or reviewer preference acquired human authority?</li>
             </ul>
           </article>
@@ -1187,6 +1191,11 @@
             <span class="lens-label">PEC ↔ environment</span>
             <h3>Complexity-dependent availability</h3>
             <p>Is PEC optional for correctness and available where concurrency warrants it, with declared identities and graceful absence rather than silent mandatory coupling?</p>
+          </article>
+          <article class="review-item" data-lenses="root app pec sow">
+            <span class="lens-label">Resource governance ↔ environment</span>
+            <h3>Optional planning and resource service</h3>
+            <p>Does resource governance consume accepted system information to provide estimates, sequencing, locks or freezes, budgets, usage, cost, and forecast monitoring while remaining optional, replaceable, and unable to create authority or become the system of record?</p>
           </article>
           <article class="review-item" data-lenses="root app pec sow">
             <span class="lens-label">All</span>
@@ -1371,7 +1380,7 @@
               <li>Whether the reusable work surface is a Root requirement, an App capability, or both under different ownership.</li>
               <li>The exact authority and schema of an application environment profile.</li>
               <li>When PEC is available, recommended, or required by complexity.</li>
-              <li>The product home and authority boundary of resource governance.</li>
+              <li>The product home, service contract, lock/freeze authority boundary, and fallback behavior of optional resource governance.</li>
               <li>Logical composition versus physical bundling and update cadence.</li>
               <li>Which cross-client conformance proofs are release requirements.</li>
             </ul>
