@@ -69,6 +69,24 @@ adversarial refutation precedes closure (standing steer). Records under
   amendment if warranted); scoped commits by explicit path; merge to local
   main. No `_STATUS.md` writes; no other surfaces.
 
+## Addendum — act 4 (owner-ruled 2026-07-26, post-closure)
+
+Owner, verbatim: "I approve the item 9 SKILL.md harmonization so dispatch it
+and plug the coverage gap. Then commit and merge along with any other
+committed work that needs to be merged, so this can be a clean stopping
+point before starting the P1 build-slice packets and WORKING_ITEMS
+activation to come later."
+
+Two acts: (a) the REQUEST item-9 `skills/scope-of-work` clause
+harmonization — HELPS_HUMANS surface, outside this packet's fence, executed
+under the owner approval by the standing HELPS_HUMANS applier (amendment
+v6); (b) plug the DEL-00-03 `AC-005 × VER-003` coverage gap (closure F6) —
+adds one verification ref, which requires splitting the retained
+AC-002+AC-005 grouping (AC-005's true method set becomes
+{VER-001, VER-002, VER-003}; AC-002's stays {VER-001, VER-002}). Write
+scope: DEL-00-03 `ScopeOfWork.md` + `_run_records/` (already within the
+act-3 fence). Both refuted before final commit; closure record amended.
+
 ## Rollback
 
 `git revert` of the tranche commits restores the edge, waivers, and

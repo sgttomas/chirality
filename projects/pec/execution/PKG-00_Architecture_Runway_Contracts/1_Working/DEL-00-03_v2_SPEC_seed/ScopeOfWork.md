@@ -157,7 +157,8 @@ acceptance criteria, and none may add a criterion absent from this contract.
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-089 OBJ-001 | REQ-001, REQ-002, REQ-012, CLM-002, CLM-004, CLM-005, CLM-006 | AC-002, AC-005 | VER-001, VER-002 | The published SPEC markdown and a register cross-check report resolving every PKG/DEL/OBJ/SOW token to an accepted row |
+| OUT-001 | SOW-089 OBJ-001 | REQ-001, REQ-002, CLM-002, CLM-004, CLM-005 | AC-002 | VER-001, VER-002 | The published SPEC markdown and a register cross-check report resolving every PKG/DEL/OBJ/SOW token to an accepted row |
+| OUT-001 | SOW-089 OBJ-001 | REQ-001, REQ-002, REQ-012, CLM-004, CLM-005, CLM-006 | AC-005 | VER-001, VER-002, VER-003 | The published SPEC markdown and a register cross-check report resolving every PKG/DEL/OBJ/SOW token to an accepted row; Citation-resolution output listing every PEC-K / PEC-family and decomposition identifier in the seed with its resolved location |
 | OUT-001 | SOW-089 OBJ-001 | REQ-011, CLM-010 | AC-010 | VER-008 | A vocabulary conformance record covering every use of "package" |
 | OUT-001 | SOW-089 OBJ-001 | REQ-008, CLM-009, TBD-002 | AC-001 | VER-007 | Packet-recorded docs path with the SPEC present at it and a change set confined to PKG-00 |
 | OUT-001 | SOW-089 OBJ-001 | REQ-007, CLM-011 | AC-008 | VER-006 | An open-issue register diff showing no disposition movement |

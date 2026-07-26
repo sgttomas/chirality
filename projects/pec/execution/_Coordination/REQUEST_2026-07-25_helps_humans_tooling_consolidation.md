@@ -146,3 +146,14 @@ Evidence trail: `projects/pec/execution/_Coordination/PLAN_2026-07-25_pec_phase_
    the same tightening in item 20 clause 1. Evidence: D-PEC-66 closure
    refutation F1/F2 (`FOLLOWON_D-PEC-66/CLOSURE_2026-07-26.md`); 21/21
    clause-measurement reproduced independently by the closure refuter.
+
+   **STATUS 2026-07-26 — DISPOSITIONED: APPLIED.** Owner-approved 2026-07-26
+   and applied by HELPS_HUMANS. `SKILL.md`'s grouping rule now requires both
+   union equality **and** identical method sets; `QA_CHECKS.md` item 20 clause 1
+   was tightened to match (clause 2 preserved verbatim). The deriver's warning
+   text was surveyed and deliberately left unchanged — it states the mechanical
+   consequence, not the rule. Contract text only: no tool behaviour changed,
+   307 tests pass, and the 21 over-linked rows measured under D-PEC-66 are not
+   retroactively repaired by this change. Record:
+   `plans/helps_humans_tooling_consolidation_2026-07-25/APPLIED_2026-07-25.md`
+   § "Amendment v6".
