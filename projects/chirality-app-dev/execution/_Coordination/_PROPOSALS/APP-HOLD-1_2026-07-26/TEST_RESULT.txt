@@ -1,0 +1,35 @@
+APP-HOLD-1 candidate test run
+Date: 2026-07-26
+Git basis: 918bb48b8fcee66c031d0d6d4040a46089f96067
+Command: python3 -m unittest -v projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/APP-HOLD-1_2026-07-26/tests/test_app_hold.py
+
+test_candidate_and_live_layout_resolution ... ok
+test_duplicate_front_matter_fails_closed ... ok
+test_held_target_blocked_for_every_operation_and_entry_path ... ok
+test_live_scan_matches_expected_held_set ... ok
+test_malformed_register_header_fails_closed ... ok
+test_mixed_fanin_dependency_set_rejected ... ok
+test_no_generic_owner_exception_bypass_exists ... ok
+test_noncanonical_repo_root_fails_closed ... ok
+test_output_escape_fails_before_write ... ok
+test_preparation_only_authority_fails_closed ... ok
+test_register_drift_fails_closed ... ok
+test_unaffected_target_allowed ... ok
+
+Ran 12 tests in 9.114s
+
+OK
+
+Coverage:
+- execution-time scan of 53 live ScopeOfWork.md contracts;
+- six expected held targets;
+- all four prohibited operations;
+- three distinct entry-path classes;
+- candidate and proposed-live path resolution;
+- unaffected-target allowance;
+- mixed fan-in dependency rejection with unaffected work preserved;
+- hold-register drift fail-closed behavior; and
+- malformed/duplicate input fail-closed behavior;
+- canonical repository and output-containment enforcement; and
+- absence of any runtime owner-exception bypass; and
+- rejection of preparation-only authority in place of durable `D-APP-75`.
