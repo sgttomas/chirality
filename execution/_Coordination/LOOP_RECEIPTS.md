@@ -1235,3 +1235,46 @@ amendment; owner ruling required).
   scheduled); thesis-appendix K-WRITE-2 mirror (thesis instrument);
   S3's two publication questions + G4-in-public-CI resolution (at next
   export need); per-deliverable initialization awaits owner direction.
+
+### Receipt 51 — 2026-07-25 — All 45 root scopes of work authored (ROOT-INIT-SOW-20260725, PR 1 of the initialization phase)
+
+- **Owner acts of record** (in-session, 2026-07-25): phase opened by planning
+  direction ("Plan out your approach so that delegation through the Agent
+  0/1/2 paradigm can execute efficiently over it. The objective is to compete
+  all scopes of work.") + plan approval with four decisions (one PR ×45; one
+  closing M2 tranche; briefs authorize candidate AC/VER; ResponsibleParty
+  "Ryan Tufts" at close) — recorded verbatim in
+  `execution/_Coordination/WORKPLAN_2026-07-25_root_initialization.md`.
+- **Phase A (committed `e0aae7c2f`):** workplan + pointer repoint; six
+  work-graph nodes `active`, `accepted_basis` re-pinned to `31b8dc94a` (M3);
+  run record + six sealed briefs; G3 dispatch mode PASS pre-dispatch.
+- **W-01..W-06 (WORKING_ITEMS, opus-5, isolated worktrees, sealed briefs):**
+  45/45 `ScopeOfWork.md` authored via author batches (≤5, ascending) + fresh
+  package verifiers; 54 TASK run records (45 members + 9 defect-retry
+  records); 4 members repaired via fresh single-member retries with fresh
+  re-verification (DEL-01-08, DEL-04-03, DEL-05-06, PKG-06 ×4-member class);
+  raw returns filed `AgentRuns/ROOT-INIT-SOW-20260725/returns/`, unedited.
+- **Fan-in dispositions (Agent 0):** recorded in
+  `AgentRuns/ROOT-INIT-SOW-20260725/ORCHESTRATION_PLAN.md` §Fan-in record —
+  45/45 independent validator PASS + sha256 match; containment exact; owner
+  items consolidated: register/ledger objective divergences (SOW-010/020/001/
+  061/069), PRD O-1 enumeration conflict (in standing packet), instrument
+  conflicts (AGENT_TASK.md abs-path fields, validate_id_format.sh widths,
+  REGISTRY.md:57, validator prefix-set/factual limits, QA #16 labels),
+  DEL-06-02 population predicate, HUMAN_REVIEW share observation.
+- **Mid-phase basis advance (M3, recorded):** origin/main advanced to
+  `7ca7e568c` (PRs #352/#353 — PEC waves + OI-013 register validator in
+  tools/) during execution; zero root-execution overlap; merged into the
+  phase branch at `8258a3f39` as the between-runs basis adoption; new
+  validator's XRG-005 check matches this run's surfaced divergence class but
+  is not yet wired to root register filenames.
+- **Battery (merged tree):** 271 validation + 349 harness tests pass; G0–G4
+  PASS; path anchors 997 PASS; entrypoints PASS; drift root 45/0; G4 diff
+  mode vs origin/main PASS (10 paths, 0 instruction-surface). All 45 states
+  remain `OPEN`; no manifest required (execution-tree only).
+- **Gate:** human-gated PR; no self-merge.
+- Open after this receipt: PR 1 merge (owner); then the closing M2 tranche
+  (45× OPEN→INITIALIZED via write_status.sh, CI pin update, ResponsibleParty
+  assignment, node deactivation, D-GOV-26 EffectiveSHA backfill, manifest
+  ROOT-INIT-CLOSE-20260725); owner reconciliation packet for the register/
+  ledger divergences; prior standing items unchanged.
