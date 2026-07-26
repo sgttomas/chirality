@@ -26,7 +26,22 @@ step 9 materialization stays behind the §5.3 gate. Standing owner direction:
 | N1b | N1 continuation (`opus-5`) | Apply the three ruled dispositions to the decomposition package (publication tranche) | `execution/_Decomposition/**` | COMPLETE |
 | N2 | Agent 1 — PROJECT_SETUP (`opus-5`), sealed brief `briefs/PROJECT-SETUP-BRIEF.md` | Root Project Setup: instantiate guard state (adapter, ownership register, first accepted work graph, guard registration) | `execution/_harness/**` (new), `returns/N2_RETURN_RAW.md` | COMPLETE — G0–G4 all PASS against written state |
 | A0b | Agent 0 | Acceptance-tranche authoring (D-GOV-25 record, register row, tranche manifest) + fan-in, Receipt 47, PR | `docs/governance_harness/**`, run record, `LOOP_RECEIPTS.md` | COMPLETE |
-| GATE2 | Owner | Human-gated merge of the acceptance-application PR | — | STOP STATE |
+| GATE2 | Owner | Human-gated merge of the acceptance-application PR | — | **MERGED** — PR #348 → `653fabc9b`; owner released step 9 in the same direction |
+| M1 | N2 continuation — PROJECT_SETUP (`opus-5`), sealed brief `briefs/MATERIALIZATION-BRIEF.md` | Step-9 materialization: 6 PKG / 45 DEL at OPEN per SPEC §1; adapter baselines repinned (45, `653fabc9b`) | `execution/PKG-*/**` (new), `execution/_harness/adapter.yaml` (baselines), `returns/M1_RETURN_RAW.md` | COMPLETE — G0 second branch exercised and PASS; all guards + both suites green |
+| A0c | Agent 0 | Step-9 tranche: EffectiveSHA backfill, manifest, F-1/F-2/F-3 dispositions (F-3 test rename applied as governed edit), Receipt 48, PR | `docs/governance_harness/**`, `tools/validation/test_validate_root_materialization_fence.py`, run record, `LOOP_RECEIPTS.md` | COMPLETE |
+| GATE3 | Owner | Human-gated merge of the step-9 materialization PR | — | STOP STATE |
+
+Step-9 fan-in dispositions (A0c): F-1 ACCEPTED — the executor followed the
+repo's real placeholder convention (README.md) over the brief's incorrect
+`.gitkeep` example; recorded so the error does not propagate. F-2 ROUTED TO
+OWNER — SPEC §1.1 requires `_Archive/` subfolders while `.gitignore`
+`**/_Archive/` policy makes them untrackable; the 18 local dirs stand; no
+`.gitignore` or SPEC change made. F-3 APPLIED — G0 live test renamed
+`test_live_repo_fence_passes` with a both-branches docstring (assertion
+unchanged; manifest-covered). M1 open items 4–7 carried (SPEC §2.1
+five-file vs §12.3 four-file tension incl. `_SEMANTIC.md`; practitioner-
+harness adoption; per-deliverable initialization gated; Discipline /
+Acceptance-Criteria TBDs are a decomposition-format gap, not 45 defects).
 
 Fan-in dispositions (A0b): N1b's uncleaned ledger `OpenIssue` flags ACCEPTED
 (clearing them would be an unruled edit to accepted content; the flag→issue

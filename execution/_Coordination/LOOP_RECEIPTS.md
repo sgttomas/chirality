@@ -1069,3 +1069,49 @@
   (owner); carried N2 open items incl. practitioner-harness adoption of
   the root adapter; OI-005/OI-008/OI-009/OI-011 open in the accepted
   decomposition; prior carried items unchanged.
+
+### Receipt 48 — 2026-07-25 — Step 9 executed: accepted root decomposition materialized under root execution/ (guards load-bearing and passing)
+
+- Owner act of record (in-session, 2026-07-25): "Merge PR #348 then
+  proceed with Step 9." PR #348 merged (`653fabc9b`); D-GOV-25
+  EffectiveSHA backfilled to that SHA in this tranche.
+- **Materialization (M1, PROJECT_SETUP continuation, `opus-5`, sealed
+  brief):** all 6 packages / 45 deliverables from the accepted
+  decomposition materialized under root `execution/` per SPEC §1 —
+  IDs byte-identical (set equality verified across working surface,
+  register CSV, and disk), every deliverable at lifecycle OPEN with the
+  four SPEC-required files (`_STATUS.md` prose-bullet-v1 PARSED 45/45,
+  `_CONTEXT.md` transcribed from the register, declared-empty
+  `_DEPENDENCIES.md`, decomposition-pointed `_REFERENCES.md`);
+  222 files written; adapter baselines repinned (status_files 45,
+  pinned_at `653fabc9b`).
+- **G0 first load-bearing exercise:** with six PKG children present the
+  fence's registration branch executed — `root_guards.yaml` read, G1–G4
+  registered/passing verified, PASS. The step-8 "written but not yet
+  exercised" item is closed. G1 recount 45/45; G2 6/6 children
+  registered; G3 6 nodes pending; G4 3 manifests.
+- **Fan-in dispositions (Agent 0):** placeholder convention finding
+  accepted (README.md is the repo convention; the brief's `.gitkeep`
+  example was wrong); `_Archive/` tracking tension (SPEC §1.1 vs
+  `.gitignore` `**/_Archive/` policy) ROUTED TO OWNER, nothing changed;
+  G0 live test renamed `test_live_repo_fence_passes` with a
+  both-branches docstring (assertion unchanged; governed edit,
+  manifest-covered). Tranche manifest `ROOT-STEP9-MAT-20260725.yaml`
+  (M2 gate = the owner's step-9 direction; M6 none-required with
+  pin-survey rationale).
+- **Battery:** 233 validation + 311 harness tests; all five guards PASS
+  with real structure; path anchors PASS (plus direct absolute-path scan
+  over all new files — the anchor validator's surface set excludes
+  them).
+- **Gate:** human-gated PR; no self-merge. On merge, **D-GOV-21 §6 steps
+  1–9 are complete** — the root product's development loop is fully
+  operational: adopted PRD, accepted decomposition, instantiated guard
+  state, materialized execution structure, guards live in CI.
+- Open after this receipt: PR merge (owner); D-GOV-25-tranche EffectiveSHA
+  chain continues per precedent; owner items — `_Archive/` tracking
+  disposition, SPEC §2.1 five-file vs §12.3 four-file (`_SEMANTIC.md`)
+  tension, CLAUDE.md instruction-surface question; practitioner-harness
+  adoption of the root adapter (own M2 tranche); per-deliverable
+  initialization (OPEN → INITIALIZED via `TASK + scope-of-work`) and
+  ResponsibleParty assignment are human-gated future work; OI-005/008/
+  009/011 open in the accepted decomposition.

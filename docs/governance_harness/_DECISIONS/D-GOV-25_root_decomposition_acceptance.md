@@ -5,7 +5,7 @@ HumanRuling:  "Merge PR #347 (CI green). Candidate SHA for the exact-candidate r
 AcceptedCandidateSHA: ec62af0700e530c1640698fa406398cb1cb45d29
 CandidateMergeSHA: ea0ad7a566ddb51d89297bfcf491636f1fc5dd15 (merge of PR #347 into `main`, 2026-07-25, at explicit owner direction — the accepted decomposition's basis on `main`)
 PublicationSHA: ed5dc0a87b53f45a32057f7fe4c79b8d5a107538 (this record's publication commit; backfilled in the same tranche per the `f1549afb1` precedent)
-EffectiveSHA: (merge of the acceptance-application PR into `main`; backfilled by a later tranche per precedent)
+EffectiveSHA: 653fabc9b3e8abf369f5e776a7d3ee24bf235e7a (merge of PR #348 into `main`, 2026-07-25, performed at explicit owner direction; backfilled by the step-9 materialization tranche per precedent)
 Date:         2026-07-25
 FramedBy:     Agent-drafted (Agent 0, `HELP_HUMAN` posture) at explicit owner direction (continue from D-GOV-21 §6 step 8, 2026-07-25, in-session)
 AcceptedBasis: `main@24726a73c` (candidate authored and verified at that basis; ruled at the exact candidate commit)
