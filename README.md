@@ -23,9 +23,9 @@ This repo is upstream of the public `chirality-app` export. It is maintained as 
 | Instruction and governance | `AGENTS.md`, `agents/`, `docs/`, root framework docs | Change through live registries and governance docs, not historical inventories |
 | Skills and tools | `skills/`, `tools/` | Keep method logic in skills and deterministic operations in tools |
 | Public export | `exports/chirality-app/`, export-allowed root files/directories | Treat the export profile as the public boundary contract |
-| App development | `projects/chirality-app-dev/` | Develop app/frontend work in the private project workspace; the former root `frontend/` harness snapshot is archived under `.archive/frontend/` |
+| App development | `projects/chirality-app-dev/` | Develop app/frontend work in the private project workspace |
 | Domain/project workspaces | `projects/`, `domains/` | Treat as private applied/development workspaces unless a separate export path is created |
-| Archives and planning workspace | `.archive/`, `plans/` | Treat `.archive/` as historical context; treat `plans/` as non-governing planning material unless a file explicitly declares active draft status |
+| Planning workspace | `plans/` | Treat `plans/` as non-governing planning material unless a file explicitly declares active draft status |
 
 ---
 
@@ -69,8 +69,7 @@ Private maintainer and development roots are separate:
 | `exports/` | Private export profiles, manifests, and reports |
 | `projects/` | Private project-local development workspaces |
 | `domains/` | Private/manual domain packs and local corpus shells |
-| `plans/` | Planning workspace for archival imports and active draft plans that are not yet governed roadmap authority |
-| `.archive/` | Local archived migration and historical material |
+| `plans/` | Planning workspace for active draft plans that are not yet governed roadmap authority |
 
 Root-level framing documents provide the theoretical and professional-practice basis for the system:
 
@@ -164,7 +163,7 @@ When live folders, indexes, and narrative documents disagree, treat the live reg
 
 ## Frontend Development Path
 
-Chirality App product and frontend development is oriented around `projects/chirality-app-dev/`, the private development workspace for the app pathway. The earlier root `frontend/` runtime-harness snapshot has been archived under `.archive/frontend/` and is no longer an active root surface.
+Chirality App product and frontend development is oriented around `projects/chirality-app-dev/`, the private development workspace for the app pathway. There is no active root `frontend/` surface.
 
 The durable source of truth is the instruction, governance, skill, tool, export, and project-development surface described here — not any single harness snapshot.
 
@@ -185,12 +184,10 @@ The public `chirality-app` export is controlled by `exports/chirality-app/`. The
 
 The current public export profile excludes private or local-only workspace content:
 
-- `.archive/`
 - `projects/`
 - `domains/`
 - `plans/`
 - `exports/`
-- migration records
 - source corpora and local indexes
 - dependency/build/cache folders
 - local runtime state
@@ -218,11 +215,9 @@ python3 exports/chirality-app/export_public.py --apply-target /path/to/chirality
 
 ---
 
-## Historical And Archived Material
+## Planning Workspace
 
-`.archive/` is local archived material. The moved migration records under `.archive/migration/` are useful for understanding how this canonical repo was assembled, but they are not live inventory, not current topology, and not part of the public export.
-
-`plans/` is a planning workspace. Most material there is archival or draft context, but the directory may also hold active planning seeds before they are promoted into governed roadmap authority. The governed roadmap surface remains `docs/PLAN.md`.
+`plans/` is a planning workspace. Most material there is draft context, but the directory may also hold active planning seeds before they are promoted into governed roadmap authority. The governed roadmap surface remains `docs/PLAN.md`.
 
 ---
 
