@@ -1025,3 +1025,47 @@
   OI-001, OI-002 dispositions); post-ruling tranche (decision record +
   register row + Project Setup guard-state instantiation); carried items
   from Receipt 45 unchanged.
+
+### Receipt 47 — 2026-07-25 — Step 8 closed: first root decomposition ACCEPTED (D-GOV-25) + root Project Setup guard state instantiated
+
+- Owner ruling of record (in-session, 2026-07-25, verbatim in D-GOV-25):
+  merge PR #347 with the exact candidate SHA `ec62af070` designated for
+  the ruling, plus three decisions — (1) record a reasoned deferral,
+  (2) update the labels as warranted, (3) proceed in the manner
+  recommended. PR #347 merged (`ea0ad7a56`). Acceptance vehicle stated
+  explicitly in the record (K-AUTH-2).
+- **Ruling application (N1 continuation, `opus-5`):** all seven gates
+  ACCEPTED; status banner flipped with post-acceptance edit posture
+  stated; OBJ-2's situated-working-root clause carried as a recorded,
+  reasoned deferral (§12.1 + forward-register
+  `COVERED_WITH_RECORDED_DEFERRAL`); OI-001/OI-002 closed confirmed with
+  label effect-annotations (18 ledger rows; source labels kept — F6);
+  OI-003/OI-004 closed accepted-as-staged; 9 of 13 OIs closed per their
+  own stated conditions, 4 carried open (OI-005 D-14 build, OI-008
+  standing §5.3 gate, OI-009, OI-011). No scope/identifier changed.
+- **Root Project Setup (N2, Agent 1 PROJECT_SETUP role, `opus-5`, sealed
+  brief):** `execution/_harness/` instantiated — `adapter.yaml`
+  (root-harness-adapter/v1, baselines pinned at `ea0ad7a56`,
+  status_files 0 verified), `surface_ownership.yaml` (6 package entries
+  against the accepted decomposition, literal containment held),
+  `work_graph.yaml` (first accepted work graph: 6 pending nodes, no
+  invented ordering, accepted_basis `ea0ad7a56`), `root_guards.yaml`
+  (full G1–G4 registration entries, written only after each guard
+  observed PASS). Twelve design choices recorded with sources in
+  `AgentRuns/ROOT-STEP8-DECOMP-20260725/returns/N2_RETURN_RAW.md`.
+- **Governance record:** D-GOV-25 authored + register row; tranche
+  manifest `ROOT-STEP8-ACCEPT-20260725.yaml` (M2 gate recorded; M6
+  disposition none-required — pin survey found no downstream pin of any
+  touched surface).
+- **Fan-in battery (Agent 0):** G0–G4 all PASS (G1–G3 now
+  PASS-with-state); 233 validation + 311 harness tests; path anchors
+  996 surfaces PASS.
+- **Gate:** human-gated PR; no self-merge. On merge, D-GOV-21 §6 stands
+  at steps 1–8 COMPLETE; step 9 materialization remains behind the §5.3
+  gate and a further owner act, now with both guard capability and guard
+  state live.
+- Open after this receipt: PR merge (owner); EffectiveSHA backfill for
+  D-GOV-25 (next tranche, per precedent); step-9 release decision
+  (owner); carried N2 open items incl. practitioner-harness adoption of
+  the root adapter; OI-005/OI-008/OI-009/OI-011 open in the accepted
+  decomposition; prior carried items unchanged.

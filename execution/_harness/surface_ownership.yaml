@@ -1,0 +1,62 @@
+# Root surface-ownership register — G2 state surface (D-GOV-21 §5.3, M1).
+#
+# Instantiated by root Project Setup from the accepted root decomposition.
+# Guard: tools/validation/validate_root_surface_ownership.py
+#
+# Static facts only; no concurrency claims. `decomposition_ref` values are the
+# exact package identifier strings as they appear in the declared working
+# surface (G2 checks literal containment).
+#
+# DEL-* entries are added at materialization time (packet §6 step 9), not here.
+
+schema: root-surface-ownership/v1
+decomposition: execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md
+
+entries:
+  - id: PKG-01_Product_Definition_Normative_Basis_and_Authority
+    kind: package
+    decomposition_ref: PKG-01_Product_Definition_Normative_Basis_and_Authority
+    write_targets:
+      - execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/**
+    instruction_surface: false
+    serialization: null
+
+  - id: PKG-02_Operative_Instruction_Surface_and_Runtime_Layers
+    kind: package
+    decomposition_ref: PKG-02_Operative_Instruction_Surface_and_Runtime_Layers
+    write_targets:
+      - execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/**
+    instruction_surface: false
+    serialization: null
+
+  - id: PKG-03_Governed_Execution_Structure_and_Root_Containment
+    kind: package
+    decomposition_ref: PKG-03_Governed_Execution_Structure_and_Root_Containment
+    write_targets:
+      - execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/**
+    instruction_surface: false
+    serialization: null
+
+  - id: PKG-04_Developmental_Machinery_and_Change_Control
+    kind: package
+    decomposition_ref: PKG-04_Developmental_Machinery_and_Change_Control
+    write_targets:
+      - execution/PKG-04_Developmental_Machinery_and_Change_Control/**
+    instruction_surface: false
+    serialization: null
+
+  - id: PKG-05_Evidence_Provenance_and_Audit
+    kind: package
+    decomposition_ref: PKG-05_Evidence_Provenance_and_Audit
+    write_targets:
+      - execution/PKG-05_Evidence_Provenance_and_Audit/**
+    instruction_surface: false
+    serialization: null
+
+  - id: PKG-06_Self_Application_Variants_and_Release
+    kind: package
+    decomposition_ref: PKG-06_Self_Application_Variants_and_Release
+    write_targets:
+      - execution/PKG-06_Self_Application_Variants_and_Release/**
+    instruction_surface: false
+    serialization: null

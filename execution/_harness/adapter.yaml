@@ -1,0 +1,48 @@
+# Root harness adapter — G1 state surface (D-GOV-21 §5.3, packet §6 step 8).
+#
+# Instantiated by root Project Setup. Gives root `execution/` the same
+# deterministic status/drift surface the project working roots have.
+# Guard: tools/validation/validate_root_harness_adapter.py
+#
+# NOTE: this is `root-harness-adapter/v1`, NOT the projects'
+# `practitioner-harness-adapter/v1`. Adoption of the root into the
+# practitioner harness (PROJECT_ALIASES / loader relpath) is a separately
+# authorized open item and is not claimed here.
+
+schema: root-harness-adapter/v1
+product: chirality-root
+
+# D-GOV-21 / docs/SPEC.md §0.2.2: for the root product WORKING_ROOT == REPO_ROOT.
+working_root: "."
+execution_root: execution
+
+# Declared pointers (repo-relative; all verified present at instantiation).
+prd: docs/PRD_ROOT.md
+coordination: execution/_Coordination/CURRENT_WORKPLAN.md
+decision_register: docs/governance_harness/_DECISIONS/_REGISTER.md
+
+# Root SPEC layout: docs/SPEC.md §1 / §2 —
+# {EXECUTION_ROOT}/{PKG-ID}_{PkgLabel}/1_Working/{DEL-ID}_{DelLabel}/_STATUS.md
+status_glob: execution/PKG-*/1_Working/DEL-*/_STATUS.md
+
+# Canonical lifecycle states, docs/SPEC.md §3.2 (verbatim, in ruled order).
+# SEMANTIC_READY is optional in the lifecycle but is a valid state.
+states:
+  - OPEN
+  - INITIALIZED
+  - SEMANTIC_READY
+  - IN_PROGRESS
+  - CHECKING
+  - ISSUED
+
+parser_dialect: prose-bullet-v1
+
+exclude_globs:
+  - ".archive/**"
+
+baselines:
+  # Pre-materialization: no PKG-*/DEL-* structure exists under root execution/,
+  # so the observed status_glob count is 0. Verified against the checkout.
+  status_files: 0
+  status_mismatch: 0
+  pinned_at: ea0ad7a566ddb51d89297bfcf491636f1fc5dd15
