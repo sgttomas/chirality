@@ -4,7 +4,7 @@ Status:       RULED
 HumanRuling:  "Merge PR #347 (CI green). Candidate SHA for the exact-candidate ruling: ec62af0700e530c1640698fa406398cb1cb45d29 / Decisions: 1. Record a reasoned deferral. 2. Update the labels as warranted. 3. Proceed in the manner you recommend." (owner, 2026-07-25; full verbatim fence below)
 AcceptedCandidateSHA: ec62af0700e530c1640698fa406398cb1cb45d29
 CandidateMergeSHA: ea0ad7a566ddb51d89297bfcf491636f1fc5dd15 (merge of PR #347 into `main`, 2026-07-25, at explicit owner direction — the accepted decomposition's basis on `main`)
-PublicationSHA: (this record's publication commit; backfilled in this tranche per the `f1549afb1` precedent)
+PublicationSHA: ed5dc0a87b53f45a32057f7fe4c79b8d5a107538 (this record's publication commit; backfilled in the same tranche per the `f1549afb1` precedent)
 EffectiveSHA: (merge of the acceptance-application PR into `main`; backfilled by a later tranche per precedent)
 Date:         2026-07-25
 FramedBy:     Agent-drafted (Agent 0, `HELP_HUMAN` posture) at explicit owner direction (continue from D-GOV-21 §6 step 8, 2026-07-25, in-session)
