@@ -1,9 +1,9 @@
 # Current Root Governance Workplan
 
-Status: `ACTIVE — ROOT PRODUCT DEVELOPMENT`
+Status: `ACTIVE — ROOT DELIVERABLE INITIALIZATION`
 
 Target:
-`execution/_Coordination/WORKPLAN_2026-07-25_root_product_development.md`
+`execution/_Coordination/WORKPLAN_2026-07-25_root_initialization.md`
 
 This is the deterministic standing-plan pointer for the root governance loop.
 Resolve the target relative to repository root and read that exact file. Do

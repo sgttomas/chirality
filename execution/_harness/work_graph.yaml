@@ -3,9 +3,11 @@
 # The first accepted root work graph, instantiated by root Project Setup.
 # Guard: tools/validation/validate_root_work_graph_dispatch.py
 #
-# One node per accepted package. Every node is `pending`: nothing is
-# dispatched at instantiation, and materialization (packet §6 step 9) remains
-# behind the D-GOV-21 §5.3 gate.
+# One node per accepted package. All six nodes are `active` for the
+# per-deliverable initialization phase (owner-approved plan, 2026-07-25;
+# workplan WORKPLAN_2026-07-25_root_initialization.md; run record
+# AgentRuns/ROOT-INIT-SOW-20260725/). Nodes return to `pending` at the
+# phase's closing tranche — nothing is dispatched between phases.
 #
 # No `depends_on` / `serialized_after` edges are declared. The accepted
 # decomposition §8 states "Six flat work-domain packages. No nesting, no
@@ -17,43 +19,45 @@
 
 schema: root-work-graph/v1
 
-# M3 frozen instruction basis: the merge SHA of PR #347, the tranche in which
-# the first root decomposition was accepted by owner ruling (D-GOV-25).
-accepted_basis: ea0ad7a566ddb51d89297bfcf491636f1fc5dd15
+# M3 frozen instruction basis, re-pinned between runs (a recorded act; see
+# the initialization workplan): the merge SHA of PR #351, the basis on which
+# the initialization phase was dispatched. Prior pin: ea0ad7a56 (PR #347,
+# D-GOV-25 acceptance tranche).
+accepted_basis: 31b8dc94acca50dbaf9a518a23dad8583c8c6c62
 
 nodes:
   - id: PKG-01_Product_Definition_Normative_Basis_and_Authority
-    status: pending
+    status: active
     owner: PKG-01_Product_Definition_Normative_Basis_and_Authority
     write_targets:
       - execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/**
 
   - id: PKG-02_Operative_Instruction_Surface_and_Runtime_Layers
-    status: pending
+    status: active
     owner: PKG-02_Operative_Instruction_Surface_and_Runtime_Layers
     write_targets:
       - execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/**
 
   - id: PKG-03_Governed_Execution_Structure_and_Root_Containment
-    status: pending
+    status: active
     owner: PKG-03_Governed_Execution_Structure_and_Root_Containment
     write_targets:
       - execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/**
 
   - id: PKG-04_Developmental_Machinery_and_Change_Control
-    status: pending
+    status: active
     owner: PKG-04_Developmental_Machinery_and_Change_Control
     write_targets:
       - execution/PKG-04_Developmental_Machinery_and_Change_Control/**
 
   - id: PKG-05_Evidence_Provenance_and_Audit
-    status: pending
+    status: active
     owner: PKG-05_Evidence_Provenance_and_Audit
     write_targets:
       - execution/PKG-05_Evidence_Provenance_and_Audit/**
 
   - id: PKG-06_Self_Application_Variants_and_Release
-    status: pending
+    status: active
     owner: PKG-06_Self_Application_Variants_and_Release
     write_targets:
       - execution/PKG-06_Self_Application_Variants_and_Release/**
