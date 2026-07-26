@@ -1115,3 +1115,75 @@
   initialization (OPEN → INITIALIZED via `TASK + scope-of-work`) and
   ResponsibleParty assignment are human-gated future work; OI-005/008/
   009/011 open in the accepted decomposition.
+
+### Historical Reconciliation Receipts — D-GOV-19 and D-GOV-20 (recorded retroactively 2026-07-25)
+
+Packet §7 class (b) of D-GOV-21 routed a historical-reconciliation act: two
+owner rulings predating the current root-receipt discipline have no receipt
+in this log. Recorded now, retroactively and explicitly labeled as such —
+these entries create no new authority; the decision records govern.
+
+- **D-GOV-19 — Chirality framework / knower accountability** (RULED
+  2026-07-23): owner ruling "I approve candidate
+  `981149df247fb6564768f8451e3b12dd591d9197` as the basis for the
+  framework/thesis revision." Record:
+  `docs/governance_harness/_DECISIONS/D-GOV-19_chirality_framework_knower_accountability.md`.
+  No root receipt was written at ruling time; reconciled here.
+- **D-GOV-20 — Shared Runtime and Local-Agent Pilot** (RULED 2026-07-22):
+  owner supplied the decision-complete plan and instructed implementation;
+  companion rulings D-APP-73, D-T0-23, D-PEC-56; scope snapshot
+  `projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-003_2026-07-22_Shared_Runtime_Local_Agent_Pilot/`.
+  Record:
+  `docs/governance_harness/_DECISIONS/D-GOV-20_shared_runtime_local_agent_pilot.md`.
+  No root receipt was written at ruling time; reconciled here.
+
+This closes the packet §7(b) receipt-reconciliation item. The K-WRITE-2
+gloss debt routed in the same class remains open (CONTRACT.md exact-prose
+amendment; owner ruling required).
+
+### Receipt 49 — 2026-07-25 — Post-step-9 closeout tranche (agent-closeable dormant items)
+
+- Owner act of record (in-session, 2026-07-25): "let's close out what we
+  can now before proceeding to the per-deliverable initialization and
+  creation of scopes of work."
+- **Practitioner-harness root adoption (H1, ephemeral Agent 2, `opus-5`,
+  sealed brief):** `root`/`chirality-root` aliases; dual-location
+  dual-schema loader with strict normalization and no silent fallback;
+  `status`/`drift` work against root (45 files, 0 mismatches, live
+  baseline pinned in tests like the app-dev 0/53 and piping 0/101 pins);
+  DAG-dependent commands refuse with named reasons (K-INVENT-1); pilot
+  outputs byte-identical; harness suite 311 → **349** tests. G1 remains
+  the adapter's authority (untouched semantics; docstring open-item
+  paragraph updated at fan-in to record closure).
+- **SPEC §2.1 fileset completion:** 45 `_SEMANTIC.md` placeholder stubs —
+  the five-file minimum viable fileset now holds for every root
+  deliverable; no doctrine edit needed; the §2.1-vs-§12.3 wording tension
+  dissolves for root by conforming to the stricter list.
+- **CHANGE merge-verdict standing rule:** one sentence appended to
+  `agents/AGENT_CHANGE.md` Integration-coordinator duties (inspect check
+  verdicts explicitly; never chain a merge behind an unread watch) — the
+  parked Receipt-32 follow-on, content as pre-specified. Pin survey found
+  the chirality domain pack pins/atomizes AGENT_CHANGE.md → routed notice
+  shipped (`domains/chirality/_Coordination/NOTICE_2026-07-25_AGENT_CHANGE_MERGE_VERDICT_RULE.md`);
+  manifest disposition `routed`.
+- **Historical reconciliation (packet §7(b)):** retroactive receipts for
+  D-GOV-19 and D-GOV-20 recorded above; that item is closed. K-WRITE-2
+  gloss debt remains open (owner exact-prose ruling required).
+- **Workplan closure banners:** Lane B CLOSED; all four gated-downstream
+  items marked COMPLETE with SHAs; the 2026-07-25 workplan is historical
+  record.
+- **Deliberately NOT done (owner-gated, staged as recommendations):**
+  `_Archive/` tracking disposition; `.github/workflows/` in SPEC §0.2.2 +
+  CLAUDE.md guarded-set membership; K-WRITE-2 gloss amendment;
+  export-staging regeneration (stays DEFERRED).
+- **Battery:** 233 validation + 349 harness tests; all five guards PASS;
+  path anchors PASS; G4 diff mode over the tranche PASS.
+- **Gate:** human-gated PR; no self-merge.
+- Open after this receipt: PR merge (owner); the four owner-gated items
+  above; root decision-register parsing shape (harness reports "no rows
+  parsed" for the root register — truthful, needs a deliberate decision
+  if a count is wanted); root fence citizenship (run-validations/
+  scope-check on root fences) unopened; live-pin discipline — root
+  adapter baselines and harness live pins move together in any future
+  materialization change; per-deliverable initialization + ResponsibleParty
+  assignment await owner direction.

@@ -187,6 +187,19 @@ def parse_decision_register(path: Path) -> dict[str, int]:
 def dag_pointer_facts(manifest: AdapterManifest, repo_root: Path) -> list[SourcedFact]:
     root = manifest.project_root
     assert root is not None
+    if not manifest.declares_dag_pointer():
+        # The loaded schema registers no DAG pointer surface (root-harness-
+        # adapter/v1). "Not declared" is reported as such — an empty relpath is
+        # never joined onto the working root and never read as "artifact
+        # absent" (K-INVENT-1).
+        return [SourcedFact(
+            fact_id="dag.pointer",
+            value=f"not declared by this adapter schema ({manifest.schema})",
+            source_path=manifest.manifest_relpath(repo_root),
+            authority_status="declared-in-manifest",
+            parse_status="NOT_APPLICABLE",
+            caveat="This working root registers no DAG pointer surface; "
+                   "DAG-dependent commands refuse rather than guess one.")]
     path = root / manifest.dag_pointer
     rel = str(path.relative_to(repo_root)) if path.is_file() else manifest.dag_pointer
     facts: list[SourcedFact] = []
