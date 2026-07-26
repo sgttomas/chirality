@@ -2,7 +2,7 @@
 
 Status:       RULED
 HumanRuling:  Owner, in-session, 2026-07-25, via structured decision prompts; verbatim selections fenced below (K-AUTH-2 vehicle stated)
-PublicationSHA: (this record's publication commit; backfilled in the same tranche per precedent)
+PublicationSHA: 3ed51532751b8404e402f749064d6a2cb240a607 (this record's publication commit; backfilled in the same tranche per precedent)
 EffectiveSHA: (merge of the closing-tranche PR into `main`; backfilled by a later tranche per precedent)
 Date:         2026-07-25
 FramedBy:     Agent-drafted (Agent 0, `HELP_HUMAN` posture); the divergence evidence and options were surfaced from the ROOT-INIT-SOW-20260725 fan-in (Receipt 51)
