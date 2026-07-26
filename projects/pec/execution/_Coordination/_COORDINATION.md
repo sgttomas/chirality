@@ -67,6 +67,41 @@
    (owner-gated; `F-PEC-1` fences source work); WORKING_ITEMS is the
    post-wave owning workflow.
 
+8. **`D-PEC-65` RULED and EXECUTED 2026-07-25/26:** the OI-013 register
+   evidence repair — all 120 EXECUTION rows across the 64 deliverable-local
+   `Dependencies.csv` registers dispositioned row-by-row: **119 repaired**
+   (real locus + 100% machine-verified verbatim quote + coherent
+   `EvidenceFile`; the frozen D-PEC-62 exhibit is cited nowhere) and **1
+   honestly waived** (`DEP-07-05-004`, two declared waiver rows with
+   attributed rationale; the search found DL-11 counter-evidence — an
+   owner-routed edge-validity question on E-N13). Validator:
+   exit 0, 0 ERROR / 2 waiver WARNINGs (`--strict` exit 1 by design);
+   EVQ-001 87→0, EVQ-002 held 0, empty-evidence 33→1-waived. Invariants
+   byte-stable (64 files / 255 rows / 62 nodes / 120 edges / orphans 2 /
+   SCCs 0; census 32/32; blocker 24/40). Closure refutation (44-row
+   aptness sample + full-corpus defect scans): 0 CRIT / 7 MAJ / 6 MIN —
+   14 inapt-locus rows remediated by fresh sealed revision, backchecked
+   clean; 11 flagged `Statement` edits verified at cell level (0
+   unflagged). Records: `REPAIR_D-PEC-65/`. Evidence: Receipt 111.
+
+9. **`D-PEC-66` RULED and EXECUTED 2026-07-26** (owner ruling verbatim in
+   the packet): **(1) E-N13 DECLINED** — register row `DEP-07-05-004`
+   removed, waiver sidecar retired (zero waivers corpus-wide), both
+   derivative mirrors annotated; **(2) DEL-10-10 REQ-011 repaired** (CLM-018
+   extension; boundary checker 0 failing); **(3) QA-item-20 — all 21
+   flagged rows across 9 contracts ruled OVER-LINKED** (operative test:
+   QA item 20 in full; clause 1 passed 21/21, clause 2 failed 21/21) and
+   repaired by content-preserving splits; deriver warnings → 1 recorded
+   exact-union grouping. **This item supersedes item 8's invariant
+   numbers:** the calibrated corpus state is now 64 registers / **254 rows
+   = 135 ANCHOR + 119 EXECUTION** / 62 nodes / **119 edges** / orphans 2 /
+   SCCs 0; validator **0 ERROR / 0 WARNING, `--strict` exit 0**; zero
+   waivers; census 32/32; blocker 24/40 (unchanged by the decline —
+   DEL-07-05 remains blocked on DEL-00-02). Closure refutation 0 CRIT /
+   0 MAJ. Records: `FOLLOWON_D-PEC-66/CLOSURE_2026-07-26.md`; evidence
+   Receipt 112. The three Receipt-111 owner-routed items are CLOSED by
+   this tranche.
+
 ## Notes (human-owned)
 
 - Scaffolding and local-register seeding were authorized by `D-PEC-62`

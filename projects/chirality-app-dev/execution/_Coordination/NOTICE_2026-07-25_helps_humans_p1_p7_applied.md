@@ -55,7 +55,45 @@ would not have surfaced the change.
    An earlier draft of this notice claimed all 54 cited a non-existent
    project-local path; that claim was false and is withdrawn.
 
-## Follow-on for this loop — two items need a ruling
+## UPDATE 2026-07-25 — both items are now ruled (schema-side); artifact untouched
+
+The two items below were open when this notice was first issued. The owner
+delegated the deferrals to the dispatching Agent 0, which ruled them
+**schema-side**: the emitted `coverage_summary.json` is an immutable artifact and
+was **not edited**. Only `agents/AGENT_AUDIT_DECOMP.md`'s declared schema changed.
+
+1. **`repository_topology` — BLESSED as an optional template object.** Read from
+   your live artifact, it carries whole-decomposition totals (`packages: 10`,
+   `deliverables: 51`, `objectives: 10`, `scope_items: 78`, `ledger_rows: 78`)
+   while the scoped metrics beside it read `partitions_declared: 3` /
+   `production_units_declared: 15` for `scope: "PKG-02;PKG-05;PKG-08"`. It is
+   therefore denominator context for scoped coverage, in conflict with nothing.
+   The schema now documents exactly that, and says to omit the object when a run
+   does not measure whole-repository totals and never to restate scoped counts in
+   it. **Your emission becomes conforming rather than undeclared.**
+
+2. **`closure_readiness: READY_FOR_IMPLEMENTATION_HANDOFF` — NOT blessed.** The
+   enum was **not** widened, for three reasons: the field is a three-way verdict
+   and admitting a lifecycle phase name gives it two incompatible domains; the
+   run reported `overall_status: WARNINGS` (15 warnings) yet renders no
+   PASS/WARN/FAIL at all, so the value suppresses the very judgement the field
+   exists to carry; and it is an isolated outlier — the other four emitted
+   `coverage_summary.json` files across both loops all use the declared enum.
+   The schema now states positively that `closure_readiness` is a three-way
+   verdict and that a phase name is not a valid value.
+
+   **Follow-on for this loop, coordination only:** the
+   `COV_SCA_APP_004_POSTCHANGE_2026-07-23_2027` snapshot is immutable and is
+   **not** reopened — it remains a truthful record of what that run wrote. What
+   is affected is *future* AUDIT_DECOMP emissions, which should carry a
+   three-way verdict here and record handoff readiness through the invoking
+   manager's own lifecycle instruments. Whether to note the historical value in
+   this loop's records is the loop's own call.
+
+A `validate_coverage_summary.py` remains unbuilt but is now unblocked, since the
+schema is correct in both respects.
+
+## Original entry (both items then awaiting a ruling)
 
 While reconciling the emitted `coverage_summary.json` corpus against the
 template, two divergences were found in

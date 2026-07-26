@@ -12,7 +12,10 @@ from validate_lens_register import validate_lens_register  # noqa: E402
 from scan_deliverable_consistency import main as consistency_main  # noqa: E402
 from validate_p3_disposition import main as p3_main, validate_p3_disposition  # noqa: E402
 from validate_semantic_matrix import main as semantic_main, validate_semantic_file  # noqa: E402
-from validate_semantic_pipeline_scope import validate_changed_paths  # noqa: E402
+from validate_semantic_pipeline_scope import (  # noqa: E402
+    init_blocked_by_existing_contract,
+    validate_changed_paths,
+)
 
 
 def write_semantic(path: Path, *, omit_matrix: str | None = None, use_sow: bool = False) -> None:
@@ -239,6 +242,19 @@ def test_scope_validator_rejects_semantic_file_under_init_step() -> None:
         "init",
     )
     assert any(f.category == "OUT_OF_SCOPE_PATH" for f in findings)
+
+
+def test_init_step_fails_closed_when_production_contract_exists() -> None:
+    assert init_blocked_by_existing_contract("SOW_V1") is True
+    assert init_blocked_by_existing_contract("MIGRATION_DUAL") is True
+
+
+def test_init_step_allows_the_genuine_pre_init_states() -> None:
+    # A pre-INIT deliverable resolves INVALID ("missing production contract").
+    # Blocking that would reject exactly the runs INIT exists to perform.
+    assert init_blocked_by_existing_contract("INVALID") is False
+    assert init_blocked_by_existing_contract("LEGACY_FOUR_DOC") is False
+    assert init_blocked_by_existing_contract("AMBIGUOUS") is False
 
 
 def test_scope_validator_accepts_semantic_step_scope() -> None:

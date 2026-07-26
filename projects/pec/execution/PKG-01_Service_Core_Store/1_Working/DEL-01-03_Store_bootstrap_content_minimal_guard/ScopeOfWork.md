@@ -129,6 +129,13 @@ edit.
 
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
-| OUT-001 | SOW-056 OBJ-005 | REQ-001, REQ-002, REQ-007, REQ-008, CLM-005, CLM-010, TBD-002 | AC-001, AC-002, AC-007, AC-008 | VER-001, VER-002, VER-007 | Ignore-rule inspection and `git check-ignore`/`git status` output over a populated store; delete-and-restart transcripts for the stopped and running cases showing recreation without manual repair (the governed-workflow kill test is DEL-10-02's evidence under SOW-055, not this deliverable's); dependency-manifest and import-graph inspection records; the consumer-facing interface signature |
-| OUT-002 | SOW-056 OBJ-005 | REQ-003, REQ-004, REQ-005, REQ-006, REQ-007, REQ-009, CLM-004, CLM-007, CLM-008, CON-001 | AC-003, AC-004, AC-005, AC-006, AC-007, AC-009 | VER-003, VER-004, VER-005, VER-006, VER-007, VER-008 | Write-surface and import-graph inspection showing a single guard entry point; the rejection fixture corpus with per-fixture outcomes; a full persisted-field dump showing no content residue; rejection transcripts naming record and field; input-versus-accepted-plus-rejected count reconciliation; the documented admissibility rule with per-field-class decisions and citations |
+| OUT-001 | SOW-056 OBJ-005 | REQ-001, CLM-005, TBD-002 | AC-001 | VER-001 | Ignore-rule inspection and `git check-ignore`/`git status` output over a populated store |
+| OUT-001 | SOW-056 OBJ-005 | REQ-002, CLM-005, CLM-010 | AC-002 | VER-002 | Delete-and-restart transcripts for the stopped and running cases showing recreation without manual repair (the governed-workflow kill test is DEL-10-02's evidence under SOW-055, not this deliverable's) |
+| OUT-001 | SOW-056 OBJ-005 | REQ-007, REQ-008, TBD-002 | AC-007, AC-008 | VER-007 | Dependency-manifest and import-graph inspection records; the consumer-facing interface signature |
+| OUT-002 | SOW-056 OBJ-005 | REQ-003 | AC-003 | VER-003 | Write-surface and import-graph inspection showing a single guard entry point |
+| OUT-002 | SOW-056 OBJ-005 | REQ-004, CLM-004, CLM-007 | AC-004 | VER-004 | The rejection fixture corpus with per-fixture outcomes; a full persisted-field dump showing no content residue |
+| OUT-002 | SOW-056 OBJ-005 | REQ-005 | AC-005 | VER-005 | Rejection transcripts naming record and field; input-versus-accepted-plus-rejected count reconciliation |
+| OUT-002 | SOW-056 OBJ-005 | REQ-006, CLM-008 | AC-006 | VER-006 | The rejection fixture corpus with per-fixture outcomes |
+| OUT-002 | SOW-056 OBJ-005 | REQ-007 | AC-007 | VER-007 | Dependency-manifest and import-graph inspection records |
+| OUT-002 | SOW-056 OBJ-005 | REQ-009, CON-001 | AC-009 | VER-008 | The documented admissibility rule with per-field-class decisions and citations |
 | OUT-003 | SOW-056 OBJ-005 | REQ-010, CLM-009 | AC-010 | VER-009 | Service-core test-run output mapping each executed test to its declared verification method |

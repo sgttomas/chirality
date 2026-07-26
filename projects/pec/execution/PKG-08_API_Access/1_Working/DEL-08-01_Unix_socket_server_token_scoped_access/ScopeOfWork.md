@@ -162,6 +162,8 @@ obligations.
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-040 OBJ-001 | REQ-001, REQ-005, CLM-001, CLM-005 | AC-001, AC-005 | VER-001 | Listener enumeration from the started service showing the Unix socket default and the absence of any network-reachable listener, plus the recorded socket path and permissions |
-| OUT-002 | SOW-003 OBJ-001 | REQ-002, REQ-003, REQ-004, REQ-006, CLM-004, CLM-006 | AC-002, AC-003, AC-004 | VER-002, VER-003, VER-004 | Token-resolution transcripts for each access class and for each rejection case, an identifier scan of source/config/fixtures against the retired role sets, and the seam interface signature plus the stub-substitution diff |
+| OUT-002 | SOW-003 OBJ-001 | REQ-002 | AC-002 | VER-002 | Token-resolution transcripts for each access class and for each rejection case |
+| OUT-002 | SOW-003 OBJ-001 | REQ-003, REQ-004, CLM-004 | AC-003 | VER-003 | An identifier scan of source/config/fixtures against the retired role sets |
+| OUT-002 | SOW-003 OBJ-001 | REQ-006, CLM-006 | AC-004 | VER-004 | The seam interface signature plus the stub-substitution diff |
 | OUT-003 | SOW-003 OBJ-001 | REQ-007, CLM-003 | AC-006 | VER-005 | Service test-run output mapping each executed test to its declared verification method |
 | OUT-001 | SOW-003 SOW-040 OBJ-001 | CLM-002, CLM-005 | AC-007 | HUMAN_REVIEW: REVIEW gate confirms traceability to SOW-003, SOW-040, and OBJ-001, confirms no absorption of sibling PKG-08 scope, and confirms CON-001 and CON-002 are left open | Review record citing the two scope-ledger rows, the objective row, the sibling deliverable boundary, and the recorded operation-to-access-class mapping against TBD-004 |

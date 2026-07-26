@@ -4,7 +4,7 @@ description: Initialize, convert, validate, and independently verify one objecti
 metadata:
   chirality-skill-version: "1"
   chirality-task-profile: NONE
-allowed-tools: python3 tools/scope_of_work/validate_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/render_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/convert_four_documents_to_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/finalize_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/map_scope_of_work_claims.py:{scope_path}/**, python3 tools/scope_of_work/report_scope_of_work_parity.py:{scope_path}/**, python3 tools/scope_of_work/derive_review_checklist.py:{scope_path}/**
+allowed-tools: python3 tools/scope_of_work/check_boundary_owner_resolution.py:{scope_path}/**, python3 tools/scope_of_work/validate_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/render_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/convert_four_documents_to_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/finalize_scope_of_work.py:{scope_path}/**, python3 tools/scope_of_work/map_scope_of_work_claims.py:{scope_path}/**, python3 tools/scope_of_work/report_scope_of_work_parity.py:{scope_path}/**, python3 tools/scope_of_work/derive_review_checklist.py:{scope_path}/**
 ---
 
 # SKILL — scope-of-work
@@ -72,27 +72,49 @@ Read [BRIEF_SCHEMA.md](BRIEF_SCHEMA.md) before accepting a run. Read
 - Do not treat `MIGRATION_DUAL` as an accepted deliverable baseline.
 - Never integrate the evidence-rich migration candidate. Production must be
   the exact deterministic finalization and contain no migration-only metadata.
-- Cite an upstream deliverable's local IDs only inside a blockquote. Local-ID
-  syntax is deliverable-scoped: a bare `REQ-004` in contract prose always means
-  *this* contract's `REQ-004`, so an upstream ID written in own-voice prose
-  either collides with a local definition or scans as an unresolved local
-  reference. Quote the upstream text in a `> ` blockquote and add an explicit
-  carve-out sentence — "ID-shaped text inside this quotation is upstream source
-  context, not a local definition or reference" — naming the upstream
-  deliverable in own-voice prose around the quotation.
-  The blockquote marker must sit at column 0–3; a blockquote indented four or
-  more spaces is not exempt from ID extraction.
+- Cite an upstream deliverable's local IDs by one of exactly two routes, never
+  as a bare ID. Local-ID syntax is deliverable-scoped: a bare `REQ-004` in
+  contract prose always means *this* contract's `REQ-004`, so an upstream ID
+  written bare in own-voice prose either collides with a local definition or
+  scans as an unresolved local reference.
+  - **Qualified form (canonical for own-voice prose):** write the upstream
+    deliverable ID, a `/`, then the local ID — `DEL-01-02/REQ-003`. Extraction
+    ignores any ID preceded by `-`, `/`, or a word character, so a qualified
+    citation is never harvested as a local definition or reference. The
+    hyphen-separated spelling `DEL-01-02-REQ-004` is guarded identically, but
+    the slash form is canonical because it parses back into its parts
+    unambiguously.
+  - **Blockquote form:** quote the upstream text in a `> ` blockquote and add
+    an explicit carve-out sentence — "ID-shaped text inside this quotation is
+    upstream source context, not a local definition or reference" — naming the
+    upstream deliverable in own-voice prose around the quotation. The
+    blockquote marker must sit at column 0–3; a blockquote indented four or
+    more spaces is not exempt from ID extraction.
 - Refuse `ISSUED` preparation unless the brief binds the source commit, all
   four source hashes, `_STATUS.md` hash, and accepted basis. Preparation never
   authorizes integration or reissuance; H1 remains a later human gate.
 - Preserve `LEGACY_FOUR_DOC` compatibility; this skill does not retire it.
 - Do not manually re-extract, summarize, reorder, or renumber `AC-*` records
   for REVIEW; use the registered deterministic checklist artifact.
+- For each boundary-exclusion requirement, enumerate the acts it excludes and
+  name an owner for each, citing the claim that carries that owner. Enumerating
+  the acts in a sentence is semantic work and belongs to this method; the
+  resolution half is checked deterministically by
+  `check_boundary_owner_resolution.py`, which asserts that every owner ID a
+  whole-requirement exclusion names is also named by a claim that requirement
+  cites. Where the tool reports `NOT_CHECKABLE` — a per-act exclusion clause
+  whose owner is not syntactically bound to a claim — carry the one-for-one
+  check in this method instead, and prefer binding the owner to its claim in
+  the requirement text so the deterministic check can reach it.
 - In the Output and Evaluation Matrix, a row's verification references apply to
   every acceptance criterion in that row. Group acceptance criteria in one row
   only when the row's verification set is exactly the union of those criteria's
-  own methods; otherwise give each acceptance criterion its own row. Checklist
-  derivation is row-scoped and cannot recover a finer pairing.
+  own methods **and those criteria's method sets are identical** — grouping is
+  safe only when every criterion in the row is verified by exactly the same
+  methods. Otherwise give each acceptance criterion its own row. Union equality
+  alone is not sufficient: two criteria with different methods satisfy it while
+  each still inherits the other's non-verifying method. Checklist derivation is
+  row-scoped and cannot recover a finer pairing.
 
 ## Failure semantics
 
