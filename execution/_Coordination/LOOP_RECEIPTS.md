@@ -989,3 +989,39 @@
 - Open after this receipt: PR merge (owner); step-8 sequencing decision
   (owner); carried open items in the N1 return incl. the CLAUDE.md
   instruction-surface question; export-staging regeneration DEFERRED.
+
+### Receipt 46 — 2026-07-25 — Step 8 released: candidate first root decomposition staged (pending owner ruling)
+
+- Owner act of record (in-session, 2026-07-25): "Merge PR #346 and then
+  wait." followed by direction to continue from D-GOV-21 §6 step 8 as
+  Agent 0 making effective use of Agent 1/2 instances. PR #346 merged
+  (`24726a73c`); Lane B closed; guard capability G0–G4 live in CI.
+- **Context assembly (N0, Agent 0 + two read-only scouts):** decomposition
+  standard/gates/precedents mapped; guard-state schemas extracted from the
+  live G0–G4 validators. Evidence:
+  `AgentRuns/ROOT-STEP8-DECOMP-20260725/evidence/{DECOMP_STANDARD_NOTES,GUARD_STATE_SPEC}.md`.
+  Manager selection recorded before dispatch: SOFTWARE_DECOMP (owner-ruled
+  PKG/DEL vocabulary; SPEC §1 ID conformance; app-dev precedent); framing
+  strain surfaced, not smoothed.
+- **Candidate authored (N1, Agent 1 SOFTWARE_DECOMP role, `opus-5`, sealed
+  brief):** 6 packages / 45 deliverables / 103 scope items derived solely
+  from the adopted PRD (sha256-pinned); F4 registers closed both
+  directions (84 forward, 51 reverse); D-15 four-category coverage with
+  no deferral; all seven gates PENDING_OWNER_RULING; 13 open issues incl.
+  two D-14-class currency findings (OI-001/OI-002) routed to the owner.
+- **Adversarial verification (V1, ephemeral Agent 2, `opus-5`):** every
+  count re-derived independently; structure held (zero dangling IDs,
+  source purity 103/103, G2 literal containment 51/51). One BLOCKER
+  (false narrative gloss — corrected by N1 before staging; raw returns
+  preserved unedited), one MAJOR (OBJ-2 situated-root clause uncovered —
+  routed to owner as OI-013, disposition unmade), six MINORs (revision-time).
+  Fan-in ACCEPTED: `AgentRuns/ROOT-STEP8-DECOMP-20260725/returns/N1_RETURN.md`.
+- **Gate:** candidate committed and presented for exact-candidate-SHA
+  ruling (Gates 1–7 + the Gate 7 acceptance phrase are the owner's; I1).
+  No PKG-*/DEL-* structure exists; `execution/_harness/` not created; root
+  Project Setup (guard-state instantiation) follows only an accepted
+  decomposition; step 9 remains behind the §5.3 gate.
+- Open after this receipt: owner ruling on the candidate (with OI-013,
+  OI-001, OI-002 dispositions); post-ruling tranche (decision record +
+  register row + Project Setup guard-state instantiation); carried items
+  from Receipt 45 unchanged.
