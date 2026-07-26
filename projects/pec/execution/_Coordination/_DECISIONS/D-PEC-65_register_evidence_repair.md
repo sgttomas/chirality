@@ -1,7 +1,8 @@
-# D-PEC-65 — DRAFT v2: OI-013 register evidence repair (120 EXECUTION rows, 64 deliverable-local registers)
+# D-PEC-65 — OI-013 register evidence repair (120 EXECUTION rows, 64 deliverable-local registers)
 
-**Status:** DRAFT v2 — AWAITING OWNER RULING (v1 refuted 2026-07-25: 3 CRIT /
-7 MAJ / 5 MIN, one MAJ refuted-in-part; all dispositions applied — log in §8)
+**Status:** RULED 2026-07-25 (§7) — EXECUTING (v1 refuted 2026-07-25: 3 CRIT /
+7 MAJ / 5 MIN, one MAJ refuted-in-part; all dispositions applied — log in §8;
+ruled at v2)
 **Date drafted:** 2026-07-25 · **Drafted by:** session Agent 0 (PROJECT_SETUP posture)
 **Depends on:** D-PEC-62 (seeded registers), D-PEC-63 (wave closure; defect scale
 measured at closure refutation R4), the OI-013 tooling closure
@@ -220,12 +221,17 @@ turns ERROR — re-run the validator after any revert.
 
 ## 7. Human ruling
 
-_Reserved for the owner. Defaults proposed above: per-package fan-out with
-file-tool-only children, `EvidenceFile` re-pointing required for coherence,
-Statement edits allowed only where flagged, waiver attribution
-`TASK-repair/D-PEC-65` (two rows per fully-waived dependency), 100%
-machine verbatim-quote check + 20% human locus-aptness sampling floor.
-Rule as drafted, or amend any default._
+**RULED 2026-07-25** — owner, verbatim: "For D-PEC-65 proceed as you see fit
+and dispatch the 11-package repair." Ruled as drafted with every §7 default
+accepted (per-package fan-out with file-tool-only children, `EvidenceFile`
+re-pointing, flagged-only Statement edits, `TASK-repair/D-PEC-65` waiver
+attribution with two rows per fully-waived dependency, 100% machine
+verbatim-quote check + 20% human locus-aptness sampling). Dispatch authorized
+same day. The same owner message (item 2) approved the
+`AGENT_AUDIT_DECOMP.md` Check-7 authoritative-route sentence — routed to
+HELPS_HUMANS, outside this packet's fence. This ruling is also the durable
+artifact behind the evidence-waiver convention blessing (§1), closing the
+flag raised in `../NOTICE_2026-07-25_helps_humans_oi013_response.md`.
 
 ## 8. Refutation log (v1 → v2, 2026-07-25)
 

@@ -1,0 +1,1900 @@
+{
+  "tool": "validate_decomposition_registers.py",
+  "execution_root": "projects/pec/execution",
+  "evidence_root": "projects/pec",
+  "families": [
+    "SCH",
+    "EVQ",
+    "XRG",
+    "DRB"
+  ],
+  "registers_scanned": 64,
+  "dependency_rows": 255,
+  "deliverables_declared": 64,
+  "row_class_metrics": {
+    "ANCHOR": {
+      "rows": 135,
+      "locus_quote_duplication": 0,
+      "quote_shaped_locus": 0,
+      "empty_evidence_quote": 0,
+      "placeholder_locus": 0,
+      "evidence_file_populated": 135,
+      "evidence_file_resolved": 135,
+      "well_formed_evidence": 135,
+      "waived_rows": 0
+    },
+    "EXECUTION": {
+      "rows": 120,
+      "locus_quote_duplication": 87,
+      "quote_shaped_locus": 0,
+      "empty_evidence_quote": 33,
+      "placeholder_locus": 33,
+      "evidence_file_populated": 120,
+      "evidence_file_resolved": 120,
+      "well_formed_evidence": 0,
+      "waived_rows": 0
+    }
+  },
+  "findings_by_code": {
+    "EVQ-001": 87,
+    "EVQ-003": 33,
+    "EVQ-004": 33
+  },
+  "error_count": 153,
+  "warning_count": 0,
+  "skipped": [],
+  "per_file": [
+    {
+      "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/Dependencies.csv",
+      "rows": 3,
+      "findings": 2
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "rows": 14,
+      "findings": 12
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/Dependencies.csv",
+      "rows": 3,
+      "findings": 2
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/Dependencies.csv",
+      "rows": 3,
+      "findings": 2
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/Dependencies.csv",
+      "rows": 3,
+      "findings": 2
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/Dependencies.csv",
+      "rows": 3,
+      "findings": 2
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "rows": 4,
+      "findings": 4
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+      "rows": 5,
+      "findings": 4
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/Dependencies.csv",
+      "rows": 3,
+      "findings": 2
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv",
+      "rows": 4,
+      "findings": 2
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/Dependencies.csv",
+      "rows": 3,
+      "findings": 2
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/Dependencies.csv",
+      "rows": 5,
+      "findings": 4
+    },
+    {
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv",
+      "rows": 5,
+      "findings": 3
+    },
+    {
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv",
+      "rows": 4,
+      "findings": 3
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/Dependencies.csv",
+      "rows": 4,
+      "findings": 3
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/Dependencies.csv",
+      "rows": 3,
+      "findings": 2
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv",
+      "rows": 4,
+      "findings": 4
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv",
+      "rows": 6,
+      "findings": 4
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/Dependencies.csv",
+      "rows": 4,
+      "findings": 2
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/Dependencies.csv",
+      "rows": 3,
+      "findings": 2
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv",
+      "rows": 6,
+      "findings": 4
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv",
+      "rows": 4,
+      "findings": 3
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+      "rows": 4,
+      "findings": 3
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv",
+      "rows": 4,
+      "findings": 3
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "rows": 5,
+      "findings": 4
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+      "rows": 4,
+      "findings": 3
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "rows": 6,
+      "findings": 7
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "rows": 5,
+      "findings": 4
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv",
+      "rows": 6,
+      "findings": 4
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "rows": 6,
+      "findings": 5
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+      "rows": 5,
+      "findings": 4
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+      "rows": 5,
+      "findings": 3
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "rows": 8,
+      "findings": 6
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "rows": 5,
+      "findings": 3
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "rows": 8,
+      "findings": 6
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/Dependencies.csv",
+      "rows": 4,
+      "findings": 2
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv",
+      "rows": 4,
+      "findings": 2
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv",
+      "rows": 5,
+      "findings": 3
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/Dependencies.csv",
+      "rows": 4,
+      "findings": 2
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv",
+      "rows": 4,
+      "findings": 2
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/Dependencies.csv",
+      "rows": 3,
+      "findings": 1
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv",
+      "rows": 5,
+      "findings": 3
+    }
+  ],
+  "findings": [
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-00-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (78 chars): 'OI-012 basis: \"driving edges: PKG-07/08/09\"; DEL-00-02 envelope tied to OI-009'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-01-01-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (156 chars): 'OI-012: core-isolation style \"Decided in DEL-00-01\\'s ADR\"; \"the one seam to keep crisp is entity schema (core) vs store '"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-01-02-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-01-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-02-01-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (106 chars): '\u00a73 mapping notes: \"parser items (SOW-011..017) underlie OBJ-001/OBJ-002 through the record tier (SOW-001)\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-02-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (27 chars): '\u00a73 mapping notes (as E-P03)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-02-03-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (27 chars): '\u00a73 mapping notes (as E-P03)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-02-04-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (27 chars): '\u00a73 mapping notes (as E-P03)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-02-05-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (27 chars): '\u00a73 mapping notes (as E-P03)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-02-06-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (27 chars): '\u00a73 mapping notes (as E-P03)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-02-07-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (86 chars): 'DEL-01-06 names \"the loops PEC serves\"; DEL-02-07 reads per-project manifests per loop'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-03-01-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (39 chars): 'SOW-057: \"Log PEC\\'s own reconcile runs\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-03-01-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (146 chars): 'DEL-01-01 envelope note: \"the schema every derivation package depends on\" (package-level accepted; deliverable pairing p'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-03-01-006",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-03-01-006",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 8,
+      "row_id": "DEP-03-01-007",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (52 chars): 'SOW-094: configuration \"naming the loops PEC serves\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 9,
+      "row_id": "DEP-03-01-008",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (28 chars): 'PEC-RCN-002 feed list (DL-4)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 10,
+      "row_id": "DEP-03-01-009",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (28 chars): 'PEC-RCN-002 feed list (DL-4)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 11,
+      "row_id": "DEP-03-01-010",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (28 chars): 'PEC-RCN-002 feed list (DL-4)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 12,
+      "row_id": "DEP-03-01-011",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (28 chars): 'PEC-RCN-002 feed list (DL-4)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 13,
+      "row_id": "DEP-03-01-012",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (28 chars): 'PEC-RCN-002 feed list (DL-4)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 14,
+      "row_id": "DEP-03-01-013",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (28 chars): 'PEC-RCN-002 feed list (DL-4)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "line": 15,
+      "row_id": "DEP-03-01-014",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (44 chars): 'SOW-017: adapter.yaml \"as the feed manifest\"'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-02-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-03-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-03-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-04-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-04-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-05-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-05-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-06-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-03-06-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-03-06-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-03-06-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-04-01-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (95 chars): 'SOW-058: \"Measure the Step-0 cost baseline ... before P1 begins\"; note: \"baselines SOW-004/041\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-04-01-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (34 chars): 'DEL-01-01 envelope note (as E-P10)'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-04-01-005",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-04-01-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-04-02-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-04-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-04-03-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-04-03-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-04-04-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-04-04-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-04-05-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (57 chars): 'SOW-013 note: \"Per-loop coverage limits stated (SOW-009)\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-04-05-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (83 chars): 'SOW-009 \"unparseable or stale\"; staleness defined by DEL-04-03\\'s per-feed freshness'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-04-05-005",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-04-05-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-05-01-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (34 chars): 'DEL-01-01 envelope note (as E-P10)'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-05-01-005",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-05-01-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-05-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (34 chars): 'DEL-01-01 envelope note (as E-P10)'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-05-02-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-05-02-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-06-01-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-06-01-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-06-01-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (74 chars): 'SOW-036: hooks CLI carries \"session start/stop, status, scope declaration\"'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-06-02-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-06-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-06-03-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-06-03-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-06-03-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-06-03-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-06-04-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (31 chars): 'DEL-01-02 defines HierarchyEdge'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-06-04-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (76 chars): 'DEL-06-04: \"Parent-to-child session edges\"; sessions are DEL-06-01\\'s records'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-06-04-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (53 chars): 'SOW-029: hierarchy edges \"from daemon and hook feeds\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-06-04-006",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (18 chars): 'SOW-029 (as E-P46)'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-06-05-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-06-05-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-06-06-003",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-06-06-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-01-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (131 chars): 'Deliverables.csv DEL-00-02: \"Published one phase ahead of its P3 consumers (DEL-07-01/-03) per the PKG-00 publish/consum'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-07-01-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (33 chars): 'SOW-057: \"...and ingest activity\"'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-07-01-006",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-07-01-006",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-07-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (151 chars): 'SOFTWARE_DECOMP.md \u00a74 PKG-07: bridges \"implementing the PKG-00 event contracts\"; DEL-00-02 description: \"consumable by d'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-02-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-02-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-07-03-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (91 chars): 'Deliverables.csv DEL-00-02: \"Published one phase ahead of its P3 consumers (DEL-07-01/-03)\"'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-03-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-03-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-07-04-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (139 chars): 'SOFTWARE_DECOMP.md \u00a74 PKG-07: bridges \"implementing the PKG-00 event contracts\"; DEL-00-02: \"consumable by daemon, hooks'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-04-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-04-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-07-05-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (88 chars): '\u00a74 PKG-07: \"...the shared-runtime client seam \u2014 implementing the PKG-00 event contracts\"'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-05-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-05-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-07-05-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (81 chars): 'SOW-087: \"Reimplement the shared-runtime client seam concept against v2 entities\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-08-03-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (62 chars): 'SOW-042 additive versioned schema governs the response surface'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-08-03-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-08-03-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-08-04-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (37 chars): 'SOW-058 note: \"baselines SOW-004/041\"'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-08-04-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-08-04-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-08-04-005",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-08-04-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-08-04-006",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-08-04-006",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-08-05-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (59 chars): 'SOW-044: \"SSE subscription for deltas and presence changes\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-08-05-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (18 chars): 'SOW-044 (as E-P56)'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-08-05-005",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-08-05-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-09-01-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (172 chars): 'Deliverables.csv DEL-09-06: \"built and sequenced first, consumed by the other six views as a declared dependency (DL-12 '"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-09-01-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (65 chars): 'Deliverables.csv DEL-09-07: \"rendered by the DEL-09-01..05 views\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-09-01-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (64 chars): 'SOW-045: \"Dashboard \u2014 Overview: the orientation return per loop\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-09-01-006",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (43 chars): 'SOW-045: overview shows \"gates that matter\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-09-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (37 chars): 'Deliverables.csv DEL-09-06 (as E-A06)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-09-02-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (37 chars): 'Deliverables.csv DEL-09-07 (as E-A12)'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-09-02-005",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-09-02-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-09-02-006",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (97 chars): 'SOW-094 SourceRef \"\u00a712 P2, PEC-DSH-002\"; DEL-01-06: \"extended to all five registered loops at P2\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-09-03-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (37 chars): 'Deliverables.csv DEL-09-06 (as E-A06)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-09-03-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (37 chars): 'Deliverables.csv DEL-09-07 (as E-A12)'"
+    },
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-09-03-005",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text"
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-09-03-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-09-04-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (37 chars): 'Deliverables.csv DEL-09-06 (as E-A06)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-09-04-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (37 chars): 'Deliverables.csv DEL-09-07 (as E-A12)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-09-04-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (104 chars): 'Deliverables.csv DEL-09-04: \"Rendering of the PKG-05 slate\"; ScopeLedger SOW-048 note: \"Renders SOW-024\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-09-05-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (37 chars): 'Deliverables.csv DEL-09-06 (as E-A06)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-09-05-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (37 chars): 'Deliverables.csv DEL-09-07 (as E-A12)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-09-05-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (97 chars): 'SOW-049 / DEL-09-05: \"sessions x worktrees x live hierarchy\"; DEL-06-04 is \"Live hierarchy edges\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-09-05-006",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (64 chars): 'SOW-049: presence board renders sessions \u00d7 worktrees \u00d7 hierarchy'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "line": 8,
+      "row_id": "DEP-09-05-007",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (24 chars): 'SOW-049: \"heartbeat age\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "line": 9,
+      "row_id": "DEP-09-05-008",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (36 chars): 'SOW-049: \"advisory overlap warnings\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-09-06-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (95 chars): 'DEL-08-05: \"P2/P3 dashboards poll\"; PKG-09 exclusion \"New data classes\" bars direct store reads'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-09-06-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (8 chars): 'as E-N06'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-09-06-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (68 chars): 'SOW-050: drill-down \"from every displayed value to its cited source\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-09-07-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (154 chars): 'Deliverables.csv DEL-09-06 (as E-A06): the text says \"six views\"; DEL-09-07 is the sixth non-DEL-09-06 PKG-09 deliverabl'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-09-07-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (99 chars): 'SOW-051 \"staleness\" + Vocabulary Map: examined-through SHA is \"the staleness comparator (PEC-K-04)\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-09-07-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (28 chars): 'SOW-051 \"stuck-in-state age\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "line": 7,
+      "row_id": "DEP-09-07-006",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (47 chars): 'SOW-051: pressure rules include \"drift density\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "line": 8,
+      "row_id": "DEP-09-07-007",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (46 chars): 'SOW-051: pressure rules include \"gate-blocked\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "line": 9,
+      "row_id": "DEP-09-07-008",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (48 chars): 'SOW-051: pressure rules include \"collision risk\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-02-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (27 chars): 'SOW-055: \"delete the store\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-10-02-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (18 chars): 'SOW-055 + PEC-K-02'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-03-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (47 chars): 'SOW-025: \"a tested property of the API surface\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-10-03-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (18 chars): 'SOW-025 (as E-P54)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-04-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (69 chars): 'SOW-059 note: \"Method + any needed instrumentation; measures SOW-007\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-05-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (54 chars): 'SOW-085 note: \"grounded in SOW-057 self-observability\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-10-05-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (41 chars): 'DEL-10-05: \"Orientation-read ... logging\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-10-05-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (43 chars): 'DEL-10-05: \"dashboard-consultation logging\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-06-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (29 chars): 'SOW-061 note: \"Tests SOW-031\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-07-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (29 chars): 'SOW-062 note: \"Tests SOW-030\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-08-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (99 chars): 'Deliverables.csv DEL-03-05: \"the P4 exit demonstration is DEL-10-08\"; SOW-063 note: \"Tests SOW-038\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-10-08-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (51 chars): 'SOW-063: stream loss requires a live stream to lose'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-09-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (49 chars): 'SOW-084 note: \"Measures effectiveness of SOW-031\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-10-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (110 chars): 'SOW-064: P1 \"ingests PEC v2\\'s accepted full dependency DAG\"; SOW-015: dependency registers into DependencyEdge'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-10-10-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (18 chars): 'SOW-064 (as E-P73)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-11-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (117 chars): 'Deliverables.csv DEL-10-11: \"sourced from DEL-03-04\\'s output\"; SOW-093 note: \"Measures the output of SOW-020 (DL-14)\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv",
+      "line": 4,
+      "row_id": "DEP-10-12-003",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (83 chars): 'SOW-060 note: \"Measures uptake of SOW-004; arms limb 1 of the falsification clause\"'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-10-12-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (63 chars): 'SOW-060: sessions \"consuming orientation\" (served over the API)'"
+    },
+    {
+      "code": "EVQ-001",
+      "family": "EVQ",
+      "severity": "ERROR",
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv",
+      "line": 6,
+      "row_id": "DEP-10-12-005",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef and EvidenceQuote are byte-identical, so one column is carrying the other's content; a locus names where evidence sits and a quote reproduces it, and the two are never the same text (75 chars): 'SOW-060: \"eligible session starts / mode transitions consuming orientation\"'"
+    }
+  ]
+}

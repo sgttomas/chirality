@@ -106,16 +106,18 @@ Verified after application: `tools/validation/` 273 passed, `tools/scope_of_work
    `pec` SCA-002 runs become **conforming** rather than undeclared, because the
    two additive fields they emitted are now in the template.
 
-## The evidence-waiver convention — reported blessing, ruling still pending
+## The evidence-waiver convention — blessed, and now ruled
 
-The dispatching session reports the owner blessed the evidence-waiver
-convention in chat on 2026-07-25 (the carry-forward directive). The durable
-decision artifact is **D-PEC-65 §1**
-(`projects/pec/execution/_Coordination/_DECISIONS/D-PEC-65_register_evidence_repair.md`,
-DRAFT v2, awaiting owner ruling); the blessing becomes fully artifact-backed at
-that ruling. **The flag raised in
-`NOTICE_2026-07-25_helps_humans_oi013_response.md` remains formally open until
-then.**
+The dispatching session reported the owner blessed the evidence-waiver
+convention in chat on 2026-07-25 (the carry-forward directive), with the durable
+decision artifact being **D-PEC-65 §1**
+(`_Coordination/_DECISIONS/D-PEC-65_register_evidence_repair.md`). **That ruling
+has landed.** D-PEC-65 **§7** records it verbatim — "For D-PEC-65 proceed as you
+see fit and dispatch the 11-package repair" (2026-07-25), ruled as drafted with
+every default accepted — and states that it "is also the durable artifact behind
+the evidence-waiver convention blessing (§1), closing the flag raised in
+`../NOTICE_2026-07-25_helps_humans_oi013_response.md`". **That flag is closed by
+the ruling**, not by this notice.
 
 The mechanism itself is unchanged by this tranche: sidecar
 `Dependencies_EvidenceWaivers.csv`, `EVQ-003`/`EVQ-004` waivable, **`EVQ-001`
@@ -123,7 +125,7 @@ never waivable**, waivers themselves checked for staleness, thin rationale, and
 malformation. **The validator, its tests, and its registry row were not
 modified.**
 
-Read against that pending ruling, the OI-013 closure gate is: **zero
+Read against that ruling, the OI-013 closure gate is: **zero
 `EVQ-001`**, and every `EVQ-003`/`EVQ-004` row either given a real locus and
 quote **or** covered by a declared waiver with an attributed, substantive
 rationale — so that "re-run to exit 0" is not read as an instruction to invent
@@ -132,26 +134,77 @@ a quote.
 The repair of the 120 EXECUTION rows remains a PEC-loop act requiring its own
 owner-ruled packet. Nothing in this tranche performs or authorizes it.
 
-## Not applied — awaiting owner rulings that may matter to this loop
+## UPDATE 2026-07-25 — deferral tranche applied; two items now matter to PEC
 
-- **P4 §3** — two further `coverage_summary.json` drifts, both in the
-  `chirality-app-dev` emission, are unruled: whether `repository_topology`
-  becomes an optional template object, and whether
-  `"closure_readiness": "READY_FOR_IMPLEMENTATION_HANDOFF"` is a bad emission
-  (recommended) or an enum widening. A `validate_coverage_summary.py` is now
-  unblocked but not built.
-- **P6 Option 2** — the `DEL-NN-NN/REQ-NNN` qualified-ID form **is still not
-  safe** and is not blessed. `common.py` still harvests it as a bare local
-  reference, which fails validation. Blockquote citation (Option 1, now in the
-  contract) is the only supported route.
-- **P7 §3d** — the silent matrix row-drop warning is not applied; a malformed
-  matrix row still produces a misleading downstream "AC has no links entry"
-  error rather than an accurate upstream one.
-- **P3's strict `init` guard** (fail closed when a production contract already
-  exists) is deferred pending a test.
-- **P1's TOOL_POLICY steps 6–8** still use CONVERT vocabulary ("clean production
-  candidate") for what is, under INIT, simply the production contract. The
-  proposal offered no exact replacement text, so none was invented.
+The owner delegated the proposal-stated deferrals to the dispatching Agent 0,
+which ruled them and issued a follow-on tranche. Two results concern this loop.
+**Neither orders a re-run of any accepted contract; item 2 routes one
+contract-level repair (DEL-10-10 REQ-011) to this loop for disposition.**
+
+**v4 tranche verification:** `tools/validation` 275 passed, `tools/scope_of_work`
+31 passed (13 new tests; totals supersede the pre-v4 figures above).
+
+### 1. The qualified upstream-citation form is now safe (P6 Option 2)
+
+`tools/scope_of_work/common.py` now carries a left-context guard, so
+`DEL-01-02/REQ-003` and `DEL-01-02-REQ-004` are no longer harvested as this
+contract's local `REQ-003`/`REQ-004`. The B2 collision class (an upstream
+`CLM-009` colliding with a local `CLM-009`) cannot recur through either
+spelling.
+
+- **`DEL-NN-NN/REQ-NNN` is canonical** for own-voice prose, because it parses
+  back into its parts unambiguously. The hyphen spelling is guarded identically.
+- **The blockquote convention (Option 1) remains fully valid** — the 12 accepted
+  B2-wave contracts that use it stay conforming and unchanged. QA item 19 now
+  accepts either route; only the *bare* upstream ID remains prohibited.
+- **Corpus re-validation is discharged:** all 178 `ScopeOfWork.md` files in the
+  repo validated before the change and all 178 validate after it. Nothing to
+  re-run.
+
+### 2. A new boundary-owner checker finds one genuine defect in an accepted PEC contract
+
+`tools/scope_of_work/check_boundary_owner_resolution.py` (new, registered)
+implements the deterministic half of the B8 rule from `BATCH_B8_FANIN.md` §3.1,
+with new QA item 21 carrying the semantic half. Across the 32 PEC contracts it
+checks the 16 whole-requirement boundary exclusions and reports:
+
+```
+UNRESOLVED_OWNER: projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/ScopeOfWork.md REQ-011: owner(s) excluded by this requirement are not named by any claim it cites (CLM-018, CLM-017) [DEL-03-02, DEL-03-03]
+
+Contracts: 32 (0 out-of-grammar) | boundary requirements checked: 16 | per-act exclusions for skill QA: 44 | boundary requirements citing no claim: 0 | contracts failing: 1
+```
+
+`DEL-10-10` REQ-011 excludes acts owned by `DEL-03-02` and `DEL-03-03` and cites
+`CLM-018`/`CLM-017`, but neither claim names those two deliverables — the only
+mention elsewhere in the document is a phase-staging claim that assigns no
+ownership. **This is a real instance of the defect class B8 nominated, not a
+tooling artifact.**
+
+**PEC follow-on, coordination only:** the contract is an accepted PEC artifact
+and its disposition is this loop's — either cite the claim that does carry the
+owners, or extend the cited claim to name them. **Nothing in this tranche edits
+it, and no re-run of any accepted contract is implied.** Separately, **44
+per-act exclusion clauses (48 owner tokens, 17 distinct, across 17 contracts)**
+are deliberately reported `NOT_CHECKABLE` rather than failed, because owner and
+claim are not syntactically bound there; those route to the skill's QA method,
+not to a gate.
+
+## Not applied — remaining open items that may matter to this loop
+
+- **P4 §3 is now ruled** (schema-side; the emitted artifacts are immutable and
+  were not edited): `repository_topology` is blessed as an optional template
+  object, and `closure_readiness` was **not** widened — it stays a three-way
+  `PASS|WARN|FAIL` verdict, and the schema now says a lifecycle phase name is
+  not a valid value. Future PEC AUDIT_DECOMP emissions should follow both. A
+  `validate_coverage_summary.py` is unblocked but still unbuilt.
+- ~~**P6 Option 2**~~, ~~**P7 §3d**~~, ~~**P3's strict `init` guard**~~,
+  ~~**P1's TOOL_POLICY steps 6–8**~~ — **all four were applied in the
+  owner-directed deferral tranche**; see the UPDATE section above. P4 §3 was
+  also ruled: `repository_topology` blessed, `closure_readiness` **not** widened.
+- **P7 §4's Template-B gap remains open.** Making per-act exclusion clauses
+  deterministically checkable needs an authoring rule binding every owner clause
+  to its claim. That is a contract change no proposal specifies, so none was
+  invented; those 44 citations stay with the skill's QA method.
 
 **Write containment of the issuing run:** repo-root contract/tool files named
 above, the application record, and this notice plus its two siblings. No

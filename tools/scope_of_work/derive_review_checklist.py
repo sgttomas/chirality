@@ -68,6 +68,13 @@ def matrix_links(doc: SowDocument, width: int) -> dict[str, dict[str, list[str]]
             continue
         cells = [cell.strip() for cell in line.strip().strip("|").split("|")]
         if len(cells) != 6 or not out_re.fullmatch(cells[0]):
+            if len(cells) > 1 and any(ac_re.search(cell) for cell in cells):
+                print(
+                    f"WARNING: matrix row skipped ({len(cells)} cells, "
+                    f"cell 0 = {cells[0]!r}) but it contains AC references; "
+                    f"downstream 'unlinked AC' errors may originate here.",
+                    file=sys.stderr,
+                )
             continue
         acceptance_refs = ac_re.findall(cells[3])
         verification_refs = ver_re.findall(cells[4])

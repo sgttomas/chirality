@@ -1,0 +1,389 @@
+{
+  "tool": "validate_decomposition_registers.py",
+  "execution_root": "projects/pec/execution",
+  "evidence_root": "projects/pec",
+  "families": [
+    "SCH",
+    "EVQ",
+    "XRG",
+    "DRB"
+  ],
+  "registers_scanned": 64,
+  "dependency_rows": 255,
+  "deliverables_declared": 64,
+  "row_class_metrics": {
+    "ANCHOR": {
+      "rows": 135,
+      "locus_quote_duplication": 0,
+      "quote_shaped_locus": 0,
+      "empty_evidence_quote": 0,
+      "placeholder_locus": 0,
+      "evidence_file_populated": 135,
+      "evidence_file_resolved": 135,
+      "well_formed_evidence": 135,
+      "waived_rows": 0
+    },
+    "EXECUTION": {
+      "rows": 120,
+      "locus_quote_duplication": 0,
+      "quote_shaped_locus": 0,
+      "empty_evidence_quote": 1,
+      "placeholder_locus": 1,
+      "evidence_file_populated": 120,
+      "evidence_file_resolved": 120,
+      "well_formed_evidence": 119,
+      "waived_rows": 1
+    }
+  },
+  "findings_by_code": {
+    "EVQ-003": 1,
+    "EVQ-004": 1
+  },
+  "error_count": 0,
+  "warning_count": 2,
+  "skipped": [],
+  "per_file": [
+    {
+      "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-02_Presence_tier_schema_entity_model/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command/Dependencies.csv",
+      "rows": 14,
+      "findings": 0
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-05_Stream_loss_recovery_guarantee/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return/Dependencies.csv",
+      "rows": 5,
+      "findings": 0
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-04_Scope_parameterization/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty/Dependencies.csv",
+      "rows": 5,
+      "findings": 0
+    },
+    {
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-01_Gate_precondition_evaluators_Explain_shaped/Dependencies.csv",
+      "rows": 5,
+      "findings": 0
+    },
+    {
+      "path": "PKG-05_Gate_Evaluation_Decision_Slate/1_Working/DEL-05-02_Cross_loop_decision_slate/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-01_Session_presence_records/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-02_Git_worktree_scanner/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-03_Session_worktree_scope_correlation/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-04_Live_hierarchy_edges/Dependencies.csv",
+      "rows": 6,
+      "findings": 0
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-05_TTL_heartbeat_discipline_citation_exclusion/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-06_Presence_Git_Observation/1_Working/DEL-06-06_Advisory_overlap_detection/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-01_Idempotent_event_ingest_durable_message_store/Dependencies.csv",
+      "rows": 6,
+      "findings": 0
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-02_Daemon_SSE_subscriber_bridge/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-03_Hooks_CLI_bridge/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-04_cmux_socket_adapter_optional/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "rows": 5,
+      "findings": 2
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/Dependencies.csv",
+      "rows": 6,
+      "findings": 0
+    },
+    {
+      "path": "PKG-08_API_Access/1_Working/DEL-08-05_SSE_delta_presence_subscription/Dependencies.csv",
+      "rows": 5,
+      "findings": 0
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-01_Overview_dashboard/Dependencies.csv",
+      "rows": 6,
+      "findings": 0
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-02_Lifecycle_census_dashboard/Dependencies.csv",
+      "rows": 6,
+      "findings": 0
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-03_Register_views/Dependencies.csv",
+      "rows": 5,
+      "findings": 0
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-04_Decision_slate_view_waiting_on_you/Dependencies.csv",
+      "rows": 5,
+      "findings": 0
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-05_Presence_board/Dependencies.csv",
+      "rows": 8,
+      "findings": 0
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-06_Universal_drill_down_to_cited_source/Dependencies.csv",
+      "rows": 5,
+      "findings": 0
+    },
+    {
+      "path": "PKG-09_Dashboards/1_Working/DEL-09-07_Explain_shaped_pressure_rules/Dependencies.csv",
+      "rows": 8,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1/Dependencies.csv",
+      "rows": 2,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-04_Orientation_defect_rate_spot_check/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-05_Owner_consultation_logging/Dependencies.csv",
+      "rows": 5,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-06_Seeded_conflict_overlap_test/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-07_Presence_TTL_honesty_tests/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-08_Stream_loss_recovery_demonstration/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-09_Collision_incident_measurement/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation/Dependencies.csv",
+      "rows": 4,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile/Dependencies.csv",
+      "rows": 3,
+      "findings": 0
+    },
+    {
+      "path": "PKG-10_Validation_Measurement/1_Working/DEL-10-12_Poll_adoption_measurement/Dependencies.csv",
+      "rows": 5,
+      "findings": 0
+    }
+  ],
+  "findings": [
+    {
+      "code": "EVQ-003",
+      "family": "EVQ",
+      "severity": "WARNING",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-05-004",
+      "row_class": "EXECUTION",
+      "detail": "EvidenceQuote is blank; the row asserts a dependency with no quoted source text \u2014 WAIVED: No accepted source text warrants a DEL-07-05 dependency on DEL-08-02. SOW-087 and PRD v2.1 section 13 describe the seam only as the D-PEC-56 concept reimplemented against v2 entities; SOFTWARE_DECOMP.md DL-11 assigns SOW-087 to PKG-07 as 'daemon-facing integration', not as a consumer of PEC's own versioned API schema. Nothing in SOFTWARE_DECOMP.md rev 1.2, ScopeLedger.csv, Deliverables.csv, the PRD, or the deliverable-local _CONTEXT.md ties the client seam to SOW-042/DEL-08-02, so any quote here would fabricate the link."
+    },
+    {
+      "code": "EVQ-004",
+      "family": "EVQ",
+      "severity": "WARNING",
+      "path": "PKG-07_Event_Ingest_Bridges/1_Working/DEL-07-05_Shared_runtime_client_seam_v2/Dependencies.csv",
+      "line": 5,
+      "row_id": "DEP-07-05-004",
+      "row_class": "EXECUTION",
+      "detail": "SourceRef is a placeholder, not a citable locus: 'location TBD' \u2014 WAIVED: SourceRef stays 'location TBD' because no citable locus exists: sections and rows searched were SOFTWARE_DECOMP.md sections 4 (PKG-07/PKG-08) and 11 (DL-11), ScopeLedger.csv rows SOW-087 and SOW-042, Deliverables.csv rows DEL-07-05 and DEL-08-02, PRD v2.1 sections 9.6 and 13, and DEL-07-05/_CONTEXT.md. None asserts that the client seam consumes the versioned API schema. The row itself is Flag=LOW_CONFIDENCE and its Statement records that the owner may decline the edge; naming a locus would misrepresent an unsourced inference as cited. EvidenceFile names SOFTWARE_DECOMP.md as the primary searched document whose DL-11 line records the counter-evidence; it is not a warranting source."
+    }
+  ]
+}

@@ -56,6 +56,7 @@ read and cite only, no further feature work, retired product docs under
    BLOCKED with all wave members unblocked; P1 build-slice packets
    remain the open gate — `F-PEC-1` still fences source work, and
    WORKING_ITEMS is the post-wave owning workflow)*
+   *(amended by `D-PEC-65`, 2026-07-25/26: the 120 seeded EXECUTION register evidence rows repaired — validator exit 0, 119 repaired + 1 declared waiver; evidence Receipt 111)*
    (32 deliverables: parsers, reconciler + parity, orientation core,
    socket API, kill test, bootstrap self-ingest; plus pre-P1 DEL-00-01
    ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **Each tranche

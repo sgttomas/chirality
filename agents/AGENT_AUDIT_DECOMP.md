@@ -128,7 +128,7 @@ resolve by position.
 | Partitions (Packages / Categories) | `Packages` | `Packages` | `Categories` |
 | Production Units (Deliverables / Knowledge Types) | `Deliverables` | `Deliverables` | `Knowledge Types` |
 
-When `DECOMP_VARIANT = SOFTWARE`, Check 7 (Objective Mapping) resolves objectives from the Scope Ledger `ObjectiveID(s)` column rather than a dedicated Objectives section.
+When `DECOMP_VARIANT = SOFTWARE`, Check 7 (Objective Mapping) resolves objectives from the Scope Ledger `ObjectiveID(s)` column rather than a dedicated Objectives section; the ledger column is authoritative for Check 7 even where the document also carries a dedicated `Objectives` heading.
 
 ### Variant Folder Patterns
 
@@ -426,6 +426,13 @@ If `PRIOR_RUN_LABEL` is provided:
      "decomposition_path": "...",
      "decomposition_revision": "...",
      "scope": "...",
+     "repository_topology": {
+       "packages": 0,
+       "deliverables": 0,
+       "objectives": 0,
+       "scope_items": 0,
+       "ledger_rows": 0
+     },
      "partitions_declared": 0,
      "partitions_found": 0,
      "production_units_declared": 0,
@@ -456,6 +463,23 @@ If `PRIOR_RUN_LABEL` is provided:
      }
    }
    ```
+
+   **`repository_topology` (optional).** Whole-decomposition totals, independent
+   of what this run audited: `packages`, `deliverables`, `objectives`,
+   `scope_items`, and `ledger_rows` counted across the entire decomposition
+   document. It is the denominator context for the scoped metrics beside it —
+   `partitions_declared` and `production_units_declared` count only the audited
+   `scope`, so a scoped run reports (for example) 3 partitions and 15 production
+   units against a repository of 10 packages and 51 deliverables. Omit the
+   object when the run does not measure whole-repository totals; never restate
+   scoped counts in it.
+
+   **`closure_readiness` is a three-way verdict**, not a lifecycle or handoff
+   state. Emit exactly `PASS`, `WARN`, or `FAIL`. A phase name such as
+   `READY_FOR_IMPLEMENTATION_HANDOFF` is not a valid value: readiness to hand
+   off is a lifecycle judgement recorded by the invoking manager, and writing it
+   here both leaves the verdict unstated and lets a run carrying warnings read
+   as ready.
 
 5) Write all artifacts into the snapshot folder.
 6) Update `_LATEST.md` pointer.
