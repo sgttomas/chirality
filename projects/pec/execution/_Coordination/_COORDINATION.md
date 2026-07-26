@@ -77,5 +77,7 @@
   `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md` and
   is now **frozen gate provenance**: the deliverable-local
   `Dependencies.csv` registers are the sole live dependency basis. Both
-  are derivative packages citing the accepted revision 1.1 snapshot and
-  are never a substitute for decomposition truth.
+  are derivative packages citing the accepted decomposition snapshot
+  (revision 1.1 at seeding; revision 1.2 is `current_basis` since
+  `SCA-002`/`D-PEC-64`, 2026-07-25 — owner-directed pointer update at
+  D-PEC-63 closure) and are never a substitute for decomposition truth.
