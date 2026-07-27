@@ -1,0 +1,60 @@
+{
+  "active_snapshot_status": "PASS",
+  "artifact_presence_pct": 0.0,
+  "audit_details": {
+    "active_snapshot_missing_required_artifacts": [],
+    "anticipated_artifacts_expected": 137,
+    "anticipated_artifacts_found": 0,
+    "decomposition_sha256": "2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18",
+    "deliverable_register_sha256": "ec32b36fdc078e44a7ca094e9c854a3be6b7d5917360fe5ef5f22ff3702a13b8",
+    "git_head": "196c98a0c777abc2df00341b1ff6a0f92f0ecd54",
+    "matched_deliverables": 45,
+    "objective_register_sha256": "c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55",
+    "scope_ledger_sha256": "0d48abe08aa336ac5e495650451f286b4b717606f047adff931c45dacc8531a4",
+    "valid_sow_v1_contracts": 45
+  },
+  "check_count": 12,
+  "closure_readiness": "FAIL",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  },
+  "context_fidelity_pct": 97.83,
+  "decomp_variant": "SOFTWARE",
+  "decomposition_path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+  "decomposition_revision": "v1.1; physically applied exact Gate 3 candidate bytes; owner confirmation pending",
+  "deliverables_without_objective_mapping": 0,
+  "derivative_package_status": "SKIPPED",
+  "expected_handoff_phase": "SCA-001_GATE_5_OWNER_CONFIRMATION",
+  "expected_source_snapshot": "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Candidate/",
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 97.83,
+  "handoff_state_status": "PASS",
+  "in_ledger_rows_without_objective_mapping": 15,
+  "issues_blocker": 1,
+  "issues_info": 132,
+  "issues_warning": 0,
+  "lifecycle_distribution": {
+    "INITIALIZED": 45,
+    "UNKNOWN": 1
+  },
+  "objective_coverage_pct": 100.0,
+  "objective_evidence_integrity": "PASS",
+  "overall_status": "BLOCKERS",
+  "package_shape_conformance": "PASS",
+  "partitions_declared": 6,
+  "partitions_found": 6,
+  "production_units_declared": 46,
+  "production_units_found": 45,
+  "repository_topology": {
+    "deliverables": 46,
+    "ledger_rows": 104,
+    "objectives": 7,
+    "packages": 6,
+    "scope_items": 104
+  },
+  "reverse_coverage_pct": 100.0,
+  "run_label": "SCA001_POSTCHANGE",
+  "scope": "ALL",
+  "timestamp": "2026-07-26T21:59:31-06:00"
+}

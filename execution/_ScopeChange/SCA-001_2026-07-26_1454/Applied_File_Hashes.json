@@ -1,0 +1,56 @@
+{
+  "amendment_id": "SCA-001",
+  "gate": 5,
+  "application_state": "ACCEPTED_CURRENT_BASIS",
+  "files": [
+    {
+      "path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "before_sha256": "14067a7d97c94a43f5db0c2c1116206482504f260363de5ff6fa401a4df94cf7",
+      "approved_candidate_sha256": "2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18",
+      "applied_sha256": "2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18",
+      "exact_candidate_match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "before_sha256": "87f31c0d9f9118caf550b20223af4421a8165e987b03ee813892a731c253785a",
+      "approved_candidate_sha256": "0d48abe08aa336ac5e495650451f286b4b717606f047adff931c45dacc8531a4",
+      "applied_sha256": "0d48abe08aa336ac5e495650451f286b4b717606f047adff931c45dacc8531a4",
+      "exact_candidate_match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+      "before_sha256": "699e99e7ac7e75d3b8a677cc06705c96c813e6b29cc1c833ddb48bf401d1b90e",
+      "approved_candidate_sha256": "ec32b36fdc078e44a7ca094e9c854a3be6b7d5917360fe5ef5f22ff3702a13b8",
+      "applied_sha256": "ec32b36fdc078e44a7ca094e9c854a3be6b7d5917360fe5ef5f22ff3702a13b8",
+      "exact_candidate_match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+      "before_sha256": "7a639d0a9b1fa6f6795afd1a32f3a12ec5b0a19f7edee9302b91401fcae53281",
+      "approved_candidate_sha256": "c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55",
+      "applied_sha256": "c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55",
+      "exact_candidate_match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv",
+      "before_sha256": "0f04ef8f3b5d1c3c4de63661d7c9d3dde1f5f31e414595a7e8000971521c3883",
+      "approved_candidate_sha256": "adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84",
+      "applied_sha256": "adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84",
+      "exact_candidate_match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+      "before_sha256": "35ae8fb67a083ed07e5f9a5b512a3b65ff2752c2d3cab828dd1eb326f5198ba4",
+      "approved_candidate_sha256": "6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0",
+      "applied_sha256": "6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0",
+      "exact_candidate_match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md",
+      "before_sha256": "e8eee2fa5e439fcf7db292969ed4cd45c1747bda5734bf7050db74ae8b12bb28",
+      "approved_candidate_sha256": "6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282",
+      "applied_sha256": "6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282",
+      "exact_candidate_match": true
+    }
+  ]
+}

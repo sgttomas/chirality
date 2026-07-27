@@ -4,12 +4,16 @@ doc_kind: scope_change.impact_assessment
 decomp_variant: SOFTWARE
 gate: 2
 created: 2026-07-26
-status: awaiting_gate_2_confirmation
+status: gate_2_accepted
 accepted_basis: execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md revision 1.0
 upstream_authority: D-GOV-28; Root PRD Revision 6; O-11
 ---
 
 # SCA-001 Gate 2 — Impact Assessment
+
+> **Gate 2 accepted by Ryan Tufts, 2026-07-26:** “I accept this impact
+> assessment, including adding one new PKG-02 deliverable rather than expanding
+> DEL-02-02”
 
 ## Assessment summary
 

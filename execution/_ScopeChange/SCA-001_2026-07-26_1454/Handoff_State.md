@@ -1,71 +1,96 @@
-# SCA-001 Gate 2 Preparation Handoff State
+# SCA-001 Closure and CHANGE Handoff
 
-Status: `GATE_2_PREPARED_AWAITING_OWNER_ACCEPTANCE`
+Status: `CLOSED_FOR_SCOPE_CHANGE_ONLY`
 
 | Field | Value |
 |---|---|
 | AmendmentID | `SCA-001` |
-| DecompositionTruthState | `INCOMPLETE` |
+| DecompositionTruthState | `COMPLETE` |
 | DerivativePackageState | `INCOMPLETE` |
 | ContentRemediationState | `NOT_REQUIRED` |
 | DownstreamRerunState | `FROZEN` |
 | MetadataAlignmentState | `NOT_REQUIRED` |
-| AuditState | `NON_BLOCKING_PASS` |
+| AuditState | `BLOCKED` |
 | ReadyForNextPhase | `NO` |
-| ClosureVerdict | `GATE_2_PREPARED_AWAITING_OWNER_ACCEPTANCE` |
+| ClosureVerdict | `CLOSED_FOR_SCOPE_CHANGE_ONLY` |
 
-## Current authoritative truth
+## Accepted successor
 
-No authoritative decomposition truth changed in this SCA. The current basis
-is:
+Ryan Tufts confirmed the post-change state in session on 2026-07-26 and
+accepted decomposition revision 1.1 as the current basis.
 
-- `docs/PRD_ROOT.md` Revision 6, with O-11 adopted through D-GOV-28;
-- `execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md`;
-- the six accepted v1.0 decomposition companion surfaces under
-  `execution/_Decomposition/`.
+The seven authoritative decomposition surfaces equal the exact Gate 3
+candidate bytes approved by the owner:
 
-This directory is an incomplete SCOPE_CHANGE working snapshot. It is not
-active decomposition truth. `execution/_ScopeChange/_LATEST.md` points here
-only as the active gate record and explicitly preserves decomposition v1.0 as
-authoritative.
+```text
+O-11
+  → SOW-104
+  → PKG-02_Operative_Instruction_Surface_and_Runtime_Layers
+  → DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance
+  → OBJ-001, OBJ-002, OBJ-004, OBJ-007
+```
 
-## Gate state
+Deterministic validation passes 45/45 checks and records the predecessor,
+approved-candidate, and applied SHA-256 identities in
+`Applied_File_Hashes.json`.
 
-- Gate 1: `CONFIRMED`
-- Gate 1 adoption contingency: `SATISFIED`
-- Gate 2: `PREPARED_AWAITING_OWNER_ACCEPTANCE`
-- Gate 3: `NOT_OPENED`
-- Gate 4: `NOT_OPENED`
-- Gate 5: `NOT_OPENED`
+## Closure boundary
 
-## Required next conditions
+SCA-001 is closed for scope change only. Git closeout remains a separate
+CHANGE gate. Until that closeout:
 
-1. Owner reviews `Impact_Assessment.md`.
-2. Owner explicitly accepts or modifies the Gate 2 impact assessment.
-3. Only after acceptance may SCOPE_CHANGE prepare the exact Gate 3 amendment
-   preview.
+- PROJECT_SETUP remains blocked;
+- no DEL-02-06 scaffold may be created;
+- `execution/_harness/**` remains unchanged;
+- no `ScopeOfWork.md` may be authored;
+- no `runtime/**` work is authorized; and
+- no App, PEC, Piping, or other client scope changes are authorized.
 
-## Pre-change audit evidence
+After Git closeout, PROJECT_SETUP may consume revision 1.1 and execute the
+bounded work in `Preparation_Brief.md`.
 
-- Snapshot:
-  `execution/_Evaluation/DecompCoverage/COV_SCA001_PRECHANGE_2026-07-26_1457/`
-- Overall status: `OK`
-- Closure readiness: `PASS`
-- Findings: 0 BLOCKER, 0 WARNING, 132 INFO
-- Structural coverage: 6/6 packages and 45/45 deliverables
-- Production state: all 45 deliverables `INITIALIZED`; anticipated production
-  output absence is informational
+## Derivative gap and audit
 
-## Prohibited interpretations
+The valid immutable audit snapshot is:
 
-- OD-2 Option A selection did not itself constitute Gate 1 confirmation; the
-  separate owner confirmation is now recorded in `Decision_Log.md`.
-- D-GOV-28 adoption makes Gate 2 eligible but does not accept OD-4 or any
-  SCOPE_CHANGE gate.
-- `SOW-104` is a candidate next ID, not an allocated scope item.
-- `DEL-02-06` is a candidate next ID, not an allocated deliverable.
-- The recommendation to add one PKG-02 deliverable is not approved topology.
-- This SCA snapshot does not itself adopt or modify Root PRD bytes.
-- No decomposition file has changed.
-- No `runtime/` write is authorized.
-- No downstream workflow is released.
+`execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159/`
+
+It reports:
+
+- overall status `BLOCKERS`;
+- closure readiness `FAIL`;
+- 1 BLOCKER, 0 WARNING, 132 INFO;
+- 6/6 packages present;
+- 45/46 deliverables present;
+- 45/45 existing contexts matching; and
+- 45/45 existing SOW contracts valid.
+
+The sole blocker is DEL-02-06's absent scaffold. Under the approved propagation
+plan it is not repaired by SCOPE_CHANGE; it is the exact downstream condition
+that PROJECT_SETUP must close after Git closeout.
+
+An earlier unpointed audit attempt,
+`COV_SCA001_POSTCHANGE_2026-07-26_2158/`, exposed a context-parser defect and
+falsely emitted 45 warnings. It is immutable invalid-run residue, is not named
+by the audit pointer, must not be relied upon, and must not be staged.
+
+## Validation note
+
+`git diff --check` reports trailing whitespace on the three newly changed CSV
+records carrying SOW-104, the PKG-02 reverse-trace update, and DEL-02-06. These
+are the CRLF record terminators in the exact owner-approved candidate bytes.
+They were not silently normalized.
+
+## CHANGE handoff
+
+CHANGE receives only:
+
+- the seven revision 1.1 decomposition surfaces;
+- the complete SCA-001 snapshot and `_ScopeChange/_LATEST.md`;
+- the valid post-change audit snapshot
+  `COV_SCA001_POSTCHANGE_2026-07-26_2159/`; and
+- `_Evaluation/DecompCoverage/_LATEST.md`.
+
+CHANGE must exclude the invalid unpointed `..._2158/` audit attempt, preserve
+unrelated worktree changes, and perform no PROJECT_SETUP, scaffolding, harness
+refresh, SOW authoring, runtime work, or client-scope change.

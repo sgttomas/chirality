@@ -9,8 +9,12 @@
 | Pre-change `AUDIT_DECOMP` | 2026-07-26 | `NON_BLOCKING_PASS` | Snapshot `execution/_Evaluation/DecompCoverage/COV_SCA001_PRECHANGE_2026-07-26_1457/`: 6/6 packages, 45/45 deliverables, 0 BLOCKER, 0 WARNING, 132 expected INFO at `INITIALIZED`. |
 | Gate 1 | 2026-07-26 | `CONFIRMED` | The owner confirmed the intake exactly as recorded below. |
 | D-GOV-28 | 2026-07-26 | `ADOPTED_AND_EFFECTIVE` | Root PRD Revision 6 and O-11 were adopted through D-GOV-28; EffectiveSHA `fb0b3d247d32e643a7fbb994d2f61b9b673ad0fb`, backfilled on `main` by PR #365 merge `7f30cc1db5f64dcffac03215b9395fe1dd7bafbb`. The Gate 1 contingency is satisfied. |
-| Gate 2 | 2026-07-26 | `PREPARED_AWAITING_OWNER_CONFIRMATION` | `Impact_Assessment.md` recommends one new PKG-02 deliverable and one new IN scope item, preserving all existing IDs and keeping DEL-02-02 unchanged. No topology is accepted until the owner confirms Gate 2. |
-| Gates 3–5 | — | `NOT_OPENED` | No approval inferred. |
+| Gate 2 | 2026-07-26 | `ACCEPTED` | The owner accepted the impact assessment, including one new PKG-02 deliverable rather than expansion of DEL-02-02. |
+| Gate 3 | 2026-07-26 | `APPROVED` | The owner approved the exact seven-surface amendment candidate. The approved bytes remain derivative preview evidence until Gate 5 application. |
+| Gate 4 | 2026-07-26 | `APPROVED` | The owner approved the propagation plan. Gate 5 writes are limited to the approved decomposition and SCA surfaces; scaffold and G1/G2/G3 refresh remain downstream PROJECT_SETUP work. |
+| Gate 5 | 2026-07-26 | `CONFIRMED` | The owner confirmed the post-change state and accepted decomposition revision 1.1 as the current basis. SCA-001 closes for scope change only and hands the accepted tranche to CHANGE for Git closeout. |
+| Post-change `AUDIT_DECOMP` | 2026-07-26 | `BLOCKERS_EXPECTED_DOWNSTREAM_GAP` | Valid snapshot `COV_SCA001_POSTCHANGE_2026-07-26_2159`: 6/6 packages, 45/46 deliverables, 1 BLOCKER for absent DEL-02-06 scaffold, 0 WARNING, 132 INFO. The audit finding is preserved and routed to PROJECT_SETUP; it is not repaired inside SCOPE_CHANGE. |
+| Invalid audit attempt | 2026-07-26 | `EXCLUDED_FROM_RELIANCE_AND_STAGING` | Unpointed snapshot `COV_SCA001_POSTCHANGE_2026-07-26_2158` exposed a context-parser defect and falsely emitted 45 warnings. It remains immutable residue and is not current evidence. |
 
 ## Gate 1 owner confirmation
 
@@ -21,6 +25,30 @@ Provenance: Ryan Tufts, in-session owner ruling, 2026-07-26.
 Companion owner scope limit, same in-session ruling:
 
 > No other OD is accepted by this message. OD-4 remains a live gate pending D-GOV-28 adoption; OD-5 through OD-7 remain live gates.
+
+## Gate 2 owner acceptance
+
+Provenance: Ryan Tufts, in-session owner ruling, 2026-07-26.
+
+> I accept this impact assessment, including adding one new PKG-02 deliverable rather than expanding DEL-02-02
+
+## Gate 3 owner approval
+
+Provenance: Ryan Tufts, in-session owner ruling, 2026-07-26.
+
+> I approve these amendments to the decomposition document
+
+## Gate 4 owner approval
+
+Provenance: Ryan Tufts, in-session owner ruling, 2026-07-26.
+
+> I approve this propagation plan
+
+## Gate 5 owner confirmation
+
+Provenance: Ryan Tufts, in-session owner ruling, 2026-07-26.
+
+> I confirm the post-change state and accept decomposition revision 1.1 as the current basis.
 
 ## Manager determinations
 
@@ -40,7 +68,7 @@ Companion owner scope limit, same in-session ruling:
 
 ## Current gate condition
 
-Gate 1 is confirmed and its D-GOV-28 contingency is satisfied. Gate 2 is
-prepared and awaits explicit owner acceptance. Preparation does not allocate
-`SOW-104` or `DEL-02-06`, approve topology, open Gate 3, amend decomposition
-truth, create a `runtime/` write authorization, or authorize implementation.
+All five gates are complete. Decomposition revision 1.1 is the accepted current
+basis. SCA-001 is closed for scope change only and awaits separate CHANGE Git
+closeout. PROJECT_SETUP remains held until that closeout; SOW authoring,
+runtime work, client-scope changes, and implementation remain unauthorized.
