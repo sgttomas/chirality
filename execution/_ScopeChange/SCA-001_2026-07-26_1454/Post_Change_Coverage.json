@@ -1,0 +1,420 @@
+{
+  "amendment_id": "SCA-001",
+  "gate": 5,
+  "state": "ACCEPTED_CURRENT_BASIS",
+  "authoritative_decomposition": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+  "candidate_directory": "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Candidate",
+  "result": "PASS",
+  "checks_run": 45,
+  "checks_failed": 0,
+  "checks": [
+    {
+      "check": "approved_candidate_validation",
+      "status": "PASS",
+      "details": "PASS"
+    },
+    {
+      "check": "applied_candidate_hash_parity",
+      "status": "PASS",
+      "details": {
+        "applied": {
+          "main": "2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18",
+          "scope": "0d48abe08aa336ac5e495650451f286b4b717606f047adff931c45dacc8531a4",
+          "deliverables": "ec32b36fdc078e44a7ca094e9c854a3be6b7d5917360fe5ef5f22ff3702a13b8",
+          "objectives": "c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55",
+          "forward": "adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84",
+          "reverse": "6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0",
+          "telemetry": "6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282"
+        },
+        "candidate": {
+          "main": "2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18",
+          "scope": "0d48abe08aa336ac5e495650451f286b4b717606f047adff931c45dacc8531a4",
+          "deliverables": "ec32b36fdc078e44a7ca094e9c854a3be6b7d5917360fe5ef5f22ff3702a13b8",
+          "objectives": "c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55",
+          "forward": "adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84",
+          "reverse": "6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0",
+          "telemetry": "6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282"
+        }
+      }
+    },
+    {
+      "check": "all_seven_authoritative_surfaces_changed",
+      "status": "PASS",
+      "details": {
+        "before": {
+          "main": "14067a7d97c94a43f5db0c2c1116206482504f260363de5ff6fa401a4df94cf7",
+          "scope": "87f31c0d9f9118caf550b20223af4421a8165e987b03ee813892a731c253785a",
+          "deliverables": "699e99e7ac7e75d3b8a677cc06705c96c813e6b29cc1c833ddb48bf401d1b90e",
+          "objectives": "7a639d0a9b1fa6f6795afd1a32f3a12ec5b0a19f7edee9302b91401fcae53281",
+          "forward": "0f04ef8f3b5d1c3c4de63661d7c9d3dde1f5f31e414595a7e8000971521c3883",
+          "reverse": "35ae8fb67a083ed07e5f9a5b512a3b65ff2752c2d3cab828dd1eb326f5198ba4",
+          "telemetry": "e8eee2fa5e439fcf7db292969ed4cd45c1747bda5734bf7050db74ae8b12bb28"
+        },
+        "after": {
+          "main": "2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18",
+          "scope": "0d48abe08aa336ac5e495650451f286b4b717606f047adff931c45dacc8531a4",
+          "deliverables": "ec32b36fdc078e44a7ca094e9c854a3be6b7d5917360fe5ef5f22ff3702a13b8",
+          "objectives": "c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55",
+          "forward": "adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84",
+          "reverse": "6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0",
+          "telemetry": "6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282"
+        }
+      }
+    },
+    {
+      "check": "scope_count",
+      "status": "PASS",
+      "details": 104
+    },
+    {
+      "check": "scope_status_counts",
+      "status": "PASS",
+      "details": {
+        "IN": 95,
+        "OUT": 9
+      }
+    },
+    {
+      "check": "package_count",
+      "status": "PASS",
+      "details": 6
+    },
+    {
+      "check": "deliverable_count",
+      "status": "PASS",
+      "details": 46
+    },
+    {
+      "check": "objective_count",
+      "status": "PASS",
+      "details": 7
+    },
+    {
+      "check": "forward_count",
+      "status": "PASS",
+      "details": 85
+    },
+    {
+      "check": "reverse_count",
+      "status": "PASS",
+      "details": 52
+    },
+    {
+      "check": "context_envelopes",
+      "status": "PASS",
+      "details": {
+        "M": 31,
+        "S": 14,
+        "L": 1
+      }
+    },
+    {
+      "check": "unique_scope_ids",
+      "status": "PASS",
+      "details": 104
+    },
+    {
+      "check": "unique_deliverable_ids",
+      "status": "PASS",
+      "details": 46
+    },
+    {
+      "check": "unique_objective_ids",
+      "status": "PASS",
+      "details": 7
+    },
+    {
+      "check": "scope_exactly_one_package",
+      "status": "PASS",
+      "details": "all populated"
+    },
+    {
+      "check": "in_scope_package_refs_resolve",
+      "status": "PASS",
+      "details": "all resolve"
+    },
+    {
+      "check": "in_scope_deliverable_refs_resolve",
+      "status": "PASS",
+      "details": "all resolve"
+    },
+    {
+      "check": "scope_objective_refs_resolve",
+      "status": "PASS",
+      "details": "all resolve"
+    },
+    {
+      "check": "deliverable_parent_refs_resolve",
+      "status": "PASS",
+      "details": "all resolve"
+    },
+    {
+      "check": "deliverable_scope_refs_resolve",
+      "status": "PASS",
+      "details": "all resolve"
+    },
+    {
+      "check": "deliverable_objective_refs_resolve",
+      "status": "PASS",
+      "details": "all resolve"
+    },
+    {
+      "check": "objective_deliverable_refs_resolve",
+      "status": "PASS",
+      "details": "all resolve"
+    },
+    {
+      "check": "objective_scope_refs_resolve",
+      "status": "PASS",
+      "details": "all resolve"
+    },
+    {
+      "check": "sow104_package",
+      "status": "PASS",
+      "details": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers"
+    },
+    {
+      "check": "sow104_deliverable",
+      "status": "PASS",
+      "details": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+    },
+    {
+      "check": "sow104_objectives",
+      "status": "PASS",
+      "details": "OBJ-001;OBJ-002;OBJ-004;OBJ-007"
+    },
+    {
+      "check": "sow104_categories",
+      "status": "PASS",
+      "details": "OperativeProduct;Evidence"
+    },
+    {
+      "check": "del0206_parent",
+      "status": "PASS",
+      "details": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers"
+    },
+    {
+      "check": "del0206_type",
+      "status": "PASS",
+      "details": "REQ_SLICE"
+    },
+    {
+      "check": "del0206_envelope",
+      "status": "PASS",
+      "details": "M"
+    },
+    {
+      "check": "del0206_scope",
+      "status": "PASS",
+      "details": "SOW-104"
+    },
+    {
+      "check": "del0206_objectives",
+      "status": "PASS",
+      "details": "OBJ-001;OBJ-002;OBJ-004;OBJ-007"
+    },
+    {
+      "check": "del0206_runtime_locus",
+      "status": "PASS",
+      "details": "runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/**; client implementation only through separately authorized client-owned tranches"
+    },
+    {
+      "check": "del0206_client_boundary",
+      "status": "PASS",
+      "details": "runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/**; client implementation only through separately authorized client-owned tranches"
+    },
+    {
+      "check": "o11_forward_unique",
+      "status": "PASS",
+      "details": 1
+    },
+    {
+      "check": "o11_forward_lineage",
+      "status": "PASS",
+      "details": {
+        "PRDItem": "O-11",
+        "ItemKind": "commitment",
+        "PRDSection": "\u00a75.2",
+        "ObjectiveID": "",
+        "ScopeItemIDs": "SOW-104",
+        "PackageIDs": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+        "DeliverableIDs": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+        "CoverageStatus": "COVERED",
+        "DeferralReason": ""
+      }
+    },
+    {
+      "check": "del0206_reverse_trace",
+      "status": "PASS",
+      "details": [
+        {
+          "UnitID": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+          "UnitKind": "deliverable",
+          "ParentPackageID": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+          "PRDItems": "O-11;OBJ-1;OBJ-2;OBJ-4;OBJ-7",
+          "ScopeItemIDs": "SOW-104",
+          "TraceStatus": "TRACED"
+        }
+      ]
+    },
+    {
+      "check": "reverse_all_traced",
+      "status": "PASS",
+      "details": "all traced"
+    },
+    {
+      "check": "forward_no_uncovered",
+      "status": "PASS",
+      "details": "none"
+    },
+    {
+      "check": "del0202_predecessor_semantics_preserved",
+      "status": "PASS",
+      "details": {
+        "check": "del0202_byte_semantics_unchanged",
+        "status": "PASS",
+        "details": "accepted register row unchanged"
+      }
+    },
+    {
+      "check": "category_scope_counts",
+      "status": "PASS",
+      "details": {
+        "DevelopmentalMachinery": 59,
+        "OperativeProduct": 27,
+        "NormativeBasis": 41,
+        "Evidence": 19
+      }
+    },
+    {
+      "check": "operative_deliverable_count",
+      "status": "PASS",
+      "details": 19
+    },
+    {
+      "check": "evidence_deliverable_count",
+      "status": "PASS",
+      "details": 17
+    },
+    {
+      "check": "no_prohibited_surface_changes",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "gate5_write_set_exact",
+      "status": "PASS",
+      "details": []
+    }
+  ],
+  "counts": {
+    "scope_items": 104,
+    "scope_in": 95,
+    "scope_out": 9,
+    "scope_tbd": 0,
+    "packages": 6,
+    "deliverables": 46,
+    "objectives": 7,
+    "forward_coverage_rows": 85,
+    "reverse_trace_rows": 52
+  },
+  "lineage": {
+    "prd_item": "O-11",
+    "scope_item": "SOW-104",
+    "package": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+    "deliverable": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+    "objectives": [
+      "OBJ-001",
+      "OBJ-002",
+      "OBJ-004",
+      "OBJ-007"
+    ]
+  },
+  "applied_sha256": {
+    "main": "2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18",
+    "scope": "0d48abe08aa336ac5e495650451f286b4b717606f047adff931c45dacc8531a4",
+    "deliverables": "ec32b36fdc078e44a7ca094e9c854a3be6b7d5917360fe5ef5f22ff3702a13b8",
+    "objectives": "c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55",
+    "forward": "adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84",
+    "reverse": "6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0",
+    "telemetry": "6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282"
+  },
+  "changed_paths_observed": [
+    "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+    "execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md",
+    "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+    "execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+    "execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv",
+    "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+    "execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2158/Brief.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2158/Decision_Log.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2158/Decomp_Coverage_IssueLog.csv",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2158/Decomp_Coverage_Matrix.csv",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2158/Decomp_Coverage_Report.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2158/QA_Report.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2158/RUN_SUMMARY.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2158/coverage_summary.json",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159/Brief.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159/Decision_Log.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159/Decomp_Coverage_IssueLog.csv",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159/Decomp_Coverage_Matrix.csv",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159/Decomp_Coverage_Report.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159/QA_Report.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159/RUN_SUMMARY.md",
+    "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159/coverage_summary.json",
+    "execution/_Evaluation/DecompCoverage/_LATEST.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Amendment_Actions.csv",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Amendment_Preview.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Applied_File_Hashes.json",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Decision_Log.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Candidate/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Candidate/chirality_root_coverage_telemetry_v1_0.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Candidate/chirality_root_deliverable_register_v1_0.csv",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Candidate/chirality_root_objective_register_v1_0.csv",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Candidate/chirality_root_prd_coverage_forward_v1_0.csv",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Candidate/chirality_root_scope_ledger_v1_0.csv",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Candidate/chirality_root_trace_reverse_v1_0.csv",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Exact_Amendment.diff",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_3_Validation.json",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_4_Validation.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Gate_5_Validation.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Handoff_State.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Impact_Assessment.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Post_Change_Coverage.json",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Pre_Change_Coverage.json",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Preparation_Brief.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Propagation_Plan.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/RUN_SUMMARY.md",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/Supersession_Map.csv",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/build_gate3_candidate.py",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/validate_gate3_candidate.py",
+    "execution/_ScopeChange/SCA-001_2026-07-26_1454/validate_gate5_applied.py",
+    "execution/_ScopeChange/_LATEST.md"
+  ],
+  "prohibited_changed_paths": [],
+  "unexpected_changed_paths": [],
+  "downstream_state": {
+    "del0206_scaffold": "ABSENT_EXPECTED_PENDING_PROJECT_SETUP",
+    "harness_refresh": "NOT_APPLIED_BY_SCOPE_CHANGE",
+    "runtime_implementation": "NOT_AUTHORIZED"
+  },
+  "post_change_audit": {
+    "snapshot": "execution/_Evaluation/DecompCoverage/COV_SCA001_POSTCHANGE_2026-07-26_2159",
+    "coverage_summary_sha256": "bbc4eb8c45a66b0fafa54c7b6b3d31f5b8e86a911f3d60f696a6a6f021a0a26e",
+    "overall_status": "BLOCKERS",
+    "closure_readiness": "FAIL",
+    "issues_blocker": 1,
+    "issues_warning": 0,
+    "issues_info": 132,
+    "partitions": {
+      "declared": 6,
+      "found": 6
+    },
+    "production_units": {
+      "declared": 46,
+      "found": 45
+    },
+    "sole_blocker_disposition": "DEL-02-06 filesystem scaffold absent; expected downstream PROJECT_SETUP gap preserved as a real AUDIT_DECOMP blocker"
+  }
+}

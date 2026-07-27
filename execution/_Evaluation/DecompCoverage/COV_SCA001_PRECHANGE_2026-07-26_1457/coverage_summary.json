@@ -1,0 +1,47 @@
+{
+  "run_label": "SCA001_PRECHANGE",
+  "timestamp": "2026-07-26T14:57:54-06:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "accepted root decomposition revision v1.0 at AcceptedCandidateSHA ec62af0700e530c1640698fa406398cb1cb45d29",
+  "expected_handoff_phase": "SCA-001 Gate 1 pre-change baseline",
+  "decomposition_path": "/Users/ryan/dev/chirality-meta-fanin-worktree/execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+  "decomposition_revision": "v1.0; AcceptedCandidateSHA ec62af0700e530c1640698fa406398cb1cb45d29",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 6,
+    "deliverables": 45,
+    "objectives": 7,
+    "scope_items": 103,
+    "ledger_rows": 103
+  },
+  "partitions_declared": 6,
+  "partitions_found": 6,
+  "production_units_declared": 45,
+  "production_units_found": 45,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 0,
+  "in_ledger_rows_without_objective_mapping": 15,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "SKIPPED",
+  "handoff_state_status": "SKIPPED",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 0,
+  "issues_info": 132,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "INITIALIZED": 45
+  },
+  "overall_status": "OK",
+  "closure_readiness": "PASS",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}
