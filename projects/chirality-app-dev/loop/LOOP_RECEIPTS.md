@@ -2512,3 +2512,24 @@
   - Checks: typecheck, vitest, build, section9 and runtime CLI tests pass; release-quality `pass_with_skips` with the premerge evidence-skip reason recorded, that row owed from CI on the PR; `desktop:pack` plus dependency and instruction-root integrity checks pass; packaged drills pass in both rounds with the owner's live LaunchAgent, user data, CLI launcher and checkout verified byte-unchanged; authority corpus status no drift (no governed doc edited); repo self-check exit 0; receipt validator pass before and after; `git diff --check` and write containment pass.
   - Model-Attribution: Claude Fable 5 as Agent 0 loop operator (diagnosis, brief, dispatch, dispositions, integration acceptance); one `opus-5` Agent 1 validator and serialized integration owner across two rounds; `opus-5` Agent 2 executors A-DAEMON-SERVICE, B-PACKAGING, V-PACKAGED-DRILLS and RECORDS under sealed briefs with disjoint write scopes.
   - Gate-Outcome: `EXECUTED` — the adopted brief ran to completion inside the fences: the daemon is a self-healing machine-local service, the packaged GUI binds and rebinds unaided, and the quincunx ships in-app and as the application icon; three DEL-02-01 residuals are closed and DEL-09-04 carries the narrowed packaging item with its new residuals; daemon bundle identity is escalated to the owner as its own tranche (decision gate 2), machine deployment is decision gate 3, and owner merge of the pull request is terminal.
+- **2026-07-27 — Receipt 92** (OD7-G1 App effective-state and detector-correction closeout).
+  - Receipt-ID: `Receipt-92`
+  - Examined-Through: `fb16e32ed60bb4f384cf1e07a83c4a14ff63bbae`
+  - Parent-Receipt: `Receipt-91`
+  - Pointers: D-APP-75 additive effective-state closeout
+    `execution/_Coordination/_DECISIONS/D-APP-75_EFFECTIVE_STATE_CLOSEOUT_2026-07-27.md`;
+    corrected D-APP-75 register row; Root notice and App response
+    `execution/_Coordination/{NOTICE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2026-07-27.md,RESPONSE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2026-07-27.md}`;
+    exact proposal package
+    `execution/_Coordination/_PROPOSALS/OD7-G1_2026-07-27/`.
+  - Checks: Git ancestry/tree/current-hold-byte checks; APP-HOLD scan and
+    tests; single-row register diff; all App authority-corpus members MATCH with no
+    membership or resolver change; receipt, path, containment, and whitespace
+    checks pass.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS managed by HELP_HUMAN;
+    exact runtime model build not exposed.
+  - Gate-Outcome: `EXECUTED` — only after explicit owner approval of the exact
+    candidate and CHANGE integration, D-APP-75's already integrated effective
+    state is recorded; the detector correction is acknowledged with
+    `NO_LOCAL_CORPUS_CHANGE`. No repin, hold semantic/exception, SCOPE_CHANGE,
+    product, lifecycle, release, or professional-reliance effect occurs.

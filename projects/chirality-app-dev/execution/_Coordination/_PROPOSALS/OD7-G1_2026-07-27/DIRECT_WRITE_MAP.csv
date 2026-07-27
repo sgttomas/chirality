@@ -1,0 +1,5 @@
+CandidateID,Operation,ProposedLivePath,ExactCandidateSource,Precondition,Exclusion
+OD7-G1-C02,COPY_EXACT,execution/_Coordination/_DECISIONS/D-APP-75_EFFECTIVE_STATE_CLOSEOUT_2026-07-27.md,PROPOSED_D-APP-75_EFFECTIVE_STATE_CLOSEOUT_2026-07-27.md,"owner approves exact C02; target absent; ancestry/current-byte checks pass","no original-ruling edit; no repin"
+OD7-G1-C02,APPLY_PATCH,execution/_Coordination/_DECISIONS/_REGISTER.md,DAPP75_REGISTER_ROW.patch,"owner approves exact C02; D-APP-75 row occurs once and matches patch basis","single row only"
+OD7-G1-C05,COPY_EXACT,execution/_Coordination/RESPONSE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2026-07-27.md,PROPOSED_RESPONSE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2026-07-27.md,"owner approves exact C05; Root notice delivered at exact path; App corpus 8/8 MATCH","no corpus/resolver/hash change"
+OD7-G1-C02+C05,APPEND_EXACT,loop/LOOP_RECEIPTS.md,PROPOSED_APP_RECEIPT_92.md,"owner approves both C02 and C05; Receipt-92 still next-free; cursor and parent still valid","combined receipt must be reissued for a subset"
