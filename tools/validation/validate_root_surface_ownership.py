@@ -41,7 +41,9 @@ Behavior (severity semantics per D-GOV-02)
 - `PKG-*`/`DEL-*` structure exists and the register is absent: BLOCK (exit 1).
 - Register present: BLOCK (exit 1) on any of — malformed/unknown schema;
   malformed entries; absolute or parent-escaping write targets; an entry that
-  does not declare its own package/deliverable tree (undeclared write target);
+  does not declare its own package tree; a deliverable entry whose unique
+  declared nested tree does not exist, is outside the owning package tree, or
+  does not match the accepted deliverable register;
   a materialized `execution/PKG-*` or `execution/DEL-*` child with no register
   entry (unregistered materialized package); an instruction-surface-intersecting
   write target not marked `instruction_surface: true`; or a
@@ -59,10 +61,13 @@ accepted decomposition format and is a recorded open item, not a silent claim.
 Observation boundary
 --------------------
 The register's recorded fields; the names of direct `PKG-*`/`DEL-*` children
-of root `execution/`; the existence of the declared decomposition path and the
-literal presence of declared reference strings within it. No package contents,
-no other working root, no runtime state. This guard holds no authority and
-confers none (K-AUTH-1).
+of root `execution/`; the existence of each declared deliverable tree; its
+resolved containment beneath the owning package tree named by the adjacent
+accepted `*deliverable_register*.csv`; the existence of the declared
+decomposition path and the literal presence of declared reference strings
+within it. No deliverable contents, no recursive discovery of unregistered
+nested deliverables, no other working root, no runtime state. This guard holds
+no authority and confers none (K-AUTH-1).
 
 Registration entry it will assert in `execution/_harness/root_guards.yaml`
 (written by root Project Setup, never by this tranche)::
@@ -79,6 +84,7 @@ Registration entry it will assert in `execution/_harness/root_guards.yaml`
 
 from __future__ import annotations
 
+import csv
 import re
 import subprocess
 import sys
@@ -162,8 +168,13 @@ def intersects_instruction_surface(target: str) -> bool:
     return any(normalized.startswith(prefix) for prefix in INSTRUCTION_SURFACE_DIRS)
 
 
-def covers_own_tree(entry_id: str, write_targets: list[str]) -> bool:
-    """True if some declared target covers `execution/<id>/`, the entry's own tree."""
+def covers_package_tree(entry_id: str, write_targets: list[str]) -> bool:
+    """True if some declared target covers `execution/<id>/`.
+
+    This is the original G2 package-entry rule. Deliverables are nested under
+    their owning package rather than directly under ``execution/`` and are
+    validated separately against the accepted deliverable register.
+    """
     own = f"execution/{entry_id}"
     for target in write_targets:
         normalized = normalize_target(target)
@@ -171,6 +182,95 @@ def covers_own_tree(entry_id: str, write_targets: list[str]) -> bool:
         if normalized == own or base == own or normalized.startswith(own + "/"):
             return True
     return False
+
+
+def declared_deliverable_trees(
+    entry_id: str, write_targets: list[str]
+) -> list[PurePosixPath]:
+    """Return literal target roots that declare the named deliverable tree."""
+    trees: set[PurePosixPath] = set()
+    for target in write_targets:
+        normalized = normalize_target(target)
+        base = normalized.split("*", 1)[0].rstrip("/")
+        if not base:
+            continue
+        candidate = PurePosixPath(base)
+        if candidate.name == entry_id:
+            trees.add(candidate)
+    return sorted(trees, key=str)
+
+
+def load_deliverable_register(
+    root: Path, decomposition: str
+) -> tuple[dict[str, str] | None, str | None]:
+    """Load the one accepted root deliverable register adjacent to the decomposition.
+
+    The established Root decomposition names its authoritative companion
+    register ``*deliverable_register*.csv`` with ``DeliverableID`` and
+    ``ParentPackageID`` columns.
+    """
+    if decomposition == TBD:
+        return None, "the surface-ownership register declares no decomposition"
+
+    directory = (root / decomposition).parent
+    candidates = sorted(
+        path
+        for path in directory.glob("*.csv")
+        if "deliverable_register" in path.name.lower()
+    )
+    if len(candidates) != 1:
+        rendered = [path.relative_to(root).as_posix() for path in candidates]
+        return (
+            None,
+            "expected exactly one deliverable register adjacent to the declared "
+            f"decomposition; found {len(candidates)}: {rendered}",
+        )
+
+    path = candidates[0]
+    try:
+        with path.open(encoding="utf-8-sig", newline="") as handle:
+            reader = csv.DictReader(handle)
+            required = {"DeliverableID", "ParentPackageID"}
+            if not required.issubset(reader.fieldnames or []):
+                return (
+                    None,
+                    f"deliverable register {path.relative_to(root).as_posix()!r} "
+                    f"does not carry required columns {sorted(required)}",
+                )
+            rows: dict[str, str] = {}
+            for line_number, row in enumerate(reader, start=2):
+                deliverable_id = (row.get("DeliverableID") or "").strip()
+                parent_package_id = (row.get("ParentPackageID") or "").strip()
+                if not deliverable_id or not parent_package_id:
+                    return (
+                        None,
+                        f"deliverable register {path.relative_to(root).as_posix()!r} "
+                        f"line {line_number} has a blank DeliverableID or ParentPackageID",
+                    )
+                if deliverable_id in rows:
+                    return (
+                        None,
+                        f"deliverable register {path.relative_to(root).as_posix()!r} "
+                        f"duplicates DeliverableID {deliverable_id!r}",
+                    )
+                rows[deliverable_id] = parent_package_id
+    except OSError as exc:
+        return (
+            None,
+            f"deliverable register {path.relative_to(root).as_posix()!r} is unreadable: {exc}",
+        )
+    return rows, None
+
+
+def is_contained_tree(child: Path, parent: Path) -> bool:
+    """True when an existing child tree resolves strictly beneath its parent."""
+    try:
+        resolved_child = child.resolve(strict=True)
+        resolved_parent = parent.resolve(strict=True)
+        resolved_child.relative_to(resolved_parent)
+    except (FileNotFoundError, OSError, RuntimeError, ValueError):
+        return False
+    return resolved_child != resolved_parent
 
 
 def check(root: Path) -> tuple[int, list[str]]:
@@ -256,6 +356,22 @@ def check(root: Path) -> tuple[int, list[str]]:
         failures.append("entries must be a list (may be empty)")
         entries = []
 
+    has_deliverable_entry = any(
+        isinstance(entry, dict) and entry.get("kind") == "deliverable"
+        for entry in entries
+    )
+    deliverable_register: dict[str, str] | None = None
+    deliverable_register_error: str | None = None
+    if has_deliverable_entry:
+        deliverable_register, deliverable_register_error = load_deliverable_register(
+            root, str(decomposition)
+        )
+        if deliverable_register_error:
+            failures.append(
+                "deliverable-entry validation unavailable — "
+                f"{deliverable_register_error}"
+            )
+
     seen_ids: set[str] = set()
     registered_ids: set[str] = set()
     target_owners: dict[str, list[str]] = {}
@@ -296,12 +412,55 @@ def check(root: Path) -> tuple[int, list[str]]:
             )
         clean_targets = [t for t in write_targets if t not in bad_targets]
 
-        if clean_targets and isinstance(entry.get("id"), str) and ID_RE.match(str(entry.get("id"))):
-            if not covers_own_tree(str(entry["id"]), clean_targets):
+        if (
+            clean_targets
+            and isinstance(entry.get("id"), str)
+            and ID_RE.match(str(entry.get("id")))
+        ):
+            if kind == "package" and not covers_package_tree(
+                str(entry["id"]), clean_targets
+            ):
                 failures.append(
                     f"{label}: undeclared write target — no declared target covers "
                     f"the entry's own tree execution/{entry['id']}/"
                 )
+            elif kind == "deliverable":
+                entry_id_str = str(entry["id"])
+                if entry.get("decomposition_ref") != entry_id_str:
+                    failures.append(
+                        f"{label}: register/decomposition mismatch — deliverable "
+                        "decomposition_ref must exactly equal its DeliverableID"
+                    )
+                trees = declared_deliverable_trees(entry_id_str, clean_targets)
+                if len(trees) != 1:
+                    failures.append(
+                        f"{label}: declared deliverable tree is ambiguous or absent — "
+                        f"expected exactly one target rooted at {entry_id_str!r}, "
+                        f"found {[tree.as_posix() for tree in trees]}"
+                    )
+                elif deliverable_register is not None:
+                    parent_package_id = deliverable_register.get(entry_id_str)
+                    if parent_package_id is None:
+                        failures.append(
+                            f"{label}: register/decomposition mismatch — no exact "
+                            "DeliverableID match exists in the deliverable register"
+                        )
+                    else:
+                        tree = trees[0]
+                        tree_path = root / tree
+                        package_tree = root / "execution" / parent_package_id
+                        if not tree_path.is_dir():
+                            failures.append(
+                                f"{label}: declared deliverable tree "
+                                f"{tree.as_posix()!r} does not exist as a directory"
+                            )
+                        elif not is_contained_tree(tree_path, package_tree):
+                            failures.append(
+                                f"{label}: declared deliverable tree "
+                                f"{tree.as_posix()!r} is not contained within its "
+                                f"owning package tree execution/{parent_package_id}/ "
+                                "from the deliverable register"
+                            )
 
         marked = entry.get("instruction_surface", False)
         if not isinstance(marked, bool):
