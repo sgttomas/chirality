@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Capability-forward permission policy with explicit deny precedence, tool exposure, MCP wrappers, hooks, writes, bash, compaction hooks.
+**ScopeDescription:** App/project permission policy, explicit hard-deny inputs, human approvals, project-specific deterministic tools/hooks, client presentation, and daemon conformance.
 
-**InclusionCriteria:** Runtime tool execution governance.
+**InclusionCriteria:** Project authority and policy inputs; App approval UI; project-specific tool acts; affected-client evidence.
 
-**Exclusions:** Domain-engine operation semantics except protected-path hooks.
+**Exclusions:** Generic runtime tool mediation/execution, interruption, operational event persistence, and domain-engine operation semantics.
 
 ## Deliverable Scope
 
-Record hook start/stop/failure, stop/finalization, and SDK compaction boundaries into Chirality events.
+Supply project-specific hook policy and map daemon hook/compaction operational events into App evidence while verifying fail-closed behavior.
 
 ## Anticipated Artifacts
 
-Hook lifecycle mapper; `context.compacted` tests; terminal hook fixtures
+App hook-policy bridge; hook-event mapper; compaction and terminal conformance fixtures
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Hook lifecycle mapper; `context.compacted` tests; terminal hook fixtures
 |---|---|
 | CoversScopeItems | SOW-057, SOW-061 |
 | SupportsObjectives | OBJ-003, OBJ-005 |
-| ContextEnvelopeNotes | Hook event mirror slice. |
+| ContextEnvelopeNotes | App project-hook and conformance slice; generic hook execution remains Root-owned. |
 
 ## Source Authority
 

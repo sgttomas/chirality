@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Capability-forward permission policy with explicit deny precedence, tool exposure, MCP wrappers, hooks, writes, bash, compaction hooks.
+**ScopeDescription:** App/project permission policy, explicit hard-deny inputs, human approvals, project-specific deterministic tools/hooks, client presentation, and daemon conformance.
 
-**InclusionCriteria:** Runtime tool execution governance.
+**InclusionCriteria:** Project authority and policy inputs; App approval UI; project-specific tool acts; affected-client evidence.
 
-**Exclusions:** Domain-engine operation semantics except protected-path hooks.
+**Exclusions:** Generic runtime tool mediation/execution, interruption, operational event persistence, and domain-engine operation semantics.
 
 ## Deliverable Scope
 
-Resolve `opts.tools` to registered provider/SDK built-ins or Chirality MCP names, reject unknowns, and expose read tools before writes/bash.
+Submit deterministic App/project requested tool names, reject unknown client requests, and verify daemon read-tool exposure before writes/bash.
 
 ## Anticipated Artifacts
 
-Tool resolver; unknown-tool tests; deterministic ordering fixtures
+App tool-request resolver; unknown-tool tests; daemon visible-surface conformance fixtures
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Tool resolver; unknown-tool tests; deterministic ordering fixtures
 |---|---|
 | CoversScopeItems | SOW-047, SOW-049, SOW-050 |
 | SupportsObjectives | OBJ-005 |
-| ContextEnvelopeNotes | Tool exposure slice bounded to read-first behavior. |
+| ContextEnvelopeNotes | App client/policy slice; generic resolution and execution remain Root-owned. |
 
 ## Source Authority
 

@@ -17,11 +17,11 @@
 
 ## Package Scope
 
-**ScopeDescription:** Product-owned turn lifecycle, route boundary, session locking, SSE compatibility, interrupts.
+**ScopeDescription:** App-side runtime-client integration for the Root-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
 
-**InclusionCriteria:** `AgentEnginePort`, `TurnEngine`, API transport shape.
+**InclusionCriteria:** App daemon client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
 
-**Exclusions:** SDK-specific message translation details.
+**Exclusions:** Generic runtime contracts, daemon/session/lock/interruption/persistence semantics, and provider-specific message translation details.
 
 ## Deliverable Scope
 

@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records.
+**ScopeDescription:** Agent instruction conformance, matrix/pipeline dispatch, project delegation authority, daemon-client dispatch, sealed child context, and checkout-contained AgentRuns.
 
-**InclusionCriteria:** Agent OS behavior and delegation.
+**InclusionCriteria:** Agent OS authority, instructions, approval references, client dispatch, and project evidence.
 
-**Exclusions:** General SDK adapter mechanics.
+**Exclusions:** Generic provider/SDK mechanics and daemon-owned operational delegation execution/state.
 
 ## Deliverable Scope
 
-Bridge fail-closed subagent governance to SDK agents with allowlists, sealed context, approval refs, and restricted child tools/cwd.
+Bridge checkout-contained agent instructions, sealed context, project permissions, and approval references to daemon-owned operational delegation with restricted child tools/cwd.
 
 ## Anticipated Artifacts
 
-`evaluateSubagentGovernance` bridge; SDK agent definitions; `Agent` hook tests
+App project-authority bridge; daemon-client dispatch; sealed-brief and restricted-child conformance tests
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Bridge fail-closed subagent governance to SDK agents with allowlists, sealed con
 |---|---|
 | CoversScopeItems | SOW-063 |
 | SupportsObjectives | OBJ-005, OBJ-007 |
-| ContextEnvelopeNotes | Focused subagent governance execution. |
+| ContextEnvelopeNotes | Project authority/client-dispatch slice; the daemon owns operational delegation execution. |
 
 ## Source Authority
 

@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Capability-forward permission policy with explicit deny precedence, tool exposure, MCP wrappers, hooks, writes, bash, compaction hooks.
+**ScopeDescription:** App/project permission policy, explicit hard-deny inputs, human approvals, project-specific deterministic tools/hooks, client presentation, and daemon conformance.
 
-**InclusionCriteria:** Runtime tool execution governance.
+**InclusionCriteria:** Project authority and policy inputs; App approval UI; project-specific tool acts; affected-client evidence.
 
-**Exclusions:** Domain-engine operation semantics except protected-path hooks.
+**Exclusions:** Generic runtime tool mediation/execution, interruption, operational event persistence, and domain-engine operation semantics.
 
 ## Deliverable Scope
 
-Implement structured permission decisions, explicit deny precedence, capability-policy mode mapping, and `canUseTool` approval mediation.
+Supply App/project permission policy, explicit deny inputs, and human decisions to daemon tool execution; preserve checkout approval evidence and verify operational permission events and `canUseTool` mediation.
 
 ## Anticipated Artifacts
 
-Permission overlay module; decision records; readOnly/dontAsk/ask tests; hard-deny precedence tests
+App permission-policy bridge; checkout decision records; daemon event conformance; readOnly/dontAsk/ask and hard-deny tests
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Permission overlay module; decision records; readOnly/dontAsk/ask tests; hard-de
 |---|---|
 | CoversScopeItems | SOW-054, SOW-055, SOW-056, SOW-058 |
 | SupportsObjectives | OBJ-005 |
-| ContextEnvelopeNotes | Permission-policy slice; hooks are separated. |
+| ContextEnvelopeNotes | App/project authority and conformance slice; generic tool execution remains daemon-owned. |
 
 ## Source Authority
 

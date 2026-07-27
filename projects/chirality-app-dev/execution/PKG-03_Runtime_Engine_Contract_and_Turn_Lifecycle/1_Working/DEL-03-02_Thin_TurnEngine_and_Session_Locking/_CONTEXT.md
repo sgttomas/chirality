@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Product-owned turn lifecycle, route boundary, session locking, SSE compatibility, interrupts.
+**ScopeDescription:** App-side runtime-client integration for the Root-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
 
-**InclusionCriteria:** `AgentEnginePort`, `TurnEngine`, API transport shape.
+**InclusionCriteria:** App daemon client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
 
-**Exclusions:** SDK-specific message translation details.
+**Exclusions:** Generic runtime contracts, daemon/session/lock/interruption/persistence semantics, and provider-specific message translation details.
 
 ## Deliverable Scope
 
-Move turn lifecycle, session binding, boot metadata, and active-turn locking behind `TurnEngine`.
+Keep App `/api/harness/*` and Desktop surfaces as daemon clients, bind project/persona/mode/options requests, and verify daemon-owned session lifecycle and one-active-turn behavior.
 
 ## Anticipated Artifacts
 
-`turn-engine.ts`; lock cleanup tests; session lifecycle tests
+Daemon-client turn proxy; App session integration tests; daemon locking/lifecycle conformance evidence
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Move turn lifecycle, session binding, boot metadata, and active-turn locking beh
 |---|---|
 | CoversScopeItems | SOW-009, SOW-010, SOW-011, SOW-038 |
 | SupportsObjectives | OBJ-002 |
-| ContextEnvelopeNotes | Backend refactor with stable external route shape. |
+| ContextEnvelopeNotes | App backend-integration slice; generic TurnEngine and lock ownership remain Root-owned. |
 
 ## Source Authority
 

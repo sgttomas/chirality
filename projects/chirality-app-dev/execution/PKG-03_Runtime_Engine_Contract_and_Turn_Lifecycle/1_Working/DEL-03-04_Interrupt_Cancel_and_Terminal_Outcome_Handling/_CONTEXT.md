@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Product-owned turn lifecycle, route boundary, session locking, SSE compatibility, interrupts.
+**ScopeDescription:** App-side runtime-client integration for the Root-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
 
-**InclusionCriteria:** `AgentEnginePort`, `TurnEngine`, API transport shape.
+**InclusionCriteria:** App daemon client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
 
-**Exclusions:** SDK-specific message translation details.
+**Exclusions:** Generic runtime contracts, daemon/session/lock/interruption/persistence semantics, and provider-specific message translation details.
 
 ## Deliverable Scope
 
-Ensure interrupts, client disconnects, failures, and cancellations release locks and persist terminal outcomes.
+Forward App client interrupts, cancellations, disconnects, and failures and verify that daemon-owned cleanup and terminal persistence preserve client-visible behavior.
 
 ## Anticipated Artifacts
 
-Interrupt tests; cancel cleanup tests; terminal event mapper
+Client interrupt/cancel forwarding tests; daemon cleanup conformance evidence; terminal-event compatibility fixtures
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Interrupt tests; cancel cleanup tests; terminal event mapper
 |---|---|
 | CoversScopeItems | SOW-012, SOW-015 |
 | SupportsObjectives | OBJ-002, OBJ-003 |
-| ContextEnvelopeNotes | Runtime lifecycle slice with clear failure modes. |
+| ContextEnvelopeNotes | App client lifecycle-integration slice with explicit daemon ownership. |
 
 ## Source Authority
 

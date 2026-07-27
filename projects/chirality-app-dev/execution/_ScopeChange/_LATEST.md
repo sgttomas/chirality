@@ -1,22 +1,22 @@
 # Active SCOPE_CHANGE Snapshot
 
-**Status:** `GOVERNANCE_PROPAGATED_IMPLEMENTATION_PENDING`
-**Active snapshot:** `execution/_ScopeChange/SCA-APP-004_2026-07-23_Workroom_Agent_Room_IA_Redesign/`
-**Amendment label:** `SCA-APP-004 Workroom and Agent Room Information Architecture`
-**Pre-change audit:** `execution/_Evaluation/DecompCoverage/COV_SCA_APP_004_PRECHANGE_2026-07-23_1330/`
+**Status:** `CLOSED_FOR_SCOPE_CHANGE_ONLY`
+**Active snapshot:** `execution/_ScopeChange/SCA-APP-005_2026-07-26_2334_Root_Runtime_Client_Boundary/`
+**Amendment label:** `SCA-APP-005 Root Runtime / App Client Boundary`
+**Post-change audit:** `execution/_Evaluation/DecompCoverage/COV_SCA_APP_005_POSTCHANGE_2026-07-27_2026-07-27_0954/`
 
-The owner confirmed the parsed Workroom/Agent Room action envelope on
-2026-07-23. SCOPE_CHANGE verified every named stable ID and captured a scoped
-pre-change baseline. No structural blocker exists; 15 folder-local
-artifact-index warnings and the semantic drift findings are carried into
-Gate 2.
+The owner confirmed Gate 1, approved the corrected and independently
+reconciled Revision 2 impact envelope, and permitted the later gates through
+completion. SCA-APP-005 corrects the App decomposition to the Root-owner/App-
+client boundary without changing topology, mappings, context envelopes,
+lifecycle, dependency facts, contracts, pins, implementation, PRDs, or
+APP-HOLD-1.
 
-The owner accepted Gate 2, selected Woven Dialogue with a Work/Agents
-Coordination Panel, approved the exact Gate-3 amendment, and approved the
-Gate-4 propagation plan. Gate-5 governance propagation and independent
-closure validation are complete with 15 carried anticipated-artifact warnings.
-Implementation, route retirement, and old-UI retirement are not authorized by
-this state alone.
+Exact Gate-3 source/entity concordance, 25-context metadata parity, and
+topology invariants pass. Post-change AUDIT_DECOMP reports 0 blockers, 55
+carried or pre-existing warnings, and 2 informational findings.
 
-SCA-APP-001 through SCA-APP-003 remain historical. SCA-APP-003 closed with
-owner-accepted observations on 2026-07-23.
+Root, Tier-0, and PEC received factual coordination-only notices.
+Acknowledgment does not gate this closure. Contracts, basis repair,
+D-APP-48/49 evidence, implementation, method reform, and semantic parity
+remain separately governed and frozen.

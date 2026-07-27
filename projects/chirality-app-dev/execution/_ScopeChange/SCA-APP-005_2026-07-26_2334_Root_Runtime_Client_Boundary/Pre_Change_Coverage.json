@@ -1,0 +1,91 @@
+{
+  "amendment_id": "SCA-APP-005",
+  "state": "GATE_1_PRE_CHANGE_BASELINE",
+  "captured_at": "2026-07-26T23:34:13-06:00",
+  "accepted_repository_basis": "0f8349d90f58c1e6b3339263f5aafaf36e783a7e",
+  "decomp_variant": "SOFTWARE",
+  "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "decomposition_sha256": "952d3cbf81b0cea014a1c3f1bd3f62fbc0b23b96bfa1fd1913961731c925b08b",
+  "prior_audit_reference": {
+    "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_004_POSTCHANGE_2026-07-23_2027/coverage_summary.json",
+    "sha256": "31d38359c21f6f5735a10b7bd8be78178d8af3b9144380bbb76733e00525af2b",
+    "overall_status": "WARNINGS",
+    "issues_blocker": 0,
+    "issues_warning": 15,
+    "admitted_as_current_gate_1_baseline": false,
+    "limitation": "The admitted prior audit is scoped to PKG-02, PKG-05, and PKG-08 for SCA-APP-004; it does not cover PKG-03 or DEL-03-01 and is therefore reference evidence only."
+  },
+  "audit_method": "A bounded read-only AUDIT_DECOMP specialist found no repository-provided write-free runner. It used deterministic Markdown/filesystem parsing and wrote no _Evaluation snapshot or pointer. A fresh immutable AUDIT_DECOMP snapshot remains mandatory at Gate 5.",
+  "repository_topology": {
+    "packages": 10,
+    "deliverables": 51,
+    "objectives": 10,
+    "scope_items": 78,
+    "ledger_rows": 78,
+    "scope_status": {
+      "IN": 73,
+      "OUT": 4,
+      "TBD": 1
+    },
+    "contexts_found": 51,
+    "scope_of_work_files_found": 51
+  },
+  "affected_scope": {
+    "packages_declared": 1,
+    "packages_found": 1,
+    "deliverables_declared": 1,
+    "deliverables_found": 1,
+    "scope_items_verified": 1,
+    "scope_item_occurrences_verified": 2,
+    "objectives_verified": 1,
+    "open_issues_verified": 1,
+    "historical_decisions_verified": 1
+  },
+  "affected_ids": {
+    "package": [
+      "PKG-03"
+    ],
+    "deliverables": [
+      "DEL-03-01"
+    ],
+    "scope_items": [
+      "SOW-037"
+    ],
+    "objective": [
+      "OBJ-002"
+    ],
+    "trace_items": [
+      "OI-007"
+    ],
+    "gate_2_decision_set": [
+      "DEL-01-02",
+      "DEL-09-02",
+      "DEL-03-02",
+      "DEL-03-03",
+      "DEL-03-04",
+      "SOW-009",
+      "SOW-010",
+      "SOW-011",
+      "SOW-012",
+      "SOW-015",
+      "SOW-038",
+      "SOW-040",
+      "DEC-019"
+    ]
+  },
+  "pre_existing_reverse_coverage_limitations": [
+    "PKG-00 control folders DEL-00-01 and DEL-00-02 are outside the declared 10-package decomposition topology.",
+    "PKG-03_Harness_Runtime_Core contains ignored evidence for undeclared DEL-03-06; it is not an accepted stable-ID collision."
+  ],
+  "validation": {
+    "duplicate_or_missing_affected_ids": 0,
+    "parent_lineage_change": false,
+    "topology_change": false,
+    "renumbering": false,
+    "accepted_decomposition_modified": false,
+    "latest_pointer_modified": false,
+    "historical_dec_019_disposition": "NO_CHANGE",
+    "second_read_only_adversarial_verdict": "PASS_WITH_REQUIRED_ACTION_REGISTER_CORRECTION_APPLIED"
+  },
+  "gate_1_verdict": "WARNINGS_PENDING_OWNER_CONFIRMATION"
+}

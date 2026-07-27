@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Canonical session layout, `HarnessEvent`, JSONL append/replay, redaction, tool result artifacts.
+**ScopeDescription:** App session/event consumption, legacy migration participation, replay, App-side redaction, accepted project artifacts, and conformance evidence.
 
-**InclusionCriteria:** Runtime audit records and replay surfaces.
+**InclusionCriteria:** Client compatibility, replay/projection, affected-client diagnostics, and checkout acceptance evidence.
 
-**Exclusions:** Tool permission semantics.
+**Exclusions:** Generic session/event/tool-result persistence and daemon operational-state ownership.
 
 ## Deliverable Scope
 
-Store and preview medium/large tool outputs under session artifacts without flooding chat or model context.
+Consume and preview daemon-managed medium/large tool outputs, preserve separately accepted project artifacts, and verify output budgets without flooding chat or model context.
 
 ## Anticipated Artifacts
 
-Artifact store; output budget tests; metadata fixtures
+App artifact preview/client; accepted-project-artifact linkage; output-budget conformance fixtures
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Artifact store; output budget tests; metadata fixtures
 |---|---|
 | CoversScopeItems | SOW-053, SOW-059 |
 | SupportsObjectives | OBJ-003, OBJ-005 |
-| ContextEnvelopeNotes | Output budget slice shared by tool phases. |
+| ContextEnvelopeNotes | App consumption/evidence slice; generic operational result storage remains daemon-owned. |
 
 ## Source Authority
 
