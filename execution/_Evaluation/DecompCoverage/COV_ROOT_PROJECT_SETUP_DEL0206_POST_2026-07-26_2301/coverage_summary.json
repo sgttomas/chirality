@@ -1,0 +1,48 @@
+{
+  "run_label": "ROOT_PROJECT_SETUP_DEL0206_POST",
+  "timestamp": "2026-07-26T23:01:40-06:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "execution/_ScopeChange/SCA-001_2026-07-26_1454/",
+  "expected_handoff_phase": "PROJECT_SETUP_DEL-02-06_CLOSEOUT",
+  "decomposition_path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+  "decomposition_revision": "v1.1",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 6,
+    "deliverables": 46,
+    "objectives": 7,
+    "scope_items": 104,
+    "ledger_rows": 104
+  },
+  "partitions_declared": 6,
+  "partitions_found": 6,
+  "production_units_declared": 46,
+  "production_units_found": 46,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 0,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 0,
+  "issues_info": 138,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "INITIALIZED": 45,
+    "OPEN": 1
+  },
+  "overall_status": "OK",
+  "closure_readiness": "PASS",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

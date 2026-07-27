@@ -42,8 +42,9 @@ exclude_globs:
 
 baselines:
   # Repinned at D-GOV-21 §6 step-9 materialization (2026-07-25): 6 packages and
-  # 45 deliverables materialized from the accepted decomposition (D-GOV-25), all
-  # at lifecycle state OPEN. Count verified against the checkout via status_glob.
-  status_files: 45
+  # 46 deliverables materialized from accepted decomposition revision 1.1
+  # (SCA-001), with DEL-02-06 at OPEN. Count verified against the checkout via
+  # status_glob during the bounded PROJECT_SETUP refresh.
+  status_files: 46
   status_mismatch: 0
-  pinned_at: 653fabc9b3e8abf369f5e776a7d3ee24bf235e7a
+  pinned_at: 2db2c712825af13d6b5425c34d31ff9daf470c89
