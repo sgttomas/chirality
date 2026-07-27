@@ -26,6 +26,16 @@ entries:
     decomposition_ref: PKG-02_Operative_Instruction_Surface_and_Runtime_Layers
     write_targets:
       - execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/**
+      - runtime/**
+    instruction_surface: false
+    serialization: null
+
+  - id: DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance
+    kind: deliverable
+    decomposition_ref: DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance
+    write_targets:
+      - execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/**
+      - runtime/**
     instruction_surface: false
     serialization: null
 
