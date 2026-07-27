@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Provider-adapter adoption probe, first-adapter SDK options, prompt composition, provider integration, settings isolation.
+**ScopeDescription:** App integration, project-input composition, packaged-daemon credential-boundary participation, provider-adapter compatibility, settings isolation, and conformance evidence.
 
-**InclusionCriteria:** First-adapter/provider-boundary implementation.
+**InclusionCriteria:** First-adapter probe; App client/packaging integration; prompt/project inputs; provider and settings conformance.
 
-**Exclusions:** Chirality event store internals beyond metadata handoff.
+**Exclusions:** Generic adapters, engines, credentials, residency, and unresolved generic-versus-private component classification.
 
 ## Deliverable Scope
 
-Translate provider/SDK stream messages into stable `UIEvent`s and provider-neutral `HarnessEvent`s without leaking adapter shape into core contracts.
+Translate daemon/provider outputs into stable App `UIEvent`s and verify conformance to Root-owned provider-neutral `HarnessEvent` semantics without redefining generic adapter contracts.
 
 ## Anticipated Artifacts
 
-`sdk-message-mapper.ts`; mapper tests; provider-neutral leakage tests
+App UI-event mapper; conformance fixtures; provider-shape leakage tests
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Translate provider/SDK stream messages into stable `UIEvent`s and provider-neutr
 |---|---|
 | CoversScopeItems | SOW-040, SOW-044, SOW-051 |
 | SupportsObjectives | OBJ-002, OBJ-004 |
-| ContextEnvelopeNotes | Focused adapter mapping surface. |
+| ContextEnvelopeNotes | App client mapping surface; generic adapter/event semantics remain Root-owned. |
 
 ## Source Authority
 

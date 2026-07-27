@@ -17,11 +17,11 @@
 
 ## Package Scope
 
-**ScopeDescription:** Provider-adapter adoption probe, first-adapter SDK options, prompt composition, provider integration, settings isolation.
+**ScopeDescription:** App integration, project-input composition, packaged-daemon credential-boundary participation, provider-adapter compatibility, settings isolation, and conformance evidence.
 
-**InclusionCriteria:** First-adapter/provider-boundary implementation.
+**InclusionCriteria:** First-adapter probe; App client/packaging integration; prompt/project inputs; provider and settings conformance.
 
-**Exclusions:** Chirality event store internals beyond metadata handoff.
+**Exclusions:** Generic adapters, engines, credentials, residency, and unresolved generic-versus-private component classification.
 
 ## Deliverable Scope
 

@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Canonical session layout, `HarnessEvent`, JSONL append/replay, redaction, tool result artifacts.
+**ScopeDescription:** App session/event consumption, legacy migration participation, replay, App-side redaction, accepted project artifacts, and conformance evidence.
 
-**InclusionCriteria:** Runtime audit records and replay surfaces.
+**InclusionCriteria:** Client compatibility, replay/projection, affected-client diagnostics, and checkout acceptance evidence.
 
-**Exclusions:** Tool permission semantics.
+**Exclusions:** Generic session/event/tool-result persistence and daemon operational-state ownership.
 
 ## Deliverable Scope
 
-Redact provider, SDK, tool, and run logs so key material and secrets do not enter runtime records.
+Redact App-originated provider/client presentation and verify that Root-runtime operational records exclude credentials and secrets.
 
 ## Anticipated Artifacts
 
-Redaction helper; run logger tests; provider error fixtures
+App redaction helper; daemon redaction conformance tests; provider/client error fixtures
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Redaction helper; run logger tests; provider error fixtures
 |---|---|
 | CoversScopeItems | SOW-021, SOW-041 |
 | SupportsObjectives | OBJ-003, OBJ-008 |
-| ContextEnvelopeNotes | Focused security utility. |
+| ContextEnvelopeNotes | App source/presentation security and conformance; no generic run-logger ownership. |
 
 ## Source Authority
 

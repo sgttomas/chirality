@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Provider-adapter adoption probe, first-adapter SDK options, prompt composition, provider integration, settings isolation.
+**ScopeDescription:** App integration, project-input composition, packaged-daemon credential-boundary participation, provider-adapter compatibility, settings isolation, and conformance evidence.
 
-**InclusionCriteria:** First-adapter/provider-boundary implementation.
+**InclusionCriteria:** First-adapter probe; App client/packaging integration; prompt/project inputs; provider and settings conformance.
 
-**Exclusions:** Chirality event store internals beyond metadata handoff.
+**Exclusions:** Generic adapters, engines, credentials, residency, and unresolved generic-versus-private component classification.
 
 ## Deliverable Scope
 
-Preserve API key precedence, current Anthropic network policy, provider error classification, no unauthorized provider/network expansion, and redacted adapter environment handoff.
+Preserve App credential entry/status and packaged-daemon `safeStorage` boundary participation, verify ruled provider/network behavior and redacted client handoff, and prevent unauthorized expansion without creating a second credential owner.
 
 ## Anticipated Artifacts
 
-Provider wrapper; key handoff tests; base URL/network tests; provider-expansion guard tests; redaction fixtures
+App credential UI/client bridge; packaged-daemon safeStorage conformance; network and provider-expansion tests; redaction fixtures
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Provider wrapper; key handoff tests; base URL/network tests; provider-expansion 
 |---|---|
 | CoversScopeItems | SOW-019, SOW-020, SOW-021 |
 | SupportsObjectives | OBJ-004, OBJ-008 |
-| ContextEnvelopeNotes | Security/privacy slice spanning current provider boundary. |
+| ContextEnvelopeNotes | App security/conformance slice; the daemon exclusively owns runtime credentials and generic network semantics. |
 
 ## Source Authority
 

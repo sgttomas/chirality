@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Provider-adapter adoption probe, first-adapter SDK options, prompt composition, provider integration, settings isolation.
+**ScopeDescription:** App integration, project-input composition, packaged-daemon credential-boundary participation, provider-adapter compatibility, settings isolation, and conformance evidence.
 
-**InclusionCriteria:** First-adapter/provider-boundary implementation.
+**InclusionCriteria:** First-adapter probe; App client/packaging integration; prompt/project inputs; provider and settings conformance.
 
-**Exclusions:** Chirality event store internals beyond metadata handoff.
+**Exclusions:** Generic adapters, engines, credentials, residency, and unresolved generic-versus-private component classification.
 
 ## Deliverable Scope
 
-Confirm provider-adapter viability and Claude Agent SDK / Anthropic as first concrete adapter, including package version, message sequence, permissions, hooks, MCP, sessions, storage, interrupts, packaging, fallback triggers, and future-provider criteria.
+Confirm App packaged-daemon/client compatibility with the first Root-runtime adapter, including version, messages, policy inputs, hooks, project MCP acts, session linkage, interruption, packaging, conformance, and unresolved component-classification risks.
 
 ## Anticipated Artifacts
 
-First-adapter probe notes; version decision; fallback criteria; future-provider criteria; residual-risk notes
+App first-adapter client probe; version decision; conformance criteria; component-classification open items; residual-risk notes
 
 ## Traceability
 
@@ -37,7 +37,7 @@ First-adapter probe notes; version decision; fallback criteria; future-provider 
 |---|---|
 | CoversScopeItems | SOW-018, SOW-044, SOW-046 |
 | SupportsObjectives | OBJ-004 |
-| ContextEnvelopeNotes | Documentation/probe slice with no new user tool exposure. |
+| ContextEnvelopeNotes | App client/probe slice; no generic adapter ownership or new tool exposure. |
 
 ## Source Authority
 

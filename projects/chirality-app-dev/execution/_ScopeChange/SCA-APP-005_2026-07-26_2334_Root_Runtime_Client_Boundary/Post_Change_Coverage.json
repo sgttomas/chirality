@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "SCA_POST_CHANGE_COVERAGE_V1",
+  "amendmentId": "SCA-APP-005",
+  "date": "2026-07-27",
+  "basisCommit": "fb16e32ed60bb4f384cf1e07a83c4a14ff63bbae",
+  "decompositionPath": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "decompositionSha256": "69b3110c26cb0b435ced4144845282bf6905cde4c0474b21282b9a1806984946",
+  "topology": {
+    "scopeItems": 78,
+    "packages": 10,
+    "deliverables": 51,
+    "objectives": 10,
+    "unchanged": true
+  },
+  "approvedImpact": {
+    "modifiedScopeItems": 31,
+    "modifiedPackages": 5,
+    "modifiedDeliverables": 17,
+    "modifiedObjectives": 5,
+    "affectedContexts": 25,
+    "directContextParity": 17,
+    "packageOnlyContextParity": 8,
+    "unresolvedSeams": 5
+  },
+  "checks": {
+    "gate3SourceConcordance": "PASS",
+    "contextMetadataParity": "PASS",
+    "stableIds": "PASS",
+    "mappings": "PASS",
+    "contextEnvelopes": "PASS",
+    "lifecycleState": "PASS",
+    "dependencyFacts": "PASS",
+    "gitDiffCheck": "PASS",
+    "supersessionMapCarryForward": "PASS",
+    "auditDecomp": "WARNINGS_NO_BLOCKER"
+  },
+  "audit": {
+    "snapshot": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_005_POSTCHANGE_2026-07-27_2026-07-27_0954",
+    "packagesFound": "10/10",
+    "deliverablesFound": "51/51",
+    "contextsAligned": "51/51",
+    "scopeOfWorkContractsValid": "51/51",
+    "objectivesSupported": "10/10",
+    "blockers": 0,
+    "warnings": 55,
+    "info": 2,
+    "warningPosture": "51 anticipated-artifact warnings plus pre-existing reverse-only PKG-00/DEL-00 control surfaces and undeclared DEL-03-06 residue"
+  },
+  "supersessionMapSha256": "556e1a185adf04c9bba8753a9b81d9651067512a3bfd4fd0002b4adaea5ea2ee",
+  "downstreamState": "FROZEN_SEPARATELY_GOVERNED"
+}

@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Product-owned turn lifecycle, route boundary, session locking, SSE compatibility, interrupts.
+**ScopeDescription:** App-side runtime-client integration for the Root-owned turn lifecycle, including thin Desktop/HTTP proxy behavior, session request binding, route/SSE compatibility, interrupt/cancel presentation, and conformance evidence.
 
-**InclusionCriteria:** `AgentEnginePort`, `TurnEngine`, API transport shape.
+**InclusionCriteria:** App daemon client/proxy, contract compatibility, API/SSE transport, affected-client evidence.
 
-**Exclusions:** SDK-specific message translation details.
+**Exclusions:** Generic runtime contracts, daemon/session/lock/interruption/persistence semantics, and provider-specific message translation details.
 
 ## Deliverable Scope
 
-Define the product-owned runtime boundary and conformance tests for stub and SDK-backed adapters.
+Verify the App client against Root-owned runtime contracts, preserve the compatibility re-export and App-facing API/UI compatibility, and produce conformance evidence without redefining generic runtime semantics.
 
 ## Anticipated Artifacts
 
-`agent-engine-port.ts`; runtime contract docs; conformance tests
+`@chirality/harness-contract` compatibility re-export; App client conformance tests; API/UI compatibility evidence
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Define the product-owned runtime boundary and conformance tests for stub and SDK
 |---|---|
 | CoversScopeItems | SOW-037 |
 | SupportsObjectives | OBJ-002 |
-| ContextEnvelopeNotes | Single contract/test surface. |
+| ContextEnvelopeNotes | App client contract-compatibility and conformance surface. |
 
 ## Source Authority
 

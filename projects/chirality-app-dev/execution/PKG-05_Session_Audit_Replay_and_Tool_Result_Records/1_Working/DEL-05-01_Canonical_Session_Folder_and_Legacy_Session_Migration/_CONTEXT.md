@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Canonical session layout, `HarnessEvent`, JSONL append/replay, redaction, tool result artifacts.
+**ScopeDescription:** App session/event consumption, legacy migration participation, replay, App-side redaction, accepted project artifacts, and conformance evidence.
 
-**InclusionCriteria:** Runtime audit records and replay surfaces.
+**InclusionCriteria:** Client compatibility, replay/projection, affected-client diagnostics, and checkout acceptance evidence.
 
-**Exclusions:** Tool permission semantics.
+**Exclusions:** Generic session/event/tool-result persistence and daemon operational-state ownership.
 
 ## Deliverable Scope
 
-Introduce `.chirality/sessions/<id>/` layout while keeping legacy `.json` session records listable, resumable, and deletable.
+Maintain App-client compatibility for daemon-centralized sessions, including lazy non-destructive access to and migration of legacy project-local session records while preserving list, resume, and delete behavior.
 
 ## Anticipated Artifacts
 
-Session folder layout; migration helpers; legacy-read tests
+App session-client compatibility layer; legacy-read/migration fixtures; daemon-session conformance evidence
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Session folder layout; migration helpers; legacy-read tests
 |---|---|
 | CoversScopeItems | SOW-009, SOW-043, SOW-046 |
 | SupportsObjectives | OBJ-003 |
-| ContextEnvelopeNotes | Data layout slice with compatibility constraints. |
+| ContextEnvelopeNotes | App compatibility and migration-participation slice; daemon sessions remain Root-owned. |
 
 ## Source Authority
 

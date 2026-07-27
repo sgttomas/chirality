@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Provider-adapter adoption probe, first-adapter SDK options, prompt composition, provider integration, settings isolation.
+**ScopeDescription:** App integration, project-input composition, packaged-daemon credential-boundary participation, provider-adapter compatibility, settings isolation, and conformance evidence.
 
-**InclusionCriteria:** First-adapter/provider-boundary implementation.
+**InclusionCriteria:** First-adapter probe; App client/packaging integration; prompt/project inputs; provider and settings conformance.
 
-**Exclusions:** Chirality event store internals beyond metadata handoff.
+**Exclusions:** Generic adapters, engines, credentials, residency, and unresolved generic-versus-private component classification.
 
 ## Deliverable Scope
 
-Build deterministic first-adapter SDK options from session, persona, mode, tools, hooks, MCP, subagents, resume, and settings policy.
+Supply deterministic App/project option inputs and verify Root-runtime adapter isolation for session, persona, mode, requested tools, hooks, project MCP acts, subagents, resume, and settings policy.
 
 ## Anticipated Artifacts
 
-`sdk-options-builder.ts`; settings isolation tests; visible tool metadata
+App option-input adapter; settings-isolation conformance tests; visible tool metadata
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Build deterministic first-adapter SDK options from session, persona, mode, tools
 |---|---|
 | CoversScopeItems | SOW-016, SOW-045, SOW-047, SOW-052 |
 | SupportsObjectives | OBJ-004, OBJ-005 |
-| ContextEnvelopeNotes | Configuration/security slice; permissions deepen in PKG-06. |
+| ContextEnvelopeNotes | App configuration/conformance slice; generic option mapping and credentials remain Root-owned. |
 
 ## Source Authority
 

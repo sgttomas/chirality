@@ -17,11 +17,11 @@
 
 ## Package Scope
 
-**ScopeDescription:** Canonical session layout, `HarnessEvent`, JSONL append/replay, redaction, tool result artifacts.
+**ScopeDescription:** App session/event consumption, legacy migration participation, replay, App-side redaction, accepted project artifacts, and conformance evidence.
 
-**InclusionCriteria:** Runtime audit records and replay surfaces.
+**InclusionCriteria:** Client compatibility, replay/projection, affected-client diagnostics, and checkout acceptance evidence.
 
-**Exclusions:** Tool permission semantics.
+**Exclusions:** Generic session/event/tool-result persistence and daemon operational-state ownership.
 
 ## Deliverable Scope
 

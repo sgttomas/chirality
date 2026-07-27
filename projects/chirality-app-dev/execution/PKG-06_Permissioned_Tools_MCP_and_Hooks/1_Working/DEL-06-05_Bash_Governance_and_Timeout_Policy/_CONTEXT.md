@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Capability-forward permission policy with explicit deny precedence, tool exposure, MCP wrappers, hooks, writes, bash, compaction hooks.
+**ScopeDescription:** App/project permission policy, explicit hard-deny inputs, human approvals, project-specific deterministic tools/hooks, client presentation, and daemon conformance.
 
-**InclusionCriteria:** Runtime tool execution governance.
+**InclusionCriteria:** Project authority and policy inputs; App approval UI; project-specific tool acts; affected-client evidence.
 
-**Exclusions:** Domain-engine operation semantics except protected-path hooks.
+**Exclusions:** Generic runtime tool mediation/execution, interruption, operational event persistence, and domain-engine operation semantics.
 
 ## Deliverable Scope
 
-Keep Bash denied by default and require explicit mode, timeout, capture, output storage, interrupt, and audit behavior before enabling.
+Keep Bash denied by App/project policy by default, require explicit human authorization, and verify daemon timeout, capture, output, interruption, and operational audit behavior before use.
 
 ## Anticipated Artifacts
 
-Bash deny/default tests; timeout/capture policy; output metadata tests
+App Bash policy/human-gate tests; daemon timeout/capture/interruption conformance; output evidence fixtures
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Bash deny/default tests; timeout/capture policy; output metadata tests
 |---|---|
 | CoversScopeItems | SOW-062 |
 | SupportsObjectives | OBJ-005 |
-| ContextEnvelopeNotes | Single powerful-tool guardrail. |
+| ContextEnvelopeNotes | App authority/conformance guardrail; generic Bash execution remains daemon-owned. |
 
 ## Source Authority
 

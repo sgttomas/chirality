@@ -17,19 +17,19 @@
 
 ## Package Scope
 
-**ScopeDescription:** Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records.
+**ScopeDescription:** Agent instruction conformance, matrix/pipeline dispatch, project delegation authority, daemon-client dispatch, sealed child context, and checkout-contained AgentRuns.
 
-**InclusionCriteria:** Agent OS behavior and delegation.
+**InclusionCriteria:** Agent OS authority, instructions, approval references, client dispatch, and project evidence.
 
-**Exclusions:** General SDK adapter mechanics.
+**Exclusions:** Generic provider/SDK mechanics and daemon-owned operational delegation execution/state.
 
 ## Deliverable Scope
 
-Persist parent-child runtime records, status, timestamps, SDK agent metadata, and output artifact paths.
+Preserve checkout-contained parent-child AgentRuns, status, evidence, and accepted artifact paths linked to daemon operational delegation records.
 
 ## Anticipated Artifacts
 
-Parent-child event records; child output artifact paths; subagent replay fixtures
+Checkout AgentRun records; daemon linkage metadata; child output evidence paths; replay fixtures
 
 ## Traceability
 
@@ -37,7 +37,7 @@ Parent-child event records; child output artifact paths; subagent replay fixture
 |---|---|
 | CoversScopeItems | SOW-063 |
 | SupportsObjectives | OBJ-003, OBJ-007 |
-| ContextEnvelopeNotes | Data record slice separate from permission gate. |
+| ContextEnvelopeNotes | Project evidence slice; daemon operational state is non-authoritative. |
 
 ## Source Authority
 

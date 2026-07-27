@@ -17,11 +17,11 @@
 
 ## Package Scope
 
-**ScopeDescription:** Agent instruction conformance, matrix/pipeline dispatch, Type 2 subagent governance and child records.
+**ScopeDescription:** Agent instruction conformance, matrix/pipeline dispatch, project delegation authority, daemon-client dispatch, sealed child context, and checkout-contained AgentRuns.
 
-**InclusionCriteria:** Agent OS behavior and delegation.
+**InclusionCriteria:** Agent OS authority, instructions, approval references, client dispatch, and project evidence.
 
-**Exclusions:** General SDK adapter mechanics.
+**Exclusions:** Generic provider/SDK mechanics and daemon-owned operational delegation execution/state.
 
 ## Deliverable Scope
 
