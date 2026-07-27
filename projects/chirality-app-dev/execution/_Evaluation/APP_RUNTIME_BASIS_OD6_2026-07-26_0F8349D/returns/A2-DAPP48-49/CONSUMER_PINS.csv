@@ -1,0 +1,11 @@
+ConsumerID,SurfacePath,ClaimedContract,PinType,PinValue,Resolves,CurrentDisposition
+DAPP48-RULING,projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-48_RULING_2026-07-04.md,D-APP-48 private App pull contract,Git commit,ee290e22a8c19d46fb8004114d2ede55b805fba4,YES,CONFLICTS_WITH_LIVE_JSON
+DAPP48-JSON,projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-48_FLOW_A_PULL_CONTRACT_2026-07-04.json,@chirality/harness-contract historical package,Git commit plus export hashes,55a066fdff6877d8aa2a49ce08a545ac98872848,YES,HISTORICAL_PIN_VALID_CURRENT_TREE_STALE
+PIPING-D30,projects/chirality-piping/execution/_Coordination/_DECISIONS/D-30_HARNESS_CONTRACT_CONSUMPTION_2026-07-04.json,D-APP-48 pull contract,Git commit,ee290e22a8c19d46fb8004114d2ede55b805fba4,YES,COMBINED_VALIDATOR_FAILS
+PIPING-D31,projects/chirality-piping/execution/_Coordination/_DECISIONS/D-31_RULING_2026-07-04.md,D-APP-48 and D-30 synchronized mechanism,textual commit/evidence pin,ee290e22a,YES,HISTORICAL_PASS_CURRENT_PAIR_FAILS
+PIPING-DEC063,projects/chirality-piping/execution/_Decomposition/SOFTWARE_DECOMP.md#DEC-063,D-APP-48 automation condition,textual abbreviated commit,ee290e22a,YES,CURRENT_GREEN_CLAIM_STALE
+APP-FACADE,projects/chirality-app-dev/frontend/packages/harness-contract/package.json,@chirality/runtime-contracts,filesystem dependency,file:../../../../../runtime/packages/contracts,YES,DAPP73_COMPATIBILITY_FACADE
+DAPP49-DOMAIN,runtime/packages/contracts/src/harness/domain-profile.ts,D-APP-49 DomainEngineProfile,byte continuity,a99637becbb1eaea79a25aee7a383630ce3293fd6810eb594e51ff23623a034a,YES,ROOT_SUCCESSOR_BYTES_CURRENT
+DAPP49-OPERATION,runtime/packages/contracts/src/harness/operation-proposal.ts,D-APP-49 OperationProposal,byte continuity,90ba567890f6793f0fd93d4ebeb8f74c2b83eb071923e5667830c604258af9ab,YES,ROOT_SUCCESSOR_BYTES_CURRENT
+PEC-SERVER,projects/pec/server/package.json,@chirality/runtime-contracts,filesystem dependency,file:../../../runtime/packages/contracts,YES,ACTUAL_CLIENT_DEPENDENCY
+PIPING-RUNTIME,projects/chirality-piping/execution/_Coordination/_DECISIONS/D-30_HARNESS_CONTRACT_CONSUMPTION_2026-07-04.json,@chirality/harness-contract,metadata only,0.0.0-private at ee290e22,YES,NO_RUNTIME_DEPENDENCY
