@@ -7,6 +7,8 @@ basis: fb16e32ed60bb4f384cf1e07a83c4a14ff63bbae
 instruction_surface_paths:
   - docs/governance_harness/_DECISIONS/D-GOV-27_initialization_closing_rulings.md
   - docs/governance_harness/tranche_manifests/ROOT-OD7-G1-20260727.yaml
+  - docs/governance_harness/_PROPOSALS/OD7-G1_program_record_closeouts_2026-07-27/
+  - docs/governance_harness/_PROPOSALS/OD7-G1_ROOT_MANIFEST_G4_CORRECTION_2026-07-27/
 
 m2_gate:
   authorization: >-
