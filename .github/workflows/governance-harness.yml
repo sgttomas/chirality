@@ -34,6 +34,19 @@ jobs:
         run: python3 -m pip install --quiet pyyaml pytest
       - name: Install zsh (write_status.sh guard is a zsh script; ubuntu runners lack it)
         run: sudo apt-get update -qq && sudo apt-get install -y -qq zsh
+      - name: Candidate whitespace
+        env:
+          WHITESPACE_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          python3 -m pytest \
+            tools/validation/test_validate_candidate_whitespace.py -q
+          if git rev-parse --verify --quiet "${WHITESPACE_BASE_REF}^{commit}" >/dev/null; then
+            python3 tools/validation/validate_candidate_whitespace.py \
+              --base-ref "${WHITESPACE_BASE_REF}"
+          else
+            python3 tools/validation/validate_candidate_whitespace.py \
+              --base-ref HEAD^
+          fi
       - name: Harness test suite
         run: python3 -m pytest tools/practitioner_harness -q
       - name: Self-check (BLOCK findings fail the run per D-GOV-02)

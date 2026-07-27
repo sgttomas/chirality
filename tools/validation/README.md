@@ -23,3 +23,28 @@ Raw reproduction stdout/stderr storage is independent of path portability.
 The piping `.gitattributes` rules apply `-diff -merge -text` only to those
 checksum-governed `.txt` artifacts. Authored text remains under ordinary Git
 diff and whitespace validation.
+
+## Candidate whitespace
+
+`validate_candidate_whitespace.py` preserves `git diff --check` for staged,
+unstaged, and optional committed-range changes. It also closes Git's untracked
+file seam by scanning non-ignored, non-binary untracked text candidates for
+trailing spaces/tabs and surplus terminal blank lines. It reports exact paths
+and lines and never rewrites files.
+
+```bash
+python3 tools/validation/validate_candidate_whitespace.py
+python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main
+```
+
+The governance-harness workflow runs the committed-range form on every pull
+request. The versioned `.githooks/pre-commit` runs the worktree form locally
+when a clone is configured once with:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Root `.editorconfig` settings trim trailing whitespace in compatible editors.
+Neither editor support nor an installed hook is treated as the
+authoritative gate; required pull-request CI remains the backstop.
