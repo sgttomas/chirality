@@ -1,0 +1,60 @@
+{
+  "amendment_id": "SCA-001",
+  "captured_at": "2026-07-26T14:54:00-06:00",
+  "working_tree_basis": "918bb48b8fcee66c031d0d6d4040a46089f96067",
+  "decomp_variant": "SOFTWARE",
+  "decomposition_path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+  "decomposition_revision": "v1.0",
+  "accepted_candidate_sha": "ec62af0700e530c1640698fa406398cb1cb45d29",
+  "authoritative_file_sha256": {
+    "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md": "14067a7d97c94a43f5db0c2c1116206482504f260363de5ff6fa401a4df94cf7",
+    "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv": "87f31c0d9f9118caf550b20223af4421a8165e987b03ee813892a731c253785a",
+    "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv": "699e99e7ac7e75d3b8a677cc06705c96c813e6b29cc1c833ddb48bf401d1b90e",
+    "execution/_Decomposition/chirality_root_objective_register_v1_0.csv": "7a639d0a9b1fa6f6795afd1a32f3a12ec5b0a19f7edee9302b91401fcae53281",
+    "execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv": "0f04ef8f3b5d1c3c4de63661d7c9d3dde1f5f31e414595a7e8000971521c3883",
+    "execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv": "35ae8fb67a083ed07e5f9a5b512a3b65ff2752c2d3cab828dd1eb326f5198ba4",
+    "execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md": "e8eee2fa5e439fcf7db292969ed4cd45c1747bda5734bf7050db74ae8b12bb28"
+  },
+  "counts": {
+    "scope_items": 103,
+    "scope_in": 94,
+    "scope_out": 9,
+    "scope_tbd": 0,
+    "packages": 6,
+    "deliverables": 45,
+    "objectives": 7,
+    "forward_coverage_rows": 84,
+    "reverse_trace_rows": 51
+  },
+  "register_integrity": {
+    "duplicate_scope_ids": 0,
+    "duplicate_deliverable_ids": 0,
+    "duplicate_objective_ids": 0,
+    "all_in_scope_rows_have_exactly_one_resolving_package": true,
+    "all_in_scope_rows_have_at_least_one_resolving_deliverable": true,
+    "all_in_scope_objective_references_resolve": true,
+    "all_deliverable_parent_packages_resolve": true,
+    "all_deliverable_scope_references_resolve": true,
+    "all_deliverable_objective_references_resolve": true,
+    "all_objective_deliverable_references_resolve": true,
+    "all_objective_scope_references_resolve": true,
+    "all_forward_register_references_resolve": true,
+    "all_reverse_register_references_resolve": true,
+    "deliverable_scope_mapping_is_bidirectionally_equal": true,
+    "deliverable_objective_mapping_is_bidirectionally_equal": true
+  },
+  "runtime_stewardship_observations": {
+    "current_prd_item_O_11_present": false,
+    "deliverables_with_runtime_path_write_locus": 0,
+    "deliverable_names_containing_stewardship": 0,
+    "deliverable_descriptions_containing_stewardship": 0,
+    "scope_statements_containing_stewardship": 0,
+    "existing_runtime_boundary_scope_items": [
+      "SOW-027",
+      "SOW-035"
+    ],
+    "existing_runtime_boundary_deliverable": "DEL-02-02_Three_Layer_Authority_Boundary_Conformance",
+    "existing_runtime_boundary_note": "Its accepted description is boundary conformance and its context note says no implementation change is implied."
+  },
+  "result": "PASS_WITH_RECORDED_STEWARDSHIP_GAP"
+}
