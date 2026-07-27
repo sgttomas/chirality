@@ -1,5 +1,6 @@
 """Tests for G2, the D-GOV-21 static root surface-ownership register guard."""
 
+import csv
 from pathlib import Path
 
 import yaml
@@ -40,6 +41,51 @@ def _register(entries: list[dict] | None = None, **overrides) -> dict:
     return data
 
 
+def _write_decomposition_and_deliverable_register(
+    root: Path, rows: list[dict[str, str]]
+) -> str:
+    decomposition_rel = "execution/_Decomposition/ACCEPTED.md"
+    decomposition = root / decomposition_rel
+    decomposition.parent.mkdir(parents=True, exist_ok=True)
+    decomposition.write_text(
+        "\n".join(
+            [
+                *(row["ParentPackageID"] for row in rows),
+                *(row["DeliverableID"] for row in rows),
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    register = decomposition.parent / "root_deliverable_register.csv"
+    with register.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(
+            handle, fieldnames=["DeliverableID", "ParentPackageID"]
+        )
+        writer.writeheader()
+        writer.writerows(rows)
+    return decomposition_rel
+
+
+def _deliverable_entry(
+    deliverable_id: str = "DEL-01-01_Example",
+    package_id: str = "PKG-01_Example",
+    **overrides,
+) -> dict:
+    entry = {
+        "id": deliverable_id,
+        "kind": "deliverable",
+        "decomposition_ref": deliverable_id,
+        "write_targets": [
+            f"execution/{package_id}/1_Working/{deliverable_id}/**"
+        ],
+        "instruction_surface": False,
+        "serialization": None,
+    }
+    entry.update(overrides)
+    return entry
+
+
 def test_pass_idle_when_no_structure_and_no_register(tmp_path):
     code, lines = g2.check(tmp_path)
     assert code == 0
@@ -71,6 +117,155 @@ def test_pass_with_registered_materialized_package(tmp_path):
     _write_register(tmp_path, _register([_entry()]))
     code, lines = g2.check(tmp_path)
     assert code == 0, lines
+
+
+def test_package_entry_behavior_does_not_require_tree_to_exist(tmp_path):
+    """Regression: the deliverable correction must not change package semantics."""
+    _write_register(tmp_path, _register([_entry()]))
+    code, lines = g2.check(tmp_path)
+    assert code == 0, lines
+
+
+def test_pass_with_registered_nested_deliverable_tree(tmp_path):
+    package_id = "PKG-01_Example"
+    deliverable_id = "DEL-01-01_Example"
+    decomposition = _write_decomposition_and_deliverable_register(
+        tmp_path,
+        [{"DeliverableID": deliverable_id, "ParentPackageID": package_id}],
+    )
+    _materialize(tmp_path, package_id)
+    (
+        tmp_path
+        / "execution"
+        / package_id
+        / "1_Working"
+        / deliverable_id
+    ).mkdir(parents=True)
+    entries = [
+        _entry(package_id, decomposition_ref=package_id),
+        _deliverable_entry(deliverable_id, package_id),
+    ]
+    _write_register(tmp_path, _register(entries, decomposition=decomposition))
+    code, lines = g2.check(tmp_path)
+    assert code == 0, lines
+
+
+def test_block_when_declared_deliverable_tree_does_not_exist(tmp_path):
+    package_id = "PKG-01_Example"
+    deliverable_id = "DEL-01-01_Example"
+    decomposition = _write_decomposition_and_deliverable_register(
+        tmp_path,
+        [{"DeliverableID": deliverable_id, "ParentPackageID": package_id}],
+    )
+    _materialize(tmp_path, package_id)
+    entries = [
+        _entry(package_id, decomposition_ref=package_id),
+        _deliverable_entry(deliverable_id, package_id),
+    ]
+    _write_register(tmp_path, _register(entries, decomposition=decomposition))
+    code, lines = g2.check(tmp_path)
+    assert code == 1
+    assert any("does not exist as a directory" in line for line in lines)
+
+
+def test_block_on_foreign_tree_deliverable_entry(tmp_path):
+    owning_package = "PKG-01_Example"
+    foreign_package = "PKG-02_Foreign"
+    deliverable_id = "DEL-01-01_Example"
+    decomposition = _write_decomposition_and_deliverable_register(
+        tmp_path,
+        [{"DeliverableID": deliverable_id, "ParentPackageID": owning_package}],
+    )
+    _materialize(tmp_path, owning_package)
+    _materialize(tmp_path, foreign_package)
+    (
+        tmp_path
+        / "execution"
+        / foreign_package
+        / "1_Working"
+        / deliverable_id
+    ).mkdir(parents=True)
+    entries = [
+        _entry(owning_package, decomposition_ref=owning_package),
+        _entry(foreign_package, decomposition_ref=foreign_package),
+        _deliverable_entry(deliverable_id, foreign_package),
+    ]
+    _write_register(tmp_path, _register(entries, decomposition=decomposition))
+    code, lines = g2.check(tmp_path)
+    assert code == 1
+    assert any("is not contained within its owning package tree" in line for line in lines)
+
+
+def test_block_when_deliverable_entry_has_no_exact_register_match(tmp_path):
+    package_id = "PKG-01_Example"
+    registered_deliverable = "DEL-01-01_Registered"
+    entry_deliverable = "DEL-01-01_Different"
+    decomposition = _write_decomposition_and_deliverable_register(
+        tmp_path,
+        [
+            {
+                "DeliverableID": registered_deliverable,
+                "ParentPackageID": package_id,
+            }
+        ],
+    )
+    _materialize(tmp_path, package_id)
+    (
+        tmp_path
+        / "execution"
+        / package_id
+        / "1_Working"
+        / entry_deliverable
+    ).mkdir(parents=True)
+    entries = [
+        _entry(package_id, decomposition_ref=package_id),
+        _deliverable_entry(entry_deliverable, package_id),
+    ]
+    # Preserve the existing decomposition-ref literal check so this test
+    # isolates the new deliverable-register equality check.
+    (tmp_path / decomposition).write_text(
+        f"{package_id}\n{registered_deliverable}\n{entry_deliverable}\n",
+        encoding="utf-8",
+    )
+    _write_register(tmp_path, _register(entries, decomposition=decomposition))
+    code, lines = g2.check(tmp_path)
+    assert code == 1
+    assert any("no exact DeliverableID match" in line for line in lines)
+
+
+def test_block_when_deliverable_decomposition_ref_is_not_its_exact_id(tmp_path):
+    package_id = "PKG-01_Example"
+    deliverable_id = "DEL-01-01_Example"
+    decomposition = _write_decomposition_and_deliverable_register(
+        tmp_path,
+        [{"DeliverableID": deliverable_id, "ParentPackageID": package_id}],
+    )
+    _materialize(tmp_path, package_id)
+    (
+        tmp_path
+        / "execution"
+        / package_id
+        / "1_Working"
+        / deliverable_id
+    ).mkdir(parents=True)
+    wrong_ref = "DEL-99-99_Other"
+    entries = [
+        _entry(package_id, decomposition_ref=package_id),
+        _deliverable_entry(
+            deliverable_id, package_id, decomposition_ref=wrong_ref
+        ),
+    ]
+    (tmp_path / decomposition).write_text(
+        f"{package_id}\n{deliverable_id}\n{wrong_ref}\n",
+        encoding="utf-8",
+    )
+    _write_register(tmp_path, _register(entries, decomposition=decomposition))
+    code, lines = g2.check(tmp_path)
+    assert code == 1
+    assert any(
+        "decomposition_ref must exactly equal its DeliverableID" in line
+        for line in lines
+    )
 
 
 def test_block_on_unregistered_materialized_package(tmp_path):
