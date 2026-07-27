@@ -1,0 +1,25 @@
+{
+  "schema": "chirality.app-coordination-proposal/v1",
+  "proposal_id": "OD7-G1-APP",
+  "status": "CANDIDATE_NOT_APPROVED_NOT_APPLIED",
+  "basis_commit": "fb16e32ed60bb4f384cf1e07a83c4a14ff63bbae",
+  "write_scope": "projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/OD7-G1_2026-07-27/",
+  "authoritative_changes": [],
+  "candidates": [
+    "OD7-G1-C02",
+    "OD7-G1-C05 receiving disposition"
+  ],
+  "artifacts": [
+    "PACKET.md",
+    "PROPOSED_D-APP-75_EFFECTIVE_STATE_CLOSEOUT_2026-07-27.md",
+    "DAPP75_REGISTER_ROW.patch",
+    "PROPOSED_RESPONSE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2026-07-27.md",
+    "PROPOSED_APP_RECEIPT_92.md",
+    "DIRECT_WRITE_MAP.csv",
+    "VALIDATION.md",
+    "HANDOFF.md",
+    "PACKAGE_MANIFEST.json",
+    "ARTIFACT_HASHES.sha256"
+  ],
+  "hash_manifest_rule": "ARTIFACT_HASHES.sha256 covers every package artifact except itself"
+}
