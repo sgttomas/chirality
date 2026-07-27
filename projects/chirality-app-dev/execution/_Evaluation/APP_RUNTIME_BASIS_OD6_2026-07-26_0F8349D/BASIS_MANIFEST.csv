@@ -1,0 +1,26 @@
+BasisID,PathOrIdentity,SHA256OrGitOID,Role,Status
+BASIS-GIT,repository HEAD,0f8349d90f58c1e6b3339263f5aafaf36e783a7e,accepted evaluation basis,VERIFIED
+APP-PRD,projects/chirality-app-dev/docs/PRD.md,ef638f43ccae1cd78b26b1ae078a33770cf64cc36c247c5d7da04b35196a4010,accepted App product requirements,VERIFIED
+APP-CONTRACT,projects/chirality-app-dev/docs/CONTRACT.md,6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7,current invariant families,VERIFIED
+APP-DECOMP,projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,952d3cbf81b0cea014a1c3f1bd3f62fbc0b23b96bfa1fd1913961731c925b08b,accepted App decomposition current bytes,VERIFIED
+APP-DECOMP-HISTORICAL,"0724f26f...; b4d2c9ab...; 2770fda4...; ff59428f...",a907cda33835ebf06187331c1c5937a9ae9949923c5465b17519cbd8fcaba6d4,common historical decomposition bytes pinned by 45 SOWs,VERIFIED
+APP-DECOMP-MISSING,declared by six held SOWs,416b29033bbacb0bc3648d84033272b7ab4e6e11,declared historical basis,UNRESOLVABLE
+D-APP-48-RULING,projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-48_RULING_2026-07-04.md,a7b0e231c0d92edbb67197c7b32ed95c1c1b7621e07731bdfd0666f5e245efd0,App owner ruling,VERIFIED
+D-APP-48-JSON,projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-48_FLOW_A_PULL_CONTRACT_2026-07-04.json,ad10f6e5808754c4acf2e9114f189c892dbec2231a3059d3717e9689e7807040,live App pull-contract record,VERIFIED
+D-APP-49-RULING,projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-49_RULING_2026-07-04.md,41e15c39a2fb307c13c24e337265586472fbc0dc21a71f4fb2d370efe97ea1dc,App source-contract ruling,VERIFIED
+D-APP-73,projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-73_RULING_2026-07-22.md,8431b4d65bf980cd79e3f89ea7d4549757097cff9945335376d7daf560073836,App shared-runtime migration ruling,VERIFIED
+D-APP-75,projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-75_RULING_2026-07-26.md,b3d335c0f352778c5f3623e4cb4d14ee759a38bcf2f3e14dad9ad67ba4dd8b40,APP-HOLD-1 ruling,VERIFIED_WITH_STALE_EFFECTIVE_LABEL
+APP-HOLD-REGISTER,projects/chirality-app-dev/execution/_Coordination/APP_HOLD_REGISTER.csv,52e331c44372815c842f402c3ca34cdfb1b3a2436c21a4526b2d9eeaf545fd21,live hold register,VERIFIED
+APP-HOLD-TOOL,projects/chirality-app-dev/execution/_Scripts/app_hold.py,519d6dde99fe4a08a77c41c92dabf8f03023f176aa2e4fb9cd7eaab6ab6716c2,live hold checker,VERIFIED
+APP-HOLD-TEST,projects/chirality-app-dev/execution/_Scripts/tests/test_app_hold.py,2d8d846b9aa9db7b47023a8f6af76649530e0a3c308fad7367c065a8f0bdcd2b,owner-approved live corrected test,VERIFIED
+PIPING-D30,projects/chirality-piping/execution/_Coordination/_DECISIONS/D-30_HARNESS_CONTRACT_CONSUMPTION_2026-07-04.json,942266eb00305403493649b7a31870be4073051a7b2fadb18576306860865c68,governed downstream metadata consumer,VERIFIED_STALE
+D-GOV-20,docs/governance_harness/_DECISIONS/D-GOV-20_shared_runtime_local_agent_pilot.md,a6a4fc4f0c8136f0cdf25eab155c98a03276248776ed9ff779df6c4b88523f11,Root runtime ownership ruling,VERIFIED
+D-GOV-28,docs/governance_harness/_DECISIONS/D-GOV-28_root_runtime_stewardship.md,370668f0a53e11642f9758ce7e33a38e376e09fba4632e58595a88b3e4b0c718,Root continuing-stewardship ruling,VERIFIED
+D-T0-07,_DomainEngines/_DECISIONS/D-T0-07_contract_versioning.md,5fb96fdcf2bb0db660bff84d80abb57ecadfb420f57cfda61cd5782972204851,Tier-0 version authority,VERIFIED
+D-T0-09,_DomainEngines/_DECISIONS/D-T0-09_flow_a_contract_version_value.md,544d7517d97b6a5e446fc784b10671ad7d5a0fc70b6d9ae4194c7adbaf6dec7a,Tier-0 Flow-A value,VERIFIED
+D-T0-23,_DomainEngines/_DECISIONS/D-T0-23_shared_runtime_domain_convergence.md,0629e16da62a68ce9648432dfa7293a426fe7278cea1efa43da2a6a00a624ae5,Tier-0 runtime convergence,VERIFIED
+ROOT-RUNTIME-PACKAGE,runtime/packages/contracts/package.json,4cc45f200987ec95bc2f766b0c5ce69ea94d8218a1bc1c10148f535e0766d541,current Root contract carrier,VERIFIED
+DAPP49-DOMAIN,runtime/packages/contracts/src/harness/domain-profile.ts,a99637becbb1eaea79a25aee7a383630ce3293fd6810eb594e51ff23623a034a,D-APP-49 migrated Root implementation,VERIFIED_BYTE_IDENTICAL
+DAPP49-OPERATION,runtime/packages/contracts/src/harness/operation-proposal.ts,90ba567890f6793f0fd93d4ebeb8f74c2b83eb071923e5667830c604258af9ab,D-APP-49 migrated Root implementation,VERIFIED_BYTE_IDENTICAL
+FLOW-A-CONSTANT,runtime/packages/contracts/src/harness/sdk-version.ts,18c2c158b88ff590f96a97f7f9ea09ec3171ae0bebd88ee1ee88ffbf96332cdf,current Flow-A constant carrier,VERIFIED
+RUNTIME-PROTOCOL,runtime/packages/contracts/src/protocol.ts,1d8d329fb2f296de30aa13c04f5d528efa717a762b49936000a9b162f50bfa9,current v1 protocol carrier,VERIFIED
