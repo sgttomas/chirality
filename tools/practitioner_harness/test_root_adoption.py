@@ -11,10 +11,10 @@ Covers the four surfaces the adoption touches:
    double registration refused;
 3. `status` / `drift` against a tmp fixture tree, and the refusals for the
    commands that cannot meaningfully operate on the root;
-4. LIVE-tree pins (45 status files, 0 mismatches, all OPEN), the same conscious
-   pin discipline `test_live_baseline.py` applies to app-dev 0/53 and piping
-   0/101 — a change here is a conscious pin update in the same PR, never a
-   silent one.
+4. LIVE-tree pins (46 status files, 0 mismatches, 45 INITIALIZED + 1 OPEN), the
+   same conscious pin discipline `test_live_baseline.py` applies to app-dev
+   0/53 and piping 0/101 — a change here is a conscious pin update in the same
+   PR, never a silent one.
 
 `tools/validation/validate_root_harness_adapter.py` (G1) remains the root
 adapter's authority; nothing here restates or relaxes its checks.
@@ -415,46 +415,47 @@ def _fact(report, fact_id):
 
 
 @live_root
-def test_live_root_adapter_pins_45_files_0_mismatch():
-    """Conscious pin (D-GOV-21 §6 step-9 materialization, 2026-07-25): 6
-    packages / 45 deliverables, all OPEN. A change to the live root tree
-    updates this pin in the same PR — never silently."""
+def test_live_root_adapter_pins_46_files_0_mismatch():
+    """Conscious pin after the bounded SCA-001 DEL-02-06 PROJECT_SETUP refresh
+    (2026-07-26): 6 packages / 46 deliverables, 45 INITIALIZED and DEL-02-06
+    OPEN. A live-root change updates this pin in the same PR — never silently."""
     manifest = adapter_loader.load_adapter(LIVE_REPO)
     assert manifest.kind == adapter_loader.KIND_ROOT
     assert manifest.project == "chirality-root"
-    assert manifest.drift_baseline_files == 45
+    assert manifest.drift_baseline_files == 46
     assert manifest.drift_baseline_mismatch == 0
 
 
 @live_root
-def test_live_root_drift_baseline_0_of_45():
+def test_live_root_drift_baseline_0_of_46():
     report = cmd_drift.run_drift(LIVE_REPO, [LIVE_REPO])
     value = _fact(report, "drift.chirality-root").value
-    assert "files=45" in value
+    assert "files=46" in value
+    assert "matches=46" in value
     assert "mismatches=0" in value
     assert "unparseable_docs=0" in value
     assert "no_state_assertion=0" in value
-    assert report.summary["files_total"] == 45
+    assert report.summary["files_total"] == 46
     assert report.summary["mismatches_total"] == 0
     # The measurement agrees with the adapter's recorded pin.
     baseline = [f for f in report.findings if f.code == "DRIFT_BASELINE_COMPARISON"]
     assert len(baseline) == 1
     assert baseline[0].source_path == "execution/_harness/adapter.yaml"
-    assert "measured 0 mismatch(es) over 45 file(s) vs recorded baseline 0/45" \
+    assert "measured 0 mismatch(es) over 46 file(s) vs recorded baseline 0/46" \
         in baseline[0].message
 
 
 @live_root
-def test_live_root_status_reports_45_initialized_and_no_dag_pointer():
-    # Live pin: 45 deliverables at INITIALIZED since the initialization
-    # closing tranche (D-GOV-27; all 45 SOW_V1 contracts accepted at PR #354).
-    # A change to the live root tree updates this pin in the same PR — never
-    # silently.
+def test_live_root_status_reports_45_initialized_1_open_and_no_dag_pointer():
+    # Live pin: 45 deliverables remain INITIALIZED since D-GOV-27 / PR #354;
+    # DEL-02-06 is OPEN after the bounded SCA-001 PROJECT_SETUP refresh.
+    # A change to the live root tree updates this pin in the same PR.
     report = cmd_status.run_status_project(LIVE_REPO, LIVE_REPO)
     md = report.render_markdown()
     assert "# Status — chirality-root" in md
     assert "| INITIALIZED | 45 |" in md
-    assert report.summary["status_files"] == 45
+    assert "| OPEN | 1 |" in md
+    assert report.summary["status_files"] == 46
     assert "not declared by this adapter schema (root-harness-adapter/v1)" in md
 
 
