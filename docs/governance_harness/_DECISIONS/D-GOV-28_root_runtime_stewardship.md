@@ -6,7 +6,7 @@ AcceptedCandidateSHA: f78a83621cbd679e6af2c41199845aca74073480
 CandidateSubjectSHA256: 0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d
 CandidateMergeSHA: 7553735922e2c72b38782a4a36bc3340226afd70
 PublicationSHA: c2d727b2c8a8909691c03eb3f3b31b778c269215
-EffectiveSHA: PENDING_HUMAN_GATED_PR_MERGE
+EffectiveSHA: fb0b3d247d32e643a7fbb994d2f61b9b673ad0fb (merge of PR #364 into `main`, 2026-07-26, performed at explicit owner direction; backfilled by this closeout tranche)
 Date:         2026-07-26
 FramedBy:     Agent-drafted by HELP_HUMAN (Agent 0) from the accepted program-architecture evaluation and OD-2 Option A
 AcceptedBasis: `main@18e5dda568689daadaa05aff65bd4b810489409b`
