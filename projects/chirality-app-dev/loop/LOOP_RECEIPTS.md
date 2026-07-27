@@ -2533,3 +2533,28 @@
     state is recorded; the detector correction is acknowledged with
     `NO_LOCAL_CORPUS_CHANGE`. No repin, hold semantic/exception, SCOPE_CHANGE,
     product, lifecycle, release, or professional-reliance effect occurs.
+
+- **2026-07-27 — Receipt 93** (D-APP-76 effective-state closeout).
+  - Receipt-ID: `Receipt-93`
+  - Examined-Through: `9fa2f82ac4b9e55873bcd7cd99ca042a4456fea2`
+  - Parent-Receipt: `Receipt-92`
+  - Pointers: ruling
+    `execution/_Coordination/_DECISIONS/D-APP-76_RULING_2026-07-27.md`;
+    additive closeout
+    `execution/_Coordination/_DECISIONS/D-APP-76_EFFECTIVE_STATE_CLOSEOUT_2026-07-27.md`;
+    corrected D-APP-76 register row; evidence package
+    `execution/_Evaluation/DAPP49_CURRENT_LOCATION_AUDIT_2026-07-27_FB16E32/`;
+    Piping notice
+    `../chirality-piping/execution/_Coordination/NOTICE_2026-07-27_DAPP48_D30_MISMATCH.md`.
+  - Checks: application/merge ancestry, parent, and identical-tree checks;
+    original-ruling, package-hash-list, admitted-return, and notice hashes;
+    admitted-package hash-list verification; single-row register diff; original ruling
+    byte-identical; receipt, path, containment, and whitespace checks pass.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS managed by HELP_HUMAN;
+    exact runtime model build not exposed.
+  - Gate-Outcome: `EXECUTED` — D-APP-76 F1/E1 is effective at PR #375 merge
+    `9fa2f82ac4b9e55873bcd7cd99ca042a4456fea2`; OD6-011 is closed only for
+    the named current-location executable-evidence gap. E1 remains a
+    preparation route only; successor identity/version/compatibility/
+    implementation/migration, facade retirement, lifecycle, repin, release,
+    and professional reliance remain separately gated.
