@@ -174,8 +174,7 @@ rather than a fabricated check.
   text this deliverable is about.
 - **AX-004** — Nothing is inferred beyond the authorized sources (K-INVENT-1).
   Where the accepted decomposition is silent — on per-deliverable acceptance
-  criteria, and on `ResponsibleParty`, which remains `TBD` in the register row —
-  the silence is preserved and surfaced.
+  criteria, and on `ResponsibleParty`, which is `Ryan Tufts` under D-GOV-27 and the current deliverable register — the accepted assignment is preserved, while the acceptance-criteria silence is surfaced.
 - **AX-005** — Detection must not depend on the notice alone. The change-notice
   obligation exists so that a downstream loop is told directly rather than
   relying only on its own drift detection; a notice omitted because "the other

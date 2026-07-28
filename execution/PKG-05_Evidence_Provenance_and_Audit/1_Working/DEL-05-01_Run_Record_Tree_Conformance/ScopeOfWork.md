@@ -52,8 +52,7 @@ three outputs of this deliverable.
 - **CLM-002** — Decomposition identity. The register records DEL-05-01 as
   `Type: REQ_SLICE`, `ContextEnvelope: M` ("One record shape over an existing
   directory convention"), `AnticipatedWriteLocus: execution-tree`, and
-  `ResponsibleParty: TBD`. `ResponsibleParty` is preserved as `TBD` here and is
-  not assigned by this contract.
+  `ResponsibleParty: Ryan Tufts`. `ResponsibleParty` is transcribed here from D-GOV-27 and the current deliverable register and is not assigned by this contract.
 - **CLM-003** — Named locus. `docs/PRD_ROOT.md` §5.4 E-1 [TRANSCRIBED] names the
   record tree's locus as `_Coordination/AgentRuns/<RunID>/`. The scope-ledger
   statement for SOW-052 restates E-1 without the locus; this contract carries
@@ -138,7 +137,7 @@ Where no deterministic surface exists at this basis, the matrix records
   write ownership, dependencies, and pending gates from recorded state, not to
   maximize record volume.
 - **AX-004** — Lifecycle neutrality. This contract makes no lifecycle transition
-  and asserts no approval. Lifecycle state remains `OPEN` and is read from
+  and asserts no approval. Lifecycle state is `INITIALIZED` at the current basis and is read from
   `_STATUS.md`, which this contract does not modify.
 
 ## Output and Evaluation Matrix

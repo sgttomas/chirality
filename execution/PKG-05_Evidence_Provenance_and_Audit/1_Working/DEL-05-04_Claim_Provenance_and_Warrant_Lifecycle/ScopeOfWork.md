@@ -59,8 +59,7 @@ three outputs of this deliverable.
 - **CLM-003** — Decomposition identity. The register records DEL-05-04 as
   `Type: REQ_SLICE`, `ContextEnvelope: M` ("One lifecycle over a stable
   vocabulary"), `AnticipatedWriteLocus: execution-tree`, and
-  `ResponsibleParty: TBD`. `ResponsibleParty` is preserved as `TBD` here and is
-  not assigned by this contract.
+  `ResponsibleParty: Ryan Tufts`. `ResponsibleParty` is transcribed here from D-GOV-27 and the current deliverable register and is not assigned by this contract.
 - **CLM-004** — Objective linkage. `docs/PRD_ROOT.md` §3 OBJ-3 makes structural
   completeness universal — every accepted change carries a retrievable linkage
   from files alone between evidence, ruling, and changed state — while retrieval
@@ -155,8 +154,7 @@ here and is left to named human review.
   hygiene and precondition gates. Neither makes an acceptance judgment, and a
   passing gate is not an owner ruling.
 - **AX-006** — Lifecycle neutrality. This contract makes no lifecycle transition
-  and asserts no approval. Deliverable lifecycle state remains `OPEN` and is read
-  from `_STATUS.md`, which this contract does not modify; the warrant lifecycle
+  and asserts no approval. Deliverable lifecycle state is `INITIALIZED` at the current basis and is read from `_STATUS.md`, which this contract does not modify; the warrant lifecycle
   discussed above is a property of claims, not of this deliverable.
 
 ## Output and Evaluation Matrix

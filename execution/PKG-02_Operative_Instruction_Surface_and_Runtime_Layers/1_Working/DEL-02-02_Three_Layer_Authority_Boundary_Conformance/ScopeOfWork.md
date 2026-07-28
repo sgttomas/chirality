@@ -131,7 +131,7 @@ at the M2 boundary if a layer statement is found to need change.
 - **AX-004** — Label discipline (K-CLAIM-1): the `CLARIFIED` provenance of
   `SOW-035` is carried forward as recorded and is not restated as transcription.
 - **AX-005** — Path discipline: this contract uses repo-relative paths only and
-  embeds no machine-absolute path. `ResponsibleParty` remains `TBD`.
+  embeds no machine-absolute path. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 
 ## Output and Evaluation Matrix
 

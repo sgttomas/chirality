@@ -105,8 +105,7 @@ conformance products held in the execution tree.
   criteria for DEL-03-04, and `_CONTEXT.md` records them as TBD. `AC-001`,
   `AC-002`, and `AC-003` are therefore candidate criteria authored under this
   initialization run; they claim no acceptance and become binding only through
-  an owner act at the human-gated review. `ResponsibleParty` remains TBD until
-  a human assigns ownership.
+  an owner act at the human-gated review. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 
 ## Production and Verification Method — Praxeology
 

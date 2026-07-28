@@ -64,16 +64,14 @@ definitions below are candidate content for owner review.
   invariants, not that it describe them. The adopted PRD labels this an
   interpretation of `docs/CONTRACT.md` §2 — every invariant has a live
   enforcement point.
-- **CLM-003** — SOW-099 (`PRD §10.2 C-2 [surfaced conflict]`) states that
-  conflict C-2 — invariant-index arithmetic between the catalog's stated count
-  and its defined membership — is carried with the owner's ruling outstanding
-  and a correction tranche recommended. The adopted PRD records the specifics:
-  `docs/CONTRACT.md` §1 states 27 stable invariants across 12 subsections and
-  its index table ends at K-DOMAIN-4, while §1.13 defines seven further
-  invariants absent from that index and the §2 enforcement map references two
-  of them; the live catalog is recorded as holding 34 across 13. Ledger
-  `DecisionRef` is DEC-009; the item is carried as an open issue with note
-  OI-001, which records that it appears corrected at the current basis.
+- **CLM-003** — SOW-099 preserves the discovery record for `PRD §10.2 C-2
+  [surfaced conflict]`: invariant-index arithmetic between the catalog's stated
+  count and its defined membership. PR #345 (merge `ba2b80bf2`, Receipt 44)
+  corrected the index to 34 invariants across 13 subsections, and PRD Revision
+  6 records C-2 as closed without reopening it. `DecisionRef` remains DEC-009
+  for historical traceability. This deliverable performs standing verification
+  against the current catalog and surfaces any new disagreement as new evidence;
+  it does not carry C-2 as an open owner decision.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -90,8 +88,9 @@ definitions below are candidate content for owner review.
   and result — rather than as a narrative assertion (CLM-003), and shall state
   the counted membership, the catalog's stated count, and whether they agree.
 - **REQ-005** — This deliverable shall not amend `docs/CONTRACT.md`. C-2 is
-  surfaced with pointers and carried with `HumanRuling = TBD`; correction is a
-  separately authorized M2 tranche (CLM-003).
+  recorded as closed by PR #345 and Receipt 44; any new disagreement is surfaced
+  with pointers and any correction remains a separately authorized M2 tranche
+  (CLM-003).
 
 - **AC-001** — OUT-001 contains exactly one row per `K-*` invariant defined in
   the catalog, contains no `K-*` identifier absent from the catalog, and every
@@ -142,13 +141,12 @@ human-review method in the matrix rather than a fabricated tool reference.
   invariants, not to restate them (CLM-002).
 - **AX-003** — Arithmetic is checked, not asserted. The count comparison is
   machine output that a reader can re-run (CLM-003, REQ-004).
-- **AX-004** — Conflicts are surfaced, not silently resolved. C-2 is carried
-  with pointers and `HumanRuling = TBD`; the ratified instruction surface is
-  corrected only through an independently authorized M2 tranche (CLM-003,
-  REQ-005).
+- **AX-004** — Conflicts are surfaced, not silently resolved. C-2 is closed
+  by PR #345 and Receipt 44; standing verification preserves those pointers and
+  surfaces any new disagreement. The ratified instruction surface is corrected
+  only through an independently authorized M2 tranche (CLM-003, REQ-005).
 - **AX-005** — Nothing in this contract asserts acceptance, lifecycle state,
-  or professional reliance. `ResponsibleParty` remains `TBD` until a human
-  assigns ownership.
+  or professional reliance. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 
 ## Output and Evaluation Matrix
 
@@ -156,4 +154,4 @@ human-review method in the matrix rather than a fabricated tool reference.
 |---|---|---|---|---|---|
 | OUT-001 | SOW-016 SOW-025 OBJ-001 | CLM-001 CLM-002 REQ-001 REQ-002 | AC-001 | HUMAN_REVIEW: Owner or delegated reviewer reads each register row against the catalog entry and its cited enforcement surface and confirms the mapping is real rather than nominal | The register CSV, the catalog at the recorded revision, and the reviewer's recorded confirmation |
 | OUT-002 | SOW-025 OBJ-001 | CLM-002 REQ-003 | AC-002 | VER-002 | The enforcement-point index, the recorded basis revision, and the recorded resolution result for every cited path |
-| OUT-003 | SOW-099 OBJ-001 | CLM-003 REQ-004 REQ-005 | AC-003 | VER-001 | The recorded command, its output, and the carried statement of agreement or disagreement with HumanRuling TBD |
+| OUT-003 | SOW-099 OBJ-001 | CLM-003 REQ-004 REQ-005 | AC-003 | VER-001 | The recorded command, its output, the closed C-2 trace, and any newly surfaced disagreement |

@@ -118,7 +118,7 @@ control-plane records.
   through `AC-003` are candidate criteria authored under this initialization run,
   grounded only in the register row, `_CONTEXT.md`, the scope-ledger statements
   of `SOW-001`, `SOW-002`, `SOW-061`, and `SOW-103`, and the adopted PRD
-  (K-INVENT-1). They claim no acceptance. `ResponsibleParty` remains TBD.
+  (K-INVENT-1). They claim no acceptance. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 - **CON-002** — `OUT-003` is producible only after the §5.3 gate closes, which
   this deliverable cannot cause. Its readiness half and its evidence half
   therefore complete at different times, and the second half is blocked on an act

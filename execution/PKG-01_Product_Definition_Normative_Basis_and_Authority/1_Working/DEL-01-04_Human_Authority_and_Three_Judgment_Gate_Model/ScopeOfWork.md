@@ -175,8 +175,7 @@ commitment of CLM-002.
   by DEL-06-07 and gated at PRD §8.3; the objective-reference divergence
   CON-001 is surfaced with pointers and left for owner ruling.
 - **AX-006** — Nothing in this contract asserts acceptance, lifecycle state,
-  or professional reliance. `ResponsibleParty` remains `TBD` until a human
-  assigns ownership.
+  or professional reliance. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 
 ## Output and Evaluation Matrix
 

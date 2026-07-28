@@ -165,8 +165,7 @@ explicit `HUMAN_REVIEW` method instead of a fabricated check.
   authorization, and its acceptance would grant none.
 - **AX-003** — Nothing is inferred beyond the authorized sources (K-INVENT-1).
   Where the accepted decomposition is silent — for example on per-deliverable
-  acceptance criteria and on `ResponsibleParty`, which remains `TBD` in the
-  register row — the silence is preserved and surfaced rather than filled.
+  acceptance criteria and on `ResponsibleParty`, which is `Ryan Tufts` under D-GOV-27 and the current deliverable register — the accepted assignment is preserved, while the acceptance-criteria silence is surfaced rather than filled.
 - **AX-004** — Bounded claims. SOW-037's convention is asserted only within its
   two record classes, matching the CLARIFIED label its scope-ledger `SourceRef`
   carries; a stronger general rule is the adopted PRD's separately labelled D-16

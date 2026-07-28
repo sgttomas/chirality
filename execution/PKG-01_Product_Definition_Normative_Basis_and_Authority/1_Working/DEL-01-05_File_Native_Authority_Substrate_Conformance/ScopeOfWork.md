@@ -24,7 +24,7 @@ Traceability, transcribed and not inferred:
 | Deliverable type | `REQ_SLICE` | register `Type` |
 | Context envelope | `S` — "Narrow rule with a small inventory surface." | register `ContextEnvelope`/`ContextEnvelopeNotes` |
 | Anticipated write locus | `execution-tree` | register `AnticipatedWriteLocus` |
-| Responsible party | `TBD` | register `ResponsibleParty`; preserved unchanged |
+| Responsible party | `Ryan Tufts` | D-GOV-27; current deliverable register `ResponsibleParty` |
 
 Every `AC-*` and `VER-*` below is a **candidate**. The accepted decomposition
 states no per-deliverable acceptance criteria (`_CONTEXT.md` Acceptance
@@ -138,7 +138,7 @@ commands produce facts; they make no acceptance judgment.
 - **AX-003** — Findings are surfaced, not fixed. Where a check fails, the
   outputs record the discrepancy with pointers; conflicts are never silently
   resolved (`docs/PRD_ROOT.md` §5.1 N-4).
-- **AX-004** — `ResponsibleParty` remains `TBD` until a human assigns ownership
+- **AX-004** — `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register
   (`_CONTEXT.md` Source Authority). No output claims an owner.
 - **AX-005** — Deterministic checks are evidence, not authority. `VER-001`
   through `VER-003` compute facts about the checkout; they confer no acceptance,

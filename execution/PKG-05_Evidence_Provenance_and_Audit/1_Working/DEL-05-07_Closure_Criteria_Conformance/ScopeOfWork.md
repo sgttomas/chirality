@@ -144,10 +144,8 @@ semantic question with no deterministic check, so the matrix records
   `.github/workflows/` — would require an independently authorized M2 tranche,
   and **this Scope of Work grants none.**
 - **AX-005** — Evidence is not acceptance. Producing these outputs performs no
-  lifecycle transition; the deliverable's state remains `OPEN`, as do all root
-  deliverable states at this basis. The criteria above are candidates for
-  owner review, and `ResponsibleParty` remains unassigned in the register and
-  is not altered by this contract.
+  lifecycle transition; the deliverable's state is `INITIALIZED`, as are all 46 Root deliverable states at this basis. The criteria above are candidates for
+  owner review, and `ResponsibleParty` is `Ryan Tufts` in the current register under D-GOV-27 and is not altered by this contract.
 
 ## Output and Evaluation Matrix
 

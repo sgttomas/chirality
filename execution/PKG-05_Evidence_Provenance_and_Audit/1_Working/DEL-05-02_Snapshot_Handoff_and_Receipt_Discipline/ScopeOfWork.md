@@ -54,8 +54,7 @@ three outputs of this deliverable.
 - **CLM-002** — Decomposition identity. The register records DEL-05-02 as
   `Type: REQ_SLICE`, `ContextEnvelope: M` ("Three related conventions with
   existing surfaces"), `AnticipatedWriteLocus: execution-tree`, and
-  `ResponsibleParty: TBD`. `ResponsibleParty` is preserved as `TBD` here and is
-  not assigned by this contract.
+  `ResponsibleParty: Ryan Tufts`. `ResponsibleParty` is transcribed here from D-GOV-27 and the current deliverable register and is not assigned by this contract.
 - **CLM-003** — Two ledger items, one deliverable. SOW-053 supplies the three
   phase-boundary conventions and traces to `docs/PRD_ROOT.md` §5.4 E-2
   [TRANSCRIBED]. SOW-021 supplies the tool-root corollary and traces to
@@ -148,7 +147,7 @@ Where no deterministic surface exists at this basis, the matrix records
   hygiene and precondition gates. None makes an acceptance judgment, and a passing
   gate is not an owner ruling.
 - **AX-005** — Lifecycle neutrality. This contract makes no lifecycle transition
-  and asserts no approval. Lifecycle state remains `OPEN` and is read from
+  and asserts no approval. Lifecycle state is `INITIALIZED` at the current basis and is read from
   `_STATUS.md`, which this contract does not modify.
 
 ## Output and Evaluation Matrix

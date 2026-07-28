@@ -56,11 +56,11 @@ evidence. They are expressed here as three outputs.
   membership is not restated; PRD §5 registry discipline cites the profile as a
   live registry and provides that where live registry and narrative disagree,
   the live registry governs and the discrepancy is surfaced.
-- **CLM-002** — A live instance of that disagreement is already recorded. PRD
-  §10.2 C-4 states that the `README.md` public-export description omits
-  `runtime/`, which the profile's root-directory allowlist includes, and
-  disposes of it as the live profile governing with the discrepancy routed as
-  propagation. C-4 carries `HumanRuling = TBD` and is not resolved here.
+- **CLM-002** — PRD §10.2 preserves the discovery record for C-4. PR #345
+  (merge `ba2b80bf2`, Receipt 44) added `runtime/` to the `README.md`
+  public-export description and closed C-4 while preserving the live profile
+  as the boundary contract. This deliverable performs a standing re-check and
+  does not carry C-4 as open.
 - **CLM-003** — Restating allowlist membership inside this deliverable would
   create exactly the drifting parallel registry that the incorporation-by-
   reference clause exists to prevent. The outputs therefore cite the profile
@@ -109,9 +109,9 @@ a competing boundary statement.
   expecting no change to the profile.
 
 Whether the conformance note faithfully reads the profile as the boundary
-contract, and whether the C-4 discrepancy is correctly carried rather than
-silently resolved, are semantic judgments; they are routed to human review in
-the matrix below.
+contract, and whether it preserves C-4's recorded closure while surfacing any
+new disagreement, are semantic judgments routed to human review in the matrix
+below.
 
 ## Governing Values and Decisions — Axiology
 
@@ -120,8 +120,9 @@ the matrix below.
   discrepancy is surfaced. This deliverable surfaces; it does not reconcile by
   editing either side.
 - **AX-002** — Conflicts are surfaced with pointers and never silently
-  resolved, per the epistemic discipline PRD §5.1 N-4 transcribes. C-4 remains
-  open with `HumanRuling = TBD`.
+  resolved, per the epistemic discipline PRD §5.1 N-4 transcribes. C-4 is closed
+  by PR #345 and Receipt 44; a new disagreement would be surfaced as new
+  evidence rather than silently resolved or treated as a reopening.
 - **AX-003** — The register records `AnticipatedWriteLocus: execution-tree;
   exports/ (M2) if the profile must change`. That is a planning note, not
   authorization. This Scope of Work grants no act on the instruction surface —
@@ -130,9 +131,7 @@ the matrix below.
   requires an independently authorized M2 tranche, which this document does not
   supply.
 - **AX-004** — Every `AC-*` and `VER-*` defined here is a candidate. This
-  document claims no acceptance, no approval, and no lifecycle state. The
-  accepted decomposition states no per-deliverable acceptance criteria and
-  `ResponsibleParty` remains `TBD`; nothing is inferred to fill either gap
+  document claims no acceptance, no approval, and no lifecycle state. The accepted decomposition states no per-deliverable acceptance criteria; nothing is inferred to fill that gap. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register
   (K-INVENT-1).
 
 ## Output and Evaluation Matrix
@@ -141,4 +140,4 @@ the matrix below.
 |---|---|---|---|---|---|
 | OUT-001 | SOW-044 OBJ-001 | REQ-001 CLM-001 | AC-001 | VER-001 | Generated manifest and report for the declared run, with the recorded exit status and counts |
 | OUT-002 | SOW-074 OBJ-001 | REQ-002 REQ-003 CLM-003 | AC-003 | VER-002 | Conformance note citing the profile path, plus a clean profile diff against the base commit |
-| OUT-003 | SOW-044 OBJ-001 | REQ-001 CLM-002 | AC-002 | HUMAN_REVIEW: owner reading of the leak-check findings and the carried C-4 discrepancy against `exports/chirality-app/export_public.py` as the governing profile | Enumerated forbidden-path and sanitization findings for the staged tree, with the C-4 item carried open rather than resolved |
+| OUT-003 | SOW-044 OBJ-001 | REQ-001 CLM-002 | AC-002 | HUMAN_REVIEW: owner reading of the leak-check findings and the closed C-4 trace against `exports/chirality-app/export_public.py` as the governing profile | Enumerated forbidden-path and sanitization findings for the staged tree, with C-4's closure preserved and any new disagreement surfaced |

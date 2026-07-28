@@ -72,10 +72,10 @@ definitions below are candidate content for owner review.
   instruction root, a reader can determine without asking a person which
   document is authoritative for a given question, whether it is ratified, and
   what superseded it; and no ratified clause has an unrecorded conflicting
-  live variant. The PRD names C-1 as the current open instance and C-2 as a
-  current index defect. C-1 is owned by DEL-01-01 and C-2 by DEL-01-02; this
-  deliverable holds the standing register they are recorded in, not their
-  resolution.
+  live variant. PRD Revision 6 records C-1 closed by D-GOV-23 and C-2
+  closed by PR #345/Receipt 44. DEL-01-01 and DEL-01-02 retain their standing
+  verification roles; this deliverable holds the standing register and
+  surfaces new conflicts without reruling those closures.
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -154,8 +154,7 @@ the matrix rather than a fabricated tool reference.
   change is routed as an M2 tranche candidate requiring independent owner
   authorization; this Scope of Work grants none.
 - **AX-006** — Nothing in this contract asserts acceptance, lifecycle state,
-  or professional reliance. `ResponsibleParty` remains `TBD` until a human
-  assigns ownership.
+  or professional reliance. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 
 ## Output and Evaluation Matrix
 

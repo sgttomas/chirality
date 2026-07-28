@@ -122,9 +122,7 @@ judgment.
   Work grants no act on the instruction surface — `AGENTS.md`, `agents/`,
   `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/` — and any
   such act requires an independently authorized M2 tranche.
-- **AX-004** — `_CONTEXT.md` records `ResponsibleParty: TBD`, and the accepted
-  decomposition states no per-deliverable acceptance criteria. Nothing is
-  inferred here to fill either gap (K-INVENT-1); the criteria above are derived
+- **AX-004** — `_CONTEXT.md` records `ResponsibleParty: Ryan Tufts` under D-GOV-27, and the accepted decomposition states no per-deliverable acceptance criteria. Nothing is inferred here to fill the acceptance-criteria gap (K-INVENT-1); the criteria above are derived
   from the cited scope statement and PRD text alone.
 
 ## Output and Evaluation Matrix

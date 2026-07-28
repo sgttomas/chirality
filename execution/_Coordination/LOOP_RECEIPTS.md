@@ -1377,3 +1377,28 @@ amendment; owner ruling required).
 - **Gate:** coordination-only reorientation. No production phase, activation,
   lifecycle transition, dependency, scope change, implementation, runtime
   work, repin, release, or professional reliance is authorized.
+### Receipt 56 — 2026-07-27 — Root trace maintenance applied narrowly
+
+- **Owner act of record:** the owner selected Root-trace route RT-A and
+  approved the refreshed exact application candidate on immutable basis
+  `7b0be4d8772a16e5a4774a17988479587d00acca`.
+- **Parent receipt:** Receipt 55. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Applied:** replaced exactly 83 execution-tree trace postimages: 38
+  `ScopeOfWork.md` files and 45 `_CONTEXT.md` files.
+- **Corrections:** replaced 87 stale responsibility assertions with the
+  already accepted `Ryan Tufts` assignment; preserved C-1/C-2/C-3/C-4
+  discovery history while recording their closed current status; and replaced
+  eight stale `OPEN` trace assertions with `INITIALIZED` without changing
+  lifecycle authority.
+- **Preserved:** the W-A idle workplan, current-workplan pointer, Root handoff,
+  Receipt 55, all `_STATUS.md` files, decomposition, registers, dependencies,
+  runtime, implementation, and unrelated state.
+- **Checks:** all 83 recorded preimages matched the application basis; exact
+  postimage hashes, 46/46 assignment and lifecycle censuses, Root G0–G4,
+  Scope-of-Work validation, path anchors, negative residue scans, write
+  containment, whitespace, and Git diff checks passed.
+- **Gate:** execution-tree trace maintenance only. No activation, lifecycle
+  transition, dependency, scope, PRD, decomposition, instruction-surface,
+  implementation, runtime, repin, release, or professional reliance is
+  authorized.

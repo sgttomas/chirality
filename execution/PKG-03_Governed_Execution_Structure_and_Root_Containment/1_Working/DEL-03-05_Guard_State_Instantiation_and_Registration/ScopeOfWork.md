@@ -112,7 +112,7 @@ schema-bound state files, one per guard that reads state.
   `AC-002` are candidate criteria authored under this initialization run,
   grounded only in the register row, `_CONTEXT.md`, the scope-ledger statements
   of `SOW-001` and `SOW-034`, and the adopted PRD (K-INVENT-1). They claim no
-  acceptance. `ResponsibleParty` remains TBD.
+  acceptance. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 
 ## Production and Verification Method — Praxeology
 

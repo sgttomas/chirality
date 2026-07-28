@@ -24,7 +24,7 @@ Traceability, transcribed and not inferred:
 | Deliverable type | `DOC_UPDATE` | register `Type` |
 | Context envelope | `S` — "Documentation-shaped conformance over two stable clauses." | register `ContextEnvelope`/`ContextEnvelopeNotes` |
 | Anticipated write locus | `execution-tree` | register `AnticipatedWriteLocus` |
-| Responsible party | `TBD` | register `ResponsibleParty`; preserved unchanged |
+| Responsible party | `Ryan Tufts` | D-GOV-27; current deliverable register `ResponsibleParty` |
 
 Every `AC-*` and `VER-*` below is a **candidate**. The accepted decomposition
 states no per-deliverable acceptance criteria (`_CONTEXT.md` Acceptance
@@ -140,7 +140,7 @@ both notes for authority-claim language before recording completion.
 - **AX-004** — Unknowns stay `TBD`. Where a pillar's current expression cannot
   be located, the note records that rather than inventing one
   (`docs/PRD_ROOT.md` §5.1 N-4).
-- **AX-005** — `ResponsibleParty` remains `TBD` until a human assigns ownership
+- **AX-005** — `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register
   (`_CONTEXT.md` Source Authority).
 
 ## Output and Evaluation Matrix
