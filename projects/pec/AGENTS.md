@@ -3,7 +3,7 @@ doc_id: PEC-AGENTS
 doc_kind: governance.agent_index
 status: live
 created: 2026-07-04
-amended: 2026-07-27 (D-PEC-68; PRD v2.2 consumer-interface concordance)
+amended: 2026-07-28 (PROJECT_SETUP pointer parity after SCA-003)
 ---
 
 # AGENTS - PEC Agent Index
@@ -150,7 +150,8 @@ unopened future row. Agent validation stays scratch/demo-only.
   SCA-001 opening, `D-PEC-62` scaffold + local dependency registers,
   `D-PEC-64` SCA-002 objective-mapping session — revision 1.2 accepted,
   `D-PEC-67` exact consumer rows / reliance control, `D-PEC-68` PRD v2.2
-  concordance)
+  concordance, and SCA-003 consumer-interface concordance — revision
+  1.3 accepted)
 - `execution/_Decomposition/` — the accepted decomposition working package
   (`SOFTWARE_DECOMP.md` working surface + companion registers;
   `_LATEST.md` is the revision pointer and handoff state — read it first)

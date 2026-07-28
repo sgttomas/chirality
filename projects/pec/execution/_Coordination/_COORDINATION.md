@@ -13,12 +13,12 @@
   PROJECT_SETUP with `FULL_GRAPH` already selected
   (`execution/_Decomposition/_LATEST.md`, `execution/_ScopeChange/_LATEST.md`).
 - Accepted upstream basis: `execution/_Decomposition/SOFTWARE_DECOMP.md`
-  revision **1.2** (`current_basis`, SCA-002 successor, accepted
-  2026-07-25 under `D-PEC-64`; evidence
-  `execution/_ScopeChange/SCA-002_2026-07-25_1042/`). Historical:
-  revision 1.1 was the basis at this gate's ruling (SCA-001 evidence
-  `execution/_ScopeChange/SCA-001_2026-07-24_2206/`); read
-  `execution/_Decomposition/_LATEST.md` first, always.
+  revision **1.3** (`current_basis`, SCA-003 successor, accepted
+  2026-07-28; evidence
+  `execution/_ScopeChange/SCA-003_2026-07-28_0824/`). Historical:
+  revision 1.1 was the basis at this gate's ruling and revision 1.2 was
+  accepted through SCA-002; read `execution/_Decomposition/_LATEST.md`
+  first, always.
 
 ## Phase 1.3 owner rulings (2026-07-25 gate)
 
@@ -102,6 +102,13 @@
    Receipt 112. The three Receipt-111 owner-routed items are CLOSED by
    this tranche.
 
+10. **SCA-003 / PROJECT_SETUP reference parity (2026-07-28):**
+    decomposition revision **1.3** is accepted `current_basis`; all 64
+    deliverable `_REFERENCES.md` packets are re-pinned to PRD v2.2 and
+    revision 1.3. ScopeOfWork contracts remain `STALE_FROZEN`,
+    `PEC-HOLD-001` remains `ACTIVE`, and lifecycle, topology,
+    dependencies, implementation, estimates, and schedules are unchanged.
+
 ## Notes (human-owned)
 
 - Scaffolding and local-register seeding were authorized by `D-PEC-62`
@@ -113,6 +120,6 @@
   is now **frozen gate provenance**: the deliverable-local
   `Dependencies.csv` registers are the sole live dependency basis. Both
   are derivative packages citing the accepted decomposition snapshot
-  (revision 1.1 at seeding; revision 1.2 is `current_basis` since
-  `SCA-002`/`D-PEC-64`, 2026-07-25 — owner-directed pointer update at
-  D-PEC-63 closure) and are never a substitute for decomposition truth.
+  (revision 1.1 at seeding; revision 1.3 is `current_basis` since
+  SCA-003, with topology and dependency bytes preserved) and are never a
+  substitute for decomposition truth.
