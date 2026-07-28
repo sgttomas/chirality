@@ -8,9 +8,17 @@
 
 ## Remaining
 
-- Implement and validate SCA-APP-003 daemon, control-socket, central-store, residency, role-attribution, PEC-adapter, and export reliance boundaries (gated: G1-G5).
+- Implement and validate the SCA-APP-003 daemon, control-socket, central-store,
+  residency, role-attribution, and export reliance boundaries (gated: G1-G5).
+- Reconcile the future PEC v2 shared-runtime client seam only after PEC provides
+  a governed `DEL-07-05` ScopeOfWork and accepted evidence. Until then
+  `RB-PEC-ADAPTER` remains retired as current enforcement evidence; `D-GOV-20`
+  and PEC PRD v2 §15 remain the owners of the one-daemon/no-dual-loop and
+  human-only-act restrictions (gated: PEC-owned evidence and separate App
+  owner acceptance).
 
 ## History
+- 2026-07-27 - D-APP-77 G4-A maintenance retires the SCA-APP-003 `RB-PEC-ADAPTER` row as current PEC v2 evidence while preserving its historical identity and routing the unknown current seam to PEC `DEL-07-05`; state remains IN_PROGRESS and no lifecycle, PEC scope, implementation, or release claim changes.
 - 2026-07-22 - D-APP-72 / SCA-APP-002 reliance-boundary reconciliation completed and independently backchecked; implementation and redacted proof are recorded in the Pi/oMLX AgentRuns G5 closeout return. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added the bounded Pi/oMLX reliance-boundary reconciliation to Remaining; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 final code tranche implemented UPD-097/RBR-025 cited-enforcement-path existence coverage; full-repository gate remains tranche-level evidence; state remains IN_PROGRESS.
