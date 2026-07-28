@@ -1,0 +1,5 @@
+Control,OwningInstrument,CurrentState,Evidence,Effect
+APP-HOLD-1,D-APP-75 and D-APP-78 through D-APP-81,RELEASED,App hold-release validator PASS with 0 active rows and 6 released targets,Exceptional App contract-reliance block removed; ordinary gates unchanged
+PEC-HOLD-001,D-PEC-67 through D-PEC-70,RELEASED,PEC hold-release validator PASS with 0 active rows; 766 hashes and 32 contracts verified,Exceptional PEC contract-reliance block removed; F-PEC-1 and ordinary gates unchanged
+Piping current-effect reliance hold,D-61,ACTIVE_BY_DESIGN,CURRENT_EFFECT_RECONCILED / CLOSED_WITH_RELIANCE_HOLD,Prevents unsupported current professional reliance while successor mechanism remains unresolved
+Runtime implementation and release gates,Root/App/PEC/Piping owning instruments,OPEN_OR_NOT_ACTIVATED,Explicit exclusions in accepted records,Not a defect in architecture-remediation closure

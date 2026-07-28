@@ -1,0 +1,11 @@
+Surface,Role,CurrentIdentity,State,TerminalFinding
+Root PRD,Root normative product basis,0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d,Revision 6 with O-11 runtime stewardship,PASS
+Root decomposition,Root executable work allocation,2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18,Revision 1.1 with DEL-02-06 standing carrier,PASS
+App PRD,App client product basis,ef638f43ccae1cd78b26b1ae078a33770cf64cc36c247c5d7da04b35196a4010,Root-client boundary current,PASS
+App decomposition,App client work allocation,dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83,SCA-APP-006 current and invariant register present,PASS
+PEC PRD,Optional coordination-plane product basis,6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba,v2.2 optional consumer interface,PASS
+PEC decomposition,PEC work allocation,3f65ea0e47036a2baa66cb60923f8b779525ae00d747425f93f8b69431151787,Revision 1.3 and affected SOW corpus reconciled,PASS
+Piping PRD,Domain application product basis,9c3bccd8d2eb8e68c10e05d50bdd29619892196c98069a2587ba3a1ff4880793,Outside Root-runtime and App-harness client sets,PASS
+Piping decomposition,Domain application work allocation,82b835b5fd36d0fd337da5b084dbf146caa29c18d0e1ef8f96a06fcfa4363a07,SCA-008 current effect reconciled with explicit reliance hold,PASS
+Tier-0,Shared integration identity,_DomainEngines/_LATEST.md,D-T0-24/25/26 current; PEC profile STALE and DENY,PASS
+Root runtime carrier,Standing stewardship deliverable,DEL-02-06,INITIALIZED and separately activation-gated,PASS
