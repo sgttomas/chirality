@@ -2643,3 +2643,52 @@
     hold release nor any later repin, scope, implementation, runtime,
     lifecycle, identity, version, compatibility, facade-retirement, release,
     or professional-reliance effect is authorized.
+
+- **2026-07-28 — Receipt 99** (D-APP-78 through D-APP-80 effective-state closeouts).
+  - Receipt-ID: `Receipt-99`
+  - Examined-Through: `b0b673dc3d65a4cfff9a045fda6c1fefa060645c`
+  - Parent-Receipt: `Receipt-98`
+  - Pointers: additive effective-state closeouts
+    `execution/_Coordination/_DECISIONS/{D-APP-78_EFFECTIVE_STATE_CLOSEOUT_2026-07-28.md,D-APP-79_EFFECTIVE_STATE_CLOSEOUT_2026-07-28.md,D-APP-80_EFFECTIVE_STATE_CLOSEOUT_2026-07-28.md}`;
+    corrected D-APP-78 through D-APP-80 register rows; deterministic identity
+    evidence
+    `execution/_Coordination/_PROPOSALS/OD6-G5_APP_HOLD_RELEASE_2026-07-28/CLOSEOUT_IDENTITY.csv`.
+  - Checks: application/merge ancestry and second-parent identity; full
+    application-tranche byte identity at each effective merge; original
+    decision-record byte identity through the examined basis; receipt,
+    register, path, containment, whitespace, and diff checks. Exact
+    measurements and hashes live in the pointed evidence.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS managed by HELP_HUMAN;
+    exact runtime model build not exposed; no Agent 2 delegated.
+  - Gate-Outcome: `EXECUTED` — D-APP-78, D-APP-79, and D-APP-80 are recorded
+    as durably effective at their respective merges. The closeouts create no
+    new product, scope, contract, hold, implementation, runtime, lifecycle,
+    release, or professional-reliance effect.
+
+- **2026-07-28 — Receipt 100** (D-APP-81 APP-HOLD-1 exact release).
+  - Receipt-ID: `Receipt-100`
+  - Examined-Through: `b0b673dc3d65a4cfff9a045fda6c1fefa060645c`
+  - Parent-Receipt: `Receipt-99`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-07-28,
+    Ryan Tufts, in-session): "Finish out your plan now (attaining your goal)
+    with self merge of PRs and auto approve for owners rulings, which should
+    still be recorded in the usual manner with your recommendation standing
+    as what I approved." The authority-bearing recommendation and exact
+    release-manifest selection are transcribed in D-APP-81.
+  - Pointers:
+    `execution/_Coordination/_DECISIONS/D-APP-81_RULING_APP_HOLD_RELEASE_2026-07-28.md`;
+    `execution/_Coordination/_PROPOSALS/OD6-G5_APP_HOLD_RELEASE_2026-07-28/`;
+    active hold register, guard, and tests.
+  - Checks: complete post-merge contract and basis proof; PKG-00 preservation;
+    historical-UNKNOWN preservation; header-only active register; released
+    target positive tests; register-only reactivation and new scan-derived
+    hold negative tests; no-bypass, receipt, path, containment, whitespace,
+    and diff checks. Exact measurements and hashes live in the pointed
+    candidate package.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS managed by HELP_HUMAN;
+    exact runtime model build not exposed; no Agent 2 delegated.
+  - Gate-Outcome: `EXECUTED` — the exact APP-HOLD-1 release is applied
+    pending Git closeout. Historical UNKNOWN evidence and future
+    scan-authoritative protection remain; no contract, scope, implementation,
+    runtime, lifecycle, identity, version, compatibility, facade-retirement,
+    release, or professional-reliance effect occurs.

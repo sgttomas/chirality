@@ -21,7 +21,7 @@ OPERATIONS = (
     "accepted-dependency-consumption",
 )
 ACTIVE_HOLD_STATES = ("HELD", "REPAIR_VALIDATION_PENDING")
-REPAIR_PENDING_EXPECTED_IDS = frozenset(
+RELEASED_IDS = frozenset(
     {
         "DEL-02-01",
         "DEL-02-02",
@@ -280,6 +280,11 @@ def load_register(path: Path) -> list[dict[str, str]]:
             raise HoldError(f"invalid hold deliverable ID: {row['deliverable_id']}")
         if not PACKAGE_RE.fullmatch(row["package_id"]):
             raise HoldError(f"invalid hold package ID: {row['package_id']}")
+        if row["deliverable_id"] in RELEASED_IDS:
+            raise HoldError(
+                f"released target cannot appear in the active hold register: "
+                f"{row['deliverable_id']}"
+            )
         if not GIT_OBJECT_RE.fullmatch(row["basis_commit"]):
             raise HoldError(f"invalid hold basis commit: {row['deliverable_id']}")
         if row["status"] not in ACTIVE_HOLD_STATES:
@@ -314,14 +319,6 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
     }
     registered = {row["deliverable_id"]: row for row in rows}
     missing = sorted(set(scanned) - set(registered))
-    missing_repair_pending = sorted(
-        REPAIR_PENDING_EXPECTED_IDS
-        - {
-            deliverable_id
-            for deliverable_id, row in registered.items()
-            if row["status"] == "REPAIR_VALIDATION_PENDING"
-        }
-    )
     extra = sorted(set(registered) - set(scanned_all))
     field_mismatches: list[dict[str, str]] = []
     status_mismatches: list[dict[str, str]] = []
@@ -353,7 +350,6 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
             )
     match = (
         not missing
-        and not missing_repair_pending
         and not extra
         and not field_mismatches
         and not status_mismatches
@@ -365,7 +361,7 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
         "register_sha256": sha256_file(register_path),
         "match": match,
         "missing_from_register": missing,
-        "missing_repair_pending_from_register": missing_repair_pending,
+        "missing_repair_pending_from_register": [],
         "extra_in_register": extra,
         "field_mismatches": field_mismatches,
         "status_mismatches": status_mismatches,

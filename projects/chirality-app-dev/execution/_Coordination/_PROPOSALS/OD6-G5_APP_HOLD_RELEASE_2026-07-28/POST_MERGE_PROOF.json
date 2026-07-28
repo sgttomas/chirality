@@ -1,0 +1,13 @@
+{
+  "active_hold_row_count": 0,
+  "basis_commit": "b0b673dc3d65a4cfff9a045fda6c1fefa060645c",
+  "closeout_identity_count": 3,
+  "contract_count": 53,
+  "historical_relation_unknown_count": 6,
+  "pkg00_control_count": 2,
+  "release_surface_count": 5,
+  "released_target_count": 6,
+  "schema": "chirality-app-hold-release-proof/v1",
+  "terminal_basis_count": 51,
+  "verdict": "PASS"
+}

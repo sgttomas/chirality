@@ -92,131 +92,38 @@ class AppHoldCandidateTests(unittest.TestCase):
         self.assertEqual(
             payload["register"]["missing_repair_pending_from_register"], []
         )
+        self.assertEqual(payload["register"]["active_hold_deliverables"], [])
         self.assertEqual(len(payload["scan_fingerprint_sha256"]), 64)
 
-    def test_held_target_blocked_for_every_operation_and_entry_path(self) -> None:
-        target = FIXTURE["held_deliverables"][0]
-        for operation in ENTRY_FIXTURE["operations"]:
-            for entry_path in ENTRY_FIXTURE["entry_paths"]:
-                with self.subTest(operation=operation, entry_path=entry_path):
-                    result = invoke(
-                        "check",
-                        "--operation",
-                        operation,
-                        "--entry-path",
-                        entry_path,
-                        "--target",
-                        target,
-                    )
-                    self.assertEqual(result.returncode, 3, result.stderr or result.stdout)
-                    payload = json.loads(result.stdout)
-                    self.assertEqual(payload["verdict"], "BLOCK_APP_HOLD")
-                    self.assertEqual(
-                        payload["results"][0]["verdict"], "BLOCK_APP_HOLD"
-                    )
-                    self.assertEqual(
-                        payload["results"][0]["hold_status"],
-                        "REPAIR_VALIDATION_PENDING",
-                    )
+    def test_released_targets_allowed_for_every_operation_and_entry_path(self) -> None:
+        for target in FIXTURE["released_deliverables"]:
+            for operation in ENTRY_FIXTURE["operations"]:
+                for entry_path in ENTRY_FIXTURE["entry_paths"]:
+                    with self.subTest(
+                        target=target,
+                        operation=operation,
+                        entry_path=entry_path,
+                    ):
+                        result = invoke(
+                            "check",
+                            "--operation",
+                            operation,
+                            "--entry-path",
+                            entry_path,
+                            "--target",
+                            target,
+                        )
+                        self.assertEqual(
+                            result.returncode, 0, result.stderr or result.stdout
+                        )
+                        payload = json.loads(result.stdout)
+                        self.assertEqual(payload["verdict"], "ALLOW")
+                        self.assertEqual(payload["results"][0]["verdict"], "ALLOW")
+                        self.assertEqual(
+                            payload["results"][0]["hold_status"], "NOT_HELD"
+                        )
 
-    def test_repair_pending_target_stays_blocked_after_basis_resolves(self) -> None:
-        target = FIXTURE["held_deliverables"][0]
-        scan = TOOL_MODULE.scan_corpus(REPO_ROOT, SOW_ROOT)
-        known = {row["deliverable_id"]: row for row in scan["contracts"]}
-        self.assertEqual(known[target]["status"], "CLEAR")
-
-        comparison = TOOL_MODULE.compare_register(scan, REGISTER)
-        self.assertTrue(comparison["match"], comparison)
-
-        registered = {
-            row["deliverable_id"]: row
-            for row in TOOL_MODULE.load_register(REGISTER)
-        }
-        results = TOOL_MODULE.evaluate_targets(
-            known,
-            registered,
-            operation="reliance",
-            entry_path="OD6-G4:POST-REPIN-VALIDATION",
-            targets=[target],
-        )
-        self.assertEqual(results[0]["contract_status"], "CLEAR")
-        self.assertEqual(
-            results[0]["hold_status"], "REPAIR_VALIDATION_PENDING"
-        )
-        self.assertEqual(results[0]["verdict"], "BLOCK_APP_HOLD")
-
-    def test_scan_derived_held_state_cannot_survive_basis_resolution(self) -> None:
-        target = FIXTURE["held_deliverables"][0]
-        scan = TOOL_MODULE.scan_corpus(REPO_ROOT, SOW_ROOT)
-        for contract in scan["contracts"]:
-            if contract["deliverable_id"] == target:
-                self.assertEqual(contract["status"], "CLEAR")
-
-        rows = TOOL_MODULE.load_register(REGISTER)
-        for row in rows:
-            if row["deliverable_id"] == target:
-                row["status"] = "HELD"
-                row["authority_basis"] = "D-APP-75"
-
-        original_loader = TOOL_MODULE.load_register
-        TOOL_MODULE.load_register = lambda _path: rows
-        try:
-            comparison = TOOL_MODULE.compare_register(scan, REGISTER)
-        finally:
-            TOOL_MODULE.load_register = original_loader
-
-        self.assertFalse(comparison["match"])
-        self.assertEqual(
-            comparison["status_mismatches"],
-            [
-                {
-                    "deliverable_id": target,
-                    "scan": "CLEAR",
-                    "register": "HELD",
-                }
-            ],
-        )
-
-    def test_unaffected_target_allowed(self) -> None:
-        result = invoke(
-            "check",
-            "--operation",
-            "dispatch",
-            "--entry-path",
-            "WORKING_ITEMS:PKG-03:RUN-POSITIVE-1",
-            "--target",
-            FIXTURE["unaffected_target"],
-        )
-        self.assertEqual(result.returncode, 0, result.stderr or result.stdout)
-        payload = json.loads(result.stdout)
-        self.assertEqual(payload["verdict"], "ALLOW")
-        self.assertEqual(payload["results"][0]["verdict"], "ALLOW")
-        self.assertEqual(len(payload["scan_fingerprint_sha256"]), 64)
-
-    def test_mixed_fanin_dependency_set_rejected(self) -> None:
-        result = invoke(
-            "check",
-            "--operation",
-            "accepted-dependency-consumption",
-            "--entry-path",
-            "WORKING_ITEMS:FAN-IN:RUN-NEGATIVE-4",
-            "--target",
-            FIXTURE["unaffected_target"],
-            "--target",
-            FIXTURE["held_deliverables"][0],
-        )
-        self.assertEqual(result.returncode, 3, result.stderr or result.stdout)
-        payload = json.loads(result.stdout)
-        self.assertEqual(payload["verdict"], "BLOCK_APP_HOLD")
-        verdicts = {
-            row["deliverable_id"]: row["verdict"] for row in payload["results"]
-        }
-        self.assertEqual(
-            verdicts[FIXTURE["held_deliverables"][0]], "BLOCK_APP_HOLD"
-        )
-        self.assertEqual(verdicts[FIXTURE["unaffected_target"]], "ALLOW")
-
-    def test_register_drift_fails_closed(self) -> None:
+    def test_released_target_cannot_be_reactivated_by_register_only(self) -> None:
         drifted = HERE / "fixtures" / "APP_HOLD_REGISTER_DRIFT.csv"
         result = subprocess.run(
             [
@@ -237,25 +144,120 @@ class AppHoldCandidateTests(unittest.TestCase):
             stderr=subprocess.PIPE,
             check=False,
         )
-        self.assertEqual(result.returncode, 4, result.stderr or result.stdout)
-        payload = json.loads(result.stdout)
-        self.assertEqual(payload["verdict"], "BLOCK_REGISTER_DRIFT")
+        self.assertEqual(result.returncode, 2, result.stderr or result.stdout)
+        self.assertIn(
+            "released target cannot appear in the active hold register",
+            result.stderr,
+        )
+
+    def test_released_target_is_clear_and_allowed(self) -> None:
+        target = FIXTURE["released_deliverables"][0]
+        scan = TOOL_MODULE.scan_corpus(REPO_ROOT, SOW_ROOT)
+        known = {row["deliverable_id"]: row for row in scan["contracts"]}
+        self.assertEqual(known[target]["status"], "CLEAR")
+        comparison = TOOL_MODULE.compare_register(scan, REGISTER)
+        self.assertTrue(comparison["match"], comparison)
+        results = TOOL_MODULE.evaluate_targets(
+            known,
+            {},
+            operation="reliance",
+            entry_path="OD6-G5:POST-RELEASE-VALIDATION",
+            targets=[target],
+        )
+        self.assertEqual(results[0]["contract_status"], "CLEAR")
+        self.assertEqual(results[0]["hold_status"], "NOT_HELD")
+        self.assertEqual(results[0]["verdict"], "ALLOW")
+
+    def test_scan_derived_held_target_missing_register_fails_closed(self) -> None:
+        target = FIXTURE["unaffected_target"]
+        scan = TOOL_MODULE.scan_corpus(REPO_ROOT, SOW_ROOT)
+        for contract in scan["contracts"]:
+            if contract["deliverable_id"] == target:
+                contract["status"] = "HELD"
+                contract["reason"] = "SIMULATED_UNRESOLVABLE_BASIS"
+        scan["held_deliverables"] = [target]
+        scan["held_count"] = 1
+        comparison = TOOL_MODULE.compare_register(scan, REGISTER)
+        self.assertFalse(comparison["match"])
+        self.assertEqual(comparison["missing_from_register"], [target])
+
+    def test_scan_derived_held_state_cannot_survive_basis_resolution(self) -> None:
+        target = FIXTURE["unaffected_target"]
+        scan = TOOL_MODULE.scan_corpus(REPO_ROOT, SOW_ROOT)
+        known = {row["deliverable_id"]: row for row in scan["contracts"]}
+        row = {
+            "hold_id": f"APP-HOLD-1-{target}",
+            "deliverable_id": target,
+            "package_id": known[target]["package_id"],
+            "sow_path": known[target]["sow_path"],
+            "decomposition_basis": known[target]["decomposition_basis"],
+            "basis_commit": known[target]["basis_commit"],
+            "status": "HELD",
+            "prohibited_operations": "|".join(TOOL_MODULE.OPERATIONS),
+            "entry_path_scope": "ANY",
+            "repin_posture": "NO_REPIN",
+            "authority_basis": "D-APP-75",
+        }
+        original_loader = TOOL_MODULE.load_register
+        TOOL_MODULE.load_register = lambda _path: [row]
+        try:
+            comparison = TOOL_MODULE.compare_register(scan, REGISTER)
+        finally:
+            TOOL_MODULE.load_register = original_loader
+        self.assertFalse(comparison["match"])
         self.assertEqual(
-            payload["register"]["missing_repair_pending_from_register"],
-            ["DEL-08-03"],
+            comparison["status_mismatches"],
+            [{"deliverable_id": target, "scan": "CLEAR", "register": "HELD"}],
+        )
+
+    def test_unaffected_target_allowed(self) -> None:
+        result = invoke(
+            "check",
+            "--operation",
+            "dispatch",
+            "--entry-path",
+            "WORKING_ITEMS:PKG-03:RUN-POSITIVE-1",
+            "--target",
+            FIXTURE["unaffected_target"],
+        )
+        self.assertEqual(result.returncode, 0, result.stderr or result.stdout)
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["verdict"], "ALLOW")
+        self.assertEqual(payload["results"][0]["verdict"], "ALLOW")
+        self.assertEqual(len(payload["scan_fingerprint_sha256"]), 64)
+
+    def test_mixed_fanin_dependency_set_allowed_after_release(self) -> None:
+        released = FIXTURE["released_deliverables"][0]
+        result = invoke(
+            "check",
+            "--operation",
+            "accepted-dependency-consumption",
+            "--entry-path",
+            "WORKING_ITEMS:FAN-IN:RUN-POSITIVE-2",
+            "--target",
+            FIXTURE["unaffected_target"],
+            "--target",
+            released,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr or result.stdout)
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["verdict"], "ALLOW")
+        self.assertEqual(
+            {row["deliverable_id"]: row["verdict"] for row in payload["results"]},
+            {FIXTURE["unaffected_target"]: "ALLOW", released: "ALLOW"},
         )
 
     def test_no_generic_owner_exception_bypass_exists(self) -> None:
         result = invoke(
             "check",
             "--exceptions",
-            "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-74_RULING_2026-07-23.md",
+            "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-81_RULING_2026-07-28.md",
             "--operation",
             "dispatch",
             "--entry-path",
             "DIRECT_HUMAN_SESSION:RUN-NEGATIVE-5",
             "--target",
-            FIXTURE["held_deliverables"][0],
+            FIXTURE["released_deliverables"][0],
         )
         self.assertEqual(result.returncode, 2, result.stderr or result.stdout)
         self.assertIn("unrecognized arguments: --exceptions", result.stderr)
