@@ -188,3 +188,19 @@ the branch can fast-forward safely.
 Git closeout is source-control hygiene. It is not lifecycle issuance, release
 readiness, professional approval, certification, sealing, authentication, or
 code-compliance acceptance.
+
+## Active Reliance Holds
+
+Before any PEC dispatch, production reliance, promotion, fan-in, review, or
+consumption, run the PEC reliance-hold preflight against
+`execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv`. A matching `ACTIVE` row
+blocks the prohibited act regardless of entry path. Read-only historical
+inspection and exact correction preparation remain allowed only as the row
+states. No runtime exception exists; override or release requires a later,
+separately accepted PEC-loop amendment.
+
+The deterministic preflight is
+`execution/_Scripts/pec_reliance_hold.py`. WORKING_ITEMS must run it before
+dispatch and fan-in. REVIEW and any other entry path must run the same check
+before reliance or promotion. A missing, malformed, or unreadable register
+fails closed.

@@ -155,7 +155,7 @@ sibling-messaging rule. PEC is that surface.
 |---|---|
 | **PEC-K-01** | **Graceful absence.** No governed act may require a PEC read or write. Deleting PEC blocks nothing. The kill test (§12) passes at every release. |
 | **PEC-K-02** | **Files govern.** The record tier is regenerated from sources by one command; the presence tier is expected to be lost on rebuild; the database is gitignored and safe to delete; PEC output is never citable as authority; rulings and lifecycle state remain file-native. |
-| **PEC-K-03** | **Harness-owned consumption.** Polling is performed by harnesses at moments of consequence (session start, mode transition, claim, write, dispatch, fan-in) and injected as labeled non-authoritative data. The only agent behavior is verify-before-rely. |
+| **PEC-K-03** | **Pull-oriented interface; consumer-owned use.** PEC provides labeled, non-authoritative orientation data on request and never self-polls, schedules a consumer, injects into an agent, or claims an external cadence. An explicitly PEC-enabled consumer decides under its own authority whether and when to consume. If it injects PEC data, verify-before-rely is an interface precondition; injection is not required. |
 | **PEC-K-04** | **Staleness is a comparison.** Every response carries the examined-through commit SHA and per-feed freshness; consumers detect staleness structurally. |
 | **PEC-K-05** | **Two trust tiers, never blurred.** Record tier: reconciled from file truth, per-claim citations. Presence tier: TTL'd, heartbeat-aged, evaporating, honesty-labeled. Presence facts never enter record-tier citations. |
 | **PEC-K-06** | **Observation, not participation.** Read-only over Git; no leases, no claim arbitration, no merge opinions, no dispatch; conflicts surfaced, never prevented. |
@@ -163,7 +163,7 @@ sibling-messaging rule. PEC is that surface.
 | **PEC-K-08** | **Everything derived is explainable.** Every status, verdict, and warning carries rule ID, threshold, and contributing cited sources. Drill-down never dead-ends. |
 | **PEC-K-09** | **Declared surface.** Every coordination message is durable and attributable; no ephemeral relay. |
 | **PEC-K-10** | **Content-minimal.** Paths, counts, SHAs, states, hashes — never file or diff content. |
-| **PEC-K-11** | **Mode-proportional.** Consumption follows §5; zero-coordination modes remain zero-contact. |
+| **PEC-K-11** | **Mode-capable and never forced.** PEC supports the §5 scope and mode parameters and never forces contact. Pipeline and unscoped-conversation modes support testable zero-contact operation. An explicitly PEC-enabled consumer owns its own mode mapping and contact cadence unless its owner separately adopts an exact duty. |
 
 Invariant lineage: PEC-K-02/-08 carry v1.0 PEC-I-01/-04 (factual-or-absent;
 source and authority visible); PEC-K-08 also carries PEC-I-02 (one state,
