@@ -2569,3 +2569,27 @@
   - Checks: exact five-file candidate hashes; D-APP next-ID scan; D-APP-76 predecessor and Receipt 93 hashes; singular stable row; retired/unknown markers; old current-evidence cell absence; D-GOV-20 and PEC PRD §15 citation resolution; focused and full App frontend tests; decision/receipt validators; notice/path/whitespace/diff containment.
   - Model-Attribution: OpenAI Codex WORKING_ITEMS managed by HELP_HUMAN; exact runtime model build not exposed; no Agent 2 delegated.
   - Gate-Outcome: `EXECUTED` — D-APP-77 is transcribed and the exact G4-A maintenance bytes are prepared; no App/PEC SCOPE_CHANGE, ScopeOfWork edit, repin, runtime implementation, lifecycle transition, release, or professional-reliance effect occurs. Git closeout returns separately after D-APP-76/Receipt 93 integration.
+- **2026-07-27 — Receipt 95** (D-APP-77 effective-state closeout).
+  - Receipt-ID: `Receipt-95`
+  - Examined-Through: `7b0be4d8772a16e5a4774a17988479587d00acca`
+  - Parent-Receipt: `Receipt-94`
+  - Pointers: original ruling
+    `execution/_Coordination/_DECISIONS/D-APP-77_RULING_2026-07-27.md`;
+    additive closeout
+    `execution/_Coordination/_DECISIONS/D-APP-77_EFFECTIVE_STATE_CLOSEOUT_2026-07-27.md`;
+    corrected D-APP-77 register row; application commit
+    `208cae9a834ca9d35c00de2a248d3a9d4be7de52`; PR #381 merge
+    `a6b10683219c22f45f31e3dffa4fb164b4582051`.
+  - Checks: application/merge/basis ancestry; eight-path blob-identity check
+    across application, merge, and examined basis; D-APP-76/Receipt 93
+    predecessor check; original-ruling and packet hashes; single-row register
+    replacement; original ruling, packet, and application paths
+    byte-identical; receipt cursor, path, containment, and whitespace checks.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS managed by HELP_HUMAN;
+    exact runtime model build not exposed.
+  - Gate-Outcome: `EXECUTED` — D-APP-77 is effective at PR #381 merge
+    `a6b10683219c22f45f31e3dffa4fb164b4582051`. The stable
+    `RB-PEC-ADAPTER` row remains historical, its v0.4 assertions remain
+    retired as current PEC v2 evidence, and current PEC v2 mechanism/evidence
+    remains `UNKNOWN`. No scope, ScopeOfWork, repin, implementation, runtime,
+    lifecycle, release, or professional-reliance effect occurs.
