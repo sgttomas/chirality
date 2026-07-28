@@ -1263,3 +1263,18 @@
   - Gate: pointer parity only. No production reliance, activation,
     lifecycle, topology, dependency, ScopeOfWork, implementation,
     estimate, schedule, release, or hold-release authority is created.
+
+- **2026-07-28 — Receipt 117** (D-PEC-70: PEC-HOLD-001 released).
+  - Agent 0 recommended release after PR #406 made the complete v2.2
+    ScopeOfWork reconciliation durable; under the owner's standing completion
+    direction, the recommendation stands as the owner-approved ruling.
+  - Evidence: 32/32 active contracts pass all four validators; 64 strict
+    decomposition registers / 254 rows pass with zero findings; final
+    independent verification is PASS over 57 repairs in 11 contracts, 794
+    definitions, 22 preserved unknowns, and zero authority conflicts.
+  - Applied effect: the active-hold register is header-only and its preflight
+    rejects silent reactivation of the released target. `PEC-HOLD-001` is
+    RELEASED.
+  - Authority fence: no WORKING_ITEMS activation, source work, professional
+    reliance, implementation, runtime, lifecycle, dependency, estimate,
+    schedule, or release authority is created. `F-PEC-1` remains in force.

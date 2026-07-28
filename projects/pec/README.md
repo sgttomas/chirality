@@ -22,7 +22,9 @@ Pre-implementation. Decomposition revision 1.3 is the accepted current basis
 after `SCA-003`; PROJECT_SETUP has materialized the owner-selected full DAG and
 scaffolded 11 packages / 64 deliverables; 32 Phase 2.2 ScopeOfWork contracts
 are initialized. The reference packets are pinned to PRD v2.2 / revision 1.3;
-affected contracts remain stale-frozen under the active reliance hold. Build phases P1–P4 follow under per-tranche packets. See the
+the 11 affected contracts were reconciled to the accepted basis under
+`D-PEC-69`, and `PEC-HOLD-001` was released by `D-PEC-70`. Build phases
+P1–P4 remain separately owner-gated. See the
 standing plan at
 `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md`.
 
@@ -53,5 +55,6 @@ content-minimal · mode-capable and never forced.
 Decisions: `execution/_Coordination/_DECISIONS/_REGISTER.md` (pivot:
 `D-PEC-57`; adoption: `D-PEC-58`; directed bootstrap: `D-PEC-61`; exact
 consumer rows: `D-PEC-67`; v2.2 concordance: `D-PEC-68`; accepted
-decomposition successor: `SCA-003`). Receipts:
+decomposition successor: `SCA-003`; contract reconciliation and hold release:
+`D-PEC-69`/`D-PEC-70`). Receipts:
 `_DomainEngines/pec/LOOP_RECEIPTS.md`. Project agent rules: `AGENTS.md`.

@@ -12,14 +12,25 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 TOOL = HERE.parent / "pec_reliance_hold.py"
-TARGET = (
+RELEASED_TARGET = (
     "execution/PKG-00_Architecture_Runway_Contracts/1_Working/"
     "DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md"
 )
-REGISTER = (
+TARGET = "execution/PKG-99_Test/1_Working/DEL-99-01_Test/ScopeOfWork.md"
+HEADER = (
     "HoldID,Status,TargetPath,TargetClauses,ProhibitedActs,AllowedActs,"
     "Authority,ReleaseRule\n"
-    f"PEC-HOLD-001,ACTIVE,{TARGET},CLM-005|REQ-004,"
+)
+REGISTER = (
+    HEADER
+    + f"PEC-HOLD-001,ACTIVE,{TARGET},CLM-005|REQ-004,"
+    "\"rely for production|dispatch for production|promote|consume\","
+    "\"historical read-only inspection|exact correction preparation|candidate validation\","
+    "D-PEC-67,\"separate owner act\"\n"
+)
+REACTIVATION_REGISTER = (
+    HEADER
+    + f"PEC-HOLD-001,ACTIVE,{RELEASED_TARGET},CLM-005|REQ-004,"
     "\"rely for production|dispatch for production|promote|consume\","
     "\"historical read-only inspection|exact correction preparation|candidate validation\","
     "D-PEC-67,\"separate owner act\"\n"
@@ -27,10 +38,17 @@ REGISTER = (
 
 
 class HoldTests(unittest.TestCase):
-    def run_gate(self, operation: str, clause: str = "CLM-005") -> subprocess.CompletedProcess:
+    def run_gate(
+        self,
+        operation: str,
+        clause: str = "CLM-005",
+        *,
+        target: str = TARGET,
+        register_text: str = REGISTER,
+    ) -> subprocess.CompletedProcess:
         with tempfile.TemporaryDirectory() as directory:
             register = Path(directory) / "holds.csv"
-            register.write_text(REGISTER, encoding="utf-8")
+            register.write_text(register_text, encoding="utf-8")
             return subprocess.run(
                 [
                     sys.executable,
@@ -38,7 +56,7 @@ class HoldTests(unittest.TestCase):
                     "--register",
                     str(register),
                     "--target",
-                    TARGET,
+                    target,
                     "--clause",
                     clause,
                     "--operation",
@@ -68,6 +86,26 @@ class HoldTests(unittest.TestCase):
 
     def test_unrelated_clause_allowed(self) -> None:
         self.assertEqual(self.run_gate("consume", "CLM-999").returncode, 0)
+
+    def test_released_target_absent_from_register_is_allowed(self) -> None:
+        result = self.run_gate(
+            "rely-for-production",
+            target=RELEASED_TARGET,
+            register_text=HEADER,
+        )
+        self.assertEqual(result.returncode, 0)
+
+    def test_released_target_reactivation_blocks(self) -> None:
+        result = self.run_gate(
+            "rely-for-production",
+            target=RELEASED_TARGET,
+            register_text=REACTIVATION_REGISTER,
+        )
+        self.assertEqual(result.returncode, 3)
+        self.assertIn(
+            "released target cannot appear in the active hold register",
+            result.stdout,
+        )
 
 
 if __name__ == "__main__":

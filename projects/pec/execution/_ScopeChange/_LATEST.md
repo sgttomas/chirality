@@ -12,10 +12,10 @@
 | DecompositionTruthState | `COMPLETE` |
 | DerivativePackageState | `COMPLETE` — decomposition-local derivatives only |
 | ContentRemediationState | `NOT_REQUIRED` |
-| DownstreamRerunState | `FROZEN` |
+| DownstreamRerunState | `COMPLETE` — references and affected ScopeOfWork contracts reconciled downstream |
 | MetadataAlignmentState | `NOT_REQUIRED` |
 | AuditState | **`NON_BLOCKING_PASS`** — `COV_SCA003_POSTCHANGE_FINAL_2026-07-28_0831`, 0 blockers / 0 warnings |
-| ReadyForNextPhase | `REGEN_ONLY` |
+| ReadyForNextPhase | `OWNER_GATED_WORKING_ITEMS` |
 | ClosureVerdict | **`CLOSED_FOR_SCOPE_CHANGE_ONLY`** |
 
 **Gate state: Gates 1–5 are owner-ruled.** The owner direction of record is:
@@ -33,6 +33,9 @@ preserves 94 scope items, 11 packages, 64 deliverables, 6 objectives, every
 stable ID and every dependency edge. DEL-10-12 retains its canonical label
 and path.
 
-`ScopeOfWork.md`, `_REFERENCES.md`, dependencies, the active reliance hold,
-lifecycle state and implementation remain unchanged. Downstream owning
-workflows must regenerate/re-pin before reliance.
+The SCA left `ScopeOfWork.md`, `_REFERENCES.md`, dependencies, the reliance
+hold, lifecycle state, and implementation unchanged. Downstream PROJECT_SETUP
+and RECONCILIATION acts subsequently re-pinned all references and reconciled
+the affected contracts; `D-PEC-70` released `PEC-HOLD-001`. Dependencies,
+lifecycle state, implementation, and ordinary production gates remain
+unchanged.

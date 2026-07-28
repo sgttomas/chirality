@@ -61,7 +61,10 @@ read and cite only, no further feature work, retired product docs under
    WORKING_ITEMS is the post-wave owning workflow)*
    *(amended by `D-PEC-65`, 2026-07-25/26: the 120 seeded EXECUTION register evidence rows repaired — validator exit 0, 119 repaired + 1 declared waiver; evidence Receipt 111)*
    *(amended by `D-PEC-66`, 2026-07-26: E-N13 declined (254 rows / 119 edges, zero waivers, validator fully clean incl. `--strict`), DEL-10-10 REQ-011 repaired, all 21 QA-item-20 rows dispositioned; evidence Receipt 112)*
-   *(amended 2026-07-28 after SCA-003: revision 1.3 is accepted; PROJECT_SETUP re-pinned all 64 `_REFERENCES.md` packets to PRD v2.2 / revision 1.3. ScopeOfWork contracts remain stale-frozen and `PEC-HOLD-001` remains active.)*
+   *(amended 2026-07-28 after SCA-003: revision 1.3 is accepted;
+   PROJECT_SETUP re-pinned all 64 `_REFERENCES.md` packets to PRD v2.2 /
+   revision 1.3; `D-PEC-69` reconciled the 11 affected complete contracts
+   and `D-PEC-70` released `PEC-HOLD-001` after full-corpus validation.)*
    (32 deliverables: parsers, reconciler + parity, orientation core,
    socket API, kill test, bootstrap self-ingest; plus pre-P1 DEL-00-01
    ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **Each tranche
@@ -94,6 +97,9 @@ is `current_basis`; all three sessions' immutable evidence lives under
 consumer-owned invariant rows; `D-PEC-68` reconciled the surrounding PRD;
 SCA-003 propagated C3/C15 and direct mirrors into accepted decomposition
 truth without changing topology, dependencies, lifecycle, or implementation.
+`D-PEC-69` then reconciled the complete affected ScopeOfWork population;
+`D-PEC-70` released the exceptional reliance hold. P1 source work remains
+separately owner-gated and fenced by `F-PEC-1`.
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` was amended
 2026-07-24 (`D-PEC-59`: post-archive readable-artifact paths + pivot notes;
 validator VALID); full supersession remains pending v2 implementation shape.
