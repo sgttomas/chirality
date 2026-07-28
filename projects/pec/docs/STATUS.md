@@ -22,10 +22,9 @@ that doesn't need to exist": no governed act may ever require it.
 `D-PEC-61`; exact PEC-K-03/-11 rows adopted by `D-PEC-67`; surrounding
 consumer-interface concordance adopted by `D-PEC-68`).**
 
-**Implementation:** none yet. Decomposition revision 1.2 is the accepted
-current basis after `SCA-002` (`D-PEC-64`, 2026-07-25; revision 1.1 was the
-`SCA-001` basis); PROJECT_SETUP is released with `FULL_GRAPH`
-already selected. Nothing in the PRD is an implementation mandate (each
+**Implementation:** none yet. Decomposition revision 1.3 is the accepted
+current basis after `SCA-003` (2026-07-28; revision 1.2 was the `SCA-002`
+basis); PROJECT_SETUP remains released with `FULL_GRAPH` already selected. Nothing in the PRD is an implementation mandate (each
 tranche needs its own owner-ruled packet).
 
 **The old application** (v0.4-baseline prototype: `core/`, `server/`, `web/`,
@@ -39,13 +38,14 @@ read and cite only, no further feature work, retired product docs under
 
 0. ~~Decomposition~~ — **accepted 2026-07-24** (`D-PEC-60`, Gates 1–7).
    The canonical working package at `execution/_Decomposition/`
-   (`SOFTWARE_DECOMP.md` rev 1.2 `current_basis` after `SCA-002`/`D-PEC-64`
+   (`SOFTWARE_DECOMP.md` rev 1.3 `current_basis` after `SCA-003`
    + four CSV registers +
    `_LATEST.md` handoff state) is the authoritative downstream basis:
    11 packages (PKG-00..PKG-10), 64 deliverables, 94-row scope ledger.
 1. **PROJECT_SETUP / first build tranches** — materialize the owner-selected
-   full dependency DAG from revision 1.1 (basis since amended to 1.2 by
-   `SCA-002`) before scaffolding and the P1 slice
+   full dependency DAG from revision 1.1 (topology preserved through
+   revision 1.2 / `SCA-002` and revision 1.3 / `SCA-003`) before scaffolding
+   and the P1 slice
    *(amended by `D-PEC-62`, 2026-07-25: owner-ruled deliverable-local
    storage makes materialization co-land **with** scaffolding — DAG gate
    ruled, 11 packages / 64 deliverables scaffolded `OPEN`, local
@@ -61,6 +61,7 @@ read and cite only, no further feature work, retired product docs under
    WORKING_ITEMS is the post-wave owning workflow)*
    *(amended by `D-PEC-65`, 2026-07-25/26: the 120 seeded EXECUTION register evidence rows repaired — validator exit 0, 119 repaired + 1 declared waiver; evidence Receipt 111)*
    *(amended by `D-PEC-66`, 2026-07-26: E-N13 declined (254 rows / 119 edges, zero waivers, validator fully clean incl. `--strict`), DEL-10-10 REQ-011 repaired, all 21 QA-item-20 rows dispositioned; evidence Receipt 112)*
+   *(amended 2026-07-28 after SCA-003: revision 1.3 is accepted; PROJECT_SETUP re-pinned all 64 `_REFERENCES.md` packets to PRD v2.2 / revision 1.3. ScopeOfWork contracts remain stale-frozen and `PEC-HOLD-001` remains active.)*
    (32 deliverables: parsers, reconciler + parity, orientation core,
    socket API, kill test, bootstrap self-ingest; plus pre-P1 DEL-00-01
    ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **Each tranche
@@ -87,12 +88,12 @@ Decomposition session ruled and closed 2026-07-24 (`D-PEC-60`, Gates 1–7
 accepted; `execution/_Decomposition/**` opened by its fence for the
 canonical working package). Directed-bootstrap amendment `SCA-001` closed
 2026-07-24 under `D-PEC-61`; objective-mapping amendment `SCA-002` closed
-2026-07-25 under `D-PEC-64`; revision 1.2 is `current_basis` and both
-sessions' immutable evidence lives under `execution/_ScopeChange/`.
-`D-PEC-67` adopted exact pull-oriented / consumer-owned invariant rows;
-`D-PEC-68` reconciled the surrounding PRD and current live pointers without
-opening SCA-003. C3/C15 decomposition propagation remains a later, separately
-owner-gated SCOPE_CHANGE.
+2026-07-25 under `D-PEC-64`; SCA-003 closed 2026-07-28 and revision 1.3
+is `current_basis`; all three sessions' immutable evidence lives under
+`execution/_ScopeChange/`. `D-PEC-67` adopted exact pull-oriented /
+consumer-owned invariant rows; `D-PEC-68` reconciled the surrounding PRD;
+SCA-003 propagated C3/C15 and direct mirrors into accepted decomposition
+truth without changing topology, dependencies, lifecycle, or implementation.
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` was amended
 2026-07-24 (`D-PEC-59`: post-archive readable-artifact paths + pivot notes;
 validator VALID); full supersession remains pending v2 implementation shape.

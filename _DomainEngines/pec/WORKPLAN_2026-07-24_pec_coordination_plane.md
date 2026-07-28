@@ -50,8 +50,8 @@ and never citable as authority.
 1. **Review the product gate.** PRD v2.2 is the product definition of record
    after `D-PEC-68`; its exact PEC-K-03/-11 rows were adopted by `D-PEC-67`.
    No PRD adoption is an implementation or receiving-loop mandate.
-2. **Use accepted decomposition truth.** `SOFTWARE_DECOMP` revision 1.2 is the
-   accepted downstream basis. Post-acceptance product propagation uses
+2. **Use accepted decomposition truth.** `SOFTWARE_DECOMP` revision 1.3 is the
+   accepted downstream basis after SCA-003. Post-acceptance product propagation uses
    SCOPE_CHANGE with its own owner gates; no implementation tranche is scoped
    from the PRD directly.
 3. **Fence source work.** Each implementation tranche requires an owner-ruled
@@ -73,7 +73,7 @@ Phases map to PRD v2.2 §12.
 | Order | Tranche | Completion test |
 |---|---|---|
 | P0 | Governance | `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68` ruled; this plan remains live at `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` |
-| D1 | Decomposition (`SOFTWARE_DECOMP` over PRD v2) | Gate 7 accepted; revision 1.2 is the authoritative downstream basis until a separately accepted successor |
+| D1 | Decomposition (`SOFTWARE_DECOMP` over PRD v2) | Gate 7 accepted; revision 1.3 is the authoritative downstream basis after SCA-003 until a separately accepted successor |
 | P1 | One-loop reconciler + orientation store + read-only API | Parity diff vs practitioner harness clean or explained; rebuild-from-scratch within bound; kill test passes |
 | P2 | Dashboards across all registered loops | Under selected PRD v2.2 P2-B, owner use or non-use is recorded as uptake/falsification evidence; manual Step 0 remains available and no consumer is bound |
 | P3 | PEC-side opt-in integration interfaces/adapters usable by hooks CLI or daemon consumers, presence registry, Git/worktree scanner | Capability tests pass; consumer enablement/use measured without external conformance; overlap warnings fire on seeded conflicts; falsification clause armed |
@@ -121,6 +121,8 @@ The first loop the P1 reconciler ingests is PEC v2's own build.
   and `_DomainEngines/_DECISIONS/_REGISTER.md`
 - Profile: `_DomainEngines/profiles/pec.yaml`
 - Project agent posture: `projects/pec/AGENTS.md`
+- Accepted decomposition pointer: `projects/pec/execution/_Decomposition/_LATEST.md` (revision 1.3)
+- Accepted scope-change pointer: `projects/pec/execution/_ScopeChange/_LATEST.md` (SCA-003)
 - Loop handoff: `_DomainEngines/pec/LOOP_RECEIPTS.md`
 - Frozen reference corpus: `projects/pec/{core,server,web,agent-sidecar,tools}`
 - Build pipeline: `docs/DECOMPOSITION_STANDARD.md` and
