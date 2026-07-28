@@ -405,3 +405,21 @@
   - Gate outcome: semantic ruling unchanged; no mapping, retirement,
     supersession, compatibility claim, implementation, migration, repin,
     lifecycle, release, or professional-reliance authority is created.
+
+- **2026-07-27 — Receipt 29** (D-T0-25 / OD7-G3 R-A exact application).
+  - Owner approved exact application packet
+    `67c5af9b736798b3cd22cd3a851b0c98d0192874931f53524c1119564c99ad40`,
+    candidate manifest
+    `2ac9d01be2bd2c36f03d67e4feeb5a47d2860d9e08eccf4d3cb46a05f4fd199c`,
+    and artifact manifest
+    `56221e7dc23aa4132d0d506c28c441e2934c7e9acad7f98f42256a5fc467f999`.
+  - Applied effect: D-T0-23 remains byte-identical historical authority; its
+    relationship to PEC v2 is classified through the accepted clause register;
+    the Tier-0 register gains D-T0-25; and only the `Shared runtime convergence`
+    summary in `DOMAIN_ENGINE_INDEX.md` is updated.
+  - Authority fence: lineage classification only. No product, profile,
+    project-local, PRD, decomposition, ScopeOfWork, dependency, runtime,
+    implementation, lifecycle, release, compatibility, reliance, notice,
+    pointer, or Git authority is created.
+  - P-A and D-T0-26 remain separately gated and unapplied.
+  - Gate outcome: `APPLIED_PENDING_CHANGE`.
