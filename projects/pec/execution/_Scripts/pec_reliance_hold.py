@@ -20,6 +20,12 @@ ALLOWED = {
     "exact-correction-preparation",
     "candidate-validation",
 }
+RELEASED_TARGETS = {
+    (
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/"
+        "DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md"
+    ),
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -36,7 +42,9 @@ def main() -> int:
     register = Path(args.register)
     try:
         with register.open(newline="", encoding="utf-8") as handle:
-            rows = list(csv.DictReader(handle))
+            reader = csv.DictReader(handle)
+            fieldnames = set(reader.fieldnames or [])
+            rows = list(reader)
     except (OSError, csv.Error) as exc:
         print(json.dumps({"status": "BLOCK", "reason": f"register unreadable: {exc}"}))
         return 3
@@ -44,8 +52,18 @@ def main() -> int:
         "HoldID", "Status", "TargetPath", "TargetClauses", "ProhibitedActs",
         "AllowedActs", "Authority", "ReleaseRule",
     }
-    if not rows or set(rows[0]) != required:
+    if fieldnames != required:
         print(json.dumps({"status": "BLOCK", "reason": "register malformed"}))
+        return 3
+    reactivated = [
+        row for row in rows if row["TargetPath"] in RELEASED_TARGETS
+    ]
+    if reactivated:
+        print(json.dumps({
+            "status": "BLOCK",
+            "reason": "released target cannot appear in the active hold register",
+            "target": reactivated[0]["TargetPath"],
+        }, sort_keys=True))
         return 3
     matches = [
         row for row in rows

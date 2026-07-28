@@ -1,2 +1,1 @@
 HoldID,Status,TargetPath,TargetClauses,ProhibitedActs,AllowedActs,Authority,ReleaseRule
-PEC-HOLD-001,ACTIVE,execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md,CLM-005|REQ-004,"rely for production|dispatch for production|promote|consume","historical read-only inspection|exact correction preparation|candidate validation",D-PEC-67,"separate owner act after exact correction application and concordance proof"

@@ -1,0 +1,2 @@
+HoldID,ReleasedTarget,ReleaseAuthority,ReleaseBasis,ReplacementControl
+PEC-HOLD-001,execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md,D-PEC-70,592ba2a3c2762009aeec275316722c64716a3938,pec_reliance_hold.py rejects silent reactivation

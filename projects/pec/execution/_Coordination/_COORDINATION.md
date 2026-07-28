@@ -105,9 +105,11 @@
 10. **SCA-003 / PROJECT_SETUP reference parity (2026-07-28):**
     decomposition revision **1.3** is accepted `current_basis`; all 64
     deliverable `_REFERENCES.md` packets are re-pinned to PRD v2.2 and
-    revision 1.3. ScopeOfWork contracts remain `STALE_FROZEN`,
-    `PEC-HOLD-001` remains `ACTIVE`, and lifecycle, topology,
-    dependencies, implementation, estimates, and schedules are unchanged.
+    revision 1.3. `D-PEC-69` subsequently reconciled the complete
+    execution-time-confirmed eleven-contract affected population, and
+    `D-PEC-70` released `PEC-HOLD-001` after full-corpus and independent
+    validation. Lifecycle, topology, dependencies, implementation, estimates,
+    schedules, and ordinary production gates remain unchanged.
 
 ## Notes (human-owned)
 

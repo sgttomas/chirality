@@ -38,14 +38,15 @@ the owner's standing completion approval after D-PEC-68).
 - **Supersession:** no `Supersession_Delta.csv` binding is owed. SCA-003
   consumes already-accepted PRD v2.2 and D-PEC-67/-68 facts; it does not
   override upstream authority.
-- **Downstream obligations:** affected `ScopeOfWork.md` contracts and all
-  stale `_REFERENCES.md` must be regenerated or re-pinned by their owning
-  workflows before reliance. Those surfaces are intentionally unchanged.
-- **Reliance hold:** `PEC-HOLD-001` remains active and unchanged. SCA-003
-  grants no reliance, implementation, lifecycle, dependency, estimate,
-  schedule, release or hold-release authority.
-- **DownstreamRerunState: `FROZEN`.**
-- **ReadyForNextPhase: `REGEN_ONLY`.**
+- **Downstream completion:** PROJECT_SETUP re-pinned all 64
+  `_REFERENCES.md`; `D-PEC-69` reconciled the complete
+  execution-time-confirmed eleven-contract affected population. These are
+  downstream acts and do not alter decomposition truth.
+- **Reliance hold:** `PEC-HOLD-001` was released by `D-PEC-70` after
+  full-corpus and independent validation. The SCA itself granted no reliance
+  or implementation authority.
+- **DownstreamRerunState: `COMPLETE`.**
+- **ReadyForNextPhase: `OWNER_GATED_WORKING_ITEMS`.**
 - **Fallback and authority:** file-native fallback remains operable. Consumer
   use is optional and separately authorized; no receiving-loop duty is
   created.
