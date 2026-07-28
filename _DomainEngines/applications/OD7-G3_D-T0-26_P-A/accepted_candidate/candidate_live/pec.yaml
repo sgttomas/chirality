@@ -1,10 +1,10 @@
-# PEC Domain Engine Profile - STALE legacy binding (D-T0-26; applied 2026-07-28)
+# PEC Domain Engine Profile - STALE legacy binding (OD7-G3 P-A exact candidate; not applied)
 #
-# Historical status: ADOPTED under the 2026-07-05 ruling. Current
+# Historical status: ADOPTED under the 2026-07-05 ruling. Current candidate
 # posture: STALE and ineligible for governed profile-mediated invocation.
 # The historical ruling remains: "I adopt the pec profile for Gate 2,
 # you may execute as you see fit." It is recorded in the D-T0-12 packet.
-# D-T0-26 preserves that history while making the profile ineligible
+# This candidate preserves that history while making the profile ineligible
 # for governed invocation. Static citation and validation remain permitted.
 #
 # Provenance: instance binding for projects/pec. Amended 2026-07-24 under
@@ -22,12 +22,12 @@ domain_profile:
   id: "pec"
   name: "PEC - Engineering Execution Control (project controls)"
   engine_type: "project-controls/engineering-execution-control"
-  profile_version: "0.3"  # D-T0-26 P-A application: semantic demotion only; historical 0.2 declarations preserved below as lineage.
+  profile_version: "0.3"  # OD7-G3 P-A exact candidate: semantic demotion only; historical 0.2 declarations preserved below as lineage.
   profile_status: "STALE"
   integration_level: "MANUAL_BRIDGE"
   execution_policy: "DENY_ALL_PROFILE_MEDIATED_INVOCATIONS"
   historical_binding_only: true
-  data_residency: "OPEN_ENUMERATED"  # Historical D-T0-20 O-B frozen-instance basis only; this STALE profile grants no live read, egress, or mutation authority.
+  data_residency: "OPEN_ENUMERATED"  # Historical D-T0-20 O-B frozen-instance basis only; this STALE candidate grants no live read, egress, or mutation authority.
 
   domain_root_patterns:
     - "projects/pec/**"

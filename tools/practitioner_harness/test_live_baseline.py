@@ -118,19 +118,16 @@ def test_live_self_check_abs_path_in_evidence_reports_are_pinned():
 
 
 @live
-def test_live_bridge_status_reports_pec_adopted_gate_closed():
-    # Conscious live-pin update (workplan step-4 convention): the owner adopted the
-    # PEC profile at Gate 2 on 2026-07-05 (D-T0-12 packet, dated adoption note), so
-    # the prior DRAFT / "Gate 2 open" pin is superseded in the same PR as the flip.
+def test_live_bridge_status_reports_pec_stale_profile():
+    # Conscious live-pin update: D-T0-26 preserves the historical Gate-2 adoption
+    # while classifying the current frozen profile STALE / MANUAL_BRIDGE.
     report = cmd_bridge_status.run_bridge_status(LIVE_REPO)
-    assert _fact(report, "bridge_status.profile.pec.profile_status").value == "ADOPTED"
+    assert _fact(report, "bridge_status.profile.pec.profile_status").value == "STALE"
     assert _fact(report, "bridge_status.profile.pec.gate_posture").value == (
-        "Gate 2 adopted"
+        "Gate 2 unknown"
     )
     md = report.render_markdown()
-    # integration level pin updated 2026-07-05: D-T0-18 O-A advanced pec to
-    # OPERATION_PROPOSAL (L3, imports scope) — conscious pin update, same PR.
-    assert "| `pec` | `ADOPTED` | Gate 2 adopted | `OPERATION_PROPOSAL` |" in md
+    assert "| `pec` | `STALE` | Gate 2 unknown | `MANUAL_BRIDGE` |" in md
 
 
 @live

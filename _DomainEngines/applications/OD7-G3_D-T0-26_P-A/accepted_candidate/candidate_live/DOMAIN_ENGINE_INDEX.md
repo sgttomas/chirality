@@ -4,7 +4,7 @@
 **Control root:** `{REPO_ROOT}/_DomainEngines/` (persona default `DOMAIN_CONTROL_ROOT`; created 2026-06-21 with explicit owner approval).
 **Scope:** shared-root (tier-0) governance authoring only. Nothing here is project-runtime truth, and nothing here edits the registered project subtrees (`projects/chirality-app-dev/**`, `projects/chirality-piping/**`, `projects/pec/**`) except where a governed registration packet explicitly permits a project-local coordination pointer.
 
-> **Status:** the `open_pipe_stress` profile is **`ADOPTED`** (validated + owner Gate-2 ruling 2026-06-21; D-T0-06) and the original 8 tier-0 decisions are **RULED** (2026-06-21; `_DECISIONS/_REGISTER.md`). PEC registration rows D-T0-11..16 were ruled and published in PR #51, then the D-T0-16 harness tranche moved the PEC profile into `profiles/`, and the owner adopted it at Gate 2 on 2026-07-05. D-T0-26 preserves that adoption as history while making the current profile **STALE** and ineligible for governed profile-mediated invocation. No professional status is claimed (APEGA ceiling, K-AUTH-1). Publication is handed to CHANGE; DOMAIN_ENGINE does not commit. *(Banner reauthored per D-GOV-06, ruled 2026-07-01 — it previously denied both the adoption and the rulings.)*
+> **Status:** the `open_pipe_stress` profile is **`ADOPTED`** (validated + owner Gate-2 ruling 2026-06-21; D-T0-06) and the original 8 tier-0 decisions are **RULED** (2026-06-21; `_DECISIONS/_REGISTER.md`). PEC registration rows D-T0-11..16 were ruled and published in PR #51, then the D-T0-16 harness tranche moved the PEC profile into `profiles/`, and the owner adopted it at Gate 2 on 2026-07-05. The OD7-G3 P-A candidate would preserve that adoption as history while making the current profile **STALE** and ineligible for governed profile-mediated invocation; no candidate is applied by this index preview. No professional status is claimed (APEGA ceiling, K-AUTH-1). Publication is handed to CHANGE; DOMAIN_ENGINE does not commit. *(Banner reauthored per D-GOV-06, ruled 2026-07-01 — it previously denied both the adoption and the rulings.)*
 
 ---
 
@@ -13,7 +13,7 @@
 | DOMAIN_ENGINE_ID | Engine | Profile | ProfileStatus | Integration level (today) |
 |---|---|---|---|---|
 | `open_pipe_stress` | OpenPipeStress piping-stress engine (`projects/chirality-piping/`) | `profiles/open_pipe_stress.yaml` | **ADOPTED** (validated + Gate-2 adopted 2026-06-21) | `MANUAL_BRIDGE` (L0) |
-| `pec` | PEC frozen v0.4 engineering execution-control reference (`projects/pec/`) | `profiles/pec.yaml` | **STALE** (historical Gate-2 adoption preserved; D-T0-26) | `MANUAL_BRIDGE` with `DENY_ALL_PROFILE_MEDIATED_INVOCATIONS` |
+| `pec` | PEC frozen v0.4 engineering execution-control reference (`projects/pec/`) | `profiles/pec.yaml` | **STALE** (historical Gate-2 adoption preserved; OD7-G3 P-A candidate) | `MANUAL_BRIDGE` with `DENY_ALL_PROFILE_MEDIATED_INVOCATIONS` |
 
 ## Layout
 
