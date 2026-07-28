@@ -24,9 +24,12 @@ profile-mediated invocation denied and its retained declarations treated only
 as frozen-instance lineage. The register, index, validation report, and
 Receipt 30 reflect that classification.
 
+The one live-baseline assertion that pinned the superseded profile status is
+updated to the D-T0-26 posture; harness production behavior is unchanged.
+
 ## Remaining gate
 
-Publish exactly the seven application surfaces through the dedicated CHANGE
+Publish exactly the eight application surfaces through the dedicated CHANGE
 closeout. The parent workflow intentionally stops before merge.
 
 No project-local PEC file, PRD, decomposition, ScopeOfWork contract, notice,

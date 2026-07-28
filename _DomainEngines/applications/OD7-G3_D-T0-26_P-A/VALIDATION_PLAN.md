@@ -6,7 +6,7 @@
    input identities.
 3. Reproduce every declared preimage and confirm D-T0-26, Receipt 30, and the
    application archive were the next free or absent targets before application.
-4. Confirm the seven-surface write envelope and reject every other changed
+4. Confirm the eight-surface write envelope and reject every other changed
    path.
 5. Confirm the exact accepted register postimage and deterministically rebuild
    the index/profile candidate-only annotations into truthful D-T0-26
@@ -16,8 +16,10 @@
 7. Confirm the approved owner direction and Agent 0 recommendation are
    recorded in the two durable ruling surfaces.
 8. Confirm Receipt 30 and D-T0-26 each occur exactly once and are current.
-9. Confirm no project-local PEC, PRD, decomposition, ScopeOfWork, notice,
+9. Confirm the conscious live-pin diff and corrected test-file hash, then run
+   the complete practitioner-harness suite.
+10. Confirm no project-local PEC, PRD, decomposition, ScopeOfWork, notice,
    pointer, product, runtime, implementation, migration, compatibility,
    release, or reliance surface changed.
-10. Run manifest, trailing-whitespace, terminal-newline, and
+11. Run manifest, trailing-whitespace, terminal-newline, and
     `git diff --check` validation.

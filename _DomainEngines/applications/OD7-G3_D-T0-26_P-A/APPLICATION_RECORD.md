@@ -10,7 +10,7 @@
 
 ## Application outcome
 
-The exact seven-surface application was materialized in this isolated
+The exact eight-surface application was materialized in this isolated
 worktree:
 
 1. the accepted Tier-0 register postimage;
@@ -18,8 +18,9 @@ worktree:
 3. the rebuilt PEC profile 0.3 effective-state postimage;
 4. the rebuilt Domain Engine Index effective-state postimage;
 5. the regenerated profile validation report;
-6. additive bridge Receipt 30; and
-7. this application archive.
+6. additive bridge Receipt 30;
+7. the conscious PEC live-baseline test pin; and
+8. this application archive.
 
 The profile is now classified `STALE` / `MANUAL_BRIDGE` with governed
 profile-mediated invocation denied. Its retained declarations are historical
@@ -32,6 +33,10 @@ deterministic reconstruction evidence in `CI_LINE_ENDING_CORRECTION.md`.
 Current-basis rebuilding changed only candidate-only/not-applied annotations
 to truthful D-T0-26 effective-state wording; the accepted P-A classification
 is unchanged.
+
+The live-pin correction is recorded additively in
+`LIVE_PIN_CORRECTION_2026-07-28.md`. It changes no harness production
+behavior.
 
 ## Authority and next gate
 

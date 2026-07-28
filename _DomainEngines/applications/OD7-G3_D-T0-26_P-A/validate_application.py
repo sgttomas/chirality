@@ -34,6 +34,7 @@ PROFILE = "0d6e1505003cffeba0393bdebaa48f19f27e2b1de8964e2c2bd262331f9ccca6"
 PROFILE_REPORT = "5ad9d87d9b19cb6f6d54ba535d1516e47ba0a24ff83853f4e64ec80ab964ace8"
 DECISION = "d3c1968dbd27b39975af6367403c7f0ff3cc88222608c543a5bc7b5a007cc630"
 RECEIPTS = "e948b6e68ed96afefecc0bc41687e396f51e54885a9fe6eaea24084fd659c019"
+LIVE_PIN = "38314c98fe6ae1109e24286582d16e8555a21c7b3a11d4e74c75fc7c8a3fbaed"
 
 
 def sha(path: Path) -> str:
@@ -167,6 +168,7 @@ expected_roots = {
     "_DomainEngines/bridge/LOOP_RECEIPTS.md",
     "_DomainEngines/profiles/_validation/pec.validation.json",
     "_DomainEngines/profiles/pec.yaml",
+    "tools/practitioner_harness/test_live_baseline.py",
 }
 tracked = set(filter(None, git("diff", BASIS, "--name-only").stdout.splitlines()))
 untracked = set(
@@ -178,7 +180,7 @@ outside_archive = {
     for rel in all_changed
     if not rel.startswith("_DomainEngines/applications/OD7-G3_D-T0-26_P-A/")
 }
-check(outside_archive == expected_roots, "exact seven-surface write envelope")
+check(outside_archive == expected_roots, "exact eight-surface write envelope")
 
 register = REPO / "_DomainEngines/_DECISIONS/_REGISTER.md"
 index = REPO / "_DomainEngines/DOMAIN_ENGINE_INDEX.md"
@@ -186,12 +188,14 @@ profile = REPO / "_DomainEngines/profiles/pec.yaml"
 report = REPO / "_DomainEngines/profiles/_validation/pec.validation.json"
 decision = REPO / "_DomainEngines/_DECISIONS/D-T0-26_pec_profile_stale_demotion.md"
 receipts = REPO / "_DomainEngines/bridge/LOOP_RECEIPTS.md"
+live_pin = REPO / "tools/practitioner_harness/test_live_baseline.py"
 check(sha(register) == REGISTER, "exact accepted register postimage")
 check(sha(index) == INDEX, "exact rebuilt index postimage")
 check(sha(profile) == PROFILE, "exact rebuilt profile postimage")
 check(sha(report) == PROFILE_REPORT, "exact regenerated profile report")
 check(sha(decision) == DECISION, "exact D-T0-26 decision postimage")
 check(sha(receipts) == RECEIPTS, "exact Receipt-30 postimage")
+check(sha(live_pin) == LIVE_PIN, "exact conscious live-pin postimage")
 
 accepted_profile = (ACCEPTED / "candidate_live/pec.yaml").read_text()
 rebuilt_profile = accepted_profile
@@ -281,7 +285,7 @@ check(receipt_ids.count(30) == 1 and max(receipt_ids) == 30, "Receipt 30 once an
 
 with (ARCHIVE / "APPLIED_PATHS_AND_HASHES.csv").open(newline="") as handle:
     applied_rows = list(csv.DictReader(handle))
-check(len(applied_rows) == 7, "applied manifest enumerates seven surfaces")
+check(len(applied_rows) == 8, "applied manifest enumerates eight surfaces")
 for row in applied_rows:
     if row["State"] == "APPLIED":
         check(
@@ -336,7 +340,7 @@ result = {
     "checks": passed,
     "failures": failed,
     "notes": [
-        "Application is confined to the seven approved P-A classification surfaces.",
+        "Application is confined to the eight approved P-A classification surfaces.",
         "The profile is STALE / MANUAL_BRIDGE and denies governed profile-mediated invocation.",
         "No product, runtime, implementation, migration, release, or reliance work was performed.",
         "Git closeout remains separate.",
