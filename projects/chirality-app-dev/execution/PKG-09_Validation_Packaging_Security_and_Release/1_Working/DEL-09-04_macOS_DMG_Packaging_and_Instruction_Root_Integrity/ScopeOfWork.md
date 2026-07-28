@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-09-04
 package_id: PKG-09
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@ff59428ff27d929bc1172e6c049a5e274d487fc0
-project_scope_refs: [SOW-030, SOW-072, SOW-073]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+project_scope_refs: [SOW-030, SOW-072, SOW-073, SOW-078]
 package_objective_refs: [OBJ-008]
 ---
 
@@ -11,9 +11,13 @@ package_objective_refs: [OBJ-008]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-09-04` in service of project scope [SOW-030, SOW-072, SOW-073] and package objectives [OBJ-008].
+This Scope of Work defines `DEL-09-04` in service of project scope [SOW-030, SOW-072, SOW-073, SOW-078] and package objectives [OBJ-008].
 
 - **OUT-001** — A macOS 15+ Apple Silicon arm64 unsigned or adhoc local-builder DMG and app-bundle packaging evidence bundle that identifies the required artifacts, proves instruction-root resource integrity and SDK subprocess package-layout executability, preserves current shipped Anthropic network guardrails, and records residual blockers.
+
+**D-APP-80 concordance note (2026-07-28):** SOW-078 is recorded as an OUT
+boundary-only trace. Windows and Linux packaging remain outside the current
+release target unless a later accepted scope amendment says otherwise.
 
 ## Deliverable Definition — Ontology
 
@@ -92,7 +96,7 @@ This Scope of Work defines `DEL-09-04` in service of project scope [SOW-030, SOW
 > - `docs/TYPES.md` Section 12.
 > - `docs/PLAN.md` release validation commands and risk table.
 > - `docs/PRD.md` Sections 6.2, 7.12, 8.11, 10.1, 12.2, 12.8, NFR-030, KG-014, KG-025.
-> - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` entries for DEL-09-04, SOW-030, SOW-072, SOW-073, OI-003, OI-004.
+> - `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` entries for DEL-09-04, SOW-030, SOW-072, SOW-073, SOW-078, OI-003, OI-004.
 
 ## Completion and Reliance Basis — Epistemology
 

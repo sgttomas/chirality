@@ -21,6 +21,16 @@ OPERATIONS = (
     "accepted-dependency-consumption",
 )
 ACTIVE_HOLD_STATES = ("HELD", "REPAIR_VALIDATION_PENDING")
+REPAIR_PENDING_EXPECTED_IDS = frozenset(
+    {
+        "DEL-02-01",
+        "DEL-02-02",
+        "DEL-02-04",
+        "DEL-05-04",
+        "DEL-08-02",
+        "DEL-08-03",
+    }
+)
 FRONT_MATTER_RE = re.compile(r"\A---\r?\n(.*?)\r?\n---\r?\n", re.DOTALL)
 FIELD_RE = re.compile(r"^([A-Za-z0-9_]+):\s*(.*?)\s*$")
 DELIVERABLE_RE = re.compile(r"^DEL-\d{2}-\d{2}$")
@@ -304,6 +314,14 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
     }
     registered = {row["deliverable_id"]: row for row in rows}
     missing = sorted(set(scanned) - set(registered))
+    missing_repair_pending = sorted(
+        REPAIR_PENDING_EXPECTED_IDS
+        - {
+            deliverable_id
+            for deliverable_id, row in registered.items()
+            if row["status"] == "REPAIR_VALIDATION_PENDING"
+        }
+    )
     extra = sorted(set(registered) - set(scanned_all))
     field_mismatches: list[dict[str, str]] = []
     status_mismatches: list[dict[str, str]] = []
@@ -335,6 +353,7 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
             )
     match = (
         not missing
+        and not missing_repair_pending
         and not extra
         and not field_mismatches
         and not status_mismatches
@@ -346,6 +365,7 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
         "register_sha256": sha256_file(register_path),
         "match": match,
         "missing_from_register": missing,
+        "missing_repair_pending_from_register": missing_repair_pending,
         "extra_in_register": extra,
         "field_mismatches": field_mismatches,
         "status_mismatches": status_mismatches,

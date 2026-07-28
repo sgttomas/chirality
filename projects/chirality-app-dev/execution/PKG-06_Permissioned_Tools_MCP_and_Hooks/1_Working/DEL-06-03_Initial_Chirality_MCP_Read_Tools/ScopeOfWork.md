@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-06-03
 package_id: PKG-06
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@b4d2c9ab2f089224ddd41c849bbd1e4dd22d91b4
-project_scope_refs: [SOW-048, SOW-050]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+project_scope_refs: [SOW-048, SOW-050, SOW-064]
 package_objective_refs: [OBJ-005, OBJ-006]
 ---
 
@@ -11,9 +11,13 @@ package_objective_refs: [OBJ-005, OBJ-006]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-06-03` in service of project scope [SOW-048, SOW-050] and package objectives [OBJ-005, OBJ-006].
+This Scope of Work defines `DEL-06-03` in service of project scope [SOW-048, SOW-050, SOW-064] and package objectives [OBJ-005, OBJ-006].
 
 - **OUT-001** — Initial Chirality MCP read-tool slice comprising deterministic descriptors, wrapper metadata, status read, dependency read, bounded scope scan, scaffold preview/dry-run behavior, and associated verification evidence.
+
+**D-APP-80 concordance note (2026-07-28):** SOW-064 is supported here
+through in-process deterministic MCP wrappers and the App extension
+boundary. Remote MCP, plugin, and marketplace scope remain excluded.
 
 ## Deliverable Definition — Ontology
 

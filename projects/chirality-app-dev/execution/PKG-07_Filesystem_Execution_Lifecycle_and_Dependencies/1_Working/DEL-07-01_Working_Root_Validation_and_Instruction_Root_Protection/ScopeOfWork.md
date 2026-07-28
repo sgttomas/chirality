@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-07-01
 package_id: PKG-07
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@2770fda4c63c98ee9f18cffbafd14c9aa59f497f
-project_scope_refs: [SOW-002, SOW-027]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+project_scope_refs: [SOW-002, SOW-027, SOW-075]
 package_objective_refs: [OBJ-006, OBJ-008]
 ---
 
@@ -11,9 +11,14 @@ package_objective_refs: [OBJ-006, OBJ-008]
 
 ## Purpose and Objective Traceability
 
-This candidate defines `DEL-07-01` in service of project scope [SOW-002, SOW-027] and package objectives [OBJ-006, OBJ-008].
+This candidate defines `DEL-07-01` in service of project scope [SOW-002, SOW-027, SOW-075] and package objectives [OBJ-006, OBJ-008].
 
 - **OUT-001** — Root validation tests, path policy helpers, and instruction-root protection fixtures enforcing working-root validity, root separation, containment, fail-closed hooks, and initial symlink-write rejection.
+
+**D-APP-80 concordance note (2026-07-28):** SOW-075 is supported here
+through the deterministic working-root and instruction-root enforcement
+surfaces. Human authority and project-control truth remain outside this
+deliverable.
 
 ## Deliverable Definition — Ontology
 
@@ -39,7 +44,7 @@ This candidate defines `DEL-07-01` in service of project scope [SOW-002, SOW-027
 > | ResponsibleParty | TBD |
 > | Type | SECURITY_CONTROL |
 > | ContextEnvelope | M |
-> | CoversScopeItems | SOW-002, SOW-027 |
+> | CoversScopeItems | SOW-002, SOW-027, SOW-075 |
 > | SupportsObjectives | OBJ-006, OBJ-008 |
 >
 

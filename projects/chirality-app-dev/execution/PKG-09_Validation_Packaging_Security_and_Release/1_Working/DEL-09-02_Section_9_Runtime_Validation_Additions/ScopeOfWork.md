@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-09-02
 package_id: PKG-09
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@ff59428ff27d929bc1172e6c049a5e274d487fc0
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
 project_scope_refs: [SOW-036, SOW-037, SOW-039, SOW-045, SOW-054, SOW-057, SOW-063]
 package_objective_refs: [OBJ-002, OBJ-003, OBJ-005, OBJ-007, OBJ-008]
 ---

@@ -1,0 +1,14 @@
+{
+  "active_repair_pending_hold_count": 6,
+  "application_surface_count": 56,
+  "basis_commit": "deb01644e324af2b39cff7b52abae43784cd071b",
+  "contract_count": 53,
+  "decomposition_derived_count": 51,
+  "historical_unknown_count": 6,
+  "pkg00_control_count": 2,
+  "scan_held_expected_count": 0,
+  "schema": "chirality-app-contract-concordance-validation/v1",
+  "semantic_review_count": 7,
+  "terminal_decomposition_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca",
+  "verdict": "PASS"
+}
