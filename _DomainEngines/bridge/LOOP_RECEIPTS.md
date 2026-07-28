@@ -423,3 +423,24 @@
     pointer, or Git authority is created.
   - P-A and D-T0-26 remain separately gated and unapplied.
   - Gate outcome: `APPLIED_PENDING_CHANGE`.
+
+- **2026-07-28 — Receipt 30** (D-T0-26 / OD7-G3 P-A exact application).
+  - Durable predecessor: D-T0-25 is current on `main` at merge
+    `2c8e4168220b49f1e83a45aa916a6eb29856f0b4`.
+  - Owner direction of record: Ryan Tufts, in-session, 2026-07-28 —
+    "Finish out your plan now (attaining your goal) with self merge of PRs and
+    auto approve for owners rulings, which should still be recorded in the
+    usual manner with your recommendation standing as what I approved."
+  - Approved Agent 0 recommendation: apply P-A by demoting the frozen PEC
+    profile to version `0.3`, `STALE` / `MANUAL_BRIDGE`, setting
+    `DENY_ALL_PROFILE_MEDIATED_INVOCATIONS` and
+    `historical_binding_only: true`, retaining its declarations only as
+    historical lineage, and requiring a separately adopted PEC v2 successor
+    profile before profile-mediated PEC v2 integration.
+  - Validation: the Git-pinned profile validator returned `VALID` with
+    `profile_status == STALE` and zero findings.
+  - Authority fence: no governed profile-mediated invocation, live read,
+    egress, mutation, project authority, project-local PEC write, successor
+    design, product/runtime/implementation work, migration, compatibility,
+    release, or reliance authority is created.
+  - Gate outcome: `APPLIED_PENDING_CHANGE`.
