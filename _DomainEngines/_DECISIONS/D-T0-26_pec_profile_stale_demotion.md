@@ -2,6 +2,9 @@
 
 **Status:** `RULED_EFFECTIVE`
 **Date:** 2026-07-28
+**PublicationSHA:** `7948eef43fe27eacd482688d9249a1ad2b92471c`
+**EffectiveSHA:** `dc89356eb4db715bfe8357b25d8831c752cb822e`
+**Effective-state closeout:** `../applications/OD7-G3_D-T0-25_D-T0-26_EFFECTIVE_CLOSEOUT_2026-07-28/D-T0-26_EFFECTIVE_STATE_CLOSEOUT.md`
 **Accepted preparation input:** OD7-G3 `P-A` gate identity `f0714f38b902bbee074e5588da0b84a6e49661aaf0211a7360a457fad39797db`
 **Accepted exact semantic input:** `95263e4fa5c72840a5053a91da904ea76acbef7050dae344e4e1e94cf4a22152`
 **Accepted candidate-set identity:** `79ce291ec7ec5247543b05ea19078e2e06be7a5f99be0fae91363159e8198bc1`

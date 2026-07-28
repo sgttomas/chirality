@@ -427,10 +427,7 @@
 - **2026-07-28 — Receipt 30** (D-T0-26 / OD7-G3 P-A exact application).
   - Durable predecessor: D-T0-25 is current on `main` at merge
     `2c8e4168220b49f1e83a45aa916a6eb29856f0b4`.
-  - Owner direction of record: Ryan Tufts, in-session, 2026-07-28 —
-    "Finish out your plan now (attaining your goal) with self merge of PRs and
-    auto approve for owners rulings, which should still be recorded in the
-    usual manner with your recommendation standing as what I approved."
+  - Owner direction of record: Ryan Tufts, in-session, 2026-07-28 — "Finish out your plan now (attaining your goal) with self merge of PRs and auto approve for owners rulings, which should still be recorded in the usual manner with your recommendation standing as what I approved."
   - Approved Agent 0 recommendation: apply P-A by demoting the frozen PEC
     profile to version `0.3`, `STALE` / `MANUAL_BRIDGE`, setting
     `DENY_ALL_PROFILE_MEDIATED_INVOCATIONS` and
@@ -444,3 +441,28 @@
     design, product/runtime/implementation work, migration, compatibility,
     release, or reliance authority is created.
   - Gate outcome: `APPLIED_PENDING_CHANGE`.
+
+- **2026-07-28 — Receipt 31** (D-T0-25 / D-T0-26 effective-state closeout).
+  - Owner direction of record: Ryan Tufts, in-session, 2026-07-28 —
+    "Finish out your plan now (attaining your goal) with self merge of PRs and
+    auto approve for owners rulings, which should still be recorded in the
+    usual manner with your recommendation standing as what I approved."
+  - Approved Agent 0 recommendation: record the smallest additive terminal
+    identity closeout after proving application/merge ancestry and immutable
+    byte identity.
+  - D-T0-25 identities: PublicationSHA
+    `1e08b927928fe77407e2cd43692a7bf04accba4a`; EffectiveSHA
+    `2c8e4168220b49f1e83a45aa916a6eb29856f0b4`.
+  - D-T0-26 identities: PublicationSHA
+    `7948eef43fe27eacd482688d9249a1ad2b92471c`; EffectiveSHA
+    `dc89356eb4db715bfe8357b25d8831c752cb822e`.
+  - Evidence: each publication commit is the second parent of its named merge;
+    both merges are ancestors of the closeout basis; the D-T0-25 and D-T0-26
+    decision/application surfaces are byte-identical to their publication
+    commits; frozen package manifests reproduce 26/26 and 21/21.
+  - Authority fence: identity and lineage only. No profile semantic change
+    beyond already-effective P-A, product/project scope, implementation,
+    runtime, migration, compatibility, lifecycle, release, or reliance
+    authority is created.
+  - Gate outcome: `EFFECTIVE_STATE_RECORDED_PENDING_CHANGE`.
+  - Parked lanes: none created by this identity closeout.
