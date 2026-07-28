@@ -1,7 +1,7 @@
 # D-PEC-70 application candidate — PEC-HOLD-001 release
 
-**Date:** 2026-07-28  
-**Basis:** `592ba2a3c2762009aeec275316722c64716a3938`  
+**Date:** 2026-07-28
+**Basis:** `592ba2a3c2762009aeec275316722c64716a3938`
 **Status:** OWNER APPROVED UNDER STANDING COMPLETION DIRECTION
 
 ## Recommendation

@@ -1,8 +1,8 @@
 # D-PEC-70 — Release PEC-HOLD-001 after v2.2 contract reconciliation
 
-**Status:** RULED — GIT CLOSEOUT PENDING  
-**Date:** 2026-07-28  
-**Basis:** `main@592ba2a3c2762009aeec275316722c64716a3938`  
+**Status:** RULED — GIT CLOSEOUT PENDING
+**Date:** 2026-07-28
+**Basis:** `main@592ba2a3c2762009aeec275316722c64716a3938`
 **Owning workflow:** HELP_HUMAN supervising RECONCILIATION and CHANGE
 
 ## Decision
