@@ -14,7 +14,7 @@
 
 ## Description
 
-Orientation-read and dashboard-consultation logging sufficient to evaluate the P2 exit test; arms limb 2 of the falsification clause. Split from poll adoption (DEL-10-12) at Phase 6: different instrumentation point, different phase (DL-14).
+Owner use or non-use logging sufficient for the P2-B uptake observation and falsification evidence; manual Step 0 remains available and no PEC read/write duty is created. Split from DEL-10-12 at Phase 6: different instrumentation point and phase (DL-14).
 
 ## Anticipated artifacts
 
@@ -29,6 +29,7 @@ Consultation logs + evaluation notes
 Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
 `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
 successor), superseded by revision 1.2 (`current_basis`, SCA-002
+successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
 successor). Fields templated deterministically from
 `Deliverables.csv`; this file restates register truth and is not an
 independent authority.

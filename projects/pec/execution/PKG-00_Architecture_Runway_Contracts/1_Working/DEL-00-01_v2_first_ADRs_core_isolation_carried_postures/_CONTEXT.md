@@ -14,7 +14,7 @@
 
 ## Description
 
-ADR-v2 set: core isolation style resolving OI-012 (Gate 4 exchange as basis) and re-citation of carried postures ADR-002 (zero-dependency core) and ADR-014 (shared runtime agent ownership).
+ADR-v2 set: core isolation style resolving OI-012; ADR-002 re-cited as the live zero-dependency posture; ADR-014 cited as historical lineage only; accepted v2 runtime/client and human-only-act boundary carried forward.
 
 ## Anticipated artifacts
 
@@ -29,6 +29,7 @@ ADR markdown entries under the v2 docs tree (path set by its packet)
 Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
 `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
 successor), superseded by revision 1.2 (`current_basis`, SCA-002
+successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
 successor). Fields templated deterministically from
 `Deliverables.csv`; this file restates register truth and is not an
 independent authority.

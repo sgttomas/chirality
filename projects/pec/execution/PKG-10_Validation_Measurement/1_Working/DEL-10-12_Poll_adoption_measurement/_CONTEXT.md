@@ -14,7 +14,7 @@
 
 ## Description
 
-Fraction of eligible session starts / mode transitions consuming orientation; arms limb 1 of the falsification clause and the P3 exit test. Split from DEL-10-05 at Phase 6 (DL-14).
+Candidate-consumer enablement and enabled-consumer orientation use measured against contact opportunities defined by each consumer's own adopted mode/cadence rules; no receiving-loop conformance criterion. Canonical label/path retained under SCA-003; split from DEL-10-05 at Phase 6 (DL-14).
 
 ## Anticipated artifacts
 
@@ -29,6 +29,7 @@ Adoption metric + evaluation notes
 Scaffolded under `D-PEC-62` (2026-07-25) from accepted decomposition
 `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.1 (SCA-001
 successor), superseded by revision 1.2 (`current_basis`, SCA-002
+successor), in turn superseded by revision 1.3 (`current_basis`, SCA-003
 successor). Fields templated deterministically from
 `Deliverables.csv`; this file restates register truth and is not an
 independent authority.
