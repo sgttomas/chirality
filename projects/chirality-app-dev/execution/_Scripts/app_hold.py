@@ -20,6 +20,7 @@ OPERATIONS = (
     "checking-promotion",
     "accepted-dependency-consumption",
 )
+ACTIVE_HOLD_STATES = ("HELD", "REPAIR_VALIDATION_PENDING")
 FRONT_MATTER_RE = re.compile(r"\A---\r?\n(.*?)\r?\n---\r?\n", re.DOTALL)
 FIELD_RE = re.compile(r"^([A-Za-z0-9_]+):\s*(.*?)\s*$")
 DELIVERABLE_RE = re.compile(r"^DEL-\d{2}-\d{2}$")
@@ -271,34 +272,43 @@ def load_register(path: Path) -> list[dict[str, str]]:
             raise HoldError(f"invalid hold package ID: {row['package_id']}")
         if not GIT_OBJECT_RE.fullmatch(row["basis_commit"]):
             raise HoldError(f"invalid hold basis commit: {row['deliverable_id']}")
-        if row["status"] != "HELD":
-            raise HoldError(f"non-HELD row in active hold register: {row['deliverable_id']}")
+        if row["status"] not in ACTIVE_HOLD_STATES:
+            raise HoldError(
+                f"invalid active hold state {row['status']}: "
+                f"{row['deliverable_id']}"
+            )
         if row["repin_posture"] != "NO_REPIN":
             raise HoldError(f"invalid repin posture: {row['deliverable_id']}")
         if set(row["prohibited_operations"].split("|")) != set(OPERATIONS):
             raise HoldError(f"operation set mismatch: {row['deliverable_id']}")
         if row["entry_path_scope"] != "ANY":
             raise HoldError(f"hold must bind every entry path: {row['deliverable_id']}")
-        if row["authority_basis"] != "D-APP-75":
+        expected_authority = (
+            "D-APP-75" if row["status"] == "HELD" else "D-APP-79"
+        )
+        if row["authority_basis"] != expected_authority:
             raise HoldError(
-                f"hold authority must be D-APP-75: {row['deliverable_id']}"
+                f"hold authority must be {expected_authority}: "
+                f"{row['deliverable_id']}"
             )
     return rows
 
 
 def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any]:
     rows = load_register(register_path)
+    scanned_all = {row["deliverable_id"]: row for row in scan["contracts"]}
     scanned = {
-        row["deliverable_id"]: row
-        for row in scan["contracts"]
+        deliverable_id: row
+        for deliverable_id, row in scanned_all.items()
         if row["status"] == "HELD"
     }
     registered = {row["deliverable_id"]: row for row in rows}
     missing = sorted(set(scanned) - set(registered))
-    extra = sorted(set(registered) - set(scanned))
+    extra = sorted(set(registered) - set(scanned_all))
     field_mismatches: list[dict[str, str]] = []
-    for deliverable_id in sorted(set(scanned) & set(registered)):
-        source = scanned[deliverable_id]
+    status_mismatches: list[dict[str, str]] = []
+    for deliverable_id in sorted(set(scanned_all) & set(registered)):
+        source = scanned_all[deliverable_id]
         row = registered[deliverable_id]
         for field in (
             "package_id",
@@ -315,7 +325,20 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
                         "register": row[field],
                     }
                 )
-    match = not missing and not extra and not field_mismatches
+        if source["status"] == "CLEAR" and row["status"] == "HELD":
+            status_mismatches.append(
+                {
+                    "deliverable_id": deliverable_id,
+                    "scan": source["status"],
+                    "register": row["status"],
+                }
+            )
+    match = (
+        not missing
+        and not extra
+        and not field_mismatches
+        and not status_mismatches
+    )
     return {
         "register_path": register_path.relative_to(register_path.parents[4]).as_posix()
         if len(register_path.parents) > 4
@@ -325,6 +348,8 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
         "missing_from_register": missing,
         "extra_in_register": extra,
         "field_mismatches": field_mismatches,
+        "status_mismatches": status_mismatches,
+        "active_hold_deliverables": sorted(registered),
     }
 
 
@@ -388,6 +413,36 @@ def command_scan(args: argparse.Namespace) -> int:
     return 0
 
 
+def evaluate_targets(
+    known: dict[str, dict[str, Any]],
+    registered: dict[str, dict[str, str]],
+    *,
+    operation: str,
+    entry_path: str,
+    targets: list[str],
+) -> list[dict[str, Any]]:
+    results: list[dict[str, Any]] = []
+    for target in sorted(set(targets)):
+        contract = known[target]
+        result: dict[str, Any] = {
+            "deliverable_id": target,
+            "contract_status": contract["status"],
+            "hold_status": (
+                registered[target]["status"]
+                if target in registered
+                else "NOT_HELD"
+            ),
+            "operation": operation,
+            "entry_path": entry_path,
+        }
+        if target in registered:
+            result.update({"verdict": "BLOCK_APP_HOLD"})
+        else:
+            result.update({"verdict": "ALLOW"})
+        results.append(result)
+    return results
+
+
 def command_check(args: argparse.Namespace) -> int:
     repo_root = resolve_repo_root(args.repo_root)
     default_sow, default_register = default_paths(repo_root)
@@ -415,23 +470,19 @@ def command_check(args: argparse.Namespace) -> int:
         write_json(payload, args.output, repo_root)
         return 4
     known = {row["deliverable_id"]: row for row in scan["contracts"]}
+    registered = {
+        row["deliverable_id"]: row for row in load_register(register)
+    }
     unknown = sorted(set(args.target) - set(known))
     if unknown:
         raise HoldError(f"unknown target deliverables: {','.join(unknown)}")
-    results: list[dict[str, Any]] = []
-    for target in sorted(set(args.target)):
-        contract = known[target]
-        result: dict[str, Any] = {
-            "deliverable_id": target,
-            "contract_status": contract["status"],
-            "operation": args.operation,
-            "entry_path": args.entry_path,
-        }
-        if contract["status"] == "CLEAR":
-            result.update({"verdict": "ALLOW"})
-        else:
-            result.update({"verdict": "BLOCK_APP_HOLD"})
-        results.append(result)
+    results = evaluate_targets(
+        known,
+        registered,
+        operation=args.operation,
+        entry_path=args.entry_path,
+        targets=args.target,
+    )
     allowed = all(
         row["verdict"] == "ALLOW" for row in results
     )
@@ -440,6 +491,7 @@ def command_check(args: argparse.Namespace) -> int:
         "repo_head": scan["repo_head"],
         "scan_fingerprint_sha256": scan["scan_fingerprint_sha256"],
         "scan_held_deliverables": scan["held_deliverables"],
+        "active_hold_deliverables": sorted(registered),
         "register_sha256": comparison["register_sha256"],
         "operation": args.operation,
         "entry_path": args.entry_path,

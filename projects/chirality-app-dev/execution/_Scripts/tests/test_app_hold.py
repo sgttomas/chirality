@@ -111,6 +111,79 @@ class AppHoldCandidateTests(unittest.TestCase):
                     self.assertEqual(
                         payload["results"][0]["verdict"], "BLOCK_APP_HOLD"
                     )
+                    self.assertEqual(
+                        payload["results"][0]["hold_status"],
+                        "REPAIR_VALIDATION_PENDING",
+                    )
+
+    def test_repair_pending_target_stays_blocked_after_basis_resolves(self) -> None:
+        target = FIXTURE["held_deliverables"][0]
+        scan = TOOL_MODULE.scan_corpus(REPO_ROOT, SOW_ROOT)
+        known = {row["deliverable_id"]: row for row in scan["contracts"]}
+        known[target]["status"] = "CLEAR"
+        known[target]["reason"] = "BASIS_RESOLVES"
+        scan["contracts"] = list(known.values())
+        scan["held_deliverables"] = [
+            item for item in scan["held_deliverables"] if item != target
+        ]
+        scan["held_count"] -= 1
+
+        comparison = TOOL_MODULE.compare_register(scan, REGISTER)
+        self.assertTrue(comparison["match"], comparison)
+
+        registered = {
+            row["deliverable_id"]: row
+            for row in TOOL_MODULE.load_register(REGISTER)
+        }
+        results = TOOL_MODULE.evaluate_targets(
+            known,
+            registered,
+            operation="reliance",
+            entry_path="OD6-G4:POST-REPIN-VALIDATION",
+            targets=[target],
+        )
+        self.assertEqual(results[0]["contract_status"], "CLEAR")
+        self.assertEqual(
+            results[0]["hold_status"], "REPAIR_VALIDATION_PENDING"
+        )
+        self.assertEqual(results[0]["verdict"], "BLOCK_APP_HOLD")
+
+    def test_scan_derived_held_state_cannot_survive_basis_resolution(self) -> None:
+        target = FIXTURE["held_deliverables"][0]
+        scan = TOOL_MODULE.scan_corpus(REPO_ROOT, SOW_ROOT)
+        for contract in scan["contracts"]:
+            if contract["deliverable_id"] == target:
+                contract["status"] = "CLEAR"
+                contract["reason"] = "BASIS_RESOLVES"
+        scan["held_deliverables"] = [
+            item for item in scan["held_deliverables"] if item != target
+        ]
+        scan["held_count"] -= 1
+
+        rows = TOOL_MODULE.load_register(REGISTER)
+        for row in rows:
+            if row["deliverable_id"] == target:
+                row["status"] = "HELD"
+                row["authority_basis"] = "D-APP-75"
+
+        original_loader = TOOL_MODULE.load_register
+        TOOL_MODULE.load_register = lambda _path: rows
+        try:
+            comparison = TOOL_MODULE.compare_register(scan, REGISTER)
+        finally:
+            TOOL_MODULE.load_register = original_loader
+
+        self.assertFalse(comparison["match"])
+        self.assertEqual(
+            comparison["status_mismatches"],
+            [
+                {
+                    "deliverable_id": target,
+                    "scan": "CLEAR",
+                    "register": "HELD",
+                }
+            ],
+        )
 
     def test_unaffected_target_allowed(self) -> None:
         result = invoke(

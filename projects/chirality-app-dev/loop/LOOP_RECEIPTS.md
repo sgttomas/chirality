@@ -2603,3 +2603,13 @@
   - Checks: D-APP-77/Receipt 95 effective predecessor; SCA-APP-006 merge-parent and closure checks; decomposition, invariant-register, PRD, REF-006, lineage, and D-APP-49 evidence-package hash-list verification; APP-HOLD scan/register parity; contract population classes; missing-old-basis non-resolution; PKG-00 preservation; receipt and decision-ID scans; candidate hashes, path containment, and whitespace.
   - Model-Attribution: OpenAI Codex HELPS_HUMANS managed by HELP_HUMAN; exact runtime model build not exposed; no Agent 2 delegated.
   - Gate-Outcome: `EXECUTED` — exact owner selection transcribed and the bounded application postimage prepared without any ScopeOfWork edit, repin, hold change, historical-provenance inference, product change, lifecycle action, release, or Git effect.
+
+- **2026-07-28 — Receipt 97** (D-APP-79 H0-A repair-validation hold).
+  - Receipt-ID: `Receipt-97`
+  - Examined-Through: `23b3b07d1122ae065affe69346c53bac78289a2e`
+  - Parent-Receipt: `Receipt-96`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-07-28, Ryan Tufts, in-session): "Finish out your plan now (attaining your goal) with self merge of PRs and auto approve for owners rulings, which should still be recorded in the usual manner with your recommendation standing as what I approved." The authority-bearing H0-A selection is transcribed in D-APP-79.
+  - Pointers: `execution/_Coordination/_DECISIONS/D-APP-79_RULING_OD6_G3_H0A_REPAIR_VALIDATION_HOLD_2026-07-28.md`; `execution/_Coordination/APP_HOLD_REGISTER.csv`; `execution/_Scripts/{app_hold.py,tests/test_app_hold.py}`.
+  - Checks: D-APP-78/Receipt 96 durable predecessor; exact six-row transition; APP-HOLD scan/register parity; all-entry/four-operation blocking; simulated post-repin blocking and unaffected-target allowance; stale-HELD rejection; receipt, path, containment, and whitespace checks.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS managed by HELP_HUMAN; exact runtime model build not exposed; no Agent 2 delegated.
+  - Gate-Outcome: `EXECUTED` — H0-A is installed before contract repair: all six targets remain blocked through later repin and validation, `NO_REPIN` remains active now, and release stays separately owner-gated. No ScopeOfWork, contract, provenance, PKG-00, product, lifecycle, release, or Git effect occurs.
