@@ -1402,3 +1402,23 @@ amendment; owner ruling required).
   transition, dependency, scope, PRD, decomposition, instruction-surface,
   implementation, runtime, repin, release, or professional reliance is
   authorized.
+### Receipt 57 — 2026-07-28 — Root trace RT-A effective-state closeout
+
+- **Owner act of record:** the exact owner direction is preserved in
+  `execution/_Coordination/ROOT_TRACE_MAINTENANCE_EFFECTIVE_STATE_CLOSEOUT_2026-07-28.md`;
+  under that direction, PROJECT_SETUP's recommendation for the smallest
+  additive closeout tranche stands as approved.
+- **Parent receipt:** Receipt 56. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Effective proof:** RT-A application commit
+  `fe00bf7d4a566ebffde480b2d1accd126a2e21e1` was merged by PR #389 at
+  `d97c6131ae16799d47601ff4e07e401ac99ad071`; both are ancestors of verified
+  current main `deb01644e324af2b39cff7b52abae43784cd071b`.
+- **Byte identity:** all 87 approved RT-A live postimages match the exact
+  write inventory; zero are stale or missing.
+- **State:** W-A remains the standing idle workplan; all 46 Root deliverables
+  remain `INITIALIZED`; all six Root work-graph nodes remain pending with no
+  active node or ordering edge.
+- **Gate:** additive effective-state evidence only. No production, activation,
+  lifecycle, dependency, scope, implementation, runtime, repin, release, or
+  professional-reliance act is authorized.
