@@ -1422,3 +1422,24 @@ amendment; owner ruling required).
 - **Gate:** additive effective-state evidence only. No production, activation,
   lifecycle, dependency, scope, implementation, runtime, repin, release, or
   professional-reliance act is authorized.
+
+### Receipt 58 — 2026-07-28 — Root SCA and setup pointer currency
+
+- **Owner direction of record:** Ryan Tufts, in-session, 2026-07-28 —
+  “Finish out your plan now (attaining your goal) with self merge of PRs and
+  auto approve for owners rulings, which should still be recorded in the usual
+  manner with your recommendation standing as what I approved.”
+- **Parent receipt:** Receipt 57.
+- **Examined through:**
+  `21e8e54e1f5648b7d3db29228271aaa8c7d8904f`.
+- **Applied:** corrected `execution/_ScopeChange/_LATEST.md` to record SCA-001
+  CHANGE integration, DEL-02-06 scaffolding, and initialization as complete;
+  the standing Root workplan remains idle.
+- **Evidence:** PR #366 merge
+  `2db2c7128c32d32d197ae47660eb34ab2cef9660`, PR #369 merge
+  `0f8349d90f58c1e6b3339263f5aafaf36e783a7e`, and PR #376 merge
+  `5097151290216d260e8d74fb098a82eda602d3bb` are ancestors of the
+  examined basis.
+- **Gate:** current-state pointer repair only. No production, activation,
+  lifecycle, dependency, scope, implementation, runtime, repin, release, or
+  professional-reliance act is authorized.
