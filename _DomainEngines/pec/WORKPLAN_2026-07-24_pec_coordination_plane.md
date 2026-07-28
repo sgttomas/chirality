@@ -2,6 +2,8 @@
 > `WORKPLAN_2026-07-09_pec_team_information_hub.md` (superseded, retained on
 > disk with its supersession note). Per `LOOP_INIT.md`, the newest
 > `WORKPLAN_*.md` in this directory governs.
+> Consumer-interface posture amended 2026-07-27 under `D-PEC-68`, preserving
+> the exact PEC-K-03/-11 rows adopted by `D-PEC-67`.
 
 # PEC Work Loop — coordination-plane standing plan
 
@@ -28,24 +30,30 @@ canonical development loop. Owner direction of record (`D-PEC-57`):
 > doesn't need to exist." Old PEC is superseded wholesale; v2 is a greenfield
 > build through the governed pipeline with old PEC as a cited reference corpus.
 
+The quoted 2026-07-24 direction is retained as historical provenance.
+`D-PEC-67` later replaced its harness-owned polling interpretation with exact
+pull-oriented, consumer-owned-use and mode-capable, never-forced PRD rows.
+`D-PEC-68` reconciles this standing plan to those later ruled rows.
+
 Bounding every tranche: **graceful absence** — no governed act may require a PEC
-read or write; **harness-owned polling** — harnesses poll at moments of
-consequence and inject labeled non-authoritative data; **files govern** — the
-store is gitignored, rebuildable by one command, and never citable as authority.
+read or write; **consumer-owned use** — PEC serves orientation on request,
+never claims an external cadence, and injects nothing; an explicitly enabled
+consumer owns whether and when to consume and whether to inject labeled PEC
+data; **files govern** — the store is gitignored, rebuildable by one command,
+and never citable as authority.
 
 ## Loop protocol
 
 0. **Discover.** Resolve the repo root; inspect git, receipts, both decision
    registers, the profile, the candidate/adopted PRD, and live checks. Verify
    every inherited claim against the live tree.
-1. **Review the product gate.** The product gate — `D-PEC-58` adoption of
-   PRD v2 — was satisfied 2026-07-24 (gate-state note). The open owner gates
-   are decomposition acceptance (SOFTWARE_DECOMP Gates 1–7), then one packet
-   per implementation tranche.
-2. **Decompose before building.** After adoption, run PRD v2 through
-   `SOFTWARE_DECOMP` (Gates 1–7 per `docs/DECOMPOSITION_STANDARD.md`,
-   human-interactive). Gate 7 acceptance is the downstream basis; no tranche is
-   scoped from the PRD directly.
+1. **Review the product gate.** PRD v2.2 is the product definition of record
+   after `D-PEC-68`; its exact PEC-K-03/-11 rows were adopted by `D-PEC-67`.
+   No PRD adoption is an implementation or receiving-loop mandate.
+2. **Use accepted decomposition truth.** `SOFTWARE_DECOMP` revision 1.2 is the
+   accepted downstream basis. Post-acceptance product propagation uses
+   SCOPE_CHANGE with its own owner gates; no implementation tranche is scoped
+   from the PRD directly.
 3. **Fence source work.** Each implementation tranche requires an owner-ruled
    D-PEC packet naming exact paths, acts, verification, rollback, and any data
    or authority implications. New source trees are named in their own packet.
@@ -60,22 +68,24 @@ store is gitignored, rebuildable by one command, and never citable as authority.
 
 ## Target sequence after PRD v2 adoption
 
-Phases map to PRD v2 §12.
+Phases map to PRD v2.2 §12.
 
 | Order | Tranche | Completion test |
 |---|---|---|
-| P0 | Governance | `D-PEC-58` ruled and this plan live at `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` — satisfied 2026-07-24 (gate-state note) |
-| D1 | Decomposition (`SOFTWARE_DECOMP` over PRD v2) | Gate 7 accepted; the decomposition is the authoritative downstream basis for all build tranches |
+| P0 | Governance | `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68` ruled; this plan remains live at `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` |
+| D1 | Decomposition (`SOFTWARE_DECOMP` over PRD v2) | Gate 7 accepted; revision 1.2 is the authoritative downstream basis until a separately accepted successor |
 | P1 | One-loop reconciler + orientation store + read-only API | Parity diff vs practitioner harness clean or explained; rebuild-from-scratch within bound; kill test passes |
-| P2 | Dashboards across all registered loops | Owner uses PEC in place of manual Step 0 for orientation reads |
-| P3 | Harness integration: hooks CLI + daemon polling, presence registry, Git/worktree scanner | Poll adoption measured; overlap warnings fire on seeded conflicts; falsification clause armed |
-| P4 | Streams: daemon SSE bridge, hooks push, live hierarchy, optional cmux adapter | Stream loss demonstrably recovered by reconciliation; presence TTLs honest under kill/crash tests |
+| P2 | Dashboards across all registered loops | Under selected PRD v2.2 P2-B, owner use or non-use is recorded as uptake/falsification evidence; manual Step 0 remains available and no consumer is bound |
+| P3 | PEC-side opt-in integration interfaces/adapters usable by hooks CLI or daemon consumers, presence registry, Git/worktree scanner | Capability tests pass; consumer enablement/use measured without external conformance; overlap warnings fire on seeded conflicts; falsification clause armed |
+| P4 | PEC-side streams: daemon SSE bridge, optional hook-push interface, live hierarchy, optional cmux adapter; live use remains receiving-owner authorized | Stream loss demonstrably recovered by reconciliation; presence TTLs honest under kill/crash tests |
 
 The first loop the P1 reconciler ingests is PEC v2's own build.
 
 ## Parked work and owner gates
 
-- Runtime implementation is parked until `D-PEC-58` is ruled.
+- Runtime/source implementation remains parked until an exact per-tranche
+  packet opens the applicable PEC and Root fences; PRD adoption alone opens
+  none.
 - The open product decisions in PRD v2 §16 must not be guessed where they
   materially affect architecture — register structuring at source, the daemon
   global event feed, the loop-registry home, long-term placement, UI packaging,
@@ -101,8 +111,10 @@ The first loop the P1 reconciler ingests is PEC v2's own build.
 
 ## Live pointers
 
-- Product definition: `projects/pec/docs/PRD.md` (v2.0, adopted 2026-07-24,
-  `D-PEC-58`); authoring record at
+- Product definition: `projects/pec/docs/PRD.md` (v2.2; v2.0 adopted by
+  `D-PEC-58`, directed-bootstrap v2.1 by `D-PEC-61`, exact consumer rows by
+  `D-PEC-67`, surrounding concordance by `D-PEC-68`); original authoring
+  record at
   `projects/pec/execution/_Coordination/PRD_V2_CANDIDATE_2026-07-24_coordination_plane.md`
 - Direction/fence packet: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57_coordination_plane_pivot.md`
 - Decision registers: `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`

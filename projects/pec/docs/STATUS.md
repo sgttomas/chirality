@@ -3,9 +3,11 @@
 The single "where are we, what's next" file. Keep it current when substantial
 work lands — durable state lives in repo files, not in chat history.
 
-_Reset 2026-07-24: the coordination-plane pivot (`D-PEC-57`), PRD v2.0
-adoption (`D-PEC-58`), and directed-bootstrap clarification to v2.1
-(`D-PEC-61`). The prior prototype status file is preserved at
+_Reset 2026-07-24 and amended 2026-07-27: the coordination-plane pivot
+(`D-PEC-57`), PRD v2.0 adoption (`D-PEC-58`), directed-bootstrap
+clarification to v2.1 (`D-PEC-61`), exact consumer-interface rows
+(`D-PEC-67`), and surrounding concordance to v2.2 (`D-PEC-68`). The prior
+prototype status file is preserved at
 `docs/.archive/STATUS_2026-07-04_prototype.md`._
 
 ## Current state
@@ -15,9 +17,10 @@ rebuildable projection of governed file truth plus an ephemeral presence
 layer, embodying loop Step 0 (Discover) and the deterministic parts of Step 1
 (gate review, decision-slate presentation). It is "the coordination plane
 that doesn't need to exist": no governed act may ever require it.
-**`docs/PRD.md` v2.1 is the product definition of record (v2.0 adopted
+**`docs/PRD.md` v2.2 is the product definition of record (v2.0 adopted
 2026-07-24 by `D-PEC-58`; directed-bootstrap clarification adopted by
-`D-PEC-61`).**
+`D-PEC-61`; exact PEC-K-03/-11 rows adopted by `D-PEC-67`; surrounding
+consumer-interface concordance adopted by `D-PEC-68`).**
 
 **Implementation:** none yet. Decomposition revision 1.2 is the accepted
 current basis after `SCA-002` (`D-PEC-64`, 2026-07-25; revision 1.1 was the
@@ -63,12 +66,13 @@ read and cite only, no further feature work, retired product docs under
    ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **Each tranche
    requires its own owner-ruled `D-PEC` packet** — nothing is authorized
    yet; `F-PEC-1` remains the outer fence.
-2. P2 dashboards → P3 harness integration (falsification clause armed) →
+2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
+   clause armed; receiving consumers retain their own authority and cadence) →
    P4 streams, per the standing plan and the deliverables' PhaseHints.
 
 ## Orient yourself (read-order)
 
-1. `docs/PRD.md` — the adopted product definition (v2.1), including the
+1. `docs/PRD.md` — the adopted product definition (v2.2), including the
    invariants (PEC-K-01..11), modes ladder, and release strategy.
 2. `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` — the
    standing plan (loop protocol, gates, fences).
@@ -85,6 +89,10 @@ canonical working package). Directed-bootstrap amendment `SCA-001` closed
 2026-07-24 under `D-PEC-61`; objective-mapping amendment `SCA-002` closed
 2026-07-25 under `D-PEC-64`; revision 1.2 is `current_basis` and both
 sessions' immutable evidence lives under `execution/_ScopeChange/`.
+`D-PEC-67` adopted exact pull-oriented / consumer-owned invariant rows;
+`D-PEC-68` reconciled the surrounding PRD and current live pointers without
+opening SCA-003. C3/C15 decomposition propagation remains a later, separately
+owner-gated SCOPE_CHANGE.
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` was amended
 2026-07-24 (`D-PEC-59`: post-archive readable-artifact paths + pivot notes;
 validator VALID); full supersession remains pending v2 implementation shape.
