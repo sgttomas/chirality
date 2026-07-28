@@ -1,0 +1,80 @@
+{
+  "accepted_gate2_basis": "4214915d9fcfecdc2952626421bf50b0e5f7845b",
+  "authoritative_application_performed": false,
+  "candidate_artifacts": [
+    {
+      "path": "Gate_2_Acceptance.md",
+      "sha256": "465ae3dcc1c799a5ada1b3cbd28333e2539d1a1d72fb21a68ceb0d13a8904e63",
+      "size": 1596
+    },
+    {
+      "path": "Gate_3_Basis_Update.md",
+      "sha256": "bbfddcac31376479406f15d94489051c86357b9791f8ab4f078e14813ffb0913",
+      "size": 1716
+    },
+    {
+      "path": "Gate_3_Exact_Amendment.md",
+      "sha256": "41c915b4158ae16b73131930e282c8dcd9b483510b45916da5ab8933cbfbe25a",
+      "size": 6881
+    },
+    {
+      "path": "Gate_3_Exact_Decomposition.patch",
+      "sha256": "5aac4f33c62a4cea99ae02cd2cbdbf0bde3e24fc9fd93fa7fbae54c2eda66733",
+      "size": 14519
+    },
+    {
+      "path": "Register_Enums.json",
+      "sha256": "66427564e99d0a492ac5f89a4cad1cb0a2e7a4cccdb842154703babcad510a83",
+      "size": 765
+    },
+    {
+      "path": "prepare_register_candidate.py",
+      "sha256": "290869bfd350ee85f2a21548c17e2a01b7615ca73fb8224c7a767c25772fd3c8",
+      "size": 2908
+    },
+    {
+      "path": "build_exact_decomposition_patch.py",
+      "sha256": "d343af167679b72951667e42d249487c59568b5533678de995ae790e40efc2ee",
+      "size": 1380
+    },
+    {
+      "path": "validate_gate3_candidate.py",
+      "sha256": "9d32738e178a2b98af7cc17b74170aa46be0661cc67251ab1a83b68951e8bdf4",
+      "size": 14501
+    },
+    {
+      "path": "compare_scope_traceability.py",
+      "sha256": "f4dbbecd518995267337e8bedcba127ccef71de3c6c95a17706f5833bfcd429c",
+      "size": 5132
+    },
+    {
+      "path": "Gate_3_Validation.json",
+      "sha256": "94ebf806131c917ff6cfce1d0f7b140478c7c448989041aa6b3d2532c512a9f2",
+      "size": 1464
+    },
+    {
+      "path": "Gate_3_Traceability_Comparison.json",
+      "sha256": "c5349f905bd56f51a8a8babda1300ce1643c24107e4c244791daf4bd04e43ff4",
+      "size": 1329
+    },
+    {
+      "path": "Gate_3_Adversarial_Backcheck.md",
+      "sha256": "ee5ad719b08c2327903a63a9f5ebd1c8a406a5461b4f43cf244e92bbb1ca0563",
+      "size": 2443
+    },
+    {
+      "path": "Candidate_Tree/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83",
+      "size": 108079
+    },
+    {
+      "path": "Candidate_Tree/projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+      "sha256": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1",
+      "size": 88985
+    }
+  ],
+  "gate4_opened": false,
+  "non_drifting_current_basis": "c487b7dd57a378e2f74417118e78e7f61a161629",
+  "sca_id": "SCA-APP-006",
+  "status": "PREPARED_NOT_ACCEPTED"
+}

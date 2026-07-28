@@ -1,0 +1,90 @@
+{
+  "accepted_gate3_manifest": true,
+  "accepted_gate4_manifest": true,
+  "action_rows": 12,
+  "audit_summary": {
+    "active_snapshot_status": "PASS",
+    "artifact_presence_pct": 0.0,
+    "authoritative_companion_register": {
+      "invariant_families": 48,
+      "invariant_ids": 81,
+      "path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+      "sha256": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1",
+      "status": "PASS"
+    },
+    "check_count": 12,
+    "closure_readiness": "WARN",
+    "concrete_labels": {
+      "partition": "Package",
+      "production_unit": "Deliverable"
+    },
+    "context_fidelity_pct": 100.0,
+    "decomp_variant": "SOFTWARE",
+    "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "decomposition_revision": "v3.2",
+    "deliverables_without_objective_mapping": 0,
+    "derivative_package_status": "SKIPPED",
+    "expected_handoff_phase": "SCOPE_CHANGE_GATE5_POSTCHANGE",
+    "expected_source_snapshot": "execution/_ScopeChange/SCA-APP-006_2026-07-27_1159_Invariant_Mapping_Repair/",
+    "forward_coverage_partitions_pct": 100.0,
+    "forward_coverage_production_units_pct": 100.0,
+    "handoff_state_status": "PASS",
+    "in_ledger_rows_without_objective_mapping": 0,
+    "issues_blocker": 0,
+    "issues_info": 1,
+    "issues_warning": 55,
+    "lifecycle_distribution": {
+      "IN_PROGRESS": 51
+    },
+    "objective_coverage_pct": 100.0,
+    "objective_evidence_integrity": "PASS",
+    "overall_status": "WARNINGS",
+    "package_shape_conformance": "PASS",
+    "partitions_declared": 10,
+    "partitions_found": 10,
+    "production_units_declared": 51,
+    "production_units_found": 51,
+    "repository_topology": {
+      "deliverables": 51,
+      "ledger_rows": 78,
+      "objectives": 10,
+      "packages": 10,
+      "scope_items": 78
+    },
+    "reverse_coverage_pct": 94.4,
+    "run_label": "SCA_APP_006_POSTCHANGE_2026-07-27_161852",
+    "scope": "ALL",
+    "timestamp": "2026-07-27T16:22:00-06:00"
+  },
+  "authoritative_content_hashes": {
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_CONTEXT.md": "904d29af0e98a438b5e963822dd285ced684bb1fbbb0c7ebf5d45233f4579c66",
+    "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/_CONTEXT.md": "305b4bf3f650508293af9c34256ea4066489f50bc8e9f1dc855918ef561c58cd",
+    "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_CONTEXT.md": "055b5384dbfcbe9e195ba447b9f859dc1f06d0c8f220d78357c62721e17311d6",
+    "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_CONTEXT.md": "d084845c45a369736af9f1667d2773f2e45839ec924baf4f54945692f73e79bf",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_CONTEXT.md": "8c3a38899b3664bd7ec15e7b613ac6a0ccdbe09760c29077f135cc434ee76a87",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/_CONTEXT.md": "c65e22a18a345ee171c8f6df968efe072c30e59749311a2e8c6f1f42bacf5f4c",
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_CONTEXT.md": "1b4d01dc1c83103ac60e8b772e48ba064ffbc59435ba2ebd452fd28eae0926b3",
+    "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83",
+    "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1"
+  },
+  "changed_paths": [
+    "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_CONTEXT.md",
+    "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/_CONTEXT.md",
+    "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_CONTEXT.md",
+    "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_CONTEXT.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_CONTEXT.md",
+    "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/_CONTEXT.md",
+    "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_CONTEXT.md",
+    "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/_LATEST.md",
+    "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md"
+  ],
+  "closure_state": "CLOSED_FOR_SCOPE_CHANGE_ONLY",
+  "errors": [],
+  "owner_confirmation_verbatim": true,
+  "snapshot_required_files": 17,
+  "status": "PASS",
+  "supersession_delta_rows": 0,
+  "supersession_map_rows": 16,
+  "unexpected_changed_paths": []
+}

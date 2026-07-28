@@ -1,0 +1,51 @@
+{
+  "checks": {
+    "basis_commit": "c487b7dd57a378e2f74417118e78e7f61a161629",
+    "basis_decomposition_sha256": "69b3110c26cb0b435ced4144845282bf6905cde4c0474b21282b9a1806984946",
+    "candidate_decomposition_sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83",
+    "candidate_register_sha256": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1",
+    "contract_sha256": "6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7",
+    "coverage_counts": {
+      "FUTURE_BOUNDARY": 4,
+      "MAPPED": 33,
+      "MAPPED_WITH_OPEN_ISSUE": 34,
+      "UNRESOLVED_SEMANTIC_OWNER": 10
+    },
+    "invariant_families": 48,
+    "prd_sha256": "ef638f43ccae1cd78b26b1ae078a33770cf64cc36c247c5d7da04b35196a4010",
+    "register_rows": 81,
+    "relation_differences": {},
+    "semantic_owner_counts": {
+      "APP": 45,
+      "ROOT": 22,
+      "UNKNOWN": 14
+    },
+    "topology": {
+      "deliverables": 51,
+      "objectives": 10,
+      "packages": 10,
+      "scope_items": 78
+    },
+    "unknown_semantic_owner_ids": [
+      "K-BASH-1",
+      "K-DOMAIN-1",
+      "K-DOMAIN-2",
+      "K-DOMAIN-3",
+      "K-DOMAIN-4",
+      "K-HOOK-1",
+      "K-KEY-1",
+      "K-PERM-1",
+      "K-PERM-2",
+      "K-PERM-3",
+      "K-PERM-4",
+      "K-PERM-5",
+      "K-SUBAGENT-1",
+      "K-SUBAGENT-2"
+    ]
+  },
+  "errors": [],
+  "status": "PASS_WITH_EXPLICIT_UNKNOWNS",
+  "warnings": [
+    "14 semantic owners remain explicit UNKNOWN"
+  ]
+}

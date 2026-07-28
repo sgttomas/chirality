@@ -1,0 +1,39 @@
+{
+  "amendment_id": "SCA-APP-006",
+  "accepted_source_basis": "9fa2f82ac4b9e55873bcd7cd99ca042a4456fea2",
+  "validator": "validate_gate5_state.py",
+  "status": "PASS",
+  "accepted_gate3_manifest": true,
+  "accepted_gate4_manifest": true,
+  "action_rows": 12,
+  "unexpected_changed_paths": [],
+  "supersession_delta_rows": 0,
+  "supersession_map_rows": 16,
+  "authoritative_content": {
+    "decomposition_sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83",
+    "companion_register_sha256": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1",
+    "contexts_verified": 7
+  },
+  "post_change_audit": {
+    "path": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_006_POSTCHANGE_2026-07-27_161852_2026-07-27_1622/coverage_summary.json",
+    "sha256": "114be417b3f07df5617757261f85d2f85ad075239c1fbd7b89bac439030b32cf",
+    "overall_status": "WARNINGS",
+    "issues_blocker": 0,
+    "issues_warning": 55,
+    "issues_info": 1,
+    "package_shape_conformance": "PASS",
+    "active_snapshot_status": "PASS",
+    "handoff_state_status": "PASS"
+  },
+  "topology": {
+    "packages": 10,
+    "deliverables": 51,
+    "scope_items": 78,
+    "objectives": 10
+  },
+  "companion_register": {
+    "invariant_ids": 81,
+    "invariant_families": 48,
+    "status": "PASS"
+  }
+}

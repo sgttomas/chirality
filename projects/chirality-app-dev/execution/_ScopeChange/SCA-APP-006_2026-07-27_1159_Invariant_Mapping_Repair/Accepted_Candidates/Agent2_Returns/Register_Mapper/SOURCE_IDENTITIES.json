@@ -1,0 +1,40 @@
+{
+  "basis_commit": "c487b7dd57a378e2f74417118e78e7f61a161629",
+  "contract": {
+    "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+    "sha256": "6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7"
+  },
+  "decomposition": {
+    "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "sha256": "69b3110c26cb0b435ced4144845282bf6905cde4c0474b21282b9a1806984946"
+  },
+  "sca_app_005_boundary": {
+    "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-005_2026-07-26_2334_Root_Runtime_Client_Boundary/Gate_2_Exhaustive_Seam_Matrix.md",
+    "sha256": "d6af8300d0d93cb152fd2807f1f0b5f7fc02880cfb766b6bec4afed0b97ea4b7"
+  },
+  "d_gov_20": {
+    "path": "docs/governance_harness/_DECISIONS/D-GOV-20_shared_runtime_local_agent_pilot.md",
+    "sha256": "a6a4fc4f0c8136f0cdf25eab155c98a03276248776ed9ff779df6c4b88523f11"
+  },
+  "d_gov_28": {
+    "path": "docs/governance_harness/_DECISIONS/D-GOV-28_root_runtime_stewardship.md",
+    "sha256": "370668f0a53e11642f9758ce7e33a38e376e09fba4632e58595a88b3e4b0c718"
+  },
+  "d_t0_23_coordination_counterpart": {
+    "path": "_DomainEngines/_DECISIONS/D-T0-23_shared_runtime_domain_convergence.md",
+    "sha256": "0629e16da62a68ce9648432dfa7293a426fe7278cea1efa43da2a6a00a624ae5",
+    "authority_note": "coordination counterpart only; not Root authority"
+  },
+  "root_contract": {
+    "path": "docs/CONTRACT.md",
+    "sha256": "1a448a822084d8dad1daf53884d6835caadabfe5cb5c89a9cfbaf896656cedec"
+  },
+  "root_prd": {
+    "path": "docs/PRD_ROOT.md",
+    "sha256": "0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d"
+  },
+  "d_gov_28_open_items": {
+    "path": "docs/governance_harness/_PROPOSALS/D-GOV-28_root_runtime_stewardship/OPEN_ITEMS.csv",
+    "sha256": "bc1502daf688f54445ba0252ef21bd3006538164d9bea24578ee8859bc08135a"
+  }
+}

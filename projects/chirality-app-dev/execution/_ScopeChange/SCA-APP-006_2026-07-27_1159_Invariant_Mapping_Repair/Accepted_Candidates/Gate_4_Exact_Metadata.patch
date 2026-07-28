@@ -1,0 +1,83 @@
+--- a/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_CONTEXT.md
++++ b/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_CONTEXT.md
+@@ -11 +11 @@
+-| PackageName | Desktop Shell, Navigation, and Operator State |
++| PackageName | Woven Dialogue Shell, Navigation, and Operator State |
+@@ -20 +20 @@
+-**ScopeDescription:** User-facing shell, matrix routing, file tree, toolkit, API key UI, local UI state.
++**ScopeDescription:** Dialogue-centred shell, Woven Dialogue artifact presentation, Navigator, Work/Agents Coordination Panel, activity shelf, re-hosted Workbench/Pipeline/toolkit/settings, compatibility surfaces, and non-authoritative local UI state.
+@@ -22 +22 @@
+-**InclusionCriteria:** UI and operator workflow behavior.
++**InclusionCriteria:** Human–agent dialogue, artifact collaboration, coordination presentation, and operator workflow behavior.
+@@ -24 +24 @@
+-**Exclusions:** Runtime engine internals.
++**Exclusions:** Runtime engine internals, canonical session/evidence ownership, arbitrary orchestration graphs, automatic intent inference, and project-control-plane authority.
+@@ -28 +28 @@
+-Provide API key entry/status UI, secure-storage feedback, typed runtime errors, and retry-preserving failure states.
++Provide API key entry/status UI, secure-storage feedback, selected-working-root attachment selection with multi-select preview and remove/clear controls, typed runtime errors, and retry-preserving draft and attachment failure states.
+@@ -32 +32 @@
+-API key settings panel; typed error display; secure-storage error UI
++API key settings panel; attachment picker and preview chips; remove/clear controls; typed error display; secure-storage error UI; retry-state preservation tests
+@@ -38 +38 @@
+-| CoversScopeItems | SOW-013, SOW-019 |
++| CoversScopeItems | SOW-013, SOW-019, SOW-023 |
+@@ -40 +40 @@
+-| ContextEnvelopeNotes | Focused UI feedback surface. |
++| ContextEnvelopeNotes | Cohesive dialogue-input and runtime-feedback UI slice; DEL-09-06 retains server-side attachment, network, key, and renderer security validation. |
+--- a/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/_CONTEXT.md
++++ b/projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-02_SdkOptionsBuilder_and_Settings_Isolation/_CONTEXT.md
+@@ -38 +38 @@
+-| CoversScopeItems | SOW-016, SOW-045, SOW-047, SOW-052 |
++| CoversScopeItems | SOW-016, SOW-045, SOW-047, SOW-052, SOW-076 |
+@@ -40 +40 @@
+-| ContextEnvelopeNotes | App configuration/conformance slice; generic option mapping and credentials remain Root-owned. |
++| ContextEnvelopeNotes | App configuration/conformance slice; generic option mapping and credentials remain Root-owned. SOW-076 is a boundary-only trace: ambient settings and shipped bypass remain OUT. |
+--- a/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_CONTEXT.md
++++ b/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-02_SDK_Read_Tool_Surface_and_Tool_Validation/_CONTEXT.md
+@@ -28 +28 @@
+-Submit deterministic App/project requested tool names, reject unknown client requests, and verify daemon read-tool exposure before writes/bash.
++Maintain deterministic App/project tool catalog and requested tool names, reject unknown or colliding client tool names, and verify daemon read-tool exposure before writes/bash.
+@@ -32 +32 @@
+-App tool-request resolver; unknown-tool tests; daemon visible-surface conformance fixtures
++App tool catalog/request resolver; catalog metadata; unknown-tool and name-collision tests; daemon visible-surface conformance fixtures
+@@ -38 +38 @@
+-| CoversScopeItems | SOW-047, SOW-049, SOW-050 |
++| CoversScopeItems | SOW-047, SOW-049, SOW-050, SOW-064 |
+@@ -40 +40 @@
+-| ContextEnvelopeNotes | App client/policy slice; generic resolution and execution remain Root-owned. |
++| ContextEnvelopeNotes | Catalog, validation, and collision-prevention share of SOW-064; no MCP wrapper implementation or remote MCP, plugin, or marketplace scope. |
+--- a/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_CONTEXT.md
++++ b/projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_CONTEXT.md
+@@ -28 +28 @@
+-Expose in-process deterministic MCP tools for status read, dependency read, scope scan, and scaffold preview/dry-run.
++Expose in-process deterministic MCP wrappers for status read, dependency read, scope scan, and scaffold preview/dry-run, and document their in-process extension boundary without opening remote MCP, plugins, or marketplace scope.
+@@ -32 +32 @@
+-`mcp__chirality__*` definitions; wrapper metadata; MCP tool tests
++`mcp__chirality__*` definitions; wrapper metadata; in-process extension-boundary notes; MCP tool tests
+@@ -38 +38 @@
+-| CoversScopeItems | SOW-048, SOW-050 |
++| CoversScopeItems | SOW-048, SOW-050, SOW-064 |
+@@ -40 +40 @@
+-| ContextEnvelopeNotes | Related tools share one MCP wrapper contract. |
++| ContextEnvelopeNotes | In-process wrapper and extension-boundary share of SOW-064; catalog validation and collision prevention remain DEL-06-02. |
+--- a/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_CONTEXT.md
++++ b/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_CONTEXT.md
+@@ -38 +38 @@
+-| CoversScopeItems | SOW-002, SOW-027 |
++| CoversScopeItems | SOW-002, SOW-027, SOW-075 |
+--- a/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/_CONTEXT.md
++++ b/projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-06_Reference_Hash_and_Snapshot_Conventions/_CONTEXT.md
+@@ -38 +38 @@
+-| CoversScopeItems | SOW-032, SOW-033, SOW-034 |
++| CoversScopeItems | SOW-032, SOW-033, SOW-034, SOW-077 |
+@@ -40 +40 @@
+-| ContextEnvelopeNotes | Focused continuity and convention deliverable. |
++| ContextEnvelopeNotes | Focused continuity and convention deliverable. SOW-077 is a boundary-only trace: retired PKG-08 scope remains OUT. |
+--- a/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_CONTEXT.md
++++ b/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_CONTEXT.md
+@@ -38 +38 @@
+-| CoversScopeItems | SOW-030, SOW-072, SOW-073 |
++| CoversScopeItems | SOW-030, SOW-072, SOW-073, SOW-078 |
+@@ -40 +40 @@
+-| ContextEnvelopeNotes | Broad packaging slice but bounded to one release target. |
++| ContextEnvelopeNotes | Broad packaging slice but bounded to one release target. SOW-078 is a boundary-only trace: Windows/Linux packaging remains OUT. |
