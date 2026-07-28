@@ -1,0 +1,85 @@
+{
+  "accepted_mismatch_count": 7,
+  "accepted_mismatch_scope_ids": [
+    "SOW-002",
+    "SOW-023",
+    "SOW-064",
+    "SOW-075",
+    "SOW-076",
+    "SOW-077",
+    "SOW-078"
+  ],
+  "added_section_8_relations": [
+    [
+      "SOW-023",
+      "DEL-02-05"
+    ],
+    [
+      "SOW-064",
+      "DEL-06-02"
+    ],
+    [
+      "SOW-064",
+      "DEL-06-03"
+    ],
+    [
+      "SOW-075",
+      "DEL-07-01"
+    ],
+    [
+      "SOW-076",
+      "DEL-04-02"
+    ],
+    [
+      "SOW-077",
+      "DEL-07-06"
+    ],
+    [
+      "SOW-078",
+      "DEL-09-04"
+    ]
+  ],
+  "added_section_9_relations": [
+    [
+      "SOW-002",
+      "DEL-02-03"
+    ]
+  ],
+  "basis_commit": "c487b7dd57a378e2f74417118e78e7f61a161629",
+  "candidate_mismatch_count": 0,
+  "candidate_mismatches": {},
+  "deleted_section_8_relations": [],
+  "deleted_section_9_relations": [],
+  "errors": [],
+  "status": "PASS",
+  "terminal_relations": {
+    "SOW-002": [
+      "DEL-02-03",
+      "DEL-07-01"
+    ],
+    "SOW-023": [
+      "DEL-02-05",
+      "DEL-09-06"
+    ],
+    "SOW-064": [
+      "DEL-06-02",
+      "DEL-06-03"
+    ],
+    "SOW-075": [
+      "DEL-01-01",
+      "DEL-07-01"
+    ],
+    "SOW-076": [
+      "DEL-01-04",
+      "DEL-04-02"
+    ],
+    "SOW-077": [
+      "DEL-01-04",
+      "DEL-07-06"
+    ],
+    "SOW-078": [
+      "DEL-01-04",
+      "DEL-09-04"
+    ]
+  }
+}

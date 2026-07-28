@@ -1,0 +1,54 @@
+{
+  "run_label": "SCA_APP_006_POSTCHANGE_2026-07-27_161852",
+  "timestamp": "2026-07-27T16:22:00-06:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "execution/_ScopeChange/SCA-APP-006_2026-07-27_1159_Invariant_Mapping_Repair/",
+  "expected_handoff_phase": "SCOPE_CHANGE_GATE5_POSTCHANGE",
+  "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "decomposition_revision": "v3.2",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 10,
+    "deliverables": 51,
+    "objectives": 10,
+    "scope_items": 78,
+    "ledger_rows": 78
+  },
+  "partitions_declared": 10,
+  "partitions_found": 10,
+  "production_units_declared": 51,
+  "production_units_found": 51,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 94.4,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 0,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "authoritative_companion_register": {
+    "path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+    "sha256": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1",
+    "invariant_ids": 81,
+    "invariant_families": 48,
+    "status": "PASS"
+  },
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 55,
+  "issues_info": 1,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "IN_PROGRESS": 51
+  },
+  "overall_status": "WARNINGS",
+  "closure_readiness": "WARN",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

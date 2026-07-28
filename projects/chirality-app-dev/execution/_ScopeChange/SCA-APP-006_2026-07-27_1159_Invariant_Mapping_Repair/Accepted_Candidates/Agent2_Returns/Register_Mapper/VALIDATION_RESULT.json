@@ -1,0 +1,74 @@
+{
+  "status": "PASS_WITH_EXPLICIT_UNKNOWNS",
+  "basis_commit": "c487b7dd57a378e2f74417118e78e7f61a161629",
+  "counts": {
+    "source_invariant_rows": 81,
+    "candidate_rows": 81,
+    "unique_invariant_ids": 81,
+    "invariant_families": 48,
+    "resolved_package_ids": 10,
+    "resolved_deliverable_ids": 51,
+    "explicit_unknown_semantic_owners": 14
+  },
+  "expected": {
+    "invariant_rows": 81,
+    "invariant_families": 48,
+    "contract_sha256": "6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7",
+    "decomposition_sha256": "69b3110c26cb0b435ced4144845282bf6905cde4c0474b21282b9a1806984946"
+  },
+  "enums": {
+    "SemanticOwnerProduct": [
+      "APP",
+      "ROOT",
+      "UNKNOWN"
+    ],
+    "OwnerAuthorityBasis": [
+      "APP_CONTRACT_AND_DECOMPOSITION",
+      "ROOT_RULED_CONTINUING_STEWARDSHIP",
+      "UNRESOLVED_COMPOSITE",
+      "FUTURE_BOUNDARY_COMPOSITE"
+    ],
+    "AppObligationClass": [
+      "APP_GOVERNANCE_AND_AUTHORITY",
+      "APP_PRODUCT_OR_PROJECT_IMPLEMENTATION",
+      "APP_CLIENT_CONFORMANCE",
+      "APP_RELEASE_AND_VALIDATION",
+      "FUTURE_BOUNDARY_DEFINITION",
+      "UNRESOLVED_COMPOSITE"
+    ],
+    "CoverageStatus": [
+      "MAPPED",
+      "MAPPED_WITH_OPEN_ISSUE",
+      "FUTURE_BOUNDARY",
+      "UNRESOLVED_SEMANTIC_OWNER"
+    ],
+    "ProvenanceStatus": [
+      "DIRECT_APP_AUTHORITY",
+      "EXTERNAL_ROOT_AUTHORITY",
+      "COMPOSITE_AUTHORITY_UNRESOLVED",
+      "FUTURE_BOUNDARY_COMPOSITE"
+    ]
+  },
+  "errors": [],
+  "warnings": [
+    "K-PERM-1: semantic owner intentionally UNKNOWN",
+    "K-PERM-2: semantic owner intentionally UNKNOWN",
+    "K-PERM-3: semantic owner intentionally UNKNOWN",
+    "K-PERM-4: semantic owner intentionally UNKNOWN",
+    "K-PERM-5: semantic owner intentionally UNKNOWN",
+    "K-HOOK-1: semantic owner intentionally UNKNOWN",
+    "K-BASH-1: semantic owner intentionally UNKNOWN",
+    "K-SUBAGENT-1: semantic owner intentionally UNKNOWN",
+    "K-SUBAGENT-2: semantic owner intentionally UNKNOWN",
+    "K-KEY-1: semantic owner intentionally UNKNOWN",
+    "K-DOMAIN-1: semantic owner intentionally UNKNOWN",
+    "K-DOMAIN-2: semantic owner intentionally UNKNOWN",
+    "K-DOMAIN-3: semantic owner intentionally UNKNOWN",
+    "K-DOMAIN-4: semantic owner intentionally UNKNOWN"
+  ],
+  "notes": [
+    "D-T0-23 is retained as a coordinating counterpart only and is not used as Root authority.",
+    "UNKNOWN is a valid explicit non-claim; it is never treated as complete semantic ownership.",
+    "App package/deliverable mappings remain present for UNKNOWN rows because current App obligations are still source-backed."
+  ]
+}

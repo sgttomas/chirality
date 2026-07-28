@@ -1,0 +1,48 @@
+{
+  "amendment_id": "SCA-APP-006",
+  "accepted_source_basis": "9fa2f82ac4b9e55873bcd7cd99ca042a4456fea2",
+  "source_audit": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_006_POSTCHANGE_2026-07-27_161852_2026-07-27_1622/coverage_summary.json",
+  "audit_summary_sha256": "114be417b3f07df5617757261f85d2f85ad075239c1fbd7b89bac439030b32cf",
+  "audit_state": "WARNINGS",
+  "closure_readiness": "WARN",
+  "topology": {
+    "packages": 10,
+    "deliverables": 51,
+    "scope_items": 78,
+    "objectives": 10
+  },
+  "coverage": {
+    "packages_found": 10,
+    "deliverables_found": 51,
+    "contexts_aligned": 51,
+    "sow_v1_contracts_valid": 51,
+    "objectives_supported": 10
+  },
+  "scope_ledger": {
+    "rows": 78,
+    "in": 73,
+    "out": 4,
+    "tbd": 1
+  },
+  "authoritative_companion_register": {
+    "path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+    "sha256": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1",
+    "invariant_ids": 81,
+    "invariant_families": 48,
+    "status": "PASS"
+  },
+  "issues": {
+    "blocker": 0,
+    "warning": 55,
+    "info": 1
+  },
+  "pre_post_parity": {
+    "topology_unchanged": true,
+    "stable_ids_preserved": true,
+    "supported_relations_deleted": 0,
+    "seven_relations_reconciled": true,
+    "seven_contexts_propagated": true,
+    "del_02_05_stale_fields_repaired": 4
+  },
+  "status": "CLOSED_FOR_SCOPE_CHANGE_ONLY"
+}
