@@ -3,7 +3,7 @@ doc_id: PEC-AGENTS
 doc_kind: governance.agent_index
 status: live
 created: 2026-07-04
-amended: 2026-07-25 (D-PEC-64; SCA-002 closed — decomposition revision 1.2 accepted)
+amended: 2026-07-27 (D-PEC-68; PRD v2.2 consumer-interface concordance)
 ---
 
 # AGENTS - PEC Agent Index
@@ -25,10 +25,11 @@ Prompts and TASK briefs must derive paths from the active checkout:
 
 PEC is the Chirality **coordination plane**: a deterministic, rebuildable
 projection of governed file truth plus an ephemeral presence layer, embodying
-loop Step 0 and the deterministic parts of Step 1. `docs/PRD.md` v2.1 is the
+loop Step 0 and the deterministic parts of Step 1. `docs/PRD.md` v2.2 is the
 product definition of record (v2.0 adopted by `D-PEC-58`; directed-bootstrap
-clarification adopted by `D-PEC-61`). Implementation does not exist yet;
-nothing in the PRD is an implementation mandate.
+clarification adopted by `D-PEC-61`; exact PEC-K-03/-11 rows adopted by
+`D-PEC-67`; surrounding concordance adopted by `D-PEC-68`). Implementation
+does not exist yet; nothing in the PRD is an implementation mandate.
 
 Binding on every agent, now and in every future tranche:
 
@@ -42,6 +43,10 @@ Binding on every agent, now and in every future tranche:
 - **Observation, not participation (PEC-K-06).** PEC dispatches nothing and
   arbitrates nothing; no leases, no merge opinions. Conflicts are surfaced,
   never prevented; gate verdicts are advisory and Explain-shaped.
+- **Consumer-owned use (PEC-K-03/-11).** PEC is pull-oriented, mode-capable,
+  and never forced. An explicitly enabled consumer owns whether and when it
+  consumes and whether it injects labeled PEC data; no external cadence or
+  receiving-loop duty is inferred (`D-PEC-67`, `D-PEC-68`).
 - PEC is not a system of record, not a ruling surface, not an orchestrator,
   not a lock manager, not a Git actor, not a replacement for the practitioner
   harness, and not a human project-management tool (PRD v2 §4.2, permanent
@@ -143,7 +148,9 @@ unopened future row. Agent validation stays scratch/demo-only.
   register (`D-PEC-57` pivot, `D-PEC-58` adoption, `D-PEC-59` follow-ons,
   `D-PEC-60` decomposition acceptance, `D-PEC-61` directed bootstrap /
   SCA-001 opening, `D-PEC-62` scaffold + local dependency registers,
-  `D-PEC-64` SCA-002 objective-mapping session — revision 1.2 accepted)
+  `D-PEC-64` SCA-002 objective-mapping session — revision 1.2 accepted,
+  `D-PEC-67` exact consumer rows / reliance control, `D-PEC-68` PRD v2.2
+  concordance)
 - `execution/_Decomposition/` — the accepted decomposition working package
   (`SOFTWARE_DECOMP.md` working surface + companion registers;
   `_LATEST.md` is the revision pointer and handoff state — read it first)

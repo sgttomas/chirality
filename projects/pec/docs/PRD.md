@@ -2,17 +2,30 @@
 
 | | |
 |---|---|
-| **Version** | 2.1 |
-| **Date** | 2026-07-24 |
-| **Status** | **Adopted 2026-07-24** by owner ruling (`D-PEC-58`); directed-bootstrap clarification adopted as v2.1 by `D-PEC-61`; product definition of record |
+| **Version** | 2.2 |
+| **Date** | 2026-07-27 |
+| **Status** | **Adopted 2026-07-27** by owner ruling (`D-PEC-68`); v2.0 adopted by `D-PEC-58`; directed-bootstrap clarification adopted as v2.1 by `D-PEC-61`; exact PEC-K-03/-11 rows adopted by `D-PEC-67`; consumer-interface concordance adopted as v2.2 by `D-PEC-68`; product definition of record |
 | **Product stage** | Prototype of the prior product exists (v0.4 baseline code); the coordination plane defined here is not yet implemented |
 | **Supersession** | Supersedes PRD v1.0 ("team information hub", adopted 2026-07-10 by `D-PEC-55`), preserved at `c31be74c2:projects/pec/docs/PRD.md` and archived at `docs/.archive/PRD_v1.0_2026-07-09_team_information_hub.md`. The v0.4 catalogue remains preserved at `7e8312172:projects/pec/docs/PRD.md`. |
 
 > **Epistemic status:** authored from owner-directed design (session
-> 2026-07-24); adopted 2026-07-24 (`D-PEC-58`) and amended to v2.1 the same
-> day (`D-PEC-61`). Adoption makes this the product definition of record
-> only — nothing in this document is an implementation mandate; each build
-> tranche still requires its own owner-ruled packet.
+> 2026-07-24); adopted 2026-07-24 (`D-PEC-58`), amended to v2.1 the same
+> day (`D-PEC-61`), and amended in two exact invariant rows on 2026-07-27
+> (`D-PEC-67`), then adopted with surrounding v2.2 consumer-interface
+> concordance on 2026-07-27 (`D-PEC-68`). Adoption makes a PRD the product
+> definition of record only — nothing in this document is an implementation
+> mandate; each build tranche still requires its own owner-ruled packet.
+
+> **v2.2 provenance labels:** `TRANSCRIBED` means copied without changing
+> source meaning from a ruled record; `CLARIFIED` means surrounding prose
+> reconciled to a ruled meaning without creating a new external duty;
+> `PROPOSED` means product text newly proposed by and adopted through the
+> `D-PEC-68` owner gate rather than inherited from an earlier ruling. The
+> PEC-K-03 and PEC-K-11 rows are `TRANSCRIBED` byte-for-byte from the PRD bytes adopted by
+> `D-PEC-67`; the P1 first-ingestion correction is `TRANSCRIBED` from
+> `D-PEC-61`; the consumer-interface corrections in §§1, 4, 5, 8, 9, 11, 12,
+> and 15 are `CLARIFIED`; the resulting P3/P4 capability-exit wording is
+> `PROPOSED`.
 
 ---
 
@@ -26,10 +39,11 @@ ephemeral presence layer, that embodies **Step 0 (Discover)** and the
 deterministic parts of **Step 1 (gate review and decision-slate
 presentation)** of the canonical development loop.
 
-It is consumed by harnesses on behalf of agents, and by the human owner
-through dashboards. It is the coordination plane that **does not need to
-exist**: every consumer has a file-native fallback, and deleting PEC degrades
-throughput, never correctness.
+It is available to explicitly PEC-enabled consumers, including harnesses
+acting on behalf of agents, and to the human owner through dashboards. It is
+the coordination plane that **does not need to exist**: every potential
+consumer has a file-native fallback, and deleting PEC degrades throughput,
+never correctness.
 
 ### 1.2 Chirality interpretation (adapted from v1.0 §1.2; first sentence verbatim)
 
@@ -103,8 +117,9 @@ cache half, and Step-0 cost is re-measured before P1 (§11).
 - A **deterministic evaluator** of gate preconditions (ruling presence, SHA
   reachability, receipt ancestry) — advisory, Explain-shaped, cited.
 - A **renderer of decision slates** authored elsewhere.
-- A **declared coordination surface** satisfying the doctrine that sibling
-  agents use no hidden or undeclared messaging.
+- An **optional declared coordination surface** for sibling agents that use
+  no hidden or undeclared messaging. File- and Git-native coordination remains
+  lawful without PEC.
 
 ### 4.2 PEC is not (non-goals, permanent)
 
@@ -127,25 +142,29 @@ cache half, and Step-0 cost is re-measured before P1 (§11).
 
 ## 5. Operating model — the modes ladder
 
-PEC's consumption scales with the number of concurrent coordination contexts.
-Modes that need nothing get nothing.
+PEC supports scope and mode parameters whose useful resolution scales with the
+number of concurrent coordination contexts. An explicitly PEC-enabled
+consumer owns its own mode mapping and contact cadence unless its owner
+separately adopts an exact duty. The table defines PEC-side capabilities and
+illustrative uses; it does not bind a receiving loop.
 
-| Mode | Coordination contexts | PEC consumes | PEC produces | Posture |
+| Mode | Coordination contexts | PEC can serve when requested | PEC can record/render when separately supplied | Posture |
 |---|---|---|---|---|
-| Pipeline (determined workflow; PDF2MD, DRAWING_EXTRACT, …) | 0 | nothing | progress/presence (push, optional) | out of the way |
-| Conversation (no broader scope) | 1, unscoped | nothing | nothing | absent |
-| Workbench (WORKING_ITEMS + TASK children, one package) | 1 per package | package-scoped orientation at activation | status, presence | useful |
+| Pipeline (determined workflow; PDF2MD, DRAWING_EXTRACT, …) | 0 | zero-contact operation; no orientation request required | optional progress/presence feed | out of the way |
+| Conversation (no broader scope) | 1, unscoped | zero-contact operation | nothing by default | absent |
+| Workbench (WORKING_ITEMS + TASK children, one package) | 1 per package | package-scoped orientation | status, presence | useful if enabled |
 | Agent 0, single (human-paired, cross-package) | 1 | loop-scoped orientation + deltas | status, presence, notices | efficiency; frees orchestrator context budget |
-| Agent 1s, concurrent (disjoint scopes) | N | presence, fan-in views | status, presence | helpful; human bridges |
-| Agent 0s, concurrent | N, overlapping scope | orientation, deltas, presence, notices | everything | **essential for throughput** (not for soundness — file fallback remains) |
+| Agent 1s, concurrent (disjoint scopes) | N | presence and fan-in views | status, presence | helpful; human bridges |
+| Agent 0s, concurrent | N, overlapping scope | orientation, deltas, presence, notices | all supported coordination views | **essential for throughput when adopted** (not for soundness — file fallback remains) |
 
-The conversation→workbench transition is a polling event: orientation is
-fetched when scope begins to exist, not at session start.
+The conversation→workbench transition is one possible consumer-defined contact
+point; PEC does not make it a polling event and does not require orientation
+to be fetched there or at session start.
 
-Doctrine note (future `AGENTS.md` amendment, not made by this PRD):
-concurrent Agent 0 operation has no common parent below the human; a
-declared, durable coordination surface is what makes it lawful under the
-sibling-messaging rule. PEC is that surface.
+Doctrine note: concurrent Agent 0 operation has no common parent below the
+human. Declared, durable file, Git, and optional service surfaces support
+lawful coordination under the sibling-messaging rule. PEC is the optimized
+optional service surface, not the exclusive source of lawfulness.
 
 ---
 
@@ -215,11 +234,13 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 ## 8. Users and access
 
 - **Human owner** — dashboards, decision slate, presence board. Full read.
-- **Harnesses** (runtime daemon; terminal-session hooks CLI) — machine
-  consumers of the API on behalf of agent sessions; producers of presence and
-  status events.
-- **Agents** — never call PEC directly by instruction; they receive
-  harness-injected orientation as labeled data (PEC-K-03).
+- **Harnesses** (runtime daemon; terminal-session hooks CLI) — permitted
+  machine consumers of the API on behalf of agent sessions when explicitly
+  enabled under their own authority; producers of presence and status events.
+- **Agents** — never call PEC directly by instruction under the current access
+  classes. They may receive orientation as labeled, non-authoritative data
+  only if an explicitly enabled consumer chooses to inject it; injection is
+  not required (PEC-K-03).
 - Access is local-only (Unix socket; any loopback listener is a §16 open
   decision), token-scoped. The v1.0 role ontology (12 roles, v1.0 §8) and
   the prototype's implemented 14-role RBAC set (`core/src/types.ts`) are
@@ -287,7 +308,7 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 | ID | Requirement |
 |---|---|
 | PEC-API-001 | The service binds local-only, Unix socket by default, with token-scoped access; any loopback TCP listener is a §16 open decision in light of D-GOV-20's no-TCP-control-listener posture. |
-| PEC-API-002 | Orientation reads shall complete in ≤100 ms at p95 against the current corpus (session-start critical path). |
+| PEC-API-002 | Orientation reads shall complete in ≤100 ms at p95 against the current corpus (latency-sensitive pull path; any session-start use requires a separately adopted consumer duty). |
 | PEC-API-003 | The API schema is versioned; evolution is additive. |
 | PEC-API-004 | Responses are compact, machine-first, and citation-bearing. |
 | PEC-API-005 | PEC shall offer an SSE subscription for deltas and presence changes (dashboards; long-running managers). |
@@ -319,7 +340,7 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 
 ---
 
-## 11. Success metrics (measured in system behavior, not human behavior)
+## 11. Success metrics (measured in observable system and use behavior)
 
 1. Step-0 cost: LLM tokens per loop-iteration orientation, before vs after;
    the "before" baseline is measured before P1 begins (this also re-tests the
@@ -328,14 +349,20 @@ append-only enforcement; dry-run-then-apply ingestion; coverage honesty
 2. Orientation defect rate: claims failing source spot-check per 100 claims.
 3. Collision incidents: write-scope/branch conflicts discovered at Git time
    rather than surfaced in advance, per week of concurrent operation.
-4. Harness poll adoption: fraction of eligible session starts / mode
-   transitions that consume orientation.
+4. Consumer uptake: (a) the fraction of candidate consumers that explicitly
+   enable PEC; and (b) among enabled consumers, the fraction of contact
+   opportunities defined by their own adopted mode/cadence rules that consume
+   orientation. Neither figure is a conformance criterion for a receiving
+   loop. Candidate consumers are registered loops or harnesses for which PEC
+   exposes a compatible interface; membership asserts no duty.
 5. Parity: DriftFindings against practitioner-harness output per reconcile.
 6. Kill test: pass, at every release.
 
-**Falsification clause:** if, after Phase 3, harness poll adoption remains
-negligible and the owner does not consult the dashboards, the product thesis
-is falsified; PEC is deleted and, by PEC-K-01, nothing breaks.
+**Falsification clause:** if, after Phase 3, explicit consumer enablement or
+enabled-consumer orientation use remains negligible and the owner does not
+consult the dashboards, the product thesis is falsified; PEC is deleted and,
+by PEC-K-01, nothing breaks. Non-adoption is evidence about PEC, never
+external nonconformance.
 
 ---
 
@@ -343,11 +370,11 @@ is falsified; PEC is deleted and, by PEC-K-01, nothing breaks.
 
 | Phase | Scope | Exit test |
 |---|---|---|
-| **P0 — Governance** | `D-PEC-57` ruling; this PRD adopted (`D-PEC-58`); workplan replaced; decomposition authorized | Packets ruled; standing plan live |
-| **P1 — One-loop reconciler** | Reconciler + orientation store + API for one loop (piping or root), read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes |
-| **P2 — Dashboards** | All five loops; Overview, census, registers, decision slate | Owner uses it in place of manual Step 0 for orientation reads |
-| **P3 — Harness integration** | Hooks CLI + daemon polling; presence registry + Git/worktree scanner | Measured poll adoption; overlap warnings fire on seeded conflicts; falsification clause armed |
-| **P4 — Streams** | Daemon SSE bridge; hooks push; live hierarchy tier; optional cmux adapter | Stream loss demonstrably recovered by reconcile; presence TTLs honest under kill/crash tests |
+| **P0 — Governance** | `D-PEC-57` direction; PRD lineage ruled through `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68`; workplan live; decomposition authorized | Packets ruled; standing plan live |
+| **P1 — One-loop reconciler** | Reconciler + orientation store + API for PEC's own build graph, read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes |
+| **P2 — Dashboards** | All five loops; Overview, census, registers, decision slate | **P2-B uptake observation:** owner-use evidence is gathered; use or non-use informs falsification, and manual Step 0 remains available |
+| **P3 — Opt-in consumer integration** | PEC-side interfaces/adapters usable by hooks CLI or daemon consumers; presence registry + Git/worktree scanner; live use requires a separately authorized receiving consumer | Capability contract tests pass; consumer enablement/use is measured without external conformance; overlap warnings fire on seeded conflicts; falsification clause armed |
+| **P4 — Streams** | PEC-side daemon SSE bridge and optional hook-push interface; live hierarchy tier; optional cmux adapter; live use requires separately authorized receiving consumers | Stream loss demonstrably recovered by reconcile; presence TTLs honest under kill/crash tests |
 
 The PEC v2 build itself runs through the governed pipeline (SOFTWARE_DECOMP →
 PROJECT_SETUP → WORKING_ITEMS), and the first loop the P1 reconciler ingests
@@ -364,6 +391,12 @@ requests, but it grants no authority and changes no accepted scope without
 human approval. The file-native fallback remains operable throughout.
 Generality is tested against a structurally different loop after
 self-ingestion.
+
+The P2 exit records owner-use evidence without making a PEC read or write a
+governed duty; manual Step 0 remains the fallback. P3 and P4 supply PEC-side
+integration capability and accept evidence from separately authorized
+consumers. They do not themselves authorize Root, App, a harness, or another
+loop to poll, push, inject, subscribe, or consume.
 
 ---
 
@@ -434,11 +467,15 @@ On adoption (2026-07-24, `D-PEC-58`):
   §8/§13. Its no-dual-loop boundary (behavior 4) and human-only-act
   restrictions (behavior 7) survive unchanged. The partial supersession is
   declared in the `D-PEC-58` packet.
+- **`D-PEC-67` — exact consumer-interface rows preserved.** PEC-K-03 and
+  PEC-K-11 remain byte-identical to the rows adopted by D-PEC-67. Surrounding
+  v2.2 prose makes their optional, consumer-owned use coherent across the
+  PRD; it creates no receiving-loop duty or implementation authority.
 - **Doctrine** — the sibling rule prohibits hidden or undeclared direct
-  messaging under a mediating parent (`AGENTS.md`); PEC is a declared,
-  durable, recorded surface and therefore not hidden messaging. Whether
-  concurrent Agent 0 operation without a common parent is lawful is an open
-  `AGENTS.md` question, flagged at §5 and not resolved by this PRD.
+  messaging under a mediating parent (`AGENTS.md`); PEC is one optional
+  declared, durable, recorded surface and therefore not hidden messaging.
+  File- and Git-native coordination remains available and lawful when PEC is
+  absent.
 - **Residency** — content-minimal (PEC-K-10): PEC indexes only repo files
   agents already read, plus operational presence; no new data class egresses.
 - **Fences** — this PRD was authored within then-lawful write scope and

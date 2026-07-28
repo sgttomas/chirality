@@ -1231,3 +1231,11 @@
   - Authority fence: D-PEC-67 remains the owning decision; no decision-register row, PRD, decomposition, metadata, dependency, implementation, runtime, lifecycle, release, estimate, schedule, activation, production-reliance, or Git authority is created.
   - Hold state: `PEC-HOLD-001` remains `ACTIVE`. L-A2 does not release L-A1; release remains a later separately proposed and owner-approved act after exact live-byte and concordance verification.
   - Gate outcome: EXECUTED pending separate Git closeout.
+
+- **2026-07-27 — Receipt 115** (D-PEC-68 executed: PEC PRD v2.2 consumer-interface concordance).
+  - Owner selected the preserving concordance path and separately approved the exact D-PEC-68 candidate with P2-B. The exact PEC-K-03 and PEC-K-11 row bytes adopted by D-PEC-67 remain unchanged.
+  - Executed effects: `projects/pec/docs/PRD.md` advances to v2.2; surrounding thesis, optional-surface, modes/cadence, access/injection, API-latency rationale, uptake/falsification, and P2–P4 release prose is reconciled to D-PEC-67; the P1 first-ingestion row is transcribed from D-PEC-61; current PEC AGENTS, README, STATUS, and standing-workplan pointers/posture are aligned.
+  - P2-B: PEC-owner use or non-use is recorded as uptake/falsification evidence only; manual Step 0 remains available and no governed PEC read or write duty is created. P3/P4 remain PEC-side opt-in integration/stream capabilities; non-adoption is PEC falsification evidence, never receiving-loop nonconformance.
+  - Verification: deterministic check reproduced the accepted L-A2 ancestry and basis state, all seven basis files from the immutable Git object, both protected invariant rows byte-for-byte, the D-PEC-61 P1 source meaning, the next-free D-PEC/receipt identities, all manifests, and exact-diff reconstruction; every provenance row was present and labeled.
+  - Authority fence: D-PEC-67 and the L-A2 application remain preserved; `PEC-HOLD-001` remains `ACTIVE`. No SCOPE_CHANGE gate, decomposition, ScopeOfWork, implementation, runtime, lifecycle, release, dependency, estimate, schedule, external-loop, hold release, or other authority is opened by this receipt.
+  - Gate outcome: EXECUTED and EFFECTIVE pending separate Git closeout. Next product-propagation gate is a separately presented PEC SCA-003 intake based on the adopted v2.2 Git identity.
