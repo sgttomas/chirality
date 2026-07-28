@@ -1224,3 +1224,10 @@
   - Deferrals remain governed by their exact section triggers: daemon-wide global feed, authentication reuse, canonical event-contract home, and transports beyond Unix remain deferred. The accepted section bytes control over this summary.
   - Authority fence: no PEC SCOPE_CHANGE gate is opened or approved; C3 and C15 propagation remain later human-gated work. L-A2 is not applied and cannot release L-A1. No decomposition, ScopeOfWork, implementation, runtime, lifecycle, release, dependency, estimate, schedule, or Git action is authorized by this receipt.
   - Gate outcome: EXECUTED and EFFECTIVE pending separate Git closeout. Next gates are PEC SCOPE_CHANGE intake for adopted K03/K11 propagation, the separately blocked L-A2 correction after L-A1 is durably current, and CHANGE for this exact application tranche.
+
+- **2026-07-27 — Receipt 114** (D-PEC-67 L-A2 executed: DEL-00-01 historical-lineage correction applied; L-A1 remains active).
+  - Owner approved the exact current-basis L-A2 application candidate. The complete ruling is transcribed verbatim in `projects/pec/execution/_Coordination/OD7-G3_APPLICATIONS/D-PEC-67/L-A2/OWNER_RULING.md`.
+  - Applied effect: only `CLM-005` and `REQ-004` in DEL-00-01's ScopeOfWork are corrected. ADR-014 remains historical lineage and its retired v0.4 project-adapter allocation is not re-adopted as PEC-v2 scope.
+  - Authority fence: D-PEC-67 remains the owning decision; no decision-register row, PRD, decomposition, metadata, dependency, implementation, runtime, lifecycle, release, estimate, schedule, activation, production-reliance, or Git authority is created.
+  - Hold state: `PEC-HOLD-001` remains `ACTIVE`. L-A2 does not release L-A1; release remains a later separately proposed and owner-approved act after exact live-byte and concordance verification.
+  - Gate outcome: EXECUTED pending separate Git closeout.
