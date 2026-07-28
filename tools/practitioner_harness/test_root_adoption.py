@@ -446,15 +446,15 @@ def test_live_root_drift_baseline_0_of_46():
 
 
 @live_root
-def test_live_root_status_reports_45_initialized_1_open_and_no_dag_pointer():
-    # Live pin: 45 deliverables remain INITIALIZED since D-GOV-27 / PR #354;
-    # DEL-02-06 is OPEN after the bounded SCA-001 PROJECT_SETUP refresh.
+def test_live_root_status_reports_46_initialized_0_open_and_no_dag_pointer():
+    # Live pin: all 46 deliverables are INITIALIZED after OD6-RT-APP-INIT1;
+    # DEL-02-06 was initialized after its exact ScopeOfWork was applied and validated.
     # A change to the live root tree updates this pin in the same PR.
     report = cmd_status.run_status_project(LIVE_REPO, LIVE_REPO)
     md = report.render_markdown()
     assert "# Status — chirality-root" in md
-    assert "| INITIALIZED | 45 |" in md
-    assert "| OPEN | 1 |" in md
+    assert "| INITIALIZED | 46 |" in md
+    assert "| OPEN |" not in md
     assert report.summary["status_files"] == 46
     assert "not declared by this adapter schema (root-harness-adapter/v1)" in md
 
