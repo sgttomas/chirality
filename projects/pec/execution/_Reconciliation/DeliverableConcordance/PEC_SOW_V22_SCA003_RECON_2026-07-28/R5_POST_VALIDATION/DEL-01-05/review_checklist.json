@@ -1,0 +1,288 @@
+{
+  "item_count": 11,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 100,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "On a service-core state whose runtime dependency surface is entirely workspace-internal the dependency assertion passes, and on any state that introduces a third-party runtime dependency it fails and names both the offending dependency and the importing module.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-05-VER-001",
+          "source_line": 124,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the dependency assertion against a conforming service-core fixture and against fixtures that introduce a third-party runtime dependency at direct and transitive positions; assert pass on the former and, on each violating fixture, a failure naming the dependency and its importer."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-05-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 101,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "The check's admitted set is enumerated in its own configuration, contains only workspace-internal runtime contracts packages, and admits no entry that `PEC-SVC-001` does not permit; adding an entry is a visible configuration change, not an inferred default.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-01-05-VER-002",
+          "source_line": 125,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the check's admitted-set configuration against the `PEC-SVC-001` wording; assert every entry is a workspace-internal runtime contracts package and that no wildcard or implicit default widens the permission."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-05-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 102,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "On a service-core state that initiates or configures external network egress the locality assertion fails and names the call site or configuration entry, and on a state using only local transport consistent with `PEC-API-001` it passes; no fixture outcome changes according to whether a loopback listener is later permitted.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-01-05-VER-003",
+          "source_line": 126,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the locality assertion against fixtures that (a) make an external network call, (b) declare an external endpoint in configuration, and (c) use only local transport; assert located failure for (a) and (b), pass for (c), and re-run the whole set under both readings of CON-001 to confirm identical outcomes."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-05-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 103,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "Both assertions execute on every change to the service core and on every release candidate, each execution bound to the exact state it evaluated, and no earlier passing run is presented as evidence for a later state.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-01-05-VER-004",
+          "source_line": 127,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the gate record across a sequence of service-core changes and at least one release candidate; assert an execution exists for each state, that each execution is bound to the state it evaluated, and that no result is reused across states."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-05-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 104,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "On a release candidate whose assertions fail, and on one against which either assertion was not executed, the mechanism returns an explicit blocking verdict, demonstrated on a candidate deliberately constructed to violate each rule and on a candidate for which the check was withheld. Whether that verdict binds the release is CON-002 and AC-011, not this criterion.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-01-05-VER-005",
+          "source_line": 128,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Blocking-verdict demonstration: submit a release candidate violating each rule in turn, and one candidate with the assertion withheld; assert that the mechanism returns an explicit blocking verdict in every case. The method demonstrates the mechanism's verdict, not the release process's obligation to honour it (CON-002)."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-05-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 105,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "Each assertion, when given an unresolvable manifest, an unreadable surface, or a failing tool invocation, reports failure; no such condition yields a pass, a skip, or an empty successful result.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-01-05-VER-006",
+          "source_line": 129,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Fault injection: run each assertion with an unresolvable manifest, an unreadable surface, and an induced tooling error; assert a reported failure in every case with no pass, skip, or empty success."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-05-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 106,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "The registration remains armed without further action: disabling, removing, or bypassing either assertion is a visible change to the gate configuration and produces a reported gate failure rather than a silent no-op.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-01-05-VER-007",
+          "source_line": 130,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Mutation check: in a scratch state, disable and then remove the registration; assert the gate reports the missing enforcement and that the change is visible in the gate configuration diff."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-05-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 107,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "The enforcement mechanism adds no third-party runtime dependency to the service core, makes no network call, and leaves service-core source and dependency manifests unmodified across a full run.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-01-05-VER-008",
+          "source_line": 131,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Self-inspection of the mechanism: compare the service-core dependency manifest and working tree before and after a full run, and inspect the mechanism for network calls; assert no added runtime dependency, no network call, and no modified service-core file."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-01-05-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 108,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "The posture note contains every element required by REQ-010, states the operative definitions recorded under REQ-009, and asserts no completion of the enforcement obligation.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-01-05-VER-009",
+          "source_line": 132,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the posture note against REQ-009 and REQ-010, confirming each required element is present and that no element asserts completion of the enforcement obligation."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-01-05-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 109,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "An accountable owner confirms that neither the posture note nor either assertion resolves, pre-empts, or forecloses `OI-009` / `SOW-083`, and that the enforcement makes no governed act depend on PEC-held state.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation, recorded against this deliverable, that the posture note and both assertions leave OI-009 / SOW-083 open and make no governed act depend on PEC-held state"
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-01-05-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 110,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+      },
+      "text": "An accountable owner confirms, or declines to confirm, that the enforcement delivered under this contract carries release-gating authority — that its blocking verdict blocks a release candidate — given that `C-08`'s standing-node classification carries \"owner confirmation requested\" and was accepted at `D-PEC-62` §1.4 as a recorded-but-unresolved, non-gating annotation (CLM-006, CON-002). A decline leaves the mechanism's verdicts advisory and invalidates no other criterion in this contract; the standing framing of the contract stands either way, because it is how the contract is written rather than a claim about the gate's force.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation or declination that the enforcement carries release-gating authority, given C-08's \"owner confirmation requested\" note and D-PEC-62 §1.4's acceptance of the standing-node set as a recorded-but-unresolved non-gating annotation"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824"
+  },
+  "tool_version": "1"
+}

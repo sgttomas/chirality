@@ -1,0 +1,62 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-04_Self_observability_logging",
+  "folder_name": "DEL-01-04_Self_observability_logging",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation.",
+      "file": "ScopeOfWork.md",
+      "line": 62,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The concrete event schema, field set, serialization, on-disk file layout, and any rotation or retention policy of the log are not fixed by any accepted source; they are chosen during production within the bounds of REQ-003, ",
+      "file": "ScopeOfWork.md",
+      "line": 63,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The inspection command's verb name, its host CLI surface, and its output shape are not fixed by any accepted source beyond the register phrase \"inspection CLI verb\"; they are chosen during production within the bounds of REQ",
+      "file": "ScopeOfWork.md",
+      "line": 64,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-002** \u2014 Ingest-activity events validate against the same event schema as reconcile-run events, demonstrated by a fixture emitter, and the schema carries no reconcile-only assumption that would require a change when the P3 ingest subj",
+      "file": "ScopeOfWork.md",
+      "line": 78,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "| OUT-002 | SOW-057 OBJ-006 | REQ-005, CLM-006, TBD-003 | AC-004 | VER-004, VER-005 | Inspection-command output over populated, single-event, empty, and absent log fixtures, showing recorded order, per-event identity and timestamp, and the ",
+      "file": "ScopeOfWork.md",
+      "line": 122,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 5,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "- **AC-001** \u2014 The delivered service binds a Unix domain socket as its default listener, is reachable only through that local socket, and binds no network-reachable listener; the socket path and permissions chosen during production are reco",
+      "file": "ScopeOfWork.md",
+      "line": 117
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access",
+  "folder_name": "DEL-08-01_Unix_socket_server_token_scoped_access",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "> SOW-040,IN,\"Bind the service local-only on a Unix socket by default, token-scoped\",PEC-API-001,PKG-08,DEL-08-01,OBJ-001,,FALSE,Loopback TCP is TBD (SOW-083)",
+      "file": "ScopeOfWork.md",
+      "line": 45,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is `TBD` in both `Deliverables.csv` and `_CONTEXT.md`; assignment occurs at WORKING_ITEMS activation.",
+      "file": "ScopeOfWork.md",
+      "line": 99,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The token mechanism itself \u2014 token format, issuance, storage, presentation, expiry, and rotation \u2014 is not fixed by any accepted source, because the PEC-local-versus-daemon-registry choice is CON-001.",
+      "file": "ScopeOfWork.md",
+      "line": 100,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The socket path, filesystem permissions, and wire framing of OUT-001 are not fixed by the accepted basis, by `PEC-API-001`, or by PRD \u00a78.",
+      "file": "ScopeOfWork.md",
+      "line": 101,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The mapping from individual API operations to the three access classes is not fixed by any accepted source; PRD \u00a78 characterizes owner and harness in general terms and characterizes admin not at all.",
+      "file": "ScopeOfWork.md",
+      "line": 102,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-001** \u2014 The delivered service binds a Unix domain socket as its default listener, is reachable only through that local socket, and binds no network-reachable listener; the socket path and permissions chosen during production are reco",
+      "file": "ScopeOfWork.md",
+      "line": 117,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-007** \u2014 The delivered artifacts trace to `SOW-003`, `SOW-040`, and `OBJ-001` and introduce no scope beyond those two ledger rows; in particular they do not absorb the schema, response-format, latency, or subscription scope held by th",
+      "file": "ScopeOfWork.md",
+      "line": 123,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-001** \u2014 The token mechanism is undecided. `SOFTWARE_DECOMP.md` \u00a710 (Open Issues) carries the disposition of record verbatim: \"| OI-006 | SOW-080 | \u00a716.6 auth reuse undecided | \u00a716 ruling |\". `SOW-080` states the question as \"Auth re",
+      "file": "ScopeOfWork.md",
+      "line": 128,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-002** \u2014 The transport question beyond the Unix socket is undecided. `SOW-040`'s ledger note records \"Loopback TCP is TBD (SOW-083)\"; `SOW-083` is `InOutStatus` `TBD`, `OpenIssue` `TRUE`, and states \"Event-contract home ... and API t",
+      "file": "ScopeOfWork.md",
+      "line": 129,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-005** \u2014 Unknowns are preserved as TBD-001 through TBD-004 and as CON-001 and CON-002 rather than resolved by authoring judgment. `OI-006` and `OI-009` close by owner \u00a716 ruling; resolving TBD items is production work. Neither is cont",
+      "file": "ScopeOfWork.md",
+      "line": 156,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 11,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 1
+    }
+  }
+}

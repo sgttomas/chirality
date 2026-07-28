@@ -1,0 +1,167 @@
+{
+  "item_count": 6,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 70,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd28a3426882d19e53a6a46b196005a0a9f445e7b6436125590cfab07d01ae47"
+      },
+      "text": "The configuration format documents every field it defines, names each served loop with a stable identifier, and is validatable deterministically, with a valid instance accepted and every malformed fixture rejected.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-001",
+          "source_line": 86,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Validate the documented format against the checked-in default instance and against a fixture set of deliberately malformed configurations; the valid instance validates and every malformed fixture is rejected with a located failure."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-06-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 71,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd28a3426882d19e53a6a46b196005a0a9f445e7b6436125590cfab07d01ae47"
+      },
+      "text": "The checked-in default instance registers exactly one loop at P1, identified as PEC v2's own build per OI-010, and admits the remaining registered loops at P2 by adding entries only, with no format change and no entry for a loop not named in an accepted source.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-002",
+          "source_line": 87,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the default instance and assert exactly one registered loop at P1 whose identity is PEC v2's own build, then confirm by construction that adding the remaining registered loops requires new entries only and no schema change."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 72,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd28a3426882d19e53a6a46b196005a0a9f445e7b6436125590cfab07d01ae47"
+      },
+      "text": "The loader rejects an invalid or unreadable configuration with an explicit failure that names the offending entry or field, and never returns a silently defaulted, partial, or empty loop set in its place.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-003",
+          "source_line": 88,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the loader against invalid, unreadable, and absent configuration fixtures and assert an explicit located failure in each case, with no fallback, partial, or empty loop set returned."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 73,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd28a3426882d19e53a6a46b196005a0a9f445e7b6436125590cfab07d01ae47"
+      },
+      "text": "The loader exposes the registered-loop set through an interface whose signature carries no configuration path or serialization detail, so that relocating or reshaping the registry changes no consumer deliverable.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-004",
+          "source_line": 89,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Exercise the loader's consumer-facing interface, assert the returned loop set matches the configuration, and inspect the interface signature for configuration-path or serialization leakage."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-06-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 74,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd28a3426882d19e53a6a46b196005a0a9f445e7b6436125590cfab07d01ae47"
+      },
+      "text": "The format, the default instance, and the loader add no third-party runtime dependency and make no network call, leaving the DEL-01-05 zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-005",
+          "source_line": 90,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the service-core dependency manifest and the registry module import graph for third-party runtime dependencies and network calls, and re-run the DEL-01-05 locality and zero-dependency enforcement once that deliverable is available."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-01-06-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 75,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd28a3426882d19e53a6a46b196005a0a9f445e7b6436125590cfab07d01ae47"
+      },
+      "text": "The automated test suite implements VER-001 through VER-005, executes in the service-core test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-01-06-VER-006",
+          "source_line": 91,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the service-core test suite and confirm that each of VER-001 through VER-005 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-06",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "bd28a3426882d19e53a6a46b196005a0a9f445e7b6436125590cfab07d01ae47"
+  },
+  "tool_version": "1"
+}

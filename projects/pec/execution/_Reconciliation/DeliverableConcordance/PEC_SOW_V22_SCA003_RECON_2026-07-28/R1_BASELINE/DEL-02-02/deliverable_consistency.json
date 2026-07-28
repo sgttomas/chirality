@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "The owner ruled the question at the SCA-002 Gate 3 in-session gate",
+      "file": "ScopeOfWork.md",
+      "line": 60
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-02_Decision_register_packet_parser",
+  "folder_name": "DEL-02-02_Decision_register_packet_parser",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-004** \u2014 `DEL-02-02` is named \"Decision register/packet parser\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-012`, `SupportsObjectives` `OBJ-001;OBJ-002`, wi",
+      "file": "ScopeOfWork.md",
+      "line": 99,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-007** \u2014 This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-P04]`, held as register row `DEP-02-02-003` of the deliverable-local `Dependencies.csv` (v3.1). Attributing each value to its actual column: `Dependenc",
+      "file": "ScopeOfWork.md",
+      "line": 106,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-011** \u2014 Observed corpus condition, recorded as observation and not as specification. Two decision registers exist in this checkout and their grammars differ. `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md` declares it",
+      "file": "ScopeOfWork.md",
+      "line": 135,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 conventions per `DL-13`; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 138,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The decision-feed grammar this parser declares \u2014 which register table shapes and packet structures it recognises, how it locates a row, and how it maps a row to the four `PRD.md` \u00a77.1 identity/status elements \u2014 is fixed by n",
+      "file": "ScopeOfWork.md",
+      "line": 139,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 What constitutes the \"anchor\" of a decision row is named by `PRD.md` \u00a77.1 and `PEC-ORI-004` but is not defined by any accepted source at the level of a concrete locator. Its concrete form is a production choice within REQ-00",
+      "file": "ScopeOfWork.md",
+      "line": 140,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Which decision registers and packets are read, and for which loop or project, is not settled by this contract: the feed manifest is `DEL-02-07`'s under `SOW-017` and the loop registry is `DEL-01-06`'s under `SOW-094`. This d",
+      "file": "ScopeOfWork.md",
+      "line": 141,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-001** \u2014 Parser depth is an undecided owner question and this deliverable is the only work it touches. `PRD.md` \u00a716.1 asks \"Whether decision registers gain light structure at source (machine-parse aids) or remain prose parsed best-ef",
+      "file": "ScopeOfWork.md",
+      "line": 170,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-002** \u2014 The accepted sources name \"decision registers and packets\" as a feed but define no grammar for them, and the observed corpus is heterogeneous in exactly the way that matters: one register carries an explicit `State` column w",
+      "file": "ScopeOfWork.md",
+      "line": 171,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-007** \u2014 `C12` governs the open owner decisions: \"where one materially affects architecture the affected work is fenced or flagged, never guessed\". `OI-001` materially affects this deliverable and nothing else (CON-001), so it is flag",
+      "file": "ScopeOfWork.md",
+      "line": 203,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 12,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 2
+    }
+  }
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "findings": [],
+    "path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
+    "requirements_checked": 0,
+    "requirements_not_checkable": 0,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

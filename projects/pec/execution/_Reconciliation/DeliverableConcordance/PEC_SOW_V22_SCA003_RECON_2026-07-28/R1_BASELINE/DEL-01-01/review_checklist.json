@@ -1,0 +1,316 @@
+{
+  "item_count": 12,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 127,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "The delivered model contains exactly the fourteen named entity types and no additional record-tier type; each carries a recorded trace to its `PRD.md` §7.1 row; and the two compound rows are decomposed as REQ-002 states.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-001",
+          "source_line": 152,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inventory check: enumerate the delivered types and diff them against the fourteen names of CLM-005 and the eleven rows of `PRD.md` §7.1, asserting the recorded per-type trace and the compound-row decomposition of REQ-002."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-01-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 128,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "Every entity type carries citation provenance, and for a sample instance of each type the recorded provenance resolves to a live file source by path, anchor, and/or SHA.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-002",
+          "source_line": 153,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Provenance resolution: for a sample instance of each type, resolve the recorded citation provenance to a live file source and assert that path, anchor, and/or SHA are present and locatable."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-01-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 129,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "OrientationSnapshot carries an examined-through SHA; two successive snapshots built from different source states are comparable field by field and yield a classified difference representable as a DriftFinding; and no field on which that comparison turns requires a judgment input.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-003",
+          "source_line": 154,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Snapshot comparison exercise: build two OrientationSnapshots over different source states, compare them structurally, and assert that the difference is expressible as a DriftFinding with no judgment input. The exercise is read-only over sources; it performs no reconciliation act owned by `DEL-03-02` or `DEL-03-03`."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-01-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 130,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "A full rebuild from the same sources reproduces every record-tier entity instance, and inspection finds no record-tier field holding state that the rebuild cannot reproduce.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-004",
+          "source_line": 155,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Rebuild-and-compare: regenerate the record tier from the same fixture sources and assert instance-level reproduction, then inspect the field inventory for any state the rebuild cannot reproduce."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-01-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 131,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "No presence-tier entity is defined in this schema, and a fixture carrying runtime-daemon user-data state is not representable as a RunRecord.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-005",
+          "source_line": 156,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Tier-boundary inspection: assert no presence-tier type is present, and attempt to represent runtime-daemon user-data state as a RunRecord, asserting that the model rejects it."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-01-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 132,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "No field type admits file or diff content; DecisionRow has no prose-bearing field; and a fixture carrying file content, diff hunks, and register-row prose cannot be expressed in the model.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-006",
+          "source_line": 157,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content-minimal type inspection: review every field's type for capacity to hold file or diff content, and attempt to express a fixture carrying file content, diff hunks, and register-row prose, asserting that it cannot be expressed."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-01-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 133,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "Receipt field availability is explicit per loop: the `D-APP-57` field set and a prose-structured ledger with no validated schema are both representable, the difference between them is readable from the model rather than inferred, and no `OI-008` outcome is presupposed.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-007",
+          "source_line": 158,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Receipt availability review: model the `D-APP-57` field set and a prose-structured `LOOP_RECEIPTS.md` shape against the Receipt type and assert that per-loop availability is readable from the model and that neither shape is privileged by construction."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-01-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 134,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "The entity type definitions have no dependency on any store-persistence module; the persistence layer depends on the types and not the reverse; a reviewer can classify a candidate `PKG-01` change as core or adapter using the delivered structure; and no element of the model selects a core isolation style.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-008",
+          "source_line": 159,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Seam inspection: inspect the import and dependency graph between the entity types and any persistence module, asserting one-way dependency, and run a classification exercise in which a reviewer sorts candidate `PKG-01` changes into core and adapter using the delivered structure alone."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-01-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 135,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "The schema and entity model add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-009",
+          "source_line": 160,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Dependency and locality inspection: review the service-core dependency manifest and the model's import graph for third-party runtime dependencies and network calls; re-run the `DEL-01-05` enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-01-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 136,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "The work is delivered as one cohesive slice, or as a split along the recorded line accompanied by a recorded statement of the natural seam that justified it; no other split line is used.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-010",
+          "source_line": 161,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Slice review: compare the delivered artifact structure against the envelope note of CLM-007, asserting either a single cohesive slice or a split along the recorded line with its seam evidence recorded."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-01-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 137,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "The schema and entity model are consumable as dependency inputs by the eleven recorded consumers without republication, and the change set touches no path outside `PKG-01`.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-011",
+          "source_line": 162,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Consumability and write-scope check: confirm that the published schema and types could be referenced as dependency inputs by the eleven consumers of CLM-010 without republication, and that the change set touches no path outside `PKG-01`."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-01-01-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 138,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+      },
+      "text": "The model tests implement VER-001 through VER-011, execute in the service-core test run, pass, and assert no criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-01-01-VER-012",
+          "source_line": 163,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Test-run mapping: run the service-core test suite and confirm that each of VER-001 through VER-011 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "43f1f57a13bb96b3235bbbb460342bd03518c503f23cb8b0560914f27a2f0170"
+  },
+  "tool_version": "1"
+}

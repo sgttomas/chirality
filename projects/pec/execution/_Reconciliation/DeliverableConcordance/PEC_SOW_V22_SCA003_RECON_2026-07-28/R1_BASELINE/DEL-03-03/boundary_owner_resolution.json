@@ -1,0 +1,10 @@
+[
+  {
+    "findings": [],
+    "path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification/ScopeOfWork.md",
+    "requirements_checked": 1,
+    "requirements_not_checkable": 0,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

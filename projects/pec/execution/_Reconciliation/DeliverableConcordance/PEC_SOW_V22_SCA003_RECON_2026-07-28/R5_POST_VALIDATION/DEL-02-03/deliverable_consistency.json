@@ -1,0 +1,103 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "The owner ruled the question at the SCA-002 Gate 3 in-session gate",
+      "file": "ScopeOfWork.md",
+      "line": 54
+    },
+    {
+      "excerpt": "- **CLM-017** \u2014 Observed corpus condition, recorded as observation and not as specification: five files named `LOOP_RECEIPTS.md` exist in this checkout \u2014 `projects/chirality-app-dev/loop/`, `projects/chirality-piping/loop/`, `_DomainEngines",
+      "file": "ScopeOfWork.md",
+      "line": 137
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-03_Receipts_ledger_parser_per_loop_grammars",
+  "folder_name": "DEL-02-03_Receipts_ledger_parser_per_loop_grammars",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-004** \u2014 `DEL-02-03` is named \"Receipts ledger parser (per-loop grammars)\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `L`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-013`, `SupportsObjectives` `OBJ-001;O",
+      "file": "ScopeOfWork.md",
+      "line": 101,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-008** \u2014 `Dependencies.csv` holds three rows for this deliverable. Two are `ANCHOR` rows: `DEP-02-03-001` (package-local to `PKG-02`) and `DEP-02-03-002` (the `SOW-013` requirement trace). The third, `DEP-02-03-003`, is the single `E",
+      "file": "ScopeOfWork.md",
+      "line": 108,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 139,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The per-loop grammars themselves \u2014 which ledger constructs each grammar recognizes and by what rules \u2014 are fixed by no accepted source beyond the four-field `D-APP-57` set of CLM-006. They are chosen during production within",
+      "file": "ScopeOfWork.md",
+      "line": 140,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 Which loops this parser covers, and in what order, is not fixed for this deliverable by any accepted source. The informational side of CON-002.",
+      "file": "ScopeOfWork.md",
+      "line": 141,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Which structured facts a best-effort grammar can yield from a prose-structured ledger is undetermined. It is a production choice bounded by REQ-004 and by the content-minimal limit of REQ-007, and it is expected to differ pe",
+      "file": "ScopeOfWork.md",
+      "line": 142,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-001** \u2014 Whether non-app-dev loop ledgers adopt the `D-APP-57` receipt contract is an **undecided owner question**. It is carried in the scope ledger as `SOW-082` \u2014 row: `SOW-082,TBD,Whether non-app-dev loop ledgers adopt the D-APP-5",
+      "file": "ScopeOfWork.md",
+      "line": 178,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-002** \u2014 The set of loops this parser must cover is not fixed at the level of accepted truth for this deliverable. `PRD.md` \u00a77.1 defines Loop as \"Tenancy unit, above Project: a LOOP_INIT/workplan-governed work loop (root, app-dev, pi",
+      "file": "ScopeOfWork.md",
+      "line": 179,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **VER-003** \u2014 Execute the parser over a `D-APP-57`-shaped fixture and assert the four declared fields are extracted; execute it over a same-loop fixture lacking them and assert the unavailable marking; inspect the source and table for any",
+      "file": "ScopeOfWork.md",
+      "line": 196,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **AX-010** \u2014 Unknowns stay marked. TBD-001 through TBD-004, CON-001, CON-002, and CON-003 are recorded rather than resolved by inference. `OI-008` is decided by a `\u00a716` per-loop owner ruling; a production choice that settled it, in either",
+      "file": "ScopeOfWork.md",
+      "line": 219,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 2,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 13,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 3
+    }
+  }
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "findings": [],
+    "path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate/ScopeOfWork.md",
+    "requirements_checked": 0,
+    "requirements_not_checkable": 0,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

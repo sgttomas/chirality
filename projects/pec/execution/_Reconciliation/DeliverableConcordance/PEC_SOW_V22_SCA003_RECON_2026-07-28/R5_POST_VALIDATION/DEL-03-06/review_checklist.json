@@ -1,0 +1,404 @@
+{
+  "item_count": 16,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-06-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 409,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "Every rebuild measurement is produced by invoking the upstream reconciler's single command; this deliverable's source contains no rebuild implementation and no second rebuild command; and the loops timed are exactly those the declared corpus spans.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-001",
+          "source_line": 452,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Rebuild-path measurement exercise: execute the timed rebuild through the upstream entry point over the declared corpus and capture the invocation record showing the command used; grep this deliverable's source for a rebuild implementation and for any second rebuild command, asserting none; and compare the loop set actually timed against the declared corpus, asserting equality."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-06-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 410,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "Every incremental measurement is produced by invoking the upstream incremental engine; this deliverable's source contains no delta acquisition, no delta-to-work resolution, and no reconcile implementation of its own.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-002",
+          "source_line": 453,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Incremental-path measurement exercise: execute the timed incremental reconcile through the upstream engine and capture the invocation record; grep this deliverable's source for delta acquisition, delta-to-work resolution, and reconcile implementation, asserting none is present."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-06-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 411,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "The recorded bound states the `PEC-SVC-003` target and clause text and any measured value as separately labelled fields; no register-stated target appears as a measured value and no measured value appears as a confirmed bound; the confirmation field is present and reads either unconfirmed or a named dated confirming act with its citation; and every absent value is stated as absent rather than omitted.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-003",
+          "source_line": 454,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Recorded-bound field inspection: read the recorded bound and assert field by field that the `PEC-SVC-003` target and clause text and any measured value occupy separately labelled fields, that no target appears as a measured value and no measured value as a confirmed bound, that the confirmation field is present and reads either unconfirmed or a named dated confirming act with its citation, and that every absent value is explicitly stated absent."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-06-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 412,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "Every measurement in the recorded bound carries corpus identity including commit state and size counts, measurement environment, cold-or-warm start state, repetition count, and reported statistic; and no measurement appears without a complete conditions set.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-004",
+          "source_line": 455,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Conditions-completeness inspection: for every measurement in the recorded bound, assert the presence of corpus identity with commit state and size counts, measurement environment, cold-or-warm start state, repetition count, and reported statistic; assert that no measurement lacks any of them."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-06-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 413,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "Every rebuild measurement carries the coverage state of the rebuild it timed; for a fixture corpus seeded to produce stated coverage limitations, the limitation-bearing measurement is recorded separately from an unlimited one and the two are not aggregated; and no record or output of this deliverable states or implies a resolution of whether a limitation-bearing rebuild is a rebuild \"in full\".",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-005",
+          "source_line": 456,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Coverage-conditioning exercise: run the timed rebuild over a fixture corpus seeded to produce stated coverage limitations and over one seeded to produce none; assert each resulting measurement carries its coverage state and names the limited loops and feeds where applicable; assert the two are recorded separately and no aggregate figure spans them; and inspect the recorded bound and this deliverable's source for any statement resolving whether a limitation-bearing rebuild is a rebuild \"in full\", asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-06-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 414,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "Every incremental measurement carries its baseline, that baseline's provenance, the delta the run was given, and its completion path; a seeded run that falls back to the full-rebuild path is not recorded as an incremental measurement; and this deliverable's source contains no baseline write into, and no baseline read out of, another deliverable's artifact.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-006",
+          "source_line": 457,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Incremental-subject exercise: run the timed incremental reconcile from a recorded baseline over a seeded delta and assert the measurement carries the baseline, its provenance, the delta, and the completion path; seed a change class that forces the upstream fallback and assert the resulting run is not recorded as an incremental measurement; grep this deliverable's source for a baseline write into or read out of another deliverable's artifact, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-06-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 415,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "A measurement run leaves the measured corpus byte-identical; every filesystem write this deliverable itself performs resolves under its own test workspace or the recorded bound; and the module contains no write, create, or delete call against any source file, governed file, register, or lifecycle file, and declares no generated view of its own.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-007",
+          "source_line": 458,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Write-boundary exercise: hash the measured corpus tree before and after a measurement run and assert byte-identity; capture every filesystem write this deliverable itself performs and assert each resolves under its own test workspace or the recorded bound; inspect the module for write, create, or delete calls against source files, governed files, registers, or lifecycle files and for any generated-view declaration, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-06-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 416,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "This deliverable's source contains no reconciler, incremental engine, drift-classification, parity-diff, stream-loss-recovery, orientation-latency, stamping, citation-attachment, §11-metric-report, or kill-test path; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-008",
+          "source_line": 459,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection: inspect this deliverable's source and call graph for reconciler, incremental-engine, drift-classification, parity-diff, stream-loss-recovery, orientation-latency, stamping, citation-attachment, §11-metric-report, and kill-test paths, asserting each absent; review this deliverable's tests for any criterion belonging to another deliverable, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-06-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 417,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "For a content-dense fixture corpus, inspection of everything the suite captures, retains, and writes into the recorded bound finds no file content and no diff content — only paths, counts, identifiers, states, SHAs, hashes, and durations.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-009",
+          "source_line": 460,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content-minimal inspection: run the suite over a content-dense fixture corpus carrying long prose bodies, quoted authored text, and diff-shaped content, then dump everything the suite captures, retains, and writes into the recorded bound and assert field by field that it carries only paths, counts, identifiers, states, SHAs, hashes, and durations."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-06-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 418,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "Repeated execution over the same corpus, commit state, and declared conditions reproduces each measurement within the declared tolerance; the tolerance and the repetition discipline appear in the recorded bound; and no single unrepeated timing is recorded as a measurement.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-010",
+          "source_line": 461,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Repeatability exercise: execute the full measurement set at least twice over the same corpus, commit state, and declared conditions and assert each measurement reproduces within the declared tolerance; read the recorded bound and assert the tolerance and repetition discipline are recorded; inspect the record for any measurement derived from a single unrepeated timing, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-06-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 419,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "The suite and the recorded bound add no third-party runtime dependency and make no network call, leaving the standing zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-011",
+          "source_line": 462,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect this deliverable's dependency manifest and import graph for third-party runtime dependencies and network calls, and re-run the zero-dependency and locality enforcement once the deliverable that owns it is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-06-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 420,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "No element of this deliverable asserts or requires that an upstream reconciler, engine, store, schema, parser, registry, or corpus artifact exists; every measurement path exercised before its measured surface exists runs against a stand-in explicitly identified as a stand-in; and no stand-in result is presented as a measurement of the real surface.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-012",
+          "source_line": 463,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Upstream-assumption inspection: grep this deliverable's source, fixtures, and call surface for any assertion or requirement that an upstream reconciler, engine, store, schema, parser, registry, or corpus artifact exists, asserting none; enumerate every stand-in used and assert each is identified as a stand-in at its use site and in any record it contributes to; assert no stand-in result appears in the recorded bound as a measurement of the real surface."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-06-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 421,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "The performance test suite implements VER-001 through VER-012, executes in its declared run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-03-06-VER-013",
+          "source_line": 464,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run this deliverable's declared test run and confirm that each of VER-001 through VER-012 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-06-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 422,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "An accountable owner confirms that the attribution `SOW-054` → `OBJ-005` remains acceptable given the recorded **MEDIUM-LOW** rating at Q1.4, the record's own characterization of the recommendation as made \"weakly — the row is a PKG-03 performance bound on the rebuild path\", the recorded alternatives `OBJ-002` and `OBJ-005;OBJ-002`, and the recorded finding that `PEC-SVC-003`'s two clauses point at different objectives (CON-005).",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation that the MEDIUM-LOW attribution of SOW-054 to OBJ-005 stands, given the Q1.4 rating, the recommendation recorded as made weakly, the recorded alternatives OBJ-002 and OBJ-005;OBJ-002, and the recorded finding that PEC-SVC-003's two clauses point at different objectives"
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-06-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 423,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "An accountable owner records who confirms the Phase 1 rebuild bound, by what act, and against what value, or records that no such act is owed and that the recorded bound stands as measurement only; and states whether the seconds clause of `PEC-SVC-003` is itself a bound or a target, which its text does not mark (CON-001, CLM-003).",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner record of who confirms the Phase 1 rebuild bound, by what act and against what value, or that no such act is owed and the recorded bound stands as measurement only, and of whether the seconds clause of PEC-SVC-003 is a bound or a target"
+        }
+      ]
+    },
+    {
+      "id": "AC-016",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-06-AC-016",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 424,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-054` and `OBJ-005`; confirms that the attribution is stated as SCA-002-authored and owner-ruled at Gate 3, at the MEDIUM-LOW strength the record carries and no more; and confirms that no `PKG-01`, `PKG-02`, sibling `PKG-03`, `PKG-04`, `PKG-08`, or `PKG-10` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-054 and OBJ-005, confirms the attribution is stated as SCA-002-authored and owner-ruled at Gate 3 at the MEDIUM-LOW strength the record carries, and confirms no upstream, sibling, or cross-package scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-06",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "90de9c2d93d8350805410753a21f19c5cf141e48c3e94ffc8096621b3a42c97e"
+  },
+  "tool_version": "1"
+}

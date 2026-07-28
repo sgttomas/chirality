@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-10-10
 package_id: PKG-10
-decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
+decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a
 project_scope_refs: [SOW-064]
 package_objective_refs: [OBJ-006]
 ---
@@ -17,13 +17,12 @@ the PEC v2 build. It covers project scope item `SOW-064` in service of package
 objective `OBJ-006`.
 
 The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
-**revision 1.2** (`current_basis`, `SCA-002` successor accepted 2026-07-25
-under `D-PEC-64`), pinned at commit `3623b958b`. The deliverable-local
-`_REFERENCES.md` still names "revision 1.1, accepted working surface"; that
-phrase is superseded provenance left by a deferred pointer sweep (`SCA-002`
-`Handoff_State.md` §6), and `_CONTEXT.md`'s own supersession line records
-revision 1.1 as "superseded by revision 1.2 (`current_basis`, SCA-002
-successor)". This contract cites revision 1.2.
+**revision 1.3** (`current_basis`, `SCA-003` successor), pinned at merge
+`11a494e9a`. The deliverable-local `_REFERENCES.md` now cites that current
+basis under the reference-parity integration at `af62343d3`. `_CONTEXT.md`
+retains the revision-1.1 to revision-1.2 supersession trace; SCA-003 in turn
+establishes revision 1.3 as the current successor. This contract cites
+revision 1.3.
 
 **Standing character (load-bearing), and what authorizes it.** Everything below
 is written as a contract on a *continuing* validation: there is no state in
@@ -68,7 +67,7 @@ and all three agree:
 1. At the `SCA-001` commit `04a5efbf6` — the accepted revision 1.1 state, before
    `SCA-002` — the `ScopeLedger.csv` row for `SOW-064` already carried
    `ObjectiveIDs` `OBJ-006`, and that row is byte-identical to the row in the
-   current accepted basis at `3623b958b` (CLM-001).
+   current accepted basis at `11a494e9a` (CLM-001).
 2. `SOW-064` is not among the twenty `IN` rows whose `ObjectiveIDs` `SCA-002`
    populated under action `A001`, and `DEL-10-10` is not among the seventeen
    deliverable rows whose `SupportsObjectives` it populated under `A002`.
@@ -77,43 +76,47 @@ and all three agree:
    SOW-064 quoting** — restored byte-identical to HEAD", with "**no
    non-`ObjectiveIDs` field change**" across the twenty approved rows.
 3. The `SOFTWARE_DECOMP.md` §3 objective row for `OBJ-006` names both
-   `SOW-064` and `DEL-10-10` in its mapped cells at revision 1.2 (CLM-005).
+   `SOW-064` and `DEL-10-10` in its mapped cells at revision 1.3 (CLM-005).
 
 The accepted sources also state the substantive link in their own voice, which
 this contract cites rather than derives. `OBJ-006`'s `SourceRef` is `PRD.md`
-§11 while `SOW-064`'s `SourceRef` is "PRD v2.1 §12, D-PEC-61"; the §12 text
-itself joins them, calling PEC's self-ingestion "the first validation of the
-thesis" (CLM-002), and `OBJ-006` is the objective about the thesis remaining
-measurable and falsifiable (CLM-005).
+§11 while `SOW-064`'s current `SourceRef` is
+"PRD v2.2 §12, D-PEC-61, D-PEC-68"; the §12 text itself joins them, calling
+PEC's self-ingestion "the first validation of the thesis" (CLM-002), and
+`OBJ-006` is the objective about the thesis remaining measurable and
+falsifiable (CLM-005).
 
 Source chain, in order of authority for this contract:
 
 1. `execution/_Decomposition/ScopeLedger.csv`, row `SOW-064` (CLM-001).
-2. `docs/PRD.md` v2.1 §12, the `SourceRef` the ledger names (CLM-002).
+2. `docs/PRD.md` v2.2 §12, the `SourceRef` the ledger names (CLM-002).
 3. `execution/_Coordination/_DECISIONS/D-PEC-61_directed_full_dag_self_bootstrap.md`,
    the decision the ledger names (CLM-003).
-4. `execution/_Decomposition/SOFTWARE_DECOMP.md` §1.3 constraint `C16`, §3
+4. `execution/_Coordination/_DECISIONS/D-PEC-68_prd_v2_2_consumer_interface_concordance.md`,
+   the PRD v2.2 concordance decision named by `SOW-064`'s current `SourceRef`
+   (CLM-002).
+5. `execution/_Decomposition/SOFTWARE_DECOMP.md` §1.3 constraint `C16`, §3
    objective row `OBJ-006`, §4 package row `PKG-10`, §5 `PKG-10` deliverable
    row, and §11 decision-log entries `DL-11` and `DL-16` (CLM-004, CLM-005,
    CLM-006, CLM-007, CLM-017).
-5. `execution/_Decomposition/Deliverables.csv`, row `DEL-10-10` (CLM-007).
-6. The deliverable-local control files (`_CONTEXT.md`, `_REFERENCES.md`,
+6. `execution/_Decomposition/Deliverables.csv`, row `DEL-10-10` (CLM-007).
+7. The deliverable-local control files (`_CONTEXT.md`, `_REFERENCES.md`,
    `_DEPENDENCIES.md`, `Dependencies.csv`, `_STATUS.md`) and the accepted gate
    exhibit `execution/_Coordination/PLAN_2026-07-25_project_setup_dag_gate.md`
    (CLM-008, CLM-009).
-7. The two upstream `EXECUTION` predecessors' own accepted contracts, read as
+8. The two upstream `EXECUTION` predecessors' own accepted contracts, read as
    contracts (CLM-010, CLM-011, CLM-012).
 
 - **CLM-001** — The accepted `ScopeLedger.csv` row for `SOW-064` reads in full, under the column order `ScopeItemID,InOutStatus,ScopeItemStatement,SourceRef,PackageID,DeliverableIDs,ObjectiveIDs,DecisionRef,OpenIssue,Notes`:
 
-> `SOW-064,IN,"Directed bootstrap: P1 first ingests PEC v2's accepted full dependency DAG as its initial file-native coordination state; later DAG nodes consume only PEC capabilities already produced and accepted by predecessors, while observed coordination friction is captured as evidence for candidate functions and boundary or amendment decisions","PRD v2.1 §12, D-PEC-61",PKG-10,DEL-10-10,OBJ-006,"DL-10; DL-11; SCA-001",FALSE,"Introduced in P1 and standing thereafter; observations grant no authority or scope, the file-native fallback remains operable, and generality is validated against a structurally different loop"`
+> `SOW-064,IN,"Directed bootstrap: P1 first ingests PEC v2's accepted full dependency DAG as its initial file-native coordination state; later DAG nodes consume only PEC capabilities already produced and accepted by predecessors, while observed coordination friction is captured as evidence for candidate functions and boundary or amendment decisions","PRD v2.2 §12, D-PEC-61, D-PEC-68",PKG-10,DEL-10-10,OBJ-006,"DL-10; DL-11; SCA-001",FALSE,"Introduced in P1 and standing thereafter; observations grant no authority or scope, the file-native fallback remains operable, and generality is validated against a structurally different loop"`
 >
 > (ID-shaped text inside this quotation is upstream source context, not a local
 > definition or reference.)
 
-  Attributed by column: `InOutStatus` `IN`; `SourceRef` "PRD v2.1 §12, D-PEC-61"; `PackageID` `PKG-10`; `DeliverableIDs` `DEL-10-10`; `ObjectiveIDs` `OBJ-006`; `DecisionRef` "DL-10; DL-11; SCA-001"; `OpenIssue` `FALSE`. The `Notes` cell carries three constraints in the register's own voice and they bind this contract (CLM-016). The `SOFTWARE_DECOMP.md` §2.1 SSOW row for the same item repeats the statement without the register-only columns and appends the ledger note's provenance: "| SOW-064 | IN | Directed bootstrap: P1 first ingests PEC v2's accepted full dependency DAG as its initial file-native coordination state; later DAG nodes consume only PEC capabilities already produced and accepted by predecessors, while observed coordination friction is captured as evidence for candidate functions and boundary or amendment decisions | PRD v2.1 §12, D-PEC-61 | Introduced in P1 and standing thereafter; observations grant no authority or scope, the file-native fallback remains operable, and generality is validated against a structurally different loop (extends OI-010; DL-10, DL-11, SCA-001) |".
+  Attributed by column: `InOutStatus` `IN`; `SourceRef` "PRD v2.2 §12, D-PEC-61, D-PEC-68"; `PackageID` `PKG-10`; `DeliverableIDs` `DEL-10-10`; `ObjectiveIDs` `OBJ-006`; `DecisionRef` "DL-10; DL-11; SCA-001"; `OpenIssue` `FALSE`. The `Notes` cell carries three constraints in the register's own voice and they bind this contract (CLM-016). The `SOFTWARE_DECOMP.md` §2.1 SSOW row for the same item repeats the statement without the register-only columns and appends the same current source chain and ledger-note provenance.
 
-- **CLM-002** — The `SourceRef`'s first locus is `docs/PRD.md` v2.1 §12 "Release strategy", whose two closing paragraphs are the accepted statement of the directed bootstrap and are quoted here in full:
+- **CLM-002** — The `SourceRef`'s first locus is `docs/PRD.md` v2.2 §12 "Release strategy", whose two closing paragraphs are the accepted statement of the directed bootstrap and are quoted here in full:
 
 > The PEC v2 build itself runs through the governed pipeline (SOFTWARE_DECOMP →
 > PROJECT_SETUP → WORKING_ITEMS), and the first loop the P1 reconciler ingests
@@ -131,7 +134,7 @@ Source chain, in order of authority for this contract:
 > Generality is tested against a structurally different loop after
 > self-ingestion.
 
-  The same section's `P1` release row states the phase this deliverable is introduced in — "**P1 — One-loop reconciler** | Reconciler + orientation store + API for one loop (piping or root), read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes" — and open issue `OI-010`, resolved at Gate 2 (2026-07-24), records that the closing paragraph governs over that row's parenthetical: "the §12 closing paragraph governs — the first loop the P1 reconciler ingests is PEC v2's own build (bootstrap as thesis validation); the P1 table's \"(piping or root)\" parenthetical does not constrain the first-loop choice. Owner accepted the recommended reading in the Gate 2 confirmation (DL-10)" (`SOFTWARE_DECOMP.md` §10, `OI-010`, status Closed).
+  The same section's current `P1` release row states the phase this deliverable is introduced in — "**P1 — One-loop reconciler** | Reconciler + orientation store + API for PEC's own build graph, read-only | Parity-diff vs harness clean or explained; rebuild-from-scratch ≤ bound; kill test passes". The former `OI-010` reading about the superseded “piping or root” parenthetical remains historical provenance for how the directed-bootstrap clarification entered the corpus; revision 1.3 already incorporates the own-build-graph wording directly.
 
 - **CLM-003** — The `SourceRef`'s second locus is `D-PEC-61`, ruled 2026-07-24, whose ruled behavior item 1 states the §12 clarification in the decision's own voice:
 
@@ -151,8 +154,8 @@ Source chain, in order of authority for this contract:
 
   The same packet's item 2 records `FULL_GRAPH` as "the owner-selected coordination representation for PEC Project Setup", and its closure section records `SCA-001` accepted with the Gate 5 confirmation "I confirm the post-change state and accept decomposition revision 1.1 as the current basis."
 
-- **CLM-004** — Hard constraint `C16` of `SOFTWARE_DECOMP.md` §1.3 is the decomposition-side form of the same rule, quoted in full from the row whose columns are `# | Constraint | Source`: "| C16 | Directed self-bootstrap for PEC's own build: `PROJECT_SETUP` materializes the accepted decomposition as `FULL_GRAPH`; later nodes consume only PEC capabilities produced and accepted by predecessor nodes; no node depends on the capability it creates; observed friction routes to evidence-linked candidates and human gates; the file-native fallback remains operable | PRD v2.1 §12, D-PEC-61 |". §2's preamble states how such a constraint relates to the scope items, quoted in full: "Hard constraints C1–C16 (§1.3) bind every item and are not repeated as scope items unless they also require built or verified behavior (DL-7/DL-8)." `DL-16` records that `SCA-001` added `C16` and expanded `SOW-064` in the same amendment (CLM-017), so the constraint and the scope item are two accepted surfaces of one ruled clarification rather than a constraint restated as scope.
-- **CLM-005** — `OBJ-006` states "The product thesis remains measurable and falsifiable: adoption, parity, defect, and collision metrics are gathered in system behavior and the §11 falsification clause stays armed", `SourceRef` `§11`. At revision 1.2 its "Mapped Scope Items" cell reads "SOW-020, SOW-057..060, SOW-064, SOW-084, SOW-085, SOW-093" and its `MappedDeliverables` cell reads "DEL-01-04, DEL-03-04, DEL-10-01, DEL-10-04, DEL-10-05, DEL-10-09, DEL-10-10, DEL-10-11, DEL-10-12" (`SOFTWARE_DECOMP.md` §3). The `PRD.md` §11 falsification clause it names reads in full: "**Falsification clause:** if, after Phase 3, harness poll adoption remains negligible and the owner does not consult the dashboards, the product thesis is falsified; PEC is deleted and, by PEC-K-01, nothing breaks." The §11 numbered metric list — Step-0 cost, orientation defect rate, collision incidents, harness poll adoption, parity, and the kill test — does not name the bootstrap progression among its six measurements; the register maps this scope item to this objective directly and this contract states the mapping at that strength, without deriving it from the §11 list.
+- **CLM-004** — Hard constraint `C16` of `SOFTWARE_DECOMP.md` §1.3 is the decomposition-side form of the same rule, quoted in full from the row whose columns are `# | Constraint | Source`: "| C16 | Directed self-bootstrap for PEC's own build: `PROJECT_SETUP` materializes the accepted decomposition as `FULL_GRAPH`; later nodes consume only PEC capabilities produced and accepted by predecessor nodes; no node depends on the capability it creates; observed friction routes to evidence-linked candidates and human gates; the file-native fallback remains operable | PRD v2.2 §12, D-PEC-61, D-PEC-68 |". §2's preamble states how such a constraint relates to the scope items, quoted in full: "Hard constraints C1–C16 (§1.3) bind every item and are not repeated as scope items unless they also require built or verified behavior (DL-7/DL-8)." `DL-16` records that `SCA-001` added `C16` and expanded `SOW-064` in the same amendment (CLM-017), so the constraint and the scope item are two accepted surfaces of one ruled clarification rather than a constraint restated as scope.
+- **CLM-005** — `OBJ-006` states "The product thesis remains measurable and falsifiable: adoption, parity, defect, and collision metrics are gathered in system behavior and the §11 falsification clause stays armed", `SourceRef` `§11`. At revision 1.3 its "Mapped Scope Items" cell reads "SOW-020, SOW-057..060, SOW-064, SOW-084, SOW-085, SOW-093" and its `MappedDeliverables` cell reads "DEL-01-04, DEL-03-04, DEL-10-01, DEL-10-04, DEL-10-05, DEL-10-09, DEL-10-10, DEL-10-11, DEL-10-12" (`SOFTWARE_DECOMP.md` §3). The current `PRD.md` §11 heading scopes those metrics more precisely as "measured in observable system and use behavior", and its falsification clause states that, after Phase 3, negligible explicit consumer enablement or enabled-consumer orientation use together with owner non-use of the dashboards falsifies the thesis; PEC is deleted and, by `PEC-K-01`, nothing breaks. The §11 numbered metric list — Step-0 cost, orientation defect rate, collision incidents, consumer uptake, parity, and the kill test — does not name the bootstrap progression among its six measurements; consumer uptake is measured without external conformance. The register maps this scope item to this objective directly and this contract states the mapping at that strength, without deriving it from the §11 list.
 - **CLM-006** — `PKG-10` is "Validation & Measurement — Release-gating proof and metrics: kill test, no-ruling-write verification, Step-0 baseline, defect/adoption/collision/parity measurement, seeded-conflict, TTL-honesty and stream-loss tests, usage observability, directed bootstrap progression evidence", assigned "SOW-025, 055, 058..064, 084, 085, 093 (12)", with **Exclusions** "The behaviors under test (their home packages)" (`SOFTWARE_DECOMP.md` §4, columns `PackageID | Name | Scope Description (work domain) | Assigned (count) | Exclusions`). The package charter names this deliverable's contribution in its own words: "directed bootstrap progression evidence".
 
 ## Deliverable Definition — Ontology
@@ -316,7 +319,7 @@ not separate deliverable outputs.
 - **CLM-017** — The ledger row's `DecisionRef` cell reads "DL-10; DL-11; SCA-001". These are the ledger's own cross-references to decision-log entries and a scope-change session, not register edges and not dependencies. `DL-10` (2026-07-24) records the owner's Gate 2 resolution of `OI-010` and `OI-011`, whose Rationale cell quotes the Gate 2 confirmation "…based on acceptance of your recommendations for OI-010 and OI-011". `DL-11` (2026-07-24) records the Phase 4 forced boundary assignment for this scope item; quoting the clause that bears on it, with the preceding clauses elided: "Phase 4 forced boundary assignments: ... SOW-064 (bootstrap) → PKG-10 as a validation act, not a reconciler feature", with the Rationale cell recording "Each was assignable to two domains; ledger rows carry `DL-11` in DecisionRef." `SCA-001` is the scope-change session opened by `D-PEC-61` and closed at revision 1.1, recorded at `DL-16` (CLM-003, and the Purpose section above). `DL-11`'s "not a reconciler feature" is the accepted statement of this deliverable's boundary with `DEL-03-01` (REQ-011).
 - **CLM-018** — The acts adjacent to this validation are owned elsewhere and are cited here, never discharged. Reading the DAG's file form — parsing `Dependencies.csv` registers and `WORK_GRAPH.json` under a declared grammar and emitting DependencyEdge records — is `DEL-02-05` (`SOW-015`, CLM-010). The one-command full rebuild through which self-ingestion runs is `DEL-03-01` (`SOW-010`, `SOW-021`, CLM-011). Incremental reconcile keyed on Git delta is `DEL-03-02` (`SOW-018`), and drift classification between successive snapshots is `DEL-03-03` (`SOW-019`). The standing kill test is `DEL-10-02` (`SOW-055`); the tested no-ruling-write property of the API surface is `DEL-10-03` (`SOW-025`); standing zero-dependency and locality enforcement is `DEL-01-05` (`SOW-052`, `SOW-053`); harness parity diffing is `DEL-03-04` (`SOW-020`) and the parity metric is `DEL-10-11` (`SOW-093`); rebuild performance bounds are `DEL-03-06` (`SOW-054`); the Step-0 cost baseline is `DEL-10-01` (`SOW-058`); self-observability logging is `DEL-01-04` (`SOW-057`). Materializing the dependency DAG, computing blocker state, and scaffolding are `PROJECT_SETUP`'s acts under `D-PEC-62`, not this deliverable's. Amending decomposition truth is the scope-change workflow's. This contract produces only the progression record.
 - **CLM-019** — "Capability cutovers only after predecessor acceptance" is a property this record **evidences**; it is not a scheduling or sequencing authority this deliverable holds. The rule's own source states it as a constraint on the build (`C16`: "later nodes consume only PEC capabilities produced and accepted by predecessor nodes; no node depends on the capability it creates"), and the deliverable's `Description` states this deliverable's part as "showing" it. The deliverable-local `_DEPENDENCIES.md` states the same posture for the register from which cutover order is read: mode `FULL_GRAPH`, `RequiredMaturity` `INITIALIZED`, and "Blocker output is advisory visibility only — never work assignment." A record that assigned, sequenced, authorized, or withheld a cutover would be exercising an authority no accepted source grants it (REQ-006, REQ-011, AX-002).
-- **CLM-020** — The deliverable is at lifecycle state `OPEN` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that a record, an entry, a check, or a mechanism exists.
+- **CLM-020** — The deliverable is at lifecycle state `INITIALIZED` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that a record, an entry, a check, or a mechanism exists.
 
 - **TBD-001** — `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` §5 preamble; `_CONTEXT.md`).
 - **TBD-002** — What mechanism runs this standing validation — what re-runs it, on what occasions, and whether re-running is an automated check, a governed workflow act, or a human review pass — is fixed by no accepted source. `C-08` says standing nodes "gate releases", and the `Type` cell says `TEST_SUITE`, but neither states a runner. It is chosen during production within REQ-007 and REQ-008 and is part of CON-002; this contract does not choose it.
@@ -414,7 +417,7 @@ verification methods below and create no scope.
 - **AX-008** — The edges `[E-P73]` (`DEL-02-05` → `DEL-10-10`) and `[E-P74]` (`DEL-03-01` → `DEL-10-10`) are `PROPOSAL` stratum and are accepted: `D-PEC-62` §1(4) records the owner accepting the DAG candidate v0.2 exhibit "accepted, all strata as presented", read in that packet as taking the exhibit's **flags as flags**, so what remains recorded-but-unresolved is the specific annotated set — `E-A11`, `E-P69`/`E-N02`, `E-N13`/`E-N18`, the `C-02` direction, and the `C-08` standing-node set. Of those, only `C-08` touches this deliverable, and it touches its classification rather than either edge; both edges carry an empty `Flag` column in the exhibit (CLM-009). Stratum is provenance, not authority: it records how an edge was derived, not whether it has been accepted, and citation does not convert `PROPOSAL` to `DECLARED`. That this contract's subject matter is the dependency DAG changes nothing about the status of the edges it is placed by.
 - **AX-009** — Edge direction is a constraint on this contract, not a licence. `RequiredMaturity` `INITIALIZED` on both edges means each upstream *contract* is the reliable input, not any upstream artifact; this contract is written against the obligations quoted in CLM-010 and CLM-011 and asserts nothing about upstream implementation state. Consuming those contracts imposes no obligation on `DEL-02-05` or `DEL-03-01`, and this deliverable's having no accepted consumer (CLM-014) is the `C-08` shape — it gates releases, not successors — and confers no authority over any deliverable it observes.
 - **AX-010** — Unknowns stay marked. TBD-001 through TBD-005 and CON-001 through CON-005 are recorded rather than resolved by inference. `C-04` `PHASE_PRECEDENCE`, `C-08` `STANDING_NODES`, and `C-10` `STRATUM_RULE` are register-wide non-gating constraints recorded in `_DEPENDENCIES.md`, and blocker output under the `FULL_GRAPH` mode at threshold `INITIALIZED` is advisory visibility only, never work assignment.
-- **AX-011** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by the run that authored this document; the deliverable is at `OPEN` and nothing has been built.
+- **AX-011** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by this reconciliation; the deliverable is at `INITIALIZED` and nothing has been built.
 
 **Quotation record.** Every quotation in this contract is verbatim from the
 named source. Exactly five omissions are made by this contract, each marked with

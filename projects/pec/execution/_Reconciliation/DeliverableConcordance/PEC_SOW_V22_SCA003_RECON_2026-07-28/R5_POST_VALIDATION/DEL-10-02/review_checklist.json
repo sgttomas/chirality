@@ -1,0 +1,337 @@
+{
+  "item_count": 13,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 326,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "On a fixture release candidate whose governed workflows complete with the store deleted, the harness passes; on a candidate in which a governed workflow requires a PEC read or write and cannot proceed, it fails and names the workflow, the blocking step, and the PEC dependency required.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-001",
+          "source_line": 358,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the harness against a conforming fixture release candidate and against fixtures in which a governed workflow requires a PEC read or write with the store deleted; assert a pass on the conforming fixture and, on each blocking fixture, a failure naming the workflow, the blocking step, and the required PEC dependency."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 327,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "The representative governed-workflow set is recorded with the harness, each entry carries the basis on which it was selected, every workflow the harness runs appears in it, and the harness runs no workflow absent from it; changing the set is a change to that record rather than to what the harness asserts.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-002",
+          "source_line": 359,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the recorded workflow set for completeness and basis; compare it against the workflows a run actually executes and assert set equality in both directions; then add and remove an entry and assert the executed set follows the record without a change to the harness's assertions."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 328,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "The blocking definition is recorded with the harness, cites `PEC-K-01`, and states its treatment of the open cases of TBD-003 including an act that completes while reporting an absent or unparseable feed; every pass and fail classification in a run traces to that recorded test, and no outcome depends on an unrecorded reading.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-003",
+          "source_line": 360,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the recorded blocking definition against the `PEC-K-01` wording and against the open cases of TBD-003; trace a sample of pass and fail classifications from a run back to that record and confirm none rests on an unrecorded reading; include a fixture in which a workflow completes while reporting an absent feed and assert the recorded treatment is applied."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 329,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "The harness reaches a verified no-store state before running any workflow, records the means by which the store was deleted, and reaches that state without requiring PEC to be available; inspection of the harness finds no store path resolution, ignore-rule registration, store creation, delete operation, or recreate implementation of its own.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-004",
+          "source_line": 361,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Deletion-step exercise: assert the harness verifies the no-store state before running any workflow and records the deletion means; run it with PEC unavailable and assert the deleted state is still reached; then search the harness source for store path resolution, ignore-rule registration, store creation, delete-operation, and recreate implementations and assert none is present."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 330,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "For a fixture run in which a workflow is substituted, stubbed, or only partially exercised, the run result carries that coverage limitation explicitly and is not presented as an unqualified pass over the workflow stood in for.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-005",
+          "source_line": 362,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Substitution reporting: run the harness over a fixture in which a workflow is substituted, one in which it is stubbed, and one in which it is only partially exercised; assert per case that the result carries the coverage limitation explicitly and that no such result is presented as an unqualified pass."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 331,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "Given an unavailable workflow, a workflow that cannot be started, an unreachable deleted-store state, and an induced tooling error in turn, the harness reports failure; no such condition yields a pass, a skip, or an empty successful result.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-006",
+          "source_line": 363,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Fault injection: run the harness with a workflow unavailable, a workflow that cannot be started, an unreachable deleted-store state, and an induced tooling error; assert a reported failure in every case with no pass, skip, or empty success."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 332,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "A full run leaves the checkout's governed files, sources, registers, and lifecycle files byte-identical apart from the harness's own declared outputs; inspection finds no path by which the harness disables, weakens, stubs, or bypasses a governed gate or approval, and any run-created state is disposed of or declared.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-007",
+          "source_line": 364,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary and self-inspection: hash the checkout's governed files, sources, registers, and lifecycle files before and after a full run and assert byte-identity apart from the harness's declared outputs; inspect the harness for any path that disables, weakens, stubs, or bypasses a governed gate or approval and assert none; assert every run-created state is disposed of or declared."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 333,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "Where the harness exercises rebuild after deletion, the rebuild is obtained through the upstream one-command rebuild rather than reimplemented; a fixture rebuild that reports coverage limitations produces a run result carrying those limitations and an explicit statement that the \"in full\" reading is unresolved, with neither an unqualified pass nor a kill-test failure asserted on that basis; and presence-tier loss across the boundary is not reported as a block.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-008",
+          "source_line": 365,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Rebuild-leg exercise on fixtures: assert the rebuild is invoked through the upstream one-command interface and that the harness contains no rebuild of its own; run against a fixture rebuild that reports coverage limitations and assert the run result carries those limitations together with an explicit statement that the \"in full\" reading is unresolved, asserting neither an unqualified pass nor a kill-test failure on that basis; and assert presence-tier loss across the boundary is not classified as a block."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 334,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "The harness re-runs without modification against any release candidate presented to it, producing an execution bound to the exact candidate it evaluated, presenting no earlier passing run as evidence for a later candidate, and having no state in which it is complete; its binding interface can be invoked by an external caller without modifying the harness.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-009",
+          "source_line": 366,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Standing-behaviour demonstration on scratch fixtures: present the harness with a sequence of release candidates; assert an execution is produced for each, bound to the candidate it evaluated, with no result reused across candidates and no completion state reachable; then invoke the harness's binding interface from a scratch caller against a candidate it has not evaluated and assert it reports the missing evaluation rather than a pass, a skip, or a silent no-op."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-10-02-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 335,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "The wiring invokes the harness for each release candidate without further action and records the release path it binds into; where no accepted release path exists it reports itself unarmed and names what it awaits, rather than reporting a pass or presenting itself as armed; and disabling, removing, or bypassing the wiring produces a reported failure rather than a silent no-op.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-010",
+          "source_line": 367,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Wiring exercise: assert the wiring invokes the harness for each candidate in a scratch candidate sequence without further action and that its recorded binding names the release path used; run it in a scratch state with no release path available and assert it reports itself unarmed and names what it awaits; then disable, remove, and bypass the wiring in turn and assert a reported failure rather than a silent no-op in each case. The method exercises scratch fixtures and creates no release process."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-10-02-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 336,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "On a release candidate deliberately constructed so that a governed workflow blocks with the store deleted, and on one against which the kill test was withheld, the mechanism returns an explicit blocking verdict. What that verdict binds is CON-001 and AC-013, not this criterion.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-011",
+          "source_line": 368,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Blocking-verdict demonstration: submit a release candidate on which a governed workflow blocks with the store deleted, and one against which the kill test was withheld; assert that the mechanism returns an explicit blocking verdict in both cases. The method demonstrates the mechanism's verdict, not any release process's obligation to honour it (CON-001)."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-02-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 337,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "The delivered harness and wiring trace to `SOW-055` and `OBJ-005` and introduce no scope beyond that ledger row: they define no store semantics, no rebuild behaviour, no rebuild bound, and no governed workflow; they impose no obligation on `DEL-01-03`, `DEL-03-01`, or any sibling; they add no output beyond the register's two artifact classes; and no test within them asserts a criterion this contract does not state.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-10-02-VER-012",
+          "source_line": 369,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Scope-boundary review: inspect the harness and wiring for store-semantic, rebuild, rebuild-bound, and governed-workflow definitions and assert none is present; confirm the delivered artifact set is exactly the register's two classes and their declared components; confirm the declared inputs cite the two upstream contracts' obligations without restating, constraining, or extending them and assert no obligation on any sibling; and review every test for a criterion absent from this contract, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-10-02-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 338,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+      },
+      "text": "An accountable owner confirms, or declines to confirm, what a blocking verdict from this mechanism operationally binds — which release process must honour it and with what consequence for a candidate that fails or was never evaluated — given that `C-08`'s standing-node classification carries \"owner confirmation requested\" in its own `Notes` and was accepted at `D-PEC-62` §1(4) as a recorded-but-unresolved, non-gating annotation, while `SOW-055` and `PEC-SVC-004` already state the kill test to be a standing release gate (CLM-001, CLM-002, CLM-009, CON-001). A decline leaves the mechanism's verdicts advisory as to process and invalidates no other criterion in this contract; the standing character of the contract stands either way, because it is carried by the ledger row's own words.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation or declination of what a blocking verdict operationally binds — which release process must honour it and with what consequence for a failing or unevaluated candidate — given C-08's \"owner confirmation requested\" note and D-PEC-62 §1(4)'s acceptance of the standing-node set as a recorded-but-unresolved non-gating annotation, alongside SOW-055 and PEC-SVC-004's own statement that the kill test is a standing release gate"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "99730e4e85ce4920d676d9fd62d26c193d5fd714ea0592c15462f37a62011a82"
+  },
+  "tool_version": "1"
+}

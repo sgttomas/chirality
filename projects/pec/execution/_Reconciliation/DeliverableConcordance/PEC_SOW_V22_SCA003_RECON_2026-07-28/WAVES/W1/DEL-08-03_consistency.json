@@ -1,0 +1,116 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-03_Compact_citation_bearing_response_format",
+  "folder_name": "DEL-08-03_Compact_citation_bearing_response_format",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "> DEL-08-03,PKG-08,Compact citation-bearing response format,Machine-first response envelope carrying citations.,API_CONTRACT,TBD,Format spec + serializer + tests,SOW-043,OBJ-001,S,,P1",
+      "file": "ScopeOfWork.md",
+      "line": 107,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> the literal token `TBD`; `ContextEnvelopeNotes` is empty. ID-shaped text",
+      "file": "ScopeOfWork.md",
+      "line": 111,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "The `SOFTWARE_DECOMP.md` \u00a75 `PKG-08` table repeats the compact control fields: \"| DEL-08-03 | Compact citation-bearing response format | API_CONTRACT | S | P1 | SOW-043 |\". `ContextEnvelopeNotes` being empty is why `_CONTEXT.md` records \"(n",
+      "file": "ScopeOfWork.md",
+      "line": 115,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-004** \u2014 Placement in the accepted work graph. This deliverable's `Dependencies.csv` holds four rows at `RegisterSchemaVersion` `v3.1`. Two are `ANCHOR` rows \u2014 `DEP-08-03-001` (`AnchorType` `IMPLEMENTS_NODE`, package-local to `PKG-08",
+      "file": "ScopeOfWork.md",
+      "line": 140,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- `DEP-08-03-004` \u2014 `TargetDeliverableID` `DEL-04-03`, `TargetName` \"Citation & freshness stamping\", `Statement` \"Response format carries citations produced by the citation layer\", `SourceRef` \"location TBD\", `EvidenceQuote` **empty**, `Not",
+      "file": "ScopeOfWork.md",
+      "line": 142,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "**Two register observations are recorded here rather than smoothed over.** First, `DEP-08-03-004` cites its evidence file without an in-file locus and without a quoted span: its `SourceRef` reads \"location TBD\" and its `EvidenceQuote` is em",
+      "file": "ScopeOfWork.md",
+      "line": 157,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records the literal token `TBD` in both `Deliverables.csv` and `_CONTEXT.md`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 pream",
+      "file": "ScopeOfWork.md",
+      "line": 243,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The concrete wire representation of the envelope (for example a JSON encoding versus a binary encoding), the language and location of the OUT-001 specification document, and the module location and entry point of OUT-002 are",
+      "file": "ScopeOfWork.md",
+      "line": 244,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The envelope's full field set is not enumerated by any accepted source. What the accepted corpus fixes is that the envelope carries per-claim citations (`SOW-007`, `PEC-ORI-004`), the three stamp fields (`SOW-006`, `PEC-ORI-",
+      "file": "ScopeOfWork.md",
+      "line": 245,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-012** \u2014 The format declaration record \u2014 a component of OUT-001 required here \u2014 shall state, in readable form: the operative reading of compactness and the rule applied under REQ-006; the operative reading of machine-first form under",
+      "file": "ScopeOfWork.md",
+      "line": 264,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-008** \u2014 Unknowns stay marked. TBD-001 through TBD-003 and CON-001 through CON-004 are recorded rather than resolved by authoring judgment. Two of the four unresolved records are not this deliverable's to resolve at all: the claim gra",
+      "file": "ScopeOfWork.md",
+      "line": 340,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-043 OBJ-001 | REQ-004, CLM-006, TBD-002 | AC-004 | VER-004 | Fixture instances resolving their schema version from the artifact alone, the search record showing no independent schema or version scheme, and additive-check out",
+      "file": "ScopeOfWork.md",
+      "line": 372,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-043 OBJ-001 | REQ-012, TBD-003, CON-001, CON-002, CON-003, CON-004 | AC-012 | VER-012 | The format declaration record with its compactness and machine-first readings, selected wire representation and reason, traced field set",
+      "file": "ScopeOfWork.md",
+      "line": 380,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-043 OBJ-001 | CLM-001, CLM-003, CLM-004, TBD-001, AX-007, AX-008, AX-009, AX-010 | AC-014 | HUMAN_REVIEW: REVIEW gate confirms traceability to SOW-043 and OBJ-001, confirms the objective mapping is stated as register-direct ",
+      "file": "ScopeOfWork.md",
+      "line": 382,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 14,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema",
+  "folder_name": "DEL-08-02_Versioned_additive_API_schema",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is `TBD` in both `Deliverables.csv` and `_CONTEXT.md`; assignment occurs at WORKING_ITEMS activation.",
+      "file": "ScopeOfWork.md",
+      "line": 93,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The concrete schema language, serialization, and repository location of OUT-001 are not fixed by the accepted basis or by `PEC-API-003`.",
+      "file": "ScopeOfWork.md",
+      "line": 94,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The version identifier scheme (for example an integer major version versus a semantic version string) is not fixed by the accepted basis or by `PEC-API-003`.",
+      "file": "ScopeOfWork.md",
+      "line": 95,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The concrete taxonomy of permitted additive changes, and the posture for elements that a later version supersedes but cannot remove, are not fixed by the accepted basis or by `PEC-API-003`.",
+      "file": "ScopeOfWork.md",
+      "line": 96,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-002** \u2014 The additive posture that OUT-002 exists to enforce is: a successor schema version adds to its predecessor without removing any element the predecessor published, and without changing the meaning of any element the predecess",
+      "file": "ScopeOfWork.md",
+      "line": 101,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-002** \u2014 The delivered check, run against the recorded baseline schema version and a candidate, passes candidates that only add and fails candidates that remove a published element or change a published element's meaning. Those two pr",
+      "file": "ScopeOfWork.md",
+      "line": 109,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "1. Resolve TBD-002 and TBD-003 (schema language, location, version identifier",
+      "file": "ScopeOfWork.md",
+      "line": 121,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "(TBD-004) is optional production work; it may extend what the check rejects",
+      "file": "ScopeOfWork.md",
+      "line": 128,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "but may not narrow the floor, and leaving TBD-004 open blocks nothing.",
+      "file": "ScopeOfWork.md",
+      "line": 129,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-003** \u2014 Unknowns are preserved as TBD-001 through TBD-004 rather than resolved by authoring judgment. Resolving them is production work or a human ruling, not contract drafting.",
+      "file": "ScopeOfWork.md",
+      "line": 141,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 11,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 1
+    }
+  }
+}

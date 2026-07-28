@@ -1,0 +1,27 @@
+[
+  {
+    "findings": [
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-06-05"
+        ],
+        "requirement_id": "REQ-006"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-04-05"
+        ],
+        "requirement_id": "REQ-008"
+      }
+    ],
+    "path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping/ScopeOfWork.md",
+    "requirements_checked": 1,
+    "requirements_not_checkable": 2,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

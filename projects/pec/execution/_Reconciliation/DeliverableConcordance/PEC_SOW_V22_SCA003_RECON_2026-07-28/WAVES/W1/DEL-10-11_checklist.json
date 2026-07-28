@@ -1,0 +1,383 @@
+{
+  "item_count": 15,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 242,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "Over a fixture corpus of reconciles with a known parity-finding population, the report states one count per reconcile matching the known population; for a fixture reconcile whose findings were not read, no figure appears for it; and inspection finds no estimated, extrapolated, or imputed figure anywhere in the report.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-001",
+          "source_line": 274,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Known-population exercise: derive the report over a fixture corpus of reconciles whose parity-finding population is known by construction; assert one count per reconcile equal to the known population; include a fixture reconcile whose findings are withheld and assert no figure appears for it; and inspect every figure in the output for an estimation, extrapolation, or imputation step, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 243,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "The declared counting rule is present as a readable component of the report and states the input source, the inclusion rule, the denominator, the reporting period and series shape, and each operational reading adopted; and every figure in the report is derivable from that stated rule, with no figure produced under a rule absent from it.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-002",
+          "source_line": 275,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Counting-rule inspection: read the declared counting rule as an artifact and assert it states the input source, the inclusion rule, the denominator, the reporting period and series shape, and each adopted operational reading; then re-derive each figure by hand from the stated rule and assert equality, and attempt to produce a figure under a rule absent from the record and assert refusal."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 244,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "Inspection of this deliverable's source, procedure, and call surface finds no parity-comparison path, no reconcile path, no successive-snapshot drift-classification path, no practitioner-harness read, invocation, or configuration path, no DriftFinding write, close, disposition, or delete path, and no sibling `PKG-10` metric computation; and no fixture run mutates any finding.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-003",
+          "source_line": 276,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection: inspect this deliverable's source, procedure, and call surface for parity-comparison, reconcile, successive-snapshot drift-classification, harness read/invoke/configure, DriftFinding mutation, and sibling-metric computation paths, asserting each absent; and hash the fixture finding population before and after a derivation run, asserting byte-identity."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 245,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "A full derivation over a fixture corpus leaves the source tree, the governed files, the registers, the lifecycle files, and the stored findings byte-identical; and every write performed during the run resolves to the report's own declared output location.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-004",
+          "source_line": 277,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Read-only boundary exercise: hash the fixture source tree, governed files, registers, lifecycle files, and stored findings before and after a full derivation and assert byte-identity; capture every filesystem write performed during the run and assert each resolves to the report's declared output location."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 246,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "Every figure in a fixture report carries the examined-through SHA of the reconcile it counts; a fixture case whose contributing findings carry no resolvable examined state yields a stated coverage limitation and no count; and no figure in the report is presented as describing a state later than the one it counted.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-005",
+          "source_line": 278,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "State-binding exercise: derive over a fixture corpus in which each reconcile carries a distinct examined-through SHA and one carries none; assert the SHA appears on every figure, that the SHA-less case yields a stated limitation and no count, and that no figure claims a state later than the one it counted."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 247,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "For fixture cases in which the input is unavailable, the input is incomplete or not retained, a reconcile's findings cannot be read, parity findings are indistinguishable from the other producer's findings under the declared inclusion rule, and the upstream comparison result carried its own stated coverage limitations, the report names the affected reconcile and the reason in each case, and no such case is presented as a complete count.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-006",
+          "source_line": 279,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Limitation carry-through: derive over fixture cases in which the input is unavailable, incomplete or not retained, unreadable for one reconcile, indistinguishable between producers under the declared inclusion rule, and accompanied by upstream-stated coverage limitations; assert per case that the affected reconcile and the reason are named on the report and that no such case reports a complete count."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 248,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "Every figure in a fixture report carries its derivation rule, the inclusion rule and denominator applied, and its contributing cited sources; and for each figure a reader can follow the citations to the counted findings and reconciles without a dead end.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-007",
+          "source_line": 280,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Explainability inspection: for every figure produced over the fixture set, assert the presence of its derivation rule, its inclusion rule, its denominator, and its contributing cited sources, and follow each citation through to the counted findings and reconciles, asserting no dead end."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 249,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "For a content-dense fixture population carrying long prose bodies, quoted authored text, and diff-shaped differences, field-by-field inspection of the report finds no file content and no diff content — only paths, counts, identifiers, states, SHAs, and hashes.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-008",
+          "source_line": 281,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content-minimal inspection: derive over a content-dense fixture population and dump every field of the report, asserting field by field that none carries file or diff content."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 250,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "Two derivations over the same unchanged finding population, the same unchanged reconcile set, and the same declared counting rule produce identical figures and identical stated limitations.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-009",
+          "source_line": 282,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Determinism: derive twice over the same unchanged finding population, the same unchanged reconcile set, and the same declared counting rule, and assert identical figures and identical stated limitations."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 251,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "Inspection of the report and its derivation finds no threshold, no target, no acceptable range, no pass/fail or gate verdict, no falsification determination, and no adoption, ruling, direction, or disposition record; and the report carries an explicit statement that it is not citable as authority.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-010",
+          "source_line": 283,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Non-authority inspection: search the report and its derivation surface for thresholds, targets, acceptable ranges, pass/fail or gate verdicts, falsification determinations, and adoption/ruling/direction/disposition records, asserting each absent; and assert the report carries its own non-authority statement."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 252,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "This deliverable's contract, source, and fixtures assert no existence of any upstream parity tool, finding, comparison, or output; the input is bound to the upstream accepted contract and its obligations; and nothing here requests a field, a schema change, or any act from `DEL-03-04`.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-011",
+          "source_line": 284,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Upstream-binding inspection: review this contract, the source, and the fixtures for any assertion that an upstream parity tool, finding, comparison, or output exists, asserting none; assert every input reference resolves to an obligation stated in the upstream accepted contract; and review for any requested field, schema change, or act imposed on `DEL-03-04`, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 253,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "Any service-core component of this derivation adds no third-party runtime dependency and makes no external network call, leaving the `DEL-01-05` zero-dependency and locality assertions intact; and with this report absent, unproduced, or unread, a fixture reconcile and a representative governed workflow complete unblocked.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-012",
+          "source_line": 285,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Dependency, egress, and absence exercise: inspect any service-core component's dependency manifest and import graph for third-party runtime dependencies and external network calls, asserting none; run a fixture reconcile and a representative governed workflow with this report absent, unproduced, and unread, asserting each completes unblocked; and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 254,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "Every operational reading adopted to produce a figure appears in the declared counting rule marked as unsettled with its open record named; and inspection confirms that no artifact of this deliverable asserts a resolution of the input-selection rule, the denominator, the metric's meaning or arming, its gating role, the measured population's bounds, or the input's retention.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-10-11-VER-013",
+          "source_line": 286,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Unsettled-reading inspection: cross-check every operational reading appearing in the derivation against the declared counting rule, asserting each is declared and marked unsettled with its open record named; and search this deliverable's artifacts for any statement resolving the input-selection rule, the denominator, the metric's meaning or arming, its gating role, the measured population's bounds, or the input's retention, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 255,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "An accountable owner confirms, or declines to confirm, the two operational readings this report cannot avoid taking: how a parity DriftFinding is identified within a type shared with the successive-snapshot producer, given that neither producer's contract fixes a discriminator and the schema question is the record-tier owner's (CON-001); and which reconcile acts constitute the denominator \"per reconcile\", given the two accepted reconcile forms and the upstream silence on the parity run's trigger (CON-002). A decline leaves both readings declared-and-unsettled under REQ-013 and invalidates no other criterion in this contract.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation or declination of the two unavoidable operational readings — how a parity DriftFinding is identified within the type shared with the successive-snapshot producer, and which reconcile acts constitute the \"per reconcile\" denominator"
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-11-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 256,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+      },
+      "text": "An accountable owner states what this metric is for and where it goes: whether the parity count feeds a threshold, a release gate, or a falsification determination — given that `PRD.md` §11 item 5 states no threshold, the §11 falsification clause names poll adoption and owner consultation as its two limbs with no limb annotation on `SOW-093` — the one corpus reading to the contrary, in the accepted `DEL-03-03` contract, having been corrected at the batch-B6 fan-in (CLM-003, CON-003) — and the measured mechanism's own release-gating authority is unconfirmed pending the `C-08` owner confirmation (CON-003, CON-004) — and where the report is published and to whom it is delivered (TBD-002, TBD-003).",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner statement of what the parity metric is for — whether it feeds a threshold, a release gate, or a falsification determination — and where the report is published and to whom"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-11",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "bd44b1e27efe57180185c350d3c4da03a7323a63ed71ddba15cad463bef1d8e6"
+  },
+  "tool_version": "1"
+}

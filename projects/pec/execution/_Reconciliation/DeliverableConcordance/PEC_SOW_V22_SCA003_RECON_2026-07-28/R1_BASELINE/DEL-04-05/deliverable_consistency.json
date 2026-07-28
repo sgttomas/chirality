@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-05_Measurement_limitation_honesty",
+  "folder_name": "DEL-04-05_Measurement_limitation_honesty",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-005** \u2014 `DEL-04-05` is named \"Measurement-limitation honesty\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `S`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Limitation reporting + tests\", `CoversScopeItems`",
+      "file": "ScopeOfWork.md",
+      "line": 101,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-008** \u2014 This deliverable has three accepted `EXECUTION` upstream edges and two `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-04-05-001` through `DEP-04-05-005` at `RegisterSchemaVersion` `v3.1`. The two anchors are `D",
+      "file": "ScopeOfWork.md",
+      "line": 107,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-009** \u2014 Two cells of `DEP-04-05-005` are recorded here as observed rather than smoothed over: its `SourceRef` reads \"location TBD\" and its `EvidenceQuote` is empty, so the row cites its evidence file without an in-file locus or a qu",
+      "file": "ScopeOfWork.md",
+      "line": 133,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 193,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The **form** a rendered limitation takes \u2014 whether a typed limitation record, a per-component annotation, a response-level list, or a field-level marker, and what fields that form carries beyond the affected feed and the nat",
+      "file": "ScopeOfWork.md",
+      "line": 194,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The component's concrete in-process shape \u2014 whether it is applied as a decoration of a composed response, as a construction-time obligation of the composer, or as a separate pass, and its entry-point name and parameters \u2014 is",
+      "file": "ScopeOfWork.md",
+      "line": 195,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Where the limitation-rendering derivation record of OUT-001 lives and in what form it is published are fixed by no accepted source; they are chosen during production within REQ-009, which fixes what it must declare rather th",
+      "file": "ScopeOfWork.md",
+      "line": 196,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-009** \u2014 The component shall declare, in the limitation-rendering derivation record \u2014 a readable component of OUT-001 \u2014 all of the following: the upstream sources it reads limitations from; the trigger set it renders, with the accept",
+      "file": "ScopeOfWork.md",
+      "line": 212,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-009** \u2014 Register anomalies are carried, not smoothed. `DEP-04-05-005` cites an evidence file with `SourceRef` \"location TBD\" and an empty `EvidenceQuote`, and the corresponding exhibit row has an empty `BasisCitation`. Supplying a pl",
+      "file": "ScopeOfWork.md",
+      "line": 287,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-010** \u2014 Unknowns stay marked. TBD-001 through TBD-004 and CON-001 through CON-004 are recorded rather than resolved by inference. Two of them \u2014 the feed and staleness definitions (CON-001) and the trigger-set divergence (CON-004) \u2014 a",
+      "file": "ScopeOfWork.md",
+      "line": 288,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 14,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 4
+    }
+  }
+}

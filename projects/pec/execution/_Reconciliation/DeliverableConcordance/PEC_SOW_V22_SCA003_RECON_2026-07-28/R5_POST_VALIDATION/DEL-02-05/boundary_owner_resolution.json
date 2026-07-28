@@ -1,0 +1,44 @@
+[
+  {
+    "findings": [
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-01-03"
+        ],
+        "requirement_id": "REQ-004"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-04-03"
+        ],
+        "requirement_id": "REQ-005"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-02-07",
+          "DEL-04-05"
+        ],
+        "requirement_id": "REQ-006"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-03-01"
+        ],
+        "requirement_id": "REQ-009"
+      }
+    ],
+    "path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser/ScopeOfWork.md",
+    "requirements_checked": 1,
+    "requirements_not_checkable": 4,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

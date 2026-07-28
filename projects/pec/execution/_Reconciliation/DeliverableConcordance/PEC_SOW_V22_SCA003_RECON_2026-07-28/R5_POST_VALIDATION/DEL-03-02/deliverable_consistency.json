@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-02_Incremental_reconcile_on_Git_delta",
+  "folder_name": "DEL-03-02_Incremental_reconcile_on_Git_delta",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-005** \u2014 `DEL-03-02` is named \"Incremental reconcile on Git delta\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Incremental engine + tests\", `CoversScopeItem",
+      "file": "ScopeOfWork.md",
+      "line": 129,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-007** \u2014 This deliverable has **one** accepted `EXECUTION` upstream edge and **two** `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-03-02-001` through `DEP-03-02-003` at `RegisterSchemaVersion` `v3.1`. The two anchors a",
+      "file": "ScopeOfWork.md",
+      "line": 134,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "The corresponding accepted DAG exhibit row, under that exhibit's columns `EdgeID,PredecessorID,SuccessorID,Stratum,EdgeKind,Flag,BasisCitation,Rationale`, reads `E-P26,DEL-03-01,DEL-03-02,PROPOSAL,CONSUMES,,,Incremental reconcile presuppose",
+      "file": "ScopeOfWork.md",
+      "line": 136,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 216,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The engine's concrete invocation surface \u2014 whether the incremental reconcile is a mode of the upstream entry point or a separate verb, its arguments, and its exit-status contract \u2014 is fixed by no accepted source beyond the r",
+      "file": "ScopeOfWork.md",
+      "line": 217,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The mapping from a changed path in the delta to the record-tier facts that must be re-derived, and the granularity at which the engine re-derives them, are fixed by no accepted source. `PEC-RCN-003` keys the reconcile on the",
+      "file": "ScopeOfWork.md",
+      "line": 218,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Where the baseline record durably lives is fixed by no accepted source. This is the informational side of CON-001: REQ-004 obliges the engine to keep and advance a baseline and to write it only through the upstream-declared ",
+      "file": "ScopeOfWork.md",
+      "line": 219,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 Which repository checkouts a registered loop's delta spans, and how the engine resolves a loop to them, are fixed by no accepted source; the upstream contract records the same loop-to-project resolution gap in its own terms.",
+      "file": "ScopeOfWork.md",
+      "line": 220,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-005** \u2014 An incremental reconcile over a delta shall produce the record tier that a full rebuild over the same end commit state would produce. Where the engine cannot establish that equivalence for a class of change \u2014 including a cha",
+      "file": "ScopeOfWork.md",
+      "line": 232,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "This contract records the gap rather than closing it in either direction. It does not assign the missing obligation upstream: no requirement here imposes anything on the full-rebuild deliverable, and REQ-004 is written so that a first run w",
+      "file": "ScopeOfWork.md",
+      "line": 261,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 16,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 6
+    }
+  }
+}

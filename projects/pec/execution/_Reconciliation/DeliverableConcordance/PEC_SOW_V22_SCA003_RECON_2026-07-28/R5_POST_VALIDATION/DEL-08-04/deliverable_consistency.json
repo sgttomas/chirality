@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "retains the revision-1.1 to revision-1.2 supersession trace; SCA-003 in turn",
+      "file": "ScopeOfWork.md",
+      "line": 23
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms",
+  "folder_name": "DEL-08-04_Orientation_latency_budget_p95_100_ms",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "> DEL-08-04,PKG-08,Orientation latency budget (p95 \u2264 100 ms),Perf tests holding orientation reads at or under 100 ms p95 against the current corpus.,TEST_SUITE,TBD,Latency tests + budget record,SOW-041,OBJ-001,S,,P1",
+      "file": "ScopeOfWork.md",
+      "line": 129,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> the literal token `TBD`; `ContextEnvelopeNotes` is empty. ID-shaped text",
+      "file": "ScopeOfWork.md",
+      "line": 133,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "The `SOFTWARE_DECOMP.md` \u00a75 `PKG-08` table repeats the compact control fields: \"| DEL-08-04 | Orientation latency budget (p95 \u2264 100 ms) | TEST_SUITE | S | P1 | SOW-041 |\". `ContextEnvelopeNotes` being empty is why `_CONTEXT.md` records \"(no",
+      "file": "ScopeOfWork.md",
+      "line": 137,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-004** \u2014 This deliverable's `Dependencies.csv` holds six rows at `RegisterSchemaVersion` `v3.1`. Two are `ANCHOR` rows \u2014 `DEP-08-04-001` (`AnchorType` `IMPLEMENTS_NODE`, package-local to `PKG-08`) and `DEP-08-04-002` (`AnchorType` `T",
+      "file": "ScopeOfWork.md",
+      "line": 174,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| `DEP-08-04-004` | `DEL-08-03` | \"R3-F4: serializer sits on the measured p95 latency path\" | \"location TBD\" | *empty* | `IMPLICIT` / `MEDIUM` / `EXTRACTED` | \"PROPOSAL; Flag=none; EdgeID=E-N12\" |",
+      "file": "ScopeOfWork.md",
+      "line": 179,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| `DEP-08-04-005` | `DEL-04-01` | \"Latency budget tests orientation reads\" | \"location TBD\" | *empty* | `IMPLICIT` / `MEDIUM` / `EXTRACTED` | \"PROPOSAL; Flag=none; EdgeID=E-P51\" |",
+      "file": "ScopeOfWork.md",
+      "line": 180,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| `DEP-08-04-006` | `DEL-08-01` | \"Latency measured through the API surface\" | \"location TBD\" | *empty* | `IMPLICIT` / `MEDIUM` / `EXTRACTED` | \"PROPOSAL; Flag=none; EdgeID=E-P52\" |",
+      "file": "ScopeOfWork.md",
+      "line": 181,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "**Two register observations are recorded here rather than smoothed over.** First, the three `PROPOSAL` rows cite their evidence file without an in-file locus and without a quoted span: each `SourceRef` reads the literal placeholder \"locatio",
+      "file": "ScopeOfWork.md",
+      "line": 200,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> - **REQ-011** \u2014 The builder shall expose the return through an in-process interface and shall implement no socket binding, no token or access-class check, no wire schema or serialization format, no subscription, and no rendering; those ar",
+      "file": "ScopeOfWork.md",
+      "line": 228,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> - **TBD-003** \u2014 The socket path, filesystem permissions, and wire framing of OUT-001 are not fixed by the accepted basis, by `PEC-API-001`, or by PRD \u00a78.",
+      "file": "ScopeOfWork.md",
+      "line": 274,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 26,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 16
+    }
+  }
+}

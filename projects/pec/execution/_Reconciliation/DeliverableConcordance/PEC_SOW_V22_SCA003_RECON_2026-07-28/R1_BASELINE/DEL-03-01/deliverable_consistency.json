@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-01_Full_rebuild_reconciler_one_command",
+  "folder_name": "DEL-03-01_Full_rebuild_reconciler_one_command",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-006** \u2014 `DEL-03-01` is named \"Full-rebuild reconciler (one command)\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Reconciler entry point + rebuild tests\", `",
+      "file": "ScopeOfWork.md",
+      "line": 171,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-010** \u2014 This deliverable has eleven accepted `EXECUTION` upstream edges and three `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-03-01-001` through `DEP-03-01-014` at `RegisterSchemaVersion` `v3.1`. The three anchors a",
+      "file": "ScopeOfWork.md",
+      "line": 189,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "Two of the eleven rows carry a distinguishing evidence trail. `DEP-03-01-005`'s `SourceRef` and `EvidenceQuote` both read \"DEL-01-01 envelope note: \\\"the schema every derivation package depends on\\\" (package-level accepted; deliverable pair",
+      "file": "ScopeOfWork.md",
+      "line": 205,
+      "type": "TBD"
+    },
+    {
+      "excerpt": ">   storage-engine detail, so that resolving TBD-002 differently, or relocating",
+      "file": "ScopeOfWork.md",
+      "line": 247,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 353,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The command's concrete invocation surface \u2014 its verb name, its host CLI or entry-point form, its arguments, and its exit-status contract \u2014 is fixed by no accepted source beyond the register phrase \"Reconciler entry point\" an",
+      "file": "ScopeOfWork.md",
+      "line": 354,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 Which views this reconciler generates, and where they live, are fixed by no accepted source. What a \"generated view\" *is* as a class is not open: `D-GOV-01` Option A rules the category and its properties, and `tools/REGISTRY",
+      "file": "ScopeOfWork.md",
+      "line": 355,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The rebuild's transactional shape \u2014 whether the record tier is rebuilt in place, or built aside and swapped, and what an interrupted rebuild leaves behind \u2014 is fixed by no accepted source. `PRD.md` \u00a77.3 carries \"dry-run-then",
+      "file": "ScopeOfWork.md",
+      "line": 356,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 How the reconciler resolves a registered loop to the project or projects whose `_harness/adapter.yaml` is read for it is fixed by no accepted source; the upstream manifest contract records the same gap in its own terms. This",
+      "file": "ScopeOfWork.md",
+      "line": 357,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-006** \u2014 The reconciler shall declare, in the entry point's declared-view record \u2014 a readable component of OUT-001 \u2014 every generated view it writes: what the view is, where it is located, and the fact that it is fully regenerable by ",
+      "file": "ScopeOfWork.md",
+      "line": 369,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 18,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 8
+    }
+  }
+}

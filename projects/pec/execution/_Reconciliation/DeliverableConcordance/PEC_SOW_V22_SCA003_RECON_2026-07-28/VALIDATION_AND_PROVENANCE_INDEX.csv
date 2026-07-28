@@ -1,0 +1,5 @@
+EvidenceID,Surface,SourceState,Role,AcceptanceLimit
+E-ACT-001,D-PEC-69,404e47c16a88e7ffdc6d1fc5fac61ebb6864211e,Activation authority,Authorizes only the exact reconciliation fence
+E-SCA-001,SCA-003_2026-07-28_0824,11a494e9ae0cca795aa460deec19b9eac4d922a8,Accepted decomposition-amendment evidence,Does not replace decomposition truth
+E-PRE-001,PRE_REPAIR_MANIFEST.sha256,404e47c16a88e7ffdc6d1fc5fac61ebb6864211e,Frozen active-contract byte census,Does not establish semantic alignment
+E-HOLD-001,R0_CALIBRATION/HOLD_PREFLIGHT.json,404e47c16a88e7ffdc6d1fc5fac61ebb6864211e,Allowed-operation evidence,No reliance or release authority

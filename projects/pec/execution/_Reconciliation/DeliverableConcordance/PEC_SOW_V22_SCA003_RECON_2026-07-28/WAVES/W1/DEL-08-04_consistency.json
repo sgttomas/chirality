@@ -1,0 +1,188 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms",
+  "folder_name": "DEL-08-04_Orientation_latency_budget_p95_100_ms",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "> DEL-08-04,PKG-08,Orientation latency budget (p95 \u2264 100 ms),Perf tests holding orientation reads at or under 100 ms p95 against the current corpus.,TEST_SUITE,TBD,Latency tests + budget record,SOW-041,OBJ-001,S,,P1",
+      "file": "ScopeOfWork.md",
+      "line": 130,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> the literal token `TBD`; `ContextEnvelopeNotes` is empty. ID-shaped text",
+      "file": "ScopeOfWork.md",
+      "line": 134,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "The `SOFTWARE_DECOMP.md` \u00a75 `PKG-08` table repeats the compact control fields: \"| DEL-08-04 | Orientation latency budget (p95 \u2264 100 ms) | TEST_SUITE | S | P1 | SOW-041 |\". `ContextEnvelopeNotes` being empty is why `_CONTEXT.md` records \"(no",
+      "file": "ScopeOfWork.md",
+      "line": 138,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-004** \u2014 This deliverable's `Dependencies.csv` holds six rows at `RegisterSchemaVersion` `v3.1`. Two are `ANCHOR` rows \u2014 `DEP-08-04-001` (`AnchorType` `IMPLEMENTS_NODE`, package-local to `PKG-08`) and `DEP-08-04-002` (`AnchorType` `T",
+      "file": "ScopeOfWork.md",
+      "line": 174,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| `DEP-08-04-004` | `DEL-08-03` | \"R3-F4: serializer sits on the measured p95 latency path\" | \"location TBD\" | *empty* | `IMPLICIT` / `MEDIUM` / `EXTRACTED` | \"PROPOSAL; Flag=none; EdgeID=E-N12\" |",
+      "file": "ScopeOfWork.md",
+      "line": 179,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| `DEP-08-04-005` | `DEL-04-01` | \"Latency budget tests orientation reads\" | \"location TBD\" | *empty* | `IMPLICIT` / `MEDIUM` / `EXTRACTED` | \"PROPOSAL; Flag=none; EdgeID=E-P51\" |",
+      "file": "ScopeOfWork.md",
+      "line": 180,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| `DEP-08-04-006` | `DEL-08-01` | \"Latency measured through the API surface\" | \"location TBD\" | *empty* | `IMPLICIT` / `MEDIUM` / `EXTRACTED` | \"PROPOSAL; Flag=none; EdgeID=E-P52\" |",
+      "file": "ScopeOfWork.md",
+      "line": 181,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "**Two register observations are recorded here rather than smoothed over.** First, the three `PROPOSAL` rows cite their evidence file without an in-file locus and without a quoted span: each `SourceRef` reads the literal placeholder \"locatio",
+      "file": "ScopeOfWork.md",
+      "line": 200,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> - **REQ-011** \u2014 The builder shall expose the return through an in-process interface and shall implement no socket binding, no token or access-class check, no wire schema or serialization format, no subscription, and no rendering; those ar",
+      "file": "ScopeOfWork.md",
+      "line": 228,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> - **TBD-003** \u2014 The socket path, filesystem permissions, and wire framing of OUT-001 are not fixed by the accepted basis, by `PEC-API-001`, or by PRD \u00a78.",
+      "file": "ScopeOfWork.md",
+      "line": 274,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> contract's own `REQ-*`, `TBD-*`, and `CLM-*` records are separate and",
+      "file": "ScopeOfWork.md",
+      "line": 280,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "Three consequences bind this contract. The measured path includes a token resolution before any operation is served, and the mechanism performing it is the open `OI-006` question that contract carries; a measurement is therefore taken over ",
+      "file": "ScopeOfWork.md",
+      "line": 283,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records the literal token `TBD` in both `Deliverables.csv` and `_CONTEXT.md`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 pream",
+      "file": "ScopeOfWork.md",
+      "line": 296,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The concrete repository path at which the budget record is published, and its form, are fixed by no accepted source. They are set by this deliverable's packet during production within REQ-012, which fixes that a path be reco",
+      "file": "ScopeOfWork.md",
+      "line": 297,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The measurement harness \u2014 the timing tooling, the invocation surface it binds to, and where the suite's source lives within the `PKG-08` test surface \u2014 is fixed by no accepted source. It is a production choice bounded by REQ",
+      "file": "ScopeOfWork.md",
+      "line": 298,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The concrete identity of the measurement corpus \u2014 which loop or loops, which checkouts, which commit state, and its size in the counts the read path is a function of \u2014 is fixed by no accepted source. This is the informationa",
+      "file": "ScopeOfWork.md",
+      "line": 299,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-002** \u2014 Every recorded measurement shall identify the corpus it was taken over: the loop or loops, the commit state, and the size counts in which the read path's inputs are expressed, in terms that make the identification checkable ",
+      "file": "ScopeOfWork.md",
+      "line": 309,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-005** \u2014 Every recorded measurement shall carry its measurement conditions: the environment, the cold-or-warm state of store, cache, process, and socket at the start of the timed interval, the concurrency under which it was taken, th",
+      "file": "ScopeOfWork.md",
+      "line": 312,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-012** \u2014 The budget record shall be published at the path recorded under TBD-002, that path shall be recorded before the record is treated as consumable, and production shall write only within `PKG-08`. The suite and the budget recor",
+      "file": "ScopeOfWork.md",
+      "line": 319,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-006** \u2014 Every stand-in used in a measurement run is identified as a stand-in at its use site and enumerated in the budget record; every result obtained against a stand-in is labelled a stand-in result and appears nowhere as a measure",
+      "file": "ScopeOfWork.md",
+      "line": 330,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **CON-001** \u2014 What \"the current corpus\" denotes is fixed by no accepted source. Within the four accepted sources this contract cites, the phrase occurs six times and is defined at none: `PEC-API-002` and `PEC-SVC-003` in `PRD.md` \u00a79.6 and",
+      "file": "ScopeOfWork.md",
+      "line": 344,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-012** \u2014 Unknowns stay marked. TBD-001 through TBD-004 and CON-001 through CON-006 are recorded rather than resolved by authoring judgment. Three of the six conflicts are wholly or partly upstream-carried \u2014 the surfaces that do not ex",
+      "file": "ScopeOfWork.md",
+      "line": 403,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-002 | SOW-041 OBJ-001 | REQ-002, CON-001, TBD-004, AX-003 | AC-002 | VER-002 | Per-measurement corpus identities with loop set, commit state, and size counts, one resolved independently, and the search record showing no treatment of \"",
+      "file": "ScopeOfWork.md",
+      "line": 437,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-002 | SOW-041 OBJ-001 | REQ-005, CLM-010, CON-005, TBD-003 | AC-005 | VER-005 | The conditions set attached to every recorded measurement \u2014 environment, cold-or-warm state, concurrency, repetition count, sample population, window, rep",
+      "file": "ScopeOfWork.md",
+      "line": 440,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-002 | SOW-041 OBJ-001 | REQ-012, TBD-002, CLM-011 | AC-013 | VER-013 | The packet-recorded path holding the budget record with its recording predating consumability, the PKG-08-confined change set, and dependency-manifest and import-g",
+      "file": "ScopeOfWork.md",
+      "line": 448,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-041 OBJ-001 | CLM-001, CLM-004, TBD-001, AX-001, AX-010, AX-011 | AC-016 | HUMAN_REVIEW: REVIEW gate confirms traceability to SOW-041 and OBJ-001, confirms the objective mapping is stated as register-direct and pre-SCA-002 w",
+      "file": "ScopeOfWork.md",
+      "line": 451,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 26,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "item_count": 14,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 269,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "For fixture composed orientation responses, every citation, every stamp field, and every stated absence present in the composed response is present in the serialized envelope instance with its value unaltered, byte for byte where the value is a string; the serialized instance contains no claim, citation, stamp field, or value absent from the composed response; and the round-trip inventory of carried elements matches the composed response's inventory exactly in both directions.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-001",
+          "source_line": 316,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Carry-through exercise: serialize fixture composed orientation responses and compare, element by element, the inventory of citations, stamp fields, and stated absences in the composed response against the inventory in the serialized instance; assert equality of values, assert no element present in one is absent from the other, and assert no element appears in the instance that the composed response does not present."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-03-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 270,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "The delivered specification defines a per-claim citation carriage in which file path, anchor, and SHA are each individually addressable by a machine consumer; for fixture responses spanning every claim class the fixture contains, and for fixtures presenting claims at more than one granularity, every claim's citation is carried with its constituents individually recoverable; and neither the specification nor the serializer imposes a count ceiling on citations or exempts any claim class.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-002",
+          "source_line": 317,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Citation-carriage exercise: inspect the delivered specification for a per-claim citation carriage in which file path, anchor, and SHA are individually addressable; serialize fixture responses spanning every claim class the fixture contains and fixtures presenting claims at more than one granularity, asserting per claim that its citation is carried with constituents individually recoverable; and search the specification and serializer for a citation count ceiling or an exempt claim class, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-03-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 271,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "The delivered specification defines a response-stamp carriage providing for the examined-through SHA, the generation time, and per-feed freshness, with freshness carried as one entry per feed; for a fixture whose composed response reports multiple feeds, the serialized instance carries one freshness entry per reported feed and no aggregate substitute; and the specification fixes no representation for the examined-through SHA field beyond carrying the value the composed response presents.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-003",
+          "source_line": 318,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Stamp-carriage exercise: inspect the specification for a stamp carriage providing all three `PEC-ORI-003` fields with freshness per feed; serialize a fixture whose composed response reports multiple feeds and assert one freshness entry per reported feed with no aggregate substitute; and inspect the specification for any fixed representation of the examined-through SHA beyond carrying the presented value, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-03-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 272,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "Every envelope instance produced in a fixture run resolves, from the artifact alone, the schema version its shapes belong to; the specification defines no schema and no version identifier scheme of its own, naming instead the version owned upstream; and a check run over a seeded successor envelope shape passes a purely additive successor and fails a successor that removes a published element or changes a published element's meaning.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-004",
+          "source_line": 319,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Schema-binding exercise: serialize fixture responses and assert each instance resolves its schema version from the artifact alone; search the specification for an independent schema definition or version identifier scheme, asserting none and asserting the version named is the one owned upstream; and run the additive check over a seeded purely additive successor envelope shape, a seeded successor removing a published element, and a seeded successor changing a published element's meaning, asserting pass, fail, and fail respectively."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-03-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 273,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "Fixture envelope instances parse deterministically under the declared machine-first reading with no human-oriented layout, prose framing, or presentation markup; the specification's field set contains no field whose stated purpose is human display; and the declared reading of machine-first form is present in the format declaration record and is not presented as fixed by an accepted source.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-005",
+          "source_line": 320,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Machine-first exercise: parse fixture envelope instances under the declared reading and assert deterministic parse; inspect the specification's field set for any field whose stated purpose is human display, and the instances for human-oriented layout, prose framing, or presentation markup, asserting none; and read the format declaration record to confirm the machine-first reading is declared and not presented as fixed by an accepted source."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-03-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 274,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "The format declaration record states the operative reading of compactness, the rule applied to field naming, structure, and repetition, and the conformance evidence; fixture envelope instances conform to that stated rule; no compactness threshold is presented as derived from an accepted source; and no fixture case exists in which applying the compactness rule drops a citation, a stamp field, or a stated absence.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-006",
+          "source_line": 321,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Compactness exercise: read the format declaration record's compactness reading, rule, and conformance evidence; check fixture envelope instances against that stated rule; search the specification and declaration record for any compactness threshold presented as derived from an accepted source, asserting none; and serialize fixtures under the compactness rule asserting no citation, stamp field, or stated absence is dropped by its application."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-03-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 275,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "For a content-dense fixture corpus carrying long prose bodies, authored ruling text, and diff-shaped content, inspection of every field of every serialized envelope instance finds no file content and no diff content, and no carried citation reproduces, excerpts, summarizes, or paraphrases the text it locates; and no citation in any fixture instance resolves to a PEC artifact, store record, or generated view.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-007",
+          "source_line": 322,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content inspection: serialize over a content-dense fixture corpus carrying long prose bodies, authored ruling text, and diff-shaped content, then dump every field of every instance and assert none carries file or diff content and no carried citation reproduces, excerpts, summarizes, or paraphrases the located text; and assert no citation in any instance resolves to a PEC artifact, store record, or generated view."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-03-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 276,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "For a fixture carrying presence-tier records alongside the record tier, no value in any citation position of a serialized instance derives from or resolves to a presence-tier record; this deliverable's source contains no citation-, stamp-, or freshness-value synthesis, derivation, inference, default, reformatting, or recomputation path, and no trust-tier classification path; and every value in a fixture instance is traceable to the identical value in the composed response.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-008",
+          "source_line": 323,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "No-synthesis exercise: serialize over a fixture carrying presence-tier records alongside the record tier and assert no value in any citation position derives from or resolves to a presence-tier record; inspect this deliverable's source for citation-, stamp-, and freshness-value synthesis, derivation, inference, default, reformatting, and recomputation paths and for any trust-tier classification path, asserting none; and trace every value in a fixture instance to the identical value in the composed response."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-03-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 277,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "For fixture composed responses carrying an unresolvable citation, an uncarried stamp field, and an unknown per-feed freshness value, each stated absence is carried in the serialized instance and is distinguishable by a consumer from a real value; no affected claim or field is omitted; no default or empty value is substituted; and this deliverable's source contains no limitation-rendering path and no limitation semantics of its own.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-009",
+          "source_line": 324,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Absence-carriage exercise: serialize fixture composed responses carrying an unresolvable citation, an uncarried stamp field, and an unknown per-feed freshness value; assert per case that the stated absence is carried, that a consumer can distinguish it from a real value, that no affected claim or field is omitted, and that no default or empty substitute appears; and inspect this deliverable's source for limitation-rendering paths and limitation semantics, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-03-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 278,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "This deliverable's source and call graph contain no orientation-composition path, no delta-since-SHA path, no citation-production or response-stamping path, no scope-parameterization path, no limitation-rendering path, no schema definition or version-scheme path, no socket binding, token check, or access-class path, no latency budget, measurement, or assertion, no subscription path, no dashboard-rendering or drill-down-resolution path, no record-tier entity or provenance definition, no presence-store TTL or guard path, and no dependency or egress enforcement path; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-010",
+          "source_line": 325,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Adjacent-act inspection: inspect this deliverable's call graph and source for orientation-composition, delta-since-SHA, citation-production and response-stamping, scope-parameterization, limitation-rendering, schema-definition and version-scheme, socket, token and access-class, latency budget and measurement, subscription, dashboard-rendering and drill-down-resolution, record-tier entity and provenance definition, presence-store TTL and guard, and dependency and egress enforcement paths, asserting each absent; and review this deliverable's tests for any criterion belonging to another deliverable, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-03-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 279,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "This deliverable and its tests add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact and undischarged here.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-011",
+          "source_line": 326,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-08` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-03-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 280,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "The format declaration record — the component of OUT-001 required by REQ-012 — states the compactness reading and rule, the machine-first reading, the selected wire representation with its reason, the full field set with each field traced to its requiring source or marked a production addition, the schema-version binding, and the two accommodations for the upstream open readings; every field and rule exercised in a fixture run is traceable to a declaration in that record; and neither upstream open reading is presented as resolved.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-012",
+          "source_line": 327,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Declaration-record exercise: read the format declaration record and assert it states the compactness reading and rule, the machine-first reading, the selected wire representation with its reason, the full field set with each field traced to its requiring source or marked a production addition, the schema-version binding, and the two accommodations for the upstream open readings; assert neither open reading is presented as resolved; then serialize fixtures and assert each field and rule exercised is traceable to a declaration in that record."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-08-03-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 281,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "The test suite implements VER-001 through VER-012, executes in the `PKG-08` test run, passes or records a pending result where a verification cannot execute because a counterpart artifact does not exist, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-08-03-VER-013",
+          "source_line": 328,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-08` test suite and confirm that each of VER-001 through VER-012 has a corresponding automated test that either executes and passes or records a pending result where a counterpart artifact does not exist, and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-03-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 282,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-043` and `OBJ-001`; confirms the objective mapping is stated as register-direct and pre-SCA-002 with no confidence label the record does not carry and no owner-confirmation criterion attached to it; confirms both upstream edges and both downstream relations are stated at their recorded `PROPOSAL` stratum; confirms the two `Dependencies.csv` register-hygiene observations at CLM-004 are recorded as observations rather than repaired; confirms the four unresolved records CON-001 through CON-004 are carried rather than decided; and confirms that no `PKG-01`, `PKG-04`, `PKG-06`, sibling `PKG-08`, or `PKG-09` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-043 and OBJ-001, confirms the objective mapping is stated as register-direct and pre-SCA-002 with no unrecorded confidence label and no owner-confirmation criterion, confirms both upstream edges and both downstream relations are stated at their recorded PROPOSAL stratum, confirms the two Dependencies.csv register-hygiene observations are recorded rather than repaired, confirms CON-001 through CON-004 are carried rather than decided, and confirms no cross-package or sibling scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "013c615a0c91d7d2545d7dfc0faecfe509b0c7409f450fdefd01125d2aef3138"
+  },
+  "tool_version": "1"
+}

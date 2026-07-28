@@ -1,0 +1,387 @@
+{
+  "item_count": 15,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 243,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "For a fixture corpus with a known commit history, a reconcile run from a recorded baseline re-derives exactly the record-tier facts the changed paths account for and re-derives nothing attributable only to unchanged paths; and for a delta that names a source, that source is re-derived.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-001",
+          "source_line": 300,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Delta-selection exercise: build a fixture corpus with a known commit history, record a baseline, apply a seeded set of changes, run the reconcile, and assert fact by fact that every record-tier fact attributable to a changed path was re-derived and that no fact attributable only to unchanged paths was; repeat across change classes (added, modified, deleted, renamed source)."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 244,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "A reconcile run against a fixture repository leaves the repository's Git state byte-identical — same HEAD, refs, index, stash, worktree list, and configuration — and this deliverable's source contains no Git write operation of any kind.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-002",
+          "source_line": 301,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Git read-only exercise: capture HEAD, all refs, the index, the stash list, the worktree list, and the configuration of a fixture repository before and after a reconcile and assert equality on each; inspect this deliverable's source and call graph for Git write operations and assert none is present."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 245,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "For a content-dense fixture corpus whose delta spans long prose bodies, quoted authored text, and diff-shaped content, inspection of everything the engine retains, presents to the store, and writes into a declared view finds no file content and no diff content — only paths, counts, identifiers, states, SHAs, and hashes.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-003",
+          "source_line": 302,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content-minimal inspection: run the reconcile over a content-dense fixture corpus carrying long prose bodies, quoted authored text, and diff-shaped changes, then dump the engine's retained delta representation, every field presented to the store, and every declared view written, and assert field by field that none carries file or diff content."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 246,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "After a completed reconcile the baseline record names the commit SHA that run examined through; after a run that did not complete over its selected sources the baseline is unchanged; and with no baseline recorded the engine takes the full-rebuild path and then records a baseline, with no baseline value derived from store contents anywhere in this deliverable's source.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-004",
+          "source_line": 303,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Baseline exercise: assert after a completed reconcile that the recorded baseline equals the examined commit SHA; interrupt or fail a run over its selected sources and assert the baseline is unchanged; start with no baseline recorded and assert the full-rebuild path is taken and a baseline then recorded; and inspect this deliverable's source for any derivation of a baseline value from store contents, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 247,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "For each fixture change class exercised, the record tier produced by an incremental reconcile is identical to the record tier produced by a full rebuild over the same end commit state; and for a seeded change class the engine cannot resolve, the run takes the full-rebuild path and no partial result is presented as reconciled.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-005",
+          "source_line": 304,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Equivalence exercise: for each fixture change class, run an incremental reconcile from a baseline and a full rebuild over the same end commit state and assert the resulting record tiers are identical; seed a change class the resolution step cannot resolve and assert the run takes the full-rebuild path and presents no partial result as reconciled."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 248,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "This deliverable's source contains no rebuild implementation, no second rebuild command, no registry read of its own, no feed grammar definition, and no direct feed-file parse; the full-rebuild path and the loop set are reached only through the upstream entry point.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-006",
+          "source_line": 305,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection of the upstream path: inspect this deliverable's source for a rebuild implementation, a second rebuild command, a registry read, a feed grammar definition, and a direct feed-file open, asserting each absent; instrument the call surface and assert the full-rebuild path and the loop set are reached only through the upstream entry point."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 249,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "A reconcile over a fixture corpus leaves that corpus byte-identical and touches no path outside the store and the views the upstream entry point declares; every store write in this deliverable's source reaches the store through the upstream ingest boundary; the module contains no write, create, or delete call against any source file, governed file, register, or lifecycle file; and it declares no generated view of its own.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-007",
+          "source_line": 306,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Write-boundary exercise: hash the fixture source corpus tree before and after a reconcile and assert byte-identity; capture every filesystem write performed during the run and assert each resolves under the store or a view the upstream entry point declares; inspect the call graph and assert every store write reaches the store through the upstream ingest boundary, that no write, create, or delete call targets a source file, governed file, register, or lifecycle file, and that the module declares no view of its own."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 250,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "For fixture corpora in which a selected feed is absent, unreadable, malformed, stale, and grammar-unrecognized in turn, the reconcile result carries the reported limitation naming the loop and the feed, no such result presents that feed as read, and the baseline is not advanced past the unexamined source.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-008",
+          "source_line": 307,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Limitation carry-through: run the reconcile over fixture corpora in which a selected feed is absent, unreadable, malformed, stale, and grammar-unrecognized in turn, and assert per case that the result carries the reported limitation naming the loop and the feed, that no result presents that feed as read, and that the baseline was not advanced past the unexamined source."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 251,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "Two reconciles from the same baseline over the same end commit state produce identical record tiers; a reconcile over an empty delta changes no record-tier fact and leaves the baseline SHA unchanged.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-009",
+          "source_line": 308,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Determinism and idempotence: run the reconcile twice from the same baseline over the same end commit state and assert identical record tiers; run it once with an empty delta and assert no record-tier change and an unchanged baseline SHA."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 252,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "Every record-tier fact an incremental reconcile writes traces to a file source reached through the upstream path; inspection finds no stream, event, presence-tier, or otherwise non-source input contributing to any record-tier fact; and a reconcile over a fixture corpus carrying presence-shaped input produces no presence-tier record.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-010",
+          "source_line": 309,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Provenance and tier inspection: for a sample record-tier fact of each entity type an incremental reconcile produces, trace it to the file source and the upstream path that yielded it; inspect the engine's input surface for stream, event, and presence-tier inputs and assert none contributes; run the reconcile over a fixture corpus carrying presence-shaped input and assert no presence-tier record is written."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 253,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "The module contains no drift-classification path, no parity-diff path, no stream-loss recovery path, no performance measurement or bound assertion, no stamping or citation-attachment path, no caller-supplied-SHA delta query surface, no presence or worktree scan, and no kill-test execution; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-011",
+          "source_line": 310,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Adjacent-act inspection: inspect the module's call graph and source for drift-classification, parity-diff, stream-loss recovery, performance-measurement, stamping, citation-attachment, caller-supplied-SHA delta-query, presence or worktree scan, and kill-test paths, asserting each absent; review this deliverable's tests for any criterion belonging to another deliverable, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 254,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "Every record-tier fact written is an instance of an entity type the upstream contract obliges; no record-tier or presence-tier type is defined in this deliverable's source; and no element of this deliverable asserts or requires that an upstream schema, store, parser, registry, or reconciler artifact exists.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-012",
+          "source_line": 311,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Type-boundary inspection: assert every record-tier fact written is constructed against an entity type the upstream contract obliges; inspect this deliverable's source for record-tier and presence-tier type definitions and assert none; inspect source and fixtures for any assumption that an upstream schema, store, parser, registry, or reconciler artifact exists, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 255,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "The engine and its tests add no third-party runtime dependency and make no network call, leaving the standing zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-013",
+          "source_line": 312,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-03` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the zero-dependency and locality enforcement once the deliverable that owns it is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-02-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 256,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "The test suite implements VER-001 through VER-013, executes in the `PKG-03` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-03-02-VER-014",
+          "source_line": 313,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-03` test suite and confirm that each of VER-001 through VER-013 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-02-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 257,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-018` and `OBJ-002`; confirms that the mapping is stated as register-direct and pre-SCA-002, at the strength the record carries and no more; and confirms that no `PKG-01`, `PKG-02`, sibling `PKG-03`, `PKG-04`, `PKG-06`, `PKG-07`, or `PKG-10` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-018 and OBJ-002, confirms the mapping is stated as register-direct and pre-SCA-002 at the strength the record carries, and confirms no upstream, sibling, or cross-package scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "d1335c01c54686427d6a04658a43ce9e5c4abe2e446e0acf4d1e87df3a7785b5"
+  },
+  "tool_version": "1"
+}

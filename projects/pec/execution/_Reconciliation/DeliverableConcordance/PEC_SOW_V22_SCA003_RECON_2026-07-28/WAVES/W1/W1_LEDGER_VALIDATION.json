@@ -1,0 +1,24 @@
+{
+  "authorityConflictCount": 0,
+  "definitionCount": 794,
+  "deliverableCount": 11,
+  "deliverables": [
+    "DEL-00-01",
+    "DEL-03-06",
+    "DEL-04-01",
+    "DEL-04-02",
+    "DEL-04-03",
+    "DEL-08-01",
+    "DEL-08-03",
+    "DEL-08-04",
+    "DEL-10-01",
+    "DEL-10-10",
+    "DEL-10-11"
+  ],
+  "errors": [],
+  "ledgerRowCount": 794,
+  "repairCandidateCount": 56,
+  "schema": "pec-sow-w1-ledger-validation/v1",
+  "unknownCount": 22,
+  "valid": true
+}

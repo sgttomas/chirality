@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "The owner ruled the question at the SCA-002 Gate 3 in-session gate",
+      "file": "ScopeOfWork.md",
+      "line": 67
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-05_Dependency_register_parser",
+  "folder_name": "DEL-02-05_Dependency_register_parser",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-004** \u2014 `DEL-02-05` is named \"Dependency register parser\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `S`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-015`, `SupportsObjectives` `OBJ-001;OBJ-002`, `Antici",
+      "file": "ScopeOfWork.md",
+      "line": 120,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-008** \u2014 This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-P07]`, held as `Dependencies.csv` register row `DEP-02-05-003`. Attributed by column: `RegisterSchemaVersion` `v3.1`, `DependencyID` `DEP-02-05-003`, `",
+      "file": "ScopeOfWork.md",
+      "line": 127,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "Its enumeration of the record-tier types names DependencyEdge, and its `DEL-01-01/CLM-006` carries the `PRD.md` \u00a77.1 purpose cell for that type verbatim as \"From `Dependencies.csv` registers and `WORK_GRAPH.json`\". That is the whole of the ",
+      "file": "ScopeOfWork.md",
+      "line": 158,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 171,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The grammar this parser declares \u2014 which register columns and which `WORK_GRAPH.json` keys it reads, their semantics, how it recognizes a `RegisterSchemaVersion` and a work-graph version declaration, and how it treats a file",
+      "file": "ScopeOfWork.md",
+      "line": 172,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The field set of a DependencyEdge is not enumerated by any accepted source. `PRD.md` \u00a77.1 gives the type a one-line source cell and no fields (CLM-002), and the upstream contract quoted in CLM-009 obliges the type to exist a",
+      "file": "ScopeOfWork.md",
+      "line": 173,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Edge identity in the register is not carried in a column. In the seeded `v3.1` rows the edge identifier, stratum, and flag live inside the free-text `Notes` cell \u2014 this deliverable's own upstream row reads `Notes` \"PROPOSAL;",
+      "file": "ScopeOfWork.md",
+      "line": 174,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 How a `WORK_GRAPH.json` maps to DependencyEdge records is fixed by no accepted source. `nodes` is the only universal key and `edges` appears in fewer than a third of the files (CLM-016), so whether an edge is read from an ex",
+      "file": "ScopeOfWork.md",
+      "line": 175,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-002** \u2014 Edge identity and content-minimality pull against each other in this feed. The register's edge identifier, stratum, and flag are carried inside the free-text `Notes` column rather than in columns of their own (TBD-004), whil",
+      "file": "ScopeOfWork.md",
+      "line": 209,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-003** \u2014 The DependencyEdge field set is owned upstream and does not yet exist. `DEL-01-01` is `INITIALIZED`: its contract obliges the DependencyEdge type and bounds what it may admit (CLM-009), but neither it nor any accepted source",
+      "file": "ScopeOfWork.md",
+      "line": 210,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 15,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 5
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement",
+  "folder_name": "DEL-01-05_Zero_dependency_locality_enforcement",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation.",
+      "file": "ScopeOfWork.md",
+      "line": 71,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The concrete enforcement mechanism (which CI or lint system, its configuration file locations, and the on-disk home of the posture note) is not fixed by any accepted source. `Deliverables.csv` names the artifact class \"CI/li",
+      "file": "ScopeOfWork.md",
+      "line": 72,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The service core's toolchain and dependency-manifest format are not fixed by an accepted v2 source. The archived `ADR-002` text names one language across core/server/web, but the live carried form of that posture is `PEC-SVC",
+      "file": "ScopeOfWork.md",
+      "line": 73,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The boundary between a *runtime* dependency and a build-, test-, or development-time dependency of the service core is not fixed by an accepted source; `PEC-SVC-001` constrains runtime dependencies only.",
+      "file": "ScopeOfWork.md",
+      "line": 74,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 The precise module boundary of \"the service core\" follows the v2 core-isolation style, which is undecided: `OI-012` is dispositioned \"Decided in DEL-00-01's ADR; owner review at that ADR\" (`SOFTWARE_DECOMP.md` \u00a7Open Issues).",
+      "file": "ScopeOfWork.md",
+      "line": 75,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-001** \u2014 API transport is an undecided owner question: `OI-009` / `SOW-083` (`InOutStatus` `TBD`, \"Event-contract home ... and API transport (Unix socket only vs additional loopback listener)\", `SourceRef` \u00a716.9, ledger note \"Fenced:",
+      "file": "ScopeOfWork.md",
+      "line": 76,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-009** \u2014 Production shall record the operative definitions it uses for \"the service core\" and for a \"runtime\" dependency (TBD-003, TBD-004, TBD-005) alongside the check, rather than leaving either implicit in the mechanism's behaviou",
+      "file": "ScopeOfWork.md",
+      "line": 95,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-004** \u2014 Constraint `C12` governs the fence: the \u00a716 open owner decisions are not resolved here. CON-001 is recorded and fenced, not guessed, and `SOW-083` remains `TBD` in the ledger.",
+      "file": "ScopeOfWork.md",
+      "line": 139,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-007** \u2014 Unknowns remain marked. TBD-002 through TBD-005 and CON-001 are recorded rather than resolved by inference; in particular the service-core boundary follows the `OI-012` decision that is the owner's to make at `DEL-00-01`'s AD",
+      "file": "ScopeOfWork.md",
+      "line": 142,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-052 OBJ-005 | REQ-001, REQ-004, REQ-009, CLM-003, CLM-008, TBD-003, TBD-004, TBD-005 | AC-001 | VER-001 | Fixture set with expected verdicts, check output naming each offending dependency and importer |",
+      "file": "ScopeOfWork.md",
+      "line": 149,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 11,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 1
+    }
+  }
+}

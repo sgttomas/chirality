@@ -1,0 +1,8 @@
+{
+  "activeContractCount": 32,
+  "allToolExitCodesZero": true,
+  "failedDeliverables": [],
+  "inventory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_SOW_V22_SCA003_RECON_2026-07-28/DELIVERABLE_INVENTORY.csv",
+  "outputDirectory": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_SOW_V22_SCA003_RECON_2026-07-28/R1_BASELINE",
+  "summarySHA256": "6908144de240ebb40db3d6fdd39f02cb2128a31dee95977ebece16837436e7a0"
+}

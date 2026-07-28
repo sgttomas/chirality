@@ -1,0 +1,74 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "mirrored at `execution/_Decomposition/SOFTWARE_DECOMP.md` \u00a72.1 IN-scope items).",
+      "file": "ScopeOfWork.md",
+      "line": 23
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures",
+  "folder_name": "DEL-00-01_v2_first_ADRs_core_isolation_carried_postures",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-001** \u2014 `DEL-00-01` is named \"v2 first ADRs (core isolation + carried postures)\", Type `DOC_UPDATE`, Context Envelope `S` with no envelope notes, `PhaseHint` `pre-P1`, `ResponsibleParty` `TBD`; source `execution/_Decomposition/Deliv",
+      "file": "ScopeOfWork.md",
+      "line": 72,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 The concrete v2 docs-tree path for the ADR markdown entries is not fixed by the accepted decomposition; it is set by this deliverable's own packet and remains unresolved in this contract.",
+      "file": "ScopeOfWork.md",
+      "line": 75,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 `ResponsibleParty` is unassigned; assignment happens at WORKING_ITEMS activation, not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 76,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-008** \u2014 The ADR markdown entries shall be published at the v2 docs-tree path set by this deliverable's packet (TBD-001) and that path shall be recorded before the artifacts are treated as consumable.",
+      "file": "ScopeOfWork.md",
+      "line": 103,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-005** \u2014 Unknowns remain marked. `TBD-001`, `TBD-002`, and `CON-001` are recorded rather than resolved by inference; OI-012 is the owner's decision at the ADR, and this contract's job is to fix the form that decision must take, not it",
+      "file": "ScopeOfWork.md",
+      "line": 139,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-002 | SOW-088 OBJ-005 | REQ-008 REQ-009 CLM-003 CLM-007 CLM-008 TBD-001 AX-007 | AC-006 | VER-004 | Packet-recorded docs-tree path, ADR files present at that path, a change set confined to PKG-00, and the recorded PROPOSAL/LOW_CONFIDE",
+      "file": "ScopeOfWork.md",
+      "line": 151,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 6,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

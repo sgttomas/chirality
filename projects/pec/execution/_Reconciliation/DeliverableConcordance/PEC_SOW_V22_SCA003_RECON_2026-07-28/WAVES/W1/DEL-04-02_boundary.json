@@ -1,0 +1,43 @@
+[
+  {
+    "findings": [
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-04-05"
+        ],
+        "requirement_id": "REQ-006"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-04-03"
+        ],
+        "requirement_id": "REQ-007"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-01-01"
+        ],
+        "requirement_id": "REQ-008"
+      },
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-08-05"
+        ],
+        "requirement_id": "REQ-010"
+      }
+    ],
+    "path": "projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA/ScopeOfWork.md",
+    "requirements_checked": 1,
+    "requirements_not_checkable": 4,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

@@ -1,0 +1,408 @@
+{
+  "item_count": 16,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 325,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "Every measurement set the suite produces reports a p95 statistic evaluated against ≤100 ms; the suite's source and the budget record contain no restatement of that figure as a target, goal, or aspiration and no substituted threshold; and where an additional statistic is reported it is labelled additional and does not appear in place of the p95.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-001",
+          "source_line": 375,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Bound-and-statistic inspection: read every measurement set in the budget record and assert each reports a p95 evaluated against ≤100 ms; search the suite's source and the budget record for any restatement of the figure as a target, goal, or aspiration and for any substituted threshold, asserting none; and assert any additional statistic present is labelled additional and does not stand in place of the p95."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 326,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "Every measurement in the budget record carries a corpus identity naming the loop or loops, the commit state, and the size counts, sufficient for a second party to identify the corpus without further instruction; no measurement appears without one; and no statement in either output treats \"the current corpus\" as denoting a fixed corpus.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-002",
+          "source_line": 376,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Corpus-identity check: for every recorded measurement, assert the presence of a corpus identity naming the loop or loops, the commit state, and the size counts; resolve one recorded identity independently to confirm a second party can identify the corpus from the record alone; and search both outputs for any statement treating \"the current corpus\" as denoting a fixed corpus, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 327,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "Every measurement in the budget record carries a declared boundary and vantage; the record contains no reported figure computed across measurements taken at different boundaries or vantages; and no measurement taken at one boundary is stated as satisfying the bound at another.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-003",
+          "source_line": 377,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary-and-vantage check: for every recorded measurement, assert a declared boundary and vantage are present; compare the boundary declarations across every reported figure and assert no figure aggregates measurements taken at different boundaries or vantages; and inspect the record for any statement presenting a measurement taken at one boundary as satisfying the bound at another, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 328,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "Every measurement in the budget record carries the composition state of the returns it timed, naming the components for which an absence or limitation was stated where any was; measurements over fully composed returns and over absence-bearing returns are recorded separately and no figure aggregates across them; and neither output contains a statement resolving the upstream questions of what \"an orientation read\" contains in those cases.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-004",
+          "source_line": 378,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Composition-state exercise: take measurement sets over returns that composed every component and over returns that stated an absence or limitation against one or more, recording each separately; assert every measurement carries its composition state and names the affected components where any were; assert no reported figure aggregates across the two cases; and search both outputs for any statement resolving the upstream questions of receipt applicability, recency ordering, component entity sourcing, or unreconciled-return shape, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 329,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "Every measurement in the budget record carries its environment, cold-or-warm state, concurrency, repetition count, sample population, observation window, and reported statistic; no percentile appears without the sample it was computed over; and no single unrepeated timing is recorded as a measurement.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-005",
+          "source_line": 379,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Conditions-and-sample check: for every recorded measurement, assert the presence of environment, cold-or-warm state, concurrency, repetition count, sample population, observation window, and reported statistic; assert every percentile is accompanied by the sample it was computed over; and inspect the record for any single unrepeated timing recorded as a measurement, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-04-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 330,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "Every stand-in used in a measurement run is identified as a stand-in at its use site and enumerated in the budget record; every result obtained against a stand-in is labelled a stand-in result and appears nowhere as a measurement of the real surface; this deliverable's source and fixtures contain no assumption that an upstream builder, serializer, socket server, token mechanism, record tier, or corpus artifact exists; and no stand-in fixes an upstream invocation surface, framing, field set, or mechanism.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-006",
+          "source_line": 380,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Stand-in inventory exercise: enumerate every stand-in used in a measurement run and assert each is identified as such at its use site and listed in the budget record; assert every stand-in-obtained result is labelled a stand-in result and appears nowhere as a real-surface measurement; search this deliverable's source, fixtures, and call surface for assumptions that an upstream builder, serializer, socket server, token mechanism, record tier, or corpus artifact exists, asserting none; and inspect each stand-in for any fixed upstream invocation surface, framing, field set, or auth mechanism, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-04-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 331,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "This deliverable's source and call graph contain no orientation-composition or component-selection path, no record-tier entity or selection-rule definition, no response-envelope or serialization path, no compactness or machine-first reading and no size metric or threshold, no schema definition or version path, no socket binding, token mechanism, access-class, or wire-framing path, no subscription path, no dashboard-rendering or drill-down path, no rebuild, incremental-reconcile, or drift-classification path, no rebuild or incremental duration measurement, and no defect-rate, adoption, parity, or token-cost measurement; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-007",
+          "source_line": 381,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Adjacent-act inspection: inspect this deliverable's call graph and source for orientation-composition and component-selection, record-tier entity and selection-rule definition, response-envelope and serialization, compactness or machine-first declaration and size metrics, schema definition and versioning, socket binding, token mechanism, access-class and wire-framing, subscription, dashboard-rendering and drill-down, rebuild, incremental-reconcile and drift-classification, rebuild and incremental duration measurement, and defect-rate, adoption, parity, and token-cost measurement paths, asserting each absent; and review this deliverable's tests for any criterion belonging to another deliverable, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 332,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "Neither output contains a statement that resolves, narrows, or presupposes the outcome of an unresolved record carried in an upstream contract — in particular the receipt applicability and ordering question, the shape of an unreconciled return, the compactness metric, the token mechanism, and the transport question; and each such record that this contract's own measurements touch is cited in the budget record as carried rather than closed.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-008",
+          "source_line": 382,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Upstream-open-record review: enumerate the unresolved records the upstream contracts carry that this contract's measurements touch, and assert for each that neither output resolves, narrows, or presupposes its outcome and that the budget record cites it as carried rather than closed."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 333,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "Neither output states a token cost, a before-versus-after cost comparison, or a query-pain re-test result; neither is presented as the Step-0 baseline or its substitute; and the production record states this deliverable's sequencing against the recorded pre-P1 obligation rather than against a ruling made here.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-009",
+          "source_line": 383,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Measurement-boundary review against the Step-0 baseline: read both outputs and assert that neither states a token cost, a before-versus-after cost comparison, or a query-pain re-test result, and that neither is presented as the Step-0 baseline or its substitute; and confirm the production record states this deliverable's sequencing against the recorded pre-P1 obligation without asserting a ruling about it."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 334,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "The budget record's disposition field is present for every measurement set and states at-or-under, exceeded, or not-taken with the conditions and conditioning carried; the record contains no statement confirming, amending, relaxing, or waiving the bound on this deliverable's own authority; and for a seeded exceeding measurement the record states the exceedance as measured, with the bound, corpus, boundary, and conditions unchanged from those declared before the run.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-010",
+          "source_line": 384,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Disposition-field exercise: read the disposition field for every measurement set and assert it states at-or-under, exceeded, or not-taken with the conditions and conditioning carried, and that it records the act owed on an exceedance or that none is recorded as owed; search both outputs for any statement confirming, amending, relaxing, or waiving the bound, asserting none; and run a seeded exceeding measurement, asserting the exceedance is recorded as measured with the bound, corpus, boundary, and conditions unchanged from their pre-run declarations."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-04-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 335,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "A measurement run leaves the measured corpus byte-identical and the captured inventory of this deliverable's own filesystem writes resolves entirely to its test workspace and the budget record; this deliverable's source contains no write, create, or delete call against any source file, governed file, register, or lifecycle file; and no write performed by a measured surface appears in this deliverable's declared write set.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-011",
+          "source_line": 385,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Write-boundary exercise: hash the measured corpus before and after a measurement run and assert byte-identity; capture every filesystem write performed by this deliverable during the run and assert each resolves to its test workspace or the budget record; inspect this deliverable's source for write, create, or delete calls against source, governed, register, or lifecycle targets, asserting none; and assert no write performed by a measured surface appears in this deliverable's declared write set."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 336,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "For a content-dense measurement corpus carrying long prose bodies, authored ruling text, and diff-shaped content, field-by-field inspection of everything the suite captures, retains, and writes into the budget record finds only paths, counts, identifiers, states, SHAs, hashes, and durations, and no file or diff content.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-012",
+          "source_line": 386,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content inspection: run a measurement over a content-dense corpus carrying long prose bodies, authored ruling text, and diff-shaped content, then dump field by field everything the suite captures, retains, and writes into the budget record and assert only paths, counts, identifiers, states, SHAs, hashes, and durations appear."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 337,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "The budget record exists at the packet-recorded path, that path is recorded before the record is treated as consumable, the production change set touches no path outside `PKG-08`, and the suite and record add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact and undischarged here.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-013",
+          "source_line": 387,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Path, dependency, and containment check: confirm the budget record exists at the packet-recorded path and that the path was recorded before the record was treated as consumable; confirm the production change set touches no path outside `PKG-08`; inspect the `PKG-08` dependency manifest and this module's import graph for third-party runtime dependencies and network calls; and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-04-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 338,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "The test suite implements VER-001 through VER-013, executes in the `PKG-08` test run, passes or records a pending result where a verification cannot execute because a measured surface does not exist, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-08-04-VER-014",
+          "source_line": 388,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-08` test suite and confirm that each of VER-001 through VER-013 has a corresponding automated test that either executes and passes or records a pending result where a measured surface does not exist, and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-04-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 339,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "An accountable owner records what act, gate, or consequence attaches to a measurement that exceeds the stated bound — including whether this deliverable's suite is a one-shot `P1` measurement or a standing check — or records that none is owed and that the budget record stands as measurement only; and records whether the `C-08` standing-node set's exclusion of this deliverable is confirmed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner record of what act, gate, or consequence attaches to a measurement exceeding the stated bound — including whether this suite is a one-shot P1 measurement or a standing check — or that none is owed and the budget record stands as measurement only, and of whether the C-08 standing-node exclusion of this deliverable is confirmed"
+        }
+      ]
+    },
+    {
+      "id": "AC-016",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-04-AC-016",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 340,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-041` and `OBJ-001`; confirms the objective mapping is stated as register-direct and pre-SCA-002 with no confidence label the record does not carry and no owner-confirmation criterion attached to it; confirms `[E-A28]` is stated at its `DECLARED` stratum and `[E-N12]`, `[E-P51]`, and `[E-P52]` at their `PROPOSAL` stratum; confirms the two `Dependencies.csv` register observations at CLM-004 are recorded as observations rather than repaired; confirms CON-001 through CON-006 are carried rather than decided; and confirms that no `PKG-03`, `PKG-04`, `PKG-09`, `PKG-10`, or sibling `PKG-08` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-041 and OBJ-001, confirms the objective mapping is stated as register-direct and pre-SCA-002 with no unrecorded confidence label and no owner-confirmation criterion, confirms E-A28 is stated at DECLARED and E-N12, E-P51, and E-P52 at PROPOSAL, confirms the two Dependencies.csv register observations are recorded rather than repaired, confirms CON-001 through CON-006 are carried rather than decided, and confirms no cross-package or sibling scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "6d1ec1ad9796973656d6d0d60739b4dbf8cd134a2b17c8c878ee2ff4c098222b"
+  },
+  "tool_version": "1"
+}

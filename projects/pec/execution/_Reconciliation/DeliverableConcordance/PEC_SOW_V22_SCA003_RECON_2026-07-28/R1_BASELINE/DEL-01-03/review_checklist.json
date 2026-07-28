@@ -1,0 +1,267 @@
+{
+  "item_count": 10,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 86,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "The store path is Git-ignored: with a populated store present, `git check-ignore` resolves every store artifact to a checked-in ignore rule and `git status` reports no tracked or untracked store artifact in the hosting checkout.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-001",
+          "source_line": 109,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Populate the store, then run `git check-ignore` and `git status --porcelain` over its artifacts and inspect the checked-in ignore rule, asserting that every artifact the engine creates resolves to that rule."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-03-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 87,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "With the store deleted — both while PEC is stopped and while it is running — the next start recreates a valid empty store without manual repair, and no operator step, migration, or repair command is needed to reach that state. Whether deletion blocks a governed act is the system-level property `DEL-10-02` tests from outside under `SOW-055` (CLM-010); it is not asserted, exercised, or discharged here.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-002",
+          "source_line": 110,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Delete the store while PEC is stopped and again while it is running, restart, and assert that a valid empty store is recreated without manual repair and without any operator repair step. Scope boundary: this method exercises the store lifecycle locally only. Running representative governed workflows and asserting that none blocks is the kill test owned by `DEL-10-02` under `SOW-055` (CLM-010), reached through edge `[E-P71]` from outside this deliverable; it is not performed here and no result of this method may be presented as having satisfied it."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-03-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 88,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "Every store write path routes through the declared ingest boundary; inspection of the store module's write surface finds no persistence call that reaches the store without passing the guard.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-003",
+          "source_line": 111,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the store module's write surface and import/call graph and assert that every persistence call reaches the store only through the guard entry point."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-03-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 89,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "A fixture corpus carrying file content, diff hunks, and register-row prose is rejected at ingest, and inspection of every persisted field afterwards finds no file or diff content residue anywhere in the store.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-004",
+          "source_line": 112,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Ingest a fixture corpus containing file content, diff hunks, and register-row prose; assert rejection at ingest, then dump every persisted field and assert no content residue."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-03-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 90,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "Each rejection is explicit and names the offending record and field; input records are accounted for as accepted or rejected with no unreported difference, and no ingest silently drops, truncates, or substitutes.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-005",
+          "source_line": 113,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Assert that each rejection emits an explicit located failure naming record and field, and reconcile input record counts against accepted-plus-rejected counts to prove no silent drop or truncation."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-03-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 91,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "Reconciler-shaped, presence-shaped, and event-shaped ingest exhibit identical rejection behavior against the same fixtures, and adding an ingest path of a new shape requires no new content check.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-006",
+          "source_line": 114,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Exercise reconciler-shaped, presence-shaped, and event-shaped ingest with the same fixture corpus and assert identical rejection behavior; confirm by construction that a further ingest shape requires no new content check."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-03-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 92,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "The lifecycle module and the guard add no third-party runtime dependency and make no network call, leaving the DEL-01-05 zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-007",
+          "source_line": 115,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the service-core dependency manifest and the store and guard import graphs for third-party runtime dependencies and network calls, and inspect the consumer-facing interface signature for store-path or engine leakage; re-run the `DEL-01-05` locality and zero-dependency enforcement once that deliverable is available."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-03-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 93,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "The consumer-facing store interface exposes no store path or storage-engine detail in its signature, so that changing either changes no consumer deliverable.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-007",
+          "source_line": 115,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the service-core dependency manifest and the store and guard import graphs for third-party runtime dependencies and network calls, and inspect the consumer-facing interface signature for store-path or engine leakage; re-run the `DEL-01-05` locality and zero-dependency enforcement once that deliverable is available."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-03-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 94,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "The guard's admissibility rule is documented field class by field class, and each documented decision either cites an accepted source or is marked as an open question routed under CON-001; no field class is admitted without a recorded decision.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-008",
+          "source_line": 116,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review the documented admissibility rule against the record-tier and presence-tier field inventories of PRD §7.1 and §7.2 and assert that every admitted field class carries a recorded decision with either an accepted-source citation or a CON-001 routing."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-01-03-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 95,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+      },
+      "text": "The automated test suite implements VER-001 through VER-008, executes in the service-core test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-01-03-VER-009",
+          "source_line": 117,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the service-core test suite and confirm that each of VER-001 through VER-008 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "986ef15532cd65f17e8276ee9194b29469f559aca5616d2d3412fa3effca6341"
+  },
+  "tool_version": "1"
+}

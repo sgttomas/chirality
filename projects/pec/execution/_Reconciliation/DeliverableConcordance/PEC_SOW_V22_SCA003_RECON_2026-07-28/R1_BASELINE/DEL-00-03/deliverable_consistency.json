@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed",
+  "folder_name": "DEL-00-03_v2_SPEC_seed",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-001** \u2014 `DEL-00-03` is named \"v2 SPEC seed\", Type `DOC_UPDATE`, Context Envelope `M`, `PhaseHint` `pre-P1`, `CoversScopeItems` `SOW-089`, `SupportsObjectives` `OBJ-001`, `ResponsibleParty` `TBD`; sources `execution/_Decomposition/De",
+      "file": "ScopeOfWork.md",
+      "line": 68,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 72,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The live on-disk path and filename for the SPEC markdown are not fixed by any accepted source. The archived baseline occupies `projects/pec/docs/.archive/SPEC.md`, and `projects/pec/docs/` currently holds only `PRD.md` and `",
+      "file": "ScopeOfWork.md",
+      "line": 73,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-005** \u2014 The accepted basis this seed derives from comprises: 11 packages `PKG-00`..`PKG-10`, 64 deliverables, 6 objectives, and 94 scope items (71 `IN` / 14 out-of-scope / 9 `TBD`), per `SOFTWARE_DECOMP.md` \u00a77 Coverage & Telemetry a",
+      "file": "ScopeOfWork.md",
+      "line": 77,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-011** \u2014 The owner decisions that remain open at the accepted basis are `OI-001` through `OI-009` (\u00a716 owner rulings), `OI-012` (core isolation style, decided in `DEL-00-01`'s ADR), and `OI-013` (no durable register validator); `OI-0",
+      "file": "ScopeOfWork.md",
+      "line": 83,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-007** \u2014 The seed shall leave every open owner decision open. It shall decide none of `OI-001`..`OI-009`, `OI-012`, or `OI-013`, and shall carry the \u00a716-derived `TBD` scope items as unresolved rather than pre-deciding them (CLM-011).",
+      "file": "ScopeOfWork.md",
+      "line": 103,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-008** \u2014 The seed shall be published as SPEC markdown at the path recorded in this deliverable's packet (TBD-002); production shall write under `PKG-00` only and shall not edit any other package's scope (CLM-009).",
+      "file": "ScopeOfWork.md",
+      "line": 104,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-008** \u2014 After publication, the open-issue register still shows `OI-001`..`OI-009`, `OI-012`, and `OI-013` with their pre-publication dispositions, and the \u00a716-derived `TBD` scope items remain `TBD`.",
+      "file": "ScopeOfWork.md",
+      "line": 117,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **VER-006** \u2014 Open-issue register cross-check before and after publication, confirming the dispositions of `OI-001`..`OI-009`, `OI-012`, and `OI-013` are unchanged and that the \u00a716-derived `TBD` scope items are still `TBD`.",
+      "file": "ScopeOfWork.md",
+      "line": 140,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-008** \u2014 Unknowns remain marked. `TBD-001`, `TBD-002`, and `CON-001` are recorded rather than resolved by inference; `C-06`'s missing consumer edges are a deliberate no-edge record, and this contract's job is to fix the form the seed ",
+      "file": "ScopeOfWork.md",
+      "line": 154,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 12,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 2
+    }
+  }
+}

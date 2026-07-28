@@ -1,0 +1,387 @@
+{
+  "item_count": 15,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 219,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "For a fixture set in which upstream units make limitations available for a response — an unavailable receipt field, an unresolved claim provenance, an uncarried stamp value, and a feed reported stale — the response carries an explicit statement for every one of them; no available limitation is absent from the response; and no fixture produces a response presented as complete while an available limitation went unstated.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-001",
+          "source_line": 262,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Non-omission exercise: render over a fixture set supplying an unavailable receipt field, an unresolved claim provenance, an uncarried stamp value, and a stale-feed report, and assert per case that an explicit statement appears in the response for every limitation supplied, that none is absent, and that no response is emitted as complete while an available limitation went unstated."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 220,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "Each rendered statement in a fixture response identifies its affected subject at the granularity the upstream record carries — loop and reason for an unavailable field, the affected claim or stamp field for an absent or unresolved value, the affected component for a component-level absence — and a fixture carrying several distinct limitations produces several distinct statements rather than one merged notice.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-002",
+          "source_line": 263,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Subject-granularity check: for each rendered statement, assert it names the affected subject and reason at the granularity the upstream record carries — loop and reason, affected claim or stamp field, or affected component — and render over a multi-limitation fixture asserting distinct statements rather than one merged notice."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 221,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "For fixtures exercising a count cap, a size or verbosity budget, a caller preference for brevity, a severity threshold, and a compacted response form, every limitation available for the response is still stated; and this deliverable's source contains no suppression, truncation, sampling, or threshold path applied to limitations.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-003",
+          "source_line": 264,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Suppression-pressure exercise: render under fixtures imposing a count cap, a size and verbosity budget, a caller brevity preference, a severity threshold, and a compacted response form, asserting per case that every available limitation is still stated; and inspect this deliverable's source for suppression, truncation, sampling, and threshold logic applied to limitations, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 222,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "Every rendered limitation in a fixture response traces to an upstream limitation record supplied to the component; this deliverable's source contains no ledger-parsing, grammar-application, freshness-computation, or staleness-derivation path; and a fixture in which no upstream limitation is supplied produces no invented limitation.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-004",
+          "source_line": 265,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Derivation-boundary trace: trace every rendered limitation in a fixture run back to the upstream limitation record supplied to the component; inspect this deliverable's source for ledger-parsing, grammar-application, freshness-computation, and staleness-derivation paths and assert none; and render over a fixture supplying no upstream limitation, asserting none is invented."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 223,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "Each rendered statement carries the provenance held by the upstream limitation record it renders, and that provenance resolves to a file path, anchor, and/or SHA together with the loop and feed identity the upstream record carries; and this deliverable's source contains no citation-attachment, stamping, or freshness-computation path.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-005",
+          "source_line": 266,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Provenance carry-through: for each rendered statement, assert the provenance of its upstream limitation record is present and resolves to a file path, anchor, and/or SHA together with the loop and feed identity that record carries; and search this deliverable's source for citation-attachment, stamping, and freshness-computation paths, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 224,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "For a content-dense fixture corpus carrying long prose bodies, authored ruling text, and diff-shaped content in the feeds concerned, inspection of every field of every rendered statement finds no file content and no diff content, and each statement carries locating identity, affected subject, and recorded reason rather than the authored text.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-006",
+          "source_line": 267,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content inspection: render over a content-dense fixture corpus whose feeds carry long prose bodies, authored ruling text, and diff-shaped content, then dump every field of every rendered statement and assert field by field that none carries file or diff content and that each carries locating identity, affected subject, and recorded reason instead."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 225,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "A rendering run leaves the fixture source corpus and the fixture store byte-identical; the captured filesystem and store write inventory for the run is empty; and this deliverable's source contains no write, create, or delete call against any source file, governed file, register, lifecycle file, or store record, and no path that records an adoption, ruling, or direction.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-007",
+          "source_line": 268,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Write-boundary exercise: hash the fixture source corpus and the fixture store before and after a rendering run and assert byte-identity; capture every filesystem and store write performed during the run and assert the inventory is empty; and inspect this deliverable's source for write, create, or delete calls against source, governed, register, lifecycle, or store targets and for any adoption-, ruling-, or direction-recording path, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 226,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "For fixtures in which the limitation inventory is empty, partially unavailable, and unreadable in turn, and for a fixture exercising a condition for which no upstream unit is obliged to report — a feed file absent altogether (CON-002) — the response states that its limitation inventory is incomplete, and presents no derived, defaulted, inferred, or carried-forward limitation in place of one not held.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-008",
+          "source_line": 269,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inventory-honesty exercise: render over fixtures in which the limitation inventory is empty, partially unavailable, and unreadable, and over a fixture in which a feed file is absent altogether with no upstream limitation supplied for it, asserting per case that the response states its inventory as incomplete and that no derived, defaulted, inferred, or carried-forward limitation is presented in place of one not held."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 227,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "The limitation-rendering derivation record — the component of OUT-001 required by REQ-009 — names its upstream limitation sources, its rendered trigger set with an accepted source cited per trigger and the CON-004 divergence stated, the rendered form adopted, the rendering point adopted, and its behaviour for each condition no upstream unit is obliged to report; and every limitation rendered in a fixture run is traceable to the trigger and source the record declares for it.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-009",
+          "source_line": 270,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Derivation-record exercise: read the limitation-rendering derivation record (the component of OUT-001 required by REQ-009) and assert it declares its upstream limitation sources, its rendered trigger set with an accepted source cited per trigger and the CON-004 divergence stated, the rendered form adopted, the rendering point adopted, and its behaviour for each condition no upstream unit is obliged to report; then render over fixtures and assert each rendered limitation follows the trigger and source the record declares."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 228,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "This deliverable's source and call graph contain no orientation-composition path, no delta-since-SHA path, no stamping or citation-attachment path, no scope-parameterization path, no ledger-parsing or grammar path, no entity-type or schema-field definition, no store ingest-guard path, no dependency- or egress-enforcement assertion, no rebuild, incremental-reconcile, or drift-classification path, no gate-evaluation or slate-aggregation path, no socket binding or token or access-class check, no wire envelope or serialization format, no latency assertion, no dashboard-rendering path, no drill-down resolution path, no defect-rate measurement, and no kill-test path; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-010",
+          "source_line": 271,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Adjacent-act inspection: inspect this deliverable's call graph and source for orientation-composition, delta-since-SHA, stamping, citation-attachment, scope-parameterization, ledger-parsing, entity-type and schema-field definition, store ingest-guard, dependency- and egress-enforcement, rebuild, incremental-reconcile, drift-classification, gate-evaluation, slate-aggregation, socket-binding, token and access-class, wire-envelope and serialization, latency-assertion, dashboard-rendering, drill-down-resolution, defect-rate-measurement, and kill-test paths, asserting each absent; and review this deliverable's tests for any criterion belonging to another deliverable, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 229,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "The component and its tests add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-011",
+          "source_line": 272,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-04` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 230,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "Inspection of every rendered statement in a fixture run carrying presence-shaped data alongside the record tier finds no presence-tier value and no statement resolving to a presence-tier record; and this deliverable's source contains no presence-tier read path.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-012",
+          "source_line": 273,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Presence-exclusion inspection: render over a fixture carrying presence-shaped data alongside the record tier and assert no rendered statement carries a presence-tier value or resolves to a presence-tier record; and inspect this deliverable's source for presence-tier read paths, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 231,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "A fixture run adds no component to the orientation return beyond those the composing contract fixes and no stamp field beyond those the stamping contract fixes; and the derivation record states the residence chosen for a rendered limitation as a declared production choice with CON-003 recorded, not as a settled requirement of an accepted source.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-013",
+          "source_line": 274,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Structure-boundary check: compare a fixture response before and after rendering and assert no component beyond the composing contract's fixed set and no stamp field beyond the stamping contract's fixed set has been added; and read the derivation record and assert the chosen residence and rendering point are stated as a declared production choice recording CON-003, not as a settled requirement of an accepted source."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-04-05-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 232,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "The test suite implements VER-001 through VER-013, executes in the `PKG-04` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-04-05-VER-014",
+          "source_line": 275,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-04` test suite and confirm that each of VER-001 through VER-013 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-05-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 233,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-009` and `OBJ-001`; confirms that the objective mapping is stated as register-direct and pre-SCA-002, with no confidence label asserted that the record does not carry; confirms that the DECLARED edge and the two PROPOSAL edges are each stated at their own stratum and that the `DEP-04-05-005` register anomaly is carried as an observation rather than repaired by invention; and confirms that no `PKG-01`, `PKG-02`, `PKG-03`, sibling `PKG-04`, `PKG-05`, `PKG-08`, `PKG-09`, or `PKG-10` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-009 and OBJ-001, confirms the objective mapping is stated as register-direct and pre-SCA-002 with no unrecorded confidence label, confirms the DECLARED and PROPOSAL upstream edges are each stated at their own stratum and the DEP-04-05-005 anomaly carried as an observation, and confirms no upstream, sibling, or cross-package scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-04-05",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-04",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "933c012cf16bb161b0ac1acdbf3caeaac408fa441b6e175b8fc2e7d8b265a579"
+  },
+  "tool_version": "1"
+}

@@ -1,0 +1,19 @@
+{
+  "register": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+  "hold_id": "PEC-HOLD-001",
+  "status": "ACTIVE",
+  "target": "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md",
+  "clauses": ["CLM-005", "REQ-004"],
+  "operations": {
+    "historical-read-only-inspection": "ALLOW",
+    "exact-correction-preparation": "ALLOW",
+    "candidate-validation": "ALLOW"
+  },
+  "prohibited_unchanged": [
+    "rely for production",
+    "dispatch for production",
+    "promote",
+    "consume"
+  ],
+  "release_performed": false
+}

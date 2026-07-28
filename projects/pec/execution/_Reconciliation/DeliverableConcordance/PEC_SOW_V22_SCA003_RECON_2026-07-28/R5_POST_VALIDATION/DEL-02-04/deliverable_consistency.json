@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "The owner ruled the question at the SCA-002 Gate 3 in-session gate",
+      "file": "ScopeOfWork.md",
+      "line": 66
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-04_Run_evidence_JSON_parser",
+  "folder_name": "DEL-02-04_Run_evidence_JSON_parser",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-004** \u2014 `DEL-02-04` is named \"Run-evidence JSON parser\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `S`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-014`, `SupportsObjectives` `OBJ-001;OBJ-002`, `ContextE",
+      "file": "ScopeOfWork.md",
+      "line": 120,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-007** \u2014 This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-P06]`, held as `Dependencies.csv` register row `DEP-02-04-003`. Attributed by column: `DependencyClass` `EXECUTION`, `AnchorType` `NOT_APPLICABLE`, `Di",
+      "file": "ScopeOfWork.md",
+      "line": 126,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 167,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The grammar this parser declares \u2014 which keys of `STATUS.json` and `RUNTIME_SUMMARY.json` it reads, their semantics, how it recognizes a declared `schema` value, and how it treats a file carrying none \u2014 is fixed by no accept",
+      "file": "ScopeOfWork.md",
+      "line": 168,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The field set of a RunRecord summary is not enumerated by any accepted source. `PRD.md` \u00a77.1 says \"Summaries of checkout-contained AgentRun evidence\" without listing fields, and the upstream contract quoted in CLM-008 oblige",
+      "file": "ScopeOfWork.md",
+      "line": 169,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 How a run-evidence file is bound to the loop, package, or deliverable it belongs to is fixed by no accepted source. Some observed files carry `package_id` or `deliverable_id` keys and most do not (CLM-014); whether binding i",
+      "file": "ScopeOfWork.md",
+      "line": 170,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-002** \u2014 The RunRecord summary field set is owned upstream and does not yet exist. `DEL-01-01` is `INITIALIZED`: its contract obliges the RunRecord type and bounds what it may admit (CLM-008), but neither it nor any accepted source e",
+      "file": "ScopeOfWork.md",
+      "line": 204,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **VER-002** \u2014 Inspect this deliverable's source for any record-tier type definition and assert none is present; assert every emitted summary is constructed against the upstream RunRecord type as the contract quoted in CLM-008 obliges it; ",
+      "file": "ScopeOfWork.md",
+      "line": 220,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **AX-010** \u2014 Unknowns stay marked. TBD-001 through TBD-004 and CON-001 through CON-003 are recorded rather than resolved by inference. `C-04` `PHASE_PRECEDENCE` and `C-10` `STRATUM_RULE` are register-wide non-gating constraints recorded i",
+      "file": "ScopeOfWork.md",
+      "line": 242,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-014 OBJ-001 OBJ-002 | REQ-001, REQ-002, CLM-001, CLM-002, CLM-004, CLM-006, CLM-014, TBD-002, CON-001 | AC-001 | VER-001 | Grammar documentation, the well-formed fixture pair and parser output, the undeclared-key invariance ",
+      "file": "ScopeOfWork.md",
+      "line": 249,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 12,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 2
+    }
+  }
+}

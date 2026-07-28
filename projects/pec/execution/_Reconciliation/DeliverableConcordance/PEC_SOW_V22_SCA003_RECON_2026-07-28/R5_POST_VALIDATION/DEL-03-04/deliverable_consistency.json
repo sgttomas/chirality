@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-04_Practitioner_harness_parity_diff",
+  "folder_name": "DEL-03-04_Practitioner_harness_parity_diff",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-006** \u2014 `DEL-03-04` is named \"Practitioner-harness parity diff\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Parity tool + tests\", `CoversScopeItems` `SOW-0",
+      "file": "ScopeOfWork.md",
+      "line": 122,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> `v3.1,DEP-03-04-003,PKG-03,DEL-03-04,Practitioner-harness parity diff,EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-03,DEL-03-01,DEL-03-01,Full-rebuild reconciler (one command),execution/PKG-03_Reconciliation_Parity/1_Wor",
+      "file": "ScopeOfWork.md",
+      "line": 199,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> (`SourceRef` reads \"location TBD\" and `EvidenceQuote` is **empty**: the",
+      "file": "ScopeOfWork.md",
+      "line": 201,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> - **REQ-006** \u2014 The reconciler shall declare, in the entry point's declared-view record \u2014 a readable component of OUT-001 \u2014 every generated view it writes: what the view is, where it is located, and the fact that it is fully regenerable b",
+      "file": "ScopeOfWork.md",
+      "line": 210,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> `AC-*`, `CLM-*`, `TBD-*`, and `CON-*` records are separate and differently",
+      "file": "ScopeOfWork.md",
+      "line": 218,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "A rebuild that completed with stated coverage limitations is therefore a possible input state of this comparison, and the upstream generated-view instance set is undetermined at that contract's own `CON-001` / `TBD-003`. Both are carried he",
+      "file": "ScopeOfWork.md",
+      "line": 229,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 242,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The tool's concrete invocation surface \u2014 its verb name, its host entry-point form, its arguments, its exit-status contract, and where its output is written \u2014 is fixed by no accepted source beyond the register phrase \"Parity ",
+      "file": "ScopeOfWork.md",
+      "line": 243,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The **comparable-surface instance set** \u2014 which specific PEC derivations have a practitioner-harness counterpart, and which harness output each is compared against \u2014 is fixed by no accepted source. `SOW-020` says \"PEC deriva",
+      "file": "ScopeOfWork.md",
+      "line": 244,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The **equivalence rule** by which two differently shaped outputs are judged the same or different \u2014 normalization, ordering, field correspondence, tolerance \u2014 is fixed by no accepted source. It is chosen during production wi",
+      "file": "ScopeOfWork.md",
+      "line": 245,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 19,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 9
+    }
+  }
+}
