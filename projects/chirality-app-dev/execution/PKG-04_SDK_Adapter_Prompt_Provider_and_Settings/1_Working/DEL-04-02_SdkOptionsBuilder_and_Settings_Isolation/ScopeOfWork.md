@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-04-02
 package_id: PKG-04
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@b4d2c9ab2f089224ddd41c849bbd1e4dd22d91b4
-project_scope_refs: [SOW-016, SOW-045, SOW-047, SOW-052]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+project_scope_refs: [SOW-016, SOW-045, SOW-047, SOW-052, SOW-076]
 package_objective_refs: [OBJ-004, OBJ-005]
 ---
 
@@ -11,9 +11,14 @@ package_objective_refs: [OBJ-004, OBJ-005]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-04-02` in service of project scope [SOW-016, SOW-045, SOW-047, SOW-052] and package objectives [OBJ-004, OBJ-005].
+This Scope of Work defines `DEL-04-02` in service of project scope [SOW-016, SOW-045, SOW-047, SOW-052, SOW-076] and package objectives [OBJ-004, OBJ-005].
 
-- **OUT-001** — DEL-04-02 SdkOptionsBuilder and Settings Isolation production output: sdk-options-builder.ts, settings isolation tests, and visible tool metadata, bounded by SOW-016, SOW-045, SOW-047, SOW-052, OBJ-004, and OBJ-005.
+- **OUT-001** — DEL-04-02 SdkOptionsBuilder and Settings Isolation production output: sdk-options-builder.ts, settings isolation tests, and visible tool metadata, bounded by SOW-016, SOW-045, SOW-047, SOW-052, SOW-076, OBJ-004, and OBJ-005.
+
+**D-APP-80 concordance note (2026-07-28):** SOW-076 is recorded as an OUT
+boundary-only trace. It does not activate non-App provider scope or expand
+this deliverable beyond App-side SDK option construction and settings
+isolation.
 
 ## Deliverable Definition — Ontology
 
@@ -39,7 +44,7 @@ This Scope of Work defines `DEL-04-02` in service of project scope [SOW-016, SOW
 > | Type | BACKEND_FEATURE_SLICE |
 > | ResponsibleParty | TBD |
 > | ContextEnvelope | M |
-> | CoversScopeItems | SOW-016, SOW-045, SOW-047, SOW-052 |
+> | CoversScopeItems | SOW-016, SOW-045, SOW-047, SOW-052, SOW-076 |
 > | SupportsObjectives | OBJ-004, OBJ-005 |
 > | AnticipatedArtifacts | `sdk-options-builder.ts`; settings isolation tests; visible tool metadata |
 >
@@ -98,7 +103,7 @@ This Scope of Work defines `DEL-04-02` in service of project scope [SOW-016, SOW
 > | REF-004 | `docs/TYPES.md` | Sections 7.2, 8.2, 8.3, 9 | Vocabulary for SdkOptionsBuilder, settings, permission, tools, session linkage |
 > | REF-005 | `docs/PLAN.md` | Sections 2-4, 6-8 | Roadmap sequencing, tests, known SDK risks |
 > | REF-006 | `docs/PRD.md` | Sections 8.4, 8.12, 8.13, 10.3.1, KG-021 through KG-032 | Product requirements; source hash status: MATCH noted — reconciled under D-APP-38 |
-> | REF-DEC | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | DEL-04-02; SOW-016, SOW-045, SOW-047, SOW-052 | Deliverable scope and traceability |
+> | REF-DEC | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | DEL-04-02; SOW-016, SOW-045, SOW-047, SOW-052, SOW-076 | Deliverable scope and traceability |
 >
 
 ### CLM-007 — D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
@@ -254,7 +259,7 @@ This Scope of Work defines `DEL-04-02` in service of project scope [SOW-016, SOW
 >
 > 1. Confirm source and package scope.
 >    - Read `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, and the DEL-04-02 decomposition row.
->    - Confirm SOW coverage: SOW-016, SOW-045, SOW-047, SOW-052.
+>    - Confirm SOW coverage: SOW-016, SOW-045, SOW-047, SOW-052, SOW-076.
 >    - Record the `docs/PRD.md` `HASH_MISMATCH` warning if using PRD-backed details.
 >
 > 2. Define the builder input shape.

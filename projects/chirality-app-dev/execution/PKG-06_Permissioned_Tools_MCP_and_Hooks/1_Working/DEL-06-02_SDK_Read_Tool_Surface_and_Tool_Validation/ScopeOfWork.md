@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-06-02
 package_id: PKG-06
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@b4d2c9ab2f089224ddd41c849bbd1e4dd22d91b4
-project_scope_refs: [SOW-047, SOW-049, SOW-050]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+project_scope_refs: [SOW-047, SOW-049, SOW-050, SOW-064]
 package_objective_refs: [OBJ-005]
 ---
 
@@ -11,9 +11,14 @@ package_objective_refs: [OBJ-005]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-06-02` in service of project scope [SOW-047, SOW-049, SOW-050] and package objectives [OBJ-005].
+This Scope of Work defines `DEL-06-02` in service of project scope [SOW-047, SOW-049, SOW-050, SOW-064] and package objectives [OBJ-005].
 
 - **OUT-001** — A deterministic SDK read-tool surface resolver and validation contract that maps registered SDK and Chirality MCP names, rejects unknown names, orders exposure stably, and exposes read tools before write, edit, or bash capability.
+
+**D-APP-80 concordance note (2026-07-28):** SOW-064 is supported here
+through the App/project tool catalog, requested-tool validation, and
+name-collision prevention. MCP wrapper implementation and remote MCP,
+plugin, or marketplace scope remain excluded.
 
 ## Deliverable Definition — Ontology
 
@@ -37,7 +42,7 @@ This Scope of Work defines `DEL-06-02` in service of project scope [SOW-047, SOW
 > | Responsible party | TBD |
 > | Decomposition variant | SOFTWARE_DECOMP v3.2 |
 > | Context envelope | M |
-> | Scope items | SOW-047, SOW-049, SOW-050 |
+> | Scope items | SOW-047, SOW-049, SOW-050, SOW-064 |
 > | Objective context | OBJ-005 |
 > | Anticipated artifacts | Tool resolver; unknown-tool tests; deterministic ordering fixtures |
 >

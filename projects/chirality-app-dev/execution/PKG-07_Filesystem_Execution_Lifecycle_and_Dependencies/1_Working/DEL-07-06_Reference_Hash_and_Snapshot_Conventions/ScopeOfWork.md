@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-07-06
 package_id: PKG-07
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@2770fda4c63c98ee9f18cffbafd14c9aa59f497f
-project_scope_refs: [SOW-032, SOW-033, SOW-034]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+project_scope_refs: [SOW-032, SOW-033, SOW-034, SOW-077]
 package_objective_refs: [OBJ-006, OBJ-009]
 ---
 
@@ -11,9 +11,13 @@ package_objective_refs: [OBJ-006, OBJ-009]
 
 ## Purpose and Objective Traceability
 
-This candidate defines `DEL-07-06` in service of project scope [SOW-032, SOW-033, SOW-034] and package objectives [OBJ-006, OBJ-009].
+This candidate defines `DEL-07-06` in service of project scope [SOW-032, SOW-033, SOW-034, SOW-077] and package objectives [OBJ-006, OBJ-009].
 
 - **OUT-001** — Snapshot and runbook notes, a reference-hash bypass convention, and a CHANGE/SHA checklist preserving deterministic tool continuity, immutable evidence, and human-only approval boundaries.
+
+**D-APP-80 concordance note (2026-07-28):** SOW-077 is recorded as an OUT
+boundary-only trace. It does not reactivate excluded lock, freeze, budget,
+usage, cost, forecast, or resource-governance functions.
 
 ## Deliverable Definition — Ontology
 

@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-05
 package_id: PKG-02
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@0724f26f6ef79d733c8f1c513b29d837fd43c8eb
-project_scope_refs: [SOW-013, SOW-019]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+project_scope_refs: [SOW-013, SOW-019, SOW-023]
 package_objective_refs: [OBJ-001, OBJ-008]
 ---
 
@@ -11,9 +11,15 @@ package_objective_refs: [OBJ-001, OBJ-008]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-02-05` in service of project scope [SOW-013, SOW-019] and package objectives [OBJ-001, OBJ-008].
+This Scope of Work defines `DEL-02-05` in service of project scope [SOW-013, SOW-019, SOW-023] and package objectives [OBJ-001, OBJ-008].
 
-- **OUT-001** — API-key UI and runtime-feedback contract for DEL-02-05, traceable to SOW-013, SOW-019, OBJ-001, and OBJ-008.
+- **OUT-001** — API-key UI and runtime-feedback contract for DEL-02-05, traceable to SOW-013, SOW-019, SOW-023, OBJ-001, and OBJ-008.
+
+**D-APP-80 concordance note (2026-07-28):** SOW-023 is supported here
+through the selected-working-root attachment UI, including multi-select
+preview, remove/clear controls, and retry-preserving draft and attachment
+failure state. DEL-09-06 retains attachment, network, key, and renderer
+security validation.
 
 ## Deliverable Definition — Ontology
 
@@ -206,7 +212,7 @@ This Scope of Work defines `DEL-02-05` in service of project scope [SOW-013, SOW
 > - Exact retry state owner for drafts and attachments.
 > - Final evidence paths or commands for key status precedence, key storage secrecy, runtime redaction, and non-authoritative UI state checks.
 
-- **AC-001** — The Scope of Work preserves and traces all legacy source content to SOW-013, SOW-019, OBJ-001, and OBJ-008 without adding scope, reliance claims, lifecycle meaning, or obligations.
+- **AC-001** — The Scope of Work preserves and traces all legacy source content to SOW-013, SOW-019, SOW-023, OBJ-001, and OBJ-008 without adding scope, reliance claims, lifecycle meaning, or obligations.
 
 ## Production and Verification Method — Praxeology
 

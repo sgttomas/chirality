@@ -85,10 +85,13 @@ class AppHoldCandidateTests(unittest.TestCase):
         payload = json.loads(result.stdout)
         self.assertEqual(payload["verdict"], "PASS")
         self.assertEqual(
-            payload["held_deliverables"], FIXTURE["held_deliverables"]
+            payload["held_deliverables"], FIXTURE["scan_held_deliverables"]
         )
-        self.assertEqual(payload["held_count"], 6)
+        self.assertEqual(payload["held_count"], 0)
         self.assertTrue(payload["register"]["match"])
+        self.assertEqual(
+            payload["register"]["missing_repair_pending_from_register"], []
+        )
         self.assertEqual(len(payload["scan_fingerprint_sha256"]), 64)
 
     def test_held_target_blocked_for_every_operation_and_entry_path(self) -> None:
@@ -120,13 +123,7 @@ class AppHoldCandidateTests(unittest.TestCase):
         target = FIXTURE["held_deliverables"][0]
         scan = TOOL_MODULE.scan_corpus(REPO_ROOT, SOW_ROOT)
         known = {row["deliverable_id"]: row for row in scan["contracts"]}
-        known[target]["status"] = "CLEAR"
-        known[target]["reason"] = "BASIS_RESOLVES"
-        scan["contracts"] = list(known.values())
-        scan["held_deliverables"] = [
-            item for item in scan["held_deliverables"] if item != target
-        ]
-        scan["held_count"] -= 1
+        self.assertEqual(known[target]["status"], "CLEAR")
 
         comparison = TOOL_MODULE.compare_register(scan, REGISTER)
         self.assertTrue(comparison["match"], comparison)
@@ -153,12 +150,7 @@ class AppHoldCandidateTests(unittest.TestCase):
         scan = TOOL_MODULE.scan_corpus(REPO_ROOT, SOW_ROOT)
         for contract in scan["contracts"]:
             if contract["deliverable_id"] == target:
-                contract["status"] = "CLEAR"
-                contract["reason"] = "BASIS_RESOLVES"
-        scan["held_deliverables"] = [
-            item for item in scan["held_deliverables"] if item != target
-        ]
-        scan["held_count"] -= 1
+                self.assertEqual(contract["status"], "CLEAR")
 
         rows = TOOL_MODULE.load_register(REGISTER)
         for row in rows:
@@ -249,7 +241,8 @@ class AppHoldCandidateTests(unittest.TestCase):
         payload = json.loads(result.stdout)
         self.assertEqual(payload["verdict"], "BLOCK_REGISTER_DRIFT")
         self.assertEqual(
-            payload["register"]["missing_from_register"], ["DEL-08-03"]
+            payload["register"]["missing_repair_pending_from_register"],
+            ["DEL-08-03"],
         )
 
     def test_no_generic_owner_exception_bypass_exists(self) -> None:

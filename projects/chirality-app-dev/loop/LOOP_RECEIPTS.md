@@ -2613,3 +2613,33 @@
   - Checks: D-APP-78/Receipt 96 durable predecessor; exact six-row transition; APP-HOLD scan/register parity; all-entry/four-operation blocking; simulated post-repin blocking and unaffected-target allowance; stale-HELD rejection; receipt, path, containment, and whitespace checks.
   - Model-Attribution: OpenAI Codex HELPS_HUMANS managed by HELP_HUMAN; exact runtime model build not exposed; no Agent 2 delegated.
   - Gate-Outcome: `EXECUTED` — H0-A is installed before contract repair: all six targets remain blocked through later repin and validation, `NO_REPIN` remains active now, and release stays separately owner-gated. No ScopeOfWork, contract, provenance, PKG-00, product, lifecycle, release, or Git effect occurs.
+
+- **2026-07-28 — Receipt 98** (D-APP-80 complete contract concordance and one-time terminal-basis repin).
+  - Receipt-ID: `Receipt-98`
+  - Examined-Through: `deb01644e324af2b39cff7b52abae43784cd071b`
+  - Parent-Receipt: `Receipt-97`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-07-28,
+    Ryan Tufts, in-session): "Finish out your plan now (attaining your goal)
+    with self merge of PRs and auto approve for owners rulings, which should
+    still be recorded in the usual manner with your recommendation standing
+    as what I approved." The authority-bearing recommendation and exact
+    manifest selection are transcribed in D-APP-80.
+  - Pointers:
+    `execution/_Coordination/_DECISIONS/D-APP-80_RULING_OD6_G4_CONTRACT_CONCORDANCE_2026-07-28.md`;
+    `execution/_Coordination/_PROPOSALS/OD6-G4_APP_CONTRACT_CONCORDANCE_2026-07-28/`;
+    51 decomposition-derived `ScopeOfWork.md` contracts; APP-HOLD register,
+    guard, and tests.
+  - Checks: execution-time population and class validation; exact application
+    manifest; `_CONTEXT.md` semantic concordance; historical-UNKNOWN
+    preservation; active repair-pending hold behavior; current-basis
+    resolution; ScopeOfWork and APP-HOLD validation; receipt, path,
+    containment, whitespace, and diff checks. Exact measurements and hashes
+    live in the pointed candidate package.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS managed by HELP_HUMAN;
+    exact runtime model build not exposed; no Agent 2 delegated.
+  - Gate-Outcome: `EXECUTED` — complete App contract concordance and the
+    one-time terminal-basis repin are applied pending Git closeout. The six
+    APP-HOLD-1 targets remain blocked in `REPAIR_VALIDATION_PENDING`; neither
+    hold release nor any later repin, scope, implementation, runtime,
+    lifecycle, identity, version, compatibility, facade-retirement, release,
+    or professional-reliance effect is authorized.
