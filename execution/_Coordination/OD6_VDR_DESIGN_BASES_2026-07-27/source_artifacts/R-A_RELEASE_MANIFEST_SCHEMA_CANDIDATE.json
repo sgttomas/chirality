@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chirality.invalid/chirality.runtime.release-manifest.v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "subject", "source", "compatibility", "components", "build", "artifacts", "affectedClients", "migrations", "validation", "rollback", "preparation"],
+  "properties": {
+    "schema": {"const": "chirality.runtime.release-manifest/v1"},
+    "subject": {"const": "chirality-root-runtime"},
+    "source": {"$ref": "#/$defs/source"},
+    "compatibility": {"$ref": "#/$defs/compatibility"},
+    "components": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/component"}, "x-sort-key": "packageName", "x-unique-key": "packageName"},
+    "build": {"$ref": "#/$defs/build"},
+    "artifacts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/artifact"}, "x-sort-key": "artifactId", "x-unique-key": "artifactId"},
+    "affectedClients": {"type": "array", "items": {"$ref": "#/$defs/client"}, "x-sort-key": "clientId", "x-unique-key": "clientId"},
+    "migrations": {"type": "array", "items": {"$ref": "#/$defs/migration"}, "x-sort-key": "migrationId", "x-unique-key": "migrationId"},
+    "validation": {"$ref": "#/$defs/validation"},
+    "rollback": {"$ref": "#/$defs/rollback"},
+    "preparation": {"$ref": "#/$defs/preparation"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "gitOid": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"},
+    "id": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9._:/-]{0,127}$"},
+    "path": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?![A-Za-z]:)(?!\\\\)(?!.*\\\\)(?![A-Za-z][A-Za-z0-9+.-]*:)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*(?:^|/)\\.(?:/|$))(?!.*//)(?!.*\\/$)(?!.*[\\u0000-\\u001f\\u007f])[^\\u0000-\\u001f\\u007f]+$"},
+    "basis": {
+      "type": "object", "additionalProperties": false,
+      "required": ["commitSha", "treeSha"],
+      "properties": {"commitSha": {"$ref": "#/$defs/gitOid"}, "treeSha": {"$ref": "#/$defs/gitOid"}}
+    },
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "basis"],
+      "properties": {"path": {"$ref": "#/$defs/path"}, "sha256": {"$ref": "#/$defs/sha256"}, "basis": {"$ref": "#/$defs/basis"}}
+    },
+    "refArray": {"type": "array", "items": {"$ref": "#/$defs/ref"}, "x-sort-key": ["basis.commitSha", "basis.treeSha", "path", "sha256"], "x-unique-key": ["basis.commitSha", "basis.treeSha", "path", "sha256"]},
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["repositoryId", "commitSha", "treeSha", "dirty"],
+      "properties": {
+        "repositoryId": {"$ref": "#/$defs/id"},
+        "commitSha": {"$ref": "#/$defs/gitOid"},
+        "treeSha": {"$ref": "#/$defs/gitOid"},
+        "dirty": {"const": false}
+      }
+    },
+    "flowA": {
+      "type": "object", "additionalProperties": false,
+      "required": ["disposition", "authorityRefs"],
+      "properties": {
+        "disposition": {"enum": ["SEPARATE_UNRESOLVED", "SEPARATE_RETAINED", "MAPPED", "RETIRED", "SUPERSEDED"]},
+        "authorityRefs": {"$ref": "#/$defs/refArray", "minItems": 1}
+      }
+    },
+    "compatibility": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rootRuntimeCompatibilityIdentity", "apiRouteNamespace", "flowAConcordance"],
+      "properties": {
+        "rootRuntimeCompatibilityIdentity": {"type": "string", "pattern": "^chirality\\.runtime\\.compatibility/v[1-9][0-9]*$"},
+        "apiRouteNamespace": {"type": "string", "pattern": "^/v[1-9][0-9]*$"},
+        "flowAConcordance": {"$ref": "#/$defs/flowA"}
+      }
+    },
+    "component": {
+      "type": "object", "additionalProperties": false,
+      "required": ["packageName", "packageVersion", "sourcePath"],
+      "properties": {
+        "packageName": {"type": "string", "pattern": "^(?:@[a-z0-9._-]+/)?[a-z0-9._-]+$"},
+        "packageVersion": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:-[0-9A-Za-z.-]+)?(?:\\+[0-9A-Za-z.-]+)?$"},
+        "sourcePath": {"$ref": "#/$defs/path"}
+      }
+    },
+    "toolchain": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {"name": {"$ref": "#/$defs/id"}, "version": {"type": "string", "minLength": 1, "maxLength": 128}}
+    },
+    "build": {
+      "type": "object", "additionalProperties": false,
+      "required": ["buildRecord", "toolchain", "lockfiles", "commands", "environmentClass", "reproducibilityDisposition"],
+      "properties": {
+        "buildRecord": {"$ref": "#/$defs/ref"},
+        "toolchain": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/toolchain"}, "x-sort-key": "name", "x-unique-key": "name"},
+        "lockfiles": {"$ref": "#/$defs/refArray", "minItems": 1},
+        "commands": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1, "maxLength": 4096}},
+        "environmentClass": {"enum": ["LOCAL_CONTROLLED", "CI_CONTROLLED", "RELEASE_BUILDER_CONTROLLED"]},
+        "reproducibilityDisposition": {"enum": ["REPRODUCIBLE", "CONDITIONALLY_REPRODUCIBLE", "NOT_REPRODUCIBLE", "UNASSESSED"]}
+      }
+    },
+    "platform": {
+      "type": "object", "additionalProperties": false,
+      "required": ["os", "arch"],
+      "properties": {
+        "os": {"enum": ["darwin", "linux", "windows", "portable"]},
+        "arch": {"enum": ["arm64", "x64", "universal", "portable"]}
+      }
+    },
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifactId", "role", "relativePath", "sha256", "sizeBytes", "mediaType", "platform", "packagingContext"],
+      "properties": {
+        "artifactId": {"$ref": "#/$defs/id"},
+        "role": {"enum": ["contracts", "core", "daemon", "client", "cli", "engine-adapter", "other"]},
+        "relativePath": {"$ref": "#/$defs/path"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "sizeBytes": {"type": "integer", "minimum": 0},
+        "mediaType": {"type": "string", "pattern": "^[a-z0-9!#$&^_.+-]+/[a-z0-9!#$&^_.+-]+$"},
+        "platform": {"$ref": "#/$defs/platform"},
+        "packagingContext": {"type": "string", "minLength": 1, "maxLength": 512},
+        "otherRoleReason": {"type": "string", "minLength": 1, "maxLength": 512}
+      },
+      "allOf": [{
+        "if": {"properties": {"role": {"const": "other"}}, "required": ["role"]},
+        "then": {"required": ["otherRoleReason"]},
+        "else": {"not": {"required": ["otherRoleReason"]}}
+      }]
+    },
+    "client": {
+      "type": "object", "additionalProperties": false,
+      "required": ["clientId", "implementationState", "applicability", "acceptedBasis", "compatibilityIdentityExpected", "disposition", "evidenceRefs", "migrationRefs", "degradedModeEvidenceRef", "rollbackEvidenceRef"],
+      "properties": {
+        "clientId": {"$ref": "#/$defs/id"},
+        "implementationState": {"enum": ["ACTIVE_IMPLEMENTED", "PROSPECTIVE", "RETIRED"]},
+        "applicability": {"enum": ["AFFECTED", "NOT_AFFECTED", "UNRESOLVED"]},
+        "acceptedBasis": {"$ref": "#/$defs/basis"},
+        "compatibilityIdentityExpected": {"oneOf": [{"type": "string", "pattern": "^chirality\\.runtime\\.compatibility/v[1-9][0-9]*$"}, {"type": "null"}]},
+        "disposition": {"enum": ["CONFORMANT", "MIGRATION_ACCEPTED", "BLOCKED", "NOT_APPLICABLE", "DEFERRED"]},
+        "evidenceRefs": {"$ref": "#/$defs/refArray"},
+        "migrationRefs": {"$ref": "#/$defs/refArray"},
+        "degradedModeEvidenceRef": {"oneOf": [{"$ref": "#/$defs/ref"}, {"type": "null"}]},
+        "rollbackEvidenceRef": {"oneOf": [{"$ref": "#/$defs/ref"}, {"type": "null"}]}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"implementationState": {"const": "ACTIVE_IMPLEMENTED"}, "applicability": {"const": "AFFECTED"}}, "required": ["implementationState", "applicability"]},
+          "then": {"properties": {"disposition": {"enum": ["CONFORMANT", "MIGRATION_ACCEPTED", "BLOCKED", "DEFERRED"]}, "evidenceRefs": {"minItems": 1}, "compatibilityIdentityExpected": {"type": "string"}}, "required": ["degradedModeEvidenceRef", "rollbackEvidenceRef"]}
+        },
+        {
+          "if": {"properties": {"implementationState": {"const": "ACTIVE_IMPLEMENTED"}, "applicability": {"const": "NOT_AFFECTED"}}, "required": ["implementationState", "applicability"]},
+          "then": {"properties": {"disposition": {"const": "NOT_APPLICABLE"}, "evidenceRefs": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"implementationState": {"enum": ["PROSPECTIVE", "RETIRED"]}}, "required": ["implementationState"]},
+          "then": {"properties": {"disposition": {"enum": ["NOT_APPLICABLE", "DEFERRED"]}}}
+        }
+      ]
+    },
+    "migration": {
+      "type": "object", "additionalProperties": false,
+      "required": ["migrationId", "stateSurface", "fromSchema", "toSchema", "direction", "evidenceRefs"],
+      "properties": {
+        "migrationId": {"$ref": "#/$defs/id"},
+        "stateSurface": {"$ref": "#/$defs/id"},
+        "fromSchema": {"$ref": "#/$defs/id"},
+        "toSchema": {"$ref": "#/$defs/id"},
+        "direction": {"enum": ["NO_STATE_CHANGE", "REVERSIBLE", "FORWARD_ONLY"]},
+        "evidenceRefs": {"$ref": "#/$defs/refArray", "minItems": 1},
+        "inverseOrRestoreRef": {"$ref": "#/$defs/ref"}
+      },
+      "allOf": [{
+        "if": {"properties": {"direction": {"const": "REVERSIBLE"}}, "required": ["direction"]},
+        "then": {"required": ["inverseOrRestoreRef"]}
+      }]
+    },
+    "limitation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["limitationId", "severity", "description", "disposition", "evidenceRefs"],
+      "properties": {
+        "limitationId": {"$ref": "#/$defs/id"},
+        "severity": {"enum": ["INFO", "WARN", "BLOCK"]},
+        "description": {"type": "string", "minLength": 1, "maxLength": 2048},
+        "disposition": {"enum": ["ACCEPTED_FOR_RELEASE", "BLOCKS_RELEASE"]},
+        "evidenceRefs": {"$ref": "#/$defs/refArray", "minItems": 1}
+      }
+    },
+    "validation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rootRegressionRefs", "contractConformanceRefs", "securityRefs", "packagingRefs", "knownLimitations"],
+      "properties": {
+        "rootRegressionRefs": {"$ref": "#/$defs/refArray", "minItems": 1},
+        "contractConformanceRefs": {"$ref": "#/$defs/refArray", "minItems": 1},
+        "securityRefs": {"$ref": "#/$defs/refArray", "minItems": 1},
+        "packagingRefs": {"$ref": "#/$defs/refArray", "minItems": 1},
+        "knownLimitations": {"type": "array", "items": {"$ref": "#/$defs/limitation"}, "x-sort-key": "limitationId", "x-unique-key": "limitationId"}
+      }
+    },
+    "rollback": {
+      "type": "object", "additionalProperties": false,
+      "required": ["assessment", "stateCompatibilityEvidenceRefs", "affectedClientEvidenceRefs", "blockedReasons"],
+      "properties": {
+        "assessment": {"enum": ["ELIGIBLE", "INELIGIBLE", "UNASSESSED", "NOT_APPLICABLE"]},
+        "targetReleaseId": {"type": "string", "pattern": "^chirality\\.runtime\\.release\\.v1\\.sha256\\.[0-9a-f]{64}$"},
+        "targetReleaseActRef": {"$ref": "#/$defs/ref"},
+        "artifactAvailabilityEvidenceRef": {"$ref": "#/$defs/ref"},
+        "stateCompatibilityEvidenceRefs": {"$ref": "#/$defs/refArray"},
+        "affectedClientEvidenceRefs": {"$ref": "#/$defs/refArray"},
+        "executionPlanRef": {"$ref": "#/$defs/ref"},
+        "verificationPlanRef": {"$ref": "#/$defs/ref"},
+        "blockedReasons": {"type": "array", "items": {"type": "string", "minLength": 1, "maxLength": 1024}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"assessment": {"enum": ["ELIGIBLE", "INELIGIBLE"]}}, "required": ["assessment"]},
+          "then": {"required": ["targetReleaseId", "targetReleaseActRef", "artifactAvailabilityEvidenceRef", "executionPlanRef", "verificationPlanRef"]}
+        },
+        {
+          "if": {"properties": {"assessment": {"const": "ELIGIBLE"}}, "required": ["assessment"]},
+          "then": {"properties": {"stateCompatibilityEvidenceRefs": {"minItems": 1}, "affectedClientEvidenceRefs": {"minItems": 1}, "blockedReasons": {"maxItems": 0}}}
+        },
+        {
+          "if": {"properties": {"assessment": {"const": "INELIGIBLE"}}, "required": ["assessment"]},
+          "then": {"properties": {"blockedReasons": {"minItems": 1}}}
+        },
+        {
+          "if": {"properties": {"assessment": {"enum": ["UNASSESSED", "NOT_APPLICABLE"]}}, "required": ["assessment"]},
+          "then": {"not": {"anyOf": [{"required": ["targetReleaseId"]}, {"required": ["targetReleaseActRef"]}, {"required": ["artifactAvailabilityEvidenceRef"]}, {"required": ["executionPlanRef"]}, {"required": ["verificationPlanRef"]}]}}
+        }
+      ]
+    },
+    "preparation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["preparedAt", "preparedByRunId", "acceptedSourceBasis"],
+      "properties": {
+        "preparedAt": {"type": "string", "format": "date-time"},
+        "preparedByRunId": {"$ref": "#/$defs/id"},
+        "acceptedSourceBasis": {"$ref": "#/$defs/basis"}
+      }
+    }
+  }
+}
