@@ -1,0 +1,152 @@
+{
+  "accepted_source_identities": {
+    "projects/chirality-app-dev/docs/PRD.md": {
+      "git_blob": "048e1ed174f71669a770d0b41b58e108efefef55",
+      "sha256": "ef638f43ccae1cd78b26b1ae078a33770cf64cc36c247c5d7da04b35196a4010"
+    },
+    "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md": {
+      "git_blob": "48ae8edf982f3ce92e7a686993f3832501e42576",
+      "sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83"
+    },
+    "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv": {
+      "git_blob": "ab2e13344d1ce071d2c1167320b7c875c373eaaf",
+      "sha256": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1"
+    }
+  },
+  "contract_population": {
+    "decomposition_derived": 51,
+    "held": 6,
+    "no_contract_currently_pins_terminal_basis": true,
+    "pkg00_controls": 2,
+    "total": 53
+  },
+  "dapp49_evidence_input": {
+    "artifact_hash_count": 16,
+    "artifact_hashes_sha256": "8bd3e1757ed439c87dbd5fcf82e1bf0189ce7275c2117f322f1cc42004fa87d6",
+    "package_path": "projects/chirality-app-dev/execution/_Evaluation/DAPP49_CURRENT_LOCATION_AUDIT_2026-07-27_FB16E32",
+    "population_status": "COMPLETE_AND_VERIFIED",
+    "role": "DERIVATIVE_CONTINUITY_EVIDENCE_ONLY"
+  },
+  "decision_id_candidate": "D-APP-78",
+  "declared_nonexistent_basis_commit": "416b29033bbacb0bc3648d84033272b7ab4e6e11",
+  "declared_nonexistent_basis_resolves": false,
+  "effects": [
+    "PROSPECTIVE_TERMINAL_BASIS_ADOPTION_ONLY",
+    "OPEN_H0_PREPARATION_AFTER_EFFECTIVE_GIT_CLOSEOUT"
+  ],
+  "effective_predecessor": {
+    "application_commit": "208cae9a834ca9d35c00de2a248d3a9d4be7de52",
+    "closeout_path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-77_EFFECTIVE_STATE_CLOSEOUT_2026-07-27.md",
+    "closeout_sha256": "9d56d686dd6407bf3cac114e64da6d2275e977c284232ee8b2f3f81c19d53999",
+    "decision_id": "D-APP-77",
+    "effective_commit": "a6b10683219c22f45f31e3dffa4fb164b4582051",
+    "effective_closeout_merge": "4deceb2bf2f3553b184d086bd8a8d94352a89af1",
+    "receipt_id": "Receipt-95",
+    "status": "DURABLE"
+  },
+  "held_historical_relations": [
+    {
+      "declared_nonexistent_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@416b29033bbacb0bc3648d84033272b7ab4e6e11",
+      "deliverable_id": "DEL-02-01",
+      "historical_relation": "HISTORICAL_RELATION_UNKNOWN",
+      "prospective_repair_never_reconstructs_history": true,
+      "sow_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/ScopeOfWork.md"
+    },
+    {
+      "declared_nonexistent_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@416b29033bbacb0bc3648d84033272b7ab4e6e11",
+      "deliverable_id": "DEL-02-02",
+      "historical_relation": "HISTORICAL_RELATION_UNKNOWN",
+      "prospective_repair_never_reconstructs_history": true,
+      "sow_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/ScopeOfWork.md"
+    },
+    {
+      "declared_nonexistent_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@416b29033bbacb0bc3648d84033272b7ab4e6e11",
+      "deliverable_id": "DEL-02-04",
+      "historical_relation": "HISTORICAL_RELATION_UNKNOWN",
+      "prospective_repair_never_reconstructs_history": true,
+      "sow_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md"
+    },
+    {
+      "declared_nonexistent_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@416b29033bbacb0bc3648d84033272b7ab4e6e11",
+      "deliverable_id": "DEL-05-04",
+      "historical_relation": "HISTORICAL_RELATION_UNKNOWN",
+      "prospective_repair_never_reconstructs_history": true,
+      "sow_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/ScopeOfWork.md"
+    },
+    {
+      "declared_nonexistent_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@416b29033bbacb0bc3648d84033272b7ab4e6e11",
+      "deliverable_id": "DEL-08-02",
+      "historical_relation": "HISTORICAL_RELATION_UNKNOWN",
+      "prospective_repair_never_reconstructs_history": true,
+      "sow_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-02_Persona_Alias_and_Agent_Matrix_Routing_Contract/ScopeOfWork.md"
+    },
+    {
+      "declared_nonexistent_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@416b29033bbacb0bc3648d84033272b7ab4e6e11",
+      "deliverable_id": "DEL-08-03",
+      "historical_relation": "HISTORICAL_RELATION_UNKNOWN",
+      "prospective_repair_never_reconstructs_history": true,
+      "sow_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/ScopeOfWork.md"
+    }
+  ],
+  "invariant_register": {
+    "invariant_families": 48,
+    "invariant_ids": 81,
+    "sha256": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1",
+    "status": "CREATED_CURRENT"
+  },
+  "nearby_history_is_not_provenance": true,
+  "non_effects": [
+    "NO_SCOPE_OF_WORK_EDIT",
+    "NO_REPIN",
+    "NO_APP_HOLD_CHANGE_OR_RELEASE",
+    "NO_HISTORICAL_PROVENANCE_INFERENCE",
+    "NO_DECOMPOSITION_OR_PRD_EDIT",
+    "NO_IMPLEMENTATION",
+    "NO_LIFECYCLE_OR_RELEASE"
+  ],
+  "owner_selection_token": "APPROVE OD6-G2-T1-A",
+  "pkg00_controls_preserved": [
+    {
+      "declared_basis": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/README.md@0724f26f6ef79d733c8f1c513b29d837fd43c8eb",
+      "deliverable_id": "DEL-00-01",
+      "sow_path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure/ScopeOfWork.md",
+      "terminal_action": "CONTROL_OUTSIDE_REPIN"
+    },
+    {
+      "declared_basis": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/README.md@0724f26f6ef79d733c8f1c513b29d837fd43c8eb",
+      "deliverable_id": "DEL-00-02",
+      "sow_path": "projects/chirality-app-dev/execution/PKG-00_DAG_Closure_and_Project_Control/1_Working/DEL-00-02_SCC-001_Runtime_SDK_Session_Tooling_Closure/ScopeOfWork.md",
+      "terminal_action": "CONTROL_OUTSIDE_REPIN"
+    }
+  ],
+  "prepared_from": "4deceb2bf2f3553b184d086bd8a8d94352a89af1",
+  "receipt_id_candidate": "Receipt-96",
+  "ref006": {
+    "prd_sha256": "ef638f43ccae1cd78b26b1ae078a33770cf64cc36c247c5d7da04b35196a4010",
+    "status": "CURRENT"
+  },
+  "sca_app_006": {
+    "audit_blockers": 0,
+    "candidate_content_commit": "5a92e8e76a6f4f567a30d0c7c4a39757ade0f678",
+    "closure": "CLOSED_FOR_SCOPE_CHANGE_ONLY",
+    "effective_merge_commit": "7b0be4d8772a16e5a4774a17988479587d00acca"
+  },
+  "sca_app_006_contract_review_set": [
+    "DEL-02-05",
+    "DEL-04-02",
+    "DEL-06-02",
+    "DEL-06-03",
+    "DEL-07-01",
+    "DEL-07-06",
+    "DEL-09-04"
+  ],
+  "schema": "chirality-od6-g2-t1-terminal-basis/v2",
+  "status": "EXACT_OWNER_CANDIDATE_NO_LIVE_EFFECT",
+  "terminal_decomposition_basis": {
+    "commit": "7b0be4d8772a16e5a4774a17988479587d00acca",
+    "git_blob": "48ae8edf982f3ce92e7a686993f3832501e42576",
+    "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "prospective_contract_basis": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca",
+    "sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83"
+  }
+}

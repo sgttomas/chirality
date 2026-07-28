@@ -2593,3 +2593,13 @@
     retired as current PEC v2 evidence, and current PEC v2 mechanism/evidence
     remains `UNKNOWN`. No scope, ScopeOfWork, repin, implementation, runtime,
     lifecycle, release, or professional-reliance effect occurs.
+
+- **2026-07-28 — Receipt 96** (OD6-G2-T1 terminal App decomposition-basis candidate application).
+  - Receipt-ID: `Receipt-96`
+  - Examined-Through: `4deceb2bf2f3553b184d086bd8a8d94352a89af1`
+  - Parent-Receipt: `Receipt-95`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — exact selection token `APPROVE OD6-G2-T1-A`; the authority-bearing record is `D-APP-78` and becomes ruled only if the owner returns that token against the presented application-manifest identity.
+  - Pointers: `execution/_Coordination/_DECISIONS/D-APP-78_OD6_G2_T1_TERMINAL_APP_BASIS_2026-07-28.md`; `execution/_Coordination/_PROPOSALS/OD6-G2-T1_TERMINAL_APP_BASIS_2026-07-28/TERMINAL_BASIS_MANIFEST.json`; sibling `H0_HANDOFF.md`.
+  - Checks: D-APP-77/Receipt 95 effective predecessor; SCA-APP-006 merge-parent and closure checks; decomposition, invariant-register, PRD, REF-006, lineage, and D-APP-49 evidence-package hash-list verification; APP-HOLD scan/register parity; contract population classes; missing-old-basis non-resolution; PKG-00 preservation; receipt and decision-ID scans; candidate hashes, path containment, and whitespace.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS managed by HELP_HUMAN; exact runtime model build not exposed; no Agent 2 delegated.
+  - Gate-Outcome: `EXECUTED` — exact owner selection transcribed and the bounded application postimage prepared without any ScopeOfWork edit, repin, hold change, historical-provenance inference, product change, lifecycle action, release, or Git effect.

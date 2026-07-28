@@ -1,0 +1,9 @@
+commit,date,subject
+26fc253b5e5bfe2d4ce63518b8e7feb0a9b441e3,2026-05-20T13:06:10-06:00,Scaffold ORCHESTRATOR execution workspace and coordination files
+29ebbea2f1f3c9c5fcc53ca032d215c3ea450097,2026-06-13T18:46:26-06:00,docs: land provider-general runtime scope change
+4412157d1de854cd4df6b96c0d00ac6612eadb76,2026-07-22T21:13:11-06:00,feat(app): add governed Pi oMLX second engine
+8688f1afdeb6e1667a6c34d551a0b0d0aa7d6fce,2026-07-22T21:49:50-06:00,docs(governance): authorize shared runtime pilot
+416b290334049762fe0b0c2a43df373c8da230ab,2026-07-23T20:26:52-06:00,docs(app): propagate woven dialogue governance
+a02d92f8e5d40193886fa82b21480fdf862c5bd2,2026-07-23T20:36:46-06:00,docs(app): close woven dialogue scope change
+16f7ed612eb703a9add123a9e83022097597255c,2026-07-27T10:37:50-06:00,docs: accept App runtime client boundary scope change
+5a92e8e76a6f4f567a30d0c7c4a39757ade0f678,2026-07-27T23:02:50-06:00,docs: accept App invariant mapping repair
