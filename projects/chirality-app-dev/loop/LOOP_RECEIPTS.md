@@ -2692,3 +2692,24 @@
     scan-authoritative protection remain; no contract, scope, implementation,
     runtime, lifecycle, identity, version, compatibility, facade-retirement,
     release, or professional-reliance effect occurs.
+
+- **2026-07-28 — Receipt 101** (D-APP-81 effective-state closeout and SCA pointer currency).
+  - Receipt-ID: `Receipt-101`
+  - Examined-Through: `21e8e54e1f5648b7d3db29228271aaa8c7d8904f`
+  - Parent-Receipt: `Receipt-100`
+  - Pointers: additive D-APP-81 closeout
+    `execution/_Coordination/_DECISIONS/D-APP-81_EFFECTIVE_STATE_CLOSEOUT_2026-07-28.md`;
+    corrected D-APP-81 register row; current
+    `execution/_ScopeChange/_LATEST.md`; central record-currency closeout
+    `execution/_Coordination/PROGRAM_ARCH_REMEDIATION_RECORD_CURRENCY_2026-07-28.md`
+    at repository Root.
+  - Checks: application/merge ancestry and second-parent identity; accepted
+    postimage reproduction; current hold guard and release validation; scope
+    pointer, receipt, path, containment, whitespace, and diff checks. Exact
+    measurements and hashes remain in the pointed records.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS managed by HELP_HUMAN;
+    exact runtime model build not exposed.
+  - Gate-Outcome: `EXECUTED` — effective only on durable merge. D-APP-81 is
+    recorded as effective and the live SCOPE_CHANGE pointer is made current.
+    No new product, scope, contract, hold, implementation, runtime, lifecycle,
+    release, or professional-reliance effect occurs.

@@ -1,17 +1,21 @@
 # _LATEST — Domain Engine control-area pointer
 
-**Latest snapshot:**
-`bridge/BRIDGE_2026-06-21_tier0-prep/` — closed prep-run artifact (immutable, K-SNAP-1). No separate owner acceptance of the snapshot document itself is on record; the substance it staged has since been ruled — profile **ADOPTED**, all 8 decisions **RULED** (2026-06-21). *(Reworded per D-GOV-06, ruled 2026-07-01; the old "PROPOSAL, not yet owner-accepted" framing contradicted the adoption facts below.)*
+**Current through:** D-T0-26 and bridge Receipt 31
 
 | Field | Value |
 |---|---|
-| Snapshot | `bridge/BRIDGE_2026-06-21_tier0-prep/` |
-| Date | 2026-06-21 |
-| Run type | Tier-0 bridge **prep** (BRIEF + PLAN + contract direction + readiness verdict) |
-| DOMAIN_ENGINE_ID | `open_pipe_stress` |
-| ProfileStatus | **ADOPTED** (Gate 2 approved by owner 2026-06-21) |
-| Integration level | MANUAL_BRIDGE (L0) |
-| Closure verdict | PARTIAL → **all 8 decisions RULED 2026-06-21** (see `RULINGS_PUBLISHED.md`); 4 canon edits FM-01..04 authorized-in-direction but gated (apply via framework-maintenance + CHANGE); SHAs bind at publish |
-| Next owner | **tier-0 adoption COMPLETE** (Gate 2 adopted 2026-06-21). Remaining live-build conditions: app-dev F3 · piping D-21 · DEC-041. app-dev follow-ons now actionable. |
+| Flow-A identity | D-T0-24: `flow-a.contract.v0.1.0` remains governed separately from the unnamed future Root runtime compatibility identity |
+| Shared-runtime lineage | D-T0-25: D-T0-23 preserved; post-D-PEC-58 residual classification current |
+| PEC profile | D-T0-26: version `0.3`, `STALE`, `MANUAL_BRIDGE`, `DENY_ALL_PROFILE_MEDIATED_INVOCATIONS`, historical binding only |
+| Current invocation posture | No governed profile-mediated PEC invocation; a PEC v2 successor profile requires separate adoption |
+| Effective identities | D-T0-24 `4ac8348e0c15795f33bf2192b2964ee1347aca59`; D-T0-25 `2c8e4168220b49f1e83a45aa916a6eb29856f0b4`; D-T0-26 `dc89356eb4db715bfe8357b25d8831c752cb822e` |
+| Current registers | `_DECISIONS/_REGISTER.md`, `DOMAIN_ENGINE_INDEX.md`, `profiles/pec.yaml`, and `bridge/LOOP_RECEIPTS.md` |
 
-> The profile is now **ADOPTED** (validated + human Gate 2 by owner 2026-06-21; D-T0-06) — the OpenPipeStress integration boundary is governed-authoritative. **Tier-0 adoption is complete** (1 of the 4 live-build conditions; remaining: app-dev F3 · piping D-21 · DEC-041). Rulings: `_DECISIONS/_REGISTER.md` + `RULINGS_PUBLISHED.md`. Closed snapshot folders are immutable (K-SNAP-1).
+## Historical prep snapshot
+
+`bridge/BRIDGE_2026-06-21_tier0-prep/` remains an immutable closed prep-run
+artifact under K-SNAP-1. Its profile-adoption and eight-decision facts remain
+historical; they do not override the later D-T0-24/25/26 current state.
+
+This pointer changes no Tier-0 authority. It reports the already-effective
+decisions and current fail-closed PEC profile posture.

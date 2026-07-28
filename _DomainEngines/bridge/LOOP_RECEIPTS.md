@@ -466,3 +466,21 @@
     authority is created.
   - Gate outcome: `EFFECTIVE_STATE_RECORDED_PENDING_CHANGE`.
   - Parked lanes: none created by this identity closeout.
+
+- **2026-07-28 — Receipt 32** (Tier-0 live-pointer currency closeout).
+  - Parent receipt: Receipt 31.
+  - Examined through:
+    `21e8e54e1f5648b7d3db29228271aaa8c7d8904f`.
+  - Applied: corrected `_DomainEngines/_LATEST.md` to report D-T0-24,
+    D-T0-25, D-T0-26, and the current PEC
+    `STALE / MANUAL_BRIDGE / DENY_ALL_PROFILE_MEDIATED_INVOCATIONS` posture.
+  - Evidence: all three effective commits are ancestors of the examined
+    basis; their decision, register, profile, index, validation, application,
+    and Receipt 31 surfaces are present.
+  - Owner direction of record: Ryan Tufts, in-session, 2026-07-28 —
+    "Finish out your plan now (attaining your goal) with self merge of PRs and
+    auto approve for owners rulings, which should still be recorded in the
+    usual manner with your recommendation standing as what I approved."
+  - Gate outcome: pointer currency only, effective on durable merge. No new
+    profile, project, product, implementation, runtime, migration,
+    compatibility, lifecycle, release, or reliance authority is created.
