@@ -394,3 +394,14 @@
   - Owner direction of record: tier-0 `D-T0-19` O-1A ruling (2026-07-06, in-session steer, Ryan Tufts, verbatim in `_DomainEngines/_DECISIONS/D-T0-19_pec_appdev_bridge_lane.md`) grants the **pec work loop** authoring scope for **decision/coordination packets only** in `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/**` (the pec↔app-dev bridge lane); dated grant note added to that register's preamble same day.
   - Gate outcome: deconfliction recorded, no bridge-loop act performed — `D-APP-*` IDs are minted from the live register at authoring time (next free at writing: `D-APP-51`); shared-surface edits serialized; app-dev source stays behind D-APP rulings; this loop's open rows are untouched and unruled by the pec loop's grant, and retirements remain the bridge loop's own acts (the next line carries Receipt 27's parked lanes forward verbatim); cross-reference: pec ledger `_DomainEngines/pec/LOOP_RECEIPTS.md` Receipt 32.
   - Parked lanes: PR #54 owner disposition; `D-12`, `D-07b`, `D-06b`; piping `D-30` consumption metadata refresh; app-dev F3/tier-0 L2→L3 movement after PR disposition.
+
+- **2026-07-27 — Receipt 28** (D-T0-24 publication/effective identity closeout).
+  - Durable predecessor: PR #380 merged at `4ac8348e0c15795f33bf2192b2964ee1347aca59`; the published
+    D-T0-24 decision and current register row are present on `main`.
+  - Publication identity: `aed9ef5ea1df7e128739fb6363218f0cc237e248`.
+  - Effective identity: `4ac8348e0c15795f33bf2192b2964ee1347aca59`.
+  - Recorded pointers: only the D-T0-24 `PublicationSHA`/`EffectiveSHA` fields,
+    the matching current-row parenthetical, and this additive receipt.
+  - Gate outcome: semantic ruling unchanged; no mapping, retirement,
+    supersession, compatibility claim, implementation, migration, repin,
+    lifecycle, release, or professional-reliance authority is created.

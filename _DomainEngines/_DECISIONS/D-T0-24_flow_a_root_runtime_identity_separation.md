@@ -1,14 +1,14 @@
 # D-T0-24 — Flow-A and Root runtime compatibility identity separation
 
-**Status:** `RULED_PENDING_PUBLICATION`
+**Status:** `RULED_EFFECTIVE`
 **Date prepared:** 2026-07-27
 **Decision ID:** D-T0-24
 **Prepared by:** DOMAIN_ENGINE (Agent 1)
 **Accepted repository basis:** `9fa2f82ac4b9e55873bcd7cd99ca042a4456fea2`
 **AcceptedCandidateSHA256:** `6a42c2c7c3d9cd86eb10168d4589de7ed0ede0972f00ef4f356ffd4ed972bd45`
 **DecisionSetManifestSHA256:** `a81aa66e73b8aa3812b6242343ca542c3cc77dc42163ce1b66dfa73ef582979e`
-**PublicationSHA:** `PENDING_SEPARATE_CHANGE_CLOSEOUT`
-**EffectiveSHA:** `PENDING_OWNER_APPROVED_MERGE_AND_BACKFILL`
+**PublicationSHA:** `aed9ef5ea1df7e128739fb6363218f0cc237e248`
+**EffectiveSHA:** `4ac8348e0c15795f33bf2192b2964ee1347aca59`
 
 ## Owner ruling
 
@@ -93,6 +93,7 @@ This candidate ruling does not:
 ## Closeout history
 
 The semantic subject is the byte-identified candidate selected by the owner.
-Application of this record and the register row requires a separate exact
-CHANGE approval. The publication and effective Git identities are backfilled
-after their respective acts without changing the ruling clauses.
+The record and register row were published by commit
+`aed9ef5ea1df7e128739fb6363218f0cc237e248` and became effective through PR #380 at merge commit
+`4ac8348e0c15795f33bf2192b2964ee1347aca59`. This bounded backfill records those identities without
+changing the ruling clauses.
