@@ -1,0 +1,10 @@
+[
+  {
+    "findings": [],
+    "path": "projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-01_Unix_socket_server_token_scoped_access/ScopeOfWork.md",
+    "requirements_checked": 0,
+    "requirements_not_checkable": 0,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

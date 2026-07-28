@@ -1,0 +1,158 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-06_Rebuild_performance_bounds",
+  "folder_name": "DEL-03-06_Rebuild_performance_bounds",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-007** \u2014 `DEL-03-06` is named \"Rebuild performance bounds\", Type `TEST_SUITE`, Context Envelope `S`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Perf tests + recorded bound\", `CoversScopeItems` `SOW-054`, `Sup",
+      "file": "ScopeOfWork.md",
+      "line": 216,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-009** \u2014 This deliverable has **two** accepted `EXECUTION` upstream edges and **two** `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-03-06-001` through `DEP-03-06-004` at `RegisterSchemaVersion` `v3.1`, under the v3.1 c",
+      "file": "ScopeOfWork.md",
+      "line": 221,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "**Register-hygiene observation, carried rather than smoothed.** Both `EXECUTION` rows have an empty `EvidenceQuote` and a `SourceRef` reading \"location TBD\", and both exhibit rows have an empty `BasisCitation`. This contract does not supply",
+      "file": "ScopeOfWork.md",
+      "line": 230,
+      "type": "TBD"
+    },
+    {
+      "excerpt": ">   including a change it cannot resolve to affected record-tier facts (TBD-003)",
+      "file": "ScopeOfWork.md",
+      "line": 324,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 383,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The concrete identity of the measurement corpus \u2014 which loop or loops, which checkouts, which commit state, and what its size is in the counts the record-tier ingest is a function of \u2014 is fixed by no accepted source. This is",
+      "file": "ScopeOfWork.md",
+      "line": 384,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The measurement environment and method parameters \u2014 the machine and operating environment, whether the store, filesystem cache, and process are cold or warm at the start of a timed run, how many repetitions are taken, which ",
+      "file": "ScopeOfWork.md",
+      "line": 385,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Where the recorded bound durably lives, and in what form, is fixed by no accepted source beyond the register phrase \"recorded bound\". It is chosen during production within REQ-003 and REQ-007, inside this deliverable's own w",
+      "file": "ScopeOfWork.md",
+      "line": 386,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 The suite's concrete invocation surface \u2014 its verb, its arguments, its exit-status contract, and whether it executes inside the `PKG-03` test run or as a separately invoked performance run \u2014 is fixed by no accepted source be",
+      "file": "ScopeOfWork.md",
+      "line": 387,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-004** \u2014 Every measurement the suite records shall carry its measurement conditions: the identity of the corpus measured over, including the commit state and the size counts that identify it (TBD-002); the measurement environment and",
+      "file": "ScopeOfWork.md",
+      "line": 398,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-010** \u2014 The suite's measurement method shall be repeatable: repeated execution over the same corpus, the same commit state, and the same declared conditions shall reproduce each measurement within a declared tolerance, and that tole",
+      "file": "ScopeOfWork.md",
+      "line": 404,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-006** \u2014 What \"the current corpus\" denotes is fixed by no accepted source. The phrase occurs three times in the accepted basis and its source corpus and is defined at none of them: `PEC-SVC-003` (\"Full rebuild of the current corpus\")",
+      "file": "ScopeOfWork.md",
+      "line": 432,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **VER-012** \u2014 Upstream-assumption inspection: grep this deliverable's source, fixtures, and call surface for any assertion or requirement that an upstream reconciler, engine, store, schema, parser, registry, or corpus artifact exists, ass",
+      "file": "ScopeOfWork.md",
+      "line": 464,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **AX-009** \u2014 Both edges cited here are `PROPOSAL` stratum and are *accepted* at that stratum: `D-PEC-62` \u00a71(4) records the owner accepting the DAG candidate v0.2 exhibit \"accepted, all strata as presented\", and that packet reads \"as prese",
+      "file": "ScopeOfWork.md",
+      "line": 477,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-012** \u2014 Unknowns stay marked. TBD-001 through TBD-005 and CON-001 through CON-006 are recorded rather than resolved by inference, and two of the six conflicts are explicitly upstream-carried. `C-03` `PACKAGE_LEVEL`, `C-04` `PHASE_PRE",
+      "file": "ScopeOfWork.md",
+      "line": 480,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-054 OBJ-005 | REQ-001, CLM-002, CLM-005, CLM-010, TBD-005 | AC-001 | VER-001 | The rebuild invocation record showing the upstream command used, a recorded search of this deliverable's source for a rebuild implementation or s",
+      "file": "ScopeOfWork.md",
+      "line": 519,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-054 OBJ-005 | REQ-002, CLM-012, TBD-005 | AC-002 | VER-002 | The incremental invocation record showing the upstream engine used, plus a recorded search of this deliverable's source for delta acquisition, delta-to-work resolu",
+      "file": "ScopeOfWork.md",
+      "line": 520,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-002 | SOW-054 OBJ-005 | REQ-003, REQ-013, CLM-003, CLM-016, CON-001, TBD-004 | AC-003 | VER-003 | Field-by-field inspection of the recorded bound showing separately labelled target, clause, measured-value, and confirmation fields, wit",
+      "file": "ScopeOfWork.md",
+      "line": 521,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-002 | SOW-054 OBJ-005 | REQ-004, CLM-007, CON-006, TBD-002, TBD-003 | AC-004 | VER-004 | The conditions set attached to every recorded measurement \u2014 corpus identity with commit state and size counts, environment, cold-or-warm start, r",
+      "file": "ScopeOfWork.md",
+      "line": 522,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-054 OBJ-005 | REQ-007, CLM-009, TBD-004 | AC-007 | VER-007 | Before/after measured-corpus tree hashes, the captured inventory of this deliverable's own filesystem writes each resolved to its workspace or the recorded bound, ",
+      "file": "ScopeOfWork.md",
+      "line": 525,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-054 OBJ-005 | REQ-010, TBD-003, AX-003 | AC-010 | VER-010 | The repeated measurement set with per-measurement reproduction inside the declared tolerance, the tolerance and repetition discipline as recorded, and the inspectio",
+      "file": "ScopeOfWork.md",
+      "line": 528,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 21,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

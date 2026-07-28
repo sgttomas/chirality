@@ -1,0 +1,103 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "The owner ruled the question at the SCA-002 Gate 3 in-session gate (2026-07-25,",
+      "file": "ScopeOfWork.md",
+      "line": 65
+    },
+    {
+      "excerpt": "- **CLM-013** \u2014 Observed corpus condition in this checkout on 2026-07-25, recorded as observation and not as specification. 1,289 files are named `_STATUS.md`; 234 of them sit in a deliverable directory (218 under `projects/`, across the `p",
+      "file": "ScopeOfWork.md",
+      "line": 158
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-01_STATUS_md_parser",
+  "folder_name": "DEL-02-01_STATUS_md_parser",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "`PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-011`, and",
+      "file": "ScopeOfWork.md",
+      "line": 104,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-006** \u2014 This deliverable has exactly one `EXECUTION` upstream edge, `[E-P03]`, held as `Dependencies.csv` (v3.1) row `DEP-02-01-003`. Attributing each quoted string to its actual column: `TargetDeliverableID` `DEL-01-01`, `TargetNam",
+      "file": "ScopeOfWork.md",
+      "line": 124,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-013** \u2014 Observed corpus condition in this checkout on 2026-07-25, recorded as observation and not as specification. 1,289 files are named `_STATUS.md`; 234 of them sit in a deliverable directory (218 under `projects/`, across the `p",
+      "file": "ScopeOfWork.md",
+      "line": 158,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation, not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 160,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The content of the declared dialect \u2014 which constructs the parser recognizes, how it locates the state token, the date and history grammar, and its validation rules \u2014 is fixed by no accepted PEC source. `PEC-RCN-002` require",
+      "file": "ScopeOfWork.md",
+      "line": 161,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The state vocabulary the dialect recognizes, and its treatment of a token outside that vocabulary, are undetermined. PRD \u00a77.1 names only the ladder ends; the fuller ladder of CLM-012 is repo-root governance rather than a PEC",
+      "file": "ScopeOfWork.md",
+      "line": 162,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The rule by which a file is admitted as a governed lifecycle file \u2014 as against a fixture or evidence copy of one (CLM-013) \u2014 is fixed by no accepted source. Locating the feeds of a project is `DEL-02-07`'s manifest scope (CL",
+      "file": "ScopeOfWork.md",
+      "line": 163,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-002** \u2014 The declared dialect shall include an explicit rule for which files it admits as governed lifecycle files, so that admission is a declared act rather than a consequence of file naming (CLM-013, TBD-004). The parser shall not",
+      "file": "ScopeOfWork.md",
+      "line": 175,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-010** \u2014 Unknowns stay marked. TBD-001 through TBD-004 and CON-001 through CON-003 are recorded rather than resolved by inference. Where an accepted source is silent \u2014 on the dialect's content, on the recognized state vocabulary, on s",
+      "file": "ScopeOfWork.md",
+      "line": 240,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-011 OBJ-001 OBJ-002 | REQ-001, CLM-001, CLM-002, CLM-004, CLM-005, TBD-002, CON-003 | AC-001 | VER-001 | Dialect documentation construct by construct, the conforming fixture, the parser output against its declared expectatio",
+      "file": "ScopeOfWork.md",
+      "line": 248,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 2,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 12,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 2
+    }
+  }
+}

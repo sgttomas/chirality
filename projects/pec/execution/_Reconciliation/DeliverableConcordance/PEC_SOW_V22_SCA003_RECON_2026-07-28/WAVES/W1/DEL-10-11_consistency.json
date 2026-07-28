@@ -1,0 +1,158 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "verification table, row `4v`). Both cells this contract's frontmatter binds are",
+      "file": "ScopeOfWork.md",
+      "line": 68
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile",
+  "folder_name": "DEL-10-11_Parity_metric_DriftFindings_per_reconcile",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-004** \u2014 `DEL-10-11` is named \"Parity metric (DriftFindings per reconcile)\", Type `MEASUREMENT`, Context Envelope `S`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Parity metric report\", `CoversScopeItems` `SOW",
+      "file": "ScopeOfWork.md",
+      "line": 85,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> `v3.1,DEP-10-11-003,PKG-10,DEL-10-11,Parity metric (DriftFindings per reconcile),EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-03,DEL-03-04,DEL-03-04,Practitioner-harness parity diff,execution/PKG-03_Reconciliation_Parity",
+      "file": "ScopeOfWork.md",
+      "line": 137,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> `ProposedMaturity` `TBD`. ID-shaped text inside this quotation is upstream",
+      "file": "ScopeOfWork.md",
+      "line": 143,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> `REQ-*`, `AC-*`, `CLM-*`, `TBD-*`, and `CON-*` records are separate and",
+      "file": "ScopeOfWork.md",
+      "line": 179,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> - **TBD-005** \u2014 The **trigger** of a parity run is fixed by no accepted source. The edge `Statement` says \"Parity diff runs over PEC derivations produced by reconcile\" and the `SOW-093` metric is stated \"per reconcile\", which fix the rela",
+      "file": "ScopeOfWork.md",
+      "line": 189,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 205,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The report's **home** \u2014 where it is written, published, or surfaced \u2014 is fixed by no accepted source. `PRD.md` \u00a711 states only that the metrics are \"measured in system behavior\", the `PEC-DSH` requirements enumerate five das",
+      "file": "ScopeOfWork.md",
+      "line": 206,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The report's **consumer** is fixed by no accepted source. `SOW-093` says \"Report \u2026 as the \u00a711 parity metric\" without naming a reader, an approver, or a recipient. `OBJ-006` requires the metric be gathered; no accepted source",
+      "file": "ScopeOfWork.md",
+      "line": 207,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The report's concrete **form and derivation surface** \u2014 whether it is a documented manual procedure, an instrumented query over the store, a generated view, or a periodic artifact, and its invocation surface if it has one \u2014 ",
+      "file": "ScopeOfWork.md",
+      "line": 208,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 The **reporting period and series shape** \u2014 whether the metric is a per-reconcile series, a rolling figure over a window, a per-release figure, or a single current value \u2014 is fixed by no accepted source. `SOW-093` fixes the ",
+      "file": "ScopeOfWork.md",
+      "line": 209,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-002** \u2014 The report shall declare, in its declared counting rule \u2014 a readable component of OUT-001 (OUT-001) \u2014 at minimum: the input source from which parity findings are read; the inclusion rule by which a finding is counted as a pa",
+      "file": "ScopeOfWork.md",
+      "line": 229,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-004** \u2014 The report and its derivation shall be read-only over everything they read. They shall create, modify, or delete no source file, no governed file, no register, and no lifecycle file, per `PEC-RCN-004` (\"it shall never modify",
+      "file": "ScopeOfWork.md",
+      "line": 231,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-015** \u2014 An accountable owner states what this metric is for and where it goes: whether the parity count feeds a threshold, a release gate, or a falsification determination \u2014 given that `PRD.md` \u00a711 item 5 states no threshold, the \u00a711",
+      "file": "ScopeOfWork.md",
+      "line": 256,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-009** \u2014 Unknowns remain marked. TBD-001 through TBD-005 and CON-001 through CON-006 are recorded rather than resolved by inference. This contract is lifecycle-neutral: `_STATUS.md` remains the sole lifecycle authority, is untouched b",
+      "file": "ScopeOfWork.md",
+      "line": 298,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "set; and (4) the `SOW-093` scope-item statement quoted in TBD-003, elided at the",
+      "file": "ScopeOfWork.md",
+      "line": 313,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-093 OBJ-006 | REQ-002, CLM-009, CON-001, CON-002, CON-005, TBD-004, TBD-005 | AC-002 | VER-002 | The declared counting rule as an artifact, the hand re-derivation of each figure from it, and the refused derivation under an u",
+      "file": "ScopeOfWork.md",
+      "line": 323,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-093 OBJ-006 | REQ-004, TBD-002 | AC-004 | VER-004 | Before/after hashes of the source tree, governed files, registers, lifecycle files, and stored findings, plus the captured filesystem-write inventory |",
+      "file": "ScopeOfWork.md",
+      "line": 325,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-093 OBJ-006 | REQ-012, CLM-016, TBD-001 | AC-012 | VER-012 | Dependency-manifest and import-graph inspection records, the absent/unproduced/unread transcripts showing unblocked reconciles and governed workflows, and the DEL-",
+      "file": "ScopeOfWork.md",
+      "line": 333,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-093 OBJ-006 | REQ-013, CLM-004, CLM-005, CLM-006, TBD-003, AX-008, AX-009 | AC-013 | VER-013 | The cross-check of every operational reading against the declared counting rule, plus the artifact search showing no resolution a",
+      "file": "ScopeOfWork.md",
+      "line": 334,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-093 OBJ-006 | CON-003, CON-004, CLM-003, CLM-012, TBD-002, TBD-003 | AC-015 | HUMAN_REVIEW: accountable owner statement of what the parity metric is for \u2014 whether it feeds a threshold, a release gate, or a falsification dete",
+      "file": "ScopeOfWork.md",
+      "line": 336,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 20,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "item_count": 7,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 100,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "e7c7ae02b254726a0a25422859b8a798b4b1989cd6cf013b0e1d41886ce3c80f"
+      },
+      "text": "The published ADR set contains exactly one decision record that names a single selected v2 core isolation style and states in its own text that it resolves OI-012.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-00-01-VER-001",
+          "source_line": 120,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published ADR set against `SOW-088`'s ledger statement, the `SOFTWARE_DECOMP.md` §5 row for `DEL-00-01`, and REQ-001, REQ-002, REQ-006, REQ-007."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-01-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 101,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "e7c7ae02b254726a0a25422859b8a798b4b1989cd6cf013b0e1d41886ce3c80f"
+      },
+      "text": "That decision record's context section reproduces the recorded Gate 4 basis elements of CLM-006 and adds no invariant or service rule absent from the accepted PRD and decomposition.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-00-01-VER-001",
+          "source_line": 120,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published ADR set against `SOW-088`'s ledger statement, the `SOFTWARE_DECOMP.md` §5 row for `DEL-00-01`, and REQ-001, REQ-002, REQ-006, REQ-007."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-00-01-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 102,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "e7c7ae02b254726a0a25422859b8a798b4b1989cd6cf013b0e1d41886ce3c80f"
+      },
+      "text": "The ADR set re-cites ADR-002 and ADR-014 as carried live postures, each with an explicit citation to the archived baseline, and asserts no carried posture beyond those two.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-00-01-VER-002",
+          "source_line": 121,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Citation resolution check: every carried-posture re-citation resolves to a locatable heading in `projects/pec/docs/.archive/adr/ADR.md`, and no other archived ADR is cited as live authority."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-01-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 103,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "e7c7ae02b254726a0a25422859b8a798b4b1989cd6cf013b0e1d41886ce3c80f"
+      },
+      "text": "The ADR set names itself in its own text as the resolution of OI-012, and that self-identification is consistent with the disposition the open-issue register already carries for OI-012 — \"Decided in DEL-00-01's ADR; owner review at that ADR\" — requiring no change to it. The set decides none of OI-001 through OI-009 or OI-013 and claims no register-side effect; any register-side update is an out-of-scope downstream act (SCOPE_CHANGE or coordination upkeep), not a completion condition of this deliverable.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-00-01-VER-001",
+          "source_line": 120,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published ADR set against `SOW-088`'s ledger statement, the `SOFTWARE_DECOMP.md` §5 row for `DEL-00-01`, and REQ-001, REQ-002, REQ-006, REQ-007."
+        },
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-00-01-VER-003",
+          "source_line": 122,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Read-only cross-check of the published ADR set against `SOFTWARE_DECOMP.md` §10 Open Issues: confirm that the set's self-identified OI-012 resolution is consistent with the OI-012 disposition already recorded there, and that no statement in the set decides OI-001 through OI-009 or OI-013. The register is read, never written: this verification performs and expects no register edit, and any register-side update the owner later requires is a downstream act outside this deliverable's authority."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-01-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 104,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "e7c7ae02b254726a0a25422859b8a798b4b1989cd6cf013b0e1d41886ce3c80f"
+      },
+      "text": "The ADR set states the entity-schema versus store-persistence seam inside PKG-01 explicitly enough that a reader can classify a candidate PKG-01 change as core or adapter.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-00-01-VER-001",
+          "source_line": 120,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published ADR set against `SOW-088`'s ledger statement, the `SOFTWARE_DECOMP.md` §5 row for `DEL-00-01`, and REQ-001, REQ-002, REQ-006, REQ-007."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-00-01-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 105,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "e7c7ae02b254726a0a25422859b8a798b4b1989cd6cf013b0e1d41886ce3c80f"
+      },
+      "text": "The v2 docs-tree path is recorded in the deliverable packet, the ADR markdown entries exist at that path, and the run produced no write outside `PKG-00`.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-00-01-VER-004",
+          "source_line": 123,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Path and dependency check: the packet-recorded v2 docs-tree path exists and holds the ADR entries, `DEL-00-02` and `DEL-01-01` could reference them as dependency inputs under the proposed edges `[E-N18]` and `[E-P01]` without republication, and the change set touches no path outside `PKG-00`."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-00-01-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 106,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "e7c7ae02b254726a0a25422859b8a798b4b1989cd6cf013b0e1d41886ce3c80f"
+      },
+      "text": "An accountable owner confirms the selected core isolation style at the ADR, consistent with the OI-012 disposition \"owner review at that ADR\", and confirms that nothing in the set makes a governed act depend on PEC-held state.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner review at the DEL-00-01 ADR, per the OI-012 disposition recorded in SOFTWARE_DECOMP.md"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-00-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-00",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "e7c7ae02b254726a0a25422859b8a798b4b1989cd6cf013b0e1d41886ce3c80f"
+  },
+  "tool_version": "1"
+}

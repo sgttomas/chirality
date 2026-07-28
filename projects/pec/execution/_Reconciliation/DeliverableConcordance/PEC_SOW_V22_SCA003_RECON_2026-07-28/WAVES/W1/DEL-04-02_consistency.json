@@ -1,0 +1,128 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA",
+  "folder_name": "DEL-04-02_Delta_service_since_SHA",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-002** \u2014 `SOW-005`'s `SourceRef` cell names one locus, `PEC-ORI-002`, the `PRD.md` \u00a79.1 orientation requirement, quoted here in full as it reads: \"PEC shall serve deltas since a caller-supplied commit SHA.\" That is the entire accepte",
+      "file": "ScopeOfWork.md",
+      "line": 118,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-005** \u2014 `DEL-04-02` is named \"Delta service since SHA\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Delta service + tests\", `CoversScopeItems` `SOW-005`, `S",
+      "file": "ScopeOfWork.md",
+      "line": 137,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-008** \u2014 This deliverable has **one** accepted `EXECUTION` upstream edge and **two** `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-04-02-001` through `DEP-04-02-003` at `RegisterSchemaVersion` `v3.1`. The two anchors a",
+      "file": "ScopeOfWork.md",
+      "line": 153,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "The corresponding accepted DAG exhibit row, under that exhibit's columns `EdgeID,PredecessorID,SuccessorID,Stratum,EdgeKind,Flag,BasisCitation,Rationale`, reads `E-P33,DEL-03-02,DEL-04-02,PROPOSAL,CONSUMES,,,Deltas since SHA ride the increm",
+      "file": "ScopeOfWork.md",
+      "line": 155,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 239,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The service's concrete in-process interface \u2014 its entry-point name, the form in which the caller-supplied SHA is passed, its other parameters, and the shape of the value it returns \u2014 is fixed by no accepted source beyond the",
+      "file": "ScopeOfWork.md",
+      "line": 240,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The internal representation of a difference \u2014 whether the service holds a per-element before/after pair, a change classification, an added/changed/removed partition, or an element list with no classification \u2014 is fixed by no",
+      "file": "ScopeOfWork.md",
+      "line": 241,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Where the delta-composition record of OUT-001 lives and in what form it is published are fixed by no accepted source; they are chosen during production within REQ-005, which fixes what it must declare rather than where it si",
+      "file": "ScopeOfWork.md",
+      "line": 242,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-010** \u2014 The service shall expose its value through an in-process interface and shall implement no socket binding, no token or access-class check, no wire schema or serialization format, no subscription or stream endpoint, and no ren",
+      "file": "ScopeOfWork.md",
+      "line": 259,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> - **TBD-004** \u2014 Where the baseline record durably lives is fixed by no accepted",
+      "file": "ScopeOfWork.md",
+      "line": 285,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **VER-008** \u2014 Type-boundary inspection: assert every served element is constructed against an entity type the upstream model obliges; inspect this deliverable's source for record-tier and presence-tier type definitions, schema fields, fee",
+      "file": "ScopeOfWork.md",
+      "line": 332,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **AX-006** \u2014 Unknowns stay marked, and four of the five conflicts here are gaps at the level of accepted truth rather than production choices. What a delta ranges over (CON-003), over what scope unit (CON-004), and how the anchor resolves",
+      "file": "ScopeOfWork.md",
+      "line": 348,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-010** \u2014 The one upstream edge and the one downstream relation cited here are `PROPOSAL` stratum and are *accepted* at that stratum: `D-PEC-62` \u00a71(4) records the owner accepting the DAG candidate v0.2 exhibit as \"accepted, all strata ",
+      "file": "ScopeOfWork.md",
+      "line": 352,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "longer record; and its `TBD-004`, quoted whole. The `PEC-K-*` quotations other",
+      "file": "ScopeOfWork.md",
+      "line": 371,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-005 OBJ-001 OBJ-002 | REQ-005, TBD-003, TBD-004, CON-002, CON-004, AX-006 | AC-005 | VER-005 | The delta-composition record itself, plus a fixture serve in which every produced element is traced to the source, resolution rul",
+      "file": "ScopeOfWork.md",
+      "line": 392,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-005 OBJ-001 OBJ-002 | REQ-010, CLM-006, CLM-012, TBD-002 | AC-010 | VER-010 | Interface-reachability evidence, recorded searches for socket, token, wire-schema, serialization, subscription, and rendering code, and a separate",
+      "file": "ScopeOfWork.md",
+      "line": 397,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 16,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

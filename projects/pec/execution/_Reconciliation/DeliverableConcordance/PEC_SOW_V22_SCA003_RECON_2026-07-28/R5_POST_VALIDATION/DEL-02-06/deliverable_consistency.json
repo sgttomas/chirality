@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "The owner ruled the question at the SCA-002 Gate 3 in-session gate",
+      "file": "ScopeOfWork.md",
+      "line": 65
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser",
+  "folder_name": "DEL-02-06_Workplan_LOOP_INIT_parser",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-004** \u2014 `DEL-02-06` is named \"Workplan/LOOP_INIT parser\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Parser + fixture tests\", `CoversScopeItems` `SOW-016`,",
+      "file": "ScopeOfWork.md",
+      "line": 118,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-007** \u2014 This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-P08]`, held as `Dependencies.csv` register row `DEP-02-06-003`. Attributed by column: `DependencyClass` `EXECUTION`, `AnchorType` `NOT_APPLICABLE`, `Di",
+      "file": "ScopeOfWork.md",
+      "line": 124,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 168,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The grammar this parser declares \u2014 which prose constructs of a workplan or `LOOP_INIT.md` file constitute a Step, which constitute a Gate, how a gate's recorded state is recognized across the notations of CLM-015, and how a ",
+      "file": "ScopeOfWork.md",
+      "line": 169,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The field sets of the Workplan, Step, and Gate entities are not enumerated by any accepted source. `PRD.md` \u00a77.1 gives one purpose sentence for the compound row and the upstream contract quoted in CLM-008 obliges the three t",
+      "file": "ScopeOfWork.md",
+      "line": 170,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 How the parser discovers which files are workplans and `LOOP_INIT.md` protocol files is fixed by no accepted source. `SOW-016` states the feed by name and states no path scope; `PEC-RCN-002` names the feed manifest as `_harn",
+      "file": "ScopeOfWork.md",
+      "line": 171,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 How a workplan or `LOOP_INIT.md` file binds to the Loop it governs is fixed by no accepted source. `PRD.md` \u00a77.1 defines Loop as \"a LOOP_INIT/workplan-governed work loop\", which states the relation without stating how it is ",
+      "file": "ScopeOfWork.md",
+      "line": 172,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-005** \u2014 The parser shall not represent any workplan as the standing plan of a loop except on a basis it declares and that the source states. A candidate, archived, superseded, or proposal-staged workplan (CLM-015) shall not be emitt",
+      "file": "ScopeOfWork.md",
+      "line": 183,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-002** \u2014 The Workplan, Step, and Gate field sets are owned upstream and do not yet exist. `DEL-01-01` is `INITIALIZED`: its contract obliges the three types to be distinct and to carry protocol steps, owner gates, and gate state (CLM",
+      "file": "ScopeOfWork.md",
+      "line": 209,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-004** \u2014 The read scope of this feed is unstated at the level of accepted truth. `SOW-014` bounds its sibling parser to `execution/**` and `SOW-017` bounds its sibling to a per-project path, but `SOW-016` names the feed only as \"work",
+      "file": "ScopeOfWork.md",
+      "line": 211,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 17,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 7
+    }
+  }
+}

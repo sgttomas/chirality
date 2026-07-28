@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-01_Step_0_cost_baseline_pre_P1",
+  "folder_name": "DEL-10-01_Step_0_cost_baseline_pre_P1",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-001** \u2014 `DEL-10-01` is named \"Step-0 cost baseline (pre-P1)\", Type `MEASUREMENT`, Context Envelope `S` with no envelope notes, `PhaseHint` `pre-P1`, `ResponsibleParty` `TBD`, covering `SOW-058` and supporting `OBJ-001;OBJ-006`; sour",
+      "file": "ScopeOfWork.md",
+      "line": 63,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; assignment happens at WORKING_ITEMS activation, not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 66,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The sampling design of the baseline \u2014 which loops and scopes are sampled, how many loop-iteration orientations constitute the baseline, and over what window \u2014 is not fixed by the accepted decomposition or by PRD \u00a711.1, which",
+      "file": "ScopeOfWork.md",
+      "line": 67,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The concrete repository path at which the method document and the baseline report are published is not fixed by the accepted decomposition; it is set by this deliverable's packet and remains unresolved in this contract.",
+      "file": "ScopeOfWork.md",
+      "line": 68,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-001** \u2014 The method shall define the measured unit \u2014 one loop-iteration orientation \u2014 in terms the accepted sources support (`CLM-004`, `CLM-005`), and shall state the sampling population, the sample count, and the observation window",
+      "file": "ScopeOfWork.md",
+      "line": 93,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-009** \u2014 The method shall state which criterion it applies for the precondition re-test \u2014 the harness's original latency criterion, the token metric, both, or a declared successor \u2014 and shall not silently substitute one unit for the ",
+      "file": "ScopeOfWork.md",
+      "line": 101,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **REQ-011** \u2014 Both artifacts shall be published at the path set by this deliverable's packet (`TBD-003`), and that path shall be recorded before the artifacts are treated as consumable; production shall write only within `PKG-10`.",
+      "file": "ScopeOfWork.md",
+      "line": 103,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "sampling design (`TBD-002`), token counting boundary, and precondition-re-test",
+      "file": "ScopeOfWork.md",
+      "line": 120,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "criterion (`CON-001`); record the packet path (`TBD-003`); execute the method",
+      "file": "ScopeOfWork.md",
+      "line": 121,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-006** \u2014 Unknowns remain marked. `TBD-001`, `TBD-002`, `TBD-003`, and `CON-001` are recorded rather than resolved by inference. `CON-001` in particular is a unit-of-measure question the accepted sources do not answer; this contract fi",
+      "file": "ScopeOfWork.md",
+      "line": 141,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 13,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 3
+    }
+  }
+}

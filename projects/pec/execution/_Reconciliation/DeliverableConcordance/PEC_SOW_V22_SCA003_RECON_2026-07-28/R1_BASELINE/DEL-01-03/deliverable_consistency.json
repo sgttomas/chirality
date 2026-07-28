@@ -1,0 +1,68 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-03_Store_bootstrap_content_minimal_guard",
+  "folder_name": "DEL-01-03_Store_bootstrap_content_minimal_guard",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation.",
+      "file": "ScopeOfWork.md",
+      "line": 70,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The store's concrete on-disk path, filename, and storage engine are not fixed by any accepted source. `PEC-K-02` and `PEC-RCN-001` say \"database\" without naming a technology, and PRD \u00a77.3 carries \"SQL-level append-only enfor",
+      "file": "ScopeOfWork.md",
+      "line": 71,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-008** \u2014 The store lifecycle module shall expose the store to its consumers through an interface that carries no concrete path or storage-engine detail, so that resolving TBD-002 differently, or relocating the store later, changes no",
+      "file": "ScopeOfWork.md",
+      "line": 82,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "exactly one store to write to, and the interface cannot hide TBD-002 until",
+      "file": "ScopeOfWork.md",
+      "line": 104,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-056 OBJ-005 | REQ-001, CLM-005, TBD-002 | AC-001 | VER-001 | Ignore-rule inspection and `git check-ignore`/`git status` output over a populated store |",
+      "file": "ScopeOfWork.md",
+      "line": 132,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-056 OBJ-005 | REQ-007, REQ-008, TBD-002 | AC-007, AC-008 | VER-007 | Dependency-manifest and import-graph inspection records; the consumer-facing interface signature |",
+      "file": "ScopeOfWork.md",
+      "line": 134,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 6,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

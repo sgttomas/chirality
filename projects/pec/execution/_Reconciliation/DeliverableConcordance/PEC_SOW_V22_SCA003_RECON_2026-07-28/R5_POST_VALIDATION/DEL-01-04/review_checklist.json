@@ -1,0 +1,201 @@
+{
+  "item_count": 7,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 77,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62"
+      },
+      "text": "Every reconcile run produces exactly one durable log event carrying a run identity and a timestamp, and a fixture run whose event is suppressed is detected as a failure rather than passing silently.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-01-04-VER-001",
+          "source_line": 97,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute a reconcile run against a fixture corpus and assert exactly one recorded event bearing run identity and timestamp, then run the same assertion against a fixture whose emission is suppressed and confirm the check fails."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-04-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 78,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62"
+      },
+      "text": "Ingest-activity events validate against the same event schema as reconcile-run events, demonstrated by a fixture emitter, and the schema carries no reconcile-only assumption that would require a change when the P3 ingest subject arrives.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-01-04-VER-002",
+          "source_line": 98,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Drive a fixture ingest-activity emitter through the module, assert its events validate against the same schema as reconcile-run events, and inspect the schema and module interface for reconcile-only fields or assumptions."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-01-04-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 79,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62"
+      },
+      "text": "No recorded event carries file or diff content or restated authored text, only the `PEC-K-10` field classes, and the module refuses in-place mutation and deletion of any recorded event through every interface it exposes.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-01-04-VER-003",
+          "source_line": 99,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Apply a content-minimality check across generated events asserting only `PEC-K-10` field classes and no file, diff, or authored-text payload, then attempt in-place mutation and deletion through every module interface and assert both are refused."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-04-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 80,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62"
+      },
+      "text": "The inspection command presents recorded events in recorded order with each event's identity and timestamp, and reports an empty or absent log with an explicit statement that is distinguishable from a report of observed clean runs.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-01-04-VER-004",
+          "source_line": 100,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the inspection command over populated, single-event, and empty log fixtures and assert recorded order, per-event identity and timestamp, and an explicit empty-or-absent report textually distinguishable from an observed-clean-run report."
+        },
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-01-04-VER-005",
+          "source_line": 101,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Delete, make unwritable, and omit the log store in turn, then run a reconcile against a fixture corpus and assert unblocked completion with its normal result, plus an explicit inspection-command absence report in each case. Scope boundary: representative governed workflows and the kill test are not executed here; that is `DEL-10-02`'s standing gate under `SOW-055` (CLM-009), and no output of this method may be presented as satisfying it."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-04-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 81,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62"
+      },
+      "text": "With the log store deleted, unwritable, or absent, a reconcile run completes unblocked and produces its normal result, and the inspection command reports the absence explicitly rather than as an observed clean run. The system-level kill test — deleting the store, running representative governed workflows, and asserting that nothing blocks — belongs to `DEL-10-02` under `SOW-055` and `PEC-SVC-004` (CLM-009); no accepted edge connects this deliverable to it, and this criterion neither exercises nor discharges it.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-01-04-VER-005",
+          "source_line": 101,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Delete, make unwritable, and omit the log store in turn, then run a reconcile against a fixture corpus and assert unblocked completion with its normal result, plus an explicit inspection-command absence report in each case. Scope boundary: representative governed workflows and the kill test are not executed here; that is `DEL-10-02`'s standing gate under `SOW-055` (CLM-009), and no output of this method may be presented as satisfying it."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001",
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-01-04-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 82,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62"
+      },
+      "text": "The module and the inspection command add no third-party runtime dependency, make no network call, and write only under the gitignored store path, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-01-04-VER-006",
+          "source_line": 102,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the service-core dependency manifest and the module and command import graph for third-party runtime dependencies and network calls, assert every write path resolves under the gitignored store path, and re-run the `DEL-01-05` locality and zero-dependency enforcement once that deliverable is available."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-01-04-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 83,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62"
+      },
+      "text": "The automated test suite implements VER-001 through VER-006, executes in the service-core test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-01-04-VER-007",
+          "source_line": 103,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the service-core test suite and confirm that each of VER-001 through VER-006 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-01-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-01",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "4dd777f8f30cf5483d3c33bd002359e7266f8e411e74ba8655e2afc5aa367e62"
+  },
+  "tool_version": "1"
+}

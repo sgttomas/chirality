@@ -1,0 +1,220 @@
+{
+  "item_count": 8,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 107,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e"
+      },
+      "text": "The published method defines the measured unit, the sampling population, the sample count, the observation window, and the token counting boundary, in text sufficient for a second party to repeat the measurement without further instruction.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-01-VER-001",
+          "source_line": 129,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published method against `SOW-058`'s ledger statement, the `SOFTWARE_DECOMP.md` §5 row for `DEL-10-01`, PRD §11.1 and §2, and `REQ-001`, `REQ-002`, `REQ-003`, `REQ-004`, `REQ-009`."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-01-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 108,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e"
+      },
+      "text": "The published method states its repeatability conditions and declared limits, and states in its own text that the identical protocol applies unchanged to the post-P1 \"after\" measurement of the same metric.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-01-VER-001",
+          "source_line": 129,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published method against `SOW-058`'s ledger statement, the `SOFTWARE_DECOMP.md` §5 row for `DEL-10-01`, PRD §11.1 and §2, and `REQ-001`, `REQ-002`, `REQ-003`, `REQ-004`, `REQ-009`."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-10-01-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 109,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e"
+      },
+      "text": "The baseline report records, for every sampled orientation, a token count, a capture date, a corpus commit or SHA, and the loop and scope sampled; every capture date precedes the start of the first P1 node.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-10-01-VER-002",
+          "source_line": 130,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Data-completeness check of the baseline report: every sampled orientation carries a token count, capture date, corpus commit or SHA, and loop/scope identifier; the sample matches the method's declared sampling design; every capture date precedes the recorded start of the first P1 node."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-10-01-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 110,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e"
+      },
+      "text": "The baseline report records the query-pain re-test with an explicitly named criterion, cites the 2026-07-02 unmet record, states the observed result, and contains no statement that directs the harness or opens its cache half.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-10-01-VER-003",
+          "source_line": 131,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Citation resolution and boundary check on the precondition re-test: the cited 2026-07-02 record and PRD §15 resolve to locatable text, the applied criterion is named, and no statement in either artifact directs the harness or opens its cache half."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-01-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 111,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e"
+      },
+      "text": "Every statement in both artifacts is classifiable by a reviewer as measurement method, measured value, or declared limit; neither artifact contains a requirement or acceptance criterion for a behavior owned by another package.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-10-01-VER-004",
+          "source_line": 132,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Classification check against `REQ-008` and `REQ-012`: each statement in both artifacts is labelled method, value, or limit; no statement is a requirement or acceptance criterion for another package's behavior; no \"after\" value or falsification verdict is asserted."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-10-01-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 112,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e"
+      },
+      "text": "The packet-recorded path exists and holds both the method document and the baseline report, and the production change set touches no path outside `PKG-10`.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-10-01-VER-005",
+          "source_line": 133,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Path and dependency check: the packet-recorded path exists and holds both artifacts, `DEL-04-01` and `DEL-08-04` can consume them as declared sequencing predecessors, and the change set touches no path outside `PKG-10`."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-01-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 113,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e"
+      },
+      "text": "The published method states which criterion the precondition re-test applies, or records `CON-001` as still unresolved and names what would settle it; neither artifact silently substitutes the token metric for the latency criterion or the reverse.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-01-VER-001",
+          "source_line": 129,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Document inspection of the published method against `SOW-058`'s ledger statement, the `SOFTWARE_DECOMP.md` §5 row for `DEL-10-01`, PRD §11.1 and §2, and `REQ-001`, `REQ-002`, `REQ-003`, `REQ-004`, `REQ-009`."
+        },
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-10-01-VER-003",
+          "source_line": 131,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Citation resolution and boundary check on the precondition re-test: the cited 2026-07-02 record and PRD §15 resolve to locatable text, the applied criterion is named, and no statement in either artifact directs the harness or opens its cache half."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-10-01-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 114,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e"
+      },
+      "text": "An accountable owner confirms that the captured baseline is fit to serve as the \"before\" leg of PRD §11 metric 1 and that the `PRE_P1_OBLIGATION` constraint is satisfied before any P1 node starts.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation that the captured baseline serves as the PRD §11 metric-1 \"before\" leg and that the PRE_P1_OBLIGATION constraint is satisfied before any P1 node starts"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e"
+  },
+  "tool_version": "1"
+}

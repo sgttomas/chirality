@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-10_Directed_bootstrap_self_ingest_validation",
+  "folder_name": "DEL-10-10_Directed_bootstrap_self_ingest_validation",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-007** \u2014 `DEL-10-10` is named \"Directed bootstrap self-ingest validation\", Type `TEST_SUITE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-064`, `SupportsObjectives` `OBJ-006`. Its `Delive",
+      "file": "ScopeOfWork.md",
+      "line": 171,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> `DEL-10-10,PKG-10,Directed bootstrap self-ingest validation,\"Introduced in P1 and used as a standing validation thereafter. Maintain one bootstrap progression record showing ingestion of PEC's accepted full dependency DAG, capability cuto",
+      "file": "ScopeOfWork.md",
+      "line": 173,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-009** \u2014 This deliverable's `Dependencies.csv` (`RegisterSchemaVersion` `v3.1`) holds exactly four rows: two `ANCHOR` rows and two `EXECUTION` upstream rows. The anchors are `DEP-10-10-001` (`AnchorType` `IMPLEMENTS_NODE`, `TargetRef",
+      "file": "ScopeOfWork.md",
+      "line": 191,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-016** \u2014 The `SOW-064` `Notes` cell carries three constraints in the register's own voice, and all three bind this contract: \"observations grant no authority or scope, the file-native fallback remains operable, and generality is vali",
+      "file": "ScopeOfWork.md",
+      "line": 315,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 321,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 What mechanism runs this standing validation \u2014 what re-runs it, on what occasions, and whether re-running is an automated check, a governed workflow act, or a human review pass \u2014 is fixed by no accepted source. `C-08` says s",
+      "file": "ScopeOfWork.md",
+      "line": 322,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 Where the progression record lives \u2014 its path, its format, and whether it is one file or a directory of dated entries \u2014 is fixed by no accepted source. `AnticipatedArtifacts` names the record and its facets and no location; ",
+      "file": "ScopeOfWork.md",
+      "line": 323,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 What constitutes \"acceptance\" of a predecessor for the purposes of a capability cutover is fixed by no accepted source at this deliverable's level. `_DEPENDENCIES.md` records the Phase 1.3 owner-ruled dependency maturity thr",
+      "file": "ScopeOfWork.md",
+      "line": 324,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 The \"structurally different loop\" against which generality is validated after self-ingestion is named by no accepted source. `SOW-064`'s `Notes`, `PRD.md` \u00a712, `D-PEC-61` item 1, and `C16` each state the obligation without n",
+      "file": "ScopeOfWork.md",
+      "line": 325,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-002** \u2014 The record shall evidence, for each capability cutover in the progression, that the consuming node consumed only PEC capabilities already produced and **accepted** by predecessor nodes, and that no node depended on the capab",
+      "file": "ScopeOfWork.md",
+      "line": 336,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 17,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 7
+    }
+  }
+}

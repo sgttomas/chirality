@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-08-01
 package_id: PKG-08
-decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
+decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a
 project_scope_refs: [SOW-003, SOW-040]
 package_objective_refs: [OBJ-001]
 ---
@@ -17,11 +17,10 @@ It covers project scope items `SOW-003` and `SOW-040` in service of package
 objective `OBJ-001`.
 
 The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
-**revision 1.2** (`current_basis`, SCA-002 successor, accepted at `D-PEC-64`
-closure), pinned at commit `3623b958b`. The deliverable-local `_REFERENCES.md`
-still names revision 1.1; that phrase is superseded provenance from a deferred
-pointer sweep and is not the basis of this contract, as `_CONTEXT.md`'s own
-supersession line records.
+**revision 1.3** (`current_basis`, SCA-003 successor), pinned at merge
+`11a494e9a`. The deliverable-local `_REFERENCES.md` now cites that current
+basis under the reference-parity integration at `af62343d3`. `_CONTEXT.md`
+retains its earlier supersession trace as provenance.
 
 **Objective warrant.** The `DEL-08-01` → `OBJ-001` attribution was made by
 SCA-002 and accepted at revision 1.2. It runs through the PRD anchors of this
@@ -89,8 +88,8 @@ fourth artifact is created by this contract.
 
 - **CLM-001** — `DEL-08-01` is typed `SECURITY_CONTROL` at Context Envelope `M` with `PhaseHint` `P1` in the accepted decomposition. Its outputs are a transport binding and an access-control decision surface; the operations served over that surface are defined by sibling deliverables, not here.
 - **CLM-002** — `DEL-08-01` is a root node with no upstream predecessors (`_DEPENDENCIES.md`; `Dependencies.csv` holds only the three ANCHOR rows `DEP-08-01-001` package anchor, `DEP-08-01-002` `SOW-003` trace, `DEP-08-01-003` `SOW-040` trace). Five accepted downstream relations are recorded, all five at `PROPOSAL` stratum: `DEL-09-06` (Universal drill-down to cited source) CONSUMES `[E-N06]`, `PROPOSAL`; `DEL-10-12` (Poll-adoption measurement) MEASURES `[E-N08]`, `PROPOSAL`; `DEL-08-04` (Orientation latency budget, p95 ≤ 100 ms) TESTS `[E-P52]`, `PROPOSAL`; `DEL-10-03` (No-ruling-write verification) TESTS `[E-P54]`, `PROPOSAL`; and `DEL-08-05` (SSE delta/presence subscription) CONSUMES `[E-P58]`, `PROPOSAL`. Those consumers' own scope is not defined here.
-- **CLM-003** — At the time of this contract `_STATUS.md` records lifecycle state `OPEN`, and no socket server, token mechanism, access-class logic, or test exists. Every statement below describes what a future implementation must satisfy; nothing here asserts that anything has been built.
-- **CLM-004** — The access classes are exactly owner, harness, and admin, per PRD §8 and `SOW-003`. PRD §8 characterizes them: the human owner has full read over dashboards, decision slate, and presence board; harnesses (the runtime daemon and the terminal-session hooks CLI) are "machine consumers of the API on behalf of agent sessions"; agents never call PEC directly by instruction and receive harness-injected orientation as labeled data (`PEC-K-03`). PRD §8 names no equivalent characterization for admin.
+- **CLM-003** — At the time of this reconciliation `_STATUS.md` records lifecycle state `INITIALIZED`, and no socket server, token mechanism, access-class logic, or test exists. Every statement below describes what a future implementation must satisfy; nothing here asserts that anything has been built.
+- **CLM-004** — The access classes are exactly owner, harness, and admin, per PRD §8 and `SOW-003`. PRD §8 characterizes them: the human owner has full read over dashboards, decision slate, and presence board; explicitly PEC-enabled harnesses may act as machine consumers of the API on behalf of agent sessions. Under `PEC-K-03`, whether and when such a consumer requests orientation and whether it optionally injects labeled non-authoritative data are consumer-owned decisions subject to verify-before-rely; no polling, cadence, contact, or injection duty follows from the access class. PRD §8 names no equivalent characterization for admin.
 - **CLM-005** — Schema versioning, response format, latency budget, and SSE subscription belong to the sibling PKG-08 deliverables `DEL-08-02` (Versioned additive API schema), `DEL-08-03` (Compact citation-bearing response format), `DEL-08-04` (Orientation latency budget), and `DEL-08-05` (SSE delta/presence subscription) per the accepted §5 package table. They are out of scope for `DEL-08-01`.
 - **CLM-006** — `SOFTWARE_DECOMP.md` §8 (Context Budget QA) records `DEL-08-01` as one of two OI-coupled MEDIUM risks at `M` envelope: "DEL-08-01 (socket + tokens — OI-006 decides the auth mechanism). Held at current envelope; re-assessed on the linked ruling." The envelope is not re-assessed by this contract.
 
@@ -152,9 +151,9 @@ obligations.
 - **AX-001** — Local-only, token-scoped access originates in `PEC-API-001` and PRD §8 and enters project scope as `SOW-040` and `SOW-003`. This contract carries that posture without reinterpretation, extension, or softening; in particular, "Unix socket by default" is not read as licensing a second default transport.
 - **AX-002** — `DL-11` is the decision that assigned `SOW-003` (access classes) to `PKG-08` "with the token-scoped transport" rather than to a separate access-control package. The access classes and the socket binding are therefore one deliverable by ruling, not by authoring convenience.
 - **AX-003** — Retirement is a governing constraint, not a stylistic preference. PRD §8 retires the v1.0 12-role ontology and the prototype's implemented 14-role RBAC set explicitly; REQ-004 and AC-003 exist so that the retired sets cannot re-enter through carried prototype code, which PRD §7.3 permits only as pattern and never as code.
-- **AX-004** — The deliverable is at `OPEN` with no implementation. This contract states obligations on future artifacts; it does not certify, imply, or record that anything exists, and it performs no lifecycle transition. `_STATUS.md` remains the sole lifecycle authority and is untouched by this run.
+- **AX-004** — The deliverable is at `INITIALIZED` with no implementation. This contract states obligations on future artifacts; it does not certify, imply, or record that anything exists, and it performs no lifecycle transition. `_STATUS.md` remains the sole lifecycle authority and is untouched by this reconciliation.
 - **AX-005** — Unknowns are preserved as TBD-001 through TBD-004 and as CON-001 and CON-002 rather than resolved by authoring judgment. `OI-006` and `OI-009` close by owner §16 ruling; resolving TBD items is production work. Neither is contract drafting.
-- **AX-006** — The accepted basis is decomposition revision 1.2 (SCA-002, accepted at `D-PEC-64`) at commit `3623b958b`. The revision 1.1 phrase still present in `_REFERENCES.md` is a deferred pointer sweep and superseded provenance; it is recorded here so the divergence is visible rather than silently normalized.
+- **AX-006** — The accepted basis is decomposition revision 1.3 (SCA-003) at merge `11a494e9a`. Revision 1.1 and revision 1.2 phrases still present in local metadata are deferred-pointer superseded provenance; they are recorded here so the divergence is visible rather than silently normalized.
 - **AX-007** — `C-04` PHASE_PRECEDENCE and `C-10` STRATUM_RULE are register-wide non-gating constraints recorded in `_DEPENDENCIES.md`. The `P1` phase hint is release-strategy ordering, and all five downstream edges in CLM-002 (E-N06, E-N08, E-P52, E-P54, E-P58) are `PROPOSAL` stratum, accepted as presented under `D-PEC-62` §1(4) and carrying no exhibit flag. Stratum is provenance, not authority — it records how an edge was derived, not whether it has been accepted — and blocker output is advisory visibility only, never work assignment.
 
 ## Output and Evaluation Matrix

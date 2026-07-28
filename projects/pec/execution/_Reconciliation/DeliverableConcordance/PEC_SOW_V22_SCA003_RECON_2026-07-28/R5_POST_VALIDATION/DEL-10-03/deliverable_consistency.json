@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-03_No_ruling_write_verification",
+  "folder_name": "DEL-10-03_No_ruling_write_verification",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "> DEL-10-03,PKG-10,No-ruling-write verification,\"Tested property: the API exposes no write path recording adoption, ruling, or direction.\",TEST_SUITE,TBD,Negative-surface tests,SOW-025,OBJ-005,S,,P1",
+      "file": "ScopeOfWork.md",
+      "line": 105,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; `Deliverables.csv` and `_CONTEXT.md` both record `TBD`, with assignment at WORKING_ITEMS activation.",
+      "file": "ScopeOfWork.md",
+      "line": 228,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The operative boundary between a write PEC is permitted to perform and a write that \"records adoption, ruling, or direction\" is not fixed by any accepted source beyond the wording of `PEC-GAT-004` and \u00a74.2. The accepted sour",
+      "file": "ScopeOfWork.md",
+      "line": 229,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The concrete test mechanism, harness, fixture strategy, and repository location of OUT-001 are not fixed by any accepted source; `Deliverables.csv` names the artifact class \"Negative-surface tests\" and nothing further.",
+      "file": "ScopeOfWork.md",
+      "line": 230,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 How the suite mechanically enumerates the surface depends on decisions the upstream contracts expressly leave unresolved: the schema language, serialization, repository location, and version-identifier scheme on the `DEL-08-",
+      "file": "ScopeOfWork.md",
+      "line": 231,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 Which PKG-08 surfaces fall inside \"the API surface\" for this verification is not enumerated by any accepted source. The accepted register records exactly two `EXECUTION` upstream edges for this deliverable, `[E-P54]` and `[E",
+      "file": "ScopeOfWork.md",
+      "line": 232,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-002** \u2014 The operative definition the suite classifies against shall be recorded with the suite rather than left implicit in test code. It shall be grounded in `PEC-GAT-004` and the \u00a74.2 non-goal, and shall distinguish the writes PEC",
+      "file": "ScopeOfWork.md",
+      "line": 250,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-002** \u2014 The operative definition is recorded with the suite, cites `PEC-GAT-004` and the \u00a74.2 non-goal, and enumerates the expected PEC writes it treats as permitted; every classification the suite makes traces to that recorded defin",
+      "file": "ScopeOfWork.md",
+      "line": 266,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-009** \u2014 Unknowns remain marked. TBD-001 through TBD-005 and CON-001 through CON-003 are recorded rather than resolved by inference; in particular the surface under test does not yet exist, and its shape follows decisions that belong ",
+      "file": "ScopeOfWork.md",
+      "line": 311,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-025 OBJ-005 | REQ-002, TBD-002 | AC-002 | VER-002 | The recorded operative definition read against the PEC-GAT-004 and \u00a74.2 wording with its permitted-write enumeration |",
+      "file": "ScopeOfWork.md",
+      "line": 319,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 11,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 1
+    }
+  }
+}

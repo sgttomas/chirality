@@ -1,0 +1,19 @@
+[
+  {
+    "findings": [
+      {
+        "category": "NOT_CHECKABLE",
+        "detail": "per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method",
+        "owners": [
+          "DEL-01-05"
+        ],
+        "requirement_id": "REQ-012"
+      }
+    ],
+    "path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-08_API_Access/1_Working/DEL-08-04_Orientation_latency_budget_p95_100_ms/ScopeOfWork.md",
+    "requirements_checked": 1,
+    "requirements_not_checkable": 1,
+    "requirements_without_cited_claim": 0,
+    "status": "OK"
+  }
+]

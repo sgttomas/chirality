@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "SCA-003 in turn establishes revision 1.3 as the current successor. This",
+      "file": "ScopeOfWork.md",
+      "line": 24
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-03_Citation_freshness_stamping",
+  "folder_name": "DEL-04-03_Citation_freshness_stamping",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-006** \u2014 `DEL-04-03` is named \"Citation & freshness stamping\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Citation layer + tests\", `CoversScopeItems` `SOW-0",
+      "file": "ScopeOfWork.md",
+      "line": 146,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-010** \u2014 This deliverable has one accepted `EXECUTION` upstream edge and three `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-04-03-001` through `DEP-04-03-004` at `RegisterSchemaVersion` `v3.1`. The three anchors are `",
+      "file": "ScopeOfWork.md",
+      "line": 168,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 223,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The layer's concrete in-process shape \u2014 whether it is applied as a decoration of a composed response, as a construction-time obligation of the composer, or as a separate pass, and its entry-point name and parameters \u2014 is fix",
+      "file": "ScopeOfWork.md",
+      "line": 224,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The representation of \"generation time\" \u2014 its precision, its timezone or offset convention, its clock source, and its serialized form \u2014 is stated by no accepted source; `PEC-ORI-003` names the field and nothing more. It is c",
+      "file": "ScopeOfWork.md",
+      "line": 225,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Where the stamp-and-citation derivation record of OUT-001 lives and in what form it is published are fixed by no accepted source; they are chosen during production within REQ-014, which fixes what it must declare rather than",
+      "file": "ScopeOfWork.md",
+      "line": 226,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-014** \u2014 The layer shall declare, in the stamp-and-citation derivation record \u2014 a readable component of OUT-001 \u2014 for each of the three stamp fields and for each claim class it cites: the source it draws the value or provenance from,",
+      "file": "ScopeOfWork.md",
+      "line": 247,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-003** \u2014 Every citation attached in a fixture run is traceable to the provenance held by the record-tier entity behind its claim, with byte equality between the entity's provenance values and the citation's; this deliverable's source ",
+      "file": "ScopeOfWork.md",
+      "line": 252,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **AX-010** \u2014 Unknowns stay marked. TBD-001 through TBD-004 and CON-001 through CON-004 are recorded rather than resolved by inference. `C-02`'s direction is an open owner ruling and `OI-013` records that no durable register validator exis",
+      "file": "ScopeOfWork.md",
+      "line": 319,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-006 SOW-007 OBJ-001 OBJ-002 | REQ-010, CLM-007, CLM-013, CLM-016, TBD-002, AX-009 | AC-010 | VER-010 | Call-graph and source inspection records showing each named adjacent path absent, plus a review of this deliverable's tes",
+      "file": "ScopeOfWork.md",
+      "line": 347,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 12,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 2
+    }
+  }
+}

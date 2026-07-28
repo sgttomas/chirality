@@ -1,0 +1,56 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default",
+  "folder_name": "DEL-01-06_Loop_registry_local_config_default",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation.",
+      "file": "ScopeOfWork.md",
+      "line": 57,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The concrete on-disk path, filename, serialization, and per-loop field set of the local default are not fixed by any accepted source; they are chosen during production within the bounds of CON-001 and REQ-005.",
+      "file": "ScopeOfWork.md",
+      "line": 58,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-001** \u2014 The configuration shall name each loop PEC serves with a stable loop identifier, and shall carry per loop the minimum locator the reconciler needs to reach that loop's file truth; the concrete field set remains TBD-002.",
+      "file": "ScopeOfWork.md",
+      "line": 62,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-001** \u2014 The long-term home and shape of the loop registry is an undecided owner question, carried as `SOW-077` (`InOutStatus` `TBD`, PRD \u00a716.3) and open issue `OI-003` awaiting a \u00a716 ruling. This deliverable produces the local confi",
+      "file": "ScopeOfWork.md",
+      "line": 77,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 4,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

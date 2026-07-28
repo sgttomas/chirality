@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-03_Reconciliation_Parity/1_Working/DEL-03-03_Drift_classification",
+  "folder_name": "DEL-03-03_Drift_classification",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-005** \u2014 `DEL-03-03` is named \"Drift classification\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Drift classifier + tests\", `CoversScopeItems` `SOW-019`, `S",
+      "file": "ScopeOfWork.md",
+      "line": 113,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-008** \u2014 This deliverable has exactly one accepted `EXECUTION` upstream edge and two `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-03-03-001` through `DEP-03-03-003` at `RegisterSchemaVersion` `v3.1`; the register cont",
+      "file": "ScopeOfWork.md",
+      "line": 153,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 226,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The class set itself \u2014 which classes of difference exist, what each is named, and how a difference is assigned to exactly one \u2014 is fixed by no accepted source. `SOW-019` and `PEC-RCN-004` require classification and name no c",
+      "file": "ScopeOfWork.md",
+      "line": 227,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The classifier's invocation surface \u2014 whether classification runs as part of each reconcile, on demand against a named snapshot pair, or as a separate command, and what its result surface is \u2014 is fixed by no accepted source.",
+      "file": "ScopeOfWork.md",
+      "line": 228,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 How the prior member of a snapshot pair is obtained \u2014 retained as store state, re-derived from the source state its examined-through SHA identifies, or supplied by the caller \u2014 is fixed by no accepted source. This is the inf",
+      "file": "ScopeOfWork.md",
+      "line": 229,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AC-012** \u2014 Every upstream dependency in this deliverable's source and tests resolves to an interface-level fixture stand-in for a contract obligation rather than to an assumed artifact, and a recorded search of source, fixtures, and cal",
+      "file": "ScopeOfWork.md",
+      "line": 263,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **CON-001** \u2014 A DriftFinding is a record-tier entity, and the record tier is contractually obliged to be fully regenerable from file sources with no field holding state the same sources cannot reproduce (CLM-007), while the store that hol",
+      "file": "ScopeOfWork.md",
+      "line": 268,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **VER-003** \u2014 Type-boundary inspection: assert every finding produced is constructed against the upstream-obliged DriftFinding type; grep this deliverable's source for record-tier and presence-tier type definitions and assert none; grep s",
+      "file": "ScopeOfWork.md",
+      "line": 294,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **AX-011** \u2014 Unknowns stay marked. TBD-001 through TBD-004 and CON-001 through CON-005 are recorded rather than resolved by inference, and three of them \u2014 the regenerability of a difference against a deleted prior state, the referent of \"",
+      "file": "ScopeOfWork.md",
+      "line": 319,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 12,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 2
+    }
+  }
+}

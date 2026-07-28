@@ -1,0 +1,116 @@
+{
+  "allPassed": true,
+  "clauses": [
+    "CLM-005",
+    "REQ-004"
+  ],
+  "expectedRegisterSHA256": "d92d134bdfe4466dc06292fa53fa44cf368d6be1dfeb04fefa6ce188bba8002a",
+  "holdID": "PEC-HOLD-001",
+  "holdReleased": false,
+  "register": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+  "registerByteIdenticalToActivation": true,
+  "registerSHA256": "d92d134bdfe4466dc06292fa53fa44cf368d6be1dfeb04fefa6ce188bba8002a",
+  "results": [
+    {
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "expectedStatus": "ALLOW",
+      "operation": "historical-read-only-inspection",
+      "passed": true,
+      "payload": {
+        "operation": "historical-read-only-inspection",
+        "status": "ALLOW"
+      },
+      "status": "ALLOW",
+      "stderr": ""
+    },
+    {
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "expectedStatus": "ALLOW",
+      "operation": "exact-correction-preparation",
+      "passed": true,
+      "payload": {
+        "operation": "exact-correction-preparation",
+        "status": "ALLOW"
+      },
+      "status": "ALLOW",
+      "stderr": ""
+    },
+    {
+      "exitCode": 0,
+      "expectedExitCode": 0,
+      "expectedStatus": "ALLOW",
+      "operation": "candidate-validation",
+      "passed": true,
+      "payload": {
+        "operation": "candidate-validation",
+        "status": "ALLOW"
+      },
+      "status": "ALLOW",
+      "stderr": ""
+    },
+    {
+      "exitCode": 4,
+      "expectedExitCode": 4,
+      "expectedStatus": "BLOCK",
+      "operation": "rely-for-production",
+      "passed": true,
+      "payload": {
+        "authority": "D-PEC-67",
+        "hold_id": "PEC-HOLD-001",
+        "operation": "rely-for-production",
+        "status": "BLOCK"
+      },
+      "status": "BLOCK",
+      "stderr": ""
+    },
+    {
+      "exitCode": 4,
+      "expectedExitCode": 4,
+      "expectedStatus": "BLOCK",
+      "operation": "dispatch-for-production",
+      "passed": true,
+      "payload": {
+        "authority": "D-PEC-67",
+        "hold_id": "PEC-HOLD-001",
+        "operation": "dispatch-for-production",
+        "status": "BLOCK"
+      },
+      "status": "BLOCK",
+      "stderr": ""
+    },
+    {
+      "exitCode": 4,
+      "expectedExitCode": 4,
+      "expectedStatus": "BLOCK",
+      "operation": "promote",
+      "passed": true,
+      "payload": {
+        "authority": "D-PEC-67",
+        "hold_id": "PEC-HOLD-001",
+        "operation": "promote",
+        "status": "BLOCK"
+      },
+      "status": "BLOCK",
+      "stderr": ""
+    },
+    {
+      "exitCode": 4,
+      "expectedExitCode": 4,
+      "expectedStatus": "BLOCK",
+      "operation": "consume",
+      "passed": true,
+      "payload": {
+        "authority": "D-PEC-67",
+        "hold_id": "PEC-HOLD-001",
+        "operation": "consume",
+        "status": "BLOCK"
+      },
+      "status": "BLOCK",
+      "stderr": ""
+    }
+  ],
+  "schema": "pec-hold-test/v1",
+  "target": "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/ScopeOfWork.md"
+}

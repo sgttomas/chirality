@@ -1,0 +1,412 @@
+{
+  "item_count": 16,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 266,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "For a fixture record tier and a caller-supplied SHA, the served value is anchored on exactly the SHA the caller supplied, byte for byte; instrumentation of the call shows no substitution, defaulting, widening, or fallback to any examined-through, baseline, or otherwise service-held value; and this deliverable's source contains no path that supplies an anchor the caller did not.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-001",
+          "source_line": 325,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Anchor-fidelity exercise: serve for a set of caller-supplied SHAs over a fixture record tier and assert per case that the value's anchor equals the supplied SHA byte for byte; instrument the call path and assert no substitution, defaulting, widening, or fallback occurs; and inspect this deliverable's source for any path that supplies an anchor the caller did not, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 267,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "Every element of a served value traces to a record-tier entity instance; inspection of the service's input surface finds no presence-tier, stream, event, or cached input contributing to any element; and a fixture carrying presence-shaped data alongside the record tier produces a served value in which no element derives from it.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-002",
+          "source_line": 326,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Provenance and tier inspection: for a sample element of each class a serve produces, trace it to the record-tier entity instance that yielded it; inspect the service's input surface for presence-tier, stream, event, and cached inputs and assert none contributes; and serve over a fixture carrying presence-shaped data alongside the record tier and assert no element derives from it."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 268,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "For a content-dense fixture corpus whose changes since the caller's SHA span long prose bodies, quoted authored text, and diff-shaped content, inspection of every field of the served value and of everything the service retains finds no file content and no diff content — only paths, counts, identifiers, states, SHAs, and hashes.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-003",
+          "source_line": 327,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content-minimal inspection: serve over a content-dense fixture corpus whose changes since the caller's SHA carry long prose bodies, quoted authored text, and diff-shaped content, then dump every field of the served value and everything the service retains, and assert field by field that none carries file or diff content."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 269,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "A serve leaves the fixture source corpus, the fixture store, and the fixture repository's Git state byte-identical — same HEAD, refs, index, stash, worktree list, and configuration; the captured filesystem and store write inventory for a serve is empty; and this deliverable's source contains no Git write operation, no write, create, or delete call against any source file, governed file, register, lifecycle file, or store record, and no path that records an adoption, ruling, or direction.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-004",
+          "source_line": 328,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Read-only exercise: hash the fixture source corpus tree and store before and after a serve and assert byte-identity; capture HEAD, all refs, the index, the stash list, the worktree list, and the configuration of a fixture repository before and after and assert equality on each; capture every filesystem and store write performed during the run and assert the inventory is empty; and inspect this deliverable's source and call graph for Git write operations, for write, create, or delete calls against source files, governed files, registers, lifecycle files, or store records, and for any adoption-, ruling-, or direction-recording path, asserting each absent."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 270,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "The delta-composition record — the component of OUT-001 required by REQ-005 — names, for every class of element the service can serve, its source entity or entities, its caller-SHA resolution rule, its scope unit, and its absence semantics; and every element produced in a fixture run is traceable to the rule the record declares for it, with no element produced by an undeclared source, rule, or scope unit.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-005",
+          "source_line": 329,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Composition-record exercise: read the delta-composition record and assert it names, for every element class the service can serve, its source entities, its caller-SHA resolution rule, its scope unit, and its absence semantics; then run a fixture serve and trace each produced element to the declared rule, asserting no element arises from an undeclared source, rule, or scope unit."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 271,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "For fixture cases in which the caller-supplied SHA is unknown to the record tier, the record tier holds no reconciled state for the requested scope, and a feed was reported absent, unreadable, malformed, stale, and grammar-unrecognized in turn, the served value states the limitation against the affected element, names the affected element and the condition, and presents no derived, defaulted, inferred, or carried-forward value in its place.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-006",
+          "source_line": 330,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Limitation and unresolvable-anchor exercise: serve over fixtures in which the caller-supplied SHA is unknown to the record tier, the record tier holds no reconciled state for the requested scope, and a feed was reported absent, unreadable, malformed, stale, and grammar-unrecognized in turn, and assert per case that the value states the limitation against the affected element, names the element and the condition, and presents no derived, defaulted, inferred, or carried-forward substitute."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 272,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "Every element of a served value carries the citation provenance held by the record-tier entity it came from, and that provenance resolves to a file path, anchor, and/or SHA; and this deliverable's source contains no citation-attachment path, no examined-through-SHA or generation-time stamping path, and no freshness-computation path.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-007",
+          "source_line": 331,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Citation carry-through: for each element of a fixture serve, assert the citation provenance of its source entity is present in the served value and resolves to a file path, anchor, and/or SHA; and inspect this deliverable's source for citation-attachment, examined-through-SHA or generation-time stamping, and freshness-computation paths, asserting each absent."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 273,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "This deliverable's source defines no record-tier entity type, no schema field, no feed grammar, and no reconcile path; every served element is constructed against an upstream-obliged type; and no element of this deliverable asserts or requires that an upstream schema, entity model, reconcile engine, baseline record, store, parser, or registry artifact exists.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-008",
+          "source_line": 332,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Type-boundary inspection: assert every served element is constructed against an entity type the upstream model obliges; inspect this deliverable's source for record-tier and presence-tier type definitions, schema fields, feed grammars, and reconcile paths and assert none; and inspect source and fixtures for any assumption that an upstream schema, entity model, reconcile engine, baseline, store, parser, or registry artifact exists, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 274,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "This deliverable's source and call graph contain no rebuild path, no incremental-reconcile path, no delta-to-work resolution, and no baseline record, write, or advance; and for a fixture in which an upstream-owned examined-through value is present in the record tier, a serve leaves that value unchanged and this deliverable's source contains no write against it.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-009",
+          "source_line": 333,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Reconcile-boundary inspection: inspect this deliverable's source and call graph for a rebuild path, an incremental-reconcile path, a delta-to-work resolution, and any baseline record, write, or advance, asserting each absent; then serve over a fixture whose record tier carries an upstream-owned examined-through value and assert that value is unchanged after the run."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 275,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "The service is reachable only through its declared in-process interface; this deliverable's source contains no socket binding, token or access-class check, wire schema, serialization format, subscription or stream endpoint, or rendering code; and a consumer can serialize a served value without modifying this deliverable.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-010",
+          "source_line": 334,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Interface-boundary inspection: assert the service is reachable only through its declared in-process interface; inspect its source for socket binding, token or access-class checks, wire schemas, serialization formats, subscription or stream endpoints, and rendering code, asserting each absent; and serialize a served value from a separate consumer module without modifying this deliverable."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 276,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "This deliverable's source and call graph contain no per-loop orientation composition of the six PEC-ORI-001 components, no rebuild or reconcile path, no drift-classification path, no parity-diff path, no gate-evaluation or Explain-verdict path, no scope-parameterization path, no limitation-rendering path, no stamping or citation-attachment path, no presence or worktree scan, no subscription, no latency measurement or bound assertion, and no kill-test execution; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-011",
+          "source_line": 335,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Adjacent-act inspection: inspect the module's call graph and source for per-loop orientation composition, rebuild or reconcile, drift classification, parity diffing, gate evaluation or Explain-verdict construction, scope parameterization, limitation rendering, stamping, citation attachment, presence or worktree scanning, subscription, latency measurement or bound assertion, and kill-test paths, asserting each absent; and review this deliverable's tests for any criterion belonging to another deliverable, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 277,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "Two serves for the same caller-supplied SHA against the same fixture record-tier state produce identical values; and for a caller-supplied SHA against which the fixture record tier carries no difference, the served value is an explicit empty delta distinguishable in the return from both an unresolved-anchor condition and a stated limitation.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-012",
+          "source_line": 336,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Determinism and empty-case exercise: serve twice for the same caller-supplied SHA against an unchanged fixture record tier and assert the two values are identical; then serve for a SHA against which the fixture carries no difference and assert the value is an explicit empty delta distinguishable in the return from an unresolved-anchor condition and from a stated limitation."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 278,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "A serve occurs only in response to a call: instrumentation of a fixture run shows no timer, scheduler, subscription, push, or session-lifecycle act originating in this deliverable, and this deliverable's source contains no polling or cadence logic.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-013",
+          "source_line": 337,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Initiation inspection: instrument a fixture run and assert no timer, scheduler, subscription, push, or session-lifecycle act originates in this deliverable; and inspect its source for polling or cadence logic, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 279,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "The service and its tests add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-014",
+          "source_line": 338,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-04` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the zero-dependency and locality enforcement once the deliverable that owns it is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-04-02-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 280,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "The test suite implements VER-001 through VER-014, executes in the `PKG-04` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-015",
+          "kind": "VER",
+          "qualified_id": "DEL-04-02-VER-015",
+          "source_line": 339,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-04` test suite and confirm that each of VER-001 through VER-014 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-016",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-04-02-AC-016",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 281,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-005`, `OBJ-001`, and `OBJ-002`; confirms that both objective mappings are stated as register-direct and pre-SCA-002 at the strength the record carries, including the difference between the `OBJ-001` enumerated membership and the `OBJ-002` \"supported by\" form; confirms that the single upstream edge is stated at its own `PROPOSAL` stratum with its empty evidence cells recorded as an observation rather than repaired; and confirms that no `PKG-01`, `PKG-03`, sibling `PKG-04`, `PKG-05`, `PKG-06`, `PKG-08`, or `PKG-10` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-005, OBJ-001, and OBJ-002, confirms both mappings are stated as register-direct and pre-SCA-002 at the strength the record carries including the OBJ-002 \"supported by\" form, confirms the single upstream edge is stated at its PROPOSAL stratum with its empty evidence cells recorded rather than repaired, and confirms no upstream, sibling, or cross-package scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-04-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-04",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "a7dcc4d45c01194138191ad2eb996aefdf0f0b5a6782192a5f0110f09dd06d86"
+  },
+  "tool_version": "1"
+}

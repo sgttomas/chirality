@@ -1,0 +1,408 @@
+{
+  "item_count": 16,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 350,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "The record identifies the accepted dependency-DAG basis it ingested, the loop that DAG describes, and where in the progression the ingestion occurred, and each is resolvable to its live source.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-001",
+          "source_line": 390,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Resolve the record's stated DAG basis, loop, and ingestion point to their live sources and assert each is locatable; compare the stated basis against the accepted decomposition basis and the accepted gate exhibit and assert the record names what it ingested rather than describing it generically."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 351,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "Every capability cutover in the record names the capability, the predecessor whose acceptance it relied on, and that acceptance's evidence; no cutover entry relies on a capability its own node was creating; and the record contains no cutover authorization, assignment, sequencing instruction, or withholding.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-002",
+          "source_line": 391,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Cutover exercise: for every cutover entry, assert the named capability, the named predecessor, and the acceptance evidence are present and resolvable; construct the consumption graph the entries describe and assert no entry consumes a capability its own node was creating; and inspect the record for imperative, assigning, sequencing, authorizing, or withholding language about cutovers, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 352,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "Every friction observation in the record is attributed to the occasion observed and to supporting evidence, and no observation is recorded without both.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-003",
+          "source_line": 392,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "For every friction observation, assert an attributed occasion and supporting evidence are present and resolvable; sample the progression's occasions and assert no observation is carried without both."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 353,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "The record contains proposed, rejected, and unnecessary function dispositions with their bases; removing a disposition because it produced no work is detectable as a gap against the record's own prior state.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-004",
+          "source_line": 393,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Disposition inspection: assert the record carries proposed, rejected, and unnecessary function entries with their bases; compare the record against its own prior state across two maintenance points and assert no disposition was removed for having produced no work."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 354,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "For the occasions the record covers, it evidences that governed work proceeded without requiring a PEC read or write, rather than asserting fallback operability once and generally.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-005",
+          "source_line": 394,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Fallback exercise: for the occasions the record covers, assert the record evidences governed work proceeding without a PEC read or write at those occasions; assert the record carries no single general assertion of fallback operability in place of occasion-level evidence."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 355,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "Every observation that led anywhere carries its route and that route's state; and no statement in the record presents an observation as granting authority, expanding scope, or changing accepted state.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-006",
+          "source_line": 395,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Route inspection: for every observation that led anywhere, assert a route and a route state are recorded and resolvable; then read the record end to end for any statement presenting an observation as granting authority, expanding scope, or changing accepted state, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 356,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "The record has no terminal or \"complete\" state: it remains appendable and re-runnable, each entry is scoped to the progression state it observed, and no entry or check result is expressible as completion of this deliverable.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-007",
+          "source_line": 396,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Standing exercise: assert the record exposes no terminal or \"complete\" state; append a new entry at a later progression state and assert prior entries remain scoped to what they observed; and inspect the record and its declared statement for any expression that would let one entry or one passing result stand as completion of the deliverable."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 357,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "The record carries its declared maintenance-and-rerun statement as a component, naming where it lives, what appends to it, and at what occasions it is re-run; and that statement matches the record's actual location and maintenance.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-008",
+          "source_line": 397,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Maintenance-statement exercise: read the declared maintenance-and-rerun statement, assert it names the record's location, what appends to it, and the re-run occasions, and compare each against the record's actual location and observed maintenance, asserting agreement."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 358,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "All six named facets are present within one cohesive record; no facet is delivered as a separate artifact.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-009",
+          "source_line": 398,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Cohesion inspection: assert all six named facets are present within one record and that no facet exists as a separate deliverable artifact."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 359,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "The record states the generality obligation, states that the structurally different loop is named by no accepted source, and states whether validation against such a loop has occurred; and no part of the record presents self-ingestion evidence as generality evidence.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-010",
+          "source_line": 399,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Generality inspection: assert the record states the generality obligation, states that no accepted source names the structurally different loop, and states whether that validation has occurred; then read the self-ingestion facets for any claim of generality, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 360,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "Inspection finds no grammar definition, register or work-graph parsing, rebuild, reconcile, drift-classification, parity-diff, kill-test, no-ruling-write, rebuild-bound, edge-materialization, blocker-computation, or scaffolding act performed by this deliverable, and no write by it to any register, decomposition, ledger, decision, or lifecycle file.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-011",
+          "source_line": 400,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection: inspect this deliverable's outputs and working surface for grammar definitions, register or work-graph parsing, rebuild, reconcile, drift-classification, parity-diff, kill-test, no-ruling-write, rebuild-bound, edge-materialization, blocker-computation, and scaffolding acts, asserting each absent; and assert no write by this deliverable to any register, decomposition, ledger, decision, or lifecycle file."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 361,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "No element of the record asserts or requires that an upstream parser, reconciler, store, or rebuilt record tier exists; the record carries the upstream \"in full\" conditioning and the unsettled generated-view instance set as the upstream contracts state them; and any upstream-reported feed limitation appears in the DAG-ingestion evidence.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-012",
+          "source_line": 401,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Upstream-conditioning inspection: read the record for any assertion that an upstream parser, reconciler, store, or rebuilt record tier exists, asserting none; compare the record's characterization of the rebuild against `DEL-03-01`'s CON-005 and CON-001 as quoted in CLM-012 and assert the conditioning is carried, not smoothed; and assert every upstream-reported feed limitation available at the occasion appears in the DAG-ingestion evidence."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 362,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "For a release candidate on which the required progression evidence is absent, and for one on which the standing assertion fails, the mechanism returns an explicit blocking verdict rather than a pass, a skip, or an absent result.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-013",
+          "source_line": 402,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Blocking-verdict exercise: present a release candidate on which the required progression evidence is absent and one on which the standing assertion fails, and assert in each case an explicit blocking verdict rather than a pass, a skip, or an absent result. Scope boundary: no output of this method may be presented as establishing that the verdict binds a release, which is CON-001 and is routed at AC-015."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 363,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "Each of VER-001 through VER-013 has a corresponding executed check recorded against the record, and no check asserts a criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-10-10-VER-014",
+          "source_line": 403,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the check set declared for this deliverable and confirm that each of VER-001 through VER-013 has a corresponding executing check and that no check asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 364,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "An accountable owner confirms, or declines to confirm, that the validation delivered under this contract carries release-gating authority — that its blocking verdict blocks a release candidate — given that `C-08`'s standing-node classification carries \"owner confirmation requested\" in its own `Notes` and was accepted at `D-PEC-62` §1(4) as a recorded-but-unresolved, non-gating annotation (CLM-008, CON-001). A decline leaves the mechanism's verdicts advisory and invalidates no other criterion in this contract; the standing framing of the contract stands either way, because it is how the contract is written rather than a claim about the validation's force.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation or declination that the validation carries release-gating authority, given C-08's \"owner confirmation requested\" note and D-PEC-62 §1(4)'s acceptance of the standing-node set as a recorded-but-unresolved non-gating annotation"
+        }
+      ]
+    },
+    {
+      "id": "AC-016",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-10-AC-016",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 365,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-064` and `OBJ-006` as a register-direct mapping carried from `SCA-001` and untouched by `SCA-002`; confirms that no `PKG-02`, `PKG-03`, sibling `PKG-10`, or `PROJECT_SETUP` scope has been absorbed; and confirms that the record holds no authority over cutover order, scope, or amendment.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-064 and OBJ-006 as a register-direct mapping carried from SCA-001 and untouched by SCA-002, confirms no PKG-02, PKG-03, sibling PKG-10, or PROJECT_SETUP scope absorption, and confirms the record holds no authority over cutover order, scope, or amendment"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-10",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "5e63c9ff6e2846e93c8e1941d79f7f64a9888c83f16074d7ff404c8806da2be5"
+  },
+  "tool_version": "1"
+}

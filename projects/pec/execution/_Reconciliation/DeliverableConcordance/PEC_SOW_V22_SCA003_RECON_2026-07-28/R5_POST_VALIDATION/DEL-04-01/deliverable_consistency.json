@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "SCA-003 in turn establishes revision 1.3 as the current successor. This",
+      "file": "ScopeOfWork.md",
+      "line": 23
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-01_Loop_orientation_return",
+  "folder_name": "DEL-04-01_Loop_orientation_return",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-004** \u2014 `DEL-04-01` is named \"Loop orientation return\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Orientation builder + tests\", `CoversScopeItems` `SOW-00",
+      "file": "ScopeOfWork.md",
+      "line": 94,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-008** \u2014 This deliverable has three accepted `EXECUTION` upstream edges and two `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-04-01-001` through `DEP-04-01-005` at `RegisterSchemaVersion` `v3.1`. The two anchors are `D",
+      "file": "ScopeOfWork.md",
+      "line": 110,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 272,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The builder's concrete in-process interface \u2014 its entry-point name, its parameters, and the shape of the value it returns \u2014 is fixed by no accepted source beyond the register phrase \"Orientation builder\" and `PEC-ORI-001`'s ",
+      "file": "ScopeOfWork.md",
+      "line": 273,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 How a loop is named and located for a per-loop return is not fixed for this deliverable by any accepted source. The loop-registration configuration is `SOW-094` / `DEL-01-06`, and this deliverable's local register records **",
+      "file": "ScopeOfWork.md",
+      "line": 274,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Where the component-derivation record of OUT-001 lives and in what form it is published are fixed by no accepted source; they are chosen during production within REQ-004, which fixes what it must declare rather than where it",
+      "file": "ScopeOfWork.md",
+      "line": 275,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-011** \u2014 The builder shall expose the return through an in-process interface and shall implement no socket binding, no token or access-class check, no wire schema or serialization format, no subscription, and no rendering; those are ",
+      "file": "ScopeOfWork.md",
+      "line": 293,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **VER-003** \u2014 Definition inspection: search this deliverable's source for record-tier entity type definitions, schema field definitions, feed grammar definitions, and reconcile paths and assert none is present; assert the composed return ",
+      "file": "ScopeOfWork.md",
+      "line": 343,
+      "type": "ASSUMPTION"
+    },
+    {
+      "excerpt": "- **AX-012** \u2014 Unknowns stay marked. TBD-001 through TBD-004 and CON-001 through CON-004 are recorded rather than resolved by inference. `OI-008` is a per-loop \u00a716 ruling and `OI-003` is a \u00a716 ruling on the loop registry's home and shape; a",
+      "file": "ScopeOfWork.md",
+      "line": 370,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-004 OBJ-001 | REQ-004, TBD-004, CON-002 | AC-004 | VER-004 | The component-derivation record (a component of OUT-001) with per-component source entities, selection rules including the applicability test and recency ordering,",
+      "file": "ScopeOfWork.md",
+      "line": 396,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 12,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 2
+    }
+  }
+}

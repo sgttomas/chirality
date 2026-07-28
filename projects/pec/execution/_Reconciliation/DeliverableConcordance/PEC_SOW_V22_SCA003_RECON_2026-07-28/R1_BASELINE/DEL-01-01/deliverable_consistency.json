@@ -1,0 +1,62 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-01_Record_tier_schema_entity_model",
+  "folder_name": "DEL-01-01_Record_tier_schema_entity_model",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-004** \u2014 `DEL-01-01` is named \"Record-tier schema & entity model\", Type `DATA_MODEL_CHANGE`, Context Envelope **`L`**, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `CoversScopeItems` `SOW-001`, `SupportsObjectives` `OBJ-001;OBJ-002`, ",
+      "file": "ScopeOfWork.md",
+      "line": 87,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation, not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 103,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The storage engine and DDL dialect are not fixed by any accepted source. `PEC-K-02` and `PEC-RCN-001` say \"database\" without naming a technology, and `PRD.md` \u00a77.3 carries \"SQL-level append-only enforcement\" and \"dry-run-the",
+      "file": "ScopeOfWork.md",
+      "line": 104,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **AX-009** \u2014 Unknowns stay marked. TBD-001, TBD-002, CON-001, and CON-002 are recorded rather than resolved by inference. `OI-012` is decided at `DEL-00-01`'s ADR under owner review, and `OI-008` is a per-loop `\u00a716` ruling; a production c",
+      "file": "ScopeOfWork.md",
+      "line": 175,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-001 OBJ-001 OBJ-002 | REQ-011, CLM-007, TBD-002 | AC-010 | VER-010 | The delivered slice structure against the envelope note, with recorded seam evidence if a split was taken |",
+      "file": "ScopeOfWork.md",
+      "line": 185,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 5,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

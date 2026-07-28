@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "verification table, row `4v`). Both cells this contract's frontmatter binds are",
+      "file": "ScopeOfWork.md",
+      "line": 68
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-11_Parity_metric_DriftFindings_per_reconcile",
+  "folder_name": "DEL-10-11_Parity_metric_DriftFindings_per_reconcile",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-004** \u2014 `DEL-10-11` is named \"Parity metric (DriftFindings per reconcile)\", Type `MEASUREMENT`, Context Envelope `S`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Parity metric report\", `CoversScopeItems` `SOW",
+      "file": "ScopeOfWork.md",
+      "line": 85,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> `v3.1,DEP-10-11-003,PKG-10,DEL-10-11,Parity metric (DriftFindings per reconcile),EXECUTION,NOT_APPLICABLE,UPSTREAM,PREREQUISITE,DELIVERABLE,PKG-03,DEL-03-04,DEL-03-04,Practitioner-harness parity diff,execution/PKG-03_Reconciliation_Parity",
+      "file": "ScopeOfWork.md",
+      "line": 137,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> `ProposedMaturity` `TBD`. ID-shaped text inside this quotation is upstream",
+      "file": "ScopeOfWork.md",
+      "line": 143,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> `REQ-*`, `AC-*`, `CLM-*`, `TBD-*`, and `CON-*` records are separate and",
+      "file": "ScopeOfWork.md",
+      "line": 179,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> - **TBD-005** \u2014 The **trigger** of a parity run is fixed by no accepted source. The edge `Statement` says \"Parity diff runs over PEC derivations produced by reconcile\" and the `SOW-093` metric is stated \"per reconcile\", which fix the rela",
+      "file": "ScopeOfWork.md",
+      "line": 189,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 205,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The report's **home** \u2014 where it is written, published, or surfaced \u2014 is fixed by no accepted source. `PRD.md` \u00a711 states only that the metrics are \"measured in system behavior\", the `PEC-DSH` requirements enumerate five das",
+      "file": "ScopeOfWork.md",
+      "line": 206,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The report's **consumer** is fixed by no accepted source. `SOW-093` says \"Report \u2026 as the \u00a711 parity metric\" without naming a reader, an approver, or a recipient. `OBJ-006` requires the metric be gathered; no accepted source",
+      "file": "ScopeOfWork.md",
+      "line": 207,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The report's concrete **form and derivation surface** \u2014 whether it is a documented manual procedure, an instrumented query over the store, a generated view, or a periodic artifact, and its invocation surface if it has one \u2014 ",
+      "file": "ScopeOfWork.md",
+      "line": 208,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 The **reporting period and series shape** \u2014 whether the metric is a per-reconcile series, a rolling figure over a window, a per-release figure, or a single current value \u2014 is fixed by no accepted source. `SOW-093` fixes the ",
+      "file": "ScopeOfWork.md",
+      "line": 209,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 20,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 10
+    }
+  }
+}

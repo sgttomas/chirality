@@ -1,0 +1,6 @@
+NOT_CHECKABLE: /private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md REQ-004: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: /private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md REQ-006: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: /private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md REQ-009: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+NOT_CHECKABLE: /private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-06_Workplan_LOOP_INIT_parser/ScopeOfWork.md REQ-010: per-act exclusion clause: owner and claim are not syntactically bound; route to the scope-of-work QA method
+
+Contracts: 1 (0 out-of-grammar) | boundary requirements checked: 1 | per-act exclusions for skill QA: 4 | boundary requirements citing no claim: 0 | contracts failing: 0

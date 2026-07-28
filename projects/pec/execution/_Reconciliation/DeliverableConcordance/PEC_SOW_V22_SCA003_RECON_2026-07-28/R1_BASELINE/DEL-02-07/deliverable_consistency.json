@@ -1,0 +1,98 @@
+{
+  "candidate_unsourced_numerics": [
+    {
+      "excerpt": "The owner ruled the question at the SCA-002 Gate 3 in-session gate",
+      "file": "ScopeOfWork.md",
+      "line": 53
+    }
+  ],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer",
+  "folder_name": "DEL-02-07_adapter_yaml_feed_manifest_consumer",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-011** \u2014 Observed corpus condition, recorded as observation and not as specification: two `_harness/adapter.yaml` instances exist in this checkout, at `projects/chirality-app-dev/_harness/adapter.yaml` and `projects/chirality-piping/",
+      "file": "ScopeOfWork.md",
+      "line": 109,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation.",
+      "file": "ScopeOfWork.md",
+      "line": 111,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The manifest grammar this reader declares \u2014 which fields it consumes, their semantics, and its validation rules \u2014 is fixed by no accepted source. It is chosen during production within REQ-002 and CLM-005.",
+      "file": "ScopeOfWork.md",
+      "line": 112,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The relation between a registered loop and the project (or projects) whose `_harness/adapter.yaml` is read for it is fixed by no accepted source. The registry names loops; the manifest is per-project; PRD \u00a77.1 places Loop as",
+      "file": "ScopeOfWork.md",
+      "line": 113,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The means by which a YAML manifest is parsed under the zero-third-party-runtime-dependency rule (REQ-007) is undetermined. `PEC-SVC-001` permits workspace-internal runtime contracts packages; whether the reader uses such a p",
+      "file": "ScopeOfWork.md",
+      "line": 114,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-007** \u2014 The reader and its fixtures shall introduce no third-party runtime dependency and no external network egress, per `PEC-SVC-001` and `PEC-SVC-002`, whose standing enforcement is `DEL-01-05` covering `SOW-052` and `SOW-053`. T",
+      "file": "ScopeOfWork.md",
+      "line": 124,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-002** \u2014 `SOW-017` and `PEC-RCN-002` name the manifest as \"per-project\", while the upstream edge `[E-N16]` (CLM-006) supplies loops rather than projects. The accepted sources do not state how a registered loop resolves to the project",
+      "file": "ScopeOfWork.md",
+      "line": 137,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-017 OBJ-001 OBJ-002 | REQ-001, REQ-002, CLM-001, CLM-002, CLM-004, TBD-002 | AC-001 | VER-001 | Grammar documentation, the valid fixture manifest, and reader output showing the derived feed manifest plus the undeclared-field",
+      "file": "ScopeOfWork.md",
+      "line": 172,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-017 OBJ-001 OBJ-002 | REQ-004, CON-002, TBD-003, AX-002 | AC-003 | VER-003 | Per-case transcripts for absent, unreadable, malformed, and schema-invalid manifest fixtures, each showing the project named and the fault located ",
+      "file": "ScopeOfWork.md",
+      "line": 174,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "| OUT-001 | SOW-017 OBJ-001 OBJ-002 | REQ-007, TBD-004 | AC-005 | VER-005 | Dependency-manifest and import-graph inspection records, plus the DEL-01-05 enforcement result once that deliverable is available |",
+      "file": "ScopeOfWork.md",
+      "line": 176,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 1,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 10,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 0
+    }
+  }
+}

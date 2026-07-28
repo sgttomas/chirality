@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-04_Orientation_Services/1_Working/DEL-04-02_Delta_service_since_SHA",
+  "folder_name": "DEL-04-02_Delta_service_since_SHA",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "- **CLM-002** \u2014 `SOW-005`'s `SourceRef` cell names one locus, `PEC-ORI-002`, the `PRD.md` \u00a79.1 orientation requirement, quoted here in full as it reads: \"PEC shall serve deltas since a caller-supplied commit SHA.\" That is the entire accepte",
+      "file": "ScopeOfWork.md",
+      "line": 118,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-005** \u2014 `DEL-04-02` is named \"Delta service since SHA\", Type `BACKEND_FEATURE_SLICE`, Context Envelope `M`, `PhaseHint` `P1`, `ResponsibleParty` `TBD`, `AnticipatedArtifacts` \"Delta service + tests\", `CoversScopeItems` `SOW-005`, `S",
+      "file": "ScopeOfWork.md",
+      "line": 137,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-008** \u2014 This deliverable has **one** accepted `EXECUTION` upstream edge and **two** `ANCHOR` rows, held as `Dependencies.csv` register rows `DEP-04-02-001` through `DEP-04-02-003` at `RegisterSchemaVersion` `v3.1`. The two anchors a",
+      "file": "ScopeOfWork.md",
+      "line": 153,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "The corresponding accepted DAG exhibit row, under that exhibit's columns `EdgeID,PredecessorID,SuccessorID,Stratum,EdgeKind,Flag,BasisCitation,Rationale`, reads `E-P33,DEL-03-02,DEL-04-02,PROPOSAL,CONSUMES,,,Deltas since SHA ride the increm",
+      "file": "ScopeOfWork.md",
+      "line": 155,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation and not in this contract (`SOFTWARE_DECOMP.md` \u00a75 preamble; `_CONTEXT.md`).",
+      "file": "ScopeOfWork.md",
+      "line": 239,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 The service's concrete in-process interface \u2014 its entry-point name, the form in which the caller-supplied SHA is passed, its other parameters, and the shape of the value it returns \u2014 is fixed by no accepted source beyond the",
+      "file": "ScopeOfWork.md",
+      "line": 240,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The internal representation of a difference \u2014 whether the service holds a per-element before/after pair, a change classification, an added/changed/removed partition, or an element list with no classification \u2014 is fixed by no",
+      "file": "ScopeOfWork.md",
+      "line": 241,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 Where the delta-composition record of OUT-001 lives and in what form it is published are fixed by no accepted source; they are chosen during production within REQ-005, which fixes what it must declare rather than where it si",
+      "file": "ScopeOfWork.md",
+      "line": 242,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-010** \u2014 The service shall expose its value through an in-process interface and shall implement no socket binding, no token or access-class check, no wire schema or serialization format, no subscription or stream endpoint, and no ren",
+      "file": "ScopeOfWork.md",
+      "line": 259,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "> - **TBD-004** \u2014 Where the baseline record durably lives is fixed by no accepted",
+      "file": "ScopeOfWork.md",
+      "line": 285,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 16,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 6
+    }
+  }
+}

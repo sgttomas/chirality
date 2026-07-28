@@ -1,0 +1,133 @@
+{
+  "item_count": 5,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-02-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 108,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20"
+      },
+      "text": "The delivered schema declares an explicit version identifier, and any consumer can determine from the artifact alone which schema version a given request or response shape belongs to.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-08-02-VER-001",
+          "source_line": 116,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the delivered schema artifact and confirm it declares an explicit version identifier that resolves the version of every request and response shape it defines."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-02-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 109,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20"
+      },
+      "text": "The delivered check, run against the recorded baseline schema version and a candidate, passes candidates that only add and fails candidates that remove a published element or change a published element's meaning. Those two properties are the accepted floor stated at REQ-002; the finer taxonomy of permitted additive changes remains TBD-004, which this criterion neither resolves nor forecloses. The criterion binds the delivered mechanism's behaviour, not the content of schema versions authored after this deliverable closes.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-08-02-VER-002",
+          "source_line": 117,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the delivered compatibility tests against the recorded predecessor schema version and confirm they pass on an additive candidate and fail on a seeded non-additive candidate (a removed element and a meaning-changing element)."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-08-02-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 110,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20"
+      },
+      "text": "The initial schema version is recorded as the baseline predecessor the check runs against, and the delivered compatibility tests execute the check over seeded candidates — one purely additive, one that removes a published element, and one that changes a published element's meaning — with their outcomes retained as evidence.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-08-02-VER-002",
+          "source_line": 117,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the delivered compatibility tests against the recorded predecessor schema version and confirm they pass on an additive candidate and fail on a seeded non-additive candidate (a removed element and a meaning-changing element)."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-02-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 111,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20"
+      },
+      "text": "The delivered schema and compatibility tests trace to SOW-042 and OBJ-001 and introduce no scope beyond SOW-042; in particular they do not absorb the transport, access-class, latency, response-format, or subscription scope held by the sibling deliverables named in CLM-004.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-042 and OBJ-001 and confirms no absorption of sibling PKG-08 scope"
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-08-02-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 112,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20"
+      },
+      "text": "An accountable owner confirms that the single-objective attribution `DEL-08-02 → OBJ-001` remains acceptable given the recorded MEDIUM-confidence qualification — that `PEC-API-003`'s \"textual link to any single outcome is weak\" and that `OBJ-001` \"is recommended only because orientation is the API's primary consumer in §12's P1 sequencing, not because the text selects it\" — and given the recorded unadopted alternatives `OBJ-001;OBJ-004` and the full consumer set.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation that the MEDIUM-confidence single-objective attribution to OBJ-001 stands, given the Gate 3 record's weak-textual-link finding and the unadopted alternatives OBJ-001;OBJ-004 and the full consumer set"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-08-02",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-08",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20"
+  },
+  "tool_version": "1"
+}

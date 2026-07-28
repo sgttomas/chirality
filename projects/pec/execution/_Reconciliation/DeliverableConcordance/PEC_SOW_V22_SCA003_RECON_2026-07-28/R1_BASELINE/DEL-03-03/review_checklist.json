@@ -1,0 +1,387 @@
+{
+  "item_count": 15,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 252,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "For fixture snapshot pairs exercising addition, removal, modification, and no-change, every difference between the pair is found and assigned exactly one class from the declared closed class set; a seeded difference the class set does not cover is reported as unclassified with a stated reason and is not dropped.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-001",
+          "source_line": 292,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Classification exercise: run the classifier over fixture snapshot pairs seeded with addition, removal, modification, and no-change cases, and assert per case that every seeded difference is found and carries exactly one declared class; seed a difference outside the declared class set and assert it is reported unclassified with a stated reason rather than dropped."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 253,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "Both snapshots in every exercised pair are acquired through the upstream record-tier interface; this deliverable's source contains no reconcile path, no snapshot construction path, no feed grammar, and no feed-file read.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-002",
+          "source_line": 293,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Input-boundary inspection: instrument or inspect the classifier's acquisition surface and assert both snapshots are obtained through the upstream record-tier interface; grep this deliverable's source for reconcile paths, snapshot construction, feed grammar definitions, and feed-file reads, asserting none is present."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 254,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "Every finding produced is an instance of the upstream-obliged DriftFinding type; this deliverable's source defines no record-tier or presence-tier entity type; and no element of this deliverable asserts that an upstream schema, store, reconciler, or parser artifact exists.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-003",
+          "source_line": 294,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Type-boundary inspection: assert every finding produced is constructed against the upstream-obliged DriftFinding type; grep this deliverable's source for record-tier and presence-tier type definitions and assert none; grep source and fixtures for any assumption that an upstream schema, store, reconciler, or parser artifact exists, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 255,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "A classification run over a fixture source corpus leaves that corpus byte-identical, opens no source file for reading or writing, and touches no path outside the store; every store write in this deliverable's source reaches the store through the upstream declared ingest boundary; and the module contains no write, create, or delete call against any source file, governed file, register, or lifecycle file, and no write to any generated view.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-004",
+          "source_line": 295,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Write-boundary exercise: hash the fixture source corpus tree before and after a classification run and assert byte-identity; capture every filesystem open and write performed during the run and assert no source file is opened for reading or writing and every write resolves under the store through the upstream ingest boundary; inspect the module's call graph and assert no write, create, or delete call targets a source file, governed file, register, lifecycle file, or generated view."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 256,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "For a content-dense fixture pair whose differences fall in long prose bodies, quoted authored text, and diff-shaped content, inspection of every field of every finding produced shows only paths, counts, identifiers, states, SHAs, hashes, and class tokens, and no changed text is carried, quoted, excerpted, or reconstructible from the finding.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-005",
+          "source_line": 296,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content-minimal inspection: run the classifier over a content-dense fixture pair whose differences fall in long prose bodies, quoted authored text, and diff-shaped content, then dump every field of every finding produced and assert field by field that none carries file or diff content and that the changed text cannot be reconstructed from the finding."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 257,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "Every finding produced carries both snapshots' examined-through SHAs, its assigned class, and a rule identity that resolves to an entry in the classifier's declared class-set record; that record documents every class the classifier can assign; and no finding's basis dead-ends.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-006",
+          "source_line": 297,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Explainability exercise: for every finding produced across the VER-001 fixture set, assert the presence of both snapshots' examined-through SHAs, the assigned class, and a rule identity; resolve each rule identity against the declared class-set record and assert it is present there; compare the record's class enumeration against the classes the classifier can assign and assert set equality."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 258,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "Classification exposes no judgment, override, or manual-adjustment input; re-deriving every class from the two snapshots and the declared rule set alone reproduces the classifier's output exactly.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-007",
+          "source_line": 298,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Judgment-boundary inspection: inspect the classifier's parameter and configuration surface and assert no judgment, override, or manual-adjustment input exists; independently re-derive every class from the two snapshots and the declared rule set and assert the re-derivation reproduces the classifier's output exactly."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 259,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "Two classification runs over the same fixture snapshot pair produce identical finding sets in identical order, and a run over an already-classified pair produces no difference.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-008",
+          "source_line": 299,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Determinism: run the classifier twice over the same fixture snapshot pair and assert identical finding sets in identical order; run it a third time over the already-classified pair and assert no difference."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 260,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "For fixture pairs in which one snapshot reports a feed absent, unreadable, malformed, stale, and grammar-unrecognized in turn, the result carries the reported limitation naming the loop and the feed, and no such case is presented as drift in the sources.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-009",
+          "source_line": 300,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Limitation carry-through: run the classifier over fixture pairs in which one snapshot reports a feed absent, unreadable, malformed, stale, and grammar-unrecognized in turn, and assert per case that the result carries the reported limitation naming the loop and the feed and that no case is presented as drift in the sources."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 261,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "Every finding this classifier produces is attributable to snapshot-to-snapshot classification and none is presented, exported, or counted as practitioner-harness parity output; this deliverable's source contains no parity-diff path and no harness-output reader.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-010",
+          "source_line": 301,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Producer-attribution exercise: assert every finding produced is attributable to snapshot-to-snapshot classification; grep this deliverable's source for parity-diff paths and practitioner-harness output readers and assert none; inspect the export and counting surface and assert no finding is emitted in a form that presents it as parity output."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 262,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "The module contains no full-rebuild path, no Git-delta incremental path, no parity-diff or source-resolution path, no stream-loss recovery path, no performance measurement or assertion, no caller-SHA delta path, no stamping or citation-attachment path, no pressure-rule, density, or threshold derivation, no dashboard, census, or metric path, no gate-evaluation path, and no store lifecycle act; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-011",
+          "source_line": 302,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection: inspect the module's call graph and source for full-rebuild, Git-delta incremental, parity-diff, source-resolution, stream-loss recovery, performance measurement, caller-SHA delta, stamping, citation-attachment, pressure-rule, density, threshold, dashboard, census, metric, gate-evaluation, and store-lifecycle paths, asserting each absent; review this deliverable's tests for any criterion belonging to another deliverable, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 263,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "Every upstream dependency in this deliverable's source and tests resolves to an interface-level fixture stand-in for a contract obligation rather than to an assumed artifact, and a recorded search of source, fixtures, and call surface finds no assumption that any upstream artifact exists.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-012",
+          "source_line": 303,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Stand-in discipline: enumerate every upstream dependency in source and tests and assert each resolves to an interface-level fixture stand-in for a contract obligation; re-run the exercise against the live upstream reconciler and schema once those deliverables are available, without discharging either here."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 264,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "The classifier and its tests add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-013",
+          "source_line": 304,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-03` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-03-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 265,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "The test suite implements VER-001 through VER-013, executes in the `PKG-03` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-03-03-VER-014",
+          "source_line": 305,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-03` test suite and confirm that each of VER-001 through VER-013 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-03-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 266,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-019` and `OBJ-002`; confirms that the objective mapping is stated as register-direct and pre-SCA-002, carrying no confidence label the record does not assign; and confirms that no `PKG-01`, sibling `PKG-03`, `PKG-04`, `PKG-09`, or `PKG-10` scope has been absorbed — in particular neither reconcile path, the parity diff, the pressure rules, nor the parity metric.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-019 and OBJ-002, confirms the objective mapping is stated as register-direct and pre-SCA-002 with no confidence label the record does not assign, and confirms no upstream, sibling, or cross-package scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "5ce8ab72425ab417c90c3e64a152912a7e39b243f3905e65477dbfd91a40eaa7"
+  },
+  "tool_version": "1"
+}

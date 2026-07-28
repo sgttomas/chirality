@@ -1,0 +1,312 @@
+{
+  "item_count": 12,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 190,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "The parser reads a well-formed fixture pair and yields exactly the RunRecord summaries the fixture declares; every key it reads appears in the documented grammar; altering an undeclared key in the fixture changes nothing in its output; and a fixture with an unrecognized `schema` value and a fixture with no `schema` key are each handled as the documented grammar states.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-001",
+          "source_line": 219,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the parser over a well-formed fixture pair and assert the emitted summaries equal the fixture's declared expectation; compare the set of keys actually read, by instrumentation or code inspection, against the documented grammar; mutate an undeclared key to assert output invariance; and execute the unrecognized-`schema` and absent-`schema` fixtures, asserting the documented behaviour in each case."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 191,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "Every emitted summary is an instance of the upstream RunRecord type as that contract obliges it; no record-tier entity type is defined in this deliverable's source; and no element of this deliverable asserts or requires that an upstream schema, entity model, or store exists.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-002",
+          "source_line": 220,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect this deliverable's source for any record-tier type definition and assert none is present; assert every emitted summary is constructed against the upstream RunRecord type as the contract quoted in CLM-008 obliges it; and grep the source and fixtures for any assumption that an upstream schema, model, or store exists, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 192,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "Only files beneath `execution/**` are read, and a fixture carrying runtime-daemon user-data state produces no summary and no record-tier field, so no presence fact can reach a record-tier citation through this parser.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-003",
+          "source_line": 221,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Tier-boundary exercise: point the parser at a fixture tree containing files beneath and outside `execution/**` plus a runtime-daemon user-data state fixture, and assert that only the `execution/**` files are read and that the daemon-state fixture yields no summary and no record-tier field."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 193,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "Every emitted summary resolves to its live source: for a sample of each fixture kind, the recorded provenance is present and locatable by path, anchor, and/or SHA.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-004",
+          "source_line": 222,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Provenance resolution: for a sample summary from each fixture kind, resolve the recorded provenance to a live file source and assert that path, anchor, and/or SHA are present and locatable."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 194,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "For absent, unreadable, malformed-JSON, and schema-unrecognized fixtures, the parser returns an explicit limitation naming the file and the fault, and never a silently dropped, empty, partial, or defaulted summary in its place.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-005",
+          "source_line": 223,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the parser against absent, unreadable, malformed-JSON, and schema-unrecognized fixtures and assert, per case, an explicit limitation naming the file and the fault, with no dropped, empty, partial, or defaulted summary returned."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 195,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "A parser run over a fixture corpus leaves that corpus byte-identical, and the module contains no write, create, or delete call against any source path.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-006",
+          "source_line": 224,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Hash the fixture corpus tree before and after a parser run and assert byte-identity; inspect the module's call graph for write, create, or delete operations against any source path."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 196,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "The emitted summaries for a prose-bearing fixture contain no file content, no diff content, and no free-prose payload carried from the run-evidence file; only paths, counts, identifiers, states, SHAs, and hashes appear.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-007",
+          "source_line": 225,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content-minimal inspection: run the parser over a fixture whose run-evidence fields carry free prose, diff-shaped text, and file content, and assert field by field that the emitted summaries carry none of it, only paths, counts, identifiers, states, SHAs, and hashes."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 197,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "Two runs of the parser over the same unchanged fixture corpus produce identical summaries, and inspection finds no emitted field whose value a rebuild from the same sources could not reproduce.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-008",
+          "source_line": 226,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Determinism check: run the parser twice over the same unchanged fixture corpus and assert the emitted summaries are identical; inspect the emitted field inventory for any value the parser did not derive from the source files."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 198,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "The parser and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-009",
+          "source_line": 227,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-02` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 199,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "The parser reads no sibling feed — `WORK_GRAPH.json` included — emits no entity type other than RunRecord, and performs no reconciliation, drift-classification, stamping, or citation-attachment act owned by `PKG-03` or `PKG-04`.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-010",
+          "source_line": 228,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection: assert the parser opens no file named `WORK_GRAPH.json` or any other sibling feed, emits no entity type other than RunRecord, and contains no reconciliation, drift-classification, stamping, or citation-attachment code path."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-02-04-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 200,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "The fixture test suite implements VER-001 through VER-010, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-02-04-VER-011",
+          "source_line": 229,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-02` test suite and confirm that each of VER-001 through VER-010 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-04-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 201,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-014`, `OBJ-001`, and `OBJ-002` as ruled at SCA-002 Gate 3 Q2, confirms that the indirect `OBJ-002` leg is stated no more strongly here than the Gate 3 record states it — including the recorded and unadopted N1 narrowing evidence and the absence of a confidence label on that group — and confirms that no `PKG-01`, sibling `PKG-02`, `PKG-03`, or `PKG-04` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-014 and to OBJ-001/OBJ-002 as ruled at SCA-002 Gate 3 Q2, confirms the indirect OBJ-002 leg is stated no more strongly than that record states it given the unadopted N1 narrowing evidence and the absence of a confidence label, and confirms no sibling or cross-package scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-04",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "bdb4eea0143ef6c777b0ed5914e7a8846d818437f77ec96cea03d8557f3bcb87"
+  },
+  "tool_version": "1"
+}

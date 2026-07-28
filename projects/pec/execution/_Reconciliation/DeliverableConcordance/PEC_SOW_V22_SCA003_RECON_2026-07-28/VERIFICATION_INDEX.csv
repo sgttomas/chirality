@@ -1,0 +1,8 @@
+VerificationID,Tool,Scope,RequiredResult,Authority
+V-SOW-001,tools/scope_of_work/validate_scope_of_work.py,Every active SOW_V1 contract,PASS,scope-of-work skill
+V-SOW-002,tools/scope_of_work/derive_review_checklist.py,Every active SOW_V1 contract,PASS and deterministic,scope-of-work skill
+V-SOW-003,tools/scope_of_work/check_boundary_owner_resolution.py,Every active SOW_V1 contract,No unresolved owner or undefined claim,scope-of-work skill
+V-SOW-004,tools/validation/scan_deliverable_consistency.py,Every active SOW_V1 contract,No blocking identity/schema inconsistency,deliverable-consistency skill
+V-REG-001,tools/validation/validate_decomposition_registers.py,Full PEC execution root,Strict 0 errors and 0 warnings,D-PEC-69
+V-HOLD-001,projects/pec/execution/_Scripts/pec_reliance_hold.py,PEC-HOLD-001 allowed and prohibited operations,Allowed candidates pass and prohibited acts block,D-PEC-67/D-PEC-69
+V-WS-001,tools/validation/validate_candidate_whitespace.py,Complete Git candidate,PASS,D-PEC-69

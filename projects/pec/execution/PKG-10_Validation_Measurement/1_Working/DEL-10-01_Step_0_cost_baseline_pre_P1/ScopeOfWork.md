@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-10-01
 package_id: PKG-10
-decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
+decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a
 project_scope_refs: [SOW-058]
 package_objective_refs: [OBJ-001, OBJ-006]
 ---
@@ -42,16 +42,17 @@ deriving it. `ScopeLedger.csv` row `SOW-058` carries `ObjectiveIDs` =
 SOW-059") and among `OBJ-006`'s mapped scope items, and lists `DEL-10-01` in the
 `MappedDeliverables` cell of both rows. The dual mapping is the register's own:
 this deliverable measures the thing `OBJ-001` promises (orientation cost) using
-the measurement posture `OBJ-006` requires (gathered in system behavior, keeping
-the §11 falsification clause armed). No new derivation is asserted here.
+the measurement posture `OBJ-006` requires (gathered in observable system and
+use behavior, keeping the §11 falsification clause armed). No new derivation is
+asserted here.
 
-**Basis-revision note.** `_REFERENCES.md` still names
-`execution/_Decomposition/SOFTWARE_DECOMP.md` "revision 1.1, accepted working
-surface". That phrase is superseded provenance awaiting a deferred pointer
-sweep: `_CONTEXT.md` records revision 1.1 as "superseded by revision 1.2
-(`current_basis`, `SCA-002` successor)". The accepted basis bound in this
-contract's frontmatter is revision 1.2 at commit `3623b958b`, and this contract
-cites revision 1.2.
+**Basis-revision note.** `_REFERENCES.md` now names
+`execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.3 as the accepted
+`current_basis` under the reference-parity integration at `af62343d3`.
+`_CONTEXT.md` retains the revision-1.1 to revision-1.2 supersession trace;
+SCA-003 establishes revision 1.3 as the current successor. The accepted basis
+bound in this contract's frontmatter is revision 1.3 at merge `11a494e9a`,
+and this contract cites revision 1.3.
 
 - **OUT-001** — The Step-0 cost measurement method: a documented, repeatable protocol for measuring LLM tokens per loop-iteration orientation, defined so that the same protocol yields the post-P1 "after" measurement of the same metric.
 - **OUT-002** — The pre-P1 baseline report: the "before" values captured under `OUT-001`'s method before P1 begins, together with the re-test of the practitioner-harness query-pain precondition recorded unmet on 2026-07-02.
@@ -69,11 +70,11 @@ cites revision 1.2.
 
 ### Subject matter carried into the outputs
 
-- **CLM-004** — The metric of record is PRD §11 success metric 1: "Step-0 cost: LLM tokens per loop-iteration orientation, before vs after; the 'before' baseline is measured before P1 begins (this also re-tests the query-pain precondition the practitioner harness recorded unmet on 2026-07-02)" (`projects/pec/docs/PRD.md` §11.1). PRD §11's preamble scopes all six metrics as "measured in system behavior, not human behavior".
+- **CLM-004** — The metric of record is PRD §11 success metric 1: "Step-0 cost: LLM tokens per loop-iteration orientation, before vs after; the 'before' baseline is measured before P1 begins (this also re-tests the query-pain precondition the practitioner harness recorded unmet on 2026-07-02)" (`projects/pec/docs/PRD.md` §11.1). PRD §11's current heading scopes all six metrics as "measured in observable system and use behavior"; observing consumer use creates no receiving-loop duty or conformance criterion.
 - **CLM-005** — The measured condition of record is PRD §2: "Step 0 is the most expensive, most repeated computation in the OS. Every iteration of every loop re-derives the live lawful work surface from prose: >1,200 `_STATUS.md` files, ~230 decision records, receipts ledgers, workplans. Each derivation burns an LLM session, and the loop archives document the recurring failure mode: 'a fluent draft grounded on stale facts.'" PRD §2 closes with the same obligation this deliverable carries: "Step-0 cost is re-measured before P1 (§11)".
 - **CLM-006** — The precondition being re-tested is the practitioner harness's own record: its cache half "remains closed by its own record (`tools/practitioner_harness/README.md` §Cache contract): its query-pain precondition was measured **unmet** on 2026-07-02 (slowest command ~4 s)", and a `D-PEC-57`/`D-PEC-58` ruling "neither directs the harness nor remeasures that precondition. §11 metric 1 re-measures Step-0 cost before P1" (`PRD.md` §15).
 - **CON-001** — The unit of the re-test is not settled by the accepted sources. `SOW-058` and PRD §11.1 state the metric as **LLM tokens per loop-iteration orientation**, while the harness precondition being re-tested was originally recorded in **command latency** ("slowest command ~4 s", PRD §15). No accepted source states whether the re-test applies the harness's original latency criterion, the token metric, both, or a stated successor criterion. This contract records the ambiguity and requires the method to declare which criterion it applies; it does not resolve the question by inference, and no resolution may be read into this document.
-- **CLM-007** — `OBJ-006`'s armed clause is PRD §11's falsification clause: "if, after Phase 3, harness poll adoption remains negligible and the owner does not consult the dashboards, the product thesis is falsified; PEC is deleted and, by PEC-K-01, nothing breaks." This deliverable supplies the "before" leg of metric 1 that keeps that clause evaluable; it does not evaluate the clause, which is a post-Phase-3 act.
+- **CLM-007** — `OBJ-006`'s armed clause is PRD §11's falsification clause: if, after Phase 3, explicit consumer enablement or enabled-consumer orientation use remains negligible and the owner does not consult the dashboards, the product thesis is falsified; PEC is deleted and, by PEC-K-01, nothing breaks. Non-adoption is evidence about PEC, never external consumer nonconformance. This deliverable supplies the "before" leg of metric 1 that keeps that clause evaluable; it does not evaluate the clause, which is a post-Phase-3 act.
 - **CLM-008** — The relationship to the harness is bounded by constraint C10: "Permanent parity-diff against the practitioner harness; PEC neither directs the harness nor opens its cache half" (`SOFTWARE_DECOMP.md` §1.3 "Hard constraints (identified at intake)", row `C10`; `PRD.md` §15) — a decomposition constraint label distinct from the deliverable-local dependency-register constraint row `C-10` (STRATUM_RULE) recorded in `_DEPENDENCIES.md`. Re-measuring Step-0 cost is a measurement, not a ruling about the harness.
 - **CLM-009** — Measurement work is scope distinct from the behavior it measures. Decision-log entry DL-6 records: "§11 measurements and §12 exit tests enter as IN scope items (SOW-058..063, SOW-084, SOW-085) distinct from the behaviors they test; each Notes cell cross-links its behavior item"; and `PKG-10`'s declared exclusion is "The behaviors under test (their home packages)" (`SOFTWARE_DECOMP.md` §4 package table, §Decision Log DL-6).
 
@@ -87,7 +88,7 @@ cites revision 1.2.
 
 The requirements below state what the future measurement work must satisfy. No
 measurement method and no baseline report exist for this deliverable at the time
-of writing; `_STATUS.md` records state `OPEN`. Nothing in this section asserts
+of writing; `_STATUS.md` records state `INITIALIZED`. Nothing in this section asserts
 that any baseline has been captured or that any value has been observed.
 
 - **REQ-001** — The method shall define the measured unit — one loop-iteration orientation — in terms the accepted sources support (`CLM-004`, `CLM-005`), and shall state the sampling population, the sample count, and the observation window (`TBD-002`).
@@ -137,9 +138,9 @@ this contract.
 - **AX-002** — `OBJ-001` governs the subject: the metric exists to test whether orientation becomes a sub-second cited query rather than a session-length prose derivation. What is measured before P1 is therefore the cost of the derivation PRD §2 describes, not the cost of any PEC capability, which does not yet exist at `pre-P1`.
 - **AX-003** — Measurement is not participation. Constraint C10 and PRD §15 hold that PEC neither directs the practitioner harness nor opens its cache half; re-testing the query-pain precondition reports a value against the harness's own record and confers no authority over it.
 - **AX-004** — The instrument never becomes the behavior. DL-6 and `PKG-10`'s declared exclusion keep the behaviors under test in their home packages; a measurement artifact that starts specifying `DEL-04-01` or `DEL-08-04` has left this deliverable's scope.
-- **AX-005** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.2 at commit `3623b958b`, accepted through `SCA-002`. The revision 1.1 reference in `_REFERENCES.md` is superseded provenance, not a competing authority.
+- **AX-005** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.3 at merge `11a494e9a`, accepted through `SCA-003`. Revision 1.1 and revision 1.2 references are superseded provenance, not competing authority.
 - **AX-006** — Unknowns remain marked. `TBD-001`, `TBD-002`, `TBD-003`, and `CON-001` are recorded rather than resolved by inference. `CON-001` in particular is a unit-of-measure question the accepted sources do not answer; this contract fixes the obligation to declare a criterion, not the criterion itself.
-- **AX-007** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by the run that authored this document; the deliverable is at `OPEN`, and no measurement method, no sampled orientation, and no baseline value exists.
+- **AX-007** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and is untouched by this reconciliation; the deliverable is at `INITIALIZED`, and no measurement method, no sampled orientation, and no baseline value exists.
 
 ## Output and Evaluation Matrix
 

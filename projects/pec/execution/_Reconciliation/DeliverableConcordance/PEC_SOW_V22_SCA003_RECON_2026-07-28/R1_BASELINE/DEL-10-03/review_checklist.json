@@ -1,0 +1,258 @@
+{
+  "item_count": 10,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 265,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "On an API state whose surface contains no write path recording adoption, ruling, or direction the suite passes; on a state that introduces such a path it fails and names both the offending operation and the schema element or served route through which it is reachable.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-001",
+          "source_line": 292,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the suite against a conforming API fixture and against fixtures that introduce a ruling-recording write path at (a) a schema-declared request shape and (b) a served route absent from the schema; assert a pass on the conforming fixture and, on each violating fixture, a failure naming the offending operation and its schema element or route."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 266,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "The operative definition is recorded with the suite, cites `PEC-GAT-004` and the §4.2 non-goal, and enumerates the expected PEC writes it treats as permitted; every classification the suite makes traces to that recorded definition, and no outcome depends on an unrecorded reading of TBD-002.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-002",
+          "source_line": 293,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the recorded operative definition against the `PEC-GAT-004` and §4.2 wording and against the enumerated permitted-write set; trace a sample of the suite's pass and fail classifications back to that recorded definition and confirm none rests on an unrecorded reading."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 267,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "The evaluated operation set is derived from the obliged schema's declared shapes and from the operations served over the obliged listener; introducing an operation into either source without it entering the suite's evaluated set produces a reported failure rather than a pass, and an enumeration that cannot be resolved yields a failure rather than a pass over a partial set.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-003",
+          "source_line": 294,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Enumeration audit: compare the suite's evaluated operation set against the schema's declared shapes and the listener's served operations for the same state; then add an operation to each source in turn and assert the suite reports the unevaluated addition rather than passing; then present an unresolvable schema and assert a failure rather than a partial-set pass."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 268,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "Adoption-, ruling-, and direction-shaped probes are refused for every access class the `DEL-08-01` contract obliges, no probe is served, no record of a probe persists after the run, and a state in which such a request is refused for one class but served for another is reported as a failure.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-004",
+          "source_line": 295,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Probe execution: issue adoption-, ruling-, and direction-recording requests under each access class the upstream contract obliges; assert refusal in every case, assert that no record persists after each probe, and assert a reported failure on a seeded state in which one access class is served while another is refused."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 269,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "Given an unreachable listener, an unresolvable or unversioned schema, or an induced tooling error, the suite reports failure; no such condition yields a pass, a skip, or an empty successful result.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-005",
+          "source_line": 296,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Fault injection: run the suite with an unreachable listener, an unresolvable and an unversioned schema, and an induced tooling error; assert a reported failure in every case with no pass, skip, or empty success."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 270,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "The suite re-runs without modification against any state presented to it: for each presented API-surface change, each presented schema version, and each presented release candidate it produces an execution bound to the exact state it evaluated, and it presents no earlier passing run as evidence for a later state. It exposes a binding interface an externally owned change path or release gate can invoke, and when that interface is invoked against a state the suite has not evaluated it reports the missing evaluation rather than a pass, a skip, or a silent no-op.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-006",
+          "source_line": 297,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Re-runnability and bindability demonstration on scratch fixtures: present the suite with a sequence of API-surface changes, at least one additional schema version, and at least one release-candidate fixture; assert an execution is produced for each presented state, that each execution is bound to the state it evaluated, and that no result is reused across states; then invoke the suite's binding interface from a scratch caller against a state the suite has not evaluated and assert it reports the missing evaluation rather than a pass, a skip, or a silent no-op. The method exercises the suite against fixtures it is given and writes no gate configuration this contract does not own."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 271,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "On a release candidate deliberately carrying a ruling-recording write path, and on one against which the suite was withheld, the mechanism returns an explicit blocking verdict. Whether that verdict binds the release is CON-001 and AC-009, not this criterion.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-007",
+          "source_line": 298,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Blocking-verdict demonstration: submit a release candidate carrying a ruling-recording write path, and one candidate with the suite withheld; assert that the mechanism returns an explicit blocking verdict in both cases. The method demonstrates the mechanism's verdict, not the release process's obligation to honour it (CON-001)."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 272,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "The delivered suite traces to `SOW-025` and `OBJ-005` and introduces no scope beyond that ledger row: it defines no transport, no access class, and no schema content, asserts no obligation on `DEL-08-01` or `DEL-08-02`, adds no write path of its own, and leaves the surface under test and every governed file unmodified across a full run.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-10-03-VER-008",
+          "source_line": 299,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary and self-inspection: compare the surface under test and the working tree before and after a full run; inspect the suite for any created, stubbed, or simulated write path and for any privileged access class it requires; and inspect its declared inputs to confirm it cites the two upstream contracts' obligations without restating, constraining, or extending them, and introduces no criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 273,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "An accountable owner confirms, or declines to confirm, that the verification delivered under this contract carries release-gating authority — that its blocking verdict blocks a release candidate — given that `C-08`'s standing-node classification carries \"owner confirmation requested\" in its own `Notes` and was accepted at `D-PEC-62` §1(4) as a recorded-but-unresolved, non-gating annotation (CLM-007, CON-001). A decline leaves the mechanism's verdicts advisory and invalidates no other criterion in this contract; the standing framing of the contract stands either way, because it is how the contract is written rather than a claim about the verification's force.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation or declination that the verification carries release-gating authority, given C-08's \"owner confirmation requested\" note and D-PEC-62 §1(4)'s acceptance of the standing-node set as a recorded-but-unresolved non-gating annotation"
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-10-03-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 274,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+      },
+      "text": "An accountable owner confirms that the attribution `SOW-025` → `OBJ-005` remains acceptable given the recorded LOW-MEDIUM rating at Q1.7, the finding that \"the authority boundary K-AUTH-1 states is **not stated by any §3 objective**\", the characterization of the choice as \"the **least-wrong** objective as an explicit act rather than discovering a warrant that exists\", the recorded unadopted alternatives `OBJ-003` and `OBJ-006`, and the withdrawal of the `SOW-055` precedent as tautological at `C-18` (CON-002).",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "accountable owner confirmation that the LOW-MEDIUM attribution of SOW-025 to OBJ-005 stands, given the Q1.7 finding that no §3 objective states the K-AUTH-1 authority boundary, the least-wrong-selection characterization, the unadopted alternatives OBJ-003 and OBJ-006, and the C-18 withdrawal of the SOW-055 precedent"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-10-03",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-10",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "cbcabbde6882baf5330e90cdd6e1cf4a9d9aa1da076643a27f84ff4cb7696ff8"
+  },
+  "tool_version": "1"
+}

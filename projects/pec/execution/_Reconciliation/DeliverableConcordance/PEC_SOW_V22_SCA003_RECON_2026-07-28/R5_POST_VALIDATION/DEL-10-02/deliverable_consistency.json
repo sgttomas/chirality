@@ -1,0 +1,92 @@
+{
+  "candidate_unsourced_numerics": [],
+  "deliverable_path": "/private/tmp/chirality-pec-sow-reconciliation-run/projects/pec/execution/PKG-10_Validation_Measurement/1_Working/DEL-10-02_Kill_test_standing_release_gate",
+  "folder_name": "DEL-10-02_Kill_test_standing_release_gate",
+  "identity_mismatches": [],
+  "marker_findings": [
+    {
+      "excerpt": "> `DEL-10-02,PKG-10,Kill test (standing release gate),\"Executable: delete the store, run representative governed workflows, nothing blocks. Runs at every release.\",TEST_SUITE,TBD,Kill-test harness + gate wiring,SOW-055,OBJ-005,M,,P1`",
+      "file": "ScopeOfWork.md",
+      "line": 138,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CLM-010** \u2014 `[E-P71]`, the first of this deliverable's two `EXECUTION` upstream edges, is `Dependencies.csv` row `DEP-10-02-003` (`RegisterSchemaVersion` `v3.1`). Attributed by column: `DependencyClass` `EXECUTION`, `AnchorType` `NOT_AP",
+      "file": "ScopeOfWork.md",
+      "line": 171,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **OUT-001** \u2014 The kill-test harness: an executable, re-runnable mechanism that places the system in a no-store state, runs a recorded set of representative governed workflows against that state, and asserts that none is blocked \u2014 failing,",
+      "file": "ScopeOfWork.md",
+      "line": 281,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-001** \u2014 `ResponsibleParty` is unassigned; `Deliverables.csv` and `_CONTEXT.md` both record `TBD`, with assignment at WORKING_ITEMS activation.",
+      "file": "ScopeOfWork.md",
+      "line": 286,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-002** \u2014 Which governed workflows are \"representative\" is not enumerated by any accepted source. `SOW-055`, `PEC-SVC-004`, and the register `Description` all use the word without a list. The accepted corpus does supply candidate mate",
+      "file": "ScopeOfWork.md",
+      "line": 287,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-003** \u2014 The operative test for \"nothing blocks\" is not fixed beyond `PEC-K-01`'s wording, \"No governed act may require a PEC read or write\" (CLM-004). Where a governed act completes but more slowly, or completes while reporting that",
+      "file": "ScopeOfWork.md",
+      "line": 288,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-004** \u2014 The harness's concrete mechanism, invocation surface, and repository home are not fixed by any accepted source; `Deliverables.csv` names the artifact classes and nothing further.",
+      "file": "ScopeOfWork.md",
+      "line": 289,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **TBD-005** \u2014 By what means the store is deleted for the test is not fixed. The upstream contract obliges \"an explicit delete operation\" (CLM-010) while `PEC-K-02` states the database is \"gitignored and safe to delete\" as a property of th",
+      "file": "ScopeOfWork.md",
+      "line": 290,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **CON-004** \u2014 Nothing this harness exercises exists. Both upstream contracts are at `INITIALIZED` (CLM-013), so there is no store to delete, no delete operation to call, and no rebuild command to invoke; and the representative governed wo",
+      "file": "ScopeOfWork.md",
+      "line": 298,
+      "type": "TBD"
+    },
+    {
+      "excerpt": "- **REQ-002** \u2014 The representative governed-workflow set shall be recorded with the harness rather than left implicit in harness code, naming each workflow the harness runs and the basis on which it was selected (TBD-002). The record shall ",
+      "file": "ScopeOfWork.md",
+      "line": 309,
+      "type": "TBD"
+    }
+  ],
+  "missing_core_files": [],
+  "missing_four_documents": [],
+  "missing_scope_of_work": false,
+  "package_id": null,
+  "production_format": "SOW_V1",
+  "production_format_issues": [],
+  "production_unit_id": null,
+  "scanned_docs": [
+    "ScopeOfWork.md"
+  ],
+  "strictness": "conservative",
+  "summary": {
+    "candidate_unsourced_numeric_count": 0,
+    "identity_mismatch_count": 0,
+    "marker_finding_count": 19,
+    "missing_core_file_count": 0,
+    "missing_four_document_count": 0,
+    "scanned_doc_count": 1,
+    "truncated": {
+      "candidate_unsourced_numerics": 0,
+      "identity_mismatches": 0,
+      "marker_findings": 9
+    }
+  }
+}
