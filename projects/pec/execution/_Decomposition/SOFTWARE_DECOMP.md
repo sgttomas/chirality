@@ -3,13 +3,13 @@ doc_id: PEC-SOFTWARE-DECOMP
 doc_kind: decomposition.software
 package_role: working_surface
 status: current_basis
-revision: "1.2"
-date: 2026-07-25
-accepted: 2026-07-25 (original Gate 7 owner ruling under D-PEC-60; revision 1.2 successor accepted through SCA-002 under D-PEC-64)
+revision: "1.3"
+date: 2026-07-28
+accepted: 2026-07-28 (original Gate 7 owner ruling under D-PEC-60; revision 1.3 successor accepted through SCA-003 under the owner's standing completion approval)
 agent_persona: SOFTWARE_DECOMP
 method_reference: agents/AGENT_SOFTWARE_DECOMP.md (conforms to docs/DECOMPOSITION_STANDARD.md)
-session_authorization: D-PEC-60; amended by SCA-001 under D-PEC-61, then by SCA-002 under D-PEC-64
-source_corpus: projects/pec/docs/PRD.md (v2.1; v2.0 adopted 2026-07-24 by D-PEC-58, directed-bootstrap clarification adopted by D-PEC-61)
+session_authorization: D-PEC-60; amended by SCA-001 under D-PEC-61, by SCA-002 under D-PEC-64, then by SCA-003 under the owner's 2026-07-28 standing completion approval
+source_corpus: projects/pec/docs/PRD.md (v2.2; v2.0 adopted by D-PEC-58, directed-bootstrap clarification adopted by D-PEC-61, exact PEC-K-03/-11 rows adopted by D-PEC-67, surrounding consumer-interface concordance adopted by D-PEC-68)
 ---
 
 # PEC v2 Coordination Plane — Software Development Decomposition
@@ -42,14 +42,15 @@ source_corpus: projects/pec/docs/PRD.md (v2.1; v2.0 adopted 2026-07-24 by D-PEC-
 
 ### 1.2 Intake summary
 
-The work is a greenfield software build of the product defined by PRD v2.1:
+The work is a greenfield software build of the product defined by PRD v2.2:
 a deterministic, rebuildable projection of governed file truth (**record
 tier**) plus an ephemeral presence layer (**presence tier**), embodying loop
 Step 0 (Discover) and the deterministic parts of Step 1 (gate review,
-decision-slate presentation). It is consumed by harnesses on behalf of
-agents and by the human owner through dashboards, and it must remain "the
-coordination plane that doesn't need to exist": deletable at any moment
-without blocking any governed act.
+decision-slate presentation). It is available to explicitly PEC-enabled
+consumers, including harnesses acting on behalf of agents, and to the human
+owner through dashboards. It must remain "the coordination plane that
+doesn't need to exist": deletable at any moment without blocking any governed
+act.
 
 The scope to decompose comprises, per the PRD:
 
@@ -93,12 +94,13 @@ The scope to decompose comprises, per the PRD:
 
 **Anticipated build shape (for sizing, not yet a package proposal):** the
 PRD's release strategy sequences P1 (one-loop reconciler + orientation
-store + read-only API) → P2 (dashboards, five loops) → P3 (harness
-integration: hooks CLI + daemon polling, presence registry, Git/worktree
-scanner) → P4 (streams: SSE bridge, hooks push, live hierarchy, optional
-cmux adapter). Per the method's anti-pattern rule, **phases will not become
-packages**; packages will be work domains, and phase membership will be
-carried as deliverable metadata/sequencing hints.
+store + read-only API for PEC's own build graph) → P2 (dashboards, five
+loops, owner-use/non-use observation) → P3 (opt-in PEC-side consumer
+interfaces/adapters, presence registry, Git/worktree scanner) → P4 (PEC-side
+streams and optional hook-push interfaces). Live P3/P4 use requires separate
+receiving-consumer authority. Per the method's anti-pattern rule, **phases
+will not become packages**; packages will be work domains, and phase
+membership will be carried as deliverable metadata/sequencing hints.
 
 ### 1.3 Hard constraints (identified at intake)
 
@@ -106,7 +108,7 @@ carried as deliverable metadata/sequencing hints.
 |---|---|---|
 | C1 | Graceful absence: no governed act may require PEC; kill test is a standing release gate | PEC-K-01, PEC-SVC-004 |
 | C2 | Files govern: record tier rebuildable by one command; store gitignored, safe to delete; output never citable as authority; rulings file-native | PEC-K-02, D-GOV-01, K-AUTH-1 |
-| C3 | Harness-owned consumption; agents never call PEC by instruction | PEC-K-03 |
+| C3 | Pull-oriented, consumer-owned use: PEC serves labeled, non-authoritative orientation on request; it never self-polls, schedules a consumer, injects into an agent, or claims an external cadence; an explicitly enabled consumer decides whether and when to consume, and any injection is optional and verify-before-rely | PEC-K-03, D-PEC-67, D-PEC-68 |
 | C4 | Two trust tiers never blurred; presence facts never in record-tier citations | PEC-K-05, PEC-PRS-007 |
 | C5 | Observation not participation: no dispatch, leases, arbitration, merge opinions; read-only over Git | PEC-K-06, D-GOV-20 |
 | C6 | Content-minimal: paths, counts, SHAs, states, hashes — never file or diff content; enforced at ingest | PEC-K-10, PEC-SVC-005, D-T0-14/20 |
@@ -118,12 +120,12 @@ carried as deliverable metadata/sequencing hints.
 | C12 | The nine §16 open owner decisions are not resolved by this decomposition; where one materially affects architecture the affected work is fenced or flagged, never guessed | PRD §16, standing plan |
 | C13 | No second execution loop; daemon owns sessions, delegation, turn locks | D-GOV-20, D-PEC-56 (surviving behaviors 4/7) |
 | C14 | Every implementation tranche needs its own owner-ruled packet; this decomposition authorizes no implementation write | standing plan step 3, D-PEC-60 |
-| C15 | Mode-proportional consumption: PEC contact follows the §5 modes ladder; zero-coordination modes (pipeline, unscoped conversation) remain zero-contact | PEC-K-11, §5 |
-| C16 | Directed self-bootstrap for PEC's own build: `PROJECT_SETUP` materializes the accepted decomposition as `FULL_GRAPH`; later nodes consume only PEC capabilities produced and accepted by predecessor nodes; no node depends on the capability it creates; observed friction routes to evidence-linked candidates and human gates; the file-native fallback remains operable | PRD v2.1 §12, D-PEC-61 |
+| C15 | Mode-capable and never forced: PEC supports the §5 scope and mode parameters; an explicitly enabled consumer owns its mode mapping and contact cadence unless separately ruled, while pipeline and unscoped-conversation modes remain testably zero-contact | PEC-K-11, §5, D-PEC-67, D-PEC-68 |
+| C16 | Directed self-bootstrap for PEC's own build: `PROJECT_SETUP` materializes the accepted decomposition as `FULL_GRAPH`; later nodes consume only PEC capabilities produced and accepted by predecessor nodes; no node depends on the capability it creates; observed friction routes to evidence-linked candidates and human gates; the file-native fallback remains operable | PRD v2.2 §12, D-PEC-61, D-PEC-68 |
 
 ### 1.4 Intake postures (for Gate 1 confirmation)
 
-1. **Requirement source = PRD v2.1 alone.** The 46 PEC-\*-NNN requirements,
+1. **Requirement source = PRD v2.2 alone.** The 46 PEC-\*-NNN requirements,
    11 PEC-K invariants, §3 outcomes, §11 metrics/falsification clause, §5
    modes ladder, and §12 exit tests are the scope-item source. Governance
    instruments (workplan, fences, D-GOV/D-T0 rulings) enter as constraints,
@@ -144,12 +146,12 @@ carried as deliverable metadata/sequencing hints.
 
 | Ref | Path | Role |
 |---|---|---|
-| R1 | `projects/pec/docs/PRD.md` (v2.1; v2.0 adopted 2026-07-24 by `D-PEC-58`, directed-bootstrap clarification adopted by `D-PEC-61`) | Source corpus |
+| R1 | `projects/pec/docs/PRD.md` (v2.2; lineage ruled through `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68`) | Source corpus |
 | R2 | `docs/DECOMPOSITION_STANDARD.md` | Ratified 7-gate protocol |
 | R3 | `agents/AGENT_SOFTWARE_DECOMP.md` | Conforming method (software variant) |
 | R4 | `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` | Standing plan; D1 authorization context |
 | R5 | `projects/pec/AGENTS.md` | Project agent posture, fences, write scopes |
-| R6 | `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57..61` | Pivot, adoption, follow-ons, decomposition acceptance, directed-bootstrap/SCA opening |
+| R6 | `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57..68` | Pivot, adoption, decomposition, directed bootstrap, exact consumer rows, and v2.2 concordance |
 | R7 | `tools/practitioner_harness/README.md` | Permanent parity peer |
 | R8 | `projects/pec/{core,server,web,agent-sidecar,tools}` | Frozen reference corpus (cite-only) |
 | R9 | Root `AGENTS.md`; `docs/SOFTWARE_WORKFLOW_PROFILE.md` | Runtime doctrine; downstream execution profile |
@@ -158,7 +160,7 @@ carried as deliverable metadata/sequencing hints.
 
 ## 2. SSOW (Phase 2)
 
-Atomic scope items normalized from PRD v2.1. `SourceRef` cites the PRD
+Atomic scope items normalized from PRD v2.2. `SourceRef` cites the PRD
 requirement ID or section. Splits of enumerated requirements (PEC-RCN-002's
 feed list; PEC-STR-003's bridge list) are recorded in the Decision Log
 (DL-4, DL-5). Hard constraints C1–C16 (§1.3) bind every item and are not
@@ -211,7 +213,7 @@ IDs are append-only, so family ordering is not semantic.
 | SOW-038 | IN | Recover stream loss by reconciliation; no record-tier fact may rest on a stream event alone | PEC-STR-004 | Carries PEC-K-07 |
 | SOW-039 | IN | Persist every ingested message durably and queryably; provide no ephemeral relay | PEC-STR-005 | Carries PEC-K-09 |
 | SOW-040 | IN | Bind the service local-only on a Unix socket by default, token-scoped | PEC-API-001 | Loopback TCP is TBD (SOW-083) |
-| SOW-041 | IN | Complete orientation reads in ≤100 ms at p95 against the current corpus | PEC-API-002 | Session-start critical path |
+| SOW-041 | IN | Complete orientation reads in ≤100 ms at p95 against the current corpus | PEC-API-002 | Latency-sensitive pull path; any session-start use requires separately adopted consumer authority |
 | SOW-042 | IN | Version the API schema; evolve additively | PEC-API-003 | |
 | SOW-043 | IN | Return compact, machine-first, citation-bearing responses | PEC-API-004 | |
 | SOW-044 | IN | Offer an SSE subscription for deltas and presence changes | PEC-API-005 | |
@@ -230,15 +232,15 @@ IDs are append-only, so family ordering is not semantic.
 | SOW-057 | IN | Log PEC's own reconcile runs and ingest activity, inspectable (self-observability) | PEC-SVC-006 | |
 | SOW-058 | IN | Measure the Step-0 cost baseline (LLM tokens per loop-iteration orientation) before P1 begins; this re-tests the harness query-pain precondition recorded unmet 2026-07-02 | §11.1, §2 | Sequencing obligation, pre-P1; baselines SOW-004/041 |
 | SOW-059 | IN | Provide the orientation defect-rate measurement: claims failing source spot-check per 100 claims | §11.2 | Method + any needed instrumentation; measures SOW-007 |
-| SOW-060 | IN | Measure harness poll adoption: fraction of eligible session starts / mode transitions consuming orientation | §11.4, §12 P3 | Measures uptake of SOW-004; arms limb 1 of the falsification clause (limb 2: SOW-085) |
+| SOW-060 | IN | Measure consumer uptake: candidate-consumer enablement and, among enabled consumers, orientation use against contact opportunities defined by their own adopted mode/cadence rules | §11.4, §12 P3 | Measures uptake of SOW-004; no receiving-loop conformance criterion; supports the §11 falsification clause together with SOW-085 |
 | SOW-061 | IN | Verify overlap warnings fire on seeded conflicts (P3 exit test) | §12 P3 | Tests SOW-031 |
 | SOW-062 | IN | Verify presence TTL honesty under kill/crash tests (P4 exit test) | §12 P4 | Tests SOW-030 |
 | SOW-063 | IN | Demonstrate stream-loss recovery by reconciliation (P4 exit test) | §12 P4 | Tests SOW-038 |
-| SOW-064 | IN | Directed bootstrap: P1 first ingests PEC v2's accepted full dependency DAG as its initial file-native coordination state; later DAG nodes consume only PEC capabilities already produced and accepted by predecessors, while observed coordination friction is captured as evidence for candidate functions and boundary or amendment decisions | PRD v2.1 §12, D-PEC-61 | Introduced in P1 and standing thereafter; observations grant no authority or scope, the file-native fallback remains operable, and generality is validated against a structurally different loop (extends OI-010; DL-10, DL-11, SCA-001) |
+| SOW-064 | IN | Directed bootstrap: P1 first ingests PEC v2's accepted full dependency DAG as its initial file-native coordination state; later DAG nodes consume only PEC capabilities already produced and accepted by predecessors, while observed coordination friction is captured as evidence for candidate functions and boundary or amendment decisions | PRD v2.2 §12, D-PEC-61, D-PEC-68 | Introduced in P1 and standing thereafter; observations grant no authority or scope, the file-native fallback remains operable, and generality is validated against a structurally different loop (extends OI-010; DL-10, DL-11, SCA-001) |
 | SOW-084 | IN | Measure collision incidents: write-scope/branch conflicts discovered at Git time rather than surfaced in advance, per week of concurrent operation | §11.3 | Measures effectiveness of SOW-031 |
-| SOW-085 | IN | Log orientation-read and dashboard-consultation activity sufficient to evaluate the §12 P2 exit test ("owner uses PEC in place of manual Step 0") and limb 2 of the §11 falsification clause | §12 P2, §11 | System-behavior observation per §11 preamble; grounded in SOW-057 self-observability |
+| SOW-085 | IN | Log owner use or non-use of PEC orientation and dashboard surfaces sufficient to evaluate the §12 P2-B uptake observation and the §11 falsification clause | §12 P2, §11 | Manual Step 0 remains available; neither use nor non-use creates a governed PEC read/write duty; grounded in SOW-057 self-observability |
 | SOW-087 | IN | Reimplement the shared-runtime client seam concept against v2 entities | §13, D-PEC-56 | Named carry-forward: "Concept carries directly; reimplemented against v2 entities" |
-| SOW-088 | IN | Author v2's first ADRs, re-citing the carried live postures ADR-002 (zero-dependency core) and ADR-014 (shared runtime agent ownership) | §13 | OI-012 (core isolation style) rides this item; ADRs cited from `docs/.archive/adr/ADR.md` |
+| SOW-088 | IN | Author v2's first ADRs: decide core isolation (OI-012); re-cite ADR-002 as a live carried posture; cite ADR-014 as historical lineage only while carrying forward the accepted v2 runtime/client and human-only-act boundary | §13; D-PEC-67 L-A2 | OI-012 rides this item; the archived ADR-014 PEC-project-adapter allocation is not re-adopted |
 | SOW-089 | IN | Author the v2 SPEC from the accepted decomposition | §13 | "v2 SPEC is born from the decomposition" |
 | SOW-093 | IN | Report parity DriftFindings per reconcile as the §11 parity metric | §11.5 | Measures the output of SOW-020 (DL-14); the behavior is PKG-03, the metric is PKG-10 |
 | SOW-094 | IN | Maintain the loop-registration configuration naming the loops PEC serves (local config default) | §12 P2, PEC-DSH-002 | Long-term registry home/shape stays open as SOW-077 (OI-003); local default per its resolved note (DL-14) |
@@ -538,7 +540,7 @@ instrument.
 | ContextEnvelopeCounts | S 28 / M 34 / L 2 / XL 0 |
 | OpenIssuesByType | 11 open (9 §16 owner decisions: OI-001..009; 1 architecture ADR: OI-012; 1 tooling follow-on: OI-013) / 2 resolved (OI-010, OI-011 at Gate 2) |
 | Deliverable single-package membership | 64/64; every `DEL-XX-YY` prefix matched to its parent package |
-| Revision | 1.2, 2026-07-25 (SCA-002) |
+| Revision | 1.3, 2026-07-28 (SCA-003) |
 
 Coverage-check provenance: every IN scope item traces §PRD → SSOW →
 package → deliverable(s) in `ScopeLedger.csv`; OUT items record the
@@ -584,7 +586,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | decision slate | "waiting on you" | Aggregated AWAITING_RULING rows + parked lanes; link-only |
 | gate verdict | gate evaluation, precondition check | Deterministic, advisory, never dispositive |
 | loop | work loop, domain-engine loop | Tenancy unit above Project (root, app-dev, piping, pec, bridge) |
-| harness | practitioner harness / runtime daemon / hooks CLI | Disambiguate: "practitioner harness" = the parity-peer CLI checker; "harness" unqualified = any machine consumer polling on behalf of agents |
+| harness | practitioner harness / runtime daemon / hooks CLI | Disambiguate: "practitioner harness" = the parity-peer CLI checker; "harness" unqualified = a potential machine consumer that acts only when explicitly enabled under its own authority; no polling or injection duty is inferred |
 | examined-through SHA | examined SHA, freshness SHA | The staleness comparator (PEC-K-04) |
 | DriftFinding | drift, parity discrepancy | Classified difference between snapshots or vs harness output |
 | heartbeat age | last-heartbeat, TTL age | Liveness is never asserted beyond it (PEC-PRS-005) |
@@ -608,7 +610,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | OI-008 | SOW-082 | §16.8 receipt-contract adoption by non-app-dev ledgers undecided | §16 ruling (per-loop) |
 | OI-009 | SOW-083 | §16.9 event-contract home and API transport undecided | §16 ruling |
 | OI-010 | SOW-064 | **RESOLVED at Gate 2 (2026-07-24):** the §12 closing paragraph governs — the first loop the P1 reconciler ingests is PEC v2's own build (bootstrap as thesis validation); the P1 table's "(piping or root)" parenthetical does not constrain the first-loop choice. Owner accepted the recommended reading in the Gate 2 confirmation (DL-10) | Closed |
-| OI-011 | C3, C15 | **RESOLVED at Gate 2 (2026-07-24):** session start is a polling moment only when the session starts with scope (e.g., an Agent 0 loop session); unscoped sessions poll at the conversation→workbench transition. Owner accepted the recommended reading in the Gate 2 confirmation (DL-10) | Closed |
+| OI-011 | C3, C15 | **RESOLVED, THEN SUPERSEDED:** Gate 2 originally treated scoped session start and the conversation→workbench transition as polling moments (DL-10). D-PEC-67's exact PEC-K-03/-11 rows and D-PEC-68's v2.2 concordance supersede that reading: PEC declares no polling moment; an explicitly enabled consumer owns mode mapping and cadence, and no receiving-loop duty is created | Closed |
 | OI-012 | SOW-088, PKG-00 | Core isolation style — ports-and-adapters (hexagonal) vs functional-core/imperative-shell — is undecided. Recorded basis from the Gate 4 exchange: the PRD's invariants force the isolation properties either way (PEC-K-07 makes bridges disposable inputs; PEC-K-02 makes the store a throwaway projection; PEC-SVC-001 is the dependency-free-core rule); the package partition is congruent with a hexagonal grain (core: PKG-03/04/05 + PKG-01 entities; driven edges: PKG-02/06 + store; driving edges: PKG-07/08/09); nearly all §16 open decisions are adapter-level, so core isolation keeps them open cheaply; the lighter functional-core/imperative-shell variant fits a deterministic-derivation service with less ceremony; the one seam to keep crisp is entity schema (core) vs store persistence (adapter) inside PKG-01 | Decided in DEL-00-01's ADR; owner review at that ADR |
 | OI-013 | §7, DL-14 | No durable register validator exists: the coverage/coupling assertions ran in a session-local generator, which is not part of this package and enforces nothing after acceptance | Downstream pipeline places a repo-native register validator under its own instrument (e.g., at PROJECT_SETUP), or the owner declines and review-based verification stands |
 
@@ -633,6 +635,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | DL-15 | 2026-07-24 | Justified duplication (per the standard's companion-register clause): the §2 SSOW tables intentionally duplicate the ledger's identity columns because they are the Gate 2 human-confirmation surface and the generation source — `ScopeLedger.csv` stays authoritative for assignments (PKG/DEL/OBJ/DecisionRef/OpenIssue); §5 duplicates only the compact control fields (ID/name/type/envelope/phase/covers) — `Deliverables.csv` stays authoritative for full deliverable truth. Any conflict resolves to the register for assignment fields and to this document for statement text, pending regeneration | The duplication is directional and declared, not drift-prone parity |
 | DL-16 | 2026-07-24 | SCA-001, requested by owner Ryan Tufts and opened by D-PEC-61, adds construction-specific constraint C16, expands SOW-064 and DEL-10-10 into directed full-DAG bootstrap progression evidence, maps both to OBJ-006, and re-envelopes DEL-10-10 S→M; no package, deliverable, objective, scope item, product function, stable ID, or dependency edge is added or removed | `FULL_GRAPH` supplies direction for PEC's own governed construction without becoming a universal PEC product mode; capability-before-consumption keeps the bootstrap acyclic, observed friction remains evidence rather than authority, the file-native fallback remains operable, and dependency-edge materialization stays with PROJECT_SETUP |
 | DL-17 | 2026-07-25 | SCA-002, requested by owner Ryan Tufts and opened by D-PEC-64, completes the deliverable→objective mapping for the Phase 2.2 scope-of-work wave scope (O-A wave-minimum): 20 IN ledger rows gain ObjectiveIDs and 17 deliverables gain SupportsObjectives, with §3's parser derivation carried into the ledger rather than superseded and the ingest/bridge and SOW-063 intentional rationale retained verbatim for the 11-row residue; §5's stale envelope-posture line is corrected to the register value; no package, deliverable, objective, scope item, product function, stable ID, or dependency edge is added or removed | The wave's SOW briefs require non-empty package_objective_refs from register truth; completing the mapping in decomposition truth (rather than by a SOW-local convention, which the owner declined) keeps objective attribution auditable at its source, and confining the amendment to wave scope leaves the recorded intentional-unmapped rationale standing rather than force-mapping it |
+| DL-18 | 2026-07-28 | SCA-003, owner-directed under the standing completion approval after D-PEC-68 became durable, reconciles the accepted decomposition to PRD v2.2's consumer-owned interface posture and D-PEC-67 L-A2's ADR-014 historical-lineage correction: C3/C15, source/basis prose, SOW-041/060/085/088, DEL-00-01/10-05/10-12 descriptions, and three exact `_CONTEXT.md` mirrors are modified; the DEL-10-12 canonical label/path is preserved | This is a MODIFY-only semantic correction. It preserves 94 scope items, 11 packages, 64 deliverables, 6 objectives, every stable ID, and all dependency edges. ScopeOfWork, `_REFERENCES.md`, dependencies, hold, lifecycle, implementation, estimates, schedules, release, and reliance remain downstream or excluded |
 
 ## 12. Revision History (Phase 7 change summary)
 
@@ -649,6 +652,7 @@ limitation, not register-coverage evidence (OI-013 remains open).
 | 1.0 | 7 | Publication: `Companion_Inventory.csv` live; handoff state in `_LATEST.md`; presented for final acceptance |
 | 1.1 | SCA-001 | Directed full-DAG self-bootstrap clarification under D-PEC-61: +C16; expanded SOW-064 and DEL-10-10; OBJ-006 mapping; DEL-10-10 S→M; PRD v2.1 source reconciliation; telemetry and handoff parity; topology unchanged |
 | 1.2 | SCA-002 | Deliverable→objective mapping for the Phase 2.2 wave scope under D-PEC-64 (O-A): +ObjectiveIDs on 20 IN rows, +SupportsObjectives on 17 deliverables, §3 objective-side view and mapping notes reconciled, §7 metric 31→11, §5 envelope-posture line corrected (SCA-001 residual); topology unchanged |
+| 1.3 | SCA-003 | PRD v2.2 consumer-interface and ADR-014 historical-lineage concordance: C3/C15, source/basis, SOW-041/060/085/088, DEL-00-01/10-05/10-12 descriptions, and three `_CONTEXT.md` mirrors; DEL-10-12 label/path, topology, stable IDs, and dependency edges unchanged |
 
 ## Companion Inventory
 

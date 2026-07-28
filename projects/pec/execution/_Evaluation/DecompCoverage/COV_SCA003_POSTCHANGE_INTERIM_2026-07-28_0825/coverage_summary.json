@@ -1,0 +1,53 @@
+{
+  "run_label": "SCA003_POSTCHANGE_INTERIM",
+  "timestamp": "2026-07-28T08:25:19-06:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "accepted decomposition working state being assembled into SCA-003",
+  "expected_handoff_phase": "Gate 5 pre-snapshot",
+  "decomposition_path": "/private/tmp/chirality-pec-sca003-exec/projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+  "decomposition_revision": "1.3 current_basis",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 11,
+    "deliverables": 64,
+    "objectives": 6,
+    "scope_items": 94,
+    "ledger_rows": 94
+  },
+  "partitions_declared": 11,
+  "partitions_found": 11,
+  "production_units_declared": 64,
+  "production_units_found": 64,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 9,
+  "in_ledger_rows_without_objective_mapping": 11,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 0,
+  "issues_info": 73,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "INITIALIZED": 32,
+    "OPEN": 32
+  },
+  "contract_distribution": {
+    "SOW_V1": 32,
+    "NONE": 32,
+    "AMBIGUOUS_DUAL": 0
+  },
+  "overall_status": "OK",
+  "closure_readiness": "PASS",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}
