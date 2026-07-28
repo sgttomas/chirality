@@ -70,4 +70,21 @@ describe('reliance boundary register', () => {
       )
     );
   });
+
+  it('does not present retired PEC v0.4 adapter evidence as current PEC v2 enforcement', async () => {
+    const register = await readFile(REGISTER_PATH, 'utf8');
+    const pecRow = register
+      .split('\n')
+      .find((line) => line.startsWith('| RB-PEC-ADAPTER |'));
+
+    expect(pecRow).toBeDefined();
+    expect(pecRow).toContain('RETIRED current-evidence row');
+    expect(pecRow).toContain('No current App-owned PEC v2 adapter enforcement is asserted');
+    expect(pecRow).toContain('`UNKNOWN`');
+    expect(pecRow).not.toContain('PEC adapter RBAC, human-only act exclusion, scratch/demo fence');
+    expect(register).toContain(
+      'docs/governance_harness/_DECISIONS/D-GOV-20_shared_runtime_local_agent_pilot.md'
+    );
+    expect(register).toContain('projects/pec/docs/PRD.md');
+  });
 });

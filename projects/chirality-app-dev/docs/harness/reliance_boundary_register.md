@@ -144,8 +144,33 @@ interrupt, and audit controls are implemented under D-APP-04/D-APP-43.
 | RB-CENTRAL-STORE | Central sessions remain JSON/JSONL and preserve legacy evidence. | Lazy reads/migration, non-destructive source retention, replay/restart. | Bulk rewrite, destructive move, database-only canonical truth. | Cross-store migration and replay tests. |
 | RB-RESIDENCY | One managed primary local LLM with explicit transitions. | Exact status, drain, unload/load/readiness, epoch JSONL, `NO_MODEL`. | Run-triggered switch, aliases, fallback, force interrupt, unknown-helper unload. | Fake-provider matrix plus opt-in live two-model proof. |
 | RB-ROLE-MODEL | Authority role is independent of engine/model. | Admission policy and actual-model attribution. | Durable model-to-role preference or capability-derived authority. | AgentRun/session attribution and governance scan. |
-| RB-PEC-ADAPTER | PEC remains project authority over acts/data. | PEC adapter RBAC, human-only act exclusion, scratch/demo fence. | Generic runtime mutation bypass or production dual execution loop. | Daemon→adapter→backend→UI pilot and forbidden-act denials. |
+| RB-PEC-ADAPTER | RETIRED current-evidence row. The SCA-APP-003 v0.4 PEC adapter-service allocation and its scratch/demo pilot evidence are historical only. | No current App-owned PEC v2 adapter enforcement is asserted. Root `D-GOV-20` owns the one-daemon runtime boundary; PEC PRD v2 §15 owns PEC's surviving no-dual-loop and human-only-act restrictions. | Do not rely on this row for current PEC v2 adapter shape, RBAC enforcement, adapter service, or pilot closure. Generic runtime still cannot gain PEC authority. | `UNKNOWN`: a governed PEC v2 `DEL-07-05` ScopeOfWork and accepted production evidence are required before any current-enforcement claim. |
 | RB-PUBLIC-RUNTIME | Only generic safe runtime material is exportable. | Allowlist, secret scan, private-adapter/machine-state exclusions. | Credentials, user data, downloaded models, private project adapters/evidence. | Export boundary validation after both pilots. |
+
+### RB-PEC-ADAPTER current-basis disposition
+
+`RB-PEC-ADAPTER` preserves the historical SCA-APP-003 row identity but is not
+current PEC v2 enforcement or closure evidence. Its former adapter-service,
+RBAC, scratch/demo, pilot, and forbidden-act-denial assertions belong to the
+retired v0.4 product allocation. The pre-disposition row bytes remain
+preserved at Git basis
+`9fa2f82ac4b9e55873bcd7cd99ca042a4456fea2`; PEC PRD v2 §13 owns the
+prototype-retirement account.
+
+The surviving restrictions do not depend on this App row:
+
+- `docs/governance_harness/_DECISIONS/D-GOV-20_shared_runtime_local_agent_pilot.md`
+  §Ruled architecture owns the one-daemon runtime boundary and §Preserved
+  authority keeps human acts and production-data authority outside generic
+  runtime delegation.
+- `projects/pec/docs/PRD.md` §15 owns PEC v2's no-second-loop and
+  human-only-act restrictions after its explicit partial supersession of
+  `D-PEC-56`.
+
+PEC v2's adapter shape, enforcement mechanism, pilot, and closure evidence
+remain `UNKNOWN`. No current claim may be made until the PEC loop supplies a
+governed `DEL-07-05` ScopeOfWork and accepted evidence through its own
+authority and cadence.
 
 ## SCA-APP-004 Work/Agents Projection Boundary Addendum
 

@@ -2558,3 +2558,14 @@
     preparation route only; successor identity/version/compatibility/
     implementation/migration, facade retirement, lifecycle, repin, release,
     and professional reliance remain separately gated.
+
+- **2026-07-27 — Receipt 94** (D-APP-77 RB-PEC-ADAPTER current-evidence retirement application).
+  - Receipt-ID: `Receipt-94`
+  - Examined-Through: `9fa2f82ac4b9e55873bcd7cd99ca042a4456fea2`
+  - Parent-Receipt: `Receipt-93`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-07-27, Ryan Tufts, in-session): owner approved exact G4-A candidate-set manifest `e08c038c88cffdbbe05c2db1c9c813f9d0c3123da28d4c83133409936ed20c9d` and directed D-APP-77 materialization, exact five-surface application, preservation of the stable historical row and unrelated DEL-01-02 residuals, retirement of v0.4 assertions as current PEC-v2 evidence, PEC notice routing, and separate Git closeout. The authoritative verbatim text is in D-APP-77.
+  - Pointers: `execution/_Coordination/_DECISIONS/{D-APP-77_PACKET_RB_PEC_ADAPTER_CURRENT_EVIDENCE_RETIREMENT_2026-07-27.md,D-APP-77_RULING_2026-07-27.md}`; `docs/harness/reliance_boundary_register.md`; DEL-01-02 `_STATUS.md`; focused register test; PEC coordination notice.
+  - Stale-Map-Delta: the accepted candidate was prepared at the same `9fa2f82ac` product basis. Application validation layers on the separately approved D-APP-76/Receipt 93 closeout state; D-APP-77 Git closeout is held until that predecessor is durably integrated and must fail closed if the predecessor bytes drift.
+  - Checks: exact five-file candidate hashes; D-APP next-ID scan; D-APP-76 predecessor and Receipt 93 hashes; singular stable row; retired/unknown markers; old current-evidence cell absence; D-GOV-20 and PEC PRD §15 citation resolution; focused and full App frontend tests; decision/receipt validators; notice/path/whitespace/diff containment.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS managed by HELP_HUMAN; exact runtime model build not exposed; no Agent 2 delegated.
+  - Gate-Outcome: `EXECUTED` — D-APP-77 is transcribed and the exact G4-A maintenance bytes are prepared; no App/PEC SCOPE_CHANGE, ScopeOfWork edit, repin, runtime implementation, lifecycle transition, release, or professional-reliance effect occurs. Git closeout returns separately after D-APP-76/Receipt 93 integration.
