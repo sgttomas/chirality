@@ -1,0 +1,9 @@
+Derivative,AcceptedUpstream,State,RerunRule
+CHIRALITY_PROGRAM_ARCH_META_FANIN_2026-07-26_DA31C19,da31c19b5 frozen review basis,HISTORICAL_INPUT,Do not treat as current product truth
+Root SCA-001 snapshot,Root PRD Revision 6 / D-GOV-28,CURRENT,Cited by Root _ScopeChange/_LATEST.md
+App SCA-APP-006 snapshot,App accepted basis 7b0be4d8772a16e5a4774a17988479587d00acca,CURRENT,Cited by App _ScopeChange/_LATEST.md
+PEC SCA-003 snapshot,PEC PRD v2.2 / D-PEC-67/-68,CURRENT,Downstream references and SOW reconciliation complete
+PEC SOW reconciliation package,PEC PRD v2.2 / decomposition revision 1.3,CURRENT,766/766 artifacts verify; 32-contract validation current
+Piping SCA-008 snapshot,Piping accepted product basis,CURRENT_FOR_SCOPE_CHANGE,Downstream DAG/reconciliation remains separately frozen
+Piping scoped current-effect package,SCA-008 / DEC-091 / DEL-16-04,CURRENT,CLOSED_WITH_RELIANCE_HOLD under D-61
+Terminal evaluation package,main@058b294c49fa2ddc760a520fe6b8a45dc82e7189,CURRENT_ON_MERGE,Rerun if any named upstream identity or hold state changes

@@ -1278,3 +1278,14 @@
   - Authority fence: no WORKING_ITEMS activation, source work, professional
     reliance, implementation, runtime, lifecycle, dependency, estimate,
     schedule, or release authority is created. `F-PEC-1` remains in force.
+
+- **2026-07-28 — Receipt 118** (D-PEC-70 effective-state closeout).
+  - PR #407 merged at
+    `058b294c49fa2ddc760a520fe6b8a45dc82e7189`; the D-PEC-70 ruling,
+    header-only active-hold register, guard, tests, evidence package, and live
+    pointers are durable on shared `main`.
+  - `PEC-HOLD-001` is RELEASED. A new hold requires a separately ruled
+    successor act; the guard rejects silent reactivation.
+  - This is additive effective-state evidence only. All ordinary owner,
+    production, lifecycle, implementation, runtime, dependency, estimate,
+    schedule, release, and professional-reliance gates remain.

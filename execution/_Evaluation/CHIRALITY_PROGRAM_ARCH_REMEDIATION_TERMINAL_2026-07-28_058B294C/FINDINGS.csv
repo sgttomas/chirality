@@ -1,0 +1,11 @@
+FindingID,Severity,Disposition,Claim,Evidence,Route
+TERM-001,INFO,CONFIRMED,Root generic-runtime ownership is represented in both PRD and decomposition,Root O-11 and DEL-02-06,Architecture remediation closed
+TERM-002,INFO,CONFIRMED,App is a client rather than semantic owner of generic runtime,App PRD and SCA-APP-005/006 current state,Architecture remediation closed
+TERM-003,INFO,CONFIRMED,App contract-basis and invariant mapping defects received governed repair,D-APP-78/79/80/81 and invariant register,Architecture remediation closed
+TERM-004,INFO,CONFIRMED,PEC remains optional and its affected contract corpus is concordant,PEC v2.2; D-PEC-69 reconciliation; D-PEC-70 release,Architecture remediation closed
+TERM-005,INFO,CONFIRMED,Piping remains outside the Root-runtime and App-harness client sets,D-58; SCA-008; D-61,Architecture remediation closed with Piping reliance hold
+TERM-006,INFO,CONFIRMED,Tier-0 identity and residual classifications are current,D-T0-24/25/26 and _DomainEngines/_LATEST.md,Architecture remediation closed
+TERM-007,WARN,DEFERRED_HYGIENE,Practitioner harness still reports bounded governance hygiene including historical and current record defects,Self-check INFO=15 NOT_APPLICABLE=1 REVIEW=5 WARN=24,Separate bounded governance-hygiene work
+TERM-008,WARN,OUT_OF_SCOPE,Runtime behavior degraded mode actual consumer use and release fitness were not established by this documentation remediation,Original review blind-spot register and no implementation authorization,Owning product lifecycle and evaluation instruments
+TERM-009,INFO,OPEN_COORDINATION,Notice delivery is complete but most acknowledgements are not recorded,30 live receiving-surface notices; one explicit D-GOV-26 App response,Acknowledgements tracked without closure veto
+TERM-010,INFO,DEFERRED,UI/API semantic parity remains separately governed and was not smuggled into this remediation,Owner-approved sequencing and bounded exclusions,New App instrument after corrected boundary
