@@ -37,7 +37,7 @@ This contract is authored in `MODE=INIT` from the accepted decomposition basis
 bound in the frontmatter. Its acceptance criteria and verification methods are
 **candidates for owner review**; they assert no acceptance, no reliance, and no
 lifecycle transition. Lifecycle state is held solely by `_STATUS.md`, and
-`ResponsibleParty` remains `TBD` until a human assigns ownership.
+`ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 
 The register records `AnticipatedWriteLocus: execution-tree` for this
 deliverable. That is a planning note, not authorization. The demonstration

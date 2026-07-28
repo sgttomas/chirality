@@ -46,4 +46,4 @@ Scaffolded by PROJECT_SETUP at D-GOV-21 §6 step-9 materialization from the
 accepted root decomposition (D-GOV-25), accepted basis
 `653fabc9b3e8abf369f5e776a7d3ee24bf235e7a`. Header fields are transcribed from the accepted decomposition and
 its companion deliverable register; nothing is inferred. Downstream work must
-preserve `ResponsibleParty: TBD` until a human assigns ownership.
+preserve `ResponsibleParty: Ryan Tufts` as assigned by D-GOV-27 unless a later human ruling changes the accepted assignment.

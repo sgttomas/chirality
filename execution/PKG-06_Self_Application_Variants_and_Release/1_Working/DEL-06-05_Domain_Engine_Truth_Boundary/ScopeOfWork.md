@@ -26,7 +26,7 @@ This contract is authored in `MODE=INIT` from the accepted decomposition basis
 bound in the frontmatter. Its acceptance criteria and verification methods are
 **candidates for owner review**; they assert no acceptance, no reliance, and no
 lifecycle transition. Lifecycle state is held solely by `_STATUS.md`, and
-`ResponsibleParty` remains `TBD` until a human assigns ownership. Nothing here
+`ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register. Nothing here
 is inferred beyond the register row, `_CONTEXT.md`, the SOW-015 scope-ledger
 statement, and the adopted root PRD (`docs/PRD_ROOT.md`).
 

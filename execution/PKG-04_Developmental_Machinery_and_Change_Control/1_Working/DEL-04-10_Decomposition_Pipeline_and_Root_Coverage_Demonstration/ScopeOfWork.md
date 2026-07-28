@@ -164,9 +164,7 @@ the matrix below rather than assigned a deterministic method.
   root `docs/`, `init/`, `.github/workflows/` — and any such act requires an
   independently authorized M2 tranche.
 - **AX-005** — Every `AC-*` and `VER-*` defined here is a candidate. This
-  document claims no acceptance, no approval, and no lifecycle state. The
-  accepted decomposition states no per-deliverable acceptance criteria and
-  `ResponsibleParty` remains `TBD`; nothing is inferred to fill either gap
+  document claims no acceptance, no approval, and no lifecycle state. The accepted decomposition states no per-deliverable acceptance criteria; nothing is inferred to fill that gap. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register
   (K-INVENT-1).
 
 ## Output and Evaluation Matrix

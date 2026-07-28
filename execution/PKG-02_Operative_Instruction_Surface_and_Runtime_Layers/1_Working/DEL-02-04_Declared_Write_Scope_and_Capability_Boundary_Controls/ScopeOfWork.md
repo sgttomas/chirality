@@ -136,7 +136,7 @@ step writes to the instruction surface.
   human owner at the PR gate; no agent act and no passing check confers
   acceptance.
 - **AX-006** — Path discipline: this contract uses repo-relative paths only and
-  embeds no machine-absolute path. `ResponsibleParty` remains `TBD`.
+  embeds no machine-absolute path. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 
 ## Output and Evaluation Matrix
 

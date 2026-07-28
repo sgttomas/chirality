@@ -159,9 +159,7 @@ PRD §5.3 D-5 transcribes applies to every result this deliverable produces.
   Scope of Work does not grant; the same applies to `AGENTS.md`, `agents/`,
   `skills/`, root `docs/`, `init/`, and `.github/workflows/`.
 - **AX-004** — Every `AC-*` and `VER-*` defined here is a candidate. This
-  document claims no acceptance, no approval, and no lifecycle state. The
-  accepted decomposition states no per-deliverable acceptance criteria and
-  `ResponsibleParty` remains `TBD`; nothing is inferred to fill either gap
+  document claims no acceptance, no approval, and no lifecycle state. The accepted decomposition states no per-deliverable acceptance criteria; nothing is inferred to fill that gap. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register
   (K-INVENT-1).
 
 ## Output and Evaluation Matrix

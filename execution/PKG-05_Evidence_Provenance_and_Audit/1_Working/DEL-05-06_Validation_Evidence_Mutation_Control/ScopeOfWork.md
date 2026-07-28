@@ -151,10 +151,8 @@ human judgment that decides reliance.
   evidence in the execution tree only; if the evidence shows the control
   itself must change, that is surfaced and routed, never applied here.
 - **AX-004** — Evidence is not acceptance. Producing these outputs performs no
-  lifecycle transition; the deliverable's state remains `OPEN`, as do all root
-  deliverable states at this basis. The criteria above are candidates for
-  owner review, and `ResponsibleParty` remains unassigned in the register and
-  is not altered by this contract.
+  lifecycle transition; the deliverable's state is `INITIALIZED`, as are all 46 Root deliverable states at this basis. The criteria above are candidates for
+  owner review, and `ResponsibleParty` is `Ryan Tufts` in the current register under D-GOV-27 and is not altered by this contract.
 
 ## Output and Evaluation Matrix
 

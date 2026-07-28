@@ -128,10 +128,8 @@ matrix records `HUMAN_REVIEW` with a named method rather than inventing one.
   **This Scope of Work grants none.** If conformance work finds that the index
   itself must change, that finding is surfaced and routed, never applied here.
 - **AX-003** — Evidence is not acceptance. Producing these outputs performs no
-  lifecycle transition; the deliverable's state remains `OPEN`, as do all
-  root deliverable states at this basis. Acceptance criteria here are
-  candidates for owner review, and `ResponsibleParty` remains unassigned in
-  the register and is not altered by this contract.
+  lifecycle transition; the deliverable's state is `INITIALIZED`, as are all 46 Root deliverable states at this basis. Acceptance criteria here are
+  candidates for owner review, and `ResponsibleParty` is `Ryan Tufts` in the current register under D-GOV-27 and is not altered by this contract.
 
 ## Output and Evaluation Matrix
 

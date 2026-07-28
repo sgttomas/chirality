@@ -25,7 +25,7 @@ Traceability, transcribed and not inferred:
 | Deliverable type | `REGISTER` | register `Type` |
 | Context envelope | `S` — "Small register over ruled content; no machinery is introduced." | register `ContextEnvelope`/`ContextEnvelopeNotes` |
 | Anticipated write locus | `execution-tree` | register `AnticipatedWriteLocus` |
-| Responsible party | `TBD` | register `ResponsibleParty`; preserved unchanged |
+| Responsible party | `Ryan Tufts` | D-GOV-27; current deliverable register `ResponsibleParty` |
 
 Every `AC-*` and `VER-*` below is a **candidate**. The accepted decomposition
 states no per-deliverable acceptance criteria (`_CONTEXT.md`); nothing here is
@@ -148,7 +148,7 @@ the result.
 - **AX-004** — Not-current-scope standings are load-bearing. The scaling path and
   the B and C stages are carried precisely so later work cannot silently import
   them as obligations.
-- **AX-005** — `ResponsibleParty` remains `TBD` until a human assigns ownership
+- **AX-005** — `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register
   (`_CONTEXT.md` Source Authority).
 
 ## Output and Evaluation Matrix

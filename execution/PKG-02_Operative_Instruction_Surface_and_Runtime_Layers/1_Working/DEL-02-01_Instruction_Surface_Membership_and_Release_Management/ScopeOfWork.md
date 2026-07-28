@@ -128,8 +128,7 @@ surface.
   favour of either enumeration.
 - **AX-004** — Path discipline: this contract uses repo-relative paths only and
   embeds no machine-absolute path.
-- **AX-005** — Ownership: `ResponsibleParty` remains `TBD` in the accepted
-  register and is not assigned by this contract.
+- **AX-005** — Ownership: `ResponsibleParty` is `Ryan Tufts` in the accepted register under D-GOV-27 and is not assigned by this contract.
 
 ## Output and Evaluation Matrix
 

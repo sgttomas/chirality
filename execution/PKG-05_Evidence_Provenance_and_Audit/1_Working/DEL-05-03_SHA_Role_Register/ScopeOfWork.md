@@ -48,8 +48,7 @@ outputs of this deliverable.
 - **CLM-002** — Decomposition identity. The register records DEL-05-03 as
   `Type: REGISTER`, `ContextEnvelope: S` ("Three fields across one record
   family"), `AnticipatedWriteLocus: execution-tree`, and
-  `ResponsibleParty: TBD`. `ResponsibleParty` is preserved as `TBD` here and is
-  not assigned by this contract. The `S` envelope is why this deliverable is
+  `ResponsibleParty: Ryan Tufts`. `ResponsibleParty` is transcribed here from D-GOV-27 and the current deliverable register and is not assigned by this contract. The `S` envelope is why this deliverable is
   scoped to one record family and three fields, not to a general provenance model.
 - **CLM-003** — Objective linkage. `docs/PRD_ROOT.md` §3 OBJ-3 requires that every
   accepted change carry a retrievable linkage from files alone between the
@@ -133,7 +132,7 @@ contract does not fix field names beyond the role names carried by SOW-054 and
   names a real commit. It does not evidence that an owner approved that commit,
   and no passing probe is an owner ruling.
 - **AX-005** — Lifecycle neutrality. This contract makes no lifecycle transition
-  and asserts no approval. Lifecycle state remains `OPEN` and is read from
+  and asserts no approval. Lifecycle state is `INITIALIZED` at the current basis and is read from
   `_STATUS.md`, which this contract does not modify.
 
 ## Output and Evaluation Matrix

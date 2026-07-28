@@ -170,8 +170,7 @@ human-review method in the matrix rather than a fabricated tool reference.
   records that an accepted act appears to have discharged an obligation, this
   deliverable verifies and holds that state; it does not redo the act.
 - **AX-005** — Nothing in this contract asserts acceptance, lifecycle state,
-  or professional reliance. `ResponsibleParty` remains `TBD` until a human
-  assigns ownership.
+  or professional reliance. `ResponsibleParty` is `Ryan Tufts` under D-GOV-27 and the current deliverable register.
 
 ## Output and Evaluation Matrix
 
