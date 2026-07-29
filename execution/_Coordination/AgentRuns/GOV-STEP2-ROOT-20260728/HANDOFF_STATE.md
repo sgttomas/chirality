@@ -41,3 +41,38 @@ substitute for decomposition truth or live governed state.
 3. Evidence PR merge, which resolves the four expected WARN references
    documented in `VALIDATION.md`.
 4. Human-gated PR merge; no self-merge.
+
+## Completion pass — 2026-07-28 (owner ruling received)
+
+Status after completion: `RULED — GIT CLOSEOUT PENDING`.
+
+The owner ruling was received in-session on 2026-07-28 as a single
+composite return covering R-1..R-4, with no item declined. In the
+completion commit on `gov/step2-root-disclosure`:
+
+- the decision record's four ruling slots were filled byte-exact, and its
+  field block records `Status: RULED`, the `HumanRuling` summary, and
+  `AcceptedCandidateSHA: 9f6a4c637f38959b5d89df6d92846335fd20d60c`;
+- the `D-GOV-30` register row was flipped from `AWAITING_RULING` to
+  `RULED`;
+- the tranche manifest `m2_gate.authorization` was filled with the owner's
+  verbatim line, preserving the K-AUTH-1 disclaimer; `self_merge` stays
+  `false`;
+- Receipt 60 was appended to `LOOP_RECEIPTS.md` after an execution-time
+  cursor rescan, as the packet RECEIPT_DRAFT with only its fence filled.
+
+Intentional survivals, not unfilled slots: the candidate packet's four
+ruling slots remain as marked slots because the packet is the hashed
+immutable candidate (CandidateSubjectSHA256 `32b4afbf…`, never edited
+after hashing, packet §7); and three descriptive prose mentions of the
+placeholder token survive in the tranche manifest `scope_limits`,
+`RUN_MANIFEST.md`, and the pre-completion sections of `VALIDATION.md` as
+historical statements about the candidate as authored.
+
+Remaining blockers unchanged in kind:
+
+1. Backfill `CandidateMergeSHA`, `PublicationSHA`, and `EffectiveSHA`
+   after merge, per the D-GOV-18/19/21/22 convention.
+2. Evidence PR merge, which resolves the four expected WARN references.
+3. M6 notice disposition at Agent 0 fan-in.
+4. Human-gated PR merge; no self-merge.

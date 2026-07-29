@@ -78,3 +78,62 @@ Status: `PRE-COMMIT PASS (bounded warnings documented)`
 7. The PR is human-gated; no self-merge.
 
 Validation is evidence, not acceptance.
+
+## Completion pass — 2026-07-28 (owner ruling received)
+
+The owner ruled in-session on 2026-07-28 with a single composite return
+covering R-1..R-4. This run record is evidence, not an authority surface,
+so it carries no ruling fence of its own: the operative verbatim ruling is
+recorded in the D-GOV-30 decision record's four slots and in Receipt 60.
+
+Completion edits applied in the completion commit on
+`gov/step2-root-disclosure`:
+
+1. The four ruling slots in
+   `docs/governance_harness/_DECISIONS/D-GOV-30_program_disclosure_and_ratification.md`
+   hold that line byte-exact; the field block records
+   `Status: RULED`, the `HumanRuling` one-line summary, and
+   `AcceptedCandidateSHA: 9f6a4c637f38959b5d89df6d92846335fd20d60c` (the
+   candidate commit). `CandidateMergeSHA`, `PublicationSHA`, and
+   `EffectiveSHA` remain PENDING for backfill after the human-gated PR
+   merge, per the D-GOV-18/19/21/22 convention. No item was declined.
+2. The `D-GOV-30` register row state flipped from `AWAITING_RULING` to
+   `RULED`; no other row or cell was touched.
+3. The tranche manifest `m2_gate.authorization` now carries the owner's
+   verbatim line in place of the pending marker, preserving the K-AUTH-1
+   disclaimer sentence. `self_merge` remains `false` and `merge_gate`
+   remains `human-gated-pr`.
+4. Receipt 60 was appended to `execution/_Coordination/LOOP_RECEIPTS.md`
+   after an execution-time cursor rescan (59 was still the cursor; 60 was
+   still free). The appended text is the packet RECEIPT_DRAFT with only
+   its ruling fence filled; no earlier receipt was touched.
+
+Deterministic reruns at completion:
+
+- G4 manifest validator (`validate_instruction_tranche_manifest.py`, CI
+  mode): **PASS**.
+- Candidate whitespace (`validate_candidate_whitespace.py`): **PASS**.
+
+Intentional survivals — not unfilled slots:
+
+- The four ruling slots in the candidate packet
+  (`_PROPOSALS/D-GOV-30_2026-07-28_program_disclosure_ratification/PACKET.md`)
+  still hold the fenced placeholder by design. The packet is the hashed
+  immutable candidate (CandidateSubjectSHA256 `32b4afbf…`) and is never
+  edited after hashing; its §7 states that the slots are marked ruling
+  slots and that the operative rulings live in the decision record.
+  Editing it would break the subject hash the ruling is bound to.
+- Three descriptive prose mentions of the literal placeholder token
+  survive, in the tranche manifest `scope_limits`, in `RUN_MANIFEST.md`,
+  and in this file's pre-completion sections above. They describe the
+  candidate tranche as authored and are historical statements about that
+  state, not live ruling slots.
+- The `<<AUTHORIZATION QUOTE PENDING OWNER SESSION>>` mention in this
+  file's "Deterministic checks" section is likewise a historical
+  description of the pre-completion manifest; the marker itself no longer
+  appears in the manifest.
+
+Still open after this pass: the four expected `UNRESOLVED_SOURCE_REF`
+WARNs until the evidence PR merges; the SHA backfills in item 1; the M6
+notice disposition at Agent 0 fan-in; and the human-gated PR merge — no
+self-merge.

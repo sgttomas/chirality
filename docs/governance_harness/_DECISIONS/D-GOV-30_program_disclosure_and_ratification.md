@@ -1,8 +1,8 @@
 # D-GOV-30 — Program Disclosure and Prospective Ratification
 
-Status:       AWAITING_RULING
-HumanRuling:  pending
-AcceptedCandidateSHA: PENDING — the `gov/step2-root-disclosure` candidate commit; backfilled per the D-GOV-18/19/21/22 convention
+Status:       RULED
+HumanRuling:  "RATIFY R-1, R-2, R-3, R-4 AS ENUMERATED IN D-GOV-30 PACKET 32b4afbf — Ryan Tufts 2026-07-28" (owner, 2026-07-28; full ruling recorded verbatim below)
+AcceptedCandidateSHA: 9f6a4c637f38959b5d89df6d92846335fd20d60c (the `gov/step2-root-disclosure` candidate commit the owner ruled against; backfilled per the D-GOV-18/19/21/22 convention)
 CandidateSubjectSHA256: 32b4afbfb402d65fecc14558bca79f5b83fc5690bd0b4f56cc9a656ced6c35e3
 CandidateMergeSHA: PENDING — backfilled per the D-GOV-18/19/21/22 convention
 PublicationSHA: PENDING — backfilled per the D-GOV-18/19/21/22 convention
@@ -16,8 +16,10 @@ CandidatePacket: `docs/governance_harness/_PROPOSALS/D-GOV-30_2026-07-28_program
 
 ## Status note
 
-This record is AWAITING_RULING. The candidate subject is the D-GOV-30
-packet at SHA-256
+This record is RULED. Git closeout remains pending: `CandidateMergeSHA`,
+`PublicationSHA`, and `EffectiveSHA` are backfilled after the human-gated
+PR merge, per the D-GOV-18/19/21/22 convention. The candidate subject is
+the D-GOV-30 packet at SHA-256
 `32b4afbfb402d65fecc14558bca79f5b83fc5690bd0b4f56cc9a656ced6c35e3`. The
 packet governs on any disagreement with this summary.
 
@@ -56,13 +58,16 @@ this record is numbered 30 for coexistence, superseding nothing (packet
 
 ## Recorded ruling
 
-The owner rules per item; any item may be individually declined.
+The owner ruled in-session on 2026-07-28. Each item was individually
+declinable; none was declined. The owner returned one composite line
+disposing of all four items, and that line is recorded verbatim in each
+per-item slot below exactly as returned.
 
 R-1 — RT-A trace-maintenance effective-state closeout (Root Receipt 57
 lineage) — accepted as current state:
 
 <!-- BEGIN OWNER RULING VERBATIM -->
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-GOV-30>>
+RATIFY R-1, R-2, R-3, R-4 AS ENUMERATED IN D-GOV-30 PACKET 32b4afbf — Ryan Tufts 2026-07-28
 <!-- END OWNER RULING VERBATIM -->
 
 R-2 — Record-currency repair (Root Receipt 58,
@@ -70,7 +75,7 @@ R-2 — Record-currency repair (Root Receipt 58,
 — accepted as current state:
 
 <!-- BEGIN OWNER RULING VERBATIM -->
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-GOV-30>>
+RATIFY R-1, R-2, R-3, R-4 AS ENUMERATED IN D-GOV-30 PACKET 32b4afbf — Ryan Tufts 2026-07-28
 <!-- END OWNER RULING VERBATIM -->
 
 R-3 — Program closeout and terminal disposition
@@ -80,7 +85,7 @@ R-3 — Program closeout and terminal disposition
 merges by SHA:
 
 <!-- BEGIN OWNER RULING VERBATIM -->
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-GOV-30>>
+RATIFY R-1, R-2, R-3, R-4 AS ENUMERATED IN D-GOV-30 PACKET 32b4afbf — Ryan Tufts 2026-07-28
 <!-- END OWNER RULING VERBATIM -->
 
 R-4 — OD7-G1 tranche hash manifests — owner approval by SHA-256 of the
@@ -88,7 +93,7 @@ two final manifests enumerated in packet §7 R-4 (Receipt 53 conditional
 gate):
 
 <!-- BEGIN OWNER RULING VERBATIM -->
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-GOV-30>>
+RATIFY R-1, R-2, R-3, R-4 AS ENUMERATED IN D-GOV-30 PACKET 32b4afbf — Ryan Tufts 2026-07-28
 <!-- END OWNER RULING VERBATIM -->
 
 ## Effects
