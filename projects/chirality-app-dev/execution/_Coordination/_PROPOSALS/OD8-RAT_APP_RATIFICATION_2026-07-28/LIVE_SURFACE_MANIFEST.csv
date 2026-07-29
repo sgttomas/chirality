@@ -1,0 +1,12 @@
+path,preimage_sha256,postimage_sha256
+projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-82_RULING_OD8_RATIFICATION_2026-07-28.md,ABSENT,PENDING_OWNER_SESSION
+projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md,9344bec94963b81c6f894a772d8af7907db78a66b2d6f6881d50464c629d0603,PENDING_OWNER_SESSION
+projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/OD8-RAT_APP_RATIFICATION_2026-07-28/CANDIDATE.md,ABSENT,119005ed743d8de70de10de29fe9767e103901eb2e3995ab0c6275b115cd8a78
+projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/OD8-RAT_APP_RATIFICATION_2026-07-28/RECEIPT_DRAFT.md,ABSENT,b2629b4a030c79a28abf553f337318fdb9ee887c2e2e809adccdf7a188128e3d
+projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/OD8-RAT_APP_RATIFICATION_2026-07-28/validate_od8_rat.py,ABSENT,98d03a3939965520aff6bc099d1e95203e4a994681bbb9da75950b7c6df17c36
+projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/OD8-RAT_APP_RATIFICATION_2026-07-28/LIVE_SURFACE_MANIFEST.csv,ABSENT,SEE_ARTIFACT_HASHES
+projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/OD8-RAT_APP_RATIFICATION_2026-07-28/VALIDATION_REPORT.md,ABSENT,SEE_ARTIFACT_HASHES
+projects/chirality-app-dev/execution/_Coordination/_PROPOSALS/OD8-RAT_APP_RATIFICATION_2026-07-28/ARTIFACT_HASHES.sha256,ABSENT,SEE_ARTIFACT_HASHES
+#NOTE,PENDING_OWNER_SESSION marks a postimage that cannot be fixed until the owner returns verbatim lines in-session: the D-APP-82 record still carries its five owner-return fences and the register row still reads AWAITING_RULING. The completion tranche replaces both tokens with real SHA-256 values.,
+#NOTE,SEE_ARTIFACT_HASHES marks a package file whose postimage is recorded in ARTIFACT_HASHES.sha256 instead of here. The manifest cannot carry its own digest and is itself written before the report and the hash list. ARTIFACT_HASHES.sha256 covers every package file except itself and is generated last.,
+#NOTE,ABSENT preimage means the path does not exist at the source basis main@85ea0628fa4e57dd6aae53b06139b2b8734a9612. The only pre-existing surface this tranche writes is the decision register and it is appended to only.,
