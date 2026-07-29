@@ -1,0 +1,188 @@
+{
+ "amendment": "SCA-002",
+ "gate": 5,
+ "posture": "APPLIED_WITH_OWNER_RULED_BRACKET_DELTA",
+ "acceptance_act": "ACCEPT SCA-002 271d456a \u2014 Ryan Tufts 2026-07-29",
+ "bracket_ruling_act": "BRACKET AS RECOMMENDED: at application, update SOW-042 SourceRef to cite D-GOV-31 adoption \u2014 Ryan Tufts 2026-07-29",
+ "application_basis": "main@204321467b567ede862636a36dd67bcac1ff326a",
+ "result": "PASS",
+ "check_count": 33,
+ "failure_count": 0,
+ "applied_sha256": {
+  "Chirality_Root_SOFTWARE_DECOMP_v1_0.md": "6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49",
+  "chirality_root_deliverable_register_v1_0.csv": "b18ebe6b9bc3cdac6bd0bd78f6470be328a81783c7c6ab5b55478b506c61e8da",
+  "chirality_root_scope_ledger_v1_0.csv": "fea77787c2e20217bf168f7f773c4c86d1dbb5e2984d1712723afea95173c1dc"
+ },
+ "candidate_sha256": {
+  "Chirality_Root_SOFTWARE_DECOMP_v1_0.md": "6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49",
+  "chirality_root_deliverable_register_v1_0.csv": "b18ebe6b9bc3cdac6bd0bd78f6470be328a81783c7c6ab5b55478b506c61e8da",
+  "chirality_root_scope_ledger_v1_0.csv": "61992b3c43da62f4ecbb1f43bab4d1c62835be19102763645f2418abe6b478d7"
+ },
+ "checks": [
+  {
+   "check": "candidate_frozen::Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+   "status": "PASS",
+   "details": "observed=6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49 expected=6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49"
+  },
+  {
+   "check": "candidate_frozen::chirality_root_scope_ledger_v1_0.csv",
+   "status": "PASS",
+   "details": "observed=61992b3c43da62f4ecbb1f43bab4d1c62835be19102763645f2418abe6b478d7 expected=61992b3c43da62f4ecbb1f43bab4d1c62835be19102763645f2418abe6b478d7"
+  },
+  {
+   "check": "candidate_frozen::chirality_root_deliverable_register_v1_0.csv",
+   "status": "PASS",
+   "details": "observed=b18ebe6b9bc3cdac6bd0bd78f6470be328a81783c7c6ab5b55478b506c61e8da expected=b18ebe6b9bc3cdac6bd0bd78f6470be328a81783c7c6ab5b55478b506c61e8da"
+  },
+  {
+   "check": "prd_rev7_subject_parity",
+   "status": "PASS",
+   "details": "observed=15fba9c36a197b36b281297af123115bcd3f282fe6c6f2fae05cd703b3743748 expected=15fba9c36a197b36b281297af123115bcd3f282fe6c6f2fae05cd703b3743748"
+  },
+  {
+   "check": "applied_exact_candidate::Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+   "status": "PASS",
+   "details": "live=6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49 candidate=6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49"
+  },
+  {
+   "check": "applied_exact_candidate::chirality_root_deliverable_register_v1_0.csv",
+   "status": "PASS",
+   "details": "live=b18ebe6b9bc3cdac6bd0bd78f6470be328a81783c7c6ab5b55478b506c61e8da candidate=b18ebe6b9bc3cdac6bd0bd78f6470be328a81783c7c6ab5b55478b506c61e8da"
+  },
+  {
+   "check": "ledger_line_count",
+   "status": "PASS",
+   "details": "live=106 candidate=106 (105 records + terminal empty)"
+  },
+  {
+   "check": "ledger_crlf_preserved",
+   "status": "PASS",
+   "details": "crlf=105 lf_total=105"
+  },
+  {
+   "check": "ledger_only_sow042_record_differs_from_candidate",
+   "status": "PASS",
+   "details": "differing_record_indexes=[42] (0-based; 42 == file line 43)"
+  },
+  {
+   "check": "ledger_column_count",
+   "status": "PASS",
+   "details": "rows=105 colcounts=[12]"
+  },
+  {
+   "check": "ledger_row_count",
+   "status": "PASS",
+   "details": "observed=105 expected=105 (header + 104)"
+  },
+  {
+   "check": "ledger_unique_scope_ids",
+   "status": "PASS",
+   "details": "scope_items=104"
+  },
+  {
+   "check": "ledger_status_counts",
+   "status": "PASS",
+   "details": "IN=95 OUT=9 TBD=0"
+  },
+  {
+   "check": "sow042_only_sourceref_cell_differs_from_candidate",
+   "status": "PASS",
+   "details": "columns 1..3,5..12 byte-equal to the accepted candidate (statement, mappings, D-8, flags preserved)"
+  },
+  {
+   "check": "sow042_candidate_sourceref_identity",
+   "status": "PASS",
+   "details": "candidate='PRD \u00a75.3 D-8 [TRANSCRIBED]' expected='PRD \u00a75.3 D-8 [TRANSCRIBED]'"
+  },
+  {
+   "check": "sow042_applied_sourceref_owner_bracket_ruling",
+   "status": "PASS",
+   "details": "live='PRD \u00a75.3 D-8 [ADOPTED-D-GOV-31]' expected='PRD \u00a75.3 D-8 [ADOPTED-D-GOV-31]' (owner bracket ruling 2026-07-29)"
+  },
+  {
+   "check": "sow042_successor_policy_tokens",
+   "status": "PASS",
+   "details": "missing=[]"
+  },
+  {
+   "check": "ledger_old_text_absent",
+   "status": "PASS",
+   "details": "no self-merge variant remains in the applied ledger"
+  },
+  {
+   "check": "register_lf_preserved",
+   "status": "PASS",
+   "details": "no CR bytes in applied register"
+  },
+  {
+   "check": "register_row_count",
+   "status": "PASS",
+   "details": "observed=47 expected=47 (header + 46)"
+  },
+  {
+   "check": "register_unique_deliverable_ids",
+   "status": "PASS",
+   "details": "deliverables=46"
+  },
+  {
+   "check": "del0406_description_tokens",
+   "status": "PASS",
+   "details": "missing=[]"
+  },
+  {
+   "check": "del0406_artifacts_tokens",
+   "status": "PASS",
+   "details": "missing=[]"
+  },
+  {
+   "check": "register_old_text_absent",
+   "status": "PASS",
+   "details": "no self-merge variant remains in the applied register"
+  },
+  {
+   "check": "lineage_sow042_pkg04_del0406_obj002_d8",
+   "status": "PASS",
+   "details": "SOW-042 -> PKG-04 -> DEL-04-06 -> OBJ-002 with D-8 linkage intact"
+  },
+  {
+   "check": "md_dec023_present",
+   "status": "PASS",
+   "details": "token present"
+  },
+  {
+   "check": "md_changelog_entry_present",
+   "status": "PASS",
+   "details": "token present"
+  },
+  {
+   "check": "md_ref001_rev7_pin",
+   "status": "PASS",
+   "details": "token present"
+  },
+  {
+   "check": "md_dec022_retained",
+   "status": "PASS",
+   "details": "token present"
+  },
+  {
+   "check": "md_no_literal_old_text",
+   "status": "PASS",
+   "details": "the applied working surface carries no literal superseded phrase"
+  },
+  {
+   "check": "md_identifier_retained::PKG-04",
+   "status": "PASS",
+   "details": "PKG-04_Developmental_Machinery_and_Change_Control"
+  },
+  {
+   "check": "md_identifier_retained::DEL-04-06",
+   "status": "PASS",
+   "details": "DEL-04-06_Change_Management_and_Human_Gated_Closeout"
+  },
+  {
+   "check": "md_identifier_retained::OBJ-002",
+   "status": "PASS",
+   "details": "OBJ-002"
+  }
+ ]
+}

@@ -8,7 +8,7 @@
 
 ## Description
 
-Keep git closeout running through the change-management role with human-gated pull requests as the standing default, preserving the four closeout identities; merge execution beyond that default is lawful only under a bounded owner grant recorded per PRD annex §5.3.1 (PRD §5.3 D-8, adopted by D-GOV-31).
+Keep git closeout running through the change-management role with human-gated pull requests as the standing default; beyond that default the owner may direct merge execution (typed by the owner directly or executed by an agent as the owner's proxy, identical authority either way), with the direction recorded in the loop's ordinary closeout evidence; preserve K-MERGE-1 (PRD §5.3 D-8, adopted by D-GOV-31 as simplified by owner direction 2026-07-29).
 
 ## Acceptance Criteria
 
@@ -18,9 +18,8 @@ Nothing is inferred here (K-INVENT-1).
 ## Anticipated Artifacts
 
 - Closeout checklist
-- closeout-identity evidence (semantic approval · approved source SHA · merge
-  authorization · effective merge SHA, plus grant reference when a bounded
-  owner grant was exercised)
+- closeout evidence (approved source HEAD · owner direction · effective
+  merge SHA)
 - PR gate notes
 
 ## Scope Traceability

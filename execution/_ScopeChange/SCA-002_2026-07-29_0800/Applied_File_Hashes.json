@@ -1,0 +1,42 @@
+{
+  "amendment_id": "SCA-002",
+  "gate": 5,
+  "application_state": "APPLIED_WITH_OWNER_RULED_BRACKET_DELTA",
+  "application_run": "GOV-STEP4-APPLICATION-20260729",
+  "application_basis": "main@204321467b567ede862636a36dd67bcac1ff326a",
+  "acceptance_act": "ACCEPT SCA-002 271d456a — Ryan Tufts 2026-07-29",
+  "acceptance_act_sha256": "cfd81bc53f29c051b8d59b89b3566c36a459011c52d8deaa2eb39ddbe592208b",
+  "bracket_ruling_act": "BRACKET AS RECOMMENDED: at application, update SOW-042 SourceRef to cite D-GOV-31 adoption — Ryan Tufts 2026-07-29",
+  "bracket_ruling_act_sha256": "a34878f59dcd4365a5f95fd68b7da70a452c875cc398724148c4a189d8db035a",
+  "accepted_package_commit": "271d456abe854346b903f1dfbd98d8cc37fdf09e",
+  "files": [
+    {
+      "path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "before_sha256": "2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18",
+      "approved_candidate_sha256": "6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49",
+      "applied_sha256": "6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49",
+      "exact_candidate_match": true
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+      "before_sha256": "0d48abe08aa336ac5e495650451f286b4b717606f047adff931c45dacc8531a4",
+      "approved_candidate_sha256": "61992b3c43da62f4ecbb1f43bab4d1c62835be19102763645f2418abe6b478d7",
+      "applied_sha256": "fea77787c2e20217bf168f7f773c4c86d1dbb5e2984d1712723afea95173c1dc",
+      "exact_candidate_match": false,
+      "application_delta": {
+        "authorized_by": "owner bracket ruling of 2026-07-29 (verbatim in Decision_Log.md, application append)",
+        "cell": "SOW-042 SourceRef",
+        "candidate_value": "PRD §5.3 D-8 [TRANSCRIBED]",
+        "applied_value": "PRD §5.3 D-8 [ADOPTED-D-GOV-31]",
+        "verification": "validate_gate5_applied.py proves the applied ledger differs from the accepted candidate in exactly this one cell of record line 43, with CRLF preserved (Gate_5_Validation.json, 33/33 PASS)"
+      }
+    },
+    {
+      "path": "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+      "before_sha256": "ec32b36fdc078e44a7ca094e9c854a3be6b7d5917360fe5ef5f22ff3702a13b8",
+      "approved_candidate_sha256": "b18ebe6b9bc3cdac6bd0bd78f6470be328a81783c7c6ab5b55478b506c61e8da",
+      "applied_sha256": "b18ebe6b9bc3cdac6bd0bd78f6470be328a81783c7c6ab5b55478b506c61e8da",
+      "exact_candidate_match": true
+    }
+  ]
+}

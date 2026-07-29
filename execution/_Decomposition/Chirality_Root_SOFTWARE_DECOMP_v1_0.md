@@ -1,31 +1,35 @@
-# Chirality Root — Software Decomposition (SCA-001 SUCCESSOR v1.1)
+# Chirality Root — Software Decomposition (SCA-002 CANDIDATE v1.2)
 
 **Package Role:** `working surface`
 **Agent Role:** `SOFTWARE_DECOMP` (Agent 1), under a sealed brief from Agent 0
 **Method basis:** `docs/DECOMPOSITION_STANDARD.md` (RATIFIED) extended by `agents/AGENT_SOFTWARE_DECOMP.md`
-**Revision:** v1.1 · **Date:** 2026-07-26
-**Source-basis commit:** `fb0b3d247d32e643a7fbb994d2f61b9b673ad0fb` (D-GOV-28 EffectiveSHA)
-**Predecessor AcceptedCandidateSHA:** `ec62af0700e530c1640698fa406398cb1cb45d29`
-**Predecessor EffectiveSHA:** `ea0ad7a566ddb51d89297bfcf491636f1fc5dd15` (merge of PR #347)
-**Predecessor accepting instrument:** `docs/governance_harness/_DECISIONS/D-GOV-25_root_decomposition_acceptance.md`
-**Run:** `ROOT-STEP8-DECOMP-20260725`, node N1
-**Amendment:** `SCA-001`; Gate 3 exact text approved and Gate 5 current-basis confirmation required before successor effect
+**Revision:** v1.2 (SCA-002 candidate — not accepted) · **Date:** 2026-07-29
+**Source-basis commit:** `ea3db3607fbcbb7ce5f65bab31268a7eca431adb` (D-GOV-31 effective merge; PRD Revision 7)
+**Predecessor (v1.1):** accepted by the SCA-001 Gate 5 owner confirmation, 2026-07-26; Git effect PR #366 merge `2db2c7128c32d32d197ae47660eb34ab2cef9660`
+**v1.0 acceptance:** AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`; EffectiveSHA `ea0ad7a566ddb51d89297bfcf491636f1fc5dd15` (merge of PR #347); instrument `docs/governance_harness/_DECISIONS/D-GOV-25_root_decomposition_acceptance.md`
+**Run:** `GOV-STEP4-SCA-20260729` (SCA-002 drafting); origin run `ROOT-STEP8-DECOMP-20260725`, node N1
+**Amendment:** `SCA-002`; candidate only — all five SCOPE_CHANGE owner gates pending; revision 1.1 remains the accepted basis
 
-> **Status: SCA-001 SUCCESSOR — conditional current basis.** The v1.0
-> predecessor remains the accepted basis until the owner confirms the SCA-001
-> Gate 5 post-change state. Upon that confirmation, these exact v1.1 bytes are
-> the current accepted decomposition basis. The confirmation and all five
-> SCOPE_CHANGE gates are recorded in
-> `execution/_ScopeChange/SCA-001_2026-07-26_1454/Decision_Log.md`.
+> **Status: SCA-002 CANDIDATE — not the accepted basis.** Revision 1.1
+> (SCA-001 successor, owner-confirmed 2026-07-26) remains the accepted
+> current basis. These v1.2 bytes exist only inside the SCA-002 snapshot
+> and become the current basis only upon the SCA-002 owner gate
+> confirmations recorded in
+> `execution/_ScopeChange/SCA-002_2026-07-29_0800/Decision_Log.md`,
+> followed by a separately gated application act. No owner acceptance of
+> SCA-002 has occurred at drafting time.
 >
-> **What the amendment does not do.** It authorizes no `runtime/` edit,
-> implementation, client change, package dispatch, or release. It adds one
-> Root-owned standing scope carrier and planning locus. Materialization and
-> guard-state refresh remain downstream PROJECT_SETUP work.
+> **What the amendment does.** It restates the SOW-042 scope-ledger row
+> and the DEL-04-06 deliverable-register row from the superseded Rev 6
+> D-8 wording to the D-GOV-31 successor merge-gate policy (PRD Revision 7
+> row D-8 and annex §5.3.1), and advances the sole-scope-source pin to
+> Revision 7. No ID, status, mapping, package, deliverable, objective,
+> count, or topology changes; no grant is issued; no historical record is
+> rewritten.
 >
-> **Predecessor acceptance.** D-GOV-25 continues to identify and govern the
-> accepted v1.0 predecessor at its exact candidate and effective SHAs. SCA-001
-> changes no historical ruling and reuses no stable ID.
+> **Predecessor acceptance.** D-GOV-25 (v1.0) and the SCA-001 Gate 5
+> confirmation (v1.1) continue to identify and govern their accepted
+> states. SCA-002 changes no historical ruling and reuses no stable ID.
 
 ---
 
@@ -56,7 +60,7 @@ used; all seven gates were ruled together against the one candidate.
 
 | RefID | Source | Role | sha256 | Basis |
 |---|---|---|---|---|
-| REF-001 | `docs/PRD_ROOT.md` | **Sole scope source.** Objectives (§3), categories (§4), stable commitments (§5), including O-11 continuing Root stewardship of generic runtime, self-application direction (§6), variant and promotion direction (§7), non-goals and falsifiers (§8), ruled owner decisions (§9), source-concordance obligations (§10). | `0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d` | `fb0b3d247d32e643a7fbb994d2f61b9b673ad0fb` (D-GOV-28 EffectiveSHA) |
+| REF-001 | `docs/PRD_ROOT.md` | **Sole scope source.** Objectives (§3), categories (§4), stable commitments (§5), including O-11 continuing Root stewardship of generic runtime, self-application direction (§6), variant and promotion direction (§7), non-goals and falsifiers (§8), ruled owner decisions (§9), source-concordance obligations (§10). | `15fba9c36a197b36b281297af123115bcd3f282fe6c6f2fae05cd703b3743748` | `ea3db3607fbcbb7ce5f65bab31268a7eca431adb` (D-GOV-31 effective merge; PRD Revision 7) |
 
 Nothing outside REF-001 created scope. Where REF-001 is silent or ambiguous,
 this decomposition records `TBD` and an open issue rather than inventing (I2,
@@ -552,6 +556,8 @@ was added, removed, or renumbered.
 
 | DEC-022 | 2026-07-26 | **SCA-001 adds one standing Root runtime-stewardship carrier.** Add SOW-104 and DEL-02-06 under PKG-02; preserve DEL-02-02 unchanged; map the carrier to OBJ-001, OBJ-002, OBJ-004, and OBJ-007; classify the scope item as Operative Product and Evidence; use REQ_SLICE with Context Envelope M; and declare `runtime/**` plus the carrier's execution/evidence tree as its anticipated Root write locus. | O-11 requires a standing Root carrier and declared locus. A separate deliverable preserves the accepted distinction between three-layer boundary conformance and consequential runtime stewardship. The carrier is activated one bounded change tranche at a time and creates no implementation or release authority. Requested by Ryan Tufts and approved through SCA-001 Gates 2–3. |
 
+| DEC-023 | 2026-07-29 | **SCA-002 restates SOW-042 and DEL-04-06 to the D-GOV-31 successor merge-gate policy.** The SOW-042 `ScopeItemStatement` and the DEL-04-06 `Description` and `AnticipatedArtifacts` cells are restated from the superseded Rev 6 D-8 wording to the adopted successor: the shared change-management role with human-gated PRs as the standing default; a bounded owner grant, recorded before or at exercise per PRD annex §5.3.1, may authorize merge execution; K-MERGE-1 and the four closeout identities (semantic approval, approved source SHA, merge authorization, effective merge SHA) are preserved; each loop's stricter local merge discipline remains controlling until adopted under its own instruments. The SOW-042 `SourceRef` bracket retains its historical `[TRANSCRIBED]` label per the drafting brief; the live D-8 row is labeled PROPOSED (Rev 7), and the label disposition is surfaced to the owner in the SCA-002 snapshot rather than changed here (F6 discipline). No ID, status, mapping, count, or other cell changes. | D-GOV-31 adopted PRD Revision 7 (subject SHA-256 `15fba9c36a197b36b281297af123115bcd3f282fe6c6f2fae05cd703b3743748`; effective merge `ea3db3607fbcbb7ce5f65bab31268a7eca431adb`); its POLICY_DELTA §4 row 1 obligates this restatement through SCOPE_CHANGE. Candidate only: these bytes take effect only upon the SCA-002 owner gate confirmations. Owner acceptance is pending and is a separate act. |
+
 ### Change Log
 
 - 2026-07-25 — v1.0 candidate authored from `docs/PRD_ROOT.md` at basis
@@ -587,6 +593,18 @@ was added, removed, or renumbered.
   `runtime/**` planning locus, and reconciles both trace registers and telemetry.
   DEL-02-02 and every existing stable ID remain unchanged. These bytes become
   current basis only upon the SCA-001 Gate 5 owner confirmation.
+
+- 2026-07-29 — **SCA-002 revision 1.2 candidate.** D-GOV-31 adopted PRD
+  Revision 7: the D-8 successor row and merge-gate policy annex §5.3.1
+  (shared change-management role; human-gated PRs as the standing default;
+  bounded owner grants recorded before or at exercise; K-MERGE-1 and the
+  four closeout identities preserved). This candidate restates SOW-042
+  (scope ledger) and DEL-04-06 (deliverable register) to the successor
+  policy and advances the sole-scope-source pin to Revision 7 at the
+  D-GOV-31 effective merge (DEC-023). No topology, ID, status, mapping,
+  or count changes; no grant is issued; frozen records are untouched.
+  These bytes become the current basis only upon the SCA-002 owner gate
+  confirmations; revision 1.1 remains the accepted basis until then.
 
 ---
 

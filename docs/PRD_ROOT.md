@@ -459,7 +459,7 @@ owner as a new proposal.
 | **D-5** | Validation is deterministic and severity-typed (BLOCK / REVIEW / WARN / INFO / NOT_APPLICABLE, with exit-code semantics and human-only recorded BLOCK override); "BLOCK" never means globally proven safe or unsafe; and a validator finding may **never** mechanically reject content the owner has ruled — where ruled text trips a validator, the validator is defective. | TRANSCRIBED — D-GOV-02; D-GOV-17; `docs/CONTRACT.md` §1.7 note |
 | **D-6** | Phase-crossing work is bound by the governance integration rules — derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution, and change-notice routing. **Incorporated by reference** to `AGENTS.md` §Governance Integration Rules. | TRANSCRIBED — `AGENTS.md`; `docs/DIRECTIVE.md` §2.7 |
 | **D-7** | Root-product development runs through a governed loop with a session-init contract, a deterministic standing-plan pointer, and an append-only receipts log. **Coordination surfaces carry no authority merely because they exist**; on disagreement with a live source, the live source governs and the delta is recorded. | TRANSCRIBED — `execution/_Coordination/LOOP_INIT.md`; `CURRENT_WORKPLAN.md`; standing workplan §Authority basis |
-| **D-8** | Git closeout in every registered loop runs through the shared change-management role with human-gated PRs as the standing default; a bounded owner grant, recorded before or at exercise, may authorize merge execution under the merge-gate policy in annex §5.3.1, which preserves K-MERGE-1 and the four closeout identities. Each loop's stricter local merge discipline remains controlling until that loop adopts or acknowledges the policy under its own instruments. | **PROPOSED (Rev 7)** — successor to the Rev 6 TRANSCRIBED row ("never self-merge"); default source `execution/_Coordination/LOOP_INIT.md` §7; invariant K-MERGE-1; owner policy intent recorded in the D-GOV-31 packet |
+| **D-8** | Git closeout in every registered loop runs through the shared change-management role with human-gated PRs as the standing default; beyond that default, the owner may direct merge execution — typed by the owner directly or executed by an agent as the owner's proxy, identical authority either way — with the direction recorded in the loop's ordinary closeout evidence under the merge-gate policy in annex §5.3.1, preserving K-MERGE-1. Each loop's stricter local merge discipline remains controlling until that loop adopts or acknowledges the policy under its own instruments. | **ADOPTED (Rev 8)** — D-GOV-31 as simplified by owner direction 2026-07-29, arriving as PR review per the terminal-artifact rule (D-1); successor to the Rev 6 TRANSCRIBED row ("never self-merge"); default source `execution/_Coordination/LOOP_INIT.md` §7; invariant K-MERGE-1 |
 | **D-9** | The decomposition pipeline is not waivable: packages and deliverables come only from an accepted decomposition. Nothing authorizes inventing packages from discussion. | TRANSCRIBED — D-GOV-21 packet §4 |
 | **D-10** | The public-export boundary is an explicit allowlist profile that copies allowlisted content, sanitizes private absolute paths, writes a manifest and report, and fails on forbidden paths or leaks. **The profile is the boundary contract and is incorporated by reference**; membership is not restated here. | TRANSCRIBED — `exports/chirality-app/export_public.py`; K-EXPORT-1 |
 | **D-11** | A tranche changing surfaces that downstream loops pin or mirror ships a routed coordination notice to each affected loop in the same tranche. The notice is coordination, not authority: the receiving loop adopts, amends, or declines under its own instruments. | TRANSCRIBED — `AGENTS.md` change-notice rule; D-GOV-21 M6 |
@@ -476,72 +476,37 @@ claim. **The identifier is retired and never reassigned** — D-4 through D-16
 keep their IDs so that every cross-reference in the annex, the prior revisions,
 and this run's record stays valid, and no future commitment may reuse `D-3`.
 
-#### 5.3.1 Merge-gate policy — the D-8 successor [PROPOSED]
+#### 5.3.1 Merge-gate policy — the D-8 successor
 
-This annex carries the full successor policy referenced by the D-8 row. It
-is PROPOSED and inert until an owner ruling in D-GOV-31 adopts this exact
-candidate. Nothing in this annex relabels, cures, or reopens any historical
-act; the 2026-07-28 window remains governed by the D-GOV-30 disclosure
-exactly as recorded.
+Adopted by D-GOV-31 as simplified by owner direction of 2026-07-29,
+arriving as PR review per the terminal-artifact rule (D-1). This policy
+governs the shared change-management (CHANGE) role across all registered
+loops; each loop's stricter local merge discipline remains controlling
+until that loop adopts or acknowledges the policy under its own
+instruments. Nothing in this annex relabels, cures, or reopens any
+historical act.
 
-**Scope.** This policy governs the shared change-management (CHANGE) role behavior across all registered loops. Its adoption obligates a routed M6 coordination notice to every registered loop's coordination surface (at this basis: the App, PEC, and Piping loops; the registered set is enumerated at execution time). Notices are coordination, never authority: each loop's stricter local merge discipline remains controlling until that loop adopts or acknowledges the policy under its own instruments.
+**Default and owner direction.** Human-gated PRs remain the standing
+Git-closeout default. Beyond that default, the owner may direct merge
+execution — typed by the owner directly or executed by an agent as the
+owner's proxy; the authority is identical either way. The direction is
+recorded in the loop's ordinary closeout evidence — receipts, plus the PR
+and merge SHAs Git already keeps — which names the approved source HEAD,
+the owner's direction, and the effective merge SHA. No further
+instrument, registry, or log exists or is required.
 
-**Default unchanged.** Human-gated PRs remain the default Git-closeout
-vehicle. Absent a live bounded owner grant, permission to merge is
-required, exactly as under the superseded row.
+**Standing prohibitions.** No agent-authored semantic approval; no
+content mutation after approval; no force push, rebase, or invented
+conflict resolution; no authority beyond the direction given.
 
-**Bounded owner grant.** A bounded owner grant may authorize merge
-execution. Every grant must define, at minimum: the authoring actor; the
-merge executor; the scope (exact PRs, branches, paths, or a bounded stretch
-of work); the duration; the expiry; and the exclusions. A grant is recorded
-before or at exercise — transcribed in a durable record (an OD-style
-transcription or carried in the pull request itself) — never after the
-fact.
-
-**Execution authority is not semantic approval.** A bounded owner grant may
-authorize merge execution within its recorded scope and term. It never
-constitutes semantic approval of future unknown content. Each merge still
-requires a human approval vehicle bound to the exact source HEAD,
-verification that HEAD remains unchanged, and a separately recorded
-effective merge identity.
-
-**Four identities.** Every closeout preserves four distinct identities:
-
-1. **semantic approval** — the human act and the exact subject it approves;
-2. **approved source SHA** — the exact branch HEAD the approval binds to
-   (K-AUTH-2);
-3. **merge authorization** — the act or grant permitting execution of the
-   merge;
-4. **effective merge SHA** — the resulting merge commit on the target.
-
-The prior corpus conflated these identities: "never self-merge" stood in
-for all four, and no merger-versus-author identity test ever existed as a
-deterministic check. The identity separation above — not a blanket
-prohibition — is the successor discipline.
+**K-MERGE-1 unchanged.** Merge to main is allowed only when branch HEAD
+equals the approved SHA for the relevant run (`docs/CONTRACT.md` §1.8).
 
 **Owner token grammar.** Short owner tokens — for example `APPROVE <ID>`,
 `RATIFY <IDs> AS ENUMERATED IN <RECORD> <SHA8>`, and `SELECT <OPTION>` —
 are lawful rulings only where the exact candidate, SHA, scope, and effect
 are pre-fixed in an immutable record that the token names. This grammar
 lives in this policy; transcription records never define or extend it.
-
-**Exclusions — expressly prohibited under any grant:**
-
-- agent-authored semantic auto-approval;
-- content mutation after approval;
-- force push, rebase, or invented conflict resolution;
-- any authority beyond the named scope and expiry;
-- lifecycle or issuance authority inferred merely from merge permission.
-
-**K-MERGE-1 unchanged; evidencing strengthened.** K-MERGE-1 — merge to
-main allowed only when branch HEAD equals the approved SHA for the relevant
-run (`docs/CONTRACT.md` §1.8) — is not amended. This policy strengthens its
-evidencing: the approved source SHA must be pinned in a durable record
-before the merge executes, so that the invariant is falsifiable at
-execution time. This cures the NOT_EVIDENCED failure mode documented in
-`execution/_Evaluation/MERGE_APPROVAL_MATRIX_2026-07-28_85EA0628/`, where
-`merge^2` equality held in Git but no in-repo record named an approved
-source SHA before merge.
 
 ### 5.4 Evidence
 

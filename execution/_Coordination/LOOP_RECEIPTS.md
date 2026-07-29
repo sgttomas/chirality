@@ -1587,3 +1587,101 @@ amendment; owner ruling required).
   stay concordant. No retroactive cure of any historical act; loops
   remain bound only through their own instruments, stricter local merge
   discipline controlling until they act.
+
+### Receipt 63 — 2026-07-29 — Step-4 closeout: SCA-002 accepted and applied; PRs #417/#418 merged per owner direction
+
+- **Parent receipt:** Receipt 62. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **SCA-002 acceptance (owner act of record, 49 bytes UTF-8, SHA-256
+  `cfd81bc53f29c051b8d59b89b3566c36a459011c52d8deaa2eb39ddbe592208b`):**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  ACCEPT SCA-002 271d456a — Ryan Tufts 2026-07-29
+  <!-- END OWNER RULING VERBATIM -->
+  The token SHA8 binds to the candidate package commit
+  `271d456abe854346b903f1dfbd98d8cc37fdf09e`, covering the package's
+  Gates 1–4 as presented.
+- **Bracket ruling (owner act of record, 116 bytes UTF-8, SHA-256
+  `a34878f59dcd4365a5f95fd68b7da70a452c875cc398724148c4a189d8db035a`):**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  BRACKET AS RECOMMENDED: at application, update SOW-042 SourceRef to cite D-GOV-31 adoption — Ryan Tufts 2026-07-29
+  <!-- END OWNER RULING VERBATIM -->
+- **Application (run GOV-STEP4-APPLICATION-20260729, basis
+  `main@204321467b567ede862636a36dd67bcac1ff326a`):** the accepted Gate 3
+  candidate bytes were copied to the three authoritative decomposition
+  paths, then the one owner-ruled bracket delta was applied: SOW-042
+  `SourceRef` is now `PRD §5.3 D-8 [ADOPTED-D-GOV-31]`. Working surface
+  and deliverable register are byte-identical to the accepted candidate;
+  the ledger differs from it in exactly that one cell, CRLF preserved.
+  Evidence in the SCA-002 snapshot: `Applied_File_Hashes.json`,
+  `validate_gate5_applied.py` + `Gate_5_Validation.json` (33/33 PASS
+  against the live files), and the Decision_Log and Handoff_State
+  application appends. Audit-pair obligation dispositioned: the
+  deterministic application validation plus the register baseline stand
+  in; any full AUDIT_DECOMP run is deferred to the next regular audit
+  cycle. The `_ScopeChange/_LATEST.md` pointer refresh is a recorded
+  follow-on (outside this run's sealed write scope).
+- **Merges (owner act of record, 117 bytes UTF-8, SHA-256
+  `f7b0136d3b8daf11d312d4d6e0714f6e45c59d35e618ff03c3fd6d67e190834b`):**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  APPROVE HEADS dfc8d4af5 (PR #417) AND e5e8f760 (PR #418); MERGE #417 THEN #418 ON MY BEHALF — Ryan Tufts 2026-07-29
+  <!-- END OWNER RULING VERBATIM -->
+  PR #417 (`gov/step4-sca-decomposition`, approved HEAD
+  `dfc8d4af532b07f8e562ace2f910ca777e63173f`) merged as
+  `6e21530f7182ca2a7e7831b9528f85889a4a4467`; PR #418
+  (`gov/step4-operative-surfaces`, approved HEAD
+  `e5e8f760548e739078a1735b176cd56604d5d4c9`) merged as
+  `204321467b567ede862636a36dd67bcac1ff326a`. Each HEAD was verified
+  unchanged immediately before its merge; both merges were executed on
+  the owner's behalf per the direction above, via the
+  owner-authenticated `gh` CLI (GitHub merge actor `sgttomas`).
+- **Gate:** transcription and application only; nothing here rules new
+  policy. Publication merge authorization for this tranche's own PR
+  remains a separate owner act on the exact final branch HEAD, and
+  nothing in this receipt is citable as precedent for blanket approval.
+
+### Receipt 64 — 2026-07-29 — Merge-execution policy simplified to owner direction in ordinary closeout evidence (owner-directed; PR-review vehicle)
+
+- **Parent receipt:** Receipt 63. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Owner direction (owner act of record, 181 bytes UTF-8, SHA-256
+  `d89bcdef36398ec7c345a48e0b3d65b30c635cf09aed0bf8f2a5a3c89c1b33d0`):**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  You can plan and execute just such a targeted fix now with a subagent.  Your choice is acceptable: "the owner’s direction, recorded in the loop’s ordinary closeout evidence” .
+  <!-- END OWNER RULING VERBATIM -->
+  Earlier in the same session the owner stated the governing epistemology:
+  telling the agent to merge is sufficient; owner-typed and agent-as-proxy
+  execution carry the same authority; no grant record, registry, or log is
+  to exist. The bounded-owner-grant mechanism adopted this morning through
+  D-GOV-31 is accordingly replaced by: the owner's direction, recorded in
+  the loop's ordinary closeout evidence (approved source HEAD, owner
+  direction, effective merge SHA). Default remains human-gated PRs;
+  standing prohibitions and K-MERGE-1 are unchanged.
+- **What changed (run GOV-D8-SIMPLIFICATION-20260729, basis
+  `main@2dace6ec6e3342a415342a539d5630969cbba39c`):**
+  - `docs/PRD_ROOT.md` — D-8 row and annex §5.3.1 rewritten to the
+    simplified policy; stale PROPOSED label fixed.
+  - `execution/_Coordination/LOOP_INIT.md` §7 — closeout bullet restated.
+  - `agents/AGENT_CHANGE.md` — reconciled throughout; new SHA-256
+    `950e96f4cfff13af48b9edd93a4b47356e8b388a430d70977fd528ffbd4120fa`.
+  - The three D-GOV-31 M6 notices (App, PEC, Piping) — dated update
+    sections appended; coordination, never authority.
+  - `execution/_Decomposition/` — SOW-042 statement and DEL-04-06
+    Description/AnticipatedArtifacts restated (CRLF/LF preserved);
+    DEL-04-06 ScopeOfWork.md and _CONTEXT.md restated to the three
+    closeout facts.
+  - G4 validator + tests — `merge_execution_grant` semantics replaced by
+    `m2_gate.owner_direction` (`directed_by`, `direction_date`,
+    `approved_source_sha`); undeclared `self_merge: true` still BLOCKs.
+  - Deleted
+    `docs/governance_harness/_PROPOSALS/GRANT-2026-07-29_transition_merge_execution/`
+    — unruled draft, never issued; the owner rejected the mechanism it
+    drafts.
+- **Change vehicle:** PR review per the register's terminal-artifact rule
+  ("Design changes from here supersede a `D-GOV-*` record or arrive as PR
+  review"); no new D-GOV record; the D-GOV-31 decision record is unedited
+  and remains historical (supersede-never-edit).
+- **Gate / blockers:** human-gated PR for this tranche. Run records
+  `execution/_Coordination/AgentRuns/GOV-D8-SIMPLIFICATION-20260729/`;
+  tranche manifest
+  `docs/governance_harness/tranche_manifests/ROOT-D8-SIMPLIFICATION-20260729.yaml`
+  (`self_merge: false`; M6 `routed`).
