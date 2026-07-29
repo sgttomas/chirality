@@ -181,6 +181,7 @@ The public `chirality-app` export is controlled by `exports/chirality-app/`. The
 - `tools/`
 - `docs/`
 - `init/`
+- `runtime/`
 
 The current public export profile excludes private or local-only workspace content:
 
