@@ -4,9 +4,9 @@ Status:       RULED
 HumanRuling:  "RATIFY R-1, R-2, R-3, R-4 AS ENUMERATED IN D-GOV-30 PACKET 32b4afbf — Ryan Tufts 2026-07-28" (owner, 2026-07-28; full ruling recorded verbatim below)
 AcceptedCandidateSHA: 9f6a4c637f38959b5d89df6d92846335fd20d60c (the `gov/step2-root-disclosure` candidate commit the owner ruled against; backfilled per the D-GOV-18/19/21/22 convention)
 CandidateSubjectSHA256: 32b4afbfb402d65fecc14558bca79f5b83fc5690bd0b4f56cc9a656ced6c35e3
-CandidateMergeSHA: PENDING — backfilled per the D-GOV-18/19/21/22 convention
-PublicationSHA: PENDING — backfilled per the D-GOV-18/19/21/22 convention
-EffectiveSHA: PENDING — backfilled per the D-GOV-18/19/21/22 convention
+CandidateMergeSHA: 7eda81c0c990471ba1b27d7cee7249cc01d74e04 (merge of PR #410 into `main`, 2026-07-28; backfilled by the Step-4 propagation tranche per the D-GOV-18/19/21/22 convention)
+PublicationSHA: 7eda81c0c990471ba1b27d7cee7249cc01d74e04 (the same merge publishes this record; backfilled by the same tranche)
+EffectiveSHA: 7eda81c0c990471ba1b27d7cee7249cc01d74e04 (merge of PR #410 into `main`, 2026-07-28; backfilled by the same tranche)
 Date:         2026-07-28
 FramedBy:     HELP_HUMAN session of record (Agent 0); authored by bounded Agent 2 AUTHOR run `GOV-STEP2-ROOT-20260728` under the HELPS_HUMANS lane
 AcceptedBasis: `main@85ea0628fa4e57dd6aae53b06139b2b8734a9612`

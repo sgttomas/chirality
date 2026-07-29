@@ -8,7 +8,7 @@
 
 ## Description
 
-Keep git closeout running through the change-management role with human-gated pull requests and no self-merge.
+Keep git closeout running through the change-management role with human-gated pull requests as the standing default, preserving the four closeout identities; merge execution beyond that default is lawful only under a bounded owner grant recorded per PRD annex §5.3.1 (PRD §5.3 D-8, adopted by D-GOV-31).
 
 ## Acceptance Criteria
 
@@ -18,7 +18,9 @@ Nothing is inferred here (K-INVENT-1).
 ## Anticipated Artifacts
 
 - Closeout checklist
-- no-self-merge evidence
+- closeout-identity evidence (semantic approval · approved source SHA · merge
+  authorization · effective merge SHA, plus grant reference when a bounded
+  owner grant was exercised)
 - PR gate notes
 
 ## Scope Traceability

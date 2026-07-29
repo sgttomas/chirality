@@ -37,7 +37,15 @@ paths or globs. Shape::
       authorization_date: 2026-07-25
       integration_owner: <the single serialized integration owner>
       merge_gate: human-gated-pr   # the only accepted value
-      self_merge: false            # must be false
+      self_merge: false            # the default; may be true ONLY when a
+                                   # complete merge_execution_grant block is
+                                   # recorded (PRD annex 5.3.1, D-GOV-31)
+      merge_execution_grant:       # optional bounded owner grant reference
+        grant_record: <repo path to the durable owner grant record>
+        granted_by: <owner of record>
+        grant_date: 2026-07-29
+        expiry: 2026-08-12         # must not precede the manifest date
+        approved_source_sha: <full 40-hex pre-merge pin of the approved HEAD>
     m6_notice:
       disposition: pending         # pending | routed | none-required
       routed_to: []                # notice paths; required when routed
@@ -48,6 +56,19 @@ that do not intersect the instruction surface are recorded as over-declaration
 (INFO, non-blocking). `disposition: pending` is lawful and PASSes with an INFO
 note — the M6 routing decision is completed by the accepting agent at fan-in,
 and this guard records rather than pre-empts that act.
+
+`m2_gate.self_merge: false` remains the schema default and the unconditional
+requirement absent a grant. Under the D-GOV-31 merge-gate policy (PRD annex
+§5.3.1), `self_merge: true` is lawful ONLY when the manifest records a
+complete `m2_gate.merge_execution_grant` block naming the durable owner grant
+record, the grantor, the grant date, an unexpired expiry, and the full 40-hex
+`approved_source_sha` pre-merge pin (the registered home of the mandatory
+pre-merge pin per D-GOV-31/RB-3). `self_merge: true` without a complete grant
+block is BLOCK — the preserved failing mode; an incomplete, malformed, or
+date-expired grant block is BLOCK; a complete grant block with
+`self_merge: true` PASSes with an INFO line naming the grant record. The
+grant reference is recorded provenance: this guard verifies the record is
+named and well-formed, never that the grant itself was lawful (K-AUTH-1).
 
 The instruction surface is `docs/SPEC.md` §0.2.1's enumeration as amended by
 D-GOV-26: `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root
@@ -123,6 +144,16 @@ REQUIRED_M2_KEYS = (
     "self_merge",
 )
 REQUIRED_M6_KEYS = ("disposition", "routed_to", "rationale")
+# Optional m2_gate.merge_execution_grant block (PRD annex 5.3.1, D-GOV-31):
+# when present it must be complete; only a complete, unexpired, well-formed
+# block makes `self_merge: true` lawful.
+REQUIRED_GRANT_KEYS = (
+    "grant_record",
+    "granted_by",
+    "grant_date",
+    "expiry",
+    "approved_source_sha",
+)
 
 INSTRUCTION_SURFACE_FILES = ("AGENTS.md", "CLAUDE.md")
 INSTRUCTION_SURFACE_DIRS = (
@@ -301,11 +332,27 @@ def validate_manifest(root: Path, path: Path) -> tuple[list[str], list[str], dic
                 f"manifest {rel}: m2_gate.merge_gate is {m2.get('merge_gate')!r}; M2 "
                 "requires 'human-gated-pr'"
             )
-        if "self_merge" in m2 and m2.get("self_merge") is not False:
-            failures.append(
-                f"manifest {rel}: m2_gate.self_merge is {m2.get('self_merge')!r}; M2 "
-                "forbids self-merge (must be false)"
+        grant = m2.get("merge_execution_grant")
+        grant_complete = False
+        if grant is not None:
+            grant_failures, grant_complete = validate_grant_block(
+                rel, grant, data.get("date")
             )
+            failures.extend(grant_failures)
+        if "self_merge" in m2 and m2.get("self_merge") is not False:
+            if m2.get("self_merge") is True and grant_complete:
+                notes.append(
+                    f"manifest {rel}: m2_gate.self_merge is true under recorded "
+                    f"bounded owner grant {grant.get('grant_record')!r} "
+                    "(PRD annex 5.3.1); the schema default remains self_merge false"
+                )
+            else:
+                failures.append(
+                    f"manifest {rel}: m2_gate.self_merge is {m2.get('self_merge')!r} "
+                    "without a complete m2_gate.merge_execution_grant block; M2 "
+                    "forbids self-merge (must be false) absent a recorded bounded "
+                    "owner grant (PRD annex 5.3.1)"
+                )
 
     m6 = data.get("m6_notice")
     if not isinstance(m6, dict):
@@ -353,6 +400,69 @@ def validate_manifest(root: Path, path: Path) -> tuple[list[str], list[str], dic
             )
 
     return failures, notes, data
+
+
+def validate_grant_block(rel: str, grant: object, manifest_date: object) -> tuple[list[str], bool]:
+    """Validate an m2_gate.merge_execution_grant block (PRD annex 5.3.1).
+
+    Returns (failures, complete). `complete` is True only when every required
+    key is present, well-formed, and the expiry does not precede the manifest
+    date — the only state in which `self_merge: true` is lawful.
+    """
+    failures: list[str] = []
+    prefix = f"manifest {rel}: m2_gate.merge_execution_grant"
+    if not isinstance(grant, dict):
+        return [f"{prefix} must be a mapping"], False
+
+    complete = True
+    missing = [k for k in REQUIRED_GRANT_KEYS if k not in grant]
+    if missing:
+        failures.append(f"{prefix} missing keys: {sorted(missing)}")
+        complete = False
+
+    for key in ("grant_record", "granted_by"):
+        value = grant.get(key)
+        if key in grant and (not isinstance(value, str) or not value.strip()):
+            failures.append(f"{prefix}.{key} must be a non-empty string")
+            complete = False
+    record = grant.get("grant_record")
+    if isinstance(record, str) and record.strip() and not is_repo_relative(record):
+        failures.append(f"{prefix}.grant_record {record!r} is not a repo-relative POSIX path")
+        complete = False
+
+    for key in ("grant_date", "expiry"):
+        value = normalize_date(grant.get(key))
+        if key in grant and (not isinstance(value, str) or not DATE_RE.match(value)):
+            failures.append(f"{prefix}.{key} {grant.get(key)!r} is not YYYY-MM-DD")
+            complete = False
+
+    sha = grant.get("approved_source_sha")
+    if "approved_source_sha" in grant and (
+        not isinstance(sha, str) or not re.match(r"^[0-9a-f]{40}$", sha)
+    ):
+        failures.append(
+            f"{prefix}.approved_source_sha {sha!r} is not a full 40-hex SHA "
+            "(the mandatory pre-merge pin)"
+        )
+        complete = False
+
+    expiry = normalize_date(grant.get("expiry"))
+    date = normalize_date(manifest_date)
+    if (
+        complete
+        and isinstance(expiry, str)
+        and DATE_RE.match(expiry)
+        and isinstance(date, str)
+        and DATE_RE.match(date)
+        and expiry < date
+    ):
+        failures.append(
+            f"{prefix}.expiry {expiry} precedes the manifest date {date}; the grant "
+            "is expired for this tranche"
+        )
+        complete = False
+
+    return failures, complete
 
 
 def changed_paths(root: Path, base: str, head: str) -> tuple[list[str] | None, str | None]:

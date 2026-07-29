@@ -5,9 +5,9 @@ HumanRuling:  "APPROVE D-GOV-31 15fba9c3 — Ryan Tufts 2026-07-29" (owner, 2026
 AcceptedCandidateSHA: 3ad43c27bbab0da7d43cb1921ff9c8b186d1b2cd (the candidate-only commit containing the adopted subject)
 CandidateSubjectSHA256: 15fba9c36a197b36b281297af123115bcd3f282fe6c6f2fae05cd703b3743748
 SelectionRecordSHA: 482ec0b79e65e7302e2352bd4b04a54d41429f1b (the commit recording the owner's SELECT act in the run HANDOFF_STATE)
-CandidateMergeSHA: PENDING — backfilled per the D-GOV-18/19/21/22 convention
-PublicationSHA: PENDING — backfilled per the D-GOV-18/19/21/22 convention
-EffectiveSHA: PENDING — backfilled per the D-GOV-18/19/21/22 convention
+CandidateMergeSHA: ea3db3607fbcbb7ce5f65bab31268a7eca431adb (merge of PR #416 into `main`, 2026-07-29; backfilled by the Step-4 propagation tranche per the D-GOV-18/19/21/22 convention)
+PublicationSHA: ea3db3607fbcbb7ce5f65bab31268a7eca431adb (the same merge publishes this record; backfilled by the same tranche)
+EffectiveSHA: ea3db3607fbcbb7ce5f65bab31268a7eca431adb (merge of PR #416 into `main`, 2026-07-29; the adopted Rev 7 bytes became live at this commit; backfilled by the same tranche)
 Date:         2026-07-29
 FramedBy:     HELP_HUMAN session of record (Agent 0); authored by bounded Agent 2 AUTHOR run `GOV-STEP3-D8-ADOPTION-20260729` under the HELPS_HUMANS lane
 AcceptedBasis: `main@4f7808acb2802443370d045efa198152934c1674`
@@ -182,3 +182,16 @@ This ruling does not:
   professional-reliance authority; or
 - adopt anything from Candidate A, which remains an unselected frozen
   proposal, superseding nothing.
+
+## Merge-execution note (2026-07-29, appended at backfill)
+
+CI green and 11/11 independent verification preceded the merge. The owner
+returned in-session, verbatim, `Merge PR #416 and then proceed accordingly.`
+(2026-07-29) and, after the session surfaced the tension with the
+still-current D-8, reiterated the direction; the merge was thereupon executed
+by the supervising agent session via the owner-authenticated `gh` CLI (GitHub
+merge actor `sgttomas`), effective merge
+`ea3db3607fbcbb7ce5f65bab31268a7eca431adb`. This was an owner-directed
+execution disclosed against the PACKET §6 publication expectation
+("human-gated and is not self-merged") — disclosed, not cured, and not
+precedent.
