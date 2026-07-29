@@ -1329,3 +1329,24 @@
     implementation, runtime, lifecycle, dependency, estimate, schedule, or
     release authority is created. `F-PEC-1` remains in force.
   - Gate outcome: EXECUTED and EFFECTIVE on the completion commit.
+
+- **2026-07-29 — Receipt 120** (Step-5 loop-readiness pass: context currency and next-work slate).
+  - Basis `main@a4376a6d143e881be46cdb00223e6183ea28acc4` (loop-readiness
+    transition program, Step 5; run `GOV-STEP5-LOOPS-20260729`).
+  - 61 `_CONTEXT.md` provenance blocks under
+    `projects/pec/execution/PKG-*/1_Working/` extended to name revision 1.3
+    (`current_basis`, SCA-003 successor), matching the three already-current
+    files; all 64 deliverable contexts now current.
+  - `projects/pec/execution/_Coordination/PEC_NEXT_WORK_SLATE_2026-07-29.md`
+    created: P1 build-slice packet presented decision-ready (next free ID
+    `D-PEC-72`; not drafted into a packet, not ruled, not activated), the
+    D-GOV-31 / `agents/AGENT_CHANGE.md` succession acknowledgment, D-PEC-71
+    register-row currency, and the D-PEC-63 deferred carries.
+    `_COORDINATION.md` item 11 records the pass and owed this ledger entry,
+    appended here.
+  - Checks: strict decomposition-register validation exit 0 (0 errors /
+    0 warnings); committed-range whitespace validation exit 0.
+  - Authority fence: readiness only — no WORKING_ITEMS activation, source
+    work, P1 authorization, or reliance authority. Selection belongs to the
+    resumed loop. `F-PEC-1` remains in force.
+  - Gate outcome: EXECUTED on the Step-5 loop-slates tranche commit.
