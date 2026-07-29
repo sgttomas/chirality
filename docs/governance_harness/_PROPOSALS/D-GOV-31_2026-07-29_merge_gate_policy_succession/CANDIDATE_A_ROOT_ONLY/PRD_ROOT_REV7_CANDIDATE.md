@@ -1,7 +1,7 @@
 # Product Requirements Document — Chirality Root (the root product)
 
 > **Status: `ADOPTION-READY — adopted only by the instrument named below`.
-> Revision 7 amendment candidate (Candidate B — shared-CHANGE merge-gate scope).**
+> Revision 7 amendment candidate (Candidate A — Root-only merge-gate scope).**
 >
 > **Current accepted product basis.** Revision 6 was adopted by D-GOV-28.
 > Its placement copy is `docs/PRD_ROOT.md` at
@@ -20,7 +20,7 @@
 > **Minimal change envelope.** This candidate supersedes exactly one stable
 > commitment: the §5.3 D-8 row ("never self-merge") is replaced by a
 > successor merge-gate policy carried in the new annex §5.3.1, scoped
-> to the shared change-management (CHANGE) role across all registered loops, with the M6 notice obligation stated in the annex. Document control is reconciled to Rev 7. Every other
+> to Root-loop Git closeout only — no other loop's merge discipline is amended. Document control is reconciled to Rev 7. Every other
 > passage is byte-identical to the adopted Rev 6 placement copy; the exact
 > changed-line set is declared in this candidate's `POLICY_DELTA.md`.
 >
@@ -459,7 +459,7 @@ owner as a new proposal.
 | **D-5** | Validation is deterministic and severity-typed (BLOCK / REVIEW / WARN / INFO / NOT_APPLICABLE, with exit-code semantics and human-only recorded BLOCK override); "BLOCK" never means globally proven safe or unsafe; and a validator finding may **never** mechanically reject content the owner has ruled — where ruled text trips a validator, the validator is defective. | TRANSCRIBED — D-GOV-02; D-GOV-17; `docs/CONTRACT.md` §1.7 note |
 | **D-6** | Phase-crossing work is bound by the governance integration rules — derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution, and change-notice routing. **Incorporated by reference** to `AGENTS.md` §Governance Integration Rules. | TRANSCRIBED — `AGENTS.md`; `docs/DIRECTIVE.md` §2.7 |
 | **D-7** | Root-product development runs through a governed loop with a session-init contract, a deterministic standing-plan pointer, and an append-only receipts log. **Coordination surfaces carry no authority merely because they exist**; on disagreement with a live source, the live source governs and the delta is recorded. | TRANSCRIBED — `execution/_Coordination/LOOP_INIT.md`; `CURRENT_WORKPLAN.md`; standing workplan §Authority basis |
-| **D-8** | Git closeout in every registered loop runs through the shared change-management role with human-gated PRs as the standing default; a bounded owner grant, recorded before or at exercise, may authorize merge execution under the merge-gate policy in annex §5.3.1, which preserves K-MERGE-1 and the four closeout identities. Each loop's stricter local merge discipline remains controlling until that loop adopts or acknowledges the policy under its own instruments. | **PROPOSED (Rev 7)** — successor to the Rev 6 TRANSCRIBED row ("never self-merge"); default source `execution/_Coordination/LOOP_INIT.md` §7; invariant K-MERGE-1; owner policy intent recorded in the D-GOV-31 packet |
+| **D-8** | Root-loop Git closeout runs through the change-management role with human-gated PRs as the standing default; a bounded owner grant, recorded before or at exercise, may authorize merge execution under the merge-gate policy in annex §5.3.1, which preserves K-MERGE-1 and the four closeout identities. Other loops' merge discipline is unchanged and remains under their own instruments. | **PROPOSED (Rev 7)** — successor to the Rev 6 TRANSCRIBED row ("never self-merge"); default source `execution/_Coordination/LOOP_INIT.md` §7; invariant K-MERGE-1; owner policy intent recorded in the D-GOV-31 packet |
 | **D-9** | The decomposition pipeline is not waivable: packages and deliverables come only from an accepted decomposition. Nothing authorizes inventing packages from discussion. | TRANSCRIBED — D-GOV-21 packet §4 |
 | **D-10** | The public-export boundary is an explicit allowlist profile that copies allowlisted content, sanitizes private absolute paths, writes a manifest and report, and fails on forbidden paths or leaks. **The profile is the boundary contract and is incorporated by reference**; membership is not restated here. | TRANSCRIBED — `exports/chirality-app/export_public.py`; K-EXPORT-1 |
 | **D-11** | A tranche changing surfaces that downstream loops pin or mirror ships a routed coordination notice to each affected loop in the same tranche. The notice is coordination, not authority: the receiving loop adopts, amends, or declines under its own instruments. | TRANSCRIBED — `AGENTS.md` change-notice rule; D-GOV-21 M6 |
@@ -484,7 +484,7 @@ candidate. Nothing in this annex relabels, cures, or reopens any historical
 act; the 2026-07-28 window remains governed by the D-GOV-30 disclosure
 exactly as recorded.
 
-**Scope.** This policy governs the shared change-management (CHANGE) role behavior across all registered loops. Its adoption obligates a routed M6 coordination notice to every registered loop's coordination surface (at this basis: the App, PEC, and Piping loops; the registered set is enumerated at execution time). Notices are coordination, never authority: each loop's stricter local merge discipline remains controlling until that loop adopts or acknowledges the policy under its own instruments.
+**Scope.** This policy governs Root-loop Git closeout only. No other loop's merge discipline is amended by its adoption: the App, PEC, and Piping loops — and any later registered loop — remain governed by their own instruments, and a Root adoption creates no obligation on them.
 
 **Default unchanged.** Human-gated PRs remain the default Git-closeout
 vehicle. Absent a live bounded owner grant, permission to merge is
@@ -1053,7 +1053,7 @@ exception.
 **Scope limit.** Adopting Rev 7 establishes the successor product
 requirement only. Propagation — the SOW-042 ledger row, DEL-04-06
 requirement and evidence definitions, LOOP_INIT §7, the deterministic
-enforcement points, tranche-manifest `self_merge` schema semantics, the shared CHANGE instruction surfaces, and routed M6 notices to every registered loop —
+enforcement points, and tranche-manifest `self_merge` schema semantics —
 is enumerated with owners in this candidate's `POLICY_DELTA.md` and is
 separately owned follow-on work. SHA-pinned historical mirrors, frozen
 proposal packages, and receipts are expressly not rewritten.
@@ -1062,7 +1062,7 @@ proposal packages, and receipts are expressly not rewritten.
 
 | Field | Value |
 |---|---|
-| Status | `ADOPTION-READY — adopted only by the instrument named below`, Revision 7 amendment candidate (Candidate B — shared-CHANGE merge-gate scope) |
+| Status | `ADOPTION-READY — adopted only by the instrument named below`, Revision 7 amendment candidate (Candidate A — Root-only merge-gate scope) |
 | Adopting instrument | D-GOV-31, exact-candidate-SHA owner ruling pattern; its decision record is created at adoption per the D-GOV-28 precedent and carries any adopted status |
 | Authority of this file itself | None. File creation, validation, commit, Git transport, review, or owner selection between candidates is not approval (K-AUTH-1). |
 | Accepted predecessor | Rev 6 adopted by D-GOV-28; current placement `docs/PRD_ROOT.md` at `main@4f7808acb2802443370d045efa198152934c1674` (sha256 `0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d`) |
@@ -1072,7 +1072,7 @@ proposal packages, and receipts are expressly not rewritten.
 | SourceCorpusBasis | Composite: `Inherited=main@7ac718c7e; Rev6Amendment=main@918bb48b8fcee66c031d0d6d4040a46089f96067; Rev7Amendment=main@4f7808acb2802443370d045efa198152934c1674`; paired with the containing candidate commit per D-14 |
 | This revision's bytes | The containing candidate commit, assigned at Git closeout. This file asserts no SHA for itself. |
 | Prior revisions | Rev 1 `f15d51277`; Rev 2 `a72c2cd06`; Rev 3 `f9d33fcd9`; Rev 4 `ae5a476f4`; Rev 5 candidate `d9ea86f88504cb8d859a4cf3f042bac00d38fe57`, adopted by D-GOV-22; Rev 6 accepted-candidate `f78a83621cbd679e6af2c41199845aca74073480`, adopted by D-GOV-28 |
-| Change envelope | D-8 successor merge-gate policy (shared-CHANGE scope); new annex §5.3.1; provenance-key and Rev 7 control reconciliation; nothing else |
+| Change envelope | D-8 successor merge-gate policy (Root-only scope); new annex §5.3.1; provenance-key and Rev 7 control reconciliation; nothing else |
 | Root authority | D-GOV-20. D-T0-23 is named only as the coordinating Tier-0 counterpart and is not incorporated by reference. |
 | Rev 6 evidence companions | `TRANSCRIPTION_SPEC.json`; `validate_transcriptions.py`; `CONCORDANCE_REPORT.json`; `OPEN_ITEMS.csv` — retained Rev 6 lineage in the D-GOV-28 proposal package; derivative evidence, never a substitute for sources or owner judgment |
 | Provenance counts | **§5 stable commitments — 43 total: 32 TRANSCRIBED (N-1..N-8, O-1..O-9, D-1, D-4..D-7, D-9..D-11, E-1..E-7), 5 CLARIFIED (N-9, O-10, D-2, D-12, E-8), 6 PROPOSED-origin (D-8 successor, D-13, D-14, D-15, D-16, O-11).** D-GOV-22 accepted the four Rev 5 PROPOSED-origin commitments; D-GOV-28 accepted O-11; the D-8 successor alone is inert in Rev 7. The ten verbatim D-GOV-20 sentences are a transcription block, not ten additional stable IDs. |
