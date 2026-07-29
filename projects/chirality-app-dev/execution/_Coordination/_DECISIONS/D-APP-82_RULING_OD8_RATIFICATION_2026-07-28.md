@@ -1,6 +1,6 @@
 # D-APP-82 — OD8-RAT App Consolidated Current-State Ratification
 
-Status: `AWAITING_RULING`
+Status: `RULED — GIT_CLOSEOUT_PENDING`
 
 DecisionID: `D-APP-82`
 
@@ -110,13 +110,15 @@ The exact token is therefore presented here for return **now**, as a new act
 dated 2026-07-28. It is never backdated to the original act, and returning it
 does not make the original act conformant.
 
-Token return:
+Token return. Returned verbatim in-session by Ryan Tufts on 2026-07-28, as a
+new act of that date and never backdated to the original D-APP-78 act:
 
-<<TOKEN RETURN PLACEHOLDER — OWNER RETURNS VERBATIM: APPROVE OD6-G2-T1-A>>
+> APPROVE OD6-G2-T1-A
 
-Ratification of the present terminal-basis state:
+Ratification of the present terminal-basis state. Returned verbatim in-session
+by Ryan Tufts on 2026-07-28:
 
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-APP-78>>
+> RATIFY D-APP-78, D-APP-79, D-APP-80, D-APP-81 AS ENUMERATED IN D-APP-82 CANDIDATE 70d27e9f — Ryan Tufts 2026-07-28
 
 ## Decision 2 — D-APP-79, H0-A repair-validation hold posture (OD6-G3)
 
@@ -151,7 +153,9 @@ The posture is no longer active: D-APP-81 released all six targets. What is
 ratified is that the hold posture as executed was the correct posture for that
 interval, and that its recorded state stands.
 
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-APP-79>>
+Returned verbatim in-session by Ryan Tufts on 2026-07-28:
+
+> RATIFY D-APP-78, D-APP-79, D-APP-80, D-APP-81 AS ENUMERATED IN D-APP-82 CANDIDATE 70d27e9f — Ryan Tufts 2026-07-28
 
 ## Decision 3 — D-APP-80, 51-contract repin and complete concordance (OD6-G4)
 
@@ -183,7 +187,9 @@ recommendation-as-selection instruction. The acceptance of that exact
 the `NO_REPIN` retention on the final six rows were authored by the agent and
 are per-decision matters ratified here for the first time.
 
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-APP-80>>
+Returned verbatim in-session by Ryan Tufts on 2026-07-28:
+
+> RATIFY D-APP-78, D-APP-79, D-APP-80, D-APP-81 AS ENUMERATED IN D-APP-82 CANDIDATE 70d27e9f — Ryan Tufts 2026-07-28
 
 ## Decision 4 — D-APP-81, APP-HOLD-1 release (OD6-G5)
 
@@ -219,31 +225,35 @@ that actually released six contracts for reliance, dispatch, `CHECKING`
 promotion, and accepted-dependency consumption — was authored by the agent and
 is ratified here for the first time.
 
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-APP-81>>
+Returned verbatim in-session by Ryan Tufts on 2026-07-28:
+
+> RATIFY D-APP-78, D-APP-79, D-APP-80, D-APP-81 AS ENUMERATED IN D-APP-82 CANDIDATE 70d27e9f — Ryan Tufts 2026-07-28
 
 ## Ruling
 
-Pending. Each numbered item below becomes ruled only by the owner's verbatim
-return recorded at its own placeholder above.
+Ruled. Each numbered item below is ruled by the owner's verbatim return
+recorded at its own Decision section above. All four items were returned
+in-session by Ryan Tufts on 2026-07-28; no item was declined and no item was
+left unreturned.
 
-1. D-APP-78 — PENDING. The terminal App decomposition-basis selection and its
-   present state are ratified only on the owner's verbatim return at the
-   Decision 1 ratification placeholder. The separate selection-token return at
-   the Decision 1 token placeholder, if given, is a new 2026-07-28 act and is
-   not backdated.
-2. D-APP-79 — PENDING. The H0-A repair-validation hold posture as executed,
-   and the missing-candidate defect disclosure, are ratified only on the
-   owner's verbatim return at the Decision 2 placeholder.
-3. D-APP-80 — PENDING. The complete 53-contract concordance and one-time
-   51-contract repin at the accepted manifest identity are ratified only on
-   the owner's verbatim return at the Decision 3 placeholder.
-4. D-APP-81 — PENDING. The APP-HOLD-1 release of the six named targets at the
-   accepted manifest identity is ratified only on the owner's verbatim return
-   at the Decision 4 placeholder.
+1. D-APP-78 — RATIFIED. The terminal App decomposition-basis selection and its
+   present state are ratified on the owner's verbatim return recorded at the
+   Decision 1 ratification return. The separate selection-token return
+   recorded at the Decision 1 token return is a new 2026-07-28 act and is not
+   backdated.
+2. D-APP-79 — RATIFIED. The H0-A repair-validation hold posture as executed,
+   and the missing-candidate defect disclosure, are ratified on the owner's
+   verbatim return recorded at the Decision 2 return.
+3. D-APP-80 — RATIFIED. The complete 53-contract concordance and one-time
+   51-contract repin at the accepted manifest identity are ratified on the
+   owner's verbatim return recorded at the Decision 3 return.
+4. D-APP-81 — RATIFIED. The APP-HOLD-1 release of the six named targets at the
+   accepted manifest identity is ratified on the owner's verbatim return
+   recorded at the Decision 4 return.
 
-A declined or unreturned item is recorded as such by the completion tranche.
-Declining any item has no effect on the other items and no effect on the
-already-effective state of the declined act.
+Ratification of all four items changes nothing in the Non-effects section
+below. It supplies fresh per-decision owner judgment over the already-effective
+present state and nothing else.
 
 ## Non-effects
 
