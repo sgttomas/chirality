@@ -111,6 +111,18 @@
     validation. Lifecycle, topology, dependencies, implementation, estimates,
     schedules, and ordinary production gates remain unchanged.
 
+11. **Step-5 loop-readiness pass (2026-07-29, GOV-STEP5-LOOPS-20260729):**
+    the 61 deliverable `_CONTEXT.md` Provenance blocks still stopping at
+    revision 1.2 were repaired to record the revision 1.3 (`current_basis`,
+    SCA-003) succession, matching the three files already updated; the
+    next-work readiness slate was published at
+    `execution/_Coordination/PEC_NEXT_WORK_SLATE_2026-07-29.md`. Hygiene and
+    presentation only — no packet drafted, nothing ruled or activated;
+    `F-PEC-1` and all production gates unchanged. (This tranche's ledger
+    entry could not be appended to `_DomainEngines/pec/LOOP_RECEIPTS.md`,
+    which lies outside the tranche's `projects/`-only write scope; recorded
+    here instead.)
+
 ## Notes (human-owned)
 
 - Scaffolding and local-register seeding were authorized by `D-PEC-62`
