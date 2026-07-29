@@ -1,6 +1,6 @@
 # D-PEC-71 — PEC consolidated current-state ratification
 
-**Status:** AWAITING_RULING
+**Status:** RULED
 **DecisionID:** D-PEC-71
 **Date:** 2026-07-28
 **Owner:** Ryan Tufts
@@ -114,7 +114,19 @@ and 21 unchanged contracts across the 32-contract active population.
 
 **Ruling — D-PEC-69:**
 
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-PEC-69>>
+RATIFIED. Owner return recorded verbatim (2026-07-28, in-session, Ryan Tufts).
+The owner returned one line that enumerates and rules both decisions; it is
+recorded unmodified here and again under Decision 2, neither paraphrased,
+reflowed, nor split:
+
+```text
+RATIFY D-PEC-69, D-PEC-70 AS ENUMERATED IN D-PEC-71 CANDIDATE d1b75cd3 — Ryan Tufts 2026-07-28
+```
+
+Decision 1 is not declined. This ratifies the present state described above and
+cures nothing: the 2026-07-28 blanket authorization, the author-equals-merger
+merges, and the zero-review merges behind D-PEC-69 all stand disclosed on the
+record.
 
 ## Decision 2 — D-PEC-70 (PEC-HOLD-001 release)
 
@@ -170,17 +182,34 @@ file's bytes remain as merged.
 
 **Ruling — D-PEC-70:**
 
-<<RULING PLACEHOLDER — OWNER RETURN VERBATIM: D-PEC-70>>
+RATIFIED. Owner return recorded verbatim (2026-07-28, in-session, Ryan Tufts).
+This is the same single return line recorded under Decision 1; it enumerates
+both decisions and is recorded unmodified here as well, neither paraphrased,
+reflowed, nor split:
+
+```text
+RATIFY D-PEC-69, D-PEC-70 AS ENUMERATED IN D-PEC-71 CANDIDATE d1b75cd3 — Ryan Tufts 2026-07-28
+```
+
+Decision 2 is not declined. This ratifies the present state described above and
+cures nothing: the 2026-07-28 blanket authorization, the author-equals-merger
+merge, the zero-review merge, and the nine-hex closeout pinning behind
+D-PEC-70 all stand disclosed on the record.
 
 ## Ruling
 
-Pending. The owner rules Decision 1 and Decision 2 separately; each ruling is
-recorded verbatim in its section's placeholder above. This record is not
-effective until those rulings are recorded and the completion commit is
-durable on shared `main`, at which point `Status` becomes `RULED`,
-`EffectiveCommit` is set to the full 40-hex completion merge, the D-PEC-71
-register row leaves `AWAITING_RULING`, PEC loop receipt 119 is appended, and
-`D-PEC-71_EFFECTIVE_STATE_CLOSEOUT.md` is created inside the candidate packet.
+**RULED — both decisions ratified.** The owner ruled Decision 1 and Decision 2
+in one in-session return on 2026-07-28. That return is recorded verbatim, and
+identically, in each decision's ruling above. Neither section was declined, so
+no residual-work successor row is created by this record.
+
+The completion act recorded `Status: RULED`, set `EffectiveCommit` to the full
+40-hex commit carrying the ruled bytes, moved the D-PEC-71 register row out of
+`AWAITING_RULING`, appended PEC loop receipt 119, and created
+`D-PEC-71_OD8_RATIFICATION_2026-07-28/D-PEC-71_EFFECTIVE_STATE_CLOSEOUT.md`.
+`EffectiveCommit` names the commit whose bytes are ruled; publication of that
+commit to shared `main` is ordinary Git closeout, is tracked in the
+effective-state closeout, and adds no authority beyond this record.
 
 ## Non-effects
 
@@ -215,6 +244,14 @@ That manifest covers `CANDIDATE.md`, `LIVE_SURFACE_MANIFEST.csv`,
 packet file carries a ruling placeholder, so the manifest remains valid across
 the owner session. The packet's `validate_od8_rat.py` is the post-completion
 check: it must report PASS after the completion commit.
+
+`d1b75cd31808c9de0038134d0cadafb14310da5f76b02dac6fa89782ad0bdd02` is the
+frozen identity of the candidate the owner ruled, and is the value named as
+`d1b75cd3` in the owner's return. The completion commit writes the
+post-completion postimages into the packet's `LIVE_SURFACE_MANIFEST.csv` and
+therefore regenerates `ARTIFACT_HASHES.sha256`; the regenerated manifest covers
+the same five packet files and verifies, and the frozen candidate identity
+above is not restated by it.
 
 ## Rollback
 
