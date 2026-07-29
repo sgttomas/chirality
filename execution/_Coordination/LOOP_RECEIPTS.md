@@ -1685,3 +1685,34 @@ amendment; owner ruling required).
   tranche manifest
   `docs/governance_harness/tranche_manifests/ROOT-D8-SIMPLIFICATION-20260729.yaml`
   (`self_merge: false`; M6 `routed`).
+
+### Receipt 65 — 2026-07-29 — Step-5 Root loop readiness: handoff/workplan currency, eligible-work slate, hygiene
+
+- **Parent receipt:** Receipt 64. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Authorization of record:** the owner-directed loop-readiness transition
+  program, Step 5 (Root readiness), sealed brief run
+  `GOV-STEP5-ROOT-20260729`. Readiness repairs only — nothing is selected
+  or activated.
+- **Surfaces repaired (basis
+  `main@a4376a6d143e881be46cdb00223e6183ea28acc4`, PR #419 merge):**
+  - `execution/_Coordination/HANDOFF_STATE.md` — in-place currency refresh
+    to the post-Step-4 state (remediation closed 2026-07-28; PRD Rev 8;
+    decomposition revision 1.2; Receipts 60–64; idle and resumable).
+  - `execution/_Coordination/WORKPLAN_2026-07-27_root_idle.md` — dated
+    currency addendum; posture and successor-selection rules unchanged.
+  - `execution/_ScopeChange/_LATEST.md` — refreshed to the SCA-002
+    `CLOSED_FOR_SCOPE_CHANGE_ONLY` applied state (the Receipt-63 recorded
+    follow-on); revision 1.2 named as the accepted current basis.
+  - `README.md` — export-boundary include list gains the missing `runtime/`
+    line; the export profile itself was already correct.
+- **Slate:** `execution/_Coordination/ROOT_NEXT_WORK_SLATE_2026-07-29.md`
+  created — five eligible options (DEL-02-06 activation; other
+  production-phase selection; SCA-002 closure hygiene; regular AUDIT_DECOMP
+  cycle; public-export derivative refresh). Decision support only; nothing
+  activated; no recommendation weighting.
+- **Gate / blockers:** human-gated PR for this tranche; merge SHA recorded
+  at closeout per the standing default. Run records
+  `execution/_Coordination/AgentRuns/GOV-STEP5-ROOT-20260729/`. No tranche
+  manifest: no `docs/`, `tools/`, `agents/`, or `.github/` path is touched
+  and root `README.md` is not G4 instruction surface.

@@ -45,3 +45,14 @@ This is a coordination surface, not authority. Live standards, decisions,
 accepted snapshots, Git state, and current human direction govern. Every
 consequential change and lifecycle act remains human-gated. Git closeout does
 not constitute semantic acceptance.
+
+## Currency addendum — 2026-07-29
+
+The basis facts above date from 2026-07-27 and are updated here without
+changing this plan's posture: Root PRD Revision 8 is now the adopted product
+basis (D-GOV-31, Receipt 61; owner-directed simplification, Receipt 64), and
+decomposition revision 1.2 is the accepted current basis (SCA-002 accepted
+and applied, Receipt 63). All 46 Root deliverables remain `INITIALIZED`;
+`DEL-02-06` remains initialized, not activated; no successor phase is
+selected. The operating posture and successor-selection rules above are
+unchanged.
