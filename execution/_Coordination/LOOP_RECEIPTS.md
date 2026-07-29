@@ -1460,3 +1460,38 @@ amendment; owner ruling required).
 - **Gate:** plan closeout only. No product scope, implementation, activation,
   runtime, dependency, estimate, schedule, lifecycle, release, or
   professional-reliance authority is created.
+
+### Receipt 60 — 2026-07-28 — Program disclosure and prospective ratification (D-GOV-30)
+
+- **Owner act of record:**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  RATIFY R-1, R-2, R-3, R-4 AS ENUMERATED IN D-GOV-30 PACKET 32b4afbf — Ryan Tufts 2026-07-28
+  <!-- END OWNER RULING VERBATIM -->
+- **Parent receipt:** Receipt 59. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Candidate identity:** exact D-GOV-30 packet
+  `docs/governance_harness/_PROPOSALS/D-GOV-30_2026-07-28_program_disclosure_ratification/PACKET.md`,
+  CandidateSubjectSHA256 recorded in the D-GOV-30 decision record;
+  candidate basis `main@85ea0628fa4e57dd6aae53b06139b2b8734a9612`.
+- **Disclosed:** the six enumerated facts of the 2026-07-28 merge window
+  (PRs #389–#408) entered the record exactly as evidenced by the frozen
+  merge-approval matrix and post-remediation horizon packages; the
+  2026-07-28 self-merges stand as disclosed procedural exceptions under
+  the recorded owner direction, with no claim of D-8/LOOP_INIT §7
+  compliance and no retroactive cure.
+- **Ruled:** per-item dispositions for R-1 (RT-A effective-state
+  closeout), R-2 (record-currency repair), R-3 (program closeout and
+  terminal disposition, enumerating the #398 and #408 gaps by SHA), and
+  R-4 (OD7-G1 hash-manifest approval by SHA-256) are recorded verbatim in
+  the D-GOV-30 decision record; any declined item is named here, not
+  absorbed.
+- **Informed batch:** the ruling is an informed batch over frozen,
+  enumerated, exact-SHA evidence with per-line decline — not a precedent
+  for blanket approval.
+- **Gate:** disclosure and prospective present-state ratification only. No
+  D-8 or LOOP_INIT amendment, no cure of historical nonconformance, no
+  loop-local App/PEC/Piping substance, no decomposition, scope,
+  lifecycle, activation, implementation, runtime, dependency, estimate,
+  schedule, repin, release, or professional-reliance act is authorized,
+  and nothing here is citable as precedent for blanket approval or
+  self-merge.
