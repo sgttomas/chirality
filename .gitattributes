@@ -1,0 +1,11 @@
+# Whitespace policy for exact-byte governed artifacts.
+#
+# CRLF-terminated registers: the carriage return is the line terminator of
+# the file, not trailing whitespace. `git diff --check` — and the
+# candidate-whitespace gate that runs it verbatim — must not flag CR at
+# EOL on these paths. Real trailing spaces and tabs are still flagged.
+execution/_Decomposition/*.csv whitespace=cr-at-eol
+execution/_ScopeChange/**/*.csv whitespace=cr-at-eol
+# Unified-diff artifacts carry format-mandated blank context lines
+# (a single space); disable whitespace checks for them entirely.
+execution/_ScopeChange/**/*.diff -whitespace
