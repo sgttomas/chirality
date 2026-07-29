@@ -124,9 +124,9 @@ After a lawful tranche:
 - emit an explicit handoff naming accepted upstream state, derivative status,
   closure verdict, rerun requirements, and remaining blockers;
 - use CHANGE for Git closeout; human-gated PRs are the standing default, and
-  merge execution beyond that default is lawful only under a bounded owner
-  grant recorded per PRD annex §5.3.1, preserving K-MERGE-1 and the four
-  closeout identities.
+  beyond that default the owner may direct merge execution — directly or by
+  agent proxy — recorded in the loop's ordinary closeout evidence per PRD
+  annex §5.3.1, preserving K-MERGE-1.
 
 Any per-run steer supplied with the launcher applies on top of this protocol
 but cannot override human gates or ratified governance.

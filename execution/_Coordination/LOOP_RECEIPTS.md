@@ -1638,3 +1638,50 @@ amendment; owner ruling required).
   policy. Publication merge authorization for this tranche's own PR
   remains a separate owner act on the exact final branch HEAD, and
   nothing in this receipt is citable as precedent for blanket approval.
+
+### Receipt 64 — 2026-07-29 — Merge-execution policy simplified to owner direction in ordinary closeout evidence (owner-directed; PR-review vehicle)
+
+- **Parent receipt:** Receipt 63. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Owner direction (owner act of record, 181 bytes UTF-8, SHA-256
+  `d89bcdef36398ec7c345a48e0b3d65b30c635cf09aed0bf8f2a5a3c89c1b33d0`):**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  You can plan and execute just such a targeted fix now with a subagent.  Your choice is acceptable: "the owner’s direction, recorded in the loop’s ordinary closeout evidence” .
+  <!-- END OWNER RULING VERBATIM -->
+  Earlier in the same session the owner stated the governing epistemology:
+  telling the agent to merge is sufficient; owner-typed and agent-as-proxy
+  execution carry the same authority; no grant record, registry, or log is
+  to exist. The bounded-owner-grant mechanism adopted this morning through
+  D-GOV-31 is accordingly replaced by: the owner's direction, recorded in
+  the loop's ordinary closeout evidence (approved source HEAD, owner
+  direction, effective merge SHA). Default remains human-gated PRs;
+  standing prohibitions and K-MERGE-1 are unchanged.
+- **What changed (run GOV-D8-SIMPLIFICATION-20260729, basis
+  `main@2dace6ec6e3342a415342a539d5630969cbba39c`):**
+  - `docs/PRD_ROOT.md` — D-8 row and annex §5.3.1 rewritten to the
+    simplified policy; stale PROPOSED label fixed.
+  - `execution/_Coordination/LOOP_INIT.md` §7 — closeout bullet restated.
+  - `agents/AGENT_CHANGE.md` — reconciled throughout; new SHA-256
+    `950e96f4cfff13af48b9edd93a4b47356e8b388a430d70977fd528ffbd4120fa`.
+  - The three D-GOV-31 M6 notices (App, PEC, Piping) — dated update
+    sections appended; coordination, never authority.
+  - `execution/_Decomposition/` — SOW-042 statement and DEL-04-06
+    Description/AnticipatedArtifacts restated (CRLF/LF preserved);
+    DEL-04-06 ScopeOfWork.md and _CONTEXT.md restated to the three
+    closeout facts.
+  - G4 validator + tests — `merge_execution_grant` semantics replaced by
+    `m2_gate.owner_direction` (`directed_by`, `direction_date`,
+    `approved_source_sha`); undeclared `self_merge: true` still BLOCKs.
+  - Deleted
+    `docs/governance_harness/_PROPOSALS/GRANT-2026-07-29_transition_merge_execution/`
+    — unruled draft, never issued; the owner rejected the mechanism it
+    drafts.
+- **Change vehicle:** PR review per the register's terminal-artifact rule
+  ("Design changes from here supersede a `D-GOV-*` record or arrive as PR
+  review"); no new D-GOV record; the D-GOV-31 decision record is unedited
+  and remains historical (supersede-never-edit).
+- **Gate / blockers:** human-gated PR for this tranche. Run records
+  `execution/_Coordination/AgentRuns/GOV-D8-SIMPLIFICATION-20260729/`;
+  tranche manifest
+  `docs/governance_harness/tranche_manifests/ROOT-D8-SIMPLIFICATION-20260729.yaml`
+  (`self_merge: false`; M6 `routed`).

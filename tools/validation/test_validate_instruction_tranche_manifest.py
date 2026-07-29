@@ -225,13 +225,11 @@ def test_block_on_non_human_gated_merge(tmp_path):
     assert any("requires 'human-gated-pr'" in line for line in lines)
 
 
-def _grant(**overrides) -> dict:
-    """A complete m2_gate.merge_execution_grant block (PRD annex 5.3.1)."""
+def _owner_direction(**overrides) -> dict:
+    """A complete m2_gate.owner_direction block (PRD annex 5.3.1)."""
     data = {
-        "grant_record": "docs/governance_harness/_PROPOSALS/GRANT-DEMO/GRANT.md",
-        "granted_by": "Ryan Tufts",
-        "grant_date": "2026-07-24",
-        "expiry": "2026-08-12",
+        "directed_by": "Ryan Tufts",
+        "direction_date": "2026-07-29",
         "approved_source_sha": "a" * 40,
     }
     data.update(overrides)
@@ -239,7 +237,7 @@ def _grant(**overrides) -> dict:
 
 
 def test_block_on_self_merge(tmp_path):
-    """The preserved failing mode: self_merge true with no grant declared."""
+    """The preserved failing mode: self_merge true with no direction declared."""
     data = _manifest()
     data["m2_gate"]["self_merge"] = True
     _write_manifest(tmp_path, data)
@@ -248,68 +246,68 @@ def test_block_on_self_merge(tmp_path):
     assert any("forbids self-merge" in line for line in lines)
 
 
-def test_pass_self_merge_with_complete_grant(tmp_path):
+def test_pass_self_merge_with_complete_owner_direction(tmp_path):
     data = _manifest()
     data["m2_gate"]["self_merge"] = True
-    data["m2_gate"]["merge_execution_grant"] = _grant()
+    data["m2_gate"]["owner_direction"] = _owner_direction()
     _write_manifest(tmp_path, data)
     code, lines = g4.check(tmp_path)
     assert code == 0, lines
-    assert any("bounded owner grant" in line and "GRANT-DEMO" in line for line in lines)
+    assert any("owner direction" in line and "Ryan Tufts" in line for line in lines)
 
 
-def test_pass_grant_block_with_self_merge_false(tmp_path):
-    """A recorded grant does not require self_merge true; the default stands."""
+def test_pass_owner_direction_with_self_merge_false(tmp_path):
+    """A recorded direction does not require self_merge true; the default stands."""
     data = _manifest()
-    data["m2_gate"]["merge_execution_grant"] = _grant()
+    data["m2_gate"]["owner_direction"] = _owner_direction()
     _write_manifest(tmp_path, data)
     code, lines = g4.check(tmp_path)
     assert code == 0, lines
 
 
-def test_block_on_incomplete_grant_block(tmp_path):
+def test_block_on_incomplete_owner_direction(tmp_path):
     data = _manifest()
     data["m2_gate"]["self_merge"] = True
-    grant = _grant()
-    del grant["expiry"]
-    data["m2_gate"]["merge_execution_grant"] = grant
+    direction = _owner_direction()
+    del direction["direction_date"]
+    data["m2_gate"]["owner_direction"] = direction
     _write_manifest(tmp_path, data)
     code, lines = g4.check(tmp_path)
     assert code == 1
-    assert any("merge_execution_grant missing keys" in line for line in lines)
+    assert any("owner_direction missing keys" in line for line in lines)
     assert any("forbids self-merge" in line for line in lines)
 
 
-def test_block_on_expired_grant(tmp_path):
-    data = _manifest()  # manifest date 2026-07-25
+def test_block_on_malformed_direction_date(tmp_path):
+    data = _manifest()
     data["m2_gate"]["self_merge"] = True
-    data["m2_gate"]["merge_execution_grant"] = _grant(
-        grant_date="2026-07-01", expiry="2026-07-10"
+    data["m2_gate"]["owner_direction"] = _owner_direction(
+        direction_date="July 29 2026"
     )
     _write_manifest(tmp_path, data)
     code, lines = g4.check(tmp_path)
     assert code == 1
-    assert any("precedes the manifest date" in line for line in lines)
+    assert any("direction_date" in line and "not YYYY-MM-DD" in line for line in lines)
 
 
-def test_block_on_malformed_grant_sha(tmp_path):
+def test_block_on_malformed_direction_sha(tmp_path):
     data = _manifest()
     data["m2_gate"]["self_merge"] = True
-    data["m2_gate"]["merge_execution_grant"] = _grant(approved_source_sha="abc123")
+    data["m2_gate"]["owner_direction"] = _owner_direction(approved_source_sha="abc123")
     _write_manifest(tmp_path, data)
     code, lines = g4.check(tmp_path)
     assert code == 1
     assert any("not a full 40-hex SHA" in line for line in lines)
 
 
-def test_block_on_non_repo_relative_grant_record(tmp_path):
+def test_block_on_empty_directed_by(tmp_path):
     data = _manifest()
     data["m2_gate"]["self_merge"] = True
-    data["m2_gate"]["merge_execution_grant"] = _grant(grant_record="/etc/grant.md")
+    data["m2_gate"]["owner_direction"] = _owner_direction(directed_by="   ")
     _write_manifest(tmp_path, data)
     code, lines = g4.check(tmp_path)
     assert code == 1
-    assert any("grant_record" in line and "repo-relative" in line for line in lines)
+    assert any("directed_by must be a non-empty string" in line for line in lines)
 
 
 def test_block_on_empty_authorization(tmp_path):
