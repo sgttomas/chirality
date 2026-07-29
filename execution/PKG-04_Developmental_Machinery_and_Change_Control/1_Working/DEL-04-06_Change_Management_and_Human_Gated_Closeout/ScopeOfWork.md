@@ -17,10 +17,14 @@ Management and Human-Gated Closeout, a `CI_CD_CHANGE` deliverable of
 item SOW-042 and package objective OBJ-002.
 
 The register describes the deliverable as keeping git closeout running through
-the change-management role with human-gated pull requests and no self-merge.
-The scope ledger states SOW-042 as: git closeout runs through the
-change-management role with human-gated pull requests and never self-merge.
-Its SourceRef is PRD §5.3 D-8, carrying the provenance label TRANSCRIBED.
+the change-management role with human-gated pull requests as the standing
+default, preserving the four closeout identities. The scope ledger states
+SOW-042 as: git closeout runs through the shared change-management role with
+human-gated pull requests as the standing default; merge execution beyond that
+default is lawful only under a bounded owner grant recorded per PRD annex
+§5.3.1, preserving K-MERGE-1 and the four closeout identities. Its SourceRef
+is PRD §5.3 D-8, the successor merge-gate policy adopted by D-GOV-31
+(PROPOSED at Rev 7, in force through that ruling's effective merge).
 
 OBJ-002 is the governed production of professional knowledge work — the product
 carries work to an issuance decision that an accountable human makes. A
@@ -35,34 +39,45 @@ evidence that the control holds, not a redesign of the control.
 ## Deliverable Definition — Ontology
 
 The anticipated artifacts recorded in the register and `_CONTEXT.md` are a
-closeout checklist, no-self-merge evidence, and PR gate notes. They are
+closeout checklist, closeout-identity evidence, and PR gate notes. They are
 expressed here as three outputs.
 
 - **OUT-001** — A closeout checklist that enumerates, for a closeout act in
   the covered window, the steps performed through the change-management role
-  and the human-gated pull-request step that terminates them.
-- **OUT-002** — A no-self-merge evidence set that records, per closeout act in
-  the covered window, the merge actor and the gate that admitted the merge.
+  and the human-gated pull-request step that terminates them under the
+  standing default, or the recorded bounded owner grant that authorized merge
+  execution beyond that default.
+- **OUT-002** — A closeout-identity evidence set that records, per closeout
+  act in the covered window, the four closeout identities — the semantic
+  approval, the approved source SHA, the merge authorization, and the
+  effective merge SHA — plus the grant reference when a bounded owner grant
+  was exercised.
 - **OUT-003** — PR gate notes that record, per pull request in the covered
   window, the gate decision and the accountable human who made it.
 
 - **CLM-001** — SOW-042 is an `IN`-scope item of this package mapped to
-  OBJ-002. Its source label is TRANSCRIBED, and PRD §10.3 states that
-  TRANSCRIBED commitments remain in force regardless of adoption, on their own
-  source authority. This deliverable therefore contracts evidence for an
-  obligation already in force rather than for a proposed one.
+  OBJ-002. Its source row, PRD §5.3 D-8, is the successor merge-gate policy:
+  PROPOSED at Rev 7 and adopted by the D-GOV-31 owner ruling, in force from
+  that ruling's effective merge. This deliverable therefore contracts
+  evidence for an obligation in force through an adopted ruling rather than
+  for a proposed one.
 - **CLM-002** — The obligation has three separable elements: routing through
-  the change-management role, a human gate on the pull request, and the
-  prohibition on self-merge. PRD §5.3 D-8 records the supporting basis as
-  `execution/_Coordination/LOOP_INIT.md` §7, the standing workplan closeout
-  section, and invariant K-MERGE-1.
+  the shared change-management role, the human-gated pull-request standing
+  default with merge execution beyond it lawful only under a bounded owner
+  grant recorded per PRD annex §5.3.1, and preservation of the four closeout
+  identities (semantic approval, approved source SHA, merge authorization,
+  effective merge SHA). PRD §5.3 D-8 records the supporting basis as
+  `execution/_Coordination/LOOP_INIT.md` §7, annex §5.3.1, and invariant
+  K-MERGE-1.
 
 ## Completion and Reliance Basis — Epistemology
 
 - **REQ-001** — The outputs shall demonstrate, for every closeout act in the
   declared covered window, that closeout ran through the change-management role
-  and terminated in a human-gated pull request that was not self-merged
-  (SOW-042; PRD §5.3 D-8 [TRANSCRIBED]).
+  and terminated in a human-gated pull request under the standing default — or
+  under a bounded owner grant recorded per PRD annex §5.3.1 before exercise —
+  and that in either case the four closeout identities are observable
+  (SOW-042; PRD §5.3 D-8, adopted by D-GOV-31).
 - **REQ-002** — The outputs shall declare their covered window explicitly, so
   that a reader can determine which closeout acts the evidence does and does
   not speak to. An undeclared window makes the evidence uninterpretable for
@@ -73,13 +88,17 @@ expressed here as three outputs.
   transcribes.
 
 - **AC-001** — The closeout checklist names each of the three elements of
-  SOW-042 — change-management routing, the human pull-request gate, and the
-  no-self-merge prohibition — and each checklist step resolves to an observable
-  act rather than an intention.
+  SOW-042 — change-management routing, the human-gated pull-request standing
+  default with its bounded-grant exception, and the four-identity closeout
+  discipline — and each checklist step resolves to an observable act rather
+  than an intention.
 - **AC-002** — For every closeout act inside the declared covered window, the
-  evidence set identifies the merge actor and shows that the merge was admitted
-  by a human gate and was not performed by the actor that authored the change;
-  any act that cannot be so shown is listed as an exception.
+  evidence set records the four closeout identities — semantic approval,
+  approved source SHA, merge authorization, and effective merge SHA — and,
+  where merge execution relied on a bounded owner grant, names the grant
+  record and shows it was recorded before exercise; any act for which an
+  identity or a required grant reference cannot be shown is listed as an
+  exception.
 - **AC-003** — The PR gate notes and the evidence set agree on the covered
   window and on the set of pull requests within it, with no pull request
   present in one and silently absent from the other.
@@ -93,16 +112,18 @@ obligation, and records exceptions rather than resolving them.
 - **VER-001** — Enumerate merges on the target branch with
   `git log --merges --first-parent` over the declared covered window and
   reconcile the resulting set against the pull-request record, confirming for
-  each merge that a pull request exists and that the merging actor is
-  distinguishable from the authoring actor.
+  each merge that a pull request exists and that the four closeout identities
+  resolve to recorded acts — including, where the merge executor was the
+  authoring actor of the merged content, a bounded owner grant recorded per
+  PRD annex §5.3.1 before exercise.
 - **VER-002** — Cross-check the covered-window declaration and the pull-request
   identifiers appearing in the PR gate notes against those appearing in the
-  no-self-merge evidence set, confirming set equality in both directions.
+  closeout-identity evidence set, confirming set equality in both directions.
 
-Verification of whether the checklist faithfully expresses the transcribed
-obligation is a semantic judgment against `agents/AGENT_CHANGE.md` and
-`execution/_Coordination/LOOP_INIT.md` §7, not a mechanical comparison; it is
-routed to human review in the matrix below.
+Verification of whether the checklist faithfully expresses the adopted
+obligation is a semantic judgment against `agents/AGENT_CHANGE.md`,
+`execution/_Coordination/LOOP_INIT.md` §7, and PRD annex §5.3.1, not a
+mechanical comparison; it is routed to human review in the matrix below.
 
 Deterministic checks in this deliverable gate on objective preconditions only.
 Consistent with PRD §3 OBJ-2, they never make the acceptance or issuance
@@ -130,5 +151,5 @@ judgment.
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-042 OBJ-002 | REQ-001 CLM-002 | AC-001 | HUMAN_REVIEW: owner walkthrough of the checklist against `agents/AGENT_CHANGE.md` and `execution/_Coordination/LOOP_INIT.md` §7 | Checklist with each step bound to the element of SOW-042 it evidences, and a recorded walkthrough disposition |
-| OUT-002 | SOW-042 OBJ-002 | REQ-001 REQ-003 | AC-002 | VER-001 | Per-act merge record naming the merge actor, the authoring actor, and the admitting gate, plus an explicit exception list |
+| OUT-002 | SOW-042 OBJ-002 | REQ-001 REQ-003 | AC-002 | VER-001 | Per-act closeout record naming the semantic approval, the approved source SHA, the merge authorization (with the grant reference when a bounded owner grant was exercised), and the effective merge SHA, plus an explicit exception list |
 | OUT-003 | SOW-042 OBJ-002 | REQ-002 CLM-001 | AC-003 | VER-002 | Gate notes with a declared covered window and pull-request identifiers reconcilable against the evidence set |

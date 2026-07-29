@@ -1536,3 +1536,54 @@ amendment; owner ruling required).
   after. No grant is issued, exercised, or pre-approved; no retroactive
   cure of the 2026-07-28 window or any historical act; and nothing here
   is citable as precedent for blanket approval or self-merge.
+
+### Receipt 62 — 2026-07-29 — D-GOV-31 Step-4 propagation: operative surfaces, grant-aware G4, M6 notices, backfills
+
+- **Authorization of record:** the owner's D-GOV-31 adoption (Receipt 61)
+  plus the in-session "proceed accordingly" direction of 2026-07-29,
+  authorizing Step-4 propagation drafting; publication merge
+  authorization for this tranche's PR remains a separate owner act on the
+  exact final branch HEAD.
+- **Parent receipt:** Receipt 61. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Performed (POLICY_DELTA §4 rows 2–9; row 1 is SCA-002,
+  SCOPE_CHANGE-owned, sibling run):** DEL-04-06 `ScopeOfWork.md` and
+  `_CONTEXT.md` reconciled to the four-identity, grant-aware discipline
+  (RB-1 census addition included); `LOOP_INIT.md` §7 closeout bullet
+  restated to the default-plus-grant formulation; G4 validator, tests,
+  and `instruction-tranche-manifest/v1` schema semantics extended with
+  the optional complete `m2_gate.merge_execution_grant` block
+  (grant_record, granted_by, grant_date, expiry, approved_source_sha —
+  the RB-3 pre-merge-pin home) while `self_merge: false` stays the
+  default and undeclared self-merge stays BLOCK (36 tests green; G4 CI
+  PASS over 15 manifests); K-MERGE-1 harness mapping verified accurate,
+  unchanged (row 7); shared `agents/AGENT_CHANGE.md` reconciled
+  (preimage `1269db12…`, postimage SHA-256
+  `f59e5455e1eeac687f69f091a74974fbfb2fb0a520fcb3bc7db8ab24529a4c77`)
+  under the agent-index change-notice rule; routed M6 notices shipped to
+  the App, PEC, and Piping coordination surfaces in this same tranche.
+- **Backfills (declared PENDING slots only):** D-GOV-31
+  Merge/Publication/Effective →
+  `ea3db3607fbcbb7ce5f65bab31268a7eca431adb` (PR #416), with an appended
+  dated merge-execution note disclosing the owner-directed execution
+  against PACKET §6's publication expectation — disclosed, not cured,
+  not precedent; D-GOV-30 three slots →
+  `7eda81c0c990471ba1b27d7cee7249cc01d74e04` (PR #410); D-APP-82
+  EffectiveCommit → `1d4d3187ba120e328cd2f6bf2a515a8f17635cb5`
+  (PR #411); D-PEC-71 effective-state closeout publication state →
+  `9f5af48c259eb5a7f93f448431eb32d2e409d565` (PR #412). PEC's decision
+  record and Piping's D-62 record declare no pending slot and were left
+  untouched.
+- **Grant candidate:** `GRANT-2026-07-29` drafted candidate-only under
+  annex §5.3.1 (file SHA-256 `cdd8844b…`); no effect until the owner
+  issues it by token; no grant is issued or exercised by this tranche.
+- **Artifacts:** run record
+  `execution/_Coordination/AgentRuns/GOV-STEP4-OPERATIVE-20260729/`;
+  tranche manifest
+  `docs/governance_harness/tranche_manifests/ROOT-GOV31-PROPAGATION-20260729.yaml`
+  (`self_merge: false`; no grant block; M6 `routed`).
+- **Gate / blockers:** human-gated PR; merge blocked on owner acceptance
+  of SCA-002 so the deliverable contract, scope ledger, and live D-8 row
+  stay concordant. No retroactive cure of any historical act; loops
+  remain bound only through their own instruments, stricter local merge
+  discipline controlling until they act.

@@ -225,13 +225,91 @@ def test_block_on_non_human_gated_merge(tmp_path):
     assert any("requires 'human-gated-pr'" in line for line in lines)
 
 
+def _grant(**overrides) -> dict:
+    """A complete m2_gate.merge_execution_grant block (PRD annex 5.3.1)."""
+    data = {
+        "grant_record": "docs/governance_harness/_PROPOSALS/GRANT-DEMO/GRANT.md",
+        "granted_by": "Ryan Tufts",
+        "grant_date": "2026-07-24",
+        "expiry": "2026-08-12",
+        "approved_source_sha": "a" * 40,
+    }
+    data.update(overrides)
+    return data
+
+
 def test_block_on_self_merge(tmp_path):
+    """The preserved failing mode: self_merge true with no grant declared."""
     data = _manifest()
     data["m2_gate"]["self_merge"] = True
     _write_manifest(tmp_path, data)
     code, lines = g4.check(tmp_path)
     assert code == 1
     assert any("forbids self-merge" in line for line in lines)
+
+
+def test_pass_self_merge_with_complete_grant(tmp_path):
+    data = _manifest()
+    data["m2_gate"]["self_merge"] = True
+    data["m2_gate"]["merge_execution_grant"] = _grant()
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 0, lines
+    assert any("bounded owner grant" in line and "GRANT-DEMO" in line for line in lines)
+
+
+def test_pass_grant_block_with_self_merge_false(tmp_path):
+    """A recorded grant does not require self_merge true; the default stands."""
+    data = _manifest()
+    data["m2_gate"]["merge_execution_grant"] = _grant()
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 0, lines
+
+
+def test_block_on_incomplete_grant_block(tmp_path):
+    data = _manifest()
+    data["m2_gate"]["self_merge"] = True
+    grant = _grant()
+    del grant["expiry"]
+    data["m2_gate"]["merge_execution_grant"] = grant
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 1
+    assert any("merge_execution_grant missing keys" in line for line in lines)
+    assert any("forbids self-merge" in line for line in lines)
+
+
+def test_block_on_expired_grant(tmp_path):
+    data = _manifest()  # manifest date 2026-07-25
+    data["m2_gate"]["self_merge"] = True
+    data["m2_gate"]["merge_execution_grant"] = _grant(
+        grant_date="2026-07-01", expiry="2026-07-10"
+    )
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 1
+    assert any("precedes the manifest date" in line for line in lines)
+
+
+def test_block_on_malformed_grant_sha(tmp_path):
+    data = _manifest()
+    data["m2_gate"]["self_merge"] = True
+    data["m2_gate"]["merge_execution_grant"] = _grant(approved_source_sha="abc123")
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 1
+    assert any("not a full 40-hex SHA" in line for line in lines)
+
+
+def test_block_on_non_repo_relative_grant_record(tmp_path):
+    data = _manifest()
+    data["m2_gate"]["self_merge"] = True
+    data["m2_gate"]["merge_execution_grant"] = _grant(grant_record="/etc/grant.md")
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 1
+    assert any("grant_record" in line and "repo-relative" in line for line in lines)
 
 
 def test_block_on_empty_authorization(tmp_path):

@@ -1,6 +1,6 @@
 # D-PEC-71 effective-state closeout
 
-**State:** RULED — GIT PUBLICATION PENDING
+**State:** RULED — GIT PUBLICATION COMPLETE (published to shared `main` at merge commit `9f5af48c259eb5a7f93f448431eb32d2e409d565`, PR #412, 2026-07-28; backfilled by the Root D-GOV-31 Step-4 propagation tranche)
 **CandidateCommit:** `3831c05bb4040fe22a12f0c9ddd2e6ff7d963701`
 **EffectiveCommit:** `491a82d0d63984092234edff2b66ad519b2827de`
 **Branch:** `gov/step2-pec-ratification`

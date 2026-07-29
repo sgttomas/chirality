@@ -1,6 +1,6 @@
 # D-APP-82 — OD8-RAT App Consolidated Current-State Ratification
 
-Status: `RULED — GIT_CLOSEOUT_PENDING`
+Status: `RULED`
 
 DecisionID: `D-APP-82`
 
@@ -12,7 +12,7 @@ Owning loop: Chirality App Dev
 
 Source basis: `main@85ea0628fa4e57dd6aae53b06139b2b8734a9612`
 
-EffectiveCommit: `PENDING_PR_MERGE`
+EffectiveCommit: `1d4d3187ba120e328cd2f6bf2a515a8f17635cb5` (PR #411, merged 2026-07-28; backfilled by the Root D-GOV-31 Step-4 propagation tranche)
 
 RecordConvention: exact candidate ruling; supersede-never-edit
 
