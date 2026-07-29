@@ -1,0 +1,5 @@
+Path,PreimageSHA256,PostimageSHA256,Role
+projects/pec/execution/_Coordination/_DECISIONS/D-PEC-71_od8_ratification.md,ABSENT,PENDING_OWNER_SESSION,decision
+projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md,4a3d5fb9c771ff305ee7cd9622d0ea87e3a585ee7a01b7dc91925ecccd15e982,62ea2d00620e51928fce4df8fda26cb687e4e8ed914039a27ff14d6abe8f4064,decision-register
+_DomainEngines/pec/LOOP_RECEIPTS.md,cb11bf7ecfc0574363c05f3aac0a5a38e95ec204589912b9e57325cb7213f2a9,PENDING_OWNER_SESSION,receipt
+projects/pec/execution/_Coordination/D-PEC-71_OD8_RATIFICATION_2026-07-28/D-PEC-71_EFFECTIVE_STATE_CLOSEOUT.md,ABSENT,PENDING_OWNER_SESSION,closeout
