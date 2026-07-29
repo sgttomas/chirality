@@ -2713,3 +2713,37 @@
     recorded as effective and the live SCOPE_CHANGE pointer is made current.
     No new product, scope, contract, hold, implementation, runtime, lifecycle,
     release, or professional-reliance effect occurs.
+
+- **2026-07-28 — Receipt 102** (D-APP-82 App consolidated current-state ratification).
+  - Receipt-ID: `Receipt-102`
+  - Examined-Through: `85ea0628fa4e57dd6aae53b06139b2b8734a9612`
+  - Parent-Receipt: `Receipt-101`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — the D-APP-82
+    ratification returns are transcribed verbatim in the decision record, which
+    is the authority-bearing artifact. The earlier 2026-07-28 blanket direction
+    remains quoted in D-APP-79 through D-APP-81 and is cited by reference only;
+    it is not restated here as authority for this act.
+  - Pointers:
+    `execution/_Coordination/_DECISIONS/D-APP-82_RULING_OD8_RATIFICATION_2026-07-28.md`;
+    `execution/_Coordination/_PROPOSALS/OD8-RAT_APP_RATIFICATION_2026-07-28/`;
+    D-APP-82 register row; unchanged D-APP-78 through D-APP-81 records,
+    effective-state closeouts, and register rows; K-MERGE-1 evidence status in
+    `execution/_Evaluation/MERGE_APPROVAL_MATRIX_2026-07-28_85EA0628/`
+    (manifest SHA-256
+    `53844bfdcedaf5bae4396241375deba5dd35cc5b6d483342efac4a28268fccc1`).
+  - Checks: record and closeout byte identity for all four ratified acts at the
+    examined basis; merge-identity and ancestry values re-read from the existing
+    closeouts rather than recomputed as new claims; packet hash-list
+    verification; placeholder exhaustion; register-row presence; receipt, path,
+    containment, and whitespace checks. Exact measurements and hashes live in
+    the pointed package.
+  - Model-Attribution: Anthropic Claude Opus 5 Agent 2 author dispatched by the
+    App owning-manager lane; exact runtime model build not exposed; no further
+    delegation.
+  - Gate-Outcome: `EXECUTED` — the consolidated current-state ratification
+    record is completed and the owner's per-decision returns are recorded. Each
+    decision's disposition is stated on its own line in D-APP-82. No disclosed
+    procedural exception is cured, no ruled record is modified, and no contract,
+    hold, scope, decomposition, implementation, runtime, lifecycle, identity,
+    version, compatibility, facade-retirement, issuance, release, or
+    professional-reliance effect occurs.
