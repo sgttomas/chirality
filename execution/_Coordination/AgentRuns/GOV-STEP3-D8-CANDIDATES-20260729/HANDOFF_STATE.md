@@ -60,3 +60,17 @@ adopts → publish through human merge):
    including shared CHANGE surfaces and routed M6 notices). SHA-pinned
    historical mirrors and receipts are expressly not rewritten.
 6. M6 notice disposition (`pending`) at Agent 0 fan-in.
+
+## Owner selection (2026-07-29, in-session)
+
+The owner returned, verbatim:
+
+> SELECT CANDIDATE-B — Ryan Tufts 2026-07-29
+
+Effect: Candidate B (shared-CHANGE scope; subject SHA-256
+`15fba9c36a197b36b281297af123115bcd3f282fe6c6f2fae05cd703b3743748`, committed
+candidate-only at `3ad43c27b`) is selected for the HZN-GOV-01 governance rerun
+per PACKET §6. Selection is not adoption: no PRD amendment, no D-GOV-31
+record, no register row, no publication occurs by this act. Candidate A
+remains immutable candidate history. Adoption remains a separate future owner
+act after horizon findings are resolved.
