@@ -74,3 +74,50 @@ per PACKET §6. Selection is not adoption: no PRD amendment, no D-GOV-31
 record, no register row, no publication occurs by this act. Candidate A
 remains immutable candidate history. Adoption remains a separate future owner
 act after horizon findings are resolved.
+
+## HZN-GOV-01 rerun (2026-07-29)
+
+Verdict: **ADOPTION_CLEAR_WITH_NOTES** — no blocking finding. The rerun
+ran against the exact committed Candidate B (subject SHA-256
+`15fba9c36a197b36b281297af123115bcd3f282fe6c6f2fae05cd703b3743748` at
+candidate commit `3ad43c27b`), pre-adoption, per PACKET §6 and the
+horizon package's §Rerun procedure. The full return lives in the Agent 0
+session record.
+
+Summary: prior findings HZN-GOV-001, HZN-GOV-003, HZN-GOV-004,
+HZN-GOV-005, HZN-GOV-006, and HZN-GOV-007 are RESOLVED; HZN-GOV-002 is
+partially resolved with a nonblocking residual (RB-1). New notes
+RB-1..RB-8 are all nonblocking, with recorded dispositions: RB-1's
+definitional residual is cured in the D-GOV-31 record (same-actor grants
+permitted; "self-merge" working definition) and its census gap
+(`DEL-04-06/_CONTEXT.md` lines 11, 21) becomes a Step-4 row-2 surface
+addition; RB-2 and RB-5 become Step-4 drafting preferences (grants
+strictly before exercise, owner-authored when PR-carried; "local merge
+discipline remains controlling" wording); RB-3 and RB-6 become Step-4
+obligations (tranche-manifest grant-reference field as the pre-merge
+pin's registered home; full deterministic-check suite restated in the
+rows-4–6 tools tranche); RB-4 is cured by the adoption token carrying
+the subject SHA8; RB-7 confirmed no retroactive-legitimization pathway;
+RB-8 (§3 intent-quote verbatim status) resolved by owner
+confirmation-by-non-objection at adoption, recorded in the D-GOV-31
+decision record.
+
+## Owner adoption (2026-07-29, in-session)
+
+The owner returned, verbatim:
+
+<!-- BEGIN OWNER RULING VERBATIM -->
+APPROVE D-GOV-31 15fba9c3 — Ryan Tufts 2026-07-29
+<!-- END OWNER RULING VERBATIM -->
+
+Effect: Candidate B is adopted. The D-GOV-31 decision record
+(`docs/governance_harness/_DECISIONS/D-GOV-31_merge_gate_policy_succession.md`)
+is created, bound to the exact candidate SHA, with the `_REGISTER.md`
+row; the adopted bytes are applied to `docs/PRD_ROOT.md` (Rev 7);
+publication rides this PR under the still-current D-8 — the successor
+never consumes its own not-yet-effective merge exception.
+
+Remaining: owner approval of the final branch HEAD, then the
+owner-executed merge; `CandidateMergeSHA`, `PublicationSHA`, and
+`EffectiveSHA` are backfilled after, per the D-GOV-18/19/21/22
+convention.

@@ -1495,3 +1495,44 @@ amendment; owner ruling required).
   schedule, repin, release, or professional-reliance act is authorized,
   and nothing here is citable as precedent for blanket approval or
   self-merge.
+
+### Receipt 61 — 2026-07-29 — Merge-gate policy succession adoption (D-GOV-31, Candidate B)
+
+- **Owner act of record:**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  APPROVE D-GOV-31 15fba9c3 — Ryan Tufts 2026-07-29
+  <!-- END OWNER RULING VERBATIM -->
+- **Parent receipt:** Receipt 60. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Candidate identity:** exact Candidate B subject
+  `docs/governance_harness/_PROPOSALS/D-GOV-31_2026-07-29_merge_gate_policy_succession/CANDIDATE_B_SHARED_CHANGE/PRD_ROOT_REV7_CANDIDATE.md`,
+  SHA-256
+  `15fba9c36a197b36b281297af123115bcd3f282fe6c6f2fae05cd703b3743748`
+  (token SHA8 = `15fba9c3`), committed candidate-only at
+  `3ad43c27bbab0da7d43cb1921ff9c8b186d1b2cd`; candidate basis
+  `main@4f7808acb2802443370d045efa198152934c1674`; owner selection
+  `SELECT CANDIDATE-B` recorded at
+  `482ec0b79e65e7302e2352bd4b04a54d41429f1b`.
+- **Ruled:** Candidate B is adopted. The D-GOV-31 decision record
+  (`docs/governance_harness/_DECISIONS/D-GOV-31_merge_gate_policy_succession.md`)
+  binds the ruling to the exact candidate SHA, with the `_REGISTER.md`
+  row; the adopted bytes are applied to `docs/PRD_ROOT.md` (Rev 7). On
+  the publication merge becoming effective, the Rev 6 D-8 row ("never
+  self-merge") is superseded and annex §5.3.1 (bounded owner grants; the
+  four closeout identities — semantic approval, approved source SHA,
+  merge authorization, effective merge SHA; token grammar; express
+  exclusions; K-MERGE-1 with strengthened pre-merge evidencing) becomes
+  the live merge-gate policy with shared-CHANGE scope; nine Step-4
+  propagation obligations and routed M6 notices attach, enumerated, not
+  performed.
+- **Rerun:** HZN-GOV-01 rerun against the exact committed candidate,
+  pre-adoption: **ADOPTION_CLEAR_WITH_NOTES**, no blocking finding;
+  prior findings resolved (HZN-GOV-002 partially, nonblocking residual
+  cured in the record); notes RB-1..RB-8 nonblocking with dispositions
+  recorded in the decision record.
+- **Gate:** adoption recorded only. Publication remains pending owner
+  approval of the final branch HEAD plus the owner-executed merge under
+  the still-current D-8; Merge/Publication/Effective SHAs are backfilled
+  after. No grant is issued, exercised, or pre-approved; no retroactive
+  cure of the 2026-07-28 window or any historical act; and nothing here
+  is citable as precedent for blanket approval or self-merge.

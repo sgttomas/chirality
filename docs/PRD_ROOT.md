@@ -1,51 +1,59 @@
 # Product Requirements Document — Chirality Root (the root product)
 
 > **Status: `ADOPTION-READY — adopted only by the instrument named below`.
-> Revision 6 amendment candidate.**
+> Revision 7 amendment candidate (Candidate B — shared-CHANGE merge-gate scope).**
 >
-> **Current accepted product basis.** Revision 5 was adopted by D-GOV-22.
+> **Current accepted product basis.** Revision 6 was adopted by D-GOV-28.
 > Its placement copy is `docs/PRD_ROOT.md` at
-> `main@918bb48b8fcee66c031d0d6d4040a46089f96067` (sha256
-> `82f7ea2944e791f12de3a191cbe209a8e8ed90420b82af25ccb5df43d4cc94b3`).
+> `main@4f7808acb2802443370d045efa198152934c1674` (sha256
+> `0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d`).
 > That accepted basis remains in force unless a later owner act adopts this
 > candidate.
 >
-> **The adopting instrument** is D-GOV-28 using the exact-candidate-SHA
-> pattern. That decision record, not this file, carries any adopted status.
-> File creation, validation, commit, Git transport, or review does not adopt
-> these bytes. No SCOPE_CHANGE gate is approved by this candidate.
+> **The adopting instrument** is D-GOV-31 using the exact-candidate-SHA
+> pattern. Per the D-GOV-28 precedent, the D-GOV-31 decision record is
+> created at adoption and carries any adopted status; this file never does.
+> File creation, validation, commit, Git transport, review, or an owner
+> selection between the two prepared candidates is not adoption. No
+> SCOPE_CHANGE gate is approved by this candidate.
 >
-> **Minimal change envelope.** This candidate integrates D-GOV-27's already
-> ruled O-1 enumeration, adds O-11 as the sole new stable product commitment,
-> carries D-GOV-20's ruled shared-runtime architecture verbatim so no seam is
-> repartitioned by paraphrase, and updates only the document control needed to
-> make those changes legible. Historical Rev 5 passages are retained as the
-> adopted lineage and are read through D-GOV-22 through D-GOV-27 where those
-> later instruments already closed or superseded their drafting-time states.
+> **Minimal change envelope.** This candidate supersedes exactly one stable
+> commitment: the §5.3 D-8 row ("never self-merge") is replaced by a
+> successor merge-gate policy carried in the new annex §5.3.1, scoped
+> to the shared change-management (CHANGE) role across all registered loops, with the M6 notice obligation stated in the annex. Document control is reconciled to Rev 7. Every other
+> passage is byte-identical to the adopted Rev 6 placement copy; the exact
+> changed-line set is declared in this candidate's `POLICY_DELTA.md`.
 >
 > **Authority and provenance.** This file confers no authority of its own
-> (K-AUTH-1). The seventeen Rev 5 items labeled PROPOSED were accepted by
-> D-GOV-22; their labels continue to record their origin. **O-11 alone is new
-> and takes effect only through an owner ruling in D-GOV-28.** TRANSCRIBED
-> passages remain warranted only by their cited sources.
+> (K-AUTH-1). The successor D-8 policy alone is new; it is labeled PROPOSED
+> and takes effect only through an owner ruling in D-GOV-31 against this
+> exact candidate. Inherited Rev 5 and Rev 6 provenance labels are retained
+> without retroactive relabeling; TRANSCRIBED passages remain warranted only
+> by their cited sources. Nothing here claims retroactive cure of any
+> historical act.
 >
 > **InheritedSourceCorpusBasis:** `main@7ac718c7e` — the Rev 5 source corpus
 > against which its inherited provenance labels were authored and reviewed.
 > **Rev6AmendmentBasis:**
-> `main@918bb48b8fcee66c031d0d6d4040a46089f96067` — the basis for every
+> `main@918bb48b8fcee66c031d0d6d4040a46089f96067` — retained basis for every
+> sentence introduced or textually changed by Rev 6.
+> **Rev7AmendmentBasis:**
+> `main@4f7808acb2802443370d045efa198152934c1674` — the basis for every
 > sentence introduced or textually changed by this amendment.
 > **SourceCorpusBasis (composite):**
-> `Inherited=main@7ac718c7e; Rev6Amendment=main@918bb48b8fcee66c031d0d6d4040a46089f96067`.
-> This named composite is the Rev 6 D-14 source basis paired with the
-> containing candidate commit; the two component fields preserve which
+> `Inherited=main@7ac718c7e; Rev6Amendment=main@918bb48b8fcee66c031d0d6d4040a46089f96067; Rev7Amendment=main@4f7808acb2802443370d045efa198152934c1674`.
+> This named composite is the Rev 7 D-14 source basis paired with the
+> containing candidate commit; the component fields preserve which
 > population was checked where.
 > **Revision history:** Rev 1 `f15d51277`; Rev 2 `a72c2cd06`; Rev 3
 > `f9d33fcd9`; Rev 4 `ae5a476f4`; Rev 5 adopted by D-GOV-22, candidate
 > `d9ea86f88504cb8d859a4cf3f042bac00d38fe57`, accepted-candidate
-> `90fae458bf485412e9c3a6295df193eb323c9774`. This Rev 6 candidate is
-> attributable to its eventual containing commit; it asserts no SHA for
-> itself.
-> **Date:** 2026-07-26
+> `90fae458bf485412e9c3a6295df193eb323c9774`; Rev 6 adopted by D-GOV-28,
+> accepted-candidate `f78a83621cbd679e6af2c41199845aca74073480`, subject
+> sha256 `0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d`.
+> This Rev 7 candidate is attributable to its eventual containing commit; it
+> asserts no SHA for itself.
+> **Date:** 2026-07-29
 
 ---
 
@@ -59,7 +67,7 @@ Every requirement, objective, and identity claim carries exactly one label.
 | **OWNER_DECLARED** | Owner-endorsed framing or an owner ruling **as transcribed or synthesized by Agent 0 in-session**. Exact wording is subject to owner confirmation or correction at adoption. **Not claimed verbatim unless quote-fenced.** | Not in force as doctrine; an in-session ruling is an owner act of record that becomes SHA-bound at the adoption instrument |
 | **OBSERVED** | A **verifiable repository fact** — what a non-binding live surface says, or what git history shows — cited to file and line, carrying **no** doctrinal force. Distinguishes "this text exists in the tree" from "this text governs". | None. An OBSERVED item may be true and still bind nothing; it supports no reliance claim |
 | **CLARIFIED** | An interpretation of accepted truth produced by the 2026-07-25 root-PRD inquiry (Agent 0 plus independent second-agent review, owner-mediated). Interpretation, not new authority. | Reading aid; the cited source governs |
-| **PROPOSED** | A commitment that was new at the revision where it was introduced. The seventeen Rev 5 items carrying this label were accepted by D-GOV-22; O-11 is newly proposed by Rev 6. | O-11 has none until D-GOV-28 is ruled; the Rev 5 items rely on D-GOV-22 |
+| **PROPOSED** | A commitment that was new at the revision where it was introduced. The seventeen Rev 5 items carrying this label were accepted by D-GOV-22; O-11, newly proposed by Rev 6, was accepted by D-GOV-28; the D-8 successor merge-gate policy (§5.3 row D-8 and annex §5.3.1) is newly proposed by Rev 7. | The D-8 successor policy has none until D-GOV-31 is ruled; the Rev 5 items rely on D-GOV-22; O-11 relies on D-GOV-28 |
 
 Quote fences (`>`) appear **only** around text warranted as verbatim, with its
 record cited. Synthesized owner framing is presented as ordinary prose.
@@ -451,7 +459,7 @@ owner as a new proposal.
 | **D-5** | Validation is deterministic and severity-typed (BLOCK / REVIEW / WARN / INFO / NOT_APPLICABLE, with exit-code semantics and human-only recorded BLOCK override); "BLOCK" never means globally proven safe or unsafe; and a validator finding may **never** mechanically reject content the owner has ruled — where ruled text trips a validator, the validator is defective. | TRANSCRIBED — D-GOV-02; D-GOV-17; `docs/CONTRACT.md` §1.7 note |
 | **D-6** | Phase-crossing work is bound by the governance integration rules — derivative-package, snapshot, handoff-state, closure, sequencing, cycle-resolution, and change-notice routing. **Incorporated by reference** to `AGENTS.md` §Governance Integration Rules. | TRANSCRIBED — `AGENTS.md`; `docs/DIRECTIVE.md` §2.7 |
 | **D-7** | Root-product development runs through a governed loop with a session-init contract, a deterministic standing-plan pointer, and an append-only receipts log. **Coordination surfaces carry no authority merely because they exist**; on disagreement with a live source, the live source governs and the delta is recorded. | TRANSCRIBED — `execution/_Coordination/LOOP_INIT.md`; `CURRENT_WORKPLAN.md`; standing workplan §Authority basis |
-| **D-8** | Git closeout runs through the change-management role with human-gated PRs; **never self-merge**. | TRANSCRIBED — `execution/_Coordination/LOOP_INIT.md` §7; standing workplan §Closeout; K-MERGE-1 |
+| **D-8** | Git closeout in every registered loop runs through the shared change-management role with human-gated PRs as the standing default; a bounded owner grant, recorded before or at exercise, may authorize merge execution under the merge-gate policy in annex §5.3.1, which preserves K-MERGE-1 and the four closeout identities. Each loop's stricter local merge discipline remains controlling until that loop adopts or acknowledges the policy under its own instruments. | **PROPOSED (Rev 7)** — successor to the Rev 6 TRANSCRIBED row ("never self-merge"); default source `execution/_Coordination/LOOP_INIT.md` §7; invariant K-MERGE-1; owner policy intent recorded in the D-GOV-31 packet |
 | **D-9** | The decomposition pipeline is not waivable: packages and deliverables come only from an accepted decomposition. Nothing authorizes inventing packages from discussion. | TRANSCRIBED — D-GOV-21 packet §4 |
 | **D-10** | The public-export boundary is an explicit allowlist profile that copies allowlisted content, sanitizes private absolute paths, writes a manifest and report, and fails on forbidden paths or leaks. **The profile is the boundary contract and is incorporated by reference**; membership is not restated here. | TRANSCRIBED — `exports/chirality-app/export_public.py`; K-EXPORT-1 |
 | **D-11** | A tranche changing surfaces that downstream loops pin or mirror ships a routed coordination notice to each affected loop in the same tranche. The notice is coordination, not authority: the receiving loop adopts, amends, or declines under its own instruments. | TRANSCRIBED — `AGENTS.md` change-notice rule; D-GOV-21 M6 |
@@ -467,6 +475,73 @@ it is an **OBSERVED practice statement** at §6.2, which makes no authority
 claim. **The identifier is retired and never reassigned** — D-4 through D-16
 keep their IDs so that every cross-reference in the annex, the prior revisions,
 and this run's record stays valid, and no future commitment may reuse `D-3`.
+
+#### 5.3.1 Merge-gate policy — the D-8 successor [PROPOSED]
+
+This annex carries the full successor policy referenced by the D-8 row. It
+is PROPOSED and inert until an owner ruling in D-GOV-31 adopts this exact
+candidate. Nothing in this annex relabels, cures, or reopens any historical
+act; the 2026-07-28 window remains governed by the D-GOV-30 disclosure
+exactly as recorded.
+
+**Scope.** This policy governs the shared change-management (CHANGE) role behavior across all registered loops. Its adoption obligates a routed M6 coordination notice to every registered loop's coordination surface (at this basis: the App, PEC, and Piping loops; the registered set is enumerated at execution time). Notices are coordination, never authority: each loop's stricter local merge discipline remains controlling until that loop adopts or acknowledges the policy under its own instruments.
+
+**Default unchanged.** Human-gated PRs remain the default Git-closeout
+vehicle. Absent a live bounded owner grant, permission to merge is
+required, exactly as under the superseded row.
+
+**Bounded owner grant.** A bounded owner grant may authorize merge
+execution. Every grant must define, at minimum: the authoring actor; the
+merge executor; the scope (exact PRs, branches, paths, or a bounded stretch
+of work); the duration; the expiry; and the exclusions. A grant is recorded
+before or at exercise — transcribed in a durable record (an OD-style
+transcription or carried in the pull request itself) — never after the
+fact.
+
+**Execution authority is not semantic approval.** A bounded owner grant may
+authorize merge execution within its recorded scope and term. It never
+constitutes semantic approval of future unknown content. Each merge still
+requires a human approval vehicle bound to the exact source HEAD,
+verification that HEAD remains unchanged, and a separately recorded
+effective merge identity.
+
+**Four identities.** Every closeout preserves four distinct identities:
+
+1. **semantic approval** — the human act and the exact subject it approves;
+2. **approved source SHA** — the exact branch HEAD the approval binds to
+   (K-AUTH-2);
+3. **merge authorization** — the act or grant permitting execution of the
+   merge;
+4. **effective merge SHA** — the resulting merge commit on the target.
+
+The prior corpus conflated these identities: "never self-merge" stood in
+for all four, and no merger-versus-author identity test ever existed as a
+deterministic check. The identity separation above — not a blanket
+prohibition — is the successor discipline.
+
+**Owner token grammar.** Short owner tokens — for example `APPROVE <ID>`,
+`RATIFY <IDs> AS ENUMERATED IN <RECORD> <SHA8>`, and `SELECT <OPTION>` —
+are lawful rulings only where the exact candidate, SHA, scope, and effect
+are pre-fixed in an immutable record that the token names. This grammar
+lives in this policy; transcription records never define or extend it.
+
+**Exclusions — expressly prohibited under any grant:**
+
+- agent-authored semantic auto-approval;
+- content mutation after approval;
+- force push, rebase, or invented conflict resolution;
+- any authority beyond the named scope and expiry;
+- lifecycle or issuance authority inferred merely from merge permission.
+
+**K-MERGE-1 unchanged; evidencing strengthened.** K-MERGE-1 — merge to
+main allowed only when branch HEAD equals the approved SHA for the relevant
+run (`docs/CONTRACT.md` §1.8) — is not amended. This policy strengthens its
+evidencing: the approved source SHA must be pinned in a durable record
+before the merge executes, so that the invariant is falsifiable at
+execution time. This cures the NOT_EVIDENCED failure mode documented in
+`execution/_Evaluation/MERGE_APPROVAL_MATRIX_2026-07-28_85EA0628/`, where
+`merge^2` equality held in Git but no in-repo record named an approved
+source SHA before merge.
 
 ### 5.4 Evidence
 
@@ -948,57 +1023,59 @@ register.
 | **C-3** | **Historical-note date.** The sealed brief stated an in-repo date inconsistent with git; the owner testimony and git fact required separate treatment. | Sealed brief vs. owner testimony vs. git history | **CLOSED — D-GOV-22.** Owner testimony confirmed; the earlier estimate is not load-bearing and is not to be repeatedly recited. |
 | **C-4** | **Export description vs. export profile.** The Rev 5 basis omitted `runtime/` from the README description while the live export profile included it. | `README.md` vs. `exports/chirality-app/export_public.py` | **CLOSED — PR #345**, merge `ba2b80bf2`; the live profile remains the boundary contract. |
 
-### 10.3 Revision 6 amendment mechanics
+### 10.3 Revision 7 amendment mechanics
 
-**The accepted state before this candidate.** D-GOV-22 adopted Rev 5.
-D-GOV-23 through D-GOV-27 subsequently closed or superseded specific
-drafting-time states without rewriting the immutable Rev 5 candidate. Those
+**The accepted state before this candidate.** D-GOV-28 adopted Rev 6.
+D-GOV-30 subsequently placed the verified facts of the 2026-07-28 merge
+window (PRs #389–#408) into the Root governance record and prospectively
+ratified four enumerated present-state items, expressly without amending
+D-8 or LOOP_INIT §7 and expressly without retroactive cure. Those
 instruments continue to govern. This candidate does not reopen them.
 
-**The only new stable commitment is O-11.** The ten D-GOV-20 statements in
-§5.2 are exact transcriptions of an already ruled Root instrument. Integrating
-D-GOV-27's O-1 enumeration likewise introduces no new authority. O-11 is
-PROPOSED and inert until an owner act adopts this exact Rev 6 candidate.
+**The only changed stable commitment is D-8.** The Rev 6 D-8 row ("never
+self-merge") is superseded by the successor row and annex §5.3.1. The
+successor is PROPOSED and inert until an owner act adopts this exact Rev 7
+candidate. Every other §5 commitment is byte-identical to the adopted
+Rev 6 placement copy.
 
-**Decision vehicle.** D-GOV-28 offers three outcomes: adopt this exact
-candidate, return it for revision, or decline it and retain the current
-accepted PRD. A recorded interim deferral with a named carrier, assigned
-duties, and expiry remains a lawful alternative to adoption. The owner has
-selected the adoption route for preparation only; that selection is neither
-adoption nor pre-approval of any SCOPE_CHANGE gate.
+**Decision vehicle.** Two complete candidates are prepared side by side in
+the D-GOV-31 proposal package — Candidate A (Root-only scope) and
+Candidate B (shared-CHANGE scope) — each separately committed and hashed.
+The owner first selects one committed candidate without adopting it; the
+selected candidate is then re-audited by an HZN-GOV-01 rerun per
+`execution/_Evaluation/CHIRALITY_PROGRAM_POST_REMEDIATION_HORIZON_2026-07-28_85EA0628/HANDOFF.md`;
+findings are resolved; only then does the owner adopt through the D-GOV-31
+record, created at adoption per the D-GOV-28 precedent, and the adopted
+bytes are published through a human-gated merge under the still-current
+D-8. This candidate never consumes its own not-yet-effective merge
+exception.
 
-**Evidence required at the gate.** The proposal package carries a runnable
-exact-byte concordance validator, its deterministic output, and a stable
-open-item register. Every exact-source sentence introduced or textually
-changed by the Rev 6 amendment and labeled TRANSCRIBED — two O-1 sentences and
-ten D-GOV-20 architecture statements — must occur exactly once in its ruled
-source and exactly once in this candidate. The validator does not relabel or
-retroactively convert inherited Rev 5 provenance-labeled synthesis into
-verbatim quotation. Uncovered runtime seams are OPEN or PROPOSED; none is
-silently drafted into a boundary rule.
-
-**Scope limit.** Adopting Rev 6 would establish the product requirement only.
-It would not amend the accepted decomposition, create a deliverable or write
-locus, apply an App change, repin a contract, or approve any SCOPE_CHANGE
-gate. Those are separately governed acts.
+**Scope limit.** Adopting Rev 7 establishes the successor product
+requirement only. Propagation — the SOW-042 ledger row, DEL-04-06
+requirement and evidence definitions, LOOP_INIT §7, the deterministic
+enforcement points, tranche-manifest `self_merge` schema semantics, the shared CHANGE instruction surfaces, and routed M6 notices to every registered loop —
+is enumerated with owners in this candidate's `POLICY_DELTA.md` and is
+separately owned follow-on work. SHA-pinned historical mirrors, frozen
+proposal packages, and receipts are expressly not rewritten.
 
 ### 10.4 Document control
 
 | Field | Value |
 |---|---|
-| Status | `ADOPTION-READY — adopted only by the instrument named below`, Revision 6 amendment candidate |
-| Adopting instrument | D-GOV-28, exact-candidate-SHA owner ruling pattern; its decision record carries any adopted status |
-| Authority of this file itself | None. File creation, validation, commit, Git transport, or review is not approval (K-AUTH-1). |
-| Accepted predecessor | Rev 5 adopted by D-GOV-22; current placement `docs/PRD_ROOT.md` at `main@918bb48b8fcee66c031d0d6d4040a46089f96067` |
+| Status | `ADOPTION-READY — adopted only by the instrument named below`, Revision 7 amendment candidate (Candidate B — shared-CHANGE merge-gate scope) |
+| Adopting instrument | D-GOV-31, exact-candidate-SHA owner ruling pattern; its decision record is created at adoption per the D-GOV-28 precedent and carries any adopted status |
+| Authority of this file itself | None. File creation, validation, commit, Git transport, review, or owner selection between candidates is not approval (K-AUTH-1). |
+| Accepted predecessor | Rev 6 adopted by D-GOV-28; current placement `docs/PRD_ROOT.md` at `main@4f7808acb2802443370d045efa198152934c1674` (sha256 `0e36a03abc16b86f99024aa2a17c467ae7f4303f9740be3a6ba2e9dd1dfb2f2d`) |
 | InheritedSourceCorpusBasis | `main@7ac718c7e` — basis retained for inherited Rev 5 provenance labels |
-| Rev6AmendmentBasis | `main@918bb48b8fcee66c031d0d6d4040a46089f96067` — exact-source basis for every sentence introduced or textually changed by Rev 6 |
-| SourceCorpusBasis | Composite: `Inherited=main@7ac718c7e; Rev6Amendment=main@918bb48b8fcee66c031d0d6d4040a46089f96067`; paired with the containing candidate commit per D-14 |
+| Rev6AmendmentBasis | `main@918bb48b8fcee66c031d0d6d4040a46089f96067` — retained basis for every sentence introduced or textually changed by Rev 6 |
+| Rev7AmendmentBasis | `main@4f7808acb2802443370d045efa198152934c1674` — exact-source basis for every sentence introduced or textually changed by Rev 7 |
+| SourceCorpusBasis | Composite: `Inherited=main@7ac718c7e; Rev6Amendment=main@918bb48b8fcee66c031d0d6d4040a46089f96067; Rev7Amendment=main@4f7808acb2802443370d045efa198152934c1674`; paired with the containing candidate commit per D-14 |
 | This revision's bytes | The containing candidate commit, assigned at Git closeout. This file asserts no SHA for itself. |
-| Prior revisions | Rev 1 `f15d51277`; Rev 2 `a72c2cd06`; Rev 3 `f9d33fcd9`; Rev 4 `ae5a476f4`; Rev 5 candidate `d9ea86f88504cb8d859a4cf3f042bac00d38fe57`, adopted by D-GOV-22 |
-| Change envelope | D-GOV-27 O-1 integration; O-11; exact D-GOV-20 boundary transcription; Rev 6 control reconciliation |
+| Prior revisions | Rev 1 `f15d51277`; Rev 2 `a72c2cd06`; Rev 3 `f9d33fcd9`; Rev 4 `ae5a476f4`; Rev 5 candidate `d9ea86f88504cb8d859a4cf3f042bac00d38fe57`, adopted by D-GOV-22; Rev 6 accepted-candidate `f78a83621cbd679e6af2c41199845aca74073480`, adopted by D-GOV-28 |
+| Change envelope | D-8 successor merge-gate policy (shared-CHANGE scope); new annex §5.3.1; provenance-key and Rev 7 control reconciliation; nothing else |
 | Root authority | D-GOV-20. D-T0-23 is named only as the coordinating Tier-0 counterpart and is not incorporated by reference. |
-| Rev 6 evidence companions | `TRANSCRIPTION_SPEC.json`; `validate_transcriptions.py`; `CONCORDANCE_REPORT.json`; `OPEN_ITEMS.csv` — derivative evidence, never a substitute for sources or owner judgment |
-| Provenance counts | **§5 stable commitments — 43 total: 33 TRANSCRIBED (N-1..N-8, O-1..O-9, D-1, D-4..D-11, E-1..E-7), 5 CLARIFIED (N-9, O-10, D-2, D-12, E-8), 5 PROPOSED-origin (D-13, D-14, D-15, D-16, O-11).** D-GOV-22 accepted the four Rev 5 PROPOSED-origin commitments; O-11 alone is inert in Rev 6. The ten verbatim D-GOV-20 sentences are a transcription block, not ten additional stable IDs. |
-| PROPOSED inventory | **18 provenance-labeled items:** the 17 Rev 5 items adopted by D-GOV-22, plus O-11, which alone remains inert pending D-GOV-28. |
-| Rev 6 open items | Stable machine-readable register in `OPEN_ITEMS.csv`; statuses restricted to OPEN or PROPOSED |
-| Adoption condition | O-11 takes effect only through an explicit D-GOV-28 owner ruling against the exact candidate SHA. Such adoption does not pre-approve Root SCOPE_CHANGE. |
+| Rev 6 evidence companions | `TRANSCRIPTION_SPEC.json`; `validate_transcriptions.py`; `CONCORDANCE_REPORT.json`; `OPEN_ITEMS.csv` — retained Rev 6 lineage in the D-GOV-28 proposal package; derivative evidence, never a substitute for sources or owner judgment |
+| Provenance counts | **§5 stable commitments — 43 total: 32 TRANSCRIBED (N-1..N-8, O-1..O-9, D-1, D-4..D-7, D-9..D-11, E-1..E-7), 5 CLARIFIED (N-9, O-10, D-2, D-12, E-8), 6 PROPOSED-origin (D-8 successor, D-13, D-14, D-15, D-16, O-11).** D-GOV-22 accepted the four Rev 5 PROPOSED-origin commitments; D-GOV-28 accepted O-11; the D-8 successor alone is inert in Rev 7. The ten verbatim D-GOV-20 sentences are a transcription block, not ten additional stable IDs. |
+| PROPOSED inventory | **19 provenance-labeled items:** the 17 Rev 5 items adopted by D-GOV-22, O-11 adopted by D-GOV-28, and the Rev 7 D-8 successor, which alone remains inert pending D-GOV-31. |
+| Rev 6 open items | Stable machine-readable register in the D-GOV-28 proposal package's `OPEN_ITEMS.csv`; statuses restricted to OPEN or PROPOSED; carried unchanged by Rev 7 |
+| Adoption condition | The D-8 successor policy takes effect only through an explicit D-GOV-31 owner ruling against the exact candidate SHA, after owner selection between the two committed candidates and an HZN-GOV-01 rerun against the selected candidate. Such adoption does not pre-approve any propagation act, SCOPE_CHANGE gate, or grant. |
