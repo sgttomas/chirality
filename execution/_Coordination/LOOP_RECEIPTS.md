@@ -1587,3 +1587,54 @@ amendment; owner ruling required).
   stay concordant. No retroactive cure of any historical act; loops
   remain bound only through their own instruments, stricter local merge
   discipline controlling until they act.
+
+### Receipt 63 — 2026-07-29 — Step-4 closeout: SCA-002 accepted and applied; PRs #417/#418 merged per owner direction
+
+- **Parent receipt:** Receipt 62. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **SCA-002 acceptance (owner act of record, 49 bytes UTF-8, SHA-256
+  `cfd81bc53f29c051b8d59b89b3566c36a459011c52d8deaa2eb39ddbe592208b`):**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  ACCEPT SCA-002 271d456a — Ryan Tufts 2026-07-29
+  <!-- END OWNER RULING VERBATIM -->
+  The token SHA8 binds to the candidate package commit
+  `271d456abe854346b903f1dfbd98d8cc37fdf09e`, covering the package's
+  Gates 1–4 as presented.
+- **Bracket ruling (owner act of record, 116 bytes UTF-8, SHA-256
+  `a34878f59dcd4365a5f95fd68b7da70a452c875cc398724148c4a189d8db035a`):**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  BRACKET AS RECOMMENDED: at application, update SOW-042 SourceRef to cite D-GOV-31 adoption — Ryan Tufts 2026-07-29
+  <!-- END OWNER RULING VERBATIM -->
+- **Application (run GOV-STEP4-APPLICATION-20260729, basis
+  `main@204321467b567ede862636a36dd67bcac1ff326a`):** the accepted Gate 3
+  candidate bytes were copied to the three authoritative decomposition
+  paths, then the one owner-ruled bracket delta was applied: SOW-042
+  `SourceRef` is now `PRD §5.3 D-8 [ADOPTED-D-GOV-31]`. Working surface
+  and deliverable register are byte-identical to the accepted candidate;
+  the ledger differs from it in exactly that one cell, CRLF preserved.
+  Evidence in the SCA-002 snapshot: `Applied_File_Hashes.json`,
+  `validate_gate5_applied.py` + `Gate_5_Validation.json` (33/33 PASS
+  against the live files), and the Decision_Log and Handoff_State
+  application appends. Audit-pair obligation dispositioned: the
+  deterministic application validation plus the register baseline stand
+  in; any full AUDIT_DECOMP run is deferred to the next regular audit
+  cycle. The `_ScopeChange/_LATEST.md` pointer refresh is a recorded
+  follow-on (outside this run's sealed write scope).
+- **Merges (owner act of record, 117 bytes UTF-8, SHA-256
+  `f7b0136d3b8daf11d312d4d6e0714f6e45c59d35e618ff03c3fd6d67e190834b`):**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  APPROVE HEADS dfc8d4af5 (PR #417) AND e5e8f760 (PR #418); MERGE #417 THEN #418 ON MY BEHALF — Ryan Tufts 2026-07-29
+  <!-- END OWNER RULING VERBATIM -->
+  PR #417 (`gov/step4-sca-decomposition`, approved HEAD
+  `dfc8d4af532b07f8e562ace2f910ca777e63173f`) merged as
+  `6e21530f7182ca2a7e7831b9528f85889a4a4467`; PR #418
+  (`gov/step4-operative-surfaces`, approved HEAD
+  `e5e8f760548e739078a1735b176cd56604d5d4c9`) merged as
+  `204321467b567ede862636a36dd67bcac1ff326a`. Each HEAD was verified
+  unchanged immediately before its merge; both merges were executed on
+  the owner's behalf per the direction above, via the
+  owner-authenticated `gh` CLI (GitHub merge actor `sgttomas`).
+- **Gate:** transcription and application only; nothing here rules new
+  policy. Publication merge authorization for this tranche's own PR
+  remains a separate owner act on the exact final branch HEAD, and
+  nothing in this receipt is citable as precedent for blanket approval.
