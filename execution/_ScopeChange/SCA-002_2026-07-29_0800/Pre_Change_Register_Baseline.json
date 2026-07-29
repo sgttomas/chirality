@@ -1,0 +1,59 @@
+{
+ "amendment_id": "SCA-002",
+ "captured_at": "2026-07-29T08:00:00-06:00",
+ "working_tree_basis": "ea3db3607fbcbb7ce5f65bab31268a7eca431adb",
+ "decomp_variant": "SOFTWARE",
+ "decomposition_path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+ "decomposition_revision": "v1.1 (SCA-001 successor; owner-confirmed 2026-07-26)",
+ "prd_root_sha256": "15fba9c36a197b36b281297af123115bcd3f282fe6c6f2fae05cd703b3743748",
+ "prd_root_revision": "Revision 7 (D-GOV-31 subject; effective merge ea3db3607fbcbb7ce5f65bab31268a7eca431adb)",
+ "authoritative_file_sha256": {
+  "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md": "2dd37e20d8175eec3a7a926dcf454fbee5065d076fc59eac6ead82e911192c18",
+  "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv": "0d48abe08aa336ac5e495650451f286b4b717606f047adff931c45dacc8531a4",
+  "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv": "ec32b36fdc078e44a7ca094e9c854a3be6b7d5917360fe5ef5f22ff3702a13b8",
+  "execution/_Decomposition/chirality_root_objective_register_v1_0.csv": "c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55",
+  "execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv": "adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84",
+  "execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv": "6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0",
+  "execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md": "6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282"
+ },
+ "counts": {
+  "scope_items": 104,
+  "scope_in": 95,
+  "scope_out": 9,
+  "scope_tbd": 0,
+  "packages": 6,
+  "deliverables": 46,
+  "objectives": 7,
+  "forward_coverage_rows": 85,
+  "reverse_trace_rows": 52
+ },
+ "sow042_basis_row": [
+  "SOW-042",
+  "IN",
+  "Git closeout runs through the change-management role with human-gated pull requests and never self-merge.",
+  "PRD §5.3 D-8 [TRANSCRIBED]",
+  "PKG-04_Developmental_Machinery_and_Change_Control",
+  "DEL-04-06_Change_Management_and_Human_Gated_Closeout",
+  "OBJ-002",
+  "D-8",
+  "DevelopmentalMachinery",
+  "",
+  "FALSE",
+  ""
+ ],
+ "del0406_basis_row": [
+  "DEL-04-06_Change_Management_and_Human_Gated_Closeout",
+  "Change Management and Human-Gated Closeout",
+  "PKG-04_Developmental_Machinery_and_Change_Control",
+  "Ryan Tufts",
+  "CI_CD_CHANGE",
+  "Keep git closeout running through the change-management role with human-gated pull requests and no self-merge.",
+  "Closeout checklist; no-self-merge evidence; PR gate notes",
+  "SOW-042",
+  "OBJ-002",
+  "S",
+  "One narrow procedural control.",
+  "execution-tree"
+ ],
+ "note": "Deterministic register baseline captured at the frozen basis before any SCA-002 candidate drafting. A pre-change AUDIT_DECOMP dispatch is not available to this bounded run (no delegation); the deterministic baseline above substitutes at drafting time and the audit remains an application-phase obligation."
+}
