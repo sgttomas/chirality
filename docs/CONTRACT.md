@@ -16,7 +16,7 @@ Invariant IDs (`K-*`) are **stable and never reused**. Retired invariants are mo
 
 ### K-* Invariant Index
 
-All K-* identifiers defined in this section are listed below with their definition locations. There are **34 stable invariants** across 13 subsections.
+All K-* identifiers defined in this section are listed below with their definition locations. There are **40 stable invariants** across 14 subsections.
 
 | K-* ID | Subsection | Topic |
 |---|---|---|
@@ -54,6 +54,12 @@ All K-* identifiers defined in this section are listed below with their definiti
 | K-RESIDENCY-1 | 1.13 | Shared Runtime |
 | K-ROLE-2 | 1.13 | Shared Runtime |
 | K-EXPORT-1 | 1.13 | Shared Runtime |
+| K-TM-1 | 1.14 | Task Management |
+| K-TM-2 | 1.14 | Task Management |
+| K-TM-3 | 1.14 | Task Management |
+| K-TM-4 | 1.14 | Task Management |
+| K-TM-5 | 1.14 | Task Management |
+| K-TM-6 | 1.14 | Task Management |
 
 ---
 
@@ -167,19 +173,37 @@ user-data directory because they are explicitly non-authoritative operational
 state; they do not grant an agent permission to write outside its checkout
 scope.
 
+### 1.14 Task Management
+
+| ID | Invariant | Enforcement |
+|---|---|---|
+| **K-TM-1** | Task Management owns per-loop Action Item registers and nothing else. Every other domain's state is displayed by citation and remains with its owner | Governance audit; future tooling (`taskmgmt validate`) |
+| **K-TM-2** | Registers are git-tracked files inside the owning loop's coordination surface. Any service store or index is a rebuildable, gitignored projection per D-GOV-01, never cited as authority. No engine-store exemption | Governance audit; future tooling (`taskmgmt validate`); D-GOV-01 projection discipline |
+| **K-TM-3** | Register writes are judgment acts of the owning loop. Rows carry no directives; no cross-loop register writes; reading a register creates no duty outside a loop's own adopted instruments; no agent appears as accountable (A) for any row (K-AUTH-1) | Human review (the owner triage session is the sole disposition authority); agent instructions |
+| **K-TM-4** | Graceful absence, re-scoped `[FINDING F-20]`: no act **outside a loop's own adopted instruments** may require a Task Management read or write. A loop binds itself by its own revocable ruling; deleting the service and its projections blocks nothing anywhere; registers remain plain readable, writable files. Kill test at every release (PEC-K-01 / PEC-SVC-004 pattern) | Release kill test (PEC-K-01 / PEC-SVC-004 pattern); human review |
+| **K-TM-5** | A register row, view, or scan output never constitutes approval, acceptance, scope, priority authority, or lifecycle effect. Closure evidence binds to bytes (`EvidenceSha`); a row whose evidence changed after closure is stale, not still-closed | Human review; future tooling (`EvidenceSha` byte comparison per K-AUTH-2) |
+| **K-TM-6** | Closure-capable schema: every register schema version carries `Status` and `Disposition`; a register that cannot record its own closure is invalid | Future tooling (register schema validation); governance audit |
+
+Row text is verbatim from the adopted Chirality Task Management PRD §10
+(Revision 2, adopted by D-GOV-32; subject SHA-256
+`97e2ae6525ecbfdc52ff22aee85e1182a751c1090c2aa2f52faaf9e080f35d18`). D-GOV-32
+Effect 5 adopted K-TM-1..6 as product invariants and reserved their entry
+into this catalog to a governed tranche; this subsection is that entry, and
+the "candidate" label in the PRD's §10 heading ends here.
+
 ---
 
 ## 2. Enforcement Map Summary
 
 | Enforcement Point | Invariants Checked |
 |---|---|
-| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4, K-ROLE-2 |
+| **Agent instructions** (design-time; constrains intent, not guaranteed behavior) | K-GHOST-1, K-WRITE-1, K-WRITE-2, K-SNAP-1, K-PROV-1, K-INVENT-1, K-CONFLICT-1, K-CLAIM-1, K-DEP-1, K-DEP-2, K-AGENTS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4, K-ROLE-2, K-TM-3 |
 | **TASK shell / tool path policy** (runtime) | K-WRITE-2 (ScopePath containment, `SPEC.md` §0.2.3) |
 | **DOMAIN_ENGINE** (profile and operation governance) | K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
 | **PROJECT_SETUP** (runtime) | K-SEAL-1, K-GATE-1, K-HIER-1 |
-| **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4 |
-| **Governance audit** (AUDIT_GOVERNANCE / AUDIT_AGENTS) | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4 |
-| **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2 |
+| **Human review** (gate) | K-AUTH-1, K-AUTH-2, K-BIND-1, K-STALE-2, K-MERGE-1, K-VAL-1, K-STATUS-1, K-DOMAIN-1, K-DOMAIN-2, K-DOMAIN-3, K-DOMAIN-4, K-TM-3, K-TM-4, K-TM-5 |
+| **Governance audit** (AUDIT_GOVERNANCE / AUDIT_AGENTS) | K-CLAIM-1, K-PROV-1, K-AGENTS-1, K-DOMAIN-4, K-TM-1, K-TM-2, K-TM-6 |
+| **Future tooling** (automated) | K-STALE-1, K-VAL-1, K-MERGE-1, K-AUTH-2, K-DEP-2, K-TM-1, K-TM-2, K-TM-5, K-TM-6 |
 | **PROJECT_DECOMP** (decomposition) | K-HIER-1, K-ID-1 |
 | **Shared runtime daemon and clients** (runtime) | K-RUNTIME-1, K-CONTROL-1, K-PROJECT-1, K-STORE-2, K-RESIDENCY-1, K-ROLE-2 |
 | **Public export builder** (publication boundary) | K-EXPORT-1 |

@@ -1745,3 +1745,39 @@ amendment; owner ruling required).
 - **Gate / blockers:** human-gated PR for this tranche; merge remains an
   owner act on the exact final branch HEAD. Stage-A steps 1–8 are
   unperformed and remain owner-gated per the standing workplan.
+
+### Receipt 67 — 2026-07-31 — Stage A step 0 merge execution and step 1: K-TM-1..6 CONTRACT entry
+
+- **Parent receipt:** Receipt 66. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **PR #426 merge execution (owner-directed proxy, PRD annex §5.3.1):**
+  the owner ruled in-session on 2026-07-31 (95 bytes UTF-8 as recorded
+  here with a trailing space normalized away per the tracked-whitespace
+  guard, SHA-256
+  `5c8cf36fe21e276ddbaac97713d9679418342e57471b09e52d0413fa95197be8`):
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  Merge PR #426 and leave the discrepancy as-is and disclose.
+
+  I approve the step-1 design above.
+  <!-- END OWNER RULING VERBATIM -->
+  Approved source HEAD `bd90b0c881454f10a1a65e9a082a859e25878ea5`
+  (verified equal to the PR #426 head before merge); effective merge SHA
+  `25330e78d55e608d7ef14f4350db777bdb396ee6`. The PR #424 manifest gap
+  stays as disclosed in Receipt 66 per the same ruling — no retroactive
+  manifest, no G4 CI change.
+- **Step 1 tranche (this PR; basis `main@25330e78d`):** per the same
+  ruling's second sentence, D-GOV-32 Effect 2(a)/5, and Stage-A workplan
+  step 1:
+  - `docs/CONTRACT.md` — new subsection 1.14 Task Management with
+    K-TM-1..6; row text byte-verbatim from adopted PRD §10 (verified
+    programmatically); index count 34→40, subsections 13→14, six index
+    rows added; Enforcement Map rows Agent instructions (+K-TM-3), Human
+    review (+K-TM-3/4/5), Governance audit (+K-TM-1/2/6), Future tooling
+    (+K-TM-1/2/5/6). No existing invariant row byte changes.
+  - Tranche manifest
+    `docs/governance_harness/tranche_manifests/ROOT-TM-STAGEA-STEP1-20260731.yaml`
+    (`self_merge: false`; M6 `pending` — loop notification is owned by
+    workplan steps 5 and 7).
+- **Gate / blockers:** human-gated PR; merge remains an owner act on the
+  exact final branch HEAD. Next in order: step 2 (program register mint)
+  and step 3 (candidate-row seeding), which will be presented together.
