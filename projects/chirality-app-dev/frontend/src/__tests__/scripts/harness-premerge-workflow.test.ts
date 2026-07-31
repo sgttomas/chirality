@@ -12,6 +12,12 @@ const WORKFLOW_PATH = path.resolve(
   'harness-premerge.yml'
 );
 
+const RELEASE_QUALITY_WRAPPER_PATH = path.resolve(
+  process.cwd(),
+  'scripts',
+  'validate-release-quality-evidence.mjs'
+);
+
 describe('repo-root harness premerge workflow', () => {
   it('enforces the ORN-01 gate set on pull requests without provider secrets', async () => {
     const workflow = await readFile(WORKFLOW_PATH, 'utf8');
@@ -37,8 +43,6 @@ describe('repo-root harness premerge workflow', () => {
     expect(workflow).not.toContain('${{ runner.temp }}');
     expect(workflow).toContain('mkdir -p "${HARNESS_PROJECT_ROOT}"');
     expect(workflow).toContain('"${REPO_ROOT}/AGENTS.md" "${REPO_ROOT}/CLAUDE.md"');
-    expect(workflow).toContain('run: npm run typecheck');
-    expect(workflow).toContain('run: npm run test -- --testTimeout=60000');
     expect(workflow).toContain('npm run instruction-root:integrity --');
     expect(workflow).toContain('run: npm run validate:release-quality');
     expect(workflow).toContain('artifacts/harness/section8/latest/summary.json');
@@ -46,5 +50,20 @@ describe('repo-root harness premerge workflow', () => {
     expect(workflow).toContain('artifacts/harness/instruction-root-integrity/latest/summary.json');
     expect(workflow).not.toContain('secrets.ANTHROPIC_API_KEY');
     expect(workflow).not.toContain('command -v claude');
+  });
+
+  it('enforces the full test suite and typecheck through the release-quality wrapper', async () => {
+    // The workflow no longer runs standalone typecheck/vitest steps: the
+    // release-quality wrapper runs both as evidence commands, so the ORN-01
+    // gate is pinned here at its enforcement point instead. If these
+    // commands leave the wrapper, the workflow must regain standalone steps.
+    const wrapper = await readFile(RELEASE_QUALITY_WRAPPER_PATH, 'utf8');
+
+    expect(wrapper).toContain(
+      "runCommand({ id: 'full_test', args: ['run', 'test', '--', '--testTimeout=15000'] })"
+    );
+    expect(wrapper).toContain(
+      "runCommand({ id: 'typecheck', args: ['run', 'typecheck'] })"
+    );
   });
 });
