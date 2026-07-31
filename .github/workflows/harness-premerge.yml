@@ -58,6 +58,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # The project manifest's legacySessionRoots entry must exist at
+          # registration (the runtime realpaths every manifest reference).
+          # It is untracked; previously the standalone vitest step created
+          # it as a side effect. Declare the dependency explicitly.
+          mkdir -p "${GITHUB_WORKSPACE}/projects/chirality-app-dev/frontend/.chirality/sessions"
           RUNTIME_USER_DATA="${RUNNER_TEMP}/chirality-runtime-user-data"
           echo "HARNESS_PROJECT_ROOT=${RUNNER_TEMP}/chirality-harness-workroot" >> "${GITHUB_ENV}"
           echo "CHIRALITY_RUNTIME_USER_DATA=${RUNTIME_USER_DATA}" >> "${GITHUB_ENV}"
