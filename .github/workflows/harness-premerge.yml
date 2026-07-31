@@ -17,6 +17,11 @@ on:
 permissions:
   contents: read
 
+# Superseded runs on the same PR carry no information; cancel them.
+concurrency:
+  group: harness-premerge-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   harness-premerge:
     name: Harness pre-merge
@@ -29,11 +34,35 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # domains/ (1.03 GB tracked) and execution/ (256 MB tracked) are
+          # ~90% of the checkout payload and are never read by this job
+          # (frontend code references _DomainEngines and project-local
+          # execution/ dirs only, both listed below). Cone mode keeps all
+          # root files. blob:none skips download of blobs outside the cone.
+          filter: blob:none
+          sparse-checkout: |
+            .github
+            _DomainEngines
+            agents
+            docs
+            exports
+            init
+            plans
+            projects
+            runtime
+            skills
+            tools
 
       - name: Initialize runner paths
         shell: bash
         run: |
           set -euo pipefail
+          # The project manifest's legacySessionRoots entry must exist at
+          # registration (the runtime realpaths every manifest reference).
+          # It is untracked; previously the standalone vitest step created
+          # it as a side effect. Declare the dependency explicitly.
+          mkdir -p "${GITHUB_WORKSPACE}/projects/chirality-app-dev/frontend/.chirality/sessions"
           RUNTIME_USER_DATA="${RUNNER_TEMP}/chirality-runtime-user-data"
           echo "HARNESS_PROJECT_ROOT=${RUNNER_TEMP}/chirality-harness-workroot" >> "${GITHUB_ENV}"
           echo "CHIRALITY_RUNTIME_USER_DATA=${RUNTIME_USER_DATA}" >> "${GITHUB_ENV}"
@@ -63,9 +92,13 @@ jobs:
         run: npm ci
         working-directory: projects/chirality-app-dev/frontend
 
-      - name: Typecheck
-        run: npm run typecheck
-        working-directory: projects/chirality-app-dev/frontend
+      # The standalone Typecheck and Full Vitest suite steps were removed:
+      # the release-quality wrapper below re-runs both as evidence commands
+      # (full_test, typecheck in validate-release-quality-evidence.mjs), so
+      # the workflow previously ran the entire vitest suite and tsc twice
+      # (~58s of duplicated wall time per run). The wrapper's runs are the
+      # evidence-bearing gate; its summary is asserted in Verify stable
+      # summaries.
 
       - name: Pi supply-chain policy
         run: npm run pi:supply-chain
@@ -73,10 +106,6 @@ jobs:
 
       - name: Secret scan
         run: npm run proof:secret-scan
-        working-directory: projects/chirality-app-dev/frontend
-
-      - name: Full Vitest suite
-        run: npm run test -- --testTimeout=60000
         working-directory: projects/chirality-app-dev/frontend
 
       - name: Prepare instruction-root integrity fixture
