@@ -1716,3 +1716,32 @@ amendment; owner ruling required).
   `execution/_Coordination/AgentRuns/GOV-STEP5-ROOT-20260729/`. No tranche
   manifest: no `docs/`, `tools/`, `agents/`, or `.github/` path is touched
   and root `README.md` is not G4 instruction surface.
+
+### Receipt 66 — 2026-07-31 — Task Management Stage A step 0: D-GOV-32 SHA backfill
+
+- **Parent receipt:** Receipt 65. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Authorization of record:** D-GOV-32's own declared PENDING_BACKFILL
+  slots ("backfilled by the Stage-A execution tranche") and the
+  owner-selected Stage-A workplan step 0
+  (`execution/_Coordination/WORKPLAN_2026-07-31_task_management_stage_a.md`,
+  selected via PR #425 merge `e38d332aa`), under the owner's 2026-07-31
+  sequencing direction recorded in that workplan. No new owner direction
+  was given for this step.
+- **What changed (basis `main@e38d332aa21792d40d7528b5ee9a3908325a13a7`):**
+  - `docs/governance_harness/_DECISIONS/D-GOV-32_task_management_prd_adoption.md`
+    — `PublicationSHA` and `EffectiveSHA` backfilled to the PR #424 merge
+    `1c80a2bc1b2631039149b0fb75dffa3550c583aa`; edits confined to the two
+    declared PENDING slots; all other record bytes unchanged
+    (supersede-never-edit).
+  - Tranche manifest
+    `docs/governance_harness/tranche_manifests/ROOT-TM-STAGEA-STEP0-20260731.yaml`
+    (`self_merge: false`; M6 `none-required`).
+- **Disclosure (not cure):** the PR #424 record-publication tranche
+  touched two `docs/` instruction-surface paths (the D-GOV-32 record and
+  `_DECISIONS/_REGISTER.md`) without a tranche manifest; G4 CI mode is
+  schema-only, so CI passed. Recorded here as a G4-discipline gap for
+  owner visibility; no retroactive manifest is synthesized.
+- **Gate / blockers:** human-gated PR for this tranche; merge remains an
+  owner act on the exact final branch HEAD. Stage-A steps 1–8 are
+  unperformed and remain owner-gated per the standing workplan.

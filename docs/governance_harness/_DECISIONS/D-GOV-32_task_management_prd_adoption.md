@@ -5,8 +5,8 @@ HumanRuling:  "The PRD is accepted." (owner, 2026-07-31, in-session; recorded ve
 AcceptedCandidateSHA: 584319dc9 (the commit carrying the adopted PRD bytes, merged to `main` via PR #423)
 CandidateSubjectSHA256: 97e2ae6525ecbfdc52ff22aee85e1182a751c1090c2aa2f52faaf9e080f35d18 (`plans/chirality-task-management/PRD_CANDIDATE_2026-07-31.md`, Revision 2)
 CandidateMergeSHA: c1156837f9559038d8a1fc1e1b37fb3c5f9aeb0b (merge of PR #423 into `main`, 2026-07-31; the adopted bytes became repository state at this commit, harness green)
-PublicationSHA: PENDING_BACKFILL (the merge publishing this record; backfilled per the D-GOV-18/19/21/22/31 convention)
-EffectiveSHA: PENDING_BACKFILL (same merge; backfilled by the Stage-A execution tranche)
+PublicationSHA: 1c80a2bc1b2631039149b0fb75dffa3550c583aa (merge of PR #424 into `main`, 2026-07-31, publishing this record; backfilled by the Stage-A step-0 tranche per the D-GOV-18/19/21/22/31 convention)
+EffectiveSHA: 1c80a2bc1b2631039149b0fb75dffa3550c583aa (same merge; this record's adoption status became repository state at the PR #424 merge — the adopted PRD bytes were already live at CandidateMergeSHA `c1156837f`; backfilled by the Stage-A step-0 tranche)
 Date:         2026-07-31
 FramedBy:     HELP_HUMAN session of record (Agent 0), the same 2026-07-31 working session that ran the fresh PRD inquiry, the four-lens architecture review, and the Rev 1 → Rev 2 restructuring
 AcceptedBasis: `main@a7371ed94` (inquiry and review basis) → `main@c1156837f` (adopted bytes on main)
