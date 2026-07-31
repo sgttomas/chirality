@@ -47,6 +47,14 @@ def _fact(report, fact_id):
     raise AssertionError(f"fact {fact_id} missing: {[f.fact_id for f in report.facts]}")
 
 
+@pytest.fixture(scope="module")
+def live_self_check():
+    """One shared live self-check for every test in this module. The report is
+    read-only and the tree cannot change mid-run, so per-test re-runs (each a
+    full repo scan) would assert against byte-identical reports."""
+    return cmd_self_check.run_self_check(LIVE_REPO)
+
+
 @live
 def test_live_drift_baseline_0_of_101_and_0_of_53():
     # Conscious pin update 2026-07-02 (was 92/101): the STATUS_HISTORY_MISMATCH
@@ -71,7 +79,7 @@ def test_live_drift_baseline_0_of_101_and_0_of_53():
 
 
 @live
-def test_live_self_check_catches_the_three_retained_surfaces():
+def test_live_self_check_catches_the_three_retained_surfaces(live_self_check):
     # Conscious pin update (owner ruling 2026-07-02, in-session): the D-T0
     # stale-title/TBD-SHA drift was cleaned and backfilled to the tier-0
     # publication commit 6e70b5aace4a3a7c4ebb20490a3bf57bfd912f45 per the
@@ -79,7 +87,7 @@ def test_live_self_check_catches_the_three_retained_surfaces():
     # DOMAIN_ENGINE_INDEX stale PEC-proposal annotation; the remaining live
     # fixture surfaces MUST keep firing (asserted individually below, then
     # pinned as exact counts).
-    report, refusal = cmd_self_check.run_self_check(LIVE_REPO)
+    report, refusal = live_self_check
     assert refusal is None
     keyed = {(f.code, f.source_path, f.source_line) for f in report.findings}
     assert ("STALE_RULING_ANNOTATION",
@@ -107,8 +115,8 @@ def test_live_self_check_catches_the_three_retained_surfaces():
 
 
 @live
-def test_live_self_check_abs_path_in_evidence_reports_are_pinned():
-    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+def test_live_self_check_abs_path_in_evidence_reports_are_pinned(live_self_check):
+    report, _ = live_self_check
     hits = [f for f in report.findings if f.code == "ABS_PATH_IN_EVIDENCE"]
     assert len(hits) == 2
     assert {(h.source_path, h.source_line) for h in hits} == {
@@ -131,15 +139,15 @@ def test_live_bridge_status_reports_pec_stale_profile():
 
 
 @live
-def test_live_self_check_stale_open_issue_is_zero():
+def test_live_self_check_stale_open_issue_is_zero(live_self_check):
     # Post-cleanup live corpus: open_issues entries are annotated in place and
     # the D-T0-06 ruling condition carries its "[Condition met ...]" note.
-    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    report, _ = live_self_check
     assert [f for f in report.findings if f.code == "STALE_OPEN_ISSUE"] == []
 
 
 @live
-def test_live_self_check_live_binding_gate_drift_is_detected():
+def test_live_self_check_live_binding_gate_drift_is_detected(live_self_check):
     # Conscious pin inversion 2026-07-04: this test originally pinned the
     # HB-8 STALE_LIVE_BINDING_GATE finding at profile :145 (the line still
     # named the cleared tier-0-adoption and piping D-21 gates). The
@@ -148,15 +156,15 @@ def test_live_self_check_live_binding_gate_drift_is_detected():
     # to the single genuinely open gate (app-dev F3), so the live corpus now
     # lawfully carries ZERO findings of this code. Detector behaviour on
     # synthetic stale input stays covered by the HB-8 fixture tests.
-    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    report, _ = live_self_check
     hits = [f for f in report.findings if f.code == "STALE_LIVE_BINDING_GATE"]
     assert hits == []
 
 
 @live
-def test_live_self_check_draft_basis_pins():
+def test_live_self_check_draft_basis_pins(live_self_check):
     from harness_common import Severity
-    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    report, _ = live_self_check
     assert [f for f in report.findings if f.code == "DRAFT_BASIS_AS_BINDING"] == []
     info = [f for f in report.findings if f.code == "DRAFT_BASIS_RULED_CLOSED"]
     # The seven D-GOV records' `FramedBy: governance_harness_plan_v3` lines:
@@ -178,7 +186,7 @@ def test_live_self_check_draft_basis_pins():
 
 
 @live
-def test_live_pointer_currency_first_detection_target():
+def test_live_pointer_currency_first_detection_target(live_self_check):
     # The 2026-07-01 consistency audit's live reproduction case: the piping
     # reconciliation pointer designated the 2026-05-09 DEV001 run summary,
     # retired to .archive/ on 2026-06-03 (349a2ab33). The owner ruled the
@@ -189,7 +197,7 @@ def test_live_pointer_currency_first_detection_target():
     pointer = (LIVE_REPO / "projects" / "chirality-piping" / "execution"
                / "_Reconciliation" / "_LATEST.md")
     first_line = pointer.read_text(encoding="utf-8").splitlines()[0]
-    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    report, _ = live_self_check
     hits = [f for f in report.findings if f.code == "POINTER_TARGET_UNRESOLVED"]
     if "2026-05-09_DEV001" in first_line:  # pre-disposition tree
         assert [(f.source_path, f.source_line) for f in hits] == [
@@ -220,8 +228,8 @@ def test_live_pointer_currency_first_detection_target():
 
 
 @live
-def test_live_gen8_semantic_portability_invariants():
-    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+def test_live_gen8_semantic_portability_invariants(live_self_check):
+    report, _ = live_self_check
     assert [f for f in report.findings if f.code in {
         "ABS_PATH_IN_PROJECT_SURFACE",
         "ABS_PATH_IN_UNCLASSIFIED_SURFACE",
@@ -238,7 +246,7 @@ def test_live_gen8_semantic_portability_invariants():
 
 
 @live
-def test_live_gen9_registry_currency_zero_drift():
+def test_live_gen9_registry_currency_zero_drift(live_self_check):
     # Consistency-audit §4 item 3 was the check's first detection target: the
     # registry indexed DELIVERABLE_TASK as live (AGENTS.md:89 at 4e01db61e)
     # while the file existed only under the gitignored agents/.archive/. The
@@ -247,7 +255,7 @@ def test_live_gen9_registry_currency_zero_drift():
     # the live registry is pinned clean in BOTH directions. A regression in
     # either direction is a conscious pin update, never a silent one; the
     # detector itself is proven by test_agent_registry_fixtures.py.
-    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+    report, _ = live_self_check
     assert [f for f in report.findings
             if f.code == "REGISTRY_TARGET_MISSING"] == []
     assert [f for f in report.findings
@@ -257,8 +265,8 @@ def test_live_gen9_registry_currency_zero_drift():
 
 
 @live
-def test_live_self_check_reports_root_ratified_governance_and_exits_clean():
-    report, _ = cmd_self_check.run_self_check(LIVE_REPO)
+def test_live_self_check_reports_root_ratified_governance_and_exits_clean(live_self_check):
+    report, _ = live_self_check
     for name in ("DIRECTIVE.md", "CONTRACT.md", "SPEC.md", "TYPES.md"):
         fact = _fact(report, f"root_governance.{name}")
         assert "RATIFIED" in fact.value
