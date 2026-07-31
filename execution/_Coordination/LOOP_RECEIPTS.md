@@ -1781,3 +1781,48 @@ amendment; owner ruling required).
 - **Gate / blockers:** human-gated PR; merge remains an owner act on the
   exact final branch HEAD. Next in order: step 2 (program register mint)
   and step 3 (candidate-row seeding), which will be presented together.
+
+### Receipt 68 — 2026-07-31 — Stage A step 1 merge execution and steps 2–3: program register minted and seeded (candidate rows)
+
+- **Parent receipt:** Receipt 67. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **PR #428 merge execution (owner-directed proxy, PRD annex §5.3.1):**
+  the owner ruled in-session on 2026-07-31 (63 bytes UTF-8, SHA-256
+  `3cf0044d323e59c8e10843a667a7b35e2da28485310c81cf3f14271c51c52ff4`):
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  Merge PR #428 then proceed with the next steps in the workplan.
+  <!-- END OWNER RULING VERBATIM -->
+  Approved source HEAD `0fa237a4eaf56b8e5ea7b4cea9e313eefb69fdf2`
+  (verified equal to the PR #428 head before merge); effective merge SHA
+  `c8c2a6146b8e36103756c37ca78f8fd3b013c31e`. K-TM-1..6 are now catalog
+  rows in `docs/CONTRACT.md` §1.14.
+- **Steps 2–3 tranche (this PR; basis `main@c8c2a6146`):** under the same
+  ruling's "proceed" direction and workplan steps 2–3:
+  - `execution/_Coordination/_TaskManagement/REGISTER.csv` minted per PRD
+    §6.3 — `RegisterSchemaVersion` 1.0 column 1; 25 columns including
+    mandatory `Status`/`Disposition` (K-TM-6); a `_Coordination/`
+    subdirectory, not a SPEC §1.2 tool root; no per-item MD summaries.
+  - **100 candidate rows seeded** (`TM-ROOT-001..100`, all `OPEN`,
+    priorities TBD; rows are adopted only at the owner triage session,
+    K-TM-3 / workplan step 6): 29 TRACKED_OPEN ledger notices; 3
+    unregistered D-GOV-31 notices; 6 ranked actions and 5 held-open
+    questions from the 07-28 tandem review (§09/§08); 9 horizon
+    findings; piping D-45; 22 open packet questions + 1 TBD conflict;
+    21 TP-EXPORT-006 TBD rows; 3 loop-adoption rows (App-dev, Piping,
+    PEC). Every row cites source path and git blob SHA at this basis.
+- **Live-vs-derivative deltas recorded (live wins):** (a) the review's
+  "~115 items" resolves to 100 live rows — the handoff-blocker class is
+  live-empty (all 20 standing `HANDOFF_STATE.md` files declare
+  "Remaining blockers: none"; the 35-file count included immutable run
+  records), and slate items are fenced work-discovery surfaces per PRD
+  §5.5; (b) 41 `Amendment_Candidates.csv` rows with `HumanRuling=TBD`
+  exist but are NOT seeded — the workplan names "open packet questions"
+  only; they remain a §5.1 scan-source class for owner triage to admit
+  or exclude; (c) packet open questions count 22 live (12 OPEN, 9
+  status-blank, 1 PARTIAL), vs the review's 23.
+- **Gate / blockers:** human-gated PR; merge remains an owner act on the
+  exact final branch HEAD. No instruction-surface path is touched — no
+  tranche manifest (Receipt 65 precedent). Next in order: step 4
+  (LOOP_INIT reader binding, owner-gated), step 5 (PEC §16-1 notice),
+  step 6 (first owner triage session — PRD §19.1 falsification clause
+  arms after two untriaged root-loop sessions).
