@@ -1826,3 +1826,55 @@ amendment; owner ruling required).
   (LOOP_INIT reader binding, owner-gated), step 5 (PEC §16-1 notice),
   step 6 (first owner triage session — PRD §19.1 falsification clause
   arms after two untriaged root-loop sessions).
+
+### Receipt 69 — 2026-07-31 — Steps 2–3 merge execution; steps 4–5: TASK_MANAGEMENT agent in lieu of reader binding, PEC §16-1 notice
+
+- **Parent receipt:** Receipt 68. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Owner ruling of record (2026-07-31, in-session, 188 bytes UTF-8,
+  SHA-256
+  `043339d7c7e880af3a546e0e2280c944cfa96be81a434ebf43f8f0845c26e433`;
+  verbatim in workplan Amendment 1):** the owner counter-proposed a
+  standalone Task Management agent in lieu of the presented step-4
+  reader binding, reversed the Stage-A no-agent-instruction-changes
+  posture for exactly that package, noted scheduling as the read
+  cadence, and directed "Merge PR #429 and proceed accordingly."
+- **PR #429 merge execution (owner-directed proxy, PRD annex §5.3.1):**
+  direction was given against presented HEAD
+  `135d66d128f139ac3d34c2e20362e7ea78498b5a`. CI's whitespace guard then
+  rejected the register's CSV-writer CRLF line terminators; one
+  normalization commit (`cca82c98e`, parsed content verified identical,
+  100 rows) was pushed under the same direction and disclosed here.
+  Effective merge SHA `6f4906f9aa700e46a000fcc9c2f99d08e1873e1d`,
+  harness green. The program register is live at
+  `execution/_Coordination/_TaskManagement/REGISTER.csv`.
+- **Steps 4–5 tranche (this PR; basis `main@a91edd134` + #429):**
+  - Step 4 superseded per workplan Amendment 1: the root loop declines
+    the PRD §14 entry binding by its own ruling (the clause the PRD
+    itself provides); `LOOP_INIT.md` is deliberately untouched.
+  - `agents/AGENT_TASK_MANAGEMENT.md` added (Agent 1; SHA-256
+    `6326bfae4645f724ea9104255f0a2514c44921fc4466fb592db594c7afca0d9d`)
+    with its `AGENTS.md` index row: on-demand / human-scheduled
+    invocation; owns only the invoking loop's register home; K-TM-1..6
+    embedded; dispositions remain owner acts; no skills/tools/automation
+    yet ("for now, just the agent").
+  - Agent-index change notices routed to App-dev, Piping, and PEC
+    coordination surfaces (rule: same-tranche notice on any `agents/`
+    change).
+  - Step 5: `NOTICE_D-GOV-32_TASK_MANAGEMENT_ADOPTION.md` routed to the
+    PEC surface per D-GOV-32 Effect 3 — PEC PRD §16 decision 1 decided
+    for the Action Item register class only; PEC remains unbound
+    (Effect 4).
+  - Tranche manifest
+    `docs/governance_harness/tranche_manifests/ROOT-TM-STAGEA-STEP45-20260731.yaml`
+    (`self_merge: false`; M6 `routed`, 4 notices).
+- **Disclosure (not cure):** PR #427 (owner-merged 2026-07-31,
+  CI-speedup) changed `.github/workflows/` and `tools/` instruction-
+  surface paths without a tranche manifest — same G4-discipline gap
+  class as the PR #424 disclosure in Receipt 66; recorded for owner
+  visibility, no retroactive manifest synthesized.
+- **Gate / blockers:** human-gated PR for this tranche; merge remains an
+  owner act on the exact final branch HEAD. Next in order: step 6 —
+  first owner triage session over the 100 seeded rows (PRD §19.1 clock:
+  two root-loop sessions), expected to run as TASK_MANAGEMENT's first
+  invocation; then step 7 Stage-B packets.
