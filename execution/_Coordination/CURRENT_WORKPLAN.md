@@ -1,9 +1,9 @@
 # Current Root Governance Workplan
 
-Status: `IDLE — OWNER-GATED SUCCESSOR SELECTION`
+Status: `ACTIVE — TASK MANAGEMENT STAGE A (D-GOV-32)`
 
 Target:
-`execution/_Coordination/WORKPLAN_2026-07-27_root_idle.md`
+`execution/_Coordination/WORKPLAN_2026-07-31_task_management_stage_a.md`
 
 This is the deterministic standing-plan pointer for the root governance loop.
 Resolve the target relative to repository root and read that exact file. Do
