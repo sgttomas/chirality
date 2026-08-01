@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chirality App (app-dev) Maturity Survey — 2026-08-01</title>
+<style>
+  :root { --ink:#1a1a1a; --dim:#666; --line:#ddd; --accent:#5a3d7a; --warn:#8a4b00; --good:#1d6b3a; --bg:#fbfaf8; --card:#fff; }
+  body { font: 16px/1.55 Georgia, 'Times New Roman', serif; color:var(--ink); background:var(--bg); margin:0; }
+  main { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  h1 { font-size:1.6rem; line-height:1.25; margin:0 0 .25rem; }
+  h2 { font-size:1.15rem; margin:2.2rem 0 .6rem; color:var(--accent); border-bottom:1px solid var(--line); padding-bottom:.25rem; }
+  h3 { font-size:1rem; margin:1.4rem 0 .4rem; }
+  .meta { color:var(--dim); font-size:.85rem; margin-bottom:1.5rem; }
+  .verdict { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent); padding:1rem 1.2rem; margin:1.2rem 0; }
+  .verdict strong.axis { color:var(--accent); }
+  table { border-collapse:collapse; width:100%; font-size:.85rem; margin:.8rem 0; }
+  th, td { border:1px solid var(--line); padding:.4rem .6rem; text-align:left; vertical-align:top; }
+  th { background:#f0ede8; }
+  code { font: .82em/1.4 'SF Mono', Menlo, Consolas, monospace; background:#f2f0ec; padding:.05em .3em; border-radius:3px; }
+  .good { color:var(--good); font-weight:bold; }
+  .warn { color:var(--warn); font-weight:bold; }
+  .overflow { overflow-x:auto; }
+  ul { padding-left:1.3rem; }
+  li { margin:.3rem 0; }
+  footer { margin-top:3rem; padding-top:1rem; border-top:2px solid var(--line); color:var(--dim); font-size:.82rem; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>Chirality App (app-dev) Maturity Survey</h1>
+<div class="meta">
+2026-08-01 · basis <code>main@12df406b5</code> · read-only survey by a
+sealed bounded agent (69 file reads across frontend source, tests, CI
+workflows, decision and hold registers, scope-change and horizon records),
+fanned in by the supervising root session · derivative, non-governing (see
+footer) · companion to
+<code>plans/chirality_piping_solver_maturity_survey_2026-07-31.html</code>;
+the pair gives the two application loops a comparable evidence basis
+</div>
+
+<div class="verdict">
+<strong class="axis">Verdict, two axes.</strong> As an <em>engineered
+desktop client</em>, the App is mature: ~46k LOC of product TypeScript
+behind 1,022 test cases, a real Unix-socket daemon client seam whose API
+routes construct no engine, three engine adapters with the D-APP-40
+interruption taxonomy implemented and conformance-tested, and a CI gate
+that boots the actual daemon and fails closed on evidence summaries. As a
+<em>relied-upon release surface</em>, it is not mature: reliance is
+released across every entry path while the UI/API semantic-parity
+instrument does not exist, no e2e layer of any kind exists, six
+historical relations remain UNKNOWN, the PRD body contradicts its own
+§17, and zero of 53 deliverables has ever left <code>IN_PROGRESS</code>.
+This is the exact inversion of the Piping posture (capability-deep,
+reliance-withheld): here reliance ran ahead of assurance.
+</div>
+
+<h2>1 · Code reality</h2>
+<ul>
+<li><strong>Next.js 15.5 + React 18 in Electron 43</strong> (macOS
+Apple Silicon DMG target), TypeScript throughout, at
+<code>projects/chirality-app-dev/frontend/</code>.</li>
+<li><strong>Product code ≈ 46k LOC; tests ≈ 36k LOC</strong> (ratio
+~0.78): <code>src/lib</code> 25,379 (harness, workspace, woven-dialogue,
+runtime-client, pipeline) · <code>src/components</code> 9,069 ·
+<code>electron/</code> 3,204 · <code>scripts/</code> validators 7,558 ·
+<code>src/__tests__</code> 36,134 across 141 test files.</li>
+<li>Subsystems: turn engine / session manager / runtime contract; three
+SDK managers (Anthropic 1,009 LOC, Claude 464, Pi/oMLX 1,010) plus a
+1,276-LOC SDK message mapper; MCP tool suites (read, coordination,
+domain-proposal, headless preview); PEC bridge client (loopback-only,
+four hard-coded endpoints per D-APP-52); a permission/governance plane
+(overlay, shell/path policy, hooks, subagent governance, managed
+delegation ≈ 3,200 LOC combined); the runtime-client daemon port; and
+workspace/deliverable filesystem contracts.</li>
+<li>Root runtime packages (separate tree): contracts 3,976 · core 3,071
+· cli 980 · client 696 · daemon 585 · engine adapters.</li>
+<li>The old in-process harness facade
+(<code>packages/harness-contract</code>) is reduced to 2-line
+<code>@deprecated</code> re-export shims; nothing outside tests imports
+the process-default adapter — the client boundary is real in the import
+graph, not just in prose.</li>
+</ul>
+
+<h2>2 · Feature coverage</h2>
+<h3>Implemented and wired</h3>
+<ul>
+<li><strong>Daemon-first session/turn management:</strong> all 10 harness
+API routes are thin proxies over the daemon port
+(<code>src/app/api/harness/turn/route.ts</code> streams SSE;
+<code>ENGINE_UNAVAILABLE</code> 503 when unbound). The Electron host
+instantiates the real <code>RuntimeDaemon</code> and composes engines
+(<code>electron/runtime-host.ts</code>).</li>
+<li><strong><code>turn.interrupted</code> (D-APP-40 Option B) —
+implemented in all three engines</strong> and covered by conformance,
+route, and session-event tests. (This closes the NOT-VERIFIED flag from
+the 2026-07-31 root triage verification.)</li>
+<li>Approval/gating UX rendering permission cards from the live event
+stream; Woven Dialogue IA (D-APP-74/SCA-APP-004) shell, navigator,
+coordination panel, projections, replay lens.</li>
+<li><strong>Work/tasks UI is an evidence-only projection by declared
+design</strong> — “Controlling status and authority remain with each
+recorded source” (<code>work-projection.tsx:20-23</code>) — exactly the
+K-TM-5-compatible posture.</li>
+<li>PEC MCP proposal/validate tools implemented behind the permission
+allowlist; acceptance/apply deliberately absent (proposal-only,
+K-DOMAIN-3-consistent).</li>
+</ul>
+<h3>Deferred / not built (by ruling, with cites)</h3>
+<ul>
+<li>Editable document write path (D-APP-26, deferred) · secondary
+task-management surface (D-APP-29, deferred) · Type-2 INIT-TASK brief
+(D-APP-27, excluded).</li>
+</ul>
+
+<h2>3 · Validation state</h2>
+<div class="overflow"><table>
+<tr><th>Apparatus</th><th>State</th><th>Reading</th></tr>
+<tr><td>Unit/integration</td>
+<td><span class="good">141 test files, 1,022 cases</span>; last committed
+full-suite evidence “680 passed / 4 skipped” (Receipt ~2026-07-2x) —
+<span class="warn">stale versus the 1,022 now present</span>; live
+summaries gitignored by design</td>
+<td>Volume is real; committed pass-state lags the code head</td></tr>
+<tr><td>CI (<code>harness-premerge.yml</code>)</td>
+<td>Builds runtime + frontend, supply-chain and secret scans,
+instruction-root integrity, packs Electron, <span class="good">boots the
+real daemon under xvfb, registers the project over the Unix socket via
+CLI</span>, then <code>validate:release-quality</code> asserting four
+evidence summaries <code>pass</code></td>
+<td>Transport and daemon are exercised for real;
+<span class="warn">the model provider is a stub</span> — the LLM is never
+live in CI</td></tr>
+<tr><td>E2E</td>
+<td><span class="warn">NOT FOUND — no Playwright/Cypress/e2e anywhere</span>;
+<code>docs/VALIDATION_STRATEGY.md</code> settles for targeted manual UI
+review; coverage/perf thresholds TBD</td>
+<td>The surfaces operators touch have no automated end-to-end
+witness</td></tr>
+<tr><td><strong>Parity instrument</strong></td>
+<td><span class="warn">Does not exist</span> — tracked (TM-ROOT-036,
+DEFERRED; TERM-010; SCA-APP-005 “preserved-untouched” list), unselected
+on the 07-29 readiness slate. Missing concretely: packaged-Desktop smoke
+for the two re-hosted surfaces (DEL-02-02, DEL-08-02) and replay
+evidence from a <em>live</em> daemon session (DEL-05-04); the DEL-08-02
+<code>[data-legacy]</code> contract is asserted in mock-only tests</td>
+<td>The one instrument connecting the daemon to operator-visible
+behavior is the named debt; HZN-008’s limit statement applies in
+full</td></tr>
+</table></div>
+
+<h2>4 · Open defects and findings</h2>
+<ul>
+<li>No <code>Review_Findings.csv</code> convention in this loop (piping
+only); open work rides as <strong>48 <code>## Remaining</code> bullets
+across 53 deliverables</strong>. <code>APP_HOLD_REGISTER.csv</code> is
+header-only — <span class="good">zero open holds</span>.</li>
+<li><strong>Six historical relations remain UNKNOWN</strong>
+(DEL-02-01/02-02/02-04/05-04/08-02/08-03;
+<code>history_reconstructed=false</code>; kept UNKNOWN by D-APP-81 clause
+6). The record lives only in the frozen OD6-G4 proposal package — no
+live deliverable file carries the marker, a legibility weakness.</li>
+<li><strong>HZN-004 PRD staleness verified live:</strong> the body claims
+frontend ownership of the runtime contract in four places while §17
+assigns it to Root — and <strong><code>docs/PRD.md</code> now has two
+sections numbered 17</strong> (Approval and Change Control; Shared
+Runtime Amendment), making the load-bearing citation ambiguous. Tracked
+(TM-ROOT-047, slate option 8), unselected.</li>
+<li><strong>Structural finds in passing:</strong> an orphan
+<code>PKG-03_Harness_Runtime_Core/DEL-03-06</code> directory (evidence
+only, no <code>_STATUS.md</code>/SOW, absent from the accepted
+decomposition — two directories claim PKG-03); the D-APP-82 register row
+still reads <code>PENDING_PR_MERGE</code> after its closeout landed.</li>
+</ul>
+
+<h2>5 · Reliance and lifecycle</h2>
+<ul>
+<li><strong>Reliance released, precisely:</strong> D-APP-81 clause 4
+allows the six formerly-held deliverables “reliance, dispatch,
+<code>CHECKING</code> promotion, and accepted-dependency consumption
+through every entry path.” The release followed a proper sequence
+(D-APP-75 hold → D-APP-78 basis repair → D-APP-79 posture → D-APP-80
+53-contract concordance and repin → D-APP-81 release → D-APP-82
+ratification); scan-authoritative discovery stays armed and fails closed
+on any future unresolvable basis.</li>
+<li><strong>SCA-APP-005</strong> corrected the decomposition from generic
+runtime owner to <em>affected client</em> (31 SOW rows, 17 deliverables
+touched); semantic parity was named in its preserved-untouched list —
+the debt was visible at the boundary correction and deliberately
+carried.</li>
+<li><strong>Lifecycle:</strong> 54 DEL dirs in <code>1_Working</code>;
+all 53 with status read <code>IN_PROGRESS</code>; the issuance machinery
+(D-APP-19/34) has never run — <code>2_Checking</code>/<code>3_Issued</code>
+exist only as empty PKG-00 scaffolding. Decision register: 82 D-APP rows
+RULED; D-APP-83 (Task Management adoption) presented and awaiting the
+loop owner. Loop receipts current to 2026-07-29; frontend commits current
+to 2026-07-31 — code hot, loop briefly idle, governance cadence
+intact.</li>
+</ul>
+
+<h2>6 · Synthesis — the two application loops, side by side (supervising session)</h2>
+<p>Piping and App now hold mirrored postures. Piping is
+<em>capability-deep and reliance-withheld</em>: a validated-in-substance
+mechanics kernel whose every tolerance and reliance claim is deliberately
+TBD under an explicit hold. App is <em>reliance-released and
+assurance-thin</em>: a well-engineered client whose formal permission to
+be relied upon ran ahead of the instrument that would witness it. The
+program's 07-28 review ranked this inversion its #2 risk; this survey
+confirms all three prongs byte-for-byte. The two missing objects are the
+same species — Piping's tolerance policy and App's parity instrument are
+both <strong>the undefined meaning of “matches”</strong> — which suggests
+any future product-basis or rebalancing act should treat them as one
+design question instantiated twice, not two backlogs.</p>
+
+<footer>
+This report is a derivative, non-governing record produced by a
+read-only survey at basis <code>main@12df406b5</code>. It does not amend
+any PRD, decomposition, lifecycle, hold, or reliance state; it grants no
+authority and is not itself validation or parity evidence. Repository
+sources and accepted instruments control wherever they differ from this
+interpretation. Numeric claims (LOC, counts, tallies) are the surveying
+agent's measurements at this basis and should be re-derived before any
+consequential use. Retention posture: keep in <code>plans/</code> while
+it informs the owner's App-dev sequencing and any product-basis decision;
+archive to <code>plans/.archive/</code> thereafter without promoting it
+into product authority.
+</footer>
+
+</main>
+</body>
+</html>
