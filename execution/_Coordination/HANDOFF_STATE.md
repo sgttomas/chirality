@@ -1,63 +1,57 @@
 # Root Governance Loop Handoff State
 
-Status: `IDLE — OWNER-GATED SUCCESSOR SELECTION`
-Current workplan:
-`execution/_Coordination/WORKPLAN_2026-07-27_root_idle.md`
-Accepted upstream basis for this handoff:
-`main@a4376a6d143e881be46cdb00223e6183ea28acc4` (PR #419 merge)
+Four-field form per owner ruling 2026-07-31 (Receipt 72; the ruling
+verbatim is in that receipt): this file carries only the fields no other
+instrument lawfully holds. Posture lives in `CURRENT_WORKPLAN.md`; session
+history and owner directions live in `LOOP_RECEIPTS.md`; attention residue
+lives in `_TaskManagement/REGISTER.csv` (rows are never scope, acceptance,
+or authority — K-TM-5). Per-run and per-phase handoff states remain inside
+their run and snapshot directories per the AGENTS.md handoff-state rule.
 
-## Accepted upstream state
+## 1. Accepted upstream basis
 
-- Root PRD Revision 8 is the adopted product basis: D-GOV-31 adopted the
-  D-8 successor merge-gate policy (Candidate B, Receipt 61), and the owner
-  directed its simplification to owner direction recorded in ordinary
-  closeout evidence (Receipt 64, PR-review vehicle). Human-gated PRs remain
-  the standing default; K-MERGE-1 is unchanged.
-- Root SOFTWARE decomposition revision 1.2 is the accepted current basis:
-  SCA-002 was accepted and applied 2026-07-29 with the one owner-ruled
-  SOW-042 `SourceRef` bracket delta (Receipt 63; snapshot
-  `execution/_ScopeChange/SCA-002_2026-07-29_0800/`).
-- All 46 Root deliverables remain `INITIALIZED`.
-  `DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance` retains its
-  exact accepted Scope of Work and remains initialized but not activated.
-- Program architecture remediation closed 2026-07-28
-  (`CHIRALITY_PROGRAM_ARCH_REMEDIATION_CLOSEOUT_2026-07-28.md`, Receipt 59);
-  its merge-window facts were disclosed and prospectively ratified by
-  D-GOV-30 (Receipt 60).
-- The loop-readiness transition program executed 2026-07-29 through PR #419
-  at this basis: Steps 1–4 complete — D-GOV-30 and D-GOV-31 ruled, PRD
-  Rev 8, SCA-002 applied, Receipts 60–64.
+- Root PRD Revision 8 (`docs/PRD_ROOT.md`), merge-gate policy per annex
+  §5.3.1 as simplified 2026-07-29 (Receipt 64).
+- Root SOFTWARE decomposition revision 1.2 (SCA-002 applied 2026-07-29;
+  snapshot `execution/_ScopeChange/SCA-002_2026-07-29_0800/`). All 46
+  deliverables `INITIALIZED`; none activated.
+- Chirality Task Management PRD Revision 2, adopted by D-GOV-32 (subject
+  SHA-256 `97e2ae6525ecbfdc52ff22aee85e1182a751c1090c2aa2f52faaf9e080f35d18`,
+  effective `main@c1156837f`); K-TM-1..6 ratified at `docs/CONTRACT.md`
+  §1.14 (effective `main@c8c2a6146`). Stage-A instruments: Receipts 66–73;
+  workplan `WORKPLAN_2026-07-31_task_management_stage_a.md` (CLOSED) and
+  its Amendments 1–2; program register at
+  `execution/_Coordination/_TaskManagement/REGISTER.csv` (101 rows:
+  46 CLOSED / 51 DEFERRED / 4 OPEN after the 2026-07-31 owner triage).
+- Stage-A trailing merges (step 8, closure) record their own approved and
+  effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 
-## Current coordination posture
+## 2. Derivative-package currency
 
-No Root production phase is active. The idle workplan remains the
-deterministic standing plan and `CURRENT_WORKPLAN.md` points at it. The Root
-loop is idle and resumable; next-work selection belongs to the resumed loop
-through its normal machinery. A decision-support slate of eligible options is
-recorded at `execution/_Coordination/ROOT_NEXT_WORK_SLATE_2026-07-29.md`.
+- `execution/_Coordination/_TaskManagement/.candidates/` — taskmgmt scan
+  projection: gitignored, rebuildable, never authority (D-GOV-01).
+- `TRIAGE_2026-07-31_SEED_PROPOSALS.md` and
+  `AgentRuns/GOV-TM-TRIAGE-CLUSTER-20260731/` — historical decision
+  support and run evidence for the first triage; not current state.
+- Public export under `exports/chirality-app/` — stale derivative,
+  deferred to the next export release (posture unchanged since SCA-002).
 
-## Remaining owner gates
+## 3. Closure verdict
 
-- A substantive Root production or semantic-enrichment phase requires a new
-  decision-complete workplan and explicit owner selection.
-- `DEL-02-06` activation, dependency, implementation, runtime change,
-  conformance claim, and release remain separately governed.
+`TASK MANAGEMENT STAGE A CLOSED — ROOT LOOP IDLE AND RESUMABLE.`
+Steps 0–6 complete with owner rulings recorded and merged; step 7 packets
+presented on all three loop surfaces with rulings deliberately trailing to
+the individual development loops (owner direction, Receipt 72); step 8
+shipped. PRD §19.1 falsification clause satisfied (seed triaged in the
+first session, 46/101 closures). No root production phase is active;
+Task Management runs on demand or owner-scheduled routine via
+TASK_MANAGEMENT — never bound to loop entry.
 
-## Derivative and handoff state
+## 4. Rerun requirement
 
-Prior candidate packages, snapshots, and the next-work slate remain
-derivative evidence and decision support. Live deliverable control files,
-accepted decomposition, current Git state, and applicable authority
-instruments retain their respective roles. The public export under
-`exports/chirality-app/` remains a stale derivative deferred to the next
-export release (unchanged posture, per the SCA-002 application append).
-
-Closure verdict: `ROOT LOOP READY — IDLE AND RESUMABLE`.
-Rerun requirement: refresh this handoff when a successor phase is selected
-or when a later act changes the accepted basis, the W-A pointer, or the
-Root receipt sequence.
-Remaining blockers: none.
-
-Next lawful owner: HELP_HUMAN presents a successor-phase decision only when
-the human chooses to select one. Otherwise the Root loop remains truthfully
-idle.
+Refresh this file only when a phase boundary moves: a Stage-B packet is
+ruled in a development loop (D-APP-83 / D-63 / D-PEC-72 → close the
+matching TM-ROOT-098/099/100 row and migrate linked rows), a Root
+production phase or DEL-02-06 activation is selected, the accepted
+decomposition or PRD revision changes, or the owner selects a successor
+posture other than idle.

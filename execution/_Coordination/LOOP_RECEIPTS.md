@@ -2010,3 +2010,39 @@ amendment; owner ruling required).
 - **Gate / blockers:** human-gated PR; merge remains an owner act on the
   exact final branch HEAD. Stage-A closure tranche follows separately
   (thinned handoff, successor posture, pointer repoint).
+
+### Receipt 73 — 2026-07-31 — Task Management Stage A closed; handoff thinned to four-field form; root loop idle
+
+- **Parent receipt:** Receipt 72. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Closure (owner-modified condition met):** steps 0–6 ruled and merged
+  (PRs #426/#428/#429/#430/#433; Receipts 66–70); step 7 packets
+  presented on all three loop surfaces with rulings trailing to the
+  individual development loops by owner direction (PR #434; Receipts
+  71–72); step 8 shipped (PR #435; Receipt 72). PRD §19.1 satisfied
+  (46/101 first-session closures vs the 1/30 ledger baseline).
+- **Handoff thinning (owner-ruled, Receipt 72):** `HANDOFF_STATE.md`
+  rewritten to the four-field form — accepted upstream basis,
+  derivative-package currency, closure verdict, rerun requirement.
+  Blockers prose removed (attention residue is register-owned, K-TM-5);
+  posture prose removed (`CURRENT_WORKPLAN.md`-owned); history removed
+  (receipts-owned). Per-run/phase handoff states unchanged per the
+  AGENTS.md handoff-state rule.
+- **Successor posture:** idle. Stage-A workplan status set CLOSED with a
+  closure note; `WORKPLAN_2026-07-27_root_idle.md` resumed via dated
+  currency addendum; `CURRENT_WORKPLAN.md` repointed. Stage B proceeds
+  in the development loops (packets await D-APP-83 / D-63 / D-PEC-72;
+  tracked by TM-ROOT-098/099/100).
+- **Handoff state (per LOOP_INIT §7):** accepted upstream state and
+  derivative currency as recorded in the thinned `HANDOFF_STATE.md`;
+  closure verdict `TASK MANAGEMENT STAGE A CLOSED — ROOT LOOP IDLE AND
+  RESUMABLE`; rerun requirement: refresh on any phase-boundary move
+  (loop packet ruling, production/DEL-02-06 activation, basis change,
+  successor selection); remaining blockers: none — open attention is
+  the register's 4 OPEN rows (D-45 at HIGH among them), which never
+  gate.
+- **Gate / blockers:** human-gated PR for this tranche (stacked on the
+  step-8 PR); merge remains an owner act on the exact final branch
+  HEAD. No instruction-surface path touched beyond the step-8 tranche
+  already declared — this closure tranche adds coordination files only;
+  no tranche manifest (Receipt 65 precedent).
