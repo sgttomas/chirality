@@ -2046,3 +2046,27 @@ amendment; owner ruling required).
   HEAD. No instruction-surface path touched beyond the step-8 tranche
   already declared — this closure tranche adds coordination files only;
   no tranche manifest (Receipt 65 precedent).
+
+### Receipt 74 — 2026-07-31 — Post-closure residue: Piping design-tool owner intent recorded
+
+- **Parent receipt:** Receipt 73. Execution-time receipt scan governed; no
+  cursor was silently renumbered. The loop remains idle; this is a
+  bounded owner-directed residue write, not a phase.
+- **Owner direction (2026-07-31, in-session):** record the owner's
+  clarification of Chirality Piping product intent in the appropriate
+  locations; the surrounding brainstorming exchange stays deliberately
+  unrecorded by the same owner's earlier direction.
+- **Artifacts:**
+  - `projects/chirality-piping/execution/_Coordination/OWNER_INTENT_2026-07-31_DESIGN_TOOL_BOUNDARY.md`
+    — verbatim intent of record (680 bytes UTF-8, SHA-256
+    `df4f538928c11aefb1c4f83ca90dd99fd3292606a5946134ce4e51f564ccd798`):
+    Chirality Piping is a design tool built to a standard for a limited
+    purpose; engineering judgment and validation are external. Owner
+    intent of record — coordination, not authority; not a PRD, scope,
+    decomposition, reliance, or lifecycle act; binds no loop.
+  - Register row `TM-ROOT-102` (DEFERRED; trigger: owner product-basis
+    act or Piping-loop resumption/adoption). Owner-directed residue
+    write per K-TM-3; register re-validates PASS (102 rows).
+- **Gate / blockers:** human-gated PR; merge remains an owner act on the
+  exact final branch HEAD. No instruction-surface path touched — no
+  tranche manifest (Receipt 65 precedent). Idle posture unchanged.
