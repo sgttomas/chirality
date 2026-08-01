@@ -1350,3 +1350,17 @@
     work, P1 authorization, or reliance authority. Selection belongs to the
     resumed loop. `F-PEC-1` remains in force.
   - Gate outcome: EXECUTED on the Step-5 loop-slates tranche commit.
+
+- **2026-08-01 — Receipt 121** (D-PEC-73 O-A applied; D-PEC-72 foundation packet presented; first TM harvest proposed).
+  - Start: `main@3c2e816f1072295de15fdcdf924c19b4b66497bc`; branch `codex/pec-tm-adoption-presentation`; proposal commit `eb9818d7e`.
+  - Owner ruling/direction of record (verbatim):
+    > Here my response:
+    >
+    > D-PEC-73: O-A.
+    > D-PEC-72: select for packet drafting.
+  - D-PEC-73 applied: `_DomainEngines/pec/_TaskManagement/REGISTER.csv` minted schema 1.0 / 25 columns / header-only; `LOOP_INIT.md` unchanged; no root rows migrate; root notice `execution/_Coordination/NOTICE_D-PEC-73_PEC_TASK_MANAGEMENT_ADOPTION.md` routes evidence for root-owned `TM-ROOT-100` closure.
+  - First harvest: `_DomainEngines/pec/_TaskManagement/HARVEST_CANDIDATES_2026-08-01.md` proposes six candidates; zero `TM-PEC-*` rows promoted or written. Promotion remains owner-only.
+  - D-PEC-72: `_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md` is `AWAITING_RULING`; it presents the three C-05 pre-P1 prerequisites through separate PKG-00 and PKG-10 WORKING_ITEMS activations. No P1 node, source tree, profile, lifecycle act, or production work is authorized by packet drafting.
+  - Register currency: D-PEC-71 stale ruling note corrected against its RULED record; D-PEC-72 reserved/awaiting; D-PEC-73 RULED. No historical ruled record rewritten.
+  - Checks: TM register header-only/25 columns pass; strict decomposition-register validation 64 registers / 254 rows / zero findings; dependency closure 119 edges / zero SCCs; reliance-hold candidate preflight ALLOW ×3; self-check unchanged at INFO=15/NA=1/REVIEW=5/WARN=28; `git diff --check` pass; committed-range coord-check has zero new packet/notice findings and two carried unresolved references in pre-existing register rows (`projects/pec/pilot-scratch/reports/`, `SEED_D-PEC-62/RUN_LOG.md`).
+  - Parked lanes: owner ruling on D-PEC-72; owner promotion/amendment/decline of any harvest candidates; root-loop disposition of `TM-ROOT-100`; actual P1 source work remains successor-packet gated by `F-PEC-1` and C-05 acceptance fan-in.

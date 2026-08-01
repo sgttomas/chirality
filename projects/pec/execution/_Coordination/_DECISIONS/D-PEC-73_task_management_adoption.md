@@ -1,6 +1,6 @@
 # D-PEC-73 — PEC Task Management adoption
 
-**Status:** PROPOSAL — AWAITING OWNER RULING
+**Status:** RULED — O-A
 
 **DecisionID:** D-PEC-73
 
@@ -157,5 +157,30 @@ it makes register review part of every PEC entry/close cycle.
 
 ## Owner ruling
 
-Awaiting owner. Record the return verbatim and identify O-A, O-B, O-C, O-D,
-or O-E. No option is inferred from preference or silence.
+Owner return recorded verbatim (2026-08-01, in-session, Ryan Tufts):
+
+```text
+Here my response:
+
+D-PEC-73: O-A.
+D-PEC-72: select for packet drafting.
+```
+
+The first line rules this decision **O-A**. The D-PEC-72 line is a separate
+selection act authorizing packet drafting only; it is recorded in the D-PEC-72
+packet and grants no source-work authority.
+
+## Applied effect
+
+- `_DomainEngines/pec/_TaskManagement/REGISTER.csv` is minted as a header-only
+  schema-1.0 register with the exact 25-column contract and ID family
+  `TM-PEC-<seq>`.
+- `_DomainEngines/pec/LOOP_INIT.md` is unchanged; TASK_MANAGEMENT remains
+  on-demand or owner-scheduled.
+- No root row migrates and no initial candidate is promoted during minting.
+- The ordinary root notice is
+  `execution/_Coordination/NOTICE_D-PEC-73_PEC_TASK_MANAGEMENT_ADOPTION.md`;
+  it supplies the root loop with evidence to close `TM-ROOT-100` without a
+  PEC cross-register write.
+- A first harvest may produce candidate-only proposals. Promotion remains a
+  later owner act.
