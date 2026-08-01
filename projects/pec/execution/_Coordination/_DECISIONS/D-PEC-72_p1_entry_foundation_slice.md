@@ -1,6 +1,6 @@
 # D-PEC-72 — P1-entry foundation slice
 
-**Status:** PROPOSAL — AWAITING OWNER RULING
+**Status:** RULED — O-B — EXECUTION AUTHORIZED
 
 **DecisionID:** D-PEC-72
 
@@ -197,15 +197,42 @@ A failure in one package holds only its own outputs and the `C-05` fan-in.
 Validated outputs in the other package remain candidate work but cannot open
 P1 until all three deliverables are owner-accepted.
 
-## Recommendation
+## Recommendation history
 
-Rule **O-A**. It resolves the only owner architecture choice embedded in the
-three prerequisite contracts using the decomposition's lighter recommended
-style, captures the baseline without conflating token cost and command
-latency, and stops at the exact boundary before P1 source work.
+The packet as presented recommended **O-A** because it was the decomposition's
+lighter recorded style for a deterministic-derivation service. During owner
+review, the owner clarified the intended system property: App, Root, PEC, Task
+Management, and domain-specific applications are to remain individually
+interchangeable and communicate through typed contracts. The resulting
+in-session recommendation changed to **O-B** for explicit application-boundary
+ports and adapters, while retaining functional-core / imperative-shell as a
+compatible internal implementation technique within each bounded application.
+
+That broader architectural intent is recorded here as the reason for the
+selection. This PEC-owned decision binds only the PEC v2 core-isolation ADR;
+it creates no implementation duty, contract, or architecture ruling for App,
+Root, Task Management, Piping, or any other receiving loop.
 
 ## Owner ruling
 
-Awaiting owner. Record the return verbatim and identify O-A, O-B, O-C, or O-D.
-The prior “select for packet drafting” direction is not treated as a ruling on
-these options.
+**Ruled O-B on 2026-08-01.**
+
+Owner architecture intent recorded verbatim during the option discussion:
+
+```text
+Each of App, Root, PEC, TM, and domain specific applications like Piping, should all be individually interchangeable and each communicate through typed contracts.
+
+I think that's what I want but I'm open to discussion here.
+```
+
+Owner ruling recorded verbatim after the recommendation was updated to O-B:
+
+```text
+I agree with this proposal for D-PEC-72 and approve action as you recommend.
+```
+
+The referenced proposal recommended O-B: hexagonal boundaries between bounded
+applications, capability-shaped typed contracts at the boundaries, and
+functional-core / imperative-shell permitted within an application. The ruling
+therefore selects O-B and opens only the exact production fence in this packet.
+It is not advance acceptance of artifacts that did not yet exist.
