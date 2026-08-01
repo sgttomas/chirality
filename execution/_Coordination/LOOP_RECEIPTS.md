@@ -2092,3 +2092,30 @@ amendment; owner ruling required).
 - **Gate / blockers:** human-gated PR; merge remains an owner act on the
   exact final branch HEAD. No instruction-surface path touched — no
   tranche manifest (Receipt 65 precedent). Idle posture unchanged.
+
+### Receipt 76 — 2026-08-01 — Post-closure residue: App-dev maturity survey preserved
+
+- **Parent receipt:** Receipt 75. Execution-time receipt scan governed; no
+  cursor was silently renumbered. The loop remains idle; this is a
+  bounded owner-directed residue write, not a phase.
+- **Owner direction (2026-08-01, in-session):** run a maturity survey for
+  chirality-app-dev similar to the OpenPipeStress survey; preserved in
+  the same `plans/` derivative-report home (Receipt 75 precedent).
+- **Artifact:**
+  `plans/chirality_app_dev_maturity_survey_2026-08-01.html` — derivative,
+  non-governing survey at basis `main@12df406b5` (read-only sealed-agent
+  survey, 69 file reads). Two-axis verdict: mature as an engineered
+  desktop client (~46k LOC product / 1,022 tests; real daemon seam;
+  D-APP-40 taxonomy implemented in all three engines — closing the
+  Receipt-70-era NOT VERIFIED flag); not mature for reliance/release
+  (parity instrument absent while D-APP-81 released reliance on every
+  entry path; no e2e; six historical relations UNKNOWN; HZN-004 PRD
+  staleness live, including a duplicate §17 heading; 0/53 deliverables
+  past IN_PROGRESS). Companion to the Piping survey; synthesis notes the
+  mirrored postures and that the two missing objects (tolerance policy,
+  parity instrument) are one design question instantiated twice.
+- **Gate / blockers:** human-gated PR; merge remains an owner act on the
+  exact final branch HEAD. No instruction-surface path touched — no
+  tranche manifest (Receipt 65 precedent). Idle posture unchanged; no
+  register write (the survey's findings are scan-source material for a
+  future harvest, per the capture architecture).
