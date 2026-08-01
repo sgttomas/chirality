@@ -87,9 +87,14 @@ function createAdapter(input: {
   baseUrl: () => string;
   apiKey: string;
   projectRoot: string;
+  turnTimeoutMs?: number;
 }): PiAgentEngineAdapter {
   return new PiAgentEngineAdapter({
-    turnTimeoutMs: 750,
+    // Loopback provider: scripted streams either finish immediately or hang
+    // until this timeout fires, so a short timeout keeps the hung-path tests
+    // fast. Tests that interrupt a hung stream BEFORE the timeout may elapse
+    // pass a longer value so the timeout cannot race the deliberate interrupt.
+    turnTimeoutMs: input.turnTimeoutMs ?? 200,
     resolveProvider: async (runInput) => {
       const config = resolveOmlxProviderConfig({
         baseUrl: input.baseUrl(),
@@ -463,7 +468,12 @@ describe('Pi/oMLX wire integration', () => {
       models: { kind: 'json', body: { data: [{ id: model }] } },
       completions: [{ kind: 'hang', started: markStreamStarted }]
     });
-    const adapter = createAdapter({ baseUrl: () => provider.baseUrl, apiKey, projectRoot });
+    const adapter = createAdapter({
+      baseUrl: () => provider.baseUrl,
+      apiKey,
+      projectRoot,
+      turnTimeoutMs: 750
+    });
     const input = createInput(projectRoot, model);
     const collection = collect(adapter.startTurn(input));
 
@@ -559,7 +569,12 @@ describe('Pi/oMLX wire integration', () => {
       models: { kind: 'json', body: { data: [{ id: childModel }] } },
       completions: [{ kind: 'hang', started: markChildStarted }]
     });
-    const piAdapter = createAdapter({ baseUrl: () => provider.baseUrl, apiKey, projectRoot });
+    const piAdapter = createAdapter({
+      baseUrl: () => provider.baseUrl,
+      apiKey,
+      projectRoot,
+      turnTimeoutMs: 750
+    });
     const parentAdapter = new ScriptedClaudeParentPort();
     const registry = new AgentEngineRegistry();
     registry.register('claude-agent-sdk', () => parentAdapter);

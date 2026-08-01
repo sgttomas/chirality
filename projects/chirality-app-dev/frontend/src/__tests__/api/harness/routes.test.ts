@@ -168,6 +168,12 @@ beforeEach(async () => {
   delete process.env.ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
   delete (globalThis as Record<string, unknown>).__CHIRALITY_UI_API_KEY__;
+  // Compress the stub provider's simulated stream pacing: these route tests
+  // assert event ordering and payload content, not real-time cadence. Tests
+  // that DO depend on cadence (interrupting an un-marked turn mid-stream)
+  // restore the production defaults locally.
+  process.env.CHIRALITY_STUB_CHUNK_DELAY_MS = '1';
+  process.env.CHIRALITY_STUB_POLL_DELAY_MS = '5';
   context = { tmpRoot, projectRoot, instructionRoot };
 });
 
@@ -181,6 +187,8 @@ afterEach(async () => {
   delete process.env.CHIRALITY_HARNESS_PROVIDER;
   delete process.env.ANTHROPIC_API_KEY;
   delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+  delete process.env.CHIRALITY_STUB_CHUNK_DELAY_MS;
+  delete process.env.CHIRALITY_STUB_POLL_DELAY_MS;
   await rm(context.tmpRoot, { recursive: true, force: true });
 });
 
@@ -1202,6 +1210,11 @@ AGENT_TYPE: 2
   });
 
   it('interrupt endpoint returns ok and marks active turn as interrupted', async () => {
+    // This test interrupts an un-marked turn while it is genuinely mid-stream,
+    // so it relies on the production chunk cadence; restore the defaults that
+    // the suite-wide beforeEach compresses.
+    delete process.env.CHIRALITY_STUB_CHUNK_DELAY_MS;
+    delete process.env.CHIRALITY_STUB_POLL_DELAY_MS;
     const routes = await importRouteModules();
     const { body } = await createSession(routes, context.projectRoot);
 

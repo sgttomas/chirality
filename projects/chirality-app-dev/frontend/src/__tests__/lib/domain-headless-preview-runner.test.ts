@@ -10,7 +10,7 @@ import {
 } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterAll, afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
   HEADLESS_RUNNER_STDERR_LIMIT_BYTES,
   HEADLESS_RUNNER_STDOUT_LIMIT_BYTES,
@@ -360,10 +360,6 @@ function sha256(value: Buffer | string): string {
   return createHash("sha256").update(value).digest("hex");
 }
 
-function shellSingleQuote(value: string): string {
-  return `'${value.replaceAll("'", `'"'"'`)}'`;
-}
-
 type Fixture = {
   root: string;
   projectRoot: string;
@@ -373,6 +369,104 @@ type Fixture = {
 };
 
 let fixture: Fixture;
+
+/**
+ * One byte-identical script serves every happy-path test. macOS Gatekeeper
+ * scans each never-before-seen executable on first exec (~130-310ms per
+ * distinct content hash); by keeping the script content constant and varying
+ * only sibling data files, the whole file pays for a single scan instead of
+ * one per test. Behavior is driven by data files resolved relative to "$0"
+ * (the runner lib scrubs the child environment, so env vars cannot be used):
+ *   expected-input-sha256  verify stdin hash instead of draining stdin
+ *   require-argv-solve     assert argv is exactly ["solve"] and no ambient env
+ *   stdout-payload         bytes to emit on stdout
+ *   stderr-payload         bytes to emit on stderr
+ *   exit-code              exit status (always written)
+ * Tests that need genuinely different script content (timeout, signal,
+ * non-executable) still use makeRunner below.
+ */
+const SHARED_RUNNER_CONTENT = [
+  "#!/bin/sh",
+  'dir=$(dirname "$0")',
+  'if [ -f "$dir/expected-input-sha256" ]; then',
+  "  actual=$(/usr/bin/shasum -a 256 | /usr/bin/cut -d ' ' -f 1)",
+  '  [ "$actual" = "$(/bin/cat "$dir/expected-input-sha256")" ] || exit 2',
+  "else",
+  "  /bin/cat >/dev/null",
+  "fi",
+  'if [ -f "$dir/require-argv-solve" ]; then',
+  '  [ "$#" -eq 1 ] || exit 2',
+  '  [ "$1" = "solve" ] || exit 2',
+  '  [ -z "$TEST_SECRET" ] || exit 2',
+  "fi",
+  'if [ -f "$dir/stdout-payload" ]; then',
+  '  /bin/cat "$dir/stdout-payload"',
+  "fi",
+  'if [ -f "$dir/stderr-payload" ]; then',
+  '  /bin/cat "$dir/stderr-payload" >&2',
+  "fi",
+  'exit "$(/bin/cat "$dir/exit-code")"',
+  "",
+].join("\n");
+
+const SHARED_RUNNER_SHA256 = sha256(SHARED_RUNNER_CONTENT);
+
+/**
+ * The shared runner script is written exactly once per test-file run (one
+ * inode): macOS assesses executables per file, so reusing the same file —
+ * not just the same content — is what avoids the per-test scan. Tests run
+ * sequentially, so rewriting the sibling data files between invocations is
+ * safe; every known data file is rewritten or removed on every call so no
+ * state leaks from a previous test.
+ */
+let sharedRunnerDir: string | undefined;
+
+async function makeSharedRunner(
+  input: {
+    stdout?: string | Buffer;
+    stderr?: Buffer;
+    exitCode?: number;
+    verifyInput?: boolean;
+    requireArgvSolve?: boolean;
+  } = {},
+): Promise<{ path: string; sha256: string }> {
+  if (!sharedRunnerDir) {
+    sharedRunnerDir = await mkdtemp(
+      path.join(os.tmpdir(), "chirality-shared-headless-runner-"),
+    );
+    const scriptPath = path.join(sharedRunnerDir, "runner.sh");
+    await writeFile(scriptPath, SHARED_RUNNER_CONTENT, "utf8");
+    await chmod(scriptPath, 0o700);
+  }
+  const runnerDir = sharedRunnerDir;
+  const runnerPath = path.join(runnerDir, "runner.sh");
+  await writeFile(path.join(runnerDir, "exit-code"), `${input.exitCode ?? 0}\n`, "utf8");
+  const optionalFiles: Array<[string, string | Buffer | undefined]> = [
+    ["stdout-payload", input.stdout],
+    ["stderr-payload", input.stderr],
+    [
+      "expected-input-sha256",
+      input.verifyInput ? `${sha256(fixture.inputBytes)}\n` : undefined,
+    ],
+    ["require-argv-solve", input.requireArgvSolve ? "" : undefined],
+  ];
+  for (const [name, content] of optionalFiles) {
+    const filePath = path.join(runnerDir, name);
+    if (content === undefined) {
+      await rm(filePath, { force: true });
+    } else {
+      await writeFile(filePath, content);
+    }
+  }
+  return { path: runnerPath, sha256: SHARED_RUNNER_SHA256 };
+}
+
+afterAll(async () => {
+  if (sharedRunnerDir) {
+    await rm(sharedRunnerDir, { recursive: true, force: true });
+    sharedRunnerDir = undefined;
+  }
+});
 
 async function makeRunner(
   body: string,
@@ -405,14 +499,11 @@ async function makeJsonRunner(
     verifyInput?: boolean;
   } = {},
 ) {
-  const output = input.result ?? resultJson();
-  const expectedInputSha = sha256(fixture.inputBytes);
-  const verification = input.verifyInput
-    ? `actual=$(/usr/bin/shasum -a 256 | /usr/bin/cut -d ' ' -f 1)\n[ "$actual" = "${expectedInputSha}" ] || exit 2`
-    : "/bin/cat >/dev/null";
-  return makeRunner(
-    `${verification}\n/usr/bin/printf %s ${shellSingleQuote(output)}\nexit ${input.exitCode ?? 0}`,
-  );
+  return makeSharedRunner({
+    stdout: input.result ?? resultJson(),
+    exitCode: input.exitCode,
+    verifyInput: input.verifyInput,
+  });
 }
 
 beforeEach(async () => {
@@ -460,10 +551,10 @@ describe("configured DEC-065 headless runner transport", () => {
   });
 
   it("passes argv exactly solve and does not inherit ambient secrets", async () => {
-    const output = resultJson();
-    const runner = await makeRunner(
-      `/bin/cat >/dev/null\n[ "$#" -eq 1 ] || exit 2\n[ "$1" = "solve" ] || exit 2\n[ -z "$TEST_SECRET" ] || exit 2\n/usr/bin/printf %s ${shellSingleQuote(output)}`,
-    );
+    const runner = await makeSharedRunner({
+      stdout: resultJson(),
+      requireArgvSolve: true,
+    });
     await expect(
       runConfiguredHeadlessPreview({
         requestBytes: fixture.inputBytes,
@@ -638,9 +729,9 @@ describe("configured DEC-065 headless runner transport", () => {
       }),
     ).rejects.toMatchObject({ message: "HEADLESS_RUNNER_TIMEOUT" });
 
-    const stdoutRunner = await makeRunner(
-      `/bin/cat >/dev/null\n/usr/bin/yes x | /usr/bin/head -c ${HEADLESS_RUNNER_STDOUT_LIMIT_BYTES + 1}`,
-    );
+    const stdoutRunner = await makeSharedRunner({
+      stdout: Buffer.alloc(HEADLESS_RUNNER_STDOUT_LIMIT_BYTES + 1, "x"),
+    });
     await expect(
       runConfiguredHeadlessPreview({
         requestBytes: fixture.inputBytes,
@@ -648,9 +739,9 @@ describe("configured DEC-065 headless runner transport", () => {
       }),
     ).rejects.toMatchObject({ message: "HEADLESS_RUNNER_STDOUT_OVERSIZE" });
 
-    const stderrRunner = await makeRunner(
-      `/bin/cat >/dev/null\n/usr/bin/yes x | /usr/bin/head -c ${HEADLESS_RUNNER_STDERR_LIMIT_BYTES + 1} >&2`,
-    );
+    const stderrRunner = await makeSharedRunner({
+      stderr: Buffer.alloc(HEADLESS_RUNNER_STDERR_LIMIT_BYTES + 1, "x"),
+    });
     await expect(
       runConfiguredHeadlessPreview({
         requestBytes: fixture.inputBytes,
@@ -660,7 +751,7 @@ describe("configured DEC-065 headless runner transport", () => {
   });
 
   it("maps exit 2, unsupported exits, signals, and result schema mismatch to stable refusals", async () => {
-    const exit2 = await makeRunner("/bin/cat >/dev/null\nexit 2");
+    const exit2 = await makeSharedRunner({ exitCode: 2 });
     await expect(
       runConfiguredHeadlessPreview({
         requestBytes: fixture.inputBytes,
@@ -668,7 +759,7 @@ describe("configured DEC-065 headless runner transport", () => {
       }),
     ).rejects.toMatchObject({ message: "HEADLESS_RUNNER_INPUT_REFUSED" });
 
-    const unsupported = await makeRunner("/bin/cat >/dev/null\nexit 9");
+    const unsupported = await makeSharedRunner({ exitCode: 9 });
     await expect(
       runConfiguredHeadlessPreview({
         requestBytes: fixture.inputBytes,

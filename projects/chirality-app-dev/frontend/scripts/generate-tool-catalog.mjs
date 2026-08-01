@@ -3,7 +3,7 @@
 import { createRequire } from 'node:module';
 import path from 'node:path';
 import { readFileSync } from 'node:fs';
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 
 const require = createRequire(import.meta.url);
 const ts = require('typescript');
@@ -24,29 +24,16 @@ require.extensions['.ts'] = function loadTypeScriptModule(module, filename) {
   module._compile(output.outputText, filename);
 };
 
-function parseArgs(argv) {
-  return {
-    check: argv.includes('--check')
-  };
-}
-
+// Catalog-vs-descriptor drift is owned by a single check:
+// src/__tests__/lib/tool-catalog.test.ts (runs in CI through the
+// release-quality wrapper's full_test evidence command). The former
+// `--check` mode here duplicated that exact equality assertion and had no
+// CI or package.json caller, so this script is now write-only.
 async function main() {
-  const { check } = parseArgs(process.argv.slice(2));
   const { renderHarnessToolCatalog } = require(
     '../packages/harness-contract/src/tool-catalog.ts'
   );
   const rendered = renderHarnessToolCatalog();
-
-  if (check) {
-    const current = await readFile(catalogPath, 'utf8');
-    if (current !== rendered) {
-      throw new Error(
-        `${repoRelativeCatalogPath} is out of date. Run npm run harness:generate-tool-catalog.`
-      );
-    }
-    process.stdout.write(`tool catalog is current: ${repoRelativeCatalogPath}\n`);
-    return;
-  }
 
   await mkdir(path.dirname(catalogPath), { recursive: true });
   await writeFile(catalogPath, rendered, 'utf8');

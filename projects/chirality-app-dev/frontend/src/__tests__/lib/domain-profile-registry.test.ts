@@ -1,4 +1,4 @@
-import { readFile, stat } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import {
@@ -23,34 +23,6 @@ const READ_TOOLS_MODULE_PATH = path.resolve(
   'mcp',
   'read-tools.ts'
 );
-
-async function directoryExists(candidate: string): Promise<boolean> {
-  try {
-    return (await stat(candidate)).isDirectory();
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Walks up from the frontend working directory until a `_DomainEngines/profiles/`
- * directory is found (the chirality monorepo root). Returns null when the test
- * run is not hosted in the monorepo.
- */
-async function findMonorepoProfilesDirectory(): Promise<string | null> {
-  let current = process.cwd();
-  for (;;) {
-    const candidate = path.join(current, '_DomainEngines', 'profiles');
-    if (await directoryExists(candidate)) {
-      return candidate;
-    }
-    const parent = path.dirname(current);
-    if (parent === current) {
-      return null;
-    }
-    current = parent;
-  }
-}
 
 describe('D-APP-51 domain engine profile registry', () => {
   it('is closed to exactly the two ruled profileIds and records the separate headless binding', () => {
@@ -143,38 +115,12 @@ describe('D-APP-51 domain engine profile registry', () => {
     }
   });
 
-  // Thin live-profile marker-sync guard (D-APP-51 impl-plan test 2.2): the
-  // vendored fixtures in chirality-read-mcp.test.ts are the primary, hermetic
-  // pin; this single guard additionally asserts the registry's marker byte
-  // strings against the LIVE _DomainEngines/profiles/*.yaml files so fixture
-  // drift can never mask a V-9-class defect again. It FAILS (not skips) when
-  // the live profiles are present but a marker is absent; it skips, with a
-  // logged reason, only when the monorepo root is not present at all.
-  it('keeps every registry marker byte string in sync with the live profile files', async (ctx) => {
-    const profilesDirectory = await findMonorepoProfilesDirectory();
-    if (profilesDirectory === null) {
-      console.warn(
-        'domain-profile-registry marker-sync guard skipped: no _DomainEngines/profiles/ directory found above',
-        process.cwd()
-      );
-      ctx.skip();
-      return;
-    }
-
-    for (const entry of DOMAIN_ENGINE_PROFILE_REGISTRY) {
-      const liveProfilePath = path.join(profilesDirectory, `${entry.profileId}.yaml`);
-      const content = await readFile(liveProfilePath, 'utf8');
-      expect(content, `${liveProfilePath} must contain identity marker ${entry.identityMarker}`).toContain(
-        entry.identityMarker
-      );
-      for (const [toolId, gate] of Object.entries(entry.toolGate)) {
-        if (gate.requiredMarker !== null) {
-          expect(
-            content,
-            `${liveProfilePath} must contain ${toolId} marker ${gate.requiredMarker}`
-          ).toContain(gate.requiredMarker);
-        }
-      }
-    }
-  });
+  // The thin live-profile marker byte-sync guard (D-APP-51 impl-plan test
+  // 2.2, "keeps every registry marker byte string in sync with the live
+  // profile files") moved to the consolidated
+  // src/__tests__/contract-pins.manifest.ts (checked by contract-pins.test.ts)
+  // as the _DomainEngines/profiles/*.yaml entries, including its
+  // skip-with-warning behavior when the monorepo root is absent. The marker
+  // byte strings themselves remain pinned against the registry by the first
+  // test above, so the chain registry -> manifest -> live profile is intact.
 });

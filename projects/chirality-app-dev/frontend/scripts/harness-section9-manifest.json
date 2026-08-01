@@ -37,7 +37,7 @@
     {
       "id": "section9.reliance_boundary_register",
       "sourceReferences": ["../docs/SPEC.md#19.3", "../docs/PRD.md#12.4"],
-      "testFiles": ["src/__tests__/docs/reliance-boundary-register.test.ts"],
+      "testFiles": ["src/__tests__/docs/reliance-boundary-register.test.ts", "src/__tests__/contract-pins.test.ts"],
       "evidenceFiles": ["../docs/harness/reliance_boundary_register.md"],
       "warnings": [], "blockers": []
     },
@@ -114,7 +114,7 @@
     {
       "id": "section9.domain_profile_validation",
       "sourceReferences": ["../docs/SPEC.md#19.3", "../docs/PRD.md#12.4"],
-      "testFiles": ["src/__tests__/lib/domain-profile-registry.test.ts"],
+      "testFiles": ["src/__tests__/lib/domain-profile-registry.test.ts", "src/__tests__/contract-pins.test.ts"],
       "evidenceFiles": ["src/lib/harness/mcp/domain-profile-registry.ts"],
       "warnings": [], "blockers": []
     }

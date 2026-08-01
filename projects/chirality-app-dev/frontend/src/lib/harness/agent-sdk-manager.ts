@@ -15,6 +15,31 @@ function delay(ms: number): Promise<void> {
   });
 }
 
+const STUB_CHUNK_DELAY_DEFAULT_MS = 35;
+const STUB_POLL_DELAY_DEFAULT_MS = 50;
+
+/**
+ * Stub pacing is env-tunable so tests can compress the simulated stream
+ * cadence without changing production defaults. Read at call time (not module
+ * load) so a test may adjust pacing per test case.
+ */
+function envDelayMs(name: string, fallback: number): number {
+  const raw = process.env[name];
+  if (raw === undefined || raw === '') {
+    return fallback;
+  }
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
+}
+
+function stubChunkDelayMs(): number {
+  return envDelayMs('CHIRALITY_STUB_CHUNK_DELAY_MS', STUB_CHUNK_DELAY_DEFAULT_MS);
+}
+
+function stubPollDelayMs(): number {
+  return envDelayMs('CHIRALITY_STUB_POLL_DELAY_MS', STUB_POLL_DELAY_DEFAULT_MS);
+}
+
 function chunkText(text: string, size = 24): string[] {
   const chunks: string[] = [];
   for (let index = 0; index < text.length; index += size) {
@@ -156,7 +181,7 @@ export class StubAgentSdkManager implements IAgentSdkManager {
       if (message.includes(INTERRUPT_MARKER)) {
         const deadline = Date.now() + 4_500;
         while (!turnState.interrupted && Date.now() < deadline) {
-          await delay(50);
+          await delay(stubPollDelayMs());
         }
       }
 
@@ -177,7 +202,7 @@ export class StubAgentSdkManager implements IAgentSdkManager {
           }
         };
 
-        await delay(35);
+        await delay(stubChunkDelayMs());
       }
 
       if (turnState.interrupted) {

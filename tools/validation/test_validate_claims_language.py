@@ -1,10 +1,5 @@
 from pathlib import Path
-import sys
 
-
-VALIDATION_DIR = Path(__file__).resolve().parent
-if str(VALIDATION_DIR) not in sys.path:
-    sys.path.insert(0, str(VALIDATION_DIR))
 
 import validate_claims_language as validator
 

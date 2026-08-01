@@ -5,7 +5,9 @@ import { existsSync } from 'node:fs';
 import { lstat, mkdir, mkdtemp, readFile, readdir, realpath, stat, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+
+const scriptPath = fileURLToPath(import.meta.url);
 
 const SDK_PLATFORM_PACKAGE_BY_RUNTIME = new Map([
   ['darwin:arm64', '@anthropic-ai/claude-agent-sdk-darwin-arm64'],
@@ -25,8 +27,8 @@ function nowIso() {
   return new Date().toISOString();
 }
 
-function printUsage() {
-  console.log(`Usage: node ./scripts/run-live-packaged-agent-sdk-read-tool-proof.mjs [options]
+function printUsage(log) {
+  log(`Usage: node ./scripts/run-live-packaged-agent-sdk-read-tool-proof.mjs [options]
 
 Options:
   --bundle-root <path>       Packaged Resources root (default: dist/mac-arm64/Chirality.app/Contents/Resources)
@@ -394,14 +396,14 @@ function buildPrompt() {
   ].join(' ');
 }
 
-async function runProof(args) {
+async function runProof(args, { cwd, log, logError }) {
   const apiKeyInput = await readApiKey(args);
   const secrets = [apiKeyInput.apiKey];
   const bundleRoot = path.resolve(
-    args.bundleRoot ?? path.join(process.cwd(), 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources')
+    args.bundleRoot ?? path.join(cwd, 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources')
   );
   const outputRoot = path.resolve(
-    args.outputRoot ?? path.join(process.cwd(), 'artifacts', 'harness', 'packaged-agent-sdk-live', 'latest')
+    args.outputRoot ?? path.join(cwd, 'artifacts', 'harness', 'packaged-agent-sdk-live', 'latest')
   );
   const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-live-packaged-agent-sdk-proof-'));
   const projectRoot = path.resolve(args.projectRoot ?? path.join(tempRoot, 'project-root'));
@@ -601,35 +603,50 @@ async function runProof(args) {
 
   await writeJson(summaryPath, summary);
 
-  console.log(`live packaged agentSdk read-tool proof status: ${status}`);
-  console.log(`proof mode: ${summary.proofMode}`);
-  console.log(`bundle root: ${bundleRoot}`);
-  console.log(`summary: ${summaryPath}`);
-  console.log(`project root: ${projectRoot}`);
-  console.log(`claude config dir: ${configDir}`);
-  console.log(`home dir: ${homeDir}`);
+  log(`live packaged agentSdk read-tool proof status: ${status}`);
+  log(`proof mode: ${summary.proofMode}`);
+  log(`bundle root: ${bundleRoot}`);
+  log(`summary: ${summaryPath}`);
+  log(`project root: ${projectRoot}`);
+  log(`claude config dir: ${configDir}`);
+  log(`home dir: ${homeDir}`);
   if (expectedCommand.commandRealpath) {
-    console.log(`expected packaged command: ${toPosix(expectedCommand.commandRealpath)}`);
+    log(`expected packaged command: ${toPosix(expectedCommand.commandRealpath)}`);
   }
   if (status !== 'pass') {
     for (const failure of failures) {
-      console.error(`- ${redactString(failure, secrets)}`);
+      logError(`- ${redactString(failure, secrets)}`);
     }
-    process.exitCode = 1;
+    return 1;
+  }
+  return 0;
+}
+
+/**
+ * Runs the bounded live packaged agentSdk read-tool proof. Returns the
+ * process exit code (0 pass, 1 fail). `opts.cwd` overrides the working
+ * directory and `opts.log` / `opts.logError` override the output writers so
+ * tests can call this in-process instead of spawning node.
+ */
+export async function run(argv = process.argv.slice(2), opts = {}) {
+  const cwd = opts.cwd ?? process.cwd();
+  const log = opts.log ?? ((line) => console.log(line));
+  const logError = opts.logError ?? ((line) => console.error(line));
+
+  try {
+    const args = parseArgs(argv);
+    if (args.help) {
+      printUsage(log);
+      return 0;
+    }
+    return await runProof(args, { cwd, log, logError });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    logError(`live packaged agentSdk read-tool proof failed: ${message}`);
+    return 1;
   }
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  if (args.help) {
-    printUsage();
-    return;
-  }
-  await runProof(args);
+if (process.argv[1] && path.resolve(process.argv[1]) === scriptPath) {
+  process.exitCode = await run();
 }
-
-main().catch((error) => {
-  const message = error instanceof Error ? error.message : String(error);
-  console.error(`live packaged agentSdk read-tool proof failed: ${message}`);
-  process.exitCode = 1;
-});

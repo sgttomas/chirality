@@ -6,8 +6,10 @@ import { existsSync } from 'node:fs';
 import { mkdir, mkdtemp, readFile, realpath, stat, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { PassThrough, Writable } from 'node:stream';
+
+const scriptPath = fileURLToPath(import.meta.url);
 
 const SDK_PLATFORM_PACKAGE_BY_RUNTIME = new Map([
   ['darwin:arm64', '@anthropic-ai/claude-agent-sdk-darwin-arm64'],
@@ -22,8 +24,8 @@ function nowIso() {
   return new Date().toISOString();
 }
 
-function printUsage() {
-  console.log(`Usage: node ./scripts/verify-packaged-agent-sdk-runtime.mjs [options]
+function printUsage(log) {
+  log(`Usage: node ./scripts/verify-packaged-agent-sdk-runtime.mjs [options]
 
 Options:
   --bundle-root <path>   Packaged Resources root (default: dist/mac-arm64/Chirality.app/Contents/Resources)
@@ -256,12 +258,12 @@ async function writeJson(filePath, value) {
   await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-async function runProof(args) {
+async function runProof(args, { cwd, log, logError }) {
   const bundleRoot = path.resolve(
-    args.bundleRoot ?? path.join(process.cwd(), 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources')
+    args.bundleRoot ?? path.join(cwd, 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources')
   );
   const outputRoot = path.resolve(
-    args.outputRoot ?? path.join(process.cwd(), 'artifacts', 'harness', 'packaged-agent-sdk', 'latest')
+    args.outputRoot ?? path.join(cwd, 'artifacts', 'harness', 'packaged-agent-sdk', 'latest')
   );
   const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-packaged-agent-sdk-proof-'));
   const projectRoot = path.resolve(args.projectRoot ?? path.join(tempRoot, 'project-root'));
@@ -387,32 +389,47 @@ async function runProof(args) {
   };
 
   await writeJson(path.join(outputRoot, 'summary.json'), summary);
-  console.log(`packaged agentSdk runtime proof status: ${status}`);
-  console.log(`proof mode: ${summary.proofMode}`);
-  console.log(`bundle root: ${bundleRoot}`);
-  console.log(`summary: ${path.join(outputRoot, 'summary.json')}`);
+  log(`packaged agentSdk runtime proof status: ${status}`);
+  log(`proof mode: ${summary.proofMode}`);
+  log(`bundle root: ${bundleRoot}`);
+  log(`summary: ${path.join(outputRoot, 'summary.json')}`);
   if (commandInspection) {
-    console.log(`resolved command: ${toPosix(commandInspection.commandRealpath)}`);
+    log(`resolved command: ${toPosix(commandInspection.commandRealpath)}`);
   }
   if (status !== 'pass') {
     for (const failure of failures) {
-      console.error(`- ${failure}`);
+      logError(`- ${failure}`);
     }
-    process.exitCode = 1;
+    return 1;
+  }
+  return 0;
+}
+
+/**
+ * Runs the packaged agentSdk resolver proof. Returns the process exit code
+ * (0 pass, 1 fail). `opts.cwd` overrides the working directory and
+ * `opts.log` / `opts.logError` override the output writers so tests can call
+ * this in-process instead of spawning node.
+ */
+export async function run(argv = process.argv.slice(2), opts = {}) {
+  const cwd = opts.cwd ?? process.cwd();
+  const log = opts.log ?? ((line) => console.log(line));
+  const logError = opts.logError ?? ((line) => console.error(line));
+
+  try {
+    const args = parseArgs(argv);
+    if (args.help) {
+      printUsage(log);
+      return 0;
+    }
+    return await runProof(args, { cwd, log, logError });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    logError(`packaged agentSdk runtime proof failed: ${message}`);
+    return 1;
   }
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
-  if (args.help) {
-    printUsage();
-    return;
-  }
-  await runProof(args);
+if (process.argv[1] && path.resolve(process.argv[1]) === scriptPath) {
+  process.exitCode = await run();
 }
-
-main().catch(async (error) => {
-  const message = error instanceof Error ? error.message : String(error);
-  console.error(`packaged agentSdk runtime proof failed: ${message}`);
-  process.exitCode = 1;
-});

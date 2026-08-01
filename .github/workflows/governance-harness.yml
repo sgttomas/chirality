@@ -45,7 +45,9 @@ jobs:
           cache: pip
           cache-dependency-path: .github/workflows/governance-harness.yml
       - name: Install harness dependencies
-        run: python3 -m pip install --quiet pyyaml pytest pytest-xdist
+        # numpy: tools/retrieval imports it; installed so those tests stay
+        # gated here rather than skipping (coverage ruling 2026-07-31)
+        run: python3 -m pip install --quiet pyyaml pytest pytest-xdist numpy
       - name: Install zsh (write_status.sh guard is a zsh script)
         run: command -v zsh >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq zsh; }
       - name: Candidate whitespace
@@ -59,21 +61,16 @@ jobs:
             python3 tools/validation/validate_candidate_whitespace.py \
               --base-ref HEAD^
           fi
-      # One pytest invocation covers the harness suite AND the six validator
-      # self-test files that previously ran as separate per-step pytest
-      # cold-starts (whitespace + G0-G4). -n auto parallelizes across runner
-      # cores; --dist loadscope keeps each module's tests on one worker so
+      # One pytest invocation covers the ENTIRE tools/ tree: the harness
+      # suite, all validator self-tests (previously only six ran, as
+      # separate per-step cold-starts), and the ~590 tools tests that had
+      # no CI wiring (coverage ruling, 2026-07-31). Needs only
+      # pytest/pyyaml; suites with optional deps (pdf2md/openpyxl) skip
+      # cleanly. -n auto parallelizes across runner cores; --dist
+      # loadscope keeps each module's tests on one worker so
       # module-scoped fixtures (the shared live self-check) run once.
-      - name: Harness + validator test suite
-        run: |
-          python3 -m pytest -q -n auto --dist loadscope \
-            tools/practitioner_harness \
-            tools/validation/test_validate_candidate_whitespace.py \
-            tools/validation/test_validate_root_materialization_fence.py \
-            tools/validation/test_validate_root_harness_adapter.py \
-            tools/validation/test_validate_root_surface_ownership.py \
-            tools/validation/test_validate_root_work_graph_dispatch.py \
-            tools/validation/test_validate_instruction_tranche_manifest.py
+      - name: Tools test suite (harness + validators + all tools)
+        run: python3 -m pytest -q -n auto --dist loadscope tools/
       - name: Self-check (BLOCK findings fail the run per D-GOV-02)
         run: python3 tools/practitioner_harness/harness.py self-check
       # G0-G4 validator self-tests now run in the combined pytest step above;

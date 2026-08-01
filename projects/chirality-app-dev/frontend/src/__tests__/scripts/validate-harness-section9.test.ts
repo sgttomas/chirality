@@ -3,12 +3,6 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const MANIFEST_PATH = path.resolve(process.cwd(), 'scripts', 'harness-section9-manifest.json');
-const RUNNER_PATH = path.resolve(process.cwd(), 'scripts', 'validate-harness-section9.mjs');
-const WRAPPER_PATH = path.resolve(
-  process.cwd(),
-  'scripts',
-  'validate-release-quality-evidence.mjs'
-);
 
 const REQUIRED_IDS = [
   'section9.runtime_engine_contract',
@@ -56,18 +50,7 @@ describe('Section 9 governed manifest', () => {
     }
   });
 
-  it('emits the stable manifest and makes the release-quality wrapper validate it', async () => {
-    const [runner, wrapper] = await Promise.all([
-      readFile(RUNNER_PATH, 'utf8'),
-      readFile(WRAPPER_PATH, 'utf8')
-    ]);
-
-    expect(runner).toContain("'manifest.json'");
-    expect(runner).toContain('HARNESS_SECTION9_MANIFEST_PATH=');
-    expect(runner).toContain('exact governed 16-ID inventory');
-    expect(wrapper).toContain('SECTION9_MANIFEST_PATH');
-    expect(wrapper).toContain('Section 9 manifest must contain the exact governed 16-ID inventory.');
-    expect(wrapper).toContain("'sourceReferences', 'evidenceFiles'");
-    expect(wrapper).toContain("'warnings', 'blockers'");
-  });
+  // The runner/wrapper substring pins ("emits the stable manifest and makes
+  // the release-quality wrapper validate it") moved to the consolidated
+  // src/__tests__/contract-pins.manifest.ts (checked by contract-pins.test.ts).
 });

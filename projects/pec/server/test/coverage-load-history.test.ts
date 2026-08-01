@@ -8,7 +8,7 @@
  * the snapshot path, the 250k rows would blow this out and the test would fail.
  */
 
-import { test } from 'node:test'
+import { after, test } from 'node:test'
 import assert from 'node:assert/strict'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -74,6 +74,21 @@ function seed(): Seeded {
   return { db, repo, sx, pid, owner }
 }
 
+/**
+ * The 250k-row seed is by far the dominant cost of this file, and the first three tests only
+ * READ the seeded state (count check, snapshot timing, view timing). Seed once and share it;
+ * the fourth test additionally seeds its own light-history project into the same db — which is
+ * exactly the shape it always had (heavy + light projects side by side in one db) — and runs
+ * last, so its mutation cannot affect the earlier measurements (node:test runs top-level tests
+ * in registration order).
+ */
+let sharedState: Seeded | undefined
+function shared(): Seeded {
+  sharedState ??= seed()
+  return sharedState
+}
+after(() => { sharedState?.db.close() })
+
 function median(fn: () => unknown, runs = 5): number {
   fn() // warm
   const s: number[] = []
@@ -86,79 +101,64 @@ function median(fn: () => unknown, runs = 5): number {
 }
 
 test('PEC-NFR-003: 250k history rows are actually present but snapshot ignores them', () => {
-  const s = seed()
-  try {
-    const hist = s.db.prepare('SELECT COUNT(*) c FROM history_entry WHERE project_id = ?').get(s.pid) as { c: number }
-    assert.equal(hist.c, HISTORY_ROWS, 'the heavy history table really was seeded')
+  const s = shared()
+  const hist = s.db.prepare('SELECT COUNT(*) c FROM history_entry WHERE project_id = ?').get(s.pid) as { c: number }
+  assert.equal(hist.c, HISTORY_ROWS, 'the heavy history table really was seeded')
 
-    // Sanity: the snapshot returns the LIVE dataset (not the history rows) — proves it read the
-    // record tables, so its speed below is a real result, not an empty-scan artifact.
-    const snap = s.repo.snapshot(s.pid)
-    assert.equal(snap.deliverables.length, LIVE)
-    assert.equal(snap.revisions.length, LIVE)
-    assert.equal(snap.workItems.length, LIVE)
-    // ProjectSnapshot has no `history` field at all — it is not part of the snapshot contract.
-    assert.equal((snap as unknown as Record<string, unknown>).history, undefined)
-  } finally {
-    s.db.close()
-  }
+  // Sanity: the snapshot returns the LIVE dataset (not the history rows) — proves it read the
+  // record tables, so its speed below is a real result, not an empty-scan artifact.
+  const snap = s.repo.snapshot(s.pid)
+  assert.equal(snap.deliverables.length, LIVE)
+  assert.equal(snap.revisions.length, LIVE)
+  assert.equal(snap.workItems.length, LIVE)
+  // ProjectSnapshot has no `history` field at all — it is not part of the snapshot contract.
+  assert.equal((snap as unknown as Record<string, unknown>).history, undefined)
 })
 
 test('PEC-NFR-003: repo.snapshot() median stays well under budget despite 250k history rows', () => {
-  const s = seed()
-  try {
-    const t = median(() => s.repo.snapshot(s.pid))
-    assert.ok(t <= BUDGET_MS, `snapshot ${t.toFixed(0)}ms must be <= ${BUDGET_MS}ms with ${HISTORY_ROWS} history rows present`)
-  } finally {
-    s.db.close()
-  }
+  const s = shared()
+  const t = median(() => s.repo.snapshot(s.pid))
+  assert.ok(t <= BUDGET_MS, `snapshot ${t.toFixed(0)}ms must be <= ${BUDGET_MS}ms with ${HISTORY_ROWS} history rows present`)
 })
 
 test('PEC-NFR-003: derived overviewView also renders under budget with 250k history rows', () => {
-  const s = seed()
-  try {
-    const t = median(() => overviewView(s.sx))
-    assert.ok(t <= BUDGET_MS, `overviewView ${t.toFixed(0)}ms must be <= ${BUDGET_MS}ms with ${HISTORY_ROWS} history rows present`)
-  } finally {
-    s.db.close()
-  }
+  const s = shared()
+  const t = median(() => overviewView(s.sx))
+  assert.ok(t <= BUDGET_MS, `overviewView ${t.toFixed(0)}ms must be <= ${BUDGET_MS}ms with ${HISTORY_ROWS} history rows present`)
 })
 
 test('PEC-NFR-003: snapshot cost is independent of history volume (light vs heavy history are comparable)', () => {
   // Build a second project inside the SAME db with the same live dataset but almost no history,
   // then compare snapshot timings. History-independence means the heavy-history project is not
-  // dramatically slower — its snapshot never scanned the extra rows.
-  const s = seed()
-  try {
-    const now = nowIso()
-    const owner2 = s.repo.insert('person', { name: 'O2', email: `o2-${randomBytes(4).toString('hex')}@t.co`, passwordHash: 'x', isAdmin: 1, discipline: null, createdAt: now })
-    const pid2 = s.repo.insert('project', { code: `LOADL-${randomBytes(3).toString('hex')}`, name: 'LOADL', timezone: 'UTC', weekendDays: ['Sat', 'Sun'], holidays: [], thresholds: {}, config: {} })
-    const pkg2: number[] = []
-    withTx(s.db, () => { for (let i = 0; i < 10; i++) pkg2.push(s.repo.insert('package', { projectId: pid2, code: `P${i}`, name: `p${i}`, leadId: owner2 })) })
-    const rev2: number[] = []
-    withTx(s.db, () => {
-      for (let i = 0; i < LIVE; i++) {
-        const d = s.repo.insert('deliverable', { projectId: pid2, packageId: pkg2[i % pkg2.length]!, docNo: `D${i}`, title: `d${i}`, discipline: 'Process', deliverableType: 'drawing', ownerId: owner2, dueDate: '2027-06-30' })
-        rev2.push(s.repo.insert('revision', { projectId: pid2, deliverableId: d, revCode: 'A', state: 'in_work', createdAt: now, createdBy: owner2 }))
-      }
-    })
-    withTx(s.db, () => {
-      for (let i = 0; i < LIVE; i++) {
-        s.repo.insert('work_item', { projectId: pid2, ref: `WI${i}`, title: `w${i}`, kind: 'action', log: 'internal', anchorType: 'revision', anchorId: rev2[i % rev2.length]!, packageId: pkg2[i % pkg2.length], ownerId: owner2, state: 'open', needBy: '2027-01-01', createdBy: owner2, createdAt: now })
-      }
-    })
+  // dramatically slower — its snapshot never scanned the extra rows. This test mutates the
+  // shared db (adds the light project), which is safe because it registers last in this file.
+  const s = shared()
+  const now = nowIso()
+  const owner2 = s.repo.insert('person', { name: 'O2', email: `o2-${randomBytes(4).toString('hex')}@t.co`, passwordHash: 'x', isAdmin: 1, discipline: null, createdAt: now })
+  const pid2 = s.repo.insert('project', { code: `LOADL-${randomBytes(3).toString('hex')}`, name: 'LOADL', timezone: 'UTC', weekendDays: ['Sat', 'Sun'], holidays: [], thresholds: {}, config: {} })
+  const pkg2: number[] = []
+  withTx(s.db, () => { for (let i = 0; i < 10; i++) pkg2.push(s.repo.insert('package', { projectId: pid2, code: `P${i}`, name: `p${i}`, leadId: owner2 })) })
+  const rev2: number[] = []
+  withTx(s.db, () => {
+    for (let i = 0; i < LIVE; i++) {
+      const d = s.repo.insert('deliverable', { projectId: pid2, packageId: pkg2[i % pkg2.length]!, docNo: `D${i}`, title: `d${i}`, discipline: 'Process', deliverableType: 'drawing', ownerId: owner2, dueDate: '2027-06-30' })
+      rev2.push(s.repo.insert('revision', { projectId: pid2, deliverableId: d, revCode: 'A', state: 'in_work', createdAt: now, createdBy: owner2 }))
+    }
+  })
+  withTx(s.db, () => {
+    for (let i = 0; i < LIVE; i++) {
+      s.repo.insert('work_item', { projectId: pid2, ref: `WI${i}`, title: `w${i}`, kind: 'action', log: 'internal', anchorType: 'revision', anchorId: rev2[i % rev2.length]!, packageId: pkg2[i % pkg2.length], ownerId: owner2, state: 'open', needBy: '2027-01-01', createdBy: owner2, createdAt: now })
+    }
+  })
 
-    const heavy = median(() => s.repo.snapshot(s.pid))   // 250k history rows
-    const light = median(() => s.repo.snapshot(pid2))    // ~0 history rows
-    // Both must be under budget, and the heavy one must not be an order of magnitude slower —
-    // if a history scan crept into snapshot(), heavy would balloon relative to light.
-    assert.ok(heavy <= BUDGET_MS, `heavy-history snapshot ${heavy.toFixed(0)}ms must be <= ${BUDGET_MS}ms`)
-    assert.ok(light <= BUDGET_MS, `light-history snapshot ${light.toFixed(0)}ms must be <= ${BUDGET_MS}ms`)
-    // Allow generous slack for timing noise on small absolute durations, but a real history
-    // scan of 250k rows would be far more than a 6x factor over the ~0-history baseline.
-    assert.ok(heavy <= Math.max(light * 6, light + 200),
-      `history-independent: heavy ${heavy.toFixed(0)}ms should track light ${light.toFixed(0)}ms, not scale with 250k history rows`)
-  } finally {
-    s.db.close()
-  }
+  const heavy = median(() => s.repo.snapshot(s.pid))   // 250k history rows
+  const light = median(() => s.repo.snapshot(pid2))    // ~0 history rows
+  // Both must be under budget, and the heavy one must not be an order of magnitude slower —
+  // if a history scan crept into snapshot(), heavy would balloon relative to light.
+  assert.ok(heavy <= BUDGET_MS, `heavy-history snapshot ${heavy.toFixed(0)}ms must be <= ${BUDGET_MS}ms`)
+  assert.ok(light <= BUDGET_MS, `light-history snapshot ${light.toFixed(0)}ms must be <= ${BUDGET_MS}ms`)
+  // Allow generous slack for timing noise on small absolute durations, but a real history
+  // scan of 250k rows would be far more than a 6x factor over the ~0-history baseline.
+  assert.ok(heavy <= Math.max(light * 6, light + 200),
+    `history-independent: heavy ${heavy.toFixed(0)}ms should track light ${light.toFixed(0)}ms, not scale with 250k history rows`)
 })
