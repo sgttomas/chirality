@@ -25,14 +25,24 @@ jobs:
       - uses: actions/checkout@v4
         with:
           filter: blob:none
+          # runtime/ is required: @pec/server depends on
+          # @chirality/runtime-client via file:../../../runtime/packages/client
           sparse-checkout: |
             projects/pec
+            runtime
       - uses: actions/setup-node@v4
         with:
           # engines requires >= 23.6 (native TS type-stripping)
           node-version: "24"
           cache: npm
-          cache-dependency-path: projects/pec/package-lock.json
+          cache-dependency-path: |
+            projects/pec/package-lock.json
+            runtime/package-lock.json
+      - name: Build shared runtime (dist consumed by the file dependency)
+        run: |
+          npm ci
+          npm run build
+        working-directory: runtime
       - name: Install dependencies
         run: npm ci
         working-directory: projects/pec
