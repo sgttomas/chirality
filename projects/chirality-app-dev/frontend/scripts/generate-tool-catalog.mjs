@@ -1,28 +1,16 @@
 #!/usr/bin/env node
 
-import { createRequire } from 'node:module';
 import path from 'node:path';
-import { readFileSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
+// Same resolved module as src/__tests__/lib/tool-catalog.test.ts: the test
+// imports the deprecated `@chirality/harness-contract/tool-catalog` facade,
+// which re-exports `@chirality/runtime-contracts/tool-catalog` (built dist).
+// Importing the runtime contracts package directly lands on that identical
+// dist module, so generator and drift check share one renderer.
+import { renderHarnessToolCatalog } from '@chirality/runtime-contracts/tool-catalog';
 
-const require = createRequire(import.meta.url);
-const ts = require('typescript');
 const repoRelativeCatalogPath = path.join('docs', 'harness', 'tool_catalog.md');
 const catalogPath = path.resolve(process.cwd(), repoRelativeCatalogPath);
-
-require.extensions['.ts'] = function loadTypeScriptModule(module, filename) {
-  const source = readFileSync(filename, 'utf8');
-  const output = ts.transpileModule(source, {
-    compilerOptions: {
-      target: ts.ScriptTarget.ES2022,
-      module: ts.ModuleKind.CommonJS,
-      esModuleInterop: true,
-      isolatedModules: true
-    },
-    fileName: filename
-  });
-  module._compile(output.outputText, filename);
-};
 
 // Catalog-vs-descriptor drift is owned by a single check:
 // src/__tests__/lib/tool-catalog.test.ts (runs in CI through the
@@ -30,9 +18,6 @@ require.extensions['.ts'] = function loadTypeScriptModule(module, filename) {
 // `--check` mode here duplicated that exact equality assertion and had no
 // CI or package.json caller, so this script is now write-only.
 async function main() {
-  const { renderHarnessToolCatalog } = require(
-    '../packages/harness-contract/src/tool-catalog.ts'
-  );
   const rendered = renderHarnessToolCatalog();
 
   await mkdir(path.dirname(catalogPath), { recursive: true });
