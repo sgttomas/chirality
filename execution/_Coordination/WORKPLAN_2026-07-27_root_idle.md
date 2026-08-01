@@ -56,3 +56,16 @@ and applied, Receipt 63). All 46 Root deliverables remain `INITIALIZED`;
 `DEL-02-06` remains initialized, not activated; no successor phase is
 selected. The operating posture and successor-selection rules above are
 unchanged.
+
+## Currency addendum — 2026-07-31 (Task Management Stage A closed)
+
+Resumed as the standing posture after Stage A closed (Receipts 66–73).
+Posture and successor-selection rules above are unchanged. Two additions
+to the idle state of the world since the 2026-07-29 addendum: the root
+program register exists at
+`execution/_Coordination/_TaskManagement/REGISTER.csv` (101 rows;
+46 CLOSED / 51 DEFERRED / 4 OPEN — attention residue only, never gating,
+K-TM-4/K-TM-5), and TASK_MANAGEMENT (`agents/AGENT_TASK_MANAGEMENT.md`)
+is invocable on demand or by owner-scheduled routine for register
+sessions and ruled-item resolution. Three Stage-B adoption packets await
+per-loop rulings on their own surfaces (D-APP-83 / D-63 / D-PEC-72).

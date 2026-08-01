@@ -1,6 +1,6 @@
 # Root Governance Workplan — Task Management Stage A
 
-Status: `ACTIVE — OWNER-GATED STEPS`
+Status: `CLOSED 2026-07-31 — see the Closure note; successor: WORKPLAN_2026-07-27_root_idle.md`
 Date: 2026-07-31
 Supervising role: `HELP_HUMAN`
 Predecessor: `execution/_Coordination/WORKPLAN_2026-07-27_root_idle.md` (posture preserved for everything outside this plan's steps)
@@ -187,3 +187,17 @@ Resolution remains development-loop-owned (the PRD §1 owner direction of
 record): the loop, through this invoked manager and its instruments,
 resolves; the register still records only disposition and evidence and
 gates nothing.
+
+## Closure note — 2026-07-31
+
+The closure condition is met as owner-modified: steps 0–6 complete with
+rulings recorded and merged (PRs #426, #428, #429, #430, #433; Receipts
+66–70); step 7 packets presented on all three loop surfaces (PR #434,
+Receipt 71) with per-loop rulings deliberately trailing to the individual
+development loops (owner direction of record, Receipt 72); step 8 shipped
+(PR #435, Receipt 72). `HANDOFF_STATE.md` thinned to the four-field form
+per the same ruling. Successor posture: idle
+(`WORKPLAN_2026-07-27_root_idle.md`, resumed by dated addendum);
+`CURRENT_WORKPLAN.md` repointed in the closure tranche (Receipt 73).
+Stage-B activity continues in the development loops and is tracked by
+register rows TM-ROOT-098/099/100.
