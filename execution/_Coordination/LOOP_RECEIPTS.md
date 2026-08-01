@@ -1900,16 +1900,17 @@ amendment; owner ruling required).
   verbatim; coverage 100/100 validated at fan-in). PR #430 merge under
   the prior turn's direction: approved HEAD `ee907ec68`, effective merge
   `f7f02336507bbb147a992bc47a73334868feeb39`.
-- **Owner ruling of record (2026-07-31, in-session, 248 bytes UTF-8,
-  SHA-256
-  `8d8136d827ad4eee712b2dddf03410d84ed1bac59030a55876b55384454e0461`):**
+- **Owner ruling of record (2026-07-31, in-session; 244 bytes UTF-8 as
+  recorded here with tab indentation normalized to plain list form per
+  the tracked-whitespace guard, SHA-256
+  `56ca6186a1b55cdab3246aec2b2eb64797140b01d2283fde0f6d6bbee24955c6`):**
   <!-- BEGIN OWNER RULING VERBATIM -->
   Rulings:
 
-  	1.	Bulk close the 46 as tabled (with the two corrected citations).
-  	2.	Bulk defer the 50 with the tightened triggers, and keep the 4 OPEN (D-45 at HIGH).
-  	3.	054: close on code evidence.
-  	4.	Mint TM-ROOT-101 for the missed malformed row.
+  1. Bulk close the 46 as tabled (with the two corrected citations).
+  2. Bulk defer the 50 with the tightened triggers, and keep the 4 OPEN (D-45 at HIGH).
+  3. 054: close on code evidence.
+  4. Mint TM-ROOT-101 for the missed malformed row.
   <!-- END OWNER RULING VERBATIM -->
 - **Dispositions written (REGISTER.csv, 101 rows):** 46 CLOSED
   (34 INFORMATIONAL_NO_ACTION, 6 RESOLVED_BY_DECISION,
