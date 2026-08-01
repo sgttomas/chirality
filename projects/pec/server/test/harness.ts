@@ -35,6 +35,21 @@ export interface TestEnv {
   close(): Promise<void>
 }
 
+/**
+ * Test-only scrypt memoization: hashPassword is ~19ms per call, and every env hashes the same
+ * cast password. Hash each distinct password once per process and reuse the result. Production
+ * hashing (src/auth.ts) is untouched; verifyPassword still checks the cached hash normally.
+ */
+const passwordHashCache = new Map<string, string>()
+function hashPasswordCached(password: string): string {
+  let hash = passwordHashCache.get(password)
+  if (hash === undefined) {
+    hash = hashPassword(password)
+    passwordHashCache.set(password, hash)
+  }
+  return hash
+}
+
 export const CAST = [
   ['admin@t.co', 'Ada Admin', ['admin']],
   ['pm@t.co', 'Petra PM', ['pm']],
@@ -60,7 +75,7 @@ export async function createTestEnv(options: {
   withTx(db, () => {
     for (const [email, name, _roles] of CAST) {
       people[email] = repo.insert('person', {
-        name, email, passwordHash: hashPassword('pilot'),
+        name, email, passwordHash: hashPasswordCached('pilot'),
         isAdmin: email === 'admin@t.co', discipline: null, createdAt: nowIso(),
       })
     }
