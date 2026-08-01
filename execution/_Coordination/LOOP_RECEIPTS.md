@@ -2119,3 +2119,54 @@ amendment; owner ruling required).
   tranche manifest (Receipt 65 precedent). Idle posture unchanged; no
   register write (the survey's findings are scan-source material for a
   future harvest, per the capture architecture).
+
+### Receipt 77 — 2026-08-01 — Disclosure: three undisclosed instruction-surface manifest gaps (PRs #431, #432, #438)
+
+- **Parent receipt:** Receipt 76. Execution-time receipt scan governed; no
+  cursor was silently renumbered. The loop remains idle; this is a
+  bounded owner-directed disclosure, not a phase.
+- **Owner direction (2026-08-01, in-session):** disposition with a
+  disclosure receipt the three undisclosed manifest gaps surfaced by the
+  GOV-EXPLORE-FIVE-20260801 economics investigation (RETURN_T4, merged
+  at PR #443). Facts re-verified against git by the supervising session
+  before recording (LOOP_INIT §4 stance):
+  - **PR #431** ("test: repo-wide test-suite optimization", merged
+    2026-08-01T02:06Z by the owner, effective
+    `ba0e89f54cf9edc1c7cd1a8ff7b2b203c185b9ec`): 111 changed paths, 42
+    on the instruction surface, including
+    `.github/workflows/governance-harness.yml` and
+    `.github/workflows/pec-tests.yml` plus 40 `tools/**` test/conftest
+    paths.
+  - **PR #432** ("ci: path-route the tools/ test estate on PRs", merged
+    2026-08-01T03:41Z by the owner, effective
+    `0b26c518d672d845115efce453963ddba77f10e5`): 4 changed paths, all
+    instruction surface (`.github/workflows/governance-harness.yml`,
+    `tools/run_affected_tests.py`,
+    `tools/software_workflow/test_tools_test_routing.py`,
+    `tools/tools-test-routing.json`).
+  - **PR #438** ("ci: route tools/taskmgmt in the test-routing profile",
+    merged 2026-08-01T04:23Z by the owner, effective
+    `07c7565bdaf68aa1ce1abcf1bcfdc1a7856869eb`): 1 changed path
+    (`tools/tools-test-routing.json`), instruction surface.
+  - No tranche manifest under
+    `docs/governance_harness/tranche_manifests/` declares any of these
+    paths for these tranches; no prior receipt discloses them (all
+    numeric matches in this ledger are SHA substrings, verified).
+- **Class and posture:** same G4-discipline gap class as the PR #424
+  (Receipt 66) and PR #427 (Receipt 69) disclosures — owner-authored
+  engineering-lane merges passing CI because G4 runs schema-only. Per
+  the owner's standing ruling on this class ("leave the discrepancy
+  as-is and disclose", 2026-07-31, Receipt 67), this receipt disclosures
+  and does not cure: no retroactive manifest is synthesized, no
+  historical act is reclassified, and the merges' own PR records remain
+  the provenance of their content. Disclosed-gap tally for the class now
+  stands at five (PRs #424, #427, #431, #432, #438).
+- **Standing observation (not a ruling request):** the recurring vector
+  is G4's CI schema-only mode; the diff-mode check exists
+  (`--base/--head`) but is wired nowhere. Whether to wire it, amend the
+  discipline, or continue disclose-as-found remains an owner call;
+  candidates surface at the next harvest either way.
+- **Gate / blockers:** human-gated PR for this receipt; merge remains an
+  owner act on the exact final branch HEAD. No instruction-surface path
+  touched — no tranche manifest (Receipt 65 precedent). Idle posture
+  unchanged.
