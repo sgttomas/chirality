@@ -5,6 +5,8 @@ import path from 'node:path';
 import { promisify } from 'node:util';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import { run } from '../../../scripts/verify-packaged-agent-sdk-runtime.mjs';
+
 const execFileAsync = promisify(execFile);
 const SCRIPT_PATH = path.resolve(process.cwd(), 'scripts', 'verify-packaged-agent-sdk-runtime.mjs');
 
@@ -103,7 +105,7 @@ async function writePackagedSdkFixture(
   }
 }
 
-async function runProof(args: string[]): Promise<ScriptResult> {
+async function runProofSpawned(args: string[]): Promise<ScriptResult> {
   try {
     const result = await execFileAsync('node', [SCRIPT_PATH, ...args], {
       cwd: process.cwd(),
@@ -128,6 +130,28 @@ async function runProof(args: string[]): Promise<ScriptResult> {
       stdout: failure.stdout ?? '',
       stderr: failure.stderr ?? ''
     };
+  }
+}
+
+async function runProof(args: string[]): Promise<ScriptResult> {
+  const stdout: string[] = [];
+  const stderr: string[] = [];
+  const previous = process.env.TEST_PLATFORM_PACKAGE_NAME;
+  process.env.TEST_PLATFORM_PACKAGE_NAME =
+    SDK_PLATFORM_PACKAGE_BY_RUNTIME[`${process.platform}:${process.arch}`];
+  try {
+    const code = await run(args, {
+      cwd: process.cwd(),
+      log: (line: string) => stdout.push(line),
+      logError: (line: string) => stderr.push(line)
+    });
+    return { code, stdout: stdout.join('\n'), stderr: stderr.join('\n') };
+  } finally {
+    if (previous === undefined) {
+      delete process.env.TEST_PLATFORM_PACKAGE_NAME;
+    } else {
+      process.env.TEST_PLATFORM_PACKAGE_NAME = previous;
+    }
   }
 }
 
@@ -196,13 +220,16 @@ describe('verify-packaged-agent-sdk-runtime script', () => {
     expect(summary.sdkMessages.map((message) => message.type)).toEqual(['system', 'result']);
   });
 
+  // Spawn-based CLI smoke test: proves the executable entrypoint itself
+  // (main-guard, argv handling, non-zero process exit code); the passing-path
+  // test above calls run() in-process.
   it('fails when the packaged SDK resolves a command outside app.asar.unpacked', async () => {
     const bundleRoot = path.join(tmpRoot, 'bundle-root');
     const outputRoot = path.join(tmpRoot, 'output');
 
     await writePackagedSdkFixture(bundleRoot, 'outside-command');
 
-    const result = await runProof(['--bundle-root', bundleRoot, '--output-root', outputRoot]);
+    const result = await runProofSpawned(['--bundle-root', bundleRoot, '--output-root', outputRoot]);
 
     expect(result.code).toBe(1);
     expect(result.stdout).toContain('packaged agentSdk runtime proof status: fail');

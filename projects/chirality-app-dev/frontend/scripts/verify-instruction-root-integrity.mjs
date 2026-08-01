@@ -5,6 +5,9 @@ import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const scriptPath = fileURLToPath(import.meta.url);
 
 const REQUIRED_ROOT_FILES = [
   'AGENTS.md',
@@ -58,8 +61,8 @@ function nowIso() {
   return new Date().toISOString();
 }
 
-function printUsage() {
-  console.log(`Usage: node ./scripts/verify-instruction-root-integrity.mjs [options]
+function printUsage(log) {
+  log(`Usage: node ./scripts/verify-instruction-root-integrity.mjs [options]
 
 Options:
   --source-root <path>   Monolithic source instruction-root root
@@ -176,7 +179,7 @@ function hasSplitInstructionRootShape({ rootFilesRoot, agentsRoot, docsRoot }) {
   );
 }
 
-function resolveDefaultSourceRoots() {
+function resolveDefaultSourceRoots(cwd) {
   const envRoot = process.env.CHIRALITY_INSTRUCTION_ROOT
     ? path.resolve(process.env.CHIRALITY_INSTRUCTION_ROOT)
     : undefined;
@@ -191,8 +194,8 @@ function resolveDefaultSourceRoots() {
     };
   }
 
-  const monorepoRoot = path.resolve(process.cwd(), '..', '..', '..');
-  const appDevRoot = path.resolve(process.cwd(), '..');
+  const monorepoRoot = path.resolve(cwd, '..', '..', '..');
+  const appDevRoot = path.resolve(cwd, '..');
   const splitCandidate = {
     rootFilesRoot: monorepoRoot,
     agentsRoot: path.join(monorepoRoot, 'agents'),
@@ -206,8 +209,8 @@ function resolveDefaultSourceRoots() {
 
   const candidates = [
     envRoot,
-    path.resolve(process.cwd(), '..'),
-    path.resolve(process.cwd(), '..', '..', '..')
+    path.resolve(cwd, '..'),
+    path.resolve(cwd, '..', '..', '..')
   ].filter(Boolean);
 
   const sourceRoot = candidates.find(hasMonolithicInstructionRootShape) ?? candidates[0];
@@ -220,7 +223,7 @@ function resolveDefaultSourceRoots() {
   };
 }
 
-function resolveSourceRoots(args) {
+function resolveSourceRoots(args, cwd) {
   if (args.sourceRoot) {
     const sourceRoot = path.resolve(args.sourceRoot);
     return {
@@ -232,7 +235,7 @@ function resolveSourceRoots(args) {
     };
   }
 
-  const defaults = resolveDefaultSourceRoots();
+  const defaults = resolveDefaultSourceRoots(cwd);
   const rootFilesRoot = path.resolve(args.rootFilesRoot ?? defaults.rootFilesRoot);
   const agentsRoot = path.resolve(args.agentsRoot ?? defaults.agentsRoot);
   const docsRoot = path.resolve(args.docsRoot ?? defaults.docsRoot);
@@ -511,20 +514,40 @@ async function writeJson(filePath, value) {
   await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-async function main() {
-  const args = parseArgs(process.argv.slice(2));
+/**
+ * Runs the instruction-root integrity verification. Returns the process exit
+ * code (0 pass, 1 fail). `opts.cwd` overrides the working directory and
+ * `opts.log` / `opts.logError` override the output writers so tests can call
+ * this in-process instead of spawning node.
+ */
+export async function run(argv = process.argv.slice(2), opts = {}) {
+  const cwd = opts.cwd ?? process.cwd();
+  const log = opts.log ?? ((line) => console.log(line));
+  const logError = opts.logError ?? ((line) => console.error(line));
+
+  try {
+    return await runVerification(argv, { cwd, log, logError });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    logError(`instruction-root integrity verification failed: ${message}`);
+    return 1;
+  }
+}
+
+async function runVerification(argv, { cwd, log, logError }) {
+  const args = parseArgs(argv);
   if (args.help) {
-    printUsage();
-    return;
+    printUsage(log);
+    return 0;
   }
 
-  const sourceRoots = resolveSourceRoots(args);
+  const sourceRoots = resolveSourceRoots(args, cwd);
   const bundleRoot = path.resolve(
-    args.bundleRoot ?? path.join(process.cwd(), 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources')
+    args.bundleRoot ?? path.join(cwd, 'dist', 'mac-arm64', 'Chirality.app', 'Contents', 'Resources')
   );
   const outputRoot = path.resolve(
     args.outputRoot ??
-      path.join(process.cwd(), 'artifacts', 'harness', 'instruction-root-integrity', 'latest')
+      path.join(cwd, 'artifacts', 'harness', 'instruction-root-integrity', 'latest')
   );
 
   await mkdir(outputRoot, { recursive: true });
@@ -593,49 +616,49 @@ async function main() {
   await writeJson(path.join(outputRoot, 'manifest.json'), manifest);
   await writeJson(path.join(outputRoot, 'summary.json'), summary);
 
-  console.log(`instruction-root integrity status: ${status}`);
-  console.log(`checked files: ${manifestEntries.length}`);
-  console.log(`source completeness status: ${sourceCompleteness.status}`);
+  log(`instruction-root integrity status: ${status}`);
+  log(`checked files: ${manifestEntries.length}`);
+  log(`source completeness status: ${sourceCompleteness.status}`);
   if (gitSha) {
-    console.log(`git sha: ${gitSha}`);
+    log(`git sha: ${gitSha}`);
   } else {
-    console.log('git sha: unavailable');
+    log('git sha: unavailable');
   }
-  console.log(`manifest: ${path.join(outputRoot, 'manifest.json')}`);
-  console.log(`summary: ${path.join(outputRoot, 'summary.json')}`);
+  log(`manifest: ${path.join(outputRoot, 'manifest.json')}`);
+  log(`summary: ${path.join(outputRoot, 'summary.json')}`);
 
   if (status !== 'pass') {
     if (verification.missingInBundle.length > 0) {
-      console.error(`Missing in bundle (${verification.missingInBundle.length}):`);
+      logError(`Missing in bundle (${verification.missingInBundle.length}):`);
       for (const filePath of verification.missingInBundle) {
-        console.error(`  - ${filePath}`);
+        logError(`  - ${filePath}`);
       }
     }
     if (verification.mismatchedFiles.length > 0) {
-      console.error(`Hash mismatches (${verification.mismatchedFiles.length}):`);
+      logError(`Hash mismatches (${verification.mismatchedFiles.length}):`);
       for (const entry of verification.mismatchedFiles) {
-        console.error(`  - ${entry.path}`);
+        logError(`  - ${entry.path}`);
       }
     }
     if (verification.unexpectedBundleAgentFiles.length > 0) {
-      console.error(`Unexpected bundled agent files (${verification.unexpectedBundleAgentFiles.length}):`);
+      logError(`Unexpected bundled agent files (${verification.unexpectedBundleAgentFiles.length}):`);
       for (const filePath of verification.unexpectedBundleAgentFiles) {
-        console.error(`  - ${filePath}`);
+        logError(`  - ${filePath}`);
       }
     }
     if (sdkBundleVerification.missingFiles.length > 0) {
-      console.error(`Missing unpacked Claude Agent SDK files (${sdkBundleVerification.missingFiles.length}):`);
+      logError(`Missing unpacked Claude Agent SDK files (${sdkBundleVerification.missingFiles.length}):`);
       for (const filePath of sdkBundleVerification.missingFiles) {
-        console.error(`  - ${filePath}`);
+        logError(`  - ${filePath}`);
       }
     }
 
-    process.exitCode = 1;
+    return 1;
   }
+
+  return 0;
 }
 
-main().catch((error) => {
-  const message = error instanceof Error ? error.message : String(error);
-  console.error(`instruction-root integrity verification failed: ${message}`);
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === scriptPath) {
+  process.exitCode = await run();
+}

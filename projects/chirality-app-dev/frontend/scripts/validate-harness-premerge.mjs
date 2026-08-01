@@ -2,8 +2,11 @@
 
 import { access, copyFile, mkdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 import { constants as fsConstants } from 'node:fs';
+
+const scriptPath = fileURLToPath(import.meta.url);
 
 const REQUIRED_TEST_IDS = [
   'setup.server_reachable',
@@ -35,10 +38,10 @@ async function ensureReadableFile(filePath) {
   await access(filePath, fsConstants.R_OK);
 }
 
-async function runNodeScript(scriptPath) {
+async function runNodeScript(scriptToRun, cwd, echoChildOutput) {
   return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [scriptPath], {
-      cwd: process.cwd(),
+    const child = spawn(process.execPath, [scriptToRun], {
+      cwd,
       env: process.env,
       stdio: ['ignore', 'pipe', 'pipe']
     });
@@ -49,13 +52,17 @@ async function runNodeScript(scriptPath) {
     child.stdout.on('data', (chunk) => {
       const text = chunk.toString();
       stdout += text;
-      process.stdout.write(text);
+      if (echoChildOutput) {
+        process.stdout.write(text);
+      }
     });
 
     child.stderr.on('data', (chunk) => {
       const text = chunk.toString();
       stderr += text;
-      process.stderr.write(text);
+      if (echoChildOutput) {
+        process.stderr.write(text);
+      }
     });
 
     child.on('error', reject);
@@ -77,15 +84,35 @@ function parseOptionalMachineLine(stdout, key, fallback = '') {
   }
 }
 
-async function main() {
-  const scriptPath = path.resolve(process.cwd(), 'scripts', 'validate-harness-section8.mjs');
-  const section9ScriptPath = path.resolve(
-    process.cwd(),
-    'scripts',
-    'validate-harness-section9.mjs'
-  );
+/**
+ * Runs the premerge validation. Returns the process exit code (0 pass,
+ * 1 fail). `opts.cwd` overrides the working directory and `opts.log` /
+ * `opts.logError` override the output writers so tests can call this
+ * in-process instead of spawning node.
+ */
+export async function run(argv = process.argv.slice(2), opts = {}) {
+  void argv;
+  const cwd = opts.cwd ?? process.cwd();
+  const log = opts.log ?? ((line) => console.log(line));
+  const logError = opts.logError ?? ((line) => console.error(line));
+  // CLI runs stream child validator output live; in-process callers that
+  // supply their own writers keep the host process's stdio clean.
+  const echoChildOutput = opts.echoChildOutput ?? (opts.log === undefined);
+
+  try {
+    return await runPremerge({ cwd, log, logError, echoChildOutput });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    logError(`Harness premerge validation failed: ${message}`);
+    return 1;
+  }
+}
+
+async function runPremerge({ cwd, log, logError, echoChildOutput }) {
+  const section8ScriptPath = path.resolve(cwd, 'scripts', 'validate-harness-section8.mjs');
+  const section9ScriptPath = path.resolve(cwd, 'scripts', 'validate-harness-section9.mjs');
   const stableArtifactPath = path.resolve(
-    process.cwd(),
+    cwd,
     'artifacts',
     'harness',
     'section8',
@@ -93,7 +120,7 @@ async function main() {
     'summary.json'
   );
   const stableSection9ArtifactPath = path.resolve(
-    process.cwd(),
+    cwd,
     'artifacts',
     'harness',
     'section9',
@@ -102,18 +129,17 @@ async function main() {
   );
 
   try {
-    await ensureReadableFile(scriptPath);
+    await ensureReadableFile(section8ScriptPath);
   } catch {
-    console.error('RUNTIME_SURFACE_MISSING: frontend/scripts/validate-harness-section8.mjs');
-    console.log(`HARNESS_PREMERGE_ARTIFACT_PATH=${stableArtifactPath}`);
-    console.log('HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=');
-    console.log('HARNESS_PREMERGE_STATUS=fail');
-    console.log('HARNESS_PREMERGE_TEST_COUNT=0');
-    process.exitCode = 1;
-    return;
+    logError('RUNTIME_SURFACE_MISSING: frontend/scripts/validate-harness-section8.mjs');
+    log(`HARNESS_PREMERGE_ARTIFACT_PATH=${stableArtifactPath}`);
+    log('HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=');
+    log('HARNESS_PREMERGE_STATUS=fail');
+    log('HARNESS_PREMERGE_TEST_COUNT=0');
+    return 1;
   }
 
-  const section8Result = await runNodeScript(scriptPath);
+  const section8Result = await runNodeScript(section8ScriptPath, cwd, echoChildOutput);
   if (section8Result.code !== 0) {
     const sourceSummaryPath = (() => {
       try {
@@ -122,12 +148,11 @@ async function main() {
         return '';
       }
     })();
-    console.log(`HARNESS_PREMERGE_ARTIFACT_PATH=${stableArtifactPath}`);
-    console.log(`HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=${sourceSummaryPath}`);
-    console.log('HARNESS_PREMERGE_STATUS=fail');
-    console.log('HARNESS_PREMERGE_TEST_COUNT=0');
-    process.exitCode = 1;
-    return;
+    log(`HARNESS_PREMERGE_ARTIFACT_PATH=${stableArtifactPath}`);
+    log(`HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=${sourceSummaryPath}`);
+    log('HARNESS_PREMERGE_STATUS=fail');
+    log('HARNESS_PREMERGE_TEST_COUNT=0');
+    return 1;
   }
 
   const sourceSummaryPath = parseMachineLine(
@@ -167,7 +192,7 @@ async function main() {
   let section9TestCount = '0';
   try {
     await ensureReadableFile(section9ScriptPath);
-    const section9Result = await runNodeScript(section9ScriptPath);
+    const section9Result = await runNodeScript(section9ScriptPath, cwd, echoChildOutput);
     section9Status = parseOptionalMachineLine(
       section9Result.stdout,
       'HARNESS_SECTION9_STATUS',
@@ -184,24 +209,22 @@ async function main() {
     );
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    console.error(`Harness Section 9 report-only validation failed to run: ${message}`);
+    logError(`Harness Section 9 report-only validation failed to run: ${message}`);
   }
 
-  console.log(`HARNESS_PREMERGE_ARTIFACT_PATH=${stableArtifactPath}`);
-  console.log(`HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=${sourceSummaryPath}`);
-  console.log(`HARNESS_PREMERGE_STATUS=${premergeStatus}`);
-  console.log(`HARNESS_PREMERGE_TEST_COUNT=${testCount}`);
-  console.log(`HARNESS_PREMERGE_SECTION9_ARTIFACT_PATH=${stableSection9ArtifactPath}`);
-  console.log(`HARNESS_PREMERGE_SECTION9_SOURCE_SUMMARY_PATH=${section9SourceSummaryPath}`);
-  console.log(`HARNESS_PREMERGE_SECTION9_STATUS=${section9Status}`);
-  console.log(`HARNESS_PREMERGE_SECTION9_TEST_COUNT=${section9TestCount}`);
-  console.log('HARNESS_PREMERGE_SECTION9_REPORT_ONLY=true');
+  log(`HARNESS_PREMERGE_ARTIFACT_PATH=${stableArtifactPath}`);
+  log(`HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=${sourceSummaryPath}`);
+  log(`HARNESS_PREMERGE_STATUS=${premergeStatus}`);
+  log(`HARNESS_PREMERGE_TEST_COUNT=${testCount}`);
+  log(`HARNESS_PREMERGE_SECTION9_ARTIFACT_PATH=${stableSection9ArtifactPath}`);
+  log(`HARNESS_PREMERGE_SECTION9_SOURCE_SUMMARY_PATH=${section9SourceSummaryPath}`);
+  log(`HARNESS_PREMERGE_SECTION9_STATUS=${section9Status}`);
+  log(`HARNESS_PREMERGE_SECTION9_TEST_COUNT=${section9TestCount}`);
+  log('HARNESS_PREMERGE_SECTION9_REPORT_ONLY=true');
 
-  process.exitCode = premergeStatus === 'pass' ? 0 : 1;
+  return premergeStatus === 'pass' ? 0 : 1;
 }
 
-main().catch((error) => {
-  const message = error instanceof Error ? error.message : String(error);
-  console.error(`Harness premerge validation failed: ${message}`);
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === scriptPath) {
+  process.exitCode = await run();
+}

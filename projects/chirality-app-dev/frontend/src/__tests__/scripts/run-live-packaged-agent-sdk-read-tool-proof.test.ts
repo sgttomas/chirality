@@ -5,6 +5,8 @@ import path from 'node:path';
 import { promisify } from 'node:util';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import { run } from '../../../scripts/run-live-packaged-agent-sdk-read-tool-proof.mjs';
+
 const execFileAsync = promisify(execFile);
 const SCRIPT_PATH = path.resolve(
   process.cwd(),
@@ -100,6 +102,17 @@ async function writePackagedSdkFixture(bundleRoot: string): Promise<void> {
   await chmod(binaryPath, 0o755);
 }
 
+async function runProofInProcess(args: string[]): Promise<ScriptResult> {
+  const stdout: string[] = [];
+  const stderr: string[] = [];
+  const code = await run(args, {
+    cwd: process.cwd(),
+    log: (line: string) => stdout.push(line),
+    logError: (line: string) => stderr.push(line)
+  });
+  return { code, stdout: stdout.join('\n'), stderr: stderr.join('\n') };
+}
+
 async function runProof(args: string[], env: Record<string, string | undefined> = {}): Promise<ScriptResult> {
   try {
     const result = await execFileAsync('node', [SCRIPT_PATH, ...args], {
@@ -149,7 +162,7 @@ describe('run-live-packaged-agent-sdk-read-tool-proof script', () => {
     await writePackagedSdkFixture(bundleRoot);
     await writeFile(apiKeyFile, `${apiKey}\n`, 'utf8');
 
-    const result = await runProof([
+    const result = await runProofInProcess([
       '--bundle-root',
       bundleRoot,
       '--output-root',
@@ -203,6 +216,10 @@ describe('run-live-packaged-agent-sdk-read-tool-proof script', () => {
     expect(summary.liveRun.proofTarget.proofTokenHash).toMatch(/^[a-f0-9]{64}$/);
   });
 
+  // Spawn-based CLI smoke test: proves the executable entrypoint itself
+  // (main-guard, argv/env handling, non-zero process exit code) with a
+  // controlled child environment; the passing-path test above calls run()
+  // in-process.
   it('refuses to consume ambient API key env without explicit opt-in', async () => {
     const bundleRoot = path.join(tmpRoot, 'bundle-root');
     const outputRoot = path.join(tmpRoot, 'output');

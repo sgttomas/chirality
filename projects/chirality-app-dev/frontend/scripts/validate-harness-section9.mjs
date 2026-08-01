@@ -14,24 +14,17 @@ const TMP_ROOT = path.join(
 );
 const LOG_DIR = path.join(TMP_ROOT, 'logs');
 const TMP_SUMMARY_PATH = path.join(TMP_ROOT, 'summary.json');
-const SCRIPT_DIR = path.dirname(fileURLToPath(import.meta.url));
+const SCRIPT_PATH = fileURLToPath(import.meta.url);
+const SCRIPT_DIR = path.dirname(SCRIPT_PATH);
 const SOURCE_MANIFEST_PATH = path.join(SCRIPT_DIR, 'harness-section9-manifest.json');
-const STABLE_SUMMARY_PATH = path.resolve(
-  process.cwd(),
-  'artifacts',
-  'harness',
-  'section9',
-  'latest',
-  'summary.json'
-);
-const STABLE_MANIFEST_PATH = path.resolve(
-  process.cwd(),
-  'artifacts',
-  'harness',
-  'section9',
-  'latest',
-  'manifest.json'
-);
+
+function stableSummaryPath(cwd) {
+  return path.resolve(cwd, 'artifacts', 'harness', 'section9', 'latest', 'summary.json');
+}
+
+function stableManifestPath(cwd) {
+  return path.resolve(cwd, 'artifacts', 'harness', 'section9', 'latest', 'manifest.json');
+}
 
 const SECTION9_IDS = [
   'section9.runtime_engine_contract',
@@ -68,9 +61,9 @@ async function ensureReadableFile(filePath) {
   await access(filePath, fsConstants.R_OK);
 }
 
-async function ensureTestFilesExist(testFiles) {
+async function ensureTestFilesExist(testFiles, cwd) {
   for (const testFile of testFiles) {
-    await ensureReadableFile(path.resolve(process.cwd(), testFile));
+    await ensureReadableFile(path.resolve(cwd, testFile));
   }
 }
 
@@ -80,7 +73,7 @@ function requireNonEmptyStringArray(value, label, checkId) {
   }
 }
 
-async function loadManifest() {
+async function loadManifest(cwd) {
   const manifest = JSON.parse(await readFile(SOURCE_MANIFEST_PATH, 'utf8'));
   if (manifest.schemaVersion !== 1) {
     throw new Error('Section 9 manifest schemaVersion must be 1.');
@@ -104,7 +97,7 @@ async function loadManifest() {
     if (!Array.isArray(check.warnings) || !Array.isArray(check.blockers)) {
       throw new Error(`${check.id} must declare warnings and blockers arrays.`);
     }
-    await ensureTestFilesExist([...check.testFiles, ...check.evidenceFiles]);
+    await ensureTestFilesExist([...check.testFiles, ...check.evidenceFiles], cwd);
   }
 
   return manifest;
@@ -115,12 +108,12 @@ async function writeJson(filePath, value) {
   await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, 'utf8');
 }
 
-function runVitest(testFiles) {
+function runVitest(testFiles, cwd) {
   return new Promise((resolve, reject) => {
     const startedAt = nowIso();
     const startMs = Date.now();
     const child = spawn(npmCommand(), ['run', 'test', '--', ...testFiles], {
-      cwd: process.cwd(),
+      cwd,
       env: process.env,
       stdio: ['ignore', 'pipe', 'pipe']
     });
@@ -154,7 +147,7 @@ function runVitest(testFiles) {
   });
 }
 
-async function runCheck(check) {
+async function runCheck(check, cwd) {
   const startedAt = nowIso();
   const startMs = Date.now();
   const logBase = path.join(LOG_DIR, safeSegment(check.id));
@@ -162,7 +155,7 @@ async function runCheck(check) {
   const stderrLog = `${logBase}.stderr.log`;
 
   try {
-    await ensureTestFilesExist(check.testFiles);
+    await ensureTestFilesExist(check.testFiles, cwd);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     await writeFile(stdoutLog, '', 'utf8');
@@ -187,7 +180,7 @@ async function runCheck(check) {
     };
   }
 
-  const result = await runVitest(check.testFiles);
+  const result = await runVitest(check.testFiles, cwd);
   await writeFile(stdoutLog, result.stdout, 'utf8');
   await writeFile(stderrLog, result.stderr, 'utf8');
 
@@ -211,15 +204,15 @@ async function runCheck(check) {
   };
 }
 
-async function main() {
-  const manifest = await loadManifest();
+async function runValidation({ cwd, log }) {
+  const manifest = await loadManifest(cwd);
   await rm(TMP_ROOT, { recursive: true, force: true });
   await mkdir(LOG_DIR, { recursive: true });
 
   const results = [];
   for (const check of manifest.checks) {
-    console.log(`HARNESS_SECTION9_CHECK_START=${check.id}`);
-    results.push(await runCheck(check));
+    log(`HARNESS_SECTION9_CHECK_START=${check.id}`);
+    results.push(await runCheck(check, cwd));
   }
 
   const status = results.every((result) => result.status === 'pass') ? 'pass' : 'fail';
@@ -227,7 +220,7 @@ async function main() {
     generatedAt: nowIso(),
     status,
     testCount: results.length,
-    manifestPath: STABLE_MANIFEST_PATH,
+    manifestPath: stableManifestPath(cwd),
     results
   };
 
@@ -236,27 +229,46 @@ async function main() {
   // Warm read to ensure summary is parseable and stable before copying it.
   JSON.parse(await readFile(TMP_SUMMARY_PATH, 'utf8'));
 
-  await mkdir(path.dirname(STABLE_SUMMARY_PATH), { recursive: true });
-  await copyFile(SOURCE_MANIFEST_PATH, STABLE_MANIFEST_PATH);
-  await copyFile(TMP_SUMMARY_PATH, STABLE_SUMMARY_PATH);
-  await ensureReadableFile(STABLE_MANIFEST_PATH);
-  await ensureReadableFile(STABLE_SUMMARY_PATH);
+  await mkdir(path.dirname(stableSummaryPath(cwd)), { recursive: true });
+  await copyFile(SOURCE_MANIFEST_PATH, stableManifestPath(cwd));
+  await copyFile(TMP_SUMMARY_PATH, stableSummaryPath(cwd));
+  await ensureReadableFile(stableManifestPath(cwd));
+  await ensureReadableFile(stableSummaryPath(cwd));
 
-  console.log(`HARNESS_SECTION9_SUMMARY_PATH=${STABLE_SUMMARY_PATH}`);
-  console.log(`HARNESS_SECTION9_MANIFEST_PATH=${STABLE_MANIFEST_PATH}`);
-  console.log(`HARNESS_SECTION9_SOURCE_SUMMARY_PATH=${TMP_SUMMARY_PATH}`);
-  console.log(`HARNESS_SECTION9_STATUS=${status}`);
-  console.log(`HARNESS_SECTION9_TEST_COUNT=${results.length}`);
+  log(`HARNESS_SECTION9_SUMMARY_PATH=${stableSummaryPath(cwd)}`);
+  log(`HARNESS_SECTION9_MANIFEST_PATH=${stableManifestPath(cwd)}`);
+  log(`HARNESS_SECTION9_SOURCE_SUMMARY_PATH=${TMP_SUMMARY_PATH}`);
+  log(`HARNESS_SECTION9_STATUS=${status}`);
+  log(`HARNESS_SECTION9_TEST_COUNT=${results.length}`);
 
-  process.exitCode = status === 'pass' ? 0 : 1;
+  return status === 'pass' ? 0 : 1;
 }
 
-main().catch((error) => {
-  const message = error instanceof Error ? error.message : String(error);
-  console.error(`Harness Section 9 validation failed: ${message}`);
-  console.log(`HARNESS_SECTION9_SUMMARY_PATH=${STABLE_SUMMARY_PATH}`);
-  console.log(`HARNESS_SECTION9_SOURCE_SUMMARY_PATH=${TMP_SUMMARY_PATH}`);
-  console.log('HARNESS_SECTION9_STATUS=fail');
-  console.log(`HARNESS_SECTION9_TEST_COUNT=${SECTION9_IDS.length}`);
-  process.exitCode = 1;
-});
+/**
+ * Runs the Section 9 governed validation. Returns the process exit code
+ * (0 pass, 1 fail). `opts.cwd` overrides the working directory and
+ * `opts.log` / `opts.logError` override the output writers so tests can call
+ * this in-process instead of spawning node.
+ */
+export async function run(argv = process.argv.slice(2), opts = {}) {
+  void argv;
+  const cwd = opts.cwd ?? process.cwd();
+  const log = opts.log ?? ((line) => console.log(line));
+  const logError = opts.logError ?? ((line) => console.error(line));
+
+  try {
+    return await runValidation({ cwd, log });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    logError(`Harness Section 9 validation failed: ${message}`);
+    log(`HARNESS_SECTION9_SUMMARY_PATH=${stableSummaryPath(cwd)}`);
+    log(`HARNESS_SECTION9_SOURCE_SUMMARY_PATH=${TMP_SUMMARY_PATH}`);
+    log('HARNESS_SECTION9_STATUS=fail');
+    log(`HARNESS_SECTION9_TEST_COUNT=${SECTION9_IDS.length}`);
+    return 1;
+  }
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) {
+  process.exitCode = await run();
+}

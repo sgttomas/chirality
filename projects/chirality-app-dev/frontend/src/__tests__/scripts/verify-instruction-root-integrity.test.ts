@@ -5,6 +5,8 @@ import path from 'node:path';
 import { promisify } from 'node:util';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
+import { run } from '../../../scripts/verify-instruction-root-integrity.mjs';
+
 const execFileAsync = promisify(execFile);
 const SCRIPT_PATH = path.resolve(process.cwd(), 'scripts', 'verify-instruction-root-integrity.mjs');
 
@@ -79,7 +81,7 @@ async function writeFixtureFiles(root: string, files: Record<string, string>): P
   }
 }
 
-async function runIntegrityScript(args: string[], cwd = process.cwd()): Promise<ScriptResult> {
+async function runIntegrityScriptSpawned(args: string[], cwd = process.cwd()): Promise<ScriptResult> {
   try {
     const result = await execFileAsync('node', [SCRIPT_PATH, ...args], {
       cwd
@@ -103,11 +105,34 @@ async function runIntegrityScript(args: string[], cwd = process.cwd()): Promise<
   }
 }
 
+async function runIntegrityScript(args: string[], cwd = process.cwd()): Promise<ScriptResult> {
+  const stdout: string[] = [];
+  const stderr: string[] = [];
+  const code = await run(args, {
+    cwd,
+    log: (line: string) => stdout.push(line),
+    logError: (line: string) => stderr.push(line)
+  });
+  return { code, stdout: stdout.join('\n'), stderr: stderr.join('\n') };
+}
+
+let previousInstructionRootEnv: string | undefined;
+
 beforeEach(async () => {
   tmpRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-integrity-script-'));
+  // The in-process runner shares this worker's environment; the script's
+  // default source-root resolution consults CHIRALITY_INSTRUCTION_ROOT, so
+  // shield these tests from ambient/leaked values.
+  previousInstructionRootEnv = process.env.CHIRALITY_INSTRUCTION_ROOT;
+  delete process.env.CHIRALITY_INSTRUCTION_ROOT;
 });
 
 afterEach(async () => {
+  if (previousInstructionRootEnv === undefined) {
+    delete process.env.CHIRALITY_INSTRUCTION_ROOT;
+  } else {
+    process.env.CHIRALITY_INSTRUCTION_ROOT = previousInstructionRootEnv;
+  }
   if (tmpRoot) {
     await rm(tmpRoot, { recursive: true, force: true });
   }
@@ -190,6 +215,9 @@ describe('verify-instruction-root-integrity script', () => {
     }
   });
 
+  // Spawn-based CLI smoke test: proves the executable entrypoint itself
+  // (main-guard, argv handling, non-zero process exit code); the remaining
+  // tests call run() in-process.
   it('fails when bundled content diverges from source', async () => {
     const sourceRoot = path.join(tmpRoot, 'source-root');
     const bundleRoot = path.join(tmpRoot, 'bundle-root');
@@ -201,7 +229,7 @@ describe('verify-instruction-root-integrity script', () => {
     });
     await writeSdkBundleFixture(bundleRoot);
 
-    const result = await runIntegrityScript([
+    const result = await runIntegrityScriptSpawned([
       '--source-root',
       sourceRoot,
       '--bundle-root',
@@ -423,9 +451,12 @@ describe('verify-instruction-root-integrity script', () => {
     await writeFixture(bundleRoot);
     await writeSdkBundleFixture(bundleRoot);
 
+    // The spawned script's process.cwd() was realpath-normalized by the OS;
+    // the in-process runner receives cwd verbatim, so normalize it here to
+    // keep the realpath-based expectations below.
     const result = await runIntegrityScript(
       ['--bundle-root', bundleRoot, '--output-root', outputRoot],
-      frontendCwd
+      await realpath(frontendCwd)
     );
 
     expect(result.code).toBe(0);

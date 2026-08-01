@@ -4,6 +4,8 @@ import path from 'node:path';
 import { spawn } from 'node:child_process';
 import { afterEach, describe, expect, it } from 'vitest';
 
+import { run } from '../../../scripts/validate-harness-premerge.mjs';
+
 let fixtureRoot = '';
 
 afterEach(async () => {
@@ -21,7 +23,7 @@ async function makeFixture(): Promise<string> {
   return fixtureRoot;
 }
 
-async function runWrapper(cwd: string): Promise<{ code: number; output: string }> {
+async function runWrapperSpawned(cwd: string): Promise<{ code: number; output: string }> {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, ['scripts/validate-harness-premerge.mjs'], {
       cwd,
@@ -35,10 +37,23 @@ async function runWrapper(cwd: string): Promise<{ code: number; output: string }
   });
 }
 
+async function runWrapperInProcess(cwd: string): Promise<{ code: number; output: string }> {
+  const lines: string[] = [];
+  const code = await run([], {
+    cwd,
+    log: (line: string) => lines.push(line),
+    logError: (line: string) => lines.push(line)
+  });
+  return { code, output: lines.join('\n') };
+}
+
 describe('validate-harness-premerge wrapper failures', () => {
+  // Spawn-based CLI smoke test: proves the executable entrypoint itself
+  // (main-guard, argv handling, process exit code), which the in-process
+  // run() calls below deliberately do not cover.
   it('fails closed with RUNTIME_SURFACE_MISSING when the Section 8 script is absent', async () => {
     const cwd = await makeFixture();
-    const result = await runWrapper(cwd);
+    const result = await runWrapperSpawned(cwd);
 
     expect(result.code).not.toBe(0);
     expect(result.output).toContain(
@@ -70,7 +85,7 @@ describe('validate-harness-premerge wrapper failures', () => {
       `console.log('HARNESS_VALIDATION_SUMMARY_PATH=${summaryPath}');\nconsole.log('HARNESS_VALIDATION_STATUS=pass');\n`
     );
 
-    const result = await runWrapper(cwd);
+    const result = await runWrapperInProcess(cwd);
     expect(result.code).not.toBe(0);
     expect(result.output).toContain(
       "Summary includes legacy test id 'regression.api_chat_reachability'"

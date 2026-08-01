@@ -49,26 +49,10 @@ describe('dmg packaging policy', () => {
     expect(pkg.engines?.node).toBe('>=22.19.0');
   });
 
-  it('forces unsigned packaging in desktop build scripts', async () => {
-    const pkg = await readPackageJson();
-    const pack = pkg.scripts?.['desktop:pack'] ?? '';
-    const dist = pkg.scripts?.['desktop:dist'] ?? '';
-
-    expect(pack).toContain('CSC_IDENTITY_AUTO_DISCOVERY=false');
-    expect(dist).toContain('CSC_IDENTITY_AUTO_DISCOVERY=false');
-    expect(pack).toContain('desktop:verify-dependencies');
-    expect(dist).toContain('desktop:verify-dependencies');
-    expect(pkg.scripts?.['desktop:verify-dependencies']).toContain(
-      'verify-packaged-dependency-boundary.mjs'
-    );
-  });
-
-  it('exposes a no-live packaged agentSdk resolver proof command', async () => {
-    const pkg = await readPackageJson();
-    const proof = pkg.scripts?.['harness:validate:agentsdk-packaged-proof'] ?? '';
-
-    expect(proof).toContain('verify-packaged-agent-sdk-runtime.mjs');
-  });
+  // The unsigned-packaging, packaged-proof-command, monorepo-symlink-exclusion,
+  // and Pi proof-command substring pins moved to the consolidated
+  // src/__tests__/contract-pins.manifest.ts (checked by contract-pins.test.ts).
+  // This file keeps the structural (non-substring) packaging assertions.
 
   it('pins macOS minimum version and arm64 dmg target', async () => {
     const pkg = await readPackageJson();
@@ -129,22 +113,8 @@ describe('dmg packaging policy', () => {
     );
   });
 
-  it('excludes monorepo-only local dependency symlinks from the app bundle', async () => {
+  it('ships the Pi third-party notice as a packaged resource', async () => {
     const pkg = await readPackageJson();
-    const files = (pkg.build as { files?: string[] } | undefined)?.files ?? [];
-
-    expect(files).toContain('!node_modules/@chirality/**');
-  });
-
-  it('registers the Pi supply-chain proof and ships its notice', async () => {
-    const pkg = await readPackageJson();
-    expect(pkg.scripts?.['pi:lock-integrity']).toContain(
-      'normalize-pi-lock-integrity.mjs'
-    );
-    expect(pkg.scripts?.['pi:supply-chain']).toContain('verify-pi-supply-chain.mjs');
-    expect(pkg.scripts?.['harness:validate:pi-packaged-proof']).toContain(
-      'run-packaged-pi-runtime-proof.mjs'
-    );
     expect(pkg.build?.extraResources).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
