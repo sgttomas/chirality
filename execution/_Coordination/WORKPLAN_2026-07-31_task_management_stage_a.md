@@ -109,3 +109,81 @@ This is a coordination surface, not authority. D-GOV-32, the adopted PRD,
 live standards, decisions, accepted snapshots, Git state, and current
 human direction govern. Git closeout does not constitute semantic
 acceptance.
+
+## Amendment 1 — 2026-07-31 — Step 4 superseded: TASK_MANAGEMENT agent in lieu of reader binding (owner-ruled)
+
+After steps 0–3 executed (D-GOV-32 backfill at PR #426; K-TM-1..6 into
+`docs/CONTRACT.md` §1.14 at PR #428; register minted and seeded with 100
+candidate rows at PR #429), the owner reviewed the presented step-4
+reader-binding draft and counter-proposed a standalone agent for the Task
+Management role instead of loop-entry consumption. On the supervising
+session's assessment, the owner ruled (2026-07-31, in-session, 188 bytes
+UTF-8, SHA-256
+`043339d7c7e880af3a546e0e2280c944cfa96be81a434ebf43f8f0845c26e433`):
+
+<!-- BEGIN OWNER RULING VERBATIM -->
+I won't forget to do task management because I can schedule it on a routine.
+
+Allow me to reverse my rulings around agent changes to allow for this.
+
+Merge PR #429 and proceed accordingly.
+<!-- END OWNER RULING VERBATIM -->
+
+Effects on this plan:
+
+1. **Step 4 is superseded.** No `LOOP_INIT.md` reader binding is made; no
+   informational pointer line either (the owner's scheduling routine is the
+   read cadence). This is the root loop exercising the PRD §14
+   adopt/amend/decline clause by its own ruling — the PRD bytes are not
+   amended. Session entry and closeout remain exactly as `LOOP_INIT.md`
+   states today.
+2. **Fence relaxation, exactly bounded.** The "no agent-instruction changes
+   in this phase" fence (and the PRD §17 Stage-A "zero agent-file changes"
+   posture) is relaxed by the owner ruling above for precisely one package:
+   `agents/AGENT_TASK_MANAGEMENT.md` plus its `AGENTS.md` index row and the
+   agent-index change notices that rule requires. No other agent-instruction
+   change is authorized by this amendment.
+3. **TASK_MANAGEMENT (Agent 1)** is added to the live index: invoked on
+   demand or on a human-scheduled routine, never bound to loop entry; owns
+   only the invoking loop's register home; all dispositions remain owner
+   acts (K-TM-1..6). Skills, tools, and script automation may augment it
+   later through their own governed tranches; for now, just the agent.
+4. **Steps 5–8 are unchanged**, including the step-6 first owner triage
+   session and the PRD §19.1 falsification clock (seed triaged within two
+   root-loop sessions). Step 6 is expected to run as the new agent's first
+   invocation.
+
+## Amendment 2 — 2026-07-31 — TASK_MANAGEMENT resolves ruled items through the nine domains (owner-directed)
+
+Before PR #430 merged, the owner refined the TASK_MANAGEMENT design
+(2026-07-31, in-session, 223 bytes UTF-8, SHA-256
+`9d46dded314e40bc93a408c35da66debf5ee5a842b60be6e3c6ed9f45c904f7d`):
+
+<!-- BEGIN OWNER DIRECTION VERBATIM -->
+TASK_MANAGEMENT agents should invoke the nine steps to resolve the action item through delegation to a deliverable amendment, scope change, TASK agent or other specialist Agent 2 instances, or in rare cases directly itself.
+<!-- END OWNER DIRECTION VERBATIM -->
+
+Incorporated into `agents/AGENT_TASK_MANAGEMENT.md` (same unmerged PR #430
+package; the presented HEAD supersedes the earlier one) as mode 6
+"Resolution orchestration" plus a §Resolution paths section, with two
+doctrine-conformant readings recorded:
+
+1. **Nine domains as per-item steps.** The nine domains are worked in
+   order as a completeness scan for each owner-ruled item. This preserves
+   the adopted PRD §4 posture (lenses, "not any kind of sequence or
+   specific workflow" for loops): the sequence lives inside the treatment
+   of one item, and no loop-level workflow, queue, or gate is created.
+2. **Sibling instruments by routed handoff.** Deliverable amendments and
+   scope changes are owned by sibling Agent 1 managers; root doctrine has
+   Agent 1 delegating only to Agent 2/TASK. TASK_MANAGEMENT therefore
+   prepares and routes those packages (amendment package to the owning
+   production lane; SCA intake to SCOPE_CHANGE's declared gate) rather
+   than commanding sibling managers. Bounded work dispatches to TASK /
+   named Agent 2 specialists / sealed ephemeral generalists. Direct
+   execution stays rare: an explicit in-session owner grant naming item
+   and write target, recorded in closeout evidence.
+
+Resolution remains development-loop-owned (the PRD §1 owner direction of
+record): the loop, through this invoked manager and its instruments,
+resolves; the register still records only disposition and evidence and
+gates nothing.
