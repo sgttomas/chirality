@@ -2170,3 +2170,27 @@ amendment; owner ruling required).
   owner act on the exact final branch HEAD. No instruction-surface path
   touched — no tranche manifest (Receipt 65 precedent). Idle posture
   unchanged.
+
+### Receipt 78 — 2026-08-01 — Post-closure residue: five-investigation synthesis preserved
+
+- **Parent receipt:** Receipt 77. Execution-time receipt scan governed; no
+  cursor was silently renumbered. The loop remains idle; this is a
+  bounded owner-directed residue write, not a phase.
+- **Owner direction (2026-08-01, in-session):** preserve the
+  GOV-EXPLORE-FIVE-20260801 investigation results as a `plans/` report
+  in the established derivative-report pattern.
+- **Artifact:** `plans/chirality_five_investigations_2026-08-01.html` —
+  derivative, non-governing synthesis of the five verbatim returns
+  (T1 thesis foundation; T2 solver mathematics incl. the ruling-grade
+  friction path-history statement; T3 runtime/local-model architecture;
+  T4 governance economics first quantitative pass; T5 the single-owner
+  assumption), plus the cross-cutting unnamed-identity synthesis, the
+  consistency-stack assessment with its falsifier, and the two un-ruled
+  candidate instruments (comparison-basis rule; four-pillar coherence
+  heuristic) recorded as candidates only. The archived returns govern
+  over the digest; live sources govern over both. Companion to the two
+  maturity surveys (Receipts 75–76).
+- **Gate / blockers:** human-gated PR; merge remains an owner act on the
+  exact final branch HEAD. No instruction-surface path touched — no
+  tranche manifest (Receipt 65 precedent). No register write (harvest-
+  discoverable per the capture architecture). Idle posture unchanged.
