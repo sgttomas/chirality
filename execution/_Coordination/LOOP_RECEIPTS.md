@@ -1886,3 +1886,48 @@ amendment; owner ruling required).
   first owner triage session over the 100 seeded rows (PRD §19.1 clock:
   two root-loop sessions), expected to run as TASK_MANAGEMENT's first
   invocation; then step 7 Stage-B packets.
+
+### Receipt 70 — 2026-07-31 — Stage A step 6: first owner triage session — seed dispositioned
+
+- **Parent receipt:** Receipt 69. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **Session form:** first invocation of TASK_MANAGEMENT (triage-support
+  mode), supervised by HELP_HUMAN. Delegated cluster analysis ran as
+  terminal fan-out/fan-in under
+  `execution/_Coordination/AgentRuns/GOV-TM-TRIAGE-CLUSTER-20260731/`
+  (node A: RECONCILIATION lens over closure candidates; node B:
+  EVALUATION lens over deferral/open clusters; returns archived
+  verbatim; coverage 100/100 validated at fan-in). PR #430 merge under
+  the prior turn's direction: approved HEAD `ee907ec68`, effective merge
+  `f7f02336507bbb147a992bc47a73334868feeb39`.
+- **Owner ruling of record (2026-07-31, in-session, 248 bytes UTF-8,
+  SHA-256
+  `8d8136d827ad4eee712b2dddf03410d84ed1bac59030a55876b55384454e0461`):**
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  Rulings:
+
+  	1.	Bulk close the 46 as tabled (with the two corrected citations).
+  	2.	Bulk defer the 50 with the tightened triggers, and keep the 4 OPEN (D-45 at HIGH).
+  	3.	054: close on code evidence.
+  	4.	Mint TM-ROOT-101 for the missed malformed row.
+  <!-- END OWNER RULING VERBATIM -->
+- **Dispositions written (REGISTER.csv, 101 rows):** 46 CLOSED
+  (34 INFORMATIONAL_NO_ACTION, 6 RESOLVED_BY_DECISION,
+  4 RESOLVED_WITH_CHANGE, 1 DUPLICATE, 1 OBE), 51 DEFERRED with named
+  triggers, 4 OPEN (TM-ROOT-053 piping D-45 at HIGH — nondelegable owner
+  ruling awaited since 2026-07-15; TM-ROOT-098/099/100 Stage-B
+  tracking). Every closure carries EvidenceRef + EvidenceSha (K-TM-5);
+  node-A citation corrections applied (033 → D-GOV-30 R-3 + frozen
+  merge-approval matrix; 045 → compound D-GOV-31 + Receipt 64). The
+  TM-ROOT-048 OBE ruling is itself the owner disposition HZN-005
+  awaited. TM-ROOT-101 minted (malformed `xc_decision_governance`
+  OQ-002; DEFERRED, likely moot on the ruled D-APP-18).
+- **PRD §19.1:** the falsification clause is satisfied — the seed was
+  triaged in the first root-loop session after seeding; first-session
+  closure rate 46/101 vs the notice ledger's 1/30 (PRD §18 measurement
+  baseline).
+- **Gate / blockers:** human-gated PR for this tranche; merge remains an
+  owner act on the exact final branch HEAD. No instruction-surface path
+  touched — no tranche manifest (Receipt 65 precedent). Remaining
+  Stage-A work: step 7 (three Stage-B loop adoption packets) and
+  optional step 8 (`taskmgmt` v0, deferrable).

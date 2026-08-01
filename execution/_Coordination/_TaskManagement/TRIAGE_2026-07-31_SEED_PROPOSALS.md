@@ -114,3 +114,18 @@ triggers, 4 remain OPEN.
 | TM-ROOT-100 | Decisions | PEC loop Task Management adoption pending (Stage B) | **OPEN** | Stage-B packets in drafting (workplan step 7) | the rollout tracks itself |
 
 Proposal distribution: {'DEFERRED': 55, 'RESOLVED_BY_DECISION': 3, 'RESOLVED_WITH_CHANGE': 2, 'DUPLICATE': 1, 'OBE': 1, 'INFORMATIONAL_NO_ACTION': 34, 'OPEN': 4}
+
+---
+
+## RULED — 2026-07-31
+
+The owner ruled the four-part slate in-session (verbatim with SHA-256 in
+Loop Receipt 70): 46 bulk closures as tabled with the node-A citation
+corrections; 50 bulk deferrals with the node-B tightened triggers; 4 rows
+OPEN (TM-ROOT-053 at HIGH); TM-ROOT-054 closed on code evidence;
+TM-ROOT-101 minted for the malformed unseeded source row (DEFERRED with
+the App cluster). Dispositions of record live in REGISTER.csv; the
+delegated analysis is archived at
+`execution/_Coordination/AgentRuns/GOV-TM-TRIAGE-CLUSTER-20260731/`.
+This packet remains decision-support history and was not edited above
+this line after the ruling.
