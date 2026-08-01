@@ -123,3 +123,6 @@ _harness_generated/
 # SQLite transient WAL sidecars (rebuilt at runtime; not canonical)
 *.db-shm
 *.db-wal
+
+# taskmgmt scan output — derived, rebuildable candidate inventory (D-GOV-01)
+execution/_Coordination/_TaskManagement/.candidates/
