@@ -21,6 +21,7 @@
     "software_workflow": { "pytest_paths": ["tools/software_workflow"] },
     "source_audit": { "pytest_paths": ["tools/source_audit"] },
     "source_catalog": { "pytest_paths": ["tools/source_catalog"] },
+    "taskmgmt": { "pytest_paths": ["tools/taskmgmt"] },
     "validation": { "pytest_paths": ["tools/validation"] },
     "workflow_runtime": { "pytest_paths": ["tools/workflow_runtime"] }
   },
@@ -37,6 +38,7 @@
     { "paths": ["tools/scope_of_work/*"], "checks": ["scope_of_work"] },
     { "paths": ["tools/source_audit/*"], "checks": ["source_audit"] },
     { "paths": ["tools/source_catalog/*"], "checks": ["source_catalog"] },
+    { "paths": ["tools/taskmgmt/*"], "checks": ["taskmgmt"] },
     { "paths": ["tools/workflow_runtime/*"], "checks": ["workflow_runtime"] },
     {
       "paths": [
@@ -61,6 +63,7 @@
         "software_workflow",
         "source_audit",
         "source_catalog",
+        "taskmgmt",
         "validation",
         "workflow_runtime"
       ]
