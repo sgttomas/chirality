@@ -8,8 +8,6 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-if str(HERE) not in sys.path:
-    sys.path.insert(0, str(HERE))
 
 from common import load_catalog  # noqa: E402
 from check_boundary_owner_resolution import check_document  # noqa: E402

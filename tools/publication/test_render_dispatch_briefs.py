@@ -6,10 +6,6 @@ from pathlib import Path
 import pytest
 
 
-PUBLICATION_DIR = Path(__file__).resolve().parent
-if str(PUBLICATION_DIR) not in sys.path:
-    sys.path.insert(0, str(PUBLICATION_DIR))
-
 from render_dispatch_briefs import (  # noqa: E402
     main,
     render_concordance_verify_brief,

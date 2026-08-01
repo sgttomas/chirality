@@ -5,7 +5,7 @@ import argparse
 import json
 from pathlib import Path
 
-from common import load_profile, matches
+from software_workflow_common import load_profile, matches
 
 
 def main() -> int:

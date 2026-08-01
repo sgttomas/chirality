@@ -4,10 +4,6 @@ import sys
 from pathlib import Path
 
 
-VALIDATION_DIR = Path(__file__).resolve().parent
-if str(VALIDATION_DIR) not in sys.path:
-    sys.path.insert(0, str(VALIDATION_DIR))
-
 from validate_lens_register import validate_lens_register  # noqa: E402
 from scan_deliverable_consistency import main as consistency_main  # noqa: E402
 from validate_p3_disposition import main as p3_main, validate_p3_disposition  # noqa: E402
