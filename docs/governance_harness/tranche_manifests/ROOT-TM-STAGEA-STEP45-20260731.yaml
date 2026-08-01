@@ -20,7 +20,14 @@ m2_gate:
     directed "proceed accordingly". Scope is precisely one new Agent 1
     package (agents/AGENT_TASK_MANAGEMENT.md) plus its AGENTS.md index
     row; the root loop thereby exercises the adopted PRD section-14
-    adopt/amend/decline clause without amending the PRD bytes.
+    adopt/amend/decline clause without amending the PRD bytes. A
+    follow-on owner direction of the same session (223 bytes UTF-8,
+    SHA-256
+    9d46dded314e40bc93a408c35da66debf5ee5a842b60be6e3c6ed9f45c904f7d,
+    verbatim in workplan Amendment 2) added resolution orchestration to
+    the same package before merge: ruled items are worked through the
+    nine domains per item and discharged via deliverable-amendment/SCA
+    handoff, TASK/Agent 2 dispatch, or rare owner-named direct action.
     Publication merge authorization for this tranche's PR remains a
     separate owner act on the final branch HEAD; this manifest records a
     gate and grants nothing (K-AUTH-1).
@@ -63,6 +70,11 @@ scope_limits:
     no skill, tool, scheduler, or automation is created; augmentation
     arrives only through later governed tranches ("for now, just the
     agent")
+  - >-
+    resolution orchestration adds no authority: sibling Agent 1
+    instruments are reached only by routed handoff, dispositions and
+    grants remain owner acts, and direct execution requires an explicit
+    in-session owner grant naming item and write target
   - >-
     no lifecycle, decomposition, scope, estimate, schedule, release, or
     professional-reliance act; step 6 (owner triage) remains unperformed

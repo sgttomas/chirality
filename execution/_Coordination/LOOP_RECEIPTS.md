@@ -1853,11 +1853,19 @@ amendment; owner ruling required).
     the PRD §14 entry binding by its own ruling (the clause the PRD
     itself provides); `LOOP_INIT.md` is deliberately untouched.
   - `agents/AGENT_TASK_MANAGEMENT.md` added (Agent 1; SHA-256
-    `6326bfae4645f724ea9104255f0a2514c44921fc4466fb592db594c7afca0d9d`)
+    `71a5cf146f4639ffc0b31201ab2b6e7e41c80b6f5cf44b65aa6b9daf8d269bb9`)
     with its `AGENTS.md` index row: on-demand / human-scheduled
     invocation; owns only the invoking loop's register home; K-TM-1..6
     embedded; dispositions remain owner acts; no skills/tools/automation
-    yet ("for now, just the agent").
+    yet ("for now, just the agent"). Per the owner's follow-on direction
+    of the same session (223 bytes UTF-8, SHA-256
+    `9d46dded314e40bc93a408c35da66debf5ee5a842b60be6e3c6ed9f45c904f7d`,
+    verbatim in workplan Amendment 2), the package also carries
+    resolution orchestration: owner-ruled items are worked through the
+    nine domains per item and discharged via deliverable-amendment /
+    SCA handoff packages, TASK / Agent 2 dispatch, or rare owner-named
+    direct action — sibling Agent 1 instruments by routed handoff, per
+    delegation doctrine.
   - Agent-index change notices routed to App-dev, Piping, and PEC
     coordination surfaces (rule: same-tranche notice on any `agents/`
     change).

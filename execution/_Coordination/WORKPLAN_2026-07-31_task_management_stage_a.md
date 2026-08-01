@@ -152,3 +152,38 @@ Effects on this plan:
    session and the PRD §19.1 falsification clock (seed triaged within two
    root-loop sessions). Step 6 is expected to run as the new agent's first
    invocation.
+
+## Amendment 2 — 2026-07-31 — TASK_MANAGEMENT resolves ruled items through the nine domains (owner-directed)
+
+Before PR #430 merged, the owner refined the TASK_MANAGEMENT design
+(2026-07-31, in-session, 223 bytes UTF-8, SHA-256
+`9d46dded314e40bc93a408c35da66debf5ee5a842b60be6e3c6ed9f45c904f7d`):
+
+<!-- BEGIN OWNER DIRECTION VERBATIM -->
+TASK_MANAGEMENT agents should invoke the nine steps to resolve the action item through delegation to a deliverable amendment, scope change, TASK agent or other specialist Agent 2 instances, or in rare cases directly itself.
+<!-- END OWNER DIRECTION VERBATIM -->
+
+Incorporated into `agents/AGENT_TASK_MANAGEMENT.md` (same unmerged PR #430
+package; the presented HEAD supersedes the earlier one) as mode 6
+"Resolution orchestration" plus a §Resolution paths section, with two
+doctrine-conformant readings recorded:
+
+1. **Nine domains as per-item steps.** The nine domains are worked in
+   order as a completeness scan for each owner-ruled item. This preserves
+   the adopted PRD §4 posture (lenses, "not any kind of sequence or
+   specific workflow" for loops): the sequence lives inside the treatment
+   of one item, and no loop-level workflow, queue, or gate is created.
+2. **Sibling instruments by routed handoff.** Deliverable amendments and
+   scope changes are owned by sibling Agent 1 managers; root doctrine has
+   Agent 1 delegating only to Agent 2/TASK. TASK_MANAGEMENT therefore
+   prepares and routes those packages (amendment package to the owning
+   production lane; SCA intake to SCOPE_CHANGE's declared gate) rather
+   than commanding sibling managers. Bounded work dispatches to TASK /
+   named Agent 2 specialists / sealed ephemeral generalists. Direct
+   execution stays rare: an explicit in-session owner grant naming item
+   and write target, recorded in closeout evidence.
+
+Resolution remains development-loop-owned (the PRD §1 owner direction of
+record): the loop, through this invoked manager and its instruments,
+resolves; the register still records only disposition and evidence and
+gates nothing.
