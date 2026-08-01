@@ -1,6 +1,6 @@
 # Evidence Record: CI and Test-Estate Optimization (2026-07-31)
 
-Status: evidence record per `docs/evidence/README.md`. Non-normative.
+Status: evidence record per `plans/evidence/README.md`. Non-normative.
 Not agent runtime context.
 
 Engagement: one interactive session (owner + one orchestrating model
