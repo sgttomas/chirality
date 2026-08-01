@@ -1932,3 +1932,40 @@ amendment; owner ruling required).
   touched — no tranche manifest (Receipt 65 precedent). Remaining
   Stage-A work: step 7 (three Stage-B loop adoption packets) and
   optional step 8 (`taskmgmt` v0, deferrable).
+
+### Receipt 71 — 2026-07-31 — Stage A step 7: Stage-B adoption packets presented and routed
+
+- **Parent receipt:** Receipt 70. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **PR #433 merge execution (owner-directed proxy, PRD annex §5.3.1):**
+  the owner ruled in-session on 2026-07-31 (39 bytes UTF-8, SHA-256
+  `f559cf5061771979e1e9a46fadbf2bb8b977f07cced22e4c780efcc12ce1c4dc`):
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  Merge PR #433 then proceed accordingly.
+  <!-- END OWNER RULING VERBATIM -->
+  Approved source HEAD `f2c7d70af1c54c68e614c6e61c95f0db589dc509`
+  (verified equal to the PR #433 head before merge); effective merge SHA
+  `236f3c22ee5f8d8e7581086a8ef2fc6f0b42b030`, harness green. The triage
+  dispositions are live: 101 rows — 46 CLOSED, 51 DEFERRED, 4 OPEN.
+- **Step 7 tranche (this PR; basis `main@236f3c22e`):** per the same
+  "proceed" direction and workplan step 7:
+  - Standard notices routed to the App-dev and Piping coordination
+    surfaces (`NOTICE_D-GOV-32_TASK_MANAGEMENT_STANDARD.md` ×2; PEC
+    already holds the step-5 §16-1 notice).
+  - Three adoption packets presented (`TM_ADOPTION_PACKET_2026-07-31.md`
+    on each loop's coordination surface): register mint
+    (`TM-APP-`/`TM-PIP-`/`TM-PEC-` under each loop's own surface; PEC's
+    beside its loop surfaces in `_DomainEngines/pec/`), binding Option A
+    (root pattern, recommended — no entry binding, TASK_MANAGEMENT on
+    demand/scheduled) or Option B (PRD §14 entry binding), decision rows
+    D-APP-83 / D-63 / D-PEC-72, and linked-row migration notes (22 App
+    rows; 22 Piping rows + TM-ROOT-053; none for PEC). Packets are
+    coordination, never authority; decline/defer lawful (K-TM-4);
+    per-loop rulings may trail (workplan closure condition).
+- **Gate / blockers:** human-gated PR for this tranche; merge remains an
+  owner act on the exact final branch HEAD. No instruction-surface path
+  touched — no tranche manifest (Receipt 65 precedent). Stage-A remainder
+  after this PR: per-loop rulings on the three packets (each publishes
+  via its own human-gated PR when ruled); optional step 8 (`taskmgmt`
+  v0, deferrable without harm — K-TM-4); then Stage-A closure per the
+  workplan (receipts, handoff refresh, successor posture selection).
