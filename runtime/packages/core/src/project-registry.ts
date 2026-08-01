@@ -155,8 +155,16 @@ export class ProjectRegistry {
     assertSafeIdentifier(manifest.projectId, "projectId");
     assertRelativeManifestPath(manifest.workingRoot, "workingRoot");
     assertRelativeManifestPath(manifest.instructionRoot, "instructionRoot");
-    const workingRoot = await realpath(resolve(manifestDirectory, manifest.workingRoot));
-    const instructionRoot = await realpath(resolve(manifestDirectory, manifest.instructionRoot));
+    const workingRoot = await this.canonicalizeReference(
+      manifestDirectory,
+      manifest.workingRoot,
+      "workingRoot"
+    );
+    const instructionRoot = await this.canonicalizeReference(
+      manifestDirectory,
+      manifest.instructionRoot,
+      "instructionRoot"
+    );
     if (!isContained(instructionRoot, workingRoot) && !isContained(workingRoot, instructionRoot)) {
       throw new RuntimeError(
         "PROJECT_MANIFEST_INVALID",
@@ -178,7 +186,22 @@ export class ProjectRegistry {
     ];
     for (const [label, path] of paths) {
       assertRelativeManifestPath(path, label);
-      const canonical = await realpath(resolve(manifestDirectory, path));
+      // legacySessionRoots is read-if-present downstream: SessionStore.list()
+      // and SessionStore.get() (session-store.ts, listLegacyCandidates /
+      // migrateLegacy) only enumerate or migrate legacy sessions from roots
+      // that actually exist, and treat an absent root as "no legacy sessions".
+      // Registration therefore tolerates a missing legacySessionRoots entry
+      // (its containment check is skipped while absent) but still rejects any
+      // entry that exists and escapes the declared roots. Every other
+      // reference must exist at registration time.
+      const tolerateAbsence = label === "legacySessionRoots";
+      const canonical = await this.canonicalizeReference(
+        manifestDirectory,
+        path,
+        label,
+        tolerateAbsence
+      );
+      if (canonical === undefined) continue;
       if (!isContained(workingRoot, canonical) && !isContained(instructionRoot, canonical)) {
         throw new RuntimeError(
           "PROJECT_MANIFEST_INVALID",
@@ -187,6 +210,37 @@ export class ProjectRegistry {
       }
     }
     return { workingRoot, instructionRoot };
+  }
+
+  private async canonicalizeReference(
+    manifestDirectory: string,
+    relativePath: string,
+    label: string,
+    tolerateAbsence?: false
+  ): Promise<string>;
+  private async canonicalizeReference(
+    manifestDirectory: string,
+    relativePath: string,
+    label: string,
+    tolerateAbsence: boolean
+  ): Promise<string | undefined>;
+  private async canonicalizeReference(
+    manifestDirectory: string,
+    relativePath: string,
+    label: string,
+    tolerateAbsence = false
+  ): Promise<string | undefined> {
+    try {
+      return await realpath(resolve(manifestDirectory, relativePath));
+    } catch (error) {
+      const code = (error as NodeJS.ErrnoException).code;
+      if (code !== "ENOENT" && code !== "ENOTDIR") throw error;
+      if (tolerateAbsence) return undefined;
+      throw new RuntimeError(
+        "PROJECT_MANIFEST_INVALID",
+        `${label} references a path that does not exist: ${relativePath}`
+      );
+    }
   }
 
   private readRegistry(): Promise<RegistryFile> {
