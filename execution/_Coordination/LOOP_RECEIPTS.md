@@ -1969,3 +1969,44 @@ amendment; owner ruling required).
   via its own human-gated PR when ruled); optional step 8 (`taskmgmt`
   v0, deferrable without harm — K-TM-4); then Stage-A closure per the
   workplan (receipts, handoff refresh, successor posture selection).
+
+### Receipt 72 — 2026-07-31 — Stage A step 8: taskmgmt v0 (scan/validate)
+
+- **Parent receipt:** Receipt 71. Execution-time receipt scan governed; no
+  cursor was silently renumbered.
+- **PR #434 merge execution (owner-directed proxy, PRD annex §5.3.1):**
+  the owner ruled in-session on 2026-07-31 (211 bytes UTF-8 as recorded
+  here with one trailing space normalized away per the tracked-whitespace
+  guard, SHA-256
+  `937b4128c501973811d3918fbbdeccbb7c76995ccdf49a573e09bcd609f9e1e8`):
+  <!-- BEGIN OWNER RULING VERBATIM -->
+  fold that into the closure step — thin HANDOFF_STATE.md to the four-field form when Stage A closes.
+
+  Merge PR #434.  I'll rule on the packets in the individual development loops. Step 8 can proceed when ready.
+  <!-- END OWNER RULING VERBATIM -->
+  Approved source HEAD `02040da9878107180e5f4045e6b1a3896ceb8793`
+  (verified equal to the PR #434 head before merge); effective merge SHA
+  `b73260330319f0ee45afa04f93d4f6d1c1687e73`. Three rulings carried:
+  (a) Stage-A closure will thin `HANDOFF_STATE.md` to the four-field
+  form (accepted basis, derivative currency, closure verdict, rerun
+  requirement); (b) the three Stage-B packet rulings move to the
+  individual development loops (workplan closure condition already
+  permits trailing rulings); (c) step 8 authorized.
+- **Step 8 tranche (this PR; basis `main@b73260330`):**
+  - `tools/taskmgmt/taskmgmt.py` — v0 `validate` (schema/referential
+    conformance, D-GOV-02 exit semantics) and `scan` (PRD §5.1
+    structured surfaces → gitignored JSON candidate inventory, §9.2
+    precision rules: declared exclusions, canonical-vs-copy dedup, no
+    silent caps). Judgment-free per PRD §9.3.
+  - `tools/taskmgmt/test_taskmgmt.py` — 16 tests, all passing.
+  - `.gitignore` — `.candidates/` projection entry (D-GOV-01).
+  - Live proof: `validate` PASSes the 101-row register; `scan` yields
+    259 candidates (65 canonical-copy duplicates folded; 76 already
+    known to the register by SourceRef overlap).
+  - Tranche manifest
+    `docs/governance_harness/tranche_manifests/ROOT-TM-STAGEA-STEP8-20260731.yaml`
+    (`self_merge: false`; M6 `none-required`). Deliberately NOT wired
+    into CI — on-demand invocation preserves K-TM-4.
+- **Gate / blockers:** human-gated PR; merge remains an owner act on the
+  exact final branch HEAD. Stage-A closure tranche follows separately
+  (thinned handoff, successor posture, pointer repoint).
