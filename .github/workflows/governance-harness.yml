@@ -61,16 +61,25 @@ jobs:
             python3 tools/validation/validate_candidate_whitespace.py \
               --base-ref HEAD^
           fi
-      # One pytest invocation covers the ENTIRE tools/ tree: the harness
-      # suite, all validator self-tests (previously only six ran, as
-      # separate per-step cold-starts), and the ~590 tools tests that had
-      # no CI wiring (coverage ruling, 2026-07-31). Needs only
-      # pytest/pyyaml; suites with optional deps (pdf2md/openpyxl) skip
-      # cleanly. -n auto parallelizes across runner cores; --dist
-      # loadscope keeps each module's tests on one worker so
-      # module-scoped fixtures (the shared live self-check) run once.
-      - name: Tools test suite (harness + validators + all tools)
-        run: python3 -m pytest -q -n auto --dist loadscope tools/
+      # The tools/ test estate. PRs run only the suites the change set
+      # touches, selected deterministically by tools/run_affected_tests.py
+      # from tools/tools-test-routing.json (live-tree gate suites —
+      # practitioner_harness, validation — always run; per-tool suites run
+      # when their paths changed; the selection JSON with per-suite reasons
+      # is printed into this log). Pushes to main always run the FULL
+      # estate, so the routing is an economy, never the authority: a
+      # mis-routed rule is caught at merge, not silently skipped. Needs
+      # only pytest/pyyaml/numpy; optional-dep suites skip cleanly.
+      - name: Tools test suite (routed on PRs; full on main pushes)
+        env:
+          ROUTING_BASE: ${{ github.event.pull_request.base.sha || '' }}
+        run: |
+          if [ "${GITHUB_EVENT_NAME}" = "pull_request" ] \
+            && git rev-parse --verify --quiet "${ROUTING_BASE}^{commit}" >/dev/null; then
+            python3 tools/run_affected_tests.py --base "${ROUTING_BASE}"
+          else
+            python3 -m pytest -q -n auto --dist loadscope tools/
+          fi
       - name: Self-check (BLOCK findings fail the run per D-GOV-02)
         run: python3 tools/practitioner_harness/harness.py self-check
       # G0-G4 validator self-tests now run in the combined pytest step above;
