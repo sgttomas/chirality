@@ -9,7 +9,7 @@ import {
   RUNTIME_ROUTES
 } from "@chirality/runtime-contracts";
 import { HarnessError as SubpathHarnessError } from "@chirality/runtime-contracts/errors";
-import { ProjectRegistry } from "@chirality/runtime-core";
+import { ProjectRegistry, SessionStore } from "@chirality/runtime-core";
 import { createProjectFixture } from "./helpers.js";
 
 describe("standalone promoted contracts", () => {
@@ -64,6 +64,79 @@ describe("project registry", () => {
     expect((await registry.status("pec")).manifestDrift).toBe(true);
     await expect(registry.requireAuthorized("pec")).rejects.toMatchObject({
       code: "PROJECT_MANIFEST_DRIFT"
+    });
+  });
+
+  it("registers a manifest whose referenced paths all exist", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-existing-"));
+    const { manifestPath } = await createProjectFixture(root, "existing");
+    const registry = new ProjectRegistry(join(root, "user-data", "runtime"));
+    const record = await registry.register(manifestPath, {
+      approvedBy: "test",
+      approvalReference: "D-TEST"
+    });
+    expect(record.projectId).toBe("existing");
+    expect((await registry.status("existing")).manifestDrift).toBe(false);
+  });
+
+  it("rejects a missing defaultExecutionRoot with a typed manifest error naming label and path", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-missing-exec-"));
+    const { manifest, manifestPath } = await createProjectFixture(root, "missing-exec");
+    manifest.defaultExecutionRoot = "missing-execution";
+    await writeFile(manifestPath, JSON.stringify(manifest), "utf8");
+    const registry = new ProjectRegistry(join(root, "user-data", "runtime"));
+    await expect(
+      registry.register(manifestPath, { approvedBy: "test", approvalReference: "D-TEST" })
+    ).rejects.toMatchObject({
+      name: "RuntimeError",
+      code: "PROJECT_MANIFEST_INVALID",
+      message: "defaultExecutionRoot references a path that does not exist: missing-execution"
+    });
+  });
+
+  it("rejects a missing workingRoot with a typed manifest error naming label and path", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-missing-root-"));
+    const { manifest, manifestPath } = await createProjectFixture(root, "missing-root");
+    manifest.workingRoot = "no-such-root";
+    await writeFile(manifestPath, JSON.stringify(manifest), "utf8");
+    const registry = new ProjectRegistry(join(root, "user-data", "runtime"));
+    await expect(
+      registry.register(manifestPath, { approvedBy: "test", approvalReference: "D-TEST" })
+    ).rejects.toMatchObject({
+      code: "PROJECT_MANIFEST_INVALID",
+      message: "workingRoot references a path that does not exist: no-such-root"
+    });
+  });
+
+  it("tolerates an absent legacySessionRoots entry and lists no legacy sessions from it", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-legacy-absent-"));
+    const { manifest, manifestPath } = await createProjectFixture(root, "legacy-absent");
+    manifest.legacySessionRoots = ["frontend/.chirality/sessions"];
+    await writeFile(manifestPath, JSON.stringify(manifest), "utf8");
+    const runtimeDirectory = join(root, "user-data", "runtime");
+    const registry = new ProjectRegistry(runtimeDirectory);
+    const record = await registry.register(manifestPath, {
+      approvedBy: "test",
+      approvalReference: "D-TEST"
+    });
+    expect(record.legacySessionRoots).toEqual(["frontend/.chirality/sessions"]);
+    const sessions = new SessionStore(runtimeDirectory, registry);
+    await expect(sessions.list("legacy-absent")).resolves.toEqual([]);
+  });
+
+  it("still rejects a legacySessionRoots entry that exists but escapes the declared roots", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-legacy-escape-"));
+    const { manifest, manifestPath } = await createProjectFixture(root, "legacy-escape");
+    const { mkdir } = await import("node:fs/promises");
+    await mkdir(join(root, "..", "outside-sessions"), { recursive: true });
+    manifest.legacySessionRoots = ["../outside-sessions"];
+    await writeFile(manifestPath, JSON.stringify(manifest), "utf8");
+    const registry = new ProjectRegistry(join(root, "user-data", "runtime"));
+    await expect(
+      registry.register(manifestPath, { approvedBy: "test", approvalReference: "D-TEST" })
+    ).rejects.toMatchObject({
+      code: "PROJECT_MANIFEST_INVALID",
+      message: "legacySessionRoots escapes the declared working and instruction roots"
     });
   });
 

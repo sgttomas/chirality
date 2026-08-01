@@ -227,6 +227,7 @@ export class SessionStore {
     sessionId: string
   ): Promise<RuntimeSessionRecord | undefined> {
     const root = await this.resolveLegacyRoot(projectRoot, relativeLegacyRoot);
+    if (root === undefined) return undefined;
     const directoryCandidate = join(root, sessionId, "session.json");
     const flatCandidate = join(root, `${sessionId}.json`);
     const sourceFile = (await exists(directoryCandidate))
@@ -346,6 +347,7 @@ export class SessionStore {
     relativeLegacyRoot: string
   ): Promise<readonly { sessionId: string; raw: Record<string, unknown> }[]> {
     const root = await this.resolveLegacyRoot(projectRoot, relativeLegacyRoot);
+    if (root === undefined) return [];
     const candidates: { sessionId: string; raw: Record<string, unknown> }[] = [];
     for (const entry of await readdir(root, { withFileTypes: true }).catch(() => [])) {
       const source = entry.isDirectory()
@@ -361,13 +363,26 @@ export class SessionStore {
     return candidates;
   }
 
-  private async resolveLegacyRoot(projectRoot: string, relativePath: string): Promise<string> {
+  private async resolveLegacyRoot(
+    projectRoot: string,
+    relativePath: string
+  ): Promise<string | undefined> {
     const candidate = resolve(projectRoot, relativePath);
     if (!isContained(projectRoot, candidate)) {
       throw new RuntimeError("FORBIDDEN", "Legacy session root escapes the project", 403);
     }
     const canonicalRoot = await realpath(projectRoot);
-    const canonical = await realpath(candidate);
+    // Legacy session roots are read-if-present: an absent root simply holds no
+    // legacy sessions, so callers skip it instead of failing the request.
+    // Escape checks above and below still apply whenever the root exists.
+    let canonical: string;
+    try {
+      canonical = await realpath(candidate);
+    } catch (error) {
+      const code = (error as NodeJS.ErrnoException).code;
+      if (code === "ENOENT" || code === "ENOTDIR") return undefined;
+      throw error;
+    }
     if (!isContained(canonicalRoot, canonical)) {
       throw new RuntimeError("FORBIDDEN", "Legacy session root escapes through a symlink", 403);
     }
