@@ -2070,3 +2070,25 @@ amendment; owner ruling required).
 - **Gate / blockers:** human-gated PR; merge remains an owner act on the
   exact final branch HEAD. No instruction-surface path touched — no
   tranche manifest (Receipt 65 precedent). Idle posture unchanged.
+
+### Receipt 75 — 2026-07-31 — Post-closure residue: solver maturity survey preserved
+
+- **Parent receipt:** Receipt 74. Execution-time receipt scan governed; no
+  cursor was silently renumbered. The loop remains idle; this is a
+  bounded owner-directed residue write, not a phase.
+- **Owner direction (2026-07-31, in-session):** preserve the
+  OpenPipeStress solver maturity survey and write an HTML report; the
+  supervising session recommended and the owner accepted the `plans/`
+  derivative-report home (tandem-review precedent).
+- **Artifact:**
+  `plans/chirality_piping_solver_maturity_survey_2026-07-31.html` —
+  derivative, non-governing survey at basis `main@0109cdf10` (read-only
+  sealed-agent survey, 68 file reads; two-axis verdict: mature mechanics
+  kernel and governance artifact, deliberately immature as a validated
+  analysis tool; reliance withheld per D-61). Cites `TM-ROOT-102` and
+  the owner intent of record as its bounding context; retention posture
+  in its footer (archive to `plans/.archive/` after the product-basis
+  decision consumes it).
+- **Gate / blockers:** human-gated PR; merge remains an owner act on the
+  exact final branch HEAD. No instruction-surface path touched — no
+  tranche manifest (Receipt 65 precedent). Idle posture unchanged.

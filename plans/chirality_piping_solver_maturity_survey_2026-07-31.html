@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenPipeStress Solver Maturity Survey — 2026-07-31</title>
+<style>
+  :root { --ink:#1a1a1a; --dim:#666; --line:#ddd; --accent:#0b5563; --warn:#8a4b00; --good:#1d6b3a; --bg:#fbfaf8; --card:#fff; }
+  body { font: 16px/1.55 Georgia, 'Times New Roman', serif; color:var(--ink); background:var(--bg); margin:0; }
+  main { max-width: 56rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+  h1 { font-size:1.6rem; line-height:1.25; margin:0 0 .25rem; }
+  h2 { font-size:1.15rem; margin:2.2rem 0 .6rem; color:var(--accent); border-bottom:1px solid var(--line); padding-bottom:.25rem; }
+  h3 { font-size:1rem; margin:1.4rem 0 .4rem; }
+  .meta { color:var(--dim); font-size:.85rem; margin-bottom:1.5rem; }
+  .verdict { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent); padding:1rem 1.2rem; margin:1.2rem 0; }
+  .verdict strong.axis { color:var(--accent); }
+  table { border-collapse:collapse; width:100%; font-size:.85rem; margin:.8rem 0; }
+  th, td { border:1px solid var(--line); padding:.4rem .6rem; text-align:left; vertical-align:top; }
+  th { background:#f0ede8; }
+  code { font: .82em/1.4 'SF Mono', Menlo, Consolas, monospace; background:#f2f0ec; padding:.05em .3em; border-radius:3px; }
+  .good { color:var(--good); font-weight:bold; }
+  .warn { color:var(--warn); font-weight:bold; }
+  .overflow { overflow-x:auto; }
+  ul { padding-left:1.3rem; }
+  li { margin:.3rem 0; }
+  footer { margin-top:3rem; padding-top:1rem; border-top:2px solid var(--line); color:var(--dim); font-size:.82rem; }
+  .tag { display:inline-block; font:.72rem/1.6 'SF Mono', Menlo, monospace; background:#e8e4dd; border-radius:3px; padding:0 .5em; margin-right:.4em; vertical-align:middle; }
+</style>
+</head>
+<body>
+<main>
+
+<h1>OpenPipeStress Solver Maturity Survey</h1>
+<div class="meta">
+2026-07-31 · basis <code>main@0109cdf10</code> · read-only survey by a sealed
+bounded agent (68 file reads across solver source, benchmark evidence,
+validation manual, decision and finding registers), fanned in by the
+supervising root session · derivative, non-governing (see footer) ·
+informs the future Chirality Piping product-basis act tracked by register
+row <code>TM-ROOT-102</code> and bounded by
+<code>projects/chirality-piping/execution/_Coordination/OWNER_INTENT_2026-07-31_DESIGN_TOOL_BOUNDARY.md</code>
+</div>
+
+<div class="verdict">
+<strong class="axis">Verdict, two axes.</strong> As a <em>mechanics
+kernel and governance artifact</em>, the engine is genuinely mature:
+~104k LOC of disciplined Rust, real numerical methods, 926 test
+attributes, 64 hand-calc-witnessed benchmark cases, and a boundary
+discipline (no allowables, no defaults, everything user-entered with
+provenance) that is the product's point. As a <em>validated analysis
+tool</em>, it is deliberately not mature: every tolerance policy is TBD,
+all 66 validation-manual cases sit at <code>DRAFT_EVIDENCE</code>, 100 of
+101 deliverables are <code>IN_PROGRESS</code>, and professional reliance
+is affirmatively withheld (<code>D-61 CLOSED_WITH_RELIANCE_HOLD</code>).
+Under the 2026-07-31 owner intent of record — a design tool built to a
+standard for a limited purpose, with judgment and validation external —
+the second axis is not a defect list; it is the intended posture.
+</div>
+
+<h2>1 · Solver reality</h2>
+<ul>
+<li><strong>Rust, product name OpenPipeStress</strong>, inside
+<code>projects/chirality-piping/</code> (workspace
+<code>openpipestress-workspace</code>). <strong>~104,300 LOC across 63
+<code>.rs</code> files in 37 crates</strong>; 926 <code>#[test]</code>
+attributes. Per-crate builds by explicit <code>--manifest-path</code>.</li>
+<li>Solver kernel (<code>core/solver/</code>, ~15,600 LOC, 9 crates):
+<code>frame_kernel</code>, <code>straight_pipe</code>,
+<code>curved_bend</code>, <code>linear_supports</code>,
+<code>nonlinear_supports</code>, <code>nonlinear_integration</code>,
+<code>sparse_direct</code>, <code>diagnostics</code>,
+<code>performance_harness</code>.</li>
+<li>Loads/stress (<code>core/loads/</code>, ~9,550 LOC):
+<code>primitive_loads</code>, <code>user_loads</code>,
+<code>stress_recovery</code>, <code>load_case_algebra</code>.
+Integration adapter <code>core/product_physics</code> (16.4k LOC with its
+validation module). Benchmarks ~15,100 LOC; headless runner CLI; Tauri
+desktop app ~68,900 LOC. A ~25k-LOC Python layer handles policy,
+adapters, export packaging, and comparison; ~26.5k LOC of Python tests.</li>
+<li>Method quality is real, not scaffolding: RCM ordering with in-repo
+skyline LDL<sup>T</sup> and a dense Gauss parity oracle
+(<code>core/solver/sparse_direct/README.md</code>); Castigliano
+flexibility formulation for curved bends with closed-form arc integrals,
+no quadrature (<code>core/solver/curved_bend/README.md</code>).</li>
+</ul>
+
+<h2>2 · Feature coverage</h2>
+<h3>Implemented</h3>
+<ul>
+<li><strong>Linear statics:</strong> 3D 12-DOF Euler–Bernoulli frame,
+direction-cosine transforms, BC reduction, dense + sparse parity.</li>
+<li><strong>All eight load categories</strong>
+(<code>core/loads/primitive_loads/src/lib.rs:14-52</code>): Weight,
+Pressure, Thermal, ImposedDisplacement, Hydrotest, Wind, Seismic
+(equivalent-static), Occasional.</li>
+<li><strong>Wind incl. subspan exposure:</strong> user-entered pressure,
+shape factor, exposed diameters; partial-span lever-rule distribution
+with blocking diagnostics; hand-calc witness
+<code>validation/hand_calcs/mechanics/tp_pmm_p3_subspan_wind_exposure.md</code>.</li>
+<li><strong>Pressure thrust</strong> incl. expansion-joint effective area
+and a curved-bend arc fixture; <strong>thermal</strong> axial EAαΔT plus
+curved-bend/expansion-loop thermal bending.</li>
+<li><strong>Supports:</strong> linear families (Anchor, Guide, LineStop,
+VerticalSupport, Spring, ImposedDisplacement); nonlinear one-way, gap,
+lift-off, friction via state-switched active set (DEC-067);
+constant-effort supports present.</li>
+<li><strong>DEC-077 material discipline implemented as ruled:</strong>
+per-load-case modulus basis; linear interpolation of user-entered E and α
+only between strictly bracketing adjacent points, both source-point IDs
+and method recorded; blocks (never extrapolates) at range edges. Shear
+modulus G deliberately not temperature-indexed — routed to
+<strong>D-45</strong>, the register's single
+<code>AWAITING_RULING</code> row.</li>
+<li>Mill-tolerance effective wall; stress recovery for axial, bending,
+torsional shear, thin-wall pressure membrane, mechanics-only stress
+range.</li>
+</ul>
+<h3>Not implemented — and declared, not hidden</h3>
+<ul>
+<li><strong>No dynamics of any kind</strong> (spectrum, modal, harmonic,
+time history): zero substantive hits repo-wide; FR-024 de-scoped by owner
+ruling D-12 (O-B).</li>
+<li><strong>No SIF/flexibility tables, allowables, or code
+combinations — by design</strong>; flexibility factors are user-entered
+opaque validated numbers. This is the design-tool boundary enforced in
+code.</li>
+<li>No von Mises/Tresca/principal/SRSS; no Bourdon effect; no shear
+deformation (Euler–Bernoulli only); no spring-hanger sizing; friction
+path-history (anti-chatter) unresolved, gated on a future ruling.</li>
+</ul>
+
+<h2>3 · Validation state</h2>
+<div class="overflow"><table>
+<tr><th>Apparatus</th><th>State</th><th>Reading</th></tr>
+<tr><td>DEL-09-01 bench evidence</td>
+<td>One bundle (<code>BENCHEVID_DEL0901_20260720T062342Z</code>): crate
+tests <span class="good">38/38 pass</span>; 24 fixtures; whole-suite
+runner capture: 11 matched, 0 mismatched, <span class="warn">13 blocked
+fail-closed</span> (<code>COMPARISON_BASIS_NOT_REUSABLE</code>), exit 1</td>
+<td>Fail-closed is correct behavior — no invented tolerances — but no
+accepted comparison basis yet exists for over half the suite through the
+runner</td></tr>
+<tr><td>Tolerance policy</td>
+<td><span class="warn">Every <code>tolerance_policy</code> in the suite is
+<code>None</code> (TBD)</span></td>
+<td>“Matches” is not yet defined anywhere — the single biggest gap for
+any agent-iteration use of the solver as an oracle</td></tr>
+<tr><td>DEL-09-04 VALMANUAL</td>
+<td>66 case pages (21 mechanics / 15 stress / 28 nonlinear at index);
+recorded 2026-07-10 runs all passing; <span class="warn">all cases
+<code>DRAFT_EVIDENCE</code>, zero <code>MAINTAINER_REVIEWED</code></span>;
+index stale by the three R14 fixtures (constant-effort, curved-bend
+thrust arc, subspan wind); staleness acknowledged in deliverable status,
+not yet repaired in the index</td>
+<td>The manual itself routes real validation to “the user's accepted
+professional tools (external-prover correlation)” — already the
+design-tool posture</td></tr>
+</table></div>
+
+<h2>4 · Open defects and findings</h2>
+<ul>
+<li>133 review-finding rows across 93 CSVs: 55 resolved, <strong>78
+not-closed</strong> (46 OPEN, 28 technically-addressed-pending-human, 4
+deferred/historical).</li>
+<li>Worst open: <strong>4 BLOCKERs, all fix-landed awaiting human
+disposition</strong> (nonlinear regression provenance; physical-to-
+analytical dimension-ID validation; two schema rows accepting a
+<code>slope</code> dimension that <code>units.schema.yaml</code> does not
+define). 4 MAJORs are documentation currency (PKG-15 guidance still says
+TBD after materialization).</li>
+<li><strong>No open finding is a wrong-answer mechanics defect.</strong>
+The three physics gaps the 2026-07-09 assessment called disqualifying
+(inert bend flexibility; no temperature/modulus semantics; wind/seismic
+as labels) were closed by executed phases P1–P4 under DEC-066–070 and
+DEC-077.</li>
+<li>Residual technical substance: friction sliding-direction dependence
+on the prior iterate (DEL-04-04, needs a ruling); convergence thresholds
+accepted only for a 13-fixture seed set; 118 open <code>## Remaining</code>
+bullets across 101 deliverables; PDU-013 unit-catalog hold keeps bench
+evidence dimensionally checked only against fixture-local unit bases.</li>
+</ul>
+
+<h2>5 · Reliance and lifecycle</h2>
+<ul>
+<li><strong>Professional reliance is affirmatively withheld:</strong>
+D-61 records <code>CLOSED_WITH_RELIANCE_HOLD</code>; the 2026-07-29 slate
+states “no output of this loop is authorized for professional reliance.”
+SCA-008 (rev 0.11, D-58/DEC-091, effective through PR #390) retired the
+App-era synchronized-consumption reliance basis; the automation-condition
+mechanism remains unresolved; Piping sits outside the Root-runtime and
+App-harness client sets.</li>
+<li>Bench results are labeled regression evidence only; every tolerance,
+release threshold, CI gate, and reliance claim is TBD and owner-gated.</li>
+<li><strong>Lifecycle:</strong> 101 deliverables, all in
+<code>1_Working</code>; 100 <code>IN_PROGRESS</code>; exactly one
+<code>ISSUED</code> (DEL-01-01 governance baseline). Issuance waves
+W1–W7 staged, unexecuted. Decision register: 45 RULED, 1 AWAITING_RULING
+(D-45).</li>
+</ul>
+
+<h2>6 · Synthesis against the owner intent of record (supervising session)</h2>
+<p>The engine's “immaturity” has exactly the shape the 2026-07-31
+design-tool boundary predicted: what is withheld is judgment-adjacent
+(tolerances, reliance, code allowables), and what is built is
+traceable, user-entered, deterministic design mechanics. For the
+intended role — a trustworthy oracle inside an agent design-iteration
+loop, with external deterministic checkers (e.g., CAEPIPE via the PKG-17
+exports) as independent validation — the gaps that matter reduce to
+three, and they are one question wearing three coats: <strong>define
+what “matches” means</strong> (tolerance policy), <strong>make the
+comparison basis reusable</strong> (the 13 fail-closed cases), and
+<strong>unpin the PKG-17 comparison semantics</strong> (currently
+diagnostic-only pending the DEL-14 basis). All three are facets of the
+canonical-model/contract question and would be natural obligations of a
+future product-basis act.</p>
+
+<footer>
+This report is a derivative, non-governing record produced by a
+read-only survey at basis <code>main@0109cdf10</code>. It does not amend
+any PRD, decomposition, lifecycle, hold, or reliance state; it grants no
+authority and is not itself validation evidence. Repository sources and
+accepted instruments control wherever they differ from this
+interpretation. Numeric claims (LOC, counts, tallies) are the surveying
+agent's measurements at this basis and should be re-derived before any
+consequential use. Retention posture: keep in <code>plans/</code> while
+it informs the owner's Chirality Piping product-basis decision; archive
+to <code>plans/.archive/</code> thereafter without promoting it into
+product authority.
+</footer>
+
+</main>
+</body>
+</html>
