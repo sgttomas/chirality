@@ -2194,3 +2194,48 @@ amendment; owner ruling required).
   exact final branch HEAD. No instruction-surface path touched — no
   tranche manifest (Receipt 65 precedent). No register write (harvest-
   discoverable per the capture architecture). Idle posture unchanged.
+
+### Receipt 79 — 2026-08-01 — Owner intent recorded: Pi/oMLX Agent 2 capability expansion (TM-ROOT-103)
+
+- **Parent receipt:** Receipt 78. The loop remains idle; this is a
+  bounded owner-directed coordination write, not a phase.
+- **Owner direction (2026-08-01, in-session, verbatim, 225 bytes UTF-8,
+  SHA-256
+  `9e8acbe664809784b811c7fa4417e16881ac977f467f6fe813149ec2085c974b`):**
+  "okay yes that's the correct direction to head in, and I see there's
+  some dependencies to the order of execution.  So with that in mind,
+  can you situate these proposed capability increases to Agent 2 in the
+  appropriate manner?" — following the owner's proposed capability
+  table for local Pi/oMLX Agent 2 children (recorded verbatim in the
+  artifact below, 784 bytes UTF-8, SHA-256
+  `b13d42549edfc14d8ecd893b207241e04d5d44c574c6c501032b102e2eabfbfa`).
+- **Artifacts:**
+  - `projects/chirality-app-dev/execution/_Coordination/OWNER_INTENT_2026-08-01_PI_AGENT2_CAPABILITY_EXPANSION.md`
+    — owner intent of record (coordination, not authority): verbatim
+    proposed capability table; non-authoritative restatement of the
+    sequencing dependencies (fresh tranche per K-ENGINE-6; phase 1
+    multi-tool reads + policy-gated writes; phase 2 registered
+    deterministic tools before any Bash grant, integration-owner
+    serialization priced per AGENTS.md; phase 3 durable resume gated on
+    the runtime-identity ruling, TM-ROOT-035 lineage); unchanged fences;
+    known seams (version-pin drift `0.80.10`→`0.82.0`; the caller-less
+    promoted turn-engine factory on the DEL-02-06 seam).
+  - `execution/_Coordination/_TaskManagement/REGISTER.csv` —
+    TM-ROOT-103 minted DEFERRED, `CandidateRef=DIRECT` under the
+    in-session direction above; trigger: app-dev TM adoption (D-APP-83)
+    migration review, then the owner-initiated capability-expansion
+    packet. `taskmgmt validate` PASS (103 rows).
+- **Stash disclosure:** the owner cited stashed implementation changes
+  in a `chirality-release-v2` checkout; that path does not exist on the
+  working machine and no Pi-related stash exists in the repo's shared
+  stash list (four stashes, all governance-harness/practitioner
+  surfaces) or sibling checkouts. The recorded verbatim table is the
+  proposal's carrier; a recovered stash would enter only as labeled
+  candidate input to the future packet.
+- **Gate / blockers:** human-gated PR; merge remains an owner act on the
+  exact final branch HEAD. Authority unchanged: the record is
+  coordination, not authority; the expansion itself requires a fresh
+  app-dev tranche (K-ENGINE-6) ruled in that loop. No instruction-
+  surface path touched — no tranche manifest (Receipt 65 precedent).
+  The app-dev launcher steer is amended out-of-repo to add TM-ROOT-103
+  to the step-2 migration list. Idle posture unchanged.
