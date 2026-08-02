@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-00-03
 package_id: PKG-00
-decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
+decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a
 project_scope_refs: [SOW-089]
 package_objective_refs: [OBJ-001]
 ---
@@ -49,16 +49,15 @@ unadopted alternatives. This contract records that accepted attribution at its
 recorded strength. It does not restate it as a strong derivation, and nothing
 below may be read as supplying one.
 
-**Basis provenance note.** `_REFERENCES.md` still names `SOFTWARE_DECOMP.md`
-"revision 1.1, accepted working surface". That phrase is superseded provenance
-awaiting a deferred pointer sweep; `_CONTEXT.md` already records revision 1.1 as
-"superseded by revision 1.2 (`current_basis`, SCA-002 successor)". The accepted
-basis bound in this contract's frontmatter, and cited throughout, is
-`SOFTWARE_DECOMP.md` **revision 1.2** at commit `3623b958b`, accepted through
-`SCA-002` under `D-PEC-64`.
+**Basis provenance note.** `_REFERENCES.md` names `SOFTWARE_DECOMP.md` revision
+1.3 as the accepted `current_basis`, and `_CONTEXT.md` records the complete
+revision 1.1 → 1.2 → 1.3 supersession chain. The accepted basis bound in this
+contract's frontmatter is revision 1.3 at merge `11a494e9a`, accepted through
+SCA-003. Revision 1.2 at `3623b958b` remains prior accepted provenance, not a
+competing current basis.
 
 - **OUT-001** — The seeded v2 SPEC markdown document: the PEC v2 product specification, structured from the accepted decomposition's packages, deliverables, objectives, and scope items, published under `PKG-00`.
-- **OUT-002** — The seed's per-claim traceability binding: the citation apparatus by which every specification claim in OUT-001 resolves to a `PRD.md` v2.1 requirement or invariant identifier and/or an accepted decomposition identifier, together with the explicit binding of the accepted basis revision and commit.
+- **OUT-002** — The seed's per-claim traceability binding: the citation apparatus by which every specification claim in OUT-001 resolves to a `PRD.md` v2.2 requirement or invariant identifier and/or an accepted decomposition identifier, together with the explicit binding of the accepted basis revision and commit.
 - **OUT-003** — The seed's declared governed-amendment provision: the statement, carried in the seed's own text, that it is seeded before P1 and amended per phase under governed updates, and of what it does not acquire between those amendments.
 
 ## Deliverable Definition — Ontology
@@ -74,8 +73,8 @@ basis bound in this contract's frontmatter, and cited throughout, is
 
 ### Subject matter carried into the outputs
 
-- **CLM-005** — The accepted basis this seed derives from comprises: 11 packages `PKG-00`..`PKG-10`, 64 deliverables, 6 objectives, and 94 scope items (71 `IN` / 14 out-of-scope / 9 `TBD`), per `SOFTWARE_DECOMP.md` §7 Coverage & Telemetry at revision 1.2.
-- **CLM-006** — The requirement source of record is `PRD.md` v2.1 alone: "The 46 PEC-\*-NNN requirements, 11 PEC-K invariants, §3 outcomes, §11 metrics/falsification clause, §5 modes ladder, and §12 exit tests are the scope-item source. Governance instruments (workplan, fences, D-GOV/D-T0 rulings) enter as constraints, not scope; the frozen corpus enters as reference, not scope" (`SOFTWARE_DECOMP.md` §1.4 intake posture 1, confirmed at Gate 1).
+- **CLM-005** — The accepted basis this seed derives from comprises: 11 packages `PKG-00`..`PKG-10`, 64 deliverables, 6 objectives, and 94 scope items (71 `IN` / 14 out-of-scope / 9 `TBD`), per `SOFTWARE_DECOMP.md` §7 Coverage & Telemetry at revision 1.3.
+- **CLM-006** — The requirement source of record is `PRD.md` v2.2 alone: "The 46 PEC-\*-NNN requirements, 11 PEC-K invariants, §3 outcomes, §11 metrics/falsification clause, §5 modes ladder, and §12 exit tests are the scope-item source. Governance instruments (workplan, fences, D-GOV/D-T0 rulings) enter as constraints, not scope; the frozen corpus enters as reference, not scope" (`SOFTWARE_DECOMP.md` §1.4 intake posture 1, confirmed at Gate 1 and carried through revision 1.3).
 - **CLM-007** — `PRD.md` §14 rules that no identifier is reused: "v2 identifiers are `PEC-K-*` (invariants) and `PEC-{ORI,RCN,GAT,PRS,STR,API,DSH,SVC}-NNN` (requirements); no family overlaps v1.0 or v0.4, so a bare ID is always unambiguous." §13 retains the archived baseline `SPEC.md`, `TRACEABILITY.md`, `PILOT.md`, and `ADR-001..014` under `projects/pec/docs/.archive/` "with existing disclaimers", and the frozen corpus is "quarried by citation", never restored.
 - **CLM-008** — `SOFTWARE_DECOMP.md` §2.4 records "Authoring surfaces: ADRs and the v2 SPEC as governed product records (amended at Phase 6, DL-14)". `DL-14` also moved `DEL-00-03` from `P1` to `pre-P1` with the stated reason "PKG-00 publishes ahead of consumers".
 - **CLM-009** — `PKG-00`'s recorded role is "Published specifications others consume: v2's first ADRs (incl. the OI-012 core-isolation decision), the v2 SPEC born from this decomposition, and the versioned event-contract types shared by daemon, hooks CLI, and adapters", with recorded exclusions "Implementation of any contract (consuming packages); cross-package edits — PKG-00 publishes, dependants consume" (`SOFTWARE_DECOMP.md` §4). `DL-12` states the same mechanics constraint: "PKG-00 deliverables publish artifacts that dependants consume as declared dependencies — a deliverable never writes into another package (disjoint write scopes preserved)."
@@ -90,13 +89,13 @@ basis bound in this contract's frontmatter, and cited throughout, is
 
 ### Lifecycle position
 
-- **CLM-014** — The deliverable is at lifecycle state `OPEN` (`_STATUS.md`, set 2026-07-25 by PREPARATION) and no v2 SPEC has been authored. Every requirement, acceptance criterion, and verification method below states a contract that future SPEC authoring must satisfy; none asserts that any SPEC exists.
+- **CLM-014** — At original contract authoring, the deliverable was `OPEN` and no v2 SPEC existed. `_STATUS.md` is the sole current lifecycle authority; subsequent initialization, candidate production, review, or acceptance state is read there and is not restated as current truth in this stable production contract. Every requirement, acceptance criterion, and verification method below states the contract the SPEC output must satisfy.
 
 ## Completion and Reliance Basis — Epistemology
 
 - **REQ-001** — The seed shall be authored from the accepted decomposition at the basis revision and commit bound in this contract's frontmatter, deriving its structure from the accepted packages, deliverables, objectives, and scope items rather than inventing content (CLM-002, CLM-004, CLM-005).
-- **REQ-002** — The seed shall specify the product using only `PRD.md` v2.1's requirement families and invariants as its requirement source, and shall introduce no new requirement, invariant, objective, package, deliverable, or scope item beyond the accepted basis (CLM-006).
-- **REQ-003** — Every specification claim in the seed shall carry a resolvable citation: a `PRD.md` v2.1 requirement or invariant identifier, and/or an accepted decomposition identifier (`SOW-*`, `OBJ-*`, `PKG-*`, `DEL-*`).
+- **REQ-002** — The seed shall specify the product using only `PRD.md` v2.2's requirement families and invariants as its requirement source, and shall introduce no new requirement, invariant, objective, package, deliverable, or scope item beyond the accepted basis (CLM-006).
+- **REQ-003** — Every specification claim in the seed shall carry a resolvable citation: a `PRD.md` v2.2 requirement or invariant identifier, and/or an accepted decomposition identifier (`SOW-*`, `OBJ-*`, `PKG-*`, `DEL-*`).
 - **REQ-004** — The seed shall state, in its own text, the accepted basis revision and commit it was born from, so that a later reader can determine which decomposition state it derives from without consulting an external index.
 - **REQ-005** — The seed shall identify itself as the v2 SPEC and shall not restore the archived baseline `SPEC.md`, `TRACEABILITY.md`, `PILOT.md`, or `ADR-001..014` to live authority; every reference to them shall be marked historical, and no retired v1.0 or v0.4 identifier family shall be used for a v2 identifier (CLM-007).
 - **REQ-006** — The seed shall record its own amendment provision: that it is seeded before P1 from the accepted basis, that it is amended per phase under governed updates, and that between governed amendments it acquires no scope of its own (CLM-002, CLM-008).
@@ -109,7 +108,7 @@ basis bound in this contract's frontmatter, and cited throughout, is
 
 - **AC-001** — The SPEC markdown exists at the packet-recorded path, that path is recorded in this deliverable's packet before the artifact is treated as consumable, and the change set that produced it touches no path outside `PKG-00`.
 - **AC-002** — Every package, deliverable, objective, and scope item named in the seed resolves to a row of the accepted registers at the bound basis; the seed introduces none that is absent from that basis, and any scoped subset of the 11 packages or 64 deliverables it carries is stated as a subset with its reason.
-- **AC-003** — Every specification claim in the seed carries a citation that resolves to a `PRD.md` v2.1 requirement or invariant identifier or to an accepted decomposition identifier; a citation-resolution pass finds no unresolvable, invented, or retired-family identifier presented as live.
+- **AC-003** — Every specification claim in the seed carries a citation that resolves to a `PRD.md` v2.2 requirement or invariant identifier or to an accepted decomposition identifier; a citation-resolution pass finds no unresolvable, invented, or retired-family identifier presented as live.
 - **AC-004** — The seed states the accepted basis revision and commit in its own text, and that statement equals the basis bound in this contract's frontmatter or a later accepted successor named as such.
 - **AC-005** — The seed contains no requirement, invariant, objective, package, deliverable, or scope item that is absent from the accepted basis, and no v1.0 or v0.4 identifier family is used for a v2 identifier.
 - **AC-006** — Wherever the seed references the archived baseline `SPEC.md`, `TRACEABILITY.md`, `PILOT.md`, or `ADR-001..014`, the reference is marked historical, and none of them is cited as live authority.
@@ -123,7 +122,7 @@ basis bound in this contract's frontmatter, and cited throughout, is
 
 Production sequence expected of the future authoring run: read the accepted
 basis at the bound revision and commit; read the `SOW-089` ledger row and its
-§13 anchor; read `PRD.md` v2.1's requirement families and invariants; derive the
+§13 anchor; read `PRD.md` v2.2's requirement families and invariants; derive the
 seed's structure from the accepted registers; attach the citation apparatus;
 record the amendment provision; record the packet path; publish under `PKG-00`
 only. All work is bounded to this deliverable folder and the packet-recorded
@@ -146,11 +145,11 @@ acceptance criteria, and none may add a criterion absent from this contract.
 
 - **AX-001** — `OBJ-001` governs the deliverable's service: orientation for any loop is a sub-second query with per-claim citations, not a session-length prose derivation. The seed's per-claim citation discipline (OUT-002) is the document-level form of that same value; a SPEC whose claims cannot be resolved to their sources would work against the objective it is attributed to.
 - **AX-002** — The `DEL-00-03` → `OBJ-001` attribution is `SCA-002`-qualified and rated LOW at the Gate 3 record, which names the alternatives — the full five-objective set, and `OBJ-006` — as considered and unadopted. This contract carries the attribution at that recorded strength. It is not evidence that the SPEC serves `OBJ-001` more than it serves the other objectives, and `AC-011` puts the qualification in front of an accountable owner rather than burying it.
-- **AX-003** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.2 at commit `3623b958b`, accepted through `SCA-002` under `D-PEC-64`. The "revision 1.1" phrase in `_REFERENCES.md` is superseded provenance from a deferred pointer sweep, not a competing authority.
+- **AX-003** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.3 at merge `11a494e9a`, accepted through SCA-003. Revision 1.2 at `3623b958b` and revision 1.1 remain prior accepted provenance, not competing current authority.
 - **AX-004** — `DL-12` governs package mechanics: `PKG-00` publishes and dependants consume through declared dependency edges; contribution to another package is never a cross-package write. `DL-14` set `pre-P1` for the same reason — PKG-00 publishes ahead of consumers.
 - **AX-005** — Open decisions stay open. Intake posture 3 requires §16 rulings to reach the decomposition through the scope-change machinery; a SPEC that settled an open issue in passing would pre-decide by prose what the governed instrument reserves to the owner.
 - **AX-006** — The archived baseline is historical. Retention under `docs/.archive/` is not reauthorization, the frozen corpus is quarried by citation and never restored, and `PRD.md` §14's no-identifier-reuse rule keeps a bare identifier unambiguous.
-- **AX-007** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority and was untouched by the run that authored this document; the deliverable is at `OPEN` and no SPEC exists.
+- **AX-007** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole current lifecycle authority. The original authoring-time `OPEN` / no-SPEC condition is historical context under CLM-014 and is not asserted as the current state.
 - **AX-008** — Unknowns remain marked. `TBD-001`, `TBD-002`, and `CON-001` are recorded rather than resolved by inference; `C-06`'s missing consumer edges are a deliberate no-edge record, and this contract's job is to fix the form the seed must take, not to supply the decisions the accepted text withholds.
 
 ## Output and Evaluation Matrix

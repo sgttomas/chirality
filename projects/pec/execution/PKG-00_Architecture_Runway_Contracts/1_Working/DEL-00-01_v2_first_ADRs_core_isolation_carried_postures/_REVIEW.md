@@ -1,12 +1,12 @@
 # Review — DEL-00-01 v2 first ADRs
 
-**Review stage:** GATE 3 SELF_CHECK COMPLETE — GATE 5 OWNER DECISION PENDING
+**Review stage:** GATE 5 OWNER APPROVED — CHECKING
 
 **Review Type:** SELF_CHECK
 
 **Reviewer(s):** AGENT_CHECK (producer-side mechanical self-check; no human reviewer identity inferred)
 
-**Target transition:** INITIALIZED → CHECKING (review-from-INITIALIZED override only; no transition authorized)
+**Target transition:** INITIALIZED → CHECKING (owner-approved review-from-INITIALIZED override; applied)
 
 **Owner authorization (verbatim, 2026-08-01):**
 
@@ -32,6 +32,15 @@ producer-side assessment only; it does not convert agent checks into human
 engineering judgment, artifact acceptance, finding disposition, or lifecycle
 authority.
 
+**Owner Gate 5 ruling (verbatim, 2026-08-01):**
+
+> Approve both recommendations as stated.
+
+The approved recommendation for this deliverable was: `DEL-00-01 Gate 5:
+advance to CHECKING.` The guarded transition was applied with the committed
+ruling record. This approval advances lifecycle state only; it does not accept
+the ADR artifact bytes or satisfy AC-007's owner-only fitness confirmation.
+
 ## Review Basis
 
 - D-PEC-72 production merged through PR #450 at `0f7f7ef108e65b953d188bd01fb116858959830f`.
@@ -39,7 +48,7 @@ authority.
 - Production contract: `ScopeOfWork.md`, valid `SOW_V1` (`sha256:4334615044448441780c818ec7badf5ca55a4a6cf30b3ff19d11bf3049b21740`).
 - Checklist compiler: `tools/scope_of_work/derive_review_checklist.py`, schema `chirality-review-checklist/v1`, tool version 1, 7 criteria.
 - Decomposition coverage: strict deterministic register validation PASS (64 registers, 254 rows, zero errors/warnings). No managed AUDIT_DECOMP child session was available in this runtime; no structural discrepancy was detected by the registered validator.
-- Lifecycle state: `INITIALIZED`; the owner explicitly authorized review from this state. `_STATUS.md` remains unchanged.
+- Lifecycle state: `CHECKING`; the owner explicitly authorized review and Gate 5 advancement from `INITIALIZED`, and the guarded override is recorded in `_STATUS.md`.
 - Context validity: PASS — `DEL-00-01`, `PKG-00`, `SOW-088`, and `OBJ-005` agree across `_CONTEXT.md`, `ScopeOfWork.md`, and accepted decomposition registers.
 
 ## Gate 1 Precondition Summary
@@ -118,6 +127,7 @@ owner-only confirmation, not a defect or agent disposition.
 **Recommendation:** RECOMMEND_ADVANCE
 
 All common checklist items are populated, there are zero findings, and the
-review-from-`INITIALIZED` override is recorded. This is only a Gate 5
-recommendation: no owner lifecycle approval or artifact fitness acceptance has
-yet been given, so `DEL-00-01` remains `INITIALIZED`.
+review-from-`INITIALIZED` override is recorded. The owner approved the exact
+Gate 5 recommendation and the guarded transition was applied. `DEL-00-01` is
+now `CHECKING`. Artifact fitness remains a separate owner act: AC-007 is still
+`PARTIAL`, and the ADR bytes have not been accepted.

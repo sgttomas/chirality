@@ -1,6 +1,19 @@
 # D-PEC-72 execution handoff — P1-entry foundation
 
-**Handoff state:** PARTIAL CANDIDATE FAN-IN; PKG-00 SELF_CHECK COMPLETE / ONE MAJOR OPEN; C-05 OPEN.
+**Handoff state:** PARTIAL CANDIDATE FAN-IN; DEL-00-01 CHECKING; DEL-00-03 REPAIR VERIFIED / GATE 5 PENDING; C-05 OPEN.
+
+**Update 05 (2026-08-01):** the owner ruled, verbatim, "Approve both
+recommendations as stated." The referenced acts were `DEL-00-01 Gate 5:
+advance to CHECKING` and `DEL-00-03 RF-001: REVISE; authorize a bounded
+ScopeOfWork currency repair and self-check rerun.` The guarded DEL-00-01
+transition was applied from `INITIALIZED` to `CHECKING` under the recorded
+human override. The DEL-00-03 contract was repaired only for current basis,
+PRD, and lifecycle currency; the SPEC candidate bytes are unchanged. Its
+11-item checklist rerun passes, RF-001 is `REVISE` / `RESOLVED`, and REVIEW now
+recommends advancement. No DEL-00-03 Gate 5 approval or candidate-artifact
+fitness acceptance was given. Review snapshots are under
+`execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/` and
+`REV_DEL-00-03_2026-08-01_1935/`.
 
 **Update 04 (2026-08-01):** the owner selected the recommended replacement
 `SELF_CHECK` review type and authorized continuation. The mechanical review
@@ -108,12 +121,12 @@ re-rule or direct the harness cache.
 
 ## Rerun and next gates
 
-1. For DEL-00-01, SELF_CHECK is complete with zero findings and a
-   `RECOMMEND_ADVANCE` Gate 5 recommendation; owner artifact fitness and
-   lifecycle decisions remain pending. For DEL-00-03, SELF_CHECK is complete
-   with `RF-001` MAJOR / OPEN / `HumanDisposition=TBD`; owner disposition is
-   required before the recommended Gate 5 decision. No lifecycle transition
-   is yet authorized.
+1. DEL-00-01 is `CHECKING` after the owner-approved Gate 5 transition. Its
+   separate AC-007 artifact-fitness confirmation remains pending; the ADR bytes
+   are not accepted by the lifecycle ruling. DEL-00-03 has RF-001 resolved and
+   a fresh `RECOMMEND_ADVANCE`, but remains `INITIALIZED` pending a separate
+   Gate 5 ruling; AC-011 artifact fitness and LOW-confidence `OBJ-001`
+   confirmation also remain separate.
 2. DEL-10-01 reruns only when exact token telemetry is available. A revised
    packet would be required to waive or replace that accepted criterion; this
    run does not propose such a waiver.

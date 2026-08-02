@@ -1408,3 +1408,12 @@
   - Authority fence: REVIEW remains read-only on deliverable content and the finding has `HumanDisposition=TBD`. Neither `_STATUS.md` changed; no artifact fitness acceptance, CHECKING/ISSUED transition, SOW amendment/SCA, DEL-10-01 change, C-05 closure, P1 opening, release, or reliance act is created.
   - Checks: both contracts validate `SOW_V1`; exact compiled checklist coverage remains 7 + 11; production commit `5942c5033` is PKG-00-contained; manifest, strict decomposition-register, self-check baseline, coordination, and whitespace checks govern closeout.
   - Parked lanes: owner disposition of `DEL-00-03` RF-001; owner Gate 5 decision for each PKG-00 deliverable; separate artifact-fitness confirmations including DEL-00-03 AC-011; DEL-10-01 exact-telemetry rerun remains separate.
+
+- **2026-08-01 — Receipt 128** (D-PEC-72 exact two-act review ruling applied).
+  - Owner ruling of record (verbatim): "Approve both recommendations as stated." Referenced acts: `DEL-00-01 Gate 5: advance to CHECKING.` and `DEL-00-03 RF-001: REVISE; authorize a bounded ScopeOfWork currency repair and self-check rerun.` Exact record: `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/REVIEW_GATE_RULING_2026-08-01.md` at commit `ca37e2c0b`.
+  - DEL-00-01: the committed-ruling guard recorded the human override and advanced `INITIALIZED → CHECKING`; zero findings remain. This lifecycle act is not acceptance of the ADR bytes; AC-007 remains `PARTIAL`.
+  - DEL-00-03: current-basis / PRD / authoring-time lifecycle currency repaired in `ScopeOfWork.md`; SPEC candidate hash remained `2eee3a920001dd7638a5cfa3be3ad996735c46b83fc294ab7099684560aff80b`; the 11-row SELF_CHECK rerun passes and RF-001 is `REVISE` / `RESOLVED`.
+  - Immutable review evidence: `projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/` and `REV_DEL-00-03_2026-08-01_1935/`; `_LATEST.md` points to the latter.
+  - Gate outcome: exact acts EXECUTED. DEL-00-03 remains `INITIALIZED` with a fresh `RECOMMEND_ADVANCE`; neither deliverable's artifact fitness is accepted; C-05 and P1 remain closed.
+  - Checks: both SOW contracts valid; exact compiled checklist coverage 7 + 11; strict decomposition-register validation and loop self-check pass; manifest, coordination, and whitespace checks govern closeout.
+  - Parked lanes: DEL-00-01 AC-007 artifact fitness; DEL-00-03 Gate 5 plus AC-011 artifact fitness; DEL-10-01 exact-token-telemetry rerun.
