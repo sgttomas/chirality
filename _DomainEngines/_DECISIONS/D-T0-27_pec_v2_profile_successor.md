@@ -1,6 +1,6 @@
 # D-T0-27 — PEC v2 Domain Engine Profile successor
 
-**Status:** `AWAITING_RULING / CANDIDATE VALIDATED / LIVE PROFILE UNCHANGED`
+**Status:** `RULED O-A / APPLICATION VALIDATED / READY FOR CHANGE / NOT EFFECTIVE`
 
 **Date presented:** 2026-08-02
 
@@ -47,15 +47,37 @@ before adapter code avoids a deadline-driven boundary decision.
 
 ## Current authority fence
 
-Until the owner rules and the application becomes effective, the live profile
-remains SHA-256
-`0d6e1505003cffeba0393bdebaa48f19f27e2b1de8964e2c2bd262331f9ccca6`,
-`STALE / MANUAL_BRIDGE / DENY_ALL_PROFILE_MEDIATED_INVOCATIONS`.
+The exact application preserves the prior live profile at SHA-256
+`0d6e1505003cffeba0393bdebaa48f19f27e2b1de8964e2c2bd262331f9ccca6`
+under the packet and installs candidate SHA-256
+`be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d`
+at `ADOPTED / READ_ONLY`. D-T0-28 O-A corrected the two conscious
+live-baseline pins at exact postimage SHA-256
+`7a4e8aa0fdb28cacdfedb62a307a260bd090136362102b48673ea2a9842d7638`;
+all uncommitted application checks now pass. The application remains not
+effective until exact CHANGE publication and merge identity.
 
-This presentation creates no adoption, live-profile edit, profile-mediated
-invocation, PEC project/source/SOW/status/Task-Management change, lifecycle
-act, release, professional reliance, or cross-loop mandate.
+This ruling and application create no PEC source/SOW/software-workflow,
+lifecycle, artifact-fitness, Task-Management, release, professional-reliance,
+or cross-loop act and declare no runtime, adapter-client, mutation, proposal,
+or external-result tool.
 
 ## Owner ruling
 
-`TBD`
+Ryan Tufts, in-session, 2026-08-02 (verbatim):
+
+> APPROVE:
+>
+> 1. Merge PR #458 at source SHA
+>    5ea7c116d32aa8f133536a1a1de6c7c1cb4a9f88.
+>
+> 2. D-T0-27: O-A.
+>
+> 3. D-PEC-75: O-A.
+
+D-T0-27 O-A adopts the exact candidate and authorizes only the bounded
+`APPLICATION_PLAN.md`. PR #458 is merged at
+`23d15899fd0acf5d1d0513f3fe396438375c9e25`. The exact application is
+validated and ready for CHANGE but `NOT EFFECTIVE` pending exact publication,
+committed-range `coord-check`, and merge identity. D-PEC-75 disposition and
+execution remain governed by the PEC loop and are not performed by this row.

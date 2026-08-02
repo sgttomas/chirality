@@ -484,3 +484,113 @@
   - Gate outcome: pointer currency only, effective on durable merge. No new
     profile, project, product, implementation, runtime, migration,
     compatibility, lifecycle, release, or reliance authority is created.
+
+- **2026-08-02 — Receipt 33** (D-T0-27 PEC v2 profile successor application).
+  - Application basis: PR #458 merge
+    `23d15899fd0acf5d1d0513f3fe396438375c9e25`; exact source SHA
+    `5ea7c116d32aa8f133536a1a1de6c7c1cb4a9f88`.
+  - Owner direction of record: Ryan Tufts, in-session, 2026-08-02 —
+
+    > APPROVE:
+    >
+    > 1. Merge PR #458 at source SHA
+    >    5ea7c116d32aa8f133536a1a1de6c7c1cb4a9f88.
+    >
+    > 2. D-T0-27: O-A.
+    >
+    > 3. D-PEC-75: O-A.
+  - Applied D-T0-27 effect: preserved stale preimage SHA-256
+    `0d6e1505003cffeba0393bdebaa48f19f27e2b1de8964e2c2bd262331f9ccca6`
+    under the packet; installed exact successor SHA-256
+    `be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d`
+    at `_DomainEngines/profiles/pec.yaml`; regenerated portable validator
+    evidence `VALID`, `ADOPTED`, zero findings; aligned Tier-0 current pointers
+    and only the D-PEC-76-bounded PEC-local pointers.
+  - Gate outcome: D-T0-27 is `RULED O-A`; the application is materialized but
+    `NOT EFFECTIVE`. Required targeted tests expose two superseded pins in
+    `tools/practitioner_harness/test_live_baseline.py`, a path outside the
+    authorized application writes. D-PEC-75 selection/execution remains with
+    the PEC loop and its register state is not changed by this Tier-0 application.
+  - Authority fence: no PEC source, `software-workflow.json`, ScopeOfWork,
+    lifecycle, Task Management, decomposition, accepted-artifact, runtime,
+    adapter invocation, operation proposal, release, professional reliance,
+    or cross-loop mandate is created.
+  - Parked lanes: owner-rulable exact-path amendment for the two D-T0-27
+    live-baseline pins; then passing checks and CHANGE publication. D-PEC-75
+    remains with the PEC loop.
+
+- **2026-08-02 — Receipt 34** (D-T0-28 exact pin amendment validated).
+  - Owner direction of record: Ryan Tufts, in-session, 2026-08-02 —
+
+    > APPROVE:
+    >
+    > 1. D-T0-28: O-A.
+    >
+    > 2. DEL-01-06 REVIEW Gate 1 — select SELF_CHECK and authorize
+    >    review from INITIALIZED under D-PEC-75.
+    >
+    >    Use the deterministic six-item SOW checklist, AC-001 through
+    >    AC-006, bound to ScopeOfWork.md SHA-256
+    >    7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a.
+    >
+    >    This opens mechanical contract-fitness review only. It does not
+    >    accept the repaired SOW, satisfy the future-production acceptance
+    >    criteria, advance lifecycle, make D-T0-27 effective, open source
+    >    production, authorize another P1 node, release, or professional
+    >    reliance.
+  - Executed pointer: only item 1 in this Tier-0 lane. Exact test preimage
+    `80823ee8dea253f91145302f37e618bdf8feb753f032a741d0aa0e4f0df1e70c`
+    became exact postimage
+    `7a4e8aa0fdb28cacdfedb62a307a260bd090136362102b48673ea2a9842d7638`.
+    Item 2 remains with the PEC loop and is not executed or narrowed here.
+  - Gate outcome: D-T0-28 is `RULED O-A`; 18/18 targeted tests and 8/8
+    profile-validator tests pass, bridge-status has no findings, self-check
+    completes, and protected PEC hashes remain exact. D-T0-27 application is
+    validated and ready for CHANGE but `NOT EFFECTIVE` before exact merge.
+  - Authority fence: no production/profile/project/source/SOW/workflow,
+    lifecycle, Task Management, runtime, adapter invocation, release,
+    professional reliance, D-PEC-75 state, or cross-loop mandate changes.
+  - Parked lanes: D-T0-27 and D-T0-28 CHANGE closeout after committed-range
+    `coord-check` and merge identity; D-PEC-75 owns DEL-01-06 review.
+
+- **2026-08-02 — Receipt 35** (D-T0-29 exact whitespace attribute validated).
+  - Owner direction of record: Ryan Tufts, in-session, 2026-08-02 —
+
+    > APPROVE:
+    >
+    > 1. D-T0-29: O-A.
+    >
+    > 2. DEL-01-06 REVIEW Gate 5 — HOLD.
+    >
+    >    Retain DEL-01-06 at INITIALIZED. The SELF_CHECK populated
+    >    AC-001 through AC-006 as PENDING FUTURE PRODUCTION, recorded
+    >    zero findings, and recommends no lifecycle transition.
+    >
+    > 3. DEL-01-06 ScopeOfWork contract fitness — ACCEPT.
+    >
+    >    I accept ScopeOfWork.md at SHA-256
+    >    7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a
+    >    as the production contract for DEL-01-06.
+    >
+    >    AC-001 through AC-006 remain future-production obligations and
+    >    are not satisfied by this act. This acceptance does not advance
+    >    lifecycle, make D-T0-27 effective, independently open source,
+    >    authorize another P1 node, release, or professional reliance.
+  - Executed pointer: only item 1 in this Tier-0 lane. Exact `.gitattributes`
+    preimage `7dece552...` became exact postimage `c0d9e5b7...`; the exact
+    D-T0-28 patch remains `db807bef...` and its test postimage remains
+    `7a4e8aa0...`. Items 2 and 3 remain with the PEC loop and are neither
+    executed nor narrowed here.
+  - Gate outcome: D-T0-29 is `RULED O-A`; the exact patch attribute reports
+    `whitespace: unset`, candidate-whitespace passes against `origin/main`,
+    18/18 targeted tests and 8/8 profile-validator tests pass, bridge-status
+    has no findings, self-check completes, and protected PEC hashes remain
+    exact. The application chain is ready for CHANGE but `NOT EFFECTIVE`
+    before exact merge.
+  - Authority fence: no validator behavior, D-T0-28 patch/test, profile,
+    project, PEC path, source, ScopeOfWork, lifecycle, Task Management,
+    runtime, adapter invocation, release, professional reliance, D-PEC-75
+    state, or cross-loop mandate changes.
+  - Parked lanes: D-T0-27/D-T0-28/D-T0-29 CHANGE closeout after
+    committed-range `coord-check` and merge identity; D-PEC-75 owns DEL-01-06
+    Gate-5 HOLD and ScopeOfWork acceptance recording.
