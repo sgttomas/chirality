@@ -29,27 +29,32 @@ check profile. The five-item SELF_CHECK has zero findings; AC-005 is owner-
 confirmed at its recorded MEDIUM confidence; the exact schema, test, and three
 fixture bytes are accepted; and DEL-08-02 is `CHECKING`. No service, store,
 transport, runtime integration, later P1 node, release, or professional
-reliance is authorized. **D-PEC-75 is ruled O-A for DEL-01-06:** its bounded
-contract-currency repair and SELF_CHECK are complete. Snapshot
-`REV_DEL-01-06_2026-08-02_0954` records zero findings, AC-001 through AC-006
-`PENDING FUTURE PRODUCTION`, and owner Gate 5 `HOLD` at `INITIALIZED`. The
-owner accepted exact SOW SHA-256
+reliance is authorized. **D-PEC-75 is ruled O-A for DEL-01-06.** The owner
+accepted exact SOW SHA-256
 `7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`
-as the DEL-01-06 production contract. REVIEW and SOW acceptance independently
-open no source. D-T0-27 is effective through exact PR #459 merge
+as the DEL-01-06 production contract. D-T0-27 is effective through exact PR
+#459 merge
 `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; its exact PEC-v2 successor is
 `ADOPTED / READ_ONLY`, with D-T0-28/D-T0-29 effective as supporting
 amendments. Serialized fan-in opened only packet §§5.3–5.6, and WORKING_ITEMS
-has now completed that exact candidate slice: immutable core loop value/port,
-replaceable JSON adapter, one-entry PEC default/schema, fixtures/tests, and
-the exact project check profile. Twelve registry tests, six preserved API
-tests, and harness self-check pass. DEL-01-06 remains `INITIALIZED`; all six
-ACs, artifact fitness, lifecycle, later P1, release, merge, and reliance remain
-open.
+completed that exact candidate slice: immutable core loop value/port,
+replaceable JSON adapter, one-entry PEC default/schema, fixtures/tests, and the
+exact project check profile. Twelve registry tests, six preserved API tests,
+and harness self-check pass. PR #463 merged exact REVIEW source
+`922ca0ea68d255b65292d59db89a98ef4cf59bc5` as
+`a753a7b0894371437a6add0f92653037e2df2dec`, with the source as second parent.
+Final snapshots `REV_DEL-01-06_2026-08-02_1110` and
+`REV_DEL-01-06_2026-08-02_1118` record AC-001 through AC-004 `PASS`, AC-005
+and AC-006 `PARTIAL` and unsatisfied, RF-001 `DEFERRED` with no VER-005
+waiver, and Gate 5 `HOLD` at unchanged `INITIALIZED`. RF-001 must reopen and
+SELF_CHECK must rerun when DEL-01-05 becomes available. No artifact byte is
+accepted; no next P1 node, release, or professional reliance is authorized.
 D-PEC-76 points to that Tier-0 ruling;
 following D-PEC-11 precedent, D-T0-27 owns the semantic profile act and
-D-PEC-76 creates no duplicate adoption. D-PEC-75 grants no domain-profile,
-source, project-workflow, lifecycle, or artifact-fitness act.
+D-PEC-76 creates no duplicate adoption. D-PEC-75's source-production and
+project-workflow authority was confined to the exact O-A fence and is now
+consumed; it grants no domain-profile, other source, lifecycle, or
+artifact-fitness act.
 Decomposition revision
 1.3 is the accepted current basis after `SCA-003` (2026-07-28; revision 1.2
 was the `SCA-002` basis); PROJECT_SETUP remains released with `FULL_GRAPH`
@@ -116,13 +121,17 @@ read and cite only, no further feature work, retired product docs under
    release, and professional-reliance act remains separately gated.
    `F-PEC-1` remains closed outside the exact O-A fence.
    **D-PEC-75 O-A selects DEL-01-06 as the second slice.** Its exact repaired
-   SOW is owner-accepted as the production contract, but Gate 5 holds
-   lifecycle at `INITIALIZED`; all six ACs remain pending future production.
-   D-T0-27 is effective by PR #459 merge identity. WORKING_ITEMS completed
-   only the exact packet §§5.3–5.6 source-production fence. The candidate
-   typed port/value, JSON adapter/default/schema, and tests pass all registered
-   checks; DEL-01-06 remains `INITIALIZED`, AC-001..AC-006 remain owner-open,
-   and no later node or lifecycle/fitness effect is inferred.
+   SOW is owner-accepted as the production contract, D-T0-27 is effective by
+   PR #459 merge identity, and WORKING_ITEMS completed only packet §§5.3–5.6.
+   PR #463 merged exact REVIEW source
+   `922ca0ea68d255b65292d59db89a98ef4cf59bc5` as
+   `a753a7b0894371437a6add0f92653037e2df2dec`. AC-001..004 pass; AC-005..006
+   remain partial and unsatisfied; RF-001 is deferred without a VER-005
+   waiver; and Gate 5 holds DEL-01-06 at `INITIALIZED`. When DEL-01-05 becomes
+   available, RF-001 must reopen and SELF_CHECK rerun. The remaining owner gate
+   is post-rerun RF-001 and Gate 5 disposition, followed separately by
+   exact-hash artifact fitness if supported. No artifact byte, next P1 node,
+   release, or professional reliance is authorized.
 2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
    clause armed; receiving consumers retain their own authority and cadence) →
    P4 streams, per the standing plan and the deliverables' PhaseHints.

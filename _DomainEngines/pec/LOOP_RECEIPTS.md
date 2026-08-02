@@ -1603,3 +1603,11 @@
   - Authority fence: registry contents are non-authoritative locator configuration; no governed act depends on registry presence. DEL-01-06 remains `INITIALIZED`; no AC satisfaction, artifact acceptance, `ISSUED`, later P1 node, service/store/transport/runtime act, release, merge, professional reliance, or other-loop duty is inferred. OI-003 remains open.
   - Gate outcome: **PRODUCER COMPLETE / CANDIDATE OUTPUT / REVIEW AND OWNER GATES OPEN**.
   - Parked lanes: owner REVIEW type and review-from-`INITIALIZED`; findings/Gate 5; exact-hash artifact fitness; publication/merge; every later P1 node.
+
+- **2026-08-02 — Receipt 143** (D-PEC-75 DEL-01-06 post-merge REVIEW closeout).
+  - Review publication: PR #463 merged exact source `922ca0ea68d255b65292d59db89a98ef4cf59bc5` as `a753a7b0894371437a6add0f92653037e2df2dec`; the exact source is the merge commit's second parent.
+  - Durable evidence: immutable snapshots `REV_DEL-01-06_2026-08-02_1110` and `REV_DEL-01-06_2026-08-02_1118`, plus deliverable-local `_REVIEW.md`, findings register, and `_LATEST.md` pointer, are merged on the current main basis.
+  - REVIEW result: AC-001 through AC-004 `PASS`; AC-005 and AC-006 `PARTIAL` and unsatisfied; RF-001 `MAJOR / DEFERRED` with owner disposition `DEFER` and no VER-005 waiver; Gate 5 owner `HOLD`; lifecycle remains `INITIALIZED`.
+  - Mandatory rerun: when separately governed DEL-01-05 becomes available, RF-001 must reopen and SELF_CHECK must rerun with DEL-01-05 enforcement evidence. The named remaining owner gate is post-rerun disposition of RF-001 and DEL-01-06 Gate 5, followed separately by exact-hash artifact fitness if the evidence supports acceptance.
+  - Authority fence: no DEL-01-06 artifact byte is accepted; no next P1 node, `ISSUED`, release, professional reliance, or other-loop duty is authorized.
+  - Gate outcome: **REVIEW MERGED / RF-001 DEFERRED / GATE 5 HOLD AT `INITIALIZED`**.
