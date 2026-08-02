@@ -2463,3 +2463,43 @@ amendment; owner ruling required).
   opened from source HEAD `2d2ab87614b28d2b71662d03eec70d6573326886`.
   Required checks, final exact source HEAD, and effective merge SHA remain
   pending their actual GitHub acts and are not predicted by this receipt.
+
+### Receipt 83 — 2026-08-02 — TM-ROOT-100 PEC Stage-B adoption echo closed
+
+- **Parent and posture:** Receipt 82; the Root loop remains idle. This is an
+  owner-directed root-register closure only, not a Root production phase.
+- **Owner direction (2026-08-02, in-session, verbatim):** "close that
+  outstanding item." In the immediately preceding exchange, "that outstanding
+  item" was identified as root Action Item `TM-ROOT-100`, the remaining
+  root-side acknowledgment/closure echo for PEC Task Management adoption.
+- **Federation preflight:** `taskmgmt federation` completed before the write:
+  four canonical tracked registers discovered and valid, coverage `COMPLETE`,
+  48/48 findings presented, and `register_writes: 0`. The unrelated existing
+  `TM-PIP-023 CLOSED -> TM-ROOT-053 OPEN` closure echo remains observational
+  and unchanged.
+- **Verified closure basis:** PEC decision `D-PEC-73` is `RULED` with the exact
+  owner ruling `D-PEC-73: O-A.` and records the PEC register as minted. The
+  ordinary notice explicitly supplies root-loop evidence to close
+  `TM-ROOT-100` as `RESOLVED_BY_DECISION`. Evidence SHA-256 values are
+  `2717ba9f6d2c0baeb8ac2096e4657745d683a79731af4db88dc93d5eaea4a89e`
+  for the decision and
+  `d4d8a7d38ab045ea143f04872a795e1b50eca7520f7325ce3ea235c3aef3dd56`
+  for the notice. The live PEC register was separately verified present and
+  schema-valid at SHA-256
+  `85b8e0a66975ffa44fec6db8597940ff2d87f61e8bd09316d1ea0e1d874a9c91`.
+- **Register act:** only `TM-ROOT-100` changed. `Status` is now `CLOSED`,
+  `Disposition` is `RESOLVED_BY_DECISION`, exact evidence references/hashes
+  and the owner/ruling quote are populated, and `LastReviewed`/`Closed` are
+  `2026-08-02`. The other 102 rows are semantically byte-preserved. Register
+  postimage SHA-256 is
+  `492b2798d757bdbca82971a127acd04a2effaa664d00ceef901d708a1b2fd484`.
+- **Closure echo and staleness:** the PEC Stage-B adoption echo changes from
+  outstanding to closed; its two cited closure-evidence hashes match the live
+  files. No new staleness or escalation candidate is created. The cited PEC
+  decision, PEC register, and notice are not modified.
+- **Checks and handoff:** root and PEC register validation, exact-row
+  containment, focused Task Management tests, practitioner-harness tests,
+  candidate-whitespace validation, and `git diff --check` pass. The closure is
+  complete as a candidate root closeout subject to ordinary Git publication;
+  it creates no PEC adoption, lifecycle, production, loop-entry binding,
+  cross-loop duty, release, or professional-reliance effect.
