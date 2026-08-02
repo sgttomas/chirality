@@ -2503,3 +2503,45 @@ amendment; owner ruling required).
   complete as a candidate root closeout subject to ordinary Git publication;
   it creates no PEC adoption, lifecycle, production, loop-entry binding,
   cross-loop duty, release, or professional-reliance effect.
+
+### Receipt 84 — 2026-08-02 — TM-ROOT-099 Piping Stage-B adoption echo closed
+
+- **Parent and posture:** Receipt 83; the Root loop remains idle. This is an
+  owner-directed root-register closure only, not a Root production phase.
+- **Owner direction (2026-08-02, in-session, verbatim):** "take care of that
+  housekeeping." In the immediately preceding exchange, the housekeeping item
+  was identified as root Action Item `TM-ROOT-099`, which remained `OPEN`
+  despite effective Piping Task Management adoption and required an
+  evidence-based root currency closure.
+- **Federation preflight:** `taskmgmt federation` completed before the write:
+  four canonical tracked registers discovered and valid, coverage `COMPLETE`,
+  48/48 findings presented, and `register_writes: 0`. The existing
+  `TM-PIP-023 CLOSED -> TM-ROOT-053 OPEN` closure echo remains observational
+  and unchanged.
+- **Verified closure basis:** Piping decision `D-63` is `RULED` with the exact
+  owner ruling `1) D-63 ruling: Option A.` and records the Piping register as
+  minted with the required linked migration. The ordinary Piping notice
+  explicitly supplies root-loop evidence for review and closure of
+  `TM-ROOT-099`. Evidence SHA-256 values are
+  `684911c9200ec5a301c76020bf63ab5c43826fe90fe4ae3471f7d59112a2e3e9`
+  for the ruling and
+  `d63a2dbd1e332b5131d74fe749bdda5fcd76a58716f0709139c86287f4103473`
+  for the notice. The live Piping register was separately verified present and
+  schema-valid at SHA-256
+  `bdfef05ec04d8a64fd8c86bdddc679a48e5317c4557613dd5c8762c9de5b68ce`.
+- **Register act:** only `TM-ROOT-099` changed. `Status` is now `CLOSED`,
+  `Disposition` is `RESOLVED_BY_DECISION`, exact evidence references/hashes
+  and the owner/ruling quote are populated, and `LastReviewed`/`Closed` are
+  `2026-08-02`. The other 102 rows are semantically byte-preserved. Register
+  postimage SHA-256 is
+  `79bb9b166b63e1faa6364e33bf141512eed0fad2b3bb700fe26c90bdccfe98b5`.
+- **Closure echo and staleness:** the Piping Stage-B adoption echo changes from
+  outstanding to closed; its two cited closure-evidence hashes match the live
+  files. No new staleness or escalation candidate is created. The cited
+  Piping ruling, register, and notice are not modified.
+- **Checks and handoff:** root and Piping register validation, exact-row
+  containment, focused Task Management tests, practitioner-harness tests,
+  candidate-whitespace validation, and `git diff --check` pass. The closure is
+  complete as a candidate root closeout subject to ordinary Git publication;
+  it creates no Piping adoption, lifecycle, production, loop-entry binding,
+  cross-loop duty, release, or professional-reliance effect.
