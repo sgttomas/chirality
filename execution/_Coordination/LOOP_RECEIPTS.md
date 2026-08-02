@@ -2239,3 +2239,48 @@ amendment; owner ruling required).
   surface path touched — no tranche manifest (Receipt 65 precedent).
   The app-dev launcher steer is amended out-of-repo to add TM-ROOT-103
   to the step-2 migration list. Idle posture unchanged.
+
+### Receipt 80 — 2026-08-02 — Task Management instruction-schema repair validated
+
+- **Parent receipt:** Receipt 79. The Root loop remains idle; this is the
+  owner-selected repair-first instruction-conformance tranche, not a Root
+  production phase.
+- **Owner directions (2026-08-02, in-session):**
+  `ROOT-HARNESS-SCOPE-CORRECTION-20260802 validator disposition: C, as
+  recommended.` Option C was the separately presented repair-first PR. The
+  owner then approved the recommended amendment allocating Root Receipt 80 to
+  this repair and Root Receipt 81 to the harness-scope correction.
+- **Accepted basis:** synchronized
+  `origin/main@03f4eb031c209508cb25d2213c6cf98bdaf8e788`; isolated branch
+  `codex/task-management-instruction-schema-repair`. The nine findings were
+  inherited at the branch basis: eight missing section-boundary markers and
+  one unrecognized write-scope prefix in
+  `agents/AGENT_TASK_MANAGEMENT.md`.
+- **Artifacts and outcome:**
+  - `agents/AGENT_TASK_MANAGEMENT.md` now carries meaningful `PROTOCOL`,
+    `SPEC`, `STRUCTURE`, and `RATIONALE` marker pairs. The sections restate
+    the existing contract; modes, resolution paths, authority, invocation,
+    human gates, and register semantics are unchanged.
+  - The existing narrow scope is classified as `loop-register-level`; the
+    validator recognizes that exact prefix and its tests cover both acceptance
+    of the class and rejection of an unknown class. No write authority is
+    broadened.
+  - G4 manifest
+    `docs/governance_harness/tranche_manifests/ROOT-TM-INSTRUCTION-SCHEMA-REPAIR-20260802.yaml`
+    and routed notices to App Dev, Piping, and PEC close the instruction-
+    surface notice requirement. Public-export regeneration is deferred.
+- **Checks:** full agent-instruction validation PASS (34 files, 0 errors,
+  0 warnings); focused agent-validator tests PASS (13); G4 schema validation
+  PASS (22 manifests) and G4 tests PASS (36); full practitioner-harness tests
+  PASS (349); practitioner-harness self-check exit 0 with the existing
+  4 REVIEW / 27 WARN / 14 INFO / 1 NOT_APPLICABLE findings; path-anchor PASS
+  (1,135 surfaces), claims-language PASS (268 files), candidate-whitespace
+  PASS, instruction-entrypoint PASS, and `git diff --check` PASS.
+- **Closure / handoff:** proposal-only repair closeout is complete subject to
+  the human-gated PR and merge on its exact final HEAD. Merge is a later owner
+  act and does not constitute semantic acceptance. After merge, rebase the
+  isolated harness-scope correction onto accepted main, assign it Root Receipt
+  81, rerun its validations, and proceed under its existing publication
+  approval. No register, runtime, policy, classifier, lifecycle, product,
+  dependency, decomposition, DAG, pointer, DEC-092, reliance, release, or
+  professional-judgment act occurred.

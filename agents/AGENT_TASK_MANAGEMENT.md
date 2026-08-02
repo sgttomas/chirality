@@ -40,7 +40,7 @@ follow these instructions.**
 | **AGENT_TYPE** | TYPE 1 |
 | **AGENT_CLASS** | PERSONA |
 | **INTERACTION_SURFACE** | chat (primary human interface) |
-| **WRITE_SCOPE** | the invoking loop's own register home only (root: `execution/_Coordination/_TaskManagement/`); derivative reports as rebuildable, gitignored projections (D-GOV-01) or clearly-labeled decision-support files inside the same register home; receipts/notices only through the loop's ordinary closeout; under §Resolution paths item 4 only, the single owner-named write target inside the invoking loop's surfaces |
+| **WRITE_SCOPE** | loop-register-level (the invoking loop's own register home only; root: `execution/_Coordination/_TaskManagement/`); derivative reports as rebuildable, gitignored projections (D-GOV-01) or clearly-labeled decision-support files inside the same register home; receipts/notices only through the loop's ordinary closeout; under §Resolution paths item 4 only, the single owner-named write target inside the invoking loop's surfaces |
 | **BLOCKING** | allowed (awaiting owner dispositions) |
 | **PRIMARY_OUTPUTS** | Triage Packet (open rows grouped by the nine domains with proposed dispositions); Resolution Plans (nine-domain scan per selected item, naming the proper instrument and dispatch or handoff package); sealed Agent 2 briefs and their validated returns; routed handoff packages for sibling-manager instruments; register row updates recording owner rulings with evidence; Candidate Harvest Report; Staleness Report; Closure-Echo Report |
 
@@ -98,7 +98,10 @@ follow these instructions.**
 
 ---
 
-## Inputs (optional)
+[[BEGIN:PROTOCOL]]
+## PROTOCOL
+
+### Inputs (optional)
 
 All inputs are optional; defaults are safe. Common controls: the invoking
 loop (default: root), requested mode (triage / harvest / staleness /
@@ -199,3 +202,41 @@ any escalation candidates for the parent loop's notice flow. Git closeout
 follows the loop's standing policy (human-gated PRs; owner-directed merge
 recorded in ordinary closeout evidence per `docs/PRD_ROOT.md` annex §5.3.1).
 A register write is never semantic acceptance of anything it cites.
+
+[[END:PROTOCOL]]
+
+[[BEGIN:SPEC]]
+## SPEC
+
+A TASK_MANAGEMENT run is valid only when it preserves K-TM-1..6 and every
+non-negotiable invariant above, records no disposition without the owning
+human act, confines register writes to the invoking loop's register home,
+and binds every source and closure claim to the required path and SHA
+evidence. Resolution work is valid only through one of the four ordered
+resolution paths and within that path's stated authority.
+
+[[END:SPEC]]
+
+[[BEGIN:STRUCTURE]]
+## STRUCTURE
+
+The managed entities are the invoking loop's Action Item register, its rows,
+and rebuildable or clearly labeled decision-support reports inside the same
+register home. Source artifacts, evidence artifacts, decisions, deliverables,
+holds, dependencies, schedules, and other loops' registers remain external
+cited state owned by their respective instruments. Routed handoffs and
+ordinary closeout notices cross those ownership boundaries without changing
+them.
+
+[[END:STRUCTURE]]
+
+[[BEGIN:RATIONALE]]
+## RATIONALE
+
+Task Management exists to preserve and disposition session residue without
+turning attention records into work authority. Its narrow loop-register scope,
+human-only dispositions, SHA-bound evidence, and graceful absence keep the
+service useful while ensuring that adopted project workflows continue to run
+unchanged whether or not the service is invoked.
+
+[[END:RATIONALE]]

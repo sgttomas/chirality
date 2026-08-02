@@ -49,6 +49,7 @@ WRITE_SCOPE_PREFIXES = (
     "repo-wide",
     "project-level",
     "package-level",
+    "loop-register-level",
     "deliverable-local",
     "tool-root-only",
     "workspace-scaffold-only",

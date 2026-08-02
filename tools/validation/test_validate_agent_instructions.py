@@ -71,6 +71,24 @@ class ValidateAgentInstructionsTests(unittest.TestCase):
         )
         self.assertEqual([], self.validate(text, "AGENT_WORKING_ITEMS.md"))
 
+    def test_loop_register_level_type1_scope_is_valid(self) -> None:
+        text = (
+            VALID_AGENT.replace("— TASK (", "— TASK_MANAGEMENT (")
+            .replace("AGENT_TYPE: 2", "AGENT_TYPE: 1")
+            .replace("TYPE 2", "TYPE 1")
+            .replace("| TASK |", "| PERSONA |")
+            .replace("| INIT-TASK |", "| chat |")
+            .replace("| bounded-task-brief |", "| loop-register-level |")
+            .replace("| never |", "| allowed |")
+        )
+        self.assertEqual([], self.validate(text, "AGENT_TASK_MANAGEMENT.md"))
+
+    def test_unrecognized_write_scope_is_invalid(self) -> None:
+        findings = self.validate(
+            VALID_AGENT.replace("| bounded-task-brief |", "| arbitrary-scope |")
+        )
+        self.assertIn("WRITE_SCOPE_INVALID", {item.code for item in findings})
+
     def test_type_mismatch_is_error(self) -> None:
         findings = self.validate(VALID_AGENT.replace("AGENT_TYPE: 2", "AGENT_TYPE: 1"))
         self.assertIn("TYPE_MISMATCH", {item.code for item in findings})
