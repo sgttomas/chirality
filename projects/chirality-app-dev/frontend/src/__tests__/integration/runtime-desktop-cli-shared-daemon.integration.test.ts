@@ -1,0 +1,376 @@
+import { mkdir, mkdtemp, realpath, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { afterEach, describe, expect, it } from 'vitest';
+import type { AgentEnginePort, OmlxControlPort } from '@chirality/runtime-contracts';
+import {
+  AuthRegistry,
+  EngineRegistry,
+  ProjectRegistry,
+  ResidencyCoordinator,
+  RuntimeService,
+  SessionStore,
+  TurnCoordinator
+} from '@chirality/runtime-core';
+import { RuntimeClient } from '@chirality/runtime-client';
+import { RuntimeDaemon } from '@chirality/runtime-daemon';
+import { PiAgentEngineAdapter } from '../../lib/harness/pi-agent-engine-adapter';
+import { createBoundedReadToolDefinitions } from '../../lib/harness/chirality-tool-bridge';
+import { bindChiralityToolsForPi } from '../../lib/harness/pi-tool-binder';
+import {
+  requireOmlxModel,
+  resolveOmlxProviderConfig
+} from '../../lib/harness/omlx-provider-config';
+import { RuntimeDaemonHarnessPort } from '../../lib/runtime-client/runtime-daemon-harness-port';
+import {
+  startFakeOpenAiLoopback,
+  type FakeOpenAiLoopback
+} from './fake-openai-loopback';
+
+const activeDaemons: RuntimeDaemon[] = [];
+const tempRoots: string[] = [];
+const providers: FakeOpenAiLoopback[] = [];
+let previousSessionRoot: string | undefined;
+let sessionRootOverridden = false;
+
+afterEach(async () => {
+  await Promise.all(
+    activeDaemons.splice(0).map(async (daemon) => daemon.stop().catch(() => undefined))
+  );
+  await Promise.all(providers.splice(0).map(async (provider) => provider.close()));
+  await Promise.all(
+    tempRoots.splice(0).map(async (root) => rm(root, { recursive: true, force: true }))
+  );
+  if (sessionRootOverridden) {
+    if (previousSessionRoot === undefined) delete process.env.CHIRALITY_SESSION_ROOT;
+    else process.env.CHIRALITY_SESSION_ROOT = previousSessionRoot;
+    sessionRootOverridden = false;
+  }
+});
+
+async function collect(source: AsyncIterable<unknown>): Promise<void> {
+  for await (const _value of source) {
+    // Drain the public SSE stream so cancellation and terminal persistence settle.
+  }
+}
+
+async function createProjectFixture(root: string): Promise<string> {
+  await mkdir(join(root, 'agents'), { recursive: true });
+  await mkdir(join(root, 'execution'), { recursive: true });
+  await mkdir(join(root, 'legacy-sessions'), { recursive: true });
+  await writeFile(
+    join(root, 'agents', 'AGENT_HELP_HUMAN.md'),
+    '[[DOC:AGENT_INSTRUCTIONS]]\n# HELP_HUMAN\nAGENT_TYPE: 0\nAGENT_CLASS: SUPERVISING\n',
+    'utf8'
+  );
+  const manifestPath = join(root, 'chirality.project.json');
+  await writeFile(
+    manifestPath,
+    `${JSON.stringify(
+      {
+        schemaVersion: 'chirality.project/v1',
+        projectId: 'chirality-app-dev',
+        displayName: 'Chirality App Dev Fixture',
+        workingRoot: '.',
+        instructionRoot: '.',
+        agentsOverlay: 'agents/AGENT_HELP_HUMAN.md',
+        defaultExecutionRoot: 'execution',
+        profiles: { domain: [], capability: [], dataBoundary: [] },
+        enabledAdapterIds: ['pi'],
+        embeddedUi: { declared: false },
+        legacySessionRoots: ['legacy-sessions']
+      },
+      null,
+      2
+    )}\n`,
+    'utf8'
+  );
+  return manifestPath;
+}
+
+async function createRuntime(root: string, engine?: AgentEnginePort, model = 'fixture-model') {
+  const runtimeDirectory = join(root, 'runtime');
+  const projects = new ProjectRegistry(runtimeDirectory);
+  const sessions = new SessionStore(runtimeDirectory, projects);
+  const engines = new EngineRegistry();
+  const control: OmlxControlPort = {
+    async listStatus() {
+      return [{ id: model, kind: 'llm' as const, loaded: true, loading: false }];
+    },
+    async load() {},
+    async unload() {}
+  };
+  const residency = new ResidencyCoordinator(control, runtimeDirectory);
+  const auth = new AuthRegistry(runtimeDirectory);
+  const credentials = {
+    async get() {
+      return undefined;
+    },
+    async status() {
+      return { configured: false };
+    },
+    async set() {},
+    async remove() {}
+  };
+  const turns = new TurnCoordinator(projects, sessions, engines, residency);
+  if (engine) {
+    engines.register(engine);
+    await residency.activate(model, 'D-APP-85-C04-C16');
+  }
+  const service = new RuntimeService(
+    projects,
+    sessions,
+    engines,
+    residency,
+    turns,
+    auth,
+    credentials,
+    undefined,
+    undefined,
+    undefined,
+    {
+      async resolve() {
+        return {
+          role: 'agent0' as const,
+          engineSelection: { adapterId: 'pi', providerId: 'omlx', model: 'fixture-model' }
+        };
+      }
+    }
+  );
+  return { runtimeDirectory, service };
+}
+
+function createPiAdapter(input: {
+  provider: FakeOpenAiLoopback;
+  apiKey: string;
+  projectRoot: string;
+  model: string;
+}): PiAgentEngineAdapter {
+  return new PiAgentEngineAdapter({
+    turnTimeoutMs: 5_000,
+    resolveProvider: async (runInput) => {
+      const config = resolveOmlxProviderConfig({
+        baseUrl: input.provider.baseUrl,
+        apiKey: input.apiKey
+      });
+      await requireOmlxModel(runInput.opts.model, config);
+      return {
+        ...config,
+        model: { id: runInput.opts.model, contextWindow: 32768, maxTokens: 4096 }
+      };
+    },
+    buildSystemPrompt: async () => 'Use only read_file for the sealed task.',
+    resolveCustomTools: async (runInput) =>
+      bindChiralityToolsForPi(
+        createBoundedReadToolDefinitions({
+          context: {
+            projectRoot: input.projectRoot,
+            sessionId: runInput.session.sessionId,
+            turnId: runInput.turnId,
+            mode: 'readOnly',
+            allowedReadScopes: [input.projectRoot],
+            allowedWriteTargets: []
+          },
+          allowedToolNames: ['read_file']
+        })
+      )
+  });
+}
+
+describe('Desktop and CLI shared runtime daemon', () => {
+  it('shares one daemon, project credential, and session across both public clients', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'chirality-desktop-cli-'));
+    tempRoots.push(root);
+    const { runtimeDirectory, service } = await createRuntime(root);
+    const socketPath = join(runtimeDirectory, 'control.sock');
+    const daemon = new RuntimeDaemon({ runtimeDirectory, socketPath, service });
+    activeDaemons.push(daemon);
+    await daemon.start();
+    const competingDaemon = new RuntimeDaemon({ runtimeDirectory, socketPath, service });
+    await expect(competingDaemon.start()).rejects.toMatchObject({
+      code: 'RESIDENCY_TRANSITION_IN_PROGRESS'
+    });
+
+    const projectRoot = join(root, 'chirality-app-dev');
+    const manifestPath = await createProjectFixture(projectRoot);
+    const registration = await service.registerProject(manifestPath, 'test', 'D-APP-85-C04-C16');
+    const canonicalProjectRoot = await realpath(projectRoot);
+
+    const desktopClient = new RuntimeClient({
+      socketPath,
+      tokenFile: registration.tokenFile
+    });
+    const cliClient = new RuntimeClient({
+      socketPath,
+      tokenFile: registration.tokenFile
+    });
+    const desktop = new RuntimeDaemonHarnessPort(
+      desktopClient,
+      'chirality-app-dev',
+      canonicalProjectRoot
+    );
+
+    const [desktopDaemon, cliDaemon] = await Promise.all([
+      desktopClient.daemonStatus(),
+      cliClient.daemonStatus()
+    ]);
+    expect(desktopDaemon).toEqual(cliDaemon);
+    expect(desktopDaemon.socketPath).toBe(socketPath);
+
+    const [desktopProject, cliProject] = await Promise.all([
+      desktopClient.projectStatus('chirality-app-dev'),
+      cliClient.projectStatus('chirality-app-dev')
+    ]);
+    expect(desktopProject).toEqual(cliProject);
+    expect(desktopProject.project.projectId).toBe('chirality-app-dev');
+
+    const created = await desktop.createSession({
+      projectRoot: canonicalProjectRoot,
+      persona: 'HELP_HUMAN',
+      mode: 'direct'
+    });
+    const [desktopSession, cliSession] = await Promise.all([
+      desktop.getSession(created.session.sessionId),
+      cliClient.getSession('chirality-app-dev', created.session.sessionId)
+    ]);
+    expect(desktopSession.session).toEqual(cliSession);
+    await expect(cliClient.listSessions('chirality-app-dev')).resolves.toEqual([cliSession]);
+  });
+
+  it('rejects a CLI turn with the typed shared-session lock while Desktop is active', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'chirality-desktop-cli-lock-'));
+    tempRoots.push(root);
+    const projectRoot = join(root, 'chirality-app-dev');
+    const manifestPath = await createProjectFixture(projectRoot);
+    const canonicalProjectRoot = await realpath(projectRoot);
+    previousSessionRoot = process.env.CHIRALITY_SESSION_ROOT;
+    process.env.CHIRALITY_SESSION_ROOT = join(root, 'app-harness-sessions');
+    sessionRootOverridden = true;
+    const apiKey = 'desktop-cli-lock-key';
+    const model = 'desktop-cli-lock-model';
+    let providerStarted!: () => void;
+    let secondProviderStarted!: () => void;
+    let thirdProviderStarted!: () => void;
+    const started = new Promise<void>((resolve) => {
+      providerStarted = resolve;
+    });
+    const secondStarted = new Promise<void>((resolve) => {
+      secondProviderStarted = resolve;
+    });
+    const thirdStarted = new Promise<void>((resolve) => {
+      thirdProviderStarted = resolve;
+    });
+    const provider = await startFakeOpenAiLoopback({
+      apiKey,
+      models: { kind: 'json', body: { data: [{ id: model }] } },
+      completions: [
+        { kind: 'hang', started: providerStarted },
+        { kind: 'hang', started: secondProviderStarted },
+        { kind: 'hang', started: thirdProviderStarted }
+      ]
+    });
+    providers.push(provider);
+    const adapter = createPiAdapter({ provider, apiKey, projectRoot: canonicalProjectRoot, model });
+    const { runtimeDirectory, service } = await createRuntime(root, adapter, model);
+    const registration = await service.registerProject(manifestPath, 'test', 'D-APP-85-C04-C16');
+    const session = await service.sessions.create({
+      projectId: 'chirality-app-dev',
+      role: 'agent2',
+      engineSelection: { adapterId: 'pi', providerId: 'omlx', model },
+      persona: 'TASK',
+      mode: 'readOnly',
+      parentSessionId: 'desktop-parent',
+      approvalRef: 'D-APP-85-C04-C16',
+      allowedWriteTargets: []
+    });
+    const socketPath = join(runtimeDirectory, 'control.sock');
+    const daemon = new RuntimeDaemon({ runtimeDirectory, socketPath, service });
+    activeDaemons.push(daemon);
+    await daemon.start();
+    const desktopClient = new RuntimeClient({ socketPath, tokenFile: registration.tokenFile });
+    const cliClient = new RuntimeClient({ socketPath, tokenFile: registration.tokenFile });
+    const desktop = new RuntimeDaemonHarnessPort(
+      desktopClient,
+      'chirality-app-dev',
+      canonicalProjectRoot
+    );
+
+    const desktopTurn = await desktop.turn({
+      sessionId: session.sessionId,
+      message: 'Keep the shared Desktop turn active.',
+      opts: { model, tools: ['read_file'], maxTurns: 1, persona: 'TASK', mode: 'readOnly' }
+    });
+    const desktopEvents = collect(desktopTurn.events).catch(() => undefined);
+    await started;
+    await expect(
+      cliClient.turnSession('chirality-app-dev', session.sessionId, {
+        message: 'Competing CLI turn.',
+        opts: { model, tools: ['read_file'], maxTurns: 1, persona: 'TASK', mode: 'readOnly' }
+      })
+    ).rejects.toMatchObject({ code: 'SESSION_TURN_IN_PROGRESS' });
+    await desktopTurn.cancel();
+    await desktopEvents;
+
+    let replay = await cliClient.replaySession('chirality-app-dev', session.sessionId);
+    for (let attempt = 0; attempt < 100 && replay.session.status !== 'interrupted'; attempt += 1) {
+      await new Promise((resolve) => setTimeout(resolve, 10));
+      replay = await cliClient.replaySession('chirality-app-dev', session.sessionId);
+    }
+    const terminalTypes = new Set([
+      'turn.completed',
+      'turn.failed',
+      'turn.cancelled',
+      'turn.interrupted'
+    ]);
+    expect(replay.session.status).toBe('interrupted');
+    expect(replay.events.filter((event) => terminalTypes.has(event.type))).toHaveLength(1);
+
+    const secondSession = await service.sessions.create({
+      projectId: 'chirality-app-dev',
+      role: 'agent2',
+      engineSelection: { adapterId: 'pi', providerId: 'omlx', model },
+      persona: 'TASK',
+      mode: 'readOnly',
+      parentSessionId: 'desktop-parent',
+      approvalRef: 'D-APP-85-C04-C16',
+      allowedWriteTargets: []
+    });
+    const thirdSession = await service.sessions.create({
+      projectId: 'chirality-app-dev',
+      role: 'agent2',
+      engineSelection: { adapterId: 'pi', providerId: 'omlx', model },
+      persona: 'TASK',
+      mode: 'readOnly',
+      parentSessionId: 'cli-parent',
+      approvalRef: 'D-APP-85-C04-C16',
+      allowedWriteTargets: []
+    });
+    const secondDesktopTurn = await desktop.turn({
+      sessionId: secondSession.sessionId,
+      message: 'Keep the second Desktop session active.',
+      opts: { model, tools: ['read_file'], maxTurns: 1, persona: 'TASK', mode: 'readOnly' }
+    });
+    const secondDesktopEvents = collect(secondDesktopTurn.events).catch(() => undefined);
+    await secondStarted;
+    const thirdCliTurn = await cliClient.turnSession('chirality-app-dev', thirdSession.sessionId, {
+      message: 'Run the distinct CLI session concurrently.',
+      opts: { model, tools: ['read_file'], maxTurns: 1, persona: 'TASK', mode: 'readOnly' }
+    });
+    const thirdCliEvents = collect(thirdCliTurn).catch(() => undefined);
+    await thirdStarted;
+    expect(provider.completionCount()).toBe(3);
+
+    await secondDesktopTurn.cancel();
+    thirdCliTurn.cancel();
+    await cliClient.interruptSession('chirality-app-dev', thirdSession.sessionId);
+    await Promise.all([secondDesktopEvents, thirdCliEvents]);
+    for (const concurrentSession of [secondSession, thirdSession]) {
+      let stored = await cliClient.getSession('chirality-app-dev', concurrentSession.sessionId);
+      for (let attempt = 0; attempt < 100 && stored.status !== 'interrupted'; attempt += 1) {
+        await new Promise((resolve) => setTimeout(resolve, 10));
+        stored = await cliClient.getSession('chirality-app-dev', concurrentSession.sessionId);
+      }
+      expect(stored.status).toBe('interrupted');
+    }
+  });
+});
