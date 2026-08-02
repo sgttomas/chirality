@@ -1,6 +1,14 @@
 # D-PEC-72 execution handoff — P1-entry foundation
 
-**Handoff state:** PARTIAL CANDIDATE FAN-IN; PKG-00 PEER REVIEW AT GATE 2; C-05 OPEN.
+**Handoff state:** PARTIAL CANDIDATE FAN-IN; PKG-00 CHECKLISTS CONFIRMED / REVIEW TYPE TBD; C-05 OPEN.
+
+**Update 03 (2026-08-01):** the owner withdrew the `PEER_REVIEW` selection
+because no peer reviewer is available and confirmed both Gate 2 checklists as
+adequate and open to revision. No peer had been named and no finding had been
+captured, so this is a pre-review type amendment, not a failed review. The
+common compiled checklists remain usable; revisions are additive `CU-*` items
+and do not alter the exact contract-derived `AC-*` rows. Review type is `TBD`
+pending a new owner selection. Both lifecycle states remain `INITIALIZED`.
 
 **Update 02 (2026-08-01):** after PR #450 merged the D-PEC-72 production
 tranche, the owner selected `PEER_REVIEW` for `DEL-00-01` and `DEL-00-03` and
@@ -89,10 +97,10 @@ re-rule or direct the harness cache.
 
 ## Rerun and next gates
 
-1. For DEL-00-01 and DEL-00-03, Gate 1 is complete: the owner selected
-   `PEER_REVIEW` and explicitly authorized review from `INITIALIZED`. The two
-   `_REVIEW.md` checklists are at Gate 2 and await adequacy confirmation, a
-   named peer reviewer, and findings capture. No lifecycle transition is yet
+1. For DEL-00-01 and DEL-00-03, the owner-confirmed Gate 2 common checklists
+   remain ready, and the review-from-`INITIALIZED` override remains recorded.
+   `PEER_REVIEW` was withdrawn before findings capture; the owner must select a
+   replacement review type before Gate 3. No lifecycle transition is yet
    authorized.
 2. DEL-10-01 reruns only when exact token telemetry is available. A revised
    packet would be required to waive or replace that accepted criterion; this

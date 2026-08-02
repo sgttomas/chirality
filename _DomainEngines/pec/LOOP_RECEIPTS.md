@@ -1393,3 +1393,10 @@
   - REVIEW Gate 2: deterministic `chirality-review-checklist/v1` artifacts generated deliverable-locally from current contract hashes — 7 exact `AC-*` rows for `DEL-00-01`, 11 for `DEL-00-03`. Assessment cells remain blank pending checklist confirmation and actual peer review; no human or agent finding was invented.
   - Authority fence: review launch only. Both `_STATUS.md` files remain `INITIALIZED`; there is no artifact fitness acceptance, finding disposition, CHECKING/ISSUED transition, DEL-10-01 criterion change, C-05 closure, P1 source/profile opening, release, or professional-reliance act.
   - Parked lanes: confirm checklist adequacy and name the peer reviewer; capture/disposition review findings; separately rerun DEL-10-01 only with exact token telemetry; owner acceptance and any lifecycle transition remain later explicit gates.
+
+- **2026-08-01 — Receipt 126** (D-PEC-72 review-type amendment; Gate 2 checklist confirmation).
+  - Owner amendment of record (verbatim): "I'm sorry I don't have a peer reviewer I made that judgment in error.\n\nThe checklists are adequate and can be used but should remain open to revision."
+  - Review effect: `PEER_REVIEW` is withdrawn for `DEL-00-01` and `DEL-00-03` before a reviewer was named or findings capture began; it is not recorded as a failed review. Review type returns to `TBD` pending a new owner selection.
+  - Checklist effect: both common Gate 2 checklists are owner-confirmed adequate and remain usable. Revision stays open through additive `CU-*` items; the deterministic 7-row and 11-row compiled `AC-*` sequences remain byte-for-byte contract-bound and cannot be edited, removed, or reordered.
+  - Authority fence: the earlier review-from-`INITIALIZED` override remains recorded, but neither `_STATUS.md` changes. No finding, disposition, artifact acceptance, CHECKING/ISSUED transition, DEL-10-01 change, C-05 closure, P1 opening, release, or reliance act is created.
+  - Parked lanes: owner selection of a replacement review type before Gate 3; optional additive checklist revisions; subsequent human review findings/dispositions; DEL-10-01 exact-telemetry rerun remains separate.

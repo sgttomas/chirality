@@ -1,16 +1,27 @@
 # Review — DEL-00-03 v2 SPEC seed
 
-**Review stage:** GATE 2 CHECKLIST GENERATED — AWAITING CHECKLIST CONFIRMATION AND PEER FINDINGS
+**Review stage:** GATE 2 CHECKLIST CONFIRMED — REPLACEMENT REVIEW TYPE PENDING
 
-**Review Type:** PEER_REVIEW
+**Review Type:** TBD (`PEER_REVIEW` withdrawn by owner before findings capture)
 
-**Reviewer(s):** TBD
+**Reviewer(s):** NOT APPLICABLE UNTIL REVIEW TYPE IS RESELECTED
 
 **Target transition:** INITIALIZED → CHECKING (review-from-INITIALIZED override only; no transition authorized)
 
 **Owner authorization (verbatim, 2026-08-01):**
 
 > First merge your work through PR. Then I approve D-PEC-72 review: PEER_REVIEW for DEL-00-01 and DEL-00-03; authorize review from INITIALIZED.
+
+**Owner amendment (verbatim, 2026-08-01):**
+
+> I'm sorry I don't have a peer reviewer I made that judgment in error.
+>
+> The checklists are adequate and can be used but should remain open to revision.
+
+The amendment withdraws `PEER_REVIEW` before any practitioner was named or any
+finding was captured. It confirms this common checklist as adequate. Revision
+remains open through additive `CU-*` items; the deterministically compiled
+`AC-*` sequence and text remain contract-bound and are not edited or removed.
 
 ## Review Basis
 
@@ -31,12 +42,14 @@
 | Production format | PASS | `SOW_V1`, zero validation issues |
 | Anticipated artifact | PRESENT | `artifacts/v2/SPEC.md` |
 | Dependency posture | PASS | No active `EXECUTION` upstream rows; two satisfied `ANCHOR` rows |
-| Review type | SELECTED | `PEER_REVIEW` |
-| Reviewer identity | TBD | No practitioner identifier was named; no agent is inferred as reviewer |
+| Review type | TBD | Owner withdrew `PEER_REVIEW`; replacement selection is a later Gate 1 act |
+| Reviewer identity | NOT APPLICABLE | No practitioner was named and no agent is inferred as reviewer |
 
 ## Checklist
 
-All assessment cells remain blank until the checklist is confirmed and the named peer performs the review.
+The owner confirmed this checklist as adequate. All assessment cells remain
+blank until a replacement review type is selected and the applicable reviewer
+performs the review. Additive `CU-*` revisions remain allowed.
 
 ### Artifact Presence
 
@@ -84,16 +97,21 @@ All assessment cells remain blank until the checklist is confirmed and the named
 |---|---|---|---|
 | TB-001 | Remaining TBDs assessed |  | Registered `TBD-001` assignment and `TBD-002` path; artifact intentionally preserves the accepted nine TBD scope rows and unresolved C-06 consumers |
 
-### PEER_REVIEW Focus
+### Review-Type Additions
 
-The peer review is to assess technical accuracy, methodology, and assumption validity. Any human-added checklist item is recorded as `CU-*` without changing the compiled `AC-*` sequence.
+No review-type-specific row is active while `Review Type` is `TBD`. Any
+human-added checklist item is recorded as `CU-*` without changing the compiled
+`AC-*` sequence.
 
 ## Findings Summary
 
-Finding capture has not started. `Review_Findings.csv` will be created at Gate 3 when the peer supplies findings; no finding or disposition is inferred from producer-side validation.
+Finding capture has not started. `Review_Findings.csv` will be created at Gate
+3 after a replacement review type is selected; no finding or disposition is
+inferred from producer-side validation or the withdrawn peer-review choice.
 
 ## Transition Readiness
 
 **Recommendation:** RECOMMEND_HOLD
 
-The Gate 2 checklist awaits human confirmation, the peer reviewer remains `TBD`, and no peer findings or Gate 5 lifecycle approval exist. `DEL-00-03` remains `INITIALIZED`.
+The Gate 2 checklist is confirmed, but the review type is `TBD`; no findings or
+Gate 5 lifecycle approval exist. `DEL-00-03` remains `INITIALIZED`.
