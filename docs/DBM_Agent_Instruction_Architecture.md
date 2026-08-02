@@ -134,5 +134,5 @@ Conformance is established by the canonical doctrine in `AGENTS.md`, exact `CLAU
 - `docs/WORKFLOW_COMPONENT_STANDARD.md`
 - `docs/DECOMPOSITION_STANDARD.md`
 - `docs/governance_harness/_DECISIONS/D-GOV-11_runtime_agent_hierarchy.md`
-- `docs/AGENT_DISPOSITION_MATRIX.md`
+- `docs/governance_harness/_DECISIONS/D-GOV-11_agent_disposition_matrix.md` (closed migration record)
 - `docs/DELIVERABLE_CONCORDANCE_METHOD.md`
