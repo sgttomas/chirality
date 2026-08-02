@@ -6,6 +6,34 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-08-02 - Woven UI compatibility residual repairs completed
+
+Completed the bounded DEL-02-02 and DEL-08-02 compatibility repairs from the
+live deliverable Remaining surface. Navigator timestamps now include their
+recorded year, the expanded total-session affordance truthfully changes to
+`Recent sessions`, and component evidence drives the actual control from the
+four recent sessions to all eight fixture records, including the unattributed
+session, and back. The Woven legacy route now owns one layout-neutral
+`data-legacy="true"` boundary rather than relying on a mock-owned marker.
+
+The original one-package split used disjoint semantic write targets, but both
+Agent 2 instances bore Bash and therefore both qualified as project-root
+integration owners. Cross-package fan-in corrected that orchestration posture
+by freezing both returns and performing one serialized combined validation.
+Focused and full frontend tests, typecheck, production build, in-app browser
+checks, practitioner pytest, app status, authority corpus, and repository
+self-check passed. Local premerge remains a non-blocking environment/profile
+advisory: the managed dev server served 404 for harness routes, while an exact
+production-server diagnostic reached the route but returned the expected
+unbound-daemon 503. Established PR CI owns the authoritative premerge rerun.
+
+Both deliverables remain `IN_PROGRESS`. The total-per-Working-Root versus
+per-group count question and packaged Desktop smoke residuals remain open.
+Lifecycle and Checking Approval fields, dependencies, decomposition, runtime,
+Task Management, D-APP-84, parity, the six historical UNKNOWN relations,
+release, issuance, and professional-reliance posture are unchanged. See
+`execution/_Coordination/AgentRuns/APPDEV_UI_COMPAT_FANIN_2026-08-02/HANDOFF.md`.
+
 ## 2026-07-25 - Daemon-as-service and packaged-app fixes landed
 
 The owner opened the session as a debugging run — the redesigned shell showed no

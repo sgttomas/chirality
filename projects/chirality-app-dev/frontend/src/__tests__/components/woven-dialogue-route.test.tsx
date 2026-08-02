@@ -23,7 +23,7 @@ describe('Woven Dialogue route selection', () => {
     const html = renderToStaticMarkup(
       <WovenDialogueRoute
         defaultSurface="dialogue"
-        legacy={<main data-legacy="true">Legacy</main>}
+        legacy={<main>Legacy</main>}
       />
     );
 
@@ -36,10 +36,12 @@ describe('Woven Dialogue route selection', () => {
     const html = renderToStaticMarkup(
       <WovenDialogueRoute
         defaultSurface="dialogue"
-        legacy={<main data-legacy="true">Legacy</main>}
+        legacy={<main>Legacy</main>}
       />
     );
 
-    expect(html).toContain('data-legacy="true"');
+    expect(html.match(/data-legacy="true"/g)).toHaveLength(1);
+    expect(html).toContain('style="display:contents"');
+    expect(html).toContain('<main>Legacy</main>');
   });
 });

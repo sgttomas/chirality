@@ -2,7 +2,7 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-07-24
+**Last Updated:** 2026-08-02
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -21,14 +21,18 @@ remains:
   it diverges from the approved mockup's per-group counts because N counts all
   recorded sessions per Working Root, including unattributed ones. Ratified
   deviation; the owner may keep or re-style it.
-- Make the expanded "All sessions" label invert when its group is expanded;
-  `aria-expanded` is already correct (V2 finding F-4).
-- Include the year in navigator session timestamps; `formatSessionWhen`
-  currently omits it, leaving cross-year entries ambiguous (round-4 note).
 - Record packaged Desktop smoke evidence for the re-hosted Workbench and
   Pipeline surfaces.
 
 ## History
+- 2026-08-02 - Navigator UI compatibility repair added fixed-record-year
+  session timestamps and an inverse `Recent sessions` expanded label, with a
+  real component state-transition proof from the four-item scoped recent list
+  to all eight fixture records (including the unattributed record) and back.
+  The owner-reserved total-per-Working-Root versus per-group count question and
+  packaged Desktop smoke remain open. State remains IN_PROGRESS; lifecycle,
+  dependencies, authorization basis, directive, and Checking Approval SHA are
+  unchanged. See `_run_records/R7_UI_COMPAT_NAVIGATOR_2026-08-02.md`.
 - 2026-07-24 - Woven Dialogue visual redesign and IA consolidation tranche recorded in `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md`; the four SCA-APP-004 Remaining items were rewritten to their true residuals (recorded-session presentation notes for "All sessions (N)", label inversion and session year, plus packaged Desktop smoke evidence). State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-07-23 - SCA-APP-004 Gate-5 execution-record propagation added the owner-approved Work/Agents projection and contextual Workbench/Pipeline implementation tranche. State remains IN_PROGRESS; accepted historical evidence and Checking Approval SHA are preserved.
 - 2026-05-20 - State set to OPEN (PREPARATION)

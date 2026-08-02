@@ -20,7 +20,11 @@ export function WovenDialogueRoute({
   // do not provide a Next router. Preserve the established route surface in
   // that compatibility environment rather than guessing at navigation state.
   if (!searchParams || searchParams.get('legacy') === '1') {
-    return <>{legacy}</>;
+    return (
+      <div data-legacy="true" style={{ display: 'contents' }}>
+        {legacy}
+      </div>
+    );
   }
 
   return <WovenDialogueShell defaultSurface={defaultSurface} />;

@@ -21,10 +21,6 @@ recorded-session path under a live proof and a green regression suite
 `execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`). What
 remains:
 
-- Align the `[data-legacy]` contract: it is asserted in
-  `woven-dialogue-route.test.tsx` (its sole occurrence under `src`) but is never
-  emitted by the real DOM at `?legacy=1`. Pre-existing mock-only contract —
-  fix either the test contract or the component in a future pass.
 - Record packaged Desktop smoke evidence for the guarded navigator selection
   path.
 

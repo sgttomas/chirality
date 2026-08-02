@@ -11,3 +11,12 @@
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-107: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-02-02; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
 - 2026-07-19 - D-APP-56 R4-P28 PIPELINE lifecycle-transition render coverage completed at the D-APP-36 component-render bar. The existing inline form was extracted without behavior change and static render tests now cover human-gated disabled/no-SHA and ordinary enabled/active states. Frontend and repository gates passed in a temporary combined-state mirror; generated evidence remained derivative and outside the worktree. State remains IN_PROGRESS; no dependency, lifecycle, issuance, or release-readiness claim was made.
+- 2026-08-02 - DEL-02-02 navigator compatibility repair now renders the
+  recorded year in session timestamps and changes the expanded total-session
+  affordance to `Recent sessions`. Component evidence drives the actual React
+  control from four scoped recent sessions to all eight fixture sessions,
+  including the unattributed record, and back; malformed and empty timestamps
+  remain blank rather than invented. The total-per-Working-Root count remains
+  the ratified current behavior and separate owner-reserved presentation
+  question; packaged Desktop smoke remains open. No lifecycle, dependency,
+  decomposition, authority, release, issuance, or professional-reliance effect.
