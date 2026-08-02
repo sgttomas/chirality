@@ -1,6 +1,6 @@
 # D-PEC-74 decision packet — first actual P1 source slice
 
-**Packet state:** PRESENTED / AWAITING OWNER RULING
+**Packet state:** RULED O-A / AUTHORITY RECORDED / PRODUCTION NOT YET EXECUTED
 
 **Decision:** D-PEC-74
 
@@ -416,3 +416,22 @@ D-PEC-74: O-D.
 ```
 
 Only the owner's ruling selects and opens the matching exact fence.
+
+## 11. Owner ruling and activation state
+
+Owner ruling recorded verbatim (2026-08-01, in-session, Ryan Tufts):
+
+```text
+D-PEC-74: O-A.
+```
+
+O-A is selected. Only DEL-08-02 is activated for the exact production paths,
+profile bytes, checks, rollback, owner gates, and non-effects in §4 and the
+frozen activation authority
+`O-A_ACTIVATION_AUTHORITY_2026-08-01.md`.
+
+This section records semantic authority before production. At this checkpoint
+projects/pec/v2/ and projects/pec/software-workflow.json remain absent; no
+deliverable-local file has changed; DEL-08-02 remains `INITIALIZED`; and no
+artifact acceptance, lifecycle transition, later P1 node, release, merge,
+professional reliance, or architecture mandate outside PEC is inferred.

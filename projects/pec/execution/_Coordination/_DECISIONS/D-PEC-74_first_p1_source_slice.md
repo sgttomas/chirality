@@ -1,6 +1,6 @@
 # D-PEC-74 — First actual P1 source slice
 
-**Status:** AWAITING_RULING
+**Status:** RULED — O-A; AUTHORITY RECORDED / PRODUCTION NOT YET EXECUTED
 
 **DecisionID:** D-PEC-74
 
@@ -77,4 +77,18 @@ store, transport, authentication, runtime-client, or cross-loop implementation.
 
 ## Owner ruling
 
-**TBD — owner act required.**
+Owner ruling recorded verbatim (2026-08-01, in-session, Ryan Tufts):
+
+```text
+D-PEC-74: O-A.
+```
+
+This selects only DEL-08-02 and opens only O-A's exact source-tree, profile,
+run-record, and coordination paths under the packet's checks, rollback, human
+gates, and non-effects. The frozen activation authority is
+`../D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/O-A_ACTIVATION_AUTHORITY_2026-08-01.md`.
+
+Recording the ruling is not production. At this authority checkpoint no O-A
+source path or profile exists, no deliverable-local file has changed, and no
+artifact acceptance, lifecycle transition, `ISSUED`, later P1 node, release,
+merge, professional reliance, or architecture mandate outside PEC is inferred.

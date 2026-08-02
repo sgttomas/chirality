@@ -72,14 +72,14 @@ read and cite only, no further feature work, retired product docs under
    source/profile path is opened.)*
    (32 deliverables: parsers, reconciler + parity, orientation core,
    socket API, kill test, bootstrap self-ingest; plus pre-P1 DEL-00-01
-   ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **D-PEC-74 is now
-   presented and awaiting owner ruling for the first actual P1 source slice.**
-   Its recommended O-A is the DEL-08-02 API-contract canary; O-B presents the
-   DEL-01-06 local-loop-registry canary. Both options name exact
-   `projects/pec/v2/` paths, exact `software-workflow.json` content, acts,
-   checks, owner gates, rollback, and authority fence. No option is selected;
-   until the owner rules, no v2 source tree or profile is authorized and
-   `F-PEC-1` remains in force.
+   ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **D-PEC-74 is ruled
+   O-A for the first actual P1 source slice.** Only DEL-08-02 is selected and
+   activated as the API-contract canary under the packet's exact
+   `projects/pec/v2/` paths, exact `software-workflow.json` content, checks,
+   owner gates, rollback, and authority fence. This status records authority
+   before production: no v2 source tree or profile has yet been created,
+   DEL-08-02 remains `INITIALIZED`, and `F-PEC-1` remains closed outside the
+   exact O-A fence.
 2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
    clause armed; receiving consumers retain their own authority and cadence) →
    P4 streams, per the standing plan and the deliverables' PhaseHints.

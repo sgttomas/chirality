@@ -1533,3 +1533,11 @@
   - Checks: packet citations/hashes, SOW validation, strict decomposition registers, dependency closure, manifest, self-check, coordination check, and whitespace check govern publication.
   - Authority fence: packet drafting selects no option and opens no source/profile path, P1 node, lifecycle act, release, cross-loop mandate, or professional reliance; `F-PEC-1` remains closed.
   - Gate outcome: **AWAITING OWNER** on D-PEC-74 O-A / O-B / amend / defer.
+
+- **2026-08-01 — Receipt 135** (D-PEC-74 O-A authority recorded before production).
+  - Owner ruling of record (verbatim): `D-PEC-74: O-A.`
+  - Authority pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-74_first_p1_source_slice.md`; frozen activation authority `projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/O-A_ACTIVATION_AUTHORITY_2026-08-01.md`.
+  - Selection: DEL-08-02 only; O-A's exact API-contract source paths and exact project software-workflow profile are opened for a later bounded WORKING_ITEMS production act.
+  - Checks/fence: the selected contract remains SHA-256 `eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20`; reliance preflight, SOW validation, registered checks, strict registers, dependency closure, scope containment, manifest, harness, coordination, and whitespace checks remain mandatory.
+  - Non-effects: no production executed at this checkpoint; projects/pec/v2/ and projects/pec/software-workflow.json remain absent; no deliverable-local file changed; DEL-08-02 remains `INITIALIZED`; no acceptance, lifecycle, later-node, release, merge, reliance, or cross-loop mandate is inferred.
+  - Gate outcome: semantic authority **RECORDED**; next lawful act is bounded WORKING_ITEMS production under the frozen O-A activation authority.
