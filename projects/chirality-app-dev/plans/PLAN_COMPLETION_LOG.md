@@ -6,6 +6,31 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-08-02 - DEL-09-03 shared-daemon proof and C04 fan-in completed
+
+Added the direct App-owned fake-oMLX Desktop/CLI integration proof at
+`frontend/src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts`.
+The accepted R2 uses Desktop's compatibility port and a generic CLI client
+against one authenticated runtime daemon, project credential, and session. It
+proves daemon-owned same-session locking through the typed
+`SESSION_TURN_IN_PROGRESS` rejection, rejects a second live daemon owner,
+records exactly one durable cancellation terminal, and permits distinct
+sessions to coexist through the real Pi adapter and fake oMLX.
+
+The predecessor WORKING_ITEMS run is preserved as failed process evidence only:
+its interrupted children produced no accepted semantic return or test. The
+fresh R2 run alone receives implementation and verification credit. Accepted
+cross-package fan-in removes the corresponding D-APP-85 C04 Remaining item
+from DEL-03-02 and preserves the already-reconciled DEL-09-03 manager edits.
+Both deliverables remain `IN_PROGRESS`; lifecycle, Checking Approval SHA, and
+dependencies are unchanged.
+
+C06 is deliberately not closed: daemon-crash/model-drain exactly-one-terminal
+recovery remains Root DEL-02-06 owned and unproved. Runtime-suite dependency
+resolution and live-shared-runtime App premerge remain non-blocking PR-CI rerun
+advisories. See
+`execution/_Coordination/AgentRuns/APPDEV_DEL0903_C04_FANIN_2026-08-02/HANDOFF.md`.
+
 ## 2026-08-02 - Woven UI compatibility residual repairs completed
 
 Completed the bounded DEL-02-02 and DEL-08-02 compatibility repairs from the
