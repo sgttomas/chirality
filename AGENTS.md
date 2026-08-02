@@ -158,12 +158,6 @@ predecessor or one declared integration owner. Failed nodes block only their
 declared dependants; independent work continues. Partial or invalid returns
 are not accepted at fan-in.
 
-Arbitrary Bash cannot be proven package-bounded by lexical command inspection.
-In the app harness, a Bash-bearing managed child therefore requires explicit
-project-root read/write scope and becomes the serialized integration owner for
-that stage. Package-parallel work uses bounded file tools or registered
-deterministic tools instead.
-
 Files hold scope, decisions, claims, artifacts, dependencies, notices,
 amendments, acknowledgments, and handoffs. Accepted snapshots provide stable
 inputs; Git records identity, history, isolation, and integration state. These

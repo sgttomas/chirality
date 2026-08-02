@@ -2284,3 +2284,58 @@ amendment; owner ruling required).
   approval. No register, runtime, policy, classifier, lifecycle, product,
   dependency, decomposition, DAG, pointer, DEC-092, reliance, release, or
   professional-judgment act occurred.
+
+### Receipt 81 — 2026-08-02 — Root harness scope correction validated
+
+- **Parent receipt:** Receipt 80. The Root loop remains idle; this is the
+  separately authorized instruction-scope correction, not a Root production
+  phase.
+- **Owner directions (2026-08-02, in-session):**
+  `ROOT-HARNESS-SCOPE-CORRECTION-20260802` authorized deletion of the App-
+  harness managed-Bash paragraph from root `AGENTS.md`, deletion of its
+  duplicate from `agents/AGENT_WORKING_ITEMS.md`, and the narrow GEN-8 live-
+  baseline test correction, with App-owned policy retained and all named
+  behavior fences preserved. The owner later selected validator disposition C
+  and approved the receipt amendment assigning Receipt 80 to the prerequisite
+  Task Management schema repair and Receipt 81 to this tranche.
+- **Accepted basis and prerequisite:** PR #466 merged the repair-first tranche
+  as `5b19b06d26b7e6d4cd17368fd5233cac0d92db0c`. Before publication,
+  `origin/main` advanced through non-overlapping App Dev PR #467 to
+  `1d4abf1cf1a23a33bd7fec59971251f86c010210`; the isolated
+  `codex/root-harness-scope-correction` commit was rebased to that exact final
+  basis. None of the intervening paths overlapped its eight-path tranche.
+- **Artifacts and outcome:**
+  - `AGENTS.md` no longer carries the App-harness managed-Bash paragraph, and
+    `agents/AGENT_WORKING_ITEMS.md` no longer duplicates it. No replacement
+    restriction is imposed on Codex-native development agents. Resulting
+    SHA-256 values are respectively
+    `41c63c6f0d2252e51b675d6af2f47f072324c66ca0f97442f4cb926810d87672`
+    and
+    `57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1`.
+  - `tools/practitioner_harness/test_live_baseline.py` continues to require
+    exactly `unacknowledged_control=0`, `active_unclassified=0`, and
+    `policy_issues=0`, while accepting `acknowledged_control` as nonnegative-
+    integer telemetry without a count or path-set pin. Classifier, validator,
+    runtime, and policy behavior are unchanged.
+  - G4 manifest
+    `docs/governance_harness/tranche_manifests/ROOT-HARNESS-SCOPE-CORRECTION-20260802.yaml`
+    and routed notices to App Dev, Piping, and PEC close the instruction-
+    surface notice requirement. Public-export regeneration is deferred.
+- **App-owned policy preservation:** the isolated lane's managed-delegation,
+  permission-overlay, and coordination-tool implementation/test files are
+  byte-identical to the dependency-bearing main checkout; their focused suite
+  PASSed (3 files, 32 tests). App-managed Bash policy remains unchanged in its
+  App-owned decision, PRD, runtime, permission overlay, and test surfaces.
+- **Checks:** full agent-instruction validation PASS (34 files, 0 errors,
+  0 warnings); focused agent/G4 tests PASS (49); G4 schema validation PASS
+  (23 manifests); full practitioner-harness tests PASS (349); practitioner-
+  harness self-check exit 0 with the existing 4 REVIEW / 27 WARN / 14 INFO /
+  1 NOT_APPLICABLE findings; path-anchor PASS (1,135 surfaces), claims-
+  language PASS (268 files), candidate-whitespace PASS, instruction-entrypoint
+  PASS, and `git diff --check` PASS.
+- **Closure / handoff:** validated proposal-only closeout is complete subject
+  to the human-gated PR and merge on its exact final HEAD. Merge remains a
+  later owner act and does not constitute semantic acceptance. Historical
+  records and frozen pins are preserved; no register, classifier, runtime,
+  policy, lifecycle, product, dependency, decomposition, DAG, pointer,
+  DEC-092, reliance, release, or professional-judgment act occurred.

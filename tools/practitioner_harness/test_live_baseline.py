@@ -236,10 +236,13 @@ def test_live_gen8_semantic_portability_invariants(live_self_check):
     assert [f for f in report.findings
             if f.code.startswith("PORTABILITY_POLICY_")] == []
     piping = _fact(report, "abs_path_lint.chirality-piping.semantic_invariants")
-    assert piping.value == (
-        "unacknowledged_control=0; active_unclassified=0; "
-        "policy_issues=0; acknowledged_control=3")
-    # Growth is telemetry only: no exact finding count or path set is pinned.
+    assert re.fullmatch(
+        r"unacknowledged_control=0; active_unclassified=0; "
+        r"policy_issues=0; acknowledged_control=[0-9]+",
+        piping.value,
+    )
+    # Valid acknowledged-control and historical growth are telemetry only:
+    # no exact finding count or path set is pinned.
     historical = _fact(report, "abs_path_lint.chirality-piping.historical")
     assert re.fullmatch(r"files=\d+; hit_lines=\d+", historical.value)
 
