@@ -2038,3 +2038,37 @@
     owning loop's disposition. No root-register, product implementation,
     lifecycle, stage, release, publication, professional-reliance, or Git
     closeout effect occurs.
+
+- **2026-08-02 — Receipt 85** (DEC-092 dependency refresh proposal-only closeout).
+  - Receipt-ID: `Receipt-85`
+  - Examined-Through: `81bcd8376066fd0e79811bb2bf3a129fa5d7abaa`
+  - Parent-Receipt: `Receipt-84`
+  - Pointers: owner O-A ruling and amendments, N2 fan-in, N3 EVALUATION
+    proposal, N4 byte-copy materialization, N5 return, and terminal handoff
+    under
+    `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260802-DEC092-DEPENDENCY-REFRESH-R23/`;
+    live proposal `execution/_DAG/DAG-009/`; Root coordination notices
+    `execution/_Coordination/NOTICE_2026-08-02_{TASK_MANAGEMENT_INSTRUCTION_SCHEMA_REPAIR,ROOT_HARNESS_SCOPE_CORRECTION}.md`.
+  - Stale-Map-Delta: the frozen R23 basis predates the two cited Root notices;
+    live hash reconciliation found no dependency/evidence/DAG/decomposition
+    rebuild trigger.
+  - Checks: subject-specific hash/schema/DAG/JSON/manifest/exact-delta checks,
+    decomposition SCH, claims/path, focused portability tests, repository
+    self-check, full practitioner-harness pytest, receipt validation, profile
+    determination, and containment pass. N5's tracked-surface whitespace check
+    passed but did not include 54 then-untracked historical R23 run records;
+    full staging exposed 65 findings across those paths. The owner authorized
+    exactly 54 literal run-local classifications (50 disabling only
+    `blank-at-eof`, four disabling `blank-at-eof` and `blank-at-eol`), after
+    which the full-candidate check passes with all 54 historical files
+    byte-identical to commit `f37eedcae`. The excluded product-test probe's
+    environmental outcome is recorded in the N5 return.
+  - Model-Attribution: OpenAI Codex PROJECT_SETUP Agent 1 under HELP_HUMAN used
+    inherited runtime capability without override or mid-task substitution;
+    exact model string was not exposed; no delegation.
+  - Gate-Outcome: `EXECUTED` — the dependency-currency and DAG-009 proposal
+    chain is validated for N6 proposal-only Git closeout. DAG-009 remains
+    unaccepted and inactive; root `_DAG/_LATEST.md` remains DAG-008. Separate
+    later owner acts remain required for DAG-009 acceptance and any pointer
+    move. No DEC-092 implementation, product, lifecycle, status, memory,
+    release, professional-reliance, commit, push, PR, or merge effect occurs.
