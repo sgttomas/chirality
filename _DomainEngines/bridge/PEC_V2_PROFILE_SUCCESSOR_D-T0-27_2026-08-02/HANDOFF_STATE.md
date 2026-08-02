@@ -1,39 +1,53 @@
-# D-T0-27 candidate handoff state
+# D-T0-27 application handoff state
 
 | Field | Value |
 |---|---|
-| RunStatus | `PARTIAL` — decision-ready candidate; owner gate open |
+| RunStatus | `APPLICATION VALIDATED / READY FOR CHANGE / NOT EFFECTIVE` |
+| ApplicationBasis | PR #458 merge `23d15899fd0acf5d1d0513f3fe396438375c9e25` |
 | DomainEngineID | `pec` |
-| ProfileStatus | candidate `ADOPTED`; live profile remains `STALE` |
-| IntegrationLevel | candidate `READ_ONLY`; live remains `MANUAL_BRIDGE / DENY_ALL` |
-| AcceptedUpstreamSnapshots | PRD v2.2; accepted ADR/SPEC; D-PEC-74 accepted API bytes |
-| DomainArtifactsRead | exact paths and hashes in `PACKET.md` |
-| DomainToolsInvoked | profile validator only; no integrated PEC tool invoked |
-| AgentArtifactsWritten | this candidate packet and D-T0-27 presentation record/register row |
-| ProtectedPathsTouched | none; live profile unchanged |
-| HumanApprovals | `TBD — D-T0-27`; D-PEC-76 is a pointer, not another ruling |
-| BoundaryNoticesApplied | graceful absence, files govern, content minimal, no second loop, no ruling write, no cross-loop mandate, no professional reliance |
-| RerunRequirements | revalidate exact candidate and live postimage during any authorized application |
-| RemainingBlockers | owner D-T0-27 ruling; exact DOMAIN_ENGINE/CHANGE application/publication |
-| NextOwningWorkflow | `HUMAN → DOMAIN_ENGINE/CHANGE` |
+| ProfileStatus | postimage declares `ADOPTED`; application not effective |
+| IntegrationLevel | `READ_ONLY` |
+| LiveProfileSHA256 | `be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d` |
+| PreservedPreimageSHA256 | `0d6e1505003cffeba0393bdebaa48f19f27e2b1de8964e2c2bd262331f9ccca6` |
+| Validation | `VALID`; `profile_status == ADOPTED`; zero findings; portable live report |
+| HumanApprovals | D-T0-27 O-A, owner 2026-08-02; verbatim ruling in decision record and bridge Receipt 33 |
+| ProtectedPathsTouched | exact live profile plus the application plan's enumerated Tier-0 and D-PEC-76 pointer surfaces only |
+| NextOwningWorkflow | `CHANGE` — exact publication, committed-range checks, and merge identity |
 
-`VALIDATION.json` preserves the deterministic validator result with only its
-machine-absolute `profile_path` normalized to the repo-relative candidate path
-for portability under SPEC §0.2.4. All semantic fields, status, counts, and
-findings are unchanged. Revalidation should write to a disposable evidence
-path and must not overwrite this normalized committed artifact.
+## Applied result
+
+The exact candidate at SHA-256
+`be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d`
+is installed byte-for-byte at `_DomainEngines/profiles/pec.yaml`. The exact
+stale preimage is preserved at
+`accepted_preimage/pec_v0.4_profile_v0.3.yaml`. Portable live validation
+evidence is at `_DomainEngines/profiles/_validation/pec.validation.json`.
+
+D-T0-27 O-A does not yet clear the D-T0-26 successor-profile prerequisite.
+D-T0-28 O-A corrected the two conscious live-baseline pins at exact SHA-256
+`7a4e8aa0fdb28cacdfedb62a307a260bd090136362102b48673ea2a9842d7638`;
+all uncommitted application checks pass. Exact CHANGE publication and merge
+identity remain before effectiveness.
+The adopted profile declares only the registered software checks and harness
+self-check; it declares no runtime, adapter-client, mutating, proposal,
+external-result, instance-content, or cross-loop lane.
 
 ## D-PEC-76 coordination result
 
-D-PEC-76 now exists in the PEC decision register as a pointer/request row. It
-cites the exact D-T0-27 candidate SHA and application packet, follows the
-D-T0-12/D-PEC-11 precedent, and expressly creates no duplicate profile-
-adoption authority. D-T0-27 alone owns Gate 2 and the bounded local pointer
-corrections in its application plan.
+D-PEC-76 points to the ruled D-T0-27 application without creating duplicate
+adoption authority. Only present-tense pointer/status prose in
+`projects/pec/AGENTS.md`, `projects/pec/docs/STATUS.md`, the PEC register, and
+the existing D-PEC-75 record's profile-prerequisite section was aligned.
+D-PEC-75 remains recorded `AWAITING_RULING` in this application tranche; its
+owner disposition and execution belong to the PEC loop.
 
-On an O-A application, only present-tense profile-pointer/status prose in
-`projects/pec/AGENTS.md` and `projects/pec/docs/STATUS.md`, plus the D-PEC-76
-pointer state, may be aligned locally. No source, `software-workflow.json`,
-SOW, `_STATUS.md`, decomposition, dependency, REVIEW, Task Management, accepted
-artifact, adapter invocation, source slice, lifecycle, release, reliance, or
-other-loop act is included.
+## Remaining gates and reruns
+
+- CHANGE must publish the exact changed-path set, run committed-range
+  `coord-check`, and establish the exact merge identity before effectiveness.
+- D-PEC-75 SOW currency, SOW fitness, source activation, lifecycle, artifact
+  acceptance, release, and professional reliance remain separately gated.
+
+No PEC source, `software-workflow.json`, ScopeOfWork, lifecycle, Task
+Management, decomposition, accepted artifact, adapter invocation, release,
+professional reliance, or other-loop act is included.

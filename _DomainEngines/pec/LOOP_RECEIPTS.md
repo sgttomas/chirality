@@ -1570,3 +1570,11 @@
   - Exclusions: DEL-01-05 is not executable before a live core target without scope amendment; DEL-08-03 remains later pending SOW/schema-ownership repair; TM-PEC-005 is not duplicated.
   - Validation at presentation: both candidate SOWs validate and derive 6/6 and 12/12 exact criteria; strict registers 64 / 254 / zero findings; dependency closure 119 edges / zero SCCs; accepted API hashes and current project profile reproduce.
   - Gate outcome: **AWAITING OWNER**. No option, SOW edit, source, project/domain-profile edit, lifecycle, acceptance, release, reliance, service/store/transport/runtime, or downstream-node act occurred.
+
+- **2026-08-02 — Receipt 139** (D-PEC-75 O-A contract-currency authority recorded).
+  - Owner ruling pointer: the owner's full verbatim three-part `APPROVE:` message is reproduced in `projects/pec/execution/_Coordination/D-PEC-75_SECOND_P1_SOURCE_SLICE_2026-08-02/O-A_CONTRACT_CURRENCY_HANDOFF_2026-08-02.md`; the D-PEC act is `D-PEC-75: O-A.`
+  - Selection: DEL-01-06 only. The ruling opens only packet §5.2's bounded `ScopeOfWork.md` currency repair; the SOW itself is unchanged at this recording checkpoint.
+  - Return gate: deterministic validation must remain `PASS format=SOW_V1`; the exact checklist must remain AC-001 through AC-006; the repaired hash then returns for separately selected REVIEW, review-from-`INITIALIZED` authority, finding disposition, and owner exact-hash fitness.
+  - Domain-profile boundary: D-T0-27 O-A is ruled and the exact `ADOPTED / READ_ONLY` postimage is materialized, but it is not effective while the omitted `tools/practitioner_harness/test_live_baseline.py` amendment, passing checks, and later CHANGE publication remain outstanding. D-PEC-76 remains the non-duplicative pointer.
+  - Authority fence: every source, test, project-workflow, adapter, configuration, run-record, and execution-handoff production path remains dormant pending both repaired-SOW acceptance and effective D-T0-27. No lifecycle, artifact acceptance, later P1 node, service/store/transport/runtime act, release, professional reliance, or cross-loop mandate is inferred.
+  - Gate outcome: **O-A RULED / CONTRACT-CURRENCY OPEN / SOURCE DORMANT**. The next lawful PEC act is the bounded WORKING_ITEMS SOW-currency repair and evidence return only.

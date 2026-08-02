@@ -29,16 +29,16 @@ check profile. The five-item SELF_CHECK has zero findings; AC-005 is owner-
 confirmed at its recorded MEDIUM confidence; the exact schema, test, and three
 fixture bytes are accepted; and DEL-08-02 is `CHECKING`. No service, store,
 transport, runtime integration, later P1 node, release, or professional
-reliance is authorized. **D-PEC-75 now presents, but does not select, the
-second P1 slice:** O-A DEL-01-06 typed local-loop-registry bootstrap
-(recommended), O-B DEL-01-01 record-tier model/DDL, amendment, or deferral.
-Both executable options begin with bounded SOW-currency review and remain
-source-closed until the owner accepts the resulting contract hash and the
-separately adopted D-T0-27 PEC-v2 domain-profile successor is effective.
-D-PEC-76 is the PEC-local pointer/request row to the exact D-T0-27 candidate;
-following D-PEC-11 precedent, D-T0-27 owns the semantic profile ruling and
-D-PEC-76 creates no duplicate adoption act. D-PEC-75 grants no domain-profile,
-source, lifecycle, or artifact-fitness act.
+reliance is authorized. **D-PEC-75 is ruled O-A for DEL-01-06:** only packet
+§5.2's bounded contract-currency phase is open. Source remains dormant until
+the repaired six-item SOW receives separate REVIEW and exact-hash owner
+acceptance and D-T0-27 becomes effective. D-T0-27 O-A is ruled and its exact
+PEC-v2 `ADOPTED / READ_ONLY` successor postimage is materialized, but not
+effective while the omitted `tools/practitioner_harness/test_live_baseline.py`
+amendment and required passing checks remain outstanding. D-PEC-76 points to that Tier-0 ruling;
+following D-PEC-11 precedent, D-T0-27 owns the semantic profile act and
+D-PEC-76 creates no duplicate adoption. D-PEC-75 grants no domain-profile,
+source, project-workflow, lifecycle, or artifact-fitness act.
 Decomposition revision
 1.3 is the accepted current basis after `SCA-003` (2026-07-28; revision 1.2
 was the `SCA-002` basis); PROJECT_SETUP remains released with `FULL_GRAPH`
@@ -134,7 +134,9 @@ truth without changing topology, dependencies, lifecycle, or implementation.
 `D-PEC-69` then reconciled the complete affected ScopeOfWork population;
 `D-PEC-70` released the exceptional reliance hold. P1 source work remains
 separately owner-gated and fenced by `F-PEC-1`.
-Domain-engine profile `_DomainEngines/profiles/pec.yaml` was amended
-2026-07-24 (`D-PEC-59`: post-archive readable-artifact paths + pivot notes;
-validator VALID); full supersession remains pending v2 implementation shape.
+Domain-engine profile `_DomainEngines/profiles/pec.yaml` contains the exact
+D-T0-27 O-A PEC v2 `ADOPTED / READ_ONLY` postimage and is validator `VALID`,
+but the application is not effective pending a bounded live-baseline pin
+amendment and passing checks. The frozen v0.4 profile is preserved as
+historical preimage lineage.
 Fences F-PEC-1..4 (`D-T0-15`) remain in force.

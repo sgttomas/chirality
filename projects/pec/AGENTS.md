@@ -137,10 +137,13 @@ PEC v2 is **content-minimal** (PEC-K-10): paths, counts, SHAs, states, hashes
 — never file or diff content. No agent may design, brief, or implement a
 surface that captures file or diff content.
 
-`D-T0-14` and `D-T0-20` are unchanged as rulings; item (iii) of the D-T0-20
-enumeration tracks the profile's `chirality_readable_artifacts` set,
-re-pointed 2026-07-24 for the docs archive (`D-PEC-59`). Mutation basis for any real (non-scratch) database remains an
-unopened future row. Agent validation stays scratch/demo-only.
+`D-T0-14` and `D-T0-20` remain historical rulings for the retired product.
+D-T0-27 O-A is ruled and its exact PEC v2 `READ_ONLY` postimage is
+materialized, but it is not effective while the required live-baseline tests
+fail outside the authorized write set. Its `chirality_readable_artifacts` set
+is content-minimal and repo-committed only; it declares no runtime store,
+service, transport, adapter-client, mutation, proposal, external-result, or
+instance-content lane.
 
 ## Governance Pointers
 
@@ -160,11 +163,11 @@ unopened future row. Agent validation stays scratch/demo-only.
   standing plan (loop protocol, target sequence, parked work, fences)
 - `_DomainEngines/pec/LOOP_RECEIPTS.md` — loop handoff ledger
 - `docs/PRD.md` — adopted product definition; `docs/STATUS.md` — current state
-- `_DomainEngines/profiles/pec.yaml` — amended 2026-07-24 (`D-PEC-59`) for the
-  docs-archive paths and pivot notes; it binds the frozen engine instance
-  only. Full supersession is pending v2 implementation shape. The L3
-  operation-proposal (import) lane sunset with the old product and is not an
-  agent lane.
+- `_DomainEngines/profiles/pec.yaml` — D-T0-27 O-A exact PEC v2 successor
+  postimage, declaring `ADOPTED / READ_ONLY`, materialized but not effective
+  pending an owner-rulable live-baseline pin amendment, passing checks, and
+  exact merge. The frozen v0.4 profile is preserved as packet preimage
+  lineage; the old L3 import lane remains retired.
 
 ## Project-Wide Execution Discipline
 

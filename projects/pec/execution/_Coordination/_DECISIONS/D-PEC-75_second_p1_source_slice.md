@@ -1,6 +1,6 @@
 # D-PEC-75 — Second P1 source slice
 
-**Status:** AWAITING_RULING / SOURCE CLOSED
+**Status:** RULED O-A / DEL-01-06 CONTRACT-CURRENCY OPEN / SOURCE DORMANT
 
 **DecisionID:** D-PEC-75
 
@@ -54,34 +54,53 @@ Change no SOW, source, project profile, status, or domain profile. Keep
 
 ## Profile prerequisite and non-effects
 
-The live PEC profile is `STALE` and denies profile-mediated invocation. Both
-O-A's filesystem adapter and O-B's DDL/persistence representation are held
-behind separate D-T0-27 adoption. The exact tier-0 packet is
+The D-T0-27 O-A application has materialized the exact PEC v2 profile
+postimage at `ADOPTED / READ_ONLY`, but it is not effective while the omitted
+`tools/practitioner_harness/test_live_baseline.py` amendment and its required
+passing checks remain outside the completed application. The exact tier-0 packet is
 `_DomainEngines/bridge/PEC_V2_PROFILE_SUCCESSOR_D-T0-27_2026-08-02/PACKET.md`
 with candidate SHA-256
 `be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d`.
-D-PEC-76 is the PEC-side pointer/request row following the D-PEC-11 precedent;
-it creates no duplicate adoption act. The semantic profile ruling is D-T0-27.
-D-PEC-75 does not adopt, amend, or narrow a domain profile.
+D-PEC-76 is the PEC-side pointer row following the D-PEC-11 precedent; it
+creates no duplicate adoption act. The semantic profile ruling is D-T0-27.
+D-PEC-75 does not adopt, amend, or narrow a domain profile. The O-A ruling
+opens only the DEL-01-06 contract-currency phase and does not make D-T0-27
+effective.
 
 `projects/pec/software-workflow.json` is a project check registry, not the
 domain-engine profile. The exact profile bytes, paths, checks, rollback,
 lifecycle/review/fitness gates, bootstrap effects, prohibited acts, and
 strict non-effects are normative in the linked packet.
 
-No option is selected. No SOW or source path is open. No artifact acceptance,
-lifecycle transition, `ISSUED`, later node, release, merge, professional
-reliance, service/store/transport/runtime act, or cross-loop mandate is
-inferred.
+O-A selects only DEL-01-06. Only the exact bounded SOW-currency repair in the
+packet is open; source, test, project-workflow, and run-record paths remain
+dormant until the repaired SOW receives separate REVIEW and exact-hash owner
+acceptance and D-T0-27 becomes effective. No SOW byte is accepted by this
+ruling. No artifact acceptance, lifecycle transition, `ISSUED`, later node,
+release, merge, professional reliance, service/store/transport/runtime act,
+or cross-loop mandate is inferred.
 
-## Recommendation and ruling syntax
+## Owner ruling
 
-Recommend O-A as the smaller directed-bootstrap slice, explicitly contingent
-on effective D-T0-27.
+Ryan Tufts, in-session, 2026-08-02 (verbatim):
 
-```text
-D-PEC-75: O-A.
-D-PEC-75: O-B.
-D-PEC-75: O-C — <exact amendment>.
-D-PEC-75: O-D.
-```
+> APPROVE:
+>
+> 1. Merge PR #458 at source SHA
+>    5ea7c116d32aa8f133536a1a1de6c7c1cb4a9f88.
+>
+> 2. D-T0-27: O-A.
+>
+> 3. D-PEC-75: O-A.
+
+For D-PEC-75, this rules O-A and opens only the exact DEL-01-06 contract-
+currency phase in the packet. It does not select a REVIEW type, authorize
+review from `INITIALIZED`, accept a repaired SOW hash, make D-T0-27 effective,
+or open source production.
+
+## Recorded outcome
+
+O-A is ruled. The next lawful act is bounded WORKING_ITEMS repair of only the
+DEL-01-06 `ScopeOfWork.md` currency statements named in packet §5.2, followed
+by deterministic SOW validation and return of the unchanged six-item
+checklist. Source production remains separately gated and dormant.

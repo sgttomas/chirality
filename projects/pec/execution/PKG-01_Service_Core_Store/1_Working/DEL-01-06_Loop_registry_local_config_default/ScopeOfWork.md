@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-01-06
 package_id: PKG-01
-decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
+decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a
 project_scope_refs: [SOW-094]
 package_objective_refs: [OBJ-004]
 ---
@@ -17,11 +17,8 @@ It covers project scope item `SOW-094` in service of package objective
 `OBJ-004`.
 
 The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
-**revision 1.2** (`current_basis`, SCA-002 successor; accepted 2026-07-25 at
-D-PEC-64 closure, commit `3623b958b`). The deliverable-local `_REFERENCES.md`
-still names revision 1.1; that phrase is superseded provenance from a deferred
-pointer sweep and is not the basis of this contract, as `_CONTEXT.md`'s own
-supersession line records.
+**revision 1.3** (`current_basis`, SCA-003 successor), pinned at merge
+`11a494e9a`.
 
 **Objective warrant.** The `DEL-01-06` → `OBJ-004` attribution is
 SCA-002-qualified, not register-direct. At revision 1.1 the ledger row for
@@ -53,7 +50,7 @@ upstream predecessors, and `Dependencies.csv` holds only the two ANCHOR rows
 - **CLM-004** — "Loop" is the PRD §7.1 record-tier entity: the tenancy unit above Project, a LOOP_INIT/workplan-governed work loop, with `root, app-dev, piping, pec, bridge` named as the current instances and "today five" recorded at PRD §16.3.
 - **CLM-005** — Registry coverage is phase-staged: at P1 exactly one loop is registered — PEC v2's own build, per `OI-010` as resolved at Gate 2 (2026-07-24, `DL-10`) — and at P2 coverage extends to all five registered loops, per the `_CONTEXT.md` description and PRD §12.
 - **CLM-006** — Three accepted consumer edges depend on this deliverable, all at `RequiredMaturity` `INITIALIZED` and all currently `PROPOSAL` stratum: DEL-02-07 `[E-N16]` ("DEL-01-06 names 'the loops PEC serves'; DEL-02-07 reads per-project manifests per loop"), DEL-03-01 `[E-P18]` ("Reconciler needs the loop registry"), and DEL-09-02 `[E-P62]` ("Census spans the registered loops").
-- **CLM-007** — The deliverable is at lifecycle state `OPEN` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.
+- **CLM-007** — The deliverable is at lifecycle state `INITIALIZED` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.
 - **TBD-001** — `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation.
 - **TBD-002** — The concrete on-disk path, filename, serialization, and per-loop field set of the local default are not fixed by any accepted source; they are chosen during production within the bounds of CON-001 and REQ-005.
 

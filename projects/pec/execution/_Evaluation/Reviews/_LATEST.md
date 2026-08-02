@@ -1,10 +1,13 @@
 # Latest review snapshot
 
-Latest: REV_DEL-08-02_2026-08-01_2305
-Updated: 2026-08-01
+Latest: REV_DEL-01-06_2026-08-02_0904
+Updated: 2026-08-02
 
-This snapshot records D-PEC-74 final DEL-08-02 Gate 5, AC-005 confirmation,
-and exact-byte artifact fitness. The preceding Gate 1–2 snapshot is
+This snapshot records D-PEC-75 DEL-01-06 mechanical contract-fitness review
+only. All six acceptance criteria remain future-production pending; lifecycle
+remains `INITIALIZED`; SOW fitness remains owner-gated. The preceding D-PEC-74
+final DEL-08-02 snapshot is `REV_DEL-08-02_2026-08-01_2305`; its Gate 1–2
+snapshot is
 `REV_DEL-08-02_2026-08-01_2251`. Later-P1 authority, `ISSUED`, release, and
 reliance remain gated. The companion PKG-00 owner-acceptance snapshots are
 `REV_DEL-00-01_2026-08-01_2109` and

@@ -2,8 +2,8 @@
   "contract_source": "agents/AGENT_DOMAIN_ENGINE.md@77a327727",
   "findings": [],
   "profile_id": "pec",
-  "profile_path": "/private/tmp/chirality-pa-apply-2c8e416/_DomainEngines/profiles/pec.yaml",
-  "profile_status": "STALE",
+  "profile_path": "_DomainEngines/profiles/pec.yaml",
+  "profile_status": "ADOPTED",
   "result": "VALID",
   "schema": "domain-engine-profile-validation/v1",
   "summary": {
