@@ -1,0 +1,11 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_DAPP84_REV2_RULING_ROUTE_2026-08-02",
+  "instance_id": "H1-HELPS-HUMANS",
+  "agent_type": 1,
+  "brief_version": 1,
+  "status": "COMPLETE",
+  "verdict": "VALIDATED",
+  "integration_owner": true,
+  "return_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP84_REV2_RULING_ROUTE_2026-08-02/instances/H1-HELPS-HUMANS/RETURN.md"
+}

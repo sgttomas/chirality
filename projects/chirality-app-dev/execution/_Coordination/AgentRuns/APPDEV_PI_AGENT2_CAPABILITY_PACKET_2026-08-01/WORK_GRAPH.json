@@ -1,0 +1,59 @@
+{
+  "schema": "chirality-agent0-work-graph/v1",
+  "runId": "APPDEV_PI_AGENT2_CAPABILITY_PACKET_2026-08-01",
+  "planVersion": 1,
+  "selectionAuthority": "AGENT_0",
+  "posture": "MIXED",
+  "acceptedBasis": "fc06b3388de17dcd5fc65eb29bf77c7f551a64cc",
+  "nodes": [
+    {
+      "id": "H1-HELPS_HUMANS",
+      "role": "HELPS_HUMANS",
+      "status": "COMPLETE",
+      "integrationOwner": true,
+      "dependencies": [],
+      "returns": ["decision-ready D-APP-84 proposal", "validated manager return", "handoff"]
+    },
+    {
+      "id": "A2-RUNTIME-SEAMS",
+      "role": "AGENT_2_GENERALIST",
+      "status": "COMPLETE",
+      "writeScope": "NONE",
+      "dependencies": [],
+      "returns": ["read-only runtime seam evidence matrix"]
+    },
+    {
+      "id": "A2-AUTHORITY-REVIEW",
+      "role": "AGENT_2_GENERALIST",
+      "status": "COMPLETE",
+      "writeScope": "NONE",
+      "dependencies": [],
+      "returns": ["read-only authority and owner-class boundary review"]
+    },
+    {
+      "id": "A2-PACKET-CONVENTIONS",
+      "role": "AGENT_2_GENERALIST",
+      "status": "COMPLETE",
+      "writeScope": "NONE",
+      "dependencies": [],
+      "returns": ["read-only packet/register convention review"]
+    },
+    {
+      "id": "A2-PACKET-ADVERSARIAL",
+      "role": "AGENT_2_GENERALIST",
+      "status": "COMPLETE",
+      "writeScope": "NONE",
+      "dependencies": ["H1-HELPS_HUMANS"],
+      "returns": ["COMMIT-SAFE adversarial packet verdict"]
+    },
+    {
+      "id": "A0-FAN-IN",
+      "role": "HELP_HUMAN",
+      "status": "PENDING",
+      "dependencies": ["H1-HELPS_HUMANS"],
+      "returns": ["owner decision interface"]
+    }
+  ],
+  "humanDecisionPoints": ["D-APP-84", "separate Root DEL-02-06 route if selected"],
+  "sharedWritePolicy": "H1-HELPS_HUMANS is the sole serialized integration owner; Agent 2 nodes are read-only"
+}

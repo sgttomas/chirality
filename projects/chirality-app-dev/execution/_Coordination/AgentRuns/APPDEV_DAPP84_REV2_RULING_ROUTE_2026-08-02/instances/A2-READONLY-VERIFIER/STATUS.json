@@ -1,0 +1,12 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_DAPP84_REV2_RULING_ROUTE_2026-08-02",
+  "instance_id": "A2-READONLY-VERIFIER",
+  "agent_type": 2,
+  "brief_version": 1,
+  "status": "COMPLETE",
+  "semantic_verdict": "PASS",
+  "structural_verdict": "MINOR_RETURNED_AND_MANAGER_RESOLVED",
+  "write_effect": "NONE",
+  "return_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP84_REV2_RULING_ROUTE_2026-08-02/instances/A2-READONLY-VERIFIER/RETURN.md"
+}
