@@ -21,15 +21,29 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   §1.14 (effective `main@c8c2a6146`). Stage-A instruments: Receipts 66–73;
   workplan `WORKPLAN_2026-07-31_task_management_stage_a.md` (CLOSED) and
   its Amendments 1–2; program register at
-  `execution/_Coordination/_TaskManagement/REGISTER.csv` (101 rows:
-  46 CLOSED / 51 DEFERRED / 4 OPEN after the 2026-07-31 owner triage).
+  `execution/_Coordination/_TaskManagement/REGISTER.csv` (103 rows:
+  46 CLOSED / 53 DEFERRED / 4 OPEN).
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
+- D-GOV-33 invocation-local federation-survey ruling and its validated
+  working-tree candidate at managed run
+  `execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/`
+  (Receipt 82). H0 implementation is complete; H2 is satisfied by the owner's
+  2026-08-02 direction "Merge via PR"; publication/effective SHAs remain
+  `TBD` until the authorized checked PR acts occur.
+  Publication vehicle: PR #478
+  (`https://github.com/sgttomas/chirality/pull/478`); validated implementation
+  commit `bb44d71c93cc5431d5fc8a902e716cc88966ea9f`.
 
 ## 2. Derivative-package currency
 
 - `execution/_Coordination/_TaskManagement/.candidates/` — taskmgmt scan
-  projection: gitignored, rebuildable, never authority (D-GOV-01).
+  and federation projections: gitignored, rebuildable, never authority
+  (D-GOV-01). Project/domain/Domain Engine federation projections follow the
+  same beside-register `.candidates/` rule.
+- `/tmp/TM-FEDERATION-SURVEY-20260802-*.json` and verifier/acceptance copies —
+  current-to-candidate validation evidence only; derived, disposable, and not
+  accepted register truth.
 - `TRIAGE_2026-07-31_SEED_PROPOSALS.md` and
   `AgentRuns/GOV-TM-TRIAGE-CLUSTER-20260731/` — historical decision
   support and run evidence for the first triage; not current state.
@@ -47,6 +61,11 @@ first session, 46/101 closures). No root production phase is active;
 Task Management runs on demand or owner-scheduled routine via
 TASK_MANAGEMENT — never bound to loop entry.
 
+`FEDERATION SURVEY COMPONENT IMPLEMENTATION READY — H2 SATISFIED; CHECKED PR PUBLICATION IN PROGRESS.`
+HELPS_HUMANS and TASK_MANAGEMENT both returned `READY`; all four live surveys
+are `COMPLETE` with unchanged register hashes. D-GOV-33, the shared agent/tool,
+tests, manifest, and notices remain an unpublished working-tree candidate.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -55,3 +74,11 @@ matching TM-ROOT-098/099/100 row and migrate linked rows), a Root
 production phase or DEL-02-06 activation is selected, the accepted
 decomposition or PRD revision changes, or the owner selects a successor
 posture other than idle.
+
+For the federation-survey candidate, CHANGE refreshed from implementation
+basis `3e03b257748822dba2ad7697453f3495fb7578db` onto
+`origin/main@fe57138e6ce68fbcfe99b50676fcdd6114ec591a` and reran the required
+matrix (Receipt 82). The owner's exact direction "Merge via PR" supplies the
+merge act for the final checked PR HEAD. CHANGE must verify required check
+verdicts and source-head identity immediately before merge, then record the
+actual Git/PR identities without self-referential placeholders.
