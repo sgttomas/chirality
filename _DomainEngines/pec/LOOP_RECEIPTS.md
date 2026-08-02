@@ -1447,3 +1447,47 @@
   - Authority fence: no DEL-10-01 Gate 5 or AC-008 act is inferred; no lifecycle state changes in this receipt; no C-05 closure, P1 opening, source work, release, cross-loop architecture mandate, or professional-reliance act is created.
   - Gate outcome: PKG-00 artifact-fitness gates are satisfied at exact hashes; DEL-10-01 repair and REVIEW are complete. Exactly two owner acts remain before C-05 closure can be proposed.
   - Parked lanes: (1) owner Gate 5 approval to advance DEL-10-01 from `INITIALIZED` to `CHECKING` under the recorded override; (2) separate owner AC-008 acceptance of final method hash `5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59` and baseline hash `0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d` as the PRD §11 metric-1 before leg with `PRE_P1_OBLIGATION` confirmation; only then may C-05 closure and the successor P1 packet be proposed.
+
+- **2026-08-01 — Receipt 132** (D-PEC-72 DEL-10-01 final Gate 5 and AC-008 acceptance checkpoint).
+  - Owner ruling pointer: the exact message below is reproduced verbatim in `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/DEL10_FINAL_ACCEPTANCE_RULING_2026-08-01.md` at committed authority `075d59202dee4be3f1a0fae10769f7346ceda2ec`.
+  - Owner ruling of record (verbatim):
+
+    > APPROVE:
+    >
+    > 1. DEL-10-01 Gate 5 — APPROVE.
+    >
+    > Advance DEL-10-01 from INITIALIZED to CHECKING under the
+    > previously recorded review-from-INITIALIZED owner override.
+    >
+    > The final SELF_CHECK populated all eight deterministic criteria,
+    > RF-001 is REVISE / RESOLVED, and no finding remains open.
+    >
+    > This is a lifecycle act only. It does not accept the method or
+    > baseline artifacts, satisfy AC-008, close C-05, or authorize P1.
+    >
+    > 2. DEL-10-01 AC-008 — ACCEPT.
+    >
+    > I accept artifacts/STEP0_COST_BASELINE_METHOD.md at SHA-256
+    > 5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59
+    > and artifacts/STEP0_COST_BASELINE.md at SHA-256
+    > 0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d
+    > as fit for DEL-10-01.
+    >
+    > I confirm that the captured exact baseline is fit to serve as the
+    > “before” leg of PRD §11 metric 1 and that the PRE_P1_OBLIGATION
+    > was satisfied before any P1 node started.
+    >
+    > The bound telemetry evidence remains SHA-256
+    > baa80859d40845cc1c2448342befcacc83fd3519dd34e9e9b00dceb6764f7f89.
+    >
+    > This accepts these artifact bytes and satisfies AC-008 only.
+    > It does not independently change lifecycle state, close C-05,
+    > or authorize P1.
+
+  - Lifecycle outcome: Gate 5 advances DEL-10-01 from `INITIALIZED` to `CHECKING` under the previously recorded owner override. The transition is lifecycle-only and is recorded in `_STATUS.md`.
+  - Acceptance outcome: AC-008 accepts only method SHA-256 `5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59` and baseline SHA-256 `0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d` as the PRD §11 metric-1 before leg; the owner confirms `PRE_P1_OBLIGATION`, with telemetry bound at SHA-256 `baa80859d40845cc1c2448342befcacc83fd3519dd34e9e9b00dceb6764f7f89`.
+  - REVIEW outcome: 8/8 exact contract criteria are populated; RF-001 is `REVISE` / `RESOLVED`; zero findings remain open; AC-008 is satisfied; DEL-10-01 is `CHECKING`. Immutable evidence is `projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/`, and `_LATEST.md` points to it.
+  - Checks: all three contracts validate `SOW_V1`; exact checklist binding remains 7 + 11 + 8; exact method, baseline, and telemetry hashes reproduce; status, five-file snapshot, pointer, packet manifest, strict registers at 64/254 with zero findings, unchanged loop self-check baseline INFO=15 / NOT_APPLICABLE=1 / REVIEW=5 / WARN=28, coordination, and whitespace checks pass at closeout.
+  - Authority fence: the AC-008 act does not independently change lifecycle. Neither ruling authorizes `ISSUED`, closes C-05, opens P1, starts source work, authorizes release, or creates professional-reliance authority.
+  - Gate outcome: all three D-PEC-72 deliverables are `CHECKING`, and their exact artifact-fitness criteria are satisfied. C-05 closure is now the sole remaining owner gate before any successor P1 packet may be considered.
+  - Parked lanes: owner C-05 closure ruling; P1 remains closed unless and until that separate act occurs.

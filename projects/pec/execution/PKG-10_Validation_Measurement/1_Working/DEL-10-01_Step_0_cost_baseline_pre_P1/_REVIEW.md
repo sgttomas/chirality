@@ -1,12 +1,12 @@
 # Review — DEL-10-01 Step-0 cost baseline
 
-**Review stage:** GATE 4 REPAIR VERIFIED — GATE 5 OWNER DECISION PENDING
+**Review stage:** GATE 5 OWNER APPROVED — CHECKING; AC-008 ARTIFACT FITNESS ACCEPTED
 
 **Review Type:** SELF_CHECK
 
 **Reviewer(s):** AGENT_CHECK (producer-side mechanical self-check; no human reviewer identity inferred)
 
-**Target transition:** INITIALIZED → CHECKING (owner-authorized review-from-INITIALIZED override; no lifecycle transition authorized)
+**Target transition:** INITIALIZED → CHECKING (owner-approved review-from-INITIALIZED override; applied)
 
 **Owner Gate 1 ruling (verbatim, 2026-08-01):**
 
@@ -43,6 +43,26 @@ The repair is present at commit `0cb6e2b4c016dc42f25d23d4d48d6d752937c85f`.
 This rerun verifies the bounded prose-only delta and binds the final hashes
 below. No artifact acceptance or lifecycle act is inferred.
 
+**Owner final Gate 5 and AC-008 ruling (exact record, 2026-08-01):**
+
+`projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/DEL10_FINAL_ACCEPTANCE_RULING_2026-08-01.md`
+at approval commit `075d59202dee4be3f1a0fae10769f7346ceda2ec` records the
+owner ruling verbatim. Its exact effects are:
+
+1. Gate 5 `APPROVE`: advance DEL-10-01 from `INITIALIZED` to `CHECKING`
+   under the recorded review-from-`INITIALIZED` override, lifecycle only.
+2. AC-008 `ACCEPT`: accept method SHA-256
+   `5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59`
+   and baseline SHA-256
+   `0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d`
+   as fit for DEL-10-01; confirm the captured exact baseline as the PRD §11
+   metric-1 “before” leg and confirm that `PRE_P1_OBLIGATION` was satisfied
+   before any P1 node started; retain telemetry SHA-256
+   `baa80859d40845cc1c2448342befcacc83fd3519dd34e9e9b00dceb6764f7f89`.
+
+The guarded transition was applied. Neither act advances DEL-10-01 to
+`ISSUED`, closes C-05, or authorizes P1.
+
 ## Review Basis
 
 - Production contract: `ScopeOfWork.md`, valid `SOW_V1` (`sha256:40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e`).
@@ -52,7 +72,7 @@ below. No artifact acceptance or lifecycle act is inferred.
 - Candidate validation: `_run_records/D-PEC-72_CANDIDATE_VALIDATION.md` (`sha256:5160b61a720bd00ca50403e1b0c6a1aced3ef2210c264c16c18d5892ebbb4810`).
 - Checklist compiler: `tools/scope_of_work/derive_review_checklist.py`, schema `chirality-review-checklist/v1`, tool version 1, 8 criteria.
 - Decomposition coverage: strict deterministic register validation PASS (64 registers, 254 rows, zero errors/warnings). No managed AUDIT_DECOMP child session was used; the registered validator detected no structural discrepancy.
-- Lifecycle state: `INITIALIZED`; the owner explicitly authorized review from this state. `_STATUS.md` is unchanged.
+- Lifecycle state: `CHECKING`; the owner explicitly approved and the guarded tool applied the transition from `INITIALIZED` under the recorded override.
 - Context validity: PASS — `DEL-10-01`, `PKG-10`, `SOW-058`, `OBJ-001`, and `OBJ-006` agree across `_CONTEXT.md`, `ScopeOfWork.md`, and accepted decomposition registers.
 
 ## Gate 1 Precondition Summary
@@ -60,7 +80,7 @@ below. No artifact acceptance or lifecycle act is inferred.
 | Precondition | Result | Evidence |
 |---|---|---|
 | Deliverable folder | PASS | Folder and governed context/status files exist |
-| Lifecycle entry | PASS BY OWNER OVERRIDE | `INITIALIZED`; verbatim authorization above |
+| Lifecycle entry | PASS BY OWNER OVERRIDE | Review entered at `INITIALIZED`; final Gate 5 ruling applied the guarded transition to `CHECKING` |
 | Production format | PASS | `SOW_V1`, zero validation issues |
 | Anticipated artifacts | PRESENT | Method document and baseline report exist at packet-recorded paths |
 | Dependency posture | PASS | No active `EXECUTION` upstream rows; two satisfied `ANCHOR` rows |
@@ -91,7 +111,7 @@ The compiled `AC-*` rows remain exact, complete, and ordered.
 | AC-005 | Every statement in both artifacts is classifiable by a reviewer as measurement method, measured value, or declared limit; neither artifact contains a requirement or acceptance criterion for a behavior owned by another package. | VER-004 | `DEL-10-01-AC-005`; ScopeOfWork line 111; SHA above | Y — classification inheritance is explicit; no other-package behavior requirement or post-P1 claim appears |
 | AC-006 | The packet-recorded path exists and holds both the method document and the baseline report, and the production change set touches no path outside `PKG-10`. | VER-005 | `DEL-10-01-AC-006`; ScopeOfWork line 112; SHA above | Y — both paths exist; the PKG-10 activation and candidate-validation evidence record a package-contained producer write set |
 | AC-007 | The published method states which criterion the precondition re-test applies, or records `CON-001` as still unresolved and names what would settle it; neither artifact silently substitutes the token metric for the latency criterion or the reverse. | VER-001; VER-003 | `DEL-10-01-AC-007`; ScopeOfWork line 113; SHA above | Y — token baseline and historical latency observation are applied and reported separately without substitution |
-| AC-008 | An accountable owner confirms that the captured baseline is fit to serve as the "before" leg of PRD §11 metric 1 and that the `PRE_P1_OBLIGATION` constraint is satisfied before any P1 node starts. | HUMAN_REVIEW | `DEL-10-01-AC-008`; ScopeOfWork line 114; SHA above | PARTIAL — exact candidate evidence exists and RF-001 is resolved; owner confirmation of final method hash `5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59` and baseline hash `0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d` remains pending |
+| AC-008 | An accountable owner confirms that the captured baseline is fit to serve as the "before" leg of PRD §11 metric 1 and that the `PRE_P1_OBLIGATION` constraint is satisfied before any P1 node starts. | HUMAN_REVIEW | `DEL-10-01-AC-008`; ScopeOfWork line 114; SHA above | Y — owner ACCEPTS final method hash `5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59` and baseline hash `0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d`, confirms the PRD §11 before leg, and confirms `PRE_P1_OBLIGATION` |
 
 ### Objective Coverage
 
@@ -142,10 +162,11 @@ state are unchanged. The final-hash rerun passes and RF-001 is `RESOLVED`.
 
 ## Transition Readiness
 
-**Recommendation:** RECOMMEND_ADVANCE
+**Recommendation:** NO FURTHER LIFECYCLE ACT AUTHORIZED
 
 All eight deterministic checklist items remain populated against the final
 artifact hashes, RF-001 is resolved, and no finding remains open. REVIEW
-recommends the separate Gate 5 lifecycle decision. DEL-10-01 remains
-`INITIALIZED`; AC-008 artifact fitness is still a separate owner act, C-05
-remains open, and P1 remains closed.
+recommended the separate Gate 5 lifecycle decision. The owner approved Gate 5,
+the guarded transition was applied, and DEL-10-01 is now `CHECKING`. The owner
+separately accepted the exact method and baseline hashes and satisfied AC-008.
+No `ISSUED` transition is authorized; C-05 remains open and P1 remains closed.

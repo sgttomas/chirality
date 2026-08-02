@@ -1,8 +1,29 @@
 # D-PEC-72 execution handoff — P1-entry foundation
 
-**Handoff state:** FINAL TWO OWNER ACTS PENDING; DEL-00-01 CHECKING / ARTIFACT
-ACCEPTED; DEL-00-03 CHECKING / ARTIFACT ACCEPTED; DEL-10-01 REPAIR VERIFIED /
-GATE 5 PENDING / INITIALIZED; C-05 OPEN.
+**Handoff state:** ALL THREE DELIVERABLES CHECKING / EXACT ARTIFACT-FITNESS
+ACCEPTANCES SATISFIED; C-05 CLOSURE OWNER GATE REMAINS; P1 CLOSED.
+
+**Update 09 (2026-08-01):** the owner's exact DEL-10-01 final Gate 5 and
+AC-008 ruling is recorded verbatim in
+`DEL10_FINAL_ACCEPTANCE_RULING_2026-08-01.md` at committed authority
+`075d59202dee4be3f1a0fae10769f7346ceda2ec`. Gate 5 advances DEL-10-01
+from `INITIALIZED` to `CHECKING` under the recorded review-from-`INITIALIZED`
+override as a lifecycle act only. AC-008 separately accepts only method hash
+`5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59`
+and baseline hash
+`0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d`
+as fit for DEL-10-01 and as the PRD §11 metric-1 “before” leg, confirms that
+`PRE_P1_OBLIGATION` was satisfied before any P1 node started, and retains
+telemetry hash
+`baa80859d40845cc1c2448342befcacc83fd3519dd34e9e9b00dceb6764f7f89`.
+The final SELF_CHECK remains 8/8; RF-001 is `REVISE` / `RESOLVED`; zero
+findings remain open. DEL-00-01, DEL-00-03, and DEL-10-01 are all
+`CHECKING`, and AC-007, AC-011, and AC-008 respectively are satisfied at
+their exact ruled artifact hashes. No `ISSUED` transition is authorized.
+C-05 remains open for a separate owner closure act, and P1 remains closed.
+The immutable DEL-10-01 final-acceptance snapshot is
+`execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/`; `_LATEST.md`
+points to it.
 
 **Update 08 (2026-08-01):** the owner's exact artifact-acceptance and repair
 rulings are recorded verbatim in
@@ -134,6 +155,7 @@ the accepted decomposition, or the PRD.
 | Finalization authorization, normalized PKG-00 artifacts, and exact DEL-10-01 telemetry | `87272dde8a82dbef034968b14af4461fe4b056d4` |
 | PKG-00 artifact acceptances and DEL-10-01 repair ruling | `7f5acbf5360ac3c974cf26341bf8d1e6dc598cf6` |
 | DEL-10-01 acceptance-neutral artifact-status repair | `0cb6e2b4c016dc42f25d23d4d48d6d752937c85f` |
+| DEL-10-01 Gate 5 and exact-hash AC-008 acceptance ruling | `075d59202dee4be3f1a0fae10769f7346ceda2ec` |
 
 ## Candidate fan-in
 
@@ -141,7 +163,7 @@ the accepted decomposition, or the PRD.
 |---|---|---|---|
 | DEL-00-01 | `.../DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md` | Final-hash SELF_CHECK PASS; AC-007 owner-accepted at exact hash; zero findings; `CHECKING` | No artifact-fitness gate remains; no further lifecycle act is authorized |
 | DEL-00-03 | `.../DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md` | Final-hash SELF_CHECK PASS; AC-011 owner-accepted at exact hash with qualified OBJ-001 confirmation; RF-001 resolved; `CHECKING` | No artifact-fitness gate remains; no further lifecycle act is authorized |
-| DEL-10-01 | `.../DEL-10-01_Step_0_cost_baseline_pre_P1/artifacts/STEP0_COST_BASELINE_METHOD.md`, `STEP0_COST_BASELINE.md`, and exact telemetry run record | Final-hash eight-row SELF_CHECK PASS; measurement content unchanged; RF-001 resolved; zero open findings; AC-008 partial; `INITIALIZED` | Owner Gate 5 advance to `CHECKING`, then separate AC-008 exact-hash fitness/pre-P1 confirmation |
+| DEL-10-01 | `.../DEL-10-01_Step_0_cost_baseline_pre_P1/artifacts/STEP0_COST_BASELINE_METHOD.md`, `STEP0_COST_BASELINE.md`, and exact telemetry run record | Final-hash eight-row SELF_CHECK PASS; measurement content unchanged; RF-001 resolved; zero open findings; AC-008 owner-accepted at exact method/baseline hashes with PRD §11 before-leg and `PRE_P1_OBLIGATION` confirmation; `CHECKING` | No artifact-fitness gate remains; no further lifecycle act is authorized |
 
 The abbreviated paths above all resolve under
 `projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/` or
@@ -183,11 +205,12 @@ re-rule or direct the harness cache.
   checklists derived (7, 11, and 8 criteria).
 - Final-hash PKG-00 SELF_CHECK: 7 + 11 exact criteria; zero DEL-00-01
   findings; DEL-00-03 RF-001 remains `REVISE` / `RESOLVED`; both states are
-  `CHECKING`. No owner-only fitness criterion is treated as satisfied.
+  `CHECKING`; AC-007 and AC-011 are owner-satisfied at their exact ruled
+  artifact hashes.
 - DEL-10-01 final-hash SELF_CHECK: 8 exact criteria populated; measurement
   content and arithmetic pass unchanged; RF-001 is `REVISE` / `RESOLVED` with
-  zero open findings; AC-008 remains `PARTIAL`; REVIEW `RECOMMEND_ADVANCE`;
-  lifecycle remains `INITIALIZED`.
+  zero open findings; AC-008 is owner-accepted at the exact ruled hashes;
+  lifecycle is `CHECKING`; no further lifecycle act is authorized.
 - SPEC identifier resolution: zero unresolved identifiers.
 - Strict decomposition registers: 64 registers / 254 rows / zero findings.
 - Dependency closure: 64 files / 254 rows / 119 execution edges / zero SCCs.
@@ -204,16 +227,13 @@ re-rule or direct the harness cache.
 
 ## Rerun and next gates
 
-1. DEL-00-01 AC-007 and DEL-00-03 AC-011 are satisfied at their exact ruled
-   hashes. Both deliverables remain `CHECKING`; no `ISSUED` act is authorized.
-2. DEL-10-01 RF-001 is resolved and final-hash REVIEW recommends advancement.
-   The owner must separately approve Gate 5 advancement from `INITIALIZED` to
-   `CHECKING`, then separately accept the final method and baseline hashes for
-   AC-008 and confirm the `PRE_P1_OBLIGATION`.
-3. Only after those two DEL-10-01 owner acts may C-05 closure be proposed. This
-   handoff itself creates neither act and does not open P1.
-4. The first P1 source slice remains a successor D-PEC packet and must name
+1. DEL-00-01 AC-007, DEL-00-03 AC-011, and DEL-10-01 AC-008 are satisfied at
+   their exact ruled hashes. All three deliverables remain `CHECKING`; no
+   `ISSUED` act is authorized.
+2. C-05 closure is now the sole remaining D-PEC-72 owner gate. This handoff
+   does not close it and does not open P1.
+3. The first P1 source slice remains a successor D-PEC packet and must name
    the v2 source tree and project-local `software-workflow.json`.
 
-No `docs/STATUS.md` update is made because D-PEC-72 permits it only after all
-three owner acceptances.
+No `docs/STATUS.md` update is made by this checkpoint; C-05 remains open and
+P1 remains closed pending the separate owner closure act.
