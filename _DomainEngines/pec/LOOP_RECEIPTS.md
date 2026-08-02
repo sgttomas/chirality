@@ -1372,3 +1372,9 @@
   - Gate outcome: PKG-00 candidates pass producer validation and await REVIEW + owner artifact acceptance. Exact token telemetry was unavailable and not estimated; DEL-10-01 is unaccepted, all three statuses remain INITIALIZED, C-05 stays open, and no P1 node/source/profile/lifecycle path opens.
   - Checks: reliance preflight ALLOW ×6; SOW_V1 contract/checklist derivation pass ×3; SPEC identifiers zero unresolved; strict registers 64/254 zero findings; dependency closure 119 edges/zero SCCs; self-check exit 0 at INFO=15/NA=1/REVIEW=5/WARN=28; package commits path-contained; Git whitespace/coord committed-range checks recorded in the handoff.
   - Parked lanes: owner REVIEW-type selection/INITIALIZED-state override for DEL-00-01 and DEL-00-03; exact-telemetry rerun for DEL-10-01; only after all three owner acceptances may C-05 closure and a successor P1 source packet be proposed. TM harvest promotions and root disposition of TM-ROOT-100 remain independently owner/root-loop gated.
+
+- **2026-08-01 — Receipt 123** (D-PEC-72 derivative-handoff coordination correction).
+  - Executed pointer: `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/HANDOFF.md` Correction 01; unresolved-reference findings are identified by their pre-existing register lines rather than duplicating their unresolved tokens.
+  - Gate outcome: no authority, artifact, validation, lifecycle, acceptance, C-05, or P1 state changed. Final committed-range `coord-check` carries only the two inherited register findings and creates zero D-PEC-72 handoff findings.
+  - Checks: handoff manifest verified; `git diff --check` pass; final range `coord-check` exit 0.
+  - Parked lanes: unchanged from Receipt 122.

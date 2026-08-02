@@ -2,6 +2,11 @@
 
 **Handoff state:** PARTIAL CANDIDATE FAN-IN; REVIEW NOT LAUNCHED; C-05 OPEN.
 
+**Correction 01 (2026-08-01):** the validation summary now identifies two
+inherited unresolved-reference findings by their register lines instead of
+re-emitting the unresolved path tokens. No authority, artifact, validation,
+or gate outcome changed; Git history preserves the original wording.
+
 **Accepted upstream snapshots:** PEC PRD v2.2; SOFTWARE_DECOMP revision 1.3
 accepted through SCA-003 at `11a494e9a`.
 
@@ -68,8 +73,8 @@ re-rule or direct the harness cache.
 - Preliminary committed-range `coord-check`
   (`90c2c4727..5d3fd5bb3`): no D-PEC-72 packet/register-coverage,
   precedent, or absolute-path finding; two REVIEW findings are carried from
-  pre-existing register rows (`projects/pec/pilot-scratch/reports/` and
-  `SEED_D-PEC-62/RUN_LOG.md`), the same inherited pair recorded by Receipt 121.
+  pre-existing decision-register rows 59 and 80, the same inherited pair
+  recorded by Receipt 121.
 - Package production commits are disjoint and path-contained; no frozen source,
   profile, dependency, decomposition, PRD, lifecycle, runtime, or P1 source
   path changed.
