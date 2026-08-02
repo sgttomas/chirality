@@ -1,6 +1,7 @@
 # D-PEC-75 O-A DEL-01-06 execution handoff
 
-**State:** PRODUCER MERGED / SELF_CHECK HELD / RF-001 DEFERRED
+**State:** PRODUCER AND REVIEW MERGED / RF-001 DEFERRED / GATE 5 HOLD AT
+`INITIALIZED`
 
 **Authority basis:** D-PEC-75 O-A; owner-accepted SOW SHA-256
 `7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`;
@@ -10,6 +11,11 @@ D-T0-27 effective through PR #459 merge
 **Producer publication:** PR #462 source
 `d4f53a70e4328101ba4756f0919b8bdb35cc9188`, merged as
 `ccd9a2178ffd8029fdd1cd779910e954e0612e21`.
+
+**Review publication:** PR #463 source
+`922ca0ea68d255b65292d59db89a98ef4cf59bc5`, merged as
+`a753a7b0894371437a6add0f92653037e2df2dec`; the exact review source is the
+merge commit's second parent.
 
 ## Exact producer outputs
 
@@ -86,6 +92,14 @@ SELF_CHECK rerun; VER-005 is not waived. The owner HOLD does not satisfy
 AC-005 or AC-006 or accept the DEL-01-06 bytes. Lifecycle advance, exact-hash
 artifact fitness, another P1 node, release, and professional reliance remain
 separate owner acts.
+
+This REVIEW result and the deliverable-local `_REVIEW.md`, findings register,
+and `_LATEST.md` pointer are durable on main through the review publication
+above. The named remaining owner gate is the post-rerun disposition of RF-001
+and DEL-01-06 Gate 5, followed separately by exact-hash artifact fitness if the
+evidence supports acceptance. No artifact byte is accepted and no next P1
+node, `ISSUED`, release, or professional reliance is authorized by this
+closeout.
 
 OI-003 remains open. No long-term registry home/shape, later loop entry,
 consumer activation, `ISSUED`, or other-loop duty is inferred.

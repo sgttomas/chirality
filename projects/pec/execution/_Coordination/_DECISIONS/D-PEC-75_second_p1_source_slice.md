@@ -1,6 +1,6 @@
 # D-PEC-75 — Second P1 source slice
 
-**Status:** RULED O-A / PRODUCER COMPLETE / REVIEW AND OWNER GATES OPEN
+**Status:** RULED O-A / REVIEW MERGED / RF-001 DEFERRED / GATE 5 HOLD AT INITIALIZED
 
 **DecisionID:** D-PEC-75
 
@@ -171,9 +171,32 @@ accepted API regression tests, and harness self-check pass. Exact hashes and
 all eleven verification dispositions are in
 `../D-PEC-75_SECOND_P1_SOURCE_SLICE_2026-08-02/EXECUTION_HANDOFF.md`.
 
-This is producer-complete candidate work. DEL-01-06 remains `INITIALIZED` and
-AC-001 through AC-006 remain pending owner disposition. REVIEW type selection,
-review-from-`INITIALIZED`, findings, Gate 5, exact-hash artifact fitness, Git
-publication/merge, later P1 work, release, and professional reliance remain
-separate owner acts. OI-003 stays open; no governed act depends on the local
-registry.
+This is reviewed candidate work. OI-003 stays open; no governed act depends on
+the local registry.
+
+## Post-merge REVIEW closeout
+
+PR #463 merged exact REVIEW source
+`922ca0ea68d255b65292d59db89a98ef4cf59bc5` as
+`a753a7b0894371437a6add0f92653037e2df2dec`; that exact source is the merge
+commit's second parent. Immutable snapshots
+`REV_DEL-01-06_2026-08-02_1110` and
+`REV_DEL-01-06_2026-08-02_1118`, the deliverable-local `_REVIEW.md`, findings
+register, and `_LATEST.md` pointer are therefore durable on the current main
+basis.
+
+The merged result is exact:
+
+- AC-001 through AC-004: `PASS`;
+- AC-005 and AC-006: `PARTIAL` and unsatisfied;
+- RF-001: `MAJOR / DEFERRED`, owner disposition `DEFER`, with no waiver of
+  VER-005;
+- Gate 5: owner `HOLD`; and
+- lifecycle: `INITIALIZED`, unchanged.
+
+When separately governed DEL-01-05 becomes available, RF-001 must reopen and
+SELF_CHECK must rerun with the mandatory DEL-01-05 enforcement evidence. No
+artifact byte is accepted by this closeout. The next remaining owner gate is
+post-rerun disposition of RF-001 and DEL-01-06 Gate 5, followed separately by
+exact-hash artifact fitness if the evidence supports acceptance. No next P1
+node, `ISSUED`, release, professional reliance, or other-loop duty is open.
