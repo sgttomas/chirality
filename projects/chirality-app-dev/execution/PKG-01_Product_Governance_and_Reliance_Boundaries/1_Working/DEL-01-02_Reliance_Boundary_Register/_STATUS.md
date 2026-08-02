@@ -8,8 +8,6 @@
 
 ## Remaining
 
-- Implement and validate the SCA-APP-003 daemon, control-socket, central-store,
-  residency, role-attribution, and export reliance boundaries (gated: G1-G5).
 - Reconcile the future PEC v2 shared-runtime client seam only after PEC provides
   a governed `DEL-07-05` ScopeOfWork and accepted evidence. Until then
   `RB-PEC-ADAPTER` remains retired as current enforcement evidence; `D-GOV-20`

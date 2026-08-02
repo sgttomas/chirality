@@ -2936,3 +2936,31 @@
     authority, source/runtime/frontend, decomposition, deliverable, Task
     Management disposition, parity selection, historical-provenance,
     lifecycle, release, reliance, or Git effect is created.
+
+- **2026-08-02 — Receipt 108** (D-APP-85 exact Remaining reconciliation repair and R6 backcheck).
+  - Receipt-ID: `Receipt-108`
+  - Examined-Through: `556ae59a34ac2f06ef924d367843a72ea00d1f37`
+  - Parent-Receipt: `Receipt-107`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-02,
+    Ryan Tufts, recorded in Receipt 107 and applied to this exact completed
+    App-dev tranche): `Then merge via PR as is the established pattern.` The
+    separately recorded authorization is: `I authorize that push to
+    sgttomas/chirality and the PR merge into main.`
+  - Pointers:
+    `execution/_Reconciliation/DeliverableConcordance/RUN_DAPP85_POSTPILOT_REMAINING_RECONCILIATION_2026-08-02/GATE_2_RULING_v1.md`;
+    `SOURCE_EQUIVALENCE_REVALIDATION_v1.md`; `R5_EXECUTION_RECORD_v1.md`;
+    `BACKCHECK/BACKCHECK_DAPP85_R6_2026-08-02_v1/HANDOFF.md`.
+  - Checks: `PASS` — exact 18-row manifest accounting; 30-row preservation;
+    all-53 lifecycle/Remaining census; latest-origin source equivalence;
+    authority-corpus status; practitioner status/self-check and 349-test
+    pytest; fresh read-only Agent-2 backcheck; receipt and whitespace checks.
+    Frontend/runtime gates are not applicable because no source byte changed.
+  - Model-Attribution: OpenAI Codex RECONCILIATION Agent 1 with fresh sealed
+    read-only ephemeral Agent 2 source-equivalence and R6 verifiers; no Agent-2
+    Bash, write, network, native Pi tools, or delegation.
+  - Gate-Outcome: `EXECUTED` — the owner-approved D-APP-85 manifest is applied
+    exactly and R6 is accepted for evidence coherence. C04/C06/C16, C07/C18,
+    and all unrelated residuals remain current executable truth. No lifecycle,
+    approval, dependency, decomposition, Task Management, parity, runtime,
+    release, issuance, reliance, blanket-closure, commit, push, or merge effect
+    is created; CHANGE integration remains pending.

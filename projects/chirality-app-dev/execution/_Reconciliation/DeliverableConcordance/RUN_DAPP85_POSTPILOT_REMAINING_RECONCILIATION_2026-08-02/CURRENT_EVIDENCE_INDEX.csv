@@ -1,0 +1,23 @@
+evidence_id,category,path_or_command,current_result,limit
+E01,AUTHORITY,docs/DIRECTIVE.md;docs/CONTRACT.md;docs/SPEC.md;docs/TYPES.md;docs/PRD.md,READ_AT_556ae59,No repair authority
+E02,DECOMPOSITION,execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md,ACCEPTED,No decomposition change
+E03,DEPENDENCY,execution/_Reconciliation/DepClosure/_LATEST.md,ACCEPTED_POINTER,No dependency write
+E04,SCOPE_CHANGE,execution/_ScopeChange/_LATEST.md,SCA_APP_007_CLOSED_FOR_SCOPE_CHANGE_ONLY,No further scope effect
+E05,HISTORICAL,execution/_Coordination/AgentRuns/SHARED_RUNTIME_LOCAL_AGENT_PILOT_2026-07-22/RETURN_G1_RUNTIME.md,READ,Lead and provenance only
+E06,HISTORICAL,execution/_Coordination/AgentRuns/SHARED_RUNTIME_LOCAL_AGENT_PILOT_2026-07-22/RETURN_G2_PEC.md,READ,Lead and provenance only
+E07,HISTORICAL,execution/_Coordination/AgentRuns/SHARED_RUNTIME_LOCAL_AGENT_PILOT_2026-07-22/RETURN_G3_INTEGRATION.md,READ,Lead and provenance only
+E08,HISTORICAL,execution/_Coordination/AgentRuns/SHARED_RUNTIME_LOCAL_AGENT_PILOT_2026-07-22/RETURN_G4_SECURITY_REVIEW.md,READ,Lead and provenance only
+E09,HISTORICAL,execution/_Coordination/AgentRuns/SHARED_RUNTIME_LOCAL_AGENT_PILOT_2026-07-22/RETURN_G5_VALIDATION.md,READ,Lead and provenance only
+E10,IMPLEMENTATION,runtime/packages/contracts;runtime/packages/core;runtime/packages/daemon;runtime/packages/client;runtime/packages/cli,READ_CURRENT_BYTES,Shared runtime implementation
+E11,TEST,runtime/tests,8_FILES_64_TESTS_PASS,No direct Desktop/CLI concurrency proof
+E12,IMPLEMENTATION,projects/chirality-app-dev/frontend/src/lib/harness;projects/chirality-app-dev/frontend/src/app/api/harness,READ_CURRENT_BYTES,Desktop proxy and compatibility implementation
+E13,TEST,projects/chirality-app-dev/frontend/src/__tests__,140_FILES_1092_TESTS_PASS_1_FILE_6_TESTS_SKIPPED,Tests prove only covered behavior
+E14,VALIDATOR,projects/chirality-app-dev/frontend/scripts/validate-harness-section9.mjs,16_CHECKS_PASS,Current-profile conformance only
+E15,EXPORT,tools/public_export,814_FILES_BOUNDARY_CLEAN,Export boundary only
+E16,PEC_TEST,projects/pec/server/src/__tests__/pec-bridge.integration.test.ts,1_FILE_3_TESTS_PASS,Opt-in bridge only; no production registration
+E17,IMPLEMENTATION,projects/chirality-app-dev/frontend/src/lib/pipeline/pipeline-dispatch-contract.ts,READ_CURRENT_BYTES,DEL-08-03 dispatch semantics
+E18,TEST,projects/chirality-app-dev/frontend/src/__tests__/lib/pipeline-dispatch-contract.test.ts,PASS_WITH_FULL_SUITE,Current dispatch assertions
+E19,PEC_AUTHORITY,projects/pec/docs/PRD.md;projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md,NO_RUNTIME_CLIENT_DECLARED,Registration remains open
+E20,UNKNOWN,packaged GUI/daemon/CLI executable proof,NOT_FRESHLY_RERUN,C07 preserved unchanged
+E21,UNKNOWN,direct Desktop/CLI concurrency integration assertion,NOT_FOUND,C04 and C16 survive narrowly
+E22,UNKNOWN,direct model-drain exactly-one-terminal recovery assertion,NOT_FOUND,C06 and C16 survive narrowly

@@ -8,7 +8,7 @@
 
 ## Remaining
 
-- Move orchestration and turn locking to the sole daemon and prove Desktop/CLI concurrency and restart recovery without duplicate runtime owners (gated: daemon/core implementation).
+- Prove Desktop/CLI concurrent access uses daemon-owned turn locking without duplicate runtime owners (verification owned by DEL-09-03).
 
 ## History
 - 2026-07-22 - D-APP-72 per-turn adapter resolution and preflight completed; failure/recovery tests prove accepted-input persistence, lock release, and no automatic fallback. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.

@@ -8,8 +8,6 @@
 
 ## Remaining
 
-- Implement D-APP-73 / SCA-APP-003 project-manifest registration while preserving checkout-contained authority and treating daemon user data as non-authoritative (gated: G1-G5 implementation and validation).
-
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1_P2)
 - 2026-05-20 - State set to OPEN (PREPARATION)
