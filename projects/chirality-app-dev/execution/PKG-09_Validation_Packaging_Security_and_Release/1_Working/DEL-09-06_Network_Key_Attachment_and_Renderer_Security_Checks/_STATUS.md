@@ -12,6 +12,7 @@
 - Packaging/release evidence for DEL-09-06's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged renderer/security proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
 
 ## History
+- 2026-08-01 - SCA-APP-007 migrated 38 byte-identical historical network-policy proof files from the retired physical DEL-03-06 container into `Evidence/Historical_DEL-03-06/`, with a durable old/new path and SHA-256 provenance manifest. This is an evidence-routing correction only. State remains IN_PROGRESS; Remaining items, authorization basis, lifecycle, approval state, and Checking Approval SHA are unchanged.
 - 2026-07-22 - D-APP-72 authenticated `127.0.0.1` oMLX, redirect/credential rejection, provider-key isolation, redaction, and renderer-egress proofs completed. The unrelated D-APP-56 release-preparation item remains open. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added bounded oMLX network/key security proof to Remaining; release fence and state remain unchanged.
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents; P1/P2 complete with all four documents non-empty)

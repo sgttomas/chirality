@@ -49,7 +49,10 @@ the primary dialogue.
 
 Runtime implementation direction:
 
-- Chirality should use a provider-adapter architecture where external provider SDKs and APIs remain implementation substrates behind Chirality-owned contracts.
+- The App should consume a provider-adapter architecture through the Root-owned
+  generic runtime and per-user daemon. External provider SDKs and APIs remain
+  implementation substrates behind Root-owned generic runtime contracts, while
+  App-facing compatibility and project-policy contracts remain App-owned.
 - Claude Agent SDK / Anthropic remains the first concrete adapter and is the key-aware
   default provider per the D-APP-18 ruling (Option A): the real `agentSdk` path when an
   Anthropic key is configured, else `stub` (an explicit opt-in remains available).
@@ -60,10 +63,27 @@ Runtime implementation direction:
   in-process second adapter over authenticated `127.0.0.1` oMLX for a governed read-only
   Agent 2 child after Electron `43.1.1`; every other provider/harness path requires a fresh
   governed tranche (CONTRACT K-ENGINE-6).
-- Chirality should not reimplement generic primitives that the current adapter provides well when they can be governed by Chirality-owned policy: model/tool loop, built-in file tools, bash surface, permission-mode machinery, hook dispatch, MCP transport, SDK session transcripts, subagent invocation, and compaction messages.
-- Chirality must treat every provider/SDK as a replaceable engine behind product-owned contracts, not as the product runtime contract itself. Chirality's event schema, session canonicality, permission semantics, lifecycle authority, tool-exposure rules, professional-boundary posture, and human gates remain product-owned.
-- Chirality still owns the product-critical governance shell: instruction-root versus working-root separation, persona/system-prompt composition, working-root validation, professional-boundary posture, `_STATUS.md` lifecycle authority, `Dependencies.csv` contract behavior, subagent governance allowlists, path containment, instruction-root write blocking, runtime redaction, provenance events, UI transport compatibility, local packaging, the Chirality audit mirror, and the fallback criteria for replacing an adapter if a product-critical boundary cannot be verified.
-- Therefore the vNext runtime is **provider-adapter-general, contract-owned, and Chirality-governed**: adapters supply reusable runtime machinery only where verified; Chirality defines the reliance boundaries, configures and constrains the engine, observes and records what happened, and preserves governed exit paths.
+- The Root-owned runtime should not reimplement generic primitives that a current
+  adapter provides well when they can be governed through Root-owned contracts:
+  model/tool loop, built-in file tools, bash surface, permission-mode machinery,
+  hook dispatch, MCP transport, provider transcripts, subagent invocation, and
+  compaction messages.
+- Every provider/SDK remains a replaceable engine behind Root-owned generic runtime
+  contracts, not the App's runtime contract. Generic event, session, lock,
+  interruption, persistence, credential, tool-mediation, and provider-translation
+  semantics are Root-owned. Project lifecycle authority, project-specific tool and
+  capability policy, professional-boundary posture, and human gates remain
+  checkout-contained App/project authority.
+- The App owns the product-critical governance and client shell: instruction-root
+  versus working-root policy inputs, persona/project-input composition, working-root
+  validation, professional-boundary posture, `_STATUS.md` lifecycle authority,
+  `Dependencies.csv` contract behavior, project delegation allowlists, project path
+  policy, App-side redaction and provenance presentation, UI transport compatibility,
+  local packaging, accepted project artifacts, and App/client conformance evidence.
+- Therefore vNext is **a Root-runtime client with App-owned governance and
+  integration obligations**: the Root daemon supplies provider-neutral generic
+  runtime machinery; the App defines and presents project reliance boundaries,
+  supplies policy inputs, verifies conformance, and preserves governed exit paths.
 
 Current implementation assessment:
 
@@ -71,10 +91,14 @@ Current implementation assessment:
 - The harness is not yet a full governed agent runtime. It is still mostly a provider streaming adapter: `opts.tools` is not backed by a real SDK-hosted or local tool surface, permission behavior is partly simulated for validation, there is no append-only per-turn Chirality transcript, and the Next.js turn route owns too much runtime lifecycle.
 
 2026-06-17 stabilization note: the preceding implementation assessment is retained as
-historical R0/R1 intake text. Runtime Stabilization landed the product-owned TurnEngine
+historical R0/R1 intake text. Runtime Stabilization landed the then-App-local TurnEngine
 spine, append-only Chirality event log, permission overlay, tool descriptors, read/write/
 Bash tool surfaces, governed subagent bridge, Section 9 validation, persona composer, and
-no-live packaged `agentSdk` resolver/HOME proof. D-APP-18 has since approved and landed the
+no-live packaged `agentSdk` resolver/HOME proof. D-GOV-20, D-APP-73, and SCA-APP-003
+subsequently reassigned generic runtime, daemon, engine, credential, session, lock,
+interruption, persistence, and provider-adapter ownership to Root; those App-local
+surfaces now serve compatibility, migration, project-policy, and conformance roles where
+retained. D-APP-18 has since approved and landed the
 key-aware default: `agentSdk` is selected when an Anthropic API key is configured and no
 explicit provider override is set, while `stub` remains an explicit/keyless fallback.
 Provider expansion beyond Anthropic remains unapproved except for the bounded D-APP-72 / SCA-APP-002
@@ -82,8 +106,14 @@ Pi/oMLX child tranche. Release/distribution posture remains unapproved.
 
 Revised product direction:
 
-- The next development objective is to evolve the shell into a governed provider-adapter Chirality runtime without becoming a thin Claude Code wrapper or any other external harness wrapper.
-- The first implementation slice must establish a thin `TurnEngine` wrapper around the first adapter, adapter option construction, provider/SDK-message mapping, append-only Chirality session events, redacted run logging, first-adapter settings isolation, prompt composition, and an explicit `AgentEnginePort`/`RuntimeEngineContract` boundary, without changing the browser-facing SSE contract.
+- The next development objective is to evolve the shell into a governed client of the
+  Root-owned provider-neutral runtime without becoming a thin Claude Code wrapper, Pi
+  wrapper, or generic-runtime implementation.
+- App runtime work must keep Desktop/HTTP surfaces thin, preserve browser-facing SSE/API
+  compatibility, supply project and policy inputs, and verify the Root daemon's generic
+  contracts through App-side conformance evidence. Generic `TurnEngine`, engine,
+  credential, session, lock, interruption, persistence, and provider-message semantics
+  remain Root-owned.
 - Local tool exposure should begin by configuring first-adapter SDK built-ins and in-process Chirality MCP tools behind capability-forward policy with explicit hard-deny precedence, not by building a custom model/tool loop from scratch.
 - R0/R1 must create a reliance-boundary register that identifies which product-critical semantics are enforced by Chirality code, adapter configuration, adapter hooks/callbacks, or prompt text. Product-critical safety or audit semantics may not depend on prompt text or opaque provider/SDK defaults alone.
 - A custom runtime remains an explicit fallback if the R0/R1 first-adapter probe proves that the adapter cannot satisfy, expose, or be wrapped to satisfy a product-critical Chirality requirement without weakening governance.
@@ -197,17 +227,31 @@ A future accountable reviewer who examines domain-engine proposals, deterministi
 5. **Evidence over plausibility.** Claims require provenance. Unknowns become `TBD`, not guesses.
 6. **No hidden memory for project truth.** Runtime convenience state is allowed only when explicitly non-authoritative.
 7. **Instruction root and working root are separate.** Release-managed agent OS files must not be modified by project execution.
-8. **Provider-adapter-general, contract-owned.** Provider SDKs may supply generic agent-loop mechanics, but Chirality owns the runtime contract exposed to the app and to project governance.
-9. **Reliance boundaries are first-class.** Audit semantics, permission semantics, lifecycle transitions, filesystem truth, transcript canonicality, and human gates must be defined and tested in Chirality terms, not inferred from provider/SDK defaults.
+8. **Provider-adapter-general, contract-owned.** Provider SDKs may supply generic
+   agent-loop mechanics, but the Root-owned runtime defines the provider-neutral generic
+   contracts consumed by the App; App-facing compatibility and project-governance
+   contracts remain App-owned.
+9. **Reliance boundaries are first-class.** Root-owned operational audit, permission,
+   session, and transcript semantics and App-owned project lifecycle, filesystem truth,
+   professional-boundary, and human-gate semantics must each be explicit and tested at
+   their owning boundary, not inferred from provider/SDK defaults.
 10. **Engine replaceability by construction.** The first adapter may be hard to replace in practice, but every adapter must sit behind explicit contracts, conformance tests, and fallback criteria so upstream changes do not silently redefine the product.
 11. **SDK isolation.** Shipped builds must not load ambient user/global Claude Code settings. Programmatic options and Chirality instruction-root policy are the source of runtime behavior.
-12. **Provider-neutral core.** Core runtime records, APIs, and tests use Chirality terms. Claude/SDK-specific identifiers, message names, transcript paths, permission modes, and tool names are translated at the adapter boundary.
-13. **Routes stay thin.** HTTP routes parse requests, handle transport, acquire/release locks, and forward events; runtime services own behavior.
+12. **Provider-neutral core.** Root-owned generic runtime records, APIs, and tests use
+   provider-neutral Chirality terms. Claude/SDK-specific identifiers, message names,
+   transcript paths, permission modes, and tool names are translated inside the Root
+   adapter boundary; App clients consume the provider-neutral contract.
+13. **Routes stay thin.** App HTTP/Desktop surfaces parse and forward requests and
+   transport events; the Root daemon owns generic session locks and runtime behavior.
 14. **Persist accepted user input early.** A killed or interrupted process must leave a recoverable accepted-turn record.
-15. **Separate UI events from runtime events.** Browser `UIEvent`s remain stable and compact; persisted runtime events may be richer and versioned.
+15. **Separate UI events from runtime events.** App-owned browser `UIEvent`
+   compatibility remains stable and compact; Root-owned persisted runtime events may be
+   richer and versioned.
 16. **Expose only policy-permitted capabilities to the model.** Tool-surface resolution happens before adapter request construction. `allowedTools` is not enough by itself; restrictions require mode, explicit hard-deny precedence, hooks, and overlay policy.
 17. **Hard denies override allows.** Provider/SDK deny rules, Chirality hook denials, path-containment failures, protected-path rules, release/professional boundaries, and governance denials override any prompt, persona, session, operator, or adapter permission-mode allow decision.
-18. **Safety lives in runtime code.** Prompts reinforce safety but do not replace path containment, permission policy, hooks, result budgets, timeouts, and packaging/network controls.
+18. **Safety lives at the owning enforcement boundary.** Prompts reinforce safety but
+   do not replace Root-runtime mediation or App/project path policy, human gates,
+   packaging controls, and other checkout-contained obligations.
 19. **MCP is a transport, not a bypass.** In-process Chirality MCP tools must pass through the same permission, hook, path, redaction, and event logging policy as SDK built-ins.
 20. **Product identity stays Chirality.** SDK usage must not make the app look, behave, or describe itself as Claude Code. User-facing copy should describe Chirality's own governed-work posture.
 21. **Immutable snapshots.** Snapshot-producing runs create timestamped folders that are not overwritten. `_LATEST.md` pointers may move.
@@ -846,27 +890,35 @@ Adapter adoption requirement:
 
 ### 9.4 Internal Runtime Interfaces
 
-Target internal interfaces are not public API contracts, but they are product-significant implementation boundaries. After adapter adoption, Chirality owns these interfaces:
+Target internal interfaces are not public API contracts, but they are
+product-significant implementation boundaries. D-GOV-20, D-APP-73,
+SCA-APP-003, and the accepted decomposition split ownership as follows.
 
-- `AgentEnginePort` / `RuntimeEngineContract`: product-owned boundary for accepted turns, UI event yield, canonical event mapping, permissions, tool exposure, session linkage, interrupt/cancel, and terminal outcomes.
-- `EngineConformanceSuite`: tests that any engine adapter, including the first SDK adapter, must pass before it can become the production path.
-- `EngineAdapter`: provider-specific translator that converts external identifiers, message names, permission modes, tool names, transcript paths, and session IDs into provider-neutral Chirality contracts.
-- `TurnEngine`: thin owner for a single harness turn lifecycle around SDK `query()` through the engine contract.
-- `SdkOptionsBuilder`: deterministic construction of SDK options from Chirality session, persona, mode, tool, MCP, hook, permission, and settings-isolation policy.
-- `SdkMessageMapper`: maps SDK messages into browser `UIEvent`s and persisted `HarnessEvent`s.
-- `PersonaComposer`: builds system prompt / appended prompt from instruction root, active persona, mode, and working-root policy.
-- `HarnessEvent`: persisted runtime event.
-- `SessionEvents`: append/replay JSONL event API.
-- `RunLogger`: redacted structured runtime logger.
-- `RelianceBoundaryRegister`: product-owned list of audit, permission, lifecycle, filesystem, transcript, and human-gate semantics with their enforcement surfaces and fallback implications.
-- `ChiralityPermissionOverlay`: adapter mode, disallowed tool, hook, explicit hard-deny precedence, and `canUseTool` policy implementation.
-- `ChiralityHooks`: SDK hook callbacks for path containment, instruction-root protection, symlink policy, provenance, failure triage, compaction mirror, and subagent governance.
-- `ChiralityMcpTools`: in-process SDK MCP server definitions for deterministic Chirality operations.
-- `SdkSessionLink`: metadata and helper functions for `sdkSessionId`, SDK project key, transcript path/store key, and resume behavior.
-- `ToolResultStore`: product-owned artifact and preview policy for large or sensitive tool outputs.
-- `SubagentGovernanceBridge`: generator/validator for SDK `agents` definitions and fail-closed `Agent` tool gating through `evaluateSubagentGovernance`.
-- `DomainEngineProfile`: future-amendment contract for describing deterministic domain engine boundaries, protected paths, proposal paths, operations, manifests, and boundary notices.
-- `OperationProposal`: future-amendment record for proposed domain operations that require deterministic checks and human gates before application.
+Root-owned generic runtime interfaces consumed by the App:
+
+- `AgentEnginePort` / `RuntimeEngineContract`: provider-neutral boundary for
+  accepted turns, canonical runtime events, permissions, tool exposure, session
+  linkage, interrupt/cancel, and terminal outcomes.
+- `EngineConformanceSuite`: generic engine/adapter conformance tests.
+- `EngineAdapter`, generic `TurnEngine`, and generic option/message adapters:
+  provider translation, turn lifecycle, and deterministic adapter construction.
+- `HarnessEvent`, `SessionEvents`, and `RunLogger`: canonical operational event,
+  session persistence, replay, and redacted logging contracts.
+- Generic permission/tool mediation, SDK hooks, provider-session linkage, result
+  storage, and operational subagent/delegation execution.
+
+App-owned integration and project-authority interfaces:
+
+- App API/SSE compatibility adapters and `UIEvent` projection.
+- Project/persona/policy-input composition and App-side settings/conformance inputs.
+- `RelianceBoundaryRegister`: the ownership map distinguishing Root operational
+  enforcement from App/project lifecycle, filesystem, professional-boundary, and
+  human-gate authority.
+- Project-specific deterministic tools/hooks, path-policy inputs, accepted-project-
+  artifact linkage, App-side redaction/presentation, approval UI, packaging glue,
+  affected-client diagnostics, and conformance evidence.
+- `DomainEngineProfile` and `OperationProposal`: future-amendment project/domain
+  authority contracts only; neither activates generic runtime ownership in the App.
 
 Interfaces no longer intended as standalone custom runtime primitives unless the R0/R1 first-adapter probe fails:
 
@@ -1331,6 +1383,12 @@ For macOS DMG:
 
 The current execution decomposition is issued, but the harness runtime needs a forward implementation sequence. This sequence updates the product roadmap without reactivating retired PKG-08 project-level hardening deliverables.
 
+Current ownership note: this roadmap preserves sequencing history, not the former
+App-local generic-runtime ownership model. Section 17 and the accepted decomposition
+control: Root owns the generic runtime/daemon and operational semantics; the App owns
+client integration, project policy/governance, packaging participation, and conformance
+evidence.
+
 The controlling architectural decision is provider-adapter generality, with Claude Agent SDK / Anthropic as the first concrete adapter, key-aware default provider (D-APP-18), and supervisor, while preserving Chirality-owned governance, auditability, filesystem rules, professional boundaries, and UI/API compatibility. Chirality builds the governance / UI / audit / lifecycle / adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6). D-APP-72 / SCA-APP-002 activates one bounded second-engine tranche: Electron `43.1.1` first, then in-process Pi `0.80.10`, authenticated `127.0.0.1` oMLX with exact `/v1/models` identity, provider-neutral contracts and tooling, and one governed read-only Agent 2 child. All other provider expansion remains human-gated.
 
 ### 13.1 Bounded Pi/oMLX milestone
@@ -1347,8 +1405,14 @@ Purpose:
 
 Decisions:
 
-- Provider/SDK adapters may own the generic agent loop, built-in tools, permission-mode machinery, hook dispatch, MCP transport, transcripts, subagent invocation, and compaction messages only when these satisfy Chirality requirements.
-- Chirality owns the runtime contract, prompt composition, working-root/instruction-root policy, capability policy / permission overlay, hooks, in-process Chirality MCP tools, event mirror, redaction, UI mapping, professional governance, and fallback criteria.
+- Provider/SDK adapters may supply the generic agent loop, built-in tools,
+  permission-mode machinery, hook dispatch, MCP transport, transcripts, subagent
+  invocation, and compaction messages only behind Root-owned generic runtime contracts.
+- Root owns the provider-neutral runtime contract, daemon, operational event/session
+  semantics, credentials, locks, interruption, and generic mediation. The App owns
+  project/persona/policy inputs, project-specific deterministic acts, UI/API
+  compatibility, App-side redaction/presentation, professional governance, packaging
+  participation, and conformance evidence.
 - Chirality JSONL under `.chirality/sessions/<id>/events.jsonl` is the product-owned audit mirror.
 - SDK transcript placement should prefer project-controlled runtime folders, using `SessionStore`, `CLAUDE_CONFIG_DIR`, or both if reliable.
 - Product-critical boundaries are not considered satisfied until the enforcement surface is identified, testable, and under Chirality control or verified adapter callback/hook control.
@@ -1649,10 +1713,10 @@ The active decomposition partitions scope into these 10 flat work-domain package
 |---|---|---|
 | PKG-01 Product Governance and Reliance Boundaries | Product intent, invariants, professional boundary, reliance-boundary ownership, out-of-scope discipline | Goals 6, 9-11, 18, 21-22; PRD Sections 3.2, 5, 6.4, 8.16, 12.1, 15 |
 | PKG-02 Woven Dialogue Shell, Navigation, and Operator State | Primary dialogue, inline/focused artifacts, Navigator, Work/Agents Coordination Panel, Activity Shelf, re-hosted WORKBENCH/PIPELINE/toolkit/settings, compatibility navigation, local UI state | Goals 4 and 23-25; FR-001 through FR-013, FR-041 through FR-044, FR-076; Journeys 7.2, 7.4, 7.5 |
-| PKG-03 Runtime Engine Contract and Turn Lifecycle | Product-owned turn lifecycle, route boundary, session locking, SSE compatibility, interrupts | FR-014 through FR-035, FR-070 through FR-077, FR-116, FR-122 through FR-128 |
-| PKG-04 SDK Adapter, Prompt, Provider, and Settings | Provider-adapter adoption probe, first-adapter SDK options, prompt composition, provider integration, settings isolation | FR-021 through FR-035, FR-070 through FR-083, FR-116 through FR-121, NFR-028 through NFR-031 |
-| PKG-05 Session Audit, Replay, and Tool Result Records | Canonical session layout, `HarnessEvent`, JSONL append/replay, selected-session read-only transcript/projection, attribution, redaction, tool result artifacts | FR-071 through FR-077, FR-083, FR-098 through FR-100, data/session requirements |
-| PKG-06 Permissioned Tools, MCP, and Hooks | Capability policy / permission overlay with explicit hard-deny precedence, tool exposure, MCP wrappers, hooks, writes, bash, compaction hooks | FR-078 through FR-100, FR-119 through FR-121 |
+| PKG-03 Runtime Engine Contract and Turn Lifecycle | App-side daemon-client integration, request binding, route/SSE compatibility, interrupt/cancel presentation, and Root-runtime conformance evidence | FR-014 through FR-035, FR-070 through FR-077, FR-116, FR-122 through FR-128 |
+| PKG-04 SDK Adapter, Prompt, Provider, and Settings | App project-input composition, packaged-daemon credential-boundary participation, provider/settings compatibility, and conformance evidence | FR-021 through FR-035, FR-070 through FR-083, FR-116 through FR-121, NFR-028 through NFR-031 |
+| PKG-05 Session Audit, Replay, and Tool Result Records | App consumption/replay/projection of Root-owned canonical sessions/events, App-side redaction, accepted project artifacts, and conformance evidence | FR-071 through FR-077, FR-083, FR-098 through FR-100, data/session requirements |
+| PKG-06 Permissioned Tools, MCP, and Hooks | App/project permission policy, human approvals, project-specific deterministic tools/hooks, client presentation, and Root-runtime conformance | FR-078 through FR-100, FR-119 through FR-121 |
 | PKG-07 Filesystem Execution, Lifecycle, and Dependencies | Working-root truth, execution-root scaffolding, deliverable files, `_STATUS.md`, `Dependencies.csv`, snapshots | FR-045 through FR-057, filesystem/data requirements, Chirality MCP filesystem tools |
 | PKG-08 Agent Suite, Pipeline Dispatch, and Subagent Governance | Agent instruction conformance, persona/agent/session aliases and guarded routing, legacy matrix compatibility, presentation-neutral Pipeline dispatch, Type 2 subagent governance and child records | FR-007 through FR-013, FR-026, FR-058 through FR-063, FR-101, FR-102, subagent governance requirements |
 | PKG-09 Validation, Packaging, Security, and Release | Required checks, CI, Section 8/9 validation, network/key security, macOS DMG packaging | FR-064 through FR-069, validation plan, security/privacy NFRs, release verification |
@@ -1670,22 +1734,6 @@ Runtime roadmap traceability:
 | R5 Governed subagent runtime | FR-101, FR-102 |
 | R6 Extensibility and MCP boundaries | FR-103 through FR-105 |
 | R7 Domain profiles and operation proposals | FR-106 through FR-115 |
-
----
-
-## 17. Approval and Change Control
-
-This PRD is a product requirements artifact. It does not supersede:
-
-- `docs/DIRECTIVE.md`
-- `docs/SPEC.md`
-- `docs/TYPES.md`
-- `docs/CONTRACT.md`
-- Active decomposition and scope-change records under `execution/_Decomposition/` and `execution/_ScopeChange/`
-
-This PRD **does** establish a revised product-development direction for the harness runtime. The immediate next implementation slice should be `R0/R1 — Provider-Adapter Scope Confirmation, Reliance Boundary Register, Engine Contract, First-Adapter TurnEngine, Session Event Log, Prompt Composer, Settings Isolation, and Run Logger`.
-
-Changes to this PRD that alter scope, release targets, safety posture, data contracts, professional responsibility boundaries, or retired/active execution scope should be handled as governed product changes and traced back to stable SOW/OBJ/DEL identifiers or a new approved decomposition amendment.
 
 ---
 
@@ -1718,3 +1766,23 @@ engine/provider/model attribution. Missing required delegation terminates with
 The generic runtime, CLI, contracts, and safe adapters are public-export
 eligible after validation. Credentials, machine state, and private PEC or
 Piping adapters are excluded.
+
+---
+
+## 18. Approval and Change Control
+
+This PRD is a product requirements artifact. It does not supersede:
+
+- `docs/DIRECTIVE.md`
+- `docs/SPEC.md`
+- `docs/TYPES.md`
+- `docs/CONTRACT.md`
+- Active decomposition and scope-change records under `execution/_Decomposition/` and `execution/_ScopeChange/`
+
+This PRD **does** establish product direction for App integration with the shared runtime.
+The historical `R0/R1` sequence in Section 13 is retained as sequencing context only;
+current work is selected from the accepted decomposition and governed work surfaces, with
+generic runtime/daemon ownership fixed by Section 17 and App obligations limited to
+client integration, project policy/governance, packaging participation, and conformance.
+
+Changes to this PRD that alter scope, release targets, safety posture, data contracts, professional responsibility boundaries, or retired/active execution scope should be handled as governed product changes and traced back to stable SOW/OBJ/DEL identifiers or a new approved decomposition amendment.

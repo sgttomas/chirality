@@ -1,6 +1,6 @@
 {
   "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
-  "current_version": "v17",
+  "current_version": "v18",
   "refs": [
     "docs/DIRECTIVE.md",
     "docs/CONTRACT.md",
@@ -277,6 +277,22 @@
         "docs/TYPES.md": "998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169",
         "docs/PLAN.md": "c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff",
         "docs/PRD.md": "ef638f43ccae1cd78b26b1ae078a33770cf64cc36c247c5d7da04b35196a4010",
+        "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+        "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
+      }
+    },
+    {
+      "version": "v18",
+      "date": "2026-08-01",
+      "binding_commit": "3c2e816f1072295de15fdcdf924c19b4b66497bc",
+      "reason": "Owner-directed App PRD ownership concordance: Root-owned generic runtime/daemon and App-owned client integration, project policy/governance, packaging participation, and conformance; duplicate section numbering repaired.",
+      "hashes": {
+        "docs/DIRECTIVE.md": "e1a3d00b18fa728f0886f036774c4825ad8f65f3245b56b4545da2714a903031",
+        "docs/CONTRACT.md": "6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7",
+        "docs/SPEC.md": "eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990",
+        "docs/TYPES.md": "998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169",
+        "docs/PLAN.md": "c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff",
+        "docs/PRD.md": "3c357da78277f4c15ecee7cbba6c0a198bc1568b612229eeba63cb1d5972ea7b",
         "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
         "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
       }

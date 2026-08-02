@@ -2771,3 +2771,137 @@
     recorded; nothing is selected, activated, or ruled here, and no contract,
     hold, scope, implementation, runtime, lifecycle, release, or
     professional-reliance effect is created.
+
+- **2026-08-01 — Receipt 104** (D-APP-83 Option A adoption, PRD ownership concordance, D-APP-82 currency repair, and SCA-APP-007 DEL-03 evidence classification).
+  - Receipt-ID: `Receipt-104`
+  - Examined-Through: `3c2e816f1072295de15fdcdf924c19b4b66497bc`
+  - Parent-Receipt: `Receipt-103`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-01,
+    Ryan Tufts, in-session): `D-APP-83 ruling:
+    Option A.` The same session separately directed: `Repair the PRD
+    accordingly.`; determine whether the physical `DEL-03-06` should be added
+    through `SCOPE_CHANGE` or its content migrated to an existing deliverable;
+    reconstruct `DEL-03-01` through `DEL-03-05`; and `correct the current
+    state without changing the ruling.`
+  - Stale-Map-Delta: the candidate maturity survey was reverified rather than
+    adopted as findings. The duplicate PRD Section 17 and stale App-owned
+    generic-runtime wording are repaired against D-GOV-20, D-APP-73,
+    SCA-APP-003, and accepted decomposition truth; the already-ruled D-APP-82
+    register row now records PR #411 EffectiveCommit
+    `1d4d3187ba120e328cd2f6bf2a515a8f17635cb5`; and the undeclared physical
+    `DEL-03-06` is confirmed as 38 misrouted proof files owned by accepted
+    `DEL-09-06`, not a missing current deliverable. Current `DEL-03-01` through
+    `DEL-03-04` remain present and `IN_PROGRESS`; historical `DEL-03-05`
+    existed but was retired with the former topology. The six D-APP-81
+    clause-6 historical relations remain `UNKNOWN`.
+  - Pointers:
+    `execution/_Coordination/_DECISIONS/D-APP-83_RULING_TASK_MANAGEMENT_ADOPTION_2026-08-01.md`;
+    `execution/_Coordination/_TaskManagement/REGISTER.csv` (`TM-APP-001` through
+    `TM-APP-024`); root ordinary notice
+    `execution/_Coordination/NOTICE_D-APP-83_APP_TASK_MANAGEMENT_ADOPTION_2026-08-01.md`;
+    repaired `docs/PRD.md`; authority corpus v18 at
+    `execution/_Reconciliation/References/AUTHORITY_CORPUS.json`; corrected
+    D-APP-82 register row; RECONCILIATION and HELPS_HUMANS returns under
+    `execution/_Coordination/AgentRuns/`; candidate
+    `execution/_ScopeChange/SCA-APP-007_2026-08-01_DEL03_Legacy_Evidence_Ownership_CANDIDATE/`;
+    fresh scoped pre-change audit
+    `execution/_Evaluation/DecompCoverage/COV_SCA_APP_007_PRECHANGE_DEL03_RECON_2026-08-01_2026-08-01_1713/`.
+  - Checks: Task Management schema validation and 16-test suite pass; exact
+    24-row linked-migration mapping and root-register non-write pass; authority
+    corpus v18 status/audit pass with 51 reconciled deliverable reference
+    files; unique PRD Sections 17 and 18; D-APP-82 EffectiveCommit ancestry;
+    D-APP-82 and D-APP-83 ruling-record preservation; scoped AUDIT_DECOMP
+    returns 0 blockers, 12 warnings, and 1 info; active decomposition and both
+    `_ScopeChange/_LATEST.md` and audit `_LATEST.md` pointers unchanged;
+    receipt validator, repository self-check, historical-UNKNOWN hash,
+    whitespace, and diff checks pass. Frontend/runtime gates are not applicable
+    before SCA-APP-007 Gate 5 because no runtime source has changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising HELPS_HUMANS,
+    RECONCILIATION, and SCOPE_CHANGE Agent 1 lanes; SCOPE_CHANGE used bounded
+    Agent 2 history, ownership, and AUDIT_DECOMP children; exact runtime model
+    build not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — D-APP-83 Option A adoption, root
+    notice, PRD/corpus repair, and D-APP-82 current-state correction are
+    complete in the working tree. SCA-APP-007 remains a candidate paused at
+    Gate 1; no evidence move, proof-runner edit, lifecycle change, decomposition
+    amendment, pointer update, parity-instrument selection, or Pi/oMLX
+    capability-expansion action has occurred. Gates 1 through 4 require the
+    explicit owner confirmations frozen in the candidate Decision Log before
+    Gate 5 may execute the DEL-09-06 evidence migration and validation plan.
+
+- **2026-08-01 — Receipt 105** (SCA-APP-007 Gates 1–4 acceptance and validated DEL-09-06 evidence migration).
+  - Receipt-ID: `Receipt-105`
+  - Examined-Through: `3c2e816f1072295de15fdcdf924c19b4b66497bc`
+  - Parent-Receipt: `Receipt-104`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-01,
+    Ryan Tufts, in-session): the owner returned the four exact SCA-APP-007
+    tokens confirming no decomposition ADD, accepting the Gate-2 impact,
+    approving the zero-byte Gate-3 decomposition amendment, and approving
+    Gate-4 execution of the frozen evidence-migration, routing/label,
+    provenance, and validation plan. The verbatim tokens are recorded in the
+    candidate `Decision_Log.md`.
+  - Stale-Map-Delta: the two SCA-APP-007 topology warnings are resolved. The
+    retired `PKG-03_Harness_Runtime_Core` live root is absent; its historical
+    proof corpus now sits under accepted `DEL-09-06` with hash and byte parity
+    recorded in the pointed manifest. The proof runner now targets DEL-09-06 and uses
+    neutral current network-policy labels. The post-change scoped audit moves
+    reverse coverage to complete and removes the DEL-03 topology findings; the
+    remaining warnings are the pre-existing anticipated-artifact filename
+    class. Accepted topology remains unchanged.
+  - Pointers:
+    `execution/_ScopeChange/SCA-APP-007_2026-08-01_DEL03_Legacy_Evidence_Ownership_CANDIDATE/`;
+    DEL-09-06 `Evidence/Historical_DEL-03-06/{PROVENANCE.md,MIGRATION_SHA256_MANIFEST.csv}`;
+    DEL-09-06 `_run_records/WORKING_ITEMS_RUN_2026-08-01_SCA_APP_007_EVIDENCE_MIGRATION.md`;
+    `frontend/scripts/run-network-policy-proof.mjs`; post-change audit
+    `execution/_Evaluation/DecompCoverage/COV_SCA_APP_007_POSTCHANGE_DEL03_RECON_2026-08-01_2026-08-01_1754/`.
+  - Checks: PASS — Git-aware evidence move and hash/byte parity; old-root
+    absence; frozen runner substitutions; CONF-002 and DEL-09-06 lifecycle,
+    Remaining, authorization, approval, and Checking Approval SHA preservation;
+    JavaScript syntax; focused contract-pin and routing assertions;
+    post-change AUDIT_DECOMP with complete reverse coverage and no blocker;
+    decomposition and six-UNKNOWN identity; corpus, receipt, JSON/CSV,
+    pointer-preservation, and diff checks. Exact measurements and hashes live
+    in the pointed provenance manifest, WORKING_ITEMS return, and audit.
+    The canonical Vitest wrapper is a non-blocking rerun advisory because this
+    checkout lacks installed frontend dependencies; its exact test semantics
+    passed through the deterministic direct runner. No live proof was run.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising SCOPE_CHANGE and
+    WORKING_ITEMS Agent 1 lanes; SCOPE_CHANGE dispatched bounded AUDIT_DECOMP
+    Agent 2 validation; exact runtime model build not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — Gate-5 execution and fan-in are complete,
+    both `_LATEST` pointers remain unchanged, and no decomposition or lifecycle
+    change occurred. Final human confirmation is required before SCA-APP-007
+    can close for scope change and its owning pointer may be advanced.
+
+- **2026-08-01 — Receipt 106** (SCA-APP-007 final Gate-5 confirmation and scope-change closeout).
+  - Receipt-ID: `Receipt-106`
+  - Examined-Through: `3c2e816f1072295de15fdcdf924c19b4b66497bc`
+  - Parent-Receipt: `Receipt-105`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-01,
+    Ryan Tufts, in-session): `CONFIRM SCA-APP-007 GATE 5: ACCEPT THE VALIDATED
+    POST-CHANGE STATE AND CLOSE FOR SCOPE CHANGE ONLY; RETAIN THE CANONICAL
+    VITEST WRAPPER AS A NON-BLOCKING RERUN ADVISORY.` The verbatim confirmation
+    is recorded in the final SCA snapshot.
+  - Stale-Map-Delta: SCA-APP-007 is no longer a candidate or pending human
+    confirmation. The finalized immutable snapshot is closed for scope change
+    only, and the owning SCOPE_CHANGE pointer now identifies it as current.
+    The decomposition and audit pointer remain unchanged; the canonical Vitest
+    wrapper remains an explicit non-blocking rerun advisory.
+  - Pointers:
+    `execution/_ScopeChange/SCA-APP-007_2026-08-01_DEL03_Legacy_Evidence_Ownership/`;
+    `execution/_ScopeChange/_LATEST.md`; final
+    `Gate_5_Owner_Confirmation.md`, `Gate_5_Closure_Validation.json`,
+    `Handoff_State.md`, and `Post_Change_Coverage.json`; post-change audit
+    `execution/_Evaluation/DecompCoverage/COV_SCA_APP_007_POSTCHANGE_DEL03_RECON_2026-08-01_2026-08-01_1754/`.
+  - Checks: PASS — final snapshot naming and pointer resolution; owner-token
+    transcription; SCA closure state; audit-pointer preservation; JSON/CSV;
+    decomposition and six-UNKNOWN identity; authority corpus; repository
+    self-check; receipt, whitespace, and diff checks. Exact measurements and
+    hashes live in the pointed closure-validation and audit artifacts.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising SCOPE_CHANGE Agent 1
+    closeout; exact runtime model build not exposed.
+  - Gate-Outcome: `EXECUTED` — SCA-APP-007 is closed for scope change only and
+    its owning pointer is current. No decomposition, lifecycle, release,
+    dependency, estimate, schedule, audit-pointer, parity-instrument, or
+    Pi/oMLX capability-expansion effect is created. Git closeout remains a
+    separately governed action.
