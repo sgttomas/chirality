@@ -1,7 +1,9 @@
 # PEC Step-0 cost baseline — pre-P1 capture report
 
-**Artifact status:** candidate measurement report; exact token baseline
-observed; REVIEW and owner acceptance pending. C-05 remains open.
+**Artifact authority boundary:** measurement report for the exact pre-P1 token
+observation and separate harness-latency re-test. Lifecycle, REVIEW,
+artifact-fitness, C-05, and P1 state are recorded only by their owning
+governance surfaces.
 
 **Method:** `STEP0_COST_BASELINE_METHOD.md` v1.0
 
@@ -43,9 +45,10 @@ deltas prevent repeated telemetry snapshots from being double-counted.
 [LIMIT] This is one observed orientation, not a population estimate. The
 multi-session Agent-0 posture and the disclosed model/runtime mix are part of
 the observed session shape. No estimate, context-window backsolve, billing
-approximation, word conversion, or fabricated zero is used. AC-003 now has
-exact producer-side evidence; DEL-10-01 remains unaccepted pending REVIEW and
-the owner's separate AC-008 fitness confirmation.
+approximation, word conversion, or fabricated zero is used. This report
+supplies the exact evidence mapped to AC-003. AC-008 is a `HUMAN_REVIEW`
+criterion whose satisfaction and any lifecycle or downstream-gate effect are
+recorded only by its owning governance surfaces.
 
 ## 2. Practitioner-harness latency re-test
 
@@ -89,15 +92,17 @@ DEL-08-04, the practitioner harness, or any other package.
 [LIMIT] No post-P1 value exists, no before/after comparison is attempted, and
 the PRD §11 falsification clause is not evaluated.
 
-## 4. Candidate disposition
+## 4. Artifact authority boundary
 
-[LIMIT] Candidate dispositions:
+[LIMIT] This artifact records only method, measured values, and declared
+limits:
 
-- Method document: produced and repeatable, subject to REVIEW.
-- Original command-latency observation: produced, distinct from the token
-  metric, subject to REVIEW.
-- Exact token baseline: observed under the published method; subject to REVIEW.
-- DEL-10-01: complete candidate, unaccepted pending REVIEW and owner fitness.
-- C-05: open; no P1 node may start.
-- Telemetry rerun trigger: satisfied by the bounded evidence record; no further
-  rerun is required unless REVIEW finds a defect.
+- The method document defines the repeatable protocol.
+- The original command-latency observation is recorded distinctly from the
+  token metric.
+- The exact token baseline is recorded under the published method.
+- DEL-10-01 lifecycle and artifact fitness are outside this artifact's
+  authority.
+- C-05 and P1 effects are outside this artifact's authority.
+- The telemetry rerun evidence is bound by the bounded run record; any further
+  rerun requires a separate governing record.
