@@ -1524,3 +1524,12 @@
   - Authority fence: C-05 closure advances no deliverable to `ISSUED`, selects or activates no P1 node, creates or authorizes no v2 source tree or `software-workflow.json`, and authorizes no source work, release, or professional reliance.
   - Gate outcome: D-PEC-72 is closed through C-05. P1 remains closed and separately packet-gated.
   - Parked lanes: owner presentation and ruling on successor D-PEC-74, which must name the exact P1 paths, acts, verification, rollback, and authority fence before any source work begins.
+
+- **2026-08-01 — Receipt 134** (D-PEC-74 first-P1-source-slice packet presented).
+  - Start/pointer: `5830546ab0912100f0f5b0c4b51ba788e5b9fb5a`; decision record `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-74_first_p1_source_slice.md`; full packet `projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/PACKET.md`.
+  - Live finding: six P1 raw-DAG roots exist; DEL-08-02 and DEL-01-06 are both `INITIALIZED`, S-sized roots. O-A DEL-08-02 is recommended as the smallest typed-contract/source-tree/profile canary; O-B faithfully presents the local-loop-registry implementation canary.
+  - Exact fences: each executable option names its selected deliverable, complete `projects/pec/v2/` path set, exact `projects/pec/software-workflow.json`, registered checks, prohibited paths, review/owner gates, bootstrap relationship, and rollback.
+  - Stale-map delta: `PEC_NEXT_WORK_SLATE_2026-07-29.md` remains unchanged; its indicative D-PEC-72 P1 reservation is historical, while D-PEC-74 is the live successor packet.
+  - Checks: packet citations/hashes, SOW validation, strict decomposition registers, dependency closure, manifest, self-check, coordination check, and whitespace check govern publication.
+  - Authority fence: packet drafting selects no option and opens no source/profile path, P1 node, lifecycle act, release, cross-loop mandate, or professional reliance; `F-PEC-1` remains closed.
+  - Gate outcome: **AWAITING OWNER** on D-PEC-74 O-A / O-B / amend / defer.
