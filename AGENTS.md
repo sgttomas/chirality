@@ -45,8 +45,8 @@ Human ↔ Agent 0 → Agent 1 → Agent 2
 
 | Layer | Name | Role |
 |---|---|---|
-| **Agent 0** | Supervising Architect | Aligns the human and workflow, selects and supervises managers, presents decisions, and maintains the instruction system through the appropriate Agent 1 |
-| **Agent 1** | Manager | Converts aligned direction into plans and briefs, delegates bounded work, validates fan-in, and escalates decisions |
+| **Agent 0** | Supervising Architect | Aligns the human and workflow, selects and supervises managers, presents decisions, and maintains the instruction system through the appropriate Agent 1 or by directly dispatching Agent 2 instances |
+| **Agent 1** | Manager | Converts aligned direction into plans and briefs, delegates bounded work, validates fan-in, and escalates decisions. Also responsible for certain agent-specific workflows |
 | **Agent 2** | Specialist | Executes one bounded objective and returns outputs plus evidence without creating another orchestration layer |
 
 HELP_HUMAN is the sole canonical Agent 0. Humans may also start an untyped
@@ -80,7 +80,10 @@ agent file.
 ## Delegation and Entry Rules
 
 - Human entry: untyped session, Agent 0, or any Agent 1.
-- Agent 0 delegates only to named Agent 1 managers.
+- Agent 0 delegates to named Agent 1 managers and may directly dispatch
+  bounded Agent 2 instances (ephemeral generalists or TASK) under the same
+  sealed-brief, declared-scope, and durable-evidence requirements as Agent 1
+  dispatch.
 - Agent 1 delegates to named Agent 2 specialists, TASK, or an allowed
   ephemeral generalist.
 - Agent 2 does not delegate.
@@ -98,70 +101,6 @@ agent file.
   hierarchical TASK/subagent facility when the loop freezes equivalent briefs,
   scopes, parentage, and returns. If no executable child mechanism is available,
   defer the multi-agent stage or continue only genuinely single-agent work.
-
-## Multi-Agent Orchestration
-
-Runtime delegation and communication are hierarchical. Work coordination is
-many-to-many through both live parent-mediated agency and durable filesystem
-and Git state. The hierarchy governs who may delegate or communicate; it does
-not prescribe one universal execution pattern.
-
-The human may prescribe an orchestration pattern or sequence, provide only
-constraints and priorities, or delegate selection to Agent 0 or a directly
-invoked Agent 1. Selection precedence is: explicit human direction;
-human-approved constraints, priorities, and gates; accepted project and
-decomposition state and dependencies; Agent 0 cross-package judgment; Agent 1
-intra-package judgment. The selected or derived posture and work graph are
-recorded before dispatch.
-
-### Terminal fan-out/fan-in
-
-Use terminal fan-out/fan-in when bounded children can execute independently
-and terminal returns provide sufficient coordination. The parent freezes
-briefs, dispatches eligible children, collects terminal returns, validates
-coverage, schemas, provenance, conflicts, and failures, and only then releases
-dependent work. A child failure or critical blocker may return normally to its
-parent without converting the run into many-to-many coordination.
-
-### Supervised many-to-many agency
-
-Use supervised many-to-many agency when active work can produce information
-relevant to other active or planned work. Agent 1 reports coordination notices
-to Agent 0; Agent 0 records, selectively relays, amends, holds, replans,
-escalates, or routes them. Within a package, Agent 2 reports to its Agent 1
-parent, which performs the equivalent disposition. Siblings do not use hidden
-or undeclared direct messaging and children do not bypass their parent.
-
-Informational relays preserve claim status and carry only minimum sufficient
-context. Changes to objective, accepted basis, write scope, ownership, risk,
-or acceptance criteria require a versioned brief amendment. Consequential
-amendments return to the human.
-
-“Consequential” is not left to unconstrained agent preference. It includes at
-least scope expansion, a change in consequential risk, a change in authority,
-an unresolved shared-write/ownership conflict, or a change in acceptance
-criteria or lifecycle acceptance. Any uncertainty about whether one of these
-conditions applies is itself returned to the human.
-
-### Mixed work graphs and safety
-
-A work graph may compose arbitrary dependency-valid sequences of individual
-and concurrent actions without assigning every composition a pattern name.
-Manager-selected orchestration inside an accepted scope does not require a
-new approval for every child. Dynamic replanning is allowed when live evidence
-changes the graph, but prior plan versions and amendments remain durable.
-
-Every child declares read scope, write targets, dependencies, expected
-returns, and fan-in gates. Shared reads are allowed. Concurrent sibling writes
-must be disjoint; overlapping writes require serialization against an accepted
-predecessor or one declared integration owner. Failed nodes block only their
-declared dependants; independent work continues. Partial or invalid returns
-are not accepted at fan-in.
-
-Files hold scope, decisions, claims, artifacts, dependencies, notices,
-amendments, acknowledgments, and handoffs. Accepted snapshots provide stable
-inputs; Git records identity, history, isolation, and integration state. These
-durable surfaces complement live agency and never become hidden authority.
 
 ---
 
@@ -253,23 +192,6 @@ This file is not the complete skill registry. It lists only canonical dispatch r
 | DOMAIN_DECOMP | Dispatches `TASK + domain-source-atomize` once per skeleton-dispatch-unit during Phase 2 (per-source fan-out, ~15k MD tokens per unit, ~85–125 dispatches across a 5-book corpus). The dispatch plan is produced by `tools/decomp/build_source_skeleton.py`; per-unit briefs are rendered by `tools/decomp/build_atomization_brief.py`. Per-unit CSVs are merged into per-source then cross-source ledgers via `tools/decomp/merge_source_atomizations.py`. |
 
 Do not infer active skill status from older narrative lists. If `AGENTS.md`, `skills/README.md`, and live skill folders disagree, treat the live skill folder plus `skills/README.md` as the current skill registry and surface the discrepancy.
-
----
-
-## Shared Runtime Doctrine
-
-D-GOV-20 establishes root `runtime/` as the generic executable agent-runtime
-workspace. One opt-in per-user daemon owns engines, credentials, sessions,
-delegation, tools, turn locks, interruption, and model residency. Registered
-projects retain checkout-contained authority; daemon user-data state is
-operational only. Agent 0/1/2 roles remain authority contracts independent of
-models, while every run records its actual engine/provider/model.
-
-Project/domain adapters retain their own deterministic acts, data boundaries,
-human gates, and evidence. Generic runtime transport never grants project
-authority. Public export may include generic runtime/CLI/contracts/safe
-adapters but excludes credentials, machine state, downloaded models, and
-private project adapters/evidence.
 
 ---
 
