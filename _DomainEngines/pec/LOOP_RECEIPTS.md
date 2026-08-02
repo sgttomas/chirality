@@ -1491,3 +1491,36 @@
   - Authority fence: the AC-008 act does not independently change lifecycle. Neither ruling authorizes `ISSUED`, closes C-05, opens P1, starts source work, authorizes release, or creates professional-reliance authority.
   - Gate outcome: all three D-PEC-72 deliverables are `CHECKING`, and their exact artifact-fitness criteria are satisfied. C-05 closure is now the sole remaining owner gate before any successor P1 packet may be considered.
   - Parked lanes: owner C-05 closure ruling; P1 remains closed unless and until that separate act occurs.
+
+- **2026-08-01 — Receipt 133** (D-PEC-72 C-05 closure and successor P1 packet handoff).
+  - Owner ruling pointer: the exact message below is reproduced verbatim in `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md`; its exact accepted fan-in basis is commit `411cbe6ce7b03477889adf50e3d1665a61387db6`.
+  - Owner ruling of record (verbatim):
+
+    > APPROVE:
+    >
+    > D-PEC-72 C-05 — CLOSE.
+    >
+    > I determine that C-05 PRE_P1_OBLIGATION is satisfied. DEL-00-01,
+    > DEL-00-03, and DEL-10-01 are each CHECKING; their final SELF_CHECKs
+    > have no open findings; and AC-007, AC-011, and AC-008 are satisfied
+    > at the exact artifact hashes recorded in the D-PEC-72 handoff at
+    > commit 411cbe6ce7b03477889adf50e3d1665a61387db6.
+    >
+    > I confirm that no P1 node started before completion of those three
+    > pre-P1 obligations. Close C-05.
+    >
+    > This closes only the D-PEC-62/D-PEC-72 PRE_P1_OBLIGATION. It does
+    > not advance any deliverable to ISSUED, select or activate a P1
+    > node, create or authorize a v2 source tree or software-workflow.json,
+    > authorize source work, release, or professional reliance.
+    >
+    > The first actual P1 source slice still requires a separate
+    > owner-ruled successor D-PEC packet naming its exact paths, acts,
+    > verification, rollback, and authority fence.
+
+  - Closure outcome: C-05 is `CLOSED`. DEL-00-01, DEL-00-03, and DEL-10-01 remain `CHECKING`; their final SELF_CHECKs have no open findings; AC-007, AC-011, and AC-008 remain satisfied at the exact artifact hashes recorded in the D-PEC-72 handoff.
+  - Stale-map delta: `projects/pec/execution/_Coordination/PEC_NEXT_WORK_SLATE_2026-07-29.md` remains unchanged historical evidence. Its D-PEC-72 P1 reservation is stale because D-PEC-72 became this pre-P1 foundation/closure decision and D-PEC-73 became Task Management adoption. The successor first P1 source-slice packet identity is D-PEC-74.
+  - Checks: three `CHECKING` statuses and exact accepted artifact hashes reproduce; no v2 P1 source tree or `projects/pec/software-workflow.json` exists; strict decomposition registers pass at 64 files / 254 rows / zero findings; dependency closure remains 64 files / 254 rows / 119 execution edges / zero SCCs; packet manifest and whitespace checks pass; loop self-check remains at the unchanged baseline INFO=15 / NOT_APPLICABLE=1 / REVIEW=5 / WARN=28. `coord-check` reports no new D-PEC-72 finding and carries only the two inherited unresolved-reference findings at pre-existing decision-register rows 59 and 80, the same pair already recorded in the handoff baseline.
+  - Authority fence: C-05 closure advances no deliverable to `ISSUED`, selects or activates no P1 node, creates or authorizes no v2 source tree or `software-workflow.json`, and authorizes no source work, release, or professional reliance.
+  - Gate outcome: D-PEC-72 is closed through C-05. P1 remains closed and separately packet-gated.
+  - Parked lanes: owner presentation and ruling on successor D-PEC-74, which must name the exact P1 paths, acts, verification, rollback, and authority fence before any source work begins.

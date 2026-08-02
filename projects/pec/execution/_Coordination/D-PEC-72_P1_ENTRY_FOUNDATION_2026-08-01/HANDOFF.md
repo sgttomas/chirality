@@ -1,7 +1,23 @@
 # D-PEC-72 execution handoff — P1-entry foundation
 
 **Handoff state:** ALL THREE DELIVERABLES CHECKING / EXACT ARTIFACT-FITNESS
-ACCEPTANCES SATISFIED; C-05 CLOSURE OWNER GATE REMAINS; P1 CLOSED.
+ACCEPTANCES SATISFIED; C-05 CLOSED; P1 CLOSED AND SUCCESSOR-PACKET-GATED.
+
+**Update 10 (2026-08-01):** the owner closed `C-05 PRE_P1_OBLIGATION` on
+the exact accepted fan-in at commit
+`411cbe6ce7b03477889adf50e3d1665a61387db6`. The verbatim ruling and its
+exact fence are recorded in `C05_CLOSURE_RULING_2026-08-01.md`. DEL-00-01,
+DEL-00-03, and DEL-10-01 remain `CHECKING`; their final SELF_CHECKs have no
+open findings; and AC-007, AC-011, and AC-008 remain satisfied at the exact
+artifact hashes below. C-05 closure advances no deliverable to `ISSUED` and
+does not select or activate a P1 node, create or authorize a v2 source tree or
+project-local `software-workflow.json`, or authorize source work, release, or
+professional reliance. The dated `PEC_NEXT_WORK_SLATE_2026-07-29.md` remains
+unchanged; its D-PEC-72 reservation is now recorded as a stale-map delta.
+Because D-PEC-72 is this closed foundation decision and D-PEC-73 is the ruled
+Task Management adoption, the first actual P1 source-slice packet is successor
+D-PEC-74. P1 remains closed until that separate owner-ruled packet names exact
+paths, acts, verification, rollback, and authority fence.
 
 **Update 09 (2026-08-01):** the owner's exact DEL-10-01 final Gate 5 and
 AC-008 ruling is recorded verbatim in
@@ -230,10 +246,11 @@ re-rule or direct the harness cache.
 1. DEL-00-01 AC-007, DEL-00-03 AC-011, and DEL-10-01 AC-008 are satisfied at
    their exact ruled hashes. All three deliverables remain `CHECKING`; no
    `ISSUED` act is authorized.
-2. C-05 closure is now the sole remaining D-PEC-72 owner gate. This handoff
-   does not close it and does not open P1.
-3. The first P1 source slice remains a successor D-PEC packet and must name
-   the v2 source tree and project-local `software-workflow.json`.
+2. C-05 is owner-closed. This closes only the D-PEC-62/D-PEC-72
+   `PRE_P1_OBLIGATION`; it does not open P1.
+3. The first P1 source slice is successor D-PEC-74 and must separately name
+   the v2 source tree, project-local `software-workflow.json`, exact acts,
+   verification, rollback, and authority fence.
 
-No `docs/STATUS.md` update is made by this checkpoint; C-05 remains open and
-P1 remains closed pending the separate owner closure act.
+`docs/STATUS.md` receives the D-PEC-72 post-acceptance pointer update. P1
+remains closed pending the separate owner ruling on D-PEC-74.
