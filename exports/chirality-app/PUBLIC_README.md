@@ -103,6 +103,6 @@ not replace versioned project authority.
 
 ## License
 
-MIT License + Professional Engineering Clause. See [`LICENSE.md`](LICENSE.md).
+MIT License. See [`LICENSE.md`](LICENSE.md).
 
 Copyright (c) 2026 Ryan Tufts

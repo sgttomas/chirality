@@ -473,7 +473,7 @@ The two lifecycles are correlated but not identical. A deliverable in `IN_PROGRE
 
 Registered per D-GOV-08 (`docs/governance_harness/_DECISIONS/D-GOV-08_epistemic_vocabulary_operationalization.md`), ruled by the owner 2026-07-01.
 
-Review-gate findings are classified with the four-level enum defined by the review type system in `docs/SE_Design_Analysis.md` §7.3 (`FindingSeverity`):
+Review-gate findings are classified with the four-level enum defined by the review type system in `docs/thesis/SE_Design_Analysis.md` §7.3 (`FindingSeverity`):
 
 ```
 CRITICAL | MAJOR | MINOR | OBSERVATION
