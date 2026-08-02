@@ -1,6 +1,6 @@
 # D-PEC-72 — P1-entry foundation slice
 
-**Status:** RULED — O-B — EXECUTION AUTHORIZED
+**Status:** RULED — O-B — PRODUCTION EXECUTED; REVIEW PENDING; C-05 OPEN
 
 **DecisionID:** D-PEC-72
 
@@ -236,3 +236,28 @@ applications, capability-shaped typed contracts at the boundaries, and
 functional-core / imperative-shell permitted within an application. The ruling
 therefore selects O-B and opens only the exact production fence in this packet.
 It is not advance acceptance of artifacts that did not yet exist.
+
+## Execution outcome
+
+Production was executed on 2026-08-01 through two separately committed package
+change sets after the authority/activation commit:
+
+- authority and activation: `19404e7bd2f1b365452114ad75aef042fa02b180`;
+- PKG-00 ADR + SPEC candidates: `5942c50333c5cbd1e9b77e72c79c11bf46051040`;
+- PKG-10 method + capture report: `5d3fd5bb3537de484b98dd101881ae426e0d0f8a`.
+
+`DEL-00-01` and `DEL-00-03` passed producer-side candidate validation and are
+routed to formal REVIEW and later owner artifact acceptance. The D-PEC-72
+ruling confirms the O-B style but does not accept subsequently authored bytes.
+
+`DEL-10-01` produced a repeatable token-cost method and a distinct five-run
+`self-check` latency observation (median 2.78 s; range 2.64..3.34 s). The live
+Codex task/runtime exposed no exact interval-bound per-call token ledger, so
+the required token row is honestly `NOT_OBSERVED`. AC-003 is blocked; no count
+was estimated or fabricated; `DEL-10-01` is unaccepted.
+
+No selected `_STATUS.md` changed from `INITIALIZED`. C-05 remains open and no
+P1 node, source tree, software-workflow profile, lifecycle transition, or
+`docs/STATUS.md` post-acceptance pointer update is authorized. Execution
+handoff and full manifest:
+`../D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/HANDOFF.md`.
