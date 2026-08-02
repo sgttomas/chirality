@@ -1,6 +1,14 @@
 # D-PEC-72 execution handoff — P1-entry foundation
 
-**Handoff state:** PARTIAL CANDIDATE FAN-IN; REVIEW NOT LAUNCHED; C-05 OPEN.
+**Handoff state:** PARTIAL CANDIDATE FAN-IN; PKG-00 PEER REVIEW AT GATE 2; C-05 OPEN.
+
+**Update 02 (2026-08-01):** after PR #450 merged the D-PEC-72 production
+tranche, the owner selected `PEER_REVIEW` for `DEL-00-01` and `DEL-00-03` and
+explicitly authorized review from `INITIALIZED`. Gate 1 preconditions passed
+and the registered deterministic `SOW_V1` checklist compiler generated the two
+deliverable-local Gate 2 checklists. Reviewer identity remains `TBD`; checklist
+confirmation and peer findings are pending. Neither `_STATUS.md` changed, no
+artifact was accepted, and C-05/P1 remain closed.
 
 **Correction 01 (2026-08-01):** the validation summary now identifies two
 inherited unresolved-reference findings by their register lines instead of
@@ -81,10 +89,11 @@ re-rule or direct the harness cache.
 
 ## Rerun and next gates
 
-1. For DEL-00-01 and DEL-00-03, the owner selects the REVIEW type at Gate 1;
-   `PEER_REVIEW` is the non-binding recommendation. Both are currently
-   `INITIALIZED`, so formal REVIEW also requires the owner's explicit Gate-1
-   override to review candidate outputs from that state.
+1. For DEL-00-01 and DEL-00-03, Gate 1 is complete: the owner selected
+   `PEER_REVIEW` and explicitly authorized review from `INITIALIZED`. The two
+   `_REVIEW.md` checklists are at Gate 2 and await adequacy confirmation, a
+   named peer reviewer, and findings capture. No lifecycle transition is yet
+   authorized.
 2. DEL-10-01 reruns only when exact token telemetry is available. A revised
    packet would be required to waive or replace that accepted criterion; this
    run does not propose such a waiver.
