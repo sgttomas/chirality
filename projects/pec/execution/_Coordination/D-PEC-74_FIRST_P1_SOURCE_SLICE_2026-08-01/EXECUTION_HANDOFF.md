@@ -1,6 +1,6 @@
 # D-PEC-74 O-A execution handoff
 
-**State:** PRODUCER COMPLETE / CANDIDATE OUTPUT / REVIEW AND OWNER GATES OPEN
+**State:** REVIEW COMPLETE / DEL-08-02 CHECKING / EXACT BYTES ACCEPTED / LATER P1 CLOSED
 
 **Authority commit:** `49676473884e07a78fa197a23451e13a12850427`
 
@@ -57,14 +57,28 @@ accepted SOW, ADR, SPEC, and D-PEC authority and do not replace decomposition
 truth. No rerun is required unless a candidate byte, cited basis, registered
 tool, or authority fence changes.
 
+## Review and owner acceptance closeout
+
+PR #455 merged the exact Gate 1–2 review source
+`d99bf2ef923d640d956718b113f86c4755f837de` at merge commit
+`7fe75734f6939c343404a4b0b33b71790877fa61`. The deterministic five-item
+`SELF_CHECK` closes 5/5 with zero findings. The owner then separately:
+
+1. approved Gate 5 and advanced DEL-08-02 from `INITIALIZED` to `CHECKING`
+   under the recorded review-entry override, lifecycle only;
+2. confirmed AC-005's `DEL-08-02 → OBJ-001` attribution at its recorded
+   `MEDIUM` confidence, with `OBJ-001;OBJ-004` and the full consumer set
+   considered but unadopted; and
+3. accepted only the schema, compatibility-test, and three fixture bytes at
+   the exact hashes in the output inventory.
+
+The verbatim ruling is
+`DEL0802_FINAL_ACCEPTANCE_RULING_2026-08-01.md`; immutable final REVIEW
+evidence is `REV_DEL-08-02_2026-08-01_2305`. The workflow profile and run
+records remain evidence, not accepted DEL-08-02 output bytes.
+
 ## Remaining gates
 
-Recommended next gate: the owner selects `SELF_CHECK` and explicitly authorizes
-review from `INITIALIZED` using the deterministic five-item SOW acceptance
-checklist. That mechanical review must not itself accept the artifact or
-advance lifecycle.
-
-After a final review, separate owner acts remain for findings, Gate 5,
-AC-005's MEDIUM-confidence objective-attribution confirmation, exact-hash
-artifact fitness, and Git publication/merge. DEL-08-02 remains `INITIALIZED`;
-no later P1 node, `ISSUED`, release, or professional reliance is authorized.
+DEL-08-02 is not `ISSUED`. No later P1 node, release, or professional reliance
+is authorized. Any successor source slice requires a new owner-ruled packet
+naming its exact deliverable, paths, acts, verification, rollback, and fence.
