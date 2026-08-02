@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "chirality.agent-run-status/v1",
+  "runId": "APPDEV_DAPP85_OPTIONA_RULING_2026-08-02",
+  "status": "COMPLETED",
+  "result": "RULING_RECORDED_CHANGE_HANDOFF_READY",
+  "decisionId": "D-APP-85",
+  "decisionState": "RULED_ACTIVATION_PENDING_MAIN",
+  "candidateCount": 18,
+  "proposalPacketSha256": "56fedf46e067d2bd2edf25eabf259bf2edf4c7d8f69df640775145c41ad7f4d4",
+  "reconciliationDispatched": false,
+  "targetRepairExecuted": false,
+  "receiptAppended": false,
+  "gitActionExecuted": false
+}

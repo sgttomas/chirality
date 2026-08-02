@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "chirality.agent-work-graph/v1",
+  "runId": "APPDEV_DAPP85_OPTIONA_RULING_2026-08-02",
+  "ownerApprovalReference": "D-APP-85 exact Option-A owner token returned in-session on 2026-08-02",
+  "integrationOwner": {
+    "role": "HELPS_HUMANS",
+    "parent": "HELP_HUMAN",
+    "writeScope": [
+      "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-85_RULING_POSTPILOT_REMAINING_RECONCILIATION_2026-08-02.md",
+      "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md#D-APP-85-only",
+      "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP85_OPTIONA_RULING_2026-08-02/**"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "H1",
+      "role": "HELPS_HUMANS exact ruling integration and validation",
+      "dependsOn": [],
+      "status": "COMPLETED",
+      "writeScope": "integrationOwner"
+    },
+    {
+      "id": "FANIN",
+      "role": "bounded validation and CHANGE handoff preparation",
+      "dependsOn": ["H1"],
+      "status": "COMPLETED",
+      "writeScope": "none in this AgentRun"
+    }
+  ]
+}

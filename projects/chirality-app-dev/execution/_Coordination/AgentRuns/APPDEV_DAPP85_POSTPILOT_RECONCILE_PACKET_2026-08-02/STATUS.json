@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "chirality.agent-run-status/v1",
+  "runId": "APPDEV_DAPP85_POSTPILOT_RECONCILE_PACKET_2026-08-02",
+  "status": "COMPLETED",
+  "result": "OWNER_PRESENTABLE",
+  "decisionId": "D-APP-85",
+  "decisionState": "AWAITING_RULING",
+  "candidateCount": 18,
+  "acceptedVerifier": "instances/A2-ADVERSARIAL-VERIFIER/RETURN.md",
+  "targetRepairExecuted": false,
+  "receiptAppended": false,
+  "gitActionExecuted": false
+}
