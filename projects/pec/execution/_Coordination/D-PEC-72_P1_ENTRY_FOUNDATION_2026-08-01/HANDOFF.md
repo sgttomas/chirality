@@ -1,6 +1,27 @@
 # D-PEC-72 execution handoff — P1-entry foundation
 
-**Handoff state:** PARTIAL CANDIDATE FAN-IN; DEL-00-01 CHECKING; DEL-00-03 REPAIR VERIFIED / GATE 5 PENDING; C-05 OPEN.
+**Handoff state:** FINAL ACCEPTANCE GATES PENDING; DEL-00-01 CHECKING;
+DEL-00-03 CHECKING; DEL-10-01 COMPLETE CANDIDATE / INITIALIZED; C-05 OPEN.
+
+**Update 06 (2026-08-01):** PR #452 merged the review-gate tranche from exact
+source `51866bc87e276ae932f8f06b4caf9a5dc701b3dd` at effective merge commit
+`a1c30452f68b32f8621dff055b12f0d60934f627`. The owner's subsequent exact
+three-act `APPROVE:` message is recorded verbatim in
+`FINALIZATION_AUTHORIZATION_2026-08-01.md`, committed with the producer
+evidence at `87272dde8a82dbef034968b14af4461fe4b056d4`. Under that authority,
+the DEL-00-01 ADR and DEL-00-03 SPEC received acceptance-neutral status-prose
+normalization only. Final-hash SELF_CHECK reruns pass at hashes
+`f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5`
+and `8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315`;
+the latter's resolved RF-001 remains resolved. Both PKG-00 deliverables are
+now `CHECKING`. The D-PEC-72 rerun clause also produced exact DEL-10-01 token
+telemetry and changed producer validation AC-003 from blocked to `PASS` without
+changing the method or criterion. DEL-10-01 remains `INITIALIZED`; REVIEW type
+selection, review-from-`INITIALIZED` authority, formal REVIEW, and AC-008 owner
+fitness acceptance remain gates. No artifact fitness is accepted, C-05 remains
+open, and P1 remains closed. Final-hash review snapshots are under
+`execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/` and
+`REV_DEL-00-03_2026-08-01_2029/`.
 
 **Update 05 (2026-08-01):** the owner ruled, verbatim, "Approve both
 recommendations as stated." The referenced acts were `DEL-00-01 Gate 5:
@@ -61,14 +82,16 @@ the accepted decomposition, or the PRD.
 | D-PEC-72 O-B ruling + activation records | `19404e7bd2f1b365452114ad75aef042fa02b180` |
 | PKG-00 candidate production | `5942c50333c5cbd1e9b77e72c79c11bf46051040` |
 | PKG-10 candidate production / limitation record | `5d3fd5bb3537de484b98dd101881ae426e0d0f8a` |
+| D-PEC-72 review-gate tranche merged through PR #452 | `a1c30452f68b32f8621dff055b12f0d60934f627` |
+| Finalization authorization, normalized PKG-00 artifacts, and exact DEL-10-01 telemetry | `87272dde8a82dbef034968b14af4461fe4b056d4` |
 
 ## Candidate fan-in
 
 | Deliverable | Output | Producer-side result | Remaining gate |
 |---|---|---|---|
-| DEL-00-01 | `.../DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md` | Candidate validation PASS; O-B selection recorded; no lifecycle effect | Formal REVIEW, then owner fitness acceptance of the authored bytes |
-| DEL-00-03 | `.../DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md` | Candidate validation PASS; all explicit identifiers resolved; no lifecycle effect | Formal REVIEW, then owner confirmation as SPEC of record including LOW-confidence OBJ-001 attribution |
-| DEL-10-01 | `.../DEL-10-01_Step_0_cost_baseline_pre_P1/artifacts/STEP0_COST_BASELINE_METHOD.md` and `STEP0_COST_BASELINE.md` | Method and latency evidence candidate PASS; exact token baseline BLOCKED (`NOT_OBSERVED`) | Rerun in a runtime exposing exact interval-bound usage, then REVIEW and owner acceptance |
+| DEL-00-01 | `.../DEL-00-01_v2_first_ADRs_core_isolation_carried_postures/artifacts/v2/ADRs.md` | Final normalized hash SELF_CHECK PASS; zero findings; `CHECKING` | Owner AC-007 fitness confirmation against the final hash |
+| DEL-00-03 | `.../DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md` | Final normalized hash SELF_CHECK PASS; RF-001 resolved; `CHECKING` | Owner AC-011 fitness confirmation as SPEC of record, including the LOW-confidence OBJ-001 attribution |
+| DEL-10-01 | `.../DEL-10-01_Step_0_cost_baseline_pre_P1/artifacts/STEP0_COST_BASELINE_METHOD.md`, `STEP0_COST_BASELINE.md`, and exact telemetry run record | Complete producer candidate PASS; exact AC-003 evidence captured; `INITIALIZED` | Owner selects REVIEW type and authorizes review from `INITIALIZED`; formal REVIEW; then owner AC-008 fitness confirmation |
 
 The abbreviated paths above all resolve under
 `projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/` or
@@ -89,12 +112,15 @@ domain applications communicating through typed contracts—is recorded as the
 selection rationale. D-PEC-72 creates no cross-loop mandate; each other loop
 needs its own owning instrument.
 
-## Measurement limitation
+## Measurement result and limitation
 
-The method requires exact provider/runtime input, cached-input, and output
-usage for the orientation interval. The live task exposed no such ledger and no
-exact interval locator. The report therefore records `NOT_OBSERVED`, never an
-estimate. The separate harness re-test recorded five `self-check` wall times:
+The exact-telemetry rerun records one eligible pre-P1 orientation across its
+five contributing sessions: input `5,691,203`, cached-input subset `5,440,768`,
+output `22,436`, and logical total `5,713,639` tokens. Uncached input is
+`250,435`; reasoning-output subset is `8,395`. These values are exact
+cumulative-usage deltas over the recorded UTC interval, not estimates or
+context-window backsolves. This is one observed orientation, not a population
+estimate. The separate harness re-test remains five `self-check` wall times:
 3.34, 2.81, 2.78, 2.70, and 2.64 seconds (median 2.78; mean 2.854). The
 historical source has no numerical pain threshold, so the result does not
 re-rule or direct the harness cache.
@@ -105,6 +131,11 @@ re-rule or direct the harness cache.
   `candidate-validation` ALLOW ×3.
 - All three `ScopeOfWork.md` contracts: valid `SOW_V1`; deterministic REVIEW
   checklists derived (7, 11, and 8 criteria).
+- Final-hash PKG-00 SELF_CHECK: 7 + 11 exact criteria; zero DEL-00-01
+  findings; DEL-00-03 RF-001 remains `REVISE` / `RESOLVED`; both states are
+  `CHECKING`. No owner-only fitness criterion is treated as satisfied.
+- DEL-10-01 producer validation: AC-001 through AC-007 `PASS`, including exact
+  AC-003 telemetry; AC-008 remains `PENDING OWNER`. No DEL-10-01 REVIEW exists.
 - SPEC identifier resolution: zero unresolved identifiers.
 - Strict decomposition registers: 64 registers / 254 rows / zero findings.
 - Dependency closure: 64 files / 254 rows / 119 execution edges / zero SCCs.
@@ -121,17 +152,14 @@ re-rule or direct the harness cache.
 
 ## Rerun and next gates
 
-1. DEL-00-01 is `CHECKING` after the owner-approved Gate 5 transition. Its
-   separate AC-007 artifact-fitness confirmation remains pending; the ADR bytes
-   are not accepted by the lifecycle ruling. DEL-00-03 has RF-001 resolved and
-   a fresh `RECOMMEND_ADVANCE`, but remains `INITIALIZED` pending a separate
-   Gate 5 ruling; AC-011 artifact fitness and LOW-confidence `OBJ-001`
-   confirmation also remain separate.
-2. DEL-10-01 reruns only when exact token telemetry is available. A revised
-   packet would be required to waive or replace that accepted criterion; this
-   run does not propose such a waiver.
-3. Only after REVIEW and separate owner acceptance of all three deliverables
-   may lifecycle changes and C-05 closure be proposed.
+1. DEL-00-01 and DEL-00-03 are both `CHECKING`. Their final-hash SELF_CHECKs
+   pass, but AC-007 ADR fitness and AC-011 SPEC fitness / LOW-confidence
+   `OBJ-001` confirmation remain separate owner gates.
+2. DEL-10-01 exact telemetry is complete and AC-003 passes. The owner must
+   select its REVIEW type and authorize REVIEW from `INITIALIZED`; formal
+   REVIEW must then run before the separate AC-008 fitness ruling.
+3. Only after separate owner fitness acceptance of all three deliverables may
+   C-05 closure be proposed. This handoff does not accept any artifact.
 4. The first P1 source slice remains a successor D-PEC packet and must name
    the v2 source tree and project-local `software-workflow.json`.
 
