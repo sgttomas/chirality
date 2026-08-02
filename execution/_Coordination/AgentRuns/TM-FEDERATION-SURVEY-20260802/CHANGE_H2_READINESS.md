@@ -3,7 +3,8 @@
 RunID: `TM-FEDERATION-SURVEY-20260802`
 Role: `CHANGE` (Agent 1)
 Date: 2026-08-02
-Verdict: `READY_FOR_SCOPED_COMMIT_AND_PR`
+Verdict: `READY_FOR_SCOPED_COMMIT_AND_PR` (pre-merge readiness verdict)
+CurrentVerdict: `COMPLETE — CHECKED PR MERGED`
 
 ## Authorization
 
@@ -88,3 +89,26 @@ direct push to `main`, a force push, or a check bypass.
 - Required check verdicts, final approved PR source HEAD, and effective merge
   SHA remain pending their actual GitHub acts. This record intentionally does
   not self-reference the commit that contains this PR metadata.
+
+## Publication completion
+
+- PR #478: `https://github.com/sgttomas/chirality/pull/478`.
+- Validated implementation commit:
+  `bb44d71c93cc5431d5fc8a902e716cc88966ea9f`.
+- Exact approved source HEAD:
+  `08ed85ae1a1ae2be9eba971e6567fad2bb202b56`.
+- Final base immediately before merge:
+  `4d55dea0f375034b66949723a7b849a2c962d8a3`.
+- Required checks: `Harness pre-merge` = `SUCCESS`; `harness` = `SUCCESS`;
+  `pec` = `SUCCESS`.
+- Effective merge:
+  `2c25bd2c47c4b2f4190275ad39579a983f8786aa`, performed by `sgttomas` at
+  `2026-08-02T22:13:19Z`.
+- Ordinary closeout comment:
+  `https://github.com/sgttomas/chirality/pull/478#issuecomment-5160591595`.
+
+These completed facts supersede only the pending publication status in the
+preceding readiness chronology. The validation results, initial source-head
+record, authentication interruption, and recovery remain truthful as-of-time
+evidence. No direct `main` push or check bypass occurred, and no action remains
+for PR #478.

@@ -1,6 +1,6 @@
 # Task Management Federation Survey — Implementation Plan
 
-Status: `IMPLEMENTED AND VALIDATED — H2 SATISFIED; CHECKED PR PUBLICATION IN PROGRESS`
+Status: `IMPLEMENTED, VALIDATED, PUBLISHED, AND EFFECTIVE — COMPLETE`
 Date: 2026-08-02
 Owning loop: Root governance loop
 Supervising role if authorized: `HELP_HUMAN` (Agent 0)
@@ -27,9 +27,10 @@ The planning distinction confirmed by the owner in conversation is:
 > require loops to invoke TASK_MANAGEMENT.
 
 This plan originally recorded that design intent for review. The owner's
-subsequent explicit direction to implement this plan satisfies H0 for the
-bounded candidate tranche. It does not authorize H1 expansion, publication,
-or merge.
+subsequent explicit direction to implement this plan satisfied H0 for the
+bounded candidate tranche. That act did not itself authorize H1 expansion,
+publication, or merge; H2 was later supplied and exercised as recorded in
+section 17.
 
 ## 2. Governing basis
 
@@ -596,3 +597,15 @@ closed the work graph. H1 was not required. On 2026-08-02 the owner directed,
 verbatim, "Merge via PR." H2 is therefore satisfied for the exact checked PR
 publication and merge of this bounded tranche; direct-main push and check
 bypass remain unauthorized.
+
+CHANGE completed H2 through
+[PR #478](https://github.com/sgttomas/chirality/pull/478). The validated
+implementation commit was `bb44d71c93cc5431d5fc8a902e716cc88966ea9f`;
+the exact approved source HEAD was
+`08ed85ae1a1ae2be9eba971e6567fad2bb202b56` against final base
+`4d55dea0f375034b66949723a7b849a2c962d8a3`. `Harness pre-merge`,
+`harness`, and `pec` all returned `SUCCESS`. GitHub merged the PR as
+`2c25bd2c47c4b2f4190275ad39579a983f8786aa`, by `sgttomas`, at
+`2026-08-02T22:13:19Z`; the closeout comment is
+[here](https://github.com/sgttomas/chirality/pull/478#issuecomment-5160591595).
+The plan graph is closed with no remaining H2 action for PR #478.

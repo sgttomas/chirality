@@ -1,10 +1,25 @@
 {
   "schema": "root-work-graph/v1",
   "run_id": "TM-FEDERATION-SURVEY-20260802",
-  "plan_version": 4,
+  "plan_version": 5,
   "selection_authority": "HUMAN",
   "posture": "MIXED",
   "basis": "main@3e03b257748822dba2ad7697453f3495fb7578db",
+  "publication": {
+    "validated_implementation_sha": "bb44d71c93cc5431d5fc8a902e716cc88966ea9f",
+    "approved_source_sha": "08ed85ae1a1ae2be9eba971e6567fad2bb202b56",
+    "final_base_sha": "4d55dea0f375034b66949723a7b849a2c962d8a3",
+    "effective_merge_sha": "2c25bd2c47c4b2f4190275ad39579a983f8786aa",
+    "pull_request": "https://github.com/sgttomas/chirality/pull/478",
+    "merged_by": "sgttomas",
+    "merged_at": "2026-08-02T22:13:19Z",
+    "required_checks": {
+      "Harness pre-merge": "SUCCESS",
+      "harness": "SUCCESS",
+      "pec": "SUCCESS"
+    },
+    "closeout_comment": "https://github.com/sgttomas/chirality/pull/478#issuecomment-5160591595"
+  },
   "integration_owner": "HELPS_HUMANS",
   "nodes": [
     {
@@ -93,27 +108,27 @@
     {
       "id": "A1-CHANGE",
       "role": "CHANGE",
-      "status": "HELD_H2",
+      "status": "COMPLETE_MERGED",
       "depends_on": ["A1-HELPS-HUMANS", "A1-TM-ACCEPT"],
       "write_scope": ["git-file-state-only"],
-      "expected_return": "publication readiness; no merge without H2"
+      "expected_return": "checked publication completed under H2; exact Git/PR facts recorded"
     },
     {
       "id": "A0-HELP-HUMAN-FANIN",
       "role": "HELP_HUMAN",
-      "status": "READY_FOR_H2",
+      "status": "COMPLETE",
       "depends_on": ["A1-HELPS-HUMANS", "A1-TM-ACCEPT"],
       "write_scope": [
         "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/HELP_HUMAN_FANIN.md",
         "execution/_Coordination/LOOP_RECEIPTS.md",
         "execution/_Coordination/HANDOFF_STATE.md"
       ],
-      "expected_return": "validated exact working-tree candidate and next owner gate"
+      "expected_return": "validated fan-in and completed checked-publication closeout"
     }
   ],
   "human_gates": {
     "H0_IMPLEMENTATION": "SATISFIED",
-    "H1_SCOPE_EXPANSION": "UNSATISFIED_NOT_REQUIRED",
-    "H2_PUBLICATION_MERGE": "UNSATISFIED"
+    "H1_SCOPE_EXPANSION": "NOT_REQUIRED",
+    "H2_PUBLICATION_MERGE": "SATISFIED_AND_COMPLETED"
   }
 }

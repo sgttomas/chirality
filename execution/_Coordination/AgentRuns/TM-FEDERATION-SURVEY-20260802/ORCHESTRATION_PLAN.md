@@ -1,11 +1,11 @@
 # Orchestration Plan — Task Management Federation Survey
 
 RunID: `TM-FEDERATION-SURVEY-20260802`
-PlanVersion: `4`
+PlanVersion: `5`
 SelectionAuthority: `HUMAN`
 Posture: `MIXED`
-Status: `READY_FOR_H2`
-Basis: `main@3e03b257748822dba2ad7697453f3495fb7578db`
+Status: `COMPLETE`
+Basis: `main@3e03b257748822dba2ad7697453f3495fb7578db` (execution basis); final publication base `main@4d55dea0f375034b66949723a7b849a2c962d8a3`
 Branch: `codex/task-management-federation-survey`
 
 ## Human direction
@@ -13,7 +13,8 @@ Branch: `codex/task-management-federation-survey`
 The owner instructed the active goal to implement
 `plans/chirality-task-management/FEDERATION_SURVEY_IMPLEMENTATION_PLAN_2026-08-02.md`.
 This supplies Gate H0 implementation authority for the bounded candidate
-tranche. Publication and merge remain later human-gated acts.
+tranche. The owner later directed, verbatim, "Merge via PR," satisfying H2;
+CHANGE completed the checked publication through PR #478.
 
 ## Objective
 
@@ -65,7 +66,20 @@ the manager repaired it, added a regression, and the verifier closed it with
 `READY`. HELPS_HUMANS and the separate TASK_MANAGEMENT behavioral acceptance
 both returned `READY`. HELP_HUMAN fan-in is recorded in
 `HELP_HUMAN_FANIN.md`, Root Receipt 82, and the four-field handoff state.
-CHANGE remains held at H2.
+At that Amendment-3 checkpoint, CHANGE remained held at H2.
+
+### Amendment 4 — checked publication and terminal closeout
+
+The owner supplied H2 with the exact direction "Merge via PR." CHANGE
+published the validated implementation commit
+`bb44d71c93cc5431d5fc8a902e716cc88966ea9f` through PR #478. Immediately
+before merge, the exact approved source was
+`08ed85ae1a1ae2be9eba971e6567fad2bb202b56` and the final base was
+`4d55dea0f375034b66949723a7b849a2c962d8a3`; `Harness pre-merge`, `harness`,
+and `pec` all reported `SUCCESS`. GitHub merged that source as
+`2c25bd2c47c4b2f4190275ad39579a983f8786aa`, by `sgttomas`, at
+`2026-08-02T22:13:19Z`. The graph is terminally complete. Earlier manager and
+Agent 2 returns retain their as-of-time `READY`/interrupted dispositions.
 
 ## Shared-write rule
 
@@ -79,11 +93,12 @@ read-only. No concurrent overlapping writes are permitted.
 - H0 implementation: satisfied by the current explicit implementation goal.
 - H1 expansion: required for schema, CONTRACT/PRD, central authoritative
   registry, scheduling, CI, daemon, loop-entry, or foreign-write expansion.
-- H2 publication/merge: unsatisfied; return the validated exact candidate to
-  the owner.
+- H2 publication/merge: satisfied and completed through checked PR #478.
 
 ## Required terminal handoff
 
-Name the accepted basis, exact candidate paths and HEAD, derivative status,
-Agent 1/2 validation, federation coverage, live observations, closure verdict,
-rerun requirements, blockers, and next owner gate.
+The terminal handoff names the accepted and final publication bases, validated
+implementation and approved source identities, exact candidate paths,
+derivative status, Agent 1/2 validation, federation coverage, effective merge,
+closure verdict, and future rerun trigger. There is no remaining blocker or
+owner gate for PR #478.
