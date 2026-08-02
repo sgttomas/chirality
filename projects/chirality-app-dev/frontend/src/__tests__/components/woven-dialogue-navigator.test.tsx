@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
+import renderer, { act } from 'react-test-renderer';
 import { describe, expect, it, vi } from 'vitest';
 import type { SessionRecord } from '@chirality/harness-contract/types';
 import {
@@ -7,6 +8,12 @@ import {
   buildNavigatorSessionGroups
 } from '../../components/woven-dialogue/navigator';
 import type { WovenSessionSurfaceMap } from '../../lib/woven-dialogue/woven-workspace-state';
+
+vi.mock('next/link', () => ({
+  default: ({ children, ...props }: React.ComponentProps<'a'>) => (
+    <a {...props}>{children}</a>
+  )
+}));
 
 vi.mock('../../components/shell/file-tree-panel', () => ({
   FileTreePanel: () => <div>File tree</div>
@@ -116,6 +123,51 @@ describe('Woven Dialogue Navigator', () => {
     expect(html).not.toContain('data-session-id="ses-x1"');
   });
 
+  it('toggles from recent to all recorded sessions and back through the actual control', () => {
+    const tree = renderer.create(
+      <Navigator
+        activeSurface="dialogue"
+        legacyHref="/?legacy=1"
+        onOpenSurface={vi.fn()}
+        sessions={SESSIONS}
+        sessionSurfaces={SURFACES}
+        onSelectSession={vi.fn()}
+        onToggleSurfaceExpanded={vi.fn()}
+      />
+    );
+    const visibleSessionIds = () =>
+      tree.root
+        .findAll((node) => typeof node.props['data-session-id'] === 'string')
+        .map((node) => node.props['data-session-id']);
+    const findSessionToggle = () =>
+      tree.root.findAllByType('button').find((button) =>
+        ['All sessions (8)', 'Recent sessions'].includes(
+          button.children.join('')
+        )
+      );
+
+    expect(visibleSessionIds()).toEqual(['ses-d1', 'ses-d2', 'ses-d3', 'ses-d4']);
+    expect(findSessionToggle()?.children.join('')).toBe('All sessions (8)');
+    expect(findSessionToggle()?.props['aria-expanded']).toBe(false);
+
+    act(() => {
+      findSessionToggle()?.props.onClick();
+    });
+
+    expect(visibleSessionIds()).toEqual(SESSIONS.map((entry) => entry.sessionId));
+    expect(visibleSessionIds()).toContain('ses-x1');
+    expect(findSessionToggle()?.children.join('')).toBe('Recent sessions');
+    expect(findSessionToggle()?.props['aria-expanded']).toBe(true);
+
+    act(() => {
+      findSessionToggle()?.props.onClick();
+    });
+
+    expect(visibleSessionIds()).toEqual(['ses-d1', 'ses-d2', 'ses-d3', 'ses-d4']);
+    expect(findSessionToggle()?.children.join('')).toBe('All sessions (8)');
+    expect(findSessionToggle()?.props['aria-expanded']).toBe(false);
+  });
+
   it('marks the live session and the selected replay session distinctly', () => {
     const html = renderNavigator({
       liveSessionId: 'ses-d1',
@@ -136,10 +188,10 @@ describe('Woven Dialogue Navigator', () => {
     const html = renderNavigator();
 
     expect(html).toContain(
-      '<span class="woven-navigator-session-when">Jul 24</span>'
+      '<span class="woven-navigator-session-when">Jul 24, 2026</span>'
     );
     expect(html).toContain(
-      '<span class="woven-navigator-session-when">Jul 21</span>'
+      '<span class="woven-navigator-session-when">Jul 21, 2026</span>'
     );
   });
 
@@ -233,5 +285,14 @@ describe('Navigator session grouping', () => {
       when: '',
       surface: null
     });
+  });
+
+  it('renders no timestamp for an invalid recorded date', () => {
+    const groups = buildNavigatorSessionGroups(
+      [session('ses-invalid', 'TASK', 'not-a-date')],
+      {}
+    );
+
+    expect(groups.all[0]?.when).toBe('');
   });
 });

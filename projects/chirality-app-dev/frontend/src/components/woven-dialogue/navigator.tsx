@@ -80,7 +80,7 @@ function formatSessionWhen(value: string | undefined): string {
   if (!month) {
     return '';
   }
-  return `${month} ${Number(match[3])}`;
+  return `${month} ${Number(match[3])}, ${match[1]}`;
 }
 
 function sessionOrderKey(session: SessionRecord): string {
@@ -299,7 +299,9 @@ export function Navigator({
                           setAllSessionsSurface(showingAll ? null : surface.id);
                         }}
                       >
-                        All sessions ({groups.all.length})
+                        {showingAll
+                          ? 'Recent sessions'
+                          : `All sessions (${groups.all.length})`}
                       </button>
                     </p>
                   ) : null}
