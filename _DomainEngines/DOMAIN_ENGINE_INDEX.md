@@ -4,7 +4,7 @@
 **Control root:** `{REPO_ROOT}/_DomainEngines/` (persona default `DOMAIN_CONTROL_ROOT`; created 2026-06-21 with explicit owner approval).
 **Scope:** shared-root (tier-0) governance authoring only. Nothing here is project-runtime truth, and nothing here edits the registered project subtrees (`projects/chirality-app-dev/**`, `projects/chirality-piping/**`, `projects/pec/**`) except where a governed registration packet explicitly permits a project-local coordination pointer.
 
-> **Status:** the `open_pipe_stress` profile is **`ADOPTED`** (validated + owner Gate-2 ruling 2026-06-21; D-T0-06) and the original 8 tier-0 decisions are **RULED** (2026-06-21; `_DECISIONS/_REGISTER.md`). PEC registration rows D-T0-11..16 were ruled and published in PR #51. D-T0-26 preserves the frozen v0.4 binding as historical lineage. D-T0-27 O-A and D-T0-28 O-A are ruled; the exact PEC v2 `ADOPTED / READ_ONLY` application passed all uncommitted checks and is ready for CHANGE, but remains **NOT EFFECTIVE** until exact publication and merge identity. No professional status is claimed (APEGA ceiling, K-AUTH-1). Publication is handed to CHANGE; DOMAIN_ENGINE does not commit. *(Banner reauthored per D-GOV-06, ruled 2026-07-01 — it previously denied both the adoption and the rulings.)*
+> **Status:** the `open_pipe_stress` profile is **`ADOPTED`** (validated + owner Gate-2 ruling 2026-06-21; D-T0-06) and the original 8 tier-0 decisions are **RULED** (2026-06-21; `_DECISIONS/_REGISTER.md`). PEC registration rows D-T0-11..16 were ruled and published in PR #51. D-T0-26 preserves the frozen v0.4 binding as historical lineage. D-T0-27 is **EFFECTIVE / ADOPTED / READ_ONLY** through exact PR #459 merge `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; D-T0-28 and D-T0-29 are effective supporting amendments. No invocation, source, lifecycle, release, professional-reliance, or cross-loop authority is inferred. *(Banner reauthored per D-GOV-06, ruled 2026-07-01 — it previously denied both the adoption and the rulings.)*
 
 ---
 
@@ -13,7 +13,7 @@
 | DOMAIN_ENGINE_ID | Engine | Profile | ProfileStatus | Integration level (today) |
 |---|---|---|---|---|
 | `open_pipe_stress` | OpenPipeStress piping-stress engine (`projects/chirality-piping/`) | `profiles/open_pipe_stress.yaml` | **ADOPTED** (validated + Gate-2 adopted 2026-06-21) | `MANUAL_BRIDGE` (L0) |
-| `pec` | PEC v2 coordination plane (`projects/pec/`) | `profiles/pec.yaml` | **APPLICATION VALIDATED / READY FOR CHANGE / NOT EFFECTIVE** (D-T0-27/D-T0-28 O-A; profile bytes declare `ADOPTED`) | Proposed `READ_ONLY`; D-T0-26 remains the effective durable posture until exact publication and merge identity |
+| `pec` | PEC v2 coordination plane (`projects/pec/`) | `profiles/pec.yaml` | **ADOPTED / EFFECTIVE** (D-T0-27 O-A; PublicationSHA `0e47c218c...`, EffectiveSHA `d9dc65804...`) | `READ_ONLY`; declared boundary only, with no invocation created by profile adoption |
 
 ## Layout
 
@@ -25,7 +25,7 @@ _DomainEngines/
   NEXT_INSTANCE_PROMPT.md         ← sequencing: how owner rulings flow to action
   profiles/
     open_pipe_stress.yaml         ← ADOPTED generic-shape profile, bound to the real piping layout
-    pec.yaml                      ← D-T0-27 PEC v2 READ_ONLY application validated; READY FOR CHANGE / NOT EFFECTIVE
+    pec.yaml                      ← D-T0-27 PEC v2 ADOPTED / READ_ONLY, effective through PR #459
   bridge/
     BRIDGE_2026-06-21_tier0-prep/ ← immutable snapshot for this prep run (see its RUN_SUMMARY.md)
       framework_maintenance/      ← FM-01..04 gated canon diffs (NOT applied)

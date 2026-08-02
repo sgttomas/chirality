@@ -36,11 +36,17 @@ contract-currency repair and SELF_CHECK are complete. Snapshot
 owner accepted exact SOW SHA-256
 `7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`
 as the DEL-01-06 production contract. REVIEW and SOW acceptance independently
-open no source. Source remains dormant until D-T0-27 becomes effective through
-exact PR #459 merge identity and serialized manager fan-in. D-T0-27 O-A is
-ruled and its exact PEC-v2 `ADOPTED / READ_ONLY` successor postimage is
-materialized; D-T0-28/D-T0-29 application checks pass and are ready for
-CHANGE, but the chain is not effective before that merge. D-PEC-76 points to that Tier-0 ruling;
+open no source. D-T0-27 is effective through exact PR #459 merge
+`d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; its exact PEC-v2 successor is
+`ADOPTED / READ_ONLY`, with D-T0-28/D-T0-29 effective as supporting
+amendments. Serialized fan-in opened only packet §§5.3–5.6, and WORKING_ITEMS
+has now completed that exact candidate slice: immutable core loop value/port,
+replaceable JSON adapter, one-entry PEC default/schema, fixtures/tests, and
+the exact project check profile. Twelve registry tests, six preserved API
+tests, and harness self-check pass. DEL-01-06 remains `INITIALIZED`; all six
+ACs, artifact fitness, lifecycle, later P1, release, merge, and reliance remain
+open.
+D-PEC-76 points to that Tier-0 ruling;
 following D-PEC-11 precedent, D-T0-27 owns the semantic profile act and
 D-PEC-76 creates no duplicate adoption. D-PEC-75 grants no domain-profile,
 source, project-workflow, lifecycle, or artifact-fitness act.
@@ -112,8 +118,11 @@ read and cite only, no further feature work, retired product docs under
    **D-PEC-75 O-A selects DEL-01-06 as the second slice.** Its exact repaired
    SOW is owner-accepted as the production contract, but Gate 5 holds
    lifecycle at `INITIALIZED`; all six ACs remain pending future production.
-   The exact source fence remains dormant until D-T0-27 becomes effective by
-   PR #459 merge identity and WORKING_ITEMS verifies the serialized gates.
+   D-T0-27 is effective by PR #459 merge identity. WORKING_ITEMS completed
+   only the exact packet §§5.3–5.6 source-production fence. The candidate
+   typed port/value, JSON adapter/default/schema, and tests pass all registered
+   checks; DEL-01-06 remains `INITIALIZED`, AC-001..AC-006 remain owner-open,
+   and no later node or lifecycle/fitness effect is inferred.
 2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
    clause armed; receiving consumers retain their own authority and cadence) →
    P4 streams, per the standing plan and the deliverables' PhaseHints.
@@ -146,8 +155,8 @@ truth without changing topology, dependencies, lifecycle, or implementation.
 separately owner-gated and fenced by `F-PEC-1`.
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` contains the exact
 D-T0-27 O-A PEC v2 `ADOPTED / READ_ONLY` postimage and is validator `VALID`,
-and D-T0-28/D-T0-29 application checks pass, but the application is not
-effective before exact PR #459 publication, committed-range checks, and merge
-identity. The frozen v0.4 profile is preserved as
-historical preimage lineage.
+effective through PR #459 merge
+`d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; D-T0-28/D-T0-29 are effective
+supporting amendments. The profile creates no invocation by itself. The
+frozen v0.4 profile is preserved as historical preimage lineage.
 Fences F-PEC-1..4 (`D-T0-15`) remain in force.

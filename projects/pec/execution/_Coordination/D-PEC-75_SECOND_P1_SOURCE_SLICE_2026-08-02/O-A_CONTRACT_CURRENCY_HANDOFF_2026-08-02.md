@@ -1,6 +1,6 @@
 # D-PEC-75 O-A contract-currency handoff
 
-**State:** SOW CONTRACT FITNESS ACCEPTED / GATE 5 HOLD AT INITIALIZED / SOURCE NOT OPENED BY REVIEW
+**State:** BOTH PREREQUISITES SATISFIED / SOURCE PRODUCTION OPEN / READY FOR WORKING_ITEMS
 
 **Selected deliverable:** PKG-01 / DEL-01-06 Loop registry (local config
 default), and no other node
@@ -97,11 +97,9 @@ The SOW acceptance does not make D-T0-27 effective or independently open
 source. Any downstream activation requires owning-manager verification of the
 distinct D-PEC-75 prerequisites against serialized durable state.
 
-## Dormant source phase
+## Source-production phase — open after serialized fan-in
 
-Every source, test, project-workflow, adapter, configuration, run-record, and
-execution-handoff production path in packet §§5.3–5.5 remains closed. Source
-production may activate only after both conditions are durably evidenced:
+Both conditional gates are durably evidenced:
 
 1. the repaired DEL-01-06 SOW completes separately authorized REVIEW with all
    six criteria populated, every finding dispositioned, and exact-hash owner
@@ -110,24 +108,53 @@ production may activate only after both conditions are durably evidenced:
 
 D-T0-27 O-A is ruled and its exact SHA-256
 `be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d`
-postimage is materialized at `ADOPTED / READ_ONLY`. D-T0-28 O-A has corrected
-the two conscious live-baseline pins and all uncommitted application checks
-pass. D-T0-27 nevertheless remains not effective until exact CHANGE
-publication, committed-range checks, and merge identity. Validated
-materialization before merge is not source authority.
+postimage is effective at `ADOPTED / READ_ONLY`. PR #459 source
+`0e47c218c26830a4efeb29eb2d2f3ea99142b987` merged as
+`d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; current main basis
+`556ae59a34ac2f06ef924d367843a72ea00d1f37` descends from it. D-T0-28
+application-manifest SHA-256 is
+`36959f0a5bd039881f6ebef5bf191079ed546f7da7281d9d6123e8318391d2b1`;
+D-T0-29 application-manifest SHA-256 is
+`94d24507f9c6a9ae111f525262ac994dffd063cf51f9a4175d84c15cb1f787d3`.
+
+The conditional D-PEC-75 O-A authority is therefore active for one bounded
+WORKING_ITEMS production act. Only these paths are open:
+
+- projects/pec/v2/config/loops.schema.json;
+- projects/pec/v2/config/loops.json;
+- projects/pec/v2/src/pec_v2/__init__.py;
+- projects/pec/v2/src/pec_v2/core/__init__.py;
+- projects/pec/v2/src/pec_v2/core/ports/__init__.py;
+- projects/pec/v2/src/pec_v2/core/ports/loop_registry.py;
+- projects/pec/v2/src/pec_v2/adapters/__init__.py;
+- projects/pec/v2/src/pec_v2/adapters/config/__init__.py;
+- projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py;
+- projects/pec/v2/tests/config/test_loop_registry_contract.py;
+- projects/pec/v2/tests/config/test_json_loop_registry.py;
+- projects/pec/v2/tests/config/fixtures/missing_loop_id.json;
+- projects/pec/v2/tests/config/fixtures/duplicate_loop_id.json;
+- projects/pec/v2/tests/config/fixtures/malformed.json;
+- projects/pec/software-workflow.json with exact packet §5.5 bytes;
+- projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-75_ACTIVATION.md;
+- projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_run_records/D-PEC-75_REGISTERED_CHECKS.json;
+- projects/pec/execution/_Coordination/D-PEC-75_SECOND_P1_SOURCE_SLICE_2026-08-02/EXECUTION_HANDOFF.md and manifest updates; and
+- governed D-PEC-75 decision/register, PEC status, and loop-receipt updates
+  required to record production and later owner gates.
+
+WORKING_ITEMS must use the exact core/adapter contract in packet §5.3, exact
+project-workflow bytes in §5.5, and all eleven producer checks in §5.6. Every
+unlisted path and act remains closed.
 
 ## Strict non-effects and next return
 
-This fan-in record and REVIEW make no further DEL-01-06 SOW change and create no PEC
-source, test, adapter, configuration, project-workflow, or run-record byte. It
-grants no domain-profile edit or adoption, lifecycle transition, artifact
-acceptance, `ISSUED`, later P1 node,
-service/store/transport/runtime act, release, professional reliance, or
-cross-loop mandate.
+This fan-in record and REVIEW make no further DEL-01-06 SOW change and create
+no PEC source, test, adapter, configuration, project-workflow, or run-record
+byte. They grant no domain-profile edit or adoption, lifecycle transition,
+artifact acceptance, `ISSUED`, later P1 node, service/store/transport/runtime
+act, release, professional reliance, or cross-loop mandate.
 
-The exact-hash SOW-fitness gate is satisfied. Source activation remains
-conditional on the packet's distinct remaining prerequisite and on owning-
-manager serialized fan-in; REVIEW neither adjudicates that prerequisite nor
-opens source. The D-PEC-75 manifest is resealed at this working-tree checkpoint.
-That mechanical integrity result does not make D-T0-27 effective, advance
-lifecycle, or itself open source production.
+The exact-hash SOW-fitness and D-T0-27 effectiveness gates are satisfied.
+Source production is `OPEN / READY FOR WORKING_ITEMS` only within the exact
+fence above. Producer output remains candidate work; AC-001 through AC-006,
+any post-production REVIEW, lifecycle transition, exact-hash artifact fitness,
+`ISSUED`, release, and professional reliance remain separate later gates.

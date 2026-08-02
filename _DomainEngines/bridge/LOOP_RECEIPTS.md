@@ -594,3 +594,27 @@
   - Parked lanes: D-T0-27/D-T0-28/D-T0-29 CHANGE closeout after
     committed-range `coord-check` and merge identity; D-PEC-75 owns DEL-01-06
     Gate-5 HOLD and ScopeOfWork acceptance recording.
+
+- **2026-08-02 — Receipt 36** (D-T0-27/28/29 durable effectiveness closeout).
+  - Owner direction of record: D-T0-27 O-A, D-T0-28 O-A, and D-T0-29 O-A
+    are quoted verbatim in their decision records and Receipts 33–35.
+    Publication identity: PR #459 source
+    `0e47c218c26830a4efeb29eb2d2f3ea99142b987`; effective merge
+    `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`, with the exact source as
+    second parent. Current main `556ae59a34ac2f06ef924d367843a72ea00d1f37`
+    descends from the merge; later PR #461 changed only app-dev paths.
+  - Gate outcome: D-T0-27 is `EFFECTIVE / ADOPTED / READ_ONLY`; D-T0-28 and
+    D-T0-29 are applied/effective supporting amendments. Exact live profile,
+    validation, test, patch-evidence, and attribute hashes remain those bound
+    by the application.
+  - Checks: merged application manifests reproduced; 18/18 targeted tests and
+    8/8 profile-validator tests pass; bridge-status has no findings;
+    self-check is `INFO=14`, `NOT_APPLICABLE=1`, `REVIEW=4`, `WARN=27`;
+    committed PR #459 `coord-check` exits 0 with seven pre-existing
+    unresolved-reference REVIEW observations and no identity blocker.
+  - Authority fence: the successor-profile prerequisite is satisfied. No
+    invocation, source, ScopeOfWork, review, lifecycle, project-workflow,
+    release, professional-reliance, or cross-loop authority is created.
+  - Parked lanes: D-T0-27/28/29 effectiveness-record CHANGE publication;
+    D-PEC-75 owns any later DEL-01-06 source activation and serialized
+    manager fan-in.

@@ -1,0 +1,45 @@
+{
+  "$id": "https://chirality.local/pec/v2/config/loops.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Local configuration format naming the loops PEC serves.",
+  "properties": {
+    "loops": {
+      "description": "The configured loops PEC may read as non-authoritative file-truth locations.",
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "loop_id": {
+            "description": "Stable lower-case identifier for one configured loop.",
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "type": "string"
+          },
+          "loop_init_path": {
+            "description": "Repository-relative path to the loop's governed LOOP_INIT.md surface.",
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "loop_id",
+          "loop_init_path"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "schema_version": {
+      "const": 1,
+      "description": "Version of this local loop-registry configuration format.",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "loops"
+  ],
+  "title": "PEC local loop registry configuration v1",
+  "type": "object"
+}
