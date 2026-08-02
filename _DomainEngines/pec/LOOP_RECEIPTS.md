@@ -1350,3 +1350,38 @@
     work, P1 authorization, or reliance authority. Selection belongs to the
     resumed loop. `F-PEC-1` remains in force.
   - Gate outcome: EXECUTED on the Step-5 loop-slates tranche commit.
+
+- **2026-08-01 — Receipt 121** (D-PEC-73 O-A applied; D-PEC-72 foundation packet presented; first TM harvest proposed).
+  - Start: `main@3c2e816f1072295de15fdcdf924c19b4b66497bc`; branch `codex/pec-tm-adoption-presentation`; proposal commit `eb9818d7e`.
+  - Owner ruling/direction of record (verbatim):
+    > Here my response:
+    >
+    > D-PEC-73: O-A.
+    > D-PEC-72: select for packet drafting.
+  - D-PEC-73 applied: `_DomainEngines/pec/_TaskManagement/REGISTER.csv` minted schema 1.0 / 25 columns / header-only; `LOOP_INIT.md` unchanged; no root rows migrate; root notice `execution/_Coordination/NOTICE_D-PEC-73_PEC_TASK_MANAGEMENT_ADOPTION.md` routes evidence for root-owned `TM-ROOT-100` closure.
+  - First harvest: `_DomainEngines/pec/_TaskManagement/HARVEST_CANDIDATES_2026-08-01.md` proposes six candidates; zero `TM-PEC-*` rows promoted or written. Promotion remains owner-only.
+  - D-PEC-72: `_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md` is `AWAITING_RULING`; it presents the three C-05 pre-P1 prerequisites through separate PKG-00 and PKG-10 WORKING_ITEMS activations. No P1 node, source tree, profile, lifecycle act, or production work is authorized by packet drafting.
+  - Register currency: D-PEC-71 stale ruling note corrected against its RULED record; D-PEC-72 reserved/awaiting; D-PEC-73 RULED. No historical ruled record rewritten.
+  - Checks: TM register header-only/25 columns pass; strict decomposition-register validation 64 registers / 254 rows / zero findings; dependency closure 119 edges / zero SCCs; reliance-hold candidate preflight ALLOW ×3; self-check unchanged at INFO=15/NA=1/REVIEW=5/WARN=28; `git diff --check` pass; committed-range coord-check has zero new packet/notice findings and two carried unresolved references in pre-existing register rows (`projects/pec/pilot-scratch/reports/`, `SEED_D-PEC-62/RUN_LOG.md`).
+  - Parked lanes: owner ruling on D-PEC-72; owner promotion/amendment/decline of any harvest candidates; root-loop disposition of `TM-ROOT-100`; actual P1 source work remains successor-packet gated by `F-PEC-1` and C-05 acceptance fan-in.
+
+- **2026-08-01 — Receipt 122** (D-PEC-72 O-B ruled; pre-P1 candidate production executed).
+  - Owner direction of record (verbatim): "Each of App, Root, PEC, TM, and domain specific applications like Piping, should all be individually interchangeable and each communicate through typed contracts.\n\nI think that's what I want but I'm open to discussion here." Owner ruling (verbatim): "I agree with this proposal for D-PEC-72 and approve action as you recommend."
+  - Executed pointers: D-PEC-72 O-B record/register; authority commit `19404e7bd`; PKG-00 ADR/SPEC candidates `5942c5033`; PKG-10 method/report `5d3fd5bb3`; handoff `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/HANDOFF.md`.
+  - Architecture effect: PEC selects hexagonal application boundaries with capability-shaped typed contracts; functional-core/imperative-shell remains permitted internally. Broader App/Root/TM/domain-application intent is rationale only outside PEC.
+  - Gate outcome: PKG-00 candidates pass producer validation and await REVIEW + owner artifact acceptance. Exact token telemetry was unavailable and not estimated; DEL-10-01 is unaccepted, all three statuses remain INITIALIZED, C-05 stays open, and no P1 node/source/profile/lifecycle path opens.
+  - Checks: reliance preflight ALLOW ×6; SOW_V1 contract/checklist derivation pass ×3; SPEC identifiers zero unresolved; strict registers 64/254 zero findings; dependency closure 119 edges/zero SCCs; self-check exit 0 at INFO=15/NA=1/REVIEW=5/WARN=28; package commits path-contained; Git whitespace/coord committed-range checks recorded in the handoff.
+  - Parked lanes: owner REVIEW-type selection/INITIALIZED-state override for DEL-00-01 and DEL-00-03; exact-telemetry rerun for DEL-10-01; only after all three owner acceptances may C-05 closure and a successor P1 source packet be proposed. TM harvest promotions and root disposition of TM-ROOT-100 remain independently owner/root-loop gated.
+
+- **2026-08-01 — Receipt 123** (D-PEC-72 derivative-handoff coordination correction).
+  - Executed pointer: `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/HANDOFF.md` Correction 01; unresolved-reference findings are identified by their pre-existing register lines rather than duplicating their unresolved tokens.
+  - Gate outcome: no authority, artifact, validation, lifecycle, acceptance, C-05, or P1 state changed. Final committed-range `coord-check` carries only the two inherited register findings and creates zero D-PEC-72 handoff findings.
+  - Checks: handoff manifest verified; `git diff --check` pass; final range `coord-check` exit 0.
+  - Parked lanes: unchanged from Receipt 122.
+
+- **2026-08-01 — Receipt 124** (PEC Task Management first-harvest promotion).
+  - Owner direction of record (verbatim): "Promote: CAND-PEC-2026-08-01-01 through -06."
+  - Exact promotion mapping: `CAND-PEC-2026-08-01-01` through `-06` became, in harvest order, `TM-PEC-001` through `TM-PEC-006`. All six rows are `OPEN`; the owner stated no priority or R/S/C/I assignment, so those fields remain `TBD` and no agent is accountable A.
+  - Authority fence: promotion records owner-selected attention residue only. No suggested route became a disposition; no execution, deliverable amendment, SCA, lifecycle, dependency, acceptance, schedule, release, or professional-reliance authority was created.
+  - Staleness and closure echo: all 9 cited source files exist and their promotion-time hashes were recorded. `TM-PEC-003` uses the current whole-register hash and preserves the harvested hash in Notes; its cited D-PEC-02 row is byte-identical. No row is `CLOSED`, so no closure echo is due; no elevation or escalation notice was created.
+  - Checks: Task Management schema/referential validation PASS (6 rows); exact candidate-to-row mapping assertion PASS; strict source-existence check 9/9; loop self-check remains at `INFO=15`, `NOT_APPLICABLE=1`, `REVIEW=5`, `WARN=28`; committed-range coordination and whitespace checks have no new findings.
