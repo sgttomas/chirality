@@ -1,28 +1,36 @@
 # Session init prompts
 
-Each section below is a **standalone launcher**. To start a session, copy the
-text **between the `<init-prompt>` tags** for the launch you want, substitute any
-remaining `<PLACEHOLDER>` tokens, and paste it as the first message.
+This is the root launcher catalog. Its entries are **alternative session-entry
+text**, not runtime agents, Agent 0 instances, services, daemons, or
+simultaneously executed configuration. Choose one launcher for each session.
+`HELP_HUMAN` is the sole canonical Agent 0 role; it may be instantiated for a
+particular session and loop scope without creating another Agent 0 authority.
 
-Six launchers live here:
+To start a session, choose one entry below. For an embedded launcher, copy the
+text between its `<init-prompt>` tags, substitute any remaining
+`<PLACEHOLDER>` tokens, and paste it as the first message. The PEC entry points
+to its canonical project-local launcher file instead of duplicating that
+block here.
+
+Six alternative launcher entries are cataloged:
 
 1. **Generic project launcher** — a fill-in template for any workspace/persona.
 2. **Root-governance work loop launcher** — the standing root control-plane loop.
 3. **Bridge work loop launcher** — the app-dev ↔ piping tier-0 bridge loop.
    Its file is `_DomainEngines/bridge/LOOP_INIT.md` (note the order:
    `LOOP_INIT`, not `INIT_LOOP`).
-4. **PEC work loop launcher** — implements
-   `plans/pec_bridge_integration_plan_2026-07-04.md` (pec tier-0 registration),
-   then continues as the standing pec loop. Its file is
+4. **PEC work loop launcher** — enters the standing PEC coordination-plane
+   loop. Its canonical paste-ready launcher is
+   `projects/pec/init/init-prompt.md` and points to
    `_DomainEngines/pec/LOOP_INIT.md`.
 5. **Piping work loop launcher** — the chirality-piping project development
    loop. Its file is `projects/chirality-piping/loop/LOOP_INIT.md`.
 6. **App-dev work loop launcher** — the chirality-app-dev project development
    loop. Its file is `projects/chirality-app-dev/loop/LOOP_INIT.md`.
 
-Every project also carries the same launcher in its own `init/init-prompt.md`
-(pec's points at the pec loop above), so the per-project copy and the section
-here are interchangeable.
+Project-local launcher files may mirror the catalog pattern. PEC deliberately
+has one canonical launcher block at `projects/pec/init/init-prompt.md`; this
+catalog references it rather than maintaining an interchangeable duplicate.
 
 ---
 
@@ -86,25 +94,17 @@ pattern at that loop's own `<LOOP_DIR>/LOOP_INIT.md`.
 
 ---
 
-## 4. PEC work loop launcher (pec tier-0 registration → standing pec loop) — ACTIVE
+## 4. PEC work loop launcher (standing coordination-plane loop) — ACTIVE
 
-Paste-ready as written; replace `<none>` with a per-run steer if you want one
-(e.g. `author the tier-0 package only — do not open PRs yet`).
+Copy the single paste-ready `<init-prompt>` block from
+`projects/pec/init/init-prompt.md`. Replace its `<none>` placeholder with a
+per-run steer if desired.
 
-<init-prompt>
-Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
-
-Read `{REPO_ROOT}/_DomainEngines/pec/LOOP_INIT.md` and follow it: pursue the loop's
-inherent goals — recorded in its standing plan — as far as live authority permits.
-
-Steer (this run): <none>
-</init-prompt>
-
-Same thin-launcher rationale as §3: the goal (implement
-`plans/pec_bridge_integration_plan_2026-07-04.md`, stop at the owner gates, then
-the standing pec goal once ruled), the protocol, and the fences live in
-`_DomainEngines/pec/LOOP_INIT.md` → `WORKPLAN_2026-07-04_pec_loop.md` → its
-receipts.
+The launcher remains deliberately thin. `_DomainEngines/pec/LOOP_INIT.md`
+hands the session to the newest standing `WORKPLAN_*.md` beside it and to the
+live receipt/register discovery protocol. Those surfaces carry the current
+goal, gates, fences, and state pointers; pasted launcher text does not duplicate
+or override them.
 
 ---
 
