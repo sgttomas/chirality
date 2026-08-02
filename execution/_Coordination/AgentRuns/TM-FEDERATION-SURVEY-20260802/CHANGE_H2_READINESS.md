@@ -54,3 +54,20 @@ direct push to `main`, a force push, or a check bypass.
 - Candidate, PR, approved source-head, publication, and effective merge SHAs
   are intentionally not predicted. CHANGE will record actual identities in
   the PR closeout record as each Git act occurs.
+
+## Publication attempt and authentication blocker
+
+- The manifest-scoped candidate was committed as
+  `bb44d71c93cc5431d5fc8a902e716cc88966ea9f`, with a clean worktree, and
+  pushed to
+  `origin/codex/task-management-federation-survey` on 2026-08-02.
+- Pull-request creation could not proceed because the saved GitHub CLI token
+  for `sgttomas` is invalid. The only available in-app browser is not signed
+  in to the private repository, and the configured HTTPS credential helper
+  returned no credential. No PR was created, no check was bypassed, and no
+  merge was attempted.
+- Recovery: authenticate GitHub CLI with repository access or sign in to the
+  private repository in the available browser. CHANGE must then verify the
+  branch's actual remote HEAD, create the PR, observe the completed required-
+  check listing, reverify exact PR source HEAD and `origin/main` drift, and
+  only then exercise the owner's recorded PR-merge direction.
