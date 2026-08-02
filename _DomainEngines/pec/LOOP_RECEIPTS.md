@@ -1561,3 +1561,12 @@
   - Authority fence: artifact fitness accepts only those five bytes and does not independently change lifecycle. No `ISSUED`, later P1 node, release, professional reliance, service/store/runtime/transport act, or cross-loop mandate is authorized.
   - Gate outcome: D-PEC-74 O-A is closed through DEL-08-02 Gate 5 and artifact fitness. Any successor P1 source slice requires a new exact-path owner-ruled packet.
   - Parked lanes: all later P1 nodes remain closed; OI-009 transport/event-contract questions remain open.
+
+- **2026-08-02 — Receipt 138** (D-PEC-75 second-P1-source-slice packet presented).
+  - Presentation basis: `f98e678b1cfd80d7d03e035e5a434bdb58ca13ae`; D-PEC-74 remains closed with DEL-08-02 `CHECKING` and its five exact accepted artifact hashes unchanged.
+  - Packet: `projects/pec/execution/_Coordination/D-PEC-75_SECOND_P1_SOURCE_SLICE_2026-08-02/PACKET.md`; O-A DEL-01-06 typed local registry is recommended, O-B is DEL-01-01 record-tier model/DDL, O-C amends, and O-D defers.
+  - Common gate: an executable ruling opens only bounded SOW-currency repair immediately; source authority remains dormant until owner SOW fitness and separately effective D-T0-27 PEC-v2 domain-profile adoption.
+  - Profile boundary: the project `software-workflow.json` is only a check registry; D-PEC-75 does not edit, promote, narrow, or adopt the STALE historical domain profile. D-PEC-76 now points to `_DomainEngines/bridge/PEC_V2_PROFILE_SUCCESSOR_D-T0-27_2026-08-02/PACKET.md` and exact candidate SHA-256 `be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d`; following D-PEC-11, the semantic ruling remains D-T0-27.
+  - Exclusions: DEL-01-05 is not executable before a live core target without scope amendment; DEL-08-03 remains later pending SOW/schema-ownership repair; TM-PEC-005 is not duplicated.
+  - Validation at presentation: both candidate SOWs validate and derive 6/6 and 12/12 exact criteria; strict registers 64 / 254 / zero findings; dependency closure 119 edges / zero SCCs; accepted API hashes and current project profile reproduce.
+  - Gate outcome: **AWAITING OWNER**. No option, SOW edit, source, project/domain-profile edit, lifecycle, acceptance, release, reliance, service/store/transport/runtime, or downstream-node act occurred.
