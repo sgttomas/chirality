@@ -52,7 +52,7 @@ Given an explicit brief, audit the governance document suite for:
 - cross-reference resolution (§ citations, document references),
 - invariant ID integrity (K-*, R1–R17, I1–I10),
 - terminology consistency (TYPES.md definitions),
-- agent inventory consistency (AGENTS.md vs. agents/ vs. DBM §5.1),
+- agent inventory consistency (AGENTS.md vs. agents/, no competing index),
 - document hierarchy coherence (DIRECTIVE → CONTRACT → SPEC → agent WRITE_SCOPE).
 
 This agent is **read-only** on all governance documents: it produces findings; it does not apply fixes.
@@ -130,7 +130,6 @@ Verify that counts cited in documents match actual counts.
 **1b. Agent count:**
 - Count `AGENT_*.md` files in `AGENT_DIR` (excluding non-instruction files like templates).
 - Count agents listed in `AGENTS.md` (Type 0 + Type 1 + Type 2 tables).
-- Count agents in `DBM_Agent_Instruction_Architecture.md` §5.1 table.
 - Compare against any count cited in `INIT.md`, `README.md`, or other governance documents.
 - Record each mismatch as an issue.
 
@@ -214,14 +213,14 @@ Verify that the agent inventory is synchronized across all tracking locations.
 - Report any file in the directory not listed in `AGENTS.md`.
 - Report any agent listed in `AGENTS.md` without a corresponding file.
 
-**5b. AGENTS.md vs. DBM §5.1:**
-- Compare the agent list in `AGENTS.md` against `DBM_Agent_Instruction_Architecture.md` §5.1 table.
-- Report any agent present in one but not the other.
-- Report any classification mismatch (Type, Class, Surface, Write Scope, Blocking) between the two sources.
+**5b. Competing agent index detection:**
+- `AGENTS.md` is the sole live agent index. Scan the other governance documents in scope (including `DBM_Agent_Instruction_Architecture.md`, `INIT.md`, `README.md`) for any agent index table or agent enumeration that duplicates the `AGENTS.md` role tables.
+- Report any such competing index as an issue, noting whether its membership or classifications diverge from `AGENTS.md`.
+- Prose that names individual agents in context (e.g., dispatch relationships) is not a competing index; only enumerations presented as an inventory are.
 
 **5c. Agent header validation:**
 - For each `AGENT_*.md` file, extract the Agent Type table values.
-- Compare against the classification in `AGENTS.md` and `DBM` §5.1.
+- Compare against the classification in `AGENTS.md`.
 - Report any mismatch in declared properties.
 
 ---
@@ -428,7 +427,7 @@ Verbatim reproduction of the INIT-TASK brief as received, followed by normalized
 ## Pass 5 — Agent Inventory Consistency
 ### 5a. Filesystem vs. AGENTS.md
 {Findings}
-### 5b. AGENTS.md vs. DBM §5.1
+### 5b. Competing Agent Index Detection
 {Findings}
 ### 5c. Agent Header Validation
 {Findings}
@@ -551,7 +550,7 @@ This audit agent addresses these risks through six passes that mechanically veri
 - **Cross-reference resolution** catches broken internal links that make the document suite harder to navigate and verify.
 - **Invariant ID integrity** ensures that the contract layer (K-*, R1–R17, I1–I10) is completely connected — every invariant is both defined and used.
 - **Terminology consistency** prevents semantic drift that undermines the shared vocabulary.
-- **Agent inventory consistency** ensures that the three sources of agent truth (filesystem, AGENTS.md, DBM §5.1) agree.
+- **Agent inventory consistency** ensures that the filesystem and the `AGENTS.md` live index agree, and that no other governance document maintains a competing agent index.
 - **Document hierarchy coherence** verifies the structural relationships between governance documents — that principles are reflected in invariants, that invariants are reflected in enforcement points, and that schemas are consistent.
 
 The audit is read-only and produces proposals, not changes. This preserves the human decision right over governance document modifications (K-AUTH-1).
