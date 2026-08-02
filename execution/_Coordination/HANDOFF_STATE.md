@@ -31,6 +31,9 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   (Receipt 82). H0 implementation is complete; H2 is satisfied by the owner's
   2026-08-02 direction "Merge via PR"; publication/effective SHAs remain
   `TBD` until the authorized checked PR acts occur.
+  Publication vehicle: PR #478
+  (`https://github.com/sgttomas/chirality/pull/478`); validated implementation
+  commit `bb44d71c93cc5431d5fc8a902e716cc88966ea9f`.
 
 ## 2. Derivative-package currency
 

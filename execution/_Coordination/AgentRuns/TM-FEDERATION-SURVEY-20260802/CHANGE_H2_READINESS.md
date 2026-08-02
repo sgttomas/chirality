@@ -71,3 +71,20 @@ direct push to `main`, a force push, or a check bypass.
   branch's actual remote HEAD, create the PR, observe the completed required-
   check listing, reverify exact PR source HEAD and `origin/main` drift, and
   only then exercise the owner's recorded PR-merge direction.
+
+## Authentication recovery and PR creation
+
+- GitHub CLI authentication was restored and verified outside sandbox
+  isolation as active account `sgttomas`, SSH Git protocol, with repository
+  scope. No token value is persisted here.
+- CHANGE re-fetched `origin`, confirmed a clean worktree, local/remote source
+  equality at `2d2ab87614b28d2b71662d03eec70d6573326886`, current
+  `origin/main@fe57138e6ce68fbcfe99b50676fcdd6114ec591a`, and that the base is an
+  ancestor of the source.
+- PR #478 was created at
+  `https://github.com/sgttomas/chirality/pull/478`. Its initial source HEAD was
+  `2d2ab87614b28d2b71662d03eec70d6573326886`; its validated implementation
+  commit is `bb44d71c93cc5431d5fc8a902e716cc88966ea9f`.
+- Required check verdicts, final approved PR source HEAD, and effective merge
+  SHA remain pending their actual GitHub acts. This record intentionally does
+  not self-reference the commit that contains this PR metadata.

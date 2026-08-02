@@ -2456,3 +2456,10 @@ amendment; owner ruling required).
   commit, PR, approved source HEAD, publication, and effective merge
   identities are recorded only by their respective Git/PR acts and are not
   guessed here.
+- **PR publication opened:** after GitHub authentication was restored, CHANGE
+  created PR #478 at `https://github.com/sgttomas/chirality/pull/478` from
+  `codex/task-management-federation-survey`. The validated implementation
+  commit is `bb44d71c93cc5431d5fc8a902e716cc88966ea9f`; the PR was initially
+  opened from source HEAD `2d2ab87614b28d2b71662d03eec70d6573326886`.
+  Required checks, final exact source HEAD, and effective merge SHA remain
+  pending their actual GitHub acts and are not predicted by this receipt.

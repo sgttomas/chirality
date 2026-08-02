@@ -9,7 +9,7 @@ AcceptedBasis: `main@fe57138e6ce68fbcfe99b50676fcdd6114ec591a` (candidate refres
 RecordConvention: owner ruling recorded before publication; candidate and publication SHAs remain `TBD` until their respective Git acts
 DecisionKey:  `task_management_invocation_local_federation_survey`
 Supersedes:   none; interprets D-GOV-32 and K-TM-4 without editing either
-CandidateSHA: TBD
+CandidateSHA: bb44d71c93cc5431d5fc8a902e716cc88966ea9f (validated implementation commit; PR #478)
 PublicationSHA: TBD
 EffectiveSHA: TBD
 
