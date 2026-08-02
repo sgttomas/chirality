@@ -136,8 +136,7 @@
         "filter": [
           "AGENTS.md",
           "CLAUDE.md",
-          "README.md",
-          "PROFESSIONAL_ENGINEERING.md"
+          "README.md"
         ]
       }
     ],

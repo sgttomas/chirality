@@ -12,8 +12,7 @@ const scriptPath = fileURLToPath(import.meta.url);
 const REQUIRED_ROOT_FILES = [
   'AGENTS.md',
   'CLAUDE.md',
-  'README.md',
-  'PROFESSIONAL_ENGINEERING.md'
+  'README.md'
 ];
 
 const REQUIRED_DOC_FILES = [
@@ -67,7 +66,7 @@ function printUsage(log) {
 Options:
   --source-root <path>   Monolithic source instruction-root root
   --root-files-root <path>
-                         Source root for AGENTS.md, README.md, and PROFESSIONAL_ENGINEERING.md
+                         Source root for AGENTS.md, CLAUDE.md, and README.md
                          (default: auto-detected monorepo root)
   --agents-root <path>   Source agents directory root (default: <root-files-root>/agents)
   --docs-root <path>     Source docs directory root (default: auto-detected app-dev docs)

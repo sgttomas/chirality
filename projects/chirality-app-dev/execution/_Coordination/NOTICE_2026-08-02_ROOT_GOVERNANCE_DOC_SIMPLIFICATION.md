@@ -46,16 +46,18 @@ performed by this notice or the root tranche.
 
 ## Follow-on for this loop
 
-This loop's packaging pins root files that this tranche changed or removed:
+This loop's packaging pinned root files that this tranche changed or
+removed: `frontend/package.json` `extraResources` filtered
+`PROFESSIONAL_ENGINEERING.md` and `README.md` from the repository root into
+the app bundle, and the instruction-root integrity verifier, its tests, and
+the root `Harness pre-merge` workflow fixture asserted the former's
+presence.
 
-- `frontend/package.json` `extraResources` filters
-  `PROFESSIONAL_ENGINEERING.md` and `README.md` from the repository root
-  into the app bundle; the former no longer exists and the latter's content
-  changed.
-- `frontend/src/__tests__/scripts/verify-instruction-root-integrity.test.ts`
-  and any instruction-root packaging contract that asserts the presence of
-  `PROFESSIONAL_ENGINEERING.md` will need amendment or a recorded decline.
-
-Whether to drop the pin, repoint it to the firm QMS artifact, or bundle the
-historical text remains an App-loop decision under its own instruments and
-cadence.
+Disposition (owner-ruled, 2026-08-02, same tranche): the pin is dropped.
+`PROFESSIONAL_ENGINEERING.md` is removed from the `extraResources` filter,
+from `scripts/verify-instruction-root-integrity.mjs` `REQUIRED_ROOT_FILES`,
+from the integrity test fixtures, and from the root
+`.github/workflows/harness-premerge.yml` trigger paths and fixture copy.
+The app bundle no longer ships the standard; it is available through the
+firm's quality management system. No further follow-on remains for this
+notice.
