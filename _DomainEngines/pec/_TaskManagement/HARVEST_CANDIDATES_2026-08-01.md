@@ -1,6 +1,6 @@
 # PEC Task Management — first candidate harvest
 
-**Status:** CANDIDATE-ONLY — AWAITING OWNER PROMOTION
+**Status:** PROMOTED — ALL SIX CANDIDATES MINTED 2026-08-01
 
 **Date:** 2026-08-01
 
@@ -104,11 +104,31 @@ TM-CANDIDATE: Disposition the unacknowledged D-GOV-28 runtime-stewardship notice
 | Suggested route | Owner triage with likely `INFORMATIONAL_NO_ACTION`; retain the notice as citable basis for a later client/profile act. |
 | Priority / Assignment | `TBD` / human accountable; no agent as A |
 
-## Promotion gate
+## Promotion outcome
 
-No candidate above has a `TM-PEC-<seq>` identity and no row was added to
-`REGISTER.csv`. The owner may promote any subset, amend candidate text, or
-decline all. Promotion must assign ordered IDs from `TM-PEC-001`, cite this
-report as `CandidateRef`, preserve each source SHA, and record the owner's
-priority/assignment judgment rather than inheriting the suggested route as
-authority.
+Owner direction recorded verbatim on 2026-08-01:
+
+```text
+Promote: CAND-PEC-2026-08-01-01 through -06.
+```
+
+All six candidates were promoted in harvest order:
+
+| Candidate | Register row |
+|---|---|
+| CAND-PEC-2026-08-01-01 | TM-PEC-001 |
+| CAND-PEC-2026-08-01-02 | TM-PEC-002 |
+| CAND-PEC-2026-08-01-03 | TM-PEC-003 |
+| CAND-PEC-2026-08-01-04 | TM-PEC-004 |
+| CAND-PEC-2026-08-01-05 | TM-PEC-005 |
+| CAND-PEC-2026-08-01-06 | TM-PEC-006 |
+
+The owner stated no assignment or priority judgment, so both remain `TBD` in
+every row; no suggested route was promoted into a disposition. All rows are
+`OPEN`, non-gating attention residue.
+
+Promotion-time source hashes match the harvested hashes except for candidate
+03's whole decision-register file: later D-PEC-72 activity changed that file
+without changing the cited D-PEC-02 row. `TM-PEC-003.SourceSha` therefore uses
+the current promotion-time file hash, while its Notes preserve the harvest-time
+hash and the byte-identity finding. No candidate source concern was amended.

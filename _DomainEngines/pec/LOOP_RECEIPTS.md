@@ -1378,3 +1378,10 @@
   - Gate outcome: no authority, artifact, validation, lifecycle, acceptance, C-05, or P1 state changed. Final committed-range `coord-check` carries only the two inherited register findings and creates zero D-PEC-72 handoff findings.
   - Checks: handoff manifest verified; `git diff --check` pass; final range `coord-check` exit 0.
   - Parked lanes: unchanged from Receipt 122.
+
+- **2026-08-01 — Receipt 124** (PEC Task Management first-harvest promotion).
+  - Owner direction of record (verbatim): "Promote: CAND-PEC-2026-08-01-01 through -06."
+  - Exact promotion mapping: `CAND-PEC-2026-08-01-01` through `-06` became, in harvest order, `TM-PEC-001` through `TM-PEC-006`. All six rows are `OPEN`; the owner stated no priority or R/S/C/I assignment, so those fields remain `TBD` and no agent is accountable A.
+  - Authority fence: promotion records owner-selected attention residue only. No suggested route became a disposition; no execution, deliverable amendment, SCA, lifecycle, dependency, acceptance, schedule, release, or professional-reliance authority was created.
+  - Staleness and closure echo: all 9 cited source files exist and their promotion-time hashes were recorded. `TM-PEC-003` uses the current whole-register hash and preserves the harvested hash in Notes; its cited D-PEC-02 row is byte-identical. No row is `CLOSED`, so no closure echo is due; no elevation or escalation notice was created.
+  - Checks: Task Management schema/referential validation PASS (6 rows); exact candidate-to-row mapping assertion PASS; strict source-existence check 9/9; loop self-check remains at `INFO=15`, `NOT_APPLICABLE=1`, `REVIEW=5`, `WARN=28`; committed-range coordination and whitespace checks have no new findings.
