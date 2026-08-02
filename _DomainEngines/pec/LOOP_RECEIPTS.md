@@ -1533,3 +1533,20 @@
   - Checks: packet citations/hashes, SOW validation, strict decomposition registers, dependency closure, manifest, self-check, coordination check, and whitespace check govern publication.
   - Authority fence: packet drafting selects no option and opens no source/profile path, P1 node, lifecycle act, release, cross-loop mandate, or professional reliance; `F-PEC-1` remains closed.
   - Gate outcome: **AWAITING OWNER** on D-PEC-74 O-A / O-B / amend / defer.
+
+- **2026-08-01 — Receipt 135** (D-PEC-74 O-A authority recorded before production).
+  - Owner ruling of record (verbatim): `D-PEC-74: O-A.`
+  - Authority pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-74_first_p1_source_slice.md`; frozen activation authority `projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/O-A_ACTIVATION_AUTHORITY_2026-08-01.md`.
+  - Selection: DEL-08-02 only; O-A's exact API-contract source paths and exact project software-workflow profile are opened for a later bounded WORKING_ITEMS production act.
+  - Checks/fence: the selected contract remains SHA-256 `eb171e9dac40b313be8ea8ff75ad395171b599a41d2a1dbf290a9c5b44290c20`; reliance preflight, SOW validation, registered checks, strict registers, dependency closure, scope containment, manifest, harness, coordination, and whitespace checks remain mandatory.
+  - Non-effects: no production executed at this checkpoint; projects/pec/v2/ and projects/pec/software-workflow.json remain absent; no deliverable-local file changed; DEL-08-02 remains `INITIALIZED`; no acceptance, lifecycle, later-node, release, merge, reliance, or cross-loop mandate is inferred.
+  - Gate outcome: semantic authority **RECORDED**; next lawful act is bounded WORKING_ITEMS production under the frozen O-A activation authority.
+
+- **2026-08-01 — Receipt 136** (D-PEC-74 O-A bounded producer execution).
+  - Authority: owner ruling `D-PEC-74: O-A.` as frozen in `projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/O-A_ACTIVATION_AUTHORITY_2026-08-01.md` at commit `49676473884e07a78fa197a23451e13a12850427`.
+  - Produced scope: DEL-08-02 only — JSON Schema draft 2020-12 API v1 contract, Python-standard-library compatibility tests, additive/removal/meaning-change fixtures, exact `projects/pec/software-workflow.json`, and the two authorized deliverable run records.
+  - Verification: reliance preflight `ALLOW`; SOW_V1 valid; exact profile bytes pass; affected checks select `v2-api-contract` plus always-run `harness-self-check`; both registered checks pass; six API-contract tests pass; additive candidate passes; removal and meaning-change candidates fail with located explanations; strict registers remain 64 / 254 / zero findings; dependency closure remains 119 edges / zero SCCs; containment, manifest, self-check, and whitespace pass.
+  - Artifact pointers: exact hashes and the full boundary are recorded in `projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/EXECUTION_HANDOFF.md`; producer work is candidate only.
+  - Authority fence: DEL-08-02 remains `INITIALIZED`; no artifact acceptance, lifecycle transition, later P1 node, transport/access/auth, compact response format, latency, subscription, service/store/runtime/network act, release, merge, professional reliance, or cross-loop mandate is inferred.
+  - Gate outcome: bounded WORKING_ITEMS production is complete. REVIEW type selection, any review-from-`INITIALIZED` override, findings/Gate 5, AC-005 qualified attribution confirmation, exact-hash artifact fitness, and Git publication remain open.
+  - Parked lanes: all later P1 nodes remain closed; OI-009 transport/event-contract questions remain open.

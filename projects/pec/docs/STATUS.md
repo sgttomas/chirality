@@ -22,9 +22,15 @@ that doesn't need to exist": no governed act may ever require it.
 `D-PEC-61`; exact PEC-K-03/-11 rows adopted by `D-PEC-67`; surrounding
 consumer-interface concordance adopted by `D-PEC-68`).**
 
-**Implementation:** none yet. Decomposition revision 1.3 is the accepted
-current basis after `SCA-003` (2026-07-28; revision 1.2 was the `SCA-002`
-basis); PROJECT_SETUP remains released with `FULL_GRAPH` already selected. Nothing in the PRD is an implementation mandate (each
+**Implementation:** the first bounded P1 producer slice now exists under
+`D-PEC-74` O-A: the DEL-08-02 version-1 API JSON Schema, standard-library
+additive compatibility tests/fixtures, and exact registered-check profile.
+The candidate has passed producer checks but remains unaccepted and
+`INITIALIZED`; no service, store, transport, runtime integration, later P1
+node, release, or professional reliance is authorized. Decomposition revision
+1.3 is the accepted current basis after `SCA-003` (2026-07-28; revision 1.2
+was the `SCA-002` basis); PROJECT_SETUP remains released with `FULL_GRAPH`
+already selected. Nothing in the PRD is an implementation mandate (each
 tranche needs its own owner-ruled packet).
 
 **The old application** (v0.4-baseline prototype: `core/`, `server/`, `web/`,
@@ -72,14 +78,17 @@ read and cite only, no further feature work, retired product docs under
    source/profile path is opened.)*
    (32 deliverables: parsers, reconciler + parity, orientation core,
    socket API, kill test, bootstrap self-ingest; plus pre-P1 DEL-00-01
-   ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **D-PEC-74 is now
-   presented and awaiting owner ruling for the first actual P1 source slice.**
-   Its recommended O-A is the DEL-08-02 API-contract canary; O-B presents the
-   DEL-01-06 local-loop-registry canary. Both options name exact
-   `projects/pec/v2/` paths, exact `software-workflow.json` content, acts,
-   checks, owner gates, rollback, and authority fence. No option is selected;
-   until the owner rules, no v2 source tree or profile is authorized and
-   `F-PEC-1` remains in force.
+   ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **D-PEC-74 is ruled
+   O-A for the first actual P1 source slice.** Only DEL-08-02 is selected and
+   activated as the API-contract canary under the packet's exact
+   `projects/pec/v2/` paths, exact `software-workflow.json` content, checks,
+   owner gates, rollback, and authority fence. WORKING_ITEMS has completed the
+   exact producer slice: both registered checks pass, additive evolution
+   passes, and seeded removal/meaning changes fail with located explanations.
+   DEL-08-02 remains `INITIALIZED` and its artifact bytes remain candidate;
+   REVIEW, AC-005 confirmation, exact-hash fitness, lifecycle, publication,
+   and every later P1 node remain separately gated. `F-PEC-1` remains closed
+   outside the exact O-A fence.
 2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
    clause armed; receiving consumers retain their own authority and cadence) →
    P4 streams, per the standing plan and the deliverables' PhaseHints.
