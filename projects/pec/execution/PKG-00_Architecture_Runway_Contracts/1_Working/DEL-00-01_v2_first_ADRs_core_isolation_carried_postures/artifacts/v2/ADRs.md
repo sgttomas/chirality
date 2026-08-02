@@ -1,8 +1,9 @@
 # PEC v2 — first architecture decision records
 
-**Artifact status:** candidate deliverable output; architecture selection is
-owner-ruled, artifact fitness and deliverable acceptance remain pending REVIEW
-and a later owner act.
+**Authority status:** architecture selection is owner-ruled by D-PEC-72 O-B.
+Artifact-fitness and lifecycle dispositions are recorded separately on the
+governed REVIEW, owner-ruling, and `_STATUS.md` surfaces; this file does not
+enact those acts.
 
 **Accepted basis:** `projects/pec/docs/PRD.md` v2.2 and
 `projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.3 at
@@ -10,7 +11,7 @@ and a later owner act.
 
 ## ADR-PEC-V2-001 — Hexagonal application isolation
 
-- Status: DECIDED by D-PEC-72 O-B; artifact acceptance pending
+- Status: DECIDED by D-PEC-72 O-B
 - Date: 2026-08-01
 - Resolves: OI-012
 - Scope item: SOW-088
@@ -113,7 +114,7 @@ or P1 implementation authority.
 
 ## ADR-PEC-V2-002 — Carried runtime and dependency postures
 
-- Status: CARRIED POSTURES RECORDED; artifact acceptance pending
+- Status: CARRIED POSTURES RECORDED
 - Date: 2026-08-01
 - Scope item: SOW-088
 - Sources: archived ADR-002 and ADR-014 (historical corpus), D-PEC-56,
@@ -157,9 +158,10 @@ archived ADR remain historical. No archived v0.4 source, dependency, database,
 RBAC design, reporting surface, or runtime ownership becomes live through this
 record.
 
-## Deliverable acceptance boundary
+## Deliverable authority boundary
 
-D-PEC-72 selected the architecture before these bytes existed. These ADR bytes
-remain candidate evidence until REVIEW validates the mapped `AC-*`/`VER-*`
-criteria and the owner separately confirms them as fit. Writing this file does
-not advance `_STATUS.md` or close C-05.
+D-PEC-72 selected the architecture before these bytes existed. Whether these
+ADR bytes satisfy the mapped `AC-*`/`VER-*` criteria and are fit as the
+deliverable artifact is established only through REVIEW and a separate owner
+act recorded on their governed surfaces. This file neither records nor implies
+that disposition, advances `_STATUS.md`, or closes C-05.
