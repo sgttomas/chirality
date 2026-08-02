@@ -552,3 +552,45 @@
     professional reliance, D-PEC-75 state, or cross-loop mandate changes.
   - Parked lanes: D-T0-27 and D-T0-28 CHANGE closeout after committed-range
     `coord-check` and merge identity; D-PEC-75 owns DEL-01-06 review.
+
+- **2026-08-02 — Receipt 35** (D-T0-29 exact whitespace attribute validated).
+  - Owner direction of record: Ryan Tufts, in-session, 2026-08-02 —
+
+    > APPROVE:
+    >
+    > 1. D-T0-29: O-A.
+    >
+    > 2. DEL-01-06 REVIEW Gate 5 — HOLD.
+    >
+    >    Retain DEL-01-06 at INITIALIZED. The SELF_CHECK populated
+    >    AC-001 through AC-006 as PENDING FUTURE PRODUCTION, recorded
+    >    zero findings, and recommends no lifecycle transition.
+    >
+    > 3. DEL-01-06 ScopeOfWork contract fitness — ACCEPT.
+    >
+    >    I accept ScopeOfWork.md at SHA-256
+    >    7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a
+    >    as the production contract for DEL-01-06.
+    >
+    >    AC-001 through AC-006 remain future-production obligations and
+    >    are not satisfied by this act. This acceptance does not advance
+    >    lifecycle, make D-T0-27 effective, independently open source,
+    >    authorize another P1 node, release, or professional reliance.
+  - Executed pointer: only item 1 in this Tier-0 lane. Exact `.gitattributes`
+    preimage `7dece552...` became exact postimage `c0d9e5b7...`; the exact
+    D-T0-28 patch remains `db807bef...` and its test postimage remains
+    `7a4e8aa0...`. Items 2 and 3 remain with the PEC loop and are neither
+    executed nor narrowed here.
+  - Gate outcome: D-T0-29 is `RULED O-A`; the exact patch attribute reports
+    `whitespace: unset`, candidate-whitespace passes against `origin/main`,
+    18/18 targeted tests and 8/8 profile-validator tests pass, bridge-status
+    has no findings, self-check completes, and protected PEC hashes remain
+    exact. The application chain is ready for CHANGE but `NOT EFFECTIVE`
+    before exact merge.
+  - Authority fence: no validator behavior, D-T0-28 patch/test, profile,
+    project, PEC path, source, ScopeOfWork, lifecycle, Task Management,
+    runtime, adapter invocation, release, professional reliance, D-PEC-75
+    state, or cross-loop mandate changes.
+  - Parked lanes: D-T0-27/D-T0-28/D-T0-29 CHANGE closeout after
+    committed-range `coord-check` and merge identity; D-PEC-75 owns DEL-01-06
+    Gate-5 HOLD and ScopeOfWork acceptance recording.

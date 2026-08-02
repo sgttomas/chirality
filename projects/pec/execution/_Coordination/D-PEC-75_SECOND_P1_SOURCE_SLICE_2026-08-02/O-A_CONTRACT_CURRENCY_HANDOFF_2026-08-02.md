@@ -1,6 +1,6 @@
 # D-PEC-75 O-A contract-currency handoff
 
-**State:** CONTRACT-FITNESS REVIEW COMPLETE / AWAITING EXACT-HASH OWNER SOW FITNESS / SOURCE DORMANT
+**State:** SOW CONTRACT FITNESS ACCEPTED / GATE 5 HOLD AT INITIALIZED / SOURCE NOT OPENED BY REVIEW
 
 **Selected deliverable:** PKG-01 / DEL-01-06 Loop registry (local config
 default), and no other node
@@ -80,6 +80,23 @@ owner acceptance or rejection of the exact repaired SOW hash as the production
 contract. That later contract-fitness act must not satisfy future-production
 AC-001 through AC-006 or itself advance lifecycle.
 
+## Owner Gate 5 and exact-hash contract disposition
+
+The owner subsequently ruled Gate 5 `HOLD`, retaining DEL-01-06 at
+`INITIALIZED`, and separately accepted ScopeOfWork SHA-256
+`7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`
+as the production contract. The full verbatim three-item message is recorded
+in the deliverable-local `_REVIEW.md`; its D-T0-29 item remains owned by the
+Tier-0 instrument and creates no REVIEW effect.
+
+AC-001 through AC-006 remain `PENDING FUTURE PRODUCTION`; zero findings remain
+open. No lifecycle transition was applied. Immutable final disposition
+evidence is
+`projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/`.
+The SOW acceptance does not make D-T0-27 effective or independently open
+source. Any downstream activation requires owning-manager verification of the
+distinct D-PEC-75 prerequisites against serialized durable state.
+
 ## Dormant source phase
 
 Every source, test, project-workflow, adapter, configuration, run-record, and
@@ -108,11 +125,9 @@ acceptance, `ISSUED`, later P1 node,
 service/store/transport/runtime act, release, professional reliance, or
 cross-loop mandate.
 
-The next owner gate is a separate exact-hash contract-fitness decision on
-SOW SHA-256
-`7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`.
-Source activation remains conditional on both packet prerequisites and their
-serialized durable fan-in. The D-PEC-75 manifest is resealed at this serialized
-working-tree checkpoint after the D-T0-27/D-T0-28 and REVIEW writes. That
-mechanical integrity result does not make D-T0-27 effective before merge,
-accept the SOW, advance lifecycle, or open source production.
+The exact-hash SOW-fitness gate is satisfied. Source activation remains
+conditional on the packet's distinct remaining prerequisite and on owning-
+manager serialized fan-in; REVIEW neither adjudicates that prerequisite nor
+opens source. The D-PEC-75 manifest is resealed at this working-tree checkpoint.
+That mechanical integrity result does not make D-T0-27 effective, advance
+lifecycle, or itself open source production.

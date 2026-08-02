@@ -1,12 +1,12 @@
 # Review — DEL-01-06 Loop registry contract fitness
 
-**Review stage:** GATE 4 COMPLETE — ZERO FINDINGS; GATE 5 RECOMMEND_HOLD
+**Review stage:** GATE 5 OWNER HOLD — INITIALIZED; EXACT-HASH SOW FITNESS ACCEPTED
 
 **Review Type:** SELF_CHECK
 
 **Reviewer(s):** AGENT_CHECK (mechanical producer-side contract-fitness review; no peer reviewer inferred)
 
-**Target transition:** INITIALIZED → CHECKING (not authorized; not recommended)
+**Target transition:** NONE — owner HOLD at `INITIALIZED`
 
 **Owner Gate 1 ruling (verbatim, 2026-08-02):**
 
@@ -31,6 +31,34 @@ Item 2 selects this REVIEW type and overrides only the review-entry state.
 Item 1 belongs to the Tier-0 Domain Engine instrument and creates no REVIEW
 effect here. No acceptance, lifecycle, D-T0 effectiveness, source, later-node,
 release, or reliance authority is inferred.
+
+**Owner Gate 5 and contract-fitness dispositions (verbatim, 2026-08-02):**
+
+> APPROVE:
+>
+> 1. D-T0-29: O-A.
+>
+> 2. DEL-01-06 REVIEW Gate 5 — HOLD.
+>
+>    Retain DEL-01-06 at INITIALIZED. The SELF_CHECK populated
+>    AC-001 through AC-006 as PENDING FUTURE PRODUCTION, recorded
+>    zero findings, and recommends no lifecycle transition.
+>
+> 3. DEL-01-06 ScopeOfWork contract fitness — ACCEPT.
+>
+>    I accept ScopeOfWork.md at SHA-256
+>    7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a
+>    as the production contract for DEL-01-06.
+>
+>    AC-001 through AC-006 remain future-production obligations and
+>    are not satisfied by this act. This acceptance does not advance
+>    lifecycle, make D-T0-27 effective, independently open source,
+>    authorize another P1 node, release, or professional reliance.
+
+Item 1 belongs to the Tier-0 Domain Engine instrument and creates no REVIEW
+effect. Item 2 closes Gate 5 with no transition. Item 3 accepts only the exact
+SOW bytes as the DEL-01-06 production contract; it is not implementation or
+acceptance-criterion satisfaction.
 
 ## Review basis
 
@@ -95,15 +123,14 @@ future-production statuses are expected preproduction state, not findings.
 Gate 4 disposition is `N/A — ZERO FINDINGS`; no human disposition is inferred
 or required.
 
-## Gate 5 — recommendation
+## Gate 5 — owner outcome
 
-**Recommendation:** `RECOMMEND_HOLD` lifecycle at `INITIALIZED`.
+**Outcome:** `HOLD` lifecycle at `INITIALIZED`; no transition was applied.
 
-The repaired SOW is mechanically fit for a separate accountable-owner
-exact-hash contract-fitness decision. REVIEW recommends presenting acceptance
-or rejection of SHA-256
+The owner accepts SHA-256
 `7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`
-as the DEL-01-06 production contract, explicitly without satisfying AC-001
-through AC-006 or advancing lifecycle. Source activation remains governed by
-the distinct D-PEC-75 conditional prerequisites and their serialized durable
-fan-in. This review does not make D-T0-27 effective or open source production.
+as the DEL-01-06 production contract. AC-001 through AC-006 remain `PENDING
+FUTURE PRODUCTION`, zero findings remain open, and lifecycle remains
+`INITIALIZED`. This REVIEW act neither makes D-T0-27 effective nor
+independently opens source. Any downstream activation remains governed by the
+distinct D-PEC-75 prerequisites and the owning manager's serialized fan-in.

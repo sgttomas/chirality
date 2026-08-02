@@ -1,6 +1,6 @@
 # D-PEC-75 — Second P1 source slice
 
-**Status:** RULED O-A / DEL-01-06 CONTRACT-CURRENCY OPEN / SOURCE DORMANT
+**Status:** RULED O-A / SOW FITNESS ACCEPTED / GATE 5 HOLD AT INITIALIZED / SOURCE DORMANT
 
 **DecisionID:** D-PEC-75
 
@@ -55,9 +55,10 @@ Change no SOW, source, project profile, status, or domain profile. Keep
 ## Profile prerequisite and non-effects
 
 The D-T0-27 O-A application has materialized the exact PEC v2 profile
-postimage at `ADOPTED / READ_ONLY`, but it is not effective while the omitted
-`tools/practitioner_harness/test_live_baseline.py` amendment and its required
-passing checks remain outside the completed application. The exact tier-0 packet is
+postimage at `ADOPTED / READ_ONLY`. D-T0-28 and D-T0-29 are ruled O-A and the
+serialized application chain is validated for CHANGE, but D-T0-27 is not
+effective before exact PR #459 publication, committed-range checks, and merge
+identity. The exact tier-0 packet is
 `_DomainEngines/bridge/PEC_V2_PROFILE_SUCCESSOR_D-T0-27_2026-08-02/PACKET.md`
 with candidate SHA-256
 `be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d`.
@@ -72,13 +73,14 @@ domain-engine profile. The exact profile bytes, paths, checks, rollback,
 lifecycle/review/fitness gates, bootstrap effects, prohibited acts, and
 strict non-effects are normative in the linked packet.
 
-O-A selects only DEL-01-06. Only the exact bounded SOW-currency repair in the
-packet is open; source, test, project-workflow, and run-record paths remain
-dormant until the repaired SOW receives separate REVIEW and exact-hash owner
-acceptance and D-T0-27 becomes effective. No SOW byte is accepted by this
-ruling. No artifact acceptance, lifecycle transition, `ISSUED`, later node,
-release, merge, professional reliance, service/store/transport/runtime act,
-or cross-loop mandate is inferred.
+O-A selects only DEL-01-06. Its bounded SOW-currency repair completed REVIEW;
+the owner held lifecycle at `INITIALIZED` and accepted only exact SOW SHA-256
+`7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`
+as the production contract. AC-001 through AC-006 remain `PENDING FUTURE
+PRODUCTION`, with zero findings. Source, test, project-workflow, and run-record
+paths remain dormant until D-T0-27 becomes effective through the exact PR #459
+merge identity. No `ISSUED`, later node, release, professional reliance,
+service/store/transport/runtime act, or cross-loop mandate is inferred.
 
 ## Owner ruling
 
@@ -98,9 +100,42 @@ currency phase in the packet. It does not select a REVIEW type, authorize
 review from `INITIALIZED`, accept a repaired SOW hash, make D-T0-27 effective,
 or open source production.
 
+## Owner Gate 5 and contract-fitness disposition
+
+Ryan Tufts, in-session, 2026-08-02 (verbatim):
+
+> APPROVE:
+>
+> 1. D-T0-29: O-A.
+>
+> 2. DEL-01-06 REVIEW Gate 5 — HOLD.
+>
+>    Retain DEL-01-06 at INITIALIZED. The SELF_CHECK populated
+>    AC-001 through AC-006 as PENDING FUTURE PRODUCTION, recorded
+>    zero findings, and recommends no lifecycle transition.
+>
+> 3. DEL-01-06 ScopeOfWork contract fitness — ACCEPT.
+>
+>    I accept ScopeOfWork.md at SHA-256
+>    7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a
+>    as the production contract for DEL-01-06.
+>
+>    AC-001 through AC-006 remain future-production obligations and
+>    are not satisfied by this act. This acceptance does not advance
+>    lifecycle, make D-T0-27 effective, independently open source,
+>    authorize another P1 node, release, or professional reliance.
+
+Item 1 remains owned by the Tier-0 instrument. For D-PEC-75, item 2 closes
+Gate 5 with `HOLD` and no transition; item 3 accepts only the exact SOW bytes
+as the DEL-01-06 production contract. Immutable final REVIEW evidence is
+`projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/`.
+No source authority is independently created by REVIEW or SOW acceptance.
+
 ## Recorded outcome
 
-O-A is ruled. The next lawful act is bounded WORKING_ITEMS repair of only the
-DEL-01-06 `ScopeOfWork.md` currency statements named in packet §5.2, followed
-by deterministic SOW validation and return of the unchanged six-item
-checklist. Source production remains separately gated and dormant.
+O-A is ruled; its contract-currency, REVIEW, Gate 5 HOLD, and exact-hash SOW-
+fitness gates are complete. DEL-01-06 remains `INITIALIZED`; AC-001 through
+AC-006 remain future-production obligations; zero findings remain. Source
+production is still dormant and may not activate until D-T0-27 becomes
+effective through exact PR #459 merge identity and the owning manager verifies
+that serialized prerequisite fan-in.
