@@ -7,16 +7,24 @@
       "cwd": ".",
       "command": ["python3", "-m", "unittest", "discover", "-s", "v2/tests/contracts/api", "-p", "test_*.py"]
     },
+    "v2-loop-registry": {
+      "cwd": ".",
+      "command": ["python3", "-m", "unittest", "discover", "-s", "v2/tests/config", "-p", "test_*.py"]
+    },
     "harness-self-check": {
       "cwd": "../..",
       "command": ["python3", "tools/practitioner_harness/harness.py", "self-check"]
     }
   },
-  "always_checks": ["harness-self-check"],
+  "always_checks": ["v2-api-contract", "harness-self-check"],
   "path_rules": [
     {
       "paths": ["v2/contracts/api/**", "v2/tests/contracts/api/**", "software-workflow.json"],
       "checks": ["v2-api-contract"]
+    },
+    {
+      "paths": ["v2/config/**", "v2/src/pec_v2/**", "v2/tests/config/**", "software-workflow.json"],
+      "checks": ["v2-loop-registry"]
     },
     {
       "paths": ["execution/**", "docs/**", "AGENTS.md"],

@@ -1,6 +1,6 @@
 # D-T0-28 — D-T0-27 live-baseline pin amendment
 
-**Status:** `RULED O-A / APPLICATION VALIDATED / READY FOR CHANGE / NOT EFFECTIVE`
+**Status:** `RULED O-A / APPLIED / EFFECTIVE SUPPORTING AMENDMENT`
 
 **Date presented:** 2026-08-02
 
@@ -41,8 +41,9 @@ required D-T0-27 checks?
 The ruled application changes only the conscious test pins described by the
 exact packet. It changes no production behavior, profile, project, source,
 ScopeOfWork, lifecycle, Task Management, accepted artifact, runtime, release,
-reliance, D-PEC-75 state, or cross-loop duty. D-T0-27 remains not effective
-until exact CHANGE publication and merge identity.
+reliance, D-PEC-75 state, or cross-loop duty. It is an effective supporting
+amendment through PR #459 merge
+`d9dc65804a0719fdf869af1ef60d53dc8cb0a895`.
 
 ## Owner ruling
 
@@ -78,5 +79,6 @@ bridge-status completed with no findings, self-check completed at the recorded
 baseline, protected PEC hashes remained exact, and both candidate manifests
 reproduced. Exact evidence is in the packet's `APPLICATION_EVIDENCE.md`.
 
-Application is validated and ready for CHANGE publication. It is not
-effective before exact merge identity and committed-range `coord-check`.
+Exact source `0e47c218c26830a4efeb29eb2d2f3ea99142b987` was published by PR
+#459 merge `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`. D-T0-28 is applied and
+effective as a supporting amendment; its non-effects remain unchanged.

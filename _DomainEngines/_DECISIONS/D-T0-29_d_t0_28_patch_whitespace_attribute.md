@@ -1,6 +1,6 @@
 # D-T0-29 — Exact whitespace attribute for D-T0-28 patch evidence
 
-**Status:** `RULED O-A / APPLICATION VALIDATED / READY FOR CHANGE / NOT EFFECTIVE`
+**Status:** `RULED O-A / APPLIED / EFFECTIVE SUPPORTING AMENDMENT`
 
 **Date presented:** 2026-08-02
 
@@ -35,10 +35,11 @@ patch or test bytes?
 
 ## Authority fence
 
-This row authorizes nothing while awaiting ruling. It changes no attribute,
-validator, patch, test, profile, project, PEC path, source, ScopeOfWork,
-lifecycle, Task Management, runtime, release, reliance, D-PEC-75 state, or
-cross-loop duty. D-T0-27 and D-T0-28 remain not effective.
+The ruled application changes only the exact Git whitespace attribute. It
+changes no validator behavior, patch, test, profile, project, PEC path, source,
+ScopeOfWork, lifecycle, Task Management, runtime, release, reliance,
+D-PEC-75 state, or cross-loop duty. It is an effective supporting amendment
+through PR #459 merge `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`.
 
 ## Owner ruling
 
@@ -85,5 +86,6 @@ baseline, candidate-whitespace passed against `origin/main`, protected PEC
 hashes remained exact, and the manifest chain was regenerated. Exact evidence
 is in the packet's `APPLICATION_EVIDENCE.md`.
 
-Application is validated and ready for CHANGE publication. It is not
-effective before exact merge identity and committed-range `coord-check`.
+Exact source `0e47c218c26830a4efeb29eb2d2f3ea99142b987` was published by PR
+#459 merge `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`. D-T0-29 is applied and
+effective as a supporting amendment; its non-effects remain unchanged.

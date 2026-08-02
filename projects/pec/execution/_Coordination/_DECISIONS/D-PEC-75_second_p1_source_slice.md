@@ -1,6 +1,6 @@
 # D-PEC-75 — Second P1 source slice
 
-**Status:** RULED O-A / SOW FITNESS ACCEPTED / GATE 5 HOLD AT INITIALIZED / SOURCE DORMANT
+**Status:** RULED O-A / PRODUCER COMPLETE / REVIEW AND OWNER GATES OPEN
 
 **DecisionID:** D-PEC-75
 
@@ -54,19 +54,17 @@ Change no SOW, source, project profile, status, or domain profile. Keep
 
 ## Profile prerequisite and non-effects
 
-The D-T0-27 O-A application has materialized the exact PEC v2 profile
-postimage at `ADOPTED / READ_ONLY`. D-T0-28 and D-T0-29 are ruled O-A and the
-serialized application chain is validated for CHANGE, but D-T0-27 is not
-effective before exact PR #459 publication, committed-range checks, and merge
-identity. The exact tier-0 packet is
+The D-T0-27 O-A application is effective at `ADOPTED / READ_ONLY` through PR
+#459 merge `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`. D-T0-28 and D-T0-29
+are effective supporting amendments. The exact tier-0 packet is
 `_DomainEngines/bridge/PEC_V2_PROFILE_SUCCESSOR_D-T0-27_2026-08-02/PACKET.md`
 with candidate SHA-256
 `be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d`.
 D-PEC-76 is the PEC-side pointer row following the D-PEC-11 precedent; it
 creates no duplicate adoption act. The semantic profile ruling is D-T0-27.
-D-PEC-75 does not adopt, amend, or narrow a domain profile. The O-A ruling
-opens only the DEL-01-06 contract-currency phase and does not make D-T0-27
-effective.
+D-PEC-75 does not adopt, amend, or narrow a domain profile. D-T0-27
+effectiveness satisfies only the separately governed profile prerequisite; it
+does not independently open DEL-01-06 source.
 
 `projects/pec/software-workflow.json` is a project check registry, not the
 domain-engine profile. The exact profile bytes, paths, checks, rollback,
@@ -77,10 +75,11 @@ O-A selects only DEL-01-06. Its bounded SOW-currency repair completed REVIEW;
 the owner held lifecycle at `INITIALIZED` and accepted only exact SOW SHA-256
 `7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`
 as the production contract. AC-001 through AC-006 remain `PENDING FUTURE
-PRODUCTION`, with zero findings. Source, test, project-workflow, and run-record
-paths remain dormant until D-T0-27 becomes effective through the exact PR #459
-merge identity. No `ISSUED`, later node, release, professional reliance,
-service/store/transport/runtime act, or cross-loop mandate is inferred.
+PRODUCTION`, with zero findings. The serialized owning-manager fan-in now
+proves both packet prerequisites, so only the exact O-A source-production
+phase in §§5.3–5.6 is open and ready for WORKING_ITEMS. This fan-in creates no
+source byte and no `ISSUED`, later node, release, professional reliance,
+service/store/transport/runtime act, or cross-loop mandate.
 
 ## Owner ruling
 
@@ -131,11 +130,50 @@ as the DEL-01-06 production contract. Immutable final REVIEW evidence is
 `projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-02_0954/`.
 No source authority is independently created by REVIEW or SOW acceptance.
 
+## Serialized effectiveness and source-gate fan-in
+
+The two conditional O-A prerequisites are now durably satisfied:
+
+1. DEL-01-06 exact SOW SHA-256
+   `7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`
+   is owner-accepted as the production contract after final SELF_CHECK
+   snapshot `REV_DEL-01-06_2026-08-02_0954`; zero findings remain, AC-001
+   through AC-006 remain `PENDING FUTURE PRODUCTION`, and lifecycle remains
+   `INITIALIZED`; and
+2. D-T0-27 is effective at `ADOPTED / READ_ONLY` through PR #459 source
+   `0e47c218c26830a4efeb29eb2d2f3ea99142b987` and effective merge
+   `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; current main basis
+   `556ae59a34ac2f06ef924d367843a72ea00d1f37` descends from that merge.
+
+Accordingly, the conditional authority already granted by D-PEC-75 O-A now
+opens only packet §§5.3–5.6 for one bounded WORKING_ITEMS source-production
+act. The exact path list, exact project-workflow bytes, checks, rollback, and
+strict non-effects remain those in the packet. This fan-in does not itself
+write source, change lifecycle, satisfy an AC, accept a future artifact,
+authorize another P1 node, release, or create professional reliance.
+
 ## Recorded outcome
 
 O-A is ruled; its contract-currency, REVIEW, Gate 5 HOLD, and exact-hash SOW-
 fitness gates are complete. DEL-01-06 remains `INITIALIZED`; AC-001 through
-AC-006 remain future-production obligations; zero findings remain. Source
-production is still dormant and may not activate until D-T0-27 becomes
-effective through exact PR #459 merge identity and the owning manager verifies
-that serialized prerequisite fan-in.
+AC-006 remain future-production obligations; zero findings remain. D-T0-27 is
+effective through exact PR #459 merge identity, and serialized prerequisite
+fan-in is complete. The exact O-A source-production phase is therefore
+**OPEN / READY FOR WORKING_ITEMS**; no production has yet occurred.
+
+## Source-production outcome
+
+WORKING_ITEMS completed only packet §§5.3–5.6. The immutable core
+`RegisteredLoop`, core-owned `LoopRegistry` port, replaceable JSON adapter,
+one-entry PEC default/schema, fixtures/tests, exact project workflow profile,
+and two deliverable run records now exist. Twelve registry tests, the six
+accepted API regression tests, and harness self-check pass. Exact hashes and
+all eleven verification dispositions are in
+`../D-PEC-75_SECOND_P1_SOURCE_SLICE_2026-08-02/EXECUTION_HANDOFF.md`.
+
+This is producer-complete candidate work. DEL-01-06 remains `INITIALIZED` and
+AC-001 through AC-006 remain pending owner disposition. REVIEW type selection,
+review-from-`INITIALIZED`, findings, Gate 5, exact-hash artifact fitness, Git
+publication/merge, later P1 work, release, and professional reliance remain
+separate owner acts. OI-003 stays open; no governed act depends on the local
+registry.

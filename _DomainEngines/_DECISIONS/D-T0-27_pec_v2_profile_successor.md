@@ -1,6 +1,6 @@
 # D-T0-27 — PEC v2 Domain Engine Profile successor
 
-**Status:** `RULED O-A / APPLICATION VALIDATED / READY FOR CHANGE / NOT EFFECTIVE`
+**Status:** `RULED O-A / EFFECTIVE / ADOPTED / READ_ONLY`
 
 **Date presented:** 2026-08-02
 
@@ -54,8 +54,11 @@ under the packet and installs candidate SHA-256
 at `ADOPTED / READ_ONLY`. D-T0-28 O-A corrected the two conscious
 live-baseline pins at exact postimage SHA-256
 `7a4e8aa0fdb28cacdfedb62a307a260bd090136362102b48673ea2a9842d7638`;
-all uncommitted application checks now pass. The application remains not
-effective until exact CHANGE publication and merge identity.
+all application checks pass. PR #459 published exact source
+`0e47c218c26830a4efeb29eb2d2f3ea99142b987` through merge
+`d9dc65804a0719fdf869af1ef60d53dc8cb0a895`, whose second parent is that
+source. D-T0-27 is effective at that merge; current main
+`556ae59a34ac2f06ef924d367843a72ea00d1f37` descends from it.
 
 This ruling and application create no PEC source/SOW/software-workflow,
 lifecycle, artifact-fitness, Task-Management, release, professional-reliance,
@@ -77,7 +80,24 @@ Ryan Tufts, in-session, 2026-08-02 (verbatim):
 
 D-T0-27 O-A adopts the exact candidate and authorizes only the bounded
 `APPLICATION_PLAN.md`. PR #458 is merged at
-`23d15899fd0acf5d1d0513f3fe396438375c9e25`. The exact application is
-validated and ready for CHANGE but `NOT EFFECTIVE` pending exact publication,
-committed-range `coord-check`, and merge identity. D-PEC-75 disposition and
-execution remain governed by the PEC loop and are not performed by this row.
+`23d15899fd0acf5d1d0513f3fe396438375c9e25`. Exact application source
+`0e47c218c26830a4efeb29eb2d2f3ea99142b987` was published by PR #459 merge
+`d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; D-T0-27 is therefore effective
+at `ADOPTED / READ_ONLY`. D-PEC-75 disposition and execution remain governed
+by the PEC loop and are not performed by this row.
+
+## Effectiveness identity
+
+| Identity | Git SHA |
+|---|---|
+| PublicationSHA | `0e47c218c26830a4efeb29eb2d2f3ea99142b987` |
+| EffectiveSHA | `d9dc65804a0719fdf869af1ef60d53dc8cb0a895` |
+| Current descendant basis | `556ae59a34ac2f06ef924d367843a72ea00d1f37` |
+
+The effective merge has the exact publication SHA as its second parent. The
+live profile remains exact SHA-256
+`be3044d3b3d402d3c3268332d4386f76ddadd67f9e8bb258ba7aabee6d0cdc1d`;
+its portable validation remains `VALID`, `ADOPTED`, with zero findings. The
+effective profile grants only the declared `READ_ONLY` boundary. It creates no
+profile-mediated invocation by itself and no source, lifecycle, release, or
+professional-reliance authority.

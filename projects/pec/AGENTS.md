@@ -138,12 +138,12 @@ PEC v2 is **content-minimal** (PEC-K-10): paths, counts, SHAs, states, hashes
 surface that captures file or diff content.
 
 `D-T0-14` and `D-T0-20` remain historical rulings for the retired product.
-D-T0-27 O-A is ruled and its exact PEC v2 `READ_ONLY` postimage is
-materialized, but it is not effective while the required live-baseline tests
-fail outside the authorized write set. Its `chirality_readable_artifacts` set
-is content-minimal and repo-committed only; it declares no runtime store,
+D-T0-27 O-A is effective through PR #459 merge
+`d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; its exact PEC v2 profile is
+`ADOPTED / READ_ONLY`. Its `chirality_readable_artifacts` set is
+content-minimal and repo-committed only; it declares no runtime store,
 service, transport, adapter-client, mutation, proposal, external-result, or
-instance-content lane.
+instance-content lane and creates no invocation by itself.
 
 ## Governance Pointers
 
@@ -164,10 +164,10 @@ instance-content lane.
 - `_DomainEngines/pec/LOOP_RECEIPTS.md` — loop handoff ledger
 - `docs/PRD.md` — adopted product definition; `docs/STATUS.md` — current state
 - `_DomainEngines/profiles/pec.yaml` — D-T0-27 O-A exact PEC v2 successor
-  postimage, declaring `ADOPTED / READ_ONLY`, materialized but not effective
-  pending an owner-rulable live-baseline pin amendment, passing checks, and
-  exact merge. The frozen v0.4 profile is preserved as packet preimage
-  lineage; the old L3 import lane remains retired.
+  postimage, `ADOPTED / READ_ONLY` and effective through PR #459 merge
+  `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`. The frozen v0.4 profile is
+  preserved as packet preimage lineage; the old L3 import lane remains
+  retired.
 
 ## Project-Wide Execution Discipline
 
