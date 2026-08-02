@@ -1,7 +1,7 @@
 # PEC Step-0 cost baseline method
 
-**Artifact status:** candidate method v1.0; repeatable method published,
-baseline acceptance pending.
+**Artifact authority boundary:** repeatable measurement method v1.0. Lifecycle
+and artifact-fitness state are recorded by their owning governance surfaces.
 
 **Deliverable:** DEL-10-01; **scope item:** SOW-058; **basis:** PRD v2.2 §11
 metric 1 and accepted decomposition revision 1.3.

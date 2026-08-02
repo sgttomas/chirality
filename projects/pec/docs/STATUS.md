@@ -65,11 +65,21 @@ read and cite only, no further feature work, retired product docs under
    PROJECT_SETUP re-pinned all 64 `_REFERENCES.md` packets to PRD v2.2 /
    revision 1.3; `D-PEC-69` reconciled the 11 affected complete contracts
    and `D-PEC-70` released `PEC-HOLD-001` after full-corpus validation.)*
+   *(amended by `D-PEC-72`, 2026-08-01: the three C-05 pre-P1 obligations
+   completed SELF_CHECK and exact-hash owner acceptance; DEL-00-01,
+   DEL-00-03, and DEL-10-01 are `CHECKING`; the owner closed C-05 at the
+   post-acceptance handoff. No deliverable is `ISSUED` and no P1 node or
+   source/profile path is opened.)*
    (32 deliverables: parsers, reconciler + parity, orientation core,
    socket API, kill test, bootstrap self-ingest; plus pre-P1 DEL-00-01
-   ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **Each tranche
-   requires its own owner-ruled `D-PEC` packet** — nothing is authorized
-   yet; `F-PEC-1` remains the outer fence.
+   ADRs, DEL-00-03 SPEC seed, DEL-10-01 Step-0 baseline). **D-PEC-74 is now
+   presented and awaiting owner ruling for the first actual P1 source slice.**
+   Its recommended O-A is the DEL-08-02 API-contract canary; O-B presents the
+   DEL-01-06 local-loop-registry canary. Both options name exact
+   `projects/pec/v2/` paths, exact `software-workflow.json` content, acts,
+   checks, owner gates, rollback, and authority fence. No option is selected;
+   until the owner rules, no v2 source tree or profile is authorized and
+   `F-PEC-1` remains in force.
 2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
    clause armed; receiving consumers retain their own authority and cadence) →
    P4 streams, per the standing plan and the deliverables' PhaseHints.

@@ -1,12 +1,12 @@
 # Review — DEL-00-03 v2 SPEC seed
 
-**Review stage:** GATE 4 REPAIR VERIFIED — GATE 5 OWNER DECISION PENDING
+**Review stage:** ARTIFACT FITNESS OWNER ACCEPTED — CHECKING
 
 **Review Type:** SELF_CHECK
 
 **Reviewer(s):** AGENT_CHECK (producer-side mechanical self-check; no human reviewer identity inferred)
 
-**Target transition:** INITIALIZED → CHECKING (review-from-INITIALIZED override only; no transition authorized)
+**Target transition:** INITIALIZED → CHECKING (owner-approved review-from-INITIALIZED override; applied)
 
 **Owner authorization (verbatim, 2026-08-01):**
 
@@ -41,14 +41,55 @@ REVISE; authorize a bounded ScopeOfWork currency repair and self-check rerun.`
 The repair changed source/basis/lifecycle currency only and did not edit the
 SPEC candidate or add/remove substantive scope.
 
+**Owner finalization authorization (verbatim, 2026-08-01):**
+
+> DEL-00-03 Gate 5 — advance DEL-00-03 from INITIALIZED
+> to CHECKING under the recorded review-from-INITIALIZED override.
+> This is a lifecycle act only and does not accept the SPEC artifact.
+>
+> D-PEC-72 artifact-status normalization — authorize WORKING_ITEMS
+> to revise only present-tense candidate/pending-acceptance status
+> prose in DEL-00-01 artifacts/v2/ADRs.md and DEL-00-03
+> artifacts/v2/SPEC.md into acceptance-neutral authority prose.
+> Do not change architecture, requirements, identifiers, citations,
+> objective attribution, scope, open decisions, or lifecycle state.
+> Rerun REVIEW against the resulting hashes. No artifact acceptance
+> is inferred.
+
+The guarded lifecycle transition was applied against committed authorization
+`87272dde8a82dbef034968b14af4461fe4b056d4`. The authorized normalization is
+present at that producer commit. This SELF_CHECK rerun binds the final SPEC
+hash below; neither act accepts the SPEC bytes.
+
+**Owner artifact-fitness ruling (verbatim, 2026-08-01):**
+
+> DEL-00-03 AC-011 — ACCEPT.
+>
+> I accept artifacts/v2/SPEC.md at SHA-256
+> 8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315
+> as the PEC v2 SPEC of record born from PRD v2.2 and accepted
+> SOFTWARE_DECOMP revision 1.3 at 11a494e9a.
+>
+> I confirm the single-objective attribution to OBJ-001 with its
+> recorded LOW-confidence qualification; the full-objective-set and
+> OBJ-006 alternatives remain considered but unadopted.
+>
+> This accepts these artifact bytes only. It does not advance
+> DEL-00-03 to ISSUED, close C-05, or authorize P1.
+
+This ruling is recorded at committed authority
+`ARTIFACT_ACCEPTANCE_AND_DEL10_REPAIR_RULING_2026-08-01.md` at
+`7f5acbf5`. It accepts only the exact review-basis artifact hash and changes no
+lifecycle state.
+
 ## Review Basis
 
 - D-PEC-72 production merged through PR #450 at `0f7f7ef108e65b953d188bd01fb116858959830f`.
-- Selected artifact: `artifacts/v2/SPEC.md` (`sha256:2eee3a920001dd7638a5cfa3be3ad996735c46b83fc294ab7099684560aff80b`).
+- Selected artifact: `artifacts/v2/SPEC.md` (`sha256:8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315`).
 - Production contract: `ScopeOfWork.md`, valid repaired `SOW_V1` (`sha256:0e2cfad8fcb377381042fd63c7e73002ad93037bffd17b7a3b9eb58889469f54`).
 - Checklist compiler: `tools/scope_of_work/derive_review_checklist.py`, schema `chirality-review-checklist/v1`, tool version 1, 11 criteria.
 - Decomposition coverage: strict deterministic register validation PASS (64 registers, 254 rows, zero errors/warnings). No managed AUDIT_DECOMP child session was available in this runtime; no structural discrepancy was detected by the registered validator.
-- Lifecycle state: `INITIALIZED`; the owner explicitly authorized review from this state. `_STATUS.md` remains unchanged.
+- Lifecycle state: `CHECKING`; the owner explicitly approved the guarded transition from `INITIALIZED` under the recorded override. `_STATUS.md` records the applied transition.
 - Context validity: PASS — `DEL-00-03`, `PKG-00`, `SOW-089`, and `OBJ-001` agree across `_CONTEXT.md`, `ScopeOfWork.md`, and accepted decomposition registers; the contract preserves the LOW-confidence objective-attribution qualification for owner review.
 
 ## Gate 1 Precondition Summary
@@ -56,9 +97,9 @@ SPEC candidate or add/remove substantive scope.
 | Precondition | Result | Evidence |
 |---|---|---|
 | Deliverable folder | PASS | Folder and governed context/status files exist |
-| Lifecycle entry | PASS BY OWNER OVERRIDE | `INITIALIZED`; verbatim authorization above |
+| Lifecycle entry | PASS BY OWNER OVERRIDE | Review entered at `INITIALIZED`; finalization authorization applied the guarded transition to `CHECKING` |
 | Production format | PASS | `SOW_V1`, zero validation issues |
-| Anticipated artifact | PRESENT | `artifacts/v2/SPEC.md` |
+| Anticipated artifact | PRESENT | Final normalized `artifacts/v2/SPEC.md` at the review-basis hash |
 | Dependency posture | PASS | No active `EXECUTION` upstream rows; two satisfied `ANCHOR` rows |
 | Review type | SELECTED | `SELF_CHECK`, by owner replacement ruling |
 | Reviewer identity | AGENT_CHECK | Mechanical producer-side assessment only; no human reviewer is inferred |
@@ -73,7 +114,7 @@ revisions remain allowed; the compiled `AC-*` rows remain unchanged.
 
 | ID | Artifact | Present | Notes |
 |---|---|---|---|
-| AP-001 | `artifacts/v2/SPEC.md` | Y | Packet-recorded SPEC candidate; artifact hash matches the review basis |
+| AP-001 | `artifacts/v2/SPEC.md` | Y | Packet-recorded SPEC candidate; final normalized artifact hash matches the review basis |
 
 ### Acceptance Criteria
 
@@ -89,7 +130,7 @@ revisions remain allowed; the compiled `AC-*` rows remain unchanged.
 | AC-008 | After publication, the open-issue register still shows `OI-001`..`OI-009`, `OI-012`, and `OI-013` with their pre-publication dispositions, and the §16-derived `TBD` scope items remain `TBD`. | VER-006 | `DEL-00-03-AC-008`; ScopeOfWork line 116; SHA above | Y — production and repair changes did not touch decomposition/open-issue surfaces |
 | AC-009 | The seed is complete before any P1 node starts, it declares no dependency on a P1 or later deliverable, and it asserts no consumer obligation on any deliverable the accepted text does not name. | VER-009 | `DEL-00-03-AC-009`; ScopeOfWork line 117; SHA above | Y — artifact states pre-P1, no phase completion, and no consumer edge |
 | AC-010 | Terminology in the seed conforms to the accepted vocabulary map, and every use of "package" is disambiguated in the sense §9 requires. | VER-008 | `DEL-00-03-AC-010`; ScopeOfWork line 118; SHA above | Y — Package (entity) and work-domain package are explicitly distinguished |
-| AC-011 | An accountable owner confirms that the published seed is the v2 SPEC of record born from the accepted decomposition, and confirms that the seed's single-objective attribution to `OBJ-001` remains acceptable given the recorded LOW-confidence qualification and the unadopted alternatives. | HUMAN_REVIEW | `DEL-00-03-AC-011`; ScopeOfWork line 119; SHA above | PARTIAL — qualification is explicit; owner confirmation of these bytes remains pending |
+| AC-011 | An accountable owner confirms that the published seed is the v2 SPEC of record born from the accepted decomposition, and confirms that the seed's single-objective attribution to `OBJ-001` remains acceptable given the recorded LOW-confidence qualification and the unadopted alternatives. | HUMAN_REVIEW | `DEL-00-03-AC-011`; ScopeOfWork line 119; SHA above | Y — owner ACCEPTS final hash `8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315` as the SPEC of record and confirms the qualified OBJ-001 attribution |
 
 ### Objective Coverage
 
@@ -117,8 +158,9 @@ revisions remain allowed; the compiled `AC-*` rows remain unchanged.
 
 ### SELF_CHECK Focus
 
-Completeness, internal consistency, and carried TBDs were checked against the
-current hashes and producer validation. No custom `CU-*` row is active.
+Completeness, internal consistency, carried TBDs, and the authorized
+status-prose delta were checked against the final artifact hash. No custom
+`CU-*` row is active.
 
 ## Findings Summary
 
@@ -130,15 +172,18 @@ current hashes and producer validation. No custom `CU-*` row is active.
 | OBSERVATION | 0 | 0 | 0 | 0 |
 
 `RF-001` is `Origin: AGENT_CHECK`. The owner dispositioned it `REVISE`; the
-bounded repair is complete, the regenerated checklist is bound to the repaired
-contract hash, and the finding is `RESOLVED`. REVIEW did not edit the SPEC
-candidate.
+bounded repair is complete, the regenerated checklist remains bound to the
+repaired contract hash, and the finding is `RESOLVED`. The final-hash rerun
+found no regression from the acceptance-neutral status-prose normalization and
+added no finding. REVIEW did not edit the SPEC candidate.
 
 ## Transition Readiness
 
-**Recommendation:** RECOMMEND_ADVANCE
+**Recommendation:** NO FURTHER LIFECYCLE ACT AUTHORIZED
 
-The regenerated checklist is populated, `RF-001` is resolved, and there are no
-open findings. This is only a Gate 5 recommendation: the owner has not approved
-a lifecycle transition or artifact fitness acceptance for `DEL-00-03`, so it
-remains `INITIALIZED`.
+The regenerated checklist remains populated against the final artifact hash,
+`RF-001` is resolved, and there are no open findings. The owner separately
+approved Gate 5 and the guarded transition was applied. The owner separately
+accepted the exact final SPEC hash and satisfied AC-011, including the
+LOW-confidence OBJ-001 qualification. `DEL-00-03` remains `CHECKING`; no
+`ISSUED` transition, C-05 closure, or P1 authority is created.

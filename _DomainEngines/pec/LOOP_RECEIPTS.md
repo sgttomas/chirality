@@ -1417,3 +1417,119 @@
   - Gate outcome: exact acts EXECUTED. DEL-00-03 remains `INITIALIZED` with a fresh `RECOMMEND_ADVANCE`; neither deliverable's artifact fitness is accepted; C-05 and P1 remain closed.
   - Checks: both SOW contracts valid; exact compiled checklist coverage 7 + 11; strict decomposition-register validation and loop self-check pass; manifest, coordination, and whitespace checks govern closeout.
   - Parked lanes: DEL-00-01 AC-007 artifact fitness; DEL-00-03 Gate 5 plus AC-011 artifact fitness; DEL-10-01 exact-token-telemetry rerun.
+
+- **2026-08-01 — Receipt 129** (D-PEC-72 final candidate evidence and PKG-00 final-hash REVIEW closeout).
+  - Owner authorization of record: the exact three-act `APPROVE:` message is reproduced verbatim in `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/FINALIZATION_AUTHORIZATION_2026-08-01.md`, committed at `87272dde8a82dbef034968b14af4461fe4b056d4`. It authorizes only PR #452's exact-source merge, the DEL-00-03 `INITIALIZED → CHECKING` lifecycle act under the prior override without SPEC acceptance, and acceptance-neutral status-prose normalization of the named ADR/SPEC artifacts followed by REVIEW rerun.
+  - Merge evidence: PR #452 merged exact source `51866bc87e276ae932f8f06b4caf9a5dc701b3dd` through the ordinary merge-commit strategy at effective `origin/main` commit `a1c30452f68b32f8621dff055b12f0d60934f627` after `harness` and `pec` checks passed.
+  - Producer outcome: the DEL-00-01 ADR and DEL-00-03 SPEC contain only the authorized acceptance-neutral status-prose repairs at SHA-256 `f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5` and `8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315`. The pre-existing DEL-10-01 rerun clause yielded exact evidence for one pre-P1 orientation — input `5,691,203`, cached-input subset `5,440,768`, output `22,436`, logical total `5,713,639` — and producer validation now records AC-003 `PASS`; AC-008 remains `PENDING OWNER`.
+  - REVIEW outcome: final-hash SELF_CHECK passes the exact 7-row DEL-00-01 and 11-row DEL-00-03 checklists. DEL-00-01 remains zero-findings; DEL-00-03 RF-001 remains `REVISE` / `RESOLVED`. Both are `CHECKING`. Immutable snapshots are `execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2029/` and `REV_DEL-00-03_2026-08-01_2029/`; `_LATEST.md` points to the latter and names both.
+  - Checks: all three contracts validate `SOW_V1`; deterministic checklist counts are 7 + 11 + 8; strict decomposition registers pass at 64 registers / 254 rows / zero findings; loop self-check remains INFO=15 / NOT_APPLICABLE=1 / REVIEW=5 / WARN=28; packet manifest, coordination check, and whitespace check pass at closeout.
+  - Authority fence: no artifact fitness is accepted; no DEL-10-01 REVIEW type or review-from-`INITIALIZED` override is inferred; DEL-10-01 remains `INITIALIZED`; no C-05 closure, P1 opening, source work, release, or professional-reliance act is created.
+  - Gate outcome: producer evidence is complete for all three pre-P1 deliverables and final-hash SELF_CHECK is complete for both PKG-00 deliverables; owner-only fitness and the DEL-10-01 formal REVIEW route remain open, so C-05 is not yet closable.
+  - Parked lanes: DEL-00-01 AC-007 owner fitness; DEL-00-03 AC-011 owner fitness and LOW-confidence `OBJ-001` confirmation; DEL-10-01 owner REVIEW-type selection plus review-from-`INITIALIZED` authorization, formal REVIEW, and AC-008 owner fitness; only after all three fitness gates may C-05 closure and the successor P1 source packet be proposed.
+
+- **2026-08-01 — Receipt 130** (D-PEC-72 DEL-10-01 SELF_CHECK checkpoint).
+  - Owner ruling of record (verbatim): "DEL-10-01 REVIEW Gate 1 — select SELF_CHECK and authorize\nreview from INITIALIZED under the D-PEC-72 pre-P1 closeout.\n\nUse the deterministic eight-item SOW checklist. This opens\nmechanical producer-side review only; it does not accept the\nbaseline, advance lifecycle state, satisfy AC-008 or C-05,\nor authorize P1."
+  - REVIEW outcome: the valid `SOW_V1` contract compiled to 8/8 exact criteria and every row is populated. Exact token and five-run latency arithmetic reproduce; AC-003 is `PASS`. AC-008 remains `PARTIAL` pending accountable-owner fitness and pre-P1 confirmation.
+  - Finding: RF-001 is MAJOR / `AGENT_CHECK` / proposed `REVISE` / `HumanDisposition=TBD` / `OPEN`. It proposes only acceptance-neutral normalization of present-tense candidate/pending-acceptance prose before an exact-hash acceptance ruling, followed by SELF_CHECK rerun; REVIEW makes no disposition or artifact edit.
+  - Immutable review evidence: `projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2049/`; `_LATEST.md` points to it and preserves the two preceding final-hash PKG-00 snapshot identities.
+  - Checks: DEL-10-01 contract validation and exact eight-row checklist binding pass; finding schema/content, five-file snapshot completeness, pointer currency, lifecycle census, packet manifest, strict registers at 64/254 with zero findings, unchanged loop self-check baseline INFO=15 / NOT_APPLICABLE=1 / REVIEW=5 / WARN=28, coordination, and whitespace checks pass at closeout.
+  - Authority fence: DEL-10-01 remains `INITIALIZED`; no RF-001 disposition, repair, lifecycle transition, artifact acceptance, AC-008 satisfaction, C-05 closure, P1 opening, source work, release, or professional-reliance act is created.
+  - Gate outcome: REVIEW Gate 4 reached with `RECOMMEND_HOLD`; owner finding disposition is required before Gate 5 or exact-hash fitness acceptance can be considered.
+  - Parked lanes: owner disposition of DEL-10-01 RF-001; if revised, bounded status-prose repair and final-hash SELF_CHECK rerun; later DEL-10-01 Gate 5 and AC-008 owner fitness; DEL-00-01 AC-007 owner fitness; DEL-00-03 AC-011 owner fitness and LOW-confidence `OBJ-001` confirmation; only after all three fitness gates may C-05 closure and the successor P1 source packet be proposed.
+
+- **2026-08-01 — Receipt 131** (D-PEC-72 PKG-00 artifact acceptance and DEL-10-01 final-hash REVIEW).
+  - Owner rulings of record: the exact three-act `APPROVE:` message is reproduced verbatim in `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/ARTIFACT_ACCEPTANCE_AND_DEL10_REPAIR_RULING_2026-08-01.md` at commit `7f5acbf5360ac3c974cf26341bf8d1e6dc598cf6`.
+  - PKG-00 acceptance outcome: DEL-00-01 AC-007 accepts only ADR SHA-256 `f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5`; DEL-00-03 AC-011 accepts only SPEC SHA-256 `8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315` and confirms the retained LOW-confidence `OBJ-001` attribution. Both exact-hash SELF_CHECKs remain pass, and both deliverables remain `CHECKING`; no `ISSUED`, C-05, or P1 act is inferred.
+  - DEL-10-01 repair outcome: owner disposition RF-001=`REVISE` authorized only acceptance-neutral status-prose normalization in the method and baseline. Commit `0cb6e2b4c016dc42f25d23d4d48d6d752937c85f` produced method SHA-256 `5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59` and baseline SHA-256 `0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d`; protected measurement content and arithmetic are unchanged.
+  - REVIEW outcome: DEL-10-01 final-hash SELF_CHECK populates 8/8 exact rows, RF-001 is `REVISE` / `RESOLVED`, zero findings remain open, AC-008 remains `PARTIAL`, and REVIEW records `RECOMMEND_ADVANCE`. DEL-10-01 remains `INITIALIZED`; no artifact fitness is accepted. Companion PKG-00 acceptance snapshots and the DEL-10-01 repair-verification snapshot are under `execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_2109/`, `REV_DEL-00-03_2026-08-01_2109/`, and `REV_DEL-10-01_2026-08-01_2109/`; `_LATEST.md` points to the latter and names all three.
+  - Checks: all three contracts validate `SOW_V1`; exact checklist binding is 7 + 11 + 8; ruled acceptance hashes and repaired DEL-10-01 hashes reproduce; findings and lifecycle census pass; all three five-file snapshots and pointer pass; packet manifest, strict registers at 64/254 with zero findings, unchanged loop self-check baseline INFO=15 / NOT_APPLICABLE=1 / REVIEW=5 / WARN=28, coordination, and whitespace checks pass at closeout.
+  - Authority fence: no DEL-10-01 Gate 5 or AC-008 act is inferred; no lifecycle state changes in this receipt; no C-05 closure, P1 opening, source work, release, cross-loop architecture mandate, or professional-reliance act is created.
+  - Gate outcome: PKG-00 artifact-fitness gates are satisfied at exact hashes; DEL-10-01 repair and REVIEW are complete. Exactly two owner acts remain before C-05 closure can be proposed.
+  - Parked lanes: (1) owner Gate 5 approval to advance DEL-10-01 from `INITIALIZED` to `CHECKING` under the recorded override; (2) separate owner AC-008 acceptance of final method hash `5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59` and baseline hash `0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d` as the PRD §11 metric-1 before leg with `PRE_P1_OBLIGATION` confirmation; only then may C-05 closure and the successor P1 packet be proposed.
+
+- **2026-08-01 — Receipt 132** (D-PEC-72 DEL-10-01 final Gate 5 and AC-008 acceptance checkpoint).
+  - Owner ruling pointer: the exact message below is reproduced verbatim in `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/DEL10_FINAL_ACCEPTANCE_RULING_2026-08-01.md` at committed authority `075d59202dee4be3f1a0fae10769f7346ceda2ec`.
+  - Owner ruling of record (verbatim):
+
+    > APPROVE:
+    >
+    > 1. DEL-10-01 Gate 5 — APPROVE.
+    >
+    > Advance DEL-10-01 from INITIALIZED to CHECKING under the
+    > previously recorded review-from-INITIALIZED owner override.
+    >
+    > The final SELF_CHECK populated all eight deterministic criteria,
+    > RF-001 is REVISE / RESOLVED, and no finding remains open.
+    >
+    > This is a lifecycle act only. It does not accept the method or
+    > baseline artifacts, satisfy AC-008, close C-05, or authorize P1.
+    >
+    > 2. DEL-10-01 AC-008 — ACCEPT.
+    >
+    > I accept artifacts/STEP0_COST_BASELINE_METHOD.md at SHA-256
+    > 5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59
+    > and artifacts/STEP0_COST_BASELINE.md at SHA-256
+    > 0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d
+    > as fit for DEL-10-01.
+    >
+    > I confirm that the captured exact baseline is fit to serve as the
+    > “before” leg of PRD §11 metric 1 and that the PRE_P1_OBLIGATION
+    > was satisfied before any P1 node started.
+    >
+    > The bound telemetry evidence remains SHA-256
+    > baa80859d40845cc1c2448342befcacc83fd3519dd34e9e9b00dceb6764f7f89.
+    >
+    > This accepts these artifact bytes and satisfies AC-008 only.
+    > It does not independently change lifecycle state, close C-05,
+    > or authorize P1.
+
+  - Lifecycle outcome: Gate 5 advances DEL-10-01 from `INITIALIZED` to `CHECKING` under the previously recorded owner override. The transition is lifecycle-only and is recorded in `_STATUS.md`.
+  - Acceptance outcome: AC-008 accepts only method SHA-256 `5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59` and baseline SHA-256 `0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d` as the PRD §11 metric-1 before leg; the owner confirms `PRE_P1_OBLIGATION`, with telemetry bound at SHA-256 `baa80859d40845cc1c2448342befcacc83fd3519dd34e9e9b00dceb6764f7f89`.
+  - REVIEW outcome: 8/8 exact contract criteria are populated; RF-001 is `REVISE` / `RESOLVED`; zero findings remain open; AC-008 is satisfied; DEL-10-01 is `CHECKING`. Immutable evidence is `projects/pec/execution/_Evaluation/Reviews/REV_DEL-10-01_2026-08-01_2125/`, and `_LATEST.md` points to it.
+  - Checks: all three contracts validate `SOW_V1`; exact checklist binding remains 7 + 11 + 8; exact method, baseline, and telemetry hashes reproduce; status, five-file snapshot, pointer, packet manifest, strict registers at 64/254 with zero findings, unchanged loop self-check baseline INFO=15 / NOT_APPLICABLE=1 / REVIEW=5 / WARN=28, coordination, and whitespace checks pass at closeout.
+  - Authority fence: the AC-008 act does not independently change lifecycle. Neither ruling authorizes `ISSUED`, closes C-05, opens P1, starts source work, authorizes release, or creates professional-reliance authority.
+  - Gate outcome: all three D-PEC-72 deliverables are `CHECKING`, and their exact artifact-fitness criteria are satisfied. C-05 closure is now the sole remaining owner gate before any successor P1 packet may be considered.
+  - Parked lanes: owner C-05 closure ruling; P1 remains closed unless and until that separate act occurs.
+
+- **2026-08-01 — Receipt 133** (D-PEC-72 C-05 closure and successor P1 packet handoff).
+  - Owner ruling pointer: the exact message below is reproduced verbatim in `projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md`; its exact accepted fan-in basis is commit `411cbe6ce7b03477889adf50e3d1665a61387db6`.
+  - Owner ruling of record (verbatim):
+
+    > APPROVE:
+    >
+    > D-PEC-72 C-05 — CLOSE.
+    >
+    > I determine that C-05 PRE_P1_OBLIGATION is satisfied. DEL-00-01,
+    > DEL-00-03, and DEL-10-01 are each CHECKING; their final SELF_CHECKs
+    > have no open findings; and AC-007, AC-011, and AC-008 are satisfied
+    > at the exact artifact hashes recorded in the D-PEC-72 handoff at
+    > commit 411cbe6ce7b03477889adf50e3d1665a61387db6.
+    >
+    > I confirm that no P1 node started before completion of those three
+    > pre-P1 obligations. Close C-05.
+    >
+    > This closes only the D-PEC-62/D-PEC-72 PRE_P1_OBLIGATION. It does
+    > not advance any deliverable to ISSUED, select or activate a P1
+    > node, create or authorize a v2 source tree or software-workflow.json,
+    > authorize source work, release, or professional reliance.
+    >
+    > The first actual P1 source slice still requires a separate
+    > owner-ruled successor D-PEC packet naming its exact paths, acts,
+    > verification, rollback, and authority fence.
+
+  - Closure outcome: C-05 is `CLOSED`. DEL-00-01, DEL-00-03, and DEL-10-01 remain `CHECKING`; their final SELF_CHECKs have no open findings; AC-007, AC-011, and AC-008 remain satisfied at the exact artifact hashes recorded in the D-PEC-72 handoff.
+  - Stale-map delta: `projects/pec/execution/_Coordination/PEC_NEXT_WORK_SLATE_2026-07-29.md` remains unchanged historical evidence. Its D-PEC-72 P1 reservation is stale because D-PEC-72 became this pre-P1 foundation/closure decision and D-PEC-73 became Task Management adoption. The successor first P1 source-slice packet identity is D-PEC-74.
+  - Checks: three `CHECKING` statuses and exact accepted artifact hashes reproduce; no v2 P1 source tree or `projects/pec/software-workflow.json` exists; strict decomposition registers pass at 64 files / 254 rows / zero findings; dependency closure remains 64 files / 254 rows / 119 execution edges / zero SCCs; packet manifest and whitespace checks pass; loop self-check remains at the unchanged baseline INFO=15 / NOT_APPLICABLE=1 / REVIEW=5 / WARN=28. `coord-check` reports no new D-PEC-72 finding and carries only the two inherited unresolved-reference findings at pre-existing decision-register rows 59 and 80, the same pair already recorded in the handoff baseline.
+  - Authority fence: C-05 closure advances no deliverable to `ISSUED`, selects or activates no P1 node, creates or authorizes no v2 source tree or `software-workflow.json`, and authorizes no source work, release, or professional reliance.
+  - Gate outcome: D-PEC-72 is closed through C-05. P1 remains closed and separately packet-gated.
+  - Parked lanes: owner presentation and ruling on successor D-PEC-74, which must name the exact P1 paths, acts, verification, rollback, and authority fence before any source work begins.
+
+- **2026-08-01 — Receipt 134** (D-PEC-74 first-P1-source-slice packet presented).
+  - Start/pointer: `5830546ab0912100f0f5b0c4b51ba788e5b9fb5a`; decision record `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-74_first_p1_source_slice.md`; full packet `projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/PACKET.md`.
+  - Live finding: six P1 raw-DAG roots exist; DEL-08-02 and DEL-01-06 are both `INITIALIZED`, S-sized roots. O-A DEL-08-02 is recommended as the smallest typed-contract/source-tree/profile canary; O-B faithfully presents the local-loop-registry implementation canary.
+  - Exact fences: each executable option names its selected deliverable, complete `projects/pec/v2/` path set, exact `projects/pec/software-workflow.json`, registered checks, prohibited paths, review/owner gates, bootstrap relationship, and rollback.
+  - Stale-map delta: `PEC_NEXT_WORK_SLATE_2026-07-29.md` remains unchanged; its indicative D-PEC-72 P1 reservation is historical, while D-PEC-74 is the live successor packet.
+  - Checks: packet citations/hashes, SOW validation, strict decomposition registers, dependency closure, manifest, self-check, coordination check, and whitespace check govern publication.
+  - Authority fence: packet drafting selects no option and opens no source/profile path, P1 node, lifecycle act, release, cross-loop mandate, or professional reliance; `F-PEC-1` remains closed.
+  - Gate outcome: **AWAITING OWNER** on D-PEC-74 O-A / O-B / amend / defer.

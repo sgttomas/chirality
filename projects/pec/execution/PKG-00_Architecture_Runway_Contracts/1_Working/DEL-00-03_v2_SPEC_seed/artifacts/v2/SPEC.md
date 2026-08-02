@@ -1,7 +1,8 @@
 # PEC v2 coordination plane — specification seed
 
-**Artifact status:** candidate v2 SPEC seed; not yet the accepted SPEC of
-record.
+**Authority status:** PEC v2 specification seed. Artifact-fitness and lifecycle
+dispositions are recorded separately on the governed REVIEW, owner-ruling, and
+`_STATUS.md` surfaces; this file does not enact those acts.
 
 **Born from:** `projects/pec/docs/PRD.md` v2.2 and the accepted
 `projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.3 at
@@ -178,7 +179,8 @@ acquires no new scope, requirement, invariant, objective, work-domain package,
 deliverable, consumer obligation, implementation state, acceptance state, or
 release claim (`DEL-00-03` REQ-006, REQ-012).
 
-Writing this candidate does not make it the v2 SPEC of record, advance its
-`_STATUS.md`, or close C-05. REVIEW must first validate its contract mappings;
-the owner must then confirm both the seed and the retained LOW-confidence
-OBJ-001 attribution (`DEL-00-03` AC-011).
+This document does not itself make the seed the accepted v2 SPEC of record,
+advance its `_STATUS.md`, or close C-05. REVIEW records validation against its
+contract mappings, and a separate owner ruling records whether the seed and
+the retained LOW-confidence OBJ-001 attribution are accepted (`DEL-00-03`
+AC-011). No such disposition may be inferred from this surface.

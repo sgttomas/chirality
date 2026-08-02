@@ -1,6 +1,6 @@
 # D-PEC-72 — P1-entry foundation slice
 
-**Status:** RULED — O-B — PRODUCTION EXECUTED; REVIEW PENDING; C-05 OPEN
+**Status:** RULED — O-B — PRODUCTION AND REVIEW COMPLETE; C-05 CLOSED; P1 PACKET-GATED
 
 **DecisionID:** D-PEC-72
 
@@ -261,3 +261,25 @@ P1 node, source tree, software-workflow profile, lifecycle transition, or
 `docs/STATUS.md` post-acceptance pointer update is authorized. Execution
 handoff and full manifest:
 `../D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/HANDOFF.md`.
+
+## Closure outcome
+
+On 2026-08-01 the owner closed `C-05 PRE_P1_OBLIGATION` on the exact accepted
+fan-in at commit `411cbe6ce7b03477889adf50e3d1665a61387db6`. The verbatim ruling is
+recorded in
+`../D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md`.
+
+At closure, DEL-00-01, DEL-00-03, and DEL-10-01 are each `CHECKING`; their
+final SELF_CHECKs have no open findings; and AC-007, AC-011, and AC-008 are
+satisfied at the exact hashes in the handoff manifest. This closes only the
+D-PEC-62/D-PEC-72 pre-P1 obligation. No deliverable advances to `ISSUED`, no
+P1 node is selected or activated, no v2 source tree or project-local
+`software-workflow.json` is created or authorized, and no source
+work, release, or professional-reliance authority is created.
+
+The dated `PEC_NEXT_WORK_SLATE_2026-07-29.md` remains unchanged as historical
+evidence. Its D-PEC-72 reservation is now a stale-map delta: D-PEC-72 is this
+closed pre-P1 foundation decision, D-PEC-73 is the ruled Task Management
+adoption, and the first actual P1 source-slice packet is successor D-PEC-74.
+D-PEC-74 must separately name exact paths, acts, verification, rollback, and
+authority fence before P1 work may begin.
