@@ -1,6 +1,46 @@
 # D-PEC-72 execution handoff — P1-entry foundation
 
-**Handoff state:** PARTIAL CANDIDATE FAN-IN; REVIEW NOT LAUNCHED; C-05 OPEN.
+**Handoff state:** PARTIAL CANDIDATE FAN-IN; DEL-00-01 CHECKING; DEL-00-03 REPAIR VERIFIED / GATE 5 PENDING; C-05 OPEN.
+
+**Update 05 (2026-08-01):** the owner ruled, verbatim, "Approve both
+recommendations as stated." The referenced acts were `DEL-00-01 Gate 5:
+advance to CHECKING` and `DEL-00-03 RF-001: REVISE; authorize a bounded
+ScopeOfWork currency repair and self-check rerun.` The guarded DEL-00-01
+transition was applied from `INITIALIZED` to `CHECKING` under the recorded
+human override. The DEL-00-03 contract was repaired only for current basis,
+PRD, and lifecycle currency; the SPEC candidate bytes are unchanged. Its
+11-item checklist rerun passes, RF-001 is `REVISE` / `RESOLVED`, and REVIEW now
+recommends advancement. No DEL-00-03 Gate 5 approval or candidate-artifact
+fitness acceptance was given. Review snapshots are under
+`execution/_Evaluation/Reviews/REV_DEL-00-01_2026-08-01_1935/` and
+`REV_DEL-00-03_2026-08-01_1935/`.
+
+**Update 04 (2026-08-01):** the owner selected the recommended replacement
+`SELF_CHECK` review type and authorized continuation. The mechanical review
+populated both confirmed checklists. `DEL-00-01` has zero findings and is
+recommended for the later Gate 5 decision. `DEL-00-03` has one open MAJOR
+`AGENT_CHECK` finding: its accepted checklist source still names the older
+revision 1.2 / PRD v2.1 / OPEN-no-artifact state while D-PEC-72 and the
+candidate bind the accepted revision 1.3 / PRD v2.2 / INITIALIZED-artifact
+state. The candidate follows the later authority; REVIEW proposes source
+revision but does not edit `ScopeOfWork.md`. Human disposition remains `TBD`.
+Neither lifecycle state changed and no artifact was accepted.
+
+**Update 03 (2026-08-01):** the owner withdrew the `PEER_REVIEW` selection
+because no peer reviewer is available and confirmed both Gate 2 checklists as
+adequate and open to revision. No peer had been named and no finding had been
+captured, so this is a pre-review type amendment, not a failed review. The
+common compiled checklists remain usable; revisions are additive `CU-*` items
+and do not alter the exact contract-derived `AC-*` rows. Review type is `TBD`
+pending a new owner selection. Both lifecycle states remain `INITIALIZED`.
+
+**Update 02 (2026-08-01):** after PR #450 merged the D-PEC-72 production
+tranche, the owner selected `PEER_REVIEW` for `DEL-00-01` and `DEL-00-03` and
+explicitly authorized review from `INITIALIZED`. Gate 1 preconditions passed
+and the registered deterministic `SOW_V1` checklist compiler generated the two
+deliverable-local Gate 2 checklists. Reviewer identity remains `TBD`; checklist
+confirmation and peer findings are pending. Neither `_STATUS.md` changed, no
+artifact was accepted, and C-05/P1 remain closed.
 
 **Correction 01 (2026-08-01):** the validation summary now identifies two
 inherited unresolved-reference findings by their register lines instead of
@@ -81,10 +121,12 @@ re-rule or direct the harness cache.
 
 ## Rerun and next gates
 
-1. For DEL-00-01 and DEL-00-03, the owner selects the REVIEW type at Gate 1;
-   `PEER_REVIEW` is the non-binding recommendation. Both are currently
-   `INITIALIZED`, so formal REVIEW also requires the owner's explicit Gate-1
-   override to review candidate outputs from that state.
+1. DEL-00-01 is `CHECKING` after the owner-approved Gate 5 transition. Its
+   separate AC-007 artifact-fitness confirmation remains pending; the ADR bytes
+   are not accepted by the lifecycle ruling. DEL-00-03 has RF-001 resolved and
+   a fresh `RECOMMEND_ADVANCE`, but remains `INITIALIZED` pending a separate
+   Gate 5 ruling; AC-011 artifact fitness and LOW-confidence `OBJ-001`
+   confirmation also remain separate.
 2. DEL-10-01 reruns only when exact token telemetry is available. A revised
    packet would be required to waive or replace that accepted criterion; this
    run does not propose such a waiver.
