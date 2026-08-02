@@ -1,6 +1,6 @@
 # D-PEC-74 — First actual P1 source slice
 
-**Status:** RULED — O-A; PRODUCER COMPLETE / REVIEW AND OWNER GATES OPEN
+**Status:** RULED — O-A; DEL-08-02 CHECKING / EXACT BYTES ACCEPTED / LATER P1 CLOSED
 
 **DecisionID:** D-PEC-74
 
@@ -103,8 +103,23 @@ removal and meaning-change fixtures fail with located explanations. Exact
 hashes and validation evidence are recorded in
 `../D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/EXECUTION_HANDOFF.md`.
 
-This is producer-complete candidate work. DEL-08-02 remains `INITIALIZED` and
-no artifact is accepted. REVIEW type selection, any review-from-`INITIALIZED`
-override, finding disposition, Gate 5, AC-005's qualified objective-attribution
-confirmation, exact-hash artifact fitness, Git publication/merge, later P1
-work, release, and professional reliance remain separate owner gates.
+## Final review and acceptance outcome — 2026-08-01
+
+PR #455 merged the Gate 1–2 SELF_CHECK evidence from exact source
+`d99bf2ef923d640d956718b113f86c4755f837de`. The exact five-item checklist
+records AC-001 through AC-005 satisfied and zero findings. Under the verbatim
+final ruling in
+`../D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/DEL0802_FINAL_ACCEPTANCE_RULING_2026-08-01.md`,
+the owner separately:
+
+1. approved the lifecycle-only `INITIALIZED → CHECKING` Gate 5 transition
+   under the recorded review-entry override;
+2. confirmed AC-005's `DEL-08-02 → OBJ-001` attribution with its recorded
+   `MEDIUM` confidence while leaving `OBJ-001;OBJ-004` and the full consumer
+   set considered but unadopted; and
+3. accepted only the exact schema, compatibility-test, and three fixture
+   hashes recorded in the execution handoff.
+
+DEL-08-02 is `CHECKING`, not `ISSUED`. No later P1 node, release, professional
+reliance, or architecture mandate outside PEC is authorized. Any successor
+source slice remains separately owner-packet-gated.

@@ -1,12 +1,12 @@
 # Review — DEL-08-02 Versioned additive API schema
 
-**Review stage:** GATE 2 COMPLETE — MECHANICAL SELF_CHECK POPULATED; OWNER GATES PENDING
+**Review stage:** GATE 5 OWNER APPROVED — CHECKING; AC-005 AND EXACT-BYTE FITNESS ACCEPTED
 
 **Review Type:** SELF_CHECK
 
 **Reviewer(s):** AGENT_CHECK (producer-side mechanical self-check; no human peer reviewer inferred)
 
-**Target transition:** INITIALIZED → CHECKING (not authorized or applied)
+**Target transition:** INITIALIZED → CHECKING (owner-approved under the recorded override; applied)
 
 **Owner Gate 1 ruling (verbatim, 2026-08-01):**
 
@@ -21,6 +21,23 @@
 This ruling selects `SELF_CHECK` and overrides only the normal review-entry
 state. It grants no finding disposition, artifact fitness, lifecycle, later-P1,
 release, or reliance authority.
+
+**Owner final ruling (verbatim record, 2026-08-01):**
+
+`projects/pec/execution/_Coordination/D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/DEL0802_FINAL_ACCEPTANCE_RULING_2026-08-01.md`
+reproduces the exact three-part `APPROVE:` message. Its distinct effects are:
+
+1. PR #455 was merged at exact source
+   `d99bf2ef923d640d956718b113f86c4755f837de` before this closeout.
+2. Gate 5 advances only lifecycle from `INITIALIZED` to `CHECKING` under the
+   recorded review-entry override.
+3. AC-005 confirms `DEL-08-02 → OBJ-001` at recorded `MEDIUM` confidence,
+   with `OBJ-001;OBJ-004` and the full consumer set considered but unadopted.
+4. Artifact fitness accepts only the exact schema, test, and three fixture
+   hashes listed below.
+
+No act advances to `ISSUED`, authorizes another P1 node, releases software, or
+creates professional-reliance authority.
 
 ## Review basis
 
@@ -37,6 +54,9 @@ release, or reliance authority.
   SHA-256 `1505fc3973509f81feb62449d8d917076ce6891e37cc426081e6aa233736fa89`.
 - Producer authority commit: `49676473884e07a78fa197a23451e13a12850427`.
 - Review basis commit: `21546b6acd184c9d007eafcbc86800a83a7a9a21`.
+- Gate 1–2 review merge: PR #455 source
+  `d99bf2ef923d640d956718b113f86c4755f837de`, merge commit
+  `7fe75734f6939c343404a4b0b33b71790877fa61`.
 
 The D-PEC-74 manifest reproduces without mismatch. The contract compiler
 emits `chirality-review-checklist/v1`, tool version 1, with exactly five
@@ -49,7 +69,7 @@ dependency closure reports 119 execution edges and zero nontrivial SCCs.
 | Precondition | Result | Evidence |
 |---|---|---|
 | Deliverable folder | PASS | Governed deliverable folder and control files exist |
-| Lifecycle entry | PASS BY OWNER OVERRIDE | `_STATUS.md` remains `INITIALIZED` |
+| Lifecycle entry | PASS BY OWNER OVERRIDE | Review entered at `INITIALIZED`; Gate 5 applied `CHECKING` |
 | Production format | PASS | `SOW_V1`, zero validation issues |
 | Anticipated artifacts | PRESENT | Versioned schema and compatibility tests exist at packet-bound paths |
 | Dependency posture | PASS | Root node; no upstream execution predecessor |
@@ -64,18 +84,16 @@ dependency closure reports 119 execution edges and zero nontrivial SCCs.
 | AC-002 | The delivered check, run against the recorded baseline schema version and a candidate, passes candidates that only add and fails candidates that remove a published element or change a published element's meaning. Those two properties are the accepted floor stated at REQ-002; the finer taxonomy of permitted additive changes remains TBD-004, which this criterion neither resolves nor forecloses. The criterion binds the delivered mechanism's behaviour, not the content of schema versions authored after this deliverable closes. | VER-002 | Y — the additive fixture passes; removal and meaning-change fixtures are rejected; six tests pass |
 | AC-003 | The initial schema version is recorded as the baseline predecessor the check runs against, and the delivered compatibility tests execute the check over seeded candidates — one purely additive, one that removes a published element, and one that changes a published element's meaning — with their outcomes retained as evidence. | VER-002 | Y — v1 is the recorded baseline; all three seeded candidates execute; registered-check evidence retains PASS output |
 | AC-004 | The delivered schema and compatibility tests trace to SOW-042 and OBJ-001 and introduce no scope beyond SOW-042; in particular they do not absorb the transport, access-class, latency, response-format, or subscription scope held by the sibling deliverables named in CLM-004. | HUMAN_REVIEW: REVIEW confirms traceability and boundary | Y — artifact and tests implement only schema versioning/additive compatibility; no sibling transport, access, latency, response-format, or subscription behavior is introduced |
-| AC-005 | An accountable owner confirms that the single-objective attribution `DEL-08-02 → OBJ-001` remains acceptable given the recorded MEDIUM-confidence qualification — that `PEC-API-003`'s "textual link to any single outcome is weak" and that `OBJ-001` "is recommended only because orientation is the API's primary consumer in §12's P1 sequencing, not because the text selects it" — and given the recorded unadopted alternatives `OBJ-001;OBJ-004` and the full consumer set. | HUMAN_REVIEW: accountable owner confirmation | PENDING OWNER — the qualification and alternatives are surfaced exactly; no confirmation is inferred |
+| AC-005 | An accountable owner confirms that the single-objective attribution `DEL-08-02 → OBJ-001` remains acceptable given the recorded MEDIUM-confidence qualification — that `PEC-API-003`'s "textual link to any single outcome is weak" and that `OBJ-001` "is recommended only because orientation is the API's primary consumer in §12's P1 sequencing, not because the text selects it" — and given the recorded unadopted alternatives `OBJ-001;OBJ-004` and the full consumer set. | HUMAN_REVIEW: accountable owner confirmation | Y — owner confirms `DEL-08-02 → OBJ-001` with the recorded MEDIUM-confidence qualification; `OBJ-001;OBJ-004` and the full consumer set remain considered but unadopted |
 
 ## Findings and next gates
 
-No CRITICAL, MAJOR, MINOR, or OBSERVATION finding was opened. AC-005 is an
-explicit owner acceptance criterion, not an artifact defect, and remains open.
+No CRITICAL, MAJOR, MINOR, or OBSERVATION finding was opened. AC-005 is
+satisfied by the accountable-owner confirmation recorded above.
 
-**Recommendation:** MECHANICALLY READY FOR SEPARATE OWNER RULING
+**Recommendation:** NO FURTHER LIFECYCLE ACT AUTHORIZED
 
-The next ruling should keep three effects distinct: (1) Gate 5 lifecycle
-approval or rejection for `INITIALIZED → CHECKING`; (2) AC-005 confirmation or
-declination of the qualified `DEL-08-02 → OBJ-001` attribution; and (3)
-acceptance or rejection of the exact schema, test, and fixture hashes as fit for
-DEL-08-02. None is performed here, and no later P1 node, release, or
-professional reliance is authorized.
+All five deterministic criteria are satisfied and zero findings are open. The
+owner separately approved Gate 5, confirmed AC-005, and accepted the exact
+schema, test, and fixture hashes as fit. DEL-08-02 is `CHECKING`. No `ISSUED`
+transition, later P1 node, release, or professional reliance is authorized.
