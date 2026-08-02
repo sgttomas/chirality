@@ -1,17 +1,19 @@
 # D-GOV-33 — Task Management Invocation-Local Federation Survey
 
-Status:       RULED — H2 PUBLICATION AND PR MERGE DIRECTED; GIT ACTS PENDING
+Status:       RULED — PUBLISHED AND EFFECTIVE
 HumanRuling:  "Require the survey whenever TASK_MANAGEMENT is already invoked; do not require loops to invoke TASK_MANAGEMENT." (owner, 2026-08-02; confirmed in-session and persisted in the managed run's `HUMAN_DIRECTION.md`)
 ImplementationDirection: implement `plans/chirality-task-management/FEDERATION_SURVEY_IMPLEMENTATION_PLAN_2026-08-02.md` (owner goal, 2026-08-02)
 Date:         2026-08-02
 FramedBy:     HELP_HUMAN managed run `TM-FEDERATION-SURVEY-20260802`
-AcceptedBasis: `main@fe57138e6ce68fbcfe99b50676fcdd6114ec591a` (candidate refreshed from implementation basis `3e03b257748822dba2ad7697453f3495fb7578db` after non-overlap review and full validation rerun)
-RecordConvention: owner ruling recorded before publication; candidate and publication SHAs remain `TBD` until their respective Git acts
+AcceptedBasis: `main@4d55dea0f375034b66949723a7b849a2c962d8a3` (final PR base; the candidate was implemented from `3e03b257748822dba2ad7697453f3495fb7578db`, validated after refresh to `fe57138e6ce68fbcfe99b50676fcdd6114ec591a`, and finally synchronized through the approved source HEAD named below)
+RecordConvention: owner ruling recorded before publication; validated implementation, approved source, final base, publication, and effective merge identities backfilled from completed Git/PR acts
 DecisionKey:  `task_management_invocation_local_federation_survey`
 Supersedes:   none; interprets D-GOV-32 and K-TM-4 without editing either
 CandidateSHA: bb44d71c93cc5431d5fc8a902e716cc88966ea9f (validated implementation commit; PR #478)
-PublicationSHA: TBD
-EffectiveSHA: TBD
+ApprovedSourceSHA: 08ed85ae1a1ae2be9eba971e6567fad2bb202b56 (exact checked PR #478 source HEAD approved for merge)
+FinalBaseSHA: 4d55dea0f375034b66949723a7b849a2c962d8a3 (PR #478 base immediately before merge)
+PublicationSHA: 08ed85ae1a1ae2be9eba971e6567fad2bb202b56 (approved source HEAD carrying this record and the bounded federation-survey tranche)
+EffectiveSHA: 2c25bd2c47c4b2f4190275ad39579a983f8786aa (merge of PR #478 into `main`, 2026-08-02)
 
 ## Recorded ruling
 
@@ -87,10 +89,13 @@ This ruling does not:
 
 ## Publication posture
 
-This ruled record is part of the bounded candidate tranche. H2 is satisfied by
-the owner's 2026-08-02 direction, "Merge via PR." Its implementation becomes
-shared repository state only when CHANGE publishes the exact validated source
-HEAD, observes required check verdicts, and merges that HEAD through the PR.
-`CandidateSHA`, `PublicationSHA`, and `EffectiveSHA` stay `TBD` until their
-respective Git acts; no record invents or self-cites a commit that does not yet
-exist.
+The bounded tranche was published through
+[PR #478](https://github.com/sgttomas/chirality/pull/478). Immediately before
+merge, CHANGE verified exact source HEAD
+`08ed85ae1a1ae2be9eba971e6567fad2bb202b56` against final base
+`4d55dea0f375034b66949723a7b849a2c962d8a3` and observed `SUCCESS` for
+`Harness pre-merge`, `harness`, and `pec`. GitHub merged that exact head as
+`2c25bd2c47c4b2f4190275ad39579a983f8786aa`, by `sgttomas`, at
+`2026-08-02T22:13:19Z`. The ordinary closeout comment is
+[recorded on the PR](https://github.com/sgttomas/chirality/pull/478#issuecomment-5160591595).
+No direct `main` push or check bypass occurred.

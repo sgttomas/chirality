@@ -2503,3 +2503,37 @@ amendment; owner ruling required).
   complete as a candidate root closeout subject to ordinary Git publication;
   it creates no PEC adoption, lifecycle, production, loop-entry binding,
   cross-loop duty, release, or professional-reliance effect.
+
+### Receipt 85 — 2026-08-02 — TASK_MANAGEMENT federation survey checked publication closed
+
+- **Parent and posture:** Receipt 84. The Root loop remains idle. This receipt
+  closes the already-authorized publication lane for the D-GOV-33 federation
+  survey; it does not start a Root production phase or alter the ruling.
+- **Prior evidence preserved:** Receipt 82 remains the truthful implementation,
+  validation, H2-direction, authentication-recovery, and PR-opening chronology.
+  Its pending statements describe the state before GitHub completed the
+  checked merge and are not rewritten. Historical Agent 1/2 returns and
+  acceptance records likewise retain their as-of-time verdicts.
+- **Completed Git/PR identities:** the validated implementation commit was
+  `bb44d71c93cc5431d5fc8a902e716cc88966ea9f`. PR #478's exact approved
+  source HEAD was `08ed85ae1a1ae2be9eba971e6567fad2bb202b56` against final
+  base `4d55dea0f375034b66949723a7b849a2c962d8a3`. GitHub merged that
+  source as `2c25bd2c47c4b2f4190275ad39579a983f8786aa`, by `sgttomas`, at
+  `2026-08-02T22:13:19Z`.
+- **Checks and closeout evidence:** `Harness pre-merge`, `harness`, and `pec`
+  all completed with `SUCCESS`. Publication vehicle:
+  `https://github.com/sgttomas/chirality/pull/478`. Ordinary closeout comment:
+  `https://github.com/sgttomas/chirality/pull/478#issuecomment-5160591595`.
+  No direct `main` push or check bypass occurred.
+- **Closure:** D-GOV-33, the shared TASK_MANAGEMENT instruction and tool,
+  focused tests, manifest, and routed App/Piping/PEC notices are published and
+  effective. The implementation work graph is `COMPLETE`; H1 was not required,
+  H2 is discharged, and no blocker or rerun remains for PR #478. Derived
+  federation projections remain gitignored, rebuildable, and non-authoritative.
+  No register row, schema, PRD/CONTRACT byte, LOOP_INIT, schedule, CI, daemon,
+  foreign-write authority, lifecycle, release, or professional-reliance effect
+  is created by this closeout.
+- **This normalization tranche:** the present edit records already-completed
+  PR #478 facts in canonical current-state surfaces. Its own future source,
+  checks, and merge identity cannot be self-recorded here; they belong in that
+  follow-up PR's ordinary closeout comment after those acts occur.
