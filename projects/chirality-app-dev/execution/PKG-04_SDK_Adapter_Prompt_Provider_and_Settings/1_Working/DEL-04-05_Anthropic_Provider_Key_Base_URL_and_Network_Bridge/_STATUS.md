@@ -8,8 +8,6 @@
 
 ## Remaining
 
-- Add authenticated literal-loopback oMLX status/load/unload control with exact IDs, no redirects/aliases/fallback, drain timeouts, and fail-closed `NO_MODEL` (gated: residency implementation and security review).
-
 ## History
 - 2026-07-22 - D-APP-72 authenticated literal-loopback oMLX validation, exact model discovery, isolated key handoff, and typed redacted failures completed without weakening the Anthropic path; fake-provider and live proofs pass. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 opened the bounded local-provider bridge item; state remains IN_PROGRESS.

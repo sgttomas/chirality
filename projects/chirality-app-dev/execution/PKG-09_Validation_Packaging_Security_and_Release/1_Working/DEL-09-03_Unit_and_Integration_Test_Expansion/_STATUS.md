@@ -8,7 +8,7 @@
 
 ## Remaining
 
-- Add fake-oMLX load/unload/drain failures, socket authorization, Desktop/CLI concurrency, lazy migration, restart, app-dev pilot, and PEC scratch/demo integration tests (gated: implementation fan-in).
+- Add fake-oMLX Desktop/CLI concurrency tests (gated: implementation fan-in).
 
 ## History
 - 2026-07-22 - D-APP-72 mocked Pi, fake authenticated loopback, ambient-resource sentinel, mixed-engine concurrency, and deterministic recovery coverage completed; the fresh complete suite passes 106 files with 854 tests and 4 skips. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.

@@ -8,8 +8,6 @@
 
 ## Remaining
 
-- Persist daemon/project/Agent 1 run and model-residency epoch events through canonical append-only JSONL with redacted transition evidence (gated: shared runtime contracts).
-
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)

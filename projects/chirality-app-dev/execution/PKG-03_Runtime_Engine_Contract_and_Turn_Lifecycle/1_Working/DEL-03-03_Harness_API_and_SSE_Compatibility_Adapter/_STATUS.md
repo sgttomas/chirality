@@ -8,8 +8,6 @@
 
 ## Remaining
 
-- Add the versioned authenticated Unix-socket API and convert `/api/harness/*` into thin daemon proxies while preserving renderer routes, SSE names, and replay semantics (gated: daemon/client implementation).
-
 ## History
 - 2026-07-20 - D-APP-70 Option A mapped the CQ-F1 working-root content route to DEL-07-03 as physical route-contract owner while retaining DEL-07-01 containment and DEL-02-03 consumption; the CQ-F1 Remaining entry was closed; no source, lifecycle, Approval SHA, SOW, or dependency change.
 - 2026-07-18 - D-APP-65 disposition 4 unlocked the R4-P48 documentation-production deferral; the route-adapter test index and SSE compatibility fixture README were produced in the deliverable folder. Content is agent findings; no acceptance or issuance is rendered. The CQ-F1 route-affinity item remains open for the next concordance pass. No state or lifecycle change.

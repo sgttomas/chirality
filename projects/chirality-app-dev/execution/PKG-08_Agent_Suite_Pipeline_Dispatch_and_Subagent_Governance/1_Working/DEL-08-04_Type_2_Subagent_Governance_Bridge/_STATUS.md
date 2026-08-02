@@ -8,7 +8,6 @@
 
 ## Remaining
 
-- Add direct Agent 1 invocation and a required one-child Pi/oMLX Agent 2 delegation contract with manager review and `REQUIRED_DELEGATION_MISSING` (gated: app-dev pilot).
 - Produce the per-attempt subagent decision-replay artifact (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
 
 ## History

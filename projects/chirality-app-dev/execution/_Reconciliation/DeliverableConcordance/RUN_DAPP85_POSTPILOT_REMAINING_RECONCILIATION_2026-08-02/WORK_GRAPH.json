@@ -1,0 +1,24 @@
+{
+  "decisionId": "D-APP-85",
+  "sourceCommit": "556ae59a34ac2f06ef924d367843a72ea00d1f37",
+  "status": "GATE_1_COMPLETE_STOP_GATE_2",
+  "writeScope": [
+    "execution/_Reconciliation/DeliverableConcordance/RUN_DAPP85_POSTPILOT_REMAINING_RECONCILIATION_2026-08-02/"
+  ],
+  "nodes": [
+    {"id": "basis", "role": "RECONCILIATION", "status": "complete"},
+    {"id": "calibration", "role": "Agent-2 readers", "claims": ["C02", "C12", "C18"], "status": "complete"},
+    {"id": "wave", "role": "Agent-2 readers", "claims": ["C01", "C03", "C04", "C05", "C06", "C07", "C08", "C09", "C10", "C11", "C13", "C14", "C15", "C16", "C17"], "status": "complete"},
+    {"id": "synthesis", "role": "RECONCILIATION", "status": "complete"},
+    {"id": "adversarial", "role": "ephemeral Agent 2", "status": "pass"},
+    {"id": "gate2", "role": "owner", "status": "awaiting_ruling"}
+  ],
+  "forbiddenEffects": [
+    "target-corpus repair",
+    "lifecycle or Checking Approval SHA change",
+    "dependency or decomposition change",
+    "source runtime test or release change",
+    "Task Management write",
+    "loop receipt"
+  ]
+}

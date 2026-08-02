@@ -8,23 +8,6 @@
 
 ## Remaining
 
-- Implement and validate the SCA-APP-004 presentation-neutral dispatch
-  tranche: preserve DECOMP/PREP/TASK/AUDIT taxonomy, dynamic task-scope and
-  disabled-state behavior across existing Pipeline and contextual consumers;
-  prove Work projections use admitted sources with provenance/currency, do
-  not synthesize tasks from dialogue, and keep runtime completion separate
-  from project lifecycle and approval.
-  - Annotation 2026-07-24: satisfied **for presentation** on the woven
-    surfaces. PR #323 (merge `403f228f4`) added an inert Pipeline dispatch
-    compatibility description only, and the 2026-07-24 redesign tranche
-    restyled Pipeline and the coordination/activity presentation with no
-    dispatch, taxonomy, task-scope or disabled-state logic edited
-    (V1-verified presentation-neutral). **Dispatch validation evidence is
-    unchanged** — no new dispatch or lifecycle-separation validation was
-    produced and none is claimed. See
-    `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md` and
-    `execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`.
-
 ## History
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1/P2)

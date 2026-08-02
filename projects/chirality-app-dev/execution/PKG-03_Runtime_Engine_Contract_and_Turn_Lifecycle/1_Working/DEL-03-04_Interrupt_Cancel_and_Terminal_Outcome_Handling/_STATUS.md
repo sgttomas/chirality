@@ -8,7 +8,7 @@
 
 ## Remaining
 
-- Centralize interrupt/cancel and terminal ownership in the daemon and prove restart recovery and model-drain behavior preserve one terminal outcome (gated: daemon/residency integration).
+- Prove model-drain paths preserve exactly one terminal outcome across daemon recovery (verification owned by DEL-09-03).
 
 ## History
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
