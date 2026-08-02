@@ -1,6 +1,17 @@
 # D-PEC-72 execution handoff — P1-entry foundation
 
-**Handoff state:** PARTIAL CANDIDATE FAN-IN; PKG-00 CHECKLISTS CONFIRMED / REVIEW TYPE TBD; C-05 OPEN.
+**Handoff state:** PARTIAL CANDIDATE FAN-IN; PKG-00 SELF_CHECK COMPLETE / ONE MAJOR OPEN; C-05 OPEN.
+
+**Update 04 (2026-08-01):** the owner selected the recommended replacement
+`SELF_CHECK` review type and authorized continuation. The mechanical review
+populated both confirmed checklists. `DEL-00-01` has zero findings and is
+recommended for the later Gate 5 decision. `DEL-00-03` has one open MAJOR
+`AGENT_CHECK` finding: its accepted checklist source still names the older
+revision 1.2 / PRD v2.1 / OPEN-no-artifact state while D-PEC-72 and the
+candidate bind the accepted revision 1.3 / PRD v2.2 / INITIALIZED-artifact
+state. The candidate follows the later authority; REVIEW proposes source
+revision but does not edit `ScopeOfWork.md`. Human disposition remains `TBD`.
+Neither lifecycle state changed and no artifact was accepted.
 
 **Update 03 (2026-08-01):** the owner withdrew the `PEER_REVIEW` selection
 because no peer reviewer is available and confirmed both Gate 2 checklists as
@@ -97,11 +108,12 @@ re-rule or direct the harness cache.
 
 ## Rerun and next gates
 
-1. For DEL-00-01 and DEL-00-03, the owner-confirmed Gate 2 common checklists
-   remain ready, and the review-from-`INITIALIZED` override remains recorded.
-   `PEER_REVIEW` was withdrawn before findings capture; the owner must select a
-   replacement review type before Gate 3. No lifecycle transition is yet
-   authorized.
+1. For DEL-00-01, SELF_CHECK is complete with zero findings and a
+   `RECOMMEND_ADVANCE` Gate 5 recommendation; owner artifact fitness and
+   lifecycle decisions remain pending. For DEL-00-03, SELF_CHECK is complete
+   with `RF-001` MAJOR / OPEN / `HumanDisposition=TBD`; owner disposition is
+   required before the recommended Gate 5 decision. No lifecycle transition
+   is yet authorized.
 2. DEL-10-01 reruns only when exact token telemetry is available. A revised
    packet would be required to waive or replace that accepted criterion; this
    run does not propose such a waiver.
