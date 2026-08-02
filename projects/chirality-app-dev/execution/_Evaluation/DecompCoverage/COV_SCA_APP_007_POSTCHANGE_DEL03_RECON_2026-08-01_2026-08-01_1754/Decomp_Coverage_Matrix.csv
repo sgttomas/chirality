@@ -1,0 +1,11 @@
+ProductionUnitID,PartitionID,ConcreteProductionUnitLabel,ConcretePartitionLabel,FolderExists,ContextPresent,ContextMatch,ArtifactCoverage,ObjectivesMapped,LifecycleState,IssueCount
+DEL-03-01,PKG-03,Deliverable,Package,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-03-02,PKG-03,Deliverable,Package,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-03-03,PKG-03,Deliverable,Package,true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-03-04,PKG-03,Deliverable,Package,true,true,MATCH,0/3,2/2,IN_PROGRESS,1
+DEL-09-01,PKG-09,Deliverable,Package,true,true,MATCH,0/2,1/1,IN_PROGRESS,1
+DEL-09-02,PKG-09,Deliverable,Package,true,true,MATCH,0/3,5/5,IN_PROGRESS,1
+DEL-09-03,PKG-09,Deliverable,Package,true,true,MATCH,0/3,4/4,IN_PROGRESS,1
+DEL-09-04,PKG-09,Deliverable,Package,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-09-05,PKG-09,Deliverable,Package,true,true,MATCH,0/3,1/1,IN_PROGRESS,1
+DEL-09-06,PKG-09,Deliverable,Package,true,true,MATCH,0/5,1/1,IN_PROGRESS,1

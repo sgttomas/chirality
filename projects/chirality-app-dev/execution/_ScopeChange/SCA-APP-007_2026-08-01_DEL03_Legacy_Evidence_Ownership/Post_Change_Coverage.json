@@ -1,0 +1,22 @@
+{
+  "source_snapshot": "execution/_Evaluation/DecompCoverage/COV_SCA_APP_007_POSTCHANGE_DEL03_RECON_2026-08-01_2026-08-01_1754",
+  "overall_status": "WARNINGS",
+  "issues_blocker": 0,
+  "issues_warning": 10,
+  "issues_info": 1,
+  "sca_app_007_topology_objective": "PASS",
+  "duplicate_pkg03_root_warning_resolved": true,
+  "reverse_only_del03_06_warning_resolved": true,
+  "new_warnings": 0,
+  "remaining_warnings_disposition": "Ten pre-existing anticipated-artifact filename warnings on in-progress deliverables; unrelated to SCA-APP-007.",
+  "topology": {
+    "packages": 10,
+    "deliverables": 51,
+    "scope_items": 78,
+    "objectives": 10
+  },
+  "decomposition_sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83",
+  "audit_latest_updated": false,
+  "scope_change_latest_updated": true,
+  "gate5_state": "CLOSED_FOR_SCOPE_CHANGE_ONLY"
+}

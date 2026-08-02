@@ -9,7 +9,7 @@
 | REF-003 | `docs/SPEC.md` | Physical structures, runtime mechanics, API/file contracts | `eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990` | `eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990` | MATCH |
 | REF-004 | `docs/TYPES.md` | Vocabulary, identifiers, enums, type targets | `998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169` | `998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169` | MATCH |
 | REF-005 | `docs/PLAN.md` | Roadmap and implementation sequencing | `c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff` | `c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff` | MATCH |
-| REF-006 | `docs/PRD.md` | Product requirements, runtime direction, and approved vNext scope | `ef638f43ccae1cd78b26b1ae078a33770cf64cc36c247c5d7da04b35196a4010` | `ef638f43ccae1cd78b26b1ae078a33770cf64cc36c247c5d7da04b35196a4010` | MATCH |
+| REF-006 | `docs/PRD.md` | Product requirements, runtime direction, and approved vNext scope | `3c357da78277f4c15ecee7cbba6c0a198bc1568b612229eeba63cb1d5972ea7b` | `3c357da78277f4c15ecee7cbba6c0a198bc1568b612229eeba63cb1d5972ea7b` | MATCH |
 | REF-007 | `agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method and gate protocol | `ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409` | `ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409` | MATCH |
 
 ## Decomposition Entry

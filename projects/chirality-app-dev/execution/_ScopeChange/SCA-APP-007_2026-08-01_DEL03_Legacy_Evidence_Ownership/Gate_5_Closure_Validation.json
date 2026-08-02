@@ -1,0 +1,28 @@
+{
+  "scope_change_id": "SCA-APP-007",
+  "state": "CLOSED_FOR_SCOPE_CHANGE_ONLY",
+  "owner_confirmation": "CONFIRM SCA-APP-007 GATE 5: ACCEPT THE VALIDATED POST-CHANGE STATE AND CLOSE FOR SCOPE CHANGE ONLY; RETAIN THE CANONICAL VITEST WRAPPER AS A NON-BLOCKING RERUN ADVISORY.",
+  "decomposition_sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83",
+  "unknown_relations_sha256": "e4f3896b563a7ce822517cc3fae012101d6eb3a2a634f97e0da4f6ce0c46d1d8",
+  "migration": {
+    "files": 38,
+    "bytes": 97817,
+    "per_file_sha256_matches": 38,
+    "canonical_aggregate_sha256": "e27ca076ec3fdaeb4f6ba6cba6e716aa50497e130e5b0e3feab5dbc800aca4ff",
+    "old_physical_root_present": false
+  },
+  "post_change_audit": {
+    "snapshot": "execution/_Evaluation/DecompCoverage/COV_SCA_APP_007_POSTCHANGE_DEL03_RECON_2026-08-01_2026-08-01_1754",
+    "status": "WARNINGS",
+    "blockers": 0,
+    "warnings": 10,
+    "information": 1,
+    "new_warnings": 0,
+    "reverse_coverage_pct": 100.0,
+    "topology": "10/51/78/10"
+  },
+  "canonical_vitest_wrapper": "NON_BLOCKING_RERUN_ADVISORY",
+  "scope_change_latest_advanced": true,
+  "audit_latest_advanced": false,
+  "remaining_blocker": false
+}

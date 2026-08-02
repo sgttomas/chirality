@@ -10,7 +10,7 @@ const FRONTEND_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathnam
 const REPO_ROOT = path.resolve(FRONTEND_ROOT, '..');
 const DELIVERABLE_ROOT = path.resolve(
   REPO_ROOT,
-  'execution/PKG-03_Harness_Runtime_Core/1_Working/DEL-03-06_Outbound_Network_Guardrails'
+  'execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks'
 );
 
 const LOOPBACK_HOSTS = new Set(['localhost', '127.0.0.1', '::1', '[::1]']);
@@ -64,7 +64,7 @@ function parseArgs(argv) {
     outputDir: path.resolve(
       DELIVERABLE_ROOT,
       'Evidence',
-      `OI-002_PROOF_${timestampForPath()}`
+      `NETWORK_POLICY_PROOF_${timestampForPath()}`
     )
   };
 
@@ -605,7 +605,7 @@ async function runProofCycle({ runIndex, args, outputDir }) {
 
     const turnResponse = await postTurnSse('http://127.0.0.1:3000/api/harness/turn', {
       sessionId,
-      message: `DEL-03-06 OI-002 proof run ${runId}`,
+      message: `DEL-09-06 network-policy proof run ${runId}`,
       opts: turnOptions,
       attachments: []
     });
@@ -769,7 +769,7 @@ function renderMarkdownSummary(args, outputDir, runSummaries, aggregate) {
   const lines = [];
   const providerMode = args.provider;
 
-  lines.push('# OI-002 Option B Proof Run Summary');
+  lines.push('# Network Policy Proof Run Summary');
   lines.push('');
   lines.push(`- Generated: ${toIsoNow()}`);
   lines.push(`- Output directory: ${outputDir}`);
