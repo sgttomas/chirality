@@ -1,0 +1,26 @@
+{
+  "schema": "chirality-software-workflow/v1",
+  "project_root": ".",
+  "workspace_root": "../..",
+  "checks": {
+    "v2-api-contract": {
+      "cwd": ".",
+      "command": ["python3", "-m", "unittest", "discover", "-s", "v2/tests/contracts/api", "-p", "test_*.py"]
+    },
+    "harness-self-check": {
+      "cwd": "../..",
+      "command": ["python3", "tools/practitioner_harness/harness.py", "self-check"]
+    }
+  },
+  "always_checks": ["harness-self-check"],
+  "path_rules": [
+    {
+      "paths": ["v2/contracts/api/**", "v2/tests/contracts/api/**", "software-workflow.json"],
+      "checks": ["v2-api-contract"]
+    },
+    {
+      "paths": ["execution/**", "docs/**", "AGENTS.md"],
+      "checks": ["harness-self-check"]
+    }
+  ]
+}

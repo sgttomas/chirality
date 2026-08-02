@@ -1,6 +1,6 @@
 # D-PEC-74 — First actual P1 source slice
 
-**Status:** RULED — O-A; AUTHORITY RECORDED / PRODUCTION NOT YET EXECUTED
+**Status:** RULED — O-A; PRODUCER COMPLETE / REVIEW AND OWNER GATES OPEN
 
 **DecisionID:** D-PEC-74
 
@@ -92,3 +92,19 @@ Recording the ruling is not production. At this authority checkpoint no O-A
 source path or profile exists, no deliverable-local file has changed, and no
 artifact acceptance, lifecycle transition, `ISSUED`, later P1 node, release,
 merge, professional reliance, or architecture mandate outside PEC is inferred.
+
+## Production outcome — 2026-08-01
+
+WORKING_ITEMS executed only the frozen O-A activation. The version-1 JSON
+Schema contract, standard-library compatibility tests, three fixtures, exact
+software-workflow profile, and two authorized deliverable run records now
+exist. Both registered checks pass; the additive fixture passes, while the
+removal and meaning-change fixtures fail with located explanations. Exact
+hashes and validation evidence are recorded in
+`../D-PEC-74_FIRST_P1_SOURCE_SLICE_2026-08-01/EXECUTION_HANDOFF.md`.
+
+This is producer-complete candidate work. DEL-08-02 remains `INITIALIZED` and
+no artifact is accepted. REVIEW type selection, any review-from-`INITIALIZED`
+override, finding disposition, Gate 5, AC-005's qualified objective-attribution
+confirmation, exact-hash artifact fitness, Git publication/merge, later P1
+work, release, and professional reliance remain separate owner gates.

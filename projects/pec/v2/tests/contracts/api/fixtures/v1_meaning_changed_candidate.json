@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "CapabilityRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "api_schema_version": {
+          "const": 1,
+          "type": "integer",
+          "x-pec-meaning": "The PEC API contract version used to interpret this request."
+        },
+        "capability": {
+          "minLength": 1,
+          "type": "string",
+          "x-pec-meaning": "A caller-owned application identity used to route this request."
+        },
+        "input": {
+          "type": "object",
+          "x-pec-meaning": "Use-case-specific input values whose detailed shape is defined by a versioned capability contract."
+        },
+        "use_case": {
+          "minLength": 1,
+          "type": "string",
+          "x-pec-meaning": "A PEC-owned use-case name within the selected capability."
+        }
+      },
+      "required": [
+        "api_schema_version",
+        "capability",
+        "use_case",
+        "input"
+      ],
+      "type": "object",
+      "x-pec-meaning": "A machine-consumer request addressed to a versioned PEC capability and use case."
+    },
+    "CapabilityResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "api_schema_version": {
+          "const": 1,
+          "type": "integer",
+          "x-pec-meaning": "The PEC API contract version used to interpret this response."
+        },
+        "capability": {
+          "minLength": 1,
+          "type": "string",
+          "x-pec-meaning": "The PEC-owned capability name that produced this response."
+        },
+        "outcome": {
+          "enum": [
+            "ok",
+            "error"
+          ],
+          "type": "string",
+          "x-pec-meaning": "Whether the requested use case produced a result or a capability-level error."
+        },
+        "output": {
+          "type": "object",
+          "x-pec-meaning": "Use-case-specific output values whose detailed shape is defined by a versioned capability contract."
+        },
+        "use_case": {
+          "minLength": 1,
+          "type": "string",
+          "x-pec-meaning": "The PEC-owned use-case name within the selected capability."
+        }
+      },
+      "required": [
+        "api_schema_version",
+        "capability",
+        "use_case",
+        "outcome",
+        "output"
+      ],
+      "type": "object",
+      "x-pec-meaning": "A machine-consumer response from a versioned PEC capability and use case."
+    }
+  },
+  "$id": "https://chirality.local/pec/v2/contracts/api/v1/schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "api_schema_version": 1,
+  "description": "PEC-owned, transport-neutral capability and use-case request/response shapes.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/CapabilityRequest"
+    },
+    {
+      "$ref": "#/$defs/CapabilityResponse"
+    }
+  ],
+  "title": "PEC API contract v1",
+  "x-pec-meaning": "The version 1 machine-consumer boundary for PEC-owned capabilities and use cases."
+}
