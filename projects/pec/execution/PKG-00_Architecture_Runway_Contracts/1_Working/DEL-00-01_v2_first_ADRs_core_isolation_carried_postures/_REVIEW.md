@@ -1,6 +1,6 @@
 # Review — DEL-00-01 v2 first ADRs
 
-**Review stage:** FINAL-HASH SELF_CHECK COMPLETE — ARTIFACT FITNESS OWNER DECISION PENDING
+**Review stage:** ARTIFACT FITNESS OWNER ACCEPTED — CHECKING
 
 **Review Type:** SELF_CHECK
 
@@ -57,6 +57,25 @@ The authorized normalization is present at producer commit
 final ADR hash below. The normalized prose is acceptance-neutral and changes
 no architecture or contract criterion.
 
+**Owner artifact-fitness ruling (verbatim, 2026-08-01):**
+
+> DEL-00-01 AC-007 — ACCEPT.
+>
+> I accept artifacts/v2/ADRs.md at SHA-256
+> f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5
+> as fit for DEL-00-01. I confirm ports-and-adapters / hexagonal
+> isolation as PEC v2’s selected core-isolation style and confirm
+> that no governed act depends on PEC-held state.
+>
+> This accepts these artifact bytes only. It does not advance
+> DEL-00-01 to ISSUED, close C-05, authorize P1, or impose this
+> architecture on another loop.
+
+This ruling is recorded at committed authority
+`ARTIFACT_ACCEPTANCE_AND_DEL10_REPAIR_RULING_2026-08-01.md` at
+`7f5acbf5`. It accepts only the exact review-basis artifact hash and changes no
+lifecycle state.
+
 ## Review Basis
 
 - D-PEC-72 production merged through PR #450 at `0f7f7ef108e65b953d188bd01fb116858959830f`.
@@ -101,7 +120,7 @@ revisions remain allowed; the compiled `AC-*` rows remain unchanged.
 | AC-004 | The ADR set names itself in its own text as the resolution of OI-012, and that self-identification is consistent with the disposition the open-issue register already carries for OI-012 — "Decided in DEL-00-01's ADR; owner review at that ADR" — requiring no change to it. The set decides none of OI-001 through OI-009 or OI-013 and claims no register-side effect; any register-side update is an out-of-scope downstream act (SCOPE_CHANGE or coordination upkeep), not a completion condition of this deliverable. | VER-001; VER-003 | `DEL-00-01-AC-004`; ScopeOfWork line 110; SHA above | Y — Non-decisions section preserves every named issue and register boundary |
 | AC-005 | The ADR set states the entity-schema versus store-persistence seam inside PKG-01 explicitly enough that a reader can classify a candidate PKG-01 change as core or adapter. | VER-001 | `DEL-00-01-AC-005`; ScopeOfWork line 111; SHA above | Y — Decision item 6 supplies the classification rule |
 | AC-006 | The v2 docs-tree path is recorded in the deliverable packet, the ADR markdown entries exist at that path, and the run produced no write outside `PKG-00`. | VER-004 | `DEL-00-01-AC-006`; ScopeOfWork line 112; SHA above | Y — path exists; production commit `5942c5033` is PKG-00-contained |
-| AC-007 | An accountable owner confirms the selected core isolation style at the ADR, consistent with the OI-012 disposition "owner review at that ADR", and confirms that nothing in the set makes a governed act depend on PEC-held state. | HUMAN_REVIEW | `DEL-00-01-AC-007`; ScopeOfWork line 113; SHA above | PARTIAL — D-PEC-72 confirms O-B and the final artifact carries graceful absence; owner fitness confirmation of final hash `f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5` remains pending |
+| AC-007 | An accountable owner confirms the selected core isolation style at the ADR, consistent with the OI-012 disposition "owner review at that ADR", and confirms that nothing in the set makes a governed act depend on PEC-held state. | HUMAN_REVIEW | `DEL-00-01-AC-007`; ScopeOfWork line 113; SHA above | Y — owner ACCEPTS final hash `f63ecc2725b26e0e78be993a7902ad5b901cdfbb2e7921a19fc3442c9d785db5`, confirms hexagonal isolation, and confirms graceful absence |
 
 ### Objective Coverage
 
@@ -138,15 +157,15 @@ status-prose delta were checked against the final artifact hash. No custom
 `Review_Findings.csv` remains header-only. The final-hash mechanical
 SELF_CHECK found zero CRITICAL, MAJOR, MINOR, or OBSERVATION findings. The
 status-prose normalization is acceptance-neutral and introduced no checklist
-regression. AC-007 remains a planned owner-only confirmation, not a defect or
-agent disposition.
+regression. AC-007 is satisfied by the exact owner artifact-fitness ruling; it
+is not an agent disposition.
 
 ## Transition Readiness
 
-**Recommendation:** RECOMMEND_ADVANCE
+**Recommendation:** NO FURTHER LIFECYCLE ACT AUTHORIZED
 
 All common checklist items remain populated against the final artifact hash,
 there are zero findings, and the authorized normalization introduced no
-substantive change. `DEL-00-01` remains `CHECKING`. Artifact fitness remains a
-separate owner act: AC-007 is still `PARTIAL`, and the final ADR bytes have not
-been accepted.
+substantive change. The owner separately accepted the exact final ADR hash and
+satisfied AC-007. `DEL-00-01` remains `CHECKING`; no `ISSUED` transition,
+C-05 closure, or P1 authority is created.

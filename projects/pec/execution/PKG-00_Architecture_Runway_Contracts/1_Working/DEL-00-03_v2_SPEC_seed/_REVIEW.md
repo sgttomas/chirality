@@ -1,6 +1,6 @@
 # Review — DEL-00-03 v2 SPEC seed
 
-**Review stage:** GATE 5 OWNER APPROVED — CHECKING; FINAL-HASH SELF_CHECK COMPLETE
+**Review stage:** ARTIFACT FITNESS OWNER ACCEPTED — CHECKING
 
 **Review Type:** SELF_CHECK
 
@@ -61,6 +61,27 @@ The guarded lifecycle transition was applied against committed authorization
 present at that producer commit. This SELF_CHECK rerun binds the final SPEC
 hash below; neither act accepts the SPEC bytes.
 
+**Owner artifact-fitness ruling (verbatim, 2026-08-01):**
+
+> DEL-00-03 AC-011 — ACCEPT.
+>
+> I accept artifacts/v2/SPEC.md at SHA-256
+> 8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315
+> as the PEC v2 SPEC of record born from PRD v2.2 and accepted
+> SOFTWARE_DECOMP revision 1.3 at 11a494e9a.
+>
+> I confirm the single-objective attribution to OBJ-001 with its
+> recorded LOW-confidence qualification; the full-objective-set and
+> OBJ-006 alternatives remain considered but unadopted.
+>
+> This accepts these artifact bytes only. It does not advance
+> DEL-00-03 to ISSUED, close C-05, or authorize P1.
+
+This ruling is recorded at committed authority
+`ARTIFACT_ACCEPTANCE_AND_DEL10_REPAIR_RULING_2026-08-01.md` at
+`7f5acbf5`. It accepts only the exact review-basis artifact hash and changes no
+lifecycle state.
+
 ## Review Basis
 
 - D-PEC-72 production merged through PR #450 at `0f7f7ef108e65b953d188bd01fb116858959830f`.
@@ -109,7 +130,7 @@ revisions remain allowed; the compiled `AC-*` rows remain unchanged.
 | AC-008 | After publication, the open-issue register still shows `OI-001`..`OI-009`, `OI-012`, and `OI-013` with their pre-publication dispositions, and the §16-derived `TBD` scope items remain `TBD`. | VER-006 | `DEL-00-03-AC-008`; ScopeOfWork line 116; SHA above | Y — production and repair changes did not touch decomposition/open-issue surfaces |
 | AC-009 | The seed is complete before any P1 node starts, it declares no dependency on a P1 or later deliverable, and it asserts no consumer obligation on any deliverable the accepted text does not name. | VER-009 | `DEL-00-03-AC-009`; ScopeOfWork line 117; SHA above | Y — artifact states pre-P1, no phase completion, and no consumer edge |
 | AC-010 | Terminology in the seed conforms to the accepted vocabulary map, and every use of "package" is disambiguated in the sense §9 requires. | VER-008 | `DEL-00-03-AC-010`; ScopeOfWork line 118; SHA above | Y — Package (entity) and work-domain package are explicitly distinguished |
-| AC-011 | An accountable owner confirms that the published seed is the v2 SPEC of record born from the accepted decomposition, and confirms that the seed's single-objective attribution to `OBJ-001` remains acceptable given the recorded LOW-confidence qualification and the unadopted alternatives. | HUMAN_REVIEW | `DEL-00-03-AC-011`; ScopeOfWork line 119; SHA above | PARTIAL — qualification is explicit; owner confirmation of final hash `8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315` remains pending |
+| AC-011 | An accountable owner confirms that the published seed is the v2 SPEC of record born from the accepted decomposition, and confirms that the seed's single-objective attribution to `OBJ-001` remains acceptable given the recorded LOW-confidence qualification and the unadopted alternatives. | HUMAN_REVIEW | `DEL-00-03-AC-011`; ScopeOfWork line 119; SHA above | Y — owner ACCEPTS final hash `8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315` as the SPEC of record and confirms the qualified OBJ-001 attribution |
 
 ### Objective Coverage
 
@@ -158,10 +179,11 @@ added no finding. REVIEW did not edit the SPEC candidate.
 
 ## Transition Readiness
 
-**Recommendation:** RECOMMEND_ADVANCE
+**Recommendation:** NO FURTHER LIFECYCLE ACT AUTHORIZED
 
 The regenerated checklist remains populated against the final artifact hash,
 `RF-001` is resolved, and there are no open findings. The owner separately
-approved Gate 5 and the guarded transition was applied; `DEL-00-03` is now
-`CHECKING`. Artifact fitness remains a separate owner act: AC-011 is still
-`PARTIAL`, and the final SPEC bytes have not been accepted.
+approved Gate 5 and the guarded transition was applied. The owner separately
+accepted the exact final SPEC hash and satisfied AC-011, including the
+LOW-confidence OBJ-001 qualification. `DEL-00-03` remains `CHECKING`; no
+`ISSUED` transition, C-05 closure, or P1 authority is created.

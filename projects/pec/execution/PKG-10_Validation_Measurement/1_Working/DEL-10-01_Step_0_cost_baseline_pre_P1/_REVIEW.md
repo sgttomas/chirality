@@ -1,6 +1,6 @@
 # Review — DEL-10-01 Step-0 cost baseline
 
-**Review stage:** GATE 4 — FINDING DISPOSITION PENDING
+**Review stage:** GATE 4 REPAIR VERIFIED — GATE 5 OWNER DECISION PENDING
 
 **Review Type:** SELF_CHECK
 
@@ -22,11 +22,32 @@ This ruling selects the review type and overrides the lifecycle entry
 precondition only. It grants no finding disposition, artifact fitness,
 lifecycle, C-05, or P1 authority.
 
+**Owner finding disposition and repair authorization (verbatim, 2026-08-01):**
+
+> DEL-10-01 RF-001 — REVISE.
+>
+> Authorize WORKING_ITEMS to normalize only present-tense candidate,
+> REVIEW-pending, and acceptance-pending status prose in
+> artifacts/STEP0_COST_BASELINE_METHOD.md and
+> artifacts/STEP0_COST_BASELINE.md into acceptance-neutral authority
+> prose.
+>
+> Do not change the measurement method, values, telemetry,
+> classification, criteria, citations, scope, lifecycle, C-05, or
+> P1 state. Rerun SELF_CHECK against the resulting hashes.
+>
+> This disposition and repair authorization do not accept DEL-10-01
+> or advance its lifecycle.
+
+The repair is present at commit `0cb6e2b4c016dc42f25d23d4d48d6d752937c85f`.
+This rerun verifies the bounded prose-only delta and binds the final hashes
+below. No artifact acceptance or lifecycle act is inferred.
+
 ## Review Basis
 
 - Production contract: `ScopeOfWork.md`, valid `SOW_V1` (`sha256:40d47fb636ca72e52213929b2337dbbc3a02f0f7c073758c996f5d651e1a5a7e`).
-- Method artifact: `artifacts/STEP0_COST_BASELINE_METHOD.md` (`sha256:b02d010c2d8c7bf10a009cc88a22f3c6923e53069913af5688470f982acb6fa2`).
-- Baseline artifact: `artifacts/STEP0_COST_BASELINE.md` (`sha256:1955bd6197b93be167cc5449683c860cae8a98a58967fb64f1354a98b65a82d9`).
+- Method artifact: `artifacts/STEP0_COST_BASELINE_METHOD.md` (`sha256:5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59`).
+- Baseline artifact: `artifacts/STEP0_COST_BASELINE.md` (`sha256:0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d`).
 - Exact telemetry record: `_run_records/D-PEC-72_TOKEN_TELEMETRY_RERUN_2026-08-02.md` (`sha256:baa80859d40845cc1c2448342befcacc83fd3519dd34e9e9b00dceb6764f7f89`).
 - Candidate validation: `_run_records/D-PEC-72_CANDIDATE_VALIDATION.md` (`sha256:5160b61a720bd00ca50403e1b0c6a1aced3ef2210c264c16c18d5892ebbb4810`).
 - Checklist compiler: `tools/scope_of_work/derive_review_checklist.py`, schema `chirality-review-checklist/v1`, tool version 1, 8 criteria.
@@ -56,8 +77,8 @@ The compiled `AC-*` rows remain exact, complete, and ordered.
 
 | ID | Artifact | Present | Notes |
 |---|---|---|---|
-| AP-001 | `artifacts/STEP0_COST_BASELINE_METHOD.md` | Y | Hash matches the review basis |
-| AP-002 | `artifacts/STEP0_COST_BASELINE.md` | Y | Hash matches the review basis; exact telemetry is cited |
+| AP-001 | `artifacts/STEP0_COST_BASELINE_METHOD.md` | Y | Final normalized hash matches the review basis |
+| AP-002 | `artifacts/STEP0_COST_BASELINE.md` | Y | Final normalized hash matches the review basis; exact telemetry is unchanged and cited |
 
 ### Acceptance Criteria
 
@@ -70,7 +91,7 @@ The compiled `AC-*` rows remain exact, complete, and ordered.
 | AC-005 | Every statement in both artifacts is classifiable by a reviewer as measurement method, measured value, or declared limit; neither artifact contains a requirement or acceptance criterion for a behavior owned by another package. | VER-004 | `DEL-10-01-AC-005`; ScopeOfWork line 111; SHA above | Y — classification inheritance is explicit; no other-package behavior requirement or post-P1 claim appears |
 | AC-006 | The packet-recorded path exists and holds both the method document and the baseline report, and the production change set touches no path outside `PKG-10`. | VER-005 | `DEL-10-01-AC-006`; ScopeOfWork line 112; SHA above | Y — both paths exist; the PKG-10 activation and candidate-validation evidence record a package-contained producer write set |
 | AC-007 | The published method states which criterion the precondition re-test applies, or records `CON-001` as still unresolved and names what would settle it; neither artifact silently substitutes the token metric for the latency criterion or the reverse. | VER-001; VER-003 | `DEL-10-01-AC-007`; ScopeOfWork line 113; SHA above | Y — token baseline and historical latency observation are applied and reported separately without substitution |
-| AC-008 | An accountable owner confirms that the captured baseline is fit to serve as the "before" leg of PRD §11 metric 1 and that the `PRE_P1_OBLIGATION` constraint is satisfied before any P1 node starts. | HUMAN_REVIEW | `DEL-10-01-AC-008`; ScopeOfWork line 114; SHA above | PARTIAL — exact candidate evidence exists; owner fitness/pre-P1 confirmation is pending, and RF-001 must be dispositioned before exact-hash acceptance |
+| AC-008 | An accountable owner confirms that the captured baseline is fit to serve as the "before" leg of PRD §11 metric 1 and that the `PRE_P1_OBLIGATION` constraint is satisfied before any P1 node starts. | HUMAN_REVIEW | `DEL-10-01-AC-008`; ScopeOfWork line 114; SHA above | PARTIAL — exact candidate evidence exists and RF-001 is resolved; owner confirmation of final method hash `5756d6cf1b7293a7db8dcf1ce968d443dcb7214867216f5013ee018a493a0c59` and baseline hash `0aa5dd22d397026d88dfd8af1613163dd2de01ef3264024438034e54a1f5d02d` remains pending |
 
 ### Objective Coverage
 
@@ -83,7 +104,7 @@ The compiled `AC-*` rows remain exact, complete, and ordered.
 
 | ID | Check | Result | Notes |
 |---|---|---|---|
-| XD-001 | `OUT-001` and `OUT-002` close through all registered `AC-*` and `VER-*` mappings without adding scope | PASS WITH FINDING | Measurement content and evidence close; RF-001 concerns acceptance-status prose only |
+| XD-001 | `OUT-001` and `OUT-002` close through all registered `AC-*` and `VER-*` mappings without adding scope | PASS | Measurement content and evidence close; RF-001 acceptance-status prose repair is verified |
 
 ### Dependency Satisfaction
 
@@ -100,32 +121,31 @@ The compiled `AC-*` rows remain exact, complete, and ordered.
 ### SELF_CHECK Focus
 
 Completeness, internal consistency, exact telemetry arithmetic, candidate
-classification, carried limits, and acceptance-readiness were checked against
-the bound hashes. No custom `CU-*` row is active.
+classification, carried limits, the authorized status-prose delta, and
+acceptance-readiness were checked against the final bound hashes. No custom
+`CU-*` row is active.
 
 ## Findings Summary
 
 | Severity | Total | Resolved | Open | Deferred |
 |---|---:|---:|---:|---:|
 | CRITICAL | 0 | 0 | 0 | 0 |
-| MAJOR | 1 | 0 | 1 | 0 |
+| MAJOR | 1 | 1 | 0 | 0 |
 | MINOR | 0 | 0 | 0 | 0 |
 | OBSERVATION | 0 | 0 | 0 | 0 |
 
-`RF-001` is `Origin: AGENT_CHECK`. It identifies present-tense
-candidate/pending-acceptance prose that is accurate now but would become false
-inside the accepted bytes immediately upon an exact-hash AC-008 ruling. The
-finding proposes bounded acceptance-neutral status-prose normalization and a
-SELF_CHECK rerun. `HumanDisposition` remains `TBD`; REVIEW does not infer the
-owner's choice.
+`RF-001` is `Origin: AGENT_CHECK`. The owner dispositioned it `REVISE`. The
+bounded repair replaces only present-tense candidate/pending-acceptance prose
+with acceptance-neutral authority language. The measurement method, values,
+telemetry, classification, criteria, citations, scope, lifecycle, C-05, and P1
+state are unchanged. The final-hash rerun passes and RF-001 is `RESOLVED`.
 
 ## Transition Readiness
 
-**Recommendation:** RECOMMEND_HOLD
+**Recommendation:** RECOMMEND_ADVANCE
 
-All eight deterministic checklist items are populated and the measurement
-evidence is mechanically complete, but RF-001 is an open MAJOR finding with a
-`TBD` human disposition. Hold Gate 5 and AC-008 until the owner dispositions
-the finding and any authorized repair is rerun. DEL-10-01 remains
-`INITIALIZED`; the baseline is unaccepted, C-05 remains open, and P1 remains
-closed.
+All eight deterministic checklist items remain populated against the final
+artifact hashes, RF-001 is resolved, and no finding remains open. REVIEW
+recommends the separate Gate 5 lifecycle decision. DEL-10-01 remains
+`INITIALIZED`; AC-008 artifact fitness is still a separate owner act, C-05
+remains open, and P1 remains closed.
