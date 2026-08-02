@@ -1,0 +1,46 @@
+{
+  "schema": "chirality-agent-work-graph/v1",
+  "run_id": "APPDEV_DAPP84_REV2_RULING_ROUTE_2026-08-02",
+  "version": 1,
+  "parent_role": "HELP_HUMAN",
+  "manager_role": "HELPS_HUMANS",
+  "integration_owner": "H1-HELPS-HUMANS",
+  "nodes": [
+    {
+      "id": "H1-HELPS-HUMANS",
+      "agent_type": 1,
+      "status": "COMPLETE",
+      "objective": "Record and route the exact D-APP-84 Revision 2 ruling within the sealed control-plane write scope.",
+      "dependencies": [],
+      "write_scope": [
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP84_REV2_RULING_ROUTE_2026-08-02/**",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-84_RULING_PI_OMLX_AGENT2_CAPABILITY_EXPANSION_2026-08-02.md",
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md#D-APP-84",
+        "execution/_Coordination/NOTICE_D-APP-84_REV2_APP_PI_SANDBOX_ROOT_ROUTE_2026-08-02.md",
+        "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md#Receipt-107"
+      ],
+      "expected_return": "Ruling and route artifacts plus validation evidence and handoff.",
+      "return_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP84_REV2_RULING_ROUTE_2026-08-02/instances/H1-HELPS-HUMANS/RETURN.md"
+    },
+    {
+      "id": "A2-READONLY-VERIFIER",
+      "agent_type": 2,
+      "status": "COMPLETE",
+      "objective": "Independently verify the materialized D-APP-84 Revision 2 ruling-and-route tranche.",
+      "dependencies": [
+        "H1-HELPS-HUMANS"
+      ],
+      "write_scope": [],
+      "expected_return": "PASS or evidence-linked findings covering selection, hashes, links, containment, no-effect boundaries, drift, and receipt structure.",
+      "return_path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP84_REV2_RULING_ROUTE_2026-08-02/instances/A2-READONLY-VERIFIER/RETURN.md"
+    }
+  ],
+  "fan_in": {
+    "owner": "H1-HELPS-HUMANS",
+    "requires": [
+      "A2-READONLY-VERIFIER terminal return",
+      "manager validation",
+      "receipt-validator pass"
+    ]
+  }
+}

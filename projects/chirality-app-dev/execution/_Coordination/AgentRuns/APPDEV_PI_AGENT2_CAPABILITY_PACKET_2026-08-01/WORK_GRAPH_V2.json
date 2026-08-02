@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-agent0-work-graph/v1",
+  "runId": "APPDEV_PI_AGENT2_CAPABILITY_PACKET_2026-08-01",
+  "planVersion": 2,
+  "selectionAuthority": "HUMAN_PROPOSAL_REVISION_DIRECTION",
+  "posture": "MIXED",
+  "nodes": [
+    {"id":"A2-RUNTIME-SANDBOX-V2","role":"AGENT_2_GENERALIST","status":"COMPLETE","writeScope":"NONE","dependencies":[]},
+    {"id":"A2-AUTHORITY-SANDBOX-V2","role":"AGENT_2_GENERALIST","status":"COMPLETE","writeScope":"NONE","dependencies":[]},
+    {"id":"A2-PACKET-CONVENTION-V2","role":"AGENT_2_GENERALIST","status":"COMPLETE","writeScope":"NONE","dependencies":[]},
+    {"id":"H1-DRAFT-REVISION-V2","role":"HELPS_HUMANS","status":"COMPLETE","integrationOwner":true,"dependencies":["A2-RUNTIME-SANDBOX-V2","A2-AUTHORITY-SANDBOX-V2","A2-PACKET-CONVENTION-V2"]},
+    {"id":"A2-ADVERSARIAL-V2","role":"AGENT_2_GENERALIST","status":"COMPLETE","writeScope":"NONE","dependencies":["H1-DRAFT-REVISION-V2"]},
+    {"id":"H1-FAN-IN-V2","role":"HELPS_HUMANS","status":"COMPLETE","integrationOwner":true,"dependencies":["A2-ADVERSARIAL-V2"]},
+    {"id":"A0-FAN-IN-V2","role":"HELP_HUMAN","status":"PENDING","dependencies":["H1-FAN-IN-V2"]}
+  ],
+  "humanDecisionPoints": ["D-APP-84 amended proposal", "separate Root doctrine/runtime decision"],
+  "sharedWritePolicy": "H1-HELPS-HUMANS is the sole integration owner through serialized draft and fan-in phases; every Agent 2 node is read-only"
+}

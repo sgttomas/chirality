@@ -1,0 +1,13 @@
+{
+  "schema": "chirality-managed-agent-status/v1",
+  "runId": "APPDEV_PI_AGENT2_CAPABILITY_PACKET_2026-08-01",
+  "instanceId": "H1-HELPS_HUMANS",
+  "role": "HELPS_HUMANS",
+  "status": "IN_PROGRESS",
+  "phase": "PROPOSAL_AMENDMENT_V2_SANDBOX_REDERIVATION",
+  "acceptedBasis": "fc06b3388de17dcd5fc65eb29bf77c7f551a64cc",
+  "parent": "HELP_HUMAN",
+  "writeOwner": true,
+  "updated": "2026-08-02",
+  "amendmentVersion": 2
+}

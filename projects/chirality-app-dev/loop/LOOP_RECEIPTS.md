@@ -2905,3 +2905,34 @@
     dependency, estimate, schedule, audit-pointer, parity-instrument, or
     Pi/oMLX capability-expansion effect is created. Git closeout remains a
     separately governed action.
+
+- **2026-08-02 — Receipt 107** (D-APP-84 Revision 2 ruling and Root route).
+  - Receipt-ID: `Receipt-107`
+  - Examined-Through: `fc06b3388de17dcd5fc65eb29bf77c7f551a64cc`
+  - Parent-Receipt: `Receipt-106`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-02,
+    Ryan Tufts, in-session): `Then merge via PR as is the established pattern.
+    Check with a CHANGEV agent if you are uncertain.` The owner separately
+    confirmed: `I authorize that push to sgttomas/chirality and the PR merge
+    into main.`
+  - Pointers:
+    `execution/_Coordination/_DECISIONS/D-APP-84_RULING_PI_OMLX_AGENT2_CAPABILITY_EXPANSION_2026-08-02.md`;
+    D-APP-84 register row; root ordinary notice
+    `execution/_Coordination/NOTICE_D-APP-84_REV2_APP_PI_SANDBOX_ROOT_ROUTE_2026-08-02.md`;
+    `execution/_Coordination/AgentRuns/APPDEV_DAPP84_REV2_RULING_ROUTE_2026-08-02/`.
+  - Checks: `PASS` — proposal-revision identity; exact ruling selection and
+    register linkage; Root-notice harvest markers; scoped origin-main drift;
+    Task Management-register non-write; parity and historical-UNKNOWN
+    preservation; corpus, AgentRuns graph, practitioner self-check and pytest,
+    receipt, path-containment, and whitespace checks. Frontend/runtime gates
+    are not applicable because no runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising HELPS_HUMANS and a
+    fresh read-only ephemeral Agent 2 verifier; exact runtime model build not
+    exposed.
+  - Gate-Outcome: `EXECUTED` — the exact owner selection `B1 + V1 + P1 + X1 +
+    H1 + R1` is recorded and the Root-owned questions are routed as ordinary
+    coordination. H1 grants no Bash now; Root decisions, DEL-02-06 activation,
+    generic implementation, and a later App SCOPE_CHANGE remain required. No
+    authority, source/runtime/frontend, decomposition, deliverable, Task
+    Management disposition, parity selection, historical-provenance,
+    lifecycle, release, reliance, or Git effect is created.
