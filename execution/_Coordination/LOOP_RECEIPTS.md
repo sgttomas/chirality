@@ -2385,3 +2385,74 @@ amendment; owner ruling required).
   (`self_merge: false`). Merge pre-authorized by the owner's in-session
   direction above; executed as owner proxy on the exact final branch HEAD
   with §5.3.1 facts on the PR.
+
+### Receipt 82 — 2026-08-02 — TASK_MANAGEMENT invocation-local federation survey validated
+
+- **Parentage and numbering:** the highest prior allocated number is Receipt
+  81. The physical ledger tail also contains a later, independently merged
+  duplicate Receipt 80 for the AGENTS.md simplification. This receipt allocates
+  82 without renumbering or repairing either historical record.
+- **Owner ruling and implementation direction (2026-08-02, in-session):**
+  "Require the survey whenever TASK_MANAGEMENT is already invoked; do not
+  require loops to invoke TASK_MANAGEMENT." The owner then directed execution
+  of
+  `plans/chirality-task-management/FEDERATION_SURVEY_IMPLEMENTATION_PLAN_2026-08-02.md`.
+  This satisfied H0 for the bounded candidate only; H2 publication/merge was
+  not granted.
+- **Managed execution:** HELP_HUMAN used the canonical
+  `HELP_HUMAN -> HELPS_HUMANS -> Agent 2` path. Two read-only inventory
+  children stalled and were recorded `INTERRUPTED_NO_RETURN`; no assertion
+  from either was accepted. HELPS_HUMANS reproduced the four-register
+  inventory, integrated the tool and governance surfaces, corrected
+  invoking-relative labels and output/register collision containment, and
+  accepted fresh Agent 2 verification. The verifier found one same-namespace
+  missing-elevation acknowledgement defect; the manager repaired it, added a
+  regression, and the verifier closed it. A separate TASK_MANAGEMENT Agent 1
+  returned behavioral acceptance `READY` for Root and App contexts.
+- **Artifacts:** `agents/AGENT_TASK_MANAGEMENT.md` now requires the read-only
+  preflight before every requested mode of an already-invoked instance;
+  `tools/taskmgmt/taskmgmt.py` adds deterministic `federation`; focused tests
+  cover 33 cases; `.gitignore` covers derived projections in all four
+  canonical path families; D-GOV-33 and its register row record the ruled
+  candidate; the G4 manifest and App/Piping/PEC notices route the shared-agent
+  change; managed provenance and fan-in are under
+  `execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/`.
+- **Behavior and evidence:** Root/App/Piping/PEC surveys are all `COMPLETE`,
+  discover the same four valid registers, and report respectively 48/48,
+  25/24, 24/24, and 1/0 complete/presented findings with
+  `register_writes: 0`. All four register hashes remain unchanged. The sole
+  live closure echo (`TM-PIP-023 CLOSED -> TM-ROOT-053 OPEN`) is observation
+  only; neither row was edited or dispositioned.
+- **Checks:** focused Task Management 33 PASS; practitioner harness 349 PASS;
+  agent instructions 34 files / 0 errors / 0 warnings; G4, path anchors,
+  instruction entrypoints, claims language, candidate whitespace, compilation,
+  all four register validators, collision containment, and `git diff --check`
+  PASS.
+- **Closure and gate:** component implementation is `READY`; no H1 expansion
+  is required. The working-tree candidate remains based on
+  `main@3e03b257748822dba2ad7697453f3495fb7578db`; local `main` advanced to
+  `fe57138e6ce68fbcfe99b50676fcdd6114ec591a` by four commits (two non-merge
+  changes) without exact candidate-path overlap. Before H2 publication,
+  CHANGE must refresh onto current main and rerun the full matrix. No commit,
+  push, PR, merge, register write, loop-entry binding, schedule, CI, daemon,
+  schema/PRD/CONTRACT amendment, foreign write, or authority effect occurred
+  in this closeout.
+- **H2 owner direction and refreshed readiness (2026-08-02):** the owner
+  subsequently directed, verbatim, "Merge via PR." This satisfies H2
+  publication direction and authorizes CHANGE to merge the exact validated PR
+  HEAD after required checks, with no direct `main` push or check bypass.
+  CHANGE fetched `origin`, confirmed
+  `origin/main@fe57138e6ce68fbcfe99b50676fcdd6114ec591a`, found no exact
+  tranche-path overlap in the four intervening commits, and advanced the
+  branch basis by `git merge --ff-only origin/main` while preserving the
+  candidate. On that refreshed basis: Task Management 33/33, practitioner
+  harness 349/349, and validation suite 303/303 PASS; agent, G4, path-anchor
+  (1,214 surfaces), entrypoint, claims-language (268 files), candidate-
+  whitespace, compilation, and diff checks PASS; all four registers validate
+  at 103/24/24/6 rows; Root/App/Piping/PEC federation surveys remain
+  `COMPLETE` at 48/48, 25/24, 24/24, and 1/0 with `register_writes: 0`;
+  direct and symlink output/register collision guards return operational exit
+  2; all four accepted register hashes remain byte-identical. Candidate
+  commit, PR, approved source HEAD, publication, and effective merge
+  identities are recorded only by their respective Git/PR acts and are not
+  guessed here.

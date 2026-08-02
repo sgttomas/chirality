@@ -1,0 +1,119 @@
+{
+  "schema": "root-work-graph/v1",
+  "run_id": "TM-FEDERATION-SURVEY-20260802",
+  "plan_version": 4,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "basis": "main@3e03b257748822dba2ad7697453f3495fb7578db",
+  "integration_owner": "HELPS_HUMANS",
+  "nodes": [
+    {
+      "id": "A1-HELPS-HUMANS",
+      "role": "HELPS_HUMANS",
+      "status": "READY",
+      "depends_on": [],
+      "write_scope": [
+        "agents/AGENT_TASK_MANAGEMENT.md",
+        ".gitignore",
+        "tools/taskmgmt/taskmgmt.py",
+        "tools/taskmgmt/test_taskmgmt.py",
+        "docs/governance_harness/_DECISIONS/",
+        "docs/governance_harness/tranche_manifests/",
+        "projects/chirality-app-dev/execution/_Coordination/",
+        "projects/chirality-piping/execution/_Coordination/",
+        "projects/pec/execution/_Coordination/",
+        "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/"
+      ],
+      "expected_return": "validated integrated candidate and manager handoff",
+      "children": [
+        {
+          "id": "A2-INVENTORY-R2",
+          "role": "TASK_EPHEMERAL_GENERALIST",
+          "status": "INTERRUPTED_NO_RETURN",
+          "depends_on": [],
+          "write_scope": [
+            "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/instances/A2-INVENTORY-R2/"
+          ],
+          "expected_return": "canonical-register/link inventory and fixture matrix"
+        },
+        {
+          "id": "A2-INVENTORY-R2B",
+          "role": "TASK_EPHEMERAL_GENERALIST",
+          "status": "INTERRUPTED_NO_RETURN",
+          "depends_on": [],
+          "write_scope": [
+            "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/instances/A2-INVENTORY-R2B/"
+          ],
+          "expected_return": "timeboxed replacement inventory; no return produced"
+        },
+        {
+          "id": "A2-IMPLEMENT-R2",
+          "role": "TASK_GENERIC_SHELL",
+          "status": "SUCCESS_ACCEPTED_WITH_MANAGER_CORRECTION",
+          "depends_on": ["INVENTORY_FANIN"],
+          "write_scope": [
+            "agents/AGENT_TASK_MANAGEMENT.md",
+            ".gitignore",
+            "tools/taskmgmt/taskmgmt.py",
+            "tools/taskmgmt/test_taskmgmt.py",
+            "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/instances/A2-IMPLEMENT-R2/"
+          ],
+          "expected_return": "instruction/tool/test patch, focused checks, containment proof"
+        },
+        {
+          "id": "A2-VERIFY-R2",
+          "role": "TASK_EPHEMERAL_GENERALIST",
+          "status": "READY",
+          "depends_on": ["A2-IMPLEMENT-R2"],
+          "write_scope": [
+            "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/instances/A2-VERIFY-R2/"
+          ],
+          "expected_return": "fresh adversarial verification matrix"
+        }
+      ]
+    },
+    {
+      "id": "ABORTED-DIRECT-LANES",
+      "role": "PROVENANCE_RECORD",
+      "depends_on": [],
+      "status": "ABORTED_UNACCEPTED",
+      "write_scope": [],
+      "expected_return": "no authoritative return; partial evidence requires HELPS_HUMANS adoption or replacement"
+    },
+    {
+      "id": "A1-TM-ACCEPT",
+      "role": "TASK_MANAGEMENT",
+      "status": "READY",
+      "depends_on": ["A1-HELPS-HUMANS"],
+      "write_scope": [
+        "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/TASK_MANAGEMENT_ACCEPTANCE.md"
+      ],
+      "expected_return": "Root and non-Root read-only invocation proof"
+    },
+    {
+      "id": "A1-CHANGE",
+      "role": "CHANGE",
+      "status": "HELD_H2",
+      "depends_on": ["A1-HELPS-HUMANS", "A1-TM-ACCEPT"],
+      "write_scope": ["git-file-state-only"],
+      "expected_return": "publication readiness; no merge without H2"
+    },
+    {
+      "id": "A0-HELP-HUMAN-FANIN",
+      "role": "HELP_HUMAN",
+      "status": "READY_FOR_H2",
+      "depends_on": ["A1-HELPS-HUMANS", "A1-TM-ACCEPT"],
+      "write_scope": [
+        "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/HELP_HUMAN_FANIN.md",
+        "execution/_Coordination/LOOP_RECEIPTS.md",
+        "execution/_Coordination/HANDOFF_STATE.md"
+      ],
+      "expected_return": "validated exact working-tree candidate and next owner gate"
+    }
+  ],
+  "human_gates": {
+    "H0_IMPLEMENTATION": "SATISFIED",
+    "H1_SCOPE_EXPANSION": "UNSATISFIED_NOT_REQUIRED",
+    "H2_PUBLICATION_MERGE": "UNSATISFIED"
+  }
+}

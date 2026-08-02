@@ -1,0 +1,26 @@
+{
+  "run_id": "TM-FEDERATION-SURVEY-20260802",
+  "instance_id": "A2-VERIFY-R2",
+  "role": "ephemeral-generalist",
+  "parent": "HELPS_HUMANS",
+  "status": "READY",
+  "depends_on": ["IMPLEMENTATION_FANIN"],
+  "write_scope": [
+    "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/instances/A2-VERIFY-R2/RETURN.md",
+    "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/instances/A2-VERIFY-R2/STATUS.json",
+    "/tmp"
+  ],
+  "result": {
+    "verdict": "READY",
+    "focused_tests": "33 passed (original 32 plus corrected same-namespace elevation regression)",
+    "practitioner_tests": "349 passed",
+    "root_live_survey": "COMPLETE; 4 registers; 48 findings; 48 presented; register_writes 0",
+    "app_live_survey": "COMPLETE; 4 registers; 25 findings; 24 presented; register_writes 0",
+    "piping_live_survey": "COMPLETE; 4 registers; 24 findings; 24 presented; register_writes 0",
+    "pec_live_survey": "COMPLETE; 4 registers; 1 finding; 0 presented; register_writes 0",
+    "open_critical_high": 0,
+    "h1_required": false,
+    "h2_satisfied": false,
+    "return": "RETURN.md"
+  }
+}

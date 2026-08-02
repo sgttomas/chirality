@@ -1,0 +1,35 @@
+{
+  "run_id": "TM-FEDERATION-SURVEY-20260802",
+  "role": "HELPS_HUMANS",
+  "status": "READY",
+  "basis_head": "3e03b257748822dba2ad7697453f3495fb7578db",
+  "current_main": "fe57138e6ce68fbcfe99b50676fcdd6114ec591a",
+  "h1_required": false,
+  "h2_satisfied": false,
+  "agent2": {
+    "inventory_r2": "INTERRUPTED_NO_RETURN",
+    "inventory_r2b": "INTERRUPTED_NO_RETURN",
+    "implementation_r2": "SUCCESS_ACCEPTED_WITH_MANAGER_CORRECTIONS",
+    "verification_r2": "READY_ACCEPTED"
+  },
+  "validation": {
+    "taskmgmt_tests": "33 passed",
+    "practitioner_harness": "349 passed",
+    "validator_unit_matrix": "92 passed",
+    "agent_instructions": "PASS",
+    "g4_manifest": "PASS",
+    "path_anchors": "PASS",
+    "instruction_entrypoints": "PASS",
+    "claims_language": "PASS",
+    "candidate_whitespace": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "live_surveys": {
+    "root": "COMPLETE 48/48 writes=0",
+    "app": "COMPLETE 25/24 writes=0",
+    "piping": "COMPLETE 24/24 writes=0",
+    "pec": "COMPLETE 1/0 writes=0"
+  },
+  "return": "HELPS_HUMANS_RETURN.md",
+  "next_owner": "HELP_HUMAN"
+}

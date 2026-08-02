@@ -1,0 +1,11 @@
+{
+  "run_id": "TM-FEDERATION-SURVEY-20260802",
+  "instance_id": "A2-INVENTORY",
+  "role": "ephemeral-generalist",
+  "parent": "HELPS_HUMANS",
+  "status": "READY",
+  "write_scope": [
+    "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/instances/A2-INVENTORY/RETURN.md",
+    "execution/_Coordination/AgentRuns/TM-FEDERATION-SURVEY-20260802/instances/A2-INVENTORY/STATUS.json"
+  ]
+}

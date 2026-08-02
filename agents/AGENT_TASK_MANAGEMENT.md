@@ -92,6 +92,11 @@ follow these instructions.**
   planned work are fenced surfaces (PRD §5.5). The register records
   attention and disposition residue, never execution status (no IN_PROGRESS
   state exists).
+- **Invocation-local federation is not a standing sweep.** Once this role is
+  invoked for a registered loop, its read-only federation preflight is
+  mandatory before every requested mode. This requirement binds the invoked
+  instance only: it creates no loop-entry read, schedule, CI/daemon duty,
+  workflow gate, or requirement that any loop invoke `TASK_MANAGEMENT`.
 - **No invention.** Every row cites `SourceRef` + `SourceSha`; every closure
   cites `EvidenceRef` + `EvidenceSha` or an explicit no-artifact rationale.
   Unknowns are spelled `TBD` (K-INVENT-1).
@@ -109,6 +114,60 @@ closure-echo / row-maintenance), a scope filter (domain lens, seed class,
 source surface), and verbosity. Default mode when none is named: present the
 register's open-row state and any staleness or closure-echo findings, then
 await direction.
+
+---
+
+## Mandatory federation preflight
+
+After resolving the invoking loop and its canonical local register, and
+before entering any mode, survey every canonical Git-tracked Task Management
+register read-only. This is an invocation precondition internal to
+`TASK_MANAGEMENT`; it is not an external precondition on the invoking loop or
+on any other workflow act.
+
+Use the deterministic `taskmgmt federation` helper when available. The
+preflight must:
+
+1. discover only tracked registers in the sanctioned Root, project, domain,
+   and Domain Engine coordination shapes and disclose excluded lookalikes;
+2. validate each discovered register before relying on its rows;
+3. construct relationships only from schema-governed `ActionItemID`,
+   `SourceRef`, `NoticeRef`, `ElevatedTo`, `Status`, and `Disposition` fields,
+   never from `Notes` prose;
+4. report survey coverage before normal mode output and identify every
+   invalid, unreadable, or ambiguous input; and
+5. preserve zero register writes, zero automatic receiving-row creation, and
+   zero inferred promotion, priority, elevation, closure, or disposition.
+
+The helper's projection beside the invoking register is derived,
+rebuildable, gitignored, and never authority. It may be deleted without
+effect. Its findings are observations and proposals only; they do not alter
+the authority of any cited row, notice, source, or decision.
+
+### Coverage and presentation
+
+- `COMPLETE` means every canonical register was discovered, read, and
+  validated. It does not mean the resulting observations are semantically
+  complete or accepted.
+- `PARTIAL` means one or more canonical inputs could not be validated, read,
+  or identified unambiguously. A `PARTIAL` result must never be summarized as
+  "no cross-loop coordination found" or used to assert global absence or
+  closure. Local work that does not depend on the missing federation evidence
+  may continue, with the limitation stated; dependent global claims stop.
+- A discovery, read, or output operational failure is reported distinctly
+  under D-GOV-02 exit semantics. It likewise forbids a global-absence claim
+  and does not authorize a register write or a silent skip.
+- Root invocation presents the complete program-wide finding set. A non-Root
+  invocation emphasizes relationships involving the invoking loop plus
+  program-level integrity defects, while still disclosing the complete
+  register inventory, coverage verdict, exclusions, and unresolved errors.
+
+If the deterministic helper is unavailable, do not waive or postpone the
+preflight. Perform the same read-only discovery, validation, typed-field
+relationship scan, Root/non-Root presentation, and coverage classification
+manually; state that manual fallback was used and record any limitation as
+`PARTIAL` or operational failure. Manual fallback grants no projection or
+write authority beyond this agent's existing scope.
 
 ---
 
@@ -208,12 +267,16 @@ A register write is never semantic acceptance of anything it cites.
 [[BEGIN:SPEC]]
 ## SPEC
 
-A TASK_MANAGEMENT run is valid only when it preserves K-TM-1..6 and every
-non-negotiable invariant above, records no disposition without the owning
-human act, confines register writes to the invoking loop's register home,
-and binds every source and closure claim to the required path and SHA
-evidence. Resolution work is valid only through one of the four ordered
-resolution paths and within that path's stated authority.
+A TASK_MANAGEMENT run is valid only when it completes and reports the
+invocation-local federation preflight before its requested mode, preserves
+K-TM-1..6 and every non-negotiable invariant above, records no disposition
+without the owning human act, confines register writes to the invoking loop's
+register home, and binds every source and closure claim to the required path
+and SHA evidence. Resolution work is valid only through one of the four
+ordered resolution paths and within that path's stated authority. A valid run
+never turns this invocation-local requirement into a standing obligation on a
+loop and never converts `PARTIAL` or operational failure into a global-absence
+claim.
 
 [[END:SPEC]]
 

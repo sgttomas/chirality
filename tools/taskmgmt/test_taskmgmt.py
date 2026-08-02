@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -176,3 +177,409 @@ class TestScan:
         tbd = [c for c in data["candidates"]
                if c["class"] == "tbd-register-row"]
         assert tbd and tbd[0]["known_to_register"] is True
+
+
+ROOT_REGISTER = "execution/_Coordination/_TaskManagement/REGISTER.csv"
+APP_REGISTER = (
+    "projects/app/execution/_Coordination/_TaskManagement/REGISTER.csv"
+)
+DOMAIN_REGISTER = (
+    "domains/handbook/execution/_Coordination/_TaskManagement/REGISTER.csv"
+)
+ENGINE_REGISTER = "_DomainEngines/pec/_TaskManagement/REGISTER.csv"
+
+
+def closed_row(item_id: str, **overrides) -> dict:
+    values = dict(
+        ActionItemID=item_id, Status="CLOSED", Disposition="OBE",
+        EvidenceRef="evidence.md", EvidenceSha="1" * 40,
+        Closed="2026-08-01",
+    )
+    values.update(overrides)
+    return good_row(**values)
+
+
+def install_discovery(monkeypatch, tracked: list[str],
+                      untracked: list[str] | None = None) -> None:
+    classified = taskmgmt.classify_register_paths(tracked, untracked or [])
+    monkeypatch.setattr(taskmgmt, "discover_registers", lambda root: classified)
+
+
+def run_federation(root: Path, invoking: str, out: Path | None = None):
+    target = out or root / "survey.json"
+    code, lines = taskmgmt.federation(root, Path(invoking), target)
+    data = json.loads(target.read_text(encoding="utf-8")) if target.exists() else None
+    return code, lines, data
+
+
+class TestFederationDiscovery:
+    def test_all_sanctioned_forms_and_lookalike_exclusions(self):
+        tracked = [
+            ROOT_REGISTER, APP_REGISTER, DOMAIN_REGISTER, ENGINE_REGISTER,
+            "archive/_TaskManagement/REGISTER.csv",
+            "projects/app/_TaskManagement/REGISTER.csv",
+            "projects/nested/name/execution/_Coordination/_TaskManagement/REGISTER.csv",
+            "tools/fixture/_TaskManagement/REGISTER.csv",
+        ]
+        untracked = [
+            "projects/untracked/execution/_Coordination/_TaskManagement/REGISTER.csv",
+            "scratch/_TaskManagement/REGISTER.csv",
+            "unrelated.csv",
+        ]
+        canonical, exclusions = taskmgmt.classify_register_paths(
+            tracked, untracked)
+        assert canonical == sorted(
+            [ROOT_REGISTER, APP_REGISTER, DOMAIN_REGISTER, ENGINE_REGISTER])
+        assert {item["path"] for item in exclusions} == {
+            "archive/_TaskManagement/REGISTER.csv",
+            "projects/app/_TaskManagement/REGISTER.csv",
+            "projects/nested/name/execution/_Coordination/_TaskManagement/REGISTER.csv",
+            "tools/fixture/_TaskManagement/REGISTER.csv",
+            "projects/untracked/execution/_Coordination/_TaskManagement/REGISTER.csv",
+            "scratch/_TaskManagement/REGISTER.csv",
+        }
+        assert any("untracked" in item["reason"] for item in exclusions)
+
+    def test_complete_inventory_header_only_fallback_and_default_output(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / APP_REGISTER, [])
+        install_discovery(monkeypatch, [ROOT_REGISTER, APP_REGISTER])
+
+        code, lines = taskmgmt.federation(
+            tmp_path, Path(APP_REGISTER), None)
+        default_out = (
+            tmp_path / Path(APP_REGISTER).parent / ".candidates" /
+            "federation.json"
+        )
+        data = json.loads(default_out.read_text(encoding="utf-8"))
+        assert code == 0, lines
+        assert data["coverage"] == "COMPLETE"
+        app = next(item for item in data["registers"]
+                   if item["path"] == APP_REGISTER)
+        assert app["namespace"] == "APP"
+        assert app["namespace_basis"] == "PATH_FALLBACK_HEADER_ONLY"
+        assert app["schema_version"] == "HEADER_ONLY"
+        assert data["authority"] == taskmgmt.FEDERATION_AUTHORITY
+        assert data["zero_write_proof"]["register_writes"] == 0
+        assert "zero register writes occurred" in data["zero_write_proof"]["statement"]
+
+    def test_tracked_invalid_and_mixed_namespace_are_partial(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / APP_REGISTER, [
+            good_row(ActionItemID="TM-APP-001"),
+            good_row(ActionItemID="TM-OTHER-002"),
+        ])
+        invalid = tmp_path / DOMAIN_REGISTER
+        invalid.parent.mkdir(parents=True)
+        invalid.write_text("wrong,header\na,b\n", encoding="utf-8")
+        install_discovery(
+            monkeypatch, [ROOT_REGISTER, APP_REGISTER, DOMAIN_REGISTER])
+
+        code, lines, data = run_federation(tmp_path, ROOT_REGISTER)
+        assert code == 1, lines
+        assert data["coverage"] == "PARTIAL"
+        classes = [item["class"] for item in data["findings"]]
+        assert "INVALID_REGISTER" in classes
+        assert "AMBIGUOUS_REFERENCE" in classes
+        assert any("do not infer global absence" in line for line in lines)
+
+    def test_discovery_failure_is_operational_and_writes_evidence(
+            self, tmp_path, monkeypatch):
+        out = tmp_path / "failure.json"
+
+        def fail(root):
+            raise subprocess.CalledProcessError(1, ["git", "ls-files"])
+
+        monkeypatch.setattr(taskmgmt, "discover_registers", fail)
+        code, lines = taskmgmt.federation(
+            tmp_path, Path(ROOT_REGISTER), out)
+        data = json.loads(out.read_text(encoding="utf-8"))
+        assert code == 2, lines
+        assert data["coverage"] == "PARTIAL"
+        assert any(item["stage"] == "discovery"
+                   for item in data["operational_errors"])
+
+    def test_unreadable_register_is_operational(self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / APP_REGISTER, [good_row(
+            ActionItemID="TM-APP-001")])
+        install_discovery(monkeypatch, [ROOT_REGISTER, APP_REGISTER])
+        real_read = taskmgmt._read_register
+
+        def unreadable(path):
+            if path.as_posix().endswith(APP_REGISTER):
+                raise PermissionError("fixture denied")
+            return real_read(path)
+
+        monkeypatch.setattr(taskmgmt, "_read_register", unreadable)
+        code, lines, data = run_federation(tmp_path, ROOT_REGISTER)
+        assert code == 2, lines
+        assert data["coverage"] == "PARTIAL"
+        assert any(item["class"] == "UNREADABLE_REGISTER"
+                   for item in data["findings"])
+
+    def test_output_failure_is_operational(self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        install_discovery(monkeypatch, [ROOT_REGISTER])
+        blocker = tmp_path / "not-a-directory"
+        blocker.write_text("x", encoding="utf-8")
+        code, lines = taskmgmt.federation(
+            tmp_path, Path(ROOT_REGISTER), blocker / "federation.json")
+        assert code == 2
+        assert "output failed" in "\n".join(lines)
+
+    def test_output_may_not_alias_a_register(self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / APP_REGISTER, [good_row(
+            ActionItemID="TM-APP-001")])
+        install_discovery(monkeypatch, [ROOT_REGISTER, APP_REGISTER])
+        before = (tmp_path / APP_REGISTER).read_bytes()
+
+        code, lines = taskmgmt.federation(
+            tmp_path, Path(ROOT_REGISTER), tmp_path / APP_REGISTER)
+
+        assert code == 2
+        assert "resolves to a register surface" in "\n".join(lines)
+        assert (tmp_path / APP_REGISTER).read_bytes() == before
+
+    def test_output_symlink_may_not_alias_a_register(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        install_discovery(monkeypatch, [ROOT_REGISTER])
+        output_link = tmp_path / "projection.json"
+        output_link.symlink_to(tmp_path / ROOT_REGISTER)
+        before = (tmp_path / ROOT_REGISTER).read_bytes()
+
+        code, lines = taskmgmt.federation(
+            tmp_path, Path(ROOT_REGISTER), output_link)
+
+        assert code == 2
+        assert "resolves to a register surface" in "\n".join(lines)
+        assert (tmp_path / ROOT_REGISTER).read_bytes() == before
+
+
+class TestFederationRelationships:
+    def build_relationship_fixture(self, root: Path) -> list[str]:
+        write_register(root / ROOT_REGISTER, [
+            good_row(ActionItemID="TM-ROOT-001",
+                     SourceRef="refs.md; TM-APP-001; TM-MISSING-901"),
+            closed_row("TM-ROOT-002", SourceRef="TM-APP-002"),
+            good_row(ActionItemID="TM-ROOT-003", SourceRef="TM-APP-003"),
+            good_row(ActionItemID="TM-ROOT-004", Status="ELEVATED",
+                     ElevatedTo="TM-NONE-999"),
+            good_row(ActionItemID="TM-ROOT-005"),
+        ])
+        write_register(root / APP_REGISTER, [
+            good_row(ActionItemID="TM-APP-001"),
+            good_row(ActionItemID="TM-APP-002"),
+            closed_row("TM-APP-003"),
+            good_row(ActionItemID="TM-APP-004", Status="ELEVATED",
+                     ElevatedTo="TM-ROOT-099"),
+            good_row(ActionItemID="TM-APP-005", Status="ELEVATED",
+                     ElevatedTo="TM-ROOT-005"),
+        ])
+        return [ROOT_REGISTER, APP_REGISTER]
+
+    def test_directional_orphan_ack_and_both_closure_echoes(
+            self, tmp_path, monkeypatch):
+        tracked = self.build_relationship_fixture(tmp_path)
+        install_discovery(monkeypatch, tracked)
+        code, lines, data = run_federation(tmp_path, ROOT_REGISTER)
+        assert code == 0, lines
+        classes = {item["class"] for item in data["findings"]}
+        assert {
+            "INBOUND_ELEVATION", "FOREIGN_LINK_TO_LOCAL",
+            "LOCAL_LINK_TO_FOREIGN", "OUTBOUND_AWAITING_ACK",
+            "REMOTE_CLOSED_LOCAL_OPEN", "LOCAL_CLOSED_REMOTE_OPEN",
+            "ORPHANED_LINK",
+        } <= classes
+        echoes = [item for item in data["findings"] if item["class"] in {
+            "REMOTE_CLOSED_LOCAL_OPEN", "LOCAL_CLOSED_REMOTE_OPEN"}]
+        assert len(echoes) == 2
+        assert data["findings"] == data["presented_findings"]
+
+    def test_duplicate_global_id_and_ambiguous_link(self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [
+            good_row(ActionItemID="TM-ROOT-001", SourceRef="TM-DUP-001")])
+        write_register(tmp_path / APP_REGISTER, [good_row(
+            ActionItemID="TM-DUP-001")])
+        write_register(tmp_path / DOMAIN_REGISTER, [good_row(
+            ActionItemID="TM-DUP-001")])
+        install_discovery(
+            monkeypatch, [ROOT_REGISTER, APP_REGISTER, DOMAIN_REGISTER])
+        code, lines, data = run_federation(tmp_path, ROOT_REGISTER)
+        assert code == 0, lines
+        assert data["finding_counts"]["DUPLICATE_GLOBAL_ID"] == 1
+        ambiguous = [item for item in data["findings"]
+                     if item["class"] == "AMBIGUOUS_REFERENCE"]
+        assert len(ambiguous) == 1
+        assert ambiguous[0]["remote_id"] == "TM-DUP-001"
+
+    def test_missing_same_namespace_elevation_awaits_ack(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001", Status="ELEVATED",
+            ElevatedTo="TM-ROOT-999")])
+        install_discovery(monkeypatch, [ROOT_REGISTER])
+
+        code, lines, data = run_federation(tmp_path, ROOT_REGISTER)
+
+        assert code == 0, lines
+        assert any(item["class"] == "ORPHANED_LINK"
+                   and item["remote_id"] == "TM-ROOT-999"
+                   for item in data["findings"])
+        assert any(item["class"] == "OUTBOUND_AWAITING_ACK"
+                   and item["remote_id"] == "TM-ROOT-999"
+                   for item in data["findings"])
+
+    def test_source_tokens_are_exact_and_notes_are_never_joined(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001",
+            SourceRef="prefixTM-APP-001suffix TM-APP-001-extra",
+            Notes="TM-APP-001")])
+        write_register(tmp_path / APP_REGISTER, [good_row(
+            ActionItemID="TM-APP-001")])
+        install_discovery(monkeypatch, [ROOT_REGISTER, APP_REGISTER])
+        code, lines, data = run_federation(tmp_path, ROOT_REGISTER)
+        assert code == 0, lines
+        assert not any(item["remote_id"] == "TM-APP-001"
+                       for item in data["findings"])
+
+    def test_directional_classes_are_relative_to_invoking_register(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / APP_REGISTER, [good_row(
+            ActionItemID="TM-APP-001")])
+        write_register(tmp_path / DOMAIN_REGISTER, [
+            good_row(ActionItemID="TM-DOMAIN-001",
+                     SourceRef="TM-ROOT-001"),
+            good_row(ActionItemID="TM-DOMAIN-002", Status="ELEVATED",
+                     ElevatedTo="TM-ROOT-999"),
+        ])
+        install_discovery(
+            monkeypatch, [ROOT_REGISTER, APP_REGISTER, DOMAIN_REGISTER])
+
+        code, lines, data = run_federation(tmp_path, APP_REGISTER)
+        assert code == 0, lines
+        unrelated_ids = {"TM-DOMAIN-001", "TM-DOMAIN-002", "TM-ROOT-001",
+                         "TM-ROOT-999"}
+        directional = {
+            "INBOUND_ELEVATION", "FOREIGN_LINK_TO_LOCAL",
+            "LOCAL_LINK_TO_FOREIGN", "OUTBOUND_AWAITING_ACK",
+        }
+        assert not any(
+            item["class"] in directional
+            and ({item["local_id"], item["remote_id"]} & unrelated_ids)
+            for item in data["findings"]
+        )
+        assert any(item["class"] == "ORPHANED_LINK"
+                   and item["local_id"] == "TM-DOMAIN-002"
+                   for item in data["findings"])
+
+
+class TestFederationNoticesAndPresentation:
+    def test_semicolon_wrappers_working_root_repo_root_missing_and_ambiguous(
+            self, tmp_path, monkeypatch):
+        project_root = tmp_path / "projects" / "app"
+        (project_root / "notices").mkdir(parents=True)
+        (project_root / "notices" / "work.md").write_text(
+            "work", encoding="utf-8")
+        (tmp_path / "root-notice.md").write_text("root", encoding="utf-8")
+        (project_root / "shared.md").write_text("project", encoding="utf-8")
+        (tmp_path / "shared.md").write_text("root", encoding="utf-8")
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / APP_REGISTER, [good_row(
+            ActionItemID="TM-APP-001",
+            NoticeRef=("`notices/work.md`; 'root-notice.md'; "
+                       "\"shared.md\"; missing.md; NONE"))])
+        install_discovery(monkeypatch, [ROOT_REGISTER, APP_REGISTER])
+        code, lines, data = run_federation(tmp_path, APP_REGISTER)
+        assert code == 0, lines
+        missing = [item for item in data["findings"]
+                   if item["class"] == "MISSING_NOTICE"]
+        ambiguous = [item for item in data["findings"]
+                     if item["class"] == "AMBIGUOUS_REFERENCE"]
+        assert [item["evidence"] for item in missing] == ["missing.md"]
+        assert len(ambiguous) == 1
+        assert ambiguous[0]["evidence"] == "shared.md"
+
+    def test_non_root_filters_foreign_findings_but_keeps_program_integrity(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001", NoticeRef="root-missing.md")])
+        write_register(tmp_path / APP_REGISTER, [good_row(
+            ActionItemID="TM-DUP-001")])
+        write_register(tmp_path / DOMAIN_REGISTER, [good_row(
+            ActionItemID="TM-DUP-001")])
+        install_discovery(
+            monkeypatch, [ROOT_REGISTER, APP_REGISTER, DOMAIN_REGISTER])
+        code, lines, data = run_federation(tmp_path, APP_REGISTER)
+        assert code == 0, lines
+        assert any(item["class"] == "MISSING_NOTICE"
+                   for item in data["findings"])
+        assert not any(item["class"] == "MISSING_NOTICE"
+                       for item in data["presented_findings"])
+        assert any(item["class"] == "DUPLICATE_GLOBAL_ID"
+                   for item in data["presented_findings"])
+
+    def test_deterministic_bytes_and_register_hash_equality(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / APP_REGISTER, [good_row(
+            ActionItemID="TM-APP-001", SourceRef="TM-ROOT-001")])
+        install_discovery(monkeypatch, [ROOT_REGISTER, APP_REGISTER])
+        register_bytes = {
+            path: (tmp_path / path).read_bytes()
+            for path in (ROOT_REGISTER, APP_REGISTER)
+        }
+        out = tmp_path / "stable.json"
+        first_code, first_lines = taskmgmt.federation(
+            tmp_path, Path(APP_REGISTER), out)
+        first = out.read_bytes()
+        second_code, second_lines = taskmgmt.federation(
+            tmp_path, Path(APP_REGISTER), out)
+        assert first_code == second_code == 0, (first_lines, second_lines)
+        assert out.read_bytes() == first
+        assert all((tmp_path / path).read_bytes() == before
+                   for path, before in register_bytes.items())
+        data = json.loads(first)
+        assert all(item["before_sha256"] == item["after_sha256"]
+                   for item in data["registers"])
+
+
+class TestFederationCliCompatibility:
+    def test_validate_scan_and_federation_parsers_coexist(
+            self, tmp_path, monkeypatch, capsys):
+        write_register(tmp_path / ROOT_REGISTER, [good_row(
+            ActionItemID="TM-ROOT-001")])
+        install_discovery(monkeypatch, [ROOT_REGISTER])
+        monkeypatch.setattr(taskmgmt, "repo_root", lambda: tmp_path)
+
+        assert taskmgmt.main([
+            "validate", "--register", ROOT_REGISTER]) == 0
+        assert "validate PASS" in capsys.readouterr().out
+
+        scan_out = tmp_path / "scan.json"
+        assert taskmgmt.main([
+            "scan", "--register", ROOT_REGISTER, "--out", str(scan_out)]) == 0
+        assert scan_out.is_file()
+        assert "scan COMPLETE" in capsys.readouterr().out
+
+        federation_out = tmp_path / "federation.json"
+        assert taskmgmt.main([
+            "federation", "--register", ROOT_REGISTER,
+            "--out", str(federation_out)]) == 0
+        assert federation_out.is_file()
+        assert "federation COMPLETE" in capsys.readouterr().out

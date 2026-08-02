@@ -124,5 +124,8 @@ _harness_generated/
 *.db-shm
 *.db-wal
 
-# taskmgmt scan output — derived, rebuildable candidate inventory (D-GOV-01)
+# taskmgmt scan/federation outputs — derived, rebuildable candidate views (D-GOV-01)
 execution/_Coordination/_TaskManagement/.candidates/
+projects/*/execution/_Coordination/_TaskManagement/.candidates/
+domains/*/execution/_Coordination/_TaskManagement/.candidates/
+_DomainEngines/*/_TaskManagement/.candidates/
