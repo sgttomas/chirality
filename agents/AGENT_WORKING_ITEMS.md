@@ -182,10 +182,7 @@ a package activation narrowed to that deliverable.
    candidate mapping from the frozen legacy basis and exact migration authority.
 6. Dispatch dependency-ready disjoint nodes concurrently; serialize dependent
    or overlapping nodes.
-7. A managed Bash-bearing child owns project-root scope and is serialized as
-   the integration node; use bounded file tools or registered deterministic
-   tools for package-parallel work.
-8. In a bounded representation-migration batch, the author owns all listed
+7. In a bounded representation-migration batch, the author owns all listed
    members as one objective. Dispatch the fresh verifier only after accepting
    the author's terminal return; give it read-only access to author outputs and
    require 100% member review. Do not hide per-member child sessions inside
