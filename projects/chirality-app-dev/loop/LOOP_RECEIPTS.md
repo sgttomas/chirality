@@ -2964,3 +2964,30 @@
     approval, dependency, decomposition, Task Management, parity, runtime,
     release, issuance, reliance, blanket-closure, commit, push, or merge effect
     is created; CHANGE integration remains pending.
+
+- **2026-08-02 — Receipt 109** (D-APP-85 mechanical execution closeout and C06 Root route).
+  - Receipt-ID: `Receipt-109`
+  - Examined-Through: `03f4eb031c209508cb25d2213c6cf98bdaf8e788`
+  - Parent-Receipt: `Receipt-108`
+  - Pointers:
+    `execution/_Coordination/_DECISIONS/D-APP-85_EXECUTION_CLOSEOUT_2026-08-02.md`;
+    updated D-APP-85 tracking row; root ordinary notice
+    `execution/_Coordination/NOTICE_D-APP-85_C06_DAEMON_RECOVERY_ROOT_ROUTE_2026-08-02.md`;
+    unchanged D-APP-85 ruling, Gate-2 manifest, R5 record, and accepted R6
+    handoff.
+  - Checks: receipt-contract validator; D-APP-85 ruling and manifest hashes;
+    merge identity and ancestry; authority-corpus status; all-53 practitioner
+    status; repository self-check; Task Management, parity, D-APP-84,
+    historical-UNKNOWN, lifecycle, approval-SHA, path-containment, and
+    whitespace preservation. Frontend/runtime gates are not applicable because
+    no source byte changed.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS managed by HELP_HUMAN; the
+    post-closeout audit was read-only and used no Agent-2 Bash, write, network,
+    native Pi tools, or delegation.
+  - Gate-Outcome: `EXECUTED` — the non-governing D-APP-85 tracking row now
+    reflects its already-merged activation, exact repair, and accepted R6
+    backcheck; C04/C16 direct proof remains pending and the C06 contradiction is
+    routed to Root DEL-02-06. The ruling and Gate-2 manifest remain unchanged;
+    no register promotion, authority, scope, lifecycle, implementation,
+    runtime, parity, release, reliance, commit, push, or merge effect is
+    created.
