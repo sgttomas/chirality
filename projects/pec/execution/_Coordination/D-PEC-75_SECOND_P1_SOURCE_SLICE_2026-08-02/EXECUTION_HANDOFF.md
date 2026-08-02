@@ -1,11 +1,15 @@
 # D-PEC-75 O-A DEL-01-06 execution handoff
 
-**State:** PRODUCER COMPLETE / CANDIDATE OUTPUT / REVIEW AND OWNER GATES OPEN
+**State:** PRODUCER MERGED / SELF_CHECK HELD / RF-001 DEFERRED
 
 **Authority basis:** D-PEC-75 O-A; owner-accepted SOW SHA-256
 `7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`;
 D-T0-27 effective through PR #459 merge
 `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`
+
+**Producer publication:** PR #462 source
+`d4f53a70e4328101ba4756f0919b8bdb35cc9188`, merged as
+`ccd9a2178ffd8029fdd1cd779910e954e0612e21`.
 
 ## Exact producer outputs
 
@@ -64,13 +68,24 @@ The companion activation record is
 - Exact path containment, manifest, current harness baseline, and whitespace:
   PASS. Committed-range coordination checking remains for CHANGE.
 
-## Remaining gates
+## SELF_CHECK disposition and remaining gates
 
-DEL-01-06 remains `INITIALIZED`. Recommended next owner gate is `SELF_CHECK`
-with explicit review-from-`INITIALIZED` authority against AC-001 through
-AC-006. That review does not itself accept these bytes or advance lifecycle.
-Findings, Gate 5, exact-hash artifact fitness, publication/merge, later P1
-work, release, and professional reliance remain separate owner acts.
+The owner-authorized mechanical SELF_CHECK and its final dispositions are
+recorded in immutable snapshots `REV_DEL-01-06_2026-08-02_1110` and
+`REV_DEL-01-06_2026-08-02_1118`:
+
+- AC-001 through AC-004: `PASS`;
+- AC-005 and AC-006: `PARTIAL`, because VER-005's exact DEL-01-05
+  enforcement rerun remains unavailable and was not silently passed;
+- RF-001: `MAJOR`, `DEFERRED`, owner disposition `DEFER`; and
+- Gate 5: owner `HOLD` at `INITIALIZED`.
+
+The DEL-01-05 rerun remains a mandatory later SELF_CHECK input. When that
+separately governed deliverable becomes available, RF-001 must be reopened and
+SELF_CHECK rerun; VER-005 is not waived. The owner HOLD does not satisfy
+AC-005 or AC-006 or accept the DEL-01-06 bytes. Lifecycle advance, exact-hash
+artifact fitness, another P1 node, release, and professional reliance remain
+separate owner acts.
 
 OI-003 remains open. No long-term registry home/shape, later loop entry,
 consumer activation, `ISSUED`, or other-loop duty is inferred.
