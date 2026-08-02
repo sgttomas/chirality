@@ -29,7 +29,17 @@ check profile. The five-item SELF_CHECK has zero findings; AC-005 is owner-
 confirmed at its recorded MEDIUM confidence; the exact schema, test, and three
 fixture bytes are accepted; and DEL-08-02 is `CHECKING`. No service, store,
 transport, runtime integration, later P1 node, release, or professional
-reliance is authorized. Decomposition revision
+reliance is authorized. **D-PEC-75 now presents, but does not select, the
+second P1 slice:** O-A DEL-01-06 typed local-loop-registry bootstrap
+(recommended), O-B DEL-01-01 record-tier model/DDL, amendment, or deferral.
+Both executable options begin with bounded SOW-currency review and remain
+source-closed until the owner accepts the resulting contract hash and the
+separately adopted D-T0-27 PEC-v2 domain-profile successor is effective.
+D-PEC-76 is the PEC-local pointer/request row to the exact D-T0-27 candidate;
+following D-PEC-11 precedent, D-T0-27 owns the semantic profile ruling and
+D-PEC-76 creates no duplicate adoption act. D-PEC-75 grants no domain-profile,
+source, lifecycle, or artifact-fitness act.
+Decomposition revision
 1.3 is the accepted current basis after `SCA-003` (2026-07-28; revision 1.2
 was the `SCA-002` basis); PROJECT_SETUP remains released with `FULL_GRAPH`
 already selected. Nothing in the PRD is an implementation mandate (each
