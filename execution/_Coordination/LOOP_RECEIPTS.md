@@ -2339,3 +2339,49 @@ amendment; owner ruling required).
   records and frozen pins are preserved; no register, classifier, runtime,
   policy, lifecycle, product, dependency, decomposition, DAG, pointer,
   DEC-092, reliance, release, or professional-judgment act occurred.
+
+### Receipt 80 — 2026-08-02 — Owner-authored AGENTS.md simplification; Bash/worktree containment dispositioned harness-owned
+
+- **Parent receipt:** Receipt 79. Bounded owner-directed close-out; the loop
+  remains idle.
+- **Owner rulings (2026-08-02, in-session, verbatim):**
+  - (172 bytes UTF-8, SHA-256 `476f61060466a25388663cc804e1f719fdcdd4af036ad36f973e032b5763083e`):
+    "the worktree and bash stuff needs to be part of the harness. Claude Code has it's own management of that.  Namely, I give auto permission to that thing, and it's been fine."
+  - (72 bytes UTF-8, SHA-256 `9af59779a91af21009316947853523a0c15d37e4a1581f7105e5be047b241dee`):
+    "I'm done editing. let the PR reflect this current state, and then merge."
+- **AGENTS.md (owner-authored, assistant-assisted):** the owner rewrote root
+  `AGENTS.md` as the file that directs the agents developing the program, not
+  a runtime spec for the app: role-table edits (Agent 0 may directly dispatch
+  Agent 2 instances; Agent 1 agent-specific workflows note) and removal of the
+  Multi-Agent Orchestration and Shared Runtime Doctrine sections (-84 lines).
+  Three assistant edits were approved and applied 2026-08-02: the
+  "dispatching" typo fix and the widened Agent 0 delegation rule (both
+  survive), and a Bash two-posture rewrite that the owner's subsequent
+  section deletion superseded (applied, then removed with the section —
+  recorded here so the intermediate state is not misread as ratified).
+- **Convergent upstream change subsumed:** PR #468 (`d5df483d7`) had already
+  deleted the same Bash paragraph, scoping managed-Bash policy to the app
+  harness. Three-way merge confirms the owner's deletion is a strict superset;
+  adopting the owner's file loses nothing from #468.
+- **Disposition:** Bash/worktree containment for dev-time agents is
+  harness-owned (Claude Code permissions, sandboxing, worktree isolation);
+  no AGENTS.md doctrine and no register candidate carried. The app runtime's
+  own containment (Pi adapter gates, daemon receipts, app CONTRACT) is
+  unaffected; the Pi capability-expansion sequencing (TM-APP-024, intent
+  record of 2026-08-01) stands.
+- **Reference sweep:** deleted-section concepts retain ruled homes
+  (`docs/WORKFLOW_COMPONENT_STANDARD.md` per D-GOV-14;
+  `docs/DBM_Agent_Instruction_Architecture.md`; AGENT_HELP_HUMAN /
+  AGENT_WORKING_ITEMS / AGENT_RECONCILIATION packages). Consequential-
+  escalation and disjoint-write rules live operationally in agent packages;
+  the "hidden authority" clause's substance is covered by the
+  derivative-package rule. **Residue flagged, not repaired:**
+  `docs/PRD_ROOT.md` O-2 cites "`AGENTS.md` (Tool row; §Shared Runtime
+  Doctrine)" — now a deleted section; citation repair belongs to a PRD
+  concordance act.
+- **Register:** TM-ROOT-103 Notes updated (TM-APP-024 migration cross-cite;
+  harness-owned disposition). `taskmgmt validate` PASS.
+- **Gate:** G4 manifest `ROOT-AGENTSMD-SIMPLIFICATION-20260802.yaml`
+  (`self_merge: false`). Merge pre-authorized by the owner's in-session
+  direction above; executed as owner proxy on the exact final branch HEAD
+  with §5.3.1 facts on the PR.
