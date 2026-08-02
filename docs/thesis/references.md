@@ -168,9 +168,9 @@ The following are internal project documents filed under the Chirality project r
 
 [Chirality_DIRECTIVE] Chirality Project, "docs/DIRECTIVE.md — Founding Intent, Design Philosophy, and Four-Pillar Framework," Internal Document, Chirality Repository, 2024–2026.
 
-[Chirality_FRAMEWORK] Chirality Project, "CHIRALITY_FRAMEWORK.md — The
-Chirality Framework," Internal Document, Chirality Repository, Revision 3
-candidate, 2026.
+[Chirality_FRAMEWORK] Chirality Project, "docs/thesis/CHIRALITY_FRAMEWORK.md —
+The Chirality Framework," Internal Document, Chirality Repository, Revision 3
+candidate, 2026 (relocated from the repository root, 2026-08-02).
 
 [Chirality_SPEC] Chirality Project, "docs/SPEC.md — Physical Structures, Schemas, and Folder Layouts," Internal Document, Chirality Repository, 2024–2026.
 
@@ -180,9 +180,9 @@ candidate, 2026.
 
 [Chirality_DBM] Chirality Project, "docs/DBM_Agent_Instruction_Architecture.md — Design Basis Memorandum: Agent Instruction Architecture," Internal Document, Chirality Repository, 2024–2026.
 
-[Chirality_SE] Chirality Project, "docs/SE_Design_Analysis.md — Systems Engineering Design Analysis," Internal Document, Chirality Repository, 2024–2026.
+[Chirality_SE] Chirality Project, "docs/thesis/SE_Design_Analysis.md — Systems Engineering Design Analysis," Internal Document, Chirality Repository, 2024–2026 (relocated from `docs/`, 2026-08-02).
 
-[Chirality_PE] Chirality Project, "PROFESSIONAL_ENGINEERING.md — Professional Practice Standard," Internal Document, Chirality Repository, 2024–2026.
+[Chirality_PE] Chirality AI Ltd., "Professional Engineering with Agentic AI in Regulated Practice," Professional Practice Standard, maintained in the firm's quality management system, 2026 (formerly `PROFESSIONAL_ENGINEERING.md` at the repository root; pre-relocation text in git history).
 
 [Chirality_R1R9] Chirality Project, "docs/WORKFLOW_COMPONENT_STANDARD.md — Workflow-Component Standard," Internal Document, Chirality Repository, 2024–2026.
 

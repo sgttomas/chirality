@@ -22,8 +22,6 @@ ROOT_FILES = [
     ".gitignore",
     "AGENTS.md",
     "CLAUDE.md",
-    "CHIRALITY_FRAMEWORK.md",
-    "PROFESSIONAL_ENGINEERING.md",
     "LICENSE.md",
 ]
 

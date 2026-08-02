@@ -25,7 +25,7 @@
 | References | `references.md` | Draft (verified pass 2026-07-02) |
 | Glossary | `glossary.md` | Draft (Sonnet) |
 
-There is no Appendix B: the agent index is maintained as the live `AGENTS.md` registry at the repository root rather than as a static appendix. The `bigger-picture/` subdirectory contains supporting planning artifacts, not thesis chapters — see `bigger-picture/README.md`.
+There is no Appendix B: the agent index is maintained as the live `AGENTS.md` registry at the repository root rather than as a static appendix. Supporting planning artifacts formerly kept in a `bigger-picture/` subdirectory here now live in `plans/bigger-picture/`.
 
 ## Warrant Status
 
@@ -114,13 +114,23 @@ All thesis content draws from the Chirality project governance documents. Primar
 
 | Document | Thesis Chapters |
 |----------|----------------|
-| `CHIRALITY_FRAMEWORK.md` | 1, 3, 5, 10, Appendix D |
+| `docs/thesis/CHIRALITY_FRAMEWORK.md` | 1, 3, 5, 10, Appendix D |
 | `docs/DIRECTIVE.md` | 1, 3, 5 |
 | `docs/DBM_Agent_Instruction_Architecture.md` | 4, 8 |
-| `docs/SE_Design_Analysis.md` | 7 |
+| `docs/thesis/SE_Design_Analysis.md` | 7 |
 | `docs/CONTRACT.md` | 4, 5 |
 | `docs/SPEC.md` | 4 |
 | `docs/TYPES.md` | 4 |
-| `PROFESSIONAL_ENGINEERING.md` | 6 |
+| *Professional Engineering with Agentic AI in Regulated Practice* (firm QMS) | 6 |
 | `agents/AGENT_HELPS_HUMANS.md` | 4, 5 |
 | `docs/DECOMPOSITION_STANDARD.md` | 4 |
+
+Relocation note (2026-08-02): `CHIRALITY_FRAMEWORK.md` and
+`SE_Design_Analysis.md` were moved from the governance root into this thesis
+folder. Their operational content is normatively owned by `docs/TYPES.md`,
+`docs/CONTRACT.md`, and `docs/DIRECTIVE.md`; the documents here retain the
+explanatory derivation. `PROFESSIONAL_ENGINEERING.md` (the firm's professional
+practice standard, formerly at the repository root) is now maintained in the
+Chirality AI Ltd. quality management system outside this repository; the
+pre-relocation text remains available in git history and in the accepted
+decomposition source packs under `domains/chirality/_Decomposition/`.

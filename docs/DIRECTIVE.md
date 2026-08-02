@@ -58,7 +58,7 @@ Two additional epistemic commitments complete the picture:
 
 *Content-addressed approval.* Approvals bind to a specific git SHA. If the content changes after approval, the approval is void. This makes the integrity of the approval relationship mechanically verifiable — not dependent on trust or process discipline alone.
 
-The formal epistemic ontology and warrant lifecycle are defined in `CHIRALITY_FRAMEWORK.md` §3.3 and `TYPES.md` §10. In summary: the epistemic layer operates on claims, warrants, statuses, gaps, conflicts, and rulings; a claim without warrant is a visible gap rather than a hidden omission; and claims progress through `UNWARRANTED → CITED → REVIEWED → AUTHENTICATED` as professionals assess and then bind themselves to specific content. The deliverable lifecycle tracks production state; the warrant lifecycle tracks the epistemic state of the claims within that work.
+The formal epistemic ontology and warrant lifecycle are defined in `TYPES.md` §10. In summary: the epistemic layer operates on claims, warrants, statuses, gaps, conflicts, and rulings; a claim without warrant is a visible gap rather than a hidden omission; and claims progress through `UNWARRANTED → CITED → REVIEWED → AUTHENTICATED` as professionals assess and then bind themselves to specific content. The deliverable lifecycle tracks production state; the warrant lifecycle tracks the epistemic state of the claims within that work.
 
 **Praxiology — how work is done.**
 
