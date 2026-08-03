@@ -180,7 +180,7 @@ def validate(repo_root: Path) -> list[str]:
     findings: list[str] = []
     agents = repo_root / "AGENTS.md"
     claude = repo_root / "CLAUDE.md"
-    root_init = repo_root / "init" / "init-prompt.md"
+    root_init = repo_root / "init" / "dev-loop-init-prompt.md"
     if not agents.is_file():
         findings.append("missing root AGENTS.md")
     if not claude.is_file():
@@ -194,7 +194,7 @@ def validate(repo_root: Path) -> list[str]:
         if not project_root.is_dir():
             continue
         project_agents = project_root / "AGENTS.md"
-        project_init = project_root / "init" / "init-prompt.md"
+        project_init = project_root / "init" / "dev-loop-init-prompt.md"
         loop_init = project_root / "loop" / "LOOP_INIT.md"
         workplans = sorted((project_root / "loop").glob("WORKPLAN_*.md"))
         current_workplan = workplans[-1] if workplans else None
@@ -220,12 +220,12 @@ def validate(repo_root: Path) -> list[str]:
             project_init_text = project_init.read_text(encoding="utf-8")
             help_human_entry = _selects_help_human(project_init_text)
             if not root_init.is_file():
-                findings.append("missing root init/init-prompt.md")
+                findings.append("missing root init/dev-loop-init-prompt.md")
             else:
                 catalog_launchers = _project_launchers(root_init_text, project_name)
                 if len(catalog_launchers) != 1:
                     findings.append(
-                        "root init/init-prompt.md must contain exactly one tagged "
+                        "root init/dev-loop-init-prompt.md must contain exactly one tagged "
                         f"launcher for projects/{project_name}; found {len(catalog_launchers)}"
                     )
                 elif project_init_text != catalog_launchers[0]:

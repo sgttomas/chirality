@@ -57,3 +57,14 @@ need no rewrite. On this loop's next Task Management invocation or currency
 pass, the live instruction hash to observe is the superseding value above.
 The next PEC TASK_MANAGEMENT invocation may name `deferral-review` as a
 mode directly.
+
+## Related in-tranche launcher changes
+
+The same tranche adds `projects/pec/init/taskmgmt-init-prompt.md` — a
+paste-ready launcher for one TASK_MANAGEMENT session bound to this loop's
+register (write scope `_DomainEngines/pec/_TaskManagement/`; sweep covering
+both PEC trees), carrying the generational pass (preflight, harvest, deferral
+review, archive, closeout) with owner rulings as the only gates — and renames
+the development-loop launcher `projects/pec/init/init-prompt.md` to
+`projects/pec/init/dev-loop-init-prompt.md`, with the root catalog's
+references updated. Historical records are untouched.

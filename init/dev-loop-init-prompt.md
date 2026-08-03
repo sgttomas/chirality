@@ -1,8 +1,11 @@
-# Session init prompts
+# Development-loop session init prompts
 
-This is the root launcher catalog. Its entries are **alternative session-entry
-text**, not runtime agents, Agent 0 instances, services, daemons, or
-simultaneously executed configuration. Choose one launcher for each session.
+This is the root launcher catalog for development work loops. Its entries are
+**alternative session-entry text**, not runtime agents, Agent 0 instances,
+services, daemons, or simultaneously executed configuration. Choose one
+launcher for each session. Task Management sessions use the separate
+per-register launchers named `taskmgmt-init-prompt.md` beside this file and in
+each project's `init/` folder.
 `HELP_HUMAN` is the sole canonical Agent 0 role; it may be instantiated for a
 particular session and loop scope without creating another Agent 0 authority.
 
@@ -21,7 +24,7 @@ Six alternative launcher entries are cataloged:
    `LOOP_INIT`, not `INIT_LOOP`).
 4. **PEC work loop launcher** — enters the standing PEC coordination-plane
    loop. Its canonical paste-ready launcher is
-   `projects/pec/init/init-prompt.md` and points to
+   `projects/pec/init/dev-loop-init-prompt.md` and points to
    `_DomainEngines/pec/LOOP_INIT.md`.
 5. **Piping work loop launcher** — the chirality-piping project development
    loop. Its file is `projects/chirality-piping/loop/LOOP_INIT.md`.
@@ -29,7 +32,7 @@ Six alternative launcher entries are cataloged:
    loop. Its file is `projects/chirality-app-dev/loop/LOOP_INIT.md`.
 
 Project-local launcher files may mirror the catalog pattern. PEC deliberately
-has one canonical launcher block at `projects/pec/init/init-prompt.md`; this
+has one canonical launcher block at `projects/pec/init/dev-loop-init-prompt.md`; this
 catalog references it rather than maintaining an interchangeable duplicate.
 
 ---
@@ -97,7 +100,7 @@ pattern at that loop's own `<LOOP_DIR>/LOOP_INIT.md`.
 ## 4. PEC work loop launcher (standing coordination-plane loop) — ACTIVE
 
 Copy the single paste-ready `<init-prompt>` block from
-`projects/pec/init/init-prompt.md`. Replace its `<none>` placeholder with a
+`projects/pec/init/dev-loop-init-prompt.md`. Replace its `<none>` placeholder with a
 per-run steer if desired.
 
 The launcher remains deliberately thin. `_DomainEngines/pec/LOOP_INIT.md`

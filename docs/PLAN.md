@@ -88,7 +88,7 @@ applicability register (deferred).
 - **Root governance restoration + path anchoring.** Ratify the root `docs/`
   governance set (DIRECTIVE/SPEC/TYPES/CONTRACT/PLAN); wire the `K-WRITE-2`
   ScopePath-containment rule (`SCOPE_OUTSIDE_WORKTREE`) into `AGENT_TASK.md`;
-  derive `REPO_ROOT` in `init/init-prompt.md` and de-absolutize
+  derive `REPO_ROOT` in `init/dev-loop-init-prompt.md` and de-absolutize
   coordination/handoff files. Basis:
   `plans/monorepo_root_governance_and_path_anchoring_2026-06-15.md`.
   **Amended 2026-07-01 per D-GOV-05:** ratification is sequenced — the minimal
