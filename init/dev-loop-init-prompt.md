@@ -60,6 +60,13 @@ Paste-ready as written; replace `<none>` with a per-run steer if you want one.
 <init-prompt>
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
 
+Set `WORKING_ROOT` to `{REPO_ROOT}`.
+
+Read `{REPO_ROOT}/AGENTS.md`.
+Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
+
+Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
+
 Read `{REPO_ROOT}/execution/_Coordination/LOOP_INIT.md` and follow it: pursue
 the loop's inherent goals — recorded in its newest standing workplan — as far
 as live authority permits.
@@ -67,10 +74,15 @@ as live authority permits.
 Steer (this run): <none>
 </init-prompt>
 
-The launcher is deliberately thin. Root `execution/_Coordination/` is a
-governance control plane, not a project package or decomposition root. Its
-LOOP_INIT and newest standing workplan select the appropriate Agent 0/1 role
-for each lane; root-wide WORKING_ITEMS entry is not permitted.
+Entry is typed, consistent with the project work-loop launchers (§§5–6):
+the launcher selects `HELP_HUMAN`, the sole canonical Agent 0, instantiated
+for the root governance scope. Root `execution/_Coordination/` is a
+governance control plane, not a project package or decomposition root.
+LOOP_INIT and the newest standing workplan still govern which lanes open;
+`HELP_HUMAN` delegates lane work to the named Agent 1 managers or bounded
+Agent 2 dispatches rather than becoming them, and root-wide WORKING_ITEMS
+entry is not permitted. For a deliberately single-lane session entered
+directly as an Agent 1, use the generic launcher (§1) instead.
 
 ---
 
@@ -101,7 +113,9 @@ pattern at that loop's own `<LOOP_DIR>/LOOP_INIT.md`.
 
 Copy the single paste-ready `<init-prompt>` block from
 `projects/pec/init/dev-loop-init-prompt.md`. Replace its `<none>` placeholder with a
-per-run steer if desired.
+per-run steer if desired. Entry is typed (`HELP_HUMAN`, consistent with
+§§2, 5–6), scoped to both PEC trees: `projects/pec/` and the loop home
+`_DomainEngines/pec/`.
 
 The launcher remains deliberately thin. `_DomainEngines/pec/LOOP_INIT.md`
 hands the session to the newest standing `WORKPLAN_*.md` beside it and to the
