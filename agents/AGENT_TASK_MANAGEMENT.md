@@ -304,6 +304,18 @@ follows the loop's standing policy (human-gated PRs; owner-directed merge
 recorded in ordinary closeout evidence per `docs/PRD_ROOT.md` annex §5.3.1).
 A register write is never semantic acceptance of anything it cites.
 
+The closeout tranche also appends one receipt entry to the owning loop's
+receipts surface, conforming to that loop's receipt format and validator: a
+brief record naming the session date, modes run, register deltas (counts,
+not rows), and the exact paths of prepared handoff packages, routed
+notices, and reports awaiting owner routing. This is what makes the
+session's durable products reachable by the loop's ordinary entry
+discovery; without it, owner-ruled work items are invisible to every
+surface a development session reads. The receipt is a discovery breadcrumb
+only — it creates no duty, priority, or selection effect (K-TM-3/K-TM-4/
+K-TM-5), and it is written only through the loop's ordinary closeout, per
+this agent's write scope.
+
 [[END:PROTOCOL]]
 
 [[BEGIN:SPEC]]
