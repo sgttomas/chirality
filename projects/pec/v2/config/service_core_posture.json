@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "target": "v2/src/pec_v2/core",
+  "pec_local_source_root": "v2/src",
+  "workspace_runtime_contract_packages": []
+}

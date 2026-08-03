@@ -1,0 +1,12 @@
+{
+  "instance_id": "review-del0105-produced-artifacts",
+  "manager": "REVIEW",
+  "status": "COMPLETE",
+  "brief_version": 1,
+  "review_type": "INDEPENDENT_VERIFICATION",
+  "deliverable_id": "DEL-01-05",
+  "gates_completed": [1, 2, 3],
+  "gate_4": "AWAITING_OWNER_DISPOSITION",
+  "findings_open": 2,
+  "lifecycle_changed": false
+}

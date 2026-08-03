@@ -1,0 +1,55 @@
+{
+  "run_label": "SCA004_PRECHANGE_2026-08-02",
+  "timestamp": "2026-08-02T23:27:00-06:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "projects/pec/execution/_Decomposition/_LATEST.md revision 1.3 current_basis plus D-PEC-78 O-A and confirmed SCA-004 Gate 1 intake",
+  "expected_handoff_phase": "SCA-004 Gate 2 pre-change baseline",
+  "decomposition_path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+  "decomposition_revision": "1.3 current_basis",
+  "decomposition_sha256": "3f65ea0e47036a2baa66cb60923f8b779525ae00d747425f93f8b69431151787",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 11,
+    "deliverables": 64,
+    "objectives": 6,
+    "scope_items": 94,
+    "ledger_rows": 94
+  },
+  "partitions_declared": 11,
+  "partitions_found": 11,
+  "production_units_declared": 64,
+  "production_units_found": 64,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 4.6875,
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 9,
+  "in_ledger_rows_without_objective_mapping": 11,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "PASS",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 0,
+  "issues_warning": 1,
+  "issues_info": 69,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "INITIALIZED": 28,
+    "OPEN": 32,
+    "CHECKING": 4
+  },
+  "contract_distribution": {
+    "SOW_V1": 32,
+    "NONE": 32,
+    "AMBIGUOUS_DUAL": 0
+  },
+  "overall_status": "WARNINGS",
+  "closure_readiness": "WARN",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

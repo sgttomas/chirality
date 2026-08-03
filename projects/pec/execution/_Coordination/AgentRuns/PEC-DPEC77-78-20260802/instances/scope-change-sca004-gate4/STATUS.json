@@ -1,0 +1,13 @@
+{
+  "instance_id": "scope-change-sca004-gate4",
+  "manager": "SCOPE_CHANGE",
+  "status": "COMPLETE",
+  "brief_version": 1,
+  "amendment_id": "SCA-004",
+  "current_gate": "GATE_4_AWAITING_OWNER",
+  "result": "Gate 4 propagation plan complete; awaiting owner approval; Gate 5 not opened",
+  "package": "projects/pec/execution/_ScopeChange/SCA-004_2026-08-02_2325/",
+  "plan": "projects/pec/execution/_ScopeChange/SCA-004_2026-08-02_2325/Propagation_Plan.md",
+  "actions": "projects/pec/execution/_ScopeChange/SCA-004_2026-08-02_2325/Amendment_Actions.csv",
+  "return": "projects/pec/execution/_Coordination/AgentRuns/PEC-DPEC77-78-20260802/instances/scope-change-sca004-gate4/RETURN.md"
+}
