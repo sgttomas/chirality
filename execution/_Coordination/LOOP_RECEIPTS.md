@@ -2579,3 +2579,37 @@ amendment; owner ruling required).
   PR #478 facts in canonical current-state surfaces. Its own future source,
   checks, and merge identity cannot be self-recorded here; they belong in that
   follow-up PR's ordinary closeout comment after those acts occur.
+
+### Receipt 86 — 2026-08-03 — TM-session discovery breadcrumb (retroactive) and TM-launcher remediation
+
+- **Parent and posture:** Receipt 85. The Root loop remains idle; no
+  production phase, activation, lifecycle transition, or register row is
+  created by this receipt. Owner-directed in-session remediation ahead of the
+  next Task Management generation; agent-authored, human-gated PR.
+- **Retroactive discovery breadcrumb (the closeout-receipt rule landed at
+  `02117f6c4` after the session it now covers):** the 2026-08-02 root
+  TASK_MANAGEMENT session ran harvest and deferral-review modes and shipped
+  via PRs #485/#486 (merges `82294d790`, `fc260e462`). Durable products in
+  `execution/_Coordination/_TaskManagement/`: `CANDIDATE_HARVEST_2026-08-02.md`,
+  `RULING_2026-08-02_ROOT_HARVEST_SLATE.md`,
+  `CLOSEOUT_2026-08-02_ROOT_HARVEST_RULING.md`,
+  `DEFERRAL_REVIEW_CLASSIFICATION_2026-08-02.md`,
+  `RULING_2026-08-02_ROOT_DEFERRAL_REVIEW.md`,
+  `CLOSEOUT_2026-08-02_ROOT_DEFERRAL_REVIEW_RULING.md`; prepared handoff
+  packages awaiting owner routing:
+  `SCOPE_CHANGE_INTAKE_TM-ROOT-107_2026-08-02.md`,
+  `DEL-02-06_HANDOFF_TM-ROOT-108_2026-08-02.md`,
+  `G4_CI_HANDOFF_TM-ROOT-110_2026-08-02.md`. Register after that session:
+  36 live rows (4 OPEN / 32 DEFERRED), 74 archived. Discovery breadcrumb
+  only — no duty, priority, or selection effect (K-TM-3/4/5).
+- **Remediation tranche in this branch:** all four `taskmgmt-init-prompt.md`
+  launchers now name the explicit per-loop `archive --register` path, the
+  closeout receipt append with its per-loop receipts surface, and the manual
+  marker-class sweep; `tools/taskmgmt/taskmgmt.py archive` now requires
+  `--register` (removing the cross-loop default hazard);
+  `init/dev-loop-init-prompt.md` no longer uses the "newest standing
+  workplan" selection phrasing LOOP_INIT bans; `HANDOFF_STATE.md` §1
+  register counts refreshed and §4's fired Stage-B trigger recorded
+  (D-PEC-73, not D-PEC-72, is the PEC adoption ruling of record).
+- **This tranche's own merge identity** cannot be self-recorded here; it
+  belongs in the PR's ordinary closeout comment after those acts occur.

@@ -21,8 +21,9 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   §1.14 (effective `main@c8c2a6146`). Stage-A instruments: Receipts 66–73;
   workplan `WORKPLAN_2026-07-31_task_management_stage_a.md` (CLOSED) and
   its Amendments 1–2; program register at
-  `execution/_Coordination/_TaskManagement/REGISTER.csv` (103 rows:
-  48 CLOSED / 53 DEFERRED / 2 OPEN).
+  `execution/_Coordination/_TaskManagement/REGISTER.csv` (36 live rows:
+  4 OPEN / 32 DEFERRED after the 2026-08-02 harvest and deferral-review
+  rulings; 74 rows archived in `REGISTER_CLOSED.csv`).
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -71,8 +72,9 @@ succeeded.
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
-ruled in a development loop (D-APP-83 / D-63 / D-PEC-72 → close the
-matching TM-ROOT-098/099/100 row and migrate linked rows), a Root
+ruled in a development loop (that trigger has fired — D-APP-83, D-63, and
+D-PEC-73 are ruled and TM-ROOT-098/099/100 are closed; the register-count
+refresh above records it), a Root
 production phase or DEL-02-06 activation is selected, the accepted
 decomposition or PRD revision changes, or the owner selects a successor
 posture other than idle.
