@@ -1,6 +1,6 @@
 # Closeout — App Deferral Review 2026-08-02
 
-Status: `VALIDATED — GIT CLOSEOUT AUTHORIZED`
+Status: `VALIDATED — OWNER ACCEPTED — MERGE AUTHORIZED`
 
 Invoking loop: `chirality-app-dev`
 
@@ -123,3 +123,9 @@ Owner direction received 2026-08-02: "commit and add to the open PR." The
 validated tranche is authorized for routine CHANGE commit and push on the
 existing PR branch. Commit and PR identifiers are supplied by the CHANGE
 closeout; this pre-commit record does not invent an effective commit.
+
+Final owner direction received 2026-08-02, verbatim: "Change the status from
+draft. I accept this version. Merge PR #484". This is the exact owner
+acceptance and merge authorization for PR #484. CHANGE must inspect the final
+source SHA and completed check verdicts before merging; the effective GitHub
+merge SHA is recorded in the PR closeout body after the merge succeeds.
