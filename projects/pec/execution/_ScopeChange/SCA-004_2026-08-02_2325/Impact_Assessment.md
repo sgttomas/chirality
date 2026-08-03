@@ -186,4 +186,3 @@ frozen and separately owner-gated.
 
 **Do you accept this impact assessment and authorize SCOPE_CHANGE to prepare
 the exact SCA-004 Gate 3 amendment preview only?**
-

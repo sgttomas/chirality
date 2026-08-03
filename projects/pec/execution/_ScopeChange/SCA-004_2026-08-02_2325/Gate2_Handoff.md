@@ -31,4 +31,3 @@ dispatch is authorized before that act.
 
 **Do you accept `Impact_Assessment.md` and authorize preparation of the exact
 SCA-004 Gate 3 amendment preview only?**
-

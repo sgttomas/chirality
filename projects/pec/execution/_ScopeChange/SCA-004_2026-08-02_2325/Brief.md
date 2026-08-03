@@ -55,4 +55,3 @@ authorized by this package.
 This Gate 2 package changes no decomposition truth, companion register,
 accepted pointer, deliverable metadata/content, dependency register, source,
 lifecycle, Task Management row, decision, receipt, or foreign-loop surface.
-
