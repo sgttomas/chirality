@@ -1,0 +1,31 @@
+{
+  "schema": "chirality-managed-agent-status/v1",
+  "run_id": "PEC-DPEC77-78-20260802",
+  "instance_id": "working-items-del0105",
+  "manager": "WORKING_ITEMS",
+  "package_id": "PKG-01",
+  "selected_deliverables": ["DEL-01-05"],
+  "brief_version": 1,
+  "status": "COMPLETE",
+  "closure_verdict": "PHASE_1_COMPLETE_VALIDATED_CANDIDATE_REVIEW_OWNER_GATE",
+  "output": {
+    "path": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+    "pre_sha256": "ce51490178a4e07f4266a09e156e2b8d7bca618a41477f57eb746b4596b49824",
+    "post_sha256": "53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53"
+  },
+  "validation": {
+    "reliance_hold_dispatch": "ALLOW",
+    "reliance_hold_fan_in": "ALLOW",
+    "sow_format": "SOW_V1",
+    "sow_validator": "PASS",
+    "checklist_sha256": "6eccfb72ac1d512a6bef287f4a9a828964ba30d46fbb7d3cb69cbbd12f18db2c",
+    "checklist_count": 11,
+    "checklist_ids": ["AC-001", "AC-002", "AC-003", "AC-004", "AC-005", "AC-006", "AC-007", "AC-008", "AC-009", "AC-010", "AC-011"],
+    "protected_text": "EXACT_PREIMAGE_EQUALITY",
+    "changed_path_containment": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "source_production": "DORMANT",
+  "blockers": [],
+  "next_gate": "OWNER_SELECTS_REVIEW_TYPE_OVERRIDE_FINDINGS_GATE5_AND_EXACT_HASH_CONTRACT_FITNESS"
+}

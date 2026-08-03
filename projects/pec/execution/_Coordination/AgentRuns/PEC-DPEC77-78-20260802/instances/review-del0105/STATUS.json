@@ -1,0 +1,16 @@
+{
+  "instance_id": "review-del0105",
+  "manager": "REVIEW",
+  "status": "COMPLETE",
+  "brief_version": 1,
+  "result": "MECHANICAL REVIEW COMPLETE / ZERO FINDINGS / OWNER GATE REQUIRED",
+  "review_type": "SELF_CHECK",
+  "lifecycle": "INITIALIZED",
+  "gate_5_recommendation": "RECOMMEND_HOLD",
+  "sow_sha256": "53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53",
+  "checklist_sha256": "6eccfb72ac1d512a6bef287f4a9a828964ba30d46fbb7d3cb69cbbd12f18db2c",
+  "checklist_items": 11,
+  "findings": 0,
+  "snapshot": "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-02_2324",
+  "return": "projects/pec/execution/_Coordination/AgentRuns/PEC-DPEC77-78-20260802/instances/review-del0105/RETURN.md"
+}

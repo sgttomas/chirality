@@ -1,0 +1,10 @@
+{
+  "instance_id": "scope-change-oi003",
+  "manager": "SCOPE_CHANGE",
+  "status": "COMPLETE",
+  "brief_version": 1,
+  "result": "SCA-004 Gate-1-ready MODIFY-only intake prepared; awaiting owner Gate 1 confirmation",
+  "amendment_id": "SCA-004",
+  "current_gate": "GATE_1_AWAITING_OWNER",
+  "return": "projects/pec/execution/_Coordination/AgentRuns/PEC-DPEC77-78-20260802/instances/scope-change-oi003/RETURN.md"
+}
