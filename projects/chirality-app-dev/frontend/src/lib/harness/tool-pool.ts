@@ -6,7 +6,7 @@ import {
   type ClaudeAgentSdkToolName,
   type HarnessToolDescriptor,
   type HarnessToolResolutionIssue
-} from '@chirality/harness-contract/tool-descriptor';
+} from '@chirality/runtime-contracts/tool-descriptor';
 import {
   resolveHarnessPermissionDecision,
   type HarnessPermissionDecision

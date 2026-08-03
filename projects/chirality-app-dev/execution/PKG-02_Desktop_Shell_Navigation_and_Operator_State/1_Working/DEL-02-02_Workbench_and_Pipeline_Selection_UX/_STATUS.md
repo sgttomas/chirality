@@ -2,7 +2,7 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-08-02
+**Last Updated:** 2026-08-03
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -21,10 +21,23 @@ remains:
   it diverges from the approved mockup's per-group counts because N counts all
   recorded sessions per Working Root, including unattributed ones. Ratified
   deviation; the owner may keep or re-style it.
-- Record packaged Desktop smoke evidence for the re-hosted Workbench and
-  Pipeline surfaces.
+
+Mandatory non-blocking rerun trigger: if a later accepted D-APP-88
+distinct-helper implementation lands, rerun the D-APP-86 packaged parity
+instrument against that changed package identity.
 
 ## History
+- 2026-08-03 - D-APP-86 Option A packaged Desktop evidence proved the
+  re-hosted Workbench and Pipeline observations on one frozen unsigned/adhoc
+  package: Workbench rendered the live 53-deliverable governed boundary,
+  Pipeline rendered the DECOMP/PREP/TASK/AUDIT intent, each preserved the
+  mounted primary Dialogue, and each returned without observed route or state
+  corruption. The packaged Workbench/Pipeline evidence residual was removed;
+  the owner-reserved "All sessions (N)" presentation question remains. A later
+  accepted D-APP-88 distinct-helper implementation is a mandatory non-blocking
+  parity rerun trigger. State remains IN_PROGRESS; lifecycle, dependencies,
+  authorization basis, directive, and Checking Approval SHA are unchanged.
+  See `_run_records/R8_DAPP86_PACKAGED_WORKBENCH_PIPELINE_2026-08-03.md`.
 - 2026-08-02 - Navigator UI compatibility repair added fixed-record-year
   session timestamps and an inverse `Recent sessions` expanded label, with a
   real component state-transition proof from the four-item scoped recent list

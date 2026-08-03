@@ -1,7 +1,7 @@
 import { lstat } from 'node:fs/promises';
 import path from 'node:path';
 import { instructionRootContainsPath, resolveInstructionRootPath } from './instruction-root';
-import type { HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
+import type { HarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 
 export type HarnessToolPathPolicyDeny = {
   reason: string;

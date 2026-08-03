@@ -2,7 +2,7 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-07-24
+**Last Updated:** 2026-08-03
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -21,8 +21,11 @@ recorded-session path under a live proof and a green regression suite
 `execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`). What
 remains:
 
-- Record packaged Desktop smoke evidence for the guarded navigator selection
-  path.
+- Rerun the D-APP-86 packaged parity instrument if a distinct D-APP-88
+  headless helper implementation is later accepted and landed, so the guarded
+  navigator result is re-evidenced against the successor packaging/runtime
+  identity bytes. This is a non-blocking rerun advisory until that trigger
+  fires. (gated: accepted and landed D-APP-88 distinct-helper implementation)
 
 ## History
 - 2026-05-20 - State set to INITIALIZED (TASK + four-documents P1/P2)
@@ -44,3 +47,9 @@ remains:
   mock-only `[data-legacy]` test contract and packaged Desktop smoke evidence.
   State remains IN_PROGRESS; accepted historical evidence and Checking Approval
   SHA are preserved.
+- 2026-08-03 - D-APP-86 Option A packaged evidence discharged only the guarded
+  navigator Desktop-smoke residual: session selection remained disabled and
+  `null` during a live primary turn, then selected the recorded session after
+  completion. The future D-APP-88 helper-triggered parity rerun remains a
+  non-blocking gated advisory. Lifecycle and Checking Approval SHA are
+  unchanged; see `_run_records/R3_DAPP86_PARITY_POINTER_2026-08-03.md`.

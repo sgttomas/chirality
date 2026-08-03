@@ -1,0 +1,4 @@
+projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Chirality Runtime Service Helper (GPU).app
+projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Chirality Runtime Service Helper (Plugin).app
+projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Chirality Runtime Service Helper (Renderer).app
+projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Chirality Runtime Service Helper.app

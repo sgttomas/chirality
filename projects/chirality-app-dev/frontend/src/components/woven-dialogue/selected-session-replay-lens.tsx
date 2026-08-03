@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import type { TranscriptItem } from '@chirality/harness-contract/transcript-replay';
+import type { TranscriptItem } from '@chirality/runtime-contracts/transcript-replay';
 import type {
   ProjectionDiagnostic,
   SelectedSessionReplayProjection,

@@ -1,5 +1,5 @@
 import { HarnessApiClientError, harnessApiErrorMessage } from './client';
-import type { AttachmentError, HarnessErrorType } from '@chirality/harness-contract/types';
+import type { AttachmentError, HarnessErrorType } from '@chirality/runtime-contracts/types';
 
 export type HarnessUiError = {
   title: string;

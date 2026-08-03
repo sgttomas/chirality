@@ -1,4 +1,4 @@
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 
 /**
  * D-APP-51 multi-engine domain profile registry (bridge-lane P1).

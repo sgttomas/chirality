@@ -1,0 +1,99 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 4
+  },
+  "counts": {
+    "category": {
+      "containment": 1,
+      "fan_in": 2,
+      "implementation": 1,
+      "orchestration": 1,
+      "validation": 1,
+      "validation_environment": 2,
+      "validation_remediation": 3,
+      "verification": 2
+    },
+    "event_type": {
+      "FINISH": 4,
+      "MILESTONE": 1,
+      "REMEDIATION": 2,
+      "RETRY": 2,
+      "START": 4
+    },
+    "outcome": {
+      "BLOCKED": 2,
+      "INFO": 2,
+      "PASS": 3,
+      "RETRY": 2,
+      "STARTED": 4
+    },
+    "reason_code": {
+      "ACCEPT_FAN_IN": 1,
+      "ACTIVATION_ACCEPTED": 1,
+      "CHILD_SESSION_RETROACTIVE_START": 1,
+      "COMPLETE_REQUIRED_SET_PASS": 1,
+      "DEPENDENCY_PRECONDITION_SUPPLIED": 1,
+      "DEPENDENCY_TREE_ABSENT": 1,
+      "EXACT_LOCKFILE_TREE_AVAILABLE": 1,
+      "MIGRATION_TRANCHE_VALIDATED": 1,
+      "PREDECESSOR_ACCEPTED": 1,
+      "PROJECTION_LIFETIME_EXTENDED": 1,
+      "REQUIRED_CHECKS_UNRUN": 1,
+      "ROOT_DEPENDENCY_PROJECTION_AUTHORIZED": 1,
+      "RUN_RECORD_PATH_NARROWED": 1
+    }
+  },
+  "events": 13,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 578.594,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-DAPP89-VERIFY-01",
+      "package_id": "PKG-03",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_GENERALIST",
+      "session_id": "A2-DAPP89-VERIFY-01-S1"
+    },
+    {
+      "duration_seconds": 0.021,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "TASK-DAPP89-MIGRATION-01",
+      "package_id": "PKG-03",
+      "remediations": 0,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "TASK-DAPP89-MIGRATION-01-S1"
+    },
+    {
+      "duration_seconds": 1164.67,
+      "events": 5,
+      "final_outcome": "PASS",
+      "instance_id": "TASK-DAPP89-MIGRATION-01",
+      "package_id": "PKG-03",
+      "remediations": 1,
+      "retries": 2,
+      "role": "TASK",
+      "session_id": "TASK-DAPP89-MIGRATION-01-S2"
+    },
+    {
+      "duration_seconds": 2798.895,
+      "events": 4,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG03-DAPP89-B",
+      "package_id": "PKG-03",
+      "remediations": 1,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG03-DAPP89-B-S1"
+    }
+  ],
+  "sessions": 4,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

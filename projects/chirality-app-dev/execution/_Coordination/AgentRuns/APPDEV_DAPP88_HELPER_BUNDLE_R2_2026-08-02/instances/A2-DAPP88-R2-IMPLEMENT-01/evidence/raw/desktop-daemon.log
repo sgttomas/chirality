@@ -1,0 +1,6 @@
+2026-08-03T07:45:36.834Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/private/tmp/chirality-dapp88-r2-control.7G8OaH/user-data","pid":40377}
+2026-08-03T07:45:36.851Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-dapp88-r2-control.7G8OaH/user-data/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-dapp88-r2-control.7G8OaH/user-data/runtime"}
+2026-08-03T07:45:50.634Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":true,"pid":40377}
+2026-08-03T07:45:50.635Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}
+2026-08-03T07:46:07.883Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/private/tmp/chirality-dapp88-r2-control.7G8OaH/user-data","pid":40416}
+2026-08-03T07:46:07.895Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-dapp88-r2-control.7G8OaH/user-data/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-dapp88-r2-control.7G8OaH/user-data/runtime"}

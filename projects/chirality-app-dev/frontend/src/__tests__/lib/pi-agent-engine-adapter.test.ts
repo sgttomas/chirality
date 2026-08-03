@@ -2,9 +2,9 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { AgentEngineRunInput } from '@chirality/harness-contract/agent-engine-port';
-import { runEngineInterruptConformance } from '@chirality/harness-contract/engine-conformance';
-import type { ResolvedOpts, SessionRecord, UIEvent } from '@chirality/harness-contract/types';
+import type { AgentEngineRunInput } from '@chirality/runtime-contracts/agent-engine-port';
+import { runEngineInterruptConformance } from '@chirality/runtime-contracts/engine-conformance';
+import type { ResolvedOpts, SessionRecord, UIEvent } from '@chirality/runtime-contracts/types';
 import {
   createIsolatedPiResourceLoader,
   createIsolatedPiSession,

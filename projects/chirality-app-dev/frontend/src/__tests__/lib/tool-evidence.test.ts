@@ -6,7 +6,7 @@ import {
   summarizeToolResult,
   withToolResultPersistence
 } from '../../lib/harness/tool-evidence';
-import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
+import { getHarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 
 afterEach(() => {
   delete process.env.CHIRALITY_ANTHROPIC_API_KEY;

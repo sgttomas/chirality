@@ -7,7 +7,7 @@ import {
   persistChildOutputArtifact,
   persistToolResultArtifact
 } from '../../lib/harness/tool-result-artifacts';
-import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
+import { getHarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 
 let tmpDir = '';
 

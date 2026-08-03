@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@chirality/harness-contract'],
+  transpilePackages: ['@chirality/runtime-contracts'],
   serverExternalPackages: ['@earendil-works/pi-coding-agent']
 };
 

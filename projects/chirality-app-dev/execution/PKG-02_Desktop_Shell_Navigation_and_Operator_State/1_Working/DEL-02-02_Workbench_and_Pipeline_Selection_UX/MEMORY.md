@@ -20,3 +20,14 @@
   the ratified current behavior and separate owner-reserved presentation
   question; packaged Desktop smoke remains open. No lifecycle, dependency,
   decomposition, authority, release, issuance, or professional-reliance effect.
+- 2026-08-03 - D-APP-86 Option A derivative evidence closes only DEL-02-02's
+  packaged Desktop Workbench/Pipeline evidence residual. On the frozen
+  unsigned/adhoc package, Workbench rendered its live 53-deliverable governed
+  boundary and Pipeline rendered DECOMP/PREP/TASK/AUDIT intent; both retained
+  the mounted primary Dialogue and returned without observed route or state
+  corruption. The owner-reserved `All sessions (N)` presentation question
+  remains. A later accepted D-APP-88 distinct-helper implementation requires a
+  non-blocking rerun of the parity instrument. See
+  `_run_records/R8_DAPP86_PACKAGED_WORKBENCH_PIPELINE_2026-08-03.md`. No broad
+  UI/API parity, deliverable closure, lifecycle, dependency, release,
+  distribution, issuance, or professional-reliance claim is made.

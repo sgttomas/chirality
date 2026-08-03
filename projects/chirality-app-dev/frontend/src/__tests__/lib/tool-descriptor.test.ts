@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { resolveHarnessToolPool } from '../../lib/harness/tool-pool';
-import { createDescriptorLookup, getCurrentTrancheDisallowedToolNames, getHarnessToolDescriptor, HARNESS_TOOL_REGISTRY_VERSION, listHarnessToolDescriptors, type ClaudeAgentSdkToolName, type HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
+import { createDescriptorLookup, getCurrentTrancheDisallowedToolNames, getHarnessToolDescriptor, HARNESS_TOOL_REGISTRY_VERSION, listHarnessToolDescriptors, type ClaudeAgentSdkToolName, type HarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 import { buildChiralityMcpTools } from '../../lib/harness/mcp/read-tools';
 import {
   CHIRALITY_MCP_ALLOWED_TOOL_NAMES,
   type ChiralityMcpAllowedToolName
-} from '@chirality/harness-contract/mcp/tool-names';
+} from '@chirality/runtime-contracts/mcp/tool-names';
 
 function normalizeLookupKey(toolName: string): string {
   return toolName.trim().toLowerCase();

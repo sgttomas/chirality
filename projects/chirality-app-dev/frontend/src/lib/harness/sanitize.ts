@@ -1,4 +1,4 @@
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 
 const ILLEGAL_LABEL_CHARACTERS = /[\/\\:*?"<>|]/g;
 const CONSECUTIVE_WHITESPACE = /\s+/g;

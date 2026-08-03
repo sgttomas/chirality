@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import type { HarnessErrorType } from '@chirality/harness-contract/types';
-import { asHarnessError } from '@chirality/harness-contract/errors';
+import type { HarnessErrorType } from '@chirality/runtime-contracts/types';
+import { asHarnessError } from '@chirality/runtime-contracts/errors';
 
 const providerNeutralTypes = [
   'ENGINE_UNAVAILABLE',

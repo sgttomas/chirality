@@ -1,6 +1,7 @@
 # MEMORY - DEL-09-04
 
 - 2026-07-12 — D-APP-56 consolidated R5 decision application recorded for DEL-09-04; governed kit wording/ruling state updated without lifecycle transition. Original D-APP-55 run evidence remains immutable.
+- 2026-08-03 — D-APP-88 Option B remains BLOCKED, not accepted closure. Attempt 1 proved relocatable copied-main package mechanics but failed post-GUI graceful teardown; its exact evidence remains at `execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/`. R2 then evaluated the separately built full Electron helper: distinct bundle identity/UI posture, builder-generated child topology, whole-bundle embedding, relocatability, and fresh graceful-stop evidence passed. Retained post-GUI evidence proves helper restart, GUI contact, no later daemon shutdown entry, and eventual transport loss; first-signal survival/socket retention is an operator observation without a preserved command/process/socket snapshot. The mandatory proof therefore failed. An active-client interaction with Root `RuntimeDaemon.stop()` is only an investigation hypothesis, not a finding or authorized Root change. R2 candidate bytes were frozen and all R2 product/config/test changes rolled back while preserving D-APP-89. Evidence: `execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/`.
 
 ## Decisions And Evidence
 

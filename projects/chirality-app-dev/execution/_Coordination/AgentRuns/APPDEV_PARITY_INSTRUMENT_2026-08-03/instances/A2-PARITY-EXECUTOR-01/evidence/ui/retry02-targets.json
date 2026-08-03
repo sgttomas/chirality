@@ -1,0 +1,11 @@
+[
+  {
+    "description": "",
+    "devtoolsFrontendUrl": "/devtools/inspector.html?ws=127.0.0.1:52778/devtools/page/13817769A0731F8CDAC91A7A510B2D57",
+    "id": "13817769A0731F8CDAC91A7A510B2D57",
+    "title": "Chirality Workflow Shell",
+    "type": "page",
+    "url": "http://127.0.0.1:52812/",
+    "webSocketDebuggerUrl": "ws://127.0.0.1:52778/devtools/page/13817769A0731F8CDAC91A7A510B2D57"
+  }
+]

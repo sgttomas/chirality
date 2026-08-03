@@ -1,4 +1,4 @@
-import type { HarnessOpts } from '@chirality/harness-contract/types';
+import type { HarnessOpts } from '@chirality/runtime-contracts/types';
 
 export const TOOLKIT_STORAGE_KEY = 'chirality.toolkit.v1';
 

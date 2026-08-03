@@ -1,5 +1,5 @@
-import { HarnessError } from '@chirality/harness-contract/errors';
-import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
+import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type {
   InterruptRequest,
   ScaffoldExecutionRootRequest,
@@ -10,8 +10,8 @@ import type {
   SessionRecord,
   TurnRequest,
   UIEvent
-} from '@chirality/harness-contract/types';
-import type { TranscriptView } from '@chirality/harness-contract/transcript-replay';
+} from '@chirality/runtime-contracts/types';
+import type { TranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import { createRuntimeDaemonHarnessPortFromEnvironment } from './runtime-daemon-harness-port';
 
 export type AgentRosterEntry = {

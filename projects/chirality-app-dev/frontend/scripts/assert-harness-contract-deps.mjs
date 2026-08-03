@@ -7,6 +7,13 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const frontendRoot = path.resolve(__dirname, '..');
 const contractSrc = path.join(frontendRoot, 'packages', 'harness-contract', 'src');
+const appSrc = path.join(frontendRoot, 'src');
+const rollbackTest = path.join(
+  appSrc,
+  '__tests__',
+  'lib',
+  'harness-contract-rollback.test.ts'
+);
 const forbiddenSpecifiers = [
   /^node:/,
   /^react($|\/)/,
@@ -26,7 +33,7 @@ async function listSourceFiles(dir) {
       files.push(...(await listSourceFiles(fullPath)));
       continue;
     }
-    if (entry.isFile() && fullPath.endsWith('.ts')) {
+    if (entry.isFile() && /\.tsx?$/.test(fullPath)) {
       files.push(fullPath);
     }
   }
@@ -73,6 +80,46 @@ for (const filePath of await listSourceFiles(contractSrc)) {
       continue;
     }
     failures.push(`${path.relative(frontendRoot, filePath)} imports external package ${specifier}`);
+  }
+}
+
+let rollbackFacadeImports = 0;
+for (const filePath of await listSourceFiles(appSrc)) {
+  const source = await readFile(filePath, 'utf8');
+  for (const specifier of importSpecifiers(source)) {
+    if (!/^@chirality\/harness-contract(?:$|\/)/.test(specifier)) {
+      continue;
+    }
+    if (filePath === rollbackTest) {
+      rollbackFacadeImports += 1;
+      continue;
+    }
+    failures.push(
+      `${path.relative(frontendRoot, filePath)} retains executable facade import ${specifier}`
+    );
+  }
+}
+
+if (rollbackFacadeImports !== 13) {
+  failures.push(
+    `${path.relative(frontendRoot, rollbackTest)} must retain exactly 13 facade export probes; found ${rollbackFacadeImports}`
+  );
+}
+
+const packageJson = JSON.parse(await readFile(path.join(frontendRoot, 'package.json'), 'utf8'));
+if (packageJson.dependencies?.['@chirality/harness-contract'] !== undefined) {
+  failures.push('package.json retains load-bearing @chirality/harness-contract dependency');
+}
+
+const packageLock = JSON.parse(await readFile(path.join(frontendRoot, 'package-lock.json'), 'utf8'));
+if (packageLock.packages?.['']?.dependencies?.['@chirality/harness-contract'] !== undefined) {
+  failures.push('package-lock.json root package retains load-bearing @chirality/harness-contract dependency');
+}
+
+for (const configName of ['tsconfig.json', 'next.config.mjs']) {
+  const source = await readFile(path.join(frontendRoot, configName), 'utf8');
+  if (source.includes('@chirality/harness-contract')) {
+    failures.push(`${configName} retains load-bearing @chirality/harness-contract wiring`);
   }
 }
 

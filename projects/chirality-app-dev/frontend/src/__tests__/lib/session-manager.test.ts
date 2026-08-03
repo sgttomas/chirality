@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { FileSessionManager } from '../../lib/harness/session-manager';
-import { SessionRecord } from '@chirality/harness-contract/types';
+import { SessionRecord } from '@chirality/runtime-contracts/types';
 
 type PersistedSessionRecord = SessionRecord & Record<string, unknown>;
 

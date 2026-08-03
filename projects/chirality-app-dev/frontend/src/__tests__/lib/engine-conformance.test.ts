@@ -7,15 +7,15 @@ import type {
   AgentEnginePort,
   AgentEngineRunInput,
   EngineDescriptor
-} from '@chirality/harness-contract/agent-engine-port';
-import type { HarnessEvent, HarnessEventType } from '@chirality/harness-contract/event-schema';
+} from '@chirality/runtime-contracts/agent-engine-port';
+import type { HarnessEvent, HarnessEventType } from '@chirality/runtime-contracts/event-schema';
 import { ClaudeAgentSdkManager } from '../../lib/harness/claude-agent-sdk-manager';
 import {
   runEngineConformance,
   runEngineInterruptConformance
-} from '@chirality/harness-contract/engine-conformance';
+} from '@chirality/runtime-contracts/engine-conformance';
 import { replayHarnessEvents } from '../../lib/harness/session-events';
-import type { ResolvedOpts, SessionRecord, UIEvent } from '@chirality/harness-contract/types';
+import type { ResolvedOpts, SessionRecord, UIEvent } from '@chirality/runtime-contracts/types';
 
 const session: SessionRecord = {
   sessionId: 'sess_engine_conformance',

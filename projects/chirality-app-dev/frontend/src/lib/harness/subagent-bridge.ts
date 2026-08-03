@@ -1,6 +1,6 @@
 import type { AgentDefinition } from '@anthropic-ai/claude-agent-sdk';
-import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
-import { getCurrentTrancheDisallowedToolNames } from '@chirality/harness-contract/tool-descriptor';
+import type { ResolvedOpts, SessionRecord } from '@chirality/runtime-contracts/types';
+import { getCurrentTrancheDisallowedToolNames } from '@chirality/runtime-contracts/tool-descriptor';
 
 export const SUBAGENT_BRIDGE_POLICY_VERSION = 'subagent-bridge.v4.disabled-after-managed-delegation';
 export const SUBAGENT_BRIDGE_RULING_REF = 'D-APP-10 Option C';

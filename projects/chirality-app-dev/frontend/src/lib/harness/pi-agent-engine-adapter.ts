@@ -1,9 +1,9 @@
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
-import type { AgentEnginePort, AgentEngineRunInput } from '@chirality/harness-contract/agent-engine-port';
-import { HarnessError } from '@chirality/harness-contract/errors';
-import type { HarnessEventType } from '@chirality/harness-contract/event-schema';
-import type { HarnessErrorType, UIEvent } from '@chirality/harness-contract/types';
+import type { AgentEnginePort, AgentEngineRunInput } from '@chirality/runtime-contracts/agent-engine-port';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
+import type { HarnessEventType } from '@chirality/runtime-contracts/event-schema';
+import type { HarnessErrorType, UIEvent } from '@chirality/runtime-contracts/types';
 import type {
   AgentSessionEvent,
   ResourceLoader,

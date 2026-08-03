@@ -1,4 +1,4 @@
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import type {
   OperatorSessionProjection,
   ProjectionCurrency,

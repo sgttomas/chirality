@@ -21,7 +21,7 @@ import {
 } from '../../workspace/deliverable-contracts';
 import type { DependencyRegisterRow } from '../../dependencies/schema';
 import { normalizeProjectRoot, scanProjectScopes } from '../../workspace/filesystem';
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import {
   appendHarnessPermissionDecisionEvent,
   resolveHarnessPermissionDecision
@@ -35,7 +35,7 @@ import {
   withToolResultPersistence
 } from '../tool-evidence';
 import { persistToolResultArtifact } from '../tool-result-artifacts';
-import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
+import { getHarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 import { evaluateToolPathPolicy } from '../tool-path-policy';
 import {
   CHIRALITY_MCP_SERVER_NAME,
@@ -46,7 +46,7 @@ import {
   type ChiralityMcpDomainToolName,
   type ChiralityMcpMutatingToolName,
   type ChiralityMcpReadToolName
-} from '@chirality/harness-contract/mcp/tool-names';
+} from '@chirality/runtime-contracts/mcp/tool-names';
 import {
   resolveDomainEngineProfile,
   type DomainEngineProfileRegistryEntry,

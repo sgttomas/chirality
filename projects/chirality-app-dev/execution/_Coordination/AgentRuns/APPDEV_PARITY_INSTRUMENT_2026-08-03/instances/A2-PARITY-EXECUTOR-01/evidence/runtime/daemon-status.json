@@ -1,0 +1,63 @@
+{
+  "apiVersion": "v1",
+  "status": "ok",
+  "daemonId": "56ba47c3-5a2f-4c30-89d2-01df6fdbf1ca",
+  "pid": 51147,
+  "startedAt": "2026-08-03T08:33:55.497Z",
+  "socketPath": "/private/tmp/chirality-dapp86-parity.uMwlcY/userdata/runtime/control.sock",
+  "engines": [
+    {
+      "adapterId": "stub",
+      "providerId": "stub",
+      "capabilities": {
+        "credentials": false,
+        "tools": false,
+        "attachments": true,
+        "interruption": true,
+        "durableResume": false,
+        "compaction": false
+      }
+    },
+    {
+      "adapterId": "anthropic-direct",
+      "providerId": "anthropic",
+      "packageName": "@anthropic-ai/sdk",
+      "capabilities": {
+        "credentials": true,
+        "tools": false,
+        "attachments": true,
+        "interruption": true,
+        "durableResume": true,
+        "compaction": false
+      }
+    },
+    {
+      "adapterId": "claude-agent-sdk",
+      "providerId": "anthropic",
+      "packageName": "@anthropic-ai/claude-agent-sdk",
+      "packageVersion": "0.3.150",
+      "capabilities": {
+        "credentials": true,
+        "tools": true,
+        "attachments": true,
+        "interruption": true,
+        "durableResume": true,
+        "compaction": true
+      }
+    },
+    {
+      "adapterId": "pi",
+      "providerId": "omlx",
+      "packageName": "@earendil-works/pi-coding-agent",
+      "packageVersion": "0.82.0",
+      "capabilities": {
+        "credentials": true,
+        "tools": true,
+        "attachments": false,
+        "interruption": true,
+        "durableResume": false,
+        "compaction": true
+      }
+    }
+  ]
+}

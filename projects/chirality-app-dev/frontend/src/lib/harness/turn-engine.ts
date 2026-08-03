@@ -1,11 +1,11 @@
 import { randomUUID } from 'node:crypto';
-import { asHarnessError, HarnessError } from '@chirality/harness-contract/errors';
+import { asHarnessError, HarnessError } from '@chirality/runtime-contracts/errors';
 import { resolveRuntimeOptions } from './options';
 import { evaluateSubagentGovernance } from './subagent-governance';
 import { resolveHarnessToolPool } from './tool-pool';
 import { appendHarnessEvent } from './session-events';
 import { createHarnessEvent } from './event-factory';
-import type { AgentEnginePort, AgentEngineRunInput } from '@chirality/harness-contract/agent-engine-port';
+import type { AgentEnginePort, AgentEngineRunInput } from '@chirality/runtime-contracts/agent-engine-port';
 import type { ResolvedEngine } from './engine-registry';
 import {
   AttachmentError,
@@ -20,7 +20,7 @@ import {
   TurnErrorSeverity,
   TurnRequest,
   UIEvent
-} from '@chirality/harness-contract/types';
+} from '@chirality/runtime-contracts/types';
 
 const MAX_ATTACHMENT_WARNING_DETAILS = 3;
 export type RunningHarnessTurn = {

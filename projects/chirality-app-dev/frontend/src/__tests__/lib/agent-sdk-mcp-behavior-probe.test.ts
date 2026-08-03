@@ -13,7 +13,7 @@ import { PassThrough, Writable } from 'node:stream';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { buildSdkOptions } from '../../lib/harness/sdk-options-builder';
 import { replayHarnessEvents } from '../../lib/harness/session-events';
-import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
+import type { ResolvedOpts, SessionRecord } from '@chirality/runtime-contracts/types';
 
 const MCP_TOOL_NAME = 'mcp__chirality__status_read';
 const SESSION_ID = 'sess_sdk_mcp_behavior_probe';

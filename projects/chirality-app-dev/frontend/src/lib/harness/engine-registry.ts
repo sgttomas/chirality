@@ -2,15 +2,15 @@ import type {
   AgentEnginePort,
   AgentEngineRunInput,
   EngineDescriptor
-} from '@chirality/harness-contract/agent-engine-port';
-import { HarnessError } from '@chirality/harness-contract/errors';
+} from '@chirality/runtime-contracts/agent-engine-port';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type {
   EngineSelection,
   IAgentSdkManager,
   ResolvedOpts,
   SessionRecord,
   UIEvent
-} from '@chirality/harness-contract/types';
+} from '@chirality/runtime-contracts/types';
 
 type LegacyManager = IAgentSdkManager & {
   cancel?(sessionId: string): Promise<void>;

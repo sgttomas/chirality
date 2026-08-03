@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { TurnEngine } from '../../lib/harness/turn-engine';
 import { LegacyAgentEngineAdapter } from '../../lib/harness/engine-registry';
 import { replayHarnessEvents } from '../../lib/harness/session-events';
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type {
   HarnessOpts,
   IAgentSdkManager,
@@ -16,7 +16,7 @@ import type {
   ResolvedOpts,
   SessionRecord,
   UIEvent
-} from '@chirality/harness-contract/types';
+} from '@chirality/runtime-contracts/types';
 
 const session: SessionRecord = {
   sessionId: 'sess_turn_engine',

@@ -1,8 +1,8 @@
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import {
   deriveTranscriptView,
   type TranscriptView
-} from '@chirality/harness-contract/transcript-replay';
+} from '@chirality/runtime-contracts/transcript-replay';
 import {
   replaySessionEvents,
   type SessionEventsReplay

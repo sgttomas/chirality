@@ -3,7 +3,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { createHarnessEvent } from '../../lib/harness/event-factory';
-import { HARNESS_EVENT_TYPES } from '@chirality/harness-contract/event-schema';
+import { HARNESS_EVENT_TYPES } from '@chirality/runtime-contracts/event-schema';
 import { appendHarnessEvent, replayHarnessEvents } from '../../lib/harness/session-events';
 
 let tmpDir = '';

@@ -1,0 +1,4 @@
+2026-08-03T08:33:55.496Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/private/tmp/chirality-dapp86-parity.uMwlcY/userdata","pid":51147}
+2026-08-03T08:33:55.513Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-dapp86-parity.uMwlcY/userdata/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-dapp86-parity.uMwlcY/userdata/runtime"}
+2026-08-03T08:38:03.397Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":true,"pid":51147}
+2026-08-03T08:38:03.397Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}

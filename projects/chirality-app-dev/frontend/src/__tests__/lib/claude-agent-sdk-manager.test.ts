@@ -9,8 +9,8 @@ import {
   getPermissionEventChannel,
   resetPermissionEventChannelForTests
 } from '../../lib/harness/permission-event-channel';
-import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
-import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
+import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
+import type { ResolvedOpts, SessionRecord } from '@chirality/runtime-contracts/types';
 
 async function* createSdkStream(events: SDKMessage[]): AsyncGenerator<SDKMessage, void> {
   for (const event of events) {

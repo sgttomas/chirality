@@ -1,0 +1,271 @@
+ M projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/MEMORY.md
+ M projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md
+ M projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/MEMORY.md
+ M projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md
+ M projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
+ M projects/chirality-app-dev/frontend/next.config.mjs
+ M projects/chirality-app-dev/frontend/package-lock.json
+ M projects/chirality-app-dev/frontend/package.json
+ M projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs
+ M projects/chirality-app-dev/frontend/src/__tests__/api/harness/fake-daemon-harness-port.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/components/harness-stream-views.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/components/selected-session-replay-lens.test.tsx
+ M projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx
+ M projects/chirality-app-dev/frontend/src/__tests__/integration/pi-omlx-wire.integration.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/agent-engine-port.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/agent-runtime-contract.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/agent-sdk-manager.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/agent-sdk-mcp-behavior-probe.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-hooks.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/chirality-tool-bridge.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/claude-agent-sdk-manager.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/coordination-tools.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/domain-profile.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/engine-conformance.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/harness-errors.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-buffer.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/harness-event-views.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/harness-options.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/harness-runtime.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/managed-delegation.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/operation-proposal.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/operator-projection.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/permission-event-channel.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/permission-overlay.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/pi-agent-engine-adapter.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/runtime-daemon-harness-port.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/sdk-options-builder.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/selected-session-replay.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/session-events.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/session-manager.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/subagent-bridge.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/tool-catalog.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/tool-descriptor.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/tool-evidence.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/tool-result-artifacts.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/transcript-replay.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/lib/turn-engine.test.ts
+ M projects/chirality-app-dev/frontend/src/app/api/harness/interrupt/route.ts
+ M projects/chirality-app-dev/frontend/src/app/api/harness/permission/route.ts
+ M projects/chirality-app-dev/frontend/src/app/api/harness/session/[id]/events/route.ts
+ M projects/chirality-app-dev/frontend/src/app/api/harness/session/boot/route.ts
+ M projects/chirality-app-dev/frontend/src/app/api/harness/session/create/route.ts
+ M projects/chirality-app-dev/frontend/src/app/api/harness/turn/route.ts
+ M projects/chirality-app-dev/frontend/src/components/pipeline/pipeline-surface.tsx
+ M projects/chirality-app-dev/frontend/src/components/shell/chat-panel.tsx
+ M projects/chirality-app-dev/frontend/src/components/shell/session-list-view.tsx
+ M projects/chirality-app-dev/frontend/src/components/shell/transcript-stream-view.tsx
+ M projects/chirality-app-dev/frontend/src/components/workspace/harness-events-provider.tsx
+ M projects/chirality-app-dev/frontend/src/components/workspace/toolkit-provider.tsx
+ M projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx
+ M projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx
+ M projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx
+ M projects/chirality-app-dev/frontend/src/lib/harness/agent-instruction.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/agent-roster.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/agent-runtime-contract.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/agent-sdk-manager.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/anthropic-agent-sdk-manager.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/attachment-resolver.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/chirality-hooks.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/chirality-tool-bridge.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/claude-agent-sdk-manager.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/client.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/engine-registry.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/error-display.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/event-factory.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/harness-ui-bridge.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/http.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/instruction-root.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/managed-delegation.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/mcp/coordination-tools.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/mcp/domain-headless-preview-runner.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/mcp/domain-profile-registry.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/mcp/domain-proposal-tools.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/mcp/pec-bridge-client.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/mcp/read-tools.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/options.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/permission-event-channel.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/permission-overlay.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/persona-manager.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/pi-event-mapper.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/runtime-fingerprint.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/runtime.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/sanitize.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/scaffold.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/sdk-message-mapper.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/sdk-options-builder.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/session-events.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/session-manager.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/subagent-bridge.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/tool-evidence.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/tool-path-policy.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/tool-pool.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/tool-result-artifacts.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/tool-shell-policy.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/toolkit.ts
+ M projects/chirality-app-dev/frontend/src/lib/harness/turn-engine.ts
+ M projects/chirality-app-dev/frontend/src/lib/runtime-client/daemon-harness-port.ts
+ M projects/chirality-app-dev/frontend/src/lib/runtime-client/runtime-daemon-harness-port.ts
+ M projects/chirality-app-dev/frontend/src/lib/shell/harness-event-buffer.ts
+ M projects/chirality-app-dev/frontend/src/lib/shell/harness-event-views.ts
+ M projects/chirality-app-dev/frontend/src/lib/woven-dialogue/contracts.ts
+ M projects/chirality-app-dev/frontend/src/lib/woven-dialogue/operator-projection.ts
+ M projects/chirality-app-dev/frontend/src/lib/woven-dialogue/selected-session-replay.ts
+ M projects/chirality-app-dev/frontend/tsconfig.json
+?? projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_run_records/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/TASK_RUN_2026-08-02_2305.md
+?? projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_run_records/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/TASK_RUN_2026-08-02_2322_ATTEMPT02.md
+?? projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/TASK_RUN_2026-08-02_2356.md
+?? projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/TASK_RUN_2026-08-03_0132.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/ACTIVATION.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/ARCHITECTURE_ALTERNATIVES.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/BASIS_INVENTORY.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/BASIS_MANIFEST.csv
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/DELIVERABLE_WORK_ORDER.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/LATER_DECISIONS.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/PACKAGING_LANE.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/RUNTIME_AFFECTED_CLIENT_LANE.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/UI_LANE.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/VALIDATION_MATRIX.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/briefs/A2_RUNTIME_WORKORDER_REVIEW_BRIEF.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/briefs/A2_UI_PACKAGING_REVIEW_BRIEF.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/A2_IMPLEMENTATION_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/A2_VERIFIER_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/ACTIVATION.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/HANDOFF_STATE.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/MANAGER_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/RUNTIME_EVENTS.jsonl
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/RUNTIME_SUMMARY.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/WORK_GRAPH.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/BRIEF.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/CANDIDATE_SOURCE_MANIFEST.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/CAUSAL_AND_ALTERNATIVE_MATRIX.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/CLEANUP_ADDENDUM.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/DRILL_REPORT.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/PACKAGE_MANIFEST.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/ROLLBACK_MANIFEST.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/app-hold-integrity.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/candidate-source/electron/cli-launcher.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/candidate-source/electron/main.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/candidate-source/electron/runtime-control-ipc.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/candidate-source/electron/runtime-helper-bundle.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/candidate-source/package.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/candidate-source/scripts/afterpack-runtime-helper.mjs
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/candidate-source/tests/cli-launcher.test.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/candidate-source/tests/runtime-control-ipc.test.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/candidate-source/tests/runtime-helper-bundle.test.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/harness-self-check.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/PACKAGED_HASHES.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/PLIST_EXTRACTS.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/RAW_EVIDENCE_INDEX.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/RECOVERED_TRANSCRIPT_EXCERPTS.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/RELATIVE_SYMLINK_CENSUS.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/childicu-desktop-daemon.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/childres-desktop-daemon.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/final-desktop-daemon.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/flags-desktop-daemon.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/frameworkid-desktop-daemon.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/gui-control-desktop-daemon.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/gui-control.stdout.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/helper-escalated-desktop-daemon.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/helper-escalated.stderr.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/helper-escalated.stdout.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/helper-loginitem.stderr.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/helper-valid.stderr.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/logs/trace-desktop-daemon.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/plists/child.Info.plist
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/plists/gui.Info.plist
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/instances/A2-DAPP88-IMPLEMENT-01/evidence/raw-salvage/plists/helper.Info.plist
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/A2_VERIFIER_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/ACTIVATION.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/DRAFT_NOTICE_TO_ROOT_RUNTIME_GRACEFUL_STOP_INVESTIGATION_2026-08-03.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/HANDOFF_STATE.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/MANAGER_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/POST_VERIFIER_CLEANUP.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/ROUTE_RETURN_v1.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/RUNTIME_EVENTS.jsonl
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/RUNTIME_SUMMARY.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/WORK_GRAPH.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/BRIEF.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/CORRECTION_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/CANDIDATE_SOURCE_MANIFEST.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/CLEANUP.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/DRILL_REPORT.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/PACKAGE_MANIFEST.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/ROLLBACK_MANIFEST.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron-builder.runtime-helper.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/cli-launcher.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/main.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/runtime-control-ipc.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/runtime-helper-entry.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/runtime-helper-path.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/package.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/scripts/build-electron.mjs
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/scripts/embed-runtime-helper.mjs
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/tests/cli-launcher.test.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/tests/runtime-control-ipc.test.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/tests/runtime-helper-packaging.test.ts
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/CHILD_TOPOLOGY.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/PACKAGED_HASHES.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/SYMLINK_CENSUS.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/TOP_LEVEL_HELPER_CENSUS.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/WHOLE_TREE_COMPARISON.md
+?? "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/plists/Chirality Runtime Service Helper (GPU).Info.plist"
+?? "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/plists/Chirality Runtime Service Helper (Plugin).Info.plist"
+?? "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/plists/Chirality Runtime Service Helper (Renderer).Info.plist"
+?? "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/plists/Chirality Runtime Service Helper.Info.plist"
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/plists/gui.Info.plist
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/package/plists/helper.Info.plist
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/raw/desktop-daemon.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/raw/desktop-main.log
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/A2_IMPLEMENTATION_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/A2_IMPLEMENTATION_RETURN_ATTEMPT02.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/A2_VERIFIER_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/ATTEMPT02_COMMAND_RESULTS.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/ATTEMPT02_STANDING_CHECKS.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/ATTEMPT02_TRANSIENT_INVENTORY.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/ATTEMPT_01_DISPOSITION.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/BEFORE_CENSUS.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/CENSUS_MAPPING_ROLLBACK.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/DEPENDENCY_MATERIALIZATION_EVIDENCE.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/HANDOFF_STATE.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/IMPLEMENTATION_MANIFEST.sha256
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/IMPLEMENTATION_MANIFEST_ATTEMPT02.sha256
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/MANAGER_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/ORCHESTRATION_PLAN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/REGISTERED_CHECKS.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/REMAINING_REFERENCES_AFTER.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/RUNTIME_EVENTS.jsonl
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/RUNTIME_SUMMARY.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/VALIDATION.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/briefs/A2_IMPLEMENTATION_BRIEF.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/briefs/A2_IMPLEMENTATION_BRIEF_AMENDMENT_01.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/briefs/A2_READONLY_VERIFIER_BRIEF.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/briefs/A2_VALIDATION_REMEDIATION_AMENDMENT_03.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/briefs/A2_VALIDATION_REMEDIATION_AMENDMENT_04.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/briefs/A2_VALIDATION_REMEDIATION_BRIEF_DRAFT.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/briefs/ORCHESTRATION_PLAN_AMENDMENT_02.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/ACTIVATION.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/RUNTIME_EVENTS.jsonl
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/WORK_GRAPH.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/LAUNCH_BRIEF.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/_run_records/TASK_RUN_2026-08-03_0225.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/baseline/GIT_STATUS.txt
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/instances/A2-PARITY-EXECUTOR-01/evidence/baseline/SOURCE_MANIFEST.sha256
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PLANNING_GATES_2026-08-02/MANAGER_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PLANNING_GATES_2026-08-02/RULING_RETURN_v1.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PLANNING_GATES_2026-08-02/VERIFIER_BRIEF.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PLANNING_GATES_2026-08-02/VERIFIER_RETURN.md
+?? projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_RUNTIME_GRACEFUL_STOP_INVESTIGATION.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-86_PACKET_PARITY_INSTRUMENT_2026-08-02.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-86_RULING_PARITY_INSTRUMENT_2026-08-02.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-87_PACKET_DUAL_TARGET_PRODUCT_DIRECTION_2026-08-02.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-87_RULING_DUAL_TARGET_PRODUCT_DIRECTION_2026-08-02.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-88_PACKET_DAEMON_HELPER_BUNDLE_IDENTITY_2026-08-02.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-88_RULING_DAEMON_HELPER_BUNDLE_IDENTITY_2026-08-02.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-89_PACKET_COMPATIBILITY_FACADE_RETIREMENT_2026-08-02.md
+?? projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-89_RULING_COMPATIBILITY_FACADE_MIGRATION_2026-08-02.md
+?? projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts

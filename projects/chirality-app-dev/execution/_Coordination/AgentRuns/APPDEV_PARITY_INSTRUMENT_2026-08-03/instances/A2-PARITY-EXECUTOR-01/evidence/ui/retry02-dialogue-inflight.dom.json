@@ -1,0 +1,855 @@
+{
+  "capturedAt": "2026-08-03T08:48:38.103Z",
+  "url": "http://127.0.0.1:52812/",
+  "origin": "http://127.0.0.1:52812",
+  "pathname": "/",
+  "title": "Chirality Workflow Shell",
+  "readyState": "complete",
+  "bodyText": "Chirality CHAT WOVEN DIALOGUE A shared professional workspace where dialogue produces inspectable artifacts and governed work. RUNTIME connected ROOT /Users/ryan/.codex/worktrees/5bef/chirality/projects/chirality-app-dev WORKSPACE LIGHT DARK AUTO PRIMARY CONVERSATION Dialogue PERSONA CHANGE · Type 1 DBM_PUBLISHER · Type 1 DOMAIN_DECOMP · Type 1 DOMAIN_ENGINE · Type 1 DRAWING_EXTRACT · Type 1 EQUATION_AUDIT · Type 1 EVALUATION · Type 1 HELP_HUMAN · Type 0 HELPS_HUMANS · Type 1 PDF2MD · Type 1 PROJECT_DECOMP · Type 1 PROJECT_SETUP · Type 1 RECONCILIATION · Type 1 RESEARCH · Type 1 REVIEW · Type 1 SCOPE_CHANGE · Type 1 SOFTWARE_DECOMP · Type 1 TASK_MANAGEMENT · Type 1 WORKING_ITEMS · Type 1 Chat Panel Persona: WORKING_ITEMS | Section: PORTAL Operator mode Read-only Plan (ask) Gated-write Autonomous Harness chat wiring is active. Select a Working Root and send a prompt. Parity instrument guarded transition observation. Please return a deterministic stub response while the packaged primary dialogue remains visibly mounted so its running-state controls and replay-session guard can be inspected without any product or owner-state mutation. Parity instrument guarded transition observation. Please return a deterministic stub response while the packaged primary dialogue remains visibly mounted so its running-state controls and replay-session guard can be inspected without any product or owner-state mut Attachments Attach Files Clear No attachments selected. Running turn... Running... Interrupt Close Navigator WORKSPACE Navigator Dialogue Primary human–agent conversation ▾ Session selection is paused while the primary dialogue is running. WORKING_ITEMS Aug 3, 2026 WORKING_ITEMS Aug 3, 2026 Recent sessions Workbench Documents, evidence & contracts ▸ Pipeline DECOMP, PREP, TASK, and AUDIT intent ▸ File Tree - DIR chirality-app-dev - DIR _harness FILE adapter.yaml - DIR .github - DIR workflows FILE harness-premerge.yml - DIR docs - DIR harness FILE reliance_boundary_register.md FILE runtime_evidence_reconciliation.md - DIR ui FILE UI_POLISH_EXECUTION_PLAN.md FILE AGENTIC_DEVELOPMENT_WORKFLOW.md FILE BOUNDARY_REVIEW_CHECKLISTS.md FILE BUILD_AND_RELEASE.md FILE CONTRACT.md FILE DIRECTIVE.md FILE ISSUE_READINESS_PROFILES.md FILE MANIFEST.json FILE PLAN.md FILE PRD.md FILE README.md FILE RELEASE_QUALITY_GATES.md FILE RELEASE_QUALITY_RUNBOOK.md FILE SPEC.md FILE TYPES.md FILE VALIDATION_STRATEGY.md FILE WHAT-IS-AN-AGENT.md - DIR execution - DIR _Coordination DIR _DECISIONS DIR _PROPOSALS DIR _TaskManagement DIR AgentRuns FILE _COORDINATION.md FILE _LATEST.md FILE APP_HOLD_REGISTER.csv FILE APP_NEXT_WORK_SLATE_2026-07-29.md FILE NEXT_INSTANCE_PROMPT.md FILE NOTICE_2026-07-25_CONTRACT_INDEX_CORRECTION.md FILE NOTICE_2026-07-25_helps_humans_p1_p7_applied.md FILE NOTICE_2026-07-27_D-PEC-67_OD7-G3_INTERFACE_CLARIFICATIONS.md FILE NOTICE_2026-07-27_PIPING_SCA-008_CURRENT_EFFECT_RECONCILIATION.md FILE NOTICE_2026-08-02_AUDIT_GOVERNANCE_STALE_DBM_REFERENCE_REPAIR.md FILE NOTICE_2026-08-02_PRODUCT_DELIVERY_DIRECTION.md FILE NOTICE_2026-08-02_ROOT_GOVERNANCE_DOC_SIMPLIFICATION.md FILE NOTICE_2026-08-02_ROOT_HARNESS_SCOPE_CORRECTION.md FILE NOTICE_2026-08-02_ROOT_RESPONSE_DAPP84_DAPP85.md FILE NOTICE_2026-08-02_TASK_MANAGEMENT_CLOSEOUT_RECEIPT_RULE.md FILE NOTICE_2026-08-02_TASK_MANAGEMENT_DEFERRAL_REVIEW_MODE.md FILE NOTICE_2026-08-02_TASK_MANAGEMENT_FEDERATION_PREFLIGHT.md FILE NOTICE_2026-08-02_TASK_MANAGEMENT_INSTRUCTION_SCHEMA_REPAIR.md FILE NOTICE_2026-08-02_TM-APP-002_PARITY_NEXT_PLANNING.md FILE NOTICE_2026-08-03_ROOT_RUNTIME_GRACEFUL_STOP_INVESTIGATION.md FILE NOTICE_AGENT_INDEX_TASK_MANAGEMENT_2026-07-31.md FILE NOTICE_D-GOV-21_ROOT_DOCTRINE_AMENDMENT.md FILE NOTICE_D-GOV-23_DIRECTIVE_GENUS_SUPERSESSION.md FILE NOTICE_D-GOV-24_OPERATING_SYSTEM_PROSE_PROPAGATION.md FILE NOTICE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2026-07-27.md FILE NOTICE_D-GOV-26_SPEC_CONTRACT_AMENDMENTS.md FILE NOTICE_D-GOV-28_ROOT_RUNTIME_STEWARDSHIP_PRD.md FILE NOTICE_D-GOV-31_MERGE_GATE_POLICY_SUCCESSION.md FILE NOTICE_D-GOV-32_TASK_MANAGEMENT_STANDARD.md FILE NOTICE_D-T0-24_FLOW_A_ROOT_IDENTITY_SEPARATION.md FILE OWNER_INTENT_2026-08-01_PI_AGENT2_CAPABILITY_EXPANSION.md FILE RESPONSE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2026-07-27.md FILE TASK_DISPATCH_PLAN.md FILE TM_ADOPTION_PACKET_2026-07-31.md FILE WORKSPACE_MANIFEST.csv - DIR _Decomposition FILE Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md FILE contract_invariant_coverage_register.csv - DIR _Evaluation DIR APP_RUNTIME_BASIS_OD6_2026-07-26_0F8349D DIR CQF1_CONCORDANCE_57652BA1_2026-07-20 DIR CQF1_DAPP70_FORMAT_BINDING_BACKCHECK_36A422AC_2026-07-20 DIR CQF1_DAPP70_MAPPING_BACKCHECK_36A422AC_2026-07-20 DIR DAPP49_CURRENT_LOCATION_AUDIT_2026-07-27_FB16E32 DIR DAPP50_HEADLESS_LIVE_BACKCHECK_F67D4470_2026-07-20 DIR DAPP50_HEADLESS_LIVE_FINAL_BACKCHECK_55A066FD_2026-07-20 DIR DAPP50_HEADLESS_LIVE_FIVE_GATE_COMPLETION_55A066FD_2026-07-20 DIR DAPP50_HEADLESS_LIVE_REPAIR_BACKCHECK_FCF152B_2026-07-20 DIR DAPP68_CONCORDANCE_RULINGS_2026-07-19 DIR DAPP71_APPLICATION_BACKCHECK_3346120C_2026-07-20 DIR DecompCoverage DIR ScopeClosureAudit - DIR _Reconciliation DIR DeliverableConcordance DIR DepClosure DIR RECON_APP_RESIDUAL_SIX_NODE_SCC_RULING_PACKAGE_2026-06-15_1825 DIR References DIR ScopeClosureAudit FILE _LATEST.md - DIR _ScopeChange DIR SCA-APP-001_2026-06-13_1755_Provider-General_Runtime_Pi_Pattern-Corpus DIR SCA-APP-001_2026-06-13_1819_Provider-General_Runtime_Pi_Pattern-Corpus_v2 DIR SCA-APP-002_2026-07-21_Pi_oMLX_Second_Engine DIR SCA-APP-003_2026-07-22_Shared_Runtime_Local_Agent_Pilot DIR SCA-APP-004_2026-07-23_Workroom_Agent_Room_IA_Redesign DIR SCA-APP-005_2026-07-26_2334_Root_Runtime_Client_Boundary DIR SCA-APP-006_2026-07-27_1159_Invariant_Mapping_Repair DIR SCA-APP-007_2026-08-01_DEL03_Legacy_Evidence_Ownership FILE _LATEST.md - DIR _Scripts DIR tests FILE app_hold.py FILE orchestrator_setup.py FILE README.md FILE references_hash_tool.py FILE validate_dependencies.py - DIR _Sources FILE _LATEST.md FILE SOURCE_HASH_AUDIT.md - DIR PKG-00_DAG_Closure_and_Project_Control DIR 0_References DIR 1_Working DIR 2_Checking DIR 3_Issued FILE README.md - DIR PKG-01_Product_Governance_and_Reliance_Boundaries DIR 1_Working - DIR PKG-02_Desktop_Shell_Navigation_and_Operator_State DIR 1_Working - DIR PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle DIR 1_Working - DIR PKG-04_SDK_Adapter_Prompt_Provider_and_Settings DIR 1_Working - DIR PKG-05_Session_Audit_Replay_and_Tool_Result_Records DIR 1_Working - DIR PKG-06_Permissioned_Tools_MCP_and_Hooks DIR 1_Working - DIR PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies DIR 1_Working - DIR PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance DIR 1_Working - DIR PKG-09_Validation_Packaging_Security_and_Release DIR 1_Working - DIR PKG-10_Domain_Engine_Future_Boundary DIR 1_Working FILE INIT.md - DIR frontend - DIR .chirality DIR sessions - DIR artifacts DIR appdev-ui-compat DIR harness - DIR build FILE icon-macos.svg FILE icon.icns - DIR dist-runtime FILE chirality-cli.mjs FILE chirality-cli.mjs.map - DIR docs DIR harness - DIR electron FILE api-key-ipc.ts FILE api-key-storage.ts FILE cli-launcher.ts FILE desktop-daemon-posture.ts FILE desktop-log.ts FILE desktop-process-policy.ts FILE desktop-project-client.ts FILE main.ts FILE preload.ts FILE runtime-connectivity.ts FILE runtime-control-ipc.ts FILE runtime-host.ts FILE runtime-socket-watch.ts - DIR packages DIR harness-contract - DIR public FILE chirality-app-icon.svg - DIR scripts FILE assert-harness-contract-deps.mjs FILE build-electron.mjs FILE generate-macos-icon.mjs FILE generate-tool-catalog.mjs FILE harness-section9-manifest.json FILE normalize-pi-lock-integrity.mjs FILE pec-scratch-server.mjs FILE run-dapp52-live-llm-demo.ts FILE run-dapp52-live-sdk-probe.mjs FILE run-live-packaged-agent-sdk-read-tool-proof.mjs FILE run-network-policy-proof.mjs FILE run-packaged-pi-runtime-proof.mjs FILE run-pec-bridge-rehearsal.ts FILE scan-secret-evidence.mjs FILE validate-harness-premerge.mjs FILE validate-harness-section8.mjs FILE validate-harness-section9.mjs FILE validate-release-quality-evidence.mjs FILE verify-instruction-root-integrity.mjs FILE verify-packaged-agent-sdk-runtime.mjs FILE verify-packaged-dependency-boundary.mjs FILE verify-pi-supply-chain.mjs - DIR src DIR __tests__ DIR app DIR components DIR fonts DIR lib DIR types FILE .gitignore FILE next-env.d.ts FILE next.config.mjs FILE package-lock.json FILE package.json FILE THIRD_PARTY_NOTICES_PI.md FILE tsconfig.electron.json FILE tsconfig.json - DIR init FILE dev-loop-init-prompt.md FILE taskmgmt-init-prompt.md - DIR loop FILE LOOP_INIT.md FILE LOOP_RECEIPTS.md FILE WORKPLAN_2026-07-04_app_dev_loop.md FILE WORKPLAN_2026-07-10_app_dev_loop.md FILE WORKPLAN_2026-07-17_app_dev_loop.md FILE WORKPLAN_2026-07-18_app_dev_loop.md FILE WORKPLAN_2026-07-18b_app_dev_loop.md - DIR plans - DIR artifacts DIR DIALOGUE_CENTRED_CONCEPTS_2026-07-24_0121Z DIR WORKROOM_AGENT_ROOM_CONCEPTS_2026-07-23_2003Z FILE adq17_future_r7_amendment_brief_2026-06-21.md FILE bridge_appdev_contribution_for_tier0_2026-06-21.md FILE convergence_architecture_visual_2026-06-24.html FILE dapp17_live_packaged_agentsdk_read_tool_success_2026-06-18.md FILE dapp44_f1_residency_doc_diffs_2026-06-21.md FILE handoff_tier0_governance_residual_cleanup_2026-06-24.md FILE insp_final_closeout_2026-06-21.md FILE insp01_owner_approval_sha_2026-06-20.md FILE insp01_status_transition_evidence_2026-06-20.md FILE insp01_status_transition_log_2026-06-20.json FILE insp01a_option_b_canonicalization_preview_2026-06-20.md FILE insp01a_rerun_after_dapp33_2026-06-20.md FILE insp01a_status_preflight_2026-06-20.md FILE insp02_control_plane_truth_fix_2026-06-20.md FILE insp03_assessment_index_2026-06-20.md FILE insp04_gate_process_evaluation_2026-06-21.md FILE insp05_development_roadmap_2026-06-21.md FILE insp05_roadmap_addendum_2026-06-21_inspection_orphans.md FILE lp02_live_packaged_agentsdk_read_tool_procedure.md FILE lp03_live_packaged_agentsdk_read_tool_evidence_2026-06-18.md FILE runtime_capability_matrix.md FILE stab00_reconciliation_disposition.md - DIR pi-assessment FILE 01_core_session_primitives.md FILE 02_backend_adapter_feasibility.md FILE 03_security_governance_fit.md FILE 04_domain_harness_fit.md FILE 05_license_maintenance.md FILE agent-harness-patterns-from-claw-code-assessment.md FILE ASSESSMENT_2026-06-18_pi_rust_sdk_correction_and_harness_posture.md FILE chirality-app-future-development-plan.md FILE claude-agent-sdk-implementation-followups.md FILE DESIGN_2026-06-18_agent_orchestration_ui.md FILE pi-agent-harness-assessment.md FILE PLAN_2026-06-13_runtime_completion.md FILE PLAN_2026-06-16_runtime_stabilization.md FILE PLAN_2026-06-16_six_node_scc_resolution.md FILE PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md FILE PLAN_2026-06-17_r6_extensibility_mcp_boundary.md FILE PLAN_2026-06-18_deliverable_issuance_and_evidence_consolidation.md FILE PLAN_2026-06-19_loop_first_pivot.md FILE PLAN_2026-06-19_validation_server_build_isolation.md FILE PLAN_2026-06-20_autonomous_development_queue.md FILE PLAN_2026-06-20_deliverable_inspection_and_development_evidence.md FILE PLAN_2026-06-21_inspection_orphan_remediation.md FILE PLAN_2026-07-10_deliverable_implementation_reconciliation.md FILE PLAN_2026-07-10_pre_issuance_dependency_reconciliation.md FILE PLAN_COMPLETION_LOG.md FILE prd-revisions-claude-agent-sdk.md FILE R5_EXECUTABLE_IMPLEMENTATION_DESIGN_PACKAGE_2026-06-16.md FILE .gitignore FILE AGENTS.md FILE chirality.project.json FILE software-workflow.json COMPATIBILITY Open legacy interface in a new window Close Coordination RECORDED COORDINATION Coordination Work Agents Work Evidence-only projection. Controlling status and authority remain with each recorded source. No structured plan recorded. LIVE RUNTIME PROJECTION Activity Expand activity",
+  "bodyHtmlShaInputLength": 125703,
+  "surfaces": [
+    {
+      "value": "dialogue",
+      "text": "PRIMARY CONVERSATION Dialogue PERSONA CHANGE · Type 1 DBM_PUBLISHER · Type 1 DOMAIN_DECOMP · Type 1 DOMAIN_ENGINE · Type 1 DRAWING_EXTRACT · Type 1 EQUATION_AUDIT · Type 1 EVALUATION · Type 1 HELP_HUMAN · Type 0 HELPS_HUMANS · Type 1 PDF2MD · Type 1 PROJECT_DECOMP · Type 1 PROJECT_SETUP · Type 1 RECONCILIATION · Type 1 RESEARCH · Type 1 REVIEW · Type 1 SCOPE_CHANGE · Type 1 SOFTWARE_DECOMP · Type 1 TASK_MANAGEMENT · Type 1 WORKING_ITEMS · Type 1 Chat Panel Persona: WORKING_ITEMS | Section: PORTAL Operator mode Read-only Plan (ask) Gated-write Autonomous Harness chat wiring is active. Select a Working Root and send a prompt. Parity instrument guarded transition observation. Please return a deterministic stub response while the packaged primary dialogue remains visibly mounted so its running-state controls and replay-session guard can be inspected without any product or owner-state mutation. Parity instrument guarded transition observation. Please return a deterministic stub response while the packaged primary dialogue remains visibly mounted so its running-state controls and replay-session guard can be inspected without any product or owner-state mut Attachments Attach Files Clear No attachments selected. Running turn... Running... Interrupt Close Navigator WORKSPACE Navigator Dialogue Primary human–agent conversation ▾ Session selection is paused while the primary dialogue is running. WORKING_ITEMS Aug 3, 2026 WORKING_ITEMS Aug 3, 2026 Recent sessions Workbench Documents, evidence & contracts ▸ Pipeline DECOMP, PREP, TASK, and AUDIT intent ▸ File Tree - DIR chirality-app-dev - DIR _harness FILE adapter.yaml - DIR .github - DIR workflows FILE harness-premerge.yml - DIR docs - DIR harness FILE reliance_boundary_register.md FILE runtime_evidence_reconciliation.md - DIR ui FILE UI_POLISH_EXECUTION_PLAN.md FILE AGENTIC_DEVELOPMENT_WORKFLOW.md FILE BOUNDARY_REVIEW_CHECKLISTS.md FILE BUILD_AND_RELEASE.md FILE CONTRACT.md FILE DIRECTIVE.md FILE ISSUE_READINESS_PROFILES.md FILE MANIFEST.json FILE PLAN.md FILE PRD.md FILE README.md FILE RELEASE_QUALITY_GATES.md FILE RELEASE_QUALITY_RUNBOOK.md FILE SPEC.md FILE TYPES.md FILE VALIDATION_STRATEGY.md FILE WHAT-IS-AN-AGENT.md - DIR execution - DIR _Coordination DIR _DECISIONS DIR _PROPOSALS DIR _TaskManagement DIR AgentRuns FILE _COORDINATION.md FILE _LATEST.md FILE APP_HOLD_REGISTER.csv FILE APP_NEXT_WORK_SLATE_2026-07-29.md FILE NEXT_INSTANCE_PROMPT.md FILE NOTICE_2026-07-25_CONTRACT_INDEX_CORRECTION.md FILE NOTICE_2026-07-25_helps_humans_p1_p7_applied.md FILE NOTICE_2026-07-27_D-PEC-67_OD7-G3_INTERFACE_CLARIFICATIONS.md FILE NOTICE_2026-07-27_PIPING_SCA-008_CURRENT_EFFECT_RECONCILIATION.md FILE NOTICE_2026-08-02_AUDIT_GOVERNANCE_STALE_DBM_REFERENCE_REPAIR.md FILE NOTICE_2026-08-02_PRODUCT_DELIVERY_DIRECTION.md FILE NOTICE_2026-08-02_ROOT_GOVERNANCE_DOC_SIMPLIFICATION.md FILE NOTICE_2026-08-02_ROOT_HARNESS_SCOPE_CORRECTION.md FILE NOTICE_2026-08-02_ROOT_RESPONSE_DAPP84_DAPP85.md FILE NOTICE_2026-08-02_TASK_MANAGEMENT_CLOSEOUT_RECEIPT_RULE.md FILE NOTICE_2026-08-02_TASK_MANAGEMENT_DEFERRAL_REVIEW_MODE.md FILE NOTICE_2026-08-02_TASK_MANAGEMENT_FEDERATION_PREFLIGHT.md FILE NOTICE_2026-08-02_TASK_MANAGEMENT_INSTRUCTION_SCHEMA_REPAIR.md FILE NOTICE_2026-08-02_TM-APP-002_PARITY_NEXT_PLANNING.md FILE NOTICE_2026-08-03_ROOT_RUNTIME_GRACEFUL_STOP_INVESTIGATION.md FILE NOTICE_AGENT_INDEX_TASK_MANAGEMENT_2026-07-31.md FILE NOTICE_D-GOV-21_ROOT_DOCTRINE_AMENDMENT.md FILE NOTICE_D-GOV-23_DIRECTIVE_GENUS_SUPERSESSION.md FILE NOTICE_D-GOV-24_OPERATING_SYSTEM_PROSE_PROPAGATION.md FILE NOTICE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2026-07-27.md FILE NOTICE_D-GOV-26_SPEC_CONTRACT_AMENDMENTS.md FILE NOTICE_D-GOV-28_ROOT_RUNTIME_STEWARDSHIP_PRD.md FILE NOTICE_D-GOV-31_MERGE_GATE_POLICY_SUCCESSION.md FILE NOTICE_D-GOV-32_TASK_MANAGEMENT_STANDARD.md FILE NOTICE_D-T0-24_FLOW_A_ROOT_IDENTITY_SEPARATION.md FILE OWNER_INTENT_2026-08-01_PI_AGENT2_CAPABILITY_EXPANSION.md FILE RESPONSE_D-GOV-26_DETECTOR_CLAIM_CORRECTION_2"
+    }
+  ],
+  "buttons": [
+    {
+      "index": 0,
+      "text": "Apply Path",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 1,
+      "text": "Choose Folder",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 2,
+      "text": "Clear",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 3,
+      "text": "Stop",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 4,
+      "text": "Refresh",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 5,
+      "text": "Uninstall",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 6,
+      "text": "Activate Explicitly",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 7,
+      "text": "Reveal",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 8,
+      "text": "Save Key",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 9,
+      "text": "Reveal",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 10,
+      "text": "Save Key",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 11,
+      "text": "LIGHT",
+      "disabled": false,
+      "ariaPressed": "true",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 12,
+      "text": "DARK",
+      "disabled": false,
+      "ariaPressed": "false",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 13,
+      "text": "AUTO",
+      "disabled": false,
+      "ariaPressed": "false",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 14,
+      "text": "Attach Files",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 15,
+      "text": "Clear",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 16,
+      "text": "Running...",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "submit"
+    },
+    {
+      "index": 17,
+      "text": "Interrupt",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 18,
+      "text": "Close Navigator",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 19,
+      "text": "Dialogue Primary human–agent conversation ▾",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": "true",
+      "ariaCurrent": "page",
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 20,
+      "text": "WORKING_ITEMS Aug 3, 2026",
+      "disabled": true,
+      "ariaPressed": "false",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": "67fcb7dd-521d-4ad6-b784-30cf6b4f329d",
+      "type": "button"
+    },
+    {
+      "index": 21,
+      "text": "WORKING_ITEMS Aug 3, 2026",
+      "disabled": true,
+      "ariaPressed": "false",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": "e2c32024-fa62-48d5-b27a-d8637080d2c3",
+      "type": "button"
+    },
+    {
+      "index": 22,
+      "text": "Recent sessions",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": "true",
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 23,
+      "text": "Workbench Documents, evidence & contracts ▸",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": "false",
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 24,
+      "text": "Pipeline DECOMP, PREP, TASK, and AUDIT intent ▸",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": "false",
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 25,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 26,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 27,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 28,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 29,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 30,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 31,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 32,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 33,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 34,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 35,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 36,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 37,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 38,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 39,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 40,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 41,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 42,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 43,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 44,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 45,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 46,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 47,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 48,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 49,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 50,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 51,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 52,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 53,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 54,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 55,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 56,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 57,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 58,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 59,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 60,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 61,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 62,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 63,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 64,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 65,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 66,
+      "text": "-",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 67,
+      "text": "Close Coordination",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 68,
+      "text": "Work",
+      "disabled": false,
+      "ariaPressed": "true",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 69,
+      "text": "Agents",
+      "disabled": false,
+      "ariaPressed": "false",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 70,
+      "text": "Expand activity",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": "false",
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    }
+  ],
+  "inputs": [
+    {
+      "index": 0,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": "/absolute/path/to/execution/root",
+      "value": "/Users/ryan/.codex/worktrees/5bef/chirality/projects/chirality-app-dev",
+      "disabled": false
+    },
+    {
+      "index": 1,
+      "tag": "SELECT",
+      "ariaLabel": "Exact oMLX model",
+      "dataChatInput": null,
+      "placeholder": null,
+      "value": "",
+      "disabled": true
+    },
+    {
+      "index": 2,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": "sk-ant-...",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "index": 3,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": "Enter the key configured in oMLX",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "index": 4,
+      "tag": "SELECT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": null,
+      "value": "WORKING_ITEMS",
+      "disabled": true
+    },
+    {
+      "index": 5,
+      "tag": "SELECT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": null,
+      "value": "ask",
+      "disabled": true
+    },
+    {
+      "index": 6,
+      "tag": "INPUT",
+      "ariaLabel": "Chat input",
+      "dataChatInput": "primary",
+      "placeholder": "Send prompt as WORKING_ITEMS...",
+      "value": "",
+      "disabled": true
+    }
+  ],
+  "primaryDialogueMounted": true,
+  "primaryDialogueDisabled": true,
+  "selectedSessionId": null,
+  "sessionRows": [
+    {
+      "sessionId": "67fcb7dd-521d-4ad6-b784-30cf6b4f329d",
+      "text": "WORKING_ITEMS Aug 3, 2026",
+      "disabled": true,
+      "ariaPressed": "false"
+    },
+    {
+      "sessionId": "e2c32024-fa62-48d5-b27a-d8637080d2c3",
+      "text": "WORKING_ITEMS Aug 3, 2026",
+      "disabled": true,
+      "ariaPressed": "false"
+    }
+  ],
+  "resources": [
+    "http://127.0.0.1:52812/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/css/1c73b7a475d77ba4.css",
+    "http://127.0.0.1:52812/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/dece0821e8ed059f-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/chunks/webpack-85ad8b5d421e98b6.js",
+    "http://127.0.0.1:52812/_next/static/chunks/255-62902f04efbdd792.js",
+    "http://127.0.0.1:52812/_next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+    "http://127.0.0.1:52812/_next/static/chunks/main-app-4b269840d71406c5.js",
+    "http://127.0.0.1:52812/_next/static/chunks/app/layout-1c560187d3be41c3.js",
+    "http://127.0.0.1:52812/_next/static/chunks/966-764889105078f50e.js",
+    "http://127.0.0.1:52812/_next/static/chunks/app/not-found-b253265a594e95a1.js",
+    "http://127.0.0.1:52812/_next/static/chunks/204-15a42af5f91e37ff.js",
+    "http://127.0.0.1:52812/_next/static/chunks/app/page-fb987acb4938a897.js",
+    "http://127.0.0.1:52812/_next/static/chunks/489-648d430659addad3.js",
+    "http://127.0.0.1:52812/_next/static/chunks/629-61a4773c370b93b9.js",
+    "http://127.0.0.1:52812/chirality-app-icon.svg",
+    "http://127.0.0.1:52812/api/harness/agents?directChat=1",
+    "http://127.0.0.1:52812/api/working-root/validate",
+    "http://127.0.0.1:52812/api/working-root/tree?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&depth=3",
+    "http://127.0.0.1:52812/api/harness/session/list?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev",
+    "http://127.0.0.1:52812/api/project/deliverables?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev",
+    "http://127.0.0.1:52812/api/working-root/tree?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&depth=3",
+    "http://127.0.0.1:52812/api/project/deliverables?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev",
+    "http://127.0.0.1:52812/api/working-root/scope?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev",
+    "http://127.0.0.1:52812/api/working-root/deliverable/dependencies?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&deliverablePath=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev%2Fexecution%2FPKG-00_DAG_Closure_and_Project_Control%2F1_Working%2FDEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure",
+    "http://127.0.0.1:52812/api/working-root/deliverable/status?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&deliverablePath=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev%2Fexecution%2FPKG-00_DAG_Closure_and_Project_Control%2F1_Working%2FDEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure",
+    "http://127.0.0.1:52812/api/working-root/deliverable/content?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&deliverablePath=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev%2Fexecution%2FPKG-00_DAG_Closure_and_Project_Control%2F1_Working%2FDEL-00-01_SCC-002_PKG-10_Policy_Proposal_Closure&file=_STATUS.md",
+    "http://127.0.0.1:52812/api/working-root/tree?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&depth=3",
+    "http://127.0.0.1:52812/api/working-root/tree?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&depth=3",
+    "http://127.0.0.1:52812/api/working-root/tree?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&depth=3",
+    "http://127.0.0.1:52812/api/working-root/tree?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&depth=3",
+    "http://127.0.0.1:52812/api/working-root/tree?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&depth=3",
+    "http://127.0.0.1:52812/api/harness/session/create",
+    "http://127.0.0.1:52812/api/harness/session/boot",
+    "http://127.0.0.1:52812/api/harness/session/list?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev",
+    "http://127.0.0.1:52812/api/working-root/tree?projectRoot=%2FUsers%2Fryan%2F.codex%2Fworktrees%2F5bef%2Fchirality%2Fprojects%2Fchirality-app-dev&depth=3"
+  ]
+}
