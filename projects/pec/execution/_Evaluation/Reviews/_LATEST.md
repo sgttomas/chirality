@@ -1,19 +1,13 @@
 # Latest review snapshot
 
-Latest: REV_DEL-01-05_2026-08-03_1346
+Latest: REV_DEL-01-06_2026-08-03_1458
 Updated: 2026-08-03
 
-This immutable snapshot records the fresh DEL-01-05 RF-002 independent
-verification rerun on pre-normalization activation SHA-256
-`111203c7fb3da9d8efc8d95765e0ecce8cddeafbd59a61f71599ab6d9b26448e`.
-The live review and handoff surfaces bind the whitespace-normalized activation
-SHA-256
-`992926ad5651f949dc9b15e2b211c078ab559ee054a6b6472c6c0990860bd4b2`;
-the 18 candidate artifact hashes and review verdict are unchanged.
-RF-001 is closed only by the owner-ordered serialized final Agent 0 manifest
-reseal and its immediately succeeding seven-row read-only checksum
-reproduction. DEL-01-05 remains `INITIALIZED`; no acceptance or lifecycle act
-is inferred. The immutable snapshot itself preserves the pre-reseal state;
-the deliverable-local review carries the conditional closeout record. The
-preceding independent snapshot is
-`REV_DEL-01-05_2026-08-03_1306`.
+This immutable snapshot records the DEL-01-06 SELF_CHECK rerun required by the
+prior RF-001 deferral. Exact VER-005 evidence SHA-256 `1e0bd26f…` passes the
+registry and accepted DEL-01-05 enforcement checks; AC-005/AC-006 pass and
+RF-001 is resolved without waiver. RF-002 remains open because SCA-004
+revision 1.4 made the accepted SOW's revision-1.3/OI-003 premises stale.
+DEL-01-06 remains `INITIALIZED`; no artifact, lifecycle, TM register, release,
+or reliance act is inferred. The preceding snapshot is
+`REV_DEL-01-05_2026-08-03_1454`.

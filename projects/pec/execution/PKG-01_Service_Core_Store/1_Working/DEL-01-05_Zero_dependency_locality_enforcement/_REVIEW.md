@@ -1,15 +1,18 @@
 # Review — DEL-01-05 produced artifacts
 
-**Review stage:** RF-002 INDEPENDENT RERUN COMPLETE / RF-001 FINAL RESEAL CLOSURE
+**Review stage:** GATE 5 OWNER APPROVED / EXACT ARTIFACTS ACCEPTED
 **Review type:** `INDEPENDENT_VERIFICATION`
 **Reviewer:** `REVIEW-INDEPENDENT-RERUN-20260803`
-**Lifecycle:** `INITIALIZED` (review-from-`INITIALIZED` expressly authorized)
+**Lifecycle:** `CHECKING` (advanced from `INITIALIZED` by owner-approved Gate 5 under the express override)
 **Candidate binding:** `D-PEC-77_ACTIVATION.md` SHA-256 `992926ad5651f949dc9b15e2b211c078ab559ee054a6b6472c6c0990860bd4b2`
 **SOW binding:** SHA-256 `53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53`
 
-This independent review evaluates candidate fitness only. It accepts no
-artifact or acceptance criterion, changes no lifecycle state, and grants no
-release or professional-reliance authority.
+The independent review established candidate fitness. On 2026-08-03 the
+owner separately accepted the exact inventory bound by acceptance packet
+SHA-256 `e3d6f2ae9e52b149abb75f5bba8815a7eb65a549ebf3be258eae8581ff43b596`,
+confirmed AC-010, confirmed AC-011 choice G-A, and approved Gate 5. Those
+acts advance lifecycle only to `CHECKING`; they do not issue or release the
+deliverable, close TM-PEC-009, or authorize professional reliance.
 
 ## Gate 1 — preconditions
 
@@ -38,8 +41,8 @@ validated checklist source.
 | AC-007 | The registration remains armed without further action: disabling, removing, or bypassing either assertion is a visible change to the gate configuration and produces a reported gate failure rather than a silent no-op. | VER-007 | PASS on recorded scratch mutation |
 | AC-008 | The enforcement mechanism adds no third-party runtime dependency to the service core, makes no network call, and leaves service-core source and dependency manifests unmodified across a full run. | VER-008 | PASS |
 | AC-009 | The posture note contains every element required by REQ-010, states the operative definitions recorded under REQ-009, and asserts no completion of the enforcement obligation. | VER-009 | PASS |
-| AC-010 | An accountable owner confirms that neither the posture note nor either assertion resolves, pre-empts, or forecloses `OI-009` / `SOW-083`, and that the enforcement makes no governed act depend on PEC-held state. | HUMAN_REVIEW | PENDING OWNER CONFIRMATION |
-| AC-011 | An accountable owner confirms, or declines to confirm, that the enforcement delivered under this contract carries release-gating authority — that its blocking verdict blocks a release candidate — given that `C-08`'s standing-node classification carries "owner confirmation requested" and was accepted at `D-PEC-62` §1.4 as a recorded-but-unresolved, non-gating annotation (CLM-006, CON-002). A decline leaves the mechanism's verdicts advisory and invalidates no other criterion in this contract; the standing framing of the contract stands either way, because it is how the contract is written rather than a claim about the gate's force. | HUMAN_REVIEW | PENDING OWNER CONFIRMATION |
+| AC-010 | An accountable owner confirms that neither the posture note nor either assertion resolves, pre-empts, or forecloses `OI-009` / `SOW-083`, and that the enforcement makes no governed act depend on PEC-held state. | HUMAN_REVIEW | CONFIRMED by owner on exact accepted inventory, 2026-08-03 |
+| AC-011 | An accountable owner confirms, or declines to confirm, that the enforcement delivered under this contract carries release-gating authority — that its blocking verdict blocks a release candidate — given that `C-08`'s standing-node classification carries "owner confirmation requested" and was accepted at `D-PEC-62` §1.4 as a recorded-but-unresolved, non-gating annotation (CLM-006, CON-002). A decline leaves the mechanism's verdicts advisory and invalidates no other criterion in this contract; the standing framing of the contract stands either way, because it is how the contract is written rather than a claim about the gate's force. | HUMAN_REVIEW | CONFIRMED G-A by owner on exact accepted inventory, 2026-08-03; PEC release candidates only |
 
 ### Common and independent-verification checks
 
@@ -121,6 +124,21 @@ packet fence. The RF-002 repair itself changed only the packet-authorized
 checker and locality-test paths; evidence and handoff updates stayed inside
 the same act fence. This verdict does not cure RF-001.
 
+## Owner acceptance and Gate 5 — 2026-08-03
+
+- Exact artifact fitness: `ACCEPT`, bound to acceptance packet SHA-256
+  `e3d6f2ae9e52b149abb75f5bba8815a7eb65a549ebf3be258eae8581ff43b596`.
+- Final manifest: SHA-256
+  `3fb4c499213203c594353fa6c63d3eb2b05289cd6912a7292d5c21d885671fe8`;
+  all seven rows reproduce.
+- AC-010: `CONFIRM` — OI-009 / SOW-083 remains open and no governed act
+  depends on PEC-held state.
+- AC-011: `CONFIRM G-A` — failed, missing, or unevaluated enforcement blocks
+  a PEC release candidate only; no Git veto, cross-loop force, lifecycle act,
+  release act, or professional-reliance authority is created.
+- Gate 5: `APPROVE`; advance `INITIALIZED → CHECKING` under the recorded
+  override. This is lifecycle-only and does not issue or release DEL-01-05.
+
 ## Findings summary and transition posture
 
 | Severity | Total | Resolved | Open | Human disposition TBD |
@@ -131,7 +149,7 @@ the same act fence. This verdict does not cure RF-001.
 | OBSERVATION | 0 | 0 | 0 | 0 |
 
 RF-002 is resolved on the independently exercised revised checker. RF-001 is
-resolved only through the serialized final-reseal condition recorded above.
-The evidence-based Gate 5 recommendation remains `RECOMMEND_HOLD` at
-`INITIALIZED`; no lifecycle write is authorized or made. No produced artifact
-or acceptance criterion is accepted by this review closeout.
+resolved through the serialized final reseal and seven-row reproduction.
+The owner accepted the exact candidate inventory, confirmed AC-010 and
+AC-011 G-A, and approved Gate 5. DEL-01-05 is now `CHECKING`. No `ISSUED`,
+release, TM-PEC-009 closure, or professional-reliance effect is inferred.

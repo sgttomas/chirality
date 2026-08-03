@@ -1,0 +1,47 @@
+{
+  "profile": "projects/pec/software-workflow.json",
+  "project_root": "projects/pec",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "v2/tests/config",
+        "-p",
+        "test_*.py"
+      ],
+      "cwd": "projects/pec",
+      "duration_seconds": 0.03,
+      "exit_code": 0,
+      "id": "v2-loop-registry",
+      "status": "PASS",
+      "stderr": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.004s\n\nOK\n",
+      "stdout": "",
+      "timeout_seconds": 600.0
+    },
+    {
+      "command": [
+        "python3",
+        "v2/tools/check_service_core_posture.py",
+        "--config",
+        "v2/config/service_core_posture.json",
+        "--workflow",
+        "software-workflow.json"
+      ],
+      "cwd": "projects/pec",
+      "duration_seconds": 0.027,
+      "exit_code": 0,
+      "id": "v2-core-posture",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "{\n  \"assertions\": {\n    \"dependency\": \"PASS\",\n    \"locality\": \"PASS\",\n    \"registration\": \"PASS\"\n  },\n  \"evaluated\": {\n    \"config_sha256\": \"20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed\",\n    \"core_tree_sha256\": \"2c830d1fe9bc7f550c47d5f22223f330a3a95118360e61bb6d9c785b47c151ca\",\n    \"workflow_sha256\": \"cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b\"\n  },\n  \"findings\": [],\n  \"release_force\": \"PEC_RELEASE_BLOCKING\",\n  \"schema_version\": 1,\n  \"verdict\": \"PASS\"\n}\n",
+      "timeout_seconds": 600.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "PASS",
+  "workspace_root": "."
+}
