@@ -3,7 +3,7 @@ import { spawn } from "node:child_process";
 import { constants as fsConstants } from "node:fs";
 import { access, readFile, realpath, stat } from "node:fs/promises";
 import path from "node:path";
-import { HarnessError } from "@chirality/harness-contract/errors";
+import { HarnessError } from "@chirality/runtime-contracts/errors";
 
 export const OPEN_PIPE_STRESS_RUNNER_PATH_ENV =
   "CHIRALITY_OPEN_PIPE_STRESS_RUNNER_PATH";

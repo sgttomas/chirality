@@ -1,5 +1,5 @@
-import type { HarnessErrorType, UIEvent } from '@chirality/harness-contract/types';
-import type { HarnessEventType } from '@chirality/harness-contract/event-schema';
+import type { HarnessErrorType, UIEvent } from '@chirality/runtime-contracts/types';
+import type { HarnessEventType } from '@chirality/runtime-contracts/event-schema';
 
 export type PiHarnessEventDraft = {
   kind: 'harness';

@@ -1,0 +1,6 @@
+79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+e6ce5db204e7d4ca46104da3e233927f9c7232fd1af7852dc1f892cade11e623  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar
+79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/MacOS/Chirality Runtime Service
+ca938dfc9c6886c1c9b682f05000e73684a79b27b16a37bb52333d094f89dc80  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Resources/app.asar
+79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874  projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/MacOS/Chirality Runtime Service
+ca938dfc9c6886c1c9b682f05000e73684a79b27b16a37bb52333d094f89dc80  projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Resources/app.asar

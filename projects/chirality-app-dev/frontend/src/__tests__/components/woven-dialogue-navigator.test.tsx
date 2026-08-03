@@ -2,7 +2,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import renderer, { act } from 'react-test-renderer';
 import { describe, expect, it, vi } from 'vitest';
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import {
   Navigator,
   buildNavigatorSessionGroups

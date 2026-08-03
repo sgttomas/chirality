@@ -1,7 +1,7 @@
 import { constants as fsConstants, existsSync } from 'node:fs';
 import { access, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 
 const REQUIRED_FILE_ENTRIES = [
   'AGENTS.md',

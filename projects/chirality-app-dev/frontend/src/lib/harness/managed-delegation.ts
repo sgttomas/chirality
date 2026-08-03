@@ -1,9 +1,9 @@
 import { createHash, randomUUID } from 'node:crypto';
 import { mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { EngineSelection, SessionRecord } from '@chirality/harness-contract/types';
-import { HarnessError } from '@chirality/harness-contract/errors';
-import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
+import type { EngineSelection, SessionRecord } from '@chirality/runtime-contracts/types';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
+import { getHarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 import {
   parseAgentType,
   parseCommaSeparatedList,

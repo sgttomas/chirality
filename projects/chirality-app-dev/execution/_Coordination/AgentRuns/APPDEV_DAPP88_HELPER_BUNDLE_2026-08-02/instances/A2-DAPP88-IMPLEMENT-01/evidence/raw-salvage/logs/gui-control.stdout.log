@@ -1,0 +1,2 @@
+[chirality-desktop] 2026-08-03T06:14:31.812Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/tmp/chirality-dapp88-gui-control-escalated.MPEQ3Y/userdata","pid":14375}
+[chirality-desktop] 2026-08-03T06:14:31.835Z [info] runtime.daemon.started {"socketPath":"/tmp/chirality-dapp88-gui-control-escalated.MPEQ3Y/userdata/runtime/control.sock","runtimeDirectory":"/tmp/chirality-dapp88-gui-control-escalated.MPEQ3Y/userdata/runtime"}

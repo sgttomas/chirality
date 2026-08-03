@@ -1,0 +1,55 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 1
+  },
+  "counts": {
+    "category": {
+      "CONTAINMENT": 1,
+      "IMPLEMENTATION": 1,
+      "PACKAGING": 2,
+      "VALIDATION": 3
+    },
+    "event_type": {
+      "CHECK": 3,
+      "FINISH": 1,
+      "REMEDIATION": 1,
+      "RETRY": 1,
+      "START": 1
+    },
+    "outcome": {
+      "BLOCKED": 1,
+      "FAIL": 1,
+      "PASS": 3,
+      "RETRY": 1,
+      "STARTED": 1
+    },
+    "reason_code": {
+      "DEFECTIVE_PRODUCT_ROLLED_BACK": 1,
+      "FRESH_HELPER_GRACEFUL_STOP_PASS": 1,
+      "POST_GUI_FIRST_SIGTERM_FAILED": 2,
+      "SANDBOX_NETWORK_ENOTFOUND": 1,
+      "SEALED_STANDALONE_HELPER_DISPATCH": 1,
+      "STANDALONE_HELPER_PACKAGE_PASS": 1
+    }
+  },
+  "events": 7,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 1536.09,
+      "events": 7,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP88-R2-IMPLEMENT-01",
+      "package_id": "PKG-09",
+      "remediations": 1,
+      "retries": 1,
+      "role": "TASK",
+      "session_id": "A2-DAPP88-R2-IMPLEMENT-01"
+    }
+  ],
+  "sessions": 1,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

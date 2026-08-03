@@ -3043,3 +3043,41 @@
     Management, D-APP-84, parity, historical UNKNOWN, generic runtime,
     release, reliance, commit, push, or merge effect is created. CHANGE
     integration remains next.
+
+- **2026-08-03 — Receipt 112** (D-APP-86 through D-APP-90 planning and execution tranche).
+  - Receipt-ID: `Receipt-112`
+  - Examined-Through: `7249281e1f84ba5abee3c31c2fea3736b22000d3`
+  - Parent-Receipt: `Receipt-111`
+  - Pointers:
+    `execution/_Coordination/_DECISIONS/D-APP-86_RULING_PARITY_INSTRUMENT_2026-08-02.md`;
+    `execution/_Coordination/AgentRuns/APPDEV_PARITY_INSTRUMENT_2026-08-03/MANAGER_RETURN.md`;
+    `execution/_Coordination/_DECISIONS/D-APP-87_RULING_DUAL_TARGET_PRODUCT_DIRECTION_2026-08-02.md`;
+    `execution/_Coordination/AgentRuns/APPDEV_DAPP87_DUAL_TARGET_REPLAN_2026-08-03/MANAGER_RETURN.md`;
+    `execution/_Coordination/_DECISIONS/D-APP-88_RULING_DAEMON_HELPER_BUNDLE_IDENTITY_2026-08-02.md`;
+    `execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/MANAGER_RETURN.md`;
+    `execution/_Coordination/NOTICE_2026-08-03_ROOT_RUNTIME_GRACEFUL_STOP_INVESTIGATION.md`;
+    `execution/_Coordination/_DECISIONS/D-APP-89_RULING_COMPATIBILITY_FACADE_MIGRATION_2026-08-02.md`;
+    `execution/_Coordination/AgentRuns/APPDEV_DAPP89_FACADE_MIGRATION_2026-08-02/MANAGER_RETURN.md`;
+    `execution/_Coordination/_DECISIONS/D-APP-90_RULING_BOUNDED_COMPARATIVE_ARCHITECTURE_PROOF_2026-08-03.md`;
+    `execution/_Coordination/AgentRuns/APPDEV_DAPP90_COMPARATIVE_ARCHITECTURE_PROOF_2026-08-03/HANDOFF_STATE.md`.
+  - Checks: frontend full Vitest, typecheck, production build, and Section 9
+    pass; receipt, authority-corpus v18, current App status, practitioner
+    self-check and pytest, path containment, whitespace, diff, and historical-
+    UNKNOWN preservation checks pass. Local isolated premerge is a non-
+    blocking rerun advisory: headless macOS safeStorage credential-status
+    hangs make session creation return 503; authoritative PR CI rerun is
+    required.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising HELPS_HUMANS and
+    WORKING_ITEMS Agent 1 lanes with bounded Agent 2 execution and independent
+    verification; exact runtime model build not exposed.
+  - Gate-Outcome: `EXECUTED` — D-APP-86 Option A parity evidence and D-APP-89
+    Option B migration-only work are validated; the facade is retained as the
+    rollback path and retirement remains a later owner gate. D-APP-87 Option B
+    with its exact dual-target amendment is re-planned into D-APP-90. D-APP-88
+    Option B was attempted twice, rolled back, and remains held for Root-owned
+    graceful-stop evidence after routing the ordinary notice. D-APP-90 Option
+    D completed every source-independent proof lane, but its first-domain UI
+    delta is `HELD_BY_SEQUENCE` until a reciprocally cited Piping runtime-
+    surface response exists in committed main; no A/B/C selection or D-APP-91
+    exists. The six D-APP-81 historical relations remain UNKNOWN. Ordinary Git
+    integration and authoritative PR-CI rerun remain next.

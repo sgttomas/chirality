@@ -19,7 +19,7 @@ import {
   LegacyAgentEngineAdapter,
   type ResolvedEngine
 } from './engine-registry';
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type {
   EngineSelection,
   IAgentSdkManager,
@@ -28,7 +28,7 @@ import type {
   ISessionManager,
   ResolvedOpts,
   SessionRecord
-} from '@chirality/harness-contract/types';
+} from '@chirality/runtime-contracts/types';
 
 type HarnessRuntime = {
   sessionManager: ISessionManager;

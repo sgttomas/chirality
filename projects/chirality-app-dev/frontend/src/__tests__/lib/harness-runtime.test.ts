@@ -6,7 +6,7 @@ import {
   resolveHarnessEngineSelection,
   resolveHarnessProviderMode
 } from '../../lib/harness/runtime';
-import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
+import type { ResolvedOpts, SessionRecord } from '@chirality/runtime-contracts/types';
 import { StubAgentSdkManager } from '../../lib/harness/agent-sdk-manager';
 import { ClaudeAgentSdkManager } from '../../lib/harness/claude-agent-sdk-manager';
 import { PersonaComposer } from '../../lib/harness/persona-manager';

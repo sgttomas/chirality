@@ -6,7 +6,7 @@ import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod/v4';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import {
   acknowledgeAgentUpdate,
   assertValidManagedChildReturn,

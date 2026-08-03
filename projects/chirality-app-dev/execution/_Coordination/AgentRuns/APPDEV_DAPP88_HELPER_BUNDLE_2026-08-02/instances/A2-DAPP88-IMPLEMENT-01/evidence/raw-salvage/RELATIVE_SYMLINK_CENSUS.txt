@@ -1,0 +1,17 @@
+count=15
+absolute_target_count=0
+Contents/Frameworks/Electron Framework.framework/Electron Framework -> Versions/Current/Electron Framework
+Contents/Frameworks/Electron Framework.framework/Helpers -> Versions/Current/Helpers
+Contents/Frameworks/Electron Framework.framework/Libraries -> Versions/Current/Libraries
+Contents/Frameworks/Electron Framework.framework/Resources -> Versions/Current/Resources
+Contents/Frameworks/Electron Framework.framework/Versions/Current -> A
+Contents/Frameworks/Mantle.framework/Mantle -> Versions/Current/Mantle
+Contents/Frameworks/Mantle.framework/Resources -> Versions/Current/Resources
+Contents/Frameworks/Mantle.framework/Versions/Current -> A
+Contents/Frameworks/ReactiveObjC.framework/ReactiveObjC -> Versions/Current/ReactiveObjC
+Contents/Frameworks/ReactiveObjC.framework/Resources -> Versions/Current/Resources
+Contents/Frameworks/ReactiveObjC.framework/Versions/Current -> A
+Contents/Frameworks/Squirrel.framework/Resources -> Versions/Current/Resources
+Contents/Frameworks/Squirrel.framework/Squirrel -> Versions/Current/Squirrel
+Contents/Frameworks/Squirrel.framework/Versions/Current -> A
+Contents/Resources -> ../../../../Resources

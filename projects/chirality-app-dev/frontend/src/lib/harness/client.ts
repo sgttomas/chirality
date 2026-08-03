@@ -1,7 +1,7 @@
 import type { AgentRosterEntry } from './agent-roster';
-import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
+import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import type { HarnessReplaySummary } from './session-events';
-import type { TranscriptView } from '@chirality/harness-contract/transcript-replay';
+import type { TranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import type {
   CoordinationMode,
   HarnessErrorResponse,
@@ -12,7 +12,7 @@ import type {
   SessionCreateRequest,
   SessionRecord,
   TurnRequest
-} from '@chirality/harness-contract/types';
+} from '@chirality/runtime-contracts/types';
 
 export type SessionEventsReplay = {
   events: HarnessEvent[];

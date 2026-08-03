@@ -1,0 +1,2 @@
+2026-08-03T06:18:41.652Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/tmp/chirality-dapp88-childres.FTGKhJ/userdata","pid":15508}
+2026-08-03T06:18:41.676Z [info] runtime.daemon.started {"socketPath":"/tmp/chirality-dapp88-childres.FTGKhJ/userdata/runtime/control.sock","runtimeDirectory":"/tmp/chirality-dapp88-childres.FTGKhJ/userdata/runtime"}

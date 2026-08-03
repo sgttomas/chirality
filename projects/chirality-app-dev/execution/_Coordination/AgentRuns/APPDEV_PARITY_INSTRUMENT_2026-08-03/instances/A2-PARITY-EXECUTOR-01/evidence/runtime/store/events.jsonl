@@ -1,0 +1,2 @@
+{"sessionId":"e040f8c7-315f-4bd5-be60-981650029924","turnId":"e8877857-f4b8-4492-b8b3-4ad1782218f8","type":"turn.accepted","data":{"message":"D-APP-86 parity fixture transcript item."},"schemaVersion":1,"eventId":"f411827f-eb11-41e1-a00b-ff39701bf782","timestamp":"2026-08-03T08:35:56.281Z"}
+{"sessionId":"e040f8c7-315f-4bd5-be60-981650029924","turnId":"e8877857-f4b8-4492-b8b3-4ad1782218f8","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"b74bacd4-962d-48e6-b7a0-597d8397c290","timestamp":"2026-08-03T08:35:56.375Z"}

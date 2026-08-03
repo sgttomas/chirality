@@ -4,7 +4,7 @@ import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { createChiralityToolHooks } from '../../lib/harness/chirality-hooks';
 import { replayHarnessEvents } from '../../lib/harness/session-events';
-import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
+import { getHarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 
 const sessionId = 'sess_chirality_hooks';
 let tmpDir = '';

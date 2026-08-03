@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import type { SessionEventsReplay } from '../../lib/harness/client';
 import {
   buildSelectedSessionReplayProjection,

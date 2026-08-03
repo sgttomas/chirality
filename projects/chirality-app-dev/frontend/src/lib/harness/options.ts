@@ -8,7 +8,7 @@ import {
   type ParsedFrontmatter,
   readAgentInstruction
 } from './agent-instruction';
-import { HarnessOpts, ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
+import { HarnessOpts, ResolvedOpts, SessionRecord } from '@chirality/runtime-contracts/types';
 import { GENERALIST_AGENT2_PERSONA, UNTYPED_PERSONA } from './agent-roster';
 
 const DEFAULT_MODEL = 'haiku';

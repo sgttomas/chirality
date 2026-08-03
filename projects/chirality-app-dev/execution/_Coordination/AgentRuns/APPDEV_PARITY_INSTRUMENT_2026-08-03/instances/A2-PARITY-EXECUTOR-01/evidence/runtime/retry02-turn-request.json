@@ -1,0 +1,10 @@
+{
+  "message": "D-APP-86 Retry 02 parity transcript item.",
+  "opts": {
+    "model": "stub-parity",
+    "tools": [],
+    "maxTurns": 1,
+    "persona": "WORKING_ITEMS",
+    "mode": "readOnly"
+  }
+}

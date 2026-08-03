@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { RuntimeError, type RuntimeSessionRecord } from '@chirality/runtime-contracts';
 import type { RuntimeClient, RuntimeStream } from '@chirality/runtime-client';
-import type { UIEvent } from '@chirality/harness-contract/types';
+import type { UIEvent } from '@chirality/runtime-contracts/types';
 
 import {
   RuntimeDaemonHarnessPort,

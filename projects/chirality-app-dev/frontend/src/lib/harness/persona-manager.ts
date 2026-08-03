@@ -9,9 +9,9 @@ import {
 } from './permission-overlay';
 import { SUBAGENT_BRIDGE_POLICY_VERSION } from './subagent-bridge';
 import { resolveHarnessToolPool } from './tool-pool';
-import { HARNESS_TOOL_REGISTRY_VERSION } from '@chirality/harness-contract/tool-descriptor';
-import { CHIRALITY_MCP_SERVER_NAME } from '@chirality/harness-contract/mcp/tool-names';
-import { IPersonaManager } from '@chirality/harness-contract/types';
+import { HARNESS_TOOL_REGISTRY_VERSION } from '@chirality/runtime-contracts/tool-descriptor';
+import { CHIRALITY_MCP_SERVER_NAME } from '@chirality/runtime-contracts/mcp/tool-names';
+import { IPersonaManager } from '@chirality/runtime-contracts/types';
 import { GENERALIST_AGENT2_PERSONA, UNTYPED_PERSONA } from './agent-roster';
 
 export const PERSONA_COMPOSER_VERSION = 'persona-composer.v1.instruction-root';

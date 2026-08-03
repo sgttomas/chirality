@@ -9,7 +9,7 @@ import {
   useState,
   type ReactNode
 } from 'react';
-import type { HarnessOpts } from '@chirality/harness-contract/types';
+import type { HarnessOpts } from '@chirality/runtime-contracts/types';
 import {
   buildHarnessOptsFromToolkit,
   createToolkitPreset,

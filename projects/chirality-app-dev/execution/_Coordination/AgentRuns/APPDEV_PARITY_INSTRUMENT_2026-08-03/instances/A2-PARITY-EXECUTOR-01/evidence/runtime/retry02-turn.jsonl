@@ -1,0 +1,8 @@
+{"type":"harness:event","data":{"sessionId":"e2c32024-fa62-48d5-b27a-d8637080d2c3","turnId":"069051b9-d567-45f7-ad03-1ec37aa99844","type":"turn.accepted","data":{"message":"D-APP-86 Retry 02 parity transcript item."},"schemaVersion":1,"eventId":"18da5693-3791-4e2e-a96c-363785f4d647","timestamp":"2026-08-03T08:43:59.700Z"}}
+{"type":"session:init","data":{"engineSessionId":"stub_60b132f5-3884-4bcc-97ec-25de95b54162","adapterId":"stub","providerId":"stub","model":"stub-parity"}}
+{"type":"chat:delta","data":{"text":"D-APP-86 Retry 02 parity"}}
+{"type":"chat:delta","data":{"text":" transcript item."}}
+{"type":"chat:complete","data":{"text":"D-APP-86 Retry 02 parity transcript item."}}
+{"type":"session:complete","data":{}}
+{"type":"harness:event","data":{"sessionId":"e2c32024-fa62-48d5-b27a-d8637080d2c3","turnId":"069051b9-d567-45f7-ad03-1ec37aa99844","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"a26a661d-721e-491d-ab9f-66b2aa3b2dd0","timestamp":"2026-08-03T08:44:01.725Z"}}
+{"type":"process:exit","data":{"exitCode":0}}

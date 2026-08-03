@@ -1,0 +1,4 @@
+[0803/001448.633745:ERROR:base/i18n/icu_util.cc:177] icudtl.dat not found in bundle
+[0803/001448.633917:ERROR:base/i18n/icu_util.cc:232] Invalid file descriptor to ICU data received.
+[0803/001448.633748:ERROR:base/i18n/icu_util.cc:177] icudtl.dat not found in bundle
+[0803/001448.633933:ERROR:base/i18n/icu_util.cc:232] Invalid file descriptor to ICU data received.

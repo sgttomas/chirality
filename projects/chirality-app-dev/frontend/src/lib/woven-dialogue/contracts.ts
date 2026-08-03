@@ -1,4 +1,4 @@
-import type { TranscriptView } from '@chirality/harness-contract/transcript-replay';
+import type { TranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 
 export type ProjectionCurrency = 'CURRENT' | 'STALE' | 'CONFLICTING' | 'UNKNOWN';
 

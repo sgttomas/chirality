@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
+import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import {
   PermissionEventChannelRegistry,
   SessionPermissionChannel,

@@ -1,7 +1,7 @@
 # Status: DEL-05-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-25
+**Last Updated:** 2026-08-03
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -9,27 +9,6 @@
 ## Remaining
 
 - Prove Desktop and CLI replay the same daemon-owned canonical session and preserve manager/child attribution across restart and lazy migration (gated: daemon/client vertical slice).
-- Evidence replay transcript-item rendering against a real daemon session. The
-  SCA-APP-004 selected-session read-only replay lens and rebuildable Agent
-  projection are implemented (PR #323 merge `403f228f4`) and are now reachable
-  from the woven navigator's recorded-session rows through the existing guarded
-  path, with a live isolation proof (2026-07-24 redesign tranche, Stage B2).
-  The 2026-07-24 browser-evidence pass ran with no runtime daemon available and
-  substituted declared fixtures for `session/list` and `session/:id/events`, so
-  the lens reported `Transcript items shown 0`: its READ-ONLY framing,
-  provenance block and event count are evidenced, but the transcript list
-  itself is not. Evidence: `_run_records/R1_WOVEN_REDESIGN_2026-07-24.md` and
-  `execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`.
-  Daemon unavailability no longer blocks this item: on the packaged app the
-  daemon now runs as a supervised service, the GUI binds and rebinds without
-  manual action, and a stub-adapter turn produced a real daemon-owned session
-  with recorded events (2026-07-25 daemon-service tranche;
-  `_run_records/R2_DAEMON_SERVICE_2026-07-25.md`;
-  `execution/_Coordination/AgentRuns/APPDEV_DAEMON_SERVICE_2026-07-25/instances/V-PACKAGED-DRILLS/evidence/v9/`).
-  That drill session lived in isolated temporary user data and was deleted at
-  cleanup, and session state is written daemon-side rather than into the
-  registered working root — both facts bear on how a future pass locates the
-  session it renders. The transcript list itself is still unevidenced.
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -60,3 +39,13 @@
   evidence that a real daemon-owned session is producible. Both Remaining items
   stay open. State remains IN_PROGRESS; accepted historical evidence and
   Checking Approval SHA are preserved.
+- 2026-08-03 - D-APP-86 Option A integrated parity evidence closed only the
+  real-daemon transcript-item-rendering residual: one admitted
+  `WORKING_ITEMS` / `agent1` session rendered one read-only replay transcript
+  item from two events, ending at the recorded terminal event. No parent/child
+  attribution existed and none was inferred. Evidence is pointed from
+  `_run_records/R3_DAPP86_REAL_DAEMON_REPLAY_2026-08-03.md`. The separate
+  Desktop/CLI restart-and-migration item remains gated and unchanged. State
+  remains IN_PROGRESS; Authorization Basis, Directive, and Checking Approval
+  SHA are preserved. Any later accepted D-APP-88 distinct-helper
+  implementation remains a non-blocking parity-rerun trigger.

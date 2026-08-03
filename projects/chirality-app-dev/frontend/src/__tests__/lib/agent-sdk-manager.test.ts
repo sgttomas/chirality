@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { ResolvedOpts, SessionRecord, UIEvent } from '@chirality/harness-contract/types';
+import type { ResolvedOpts, SessionRecord, UIEvent } from '@chirality/runtime-contracts/types';
 import { StubAgentSdkManager } from '../../lib/harness/agent-sdk-manager';
 
 const session: SessionRecord = {

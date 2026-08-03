@@ -6,7 +6,7 @@ import {
   type TranscriptArtifactLink,
   type TranscriptItem,
   type TranscriptItemStatus
-} from '@chirality/harness-contract/transcript-replay';
+} from '@chirality/runtime-contracts/transcript-replay';
 import { useHarnessEvents } from '../workspace/harness-events-provider';
 
 function statusClass(status: TranscriptItemStatus): string {

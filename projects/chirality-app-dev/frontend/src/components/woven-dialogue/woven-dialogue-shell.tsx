@@ -12,7 +12,7 @@ import {
   type CSSProperties,
   type PointerEvent
 } from 'react';
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import { listHarnessSessions, harnessApiErrorMessage } from '../../lib/harness/client';
 import type {
   CoordinationWorkItem,

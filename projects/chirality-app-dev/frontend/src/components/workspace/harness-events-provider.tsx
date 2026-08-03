@@ -8,7 +8,7 @@ import {
   useState,
   type ReactNode
 } from 'react';
-import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
+import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import { boundHarnessEventBuffer } from '../../lib/shell/harness-event-buffer';
 
 /**
