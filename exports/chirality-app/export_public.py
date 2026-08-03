@@ -171,6 +171,9 @@ def copy_tree(src: Path, dest: Path, root_name: str) -> None:
 
 def write_public_init_prompt(stage: Path) -> None:
     target = stage / "init" / "init-prompt.md"
+    # All private launchers are excluded from the wholesale init/ copy, so
+    # the staged directory may not exist yet.
+    target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(
         """# Public session init prompt
 
