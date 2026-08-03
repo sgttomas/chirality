@@ -113,7 +113,9 @@ pattern at that loop's own `<LOOP_DIR>/LOOP_INIT.md`.
 
 Copy the single paste-ready `<init-prompt>` block from
 `projects/pec/init/dev-loop-init-prompt.md`. Replace its `<none>` placeholder with a
-per-run steer if desired.
+per-run steer if desired. Entry is typed (`HELP_HUMAN`, consistent with
+§§2, 5–6), scoped to both PEC trees: `projects/pec/` and the loop home
+`_DomainEngines/pec/`.
 
 The launcher remains deliberately thin. `_DomainEngines/pec/LOOP_INIT.md`
 hands the session to the newest standing `WORKPLAN_*.md` beside it and to the
