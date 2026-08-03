@@ -74,6 +74,53 @@ landed." Expected re-entry: after dev-loop fan-in, these candidates enter
 the next owner-triggered Task Management harvest on the owner's ruling, or
 the owner directs them as a workstream outright.
 
+## Addendum — DAG/SCC adoption assessment (same session, owner-prompted)
+
+The owner identified a further coordination difference: piping selects work
+through an approved dependency DAG (`execution/_DAG/_LATEST.md`, consumed by
+its project-local `tools/coordination/list_deliverable_status.py --dag`) with
+SCC resolution per `docs/CYCLE_DRIVEN_RESOLUTION.md`. Assessment of whether
+the other locations could adopt it, from two read-only research passes:
+
+- **Portable core:** the doctrine itself, `tools/coordination/audit_dag.py`
+  (fully parameterized: `--edges/--nodes/--strict`), the v3.1 29-column
+  `Dependencies.csv` edge schema produced by the `dependency-extract` skill,
+  and the propose → SHA-freeze → owner-accept → repoint acceptance sequence.
+  Piping-bound: `list_deliverable_status.py` (project-local; hardcodes
+  `PKG-*/1_Working/DEL-*` layout, `_STATUS.md` header form, 5-state enum —
+  conventions app-dev and PEC already share, so it ports near-unchanged).
+- **App-dev: READY.** 51 deliverable-local `Dependencies.csv` in v3.1
+  (byte-compatible columns); dependency closure already audited
+  (`execution/_Reconciliation/DepClosure/CLOSURE_D53A_...`: 46 nodes,
+  97 edges, `scc_count = 0`, 5 orphans). App-dev is also the repo's live
+  SCC-resolution exemplar (`PKG-00_DAG_Closure_and_Project_Control` case
+  folders) while piping's own cycle machinery is dormant since DAG-007.
+  Gap is materialization only: `DeliverableNodes.csv`, a versioned
+  `_DAG/DAG-001` bundle with provenance hashes, `_LATEST.md` pointer,
+  approval record, ported status tool.
+- **PEC: NEEDS-DATA.** 254 v3.1 edge rows (119 deliverable→deliverable)
+  exist but no dependency-closure audit has ever run; acyclicity unproven.
+  A DAG would subsume the hand-maintained P0→P4 tranche table and the
+  redundant `PhaseHint` column. Prerequisite: closure audit first.
+- **Root: STRUCTURALLY-UNSUITED, by design.** The accepted root
+  decomposition declares six flat packages with no inter-package ordering;
+  K-INVENT-1 forbids inferring edges. Adoption would require a scope change
+  to the decomposition, not a tooling run. Pointer-and-slate selection
+  remains the right mechanism for an edgeless graph.
+- **Doctrine already permits adoption:** PRD_ROOT O-8 makes central graphs
+  derived coordination state over authoritative deliverable-local registers,
+  so adoption is materialization plus a project-local decision (piping's
+  DEC-040 pattern), not new governance.
+- **Shared gap for all adopters:** no SCC backlog register and no
+  `--list-sccs`/`--scc <id>` tool modes exist anywhere yet (flagged unbuilt
+  in piping's PLAN_2026-06-13 doctrine adoption, §3.7).
+
+This adds a **fourth convergence candidate**: generalize
+`list_deliverable_status.py` (glob/ID-grammar/state-enum as parameters) and
+the DAG-surface materialization pattern; for app-dev it is plausibly the
+highest-leverage of the four. Same status as the rest of this record:
+decision support only, nothing selected.
+
 ## Fan-in watch-list (session context worth persisting)
 
 - All four dev loops branched from the same main (`97678a841`); at fan-in,
