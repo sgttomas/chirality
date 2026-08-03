@@ -33,7 +33,7 @@ This docs package defines why the app exists, what must remain true, how the run
 
 Ordinary agentic work enters through:
 
-1. `init/init-prompt.md` → `loop/LOOP_INIT.md` → the newest `loop/WORKPLAN_*.md`
+1. `init/dev-loop-init-prompt.md` → `loop/LOOP_INIT.md` → the newest `loop/WORKPLAN_*.md`
    (the development loop instructions) → `loop/LOOP_RECEIPTS.md`;
 2. `execution/_Coordination/_DECISIONS/_REGISTER.md` (the owner-gated surface);
 3. `execution/_Coordination/_COORDINATION.md` (ruled-record stub) and

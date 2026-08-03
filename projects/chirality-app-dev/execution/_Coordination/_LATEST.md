@@ -65,7 +65,7 @@ Dependency discovery surfaces:
 
 Bootstrap prompt:
 
-- `init/init-prompt.md` (thin launcher pointing at `loop/LOOP_INIT.md`)
+- `init/dev-loop-init-prompt.md` (thin launcher pointing at `loop/LOOP_INIT.md`)
 
 Retired surface:
 

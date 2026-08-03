@@ -80,7 +80,7 @@ fence list. The pre-2026-07-10 text is in git history at this path.
 
 ## Pointers
 
-- Session entry: `init/init-prompt.md` → `loop/LOOP_INIT.md` → the newest
+- Session entry: `init/dev-loop-init-prompt.md` → `loop/LOOP_INIT.md` → the newest
   `loop/WORKPLAN_*.md` → `loop/LOOP_RECEIPTS.md`.
 - Work surface: `execution/PKG-*/1_Working/DEL-*/_STATUS.md` (`## Remaining`).
 - Decision register: `execution/_Coordination/_DECISIONS/_REGISTER.md`.

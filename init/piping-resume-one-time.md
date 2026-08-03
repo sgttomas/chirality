@@ -13,7 +13,7 @@ work:
 
 Set `WORKING_ROOT={REPO_ROOT}/projects/chirality-piping` and enter through:
 
-`init/init-prompt.md` → `loop/LOOP_INIT.md` → newest `loop/WORKPLAN_*.md` →
+`init/dev-loop-init-prompt.md` → `loop/LOOP_INIT.md` → newest `loop/WORKPLAN_*.md` →
 `loop/LOOP_RECEIPTS.md`
 
 Resume:

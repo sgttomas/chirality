@@ -26,7 +26,7 @@ Live source-hash drift exists for two accepted source docs after their retrieval
 
 Future change to this accepted decomposition is a **scope-change cycle**, not a fresh decomposition. Act as `SCOPE_CHANGE` (see `agents/AGENT_SCOPE_CHANGE.md`) against the accepted Gate 6 basis, preserving the source-fidelity (AOP-08) and source-unit authority rules below. Source-driven fills of scaffold-for-fill surfaces (per Gate 5 / `OI-024`) also run through scope-change cycles.
 
-To launch from the monorepo root, fill `init/init-prompt.md` with the chosen agent instruction file, the agent name, and `/Users/ryan/ai-env/projects/chirality/domains/chirality` as the target workspace.
+To launch from the monorepo root, fill `init/dev-loop-init-prompt.md` with the chosen agent instruction file, the agent name, and `/Users/ryan/ai-env/projects/chirality/domains/chirality` as the target workspace.
 
 ## Source-Unit Authority Basis (reference)
 
