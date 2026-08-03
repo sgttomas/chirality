@@ -1,0 +1,4 @@
+2026-08-03T06:23:55.551Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/tmp/chirality-dapp88-flags.ZACdBS/userdata","pid":16953}
+2026-08-03T06:23:55.569Z [info] runtime.daemon.started {"socketPath":"/tmp/chirality-dapp88-flags.ZACdBS/userdata/runtime/control.sock","runtimeDirectory":"/tmp/chirality-dapp88-flags.ZACdBS/userdata/runtime"}
+2026-08-03T06:24:18.378Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":true,"pid":16953}
+2026-08-03T06:24:18.379Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}

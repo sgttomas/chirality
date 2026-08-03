@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-25
+**Last Updated:** 2026-08-03
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -26,6 +26,21 @@
   daemon runs. The causal fix is a helper `.app` with its own
   `CFBundleIdentifier` and `LSUIElement`, with the LaunchAgent pointing at that
   binary.
+  D-APP-88 Option B produced a relocatable helper/package candidate on
+  2026-08-03, but the implementation return is BLOCKED: after GUI coexistence,
+  the helper did not preserve first-signal graceful teardown. The candidate and
+  exact evidence remain under
+  `execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_2026-08-02/`;
+  do not treat the helper-identity residual as closed. D-APP-88 product,
+  config, and test changes were rolled back after evidence freeze. The R2
+  separately built full Electron helper target was then tried and remains
+  BLOCKED: its package topology and fresh graceful-stop evidence passed, but
+  the retained post-GUI evidence proves only helper restart, GUI contact, no
+  later daemon shutdown entry, and eventual GUI transport loss. First-signal
+  survival/socket retention is an operator observation without a preserved
+  command/process/socket snapshot, so the mandatory post-GUI graceful-stop
+  proof failed. R2 product/config/test bytes were rolled back after evidence freeze. Evidence:
+  `execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/`.
 - Recover-on-start is the only answer to a SIGKILLed daemon's stale control
   socket. SIGKILL is uncatchable, so no teardown runs; the next daemon start
   unlinks the socket and owner record only when the path is a socket owned by
@@ -53,6 +68,8 @@
   decision.
 
 ## History
+- 2026-08-03 - D-APP-88 R2 evaluated the previously untried separately built full Electron helper. The standalone `com.chirality.app.runtime-helper` package, builder-generated child topology, whole-bundle embedding, relocatability, and fresh graceful-stop evidence passed. Acceptance remains BLOCKED because retained post-GUI evidence proves helper restart, GUI contact, no later daemon shutdown entry, and eventual transport loss but does not independently bind the operator-observed first-signal survival/socket retention. The mandatory post-GUI first-signal graceful-stop proof therefore failed. A Root-side live-connection/server-close interaction is recorded only as an investigation hypothesis. Exact candidate bytes were frozen under the R2 run root and all R2 product/config/test changes were rolled back while preserving D-APP-89. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
+- 2026-08-03 - D-APP-88 Option B bounded implementation produced a distinct LoginItems helper candidate with relocatable relative framework links and helper-routed LaunchAgent/CLI paths. Package, focused tests, typecheck, dependency boundary, instruction-root integrity, fresh helper SIGTERM, CLI status, GUI coexistence, and SIGKILL recovery were evidenced. Acceptance remains BLOCKED because first-signal graceful teardown failed after GUI coexistence and an alternate SIGUSR2 diagnostic failed likewise. Exact candidate bytes were frozen under the run root and all D-APP-88 product/config/test changes were rolled back while preserving D-APP-89. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-25 - Daemon-as-service and packaged-app fix tranche recorded in `_run_records/R6_DAEMON_SERVICE_2026-07-25.md`. The headless-daemon / LaunchAgent / bundled-CLI Remaining item is narrowed to its unexercised login-time path and the still-gated DMG/dist scope on the strength of isolated packaged-app evidence (headless daemon with a `safeStorage` round trip, LaunchAgent install/restart/graceful-stop and label scoping, bundled CLI from a clean environment, asar `public/` and `CFBundleIconFile` checks, an end-to-end stub-adapter turn). Six residuals are added: daemon helper-bundle identity (owner-escalated), the SIGKILL stale-socket recover-on-start case, the unsatisfied premerge row for this branch, post-merge owner-machine deployment (owner decision gate 3), the pre-existing packaged-daemon instruction-root divergence, and the login-time `RunAtLoad` path folded into the narrowed first item. No release, signing, notarization, or distribution authority is created. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-22 - D-APP-72 Electron `43.1.1` regression and packaged offline Pi `0.80.10` production-route proof completed. The unrelated D-APP-56 release-preparation item remains open; no release authority is created. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added the Electron/Pi package prerequisite proof to Remaining; release fence and state remain unchanged.

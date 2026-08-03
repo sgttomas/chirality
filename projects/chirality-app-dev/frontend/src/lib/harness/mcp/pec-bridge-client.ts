@@ -1,4 +1,4 @@
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 
 /**
  * D-APP-52 pec bridge transport client (bridge-lane P2).

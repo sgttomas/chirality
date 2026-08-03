@@ -1,0 +1,2 @@
+[chirality-desktop] 2026-08-03T06:14:48.616Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/tmp/chirality-dapp88-helper-escalated.eEadlg/userdata","pid":14397}
+[chirality-desktop] 2026-08-03T06:14:48.634Z [info] runtime.daemon.started {"socketPath":"/tmp/chirality-dapp88-helper-escalated.eEadlg/userdata/runtime/control.sock","runtimeDirectory":"/tmp/chirality-dapp88-helper-escalated.eEadlg/userdata/runtime"}

@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import type { HarnessEvent, HarnessEventType } from '@chirality/harness-contract/event-schema';
+import type { HarnessEvent, HarnessEventType } from '@chirality/runtime-contracts/event-schema';
 import {
   deriveSubagentActivity,
   deriveToolActivity
@@ -10,8 +10,8 @@ import { SessionListPanel } from '../../components/shell/session-list-view';
 import { SubagentStreamList } from '../../components/shell/subagent-stream-view';
 import { ToolStreamList } from '../../components/shell/tool-stream-view';
 import { TranscriptStreamList } from '../../components/shell/transcript-stream-view';
-import { deriveTranscriptView } from '@chirality/harness-contract/transcript-replay';
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 
 let counter = 0;
 

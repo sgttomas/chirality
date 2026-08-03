@@ -10,7 +10,7 @@ import {
   OPERATION_PROPOSAL_RISK_CLASSES,
   OPERATION_PROPOSAL_STATUS,
   type OperationProposal
-} from '@chirality/harness-contract';
+} from '@chirality/runtime-contracts';
 
 function validProposal(): OperationProposal {
   return {

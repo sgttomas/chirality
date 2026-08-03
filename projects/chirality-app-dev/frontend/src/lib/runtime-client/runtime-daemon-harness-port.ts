@@ -11,12 +11,12 @@ import {
   type RegisteredProject,
   type RuntimeSessionRecord
 } from '@chirality/runtime-contracts';
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type {
   HarnessErrorType,
   SessionRecord,
   UIEvent
-} from '@chirality/harness-contract/types';
+} from '@chirality/runtime-contracts/types';
 
 import type {
   DaemonHarnessPort,

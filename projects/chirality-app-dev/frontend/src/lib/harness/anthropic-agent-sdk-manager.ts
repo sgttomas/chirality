@@ -3,12 +3,12 @@ import { randomUUID } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { getUiApiKey } from './api-key-store';
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import { createHarnessEvent } from './event-factory';
-import type { HarnessEventType } from '@chirality/harness-contract/event-schema';
+import type { HarnessEventType } from '@chirality/runtime-contracts/event-schema';
 import { harnessEventToUiEvent } from './harness-ui-bridge';
 import { appendHarnessEvent } from './session-events';
-import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from '@chirality/harness-contract/types';
+import { ContentBlock, IAgentSdkManager, ResolvedOpts, SessionRecord, UIEvent } from '@chirality/runtime-contracts/types';
 
 type ActiveTurnState = {
   interrupted: boolean;

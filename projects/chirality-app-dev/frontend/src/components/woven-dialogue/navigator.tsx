@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import type {
   WovenSessionSurfaceMap,
   WovenWorkspaceSurface

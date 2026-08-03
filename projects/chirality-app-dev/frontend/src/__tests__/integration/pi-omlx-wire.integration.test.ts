@@ -5,14 +5,14 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type {
   AgentEnginePort,
   AgentEngineRunInput
-} from '@chirality/harness-contract/agent-engine-port';
+} from '@chirality/runtime-contracts/agent-engine-port';
 import type {
   ISessionManager,
   ResolvedOpts,
   SessionRecord,
   UIEvent
-} from '@chirality/harness-contract/types';
-import { runEngineConformance } from '@chirality/harness-contract/engine-conformance';
+} from '@chirality/runtime-contracts/types';
+import { runEngineConformance } from '@chirality/runtime-contracts/engine-conformance';
 import { PiAgentEngineAdapter } from '../../lib/harness/pi-agent-engine-adapter';
 import { createBoundedReadToolDefinitions } from '../../lib/harness/chirality-tool-bridge';
 import { bindChiralityToolsForPi } from '../../lib/harness/pi-tool-binder';

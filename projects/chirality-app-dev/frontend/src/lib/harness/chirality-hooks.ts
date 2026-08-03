@@ -26,7 +26,7 @@ import {
   DEFAULT_BASH_TIMEOUT_MS,
   evaluateShellCommandPolicy
 } from './tool-shell-policy';
-import { getHarnessToolDescriptor, type HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
+import { getHarnessToolDescriptor, type HarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 import { evaluateSubagentPreflight } from './subagent-bridge';
 
 const WRITE_HOOK_TIMEOUT_SECONDS = 5;

@@ -9,14 +9,14 @@ import type {
   SDKSystemMessage
 } from '@anthropic-ai/claude-agent-sdk';
 import { createHarnessEvent } from './event-factory';
-import { HarnessEvent } from '@chirality/harness-contract/event-schema';
+import { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 import {
   childRunRecordToEventData,
   createAdapterObservedChildRunRecord,
   type ChildRunRecord,
   type ChildRunStatus
 } from './agent-runtime-contract';
-import { isChiralityMcpAllowedToolName } from '@chirality/harness-contract/mcp/tool-names';
+import { isChiralityMcpAllowedToolName } from '@chirality/runtime-contracts/mcp/tool-names';
 import { redactJsonLike } from './run-logger';
 import {
   isToolResultFailure,
@@ -30,8 +30,8 @@ import {
   persistChildOutputArtifact,
   persistToolResultArtifact
 } from './tool-result-artifacts';
-import { getHarnessToolDescriptor, type HarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
-import { UIEvent } from '@chirality/harness-contract/types';
+import { getHarnessToolDescriptor, type HarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
+import { UIEvent } from '@chirality/runtime-contracts/types';
 
 export type SdkMessageMapping = {
   uiEvents: UIEvent[];

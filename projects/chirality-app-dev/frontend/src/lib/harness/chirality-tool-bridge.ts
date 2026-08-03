@@ -3,9 +3,9 @@ import type {
   HarnessToolDescriptor,
   HarnessToolPermission,
   HarnessToolProvenance
-} from '@chirality/harness-contract/tool-descriptor';
-import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
-import { HarnessError } from '@chirality/harness-contract/errors';
+} from '@chirality/runtime-contracts/tool-descriptor';
+import { getHarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import { readFile, realpath, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod/v4';

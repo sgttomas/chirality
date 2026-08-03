@@ -4,7 +4,7 @@ import {
   readJsonBody
 } from '../../../../lib/harness/http';
 import { getDaemonHarnessPort } from '../../../../lib/runtime-client/daemon-harness-port';
-import { TurnRequest } from '@chirality/harness-contract/types';
+import { TurnRequest } from '@chirality/runtime-contracts/types';
 
 export async function POST(request: Request): Promise<Response> {
   try {

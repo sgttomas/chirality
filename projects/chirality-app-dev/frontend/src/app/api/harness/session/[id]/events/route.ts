@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import { errorResponse, requireNonEmptyString } from '../../../../../../lib/harness/http';
 import { getDaemonHarnessPort } from '../../../../../../lib/runtime-client/daemon-harness-port';
 

@@ -2,8 +2,8 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import renderer, { act } from 'react-test-renderer';
 import { describe, expect, it, vi } from 'vitest';
-import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import { SelectedSessionReplayLens } from '../../components/woven-dialogue/selected-session-replay-lens';
 import { buildSelectedSessionReplayProjection } from '../../lib/woven-dialogue/selected-session-replay';
 

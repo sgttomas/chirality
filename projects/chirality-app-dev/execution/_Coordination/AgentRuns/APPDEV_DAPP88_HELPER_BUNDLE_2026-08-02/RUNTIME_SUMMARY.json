@@ -1,0 +1,79 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 1
+  },
+  "counts": {
+    "category": {
+      "CLOSEOUT": 1,
+      "ENVIRONMENT": 2,
+      "IMPLEMENTATION": 2,
+      "LIVE_HELPER": 10,
+      "PACKAGING": 7,
+      "ROLLBACK": 1,
+      "VALIDATION": 2
+    },
+    "event_type": {
+      "CHECK": 15,
+      "FINISH": 1,
+      "MILESTONE": 1,
+      "REMEDIATION": 6,
+      "RETRY": 1,
+      "START": 1
+    },
+    "outcome": {
+      "BLOCKED": 1,
+      "FAIL": 8,
+      "INFO": 1,
+      "PASS": 10,
+      "RETRY": 1,
+      "STARTED": 4
+    },
+    "reason_code": {
+      "AUTHORIZED_NETWORK_RETRY": 1,
+      "BLOCKED_CANDIDATE_ROLLED_BACK": 1,
+      "CLEAN_SINGLE_HELPER_PACK_PASS": 1,
+      "CLI_GUI_CONTINUITY_PASS": 1,
+      "DESKTOP_PACK_PASS": 1,
+      "ELECTRON_ARCHIVE_ENOTFOUND": 1,
+      "ELECTRON_HELPER_LOOKUP_FAILURE": 1,
+      "ESCALATED_ISOLATED_HELPER_START": 1,
+      "FIRST_COHERENT_PATCH": 1,
+      "FOCUSED_AND_TYPECHECK_PASS": 1,
+      "FRESH_GRACEFUL_STOP_PASS": 1,
+      "GRACEFUL_PRESERVATION_GATE_UNMET": 1,
+      "HEADLESS_SINGLE_PROCESS_POSTURE": 1,
+      "NESTED_CHILD_ICU_FAILURE": 1,
+      "NESTED_GENERIC_CHILD_ICU": 1,
+      "OUTER_BROWSER_SUBPROCESS_PATH": 1,
+      "OUTER_SUBPROCESS_FOCUSED_PASS": 1,
+      "POST_GUI_GRACEFUL_STOP_REGRESSION": 1,
+      "POST_GUI_SIGUSR2_SUPPRESSED": 1,
+      "PRE_JS_CHILD_OVERRIDE": 1,
+      "PRE_JS_GENERIC_HELPER_SENTINEL": 1,
+      "RELOCATABLE_FRAMEWORK_LINKS": 1,
+      "RENAMED_MAIN_PRE_JS_LOOKUP_FAILURE": 1,
+      "RESTORE_ELECTRON_CHILD_IDS": 1,
+      "SEALED_SOFTWARE_TASK_DISPATCH": 1
+    }
+  },
+  "events": 25,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 3860.811,
+      "events": 25,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP88-IMPLEMENT-01",
+      "package_id": "PKG-09",
+      "remediations": 6,
+      "retries": 1,
+      "role": "TASK",
+      "session_id": "A2-DAPP88-IMPLEMENT-01"
+    }
+  ],
+  "sessions": 1,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

@@ -2,12 +2,12 @@ import type { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { createHash } from 'node:crypto';
 import { readFile, realpath } from 'node:fs/promises';
 import path from 'node:path';
-import { HarnessError } from '@chirality/harness-contract/errors';
-import { getHarnessToolDescriptor } from '@chirality/harness-contract/tool-descriptor';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
+import { getHarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 import {
   toChiralityMcpAllowedToolName,
   type ChiralityMcpDomainToolName
-} from '@chirality/harness-contract/mcp/tool-names';
+} from '@chirality/runtime-contracts/mcp/tool-names';
 import { createHarnessEvent } from '../event-factory';
 import { appendHarnessEvent } from '../session-events';
 import {

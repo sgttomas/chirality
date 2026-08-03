@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import type { HarnessEvent, HarnessEventType } from '@chirality/harness-contract/event-schema';
+import type { HarnessEvent, HarnessEventType } from '@chirality/runtime-contracts/event-schema';
 
 export function createHarnessEvent(input: {
   sessionId: string;

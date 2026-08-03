@@ -2,7 +2,7 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { SessionRecord, UIEvent } from '@chirality/harness-contract/types';
+import type { SessionRecord, UIEvent } from '@chirality/runtime-contracts/types';
 import { launchManagedChild } from '../../lib/harness/mcp/coordination-tools';
 
 const runtimeHolder = vi.hoisted(() => ({ current: undefined as any }));

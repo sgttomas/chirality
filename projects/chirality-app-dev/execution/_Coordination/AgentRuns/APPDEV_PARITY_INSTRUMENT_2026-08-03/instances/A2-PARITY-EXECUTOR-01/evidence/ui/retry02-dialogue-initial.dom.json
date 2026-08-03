@@ -1,0 +1,373 @@
+{
+  "capturedAt": "2026-08-03T08:44:50.006Z",
+  "url": "http://127.0.0.1:52812/",
+  "origin": "http://127.0.0.1:52812",
+  "pathname": "/",
+  "title": "Chirality Workflow Shell",
+  "readyState": "complete",
+  "bodyText": "Chirality CHAT WOVEN DIALOGUE A shared professional workspace where dialogue produces inspectable artifacts and governed work. RUNTIME connected ROOT No working root selected WORKSPACE LIGHT DARK AUTO PRIMARY CONVERSATION Dialogue PERSONA CHANGE · Type 1 DBM_PUBLISHER · Type 1 DOMAIN_DECOMP · Type 1 DOMAIN_ENGINE · Type 1 DRAWING_EXTRACT · Type 1 EQUATION_AUDIT · Type 1 EVALUATION · Type 1 HELP_HUMAN · Type 0 HELPS_HUMANS · Type 1 PDF2MD · Type 1 PROJECT_DECOMP · Type 1 PROJECT_SETUP · Type 1 RECONCILIATION · Type 1 RESEARCH · Type 1 REVIEW · Type 1 SCOPE_CHANGE · Type 1 SOFTWARE_DECOMP · Type 1 TASK_MANAGEMENT · Type 1 WORKING_ITEMS · Type 1 Chat Panel Persona: WORKING_ITEMS | Section: PORTAL Operator mode Read-only Plan (ask) Gated-write Autonomous Select a Working Root before starting a harness turn. Harness chat wiring is active. Select a Working Root and send a prompt. Attachments Attach Files Clear No attachments selected. Send Interrupt Close Navigator WORKSPACE Navigator Dialogue Primary human–agent conversation ▾ No recorded sessions for this surface. Workbench Documents, evidence & contracts ▸ Pipeline DECOMP, PREP, TASK, and AUDIT intent ▸ File Tree Select a Working Root to view filesystem contents. COMPATIBILITY Open legacy interface in a new window Close Coordination RECORDED COORDINATION Coordination Work Agents Work Evidence-only projection. Controlling status and authority remain with each recorded source. No structured plan recorded. LIVE RUNTIME PROJECTION Activity Expand activity",
+  "bodyHtmlShaInputLength": 21647,
+  "surfaces": [
+    {
+      "value": "dialogue",
+      "text": "PRIMARY CONVERSATION Dialogue PERSONA CHANGE · Type 1 DBM_PUBLISHER · Type 1 DOMAIN_DECOMP · Type 1 DOMAIN_ENGINE · Type 1 DRAWING_EXTRACT · Type 1 EQUATION_AUDIT · Type 1 EVALUATION · Type 1 HELP_HUMAN · Type 0 HELPS_HUMANS · Type 1 PDF2MD · Type 1 PROJECT_DECOMP · Type 1 PROJECT_SETUP · Type 1 RECONCILIATION · Type 1 RESEARCH · Type 1 REVIEW · Type 1 SCOPE_CHANGE · Type 1 SOFTWARE_DECOMP · Type 1 TASK_MANAGEMENT · Type 1 WORKING_ITEMS · Type 1 Chat Panel Persona: WORKING_ITEMS | Section: PORTAL Operator mode Read-only Plan (ask) Gated-write Autonomous Select a Working Root before starting a harness turn. Harness chat wiring is active. Select a Working Root and send a prompt. Attachments Attach Files Clear No attachments selected. Send Interrupt Close Navigator WORKSPACE Navigator Dialogue Primary human–agent conversation ▾ No recorded sessions for this surface. Workbench Documents, evidence & contracts ▸ Pipeline DECOMP, PREP, TASK, and AUDIT intent ▸ File Tree Select a Working Root to view filesystem contents. COMPATIBILITY Open legacy interface in a new window Close Coordination RECORDED COORDINATION Coordination Work Agents Work Evidence-only projection. Controlling status and authority remain with each recorded source. No structured plan recorded. LIVE RUNTIME PROJECTION Activity Expand activity"
+    }
+  ],
+  "buttons": [
+    {
+      "index": 0,
+      "text": "Apply Path",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 1,
+      "text": "Choose Folder",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 2,
+      "text": "Clear",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 3,
+      "text": "Stop",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 4,
+      "text": "Refresh",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 5,
+      "text": "Uninstall",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 6,
+      "text": "Activate Explicitly",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 7,
+      "text": "Reveal",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 8,
+      "text": "Save Key",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 9,
+      "text": "Reveal",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 10,
+      "text": "Save Key",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 11,
+      "text": "LIGHT",
+      "disabled": false,
+      "ariaPressed": "true",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 12,
+      "text": "DARK",
+      "disabled": false,
+      "ariaPressed": "false",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 13,
+      "text": "AUTO",
+      "disabled": false,
+      "ariaPressed": "false",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 14,
+      "text": "Attach Files",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 15,
+      "text": "Clear",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 16,
+      "text": "Send",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "submit"
+    },
+    {
+      "index": 17,
+      "text": "Interrupt",
+      "disabled": true,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 18,
+      "text": "Close Navigator",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 19,
+      "text": "Dialogue Primary human–agent conversation ▾",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": "true",
+      "ariaCurrent": "page",
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 20,
+      "text": "Workbench Documents, evidence & contracts ▸",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": "false",
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 21,
+      "text": "Pipeline DECOMP, PREP, TASK, and AUDIT intent ▸",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": "false",
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 22,
+      "text": "Close Coordination",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 23,
+      "text": "Work",
+      "disabled": false,
+      "ariaPressed": "true",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 24,
+      "text": "Agents",
+      "disabled": false,
+      "ariaPressed": "false",
+      "ariaExpanded": null,
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    },
+    {
+      "index": 25,
+      "text": "Expand activity",
+      "disabled": false,
+      "ariaPressed": null,
+      "ariaExpanded": "false",
+      "ariaCurrent": null,
+      "sessionId": null,
+      "type": "button"
+    }
+  ],
+  "inputs": [
+    {
+      "index": 0,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": "/absolute/path/to/execution/root",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "index": 1,
+      "tag": "SELECT",
+      "ariaLabel": "Exact oMLX model",
+      "dataChatInput": null,
+      "placeholder": null,
+      "value": "",
+      "disabled": true
+    },
+    {
+      "index": 2,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": "sk-ant-...",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "index": 3,
+      "tag": "INPUT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": "Enter the key configured in oMLX",
+      "value": "",
+      "disabled": false
+    },
+    {
+      "index": 4,
+      "tag": "SELECT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": null,
+      "value": "WORKING_ITEMS",
+      "disabled": false
+    },
+    {
+      "index": 5,
+      "tag": "SELECT",
+      "ariaLabel": null,
+      "dataChatInput": null,
+      "placeholder": null,
+      "value": "ask",
+      "disabled": false
+    },
+    {
+      "index": 6,
+      "tag": "INPUT",
+      "ariaLabel": "Chat input",
+      "dataChatInput": "primary",
+      "placeholder": "Select a Working Root first...",
+      "value": "",
+      "disabled": true
+    }
+  ],
+  "primaryDialogueMounted": true,
+  "primaryDialogueDisabled": true,
+  "selectedSessionId": null,
+  "sessionRows": [],
+  "resources": [
+    "http://127.0.0.1:52812/_next/static/media/13a15bcdfeddab65-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/06ac09dcb8ec7d56-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/1cdb9a2cbcaafa7e-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/45cdbe8ded19ae08-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/4cdcd386d2ac59c8-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/59c64a9c0cb813b7-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/css/1c73b7a475d77ba4.css",
+    "http://127.0.0.1:52812/_next/static/media/7c7f8877a12f66a2-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/c6a1f19cdccaf24c-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/dece0821e8ed059f-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/media/dabe43dd9d5e4fb2-s.p.woff2",
+    "http://127.0.0.1:52812/_next/static/chunks/webpack-85ad8b5d421e98b6.js",
+    "http://127.0.0.1:52812/_next/static/chunks/255-62902f04efbdd792.js",
+    "http://127.0.0.1:52812/_next/static/chunks/4bd1b696-c023c6e3521b1417.js",
+    "http://127.0.0.1:52812/_next/static/chunks/main-app-4b269840d71406c5.js",
+    "http://127.0.0.1:52812/_next/static/chunks/app/layout-1c560187d3be41c3.js",
+    "http://127.0.0.1:52812/_next/static/chunks/966-764889105078f50e.js",
+    "http://127.0.0.1:52812/_next/static/chunks/app/not-found-b253265a594e95a1.js",
+    "http://127.0.0.1:52812/_next/static/chunks/204-15a42af5f91e37ff.js",
+    "http://127.0.0.1:52812/_next/static/chunks/app/page-fb987acb4938a897.js",
+    "http://127.0.0.1:52812/_next/static/chunks/489-648d430659addad3.js",
+    "http://127.0.0.1:52812/_next/static/chunks/629-61a4773c370b93b9.js",
+    "http://127.0.0.1:52812/chirality-app-icon.svg",
+    "http://127.0.0.1:52812/api/harness/agents?directChat=1"
+  ]
+}

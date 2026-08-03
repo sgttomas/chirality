@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import type { DaemonHarnessPort } from '../../../lib/runtime-client/daemon-harness-port';
 import { listAgentRoster, selectDirectChatPersonas, assertDirectChatPersona } from '../../../lib/harness/agent-roster';
 import { getPermissionBroker } from '../../../lib/harness/permission-broker';
@@ -9,7 +9,7 @@ import { buildHarnessRuntimeFingerprint } from '../../../lib/harness/runtime-fin
 import { scaffoldExecutionRoot } from '../../../lib/harness/scaffold';
 import { replayHarnessEvents } from '../../../lib/harness/session-events';
 import { assertProjectRootAccessible } from '../../../lib/harness/session-manager';
-import { deriveTranscriptView } from '@chirality/harness-contract/transcript-replay';
+import { deriveTranscriptView } from '@chirality/runtime-contracts/transcript-replay';
 import { CHAT_SECTION } from '../../../lib/shell/loop-first';
 
 /**

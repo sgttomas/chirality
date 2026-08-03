@@ -1,0 +1,114 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 5
+  },
+  "counts": {
+    "category": {
+      "ENVIRONMENT": 4,
+      "EXECUTION": 2,
+      "FAN_IN": 2,
+      "OBSERVATION": 1,
+      "ORCHESTRATION": 6,
+      "VERIFICATION": 4
+    },
+    "event_type": {
+      "CHECK": 4,
+      "FINISH": 5,
+      "MILESTONE": 1,
+      "REMEDIATION": 2,
+      "RETRY": 2,
+      "START": 5
+    },
+    "outcome": {
+      "BLOCKED": 1,
+      "PASS": 10,
+      "RETRY": 2,
+      "STARTED": 6
+    },
+    "reason_code": {
+      "ACCEPT_FAN_IN": 1,
+      "CLOSEOUT_EVIDENCE_CLASSIFIED": 1,
+      "DAPP86_FRESH_FANIN_VERIFICATION": 1,
+      "DAPP86_FRESH_FANIN_VERIFICATION_RETRY": 1,
+      "DAPP86_OPTION_A": 1,
+      "DAPP86_OPTION_A_FANIN_COMPLETE": 1,
+      "DAPP86_PARITY_EVIDENCE": 1,
+      "DAPP86_PARITY_EVIDENCE_ACCEPTED": 1,
+      "DEPENDENCY_PROJECTION_RESTORED": 1,
+      "FRESH_CONCISE_VERIFIER": 1,
+      "FRESH_VERIFIER_ACCEPTED": 1,
+      "LATE_ARTIFACT_EXCLUDED": 1,
+      "LATE_VERIFIER_ARTIFACT_REVIEW": 1,
+      "LOCKED_MAC_CDP_FALLBACK": 1,
+      "RETURN_COMPOSITION_STALL": 1,
+      "REVERSIBLE_DEPENDENCY_PROJECTION": 1,
+      "TELEMETRY_OUTCOME_ENUM_CORRECTED": 1,
+      "VALIDATION_DEPENDENCY_PROJECTION": 1,
+      "VALIDATION_PROJECTION_RESTORED": 1
+    }
+  },
+  "events": 19,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 2501.669,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PARITY-EXECUTOR-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 1,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SESSION-A2-PARITY-EXECUTOR-01"
+    },
+    {
+      "duration_seconds": 765.899,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PARITY-VERIFIER-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SESSION-A2-PARITY-VERIFIER-01"
+    },
+    {
+      "duration_seconds": 624.987,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PARITY-VERIFIER-02",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SESSION-A2-PARITY-VERIFIER-02"
+    },
+    {
+      "duration_seconds": 3902.046,
+      "events": 9,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-DAPP86-A",
+      "package_id": "PKG-09",
+      "remediations": 2,
+      "retries": 1,
+      "role": "WORKING_ITEMS",
+      "session_id": "SESSION-WI-PKG09-DAPP86-A"
+    },
+    {
+      "duration_seconds": 0.037,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-DAPP86-A",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SESSION-WI-PKG09-DAPP86-A-CLOSEOUT"
+    }
+  ],
+  "sessions": 5,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

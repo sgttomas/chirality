@@ -2,9 +2,9 @@ import { randomUUID } from 'node:crypto';
 import { mkdir, readdir, readFile, rm, stat, writeFile, access } from 'node:fs/promises';
 import { constants as fsConstants } from 'node:fs';
 import path from 'node:path';
-import { HarnessError } from '@chirality/harness-contract/errors';
+import { HarnessError } from '@chirality/runtime-contracts/errors';
 import { instructionRootContainsPath, resolveInstructionRootPath } from './instruction-root';
-import { ISessionManager, SessionCreateRequest, SessionRecord } from '@chirality/harness-contract/types';
+import { ISessionManager, SessionCreateRequest, SessionRecord } from '@chirality/runtime-contracts/types';
 
 const DEFAULT_PERSONA = 'WORKING_ITEMS';
 const DEFAULT_MODE = 'direct';

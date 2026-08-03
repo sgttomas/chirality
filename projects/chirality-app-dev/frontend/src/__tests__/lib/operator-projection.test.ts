@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { SessionRecord } from '@chirality/harness-contract/types';
+import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import {
   buildOperatorSessionProjection,
   projectOperatorSession

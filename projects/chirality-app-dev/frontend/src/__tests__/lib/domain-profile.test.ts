@@ -17,7 +17,7 @@ import {
   OPERATION_PROPOSAL_LIFECYCLE_STATES,
   OPERATION_PROPOSAL_RISK_CLASSES,
   type DomainEngineProfile
-} from '@chirality/harness-contract';
+} from '@chirality/runtime-contracts';
 
 function validProfile(): DomainEngineProfile {
   return {

@@ -1,11 +1,11 @@
 import { createHash } from 'node:crypto';
-import type { EngineAdapterSubject } from '@chirality/harness-contract/agent-engine-port';
-import type { HarnessEventType } from '@chirality/harness-contract/event-schema';
+import type { EngineAdapterSubject } from '@chirality/runtime-contracts/agent-engine-port';
+import type { HarnessEventType } from '@chirality/runtime-contracts/event-schema';
 import type {
   GovernanceGateId,
   SubagentGovernanceDecision
 } from './subagent-governance';
-import type { ResolvedOpts, SessionRecord } from '@chirality/harness-contract/types';
+import type { ResolvedOpts, SessionRecord } from '@chirality/runtime-contracts/types';
 
 export const AGENT_SUBAGENT_CONTRACT_VERSION = 1 as const;
 

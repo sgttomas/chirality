@@ -4,6 +4,18 @@
 
 ## Decisions And Evidence
 
+- 2026-08-03 - D-APP-86 Option A derivative evidence now discharges the
+  packaged Desktop smoke residual only for guarded recorded-session selection.
+  In the accepted packaged run, the primary Dialogue remained mounted, both
+  visible session rows were disabled, and `selectedSessionId` stayed `null`
+  while the primary turn ran; after completion the navigator selected recorded
+  session `e2c32024-fa62-48d5-b27a-d8637080d2c3`. The evidence does not prove
+  broader persona/matrix routing, domain-target behavior, release, lifecycle
+  closure, or parent/child attribution. A later accepted and landed D-APP-88
+  distinct-helper implementation remains a mandatory, non-blocking parity
+  rerun trigger. See
+  `_run_records/R3_DAPP86_PARITY_POINTER_2026-08-03.md`; lifecycle remains
+  `IN_PROGRESS` and the Checking Approval SHA is unchanged.
 - 2026-08-02 - The accepted `[data-legacy]` hook was repaired at its semantic
   owner, `WovenDialogueRoute`, rather than weakened or deleted from the test.
   The legacy branch now supplies exactly one layout-neutral

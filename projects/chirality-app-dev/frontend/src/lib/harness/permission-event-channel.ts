@@ -1,4 +1,4 @@
-import type { HarnessEvent } from '@chirality/harness-contract/event-schema';
+import type { HarnessEvent } from '@chirality/runtime-contracts/event-schema';
 
 /**
  * A session-scoped, in-process channel for harness events that are produced
