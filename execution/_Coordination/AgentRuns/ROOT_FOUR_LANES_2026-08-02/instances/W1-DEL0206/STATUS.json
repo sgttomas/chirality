@@ -1,0 +1,15 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "instance_id": "W1-DEL0206",
+  "role": "WORKING_ITEMS",
+  "status": "HELD_AT_N0",
+  "package_id": "PKG-02",
+  "selected_deliverables": ["DEL-02-06"],
+  "child_returns_accepted": 0,
+  "runtime_implementation": false,
+  "client_writes": false,
+  "lifecycle_change": false,
+  "closure_claimed": false,
+  "next_owner_action": "Disposition missing accepted-input packet and route the separately gated PRD/decomposition acceptance-status reconciliation identified by S1, then rerun fresh N0"
+}

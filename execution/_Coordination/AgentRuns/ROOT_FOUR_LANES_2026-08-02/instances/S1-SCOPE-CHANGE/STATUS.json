@@ -1,0 +1,33 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 2,
+  "instance_id": "S1-SCOPE-CHANGE",
+  "role": "SCOPE_CHANGE",
+  "status": "BLOCKED_AT_GATE_1",
+  "terminal": true,
+  "amendment_id": "SCA-003",
+  "gate_reached": 1,
+  "gate_1_confirmed": false,
+  "parsed_actions": 0,
+  "provisional_disposition": "NO_DECOMPOSITION_AMENDMENT_CURRENTLY_SHOWN",
+  "audit": {
+    "structural_coverage": "PASS",
+    "authority_state_consistency": "FAIL",
+    "closure_readiness": "FAIL",
+    "blockers": 1,
+    "warnings": 0,
+    "info": 14,
+    "return_sha256": "3d2a09dd35da0c26bc87a1e156c7b1a5e35fd7875ff9a39d4294b8d6a369a868"
+  },
+  "authoritative_writes": 0,
+  "foreign_loop_writes": 0,
+  "register_writes": 0,
+  "git_writes": 0,
+  "blockers": [
+    "Live decomposition v1.2 self-labels SCA-002 candidate/unaccepted while accepted-state records prove accepted/applied",
+    "Live PRD header/document-control candidate labels conflict with the Root handoff and D-8 adopted Revision-8 state",
+    "Owner Gate-1 confirmation has not been given against the zero-action/no-change parse"
+  ],
+  "next_owner": "HELP_HUMAN_TO_OWNER_FOR_BASIS_RECONCILIATION_AND_GATE_1_DECISION"
+}

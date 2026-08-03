@@ -2579,3 +2579,53 @@ amendment; owner ruling required).
   PR #478 facts in canonical current-state surfaces. Its own future source,
   checks, and merge identity cannot be self-recorded here; they belong in that
   follow-up PR's ordinary closeout comment after those acts occur.
+
+### Receipt 86 — 2026-08-02 — Four owner-authorized Root lanes opened; three stop at human gates
+
+- **Parent and posture:** Receipt 85. The general Root loop remains in the idle
+  standing posture; four separately owner-authorized lanes do not select a
+  broader production phase.
+- **Owner direction:** open the TM-ROOT-107 SCOPE_CHANGE intake; take the
+  TM-ROOT-108 accepted-turn recovery concern through the DEL-02-06
+  amendment/activation lane; wire TM-ROOT-110's existing G4 diff-mode check
+  into CI; and commission TM-ROOT-106's Pi `0.82.0` concordance/supply-chain
+  validation. Task Management row closures remain outside this session and
+  the owner retains the merge gate.
+- **Managed run:** `execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/`
+  records HELP_HUMAN plan v3, the mixed work graph, sealed Agent 1 briefs,
+  bounded Agent 2 returns, validated manager returns, and the current handoff.
+- **SCOPE_CHANGE:** SCA-003 Gate-1 preparation verifies both exact inputs and
+  provisionally finds zero decomposition actions because current carriers are
+  sufficient. It stops at Gate 1: current-facing Root PRD and decomposition
+  acceptance labels contradict D-8/SCA-002 accepted-state records and require
+  a separately gated metadata-only reconciliation before the baseline can be
+  rerun.
+- **DEL-02-06:** the first REQ-027 planning activation is `HELD_AT_N0`. Its
+  durable recovery plan specifies startup-barrier, idempotence,
+  exactly-one-terminal, drain-accounting, fail-closed history, no-replay, and
+  restart/replay evidence requirements. Six mandatory accepted-input artifacts
+  are absent, the same basis-label conflicts block currency, and the
+  interrupted N0 child is rejected. No runtime or client byte changed.
+- **G4:** the governance-harness workflow now supplies the PR base or
+  push-before SHA through HEAD and accepts candidate coverage only from newly
+  added manifests while preserving whole-corpus schema validation. Focused
+  positive/negative proof passes 6/6, the validation suite passes 311/311, and
+  live schema validation sees 26 valid manifests. Hosted PR CI remains the
+  authoritative rerun.
+- **Pi evaluation:** exact 0.82.0 dependency closure, 140/140 HTTPS/SRI/cached
+  byte checks, static lifecycle policy, fresh supply verification, and current
+  source regression pass. The evaluation recommends retaining 0.82.0 as the
+  D-APP-84 V1 preferred candidate under evidence hold, not approving it:
+  canonical adapter identity, current package/native/WASM production-route
+  proof, live proof, complete notices, Electron prerequisite reconciliation,
+  Root decision, and App supersession remain open.
+- **Checks and preservation:** candidate whitespace, JSON parsing,
+  `git diff --check`, focused G4 proof, all 311 validation tests, live G4
+  schema validation, SOW_V1 validation, and manager write-containment checks
+  pass. No Task Management register, authoritative decomposition, `_LATEST`,
+  App/Piping content, lifecycle, release, reliance, commit, push, PR, or merge
+  effect occurs in this receipt.
+- **Gate outcome:** `OPEN_AT_HUMAN_DECISIONS`. The exact decisions and rerun
+  requirements are in the run handoff. CHANGE may publish this coherent
+  candidate to an open PR under the standing closeout policy; merge remains a
+  later owner act.

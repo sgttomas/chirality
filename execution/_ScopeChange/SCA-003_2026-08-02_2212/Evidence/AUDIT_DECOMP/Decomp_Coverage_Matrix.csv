@@ -1,0 +1,5 @@
+ProductionUnitID,PartitionID,ConcreteProductionUnitLabel,ConcretePartitionLabel,FolderExists,ContextPresent,ContextMatch,ArtifactCoverage,ObjectivesMapped,LifecycleState,IssueCount
+DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls,PKG-02_Operative_Instruction_Surface_and_Runtime_Layers,Deliverable,Package,true,true,MATCH,0/3,1/1,INITIALIZED,3
+DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,PKG-02_Operative_Instruction_Surface_and_Runtime_Layers,Deliverable,Package,true,true,MATCH,0/5,4/4,INITIALIZED,5
+DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance,PKG-03_Governed_Execution_Structure_and_Root_Containment,Deliverable,Package,true,true,MATCH,0/3,2/2,INITIALIZED,3
+DEL-06-04_Downward_Variant_Service_and_Non_Weakening,PKG-06_Self_Application_Variants_and_Release,Deliverable,Package,true,true,MATCH,0/3,2/2,INITIALIZED,3

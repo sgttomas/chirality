@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 3,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "basis": "97678a841ef58345c73d3470ed8de57c9b1405d2",
+  "nodes": [
+    {"id":"C0","role":"CHANGE","status":"COMPLETE","depends_on":[],"write_scope":[]},
+    {"id":"S1","role":"SCOPE_CHANGE","status":"BLOCKED_AT_GATE_1","depends_on":["C0"],"write_scope":["execution/_ScopeChange/"]},
+    {"id":"W1","role":"WORKING_ITEMS","status":"HELD_AT_N0","depends_on":["C0"],"write_scope":["execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/"]},
+    {"id":"H1","role":"HELPS_HUMANS","status":"COMPLETE_READY_FOR_CI","depends_on":["C0"],"write_scope":[".github/workflows/","tools/validation/","docs/governance_harness/","execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H1-G4-CI/"]},
+    {"id":"E1","role":"EVALUATION","status":"COMPLETE_HOLD_FOR_OWNER_DECISION","depends_on":["C0"],"write_scope":["execution/_Evaluation/","execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/E1-PI082/"]},
+    {"id":"C1","role":"CHANGE","status":"READY_FOR_OPEN_PR_CLOSEOUT","depends_on":["S1","W1","H1","E1"],"write_scope":["git closeout","execution/_Change/"]}
+  ],
+  "holds": [
+    {"id":"HOLD-W1-IMPLEMENTATION","node":"W1","condition":"No runtime implementation before the applicable SCOPE_CHANGE and separately sealed implementation-activation gates."},
+    {"id":"HOLD-PI-DECISION","node":"E1","condition":"Pi 0.82.0 approval remains a human decision after evidence fan-in."},
+    {"id":"HOLD-MERGE","node":"C1","condition":"PR merge remains the owner's Git gate."}
+  ],
+  "integration_owner": "C1",
+  "register_writes_authorized": false
+}

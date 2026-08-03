@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "run_id": "DEL-02-06-RUNTIME-SPEC-001",
+  "plan_version": 2,
+  "selection_authority": "HUMAN",
+  "package_id": "PKG-02",
+  "selected_deliverables": ["DEL-02-06"],
+  "posture": "MIXED",
+  "basis": "97678a841ef58345c73d3470ed8de57c9b1405d2",
+  "integration_owner": "N4",
+  "nodes": [
+    {"id":"N0","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"INTERRUPTED_REJECTED","objective":"basis and currency proof","depends_on":[],"write_scope":["basis/"]},
+    {"id":"N1","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"HELD_FOR_N0","objective":"current accepted-turn and recovery-surface inventory","depends_on":["N0"],"write_scope":["inventory/"]},
+    {"id":"N2","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"HELD_FOR_N0","objective":"read-only affected-client census","depends_on":["N0"],"write_scope":["clients/"]},
+    {"id":"N3","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"HELD_FOR_N0","objective":"recovery, replay, drain and exactly-one-terminal evidence design","depends_on":["N0"],"write_scope":["evidence/"]},
+    {"id":"N4","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"HELD_FOR_FAN_IN","objective":"integrate exact no-implementation recovery specification and change plan","depends_on":["N1","N2","N3"],"write_scope":["integration/"]},
+    {"id":"N5","form":"FRESH_EPHEMERAL_AGENT_2_GENERALIST","status":"HELD_FOR_N4","objective":"read-only adversarial refutation","depends_on":["N4"],"write_scope":[]},
+    {"id":"N6","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"HELD_FOR_N5","objective":"owner-gate handoff assembly","depends_on":["N5"],"write_scope":["handoff/"]}
+  ],
+  "edges": [
+    ["N0","N1"], ["N0","N2"], ["N0","N3"],
+    ["N1","N4"], ["N2","N4"], ["N3","N4"],
+    ["N4","N5"], ["N5","N6"]
+  ],
+  "concurrency": {
+    "eligible_after_n0": ["N1", "N2", "N3"],
+    "write_overlap": false,
+    "serialized_nodes": ["N4", "N5", "N6"]
+  },
+  "holds": [
+    {"id":"HOLD-N0-DRIFT","condition":"Any basis/source/profile/dependency/write-containment failure holds N1 through N6."},
+    {"id":"HOLD-S1","condition":"No executable amendment before applicable S1 scope-change disposition."},
+    {"id":"HOLD-IMPLEMENTATION","condition":"No runtime or client byte may change without a later sealed implementation activation and lawful Root software-workflow profile/check set."},
+    {"id":"HOLD-LIFECYCLE","condition":"No lifecycle transition is authorized."},
+    {"id":"HOLD-RELEASE","condition":"No release or reliance act is authorized."}
+  ],
+  "fan_in_gates": {
+    "N0_to_discovery": "all N0 checks PASS with exact evidence; otherwise hold",
+    "N1_N2_N3_to_N4": "all three terminal returns accepted and non-contradictory",
+    "N4_to_N5": "exact candidates and open-item map exist; no implementation bytes",
+    "N5_to_N6": "all material findings dispositioned without verifier repair",
+    "N6_to_owner": "manifest, hashes, blockers, reruns, and exact next gate complete"
+  },
+  "escalation_points": [
+    "basis or relied-source drift",
+    "missing authoring-envelope input",
+    "actual-client classification without accepted obligation",
+    "need for an undeclared dependency",
+    "need for runtime/client write authority",
+    "need for a Root software-workflow profile or registered checks",
+    "semantic choice about recovery terminal state or replay"
+  ],
+  "telemetry": {
+    "required": false,
+    "reason": "single-deliverable bounded planning activation; not a multi-member migration batch or adopted long-running activation",
+    "context_occupancy": "NOT_EXPOSED"
+  }
+}
