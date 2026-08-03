@@ -203,6 +203,8 @@ def install_discovery(monkeypatch, tracked: list[str],
                       untracked: list[str] | None = None) -> None:
     classified = taskmgmt.classify_register_paths(tracked, untracked or [])
     monkeypatch.setattr(taskmgmt, "discover_registers", lambda root: classified)
+    archives = taskmgmt.classify_archive_paths(tracked, untracked or [])
+    monkeypatch.setattr(taskmgmt, "discover_archives", lambda root: archives)
 
 
 def run_federation(root: Path, invoking: str, out: Path | None = None):
@@ -557,6 +559,241 @@ class TestFederationNoticesAndPresentation:
         data = json.loads(first)
         assert all(item["before_sha256"] == item["after_sha256"]
                    for item in data["registers"])
+
+
+class TestDedupLoopIdentity:
+    """Regression for the cross-loop notice dedup false-negative: same-named
+    surfaces routed to different loops must never fold into one candidate."""
+
+    def test_loop_of_source(self):
+        assert taskmgmt.loop_of_source(
+            "execution/_Coordination/x.md") == "ROOT"
+        assert taskmgmt.loop_of_source(
+            "projects/app/execution/x.md") == "projects/app"
+        assert taskmgmt.loop_of_source(
+            "domains/handbook/file.md") == "domains/handbook"
+        assert taskmgmt.loop_of_source(
+            "_DomainEngines/pec/_TaskManagement/x.csv") == "_DomainEngines/pec"
+
+    def test_same_named_notices_in_different_loops_stay_distinct(
+            self, tmp_path):
+        for loop in ("alpha", "beta"):
+            co = tmp_path / "projects" / loop / "execution" / "_Coordination"
+            co.mkdir(parents=True)
+            (co / "NOTICE_SHARED.md").write_text("# shared\n", encoding="utf-8")
+        out = tmp_path / "out.json"
+        code, _ = taskmgmt.scan(tmp_path, tmp_path / "missing.csv", out)
+        assert code == 0
+        data = json.loads(out.read_text())
+        kept = [c for c in data["candidates"]
+                if c["class"] == "notice-not-in-ledger"]
+        assert {c["source"] for c in kept} == {
+            "projects/alpha/execution/_Coordination/NOTICE_SHARED.md",
+            "projects/beta/execution/_Coordination/NOTICE_SHARED.md",
+        }
+        assert data["dedup_dropped_copies"] == 0
+
+    def test_intra_loop_canonical_copy_still_folds(self, tmp_path):
+        co = tmp_path / "execution" / "_Coordination"
+        co.mkdir(parents=True)
+        (co / "NOTICE_STATUS_X.csv").write_text(
+            "NoticePath,AcknowledgementState\n"
+            "a/NOTICE_ONE.md,TRACKED_OPEN\n", encoding="utf-8")
+        ev = tmp_path / "execution" / "_Evaluation" / "SNAP"
+        ev.mkdir(parents=True)
+        (ev / "NOTICE_STATUS_X.csv").write_text(
+            (co / "NOTICE_STATUS_X.csv").read_text(), encoding="utf-8")
+        out = tmp_path / "out.json"
+        code, _ = taskmgmt.scan(tmp_path, tmp_path / "missing.csv", out)
+        assert code == 0
+        data = json.loads(out.read_text())
+        kept = [c for c in data["candidates"]
+                if c["class"] == "notice-tracked-open"]
+        assert len(kept) == 1
+        assert "_Coordination" in kept[0]["source"]
+        assert data["dedup_dropped_copies"] == 1
+
+
+ROOT_ARCHIVE = "execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv"
+
+
+class TestArchive:
+    def test_moves_closed_rows_and_is_idempotent(self, tmp_path):
+        reg = tmp_path / ROOT_REGISTER
+        write_register(reg, [
+            good_row(ActionItemID="TM-ROOT-001"),
+            closed_row("TM-ROOT-002"),
+            good_row(ActionItemID="TM-ROOT-003", Status="DEFERRED",
+                     Trigger="an event"),
+            closed_row("TM-ROOT-004"),
+        ])
+        code, lines = taskmgmt.archive_register(tmp_path, Path(ROOT_REGISTER))
+        assert code == 0, lines
+        live = list(csv.DictReader(open(reg, newline="", encoding="utf-8")))
+        assert [r["ActionItemID"] for r in live] == [
+            "TM-ROOT-001", "TM-ROOT-003"]
+        arch = tmp_path / ROOT_ARCHIVE
+        with open(arch, newline="", encoding="utf-8") as fh:
+            reader = csv.DictReader(fh)
+            assert reader.fieldnames == taskmgmt.CANONICAL_COLUMNS
+            archived = list(reader)
+        assert [r["ActionItemID"] for r in archived] == [
+            "TM-ROOT-002", "TM-ROOT-004"]
+        assert taskmgmt.validate_register(tmp_path, Path(ROOT_REGISTER))[0] == 0
+        assert taskmgmt.validate_register(tmp_path, Path(ROOT_ARCHIVE))[0] == 0
+        arch_bytes = arch.read_bytes()
+        code2, lines2 = taskmgmt.archive_register(tmp_path, Path(ROOT_REGISTER))
+        assert code2 == 0
+        assert "0 CLOSED row(s) moved" in lines2[0]
+        assert arch.read_bytes() == arch_bytes
+
+    def test_dry_run_moves_nothing(self, tmp_path):
+        reg = tmp_path / ROOT_REGISTER
+        write_register(reg, [closed_row("TM-ROOT-001")])
+        before = reg.read_bytes()
+        code, lines = taskmgmt.archive_register(
+            tmp_path, Path(ROOT_REGISTER), dry_run=True)
+        assert code == 0
+        assert "DRY-RUN" in lines[0]
+        assert "1 CLOSED row(s) would move" in lines[0]
+        assert reg.read_bytes() == before
+        assert not (tmp_path / ROOT_ARCHIVE).exists()
+
+    def test_refuses_invalid_live_register(self, tmp_path):
+        reg = tmp_path / ROOT_REGISTER
+        write_register(reg, [good_row(Status="IN_PROGRESS")])
+        before = reg.read_bytes()
+        code, lines = taskmgmt.archive_register(tmp_path, Path(ROOT_REGISTER))
+        assert code == 1
+        assert "REFUSED" in lines[0]
+        assert reg.read_bytes() == before
+
+    def test_refuses_archive_with_non_closed_row(self, tmp_path):
+        write_register(tmp_path / ROOT_REGISTER, [closed_row("TM-ROOT-001")])
+        write_register(tmp_path / ROOT_ARCHIVE, [
+            good_row(ActionItemID="TM-ROOT-002")])
+        code, lines = taskmgmt.archive_register(tmp_path, Path(ROOT_REGISTER))
+        assert code == 1
+        assert "non-CLOSED" in "\n".join(lines)
+
+    def test_refuses_duplicate_id_across_live_and_archive(self, tmp_path):
+        write_register(tmp_path / ROOT_REGISTER, [closed_row("TM-ROOT-001")])
+        write_register(tmp_path / ROOT_ARCHIVE, [closed_row("TM-ROOT-001")])
+        code, lines = taskmgmt.archive_register(tmp_path, Path(ROOT_REGISTER))
+        assert code == 1
+        assert "both" in "\n".join(lines)
+
+    def test_operational_on_missing_register(self, tmp_path):
+        code, lines = taskmgmt.archive_register(tmp_path, Path(ROOT_REGISTER))
+        assert code == 2
+
+    def test_cli(self, tmp_path, monkeypatch, capsys):
+        write_register(tmp_path / ROOT_REGISTER, [closed_row("TM-ROOT-001")])
+        monkeypatch.setattr(taskmgmt, "repo_root", lambda: tmp_path)
+        assert taskmgmt.main([
+            "archive", "--register", ROOT_REGISTER]) == 0
+        assert "archive COMPLETE" in capsys.readouterr().out
+        assert (tmp_path / ROOT_ARCHIVE).is_file()
+
+
+class TestFederationArchive:
+    def test_archive_lookalike_exclusions(self):
+        canonical, exclusions = taskmgmt.classify_archive_paths(
+            [ROOT_ARCHIVE, "tools/fixture/_TaskManagement/REGISTER_CLOSED.csv"],
+            ["scratch/_TaskManagement/REGISTER_CLOSED.csv"])
+        assert canonical == [ROOT_ARCHIVE]
+        assert {item["path"] for item in exclusions} == {
+            "tools/fixture/_TaskManagement/REGISTER_CLOSED.csv",
+            "scratch/_TaskManagement/REGISTER_CLOSED.csv",
+        }
+
+    def test_archived_rows_resolve_links_counts_and_zero_write(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [
+            good_row(ActionItemID="TM-ROOT-001"),
+            good_row(ActionItemID="TM-ROOT-003", Status="DEFERRED",
+                     Trigger="an event"),
+        ])
+        write_register(tmp_path / ROOT_ARCHIVE, [closed_row("TM-ROOT-002")])
+        write_register(tmp_path / APP_REGISTER, [
+            good_row(ActionItemID="TM-APP-001", SourceRef="TM-ROOT-002")])
+        install_discovery(
+            monkeypatch, [ROOT_REGISTER, ROOT_ARCHIVE, APP_REGISTER])
+        code, lines, data = run_federation(tmp_path, ROOT_REGISTER)
+        assert code == 0, lines
+        classes = {item["class"] for item in data["findings"]}
+        assert "FOREIGN_LINK_TO_LOCAL" in classes
+        assert "LOCAL_CLOSED_REMOTE_OPEN" in classes
+        assert "ORPHANED_LINK" not in classes
+        root_entry = next(item for item in data["registers"]
+                          if item["path"] == ROOT_REGISTER)
+        assert root_entry["status_counts"] == {
+            "OPEN": 1, "DEFERRED": 1, "ELEVATED": 0, "CLOSED": 0}
+        assert root_entry["archive_path"] == ROOT_ARCHIVE
+        assert root_entry["archive_tracked"] is True
+        assert root_entry["archive_row_count"] == 1
+        assert root_entry["archive_validation"] == "PASS"
+        assert (root_entry["archive_before_sha256"]
+                == root_entry["archive_after_sha256"])
+        assert data["zero_write_proof"]["register_writes"] == 0
+        assert any(
+            "ROOT: OPEN=1 DEFERRED=1 ELEVATED=0 CLOSED=0; archived=1" in line
+            for line in lines)
+
+    def test_untracked_archive_sibling_still_attaches(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [
+            good_row(ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / ROOT_ARCHIVE, [closed_row("TM-ROOT-002")])
+        install_discovery(monkeypatch, [ROOT_REGISTER])
+        code, lines, data = run_federation(tmp_path, ROOT_REGISTER)
+        assert code == 0, lines
+        root_entry = next(item for item in data["registers"]
+                          if item["path"] == ROOT_REGISTER)
+        assert root_entry["archive_row_count"] == 1
+        assert root_entry["archive_tracked"] is False
+
+    def test_non_closed_archive_row_is_invalid_and_partial(
+            self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [
+            good_row(ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / ROOT_ARCHIVE, [
+            good_row(ActionItemID="TM-ROOT-002")])
+        install_discovery(monkeypatch, [ROOT_REGISTER, ROOT_ARCHIVE])
+        code, lines, data = run_federation(tmp_path, ROOT_REGISTER)
+        assert code == 1, lines
+        assert data["coverage"] == "PARTIAL"
+        assert any(item["class"] == "INVALID_REGISTER"
+                   and ROOT_ARCHIVE in item["register_paths"]
+                   for item in data["findings"])
+
+    def test_output_may_not_alias_an_archive(self, tmp_path, monkeypatch):
+        write_register(tmp_path / ROOT_REGISTER, [
+            good_row(ActionItemID="TM-ROOT-001")])
+        write_register(tmp_path / ROOT_ARCHIVE, [closed_row("TM-ROOT-002")])
+        install_discovery(monkeypatch, [ROOT_REGISTER, ROOT_ARCHIVE])
+        code, lines = taskmgmt.federation(
+            tmp_path, Path(ROOT_REGISTER), tmp_path / ROOT_ARCHIVE)
+        assert code == 2
+        assert "resolves to a register surface" in "\n".join(lines)
+
+    def test_scan_known_refs_include_archived_rows(self, tmp_path):
+        au = tmp_path / "projects" / "p" / "_audit"
+        au.mkdir(parents=True)
+        (au / "X_TBD_Register.csv").write_text(
+            "TBDID,Question\nTBD-1,how\n", encoding="utf-8")
+        reg = tmp_path / "REGISTER.csv"
+        write_register(reg, [good_row()])
+        write_register(reg.parent / "REGISTER_CLOSED.csv", [closed_row(
+            "TM-TEST-009",
+            SourceRef="projects/p/_audit/X_TBD_Register.csv row TBD-1")])
+        out = tmp_path / "out.json"
+        code, _ = taskmgmt.scan(tmp_path, reg, out)
+        assert code == 0
+        data = json.loads(out.read_text())
+        tbd = [c for c in data["candidates"]
+               if c["class"] == "tbd-register-row"]
+        assert tbd and tbd[0]["known_to_register"] is True
 
 
 class TestFederationCliCompatibility:
