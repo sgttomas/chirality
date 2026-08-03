@@ -22,13 +22,30 @@ tool validates form and harvests candidates, never makes the call):
                                Read-only federation survey of every tracked,
                                canonical register. Exit 0 COMPLETE, 1 PARTIAL,
                                2 operational.
+  archive [--register PATH] [--dry-run]
+                               Relocate rows already CLOSED by an owner-ruled
+                               disposition from the live register into its
+                               sibling REGISTER_CLOSED.csv archive. Mechanical
+                               storage layout only: the tool never closes,
+                               edits, reopens, or reorders a row, and refuses
+                               to run when either file fails validation. Exit
+                               0 on a completed (possibly zero-row) archive
+                               pass, 1 refused on validation BLOCK, 2
+                               operational.
 
 Scanner precision rules implemented (PRD §9.2): structured surfaces by
 filename/schema only — no free-text tree scanning; a declared exclusion
 set reported in every output; canonical-vs-copy dedup preferring
-`_Coordination/` originals over `_Evaluation/` copies; `TRACKED_OPEN`
-presented as open concern, never gating; no silent caps — whatever the
-scan skips, it says it skipped.
+`_Coordination/` originals over `_Evaluation/` copies, keyed within one
+loop so same-named surfaces routed to different loops never fold together;
+`TRACKED_OPEN` presented as open concern, never gating; no silent caps —
+whatever the scan skips, it says it skipped.
+
+Archive semantics: each canonical register may have a sibling
+`REGISTER_CLOSED.csv` holding relocated CLOSED rows. Archived rows remain
+part of the register's federated identity — ID resolution, duplicate
+detection, closure comparison, staleness base, and scan dedup memory all
+read live + archive — so archiving changes storage layout, never meaning.
 """
 
 from __future__ import annotations
@@ -46,6 +63,7 @@ DEFAULT_REGISTER = Path("execution/_Coordination/_TaskManagement/REGISTER.csv")
 DEFAULT_SCAN_OUT = Path(
     "execution/_Coordination/_TaskManagement/.candidates/scan.json"
 )
+ARCHIVE_NAME = "REGISTER_CLOSED.csv"
 
 CANONICAL_COLUMNS = [
     "RegisterSchemaVersion", "ActionItemID", "Title", "Concern", "SourceRef",
@@ -90,6 +108,14 @@ _CANONICAL_REGISTER_RES = (
     re.compile(
         r"^domains/[^/]+/execution/_Coordination/_TaskManagement/REGISTER\.csv$"),
     re.compile(r"^_DomainEngines/[^/]+/_TaskManagement/REGISTER\.csv$"),
+)
+_CANONICAL_ARCHIVE_RES = (
+    re.compile(r"^execution/_Coordination/_TaskManagement/REGISTER_CLOSED\.csv$"),
+    re.compile(
+        r"^projects/[^/]+/execution/_Coordination/_TaskManagement/REGISTER_CLOSED\.csv$"),
+    re.compile(
+        r"^domains/[^/]+/execution/_Coordination/_TaskManagement/REGISTER_CLOSED\.csv$"),
+    re.compile(r"^_DomainEngines/[^/]+/_TaskManagement/REGISTER_CLOSED\.csv$"),
 )
 
 # PRD §9.2 exclusion set — declared in configuration, reported in every output.
@@ -361,13 +387,31 @@ def scan_handoff_blockers(root: Path) -> list[dict]:
     return found
 
 
+def loop_of_source(source: str) -> str:
+    """Loop identity of a repo-relative source path.
+
+    `projects/<x>/...`, `domains/<x>/...`, and `_DomainEngines/<x>/...` belong
+    to that loop; everything else (`execution/...`) is the root loop.
+    """
+    parts = PurePosixPath(source).parts
+    if len(parts) > 1 and parts[0] in ("projects", "domains", "_DomainEngines"):
+        return f"{parts[0]}/{parts[1]}"
+    return "ROOT"
+
+
 def dedup_canonical(cands: list[dict]) -> tuple[list[dict], int]:
     """Canonical-vs-copy: prefer _Coordination/ paths over _Evaluation/ copies
-    sharing (source basename, class, id)."""
+    sharing (loop, source basename, class, id).
+
+    Loop identity is part of the key so same-named surfaces routed to
+    different loops (e.g., one NOTICE_*.md delivered to several coordination
+    surfaces) are never folded into one candidate; only true intra-loop
+    copies are."""
     by_key: dict[tuple, dict] = {}
     dropped = 0
     for cand in cands:
-        key = (PurePosixPath(cand["source"]).name, cand["class"], cand["id"])
+        key = (loop_of_source(cand["source"]),
+               PurePosixPath(cand["source"]).name, cand["class"], cand["id"])
         kept = by_key.get(key)
         if kept is None:
             by_key[key] = cand
@@ -382,13 +426,15 @@ def dedup_canonical(cands: list[dict]) -> tuple[list[dict], int]:
 def load_register_refs(root: Path, register: Path) -> set[str]:
     reg_path = register if register.is_absolute() else root / register
     refs: set[str] = set()
-    if not reg_path.is_file():
-        return refs
-    try:
-        for row in csv.DictReader(open(reg_path, newline="", encoding="utf-8")):
-            refs.add((row.get("SourceRef") or "").strip())
-    except (OSError, csv.Error):
-        pass
+    # Archived CLOSED rows stay part of the register's dedup memory.
+    for path in (reg_path, reg_path.parent / ARCHIVE_NAME):
+        if not path.is_file():
+            continue
+        try:
+            for row in csv.DictReader(open(path, newline="", encoding="utf-8")):
+                refs.add((row.get("SourceRef") or "").strip())
+        except (OSError, csv.Error):
+            pass
     return refs
 
 
@@ -449,6 +495,108 @@ def scan(root: Path, register: Path, out: Path) -> tuple[int, list[str]]:
     return 0, lines
 
 
+# ---------------------------------------------------------------- archive
+
+def status_counts(rows: list[dict]) -> dict[str, int]:
+    counts = {status: 0 for status in VALID_STATUS}
+    for row in rows:
+        status = (row.get("Status") or "").strip()
+        if status in counts:
+            counts[status] += 1
+    return counts
+
+
+def _status_counts_line(rows: list[dict]) -> str:
+    counts = status_counts(rows)
+    return " ".join(f"{status}={counts[status]}" for status in VALID_STATUS)
+
+
+def _write_rows(path: Path, rows: list[dict]) -> None:
+    with open(path, "w", newline="", encoding="utf-8") as fh:
+        writer = csv.DictWriter(
+            fh, fieldnames=CANONICAL_COLUMNS, quoting=csv.QUOTE_ALL,
+            lineterminator="\n", extrasaction="ignore", restval="")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def archive_register(root: Path, register: Path,
+                     dry_run: bool = False) -> tuple[int, list[str]]:
+    """Relocate CLOSED rows into the sibling REGISTER_CLOSED.csv archive.
+
+    Deterministic and judgment-free (PRD §9.3): a row moves only if it is
+    already CLOSED by an owner-ruled disposition recorded in the register.
+    The tool never closes, edits, reopens, or reorders rows, and fails
+    closed when the live register or the existing archive does not validate.
+    """
+    display = register.as_posix()
+    reg_path = register if register.is_absolute() else root / register
+    if not reg_path.is_file():
+        return 2, [f"taskmgmt archive OPERATIONAL (exit 2): no register at "
+                   f"{display}"]
+
+    code, val_lines = validate_register(root, register)
+    if code != 0:
+        return code, [f"taskmgmt archive REFUSED: live register {display} "
+                      "does not validate; nothing moved:"] + val_lines
+
+    _, live_rows = _read_register(reg_path)
+    archive_reg = register.parent / ARCHIVE_NAME
+    arch_path = reg_path.parent / ARCHIVE_NAME
+    archived_rows: list[dict] = []
+    if arch_path.is_file():
+        arch_code, arch_lines = validate_register(root, archive_reg)
+        if arch_code != 0:
+            return (arch_code if arch_code in (1, 2) else 2), [
+                f"taskmgmt archive REFUSED: existing archive "
+                f"{archive_reg.as_posix()} does not validate; nothing moved:",
+            ] + arch_lines
+        _, archived_rows = _read_register(arch_path)
+        not_closed = [
+            (row.get("ActionItemID") or "?").strip() for row in archived_rows
+            if (row.get("Status") or "").strip() != "CLOSED"
+        ]
+        if not_closed:
+            return 1, [
+                f"taskmgmt archive REFUSED: archive {archive_reg.as_posix()} "
+                f"contains non-CLOSED row(s) {not_closed}; an archive may "
+                "hold only owner-closed rows; nothing moved",
+            ]
+        overlap = ({(row.get("ActionItemID") or "").strip()
+                    for row in archived_rows}
+                   & {(row.get("ActionItemID") or "").strip()
+                      for row in live_rows})
+        if overlap:
+            return 1, [
+                "taskmgmt archive REFUSED: ActionItemID(s) present in both "
+                f"live register and archive: {sorted(overlap)}; resolve the "
+                "duplicate identity first; nothing moved",
+            ]
+
+    to_move = [row for row in live_rows
+               if (row.get("Status") or "").strip() == "CLOSED"]
+    remaining = [row for row in live_rows
+                 if (row.get("Status") or "").strip() != "CLOSED"]
+
+    action = "would move" if dry_run else "moved"
+    lines = [
+        f"taskmgmt archive {'DRY-RUN' if dry_run else 'COMPLETE'}: "
+        f"{len(to_move)} CLOSED row(s) {action} "
+        f"{display} -> {archive_reg.as_posix()}",
+        f"  live after: {_status_counts_line(remaining)} "
+        f"({len(remaining)} row(s)); archive total: "
+        f"{len(archived_rows) + len(to_move)}",
+        "  mechanical relocation only; closure itself remains the owner's "
+        "recorded act (K-TM-3), and archived rows stay part of the "
+        "register's federated identity",
+    ]
+    if dry_run or not to_move:
+        return 0, lines
+    _write_rows(arch_path, archived_rows + to_move)
+    _write_rows(reg_path, remaining)
+    return 0, lines
+
+
 # ------------------------------------------------------------- federation
 
 def _repo_relative(root: Path, path: Path) -> str:
@@ -463,6 +611,15 @@ def _is_canonical_register(path: str) -> bool:
 def _is_register_lookalike(path: str) -> bool:
     return path == "_TaskManagement/REGISTER.csv" or path.endswith(
         "/_TaskManagement/REGISTER.csv")
+
+
+def _is_canonical_archive(path: str) -> bool:
+    return any(pattern.fullmatch(path) for pattern in _CANONICAL_ARCHIVE_RES)
+
+
+def _is_archive_lookalike(path: str) -> bool:
+    return path == f"_TaskManagement/{ARCHIVE_NAME}" or path.endswith(
+        f"/_TaskManagement/{ARCHIVE_NAME}")
 
 
 def classify_register_paths(tracked: list[str], untracked: list[str]) -> tuple[list[str], list[dict]]:
@@ -497,6 +654,31 @@ def discover_registers(root: Path) -> tuple[list[str], list[dict]]:
     tracked = _git_paths(root)
     untracked = _git_paths(root, "--others", "--exclude-standard")
     return classify_register_paths(tracked, untracked)
+
+
+def classify_archive_paths(tracked: list[str], untracked: list[str]) -> tuple[list[str], list[dict]]:
+    """Classify archive paths; canonical archives sit beside canonical registers."""
+    canonical = sorted({p for p in tracked if _is_canonical_archive(p)})
+    exclusions = [
+        {"path": p,
+         "reason": "tracked archive path is outside sanctioned register shapes"}
+        for p in sorted(set(tracked))
+        if _is_archive_lookalike(p) and not _is_canonical_archive(p)
+    ]
+    exclusions.extend(
+        {"path": p,
+         "reason": "untracked archive lookalike outside sanctioned register shapes"}
+        for p in sorted(set(untracked))
+        if _is_archive_lookalike(p) and not _is_canonical_archive(p)
+    )
+    return canonical, exclusions
+
+
+def discover_archives(root: Path) -> tuple[list[str], list[dict]]:
+    """Return canonical tracked archives and explicitly excluded lookalikes."""
+    tracked = _git_paths(root)
+    untracked = _git_paths(root, "--others", "--exclude-standard")
+    return classify_archive_paths(tracked, untracked)
 
 
 def _sha256(path: Path) -> str:
@@ -607,10 +789,17 @@ def _public_register(entry: dict) -> dict:
         "namespace_basis": entry["namespace_basis"],
         "schema_version": entry["schema_version"],
         "row_count": entry["row_count"],
+        "status_counts": entry["status_counts"],
         "validation": entry["validation"],
         "validation_details": entry["validation_details"],
         "before_sha256": entry["before_sha256"],
         "after_sha256": entry["after_sha256"],
+        "archive_path": entry["archive_path"],
+        "archive_tracked": entry["archive_tracked"],
+        "archive_row_count": entry["archive_row_count"],
+        "archive_validation": entry["archive_validation"],
+        "archive_before_sha256": entry["archive_before_sha256"],
+        "archive_after_sha256": entry["archive_after_sha256"],
     }
 
 
@@ -638,7 +827,8 @@ def _output_register_collision(root: Path, out_path: Path,
         resolved_relative = resolved_out.relative_to(root.resolve()).as_posix()
     except ValueError:
         return None
-    if _is_register_lookalike(resolved_relative):
+    if (_is_register_lookalike(resolved_relative)
+            or _is_archive_lookalike(resolved_relative)):
         return resolved_relative
     return None
 
@@ -671,7 +861,16 @@ def federation(root: Path, register: Path, out: Path | None = None) -> tuple[int
         canonical_paths = []
         operational_errors.append({"stage": "discovery", "error": str(exc)})
 
-    collision = _output_register_collision(root, out_path, canonical_paths)
+    try:
+        canonical_archives, archive_exclusions = discover_archives(root)
+    except (OSError, subprocess.CalledProcessError) as exc:
+        canonical_archives, archive_exclusions = [], []
+        operational_errors.append(
+            {"stage": "discovery-archives", "error": str(exc)})
+    exclusions = exclusions + archive_exclusions
+
+    collision = _output_register_collision(
+        root, out_path, canonical_paths + canonical_archives)
     if collision is not None:
         return 2, [
             "taskmgmt federation OPERATIONAL (exit 2): output path resolves "
@@ -689,14 +888,19 @@ def federation(root: Path, register: Path, out: Path | None = None) -> tuple[int
         entry = {
             "path": rel_path, "namespace": None, "namespace_basis": "UNAVAILABLE",
             "schema_version": None, "row_count": None,
+            "status_counts": None,
             "validation": "UNREADABLE", "validation_details": [],
             "before_sha256": None, "after_sha256": None, "_rows": [],
+            "archive_path": None, "archive_tracked": False,
+            "archive_row_count": None, "archive_validation": None,
+            "archive_before_sha256": None, "archive_after_sha256": None,
         }
         try:
             entry["before_sha256"] = _sha256(abs_path)
             header, rows = _read_register(abs_path)
             entry["_rows"] = rows
             entry["row_count"] = len(rows)
+            entry["status_counts"] = status_counts(rows)
             versions = sorted({
                 (row.get("RegisterSchemaVersion") or "").strip()
                 for row in rows if (row.get("RegisterSchemaVersion") or "").strip()
@@ -736,6 +940,57 @@ def federation(root: Path, register: Path, out: Path | None = None) -> tuple[int
                 register_paths=[rel_path], evidence="; ".join(validation_lines)))
         else:
             entry["validation"] = "PASS"
+            archive_rel = (
+                PurePosixPath(rel_path).parent / ARCHIVE_NAME).as_posix()
+            archive_abs = root / archive_rel
+            if archive_abs.is_file():
+                entry["archive_path"] = archive_rel
+                entry["archive_tracked"] = archive_rel in canonical_archives
+                try:
+                    entry["archive_before_sha256"] = _sha256(archive_abs)
+                    arch_code, arch_lines = validate_register(
+                        root, Path(archive_rel))
+                    _, arch_rows = _read_register(archive_abs)
+                    entry["archive_row_count"] = len(arch_rows)
+                    not_closed = [
+                        (r.get("ActionItemID") or "?").strip()
+                        for r in arch_rows
+                        if (r.get("Status") or "").strip() != "CLOSED"
+                    ]
+                    if arch_code == 2:
+                        entry["archive_validation"] = "UNREADABLE"
+                        operational_errors.append({
+                            "stage": "archive-validation-read",
+                            "register": archive_rel,
+                            "error": "validator could not read archive",
+                        })
+                        findings.append(_finding(
+                            "UNREADABLE_REGISTER", invoking_register,
+                            register_paths=[archive_rel],
+                            evidence="; ".join(arch_lines)))
+                    elif arch_code == 1 or not_closed:
+                        entry["archive_validation"] = "BLOCK"
+                        evidence = "; ".join(arch_lines) if arch_code == 1 else (
+                            f"archive contains non-CLOSED row(s) {not_closed}; "
+                            "an archive may hold only owner-closed rows")
+                        findings.append(_finding(
+                            "INVALID_REGISTER", invoking_register,
+                            register_paths=[archive_rel], evidence=evidence))
+                    else:
+                        entry["archive_validation"] = "PASS"
+                        # Archived rows stay part of the register's federated
+                        # identity: ID index, links, closure comparison.
+                        entry["_rows"] = entry["_rows"] + arch_rows
+                except (OSError, UnicodeError, csv.Error) as exc:
+                    message = f"{type(exc).__name__}: {exc}"
+                    entry["archive_validation"] = "UNREADABLE"
+                    operational_errors.append({
+                        "stage": "archive-read", "register": archive_rel,
+                        "error": message,
+                    })
+                    findings.append(_finding(
+                        "UNREADABLE_REGISTER", invoking_register,
+                        register_paths=[archive_rel], evidence=message))
             namespace, basis = _infer_namespace(rel_path, entry["_rows"])
             entry["namespace"] = namespace
             entry["namespace_basis"] = basis
@@ -909,25 +1164,31 @@ def federation(root: Path, register: Path, out: Path | None = None) -> tuple[int
 
     changed_hashes = 0
     for entry in entries:
-        if entry["before_sha256"] is None:
-            continue
-        try:
-            entry["after_sha256"] = _sha256(root / entry["path"])
-        except OSError as exc:
-            operational_errors.append({
-                "stage": "post-survey-hash", "register": entry["path"],
-                "error": f"{type(exc).__name__}: {exc}",
-            })
-            continue
-        if entry["before_sha256"] != entry["after_sha256"]:
-            changed_hashes += 1
-            operational_errors.append({
-                "stage": "zero-write-proof", "register": entry["path"],
-                "error": "register SHA-256 changed during survey",
-            })
+        surfaces = [("path", "before_sha256", "after_sha256")]
+        if entry["archive_before_sha256"] is not None:
+            surfaces.append(
+                ("archive_path", "archive_before_sha256", "archive_after_sha256"))
+        for path_key, before_key, after_key in surfaces:
+            if entry[before_key] is None:
+                continue
+            try:
+                entry[after_key] = _sha256(root / entry[path_key])
+            except OSError as exc:
+                operational_errors.append({
+                    "stage": "post-survey-hash", "register": entry[path_key],
+                    "error": f"{type(exc).__name__}: {exc}",
+                })
+                continue
+            if entry[before_key] != entry[after_key]:
+                changed_hashes += 1
+                operational_errors.append({
+                    "stage": "zero-write-proof", "register": entry[path_key],
+                    "error": "register SHA-256 changed during survey",
+                })
 
     coverage_partial = any(
         entry["validation"] != "PASS" or entry["namespace"] is None
+        or entry["archive_validation"] not in (None, "PASS")
         for entry in entries
     ) or not canonical_paths
     coverage = "PARTIAL" if coverage_partial else "COMPLETE"
@@ -973,8 +1234,12 @@ def federation(root: Path, register: Path, out: Path | None = None) -> tuple[int
             "statement": (
                 "zero register writes occurred; every readable register hash matched"
                 if changed_hashes == 0 and all(
-                    entry["before_sha256"] == entry["after_sha256"]
-                    for entry in entries if entry["before_sha256"] is not None)
+                    entry[before] == entry[after]
+                    for entry in entries
+                    for before, after in (
+                        ("before_sha256", "after_sha256"),
+                        ("archive_before_sha256", "archive_after_sha256"))
+                    if entry[before] is not None)
                 else "zero register writes not proven"
             ),
         },
@@ -995,6 +1260,15 @@ def federation(root: Path, register: Path, out: Path | None = None) -> tuple[int
         f"{len(findings)} finding(s), {len(presented)} presented -> {display_out}",
         f"  coverage: {coverage}; register_writes: {changed_hashes}",
     ]
+    for entry in entries:
+        if entry["status_counts"] is None:
+            continue
+        label = entry["namespace"] or entry["path"]
+        counts = entry["status_counts"]
+        live = " ".join(f"{status}={counts[status]}" for status in VALID_STATUS)
+        archived = (f"; archived={entry['archive_row_count']}"
+                    if entry["archive_row_count"] is not None else "")
+        lines.append(f"  {label}: {live}{archived}")
     if coverage == "PARTIAL":
         lines.append("  PARTIAL coverage: do not infer global absence or closure.")
     for name in FEDERATION_FINDING_CLASSES:
@@ -1017,6 +1291,11 @@ def main(argv: list[str] | None = None) -> int:
     p_fed = sub.add_parser("federation", help="survey canonical registers")
     p_fed.add_argument("--register", type=Path, required=True)
     p_fed.add_argument("--out", type=Path)
+    p_arc = sub.add_parser(
+        "archive",
+        help="relocate owner-closed rows to the REGISTER_CLOSED.csv sibling")
+    p_arc.add_argument("--register", type=Path, default=DEFAULT_REGISTER)
+    p_arc.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
     try:
@@ -1029,6 +1308,8 @@ def main(argv: list[str] | None = None) -> int:
         code, lines = validate_register(root, args.register)
     elif args.command == "scan":
         code, lines = scan(root, args.register, args.out)
+    elif args.command == "archive":
+        code, lines = archive_register(root, args.register, args.dry_run)
     else:
         code, lines = federation(root, args.register, args.out)
     for line in lines:
