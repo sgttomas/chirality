@@ -43,7 +43,7 @@ Related cross-cutting row: `TM-ROOT-109`.
 | `execution/_Coordination/OWNER_INTENT_2026-08-02_PRODUCT_DELIVERY_DIRECTION.md` | `9bbb67556765c6c83d6a35a1ace297e4d693d5169281c620dc9b2673229c7e03` |
 | `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-84_RULING_PI_OMLX_AGENT2_CAPABILITY_EXPANSION_2026-08-02.md` | `f439c79e358ffaa1e30f897cd1be901195aa1b4b2a184e2c0465a8ee87461c58` |
 | `execution/_Coordination/_TaskManagement/REGISTER.csv` | `5d8c7b3833820f24b104776f78f3637ea9fad8bacf27fb98bddfb6053f89712d` |
-| `execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv` | `340e7aae2f2b999f1986dfa37ee4ae99d2703a600d48da77304c6a468c8ce558` |
+| `execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv` | `9957e6629170dc451a022d7ca42234453aff9cf86c463d8a2a27a7ffc3cd6d2f` |
 
 No reciprocal App register act is requested by this notice. App may continue
 to cite its inbound notices while Root rows remain open or deferred.

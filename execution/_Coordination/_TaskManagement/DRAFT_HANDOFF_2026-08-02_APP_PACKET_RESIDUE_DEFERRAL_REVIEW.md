@@ -62,4 +62,3 @@ immutable source packets and do not infer Root-row closure.
 
 That returned review would fire the Root triggers. Root closure would still
 require a separate Root owner ruling; this draft creates no such effect.
-

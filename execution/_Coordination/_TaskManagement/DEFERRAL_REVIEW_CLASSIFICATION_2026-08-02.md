@@ -104,7 +104,7 @@ bounded App invocation would fire all 20 Root triggers below.
 
 Draft handoff:
 `execution/_Coordination/_TaskManagement/DRAFT_HANDOFF_2026-08-02_APP_PACKET_RESIDUE_DEFERRAL_REVIEW.md`,
-SHA-256 `a51c331888c06adcd86391f3ee012f2edfad68b77aa8f0c6733a0ec0b2123b0b`.
+SHA-256 `22b5c94a790648aef3ecfb61663c4f9cceacd10707f5cb133a7ceb3c73e22fcf`.
 
 | Root row | Named instrument | Reciprocal App row | Classification |
 |---|---|---|---|
