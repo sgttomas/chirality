@@ -1,0 +1,29 @@
+{
+  "schema": "chirality-agent0-work-graph/v1",
+  "run_id": "PEC-DPEC77-78-20260802",
+  "version": 9,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "nodes": [
+    {"id": "N0", "manager": "HELP_HUMAN", "status": "COMPLETE", "dependencies": []},
+    {"id": "N1", "manager": "WORKING_ITEMS", "status": "COMPLETE", "dependencies": ["N0"]},
+    {"id": "N2", "manager": "TASK_MANAGEMENT", "status": "COMPLETE", "dependencies": ["N0"]},
+    {"id": "N3", "manager": "SCOPE_CHANGE", "status": "COMPLETE", "dependencies": ["N0"]},
+    {"id": "N4", "manager": "HELP_HUMAN", "status": "COMPLETE", "dependencies": ["N1", "N2", "N3"]},
+    {"id": "N5", "manager": "REVIEW", "status": "COMPLETE", "dependencies": ["N4"]},
+    {"id": "N6", "manager": "SCOPE_CHANGE", "status": "COMPLETE", "dependencies": ["N4"]},
+    {"id": "N7", "manager": "HELP_HUMAN", "status": "COMPLETE", "dependencies": ["N5", "N6"]},
+    {"id": "N8", "manager": "REVIEW", "status": "COMPLETE", "dependencies": ["N7"]},
+    {"id": "N9", "manager": "WORKING_ITEMS", "status": "COMPLETE", "dependencies": ["N7"]},
+    {"id": "N10", "manager": "SCOPE_CHANGE", "status": "COMPLETE", "dependencies": ["N7"]},
+    {"id": "N11", "manager": "HELP_HUMAN", "status": "COMPLETE", "dependencies": ["N8", "N9", "N10"]},
+    {"id": "N12", "manager": "REVIEW", "status": "COMPLETE", "dependencies": ["N11"]},
+    {"id": "N13", "manager": "SCOPE_CHANGE", "status": "COMPLETE", "dependencies": ["N11"]},
+    {"id": "N14", "manager": "HELP_HUMAN", "status": "COMPLETE", "dependencies": ["N12", "N13"]},
+    {"id": "N15", "manager": "WORKING_ITEMS", "status": "COMPLETE", "dependencies": ["N14"]},
+    {"id": "N16", "manager": "REVIEW", "status": "COMPLETE", "dependencies": ["N15"]},
+    {"id": "N17", "manager": "HELP_HUMAN", "status": "COMPLETE", "dependencies": ["N16"]}
+  ],
+  "shared_integration_owner": "HELP_HUMAN",
+  "source_production_state": "CANDIDATE_COMPLETE_REVIEW_HOLD_AT_INITIALIZED"
+}

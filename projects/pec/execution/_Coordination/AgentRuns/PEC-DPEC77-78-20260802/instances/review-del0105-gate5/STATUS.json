@@ -1,0 +1,13 @@
+{
+  "instance_id": "review-del0105-gate5",
+  "manager": "REVIEW",
+  "status": "COMPLETE",
+  "brief_version": 1,
+  "result": "GATE 5 HOLD RECORDED / INITIALIZED RETAINED / ZERO FINDINGS",
+  "gate_5_outcome": "HOLD",
+  "lifecycle": "INITIALIZED",
+  "status_sha256": "f7cb08a6e229b6195a239547c09b47f00cdccd73a723f93ea05a8cb25feae9d9",
+  "findings": 0,
+  "snapshot": "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1145",
+  "return": "projects/pec/execution/_Coordination/AgentRuns/PEC-DPEC77-78-20260802/instances/review-del0105-gate5/RETURN.md"
+}

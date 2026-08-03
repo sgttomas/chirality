@@ -1,0 +1,10 @@
+{
+  "instance_id": "working-items-del0105-phase2",
+  "manager": "WORKING_ITEMS",
+  "status": "COMPLETE",
+  "brief_version": 1,
+  "completed_fan_in_by": "HELP_HUMAN",
+  "result": "D-PEC-77 phase-2 candidate production complete; REVIEW and owner artifact-fitness gates open",
+  "accepted_return": true,
+  "return": "projects/pec/execution/_Coordination/AgentRuns/PEC-DPEC77-78-20260802/instances/working-items-del0105-phase2/RETURN.md"
+}

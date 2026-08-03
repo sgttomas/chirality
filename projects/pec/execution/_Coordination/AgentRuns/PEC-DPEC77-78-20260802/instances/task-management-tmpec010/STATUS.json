@@ -1,0 +1,8 @@
+{
+  "instance_id": "task-management-tmpec010",
+  "manager": "TASK_MANAGEMENT",
+  "status": "COMPLETE",
+  "brief_version": 1,
+  "result": "TM-PEC-010 closed RESOLVED_BY_DECISION and archived; TM-PEC-009 unchanged",
+  "return": "projects/pec/execution/_Coordination/AgentRuns/PEC-DPEC77-78-20260802/instances/task-management-tmpec010/RETURN.md"
+}

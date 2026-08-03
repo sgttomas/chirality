@@ -11,12 +11,16 @@
       "cwd": ".",
       "command": ["python3", "-m", "unittest", "discover", "-s", "v2/tests/config", "-p", "test_*.py"]
     },
+    "v2-core-posture": {
+      "cwd": ".",
+      "command": ["python3", "v2/tools/check_service_core_posture.py", "--config", "v2/config/service_core_posture.json", "--workflow", "software-workflow.json"]
+    },
     "harness-self-check": {
       "cwd": "../..",
       "command": ["python3", "tools/practitioner_harness/harness.py", "self-check"]
     }
   },
-  "always_checks": ["v2-api-contract", "harness-self-check"],
+  "always_checks": ["v2-api-contract", "v2-core-posture", "harness-self-check"],
   "path_rules": [
     {
       "paths": ["v2/contracts/api/**", "v2/tests/contracts/api/**", "software-workflow.json"],
@@ -25,6 +29,10 @@
     {
       "paths": ["v2/config/**", "v2/src/pec_v2/**", "v2/tests/config/**", "software-workflow.json"],
       "checks": ["v2-loop-registry"]
+    },
+    {
+      "paths": ["v2/src/pec_v2/core/**", "v2/config/service_core_posture.json", "v2/tools/check_service_core_posture.py", "v2/tests/enforcement/**", "v2/docs/SERVICE_CORE_POSTURE.md", "software-workflow.json"],
+      "checks": ["v2-core-posture"]
     },
     {
       "paths": ["execution/**", "docs/**", "AGENTS.md"],

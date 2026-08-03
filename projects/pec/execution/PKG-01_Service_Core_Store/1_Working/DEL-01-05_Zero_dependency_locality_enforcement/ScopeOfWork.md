@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-01-05
 package_id: PKG-01
-decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
+decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@11a494e9a
 project_scope_refs: [SOW-052, SOW-053]
 package_objective_refs: [OBJ-005]
 ---
@@ -17,12 +17,9 @@ It covers project scope items `SOW-052` and `SOW-053` in service of package
 objective `OBJ-005`.
 
 The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
-**revision 1.2** (`status: current_basis`, `SCA-002` successor accepted
-2026-07-25 under `D-PEC-64`, commit `3623b958b`). The deliverable-local
-`_REFERENCES.md` still names "revision 1.1, accepted working surface". That
-phrase is superseded provenance awaiting a deferred pointer sweep — `_CONTEXT.md`
-records revision 1.1 as "superseded by revision 1.2 (`current_basis`, SCA-002
-successor)" — and it is not the basis of this contract.
+**revision 1.3** (`status: current_basis`, `SCA-003` successor), accepted at
+commit `11a494e9ae0cca795aa460deec19b9eac4d922a8`. The deliverable-local
+`_REFERENCES.md` and `_CONTEXT.md` record the same current basis.
 
 **Standing character (load-bearing), and what authorizes it.** Everything below
 is written as a contract on a *continuing* enforcement behaviour: there is no
@@ -37,8 +34,8 @@ question of whether the enforcement carries release-gating authority is routed
 to the owner under CON-002 rather than assumed here.
 
 **Objective warrant.** The `DEL-01-05` → `OBJ-005` attribution is `SCA-002`-
-qualified and accepted at revision 1.2. It runs through the PRD §10 anchors of
-the two covered scope items: a service core with no third-party runtime
+qualified and remains accepted in revision 1.3. It runs through the PRD §10
+anchors of the two covered scope items: a service core with no third-party runtime
 dependency and no external network egress is a core that nothing outside PEC has
 to be present for, and nothing outside PEC has to reach out to. That is the
 deletability posture `OBJ-005` states.
@@ -67,12 +64,12 @@ anticipated artifacts are "CI/lint check + posture note"
 - **CLM-007** — It is a deliberate zero-edge node: `_DEPENDENCIES.md` declares "no upstream predecessors (root node)", `Dependencies.csv` (v3.1) holds only the three ANCHOR rows (`DEP-01-05-001` package anchor, `DEP-01-05-002` `SOW-052` trace, `DEP-01-05-003` `SOW-053` trace), and the gate exhibit records "DEL-01-05 (C-08 standing CI gate — deliberate)" among its zero-edge nodes. No accepted register edge names a consumer of this deliverable, because it gates releases rather than successors.
 - **CLM-008** — The enforced surface is `PKG-01`'s subject: "The zero-dependency service foundation: record- and presence-tier entity schemas, the gitignored store with ingest-boundary content-minimal enforcement, locality/no-egress posture, self-observability logging, loop-registration config" (`SOFTWARE_DECOMP.md` §Packages, row `PKG-01`).
 - **CLM-009** — The access posture the locality assertion must not contradict is `PEC-API-001`: "The service binds local-only, Unix socket by default, with token-scoped access; any loopback TCP listener is a §16 open decision in light of D-GOV-20's no-TCP-control-listener posture" (`PRD.md` §9.6; restated in the §8 "Users and access" description).
-- **CLM-010** — The deliverable is at lifecycle state `OPEN` (`_STATUS.md`) with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that any check, registration, or note has been built.
+- **CLM-010** — The deliverable is at lifecycle state `INITIALIZED` (`_STATUS.md`) with no DEL-01-05 implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that any check, registration, or note has been built.
 - **TBD-001** — `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation.
-- **TBD-002** — The concrete enforcement mechanism (which CI or lint system, its configuration file locations, and the on-disk home of the posture note) is not fixed by any accepted source. `Deliverables.csv` names the artifact class "CI/lint check + posture note" and nothing further; no accepted source names a CI system for the PEC v2 build.
-- **TBD-003** — The service core's toolchain and dependency-manifest format are not fixed by an accepted v2 source. The archived `ADR-002` text names one language across core/server/web, but the live carried form of that posture is `PEC-SVC-001` alone (`PRD.md` §13; re-citation of the carried posture is `DEL-00-01`'s scope under `SOW-088`, not this deliverable's).
-- **TBD-004** — The boundary between a *runtime* dependency and a build-, test-, or development-time dependency of the service core is not fixed by an accepted source; `PEC-SVC-001` constrains runtime dependencies only.
-- **TBD-005** — The precise module boundary of "the service core" follows the v2 core-isolation style, which is undecided: `OI-012` is dispositioned "Decided in DEL-00-01's ADR; owner review at that ADR" (`SOFTWARE_DECOMP.md` §Open Issues). The accepted register declares no edge from `DEL-00-01` to `DEL-01-05`; this contract records the information dependency without asserting a graph edge.
+- **TBD-002** — Resolved for this contract by D-PEC-77 O-A: the enforcement homes are `projects/pec/v2/config/service_core_posture.json`, `projects/pec/v2/tools/check_service_core_posture.py`, `projects/pec/v2/docs/SERVICE_CORE_POSTURE.md`, the three tests `projects/pec/v2/tests/enforcement/test_dependency_assertion.py`, `test_locality_assertion.py`, and `test_gate_registration.py`, their exact dependency and locality fixture files named in D-PEC-77 §3.2, and the additive `v2-core-posture` registration in `projects/pec/software-workflow.json`. No other CI, lint, configuration, test, documentation, or registration home is selected by this contract.
+- **TBD-003** — Resolved for this contract: the operative implementation posture is Python 3 plus the standard library. Workspace-internal runtime-contract packages are permitted only when explicitly enumerated in `service_core_posture.json`; the initial admitted set is empty, and there is no wildcard or implicit admission.
+- **TBD-004** — Resolved for this contract: a runtime dependency is an import reachable from a production Python module under the operative core target. Standard-library imports, PEC-local imports rooted at `projects/pec/v2/src`, and workspace-runtime-contract imports explicitly admitted by `service_core_posture.json` are excluded; build, test, and development imports outside the operative core target are not runtime dependencies.
+- **TBD-005** — Resolved for this contract: D-PEC-72 O-B and accepted `ADR-PEC-V2-001` resolve OI-012 to ports-and-adapters (hexagonal) isolation. The operative service-core target for this enforcement is exactly `projects/pec/v2/src/pec_v2/core/**`; adapter, transport, filesystem, Git, persistence, runtime-client, event, presentation, build, test, and development modules outside that target are not part of the evaluated core surface.
 - **CON-001** — API transport is an undecided owner question: `OI-009` / `SOW-083` (`InOutStatus` `TBD`, "Event-contract home ... and API transport (Unix socket only vs additional loopback listener)", `SourceRef` §16.9, ledger note "Fenced: PEC builds local-first either way"). A loopback listener is not external egress, and this contract neither authorizes nor forbids one. Constraint `C12` governs: the §16 open decisions "are not resolved by this decomposition; where one materially affects architecture the affected work is fenced or flagged, never guessed."
 - **CON-002** — Whether this deliverable's enforcement carries *release-gating authority* is unconfirmed. The `C-08` `STANDING_NODES` row that classifies it records "owner confirmation requested" in its own `Notes`, and `D-PEC-62` §1.4 accepted the standing-node set as a recorded-but-unresolved, non-gating annotation rather than ruling it (CLM-006). The mechanism this contract requires is designed to block and its verdicts are unambiguous; what is open is whether a blocking verdict binds a release candidate or is advisory. AC-011 routes that question to an accountable owner. This contract neither asserts the authority nor waives it, and no production choice may settle it.
 
@@ -138,9 +135,9 @@ not once at hand-over.
 - **AX-003** — The standing shape of this contract is brief-directed contract design, informed by the `C-08` annotation rather than derived from an owner ruling on it (CLM-006, CON-002). It governs how the obligations below are written: treating a passing run as completion would convert a continuing assertion into a one-shot artifact, which the wave brief's direction and the deliverable's own description ("Automated assertion") both refuse. It is not a claim that the gate has been ruled release-blocking; that question is CON-002, routed at AC-011.
 - **AX-004** — Constraint `C12` governs the fence: the §16 open owner decisions are not resolved here. CON-001 is recorded and fenced, not guessed, and `SOW-083` remains `TBD` in the ledger.
 - **AX-005** — `ADR-002` is a carried live posture whose re-citation belongs to `DEL-00-01` under `SOW-088`. This deliverable enforces the live service rule `PEC-SVC-001` and claims no ADR authority; decision-log entry `DL-12` keeps package mechanics one-way — packages publish, dependants consume, and no deliverable writes into another package.
-- **AX-006** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.2 at commit `3623b958b`, accepted through `SCA-002` under `D-PEC-64`. The revision 1.1 phrase in `_REFERENCES.md` is superseded provenance, not a competing authority.
-- **AX-007** — Unknowns remain marked. TBD-002 through TBD-005 and CON-001 are recorded rather than resolved by inference; in particular the service-core boundary follows the `OI-012` decision that is the owner's to make at `DEL-00-01`'s ADR.
-- **AX-008** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority, is untouched by the run that authored this document, and records `OPEN`; nothing here asserts that any enforcement exists.
+- **AX-006** — The accepted basis is `SOFTWARE_DECOMP.md` revision 1.3 at commit `11a494e9ae0cca795aa460deec19b9eac4d922a8`, accepted through SCA-003. The revision 1.2 basis is superseded provenance, not a competing authority.
+- **AX-007** — Unknowns remain marked. TBD-001 and CON-001 remain open. The TBD-002 through TBD-005 identifiers are retained for contract lineage but are resolved only to D-PEC-77's exact mechanism homes, Python-standard-library posture, runtime-dependency definition, operative core target, and D-PEC-72's accepted hexagonal boundary; no other unknown or OI-009 / SOW-083 is resolved by inference.
+- **AX-008** — This contract is lifecycle-neutral. `_STATUS.md` remains the sole lifecycle authority, is untouched by this repair, and records `INITIALIZED`; nothing here asserts that any enforcement exists.
 
 ## Output and Evaluation Matrix
 

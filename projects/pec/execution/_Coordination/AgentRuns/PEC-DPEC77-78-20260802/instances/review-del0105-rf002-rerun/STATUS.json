@@ -1,0 +1,12 @@
+{
+  "instance_id": "review-del0105-rf002-rerun",
+  "manager": "REVIEW",
+  "status": "COMPLETE",
+  "brief_version": 1,
+  "review_type": "INDEPENDENT_VERIFICATION",
+  "deliverable_id": "DEL-01-05",
+  "activation_sha256": "111203c7fb3da9d8efc8d95765e0ecce8cddeafbd59a61f71599ab6d9b26448e",
+  "rf_002": "RESOLVED",
+  "rf_001": "OPEN_PENDING_FINAL_MANIFEST_RESEAL",
+  "lifecycle_changed": false
+}

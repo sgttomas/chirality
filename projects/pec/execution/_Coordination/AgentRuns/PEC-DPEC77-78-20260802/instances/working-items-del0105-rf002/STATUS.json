@@ -1,0 +1,17 @@
+{
+  "instance_id": "working-items-del0105-rf002",
+  "manager": "WORKING_ITEMS",
+  "status": "COMPLETE",
+  "brief_version": 1,
+  "deliverable_id": "DEL-01-05",
+  "finding_id": "RF-002",
+  "accepted_return": true,
+  "product_write_containment": "PASS",
+  "enforcement_tests": {
+    "passed": 19,
+    "failed": 0
+  },
+  "live_posture": "PASS",
+  "review_rerun_required": true,
+  "lifecycle_effect": "NONE"
+}

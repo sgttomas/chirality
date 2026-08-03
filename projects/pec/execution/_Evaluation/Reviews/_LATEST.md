@@ -1,14 +1,15 @@
 # Latest review snapshot
 
-Latest: REV_DEL-01-06_2026-08-02_1118
-Updated: 2026-08-02
+Latest: REV_DEL-01-05_2026-08-03_1346
+Updated: 2026-08-03
 
-This snapshot records the owner's post-SELF_CHECK rulings for DEL-01-06:
-RF-001 is `DEFERRED` without waiving VER-005, and Gate 5 is `HOLD` at
-`INITIALIZED`. AC-001 through AC-004 pass; AC-005 and AC-006 remain partial and
-unsatisfied. When DEL-01-05 becomes available, RF-001 must be reopened and
-SELF_CHECK rerun with the mandatory DEL-01-05 enforcement evidence. No
-produced artifact is accepted. The preceding source-review snapshot is
-`REV_DEL-01-06_2026-08-02_1110`; the preceding exact-hash SOW
-contract-fitness snapshot is `REV_DEL-01-06_2026-08-02_0954`. This pointer is
-mutable; all named snapshot folders are immutable evidence.
+This immutable snapshot records the fresh DEL-01-05 RF-002 independent
+verification rerun. RF-002 is resolved on revised activation SHA-256
+`111203c7fb3da9d8efc8d95765e0ecce8cddeafbd59a61f71599ab6d9b26448e`.
+RF-001 is closed only by the owner-ordered serialized final Agent 0 manifest
+reseal and its immediately succeeding seven-row read-only checksum
+reproduction. DEL-01-05 remains `INITIALIZED`; no acceptance or lifecycle act
+is inferred. The immutable snapshot itself preserves the pre-reseal state;
+the deliverable-local review carries the conditional closeout record. The
+preceding independent snapshot is
+`REV_DEL-01-05_2026-08-03_1306`.
