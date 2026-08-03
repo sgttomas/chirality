@@ -1,9 +1,9 @@
 # TM-PEC-010 resolution record — D-PEC-78 O-A
 
-**Date:** 2026-08-02  
-**Mode:** owner-ruled resolution assessment / row maintenance  
-**Invoking loop:** PEC  
-**Register home:** `_DomainEngines/pec/_TaskManagement/`  
+**Date:** 2026-08-02
+**Mode:** owner-ruled resolution assessment / row maintenance
+**Invoking loop:** PEC
+**Register home:** `_DomainEngines/pec/_TaskManagement/`
 **Authority:** owner ruling `D-PEC-78: O-A`
 
 This is Task Management decision-support and closeout evidence. It does not
@@ -88,4 +88,3 @@ Final register hashes:
   infer that propagation is complete.
 - Escalation: none created here. HELP_HUMAN separately owns fan-in of the
   SCOPE_CHANGE intake already launched for the D-PEC-78 effect.
-

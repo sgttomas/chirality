@@ -1,7 +1,7 @@
 # PEC-DPEC77-78-20260802 handoff state
 
-**Status:** D-PEC-77 RF REPAIRS COMPLETE / REVIEW HOLD AT INITIALIZED / SCA-004 GATE 4 APPROVED, GATE 5 NOT AUTHORIZED  
-**Owning Agent 0:** HELP_HUMAN  
+**Status:** D-PEC-77 RF REPAIRS COMPLETE / REVIEW HOLD AT INITIALIZED / SCA-004 GATE 4 APPROVED, GATE 5 NOT AUTHORIZED
+**Owning Agent 0:** HELP_HUMAN
 **Current repository basis:** `origin/main@7249281e1f84ba5abee3c31c2fea3736b22000d3`
 
 ## Accepted upstream authority
@@ -58,14 +58,16 @@ locality-test SHA-256 is
 `69051b4c127009c821886c4cc6aea70222f57c3ad51013bdebe53a6211d92d20`.
 All three owner-evidenced regressions now BLOCK with locations and the full
 suite passes 19/19. Revised activation SHA-256 is
-`111203c7fb3da9d8efc8d95765e0ecce8cddeafbd59a61f71599ab6d9b26448e`;
+`992926ad5651f949dc9b15e2b211c078ab559ee054a6b6472c6c0990860bd4b2`;
 registered-check evidence SHA-256 is
 `074f0a155c0471b1c3f16e9bb37be75ce77173b37f8efd6585ff11e07cff1812`.
 
 Fresh independent review snapshot
-`execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/` reproduces the
-19-test suite and verifies four novel external alias/inline forms BLOCK plus
-Unix-domain and IPv6-loopback controls PASS. RF-002 is `RESOLVED`. Review
+`execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1346/` preserves the
+pre-normalization activation binding, reproduces the 19-test suite, and
+verifies four novel external alias/inline forms BLOCK plus Unix-domain and
+IPv6-loopback controls PASS. The whitespace-normalized activation retains all
+18 reviewed candidate artifact hashes. RF-002 is `RESOLVED`. Review
 SHA-256 is
 `9d5c07a084678cc54f6c364b2229c50be946ef35517c3a339fdf1bff762e5e23`;
 pre-reseal findings SHA-256 is

@@ -1,9 +1,9 @@
 # WORKING_ITEMS launch brief — DEL-01-05 RF-002 locality repair
 
-RequestedBy: HELP_HUMAN  
-RunID: PEC-DPEC77-78-20260802  
-InstanceID: working-items-del0105-rf002  
-PackageID: PKG-01  
+RequestedBy: HELP_HUMAN
+RunID: PEC-DPEC77-78-20260802
+InstanceID: working-items-del0105-rf002
+PackageID: PKG-01
 DeliverableID: DEL-01-05
 
 ## Owner disposition and authority

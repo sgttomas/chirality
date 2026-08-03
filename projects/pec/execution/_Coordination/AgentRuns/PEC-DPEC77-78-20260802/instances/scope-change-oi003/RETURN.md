@@ -1,8 +1,8 @@
 # SCOPE_CHANGE return — SOW-077 / OI-003 Gate 1 intake
 
-**RunID:** `PEC-DPEC77-78-20260802`  
-**InstanceID:** `scope-change-oi003`  
-**Status:** `COMPLETE / AWAITING OWNER GATE 1`  
+**RunID:** `PEC-DPEC77-78-20260802`
+**InstanceID:** `scope-change-oi003`
+**Status:** `COMPLETE / AWAITING OWNER GATE 1`
 **Decomposition variant:** `SOFTWARE`
 
 ## Result
@@ -159,4 +159,3 @@ register, decision, receipt, lifecycle, or foreign-loop surface was modified.
 mapping `SOW-077` to the existing `PKG-01 → DEL-01-06 → OBJ-004` lineage,
 recording `OI-003` resolved by `D-PEC-78 O-A`, preserving the DEL-01-06 stable
 name/path and all source bytes, and advancing only to Gate 2 impact assessment?**
-

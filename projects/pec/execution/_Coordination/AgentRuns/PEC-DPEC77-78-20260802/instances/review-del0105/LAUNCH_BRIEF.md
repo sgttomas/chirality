@@ -1,9 +1,9 @@
 # REVIEW launch brief — DEL-01-05 SELF_CHECK
 
-RequestedBy: HELP_HUMAN  
-RunID: PEC-DPEC77-78-20260802  
-InstanceID: review-del0105  
-DeliverableID: DEL-01-05  
+RequestedBy: HELP_HUMAN
+RunID: PEC-DPEC77-78-20260802
+InstanceID: review-del0105
+DeliverableID: DEL-01-05
 ReviewType: SELF_CHECK
 
 ## Objective

@@ -1,7 +1,7 @@
 # REVIEW return — DEL-01-05 RF-002 independent rerun
 
-**Status:** COMPLETE / RF-002 RESOLVED / RF-001 OPEN  
-**Review type:** `INDEPENDENT_VERIFICATION`  
+**Status:** COMPLETE / RF-002 RESOLVED / RF-001 OPEN
+**Review type:** `INDEPENDENT_VERIFICATION`
 **Lifecycle:** `INITIALIZED` unchanged
 
 The rerun reproduced revised activation SHA-256

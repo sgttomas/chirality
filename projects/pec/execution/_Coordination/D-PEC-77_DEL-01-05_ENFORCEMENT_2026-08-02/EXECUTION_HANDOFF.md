@@ -1,7 +1,7 @@
 # D-PEC-77 phase-2 execution handoff
 
-**Status:** RF-002 RESOLVED / RF-001 FINAL RESEAL COMPLETE / REVIEW HOLD AT INITIALIZED  
-**Date:** 2026-08-03  
+**Status:** RF-002 RESOLVED / RF-001 FINAL RESEAL COMPLETE / REVIEW HOLD AT INITIALIZED
+**Date:** 2026-08-03
 **Deliverable:** DEL-01-05
 **Lifecycle:** INITIALIZED (unchanged)
 
@@ -23,7 +23,7 @@ The raw registered-check evidence is:
 `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_run_records/D-PEC-77_REGISTERED_CHECKS.json`
 
 The revised activation record is SHA-256
-`111203c7fb3da9d8efc8d95765e0ecce8cddeafbd59a61f71599ab6d9b26448e`;
+`992926ad5651f949dc9b15e2b211c078ab559ee054a6b6472c6c0990860bd4b2`;
 the revised registered-check record is SHA-256
 `074f0a155c0471b1c3f16e9bb37be75ce77173b37f8efd6585ff11e07cff1812`.
 

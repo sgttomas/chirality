@@ -1,9 +1,9 @@
 # SCOPE_CHANGE return — SCA-004 Gate 2
 
-Status: `COMPLETE — AWAITING OWNER GATE 2 ACCEPTANCE`  
-Manager: `SCOPE_CHANGE`  
-RunID: `PEC-DPEC77-78-20260802`  
-InstanceID: `scope-change-sca004-gate2`  
+Status: `COMPLETE — AWAITING OWNER GATE 2 ACCEPTANCE`
+Manager: `SCOPE_CHANGE`
+RunID: `PEC-DPEC77-78-20260802`
+InstanceID: `scope-change-sca004-gate2`
 AmendmentID: `SCA-004`
 
 ## Result

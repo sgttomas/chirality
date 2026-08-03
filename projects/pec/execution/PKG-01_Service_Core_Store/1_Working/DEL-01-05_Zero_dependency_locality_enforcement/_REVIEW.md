@@ -1,10 +1,10 @@
 # Review — DEL-01-05 produced artifacts
 
-**Review stage:** RF-002 INDEPENDENT RERUN COMPLETE / RF-001 FINAL RESEAL CLOSURE  
-**Review type:** `INDEPENDENT_VERIFICATION`  
-**Reviewer:** `REVIEW-INDEPENDENT-RERUN-20260803`  
-**Lifecycle:** `INITIALIZED` (review-from-`INITIALIZED` expressly authorized)  
-**Candidate binding:** `D-PEC-77_ACTIVATION.md` SHA-256 `111203c7fb3da9d8efc8d95765e0ecce8cddeafbd59a61f71599ab6d9b26448e`  
+**Review stage:** RF-002 INDEPENDENT RERUN COMPLETE / RF-001 FINAL RESEAL CLOSURE
+**Review type:** `INDEPENDENT_VERIFICATION`
+**Reviewer:** `REVIEW-INDEPENDENT-RERUN-20260803`
+**Lifecycle:** `INITIALIZED` (review-from-`INITIALIZED` expressly authorized)
+**Candidate binding:** `D-PEC-77_ACTIVATION.md` SHA-256 `992926ad5651f949dc9b15e2b211c078ab559ee054a6b6472c6c0990860bd4b2`
 **SOW binding:** SHA-256 `53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53`
 
 This independent review evaluates candidate fitness only. It accepts no
@@ -62,12 +62,13 @@ validated checklist source.
 The owner ordered the manifest resealed as the final write after all other
 revisions. Agent 0 serialized that closeout after RF-002's independent rerun,
 using the final execution-handoff and decision-record hashes together with
-activation SHA-256 `111203c7…` and registered-check SHA-256 `074f0a15…`.
+whitespace-normalized activation SHA-256 `992926ad…` and registered-check
+SHA-256 `074f0a15…`.
 The resolution is effective only upon the immediately succeeding read-only
 `shasum -a 256 -c MANIFEST.sha256` reproduction of all seven rows; a failed
 reproduction voids this closure record and leaves RF-001 open.
 
-**Proposed disposition:** `REVISE` (proposal).  
+**Proposed disposition:** `REVISE` (proposal).
 **HumanDisposition:** `REVISE`; **Status:** `RESOLVED` by the serialized final
 reseal and seven-row reproduction condition above.
 
@@ -103,7 +104,7 @@ new spelling/import shapes, fixed-point aliases, inline receivers, keyword
 endpoints, and preserved local classifications verifies a general binding
 repair rather than a patch limited to the original three spellings.
 
-**Proposed disposition:** `REVISE` (proposal).  
+**Proposed disposition:** `REVISE` (proposal).
 **HumanDisposition:** `REVISE`; **Status:** `RESOLVED` on the revised hashes.
 
 ## CU-001 containment verdict

@@ -1,10 +1,10 @@
 # D-PEC-77 phase-2 activation evidence
 
-**Status:** RF-002 REVISED CANDIDATE / INDEPENDENT REVIEW RERUN OPEN  
-**Date:** 2026-08-03  
-**Deliverable:** DEL-01-05  
-**Packet:** `execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/PACKET.md`  
-**Packet SHA-256:** `f848d55557d4b59d4c425e3924b850d634011a4a7db6c6fbd2eee9fc46cc5c31`  
+**Status:** RF-002 REVISED CANDIDATE / INDEPENDENT REVIEW RERUN OPEN
+**Date:** 2026-08-03
+**Deliverable:** DEL-01-05
+**Packet:** `execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/PACKET.md`
+**Packet SHA-256:** `f848d55557d4b59d4c425e3924b850d634011a4a7db6c6fbd2eee9fc46cc5c31`
 **Accepted production contract SHA-256:** `53ba3be304151a35775eb9e117c28f1b7564a19f4dd5076869a7f73994e5de53`
 
 ## Authority and boundary

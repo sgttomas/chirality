@@ -1,7 +1,7 @@
 # REVIEW return — DEL-01-05 produced artifacts
 
-**Status:** GATES 1–3 COMPLETE / GATE 4 OWNER DISPOSITION REQUIRED  
-**Review type:** `INDEPENDENT_VERIFICATION`  
+**Status:** GATES 1–3 COMPLETE / GATE 4 OWNER DISPOSITION REQUIRED
+**Review type:** `INDEPENDENT_VERIFICATION`
 **Lifecycle:** `INITIALIZED` unchanged
 
 The owner-authorized independent review reproduced the exact activation

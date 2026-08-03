@@ -1,9 +1,9 @@
 # WORKING_ITEMS return — DEL-01-05 RF-002 locality repair
 
-**RunID:** `PEC-DPEC77-78-20260802`  
-**InstanceID:** `working-items-del0105-rf002`  
-**DeliverableID:** `DEL-01-05`  
-**Finding disposition implemented:** `RF-002 REVISE`  
+**RunID:** `PEC-DPEC77-78-20260802`
+**InstanceID:** `working-items-del0105-rf002`
+**DeliverableID:** `DEL-01-05`
+**Finding disposition implemented:** `RF-002 REVISE`
 **Result:** `COMPLETE — candidate repair; independent REVIEW rerun required`
 
 ## Bounded writes

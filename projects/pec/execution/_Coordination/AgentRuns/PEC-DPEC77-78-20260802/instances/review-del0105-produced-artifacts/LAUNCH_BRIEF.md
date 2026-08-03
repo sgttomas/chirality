@@ -1,10 +1,10 @@
 # REVIEW launch brief — DEL-01-05 produced artifacts
 
-RequestedBy: HELP_HUMAN  
-RunID: PEC-DPEC77-78-20260802  
-InstanceID: review-del0105-produced-artifacts  
-DeliverableID: DEL-01-05  
-ReviewType: INDEPENDENT_VERIFICATION  
+RequestedBy: HELP_HUMAN
+RunID: PEC-DPEC77-78-20260802
+InstanceID: review-del0105-produced-artifacts
+DeliverableID: DEL-01-05
+ReviewType: INDEPENDENT_VERIFICATION
 ReviewerID: REVIEW-INDEPENDENT-20260803
 
 ## Owner Gate 1 authority

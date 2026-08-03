@@ -250,7 +250,7 @@ Fresh independent verification additionally exercised four new external
 import/alias/inline/keyword forms, all of which BLOCK with locations, and two
 local controls (Unix-domain and IPv6 loopback), both of which PASS. RF-002 is
 `REVISE / RESOLVED`. The revised activation is SHA-256
-`111203c7fb3da9d8efc8d95765e0ecce8cddeafbd59a61f71599ab6d9b26448e`;
+`992926ad5651f949dc9b15e2b211c078ab559ee054a6b6472c6c0990860bd4b2`;
 the independent review is SHA-256
 `9d5c07a084678cc54f6c364b2229c50be946ef35517c3a339fdf1bff762e5e23`.
 

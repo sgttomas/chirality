@@ -1,9 +1,9 @@
 # D-PEC-77 phase-2 bounded production return
 
-**Status:** COMPLETE / CANDIDATE ONLY  
-**Manager lane:** WORKING_ITEMS  
-**Completed fan-in:** HELP_HUMAN shared integration owner  
-**RunID:** PEC-DPEC77-78-20260802  
+**Status:** COMPLETE / CANDIDATE ONLY
+**Manager lane:** WORKING_ITEMS
+**Completed fan-in:** HELP_HUMAN shared integration owner
+**RunID:** PEC-DPEC77-78-20260802
 **InstanceID:** working-items-del0105-phase2
 
 The originally dispatched producer did not complete a sealed return. After

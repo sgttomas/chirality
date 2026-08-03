@@ -1,9 +1,9 @@
 # SCOPE_CHANGE return — SCA-004 Gate 4 propagation plan
 
-Status: `COMPLETE — AWAITING OWNER GATE 4 APPROVAL`  
-Manager: `SCOPE_CHANGE`  
-RunID: `PEC-DPEC77-78-20260802`  
-InstanceID: `scope-change-sca004-gate4`  
+Status: `COMPLETE — AWAITING OWNER GATE 4 APPROVAL`
+Manager: `SCOPE_CHANGE`
+RunID: `PEC-DPEC77-78-20260802`
+InstanceID: `scope-change-sca004-gate4`
 AmendmentID: `SCA-004`
 
 ## Result

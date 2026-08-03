@@ -1,7 +1,7 @@
 # TASK_MANAGEMENT return — TM-PEC-010
 
-**RunID:** `PEC-DPEC77-78-20260802`  
-**InstanceID:** `task-management-tmpec010`  
+**RunID:** `PEC-DPEC77-78-20260802`
+**InstanceID:** `task-management-tmpec010`
 **Status:** `COMPLETE`
 
 ## Result
@@ -47,4 +47,3 @@ source, lifecycle, consumer, foreign-loop, release, or reliance state.
 
 Detailed record:
 `_DomainEngines/pec/_TaskManagement/RESOLUTION_TM-PEC-010_2026-08-02.md`.
-

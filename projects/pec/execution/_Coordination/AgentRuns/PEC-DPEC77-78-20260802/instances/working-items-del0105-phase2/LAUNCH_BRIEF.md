@@ -1,9 +1,9 @@
 # WORKING_ITEMS launch brief — D-PEC-77 phase 2
 
-RequestedBy: HELP_HUMAN  
-RunID: PEC-DPEC77-78-20260802  
-InstanceID: working-items-del0105-phase2  
-PackageID: PKG-01  
+RequestedBy: HELP_HUMAN
+RunID: PEC-DPEC77-78-20260802
+InstanceID: working-items-del0105-phase2
+PackageID: PKG-01
 SelectedDeliverables: DEL-01-05
 
 ## Objective

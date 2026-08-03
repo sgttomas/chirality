@@ -1,8 +1,8 @@
 # Agent 2 brief — DEL-01-05 phase-2 implementation completion
 
-RequestedBy: HELP_HUMAN  
-ParentManager: WORKING_ITEMS  
-RunID: PEC-DPEC77-78-20260802  
+RequestedBy: HELP_HUMAN
+ParentManager: WORKING_ITEMS
+RunID: PEC-DPEC77-78-20260802
 InstanceID: del0105-phase2-implementer
 
 ## Bounded objective

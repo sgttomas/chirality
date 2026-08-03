@@ -1,9 +1,9 @@
 # SCOPE_CHANGE launch brief — SCA-004 Gate 2
 
-RequestedBy: HELP_HUMAN  
-RunID: PEC-DPEC77-78-20260802  
-InstanceID: scope-change-sca004-gate2  
-AmendmentID: SCA-004  
+RequestedBy: HELP_HUMAN
+RunID: PEC-DPEC77-78-20260802
+InstanceID: scope-change-sca004-gate2
+AmendmentID: SCA-004
 DecompVariant: SOFTWARE
 
 ## Objective

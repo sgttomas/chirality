@@ -1,9 +1,9 @@
 # SCOPE_CHANGE launch brief — SCA-004 Gate 4 propagation plan
 
-RequestedBy: HELP_HUMAN  
-RunID: PEC-DPEC77-78-20260802  
-InstanceID: scope-change-sca004-gate4  
-AmendmentID: SCA-004  
+RequestedBy: HELP_HUMAN
+RunID: PEC-DPEC77-78-20260802
+InstanceID: scope-change-sca004-gate4
+AmendmentID: SCA-004
 DecompVariant: SOFTWARE
 
 ## Owner Gate 3 authority
