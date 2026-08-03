@@ -1,52 +1,41 @@
 # Latest — revision pointer and handoff state
 
-Latest: `execution/_Decomposition/SOFTWARE_DECOMP.md` **revision 1.3**
-(**`current_basis`** — accepted 2026-07-28 as the SCA-003 successor under
-the owner's standing completion approval after D-PEC-68).
+Latest: `execution/_Decomposition/SOFTWARE_DECOMP.md` **revision 1.4**
+(**`current_basis`** — accepted 2026-08-03 as the SCA-004 successor under
+D-PEC-78 O-A and the owner's SCA-004 Gate 5 execution direction).
 
 ## Handoff state
 
-- **Basis:** D-PEC-60 SOFTWARE_DECOMP revision 1.0 over PRD v2.0; SCA-001
-  directed-bootstrap reconciliation; SCA-002 objective mapping; SCA-003
-  consumer-interface and ADR-014 historical-lineage concordance over accepted
-  PRD v2.2. SCA-003 Gates 1–5 are owner-approved through the standing ruling
-  recorded in
-  `_ScopeChange/SCA-003_2026-07-28_0824/Decision_Log.md`.
-- **Package:** working surface + `ScopeLedger.csv` (94 rows) +
-  `Deliverables.csv` (64) + `ContextBudgetQA.csv` (unchanged) +
-  `Companion_Inventory.csv` (unchanged).
-- **Basis integrity (SHA-256, post-amendment):**
-  `SOFTWARE_DECOMP.md`
-  `3f65ea0e47036a2baa66cb60923f8b779525ae00d747425f93f8b69431151787`;
-  `ScopeLedger.csv`
-  `3cca281f7019a4544b6d4e6ab631a30125429525106f5d65b16aac270ebd50f5`;
-  `Deliverables.csv`
-  `b27ff4631f4966931990bbf9c033d2593d3dd8ac51b09e0d5112002b98afbc40`.
-- **Closure verdict: `CLOSED_FOR_SCOPE_CHANGE_ONLY`.** No package,
-  deliverable, objective, scope item, product function, stable ID or
-  dependency edge was added, removed, renamed or reclassified.
-- **Semantic result:** C3/C15 and their direct statement/description mirrors
-  now express pull-oriented consumer-owned use, no forced cadence or
-  injection, P2-B use/non-use evidence, and ADR-014 historical lineage.
-  DEL-10-12 retains its canonical label/path.
-- **AuditState: `NON_BLOCKING_PASS`.** Pre-change baseline:
-  `_Evaluation/DecompCoverage/COV_SCA003_PRECHANGE_2026-07-28_0817/`.
-  Final post-change evidence:
-  `_Evaluation/DecompCoverage/COV_SCA003_POSTCHANGE_FINAL_2026-07-28_0831/`
-  (`OK`, 0 blockers / 0 warnings), copied to
-  `_ScopeChange/SCA-003_2026-07-28_0824/Post_Change_Coverage.json`.
-- **Supersession:** no `Supersession_Delta.csv` binding is owed. SCA-003
-  consumes already-accepted PRD v2.2 and D-PEC-67/-68 facts; it does not
-  override upstream authority.
-- **Downstream completion:** PROJECT_SETUP re-pinned all 64
-  `_REFERENCES.md`; `D-PEC-69` reconciled the complete
-  execution-time-confirmed eleven-contract affected population. These are
-  downstream acts and do not alter decomposition truth.
-- **Reliance hold:** `PEC-HOLD-001` was released by `D-PEC-70` after
-  full-corpus and independent validation. The SCA itself granted no reliance
-  or implementation authority.
-- **DownstreamRerunState: `COMPLETE`.**
-- **ReadyForNextPhase: `OWNER_GATED_WORKING_ITEMS`.**
-- **Fallback and authority:** file-native fallback remains operable. Consumer
-  use is optional and separately authorized; no receiving-loop duty is
-  created.
+- **Basis:** accepted PRD v2.2; D-PEC-60 SOFTWARE_DECOMP revision 1.0;
+  SCA-001 directed bootstrap; SCA-002 objective mapping; SCA-003 consumer
+  interface/ADR-014 concordance; SCA-004 loop-registry disposition.
+- **Package:** `SOFTWARE_DECOMP.md` revision 1.4 + `ScopeLedger.csv` (94 rows)
+  + `Deliverables.csv` (64 rows) + unchanged `ContextBudgetQA.csv` (64 rows)
+  + unchanged `Companion_Inventory.csv`.
+- **Basis integrity:** decomposition SHA-256
+  `7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81`;
+  Scope Ledger SHA-256
+  `2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25`;
+  Deliverables SHA-256
+  `49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72`.
+- **Semantic result:** SOW-077 is `IN` and maps reciprocally to
+  `PKG-01 → DEL-01-06 → OBJ-004`; SOW-094 carries the settled D-PEC-78
+  implementation basis; OI-003 is retained and resolved. Counts are 94 scope
+  items (`72 IN / 14 OUT / 8 TBD`), 11 packages, 64 deliverables, six
+  objectives, and 10 open / 3 resolved issues.
+- **Closure verdict:** `CLOSED_FOR_SCOPE_CHANGE_ONLY`.
+- **Audit:**
+  `_Evaluation/DecompCoverage/COV_SCA004_POSTCHANGE_2026-08-03_1442/`;
+  `WARNINGS`, 0 blockers / 1 unchanged unrelated DEL-08-02 warning / 69 info.
+- **Scope-change snapshot:**
+  `_ScopeChange/SCA-004_2026-08-02_2325/`.
+- **Derivative state:** `INCOMPLETE`; `DownstreamRerunState = FROZEN`;
+  `MetadataAlignmentState = NOT_STARTED`; `ReadyForNextPhase = NO`.
+- **Stale populations:** 63 context provenance blocks; 64 reference packets;
+  DEL-01-06 requirement anchor; four SOW contracts (DEL-01-06, DEL-02-07,
+  DEL-03-01, DEL-04-01); DEL-00-03 accepted SPEC; and four ordinary PEC
+  orientation/map surfaces. Exact owners and rerun obligations are in the
+  SCA-004 `Handoff_State.md`.
+- **Authority fence:** no downstream repair, source, lifecycle, artifact
+  acceptance, release, professional reliance, or foreign-loop duty is
+  implied by this pointer.
