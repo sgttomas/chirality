@@ -2,40 +2,34 @@
 
 | Field | Value |
 |---|---|
-| AmendmentID | `SCA-003` |
-| Snapshot | `execution/_ScopeChange/SCA-003_2026-07-28_0824/` |
+| AmendmentID | `SCA-004` |
+| Snapshot | `execution/_ScopeChange/SCA-004_2026-08-02_2325/` |
 | Variant | `SOFTWARE` |
 | Status | **`CLOSED_FOR_SCOPE_CHANGE_ONLY`** |
-| CurrentGate | Gate 5 — Confirmed / Closed |
-| AcceptedBasis | `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.3 (`current_basis`) |
-| Authority | Owner standing completion approval after D-PEC-68 |
+| CurrentGate | Gate 5 — Confirmed / Executed / Validated |
+| AcceptedBasis | `execution/_Decomposition/SOFTWARE_DECOMP.md` revision 1.4 (`current_basis`) |
+| Authority | D-PEC-78 O-A and owner SCA-004 Gate 5 direction, 2026-08-03 |
 | DecompositionTruthState | `COMPLETE` |
-| DerivativePackageState | `COMPLETE` — decomposition-local derivatives only |
+| DerivativePackageState | `INCOMPLETE` — downstream surfaces remain stale |
 | ContentRemediationState | `NOT_REQUIRED` |
-| DownstreamRerunState | `COMPLETE` — references and affected ScopeOfWork contracts reconciled downstream |
-| MetadataAlignmentState | `NOT_REQUIRED` |
-| AuditState | **`NON_BLOCKING_PASS`** — `COV_SCA003_POSTCHANGE_FINAL_2026-07-28_0831`, 0 blockers / 0 warnings |
-| ReadyForNextPhase | `OWNER_GATED_WORKING_ITEMS` |
+| DownstreamRerunState | `FROZEN` — no downstream repair authorized by Gate 5 |
+| MetadataAlignmentState | `NOT_STARTED` — 63 contexts / 64 references |
+| AuditState | **`WARNINGS`** — `COV_SCA004_POSTCHANGE_2026-08-03_1442`, 0 blockers / 1 unchanged unrelated warning |
+| ReadyForNextPhase | `NO` |
 | ClosureVerdict | **`CLOSED_FOR_SCOPE_CHANGE_ONLY`** |
 
-**Gate state: Gates 1–5 are owner-ruled.** The owner direction of record is:
+## Result
 
-> "Finish out your plan now (attaining your goal) with self merge of PRs and
-> auto approve for owners rulings, which should still be recorded in the usual
-> manner with your recommendation standing as what I approved."
-
-The recommendation and owner-approved disposition for each gate is recorded
-in `SCA-003_2026-07-28_0824/Decision_Log.md`.
-
-Revision 1.3 reconciles C3/C15, source/basis, SOW-041/060/085/088,
-DEL-00-01/10-05/10-12 and three exact context mirrors to PRD v2.2. It
-preserves 94 scope items, 11 packages, 64 deliverables, 6 objectives, every
-stable ID and every dependency edge. DEL-10-12 retains its canonical label
-and path.
-
-The SCA left `ScopeOfWork.md`, `_REFERENCES.md`, dependencies, the reliance
-hold, lifecycle state, and implementation unchanged. Downstream PROJECT_SETUP
-and RECONCILIATION acts subsequently re-pinned all references and reconciled
-the affected contracts; `D-PEC-70` released `PEC-HOLD-001`. Dependencies,
-lifecycle state, implementation, and ordinary production gates remain
+Revision 1.4 applies the exact approved SCA-004 postimage and direct
+DEL-01-06 context mirror. SOW-077 is now `IN` and maps to PKG-01 /
+DEL-01-06 / OBJ-004; OI-003 is resolved by D-PEC-78 O-A. Stable IDs,
+topology, source, dependencies, lifecycle, envelope, phase, name, and path are
 unchanged.
+
+## Downstream boundary
+
+Gate 5 performed no downstream repair. `SCA-004_2026-08-02_2325/Handoff_State.md`
+is the controlling derivative-state handoff and names every stale population,
+owner, and rerun obligation: 63 contexts, 64 references, the DEL-01-06
+requirement anchor, four SOW contracts, the DEL-00-03 SPEC, and four PEC
+orientation/map surfaces. Each is separately gated.
