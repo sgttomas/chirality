@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "node": "S6",
+  "role": "SCOPE_CHANGE",
+  "status": "GATE_1_CONFIRMED_ZERO_ACTIONS_NO_DECOMPOSITION_CHANGE",
+  "terminal": true,
+  "amendment_id": "SCA-003",
+  "action_rows": 0,
+  "gate_states": {
+    "gate_1": "CONFIRMED_ZERO_ACTIONS_NO_DECOMPOSITION_CHANGE",
+    "gate_2": "NOT_OPENED",
+    "gate_3": "NOT_OPENED",
+    "gate_4": "NOT_OPENED",
+    "gate_5": "NOT_OPENED_FOR_ORIGINAL_ZERO_ACTION_REQUEST"
+  },
+  "sca_state": "OPEN_PENDING_SEPARATE_OWNER_CLOSEOUT_DIRECTION",
+  "authority_sha256": "7301f6bc2a44d1c29c29ca357b5aae02bf5d228698f68a62d9b18395203af046",
+  "live_decomposition_sha256": "23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d",
+  "fresh_audit_return_sha256": "ee10313f42c99bc9432d3999b148d81ef0d959c58fa8e58d6df3dc40470420e1",
+  "parsed_actions_sha256": "7de498596a2879788a4756d0bbf27fe567cc009d65c49c09b7ca253969c00184",
+  "gate_2_opened": false,
+  "impact_assessment_created_or_accepted": false,
+  "latest_changed": false,
+  "git_action_performed": false,
+  "next_owner": "HUMAN_THROUGH_HELP_HUMAN_FOR_SEPARATELY_AUTHORIZED_CLOSEOUT"
+}

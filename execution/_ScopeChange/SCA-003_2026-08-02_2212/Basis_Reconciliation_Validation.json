@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "amendment_id": "SCA-003",
+  "candidate_kind": "metadata_only_basis_reconciliation",
+  "status": "PASS",
+  "checks_total": 17,
+  "checks_passed": 17,
+  "checks_failed": 0,
+  "hashes": {
+    "live_prd": "278f31ae99607f970e39c6535f809c93a7c5bf09b139ffa2cbbdbe3f08c3746c",
+    "candidate_prd": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+    "live_decomposition": "6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49",
+    "candidate_decomposition": "69bdb9ca682a80adab6c23e0a615bd4f9c5ed64f281f11a4e558a1f0e991278c",
+    "scope_ledger": "3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2",
+    "deliverable_register": "a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395"
+  },
+  "application_order": [
+    "docs/PRD_ROOT.md",
+    "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md"
+  ],
+  "checks": [
+    {
+      "name": "sha256:live_prd",
+      "result": "PASS",
+      "evidence": "expected=278f31ae99607f970e39c6535f809c93a7c5bf09b139ffa2cbbdbe3f08c3746c; actual=278f31ae99607f970e39c6535f809c93a7c5bf09b139ffa2cbbdbe3f08c3746c"
+    },
+    {
+      "name": "sha256:candidate_prd",
+      "result": "PASS",
+      "evidence": "expected=d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4; actual=d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4"
+    },
+    {
+      "name": "sha256:live_decomposition",
+      "result": "PASS",
+      "evidence": "expected=6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49; actual=6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49"
+    },
+    {
+      "name": "sha256:candidate_decomposition",
+      "result": "PASS",
+      "evidence": "expected=69bdb9ca682a80adab6c23e0a615bd4f9c5ed64f281f11a4e558a1f0e991278c; actual=69bdb9ca682a80adab6c23e0a615bd4f9c5ed64f281f11a4e558a1f0e991278c"
+    },
+    {
+      "name": "sha256:scope_ledger",
+      "result": "PASS",
+      "evidence": "expected=3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2; actual=3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2"
+    },
+    {
+      "name": "sha256:deliverable_register",
+      "result": "PASS",
+      "evidence": "expected=a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395; actual=a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395"
+    },
+    {
+      "name": "prd:stable_commitment_rows_unchanged",
+      "result": "PASS",
+      "evidence": "row_count=43"
+    },
+    {
+      "name": "prd:d8_annex_unchanged",
+      "result": "PASS",
+      "evidence": "\u00a75.3.1 bytes match live Revision 8"
+    },
+    {
+      "name": "prd:current_status_present",
+      "result": "PASS",
+      "evidence": "top current-status layer and \u00a710.5 present"
+    },
+    {
+      "name": "prd:historical_candidate_control_preserved",
+      "result": "PASS",
+      "evidence": "Revision 7 candidate header/table retained and explicitly time-scoped"
+    },
+    {
+      "name": "decomposition:identifier_set_unchanged",
+      "result": "PASS",
+      "evidence": "identifier_count=89"
+    },
+    {
+      "name": "decomposition:accepted_status_present",
+      "result": "PASS",
+      "evidence": "current status cites exact SCA-002 acceptance token"
+    },
+    {
+      "name": "decomposition:prd_candidate_pin_exact",
+      "result": "PASS",
+      "evidence": "REF-001 pins candidate PRD SHA-256 d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4"
+    },
+    {
+      "name": "decomposition:historical_decision_preserved",
+      "result": "PASS",
+      "evidence": "DEC-023 line byte-preserved"
+    },
+    {
+      "name": "decomposition:new_disposition_present",
+      "result": "PASS",
+      "evidence": "additive current-state reconciliation record present"
+    },
+    {
+      "name": "decomposition:companion_registers_untouched",
+      "result": "PASS",
+      "evidence": "scope ledger and deliverable register remain at pre-candidate hashes"
+    },
+    {
+      "name": "candidate:only_two_authoritative_target_copies",
+      "result": "PASS",
+      "evidence": "candidate tree contains exactly the PRD and decomposition target copies"
+    }
+  ]
+}

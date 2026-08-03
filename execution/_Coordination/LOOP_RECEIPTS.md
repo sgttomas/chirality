@@ -2629,3 +2629,61 @@ amendment; owner ruling required).
   requirements are in the run handoff. CHANGE may publish this coherent
   candidate to an open PR under the standing closeout policy; merge remains a
   later owner act.
+
+### Receipt 87 — 2026-08-03 — Root four-lane continuation reaches publication gate
+
+- **Parent and posture:** Receipt 86. The general Root loop remains idle; this
+  receipt records the four separately authorized continuation lanes and does
+  not open a broader production phase.
+- **SCA-003:** exact PRD and decomposition candidates were accepted and
+  applied in the authorized order. The metadata-only COV-POST-001 correction
+  was separately accepted/applied and fresh AUDIT_DECOMP passed. Gate 1 is
+  `CONFIRMED_ZERO_ACTIONS_NO_DECOMPOSITION_CHANGE` against live decomposition
+  SHA-256 `23f6ae0f...64f3d` and audit return `ee10313f...420e1`. Gate 2 was
+  not opened; SCA-003 remains open pending a separate owner closeout ruling;
+  `_ScopeChange/_LATEST.md` remains unchanged.
+- **DEL-02-06:** the owner accepted exact packet manifest SHA-256
+  `360f8f12c4719d79a506394bcd98a4b630c2610f9c80d90a08b0519e8a1d508f`.
+  The RunID-local copy is byte-identical; both packet validators pass; fresh
+  N0 returned 26/26 PASS; N1-N6 planning completed; fresh N5-R3 returned
+  `ADMIT` with zero findings. The derivative owner-gate handoff SHA-256 is
+  `bf802046...d151`. No semantic adoption or runtime implementation occurred;
+  restart/replay evidence is absent and closure is not claimed.
+- **Pi 0.82.0:** Option A and G1-B were selected for validation only under
+  evidence hold. The Root-local target family is
+  `chirality.app.pi-agent-engine-adapter`; exact accepted App predecessor
+  evidence and final identity remain absent. No Pi approval, D-APP-72
+  supersession, App route, production proof, lifecycle, release, or reliance
+  effect occurred.
+- **G4 and Git:** the diff-mode G4 implementation previously passed the hosted
+  `governance-harness` check on open PR #491 at remote source
+  `4337990334c3e339a02c54de811d9f238246d524`. CHANGE then synchronized the
+  local branch without rebase or force: HEAD
+  `6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5` contains exact current
+  `origin/main@0b69aabe000ea8ae78ca5a2134d734c40eba4972`; the 225-path
+  continuation tranche was restored byte-identically, with zero upstream
+  overlap, staged paths, or conflicts.
+- **Checks and boundary:** protected PRD/decomposition/`_LATEST` hashes,
+  packet and owner-acceptance validators, N6 manifest, governed JSON,
+  current-main ancestry, and `git diff --check` pass. Root Task Management
+  rows remain unchanged. The state is `OPEN_AT_HUMAN_GATES`: SCA closeout,
+  DEL semantic/implementation decisions, Pi evidence/version decisions, and
+  PR merge remain separate owner gates. Ordinary scoped PR update is next;
+  no merge is authorized by this receipt.
+- **Publication-gate repair:** the first CHANGE closeout stopped before staging
+  on sixteen W6 provenance files with one surplus terminal LF each. W6-R1
+  normalized exactly those bytes, proved 16/16 preimages by re-appending one
+  LF, reconciled the live W6 receipt/hash chain, and passed the full scoped
+  validation matrix. This was a non-semantic provenance repair only; the DEL
+  handoff verdict and every open gate remain unchanged.
+- **Subsequent mainline drift:** C6-R2 normalized its own blocked return, then
+  stopped before staging when `main` advanced to `cf6bc15b...a5c3`. The
+  PR #498 delta is PEC-only with zero candidate-path overlap. A new bounded
+  byte-preserving sync is required before publication; no Git or PR mutation
+  occurred and every owner gate remains unchanged.
+- **Current-main containment restored:** C7 merged exact
+  `main@cf6bc15b...a5c3` into the task branch without rebase or force. Final
+  pre-publication HEAD is `9f9c6f8b...7360`; 243 tranche files were restored
+  byte-identically; all 41 new PEC-only paths were disjoint; staged/unmerged
+  counts are zero. The whole-candidate whitespace and full protected/DEL
+  validation gates now pass, so ordinary PR publication is re-released.

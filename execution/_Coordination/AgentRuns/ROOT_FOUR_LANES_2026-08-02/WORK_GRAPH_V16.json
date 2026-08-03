@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 16,
+  "selection_authority": "HUMAN",
+  "posture": "CLOSEOUT_WITH_OPEN_HUMAN_GATES",
+  "basis": {
+    "local_head": "6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5",
+    "origin_main": "0b69aabe000ea8ae78ca5a2134d734c40eba4972",
+    "origin_main_is_ancestor": true,
+    "tranche_revalidated": true
+  },
+  "nodes": [
+    {
+      "id": "C5",
+      "role": "CHANGE",
+      "status": "COMPLETE_CURRENT_MAIN_SYNC_BYTE_IDENTICAL_RESTORE",
+      "depends_on": ["W6"]
+    },
+    {
+      "id": "C6",
+      "role": "CHANGE",
+      "status": "AUTHORIZED_SCOPED_COMMIT_PUSH_PR_UPDATE_NO_MERGE",
+      "depends_on": ["C5"],
+      "write_scope": [
+        "Git commit and push on codex/root-four-lanes-20260802",
+        "PR #491 body and status metadata",
+        "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/C6-CLOSEOUT/"
+      ]
+    }
+  ],
+  "holds": [
+    {"id": "HOLD-SCA-CLOSE", "condition": "Separate owner closeout ruling required."},
+    {"id": "HOLD-DEL-SEMANTIC", "condition": "Human semantic gate and separately sealed implementation gate remain open."},
+    {"id": "HOLD-PI", "condition": "G1-B is validation-only; App evidence and later version decisions remain open."},
+    {"id": "HOLD-MERGE", "condition": "PR merge remains the owner's Git gate."}
+  ],
+  "integration_owner": "C6",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

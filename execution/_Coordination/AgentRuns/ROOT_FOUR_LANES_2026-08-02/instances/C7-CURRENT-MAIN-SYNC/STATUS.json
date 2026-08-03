@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 18,
+  "node": "C7",
+  "role": "CHANGE",
+  "status": "COMPLETE_CURRENT_MAIN_SYNC",
+  "terminal_server_verification_at": "2026-08-03T22:24:09Z",
+  "branch": "codex/root-four-lanes-20260802",
+  "upstream_task_branch": "4337990334c3e339a02c54de811d9f238246d524",
+  "pre_sync_head": "6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5",
+  "fetched_origin_main": "cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3",
+  "terminal_server_main": "cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3",
+  "final_head": "9f9c6f8bb7a01fe6bd35b47255adc62667537360",
+  "merge_parents": [
+    "6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5",
+    "cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3"
+  ],
+  "origin_main_is_ancestor": true,
+  "dirty_inventory": {
+    "paths": 243,
+    "tracked_modified": 18,
+    "untracked": 225,
+    "regular": 243,
+    "symlink": 0,
+    "directory": 0,
+    "staged": 0,
+    "unmerged": 0,
+    "status_sha256": "b90d31ce17aea3e937b9584d9ea79d5931b7c74cb2196daff2ae2cc60e43e587",
+    "path_set_sha256": "31b813222aa0a80c2e1ae1e50a7d7413b245ce741449d5edc3e03873f1e9a925",
+    "type_mode_size_content_sha256": "230d003078ca1a3e168732e0f232bc1dd1ef9ead5ed4106144214c60f2690441",
+    "exact_pre_post_parity": true
+  },
+  "semantic_overlap": {
+    "main_changed_paths": 41,
+    "main_changed_paths_sha256": "3ae5b6c8de7cdb6b7efea07dada9a4e633bec97ca3a8c28a05281de56934adf2",
+    "overlap_paths": 0,
+    "overlap_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "retained_stashes": [
+    "9c04079cf356e01c7c536ccf7d6f7f73720cedd6",
+    "7caef6283d4e1164535d6650aff321a8ee462f73",
+    "e527a7c91b06b589bcd39860a71782054f149628",
+    "217cb694bb60b4122c7c55b5686a028f9dceaffb",
+    "74fb72eeba760e132edcb01b2b628af3353c5799"
+  ],
+  "evidence_location": "/tmp/chirality-c7-current-main-sync-cpRBi517",
+  "push_performed": false,
+  "pr_action_performed": false,
+  "tranche_staged_or_committed": false,
+  "task_branch_merged_to_main": false,
+  "rebase_or_force_performed": false,
+  "stash_deleted": false,
+  "semantic_edit_performed": false,
+  "c8_released": false,
+  "terminal": true
+}

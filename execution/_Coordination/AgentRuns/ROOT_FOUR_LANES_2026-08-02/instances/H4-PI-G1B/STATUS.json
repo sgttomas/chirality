@@ -1,0 +1,80 @@
+{
+  "schema_version": "h4-pia-g1b-status/v1",
+  "instance_id": "H4-PI-G1B",
+  "work_unit": "PIA-U10-G1B-CONTINUATION",
+  "terminal_status": "COMPLETE_G1B_VALIDATION_TARGET_MATERIALIZED",
+  "decision_effect": "VALIDATION_TARGET_ONLY",
+  "selected_family_id": "chirality.app.pi-agent-engine-adapter",
+  "selected_ownership_boundary": "APP_AFFECTED_CLIENT",
+  "target_record_status": "MATERIALIZED_VALIDATION_TARGET_ENVELOPE_INCOMPLETE_PIA_U10_IDENTITY",
+  "identity_digest_state": "TBD_BLOCKED_PENDING_COMPLETE_EXACT_STABLE_IDENTITY",
+  "registry_key_state": "TBD_BLOCKED_PENDING_COMPLETE_EXACT_STABLE_IDENTITY",
+  "required_artifact_count": 9,
+  "artifacts": [
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/BASIS.json",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/G1B_VALIDATION_TARGET.json",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/SCHEMA_VALIDATION_CANONICAL_DIGEST_PLAN.md",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/G1B_ACCEPTANCE_MATRIX.csv",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/PIA_U30_ROOT_BRIEF.md",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/DRAFT_APP_WORK_ACCEPTANCE_HANDOFF.md",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/ARTIFACT_MANIFEST.csv",
+    "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H4-PI-G1B/RETURN.md",
+    "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H4-PI-G1B/STATUS.json"
+  ],
+  "validation": {
+    "sealed_ruling_hash": "PASS",
+    "sealed_launch_brief_hash": "PASS",
+    "accepted_schema_hash": "PASS",
+    "json_parse": "PASS",
+    "schema_validation_basis": "PASS_ACCEPTED_H2_EXACT_SHA_NOT_RERUN",
+    "target_envelope_required_fields": "PASS",
+    "frozen_current_candidate_hashes": "PASS",
+    "complete_identity_schema_instance": "NOT_CLAIMED_EXPLICIT_TBD_BLOCKERS",
+    "canonical_digest_execution": "NOT_RUN_EXPLICIT_TBD_BLOCKERS",
+    "acceptance_matrix_csv": "PASS",
+    "artifact_manifest": "PASS",
+    "candidate_whitespace": "PASS",
+    "git_diff_check": "PASS",
+    "write_scope": "PASS",
+    "forbidden_surface_writes": "NONE"
+  },
+  "holds": [
+    "NO_PI_0820_APPROVAL",
+    "NO_DAPP72_OR_SCA_APP_002_SUPERSESSION",
+    "NO_APP_WORK_AUTHORIZATION_OR_ROUTING",
+    "NO_PROJECT_WRITE",
+    "NO_SOURCE_RUNTIME_DEPENDENCY_LOCK_AUTHORITY_REGISTER_WRITE",
+    "NO_PROOF_DISPATCH",
+    "NO_PIA_U30_DISPATCH",
+    "NO_NATIVE_PRIMITIVE_SANDBOX_OR_DURABLE_RESUME_ACTIVATION",
+    "NO_LIFECYCLE_RELEASE_RELIANCE_EFFECT",
+    "NO_TASK_MANAGEMENT_WRITE",
+    "NO_GIT_EFFECT"
+  ],
+  "closure": {
+    "h4_objective": "COMPLETE",
+    "pi_evidence_hold": "NOT_CLOSED",
+    "derivative_package_status": "CURRENT_FOR_H4_SELECTED_TARGET_ONLY",
+    "rerun_required_on_candidate_drift": true
+  },
+  "next_gates": [
+    {
+      "id": "APP-PIA-U20-U25-WORK-ACCEPTANCE",
+      "owner": "Human App owner under App authority",
+      "status": "DRAFT_UNROUTED",
+      "allowed_results": [
+        "ACCEPT_EXACT_WORK_UNITS",
+        "AMEND_OR_SPLIT_WORK_UNITS",
+        "DECLINE_WORK_UNITS",
+        "DEFER_WORK_UNITS"
+      ]
+    },
+    {
+      "id": "ROOT-PIA-U30-DISPATCH",
+      "owner": "HELP_HUMAN and Human Root owner",
+      "status": "HELD_FOR_ACCEPTED_PIA_U22_PIA_U23_AND_SEPARATE_AUTHORITY",
+      "not_pi_approval": true,
+      "not_app_supersession": true
+    }
+  ]
+}

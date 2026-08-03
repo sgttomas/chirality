@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 7,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL",
+  "nodes": [
+    {
+      "id": "S4",
+      "role": "SCOPE_CHANGE",
+      "status": "AUTHORIZED_CANDIDATE_PREPARATION_ONLY",
+      "depends_on": ["S3"],
+      "write_scope": [
+        "execution/_ScopeChange/SCA-003_2026-08-02_2212/",
+        "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/S4-SCOPE-CORRECTION/"
+      ]
+    }
+  ],
+  "holds": [
+    {
+      "id": "HOLD-S4-APPLY",
+      "node": "S4",
+      "condition": "Do not apply the exact candidate without a separate owner ruling."
+    },
+    {
+      "id": "HOLD-SCA-CONFIRM",
+      "node": "S4",
+      "condition": "Do not infer or record human Gate 1 confirmation or SCA-003 closure."
+    },
+    {
+      "id": "HOLD-DEL-N0",
+      "node": "S4",
+      "condition": "Do not regenerate or accept the DEL packet and do not dispatch N0."
+    },
+    {
+      "id": "HOLD-GIT",
+      "node": "S4",
+      "condition": "Do not stage, commit, push, update PR #491, or merge."
+    }
+  ],
+  "integration_owner": "HELP_HUMAN",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

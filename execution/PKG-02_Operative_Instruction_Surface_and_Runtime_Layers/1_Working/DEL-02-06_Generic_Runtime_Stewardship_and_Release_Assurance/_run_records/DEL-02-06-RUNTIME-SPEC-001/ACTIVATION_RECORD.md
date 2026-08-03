@@ -2,13 +2,13 @@
 
 RunID: `DEL-02-06-RUNTIME-SPEC-001`
 ParentRunID: `ROOT_FOUR_LANES_2026-08-02`
-ManagerNode: `W1`
+ManagerNode: `W6` (continuation of W1/W2/W3/W4/W5)
 ManagerRole: `WORKING_ITEMS`
 PackageID: `PKG-02`
 SelectedDeliverables: `DEL-02-06` only
-PlanVersion: `2`
+PlanVersion: `6` (parent plan version `12`; executed after plan-v13 current-main synchronization)
 Posture: `MIXED`
-ActivationState: `HELD_AT_N0`
+ActivationState: `PLANNING_PACKAGE_COMPLETE_NOT_ADOPTED — HANDOFF_READY_FOR_HUMAN_GATE`
 
 ## Objective
 
@@ -54,6 +54,68 @@ and product/release files remain read-only.
 The sole writable root is this run root. N1 through N6 remain held if N0 does
 not prove basis currency, source availability, lifecycle, profile absence,
 dependency truth, and write containment.
+
+## Continuation amendment
+
+Owner ruling SHA-256
+`9b98fe3dc6f8d9abb53c5b087e666cd17d53569ea0f39f1dea489534c9ebf6b6`
+authorizes a fresh current-basis packet candidate, preserves exact packet
+acceptance, and orders fresh N0 only after the S2 basis repair is applied. The
+accepted Scope of Work governs containment: the eventual live packet path is
+this RunID root's `accepted_inputs/`. The erroneous deliverable-root path is
+not authorized and neither location is written in the blueprint stage.
+
+## W4 regeneration amendment — 2026-08-03
+
+Parent plan 10 releases deterministic candidate regeneration against exact
+corrected decomposition SHA-256 `23f6ae0f…64f3d`, fresh audit SHA-256
+`ee10313f…20e1`, and Gate-1 confirmation record SHA-256
+`05395c30…f40f`. W4 regenerated the exact six-file candidate and produced
+CandidateSetManifestSHA256 `360f8f12…d508f`.
+
+The prior W3 manifest `dd007522…53cf` was never accepted and remains stale
+derivative history only. W4 does not accept the new packet, create or write
+`accepted_inputs/`, dispatch N0, or expand implementation/lifecycle/register/
+Git authority.
+
+## W5 acceptance, live copy, and N0 amendment — 2026-08-03
+
+Owner acceptance ruling SHA-256 `7ddbef04…a70f7` accepts exact manifest
+`360f8f12…d508f`. The external acceptance record validates with exactly one
+matching token. All six files were copied byte-identically into this RunID's
+`accepted_inputs/` and revalidated.
+
+Actual child session `/root/w1_del0206/n0_r2_w5` executed fresh N0-R2 under
+the sealed two-file write boundary. WORKING_ITEMS accepts its 26/26 PASS,
+no-finding return and `RELEASE_N1_N2_N3` recommendation. Parent plan 11
+requires the manager to stop after N0, so N1–N6 remain held and undispatched.
+
+## W6 post-N0 planning completion amendment — 2026-08-03
+
+Parent plan 12 released the post-N0 graph after the C4 current-main guard.
+W6 ran on repository HEAD `ba576264793deba0708397874414b7482c243f89`,
+which contains `origin/main@379b8b19b12b29eda4fa307e497499d6fe414f8a`.
+The 172-path synchronization restoration matched its pre-sync snapshot; frozen
+W5/N0 evidence and all existing N1-N6 brief hashes reproduced exactly.
+
+Actual bounded children `/root/w1_del0206/n1_w6`, `n2_w6`, and `n3_w6`
+executed concurrently with disjoint writes and were manager-accepted. Sole
+integration writer `n4_w6` produced seven candidate-only outputs. Fresh
+read-only N5 returned one degraded-mode completeness finding; N4 attempt 2
+resolved it. Fresh N5-R2 confirmed that resolution and returned one invalid
+decision-reference finding; N4 attempt 3 made the exact owner-approved
+`D1/D6/D16` to `D1/D6/TBD-016` correction. Fresh N5-R3 then reviewed 18/18
+inputs and returned `ADMIT`, zero material findings, zero writes, and zero
+repair.
+
+N6 assembled the exact three-file `handoff/` package from accepted returns
+only. `OWNER_GATE_HANDOFF.md` is SHA-256 `bf802046…d151`; its one-entry
+manifest verifies and is SHA-256 `53d9a007…3770`. The current verdict is
+`PLANNING_PACKAGE_COMPLETE_NOT_ADOPTED`; closure is `NOT_CLOSED`. The next
+gate is accountable-human semantic review, followed only if accepted by a
+separately sealed implementation gate. No implementation, executable test,
+profile/check adoption, runtime/client/project write, lifecycle, release,
+reliance, Task Management, Git, or foreign-loop effect occurred.
 
 ## Initial inspection
 

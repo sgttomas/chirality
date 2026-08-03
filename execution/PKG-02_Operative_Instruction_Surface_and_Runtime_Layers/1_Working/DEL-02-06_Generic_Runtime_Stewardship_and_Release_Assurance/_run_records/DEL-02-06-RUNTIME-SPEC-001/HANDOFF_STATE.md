@@ -1,6 +1,93 @@
 # Handoff state — DEL-02-06 accepted-turn recovery first activation
 
-Status: `HELD_AT_N0`
+Status: `PLANNING_PACKAGE_COMPLETE_NOT_ADOPTED — HANDOFF_READY_FOR_HUMAN_GATE — NOT_CLOSED`
+
+## W6 terminal handoff — 2026-08-03
+
+Parent plan 12 released the post-N0 graph after the exact C4 current-main
+guard. W6 verified the frozen W5/N0 fan-in, ran actual concurrent N1/N2/N3
+children, accepted sole-writer N4 attempt 3 after two fresh read-only refuter
+returns were dispositioned, accepted fresh N5-R3 `ADMIT` with zero material
+findings, and accepted N6 handoff assembly.
+
+The decision-ready derivative package is
+`handoff/OWNER_GATE_HANDOFF.md` at SHA-256
+`bf8020460d475c0e101c8675bf5721cc1358299e3e5b799ecead9901eb74d151`.
+`handoff/HANDOFF_MANIFEST.sha256` is
+`53d9a00764fb870f812142e4f8c10b371d838539ead6e00b502ef44647e13770`
+and verifies exactly that handoff. N6 return SHA-256 is
+`7de10a99794cc436758e06f4573ee434ee9c255f146387fa6cefb93da9b37662`.
+
+All D1-D9 decisions, all sixteen TBD/OD6 items, N1/N2/N3 findings, PEC
+`UNRESOLVED`, unexecuted evidence duties, blockers, and rerun requirements
+remain explicit. The package is `PLANNING_PACKAGE_COMPLETE_NOT_ADOPTED` and
+does not substitute for decomposition or Scope-of-Work truth.
+
+Next gate: the accountable human must `ACCEPT`, `RETURN`, or `DEFER` the exact
+semantic direction and explicitly rule D1-D9, the sixteen TBD/OD6 items, the
+affected-client census including PEC, and the compatibility delta. Only a
+later, separately sealed gate may authorize implementation after exact revised
+semantic bytes and a fresh refutation are accepted. Closure still requires
+applied runtime bytes, executable restart/replay and associated recovery
+evidence bound to exact identities, required affected-client evidence, and
+owner acceptance. No implementation, executable check, runtime/client/project
+write, lifecycle, release, reliance, Task Management, Git, or foreign-loop
+effect occurred.
+
+## W5 terminal handoff — 2026-08-03
+
+Exact manifest `360f8f12…d508f` is owner-accepted through ruling
+`7ddbef04…a70f7`; external record `ee035e91…40760c` validates exactly one
+token. RunID-local `accepted_inputs/` contains the same six candidate bytes
+and passes full packet validation.
+
+Actual child `/root/w1_del0206/n0_r2_w5` returned
+`RELEASE_N1_N2_N3`, 26/26 PASS, no findings. WORKING_ITEMS accepted return
+`ca8c1b18…ac522` and basis report `e11d4c28…7cd8`. Parent plan 11 stops after
+N0, so N1–N3 edges and N4–N6 remain held and undispatched. Next owner is
+HELP_HUMAN/human owner for an explicit post-N0 continuation decision.
+
+## Historical W4 terminal handoff — 2026-08-03
+
+W4 regenerated and manifested the exact six-file candidate against corrected
+decomposition SHA-256 `23f6ae0f…64f3d`, fresh audit `ee10313f…20e1`, and
+Gate-1 confirmation `05395c30…f40f`. The current candidate manifest is
+`360f8f12c4719d79a506394bcd98a4b630c2610f9c80d90a08b0519e8a1d508f`.
+Content/full validation and all 20 negative cases pass. The old
+`dd007522…53cf` manifest is stale, never accepted, and retained only in the
+presentation history record.
+
+Next owner is the human through HELP_HUMAN for an exact `ACCEPT`, `RETURN`, or
+`DEFER` ruling on the current manifest. No acceptance record, live input copy,
+N0 dispatch, implementation, lifecycle/release/reliance, Task Management,
+SCA/decomposition/PRD, foreign-loop, or Git effect occurred.
+
+## Historical W3 terminal handoff — 2026-08-03
+
+The exact six-file candidate is instantiated and hash-bound under
+`packet_candidate/`. CandidateSetManifestSHA256 is
+`dd0075229486b98a5b28936ce55ea94e0fcbb6c8d5befc2f453cff78f6d053cf`;
+deterministic full validation passes twice and isolated negative validation
+passes 20/20. `packet_presentation/PRESENTATION_RECORD.md` carries every exact
+hash and the matching token grammar.
+
+Disposition is `DEFER`: the candidate is valid for current applied
+decomposition SHA-256 `69bdb9ca…1278c`, but current audit records blocking
+`COV-POST-001`. Any separately approved three-location disposition correction
+that changes the decomposition hash invalidates this candidate basis and
+requires a new candidate and manifest presentation. N0 remains blocked even
+if the present packet were accepted. No owner acceptance, `accepted_inputs/`,
+N0 dispatch, runtime/client/lifecycle/register, or Git effect occurred.
+
+## Historical plan-v4 continuation
+
+At the W2 terminal, `packet_blueprint/` was decision-ready and contained the six-template content
+contract, provenance/non-reconstruction rules, non-circular hash procedure,
+external owner gate, deterministic validators, and fresh N0-R2 brief/checklist.
+No candidate or manifest identity existed at that historical boundary. The
+accepted Scope of Work governs the future live path at this
+RunID root's `accepted_inputs/`; the erroneous deliverable-root path is not
+authorized and was never written.
 
 | Field | Value |
 |---|---|

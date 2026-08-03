@@ -1,0 +1,21 @@
+# W6 sealed child launch — N5-R3 fresh adversarial recheck
+
+- RequestedBy: `WORKING_ITEMS/W6-DEL0206-POST-N0-PLANNING`
+- RunID: `DEL-02-06-RUNTIME-SPEC-001`
+- Parent runtime identity: `/root/w1_del0206`
+- Expected child runtime identity: `/root/w1_del0206/n5_r3_w6`
+- Form: genuinely fresh ephemeral Agent 2 generalist; delegation forbidden; read-only refuter; repair forbidden.
+- Governing brief: `briefs/N5.md`, SHA-256 `632d2cbefac9003f36d9d722374b22fdeca5d0da45e637acf7335c8a7d872121`.
+- Reason: original N5 returned `N5-F01`; N5-R2 confirmed that finding fully resolved but returned `N5-R2-F01`; N4 attempt 3 is manager-accepted only for this fresh recheck under amendment SHA-256 `3f58f9d7c741a3ba4abf08e7822963acbc8c17d35af5b8150c7979c6bac4587e`.
+- Accepted N0 pair: `basis/BASIS_REPORT_R2.json` `e11d4c2888d9d449e463c85ef5b06dad138b8eca7b9da00b123e51a346c97cd8`; `basis/N0_R2_RETURN.md` `ca8c1b18f6bd3d32ab7f1bad5d0cdc15d3bd31c811d3a2484ed38f61c64ac522`.
+- Accepted N1 pair: `inventory/N1_INVENTORY.md` `f4b6039095fa0b7f98d83969fdab29c351d59ee31e43cdb5eb23cd5fa242dcc0`; `inventory/N1_RETURN.md` `42ea23f2191f1057c09c3bb7d0c2c660a3628117498dc4eb88d169f0778d9866`.
+- Accepted N2 pair: `clients/N2_CLIENT_CENSUS.md` `14abde6b3b5eb188555c55749c4b6105d8b4fad08d21e9cf3998a76ea9f4ee52`; `clients/N2_RETURN.md` `7f4d2aefccf289bb9b26fbde1cc84aaa66a0436dbd1543cb12b8d5718ca49d64`.
+- Accepted N3 pair: `evidence/N3_EVIDENCE_DESIGN.md` `e05b56d3b3a1bd349cd0b9da8e2df761126f2c46c44baf1c9282c6cf55180dd0`; `evidence/N3_RETURN.md` `1c1746a05f1afee4886f6057544bf7093fc89d182420da718ead9a9c0a4f2fd2`.
+- Current N4 outputs: `integration/RECOVERY_SPEC_CANDIDATE.md` `5f16ca9e1a11f0035110655d400153ad5d57aeee3e25ba6032b0c91f66467bc7`; `integration/COMPATIBILITY_DISPOSITION_CANDIDATE.md` `689b41e3fc9416a5fcc637c4ebe543f4b6272b96fe32f65f47766855c222dda1`; `integration/DEGRADED_MODE_DELTA_CANDIDATE.md` `9fc965ac4b07532adf8890c97a2197e65db305fe9170c47d49aeb3d0caabe16b`; `integration/OPEN_ITEM_MAP.md` `38149d3292234a071064300c826c2707a8f6b445e878558f31c3c6c7ece66eaf`; `integration/IMPLEMENTATION_PLAN_CANDIDATE.md` `e2f4fda9fa44eff9caf3c6894b6112c4eec39fc9bbac43b8e840382fc3b17bd9`; `integration/N4_SELF_CHECK.md` `92cfd5b00f463056cfa05df614df55ec31ea4395a849c005656753498ace3179`; `integration/N4_RETURN.md` `8c8722ace32e1dae6b3ed3c54ab975ad6056f407a94cdf4cfc167dcb6619636a`.
+- Accepted Scope of Work: `ScopeOfWork.md` `dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146`.
+- Declared reads: exactly the 17 hash-bound files above plus this launch; no other read is permitted.
+- Allowed tools: non-shell bounded Node file reads/hashes/parsing only. No write tool, Bash, network, executable test/check, runtime execution, implementation command, repair, or delegation.
+- Allowed writes: none. Return through runtime response only.
+- Required review: 100% of all 18 declared inputs and all seven current N4 outputs. Independently verify both accepted finding dispositions: `N5-F01` (accepted base binding; exactly ten unique condition rows; nine required columns; one-to-one complete rows; explicit unresolved class/retry/redaction/evidence; positive and negative/adversarial verification; no false preservation/adoption claim) and `N5-R2-F01` (no nonexistent decision identifier; `D1/D6/TBD-016` exact reference; all decision identifiers bounded to D1-D9). Repeat the complete N5 adversarial matrix over semantic completeness, source grounding, client boundaries, write/authority containment, restart/replay sufficiency, drain accounting, exactly-one-terminal proof, rollback honesty, D1-D9 preservation, and absence of false evidence/closure claims.
+- Verdict: `ADMIT` only if no material finding; otherwise `RETURN` with exact ledger. Uncertainty fails closed.
+- Hard stop: no repair, semantic adoption, implementation, runtime/client/project write, profile/check adoption, lifecycle/release/reliance, SCA/decomposition/PRD, Task Management, Git, or foreign write.

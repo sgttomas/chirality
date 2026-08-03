@@ -1,0 +1,55 @@
+# Owner gate — fresh DEL-02-06 accepted-input candidate
+
+Status: `FRESH CURRENT-BASIS CANDIDATE — NOT ACCEPTED — EXTERNAL EXACT-HASH GATE REQUIRED`
+PacketCharacter: `FRESH_SYNTHESIS — NOT RECOVERED HISTORICAL BYTES`
+
+## Gate subject
+
+The gate subject is exactly the six-file candidate whose five content hashes
+appear in `CANDIDATE_SET_MANIFEST.sha256`. The SHA-256 of the manifest bytes is
+the candidate-set identity. The manifest does not hash itself.
+
+Applied basis:
+
+- accepted DEL-02-06 Scope of Work SHA-256
+  `dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146`
+- `{{S2_APPLIED_REPOSITORY_BASIS}}`
+- PRD SHA-256 `{{S2_PRD_SHA256}}`
+- decomposition SHA-256 `{{S2_DECOMPOSITION_SHA256}}`
+- S2 Decision Log SHA-256 `{{S2_DECISION_LOG_SHA256}}`
+- S2 Gate-5 validation SHA-256 `{{S2_GATE5_VALIDATION_SHA256}}`
+- S2 handoff SHA-256 `{{S2_HANDOFF_SHA256}}`
+- S2 applied-file hashes record SHA-256
+  `{{S2_APPLIED_FILE_HASHES_SHA256}}`
+
+## Acceptance meaning
+
+Acceptance means only that the exact candidate bytes may be copied to the
+RunID-local `accepted_inputs/` directory and consumed by fresh N0 as planning
+inputs. It does not accept either semantic candidate as a runtime contract,
+answer any open item, authorize N1–N6 automatically, or authorize runtime/
+client implementation, profile adoption, dependency change, lifecycle,
+release, reliance, register closure, Git merge, or foreign-loop work.
+
+## External acceptance record
+
+Acceptance is recorded outside the six-file packet at:
+
+`packet_acceptance/PACKET_OWNER_ACCEPTANCE.md`
+
+The exact acceptance line begins `ACCEPT DEL-02-06 INPUT PACKET`, followed by
+one space, the exact lowercase 64-hex candidate-manifest SHA-256,
+` — Ryan Tufts `, and the ruling date in ISO `YYYY-MM-DD` form.
+
+This packet contains no owner token and claims no inferred acceptance.
+Validation, file presence, commit, push, PR, or merge is not acceptance.
+
+## Return and mutation rule
+
+The owner may `ACCEPT`, `RETURN`, or `DEFER`. Any content edit after manifest
+creation creates a different candidate, requires full revalidation and a new
+manifest identity, and must be presented again. A mismatched or ambiguous
+token has no effect.
+
+The missing historical packet remains missing. This candidate begins a fresh
+provenance chain and does not rewrite historical evidence.

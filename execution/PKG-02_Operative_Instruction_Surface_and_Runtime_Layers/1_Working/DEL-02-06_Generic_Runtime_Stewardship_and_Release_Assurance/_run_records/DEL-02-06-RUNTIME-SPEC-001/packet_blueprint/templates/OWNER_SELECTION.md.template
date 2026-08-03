@@ -1,0 +1,53 @@
+# Owner selection — fresh DEL-02-06 accepted-input candidate
+
+Status: `CURRENT OWNER PREPARATION DIRECTION — PACKET NOT ACCEPTED`
+PacketCharacter: `FRESH_SYNTHESIS — NOT RECOVERED HISTORICAL BYTES`
+
+## Exact owner act
+
+The controlling continuation ruling states:
+
+> DISPOSITION DEL-02-06 ACCEPTED INPUTS as proposed; then rerun N0.
+
+Source:
+`execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/OWNER_RULING_2026-08-02_CONTINUATION.md`,
+SHA-256
+`9b98fe3dc6f8d9abb53c5b087e666cd17d53569ea0f39f1dea489534c9ebf6b6`.
+
+## Governed selection
+
+The owner selected all and only this preparation posture:
+
+1. Create a fresh current-basis six-file candidate under the packet's owning
+   instrument.
+2. Do not reconstruct or represent missing historical bytes as recovered.
+3. Preserve an exact hash-bound owner acceptance gate for the candidate.
+4. Run fresh N0 only after S2 is accepted/applied and the exact packet is
+   owner-accepted and copied byte-for-byte to the live RunID-local input root.
+5. Keep N0 and the whole first activation within specification, read-only
+   inventory, evidence design, and change planning.
+
+## Applied S2 basis to bind at instantiation
+
+- Accepted DEL-02-06 Scope of Work SHA-256:
+  `dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146`.
+- Repository basis: `{{S2_APPLIED_REPOSITORY_BASIS}}`.
+- Root PRD SHA-256: `{{S2_PRD_SHA256}}`.
+- Root decomposition SHA-256: `{{S2_DECOMPOSITION_SHA256}}`.
+- S2 Decision Log SHA-256: `{{S2_DECISION_LOG_SHA256}}`.
+- S2 Gate-5 validation SHA-256: `{{S2_GATE5_VALIDATION_SHA256}}`.
+- S2 handoff SHA-256: `{{S2_HANDOFF_SHA256}}`.
+- S2 applied-file hashes record SHA-256:
+  `{{S2_APPLIED_FILE_HASHES_SHA256}}`.
+
+## No semantic selection
+
+The owner has not selected a compatibility identity/value, declaration point,
+mismatch identifier, recovery terminal class/payload, event identity,
+duplicate-history policy, affected-client classification, compatibility-epoch
+effect, implementation design, software-workflow profile, test result,
+lifecycle transition, release, reliance, Task Management closure, or Git
+merge. Every such choice remains with its named later instrument and gate.
+
+Packet acceptance, when separately recorded, accepts exact planning-input
+bytes only.

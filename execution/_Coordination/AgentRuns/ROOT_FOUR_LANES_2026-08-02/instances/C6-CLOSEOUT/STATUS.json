@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "node": "C6",
+  "role": "CHANGE",
+  "status": "BLOCKED_VALIDATION_FAILURE",
+  "terminal_time_utc": "2026-08-03T22:05:37Z",
+  "branch": "codex/root-four-lanes-20260802",
+  "local_head": "6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5",
+  "origin_main": "0b69aabe000ea8ae78ca5a2134d734c40eba4972",
+  "origin_main_is_ancestor": true,
+  "remote_branch_head": "4337990334c3e339a02c54de811d9f238246d524",
+  "pr": {
+    "number": 491,
+    "state": "OPEN",
+    "is_draft": false,
+    "merge_state": "CLEAN",
+    "body_updated": false,
+    "existing_hosted_check": {
+      "name": "governance-harness / harness",
+      "status": "COMPLETED",
+      "conclusion": "SUCCESS",
+      "head": "4337990334c3e339a02c54de811d9f238246d524"
+    }
+  },
+  "pre_return_inventory": {
+    "paths": 231,
+    "tracked_modified": 17,
+    "untracked": 214,
+    "staged": 0,
+    "unmerged": 0,
+    "scope_parity": "PASS_C5_227_PLUS_FOUR_AUTHORIZED_CONTROL_PATHS"
+  },
+  "validation": {
+    "protected_hashes": "PASS",
+    "del_packet_candidate": "PASS",
+    "del_accepted_inputs": "PASS",
+    "del_owner_acceptance": "PASS",
+    "del_candidate_live_parity": "PASS",
+    "n6_handoff_manifest": "PASS",
+    "g4_manifest_corpus": "PASS_27",
+    "json_parse": "PASS_52_PLUS_JSONL",
+    "git_diff_check": "PASS",
+    "candidate_whitespace": "FAIL_16_SURPLUS_TERMINAL_BLANK_LINES",
+    "pytest_tools_validation": "NOT_RUN_STOPPED_AT_PRIOR_FAILURE"
+  },
+  "publication": {
+    "staged": false,
+    "committed": false,
+    "pushed": false,
+    "pr_updated": false,
+    "merged": false
+  },
+  "forbidden_effects": "NONE",
+  "next_owner": "HELP_HUMAN_AND_W6_OWNING_WORKFLOW"
+}

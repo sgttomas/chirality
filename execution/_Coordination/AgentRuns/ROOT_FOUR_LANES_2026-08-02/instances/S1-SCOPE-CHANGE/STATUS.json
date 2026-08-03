@@ -1,33 +1,50 @@
 {
   "schema": "chirality-agent-return/v1",
   "run_id": "ROOT_FOUR_LANES_2026-08-02",
-  "plan_version": 2,
+  "plan_version": 4,
   "instance_id": "S1-SCOPE-CHANGE",
+  "continuation_node": "S2",
   "role": "SCOPE_CHANGE",
-  "status": "BLOCKED_AT_GATE_1",
+  "status": "BLOCKED_AT_EXACT_BASIS_RECONCILIATION_CANDIDATE_GATE",
   "terminal": true,
   "amendment_id": "SCA-003",
-  "gate_reached": 1,
-  "gate_1_confirmed": false,
+  "original_gate_reached": 1,
+  "original_gate_1_confirmed": false,
   "parsed_actions": 0,
   "provisional_disposition": "NO_DECOMPOSITION_AMENDMENT_CURRENTLY_SHOWN",
+  "basis_reconciliation": {
+    "intake": "CONFIRMED_BY_OWNER_ROUTING_RULING",
+    "impact": "PREPARED_PENDING_OWNER_ACCEPTANCE",
+    "exact_candidate": "PREPARED_PENDING_OWNER_APPROVAL",
+    "propagation": "PREPARED_PENDING_OWNER_APPROVAL",
+    "application": "NOT_AUTHORIZED",
+    "validation": "PASS_17_OF_17",
+    "candidate_whitespace": "PASS",
+    "git_diff_check": "PASS",
+    "live_prd_sha256": "278f31ae99607f970e39c6535f809c93a7c5bf09b139ffa2cbbdbe3f08c3746c",
+    "candidate_prd_sha256": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+    "live_decomposition_sha256": "6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49",
+    "candidate_decomposition_sha256": "69bdb9ca682a80adab6c23e0a615bd4f9c5ed64f281f11a4e558a1f0e991278c",
+    "exact_diff_sha256": "c3ce8db08a45563f27948793cde925afd5d3d3d0f570789bdd49fda045788f72"
+  },
   "audit": {
     "structural_coverage": "PASS",
-    "authority_state_consistency": "FAIL",
-    "closure_readiness": "FAIL",
+    "authority_state_consistency": "FAIL_ON_LIVE_BASIS",
+    "closure_readiness": "FAIL_ON_LIVE_BASIS",
     "blockers": 1,
     "warnings": 0,
     "info": 14,
-    "return_sha256": "3d2a09dd35da0c26bc87a1e156c7b1a5e35fd7875ff9a39d4294b8d6a369a868"
+    "return_sha256": "3d2a09dd35da0c26bc87a1e156c7b1a5e35fd7875ff9a39d4294b8d6a369a868",
+    "rerun_required_after_application": true
   },
   "authoritative_writes": 0,
   "foreign_loop_writes": 0,
   "register_writes": 0,
   "git_writes": 0,
   "blockers": [
-    "Live decomposition v1.2 self-labels SCA-002 candidate/unaccepted while accepted-state records prove accepted/applied",
-    "Live PRD header/document-control candidate labels conflict with the Root handoff and D-8 adopted Revision-8 state",
-    "Owner Gate-1 confirmation has not been given against the zero-action/no-change parse"
+    "Exact basis-reconciliation candidate, impact assessment, and propagation plan await owner acceptance",
+    "Application requires a separate owner ruling covering Root product-basis M2 obligations and SCOPE_CHANGE metadata application",
+    "Original SCA-003 Gate 1 remains blocked until applied-state validation, AUDIT_DECOMP rerun, and human confirmation"
   ],
-  "next_owner": "HELP_HUMAN_TO_OWNER_FOR_BASIS_RECONCILIATION_AND_GATE_1_DECISION"
+  "next_owner": "HELP_HUMAN_TO_OWNER_FOR_EXACT_CANDIDATE_ACCEPTANCE_THEN_SEPARATE_APPLICATION_RULING"
 }

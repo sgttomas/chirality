@@ -1,23 +1,54 @@
 {
   "schema_version": "1.0",
   "run_id": "ROOT_FOUR_LANES_2026-08-02",
-  "plan_version": 3,
+  "plan_version": 19,
   "selection_authority": "HUMAN",
   "posture": "MIXED",
-  "basis": "97678a841ef58345c73d3470ed8de57c9b1405d2",
+  "basis": {
+    "local_head": "6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5",
+    "origin_main": "0b69aabe000ea8ae78ca5a2134d734c40eba4972",
+    "current_main_ancestry": true,
+    "continuation_state": "UNCOMMITTED_UNPUSHED_CANDIDATE_TRANCHE"
+  },
   "nodes": [
-    {"id":"C0","role":"CHANGE","status":"COMPLETE","depends_on":[],"write_scope":[]},
-    {"id":"S1","role":"SCOPE_CHANGE","status":"BLOCKED_AT_GATE_1","depends_on":["C0"],"write_scope":["execution/_ScopeChange/"]},
-    {"id":"W1","role":"WORKING_ITEMS","status":"HELD_AT_N0","depends_on":["C0"],"write_scope":["execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/"]},
-    {"id":"H1","role":"HELPS_HUMANS","status":"COMPLETE_READY_FOR_CI","depends_on":["C0"],"write_scope":[".github/workflows/","tools/validation/","docs/governance_harness/","execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H1-G4-CI/"]},
-    {"id":"E1","role":"EVALUATION","status":"COMPLETE_HOLD_FOR_OWNER_DECISION","depends_on":["C0"],"write_scope":["execution/_Evaluation/","execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/E1-PI082/"]},
-    {"id":"C1","role":"CHANGE","status":"READY_FOR_OPEN_PR_CLOSEOUT","depends_on":["S1","W1","H1","E1"],"write_scope":["git closeout","execution/_Change/"]}
+    {"id":"C0","role":"CHANGE","status":"COMPLETE","depends_on":[]},
+    {"id":"S1","role":"SCOPE_CHANGE","status":"SUPERSEDED_BY_S2_S3","depends_on":["C0"]},
+    {"id":"W1","role":"WORKING_ITEMS","status":"SUPERSEDED_BY_W2_W3","depends_on":["C0"]},
+    {"id":"H1","role":"HELPS_HUMANS","status":"COMPLETE_G4_CI_PR_491_HOSTED_PASS","depends_on":["C0"]},
+    {"id":"E1","role":"EVALUATION","status":"COMPLETE_HOLD_FOR_OWNER_DECISION","depends_on":["C0"]},
+    {"id":"C1","role":"CHANGE","status":"OPEN_PR_491_UNMERGED","depends_on":["S1","W1","H1","E1"]},
+    {"id":"S2","role":"SCOPE_CHANGE","status":"COMPLETE_EXACT_CANDIDATE_PREPARATION","depends_on":["S1"]},
+    {"id":"W2","role":"WORKING_ITEMS","status":"COMPLETE_PACKET_BLUEPRINT","depends_on":["S2","W1"]},
+    {"id":"E2","role":"EVALUATION","status":"COMPLETE_OPTION_A_EVIDENCE_HOLD","depends_on":["E1"]},
+    {"id":"H2","role":"HELPS_HUMANS","status":"COMPLETE_PIA_U10_IDENTITY_PROPOSAL","depends_on":["E2"]},
+    {"id":"H3","role":"HELPS_HUMANS","status":"COMPLETE_M2_PRD_APPLY","depends_on":["S2"]},
+    {"id":"S3","role":"SCOPE_CHANGE","status":"APPLIED_EXACT_CANDIDATE_BLOCKED_COV_POST_001","depends_on":["H3"]},
+    {"id":"H4","role":"HELPS_HUMANS","status":"COMPLETE_G1B_VALIDATION_TARGET","depends_on":["H2"]},
+    {"id":"W3","role":"WORKING_ITEMS","status":"CANDIDATE_VALID_DEFERRED_COV_POST_001","depends_on":["S3","W2"]},
+    {"id":"S4","role":"SCOPE_CHANGE","status":"COMPLETE_EXACT_CORRECTION_CANDIDATE","depends_on":["S3"]},
+    {"id":"S5","role":"SCOPE_CHANGE","status":"APPLIED_AUDIT_PASS_AWAITING_HUMAN_CONFIRMATION","depends_on":["S4"]},
+    {"id":"S6","role":"SCOPE_CHANGE","status":"COMPLETE_GATE_1_CONFIRMED_ZERO_ACTIONS_NO_CHANGE","depends_on":["S5"]},
+    {"id":"W4","role":"WORKING_ITEMS","status":"SUPERSEDED_BY_W5_PACKET_ACCEPTANCE_N0","depends_on":["S6","W3"]},
+    {"id":"C3","role":"CHANGE","status":"SUPERSEDED_BY_C4_CURRENT_MAIN_SYNC","depends_on":["H3","S3","H4","W4"]},
+    {"id":"W5","role":"WORKING_ITEMS","status":"COMPLETE_PACKET_ACCEPTED_N0_PASS","depends_on":["W4","S6"]},
+    {"id":"C4","role":"CHANGE","status":"COMPLETE_CURRENT_MAIN_SYNC_BYTE_IDENTICAL_RESTORE","depends_on":["W5"]},
+    {"id":"W6","role":"WORKING_ITEMS","status":"COMPLETE_HANDOFF_READY_FOR_HUMAN_GATE","depends_on":["C4"]},
+    {"id":"G-DEL-SEMANTIC","role":"HUMAN","status":"OPEN_ACCEPT_RETURN_OR_DEFER","depends_on":["W6"]},
+    {"id":"C5","role":"CHANGE","status":"COMPLETE_CURRENT_MAIN_SYNC_BYTE_IDENTICAL_RESTORE","depends_on":["W6"]},
+    {"id":"C6","role":"CHANGE","status":"STOPPED_VALIDATION_NO_GIT_EFFECT","depends_on":["C5"]},
+    {"id":"W6-R1","role":"WORKING_ITEMS","status":"COMPLETE_NON_SEMANTIC_PROVENANCE_REPAIR","depends_on":["C6"]},
+    {"id":"C6-R2","role":"CHANGE","status":"STOPPED_CURRENT_MAIN_DRIFT_NO_GIT_EFFECT","depends_on":["W6-R1"]},
+    {"id":"C7","role":"CHANGE","status":"COMPLETE_CURRENT_MAIN_SYNC_BYTE_IDENTICAL_RESTORE","depends_on":["C6-R2"]},
+    {"id":"C8","role":"CHANGE","status":"AUTHORIZED_SCOPED_COMMIT_PUSH_PR_UPDATE_NO_MERGE","depends_on":["C7"]}
   ],
   "holds": [
-    {"id":"HOLD-W1-IMPLEMENTATION","node":"W1","condition":"No runtime implementation before the applicable SCOPE_CHANGE and separately sealed implementation-activation gates."},
-    {"id":"HOLD-PI-DECISION","node":"E1","condition":"Pi 0.82.0 approval remains a human decision after evidence fan-in."},
-    {"id":"HOLD-MERGE","node":"C1","condition":"PR merge remains the owner's Git gate."}
+    {"id":"HOLD-SCA-CLOSE","node":"S6","condition":"SCA-003 remains open; no closeout or _LATEST move without a separate owner ruling."},
+    {"id":"HOLD-DEL-SEMANTIC","node":"G-DEL-SEMANTIC","condition":"D1-D9, all sixteen TBD/OD6 items, affected-client census including PEC, and compatibility delta remain human-gated."},
+    {"id":"HOLD-IMPLEMENTATION","node":"G-DEL-SEMANTIC","condition":"No implementation until exact semantic bytes and a fresh read-only refutation are accepted, followed by a separately sealed implementation activation."},
+    {"id":"HOLD-PI","node":"H4","condition":"G1-B is validation-target selection only; no Pi approval, App supersession, App work, proof dispatch, lifecycle, release, or reliance effect."},
+    {"id":"HOLD-MERGE","node":"C6","condition":"PR merge remains the owner's Git gate."}
   ],
-  "integration_owner": "C1",
-  "register_writes_authorized": false
+  "integration_owner": "C8",
+  "register_writes_authorized": false,
+  "merge_authorized": false
 }
