@@ -7,7 +7,7 @@ Invoking loop: `chirality-app-dev`
 Authority: owner ruling recorded verbatim in
 `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-02_APP_HARVEST_SLATE.md`
 at SHA-256
-`fda01337f3e8197b42c75806d32e8af5a7a6cd8f818fb0e5c2262f795a7703c2`.
+`a3f0659f7c6c1062ba41aa745943e89260009305a471ed403c73d742a7a5d698`.
 
 Candidate basis:
 `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/CANDIDATE_HARVEST_REPORT_2026-08-02.md`

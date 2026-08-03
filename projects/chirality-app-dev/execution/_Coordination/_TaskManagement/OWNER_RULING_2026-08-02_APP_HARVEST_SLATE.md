@@ -51,4 +51,3 @@ Only the ten named promotions and the one named existing-row closure are
 register mutations. `TM-APP-002` and `TM-APP-024` remain byte-unchanged. All
 screened candidates receive no row. No routed response is authorized before
 the coupled Root rulings occur.
-

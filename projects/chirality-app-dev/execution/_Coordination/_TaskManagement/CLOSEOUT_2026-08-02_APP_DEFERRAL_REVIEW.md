@@ -58,7 +58,7 @@ Post-archive hashes:
 - live `REGISTER.csv`:
   `8c89e9b44484dde24982e84fe9f07e93b09d349583a6b2803b6862323a15147f`;
 - `REGISTER_CLOSED.csv`:
-  `c903fd3eb3809d35b19abc9d2588b228fa5213179a25e070424e0a02b145a225`.
+  `bfd4c32c45fc277e2b8243ae74fb459a899a26a95546495082db4eb680c89e73`.
 
 Both live and archive registers pass `taskmgmt validate`.
 
