@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "chirality.tm112-semantic-acceptance/v1",
+  "runId": "ROOT_TM112_SEMANTIC_ACCEPTANCE_2026-08-03",
+  "decisionId": "ROOT-TM112-SEMANTICS-01",
+  "selection": ["G2", "C1", "F1"],
+  "acceptedClauses": ["N-STOP-1", "N-STOP-2", "N-STOP-3", "N-STOP-4", "N-STOP-5", "N-STOP-6", "N-STOP-7"],
+  "accountableHuman": "Ryan Tufts",
+  "decisionDate": "2026-08-03",
+  "transcript": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_SEMANTIC_RETURNS_2026-08-03/OWNER_RETURN_TRANSCRIPT_2026-08-03.txt",
+    "sha256": "6396dd26c3fb8b6ed922c1cb7da584f67a08188d5b27525d650bf3ca1560c566",
+    "signedBlockStartByte": 593,
+    "signedBlockEndByteExclusive": 2436,
+    "signedBlockLength": 1843,
+    "signedBlockSha256": "a18f963d4666af73dd44674ea2d43f5052dc7eb96ddfe977f7a84070927f3a53",
+    "signedBlockLines": "11-35"
+  },
+  "clauseBytes": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_TM112_STOP_CONTRACT_2026-08-03/CANDIDATE_NORMATIVE_CLAUSES.md",
+    "preWhitespaceCommit": "ba4678ca00c0cf9fb862ba36d1410d11ce1ff6ac",
+    "preWhitespaceSha256": "2428824746c5a6928c2894619d67bbc817717bed536f5ee64b11cdafda0db62e",
+    "preWhitespaceLength": 7796,
+    "postWhitespaceCommit": "2b6d53027ea10374dd515a4a5a203f8ed4cf2f04",
+    "postWhitespaceSha256": "fd3ba31a8c53719e165b131d872868a53760adab4dc7ae92015fbd6641a11ead",
+    "postWhitespaceLength": 7792,
+    "byteDrift": "Removed exactly two trailing two-space Markdown hard-break markers from the Status and Candidate set lines; no word, token, punctuation, ordering, or EOF-byte change in this clause file.",
+    "normalizationClass": "MARKDOWN_HARD_BREAK_AND_CORPUS_EOF_WHITESPACE_ONLY",
+    "normalizedSemanticBytesEqual": true
+  },
+  "authorityEffect": {
+    "semanticAcceptance": true,
+    "boundedImplementationTestTrancheAuthorized": true,
+    "implementationStarted": false,
+    "appNoticeAuthorizedNow": false,
+    "appNoticeCondition": "semantic acceptance plus accepted repair landing",
+    "appCausalityProved": false,
+    "processSigtermBehaviorProved": false
+  },
+  "carrierFormattingRefresh": {
+    "classification": "FORMATTING_ONLY_TRAILING_SPACE_HARD_BREAK_AND_TERMINAL_BLANK_LINE_NORMALIZATION",
+    "semanticAuthorityUnchanged": true,
+    "implementationBriefPreNormalizationSha256": "b8163531fb8f41142d6c067111fa84d2065ebd28c47f1c1e32e9218c16e6a218",
+    "implementationBriefPostNormalizationSha256": "617512278aa93e05a07334b5f666e7a7e1f2e869882c33da6fd63b6fcdc92e9d"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "tm112-controlled-results/v1",
+  "sourceExecutionOutputs": [
+    {
+      "run": "runtime-stop-1",
+      "executedAt": "2026-08-04T02:29:37.530Z",
+      "completedAt": "2026-08-04T02:29:39.104Z",
+      "node": "v24.18.0",
+      "platform": "darwin",
+      "arch": "arm64",
+      "pid": 31913,
+      "stopBoundaryMs": 750,
+      "releaseBoundaryMs": 2000,
+      "cases": [
+        {
+          "name": "idle",
+          "stopInvokedAt": "2026-08-04T02:29:37.552Z",
+          "initialElapsedMs": 0.832917,
+          "initialState": "RESOLVED",
+          "socketAtObservation": "ABSENT",
+          "ownerAtObservation": "ABSENT"
+        },
+        {
+          "name": "ordinary-keepalive",
+          "stopInvokedAt": "2026-08-04T02:29:37.563Z",
+          "clientBeforeStop": "CONNECTED_RESPONSE_200_NOT_DESTROYED",
+          "initialElapsedMs": 0.357167,
+          "initialState": "RESOLVED",
+          "clientAfterStop": "DESTROYED",
+          "socketAtObservation": "ABSENT",
+          "ownerAtObservation": "ABSENT"
+        },
+        {
+          "name": "ordinary-partial-request",
+          "stopInvokedAt": "2026-08-04T02:29:37.568Z",
+          "clientBeforeStop": "CONNECTED_HEADERS_INCOMPLETE_NOT_DESTROYED",
+          "initialElapsedMs": 750.709542,
+          "initialState": "PENDING_AT_BOUNDARY",
+          "socketAtBoundary": "ABSENT",
+          "ownerAtBoundary": "PRESENT_MODE_0600",
+          "releasedAt": "2026-08-04T02:29:38.319Z",
+          "afterReleaseElapsedMs": 755.725958,
+          "afterReleaseState": "RESOLVED",
+          "clientAfterRelease": "DESTROYED",
+          "socketAfterRelease": "ABSENT",
+          "ownerAfterRelease": "ABSENT"
+        },
+        {
+          "name": "live-sse",
+          "stopInvokedAt": "2026-08-04T02:29:38.332Z",
+          "clientBeforeStop": "HTTP_200_TEXT_EVENT_STREAM_FIRST_FRAME_RECEIVED_CONNECTION_LIVE",
+          "initialElapsedMs": 750.876333,
+          "initialState": "PENDING_AT_BOUNDARY",
+          "socketAtBoundary": "ABSENT",
+          "ownerAtBoundary": "PRESENT_MODE_0600",
+          "releasedAt": "2026-08-04T02:29:39.083Z",
+          "afterReleaseElapsedMs": 771.954791,
+          "afterReleaseState": "RESOLVED",
+          "interruptCalls": 1,
+          "clientAfterRelease": "DESTROYED",
+          "socketAfterRelease": "ABSENT",
+          "ownerAfterRelease": "ABSENT"
+        }
+      ]
+    },
+    {
+      "run": "runtime-stop-2-repeat",
+      "executedAt": "2026-08-04T02:30:25.309Z",
+      "completedAt": "2026-08-04T02:30:26.868Z",
+      "node": "v24.18.0",
+      "platform": "darwin",
+      "arch": "arm64",
+      "pid": 32580,
+      "stopBoundaryMs": 750,
+      "releaseBoundaryMs": 2000,
+      "cases": [
+        {
+          "name": "idle",
+          "initialElapsedMs": 0.811375,
+          "initialState": "RESOLVED",
+          "socketAtObservation": "ABSENT",
+          "ownerAtObservation": "ABSENT"
+        },
+        {
+          "name": "ordinary-keepalive",
+          "clientBeforeStop": "CONNECTED_RESPONSE_200_NOT_DESTROYED",
+          "initialElapsedMs": 0.318209,
+          "initialState": "RESOLVED",
+          "clientAfterStop": "DESTROYED",
+          "socketAtObservation": "ABSENT",
+          "ownerAtObservation": "ABSENT"
+        },
+        {
+          "name": "ordinary-partial-request",
+          "clientBeforeStop": "CONNECTED_HEADERS_INCOMPLETE_NOT_DESTROYED",
+          "initialElapsedMs": 750.442292,
+          "initialState": "PENDING_AT_BOUNDARY",
+          "socketAtBoundary": "ABSENT",
+          "ownerAtBoundary": "PRESENT_MODE_0600",
+          "afterReleaseElapsedMs": 752.857167,
+          "afterReleaseState": "RESOLVED",
+          "clientAfterRelease": "DESTROYED",
+          "socketAfterRelease": "ABSENT",
+          "ownerAfterRelease": "ABSENT"
+        },
+        {
+          "name": "live-sse",
+          "clientBeforeStop": "HTTP_200_TEXT_EVENT_STREAM_FIRST_FRAME_RECEIVED_CONNECTION_LIVE",
+          "initialElapsedMs": 751.29675,
+          "initialState": "PENDING_AT_BOUNDARY",
+          "socketAtBoundary": "ABSENT",
+          "ownerAtBoundary": "PRESENT_MODE_0600",
+          "afterReleaseElapsedMs": 772.03725,
+          "afterReleaseState": "RESOLVED",
+          "interruptCalls": 1,
+          "clientAfterRelease": "DESTROYED",
+          "socketAfterRelease": "ABSENT",
+          "ownerAfterRelease": "ABSENT"
+        }
+      ]
+    },
+    {
+      "run": "runtime-signal-sse-1",
+      "executedAt": "2026-08-04T02:34:12.473Z",
+      "completedAt": "2026-08-04T02:34:13.234Z",
+      "node": "v24.18.0",
+      "platform": "darwin",
+      "arch": "arm64",
+      "parentPid": 33717,
+      "childPid": 33719,
+      "sigtermSentAt": "2026-08-04T02:34:12.473Z",
+      "sigtermReceivedAt": "2026-08-04T02:34:12.474Z",
+      "stopBoundaryMs": 750,
+      "atBoundary": {
+        "timestamp": "2026-08-04T02:34:13.226Z",
+        "childAlive": true,
+        "exitCode": null,
+        "signalCode": null,
+        "socket": "ABSENT",
+        "owner": "PRESENT_MODE_0600"
+      },
+      "clientReleaseSentAt": "2026-08-04T02:34:13.226Z",
+      "clientReleaseObservedAt": "2026-08-04T02:34:13.227Z",
+      "stopResolvedAt": "2026-08-04T02:34:13.229Z",
+      "stopElapsedMs": 755.195625,
+      "socketAfterStop": "ABSENT",
+      "ownerAfterStop": "ABSENT",
+      "processOutcome": {
+        "state": "EXITED",
+        "exitCode": 0,
+        "signalCode": null
+      },
+      "stdout": [],
+      "stderr": []
+    }
+  ],
+  "calibration": "Values above are transcribed from the exact JSON stdout of the three successful reproducer invocations. The executable fixtures are preserved adjacent to this file."
+}

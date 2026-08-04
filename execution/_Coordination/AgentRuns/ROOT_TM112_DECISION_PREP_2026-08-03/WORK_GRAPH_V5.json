@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_TM112_DECISION_PREP_2026-08-03",
+  "plan_version": 5,
+  "selection_authority": "HUMAN",
+  "posture": "RULING_CAPTURE_ONLY",
+  "basis": {
+    "head": "88e7590d3664d4f1daf91bed2a8899bda0748b92",
+    "origin_main": "88e7590d3664d4f1daf91bed2a8899bda0748b92",
+    "receipt": 91,
+    "del_decision_support_manifest_sha256": "623833310e2fa871bd895532f4831f87de97f2750ae92e03e0daeb9acf93329d"
+  },
+  "nodes": [
+    {"id": "N1-N4", "role": "HELP_HUMAN_HELPS_HUMANS", "status": "ACCEPTED_COMPLETE_PASS", "depends_on": ["ACCEPTED_MAIN"]},
+    {"id": "R1", "role": "HELPS_HUMANS", "status": "COMPLETE_PASS_RULINGS_CAPTURED_NO_EFFECTS", "depends_on": ["N1-N4", "FOUR_SIGNED_RETURNS", "FIVE_OWNER_ADDITIONS"]},
+    {"id": "G-R1-FANIN", "role": "HELP_HUMAN", "status": "READY_FOR_VALIDATION", "depends_on": ["R1"]},
+    {"id": "G-LATER-EFFECTS", "role": "OWNING_MANAGERS", "status": "HELD_OUTSIDE_R1", "depends_on": ["G-R1-FANIN"]},
+    {"id": "G-GIT-PUBLICATION", "role": "CHANGE_AND_HUMAN", "status": "AUTHORIZED_FOR_LATER_NORMAL_PR_NO_MERGE", "depends_on": ["G-R1-FANIN"]}
+  ],
+  "holds": [
+    {"id": "HOLD-TM112-SEMANTICS", "condition": "Exact grace duration, stream-cancellation obligations, and forced residual-connection behavior require a further human selection before implementation."},
+    {"id": "HOLD-EFFECT-APPLICATION", "condition": "No register edit, notice routing, candidate authoring, implementation/test work, or foreign/source write in R1."},
+    {"id": "HOLD-MERGE", "condition": "Publication grant covers later commit and PR only; merge remains human-owned."}
+  ],
+  "write_scope": [
+    "execution/_Coordination/AgentRuns/ROOT_TM112_DECISION_PREP_2026-08-03/**"
+  ],
+  "agent2_dispatches": []
+}

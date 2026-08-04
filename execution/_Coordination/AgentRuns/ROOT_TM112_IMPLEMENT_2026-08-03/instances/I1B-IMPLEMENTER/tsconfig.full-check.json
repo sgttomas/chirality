@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "verbatimModuleSyntax": false,
+    "noEmit": true,
+    "types": ["node"],
+    "typeRoots": ["/Users/ryan/dev/chirality/runtime/node_modules/@types"],
+    "baseUrl": "../../../../../../runtime",
+    "paths": {
+      "@chirality/runtime-contracts": ["packages/contracts/src/index.ts"],
+      "@chirality/runtime-contracts/errors": ["packages/contracts/src/harness/errors.ts"],
+      "@chirality/runtime-core": ["packages/core/src/index.ts"],
+      "@chirality/runtime-daemon": ["packages/daemon/src/index.ts"],
+      "@chirality/runtime-client": ["packages/client/src/index.ts"],
+      "@chirality/runtime-cli": ["packages/cli/src/index.ts"],
+      "@chirality/engine-claude": ["packages/engine-claude/src/index.ts"],
+      "@chirality/engine-pi-omlx": ["packages/engine-pi-omlx/src/index.ts"],
+      "vitest": ["/Users/ryan/dev/chirality/runtime/node_modules/vitest/dist/index.d.ts"]
+    }
+  },
+  "include": [
+    "../../../../../../runtime/packages/*/src/**/*.ts",
+    "../../../../../../runtime/packages/*/test/**/*.ts"
+  ]
+}

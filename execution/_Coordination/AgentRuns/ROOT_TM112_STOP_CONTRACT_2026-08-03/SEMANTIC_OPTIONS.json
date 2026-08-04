@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "chirality.tm112-stop-semantic-selection/v1",
+  "decisionId": "ROOT-TM112-SEMANTICS-01",
+  "status": "UNSIGNED_PROPOSAL",
+  "authorityRequired": "accountable human",
+  "dimensions": [
+    {
+      "id": "GRACE",
+      "cardinality": "EXACTLY_ONE",
+      "options": [
+        {"id":"G1","productionGraceMs":1000,"description":"Fast local-control shutdown; least time for canonical interrupt persistence."},
+        {"id":"G2","productionGraceMs":2000,"description":"Balanced grace with margin below the observed App launchd escalation; recommended."},
+        {"id":"G3","productionGraceMs":4000,"description":"Maximum drain opportunity but little margin relative to the one observed approximately five-second external escalation."}
+      ]
+    },
+    {
+      "id": "CANCELLATION_ORDER",
+      "cardinality": "EXACTLY_ONE",
+      "options": [
+        {"id":"C1","interruptAt":"STOP_BEGIN","forceAt":"GRACE_EXPIRY","description":"Close admission, immediately request idempotent canonical SSE interruption, then allow the shared grace; recommended."},
+        {"id":"C2","interruptAt":"GRACE_EXPIRY","forceAt":"AFTER_INTERRUPT_REQUEST","description":"Permit natural stream completion for the whole grace, then request interruption immediately before force."},
+        {"id":"C3","interruptAt":"VIA_IMMEDIATE_TRANSPORT_CLOSE","forceAt":"STOP_BEGIN_FOR_SSE","description":"Destroy SSE transport immediately and rely on its disconnect path for canonical interruption; grace remains only for other active HTTP work."}
+      ]
+    },
+    {
+      "id": "RESIDUAL_FORCE",
+      "cardinality": "EXACTLY_ONE",
+      "options": [
+        {"id":"F1","mechanism":["server.closeAllConnections","trackedSocket.destroy"],"description":"Node bulk close plus explicit tracked-socket residual safety net; recommended."},
+        {"id":"F2","mechanism":["server.closeAllConnections"],"description":"Use Node bulk close only; the bound v24 runtime left upgraded connections open and the installed declarations make no upgrade guarantee."},
+        {"id":"F3","mechanism":["trackedSocket.destroy"],"description":"Destroy the daemon's explicit server-side socket registry without relying on Node bulk close."}
+      ]
+    }
+  ],
+  "recommendedSelection": ["G2","C1","F1"],
+  "fixedConsequences": {
+    "concurrentStop":"COALESCE_ONE_PROMISE",
+    "postForceSettleMs":500,
+    "connectionGovernedTerminationMs":"SELECTED_PRODUCTION_GRACE_MS_PLUS_500",
+    "stoppedStop":"FULFILLED_NO_OP",
+    "startDuringStart":"REJECT",
+    "startDuringStop":"REJECT",
+    "cleanup":"BEST_EFFORT_ALL_THEN_REPORT_FAILURE",
+    "restartAfterSuccess":"REQUIRED",
+    "interruptionFailureState":"STOPPED_DEGRADED_INSTANCE_RESTART_BLOCKED",
+    "cleanupFailureState":"STOP_FAILED_CLEANUP_REPEATED_STOP_RETRIES_INCOMPLETE_CLEANUP",
+    "preIdentityLatchAtForce":"EXPIRE_RECORD_IDENTITY_UNAVAILABLE_NO_LATE_INTERRUPT",
+    "appNotice":"HELD_UNTIL_SEMANTIC_ACCEPTANCE_AND_ACCEPTED_REPAIR"
+  },
+  "signature": null
+}

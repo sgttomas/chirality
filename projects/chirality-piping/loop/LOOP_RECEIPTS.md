@@ -2138,3 +2138,12 @@
   - Checks: mandatory federation preflight and final federation pass COMPLETE with zero register writes; live and archived register validation, deterministic archive relocation, evidence-blob and exact-breadcrumb verification, lifecycle and producing-side-deferral preservation, receipt contract validation, repository self-check, full practitioner-harness pytest, exact closeout containment, and diff checks pass.
   - Model-Attribution: OpenAI Codex TASK_MANAGEMENT Agent 1 under HELP_HUMAN used inherited runtime capability without override, delegation, or mid-task substitution; exact runtime model string was not exposed.
   - Gate-Outcome: `EXECUTED` — the owner-ruled `TM-PIP-034` consumer-side breadcrumb closure is recorded as `RESOLVED_WITH_CHANGE` and mechanically archived. DEL-09-04 remains `IN_PROGRESS` and validation-manual derivative regeneration remains deferred. No lifecycle, derivative-regeneration, release, professional-reliance, DAG, dependency, foreign-register, or merge effect is created by this receipt.
+
+- **2026-08-03 — Receipt 91** (Root TM-ROOT-105/109 substantive-rulings notice received).
+  - Receipt-ID: `Receipt-91`
+  - Examined-Through: `88e7590d3664d4f1daf91bed2a8899bda0748b92`
+  - Parent-Receipt: `Receipt-90`
+  - Pointers: byte-identical inbound `execution/_Coordination/NOTICE_2026-08-03_ROOT_TM-ROOT-105_109_SUBSTANTIVE_RULINGS.md`; receiving run record `execution/_Coordination/AgentRuns/PIPING_RECEIVE_ROOT_TM105_109_RULINGS_2026-08-03/`.
+  - Checks: mandatory Task Management federation preflight, source/copy identity, register preservation, receipt validation, containment, and whitespace checks pass; exact evidence lives in the pointed run record.
+  - Model-Attribution: OpenAI Codex TASK_MANAGEMENT Agent 1 under HELP_HUMAN used inherited runtime capability without override, delegation, or mid-task substitution; exact runtime model string was not exposed.
+  - Gate-Outcome: `EXECUTED` — ordinary receipt of coordination evidence only. Piping `TM-PIP-032` remains byte-unchanged and `DEFERRED`; Piping's next own deferral review may evaluate its trigger. No acceptance, disposition, un-deferral, closure, contract, compatibility, product, lifecycle, priority, scope, implementation, release, reliance, or Git effect is created.

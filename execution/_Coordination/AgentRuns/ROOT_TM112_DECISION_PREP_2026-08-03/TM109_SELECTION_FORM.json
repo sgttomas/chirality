@@ -1,0 +1,18 @@
+{
+  "schema_version": "root.owner-decision-template/v1",
+  "decision_id": "TM-ROOT-109",
+  "authority_status": "NON_AUTHORITATIVE_UNSIGNED_TEMPLATE",
+  "allowed_options": ["TM109-A", "TM109-B", "TM109-C"],
+  "recommended_option": "TM109-A",
+  "owner_fields": {"accountable_human_name": null, "date": null},
+  "options": {
+    "TM109-A": "Authorize preparation of a generic identity/provenance envelope only: basis ID/version/hash, subjects, consumer/tool/sandbox/policy identities, opaque unit/tolerance references, outcome/diagnostic/provenance fields; preserve all consumer-local equality, mapping, normalization, tolerances, engineering meaning, and prohibit cross-consumer compatibility claims.",
+    "TM109-B": "Bind comparison-basis identity preparation to TM-ROOT-121 compatibility-identity work while preserving the broader comparison-basis question and all consumer-local meanings.",
+    "TM109-C": "Decline or defer; consequential cross-consumer match/conform/compatible claims remain unsupported and prohibited absent another ruled basis."
+  },
+  "copy_paste_templates": {
+    "TM109-A": "RULE TM-ROOT-109 TM109-A — AUTHORIZE GENERIC IDENTITY/PROVENANCE ENVELOPE PREPARATION ONLY: BASIS ID/VERSION/HASH; SUBJECTS; CONSUMER/TOOL/SANDBOX/POLICY IDENTITIES; OPAQUE UNIT/TOLERANCE REFERENCES; OUTCOME/DIAGNOSTIC/PROVENANCE FIELDS; PIPING/CONSUMER EQUALITY, MAPPING, NORMALIZATION, TOLERANCES, ENGINEERING MEANING REMAIN LOCAL; NO CROSS-CONSUMER COMPATIBILITY CLAIM — <ACCOUNTABLE_HUMAN_NAME> <YYYY-MM-DD>",
+    "TM109-B": "RULE TM-ROOT-109 TM109-B — BIND IDENTITY PREPARATION TO TM-ROOT-121 COMPATIBILITY-IDENTITY WORK; PRESERVE THE BROADER COMPARISON-BASIS QUESTION AND ALL CONSUMER-LOCAL MEANINGS; NO CONTRACT OR COMPATIBILITY CLAIM AUTHORIZED — <ACCOUNTABLE_HUMAN_NAME> <YYYY-MM-DD>",
+    "TM109-C": "RULE TM-ROOT-109 TM109-C — DECLINE/DEFER; REENTRY TRIGGER: <EXACT_TRIGGER>; CROSS-CONSUMER MATCH/CONFORM/COMPATIBLE CLAIMS REMAIN UNSUPPORTED AND PROHIBITED ABSENT ANOTHER RULED BASIS — <ACCOUNTABLE_HUMAN_NAME> <YYYY-MM-DD>"
+  }
+}

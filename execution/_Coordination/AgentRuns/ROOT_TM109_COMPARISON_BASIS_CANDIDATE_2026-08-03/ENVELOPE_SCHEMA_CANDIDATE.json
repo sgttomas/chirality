@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:chirality:candidate:identity-provenance-envelope:tm109-a:2026-08-03",
+  "title": "NON-AUTHORITATIVE TM109-A Identity/Provenance Envelope Candidate",
+  "description": "Candidate bytes only. Structural validation records identity and provenance; it does not perform or authorize equality, mapping, normalization, tolerance evaluation, semantic comparison, conformance, or compatibility.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "basis",
+    "subjects",
+    "consumerIdentity",
+    "sandboxIdentity",
+    "policyIdentity",
+    "outcome",
+    "diagnostics",
+    "evidenceReferences",
+    "provenance",
+    "claimantCaller",
+    "timestamp"
+  ],
+  "properties": {
+    "basis": {
+      "$ref": "#/$defs/BasisIdentity"
+    },
+    "subjects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/SubjectIdentity"
+      }
+    },
+    "consumerIdentity": {
+      "$ref": "#/$defs/VersionedIdentity"
+    },
+    "operationIdentity": {
+      "$ref": "#/$defs/VersionedIdentity"
+    },
+    "toolIdentity": {
+      "$ref": "#/$defs/VersionedIdentity"
+    },
+    "sandboxIdentity": {
+      "$ref": "#/$defs/VersionedIdentity"
+    },
+    "policyIdentity": {
+      "$ref": "#/$defs/VersionedIdentity"
+    },
+    "unitSystemReference": {
+      "$ref": "#/$defs/OpaqueGovernedReference"
+    },
+    "toleranceProfileReference": {
+      "$ref": "#/$defs/OpaqueGovernedReference"
+    },
+    "outcome": {
+      "$ref": "#/$defs/Outcome"
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Diagnostic"
+      }
+    },
+    "evidenceReferences": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/OpaqueGovernedReference"
+      }
+    },
+    "provenance": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/ProvenanceRecord"
+      }
+    },
+    "claimantCaller": {
+      "$ref": "#/$defs/ClaimantCaller"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "operationIdentity"
+      ]
+    },
+    {
+      "required": [
+        "toolIdentity"
+      ]
+    }
+  ],
+  "$defs": {
+    "NonEmptyText": {
+      "type": "string",
+      "minLength": 1
+    },
+    "HashDescriptor": {
+      "type": "object",
+      "description": "Describes a digest without selecting or interpreting the algorithm, canonicalization method, or payload scope.",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "canonicalizationMethodId",
+        "payloadScopeId",
+        "digest"
+      ],
+      "properties": {
+        "algorithm": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "canonicalizationMethodId": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "payloadScopeId": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "digest": {
+          "$ref": "#/$defs/NonEmptyText"
+        }
+      }
+    },
+    "BasisIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "version",
+        "canonicalHash"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "version": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "canonicalHash": {
+          "$ref": "#/$defs/HashDescriptor"
+        }
+      }
+    },
+    "SubjectIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "subjectId"
+      ],
+      "properties": {
+        "subjectId": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "subjectVersion": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "subjectHashes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/HashDescriptor"
+          }
+        }
+      }
+    },
+    "VersionedIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "version": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "hash": {
+          "$ref": "#/$defs/HashDescriptor"
+        }
+      }
+    },
+    "OpaqueGovernedReference": {
+      "type": "object",
+      "description": "Opaque carrier only. The generic envelope does not dereference, compare, normalize, evaluate, or authorize the referenced object.",
+      "additionalProperties": false,
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "version": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "hash": {
+          "$ref": "#/$defs/HashDescriptor"
+        }
+      }
+    },
+    "Outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "SUCCEEDED",
+            "FAILED",
+            "DENIED",
+            "CANCELLED",
+            "INTERRUPTED",
+            "PARTIAL",
+            "MISSING",
+            "INCOMPATIBLE",
+            "BUDGET_EXHAUSTED"
+          ]
+        }
+      }
+    },
+    "Diagnostic": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "message": {
+          "$ref": "#/$defs/NonEmptyText"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "INFO",
+            "WARNING",
+            "BLOCKING"
+          ]
+        },
+        "sourceIdentity": {
+          "$ref": "#/$defs/VersionedIdentity"
+        },
+        "affectedSubjectIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/NonEmptyText"
+          }
+        },
+        "evidenceReferences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/OpaqueGovernedReference"
+          }
+        }
+      }
+    },
+    "ProvenanceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceIdentity",
+        "evidenceReferences"
+      ],
+      "properties": {
+        "sourceIdentity": {
+          "$ref": "#/$defs/VersionedIdentity"
+        },
+        "evidenceReferences": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/OpaqueGovernedReference"
+          }
+        },
+        "recordedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ClaimantCaller": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claimant",
+        "caller"
+      ],
+      "properties": {
+        "claimant": {
+          "$ref": "#/$defs/VersionedIdentity"
+        },
+        "caller": {
+          "$ref": "#/$defs/VersionedIdentity"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+FieldPath,Cardinality,Required,Type,Opaque,Meaning,ForbiddenInference
+basis,one,YES,object,NO,Identity of the consumer-governed basis used for the recorded activity,Does not establish that a basis is accepted or applicable
+basis.id,one,YES,string,NO,Basis identifier,Same text does not prove same basis
+basis.version,one,YES,string,NO,Basis version identifier,No ordering range or compatibility semantics
+basis.canonicalHash,one,YES,HashDescriptor,NO,Four-part description of the basis digest,Digest text alone does not prove equality
+basis.canonicalHash.algorithm,one,YES,string,YES,Algorithm identifier carried without generic selection,No algorithm is selected or endorsed
+basis.canonicalHash.canonicalizationMethodId,one,YES,string,YES,Canonicalization-method identifier,Does not define canonical bytes
+basis.canonicalHash.payloadScopeId,one,YES,string,YES,Exact payload-scope identifier,Does not define included or excluded bytes
+basis.canonicalHash.digest,one,YES,string,YES,Digest text,Does not prove correctness or identity
+subjects,one-or-more,YES,array,NO,Ordered carriage list of subject identities,Order does not define pairing side or set equality
+subjects[].subjectId,one,YES,string,NO,Consumer-owned subject identifier,Same ID does not prove same subject across namespaces
+subjects[].subjectVersion,zero-or-one,NO,string,YES,Consumer-owned version text,No ordering range or compatibility semantics
+subjects[].subjectHashes,absent-or-one-or-more,NO,array<HashDescriptor>,NO,Described subject hashes,No digest is required or preferred generically
+subjects[].subjectHashes[].algorithm,one,CONDITIONAL,string,YES,Algorithm identifier,No algorithm selection
+subjects[].subjectHashes[].canonicalizationMethodId,one,CONDITIONAL,string,YES,Canonicalization-method identifier,No canonicalization selection
+subjects[].subjectHashes[].payloadScopeId,one,CONDITIONAL,string,YES,Payload-scope identifier,No scope equivalence
+subjects[].subjectHashes[].digest,one,CONDITIONAL,string,YES,Digest text,No subject equality
+consumerIdentity,one,YES,VersionedIdentity,NO,Identity of the consumer that owns interpretation,Does not authorize the consumer or import its semantics
+operationIdentity,zero-or-one,CONDITIONAL,VersionedIdentity,NO,Consumer-owned operation identity,No generic operation equivalence
+toolIdentity,zero-or-one,CONDITIONAL,VersionedIdentity,NO,Tool identity,No authorization capability or implementation-family equivalence
+sandboxIdentity,one,YES,VersionedIdentity,NO,Sandbox identity asserted for the recorded activity,Does not prove containment or policy conformance
+policyIdentity,one,YES,VersionedIdentity,NO,Policy identity asserted for the recorded activity,Does not prove authorization or policy satisfaction
+consumerIdentity.id,one,YES,string,NO,Consumer ID,No cross-namespace equality
+operationIdentity.id,one,CONDITIONAL,string,NO,Operation ID,At least one operation or tool identity is required
+toolIdentity.id,one,CONDITIONAL,string,NO,Tool ID,At least one operation or tool identity is required
+sandboxIdentity.id,one,YES,string,NO,Sandbox ID,No sandbox guarantee
+policyIdentity.id,one,YES,string,NO,Policy ID,No policy decision
+VersionedIdentity.id,one,CONDITIONAL,string,NO,Required ID in every VersionedIdentity instance,No shared namespace authority or cross-consumer equality
+VersionedIdentity.version,zero-or-one,NO,string,YES,Optional version in any VersionedIdentity,No version ordering or compatibility
+VersionedIdentity.hash,zero-or-one,NO,HashDescriptor,NO,Optional four-part hash in any VersionedIdentity,No identity equality from matching text
+VersionedIdentity.hash.algorithm,one,CONDITIONAL,string,YES,Algorithm identifier when a VersionedIdentity hash is present,No algorithm selection or endorsement
+VersionedIdentity.hash.canonicalizationMethodId,one,CONDITIONAL,string,YES,Canonicalization-method identifier when a VersionedIdentity hash is present,Does not define canonical bytes
+VersionedIdentity.hash.payloadScopeId,one,CONDITIONAL,string,YES,Payload-scope identifier when a VersionedIdentity hash is present,Does not establish scope equivalence
+VersionedIdentity.hash.digest,one,CONDITIONAL,string,YES,Digest text when a VersionedIdentity hash is present,Does not prove identity correctness or equality
+unitSystemReference,zero-or-one,NO,OpaqueGovernedReference,YES,Opaque consumer-governed unit-system reference,No dimension conversion normalization or unit equivalence
+toleranceProfileReference,zero-or-one,NO,OpaqueGovernedReference,YES,Opaque consumer-governed tolerance-profile reference,No tolerance suitability application or result equivalence
+unitSystemReference.id,one,CONDITIONAL,string,YES,Opaque reference ID,No dereference or generic unit meaning
+toleranceProfileReference.id,one,CONDITIONAL,string,YES,Opaque reference ID,No dereference or generic tolerance meaning
+OpaqueGovernedReference.version,zero-or-one,NO,string,YES,Opaque reference version,No currency or compatibility judgment
+OpaqueGovernedReference.hash,zero-or-one,NO,HashDescriptor,YES,Opaque reference hash description,No reference equality or validity
+OpaqueGovernedReference.id,one,CONDITIONAL,string,YES,Required opaque ID in every OpaqueGovernedReference instance,No dereference namespace equivalence or governed meaning
+OpaqueGovernedReference.hash.algorithm,one,CONDITIONAL,string,YES,Algorithm identifier when an opaque-reference hash is present,No algorithm selection or reference equality
+OpaqueGovernedReference.hash.canonicalizationMethodId,one,CONDITIONAL,string,YES,Canonicalization-method identifier when an opaque-reference hash is present,Does not define canonical bytes
+OpaqueGovernedReference.hash.payloadScopeId,one,CONDITIONAL,string,YES,Payload-scope identifier when an opaque-reference hash is present,Does not establish comparable scopes
+OpaqueGovernedReference.hash.digest,one,CONDITIONAL,string,YES,Digest text when an opaque-reference hash is present,Does not validate or equate references
+outcome,one,YES,object,NO,Carrier-level claimant-asserted outcome,Schema does not determine truth precedence retryability or terminality
+outcome.status,one,YES,enum,NO,One selected carrier status label,INCOMPATIBLE is not a generic compatibility computation
+diagnostics,zero-or-more,YES,array<Diagnostic>,NO,Consumer-defined diagnostic records,Empty does not imply success and present does not imply professional finding
+diagnostics[].code,one,CONDITIONAL,string,YES,Consumer-defined code,No generic taxonomy or precedence
+diagnostics[].message,one,CONDITIONAL,string,YES,Consumer-authored message,No authority or professional judgment
+diagnostics[].severity,zero-or-one,NO,enum,YES,Carrier severity label,No generic blocking precedence
+diagnostics[].sourceIdentity,zero-or-one,NO,VersionedIdentity,NO,Diagnostic source identity,No source authority or correctness
+diagnostics[].affectedSubjectIds,absent-or-one-or-more,NO,array<string>,YES,Claimed affected subject IDs,Does not establish mapping to subjects
+diagnostics[].evidenceReferences,absent-or-one-or-more,NO,array<OpaqueGovernedReference>,YES,Diagnostic evidence references,Does not validate evidence
+evidenceReferences,one-or-more,YES,array<OpaqueGovernedReference>,YES,Top-level evidence references,Presence does not prove sufficiency authenticity or acceptance
+provenance,one-or-more,YES,array<ProvenanceRecord>,NO,Source and evidence carriage records,Does not validate lineage or authorize reliance
+provenance[].sourceIdentity,one,CONDITIONAL,VersionedIdentity,NO,Source identity,No correctness authority or consumer equivalence
+provenance[].evidenceReferences,one-or-more,CONDITIONAL,array<OpaqueGovernedReference>,YES,Source-linked evidence references,No evidence sufficiency
+provenance[].recordedAt,zero-or-one,NO,date-time,NO,Time asserted for the provenance record,No ordering causality or freshness guarantee
+claimantCaller,one,YES,object,NO,Identities for assertion and request causation,No authorization standing or acceptance
+claimantCaller.claimant,one,YES,VersionedIdentity,NO,Identity asserting outcome and diagnostics,No truth or professional authority
+claimantCaller.caller,one,YES,VersionedIdentity,NO,Identity requesting or causing activity,No authorization or responsibility transfer
+timestamp,one,YES,date-time,NO,Envelope timestamp,No causality ordering freshness or trusted-clock claim

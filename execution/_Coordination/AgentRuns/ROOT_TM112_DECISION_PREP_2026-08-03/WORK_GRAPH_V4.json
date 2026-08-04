@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_TM112_DECISION_PREP_2026-08-03",
+  "plan_version": 4,
+  "selection_authority": "HUMAN",
+  "posture": "CONTENT_CLOSEOUT_ONLY",
+  "basis": {
+    "repo_root": "/Users/ryan/.codex/worktrees/1342/chirality",
+    "working_root": "/Users/ryan/.codex/worktrees/1342/chirality",
+    "head": "88e7590d3664d4f1daf91bed2a8899bda0748b92",
+    "origin_main": "88e7590d3664d4f1daf91bed2a8899bda0748b92",
+    "head_equals_origin_main": true,
+    "app_notice_sha256": "4f52ed537338ccb678da4a3ad9a5cb96459d1ed844ee67fd7c51c87442500656"
+  },
+  "nodes": [
+    {"id": "N1", "role": "HELPS_HUMANS", "status": "ACCEPTED_COMPLETE_PASS", "depends_on": ["ACCEPTED_MAIN", "APP_NOTICE"]},
+    {"id": "G-N1-FANIN", "role": "HELP_HUMAN", "status": "COMPLETE_ACCEPTED_N1", "depends_on": ["N1"]},
+    {"id": "N2", "role": "HELPS_HUMANS", "status": "ACCEPTED_COMPLETE_PASS", "depends_on": ["G-N1-FANIN"]},
+    {"id": "G-N2-FANIN", "role": "HELP_HUMAN", "status": "COMPLETE_ACCEPTED_N2", "depends_on": ["N2"]},
+    {"id": "N3", "role": "HELPS_HUMANS", "status": "ACCEPTED_COMPLETE_PASS_UNSIGNED", "depends_on": ["G-N2-FANIN"]},
+    {"id": "G-N3-FANIN", "role": "HELP_HUMAN", "status": "COMPLETE_ACCEPTED_N3_PREPARATION_ONLY", "depends_on": ["N3"]},
+    {"id": "N4", "role": "HELPS_HUMANS", "status": "COMPLETE_PASS_CONTENT_CLOSEOUT", "depends_on": ["G-N3-FANIN"]},
+    {"id": "G-GIT-PUBLICATION", "role": "CHANGE_AND_HUMAN", "status": "HELD_NOT_AUTHORIZED_THIS_RUN", "depends_on": ["N4"]}
+  ],
+  "holds": [
+    {"id": "HOLD-DECISIONS", "condition": "No TM-ROOT-112, TM-ROOT-121, TM-ROOT-105, or TM-ROOT-109 decision, signature, adoption, or Task Management disposition."},
+    {"id": "HOLD-RUNTIME-CHANGE", "condition": "No source, test, semantic-contract, implementation, lifecycle, App/Piping, release, or reliance effect."},
+    {"id": "HOLD-GIT", "condition": "No CHANGE dispatch, stage, branch, commit, push, PR, or merge."}
+  ],
+  "write_scope": [
+    "execution/_Coordination/AgentRuns/ROOT_TM112_DECISION_PREP_2026-08-03/**",
+    "execution/_Coordination/LOOP_RECEIPTS.md",
+    "execution/_Coordination/HANDOFF_STATE.md (preserve accepted N2 repair)",
+    "/tmp disposable paths"
+  ],
+  "agent2_dispatches": []
+}

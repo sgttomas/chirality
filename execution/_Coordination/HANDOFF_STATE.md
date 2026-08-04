@@ -21,9 +21,15 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   §1.14 (effective `main@c8c2a6146`). Stage-A instruments: Receipts 66–73;
   workplan `WORKPLAN_2026-07-31_task_management_stage_a.md` (CLOSED) and
   its Amendments 1–2; program register at
-  `execution/_Coordination/_TaskManagement/REGISTER.csv` (36 live rows:
-  4 OPEN / 32 DEFERRED after the 2026-08-02 harvest and deferral-review
-  rulings; 74 rows archived in `REGISTER_CLOSED.csv`).
+  `execution/_Coordination/_TaskManagement/REGISTER.csv` (23 live rows:
+  12 OPEN / 11 DEFERRED; 99 rows archived in `REGISTER_CLOSED.csv`). Receipt
+  91 repaired the earlier stale handoff to the then-current generational-pass
+  state of 27 live (16 OPEN / 11 DEFERRED) and 95 archived. Receipt 92 then
+  recorded the separately owner-ruled closure and archival of TM-ROOT-105,
+  TM-ROOT-109, and TM-ROOT-121, producing 24 live (13 OPEN / 11 DEFERRED) and
+  98 archived. Receipt 96 subsequently recorded the accepted-repair closure
+  and archival of TM-ROOT-112, producing the current 23/99 state without
+  changing the DEFERRED count.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed

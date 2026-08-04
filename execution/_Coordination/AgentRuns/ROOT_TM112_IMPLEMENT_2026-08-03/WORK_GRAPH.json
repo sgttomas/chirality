@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "chirality.working-items-work-graph/v1",
+  "runId": "ROOT_TM112_IMPLEMENT_2026-08-03",
+  "planVersion": "v1",
+  "status": "FROZEN",
+  "packageId": "ROOT-RUNTIME-DAEMON",
+  "selected": ["TM-ROOT-112"],
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {"id": "I1-IMPLEMENTER", "agentType": 2, "kind": "ephemeral-generalist", "writesProduct": true},
+    {"id": "I2-FRESH-REFUTER", "agentType": 2, "kind": "ephemeral-generalist", "writesProduct": false},
+    {"id": "I3-BOUNDED-REMEDIATION", "agentType": 2, "kind": "ephemeral-generalist", "writesProduct": true, "conditional": true},
+    {"id": "I4-BACKCHECK", "agentType": 2, "kind": "ephemeral-generalist", "writesProduct": false, "conditional": true},
+    {"id": "I5-MANAGER-FAN-IN", "agentType": 1, "kind": "WORKING_ITEMS", "writesProduct": false}
+  ],
+  "edges": [
+    ["I1-IMPLEMENTER", "I2-FRESH-REFUTER"],
+    ["I2-FRESH-REFUTER", "I3-BOUNDED-REMEDIATION"],
+    ["I3-BOUNDED-REMEDIATION", "I4-BACKCHECK"],
+    ["I2-FRESH-REFUTER", "I5-MANAGER-FAN-IN"],
+    ["I4-BACKCHECK", "I5-MANAGER-FAN-IN"]
+  ],
+  "concurrency": "serialized product ownership; evidence-only refutation after author return",
+  "scopeChangeGate": "Any required write outside the sealed three product files plus run carrier stops implementation and escalates to HELP_HUMAN."
+}

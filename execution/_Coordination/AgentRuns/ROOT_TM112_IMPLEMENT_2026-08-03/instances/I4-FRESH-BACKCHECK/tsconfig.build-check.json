@@ -1,0 +1,14 @@
+{
+  "extends": "../I1B-IMPLEMENTER/tsconfig.full-check.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "declaration": false,
+    "declarationMap": false,
+    "composite": false,
+    "rootDir": "../../../../../../runtime",
+    "outDir": "./build-output"
+  },
+  "include": [
+    "../../../../../../runtime/packages/*/src/**/*.ts"
+  ]
+}

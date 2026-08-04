@@ -1,7 +1,9 @@
 import { randomUUID } from "node:crypto";
 import { chmod, lstat, readFile, unlink } from "node:fs/promises";
 import { createServer, type IncomingMessage, type Server, type ServerResponse } from "node:http";
+import type { Socket } from "node:net";
 import { dirname } from "node:path";
+import { performance } from "node:perf_hooks";
 import {
   HarnessError,
   RUNTIME_API_VERSION,
@@ -29,6 +31,49 @@ import {
 } from "@chirality/runtime-core";
 
 const JSON_LIMIT_BYTES = 1024 * 1024;
+const STOP_GRACE_MS = 2_000;
+const STOP_FORCE_SETTLE_MS = 500;
+
+type DaemonLifecycle =
+  | "INITIAL"
+  | "STARTING"
+  | "RUNNING"
+  | "STOPPING"
+  | "STOPPED"
+  | "STOPPED_DEGRADED"
+  | "STOP_FAILED_CLEANUP";
+
+interface ActiveSse {
+  readonly generation: DaemonGeneration;
+  readonly interrupt: () => Promise<void> | undefined;
+  iterator?: AsyncIterator<UIEvent>;
+  cancellationRequested: boolean;
+  interruptionStarted: boolean;
+  interruptionSettled: boolean;
+  interruptionFailure?: unknown;
+  interruptionTimedOut: boolean;
+  identityUnavailable: boolean;
+  forceExpired: boolean;
+  iteratorReturnRequested: boolean;
+  iteratorReturnFailure?: unknown;
+}
+
+interface DaemonGeneration {
+  readonly number: number;
+  readonly ownerGenerationId: string;
+  readonly server: Server;
+  readonly sockets: Set<Socket>;
+  readonly streams: Set<ActiveSse>;
+  readonly stateWaiters: Set<() => void>;
+  closeStarted: boolean;
+  closeComplete: boolean;
+  closeError?: unknown;
+  forced: boolean;
+  socketUnlinked: boolean;
+  ownerRemoved: boolean;
+  stopStreams?: ActiveSse[];
+  interruptionProblems: boolean;
+}
 
 export interface RuntimeDaemonOptions {
   socketPath: string;
@@ -40,6 +85,11 @@ export class RuntimeDaemon {
   readonly daemonId = randomUUID();
   readonly startedAt = new Date().toISOString();
   private server?: Server;
+  private lifecycle: DaemonLifecycle = "INITIAL";
+  private generationNumber = 0;
+  private generation?: DaemonGeneration;
+  private stopPromise?: Promise<void>;
+  private terminalStopError?: Error;
   private readonly ownerFile: string;
 
   constructor(private readonly options: RuntimeDaemonOptions) {
@@ -47,61 +97,137 @@ export class RuntimeDaemon {
   }
 
   async start(): Promise<{ socketPath: string; operatorTokenFile: string }> {
-    if (this.server !== undefined) throw new Error("Runtime daemon is already started");
-    await ensurePrivateDirectory(this.options.runtimeDirectory);
-    await ensurePrivateDirectory(dirname(this.options.socketPath));
-    await this.recoverStaleSocket();
-    await atomicWriteJson(this.ownerFile, {
-      schemaVersion: "chirality.daemon-owner/v1",
-      daemonId: this.daemonId,
-      pid: process.pid,
-      uid: process.getuid?.() ?? -1,
-      socketPath: this.options.socketPath,
-      startedAt: this.startedAt
-    });
-    const operator = await this.options.service.auth.ensureClient("operator", [
-      "runtime:read",
-      "projects:write",
-      "sessions:read",
-      "sessions:write",
-      "models:read",
-      "models:write",
-      "credentials:read",
-      "credentials:write"
-    ]);
-    const server = createServer((request, response) => {
-      void this.route(request, response).catch((error) => this.error(response, error));
-    });
-    this.server = server;
-    await new Promise<void>((resolve, reject) => {
-      server.once("error", (error) => {
-        void unlink(this.ownerFile).catch(() => undefined);
-        reject(error);
-      });
-      server.listen(this.options.socketPath, () => {
-        server.off("error", reject);
-        resolve();
-      });
-    });
-    await chmod(this.options.socketPath, 0o600);
-    return { socketPath: this.options.socketPath, operatorTokenFile: operator.tokenFile };
-  }
-
-  async stop(): Promise<void> {
-    const server = this.server;
-    this.server = undefined;
-    if (server !== undefined) {
-      await new Promise<void>((resolve, reject) => {
-        server.close((error) => (error === undefined ? resolve() : reject(error)));
-      });
+    if (this.lifecycle !== "INITIAL" && this.lifecycle !== "STOPPED") {
+      throw new Error(`Runtime daemon cannot start while ${this.lifecycle.toLowerCase()}`);
     }
-    await unlink(this.options.socketPath).catch((error: NodeJS.ErrnoException) => {
-      if (error.code !== "ENOENT") throw error;
-    });
-    await this.removeOwnedRecord();
+    this.lifecycle = "STARTING";
+    this.terminalStopError = undefined;
+    const generationNumber = ++this.generationNumber;
+    const ownerGenerationId = randomUUID();
+    let context: DaemonGeneration | undefined;
+    let controlSocketBound = false;
+    try {
+      await ensurePrivateDirectory(this.options.runtimeDirectory);
+      await ensurePrivateDirectory(dirname(this.options.socketPath));
+      await this.recoverStaleSocket();
+      await atomicWriteJson(this.ownerFile, {
+        schemaVersion: "chirality.daemon-owner/v1",
+        daemonId: this.daemonId,
+        generationId: ownerGenerationId,
+        pid: process.pid,
+        uid: process.getuid?.() ?? -1,
+        socketPath: this.options.socketPath,
+        startedAt: this.startedAt
+      });
+      const operator = await this.options.service.auth.ensureClient("operator", [
+        "runtime:read",
+        "projects:write",
+        "sessions:read",
+        "sessions:write",
+        "models:read",
+        "models:write",
+        "credentials:read",
+        "credentials:write"
+      ]);
+      let generation!: DaemonGeneration;
+      const server = createServer((request, response) => {
+        void this.route(request, response, generation).catch((error) =>
+          this.error(response, error)
+        );
+      });
+      generation = {
+        number: generationNumber,
+        ownerGenerationId,
+        server,
+        sockets: new Set(),
+        streams: new Set(),
+        stateWaiters: new Set(),
+        closeStarted: false,
+        closeComplete: false,
+        forced: false,
+        socketUnlinked: false,
+        ownerRemoved: false,
+        interruptionProblems: false
+      };
+      context = generation;
+      server.on("connection", (socket) => {
+        generation.sockets.add(socket);
+        socket.once("close", () => {
+          generation.sockets.delete(socket);
+          this.notifyGeneration(generation);
+        });
+      });
+      this.generation = generation;
+      this.server = server;
+      await new Promise<void>((resolve, reject) => {
+        const onError = (error: Error): void => reject(error);
+        server.once("error", onError);
+        server.listen(this.options.socketPath, () => {
+          server.off("error", onError);
+          controlSocketBound = true;
+          resolve();
+        });
+      });
+      await chmod(this.options.socketPath, 0o600);
+      if (this.generation !== generation || this.lifecycle !== "STARTING") {
+        throw new Error("Runtime daemon generation changed during start");
+      }
+      this.lifecycle = "RUNNING";
+      return { socketPath: this.options.socketPath, operatorTokenFile: operator.tokenFile };
+    } catch (error) {
+      if (context !== undefined) {
+        for (const socket of context.sockets) socket.destroy();
+        try {
+          context.server.close();
+        } catch {
+          // The listener may not have reached the listening state.
+        }
+      }
+      if (controlSocketBound) {
+        await this.unlinkControlSocket().catch(() => undefined);
+      }
+      await this.removeOwnedRecord(ownerGenerationId).catch(() => undefined);
+      if (this.generation === context) this.generation = undefined;
+      if (this.server === context?.server) this.server = undefined;
+      this.lifecycle = generationNumber === 1 ? "INITIAL" : "STOPPED";
+      throw error;
+    }
   }
 
-  private async route(request: IncomingMessage, response: ServerResponse): Promise<void> {
+  stop(): Promise<void> {
+    if (this.stopPromise !== undefined) return this.stopPromise;
+    if (this.lifecycle === "INITIAL" || this.lifecycle === "STOPPED") {
+      return Promise.resolve();
+    }
+    if (this.lifecycle === "STARTING") {
+      return Promise.reject(new Error("Runtime daemon cannot stop while starting"));
+    }
+    if (this.lifecycle === "STOPPED_DEGRADED") {
+      return Promise.reject(
+        this.terminalStopError ?? new Error("Runtime daemon stopped with interruption failure")
+      );
+    }
+    const generation = this.generation;
+    if (generation === undefined) {
+      return Promise.reject(new Error("Runtime daemon lifecycle has no active generation"));
+    }
+    const retry = this.lifecycle === "STOP_FAILED_CLEANUP";
+    this.lifecycle = "STOPPING";
+    const deadline = retry ? undefined : performance.now() + STOP_GRACE_MS;
+    const promise = this.performStop(generation, retry, deadline);
+    this.stopPromise = promise;
+    const clear = (): void => {
+      if (this.stopPromise === promise) this.stopPromise = undefined;
+    };
+    void promise.then(clear, clear);
+    return promise;
+  }
+
+  private async route(
+    request: IncomingMessage,
+    response: ServerResponse,
+    generation: DaemonGeneration
+  ): Promise<void> {
     try {
       const url = new URL(request.url ?? "/", "http://chirality.invalid");
       const method = request.method ?? "GET";
@@ -223,15 +349,24 @@ export class RuntimeDaemon {
           return await this.sse(
             response,
             tracked,
-            async () => {
+            () => {
               if (managerSessionId !== undefined) {
-                await this.options.service.interruptSession(projectId, managerSessionId);
+                return this.options.service.interruptSession(projectId, managerSessionId);
               }
-            }
+              return undefined;
+            },
+            generation
           );
         }
         if (segments[3] === "sessions") {
-          return await this.sessionRoute(request, response, method, projectId, segments);
+          return await this.sessionRoute(
+            request,
+            response,
+            method,
+            projectId,
+            segments,
+            generation
+          );
         }
       }
       throw new RuntimeError("NOT_FOUND", "Route not found", 404);
@@ -245,7 +380,8 @@ export class RuntimeDaemon {
     response: ServerResponse,
     method: string,
     projectId: string,
-    segments: string[]
+    segments: string[],
+    generation: DaemonGeneration
   ): Promise<void> {
     if (segments.length === 4) {
       if (method === "GET") {
@@ -309,7 +445,8 @@ export class RuntimeDaemon {
       return await this.sse(
         response,
         this.options.service.runSessionTurn(projectId, sessionId, body),
-        () => this.options.service.interruptSession(projectId, sessionId)
+        () => this.options.service.interruptSession(projectId, sessionId),
+        generation
       );
     }
     if (action === "interrupt" && method === "POST") {
@@ -388,31 +525,43 @@ export class RuntimeDaemon {
   private async sse(
     response: ServerResponse,
     events: AsyncIterable<UIEvent>,
-    onDisconnect?: () => Promise<void>
+    onDisconnect: (() => Promise<void> | undefined) | undefined,
+    generation: DaemonGeneration
   ): Promise<void> {
     const iterator = events[Symbol.asyncIterator]();
+    const control: ActiveSse = {
+      generation,
+      interrupt: onDisconnect ?? (() => undefined),
+      iterator,
+      cancellationRequested: false,
+      interruptionStarted: false,
+      interruptionSettled: false,
+      interruptionTimedOut: false,
+      identityUnavailable: false,
+      forceExpired: false,
+      iteratorReturnRequested: false
+    };
+    generation.streams.add(control);
     let finished = false;
     let streamStarted = false;
     let disconnected = response.destroyed;
-    const disconnectTasks: Promise<void>[] = [];
-    const notifyDisconnect = (): void => {
-      if (onDisconnect === undefined) return;
-      disconnectTasks.push(onDisconnect().catch(() => undefined));
-    };
     const close = (): void => {
       if (finished) return;
       disconnected = true;
-      notifyDisconnect();
+      this.cancelSse(control);
     };
     response.once("close", close);
     try {
       const first = await iterator.next();
       streamStarted = true;
+      // The first Agent 1 event may reveal the session identity while a
+      // shutdown cancellation is already latched.
+      this.trySseInterrupt(control);
       if (response.destroyed && !disconnected) disconnected = true;
       if (disconnected) {
         // A run stream may not know its manager session until the first event.
-        // Retry the idempotent interrupt after that identity has been captured.
-        notifyDisconnect();
+        // Retry the single cancellation latch after identity has been captured.
+        this.trySseInterrupt(control);
       } else {
         response.writeHead(200, {
           "content-type": "text/event-stream",
@@ -428,6 +577,9 @@ export class RuntimeDaemon {
       }
       while (true) {
         const next = await iterator.next();
+        // A later Agent 1 event may be the first to reveal the manager
+        // session while shutdown cancellation is already latched.
+        this.trySseInterrupt(control);
         if (next.done) break;
         if (!disconnected) {
           response.write(
@@ -438,9 +590,265 @@ export class RuntimeDaemon {
     } finally {
       finished = true;
       response.off("close", close);
-      await Promise.allSettled(disconnectTasks);
+      if (control.cancellationRequested) this.requestSseIteratorReturn(control);
+      generation.streams.delete(control);
+      this.notifyGeneration(generation);
       if (streamStarted && !response.destroyed) response.end();
     }
+  }
+
+  private cancelSse(control: ActiveSse): void {
+    if (!control.cancellationRequested) control.cancellationRequested = true;
+    this.trySseInterrupt(control);
+  }
+
+  private requestSseIteratorReturn(control: ActiveSse): void {
+    if (!control.iteratorReturnRequested && control.iterator?.return !== undefined) {
+      control.iteratorReturnRequested = true;
+      let returned: Promise<IteratorResult<UIEvent>>;
+      try {
+        returned = Promise.resolve(control.iterator.return());
+      } catch (error) {
+        control.iteratorReturnFailure = error;
+        this.notifyGeneration(control.generation);
+        return;
+      }
+      void returned.then(
+        () => this.notifyGeneration(control.generation),
+        (error) => {
+          control.iteratorReturnFailure = error;
+          this.notifyGeneration(control.generation);
+        }
+      );
+    }
+  }
+
+  private trySseInterrupt(control: ActiveSse): void {
+    if (
+      !control.cancellationRequested ||
+      control.interruptionStarted ||
+      control.forceExpired
+    ) {
+      return;
+    }
+    let interruption: Promise<void> | undefined;
+    try {
+      interruption = control.interrupt();
+    } catch (error) {
+      control.interruptionStarted = true;
+      control.interruptionSettled = true;
+      control.interruptionFailure = error;
+      this.notifyGeneration(control.generation);
+      return;
+    }
+    if (interruption === undefined) return;
+    control.interruptionStarted = true;
+    void interruption.then(
+      () => {
+        control.interruptionSettled = true;
+        this.notifyGeneration(control.generation);
+      },
+      (error) => {
+        control.interruptionSettled = true;
+        control.interruptionFailure = error;
+        this.notifyGeneration(control.generation);
+      }
+    );
+  }
+
+  private async performStop(
+    generation: DaemonGeneration,
+    retry: boolean,
+    deadline: number | undefined
+  ): Promise<void> {
+    const cleanupFailures: unknown[] = [];
+    if (!retry) {
+      generation.stopStreams = [...generation.streams];
+      this.beginServerClose(generation);
+      // Admission is closed before any semantic interruption is requested.
+      for (const stream of generation.stopStreams) this.cancelSse(stream);
+      await this.waitUntilGeneration(
+        generation,
+        () =>
+          generation.closeComplete &&
+          generation.sockets.size === 0 &&
+          (generation.stopStreams ?? []).every(
+            (stream) =>
+              stream.interruptionStarted &&
+              stream.interruptionSettled &&
+              !generation.streams.has(stream)
+          ),
+        Math.max(0, (deadline ?? performance.now()) - performance.now())
+      );
+      for (const stream of generation.stopStreams) {
+        if (!stream.interruptionStarted) {
+          stream.forceExpired = true;
+          stream.identityUnavailable = true;
+        } else if (!stream.interruptionSettled) {
+          stream.forceExpired = true;
+          stream.interruptionTimedOut = true;
+        }
+        if (generation.streams.has(stream)) this.requestSseIteratorReturn(stream);
+      }
+      generation.interruptionProblems = generation.stopStreams.some(
+        (stream) =>
+          stream.identityUnavailable ||
+          stream.interruptionTimedOut ||
+          stream.interruptionFailure !== undefined ||
+          stream.iteratorReturnFailure !== undefined
+      );
+      if (!generation.closeComplete || generation.sockets.size > 0) {
+        this.forceGenerationTransport(generation, cleanupFailures);
+      }
+    } else if (!generation.closeComplete || generation.sockets.size > 0) {
+      this.beginServerClose(generation);
+      this.forceGenerationTransport(generation, cleanupFailures);
+    }
+
+    if (generation.forced) {
+      const settled = await this.waitUntilGeneration(
+        generation,
+        () => generation.closeComplete && generation.sockets.size === 0,
+        STOP_FORCE_SETTLE_MS
+      );
+      if (!settled) cleanupFailures.push(new Error("SERVER_CLOSE_SETTLEMENT_TIMEOUT"));
+    }
+    if (generation.closeError !== undefined) cleanupFailures.push(generation.closeError);
+    if (generation.sockets.size > 0) cleanupFailures.push(new Error("RESIDUAL_SERVER_SOCKETS"));
+    generation.interruptionProblems ||= (generation.stopStreams ?? []).some(
+      (stream) =>
+        stream.identityUnavailable ||
+        stream.interruptionTimedOut ||
+        stream.interruptionFailure !== undefined ||
+        stream.iteratorReturnFailure !== undefined
+    );
+
+    if (!generation.socketUnlinked) {
+      try {
+        await this.unlinkControlSocket();
+        generation.socketUnlinked = true;
+      } catch (error) {
+        cleanupFailures.push(error);
+      }
+    }
+    if (!generation.ownerRemoved) {
+      try {
+        await this.removeOwnedRecord(generation.ownerGenerationId);
+        generation.ownerRemoved = true;
+      } catch (error) {
+        cleanupFailures.push(error);
+      }
+    }
+
+    if (cleanupFailures.length > 0 || !generation.closeComplete) {
+      const error = this.stopError("STOP_FAILED_CLEANUP", cleanupFailures);
+      if (this.generation === generation) {
+        this.lifecycle = "STOP_FAILED_CLEANUP";
+        this.terminalStopError = error;
+      }
+      throw error;
+    }
+
+    this.server = this.server === generation.server ? undefined : this.server;
+    if (this.generation === generation) this.generation = undefined;
+    if (generation.interruptionProblems) {
+      const causes = (generation.stopStreams ?? []).flatMap((stream) => [
+        ...(stream.identityUnavailable
+          ? [new Error("INTERRUPTION_IDENTITY_UNAVAILABLE")]
+          : []),
+        ...(stream.interruptionTimedOut ? [new Error("INTERRUPTION_TIMEOUT")] : []),
+        ...(stream.interruptionFailure === undefined ? [] : [stream.interruptionFailure]),
+        ...(stream.iteratorReturnFailure === undefined ? [] : [stream.iteratorReturnFailure])
+      ]);
+      const error = this.stopError("STOPPED_DEGRADED", causes);
+      this.lifecycle = "STOPPED_DEGRADED";
+      this.terminalStopError = error;
+      throw error;
+    }
+    this.lifecycle = "STOPPED";
+    this.terminalStopError = undefined;
+  }
+
+  private beginServerClose(generation: DaemonGeneration): void {
+    if (generation.closeStarted && generation.closeError === undefined) return;
+    generation.closeStarted = true;
+    generation.closeError = undefined;
+    try {
+      generation.server.close((error) => {
+        if (error === undefined) {
+          generation.closeComplete = true;
+        } else {
+          generation.closeError = error;
+        }
+        this.notifyGeneration(generation);
+      });
+    } catch (error) {
+      generation.closeError = error;
+      this.notifyGeneration(generation);
+    }
+  }
+
+  private forceGenerationTransport(
+    generation: DaemonGeneration,
+    failures: unknown[]
+  ): void {
+    generation.forced = true;
+    try {
+      generation.server.closeAllConnections();
+    } catch (error) {
+      failures.push(error);
+    }
+    for (const socket of generation.sockets) {
+      try {
+        socket.destroy();
+      } catch (error) {
+        failures.push(error);
+      }
+    }
+  }
+
+  private waitUntilGeneration(
+    generation: DaemonGeneration,
+    predicate: () => boolean,
+    timeoutMs: number
+  ): Promise<boolean> {
+    if (predicate()) return Promise.resolve(true);
+    return new Promise((resolve) => {
+      let settled = false;
+      const finish = (value: boolean): void => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        generation.stateWaiters.delete(check);
+        resolve(value);
+      };
+      const check = (): void => {
+        if (predicate()) finish(true);
+      };
+      const timer = setTimeout(() => finish(predicate()), timeoutMs);
+      generation.stateWaiters.add(check);
+      check();
+    });
+  }
+
+  private notifyGeneration(generation: DaemonGeneration): void {
+    for (const waiter of [...generation.stateWaiters]) waiter();
+  }
+
+  private stopError(code: "STOPPED_DEGRADED" | "STOP_FAILED_CLEANUP", causes: unknown[]): Error {
+    const details = causes.map((cause) =>
+      cause instanceof Error ? cause.message : String(cause)
+    );
+    const error = new Error(`${code}${details.length === 0 ? "" : `: ${details.join("; ")}`}`);
+    error.name = code;
+    Object.assign(error, { code, causes });
+    return error;
+  }
+
+  private async unlinkControlSocket(): Promise<void> {
+    await unlink(this.options.socketPath).catch((error: NodeJS.ErrnoException) => {
+      if (error.code !== "ENOENT") throw error;
+    });
   }
 
   private error(response: ServerResponse, error: unknown): void {
@@ -522,6 +930,7 @@ export class RuntimeDaemon {
     | {
         schemaVersion: "chirality.daemon-owner/v1";
         daemonId: string;
+        generationId?: string;
         pid: number;
         uid: number;
         socketPath: string;
@@ -553,6 +962,7 @@ export class RuntimeDaemon {
     if (
       owner["schemaVersion"] !== "chirality.daemon-owner/v1" ||
       typeof owner["daemonId"] !== "string" ||
+      (owner["generationId"] !== undefined && typeof owner["generationId"] !== "string") ||
       typeof owner["pid"] !== "number" ||
       !Number.isSafeInteger(owner["pid"]) ||
       typeof owner["uid"] !== "number" ||
@@ -574,9 +984,16 @@ export class RuntimeDaemon {
     }
   }
 
-  private async removeOwnedRecord(): Promise<void> {
-    const owner = await this.readOwner().catch(() => undefined);
-    if (owner?.daemonId !== this.daemonId || owner.pid !== process.pid) return;
+  private async removeOwnedRecord(ownerGenerationId: string): Promise<void> {
+    const owner = await this.readOwner();
+    if (
+      owner === undefined ||
+      owner.daemonId !== this.daemonId ||
+      owner.pid !== process.pid ||
+      owner.generationId !== ownerGenerationId
+    ) {
+      return;
+    }
     await unlink(this.ownerFile).catch((error: NodeJS.ErrnoException) => {
       if (error.code !== "ENOENT") throw error;
     });

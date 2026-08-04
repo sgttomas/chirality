@@ -1,0 +1,71 @@
+{
+  "schema": "chirality-working-items-work-graph/v1",
+  "run_id": "ROOT_DEL0206_SEMANTIC_CANDIDATE_2026-08-03",
+  "version": 3,
+  "selection_authority": "OWNER_RULING_TRANSCRIPT_2026-08-03.md@66b967008f67934b08383291e68ef0af9923463d749cac9dbe7a74090e9cbb06",
+  "package_id": "PKG-02",
+  "selected_deliverables": ["DEL-02-06"],
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {
+      "id": "AUTHOR",
+      "agent_type": "Agent2 ephemeral generalist",
+      "objective": "Create the immutable six-file semantic candidate package and exact 27-row application trace from the signed selection.",
+      "dependencies": [],
+      "concurrency": "SERIAL_FIRST",
+      "write_ownership": ["DEL-02-06-SEMANTIC-CANDIDATE-002/candidate/**", "DEL-02-06-SEMANTIC-CANDIDATE-002/application_trace/**", "DEL-02-06-SEMANTIC-CANDIDATE-002/author/RETURN.md"],
+      "return_gate": "All six planned surfaces exist; all 27 selections map exactly once; census tuple is allowed; future epoch placeholder remains unresolved; no foreign or implementation effect."
+    },
+    {
+      "id": "REFUTER",
+      "agent_type": "fresh Agent2 ephemeral generalist",
+      "objective": "Independently attempt to refute the exact frozen candidate without repair.",
+      "dependencies": ["AUTHOR_ACCEPTED"],
+      "concurrency": "SERIAL_AFTER_AUTHOR",
+      "write_ownership": ["DEL-02-06-SEMANTIC-CANDIDATE-002/refuter/RETURN.md"],
+      "return_gate": "Independent tuple, coverage, authority, preserved-state, and semantic completeness review with admit or return verdict."
+    },
+    {
+      "id": "MANAGER_FAN_IN",
+      "agent_type": "WORKING_ITEMS Agent1",
+      "objective": "Run deterministic validation, bind immutable hashes, and return the semantic-byte acceptance gate.",
+      "dependencies": ["AUTHOR_ACCEPTED", "REFUTER_ACCEPTED"],
+      "concurrency": "SERIAL_LAST",
+      "write_ownership": ["coordination run root validation/return/handoff", "DEL-02-06-SEMANTIC-CANDIDATE-002 validation/manifest"],
+      "return_gate": "No material findings, deterministic manifests reproduce, write scope is contained, and closure is explicitly semantic-only."
+    }
+  ],
+  "edges": [
+    {"from": "AUTHOR", "to": "REFUTER", "gate": "AUTHOR_ACCEPTED"},
+    {"from": "REFUTER", "to": "MANAGER_FAN_IN", "gate": "REFUTER_ACCEPTED"}
+  ],
+  "holds": [
+    "Any invalid census tuple holds all candidate emission.",
+    "Any missing or duplicate selection mapping returns to AUTHOR.",
+    "Any material refuter finding blocks semantic-candidate closure.",
+    "Implementation and all foreign-owner effects remain held behind later gates."
+  ],
+  "retries": [
+    {
+      "node": "AUTHOR",
+      "attempt": 1,
+      "detection_layer": "child pre-write source-identity verification",
+      "failure_class": "MANAGER_TRANSCRIPTION_DEFECT",
+      "reason_code": "AUTHOR-SOURCE-HASH-MISMATCH-OWNER-SELECTION-MATRIX",
+      "disposition": "No candidate bytes emitted; manager corrected the activation identity to the hash reproduced by the live file, signed package manifest, and decision-support acceptance record; AUTHOR attempt 2 resealed by BRIEF_AMENDMENT_1.md."
+    },
+    {
+      "node": "REFUTER",
+      "attempt": 1,
+      "detection_layer": "fresh independent semantic refutation",
+      "failure_class": "SEMANTIC_COMPLETENESS_AMBIGUITY",
+      "reason_code": "REFUTER-F01-F02",
+      "disposition": "V1 preserved immutable; two direct selected-option completeness findings returned to AUTHOR for a new V2 package. A new fresh refuter is required after manager acceptance of V2."
+    }
+  ],
+  "telemetry": {
+    "required": false,
+    "reason": "bounded two-child semantic planning activation; runtime does not expose token/context occupancy",
+    "measurement_limit": "No token or context occupancy instrumentation is available to this manager."
+  }
+}

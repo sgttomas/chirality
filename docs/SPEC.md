@@ -909,6 +909,30 @@ status/activation. Tokens are hashed at rest, scoped to a client and optional
 project, and compared in constant time. Browser code never receives a runtime
 credential.
 
+Daemon shutdown is generation-bound and fail-closed. The first stop closes
+listener admission, then immediately requests the canonical, idempotent
+interrupt for every active SSE turn whose session identity is known; an Agent
+1 stream whose identity has not yet appeared keeps that request latched only
+until force. The exact graceful interval is 2,000 ms. If listener close is
+still incomplete at that deadline, the daemon calls `closeAllConnections()`
+and destroys every residual socket tracked for that generation. A pre-identity
+latch expires at force with `INTERRUPTION_IDENTITY_UNAVAILABLE`, and no later
+event may issue the interrupt. Transport or interrupt acknowledgement cannot
+extend shutdown after force: Node close and tracked-socket settlement receive
+at most a further 500 ms before control-socket unlink and identity-guarded
+owner cleanup are attempted.
+
+Concurrent stops share one in-flight operation; a stopped stop is a no-op.
+Concurrent starts and start during stop are rejected. Teardown attempts all
+owned cleanup before reporting collected failures. Clean transport and
+metadata with interruption failure or timeout is `STOPPED_DEGRADED` and blocks
+instance reuse; incomplete transport or owned metadata is
+`STOP_FAILED_CLEANUP`, where a later stop retries only incomplete cleanup.
+Successful stop permits the same instance to start a new generation, and late
+events from an earlier generation cannot close, interrupt, unlink, or mutate
+the new listener or owner generation. Forced transport disconnection does not
+promise a final HTTP/SSE frame; EOF versus reset is platform-dependent.
+
 ### 14.2 Project manifests and sessions
 
 Each registered checkout supplies `chirality.project.json` with schema

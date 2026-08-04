@@ -3221,3 +3221,24 @@
     work, PRD/decomposition/SCOPE_CHANGE, packaging identity, generic-runtime
     semantics, implementation dispatch, Task Management or Root disposition,
     lifecycle, release, reliance, or Git action occurred.
+
+- **2026-08-04 — Receipt 117** (accepted Root TM-ROOT-112 repair notice received).
+  - Receipt-ID: `Receipt-117`
+  - Examined-Through: `fa60348f93fb74079d352cac93c5ff440ac71226`
+  - Parent-Receipt: `Receipt-116`
+  - Pointers:
+    `execution/_Coordination/NOTICE_2026-08-04_ROOT_TM-ROOT-112_ACCEPTED_GRACEFUL_STOP_REPAIR.md`;
+    `execution/_Coordination/AgentRuns/APPDEV_RECEIVE_ROOT_TM112_ACCEPTED_REPAIR_2026-08-04/`.
+  - Checks: Root/App notice byte equality and SHA-256, receipt contract,
+    candidate/new-file whitespace, Git diff, and foreign containment pass;
+    frontend/runtime checks skipped because no App product or runtime source
+    changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN / HELPS_HUMANS bounded receiving
+    coordination; no Agent 2 dispatch.
+  - Gate-Outcome: `EXECUTED` — received the accepted Root graceful-stop repair
+    as upstream evidence for App-owned `D-APP-88` evaluation and recorded
+    `TM-APP-036`'s mandatory non-blocking parity-rerun rider; no App register,
+    plan, product/runtime source, decision, lifecycle, or parity-rerun action
+    was taken. Node 22.19 remains an unexecuted compatibility gap; no App R2
+    causality, process/SIGTERM proof, App parity acceptance, or merge authority
+    is claimed.
