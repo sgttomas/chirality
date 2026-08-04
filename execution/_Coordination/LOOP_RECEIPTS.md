@@ -2982,3 +2982,80 @@ amendment; owner ruling required).
   continue with AB-01 and AB-09 without a byte gate while any implementation-
   critical TBD survives. Full candidate-whitespace validation passes. PR #510
   remains at the accountable human's merge gate.
+
+### Receipt 96 — 2026-08-04 — TM-ROOT-112 accepted-repair register closure
+
+- **Authority and modes:** signed `ROOT-TM112-IMPLEMENTATION-ACCEPTANCE-01
+  FINAL-HASH-REPAIR` at
+  `AgentRuns/ROOT_TM112_IMPLEMENTATION_ACCEPTANCE_2026-08-04/OWNER_RETURN_TRANSCRIPT_2026-08-04.txt`
+  (SHA-256 `a10bda1c…3046`); mandatory federation preflight, resolution
+  orchestration/row maintenance, archive, staleness/closure echo, final
+  federation, and closeout.
+- **Register delta:** only `TM-ROOT-112` closed `RESOLVED_WITH_CHANGE` and was
+  mechanically archived. Root live 24 → 23 and OPEN 13 → 12, with DEFERRED
+  unchanged at 11; archive 98 → 99. No other row was minted, changed,
+  deferred, elevated, reopened, reprioritized, reassigned, or disposed.
+- **Closure basis and limits:** the exact accepted product hashes are SPEC
+  `647eee2d…d6a7f`, daemon `22440300…ddf2`, and tests `c853f207…b352`; the
+  owner accepted the recorded Node 24 strict, adversarial 2/2, daemon 15/15,
+  full-runtime 74/74, build, and fresh-backcheck evidence. Node 22.19 remains
+  an explicit unexecuted compatibility gap. The ordinary Root-to-App notice
+  naming D-APP-88 and TM-APP-036's mandatory non-blocking parity-rerun rider
+  is released for HELP_HUMAN routing; no App R2 causality, process/SIGTERM
+  proof, App parity acceptance, lifecycle/reliance, foreign disposition,
+  merge, or Git authority is inferred.
+- **Durable products and currentness:** Task Management session report at
+  `_TaskManagement/SESSION_2026-08-04_ROOT_TM112_ACCEPTED_REPAIR_CLOSURE.md`
+  and run evidence under
+  `AgentRuns/ROOT_TM112_ACCEPTED_REPAIR_CLOSURE_2026-08-04/`. Root
+  `HANDOFF_STATE.md` still carries the pre-closure 24/98 counts and requires
+  an out-of-scope HELPS_HUMANS refresh to 23 live (`OPEN=12`, `DEFERRED=11`)
+  and 99 archived.
+
+### Receipt 97 — 2026-08-04 — TM-ROOT-112 accepted-repair App-routing preparation
+
+- **Parent and authority:** Receipt 96 and signed
+  `ROOT-TM112-IMPLEMENTATION-ACCEPTANCE-01 FINAL-HASH-REPAIR` transcript
+  SHA-256 `a10bda1c…3046`. The accepted Root product identities remain SPEC
+  `647eee2d…d6a7f`, daemon `22440300…ddf2`, and tests `c853f207…b352`.
+- **Currentness repair:** `HANDOFF_STATE.md` now records the Receipt 96
+  register state of 23 live rows (`OPEN=12`, `DEFERRED=11`) and 99 archived,
+  while retaining Receipt 91's 27/95 repair and Receipt 92's later 24/98
+  state as historical transitions.
+- **Outgoing coordination:** Root-origin
+  `NOTICE_2026-08-04_ROOT_TM-ROOT-112_ACCEPTED_GRACEFUL_STOP_REPAIR.md` is
+  ready for ordinary byte-identical routing to App. It names `D-APP-88`,
+  App `TM-APP-036`'s mandatory non-blocking parity-rerun rider, exact accepted
+  product hashes, accepted Node 24 evidence, and the unexecuted Node 22.19
+  compatibility gap. App owns its rerun, evidence, and local evaluation.
+- **Limits and checks:** no App surface or foreign register was written. No
+  App R2 causality, process/SIGTERM proof, App parity acceptance,
+  lifecycle/reliance, foreign disposition, merge, publication, or Git
+  authority is claimed. Root live/archive validation, transcript and product
+  hashes, notice-content checks, containment, whitespace, and
+  `git diff --check` pass. Evidence is under
+  `AgentRuns/ROOT_TM112_ACCEPTED_REPAIR_APP_NOTICE_2026-08-04/`.
+
+### Receipt 98 — 2026-08-04 — TM-ROOT-112 accepted-repair App notice delivered
+
+- **Parent and routed bytes:** Receipt 97; Root-origin notice
+  `NOTICE_2026-08-04_ROOT_TM-ROOT-112_ACCEPTED_GRACEFUL_STOP_REPAIR.md`,
+  SHA-256 `1029648d…a6ed3`, was copied byte-identically to App's ordinary
+  coordination surface and verified equal.
+- **Receiving record:** App Receipt 115 records receipt and local evaluation
+  posture. The notice names `D-APP-88` and App `TM-APP-036`'s mandatory
+  non-blocking parity-rerun rider. App owns any rerun, evidence, decision,
+  register, or lifecycle consequence.
+- **Containment and limits:** the App receiving pass added only the notice,
+  Receipt 115, and its bounded evidence carrier under
+  `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_RECEIVE_ROOT_TM112_ACCEPTED_REPAIR_2026-08-04/`.
+  It changed no App register, plan, decision, product/runtime source, or
+  lifecycle state and executed no parity rerun. Node 22.19 remains an
+  explicit unexecuted compatibility gap; no App R2 causality,
+  process/SIGTERM proof, App parity acceptance, or merge authority is
+  claimed.
+- **Currentness and checks:** Root remains 23 live (`OPEN=12`,
+  `DEFERRED=11`) and 99 archived. Notice byte identity, App receipt grammar,
+  Root register closure, exact accepted product hashes, candidate whitespace,
+  containment, and `git diff --check` pass. Publication is limited to the
+  existing PR #510 branch; merge remains at the accountable human's gate.
