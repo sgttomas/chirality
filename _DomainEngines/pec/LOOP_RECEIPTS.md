@@ -1783,3 +1783,11 @@
   - EVALUATION: both preparation packages audit `PASS`. Pre-receipt containment is exactly 15 paths — four owned current-map updates, five RF-002 preparation files, and six TM-PEC-023 preparation files — with zero unexpected paths. Strict decomposition-register validation passes at 64 registers / 255 rows / zero findings, comprising 136 ANCHOR and 119 EXECUTION rows. Dependency topology remains 119 edges / zero nontrivial SCCs / zero bidirectional pairs; CRLF-aware diff validation passes.
   - Authority fence: no decomposition, pointer, Task Management register, source, artifact-acceptance, lifecycle, release, professional-reliance, foreign-loop, or merge act occurred. The preparation receipt does not select a TM-PEC-023 candidate, execute RF-002, accept a successor SOW, close a row, or advance Gate 5.
   - Gate outcome: **BOTH PREPARATION PACKAGES AUDITED PASS / RECEIPT + EXACT COMMIT SAFE / PUSH + PR AUTHORIZED / MERGE OWNER-HELD**.
+
+- **2026-08-04 — Receipt 161** (DEL-01-06 RF-002 exact successor acceptance and current-map integration).
+  - Accepted contract: `projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md`, SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`.
+  - REVIEW: `projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Review_Summary.md`, SHA-256 `c5919cd313dece639c2c3ff11f6c6ad86a47c3c9aef4bfb9291668f76300f8fd`; RF-002 `REVISE / RESOLVED`, RF-001 remains `RESOLVED`, Gate 5 `HOLD`, lifecycle `INITIALIZED`.
+  - Checks: SOW_V1/checklist, AC/VER preservation, producer evidence, strict registers 64/255 with 136 ANCHOR / 119 EXECUTION, topology 119/0/0, containment, harness, and whitespace PASS.
+  - Current-map result: `DerivativePackageState=INCOMPLETE` for exactly two lanes — TM-PEC-023 dedicated mapping-session amendment and TM-PEC-013/014 ordinary SOW/SPEC currency for DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03.
+  - Task Management fence: TM-PEC-011 remains `OPEN` with stale source evidence pending separate TASK_MANAGEMENT disposition; no Task Management register write or row closure occurred.
+  - Gate outcome: **RF-002 EXACT SUCCESSOR ACCEPTED / CURRENT MAPS ALIGNED / GATE 5 HOLD + INITIALIZED UNCHANGED / TWO DERIVATIVE LANES REMAIN / GIT CLOSEOUT OWNER-HELD**.

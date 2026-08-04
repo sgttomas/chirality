@@ -136,8 +136,10 @@
     supersession annotations to the four mutable historical handoffs, with
     evidence at `WORKING_ITEMS_SCA004_CURRENCY_SWEEP_2026-08-03/`.
     TM-PEC-023 is held pending an exact SCOPE_CHANGE mapping-or-retain-blank
-    ruling; DEL-01-06 RF-002 remains separate and open. No SOW, REVIEW,
-    lifecycle, source, release, reliance, or foreign-loop act is inferred.
+    ruling. DEL-01-06 RF-002 was later resolved through exact successor SOW
+    acceptance at `REV_DEL-01-06_2026-08-04_1113`; Gate 5 remains HOLD and
+    lifecycle remains `INITIALIZED`. No source, release, reliance, or
+    foreign-loop act is inferred.
 
     Three historical handoffs are immutable and remain byte-identical. Their
     present-current superseding pointers are recorded here instead:
@@ -157,14 +159,15 @@
     (2026-08-03):** TM-PEC-023 is directed to a dedicated SCOPE_CHANGE mapping
     session; neither an exact mapping nor blank retention is ruled, its nine
     semantic bytes and COV-062..COV-070 remain open, and no downstream gate or
-    urgency is created. RF-002 disposition is `REVISE`, but revision and exact
-    REVIEW acceptance are separately scheduled; RF-002 remains `TBD / OPEN`,
-    Gate 5 remains HOLD, and DEL-01-06 remains `INITIALIZED`. Metadata alignment
-    is cleared. Derivative state remains `INCOMPLETE` for exactly three
-    component categories: (1) TM-PEC-023 mapping-session amendment; (2) RF-002
-    revision plus exact REVIEW acceptance; and (3) ordinary SOW/SPEC currency
+    urgency is created. RF-002 disposition `REVISE` is now `RESOLVED` by exact
+    successor SOW SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`
+    at `REV_DEL-01-06_2026-08-04_1113`; RF-001 remains resolved, Gate 5 remains
+    HOLD, and DEL-01-06 remains `INITIALIZED`. Metadata alignment is cleared.
+    Derivative state remains `INCOMPLETE` for exactly two component categories:
+    (1) TM-PEC-023 mapping-session amendment and (2) ordinary SOW/SPEC currency
     under SCA-004 / TM-PEC-013/014 for DEL-02-07, DEL-03-01, DEL-04-01, and
-    DEL-00-03. This item records no row closure.
+    DEL-00-03. TM-PEC-011 remains `OPEN` with stale source evidence pending a
+    separate TASK_MANAGEMENT disposition; this item records no row closure.
 
 ## Notes (human-owned)
 

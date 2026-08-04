@@ -24,8 +24,10 @@ owner-selected full DAG, scaffolded 11 packages / 64 deliverables, and completed
 the SCA-004 metadata-alignment subset: 64/64 context provenance blocks and
 64/64 reference packets are current, and DEL-01-06 carries the non-gating
 SOW-077 requirement anchor. Thirty-two Phase 2.2 ScopeOfWork contracts are
-initialized. The accepted DEL-01-06 revision-1.3 contract remains separately
-stale under open RF-002 and is excluded from this alignment. The earlier
+initialized. DEL-01-06 now has the accepted revision-1.4 production contract
+at SHA-256 `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`;
+RF-001 and RF-002 are resolved, while Gate 5 remains HOLD at `INITIALIZED`.
+The earlier
 eleven-contract reconciliation remains historical under `D-PEC-69`, and
 `PEC-HOLD-001` was released by `D-PEC-70`. Current derivative state is recorded
 in `execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`
@@ -36,12 +38,15 @@ separately owner-gated. See the standing plan at
 Superseding owner direction on 2026-08-03 sends TM-PEC-023 to a dedicated
 SCOPE_CHANGE mapping session: neither mappings nor blanks are ruled, all nine
 values and COV-062..COV-070 remain open, and no downstream gate or urgency is
-created. RF-002 has owner disposition `REVISE`, but the SOW revision and exact
-REVIEW acceptance are separately scheduled; Gate 5 remains HOLD at unchanged
+created. RF-002 owner disposition `REVISE` is resolved: the SOW revision and
+exact REVIEW acceptance are complete at snapshot
+`REV_DEL-01-06_2026-08-04_1113`; Gate 5 remains HOLD at unchanged
 `INITIALIZED`. Metadata alignment itself is cleared. Derivative state remains
-`INCOMPLETE` only for three component categories: the TM-PEC-023 mapping-session
-amendment; RF-002 revision plus exact REVIEW acceptance; and the ordinary
-SOW/SPEC currency lane for DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03.
+`INCOMPLETE` only for two component categories: the TM-PEC-023 mapping-session
+amendment and the ordinary SOW/SPEC currency lane under TM-PEC-013/014 for
+DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03. TM-PEC-011 remains `OPEN` with
+stale source evidence pending a separate TASK_MANAGEMENT disposition; no row
+is closed here.
 
 ## Layout
 
