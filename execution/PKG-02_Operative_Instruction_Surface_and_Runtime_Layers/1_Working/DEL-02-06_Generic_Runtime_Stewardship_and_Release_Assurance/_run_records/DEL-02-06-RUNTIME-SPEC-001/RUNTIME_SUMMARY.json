@@ -1,0 +1,175 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 11
+  },
+  "counts": {
+    "category": {
+      "n1_inventory": 2,
+      "n2_client_census": 2,
+      "n3_evidence_design": 2,
+      "n4_integration": 10,
+      "n5_refutation": 6,
+      "n6_handoff_assembly": 2,
+      "post_n0_planning": 1,
+      "w6_manager_start": 1
+    },
+    "event_type": {
+      "FINISH": 11,
+      "REMEDIATION": 2,
+      "RETRY": 2,
+      "START": 11
+    },
+    "outcome": {
+      "FAIL": 2,
+      "INFO": 2,
+      "PASS": 9,
+      "RETRY": 2,
+      "STARTED": 11
+    },
+    "reason_code": {
+      "ADMIT_NO_FINDINGS": 1,
+      "DISPATCH": 6,
+      "FRESH_RECHECK_DISPATCH": 2,
+      "HANDOFF_READY_FOR_HUMAN_GATE": 2,
+      "MANAGER_ACCEPTED": 6,
+      "N5_F01": 1,
+      "N5_R2_F01": 1,
+      "N5_R2_RETURN_REFERENCE": 1,
+      "N5_RETURN_MATERIAL": 1,
+      "PLAN_V12_START": 1,
+      "REFERENCE_INTEGRITY": 1,
+      "REMEDIATION_DISPATCH": 2,
+      "TEN_CONDITION_MATRIX": 1
+    }
+  },
+  "events": 26,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 435.709,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "N1",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N1-W6"
+    },
+    {
+      "duration_seconds": 435.71,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "N2",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N2-W6"
+    },
+    {
+      "duration_seconds": 577.234,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "N3",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N3-W6"
+    },
+    {
+      "duration_seconds": 524.728,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "N4",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N4-W6"
+    },
+    {
+      "duration_seconds": 339.832,
+      "events": 4,
+      "final_outcome": "PASS",
+      "instance_id": "N4",
+      "package_id": "PKG-02",
+      "remediations": 1,
+      "retries": 1,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N4-W6-A2"
+    },
+    {
+      "duration_seconds": 446.135,
+      "events": 4,
+      "final_outcome": "PASS",
+      "instance_id": "N4",
+      "package_id": "PKG-02",
+      "remediations": 1,
+      "retries": 1,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N4-W6-A3"
+    },
+    {
+      "duration_seconds": 503.034,
+      "events": 2,
+      "final_outcome": "FAIL",
+      "instance_id": "N5-R2",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N5-R2-W6"
+    },
+    {
+      "duration_seconds": 415.814,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "N5-R3",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N5-R3-W6"
+    },
+    {
+      "duration_seconds": 363.423,
+      "events": 2,
+      "final_outcome": "FAIL",
+      "instance_id": "N5",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N5-W6"
+    },
+    {
+      "duration_seconds": 336.573,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "N6",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N6-W6"
+    },
+    {
+      "duration_seconds": 3737.914,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "W6-DEL0206-POST-N0-PLANNING",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "W6-manager"
+    }
+  ],
+  "sessions": 11,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

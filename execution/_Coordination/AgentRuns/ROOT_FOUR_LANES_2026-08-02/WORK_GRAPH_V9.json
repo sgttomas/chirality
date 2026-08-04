@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 9,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL",
+  "nodes": [
+    {
+      "id": "S6",
+      "role": "SCOPE_CHANGE",
+      "status": "AUTHORIZED_GATE_1_CONFIRMATION_RECORDING",
+      "depends_on": ["S5"],
+      "write_scope": [
+        "execution/_ScopeChange/SCA-003_2026-08-02_2212/",
+        "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/S6-SCOPE-GATE1-CONFIRM/"
+      ]
+    }
+  ],
+  "holds": [
+    {"id":"HOLD-GATE-2","node":"S6","condition":"Do not open or infer Gate 2."},
+    {"id":"HOLD-SCA-CLOSE","node":"S6","condition":"Do not close SCA-003 or change execution/_ScopeChange/_LATEST.md."},
+    {"id":"HOLD-DEL-N0","node":"S6","condition":"Do not regenerate, accept, or copy the DEL packet and do not dispatch N0."},
+    {"id":"HOLD-RUNTIME","node":"S6","condition":"Do not change runtime/client/project, lifecycle, release, or reliance state."},
+    {"id":"HOLD-TM-GIT","node":"S6","condition":"Do not change Task Management or perform Git staging, commit, push, PR, or merge actions."}
+  ],
+  "integration_owner": "HELP_HUMAN",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

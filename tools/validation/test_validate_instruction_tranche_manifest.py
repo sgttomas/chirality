@@ -1,6 +1,7 @@
 """Tests for G4, the D-GOV-21 instruction-surface tranche manifest guard."""
 
 import subprocess
+import sys
 from pathlib import Path
 
 import yaml
@@ -67,6 +68,15 @@ def _init_repo(root: Path) -> None:
     (root / "README.md").write_text("seed\n", encoding="utf-8")
     _git(root, "add", "-A")
     _git(root, "commit", "-q", "-m", "seed")
+
+
+def _run_cli(root: Path, *args: str) -> subprocess.CompletedProcess[str]:
+    return subprocess.run(
+        [sys.executable, str(Path(g4.__file__).resolve()), *args],
+        cwd=root,
+        capture_output=True,
+        text=True,
+    )
 
 
 def test_block_when_manifest_directory_absent(tmp_path):
@@ -415,6 +425,167 @@ def test_diff_mode_blocks_uncovered_instruction_surface_change(tmp_path):
     assert any("is not covered by any declared tranche manifest path" in line for line in lines)
 
 
+def test_candidate_range_diff_blocks_when_only_historical_manifest_covers_change(tmp_path):
+    """CI must not let an old exact-path declaration stand in for this tranche."""
+    _init_repo(tmp_path)
+    _write_manifest(tmp_path, _manifest(instruction_surface_paths=["AGENTS.md"]))
+    (tmp_path / "AGENTS.md").write_text("# original doctrine\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "historical manifest")
+    base = _git(tmp_path, "rev-parse", "HEAD")
+    (tmp_path / "AGENTS.md").write_text("# changed doctrine\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "unmanifested doctrine change")
+    head = _git(tmp_path, "rev-parse", "HEAD")
+
+    legacy_code, legacy_lines = g4.check(tmp_path, base, head)
+    assert legacy_code == 0, legacy_lines
+
+    result = _run_cli(
+        tmp_path,
+        "--base",
+        base,
+        "--head",
+        head,
+        "--added-manifests-only",
+    )
+    assert result.returncode == 1
+    assert "G4 BLOCK (diff mode)" in result.stdout
+    assert "adds no schema-readable tranche manifest" in result.stdout
+    assert "AGENTS.md" in result.stdout
+
+
+def test_candidate_range_diff_blocks_modified_historical_manifest_reuse(tmp_path):
+    _init_repo(tmp_path)
+    manifest = _write_manifest(
+        tmp_path,
+        _manifest(
+            instruction_surface_paths=[
+                "AGENTS.md",
+                "docs/governance_harness/tranche_manifests/T-DEMO.yaml",
+            ]
+        ),
+    )
+    (tmp_path / "AGENTS.md").write_text("# original doctrine\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "historical manifest")
+    base = _git(tmp_path, "rev-parse", "HEAD")
+
+    manifest.write_text(manifest.read_text(encoding="utf-8") + "# reused\n", encoding="utf-8")
+    (tmp_path / "AGENTS.md").write_text("# changed doctrine\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "reuse historical manifest")
+    head = _git(tmp_path, "rev-parse", "HEAD")
+
+    result = _run_cli(
+        tmp_path,
+        "--base",
+        base,
+        "--head",
+        head,
+        "--added-manifests-only",
+    )
+    assert result.returncode == 1
+    assert "adds no schema-readable tranche manifest" in result.stdout
+    assert "AGENTS.md" in result.stdout
+
+
+def test_candidate_range_diff_passes_with_added_manifest(tmp_path):
+    _init_repo(tmp_path)
+    _write_manifest(tmp_path, _manifest("T-HISTORICAL"))
+    (tmp_path / "AGENTS.md").write_text("# original doctrine\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "historical state")
+    base = _git(tmp_path, "rev-parse", "HEAD")
+
+    _write_manifest(
+        tmp_path,
+        _manifest(
+            "T-CANDIDATE",
+            instruction_surface_paths=[
+                "AGENTS.md",
+                "docs/governance_harness/tranche_manifests/T-CANDIDATE.yaml",
+            ],
+        ),
+    )
+    (tmp_path / "AGENTS.md").write_text("# changed doctrine\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "manifested doctrine change")
+    head = _git(tmp_path, "rev-parse", "HEAD")
+
+    result = _run_cli(
+        tmp_path,
+        "--base",
+        base,
+        "--head",
+        head,
+        "--added-manifests-only",
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "G4 PASS (diff mode)" in result.stdout
+    assert "checked against 1 manifest(s)" in result.stdout
+
+
+def test_candidate_range_diff_preserves_whole_corpus_schema_validation(tmp_path):
+    _init_repo(tmp_path)
+    _write_manifest(tmp_path, _manifest("T-HISTORICAL", schema="tranche/v0"))
+    (tmp_path / "AGENTS.md").write_text("# original doctrine\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "invalid historical state")
+    base = _git(tmp_path, "rev-parse", "HEAD")
+
+    _write_manifest(
+        tmp_path,
+        _manifest(
+            "T-CANDIDATE",
+            instruction_surface_paths=[
+                "AGENTS.md",
+                "docs/governance_harness/tranche_manifests/T-CANDIDATE.yaml",
+            ],
+        ),
+    )
+    (tmp_path / "AGENTS.md").write_text("# changed doctrine\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "manifested doctrine change")
+    head = _git(tmp_path, "rev-parse", "HEAD")
+
+    result = _run_cli(
+        tmp_path,
+        "--base",
+        base,
+        "--head",
+        head,
+        "--added-manifests-only",
+    )
+    assert result.returncode == 1
+    assert "manifest T-HISTORICAL.yaml: schema is 'tranche/v0'" in result.stdout
+
+
+def test_candidate_range_diff_ignores_non_instruction_change_without_new_manifest(tmp_path):
+    _init_repo(tmp_path)
+    _write_manifest(tmp_path, _manifest())
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "historical manifest")
+    base = _git(tmp_path, "rev-parse", "HEAD")
+    record = tmp_path / "execution" / "_Coordination" / "RECORD.md"
+    record.parent.mkdir(parents=True, exist_ok=True)
+    record.write_text("# record\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-q", "-m", "coordination only")
+    head = _git(tmp_path, "rev-parse", "HEAD")
+
+    result = _run_cli(
+        tmp_path,
+        "--base",
+        base,
+        "--head",
+        head,
+        "--added-manifests-only",
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "0 on the instruction surface, checked against 0 manifest(s)" in result.stdout
+
+
 def test_diff_mode_ignores_non_instruction_surface_change(tmp_path):
     _init_repo(tmp_path)
     _write_manifest(tmp_path, _manifest())
@@ -449,6 +620,39 @@ def test_diff_mode_operational_on_bad_refs(tmp_path):
 
 def test_cli_rejects_half_specified_diff_mode():
     assert g4.main(["--base", "HEAD~1"]) == 2
+
+
+def test_cli_rejects_candidate_range_selection_without_diff_mode():
+    assert g4.main(["--added-manifests-only"]) == 2
+
+
+def test_cli_rejects_tranche_and_candidate_range_selection_together():
+    assert (
+        g4.main(
+            [
+                "--base",
+                "HEAD",
+                "--head",
+                "HEAD",
+                "--tranche",
+                "T-DEMO",
+                "--added-manifests-only",
+            ]
+        )
+        == 2
+    )
+
+
+def test_governance_harness_ci_wires_candidate_range_diff_mode():
+    workflow = (
+        g4.repo_root() / ".github" / "workflows" / "governance-harness.yml"
+    ).read_text(encoding="utf-8")
+    assert (
+        "G4_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}"
+        in workflow
+    )
+    assert '--base "${G4_BASE_REF}" --head HEAD --added-manifests-only' in workflow
+    assert "--base HEAD^ --head HEAD --added-manifests-only" in workflow
 
 
 def test_live_repo_lane_b_manifest_exists_and_passes():

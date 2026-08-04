@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 20,
+  "selection_authority": "AGENT_0_WITHIN_OWNER_AUTHORIZED_DEL_PLANNING_LANE",
+  "posture": "SEQUENTIAL_DECISION_SUPPORT",
+  "nodes": [
+    {"id": "W6", "role": "WORKING_ITEMS", "status": "COMPLETE_HANDOFF_READY_FOR_HUMAN_GATE", "depends_on": []},
+    {
+      "id": "W7-AUTHOR",
+      "role": "AGENT_2_GENERALIST",
+      "status": "READY",
+      "depends_on": ["W6"],
+      "write_scope": ["instances/W7-DEL0206-OWNER-SELECTION/children/AUTHOR/"]
+    },
+    {
+      "id": "W7-VERIFY",
+      "role": "AGENT_2_GENERALIST",
+      "status": "HELD_FOR_AUTHOR",
+      "depends_on": ["W7-AUTHOR"],
+      "write_scope": ["instances/W7-DEL0206-OWNER-SELECTION/children/VERIFY/"]
+    },
+    {
+      "id": "W7-INTEGRATE",
+      "role": "WORKING_ITEMS",
+      "status": "HELD_FOR_VERIFIER_ADMIT",
+      "depends_on": ["W7-VERIFY"],
+      "write_scope": ["DEL-02-06-RUNTIME-SPEC-001/decision_support/", "instances/W7-DEL0206-OWNER-SELECTION/"]
+    },
+    {"id": "G-DEL-SELECTION", "role": "HUMAN", "status": "HELD_FOR_W7", "depends_on": ["W7-INTEGRATE"]}
+  ],
+  "holds": [
+    {"id": "HOLD-NO-ADOPTION", "condition": "W7 decision support cannot select or adopt any option."},
+    {"id": "HOLD-IMPLEMENTATION", "condition": "Implementation requires later exact semantic acceptance, fresh refutation, and separate activation."},
+    {"id": "HOLD-FOREIGN", "condition": "PEC and App decisions remain with their own loops."},
+    {"id": "HOLD-MERGE", "condition": "PR merge remains the owner's gate."}
+  ],
+  "integration_owner": "W7-INTEGRATE",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

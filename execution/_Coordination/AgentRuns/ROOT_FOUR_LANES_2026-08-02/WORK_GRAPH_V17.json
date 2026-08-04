@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 17,
+  "selection_authority": "HUMAN",
+  "posture": "CLOSEOUT_RETRY_AFTER_NON_SEMANTIC_REPAIR",
+  "nodes": [
+    {"id": "C6", "role": "CHANGE", "status": "STOPPED_VALIDATION_NO_GIT_EFFECT", "depends_on": ["C5"]},
+    {"id": "W6-R1", "role": "WORKING_ITEMS", "status": "COMPLETE_NON_SEMANTIC_PROVENANCE_REPAIR", "depends_on": ["C6"]},
+    {"id": "C6-R2", "role": "CHANGE", "status": "AUTHORIZED_SCOPED_COMMIT_PUSH_PR_UPDATE_NO_MERGE", "depends_on": ["W6-R1"]}
+  ],
+  "holds": [
+    {"id": "HOLD-SCA-CLOSE", "condition": "Separate owner closeout ruling required."},
+    {"id": "HOLD-DEL", "condition": "Human semantic and separate implementation gates remain open."},
+    {"id": "HOLD-PI", "condition": "G1-B remains validation-only under evidence hold."},
+    {"id": "HOLD-MERGE", "condition": "PR merge remains the owner's Git gate."}
+  ],
+  "integration_owner": "C6-R2",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

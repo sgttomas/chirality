@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 5,
+  "dispatch_basis_sha256": "c084fd473e33ad9b7d2dfdb75bc32eccba3a0dc5573d8102b9645c68d0af560d",
+  "nodes": [
+    {
+      "id": "S2",
+      "status": "BLOCKED_AT_EXACT_BASIS_RECONCILIATION_CANDIDATE_GATE"
+    },
+    {
+      "id": "W2",
+      "status": "PACKET_BLUEPRINT_READY_HELD_FOR_S2_AND_EXACT_OWNER_ACCEPTANCE"
+    },
+    {
+      "id": "E2",
+      "status": "COMPLETE_OPTION_A_EVIDENCE_HOLD_FUTURE_WORK_NOT_DISPATCHED"
+    },
+    {
+      "id": "H2",
+      "status": "COMPLETE_READY_FOR_HUMAN_G1_SELECTION",
+      "return_accepted": true,
+      "evidence": "instances/H2-PI-IDENTITY/RETURN.md",
+      "return_sha256": "2e947e8da05d7b98fc4a26b81897d7e47646018cfb6266ed2a03aa98d826db18"
+    },
+    {
+      "id": "C2",
+      "status": "HELD_FOR_ACCEPTED_CONTINUATION_FAN_IN"
+    }
+  ],
+  "pi_g1_status": "HELD_AT_HUMAN_VALIDATION_TARGET_SELECTION",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

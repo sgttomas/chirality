@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 13,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL_SYNC_THEN_MIXED",
+  "nodes": [
+    {"id":"C4","role":"CHANGE","status":"AUTHORIZED_CURRENT_MAIN_SYNC","depends_on":["W5"],"write_scope":["git integration metadata","execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/C4-CURRENT-MAIN-SYNC/"]},
+    {"id":"W6","role":"WORKING_ITEMS","status":"HELD_FOR_C4_CURRENT_MAIN_SYNC","depends_on":["C4"],"write_scope":["DEL-02-06 run root","W6 instance records"]}
+  ],
+  "holds": [
+    {"id":"HOLD-W6-SYNC","node":"W6","condition":"No N1/N2/N3 dispatch until current fetched origin/main is an ancestor of local HEAD and the full dirty tranche is restored byte-identically."},
+    {"id":"HOLD-GIT-PUBLISH","node":"C4","condition":"No staging, tranche commit, push, PR update, merge to main, rebase, force operation, or stash deletion."},
+    {"id":"HOLD-SEMANTIC","node":"C4","condition":"No semantic file edit or candidate acceptance change during sync."}
+  ],
+  "integration_owner": "C4",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

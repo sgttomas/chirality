@@ -1,0 +1,152 @@
+{
+  "schema_version": "pia-u10-basis/v1",
+  "status": "DERIVATIVE_IDENTITY_PROPOSAL_NO_SELECTION_NO_AUTHORITY_EFFECT",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "node_id": "H2",
+  "work_unit": "PIA-U10",
+  "repository_observation": {
+    "accepted_evaluation_snapshot": "97678a841ef58345c73d3470ed8de57c9b1405d2",
+    "checkout_head": "4337990334c3e339a02c54de811d9f238246d524",
+    "observed_origin_main": "7249281e1f84ba5abee3c31c2fea3736b22000d3",
+    "dirty_checkout": true,
+    "dirty_path_count_at_start": 34,
+    "containment": "Concurrent foreign-lane products were present; H2 read only the sealed inputs and wrote only its two declared directories."
+  },
+  "authority_state": {
+    "root": "D-GOV-20 is provider-neutral and accepts no Pi package version.",
+    "app": "D-APP-72 and SCA-APP-002 Pi 0.80.10 remains operative.",
+    "prospective": "D-APP-84 V1 names Pi 0.82.0 only as a Root-conditioned target.",
+    "owner_continuation": "Option A evidence hold selected; no approval or supersession.",
+    "g1_effect": "A later human choice may select one identity target for validation only; it is not Pi approval or App supersession."
+  },
+  "source_refs": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/OWNER_RULING_2026-08-02_CONTINUATION.md",
+      "sha256": "9b98fe3dc6f8d9abb53c5b087e666cd17d53569ea0f39f1dea489534c9ebf6b6",
+      "role": "owner evidence-hold ruling"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/ORCHESTRATION_PLAN_V5.md",
+      "sha256": "7308b698bffeaf89b4ba3d01f689d457649c50c469831c772d0f1ce5aef7bf20",
+      "role": "H2 authority and write fence"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/WORK_GRAPH_V5.json",
+      "sha256": "c084fd473e33ad9b7d2dfdb75bc32eccba3a0dc5573d8102b9645c68d0af560d",
+      "role": "H2 graph and holds"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/OPTION_A_IDENTITY_BASIS.json",
+      "sha256": "1adfed15f83efc0444ed3db8df1e103ffa436d5b5253738ea20db4ef780ff6ce",
+      "role": "provisional descriptor, implementations, hashes, and questions"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/OPTION_A_DECISION_GATES.md",
+      "sha256": "24b55cdb8e35177d0c7013c81cabfbffbfd12d6070cd663eab31ed1f4cc5bd86",
+      "role": "G1 options and later gates"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/OPTION_A_WORK_UNITS.csv",
+      "sha256": "8b8b2ddaf8750bbb3e4ebb45e88452873f072bc373af104c53c8dca13ca51955",
+      "role": "PIA-U10 and undispatched successor work"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/EVALUATION_REPORT.md",
+      "sha256": "e5253fbb40dfa1159981d87073d415e6156adb338f51316be0a97ac1c7f620c1",
+      "role": "accepted derivative findings and recommendation"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/FINDINGS.csv",
+      "sha256": "10c9e70b1db6e456d287c46e02578087958c89da763e829919823ddc3d0917d0",
+      "role": "identity and authority blockers"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-20_shared_runtime_local_agent_pilot.md",
+      "sha256": "a6a4fc4f0c8136f0cdf25eab155c98a03276248776ed9ff779df6c4b88523f11",
+      "role": "Root provider-neutral runtime authority"
+    },
+    {
+      "path": "execution/_Coordination/NOTICE_D-APP-84_REV2_APP_PI_SANDBOX_ROOT_ROUTE_2026-08-02.md",
+      "sha256": "2d61231689e78b414680aeac307c377ef3079b65cc7f60355b7c3942ad7c3e6a",
+      "role": "non-authoritative App-to-Root route"
+    },
+    {
+      "path": "runtime/packages/contracts/src/harness/agent-engine-port.ts",
+      "sha256": "c51d2b6a173f300acedee468f8e51b29cea2bd946bcdec300eaaa4a3d06a8e5d",
+      "role": "current descriptor contract"
+    },
+    {
+      "path": "runtime/packages/contracts/src/harness/types.ts",
+      "sha256": "7e035b3a7b1d50176b7f0605b62da9695502305a38d61e27b7c3799531de70e3",
+      "role": "current selection and fingerprint contract"
+    },
+    {
+      "path": "runtime/packages/contracts/src/events.ts",
+      "sha256": "d20fd7dcc8f1d41ad713e9b840410acd6200666765f0217a275dc0ce945596cd",
+      "role": "current event attribution contract"
+    },
+    {
+      "path": "runtime/packages/contracts/src/session.ts",
+      "sha256": "22e49ccf47a83e93d065a1d731a0e726cba6559f8436f78c3451d4db2fd8bf51",
+      "role": "current session identity contract"
+    },
+    {
+      "path": "runtime/packages/core/src/engine-registry.ts",
+      "sha256": "17016dcc2bebe45876fef96db3288af3fa8051054643cc06ea315a923c66f7de",
+      "role": "current adapter/provider-only registry key"
+    },
+    {
+      "path": "runtime/packages/core/src/runtime-service.ts",
+      "sha256": "43b2dd4dbf8b1a91a057350558229616e34bfec258b2b9ad8f5e36c058c7c74d",
+      "role": "current runtime fingerprint construction"
+    },
+    {
+      "path": "runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts",
+      "sha256": "531f69c42c87d799b2b9aecec4bbfb96e2a1210dcd17135542c3483b48a9c208",
+      "role": "Root reference implementation"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts",
+      "sha256": "34c8fd0978741720e74ba36beb3fdc7c9a06f31ed55b7da87c86525ac39c47ca",
+      "role": "App executable implementation"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-host.ts",
+      "sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "role": "observed App registration and client composition"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "sha256": "1e62d22ec4a07fb225352c90ddfa5ce41d736d3d169e04cf7bd3684e54557c9c",
+      "role": "observed executable dependency and packaging manifest"
+    },
+    {
+      "path": "projects/chirality-app-dev/frontend/package-lock.json",
+      "sha256": "674fe2dab74572f21d26455498461d62eaa4218560e45024ed2a31e00c635ab8",
+      "role": "observed exact executable dependency closure"
+    }
+  ],
+  "observed_collision": {
+    "shared_descriptor": {
+      "adapter_id": "pi",
+      "provider_id": "omlx",
+      "upstream_package": "@earendil-works/pi-coding-agent",
+      "upstream_version": "0.82.0"
+    },
+    "root_implementation_sha256": "531f69c42c87d799b2b9aecec4bbfb96e2a1210dcd17135542c3483b48a9c208",
+    "app_implementation_sha256": "34c8fd0978741720e74ba36beb3fdc7c9a06f31ed55b7da87c86525ac39c47ca",
+    "current_registry_key_components": ["adapterId", "providerId"],
+    "current_fingerprint_components": ["adapterId", "providerId", "model", "packageName", "packageVersion"],
+    "gap": "Neither current surface names Chirality implementation family, source/build, capability profile, registration, policy, client composition, packaging set, or rollback identity."
+  },
+  "holds": [
+    "NO_IDENTITY_SELECTION",
+    "NO_PI_0820_APPROVAL",
+    "NO_DAPP72_SUPERSESSION",
+    "NO_SOURCE_RUNTIME_OR_PROJECT_WRITE",
+    "NO_FUTURE_WORK_DISPATCH",
+    "NO_LIFECYCLE_RELEASE_RELIANCE_EFFECT",
+    "NO_TASK_MANAGEMENT_WRITE",
+    "NO_GIT_EFFECT"
+  ]
+}

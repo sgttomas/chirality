@@ -1,0 +1,59 @@
+FieldPath,Class,RequiredBySchema,RegistryKeyInput,AuthorityOrEvidenceSource,CollisionPurpose,MutationRule
+schema_version,SCHEMA_STABLE,YES,DERIVATION_CONTEXT,CANDIDATE_IDENTITY.schema.json,Prevents cross-version interpretation,New schema version requires new key namespace
+identity_status,CONTROL_STATE,YES,NO,Human gates plus lifecycle instrument,Separates validation target from accepted or retired state,Changes only through owning human-gated instrument
+canonicalization,DERIVATION_RULE,YES,DERIVATION_CONTEXT,CANDIDATE_IDENTITY.schema.json,Fixes deterministic digest serialization,Immutable within schema version
+identity_digest_sha256,DERIVED_STABLE,YES,REGISTRY_KEY_VALUE,Computed from RFC8785 stable_identity,Detects any stable identity difference,Recompute after any stable field change
+registry_key,DERIVED_STABLE,YES,REGISTRY_KEY,Computed from schema namespace and identity digest,Prevents same-descriptor registry collision,Must match recomputed digest
+stable_identity.upstream.package_name,STABLE_IDENTITY,YES,YES,Exact lock and upstream manifest,Separates upstream package family,Change creates new identity
+stable_identity.upstream.package_version,STABLE_IDENTITY,YES,YES,Exact lock and upstream manifest,Separates upstream release,Change creates new identity and rerun
+stable_identity.upstream.package_integrity,STABLE_IDENTITY,YES,YES,Exact lock SRI,Binds published bytes not version label alone,Change creates new identity and rerun
+stable_identity.upstream.package_manifest_sha256,STABLE_IDENTITY,YES,YES,Extracted upstream package manifest,Binds upstream metadata and lifecycle facts,Change creates new identity and rerun
+stable_identity.implementation.family_id,STABLE_IDENTITY,YES,YES,Human-selected G1 target,Distinguishes Root wrapper App host and convergence,Change creates new identity
+stable_identity.implementation.ownership_boundary,STABLE_IDENTITY,YES,YES,Root and later App instruments,Prevents implicit dependency or adapter ownership,Change creates new identity and affected-client review
+stable_identity.implementation.source_commit_sha,STABLE_IDENTITY,YES,YES,Accepted candidate Git source,Prevents branch or latest pointer substitution,Change creates new identity and rerun
+stable_identity.implementation.source_files[].path,STABLE_IDENTITY,YES,YES,Selected implementation inventory,Names exact implementation surface,Inventory change creates new identity
+stable_identity.implementation.source_files[].sha256,STABLE_IDENTITY,YES,YES,Selected implementation bytes,Prevents same family ID with different source,Change creates new identity and rerun
+stable_identity.implementation.build_identity.build_recipe_sha256,STABLE_IDENTITY,YES,YES,Accepted build recipe,Binds transformation from source to artifact,Change creates new identity and package rerun
+stable_identity.implementation.build_identity.toolchain_profile_id,STABLE_IDENTITY,YES,YES,Accepted toolchain profile,Separates incompatible build environments,Change creates new identity and package rerun
+stable_identity.implementation.build_identity.artifact_manifest_sha256,STABLE_IDENTITY,YES,YES,Immutable build artifact manifest,Binds produced executable bytes,Change creates new identity and rerun
+stable_identity.capability_profile.profile_id,STABLE_IDENTITY,YES,YES,Root capability contract,Prevents same adapter key with different capability family,Change creates new identity and authority review
+stable_identity.capability_profile.profile_version,STABLE_IDENTITY,YES,YES,Root capability contract,Versions capability semantics,Change creates new identity
+stable_identity.capability_profile.profile_sha256,STABLE_IDENTITY,YES,YES,Exact capability profile bytes,Prevents label-only equivalence,Change creates new identity and rerun
+stable_identity.capability_profile.capabilities.credentials,STABLE_IDENTITY,YES,YES,Engine descriptor and profile,Prevents silent credential-boundary change,Change creates new identity
+stable_identity.capability_profile.capabilities.tools,STABLE_IDENTITY,YES,YES,Engine descriptor and profile,Prevents silent tool-capability widening,Change creates new identity
+stable_identity.capability_profile.capabilities.attachments,STABLE_IDENTITY,YES,YES,Engine descriptor and profile,Prevents silent attachment-capability change,Change creates new identity
+stable_identity.capability_profile.capabilities.interruption,STABLE_IDENTITY,YES,YES,Engine descriptor and profile,Prevents silent interruption change,Change creates new identity
+stable_identity.capability_profile.capabilities.durable_resume,STABLE_IDENTITY,YES,YES,Engine descriptor and profile,Preserves current false hold and blocks inferred resume,Change creates new identity and separate authority gate
+stable_identity.capability_profile.capabilities.compaction,STABLE_IDENTITY,YES,YES,Engine descriptor and profile,Prevents silent compaction change,Change creates new identity
+stable_identity.registration.registration_id,STABLE_IDENTITY,YES,YES,Future accepted registry record,Distinguishes explicit implementation registrations,Change creates new identity
+stable_identity.registration.registry_schema_version,STABLE_IDENTITY,YES,YES,Future registry contract,Prevents schema-ambiguous keys,Change creates new identity namespace or migration
+stable_identity.registration.registration_record_sha256,STABLE_IDENTITY,YES,YES,Future accepted registration bytes,Binds registration facts,Change creates new identity and registration review
+stable_identity.policy_bundle.bundle_id,STABLE_IDENTITY,YES,YES,Root policy contract,Distinguishes policy family,Change creates new identity
+stable_identity.policy_bundle.bundle_version,STABLE_IDENTITY,YES,YES,Root policy contract,Versions permission and provider semantics,Change creates new identity
+stable_identity.policy_bundle.bundle_sha256,STABLE_IDENTITY,YES,YES,Exact policy bundle bytes,Prevents label-only policy equivalence,Change creates new identity and rerun
+stable_identity.policy_bundle.provider_policy_id,STABLE_IDENTITY,YES,YES,Provider endpoint policy,Prevents silent remote or fallback posture change,Change creates new identity
+stable_identity.policy_bundle.model_policy_id,STABLE_IDENTITY,YES,YES,Model selection policy,Separates stable selection rules from live model observation,Change creates new identity
+stable_identity.policy_bundle.tool_registry_id,STABLE_IDENTITY,YES,YES,Chirality tool registry contract,Prevents silent tool implementation family change,Change creates new identity
+stable_identity.policy_bundle.sandbox_profile_id,STABLE_IDENTITY,YES,YES,Sandbox profile contract or explicit held-none profile,Prevents inferred sandbox activation,Change creates new identity and separate authority review
+stable_identity.client_composition.composition_id,STABLE_IDENTITY,YES,YES,Affected-client composition instrument,Distinguishes Root and App host compositions,Change creates new identity
+stable_identity.client_composition.owner_loop_id,STABLE_IDENTITY,YES,YES,Owning loop record,Prevents implicit foreign ownership,Change creates new identity and owner review
+stable_identity.client_composition.runtime_host_family_id,STABLE_IDENTITY,YES,YES,Runtime host contract,Distinguishes Electron and other clients,Change creates new identity
+stable_identity.client_composition.dependency_owner_id,STABLE_IDENTITY,YES,YES,Manifest and lock owner,Prevents ambiguous Pi closure ownership,Change creates new identity and supply rerun
+stable_identity.client_composition.source_files[].path,STABLE_IDENTITY,YES,YES,Client composition inventory,Names exact host wiring,Inventory change creates new identity
+stable_identity.client_composition.source_files[].sha256,STABLE_IDENTITY,YES,YES,Client composition bytes,Prevents same composition label with changed wiring,Change creates new identity and rerun
+stable_identity.client_composition.composition_sha256,STABLE_IDENTITY,YES,YES,Canonical composition record,Binds ordered client components,Change creates new identity
+stable_identity.packaging.package_manifest_sha256,STABLE_IDENTITY,YES,YES,Executable package manifest,Binds dependency and build entrypoints,Change creates new identity and package rerun
+stable_identity.packaging.lockfile_sha256,STABLE_IDENTITY,YES,YES,Exact executable lock,Binds complete dependency resolution,Change creates new identity and supply rerun
+stable_identity.packaging.packaging_policy_sha256,STABLE_IDENTITY,YES,YES,ASAR native and WASM policy,Binds package layout policy,Change creates new identity and package rerun
+stable_identity.packaging.asset_manifest_sha256,STABLE_IDENTITY,YES,YES,Exact built asset manifest,Binds actual packaged native and WASM bytes,Change creates new identity and package rerun
+stable_identity.packaging.target_platform_id,STABLE_IDENTITY,YES,YES,Accepted build target profile,Prevents cross-platform evidence substitution,Change creates new identity and package rerun
+stable_identity.rollback.rollback_identity_ref,STABLE_IDENTITY,YES,YES,Root and App rollback instruments,Names exact restoration target,Change creates new identity and owner review
+stable_identity.rollback.compatibility_epoch,STABLE_IDENTITY,YES,YES,Accepted compatibility contract,Prevents silent cross-epoch resume or restore,Change creates new identity
+stable_identity.rollback.authority_refs[].path,STABLE_IDENTITY,YES,YES,Accepted authority records,Names lawful restoration basis,Change creates new identity and authority review
+stable_identity.rollback.authority_refs[].sha256,STABLE_IDENTITY,YES,YES,Accepted authority bytes,Prevents mutable pointer rollback,Change creates new identity and authority review
+mutable_evidence.evidence_bundle_refs[],MUTABLE_EVIDENCE,YES,NO,Immutable validation bundles,Attributes proof without key churn,Append by new evidence bundle; never rewrite old bundle
+mutable_evidence.observed_at,MUTABLE_EVIDENCE,YES,NO,Validation clock,Attributes observation time without identity churn,New run records new value
+mutable_evidence.runtime_fingerprint_sha256,MUTABLE_EVIDENCE,YES,NO,Observed runtime session,Links runtime evidence to stable target without keying it,New run may record new value and trigger review
+mutable_evidence.residency_epoch,MUTABLE_EVIDENCE,YES,NO,Authenticated oMLX status and session evidence,Attributes model residency without durable role doctrine,New activation records new epoch
+mutable_evidence.live_model_id,MUTABLE_EVIDENCE,YES,NO,Authenticated live proof,Attributes actual model without making it adapter identity,New authorized run may use a different explicit model
+mutable_evidence.validation_verdict,MUTABLE_EVIDENCE,YES,NO,Independent validation return,Records outcome without changing registry key,New run supersedes only by new evidence not mutation

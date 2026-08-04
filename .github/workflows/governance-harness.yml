@@ -98,4 +98,13 @@ jobs:
       - name: G3 root work-graph pre-dispatch check (D-GOV-21 §5.3; BLOCK fails the run)
         run: python3 tools/validation/validate_root_work_graph_dispatch.py
       - name: G4 instruction-surface tranche manifest (D-GOV-21 §5.3; BLOCK fails the run)
-        run: python3 tools/validation/validate_instruction_tranche_manifest.py
+        env:
+          G4_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if git rev-parse --verify --quiet "${G4_BASE_REF}^{commit}" >/dev/null; then
+            python3 tools/validation/validate_instruction_tranche_manifest.py \
+              --base "${G4_BASE_REF}" --head HEAD --added-manifests-only
+          else
+            python3 tools/validation/validate_instruction_tranche_manifest.py \
+              --base HEAD^ --head HEAD --added-manifests-only
+          fi

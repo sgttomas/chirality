@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 15,
+  "node": "C5",
+  "role": "CHANGE",
+  "status": "COMPLETE_CURRENT_MAIN_SYNC",
+  "terminal_remote_verification_at": "2026-08-03T21:56:47Z",
+  "branch": "codex/root-four-lanes-20260802",
+  "upstream_task_branch": "4337990334c3e339a02c54de811d9f238246d524",
+  "pre_sync_head": "ba576264793deba0708397874414b7482c243f89",
+  "pre_fetch_origin_main": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+  "fetched_origin_main": "0b69aabe000ea8ae78ca5a2134d734c40eba4972",
+  "terminal_server_main": "0b69aabe000ea8ae78ca5a2134d734c40eba4972",
+  "final_head": "6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5",
+  "merge_parents": [
+    "ba576264793deba0708397874414b7482c243f89",
+    "0b69aabe000ea8ae78ca5a2134d734c40eba4972"
+  ],
+  "origin_main_is_ancestor": true,
+  "dirty_inventory": {
+    "paths": 225,
+    "tracked_modified": 17,
+    "untracked": 208,
+    "regular": 225,
+    "symlink": 0,
+    "directory": 0,
+    "staged": 0,
+    "unmerged": 0,
+    "status_sha256": "e8d0ff4206518b74965d0e32d4fe5b5661c243d9b4ca8173382595ebe483c32e",
+    "path_set_sha256": "2e9c4c4f404139d88c07734f31992d3830df79f1b1d91eaeda95c2ed5ecd7492",
+    "type_mode_size_content_sha256": "edfd33dde74cfed00b3da52ff098a695d7595a2fa2714fa65b96fcf4890fae6f",
+    "exact_pre_post_parity": true
+  },
+  "semantic_overlap": {
+    "main_changed_paths": 4,
+    "main_changed_paths_sha256": "2426677c19146a6bb4d8a9b2fa0854365aa53e1a3733fd65de04a0adfab05c00",
+    "overlap_paths": 0,
+    "overlap_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "retained_stashes": [
+    "7caef6283d4e1164535d6650aff321a8ee462f73",
+    "e527a7c91b06b589bcd39860a71782054f149628",
+    "217cb694bb60b4122c7c55b5686a028f9dceaffb",
+    "74fb72eeba760e132edcb01b2b628af3353c5799"
+  ],
+  "evidence_location": "/tmp/chirality-c5-current-main-sync-DxgStA18",
+  "push_performed": false,
+  "pr_action_performed": false,
+  "tranche_staged_or_committed": false,
+  "task_branch_merged_to_main": false,
+  "rebase_or_force_performed": false,
+  "stash_deleted": false,
+  "semantic_edit_performed": false,
+  "c6_released": false,
+  "terminal": true
+}

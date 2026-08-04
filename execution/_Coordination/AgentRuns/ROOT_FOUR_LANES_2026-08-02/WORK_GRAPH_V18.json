@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 18,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL_RESYNC_THEN_CLOSEOUT",
+  "basis": {
+    "task_head": "6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5",
+    "server_main": "cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3",
+    "delta_overlap_paths": 0
+  },
+  "nodes": [
+    {"id": "C6-R2", "role": "CHANGE", "status": "STOPPED_CURRENT_MAIN_DRIFT_NO_GIT_EFFECT", "depends_on": ["W6-R1"]},
+    {"id": "C7", "role": "CHANGE", "status": "AUTHORIZED_CURRENT_MAIN_SYNC", "depends_on": ["C6-R2"]},
+    {"id": "C8", "role": "CHANGE", "status": "HELD_FOR_C7_AND_HELP_HUMAN_REVALIDATION", "depends_on": ["C7"]}
+  ],
+  "holds": [
+    {"id": "HOLD-SCA-CLOSE", "condition": "Separate owner closeout ruling required."},
+    {"id": "HOLD-DEL", "condition": "Semantic and implementation gates remain open."},
+    {"id": "HOLD-PI", "condition": "G1-B remains validation-only."},
+    {"id": "HOLD-C8", "condition": "C7 and HELP_HUMAN revalidation required."},
+    {"id": "HOLD-MERGE", "condition": "PR merge remains the owner's gate."}
+  ],
+  "integration_owner": "C7",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chirality.dev/schemas/pi-implementation-identity/v1",
+  "title": "Chirality Pi Implementation Identity Candidate",
+  "description": "Proposal schema for one exact validation target. The identity digest is computed from stable_identity only; mutable_evidence is never a registry-key input.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "identity_status",
+    "canonicalization",
+    "identity_digest_sha256",
+    "registry_key",
+    "stable_identity",
+    "mutable_evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "chirality.pi-implementation-identity/v1"
+    },
+    "identity_status": {
+      "enum": ["VALIDATION_TARGET", "ACCEPTED", "RETIRED"]
+    },
+    "canonicalization": {
+      "const": "RFC8785-JCS(stable_identity)"
+    },
+    "identity_digest_sha256": {
+      "$ref": "#/$defs/sha256",
+      "description": "SHA-256 of RFC 8785 canonical stable_identity."
+    },
+    "registry_key": {
+      "type": "string",
+      "pattern": "^chirality\\.pi-implementation-identity/v1/sha256:[0-9a-f]{64}$"
+    },
+    "stable_identity": {
+      "$ref": "#/$defs/stableIdentity"
+    },
+    "mutable_evidence": {
+      "$ref": "#/$defs/mutableEvidence",
+      "description": "Attributable observations and reruns. Excluded from identity_digest_sha256 and registry_key."
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sha512SRI": {
+      "type": "string",
+      "pattern": "^sha512-[A-Za-z0-9+/]+={0,2}$"
+    },
+    "sha40": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[._/-][a-z0-9]+)*$",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "repoPath": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$"
+    },
+    "sourceFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/repoPath"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "stableIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "upstream",
+        "implementation",
+        "capability_profile",
+        "registration",
+        "policy_bundle",
+        "client_composition",
+        "packaging",
+        "rollback"
+      ],
+      "properties": {
+        "upstream": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["package_name", "package_version", "package_integrity", "package_manifest_sha256"],
+          "properties": {
+            "package_name": {"const": "@earendil-works/pi-coding-agent"},
+            "package_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(?:[-+][0-9A-Za-z.-]+)?$"},
+            "package_integrity": {"$ref": "#/$defs/sha512SRI"},
+            "package_manifest_sha256": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "implementation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["family_id", "ownership_boundary", "source_commit_sha", "source_files", "build_identity"],
+          "properties": {
+            "family_id": {"$ref": "#/$defs/stableId"},
+            "ownership_boundary": {"enum": ["ROOT_WRAPPER", "APP_AFFECTED_CLIENT", "ROOT_CONVERGED_CONCRETE"]},
+            "source_commit_sha": {"$ref": "#/$defs/sha40"},
+            "source_files": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/sourceFile"}},
+            "build_identity": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["build_recipe_sha256", "toolchain_profile_id", "artifact_manifest_sha256"],
+              "properties": {
+                "build_recipe_sha256": {"$ref": "#/$defs/sha256"},
+                "toolchain_profile_id": {"$ref": "#/$defs/stableId"},
+                "artifact_manifest_sha256": {"$ref": "#/$defs/sha256"}
+              }
+            }
+          }
+        },
+        "capability_profile": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["profile_id", "profile_version", "profile_sha256", "capabilities"],
+          "properties": {
+            "profile_id": {"$ref": "#/$defs/stableId"},
+            "profile_version": {"type": "string", "minLength": 1},
+            "profile_sha256": {"$ref": "#/$defs/sha256"},
+            "capabilities": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["credentials", "tools", "attachments", "interruption", "durable_resume", "compaction"],
+              "properties": {
+                "credentials": {"type": "boolean"},
+                "tools": {"type": "boolean"},
+                "attachments": {"type": "boolean"},
+                "interruption": {"type": "boolean"},
+                "durable_resume": {"type": "boolean"},
+                "compaction": {"type": "boolean"}
+              }
+            }
+          }
+        },
+        "registration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["registration_id", "registry_schema_version", "registration_record_sha256"],
+          "properties": {
+            "registration_id": {"$ref": "#/$defs/stableId"},
+            "registry_schema_version": {"type": "string", "minLength": 1},
+            "registration_record_sha256": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "policy_bundle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bundle_id", "bundle_version", "bundle_sha256", "provider_policy_id", "model_policy_id", "tool_registry_id", "sandbox_profile_id"],
+          "properties": {
+            "bundle_id": {"$ref": "#/$defs/stableId"},
+            "bundle_version": {"type": "string", "minLength": 1},
+            "bundle_sha256": {"$ref": "#/$defs/sha256"},
+            "provider_policy_id": {"$ref": "#/$defs/stableId"},
+            "model_policy_id": {"$ref": "#/$defs/stableId"},
+            "tool_registry_id": {"$ref": "#/$defs/stableId"},
+            "sandbox_profile_id": {"$ref": "#/$defs/stableId"}
+          }
+        },
+        "client_composition": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["composition_id", "owner_loop_id", "runtime_host_family_id", "dependency_owner_id", "source_files", "composition_sha256"],
+          "properties": {
+            "composition_id": {"$ref": "#/$defs/stableId"},
+            "owner_loop_id": {"$ref": "#/$defs/stableId"},
+            "runtime_host_family_id": {"$ref": "#/$defs/stableId"},
+            "dependency_owner_id": {"$ref": "#/$defs/stableId"},
+            "source_files": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/sourceFile"}},
+            "composition_sha256": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "packaging": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["package_manifest_sha256", "lockfile_sha256", "packaging_policy_sha256", "asset_manifest_sha256", "target_platform_id"],
+          "properties": {
+            "package_manifest_sha256": {"$ref": "#/$defs/sha256"},
+            "lockfile_sha256": {"$ref": "#/$defs/sha256"},
+            "packaging_policy_sha256": {"$ref": "#/$defs/sha256"},
+            "asset_manifest_sha256": {"$ref": "#/$defs/sha256"},
+            "target_platform_id": {"$ref": "#/$defs/stableId"}
+          }
+        },
+        "rollback": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rollback_identity_ref", "compatibility_epoch", "authority_refs"],
+          "properties": {
+            "rollback_identity_ref": {"$ref": "#/$defs/stableId"},
+            "compatibility_epoch": {"$ref": "#/$defs/stableId"},
+            "authority_refs": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["path", "sha256"],
+                "properties": {
+                  "path": {"$ref": "#/$defs/repoPath"},
+                  "sha256": {"$ref": "#/$defs/sha256"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "mutableEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_bundle_refs", "observed_at", "runtime_fingerprint_sha256", "residency_epoch", "live_model_id", "validation_verdict"],
+      "properties": {
+        "evidence_bundle_refs": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/repoPath"}},
+        "observed_at": {"type": "string", "format": "date-time"},
+        "runtime_fingerprint_sha256": {"oneOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "residency_epoch": {"type": ["string", "null"], "minLength": 1},
+        "live_model_id": {"type": ["string", "null"], "minLength": 1},
+        "validation_verdict": {"enum": ["PASS", "FAIL", "UNKNOWN"]}
+      }
+    }
+  }
+}

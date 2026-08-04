@@ -1,0 +1,14 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "instance_id": "N1",
+  "runtime_identity": "/root/w1_del0206/n1_w6",
+  "runtime_parent": "/root/w1_del0206",
+  "status": "TERMINAL_MANAGER_ACCEPTED_FOR_N4",
+  "terminal": true,
+  "verdict": "ACCEPT_FOR_N4",
+  "inventory_sha256": "f4b6039095fa0b7f98d83969fdab29c351d59ee31e43cdb5eb23cd5fa242dcc0",
+  "return_sha256": "42ea23f2191f1057c09c3bb7d0c2c660a3628117498dc4eb88d169f0778d9866",
+  "findings": 8,
+  "manager_acceptance": true,
+  "writes_contained": true
+}

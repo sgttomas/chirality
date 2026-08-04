@@ -1,0 +1,33 @@
+{
+  "schema": "chirality.del0206-input-packet-blueprint/v1",
+  "run_id": "DEL-02-06-RUNTIME-SPEC-001",
+  "parent_plan_version": 11,
+  "status": "PACKET_ACCEPTED_APPLIED_N0_PASS_N1_PLUS_HELD",
+  "candidate_instantiated": true,
+  "candidate_hashed": true,
+  "candidate_manifest_sha256": "360f8f12c4719d79a506394bcd98a4b630c2610f9c80d90a08b0519e8a1d508f",
+  "stale_predecessor_manifest_sha256": "dd0075229486b98a5b28936ce55ea94e0fcbb6c8d5befc2f453cff78f6d053cf",
+  "current_currency_state": "COV_POST_001_CLOSED_GATE_1_CONFIRMED",
+  "owner_acceptance_recorded": true,
+  "owner_acceptance_record_sha256": "ee035e91d561935d36c6238a50304752d2fd4e67d24e5c2203c550ff8d40760c",
+  "live_accepted_inputs_written": true,
+  "n0_rerun_dispatched": true,
+  "n0_verdict": "RELEASE_N1_N2_N3",
+  "n0_manager_fan_in": "ACCEPTED_26_OF_26_PASS_NO_FINDINGS",
+  "template_count": 6,
+  "allowed_placeholders": [
+    "S2_APPLIED_REPOSITORY_BASIS",
+    "S2_PRD_SHA256",
+    "S2_DECOMPOSITION_SHA256",
+    "S2_DECISION_LOG_SHA256",
+    "S2_GATE5_VALIDATION_SHA256",
+    "S2_HANDOFF_SHA256",
+    "S2_APPLIED_FILE_HASHES_SHA256",
+    "POST_S2_SHA256_DEGRADED_MODE_CONTRACT_CANDIDATE_MD",
+    "POST_S2_SHA256_OPEN_ITEMS_CSV",
+    "POST_S2_SHA256_OWNER_GATE_MD",
+    "POST_S2_SHA256_OWNER_SELECTION_MD",
+    "POST_S2_SHA256_ROOT_COMPATIBILITY_POLICY_CANDIDATE_MD"
+  ],
+  "next_gate": "HELP_HUMAN owner direction for any post-N0 continuation; N1 through N6 remain held under parent plan 11"
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "node": "C8",
+  "role": "CHANGE",
+  "status": "VALIDATED_PUBLICATION_EXECUTION_AUTHORIZED",
+  "validation_time_utc": "2026-08-03T22:28:45Z",
+  "branch": "codex/root-four-lanes-20260802",
+  "pre_publication_head": "9f9c6f8bb7a01fe6bd35b47255adc62667537360",
+  "contained_origin_main": "cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3",
+  "origin_main_is_ancestor": true,
+  "publication_paths": 250,
+  "scope_audit": "PASS_C7_245_PLUS_PLAN19_GRAPH19_C8_BRIEF_RETURN_STATUS",
+  "validation": {
+    "candidate_whitespace": "PASS",
+    "governance_manifest_corpus": "PASS_27",
+    "tools_validation_pytest": "PASS_311",
+    "del_packet_candidate": "PASS",
+    "del_accepted_inputs": "PASS",
+    "del_owner_acceptance": "PASS",
+    "del_candidate_live_parity": "PASS",
+    "n6_handoff_manifest": "PASS",
+    "governed_json_jsonl": "PASS",
+    "protected_hashes": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "lane_state": {
+    "sca003": "GATE1_CONFIRMED_ZERO_ACTION_OPEN_PENDING_OWNER_CLOSEOUT",
+    "del0206": "PLANNING_PACKAGE_COMPLETE_NOT_ADOPTED_NOT_CLOSED",
+    "pi0820": "G1B_VALIDATION_ONLY_EVIDENCE_HOLD",
+    "g4": "IMPLEMENTED_PENDING_EXACT_HEAD_HOSTED_CHECK",
+    "task_management": "UNCHANGED"
+  },
+  "publication_identity": "RECORDED_EXTERNALLY_IN_PR491_AND_RUNTIME_RETURN_DUE_SELF_REFERENCE",
+  "merge_authorized": false,
+  "forbidden_effects": "NONE"
+}

@@ -1,0 +1,53 @@
+{
+  "run_label": "SCA003_GATE1_PRECHANGE",
+  "timestamp": "2026-08-02T22:18:52-06:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "execution/_ScopeChange/SCA-002_2026-07-29_0800/",
+  "expected_handoff_phase": "SCA-003 Gate 1 pre-change baseline",
+  "decomposition_path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+  "decomposition_revision": "v1.2 bytes; live status metadata still says SCA-002 candidate/not accepted",
+  "decomposition_sha256": "6f43f3fbc25e0663697464a7a20f3b1bac4b731b01efbe473642e238b93a4d49",
+  "repository_head": "97678a841ef58345c73d3470ed8de57c9b1405d2",
+  "scope": "DEL-02-04,DEL-02-06,DEL-03-01,DEL-06-04; package integrity context PKG-02,PKG-03,PKG-06",
+  "repository_topology": {
+    "packages": 6,
+    "deliverables": 46,
+    "objectives": 7,
+    "scope_items": 104,
+    "ledger_rows": 104
+  },
+  "partitions_declared": 3,
+  "partitions_found": 3,
+  "production_units_declared": 4,
+  "production_units_found": 4,
+  "package_context_production_units_declared": 20,
+  "package_context_production_units_found": 20,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 100.0,
+  "context_fidelity_pct": 100.0,
+  "artifact_presence_pct": 0.0,
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 0,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "package_shape_conformance": "PASS",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "FAIL",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 1,
+  "issues_warning": 0,
+  "issues_info": 14,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "INITIALIZED": 4
+  },
+  "structural_coverage_status": "PASS",
+  "authority_state_consistency": "FAIL",
+  "overall_status": "BLOCKERS",
+  "closure_readiness": "FAIL",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}

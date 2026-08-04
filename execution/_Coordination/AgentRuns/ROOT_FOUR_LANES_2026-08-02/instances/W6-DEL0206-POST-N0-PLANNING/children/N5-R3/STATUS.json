@@ -1,0 +1,17 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "instance_id": "N5-R3",
+  "runtime_identity": "/root/w1_del0206/n5_r3_w6",
+  "runtime_parent": "/root/w1_del0206",
+  "status": "TERMINAL_ADMIT_NO_FINDINGS_NO_REPAIR",
+  "terminal": true,
+  "verdict": "ADMIT",
+  "declared_inputs_reviewed": 18,
+  "n4_outputs_reviewed": 7,
+  "material_findings": 0,
+  "prior_n5_f01": "RESOLVED",
+  "prior_n5_r2_f01": "RESOLVED",
+  "writes": 0,
+  "repair_performed": false,
+  "manager_acceptance": "ACCEPTED_FOR_N6_HANDOFF_ASSEMBLY_ONLY"
+}

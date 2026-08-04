@@ -1,0 +1,15 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "instance_id": "N6",
+  "runtime_identity": "/root/w1_del0206/n6_w6",
+  "runtime_parent": "/root/w1_del0206",
+  "status": "TERMINAL_HANDOFF_READY_FOR_HUMAN_GATE",
+  "terminal": true,
+  "verdict": "HANDOFF_READY_FOR_HUMAN_GATE",
+  "declared_inputs_reviewed": 20,
+  "output_files": 3,
+  "manager_acceptance": "ACCEPTED",
+  "writes_contained": true,
+  "implementation_effect": false,
+  "semantic_adoption": false
+}

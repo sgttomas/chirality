@@ -1,0 +1,16 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "instance_id": "N5-R2",
+  "runtime_identity": "/root/w1_del0206/n5_r2_w6",
+  "runtime_parent": "/root/w1_del0206",
+  "status": "TERMINAL_RETURN_ONE_REFERENCE_DEFECT_NO_REPAIR",
+  "terminal": true,
+  "verdict": "RETURN",
+  "declared_inputs_reviewed": 18,
+  "checks_passed": 15,
+  "checks_failed": 1,
+  "material_findings": 1,
+  "prior_n5_f01": "PASS",
+  "writes": 0,
+  "repair_performed": false
+}

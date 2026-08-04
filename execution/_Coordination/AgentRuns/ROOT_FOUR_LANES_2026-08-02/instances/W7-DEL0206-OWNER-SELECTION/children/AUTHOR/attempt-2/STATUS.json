@@ -1,0 +1,24 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "instance_id": "W7-DEL0206-OWNER-SELECTION-AUTHOR-ATTEMPT-2",
+  "runtime_identity": "/root/w1_del0206/w7_author_r2",
+  "runtime_parent": "/root/w1_del0206",
+  "role": "ephemeral-agent-2-author",
+  "status": "READY_FOR_FRESH_VERIFY",
+  "terminal": true,
+  "manager_acceptance": true,
+  "declared_input_coverage": "36/36",
+  "decision_rows": 27,
+  "option_mappings": 54,
+  "tool_containment": "PASS_NO_SHELL_NO_NETWORK_NO_EXECUTABLE_CHECK",
+  "attempt_1_inputs_consumed": false,
+  "outputs": {
+    "OWNER_SELECTION_SLATE.md": "b8d7d7cbfd92a15ca4144967ce7aaf3ec5683aef7a91ae9ff872e7ad57a8f03d",
+    "OWNER_SELECTION_MATRIX.csv": "d13efba666bdf64c8b4687bfae49bcc474c07d845d2f698698873c7a37d3998b",
+    "SEMANTIC_PATCH_PLAN.md": "eefde51dce7a2e1a384a60ed152ff315365974d32cae64fdf1bf67cdf52849a1",
+    "AUTHOR_RETURN.md": "7beff43c1db6f92b6eff85b889f4dd11f4bcf59cafcd397f7f111c6b655d8769"
+  },
+  "semantic_adoption": false,
+  "implementation_effect": false,
+  "git_effect": false
+}
