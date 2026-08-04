@@ -33,9 +33,11 @@ Completed derivative proof root:
 | `FIRST_DOMAIN_UI_DELTA.md` | `bd52fbd21b92b28fc90fd6af218fc64b109133606ca6227d74a07c30f7c7b831` | exact six-node U inventory |
 | `COMPARATIVE_RERUN.md` | `2d1405c3942e92490e3fb5872c828d07c21826fc14a5a76fe27f52ad40f1cce2` | TL/TA, DC, BM, MCI, coexistence, elimination rerun |
 | `COMPARATIVE_MEASUREMENTS.csv` | `38c189ff2b3f47dd56d410ab37bfb11a046edad8951ac5b2e2c520dfaed5ea07` | A/B/C metric rows |
-| `reviews/A2_ADVERSARIAL_VERIFIER_RETURN.md` | `59a8cb078742806f7ebf476e15721d52b272c6eb8d2a9bf81a4fba5ecb76534f` | final fresh verifier `ACCEPT_WITH_NONBLOCKING_NOTES` |
-| `VALIDATION.md` | `1e0882cd86e84825b1ca41ba9880f059481f79adf2c54dfa93217a7c2f6102e7` | validated manager handoff |
-| `HANDOFF_STATE.md` | `0883b7f55666e201fc78b620310f7de62f01de1b194e2e1e86ceb99e6b3f9155` | complete, sequence hold lifted, owner gate next |
+| `APP_CORPUS_MANIFEST.sha256` | `864d04e7ebdbe4f112fc9145445e718338b82e2524d45d6838ed609182b15956` | repaired terminal blank; 185 data lines unchanged |
+| `WHITESPACE_REPAIR_BACKCHECK.md` | `18a4d55f4457e8ef54623825f205f8be61805f1722a1b467269ba44af64533e8` | one-byte repair and unchanged-corpus backcheck |
+| `reviews/A2_ADVERSARIAL_VERIFIER_RETURN_R5.md` | `192720231b83340a72b882e789bb91b953199ab44f86fe8ec4ee4c7e0a8c2419` | genuinely fresh repaired-byte verifier `ACCEPT` |
+| `VALIDATION.md` | `654040a5a525744114603b6632f9e6e67d1edac06fb4c3a0354b70c4be66d626` | validated repaired derivative handoff |
+| `HANDOFF_STATE.md` | `43139ed3021e01c9b501756df1e1d3de22eb8a2507f8b8382e4f8d83388bff29` | sequence hold lifted; D-APP-91 remains awaiting ruling |
 
 The current App 185-file architecture corpus retains digest
 `ad262802ab4dfd98475121a06eae49e76d461d71b172e860459e3be775392aa4`;

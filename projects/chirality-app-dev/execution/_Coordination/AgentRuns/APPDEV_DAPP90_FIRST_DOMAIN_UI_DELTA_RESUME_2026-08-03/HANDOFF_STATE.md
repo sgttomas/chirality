@@ -16,16 +16,17 @@ Closure verdict: `COMPLETE — SEQUENCE HOLD LIFTED — OWNER GATE NEXT`
 - App corpus digest:
   `ad262802ab4dfd98475121a06eae49e76d461d71b172e860459e3be775392aa4`;
   and
-- final verifier return SHA-256:
-  `59a8cb078742806f7ebf476e15721d52b272c6eb8d2a9bf81a4fba5ecb76534f`.
+- final repaired-byte verifier return SHA-256:
+  `192720231b83340a72b882e789bb91b953199ab44f86fe8ec4ee4c7e0a8c2419`.
 
 ## Derivative-package status
 
 Current and validated for this committed basis: five-test Piping input check,
 exact six-node U inventory, current-tree rebind, TL/TA/DC/BM/MCI rerun,
 coexistence rerun, elimination rerun, complete manifest, sealed evidence
-dossiers, verifier record, repair backcheck, and validation. These are
-derivative planning evidence only, not decomposition or product truth.
+dossiers, historical verifier records, candidate-whitespace repair backcheck,
+fresh R5 repaired-byte verifier record, and validation. These are derivative
+planning evidence only, not decomposition or product truth.
 
 ## Closure and blockers
 
@@ -34,10 +35,13 @@ five response fitness tests pass. A, B, and C all survive; none is selected.
 
 Remaining owner gates:
 
-1. App `HELP_HUMAN` validates this manager fan-in and presents the architecture
-   decision posture to Ryan Tufts.
-2. Any A/B/C selection must be a human act in a separately governed packet/
-   register tranche; this run created neither.
+1. CHANGE commits the repair-only tranche and reruns the exact candidate-
+   whitespace validator against base
+   `88e7590d3664d4f1daf91bed2a8899bda0748b92`, because its committed-range
+   component cannot observe an unstaged working-tree repair.
+2. D-APP-91 remains a separately governed owner packet and single register row
+   at `AWAITING_RULING`; any A/B/C selection must be Ryan Tufts' explicit act.
+   This repair created no selection or ruling.
 3. After selection, first-domain product requirements, PRD/SCOPE_CHANGE,
    packaging identity/coexistence, Root generic runtime adoption, prototype,
    implementation, validation, and lifecycle/release gates remain separate.
@@ -53,5 +57,6 @@ Remaining owner gates:
 - Generic runtime/sandbox/identity/version/resume/Bash remains
   `BLOCKED_BY_ROOT`; six D-APP-81 relations remain UNKNOWN.
 
-Next owner: App `HELP_HUMAN`. No Git closeout is authorized or performed by
-this run.
+Next repair owner: CHANGE for commit-sequenced validation. Architecture owner:
+Ryan Tufts for D-APP-91. No Git closeout is authorized or performed by this
+run.

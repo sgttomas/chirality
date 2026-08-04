@@ -1,6 +1,6 @@
 # HELPS_HUMANS Manager Return — D-APP-90 First-Domain Resume
 
-Verdict: `COMPLETE — VALIDATED DERIVATIVE HANDOFF — NO SELECTION PACKET`
+Verdict: `COMPLETE — VALIDATED REPAIR HANDOFF — D-APP-91 AWAITING RULING`
 
 ## Outcome
 
@@ -44,26 +44,31 @@ conditional and `BLOCKED_BY_ROOT`.
 
 ## Verification
 
-Three failed evidence-delivery/coverage attempts are preserved with no
-acceptance credit. The final genuinely fresh R4 Agent 2 reviewed the complete
-durable dossiers with no tools, Bash, write, network, native Pi, or delegation
-and returned `ACCEPT_WITH_NONBLOCKING_NOTES` at SHA-256
-`59a8cb078742806f7ebf476e15721d52b272c6eb8d2a9bf81a4fba5ecb76534f`.
-Its notes are preserved in `REPAIR_BACKCHECK.md` and `VALIDATION.md`.
+Three failed evidence-delivery/coverage attempts and the accepted R4 semantic
+review are preserved as historical records. After CI identified the R4-era
+manifest's terminal blank line, a genuinely fresh R5 Agent 2 reviewed the
+actual repaired bytes using read-only filesystem, SHA-256, byte-count, and Git
+inspection. It returned `ACCEPT` with no findings at SHA-256
+`192720231b83340a72b882e789bb91b953199ab44f86fe8ec4ee4c7e0a8c2419`.
+The one-byte repair, unchanged 185-line digest, 185/185 path reproduction, and
+historical-R4 preservation are recorded in `WHITESPACE_REPAIR_BACKCHECK.md`.
 
 ## Exact next-owner gate
 
-Next owner: App `HELP_HUMAN` for validated fan-in and presentation to Ryan
-Tufts. The next lawful human decision is whether and how to open the A/B/C
-architecture-selection gate using this evidence. This task does not create
-that packet, reserve a decision ID, write a register row, or attribute a
-selection to the owner. Product requirements, PRD/SCOPE_CHANGE, packaging
-identity, Root generic runtime, implementation/vertical slice, and later
-release/lifecycle gates remain separate after any architecture ruling.
+The D-APP-91 owner packet and its single register row are prepared and remain
+`AWAITING_RULING`; no option is selected. The next lawful architecture act is
+Ryan Tufts' explicit A/B/C approval or deferral using the packet's exact return
+tokens. This candidate-whitespace repair does not record or infer that act.
+Before closeout, CHANGE must commit the repair and rerun the exact candidate-
+whitespace validator so its committed-range check evaluates the repaired
+`HEAD`. Product requirements, PRD/SCOPE_CHANGE, packaging identity, Root
+generic runtime, implementation/vertical slice, and later release/lifecycle
+gates remain separate after any architecture ruling.
 
 ## No-effect confirmation
 
 Two-target/domain-first, D-APP-88 advisory status, D-APP-89 baseline,
 `BLOCKED_BY_ROOT` subjects, and all six D-APP-81 UNKNOWN relations are
-preserved. All writes are confined to this fresh AgentRuns root; no product,
-governance, foreign-loop, Git, release, or publication write occurred.
+preserved. Repair writes are confined to the run's derivative records and the
+D-APP-91 packet/register evidence pointers; no ruling, product, source,
+foreign-loop, Git, release, or publication write occurred.

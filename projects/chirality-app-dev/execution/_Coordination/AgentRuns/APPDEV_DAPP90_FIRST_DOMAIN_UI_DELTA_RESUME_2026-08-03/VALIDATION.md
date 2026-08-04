@@ -1,6 +1,6 @@
 # Validation — D-APP-90 First-Domain Resume
 
-Overall: `PASS — VALIDATED MANAGER HANDOFF`
+Overall: `PASS — REPAIRED DERIVATIVE HANDOFF; POST-COMMIT RANGE CHECK PENDING`
 
 ## Committed input and authority
 
@@ -19,7 +19,7 @@ Overall: `PASS — VALIDATED MANAGER HANDOFF`
 |---|---|
 | Exact U | PASS — six distinct planning nodes U-01..U-06 with exact E-ref provenance |
 | App corpus | PASS — 185 entries; data-line digest `ad2628…92aa4` |
-| Corpus manifest | PASS — 185 data lines; file SHA-256 `66b6f3…79be` |
+| Corpus manifest | PASS — 185 data lines; repaired file SHA-256 `864d04…956` |
 | Critical App paths | PASS — all 13 path/hash pairs reproduce |
 | Source baseline | PASS — D-APP-89 fingerprint unchanged; zero target-selector matches |
 | TL/TA | PASS — TL target 0 all; A TA explicitly unmeasured, B 0, C 1 generated binding |
@@ -31,15 +31,20 @@ Overall: `PASS — VALIDATED MANAGER HANDOFF`
 
 ## Fresh adversarial verification
 
-Attempts 01–03 are preserved as BLOCK and receive no acceptance credit. Their
-evidence-delivery/coverage findings were repaired only in this run. Final R4
-verdict is `ACCEPT_WITH_NONBLOCKING_NOTES`, return SHA-256
-`59a8cb078742806f7ebf476e15721d52b272c6eb8d2a9bf81a4fba5ecb76534f`.
-The R4 Agent 2 used no Bash, shell, filesystem, network, native Pi, write, or
-delegation.
+Attempts 01–03 are preserved as BLOCK and receive no acceptance credit. R4 is
+preserved at SHA-256
+`59a8cb078742806f7ebf476e15721d52b272c6eb8d2a9bf81a4fba5ecb76534f`
+as the accepted pre-repair semantic review, but it receives no credit for the
+repaired manifest bytes.
 
-Nonblocking notes are carried exactly: A TA remains unmeasured; source-category
-counts overlap and are not a partition; final containment is reconciled below.
+The genuinely fresh R5 Agent 2 independently verified the final repaired
+manifest, old/new identity chain, 185 data lines, unchanged data-line digest,
+185/185 selected hashes, historical-R4 preservation, and no-ruling boundary.
+Its verdict is `ACCEPT`, return SHA-256
+`192720231b83340a72b882e789bb91b953199ab44f86fe8ec4ee4c7e0a8c2419`.
+It used read-only filesystem, SHA-256, byte-count, and Git inspection; no
+writes, Git mutation, network, native Pi, delegation, selection, or ruling
+occurred.
 
 ## Preservation and containment
 
@@ -49,16 +54,24 @@ counts overlap and are not a partition; final containment is reconciled below.
 - D-APP-88 stays advisory; D-APP-89 stays baseline; two-target/domain-first
   stays fixed; generic runtime/sandbox/identity/version/resume/Bash stays
   `BLOCKED_BY_ROOT`.
-- Tracked and cached diff-name inventories are empty. Every untracked write is
-  inside the exact fresh AgentRuns root. `git diff --check` and trailing-
-  whitespace checks pass.
-- No A/B/C selection packet, decision/register row, product/source, PRD,
-  decomposition, SCOPE_CHANGE, deliverable/status, Task Management,
-  receipt/corpus, Root/Piping/PEC, completion-log, Git, release, lifecycle, or
-  publication write exists in the run write set.
+- The repaired manifest removes exactly one terminal LF. `git diff --check`
+  passes for the working repair diff, and the historical R4 files remain
+  absent from it.
+- The D-APP-91 proposal and its single `AWAITING_RULING` register row now exist
+  as an owner packet. This repair changes only their evidence hashes; it does
+  not change packet status, recommendation semantics, return tokens, or the
+  no-effect boundary, and it records no selection or ruling.
+- No product/source, PRD, decomposition, SCOPE_CHANGE, deliverable/status,
+  Task Management, receipt/corpus, Root/Piping/PEC, completion-log, Git,
+  release, lifecycle, or publication write exists in the repair write set.
 - Frontend typecheck, tests, build, render, package, and premerge gates were
   skipped because no runtime/product source byte changed. This is a static
   derivative planning proof.
 
-The final artifact inventory contains only the files enumerated by this fresh
-root. No Git operation was performed.
+The exact validator command
+`python3 tools/validation/validate_candidate_whitespace.py --base-ref
+88e7590d3664d4f1daf91bed2a8899bda0748b92` was run before Git mutation. Its
+staged/unstaged portions find no repair defect, but its committed-range check
+still sees the pre-repair blank line in current `HEAD`; therefore CHANGE must
+rerun it after the repair commit advances `HEAD`. This sequencing result is
+not represented as a PASS. No Git operation was performed by this repair run.
