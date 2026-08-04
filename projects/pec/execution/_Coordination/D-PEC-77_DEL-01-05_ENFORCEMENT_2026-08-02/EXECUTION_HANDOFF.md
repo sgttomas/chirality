@@ -78,3 +78,19 @@ closure do not accept artifact bytes or satisfy AC-010/AC-011.
 This handoff accepts no artifact, satisfies no AC, changes no lifecycle,
 reopens no DEL-01-06 finding, closes no `TM-PEC-009`, authorizes no later P1
 node, and grants no release or professional-reliance authority.
+
+## Supersession annotation — 2026-08-03
+
+This file remains point-in-time evidence; none of the recorded historical acts
+above is rewritten. The owner subsequently accepted the exact DEL-01-05
+inventory, confirmed AC-010, confirmed AC-011 G-A, resolved RF-001/RF-002, and
+approved REVIEW Gate 5 from `INITIALIZED` to `CHECKING`.
+
+Present-current pointers are
+`execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/FINAL_ACCEPTANCE_RULING_2026-08-03.md`,
+`execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md`,
+`execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_REVIEW.md`, and
+`execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/`. That acceptance
+fired the DEL-01-06 VER-005 rerun; DEL-01-06 RF-001 is now resolved, while
+separate RF-002 remains open. No `ISSUED`, release, reliance, or foreign-loop
+act is created by this annotation.

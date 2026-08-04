@@ -13,12 +13,12 @@
   PROJECT_SETUP with `FULL_GRAPH` already selected
   (`execution/_Decomposition/_LATEST.md`, `execution/_ScopeChange/_LATEST.md`).
 - Accepted upstream basis: `execution/_Decomposition/SOFTWARE_DECOMP.md`
-  revision **1.3** (`current_basis`, SCA-003 successor, accepted
-  2026-07-28; evidence
-  `execution/_ScopeChange/SCA-003_2026-07-28_0824/`). Historical:
-  revision 1.1 was the basis at this gate's ruling and revision 1.2 was
-  accepted through SCA-002; read `execution/_Decomposition/_LATEST.md`
-  first, always.
+  revision **1.4** (`current_basis`, SCA-004 successor, accepted
+  2026-08-03 under D-PEC-78 O-A; evidence
+  `execution/_ScopeChange/SCA-004_2026-08-02_2325/`). Historical:
+  revision 1.1 was the basis at this gate's ruling, revision 1.2 was accepted
+  through SCA-002, and revision 1.3 through SCA-003; read
+  `execution/_Decomposition/_LATEST.md` first, always.
 
 ## Phase 1.3 owner rulings (2026-07-25 gate)
 
@@ -123,6 +123,36 @@
     which lies outside the tranche's `projects/`-only write scope; recorded
     here instead.)
 
+12. **SCA-004 metadata alignment and currency sweep (2026-08-03):**
+    revision **1.4** is accepted `current_basis`; SOW-077 maps to
+    `PKG-01 → DEL-01-06 → OBJ-004`, SOW-094 carries the settled implementation
+    basis, and OI-003 is resolved by D-PEC-78 O-A. PROJECT_SETUP completed its
+    exact subset: 64/64 context provenance blocks, 64/64 reference packets,
+    and the DEL-01-06 non-gating SOW-077 anchor; strict registers remain clean
+    at 64 files / 255 rows, and topology remains 119 execution edges / zero
+    SCCs / zero bidirectional pairs. Evidence:
+    `PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`.
+    WORKING_ITEMS refreshed the present-current maps and appended
+    supersession annotations to the four mutable historical handoffs, with
+    evidence at `WORKING_ITEMS_SCA004_CURRENCY_SWEEP_2026-08-03/`.
+    TM-PEC-023 is held pending an exact SCOPE_CHANGE mapping-or-retain-blank
+    ruling; DEL-01-06 RF-002 remains separate and open. No SOW, REVIEW,
+    lifecycle, source, release, reliance, or foreign-loop act is inferred.
+
+    Three historical handoffs are immutable and remain byte-identical. Their
+    present-current superseding pointers are recorded here instead:
+
+    - `execution/_Reconciliation/DeliverableConcordance/PEC_SOW_V22_SCA003_RECON_2026-07-28/HANDOFF_STATE.md`,
+      SHA-256 `b92f52396e0d25bf40d04c0bef26f21077064174bb02d4c24c5f23d13f0794ee`
+      → D-PEC-70 hold release, `execution/_Decomposition/_LATEST.md`, and the
+      SCA-004 / PROJECT_SETUP / WORKING_ITEMS handoffs.
+    - `execution/_ScopeChange/SCA-003_2026-07-28_0824/Handoff_State.md`,
+      SHA-256 `ee5624241ac383aab49d0381f9c9f3b31a439888aec39a5f1016ab9aeeae3632`
+      → `execution/_ScopeChange/_LATEST.md` and the SCA-004 handoff.
+    - `execution/_Coordination/PROJECT_SETUP_REFERENCE_PARITY_2026-07-28/HANDOFF_STATE.md`,
+      SHA-256 `604826885cd39aedb85fee1f53079123d4389496f3ec48ed3f437944877fd545`
+      → `PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`.
+
 ## Notes (human-owned)
 
 - Scaffolding and local-register seeding were authorized by `D-PEC-62`
@@ -134,6 +164,6 @@
   is now **frozen gate provenance**: the deliverable-local
   `Dependencies.csv` registers are the sole live dependency basis. Both
   are derivative packages citing the accepted decomposition snapshot
-  (revision 1.1 at seeding; revision 1.3 is `current_basis` since
-  SCA-003, with topology and dependency bytes preserved) and are never a
+  (revision 1.1 at seeding; revision 1.4 is `current_basis` since
+  SCA-004, with topology and execution-dependency bytes preserved) and are never a
   substitute for decomposition truth.

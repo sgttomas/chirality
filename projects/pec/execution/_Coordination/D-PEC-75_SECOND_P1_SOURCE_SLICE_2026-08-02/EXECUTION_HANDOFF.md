@@ -103,3 +103,27 @@ closeout.
 
 OI-003 remains open. No long-term registry home/shape, later loop entry,
 consumer activation, `ISSUED`, or other-loop duty is inferred.
+
+## Supersession annotation — 2026-08-03
+
+This file remains point-in-time evidence; none of the recorded historical acts
+above is rewritten. The DEL-01-05 trigger later fired: exact VER-005 rerun
+evidence SHA-256
+`1e0bd26f5bcda92996ed66e6373a6c67f2fe23270e48c98688c5cf6d488a1210`
+records AC-005 and AC-006 PASS and RF-001 `RESOLVED` without waiver. D-PEC-78
+O-A and SCA-004 revision 1.4 resolved OI-003 and selected the existing
+PEC-owned strict-version-1 JSON/schema paths and core-owned typed port as the
+long-term registry home and shape.
+
+The accepted DEL-01-06 SOW remains revision-1.3 history and is now separately
+stale under RF-002; DEL-01-06 remains `INITIALIZED`. Current pointers are:
+
+- `execution/_Coordination/_DECISIONS/D-PEC-78_oi_003_loop_registry_home.md`;
+- `execution/_ScopeChange/SCA-004_2026-08-02_2325/Handoff_State.md`;
+- `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REVIEW.md`;
+- `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Review_Findings.csv`;
+- `execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/`; and
+- `execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`.
+
+No SOW repair, lifecycle, artifact acceptance, release, reliance, or
+foreign-loop act is created by this annotation.
