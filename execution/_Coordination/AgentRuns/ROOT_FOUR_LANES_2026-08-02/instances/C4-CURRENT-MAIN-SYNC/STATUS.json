@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 13,
+  "node": "C4",
+  "role": "CHANGE",
+  "status": "COMPLETE_CURRENT_MAIN_SYNC",
+  "completed_evidence_at": "2026-08-03T20:36:01Z",
+  "terminal_remote_verification_at": "2026-08-03T20:37:47Z",
+  "branch": "codex/root-four-lanes-20260802",
+  "pre_sync_head": "2b7a7d828e9173836e5b0a71fc015e4f45024215",
+  "initial_fetched_origin_main": "a58512e67b4843cbfce4d03a0b1cc355ee87645e",
+  "first_merge_head": "065988c8b7c91493059de0881591a2e685610164",
+  "final_fetched_origin_main": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+  "final_head": "ba576264793deba0708397874414b7482c243f89",
+  "origin_main_is_ancestor": true,
+  "dirty_inventory": {
+    "paths": 172,
+    "tracked_modified": 17,
+    "untracked": 155,
+    "staged": 0,
+    "unmerged": 0,
+    "status_sha256": "0507ccd69f90dc4c371597a93a26b54bcb516a3cdc2b91f26936691a58c0c169",
+    "path_set_sha256": "81ce2ac1cdd2a73497341012117daefd5a4c6cf0b90bff6afd9ac9b3d477e3f3",
+    "type_mode_size_content_sha256": "ea336cf385a8e03bdf75800436a9ff847203308dd891c4c92b22ccce3b054e9d",
+    "exact_pre_post_parity": true
+  },
+  "semantic_overlap": {
+    "initial_range_changed_paths": 427,
+    "initial_overlap_paths": 0,
+    "refreshed_range_changed_paths": 117,
+    "refreshed_overlap_paths": 0
+  },
+  "retained_stashes": [
+    "e527a7c91b06b589bcd39860a71782054f149628",
+    "217cb694bb60b4122c7c55b5686a028f9dceaffb",
+    "74fb72eeba760e132edcb01b2b628af3353c5799"
+  ],
+  "evidence_location": "/tmp/chirality-c4-current-main-sync-EPTEeSjB",
+  "push_performed": false,
+  "pr_action_performed": false,
+  "tranche_staged_or_committed": false,
+  "stash_deleted": false,
+  "terminal": true
+}

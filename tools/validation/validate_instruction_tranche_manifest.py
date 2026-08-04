@@ -89,6 +89,11 @@ Modes and behavior (severity semantics per D-GOV-02)
   `git diff --name-only <base>..<head>`, filters to instruction-surface paths,
   and BLOCKs on any changed instruction-surface path not covered by a declared
   manifest path (all manifests by default, or one named `--tranche`).
+- *Candidate-range diff mode* adds `--added-manifests-only`: schema-validates
+  the whole manifest corpus as usual, but accepts path coverage only from
+  manifest files added in the named diff. This is the governed CI mode: an old
+  manifest, whether unchanged or modified, cannot stand in for the candidate
+  tranche's required new manifest.
 - Exit 0 PASS, exit 1 BLOCK, exit 2 operational (PyYAML unimportable, git
   unavailable or refs unresolvable, unusable arguments).
 
@@ -464,11 +469,34 @@ def changed_paths(root: Path, base: str, head: str) -> tuple[list[str] | None, s
     return [line.strip() for line in out.stdout.splitlines() if line.strip()], None
 
 
+def added_paths(root: Path, base: str, head: str) -> tuple[list[str] | None, str | None]:
+    try:
+        out = subprocess.run(
+            [
+                "git",
+                "-C",
+                str(root),
+                "diff",
+                "--name-only",
+                "--diff-filter=A",
+                f"{base}..{head}",
+            ],
+            capture_output=True,
+            text=True,
+        )
+    except OSError as exc:
+        return None, f"git is unavailable: {exc}"
+    if out.returncode != 0:
+        return None, f"git diff {base}..{head} failed: {out.stderr.strip()}"
+    return [line.strip() for line in out.stdout.splitlines() if line.strip()], None
+
+
 def check(
     root: Path,
     base: str | None = None,
     head: str | None = None,
     tranche: str | None = None,
+    added_manifests_only: bool = False,
 ) -> tuple[int, list[str]]:
     """Returns (exit_code, report_lines). 0 PASS, 1 BLOCK, 2 operational."""
     lines: list[str] = []
@@ -502,12 +530,14 @@ def check(
     failures: list[str] = []
     notes: list[str] = []
     by_id: dict[str, dict] = {}
+    by_path: dict[str, dict] = {}
     for path in manifests:
         manifest_failures, manifest_notes, data = validate_manifest(root, path)
         failures.extend(manifest_failures)
         notes.extend(manifest_notes)
         if data is not None and isinstance(data.get("tranche_id"), str):
             by_id[str(data["tranche_id"])] = data
+            by_path[path.relative_to(root).as_posix()] = data
 
     if diff_mode:
         if tranche is not None and tranche not in by_id:
@@ -521,7 +551,21 @@ def check(
             lines.append(f"G4 OPERATIONAL (exit 2): {error}")
             return 2, lines
         touched = [p for p in changed if intersects_instruction_surface(p)]
-        sources = [by_id[tranche]] if tranche is not None else list(by_id.values())
+        if tranche is not None:
+            sources = [by_id[tranche]]
+        elif added_manifests_only:
+            added, added_error = added_paths(root, str(base), str(head))
+            if added is None:
+                lines.append(f"G4 OPERATIONAL (exit 2): {added_error}")
+                return 2, lines
+            sources = [by_path[p] for p in added if p in by_path]
+            if touched and not sources:
+                failures.append(
+                    f"diff {base}..{head} changes instruction-surface paths but adds no "
+                    "schema-readable tranche manifest"
+                )
+        else:
+            sources = list(by_id.values())
         declared: list[str] = []
         for data in sources:
             values = data.get("instruction_surface_paths")
@@ -567,6 +611,14 @@ def build_parser() -> argparse.ArgumentParser:
         "--tranche",
         help="Restrict diff-mode coverage to the manifest with this tranche_id.",
     )
+    parser.add_argument(
+        "--added-manifests-only",
+        action="store_true",
+        help=(
+            "Accept diff coverage only from manifest files added in "
+            "the diff; the whole manifest corpus is still schema-validated."
+        ),
+    )
     return parser
 
 
@@ -578,8 +630,25 @@ def main(argv: list[str] | None = None) -> int:
     if args.tranche and not args.base:
         print("G4 OPERATIONAL (exit 2): --tranche applies to diff mode only.")
         return 2
+    if args.added_manifests_only and not args.base:
+        print(
+            "G4 OPERATIONAL (exit 2): --added-manifests-only applies to diff mode only."
+        )
+        return 2
+    if args.tranche and args.added_manifests_only:
+        print(
+            "G4 OPERATIONAL (exit 2): --tranche and --added-manifests-only are "
+            "mutually exclusive."
+        )
+        return 2
     root = repo_root()
-    code, lines = check(root, args.base, args.head, args.tranche)
+    code, lines = check(
+        root,
+        args.base,
+        args.head,
+        args.tranche,
+        added_manifests_only=args.added_manifests_only,
+    )
     for line in lines:
         print(line)
     return code

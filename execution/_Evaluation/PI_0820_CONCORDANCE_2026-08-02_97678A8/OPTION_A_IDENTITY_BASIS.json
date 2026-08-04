@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0",
+  "status": "PROVISIONAL_EVIDENCE_CANDIDATE_NOT_APPROVED",
+  "owner_selection": {
+    "selection": "OPTION_A_EVIDENCE_HOLD",
+    "authority_ref": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/OWNER_RULING_2026-08-02_CONTINUATION.md",
+    "authority_sha256": "9b98fe3dc6f8d9abb53c5b087e666cd17d53569ea0f39f1dea489534c9ebf6b6",
+    "effect": "preferred candidate only; no approval or supersession"
+  },
+  "repository_observation": {
+    "accepted_evaluation_snapshot": "97678a841ef58345c73d3470ed8de57c9b1405d2",
+    "continuation_head": "4337990334c3e339a02c54de811d9f238246d524",
+    "candidate_paths_unchanged": true,
+    "comparison": "git diff --quiet 97678a841ef58345c73d3470ed8de57c9b1405d2..4337990334c3e339a02c54de811d9f238246d524 -- <candidate paths>; exit 0"
+  },
+  "authority_state": {
+    "root": "D-GOV-20 provider-neutral Pi/oMLX read-only Agent 2 slice; no Pi package version accepted",
+    "app": "D-APP-72 and SCA-APP-002 exact Pi 0.80.10 remains operative",
+    "prospective": "D-APP-84 V1 identifies Pi 0.82.0 only as a Root-conditioned target",
+    "candidate_effect": "none"
+  },
+  "observed_descriptor": {
+    "adapter_id": "pi",
+    "provider_id": "omlx",
+    "upstream_package": "@earendil-works/pi-coding-agent",
+    "upstream_version": "0.82.0",
+    "capabilities": {
+      "credentials": true,
+      "tools": true,
+      "attachments": false,
+      "interruption": true,
+      "durable_resume": false,
+      "compaction": true
+    }
+  },
+  "observed_implementations": [
+    {
+      "implementation_label": "root.reference.pi-omlx-adapter",
+      "symbol": "createPiOmlxEngineAdapter",
+      "source": "runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts",
+      "source_sha256": "531f69c42c87d799b2b9aecec4bbfb96e2a1210dcd17135542c3483b48a9c208",
+      "package_manifest": "runtime/packages/engine-pi-omlx/package.json",
+      "package_manifest_sha256": "e6ab3d1bac2683779f5e568f65ef9f83c1b255e9f8beb0ee1a6136fc9f871fcc",
+      "executable_status": "not registered by the observed Desktop composition",
+      "dependency_ownership": "injected PiTurnRuntimePort; no Pi registry dependency in this package"
+    },
+    {
+      "implementation_label": "app.compat.pi-agent-engine-adapter",
+      "symbol": "PiAgentEngineAdapter",
+      "source": "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts",
+      "source_sha256": "34c8fd0978741720e74ba36beb3fdc7c9a06f31ed55b7da87c86525ac39c47ca",
+      "composition_source": "projects/chirality-app-dev/frontend/electron/runtime-host.ts",
+      "composition_source_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "executable_status": "registered by the observed Desktop composition",
+      "dependency_ownership": "App manifest and lock"
+    }
+  ],
+  "dependency_and_policy_hashes": {
+    "app_package_json": "1e62d22ec4a07fb225352c90ddfa5ce41d736d3d169e04cf7bd3684e54557c9c",
+    "app_package_lock": "674fe2dab74572f21d26455498461d62eaa4218560e45024ed2a31e00c635ab8",
+    "packaged_proof_script": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+    "supply_verifier": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+    "pi_notice": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+    "pi_closure_map": "8fb3458ddafdbc861c5fc541775bddf2a2832d30476c78c2866535a4416fbc96"
+  },
+  "identity_questions": [
+    {
+      "id": "ID-Q01",
+      "question": "Which Chirality implementation family is canonical for Root acceptance: the Root reference wrapper, the App executable adapter, or a governed convergence?",
+      "decision_owner": "Human Root owner"
+    },
+    {
+      "id": "ID-Q02",
+      "question": "What stable implementationFamilyId and implementation source/build hash distinguish same-descriptor adapters?",
+      "decision_owner": "Root HELPS_HUMANS proposal then human Root owner"
+    },
+    {
+      "id": "ID-Q03",
+      "question": "Does App retain executable Pi dependency ownership or must resolution move to the Root engine package?",
+      "decision_owner": "Root owner with later App affected-client decision"
+    },
+    {
+      "id": "ID-Q04",
+      "question": "Which capabilityProfileId, registrationId, policy version, and public tool implementation family belong in the identity?",
+      "decision_owner": "Root owner"
+    },
+    {
+      "id": "ID-Q05",
+      "question": "Must runtime registry keys and fingerprints include implementation family and client composition to prevent collision?",
+      "decision_owner": "Root owner through SCOPE_CHANGE/DEL-02-06"
+    },
+    {
+      "id": "ID-Q06",
+      "question": "Is Electron 43.2.0 part of the candidate compatibility basis and how is D-APP-72's 43.1.1 fact handled?",
+      "decision_owner": "App owner after Root decision"
+    },
+    {
+      "id": "ID-Q07",
+      "question": "Which exact Node, Electron, builder, platform, native/WASM asset, and package-lock identities gate packaged evidence?",
+      "decision_owner": "Root identity proposal and App build owner"
+    },
+    {
+      "id": "ID-Q08",
+      "question": "Which exact model, residency epoch, provider endpoint policy, and live-proof identity are required without turning one model into durable role doctrine?",
+      "decision_owner": "Root owner and App validation owner"
+    },
+    {
+      "id": "ID-Q09",
+      "question": "Which evidence is mandatory for Root version acceptance versus App adoption versus release/distribution?",
+      "decision_owner": "Human owner"
+    },
+    {
+      "id": "ID-Q10",
+      "question": "What rollback identity restores the last accepted authority without rewriting historical evidence?",
+      "decision_owner": "Root/App owners in their respective instruments"
+    }
+  ],
+  "holds": [
+    "NO_PI_0820_APPROVAL",
+    "NO_DAPP72_SUPERSESSION",
+    "NO_CANONICAL_IMPLEMENTATION_SELECTION",
+    "NO_FOREIGN_LOOP_WRITE",
+    "NO_SOURCE_OR_DEPENDENCY_MUTATION",
+    "NO_NATIVE_PRIMITIVE_OR_SANDBOX_ACTIVATION",
+    "NO_DURABLE_RESUME_ACTIVATION",
+    "NO_LIFECYCLE_RELEASE_RELIANCE_EFFECT",
+    "NO_TASK_MANAGEMENT_WRITE",
+    "NO_GIT_EFFECT"
+  ]
+}

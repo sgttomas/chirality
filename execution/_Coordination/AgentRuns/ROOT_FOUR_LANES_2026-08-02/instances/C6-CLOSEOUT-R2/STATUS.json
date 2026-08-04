@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "node": "C6-R2",
+  "role": "CHANGE",
+  "status": "BLOCKED_CURRENT_MAIN_DRIFT",
+  "terminal_time_utc": "2026-08-03T22:20:06Z",
+  "branch": "codex/root-four-lanes-20260802",
+  "local_head": "6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5",
+  "sealed_origin_main": "0b69aabe000ea8ae78ca5a2134d734c40eba4972",
+  "actual_origin_main": "cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3",
+  "actual_origin_main_is_ancestor": false,
+  "current_main_delta_overlap_paths": 0,
+  "remote_branch_head": "4337990334c3e339a02c54de811d9f238246d524",
+  "authorized_normalization": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/C6-CLOSEOUT/RETURN.md",
+    "removed_terminal_lf_count": 1,
+    "before_sha256": "dc41a2290c14f1ac1cab4e71febebce2255020a3a28c196d9ddc6d0287e71e7f",
+    "after_sha256": "3048bf52403af1e5176d5aa0e9eb000571f6ab605640372dffc16ed7b2726dbf",
+    "status_reconciliation_needed": false
+  },
+  "pre_return_inventory": {
+    "paths": 238,
+    "scope_audit": "PASS_C5_227_PLUS_ELEVEN_AUTHORIZED_RECORDS",
+    "staged": 0,
+    "unmerged": 0
+  },
+  "validation": {
+    "w6_r1_evidence_hashes": "PASS",
+    "expanded_path_scope": "PASS",
+    "current_main_containment": "FAIL_STOP",
+    "full_plan_v17_campaign": "NOT_RUN_STOPPED_AT_PRIOR_GIT_BASIS_GATE"
+  },
+  "pr": {
+    "number": 491,
+    "state": "OPEN",
+    "head": "4337990334c3e339a02c54de811d9f238246d524",
+    "merge_state": "UNKNOWN",
+    "body_updated": false,
+    "existing_check": "SUCCESS_OLD_HEAD_ONLY"
+  },
+  "publication": {
+    "staged": false,
+    "committed": false,
+    "pushed": false,
+    "pr_updated": false,
+    "merged": false
+  },
+  "forbidden_effects": "NONE",
+  "next_owner": "HELP_HUMAN_CHANGE_CURRENT_MAIN_SYNC"
+}

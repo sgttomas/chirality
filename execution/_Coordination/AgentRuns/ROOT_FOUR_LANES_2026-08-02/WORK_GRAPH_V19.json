@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 19,
+  "selection_authority": "HUMAN",
+  "posture": "FINAL_SCOPED_PUBLICATION",
+  "basis": {
+    "task_head": "9f9c6f8bb7a01fe6bd35b47255adc62667537360",
+    "origin_main": "cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3",
+    "tranche_parity": true
+  },
+  "nodes": [
+    {"id": "C7", "role": "CHANGE", "status": "COMPLETE_CURRENT_MAIN_SYNC_BYTE_IDENTICAL_RESTORE", "depends_on": ["C6-R2"]},
+    {"id": "C8", "role": "CHANGE", "status": "AUTHORIZED_SCOPED_COMMIT_PUSH_PR_UPDATE_NO_MERGE", "depends_on": ["C7"]}
+  ],
+  "holds": [
+    {"id": "HOLD-SCA-CLOSE", "condition": "Separate owner closeout ruling required."},
+    {"id": "HOLD-DEL", "condition": "Semantic and implementation gates remain open."},
+    {"id": "HOLD-PI", "condition": "G1-B remains validation-only."},
+    {"id": "HOLD-MERGE", "condition": "PR merge remains the owner's gate."}
+  ],
+  "integration_owner": "C8",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

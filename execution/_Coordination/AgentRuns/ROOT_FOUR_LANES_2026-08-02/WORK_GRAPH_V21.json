@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 21,
+  "selection_authority": "HUMAN",
+  "posture": "PARALLEL_RULED_CLOSEOUT_THEN_CHANGE",
+  "nodes": [
+    {"id":"S7","role":"SCOPE_CHANGE","status":"AUTHORIZED","depends_on":["S6"],"write_scope":["execution/_ScopeChange/SCA-003_2026-08-02_2212/","instances/S7-SCOPE-CLOSE/"]},
+    {"id":"W8","role":"WORKING_ITEMS","status":"AUTHORIZED","depends_on":["W7"],"write_scope":["DEL-02-06-RUNTIME-SPEC-001/decision_support/","instances/W7-DEL0206-OWNER-SELECTION/","instances/W8-DEL0206-DEFER-HYGIENE/"]},
+    {"id":"H5","role":"HELPS_HUMANS","status":"AUTHORIZED","depends_on":["H4"],"write_scope":["projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_PI_G1B_APP_WORK_ACCEPTANCE_HANDOFF.md","instances/H5-PI-G1B-ROUTE/"]},
+    {"id":"C9","role":"CHANGE","status":"HELD_FOR_FANIN","depends_on":["S7","W8","H5"],"write_scope":["Git commit/push and PR #491 metadata","instances/C9-CLOSEOUT/"]}
+  ],
+  "holds": [
+    {"id":"HOLD-DEL-SELECTION","condition":"Dedicated owner selection session against committed main after PR #491 merges."},
+    {"id":"HOLD-IMPLEMENTATION","condition":"No adoption implementation or N0 restart before owner selection."},
+    {"id":"HOLD-PI","condition":"Routing confers no App acceptance Pi approval or PIA-U30 dispatch."},
+    {"id":"HOLD-MERGE","condition":"Owner will separately merge exact checked PR #491 head."}
+  ],
+  "integration_owner": "C9",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

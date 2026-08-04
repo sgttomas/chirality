@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 10,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL",
+  "nodes": [
+    {
+      "id": "W4",
+      "role": "WORKING_ITEMS",
+      "status": "AUTHORIZED_REGENERATE_AND_PRESENT_PACKET",
+      "depends_on": ["S6", "W3"],
+      "write_scope": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/",
+        "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/W1-DEL0206/",
+        "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/W4-DEL0206-PACKET-REGENERATE/"
+      ]
+    }
+  ],
+  "holds": [
+    {"id":"HOLD-PACKET-ACCEPT","node":"W4","condition":"Candidate presence and validation are not owner acceptance."},
+    {"id":"HOLD-ACCEPTED-INPUTS","node":"W4","condition":"Do not create or write RunID-local accepted_inputs/."},
+    {"id":"HOLD-N0","node":"W4","condition":"Do not dispatch or claim N0 before exact owner packet acceptance and byte-identical live copy."},
+    {"id":"HOLD-IMPLEMENTATION","node":"W4","condition":"No runtime/client/project implementation or lifecycle/release/reliance effect."},
+    {"id":"HOLD-TM-GIT","node":"W4","condition":"Do not change Task Management or perform Git staging, commit, push, PR, merge, or foreign-loop writes."}
+  ],
+  "integration_owner": "HELP_HUMAN",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

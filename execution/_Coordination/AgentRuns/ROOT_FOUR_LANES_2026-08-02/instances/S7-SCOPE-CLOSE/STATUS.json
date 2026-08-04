@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "node": "S7",
+  "role": "SCOPE_CHANGE",
+  "status": "CLOSED_ZERO_ACTION_NO_DECOMPOSITION_CHANGE",
+  "terminal": true,
+  "amendment_id": "SCA-003",
+  "closure_verdict": "CLOSED_FOR_SCOPE_CHANGE_ONLY",
+  "action_rows": 0,
+  "gate_states": {
+    "gate_1": "CONFIRMED_ZERO_ACTIONS_NO_DECOMPOSITION_CHANGE",
+    "gate_2": "NOT_OPENED",
+    "gate_3": "NOT_OPENED_NOT_REQUIRED_FOR_ZERO_ACTION_DISPOSITION",
+    "gate_4": "NOT_OPENED_NOT_REQUIRED_FOR_ZERO_ACTION_DISPOSITION",
+    "gate_5": "NOT_OPENED_NOT_REQUIRED_FOR_ZERO_ACTION_DISPOSITION"
+  },
+  "authority_sha256": "671dd05838c75a0e885052f52e951ab5609ac44b4db66a90f0fe283cba071aea",
+  "live_decomposition_sha256": "23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d",
+  "latest_sha256": "b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1",
+  "fresh_audit_return_sha256": "ee10313f42c99bc9432d3999b148d81ef0d959c58fa8e58d6df3dc40470420e1",
+  "parsed_actions_sha256": "7de498596a2879788a4756d0bbf27fe567cc009d65c49c09b7ca253969c00184",
+  "gate_2_opened": false,
+  "impact_assessment_exists": false,
+  "authoritative_truth_changed": false,
+  "new_derivative_staleness": false,
+  "rerun_requirement": "NONE",
+  "next_scope_change_owner": "NONE",
+  "git_action_performed": false
+}

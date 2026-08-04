@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 6,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "nodes": [
+    {"id":"H3","role":"HELPS_HUMANS","status":"AUTHORIZED_M2_APPLY","depends_on":[]},
+    {"id":"S3","role":"SCOPE_CHANGE","status":"HELD_FOR_H3","depends_on":["H3"]},
+    {"id":"W3","role":"WORKING_ITEMS","status":"HELD_FOR_S3_AND_PACKET_GATE","depends_on":["S3"]},
+    {"id":"H4","role":"HELPS_HUMANS","status":"AUTHORIZED_G1B_TARGET_MATERIALIZATION","depends_on":[]},
+    {"id":"C3","role":"CHANGE","status":"HELD_FOR_FAN_IN","depends_on":["H3","S3","W3","H4"]}
+  ],
+  "holds": [
+    {"id":"HOLD-S3-ORDER","condition":"S3 starts only after H3 exact PRD application validates."},
+    {"id":"HOLD-W3-PACKET","condition":"Packet acceptance remains a separate exact owner gate before live accepted_inputs or N0-R2."},
+    {"id":"HOLD-PI","condition":"G1-B is validation-target selection only; no Pi approval, supersession, App write, or proof dispatch."},
+    {"id":"HOLD-MERGE","condition":"PR merge remains the owner's Git gate."}
+  ],
+  "integration_owner": "C3",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

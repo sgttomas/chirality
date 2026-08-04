@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 15,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL_SYNC_THEN_CLOSEOUT",
+  "basis": {
+    "pre_sync_local_head": "ba576264793deba0708397874414b7482c243f89",
+    "local_origin_main": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+    "live_remote_main": "0b69aabe000ea8ae78ca5a2134d734c40eba4972",
+    "live_remote_task_branch": "4337990334c3e339a02c54de811d9f238246d524"
+  },
+  "nodes": [
+    {
+      "id": "C5",
+      "role": "CHANGE",
+      "status": "AUTHORIZED_CURRENT_MAIN_SYNC",
+      "depends_on": ["W6"],
+      "write_scope": [
+        "Git integration metadata",
+        "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/C5-CURRENT-MAIN-SYNC/"
+      ]
+    },
+    {
+      "id": "C6",
+      "role": "CHANGE",
+      "status": "HELD_FOR_C5_AND_HELP_HUMAN_REVALIDATION",
+      "depends_on": ["C5"],
+      "write_scope": ["Git closeout and PR #491 metadata"]
+    }
+  ],
+  "holds": [
+    {
+      "id": "HOLD-C6",
+      "node": "C6",
+      "condition": "No staging, commit, push, or PR update until C5 returns and HELP_HUMAN revalidates the exact continuation tranche."
+    },
+    {
+      "id": "HOLD-MERGE",
+      "node": "C6",
+      "condition": "PR #491 merge remains the owner's gate."
+    }
+  ],
+  "integration_owner": "C5",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

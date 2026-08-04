@@ -1,0 +1,60 @@
+{
+  "schema_version": "h2-pia-u10-status/v1",
+  "instance_id": "H2-PI-IDENTITY",
+  "work_unit": "PIA-U10",
+  "terminal_status": "COMPLETE_READY_FOR_HUMAN_G1_SELECTION",
+  "decision_effect": "NONE",
+  "selected_option": null,
+  "required_artifact_count": 7,
+  "artifacts": [
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/BASIS.json",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/ROOT_PI082_IDENTITY_OPTIONS.md",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/CANDIDATE_IDENTITY.schema.json",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/IDENTITY_FIELD_MATRIX.csv",
+    "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/ARTIFACT_MANIFEST.csv",
+    "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H2-PI-IDENTITY/RETURN.md",
+    "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H2-PI-IDENTITY/STATUS.json"
+  ],
+  "validation": {
+    "json_parse": "PASS",
+    "draft_2020_12_schema_compile": "PASS",
+    "schema_positive_instance": "PASS",
+    "schema_missing_family_negative": "PASS",
+    "csv_parse": "PASS",
+    "hash_manifest": "PASS",
+    "candidate_whitespace": "PASS",
+    "git_diff_check": "PASS",
+    "write_scope": "PASS"
+  },
+  "interruption_record": {
+    "partial_files_detected_after_interruption": [
+      "BASIS.json",
+      "CANDIDATE_IDENTITY.schema.json"
+    ],
+    "resumed_from_exact_partial_files": true,
+    "prior_return_used": false
+  },
+  "holds": [
+    "NO_IDENTITY_SELECTION",
+    "NO_PI_0820_APPROVAL",
+    "NO_DAPP72_SUPERSESSION",
+    "NO_PROJECT_OR_LIVE_SOURCE_WRITE",
+    "NO_FUTURE_WORK_DISPATCH",
+    "NO_LIFECYCLE_RELEASE_RELIANCE_EFFECT",
+    "NO_TASK_MANAGEMENT_WRITE",
+    "NO_GIT_EFFECT"
+  ],
+  "next_gate": {
+    "id": "PIA-U10-G1",
+    "owner": "Human Root owner",
+    "allowed_results": [
+      "SELECT_G1_A_FOR_VALIDATION_ONLY",
+      "SELECT_G1_B_FOR_VALIDATION_ONLY",
+      "SELECT_G1_C_FOR_VALIDATION_ONLY",
+      "AMEND_PROPOSAL",
+      "CONTINUE_HOLD"
+    ],
+    "not_pi_approval": true,
+    "not_app_supersession": true
+  }
+}

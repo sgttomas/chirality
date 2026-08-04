@@ -1,0 +1,20 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "instance_id": "W7-AUTHOR-ATTEMPT-1",
+  "runtime_identity": "/root/w1_del0206/w7_author",
+  "runtime_parent": "/root/w1_del0206",
+  "status": "TERMINAL_RETURN_TOOL_CONTAINMENT_FAILURE",
+  "terminal": true,
+  "verdict": "RETURN_TO_MANAGER",
+  "declared_inputs_reviewed": 35,
+  "output_files": 4,
+  "matrix_rows": 27,
+  "mapped_options": 54,
+  "material_findings": 1,
+  "finding": "ONE_SHELL_BACKED_READ_HASH_CALL",
+  "manager_acceptance": false,
+  "verifier_released": false,
+  "writes_contained": true,
+  "semantic_adoption": false,
+  "implementation_effect": false
+}

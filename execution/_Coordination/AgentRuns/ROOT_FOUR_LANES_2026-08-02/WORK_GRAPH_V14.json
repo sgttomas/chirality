@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 14,
+  "selection_authority": "HUMAN",
+  "posture": "HUMAN_GATE",
+  "basis": {
+    "local_head": "ba576264793deba0708397874414b7482c243f89",
+    "origin_main": "379b8b19b12b29eda4fa307e497499d6fe414f8a",
+    "current_main_ancestry": true,
+    "continuation_state": "UNCOMMITTED_UNPUSHED_CANDIDATE_TRANCHE"
+  },
+  "nodes": [
+    {
+      "id": "W5",
+      "role": "WORKING_ITEMS",
+      "status": "COMPLETE_PACKET_ACCEPTED_N0_PASS",
+      "depends_on": ["W4", "S6"]
+    },
+    {
+      "id": "C4",
+      "role": "CHANGE",
+      "status": "COMPLETE_CURRENT_MAIN_SYNC_BYTE_IDENTICAL_RESTORE",
+      "depends_on": ["W5"]
+    },
+    {
+      "id": "W6",
+      "role": "WORKING_ITEMS",
+      "status": "COMPLETE_HANDOFF_READY_FOR_HUMAN_GATE",
+      "depends_on": ["C4"]
+    },
+    {
+      "id": "G-DEL-SEMANTIC",
+      "role": "HUMAN",
+      "status": "OPEN_ACCEPT_RETURN_OR_DEFER",
+      "depends_on": ["W6"]
+    }
+  ],
+  "holds": [
+    {
+      "id": "HOLD-SEMANTIC",
+      "node": "G-DEL-SEMANTIC",
+      "condition": "D1-D9, all sixteen TBD/OD6 items, affected-client census including PEC, and compatibility delta remain human-gated."
+    },
+    {
+      "id": "HOLD-IMPLEMENTATION",
+      "node": "G-DEL-SEMANTIC",
+      "condition": "No implementation until exact semantic bytes and a fresh read-only refutation are accepted, followed by a separately sealed implementation activation."
+    },
+    {
+      "id": "HOLD-CLOSURE",
+      "node": "G-DEL-SEMANTIC",
+      "condition": "No closure without applied runtime bytes, executable restart/replay recovery evidence, affected-client evidence where required, and owner acceptance."
+    },
+    {
+      "id": "HOLD-SEPARATE-LANES",
+      "node": "G-DEL-SEMANTIC",
+      "condition": "SCA-003 closeout, Pi approval/supersession, Task Management, Git/PR, and merge remain separate gates."
+    }
+  ],
+  "integration_owner": "HELP_HUMAN",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

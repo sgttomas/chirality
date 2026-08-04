@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 11,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL",
+  "nodes": [
+    {
+      "id": "W5",
+      "role": "WORKING_ITEMS",
+      "status": "AUTHORIZED_ACCEPT_COPY_AND_FRESH_N0",
+      "depends_on": ["W4", "S6"],
+      "write_scope": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/",
+        "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/W1-DEL0206/",
+        "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/W5-DEL0206-ACCEPT-N0/"
+      ]
+    }
+  ],
+  "holds": [
+    {"id":"HOLD-N1PLUS","node":"W5","condition":"Stop after fresh N0; do not release or dispatch N1, N2, N3, N4, N5, or N6."},
+    {"id":"HOLD-IMPLEMENTATION","node":"W5","condition":"No runtime/client/project implementation or lifecycle/release/reliance effect."},
+    {"id":"HOLD-SCA","node":"W5","condition":"Do not change SCA, decomposition, PRD, or _LATEST surfaces."},
+    {"id":"HOLD-TM-GIT","node":"W5","condition":"Do not change Task Management or perform Git staging, commit, push, PR, merge, or foreign-loop writes."}
+  ],
+  "integration_owner": "HELP_HUMAN",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

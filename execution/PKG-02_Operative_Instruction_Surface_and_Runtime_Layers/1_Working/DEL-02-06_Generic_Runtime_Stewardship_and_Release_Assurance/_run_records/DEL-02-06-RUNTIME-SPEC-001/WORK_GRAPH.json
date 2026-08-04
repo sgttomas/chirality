@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "run_id": "DEL-02-06-RUNTIME-SPEC-001",
+  "plan_version": 6,
+  "parent_plan_version": 12,
+  "selection_authority": "HUMAN",
+  "package_id": "PKG-02",
+  "selected_deliverables": ["DEL-02-06"],
+  "posture": "MIXED",
+  "basis": "ba576264793deba0708397874414b7482c243f89",
+  "integration_owner": "N4",
+  "packet_integration_owner": "WORKING_ITEMS/W5",
+  "nodes": [
+    {"id":"N0","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"INTERRUPTED_REJECTED","objective":"basis and currency proof","depends_on":[],"write_scope":["basis/"]},
+    {"id":"P0","form":"WORKING_ITEMS_MANAGER_PREPARATION","status":"COMPLETE_DECISION_READY_BLUEPRINT","objective":"design fresh six-file packet, validators, owner gate, and N0-R2 rerun contract without instantiation","depends_on":[],"write_scope":["packet_blueprint/"]},
+    {"id":"P1","form":"WORKING_ITEMS_MANAGER_REGENERATION","status":"COMPLETE_CURRENT_CANDIDATE_VALID_NOT_ACCEPTED","objective":"regenerate, hash-bind, validate, and present the exact corrected-basis packet without acceptance or live copy","depends_on":["P0"],"write_scope":["packet_candidate/","packet_presentation/"]},
+    {"id":"P2","form":"WORKING_ITEMS_MANAGER_ACCEPTANCE_APPLICATION","status":"COMPLETE_ACCEPTED_AND_BYTE_IDENTICAL_LIVE_COPY","objective":"record exact owner acceptance and copy/validate six exact bytes into RunID-local accepted_inputs","depends_on":["P1"],"write_scope":["packet_acceptance/","accepted_inputs/"]},
+    {"id":"N0-R2","form":"FRESH_EPHEMERAL_AGENT_2_GENERALIST","status":"COMPLETE_MANAGER_ACCEPTED_RELEASE_RECOMMENDATION","objective":"fresh basis and accepted-input proof","depends_on":["P2"],"write_scope":["basis/N0_R2_RETURN.md","basis/BASIS_REPORT_R2.json"]},
+    {"id":"N1","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"COMPLETE_MANAGER_ACCEPTED","objective":"current accepted-turn and recovery-surface inventory","depends_on":["N0-R2"],"write_scope":["inventory/"]},
+    {"id":"N2","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"COMPLETE_MANAGER_ACCEPTED","objective":"read-only affected-client census","depends_on":["N0-R2"],"write_scope":["clients/"]},
+    {"id":"N3","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"COMPLETE_MANAGER_ACCEPTED","objective":"recovery, replay, drain and exactly-one-terminal evidence design","depends_on":["N0-R2"],"write_scope":["evidence/"]},
+    {"id":"N4","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"COMPLETE_ATTEMPT_3_MANAGER_ACCEPTED","objective":"integrate exact no-implementation recovery specification and change plan","depends_on":["N1","N2","N3"],"write_scope":["integration/"]},
+    {"id":"N5","form":"FRESH_EPHEMERAL_AGENT_2_GENERALIST","status":"COMPLETE_N5_R3_ADMIT_NO_FINDINGS","objective":"read-only adversarial refutation","depends_on":["N4"],"write_scope":[]},
+    {"id":"N6","form":"EPHEMERAL_AGENT_2_GENERALIST","status":"COMPLETE_HANDOFF_READY_FOR_HUMAN_GATE","objective":"owner-gate handoff assembly","depends_on":["N5"],"write_scope":["handoff/"]}
+  ],
+  "edges": [
+    ["P0","P1"], ["P1","P2"], ["P2","N0-R2"], ["N0-R2","N1"], ["N0-R2","N2"], ["N0-R2","N3"],
+    ["N1","N4"], ["N2","N4"], ["N3","N4"],
+    ["N4","N5"], ["N5","N6"]
+  ],
+  "concurrency": {
+    "eligible_after_n0_r2": ["N1", "N2", "N3"],
+    "write_overlap": false,
+    "serialized_nodes": ["N4", "N5", "N6"]
+  },
+  "holds": [
+    {"id":"HOLD-PLAN-11-STOP-AFTER-N0","state":"SATISFIED_BY_PARENT_PLAN_12","condition":"Parent plan 12 explicitly released W6 after current-main synchronization; N1 through N6 completed without implementation authority."},
+    {"id":"HOLD-N0-R2-CURRENT-BASIS","condition":"N0-R2 remains held unless current protected basis identities still reproduce at packet application time."},
+    {"id":"HOLD-N0-R2-PACKET","condition":"N0-R2 is not dispatched until the exact post-S2 six-file candidate is manifested, validated, owner-accepted by manifest SHA-256, and copied byte-for-byte to the RunID-local accepted_inputs path."},
+    {"id":"HOLD-S1","condition":"No executable amendment before applicable S1 scope-change disposition."},
+    {"id":"HOLD-IMPLEMENTATION","condition":"No runtime or client byte may change without a later sealed implementation activation and lawful Root software-workflow profile/check set."},
+    {"id":"HOLD-LIFECYCLE","condition":"No lifecycle transition is authorized."},
+    {"id":"HOLD-RELEASE","condition":"No release or reliance act is authorized."}
+  ],
+  "fan_in_gates": {
+    "N0_R2_to_discovery": "fresh N0-R2 terminal return is manager-accepted with all checks PASS and RELEASE_N1_N2_N3; otherwise hold",
+    "N1_N2_N3_to_N4": "all three terminal returns accepted and non-contradictory",
+    "N4_to_N5": "exact candidates and open-item map exist; no implementation bytes",
+    "N5_to_N6": "all material findings dispositioned without verifier repair",
+    "N6_to_owner": "manifest, hashes, blockers, reruns, and exact next gate complete"
+  },
+  "escalation_points": [
+    "basis or relied-source drift",
+    "packet, manifest, S2 basis, or owner-acceptance mismatch",
+    "actual-client classification without accepted obligation",
+    "need for an undeclared dependency",
+    "need for runtime/client write authority",
+    "need for a Root software-workflow profile or registered checks",
+    "semantic choice about recovery terminal state or replay"
+  ],
+  "telemetry": {
+    "required": false,
+    "recorded": true,
+    "ledger": "RUNTIME_EVENTS.jsonl",
+    "summary": "RUNTIME_SUMMARY.json",
+    "reason": "recorded as governance evidence for the actual multi-agent W6 fan-out and repair/recheck sequence",
+    "context_occupancy": "NOT_EXPOSED"
+  }
+}

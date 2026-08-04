@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 22,
+  "selection_authority": "HUMAN",
+  "posture": "FANIN_ACCEPTED_CHANGE_CLOSEOUT",
+  "basis": {
+    "checked_pr_head": "c886cc136cd095dbdc6e6e5841e1a8f91c8c329c",
+    "origin_main": "cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3",
+    "current_main_ancestry": true,
+    "continuation_state": "UNCOMMITTED_UNPUSHED_RULED_CLOSEOUT_TRANCHE"
+  },
+  "nodes": [
+    {"id":"W7","role":"WORKING_ITEMS","status":"COMPLETE_DECISION_SUPPORT_READY_NOT_ADOPTED","depends_on":["W6"]},
+    {"id":"S7","role":"SCOPE_CHANGE","status":"COMPLETE_CLOSED_ZERO_ACTION_NO_GATE2","depends_on":["S6"]},
+    {"id":"W8","role":"WORKING_ITEMS","status":"COMPLETE_DEFERRED_DECISION_SUPPORT_ACCEPTED_PROVENANCE_NORMALIZED","depends_on":["W7"]},
+    {"id":"H5","role":"HELPS_HUMANS","status":"COMPLETE_ROUTED_G1B_APP_HANDOFF_ONLY","depends_on":["H4"]},
+    {"id":"C9","role":"CHANGE","status":"RELEASED_FOR_EXACT_TRANCHE_PUBLICATION_AND_CHECKS","depends_on":["S7","W8","H5"]},
+    {"id":"G-DEL-SELECTION","role":"HUMAN","status":"DEFERRED_POST_PR491_MERGE_COMMITTED_MAIN","depends_on":["W8"]},
+    {"id":"G-PR491-MERGE","role":"HUMAN","status":"HELD_FOR_EXACT_CHECKED_HEAD","depends_on":["C9"]}
+  ],
+  "holds": [
+    {"id":"HOLD-DEL-SELECTION","node":"G-DEL-SELECTION","condition":"Dedicated owner selection session against committed main after PR #491 merges; merge alone does not select or adopt."},
+    {"id":"HOLD-IMPLEMENTATION","node":"G-DEL-SELECTION","condition":"No adoption, implementation, or N0 restart before dedicated owner selection and later separately sealed implementation authority."},
+    {"id":"HOLD-PI","node":"H5","condition":"No App acceptance/work dispatch, Pi approval or supersession, or PIA-U30 dispatch is inferred from routing."},
+    {"id":"HOLD-MERGE","node":"G-PR491-MERGE","condition":"PR #491 merge remains the owner's exact-checked-head Git gate."}
+  ],
+  "integration_owner": "C9",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 12,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "nodes": [
+    {"id":"W6","role":"WORKING_ITEMS","status":"AUTHORIZED_POST_N0_PLANNING_GRAPH","depends_on":["W5"],"write_scope":["execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-RUNTIME-SPEC-001/","execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/W1-DEL0206/","execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/W6-DEL0206-POST-N0-PLANNING/"]},
+    {"id":"N1","role":"AGENT_2_GENERALIST","status":"RELEASED_FOR_BOUNDED_DISPATCH","depends_on":["W5"],"write_scope":["inventory/"]},
+    {"id":"N2","role":"AGENT_2_GENERALIST","status":"RELEASED_FOR_BOUNDED_DISPATCH","depends_on":["W5"],"write_scope":["clients/"]},
+    {"id":"N3","role":"AGENT_2_GENERALIST","status":"RELEASED_FOR_BOUNDED_DISPATCH","depends_on":["W5"],"write_scope":["evidence/"]},
+    {"id":"N4","role":"AGENT_2_GENERALIST","status":"HELD_FOR_N1_N2_N3_FAN_IN","depends_on":["N1","N2","N3"],"write_scope":["integration/"]},
+    {"id":"N5","role":"FRESH_AGENT_2_GENERALIST","status":"HELD_FOR_N4","depends_on":["N4"],"write_scope":[]},
+    {"id":"N6","role":"AGENT_2_GENERALIST","status":"HELD_FOR_N5","depends_on":["N5"],"write_scope":["handoff/"]}
+  ],
+  "concurrency": {"parallel":["N1","N2","N3"],"serialized":["N4","N5","N6"],"write_overlap":false},
+  "holds": [
+    {"id":"HOLD-IMPLEMENTATION","node":"W6","condition":"No runtime/client/project implementation bytes or software-profile/check adoption."},
+    {"id":"HOLD-SEMANTIC","node":"W6","condition":"Recovery terminal, payload, identity, duplicate-history, compatibility epoch, and implementation activation remain human-gated."},
+    {"id":"HOLD-LIFECYCLE","node":"W6","condition":"No lifecycle, release, reliance, publication, or closure effect."},
+    {"id":"HOLD-SCA-TM-GIT","node":"W6","condition":"No SCA/decomposition/PRD, Task Management, Git, merge, or foreign-loop write."}
+  ],
+  "integration_owner": "WORKING_ITEMS_N4",
+  "register_writes_authorized": false,
+  "merge_authorized": false
+}

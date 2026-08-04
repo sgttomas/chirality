@@ -1,0 +1,29 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "plan_version": 6,
+  "instance_id": "S3-SCOPE-APPLY",
+  "role": "SCOPE_CHANGE",
+  "status": "APPLIED_EXACT_CANDIDATE_BLOCKED_POST_APPLICATION_AUDIT",
+  "terminal": true,
+  "amendment_id": "SCA-003",
+  "applied_decomposition_sha256": "69bdb9ca682a80adab6c23e0a615bd4f9c5ed64f281f11a4e558a1f0e991278c",
+  "paired_validation": "PASS_17_OF_17",
+  "audit": {
+    "return_sha256": "0c49c5e18e1d02bc9abec1b01adcf1adf5cc895b79e159259d76a470aa4630a5",
+    "structural_coverage": "PASS",
+    "prior_cov_001": "CLOSED",
+    "new_cov_post_001": "BLOCKER",
+    "blockers": 1,
+    "warnings": 0,
+    "info": 14,
+    "closure_readiness": "FAIL"
+  },
+  "latest_pointer_changed": false,
+  "companions_changed": false,
+  "human_post_change_confirmed": false,
+  "original_gate_1_confirmed": false,
+  "closed": false,
+  "git_writes": 0,
+  "next_owner": "HELP_HUMAN_TO_OWNER_FOR_POST_APPLICATION_CURRENT_DISPOSITION_CORRECTION"
+}

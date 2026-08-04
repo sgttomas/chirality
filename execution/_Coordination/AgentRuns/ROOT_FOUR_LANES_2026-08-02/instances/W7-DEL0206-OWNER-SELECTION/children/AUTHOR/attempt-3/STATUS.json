@@ -1,0 +1,25 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "instance_id": "W7-DEL0206-OWNER-SELECTION-AUTHOR-ATTEMPT-3",
+  "runtime_identity": "/root/w1_del0206/w7_author_r3",
+  "runtime_parent": "/root/w1_del0206",
+  "role": "ephemeral-agent-2-remediation-author",
+  "status": "READY_FOR_FRESH_VERIFY_R2",
+  "terminal": true,
+  "manager_acceptance": true,
+  "declared_input_coverage": "41/41",
+  "decision_rows": 27,
+  "option_mappings": 54,
+  "allowed_census_tuples": 4,
+  "resolved_findings": ["W7V-F01", "W7V-F02"],
+  "tool_containment": "PASS_NO_SHELL_NO_NETWORK_NO_EXECUTABLE_CHECK",
+  "outputs": {
+    "OWNER_SELECTION_SLATE.md": "35006e9e862e26bcd3356d4dc3a95bec31f7f4ca361142b0431c6e35ca9b5598",
+    "OWNER_SELECTION_MATRIX.csv": "57b27b486e4c06d23425e3dd0760904a1b4a04bf0bcf49e0610b6c677a398c92",
+    "SEMANTIC_PATCH_PLAN.md": "e51075494a14576aa8d9357b6ad21928ea47065a2aa2488a02b6a4b96359cee1",
+    "AUTHOR_RETURN.md": "98d2d836445aa32d1b64540c91c41b7ce29b67a754ac27f0a2c0df6934045845"
+  },
+  "semantic_adoption": false,
+  "implementation_effect": false,
+  "git_effect": false
+}

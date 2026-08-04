@@ -1,0 +1,23 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "instance_id": "W4-DEL0206-PACKET-REGENERATE",
+  "role": "WORKING_ITEMS",
+  "status": "CURRENT_PACKET_CANDIDATE_VALID_OWNER_GATE_OPEN_NOT_ACCEPTED",
+  "terminal": true,
+  "package_id": "PKG-02",
+  "selected_deliverables": ["DEL-02-06"],
+  "candidate_manifest_sha256": "360f8f12c4719d79a506394bcd98a4b630c2610f9c80d90a08b0519e8a1d508f",
+  "stale_predecessor_manifest_sha256": "dd0075229486b98a5b28936ce55ea94e0fcbb6c8d5befc2f453cff78f6d053cf",
+  "candidate_valid": true,
+  "full_validation_runs": 2,
+  "negative_cases_passed": 20,
+  "owner_acceptance_recorded": false,
+  "live_accepted_inputs_written": false,
+  "n0_dispatched": false,
+  "runtime_or_client_effect": false,
+  "lifecycle_release_reliance_effect": false,
+  "task_management_effect": false,
+  "git_effect": false,
+  "next_owner": "HUMAN_OWNER_THROUGH_HELP_HUMAN_FOR_EXACT_PACKET_GATE"
+}

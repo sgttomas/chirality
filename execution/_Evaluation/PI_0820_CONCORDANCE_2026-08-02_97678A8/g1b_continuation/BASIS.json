@@ -1,0 +1,90 @@
+{
+  "schema_version": "pia-u10-g1b-basis/v1",
+  "status": "DERIVATIVE_VALIDATION_TARGET_PACKAGE_NO_APPROVAL_NO_SUPERSESSION",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "node_id": "H4",
+  "selection": {
+    "decision_id": "PIA-U10-G1",
+    "result": "SELECT_G1_B_FOR_VALIDATION_ONLY",
+    "family_id": "chirality.app.pi-agent-engine-adapter",
+    "effect": "Materialize one validation target only. This does not approve Pi 0.82.0, supersede App authority, authorize App work, activate implementation, or change lifecycle, release, reliance, Task Management, or Git state."
+  },
+  "accepted_upstream": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/OWNER_RULING_2026-08-03_S2_APPLY_PI_G1B.md",
+      "sha256": "12f7c46e86ca19c1e065e96b05e09814b9806cd5b0742f74d8cce405ef389129",
+      "role": "human G1-B validation-only selection"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H4-PI-G1B/LAUNCH_BRIEF.md",
+      "sha256": "aae232f457bd8caa9bc70c921989c844dd70de04829a837572440d8785228c41",
+      "role": "H4 sealed objective and write fence"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/CANDIDATE_IDENTITY.schema.json",
+      "sha256": "ecb9f93908d7948c7d0b4ec284745a471ff4c4a096d9cb76e4fc46c396154a5c",
+      "role": "accepted PIA-U10 candidate identity schema"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/ROOT_PI082_IDENTITY_OPTIONS.md",
+      "sha256": "b545c02656b0845b002fe4ca1f84b5d6dc83246a45da7ab5766d51e9c26c1604",
+      "role": "accepted PIA-U10 G1-B definition and collision cases"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/BASIS.json",
+      "sha256": "33e47e64fd1f01bd59fc71a6da2cacac9e89b707613c857be9aaa3c8950577c7",
+      "role": "accepted PIA-U10 frozen proposal basis"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/OPTION_A_IDENTITY_BASIS.json",
+      "sha256": "1adfed15f83efc0444ed3db8df1e103ffa436d5b5253738ea20db4ef780ff6ce",
+      "role": "frozen App implementation composition and package observations"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/OPTION_A_WORK_UNITS.csv",
+      "sha256": "8b8b2ddaf8750bbb3e4ebb45e88452873f072bc373af104c53c8dca13ca51955",
+      "role": "accepted proposed PIA-U20 through PIA-U40 dependency graph"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H2-PI-IDENTITY/RETURN.md",
+      "sha256": "2e947e8da05d7b98fc4a26b81897d7e47646018cfb6266ed2a03aa98d826db18",
+      "role": "accepted PIA-U10 terminal return"
+    }
+  ],
+  "authority_preserved": {
+    "root": {
+      "statement": "D-GOV-20 remains provider-neutral and accepts no Pi package version.",
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-20_shared_runtime_local_agent_pilot.md",
+      "sha256": "a6a4fc4f0c8136f0cdf25eab155c98a03276248776ed9ff779df6c4b88523f11"
+    },
+    "app": {
+      "statement": "D-APP-72 and SCA-APP-002 Pi 0.80.10 remains operative.",
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-72_RULING_2026-07-21.md",
+      "sha256": "c7dcbb5aaa0f82481fb76825c7099c4e355c4ada80232c51f3a3cf6ba2076577"
+    },
+    "prospective_route": {
+      "statement": "D-APP-84 REV2 is a non-authorizing Root route.",
+      "path": "execution/_Coordination/NOTICE_D-APP-84_REV2_APP_PI_SANDBOX_ROOT_ROUTE_2026-08-02.md",
+      "sha256": "2d61231689e78b414680aeac307c377ef3079b65cc7f60355b7c3942ad7c3e6a"
+    }
+  },
+  "repository_observation": {
+    "accepted_evaluation_snapshot": "97678a841ef58345c73d3470ed8de57c9b1405d2",
+    "h2_continuation_head": "4337990334c3e339a02c54de811d9f238246d524",
+    "h4_checkout_head_at_materialization": "4337990334c3e339a02c54de811d9f238246d524",
+    "dirty_checkout": true,
+    "candidate_hash_comparison": "The frozen H2 values and H4 read-only current SHA-256 observations are equal for every enumerated App candidate path."
+  },
+  "holds": [
+    "NO_PI_0820_APPROVAL",
+    "NO_DAPP72_OR_SCA_APP_002_SUPERSESSION",
+    "NO_APP_WORK_AUTHORIZATION",
+    "NO_PROJECT_WRITE",
+    "NO_SOURCE_RUNTIME_DEPENDENCY_LOCK_AUTHORITY_REGISTER_WRITE",
+    "NO_PROOF_DISPATCH",
+    "NO_NATIVE_PRIMITIVE_SANDBOX_OR_DURABLE_RESUME_ACTIVATION",
+    "NO_LIFECYCLE_RELEASE_RELIANCE_EFFECT",
+    "NO_TASK_MANAGEMENT_WRITE",
+    "NO_GIT_EFFECT"
+  ]
+}

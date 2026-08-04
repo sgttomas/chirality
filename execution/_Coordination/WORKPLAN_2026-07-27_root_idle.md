@@ -69,3 +69,23 @@ K-TM-4/K-TM-5), and TASK_MANAGEMENT (`agents/AGENT_TASK_MANAGEMENT.md`)
 is invocable on demand or by owner-scheduled routine for register
 sessions and ruled-item resolution. Three Stage-B adoption packets await
 per-loop rulings on their own surfaces (D-APP-83 / D-63 / D-PEC-72).
+
+## Currency addendum — 2026-08-02 (four separately authorized Root lanes)
+
+The idle posture remains the general standing plan; no broad Root production
+phase has been selected. A later owner steer separately opened four bounded
+lanes prepared by the 2026-08-02 Root Task Management closeout:
+
+1. the `TM-ROOT-107` Root SCOPE_CHANGE intake;
+2. the `TM-ROOT-108` DEL-02-06 accepted-turn recovery amendment/activation
+   lane;
+3. the `TM-ROOT-110` existing G4 diff-mode CI wiring; and
+4. the `TM-ROOT-106` Pi `0.82.0` concordance/supply-chain validation.
+
+Their shared HELP_HUMAN work graph and live gate state are under
+`execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/`. G4 is locally
+ready for checked publication. SCA-003 is stopped at Gate 1, DEL-02-06 is held
+at N0, and the Pi evaluation is held for an owner decision. These bounded
+lanes do not authorize Task Management row closure, a general production
+phase, runtime implementation by implication, lifecycle or release acts, or
+merge; the owner retains the Git merge gate.

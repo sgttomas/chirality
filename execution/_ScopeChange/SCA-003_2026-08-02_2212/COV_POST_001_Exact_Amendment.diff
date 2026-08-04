@@ -1,0 +1,18 @@
+--- a/execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md
++++ b/execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md
+@@ -11 +11 @@
+-**Amendment:** `SCA-002` accepted and applied on 2026-07-29; this SCA-003 basis-reconciliation candidate changes current-facing acceptance/status metadata only and remains pending exact owner acceptance and application
++**Amendment:** `SCA-002` accepted and applied on 2026-07-29; the exact SCA-003 basis-reconciliation candidate was accepted and applied under owner ruling SHA-256 `12f7c46e86ca19c1e065e96b05e09814b9806cd5b0742f74d8cce405ef389129`, with applied-file evidence SHA-256 `f2781dd2c33f01cbaf014b2bb97fbff0bcdf1db3c46a8969f195a7d320501cc8`; human confirmation status is recorded only in `execution/_ScopeChange/SCA-003_2026-08-02_2212/Decision_Log.md`
+@@ -565 +565 @@
+-| DEC-024 | 2026-08-02 | **SCA-003 basis-reconciliation candidate aligns current-facing acceptance and source-control metadata without changing decomposition truth.** The title, header, status block, REF-001 pin, and downstream acceptance notes are reconciled to the already-recorded facts that SCA-002 revision 1.2 was accepted/applied and that Receipt 64 produced Root PRD Revision 8. DEC-023 and the original SCA-002 candidate Change Log entry remain unchanged as time-scoped proposal history. | SCA-002 `Decision_Log.md`, `Handoff_State.md`, `Applied_File_Hashes.json`, `_ScopeChange/_LATEST.md`, Receipt 63, Receipt 64, and the Root loop handoff agree on the current state. This is metadata-only: no scope item, package, deliverable, objective, ID, mapping, status row, count, topology, or substantive requirement changes. Candidate effect remains pending exact human acceptance and application. |
++| DEC-024 | 2026-08-02 | **SCA-003 basis reconciliation aligns current-facing acceptance and source-control metadata without changing decomposition truth.** The title, header, status block, REF-001 pin, and downstream acceptance notes are reconciled to the already-recorded facts that SCA-002 revision 1.2 was accepted/applied and that Receipt 64 produced Root PRD Revision 8. DEC-023 and the original SCA-002 candidate Change Log entry remain unchanged as time-scoped proposal history. | SCA-002 `Decision_Log.md`, `Handoff_State.md`, `Applied_File_Hashes.json`, `_ScopeChange/_LATEST.md`, Receipt 63, Receipt 64, and the Root loop handoff agree on the current state. This is metadata-only: no scope item, package, deliverable, objective, ID, mapping, status row, count, topology, or substantive requirement changes. The exact SCA-003 candidate was accepted and applied under owner ruling SHA-256 `12f7c46e86ca19c1e065e96b05e09814b9806cd5b0742f74d8cce405ef389129`, with applied-file evidence SHA-256 `f2781dd2c33f01cbaf014b2bb97fbff0bcdf1db3c46a8969f195a7d320501cc8`; human confirmation status is recorded only in `execution/_ScopeChange/SCA-003_2026-08-02_2212/Decision_Log.md`. |
+@@ -622,2 +622,7 @@
+-  substantive requirement changes. These metadata bytes remain pending
+-  exact human acceptance and application.
++  substantive requirement changes. Exact SCA-003 candidate acceptance and
++  application are recorded by owner ruling SHA-256
++  `12f7c46e86ca19c1e065e96b05e09814b9806cd5b0742f74d8cce405ef389129`
++  and applied-file evidence SHA-256
++  `f2781dd2c33f01cbaf014b2bb97fbff0bcdf1db3c46a8969f195a7d320501cc8`;
++  human confirmation status is recorded only in
++  `execution/_ScopeChange/SCA-003_2026-08-02_2212/Decision_Log.md`.

@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "node": "C9",
+  "role": "CHANGE",
+  "status": "VALIDATED_PUBLICATION_EXECUTION_AUTHORIZED",
+  "validation_time_utc": "2026-08-04T00:15:26Z",
+  "branch": "codex/root-four-lanes-20260802",
+  "pre_publication_head": "c886cc136cd095dbdc6e6e5841e1a8f91c8c329c",
+  "contained_origin_main": "cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3",
+  "origin_main_is_ancestor": true,
+  "publication_paths": 63,
+  "scope_audit": "PASS_61_RULED_PATHS_PLUS_C9_RETURN_STATUS",
+  "validation": {
+    "accepted_manager_hashes": "PASS",
+    "accepted_artifact_hashes": "PASS",
+    "w7_decision_support_manifest": "PASS_EXACTLY_THREE",
+    "candidate_whitespace": "PASS",
+    "governed_json_jsonl": "PASS",
+    "eof_normalization_preimage": "PASS_3_OF_3",
+    "git_diff_check": "PASS",
+    "forbidden_path_audit": "PASS",
+    "protected_hashes": "PASS"
+  },
+  "ruled_state": {
+    "sca003": "CLOSED_ZERO_ACTION_NO_DECOMPOSITION_CHANGE_GATE2_UNOPENED",
+    "del0206": "DECISION_SUPPORT_ONLY_SELECTION_DEFERRED_POST_PR491_MERGE",
+    "pi_g1b": "APP_NOTICE_ROUTED_NO_ACCEPTANCE_DISPATCH_APPROVAL_OR_PIA_U30",
+    "task_management": "UNCHANGED"
+  },
+  "publication_identity": "RECORDED_EXTERNALLY_IN_PR491_AND_RUNTIME_RETURN_DUE_SELF_REFERENCE",
+  "merge_authorized": false,
+  "forbidden_effects": "NONE"
+}

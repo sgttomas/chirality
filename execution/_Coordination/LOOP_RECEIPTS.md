@@ -2579,3 +2579,157 @@ amendment; owner ruling required).
   PR #478 facts in canonical current-state surfaces. Its own future source,
   checks, and merge identity cannot be self-recorded here; they belong in that
   follow-up PR's ordinary closeout comment after those acts occur.
+
+### Receipt 86 — 2026-08-02 — Four owner-authorized Root lanes opened; three stop at human gates
+
+- **Parent and posture:** Receipt 85. The general Root loop remains in the idle
+  standing posture; four separately owner-authorized lanes do not select a
+  broader production phase.
+- **Owner direction:** open the TM-ROOT-107 SCOPE_CHANGE intake; take the
+  TM-ROOT-108 accepted-turn recovery concern through the DEL-02-06
+  amendment/activation lane; wire TM-ROOT-110's existing G4 diff-mode check
+  into CI; and commission TM-ROOT-106's Pi `0.82.0` concordance/supply-chain
+  validation. Task Management row closures remain outside this session and
+  the owner retains the merge gate.
+- **Managed run:** `execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/`
+  records HELP_HUMAN plan v3, the mixed work graph, sealed Agent 1 briefs,
+  bounded Agent 2 returns, validated manager returns, and the current handoff.
+- **SCOPE_CHANGE:** SCA-003 Gate-1 preparation verifies both exact inputs and
+  provisionally finds zero decomposition actions because current carriers are
+  sufficient. It stops at Gate 1: current-facing Root PRD and decomposition
+  acceptance labels contradict D-8/SCA-002 accepted-state records and require
+  a separately gated metadata-only reconciliation before the baseline can be
+  rerun.
+- **DEL-02-06:** the first REQ-027 planning activation is `HELD_AT_N0`. Its
+  durable recovery plan specifies startup-barrier, idempotence,
+  exactly-one-terminal, drain-accounting, fail-closed history, no-replay, and
+  restart/replay evidence requirements. Six mandatory accepted-input artifacts
+  are absent, the same basis-label conflicts block currency, and the
+  interrupted N0 child is rejected. No runtime or client byte changed.
+- **G4:** the governance-harness workflow now supplies the PR base or
+  push-before SHA through HEAD and accepts candidate coverage only from newly
+  added manifests while preserving whole-corpus schema validation. Focused
+  positive/negative proof passes 6/6, the validation suite passes 311/311, and
+  live schema validation sees 26 valid manifests. Hosted PR CI remains the
+  authoritative rerun.
+- **Pi evaluation:** exact 0.82.0 dependency closure, 140/140 HTTPS/SRI/cached
+  byte checks, static lifecycle policy, fresh supply verification, and current
+  source regression pass. The evaluation recommends retaining 0.82.0 as the
+  D-APP-84 V1 preferred candidate under evidence hold, not approving it:
+  canonical adapter identity, current package/native/WASM production-route
+  proof, live proof, complete notices, Electron prerequisite reconciliation,
+  Root decision, and App supersession remain open.
+- **Checks and preservation:** candidate whitespace, JSON parsing,
+  `git diff --check`, focused G4 proof, all 311 validation tests, live G4
+  schema validation, SOW_V1 validation, and manager write-containment checks
+  pass. No Task Management register, authoritative decomposition, `_LATEST`,
+  App/Piping content, lifecycle, release, reliance, commit, push, PR, or merge
+  effect occurs in this receipt.
+- **Gate outcome:** `OPEN_AT_HUMAN_DECISIONS`. The exact decisions and rerun
+  requirements are in the run handoff. CHANGE may publish this coherent
+  candidate to an open PR under the standing closeout policy; merge remains a
+  later owner act.
+
+### Receipt 87 — 2026-08-03 — Root four-lane continuation reaches publication gate
+
+- **Parent and posture:** Receipt 86. The general Root loop remains idle; this
+  receipt records the four separately authorized continuation lanes and does
+  not open a broader production phase.
+- **SCA-003:** exact PRD and decomposition candidates were accepted and
+  applied in the authorized order. The metadata-only COV-POST-001 correction
+  was separately accepted/applied and fresh AUDIT_DECOMP passed. Gate 1 is
+  `CONFIRMED_ZERO_ACTIONS_NO_DECOMPOSITION_CHANGE` against live decomposition
+  SHA-256 `23f6ae0f...64f3d` and audit return `ee10313f...420e1`. Gate 2 was
+  not opened; SCA-003 remains open pending a separate owner closeout ruling;
+  `_ScopeChange/_LATEST.md` remains unchanged.
+- **DEL-02-06:** the owner accepted exact packet manifest SHA-256
+  `360f8f12c4719d79a506394bcd98a4b630c2610f9c80d90a08b0519e8a1d508f`.
+  The RunID-local copy is byte-identical; both packet validators pass; fresh
+  N0 returned 26/26 PASS; N1-N6 planning completed; fresh N5-R3 returned
+  `ADMIT` with zero findings. The derivative owner-gate handoff SHA-256 is
+  `bf802046...d151`. No semantic adoption or runtime implementation occurred;
+  restart/replay evidence is absent and closure is not claimed.
+- **Pi 0.82.0:** Option A and G1-B were selected for validation only under
+  evidence hold. The Root-local target family is
+  `chirality.app.pi-agent-engine-adapter`; exact accepted App predecessor
+  evidence and final identity remain absent. No Pi approval, D-APP-72
+  supersession, App route, production proof, lifecycle, release, or reliance
+  effect occurred.
+- **G4 and Git:** the diff-mode G4 implementation previously passed the hosted
+  `governance-harness` check on open PR #491 at remote source
+  `4337990334c3e339a02c54de811d9f238246d524`. CHANGE then synchronized the
+  local branch without rebase or force: HEAD
+  `6fbdc31c3b1e1f462fdd8554cd5fdd79d43e67a5` contains exact current
+  `origin/main@0b69aabe000ea8ae78ca5a2134d734c40eba4972`; the 225-path
+  continuation tranche was restored byte-identically, with zero upstream
+  overlap, staged paths, or conflicts.
+- **Checks and boundary:** protected PRD/decomposition/`_LATEST` hashes,
+  packet and owner-acceptance validators, N6 manifest, governed JSON,
+  current-main ancestry, and `git diff --check` pass. Root Task Management
+  rows remain unchanged. The state is `OPEN_AT_HUMAN_GATES`: SCA closeout,
+  DEL semantic/implementation decisions, Pi evidence/version decisions, and
+  PR merge remain separate owner gates. Ordinary scoped PR update is next;
+  no merge is authorized by this receipt.
+- **Publication-gate repair:** the first CHANGE closeout stopped before staging
+  on sixteen W6 provenance files with one surplus terminal LF each. W6-R1
+  normalized exactly those bytes, proved 16/16 preimages by re-appending one
+  LF, reconciled the live W6 receipt/hash chain, and passed the full scoped
+  validation matrix. This was a non-semantic provenance repair only; the DEL
+  handoff verdict and every open gate remain unchanged.
+- **Subsequent mainline drift:** C6-R2 normalized its own blocked return, then
+  stopped before staging when `main` advanced to `cf6bc15b...a5c3`. The
+  PR #498 delta is PEC-only with zero candidate-path overlap. A new bounded
+  byte-preserving sync is required before publication; no Git or PR mutation
+  occurred and every owner gate remains unchanged.
+- **Current-main containment restored:** C7 merged exact
+  `main@cf6bc15b...a5c3` into the task branch without rebase or force. Final
+  pre-publication HEAD is `9f9c6f8b...7360`; 243 tranche files were restored
+  byte-identically; all 41 new PEC-only paths were disjoint; staged/unmerged
+  counts are zero. The whole-candidate whitespace and full protected/DEL
+  validation gates now pass, so ordinary PR publication is re-released.
+
+### Receipt 88 — 2026-08-03 — SCA closed; DEL selection deferred; G1-B App handoff routed
+
+- **Parent and posture:** Receipt 87. The general Root loop remains idle. This
+  receipt records the owner's exact closeout ruling for three already-open
+  lanes and releases ordinary Git publication; it does not start a Root
+  production phase.
+- **Owner authority:** ruling SHA-256
+  `671dd05838c75a0e885052f52e951ab5609ac44b4db66a90f0fe283cba071aea`
+  closes SCA-003, accepts W7 as decision support only while deferring DEL
+  selection, routes the App notice, and authorizes same-branch PR closeout.
+  It does not authorize merge or Task Management writes.
+- **SCA-003:** S7 return SHA-256
+  `13cbce630b1953848448a599b36f7bd5d2c90dca8c717a1b1354fdc63b76a034`
+  records `CLOSED_ZERO_ACTION_NO_DECOMPOSITION_CHANGE` and
+  `CLOSED_FOR_SCOPE_CHANGE_ONLY`. Gate 2 was not opened; later gates are not
+  required; the live decomposition remains `23f6ae0f...64f3d`; and
+  `_ScopeChange/_LATEST.md` is byte-identical at `b2849c6e...80a1`.
+- **DEL-02-06:** admitted W7 decision-support manifest
+  `623833310e2fa871bd895532f4831f87de97f2750ae92e03e0daeb9acf93329d`
+  is accepted as decision support only. Owner selection is `DEFERRED` with
+  trigger: a dedicated owner selection session against committed main after
+  PR #491 merges. Merge satisfies only the committed-main precondition. No
+  selection, adoption, implementation, or N0 restart occurs. W8 return
+  SHA-256 is
+  `6ec5ee9e02855887d4957e3885d3f1ea72bf446b65bcdc3d07ed9cd64e32635a`.
+- **Provenance hygiene:** exactly three W7 launch briefs lost one surplus
+  terminal LF each. The bridge at SHA-256
+  `019e2dd7f944d58deb27ab415d6b9fcd3a06a0f810742f0a195d3bb01b103848`
+  proves 3/3 execution-time preimages by re-appending one LF. The admitted
+  manifest and its three semantic member hashes are unchanged; no further
+  semantic verifier ran.
+- **Pi/App route:** ordinary App notice SHA-256
+  `618c5c3edbf55a04eeefbf513e08a566fa1ef751febb3f6dcbe2c07e453af6b4`
+  asks the App loop to disposition proposed PIA-U20–U25 under its own
+  instruments. Routing creates no App acceptance, work dispatch, Pi approval,
+  D-APP-72 supersession, or PIA-U30 dispatch. H5 return SHA-256 is
+  `12ef39533deffcb1a22e407573c9691ef693d1a2e1ba89d8a344182fd6fad0b8`.
+- **Fan-in checks:** all six S7/W8/H5 RETURN/STATUS identities reproduce; the
+  W7 manifest and all three semantic members verify; protected-state hashes,
+  governed JSON, candidate whitespace, and `git diff --check` pass. No
+  runtime/client implementation, lifecycle/release/reliance, professional,
+  Task Management, or merge effect is inferred.
+- **Handoff:** C9 CHANGE owns same-branch commit/push, PR #491 body update,
+  and all-three-check monitoring on one exact head. The owner retains the
+  exact-checked-head merge gate.

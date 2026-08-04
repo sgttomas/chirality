@@ -1,0 +1,18 @@
+{
+  "schema_version": "chirality.agent-child-status/v1",
+  "run_id": "ROOT_FOUR_LANES_2026-08-02",
+  "parent_instance_id": "W5-DEL0206-ACCEPT-N0",
+  "child_instance_id": "N0-R2-W5",
+  "runtime_task_identity": "/root/w1_del0206/n0_r2_w5",
+  "runtime_parent_identity": "/root/w1_del0206",
+  "form": "EPHEMERAL_AGENT_2_GENERALIST",
+  "status": "COMPLETED_MANAGER_ACCEPTED",
+  "verdict": "RELEASE_N1_N2_N3",
+  "checks_passed": 26,
+  "checks_failed": 0,
+  "findings": 0,
+  "return_sha256": "ca8c1b18f6bd3d32ab7f1bad5d0cdc15d3bd31c811d3a2484ed38f61c64ac522",
+  "basis_report_sha256": "e11d4c2888d9d449e463c85ef5b06dad138b8eca7b9da00b123e51a346c97cd8",
+  "release_or_dispatch_performed": false,
+  "n1_n2_n3_manager_state": "HELD_BY_PARENT_PLAN_11_STOP_AFTER_N0"
+}

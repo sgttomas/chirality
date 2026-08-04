@@ -1,0 +1,165 @@
+{
+  "schema_version": "pia-u10-g1b-validation-target/v1",
+  "record_status": "MATERIALIZED_VALIDATION_TARGET_ENVELOPE_INCOMPLETE_PIA_U10_IDENTITY",
+  "identity_status_when_complete": "VALIDATION_TARGET",
+  "selection": {
+    "decision_id": "PIA-U10-G1",
+    "result": "SELECT_G1_B_FOR_VALIDATION_ONLY",
+    "family_id": "chirality.app.pi-agent-engine-adapter",
+    "ownership_boundary": "APP_AFFECTED_CLIENT"
+  },
+  "pia_u10_schema": {
+    "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/CANDIDATE_IDENTITY.schema.json",
+    "sha256": "ecb9f93908d7948c7d0b4ec284745a471ff4c4a096d9cb76e4fc46c396154a5c",
+    "schema_id": "https://chirality.dev/schemas/pi-implementation-identity/v1",
+    "instance_schema_version": "chirality.pi-implementation-identity/v1",
+    "canonicalization": "RFC8785-JCS(stable_identity)",
+    "materialization_rule": "Do not emit identity_digest_sha256 or registry_key until every schema-required stable_identity field is exact and provenance-bound."
+  },
+  "upstream_candidate": {
+    "package_name": "@earendil-works/pi-coding-agent",
+    "package_version": "0.82.0",
+    "package_integrity": "sha512-Qnqgn9zhJFQ2HZ8R4iNuGhyCk93XX6+eUw9i+TjTuo47amzCy93ft3bB6yaUCleCrNO58dJDHYSGNHv/GAPWKg==",
+    "integrity_source": "projects/chirality-app-dev/frontend/package-lock.json#node_modules/@earendil-works/pi-coding-agent",
+    "package_manifest_sha256": "TBD_PIA_U21_EXTRACTED_UPSTREAM_MANIFEST"
+  },
+  "frozen_current_app_bytes": [
+    {
+      "identity_role": "implementation_source",
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts",
+      "frozen_sha256": "34c8fd0978741720e74ba36beb3fdc7c9a06f31ed55b7da87c86525ac39c47ca",
+      "current_sha256": "34c8fd0978741720e74ba36beb3fdc7c9a06f31ed55b7da87c86525ac39c47ca",
+      "comparison": "MATCH"
+    },
+    {
+      "identity_role": "client_composition_source",
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-host.ts",
+      "frozen_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "current_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "comparison": "MATCH"
+    },
+    {
+      "identity_role": "app_package_manifest",
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "frozen_sha256": "1e62d22ec4a07fb225352c90ddfa5ce41d736d3d169e04cf7bd3684e54557c9c",
+      "current_sha256": "1e62d22ec4a07fb225352c90ddfa5ce41d736d3d169e04cf7bd3684e54557c9c",
+      "comparison": "MATCH"
+    },
+    {
+      "identity_role": "app_dependency_lock",
+      "path": "projects/chirality-app-dev/frontend/package-lock.json",
+      "frozen_sha256": "674fe2dab74572f21d26455498461d62eaa4218560e45024ed2a31e00c635ab8",
+      "current_sha256": "674fe2dab74572f21d26455498461d62eaa4218560e45024ed2a31e00c635ab8",
+      "comparison": "MATCH"
+    },
+    {
+      "identity_role": "packaged_proof_launcher",
+      "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-pi-runtime-proof.mjs",
+      "frozen_sha256": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+      "current_sha256": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+      "comparison": "MATCH"
+    },
+    {
+      "identity_role": "supply_chain_verifier",
+      "path": "projects/chirality-app-dev/frontend/scripts/verify-pi-supply-chain.mjs",
+      "frozen_sha256": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+      "current_sha256": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+      "comparison": "MATCH"
+    },
+    {
+      "identity_role": "pi_notice",
+      "path": "projects/chirality-app-dev/frontend/THIRD_PARTY_NOTICES_PI.md",
+      "frozen_sha256": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+      "current_sha256": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+      "comparison": "MATCH"
+    }
+  ],
+  "frozen_dependency_closure": {
+    "algorithm": "Sort the coding-agent lock subtree by lock path and emit <lock-path>\\t<version>\\t<resolved>\\t<integrity>\\n for the coding-agent root plus 139 nested entries.",
+    "entry_count": 140,
+    "sha256": "8fb3458ddafdbc861c5fc541775bddf2a2832d30476c78c2866535a4416fbc96",
+    "evidence": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/returns/E1-A2-DEP/RETURN.md#Complete transitive identity map",
+    "status": "PASS_PRECURSOR_NOT_FRESH_INSTALL_PROOF"
+  },
+  "observed_descriptor": {
+    "adapter_id": "pi",
+    "provider_id": "omlx",
+    "capabilities": {
+      "credentials": true,
+      "tools": true,
+      "attachments": false,
+      "interruption": true,
+      "durable_resume": false,
+      "compaction": true
+    }
+  },
+  "candidate_source_basis": {
+    "accepted_evaluation_snapshot": "97678a841ef58345c73d3470ed8de57c9b1405d2",
+    "unchanged_continuation_head": "4337990334c3e339a02c54de811d9f238246d524",
+    "rule": "File hashes, not a branch name or mutable latest pointer, identify the validation target."
+  },
+  "required_stable_identity_fields_not_yet_warranted": [
+    {
+      "schema_path": "stable_identity.upstream.package_manifest_sha256",
+      "value": "TBD",
+      "closure_owner": "PIA-U21",
+      "reason": "No immutable extracted upstream package manifest hash is preserved in the accepted H2 package."
+    },
+    {
+      "schema_path": "stable_identity.implementation.build_identity",
+      "value": "TBD",
+      "closure_owner": "PIA-U20/PIA-U22",
+      "reason": "Exact accepted repair/build recipe, toolchain profile, and produced artifact manifest do not yet exist."
+    },
+    {
+      "schema_path": "stable_identity.capability_profile.profile_id/profile_version/profile_sha256",
+      "value": "TBD",
+      "closure_owner": "Root identity contract instrument and PIA-U23",
+      "reason": "Observed capability booleans are frozen, but no accepted versioned profile record exists."
+    },
+    {
+      "schema_path": "stable_identity.registration",
+      "value": "TBD",
+      "closure_owner": "Root SCOPE_CHANGE/DEL-02-06 proposal lane",
+      "reason": "G1-B selects a validation target but does not authorize or create a live registration record."
+    },
+    {
+      "schema_path": "stable_identity.policy_bundle",
+      "value": "TBD",
+      "closure_owner": "Root identity contract instrument and App affected-client acceptance",
+      "reason": "No exact accepted policy-bundle record is part of PIA-U10."
+    },
+    {
+      "schema_path": "stable_identity.client_composition.composition_sha256",
+      "value": "TBD",
+      "closure_owner": "App accepted candidate freeze",
+      "reason": "The exact host source is frozen, but the schema calls for a canonical composition record rather than a source-file alias."
+    },
+    {
+      "schema_path": "stable_identity.packaging.packaging_policy_sha256/asset_manifest_sha256/target_platform_id",
+      "value": "TBD",
+      "closure_owner": "PIA-U22",
+      "reason": "Exact built package policy, asset inventory, and accepted target-platform record require the undispatched package proof."
+    },
+    {
+      "schema_path": "stable_identity.rollback.rollback_identity_ref/compatibility_epoch",
+      "value": "TBD",
+      "closure_owner": "Root/App owning instruments",
+      "reason": "D-APP-72 is the preserved authority basis, but no prior identity record or accepted compatibility epoch exists under the PIA-U10 schema."
+    }
+  ],
+  "digest_state": {
+    "identity_digest_sha256": "TBD_AFTER_COMPLETE_STABLE_IDENTITY",
+    "registry_key": "TBD_AFTER_COMPLETE_STABLE_IDENTITY",
+    "schema_validation": "BLOCKED_BY_EXPLICIT_TBD_FIELDS",
+    "claim": "This envelope materializes the selected G1-B target and exact known bytes; it is intentionally not represented as a conforming PIA-U10 identity instance."
+  },
+  "mutable_evidence_state": {
+    "evidence_bundle_refs": [],
+    "runtime_fingerprint_sha256": null,
+    "residency_epoch": null,
+    "live_model_id": null,
+    "validation_verdict": "UNKNOWN",
+    "note": "PIA-U20 through PIA-U30 are not dispatched by H4."
+  }
+}
