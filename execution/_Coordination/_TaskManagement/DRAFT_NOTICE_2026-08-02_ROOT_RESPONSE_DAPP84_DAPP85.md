@@ -1,6 +1,15 @@
 # DRAFT — Root response to D-APP-84 REV2 and D-APP-85
 
-Status: **DRAFT ONLY — NOT SHIPPED — NOT AUTHORITY**
+Status: **RETIRED 2026-08-03 — SUPERSEDED BY THE SHIPPED APP-SURFACE COPY — NOT AUTHORITY**
+
+> Retirement (owner ruling, 2026-08-03 generational pass): this root-side
+> draft duplicates the notice already shipped to the App surface at
+> `projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-02_ROOT_RESPONSE_DAPP84_DAPP85.md`
+> (SHA-256 `b4c6e9a67437618de517616ab411bb411bb099f543663ab14362c745e901b328`),
+> which is the sole live carrier. Retired rather than left as a second live
+> carrier per `RULING_2026-08-03_ROOT_HARVEST_SLATE.md` (closeout-tranche
+> instruction) and `RULING_2026-08-03_ROOT_DEFERRAL_REVIEW.md` (reminder).
+> Text below is retained as historical draft provenance only.
 Prepared in: Root Task Management closeout tranche
 Addressed to: Chirality App Dev loop
 Intended destination if the owner later authorizes shipping:

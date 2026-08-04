@@ -1,6 +1,16 @@
 # DRAFT handoff — App packet-residue deferral review
 
-Status: **DRAFT ONLY — NOT DISPATCHED — NO FOREIGN WRITE**
+Status: **RETIRED 2026-08-03 — OBE — NEVER DISPATCHED — NO FOREIGN WRITE**
+
+> Retirement (owner deferral-review ruling 3, 2026-08-03,
+> `RULING_2026-08-03_ROOT_DEFERRAL_REVIEW.md`): the bounded objective below
+> completed without the handoff — all 20 App counterpart rows are CLOSED
+> with owner dispositions and reciprocal Root citations in
+> `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv`
+> (SHA-256 `bfd4c32c45fc277e2b8243ae74fb459a899a26a95546495082db4eb680c89e73`),
+> and the 20 Root mirror rows closed `DUPLICATE` to those survivors under the
+> same ruling (see `DEFERRAL_REVIEW_CLASSIFICATION_2026-08-03.md` §1).
+> Text below is retained as historical draft provenance only.
 
 Prepared by: Root TASK_MANAGEMENT
 
