@@ -3106,3 +3106,50 @@
     App-planning input with PIA-U20 through PIA-U25 unaccepted and
     undispatched. This closes the session only and does not claim global or
     per-register semantic closure.
+
+- **2026-08-03 — Receipt 114** (generational-pass Task Management closeout).
+  - Receipt-ID: `Receipt-114`
+  - Examined-Through: `def4437d1586e730446a1537adfb8af1c512f626`
+  - Parent-Receipt: `Receipt-113`
+  - Owner-Direction: `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING` — owner
+    rulings relayed through the HELP_HUMAN coordination session; the
+    authoritative transcriptions and application records are in
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-03_GEN_PASS_HARVEST.md`
+    (harvest slate GP-01..GP-10) and
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-03_GEN_PASS_DEFERRAL.md`
+    (deferral review items 1–4).
+  - Pointers:
+    `execution/_Coordination/_TaskManagement/CANDIDATE_HARVEST_REPORT_2026-08-03_GEN_PASS.md`;
+    `execution/_Coordination/_TaskManagement/DEFERRAL_CLASSIFICATION_REPORT_2026-08-03_GEN_PASS.md`;
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-03_GEN_PASS_HARVEST.md`;
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-03_GEN_PASS_DEFERRAL.md`;
+    `execution/_Coordination/_TaskManagement/REGISTER.csv`;
+    `execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv`.
+  - Checks: federation preflight complete before each mode and at closeout
+    with coverage COMPLETE, zero register writes, and zero remaining
+    REMOTE_CLOSED_LOCAL_OPEN findings (counts in the session reports);
+    `taskmgmt validate` passes on the live register and the archive;
+    receipt-contract validation passes.
+  - Model-Attribution: Anthropic Claude (Fable 5, Claude Code)
+    TASK_MANAGEMENT Agent 1 under owner rulings; three read-only Claude
+    Opus 5 ephemeral-generalist Agent 2 sweeps (marker-class harvest,
+    dedupe/closure-echo analysis, deferral-trigger evidence) under sealed
+    briefs; no Agent 2 register writes.
+  - Gate-Outcome: `EXECUTED` — full PRD §5.1 harvest (deterministic scan
+    plus manual marker-class sweep) presented a 10-item slate; the owner
+    promoted five rows (TM-APP-036 MEDIUM, TM-APP-037 MEDIUM, TM-APP-038
+    HIGH, TM-APP-039 MEDIUM, TM-APP-040 LOW), ratified no-row screens for
+    GP-04, GP-05, GP-06, and GP-10 and the immutable-FINDINGS noise-block
+    screen enumerated in the harvest report, and confirmed the GP-08
+    maintenance carry. Deferral review classified every deferred row:
+    TM-APP-002 closed `RESOLVED_WITH_CHANGE` on the fired D-APP-86 trigger
+    and executed parity instrument (archived; TM-APP-036 carries the
+    surviving follow-ons; the TM-ROOT-036 duplicate chain terminates);
+    TM-APP-027, TM-APP-028, and TM-APP-032 retained DEFERRED with owner-
+    confirmed sharpened prospective triggers citing exact Root rows. The
+    TM-APP-032 draft notice to Root is held-superseded-pending-confirmation
+    and was not shipped (Root carrier authorized-in-flight; fallback
+    checkable at the next federation preflight). Register deltas are
+    recorded as counts in the ruling application records above. No routed
+    notices shipped; no foreign register touched. This closes the session
+    only and does not claim global or per-register semantic closure.
