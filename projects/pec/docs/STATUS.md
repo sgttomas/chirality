@@ -25,41 +25,41 @@ consumer-interface concordance adopted by `D-PEC-68`).**
 **Implementation:** the first bounded P1 slice is reviewed and exact-byte
 accepted under `D-PEC-74` O-A: the DEL-08-02 version-1 API JSON Schema,
 standard-library additive compatibility tests/fixtures, and exact registered-
-check profile. The five-item SELF_CHECK has zero findings; AC-005 is owner-
-confirmed at its recorded MEDIUM confidence; the exact schema, test, and three
-fixture bytes are accepted; and DEL-08-02 is `CHECKING`. No service, store,
-transport, runtime integration, later P1 node, release, or professional
-reliance is authorized. **D-PEC-75 is ruled O-A for DEL-01-06.** The owner
-accepted exact SOW SHA-256
-`7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`
-as the DEL-01-06 production contract. D-T0-27 is effective through exact PR
-#459 merge
-`d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; its exact PEC-v2 successor is
-`ADOPTED / READ_ONLY`, with D-T0-28/D-T0-29 effective as supporting
-amendments. Serialized fan-in opened only packet §§5.3–5.6, and WORKING_ITEMS
-completed that exact candidate slice: immutable core loop value/port,
-replaceable JSON adapter, one-entry PEC default/schema, fixtures/tests, and the
-exact project check profile. Twelve registry tests, six preserved API tests,
-and harness self-check pass. PR #463 merged exact REVIEW source
-`922ca0ea68d255b65292d59db89a98ef4cf59bc5` as
-`a753a7b0894371437a6add0f92653037e2df2dec`, with the source as second parent.
-Final snapshots `REV_DEL-01-06_2026-08-02_1110` and
-`REV_DEL-01-06_2026-08-02_1118` record AC-001 through AC-004 `PASS`, AC-005
-and AC-006 `PARTIAL` and unsatisfied, RF-001 `DEFERRED` with no VER-005
-waiver, and Gate 5 `HOLD` at unchanged `INITIALIZED`. RF-001 must reopen and
-SELF_CHECK must rerun when DEL-01-05 becomes available. No artifact byte is
-accepted; no next P1 node, release, or professional reliance is authorized.
-D-PEC-76 points to that Tier-0 ruling;
-following D-PEC-11 precedent, D-T0-27 owns the semantic profile act and
-D-PEC-76 creates no duplicate adoption. D-PEC-75's source-production and
-project-workflow authority was confined to the exact O-A fence and is now
-consumed; it grants no domain-profile, other source, lifecycle, or
-artifact-fitness act.
-Decomposition revision
-1.3 is the accepted current basis after `SCA-003` (2026-07-28; revision 1.2
-was the `SCA-002` basis); PROJECT_SETUP remains released with `FULL_GRAPH`
-already selected. Nothing in the PRD is an implementation mandate (each
-tranche needs its own owner-ruled packet).
+check profile. DEL-08-02 is `CHECKING`. D-PEC-77 later accepted the exact
+DEL-01-05 enforcement inventory, confirmed AC-010 and AC-011 G-A, and advanced
+DEL-01-05 to `CHECKING`. **D-PEC-75 remains ruled O-A for DEL-01-06.** Its
+accepted production contract remains SHA-256
+`7dfa008b44d7425ab7e4fc47260d089c3d739416d666f52657d7093492ecf38a`.
+The current SELF_CHECK snapshot
+`execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/` records
+AC-001 through AC-006 `PASS`, RF-001 `RESOLVED` with exact VER-005 evidence,
+and new RF-002 `MAJOR / OPEN / proposed REVISE`: the accepted SOW remains
+pinned to revision 1.3 / SOW-094 and says OI-003 is open, while accepted
+revision 1.4 maps SOW-077 and SOW-094 to DEL-01-06 and records OI-003 resolved
+by D-PEC-78 O-A. RF-002 is a separate WORKING_ITEMS + REVIEW contract-repair
+act and was not changed by metadata alignment. DEL-01-06 remains `INITIALIZED`
+under HOLD; no artifact byte is accepted and no next P1 node, release, or
+professional reliance is authorized. D-T0-27 remains `ADOPTED / READ_ONLY`
+through PR #459 merge `d9dc65804a0719fdf869af1ef60d53dc8cb0a895`; D-PEC-76
+creates no duplicate adoption. Decomposition revision 1.4 is the accepted
+current basis after `SCA-004`. PROJECT_SETUP has completed the 64-context,
+64-reference, and DEL-01-06 SOW-077-anchor subset; its closure handoff is
+`execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`.
+The nine TM-PEC-023 objective blanks remain held pending an exact
+SCOPE_CHANGE mapping-or-retain-blank ruling. Nothing in the PRD is an
+implementation mandate; each tranche needs its own owner-ruled packet.
+
+**Superseding owner ruling, 2026-08-03:** TM-PEC-023 now proceeds through a
+dedicated SCOPE_CHANGE mapping session; neither mappings nor blank retention is
+ruled, the nine values and COV-062..COV-070 remain open, and no urgency or
+downstream gate is implied. RF-002 disposition is `REVISE`, with execution and
+exact revised-SOW acceptance separately scheduled; RF-002 remains `TBD / OPEN`,
+Gate 5 remains HOLD, and DEL-01-06 remains `INITIALIZED` until acceptance.
+Metadata alignment is cleared. `DerivativePackageState` remains `INCOMPLETE`
+for exactly three component categories: (1) the TM-PEC-023 mapping-session
+amendment, (2) RF-002 revision plus exact REVIEW acceptance, and (3) ordinary
+SOW/SPEC currency already carried by SCA-004 / TM-PEC-013/014 for DEL-02-07,
+DEL-03-01, DEL-04-01, and DEL-00-03. No row is closed by this status note.
 
 **The old application** (v0.4-baseline prototype: `core/`, `server/`, `web/`,
 `agent-sidecar/`, `tools/`, `fixtures/`) is a **frozen reference corpus** —
@@ -72,13 +72,14 @@ read and cite only, no further feature work, retired product docs under
 
 0. ~~Decomposition~~ — **accepted 2026-07-24** (`D-PEC-60`, Gates 1–7).
    The canonical working package at `execution/_Decomposition/`
-   (`SOFTWARE_DECOMP.md` rev 1.3 `current_basis` after `SCA-003`
+   (`SOFTWARE_DECOMP.md` rev 1.4 `current_basis` after `SCA-004`
    + four CSV registers +
    `_LATEST.md` handoff state) is the authoritative downstream basis:
    11 packages (PKG-00..PKG-10), 64 deliverables, 94-row scope ledger.
 1. **PROJECT_SETUP / first build tranches** — materialize the owner-selected
    full dependency DAG from revision 1.1 (topology preserved through
-   revision 1.2 / `SCA-002` and revision 1.3 / `SCA-003`) before scaffolding
+   revision 1.2 / `SCA-002`, revision 1.3 / `SCA-003`, and revision 1.4 /
+   `SCA-004`) before scaffolding
    and the P1 slice
    *(amended by `D-PEC-62`, 2026-07-25: owner-ruled deliverable-local
    storage makes materialization co-land **with** scaffolding — DAG gate
@@ -99,6 +100,11 @@ read and cite only, no further feature work, retired product docs under
    PROJECT_SETUP re-pinned all 64 `_REFERENCES.md` packets to PRD v2.2 /
    revision 1.3; `D-PEC-69` reconciled the 11 affected complete contracts
    and `D-PEC-70` released `PEC-HOLD-001` after full-corpus validation.)*
+   *(amended 2026-08-03 after SCA-004: revision 1.4 is accepted under
+   D-PEC-78 O-A; PROJECT_SETUP aligned 64/64 context provenance blocks,
+   64/64 reference packets, and the DEL-01-06 non-gating SOW-077 anchor.
+   TM-PEC-023 remains held pending an exact mapping-or-retain-blank ruling;
+   DEL-01-06 RF-002 remains separate and open.)*
    *(amended by `D-PEC-72`, 2026-08-01: the three C-05 pre-P1 obligations
    completed SELF_CHECK and exact-hash owner acceptance; DEL-00-01,
    DEL-00-03, and DEL-10-01 are `CHECKING`; the owner closed C-05 at the
@@ -125,13 +131,14 @@ read and cite only, no further feature work, retired product docs under
    PR #459 merge identity, and WORKING_ITEMS completed only packet §§5.3–5.6.
    PR #463 merged exact REVIEW source
    `922ca0ea68d255b65292d59db89a98ef4cf59bc5` as
-   `a753a7b0894371437a6add0f92653037e2df2dec`. AC-001..004 pass; AC-005..006
-   remain partial and unsatisfied; RF-001 is deferred without a VER-005
-   waiver; and Gate 5 holds DEL-01-06 at `INITIALIZED`. When DEL-01-05 becomes
-   available, RF-001 must reopen and SELF_CHECK rerun. The remaining owner gate
-   is post-rerun RF-001 and Gate 5 disposition, followed separately by
-   exact-hash artifact fitness if supported. No artifact byte, next P1 node,
-   release, or professional reliance is authorized.
+   `a753a7b0894371437a6add0f92653037e2df2dec`. DEL-01-05 later became
+   available and the mandatory SELF_CHECK rerun passed: AC-001..006 pass,
+   RF-001 is resolved without waiving VER-005, and exact evidence is recorded
+   in `REV_DEL-01-06_2026-08-03_1458`. SCA-004 then exposed RF-002: the
+   accepted revision-1.3 SOW is stale against revision 1.4 and D-PEC-78 O-A.
+   RF-002 remains open under a separate WORKING_ITEMS + REVIEW act, and Gate 5
+   continues to hold DEL-01-06 at `INITIALIZED`. No artifact byte, next P1
+   node, release, or professional reliance is authorized.
 2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
    clause armed; receiving consumers retain their own authority and cadence) →
    P4 streams, per the standing plan and the deliverables' PhaseHints.
@@ -153,15 +160,18 @@ Decomposition session ruled and closed 2026-07-24 (`D-PEC-60`, Gates 1–7
 accepted; `execution/_Decomposition/**` opened by its fence for the
 canonical working package). Directed-bootstrap amendment `SCA-001` closed
 2026-07-24 under `D-PEC-61`; objective-mapping amendment `SCA-002` closed
-2026-07-25 under `D-PEC-64`; SCA-003 closed 2026-07-28 and revision 1.3
-is `current_basis`; all three sessions' immutable evidence lives under
+2026-07-25 under `D-PEC-64`; SCA-003 closed 2026-07-28; and SCA-004 closed
+for scope change on 2026-08-03 with revision 1.4 as `current_basis` under
+D-PEC-78 O-A. All four sessions' immutable evidence lives under
 `execution/_ScopeChange/`. `D-PEC-67` adopted exact pull-oriented /
 consumer-owned invariant rows; `D-PEC-68` reconciled the surrounding PRD;
 SCA-003 propagated C3/C15 and direct mirrors into accepted decomposition
 truth without changing topology, dependencies, lifecycle, or implementation.
 `D-PEC-69` then reconciled the complete affected ScopeOfWork population;
-`D-PEC-70` released the exceptional reliance hold. P1 source work remains
-separately owner-gated and fenced by `F-PEC-1`.
+`D-PEC-70` released the exceptional reliance hold. SCA-004 resolved OI-003
+in decomposition truth and the metadata subset is current, while DEL-01-06
+RF-002 and the nine TM-PEC-023 objective blanks remain separately gated. P1
+source work remains separately owner-gated and fenced by `F-PEC-1`.
 Domain-engine profile `_DomainEngines/profiles/pec.yaml` contains the exact
 D-T0-27 O-A PEC v2 `ADOPTED / READ_ONLY` postimage and is validator `VALID`,
 effective through PR #459 merge

@@ -130,3 +130,28 @@ The plan validates with five MODIFY rows and no live or derivative write.
 
 No later P1 node, release, professional reliance, lifecycle transition,
 foreign-loop write, or governed-act dependency is authorized by this handoff.
+
+## Supersession annotation — 2026-08-03
+
+This file remains point-in-time evidence; none of the recorded historical acts
+above is rewritten. For present-current state:
+
+- DEL-01-05 exact artifacts were accepted and owner-approved REVIEW Gate 5
+  advanced it to `CHECKING`. Current pointers are
+  `execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/FINAL_ACCEPTANCE_RULING_2026-08-03.md`
+  and `execution/_Evaluation/Reviews/REV_DEL-01-05_2026-08-03_1454/`.
+- SCA-004 Gate 5 executed; revision 1.4 is active and OI-003 is resolved by
+  D-PEC-78 O-A. Current pointers are `execution/_Decomposition/_LATEST.md`,
+  `execution/_ScopeChange/_LATEST.md`, and
+  `execution/_ScopeChange/SCA-004_2026-08-02_2325/Handoff_State.md`.
+- PROJECT_SETUP completed the 64-context, 64-reference, and DEL-01-06 SOW-077
+  anchor subset. Current pointer:
+  `execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`.
+- DEL-01-06 RF-001 is resolved with exact VER-005 evidence; RF-002 is separately
+  open and the lifecycle remains `INITIALIZED`. Current pointers are
+  `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REVIEW.md`,
+  `execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/Review_Findings.csv`, and
+  `execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-03_1458/`.
+- TM-PEC-023 is held pending an exact SCOPE_CHANGE mapping-or-retain-blank
+  ruling. No mapping, SOW repair, lifecycle, acceptance, release, or reliance
+  act is created by this annotation.

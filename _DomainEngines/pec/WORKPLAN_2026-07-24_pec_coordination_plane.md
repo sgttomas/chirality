@@ -4,6 +4,8 @@
 > `WORKPLAN_*.md` in this directory governs.
 > Consumer-interface posture amended 2026-07-27 under `D-PEC-68`, preserving
 > the exact PEC-K-03/-11 rows adopted by `D-PEC-67`.
+> Loop-registry posture amended 2026-08-03 under `D-PEC-78` O-A and SCA-004:
+> revision 1.4 is the current decomposition basis and OI-003 is resolved.
 
 # PEC Work Loop — coordination-plane standing plan
 
@@ -50,8 +52,8 @@ and never citable as authority.
 1. **Review the product gate.** PRD v2.2 is the product definition of record
    after `D-PEC-68`; its exact PEC-K-03/-11 rows were adopted by `D-PEC-67`.
    No PRD adoption is an implementation or receiving-loop mandate.
-2. **Use accepted decomposition truth.** `SOFTWARE_DECOMP` revision 1.3 is the
-   accepted downstream basis after SCA-003. Post-acceptance product propagation uses
+2. **Use accepted decomposition truth.** `SOFTWARE_DECOMP` revision 1.4 is the
+   accepted downstream basis after SCA-004. Post-acceptance product propagation uses
    SCOPE_CHANGE with its own owner gates; no implementation tranche is scoped
    from the PRD directly.
 3. **Fence source work.** Each implementation tranche requires an owner-ruled
@@ -73,7 +75,7 @@ Phases map to PRD v2.2 §12.
 | Order | Tranche | Completion test |
 |---|---|---|
 | P0 | Governance | `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68` ruled; this plan remains live at `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` |
-| D1 | Decomposition (`SOFTWARE_DECOMP` over PRD v2) | Gate 7 accepted; revision 1.3 is the authoritative downstream basis after SCA-003 until a separately accepted successor |
+| D1 | Decomposition (`SOFTWARE_DECOMP` over PRD v2) | Gate 7 accepted; revision 1.4 is the authoritative downstream basis after SCA-004 until a separately accepted successor |
 | P1 | One-loop reconciler + orientation store + read-only API | Parity diff vs practitioner harness clean or explained; rebuild-from-scratch within bound; kill test passes |
 | P2 | Dashboards across all registered loops | Under selected PRD v2.2 P2-B, owner use or non-use is recorded as uptake/falsification evidence; manual Step 0 remains available and no consumer is bound |
 | P3 | PEC-side opt-in integration interfaces/adapters usable by hooks CLI or daemon consumers, presence registry, Git/worktree scanner | Capability tests pass; consumer enablement/use measured without external conformance; overlap warnings fire on seeded conflicts; falsification clause armed |
@@ -88,8 +90,10 @@ The first loop the P1 reconciler ingests is PEC v2's own build.
   none.
 - The open product decisions in PRD v2 §16 must not be guessed where they
   materially affect architecture — register structuring at source, the daemon
-  global event feed, the loop-registry home, long-term placement, UI packaging,
-  auth reuse, and the name. None blocks P0–P2.
+  global event feed, long-term placement, UI packaging, auth reuse, and the
+  name. The loop-registry home and shape is no longer open: D-PEC-78 O-A
+  selected the existing PEC-owned strict-version-1 JSON/schema paths and
+  core-owned typed port. The remaining open decisions do not block P0–P2.
 - **`F-PEC-1..4` remain in force** as ruled in `D-T0-15` (F-PEC-4 as extended
   by `D-T0-19`); they are amended only by an explicit per-tranche packet clause.
 - Implementation writes to `core/`, `server/`, `web/`, or any new source tree
@@ -104,6 +108,15 @@ The first loop the P1 reconciler ingests is PEC v2's own build.
   turn-lock ownership (`D-GOV-20`, `D-PEC-56`). PEC dispatches nothing.
 - Rulings stay file-native (K-AUTH-1); PEC renders decision slates authored
   elsewhere and provides no ruling write path.
+- Superseding owner direction of 2026-08-03 sends TM-PEC-023 to a dedicated
+  SCOPE_CHANGE mapping session. Neither mappings nor blanks are ruled; the nine
+  values and COV-062..COV-070 remain open, with no downstream gate or urgency.
+  RF-002 is dispositioned `REVISE`, but revision and exact REVIEW acceptance
+  are separately scheduled; Gate 5 remains HOLD at `INITIALIZED`. Metadata
+  alignment is cleared. Derivative state remains `INCOMPLETE` for exactly
+  three categories: TM-PEC-023 amendment; RF-002 revision/acceptance; and the
+  SCA-004 / TM-PEC-013/014 DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03
+  ordinary SOW/SPEC currency lane. No Task Management row closes here.
 - **Named open follow-on:** supersession of the `pec.yaml` profile (the L3
   operation-proposal lane sunsets with the old product); the profile is
   superseded when v2 has shape, and the `_DomainEngines/pec` loop continues as
@@ -121,8 +134,11 @@ The first loop the P1 reconciler ingests is PEC v2's own build.
   and `_DomainEngines/_DECISIONS/_REGISTER.md`
 - Profile: `_DomainEngines/profiles/pec.yaml`
 - Project agent posture: `projects/pec/AGENTS.md`
-- Accepted decomposition pointer: `projects/pec/execution/_Decomposition/_LATEST.md` (revision 1.3)
-- Accepted scope-change pointer: `projects/pec/execution/_ScopeChange/_LATEST.md` (SCA-003)
+- Accepted decomposition pointer: `projects/pec/execution/_Decomposition/_LATEST.md` (revision 1.4)
+- Accepted scope-change pointer: `projects/pec/execution/_ScopeChange/_LATEST.md` (SCA-004)
+- SCA-004 metadata subset closure: `projects/pec/execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`
+- SCA-004 currency-sweep closure: `projects/pec/execution/_Coordination/WORKING_ITEMS_SCA004_CURRENCY_SWEEP_2026-08-03/HANDOFF_STATE.md`
+- DEL-01-06 RF-002 revision/acceptance preparation: `projects/pec/execution/_Coordination/DEL-01-06_RF002_REVISION_ACCEPTANCE_SESSION_PREP_2026-08-03/HANDOFF_STATE.md`
 - Loop handoff: `_DomainEngines/pec/LOOP_RECEIPTS.md`
 - Frozen reference corpus: `projects/pec/{core,server,web,agent-sidecar,tools}`
 - Build pipeline: `docs/DECOMPOSITION_STANDARD.md` and
