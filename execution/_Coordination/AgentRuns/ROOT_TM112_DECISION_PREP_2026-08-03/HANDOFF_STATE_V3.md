@@ -12,4 +12,3 @@
 - Trigger state: TM-PIP-032 not fired. TM-ROOT-112 remains separate.
 - Rerun: regenerate if current main, any basis-manifest hash, DEL package member,
   census source, or relevant register row changes before owner return.
-

@@ -1,7 +1,7 @@
 # Validation — ROOT_TM112_STOP_CONTRACT_2026-08-03
 
-Verdict: `PASS / STRUCTURAL AND CURRENTNESS ONLY`  
-Semantic status: `DECISION READY, NOT ACCEPTED`  
+Verdict: `PASS / STRUCTURAL AND CURRENTNESS ONLY`
+Semantic status: `DECISION READY, NOT ACCEPTED`
 Implementation: `HELD`
 
 ## Deterministic validation
@@ -51,4 +51,3 @@ This PASS proves packet structure, binding/currentness, internal coherence
 after independent refutation, and write containment. It is not human semantic
 acceptance, implementation proof, cross-platform Node proof, App causality, or
 process/SIGTERM proof.
-

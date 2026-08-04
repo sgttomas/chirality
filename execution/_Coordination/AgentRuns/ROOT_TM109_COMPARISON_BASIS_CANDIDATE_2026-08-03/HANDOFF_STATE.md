@@ -54,4 +54,3 @@ tests, validators, consumers, migration/rollback, evidence, and gates.
 The only current blocker is the accountable-human semantic decision. No
 technical preparation blocker remains. No cross-consumer match, conform, or
 compatibility claim is supportable from this package or any envelope alone.
-

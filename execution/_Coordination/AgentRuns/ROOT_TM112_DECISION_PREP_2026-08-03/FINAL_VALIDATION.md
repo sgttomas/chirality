@@ -27,4 +27,3 @@ Verdict: `PASS`
   `execution/_Coordination/LOOP_RECEIPTS.md`; the RunID is the sole untracked
   path. `git diff --check` passed and `git diff --cached --name-only` is empty.
   No source/test/register/foreign-loop/lifecycle/Git-index mutation occurred.
-

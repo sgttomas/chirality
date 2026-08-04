@@ -29,4 +29,3 @@
   wrapper; N4's direct sequential/unique/parent check passed. Root live/archive
   validators, package/basis hashes, structured parsing, ancestry, blob
   preservation, containment, and `git diff --check` passed.
-

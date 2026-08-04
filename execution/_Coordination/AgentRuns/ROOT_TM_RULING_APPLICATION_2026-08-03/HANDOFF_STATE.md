@@ -38,4 +38,3 @@ is requested or authorized.
 
 No rerun is required unless the notice bytes, ruling evidence, or Root
 live/archive register bytes change before routing/publication.
-

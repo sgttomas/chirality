@@ -50,4 +50,3 @@ refutation/repair, then present one of the bounded options in
 `NEXT_HUMAN_ACCEPTANCE_FORM.md`. An acceptance may establish semantic contract
 design bytes only. Implementation requires another separately sealed and
 authorized tranche.
-

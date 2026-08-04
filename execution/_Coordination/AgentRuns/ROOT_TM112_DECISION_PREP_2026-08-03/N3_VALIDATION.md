@@ -16,4 +16,3 @@ Verdict: `PASS`
 - Markdown/JSON/CSV read successfully; `git diff --check` PASS.
 - N3 write containment: RunID only. The sole tracked worktree change remains
   the already authorized N2 Root handoff repair; no N3 tracked or foreign edit.
-

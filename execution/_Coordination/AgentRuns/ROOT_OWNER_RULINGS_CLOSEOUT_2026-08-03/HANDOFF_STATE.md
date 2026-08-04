@@ -32,4 +32,3 @@ bytes and fresh refutation before exact semantic acceptance should be offered.
 All implementation remains held. The TM112 App notice is routed only after
 semantic acceptance and an accepted repair land. Git publication is a
 separate CHANGE act; merge remains the accountable human's gate.
-

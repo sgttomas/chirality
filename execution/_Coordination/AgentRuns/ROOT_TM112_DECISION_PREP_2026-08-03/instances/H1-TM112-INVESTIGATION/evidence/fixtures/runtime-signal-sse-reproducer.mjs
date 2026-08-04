@@ -143,4 +143,3 @@ if (mode === "child") {
     stderr
   }, null, 2));
 }
-

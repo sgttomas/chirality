@@ -209,4 +209,3 @@ proof that the subjects are equal, conformant, or compatible.
 - `CONFORMANCE_AND_NEGATIVE_CASES.md` — structural cases and forbidden claims;
 - `OPEN_DECISIONS.md` — unresolved human semantic choices; and
 - `NEXT_HUMAN_ACCEPTANCE_FORM.md` — bounded no-effect owner-return interface.
-

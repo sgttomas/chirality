@@ -144,4 +144,3 @@ claim merely because an envelope is present or structurally valid:
 - App parity or resume metadata;
 - Root API/runtime/session identity; or
 - Piping mapping/tolerance/review records.
-

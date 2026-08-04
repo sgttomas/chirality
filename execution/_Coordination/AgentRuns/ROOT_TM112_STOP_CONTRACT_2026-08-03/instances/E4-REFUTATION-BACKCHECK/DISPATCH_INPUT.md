@@ -18,4 +18,3 @@ Repair claims to verify:
 3. 500 ms is expressly accepted as policy uncertainty;
 4. concurrent-start testing is mapped; and
 5. pre-identity latch expires at force and is generation-owned/tested.
-

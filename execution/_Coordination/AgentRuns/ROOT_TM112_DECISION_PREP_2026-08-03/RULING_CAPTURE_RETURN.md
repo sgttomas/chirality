@@ -23,4 +23,3 @@ HELP_HUMAN must fan in this capture before releasing any separate effect lane.
 TM-ROOT-112 implementation remains held until exact grace/cancellation/residual
 semantics return from the human. TM121 releases semantic-candidate authoring and
 fresh refutation only. TM105/TM109 release separate candidate preparation only.
-

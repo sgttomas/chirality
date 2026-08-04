@@ -51,4 +51,3 @@ No source/runtime/package/App/Piping content, foreign register,
    containment, and whitespace checks pass.
 6. The outgoing Root-to-Piping notice states exactly what is and is not
    ruled and requests no Piping-register write.
-

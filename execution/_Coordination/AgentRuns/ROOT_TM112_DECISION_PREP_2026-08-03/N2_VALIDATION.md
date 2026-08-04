@@ -13,4 +13,3 @@ Verdict: `PASS`
 - Whitespace: `git diff --check` PASS.
 - Worktree: assigned RunID untracked plus the one authorized tracked handoff
   modification; no unrelated tracked edit.
-

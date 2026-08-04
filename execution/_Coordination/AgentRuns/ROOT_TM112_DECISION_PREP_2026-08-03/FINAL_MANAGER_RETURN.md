@@ -18,4 +18,3 @@ Remaining blockers are human rulings for TM-ROOT-112 and separately
 TM-ROOT-121/105/109. TM-PIP-032 remains unfired. App reruns only after an
 accepted Root repair. Git publication remains pending through CHANGE and the
 human gate. No decision or notice was made in N4.
-

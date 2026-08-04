@@ -35,4 +35,3 @@
 - **Next owner:** `HELP_HUMAN` presents the packet; accountable human returns a
   signed selection. No manager may treat validation, hashes, or publication as
   semantic acceptance.
-

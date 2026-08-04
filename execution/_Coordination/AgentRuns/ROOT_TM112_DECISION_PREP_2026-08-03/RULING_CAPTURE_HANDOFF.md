@@ -19,4 +19,3 @@
   authorized.
 - **Next owner:** HELP_HUMAN validates fan-in and releases bounded lanes; R1
   itself stops without effects.
-

@@ -1,7 +1,7 @@
 # HELPS_HUMANS manager return — TM-ROOT-112 semantic gate
 
-RunID: `ROOT_TM112_STOP_CONTRACT_2026-08-03`  
-Verdict: `PASS FOR ACCOUNTABLE-HUMAN DECISION / IMPLEMENTATION HELD`  
+RunID: `ROOT_TM112_STOP_CONTRACT_2026-08-03`
+Verdict: `PASS FOR ACCOUNTABLE-HUMAN DECISION / IMPLEMENTATION HELD`
 Artifact class: `DERIVATIVE DECISION SUPPORT — NON-AUTHORITATIVE`
 
 ## Outcome first
@@ -71,4 +71,3 @@ proved App R2 causality or signal/process behavior.
 Recommended owner action: use the exact G2/C1/F1 template in
 `OWNER_RETURN_TEMPLATES.md`, or choose one option per dimension through the
 alternate path (which requires regenerated/hash-bound clauses before work).
-

@@ -16,4 +16,3 @@ Read the two Root register CSVs and Receipt 90. Write only the Root handoff
 file and this RunID. Preserve all other handoff semantics/history. Do not edit
 register rows, workplan, receipts, source/tests, foreign loops, lifecycle, or
 Git. Return exact before/after text and deterministic checks. No Agent 2.
-

@@ -8,4 +8,3 @@
   and every Git action
 - Receipt: Root Receipt 91, parent Receipt 90
 - Validation: N4 closeout PASS; both Root TM registers PASS; Git diff contained
-

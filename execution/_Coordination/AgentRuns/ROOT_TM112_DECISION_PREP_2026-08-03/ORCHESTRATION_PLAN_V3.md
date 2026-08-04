@@ -26,4 +26,3 @@ evidence must not be folded into DEL-02-06 turn/recovery drain semantics.
 - machine-checkable forms validate option IDs and contain no supplied human
   signer/date or authoritative decision token;
 - all writes remain inside this RunID.
-

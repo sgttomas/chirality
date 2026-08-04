@@ -22,4 +22,3 @@ Receipt 91 is sequential from Receipt 90 and points to the bounded outputs;
 terminal artifacts state derivative status and all surviving gates; available
 validators, hashes, parsing, currentness, and containment checks pass or an
 unavailable Root-specific tool is stated exactly.
-

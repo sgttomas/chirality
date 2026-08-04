@@ -1,7 +1,7 @@
 # ORCHESTRATION PLAN — ROOT_TM112_STOP_CONTRACT_2026-08-03
 
-Manager: `HELPS_HUMANS` (Agent 1), managed by `HELP_HUMAN` (Agent 0)  
-Run posture: decision preparation only; no implementation  
+Manager: `HELPS_HUMANS` (Agent 1), managed by `HELP_HUMAN` (Agent 0)
+Run posture: decision preparation only; no implementation
 Authority: signed `ROOT-TM112-STOP-CONTRACT-01 OPTION 1` and Owner Addition 4 in
 `../ROOT_TM112_DECISION_PREP_2026-08-03/OWNER_RULING_TRANSCRIPT_2026-08-03.md`,
 SHA-256 `66b967008f67934b08383291e68ef0af9923463d749cac9dbe7a74090e9cbb06`.
@@ -56,4 +56,3 @@ dedicated specialist is proposed. Agent 2 instances do not delegate.
 - No implementation or out-of-scope write occurs.
 - Independent refutation is durable and dispositioned.
 - App notice stays conditional on semantic acceptance plus accepted repair.
-

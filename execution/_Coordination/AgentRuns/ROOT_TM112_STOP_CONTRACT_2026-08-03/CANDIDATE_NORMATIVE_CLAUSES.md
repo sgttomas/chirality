@@ -1,7 +1,7 @@
 # TM-ROOT-112 candidate normative clauses
 
-Status: `PROPOSAL — NON-AUTHORITATIVE UNTIL SIGNED OWNER RETURN`  
-Candidate set: `ROOT-TM112-SEMANTICS-01 / G2 + C1 + F1`  
+Status: `PROPOSAL — NON-AUTHORITATIVE UNTIL SIGNED OWNER RETURN`
+Candidate set: `ROOT-TM112-SEMANTICS-01 / G2 + C1 + F1`
 Implementation: `HELD`
 
 The words SHALL, MUST, and MAY below are proposed contract language only. They

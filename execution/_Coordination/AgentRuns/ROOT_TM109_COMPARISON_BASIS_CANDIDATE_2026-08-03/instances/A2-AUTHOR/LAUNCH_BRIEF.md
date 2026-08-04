@@ -63,4 +63,3 @@ receipt, App/Piping file, lifecycle state, or Git state.
 Report files written, material design choices, unresolved decisions,
 authority/claim calibration, self-checks, and any blocker. A successful return
 means candidate preparation is complete, not semantically accepted.
-

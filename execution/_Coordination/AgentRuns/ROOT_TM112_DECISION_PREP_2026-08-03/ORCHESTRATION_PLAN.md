@@ -44,4 +44,3 @@ Stop and escalate if the investigation requires a source/test/runtime repair,
 semantic contract selection, cross-loop write, register change, lifecycle or
 release change, or Git action. No Agent 2 is dispatched in N1; HELPS_HUMANS
 executes the bounded inquiry directly.
-

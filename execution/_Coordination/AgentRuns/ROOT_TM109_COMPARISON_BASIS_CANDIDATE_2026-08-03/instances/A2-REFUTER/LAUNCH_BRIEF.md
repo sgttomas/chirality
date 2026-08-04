@@ -75,4 +75,3 @@ Record launch hash verification, verdict, findings with severity and exact
 file/section evidence, deterministic checks and command results, boundary and
 claim-fence assessment, any recommended in-scope repair, and residual human
 decisions. Completion is read-only refutation evidence, never acceptance.
-

@@ -20,4 +20,3 @@
   persisted-turn semantics, multi-client/race cases, and candidate-repair
   restart proof.
 - Later nodes: N2 and N3 remain `HELD`; HELP_HUMAN validates N1 before release.
-

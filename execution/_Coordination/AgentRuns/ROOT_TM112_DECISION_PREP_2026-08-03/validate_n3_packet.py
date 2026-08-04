@@ -73,4 +73,3 @@ assert accept in packet
 assert packet.count("<ACCOUNTABLE_HUMAN_NAME>") >= 9
 assert "Status: `NON-AUTHORITATIVE / UNSIGNED DECISION PREPARATION`" in packet
 print("N3_PACKET_VALIDATION_PASS rows=27 options=54 census_tuples=4 forms=3 basis=22 signer_fields=null")
-

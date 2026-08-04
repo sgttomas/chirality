@@ -47,4 +47,3 @@ bytes. App `TM-APP-027/028` remain correctly unfired because no contract bytes
 were ruled. Piping `TM-PIP-032` now has actual ruling evidence for its own
 next trigger evaluation; no foreign-row effect was applied. Federation
 finding-class counts are unchanged from preflight.
-

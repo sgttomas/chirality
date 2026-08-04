@@ -41,4 +41,3 @@ not broaden R1 write scope.
   closure-Notes precision, separate durable carriers, App routing only after an
   accepted TM-ROOT-112 repair, and publication scope with merge withheld;
 - current HEAD/basis and containment checks pass; no effect application occurs.
-

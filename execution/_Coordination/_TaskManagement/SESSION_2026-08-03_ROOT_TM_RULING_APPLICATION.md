@@ -123,4 +123,3 @@ No source/runtime/package/App/Piping content, foreign register,
 `HANDOFF_STATE.md`, lifecycle, release, reliance, or Git action occurred.
 Register closure records the human disposition only and is not semantic
 acceptance of any future candidate.
-

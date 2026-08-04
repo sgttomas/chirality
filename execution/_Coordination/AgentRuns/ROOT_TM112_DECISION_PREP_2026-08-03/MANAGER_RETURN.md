@@ -108,4 +108,3 @@ client disconnect/interruption, shutdown logs, exit code, and restart outcome.
 `N1 COMPLETE / PASS FOR HELP_HUMAN FAN-IN`. Inquiry objective met; source
 repair and App acceptance remain open behind the recorded human/owner gate.
 N2 and N3 were not released or modified.
-

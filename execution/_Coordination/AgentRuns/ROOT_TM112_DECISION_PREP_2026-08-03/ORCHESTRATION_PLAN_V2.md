@@ -25,4 +25,3 @@ held. N2 is executed directly by HELPS_HUMANS; no Agent 2 is dispatched.
 - the only tracked diff is `execution/_Coordination/HANDOFF_STATE.md`;
 - all other writes remain under this RunID;
 - the exact before/after sentence and checks are returned to HELP_HUMAN.
-

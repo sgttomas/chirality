@@ -28,4 +28,3 @@ socket/auth/SSE wire format, pre-stream failure, client-disconnect
 interruption, and stale-socket/owner rejection. Teardown calls `daemon.stop()`
 after each test, but no existing test invokes stop while an ordinary request
 or SSE response remains live.
-

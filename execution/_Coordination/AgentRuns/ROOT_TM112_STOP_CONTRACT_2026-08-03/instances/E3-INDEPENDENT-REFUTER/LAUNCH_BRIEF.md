@@ -1,7 +1,7 @@
 # SEALED BRIEF — E3-INDEPENDENT-REFUTER
 
-Agent type/form: Agent 2 ephemeral generalist; no delegation.  
-Parent: HELPS_HUMANS.  
+Agent type/form: Agent 2 ephemeral generalist; no delegation.
+Parent: HELPS_HUMANS.
 Dispatch posture: held until manager draft exists.
 
 ## Objective
@@ -27,4 +27,3 @@ owner authority, N1 evidence, current source/tests, and accepted contracts.
   content, lifecycle, or Git. Do not use network. Do not delegate.
 - Findings: `BLOCK`, `REVIEW`, `WARN`, or `INFO`, each with evidence and an
   exact repair criterion. A clean result must list attempted refutations.
-

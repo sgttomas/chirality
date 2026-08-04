@@ -65,4 +65,3 @@ surface. Do not touch Piping's register. This is the sole remaining routing
 act from this manager return.
 
 No Git action was performed.
-

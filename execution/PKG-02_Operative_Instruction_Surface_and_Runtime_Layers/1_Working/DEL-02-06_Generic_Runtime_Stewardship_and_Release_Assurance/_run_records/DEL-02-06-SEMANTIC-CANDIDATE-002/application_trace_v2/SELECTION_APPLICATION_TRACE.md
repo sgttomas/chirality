@@ -10,7 +10,7 @@
 ## Source bindings
 
 The complete source identities are recorded in
-`candidate/OWNER_DECISION_RECORD_CANDIDATE_V2.md#exact-source-identities`.
+`candidate_v2/OWNER_DECISION_RECORD_CANDIDATE_V2.md#exact-source-identities`.
 This trace additionally binds the patch plan
 `e51075494a14576aa8d9357b6ad21928ea47065a2aa2488a02b6a4b96359cee1`,
 N2 `14abde6b3b5eb188555c55749c4b6105d8b4fad08d21e9cf3998a76ea9f4ee52`,
@@ -53,7 +53,7 @@ and accepted handoff
 ## Unselected-option preservation
 
 All 27 unselected option IDs and their short dispositions are recorded once in
-`candidate/OWNER_DECISION_RECORD_CANDIDATE_V2.md#selected-and-unselected-options`.
+`candidate_v2/OWNER_DECISION_RECORD_CANDIDATE_V2.md#selected-and-unselected-options`.
 Their authoritative full text remains hash-bound in the owner selection matrix
 and semantic patch plan. No unselected option was silently merged into a
 selected clause.

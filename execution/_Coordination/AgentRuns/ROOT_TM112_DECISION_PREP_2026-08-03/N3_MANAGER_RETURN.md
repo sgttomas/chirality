@@ -22,4 +22,3 @@ separate adjacent gate.
 
 Validation: `N3_PACKET_VALIDATION_PASS rows=27 options=54 census_tuples=4
 forms=3 basis=22 signer_fields=null`. N3 writes are contained to this RunID.
-

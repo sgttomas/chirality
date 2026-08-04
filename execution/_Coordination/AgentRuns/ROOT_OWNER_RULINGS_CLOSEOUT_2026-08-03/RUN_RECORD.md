@@ -60,4 +60,3 @@ the resulting current 24 live / 98 archived state. Receipt 93 records the
 ruling/application fan-in, completed notice route, candidate identities,
 pending human gates, and implementation holds without accepting candidate
 semantics.
-

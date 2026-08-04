@@ -131,4 +131,3 @@ Next: HELPS_HUMANS freezes these authored bytes, prepares the independent
 A2-REFUTER brief, resolves only in-scope defects, reruns validation, hashes the
 post-refutation package, and presents the bounded human semantic-acceptance
 interface. No implementation may begin from this return.
-

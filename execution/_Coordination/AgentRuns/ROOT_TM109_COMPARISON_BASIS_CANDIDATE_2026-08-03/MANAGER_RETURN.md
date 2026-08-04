@@ -75,4 +75,3 @@ This manager wrote only this RunID. It did not edit or take effects on Root
 registers, notices, receipts, App/Piping content, canonical documents, source,
 tests, decomposition, lifecycle, or Git. The sibling ruling-application and
 Piping-routing acts are separate workflows and are not candidate authority.
-

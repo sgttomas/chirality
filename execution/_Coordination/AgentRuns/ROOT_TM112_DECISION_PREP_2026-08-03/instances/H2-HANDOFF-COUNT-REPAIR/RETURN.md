@@ -9,4 +9,3 @@ whitespace checks pass. See `../../N2_MANAGER_RETURN.md` and
 `../../HANDOFF_STATE_V2.md`.
 
 N3 remains held.
-

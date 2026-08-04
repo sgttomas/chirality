@@ -13,4 +13,3 @@
 - Remaining blockers/holds: N3 remains held pending HELP_HUMAN validation;
   TM-ROOT-112 semantics/implementation and all other excluded actions remain
   held.
-

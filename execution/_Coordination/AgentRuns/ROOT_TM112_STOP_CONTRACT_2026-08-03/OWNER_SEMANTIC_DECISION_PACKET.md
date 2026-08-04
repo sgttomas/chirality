@@ -1,8 +1,8 @@
 # Owner semantic decision packet — TM-ROOT-112
 
-DecisionID: `ROOT-TM112-SEMANTICS-01`  
-RequestedBy: `HELPS_HUMANS`, managed by `HELP_HUMAN`  
-Status: `DECISION READY / UNSIGNED / IMPLEMENTATION HELD`  
+DecisionID: `ROOT-TM112-SEMANTICS-01`
+RequestedBy: `HELPS_HUMANS`, managed by `HELP_HUMAN`
+Status: `DECISION READY / UNSIGNED / IMPLEMENTATION HELD`
 Authority required: accountable human
 
 ## Decision requested

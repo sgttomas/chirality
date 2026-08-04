@@ -283,4 +283,3 @@ RULE TM-ROOT-109 TM109-C — DECLINE/DEFER; REENTRY TRIGGER: <EXACT_TRIGGER>; CR
 
 All contain null human fields or literal placeholders. None is a signed or
 authoritative decision instrument.
-

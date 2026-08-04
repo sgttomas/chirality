@@ -42,4 +42,3 @@ Applied the smallest coherent repair to
   index/branch/commit, or other tracked surface changed.
 
 N3 remains held. N2 creates no TM-ROOT-112 semantic or implementation effect.
-

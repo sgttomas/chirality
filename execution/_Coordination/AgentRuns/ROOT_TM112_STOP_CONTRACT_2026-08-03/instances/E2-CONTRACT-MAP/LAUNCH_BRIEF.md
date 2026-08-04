@@ -1,7 +1,7 @@
 # SEALED BRIEF — E2-CONTRACT-MAP
 
-Agent type/form: Agent 2 ephemeral generalist; no delegation.  
-Parent: HELPS_HUMANS.  
+Agent type/form: Agent 2 ephemeral generalist; no delegation.
+Parent: HELPS_HUMANS.
 Purpose: map accepted Root contracts, current source behavior, N1 results, and
 owner-approved minimum implementation/test scope without selecting authority.
 
@@ -35,4 +35,3 @@ Preserve App causality and process/SIGTERM calibration.
 
 Facts, inferences, proposals, and gaps are visibly distinct; all source and
 evidence citations are exact; no semantic option is silently ruled.
-

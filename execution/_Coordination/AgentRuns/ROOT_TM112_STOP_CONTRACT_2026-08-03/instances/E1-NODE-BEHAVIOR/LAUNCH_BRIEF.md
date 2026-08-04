@@ -1,7 +1,7 @@
 # SEALED BRIEF — E1-NODE-BEHAVIOR
 
-Agent type/form: Agent 2 ephemeral generalist; no delegation.  
-Parent: HELPS_HUMANS.  
+Agent type/form: Agent 2 ephemeral generalist; no delegation.
+Parent: HELPS_HUMANS.
 Purpose: establish primary installed-runtime behavior relevant to a bounded
 RuntimeDaemon graceful-stop contract.
 
@@ -36,4 +36,3 @@ and what server APIs do not guarantee. Identify Node-version/platform caveats.
 
 Every material claim cites a local path, exact command/output, or installed
 declaration. Recommendation is allowed but is non-authoritative. State gaps.
-

@@ -34,4 +34,3 @@ timeouts, process/connection/socket/cleanup results, static-vs-executed claim
 calibration, hypothesis verdict, contract fact/gap, warranted next scope and
 gate, coverage gaps, rerun requirements, containment and cleanliness checks.
 Produce manager return, run handoff, and instance return/status.
-

@@ -40,4 +40,3 @@ Verdict: `PASS`
 
 Executed validator:
 `validate_ruling_capture.py` → `RULING_CAPTURE_VALIDATION_PASS`.
-

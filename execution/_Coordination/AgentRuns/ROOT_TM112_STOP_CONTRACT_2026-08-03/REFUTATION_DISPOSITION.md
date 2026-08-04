@@ -32,4 +32,3 @@
 E4 found no remaining blocking contradiction, implementability failure, scope
 expansion, premature hold release, or evidence overclaim. The final structured
 parity repair does not alter the backchecked prose obligation or recommendation.
-

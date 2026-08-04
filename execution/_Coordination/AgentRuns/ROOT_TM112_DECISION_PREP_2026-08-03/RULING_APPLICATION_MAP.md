@@ -22,4 +22,3 @@ semantic return and repair; one each for TM105 and TM109 candidate/acceptance;
 one for TM121 semantic-candidate authoring/refutation; a Root-to-Piping notice;
 an App notice only after accepted TM-ROOT-112 repair; and a normal CHANGE/PR
 publication path without merge authority.
-

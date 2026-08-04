@@ -31,4 +31,3 @@ TM-ROOT-109 remain human gates; TM-PIP-032 remains unfired.
 - tracked content diff remains exactly the Root `HANDOFF_STATE.md` repair and
   Root `LOOP_RECEIPTS.md` append; the RunID remains untracked and Git remains
   unstaged, uncommitted, unpushed, and unmerged.
-

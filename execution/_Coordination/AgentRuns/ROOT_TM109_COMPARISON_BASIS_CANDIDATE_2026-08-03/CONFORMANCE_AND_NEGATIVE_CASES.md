@@ -94,4 +94,3 @@ accepted semantics, namespace mapping, reference resolution, evidence checks,
 or authorization are missing. It may not infer a default equality rule,
 canonicalization, tolerance, conversion, compatibility state, or acceptance
 from this candidate.
-

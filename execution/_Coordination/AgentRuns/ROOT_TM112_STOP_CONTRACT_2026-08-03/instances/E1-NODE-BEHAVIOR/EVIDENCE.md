@@ -306,4 +306,3 @@ to the peer.
   library. It is sufficient to show the class escapes `closeAllConnections()`.
 - No timing claim beyond “settled or still pending at the bounded observation”
   is made. The APIs expose no grace-duration policy.
-

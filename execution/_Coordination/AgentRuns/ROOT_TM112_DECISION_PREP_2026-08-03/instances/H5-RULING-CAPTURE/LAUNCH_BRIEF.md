@@ -18,4 +18,3 @@ accepted package, App/Piping, lifecycle, or Git write. No Agent 2.
 
 Stop after durable ruling capture, validation, v5 control-plane update, and R1
 return. Do not apply any ruling effect.
-

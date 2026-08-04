@@ -17,4 +17,3 @@ Tracked diff is exactly Root `HANDOFF_STATE.md` and `LOOP_RECEIPTS.md`; the
 RunID is untracked; the Git index is empty. No Root-format receipt-contract
 wrapper exists, so the direct sequential/unique/parent check was used and
 passed. Git publication remains held.
-

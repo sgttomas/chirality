@@ -10,4 +10,3 @@ See `../../MANAGER_RETURN.md`, `../../HANDOFF_STATE.md`, and
 `../../NOTICE_TO_HELP_HUMAN.md`.
 
 No change outside the assigned RunID or disposable `/tmp` occurred.
-

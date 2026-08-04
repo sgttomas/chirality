@@ -23,4 +23,3 @@ Read named live sources repo-wide. Write only inside this RunID. No owner token,
 signature/date, decision, semantic bytes, register/receipt/workplan/source or
 foreign-loop edit, routing, implementation, lifecycle, release, reliance, or
 Git action. No Agent 2.
-

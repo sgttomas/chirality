@@ -69,4 +69,3 @@ sockets in disposable directories.
    the platform length limit and stopped at the third case with `listen EINVAL`.
    The fixture was corrected to use short `/tmp/t112-*` paths; this pathname
    rejection is not a stop-behavior result.
-
