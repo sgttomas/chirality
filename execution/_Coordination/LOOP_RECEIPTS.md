@@ -3059,3 +3059,32 @@ amendment; owner ruling required).
   Root register closure, exact accepted product hashes, candidate whitespace,
   containment, and `git diff --check` pass. Publication is limited to the
   existing PR #510 branch; merge remains at the accountable human's gate.
+
+### Receipt 99 — 2026-08-04 — PR #510 current-main integration repair
+
+- **Authority and identities:** accountable-human direction in the
+  HELP_HUMAN session, “Repair accordingly,” after the two PR #510 receipt
+  conflicts were diagnosed. The integration joined approved PR head
+  `5281229e1699a6ec63a2a730c1426654df8485bb` with current `origin/main`
+  `82f47b358059446bf6655394c5feddb2a7e88d30`; effective merge commit
+  `33fc3d0cb4155b409063f0f201451128a640253b` has those two SHAs as its
+  parents in that order.
+- **Exact conflict disposition:** current-main App Receipts 115 and 116 and
+  Piping Receipt 90 were preserved. The PR's accepted-Root-repair receiving
+  record was renumbered App Receipt 115 → 117 with parent 116; the PR's
+  Root-105/109 receiving record was renumbered Piping Receipt 90 → 91 with
+  parent 90. No receipt content was dropped.
+- **Evidence rebinding:** all branch-local references and parent pointers were
+  updated. The current App ledger SHA-256 is
+  `dcd034a9d12065b41028498790b054693df52e368df9265c9928f90e0f375f64`;
+  the current Piping ledger SHA-256 is
+  `e6b9605a566c69145dbc73b2bcbffa722efb6a8b8e6f28631d2d2390c29a016d`,
+  and that exact Piping identity is rebound in its receiving run record.
+- **Validation and limits:** App and Piping receipt validators, candidate
+  whitespace against `origin/main`, merge diff checks, both routed-notice
+  byte comparisons, and receipt-ID uniqueness pass. The accepted TM112
+  product identities remain SPEC `647eee2d…d6a7f`, daemon
+  `22440300…ddf2`, and tests `c853f207…b352`; the integration changed no
+  `runtime/` path, so product suites were not rerun. This repairs branch
+  mergeability only and creates no new semantic, App/Piping disposition,
+  lifecycle, reliance, or merge-to-main authority.
