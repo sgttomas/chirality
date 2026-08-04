@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "chirality.tm112-implementation-carrier/v1",
+  "runId": "ROOT_TM112_IMPLEMENT_2026-08-03",
+  "implementationBrief": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_TM112_SEMANTIC_ACCEPTANCE_2026-08-03/IMPLEMENTATION_BRIEF.md",
+    "preNormalizationAuthoringExecutionSha256": "b8163531fb8f41142d6c067111fa84d2065ebd28c47f1c1e32e9218c16e6a218",
+    "whitespaceNormalizedPublishedSha256": "617512278aa93e05a07334b5f666e7a7e1f2e869882c33da6fd63b6fcdc92e9d",
+    "relationship": "SEMANTICALLY_IDENTICAL_WHITESPACE_NORMALIZATION",
+    "executionBinding": "preNormalizationAuthoringExecutionSha256",
+    "publicationBinding": "whitespaceNormalizedPublishedSha256"
+  },
+  "finalProducts": {
+    "docs/SPEC.md": "647eee2d8e68da9d6a4f7935b781b6b98c874ba696c824dd6d6a8f6c1b8d6a7f",
+    "runtime/packages/daemon/src/runtime-daemon.ts": "224403008e5ff072f1f614801afe4cedba6d3ade3c000c90ce1602ae8e27ddf2",
+    "runtime/tests/daemon.test.ts": "c853f20726c8633207246a90e79ac89122b651a15e6e0f9976b15f1910acb352"
+  },
+  "terminalEvidence": {
+    "i1bManagerRecoveredNormalizedSha256": "9f0e9b2a62343cc9334051e065b589736ff5cf09f7ed5aa5002778b06255b819",
+    "i2ManagerRecoveredRefutationNormalizedSha256": "693b84b42729306b1a4deb7343314c119959c44d52de78fd7d44f3d257c21d1a",
+    "i3ReturnSha256": "ae10f7cf4ae395a9548f290da01973c405b0f6b0e1ecaad08c6a7f52b5418dab",
+    "i4BackcheckPreCarrierRefreshSha256": "eda15a004c4916be3977c938b35a814c42fad1145b59fccd77d08f655c8e15a4",
+    "i4BackcheckNormalizedPublishedSha256": "dee9e481f70111f5a9fa77d5fc8f99546840d7c4c694794e0544e5d9490a22e3",
+    "i4ReturnSha256": "5a04da6d585c8ceaf744ce49228c9682d914224dc73963b58d5524daf68fdbdc",
+    "i4Verdict": "PASS_WITH_NONBLOCKING_FINDINGS",
+    "adversarial": "2/2 PASS",
+    "daemon": "15/15 PASS",
+    "runtime": "74/74 PASS",
+    "nodeFloorGap": "Node 22.19 unavailable; Node 24.18.0 executed"
+  }
+}

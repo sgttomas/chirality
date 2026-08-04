@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+    "typeRoots": ["/Users/ryan/dev/chirality/runtime/node_modules/@types"],
+    "baseUrl": "../../../../../../runtime",
+    "paths": {
+      "@chirality/runtime-contracts": ["packages/contracts/src/index.ts"],
+      "@chirality/runtime-core": ["packages/core/src/index.ts"],
+      "@chirality/runtime-daemon": ["packages/daemon/src/index.ts"],
+      "vitest": ["/Users/ryan/dev/chirality/runtime/node_modules/vitest/dist/index.d.ts"]
+    }
+  },
+  "files": [
+    "../../../../../../runtime/packages/daemon/src/runtime-daemon.ts",
+    "../../../../../../runtime/tests/daemon.test.ts"
+  ]
+}

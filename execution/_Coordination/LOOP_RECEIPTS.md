@@ -2917,3 +2917,68 @@ amendment; owner ruling required).
   closeout containment, and whitespace checks pass; exact evidence is under
   `AgentRuns/ROOT_OWNER_RULINGS_CLOSEOUT_2026-08-03/`. Git publication is a
   separate CHANGE act; merge remains the owner's gate.
+
+### Receipt 94 — 2026-08-03 — Root Task Management semantic-return echoes
+
+- **Authority and prerequisite:** accountable-human returns at
+  `AgentRuns/ROOT_SEMANTIC_RETURNS_2026-08-03/OWNER_RETURN_TRANSCRIPT_2026-08-03.txt`
+  (SHA-256 `6396dd26…c566`), recorded only after the owner-required PR #510
+  candidate-whitespace repair commit `2b6d53027...` and passing rerun
+  `30877532946` / job `91891904563`.
+- **Modes and register deltas:** mandatory preflight and final federation are
+  COMPLETE over four canonical registers with zero register writes. Row
+  maintenance changed only the Notes fields of live `TM-ROOT-111` and
+  `TM-ROOT-112` and archived `TM-ROOT-109`; no row was minted, closed,
+  reopened, deferred, elevated, archived, reprioritized, or reassigned. Root
+  remains 24 live (13 OPEN / 11 DEFERRED) and 98 archived.
+- **Calibrated echoes:** `TM-ROOT-111` cites PR #510's failed run
+  `30876341235` / job `91888465477`, repair commit, and passing rerun as
+  priority evidence only. `TM-ROOT-112` records accepted N-STOP-1..7 and
+  `G2 + C1 + F1` semantics while remaining OPEN for repair/tests/evidence;
+  the App notice remains conditional on accepted repair. `TM-ROOT-109`
+  records later exact design-byte acceptance while preserving its historical
+  preparation-only/no-contract-bytes-at-closure basis and leaving foreign
+  trigger evaluation App-local.
+- **Durable products and holds:**
+  `_TaskManagement/SESSION_2026-08-03_ROOT_SEMANTIC_RETURN_ECHOES.md` and
+  `AgentRuns/ROOT_TM_SEMANTIC_RETURNS_APPLICATION_2026-08-03/`. TM105 and DEL
+  have no Root-register effect from these returns. No source/test, semantic-
+  carrier, DEL, App/Piping, handoff-state, lifecycle, release, reliance, or
+  merge effect follows; PR #510 remains at the owner's gate.
+
+### Receipt 95 — 2026-08-03 — Semantic-return acceptance and TM112 implementation-candidate fan-in
+
+- **Authority and prerequisite:** signed owner returns at
+  `AgentRuns/ROOT_SEMANTIC_RETURNS_2026-08-03/OWNER_RETURN_TRANSCRIPT_2026-08-03.txt`
+  (SHA-256 `6396dd26…c566`), applied only after PR #510 repair commit
+  `2b6d53027…2f04` and passing hosted rerun `30877532946` / job
+  `91891904563`. Receipt 94 carries the resulting Notes-only register echoes;
+  Root remains 24 live (13 OPEN / 11 DEFERRED) and 98 archived.
+- **Accepted semantics:** TM109 exact package `2cec641d…9e489` is accepted as
+  contract-design semantics only, with every non-selection and
+  implementation/reliance hold preserved. TM112 N-STOP-1..7 and G2+C1+F1 are
+  accepted and released the already bounded three-file tranche. DEL-02-06 V2
+  exact package `6005a006…25e2` is accepted as semantic bytes in immutable
+  snapshot `DEL-02-06-SEMANTIC-BYTE-ACCEPTANCE-003`; epoch, complete binding,
+  N3 execution, implementation, lifecycle, and reliance remain held.
+- **TM112 implementation candidate:** bounded implementation, fresh
+  refutation, remediation, and fresh I4 backcheck are complete with no
+  material finding. Exact candidate hashes are SPEC `647eee2d…d6a7f`, daemon
+  `22440300…ddf2`, and tests `c853f207…b352`; Node 24 strict, adversarial 2/2,
+  daemon 15/15, full-runtime 74/74, build, and whitespace checks pass. Node
+  22.19 execution is an explicit unexecuted compatibility gap.
+- **Carrier normalization and TM105 evidence:** whitespace-only normalization
+  changed TM112 carrier identities without changing accepted semantics,
+  implementation scope, or product hashes. The normalized semantic brief is
+  `61751227…2e9d`, semantic carrier manifest `1f623f6d…ce84`, and
+  implementation identity manifest `adc86bc2…13bc`. TM105's bounded Phase-1
+  evidence census is complete at carrier manifest `ad52a2f7…c3773`: 8 of 21
+  TBDs have partial local evidence, 13 remain blocked, and 0 are resolved. No
+  no-TBD successor or TM105 byte gate exists.
+- **Holds and next gate:** the three TM112 product bytes are not yet human-
+  accepted. `ROOT-TM112-IMPLEMENTATION-ACCEPTANCE-01` is the next decision.
+  App notice routing, the TM-APP-036 parity rider, repair closure, App parity,
+  lifecycle, reliance, and merge remain held. TM105 evidence preparation may
+  continue with AB-01 and AB-09 without a byte gate while any implementation-
+  critical TBD survives. Full candidate-whitespace validation passes. PR #510
+  remains at the accountable human's merge gate.
