@@ -1,6 +1,6 @@
 # _REFERENCES — DEL-00-03
 
-- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.3, accepted `current_basis`; SCA-003 successor)
+- `execution/_Decomposition/SOFTWARE_DECOMP.md` (revision 1.4, accepted `current_basis`; SCA-004 successor)
 - `execution/_Decomposition/Deliverables.csv` (authoritative deliverable register)
 - `execution/_Decomposition/ScopeLedger.csv` (SOW→PKG→DEL→OBJ ledger; covers SOW-089)
 - `docs/PRD.md` v2.2 (accepted source corpus; see SourceRef column of the ledger)

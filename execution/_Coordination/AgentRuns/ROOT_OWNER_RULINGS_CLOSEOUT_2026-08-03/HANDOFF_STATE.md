@@ -8,7 +8,7 @@ RunID: `ROOT_OWNER_RULINGS_CLOSEOUT_2026-08-03`
   `66b967008f67934b08383291e68ef0af9923463d749cac9dbe7a74090e9cbb06`.
 - Root registers: 24 live (13 OPEN / 11 DEFERRED), 98 archived; both validate.
 - Receipt 92 records the three owner-ruled `RESOLVED_BY_DECISION` closures.
-- Piping Receipt 90 records byte-identical receipt of the 105/109 notice with
+- Piping Receipt 91 records byte-identical receipt of the 105/109 notice with
   no Piping disposition.
 
 ## Derivative-package status

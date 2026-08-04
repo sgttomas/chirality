@@ -11,7 +11,8 @@
 3. Evaluated the routing consequence without changing App authority or
    lifecycle state: `D-APP-88` owns local evaluation and `TM-APP-036` retains
    its mandatory non-blocking parity-rerun rider.
-4. Appended Receipt 115 with `Receipt-114` as its handoff basis.
+4. Appended Receipt 117 with `Receipt-116` as its handoff basis after
+   integrating the intervening App receipts from current `main`.
 5. Held all App implementation, parity-rerun, register, decision, plan,
    product/runtime, and lifecycle actions outside this run.
 

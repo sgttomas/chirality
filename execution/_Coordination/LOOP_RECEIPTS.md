@@ -2896,7 +2896,7 @@ amendment; owner ruling required).
   preparation-only posture and, for 105/109, state that no contract bytes were
   ruled. The Root-to-Piping notice at
   `NOTICE_2026-08-03_ROOT_TM-ROOT-105_109_SUBSTANTIVE_RULINGS.md` (SHA-256
-  `123c3a0f…a40e`) was routed byte-identically; Piping Receipt 90 records
+  `123c3a0f…a40e`) was routed byte-identically; Piping Receipt 91 records
   receipt without disposing TM-PIP-032 or changing a Piping register.
 - **Separate durable carriers:** TM105 candidate preparation is complete but
   semantics remain unaccepted (candidate SHA-256 `dcaf0790…83cc7`; a no-TBD
@@ -3042,12 +3042,12 @@ amendment; owner ruling required).
   `NOTICE_2026-08-04_ROOT_TM-ROOT-112_ACCEPTED_GRACEFUL_STOP_REPAIR.md`,
   SHA-256 `1029648d…a6ed3`, was copied byte-identically to App's ordinary
   coordination surface and verified equal.
-- **Receiving record:** App Receipt 115 records receipt and local evaluation
+- **Receiving record:** App Receipt 117 records receipt and local evaluation
   posture. The notice names `D-APP-88` and App `TM-APP-036`'s mandatory
   non-blocking parity-rerun rider. App owns any rerun, evidence, decision,
   register, or lifecycle consequence.
 - **Containment and limits:** the App receiving pass added only the notice,
-  Receipt 115, and its bounded evidence carrier under
+  Receipt 117, and its bounded evidence carrier under
   `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_RECEIVE_ROOT_TM112_ACCEPTED_REPAIR_2026-08-04/`.
   It changed no App register, plan, decision, product/runtime source, or
   lifecycle state and executed no parity rerun. Node 22.19 remains an

@@ -38,3 +38,14 @@ The exact owner ruling is preserved in `OWNER_RULING.md` and D-PEC-67.
 
 Any preimage, path, candidate identity, receipt sequence, or owner-direction
 drift requires revalidation or reissue before `CHANGE`.
+
+## Supersession annotation — 2026-08-03
+
+This file remains point-in-time evidence; none of the recorded historical acts
+above is rewritten. D-PEC-70 subsequently released `PEC-HOLD-001`; the
+canonical `execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv` is header-only.
+Current pointers are
+`execution/_Coordination/_DECISIONS/D-PEC-70_pec_hold_001_release.md`,
+`execution/_Decomposition/_LATEST.md`, and `execution/_ScopeChange/_LATEST.md`.
+The D-PEC-67 application remains historical authority for its recorded act;
+this annotation creates no lifecycle, release, reliance, or foreign-loop act.

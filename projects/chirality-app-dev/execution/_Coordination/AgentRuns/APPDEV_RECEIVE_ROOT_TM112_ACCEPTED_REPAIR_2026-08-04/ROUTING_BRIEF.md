@@ -12,14 +12,14 @@ surface and record the bounded App-side evaluation handoff.
   `execution/_Coordination/NOTICE_2026-08-04_ROOT_TM-ROOT-112_ACCEPTED_GRACEFUL_STOP_REPAIR.md`
 - Required source SHA-256:
   `1029648d039edd3c0449d0bea867853b033cc457a4b1f477c458dd4e127a6ed3`
-- App receipt parent: `Receipt-114`
+- App receipt parent: `Receipt-116`
 - Examined-through commit:
   `fa60348f93fb74079d352cac93c5ff440ac71226`
 
 ## Write scope
 
 - Byte-identical App-local copy of the source notice.
-- App Receipt 115.
+- App Receipt 117.
 - This run carrier only.
 
 ## Required disposition

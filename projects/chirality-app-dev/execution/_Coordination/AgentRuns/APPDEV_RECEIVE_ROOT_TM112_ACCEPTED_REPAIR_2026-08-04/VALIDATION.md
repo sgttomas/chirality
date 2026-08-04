@@ -20,7 +20,7 @@ candidates, so it supplies the required new-file whitespace check.
 
 ## Foreign containment
 
-The only changed App paths are the received notice, Receipt 115, and this
+The only changed App paths are the received notice, Receipt 117, and this
 run carrier. No App register, plan, product/runtime source, decision, or
 lifecycle path changed. No parity rerun was executed. Frontend/runtime checks
 were skipped because no App product or runtime source changed.
