@@ -3088,3 +3088,25 @@ amendment; owner ruling required).
   `runtime/` path, so product suites were not rerun. This repairs branch
   mergeability only and creates no new semantic, App/Piping disposition,
   lifecycle, reliance, or merge-to-main authority.
+
+### Receipt 100 — 2026-08-04 — TM112 G4 tranche-manifest repair
+
+- **Parent and finding:** Receipt 99. After the mergeability repair landed,
+  PR #510 governance-harness run `30919251068`, job `92025241054`, failed G4
+  because candidate diff `82f47b358…e88d30..HEAD` changed protected
+  instruction surface `docs/SPEC.md` without adding a schema-readable tranche
+  manifest. No runtime, receipt, or semantic validation failed in that job.
+- **Repair:** added manifest
+  `docs/governance_harness/tranche_manifests/ROOT-TM112-GRACEFUL-STOP-REPAIR-20260804.yaml`.
+  It binds the already-recorded bounded-tranche authorization, G2+C1+F1
+  semantic acceptance, exact implementation acceptance, and routed App
+  notice; it covers `docs/SPEC.md` and itself and grants no new authority.
+- **Checks and unchanged products:** G4 corpus validation passes with 30
+  schema-valid manifests; focused G4 diff validation against `origin/main`
+  passes with the single protected path covered by the new manifest.
+  Candidate whitespace and `git diff --check` pass. TM112 accepted hashes
+  remain SPEC `647eee2d…d6a7f`, daemon `22440300…ddf2`, and tests
+  `c853f207…b352`; no product byte changed in this repair.
+- **Gate:** publish the manifest repair on the existing PR #510 branch and
+  require fresh hosted checks. Merge-to-main remains at the accountable
+  human's separate gate.
