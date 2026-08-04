@@ -3185,3 +3185,39 @@
     selection, work dispatch, release, or reliance effect. The Root notice is
     coordination only. No foreign register or other App row changed; no Git
     action occurred, and merge remains owner-gated.
+
+- **2026-08-03 — Receipt 116** (D-APP-91 Option C ruling and candidate-whitespace coordination evidence).
+  - Receipt-ID: `Receipt-116`
+  - Examined-Through: `b0c5263d3a98e2fde9299eb072f4d5ba8a564535`
+  - Parent-Receipt: `Receipt-115`
+  - Owner-Direction: `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING` — the
+    authoritative D-APP-91 record transcribes the owner's exact Option C act
+    and same-ruling TM-PIP-025 issuance rider. The owner also relayed that the
+    App PR #509 was the second candidate-whitespace CI failure across loops
+    this round, Root PR #510 hit the identical class, and this is PRIORITY EVIDENCE
+    for Root row TM-ROOT-111 (local pre-push guards). That cross-loop fact is
+    coordination evidence only, not a Root register disposition or authority.
+  - Pointers:
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP90_FIRST_DOMAIN_UI_DELTA_RESUME_2026-08-03/WHITESPACE_REPAIR_BACKCHECK.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP90_FIRST_DOMAIN_UI_DELTA_RESUME_2026-08-03/reviews/A2_ADVERSARIAL_VERIFIER_RETURN_R5.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP90_FIRST_DOMAIN_UI_DELTA_RESUME_2026-08-03/VALIDATION.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP90_FIRST_DOMAIN_UI_DELTA_RESUME_2026-08-03/HANDOFF_STATE.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-91_PACKET_DUAL_TARGET_ARCHITECTURE_SELECTION_2026-08-03.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-91_RULING_BUILD_TIME_PRODUCT_PROFILES_SIX_BOUNDED_SLOTS_2026-08-03.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md`;
+    PR #509 repair commit
+    `b0c5263d3a98e2fde9299eb072f4d5ba8a564535`.
+  - Checks: exact candidate-whitespace validator against base
+    `88e7590d3664d4f1daf91bed2a8899bda0748b92` PASS with zero findings after
+    the repair commit; PR #509 checks restarted and remain pending at this
+    receipt; receipt contract, ruling uniqueness/token/rider, packet/ruling
+    hash binding, corpus v18, self-check, diff containment, and whitespace
+    checks pass at closeout.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS Agent 1 under HELP_HUMAN; no
+    Agent 2 dispatch for the ruling closeout.
+  - Gate-Outcome: `EXECUTED` — D-APP-91 is RULED Option C as an architecture
+    planning baseline only. The TM-PIP-025 rider is an operative issuance
+    condition on the first-domain exact-requirements packet. No product/source
+    work, PRD/decomposition/SCOPE_CHANGE, packaging identity, generic-runtime
+    semantics, implementation dispatch, Task Management or Root disposition,
+    lifecycle, release, reliance, or Git action occurred.
