@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "run_id": "ROOT_FOUR_LANES_2026-08-02",
-  "plan_version": 19,
+  "plan_version": 22,
   "selection_authority": "HUMAN",
   "posture": "MIXED",
   "basis": {
@@ -39,16 +39,22 @@
     {"id":"W6-R1","role":"WORKING_ITEMS","status":"COMPLETE_NON_SEMANTIC_PROVENANCE_REPAIR","depends_on":["C6"]},
     {"id":"C6-R2","role":"CHANGE","status":"STOPPED_CURRENT_MAIN_DRIFT_NO_GIT_EFFECT","depends_on":["W6-R1"]},
     {"id":"C7","role":"CHANGE","status":"COMPLETE_CURRENT_MAIN_SYNC_BYTE_IDENTICAL_RESTORE","depends_on":["C6-R2"]},
-    {"id":"C8","role":"CHANGE","status":"AUTHORIZED_SCOPED_COMMIT_PUSH_PR_UPDATE_NO_MERGE","depends_on":["C7"]}
+    {"id":"C8","role":"CHANGE","status":"COMPLETE_CHECKED_PR_491_OPEN_UNMERGED","depends_on":["C7"]},
+    {"id":"W7","role":"WORKING_ITEMS","status":"COMPLETE_DECISION_SUPPORT_READY_NOT_ADOPTED","depends_on":["W6"]},
+    {"id":"G-DEL-SELECTION","role":"HUMAN","status":"DEFERRED_POST_PR491_MERGE_COMMITTED_MAIN","depends_on":["W7"]},
+    {"id":"S7","role":"SCOPE_CHANGE","status":"COMPLETE_CLOSED_ZERO_ACTION_NO_GATE2","depends_on":["S6"]},
+    {"id":"W8","role":"WORKING_ITEMS","status":"COMPLETE_DEFERRED_DECISION_SUPPORT_ACCEPTED_PROVENANCE_NORMALIZED","depends_on":["W7"]},
+    {"id":"H5","role":"HELPS_HUMANS","status":"COMPLETE_ROUTED_G1B_APP_HANDOFF_ONLY","depends_on":["H4"]},
+    {"id":"C9","role":"CHANGE","status":"RELEASED_FOR_EXACT_TRANCHE_PUBLICATION_AND_CHECKS","depends_on":["S7","W8","H5"]}
   ],
   "holds": [
-    {"id":"HOLD-SCA-CLOSE","node":"S6","condition":"SCA-003 remains open; no closeout or _LATEST move without a separate owner ruling."},
-    {"id":"HOLD-DEL-SEMANTIC","node":"G-DEL-SEMANTIC","condition":"D1-D9, all sixteen TBD/OD6 items, affected-client census including PEC, and compatibility delta remain human-gated."},
-    {"id":"HOLD-IMPLEMENTATION","node":"G-DEL-SEMANTIC","condition":"No implementation until exact semantic bytes and a fresh read-only refutation are accepted, followed by a separately sealed implementation activation."},
+    {"id":"HOLD-SCA-CLOSE","node":"S7","condition":"DISCHARGED: SCA-003 closed zero-action/no-change; Gate 2 unopened and _LATEST unchanged."},
+    {"id":"HOLD-DEL-SEMANTIC","node":"G-DEL-SELECTION","condition":"Owner selection is deferred to a dedicated session against committed main after PR #491 merges; merge alone does not select or adopt."},
+    {"id":"HOLD-IMPLEMENTATION","node":"G-DEL-SELECTION","condition":"No adoption, implementation, or N0 restart before the dedicated owner selection and later separately sealed implementation authority."},
     {"id":"HOLD-PI","node":"H4","condition":"G1-B is validation-target selection only; no Pi approval, App supersession, App work, proof dispatch, lifecycle, release, or reliance effect."},
-    {"id":"HOLD-MERGE","node":"C6","condition":"PR merge remains the owner's Git gate."}
+    {"id":"HOLD-MERGE","node":"C9","condition":"PR #491 merge remains the owner's exact-checked-head Git gate."}
   ],
-  "integration_owner": "C8",
+  "integration_owner": "C9",
   "register_writes_authorized": false,
   "merge_authorized": false
 }

@@ -91,4 +91,6 @@ decision and must not be treated as an accepted `Impact_Assessment.md`:
 The owner answered the Gate-1 question affirmatively on 2026-08-03. This
 record stops at that confirmation. Gate 2, `Impact_Assessment.md`, amendment
 drafting, propagation planning, `_LATEST.md`, and all live writes remain
-unopened. SCA-003 remains open for a separately authorized owner closeout act.
+unopened. The separately authorized owner closeout act subsequently closed
+SCA-003 as zero action / no decomposition change; see
+`CLOSURE_RECORD_2026-08-03_ZERO_ACTION_NO_CHANGE.md`.

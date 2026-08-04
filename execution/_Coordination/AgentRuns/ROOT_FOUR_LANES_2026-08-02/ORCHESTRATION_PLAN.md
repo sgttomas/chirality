@@ -1,11 +1,11 @@
 # HELP_HUMAN orchestration plan — Root four-lane owner steer
 
 Run ID: `ROOT_FOUR_LANES_2026-08-02`
-Plan version: `15`
+Plan version: `22`
 Selection authority: `HUMAN`
 Descriptive posture: `MIXED`
-Repository basis: local HEAD `ba576264793deba0708397874414b7482c243f89`,
-containing `origin/main@379b8b19b12b29eda4fa307e497499d6fe414f8a`
+Repository basis: checked PR head `c886cc136cd095dbdc6e6e5841e1a8f91c8c329c`,
+containing `origin/main@cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3`
 Working root: repository root
 Supervising role: `HELP_HUMAN`
 
@@ -393,3 +393,76 @@ C8 is released for the same scoped closeout objective: final tranche audit,
 ordinary commit/push to the existing task branch, PR #491 body update, and
 actual hosted-state verification. All previous no-effect boundaries and the
 owner-only merge gate remain binding.
+
+## Amendment 19 — plan version 20
+
+After checked publication at `c886cc13...329c`, live-state review found that
+SCA-003 closeout, Pi App routing/version work, and PR merge remain explicit
+human gates. DEL-02-06 is also human-gated, but its current handoff asks the
+owner to resolve D1-D9 and sixteen TBD/OD6 items without a compact selection
+instrument. Producing better decision support is lawful and does not decide
+those values.
+
+W7 WORKING_ITEMS is authorized to prepare a derivative, decision-complete
+owner-selection package from the exact accepted N0-N6 planning basis. It must
+offer explicit evidence-grounded options and recommendations for D1-D9, map
+all sixteen TBD/OD6 items, separately disposition the client census including
+PEC `UNRESOLVED`, and present the compatibility `DELTA` choice. It must use a
+fresh read-only Agent 2 refutation before manager acceptance. W7 may not adopt
+any option, edit prior accepted/candidate/handoff bytes, implement or test
+runtime behavior, write a foreign loop or Task Management register, change
+lifecycle/release/reliance state, or perform Git/PR/merge acts.
+
+## Amendment 20 — plan version 21
+
+The owner accepted W7 manifest
+`623833310e2fa871bd895532f4831f87de97f2750ae92e03e0daeb9acf93329d`
+as decision support only and deferred all owner selection until a dedicated
+session against committed main after PR #491 merges. The same ruling closes
+SCA-003 as zero-action/no-decomposition-change without Gate 2 or `_LATEST.md`
+movement; authorizes routing the exact G1-B App work-acceptance handoff for
+PIA-U20–U25 without App acceptance, Pi approval, or PIA-U30 dispatch; and
+directs routine Git closeout to the same branch followed by exact-head check
+reporting, with merge retained as the owner's later act.
+
+S7 SCOPE_CHANGE owns the SCA-003 close record. W8 WORKING_ITEMS owns the DEL
+defer record and exact three-file terminal-newline normalization, with
+provenance reconciliation but no new semantic verifier. H5 HELPS_HUMANS owns
+the exact routed App notice. Their writes are disjoint and may run
+concurrently. C9 CHANGE is held for validated fan-in, then owns scoped
+commit/push, PR #491 update, and all-three-check monitoring. C9 may not merge.
+
+## Amendment 21 — plan version 22
+
+HELP_HUMAN accepted all three ruled manager returns after independent fan-in.
+S7 closed SCA-003 as `CLOSED_ZERO_ACTION_NO_DECOMPOSITION_CHANGE`; Gate 2 was
+not opened, no later gate is required, and `_ScopeChange/_LATEST.md` remains
+byte-identical at SHA-256
+`b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1`.
+S7 return SHA-256 is
+`13cbce630b1953848448a599b36f7bd5d2c90dca8c717a1b1354fdc63b76a034`.
+
+W8 recorded the W7 package as accepted decision support only and recorded
+owner selection as `DEFERRED` with the exact trigger: a dedicated owner
+selection session against committed main after PR #491 merges. The admitted
+manifest remains
+`623833310e2fa871bd895532f4831f87de97f2750ae92e03e0daeb9acf93329d`.
+Exactly the three owner-named surplus EOF bytes were removed with 3/3
+reappend-one-LF preimage proof; no additional semantic verifier ran. W8
+return SHA-256 is
+`6ec5ee9e02855887d4957e3885d3f1ea72bf446b65bcdc3d07ed9cd64e32635a`.
+
+H5 routed the ordinary App coordination notice at SHA-256
+`618c5c3edbf55a04eeefbf513e08a566fa1ef751febb3f6dcbe2c07e453af6b4`
+for proposed PIA-U20–U25 acceptance review. The route creates no App
+acceptance, Pi approval, or PIA-U30 dispatch. H5 return SHA-256 is
+`12ef39533deffcb1a22e407573c9691ef693d1a2e1ba89d8a344182fd6fad0b8`.
+
+Independent fan-in reproduced all six manager RETURN/STATUS identities,
+verified the exact W7 manifest and its three semantic members, confirmed
+protected paths and `_LATEST.md`, parsed governed JSON, passed whole-candidate
+whitespace, and passed `git diff --check`. C9 is therefore released as the
+sole Git integration owner to commit and push the exact W7/SCA-close/App-route
+closeout tranche, update PR #491, and wait for all three required checks on
+the resulting exact head. C9 may not rebase, force-push, amend, merge, perform
+semantic repair, or infer any deferred decision.

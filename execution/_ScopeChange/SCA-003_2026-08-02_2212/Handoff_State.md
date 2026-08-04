@@ -1,6 +1,6 @@
 # SCA-003 Gate-1 Handoff State
 
-Status: `OPEN_AFTER_GATE_1_CONFIRMED_ZERO_ACTIONS_NO_DECOMPOSITION_CHANGE`
+Status: `CLOSED_ZERO_ACTION_NO_DECOMPOSITION_CHANGE`
 
 | Field | Value |
 |---|---|
@@ -13,7 +13,7 @@ Status: `OPEN_AFTER_GATE_1_CONFIRMED_ZERO_ACTIONS_NO_DECOMPOSITION_CHANGE`
 | MetadataAlignmentState | `NOT_REQUIRED` |
 | AuditState | `NON_BLOCKING_PASS` — fresh return `ee10313f…420e1`; COV-POST-001 CLOSED; 0 BLOCKER / 0 WARNING / 14 INFO |
 | ReadyForNextPhase | `NO` |
-| ClosureVerdict | `OPEN_PENDING_SEPARATE_OWNER_CLOSEOUT_DIRECTION` |
+| ClosureVerdict | `CLOSED_FOR_SCOPE_CHANGE_ONLY` |
 
 ## Original intake result (superseded by S6)
 
@@ -162,3 +162,30 @@ merge effect occurred.
 The next owner is the human owner through `HELP_HUMAN`, solely to decide any
 separately authorized SCA-003 closeout step. No downstream authority is
 inferred.
+
+## S7 closure append — 2026-08-03
+
+Status: `CLOSED_ZERO_ACTION_NO_DECOMPOSITION_CHANGE`
+
+Owner ruling SHA-256 `671dd058…1aea` closed SCA-003 on the confirmed exact
+Gate-1 basis. Gate 2 remains `NOT_OPENED`; no `Impact_Assessment.md` exists;
+Gates 3–5 remain unopened and are not required for the zero-action
+no-amendment disposition. `_ScopeChange/_LATEST.md` remains byte-identical at
+SHA-256 `b2849c6e…80a1` and correctly continues to identify the last applied
+amendment rather than this historical no-op intake.
+
+| Field | Final closure value |
+|---|---|
+| DecompositionTruthState | `COMPLETE` — no SCA-003 amendment required |
+| DerivativePackageState | `COMPLETE` — no package changed or made stale |
+| ContentRemediationState | `NOT_REQUIRED` |
+| DownstreamRerunState | `NOT_REQUIRED` |
+| MetadataAlignmentState | `NOT_REQUIRED` |
+| AuditState | `NON_BLOCKING_PASS` |
+| ReadyForNextPhase | `NO` — SCA closed; no later gate open |
+| ClosureVerdict | `CLOSED_FOR_SCOPE_CHANGE_ONLY` |
+
+SCA-003 closure has no blocker and no rerun requirement. No next SCOPE_CHANGE
+owner is required. All exact generic-contract, activation, client,
+implementation, release, Task Management, and Git work remains with its own
+instrument and owner.

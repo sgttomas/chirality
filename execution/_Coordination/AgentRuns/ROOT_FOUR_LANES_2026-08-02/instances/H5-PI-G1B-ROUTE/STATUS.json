@@ -1,0 +1,91 @@
+{
+  "schema_version": "h5-pia-g1b-route-status/v1",
+  "instance_id": "H5-PI-G1B-ROUTE",
+  "node_id": "H5",
+  "terminal_status": "COMPLETE_EXACT_DRAFT_ROUTED_AS_APP_COORDINATION_NOTICE",
+  "decision_effect": "ROUTING_ONLY_NO_APP_ACCEPTANCE_OR_WORK_AUTHORITY",
+  "owner_ruling": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/OWNER_RULING_2026-08-03_SCA_CLOSE_DEL_DEFER_PI_ROUTE_GIT_CLOSEOUT.md",
+    "sha256": "671dd05838c75a0e885052f52e951ab5609ac44b4db66a90f0fe283cba071aea",
+    "item": 3
+  },
+  "source_draft": {
+    "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/DRAFT_APP_WORK_ACCEPTANCE_HANDOFF.md",
+    "sha256": "6bf77d22bbcd5f9cea55a795ce585d97aad387125d591ecc0cf888940c3c809d",
+    "preserved_byte_identically": true
+  },
+  "routed_notice": {
+    "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_PI_G1B_APP_WORK_ACCEPTANCE_HANDOFF.md",
+    "bytes": 10079,
+    "sha256": "618c5c3edbf55a04eeefbf513e08a566fa1ef751febb3f6dcbe2c07e453af6b4",
+    "artifact_class": "DERIVATIVE_COORDINATION_NOTICE_NOT_AUTHORITY"
+  },
+  "terminal_return": {
+    "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H5-PI-G1B-ROUTE/RETURN.md",
+    "bytes": 3890,
+    "sha256": "12ef39533deffcb1a22e407573c9691ef693d1a2e1ba89d8a344182fd6fad0b8"
+  },
+  "required_artifact_count": 3,
+  "artifacts": [
+    "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_PI_G1B_APP_WORK_ACCEPTANCE_HANDOFF.md",
+    "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H5-PI-G1B-ROUTE/RETURN.md",
+    "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H5-PI-G1B-ROUTE/STATUS.json"
+  ],
+  "carried_identities": {
+    "g1b_family_id": "chirality.app.pi-agent-engine-adapter",
+    "g1b_target_sha256": "c5b2087e070cc92cc3daecd35460497be47b6f9dff3155bde5b1cbd0aef2db01",
+    "work_units_sha256": "8b8b2ddaf8750bbb3e4ebb45e88452873f072bc373af104c53c8dca13ca51955",
+    "proposed_units": [
+      "PIA-U20",
+      "PIA-U21",
+      "PIA-U22",
+      "PIA-U23",
+      "PIA-U24",
+      "PIA-U25"
+    ]
+  },
+  "app_disposition_options": [
+    "ACCEPT_EXACT_WORK_UNITS",
+    "AMEND_OR_SPLIT_WORK_UNITS",
+    "DECLINE_WORK_UNITS",
+    "DEFER_WORK_UNITS"
+  ],
+  "validation": {
+    "owner_ruling_hash": "PASS",
+    "plan_v21_hash": "PASS",
+    "work_graph_v21_hash": "PASS",
+    "launch_brief_hash": "PASS",
+    "source_draft_hash_before_after": "PASS_UNCHANGED",
+    "g1b_target_hash": "PASS",
+    "work_units_hash": "PASS",
+    "candidate_file_hashes": "PASS_7_OF_7",
+    "notice_required_identities": "PASS",
+    "notice_proposed_units": "PASS_6_OF_6",
+    "notice_disposition_choices": "PASS_4_OF_4",
+    "notice_reciprocal_evidence_contract": "PASS",
+    "notice_no_authority_boundaries": "PASS",
+    "json_parse": "PASS",
+    "candidate_whitespace": "PASS",
+    "git_diff_check": "PASS",
+    "write_scope": "PASS",
+    "forbidden_surface_writes": "NONE"
+  },
+  "holds": [
+    "NO_APP_ACCEPTANCE",
+    "NO_APP_WORK_AUTHORIZATION_OR_DISPATCH",
+    "NO_PI_0820_APPROVAL",
+    "NO_DAPP72_OR_SCA_APP_002_SUPERSESSION",
+    "NO_PIA_U30_DISPATCH",
+    "NO_SOURCE_DEPENDENCY_LOCK_RUNTIME_AUTHORITY_DECOMPOSITION_REGISTER_WRITE",
+    "NO_NATIVE_PRIMITIVE_SANDBOX_OR_DURABLE_RESUME_ACTIVATION",
+    "NO_LIFECYCLE_RELEASE_RELIANCE_EFFECT",
+    "NO_TASK_MANAGEMENT_WRITE",
+    "NO_GIT_EFFECT"
+  ],
+  "closure": {
+    "h5_objective": "COMPLETE",
+    "pi_evidence_hold": "NOT_CLOSED",
+    "next_lawful_owner": "Human App owner under App instruments",
+    "response_required": false
+  }
+}

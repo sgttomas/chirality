@@ -2687,3 +2687,49 @@ amendment; owner ruling required).
   byte-identically; all 41 new PEC-only paths were disjoint; staged/unmerged
   counts are zero. The whole-candidate whitespace and full protected/DEL
   validation gates now pass, so ordinary PR publication is re-released.
+
+### Receipt 88 — 2026-08-03 — SCA closed; DEL selection deferred; G1-B App handoff routed
+
+- **Parent and posture:** Receipt 87. The general Root loop remains idle. This
+  receipt records the owner's exact closeout ruling for three already-open
+  lanes and releases ordinary Git publication; it does not start a Root
+  production phase.
+- **Owner authority:** ruling SHA-256
+  `671dd05838c75a0e885052f52e951ab5609ac44b4db66a90f0fe283cba071aea`
+  closes SCA-003, accepts W7 as decision support only while deferring DEL
+  selection, routes the App notice, and authorizes same-branch PR closeout.
+  It does not authorize merge or Task Management writes.
+- **SCA-003:** S7 return SHA-256
+  `13cbce630b1953848448a599b36f7bd5d2c90dca8c717a1b1354fdc63b76a034`
+  records `CLOSED_ZERO_ACTION_NO_DECOMPOSITION_CHANGE` and
+  `CLOSED_FOR_SCOPE_CHANGE_ONLY`. Gate 2 was not opened; later gates are not
+  required; the live decomposition remains `23f6ae0f...64f3d`; and
+  `_ScopeChange/_LATEST.md` is byte-identical at `b2849c6e...80a1`.
+- **DEL-02-06:** admitted W7 decision-support manifest
+  `623833310e2fa871bd895532f4831f87de97f2750ae92e03e0daeb9acf93329d`
+  is accepted as decision support only. Owner selection is `DEFERRED` with
+  trigger: a dedicated owner selection session against committed main after
+  PR #491 merges. Merge satisfies only the committed-main precondition. No
+  selection, adoption, implementation, or N0 restart occurs. W8 return
+  SHA-256 is
+  `6ec5ee9e02855887d4957e3885d3f1ea72bf446b65bcdc3d07ed9cd64e32635a`.
+- **Provenance hygiene:** exactly three W7 launch briefs lost one surplus
+  terminal LF each. The bridge at SHA-256
+  `019e2dd7f944d58deb27ab415d6b9fcd3a06a0f810742f0a195d3bb01b103848`
+  proves 3/3 execution-time preimages by re-appending one LF. The admitted
+  manifest and its three semantic member hashes are unchanged; no further
+  semantic verifier ran.
+- **Pi/App route:** ordinary App notice SHA-256
+  `618c5c3edbf55a04eeefbf513e08a566fa1ef751febb3f6dcbe2c07e453af6b4`
+  asks the App loop to disposition proposed PIA-U20–U25 under its own
+  instruments. Routing creates no App acceptance, work dispatch, Pi approval,
+  D-APP-72 supersession, or PIA-U30 dispatch. H5 return SHA-256 is
+  `12ef39533deffcb1a22e407573c9691ef693d1a2e1ba89d8a344182fd6fad0b8`.
+- **Fan-in checks:** all six S7/W8/H5 RETURN/STATUS identities reproduce; the
+  W7 manifest and all three semantic members verify; protected-state hashes,
+  governed JSON, candidate whitespace, and `git diff --check` pass. No
+  runtime/client implementation, lifecycle/release/reliance, professional,
+  Task Management, or merge effect is inferred.
+- **Handoff:** C9 CHANGE owns same-branch commit/push, PR #491 body update,
+  and all-three-check monitoring on one exact head. The owner retains the
+  exact-checked-head merge gate.

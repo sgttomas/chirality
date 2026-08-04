@@ -1,11 +1,11 @@
 # HELP_HUMAN handoff state — Root four-lane run
 
-Status: `OPEN AT DEL-02-06 SEMANTIC OWNER GATE — PLANNING PACKAGE COMPLETE NOT ADOPTED`
-Plan version: `14`
-Repository basis: local branch HEAD
-`ba576264793deba0708397874414b7482c243f89`, containing
-`origin/main@379b8b19b12b29eda4fa307e497499d6fe414f8a`; continuation bytes remain
-an uncommitted, unpushed candidate tranche
+Status: `GIT CLOSEOUT RELEASED — SCA CLOSED; DEL SELECTION DEFERRED; APP NOTICE ROUTED`
+Plan version: `22`
+Repository basis: checked PR head
+`c886cc136cd095dbdc6e6e5841e1a8f91c8c329c`, containing
+`origin/main@cf6bc15b966346f1d6c5bd27af6312c7b8e6a5c3`; the ruled closeout bytes
+remain an uncommitted, unpushed candidate tranche pending C9
 
 ## Accepted upstream state
 
@@ -379,3 +379,54 @@ Independent HELP_HUMAN ancestry, protected-hash, packet/acceptance, N6
 manifest, whitespace, and diff checks pass. C8 may perform ordinary scoped
 commit/push/PR #491 update only. Merge and every substantive human gate remain
 open and owner-controlled.
+
+## Plan-v20 DEL decision-support continuation — 2026-08-03
+
+The checked publication tranche is complete at `c886cc13...329c`; PR #491 is
+open and the merge gate remains human. W7 now owns preparation only of a
+decision-complete DEL-02-06 semantic selection slate. The package is
+derivative decision support: it may recommend but cannot adopt D1-D9,
+TBD/OD6, client-census, or compatibility-delta values. Fresh read-only
+refutation and exact source/hash traceability are mandatory. SCA closeout, Pi
+routing/approval, implementation, Task Management, lifecycle/release/reliance,
+Git publication, and merge remain outside W7.
+
+## Plan-v21 owner closeout ruling — 2026-08-03
+
+Owner ruling is recorded at
+`OWNER_RULING_2026-08-03_SCA_CLOSE_DEL_DEFER_PI_ROUTE_GIT_CLOSEOUT.md`.
+SCA-003 is directed closed as zero-action/no-decomposition-change with Gate 2
+unopened and `_LATEST.md` unchanged. W7 decision support is accepted as
+decision support only; DEL owner selection is deferred until a dedicated
+session against committed main after PR #491 merges, with no adoption,
+implementation, or N0 restart. The exact G1-B App handoff is authorized for
+routing only. C9 may commit/push/update PR #491 after S7/W8/H5 fan-in and
+report the new exact checked head; merge remains the owner's gate.
+
+## Plan-v22 ruled fan-in and CHANGE release — 2026-08-03
+
+The owner ruling at SHA-256
+`671dd05838c75a0e885052f52e951ab5609ac44b4db66a90f0fe283cba071aea`
+is fully reflected in the accepted manager fan-in.
+
+| Node | Accepted return | Current disposition |
+|---|---|---|
+| S7 | `13cbce630b1953848448a599b36f7bd5d2c90dca8c717a1b1354fdc63b76a034` | SCA-003 closed zero-action/no-decomposition-change; Gate 2 not opened; `_LATEST.md` unchanged. |
+| W8 | `6ec5ee9e02855887d4957e3885d3f1ea72bf446b65bcdc3d07ed9cd64e32635a` | W7 accepted as decision support only; owner selection deferred to the exact post-merge committed-main trigger; three EOF bytes normalized with provenance bridge. |
+| H5 | `12ef39533deffcb1a22e407573c9691ef693d1a2e1ba89d8a344182fd6fad0b8` | App notice routed at `618c5c3e…f6b4`; no App acceptance, Pi approval, or PIA-U30 dispatch. |
+
+### Closure and handoff state
+
+- SCA-003 is `CLOSED_FOR_SCOPE_CHANGE_ONLY`; it has no rerun or next
+  SCOPE_CHANGE owner. Gate 2 and later gates remain unopened, not pending.
+- DEL-02-06 remains `DEFERRED`. PR #491 merge will satisfy only the
+  committed-main precondition; the dedicated owner selection session must
+  still occur before any selection, adoption, implementation, or N0 restart.
+- The broader Pi evidence-hold phase remains open with App disposition and
+  all later Root decisions outstanding. Routing is coordination, not App
+  authority.
+- Task Management, lifecycle/release/reliance, runtime/client implementation,
+  and professional state are unchanged.
+- C9 owns the only remaining act in this tranche: ordinary commit/push, PR
+  #491 body update, and exact-head monitoring of all three required checks.
+  Merge remains the owner's separate gate.

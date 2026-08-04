@@ -142,3 +142,26 @@ Exact generic-contract, activation, client, implementation, and release work
 remains under its own instruments and gates. No `_LATEST.md`, DEL packet/N0,
 runtime/client/project, lifecycle/release/reliance, Task Management, Git, or
 merge effect is authorized or performed.
+
+## S7 zero-action closure append — 2026-08-03
+
+Owner ruling SHA-256
+`671dd05838c75a0e885052f52e951ab5609ac44b4db66a90f0fe283cba071aea`
+closed SCA-003 as zero action / no decomposition change, required Gate 2 to
+remain unopened, and required `_ScopeChange/_LATEST.md` to remain unchanged.
+
+| Item | Closure state |
+|---|---|
+| Parsed actions | `ZERO_ROWS`; `Parsed_Actions.csv` remains header-only |
+| Gate 1 | `CONFIRMED_ZERO_ACTIONS_NO_DECOMPOSITION_CHANGE` |
+| Gate 2 | `NOT_OPENED` |
+| Gates 3–5 | `NOT_OPENED_NOT_REQUIRED_FOR_ZERO_ACTION_DISPOSITION` |
+| SCA-003 | `CLOSED_ZERO_ACTION_NO_DECOMPOSITION_CHANGE` |
+| Closure verdict | `CLOSED_FOR_SCOPE_CHANGE_ONLY` |
+| `_LATEST.md` | byte-identical at `b2849c6e…80a1` |
+| Rerun requirement | `NONE` |
+
+No authoritative decomposition truth or derivative package changed in this
+close act. No Task Management row closure is authorized. The other parts of
+the owner ruling remain assigned to their separately bounded orchestration
+nodes and do not enlarge SCOPE_CHANGE authority.

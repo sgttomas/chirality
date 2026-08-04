@@ -1,0 +1,28 @@
+{
+  "schema_version": "chirality.agent-run-status/v1",
+  "instance_id": "W7-DEL0206-OWNER-SELECTION-VERIFY-R2",
+  "runtime_identity": "/root/w1_del0206/w7_verify_r2",
+  "runtime_parent": "/root/w1_del0206",
+  "role": "ephemeral-agent-2-read-only-verifier",
+  "status": "TERMINAL_ADMIT_NO_FINDINGS_NO_REPAIR",
+  "terminal": true,
+  "verdict": "ADMIT",
+  "declared_input_coverage": "44/44",
+  "decision_rows_reviewed": 27,
+  "option_mappings_reviewed": 54,
+  "evidence_pairs_reviewed": 81,
+  "material_findings": 0,
+  "minor_findings": 0,
+  "observation_findings": 0,
+  "prior_findings": {
+    "W7V-F01": "RESOLVED",
+    "W7V-F02": "RESOLVED"
+  },
+  "return_sha256": "988b8a18fbfeb713d220d2fbd992f3d257e4458f7fa44b769b3f252e67e9ef71",
+  "repair_performed": false,
+  "writes": 1,
+  "manager_disposition": "ACCEPTED_FOR_W7_INTEGRATION_ONLY",
+  "semantic_adoption": false,
+  "implementation_effect": false,
+  "git_effect": false
+}
