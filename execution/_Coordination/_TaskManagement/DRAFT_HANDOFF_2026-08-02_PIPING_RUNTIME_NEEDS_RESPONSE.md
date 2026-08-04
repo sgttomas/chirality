@@ -1,6 +1,17 @@
 # DRAFT handoff — Piping runtime-surface needs response
 
-Status: **DRAFT ONLY — NOT DISPATCHED — NO FOREIGN WRITE**
+Status: **RETIRED 2026-08-03 — OBE — NEVER DISPATCHED — NO FOREIGN WRITE**
+
+> Retirement (owner deferral-review ruling 3, 2026-08-03,
+> `RULING_2026-08-03_ROOT_DEFERRAL_REVIEW.md`): the bounded objective below
+> was satisfied without dispatch — Piping's own
+> `projects/chirality-piping/execution/_Coordination/COORDINATION_RESPONSE_2026-08-02_PIPING_RUNTIME_SURFACE_NEEDS.md`
+> (SHA-256 `e38c5614351ce45d77535c4bb234580bbbb1916a68a482660b6c3f4e230235e7`,
+> commit `c394365ca`) meets all six items of the return contract, including
+> the reciprocal `TM-ROOT-105`/`TM-ROOT-109` citations. Root's receipt
+> acknowledgment shipped as
+> `projects/chirality-piping/execution/_Coordination/NOTICE_2026-08-03_ROOT_TM-ROOT-105_109_RUNTIME_RESPONSE_ACK.md`.
+> Text below is retained as historical draft provenance only.
 
 Prepared by: Root TASK_MANAGEMENT
 

@@ -2770,3 +2770,64 @@ amendment; owner ruling required).
   (D-PEC-73, not D-PEC-72, is the PEC adoption ruling of record).
 - **This tranche's own merge identity** cannot be self-recorded here; it
   belongs in the PR's ordinary closeout comment after those acts occur.
+
+### Receipt 90 — 2026-08-03 — Root Task Management generational pass (harvest, deferral review, archive, closeout)
+
+- **Parent and posture:** Receipt 89. Owner-invoked TASK_MANAGEMENT
+  generational pass; agent-executed, every disposition owner-ruled;
+  human-gated PR held unmerged at the owner's gate. No production phase,
+  activation, lifecycle transition, or work-selection effect is created
+  (K-TM-3/4/5). Discovery breadcrumb only.
+- **Modes run:** mandatory federation preflight (verdict COMPLETE, 4/4
+  registers valid, zero register writes); candidate harvest (deterministic
+  `taskmgmt scan` plus manual sweep of unimplemented marker classes via
+  three read-only opus subagent sweeps); deferral review over the full
+  DEFERRED population; archive; closeout.
+- **Register deltas (counts, not rows):** 11 rows minted (TM-ROOT-112
+  through TM-ROOT-122) per the harvest ruling; 1 candidate declined as
+  duplicate and folded into an existing row's Notes; 21 rows closed (1
+  RESOLVED_WITH_CHANGE per ruling M2; 20 DUPLICATE to App survivors per
+  deferral-review ruling 1) and archived; 2 rows un-deferred to OPEN per
+  ruling M1; 1 trigger adopted per ruling M3; 4 cross-link Notes edits per
+  deferral-review ruling 2. Register after: 27 live (16 OPEN / 11 DEFERRED),
+  95 archived. Final federation pass: COMPLETE, zero register writes.
+- **Durable products (register home):** `CANDIDATE_HARVEST_2026-08-03.md`;
+  `RULING_2026-08-03_ROOT_HARVEST_SLATE.md`;
+  `DEFERRAL_REVIEW_CLASSIFICATION_2026-08-03.md`;
+  `RULING_2026-08-03_ROOT_DEFERRAL_REVIEW.md`.
+- **Routed notices shipped in this tranche:** to App —
+  `NOTICE_2026-08-03_ROOT_TM-ROOT-112_GRACEFUL_STOP_ROW.md` (satisfies the
+  App GP-06 reciprocity premise),
+  `NOTICE_2026-08-03_ROOT_TM-ROOT-117_DAPP48_CARRIER.md`,
+  `NOTICE_2026-08-03_ROOT_TM-ROOT-122_ELECTRON_AUTHORITY_DRIFT.md`; to
+  Piping — `NOTICE_2026-08-03_ROOT_TM-ROOT-113_RECEIPT_COUNT_DETECTOR_RESPONSE.md`
+  (the receiving Root ID TM-PIP-030 awaited),
+  `NOTICE_2026-08-03_ROOT_PIPING_RESUME_RESIDUALS.md` (three D-41 residual
+  owner acts incl. the addendum-9 evidence-loss question),
+  `NOTICE_2026-08-03_ROOT_TM-ROOT-105_109_RUNTIME_RESPONSE_ACK.md` (receipt
+  and un-deferral only; the substantive ruling on both rows is expressly
+  pending — the Piping trigger that fires on Root ruling has not fired).
+- **Retirements:** `DRAFT_HANDOFF_2026-08-02_PIPING_RUNTIME_NEEDS_RESPONSE.md`
+  and `DRAFT_HANDOFF_2026-08-02_APP_PACKET_RESIDUE_DEFERRAL_REVIEW.md`
+  retired OBE (their requested acts completed on committed state without
+  dispatch); `DRAFT_NOTICE_2026-08-02_ROOT_RESPONSE_DAPP84_DAPP85.md`
+  retired as superseded by the shipped App-surface copy.
+- **Reciprocal generation note (owner-directed):** the final federation
+  pass's sibling counts (PEC 11 OPEN / 1 DEFERRED; APP 7 / 4; PIP 4 / 23)
+  are pre-generation snapshots — all three child TM generations ran
+  concurrently today and their closeout PRs were unmerged when this pass
+  executed; the children's own closeout receipts carry the same reciprocal
+  note. Expected post-merge state for the next preflight: PEC 17/3, APP
+  12/3, PIP 8/26, plus inbound to this register: Piping's TM-PIP-031
+  elevation notice and PEC's shared-tool notice, both citing rows this
+  generation minted (TM-ROOT-113, TM-ROOT-118) — the next generation's
+  harvest should attach them to those rows, not mint new ones.
+- **M6 handoff-state repair obligation (owner-directed):**
+  `execution/_Coordination/HANDOFF_STATE.md` §1 register counts are stale
+  and outside Task Management write scope; the repair now owed by the next
+  root dev-loop session must record this generation's end state — 16 OPEN /
+  11 DEFERRED live, 95 archived — superseding both the pre-generation
+  staleness and the pre-PR-500 counts.
+- **This tranche's own merge identity** cannot be self-recorded here; it
+  belongs in the PR's ordinary closeout comment after those acts occur. The
+  PR merge remains the owner's gate.
