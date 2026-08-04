@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:chirality:tm105:candidate:grant-policy:v0",
+  "title": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE TM105 grant and policy structure v0",
+  "description": "Structural carrier only. Issuer, evaluator, policy authority, rights vocabulary, precedence, composition, activation, authentication, replay, expiry, revocation, and exact decision semantics remain TBD-105-20.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "candidateStatus"],
+  "properties": {
+    "schemaVersion": {"const": "tm105.grant-policy.candidate/v0"},
+    "candidateStatus": {"const": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE"},
+    "requestId": {"type": "string", "minLength": 1},
+    "runIdentityReference": {"$ref": "#/$defs/OpaqueReference"},
+    "toolReference": {"$ref": "#/$defs/OpaqueReference"},
+    "implementationReference": {"$ref": "#/$defs/OpaqueReference"},
+    "inputDigestReference": {"$ref": "#/$defs/OpaqueReference"},
+    "grantReferences": {"type": "array", "items": {"$ref": "#/$defs/OpaqueReference"}},
+    "policyReference": {"$ref": "#/$defs/OpaqueReference"},
+    "requestedRights": {
+      "description": "Opaque rights claims; no grammar is selected.",
+      "type": "array",
+      "items": {"$ref": "#/$defs/OpaqueClaim"}
+    },
+    "decision": {
+      "description": "Claimed decision token; no vocabulary or exact-allow token is selected.",
+      "type": "string",
+      "minLength": 1
+    },
+    "reasonCode": {"type": "string", "minLength": 1},
+    "evaluatorReference": {"$ref": "#/$defs/OpaqueReference"},
+    "evidenceReferences": {"type": "array", "items": {"$ref": "#/$defs/OpaqueReference"}},
+    "lifecycle": {
+      "description": "Opaque lifecycle facts. Presence does not select time, expiry, revocation, or supersession policy.",
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "$defs": {
+    "OpaqueReference": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1}
+      }
+    },
+    "OpaqueClaim": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["name"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "value": {}
+      }
+    }
+  },
+  "x-candidate-status": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+  "x-open-tbds": ["TBD-105-05", "TBD-105-06", "TBD-105-17", "TBD-105-20", "TBD-105-21"]
+}

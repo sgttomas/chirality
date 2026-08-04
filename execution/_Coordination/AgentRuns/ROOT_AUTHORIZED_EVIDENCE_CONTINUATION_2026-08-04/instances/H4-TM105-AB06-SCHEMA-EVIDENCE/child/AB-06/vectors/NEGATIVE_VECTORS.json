@@ -1,0 +1,80 @@
+{
+  "status": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+  "purpose": "Structural rejection corpus. Unknown-version failures show only this candidate parser posture and do not select future compatibility policy.",
+  "vectors": [
+    {
+      "id": "N-IDENTITY-REQUIRED-01",
+      "schema": "schemas/identity-envelope.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.identity-envelope.candidate/v0"},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "missing candidateStatus"
+    },
+    {
+      "id": "N-IDENTITY-TYPE-01",
+      "schema": "schemas/identity-envelope.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.identity-envelope.candidate/v0", "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE", "runId": 7},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "runId is not a string"
+    },
+    {
+      "id": "N-GRANT-TYPE-01",
+      "schema": "schemas/grant-policy.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.grant-policy.candidate/v0", "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE", "grantReferences": "not-an-array"},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "grantReferences is not an array"
+    },
+    {
+      "id": "N-CONTINUATION-REQUIRED-01",
+      "schema": "schemas/continuation.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.continuation.candidate/v0", "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE"},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "missing explicit existenceStatus TBD"
+    },
+    {
+      "id": "N-EVENT-REQUIRED-01",
+      "schema": "schemas/event-outcome.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.event-outcome.candidate/v0", "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE", "eventId": "e"},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "missing eventType"
+    },
+    {
+      "id": "N-STATE-TYPE-01",
+      "schema": "schemas/state-transition.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.state-transition.candidate/v0", "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE", "fromState": "A", "toState": 1, "disposition": "TBD"},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "toState is not a string"
+    },
+    {
+      "id": "N-DIGEST-ALT-01",
+      "schema": "schemas/digest-reference.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.digest-reference.candidate/v0", "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE", "alternative": "UNDECLARED_ALTERNATIVE", "payloadReference": {"id": "x"}},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "alternative is outside the three compared candidate families"
+    },
+    {
+      "id": "N-DIGEST-CONFLICT-01",
+      "schema": "schemas/digest-reference.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.digest-reference.candidate/v0", "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE", "alternative": "OPAQUE_ORIGINAL_BYTES", "payloadReference": {"id": "x"}, "canonicalizationProfileId": "profile"},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "opaque original bytes alternative must not claim a canonicalization profile"
+    },
+    {
+      "id": "N-UNKNOWN-VERSION-IDENTITY-01",
+      "schema": "schemas/identity-envelope.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.identity-envelope.candidate/v999", "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE"},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "unknown schemaVersion does not match this v0 candidate",
+      "futureVersionPolicy": "TBD",
+      "policyEffect": "NONE"
+    },
+    {
+      "id": "N-UNKNOWN-VERSION-GRANT-01",
+      "schema": "schemas/grant-policy.candidate.v0.json",
+      "instance": {"schemaVersion": "tm105.grant-policy.candidate/v1", "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE"},
+      "expectedSchemaResult": "REJECT",
+      "structuralReason": "unknown schemaVersion does not match this v0 candidate",
+      "futureVersionPolicy": "TBD",
+      "policyEffect": "NONE"
+    }
+  ]
+}

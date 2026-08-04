@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:chirality:tm105:candidate:state-transition:v0",
+  "title": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE TM105 state transition record v0",
+  "description": "Records an observed or proposed transition without selecting a state vocabulary, allowlist, terminal policy, timing, interruption mapping, or recovery mapping.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "candidateStatus", "fromState", "toState", "disposition"],
+  "properties": {
+    "schemaVersion": {"const": "tm105.state-transition.candidate/v0"},
+    "candidateStatus": {"const": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE"},
+    "fromState": {"type": "string", "minLength": 1},
+    "toState": {"type": "string", "minLength": 1},
+    "trigger": {"type": "string", "minLength": 1},
+    "disposition": {"enum": ["OBSERVED_CURRENT_EVIDENCE", "PROPOSED_UNSELECTED", "CONFLICTING_CURRENT_EVIDENCE", "TBD"]},
+    "evidenceReferences": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "unresolvedAlternatives": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "forbiddenInference": {"type": "string", "minLength": 1},
+    "owningLaterGate": {"type": "string", "minLength": 1}
+  },
+  "x-candidate-status": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+  "x-open-tbds": ["TBD-105-04", "TBD-105-10", "TBD-105-11", "TBD-105-15", "TBD-105-16"]
+}

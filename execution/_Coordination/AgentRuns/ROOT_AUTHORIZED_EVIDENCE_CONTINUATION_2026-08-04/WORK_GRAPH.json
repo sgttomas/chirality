@@ -1,0 +1,40 @@
+{
+  "run_id": "ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {
+      "id": "H1",
+      "role": "HELPS_HUMANS",
+      "objective": "Refresh and re-ingest the TM-ROOT-106 G1-B validation target against the owner-verified seven-hash set without widening authority.",
+      "dependencies": [],
+      "write_ownership": [
+        "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H1-TM106-G1B-REFRESH/",
+        "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_refresh_2026-08-04/"
+      ],
+      "fan_in_gate": "validated terminal RETURN and HANDOFF; exact hashes; disjoint-write proof; all Pi and PIA holds preserved"
+    },
+    {
+      "id": "H2",
+      "role": "HELPS_HUMANS",
+      "objective": "Execute TM105 AB-01 and AB-09 as evidence-only work with explicit UNKNOWNs and no byte gate.",
+      "dependencies": [],
+      "write_ownership": [
+        "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H2-TM105-AB01-AB09/"
+      ],
+      "fan_in_gate": "manager-validated Agent-2 returns; evidence hashes; disjoint-write proof; no inferred facts, semantics, implementation, or byte gate"
+    }
+  ],
+  "edges": [],
+  "concurrency": [
+    ["H1", "H2"]
+  ],
+  "human_decision_points": [
+    "Pi approval or supersession",
+    "PIA-U30 dispatch",
+    "owner/vendor/platform fact selection",
+    "TM105 semantic acceptance or implementation",
+    "lifecycle, release, reliance, or merge"
+  ]
+}

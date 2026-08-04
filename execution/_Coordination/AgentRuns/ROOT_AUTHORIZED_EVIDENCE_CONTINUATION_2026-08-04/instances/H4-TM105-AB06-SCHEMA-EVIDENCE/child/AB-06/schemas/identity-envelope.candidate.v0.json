@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:chirality:tm105:candidate:identity-envelope:v0",
+  "title": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE TM105 identity envelope v0",
+  "description": "Structural design evidence only. It does not select identity meaning, lifetime, rollover, backend, policy, rights, family, compatibility, or digest semantics.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "candidateStatus"],
+  "properties": {
+    "schemaVersion": {"const": "tm105.identity-envelope.candidate/v0"},
+    "candidateStatus": {"const": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE"},
+    "runId": {"type": "string", "minLength": 1},
+    "sessionId": {"type": "string", "minLength": 1},
+    "agentInstanceId": {"type": "string", "minLength": 1},
+    "agentRole": {"type": "string", "minLength": 1},
+    "parentIdentity": {
+      "description": "Presence, nullability, lineage meaning, and inheritance effects remain TBD-105-03/04.",
+      "anyOf": [{"$ref": "#/$defs/OpaqueIdentity"}, {"type": "null"}]
+    },
+    "briefReference": {"$ref": "#/$defs/OpaqueReference"},
+    "sandboxProfileIdentity": {"$ref": "#/$defs/OpaqueIdentity"},
+    "backendIdentity": {"$ref": "#/$defs/OpaqueIdentity"},
+    "policyIdentity": {"$ref": "#/$defs/OpaqueIdentity"},
+    "toolRegistryIdentity": {"$ref": "#/$defs/OpaqueIdentity"},
+    "implementationFamilyBindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["toolReference", "familyReference"],
+        "properties": {
+          "toolReference": {"$ref": "#/$defs/OpaqueIdentity"},
+          "familyReference": {"$ref": "#/$defs/OpaqueIdentity"}
+        }
+      }
+    },
+    "consumerPolicyReferences": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/OpaqueReference"}
+    },
+    "tm109AdjacentProvenanceReference": {
+      "description": "Opaque pointer only; does not import or widen TM109 semantics.",
+      "$ref": "#/$defs/OpaqueReference"
+    }
+  },
+  "$defs": {
+    "OpaqueIdentity": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1},
+        "digestReference": {"$ref": "#/$defs/OpaqueReference"}
+      }
+    },
+    "OpaqueReference": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "version": {"type": "string", "minLength": 1}
+      }
+    }
+  },
+  "x-candidate-status": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+  "x-open-tbds": ["TBD-105-02", "TBD-105-03", "TBD-105-04", "TBD-105-07", "TBD-105-17", "TBD-105-20", "TBD-105-21"]
+}

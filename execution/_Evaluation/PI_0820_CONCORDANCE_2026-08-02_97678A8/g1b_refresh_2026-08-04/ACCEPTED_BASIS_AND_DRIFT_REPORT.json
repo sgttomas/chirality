@@ -1,0 +1,221 @@
+{
+  "schema_version": "root-tm106-g1b-refresh-basis-drift/v1",
+  "artifact_class": "DERIVATIVE_PACKAGE",
+  "status": "COMPLETE_CURRENT_HASH_SET_MATCH",
+  "run_id": "ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04",
+  "instance_id": "H1-TM106-G1B-REFRESH",
+  "observed_date": "2026-08-04",
+  "objective": "Refresh and re-ingest the existing G1-B validation target against the owner-verified seven-hash App set without widening authority.",
+  "repository_observation": {
+    "accepted_current_state_from_parent_plan": "origin/main@cdc76a1d398231267f1379e7143b4de27abaa01b",
+    "checkout_head": "26f505e4d5a90ec10a87e6fbe982231de19b80c7",
+    "checkout_head_is_ancestor_of_accepted_current_state": true,
+    "seven_candidate_files_match_origin_main": true,
+    "seven_candidate_files_dirty_against_checkout_head": false,
+    "observation_rule": "The seven regular tracked file bytes and their SHA-256 values identify this refresh; neither a branch name nor mutable working state is treated as target authority."
+  },
+  "accepted_upstream": [
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/ORCHESTRATION_PLAN.md",
+      "sha256": "a4356677c86481eb289e23352945d4873e1863a7662fa113d5757867ab2c2695",
+      "role": "HELP_HUMAN parent plan and bounded H1 authorization"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H1-TM106-G1B-REFRESH/LAUNCH_BRIEF.md",
+      "sha256": "e228b833969581bc0c425dd04a4cd9228a08f3f23d35e181b1e6268f3db13525",
+      "role": "sealed H1 objective and write fence"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/APP_RULING_JOINT_PI_G1B_TM_APP_039_TM_ROOT_106_V1_2026-08-03.md",
+      "sha256": "48ecaa5753bbf021990fc121bcdbb3edfc7c39c0e43f4fee82398911fa3f6aff",
+      "role": "human App ruling containing the owner-verified current seven-hash set and Root continuation posture"
+    },
+    {
+      "path": "execution/_Coordination/NOTICE_2026-08-03_APP_JOINT_PI_G1B_TM_APP_039_TM_ROOT_106_RULING.md",
+      "sha256": "81a1c3107e19cdfef592758214219d48ea579a1a1aa57ea576a92c1531abf218",
+      "role": "ordinary App-to-Root coordination carrier; coordination only"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/OWNER_RULING_2026-08-03_S2_APPLY_PI_G1B.md",
+      "sha256": "12f7c46e86ca19c1e065e96b05e09814b9806cd5b0742f74d8cce405ef389129",
+      "role": "human Root selection of G1-B for validation only"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/G1B_VALIDATION_TARGET.json",
+      "sha256": "c5b2087e070cc92cc3daecd35460497be47b6f9dff3155bde5b1cbd0aef2db01",
+      "role": "accepted H4 predecessor validation-target envelope"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_continuation/ARTIFACT_MANIFEST.csv",
+      "sha256": "007a6270c065d37092f1e1bbbed2b0c9966a7bf3e19799ba9eac682c13ab4b6e",
+      "role": "accepted H4 predecessor package manifest; all eight rows reproduced by H1"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H4-PI-G1B/RETURN.md",
+      "sha256": "16e126c68f0b1cc78075afbf679c8024a19e4919bc2b96d94a89c634ca0b98e1",
+      "role": "accepted H4 terminal manager return"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_FOUR_LANES_2026-08-02/instances/H4-PI-G1B/STATUS.json",
+      "sha256": "63c4f8a44184d13fc72dc7bf570b9b35c3e2d0fc238a4db15e75e492a17e5362",
+      "role": "accepted H4 machine-readable terminal state"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/identity_proposal/CANDIDATE_IDENTITY.schema.json",
+      "sha256": "ecb9f93908d7948c7d0b4ec284745a471ff4c4a096d9cb76e4fc46c396154a5c",
+      "role": "accepted PIA-U10 candidate identity schema; unchanged by H1"
+    }
+  ],
+  "current_hash_comparison": [
+    {
+      "identity_role": "adapter",
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts",
+      "h4_sha256": "34c8fd0978741720e74ba36beb3fdc7c9a06f31ed55b7da87c86525ac39c47ca",
+      "ruled_current_sha256": "dd333f02d092dad05d15fb0936fb00f48ee89f75ec530bcfb74db32468f6f728",
+      "recomputed_worktree_sha256": "dd333f02d092dad05d15fb0936fb00f48ee89f75ec530bcfb74db32468f6f728",
+      "recomputed_origin_main_sha256": "dd333f02d092dad05d15fb0936fb00f48ee89f75ec530bcfb74db32468f6f728",
+      "comparison_to_ruling": "MATCH",
+      "comparison_to_h4": "DRIFT_CONFIRMED",
+      "last_source_commit": "9a139f0d620cdc7e20df4437d6b9c8bc491bb9b6"
+    },
+    {
+      "identity_role": "runtime_host",
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-host.ts",
+      "h4_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "ruled_current_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "recomputed_worktree_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "recomputed_origin_main_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "comparison_to_ruling": "MATCH",
+      "comparison_to_h4": "HELD",
+      "last_source_commit": "99fe2edaefd7d4ea62890f16f9054fc3b0cf394c"
+    },
+    {
+      "identity_role": "package_json",
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "h4_sha256": "1e62d22ec4a07fb225352c90ddfa5ce41d736d3d169e04cf7bd3684e54557c9c",
+      "ruled_current_sha256": "1f14df17d407b18949d5a7195a786574fa8f03eda731dbe7b77f3e91685fba53",
+      "recomputed_worktree_sha256": "1f14df17d407b18949d5a7195a786574fa8f03eda731dbe7b77f3e91685fba53",
+      "recomputed_origin_main_sha256": "1f14df17d407b18949d5a7195a786574fa8f03eda731dbe7b77f3e91685fba53",
+      "comparison_to_ruling": "MATCH",
+      "comparison_to_h4": "DRIFT_CONFIRMED",
+      "last_source_commit": "9a139f0d620cdc7e20df4437d6b9c8bc491bb9b6"
+    },
+    {
+      "identity_role": "package_lock",
+      "path": "projects/chirality-app-dev/frontend/package-lock.json",
+      "h4_sha256": "674fe2dab74572f21d26455498461d62eaa4218560e45024ed2a31e00c635ab8",
+      "ruled_current_sha256": "5c8fce2a3c0e2e7b55730ac673ccb07424dcae1e4bbbb408260b1090040c1a56",
+      "recomputed_worktree_sha256": "5c8fce2a3c0e2e7b55730ac673ccb07424dcae1e4bbbb408260b1090040c1a56",
+      "recomputed_origin_main_sha256": "5c8fce2a3c0e2e7b55730ac673ccb07424dcae1e4bbbb408260b1090040c1a56",
+      "comparison_to_ruling": "MATCH",
+      "comparison_to_h4": "DRIFT_CONFIRMED",
+      "last_source_commit": "9a139f0d620cdc7e20df4437d6b9c8bc491bb9b6"
+    },
+    {
+      "identity_role": "proof_launcher",
+      "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-pi-runtime-proof.mjs",
+      "h4_sha256": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+      "ruled_current_sha256": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+      "recomputed_worktree_sha256": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+      "recomputed_origin_main_sha256": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+      "comparison_to_ruling": "MATCH",
+      "comparison_to_h4": "HELD",
+      "last_source_commit": "447f49cffd65350a9f743536a81ec8acff02012d"
+    },
+    {
+      "identity_role": "supply_verifier",
+      "path": "projects/chirality-app-dev/frontend/scripts/verify-pi-supply-chain.mjs",
+      "h4_sha256": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+      "ruled_current_sha256": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+      "recomputed_worktree_sha256": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+      "recomputed_origin_main_sha256": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+      "comparison_to_ruling": "MATCH",
+      "comparison_to_h4": "HELD",
+      "last_source_commit": "0605e474f2232ae70add747e14c0cdec29433cc2"
+    },
+    {
+      "identity_role": "pi_notice",
+      "path": "projects/chirality-app-dev/frontend/THIRD_PARTY_NOTICES_PI.md",
+      "h4_sha256": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+      "ruled_current_sha256": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+      "recomputed_worktree_sha256": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+      "recomputed_origin_main_sha256": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+      "comparison_to_ruling": "MATCH",
+      "comparison_to_h4": "HELD",
+      "last_source_commit": "447f49cffd65350a9f743536a81ec8acff02012d"
+    }
+  ],
+  "drift_summary": {
+    "comparison_count": 7,
+    "match_to_owner_ruling_count": 7,
+    "drift_from_h4_count": 3,
+    "held_from_h4_count": 4,
+    "drifted_roles": [
+      "adapter",
+      "package_json",
+      "package_lock"
+    ],
+    "held_roles": [
+      "runtime_host",
+      "proof_launcher",
+      "supply_verifier",
+      "pi_notice"
+    ],
+    "interpretation": "The H4 target is stale for exactly three known-byte observations. The App ruling warrants refreshing those observations; it does not warrant Pi approval, identity completion, work dispatch, or authority supersession."
+  },
+  "live_register_observations": [
+    {
+      "row_id": "TM-ROOT-106",
+      "status": "OPEN",
+      "source": "execution/_Coordination/_TaskManagement/REGISTER.csv row TM-ROOT-106",
+      "source_register_sha256": "d395a0e652dbe8fa4a165dd33efc06ccab61917dc69d3d9f3fc1925ee96d7d05",
+      "effect": "READ_ONLY_PRESERVED_OPEN"
+    },
+    {
+      "row_id": "TM-ROOT-122",
+      "status": "OPEN",
+      "source": "execution/_Coordination/_TaskManagement/REGISTER.csv row TM-ROOT-122",
+      "source_register_sha256": "d395a0e652dbe8fa4a165dd33efc06ccab61917dc69d3d9f3fc1925ee96d7d05",
+      "effect": "READ_ONLY_NO_DISPOSITION"
+    }
+  ],
+  "authority_conflicts_preserved": [
+    {
+      "topic": "Pi package version",
+      "operative_authority": "D-APP-72 and SCA-APP-002 retain Pi 0.80.10.",
+      "current_executable_observation": "The current manifest and lock record Pi 0.82.0.",
+      "sources": [
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-72_RULING_2026-07-21.md",
+        "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-002_2026-07-21_Pi_oMLX_Second_Engine/Handoff_State.md",
+        "projects/chirality-app-dev/frontend/package.json",
+        "projects/chirality-app-dev/frontend/package-lock.json"
+      ],
+      "h1_disposition": "UNRESOLVED_HELD_NO_SUPERSESSION"
+    },
+    {
+      "topic": "Electron prerequisite",
+      "operative_authority": "D-APP-72 retains Electron 43.1.1.",
+      "current_executable_observation": "The current manifest records Electron 43.2.0.",
+      "sources": [
+        "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-72_RULING_2026-07-21.md",
+        "projects/chirality-app-dev/frontend/package.json",
+        "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-03_ROOT_TM-ROOT-122_ELECTRON_AUTHORITY_DRIFT.md"
+      ],
+      "h1_disposition": "UNRESOLVED_TM_ROOT_122_OPEN_NO_SUPERSESSION"
+    }
+  ],
+  "holds": [
+    "TM_ROOT_106_REMAINS_OPEN",
+    "TM_ROOT_122_READ_ONLY_NO_DISPOSITION",
+    "PIA_U30_HELD_NO_DISPATCH",
+    "D_APP_72_AND_SCA_APP_002_REMAIN_OPERATIVE",
+    "NO_ELECTRON_43_2_0_SUPERSESSION",
+    "NO_PI_APPROVAL",
+    "NO_WORK_DISPATCH",
+    "NO_RELEASE",
+    "NO_RELIANCE",
+    "NO_LIFECYCLE_EFFECT",
+    "NO_REGISTER_EFFECT",
+    "NO_GIT_EFFECT"
+  ]
+}

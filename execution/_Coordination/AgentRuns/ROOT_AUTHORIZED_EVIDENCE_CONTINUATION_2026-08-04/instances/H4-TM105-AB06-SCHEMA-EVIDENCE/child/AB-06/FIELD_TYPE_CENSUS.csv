@@ -1,0 +1,141 @@
+Surface,Type,Field,CurrentRequiredness,CurrentType,Provenance,ExactEvidenceLimit
+engine,ToolPermission,effect,REQUIRED,"allow | deny",runtime/packages/contracts/src/engine.ts:8-12,Coarse operation permission only; not a grant or OS enforcement proof
+engine,ToolPermission,operation,REQUIRED,"read | write | shell | network",runtime/packages/contracts/src/engine.ts:8-12,Rights grammar is incomplete and conflicts with descriptor vocabulary
+engine,ToolPermission,roots,OPTIONAL,readonly string[],runtime/packages/contracts/src/engine.ts:8-12,Strings do not prove canonical mount or inode containment
+engine,RuntimeToolDefinition,name,REQUIRED,string,runtime/packages/contracts/src/engine.ts:14-20,Public name does not establish registry or family identity
+engine,RuntimeToolDefinition,description,REQUIRED,string,runtime/packages/contracts/src/engine.ts:14-20,Descriptive text is not policy
+engine,RuntimeToolDefinition,inputSchema,REQUIRED,"Readonly<Record<string unknown>>",runtime/packages/contracts/src/engine.ts:14-20,Schema family/version and hash are absent
+engine,RuntimeToolDefinition,permission,REQUIRED,ToolPermission,runtime/packages/contracts/src/engine.ts:14-20,No proof this equals descriptor or backend policy
+engine,RuntimeToolDefinition,execute,REQUIRED,function(input signal),runtime/packages/contracts/src/engine.ts:14-20,Implementation identity and family binding are absent
+engine,RuntimeEngineTurnInput,projectId,REQUIRED,string,runtime/packages/contracts/src/engine.ts:22-33,Current engine input only
+engine,RuntimeEngineTurnInput,projectRoot,REQUIRED,string,runtime/packages/contracts/src/engine.ts:22-33,Path text is not a sandbox profile
+engine,RuntimeEngineTurnInput,sessionId,REQUIRED,string,runtime/packages/contracts/src/engine.ts:22-33,No generic lifetime semantics
+engine,RuntimeEngineTurnInput,turnId,REQUIRED,string,runtime/packages/contracts/src/engine.ts:22-33,Not a TM105 continuation identity
+engine,RuntimeEngineTurnInput,prompt,REQUIRED,string,runtime/packages/contracts/src/engine.ts:22-33,Content policy is UNKNOWN
+engine,RuntimeEngineTurnInput,selection,REQUIRED,EngineSelection,runtime/packages/contracts/src/engine.ts:22-33,Selection is not accepted family/backend qualification
+engine,RuntimeEngineTurnInput,role,REQUIRED,"agent0 | agent1 | agent2",runtime/packages/contracts/src/engine.ts:22-33,Role narrows no grant by itself
+engine,RuntimeEngineTurnInput,tools,REQUIRED,readonly RuntimeToolDefinition[],runtime/packages/contracts/src/engine.ts:22-33,Exposure enforcement outside type
+engine,RuntimeEngineTurnInput,signal,REQUIRED,AbortSignal,runtime/packages/contracts/src/engine.ts:22-33,No timing or cleanup guarantee
+engine,RuntimeEngineTurnInput,adapterSession,OPTIONAL,"Readonly<Record<string unknown>>",runtime/packages/contracts/src/engine.ts:22-33,Opaque and unversioned
+engine,RuntimeEngineTurnResult,engineSessionId,REQUIRED,string,runtime/packages/contracts/src/engine.ts:35-38,Provider-local identity only
+engine,RuntimeEngineTurnResult,adapterSession,OPTIONAL,"Readonly<Record<string unknown>>",runtime/packages/contracts/src/engine.ts:35-38,Opaque and unversioned
+session,RuntimeSessionRecord,schemaVersion,REQUIRED,literal chirality.session/v2,runtime/packages/contracts/src/session.ts:4-21,Current storage schema only; not TM105 schema selection
+session,RuntimeSessionRecord,projectId,REQUIRED,string,runtime/packages/contracts/src/session.ts:4-21,Current project identity only
+session,RuntimeSessionRecord,projectRoot,REQUIRED,string,runtime/packages/contracts/src/session.ts:4-21,Does not establish rights
+session,RuntimeSessionRecord,sessionId,REQUIRED,string,runtime/packages/contracts/src/session.ts:4-21,No run/session lifetime selection
+session,RuntimeSessionRecord,createdAt,REQUIRED,string,runtime/packages/contracts/src/session.ts:4-21,No trusted clock or lifetime semantics
+session,RuntimeSessionRecord,updatedAt,REQUIRED,string,runtime/packages/contracts/src/session.ts:4-21,Mutable timestamp
+session,RuntimeSessionRecord,role,REQUIRED,"agent0 | agent1 | agent2",runtime/packages/contracts/src/session.ts:4-21,No capability inference
+session,RuntimeSessionRecord,parentSessionId,OPTIONAL,string,runtime/packages/contracts/src/session.ts:4-21,No lineage or inheritance semantics
+session,RuntimeSessionRecord,engineSelection,REQUIRED,EngineSelection,runtime/packages/contracts/src/session.ts:4-21,No implementation-family conformance
+session,RuntimeSessionRecord,engineSessionId,OPTIONAL,string,runtime/packages/contracts/src/session.ts:4-21,Provider-local
+session,RuntimeSessionRecord,residencyEpoch,OPTIONAL,string,runtime/packages/contracts/src/session.ts:4-21,Must not be repurposed as compatibility epoch
+session,RuntimeSessionRecord,status,REQUIRED,"idle | running | completed | failed | interrupted",runtime/packages/contracts/src/session.ts:4-21,Conflicts/non-coverage with harness cancelled and DEL recovery states
+session,RuntimeSessionRecord,legacy,OPTIONAL,"{sourcePath string; migratedAt string}",runtime/packages/contracts/src/session.ts:4-21,Storage migration only; not compatibility rollover
+session,CreateSessionRequest,projectId,REQUIRED,string,runtime/packages/contracts/src/session.ts:23-32,Request shape only
+session,CreateSessionRequest,role,OPTIONAL,RuntimeSessionRecord role,runtime/packages/contracts/src/session.ts:23-32,Daemon resolution required by current SessionStore
+session,CreateSessionRequest,engineSelection,OPTIONAL,EngineSelection,runtime/packages/contracts/src/session.ts:23-32,Daemon resolution required by current SessionStore
+session,CreateSessionRequest,persona,OPTIONAL,string,runtime/packages/contracts/src/session.ts:23-32,No authority meaning
+session,CreateSessionRequest,mode,OPTIONAL,string,runtime/packages/contracts/src/session.ts:23-32,No rights semantics
+session,CreateSessionRequest,parentSessionId,OPTIONAL,string,runtime/packages/contracts/src/session.ts:23-32,No capability inheritance
+session,CreateSessionRequest,approvalRef,OPTIONAL,string,runtime/packages/contracts/src/session.ts:23-32,Presence is not verified grant authority
+session,CreateSessionRequest,allowedWriteTargets,OPTIONAL,string[],runtime/packages/contracts/src/session.ts:23-32,Declaration is not enforcement
+session,SessionTurnRequest,message,OPTIONAL,string,runtime/packages/contracts/src/session.ts:34-40,One of message/prompt checked in implementation
+session,SessionTurnRequest,prompt,OPTIONAL,string,runtime/packages/contracts/src/session.ts:34-40,One of message/prompt checked in implementation
+session,SessionTurnRequest,opts,OPTIONAL,HarnessOpts,runtime/packages/contracts/src/session.ts:34-40,Tool names can widen selected request path absent separate enforcement evidence
+session,SessionTurnRequest,attachments,OPTIONAL,string[],runtime/packages/contracts/src/session.ts:34-40,Content policy UNKNOWN
+session,SessionTurnRequest,turnId,OPTIONAL,string,runtime/packages/contracts/src/session.ts:34-40,Generated if absent; not continuation token
+events,RuntimeEvent,schemaVersion,REQUIRED,literal chirality.event/v1,runtime/packages/contracts/src/events.ts:16-37,Current event schema only
+events,RuntimeEvent,id,REQUIRED,string,runtime/packages/contracts/src/events.ts:16-37,Uniqueness/tamper enforcement not shown
+events,RuntimeEvent,sequence,REQUIRED,number,runtime/packages/contracts/src/events.ts:16-37,Harness persisted events lack sequence
+events,RuntimeEvent,timestamp,REQUIRED,string,runtime/packages/contracts/src/events.ts:16-37,No trusted clock
+events,RuntimeEvent,projectId,REQUIRED,string,runtime/packages/contracts/src/events.ts:16-37,Current attribution only
+events,RuntimeEvent,sessionId,REQUIRED,string,runtime/packages/contracts/src/events.ts:16-37,Current attribution only
+events,RuntimeEvent,turnId,REQUIRED,string,runtime/packages/contracts/src/events.ts:16-37,Current attribution only
+events,RuntimeEvent,type,REQUIRED,RuntimeEventType,runtime/packages/contracts/src/events.ts:1-15,Omit turn.cancelled and DEL recovery terminal
+events,RuntimeEvent,data,REQUIRED,generic T,runtime/packages/contracts/src/events.ts:16-37,Content structurally unbounded
+events,RuntimeEvent,attribution,OPTIONAL,object,runtime/packages/contracts/src/events.ts:16-37,Optional and lacks explicit engine/local-remote DEL fields
+events,RuntimeEvent.attribution,adapterId,REQUIRED_IF_PRESENT,string,runtime/packages/contracts/src/events.ts:28-35,Does not prove adapter trust
+events,RuntimeEvent.attribution,providerId,REQUIRED_IF_PRESENT,string,runtime/packages/contracts/src/events.ts:28-35,Does not prove provider trust
+events,RuntimeEvent.attribution,model,REQUIRED_IF_PRESENT,string,runtime/packages/contracts/src/events.ts:28-35,No accepted model family
+events,RuntimeEvent.attribution,packageName,OPTIONAL,string,runtime/packages/contracts/src/events.ts:28-35,Supply-chain facts absent
+events,RuntimeEvent.attribution,packageVersion,OPTIONAL,string,runtime/packages/contracts/src/events.ts:28-35,Compatibility not implied
+events,RuntimeEvent.attribution,residencyEpoch,OPTIONAL,string,runtime/packages/contracts/src/events.ts:28-35,Not compatibility epoch
+harness-event,HarnessEvent,schemaVersion,REQUIRED,literal 1,runtime/packages/contracts/src/harness/event-schema.ts:52-61,Separate event schema from RuntimeEvent
+harness-event,HarnessEvent,eventId,REQUIRED,string,runtime/packages/contracts/src/harness/event-schema.ts:52-61,No sequence field or authenticity
+harness-event,HarnessEvent,sessionId,REQUIRED,string,runtime/packages/contracts/src/harness/event-schema.ts:52-61,Project ID absent at this layer
+harness-event,HarnessEvent,turnId,OPTIONAL,string,runtime/packages/contracts/src/harness/event-schema.ts:52-61,Optional attribution
+harness-event,HarnessEvent,parentEventId,OPTIONAL,string,runtime/packages/contracts/src/harness/event-schema.ts:52-61,Parent consistency not enforced by schema
+harness-event,HarnessEvent,timestamp,REQUIRED,string,runtime/packages/contracts/src/harness/event-schema.ts:52-61,No format/trusted clock in type
+harness-event,HarnessEvent,type,REQUIRED,HarnessEventType,runtime/packages/contracts/src/harness/event-schema.ts:1-50,Contains turn.cancelled and interruption requested/completed
+harness-event,HarnessEvent,data,REQUIRED,"Record<string unknown>",runtime/packages/contracts/src/harness/event-schema.ts:52-61,Unbounded payload; retention/privacy UNKNOWN
+harness-session,SessionRecord,sessionId,REQUIRED,string,runtime/packages/contracts/src/harness/types.ts:28-68,Current harness carrier
+harness-session,SessionRecord,projectRoot,REQUIRED,string,runtime/packages/contracts/src/harness/types.ts:28-68,Path is not sandbox identity
+harness-session,SessionRecord,persona,REQUIRED,string,runtime/packages/contracts/src/harness/types.ts:28-68,No role authority inference
+harness-session,SessionRecord,mode,REQUIRED,string,runtime/packages/contracts/src/harness/types.ts:28-68,No rights semantics
+harness-session,SessionRecord,createdAt,REQUIRED,string,runtime/packages/contracts/src/harness/types.ts:28-68,No lifetime policy
+harness-session,SessionRecord,updatedAt,REQUIRED,string,runtime/packages/contracts/src/harness/types.ts:28-68,Mutable
+harness-session,SessionRecord,engineSelection,OPTIONAL,EngineSelection,runtime/packages/contracts/src/harness/types.ts:28-68,Optional unlike RuntimeSessionRecord
+harness-session,SessionRecord,adapterSession,OPTIONAL,AdapterSessionMetadata,runtime/packages/contracts/src/harness/types.ts:28-68,Opaque
+harness-session,SessionRecord,engineSessionId|claudeSessionId|sdkSessionId,OPTIONAL,string each,runtime/packages/contracts/src/harness/types.ts:37-39,Multiple provider-local identities with no equivalence rule
+harness-session,SessionRecord,sdkTranscriptPath|sdkSessionStoreKey|sdkConfigDir,OPTIONAL,string each,runtime/packages/contracts/src/harness/types.ts:40-42,Store/privacy/access facts UNKNOWN
+harness-session,SessionRecord,sdkSettingSources,OPTIONAL,string[],runtime/packages/contracts/src/harness/types.ts:43,Policy meaning not established
+harness-session,SessionRecord,sdkPackageVersion|sdkClaudeCodeVersion,OPTIONAL,string each,runtime/packages/contracts/src/harness/types.ts:44-45,No accepted version/support posture
+harness-session,SessionRecord,bootFingerprint,OPTIONAL,string,runtime/packages/contracts/src/harness/types.ts:46,Serialization/digest meaning not established
+harness-session,SessionRecord,runtimeFingerprint,OPTIONAL,HarnessRuntimeFingerprint,runtime/packages/contracts/src/harness/types.ts:47,Not DEL compatibility identity
+harness-session,SessionRecord,bootedAt|model|orchestrationRunId|executionRoot|agentInstanceId,OPTIONAL,string each,runtime/packages/contracts/src/harness/types.ts:48-52,Mixed operational metadata; no generic identity semantics
+harness-session,SessionRecord,parentSessionId|parentInstanceId,OPTIONAL,string each,runtime/packages/contracts/src/harness/types.ts:53-54,No rollover/capability inheritance
+harness-session,SessionRecord,parentAgentType|agentType,OPTIONAL,"0|1 and 0|1|2",runtime/packages/contracts/src/harness/types.ts:55-56,Current numeric role encoding conflicts with string role encoding
+harness-session,SessionRecord,childKind,OPTIONAL,"named | task | generalist",runtime/packages/contracts/src/harness/types.ts:57,No generic grant inference
+harness-session,SessionRecord,planVersion|approvalRef|instructionPath|instructionHash|briefHash,OPTIONAL,string each,runtime/packages/contracts/src/harness/types.ts:58-62,Digest canonicalization/authenticity absent
+harness-session,SessionRecord,declaredContext|declaredTools|allowedWriteTargets,OPTIONAL,string[] each,runtime/packages/contracts/src/harness/types.ts:63-65,Declarations are not mechanical enforcement
+harness-session,SessionRecord,outputArtifact,OPTIONAL,string,runtime/packages/contracts/src/harness/types.ts:66,Artifact retention/privacy UNKNOWN
+harness-session,SessionRecord,childRunStatus,OPTIONAL,"LAUNCHED|RUNNING|COMPLETED|FAILED|BLOCKED",runtime/packages/contracts/src/harness/types.ts:67,Distinct status vocabulary
+fingerprint,HarnessRuntimeFingerprint,schemaVersion|personaComposerVersion|permissionPolicyVersion|managedDelegationPolicyVersion|subagentPolicyVersion|toolRegistryVersion|sdkPackageVersion,REQUIRED,string each,runtime/packages/contracts/src/harness/types.ts:179-196,Version strings do not prove compatibility or accepted policy
+fingerprint,HarnessRuntimeFingerprint,engineAdapter,OPTIONAL,"{adapterId providerId model packageName? packageVersion?}",runtime/packages/contracts/src/harness/types.ts:187-193,No backend/profile identity
+fingerprint,HarnessRuntimeFingerprint,mcpServers,REQUIRED,"{name version toolNames[]}[]",runtime/packages/contracts/src/harness/types.ts:173-196,Registry evidence only
+fingerprint,HarnessRuntimeFingerprint,fingerprintSha256,REQUIRED,string,runtime/packages/contracts/src/harness/types.ts:195,Canonical bytes and algorithm profile not specified in type
+descriptor,HarnessToolResultBudget,inlineByteLimit|artifactByteLimit|overflow,REQUIRED,"number; number; artifact|deny|summarize",runtime/packages/contracts/src/harness/tool-descriptor.ts:60-64,Current fixed descriptor vocabulary is not accepted generic budget policy
+descriptor,HarnessToolProvenance,emits|storeInput|storeOutput|recordsDiff,REQUIRED,"event[]; enum; enum; boolean",runtime/packages/contracts/src/harness/tool-descriptor.ts:66-71,Metadata is not durable-store or privacy enforcement
+descriptor,HarnessToolDescriptor,name|aliases|description|surface|permissions|pathScope|idempotence|concurrency|interruptBehavior,REQUIRED,mixed current enums,runtime/packages/contracts/src/harness/tool-descriptor.ts:83-105,Descriptor vocabulary is not accepted rights/state grammar
+descriptor,HarnessToolDescriptor,resultBudget|provenance|humanGate|adapter|inputSchema|runtime,REQUIRED,mixed objects,runtime/packages/contracts/src/harness/tool-descriptor.ts:83-105,Metadata does not prove executing enforcement
+descriptor,HarnessToolDescriptor,outputSchema,OPTIONAL,"Record<string unknown>",runtime/packages/contracts/src/harness/tool-descriptor.ts:83-105,Version/hash absent
+conformance,EngineConformanceIssue,code|message,REQUIRED,"EngineConformanceIssueCode; string",runtime/packages/contracts/src/harness/engine-conformance.ts:46-51,Issue evidence only
+conformance,EngineConformanceIssue,eventIndex|eventType,OPTIONAL,"number; string",runtime/packages/contracts/src/harness/engine-conformance.ts:46-51,No accepted generic conformance suite
+conformance,EngineConformanceOptions,requireSessionInit|requireEngineSessionId|requireInterruptedProcessExit|requireHarnessTerminal|requireToolPermissionEvidence,OPTIONAL,boolean each,runtime/packages/contracts/src/harness/engine-conformance.ts:53-61,Optional checks; not complete TM105 requirements
+conformance,EngineConformanceOptions,readPersistedEvents|forbiddenEvidenceValues,OPTIONAL,"function; readonly string[]",runtime/packages/contracts/src/harness/engine-conformance.ts:53-61,Optional evidence checks
+conformance,EngineConformanceReport,subject|passed|events|eventTypes|issues,REQUIRED,mixed,runtime/packages/contracts/src/harness/engine-conformance.ts:63-69,Pass covers only current subset
+transcript,TranscriptArtifactLink,artifactPath|artifactRelativePath|sha256|toolName|turnId|retentionPolicy|redacted|truncated|artifactByteLength,OPTIONAL,mixed,runtime/packages/contracts/src/harness/transcript-replay.ts:18-28,Flags/paths are not enforced retention redaction or digest correctness
+transcript,TranscriptItem,key|kind|status|title|timestamp|eventId|eventType,REQUIRED,mixed,runtime/packages/contracts/src/harness/transcript-replay.ts:30-44,Projection only
+transcript,TranscriptItem,role|turnId|text|summary|toolName|artifact,OPTIONAL,mixed,runtime/packages/contracts/src/harness/transcript-replay.ts:30-44,Partial text can be shown without accepted disposition
+transcript,TranscriptView,sessionId|terminalStatus|sdkLinkage,OPTIONAL,mixed,runtime/packages/contracts/src/harness/transcript-replay.ts:59-64,Terminal vocabulary differs from RuntimeSessionRecord
+transcript,TranscriptView,itemCount|items,REQUIRED,"number; TranscriptItem[]",runtime/packages/contracts/src/harness/transcript-replay.ts:59-64,Replay omits malformed lines while counting elsewhere
+auth,ClientRecord,clientId|tokenHash|scopes|createdAt,REQUIRED,mixed,runtime/packages/core/src/auth-registry.ts:17-24,Client bearer auth is not tool-grant policy
+auth,ClientRecord,projectId|revokedAt,OPTIONAL,string,runtime/packages/core/src/auth-registry.ts:17-24,No expiry audience nonce or grant binding
+auth,ClientRegistry,schemaVersion|clients,REQUIRED,"literal chirality.clients/v1; ClientRecord[]",runtime/packages/core/src/auth-registry.ts:26-29,Current store only
+auth,IssuedClient,clientId|token|tokenFile,REQUIRED,string each,runtime/packages/core/src/auth-registry.ts:31-35,Plaintext token custody and policy are not accepted
+auth,RuntimePrincipal,clientId|scopes,REQUIRED,"string; readonly RuntimeScope[]",runtime/packages/core/src/auth-registry.ts:37-41,Runtime principal not generic TM105 issuer/evaluator
+auth,RuntimePrincipal,projectId,OPTIONAL,string,runtime/packages/core/src/auth-registry.ts:37-41,Unscoped principals can span projects under current conditional check
+turn,RequiredToolReceipt,toolName|completed,REQUIRED,"string; function",runtime/packages/core/src/turn-coordinator.ts:21-24,In-process receipt is not authenticated grant receipt
+agent-run,AgentRunRecord,schemaVersion|runId|projectId|managerSessionId|managerAgentId|managerSelection|sealedBrief|briefHash,REQUIRED,mixed,runtime/packages/core/src/agent1-run-coordinator.ts:58-98,Internal record is implementation evidence not accepted generic identity
+agent-run,AgentRunRecord,child|review,OPTIONAL,nested objects,runtime/packages/core/src/agent1-run-coordinator.ts:67-91,One pilot child shape only
+agent-run,AgentRunRecord,status|approvalReference|createdAt,REQUIRED,mixed,runtime/packages/core/src/agent1-run-coordinator.ts:92-98,Approval checked for non-empty only
+agent-run,AgentRunRecord,failureCode|completedAt,OPTIONAL,string,runtime/packages/core/src/agent1-run-coordinator.ts:92-98,No generic terminal semantics
+agent-run,AgentRunRecord.child,sessionId|role|selection|residencyEpoch|sealedBrief|sealedBriefHash|permissions|tool|status,REQUIRED,mixed,runtime/packages/core/src/agent1-run-coordinator.ts:67-86,Pilot fixes read-only read_file; not a generic family/profile
+agent-run,AgentRunRecord.child,returnHash|evidenceReference|acceptance,OPTIONAL,mixed,runtime/packages/core/src/agent1-run-coordinator.ts:73-83,Unkeyed hashes and manager self-review do not establish authenticity
+project,RegistryFile,schemaVersion|projects,REQUIRED,"literal chirality.project-registry/v1; RegisteredProject[]",runtime/packages/core/src/project-registry.ts:19-22,RegisteredProject definition imported and outside declared source; implementation fields separately observed
+project,RegisteredProject implementation projection,projectId|displayName|canonicalRoot|manifestPath|manifestHash|registeredAt|approval|clientId|enabledAdapterIds|legacySessionRoots,REQUIRED,mixed,runtime/packages/core/src/project-registry.ts:37-50,Implementation object; manifest hash is not compatibility identity
+runtime-service,registerProject return,projectId|clientId|tokenFile|manifestHash,REQUIRED,string each,runtime/packages/core/src/runtime-service.ts:75-89,Operational response only; token file and compatibility policy remain separate
+runtime-service,DefaultSessionPolicy input,projectId|persona|mode|agentType,REQUIRED,mixed,runtime/packages/core/src/runtime-service.ts:54-61,Local resolver contract only
+runtime-service,DefaultSessionPolicy result,role|engineSelection,REQUIRED,mixed,runtime/packages/core/src/runtime-service.ts:54-61,Does not select family/backend
+fs,sha256 input/output,"value -> digest",REQUIRED,"string|Buffer -> hex string",runtime/packages/core/src/fs.ts:53-55,Algorithm fixed in helper but canonical input bytes/domain separation/migration absent
+fs,atomicWriteJson serialization,value,REQUIRED,"JSON.stringify(value null 2)+LF",runtime/packages/core/src/fs.ts:10-23,One current serialization path only; not common canonicalization
+fs,appendJsonLine serialization,value,REQUIRED,"JSON.stringify(value)+LF",runtime/packages/core/src/fs.ts:25-36,Different current serialization path; not canonical profile
+client,RuntimeClientOptions,socketPath|tokenFile,REQUIRED,string,runtime/packages/client/src/client.ts:42-47,Transport/auth configuration only
+client,RuntimeClientOptions,timeoutMs|loadToken,OPTIONAL,"number; function",runtime/packages/client/src/client.ts:42-47,Timeout is client transport behavior not generic tool timing
+client,CancellableStream,cancel,REQUIRED,function(reason?),runtime/packages/client/src/client.ts:49-51,Cancellation does not prove implementation acknowledgement or cleanup
+client,JsonRequestOptions,method|body|signal,OPTIONAL,mixed,runtime/packages/client/src/client.ts:56-60,No DEL compatibility declaration field
+errors,RuntimeError,code|status,REQUIRED,"RuntimeErrorCode; number",runtime/packages/contracts/src/errors.ts:28-45,Error vocabulary is not TM105 terminal model
+errors,RuntimeError,details,OPTIONAL,"Readonly<Record<string unknown>>",runtime/packages/contracts/src/errors.ts:28-45,Unversioned loose details
+errors,RuntimeErrorBody.error,code|message,REQUIRED,"RuntimeErrorCode; string",runtime/packages/contracts/src/errors.ts:47-53,No accepted mismatch/outcome mapping
+errors,RuntimeErrorBody.error,details,OPTIONAL,"Readonly<Record<string unknown>>",runtime/packages/contracts/src/errors.ts:47-53,Unversioned loose details

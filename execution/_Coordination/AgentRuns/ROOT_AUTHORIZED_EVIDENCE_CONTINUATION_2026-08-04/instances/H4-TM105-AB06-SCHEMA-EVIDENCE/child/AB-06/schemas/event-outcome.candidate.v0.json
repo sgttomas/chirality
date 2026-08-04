@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:chirality:tm105:candidate:event-outcome:v0",
+  "title": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE TM105 event and outcome structure v0",
+  "description": "Structural carrier across current event/outcome evidence. It selects no terminal vocabulary, precedence, retryability, compatibility mapping, store, retention, redaction, or consumer meaning.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "candidateStatus", "eventId", "eventType"],
+  "properties": {
+    "schemaVersion": {"const": "tm105.event-outcome.candidate/v0"},
+    "candidateStatus": {"const": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE"},
+    "eventId": {"type": "string", "minLength": 1},
+    "eventType": {"type": "string", "minLength": 1},
+    "sequence": {"type": "integer", "minimum": 0},
+    "timestamp": {"type": "string"},
+    "runId": {"type": "string", "minLength": 1},
+    "sessionId": {"type": "string", "minLength": 1},
+    "turnId": {"type": "string", "minLength": 1},
+    "requestId": {"type": "string", "minLength": 1},
+    "parentEventId": {"type": "string", "minLength": 1},
+    "attribution": {"type": "object", "additionalProperties": true},
+    "data": {"type": "object", "additionalProperties": true},
+    "outcome": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status"],
+      "properties": {
+        "status": {"type": "string", "minLength": 1},
+        "partial": {"type": "boolean"},
+        "truncated": {"type": "boolean"},
+        "budgetExhausted": {"type": "boolean"},
+        "cleanupState": {"type": "string", "minLength": 1},
+        "diagnostics": {"type": "array", "items": {"type": "object", "additionalProperties": true}}
+      }
+    },
+    "evidenceReferences": {"type": "array", "items": {"type": "object", "additionalProperties": true}}
+  },
+  "x-candidate-status": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+  "x-open-tbds": ["TBD-105-09", "TBD-105-10", "TBD-105-12", "TBD-105-14", "TBD-105-16", "TBD-105-21"]
+}
