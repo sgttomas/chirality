@@ -3081,3 +3081,28 @@
     surface response exists in committed main; no A/B/C selection or D-APP-91
     exists. The six D-APP-81 historical relations remain UNKNOWN. Ordinary Git
     integration and authoritative PR-CI rerun remain next.
+
+- **2026-08-03 — Receipt 113** (post-D-APP-90 Task Management closeout).
+  - Receipt-ID: `Receipt-113`
+  - Examined-Through: `baa82777969ac01b426b2673231766f3de15bcb8`
+  - Parent-Receipt: `Receipt-112`
+  - Owner-Direction: `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING` — “then all
+    work is resolved and this session is closed. Proceed with the closeout
+    activities.”
+  - Pointers:
+    `execution/_Coordination/_TaskManagement/CANDIDATE_HARVEST_REPORT_2026-08-03_POST_DAPP90.md`;
+    `execution/_Coordination/NOTICE_2026-08-03_ROOT_PI_G1B_APP_WORK_ACCEPTANCE_HANDOFF.md`;
+    `execution/_Coordination/NOTICE_2026-08-03_ROOT_SCA003_PRD_BASIS_RECONCILIATION.md`;
+    `execution/_Coordination/NOTICE_2026-08-03_TM_LAUNCHER_REMEDIATION.md`.
+  - Checks: federation complete; live/archive App registers, receipt contract,
+    authority corpus v18, historical UNKNOWN preservation, exact two-path
+    containment, and whitespace checks pass.
+  - Model-Attribution: OpenAI Codex TASK_MANAGEMENT Agent 1 under HELP_HUMAN;
+    no Agent 2 dispatch.
+  - Gate-Outcome: `EXECUTED` — focused post-D-APP-90 harvest closed with zero
+    additional App-row promotions and zero register writes. TM-APP-035 is a
+    separately landed owner-directed row. Root SCA-003 and launcher notices
+    require no App action; the Root Pi G1-B handoff remains ordinary future
+    App-planning input with PIA-U20 through PIA-U25 unaccepted and
+    undispatched. This closes the session only and does not claim global or
+    per-register semantic closure.
