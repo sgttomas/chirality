@@ -1,0 +1,3 @@
+COMMAND     PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Chirality 81840 ryan   35u  unix 0x92aa327cf2f6eb91      0t0      /private/tmp/chirality-dapp88-r3-diag02r2-single/user/runtime/control.sock
+Chirality 81840 ryan   36u  unix 0xbcf9c32aef00f383      0t0      /private/tmp/chirality-dapp88-r3-diag02r2-single/user/runtime/control.sock

@@ -1,0 +1,13 @@
+{"timestamp":"2026-08-04T18:14:57.154Z","event":"before-quit.entry","pid":81306,"daemonMode":true,"shutdownStarted":false,"runtimeHostPresent":true}
+{"timestamp":"2026-08-04T18:14:57.154Z","event":"teardown.entry","pid":81306,"daemonMode":true,"shutdownStarted":false,"runtimeHostPresent":true,"exitCode":0,"reason":"before-quit"}
+{"timestamp":"2026-08-04T18:14:57.154Z","event":"runtimeHost.stop.before","pid":81306,"daemonMode":true,"shutdownStarted":true,"runtimeHostPresent":true,"reason":"before-quit"}
+{"timestamp":"2026-08-04T18:14:57.155Z","event":"runtimeHost.stop.after","pid":81306,"daemonMode":true,"shutdownStarted":true,"runtimeHostPresent":true,"reason":"before-quit","outcome":"resolved"}
+{"timestamp":"2026-08-04T18:14:57.155Z","event":"quit.entry","pid":81306,"daemonMode":true,"shutdownStarted":true,"runtimeHostPresent":false,"exitCode":0}
+{"timestamp":"2026-08-04T18:15:55.803Z","event":"before-quit.entry","pid":81840,"daemonMode":true,"shutdownStarted":false,"runtimeHostPresent":true}
+{"timestamp":"2026-08-04T18:15:55.803Z","event":"teardown.entry","pid":81840,"daemonMode":true,"shutdownStarted":false,"runtimeHostPresent":true,"exitCode":0,"reason":"before-quit"}
+{"timestamp":"2026-08-04T18:15:55.803Z","event":"runtimeHost.stop.before","pid":81840,"daemonMode":true,"shutdownStarted":true,"runtimeHostPresent":true,"reason":"before-quit"}
+{"timestamp":"2026-08-04T18:15:55.804Z","event":"runtimeHost.stop.after","pid":81840,"daemonMode":true,"shutdownStarted":true,"runtimeHostPresent":true,"reason":"before-quit","outcome":"resolved"}
+{"timestamp":"2026-08-04T18:15:55.804Z","event":"quit.entry","pid":81840,"daemonMode":true,"shutdownStarted":true,"runtimeHostPresent":false,"exitCode":0}
+{"timestamp":"2026-08-04T18:15:55.925Z","event":"before-quit.entry","pid":81898,"daemonMode":false,"shutdownStarted":false,"runtimeHostPresent":false}
+{"timestamp":"2026-08-04T18:15:55.925Z","event":"teardown.entry","pid":81898,"daemonMode":false,"shutdownStarted":false,"runtimeHostPresent":false,"exitCode":0,"reason":"before-quit"}
+{"timestamp":"2026-08-04T18:15:55.926Z","event":"quit.entry","pid":81898,"daemonMode":false,"shutdownStarted":true,"runtimeHostPresent":false,"exitCode":0}

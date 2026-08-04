@@ -1,0 +1,2 @@
+83398 83397 83397 SN   Tue Aug  4 12:18:38 2026     /Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/MacOS/Chirality Runtime Service
+83413 83397 83397 RN   Tue Aug  4 12:18:41 2026     /Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality

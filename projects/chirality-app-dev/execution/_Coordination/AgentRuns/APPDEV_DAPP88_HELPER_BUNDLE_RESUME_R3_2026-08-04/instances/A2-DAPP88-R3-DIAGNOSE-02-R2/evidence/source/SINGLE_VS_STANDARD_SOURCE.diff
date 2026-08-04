@@ -1,0 +1,10 @@
+--- projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/runtime-helper-entry.ts	2026-08-03 20:19:09
++++ projects/chirality-app-dev/frontend/electron/runtime-helper-entry.ts	2026-08-04 12:16:01
+@@ -13,7 +13,6 @@
+ // macOS, preserves Electron's first-signal `before-quit` funnel for the daemon.
+ // The separately built bundle still carries the matching builder-generated
+ // child applications required by Electron's native package contract.
+-app.commandLine.appendSwitch('single-process');
+ app.commandLine.appendSwitch('disable-gpu');
+
+ if (!process.argv.includes('--runtime-daemon')) {

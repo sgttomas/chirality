@@ -1,0 +1,5 @@
+electron_pid=70667
+process_mode=single
+contact_mode=idle
+ready=FAIL
+exit_code=134

@@ -1,0 +1,19 @@
+variant=SINGLE
+captured_utc=2026-08-04T18:13:12Z
+cdc76a1d398231267f1379e7143b4de27abaa01b
+v24.18.0
+Downloading Electron binary...
+bd1925a50ac18258bd03db0e475f9ac04d4fcbc46ab7a79b62a4090d92580982  projects/chirality-app-dev/frontend/electron-builder.runtime-helper.json
+2a0724f11d71a0682d2a9674c24fefd2d2f0137ed70e2190a84944d060a1126d  projects/chirality-app-dev/frontend/electron/cli-launcher.ts
+82e9a8dad10f55730dce99489f9b8eca1c221f9497a81903ce9dd518b4632239  projects/chirality-app-dev/frontend/electron/main.ts
+970583be61674d8818046108d5129df90d06484d64c94ee904bbfedb2d0f2fc4  projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts
+7e0ab20f14d634f9ce4e77fcfa55826cf4b0c022828acaee0709b8927123e2bc  projects/chirality-app-dev/frontend/electron/runtime-helper-entry.ts
+7df8dc3f66d0fc070d3728854f6c5421bd2bff3ba1864bafbacec04485ebbf02  projects/chirality-app-dev/frontend/electron/runtime-helper-path.ts
+7996a9066e14188d859c499c243bf6ca2f864f7c2c8616a364c897d6ba658e15  projects/chirality-app-dev/frontend/package.json
+cee808c108826e9987d5197bdc63c86d32ac1a428e54537fe4c3a3d79138a505  projects/chirality-app-dev/frontend/scripts/build-electron.mjs
+a710b7790ad92c4a64526478baa6e8f49c00a9070c7b84fb22529104f2a79199  projects/chirality-app-dev/frontend/scripts/embed-runtime-helper.mjs
+27b3a0e36c4b5592a776057b71fa40ba391cb05170dacc91594e8736caafcc7f  projects/chirality-app-dev/frontend/src/__tests__/electron/cli-launcher.test.ts
+8402b8b703f44bad6a4f8a74a8614a53ca5294f16c96b6c5b05f47a19ac2964e  projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-control-ipc.test.ts
+0915e0b4645bfd194512ed2677ca72d4863884346726aa81265a638ce6826465  projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-helper-packaging.test.ts
+7c398f0f28562378f537a7918a4b9676871f7712fccc9cd4c021adaa1471f14a  projects/chirality-app-dev/frontend/dist-electron/main.js
+4cc363a6ea191a24318566eee0aac22849bf3e84d7adbcd29d43f91c9ee4cece  projects/chirality-app-dev/frontend/dist-electron/runtime-helper.js

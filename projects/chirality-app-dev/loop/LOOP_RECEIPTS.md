@@ -3242,3 +3242,69 @@
     was taken. Node 22.19 remains an unexecuted compatibility gap; no App R2
     causality, process/SIGTERM proof, App parity acceptance, or merge authority
     is claimed.
+
+- **2026-08-04 — Receipt 118** (D-APP-88 R3 verified blocker and D-APP-92 owner packet).
+  - Receipt-ID: `Receipt-118`
+  - Examined-Through: `cdc76a1d398231267f1379e7143b4de27abaa01b`
+  - Parent-Receipt: `Receipt-117`
+  - Pointers:
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_RESUME_R3_2026-08-04/MANAGER_RETURN.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_RESUME_R3_2026-08-04/HANDOFF_STATE.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_RESUME_R3_2026-08-04/VALIDATION.md`;
+    `projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-92_PACKET_NATIVE_SIGNAL_TRACE_AND_REPLAY_2026-08-04.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_NATIVE_TRACE_DECISION_PREP_2026-08-04/reviews/A2_ADVERSARIAL_VERIFIER_RETURN.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_NATIVE_TRACE_DECISION_PREP_2026-08-04/MANAGER_RETURN.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_NATIVE_TRACE_DECISION_PREP_2026-08-04/HANDOFF_STATE.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_NATIVE_TRACE_DECISION_PREP_2026-08-04/VALIDATION.md`.
+  - Checks: receipt contract, corpus v18, self-check, practitioner pytest,
+    scoped candidate whitespace, Git diff check, and R3 hash/
+    containment preservation pass; final frontend source is unchanged/rolled
+    back, so no new runtime gate follows from packet/receipt closeout.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS and HELPS_HUMANS Agent 1
+    managers under HELP_HUMAN with bounded fresh Agent-2 execution/
+    verification; exact model build not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — `BLOCKED / OWNER RULING REQUIRED`;
+    D-APP-88 remains open, DEL-09-04 remains `IN_PROGRESS`, and TM-APP-036
+    remains unfired. D-APP-92 is `PROPOSAL — AWAITING_RULING` with Option A
+    recommended; no trace, replay, product, remedy, release, reliance, or Git
+    effect follows.
+
+- **2026-08-04 — Receipt 119** (D-APP-92 repaired-evidence rebind and verified closeout).
+  - Receipt-ID: `Receipt-119`
+  - Examined-Through: `cdc76a1d398231267f1379e7143b4de27abaa01b`
+  - Parent-Receipt: `Receipt-118`
+  - Pointers:
+    R3 whitespace-repair backcheck SHA-256
+    `a1701caeed0eac2bbb2ddb2ef6e2912e8016388eae4fbe3edbfd62ee187c1818`;
+    repaired R3 verifier/validation/manager/handoff SHA-256 identities
+    `ef3e26b61965adbf2e0c3e39710f6a099286c1173eb7be6207fcfe2b3ef9605c`,
+    `32e99f44e93482d901282665f996f0bc7624ded466088ebf1e8141342547af85`,
+    `7f7d7db25f3f6b59f16f045271cd167804644cda10d99be6f89d75e4abda426e`,
+    and `2cffbefa20dfc930f393036d50c4787bd592ab3a1854abded1bf681bb6782e9c`;
+    refreshed D-APP-92 packet SHA-256
+    `644c80ecff11577c9ab0f4f4fae4fa9b1f609cdaa2d801f118ffe052bfad77c6`;
+    refreshed App decision-register SHA-256
+    `6c4719ed6cc04c569db8dd8427b615431cb86a04fbe82e040bb6ca013a72e066`;
+    fresh repaired-evidence verifier return SHA-256
+    `45f808e9c6929ba19ec23f007379a76721b471857dab56e3a8e63ba47df0f15c`;
+    terminal D-APP-92 validation/manager/handoff SHA-256 identities
+    `029ff51f374f1e2165ba4f088729b429b8db0d7068b555ba739541c8c7d661a4`,
+    `d876bc125c367162b398841f35a460cc15f9260e01ec412e713683d839edfff4`,
+    and `dd538270bfadb2b773c88da1ec2ed52b7d6c55cdda0a993e16f94cc42e86ab38`.
+  - Checks: Receipt 118 prefix immutability, semantic-only repair preservation,
+    refreshed packet/register binding, fresh adversarial verification,
+    full-App candidate whitespace, receipt/corpus/self-check/practitioner
+    validations, diff check, frontend non-modification, and write containment
+    pass; the owning artifacts carry exact measurements.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS Agent 1 under HELP_HUMAN with
+    one genuinely fresh, bounded read-only ephemeral-generalist Agent 2;
+    exact model build not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — `BLOCKED / OWNER RULING REQUIRED`;
+    the R3 repair changes whitespace only and preserves the confirmed blocker.
+    D-APP-92 remains `PROPOSAL — AWAITING_RULING` with Option A recommended;
+    D-APP-88 and DEL-09-04 remain open and TM-APP-036 remains unfired. No
+    option selection, ruling, trace/replay, product/frontend, Task Management,
+    foreign-loop, release, reliance, lifecycle, other-decision, or Git effect
+    follows.

@@ -1,0 +1,11 @@
+[chirality-desktop] 2026-08-04T18:18:41.634Z [info] desktop.gui.starting {"packaged":true,"userData":"/private/tmp/chirality-dapp88-r3-diag02r2-standard/user","socketPath":"/private/tmp/chirality-dapp88-r3-diag02r2-standard/user/runtime/control.sock"}
+[chirality-desktop] 2026-08-04T18:18:41.635Z [info] desktop.cli_launcher.install {"status":"skipped","path":"/private/tmp/chirality-dapp88-r3-diag02r2-standard/home/.local/bin/chirality","reason":"opted-out"}
+[chirality-desktop] 2026-08-04T18:18:41.635Z [info] runtime.socket_watch.started {"directory":"/private/tmp/chirality-dapp88-r3-diag02r2-standard/user/runtime"}
+[chirality-desktop] 2026-08-04T18:18:41.635Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-08-04T18:18:41.649Z [info] runtime.connectivity.state {"state":"connected","failedAttempts":0,"lastError":null,"changedAt":"2026-08-04T18:18:41.649Z"}
+[chirality-desktop] 2026-08-04T18:18:41.649Z [info] runtime.connectivity.bound {"priorFailedAttempts":0}
+[chirality-desktop] 2026-08-04T18:18:41.957Z [info] runtime.socket_watch.presence_changed {"present":false}
+[chirality-desktop] 2026-08-04T18:18:41.958Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":0,"lastError":"Runtime daemon stopped responding","changedAt":"2026-08-04T18:18:41.958Z"}
+[chirality-desktop] 2026-08-04T18:18:41.966Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unable to reach the Chirality runtime at /private/tmp/chirality-dapp88-r3-diag02r2-standard/user/runtime/control.sock","changedAt":"2026-08-04T18:18:41.966Z"}
+[chirality-desktop] 2026-08-04T18:18:42.066Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":83413}
+[chirality-desktop] 2026-08-04T18:18:42.067Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}
