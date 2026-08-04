@@ -1,0 +1,19 @@
+{
+  "schema_version": "root.owner-decision-template/v1",
+  "decision_id": "TM-ROOT-105",
+  "authority_status": "NON_AUTHORITATIVE_UNSIGNED_TEMPLATE",
+  "allowed_options": ["TM105-A", "TM105-B", "TM105-C"],
+  "recommended_option": "TM105-A",
+  "owner_fields": {"accountable_human_name": null, "date": null},
+  "options": {
+    "TM105-A": "Authorize preparation of an exact Root generic contract candidate for per-run sandbox identity and deny-by-default native-tool authorization, audit, interruption, evidence, result budget, and fail-closed semantics; consumer domain meanings remain local; later semantic acceptance and implementation gates remain mandatory.",
+    "TM105-B": "Route and bind the generic sandbox/native-tool decision into TM-ROOT-121 / DEL-02-06 without adopting semantics or implementation now.",
+    "TM105-C": "Return or defer pending exact missing evidence named by the owner; no generic candidate is authorized."
+  },
+  "copy_paste_templates": {
+    "TM105-A": "RULE TM-ROOT-105 TM105-A — AUTHORIZE EXACT GENERIC CONTRACT-CANDIDATE PREPARATION ONLY: PER-RUN SANDBOX IDENTITY; DENY-BY-DEFAULT NATIVE-TOOL AUTHORIZATION, AUDIT, INTERRUPTION, EVIDENCE, RESULT-BUDGET, AND FAIL-CLOSED SEMANTICS; CONSUMER DOMAIN MEANINGS REMAIN LOCAL; LATER SEMANTIC ACCEPTANCE AND IMPLEMENTATION GATES REQUIRED — <ACCOUNTABLE_HUMAN_NAME> <YYYY-MM-DD>",
+    "TM105-B": "RULE TM-ROOT-105 TM105-B — BIND DECISION PREPARATION TO TM-ROOT-121 / DEL-02-06; NO CONTRACT, SEMANTIC ADOPTION, OR IMPLEMENTATION AUTHORIZED — <ACCOUNTABLE_HUMAN_NAME> <YYYY-MM-DD>",
+    "TM105-C": "RULE TM-ROOT-105 TM105-C — RETURN/DEFER; MISSING EVIDENCE: <EXACT_MISSING_EVIDENCE>; REENTRY TRIGGER: <EXACT_TRIGGER>; NO GENERIC CONTRACT CANDIDATE OR IMPLEMENTATION AUTHORIZED — <ACCOUNTABLE_HUMAN_NAME> <YYYY-MM-DD>"
+  }
+}
+

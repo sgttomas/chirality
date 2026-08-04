@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_TM112_DECISION_PREP_2026-08-03",
+  "plan_version": 2,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "nodes": [
+    {"id":"N1","role":"HELPS_HUMANS","status":"ACCEPTED_COMPLETE_PASS","depends_on":["ACCEPTED_MAIN","APP_NOTICE"]},
+    {"id":"G-N1-FANIN","role":"HELP_HUMAN","status":"COMPLETE_ACCEPTED_N1","depends_on":["N1"]},
+    {"id":"N2","role":"HELPS_HUMANS","status":"COMPLETE_PASS_HANDOFF_COUNTS_CURRENT","depends_on":["G-N1-FANIN"]},
+    {"id":"G-N2-FANIN","role":"HELP_HUMAN","status":"READY_FOR_HELP_HUMAN_VALIDATION","depends_on":["N2"]},
+    {"id":"N3","role":"TBD_BY_HELP_HUMAN","status":"HELD","depends_on":["G-N2-FANIN"]}
+  ],
+  "holds": [
+    {"id":"HOLD-N3","condition":"HELP_HUMAN validates N2 before any N3 release."},
+    {"id":"HOLD-TM112-CHANGE","condition":"No TM-ROOT-112 semantic, implementation, source, or test work is authorized."},
+    {"id":"HOLD-OTHER-SURFACES","condition":"No Task Management row, CURRENT_WORKPLAN, receipt, App/Piping, lifecycle, release, reliance, or Git action is authorized."}
+  ],
+  "n2_write_scope": [
+    "execution/_Coordination/HANDOFF_STATE.md",
+    "execution/_Coordination/AgentRuns/ROOT_TM112_DECISION_PREP_2026-08-03/**"
+  ],
+  "agent2_dispatches": []
+}

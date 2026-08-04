@@ -1,0 +1,826 @@
+{
+  "schemaVersion": "e1-node-http-stop-probe/v1",
+  "executedAt": "2026-08-04T03:25:06.923Z",
+  "environment": {
+    "node": "v24.18.0",
+    "versions": {
+      "node": "24.18.0",
+      "acorn": "8.16.0",
+      "ada": "3.4.4",
+      "amaro": "1.1.9",
+      "ares": "1.34.6",
+      "brotli": "1.2.0",
+      "cldr": "48.0",
+      "icu": "78.3",
+      "llhttp": "9.4.2",
+      "merve": "1.2.2",
+      "modules": "137",
+      "napi": "10",
+      "nbytes": "0.1.4",
+      "ncrypto": "0.0.1",
+      "nghttp2": "1.69.0",
+      "nghttp3": "",
+      "ngtcp2": "",
+      "openssl": "3.5.7",
+      "simdjson": "4.6.4",
+      "simdutf": "6.4.0",
+      "sqlite": "3.53.1",
+      "tz": "2026b",
+      "undici": "7.28.0",
+      "unicode": "17.0",
+      "uv": "1.52.1",
+      "uvwasi": "0.0.23",
+      "v8": "13.6.233.17-node.50",
+      "zlib": "1.3.1-e00f703",
+      "zstd": "1.5.7"
+    },
+    "platform": "darwin",
+    "arch": "arm64",
+    "pid": 68880
+  },
+  "observationBoundaryMs": 80,
+  "callbackAndOrdering": {
+    "neverListened": {
+      "events": [
+        "close-returned-server",
+        "after-close-call",
+        "close-event",
+        "close-callback"
+      ],
+      "callback": {
+        "settled": true,
+        "callbackError": {
+          "code": "ERR_SERVER_NOT_RUNNING",
+          "name": "Error",
+          "message": "Server is not running."
+        }
+      }
+    },
+    "doubleCloseWhileNoConnections": {
+      "events": [
+        "close-returned-server",
+        "after-first-close-call",
+        "close-returned-server",
+        "after-second-close-call",
+        "close-event",
+        "close-callback",
+        "close-callback"
+      ],
+      "first": {
+        "settled": true,
+        "callbackError": null
+      },
+      "second": {
+        "settled": true,
+        "callbackError": {
+          "code": "ERR_SERVER_NOT_RUNNING",
+          "name": "Error",
+          "message": "Server is not running."
+        }
+      }
+    },
+    "closeAfterClosed": {
+      "events": [
+        "close-returned-server",
+        "after-close-call",
+        "close-event",
+        "close-callback"
+      ],
+      "callback": {
+        "settled": true,
+        "callbackError": {
+          "code": "ERR_SERVER_NOT_RUNNING",
+          "name": "Error",
+          "message": "Server is not running."
+        }
+      }
+    }
+  },
+  "matrix": [
+    {
+      "kind": "idleNoBytes",
+      "operation": "close",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": false,
+        "events": [
+          "close-returned-server"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "completedKeepAlive",
+      "operation": "close",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": true,
+          "callbackError": null
+        },
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": true,
+        "events": [
+          "close-returned-server",
+          "close-event",
+          "close-callback"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "incompleteHeaders",
+      "operation": "close",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": false,
+        "events": [
+          "close-returned-server"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "incompleteBody",
+      "operation": "close",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "close-returned-server"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "sse",
+      "operation": "close",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "close-returned-server"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "upgrade",
+      "operation": "close",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "close-returned-server"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "idleNoBytes",
+      "operation": "closeIdleConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": false,
+        "events": [
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeIdleConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "completedKeepAlive",
+      "operation": "closeIdleConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": true,
+        "events": [
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeIdleConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "incompleteHeaders",
+      "operation": "closeIdleConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": false,
+        "events": [
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeIdleConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "incompleteBody",
+      "operation": "closeIdleConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeIdleConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "sse",
+      "operation": "closeIdleConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeIdleConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "upgrade",
+      "operation": "closeIdleConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeIdleConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "idleNoBytes",
+      "operation": "closeAllConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": false,
+        "events": [
+          "closeAllConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeAllConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "completedKeepAlive",
+      "operation": "closeAllConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": true,
+        "events": [
+          "closeAllConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeAllConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "incompleteHeaders",
+      "operation": "closeAllConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": false,
+        "events": [
+          "closeAllConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeAllConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "incompleteBody",
+      "operation": "closeAllConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": true,
+        "events": [
+          "closeAllConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeAllConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "sse",
+      "operation": "closeAllConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": true,
+        "events": [
+          "closeAllConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeAllConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "upgrade",
+      "operation": "closeAllConnections",
+      "observation": {
+        "serverListening": true,
+        "close": null,
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "closeAllConnections-returned"
+        ]
+      },
+      "finalClose": null,
+      "finalEvents": [
+        "closeAllConnections-returned",
+        "close-event"
+      ]
+    },
+    {
+      "kind": "idleNoBytes",
+      "operation": "closeThenCloseAll",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": true,
+          "callbackError": null
+        },
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": false,
+        "events": [
+          "close-returned-server",
+          "closeAllConnections-returned",
+          "close-event",
+          "close-callback"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "closeAllConnections-returned",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "incompleteHeaders",
+      "operation": "closeThenCloseAll",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": true,
+          "callbackError": null
+        },
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": false,
+        "events": [
+          "close-returned-server",
+          "closeAllConnections-returned",
+          "close-event",
+          "close-callback"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "closeAllConnections-returned",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "incompleteBody",
+      "operation": "closeThenCloseAll",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": true,
+          "callbackError": null
+        },
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": true,
+        "events": [
+          "close-returned-server",
+          "closeAllConnections-returned",
+          "close-event",
+          "close-callback"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "closeAllConnections-returned",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "sse",
+      "operation": "closeThenCloseAll",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": true,
+          "callbackError": null
+        },
+        "clientDestroyed": true,
+        "clientClosed": true,
+        "trackedServerSockets": 0,
+        "requestObserved": true,
+        "events": [
+          "close-returned-server",
+          "closeAllConnections-returned",
+          "close-event",
+          "close-callback"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "closeAllConnections-returned",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "upgrade",
+      "operation": "closeThenCloseAll",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "close-returned-server",
+          "closeAllConnections-returned"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "closeAllConnections-returned",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "idleNoBytes",
+      "operation": "closeThenCloseIdle",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": false,
+        "events": [
+          "close-returned-server",
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "closeIdleConnections-returned",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "incompleteHeaders",
+      "operation": "closeThenCloseIdle",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": false,
+        "events": [
+          "close-returned-server",
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "closeIdleConnections-returned",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "incompleteBody",
+      "operation": "closeThenCloseIdle",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "close-returned-server",
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "closeIdleConnections-returned",
+        "close-event",
+        "close-callback"
+      ]
+    },
+    {
+      "kind": "sse",
+      "operation": "closeThenCloseIdle",
+      "observation": {
+        "serverListening": false,
+        "close": {
+          "settled": false
+        },
+        "clientDestroyed": false,
+        "clientClosed": false,
+        "trackedServerSockets": 1,
+        "requestObserved": true,
+        "events": [
+          "close-returned-server",
+          "closeIdleConnections-returned"
+        ]
+      },
+      "finalClose": {
+        "settled": true,
+        "callbackError": null
+      },
+      "finalEvents": [
+        "close-returned-server",
+        "closeIdleConnections-returned",
+        "close-event",
+        "close-callback"
+      ]
+    }
+  ],
+  "acceptsAfterConnectionClosers": [
+    {
+      "operation": "closeIdleConnections",
+      "remainedListening": true,
+      "acceptedNewRequest": true
+    },
+    {
+      "operation": "closeAllConnections",
+      "remainedListening": true,
+      "acceptedNewRequest": true
+    }
+  ],
+  "trackedSocketDestroyUpgrade": {
+    "before": {
+      "close": {
+        "settled": false
+      },
+      "sockets": 1,
+      "clientDestroyed": false
+    },
+    "after": {
+      "close": {
+        "settled": true,
+        "callbackError": null
+      },
+      "sockets": 0,
+      "clientDestroyed": true
+    }
+  },
+  "repeatedListen": [
+    {
+      "generation": 1,
+      "acceptedRequest": true,
+      "close": {
+        "settled": true,
+        "callbackError": null
+      },
+      "listeningAfterClose": false
+    },
+    {
+      "generation": 2,
+      "acceptedRequest": true,
+      "close": {
+        "settled": true,
+        "callbackError": null
+      },
+      "listeningAfterClose": false
+    }
+  ],
+  "overlappingGenerations": {
+    "oldBeforeRelease": {
+      "settled": false
+    },
+    "replacement": {
+      "listenSucceeded": true,
+      "acceptedRequest": true
+    },
+    "oldAfterRelease": {
+      "settled": true,
+      "callbackError": null
+    }
+  }
+}

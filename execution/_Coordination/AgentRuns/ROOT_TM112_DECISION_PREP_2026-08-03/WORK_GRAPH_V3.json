@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "run_id": "ROOT_TM112_DECISION_PREP_2026-08-03",
+  "plan_version": 3,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "nodes": [
+    {"id":"N1","role":"HELPS_HUMANS","status":"ACCEPTED_COMPLETE_PASS","depends_on":["ACCEPTED_MAIN","APP_NOTICE"]},
+    {"id":"G-N1-FANIN","role":"HELP_HUMAN","status":"COMPLETE_ACCEPTED_N1","depends_on":["N1"]},
+    {"id":"N2","role":"HELPS_HUMANS","status":"ACCEPTED_COMPLETE_PASS","depends_on":["G-N1-FANIN"]},
+    {"id":"G-N2-FANIN","role":"HELP_HUMAN","status":"COMPLETE_ACCEPTED_N2","depends_on":["N2"]},
+    {"id":"N3","role":"HELPS_HUMANS","status":"COMPLETE_PASS_UNSIGNED_DECISION_INTERFACES_READY","depends_on":["G-N2-FANIN"]},
+    {"id":"G-N3-OWNER","role":"HUMAN","status":"HELD_UNSIGNED_DECISION_INTERFACES_ONLY","depends_on":["N3"]}
+  ],
+  "holds": [
+    {"id":"HOLD-DECISIONS","condition":"N3 prepares but does not make, sign, or adopt any owner decision."},
+    {"id":"HOLD-IMPLEMENTATION","condition":"All semantic package generation, implementation, tests, activation, lifecycle, release, reliance, and Git remain separately gated."},
+    {"id":"HOLD-ROUTING","condition":"TM-PIP-032 fires only after an actual human ruling; any Piping notice is a later post-ruling act."},
+    {"id":"HOLD-TM112-SEPARATE","condition":"Connection graceful-stop semantics remain a separate adjacent TM-ROOT-112 gate."}
+  ],
+  "n3_write_scope": ["execution/_Coordination/AgentRuns/ROOT_TM112_DECISION_PREP_2026-08-03/**"],
+  "agent2_dispatches": []
+}

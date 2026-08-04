@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "chirality.manager-work-graph/v1",
+  "runId": "ROOT_TM112_STOP_CONTRACT_2026-08-03",
+  "manager": "HELPS_HUMANS",
+  "parent": "HELP_HUMAN",
+  "authoritySha256": "66b967008f67934b08383291e68ef0af9923463d749cac9dbe7a74090e9cbb06",
+  "implementationAuthorized": false,
+  "nodes": [
+    {"id":"E1","label":"installed Node behavior evidence","status":"COMPLETED","writes":"instances/E1-NODE-BEHAVIOR/**"},
+    {"id":"E2","label":"Root contract and source map","status":"COMPLETED","writes":"instances/E2-CONTRACT-MAP/**"},
+    {"id":"M1","label":"manager semantic synthesis","status":"COMPLETED","dependsOn":["E1","E2"]},
+    {"id":"E3","label":"independent refutation","status":"COMPLETED_BLOCK_RETURNED","dependsOn":["M1"],"writes":"instances/E3-INDEPENDENT-REFUTER/**"},
+    {"id":"M1R","label":"bounded manager repair","status":"COMPLETED","dependsOn":["E3"]},
+    {"id":"E4","label":"fresh refutation backcheck","status":"COMPLETED_PASS_WITH_WARN","dependsOn":["M1R"],"writes":"instances/E4-REFUTATION-BACKCHECK/**"},
+    {"id":"M2","label":"validation and handoff","status":"COMPLETED","dependsOn":["E4"]}
+  ]
+}

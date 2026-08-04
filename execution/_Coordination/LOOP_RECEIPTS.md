@@ -2831,3 +2831,89 @@ amendment; owner ruling required).
 - **This tranche's own merge identity** cannot be self-recorded here; it
   belongs in the PR's ordinary closeout comment after those acts occur. The
   PR merge remains the owner's gate.
+
+### Receipt 91 — 2026-08-03 — TM-ROOT-112 inquiry and decision-preparation content closeout
+
+- **Parent and authority:** Receipt 90 plus the human steer for RunID
+  `ROOT_TM112_DECISION_PREP_2026-08-03`. This is an agent-executed derivative
+  inquiry, narrow handoff repair, and unsigned decision preparation only.
+- **N1 outcome:** the exact current-Root `RuntimeDaemon.stop()` mechanism was
+  reproduced with incomplete ordinary and live-SSE requests; controlled client
+  release completed cleanup. App R2-specific causal attribution remains
+  unproved. Evidence and the bounded repair gate are in `MANAGER_RETURN.md`,
+  `NOTICE_TO_HELP_HUMAN.md`, and `instances/H1-TM112-INVESTIGATION/` under the
+  RunID.
+- **N2 repair:** only `execution/_Coordination/HANDOFF_STATE.md` §1 counts were
+  corrected from 36 live (4 OPEN / 32 DEFERRED), 74 archived to the Receipt 90
+  state: 27 live (16 OPEN / 11 DEFERRED), 95 archived.
+- **N3 preparation:** `OWNER_DECISION_PACKET.md` and the TM121/TM105/TM109 JSON
+  forms under the RunID are current-main-bound, non-authoritative, and unsigned.
+  No owner decision, signature/date, register disposition, or notice was made.
+- **Checks and containment:** current HEAD equals `origin/main`; PR #491 is an
+  ancestor; accepted DEL-02-06 package members and RunID JSON/CSV inputs
+  validate; Root live/archive counts reproduce. The tracked content diff is
+  confined to the Root handoff repair and this receipt append; no source, test,
+  register, App/Piping, lifecycle, release, reliance, or Git effect occurred.
+- **Open gates and next owners:** the accountable human must rule separately on
+  TM-ROOT-112 and on TM-ROOT-121/105/109. TM-PIP-032 remains unfired until an
+  actual 105/109 ruling; after an accepted Root repair, App owns its exact
+  post-GUI first-signal rerun. Publication remains a later CHANGE/human gate.
+
+### Receipt 92 — 2026-08-03 — Root Task Management owner-ruling application
+
+- **Authority and modes:** accountable-human rulings recorded in
+  `AgentRuns/ROOT_TM112_DECISION_PREP_2026-08-03/OWNER_RULING_TRANSCRIPT_2026-08-03.md`
+  (SHA-256 `66b96700…bb06`); mandatory federation preflight, resolution
+  orchestration/row maintenance, archive, staleness/closure echo, final
+  federation, and closeout.
+- **Register deltas (counts, not rows):** 3 OPEN rows closed
+  `RESOLVED_BY_DECISION` and mechanically archived; live 27 → 24 and OPEN
+  16 → 13, with DEFERRED unchanged at 11; archive 95 → 98. No row was minted,
+  deferred, elevated, or reopened. TM-ROOT-112 remains OPEN and unchanged.
+- **Durable products:**
+  `_TaskManagement/SESSION_2026-08-03_ROOT_TM_RULING_APPLICATION.md` and
+  `AgentRuns/ROOT_TM_RULING_APPLICATION_2026-08-03/`.
+- **Outgoing coordination:** Root-origin
+  `NOTICE_2026-08-03_ROOT_TM-ROOT-105_109_SUBSTANTIVE_RULINGS.md`
+  (SHA-256 `123c3a0f…a40e`) awaits HELP_HUMAN routing to Piping's ordinary
+  coordination surface; no foreign register write is requested or authorized.
+- **Checks:** preflight and final federation COMPLETE over 4 canonical
+  registers with zero register writes; live/archive validation, exact-row and
+  evidence checks, foreign-register containment, and whitespace checks PASS.
+  Discovery breadcrumb only; no semantic, implementation, lifecycle, release,
+  reliance, or priority effect follows (K-TM-3/4/5).
+
+### Receipt 93 — 2026-08-03 — Owner-rulings fan-in and candidate-carrier closeout
+
+- **Parent and authority:** Receipt 92 and the signed owner-ruling transcript
+  at
+  `AgentRuns/ROOT_TM112_DECISION_PREP_2026-08-03/OWNER_RULING_TRANSCRIPT_2026-08-03.md`
+  (SHA-256 `66b96700…bb06`). Receipt 91's count repair was correct at 27 live / 95
+  archived before the three Receipt 92 closures; the current authoritative
+  registers validate at 24 live (13 OPEN / 11 DEFERRED) and 98 archived.
+- **Ruling application and routing:** TM-ROOT-105, TM-ROOT-109, and TM-ROOT-121
+  are closed `RESOLVED_BY_DECISION`; their closing Notes preserve
+  preparation-only posture and, for 105/109, state that no contract bytes were
+  ruled. The Root-to-Piping notice at
+  `NOTICE_2026-08-03_ROOT_TM-ROOT-105_109_SUBSTANTIVE_RULINGS.md` (SHA-256
+  `123c3a0f…a40e`) was routed byte-identically; Piping Receipt 90 records
+  receipt without disposing TM-PIP-032 or changing a Piping register.
+- **Separate durable carriers:** TM105 candidate preparation is complete but
+  semantics remain unaccepted (candidate SHA-256 `dcaf0790…83cc7`; a no-TBD
+  successor and evidence are required before acceptance). TM109 design
+  preparation is complete (post-refutation package SHA-256
+  `2cec641d…9e489`), with exact human design acceptance pending. TM112's
+  semantic packet is decision-ready (basis-manifest SHA-256
+  `c16cd42b…58485`) and recommends `G2 + C1 + F1`; exact grace,
+  stream-cancellation, and forced-residual semantics remain an accountable-
+  human gate. DEL-02-06 V2 authoring/refutation is complete (six-member
+  manifest SHA-256 `6005a006…25e2`; fresh-refuter return SHA-256
+  `71d7c6ca…b8c`), with exact semantic-byte acceptance pending.
+- **Holds and checks:** no candidate is upgraded to accepted semantics. No
+  runtime/source/test implementation is authorized or started. The later App
+  notice and mandatory non-blocking parity-rerun rider remain held until TM112
+  semantic acceptance and an accepted repair land. Root live/archive
+  validators, status counts, carrier identity checks, receipt continuity,
+  closeout containment, and whitespace checks pass; exact evidence is under
+  `AgentRuns/ROOT_OWNER_RULINGS_CLOSEOUT_2026-08-03/`. Git publication is a
+  separate CHANGE act; merge remains the owner's gate.

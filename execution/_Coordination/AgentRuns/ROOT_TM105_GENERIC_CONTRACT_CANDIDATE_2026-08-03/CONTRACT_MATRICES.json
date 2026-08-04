@@ -1,0 +1,86 @@
+{
+  "schema": "root.tm105.contract-matrices.candidate/v0",
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "authority_to_prepare": {
+    "evidence_id": "E-001",
+    "sha256": "66b967008f67934b08383291e68ef0af9923463d749cac9dbe7a74090e9cbb06"
+  },
+  "identity_tbd_ownership": {
+    "schema_and_field_encodings": "TBD-105-03",
+    "backend_selected_value": "TBD-105-02",
+    "implementation_family_selected_value_and_conformance": "TBD-105-07",
+    "identity_rollover": "TBD-105-04",
+    "resource_rights_profile_grammar": "TBD-105-17",
+    "common_digest_algorithm_and_canonicalization": "TBD-105-21"
+  },
+  "identity_matrix": [
+    {"field":"run_id","required_candidate":true,"meaning":"governed agent-instance execution identity","field_encoding":"TBD-105-03","locality":"generic"},
+    {"field":"session_id","required_candidate":true,"meaning":"runtime continuity carrier","field_encoding":"TBD-105-03","locality":"generic"},
+    {"field":"agent_instance_id","required_candidate":true,"meaning":"runtime instance identity","field_encoding":"TBD-105-03","locality":"generic"},
+    {"field":"agent_role","required_candidate":true,"meaning":"agent0, agent1, or agent2 runtime position","field_encoding":"TBD-105-03","locality":"generic"},
+    {"field":"parent_identity","required_candidate":true,"meaning":"explicit parent or none; no capability inheritance","field_encoding":"TBD-105-03","locality":"generic"},
+    {"field":"brief_hash","required_candidate":true,"meaning":"sealed run authority/context binding","field_encoding":"TBD-105-03","digest_canonicalization":"TBD-105-21","locality":"generic"},
+    {"field":"profile_id_version_hash","required_candidate":true,"meaning":"mechanical rights declaration identity","field_encoding":"TBD-105-03","semantic_selection":"TBD-105-17","digest_canonicalization":"TBD-105-21","locality":"generic"},
+    {"field":"backend_id_version","required_candidate":true,"meaning":"enforcement implementation identity","field_encoding":"TBD-105-03","semantic_selection":"TBD-105-02","locality":"generic"},
+    {"field":"policy_id_version_hash","required_candidate":true,"meaning":"authorization policy identity","field_encoding":"TBD-105-03","digest_canonicalization":"TBD-105-21","locality":"generic"},
+    {"field":"registry_id_version_hash","required_candidate":true,"meaning":"public tool registry identity","field_encoding":"TBD-105-03","digest_canonicalization":"TBD-105-21","locality":"generic"},
+    {"field":"implementation_family_bindings","required_candidate":true,"meaning":"one family per exposed public tool","field_encoding":"TBD-105-03","semantic_selection_and_conformance":"TBD-105-07","digest_canonicalization":"TBD-105-21","locality":"generic"},
+    {"field":"consumer_policy_refs","required_candidate":false,"meaning":"opaque consumer-local labels and references","value":"consumer_supplied_or_absent","locality":"consumer_local_opaque"}
+  ],
+  "capability_matrix": [
+    {"condition":"tool or implementation unknown","candidate_decision":"DENY","receipt":true},
+    {"condition":"grant absent, invalid, expired, or mismatched","candidate_decision":"DENY","receipt":true},
+    {"condition":"run identity is missing, invalid, stale, or mismatched","candidate_decision":"DENY","receipt":true},
+    {"condition":"tool or implementation binding does not exactly match","candidate_decision":"DENY","receipt":true},
+    {"condition":"input hash is absent, invalid, or mismatched when required","candidate_decision":"DENY","receipt":true},
+    {"condition":"role or sealed-brief boundary does not affirmatively match","candidate_decision":"DENY","receipt":true},
+    {"condition":"required consumer-supplied opaque policy label is absent or does not match without Root interpretation","candidate_decision":"DENY","receipt":true},
+    {"condition":"resource right absent","candidate_decision":"DENY","receipt":true},
+    {"condition":"applicable bound policy identity is absent, stale, or mismatched, or policy evaluation returns any result other than exact ALLOW, including explicit DENY or BLOCK, error, unknown, or indeterminate","candidate_decision":"DENY","receipt":true,"policy_decision_contract":"TBD-105-20"},
+    {"condition":"run identity, tool and implementation binding, input hash, role and sealed-brief boundary, consumer-supplied opaque policy labels, mechanically resolved resource rights, one authenticated applicable non-replayed active non-stale exact allow grant under resolved precedence, exact capability matching, and the applicable exact-bound policy evaluation returning exact ALLOW all affirmatively match with no missing, unknown, indeterminate, stale, mismatched, conflicting, or non-allow input","candidate_decision":"ALLOW_CANDIDATE","receipt":true,"grant_capability_policy_contract":"TBD-105-20"},
+    {"condition":"parent has capability but child lacks own grant","candidate_decision":"DENY","receipt":true},
+    {"condition":"human gate required but no accepted evidence reference","candidate_decision":"DENY","receipt":true},
+    {"condition":"grant schema, vocabulary, authentication, replay status, issuance, activation, applicability, precedence, composition, expiry, revocation, supersession, capability matching, or stale status is invalid, conflicting, or indeterminate","candidate_decision":"DENY","receipt":true,"grant_capability_policy_contract":"TBD-105-20"}
+  ],
+  "audit_matrix": [
+    {"event":"identity.established","mandatory_candidate":true,"content":"run/session/role/profile/backend/policy/registry/family bindings"},
+    {"event":"tool.exposed","mandatory_candidate":true,"content":"public tool and implementation binding"},
+    {"event":"authorization.requested","mandatory_candidate":true,"content":"request identity, input hash, requested capabilities"},
+    {"event":"authorization.decided","mandatory_candidate":true,"content":"allow or deny, generic reason, evaluator identity, evidence ref"},
+    {"event":"tool.started","mandatory_candidate":true,"content":"start and budget snapshot"},
+    {"event":"tool.progress","mandatory_candidate":"TBD-105-09","content":"bounded progress and counters"},
+    {"event":"tool.terminal","mandatory_candidate":true,"content":"generic outcome, consumer outcome opaque, budget and evidence state","digest_canonicalization":"TBD-105-21"},
+    {"event":"interruption.lifecycle","mandatory_candidate":true,"content":"requested, acknowledged, cleanup, terminal"},
+    {"event":"cleanup.verified","mandatory_candidate":true,"content":"owned resource inventory and known/unknown cleanup state"},
+    {"event":"evidence.failure","mandatory_candidate":true,"content":"failure detail; cannot yield authoritative success"}
+  ],
+  "interruption_matrix": [
+    {"state":"RUNNING","allowed_next_candidate":["INTERRUPT_REQUESTED","GENERIC_TERMINAL"],"timing":"TBD-105-11"},
+    {"state":"INTERRUPT_REQUESTED","allowed_next_candidate":["ACKNOWLEDGED","CLEANUP_IN_PROGRESS","GENERIC_TERMINAL"],"timing":"TBD-105-11"},
+    {"state":"ACKNOWLEDGED","allowed_next_candidate":["CLEANUP_IN_PROGRESS","GENERIC_TERMINAL"],"timing":"TBD-105-11"},
+    {"state":"CLEANUP_IN_PROGRESS","allowed_next_candidate":["GENERIC_TERMINAL"],"timing":"TBD-105-11"},
+    {"state":"GENERIC_TERMINAL","allowed_next_candidate":[],"timing":"none"}
+  ],
+  "budget_matrix": [
+    {"dimension":"input_bytes","limit":"TBD-105-13","allowed_overflow":"TBD-105-14"},
+    {"dimension":"inline_output_bytes","limit":"TBD-105-13","allowed_overflow":"TBD-105-14"},
+    {"dimension":"artifact_output_bytes","limit":"TBD-105-13","allowed_overflow":"TBD-105-14"},
+    {"dimension":"records_items","limit":"TBD-105-13","allowed_overflow":"TBD-105-14"},
+    {"dimension":"progress_events","limit":"TBD-105-13","allowed_overflow":"TBD-105-14"},
+    {"dimension":"tool_calls","limit":"TBD-105-13","allowed_overflow":"TBD-105-14"},
+    {"dimension":"wall_time","limit":"TBD-105-13","allowed_overflow":"TBD-105-14"},
+    {"dimension":"process_count","limit":"TBD-105-13","allowed_overflow":"TBD-105-14"},
+    {"dimension":"artifact_count","limit":"TBD-105-13","allowed_overflow":"TBD-105-14"}
+  ],
+  "fail_closed_matrix": [
+    {"condition":"authorization denied","generic_outcome":"DENIED","success_allowed":false},
+    {"condition":"consumer policy blocks","generic_outcome":"BLOCKED","success_allowed":false},
+    {"condition":"selected implementation unavailable","generic_outcome":"UNAVAILABLE","success_allowed":false},
+    {"condition":"interruption terminal","generic_outcome":"CANCELLED","success_allowed":false},
+    {"condition":"partial or truncated output","generic_outcome":"PARTIAL_OR_TBD-105-16","success_allowed":false},
+    {"condition":"execution or evidence failure","generic_outcome":"FAILED","success_allowed":false},
+    {"condition":"complete envelope execution with mandatory evidence","generic_outcome":"SUCCEEDED","success_allowed":true,"semantic_limit":"not consumer validity or human acceptance"},
+    {"condition":"unknown state, transition, identity, cleanup, or policy result","generic_outcome":"FAILED_OR_BLOCKED_TBD-105-16","success_allowed":false},
+    {"condition":"runtime failure with fixture or alternate-family availability","generic_outcome":"FAILED_OR_UNAVAILABLE","success_allowed":false,"fallback_allowed":false}
+  ]
+}
