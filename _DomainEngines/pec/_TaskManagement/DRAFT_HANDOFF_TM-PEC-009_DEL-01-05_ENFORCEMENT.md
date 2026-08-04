@@ -1,6 +1,12 @@
 # DRAFT — PEC handoff package for TM-PEC-009
 
-**Delivery status:** ROUTED BY OWNER RULING — 2026-08-02
+**Delivery status:** OBE — 2026-08-03, by owner deferral-review ruling.
+DEL-01-05 enforcement landed through the loop's own D-PEC-77 instrument
+(`projects/pec/execution/_Coordination/D-PEC-77_DEL-01-05_ENFORCEMENT_2026-08-02/FINAL_ACCEPTANCE_RULING_2026-08-03.md`),
+not via this draft; TM-PEC-009 is CLOSED `RESOLVED_WITH_CHANGE`. File
+retained as history. Superseded record below is unchanged.
+
+**Prior delivery status (historical):** ROUTED BY OWNER RULING — 2026-08-02
 
 **Routed request:**
 `projects/pec/execution/_Coordination/TASK_MANAGEMENT_DPEC_REQUESTS_2026-08-02/REQUEST_TM-PEC-009_DEL-01-05_PACKET.md`
