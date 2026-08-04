@@ -49,6 +49,18 @@ The nine TM-PEC-023 objective blanks remain held pending an exact
 SCOPE_CHANGE mapping-or-retain-blank ruling. Nothing in the PRD is an
 implementation mandate; each tranche needs its own owner-ruled packet.
 
+**Superseding owner ruling, 2026-08-03:** TM-PEC-023 now proceeds through a
+dedicated SCOPE_CHANGE mapping session; neither mappings nor blank retention is
+ruled, the nine values and COV-062..COV-070 remain open, and no urgency or
+downstream gate is implied. RF-002 disposition is `REVISE`, with execution and
+exact revised-SOW acceptance separately scheduled; RF-002 remains `TBD / OPEN`,
+Gate 5 remains HOLD, and DEL-01-06 remains `INITIALIZED` until acceptance.
+Metadata alignment is cleared. `DerivativePackageState` remains `INCOMPLETE`
+for exactly three component categories: (1) the TM-PEC-023 mapping-session
+amendment, (2) RF-002 revision plus exact REVIEW acceptance, and (3) ordinary
+SOW/SPEC currency already carried by SCA-004 / TM-PEC-013/014 for DEL-02-07,
+DEL-03-01, DEL-04-01, and DEL-00-03. No row is closed by this status note.
+
 **The old application** (v0.4-baseline prototype: `core/`, `server/`, `web/`,
 `agent-sidecar/`, `tools/`, `fixtures/`) is a **frozen reference corpus** —
 read and cite only, no further feature work, retired product docs under

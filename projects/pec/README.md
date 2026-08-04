@@ -33,6 +33,16 @@ and the WORKING_ITEMS currency-sweep handoff. Build phases P1–P4 remain
 separately owner-gated. See the standing plan at
 `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md`.
 
+Superseding owner direction on 2026-08-03 sends TM-PEC-023 to a dedicated
+SCOPE_CHANGE mapping session: neither mappings nor blanks are ruled, all nine
+values and COV-062..COV-070 remain open, and no downstream gate or urgency is
+created. RF-002 has owner disposition `REVISE`, but the SOW revision and exact
+REVIEW acceptance are separately scheduled; Gate 5 remains HOLD at unchanged
+`INITIALIZED`. Metadata alignment itself is cleared. Derivative state remains
+`INCOMPLETE` only for three component categories: the TM-PEC-023 mapping-session
+amendment; RF-002 revision plus exact REVIEW acceptance; and the ordinary
+SOW/SPEC currency lane for DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03.
+
 ## Layout
 
 | Path | Contents |

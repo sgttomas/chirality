@@ -153,6 +153,19 @@
       SHA-256 `604826885cd39aedb85fee1f53079123d4389496f3ec48ed3f437944877fd545`
       → `PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`.
 
+13. **Superseding owner direction for remaining derivative lanes
+    (2026-08-03):** TM-PEC-023 is directed to a dedicated SCOPE_CHANGE mapping
+    session; neither an exact mapping nor blank retention is ruled, its nine
+    semantic bytes and COV-062..COV-070 remain open, and no downstream gate or
+    urgency is created. RF-002 disposition is `REVISE`, but revision and exact
+    REVIEW acceptance are separately scheduled; RF-002 remains `TBD / OPEN`,
+    Gate 5 remains HOLD, and DEL-01-06 remains `INITIALIZED`. Metadata alignment
+    is cleared. Derivative state remains `INCOMPLETE` for exactly three
+    component categories: (1) TM-PEC-023 mapping-session amendment; (2) RF-002
+    revision plus exact REVIEW acceptance; and (3) ordinary SOW/SPEC currency
+    under SCA-004 / TM-PEC-013/014 for DEL-02-07, DEL-03-01, DEL-04-01, and
+    DEL-00-03. This item records no row closure.
+
 ## Notes (human-owned)
 
 - Scaffolding and local-register seeding were authorized by `D-PEC-62`
