@@ -22,7 +22,7 @@ tool validates form and harvests candidates, never makes the call):
                                Read-only federation survey of every tracked,
                                canonical register. Exit 0 COMPLETE, 1 PARTIAL,
                                2 operational.
-  archive [--register PATH] [--dry-run]
+  archive --register PATH [--dry-run]
                                Relocate rows already CLOSED by an owner-ruled
                                disposition from the live register into its
                                sibling REGISTER_CLOSED.csv archive. Mechanical
@@ -1294,7 +1294,9 @@ def main(argv: list[str] | None = None) -> int:
     p_arc = sub.add_parser(
         "archive",
         help="relocate owner-closed rows to the REGISTER_CLOSED.csv sibling")
-    p_arc.add_argument("--register", type=Path, default=DEFAULT_REGISTER)
+    # The one mutating verb: no default register, so a child-loop session can
+    # never archive the root register by omission (K-TM cross-loop rule).
+    p_arc.add_argument("--register", type=Path, required=True)
     p_arc.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
