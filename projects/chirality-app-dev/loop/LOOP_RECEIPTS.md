@@ -3153,3 +3153,35 @@
     recorded as counts in the ruling application records above. No routed
     notices shipped; no foreign register touched. This closes the session
     only and does not claim global or per-register semantic closure.
+
+- **2026-08-03 — Receipt 115** (owner-ruled joint Pi G1-B Task Management closeout).
+  - Receipt-ID: `Receipt-115`
+  - Examined-Through: `88e7590d3664d4f1daf91bed2a8899bda0748b92`
+  - Parent-Receipt: `Receipt-114`
+  - Owner-Direction: `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING` — stable App
+    decision record `APP_RULING_JOINT_PI_G1B_TM_APP_039_TM_ROOT_106_V1_2026-08-03.md`
+    records the owner's `RULE JOINT_PI_G1B_TM_APP_039_TM_ROOT_106_V1` act.
+  - Pointers:
+    `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/APP_RULING_JOINT_PI_G1B_TM_APP_039_TM_ROOT_106_V1_2026-08-03.md`;
+    `execution/_Coordination/NOTICE_2026-08-03_APP_JOINT_PI_G1B_TM_APP_039_TM_ROOT_106_RULING.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP90_FIRST_DOMAIN_UI_DELTA_RESUME_2026-08-03/VALIDATION.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP90_FIRST_DOMAIN_UI_DELTA_RESUME_2026-08-03/HANDOFF_STATE.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-91_PACKET_DUAL_TARGET_ARCHITECTURE_SELECTION_2026-08-03.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv`.
+  - Checks: mandatory federation preflight and closeout federation coverage
+    COMPLETE; App register validation before closure and live/archive
+    validation after archival pass; one owner-ruled row closed and archived,
+    live count 15 to 14 and archive count 25 to 26, with zero other row
+    changes; row uniqueness, evidence SHA, receipt contract, containment,
+    and whitespace checks pass.
+  - Model-Attribution: OpenAI Codex TASK_MANAGEMENT Agent 1 under HELP_HUMAN;
+    no Agent 2 dispatch.
+  - Gate-Outcome: `EXECUTED` — TM-APP-039 closed
+    `RESOLVED_BY_DECISION` against the stable App decision record. Root
+    TM-ROOT-106 remains OPEN and Root-owned; PIA-U30 remains held and
+    undispatched. D-APP-91 remains an unselected owner packet: no A/B/C
+    selection, work dispatch, release, or reliance effect. The Root notice is
+    coordination only. No foreign register or other App row changed; no Git
+    action occurred, and merge remains owner-gated.
