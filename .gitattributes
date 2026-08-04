@@ -6,6 +6,7 @@
 # EOL on these paths. Real trailing spaces and tabs are still flagged.
 execution/_Decomposition/*.csv whitespace=cr-at-eol
 execution/_ScopeChange/**/*.csv whitespace=cr-at-eol
+projects/pec/execution/**/Dependencies.csv whitespace=cr-at-eol
 # Unified-diff artifacts carry format-mandated blank context lines
 # (a single space); disable whitespace checks for them entirely.
 execution/_ScopeChange/**/*.diff -whitespace
