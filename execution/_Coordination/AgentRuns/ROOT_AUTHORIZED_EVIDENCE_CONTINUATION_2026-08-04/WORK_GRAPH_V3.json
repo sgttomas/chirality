@@ -1,0 +1,33 @@
+{
+  "run_id": "ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04",
+  "plan_version": 3,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "terminal_nodes": [
+    {"id": "H1", "status": "COMPLETE_ACCEPTED_FAN_IN", "manifest_sha256": "ec8a7209376dc7b3587b69a5753c213802443d25ffbb3eaf8b50549954f49ddc"},
+    {"id": "H2", "status": "COMPLETE_ACCEPTED_FAN_IN", "manifest_sha256": "4f9241adaa58235359a8c9b328dd536a23f5e51c278d217bc54f729a4954829f"},
+    {"id": "H3", "status": "COMPLETE_ACCEPTED_FAN_IN", "manifest_sha256": "24f942b105b3e2c3ee69e6beae7a39ee915d2d33580a603d3e4a3455c1967529"}
+  ],
+  "active_nodes": [
+    {
+      "id": "H4",
+      "role": "HELPS_HUMANS",
+      "objective": "Execute TM105 AB-06 as non-authoritative schema/state/grant/digest design evidence with every critical gap explicit.",
+      "dependencies": ["H2", "H3"],
+      "write_ownership": [
+        "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H4-TM105-AB06-SCHEMA-EVIDENCE/"
+      ],
+      "fan_in_gate": "manager-validated Agent-2 return; exact hashes and vectors; explicit TBD/UNKNOWN preservation; no complete successor, schema selection, byte gate, or implementation authority"
+    }
+  ],
+  "edges": [
+    {"from": "H2", "to": "H4", "type": "AB01_AB09_evidence_prerequisite"},
+    {"from": "H3", "to": "H4", "type": "AB02_AB07_evidence_prerequisite"}
+  ],
+  "human_decision_points": [
+    "owner, vendor, platform, legal, privacy, lifecycle, compatibility, and acceptance facts",
+    "schema, state, grant, rights, digest, canonicalization, or crypto-policy selection",
+    "TM105 semantic acceptance or implementation",
+    "lifecycle, release, reliance, publication, or merge"
+  ]
+}

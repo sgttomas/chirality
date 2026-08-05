@@ -1,0 +1,39 @@
+{
+  "run_id": "ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04",
+  "plan_version": 2,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "terminal_nodes": [
+    {
+      "id": "H1",
+      "status": "COMPLETE_ACCEPTED_FAN_IN",
+      "manifest_sha256": "ec8a7209376dc7b3587b69a5753c213802443d25ffbb3eaf8b50549954f49ddc"
+    },
+    {
+      "id": "H2",
+      "status": "COMPLETE_ACCEPTED_FAN_IN",
+      "manifest_sha256": "4f9241adaa58235359a8c9b328dd536a23f5e51c278d217bc54f729a4954829f"
+    }
+  ],
+  "active_nodes": [
+    {
+      "id": "H3",
+      "role": "HELPS_HUMANS",
+      "objective": "Execute TM105 AB-02 and AB-07 as evidence-only work using two governed disjoint Agent-2 children.",
+      "dependencies": ["H2"],
+      "write_ownership": [
+        "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H3-TM105-AB02-AB07/"
+      ],
+      "fan_in_gate": "manager-validated child returns; exact input/output hashes; no inferred facts, backend qualification, policy selection, semantics, implementation, or byte gate"
+    }
+  ],
+  "edges": [
+    {"from": "H2", "to": "H3", "type": "evidence_prerequisite"}
+  ],
+  "human_decision_points": [
+    "backend, rights grammar, or topology selection",
+    "owner, vendor, platform, legal, privacy, retention, or deletion facts",
+    "TM105 semantic acceptance or implementation",
+    "lifecycle, release, reliance, publication, or merge"
+  ]
+}

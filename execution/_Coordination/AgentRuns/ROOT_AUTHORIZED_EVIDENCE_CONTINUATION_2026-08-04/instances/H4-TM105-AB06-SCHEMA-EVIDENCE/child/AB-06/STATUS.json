@@ -1,0 +1,114 @@
+{
+  "childId": "H4-TM105-AB06-SCHEMA-EVIDENCE/AB-06",
+  "terminalStatus": "COMPLETED_WITH_UNRESOLVED_FACTS_AND_MECHANICAL_SCHEMA_COMPILATION_UNAVAILABLE",
+  "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+  "inputBinding": {
+    "declaredEvidenceRows": 41,
+    "hashMatches": 41,
+    "hashMismatches": 0,
+    "missingInputs": 0,
+    "inputDrift": "NONE",
+    "sealedBriefSha256": "d57e4f43bd8388bee975a56ce774780d1bba1f7770446e6ce85e206d88de696c"
+  },
+  "outputInventory": [
+    "FIELD_TYPE_CENSUS.csv",
+    "CURRENT_SCHEMA_CROSSWALK.csv",
+    "FIELD_CLASSIFICATION.csv",
+    "schemas/identity-envelope.candidate.v0.json",
+    "schemas/grant-policy.candidate.v0.json",
+    "schemas/continuation.candidate.v0.json",
+    "schemas/event-outcome.candidate.v0.json",
+    "schemas/state-transition.candidate.v0.json",
+    "schemas/digest-reference.candidate.v0.json",
+    "STATE_TRANSITIONS.csv",
+    "STRUCTURAL_REQUIREMENTS.md",
+    "CANONICALIZATION_DIGEST_CANDIDATES.md",
+    "vectors/GOLDEN_VECTORS.json",
+    "vectors/NEGATIVE_VECTORS.json",
+    "MIGRATION_AFFECTED_CLIENT_GAPS.csv",
+    "UNRESOLVED_CHOICES.md",
+    "IMPLEMENTATION_CRITICAL_TBDS.md",
+    "RETURN.md",
+    "STATUS.json",
+    "PACKAGE_MANIFEST.sha256"
+  ],
+  "schemaStatus": {
+    "draft": "2020-12",
+    "schemaCount": 6,
+    "jsonParse": "PASS",
+    "mechanicalCompilation": "UNTESTED_MISSING_VALIDATOR",
+    "pythonValidator": "UNAVAILABLE: ModuleNotFoundError: No module named 'jsonschema'",
+    "nodeValidator": "UNAVAILABLE: AJV_2020_UNAVAILABLE ERR_MODULE_NOT_FOUND",
+    "additionalPropertiesPosture": "OPEN_FOR_UNKNOWN_FUTURE_FIELDS",
+    "semanticSelection": "NONE"
+  },
+  "vectorStatus": {
+    "goldenCount": 8,
+    "goldenStructuralChecks": "PASS_8_OF_8_BOUNDED_LOCAL_EVALUATOR",
+    "negativeCount": 10,
+    "negativeStructuralChecks": "PASS_10_OF_10_BOUNDED_LOCAL_EVALUATOR",
+    "unknownVersionCount": 2,
+    "unknownVersionCandidateParserPosture": "REJECT_CURRENT_V0_ONLY",
+    "futureVersionPolicy": "TBD",
+    "authorityEffect": "NONE"
+  },
+  "csvStatus": {
+    "parse": "PASS_5_OF_5",
+    "uniformColumnCounts": true
+  },
+  "containmentStatus": {
+    "writesBelowChildRootOnly": true,
+    "symlinks": 0
+  },
+  "openTBDs": [
+    "TBD-105-01", "TBD-105-02", "TBD-105-03", "TBD-105-04", "TBD-105-05",
+    "TBD-105-06", "TBD-105-07", "TBD-105-08", "TBD-105-09", "TBD-105-10",
+    "TBD-105-11", "TBD-105-12", "TBD-105-13", "TBD-105-14", "TBD-105-15",
+    "TBD-105-16", "TBD-105-17", "TBD-105-18", "TBD-105-19", "TBD-105-20",
+    "TBD-105-21"
+  ],
+  "criticalAB06TBDs": [
+    "TBD-105-03", "TBD-105-04", "TBD-105-10", "TBD-105-15",
+    "TBD-105-16", "TBD-105-17", "TBD-105-20", "TBD-105-21"
+  ],
+  "unknowns": [
+    "owner_product_security_platform_runtime_compatibility_crypto",
+    "vendor_support_license_redistribution_security_updates",
+    "deployment_provider_worker_broker_topology",
+    "supported_platform_packaging_lifecycle",
+    "grant_issuer_evaluator_policy_authority_trust_anchors",
+    "protected_data_store_access_retention_deletion_legal_privacy",
+    "representative_workloads_budget_truncation_continuation_posture",
+    "implementation_family_membership_and_fixture_posture",
+    "client_versions_support_window_and_acceptance",
+    "del_epoch_binding_manifest_n3_cutover_release"
+  ],
+  "holds": {
+    "noTbdSuccessor": true,
+    "byteGate": true,
+    "semanticAcceptance": true,
+    "schemaSelection": true,
+    "implementation": true,
+    "backendQualification": true,
+    "compatibility": true,
+    "privacySufficiency": true,
+    "affectedClientAcceptance": true,
+    "lifecycle": true,
+    "release": true,
+    "reliance": true,
+    "publication": true,
+    "gitPrMerge": true,
+    "registerReceiptNoticeForeignLoop": true
+  },
+  "noAuthorityEffectFlags": {
+    "semantic": true,
+    "implementation": true,
+    "client": true,
+    "lifecycle": true,
+    "release": true,
+    "reliance": true,
+    "publication": true,
+    "git": true,
+    "byteGate": true
+  }
+}

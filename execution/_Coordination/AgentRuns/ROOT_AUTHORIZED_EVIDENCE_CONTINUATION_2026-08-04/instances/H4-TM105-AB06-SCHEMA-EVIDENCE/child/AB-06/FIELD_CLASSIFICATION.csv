@@ -1,0 +1,66 @@
+Schema,Field,Classification,Provenance,Qualification
+all,schemaVersion,REQUIRED_BY_CURRENT_EVIDENCE,"versioned candidates required by AB-06; current schemas carry explicit versions",Candidate schema identifier only; not accepted family/evolution policy
+all,candidateStatus,REQUIRED_BY_CURRENT_EVIDENCE,H4 sealed brief requires machine-readable non-authoritative/incomplete status,Must equal NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE
+identity,runId,UNKNOWN_PENDING_SEMANTIC_SELECTION,CONTRACT_MATRICES.json identity_matrix required_candidate is unaccepted,Encoding/namespace/requiredness TBD-105-03
+identity,sessionId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current RuntimeSessionRecord requires it but generic identity policy unselected,Lifetime and rollover TBD-105-01/04
+identity,agentInstanceId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current SessionRecord makes it optional,Requiredness/encoding TBD-105-03
+identity,agentRole,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current role is required in one type and numeric/optional in another,Encoding conflict retained
+identity,parentIdentity,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current parent fields optional and DEL creates no automatic retry lineage,Nullability and rollover TBD-105-03/04
+identity,briefReference,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current briefHash exists in harness/agent-run records,Canonical bytes/digest TBD-105-21
+identity,sandboxProfileIdentity,UNKNOWN_PENDING_SEMANTIC_SELECTION,Candidate contract proposes binding but no current generic field,Backend/rights/profile TBD-105-02/17
+identity,backendIdentity,UNKNOWN_PENDING_SEMANTIC_SELECTION,No qualified backend or current generic field,TBD-105-02
+identity,policyIdentity,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current fingerprint carries only policy version,TBD-105-20
+identity,toolRegistryIdentity,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current registry version exists,Hash/profile TBD-105-03/21
+identity,implementationFamilyBindings,UNKNOWN_PENDING_SEMANTIC_SELECTION,Candidate contract proposes exact binding; current tools lack family identity,TBD-105-07
+identity,consumerPolicyReferences,OPTIONAL_BY_CURRENT_EVIDENCE,Candidate matrix says consumer-supplied or absent,Values remain opaque consumer-local
+identity,tm109AdjacentProvenanceReference,OPTIONAL_BY_CURRENT_EVIDENCE,TM109 accepted identity/provenance envelope may be referenced without widening,No equality/mapping/normalization/conformance inference
+grant-policy,requestId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current turns/events have request-adjacent IDs but no generic auth request schema,TBD-105-20
+grant-policy,runIdentityReference,UNKNOWN_PENDING_SEMANTIC_SELECTION,Candidate C-CAP proposal only,TBD-105-20
+grant-policy,toolReference,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current descriptors have names but identity/version/hash missing,TBD-105-20
+grant-policy,implementationReference,UNKNOWN_PENDING_SEMANTIC_SELECTION,No accepted family binding,TBD-105-07/20
+grant-policy,inputDigestReference,UNKNOWN_PENDING_SEMANTIC_SELECTION,Candidate proposal only,TBD-105-20/21
+grant-policy,grantReferences,UNKNOWN_PENDING_SEMANTIC_SELECTION,No generic current grant exists,TBD-105-20
+grant-policy,policyReference,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current version string is insufficient,TBD-105-20
+grant-policy,requestedRights,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current grammars conflict and no backend qualifies,TBD-105-17
+grant-policy,decision,UNKNOWN_PENDING_SEMANTIC_SELECTION,Exact decision vocabulary and allow semantics unselected,TBD-105-20
+grant-policy,reasonCode,UNKNOWN_PENDING_SEMANTIC_SELECTION,Receipt schema unselected,TBD-105-06/20
+grant-policy,evaluatorReference,UNKNOWN_PENDING_SEMANTIC_SELECTION,Evaluator identity/trust UNKNOWN,TBD-105-20
+grant-policy,evidenceReferences,UNKNOWN_PENDING_SEMANTIC_SELECTION,Receipt/evidence authenticity unresolved,TBD-105-06/09
+grant-policy,lifecycle,UNKNOWN_PENDING_SEMANTIC_SELECTION,Issuance activation expiry revocation supersession unselected,TBD-105-20
+continuation,existenceStatus,REQUIRED_BY_CURRENT_EVIDENCE,AB-06 requires missing facts explicit,Exact value TBD; does not select continuation existence
+continuation,token,UNKNOWN_PENDING_SEMANTIC_SELECTION,No current generic token exists,TBD-105-15
+continuation,bindingReferences,UNKNOWN_PENDING_SEMANTIC_SELECTION,Required only if continuation later exists,TBD-105-15
+continuation,cursor,UNKNOWN_PENDING_SEMANTIC_SELECTION,No evidence-selected cursor shape,TBD-105-15
+continuation,lifecycle,UNKNOWN_PENDING_SEMANTIC_SELECTION,Expiry and replay policy absent,TBD-105-15
+continuation,staleDisposition,UNKNOWN_PENDING_SEMANTIC_SELECTION,Stale refusal semantics absent,TBD-105-15
+continuation,delAdjacency,OPTIONAL_BY_CURRENT_EVIDENCE,Accepted DEL says later operation is a new independent turn in its scope,Adjacency only; no generic continuation inference
+event-outcome,eventId,REQUIRED_BY_CURRENT_EVIDENCE,Both current event carriers require an ID,Candidate structure only; authenticity/uniqueness TBD-105-09
+event-outcome,eventType,REQUIRED_BY_CURRENT_EVIDENCE,Both current event carriers require a type,Vocabulary remains open because current unions conflict
+event-outcome,sequence,UNKNOWN_PENDING_SEMANTIC_SELECTION,RuntimeEvent requires it but HarnessEvent lacks it,TBD-105-09
+event-outcome,timestamp,UNKNOWN_PENDING_SEMANTIC_SELECTION,Both current carriers require strings but clock/format model unresolved,TBD-105-09
+event-outcome,runId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current harness event lacks it,TBD-105-03/09
+event-outcome,sessionId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Both current carriers require it but generic event schema unselected,TBD-105-09
+event-outcome,turnId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Required in RuntimeEvent optional in HarnessEvent,TBD-105-09
+event-outcome,requestId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Candidate auth receipt proposal only,TBD-105-06/20
+event-outcome,parentEventId,OPTIONAL_BY_CURRENT_EVIDENCE,Optional in HarnessEvent,Ordering/parent consistency TBD-105-09
+event-outcome,attribution,UNKNOWN_PENDING_SEMANTIC_SELECTION,Optional current carrier fails DEL coverage,TBD-105-09
+event-outcome,data,REQUIRED_BY_CURRENT_EVIDENCE,Current event carriers require generic data,Content classification/privacy remain UNKNOWN
+event-outcome,outcome,UNKNOWN_PENDING_SEMANTIC_SELECTION,No one full generic outcome model,TBD-105-16
+event-outcome,evidenceReferences,UNKNOWN_PENDING_SEMANTIC_SELECTION,Candidate audit proposal only,TBD-105-06/09
+state-transition,fromState,REQUIRED_BY_CURRENT_EVIDENCE,Transition record cannot be structurally interpreted without endpoints,Does not select state token
+state-transition,toState,REQUIRED_BY_CURRENT_EVIDENCE,Transition record cannot be structurally interpreted without endpoints,Does not select state token
+state-transition,trigger,OPTIONAL_BY_CURRENT_EVIDENCE,Current events can provide trigger evidence,No causal inference
+state-transition,disposition,REQUIRED_BY_CURRENT_EVIDENCE,H4 requires explicit candidate/current/conflict status,Classification metadata only
+state-transition,evidenceReferences,OPTIONAL_BY_CURRENT_EVIDENCE,K-CLAIM requires claims cite exact provenance,Absence prevents claim closure
+state-transition,unresolvedAlternatives,OPTIONAL_BY_CURRENT_EVIDENCE,Conflict rule preserves alternatives,Does not choose winner
+state-transition,forbiddenInference,OPTIONAL_BY_CURRENT_EVIDENCE,H4 boundary requires express hold preservation,No semantic effect
+state-transition,owningLaterGate,OPTIONAL_BY_CURRENT_EVIDENCE,Handoff requires consequential choice routing,Owner may remain UNKNOWN
+digest-reference,alternative,REQUIRED_BY_CURRENT_EVIDENCE,AB-06 requires at least three compared alternatives,Comparison label is not selection
+digest-reference,payloadReference,REQUIRED_BY_CURRENT_EVIDENCE,A digest-bearing candidate must identify the described payload opaquely,Payload scope remains TBD-105-21
+digest-reference,algorithmId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Current SHA-256 evidence cannot select common policy,TBD-105-21
+digest-reference,canonicalizationProfileId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Required only for JSON alternative and value remains TBD,TBD-105-21
+digest-reference,binaryProfileId,UNKNOWN_PENDING_SEMANTIC_SELECTION,Required only for typed-binary alternative and value remains TBD,TBD-105-21
+digest-reference,payloadScopeId,UNKNOWN_PENDING_SEMANTIC_SELECTION,TM109 four-part descriptor cannot be widened; TM105 scope unselected,TBD-105-21
+digest-reference,domainSeparationId,UNKNOWN_PENDING_SEMANTIC_SELECTION,No current evidence,UNKNOWN/TBD-105-21
+digest-reference,digestText,UNKNOWN_PENDING_SEMANTIC_SELECTION,No algorithm/profile-selected digest can be authoritative,TBD-105-21
+digest-reference,allSelectionFieldsStatus,REQUIRED_BY_CURRENT_EVIDENCE,H4 requires missing implementation-critical selections remain explicit,Exact value TBD

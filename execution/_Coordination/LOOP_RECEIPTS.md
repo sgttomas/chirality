@@ -3110,3 +3110,34 @@ amendment; owner ruling required).
 - **Gate:** publish the manifest repair on the existing PR #510 branch and
   require fresh hosted checks. Merge-to-main remains at the accountable
   human's separate gate.
+
+### Receipt 101 — 2026-08-04 — Authorized Root evidence continuation closeout
+
+- **Parent and authority:** Receipt 100; signed TM105-A preparation-only
+  continuation SHA-256 `6396dd26…c566`; App joint G1-B ruling SHA-256
+  `48ecaa57…f6aff`; current committed basis `main@cdc76a1d…baa01b`. The
+  standing Root workplan remains idle; this is separately authorized evidence
+  preparation only.
+- **G1-B result:** the owner-verified current App hash set reproduces exactly.
+  Drift from the historical target is exactly adapter, package manifest, and
+  lock; four other pins hold. The refresh manifest is `ec8a7209…9ddc`.
+  `TM-ROOT-106` remains OPEN, PIA-U30 remains held, and no Pi/Electron
+  authority or App supersession follows.
+- **TM105 results:** AB-01, AB-02, AB-06, AB-07, and AB-09 evidence carriers
+  are terminal at manifests `4f9241ad…829f`, `24f942b1…7529`, and
+  `c7dda2e2…25f7`. Every `TBD-105-01..21` remains OPEN; all backend candidates
+  are `NOT_QUALIFIED`; unsupported policy/legal/privacy facts remain
+  `UNKNOWN`; no no-TBD successor or byte gate exists.
+- **Validation and holds:** manifests, sealed-input drift checks, JSON/CSV,
+  declared structural vectors, path/symlink containment, candidate
+  whitespace, and Git diff hygiene pass. Independent Draft 2020-12 compilation
+  is explicitly `UNTESTED_MISSING_VALIDATOR`. No register, source/test,
+  canonical contract, client, lifecycle, release, reliance, or foreign-loop
+  effect occurred; Root stays 23 live (`OPEN=12`, `DEFERRED=11`) and 99
+  archived.
+- **Handoff and gate:** exact closure evidence is under
+  `AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/`. AB-03,
+  AB-04, AB-05, AB-08, successor/refutation, and implementation remain held on
+  named evidence/human gates. CHANGE owns ordinary checked PR publication of
+  this exact evidence-only tranche; merge remains the accountable human's
+  separate gate.

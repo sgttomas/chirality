@@ -1,0 +1,128 @@
+{
+  "status": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+  "purpose": "Cross-language-safe positive instances for structural validation only. Placeholder values have no semantic, cryptographic, policy, compatibility, or authority meaning.",
+  "vectors": [
+    {
+      "id": "G-IDENTITY-01",
+      "schema": "schemas/identity-envelope.candidate.v0.json",
+      "instance": {
+        "schemaVersion": "tm105.identity-envelope.candidate/v0",
+        "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+        "runId": "opaque-run-001",
+        "sessionId": "opaque-session-001",
+        "agentInstanceId": "opaque-agent-001",
+        "agentRole": "opaque-role-token",
+        "parentIdentity": null,
+        "briefReference": {"id": "opaque-brief-reference"},
+        "sandboxProfileIdentity": {"id": "TBD"},
+        "backendIdentity": {"id": "TBD"},
+        "policyIdentity": {"id": "TBD"},
+        "toolRegistryIdentity": {"id": "opaque-registry-reference"},
+        "implementationFamilyBindings": [{"toolReference": {"id": "opaque-tool"}, "familyReference": {"id": "TBD"}}]
+      }
+    },
+    {
+      "id": "G-GRANT-01",
+      "schema": "schemas/grant-policy.candidate.v0.json",
+      "instance": {
+        "schemaVersion": "tm105.grant-policy.candidate/v0",
+        "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+        "requestId": "opaque-request-001",
+        "runIdentityReference": {"id": "opaque-run-001"},
+        "toolReference": {"id": "opaque-tool"},
+        "grantReferences": [{"id": "TBD"}],
+        "policyReference": {"id": "TBD"},
+        "requestedRights": [{"name": "TBD", "value": "TBD"}],
+        "decision": "TBD",
+        "evaluatorReference": {"id": "TBD"}
+      }
+    },
+    {
+      "id": "G-CONTINUATION-01",
+      "schema": "schemas/continuation.candidate.v0.json",
+      "instance": {
+        "schemaVersion": "tm105.continuation.candidate/v0",
+        "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+        "existenceStatus": "TBD",
+        "delAdjacency": "NO_GENERIC_CONTINUATION_INFERENCE_FROM_DEL"
+      }
+    },
+    {
+      "id": "G-EVENT-01",
+      "schema": "schemas/event-outcome.candidate.v0.json",
+      "instance": {
+        "schemaVersion": "tm105.event-outcome.candidate/v0",
+        "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+        "eventId": "opaque-event-001",
+        "eventType": "opaque-current-or-future-event-token",
+        "sessionId": "opaque-session-001",
+        "turnId": "opaque-turn-001",
+        "data": {},
+        "outcome": {"status": "TBD", "partial": false, "truncated": false, "budgetExhausted": false}
+      }
+    },
+    {
+      "id": "G-STATE-01",
+      "schema": "schemas/state-transition.candidate.v0.json",
+      "instance": {
+        "schemaVersion": "tm105.state-transition.candidate/v0",
+        "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+        "fromState": "RUNNING",
+        "toState": "INTERRUPT_REQUESTED",
+        "trigger": "candidate-interruption-request",
+        "disposition": "PROPOSED_UNSELECTED",
+        "evidenceReferences": ["CONTRACT_MATRICES.json interruption_matrix"],
+        "unresolvedAlternatives": ["current turn.interrupted", "current turn.cancelled", "tool-specific behavior TBD"],
+        "forbiddenInference": "This vector does not make the transition authoritative or select timing.",
+        "owningLaterGate": "TBD-105-10/TBD-105-11 plus later human semantic gate"
+      }
+    },
+    {
+      "id": "G-DIGEST-01",
+      "schema": "schemas/digest-reference.candidate.v0.json",
+      "instance": {
+        "schemaVersion": "tm105.digest-reference.candidate/v0",
+        "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+        "alternative": "OPAQUE_ORIGINAL_BYTES",
+        "payloadReference": {"id": "opaque-byte-sequence-001"},
+        "algorithmId": "TBD",
+        "payloadScopeId": "TBD",
+        "domainSeparationId": "TBD",
+        "digestText": "TBD",
+        "allSelectionFieldsStatus": "TBD"
+      }
+    },
+    {
+      "id": "G-DIGEST-02",
+      "schema": "schemas/digest-reference.candidate.v0.json",
+      "instance": {
+        "schemaVersion": "tm105.digest-reference.candidate/v0",
+        "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+        "alternative": "UTF8_JSON_LATER_SELECTED_PROFILE",
+        "payloadReference": {"id": "opaque-json-payload-001"},
+        "canonicalizationProfileId": "TBD",
+        "algorithmId": "TBD",
+        "payloadScopeId": "TBD",
+        "domainSeparationId": "TBD",
+        "digestText": "TBD",
+        "allSelectionFieldsStatus": "TBD"
+      }
+    },
+    {
+      "id": "G-DIGEST-03",
+      "schema": "schemas/digest-reference.candidate.v0.json",
+      "instance": {
+        "schemaVersion": "tm105.digest-reference.candidate/v0",
+        "candidateStatus": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+        "alternative": "TYPED_BINARY_LATER_SELECTED_PROFILE",
+        "payloadReference": {"id": "opaque-typed-payload-001"},
+        "binaryProfileId": "TBD",
+        "algorithmId": "TBD",
+        "payloadScopeId": "TBD",
+        "domainSeparationId": "TBD",
+        "digestText": "TBD",
+        "allSelectionFieldsStatus": "TBD"
+      }
+    }
+  ]
+}

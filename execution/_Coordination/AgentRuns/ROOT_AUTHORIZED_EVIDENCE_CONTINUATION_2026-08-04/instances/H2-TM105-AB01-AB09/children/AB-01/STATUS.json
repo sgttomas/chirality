@@ -1,0 +1,40 @@
+{
+  "child_id": "H2-TM105-AB01-AB09/AB-01",
+  "terminal_status": "completed",
+  "input_drift": {
+    "status": "none",
+    "verified_input_count": 10,
+    "mismatches": []
+  },
+  "output_path": "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H2-TM105-AB01-AB09/children/AB-01/RETURN.md",
+  "status_path": "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H2-TM105-AB01-AB09/children/AB-01/STATUS.json",
+  "unresolved_facts": [
+    "grant issuer, policy authority, trust anchors, approval verification, and reviewer independence",
+    "token lifetime, audience, replay posture, intended unscoped-project policy, and revocation service level",
+    "actual native-tool overlay and adapter invocation enforcement",
+    "event and run-record authenticity, append-only behavior, filesystem access, and tamper resistance",
+    "owners, vendors, platform, deployment topology, data classification, and severity policy",
+    "Piping transport, plugin runtime, permission persistence, operative agent broker, bounded grants, and guard completion"
+  ],
+  "no_authority_effect": {
+    "semantic_selection": false,
+    "implementation_authorization": false,
+    "lifecycle_effect": false,
+    "release_effect": false,
+    "reliance_effect": false,
+    "byte_gate_effect": false
+  },
+  "holds_remain_intact": true,
+  "evidence_scope": "limited_to_the_ten_sha_verified_inputs_declared_in_the_sealed_brief",
+  "write_containment": {
+    "status": "contained",
+    "authorized_outputs": [
+      "children/AB-01/RETURN.md",
+      "children/AB-01/STATUS.json"
+    ],
+    "observed_writes": [
+      "children/AB-01/RETURN.md",
+      "children/AB-01/STATUS.json"
+    ]
+  }
+}

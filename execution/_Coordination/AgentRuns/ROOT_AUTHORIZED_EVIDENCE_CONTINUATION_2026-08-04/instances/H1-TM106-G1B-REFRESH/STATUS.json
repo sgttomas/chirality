@@ -1,0 +1,115 @@
+{
+  "schema_version": "root-authorized-evidence-continuation-h1-status/v1",
+  "instance_id": "H1-TM106-G1B-REFRESH",
+  "role": "HELPS_HUMANS",
+  "terminal_status": "COMPLETE_G1B_CURRENT_HASH_REFRESH_REINGEST",
+  "decision_effect": "VALIDATION_TARGET_DERIVATIVE_ONLY",
+  "selected_family_id": "chirality.app.pi-agent-engine-adapter",
+  "selected_ownership_boundary": "APP_AFFECTED_CLIENT",
+  "repository_basis": {
+    "accepted_origin_main": "cdc76a1d398231267f1379e7143b4de27abaa01b",
+    "checkout_head": "26f505e4d5a90ec10a87e6fbe982231de19b80c7",
+    "candidate_bytes_match_origin_main": true
+  },
+  "hash_refresh": {
+    "ruled_hashes_matched": 7,
+    "ruled_hashes_mismatched": 0,
+    "drifted_from_h4": [
+      "adapter",
+      "package_json",
+      "package_lock"
+    ],
+    "held_from_h4": [
+      "runtime_host",
+      "proof_launcher",
+      "supply_verifier",
+      "pi_notice"
+    ]
+  },
+  "target_state": {
+    "record_status": "REFRESHED_VALIDATION_TARGET_ENVELOPE_INCOMPLETE_PIA_U10_IDENTITY",
+    "identity_digest_state": "TBD_BLOCKED_PENDING_COMPLETE_EXACT_STABLE_IDENTITY",
+    "registry_key_state": "TBD_BLOCKED_PENDING_COMPLETE_EXACT_STABLE_IDENTITY",
+    "complete_identity_schema_instance": "NOT_CLAIMED",
+    "canonical_digest_execution": "NOT_RUN"
+  },
+  "artifacts": [
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_refresh_2026-08-04/ACCEPTED_BASIS_AND_DRIFT_REPORT.json",
+      "bytes": 11637,
+      "sha256": "41f9381d602222297f123542dca8a740ce4a74beccc2cc4f47bf9fa1b872d00c"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_refresh_2026-08-04/G1B_VALIDATION_TARGET_REFRESHED.json",
+      "bytes": 11593,
+      "sha256": "542eb785ab359a0d4d531bf2553d4da598e58b6fee0b33d198e8badadda1d5c8"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_refresh_2026-08-04/REINGEST_VALIDATION.json",
+      "bytes": 8189,
+      "sha256": "7c07fb7ae72c0df7bb2b78b26d39607153b4caac14cfd55075fc8d1aabefdd2c"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_refresh_2026-08-04/BLOCKER_HOLD_MATRIX.csv",
+      "bytes": 6595,
+      "sha256": "6278cd086a93204f5f25e5d3f309c6487059fdf3af20474cb9915b2916d1d4b1"
+    },
+    {
+      "path": "execution/_Evaluation/PI_0820_CONCORDANCE_2026-08-02_97678A8/g1b_refresh_2026-08-04/ARTIFACT_MANIFEST.csv",
+      "sha256": "SELF_EXCLUDED_FROM_MANIFEST_REPORTED_AT_FAN_IN"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H1-TM106-G1B-REFRESH/RETURN.md",
+      "sha256": "BOUND_BY_ARTIFACT_MANIFEST"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H1-TM106-G1B-REFRESH/STATUS.json",
+      "sha256": "BOUND_BY_ARTIFACT_MANIFEST"
+    },
+    {
+      "path": "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H1-TM106-G1B-REFRESH/HANDOFF_STATE.md",
+      "sha256": "BOUND_BY_ARTIFACT_MANIFEST"
+    }
+  ],
+  "validation": {
+    "accepted_source_hashes": "PASS",
+    "h4_manifest_reproduction": "PASS_8_OF_8",
+    "current_file_hashes": "PASS_7_OF_7",
+    "current_files_regular_tracked_clean": "PASS_7_OF_7",
+    "origin_main_identity": "PASS_7_OF_7",
+    "drift_set_equality": "PASS_EXACTLY_3_DRIFT_4_HELD",
+    "json_parse": "PASS",
+    "csv_parse": "PASS_21_UNIQUE_ROWS",
+    "artifact_manifest": "PASS",
+    "candidate_whitespace": "PASS",
+    "git_diff_check": "PASS",
+    "write_scope": "PASS",
+    "forbidden_surface_writes": "NONE"
+  },
+  "holds": [
+    "TM_ROOT_106_OPEN",
+    "TM_ROOT_122_OPEN_READ_ONLY",
+    "PIA_U30_HELD_NO_DISPATCH",
+    "D_APP_72_AND_SCA_APP_002_REMAIN_OPERATIVE",
+    "NO_PI_0_82_0_APPROVAL",
+    "NO_ELECTRON_43_2_0_SUPERSESSION",
+    "NO_WORK_DISPATCH",
+    "NO_MODEL_OR_CREDENTIAL_AUTHORITY",
+    "NO_LIFECYCLE_RELEASE_RELIANCE_DISTRIBUTION_EFFECT",
+    "NO_REGISTER_EFFECT",
+    "NO_GIT_EFFECT"
+  ],
+  "closure": {
+    "h1_objective": "COMPLETE",
+    "tm_root_106": "OPEN_NOT_CLOSED",
+    "pi_evidence_hold": "NOT_CLOSED",
+    "derivative_package_status": "CURRENT_FOR_RULED_SEVEN_HASH_SET_ONLY",
+    "next_owner": "HELP_HUMAN_FAN_IN"
+  },
+  "rerun_required_on": [
+    "ANY_OF_SEVEN_FILE_HASHES_CHANGES",
+    "CURRENT_HASH_RULING_AMENDED",
+    "PIA_U10_SCHEMA_CHANGES",
+    "ACCEPTED_STABLE_IDENTITY_PREDECESSOR_ADDED"
+  ]
+}
