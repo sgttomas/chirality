@@ -1791,3 +1791,11 @@
   - Current-map result: `DerivativePackageState=INCOMPLETE` for exactly two lanes — TM-PEC-023 dedicated mapping-session amendment and TM-PEC-013/014 ordinary SOW/SPEC currency for DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03.
   - Task Management fence: TM-PEC-011 remains `OPEN` with stale source evidence pending separate TASK_MANAGEMENT disposition; no Task Management register write or row closure occurred.
   - Gate outcome: **RF-002 EXACT SUCCESSOR ACCEPTED / CURRENT MAPS ALIGNED / GATE 5 HOLD + INITIALIZED UNCHANGED / TWO DERIVATIVE LANES REMAIN / GIT CLOSEOUT OWNER-HELD**.
+
+- **2026-08-04 — Receipt 162** (PR #513 owner merge and RF-002 effective closeout).
+  - Owner direction of record (verbatim): “MERGE PR #513. The revision-1.4 ScopeOfWork successor at SHA-256 5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8 is accepted as the current DEL-01-06 production contract; RF-002 is RESOLVED by the recorded REVISE disposition; RF-001 remains RESOLVED with VER-005 not waived; lifecycle remains INITIALIZED with Gate 5 on HOLD. No product acceptance, issuance, or reliance follows from this merge.”
+  - Git outcome: PR #513 merged normally at `1a77cae62a3a8f0b05642e8b9e0e7b7913ad1da6` from reviewed head `8f02609b56f5bbfeacb360c8d3ed2778ba98791a`; remote `main` identifies the merge commit.
+  - Checks: governance harness and PEC tests both `SUCCESS`; exact SOW SHA-256 reproduces as `5fdcfd96834509e32a4df1fc001932fe7a0c5d4c5d96becb9acca0be3c4a2fa8`.
+  - Contract boundary: RF-001 and RF-002 remain `RESOLVED`; VER-005 is not waived; Gate 5 remains `HOLD`; lifecycle remains `INITIALIZED`; no product/source acceptance, issuance, release, or professional reliance is inferred.
+  - Remaining derivative state: `INCOMPLETE` for TM-PEC-023’s dedicated mapping-session amendment and TM-PEC-013/014 ordinary SOW/SPEC currency; both remain separately owner-gated.
+  - Gate outcome: **PR #513 MERGED / RF-002 EFFECTIVE CLOSEOUT RECORDED / CONTRACT + LIFECYCLE BOUNDARIES PRESERVED / TWO OWNER-GATED DERIVATIVE LANES REMAIN**.
