@@ -1799,3 +1799,14 @@
   - Contract boundary: RF-001 and RF-002 remain `RESOLVED`; VER-005 is not waived; Gate 5 remains `HOLD`; lifecycle remains `INITIALIZED`; no product/source acceptance, issuance, release, or professional reliance is inferred.
   - Remaining derivative state: `INCOMPLETE` for TM-PEC-023’s dedicated mapping-session amendment and TM-PEC-013/014 ordinary SOW/SPEC currency; both remain separately owner-gated.
   - Gate outcome: **PR #513 MERGED / RF-002 EFFECTIVE CLOSEOUT RECORDED / CONTRACT + LIFECYCLE BOUNDARIES PRESERVED / TWO OWNER-GATED DERIVATIVE LANES REMAIN**.
+
+- **2026-08-04 — Receipt 163** (TM-PEC-013/014 routing-only closeout).
+  - Modes: mandatory federation preflight, resolution orchestration, and owner-directed row maintenance for exactly TM-PEC-013/014; nine-domain scans are recorded in the two routed handoffs.
+  - Owner direction of record (verbatim): “AUTHORIZE TASK_MANAGEMENT to route TM-PEC-013 to WORKING_ITEMS with one REVIEW cycle per DEL-02-07, DEL-03-01, and DEL-04-01 successor SOW; route TM-PEC-014 to the DEL-00-03 owning workflow with REVIEW/owner exact-byte acceptance of the corrected SPEC. Set both priorities LOW. Preserve lifecycle, source, dependencies, and historical artifacts. Prepare routed handoffs only; execution remains separately scheduled.
+
+    Hold on TM-PEC-023.”
+  - Register delta: 2 existing rows reviewed; 2 assignments, 2 priorities, 2 priority bases, 2 last-reviewed dates, and 2 routing notes updated. TM-PEC-013/014 remain `OPEN` with blank disposition/evidence/closure; live totals remain `OPEN=17 / DEFERRED=3 / ELEVATED=0 / CLOSED=1`, archive 4.
+  - Routed products: `_DomainEngines/pec/_TaskManagement/HANDOFF_TM-PEC-013_SCA004_SOW_CURRENCY.md` → WORKING_ITEMS plus three separate one-deliverable REVIEW successor cycles, with review type remaining owner-selected at each Gate 1; `_DomainEngines/pec/_TaskManagement/HANDOFF_TM-PEC-014_DEL-00-03_SPEC_CURRENCY.md` → DEL-00-03 owning workflow plus REVIEW/owner exact-byte acceptance. Both are coordination only; execution is separately scheduled.
+  - Federation: `COMPLETE`, 4/4 canonical registers PASS, zero invalid/unreadable/ambiguous inputs, zero register writes; 22 program-level typed status divergences remain outside PEC, and none involves TM-PEC-013/014. Live/archive validation PASS at 21/4; archive dry-run predicts the one pre-existing TM-PEC-016 relocation only.
+  - Preservation: source hashes reproduce; no lifecycle, source, dependency, decomposition, SCA, SPEC/SOW, REVIEW, historical, foreign-loop, disposition, acceptance, release, or reliance byte changed. TM-PEC-023 and its carrier remain byte-identical and `OPEN`; the owner's HOLD is preserved.
+  - Gate outcome: **TWO LOW-PRIORITY HANDOFFS FINALIZED / ROUTED ONLY / TM-PEC-013 AND TM-PEC-014 REMAIN OPEN / EXECUTION SEPARATELY SCHEDULED / TM-PEC-023 HELD**.
