@@ -1,0 +1,437 @@
+{
+  "item_count": 17,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 379,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "A single invocation rebuilds the record tier in full from a fixture source corpus for every registered loop, with no operator step, repair action, or additional command required, and the invocation surface is documented.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-001",
+          "source_line": 424,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the single documented command against a fixture source corpus spanning every registered loop and assert the record tier is rebuilt in full, with the invocation transcript showing no operator step, repair action, or second command; read the documented invocation surface and assert it matches what was executed."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 380,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "Every record-tier fact produced by a rebuild is traceable to a file source read through a declared upstream feed unit; a rebuild run with prior store state present produces the same result as one run against an empty store; and inspection finds no cached, stream-derived, or otherwise non-source input contributing to any record-tier fact.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-002",
+          "source_line": 425,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Provenance trace: for a sample record-tier fact of each entity type produced, trace it to the file source and the upstream feed unit that yielded it; run the rebuild once with prior store state present and once against an empty store and assert result equality; and inspect the module's input surface for cached, stream-derived, or non-source inputs, asserting none contributes."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 381,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "The rebuild completes against absent, newly deleted, and empty store fixtures without manual repair, and this deliverable's source contains no store path resolution, ignore-rule registration, store creation, or store deletion of its own.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-003",
+          "source_line": 426,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the rebuild against absent, newly deleted, and empty store fixtures, asserting completion without manual repair in each case; grep this deliverable's source for store path resolution, ignore-rule registration, store creation, and store deletion operations and assert none is present."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 382,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "No presence-tier fact is written, reconstructed, or asserted by a rebuild; a rebuild run over a fixture corpus containing presence-shaped input produces no presence-tier record; and a rebuild completes normally with no presence data available.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-004",
+          "source_line": 427,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Tier-boundary exercise: run the rebuild over a fixture corpus carrying presence-shaped input and assert no presence-tier record is written; delete all presence data and assert the rebuild completes normally; inspect the write surface for any presence-tier construction path."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 383,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "A rebuild over a fixture corpus leaves that corpus byte-identical and touches no path outside the store and the declared generated views; every store write in this deliverable's source reaches the store through the upstream ingest boundary; and the module contains no write, create, or delete call against any source file, governed file, register, or lifecycle file.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-005",
+          "source_line": 428,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Write-boundary exercise: hash the fixture source corpus tree before and after a rebuild and assert byte-identity; capture every filesystem write performed during the run and assert each resolves under the store or a declared generated view; inspect the module's call graph and assert every store write reaches the store through the upstream ingest boundary and that no write, create, or delete call targets a source file, governed file, register, or lifecycle file."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 384,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "Every generated view the reconciler writes appears in the entry point's declared-view record — the component of OUT-001 required by REQ-006 — with its location and its regenerable-and-safe-to-delete status; a rebuild writes no view absent from that record; and deleting every declared view and rebuilding restores them.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-006",
+          "source_line": 429,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Generated-view exercise: read the entry point's declared-view record (the component of OUT-001 required by REQ-006), compare it against the views actually written during a rebuild and assert set equality, then delete every declared view, rebuild, and assert each is restored."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 385,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "Every feed the rebuild reads is read through a declared upstream feed unit; this deliverable's source declares no feed grammar and opens no feed file directly; and a feed the manifest does not name for a loop is not read.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-007",
+          "source_line": 430,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Feed-boundary inspection: instrument or inspect the rebuild's file-open surface and assert every feed read passes through a declared upstream feed unit; grep this deliverable's source for feed grammar definitions and direct feed parsing and assert none; point the rebuild at a fixture loop whose manifest omits a feed present on disk and assert that feed is not read."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 386,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "The loop set and the per-project feed manifest are acquired only through the upstream interfaces: no registry path, filename, or serialization token and no `_harness/adapter.yaml` field name appears in this deliverable's source, fixtures, or call surface, so the resolved registry-home choice and any separately governed adapter migration change nothing here.",
+      "verification": [
+        {
+          "id": "VER-008",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-008",
+          "source_line": 431,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Acquisition-path inspection: assert the loop set and the per-project feed manifest are obtained only through the upstream interfaces; grep this deliverable's source, fixtures, and call surface for registry path, filename, or serialization tokens and for `_harness/adapter.yaml` field names, asserting none is present."
+        }
+      ]
+    },
+    {
+      "id": "AC-009",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-009",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 387,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "For fixture corpora in which a feed is absent, unreadable, malformed, stale, and grammar-unrecognized in turn, the rebuild result carries the reported limitation naming the loop and the feed, and no such rebuild is presented as having read that feed.",
+      "verification": [
+        {
+          "id": "VER-009",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-009",
+          "source_line": 432,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Limitation carry-through: run the rebuild over fixture corpora in which a feed is absent, unreadable, malformed, stale, and grammar-unrecognized in turn, and assert per case that the result carries the reported limitation naming the loop and the feed, and that no result presents that feed as read."
+        }
+      ]
+    },
+    {
+      "id": "AC-010",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-010",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 388,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "Two rebuilds over the same unchanged fixture corpus produce identical record tiers, and a rebuild run against a store already rebuilt from that corpus produces no difference.",
+      "verification": [
+        {
+          "id": "VER-010",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-010",
+          "source_line": 433,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Determinism and idempotence: run the rebuild twice over the same unchanged fixture corpus and assert identical record tiers; run it a third time against the already-rebuilt store and assert no difference."
+        }
+      ]
+    },
+    {
+      "id": "AC-011",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-011",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 389,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "Every record-tier fact written by a rebuild is an instance of an entity type the upstream contract obliges; no record-tier or presence-tier type is defined in this deliverable's source; and no element of this deliverable asserts or requires that an upstream schema, store, parser, registry, or logging artifact exists.",
+      "verification": [
+        {
+          "id": "VER-011",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-011",
+          "source_line": 434,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Type-boundary inspection: assert every record-tier fact written is constructed against an entity type the upstream contract obliges; grep this deliverable's source for record-tier and presence-tier type definitions and assert none; grep source and fixtures for any assumption that an upstream schema, store, parser, registry, or logging artifact exists, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-012",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-012",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 390,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "Each rebuild emits exactly one reconcile-run event to the upstream logging facility, and with the log store absent, deleted, or unwritable the rebuild still completes and produces its normal result.",
+      "verification": [
+        {
+          "id": "VER-012",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-012",
+          "source_line": 435,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Logging exercise, conducted against an interface-level fixture stand-in for the upstream log sink: run a rebuild and assert exactly one reconcile-run event is emitted to the stand-in; then delete, make unwritable, and omit the log store in turn and assert per case that the rebuild completes and produces its normal result. Re-run the emission assertion against the live upstream facility once `DEL-01-04` is available, without discharging that deliverable here. The stand-in is required rather than optional: the upstream contract exercises its own reconcile-run limb against a fixture reconciler stand-in until this deliverable exists (CLM-014), so neither side may presuppose the other's artifact, and CLM-011 forbids this contract from asserting that any upstream artifact exists. Scope boundary: representative governed workflows are not run here; the kill test is `DEL-10-02`'s standing gate under `SOW-055` (CLM-017), and no output of this method may be presented as satisfying it."
+        }
+      ]
+    },
+    {
+      "id": "AC-013",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-013",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 391,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "For a content-dense fixture corpus, inspection of every field the rebuild presents to the store and of every declared generated view finds no file content and no diff content — only paths, counts, identifiers, states, SHAs, and hashes.",
+      "verification": [
+        {
+          "id": "VER-013",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-013",
+          "source_line": 436,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Content-minimal inspection: run the rebuild over a content-dense fixture corpus carrying long prose bodies, quoted authored text, and diff-shaped content, then dump every field presented to the store and every declared generated view and assert field by field that none carries file or diff content."
+        }
+      ]
+    },
+    {
+      "id": "AC-014",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-014",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 392,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "The module contains no Git-delta-keyed incremental path, no drift-classification path, no parity-diff path, no stream-loss recovery path, no rebuild-bound measurement or assertion, no stamping or citation-attachment path, no gate-evaluation or slate-rendering path, no locality or dependency enforcement act, and no kill-test execution; and no test in this deliverable asserts a criterion belonging to any of them.",
+      "verification": [
+        {
+          "id": "VER-014",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-014",
+          "source_line": 437,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Boundary inspection: inspect the module's call graph and source for incremental Git-delta, drift-classification, parity-diff, stream-loss recovery, rebuild-bound measurement, stamping, citation-attachment, gate-evaluation, slate-rendering, locality-enforcement, and kill-test paths, asserting each absent; review this deliverable's tests for any criterion belonging to another deliverable, asserting none."
+        }
+      ]
+    },
+    {
+      "id": "AC-015",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-015",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 393,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "The reconciler and its tests add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-015",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-015",
+          "source_line": 438,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-03` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available, without discharging it here."
+        }
+      ]
+    },
+    {
+      "id": "AC-016",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-03-01-AC-016",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 394,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "The rebuild test suite implements VER-001 through VER-015, executes in the `PKG-03` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-016",
+          "kind": "VER",
+          "qualified_id": "DEL-03-01-VER-016",
+          "source_line": 439,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-03` test suite and confirm that each of VER-001 through VER-015 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-017",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-03-01-AC-017",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 395,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-010`, `SOW-021`, and `OBJ-005`; confirms that the `SOW-010` leg is stated as register-direct and the `SOW-021` leg no more strongly than the SCA-002 record states it — a Gate 1 binding constraint under the union invariant, carrying no confidence label and no independent PRD-anchor attribution of the kind the nine rated rows carry; and confirms that no `PKG-01`, `PKG-02`, sibling `PKG-03`, `PKG-04`, `PKG-05`, `PKG-09`, or `PKG-10` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-010, SOW-021, and OBJ-005, confirms the SOW-010 leg is stated as register-direct and the SOW-021 leg no more strongly than the SCA-002 record states it, and confirms no upstream, sibling, or cross-package scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-03-01",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-03",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "b2569e56927459f93865cbe4642bddbfbee96814aa79ed6b39cb3b3721246f64"
+  },
+  "tool_version": "1"
+}

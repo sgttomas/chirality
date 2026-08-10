@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-07
 package_id: PKG-02
-decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@3623b958b
+decomposition_basis: projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md@65955cceb
 project_scope_refs: [SOW-017]
 package_objective_refs: [OBJ-001, OBJ-002]
 ---
@@ -17,11 +17,8 @@ It covers project scope item `SOW-017` in service of package objectives
 `OBJ-001` and `OBJ-002`.
 
 The accepted basis is `execution/_Decomposition/SOFTWARE_DECOMP.md`
-**revision 1.2** (`current_basis`, SCA-002 successor; commit `3623b958b`). The
-deliverable-local `_REFERENCES.md` still names revision 1.1; that phrase is
-superseded provenance from a deferred pointer sweep (SCA-002 Handoff State §6)
-and is not the basis of this contract, as `_CONTEXT.md`'s own supersession line
-records.
+**revision 1.4** (`current_basis`, SCA-004 successor), pinned at merge
+`65955cceb`.
 
 **Objective warrant.** The attribution of this deliverable to `OBJ-001` and
 `OBJ-002` is SCA-002-qualified and *indirect*, not register-direct. At revision
@@ -90,22 +87,25 @@ naming: this contract declares exactly the reader and its fixture tests.
 
 - **CLM-004** — The seven-way split of `PEC-RCN-002` into `SOW-011..017` is decision-log entry `DL-4` (2026-07-24): "PEC-RCN-002's enumerated feed list is split into seven scope items (SOW-011..017), one per feed kind", because "Each feed is a separately testable parser with its own grammar; a single 'ingest everything' item is not atomic". The other six feed grammars belong to `DEL-02-01` through `DEL-02-06`; this deliverable consumes only the manifest that declares which feeds are read, and defines no grammar for any feed the manifest names.
 - **CLM-005** — The `PKG-02` package charter (decomposition §4) is "Read-side grammars over governed files: `_STATUS.md` dialect, decision registers/packets, receipts ledgers, run-evidence JSON, dependency registers, workplans/LOOP_INIT, `adapter.yaml` manifests", with "Writing anything; interpretation beyond declared grammars" recorded as explicitly out of package scope.
-- **CLM-006** — This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-N16]`, held as register row `DEP-02-07-003`: `DEL-01-06` "Loop registry (local config default)" at `RequiredMaturity` `INITIALIZED`, `Confidence` `MEDIUM`, `Origin` `EXTRACTED`, `Statement` "R3-F13: replaces removed E-P09", and `Notes` "PROPOSAL; Flag=none; EdgeID=E-N16". That row's `SourceRef` and `EvidenceQuote` both read: "DEL-01-06 names 'the loops PEC serves'; DEL-02-07 reads per-project manifests per loop". The remaining two register rows are the `ANCHOR` rows `DEP-02-07-001` (package anchor) and `DEP-02-07-002` (`SOW-017` requirement trace).
+- **CLM-006** — This deliverable has exactly one accepted `EXECUTION` upstream edge, `[E-N16]`, held as register row `DEP-02-07-003`: `DEL-01-06` "Loop registry (local config default)" at `RequiredMaturity` `INITIALIZED`, `Confidence` `MEDIUM`, `Origin` `EXTRACTED`, `Statement` "Per-loop manifest consumption requires the registered-loop set from the loop registry", `SourceRef` "§Deliverable Definition — Ontology, claim CLM-006", `EvidenceQuote` "Three accepted consumer edges depend on this deliverable, all at `RequiredMaturity` `INITIALIZED` and all currently `PROPOSAL` stratum: DEL-02-07 `[E-N16]`", and `Notes` "PROPOSAL; Flag=none; EdgeID=E-N16". The remaining two register rows are the `ANCHOR` rows `DEP-02-07-001` (package anchor) and `DEP-02-07-002` (`SOW-017` requirement trace).
 - **CLM-007** — `DEL-01-06` is at lifecycle state `INITIALIZED`, which means its production contract exists and validates. Its registry format, default instance, and loader are **not** produced; nothing in this contract asserts that any upstream artifact exists or has been built. The reliable input is the upstream contract, whose two consumer-facing obligations this deliverable binds to:
 
 > - **REQ-004** — The loader shall expose the registered-loop set to the
 >   record-tier consumers declared in CLM-006 through a stable in-process
 >   interface.
-> - **REQ-005** — Consumers shall not depend on the registry's on-disk location
->   or serialization, so that a later `SOW-077` ruling can change the registry's
->   home and shape without amending DEL-02-07, DEL-03-01, or DEL-09-02.
+> - **REQ-005** — Consumers shall depend only on the core-owned typed
+>   `LoopRegistry` port and shall not depend on the registry's JSON paths,
+>   serialization, or adapter errors. The selected version-1 JSON/schema files
+>   remain replaceable behind that port; a path, schema, or field-meaning change
+>   requires a separately governed migration without amending DEL-02-07,
+>   DEL-03-01, or DEL-09-02 merely for adapter details.
 >
 > (`DEL-01-06/ScopeOfWork.md`, Epistemology section; ID-shaped text inside this
 > quotation is upstream source context, not a local definition or reference.)
 
 - **CLM-008** — The one declared downstream consumer is `DEL-03-01` (Full-rebuild reconciler) via `[E-P25]`, "SOW-017: adapter.yaml 'as the feed manifest'" / "Manifest drives which feeds are read per loop". That edge is informational here; it lives in the consumer's register and imposes no obligation on this deliverable beyond the outputs declared above.
 - **CLM-009** — Every deliverable this contract names in its own voice — that is, outside the quoted upstream text of CLM-007 — carries `PhaseHint` `P1` in `Deliverables.csv`: `DEL-01-06`, `DEL-02-01`..`DEL-02-06`, `DEL-03-01`, `DEL-04-05`, and `DEL-01-05`, as does `DEL-02-07` itself. The CLM-007 quotation additionally names `DEL-09-02`, which carries `PhaseHint` `P2`; it appears there as upstream source context and is not a deliverable this contract names or stages. No claim in this contract stages any of the deliverables enumerated above into a different phase.
-- **CLM-010** — The deliverable is at lifecycle state `OPEN` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.
+- **CLM-010** — The deliverable is at lifecycle state `INITIALIZED` with no implementation present. Every requirement, acceptance criterion, and verification method below states a contract on future production; none asserts that anything has been built.
 - **CLM-011** — Observed corpus condition, recorded as observation and not as specification: two `_harness/adapter.yaml` instances exist in this checkout, at `projects/chirality-app-dev/_harness/adapter.yaml` and `projects/chirality-piping/_harness/adapter.yaml`. No accepted PEC source adopts their schema, and PEC's own project has no such file. These files are the corpus the reader will meet; they are not a contract, and the grammar this deliverable declares is a production choice bounded by TBD-002.
 
 - **TBD-001** — `ResponsibleParty` is unassigned; the register records `TBD`, with assignment at WORKING_ITEMS activation.
@@ -125,7 +125,7 @@ naming: this contract declares exactly the reader and its fixture tests.
 - **REQ-008** — Tests shall implement the verification methods declared in this contract; they shall not define scope, requirements, or acceptance criteria.
 
 - **AC-001** — The reader consumes a valid fixture manifest and yields exactly the feed manifest that fixture declares; every field it reads appears in the documented grammar, and altering an undeclared field in the fixture changes nothing in its output.
-- **AC-002** — The reader acquires its loop set only through the upstream registry interface: no registry path, filename, or serialization detail appears in this deliverable's source, fixtures, or call surface, so a later ruling on the registry's home and shape changes nothing here.
+- **AC-002** — The reader acquires its loop set only through the upstream registry interface: no registry path, filename, or serialization detail appears in this deliverable's source, fixtures, or call surface, so the resolved registry-home choice and any separately governed adapter migration change nothing here.
 - **AC-003** — For absent, unreadable, malformed, and schema-invalid manifest fixtures, the reader returns an explicit limitation naming the project and the fault, and never a silently empty, partial, or defaulted feed manifest in its place.
 - **AC-004** — A reader run over a fixture corpus leaves that corpus byte-identical, and the module contains no write, create, or delete call against any source path.
 - **AC-005** — The reader and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.
@@ -133,7 +133,7 @@ naming: this contract declares exactly the reader and its fixture tests.
 - **AC-007** — The fixture test suite implements VER-001 through VER-006, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.
 - **AC-008** — The REVIEW gate confirms this contract's traceability to `SOW-017`, `OBJ-001`, and `OBJ-002` as ruled at SCA-002 Gate 3 Q2, confirms that the indirect `OBJ-002` leg is stated no more strongly here than the Gate 3 record states it — including the recorded and unadopted N1 narrowing evidence — and confirms that no `PKG-01`, sibling `PKG-02`, `PKG-03`, or `PKG-04` scope has been absorbed.
 
-- **CON-001** — The long-term home and shape of the loop registry is an undecided owner question, carried upstream as `SOW-077` / open issue `OI-003`. This deliverable therefore cannot bind to any registry path, filename, or serialization, and REQ-003 restricts it to the upstream in-process interface. Nothing in this contract resolves that question, and no output may be read as settling it.
+- **CON-001** — D-PEC-78 O-A, propagated by SCA-004 into accepted decomposition revision 1.4, resolved `SOW-077` / `OI-003` by selecting the existing PEC-owned strict-version-1 JSON/schema paths and core-owned typed `LoopRegistry` port as the long-term registry home and shape. This deliverable nevertheless cannot bind to any registry path, filename, or serialization, and REQ-003 restricts it to the upstream in-process interface; the resolved upstream choice creates no local filesystem binding and expands no output here.
 - **CON-002** — `SOW-017` and `PEC-RCN-002` name the manifest as "per-project", while the upstream edge `[E-N16]` (CLM-006) supplies loops rather than projects. The accepted sources do not state how a registered loop resolves to the project or projects whose manifest is read. This contract records the gap as TBD-003 rather than choosing a resolution; if production requires a resolution that is not derivable from an accepted source, that is a scope-change question, not a production decision.
 
 ## Production and Verification Method — Praxeology

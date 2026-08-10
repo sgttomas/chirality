@@ -1,0 +1,19 @@
+{
+  "item_count": 1,
+  "items": [
+    {
+      "id": "CU-001",
+      "kind": "OWNER_CUSTOM",
+      "review_status": null,
+      "source": "Owner ruling, 2026-08-09",
+      "text": "Confirm the repaired DEL-00-03 ScopeOfWork contract and SPEC candidate consistently record OI-003 resolved by D-PEC-78 O-A and SCA-004, preserve the accepted dispositions of all remaining open issues, and state the accepted revision-1.4 scope-ledger totals as 72 IN / 14 OUT / 8 TBD.",
+      "evidence_required": [
+        "ScopeOfWork.md successor SHA-256",
+        "artifacts/v2/SPEC.md successor SHA-256",
+        "SOFTWARE_DECOMP.md revision 1.4 SHA-256",
+        "ScopeLedger.csv revision 1.4 SHA-256",
+        "Exact semantic diff for RF-002 and RF-003"
+      ]
+    }
+  ]
+}

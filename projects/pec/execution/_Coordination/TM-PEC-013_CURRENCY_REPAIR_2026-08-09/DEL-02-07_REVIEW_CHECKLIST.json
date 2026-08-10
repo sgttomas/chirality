@@ -1,0 +1,212 @@
+{
+  "item_count": 8,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-07-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 127,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d2f898c1bc5b9b3798fe9c5b4961019c9f88366fc36e44c25c51bc878947391f"
+      },
+      "text": "The reader consumes a valid fixture manifest and yields exactly the feed manifest that fixture declares; every field it reads appears in the documented grammar, and altering an undeclared field in the fixture changes nothing in its output.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-02-07-VER-001",
+          "source_line": 148,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the reader over a valid fixture manifest and assert the derived feed manifest equals the fixture's declared expectation; then compare the set of fields actually read, by instrumentation or code inspection, against the documented grammar, and mutate an undeclared field to assert output invariance."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-07-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 128,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d2f898c1bc5b9b3798fe9c5b4961019c9f88366fc36e44c25c51bc878947391f"
+      },
+      "text": "The reader acquires its loop set only through the upstream registry interface: no registry path, filename, or serialization detail appears in this deliverable's source, fixtures, or call surface, so the resolved registry-home choice and any separately governed adapter migration change nothing here.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-02-07-VER-002",
+          "source_line": 149,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the reader's loop-set acquisition path and assert it calls only the upstream registry interface; grep this deliverable's source and fixtures for any registry path, filename, or serialization token and assert none is present."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-07-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 129,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d2f898c1bc5b9b3798fe9c5b4961019c9f88366fc36e44c25c51bc878947391f"
+      },
+      "text": "For absent, unreadable, malformed, and schema-invalid manifest fixtures, the reader returns an explicit limitation naming the project and the fault, and never a silently empty, partial, or defaulted feed manifest in its place.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-02-07-VER-003",
+          "source_line": 150,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Execute the reader against absent, unreadable, malformed, and schema-invalid manifest fixtures and assert, per case, an explicit limitation naming the project and the fault, with no empty, partial, or defaulted manifest returned."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-07-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 130,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d2f898c1bc5b9b3798fe9c5b4961019c9f88366fc36e44c25c51bc878947391f"
+      },
+      "text": "A reader run over a fixture corpus leaves that corpus byte-identical, and the module contains no write, create, or delete call against any source path.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-02-07-VER-004",
+          "source_line": 151,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Hash the fixture corpus tree before and after a reader run and assert byte-identity; inspect the module's call graph for write, create, or delete operations against any source path."
+        }
+      ]
+    },
+    {
+      "id": "AC-005",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-07-AC-005",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 131,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d2f898c1bc5b9b3798fe9c5b4961019c9f88366fc36e44c25c51bc878947391f"
+      },
+      "text": "The reader and its fixtures add no third-party runtime dependency and make no network call, leaving the `DEL-01-05` zero-dependency and locality assertion intact.",
+      "verification": [
+        {
+          "id": "VER-005",
+          "kind": "VER",
+          "qualified_id": "DEL-02-07-VER-005",
+          "source_line": 152,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the `PKG-02` dependency manifest and this module's import graph for third-party runtime dependencies and network calls, and re-run the `DEL-01-05` zero-dependency and locality enforcement once that deliverable is available."
+        }
+      ]
+    },
+    {
+      "id": "AC-006",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-07-AC-006",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 132,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d2f898c1bc5b9b3798fe9c5b4961019c9f88366fc36e44c25c51bc878947391f"
+      },
+      "text": "The reader's emitted record-tier payload for a fixture project contains only the declared manifest-derived locators and settings, with no feed content and no undeclared manifest content.",
+      "verification": [
+        {
+          "id": "VER-006",
+          "kind": "VER",
+          "qualified_id": "DEL-02-07-VER-006",
+          "source_line": 153,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the reader's emitted record-tier payload for a fixture project and assert it contains only declared manifest-derived locators and settings, with no feed content and no undeclared manifest content."
+        }
+      ]
+    },
+    {
+      "id": "AC-007",
+      "output_refs": [
+        "OUT-002"
+      ],
+      "qualified_id": "DEL-02-07-AC-007",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 133,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d2f898c1bc5b9b3798fe9c5b4961019c9f88366fc36e44c25c51bc878947391f"
+      },
+      "text": "The fixture test suite implements VER-001 through VER-006, executes in the `PKG-02` test run, passes, and introduces no acceptance criterion absent from this contract.",
+      "verification": [
+        {
+          "id": "VER-007",
+          "kind": "VER",
+          "qualified_id": "DEL-02-07-VER-007",
+          "source_line": 154,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Run the `PKG-02` test suite and confirm that each of VER-001 through VER-006 has a corresponding executing automated test and that no test asserts a criterion absent from this contract."
+        }
+      ]
+    },
+    {
+      "id": "AC-008",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-02-07-AC-008",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 134,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "d2f898c1bc5b9b3798fe9c5b4961019c9f88366fc36e44c25c51bc878947391f"
+      },
+      "text": "The REVIEW gate confirms this contract's traceability to `SOW-017`, `OBJ-001`, and `OBJ-002` as ruled at SCA-002 Gate 3 Q2, confirms that the indirect `OBJ-002` leg is stated no more strongly here than the Gate 3 record states it — including the recorded and unadopted N1 narrowing evidence — and confirms that no `PKG-01`, sibling `PKG-02`, `PKG-03`, or `PKG-04` scope has been absorbed.",
+      "verification": [
+        {
+          "kind": "HUMAN_REVIEW",
+          "method": "REVIEW gate confirms traceability to SOW-017 and to OBJ-001/OBJ-002 as ruled at SCA-002 Gate 3 Q2, confirms the indirect OBJ-002 leg is stated no more strongly than that record states it given the unadopted N1 narrowing evidence, and confirms no sibling or cross-package scope absorption"
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-02-07",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-02",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "d2f898c1bc5b9b3798fe9c5b4961019c9f88366fc36e44c25c51bc878947391f"
+  },
+  "tool_version": "1"
+}

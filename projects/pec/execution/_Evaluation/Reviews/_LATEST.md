@@ -1,13 +1,13 @@
 # Latest review snapshot
 
-Latest: REV_DEL-01-06_2026-08-04_1113
-Updated: 2026-08-04
+Latest: REV_DEL-00-03_2026-08-09_2156
+Updated: 2026-08-09
 
-This immutable snapshot records REVIEW Gates 1–4 and the owner-authorized exact
-acceptance of DEL-01-06 `ScopeOfWork.md` successor SHA-256 `5fdcfd968345…`.
-The revision-1.4 successor preserves all OUT/AC/VER bytes, passes the exact
-six-row SELF_CHECK and reproduced evidence, and resolves RF-002 as `REVISE`.
-RF-001 remains resolved. Acceptance is limited to the SOW production contract;
-Gate 5 remains HOLD, lifecycle remains `INITIALIZED`, and no product/source
-artifact, Task Management, receipt, release, or reliance act is inferred. The
-preceding DEL-01-06 snapshot is `REV_DEL-01-06_2026-08-03_1458`.
+This immutable post-ruling snapshot records owner `ACCEPT_EXACT_BYTES` for
+DEL-00-03 `ScopeOfWork.md` SHA-256 `3e4f0efc7758…` and
+`artifacts/v2/SPEC.md` SHA-256 `cc9f4754ac3d…`, both reproduced exactly after
+their PEC `promote` preflights returned `ALLOW`. RF-001, RF-002, and RF-003
+remain `REVISE / RESOLVED`; zero findings are open. Acceptance is limited to
+the exact SOW and SPEC bytes. Gate 5 remains unentered and lifecycle remains
+`CHECKING`. The preceding pointer target was
+`REV_DEL-04-01_2026-08-09_2154`.
