@@ -1,0 +1,35 @@
+settings set auto-confirm true
+settings set stop-disassembly-display never
+process handle SIGTERM -s false -n true -p true
+breakpoint set -n __sigtramp
+breakpoint command add 1
+script import datetime; print("TRACE_EVENT __sigtramp " + datetime.datetime.now(datetime.timezone.utc).isoformat())
+thread backtrace -c 16
+continue
+DONE
+breakpoint set -n uv__signal_handler
+breakpoint command add 2
+script import datetime; print("TRACE_EVENT uv__signal_handler " + datetime.datetime.now(datetime.timezone.utc).isoformat())
+thread backtrace -c 16
+continue
+DONE
+breakpoint set -r 'SignalWrap.*OnSignal'
+breakpoint command add 3
+script import datetime; print("TRACE_EVENT SignalWrap.OnSignal " + datetime.datetime.now(datetime.timezone.utc).isoformat())
+thread backtrace -c 16
+continue
+DONE
+breakpoint set -r 'electron::Browser::Quit|Browser::Quit'
+breakpoint command add 4
+script import datetime; print("TRACE_EVENT electron.Browser.Quit " + datetime.datetime.now(datetime.timezone.utc).isoformat())
+thread backtrace -c 16
+continue
+DONE
+breakpoint set -n '-[NSApplication terminate:]'
+breakpoint command add 5
+script import datetime; print("TRACE_EVENT NSApplication.terminate " + datetime.datetime.now(datetime.timezone.utc).isoformat())
+thread backtrace -c 16
+continue
+DONE
+process continue
+

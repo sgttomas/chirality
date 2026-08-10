@@ -1,0 +1,73 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 3
+  },
+  "counts": {
+    "category": {
+      "author": 4,
+      "closeout": 1,
+      "preparation": 1,
+      "validation": 1
+    },
+    "event_type": {
+      "CHECK": 1,
+      "FINISH": 3,
+      "START": 3
+    },
+    "outcome": {
+      "BLOCKED": 3,
+      "FAIL": 1,
+      "STARTED": 3
+    },
+    "reason_code": {
+      "ACTIVATED": 1,
+      "AUTHOR_FANIN_INCOMPLETE": 1,
+      "DISPATCH_READY": 2,
+      "FINITE_CHECKPOINT_INTERRUPTION": 1,
+      "FINITE_CONVERGENCE_CLOSED": 1,
+      "LEDGER_DEPENDENCY_ABSENT": 1
+    }
+  },
+  "events": 7,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 737.306,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP93-A3-V2-LEDGER-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SESSION-A-01"
+    },
+    {
+      "duration_seconds": 737.311,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP93-A3-V2-SUPPORT-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SESSION-B-01"
+    },
+    {
+      "duration_seconds": 737.387,
+      "events": 3,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-PKG09-DAPP93-A3-V2-03",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SESSION-WI-03"
+    }
+  ],
+  "sessions": 3,
+  "status": "PASS",
+  "unmatched_sessions": []
+}
