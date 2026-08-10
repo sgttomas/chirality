@@ -21,4 +21,3 @@ authorize that work.
 No operational/packet command, C1118 act, token, Security/Keychain/Electron/
 package/LLDB/runtime/network/credential/product/Git/Task-Management/receipt
 action, freeze, or verifier occurred.
-

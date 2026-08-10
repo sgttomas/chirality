@@ -130,4 +130,3 @@ mapping; static checks; predecessor-byte stability; unapproved-token status;
 blockers; and all skipped operational checks. State `AUTHOR_COMPLETE` only if
 the candidate is internally consistent and all exclusions held. Otherwise
 state `AUTHOR_BLOCKED` and identify the exact authority or evidence blocker.
-

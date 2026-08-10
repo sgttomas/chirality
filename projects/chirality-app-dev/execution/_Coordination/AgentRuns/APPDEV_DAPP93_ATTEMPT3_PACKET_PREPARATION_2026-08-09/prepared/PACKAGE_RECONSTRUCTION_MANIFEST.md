@@ -119,4 +119,3 @@ At successor preparation time, `frontend/node_modules`, `dist`, `dist-runtime-he
 successor `returned_attempt3/` namespace is also absent while accepted
 `returned/` remains present and byte-exact. This manifest does not authorize
 reconstruction, packaging, launch, signal, cleanup, or any other operation.
-

@@ -29,4 +29,3 @@ No `PREPARED_PACKET_INDEX.md`, accepted author return, manager candidate
 freeze, verifier brief, or verifier return exists. Any byte change or later
 completion requires a new snapshot and the original author -> manager freeze
 -> genuinely fresh read-only verifier sequence.
-

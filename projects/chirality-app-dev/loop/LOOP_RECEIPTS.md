@@ -4244,3 +4244,24 @@
     execution token, owner approval, packet execution, product/runtime/source,
     decision/register/ruling, or lifecycle effect occurred. A separately
     activated authoring lineage is required before any later owner gate.
+
+- **2026-08-09 — Receipt 147** (PR #526 candidate-whitespace repair).
+  - Receipt-ID: `Receipt-147`
+  - Examined-Through: `2dc13e19f6c4f00117596119981f44fcfa7a1257`
+  - Parent-Receipt: `Receipt-146`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-09,
+    Ryan Tufts, in-session): `merge PR #526`.
+  - Pointers: PR #526 governance-harness job `93335283817`; the two
+    D-APP-93 attempt-3 AgentRuns roots named by Receipt 146.
+  - Checks: candidate-whitespace against `origin/main`; receipt contract
+    before/after; authority-corpus status; repository self-check; format-only
+    equivalence, `git diff --check`, and App-only containment pass. Frontend
+    gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising CHANGE Agent 1;
+    exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — CI found candidate whitespace in the
+    blocked evidence and this tranche repairs only those byte-format findings.
+    A new candidate SHA and completed green checks are required before the
+    owner-only merge. No packet freeze, verifier PASS, execution token,
+    packet execution, product/runtime/source, decision/register/ruling, or
+    lifecycle effect occurred.

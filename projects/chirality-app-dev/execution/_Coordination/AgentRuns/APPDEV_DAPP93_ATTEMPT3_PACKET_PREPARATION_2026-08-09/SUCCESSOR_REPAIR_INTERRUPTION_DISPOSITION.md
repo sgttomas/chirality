@@ -25,4 +25,3 @@ no verifier brief; dispatch no verifier; execute nothing. Any continuation
 requires a later owner/HELP_HUMAN replan that supplies or reconstructs the
 complete 149-operation ledger under a new bounded writer and then repeats the
 full repair -> manager freeze -> genuinely fresh verifier sequence.
-

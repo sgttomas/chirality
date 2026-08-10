@@ -42,4 +42,3 @@ recoverable source/reconstruction route.
 Derivative status: incomplete, unaccepted preparation evidence only. No
 acceptance, reliance, release, lifecycle, product-behaviour, remedy, or causal
 claim is made. No loop receipt was written.
-

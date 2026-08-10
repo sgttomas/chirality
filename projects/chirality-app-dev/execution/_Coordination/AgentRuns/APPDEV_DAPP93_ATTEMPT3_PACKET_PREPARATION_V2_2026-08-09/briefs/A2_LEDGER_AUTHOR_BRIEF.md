@@ -1,10 +1,10 @@
 # Sealed Agent 2 brief — v2 command-authority ledger author
 
-RequestedBy: WORKING_ITEMS  
-RunID: `APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_V2_2026-08-09`  
-ParentInstanceID: `WI-PKG09-DAPP93-A3-V2-03`  
-ChildInstanceID: `A2-DAPP93-A3-V2-LEDGER-01`  
-PackageID: `PKG-09`  
+RequestedBy: WORKING_ITEMS
+RunID: `APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_V2_2026-08-09`
+ParentInstanceID: `WI-PKG09-DAPP93-A3-V2-03`
+ChildInstanceID: `A2-DAPP93-A3-V2-LEDGER-01`
+PackageID: `PKG-09`
 DeliverableID: `DEL-09-04`
 
 ## Objective
@@ -29,7 +29,7 @@ Read `ACTIVATION.md`, `WORK_GRAPH.md`, the accepted terminal D-APP-93/D-APP-94 l
 
 ## Allowed tools and writes
 
-Allowed: static reads, text authoring, `rg`, `sed`, `awk`, `sha256sum`, parse/receipt/corpus checks. Do not execute any ledger command.  
+Allowed: static reads, text authoring, `rg`, `sed`, `awk`, `sha256sum`, parse/receipt/corpus checks. Do not execute any ledger command.
 AllowedWriteTargets: `candidate/COMMAND_AUTHORITY_LEDGER.md` and `returns/A2_LEDGER_AUTHOR_RETURN.md` only.
 
 ## Expected return and acceptance

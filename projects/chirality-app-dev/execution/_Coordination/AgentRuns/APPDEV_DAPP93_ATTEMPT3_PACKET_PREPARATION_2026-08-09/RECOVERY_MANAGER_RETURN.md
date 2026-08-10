@@ -25,4 +25,3 @@ future packet work must begin a new bounded authoring/remediation lineage from
 the surviving accepted upstream sources and assign a new candidate identity;
 it must not claim byte continuity with the lost object. This recovery-only
 tranche grants no packet-authoring or execution authority.
-

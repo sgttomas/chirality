@@ -103,4 +103,3 @@ mappings, static checks, predecessor stability, containment, prospective-token
 status, blockers, and skipped operational checks. Otherwise return
 `REMEDIATION_AUTHOR_BLOCKED` with the exact blocker and leave a truthful
 partial-state inventory.
-

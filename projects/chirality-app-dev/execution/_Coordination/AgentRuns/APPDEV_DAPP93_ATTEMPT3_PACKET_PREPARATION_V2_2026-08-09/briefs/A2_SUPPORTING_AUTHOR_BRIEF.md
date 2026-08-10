@@ -1,10 +1,10 @@
 # Sealed Agent 2 brief — v2 supporting-packet author
 
-RequestedBy: WORKING_ITEMS  
-RunID: `APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_V2_2026-08-09`  
-ParentInstanceID: `WI-PKG09-DAPP93-A3-V2-03`  
-ChildInstanceID: `A2-DAPP93-A3-V2-SUPPORT-01`  
-PackageID: `PKG-09`  
+RequestedBy: WORKING_ITEMS
+RunID: `APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_V2_2026-08-09`
+ParentInstanceID: `WI-PKG09-DAPP93-A3-V2-03`
+ChildInstanceID: `A2-DAPP93-A3-V2-SUPPORT-01`
+PackageID: `PKG-09`
 DeliverableID: `DEL-09-04`
 
 ## Objective
@@ -31,7 +31,7 @@ Use fixed root `/private/tmp/chirality-dapp93-owner-operated-attempt3-v2-2026080
 
 ## Allowed tools and writes
 
-Allowed: static reads, text authoring, `rg`, `sed`, `awk`, `sha256sum`, parse/receipt/corpus checks. Do not run prepared scripts or packet commands.  
+Allowed: static reads, text authoring, `rg`, `sed`, `awk`, `sha256sum`, parse/receipt/corpus checks. Do not run prepared scripts or packet commands.
 AllowedWriteTargets: only the required outputs above. Do not write `COMMAND_AUTHORITY_LEDGER.md`, `PACKET_INDEX.md`, or `FUTURE_OWNER_COMMAND_APPROVAL_REQUEST.md`.
 
 ## Acceptance and exclusions

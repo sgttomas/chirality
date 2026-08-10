@@ -69,4 +69,3 @@ Management, Git, foreign-loop, predecessor-run, or loop-receipt surface; make
 no acceptance, reliance, release, remedy, product-behaviour, or causal claim.
 Static inspection, hashing, parsing, coverage checking, and syntax-only checks
 are the only permitted validation methods.
-

@@ -27,4 +27,3 @@ Disposition: dispatch one genuinely fresh bounded integration/remediation
 Agent 2. It may validate, repair, replace, and finish only `prepared/**`, then
 write a distinct remediation author return. This is serialized after the
 interrupted author. All original activation exclusions continue unchanged.
-

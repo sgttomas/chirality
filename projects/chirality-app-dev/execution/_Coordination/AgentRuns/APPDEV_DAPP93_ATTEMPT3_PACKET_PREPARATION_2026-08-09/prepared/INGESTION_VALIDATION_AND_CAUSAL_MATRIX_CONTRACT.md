@@ -179,4 +179,3 @@ verdict are frozen may `WORKING_ITEMS` request separately authorized fresh
 read-only adversarial verification. The verifier never repairs. `BLOCK`
 returns to a separately authorized repair; no causal, remedy, acceptance,
 release, or reliance claim issues before PASS.
-

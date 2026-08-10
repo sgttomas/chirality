@@ -49,4 +49,3 @@ search, first signal, forwarding, watchdog, evidence, cleanup, or process
 authority.
 
 No LLDB/debugger command or target was invoked during this revalidation.
-

@@ -30,4 +30,3 @@ The exact attempt root
 `/private/tmp/chirality-dapp93-owner-operated-attempt3-20260809` and the exact
 future return destination remain absent. No successor author return, packet
 index, manager freeze, verifier brief, or verifier return exists.
-

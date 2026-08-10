@@ -30,4 +30,3 @@ No existing or `prepared/**` file was modified by this recovery. No packet or
 operational command, C1118 act, token, Security/Keychain/Electron/package/
 LLDB/runtime/network/credential/product/Git/Task-Management/receipt action,
 freeze, or verifier occurred.
-

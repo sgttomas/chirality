@@ -36,4 +36,3 @@ Do not alter any existing file or `prepared/**`. Do not delegate. Execute no
 packet/operational/Security/Keychain/Electron/package/LLDB/runtime/network/
 credential/product/C1118/Git/Task-Management/receipt action. No freeze or
 verifier follows from your return.
-

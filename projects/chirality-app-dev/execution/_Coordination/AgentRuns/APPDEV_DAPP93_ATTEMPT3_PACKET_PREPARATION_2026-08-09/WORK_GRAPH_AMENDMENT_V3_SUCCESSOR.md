@@ -22,4 +22,3 @@ must not repair candidate bytes. Any verifier BLOCK must cite concrete packet
 defects. A bounded remediation/reverification cycle is lawful only for defects
 repairable inside this run root without crossing the exclusions in
 `SUCCESSOR_ACTIVATION.md`; otherwise the manager stops blocked and escalates.
-

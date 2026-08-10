@@ -26,4 +26,3 @@ No attempt-3 command, token approval, Security/Keychain/Electron/package/
 trace/debugger/LLDB/runtime/network/credential action, product byte change,
 acceptance, reliance, release, lifecycle, Task Management, Git, receipt, or
 foreign-loop effect occurred.
-

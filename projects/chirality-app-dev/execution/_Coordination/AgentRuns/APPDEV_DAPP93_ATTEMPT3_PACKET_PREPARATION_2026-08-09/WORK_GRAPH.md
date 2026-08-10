@@ -20,4 +20,3 @@ Escalate immediately if a required packet repair would alter predecessor bytes,
 require a decision/ruling/deliverable/product/Task-Management/foreign-loop
 write, execute a packet command, perform C1118, approve a token, or cross any
 activation exclusion.
-

@@ -191,4 +191,3 @@ actual intake receipt.
 Execution and a completed template are derivative evidence only. They do not
 accept D-APP-88, close DEL-09-04, fire TM-APP-036, establish cause/remedy, or
 authorize product/release/reliance action.
-

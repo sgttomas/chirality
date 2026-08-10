@@ -34,4 +34,3 @@ Do not write `prepared/**` or alter any existing file. Execute no operational
 or packet command, C1118 act, token, Security/Keychain/Electron/package/LLDB/
 runtime/network/credential/product/Git/Task-Management/receipt action. This
 tranche has no freeze or verifier stage.
-

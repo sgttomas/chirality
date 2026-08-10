@@ -13,4 +13,3 @@ Revised edges:
 `A3-AUTHOR-01 (INTERRUPTED) -> A3-REMEDIATE-01 -> A3-FREEZE-01 -> A3-VERIFY-01 -> A3-CLOSE-01`.
 
 No authority, scope, exclusion, or later-verifier write surface changes.
-

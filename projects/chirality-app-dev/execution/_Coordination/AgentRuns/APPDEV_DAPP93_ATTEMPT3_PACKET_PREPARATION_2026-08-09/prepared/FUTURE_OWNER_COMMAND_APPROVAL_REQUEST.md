@@ -28,5 +28,3 @@ Any byte change to the frozen command ledger, runbook, source/archive/overlay
 bindings, LLDB script, or approval token requires a new packet freeze and fresh
 verification before presentation. Partial or paraphrased approval does not
 authorize execution.
-
-
