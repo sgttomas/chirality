@@ -1,0 +1,12 @@
+# Exact proposed inspection/search command forms for N1
+/usr/bin/sed -n <bounded-range> -- <one exact N1_READ_ALLOWLIST file>
+/usr/bin/shasum -a 256 -- <one or more exact N1_READ_ALLOWLIST files>
+/usr/bin/wc -c -- <one or more exact N1_READ_ALLOWLIST files>
+/usr/bin/rg -n --no-heading -e 'C[0-9]{3,}' -e 'A3-OP-[0-9]{3}' -e 'R[0-9]+-C[0-9]{3,}' -e 'ATTEMPT[-_ ]?[0-9]+[-_ ]?CMD[-_ ]?[0-9]+' -- <the six exact salvage files as explicit arguments>
+python3 -c <bounded CSV/hash/provenance validator> -- <explicit exact N1_READ_ALLOWLIST file arguments> <run-local output path>
+/usr/bin/git rev-parse HEAD:<one exact four-root path>
+/usr/bin/find <exact run-root/taint_clearance directory> -type f -print
+
+No command may receive a directory except the run-local taint-clearance output
+directory. No glob, exclusion pattern, repository/project/AgentRuns root, or
+implicit current-directory search is permitted.
