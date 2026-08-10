@@ -4181,3 +4181,43 @@
     debugger/LLDB, attach, package/build, helper/GUI, signal, credential,
     product, release, reliance, Git mutation, second verifier, Task Management,
     foreign-loop, or other unauthorized effect occurred.
+
+- **2026-08-09 — Receipt 145** (App Task Management generational pass closeout).
+  - Receipt-ID: `Receipt-145`
+  - Examined-Through: `540ecf61544328d118ff19516ca0c50a48b7235e`
+  - Parent-Receipt: `Receipt-144`
+  - Pointers:
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/CANDIDATE_HARVEST_REPORT_2026-08-09_GEN_PASS.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/DEFERRAL_CLASSIFICATION_REPORT_2026-08-09_GEN_PASS.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/ARCHIVE_VALIDATION_FEDERATION_REPORT_2026-08-09_GEN_PASS.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/CLOSEOUT_VALIDATION_REPORT_2026-08-09_GEN_PASS.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-09_GEN_PASS_HARVEST.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-09_GEN_PASS_DEFERRAL.md`;
+    `projects/chirality-app-dev/execution/_Coordination/_TaskManagement/DRAFT_NOTICE_ROOT_TM-ROOT-105_EVIDENCE_SHA_DRIFT_2026-08-09.md`.
+  - Checks: federation preflight and final federation `COMPLETE`; live/archive
+    validators PASS; the archive operation is a no-op; exact invocation-time
+    and refreshed closeout status totals are bound in the Step-4 and closeout
+    validation reports;
+    candidate/manual-sweep coverage, owner-ruling fidelity, notice containment,
+    receipt contract, and whitespace checks pass.
+  - Model-Attribution: OpenAI Codex `TASK_MANAGEMENT` Agent 1; no Agent 2
+    dispatch.
+  - Gate-Outcome: `EXECUTED` — modes run were mandatory federation preflight,
+    candidate harvest with deterministic scan and manual marker-class sweep,
+    full deferral review, archive, live/archive validation, final federation,
+    and closeout. Register deltas are two `OPEN` rows added, three `DEFERRED`
+    rows maintained, zero rows closed/elevated/archived, live count 14 to 16,
+    and archive count unchanged at 26. The single owner-authorized Root
+    coordination draft ships in this tranche at SHA-256
+    `3d9061b60f85903fdf3a8dca8dfa28870d20a5db35e093f888f28845162f3ada`;
+    it cites `TM-ROOT-105`, pinned evidence SHA
+    `66b967008f67934b08383291e68ef0af9923463d749cac9dbe7a74090e9cbb06`,
+    current transcript SHA
+    `9b6d0a17ac73c4494541f1fb323760c03148d8978802b593c4f7d4b09ad0874a`,
+    and the App detecting report. The notice is coordination only and directs
+    no Root register write. The register creates no acceptance, priority,
+    lifecycle, selection, or foreign-loop effect. No foreign register,
+    product/runtime source, decision surface, or archive row changed; merge
+    remains owner-gated.
