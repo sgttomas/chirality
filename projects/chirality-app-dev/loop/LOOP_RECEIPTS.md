@@ -4366,3 +4366,53 @@
     approval hash, execution authority/action, product/runtime/source,
     register, lifecycle, decision, Task Management, or foreign-loop effect
     exists, and no fourth lineage is authorized.
+
+- **2026-08-09 — Receipt 151** (D-APP-93 fourth-lineage N1 block closeout).
+  - Receipt-ID: `Receipt-151`
+  - Examined-Through: `fc714e860e337a5be1a02ee7014e6c447636dc7f`
+  - Parent-Receipt: `Receipt-150`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-09,
+    Ryan Tufts, in-session): `I rule that the Stage-3 read-only search, as
+    evidenced (rg pattern-match over excluded roots, path names returned, no
+    content displayed, copied, cited, or used, all historical roots
+    byte-identical), did NOT violate my stated non-reuse direction, which
+    prohibited resuming, copying, or repairing prior drafts.`; `the fourth
+    lineage starts from the third lineage's staged outputs (STAGE_1 through
+    STAGE_6, including the 80-row command-authority ledger at its recorded
+    SHA-256 dfdab5d0e760797b51d86dc0d0aa0345e46ab2af5a4e537d87a24bb5e319c809),
+    conditional on the taint clearance below.`; `If this lineage blocks,
+    close out with the established discipline — preserved evidence, manager
+    validation record, receipt, and an updated four-lineage causal analysis —
+    and return to me. Do not begin a fifth lineage without my direction.`
+  - Pointers: fourth-lineage `FINAL_INVENTORY.sha256` identity
+    `ac14d809887b237377bf437b404d791abc96b2f16b4a0446fab55da4f7f31d89`;
+    owner-authorized 17-file terminal-blank normalization map
+    `NORMALIZATION_AMENDMENT.md` identity
+    `59a869864bfdb2d6d19fe2b29218121fb4b393937609c24743948d79db4d84e1`;
+    manager-validation / causal-analysis / manager-return / handoff /
+    runtime-summary / N1-return SHA-256 identities
+    `6f0fb73a781184f4885196e9c6e94d11744df01592e73ebc6680f116d059612f`,
+    `5d7eb4e165175dd621685733b7a89887a0d2d145aca70f804af276ccf1ce6188`,
+    `ba77dce31a06bcb4d6bd358bada84feff55ec65acb14ad75fc02c4dd1709bcfd`,
+    `75f045baf21a2e636a6b41c3f515064ffe6160e36f51d174f3056e757f72e047`,
+    `a01d355e7cc0852a954af81784e315994c40389ed63f711682a22a3689c3003c`,
+    and `b829b673f8b489fe82054515fc0c0ec868a66d1ea8194cf26e9b8fd3fbfc2c22`.
+    Preserved embedded citations remain unchanged and resolve through the
+    normalization map; the substantive BLOCK verdict is unchanged.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status,
+    repository self-check, full-suite closeout, strict runtime/manifest/hash,
+    allowlist, containment, downstream-absence, four-root preservation,
+    candidate-whitespace, and diff-hygiene pass. Frontend gates skipped
+    because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    CHANGE Agent 1, and one N1 Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_N1_PREVALIDATED_COMMAND_FORM_NOT_EXECUTABLE`. Stage 1 matched six
+    salvage files and the ruled ledger identity; Stage 2
+    blocked before a complete taint scan because the manager froze absent
+    `/usr/bin/rg` and non-portable BSD `sed ... --` forms. The child made no
+    substitution and read no forbidden existing byte; later taint stages and
+    every packet/index/author/freeze/verifier/approval node stayed held. Four
+    blocked roots remain unchanged. No execution, product/runtime/source,
+    decision/register/ruling, lifecycle, Task Management, fifth-lineage, or
+    foreign-loop effect occurred.

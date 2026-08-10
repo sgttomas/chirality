@@ -1,0 +1,25 @@
+{
+  "run_id": "APPDEV_DAPP93_FOURTH_PACKET_AUTHORING_2026-08-09",
+  "status": "BLOCKED",
+  "reason_code": "BLOCK_N1_PREVALIDATED_COMMAND_FORM_NOT_EXECUTABLE",
+  "sessions": [
+    {
+      "session_id": "A2-DAPP93-FOURTH-N1-01",
+      "started_utc": "2026-08-10T04:43:21Z",
+      "finished_utc": "2026-08-10T04:46:05Z",
+      "elapsed_seconds": 164,
+      "durable_files": 3,
+      "durable_bytes": 8911,
+      "terminal_status": "BLOCKED",
+      "native_context_telemetry": "unavailable"
+    }
+  ],
+  "checkpoints": {
+    "scheduled_first_minutes": 4,
+    "taken": 0,
+    "reason": "terminal BLOCK returned before first checkpoint"
+  },
+  "downstream_sessions_dispatched": 0,
+  "execution_actions": 0,
+  "fifth_lineage_authorized": false
+}
