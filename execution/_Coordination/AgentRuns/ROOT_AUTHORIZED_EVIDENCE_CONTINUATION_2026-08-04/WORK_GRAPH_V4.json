@@ -1,0 +1,37 @@
+{
+  "run_id": "ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04",
+  "plan_version": 4,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_IN",
+  "terminal_nodes": [
+    {"id": "H1", "status": "COMPLETE_ACCEPTED_FAN_IN", "manifest_sha256": "ec8a7209376dc7b3587b69a5753c213802443d25ffbb3eaf8b50549954f49ddc"},
+    {"id": "H2", "status": "COMPLETE_ACCEPTED_FAN_IN", "manifest_sha256": "4f9241adaa58235359a8c9b328dd536a23f5e51c278d217bc54f729a4954829f"},
+    {"id": "H3", "status": "COMPLETE_ACCEPTED_FAN_IN", "manifest_sha256": "24f942b105b3e2c3ee69e6beae7a39ee915d2d33580a603d3e4a3455c1967529"},
+    {"id": "H4", "status": "COMPLETE_ACCEPTED_FAN_IN_WITH_COMPILATION_GAP", "manifest_sha256": "c7dda2e2c3fb2d395a0259afdfdbe99ec6e7d0b462579006f126dff002c425f7"}
+  ],
+  "active_nodes": [
+    {
+      "id": "C1",
+      "role": "CHANGE",
+      "objective": "Routine validated publication of the exact evidence-only tranche on a fresh branch and human-gated PR.",
+      "dependencies": ["H1", "H2", "H3", "H4"],
+      "write_ownership": [
+        "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/C1-CHANGE-CLOSEOUT/",
+        "Git branch, index, commit, push, and PR state for the bounded tranche"
+      ],
+      "fan_in_gate": "exact scope, clean validators, commit and push identity, PR opened, no merge"
+    }
+  ],
+  "blocked_successors": [
+    "AB-03: no qualified backend/platform cell",
+    "AB-04/AB-05: no qualified platform/backend/family or representative evidence",
+    "AB-08: no qualified backend/platform and affected-client evidence",
+    "no-TBD successor/refutation/byte gate: all 21 TBDs remain open"
+  ],
+  "next_human_decision_points": [
+    "owner/vendor/platform/legal/privacy/client/lifecycle facts",
+    "backend, rights, store, schema, state, grant, continuation, canonicalization, digest, crypto, migration, and compatibility semantics",
+    "Pi or Electron authority and PIA-U30 dispatch",
+    "implementation, lifecycle, release, reliance, publication acceptance, or merge"
+  ]
+}

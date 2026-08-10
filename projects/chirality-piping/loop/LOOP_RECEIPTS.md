@@ -2147,3 +2147,153 @@
   - Checks: mandatory Task Management federation preflight, source/copy identity, register preservation, receipt validation, containment, and whitespace checks pass; exact evidence lives in the pointed run record.
   - Model-Attribution: OpenAI Codex TASK_MANAGEMENT Agent 1 under HELP_HUMAN used inherited runtime capability without override, delegation, or mid-task substitution; exact runtime model string was not exposed.
   - Gate-Outcome: `EXECUTED` — ordinary receipt of coordination evidence only. Piping `TM-PIP-032` remains byte-unchanged and `DEFERRED`; Piping's next own deferral review may evaluate its trigger. No acceptance, disposition, un-deferral, closure, contract, compatibility, product, lifecycle, priority, scope, implementation, release, reliance, or Git effect is created.
+
+- **2026-08-04 — Receipt 92** (TM-PIP-025 product-basis decision preparation and D-64 materialization).
+  - Receipt-ID: `Receipt-92`
+  - Examined-Through: `cdc76a1d398231267f1379e7143b4de27abaa01b`
+  - Parent-Receipt: `Receipt-91`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — “Primary
+    lane is preparing the TM-PIP-025 product-basis decision surface — an
+    owner-ruling packet offering adopt/amend/defer/decline over the 2026-07-31
+    design-tool-boundary and 2026-08-02 product-delivery intent records. The
+    row's trigger reads as waiting on an owner act; this steer is that act's
+    commissioning — prepare the surface, decide nothing.” The steer also
+    stated exactly: “Root's substantive TM-ROOT-105/109 rulings are on your
+    surface for TM-PIP-032's ordinary deferral-review evaluation; handle that
+    by normal means.” Later owner approval, exact: “APPROVE: materialize the
+    exact D-64 packet payload from
+    projects/chirality-piping/execution/_Coordination/_TaskManagement/TM-PIP-025_D-64_DECISION_PACKET_MATERIALIZATION_2026-08-04.md
+    to
+    projects/chirality-piping/execution/_Coordination/_DECISIONS/D-64_piping_product_basis.md
+    and append its exact frozen D-64 AWAITING_RULING row to
+    projects/chirality-piping/execution/_Coordination/_DECISIONS/_REGISTER.md;
+    change no other path and make no ruling.”
+  - Pointers: canonical proposal
+    `execution/_Coordination/_DECISIONS/D-64_piping_product_basis.md` and
+    decision-register row `D-64`; Task Management derivatives
+    `execution/_Coordination/_TaskManagement/TM-PIP-025_PRODUCT_BASIS_DECISION_HANDOFF_2026-08-04.md`,
+    `execution/_Coordination/_TaskManagement/TM-PIP-025_D-64_DECISION_PACKET_MATERIALIZATION_2026-08-04.md`,
+    and
+    `execution/_Coordination/_TaskManagement/TM-PIP-032_DEFERRAL_REVIEW_DECISION_SUPPORT_2026-08-04.md`;
+    landed Root notice
+    `execution/_Coordination/NOTICE_2026-08-03_ROOT_TM-ROOT-105_109_SUBSTANTIVE_RULINGS.md`.
+    D-64 carries the App `D-APP-91` rider against response blob
+    `a71145ec0952cc5ad62b1b12635be44deebffbd3` with per-option response-basis
+    and reverification classification. The TM-PIP-032 derivative records
+    `TRIGGER_FIRED` and proposes, but does not apply,
+    `RESOLVED_BY_DECISION`.
+  - Stale-Map-Delta: the pointed TM-PIP-032 report records the Root
+    evidence-pointer whitespace-staleness observation and immutable historical
+    evidence identity; no foreign write occurred.
+  - Checks: Task Management federation, evidence and namespace binding,
+    independent evaluation, exact materialization hashes, decision and Task
+    Management register checks, receipt contract, candidate whitespace,
+    containment, and diff checks: PASS.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN, TASK_MANAGEMENT, EVALUATION,
+    and CHANGE roles used inherited runtime capability without override or
+    mid-task substitution; exact runtime model string was not exposed.
+  - Gate-Outcome: `EXECUTED` — preparation only. D-64 is `AWAITING_RULING`;
+    `TM-PIP-025` and `TM-PIP-032` remain `DEFERRED` and unmodified. No owner
+    option or Task Management disposition was selected. No product-basis,
+    PRD, decomposition, scope, planning, product/source, implementation, DAG,
+    dependency, lifecycle, priority, contract, compatibility, release,
+    reliance, or publication effect is created.
+
+- **2026-08-04 — Receipt 93** (D-64 adoption and Task Management closeout).
+  - Receipt-ID: `Receipt-93`
+  - Examined-Through: `7ed052f77c5d7a5a9480303b28138bb44b744e4e`
+  - Parent-Receipt: `Receipt-92`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — the three
+    exact owner acts relayed through HELP_HUMAN are: “APPROVE D-64 OPTION
+    ADOPT — ADOPT BOTH EXACT INTENT RECORDS AS THE PIPING PRODUCT BASIS
+    WITHOUT AMENDMENT — Ryan Tufts 2026-08-04”; “After D-64 ruling recorded,
+    close/archive TM-PIP-025 RESOLVED_BY_DECISION using exact D-64 ruling
+    record and owner return as SHA-bound evidence; no independent
+    product-basis/PRD/decomposition/scope/planning/implementation/lifecycle
+    effect.”; “Close/archive TM-PIP-032 RESOLVED_BY_DECISION using local notice
+    blob a7e45dd...; closure limited to ownership/routing, no
+    generic-contract/equality/conformance/cross-consumer compatibility claim.”
+  - Pointers: D-64 ruling
+    `execution/_Coordination/_DECISIONS/D-64_RULING_2026-08-04.md`, Git blob
+    `afddbebf02c0378b58a64e375c9b6b8f2dd46e11`, SHA-256
+    `1c509069853702270d30f32473f8f84929171800f2c98a32b2b6312963c67b35`;
+    immutable proposal Git blob
+    `8a5d1580ce79f29b75cff7e96408e713702dcfde`; decision register
+    `execution/_Coordination/_DECISIONS/_REGISTER.md`; Task Management paths
+    under `execution/_Coordination/_TaskManagement/`: owner ruling
+    `OWNER_RULING_2026-08-04_TM-PIP-025_032_CLOSEOUT.md` Git blob
+    `36e5dad6df6622cef6b2a9b35168c0fb94018bfd`; live/archive
+    `REGISTER.csv` / `REGISTER_CLOSED.csv` Git blobs
+    `6105a346bd164b384122cb5f8b444b259406a1f9` /
+    `bc3540959788c649ed189f4d9aba96b5fbc64aeb`; closeout
+    `CLOSEOUT_2026-08-04_D64_TM-PIP-025_032.md` Git blob
+    `839b7d0f59343c07dfe726989b4af7f9cff8e1f2`; derivative SCA draft
+    `DRAFT_SCA_INTAKE_2026-08-04_D64_PRODUCT_BASIS_ADOPTION.md` Git blob
+    `a77aaae1bc59368f36e771365307a812a22e1514`, assessed by SCOPE_CHANGE as
+    `CONDITIONALLY_INTAKE_READY / PRE-GATE-1` with a later atomic owner request
+    required after landing; corrected derivative App-notice draft
+    `DRAFT_NOTICE_2026-08-04_D64_ADOPT_APP_BASIS_UNCHANGED.md` Git blob
+    `e46837c1ddb512f29e63aa9f085b3ba0403a05a9`; canonical notice
+    `execution/_Coordination/NOTICE_2026-08-04_D64_ADOPT_APP_BASIS_UNCHANGED.md`
+    Git blob `e7a63f2263b588f75629209089a84f739bf220d7`, SHA-256
+    `b7dbf53c24e860f8eef86bdd2361339ff73faeaf3c258781ca5ecd29b9ace61a`.
+  - Stale-Map-Delta: Root `TM-ROOT-102` remains a closure-echo candidate for
+    Root's ordinary deferral-review flow after D-64; no foreign row, notice,
+    status, or effect was written or inferred.
+  - Checks: EVALUATION PASS with no findings; Task Management federation
+    COMPLETE with zero writes; all eight canonical live/archive registers
+    PASS; Piping live=31 and archive=6; exact nine-path pre-receipt containment;
+    receipt validator, candidate whitespace, path-anchor, and diff checks PASS;
+    repository self-check exited zero with only pre-existing findings; full
+    practitioner-harness pytest: PASS with 349 collected and successful.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN, CHANGE, bounded D-64 decision
+    Agent 2, TASK_MANAGEMENT, bounded App-notice Agent 2, SCOPE_CHANGE, and
+    EVALUATION roles used inherited capability without override or mid-task
+    substitution; no exact runtime model string was exposed.
+  - Gate-Outcome: `EXECUTED` — D-64 is `RULED` as ADOPT; the response basis is
+    unchanged and App reverification is not owed. `TM-PIP-025` and
+    `TM-PIP-032` are `CLOSED / RESOLVED_BY_DECISION` and archived. The SCA
+    remains `PRE-GATE-1` with no scope effect; the canonical notice creates no
+    App authority; the Root closure-echo candidate creates no foreign effect.
+    No Git stage, commit, push, pull request, or merge occurs in this receipt.
+
+- **2026-08-08 — Receipt 94** (Task Management generational pass: harvest, deferral review, archive, and closeout).
+  - Receipt-ID: `Receipt-94`
+  - Examined-Through: `182610bebaed1d3c02f2fad1add59c6859fa6f16`
+  - Parent-Receipt: `Receipt-93`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING — exact owner
+    acts are preserved in
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-08_HARVEST.md`
+    and `OWNER_RULING_2026-08-08_DEFERRAL_REVIEW.md`; the owner also approved
+    the exact base/branch closeout, scoped commit/push, and non-draft PR, with
+    merge expressly withheld.
+  - Pointers: `execution/_Coordination/_TaskManagement/REGISTER.csv`;
+    `REGISTER_CLOSED.csv`; `CANDIDATE_HARVEST_REPORT_2026-08-08.md`;
+    `DEFERRAL_REVIEW_REPORT_2026-08-08.md`;
+    `OWNER_RULING_2026-08-08_HARVEST.md`;
+    `OWNER_RULING_2026-08-08_DEFERRAL_REVIEW.md`;
+    `DRAFT_RECONCILIATION_HANDOFF_2026-08-08_TM-PIP-038_040.md`; and
+    `CLOSEOUT_2026-08-08_GENERATIONAL_PASS.md`. Register deltas: three OPEN
+    rows added; 24 DEFERRED rows reviewed and
+    retained; 22 linked-source citations refreshed; one Trigger sharpened;
+    zero status changes, zero dispositions, and zero archive moves. Final
+    Piping totals: live 34 (`OPEN=10`, `DEFERRED=24`, `ELEVATED=0`,
+    `CLOSED=0`); archive 6 CLOSED.
+  - Checks: mandatory pre-mode federation and final federation `COMPLETE`
+    with zero writes; all canonical live/archive inputs valid; Piping live and
+    archive validators PASS; deterministic archive no-op; exact ruled-field
+    containment; receipt validator; candidate whitespace; path anchors; and
+    diff checks PASS as recorded in the closeout evidence. Final federation
+    totals: PEC `OPEN=17 DEFERRED=3 CLOSED=1`, ROOT `OPEN=12 DEFERRED=11`, APP
+    `OPEN=11 DEFERRED=3`, PIP `OPEN=10 DEFERRED=24`; archived totals PEC 4,
+    ROOT 99, APP 26, PIP 6.
+  - Model-Attribution: OpenAI Codex TASK_MANAGEMENT Agent 1 used inherited
+    runtime capability without override, delegation, or mid-task
+    substitution; exact runtime model string was not exposed.
+  - Gate-Outcome: `EXECUTED` — owner-ruled harvest promotions `TM-PIP-038..040`
+    are recorded; all 24 DEFERRED rows remain `STILL_BLOCKED` with no status or
+    disposition change; source-currency and Trigger maintenance are applied
+    exactly as ruled. The single RECONCILIATION handoff is shipped only as an
+    undispatched derivative draft. No foreign-register, reconciliation,
+    product, scope, planning, implementation, lifecycle, release, reliance,
+    or merge effect is created.

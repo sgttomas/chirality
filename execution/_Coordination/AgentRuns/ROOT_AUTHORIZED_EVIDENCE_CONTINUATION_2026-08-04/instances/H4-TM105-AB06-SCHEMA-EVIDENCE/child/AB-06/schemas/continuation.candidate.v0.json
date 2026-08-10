@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:chirality:tm105:candidate:continuation:v0",
+  "title": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE TM105 continuation structure v0",
+  "description": "Structural alternative carrier. Whether continuation exists, what it means, its value, cursor, lifetime, expiry, replay, binding, stale refusal, and DEL consistency remain TBD-105-15.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schemaVersion", "candidateStatus", "existenceStatus"],
+  "properties": {
+    "schemaVersion": {"const": "tm105.continuation.candidate/v0"},
+    "candidateStatus": {"const": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE"},
+    "existenceStatus": {"const": "TBD"},
+    "token": {
+      "description": "Opaque placeholder only; not a selected token value or encoding.",
+      "type": "string",
+      "minLength": 1
+    },
+    "bindingReferences": {"type": "array", "items": {"$ref": "#/$defs/OpaqueReference"}},
+    "cursor": {},
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "issuedAt": {"type": "string"},
+        "expiresAt": {"type": "string"},
+        "revokedAt": {"type": "string"}
+      }
+    },
+    "staleDisposition": {"const": "TBD"},
+    "delAdjacency": {
+      "description": "Accepted DEL scope requires a later operation after indeterminate work to be a new independent turn; this field records adjacency only.",
+      "const": "NO_GENERIC_CONTINUATION_INFERENCE_FROM_DEL"
+    }
+  },
+  "$defs": {
+    "OpaqueReference": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id"],
+      "properties": {"id": {"type": "string", "minLength": 1}, "version": {"type": "string", "minLength": 1}}
+    }
+  },
+  "x-candidate-status": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+  "x-open-tbds": ["TBD-105-12", "TBD-105-15", "TBD-105-21"]
+}

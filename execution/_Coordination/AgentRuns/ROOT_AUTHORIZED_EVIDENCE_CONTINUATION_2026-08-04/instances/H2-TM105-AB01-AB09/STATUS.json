@@ -1,0 +1,59 @@
+{
+  "instance_id": "H2-TM105-AB01-AB09",
+  "role": "HELPS_HUMANS",
+  "status": "COMPLETED_WITH_OPEN_EVIDENCE_BLOCKERS",
+  "plan_version": 1,
+  "return_to": "HELP_HUMAN",
+  "child_fan_in": {
+    "expected": 2,
+    "terminal": 2,
+    "validated": 2,
+    "read_sets_disjoint": true,
+    "write_containment": "PASS"
+  },
+  "input_drift": {
+    "phase_1_manifest": "MATCH_38_OF_38",
+    "accepted_del_members": "PASS_6_OF_6",
+    "missing": 0,
+    "drifted": 0
+  },
+  "targeted_tbds": {
+    "count": 13,
+    "resolved": 0,
+    "open": [
+      "TBD-105-01",
+      "TBD-105-04",
+      "TBD-105-05",
+      "TBD-105-06",
+      "TBD-105-07",
+      "TBD-105-08",
+      "TBD-105-12",
+      "TBD-105-15",
+      "TBD-105-17",
+      "TBD-105-18",
+      "TBD-105-19",
+      "TBD-105-20",
+      "TBD-105-21"
+    ]
+  },
+  "holds": {
+    "semantic_selection": "HELD",
+    "byte_gate": "HELD",
+    "backend_selection": "HELD",
+    "implementation": "HELD",
+    "affected_client_acceptance": "HELD",
+    "lifecycle": "HELD",
+    "release": "HELD",
+    "reliance": "HELD",
+    "publication": "HELD",
+    "git": "HELD"
+  },
+  "terminal_outputs": [
+    "RETURN.md",
+    "STATUS.json",
+    "HANDOFF_STATE.md",
+    "INPUT_BINDING.md",
+    "FANIN_VALIDATION.md",
+    "PACKAGE_MANIFEST.sha256"
+  ]
+}

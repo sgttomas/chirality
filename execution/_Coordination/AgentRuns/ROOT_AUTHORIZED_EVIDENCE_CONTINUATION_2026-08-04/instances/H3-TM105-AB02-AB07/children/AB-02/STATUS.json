@@ -1,0 +1,49 @@
+{
+  "childId": "H3-TM105-AB02-AB07/AB-02",
+  "terminalStatus": "COMPLETED_EVIDENCE_ONLY",
+  "inputDrift": "NONE",
+  "sealedInputCount": 16,
+  "hostScope": "one managed macOS 26.6 arm64 host only",
+  "candidateDispositions": {
+    "sandbox-exec": "NOT_QUALIFIED",
+    "bwrap": "NOT_QUALIFIED",
+    "bubblewrap": "NOT_QUALIFIED",
+    "nsjail": "NOT_QUALIFIED",
+    "firejail": "NOT_QUALIFIED",
+    "docker": "NOT_QUALIFIED",
+    "podman": "NOT_QUALIFIED",
+    "colima": "NOT_QUALIFIED",
+    "qemu-system-aarch64": "NOT_QUALIFIED",
+    "platform-supporting-tools": "NOT_QUALIFIED",
+    "governed-read-file-tool-bridge": "NOT_QUALIFIED",
+    "unix-domain-runtime-daemon-broker": "NOT_QUALIFIED",
+    "domain-headless-preview-process-broker": "NOT_QUALIFIED",
+    "pec-loopback-http-wrappers": "NOT_QUALIFIED",
+    "pi-native-sandbox-target": "NOT_QUALIFIED",
+    "piping-foreground-cli": "NOT_QUALIFIED"
+  },
+  "outputPath": "children/AB-02/RETURN.md",
+  "statusPath": "children/AB-02/STATUS.json",
+  "unresolvedFacts": [
+    "backend and rights-grammar selection",
+    "vendor support licensing redistribution and security-update facts",
+    "platform support and packaged signed notarized entitled behavior",
+    "process path race network provider IPC device credential and orphan isolation",
+    "adapter and native-tool no-bypass enforcement",
+    "deployment topology trusted principals and credential custody",
+    "authoritative Pi version identity",
+    "complete adversarial corpus"
+  ],
+  "noAuthorityEffect": {
+    "semanticSelection": true,
+    "backendSelection": true,
+    "rightsGrammarDecision": true,
+    "contractCandidateDrafting": true,
+    "implementationAuthorization": true,
+    "clientAcceptance": true,
+    "lifecycleOrRelease": true,
+    "relianceOrPublication": true,
+    "gitPrRegisterReceiptNoticeOrByteGate": true
+  },
+  "completenessClaim": "none beyond the sealed evidence set"
+}

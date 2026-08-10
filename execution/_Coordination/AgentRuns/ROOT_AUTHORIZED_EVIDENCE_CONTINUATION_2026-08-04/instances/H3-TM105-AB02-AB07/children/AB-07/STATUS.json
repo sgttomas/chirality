@@ -1,0 +1,42 @@
+{
+  "child_id": "H3-TM105-AB02-AB07/AB-07",
+  "terminal_status": "COMPLETED_WITH_UNRESOLVED_POLICY_FACTS",
+  "input_drift": "NO_DRIFT",
+  "output_path": "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H3-TM105-AB02-AB07/children/AB-07/RETURN.md",
+  "output_paths": [
+    "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H3-TM105-AB02-AB07/children/AB-07/RETURN.md",
+    "execution/_Coordination/AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/instances/H3-TM105-AB02-AB07/children/AB-07/STATUS.json"
+  ],
+  "unresolved_policy_facts": [
+    "approved and prohibited stores",
+    "protected-data classes and sensitivity",
+    "authorized access roles and populations",
+    "purpose, minimization, and product acceptability",
+    "retention duration and trigger",
+    "deletion deadline, scope, and erasure standard",
+    "legal-hold requirements and workflow",
+    "privacy rights and request workflow",
+    "incident and breach obligations",
+    "e-discovery requirements",
+    "cross-border and provider-processing facts",
+    "encryption requirements and key custody",
+    "accepted truncation and data-loss posture"
+  ],
+  "no_authority_effect": {
+    "semantic_selection": true,
+    "approved_store_selection": true,
+    "retention_or_deletion_policy": true,
+    "access_role_or_redaction_policy": true,
+    "privacy_or_legal_conclusion": true,
+    "implementation": true,
+    "client_acceptance": true,
+    "lifecycle": true,
+    "release": true,
+    "reliance": true,
+    "publication": true,
+    "git_or_pr": true,
+    "register_receipt_or_notice": true,
+    "no_tbd_successor_or_byte_gate": true
+  },
+  "completeness_claim": "NONE_BEYOND_SEALED_SET"
+}

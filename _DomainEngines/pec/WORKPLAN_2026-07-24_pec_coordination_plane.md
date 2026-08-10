@@ -111,12 +111,13 @@ The first loop the P1 reconciler ingests is PEC v2's own build.
 - Superseding owner direction of 2026-08-03 sends TM-PEC-023 to a dedicated
   SCOPE_CHANGE mapping session. Neither mappings nor blanks are ruled; the nine
   values and COV-062..COV-070 remain open, with no downstream gate or urgency.
-  RF-002 is dispositioned `REVISE`, but revision and exact REVIEW acceptance
-  are separately scheduled; Gate 5 remains HOLD at `INITIALIZED`. Metadata
-  alignment is cleared. Derivative state remains `INCOMPLETE` for exactly
-  three categories: TM-PEC-023 amendment; RF-002 revision/acceptance; and the
-  SCA-004 / TM-PEC-013/014 DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03
-  ordinary SOW/SPEC currency lane. No Task Management row closes here.
+  RF-002 `REVISE` is resolved by exact successor SOW acceptance at
+  `REV_DEL-01-06_2026-08-04_1113`; RF-001 remains resolved and Gate 5 remains
+  HOLD at `INITIALIZED`. Metadata alignment is cleared. Derivative state
+  remains `INCOMPLETE` for exactly two categories: TM-PEC-023 amendment and
+  the SCA-004 / TM-PEC-013/014 DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03
+  ordinary SOW/SPEC currency lane. TM-PEC-011 remains `OPEN`/stale pending a
+  separate TASK_MANAGEMENT disposition; no Task Management row closes here.
 - **Named open follow-on:** supersession of the `pec.yaml` profile (the L3
   operation-proposal lane sunsets with the old product); the profile is
   superseded when v2 has shape, and the `_DomainEngines/pec` loop continues as
@@ -138,7 +139,7 @@ The first loop the P1 reconciler ingests is PEC v2's own build.
 - Accepted scope-change pointer: `projects/pec/execution/_ScopeChange/_LATEST.md` (SCA-004)
 - SCA-004 metadata subset closure: `projects/pec/execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`
 - SCA-004 currency-sweep closure: `projects/pec/execution/_Coordination/WORKING_ITEMS_SCA004_CURRENCY_SWEEP_2026-08-03/HANDOFF_STATE.md`
-- DEL-01-06 RF-002 revision/acceptance preparation: `projects/pec/execution/_Coordination/DEL-01-06_RF002_REVISION_ACCEPTANCE_SESSION_PREP_2026-08-03/HANDOFF_STATE.md`
+- DEL-01-06 RF-002 exact acceptance: `projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Review_Summary.md`
 - Loop handoff: `_DomainEngines/pec/LOOP_RECEIPTS.md`
 - Frozen reference corpus: `projects/pec/{core,server,web,agent-sidecar,tools}`
 - Build pipeline: `docs/DECOMPOSITION_STANDARD.md` and

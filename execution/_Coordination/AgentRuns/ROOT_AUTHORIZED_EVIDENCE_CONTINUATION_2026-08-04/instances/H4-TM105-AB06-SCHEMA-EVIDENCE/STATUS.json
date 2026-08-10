@@ -1,0 +1,79 @@
+{
+  "instance_id": "H4-TM105-AB06-SCHEMA-EVIDENCE",
+  "role": "HELPS_HUMANS",
+  "status": "COMPLETED_WITH_OPEN_FACT_AND_SCHEMA_COMPILATION_BLOCKERS",
+  "plan_version": 3,
+  "return_to": "HELP_HUMAN",
+  "child_fan_in": {
+    "expected": 1,
+    "running": 0,
+    "terminal": 1,
+    "validated": 1,
+    "write_containment": "PASS"
+  },
+  "sealed_inputs": {
+    "count": 41,
+    "matched_before_dispatch": 41,
+    "drifted": 0,
+    "missing": 0
+  },
+  "child_package": {
+    "manifest_sha256": "302f03712d12c5ef1bc6f8f015192958b906104a2e9a0d1f7cd44d2b08df856f",
+    "manifest_members": 19,
+    "verified_members": 19,
+    "schema_count": 6,
+    "schema_json_parse": "PASS_6_OF_6",
+    "independent_draft_2020_12_compilation": "UNTESTED_MISSING_VALIDATOR",
+    "golden_vectors": "PASS_8_OF_8_BOUNDED_EVALUATOR",
+    "negative_vectors": "PASS_10_OF_10_BOUNDED_EVALUATOR",
+    "unknown_version_vectors": "REJECTED_2_OF_2_UNDER_V0_FUTURE_POLICY_TBD",
+    "csv_parse": "PASS_5_OF_5"
+  },
+  "targeted_tbds": {
+    "all_open_count": 21,
+    "resolved_count": 0,
+    "ab_06_open": [
+      "TBD-105-03",
+      "TBD-105-04",
+      "TBD-105-10",
+      "TBD-105-15",
+      "TBD-105-16",
+      "TBD-105-17",
+      "TBD-105-20",
+      "TBD-105-21"
+    ]
+  },
+  "candidate_posture": {
+    "status": "NON_AUTHORITATIVE_INCOMPLETE_CANDIDATE",
+    "schema_family_selected": false,
+    "state_policy_selected": false,
+    "rights_grammar_selected": false,
+    "grant_policy_selected": false,
+    "continuation_selected": false,
+    "canonicalization_selected": false,
+    "digest_crypto_policy_selected": false,
+    "qualified_backends": 0,
+    "no_tbd_successor_eligible": false,
+    "byte_gate_eligible": false
+  },
+  "holds": {
+    "semantic_selection": "HELD",
+    "qualification": "HELD",
+    "byte_gate": "HELD",
+    "implementation": "HELD",
+    "affected_client_acceptance": "HELD",
+    "lifecycle": "HELD",
+    "release": "HELD",
+    "reliance": "HELD",
+    "publication": "HELD",
+    "git": "HELD"
+  },
+  "terminal_outputs": [
+    "RETURN.md",
+    "STATUS.json",
+    "HANDOFF_STATE.md",
+    "INPUT_BINDING.md",
+    "FANIN_VALIDATION.md",
+    "PACKAGE_MANIFEST.sha256"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "instance_id": "H3-TM105-AB02-AB07",
+  "role": "HELPS_HUMANS",
+  "status": "COMPLETED_WITH_OPEN_EVIDENCE_BLOCKERS",
+  "plan_version": 2,
+  "return_to": "HELP_HUMAN",
+  "child_fan_in": {
+    "expected": 2,
+    "terminal": 2,
+    "validated": 2,
+    "read_sets_disjoint": true,
+    "write_containment": "PASS"
+  },
+  "input_drift": {
+    "accepted_h2_members": "PASS_12_OF_12",
+    "ab_02_inputs": "MATCH_16_OF_16",
+    "ab_07_inputs": "MATCH_14_OF_14",
+    "missing": 0,
+    "drifted": 0
+  },
+  "targeted_tbds": {
+    "count": 9,
+    "resolved": 0,
+    "open": [
+      "TBD-105-02",
+      "TBD-105-05",
+      "TBD-105-06",
+      "TBD-105-09",
+      "TBD-105-12",
+      "TBD-105-14",
+      "TBD-105-17",
+      "TBD-105-19",
+      "TBD-105-20"
+    ]
+  },
+  "candidate_posture": {
+    "qualified_backends": 0,
+    "selected_backends": 0,
+    "rights_grammar_selected": false,
+    "approved_store_selected": false,
+    "privacy_policy_ruled": false
+  },
+  "holds": {
+    "qualification": "HELD",
+    "semantic_selection": "HELD",
+    "byte_gate": "HELD",
+    "backend_topology_rights_selection": "HELD",
+    "store_privacy_policy": "HELD",
+    "implementation": "HELD",
+    "affected_client_acceptance": "HELD",
+    "lifecycle": "HELD",
+    "release": "HELD",
+    "reliance": "HELD",
+    "publication": "HELD",
+    "git": "HELD"
+  },
+  "terminal_outputs": [
+    "RETURN.md",
+    "STATUS.json",
+    "HANDOFF_STATE.md",
+    "INPUT_BINDING.md",
+    "FANIN_VALIDATION.md",
+    "PACKAGE_MANIFEST.sha256"
+  ]
+}

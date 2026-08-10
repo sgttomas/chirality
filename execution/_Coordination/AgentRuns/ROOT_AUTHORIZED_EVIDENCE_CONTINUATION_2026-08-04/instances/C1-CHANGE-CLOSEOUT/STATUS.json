@@ -1,0 +1,31 @@
+{
+  "instance_id": "C1-CHANGE-CLOSEOUT",
+  "role": "CHANGE",
+  "status": "VALIDATED_READY_FOR_ROUTINE_PUBLICATION",
+  "plan_version": 4,
+  "base_ref": "origin/main",
+  "base_sha": "cdc76a1d398231267f1379e7143b4de27abaa01b",
+  "branch": "codex/root-evidence-continuation-2026-08-04",
+  "scope_status": "EXACT_THREE_DECLARED_PATHS",
+  "validation_status": "PASS_WITH_UNEXECUTED_COMPILER_GAP",
+  "manifests": {
+    "H1": "ec8a7209376dc7b3587b69a5753c213802443d25ffbb3eaf8b50549954f49ddc",
+    "H2": "4f9241adaa58235359a8c9b328dd536a23f5e51c278d217bc54f729a4954829f",
+    "H3": "24f942b105b3e2c3ee69e6beae7a39ee915d2d33580a603d3e4a3455c1967529",
+    "H4": "c7dda2e2c3fb2d395a0259afdfdbe99ec6e7d0b462579006f126dff002c425f7"
+  },
+  "root_register_counts": {
+    "live": 23,
+    "open": 12,
+    "deferred": 11,
+    "archived": 99
+  },
+  "draft_2020_12_compiler": "UNTESTED_MISSING_VALIDATOR",
+  "absolute_path_amendment": {
+    "status": "PASS_EXACT_THREE_HISTORICAL_PROVENANCE_OCCURRENCES",
+    "occurrences": 3
+  },
+  "semantic_acceptance": false,
+  "merge_authorized": false,
+  "return_to": "HELP_HUMAN"
+}

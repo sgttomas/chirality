@@ -1,0 +1,206 @@
+{
+  "schema_version": "root-tm106-g1b-reingest-validation/v1",
+  "artifact_class": "FACTUAL_EVIDENCE_ARTIFACT",
+  "validation_status": "PASS_BOUNDED_HASH_REFRESH_REINGEST",
+  "observed_date": "2026-08-04",
+  "scope": "Seven ruled App file identities and the refreshed Root-local G1-B validation-target envelope only.",
+  "source_basis_checks": [
+    {
+      "id": "SOURCE-01",
+      "subject": "App joint ruling",
+      "expected_sha256": "48ecaa5753bbf021990fc121bcdbb3edfc7c39c0e43f4fee82398911fa3f6aff",
+      "observed_sha256": "48ecaa5753bbf021990fc121bcdbb3edfc7c39c0e43f4fee82398911fa3f6aff",
+      "result": "PASS"
+    },
+    {
+      "id": "SOURCE-02",
+      "subject": "Root-routed coordination notice",
+      "expected_sha256": "81a1c3107e19cdfef592758214219d48ea579a1a1aa57ea576a92c1531abf218",
+      "observed_sha256": "81a1c3107e19cdfef592758214219d48ea579a1a1aa57ea576a92c1531abf218",
+      "result": "PASS"
+    },
+    {
+      "id": "SOURCE-03",
+      "subject": "H4 validation-target envelope",
+      "expected_sha256": "c5b2087e070cc92cc3daecd35460497be47b6f9dff3155bde5b1cbd0aef2db01",
+      "observed_sha256": "c5b2087e070cc92cc3daecd35460497be47b6f9dff3155bde5b1cbd0aef2db01",
+      "result": "PASS"
+    },
+    {
+      "id": "SOURCE-04",
+      "subject": "H4 artifact-manifest reproduction",
+      "expected": "8 declared rows reproduce bytes and SHA-256",
+      "observed": "8 of 8 rows reproduced",
+      "result": "PASS"
+    },
+    {
+      "id": "SOURCE-05",
+      "subject": "Accepted PIA-U10 schema",
+      "expected_sha256": "ecb9f93908d7948c7d0b4ec284745a471ff4c4a096d9cb76e4fc46c396154a5c",
+      "observed_sha256": "ecb9f93908d7948c7d0b4ec284745a471ff4c4a096d9cb76e4fc46c396154a5c",
+      "result": "PASS"
+    }
+  ],
+  "file_identity_checks": [
+    {
+      "role": "adapter",
+      "path": "projects/chirality-app-dev/frontend/src/lib/harness/pi-agent-engine-adapter.ts",
+      "expected_ruled_sha256": "dd333f02d092dad05d15fb0936fb00f48ee89f75ec530bcfb74db32468f6f728",
+      "observed_worktree_sha256": "dd333f02d092dad05d15fb0936fb00f48ee89f75ec530bcfb74db32468f6f728",
+      "observed_origin_main_sha256": "dd333f02d092dad05d15fb0936fb00f48ee89f75ec530bcfb74db32468f6f728",
+      "tracked_mode": "100644",
+      "regular_non_symlink": true,
+      "dirty_against_checkout_head": false,
+      "result": "PASS"
+    },
+    {
+      "role": "runtime_host",
+      "path": "projects/chirality-app-dev/frontend/electron/runtime-host.ts",
+      "expected_ruled_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "observed_worktree_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "observed_origin_main_sha256": "2e02f592e7e8a6c0008a50cb427044d95aa908e6276b6a9cd8bfe6a1dce248c8",
+      "tracked_mode": "100644",
+      "regular_non_symlink": true,
+      "dirty_against_checkout_head": false,
+      "result": "PASS"
+    },
+    {
+      "role": "package_json",
+      "path": "projects/chirality-app-dev/frontend/package.json",
+      "expected_ruled_sha256": "1f14df17d407b18949d5a7195a786574fa8f03eda731dbe7b77f3e91685fba53",
+      "observed_worktree_sha256": "1f14df17d407b18949d5a7195a786574fa8f03eda731dbe7b77f3e91685fba53",
+      "observed_origin_main_sha256": "1f14df17d407b18949d5a7195a786574fa8f03eda731dbe7b77f3e91685fba53",
+      "tracked_mode": "100644",
+      "regular_non_symlink": true,
+      "dirty_against_checkout_head": false,
+      "result": "PASS"
+    },
+    {
+      "role": "package_lock",
+      "path": "projects/chirality-app-dev/frontend/package-lock.json",
+      "expected_ruled_sha256": "5c8fce2a3c0e2e7b55730ac673ccb07424dcae1e4bbbb408260b1090040c1a56",
+      "observed_worktree_sha256": "5c8fce2a3c0e2e7b55730ac673ccb07424dcae1e4bbbb408260b1090040c1a56",
+      "observed_origin_main_sha256": "5c8fce2a3c0e2e7b55730ac673ccb07424dcae1e4bbbb408260b1090040c1a56",
+      "tracked_mode": "100644",
+      "regular_non_symlink": true,
+      "dirty_against_checkout_head": false,
+      "result": "PASS"
+    },
+    {
+      "role": "proof_launcher",
+      "path": "projects/chirality-app-dev/frontend/scripts/run-packaged-pi-runtime-proof.mjs",
+      "expected_ruled_sha256": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+      "observed_worktree_sha256": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+      "observed_origin_main_sha256": "7354e0af73f40e308a5204fe04621a4db0c6e68c964065bb1f029d0aeec5674f",
+      "tracked_mode": "100644",
+      "regular_non_symlink": true,
+      "dirty_against_checkout_head": false,
+      "result": "PASS"
+    },
+    {
+      "role": "supply_verifier",
+      "path": "projects/chirality-app-dev/frontend/scripts/verify-pi-supply-chain.mjs",
+      "expected_ruled_sha256": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+      "observed_worktree_sha256": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+      "observed_origin_main_sha256": "912a07d5db0d574c3de3acd69898b6567612fbc456807902b83c0a5c38165b7e",
+      "tracked_mode": "100644",
+      "regular_non_symlink": true,
+      "dirty_against_checkout_head": false,
+      "result": "PASS"
+    },
+    {
+      "role": "pi_notice",
+      "path": "projects/chirality-app-dev/frontend/THIRD_PARTY_NOTICES_PI.md",
+      "expected_ruled_sha256": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+      "observed_worktree_sha256": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+      "observed_origin_main_sha256": "0195b5ce8b7be8b6bff6de3e50f6a38b3d9d4919c075e7c93ca8118b7e866328",
+      "tracked_mode": "100644",
+      "regular_non_symlink": true,
+      "dirty_against_checkout_head": false,
+      "result": "PASS"
+    }
+  ],
+  "drift_classification": {
+    "expected_from_app_ruling": {
+      "drifted_roles": [
+        "adapter",
+        "package_json",
+        "package_lock"
+      ],
+      "held_roles": [
+        "runtime_host",
+        "proof_launcher",
+        "supply_verifier",
+        "pi_notice"
+      ]
+    },
+    "recomputed": {
+      "drifted_roles": [
+        "adapter",
+        "package_json",
+        "package_lock"
+      ],
+      "held_roles": [
+        "runtime_host",
+        "proof_launcher",
+        "supply_verifier",
+        "pi_notice"
+      ]
+    },
+    "exact_set_equality": true,
+    "result": "PASS"
+  },
+  "target_envelope_checks": [
+    {
+      "id": "TARGET-01",
+      "assertion": "Family and ownership boundary remain chirality.app.pi-agent-engine-adapter and APP_AFFECTED_CLIENT.",
+      "result": "PASS"
+    },
+    {
+      "id": "TARGET-02",
+      "assertion": "All seven current hashes equal the owner-ruling set and the recomputed committed files.",
+      "result": "PASS"
+    },
+    {
+      "id": "TARGET-03",
+      "assertion": "Every H4 stable-identity gap remains explicit as TBD with a lawful closure owner.",
+      "result": "PASS"
+    },
+    {
+      "id": "TARGET-04",
+      "assertion": "No identity digest or registry key is materialized.",
+      "result": "PASS"
+    },
+    {
+      "id": "TARGET-05",
+      "assertion": "The accepted PIA-U10 schema path and SHA-256 are unchanged.",
+      "result": "PASS"
+    },
+    {
+      "id": "TARGET-06",
+      "assertion": "Current package values Pi 0.82.0 and Electron 43.2.0 are observations only; D-APP-72/SCA-APP-002 remain operative.",
+      "result": "PASS_HOLD"
+    }
+  ],
+  "format_checks": {
+    "source_json_parse": "PASS",
+    "refreshed_json_parse": "PASS",
+    "blocker_hold_csv_parse": "PASS_21_UNIQUE_ITEM_IDS",
+    "h4_manifest_rows": "PASS_8_OF_8_REPRODUCED",
+    "path_containment": "PASS_REPO_RELATIVE_REGULAR_FILES",
+    "forbidden_absolute_paths": "NONE"
+  },
+  "explicit_non_claims": {
+    "complete_pia_u10_identity_schema_validation": "NOT_RUN_EXPLICIT_TBD_BLOCKERS",
+    "canonical_digest_execution": "NOT_RUN_PIA_U30_HELD_NO_DISPATCH",
+    "fresh_install": "NOT_RUN",
+    "source_conformance": "NOT_RUN",
+    "packaged_proof": "NOT_RUN",
+    "live_omlx": "NOT_RUN",
+    "pi_approval": "NONE",
+    "electron_supersession": "NONE",
+    "work_dispatch": "NONE",
+    "release_or_reliance": "NONE"
+  },
+  "terminal_verdict": "REINGEST_PASS_TARGET_REMAINS_INCOMPLETE_AND_HELD"
+}

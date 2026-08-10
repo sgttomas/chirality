@@ -3110,3 +3110,70 @@ amendment; owner ruling required).
 - **Gate:** publish the manifest repair on the existing PR #510 branch and
   require fresh hosted checks. Merge-to-main remains at the accountable
   human's separate gate.
+
+### Receipt 101 — 2026-08-04 — Authorized Root evidence continuation closeout
+
+- **Parent and authority:** Receipt 100; signed TM105-A preparation-only
+  continuation SHA-256 `6396dd26…c566`; App joint G1-B ruling SHA-256
+  `48ecaa57…f6aff`; current committed basis `main@cdc76a1d…baa01b`. The
+  standing Root workplan remains idle; this is separately authorized evidence
+  preparation only.
+- **G1-B result:** the owner-verified current App hash set reproduces exactly.
+  Drift from the historical target is exactly adapter, package manifest, and
+  lock; four other pins hold. The refresh manifest is `ec8a7209…9ddc`.
+  `TM-ROOT-106` remains OPEN, PIA-U30 remains held, and no Pi/Electron
+  authority or App supersession follows.
+- **TM105 results:** AB-01, AB-02, AB-06, AB-07, and AB-09 evidence carriers
+  are terminal at manifests `4f9241ad…829f`, `24f942b1…7529`, and
+  `c7dda2e2…25f7`. Every `TBD-105-01..21` remains OPEN; all backend candidates
+  are `NOT_QUALIFIED`; unsupported policy/legal/privacy facts remain
+  `UNKNOWN`; no no-TBD successor or byte gate exists.
+- **Validation and holds:** manifests, sealed-input drift checks, JSON/CSV,
+  declared structural vectors, path/symlink containment, candidate
+  whitespace, and Git diff hygiene pass. Independent Draft 2020-12 compilation
+  is explicitly `UNTESTED_MISSING_VALIDATOR`. No register, source/test,
+  canonical contract, client, lifecycle, release, reliance, or foreign-loop
+  effect occurred; Root stays 23 live (`OPEN=12`, `DEFERRED=11`) and 99
+  archived.
+- **Handoff and gate:** exact closure evidence is under
+  `AgentRuns/ROOT_AUTHORIZED_EVIDENCE_CONTINUATION_2026-08-04/`. AB-03,
+  AB-04, AB-05, AB-08, successor/refutation, and implementation remain held on
+  named evidence/human gates. CHANGE owns ordinary checked PR publication of
+  this exact evidence-only tranche; merge remains the accountable human's
+  separate gate.
+
+### Receipt 102 — 2026-08-08 — Root Task Management generational pass closeout
+
+- **Modes and authority:** mandatory federation preflight, full PRD §5.1
+  candidate harvest plus manual marker sweep, owner promotion ruling, full
+  DEFERRED-population review, owner deferral ruling, archive, validation,
+  final federation, and closeout. Exact human acts are recorded in
+  `_TaskManagement/RULING_2026-08-08_ROOT_HARVEST.md` and
+  `_TaskManagement/RULING_2026-08-08_ROOT_DEFERRAL_REVIEW.md`.
+- **Register delta:** one row minted (`TM-ROOT-123`, DEFERRED); three rows
+  closed `RESOLVED_BY_DECISION` and archived (`TM-ROOT-043`, `-046`, `-102`);
+  `TM-ROOT-120` retained DEFERRED and was ruled ACTIVATABLE; eight rows were
+  confirmed STILL_BLOCKED, with Trigger sharpening on `TM-ROOT-035`, `-041`,
+  and `-104`. Root moved from 23 live (`OPEN=12`, `DEFERRED=11`) / 99 archived
+  to 21 live (`OPEN=12`, `DEFERRED=9`) / 102 archived.
+- **Durable products:** reports
+  `_TaskManagement/CANDIDATE_HARVEST_2026-08-08.md`,
+  `_TaskManagement/DEFERRAL_REVIEW_CLASSIFICATION_2026-08-08.md`, and
+  `_TaskManagement/CLOSEOUT_2026-08-08_ROOT_GENERATIONAL_PASS.md`; routed
+  Root-local handoff
+  `_TaskManagement/HANDOFF_TM-ROOT-120_PUBLIC_EXPORT_REGENERATION_2026-08-08.md`.
+  No foreign register or foreign-loop surface was written.
+- **Validation and federation:** live and archive validators PASS after the
+  exact archive command moved three rows. Final federation is COMPLETE:
+  PEC `OPEN=17/DEFERRED=3/CLOSED=1` (4 archived), Root
+  `OPEN=12/DEFERRED=9/CLOSED=0` (102 archived), App
+  `OPEN=11/DEFERRED=3/CLOSED=0` (26 archived), Piping
+  `OPEN=10/DEFERRED=24/CLOSED=0` (6 archived); zero invalid/unreadable inputs,
+  operational errors, ambiguities, register writes, or excluded lookalikes.
+- **Handoff and limits:** the TM-ROOT-120 handoff is routed for ordinary
+  `WORKING_ITEMS` intake only and does not activate DEL-04-07 or authorize an
+  export, external-target write, publication, release, or reliance. Root
+  `HANDOFF_STATE.md` remains outside this role's write scope and requires a
+  later ordinary refresh from 23/99 to this receipt's 21/102 counts. The PR
+  is the publication gate; merge remains the accountable human's separate
+  act.
