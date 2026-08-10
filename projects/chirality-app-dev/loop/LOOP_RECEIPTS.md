@@ -4416,3 +4416,32 @@
     blocked roots remain unchanged. No execution, product/runtime/source,
     decision/register/ruling, lifecycle, Task Management, fifth-lineage, or
     foreign-loop effect occurred.
+
+- **2026-08-09 — Receipt 152** (Chirality App paradigm owner-intent record).
+  - Receipt-ID: `Receipt-152`
+  - Examined-Through: `d41cbac73ac397623df3eda32a278ebc250a3efc`
+  - Parent-Receipt: `Receipt-151`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-09,
+    Ryan Tufts, in-session): `Record the following owner-intent record on the
+    App coordination surface as
+    execution/_Coordination/OWNER_INTENT_2026-08-09_CHIRALITY_APP_PARADIGM_INSTANCE.md`;
+    `Recording is a coordination act only.`
+  - Pointers:
+    `execution/_Coordination/OWNER_INTENT_2026-08-09_CHIRALITY_APP_PARADIGM_INSTANCE.md`
+    full-file SHA-256
+    `02a8fc45aa9f86edf1bd7ddfcc714ce2a2d1b1774e96f3d7c4cec6a2d0e76cf7`;
+    the governed verbatim block is retained only there.
+  - Checks: owner-intent verbatim extraction is exactly 191 UTF-8 bytes and
+    SHA-256
+    `0ca99fe0d1f8d18ad86f99bc8b28e879804188dd04cd8a4c465eca007ebb6db7`;
+    literal file comparison, one begin/end marker, UTF-8 validity, referenced
+    record existence, receipt contract, authority corpus v18/no drift,
+    practitioner status, repository self-check, full-suite closeout,
+    candidate-whitespace, diff hygiene, and exact two-path App containment
+    pass. Frontend gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising CHANGE Agent 1;
+    exact model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — owner-directed coordination record created;
+    TM-APP-025 remains `OPEN`. No PRD, scope, decomposition, reliance,
+    lifecycle, adoption, ruling, register, product/runtime, or foreign-loop
+    effect occurred.
