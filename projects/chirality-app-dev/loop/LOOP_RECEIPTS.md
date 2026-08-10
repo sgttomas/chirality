@@ -4286,3 +4286,39 @@
     checks successful. This receipt is the sole ledger effect. No other
     decision/register/ruling, runtime, product/source, packet execution, or
     lifecycle effect occurred.
+
+- **2026-08-09 — Receipt 149** (D-APP-93 fresh-lineage N1 block closeout).
+  - Receipt-ID: `Receipt-149`
+  - Examined-Through: `2109e4bd78c0ba240dd7cb80394c0d116bb89216`
+  - Parent-Receipt: `Receipt-148`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-09,
+    Ryan Tufts, in-session): `if the new D-APP-93 lineage blocks again, close
+    it like attempt-3—preserved evidence, manager validation record,
+    receipt—and return blocker; ship by PR at owner merge gate`.
+  - Pointers: fresh-lineage manager validation / manager return / handoff /
+    runtime-summary SHA-256 identities
+    `c73268e847917ea5f53762ba1db131cf573deb49ae19130060ff1fefd4c49676`,
+    `4635bc261d8139ac2443af83403bc942d59e396dae547355558b55b41611fce5`,
+    `fa8950817118e0eb073f8e067a06eb5adc766cb3304b52fd0919cdef1467b2d3`,
+    and `5741c3586438f504a90ffd67d25f56515a7b0f1d41ccbece338bb0db97bc34d3`;
+    `validation/OLD_ROOT_PRESERVATION.md` records unchanged old-root inventory
+    identities `06e0b64516e691820803c4cb6f0b3961004ff03d5a7c1685802cafbba1c81c4e`
+    and `c7ff055ae257dfcec4ccbae24251da66321b0a6d06573ef38e9b78e043bf4ea4`.
+  - Checks: receipt contract; strict JSON/JSONL and runtime-summary status;
+    corpus v18/no drift; practitioner status/self-check and full-suite closeout
+    evidence; candidate whitespace, diff hygiene, terminal identity, old-root
+    stability, and exact App-only containment pass. Fresh closeout records
+    received pre-publication terminal-LF hygiene only; historical attempt-3
+    roots remain byte-untouched. Frontend gates skipped because no
+    product/runtime source changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS and CHANGE Agent 1 roles
+    under HELP_HUMAN, with one fresh Agent 2 N1 attempt; exact model builds
+    not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_FRESH_SOURCE_RECONSTRUCTION_NO_RETURN`: N1 produced no
+    required durable reconstruction artifact or terminal return after the
+    finite checkpoints and was interrupted; all downstream authoring,
+    integration, freeze, and verifier work remained held. This lineage closes
+    only as preserved blocked evidence. No packet, freeze, verifier, approval
+    hash, execution authority/action, product/runtime/source, register,
+    lifecycle, decision, Task Management, or foreign-loop effect exists.

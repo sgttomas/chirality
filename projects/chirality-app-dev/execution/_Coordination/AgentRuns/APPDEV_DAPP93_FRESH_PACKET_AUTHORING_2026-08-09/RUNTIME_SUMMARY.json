@@ -1,0 +1,77 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 3
+  },
+  "counts": {
+    "category": {
+      "closeout": 1,
+      "fanin": 1,
+      "preparation": 1,
+      "reconstruction": 2,
+      "validation": 3
+    },
+    "event_type": {
+      "CHECK": 2,
+      "FINISH": 3,
+      "START": 3
+    },
+    "outcome": {
+      "BLOCKED": 2,
+      "FAIL": 1,
+      "PASS": 2,
+      "STARTED": 3
+    },
+    "reason_code": {
+      "ACTIVATED": 1,
+      "CLOSEOUT_STATIC_CHECKS_PASS": 1,
+      "CLOSEOUT_VALIDATED": 1,
+      "CLOSEOUT_VALIDATION_STARTED": 1,
+      "DISPATCHED": 1,
+      "FINITE_CHECKPOINT_NO_RETURN": 1,
+      "FINITE_CONVERGENCE_CLOSED": 1,
+      "SOURCE_RECONSTRUCTION_ABSENT": 1
+    }
+  },
+  "events": 8,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 400.057,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP93-FRESH-SOURCE-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SESSION-N1-01"
+    },
+    {
+      "duration_seconds": 488.915,
+      "events": 3,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-PKG09-DAPP93-FRESH-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SESSION-WI-01"
+    },
+    {
+      "duration_seconds": 0.042,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-DAPP93-FRESH-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SESSION-WI-VALIDATION-01"
+    }
+  ],
+  "sessions": 3,
+  "status": "PASS",
+  "unmatched_sessions": []
+}
