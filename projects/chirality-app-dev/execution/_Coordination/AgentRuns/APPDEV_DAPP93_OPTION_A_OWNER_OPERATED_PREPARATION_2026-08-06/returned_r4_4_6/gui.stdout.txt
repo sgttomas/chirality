@@ -1,0 +1,7 @@
+[chirality-desktop] 2026-08-08T05:57:26.011Z [info] desktop.gui.starting {"packaged":true,"userData":"/private/tmp/chirality-dapp93-owner-operated-20260807/user","socketPath":"/private/tmp/chirality-dapp93-owner-operated-20260807/user/runtime/control.sock"}
+[chirality-desktop] 2026-08-08T05:57:26.019Z [info] desktop.cli_launcher.install {"status":"written","path":"/private/tmp/chirality-dapp93-owner-operated-20260807/home/.local/bin/chirality"}
+[chirality-desktop] 2026-08-08T05:57:26.020Z [info] runtime.socket_watch.started {"directory":"/private/tmp/chirality-dapp93-owner-operated-20260807/user/runtime"}
+[chirality-desktop] 2026-08-08T05:57:26.020Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-08-08T05:57:26.027Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unknown project: chirality-app-dev","changedAt":"2026-08-08T05:57:26.027Z"}
+[chirality-desktop] 2026-08-08T05:57:57.032Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":2,"lastError":"Unable to reach the Chirality runtime at /private/tmp/chirality-dapp93-owner-operated-20260807/user/runtime/control.sock","changedAt":"2026-08-08T05:57:57.032Z"}
+[chirality-desktop] 2026-08-08T06:01:14.064Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":8,"lastError":"Unknown project: chirality-app-dev","changedAt":"2026-08-08T06:01:14.064Z"}

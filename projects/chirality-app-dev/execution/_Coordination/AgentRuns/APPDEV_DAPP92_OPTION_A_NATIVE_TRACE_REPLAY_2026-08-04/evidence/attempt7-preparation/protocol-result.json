@@ -1,0 +1,14 @@
+{
+  "schema": "chirality-dapp92-two-session-result/v2",
+  "directChildPid": 13086,
+  "sentinelMatched": true,
+  "sentinelState": "SECOND_SESSION_ACKNOWLEDGED",
+  "childExecutable": "/bin/sleep",
+  "childArgv": [
+    "35"
+  ],
+  "sentinelWindowMs": 30000,
+  "childExitCode": 0,
+  "childSignal": null,
+  "controllerState": "COMPLETE"
+}

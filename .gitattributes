@@ -11,3 +11,8 @@ projects/pec/execution/**/Dependencies.csv whitespace=cr-at-eol
 # (a single space); disable whitespace checks for them entirely.
 execution/_ScopeChange/**/*.diff -whitespace
 _DomainEngines/bridge/PEC_V2_PROFILE_LIVE_PIN_AMENDMENT_D-T0-28_2026-08-02/TEST_PIN_PATCH.diff -whitespace
+# Closed D-APP-93 owner-operated trace package contains accepted, hash-bound
+# raw terminal/output bytes and frozen control objects. Preserve those bytes;
+# their adjacent hashes and intake manifests, rather than whitespace
+# normalization, are authoritative.
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_OPTION_A_OWNER_OPERATED_PREPARATION_2026-08-06/** -whitespace

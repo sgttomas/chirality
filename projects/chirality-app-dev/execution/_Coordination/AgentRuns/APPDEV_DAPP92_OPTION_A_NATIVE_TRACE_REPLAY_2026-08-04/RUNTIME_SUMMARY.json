@@ -1,0 +1,103 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 5
+  },
+  "counts": {
+    "category": {
+      "APPROVAL_GATE": 5,
+      "CLOSEOUT": 5,
+      "EXECUTION": 1,
+      "REMEDIATION": 1,
+      "TELEMETRY": 1
+    },
+    "event_type": {
+      "FINISH": 5,
+      "NOTICE": 3,
+      "START": 5
+    },
+    "outcome": {
+      "BLOCKED": 5,
+      "STARTED": 5,
+      "UNKNOWN": 3
+    },
+    "reason_code": {
+      "APPROVAL_STOP_CLOSEOUT": 1,
+      "ATTEMPT4_TERMINAL_CLOSEOUT": 1,
+      "ATTEMPT5_COMMAND_APPROVAL_REQUIRED": 1,
+      "ATTEMPT5_PACKAGE_ACCEPTANCE_CLOSEOUT": 1,
+      "ATTEMPT6_PREPARATION_APPROVAL_REQUIRED": 1,
+      "ATTEMPT6_PREPARATION_TERMINAL_CLOSEOUT": 1,
+      "ATTEMPT7_PREPARATION_ACCEPTANCE_CLOSEOUT": 1,
+      "ATTEMPT7_PREPARATION_APPROVAL_REQUIRED": 1,
+      "ATTEMPT8_PACKET_REPAIR_REQUIRED": 1,
+      "ATTEMPT8_PACKET_STATIC_BLOCKERS": 1,
+      "C196_C197_OWNER_APPROVAL_REQUIRED": 1,
+      "MOCK_SENTINEL_WINDOW_EXPIRED": 1,
+      "PRE_CLOSEOUT_TELEMETRY_UNAVAILABLE": 1
+    }
+  },
+  "events": 13,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 121.385,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-DAPP92-A-ATTEMPT4-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-DAPP92-A-ATTEMPT4-CLOSEOUT-01"
+    },
+    {
+      "duration_seconds": 1033.917,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-DAPP92-A-ATTEMPT5-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-DAPP92-A-ATTEMPT5-CLOSEOUT-01"
+    },
+    {
+      "duration_seconds": 0.238,
+      "events": 3,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-DAPP92-A-ATTEMPT6-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-DAPP92-A-ATTEMPT6-CLOSEOUT-01"
+    },
+    {
+      "duration_seconds": 0.239,
+      "events": 3,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-DAPP92-A-ATTEMPT7-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-DAPP92-A-ATTEMPT7-CLOSEOUT-01"
+    },
+    {
+      "duration_seconds": 14.6,
+      "events": 3,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-DAPP92-A-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-DAPP92-A-CLOSEOUT-01"
+    }
+  ],
+  "sessions": 5,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

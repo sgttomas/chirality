@@ -1,0 +1,16 @@
+# Owner packet-repair authority adoption — D-APP-93 Option A
+
+Status: `ADOPTED — EXACT DOCUMENTATION REPAIR FENCE`
+
+Owner authority received verbatim through App `HELP_HUMAN`:
+
+> AUTHORIZE D-APP-93 PACKET REPAIR ONLY — ENUMERATE AND PLACE EXACT RETURNED-DIRECTORY CREATION BEFORE C1144; KEEP C1144 RAW-TRANSCRIPT FREEZE BEFORE C1130 CREDENTIAL-SCREENED RUNTIME-FILE COPY; UPDATE ONLY AFFECTED LEDGER, RUNBOOK, COMMAND-RANGE, TOKEN, INDEX, FREEZE, AND CROSS-REFERENCES; THEN DISPATCH ONE GENUINELY FRESH READ-ONLY VERIFIER — NO RUNTIME, DEBUGGER, PACKAGE, HELPER OR GUI, SIGNAL, CREDENTIAL, PRODUCT, RELEASE, RELIANCE, GIT, TASK MANAGEMENT, FOREIGN-LOOP, OR OTHER AUTHORITY
+
+Accepted basis is Receipt 135, `HANDOFF_STATE.md`, and HELP_HUMAN verifier
+`BLOCK_PACKET_REPAIR_REQUIRED` SHA-256
+`996a4d8efb7bc6914e09ce57444c3d684c781a57b26d0096a746e3bf01aca57e`.
+
+This authority permits the named documentation repair, dependent hashes and
+freeze, and one fresh read-only verifier only. It grants no execution
+authority. C196/C197 remain valid, exact, and unused; all current/new future
+commands remain owner-unapproved.

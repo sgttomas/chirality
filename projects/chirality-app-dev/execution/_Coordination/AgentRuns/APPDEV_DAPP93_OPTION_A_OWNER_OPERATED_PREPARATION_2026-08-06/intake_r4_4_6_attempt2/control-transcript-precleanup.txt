@@ -1,0 +1,527 @@
+Last login: Fri Aug  7 20:58:45 on ttys001
+ryan@Ryans-MBP chirality % cd /Users/ryan/.codex/worktrees/7388/chirality
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-01|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-01|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /bin/test ! -e /private/tmp/chirality-dapp93-owner-operated-20260807 -a ! -e projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_OPTION_A_OWNER_OPERATED_PREPARATION_2026-08-06/returned_r4_4_6
+ryan@Ryans-MBP chirality % /bin/test ! -e projects/chirality-app-dev/frontend/node_modules
+ryan@Ryans-MBP chirality % /bin/test ! -e projects/chirality-app-dev/frontend/dist -a ! -e projects/chirality-app-dev/frontend/dist-runtime-helper -a ! -e projects/chirality-app-dev/frontend/dist-electron -a ! -e projects/chirality-app-dev/frontend/dist-runtime -a ! -e projects/chirality-app-dev/frontend/.next
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-02|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-02|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /bin/mkdir -p /private/tmp/chirality-dapp93-owner-operated-20260807/home /private/tmp/chirality-dapp93-owner-operated-20260807/user /private/tmp/chirality-dapp93-owner-operated-20260807/evidence /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/scripts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/tests /private/tmp/chirality-dapp93-owner-operated-20260807/electron-dist
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-03|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-03|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/frontend/electron/cli-launcher.ts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron/cli-launcher.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/frontend/electron/main.ts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron/main.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron/runtime-control-ipc.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/frontend/package.json /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/package.json
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/frontend/scripts/build-electron.mjs /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/scripts/build-electron.mjs
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/frontend/src/__tests__/electron/cli-launcher.test.ts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/tests/cli-launcher.test.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-control-ipc.test.ts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/tests/runtime-control-ipc.test.ts
+ryan@Ryans-MBP chirality % /usr/bin/shasum -a 256 /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron/cli-launcher.ts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron/main.ts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron/runtime-control-ipc.ts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/package.json /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/scripts/build-electron.mjs /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/tests/cli-launcher.test.ts /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/tests/runtime-control-ipc.test.ts
+850f7b00bd50af669d2cb6c1963c9b5f9b47f5a30badeda754752f3b896d335b  /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron/cli-launcher.ts
+16ad6688abaebd0bb1bfe04921a7eb1d20601bf2f2af983153da3c734f44ad1f  /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron/main.ts
+5006bef6922295eb24c54f4a034f2d42929c71b80704b4fe03f8e7e5af36026a  /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/electron/runtime-control-ipc.ts
+1f14df17d407b18949d5a7195a786574fa8f03eda731dbe7b77f3e91685fba53  /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/package.json
+a6759be00c3bf2aaf9bd172657d723cf724bae33aa9a1941724cc173eaee5558  /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/scripts/build-electron.mjs
+1918ae7dc10c12608a0d591db565f538a9ed91289e2b78eb728483d9c7cf91e9  /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/tests/cli-launcher.test.ts
+f8b6d8c2d5c2d8f947e585dd5d99a85a9b207a7277de8ddcb2214cab92136be6  /private/tmp/chirality-dapp93-owner-operated-20260807/baseline/tests/runtime-control-ipc.test.ts
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-04|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-04|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron-builder.runtime-helper.json projects/chirality-app-dev/frontend/electron-builder.runtime-helper.json
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/cli-launcher.ts projects/chirality-app-dev/frontend/electron/cli-launcher.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/main.ts projects/chirality-app-dev/frontend/electron/main.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/runtime-control-ipc.ts projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/runtime-helper-entry.ts projects/chirality-app-dev/frontend/electron/runtime-helper-entry.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/electron/runtime-helper-path.ts projects/chirality-app-dev/frontend/electron/runtime-helper-path.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/package.json projects/chirality-app-dev/frontend/package.json
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/scripts/build-electron.mjs projects/chirality-app-dev/frontend/scripts/build-electron.mjs
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/scripts/embed-runtime-helper.mjs projects/chirality-app-dev/frontend/scripts/embed-runtime-helper.mjs
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/tests/cli-launcher.test.ts projects/chirality-app-dev/frontend/src/__tests__/electron/cli-launcher.test.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/tests/runtime-control-ipc.test.ts projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-control-ipc.test.ts
+ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_R2_2026-08-02/instances/A2-DAPP88-R2-IMPLEMENT-01/evidence/candidate-source/tests/runtime-helper-packaging.test.ts projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-helper-packaging.test.ts
+ryan@Ryans-MBP chirality % /usr/bin/shasum -a 256 projects/chirality-app-dev/frontend/electron-builder.runtime-helper.json projects/chirality-app-dev/frontend/electron/cli-launcher.ts projects/chirality-app-dev/frontend/electron/main.ts projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts projects/chirality-app-dev/frontend/electron/runtime-helper-entry.ts projects/chirality-app-dev/frontend/electron/runtime-helper-path.ts projects/chirality-app-dev/frontend/package.json projects/chirality-app-dev/frontend/scripts/build-electron.mjs projects/chirality-app-dev/frontend/scripts/embed-runtime-helper.mjs projects/chirality-app-dev/frontend/src/__tests__/electron/cli-launcher.test.ts projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-control-ipc.test.ts projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-helper-packaging.test.ts projects/chirality-app-dev/frontend/package-lock.json
+bd1925a50ac18258bd03db0e475f9ac04d4fcbc46ab7a79b62a4090d92580982  projects/chirality-app-dev/frontend/electron-builder.runtime-helper.json
+2a0724f11d71a0682d2a9674c24fefd2d2f0137ed70e2190a84944d060a1126d  projects/chirality-app-dev/frontend/electron/cli-launcher.ts
+5eeac85fe98ba2c7b76ee98a93ea62fc89f05014b5e1ff381133160a096df491  projects/chirality-app-dev/frontend/electron/main.ts
+970583be61674d8818046108d5129df90d06484d64c94ee904bbfedb2d0f2fc4  projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts
+7e0ab20f14d634f9ce4e77fcfa55826cf4b0c022828acaee0709b8927123e2bc  projects/chirality-app-dev/frontend/electron/runtime-helper-entry.ts
+7df8dc3f66d0fc070d3728854f6c5421bd2bff3ba1864bafbacec04485ebbf02  projects/chirality-app-dev/frontend/electron/runtime-helper-path.ts
+7996a9066e14188d859c499c243bf6ca2f864f7c2c8616a364c897d6ba658e15  projects/chirality-app-dev/frontend/package.json
+cee808c108826e9987d5197bdc63c86d32ac1a428e54537fe4c3a3d79138a505  projects/chirality-app-dev/frontend/scripts/build-electron.mjs
+a710b7790ad92c4a64526478baa6e8f49c00a9070c7b84fb22529104f2a79199  projects/chirality-app-dev/frontend/scripts/embed-runtime-helper.mjs
+27b3a0e36c4b5592a776057b71fa40ba391cb05170dacc91594e8736caafcc7f  projects/chirality-app-dev/frontend/src/__tests__/electron/cli-launcher.test.ts
+8402b8b703f44bad6a4f8a74a8614a53ca5294f16c96b6c5b05f47a19ac2964e  projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-control-ipc.test.ts
+0915e0b4645bfd194512ed2677ca72d4863884346726aa81265a638ce6826465  projects/chirality-app-dev/frontend/src/__tests__/electron/runtime-helper-packaging.test.ts
+5c8fce2a3c0e2e7b55730ac673ccb07424dcae1e4bbbb408260b1090040c1a56  projects/chirality-app-dev/frontend/package-lock.json
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-05|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-05|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /usr/bin/ditto /Users/ryan/dev/chirality/projects/chirality-app-dev/frontend/node_modules projects/chirality-app-dev/frontend/node_modules
+/bin/rm -rf projects/chirality-app-dev/frontend/node_modules/@chirality/engine-pi-omlx projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-cli projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-client projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-contracts projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-core projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-daemon
+ryan@Ryans-MBP chirality % /bin/rm -rf projects/chirality-app-dev/frontend/node_modules/@chirality/engine-pi-omlx projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-cli projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-client projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-contracts projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-core projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-daemon
+ryan@Ryans-MBP chirality % /bin/ln -s /Users/ryan/dev/chirality/runtime/packages/engine-pi-omlx projects/chirality-app-dev/frontend/node_modules/@chirality/engine-pi-omlx
+ryan@Ryans-MBP chirality % /bin/ln -s /Users/ryan/dev/chirality/runtime/packages/cli projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-cli
+ryan@Ryans-MBP chirality % /bin/ln -s /Users/ryan/dev/chirality/runtime/packages/client projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-client
+ryan@Ryans-MBP chirality % /bin/ln -s /Users/ryan/dev/chirality/runtime/packages/contracts projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-contracts
+ryan@Ryans-MBP chirality % /bin/ln -s /Users/ryan/dev/chirality/runtime/packages/core projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-core
+ryan@Ryans-MBP chirality % /bin/ln -s /Users/ryan/dev/chirality/runtime/packages/daemon projects/chirality-app-dev/frontend/node_modules/@chirality/runtime-daemon
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-06|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-06|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /bin/cp -p /Users/ryan/Library/Caches/electron/9c4e224684594fb9a8cbda18d3e2b7bf0c3c023d1462402a4031f8b4cc25e621/electron-v43.2.0-darwin-arm64.zip /private/tmp/chirality-dapp93-owner-operated-20260807/electron-dist/electron-v43.2.0-darwin-arm64.zip
+ryan@Ryans-MBP chirality % /usr/bin/shasum -a 256 /private/tmp/chirality-dapp93-owner-operated-20260807/electron-dist/electron-v43.2.0-darwin-arm64.zip
+ad4a0ae3c37ee05aa06c7e2ed0627608389790f0505a2b0d20319efbe33ffe28  /private/tmp/chirality-dapp93-owner-operated-20260807/electron-dist/electron-v43.2.0-darwin-arm64.zip
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-07|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-07|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % cd projects/chirality-app-dev/frontend
+ryan@Ryans-MBP frontend % /usr/bin/env -i PATH=/Users/ryan/.local/share/mise/installs/node/24/bin:/usr/bin:/bin:/usr/sbin:/sbin HOME=/private/tmp/chirality-dapp93-owner-operated-20260807/home /Users/ryan/.local/share/mise/installs/node/24/bin/node /Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_OPTION_A_OWNER_OPERATED_PREPARATION_2026-08-06/prepared/apply-local-electron-dist-overlay-dapp93.mjs
+1cb9e4c7325166f69139eeba3a0bdfcfa1d4f871e03acf4af1809aa88fa02a36  electron-builder.runtime-helper.json
+b53a867e8aa7d8874cf7ce2417691a05d449babaa9bf0b905c550deb13b3ac6d  package.json
+ryan@Ryans-MBP frontend % /usr/bin/shasum -a 256 electron-builder.runtime-helper.json package.json > /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1103.sha256.txt
+ryan@Ryans-MBP frontend % /bin/cp -p electron-builder.runtime-helper.json /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1104.electron-builder.runtime-helper.json
+ryan@Ryans-MBP frontend % /bin/cp -p package.json /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1104.package.json
+ryan@Ryans-MBP frontend % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-08|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-08|command_exit=0\n%                                                                                ryan@Ryans-MBP frontend % /bin/zsh -c 'set -u; /usr/bin/env -i PATH=/Users/ryan/.local/share/mise/installs/node/24/bin:/usr/bin:/bin:/usr/sbin:/sbin HOME=/private/tmp/chirality-dapp93-owner-operated-20260807/home /Users/ryan/.local/share/mise/installs/node/24/bin/npm test -- src/__tests__/electron/desktop-daemon-posture.test.ts src/__tests__/electron/runtime-control-ipc.test.ts src/__tests__/electron/cli-launcher.test.ts src/__tests__/electron/runtime-helper-packaging.test.ts src/__tests__/electron/desktop-cli-single-daemon-integration.test.ts 2>&1 | /usr/bin/tee /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1105.output.txt; rcs=("${pipestatus[@]}"); /usr/bin/printf "command_exit=%d\ntee_exit=%d\n" "${rcs[1]}" "${rcs[2]}" > /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1105.exit.txt'
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/electron/desktop-daemon-posture.test.ts src/__tests__/electron/runtime-control-ipc.test.ts src/__tests__/electron/cli-launcher.test.ts src/__tests__/electron/runtime-helper-packaging.test.ts src/__tests__/electron/desktop-cli-single-daemon-integration.test.ts
+
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend
+
+ ✓ src/__tests__/electron/runtime-helper-packaging.test.ts (2 tests) 3ms
+ ✓ src/__tests__/electron/desktop-daemon-posture.test.ts (8 tests) 2ms
+ ✓ src/__tests__/electron/runtime-control-ipc.test.ts (10 tests) 4ms
+ ✓ src/__tests__/electron/cli-launcher.test.ts (10 tests) 8ms
+
+ Test Files  4 passed (4)
+      Tests  30 passed (30)
+   Start at  23:48:57
+   Duration  421ms (transform 1.25s, setup 0ms, import 1.34s, tests 17ms, environment 0ms)
+
+npm notice
+npm notice New major version of npm available! 11.16.0 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice
+ryan@Ryans-MBP frontend % /bin/zsh -c 'set -u; /usr/bin/env -i PATH=/Users/ryan/.local/share/mise/installs/node/24/bin:/usr/bin:/bin:/usr/sbin:/sbin HOME=/private/tmp/chirality-dapp93-owner-operated-20260807/home /Users/ryan/.local/share/mise/installs/node/24/bin/npm run typecheck 2>&1 | /usr/bin/tee /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1106.output.txt; rcs=("${pipestatus[@]}"); /usr/bin/printf "command_exit=%d\ntee_exit=%d\n" "${rcs[1]}" "${rcs[2]}" > /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1106.exit.txt'
+
+> chirality-frontend@2.0.0 typecheck
+> tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false
+
+ryan@Ryans-MBP frontend % /bin/zsh -c 'set -u; /usr/bin/env -i PATH=/Users/ryan/.local/share/mise/installs/node/24/bin:/usr/bin:/bin:/usr/sbin:/sbin HOME=/private/tmp/chirality-dapp93-owner-operated-20260807/home /Users/ryan/.local/share/mise/installs/node/24/bin/npm run build 2>&1 | /usr/bin/tee /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1107.output.txt; rcs=("${pipestatus[@]}"); /usr/bin/printf "command_exit=%d\ntee_exit=%d\n" "${rcs[1]}" "${rcs[2]}" > /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1107.exit.txt'
+
+> chirality-frontend@2.0.0 build
+> NEXT_TELEMETRY_DISABLED=1 next build && npm run build:electron
+
+   ▲ Next.js 15.5.21
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 2.4s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/24) ...
+   Generating static pages (6/24) 
+   Generating static pages (12/24) 
+   Generating static pages (18/24) 
+ ✓ Generating static pages (24/24)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                             Size  First Load JS
+┌ ○ /                                                  713 B         197 kB
+├ ○ /_not-found                                        168 B         103 kB
+├ ƒ /api/harness/agents                                168 B         103 kB
+├ ƒ /api/harness/interrupt                             168 B         103 kB
+├ ƒ /api/harness/permission                            168 B         103 kB
+├ ƒ /api/harness/scaffold                              168 B         103 kB
+├ ƒ /api/harness/session/[id]                          168 B         103 kB
+├ ƒ /api/harness/session/[id]/events                   168 B         103 kB
+├ ƒ /api/harness/session/boot                          168 B         103 kB
+├ ƒ /api/harness/session/create                        168 B         103 kB
+├ ƒ /api/harness/session/list                          168 B         103 kB
+├ ƒ /api/harness/turn                                  168 B         103 kB
+├ ƒ /api/project/deliverables                          168 B         103 kB
+├ ƒ /api/working-root/deliverable/content              168 B         103 kB
+├ ƒ /api/working-root/deliverable/dependencies         168 B         103 kB
+├ ƒ /api/working-root/deliverable/status               168 B         103 kB
+├ ƒ /api/working-root/deliverable/status/transition    168 B         103 kB
+├ ƒ /api/working-root/scope                            168 B         103 kB
+├ ƒ /api/working-root/tree                             168 B         103 kB
+├ ƒ /api/working-root/validate                         168 B         103 kB
+├ ○ /chat                                              592 B         196 kB
+├ ○ /icon.svg                                            0 B            0 B
+├ ○ /pipeline                                          676 B         196 kB
+└ ○ /workbench                                         664 B         196 kB
++ First Load JS shared by all                         102 kB
+  ├ chunks/255-62902f04efbdd792.js                   46.3 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js              54.2 kB
+  └ other shared chunks (total)                      1.93 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> chirality-frontend@2.0.0 build:electron
+> node ./scripts/build-electron.mjs
+
+
+  dist-electron/main.js      1.3mb ⚠️
+  dist-electron/main.js.map  2.4mb
+
+⚡ Done in 31ms
+
+  dist-electron/runtime-helper.js      1.3mb ⚠️
+  dist-electron/runtime-helper.js.map  2.4mb
+
+⚡ Done in 19ms
+
+  dist-electron/preload.js       3.5kb
+  dist-electron/preload.js.map  14.4kb
+
+⚡ Done in 1ms
+
+  dist-runtime/chirality-cli.mjs       73.4kb
+  dist-runtime/chirality-cli.mjs.map  180.3kb
+
+⚡ Done in 3ms
+ryan@Ryans-MBP frontend % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-09|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-09|command_exit=0\n%                                                                                ryan@Ryans-MBP frontend % /bin/zsh -c 'set -u; /usr/bin/env -i PATH=/Users/ryan/.local/share/mise/installs/node/24/bin:/usr/bin:/bin:/usr/sbin:/sbin HOME=/private/tmp/chirality-dapp93-owner-operated-20260807/home /Users/ryan/.local/share/mise/installs/node/24/bin/npm run desktop:pack 2>&1 | /usr/bin/tee /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1108.output.txt; rcs=("${pipestatus[@]}"); /usr/bin/printf "command_exit=%d\ntee_exit=%d\n" "${rcs[1]}" "${rcs[2]}" > /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/c1108.exit.txt'
+
+> chirality-frontend@2.0.0 desktop:pack
+> npm run build && npm run build:runtime-helper && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --arm64 --dir --publish never && npm run desktop:verify-dependencies && npm run instruction-root:integrity
+
+
+> chirality-frontend@2.0.0 build
+> NEXT_TELEMETRY_DISABLED=1 next build && npm run build:electron
+
+   ▲ Next.js 15.5.21
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 823ms
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/24) ...
+   Generating static pages (6/24) 
+   Generating static pages (12/24) 
+   Generating static pages (18/24) 
+ ✓ Generating static pages (24/24)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                             Size  First Load JS
+┌ ○ /                                                  713 B         197 kB
+├ ○ /_not-found                                        168 B         103 kB
+├ ƒ /api/harness/agents                                168 B         103 kB
+├ ƒ /api/harness/interrupt                             168 B         103 kB
+├ ƒ /api/harness/permission                            168 B         103 kB
+├ ƒ /api/harness/scaffold                              168 B         103 kB
+├ ƒ /api/harness/session/[id]                          168 B         103 kB
+├ ƒ /api/harness/session/[id]/events                   168 B         103 kB
+├ ƒ /api/harness/session/boot                          168 B         103 kB
+├ ƒ /api/harness/session/create                        168 B         103 kB
+├ ƒ /api/harness/session/list                          168 B         103 kB
+├ ƒ /api/harness/turn                                  168 B         103 kB
+├ ƒ /api/project/deliverables                          168 B         103 kB
+├ ƒ /api/working-root/deliverable/content              168 B         103 kB
+├ ƒ /api/working-root/deliverable/dependencies         168 B         103 kB
+├ ƒ /api/working-root/deliverable/status               168 B         103 kB
+├ ƒ /api/working-root/deliverable/status/transition    168 B         103 kB
+├ ƒ /api/working-root/scope                            168 B         103 kB
+├ ƒ /api/working-root/tree                             168 B         103 kB
+├ ƒ /api/working-root/validate                         168 B         103 kB
+├ ○ /chat                                              592 B         196 kB
+├ ○ /icon.svg                                            0 B            0 B
+├ ○ /pipeline                                          676 B         196 kB
+└ ○ /workbench                                         664 B         196 kB
++ First Load JS shared by all                         102 kB
+  ├ chunks/255-62902f04efbdd792.js                   46.3 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js              54.2 kB
+  └ other shared chunks (total)                      1.93 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> chirality-frontend@2.0.0 build:electron
+> node ./scripts/build-electron.mjs
+
+
+  dist-electron/main.js      1.3mb ⚠️
+  dist-electron/main.js.map  2.4mb
+
+⚡ Done in 28ms
+
+  dist-electron/runtime-helper.js      1.3mb ⚠️
+  dist-electron/runtime-helper.js.map  2.4mb
+
+⚡ Done in 18ms
+
+  dist-electron/preload.js       3.5kb
+  dist-electron/preload.js.map  14.4kb
+
+⚡ Done in 1ms
+
+  dist-runtime/chirality-cli.mjs       73.4kb
+  dist-runtime/chirality-cli.mjs.map  180.3kb
+
+⚡ Done in 3ms
+
+> chirality-frontend@2.0.0 build:runtime-helper
+> CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --config electron-builder.runtime-helper.json --mac --arm64 --dir --publish never
+
+  • electron-builder  version=26.15.3 os=25.6.0
+  • loaded configuration  file=/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/electron-builder.runtime-helper.json
+  • detected workspace root for project using lock file  pm=npm config=undefined resolved=/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend projectDir=/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend
+  • executing @electron/rebuild  electronVersion=43.2.0 arch=arm64 buildFromSource=false workspaceRoot=/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend projectDir=./ appDir=./
+  • installing native dependencies  arch=arm64
+  • completed installing native dependencies
+  • packaging       platform=darwin arch=arm64 electron=43.2.0 appOutDir=dist-runtime-helper/mac-arm64
+  • using custom electronDist zip file  zipFile=/private/tmp/chirality-dapp93-owner-operated-20260807/electron-dist/electron-v43.2.0-darwin-arm64.zip
+  • searching for node modules  pm=npm searchDir=/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend
+  • duplicate dependency references  dependencies=["@anthropic-ai/sdk@0.93.0","ajv@8.20.0","express@5.2.1","debug@4.4.3","http-errors@2.0.1","on-finished@2.4.1","qs@6.15.2","raw-body@3.0.2","type-is@2.1.0","debug@4.4.3","debug@4.4.3","on-finished@2.4.1","get-intrinsic@1.3.0","call-bind-apply-helpers@1.0.2","call-bind-apply-helpers@1.0.2","es-object-atoms@1.1.1","call-bound@1.0.4","get-intrinsic@1.3.0","side-channel-map@1.0.1","debug@4.4.3","debug@4.4.3","http-errors@2.0.1","on-finished@2.4.1","send@1.2.1","http-errors@2.0.1","@earendil-works/pi-ai@0.82.0","json-schema-to-ts@3.1.1","@aws-crypto/sha256-js@5.2.0","@aws-sdk/types@3.974.2","@smithy/util-utf8@2.3.0","@aws-sdk/types@3.974.2","@aws-crypto/util@5.2.0","@aws-sdk/types@3.974.2","@aws-sdk/types@3.974.2","@smithy/types@4.16.1","@smithy/core@3.29.8","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/fetch-http-handler@5.6.10","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/credential-provider-env@3.972.60","@aws-sdk/credential-provider-http@3.972.62","@aws-sdk/core@3.976.0","@aws-sdk/nested-clients@3.997.34","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/credential-provider-process@3.972.60","@aws-sdk/credential-provider-sso@3.973.4","@aws-sdk/credential-provider-web-identity@3.972.66","@aws-sdk/nested-clients@3.997.34","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/credential-provider-imds@4.4.13","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/nested-clients@3.997.34","@aws-sdk/core@3.976.0","@aws-sdk/nested-clients@3.997.34","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/nested-clients@3.997.34","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/fetch-http-handler@5.6.10","@smithy/signature-v4@5.6.9","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/signature-v4@5.6.9","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/fetch-http-handler@5.6.10","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@smithy/types@4.16.1","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/node-http-handler@4.7.3","@modelcontextprotocol/sdk@1.29.0","https-proxy-agent@7.0.6","fetch-blob@3.2.0","gaxios@7.3.0","ecdsa-sig-formatter@1.0.11","@smithy/core@3.29.8","@smithy/types@4.16.1","debug@4.4.3","@earendil-works/pi-ai@0.82.0","@aws-crypto/sha256-js@5.2.0","@aws-sdk/types@3.973.8","@smithy/util-utf8@2.3.0","@aws-sdk/types@3.973.8","@aws-crypto/util@5.2.0","@aws-sdk/types@3.973.8","@aws-sdk/types@3.973.8","@smithy/types@4.14.2","@smithy/core@3.24.3","@smithy/core@3.24.3","@smithy/types@4.14.2","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/fetch-http-handler@5.4.3","@smithy/node-http-handler@4.7.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/credential-provider-env@3.972.37","@aws-sdk/credential-provider-http@3.972.39","@aws-sdk/core@3.974.11","@aws-sdk/nested-clients@3.997.9","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/credential-provider-process@3.972.37","@aws-sdk/credential-provider-sso@3.972.41","@aws-sdk/credential-provider-web-identity@3.972.41","@aws-sdk/nested-clients@3.997.9","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/credential-provider-imds@4.3.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/nested-clients@3.997.9","@aws-sdk/token-providers@3.1048.0","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/nested-clients@3.997.9","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/core@3.24.3","@smithy/types@4.14.2","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/fetch-http-handler@5.4.3","@smithy/signature-v4@5.4.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-crypto/sha256-browser@5.2.0","@aws-crypto/sha256-js@5.2.0","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/signature-v4@5.4.3","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/fetch-http-handler@5.4.3","@smithy/node-http-handler@4.7.3","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@smithy/types@4.14.2","@aws-crypto/util@5.2.0","@aws-sdk/types@3.973.8","@smithy/types@4.14.2","@smithy/core@3.24.3","@smithy/types@4.14.2","@smithy/node-http-handler@4.7.3","@modelcontextprotocol/sdk@1.29.0","https-proxy-agent@7.0.6","fetch-blob@3.2.0","gaxios@7.1.4","ecdsa-sig-formatter@1.0.11","@smithy/core@3.24.3","@smithy/types@4.14.2","debug@4.4.3","minimatch@10.2.5","react-dom@18.3.1","react@18.3.1","react@18.3.1","react@18.3.1","loose-envify@1.4.0","@types/hast@3.0.4","devlop@1.1.0","@types/hast@3.0.4","@types/hast@3.0.4","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","@types/estree-jsx@1.0.5","@types/hast@3.0.4","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","decode-named-character-reference@1.3.0","vfile-message@4.0.3","@types/estree-jsx@1.0.5","@types/hast@3.0.4","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","unist-util-stringify-position@4.0.0","@types/hast@3.0.4","@types/mdast@4.0.4","devlop@1.1.0","unist-util-position@5.0.0","unist-util-visit@5.1.0","vfile@6.0.3","react@18.3.1","@types/mdast@4.0.4","@types/mdast@4.0.4","devlop@1.1.0","@types/mdast@4.0.4","decode-named-character-reference@1.3.0","micromark-util-character@2.1.1","micromark-util-decode-numeric-character-reference@2.0.2","debug@4.4.3","decode-named-character-reference@1.3.0","devlop@1.1.0","micromark-core-commonmark@2.0.3","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","micromark-util-chunked@2.0.1","micromark-util-combine-extensions@2.0.1","micromark-util-decode-numeric-character-reference@2.0.2","micromark-util-normalize-identifier@2.0.1","micromark-util-resolve-all@2.0.1","micromark-util-sanitize-uri@2.0.1","devlop@1.1.0","micromark-util-chunked@2.0.1","unist-util-stringify-position@4.0.0","unified@11.0.5","@types/hast@3.0.4","@types/mdast@4.0.4","mdast-util-to-hast@13.2.1","unified@11.0.5","vfile@6.0.3","devlop@1.1.0","vfile@6.0.3","unist-util-is@6.0.1","vfile-message@4.0.3","loose-envify@1.4.0","@types/mdast@4.0.4","mdast-util-from-markdown@2.0.3","@types/mdast@4.0.4","devlop@1.1.0","@types/mdast@4.0.4","unist-util-is@6.0.1","unist-util-visit-parents@6.0.2","micromark-util-character@2.1.1","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","micromark-util-normalize-identifier@2.0.1","@types/mdast@4.0.4","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","@types/mdast@4.0.4","@types/mdast@4.0.4","unist-util-is@6.0.1","mdast-util-to-string@4.0.0","micromark-util-character@2.1.1","micromark-util-decode-string@2.0.1","unist-util-visit@5.1.0","micromark-util-character@2.1.1","micromark-util-sanitize-uri@2.0.1","devlop@1.1.0","decode-named-character-reference@1.3.0","devlop@1.1.0","micromark-util-character@2.1.1","devlop@1.1.0","micromark-util-character@2.1.1","micromark-factory-space@2.0.1","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","micromark-util-character@2.1.1","micromark-util-chunked@2.0.1","micromark-util-classify-character@2.0.1","micromark-util-normalize-identifier@2.0.1","micromark-util-resolve-all@2.0.1","micromark-util-subtokenize@2.1.0","micromark-util-character@2.1.1","micromark-util-character@2.1.1","micromark-util-normalize-identifier@2.0.1","micromark-util-sanitize-uri@2.0.1","devlop@1.1.0","micromark-util-classify-character@2.0.1","devlop@1.1.0","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","devlop@1.1.0","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","micromark-util-chunked@2.0.1","remark-parse@11.0.0","@types/mdast@4.0.4","mdast-util-to-markdown@2.1.2","unified@11.0.5","unified@11.0.5"]
+  • skipped macOS application code signing  reason=, see https://electron.build/code-signing CSC_IDENTITY_AUTO_DISCOVERY=false
+  • electron-builder  version=26.15.3 os=25.6.0
+  • loaded configuration  file=package.json ("build" field)
+  • detected workspace root for project using lock file  pm=npm config=undefined resolved=/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend projectDir=/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend
+  • executing @electron/rebuild  electronVersion=43.2.0 arch=arm64 buildFromSource=false workspaceRoot=/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend projectDir=./ appDir=./
+  • installing native dependencies  arch=arm64
+  • completed installing native dependencies
+  • packaging       platform=darwin arch=arm64 electron=43.2.0 appOutDir=dist/mac-arm64
+  • using custom electronDist zip file  zipFile=/private/tmp/chirality-dapp93-owner-operated-20260807/electron-dist/electron-v43.2.0-darwin-arm64.zip
+  • searching for node modules  pm=npm searchDir=/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend
+  • duplicate dependency references  dependencies=["@anthropic-ai/sdk@0.93.0","ajv@8.20.0","express@5.2.1","debug@4.4.3","http-errors@2.0.1","on-finished@2.4.1","qs@6.15.2","raw-body@3.0.2","type-is@2.1.0","debug@4.4.3","debug@4.4.3","on-finished@2.4.1","get-intrinsic@1.3.0","call-bind-apply-helpers@1.0.2","call-bind-apply-helpers@1.0.2","es-object-atoms@1.1.1","call-bound@1.0.4","get-intrinsic@1.3.0","side-channel-map@1.0.1","debug@4.4.3","debug@4.4.3","http-errors@2.0.1","on-finished@2.4.1","send@1.2.1","http-errors@2.0.1","@earendil-works/pi-ai@0.82.0","json-schema-to-ts@3.1.1","@aws-crypto/sha256-js@5.2.0","@aws-sdk/types@3.974.2","@smithy/util-utf8@2.3.0","@aws-sdk/types@3.974.2","@aws-crypto/util@5.2.0","@aws-sdk/types@3.974.2","@aws-sdk/types@3.974.2","@smithy/types@4.16.1","@smithy/core@3.29.8","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/fetch-http-handler@5.6.10","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/credential-provider-env@3.972.60","@aws-sdk/credential-provider-http@3.972.62","@aws-sdk/core@3.976.0","@aws-sdk/nested-clients@3.997.34","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/credential-provider-process@3.972.60","@aws-sdk/credential-provider-sso@3.973.4","@aws-sdk/credential-provider-web-identity@3.972.66","@aws-sdk/nested-clients@3.997.34","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/credential-provider-imds@4.4.13","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/nested-clients@3.997.34","@aws-sdk/core@3.976.0","@aws-sdk/nested-clients@3.997.34","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/nested-clients@3.997.34","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/fetch-http-handler@5.6.10","@smithy/signature-v4@5.6.9","@smithy/types@4.16.1","@aws-sdk/core@3.976.0","@aws-sdk/core@3.976.0","@aws-sdk/types@3.974.2","@smithy/signature-v4@5.6.9","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/fetch-http-handler@5.6.10","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@aws-sdk/types@3.974.2","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/types@4.16.1","@smithy/types@4.16.1","@smithy/core@3.29.8","@smithy/types@4.16.1","@smithy/node-http-handler@4.7.3","@modelcontextprotocol/sdk@1.29.0","https-proxy-agent@7.0.6","fetch-blob@3.2.0","gaxios@7.3.0","ecdsa-sig-formatter@1.0.11","@smithy/core@3.29.8","@smithy/types@4.16.1","debug@4.4.3","@earendil-works/pi-ai@0.82.0","@aws-crypto/sha256-js@5.2.0","@aws-sdk/types@3.973.8","@smithy/util-utf8@2.3.0","@aws-sdk/types@3.973.8","@aws-crypto/util@5.2.0","@aws-sdk/types@3.973.8","@aws-sdk/types@3.973.8","@smithy/types@4.14.2","@smithy/core@3.24.3","@smithy/core@3.24.3","@smithy/types@4.14.2","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/fetch-http-handler@5.4.3","@smithy/node-http-handler@4.7.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/credential-provider-env@3.972.37","@aws-sdk/credential-provider-http@3.972.39","@aws-sdk/core@3.974.11","@aws-sdk/nested-clients@3.997.9","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/credential-provider-process@3.972.37","@aws-sdk/credential-provider-sso@3.972.41","@aws-sdk/credential-provider-web-identity@3.972.41","@aws-sdk/nested-clients@3.997.9","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/credential-provider-imds@4.3.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/nested-clients@3.997.9","@aws-sdk/token-providers@3.1048.0","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/nested-clients@3.997.9","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/core@3.24.3","@smithy/types@4.14.2","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/fetch-http-handler@5.4.3","@smithy/signature-v4@5.4.3","@smithy/types@4.14.2","@aws-sdk/core@3.974.11","@aws-crypto/sha256-browser@5.2.0","@aws-crypto/sha256-js@5.2.0","@aws-sdk/core@3.974.11","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/signature-v4@5.4.3","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/fetch-http-handler@5.4.3","@smithy/node-http-handler@4.7.3","@smithy/types@4.14.2","@aws-sdk/types@3.973.8","@smithy/core@3.24.3","@smithy/types@4.14.2","@smithy/types@4.14.2","@aws-crypto/util@5.2.0","@aws-sdk/types@3.973.8","@smithy/types@4.14.2","@smithy/core@3.24.3","@smithy/types@4.14.2","@smithy/node-http-handler@4.7.3","@modelcontextprotocol/sdk@1.29.0","https-proxy-agent@7.0.6","fetch-blob@3.2.0","gaxios@7.1.4","ecdsa-sig-formatter@1.0.11","@smithy/core@3.24.3","@smithy/types@4.14.2","debug@4.4.3","minimatch@10.2.5","react-dom@18.3.1","react@18.3.1","react@18.3.1","react@18.3.1","loose-envify@1.4.0","@types/hast@3.0.4","devlop@1.1.0","@types/hast@3.0.4","@types/hast@3.0.4","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","@types/estree-jsx@1.0.5","@types/hast@3.0.4","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","decode-named-character-reference@1.3.0","vfile-message@4.0.3","@types/estree-jsx@1.0.5","@types/hast@3.0.4","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","unist-util-stringify-position@4.0.0","@types/hast@3.0.4","@types/mdast@4.0.4","devlop@1.1.0","unist-util-position@5.0.0","unist-util-visit@5.1.0","vfile@6.0.3","react@18.3.1","@types/mdast@4.0.4","@types/mdast@4.0.4","devlop@1.1.0","@types/mdast@4.0.4","decode-named-character-reference@1.3.0","micromark-util-character@2.1.1","micromark-util-decode-numeric-character-reference@2.0.2","debug@4.4.3","decode-named-character-reference@1.3.0","devlop@1.1.0","micromark-core-commonmark@2.0.3","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","micromark-util-chunked@2.0.1","micromark-util-combine-extensions@2.0.1","micromark-util-decode-numeric-character-reference@2.0.2","micromark-util-normalize-identifier@2.0.1","micromark-util-resolve-all@2.0.1","micromark-util-sanitize-uri@2.0.1","devlop@1.1.0","micromark-util-chunked@2.0.1","unist-util-stringify-position@4.0.0","unified@11.0.5","@types/hast@3.0.4","@types/mdast@4.0.4","mdast-util-to-hast@13.2.1","unified@11.0.5","vfile@6.0.3","devlop@1.1.0","vfile@6.0.3","unist-util-is@6.0.1","vfile-message@4.0.3","loose-envify@1.4.0","@types/mdast@4.0.4","mdast-util-from-markdown@2.0.3","@types/mdast@4.0.4","devlop@1.1.0","@types/mdast@4.0.4","unist-util-is@6.0.1","unist-util-visit-parents@6.0.2","micromark-util-character@2.1.1","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","micromark-util-normalize-identifier@2.0.1","@types/mdast@4.0.4","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","@types/mdast@4.0.4","devlop@1.1.0","mdast-util-from-markdown@2.0.3","mdast-util-to-markdown@2.1.2","@types/mdast@4.0.4","@types/mdast@4.0.4","unist-util-is@6.0.1","mdast-util-to-string@4.0.0","micromark-util-character@2.1.1","micromark-util-decode-string@2.0.1","unist-util-visit@5.1.0","micromark-util-character@2.1.1","micromark-util-sanitize-uri@2.0.1","devlop@1.1.0","decode-named-character-reference@1.3.0","devlop@1.1.0","micromark-util-character@2.1.1","devlop@1.1.0","micromark-util-character@2.1.1","micromark-factory-space@2.0.1","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","micromark-util-character@2.1.1","micromark-util-chunked@2.0.1","micromark-util-classify-character@2.0.1","micromark-util-normalize-identifier@2.0.1","micromark-util-resolve-all@2.0.1","micromark-util-subtokenize@2.1.0","micromark-util-character@2.1.1","micromark-util-character@2.1.1","micromark-util-normalize-identifier@2.0.1","micromark-util-sanitize-uri@2.0.1","devlop@1.1.0","micromark-util-classify-character@2.0.1","devlop@1.1.0","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","devlop@1.1.0","micromark-factory-space@2.0.1","micromark-util-character@2.1.1","micromark-util-chunked@2.0.1","remark-parse@11.0.0","@types/mdast@4.0.4","mdast-util-to-markdown@2.1.2","unified@11.0.5","unified@11.0.5"]
+  • skipped macOS application code signing  reason=, see https://electron.build/code-signing CSC_IDENTITY_AUTO_DISCOVERY=false
+
+> chirality-frontend@2.0.0 desktop:verify-dependencies
+> node ./scripts/verify-packaged-dependency-boundary.mjs
+
+{
+  "status": "PASS",
+  "bundlePath": "/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar",
+  "localPackageEntries": 0,
+  "forbiddenDevelopmentPackagesPresent": [],
+  "requiredPackagesPresent": [
+    "@anthropic-ai/claude-agent-sdk",
+    "@earendil-works/pi-coding-agent",
+    "next"
+  ],
+  "failures": []
+}
+
+> chirality-frontend@2.0.0 instruction-root:integrity
+> node ./scripts/verify-instruction-root-integrity.mjs
+
+instruction-root integrity status: pass
+checked files: 43
+source completeness status: needs_remediation
+git sha: 7aada3fbadf340a07ef828cc18b350c8c01b517d
+manifest: /Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/manifest.json
+summary: /Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json
+ryan@Ryans-MBP frontend % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-10|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-10|command_exit=0\n%                                                                                ryan@Ryans-MBP frontend % cd /Users/ryan/.codex/worktrees/7388/chirality
+ryan@Ryans-MBP chirality % /usr/bin/shasum -a 256 'projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/MacOS/Chirality Runtime Service' 'projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Resources/app.asar' 'projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Info.plist' 'projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality' 'projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar'
+79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874  projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/MacOS/Chirality Runtime Service
+6d711080fdf6f04092f621fcc3b5acb0c1e7a04e86d9b224ad5f43825a659272  projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Resources/app.asar
+c6ba5fac3579538bd895ef84e85adeb5a55094d70911a5fd4b1253b07db10ae4  projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Info.plist
+79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+fe52411ebfe176c6f4a2f761d64ecf7b55aab0a8278b064a90843c6e7eb3bc2b  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar
+ryan@Ryans-MBP chirality % /usr/bin/plutil -p 'projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Info.plist'
+{
+  "CFBundleDisplayName" => "Chirality Runtime Service"
+  "CFBundleExecutable" => "Chirality Runtime Service"
+  "CFBundleIconFile" => "icon.icns"
+  "CFBundleIdentifier" => "com.chirality.app.runtime-helper"
+  "CFBundleInfoDictionaryVersion" => "6.0"
+  "CFBundleName" => "Chirality Runtime Service"
+  "CFBundlePackageType" => "APPL"
+  "CFBundleShortVersionString" => "2.0.0"
+  "CFBundleVersion" => "2.0.0"
+  "DTCompiler" => "com.apple.compilers.llvm.clang.1_0"
+  "DTSDKBuild" => "24F74"
+  "DTSDKName" => "macosx15.5"
+  "DTXcode" => "1640"
+  "DTXcodeBuild" => "16F6"
+  "ElectronAsarIntegrity" => {
+    "Resources/app.asar" => {
+      "algorithm" => "SHA256"
+      "hash" => "c2c8dc65e3015c6737b462f3c737391c96e2f9be0ac0dfc7bd655925365a7167"
+    }
+    "Resources/default_app.asar" => {
+      "algorithm" => "SHA256"
+      "hash" => "553d6dd413d71a62ae1e67b1db59bd83fadf16ae529f015415dce85787ea437b"
+    }
+  }
+  "LSApplicationCategoryType" => "public.app-category.developer-tools"
+  "LSEnvironment" => {
+    "MallocNanoZone" => "0"
+  }
+  "LSMinimumSystemVersion" => "15.0.0"
+  "LSUIElement" => true
+  "NSAppTransportSecurity" => {
+    "NSAllowsArbitraryLoads" => true
+    "NSAllowsLocalNetworking" => true
+    "NSExceptionDomains" => {
+      "127.0.0.1" => {
+        "NSIncludesSubdomains" => false
+        "NSTemporaryExceptionAllowsInsecureHTTPLoads" => true
+        "NSTemporaryExceptionAllowsInsecureHTTPSLoads" => false
+        "NSTemporaryExceptionMinimumTLSVersion" => "1.0"
+        "NSTemporaryExceptionRequiresForwardSecrecy" => false
+      }
+      "localhost" => {
+        "NSIncludesSubdomains" => false
+        "NSTemporaryExceptionAllowsInsecureHTTPLoads" => true
+        "NSTemporaryExceptionAllowsInsecureHTTPSLoads" => false
+        "NSTemporaryExceptionMinimumTLSVersion" => "1.0"
+        "NSTemporaryExceptionRequiresForwardSecrecy" => false
+      }
+    }
+  }
+  "NSAudioCaptureUsageDescription" => "This app needs access to audio capture"
+  "NSBluetoothAlwaysUsageDescription" => "This app needs access to Bluetooth"
+  "NSBluetoothPeripheralUsageDescription" => "This app needs access to Bluetooth"
+  "NSCameraUsageDescription" => "This app needs access to the camera"
+  "NSHighResolutionCapable" => true
+  "NSHumanReadableCopyright" => "Copyright © 2026 Chirality Project"
+  "NSMainNibFile" => "MainMenu"
+  "NSMicrophoneUsageDescription" => "This app needs access to the microphone"
+  "NSPrefersDisplaySafeAreaCompatibilityMode" => false
+  "NSPrincipalClass" => "AtomApplication"
+  "NSQuitAlwaysKeepsWindows" => false
+  "NSRequiresAquaSystemAppearance" => false
+  "NSSupportsAutomaticGraphicsSwitching" => true
+}
+ryan@Ryans-MBP chirality % /usr/bin/plutil -p 'projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Info.plist'
+{
+  "CFBundleDisplayName" => "Chirality"
+  "CFBundleExecutable" => "Chirality"
+  "CFBundleIconFile" => "icon.icns"
+  "CFBundleIdentifier" => "com.chirality.app"
+  "CFBundleInfoDictionaryVersion" => "6.0"
+  "CFBundleName" => "Chirality"
+  "CFBundlePackageType" => "APPL"
+  "CFBundleShortVersionString" => "2.0.0"
+  "CFBundleVersion" => "2.0.0"
+  "DTCompiler" => "com.apple.compilers.llvm.clang.1_0"
+  "DTSDKBuild" => "24F74"
+  "DTSDKName" => "macosx15.5"
+  "DTXcode" => "1640"
+  "DTXcodeBuild" => "16F6"
+  "ElectronAsarIntegrity" => {
+    "Resources/app.asar" => {
+      "algorithm" => "SHA256"
+      "hash" => "f468ba92c87452d8f3e9bfd625f11ff1d635959c0862e95993bae4b830a8e02e"
+    }
+    "Resources/default_app.asar" => {
+      "algorithm" => "SHA256"
+      "hash" => "553d6dd413d71a62ae1e67b1db59bd83fadf16ae529f015415dce85787ea437b"
+    }
+  }
+  "LSApplicationCategoryType" => "public.app-category.developer-tools"
+  "LSEnvironment" => {
+    "MallocNanoZone" => "0"
+  }
+  "LSMinimumSystemVersion" => "15.0.0"
+  "NSAppTransportSecurity" => {
+    "NSAllowsArbitraryLoads" => true
+    "NSAllowsLocalNetworking" => true
+    "NSExceptionDomains" => {
+      "127.0.0.1" => {
+        "NSIncludesSubdomains" => false
+        "NSTemporaryExceptionAllowsInsecureHTTPLoads" => true
+        "NSTemporaryExceptionAllowsInsecureHTTPSLoads" => false
+        "NSTemporaryExceptionMinimumTLSVersion" => "1.0"
+        "NSTemporaryExceptionRequiresForwardSecrecy" => false
+      }
+      "localhost" => {
+        "NSIncludesSubdomains" => false
+        "NSTemporaryExceptionAllowsInsecureHTTPLoads" => true
+        "NSTemporaryExceptionAllowsInsecureHTTPSLoads" => false
+        "NSTemporaryExceptionMinimumTLSVersion" => "1.0"
+        "NSTemporaryExceptionRequiresForwardSecrecy" => false
+      }
+    }
+  }
+  "NSAudioCaptureUsageDescription" => "This app needs access to audio capture"
+  "NSBluetoothAlwaysUsageDescription" => "This app needs access to Bluetooth"
+  "NSBluetoothPeripheralUsageDescription" => "This app needs access to Bluetooth"
+  "NSCameraUsageDescription" => "This app needs access to the camera"
+  "NSHighResolutionCapable" => true
+  "NSHumanReadableCopyright" => "Copyright © 2026 Chirality Project"
+  "NSMainNibFile" => "MainMenu"
+  "NSMicrophoneUsageDescription" => "This app needs access to the microphone"
+  "NSPrefersDisplaySafeAreaCompatibilityMode" => false
+  "NSPrincipalClass" => "AtomApplication"
+  "NSQuitAlwaysKeepsWindows" => false
+  "NSRequiresAquaSystemAppearance" => false
+  "NSSupportsAutomaticGraphicsSwitching" => true
+}
+ryan@Ryans-MBP chirality % /usr/bin/find 'projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app' -type l -print -exec /usr/bin/readlink '{}' ';'
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Electron Framework
+Versions/Current/Electron Framework
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Resources
+Versions/Current/Resources
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/Current
+A
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Libraries
+Versions/Current/Libraries
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Helpers
+Versions/Current/Helpers
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/Resources
+Versions/Current/Resources
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/ReactiveObjC
+Versions/Current/ReactiveObjC
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/Versions/Current
+A
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Resources
+Versions/Current/Resources
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Versions/Current
+A
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Squirrel
+Versions/Current/Squirrel
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Mantle
+Versions/Current/Mantle
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Resources
+Versions/Current/Resources
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Versions/Current
+A
+ryan@Ryans-MBP chirality % /usr/bin/diff -qr 'projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app' 'projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app'
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Helpers: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Helpers: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/Current: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/Current: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Versions/A/Resources: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Versions/A/Resources: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Versions/Current: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Versions/Current: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/Resources: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/Resources: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/Versions/Current: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/Versions/Current: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Versions/Current: Directory loop detected
+diff: projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Library/LoginItems/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Versions/Current: Directory loop detected
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-11|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-11|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /bin/zsh -c 'exec /usr/bin/env -i PATH=/usr/bin:/bin:/usr/sbin:/sbin HOME=/private/tmp/chirality-dapp93-owner-operated-20260807/home CHIRALITY_USER_DATA=/private/tmp/chirality-dapp93-owner-operated-20260807/user "/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/MacOS/Chirality Runtime Service" --runtime-daemon' > /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/helper.stdout.txt 2> /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/helper.stderr.txt &
+[1] 92988
+ryan@Ryans-MBP chirality % helper_pid=$!; printf '%s\n' "$helper_pid" > /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/helper.pid
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-12|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-12|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /bin/ps -o pid=,ppid=,pgid=,state=,etime=,command= -p "$helper_pid"
+92988 90439 92988 SN   00:20 /Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/dist-runti
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-13|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-13|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /usr/bin/stat -f '%N|%i|%p|%u|%g|%z' /private/tmp/chirality-dapp93-owner-operated-20260807/user/runtime/runtime.sock /private/tmp/chirality-dapp93-owner-operated-20260807/user/runtime/runtime.owner.json
+stat: /private/tmp/chirality-dapp93-owner-operated-20260807/user/runtime/runtime.sock: stat: No such file or directory
+stat: /private/tmp/chirality-dapp93-owner-operated-20260807/user/runtime/runtime.owner.json: stat: No such file or directory
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-14|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-14|command_exit=1\n%                                                                                ryan@Ryans-MBP chirality % /bin/zsh -c 'exec /usr/bin/env -i PATH=/usr/bin:/bin:/usr/sbin:/sbin HOME=/private/tmp/chirality-dapp93-owner-operated-20260807/home CHIRALITY_USER_DATA=/private/tmp/chirality-dapp93-owner-operated-20260807/user "/Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality" --user-data-dir=/private/tmp/chirality-dapp93-owner-operated-20260807/user' > /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/gui.stdout.txt 2> /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/gui.stderr.txt &
+[2] 93012
+ryan@Ryans-MBP chirality % gui_pid=$!; printf '%s\n' "$gui_pid" > /private/tmp/chirality-dapp93-owner-operated-20260807/evidence/gui.pid
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-15|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-15|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /bin/ps -o pid=,ppid=,command= -p "$gui_pid"
+93012 90439 /Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.ap
+ryan@Ryans-MBP chirality % /bin/ps -o pid=,ppid=,command= -p "$gui_pid"
+93012 90439 /Users/ryan/.codex/worktrees/7388/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.ap
+ryan@Ryans-MBP chirality % /bin/test ! -e projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_OPTION_A_OWNER_OPERATED_PREPARATION_2026-08-06/returned_r4_4_6
+ryan@Ryans-MBP chirality % /bin/mkdir -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_OPTION_A_OWNER_OPERATED_PREPARATION_2026-08-06/returned_r4_4_6
+ryan@Ryans-MBP chirality % d93_rc=$?; /usr/bin/printf 'DAPP93-CONTROL|STEP-23|command_exit=%d\\n' "$d93_rc"
+DAPP93-CONTROL|STEP-23|command_exit=0\n%                                                                                ryan@Ryans-MBP chirality % /bin/cp -p projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_OPTION_A_OWNER_OPERATED_PREPARATION_2026-08-06/prepared/EVIDENCE_RETURN_PACKET.md projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_OPTION_A_OWNER_OPERATED_PREPARATION_2026-08-06/returned_r4_4_6/completed-evidence-return.md
+ryan@Ryans-MBP chirality % 

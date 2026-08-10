@@ -1,0 +1,78 @@
+{
+  "appId": "com.chirality.app.runtime-helper",
+  "productName": "Chirality Runtime Service",
+  "executableName": "Chirality Runtime Service",
+  "asar": true,
+  "asarUnpack": [
+    "node_modules/@anthropic-ai/claude-agent-sdk/**",
+    "node_modules/@anthropic-ai/claude-agent-sdk-*/**",
+    "node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.node",
+    "node_modules/@earendil-works/pi-coding-agent/node_modules/**/*.wasm",
+    "node_modules/@earendil-works/pi-tui/**/*.node",
+    "node_modules/@mariozechner/clipboard-*/**/*.node",
+    "node_modules/@silvia-odwyer/photon-node/**/*.wasm"
+  ],
+  "directories": {
+    "output": "dist-runtime-helper"
+  },
+  "files": [
+    "dist-electron/**/*",
+    ".next/**/*",
+    "public/**/*",
+    "node_modules/**/*",
+    "!node_modules/@chirality/**",
+    "package.json",
+    "next.config.mjs"
+  ],
+  "extraMetadata": {
+    "name": "chirality-runtime-helper",
+    "main": "dist-electron/runtime-helper.js"
+  },
+  "extraResources": [
+    {
+      "from": "THIRD_PARTY_NOTICES_PI.md",
+      "to": "THIRD_PARTY_NOTICES_PI.md"
+    },
+    {
+      "from": "dist-runtime",
+      "to": "runtime-cli",
+      "filter": [
+        "**/*"
+      ]
+    },
+    {
+      "from": "../../../agents",
+      "to": "agents"
+    },
+    {
+      "from": "../docs",
+      "to": "docs"
+    },
+    {
+      "from": "../../..",
+      "to": ".",
+      "filter": [
+        "AGENTS.md",
+        "CLAUDE.md",
+        "README.md"
+      ]
+    }
+  ],
+  "mac": {
+    "icon": "build/icon.icns",
+    "minimumSystemVersion": "15.0.0",
+    "target": [
+      {
+        "target": "dir",
+        "arch": [
+          "arm64"
+        ]
+      }
+    ],
+    "category": "public.app-category.developer-tools",
+    "extendInfo": {
+      "LSUIElement": true
+    }
+  },
+  "electronDist": "/private/tmp/chirality-dapp92-option-a-20260804/electron-dist/electron-v43.2.0-darwin-arm64.zip"
+}

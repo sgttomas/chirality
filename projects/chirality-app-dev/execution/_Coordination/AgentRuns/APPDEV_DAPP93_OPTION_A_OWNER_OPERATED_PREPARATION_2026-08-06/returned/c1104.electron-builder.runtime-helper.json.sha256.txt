@@ -1,0 +1,1 @@
+0822414929eed5ebd6c87d21db8c8c55abd991f1b946c009e64de0467c5583af  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_OPTION_A_OWNER_OPERATED_PREPARATION_2026-08-06/returned/c1104.electron-builder.runtime-helper.json

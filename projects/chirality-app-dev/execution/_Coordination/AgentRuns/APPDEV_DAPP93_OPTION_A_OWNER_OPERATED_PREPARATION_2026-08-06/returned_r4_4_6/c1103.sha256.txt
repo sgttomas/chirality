@@ -1,0 +1,2 @@
+1cb9e4c7325166f69139eeba3a0bdfcfa1d4f871e03acf4af1809aa88fa02a36  electron-builder.runtime-helper.json
+b53a867e8aa7d8874cf7ce2417691a05d449babaa9bf0b905c550deb13b3ac6d  package.json

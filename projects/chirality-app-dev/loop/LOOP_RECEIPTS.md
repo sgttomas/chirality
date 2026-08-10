@@ -3308,3 +3308,876 @@
     option selection, ruling, trace/replay, product/frontend, Task Management,
     foreign-loop, release, reliance, lifecycle, other-decision, or Git effect
     follows.
+
+- **2026-08-04 — Receipt 120** (D-APP-92 Option A ruling adoption and execution handoff).
+  - Receipt-ID: `Receipt-120`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-119`
+  - Pointers:
+    branch `codex/app-dapp88-evaluation-resume-20260804` at the examined local
+    and remote branch commit `7aada3fbadf340a07ef828cc18b350c8c01b517d`,
+    with branch parent/main basis
+    `cdc76a1d398231267f1379e7143b4de27abaa01b` and observed `origin/main`
+    `1a77cae62a3a8f0b05642e8b9e0e7b7913ad1da6` before mutation;
+    selected D-APP-92 packet SHA-256
+    `644c80ecff11577c9ab0f4f4fae4fa9b1f609cdaa2d801f118ffe052bfad77c6`;
+    ruling SHA-256
+    `391b96507bfc877050ca4d1e4cb0ce421c60171becfabd13a13ab65d98fe1c78`;
+    register SHA-256
+    `aa8d530bceb29196cef591d2c3f98ddccabe1cb688ecf920562296d129fbc2ff`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_OPTION_A_RULING_ADOPTION_2026-08-04/{EXECUTION_BRIEF_REQUIREMENTS.md,reviews/A2_ADVERSARIAL_VERIFIER_RETURN.md,VALIDATION.md,MANAGER_RETURN.md,HANDOFF_STATE.md}`.
+  - Checks: exact owner-token/Option-A-only adoption, packet/ruling/register
+    hash binding, register/ruling uniqueness, fresh adversarial verification,
+    receipt contract, corpus v18/no drift, self-check, practitioner pytest,
+    full-App candidate whitespace, Git diff check, frontend non-modification,
+    and App-only write containment pass.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS Agent 1 under HELP_HUMAN with
+    one genuinely fresh bounded read-only ephemeral-generalist Agent 2; exact
+    model build not exposed.
+  - Gate-Outcome: `EXECUTED` — `AUTHORIZED DIAGNOSTIC / EXECUTION HANDOFF`;
+    D-APP-92 is RULED Option A. WORKING_ITEMS must seal and enumerate the exact
+    trace/replay brief, and separately obtain command-level approval before any
+    elevation, privilege, or entitlement invocation. No trace/replay or
+    product work occurred; D-APP-88 and DEL-09-04 remain open and TM-APP-036
+    remains unfired. No automatic remedy, acceptance, closure, release,
+    reliance, lifecycle, Task Management, foreign-loop, or Git effect follows.
+
+- **2026-08-04 — Receipt 121** (D-APP-92 Option A command-approval stop closeout).
+  - Receipt-ID: `Receipt-121`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-120`
+  - Pointers:
+    run root
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP92_OPTION_A_NATIVE_TRACE_REPLAY_2026-08-04/`;
+    implementer terminal/preparation SHA-256 identities
+    `c5b726474a8a8c93c09c9419d53291080bcf2da53626f6612446dc1073993cdf`
+    and `c249b0afd8a1ff5b2770ba9007df491a97253aff69b0ec27206854688d0c190f`;
+    C196/C197 approval-request SHA-256
+    `527765a1f6162be8d2bc3d92fbd38464b934e01b0d904339099fb50f86fc49c3`;
+    fresh current-byte R2 verifier SHA-256
+    `3ea8ac736a5a41da29ac12c37a2414bca3bf2fb698ac6bf84cbfdc48f216c1e3`;
+    whitespace-repair backcheck SHA-256
+    `609fbd2e4a4528fe3e3796bbe88cbb90a6345d09133b71e11563d661a6420333`;
+    package-manifest/validation/manager-return/handoff SHA-256 identities
+    `24203c95d315ac0581669c2e8e20c2bde71b813d60acc40b1f7ae68f8aa67589`,
+    `cd026b6bfbe69c7f2f3d4dc98f6b53a8fdcc924f896b506fb135885e6e578d35`,
+    `5f01aa08c3dcab98ae7d717efcc59f7b7bc7994e1b0028eb4fa276dbca2ddab2`,
+    and `9782d90622827a63268f7c3cd74a6ab0ffa65f296d60abe46305c16c4accd0b6`;
+    runtime-event/runtime-summary SHA-256 identities
+    `c062d7505b9ebbb08f7500588bb10e39343d3cd267c123ba7e5448643f49f5d5`
+    and `d480c3642f205fab75e6509ab50a8d0a97c54bdace676411eba2b39363e026f6`.
+  - Checks: fresh current-byte R2 adversarial verifier verdict
+    `PASS_FOR_APPROVAL_STOP`; exact one-LF repair backcheck preserves the
+    historical pre-repair `12e9e070...` request and `dc73abac...` verifier only
+    as immutable history; current approval bytes are bound above;
+    receipt contract, full-App candidate whitespace against examined-through,
+    Git diff check, and frontend containment pass. Runtime summary reports one
+    paired closeout-only session and explicitly preserves unavailable earlier
+    timing/token/context telemetry without inference.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN
+    with one bounded implementer Agent 2 and one genuinely fresh bounded
+    read-only adversarial-verifier Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — `HELD_FOR_COMMAND_APPROVAL`; corrected C198
+    packaging, package identity/topology/instruction-root binding, numeric
+    direct-child helper PID freeze, C196/C197 LLDB attach/detach, sealed
+    uninstrumented replay, first-signal evaluation, and fresh acceptance
+    verification remain unexecuted. C178 failed overall on forwarded
+    positional `never`; C179-C184 were not run and remain `UNKNOWN`. Product
+    state is rolled back and frontend-clean. No trace, replay, product, remedy,
+    acceptance, release, reliance, lifecycle, Git, Task Management, other
+    decision/register, credential, or foreign-loop effect follows.
+
+- **2026-08-04 — Receipt 122** (D-APP-92 Attempt-3 offline-package stop and Attempt-4 command gate).
+  - Receipt-ID: `Receipt-122`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-121`
+  - Pointers:
+    run-root terminal implementer/validation/manager/handoff R2 SHA-256
+    identities `511aa20e489c55690c25f7138d56b24e057badf86e96051f3bea55bbeab986ca`,
+    `502dfaaa3a2582207c8d11ac02a4abfd7140e9d63c588f6df79ed90b60ba1fe1`,
+    `d2167e2b43318851d670b5b0afbf9eb4082b64788b93552ec0023d6af27d4cf1`,
+    and `39c10f9a5f3c4b96b93bc2644035d5a54b98227ebf25869e7807bb1618a9d39c`;
+    fresh R2 verifier SHA-256
+    `0e9f85d4287c7806dba88a176e4d490de63b19f9b50f936bc869905406b1420e`;
+    Attempt-4 approval request/proposed v1.12 SHA-256 identities
+    `8a79b2b7a5eae60d83e1968c3def28dc7f1a93848f5f6e932b01e5da45de056d`
+    and `3a5ad0869e1d10ec550a3b1fd63f0bd649398f414b6746bce06906980c8a73bc`;
+    offline-cache proof/failure-byte SHA-256 identities
+    `470f315043a19aaa0d93115750d6fd8944d10bcdfdde28f7be2207d6c16ff1f9`
+    and `9b1ff70e90cfa20f18733cc002e716ebc9cd7cba872554cce250e6e3a3a39cbb`.
+  - Checks: focused Vitest, typecheck, build, exact baseline/lockfile rollback,
+    fixed-temp-root absence, local Electron archive/hash and installed cache-key
+    algorithm, fresh adversarial verification, corpus v18/no drift, self-check,
+    practitioner-harness pytest, candidate whitespace, receipt contract, and
+    frontend containment pass. C198 package construction failed; package/runtime
+    checks remain not run.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    one interrupted no-return verifier attempt and one genuinely fresh bounded
+    read-only R2 adversarial verifier; exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — `HELD_FOR_ATTEMPT4_COMMAND_APPROVAL`;
+    C196/C197 approval was durably adopted but remains unused because no helper
+    package/PID exists. Attempt 3 stopped before package construction and rolled
+    back fully. Exact C207-C209 plus one byte-identical C198 retry await the
+    owner token in the approval request. No network, helper/GUI, LLDB, signal,
+    replay, credential, product, remedy, acceptance, release, reliance,
+    lifecycle, Git, Task Management, other-decision/register, or foreign-loop
+    effect follows; D-APP-88/DEL-09-04 remain open and TM-APP-036 remains unfired.
+
+- **2026-08-04 — Receipt 123** (D-APP-92 Attempt-4 terminal package failure and direct-electronDist gate).
+  - Receipt-ID: `Receipt-123`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-122`
+  - Pointers: run-root R3 implementer/validation/manager/handoff SHA-256
+    identities `bf886ff9fc625623dae6af70dc22f57be2a0a6ce2d9f1174417ff1347bcf0e01`,
+    `2d429bd12c9c053034ddd14a3d30b469287b12040e22012438f0182293c1af04`,
+    `0b5616410a0a45cce770102562456452f2c356baddac6880e96354f7c2410ccd`,
+    and `a55e578aae106ca76eed12d022ba89c9c209be327851075a10234ff7ad2dde05`;
+    fresh R2 verifier SHA-256
+    `c5657f4b5727ccdd2724ada1491e1ac2f545db8bef96f46a9ba565db07464b23`;
+    deterministic offline-source/proposed-v1.13/Attempt-5-request SHA-256
+    identities `7932353c5a32e9478c6a4288fc1d9d07ee2bcc108039982acaa012419f118bfc`,
+    `cf06d77d3a630a04639cc7f05a75a32dba9062646d3ffbca86dace7ec0f3b488`,
+    and `dadf54e1ed88111052593d84cef648ab3f077f90c7ccd9826d51918f8d4b5fc7`.
+  - Checks: focused Vitest, typecheck, build, archive hash, exact single-C198
+    accounting, eight-hash rollback, fixed-temp/path/Git cleanup, raw-capture
+    preservation and whitespace backcheck, fresh R2 adversarial verification,
+    corpus v18/no drift, self-check, practitioner-harness pytest, candidate
+    whitespace, receipt contract, diff, and App-only containment pass. Package
+    construction failed; package/runtime checks remain not run.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    one bounded executor Agent 2, one whitespace-blocking verifier, and one
+    genuinely fresh R2 read-only adversarial verifier; exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — `HELD_FOR_ATTEMPT5_COMMAND_APPROVAL`;
+    Attempt 4 consumed exactly one C198 retry, failed `ENOTFOUND` before package
+    completion, and rolled back fully. C196/C197 remains approved but unused.
+    Exact C210-C216 direct-local-`electronDist` commands await the token in the
+    Attempt-5 request. No package identity, network success, helper/GUI launch,
+    LLDB, signal, replay, credential, product remedy, acceptance, release,
+    reliance, lifecycle, Git, Task Management, other-decision/register, or
+    foreign-loop effect follows; D-APP-88/DEL-09-04 remain open and TM-APP-036
+    remains unfired.
+
+- **2026-08-04 — Receipt 124** (D-APP-92 Attempt-5 offline package acceptance and Attempt-6 preparation gate).
+  - Receipt-ID: `Receipt-124`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-123`
+  - Pointers: exact owner Attempt-5 adoption / immutable v1.13 SHA-256
+    identities `97adb646dac9ec3293cb22ff4b2257ba06d06e3f2e303152563c265c64f40190`
+    and `5a879bd7a801488eddea1e73665b98b1db5ce9f53d731282c1470184ad94880c`;
+    executor return / durable package-topology / cleanup SHA-256 identities
+    `fc6a560f77d0dd74436a5c160f066aa8eb8052fc022bf5c7eff7432c9b2c6e6f`,
+    `0dd886d670ec2906c93c20f55d9271fadaac6bc84a9e046b503bf4571b768179`,
+    and `e08263e34c40c1dfa15184988ab8cb9568294f10f00ee160b713fa2fa2e3b6aa`;
+    fresh verifier SHA-256
+    `72576140d1d83688832c34998d4f912e3e43563cf70131699a51d125622e32f9`;
+    terminal validation / manager / handoff R4 SHA-256 identities
+    `b43378f2dc4ee1bf63871d7832b461f49b3911f70e53406981914695141dbdc4`,
+    `a5f4eb6165c4d838cf60000e86177f071b09f0a3bc633d3fc8c3b0b3a9e69e77`,
+    and `57ddd38db05a27f164d18163f014cbb97a02bd4356ee493ebb1d4d717c38bb3c`;
+    proposed v1.14 / Attempt-6 preparation-request SHA-256 identities
+    `cf929fa33828a59db388576555dc37467710ac6246526ef262df0c39b42dfd45`
+    and `6bb8c99d3183552a4499b48d73876ebd4b4433c10bc993ed7fc162807c184797`.
+  - Checks: exact single-C216 accounting; approved archive/script/overlay hashes;
+    focused Vitest, typecheck, build, package identity/
+    topology and conditional C179-C184 capture; eight-hash rollback; fixed-temp/
+    path/frontend-Git cleanup; calibrated raw-capture variance; fresh adversarial
+    verification; corpus v18/no drift; practitioner status/self-check and full
+    pytest; Node syntax for both mock protocol scripts; candidate whitespace,
+    receipt contract, diff, and App-only containment pass. Frontend runtime gates
+    were not repeated after cleanup because the final product source is byte-
+    restored and the closeout adds coordination/evidence only.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    one bounded executor Agent 2, one genuinely fresh read-only adversarial
+    verifier Agent 2, and two interrupted no-output packet-preparation Agent-2
+    attempts; exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` —
+    `HELD_FOR_ATTEMPT6_PREPARATION_APPROVAL`; Attempt 5 is accepted only for
+    narrow offline package construction, recorded package identity/topology,
+    and cleanup. The unavailable raw C216 stream blocks stronger claims. C196/
+    C197 remains approved but unused. C217-C230 request only a no-target LLDB
+    PTY check and mock `/bin/sleep` two-session PID/sentinel handshake; none ran.
+    No package retry, helper/GUI launch, process attach, signal, replay,
+    credential, product remedy, acceptance, release, reliance, lifecycle, Git,
+    Task Management, other-decision/register, or foreign-loop effect follows;
+    D-APP-88/DEL-09-04 remain open and TM-APP-036 remains unfired.
+
+- **2026-08-05 — Receipt 125** (D-APP-92 Attempt-6 preparation failure and timing-only repair gate).
+  - Receipt-ID: `Receipt-125`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-124`
+  - Pointers: exact Attempt-6 adoption / immutable v1.14 SHA-256 identities
+    `2f227cdc52e905b5bcd28c7c51801a23a77aed4dad3b3a19d9260bfa2cbfd41c`
+    and `8d3adbcede92f812235406c11a68563e8fa2d52dc1bcf51ef2eba0bcbed07319`;
+    executor / fresh verifier SHA-256 identities
+    `93c93a318f4ca715bc1454bfc8b0549c6b01089ac1fb1a68b4fd54f6ca8a420f`
+    and `fed5aa422277720f2d74d8cfefe042f82ba76b7a8b05ac9d05889c143c91a5b5`;
+    validation / manager / handoff R5 SHA-256 identities
+    `2a8f4b040e2fa9ab3601057eac740e5b6399e3b420337ef8e8b641e61d6716d9`,
+    `414800ecb838064274087cc9438dbbbf7d8c475854357a0d4e1b33da0ca65308`,
+    and `91dd4d0802b86994d15d40a764403ec2d4b4844e79b8425852cab8bd24b5786f`;
+    proposed v1.15 / Attempt-7 request SHA-256 identities
+    `5f4d65f1c44caae38e7ae7499b2cff2c2e489338f67c2decb394f09c1f6677aa`
+    and `f147259fef667d81285aaae25bd0909e22c59d00b176da4fdef6d0a6f1083061`.
+  - Checks: exact C217-C230 accounting; no-target LLDB transcript; matching
+    mock PID/sentinel with expired controller window; mandatory cleanup;
+    fresh adversarial verification; v2 Node syntax and hash binding; fixed-
+    root absence; frontend cleanliness; candidate whitespace, receipt,
+    corpus, practitioner, diff, and App-only containment pass.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN
+    with one bounded executor Agent 2, one genuinely fresh read-only
+    adversarial verifier Agent 2, and one bounded packet-preparer Agent 2;
+    exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` —
+    `HELD_FOR_ATTEMPT7_PREPARATION_APPROVAL`; C217-C219 proved no-target LLDB
+    help/quit only. The mock handshake failed because the five-second window
+    expired before its later matching sentinel was consumed; no result or
+    natural-exit proof exists. Cleanup passed. C231-C244 propose only a
+    timing/order mock retry and none ran. Real-runtime packet preparation
+    remains blocked; C196/C197 remains approved but unused. No package, real
+    runtime, attach, signal, replay, credential, remedy, acceptance, release,
+    reliance, lifecycle, Git, Task Management, other-decision/register, or
+    foreign-loop effect follows; D-APP-88/DEL-09-04 remain open and TM-APP-036
+    remains unfired.
+
+- **2026-08-05 — Receipt 126** (D-APP-92 Attempt-7 preparation acceptance and Attempt-8 packet hold).
+  - Receipt-ID: `Receipt-126`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-125`
+  - Pointers: exact Attempt-7 owner adoption / immutable v1.15 SHA-256
+    identities `d6fb32b9cfcdacdb6149c8620aee67e54861e325bdafa6f3e34cb4d71696e2b4`
+    and `2c086fb823d1f34f51bc5bec57ff69f4a686468ef41abc87e23529ae533ade4a`;
+    executor / protocol result / fresh verifier SHA-256 identities
+    `14fbe0794fe216055fee2a362f52e72a03c497198ea34ff5f6d393da03621ccc`,
+    `0409681a1bab450372e5374d2726822e847da35671b067344ac22eabbe7905a9`,
+    and `1546dc33b24bbbd86d43d6b547b404113267e594b4eb6f0247c59455ad13ce6f`;
+    Attempt-7 whitespace backcheck SHA-256
+    `d447a52db9ef574c6a3e7880b9d5a048fcc081a907c9f28bfbb0144803c82cca`;
+    stable v1.19 manager-freeze / fresh-verifier SHA-256 identities
+    `2bdc153c1550d20bc64dd14f53b6b0212c7c2fac020349e083ee2ee20f3dd001`
+    and `2c8f8a1db7e207783a556c4a2e5d5f6f676cb32f63ade9cc4b384f2dc7302e8b`;
+    validation / manager / handoff R6 SHA-256 identities
+    `7e539cecf12bd9e7a1607052af65bbdd7a4f743cb36a1b2243d63eba10ac93d1`,
+    `068830facdec92c79190c754aafadfd80db53752db02cf51cb1678eba8b83136`,
+    and `301a5c28392949b3f429a65e32ac1f86dab6675da641fe8e39de9ed1653b99e7`.
+  - Checks: exact C231-C244 accounting and matching PID/sentinel/natural-exit/
+    terminal-before-cleanup evidence; fresh verification; fixed-root/frontend
+    cleanup; immutable v1.19 freeze; receipt contract; corpus v18/no drift;
+    practitioner status/self-check and full pytest; candidate whitespace;
+    diff and App-only containment pass. Frontend runtime gates skipped because
+    no product byte changed and Attempt-8 remained proposal-only.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    one bounded Attempt-7 executor, one fresh Attempt-7 verifier, bounded
+    proposal authors, and successive genuinely fresh proposal verifiers;
+    exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` — `HELD_FOR_ATTEMPT8_PACKET_REPAIR`; Attempt 7 is
+    accepted for preparation only. Stable v1.19 fresh verification found
+    material child-settlement, LLDB deadline/PID-identity, abnormal-terminal
+    branch, and C197 authority-provenance defects, so no owner token is
+    presented and no real-runtime command ran. C196/C197 remain unused;
+    D-APP-88/DEL-09-04 remain open and TM-APP-036 remains unfired. No package,
+    network, helper/GUI, LLDB, attach, signal, replay, credential, product,
+    release, reliance, Git, Task Management, or foreign-loop effect follows.
+
+- **2026-08-05 — Receipt 127** (D-APP-92 Attempt-8 v1.20 authoring convergence stop).
+  - Receipt-ID: `Receipt-127`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-126`
+  - Pointers: v1.19 fresh-verifier SHA-256
+    `2c8f8a1db7e207783a556c4a2e5d5f6f676cb32f63ade9cc4b384f2dc7302e8b`;
+    Attempt-8 R5 author-interruption / validation / manager-return / handoff-R7
+    SHA-256 identities
+    `7f1a2cf457dc2af8a2c0d60710cda1a8dfebf6d95dfa2f6c5e78e71c59d090be`,
+    `c884ea5bac6667cf72ab6eb5ce3b4423e9ee0415911913605a38a90d6d926bea`,
+    `d0f7121ec8c9e6d569b3b6f0e448fee5b299d891925c62b9bc42c0020142729c`,
+    and `967f06ade69635361eff8652546b4520230fa18baf6d4931000cdb952affb5a3`.
+  - Checks: eleven R5 proposal scripts parse; receipt contract; corpus v18/no
+    drift; practitioner status/self-check and 349-test suite; candidate
+    whitespace; diff, frontend-cleanliness, fixed-root-absence, and App-only
+    containment pass. Frontend runtime gates skipped because no product byte
+    changed and all R5 material is proposal-only.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    one bounded proposal-only Agent-2 author; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` — `BLOCKED_BY_PACKET_COMPLEXITY_BEFORE_FREEZE`;
+    the author was interrupted at the convergence gate before the R5 approval
+    request and required terminal return existed. No manager freeze, fresh
+    verifier, or owner token follows. Attempt 7 remains accepted for
+    preparation only; D-APP-88/DEL-09-04 remain open and TM-APP-036 remains
+    unfired. No package, cache, network, helper/GUI, LLDB, attach, signal,
+    replay, credential, product, release, reliance, Git, Task Management, or
+    foreign-loop effect follows.
+
+- **2026-08-05 — Receipt 128** (D-APP-92 Attempt-8 R5 bounded repair stop).
+  - Receipt-ID: `Receipt-128`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-127`
+  - Pointers: fresh PACKET-06 blocker-return SHA-256
+    `cd237cba2bab643f47a6233708ad6151a7b2f31dab5296cc2b7595df6b96ff52`;
+    validation / manager / handoff R8 SHA-256 identities
+    `12c74f2eac16886b77914df8371cea169eb50fe24f153459e0baf7ff33a58470`,
+    `3becda6a30e305ce58521c7797c2b3c2849df486dbece6515741a8051934ad5f`,
+    and `82d8c2e20aa3e76d606e44cf373b921990fc0b2197a5d23b784458a0e3649c1b`.
+  - Stale-Map-Delta: R7 says eleven R5 `.mjs` files; the live proposal
+    directory contains ten `.mjs` files plus `README.md`. R7 bytes remain
+    historical and unchanged; successor records carry the corrected count.
+  - Checks: ten R5 scripts parse; receipt contract; corpus v18/no drift;
+    practitioner status/self-check and 349-test suite; candidate whitespace;
+    diff, frontend cleanliness, fixed-root/evidence-target absence, and
+    App-only containment pass. Frontend runtime gates skipped because no
+    product byte changed and all R5 material remains proposal-only.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN
+    with one fresh bounded proposal-repair Agent 2; exact model builds not
+    exposed.
+  - Gate-Outcome: `STOPPED` — `BLOCKED_BEFORE_V1_20_FREEZE`; the PACKET-06
+    author stopped with register/script branch-model contradictions after the
+    bounded seven-finding repair pass. No request, freeze, verifier, or owner
+    token follows. Attempt 7 remains accepted for preparation only;
+    D-APP-88/DEL-09-04 remain open and TM-APP-036 remains unfired. No proposed
+    package/runtime command, cache, network, helper/GUI, LLDB, attach, signal,
+    replay, credential, release, reliance, Git, Task Management, or
+    foreign-loop effect follows.
+
+- **2026-08-05 — Receipt 129** (D-APP-92 Attempt-8 v1.20 fresh-verifier stop).
+  - Receipt-ID: `Receipt-129`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-128`
+  - Pointers: immutable v1.20 manager-freeze / fresh-verifier-brief /
+    fresh-verifier-return SHA-256 identities
+    `e3e4dc3035038ebbc8c980e3a5fe587ae22b8274a8e3e31bd37c008af83da0f6`,
+    `c5d8b65edbb261d2626800e695d4bf3d9aff758c496e892a0a31acf559d252f4`,
+    and `47b57dae327e247c97a8957ad2cdf602b10ff64b94546babc3c5c1b8f5dbe655`;
+    validation / manager-return / handoff R9 SHA-256 identities
+    `b2d77019b1cd53ca8dddca706b1bc54e7be7847108e715920d7e0929f7369408`,
+    `b812420ba936b65574c7f9afc7079dc806ae8a1cabbfa7e356bdeea2cfa12bff`,
+    and `c9a45f04f64883180255aad6dc70f913392c44b5de1ba66b25cce48a2c107bae`.
+  - Checks: all 17 frozen identities reproduced on the verifier's first and
+    final passes with no drift; exact 271-row C787-C1057 range; ten R5 static
+    Node syntax checks; receipt contract; corpus v18/no drift; practitioner
+    status/self-check and 349-test suite; candidate whitespace; diff and
+    frontend cleanliness; fixed-root/evidence-target absence; and App-only
+    containment pass. Frontend runtime gates skipped because no product byte
+    changed and the entire R5 packet remains proposal-only.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN
+    with one bounded successor author and one genuinely fresh read-only
+    adversarial verifier Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` — `BLOCK_PACKET_REPAIR_REQUIRED`; v1.20 is frozen
+    and stable, but the verifier found four material defects: no immediate
+    C847 direct-child target-identity guard; child `error` treated as drained
+    terminality; no proof branch for accepted C1010 with delayed LLDB `close`;
+    and C1007 bound to attempted rather than accepted C1003 with untrapped
+    stdin errors. No recursive repair or prospective owner token follows.
+    Attempt 7 remains accepted for preparation only; D-APP-88/DEL-09-04 remain
+    open and TM-APP-036 remains unfired. No proposed package/runtime command,
+    cache, network, helper/GUI, LLDB, attach, signal, replay, credential,
+    cleanup, rollback, deletion, product, release, reliance, Git, Task
+    Management, or foreign-loop effect follows.
+
+- **2026-08-05 — Receipt 130** (D-APP-92 Attempt-8 v1.21 fresh-verifier stop).
+  - Receipt-ID: `Receipt-130`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-129`
+  - Pointers: immutable v1.21 manager-freeze / fresh-verifier-brief /
+    fresh-verifier-return SHA-256 identities
+    `2040199d4d8a3431c021086d9689da018fef45a47943716c5163667badd23789`,
+    `ba31666c2a022e16fe8578bf990620370540aed3bb6026739fc0fe8654ac0cd9`,
+    and `8a765c15ac195661ec8e82da874fec5ef8981f083c135f6e02378673b82fe423`;
+    validation / manager-return / handoff R10 SHA-256 identities
+    `47632d9ca0532fc638eae7a417c24db4285b8ad6abcee83ccb1d35a006548f5b`,
+    `53660a51a10ebe42e6c930ae4108fd64c6e574e76262f54fa1645508f6f57479`,
+    and `17cd4803bf925d7313e9ce21278c379467241dd4b7ac13d9faa8113ee4f4b352`.
+  - Checks: every v1.21 frozen identity reproduced on the verifier's first and
+    final passes with no drift; immutable v1.20/R5 identities held; exact
+    280-row C787-C1066 range; ten R6 static Node syntax checks; receipt
+    contract; corpus v18/no drift; practitioner status/self-check and 349-test
+    suite; candidate whitespace; diff and frontend cleanliness; fixed-root/
+    evidence-target absence; and App-only containment pass. Frontend runtime
+    gates skipped because no product byte changed and the entire R6 packet
+    remains proposal-only.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN
+    with one bounded stopped-before-hash author and one genuinely fresh
+    fork-none read-only adversarial verifier Agent 2; exact model builds not
+    exposed.
+  - Gate-Outcome: `STOPPED` — `BLOCK_PACKET_REPAIR_REQUIRED`; v1.21 is frozen
+    and stable, but the verifier found four material defects: C1015 ignores
+    the stdin-completion error argument; C847 does not bind exact accepted
+    controller/attach-intent bytes and pre-try parse failures lack the typed
+    fail-closed receipt; unbounded LLDB output callbacks defeat the absolute-
+    deadline proof; and C1066 omits the accepted-C1018/no-close exit-4 action.
+    No recursive repair or prospective owner token follows. Attempt 7 remains
+    accepted for preparation only; D-APP-88/DEL-09-04 remain open and
+    TM-APP-036 remains unfired. No proposed package/runtime command, cache,
+    network, helper/GUI, LLDB, attach, signal, replay, credential, cleanup,
+    rollback, deletion, product, release, reliance, Git, Task Management, or
+    foreign-loop effect follows.
+
+- **2026-08-05 — Receipt 131** (D-APP-92 Attempt-8 v1.22 author-convergence stop).
+  - Receipt-ID: `Receipt-131`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-130`
+  - Pointers: sealed R7/v1.22 author brief / PACKET-09 interruption SHA-256
+    identities
+    `9bbdce3667af818f297cf99d56987c86db2603bc69813ac0a45c7b955b5513aa`
+    and `7ebe51858fd188124ea55235735ecdbd5028a032cc3f7c767b44d243ea91d370`;
+    validation / manager-return / handoff R11 SHA-256 identities
+    `fabce5f285832142bde5a60fab6627385c7233e041e5455742e00ed2c2aeb88e`,
+    `72ea8eb6ac9ba5d560123209cd1a9403f89c329114fa978f233a859de11b60ff`,
+    and `fca5663391800c57f2f97f760fdbd4ede79257d734f3abd130ffdc656206d43a`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; ten unchanged R6 static Node syntax checks; candidate
+    whitespace after terminal-blank repair; diff and frontend cleanliness;
+    fixed-root/evidence-target/R7-script absence; and App-only containment pass.
+    Frontend runtime gates skipped because no product or R7 proposal-script byte
+    exists.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    three bounded Agent 2 author attempts interrupted at the convergence gate;
+    exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCKED_BY_AUTHOR_CONVERGENCE_BEFORE_SUCCESSOR_BYTES`; no R7/v1.22
+    amendment, request, script, author return, manager freeze, fresh verifier,
+    or owner token exists. V1.21 remains the latest frozen rejected proposal,
+    and its four verifier blockers remain open. No proposed operation/script,
+    package, cache, network, helper/GUI, LLDB, attach, signal, replay,
+    credential, cleanup, rollback, deletion, product, release, reliance, Git,
+    Task Management, or foreign-loop effect follows.
+
+- **2026-08-06 — Receipt 132** (D-APP-93 simpler diagnostic architecture decision surface).
+  - Receipt-ID: `Receipt-132`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-131`
+  - Owner-Direction: `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING` —
+    "RE-SCOPE D-APP-92: prepare a decision surface for a simpler diagnostic
+    architecture. Candidate architectures must include (a) owner-operated
+    interactive execution — agent-prepared hash-bound package, LLDB script,
+    and a literal step-by-step runbook; the owner personally executes launch,
+    attach, signal, and detach in their own GUI session; the loop ingests and
+    validates the returned evidence, authors the causal matrix, and dispatches
+    fresh adversarial verification — and (b) single-session automation with no
+    two-session supervisor. State per candidate what survives from accepted
+    evidence: the Attempt-5 package, the Attempt-7 handshake proof, the LLDB
+    script, and the preserved C196/C197 approval. Prepare the surface; decide
+    nothing; no runtime, debugger, package, or Git action."
+  - Pointers: D-APP-93 packet / register freeze / fresh-verifier SHA-256
+    identities
+    `6d751a2a595500d63e6700913014aabe7afb6c3e8f8a639fe58ac07b06096f7e`,
+    `f89ae7cf34b8efe5f7b50d139f71c892d72ac5517ffd93335a43ba9a1e576cd8`,
+    and `21f2cce48191d07085b52d0912a283b47b32b50eefd8d08e3ff27a949fb38937`;
+    validation / manager-return / handoff SHA-256 identities
+    `b23071439b1bb0af349c1a5b8dffac8736ce768ccface210eec21a63526a5857`,
+    `8a0f344dc8261886956cca8f8143664986ecb2750cffef344d3909a347df79e0`,
+    and `4c33042e71839d6cd5df60153c835cd0a51c93a0b2bc91a3a068aaa34db3d38e`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; candidate whitespace; diff and frontend cleanliness;
+    packet/register initial-final stability; evidence-citation reproduction;
+    and App-only containment pass. Frontend runtime gates skipped because no
+    product byte changed.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS Agent 1 under HELP_HUMAN;
+    direct manager authorship under a versioned recovery amendment after three
+    bounded Agent 2 author convergence failures, plus one genuinely fresh
+    read-only adversarial verifier Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — D-APP-93 is `AWAITING_RULING` with
+    verified neutral Options A/B/C and no option selected or recommended. An A
+    or B ruling permits later exact packet preparation only; no runtime,
+    debugger, LLDB, attach, package, helper/GUI, signal, replay, network,
+    credential, product, D-APP-88/DEL-09-04/TM-APP-036, release, reliance,
+    Git, Task Management, or foreign-loop effect follows.
+
+- **2026-08-06 — Receipt 133** (D-APP-93 Option A ruling adoption).
+  - Receipt-ID: `Receipt-133`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-132`
+  - Pointers: selected D-APP-93 packet / ruling / decision-register / fresh
+    adoption-verifier SHA-256 identities
+    `6d751a2a595500d63e6700913014aabe7afb6c3e8f8a639fe58ac07b06096f7e`,
+    `513c4f64c8ec5049a11788e3bacb898a7be52c273bcd09a120a6fa1cecb483fe`,
+    `c56519467ace3db1f9832399f15af4f751da52f173eccaf7909b0f16daa8d5b4`,
+    and `b939de425b842e53814ab89290934114e23b5a68cb7bf03669e0af765caa8a1a`;
+    validation / manager-return / handoff SHA-256 identities
+    `e35293e653b87f86f655889da6067fd1ccbad6d94479bb4555ad7e9c6389410a`,
+    `9498145d55dc30257dc5d7d651461c306e02432ee6f0c95d760b32c1f9ba48e0`,
+    and `b342914c79b7eed21009ebd62768cd2a5e3a93aceefebbabed8471356a8542c0`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; candidate whitespace; diff and frontend cleanliness;
+    ruling/register freeze stability; and App-only containment pass. Frontend
+    runtime gates skipped because no product byte changed.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS Agent 1 under HELP_HUMAN with
+    one genuinely fresh read-only adversarial verifier Agent 2; exact model
+    builds not exposed.
+  - Gate-Outcome: `EXECUTED` — D-APP-93 is RULED Option A as an owner-operated
+    interactive execution architecture. `WORKING_ITEMS` may prepare the later
+    exact package/script/runbook/evidence-return packet only; no preparation
+    object was authored here, and no runtime, debugger/LLDB, attach, package,
+    helper/GUI, signal, replay, network, credential, product,
+    D-APP-88/DEL-09-04/TM-APP-036, release, reliance, Git, Task Management, or
+    foreign-loop effect follows.
+
+- **2026-08-07 — Receipt 134** (D-APP-93 Option A owner-operated preparation).
+  - Receipt-ID: `Receipt-134`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-133`
+  - Pointers: repaired prepared-index / R2 substantive-BLOCK / exact-repair /
+    repaired-freeze SHA-256 identities
+    `43c9d4ce0f9d048c0fdb9e34176fd64355750bb7df5d9223ca4f37de875aca03`,
+    `838d5cf21e950083b3253399cdea7cee96c7bf61b724fbedf41ab224038bbc25`,
+    `2c2351ab531d0680d34e66af1c16b6f9abfe80c04e40b44c3d8f9f1a2c433a22`,
+    and `fbe35a0a3da17fab6648478ce3537eead7431a9a2fa61d7f497895973ea80f4c`;
+    validation / manager-return / handoff SHA-256 identities
+    `1ef6c178ecfb6eafd0c372c6083620608531e74df2a90cb8e5d3b0c2e99d7628`,
+    `bc1a504a316e0978719c674deef95fe697359c9784e69b42ec316140c0e96aca`,
+    and `9495583e4d2fbd4e11edc0da40a290ee5a6df04c1ddbe9885bdc1c4d80a281bf`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; candidate whitespace; diff and frontend cleanliness;
+    exact command-range/runbook-reference backcheck; repaired-freeze stability;
+    derivative absence; and App-only containment pass. Frontend runtime gates
+    skipped because no product byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN;
+    direct manager documentation recovery after two bounded no-output Agent 2
+    authors; one no-return verifier, one fresh verifier producing substantive
+    `BLOCK`, and one no-return fresh post-repair verifier; exact model builds
+    not exposed.
+  - Gate-Outcome: `STOPPED` — `HELD_FOR_FRESH_VERIFIER_RETURN`; the complete D-APP-93
+    Option A package/script/runbook/evidence-return packet is repaired and
+    frozen, but no post-repair verifier verdict exists. The future token is not
+    presented and C1067-C1144 remain unapproved; C196/C197 remain valid,
+    exact, and unused. No runtime, debugger/LLDB, attach, package, helper/GUI,
+    signal, replay, network, credential, product, D-APP-88/DEL-09-04/
+    TM-APP-036, release, reliance, Git, Task Management, or foreign-loop effect
+    follows.
+
+- **2026-08-07 — Receipt 135** (D-APP-93 post-repair verifier BLOCK ingestion).
+  - Receipt-ID: `Receipt-135`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-134`
+  - Pointers: repaired-freeze / HELP_HUMAN post-repair fresh-verifier SHA-256
+    identities
+    `fbe35a0a3da17fab6648478ce3537eead7431a9a2fa61d7f497895973ea80f4c`
+    and `996a4d8efb7bc6914e09ce57444c3d684c781a57b26d0096a746e3bf01aca57e`;
+    validation / manager-return / handoff SHA-256 identities
+    `d92d47b38b3ef2a0a67db088a550448b105cb69809fa63f5cdb12890cd143c21`,
+    `c1fc4f6ae1854f9b45c616c62eccb9fb398dab60a09b3bc2664758541ea4e57d`,
+    and `55d09fbc0caef67bfbdd344403e27e53a3bbb35821400e444d57f7716a5f91d0`.
+  - Checks: receipt contract; candidate whitespace; diff and frontend
+    cleanliness; repaired-freeze/verifier identity reproduction; Receipt 135
+    singularity; and App-only containment pass. Frontend runtime gates skipped
+    because no product byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN,
+    ingesting one HELP_HUMAN-dispatched genuinely fresh read-only adversarial
+    verifier return; exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — substantive
+    `BLOCK_PACKET_REPAIR_REQUIRED`: C1144 writes the raw transcript before the
+    later C1130 creates its `returned` parent. Exact bounded packet-repair
+    authority is requested in `HANDOFF_STATE.md`; no repair was made, no token
+    was presented, C1067-C1144 remain unapproved, and C196/C197 remain unused.
+    No runtime, debugger/LLDB, attach, package, helper/GUI, signal, replay,
+    network, credential, product, D-APP-88/DEL-09-04/TM-APP-036, release,
+    reliance, Git, Task Management, or foreign-loop effect follows.
+
+- **2026-08-07 — Receipt 136** (D-APP-93 exact transcript-destination repair).
+  - Receipt-ID: `Receipt-136`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-135`
+  - Pointers: owner repair-adoption / predecessor HELP_HUMAN `BLOCK` /
+    repaired-index / repair-backcheck / R3-freeze SHA-256 identities
+    `4ec1f1e56a3dd10603f0d7a473732e301b9c798e7d0464b46ee104d594238b1c`,
+    `996a4d8efb7bc6914e09ce57444c3d684c781a57b26d0096a746e3bf01aca57e`,
+    `070ac6163588abff012c56bcdafd3b2e6bfdeb515924b4925161c54f47915a7d`,
+    `8c6877527ae99b2247b60c3418993969fbb68e3f0e15d2c7372048666ff16928`,
+    and `2957d3f3a2a528a26dabecccfe91e8c2775e5c6942be5785b237a44252c22963`;
+    validation / manager-return / handoff SHA-256 identities
+    `f45d12704317f8af7cff5ea78f6f3e4e7301e8f729277f316bd97eb64b207272`,
+    `038a0d6db0a05b0d5e6ad5527ae591e5a2726f185d46b731a13bce36cd7f4328`,
+    and `5a61aa30dcc1e160dfdcb560b2c022baf10590c61c7ce5240ca15c178edc500a`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; candidate whitespace; diff and frontend cleanliness;
+    exact C1067-C1145 uniqueness/completeness; runbook cross-reference and
+    C1145→C1144→C1130 ordering; frozen-history and unaffected-byte stability;
+    R3-freeze stability; and App-only containment pass. Frontend runtime gates
+    skipped because no product byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    one genuinely fresh read-only adversarial verifier Agent 2 that emitted no
+    durable return; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` — the exact owner-authorized repair is complete and
+    R3-frozen, but the sole fresh verifier returned no verdict. The updated
+    future execution token is withheld; C1067-C1145 remain unapproved and
+    C196/C197 remain valid/exact/unused. No runtime, debugger/LLDB, attach,
+    package/build, helper/GUI, signal, replay, network, credential, product,
+    D-APP-88/DEL-09-04/TM-APP-036, release, reliance, Git, Task Management, or
+    foreign-loop effect follows.
+
+- **2026-08-07 — Receipt 137** (D-APP-93 R3 verifier-only substantive BLOCK).
+  - Receipt-ID: `Receipt-137`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-136`
+  - Pointers: unchanged R3 freeze / verifier-only authority adoption / sealed
+    fresh-verifier brief / fresh-verifier `BLOCK` SHA-256 identities
+    `2957d3f3a2a528a26dabecccfe91e8c2775e5c6942be5785b237a44252c22963`,
+    `5d4195f01a73430c8a25c213f2f9eab9d72b05257fbf5caedde596c8a77bca7c`,
+    `0c5a505cadf29f34359d328b45eecceeb9f28a1740137309f916acd08d99c162`,
+    and `528d6c3fea76bfb2e811c31891153a40715b0db1f0c35079a67f4902d973c006`;
+    validation / manager-return / handoff SHA-256 identities
+    `3d3a62ae5a494f444dbad71e3e993fdddac727346c4f73e6b2a3ea491bd6d92f`,
+    `ce6425068c0250594931009b09a9bcf3fde693f7d7a278d16f3d0c99b06aea8d`,
+    and `ff61f042987ec0e353207e92e1e1ac46eaa68c86ba632ecd7a4ca42054bcf7d3`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and full test suite; candidate whitespace; diff and frontend cleanliness;
+    pre-dispatch and verifier entry/final stability of the R3 freeze and all
+    fourteen bound identities; command-range/reference/order audit; and
+    App-only containment. Frontend runtime gates skipped because no product
+    byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    one genuinely fresh read-only adversarial Agent 2; exact model builds not
+    exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — substantive
+    `BLOCK_PACKET_REPAIR_REQUIRED`: the evidence-return schema omits runbook
+    step 31; the step-5 early-failure branch enters C1130 despite its
+    C1144/post-C197 preconditions; and required complete C1105-C1108 outputs
+    have no enumerated capture/return action. No repair or second verifier was
+    authorized. The future execution token is withheld; C1067-C1145 remain
+    unapproved and C196/C197 remain valid/exact/unused. No runtime,
+    debugger/LLDB, attach, package/build, helper/GUI, signal, replay, network,
+    credential, product, D-APP-88/DEL-09-04/TM-APP-036, release, reliance,
+    Git, Task Management, or foreign-loop effect follows.
+
+- **2026-08-07 — Receipt 138** (D-APP-93 R4.3 packet-repair substantive BLOCK).
+  - Receipt-ID: `Receipt-138`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-137`
+  - Pointers: accepted R4.3 freeze / sealed sole-verifier brief / sole fresh
+    verifier `BLOCK` SHA-256 identities
+    `7f4a9858f8ba2947ce1db522f82669678369b0a4ac3f09a20a5c66bc7747ddf1`,
+    `de76cb3615e067a31f71cf5914c5d052869d51abf7eb11b9e02b06901ace866f`,
+    and `a4c09714934163edd6181e5b932a20593bad1a98dab8ff8219fe5902b0a1e386`;
+    validation / manager-return / handoff SHA-256 identities
+    `cbde53e4242c79778b8566ea10d6c043f5cbfbf8b70d429b9bbfd7d1e1039779`,
+    `ed56476fd48ab736be6b307d9804328d09b66000d53be6831b726ece5999f94f`,
+    and `9aab0c44a102949988b97fb057784a17a875046ef36404fef83fb3bbe51b8f3c`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; frozen identity stability; candidate whitespace; diff
+    and frontend cleanliness; fixed-root/returned absence; and App-only
+    containment pass. Frontend runtime gates skipped because no product byte
+    changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    one genuinely fresh read-only verifier Agent 2; exact model builds not
+    exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — substantive
+    `BLOCK_PACKET_REPAIR_REQUIRED`: C1154-C1156 awk fields are mis-escaped;
+    step 5 omits C1156/C1157 before dependent terminal operations; C1155 does
+    not require zero C1105-C1108 command exits; and the universal pre-C1070
+    route contradicts the legal phase table. The token is withheld,
+    C196/C197 remain valid/exact/unused, and no repair or second verifier was
+    authorized. No runtime, debugger/LLDB, attach, package/build, helper/GUI,
+    signal, replay, network, credential, product, D-APP-88/DEL-09-04/
+    TM-APP-036, release, reliance, Git mutation, Task Management, or
+    foreign-loop effect follows.
+
+- **2026-08-07 — Receipt 139** (D-APP-93 R4.4.1 sole-verifier contradiction BLOCK).
+  - Receipt-ID: `Receipt-139`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-138`
+  - Pointers: accepted verifier-gate freeze / terminal-cut backcheck / sealed
+    sole-verifier brief / sole fresh-verifier `BLOCK` SHA-256 identities
+    `c5468a2e2098b3ca1640067156c13665890fb829b24bbe72694b4c18fe7ffb75`,
+    `c37473f60b0ad1434e0ed21896e8417bddc31ced49d7714368087705a8393ca3`,
+    `626b8f255a2f185e504c6887de108d18c02422b472f1c68185a0ef9c70966eb4`,
+    and `33290eb9f2608aca950f3b8af7df126228cc76af3304348c959ce6c980763e21`;
+    validation / manager-return / handoff SHA-256 identities
+    `2562f522081711297270613620143b1242d7a64b9e9a35a5370e8c3b54b1c89c`,
+    `caf0b088771a01755efd447de4d6ec307f16f4f64a38f8968201a64d268dc000`,
+    and `b93ec877a181f6643211940db3560052e35c238acd710ffe709194302e19ecaa`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; candidate whitespace; diff and frontend cleanliness;
+    accepted-freeze and verifier identity stability; fixed-root/returned
+    absence; Receipt 139 singularity/parentage; and App-only containment pass.
+    Frontend runtime gates skipped because no product byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    exactly one genuinely fresh read-only ephemeral Agent 2 verifier; exact
+    model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — substantive
+    `BLOCK_PACKET_CONTRADICTION`: the frozen reconstruction manifest requires
+    temporary-root removal on every terminal path, while the frozen runbook,
+    branch matrix, and ingestion contract require retention and prohibit
+    C1142 on several failure paths. Receipt 139 closes only this authorized
+    tranche. The future execution token is withheld; no repair or second
+    verifier is authorized. The handoff requests explicit authority to amend
+    only the manifest terminal-cleanup clauses plus mechanically necessary
+    index/freeze/cross-references, preserving all command bytes, C196/C197,
+    and the simplified packet, followed by one new fresh read-only verifier.
+    No runtime, debugger/LLDB, attach, package/build, helper/GUI, signal,
+    replay, network, credential, product, D-APP-88/DEL-09-04/TM-APP-036,
+    release, reliance, Git mutation, Task Management, or foreign-loop effect
+    follows.
+
+- **2026-08-07 — Receipt 140** (D-APP-93 R4.4.2 manifest-repair verifier BLOCK).
+  - Receipt-ID: `Receipt-140`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-139`
+  - Pointers: accepted R4.4.2 freeze / sealed sole-verifier brief / sole fresh
+    verifier `BLOCK` SHA-256 identities
+    `d3366ab939bc3b28ecb5fb2d70f01776ffe8e8ac7c10730ecb70f3e8a5480152`,
+    `272325bbf49599652c1fe0192269469d61390dcbf7c5895a47e495018314c760`,
+    and `e6953bc6ebf33c3630ca3dd087066f6a2863c20610b17f7302bb5e166b499863`;
+    verifier-block validation / manager-return / handoff SHA-256 identities
+    `0fae778c8a6048af19ef69ec11355dc26adff2238b73e6bfb11a339f14d980b5`,
+    `c97efa197bf887d65a401aa4a995c1438fdc22a165df40c724ddec0223596eb6`,
+    and `a1c1f60db84da30bad782a6e61fce4da3e86c3e2544446ff605571dd616c12ff`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; candidate whitespace; diff and frontend cleanliness;
+    accepted-freeze and verifier identity stability; fixed-root/returned
+    absence; Receipt 140 singularity/parentage; and App-only containment pass.
+    Frontend runtime gates skipped because no product byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    exactly one genuinely fresh read-only ephemeral Agent 2 verifier; exact
+    model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — substantive
+    `BLOCK_PACKET_ROUTE_CONTRADICTION`: C1142 requires an explicit C1152
+    no-reconstruction-write/partial-root disposition, while C1152 is defined
+    only after C1142-C1143 and C1146.30. Partial C1070 and Incomplete baseline
+    are therefore unsatisfiable. Receipt 140 closes only this authorized
+    verifier tranche. The execution token is withheld; no repair or second
+    verifier is authorized. A new owner grant must explicitly authorize
+    correction of the C1142/C1152 prerequisite cycle and necessary same-run
+    cross-references before a new freeze/verifier gate. No runtime,
+    debugger/LLDB, attach, package/build, helper/GUI, signal, replay, network,
+    credential, product, D-APP-88/DEL-09-04/TM-APP-036, release, reliance,
+    Git mutation, Task Management, foreign-loop, or other effect follows.
+
+- **2026-08-07 — Receipt 141** (D-APP-93 R4.4.3 route-cycle verifier BLOCK).
+  - Receipt-ID: `Receipt-141`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-140`
+  - Pointers: accepted R4.4.3 freeze / sealed sole-verifier brief / sole fresh
+    verifier `BLOCK` SHA-256 identities
+    `cbbd5b9c0c366e8dc9851dfaa959a7f1260697ad290b703206ef47b94788e5a1`,
+    `3f307b143fa8497c4a3fe6ecda2f0b09b8717655304028fe91138d03a669e04a`,
+    and `9e8e0c3be74d35579b484099961d5c6a3b50f5971e3f83254e49a5bd766a6665`;
+    verifier-block validation / manager-return / handoff SHA-256 identities
+    `d7c5a2399a38a4384d0ac87740dedd807a3bcdd62e3688b2195d8aa0ea279bf6`,
+    `ee2de5a01e9696a3dfa99285e20ebd0f2bbf347773c045143f0524ecd6d58e5d`,
+    and `303b0dd3098c121bc3efd8a9cc43eeddaf2fd66460c76e2f86fc7e5554e0ef5f`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; candidate whitespace; diff and frontend cleanliness;
+    accepted-freeze and verifier identity stability; fixed-root/returned
+    absence; Receipt 141 singularity/parentage; and App-only containment pass.
+    Frontend runtime gates skipped because no product byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    exactly one genuinely fresh read-only ephemeral Agent 2 verifier; exact
+    model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — substantive
+    `BLOCK_PACKET_ROUTE_HASH_CYCLE`: auxiliary ledger terminal-path prose still
+    requires Partial C1070/Incomplete baseline cleanup only after every
+    required copy and hash succeeds, but C1154-C1157 hashes are post-cut after
+    C1152 while C1142 is pre-cut. Receipt 141 closes only this authorized
+    verifier tranche. The execution token is withheld; no repair or second
+    verifier is authorized. The handoff requests explicit authority limited
+    to that auxiliary summary and necessary cross-references, preserving every
+    command byte and packet invariant. No runtime, debugger/LLDB, attach,
+    package/build, helper/GUI, signal, replay, network, credential, product,
+    D-APP-88/DEL-09-04/TM-APP-036, release, reliance, Git mutation, Task
+    Management, foreign-loop, or other effect follows.
+
+- **2026-08-07 — Receipt 142** (D-APP-93 R4.4.4 route-hash-cycle verifier PASS).
+  - Receipt-ID: `Receipt-142`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-141`
+  - Pointers: accepted R4.4.4 freeze / sealed sole-verifier brief / sole fresh
+    verifier `PASS` SHA-256 identities
+    `4f655120a009bb27167c7d4334aaf46755626b8c0b3a03e688905e62ec8d6954`,
+    `099a193aa6b65d26218283bf5b74deab1f1b83e3242df4437544901b56460278`,
+    and `74dfb4a813115fe22f19535e8561b5e8fe646b6244732d5622997620408e952c`;
+    verifier-pass validation / manager-return / handoff SHA-256 identities
+    `c3224465944ab3177c736b3e94f01f3d92054670de6e8ecc6b01b9d482931b41`,
+    `6957132d34a9894fe10d6153192419e8905e0220361ac56b12791aefe46592fc`,
+    and `c2a2c45685ada5f77740382bdb300b085ab4c8d7c5e160914bf341ec72917019`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and 349-test suite; accepted-freeze, brief, verifier, 93-operation,
+    87-subinput, C1142, and C196/C197 identity stability; scoped current-tranche
+    candidate whitespace; diff and frontend cleanliness; fixed-root/returned
+    absence; Receipt 142 singularity/parentage; and App-only containment pass.
+    The whole-App untracked-text scan reports only inherited surplus terminal
+    blank lines in immutable earlier packet/control objects; no closeout file
+    has a whitespace finding. Frontend runtime gates skipped because no product
+    byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    exactly one genuinely fresh read-only ephemeral Agent 2 verifier; exact
+    model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — presentation-ready; the sole
+    verifier returned `PASS_PACKET_ROUTE_HASH_CYCLE_REPAIR`; every frozen
+    identity remained stable and no direct or equivalent route cycle remains.
+    Receipt 142 closes this preparation/verifier tranche. The future owner
+    command approval request at SHA-256
+    `3e907635a53cca4c6c5539252dbf9186ac976fd886384fd9c7aa75132914b9a0`
+    may now be presented, but packet presence does not authorize execution and
+    only the owner's exact unmodified token can do so. No runtime,
+    debugger/LLDB, attach, package/build, helper/GUI, signal, replay, network,
+    credential, product, release, reliance, Git mutation, Task Management,
+    foreign-loop, or other unauthorized effect occurred.
+
+- **2026-08-07 — Receipt 143** (D-APP-93 step-1 host-path stop, repair, and verifier PASS).
+  - Receipt-ID: `Receipt-143`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-142`
+  - Pointers: accepted R4.4.5 freeze / sealed sole-verifier brief / sole fresh
+    verifier `PASS` SHA-256 identities
+    `ddfbf431772526df6f884474c0dad84d57ce7c7aacede73ec72c4ed5751670c4`,
+    `6bcf52b82bc5bc7a533c8dfdde3365f13fe23b29cc2b6b27b2b33956c2c152b9`,
+    and `fffd3c4f56162e3624dfca5ad012c4af4af209dbd349271a82bd344c9d7268bb`;
+    verifier-pass validation / manager-return / handoff SHA-256 identities
+    `08af005ed55b2dcc4d42b9f2c62203a00b08fc7e1c4c0300ab91fa6e9ebc7227`,
+    `1b4c1d6cfb22c609afe31ba832e66d02e48cef770787a664903c664ad7108a8c`,
+    and `904461286574e6b0152ea76bf9e61fd76ed5fe2f102741d0c2dd064fde2b0055`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status/self-check
+    and full practitioner test suite; accepted-freeze and verifier stability;
+    ledger host-path audit/backcheck; generated-path phase classification;
+    C196/C197 and packet-invariant preservation; current-
+    tranche whitespace; fixed-root/returned/frontend-derivative absence; and
+    Receipt 143 singularity/parentage pass. Frontend runtime gates skipped
+    because no product byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    exactly one genuinely fresh read-only ephemeral Agent 2 verifier; exact
+    model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — the sole verifier returned
+    `PASS_PACKET_HOST_PATH_REPAIR`. C1146.01 was the sole attempted/failed
+    literal and C1067 was never entered. Receipt 143 closes the stopped-
+    attempt/repair/verifier tranche. The new exact owner token at SHA-256
+    `72d8091dc57b2eaab36d646cd5599648ea1a1bddb6c2e57a600a359c40cf0857`
+    is now presentable but remains unapproved and unexecuted; only its exact
+    owner return can authorize a new personal attempt. No runtime,
+    debugger/LLDB, attach, package/build, helper/GUI, signal, credential,
+    product, release, reliance, Git mutation, Task Management, foreign-loop,
+    or other unauthorized effect occurred.
+
+- **2026-08-07 — Receipt 144** (D-APP-93 step-10 STOP_INCOMPLETE intake and R4.4.6 successor verifier PASS).
+  - Receipt-ID: `Receipt-144`
+  - Examined-Through: `7aada3fbadf340a07ef828cc18b350c8c01b517d`
+  - Parent-Receipt: `Receipt-143`
+  - Pointers: accepted R4.4.5 derivative intake / R4.4.6 successor freeze /
+    sealed sole-verifier brief / sole fresh verifier `PASS` SHA-256 identities
+    `012ce18778b90798624a3491657e80d5238c7e04d984c6994c46364c0bcd0d91`,
+    `13566daa015b49fe1d88d4048bd0d961a29c19bfb653921a6a22a524033f5f89`,
+    `bf61a35f53ee6bbe347527f199b1c4dcf8494fa7f117fdd7c3523302f622ec58`,
+    and `25a506b96c0733bd4312450e5d245d6e8fb594ef1ba4700edf64da02800d7748`;
+    verifier-PASS validation / manager-return / handoff SHA-256 identities
+    `650e38ab555c45774a4f89323649d2ea6b42024aad9945f4774d9228437d33ad`,
+    `6e0595b1e3829ad703c400dce4db442363454fc6ad45cf4d0cc3a7f53548abbf`,
+    and `b304250dd02b3ff9423c471aeb515776ee54f927429da5dc32c41670660ccdab`.
+  - Checks: receipt contract; authority corpus v18/eight MATCH/no drift; App
+    practitioner status with no findings; repository self-check exit 0 at the
+    existing non-blocking baseline; 349-test practitioner-harness suite;
+    accepted 28-object return and 14 sidecar pairs; exactly 89 successor paths,
+    zero live predecessor/stale-root paths, 103 current run-root literals;
+    successor/temp absence; C196/C197/LLDB/overlay/route/index/freeze stability;
+    candidate whitespace, diff, frontend stopped-state, Receipt 144
+    singularity/parentage, and App-only containment pass. Frontend runtime
+    gates skipped because no product byte changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1 under HELP_HUMAN with
+    exactly one genuinely fresh read-only ephemeral Agent 2 verifier; exact
+    model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — the R4.4.5 step-10 attempt is accepted
+    only as derivative `STOP_INCOMPLETE`; the D-APP-93 overlay and sibling
+    `returned_r4_4_6/` repair is frozen and its sole verifier returned PASS.
+    Receipt 144 closes this intake/repair/verifier tranche. The exact future
+    owner token at SHA-256
+    `b3f917f7c1b0fe7d4a1a99a00e5371a86fb049ff7417d63acc009e7ca2023b4b`
+    is presentable but remains unapproved and unexecuted; only its exact owner
+    return can authorize a future personal attempt. No packet edit, runtime,
+    debugger/LLDB, attach, package/build, helper/GUI, signal, credential,
+    product, release, reliance, Git mutation, second verifier, Task Management,
+    foreign-loop, or other unauthorized effect occurred.

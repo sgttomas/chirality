@@ -1,0 +1,40 @@
+Could not load history file
+.(lldb) help process attach
+Attach to a process.
+
+Syntax: process attach <cmd-options>
+
+Command Options Usage:
+  process attach [-c] [-p <pid>] [-P <plugin>] [-C <python-class>] [-k <none>] [-v <none>]
+  process attach [-ciw] [-n <process-name>] [-P <plugin>] [-C <python-class>] [-k <none>] [-v <none>]
+
+       -C <python-class> ( --script-class <python-class> )
+            The name of the class that will manage a scripted process.
+
+       -P <plugin> ( --plugin <plugin> )
+            Name of the process plugin you want to use.
+
+       -c ( --continue )
+            Immediately continue the process once attached.
+
+       -i ( --include-existing )
+            Include existing processes when doing attach -w.
+
+       -k <none> ( --structured-data-key <none> )
+            The key for a key/value pair passed to the implementation of a
+            scripted process.  Pairs can be specified more than once.
+
+       -n <process-name> ( --name <process-name> )
+            The name of the process to attach to.
+
+       -p <pid> ( --pid <pid> )
+            The process ID of an existing process to attach to.
+
+       -v <none> ( --structured-data-value <none> )
+            The value for the previous key in the pair passed to the
+            implementation of a scripted process.  Pairs can be specified more
+            than once.
+
+       -w ( --waitfor )
+            Wait for the process with <process-name> to launch.
+(lldb) quit
