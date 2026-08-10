@@ -3177,3 +3177,43 @@ amendment; owner ruling required).
   later ordinary refresh from 23/99 to this receipt's 21/102 counts. The PR
   is the publication gate; merge remains the accountable human's separate
   act.
+
+### Receipt 103 — 2026-08-09 — Root governance-currentness closeout
+
+- **Modes and authority:** on-demand Root `TASK_MANAGEMENT`; mandatory
+  federation preflight; bounded row maintenance/currentness; decision support;
+  owner-ruled application; closeout. No harvest or deferral review was run.
+  Exact application ruling:
+  `_TaskManagement/OWNER_RULING_2026-08-09_ROOT_GOVERNANCE_CURRENTNESS.md`,
+  SHA-256 `010fb186cca493fd18141cb285b470865234c185e824eb68361bdfaf70eb370a`.
+- **Prepared versus ruled/applied:** the exact TM-ROOT-116 Step-0 draft
+  `4d496e0d…5af4c` was prepared, accepted, and inserted into the standing idle
+  workplan; `CURRENT_WORKPLAN.md` is unchanged and TM-ROOT-116 remains OPEN
+  pending a later owner disposition after PR/merge evidence. TM-ROOT-105
+  Option A was selected and applied mechanically; this is not a re-close and
+  changes no ruling text or closure meaning.
+- **Register deltas and counts:** live TM-ROOT-119 changed OPEN/MEDIUM to
+  DEFERRED/PRIORITY 1 under the earlier verbatim owner ruling; archived
+  TM-ROOT-105 changed only EvidenceSha `66b96700…bb06` → `9b6d0a17…874a`
+  plus both-hash/commit provenance in Notes. Root moved from 21 live
+  (`OPEN=12`, `DEFERRED=9`) / 102 archived to 21 live (`OPEN=11`,
+  `DEFERRED=10`) / 102 archived; no row was created, closed, re-closed,
+  reopened, or moved.
+- **Currentness and limits:** `HANDOFF_STATE.md` now carries the validated
+  counts and distinguishes the applied Step 0, still-OPEN TM-ROOT-116, and
+  mechanical TM-ROOT-105 re-pin. No production, activation, convergence
+  implementation, lifecycle, semantic acceptance, publication, release,
+  reliance, foreign-register, or foreign-loop effect occurred.
+- **Validation:** final federation COMPLETE over four canonical registers;
+  Root live/archive validators, available App/Piping receipt validators, Root
+  G0–G4, candidate whitespace, exact Step-0/row-delta checks, and
+  `git diff --check` pass. No Root-specific receipt validator exists at this
+  basis; App/Piping conformance is not represented as Root receipt coverage.
+  Manual checks confirm this append is Receipt 103 after latest Receipt 102
+  and introduces no duplicate ID; the ledger's two pre-existing historical
+  Receipt-80 headings are unchanged and outside this bounded repair.
+- **Git gate:** bounded branch
+  `codex/root-governance-currentness-20260809` is based exactly on
+  `origin/main@d269f0e04204bc463a11684499213b2283bd28f7`. CHANGE is authorized
+  to validate, commit, push, and open a non-draft PR. None of those acts is
+  recorded as completed by this receipt; do not merge in-session.
