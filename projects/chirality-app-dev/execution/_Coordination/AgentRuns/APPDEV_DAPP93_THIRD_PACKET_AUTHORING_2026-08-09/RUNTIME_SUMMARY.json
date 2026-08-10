@@ -1,0 +1,105 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 4
+  },
+  "counts": {
+    "category": {
+      "checkpoint": 2,
+      "closeout": 2,
+      "compliance": 2,
+      "preparation": 1,
+      "reconstruction": 13,
+      "telemetry": 2,
+      "validation": 6
+    },
+    "event_type": {
+      "CHECK": 13,
+      "FINISH": 4,
+      "REMEDIATION": 7,
+      "START": 4
+    },
+    "outcome": {
+      "BLOCKED": 3,
+      "FAIL": 1,
+      "INFO": 7,
+      "PASS": 13,
+      "STARTED": 4
+    },
+    "reason_code": {
+      "ABSOLUTE_READ_EXCLUSION_VIOLATION": 1,
+      "ACTIVATED_GRAPH_FROZEN": 1,
+      "ATTRIBUTION_CORRECTED": 1,
+      "CLOSEOUT_STATIC_CHECKS_PASS": 1,
+      "CLOSEOUT_VALIDATED": 1,
+      "CLOSEOUT_VALIDATION_STARTED": 1,
+      "DISPATCHED_STAGED": 1,
+      "DURABLE_BINDING_GROWTH": 1,
+      "DURABLE_COUNT_CORRECTION": 1,
+      "DURABLE_GROWTH_ON_PACE": 2,
+      "EXCLUDED_ROOT_SEARCH_SCOPE_VIOLATION": 2,
+      "FANIN_ATTRIBUTION_CORRECTION_COMPLETE": 1,
+      "FANIN_ATTRIBUTION_CORRECTION_STARTED": 1,
+      "GUI_CLEANUP_GATE_HARDENING": 1,
+      "PASS_WITHDRAWN_PRESERVED_BLOCK": 1,
+      "PROVISIONAL_TERMINAL_OBSERVATION": 1,
+      "SHA_CORRECTION": 1,
+      "STAGE1_HISTORICAL_ID_HARDENING": 1,
+      "STAGE6_GUI_COVERAGE_HARDENING": 1,
+      "STAGE_COMPLETION_OBSERVATION": 6,
+      "TERMINAL_LF_HYGIENE": 1
+    }
+  },
+  "events": 28,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 1513.106,
+      "events": 17,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP93-THIRD-N1-01",
+      "package_id": "PKG-09",
+      "remediations": 4,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SESSION-N1-01"
+    },
+    {
+      "duration_seconds": 1812.913,
+      "events": 5,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-PKG09-DAPP93-THIRD-01",
+      "package_id": "PKG-09",
+      "remediations": 3,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SESSION-WI-01"
+    },
+    {
+      "duration_seconds": 0.042,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-DAPP93-THIRD-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SESSION-WI-ATTRIBUTION-01"
+    },
+    {
+      "duration_seconds": 0.04,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-DAPP93-THIRD-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SESSION-WI-VALIDATION-01"
+    }
+  ],
+  "sessions": 4,
+  "status": "PASS",
+  "unmatched_sessions": []
+}
