@@ -6,9 +6,13 @@ Parent tranche: Root generational pass on
 `codex/root-taskmgmt-generation-20260809`, PR #532, parent commit
 `f3af7bbbb9e46e07ca1b653cf7bd99a415e8e0d3`.
 
-This is an immediately following bounded invocation. It does not amend the
-accepted Step-2 harvest report. The finding and prepared candidate are
-owner-sourced.
+This is an immediately following bounded invocation. It did not itself edit
+the Step-2 harvest path. A separate earlier post-acceptance whitespace edit is
+now provenance-separated in
+`AMENDMENT_2026-08-09_CANDIDATE_HARVEST_POST_ACCEPTANCE_WHITESPACE.md`:
+owner acceptance binds to `bee380de…3cab`, while the repository path contains
+the unaccepted cleaned version `3ca25470…bac1`. The finding and prepared
+candidate in this invocation are owner-sourced.
 
 ## Authority and reproduction
 

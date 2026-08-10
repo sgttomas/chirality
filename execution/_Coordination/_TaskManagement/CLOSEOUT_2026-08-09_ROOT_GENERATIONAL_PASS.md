@@ -18,7 +18,7 @@ reliance, foreign-register, or merge effect.
 - Harvest ruling: `ACCEPT the report and PROMOTE NO CANDIDATES.`, recorded
   verbatim in
   `RULING_2026-08-09_ROOT_HARVEST_GENERATIONAL_PASS.md`, SHA-256
-  `247926791cf28a6412627aca48afeea0f3480a95f7d39b53df89c8fe7b66b13c`.
+  `8317f75ab330d9c4f51a5a49b319328ac0b0e0dfbdb8eefc72f5ee512decba18`.
 - Deferral review: all 10 live `DEFERRED` rows.
 - Deferral ruling: exact three-paragraph owner ruling recorded verbatim in
   `RULING_2026-08-09_ROOT_DEFERRAL_REVIEW_GENERATIONAL_PASS.md`, SHA-256
@@ -97,8 +97,16 @@ Typed-field observations: 48 `FOREIGN_LINK_TO_LOCAL`, 2
 
 ## Durable products
 
-- `CANDIDATE_HARVEST_2026-08-09_GENERATIONAL_PASS.md`, SHA-256
-  `3ca25470440490360af014d526a285b2d407df0979f3a2ddf21fac4c329ebac1`.
+- Owner-accepted candidate-harvest identity: SHA-256
+  `bee380dedbcc302dc7be606cf55c05a8431d6398995c4d488a79c2044d3a3cab`
+  (7,006 pre-commit bytes). The path
+  `CANDIDATE_HARVEST_2026-08-09_GENERATIONAL_PASS.md` ships a distinct
+  post-acceptance whitespace amendment at SHA-256
+  `3ca25470440490360af014d526a285b2d407df0979f3a2ddf21fac4c329ebac1`
+  (7,000 bytes), with the exact reversible delta recorded in
+  `AMENDMENT_2026-08-09_CANDIDATE_HARVEST_POST_ACCEPTANCE_WHITESPACE.md`,
+  SHA-256
+  `84929cd902685a7eaffe653029453c7b5149f16c0540d2bb39feb6effc556b19`.
 - `RULING_2026-08-09_ROOT_HARVEST_GENERATIONAL_PASS.md`.
 - `DEFERRAL_REVIEW_CLASSIFICATION_2026-08-09_GENERATIONAL_PASS.md`, SHA-256
   `4fbb8a124f0cc142221d8eb11f0a961b419084e6b01dfb2dcd1629d0578f0a6d`.
@@ -118,7 +126,9 @@ be merged by this session; the accountable human's merge is the next gate.
 
 After this generational closeout and its accepted Step-2 harvest, the owner
 supplied a separate finding and conditional ruling. The harvest report remains
-unchanged; the follow-on is recorded in
+unchanged during that follow-on; the earlier post-acceptance whitespace
+amendment and its identity correction are recorded above and in Receipt 106.
+The evidence-pin follow-on is recorded in
 `CLOSEOUT_2026-08-09_ROOT_EVIDENCE_PIN_CLASS_CLOSURE.md`.
 
 Independent reproduction found the transcript at `66b96700…bb06` in closure
@@ -139,3 +149,19 @@ disposed, or implemented. Receipt 105 and `HANDOFF_STATE.md` record the
 follow-on closeout as `IDLE AND RESUMABLE`. All validators, final federation,
 Root G0–G4, available receipt validators, field containment, class sweep,
 whitespace, and diff hygiene pass. PR #532 remains the human merge gate.
+
+## Corrective provenance hold
+
+The owner's Step-2 acceptance attached to `bee380de…3cab`, not the cleaned
+`3ca25470…bac1` path bytes. After acceptance and before first commit
+`f3af7bbbb9e46e07ca1b653cf7bd99a415e8e0d3`, final whitespace validation
+reported report lines 5–7. Exactly two trailing ASCII spaces were removed
+from each line, six bytes total, solely to satisfy the whitespace guard. The
+accepted version is faithfully reconstructible by reversing that exact delta,
+but is not recommitted as Markdown because it would intentionally fail the
+same guard. The ruling now pins the accepted identity; the versioned amendment
+records both identities, byte sizes, exact delta, ordering, and rationale.
+The cleaned version has no fresh acceptance by inference. Receipt 106 corrects
+Receipt 104 handling without editing Receipt 104 and also corrects Receipt
+105's false byte-level statement. PR #532 remains on HOLD until the owner
+re-verifies; no merge is permitted.

@@ -80,6 +80,12 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   current after repair and zero mismatches. The separately prepared
   `OWNER_SOURCED_CANDIDATE_2026-08-09_EVIDENCE_PIN_CURRENCY_VALIDATION.md`
   is unpromoted decision support for the next owner slate.
+- Candidate-harvest provenance is split explicitly: the owner accepted the
+  7,006-byte `bee380de…3cab` report; the repository path carries a later
+  six-byte whitespace cleanup at `3ca25470…bac1`. The exact reversible delta
+  and rationale are in
+  `AMENDMENT_2026-08-09_CANDIDATE_HARVEST_POST_ACCEPTANCE_WHITESPACE.md`.
+  The cleaned version is not treated as freshly accepted.
 
 ## 3. Closure verdict
 
@@ -123,6 +129,12 @@ all 11 mechanically pinnable rows. The validator-currency gap is prepared as
 an owner-sourced candidate only; it is not promoted, folded, disposed, or
 implemented. Publication remains on PR #532 at the accountable human's merge
 gate; no merge is authorized in-session.
+
+`PR #532 PROVENANCE HOLD — OWNER RE-VERIFICATION REQUIRED.` Receipt 106
+corrects the harvest identity handling without editing Receipt 104. The
+accepted identity is `bee380de…3cab`; `3ca25470…bac1` is a distinct
+post-acceptance whitespace amendment. All other tranche work remains approved
+pending this repair, but merge is prohibited until the owner re-verifies.
 
 ## 4. Rerun requirement
 

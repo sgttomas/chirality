@@ -3302,3 +3302,37 @@ amendment; owner ruling required).
   clean class sweep, and the prepared-only next-slate candidate. This bounded
   addition remains on PR #532; merge is the accountable human's gate and is
   not performed in-session.
+
+### Receipt 106 — 2026-08-09 — Correction: Step-2 harvest accepted identity
+
+- **Corrects without editing prior receipts:** Receipt 104's harvest-product
+  handling and Receipt 105's statement that the accepted Step-2 report was
+  unchanged are byte-level incorrect. Those receipts remain append-only and
+  unedited; this receipt is the corrective record.
+- **Accepted identity:** the owner ruling `ACCEPT the report and PROMOTE NO
+  CANDIDATES.` attached to the 7,006-byte pre-commit report at SHA-256
+  `bee380dedbcc302dc7be606cf55c05a8431d6398995c4d488a79c2044d3a3cab`.
+  `RULING_2026-08-09_ROOT_HARVEST_GENERATIONAL_PASS.md` now pins that identity.
+- **What changed, when, and why:** after owner acceptance and before first PR
+  #532 commit `f3af7bbbb9e46e07ca1b653cf7bd99a415e8e0d3`, during final pre-commit
+  validation on 2026-08-09, the candidate-whitespace guard flagged report
+  lines 5–7. Exactly two trailing ASCII spaces were removed before the LF on
+  each line—six bytes total—to satisfy the guard. No finer durable wall-clock
+  timestamp was recorded. No word, finding, count, candidate conclusion, or
+  recommendation changed.
+- **Distinct amended version:** the resulting 7,000-byte repository path
+  hashes
+  `3ca25470440490360af014d526a285b2d407df0979f3a2ddf21fac4c329ebac1`.
+  It is a versioned custodial amendment, not the byte object the owner
+  accepted, and no fresh acceptance is inferred. Exact delta, reconstruction,
+  sizes, identities, ordering, and rationale are recorded in
+  `_TaskManagement/AMENDMENT_2026-08-09_CANDIDATE_HARVEST_POST_ACCEPTANCE_WHITESPACE.md`,
+  SHA-256
+  `84929cd902685a7eaffe653029453c7b5149f16c0540d2bb39feb6effc556b19`.
+- **Faithful reconstruction:** adding `0x20 0x20` before the LF on current
+  lines 5–7 recreates 7,006 bytes hashing exactly `bee380de…3cab`. Those bytes
+  are not committed as a second Markdown file because doing so would
+  deliberately reintroduce the whitespace-guard violation.
+- **Scope and gate:** no register, archive, candidate disposition, count,
+  evidence-pin repair, or other tranche meaning changes in this correction.
+  PR #532 remains on HOLD. Merge is prohibited until the owner re-verifies.
