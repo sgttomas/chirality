@@ -1,0 +1,24 @@
+# D-APP-94 Option C R7 synthesized-default fresh verifier return
+
+Verdict: `BLOCK_DAPP94_OPTION_C_R7_SYNTHESIZED_DEFAULT`
+
+Role: exactly one genuinely fresh read-only ephemeral Agent 2 verifier. No delegation, repair, candidate execution, security/Electron/process/runtime/GUI/deletion/product/package/trace/network/Git/Task Management action, or write other than this return occurred.
+
+## Smallest material blocker
+
+The frozen R6 discovery intake is not the required exact 59-object raw-evidence intake and does not preserve a raw terminal exit-status object proving terminal exit `45`. Static classification found exactly 58 regular files in both the retained R5 source evidence directory and `intake/r6_synthesized_default_discovery/`, totaling 1,469 bytes in each; bytewise directory comparison passes for those 58 objects, but no terminal-exit-status object exists in either namespace. `terminal-status.txt` records `FAILED_AFTER_ISOLATED_SECURITY_START:observe-bound-isolated-default`, which is consistent with the driver's exit-45 branch but is not itself raw evidence of the terminal process exit code. The frozen intake explicitly claims 58 objects, while the sealed acceptance boundary requires 59 including terminal exit 45.
+
+## Findings
+
+1. **BLOCK** — The 58 copied objects match the retained R5 source byte-for-byte; create/unlock/bind statuses are 0, bound-default status is 1, owner verdict is `OWNER_STATE_MATCH_NO_BACKSTOP_WRITE`, backstop is `NOT_NEEDED`, the retained keychain is 20,460 bytes at SHA-256 `2be80b1932151245049fea2a0d90aadc201ef90cd51e93d76e5175a1f237b2ec`, hidden `.fl0EE8E2DC` is an empty regular file at the empty SHA-256, and occupied `returned_r5/` contains zero regular files. However, the required 59th raw terminal-exit-status object proving exit 45 is absent.
+2. **PASS** — The retained R5 root and occupied `returned_r5/` are present; `/private/tmp/chirality-dapp94-option-c-keychain-probe-r7-20260809` and sibling `returned_r7/` are absent; frozen R6 identities match their pins.
+3. **PASS** — The R6-to-R7 executable diff confines the candidate root, HOME, user-data, Electron, evidence, probe-script, return, retained-marker, cleanup-status, and keychain changes to the R7 namespace; the keychain basename is exactly `Library/Keychains/login.keychain-db`; isolated bind writes and their gates are removed; synthesized evidence/status names correspond mechanically.
+4. **PASS** — Zero executable isolated default/search bind writes remain. After exact isolated-HOME create/unlock, default and search are observed through exact isolated HOME, both must exit 0, and each must byte-match the exact one-element isolated login-keychain path before Electron is entered.
+5. **PASS** — The packet, driver finding, contract, request, validation, and freeze treat login-basename synthesis only as a bounded host/session hypothesis. Feasibility cannot pass unless both exact synthesized readbacks pass.
+6. **PASS** — Every isolated-domain security command has exact `env -i ... HOME="$PROBE_HOME"` binding, including deletion. Ordinary owner-domain calls are observations; owner writes occur only in the proven-mismatch backstop. The guard state machine is non-reentrant and operational signals are ignored during the guard/backstop critical section then re-armed.
+7. **PASS** — The driver uses the bare hash-bound Electron 43.2.0 executable and hash-bound probe script. The script operates only on a disposable public constant with empty keychain password, activation prohibited, no network/product/package/trace scope, Cancel-only posture, and feasibility-only/no-reliance terminal language. No hidden authority was found.
+8. **PASS** — Pre-commit failures retain R7 state. Post-isolated-start paths retain R6 owner-guard continuity. Evidence copy/hash precedes a feasibility PASS commit; cleanup is entered only after the PASS commit, deletes the isolated keychain through exact HOME, conditionally removes only the exact R7 root, and records truthful COMPLETE/INCOMPLETE outcomes.
+9. **BLOCK** — Driver and R7 namespaces are consistent across packet, contract, request, validation, and freeze, the synthesis hypothesis is distinguished from a result, and the token remains withheld. But the intake/freeze package does not bind the required 59-object raw evidence set with terminal exit 45.
+10. **PASS for static mechanics and frozen identities; overall BLOCK** — `/bin/zsh -n` passes. No stale R5 executable namespace or removed isolated bind operand remains in the R7 driver. The relevant prepared/frozen objects remain App-coordination preparation artifacts. All pinned R7 and preserved R6 source hashes match immediately before this return; those stable hashes nevertheless freeze the incomplete 58-object intake.
+
+No repair was made and no second verifier was requested.

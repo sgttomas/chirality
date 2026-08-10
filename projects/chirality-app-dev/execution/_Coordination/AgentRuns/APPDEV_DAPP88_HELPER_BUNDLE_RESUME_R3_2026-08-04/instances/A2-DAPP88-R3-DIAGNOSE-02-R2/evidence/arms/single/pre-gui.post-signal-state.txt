@@ -1,0 +1,2 @@
+stat: /private/tmp/chirality-dapp88-r3-diag02r2-single/user/runtime/control.sock: stat: No such file or directory
+stat: /private/tmp/chirality-dapp88-r3-diag02r2-single/user/runtime/control.sock.owner.json: stat: No such file or directory

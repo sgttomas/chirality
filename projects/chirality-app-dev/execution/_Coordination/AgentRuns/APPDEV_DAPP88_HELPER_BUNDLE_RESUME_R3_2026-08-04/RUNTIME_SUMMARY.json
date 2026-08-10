@@ -1,0 +1,164 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 9
+  },
+  "counts": {
+    "category": {
+      "COORDINATION": 3,
+      "DIAGNOSIS": 6,
+      "EVIDENCE_FITNESS": 2,
+      "EXECUTION": 2,
+      "IMPLEMENTATION": 3,
+      "VALIDATION": 2,
+      "VERIFICATION": 4
+    },
+    "event_type": {
+      "CHECK": 1,
+      "FINISH": 9,
+      "MILESTONE": 1,
+      "REMEDIATION": 1,
+      "RETRY": 1,
+      "START": 9
+    },
+    "outcome": {
+      "BLOCKED": 4,
+      "FAIL": 4,
+      "INFO": 1,
+      "PASS": 2,
+      "RETRY": 2,
+      "STARTED": 9
+    },
+    "reason_code": {
+      "APPLY_PROGRESS_STALL": 1,
+      "APP_SIGNAL_SEAM_BLOCKED": 1,
+      "APP_SIGNAL_SEAM_DIAGNOSIS_REQUIRED": 1,
+      "CONFIRMED_BLOCKER_HANDOFF_VERIFIED": 1,
+      "EXACT_PACKAGED_MATRIX_RECOVERY": 1,
+      "EXACT_PACKAGED_STANDARD_SINGLE_MATRIX": 1,
+      "FRESH_ADVERSARIAL_BLOCKER_VERIFICATION": 1,
+      "FRESH_EXACT_MATRIX_BLOCKER_VERIFICATION": 1,
+      "FRESH_SOURCE_APPLY_RETRY": 1,
+      "LOCAL_DEPENDENCY_PROJECTION_REQUIRED": 1,
+      "NO_CAUSAL_APP_NATIVE_REMEDY": 1,
+      "NO_SOURCE_EFFECT_AFTER_RETRY": 1,
+      "NO_SOURCE_EFFECT_STALL": 1,
+      "NO_SUPPORTED_APP_NATIVE_REMEDY": 1,
+      "OWNER_AUTHORIZED_NATIVE_TRACE_PREREQUISITE": 1,
+      "PACKAGED_ELECTRON_SIGNAL_SEAM": 1,
+      "POST_GUI_FIRST_SIGTERM_FAILED_AUDITABLE": 1,
+      "PREMATURE_OWNER_BOUNDARY": 1,
+      "R2_SEQUENCE_RELEASED": 1,
+      "ROOT_TM112_FITNESS_EVALUATION": 1,
+      "SEALED_SOURCE_ALIGNED_REBUILD": 1,
+      "TERMINAL_BLOCKER_FANIN": 1
+    }
+  },
+  "events": 22,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 668.083,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP88-R3-DIAGNOSE-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_GENERALIST",
+      "session_id": "A2-DAPP88-R3-DIAGNOSE-01"
+    },
+    {
+      "duration_seconds": 338.974,
+      "events": 2,
+      "final_outcome": "FAIL",
+      "instance_id": "A2-DAPP88-R3-DIAGNOSE-02",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_GENERALIST",
+      "session_id": "A2-DAPP88-R3-DIAGNOSE-02"
+    },
+    {
+      "duration_seconds": 899.0,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP88-R3-DIAGNOSE-02-R2",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_GENERALIST",
+      "session_id": "A2-DAPP88-R3-DIAGNOSE-02-R2"
+    },
+    {
+      "duration_seconds": 604.9,
+      "events": 3,
+      "final_outcome": "FAIL",
+      "instance_id": "A2-DAPP88-R3-IMPLEMENT-01",
+      "package_id": "PKG-09",
+      "remediations": 1,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-DAPP88-R3-IMPLEMENT-01"
+    },
+    {
+      "duration_seconds": 1682.401,
+      "events": 4,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP88-R3-IMPLEMENT-02",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 1,
+      "role": "TASK",
+      "session_id": "A2-DAPP88-R3-IMPLEMENT-02"
+    },
+    {
+      "duration_seconds": 353.436,
+      "events": 2,
+      "final_outcome": "FAIL",
+      "instance_id": "A2-DAPP88-R3-VERIFY-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_GENERALIST",
+      "session_id": "A2-DAPP88-R3-VERIFY-01"
+    },
+    {
+      "duration_seconds": 360.0,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-DAPP88-R3-VERIFY-02",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "EPHEMERAL_GENERALIST",
+      "session_id": "A2-DAPP88-R3-VERIFY-02"
+    },
+    {
+      "duration_seconds": 119.0,
+      "events": 3,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-PKG09-DAPP88-R3",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG09-DAPP88-R3-FANIN"
+    },
+    {
+      "duration_seconds": 300.0,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-DAPP88-R3",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG09-DAPP88-R3-FITNESS"
+    }
+  ],
+  "sessions": 9,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

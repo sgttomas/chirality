@@ -1,0 +1,4 @@
+(node:83413) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Chirality --trace-deprecation ...` to show where the warning was created)
+[chirality-desktop] 2026-08-04T18:18:41.958Z [warn] runtime.connectivity.lost
+[chirality-desktop] 2026-08-04T18:18:41.966Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unable to reach the Chirality runtime at /private/tmp/chirality-dapp88-r3-diag02r2-standard/user/runtime/control.sock"}

@@ -1,0 +1,4 @@
+[chirality-desktop] 2026-08-04T18:15:51.743Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/private/tmp/chirality-dapp88-r3-diag02r2-single/user","pid":81840}
+[chirality-desktop] 2026-08-04T18:15:51.755Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-dapp88-r3-diag02r2-single/user/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-dapp88-r3-diag02r2-single/user/runtime"}
+[chirality-desktop] 2026-08-04T18:15:55.803Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":true,"pid":81840}
+[chirality-desktop] 2026-08-04T18:15:55.804Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}

@@ -1,0 +1,14 @@
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Electron Framework -> Versions/Current/Electron Framework
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Helpers -> Versions/Current/Helpers
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Libraries -> Versions/Current/Libraries
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Resources -> Versions/Current/Resources
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Electron Framework.framework/Versions/Current -> A
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Mantle -> Versions/Current/Mantle
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Resources -> Versions/Current/Resources
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Mantle.framework/Versions/Current -> A
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/ReactiveObjC -> Versions/Current/ReactiveObjC
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/Resources -> Versions/Current/Resources
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/ReactiveObjC.framework/Versions/Current -> A
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Resources -> Versions/Current/Resources
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Squirrel -> Versions/Current/Squirrel
+projects/chirality-app-dev/frontend/dist-runtime-helper/mac-arm64/Chirality Runtime Service.app/Contents/Frameworks/Squirrel.framework/Versions/Current -> A

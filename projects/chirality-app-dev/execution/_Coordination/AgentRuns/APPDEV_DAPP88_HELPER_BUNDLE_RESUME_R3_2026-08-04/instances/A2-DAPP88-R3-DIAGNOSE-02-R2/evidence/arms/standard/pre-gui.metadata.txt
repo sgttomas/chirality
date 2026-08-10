@@ -1,0 +1,8 @@
+launch_utc=2026-08-04T18:17:40Z
+command=env HOME=<isolated> CHIRALITY_USER_DATA=<isolated> CHIRALITY_DAPP88_DIAGNOSTIC_LOG=<evidence> CHIRALITY_SKIP_CLI_LAUNCHER=1 <packaged-helper>
+helper_pid=83291
+ready=1 ready_poll=23
+signal_utc=2026-08-04T18:17:43Z
+signal_command=/bin/kill -TERM 83291
+exited_within_80_polls=1 final_poll=2
+wait_exit_code=0

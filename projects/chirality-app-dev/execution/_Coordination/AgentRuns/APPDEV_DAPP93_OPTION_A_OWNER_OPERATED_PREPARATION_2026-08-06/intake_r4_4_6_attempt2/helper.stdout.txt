@@ -1,0 +1,2 @@
+[chirality-desktop] 2026-08-08T05:56:44.192Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/private/tmp/chirality-dapp93-owner-operated-20260807/user","pid":92988}
+[chirality-desktop] 2026-08-08T05:56:44.211Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-dapp93-owner-operated-20260807/user/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-dapp93-owner-operated-20260807/user/runtime"}

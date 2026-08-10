@@ -1,0 +1,14 @@
+helper_launch_utc=2026-08-04T18:15:51Z
+helper_pid=81840
+helper_command=isolated exact packaged helper
+helper_ready=1 ready_poll=2
+project_register_exit=0
+gui_pid=81898
+gui_launch_utc=2026-08-04T18:15:55Z
+gui_authenticated_bound=1 bound_poll=2
+signal_utc=2026-08-04T18:15:55Z
+signal_command=/bin/kill -TERM 81840
+helper_exited_within_80_polls=1 final_poll=2
+gui_alive_after_helper_signal=0
+helper_wait_exit_code=0
+gui_cleanup_exit_code=0 gui_cleanup_polls=1

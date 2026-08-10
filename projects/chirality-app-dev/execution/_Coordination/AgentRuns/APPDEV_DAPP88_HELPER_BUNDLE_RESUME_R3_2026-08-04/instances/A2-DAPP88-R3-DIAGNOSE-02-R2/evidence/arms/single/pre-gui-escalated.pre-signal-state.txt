@@ -1,0 +1,2 @@
+socket path=/private/tmp/chirality-dapp88-r3-diag02r2-single/user/runtime/control.sock inode=25678337 mode=srw------- uid=501 gid=0 size=0
+owner path=/private/tmp/chirality-dapp88-r3-diag02r2-single/user/runtime/control.sock.owner.json inode=25678332 mode=-rw------- uid=501 gid=0 size=330
