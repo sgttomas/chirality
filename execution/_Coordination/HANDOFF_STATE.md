@@ -35,7 +35,10 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   2026-08-09 bounded currentness session independently re-derived those
   entry counts from the CSVs; the owner-ruled deferral of TM-ROOT-119 then
   changed only the live split to the current 11 OPEN / 10 DEFERRED, leaving
-  the validated totals at 21 live / 102 archived.
+  the validated totals at 21 live / 102 archived. The immediately following
+  owner-directed evidence-pin class closure changed only `EvidenceSha` and
+  Notes on archived `TM-ROOT-109` and `TM-ROOT-121`; counts remain 21 live /
+  102 archived and neither row was re-closed or reinterpreted.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -71,6 +74,12 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   EvidenceSha re-pin; the archived row's existing ruling and closure meaning
   are unchanged and it was not re-closed. The session report is derivative
   closeout support, not authority.
+- `EVIDENCE_PIN_CLASS_CLOSURE_2026-08-09.md` is derivative audit evidence for
+  the owner-ruled `TM-ROOT-109`/`TM-ROOT-121` mechanical re-pins. Its
+  class-complete sweep found 11 exact-path-resolvable single-hash rows: 11
+  current after repair and zero mismatches. The separately prepared
+  `OWNER_SOURCED_CANDIDATE_2026-08-09_EVIDENCE_PIN_CURRENCY_VALIDATION.md`
+  is unpromoted decision support for the next owner slate.
 
 ## 3. Closure verdict
 
@@ -104,6 +113,17 @@ meaning are unchanged, and this was not a re-close. The bounded tranche is on
 non-draft PR; commit, push, PR, and merge are not closeout facts at this
 handoff, and merge remains prohibited in-session.
 
+`2026-08-09 EVIDENCE-PIN CLASS CLOSURE COMPLETE — ROOT LOOP IDLE AND
+RESUMABLE.` The owner-stated finding reproduced exactly. Archived
+`TM-ROOT-109` and `TM-ROOT-121` now pin the current transcript bytes with the
+same both-hash/commit provenance as the `TM-ROOT-105` Option-A precedent;
+their evidence refs, dispositions, closed dates, evidence quotes, and closure
+meanings are unchanged. The class-complete committed-byte sweep is clean for
+all 11 mechanically pinnable rows. The validator-currency gap is prepared as
+an owner-sourced candidate only; it is not promoted, folded, disposed, or
+implemented. Publication remains on PR #532 at the accountable human's merge
+gate; no merge is authorized in-session.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -132,3 +152,9 @@ Receipt 102; they also expose two pre-existing historical headings numbered
 Receipt 80. That historical duplicate was not created or altered here and is
 outside this bounded repair. The loop remains idle; release requires a
 separately authorized bounded lane or an owner-selected successor phase.
+
+Present the prepared evidence-pin-currency candidate with the next owner
+slate. Do not mint a new row, fold it into `TM-ROOT-113`/`TM-ROOT-115`, or
+implement validator changes until the owner rules. Repeat the exact-path
+class sweep if any later tranche changes Root evidence identities or the
+validator contract.

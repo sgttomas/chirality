@@ -113,3 +113,29 @@ notice is awaiting owner routing.
 
 Publication is authorized only as a non-draft human-gated PR. The PR must not
 be merged by this session; the accountable human's merge is the next gate.
+
+## Post-closeout bounded invocation — evidence-pin class closure
+
+After this generational closeout and its accepted Step-2 harvest, the owner
+supplied a separate finding and conditional ruling. The harvest report remains
+unchanged; the follow-on is recorded in
+`CLOSEOUT_2026-08-09_ROOT_EVIDENCE_PIN_CLASS_CLOSURE.md`.
+
+Independent reproduction found the transcript at `66b96700…bb06` in closure
+commit `ba4678ca`, then one terminal blank line removed by `2b6d53027`, yielding
+current `9b6d0a17…874a`. A complete exact-path/single-hash sweep found exactly
+two stale pins, archived `TM-ROOT-109` and `TM-ROOT-121`, matching the owner's
+conditional boundary. On those two rows only, `EvidenceSha` was mechanically
+re-pinned to `9b6d0a17…874a` and Notes gained both-hash/commit provenance;
+`EvidenceRef`, `Disposition`, `Closed`, `EvidenceQuote`, all other fields, and
+closure meaning remain unchanged. This is not a re-close.
+
+After repair, all 11 mechanically pinnable Root rows match committed bytes;
+112 rows are explicitly excluded as unpinnable by this method. Counts remain
+21 live (`OPEN=11`, `DEFERRED=10`) and 102 archived. The owner-sourced
+validator-currency candidate was prepared with new-row and
+`TM-ROOT-113`/`TM-ROOT-115` fold options but was not promoted, folded,
+disposed, or implemented. Receipt 105 and `HANDOFF_STATE.md` record the
+follow-on closeout as `IDLE AND RESUMABLE`. All validators, final federation,
+Root G0–G4, available receipt validators, field containment, class sweep,
+whitespace, and diff hygiene pass. PR #532 remains the human merge gate.

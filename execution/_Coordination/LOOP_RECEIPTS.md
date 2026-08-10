@@ -3258,3 +3258,47 @@ amendment; owner ruling required).
   release, reliance, foreign-loop, or merge effect occurred. Publication is
   by non-draft PR from `codex/root-taskmgmt-generation-20260809`; merge remains
   the accountable human's separate gate.
+
+### Receipt 105 — 2026-08-09 — Root evidence-pin class closure
+
+- **Mode and authority:** immediately following bounded Root
+  `TASK_MANAGEMENT` invocation after the accepted generational harvest;
+  mandatory federation preflight, owner-sourced finding reproduction,
+  conditional owner-ruling application, class-complete evidence-pin sweep,
+  candidate preparation, validation, handoff, and closeout. Verbatim direction:
+  `_TaskManagement/OWNER_DIRECTION_2026-08-09_ROOT_EVIDENCE_PIN_CLASS_CLOSURE.md`,
+  SHA-256 `7a78ee04…ffa3`. The accepted Step-2 harvest report is unchanged.
+- **Independent reproduction:** the shared transcript hashed
+  `66b96700…bb06` at closure commit `ba4678ca`; whitespace-normalization commit
+  `2b6d53027` removed exactly one terminal blank line; current committed bytes
+  hash `9b6d0a17…874a`. The before sweep found exactly 11 pinnable rows, 9
+  matching and only archived `TM-ROOT-109`/`TM-ROOT-121` mismatching, so the
+  conditional ruling activated without delta.
+- **Archive delta:** on `TM-ROOT-109` and `TM-ROOT-121` only,
+  `EvidenceSha` changed `66b96700…bb06` → `9b6d0a17…874a` and Notes gained
+  the same both-hash/commit provenance citing this direction and the
+  TM-ROOT-105 Option-A precedent. `EvidenceRef`, `Disposition`, `Closed`,
+  `EvidenceQuote`, every other field, and closure meaning are unchanged. No
+  reopen, re-close, reinterpretation, or row move occurred.
+- **Class closure and counts:** after repair the sweep reports 11 eligible,
+  11 matching, zero mismatches; 112 rows remain explicitly unpinnable by this
+  exact-path/single-hash method. Root remains 21 live (`OPEN=11`,
+  `DEFERRED=10`) and 102 archived.
+- **Prepared candidate:**
+  `_TaskManagement/OWNER_SOURCED_CANDIDATE_2026-08-09_EVIDENCE_PIN_CURRENCY_VALIDATION.md`
+  records that schema validation does not check evidence-pin currency, with
+  new-row and `TM-ROOT-113`/`TM-ROOT-115` fold options. It is owner-sourced,
+  not a harvest product, and is not promoted, folded, disposed, or
+  implemented; present it with the next owner slate.
+- **Validation and federation:** live/archive validators pass before and
+  after. Final federation is `COMPLETE`: PEC `OPEN=17/DEFERRED=1` (7
+  archived), Root `OPEN=11/DEFERRED=10` (102), App `OPEN=13/DEFERRED=3`
+  (26), Piping `OPEN=10/DEFERRED=24` (6), zero writes or integrity errors.
+  Exact field containment, class sweep, candidate whitespace, Root G0–G4,
+  available App/Piping receipt validators, and diff hygiene pass. No Root
+  receipt validator exists; manual audit confirms Receipt 105 is unique and
+  terminal, with historical duplicate Receipt-80 headings unchanged.
+- **Handoff and gate:** `HANDOFF_STATE.md` records `IDLE AND RESUMABLE`, the
+  clean class sweep, and the prepared-only next-slate candidate. This bounded
+  addition remains on PR #532; merge is the accountable human's gate and is
+  not performed in-session.
