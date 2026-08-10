@@ -3217,3 +3217,122 @@ amendment; owner ruling required).
   `origin/main@d269f0e04204bc463a11684499213b2283bd28f7`. CHANGE is authorized
   to validate, commit, push, and open a non-draft PR. None of those acts is
   recorded as completed by this receipt; do not merge in-session.
+
+### Receipt 104 — 2026-08-09 — Root Task Management generational pass closeout
+
+- **Modes and authority:** mandatory federation preflight; full PRD §5.1
+  candidate harvest plus manual marker/class completion; owner harvest ruling;
+  full 10-row DEFERRED-population review; owner deferral ruling; archive;
+  before/after validation; final federation; closeout. Exact rulings are in
+  `_TaskManagement/RULING_2026-08-09_ROOT_HARVEST_GENERATIONAL_PASS.md` and
+  `_TaskManagement/RULING_2026-08-09_ROOT_DEFERRAL_REVIEW_GENERATIONAL_PASS.md`.
+- **Register delta:** harvest promoted zero candidates. Ten existing DEFERRED
+  rows received only owner-ruled currentness: `TM-ROOT-035`, `-037`, `-039`,
+  `-040`, `-041`, `-042`, `-104`, `-119`, and `-123` confirmed
+  `STILL_BLOCKED`; `TM-ROOT-120` confirmed `ACTIVATABLE` without re-routing
+  its existing handoff. Nine dates moved to `LastReviewed=2026-08-09`;
+  `TM-ROOT-119` already carried that date; all ten received Notes citations.
+  No status, trigger, priority, assignment, source/evidence identity,
+  disposition, closure, or foreign-register field changed.
+- **Counts and archive:** archive moved zero rows. Root remains 21 live
+  (`OPEN=11`, `DEFERRED=10`, `ELEVATED=0`, `CLOSED=0`) and 102 archived.
+  Live and archive validators passed before and after; final live SHA-256 is
+  `aac3136389571f51901dcb92547efb7268c35b176a43a9f73d0172ebff1f0da3`;
+  archive SHA-256 remains `d1e699c4…a001`.
+- **Final federation:** `COMPLETE`; PEC `OPEN=17/DEFERRED=1` (7 archived),
+  Root `OPEN=11/DEFERRED=10` (102), App `OPEN=13/DEFERRED=3` (26), Piping
+  `OPEN=10/DEFERRED=24` (6); zero invalid/unreadable inputs, operational
+  errors, ambiguities, excluded lookalikes, or register writes. Typed
+  observations remain 48 foreign-to-local, 2 local-to-foreign, 1
+  remote-closed/local-open, and 21 local-closed/remote-open.
+- **Durable products:** reports
+  `_TaskManagement/CANDIDATE_HARVEST_2026-08-09_GENERATIONAL_PASS.md` and
+  `_TaskManagement/DEFERRAL_REVIEW_CLASSIFICATION_2026-08-09_GENERATIONAL_PASS.md`;
+  the two ruling records named above; and
+  `_TaskManagement/CLOSEOUT_2026-08-09_ROOT_GENERATIONAL_PASS.md`. Routed
+  notices awaiting owner routing: none. The existing
+  `_TaskManagement/HANDOFF_TM-ROOT-120_PUBLIC_EXPORT_REGENERATION_2026-08-08.md`
+  remains the carrier and was not re-routed.
+- **Limits and gate:** no new stale identity or closure echo arose; no
+  activation, export, dispatch, publication, lifecycle, semantic acceptance,
+  release, reliance, foreign-loop, or merge effect occurred. Publication is
+  by non-draft PR from `codex/root-taskmgmt-generation-20260809`; merge remains
+  the accountable human's separate gate.
+
+### Receipt 105 — 2026-08-09 — Root evidence-pin class closure
+
+- **Mode and authority:** immediately following bounded Root
+  `TASK_MANAGEMENT` invocation after the accepted generational harvest;
+  mandatory federation preflight, owner-sourced finding reproduction,
+  conditional owner-ruling application, class-complete evidence-pin sweep,
+  candidate preparation, validation, handoff, and closeout. Verbatim direction:
+  `_TaskManagement/OWNER_DIRECTION_2026-08-09_ROOT_EVIDENCE_PIN_CLASS_CLOSURE.md`,
+  SHA-256 `7a78ee04…ffa3`. The accepted Step-2 harvest report is unchanged.
+- **Independent reproduction:** the shared transcript hashed
+  `66b96700…bb06` at closure commit `ba4678ca`; whitespace-normalization commit
+  `2b6d53027` removed exactly one terminal blank line; current committed bytes
+  hash `9b6d0a17…874a`. The before sweep found exactly 11 pinnable rows, 9
+  matching and only archived `TM-ROOT-109`/`TM-ROOT-121` mismatching, so the
+  conditional ruling activated without delta.
+- **Archive delta:** on `TM-ROOT-109` and `TM-ROOT-121` only,
+  `EvidenceSha` changed `66b96700…bb06` → `9b6d0a17…874a` and Notes gained
+  the same both-hash/commit provenance citing this direction and the
+  TM-ROOT-105 Option-A precedent. `EvidenceRef`, `Disposition`, `Closed`,
+  `EvidenceQuote`, every other field, and closure meaning are unchanged. No
+  reopen, re-close, reinterpretation, or row move occurred.
+- **Class closure and counts:** after repair the sweep reports 11 eligible,
+  11 matching, zero mismatches; 112 rows remain explicitly unpinnable by this
+  exact-path/single-hash method. Root remains 21 live (`OPEN=11`,
+  `DEFERRED=10`) and 102 archived.
+- **Prepared candidate:**
+  `_TaskManagement/OWNER_SOURCED_CANDIDATE_2026-08-09_EVIDENCE_PIN_CURRENCY_VALIDATION.md`
+  records that schema validation does not check evidence-pin currency, with
+  new-row and `TM-ROOT-113`/`TM-ROOT-115` fold options. It is owner-sourced,
+  not a harvest product, and is not promoted, folded, disposed, or
+  implemented; present it with the next owner slate.
+- **Validation and federation:** live/archive validators pass before and
+  after. Final federation is `COMPLETE`: PEC `OPEN=17/DEFERRED=1` (7
+  archived), Root `OPEN=11/DEFERRED=10` (102), App `OPEN=13/DEFERRED=3`
+  (26), Piping `OPEN=10/DEFERRED=24` (6), zero writes or integrity errors.
+  Exact field containment, class sweep, candidate whitespace, Root G0–G4,
+  available App/Piping receipt validators, and diff hygiene pass. No Root
+  receipt validator exists; manual audit confirms Receipt 105 is unique and
+  terminal, with historical duplicate Receipt-80 headings unchanged.
+- **Handoff and gate:** `HANDOFF_STATE.md` records `IDLE AND RESUMABLE`, the
+  clean class sweep, and the prepared-only next-slate candidate. This bounded
+  addition remains on PR #532; merge is the accountable human's gate and is
+  not performed in-session.
+
+### Receipt 106 — 2026-08-09 — Correction: Step-2 harvest accepted identity
+
+- **Corrects without editing prior receipts:** Receipt 104's harvest-product
+  handling and Receipt 105's statement that the accepted Step-2 report was
+  unchanged are byte-level incorrect. Those receipts remain append-only and
+  unedited; this receipt is the corrective record.
+- **Accepted identity:** the owner ruling `ACCEPT the report and PROMOTE NO
+  CANDIDATES.` attached to the 7,006-byte pre-commit report at SHA-256
+  `bee380dedbcc302dc7be606cf55c05a8431d6398995c4d488a79c2044d3a3cab`.
+  `RULING_2026-08-09_ROOT_HARVEST_GENERATIONAL_PASS.md` now pins that identity.
+- **What changed, when, and why:** after owner acceptance and before first PR
+  #532 commit `f3af7bbbb9e46e07ca1b653cf7bd99a415e8e0d3`, during final pre-commit
+  validation on 2026-08-09, the candidate-whitespace guard flagged report
+  lines 5–7. Exactly two trailing ASCII spaces were removed before the LF on
+  each line—six bytes total—to satisfy the guard. No finer durable wall-clock
+  timestamp was recorded. No word, finding, count, candidate conclusion, or
+  recommendation changed.
+- **Distinct amended version:** the resulting 7,000-byte repository path
+  hashes
+  `3ca25470440490360af014d526a285b2d407df0979f3a2ddf21fac4c329ebac1`.
+  It is a versioned custodial amendment, not the byte object the owner
+  accepted, and no fresh acceptance is inferred. Exact delta, reconstruction,
+  sizes, identities, ordering, and rationale are recorded in
+  `_TaskManagement/AMENDMENT_2026-08-09_CANDIDATE_HARVEST_POST_ACCEPTANCE_WHITESPACE.md`,
+  SHA-256
+  `84929cd902685a7eaffe653029453c7b5149f16c0540d2bb39feb6effc556b19`.
+- **Faithful reconstruction:** adding `0x20 0x20` before the LF on current
+  lines 5–7 recreates 7,006 bytes hashing exactly `bee380de…3cab`. Those bytes
+  are not committed as a second Markdown file because doing so would
+  deliberately reintroduce the whitespace-guard violation.
+- **Scope and gate:** no register, archive, candidate disposition, count,
+  evidence-pin repair, or other tranche meaning changes in this correction.
+  PR #532 remains on HOLD. Merge is prohibited until the owner re-verifies.
