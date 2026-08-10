@@ -4221,3 +4221,47 @@
     lifecycle, selection, or foreign-loop effect. No foreign register,
     product/runtime source, decision surface, or archive row changed; merge
     remains owner-gated.
+
+- **2026-08-09 — Receipt 146** (D-APP-93 attempt-3 packet-preparation blocked closeout).
+  - Receipt-ID: `Receipt-146`
+  - Examined-Through: `81c376b41a1e181d3edb0737d4f3c9e398527dbe`
+  - Parent-Receipt: `Receipt-145`
+  - Pointers:
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_2026-08-09/SUCCESSOR_HANDOFF_STATE.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_2026-08-09/SUCCESSOR_MANAGER_VALIDATION_BLOCKED.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_V2_2026-08-09/HANDOFF_STATE.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_V2_2026-08-09/MANAGER_VALIDATION_BLOCKED.md`;
+    `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_V2_2026-08-09/RUNTIME_SUMMARY.json`.
+  - Checks: receipt contract before/after; terminal-handoff identity, JSON
+    parsing, App-only containment, exact staging scope, and whitespace review.
+    The staged-diff whitespace check reports only preserved terminal blank
+    lines and Markdown hard breaks in the blocked run evidence.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS and
+    CHANGE Agent 1 roles; Agent 2 execution and telemetry are recorded in the
+    run roots; exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — both preparation lineages close only as
+    blocked derivative evidence. No packet freeze, verifier PASS, prospective
+    execution token, owner approval, packet execution, product/runtime/source,
+    decision/register/ruling, or lifecycle effect occurred. A separately
+    activated authoring lineage is required before any later owner gate.
+
+- **2026-08-09 — Receipt 147** (PR #526 candidate-whitespace repair).
+  - Receipt-ID: `Receipt-147`
+  - Examined-Through: `2dc13e19f6c4f00117596119981f44fcfa7a1257`
+  - Parent-Receipt: `Receipt-146`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-09,
+    Ryan Tufts, in-session): `merge PR #526`.
+  - Pointers: PR #526 governance-harness job `93335283817`; the two
+    D-APP-93 attempt-3 AgentRuns roots named by Receipt 146.
+  - Checks: candidate-whitespace against `origin/main`; receipt contract
+    before/after; authority-corpus status; repository self-check; format-only
+    equivalence, `git diff --check`, and App-only containment pass. Frontend
+    gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising CHANGE Agent 1;
+    exact model builds not exposed.
+  - Gate-Outcome: `AWAITING_OWNER` — CI found candidate whitespace in the
+    blocked evidence and this tranche repairs only those byte-format findings.
+    A new candidate SHA and completed green checks are required before the
+    owner-only merge. No packet freeze, verifier PASS, execution token,
+    packet execution, product/runtime/source, decision/register/ruling, or
+    lifecycle effect occurred.
