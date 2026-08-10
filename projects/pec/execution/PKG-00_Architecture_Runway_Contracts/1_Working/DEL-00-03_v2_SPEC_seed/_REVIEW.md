@@ -1,189 +1,169 @@
 # Review — DEL-00-03 v2 SPEC seed
 
-**Review stage:** ARTIFACT FITNESS OWNER ACCEPTED — CHECKING
+**Review stage:** EXACT-BYTE ARTIFACT ACCEPTANCE COMPLETE; FINDINGS RESOLVED;
+GATE 5 NOT ENTERED
 
-**Review Type:** SELF_CHECK
+**Review type:** `PEER_REVIEW`
 
-**Reviewer(s):** AGENT_CHECK (producer-side mechanical self-check; no human reviewer identity inferred)
+**Reviewer:** `REVIEW-PEER-DEL-00-03-20260809-RERUN` (agent-performed
+independent assessment; mechanical findings are labeled `AGENT_CHECK`)
 
-**Target transition:** INITIALIZED → CHECKING (owner-approved review-from-INITIALIZED override; applied)
+**Date:** 2026-08-09
 
-**Owner authorization (verbatim, 2026-08-01):**
+**Lifecycle:** `CHECKING`, unchanged
 
-> First merge your work through PR. Then I approve D-PEC-72 review: PEER_REVIEW for DEL-00-01 and DEL-00-03; authorize review from INITIALIZED.
+**Owner review ruling (verbatim, 2026-08-09):**
 
-**Owner amendment (verbatim, 2026-08-01):**
+> REVIEW: PEER_REVIEW for all four; proceed as recommended.
 
-> I'm sorry I don't have a peer reviewer I made that judgment in error.
->
-> The checklists are adequate and can be used but should remain open to revision.
+**Owner disposition and rerun authorization (verbatim, 2026-08-09):**
 
-The amendment withdraws `PEER_REVIEW` before any practitioner was named or any
-finding was captured. It confirms this common checklist as adequate. Revision
-remains open through additive `CU-*` items; the deterministically compiled
-`AC-*` sequence and text remain contract-bound and are not edited or removed.
+> REVIEW findings: REVISE all eight.
+> Authorize one bounded WORKING_ITEMS repair and PEER_REVIEW rerun confined to
+> the cited SOW/SPEC claims and regenerated review evidence; preserve lifecycle,
+> dependencies, source, and all unrelated content.
 
-**Owner replacement ruling (verbatim, 2026-08-01):**
+This ruling sets `HumanDisposition=REVISE` for RF-002 and RF-003 and authorizes
+the bounded rerun. It does not accept the repaired SOW or SPEC bytes, alter
+lifecycle, or enter Gate 5.
 
-> I agree with your recommendation for the replacement ruling. Proceed accordingly.
+**Owner exact-byte ruling (verbatim, 2026-08-09):**
 
-The referenced recommendation was `SELF_CHECK`. This opens mechanical
-producer-side assessment only; it does not convert agent checks into human
-engineering judgment, artifact acceptance, finding disposition, or lifecycle
-authority.
+> ACCEPT_EXACT_BYTES for:
+> DEL-02-07 SOW: d044499ab5ace12305434ab3c7b5e17e21f730f8d77b45ff64c055d1edce2559
+> DEL-03-01 SOW: 564955235aeab60f169e6377dd9d5bb5fbe2a88a8cc66094e17f6f83987792d2
+> DEL-04-01 SOW: 6f4e8c66a5712ba73e5000f1eafbfd5dd821bb4c339a23d77aa46b5b558830ae
+> DEL-00-03 SOW: 3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741
+> DEL-00-03 SPEC: cc9f4754ac3d8ab0901fb6099d469c4e8e4557507dd50683ec9389977b0f1bae
 
-**Owner finding disposition and repair authorization (verbatim, 2026-08-01):**
+This DEL-00-03 review applies only the two DEL-00-03 lines. Both hashes were
+reproduced before the acceptance record was written, and both PEC `promote`
+preflights returned `ALLOW`. The ruling accepts those exact SOW and SPEC bytes;
+it does not enter Gate 5 or alter lifecycle.
 
-> Approve both recommendations as stated.
+## Rerun basis
 
-The approved recommendation for this deliverable was: `DEL-00-03 RF-001:
-REVISE; authorize a bounded ScopeOfWork currency repair and self-check rerun.`
-The repair changed source/basis/lifecycle currency only and did not edit the
-SPEC candidate or add/remove substantive scope.
+- Repaired `ScopeOfWork.md`: valid `SOW_V1`, SHA-256
+  `3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741`.
+- Repaired `artifacts/v2/SPEC.md`: SHA-256
+  `cc9f4754ac3d8ab0901fb6099d469c4e8e4557507dd50683ec9389977b0f1bae`.
+- Deterministic checklist: `chirality-review-checklist/v1`, tool version 1,
+  eleven exact source-ordered criteria, SHA-256
+  `1c4d492728e3e7a5c031bdb2a6f915e855916effa7cc1644f8bd7031b73ffbdb`.
+- Owner custom `CU-001`: SHA-256
+  `36ec35f3869f02e935c21b62a767309c8763afbd97ff5f13e515da6e44507dc3`.
+- Accepted decomposition: SOFTWARE_DECOMP revision 1.4, SHA-256
+  `7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81`;
+  ScopeLedger SHA-256
+  `2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25`.
+- SCA-004 handoff: SHA-256
+  `919d40bba285ebdab987c17c4443d9583528f845fde0681c460788f5701dbc1c`.
+- Preserved controls: `_STATUS.md` SHA-256
+  `629ca0dda894954943b694680ebbaf8688615e0ca3fefa1a18ef84c2cd606cfb`;
+  `Dependencies.csv` SHA-256
+  `5b42f2de2a098fb8f833736ebaf15445bd50734a9341b7fb19e7fa1d0112cde2`.
 
-**Owner finalization authorization (verbatim, 2026-08-01):**
-
-> DEL-00-03 Gate 5 — advance DEL-00-03 from INITIALIZED
-> to CHECKING under the recorded review-from-INITIALIZED override.
-> This is a lifecycle act only and does not accept the SPEC artifact.
->
-> D-PEC-72 artifact-status normalization — authorize WORKING_ITEMS
-> to revise only present-tense candidate/pending-acceptance status
-> prose in DEL-00-01 artifacts/v2/ADRs.md and DEL-00-03
-> artifacts/v2/SPEC.md into acceptance-neutral authority prose.
-> Do not change architecture, requirements, identifiers, citations,
-> objective attribution, scope, open decisions, or lifecycle state.
-> Rerun REVIEW against the resulting hashes. No artifact acceptance
-> is inferred.
-
-The guarded lifecycle transition was applied against committed authorization
-`87272dde8a82dbef034968b14af4461fe4b056d4`. The authorized normalization is
-present at that producer commit. This SELF_CHECK rerun binds the final SPEC
-hash below; neither act accepts the SPEC bytes.
-
-**Owner artifact-fitness ruling (verbatim, 2026-08-01):**
-
-> DEL-00-03 AC-011 — ACCEPT.
->
-> I accept artifacts/v2/SPEC.md at SHA-256
-> 8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315
-> as the PEC v2 SPEC of record born from PRD v2.2 and accepted
-> SOFTWARE_DECOMP revision 1.3 at 11a494e9a.
->
-> I confirm the single-objective attribution to OBJ-001 with its
-> recorded LOW-confidence qualification; the full-objective-set and
-> OBJ-006 alternatives remain considered but unadopted.
->
-> This accepts these artifact bytes only. It does not advance
-> DEL-00-03 to ISSUED, close C-05, or authorize P1.
-
-This ruling is recorded at committed authority
-`ARTIFACT_ACCEPTANCE_AND_DEL10_REPAIR_RULING_2026-08-01.md` at
-`7f5acbf5`. It accepts only the exact review-basis artifact hash and changes no
-lifecycle state.
-
-## Review Basis
-
-- D-PEC-72 production merged through PR #450 at `0f7f7ef108e65b953d188bd01fb116858959830f`.
-- Selected artifact: `artifacts/v2/SPEC.md` (`sha256:8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315`).
-- Production contract: `ScopeOfWork.md`, valid repaired `SOW_V1` (`sha256:0e2cfad8fcb377381042fd63c7e73002ad93037bffd17b7a3b9eb58889469f54`).
-- Checklist compiler: `tools/scope_of_work/derive_review_checklist.py`, schema `chirality-review-checklist/v1`, tool version 1, 11 criteria.
-- Decomposition coverage: strict deterministic register validation PASS (64 registers, 254 rows, zero errors/warnings). No managed AUDIT_DECOMP child session was available in this runtime; no structural discrepancy was detected by the registered validator.
-- Lifecycle state: `CHECKING`; the owner explicitly approved the guarded transition from `INITIALIZED` under the recorded override. `_STATUS.md` records the applied transition.
-- Context validity: PASS — `DEL-00-03`, `PKG-00`, `SOW-089`, and `OBJ-001` agree across `_CONTEXT.md`, `ScopeOfWork.md`, and accepted decomposition registers; the contract preserves the LOW-confidence objective-attribution qualification for owner review.
-
-## Gate 1 Precondition Summary
+## Gate 1 rerun preconditions
 
 | Precondition | Result | Evidence |
 |---|---|---|
-| Deliverable folder | PASS | Folder and governed context/status files exist |
-| Lifecycle entry | PASS BY OWNER OVERRIDE | Review entered at `INITIALIZED`; finalization authorization applied the guarded transition to `CHECKING` |
-| Production format | PASS | `SOW_V1`, zero validation issues |
-| Anticipated artifact | PRESENT | Final normalized `artifacts/v2/SPEC.md` at the review-basis hash |
-| Dependency posture | PASS | No active `EXECUTION` upstream rows; two satisfied `ANCHOR` rows |
-| Review type | SELECTED | `SELF_CHECK`, by owner replacement ruling |
-| Reviewer identity | AGENT_CHECK | Mechanical producer-side assessment only; no human reviewer is inferred |
+| Deliverable identity | PASS | Exact DEL-00-03 / PKG-00 folder and repaired products exist |
+| Lifecycle entry | PASS | `CHECKING`; no transition attempted |
+| Review type | SELECTED | `PEER_REVIEW` under the owner rulings above |
+| Production format | PASS | `SOW_V1`; validator reports zero structural issues |
+| Exact inputs | PASS | SOW, SPEC, checklist, and CU-001 hashes reproduce |
+| Checklist reproduction | PASS | Independent derivation is byte-identical to the routed eleven-row JSON |
+| Reliance hold | PASS | `candidate-validation` returned `ALLOW` |
+| Decomposition/context | PASS WITH PRIOR AUDIT LIMITATION RECORDED | Accepted SCA-004 audit plus current deterministic checks confirm DEL-00-03 identity, `SOW-089` / `OBJ-001`, revision-1.4 OI-003 truth, 72 IN / 14 OUT / 8 TBD, root/zero-execution-edge posture, and artifact presence. The initial review's bounded AUDIT_DECOMP child returned no result before interruption; no child PASS or new DecompCoverage snapshot is inferred. The authorized repair changed no context, dependency, or decomposition surface. |
+| Dependency posture | PASS | Two satisfied anchors; zero active `EXECUTION` upstream dependencies; strict corpus validation passes 64 registers / 255 rows / zero errors or warnings |
 
-## Checklist
+## Gate 2 — rerun checklist
 
-The owner confirmed this checklist as adequate and selected `SELF_CHECK`.
-Assessment results below are mechanical `AGENT_CHECK` results. Additive `CU-*`
-revisions remain allowed; the compiled `AC-*` rows remain unchanged.
+Every `AC-*` row below preserves the compiler-emitted ID and criterion text in
+emitted order. Additive `CU-001` is consumed separately at its exact hash.
 
-### Artifact Presence
+### Artifact presence
 
-| ID | Artifact | Present | Notes |
+| ID | Artifact | Result | Notes |
 |---|---|---|---|
-| AP-001 | `artifacts/v2/SPEC.md` | Y | Packet-recorded SPEC candidate; final normalized artifact hash matches the review basis |
+| AP-001 | `ScopeOfWork.md` and `artifacts/v2/SPEC.md` | PASS | Both exact repaired hashes reproduce |
 
-### Acceptance Criteria
+### Acceptance criteria
 
-| ID | Criterion | Verification | Source binding | Addressed |
-|---|---|---|---|---|
-| AC-001 | The SPEC markdown exists at the packet-recorded path, that path is recorded in this deliverable's packet before the artifact is treated as consumable, and the change set that produced it touches no path outside `PKG-00`. | VER-007 | `DEL-00-03-AC-001`; ScopeOfWork line 109; SHA above | Y — path exists; production commit `5942c5033` is PKG-00-contained |
-| AC-002 | Every package, deliverable, objective, and scope item named in the seed resolves to a row of the accepted registers at the bound basis; the seed introduces none that is absent from that basis, and any scoped subset of the 11 packages or 64 deliverables it carries is stated as a subset with its reason. | VER-001; VER-002 | `DEL-00-03-AC-002`; ScopeOfWork line 110; SHA above | Y — all 11 packages, 64 deliverables, 6 objectives, and 94-row ledger counts represented; identifier check corroborated |
-| AC-003 | Every specification claim in the seed carries a citation that resolves to a `PRD.md` v2.2 requirement or invariant identifier or to an accepted decomposition identifier; a citation-resolution pass finds no unresolvable, invented, or retired-family identifier presented as live. | VER-002; VER-003 | `DEL-00-03-AC-003`; ScopeOfWork line 111; SHA above | Y — identifiers resolve against current PRD v2.2 / revision 1.3; RF-001 repair verified |
-| AC-004 | The seed states the accepted basis revision and commit in its own text, and that statement equals the basis bound in this contract's frontmatter or a later accepted successor named as such. | VER-004 | `DEL-00-03-AC-004`; ScopeOfWork line 112; SHA above | Y — artifact and repaired contract both bind revision 1.3 at `11a494e9a` |
-| AC-005 | The seed contains no requirement, invariant, objective, package, deliverable, or scope item that is absent from the accepted basis, and no v1.0 or v0.4 identifier family is used for a v2 identifier. | VER-001; VER-002; VER-003 | `DEL-00-03-AC-005`; ScopeOfWork line 113; SHA above | Y — current-basis identifier resolution corroborated |
-| AC-006 | Wherever the seed references the archived baseline `SPEC.md`, `TRACEABILITY.md`, `PILOT.md`, or `ADR-001..014`, the reference is marked historical, and none of them is cited as live authority. | VER-003; VER-005 | `DEL-00-03-AC-006`; ScopeOfWork line 114; SHA above | Y — Historical material section is explicit |
-| AC-007 | The seed's own text states that it was seeded before P1 from the accepted basis, that it is amended per phase under governed updates, and what it does not acquire between amendments. | VER-001 | `DEL-00-03-AC-007`; ScopeOfWork line 115; SHA above | Y — Governed amendment provision states the complete no-accretion boundary |
-| AC-008 | After publication, the open-issue register still shows `OI-001`..`OI-009`, `OI-012`, and `OI-013` with their pre-publication dispositions, and the §16-derived `TBD` scope items remain `TBD`. | VER-006 | `DEL-00-03-AC-008`; ScopeOfWork line 116; SHA above | Y — production and repair changes did not touch decomposition/open-issue surfaces |
-| AC-009 | The seed is complete before any P1 node starts, it declares no dependency on a P1 or later deliverable, and it asserts no consumer obligation on any deliverable the accepted text does not name. | VER-009 | `DEL-00-03-AC-009`; ScopeOfWork line 117; SHA above | Y — artifact states pre-P1, no phase completion, and no consumer edge |
-| AC-010 | Terminology in the seed conforms to the accepted vocabulary map, and every use of "package" is disambiguated in the sense §9 requires. | VER-008 | `DEL-00-03-AC-010`; ScopeOfWork line 118; SHA above | Y — Package (entity) and work-domain package are explicitly distinguished |
-| AC-011 | An accountable owner confirms that the published seed is the v2 SPEC of record born from the accepted decomposition, and confirms that the seed's single-objective attribution to `OBJ-001` remains acceptable given the recorded LOW-confidence qualification and the unadopted alternatives. | HUMAN_REVIEW | `DEL-00-03-AC-011`; ScopeOfWork line 119; SHA above | Y — owner ACCEPTS final hash `8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315` as the SPEC of record and confirms the qualified OBJ-001 attribution |
-
-### Objective Coverage
-
-| ID | Objective | Addressed | Document section |
+| ID | Exact criterion | Verification | Review result |
 |---|---|---|---|
-| OC-001 | `OBJ-001`: sub-second orientation query with per-claim citations | Y | Authority/purpose, accepted objectives, and per-claim citation posture |
+| AC-001 | The SPEC markdown exists at the packet-recorded path, that path is recorded in this deliverable's packet before the artifact is treated as consumable, and the change set that produced it touches no path outside `PKG-00`. | DEL-00-03-VER-007 | PASS — exact product path exists; bounded product repairs are PKG-00-contained |
+| AC-002 | Every package, deliverable, objective, and scope item named in the seed resolves to a row of the accepted registers at the bound basis; the seed introduces none that is absent from that basis, and any scoped subset of the 11 packages or 64 deliverables it carries is stated as a subset with its reason. | DEL-00-03-VER-001; DEL-00-03-VER-002 | PASS — all identifiers remain resolved; revision-1.4 counts now agree |
+| AC-003 | Every specification claim in the seed carries a citation that resolves to a `PRD.md` v2.2 requirement or invariant identifier or to an accepted decomposition identifier; a citation-resolution pass finds no unresolvable, invented, or retired-family identifier presented as live. | DEL-00-03-VER-002; DEL-00-03-VER-003 | PASS — no unresolved or invented live identifier introduced |
+| AC-004 | The seed states the accepted basis revision and commit in its own text, and that statement equals the basis bound in this contract's frontmatter or a later accepted successor named as such. | DEL-00-03-VER-004 | PASS — revision 1.3 at `11a494e9a` remains the birth basis; accepted SCA-004 successor is explicitly named |
+| AC-005 | The seed contains no requirement, invariant, objective, package, deliverable, or scope item that is absent from the accepted basis, and no v1.0 or v0.4 identifier family is used for a v2 identifier. | DEL-00-03-VER-001; DEL-00-03-VER-002; DEL-00-03-VER-003 | PASS — no scope or retired live identifier added |
+| AC-006 | Wherever the seed references the archived baseline `SPEC.md`, `TRACEABILITY.md`, `PILOT.md`, or `ADR-001..014`, the reference is marked historical, and none of them is cited as live authority. | DEL-00-03-VER-003; DEL-00-03-VER-005 | PASS — historical-material posture unchanged |
+| AC-007 | The seed's own text states that it was seeded before P1 from the accepted basis, that it is amended per phase under governed updates, and what it does not acquire between amendments. | DEL-00-03-VER-001 | PASS — governed amendment provision remains explicit |
+| AC-008 | After publication, the accepted decomposition shows `OI-003` resolved by D-PEC-78 O-A and SCA-004; `OI-001`, `OI-002`, `OI-004`..`OI-009`, `OI-012`, and `OI-013` retain their accepted dispositions, and the remaining §16-derived `TBD` scope items remain `TBD`. | DEL-00-03-VER-006 | PASS — repaired SOW and SPEC exactly match accepted revision-1.4 disposition truth; RF-002 resolved |
+| AC-009 | The seed is complete before any P1 node starts, it declares no dependency on a P1 or later deliverable, and it asserts no consumer obligation on any deliverable the accepted text does not name. | DEL-00-03-VER-009 | PASS — no dependency or consumer edge added |
+| AC-010 | Terminology in the seed conforms to the accepted vocabulary map, and every use of "package" is disambiguated in the sense §9 requires. | DEL-00-03-VER-008 | PASS — package/entity/work-domain distinctions preserved |
+| AC-011 | An accountable owner confirms that the published seed is the v2 SPEC of record born from the accepted decomposition, and confirms that the seed's single-objective attribution to `OBJ-001` remains acceptable given the recorded LOW-confidence qualification and the unadopted alternatives. | HUMAN_REVIEW method | READY FOR OWNER DECISION — the repaired bytes pass REVIEW; predecessor acceptance does not accept these successors |
 
-### Production-Contract Consistency
+### Objective coverage and contract consistency
 
 | ID | Check | Result | Notes |
 |---|---|---|---|
-| XD-001 | `OUT-001` through `OUT-003` close through their registered `AC-*` and `VER-*` mappings without adding scope | PASS | Repaired current-basis checklist regenerated; candidate mapping closes without new scope |
+| OC-001 | `OBJ-001` with accepted SCA-002 LOW-confidence qualification | PASS | SPEC §§1 and 5 preserve the qualification and unadopted alternatives |
+| XD-001 | SOW and SPEC agree with accepted OI-003 disposition | PASS | CLM-011, REQ-007, AC-008, VER-006, AX-005, matrix evidence, and SPEC §8 align; RF-002 resolved |
+| XD-002 | OUT/AC/VER closure through output/evaluation matrix | PASS | All eleven criteria close through registered VER/HUMAN_REVIEW methods |
+| XD-003 | SCA-004 scope-ledger telemetry | PASS | SPEC §§6 and 8 state 72 IN / 14 OUT / 8 TBD; RF-003 resolved |
 
-### Dependency Satisfaction
-
-| ID | Dependency | Target | Satisfaction | Notes |
-|---|---|---|---|---|
-| DS-001 | No active `EXECUTION` upstream dependency | N/A | SATISFIED | Root/zero-edge posture; two declared anchors are satisfied |
-
-### TBD Inventory
+### Dependency satisfaction and TBD inventory
 
 | ID | Check | Result | Notes |
 |---|---|---|---|
-| TB-001 | Remaining TBDs assessed | PASS FOR CHECKING | Packet resolves the artifact path; assignment, nine accepted TBD scope rows, and C-06 consumers remain explicitly unresolved |
+| DS-001 | No active upstream `EXECUTION` dependency | SATISFIED | Two anchors remain satisfied |
+| TB-001 | Remaining TBDs assessed | PASS | Two local registered SOW TBDs and eight accepted decomposition TBD rows remain explicit; no stale nine-TBD claim remains |
 
-### SELF_CHECK Focus
+### Owner custom item
 
-Completeness, internal consistency, carried TBDs, and the authorized
-status-prose delta were checked against the final artifact hash. No custom
-`CU-*` row is active.
+| ID | Exact custom check | Result | Evidence |
+|---|---|---|---|
+| CU-001 | Confirm the repaired DEL-00-03 ScopeOfWork contract and SPEC candidate consistently record OI-003 resolved by D-PEC-78 O-A and SCA-004, preserve the accepted dispositions of all remaining open issues, and state the accepted revision-1.4 scope-ledger totals as 72 IN / 14 OUT / 8 TBD. | PASS | Exact SOW/SPEC successors, revision-1.4 SOFTWARE_DECOMP/ScopeLedger, and bounded semantic diff |
 
-## Findings Summary
+## Gate 3/4 — findings and owner disposition
+
+| Finding | Severity | Human disposition | Status | Rerun evidence |
+|---|---|---|---|---|
+| RF-002 — current SOW OI-003 criterion conflicted with accepted SCA-004 truth | MAJOR | REVISE | RESOLVED | Six directly linked SOW statements now align with D-PEC-78/SCA-004 and remaining dispositions |
+| RF-003 — SPEC carried 71 IN / 9 TBD after OI-003 resolution | MAJOR | REVISE | RESOLVED | SPEC §§6 and 8 now state 72 IN / 14 OUT / 8 TBD |
+
+RF-001 remains historically `REVISE / RESOLVED`. No finding is open.
+
+### Findings summary
 
 | Severity | Total | Resolved | Open | Deferred |
 |---|---:|---:|---:|---:|
 | CRITICAL | 0 | 0 | 0 | 0 |
-| MAJOR | 1 | 1 | 0 | 0 |
+| MAJOR | 3 | 3 | 0 | 0 |
 | MINOR | 0 | 0 | 0 | 0 |
 | OBSERVATION | 0 | 0 | 0 | 0 |
 
-`RF-001` is `Origin: AGENT_CHECK`. The owner dispositioned it `REVISE`; the
-bounded repair is complete, the regenerated checklist remains bound to the
-repaired contract hash, and the finding is `RESOLVED`. The final-hash rerun
-found no regression from the acceptance-neutral status-prose normalization and
-added no finding. REVIEW did not edit the SPEC candidate.
+## Exact-byte acceptance and remaining gates
 
-## Transition Readiness
+The owner has performed `ACCEPT_EXACT_BYTES` for:
 
-**Recommendation:** NO FURTHER LIFECYCLE ACT AUTHORIZED
+- `ScopeOfWork.md` SHA-256
+  `3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741`;
+- `artifacts/v2/SPEC.md` SHA-256
+  `cc9f4754ac3d8ab0901fb6099d469c4e8e4557507dd50683ec9389977b0f1bae`.
 
-The regenerated checklist remains populated against the final artifact hash,
-`RF-001` is resolved, and there are no open findings. The owner separately
-approved Gate 5 and the guarded transition was applied. The owner separately
-accepted the exact final SPEC hash and satisfied AC-011, including the
-LOW-confidence OBJ-001 qualification. `DEL-00-03` remains `CHECKING`; no
-`ISSUED` transition, C-05 closure, or P1 authority is created.
+The repaired bytes satisfy the ten deterministic criteria; the owner ruling
+satisfies AC-011 for these exact SOW and SPEC successors, including the
+retained LOW-confidence OBJ-001 qualification. CU-001 passes, RF-002 and
+RF-003 are resolved under the owner's `REVISE` disposition, and no finding
+remains open.
+
+**Final review closure state:** `ARTIFACT_ACCEPTANCE_COMPLETE /
+GATE_5_UNENTERED / CHECKING`.
+
+REVIEW does not perform the acceptance. Gate 5 was not entered; no lifecycle
+transition, issuance, release, C-05 closure, P1 authority, or professional-
+reliance act is made. `_STATUS.md` remains byte-identical at `CHECKING`.
+Any SOW or SPEC byte change invalidates this acceptance and requires a new
+checklist derivation and REVIEW rerun.

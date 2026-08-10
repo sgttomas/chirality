@@ -1820,3 +1820,36 @@
   - Final register hashes before Git closeout: live SHA-256 `7fd9fbd7a3b42923ab0eed6e0088bb3fe5b53c8cbab749fa0a46ca8581d71fa4`; archive SHA-256 `bf0d5537686d3dba23ad2e3c1b91d989850cda04e98e92dc545516829c9242b6`.
   - Authority fence: register closure and mechanical archive accept no cited artifact and create no product, scope, priority, assignment, lifecycle, release, reliance, foreign-loop duty, or merge effect. `TM-PEC-022` remains the sole deferred row; all 17 open rows remain unchanged.
   - Gate outcome: **ZERO PROMOTIONS / TWO OWNER-RULED CLOSURES / THREE ROWS ARCHIVED / REPORTS + RECEIPT CURRENT / READY PR IS THE OWNER MERGE GATE / DO NOT MERGE**.
+
+- **2026-08-09 — Receipt 165** (bounded PEC currency-repair tranche and owner acceptances).
+  - Basis and Git: started from `d269f0e04204bc463a11684499213b2283bd28f7`; fetched current `origin/main@da40d7dc4192c9aa2f49e9438729179aae281b61`; the start is its ancestor and `git diff d269f0e04..da40d7dc4 -- projects/pec _DomainEngines/pec` is empty. Branch `codex/pec-currency-repair-20260809` was fast-forwarded without rebase, force, or merge commit; index remained clean before closeout staging.
+  - Owner direction of record (2026-08-09, verbatim): “Owner direction, 2026-08-09. Unpark the PEC loop for a bounded currency-repair tranche. This is the separately scheduled owner act that TM-PEC-013 and TM-PEC-014 were reserved for. Scope is exactly the items below — no P1/P2 source slice, no new packets, no register harvest.
+
+    0. Basis first. Fetch and reconcile with current origin/main before any staging: your prior report pinned 81c376b41 as identical to remote main, but origin/main has advanced to d269f0e04 (or later by the time you run). Confirm the intervening diff over projects/pec/** and _DomainEngines/pec/** is empty before proceeding; if it is not empty, stop and return the delta to me instead of executing.
+
+    1. TM-PEC-013 (SCA-004 downstream ScopeOfWork currency). Execute the finalized route. The resulting artifact goes through its own REVIEW; exact-byte acceptance remains mine.
+
+    2. TM-PEC-014 (DEL-00-03 SPEC OI-003 currency). Execute the finalized route under the same terms. Confirm before dispatch that its production path is disjoint from item 1's, as previously claimed; if the paths overlap, serialize rather than parallelize.
+
+    3. TM-PEC-011 (DEL-01-06 SCA-004 ScopeOfWork currency). Invoke TASK_MANAGEMENT separately, as its gate requires, to disposition the row: the cited concern is believed stale because RF-002 has since been resolved. Verify that staleness against the live RF-002 record rather than trusting this prompt, then present the disposition for my ruling — do not close the row on my behalf.
+
+    4. Record the two map deltas durably. Your prior session reported, chat-only: (a) the standing plan's profile-supersession follow-on is already completed by D-T0-27; (b) PRD §16 decision 3 (loop-registry home) remains textually open although D-PEC-78/SCA-004 resolves it. Land both on the appropriate coordination surface — a plan-currency note for (a), and for (b) a drafted PRD §16 amendment prepared for my ruling, not applied. The PRD text itself does not change in this tranche.
+
+    Held gates, unchanged: TM-PEC-023 remains held for its dedicated owner session; TM-PEC-022 remains deferred pending the next DEL-08-02 lifecycle act; any P1/P2 source slice still requires a new exact-path D-PEC packet and owner ruling.
+
+    Constraints: all repo-bound changes ship on a branch by PR for my merge — nothing lands on main in-session and merge remains expressly prohibited; run the loop's validators (registers, receipts, API contract, loop registry, core posture) before and after; close with a receipt and an updated handoff state distinguishing what was executed, what was prepared, and what awaits my ruling; return the loop to its parked-at-owner-gates posture.”
+  - Owner rulings of record (2026-08-09, verbatim): “REVIEW: PEER_REVIEW for all four; proceed as recommended.
+    TM-PEC-011: RESOLVED_WITH_CHANGE.
+    PRD §16.3 candidate: ADOPT.” — and “REVIEW findings: REVISE all eight. Authorize one bounded WORKING_ITEMS repair and PEER_REVIEW rerun confined to the cited SOW/SPEC claims and regenerated review evidence; preserve lifecycle, dependencies, source, and all unrelated content.
+    D-PEC-79: ADOPT the exact postimage and carrier hashes above, but do not apply the live PRD in this tranche.”
+  - Exact-byte ruling of record (2026-08-09, verbatim): “ACCEPT_EXACT_BYTES for:
+    DEL-02-07 SOW: d044499ab5ace12305434ab3c7b5e17e21f730f8d77b45ff64c055d1edce2559
+    DEL-03-01 SOW: 564955235aeab60f169e6377dd9d5bb5fbe2a88a8cc66094e17f6f83987792d2
+    DEL-04-01 SOW: 6f4e8c66a5712ba73e5000f1eafbfd5dd821bb4c339a23d77aa46b5b558830ae
+    DEL-00-03 SOW: 3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741
+    DEL-00-03 SPEC: cc9f4754ac3d8ab0901fb6099d469c4e8e4557507dd50683ec9389977b0f1bae”
+  - Executed: TM-PEC-013/014 production, eight-finding `REVISE` repair, four serialized `PEER_REVIEW` reruns, and four post-ruling snapshots ending at `REV_DEL-00-03_2026-08-09_2156`; all five exact objects are accepted, zero findings remain open, Gate 5 remains unentered, DEL-02-07/03-01/04-01 remain `INITIALIZED`, and DEL-00-03 remains `CHECKING`. TM-PEC-011 is live `CLOSED / RESOLVED_WITH_CHANGE` on register SHA-256 `6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264`; ordinary archive remains a later TASK_MANAGEMENT act.
+  - Map deltas: `_DomainEngines/pec/PLAN_CURRENCY_NOTE_2026-08-09_D-T0-27.md` records the already-complete profile follow-on. PRD v2.3 postimage SHA-256 `92627ee1d384dd8ef0f2db5d63362ec54eee9da30794b9c2d776bd46fb20f5b0` and D-PEC-79 carrier SHA-256 `bc3a4bd59d4542e3d686c4663cc5b5b4fc59f4f3abc6bc4a40ea65063716b5d2` are exact-byte adopted but not applied; live PRD and decision register remain unchanged.
+  - Handoff: `projects/pec/execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md`, SHA-256 `8a9957b4150143c9958083107982dd8e5538a8d1cb69aa436a0bab953d00d24f`; currency lane `COMPLETE`, overall SCA-004 derivative state incomplete only for held `TM-PEC-023`. `TM-PEC-022` remains deferred; TM-PEC-013/014 row dispositions, PRD live application, and any future P1/P2 packet remain later owner/scheduled acts.
+  - Checks: Task Management live/archive and federation pass; strict decomposition registers pass at 64 / 255 / zero findings; SOW/checklist and accepted-hash reproduction pass; API contract 6/6, loop registry 12/12, service-core posture, receipt/self-check, and whitespace pass. The practitioner self-check retains only its inherited REVIEW/WARN/INFO/NOT_APPLICABLE posture with no tranche-created blocker.
+  - Gate outcome: **CURRENCY LANE COMPLETE / FIVE EXACT OBJECTS ACCEPTED / TM-PEC-011 RESOLVED_WITH_CHANGE / PRD V2.3 + D-PEC-79 ADOPTED NOT APPLIED / PARKED AT OWNER GATES / READY PR IS OWNER MERGE GATE / DO NOT MERGE**.

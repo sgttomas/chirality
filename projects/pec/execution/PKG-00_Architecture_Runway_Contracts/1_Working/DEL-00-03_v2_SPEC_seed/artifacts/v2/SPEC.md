@@ -130,7 +130,7 @@ phase hints, and scope mappings remain normative in `Deliverables.csv` and
 | PKG-09 Dashboards | Source-linked owner views and Explain-shaped pressure rules | DEL-09-01..07 |
 | PKG-10 Validation & Measurement | Release proof and metrics; not the behaviors under test | DEL-10-01..12 |
 
-The accepted scope ledger contains 94 items: 71 IN, 14 OUT, and 9 TBD. This
+The accepted scope ledger contains 94 items: 72 IN, 14 OUT, and 8 TBD. This
 seed does not reproduce all row prose because `ScopeLedger.csv` is the
 authoritative register; the package/deliverable and capability structures
 above are a complete structural index into it (`SOFTWARE_DECOMP.md` §7).
@@ -151,15 +151,16 @@ predecessors, and file-native fallback remains operable (`SOW-064`; PRD.md
 
 ## 8. Open decisions and deliberate non-resolution
 
-The accepted basis retains OI-001..009 for register structure, global event
-feed, loop-registry home, long-term placement, UI packaging, auth reuse, name,
-receipt contract, and contract-home/API-transport choices. OI-013 retains the
-register-validator follow-on in the accepted decomposition record
+The accepted basis retains OI-001, OI-002, and OI-004..009 for register
+structure, global event feed, long-term placement, UI packaging, auth reuse,
+name, receipt contract, and contract-home/API-transport choices. OI-003
+(loop-registry home) is resolved by D-PEC-78 O-A and SCA-004. OI-013 retains
+the register-validator follow-on in the accepted decomposition record
 (`SOFTWARE_DECOMP.md` §10).
 
 This SPEC does not decide OI-012. Its selected architecture is recorded on the
 separate DEL-00-01 ADR surface under D-PEC-72; no open-issue register or
-decomposition update is performed by this seed. The nine `TBD` scope rows
+decomposition update is performed by this seed. The eight `TBD` scope rows
 remain TBD, and C-06's unnamed SPEC consumers remain unresolved. This seed
 names no consuming deliverable and creates no consumer edge (`DEL-00-03`
 CON-001, REQ-007, REQ-010).
