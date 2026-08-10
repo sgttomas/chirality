@@ -3217,3 +3217,44 @@ amendment; owner ruling required).
   `origin/main@d269f0e04204bc463a11684499213b2283bd28f7`. CHANGE is authorized
   to validate, commit, push, and open a non-draft PR. None of those acts is
   recorded as completed by this receipt; do not merge in-session.
+
+### Receipt 104 — 2026-08-09 — Root Task Management generational pass closeout
+
+- **Modes and authority:** mandatory federation preflight; full PRD §5.1
+  candidate harvest plus manual marker/class completion; owner harvest ruling;
+  full 10-row DEFERRED-population review; owner deferral ruling; archive;
+  before/after validation; final federation; closeout. Exact rulings are in
+  `_TaskManagement/RULING_2026-08-09_ROOT_HARVEST_GENERATIONAL_PASS.md` and
+  `_TaskManagement/RULING_2026-08-09_ROOT_DEFERRAL_REVIEW_GENERATIONAL_PASS.md`.
+- **Register delta:** harvest promoted zero candidates. Ten existing DEFERRED
+  rows received only owner-ruled currentness: `TM-ROOT-035`, `-037`, `-039`,
+  `-040`, `-041`, `-042`, `-104`, `-119`, and `-123` confirmed
+  `STILL_BLOCKED`; `TM-ROOT-120` confirmed `ACTIVATABLE` without re-routing
+  its existing handoff. Nine dates moved to `LastReviewed=2026-08-09`;
+  `TM-ROOT-119` already carried that date; all ten received Notes citations.
+  No status, trigger, priority, assignment, source/evidence identity,
+  disposition, closure, or foreign-register field changed.
+- **Counts and archive:** archive moved zero rows. Root remains 21 live
+  (`OPEN=11`, `DEFERRED=10`, `ELEVATED=0`, `CLOSED=0`) and 102 archived.
+  Live and archive validators passed before and after; final live SHA-256 is
+  `aac3136389571f51901dcb92547efb7268c35b176a43a9f73d0172ebff1f0da3`;
+  archive SHA-256 remains `d1e699c4…a001`.
+- **Final federation:** `COMPLETE`; PEC `OPEN=17/DEFERRED=1` (7 archived),
+  Root `OPEN=11/DEFERRED=10` (102), App `OPEN=13/DEFERRED=3` (26), Piping
+  `OPEN=10/DEFERRED=24` (6); zero invalid/unreadable inputs, operational
+  errors, ambiguities, excluded lookalikes, or register writes. Typed
+  observations remain 48 foreign-to-local, 2 local-to-foreign, 1
+  remote-closed/local-open, and 21 local-closed/remote-open.
+- **Durable products:** reports
+  `_TaskManagement/CANDIDATE_HARVEST_2026-08-09_GENERATIONAL_PASS.md` and
+  `_TaskManagement/DEFERRAL_REVIEW_CLASSIFICATION_2026-08-09_GENERATIONAL_PASS.md`;
+  the two ruling records named above; and
+  `_TaskManagement/CLOSEOUT_2026-08-09_ROOT_GENERATIONAL_PASS.md`. Routed
+  notices awaiting owner routing: none. The existing
+  `_TaskManagement/HANDOFF_TM-ROOT-120_PUBLIC_EXPORT_REGENERATION_2026-08-08.md`
+  remains the carrier and was not re-routed.
+- **Limits and gate:** no new stale identity or closure echo arose; no
+  activation, export, dispatch, publication, lifecycle, semantic acceptance,
+  release, reliance, foreign-loop, or merge effect occurred. Publication is
+  by non-draft PR from `codex/root-taskmgmt-generation-20260809`; merge remains
+  the accountable human's separate gate.
