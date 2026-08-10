@@ -4322,3 +4322,47 @@
     only as preserved blocked evidence. No packet, freeze, verifier, approval
     hash, execution authority/action, product/runtime/source, register,
     lifecycle, decision, Task Management, or foreign-loop effect exists.
+
+- **2026-08-09 — Receipt 150** (D-APP-93 third-lineage N1 block closeout).
+  - Receipt-ID: `Receipt-150`
+  - Examined-Through: `da40d7dc4192c9aa2f49e9438729179aae281b61`
+  - Parent-Receipt: `Receipt-149`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-09,
+    Ryan Tufts, in-session): `D-APP-93: start a THIRD authoring lineage in a
+    fresh run root.`; `If this lineage blocks again despite the above, close it
+    out with the same discipline as the prior two — preserved evidence,
+    manager validation record, receipt — and return to me with the manager's
+    causal analysis of all three failures side by side. Do not begin a fourth
+    lineage without my direction.`
+  - Pointers: third-lineage causal analysis / manager validation / manager
+    return / handoff / runtime-summary / preservation SHA-256 identities
+    `54100841e73fccf5fd0cc9e8f4e7780357379242d879eaeb172927a67be81bc7`,
+    `41764b146dc311bf7397b56e95a321c28482818cb29916effd4bc35a01f4de08`,
+    `43781f5cfb99edd69e8472ffcdc35b2aadc48c7f684f5668492b0e4de57dddc3`,
+    `f1a0b235415ac73e90cd06594b7c2df2dbd9214139486db24b68a71d61db3ec1`,
+    `816b048c7cb83cc86a2d1e712b301c29a7eba94dc3e15913e3e2bc81f95dae13`,
+    and `a780b5be64f15931e566e7a03ea29128b747c8f4d7cde056c6d5a42e13fc92f8`;
+    19-file blocked-root inventory identity
+    `48259ddcd03882d8c0894b8706dcd6bd328126e5070661c62be0e23529cfc02c`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status,
+    repository self-check, and full-suite closeout; strict JSON/JSONL/CSV,
+    command-ID, zero-hit, downstream-absence, inventory/hash, historical-root
+    preservation, candidate-whitespace, diff-hygiene, and App-only containment
+    pass. Frontend gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS and CHANGE Agent 1 roles
+    under HELP_HUMAN with one N1 Agent 2. The owner prohibited resume, copy,
+    and repair; HELP_HUMAN/WORKING_ITEMS imposed the stricter absolute child-read
+    fence. Exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_THIRD_EXCLUDED_ROOT_SEARCH_SCOPE_VIOLATION`. Pacing controls
+    succeeded: checkpoint 1 at minute 10 observed 2 files/18,078 bytes and
+    checkpoint 2 at minute 22 observed 6 files/110,306 bytes. One broad
+    `rg -l` searched excluded roots because its exclusion globs were
+    ineffective; no excluded content was displayed, cited, copied, or used,
+    and all historical roots remain byte-unchanged. This violates the sealed
+    supervisory fence but does not itself prove violation of the owner's
+    stated non-reuse requirement. The zero-historical-identity 80-row ledger
+    is blocked evidence only; N2-N6 are absent. No packet, freeze, verifier,
+    approval hash, execution authority/action, product/runtime/source,
+    register, lifecycle, decision, Task Management, or foreign-loop effect
+    exists, and no fourth lineage is authorized.
