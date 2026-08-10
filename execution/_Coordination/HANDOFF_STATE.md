@@ -21,15 +21,21 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   §1.14 (effective `main@c8c2a6146`). Stage-A instruments: Receipts 66–73;
   workplan `WORKPLAN_2026-07-31_task_management_stage_a.md` (CLOSED) and
   its Amendments 1–2; program register at
-  `execution/_Coordination/_TaskManagement/REGISTER.csv` (23 live rows:
-  12 OPEN / 11 DEFERRED; 99 rows archived in `REGISTER_CLOSED.csv`). Receipt
+  `execution/_Coordination/_TaskManagement/REGISTER.csv` (21 live rows:
+  11 OPEN / 10 DEFERRED; 102 rows archived in `REGISTER_CLOSED.csv`). Receipt
   91 repaired the earlier stale handoff to the then-current generational-pass
   state of 27 live (16 OPEN / 11 DEFERRED) and 95 archived. Receipt 92 then
   recorded the separately owner-ruled closure and archival of TM-ROOT-105,
   TM-ROOT-109, and TM-ROOT-121, producing 24 live (13 OPEN / 11 DEFERRED) and
   98 archived. Receipt 96 subsequently recorded the accepted-repair closure
-  and archival of TM-ROOT-112, producing the current 23/99 state without
-  changing the DEFERRED count.
+  and archival of TM-ROOT-112, producing 23 live (12 OPEN / 11 DEFERRED) and
+  99 archived. Receipt 102 then recorded the 2026-08-08 generational pass:
+  one DEFERRED promotion followed by three owner-ruled closures/archives,
+  producing 21 live (12 OPEN / 9 DEFERRED) and 102 archived. This
+  2026-08-09 bounded currentness session independently re-derived those
+  entry counts from the CSVs; the owner-ruled deferral of TM-ROOT-119 then
+  changed only the live split to the current 11 OPEN / 10 DEFERRED, leaving
+  the validated totals at 21 live / 102 archived.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -56,6 +62,15 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   support and run evidence for the first triage; not current state.
 - Public export under `exports/chirality-app/` — stale derivative,
   deferred to the next export release (posture unchanged since SCA-002).
+- Current Root Task Management decision support under
+  `execution/_Coordination/_TaskManagement/`: the TM-ROOT-116 exact Step-0
+  draft remains derivative decision support; its exact bytes were owner-ruled
+  and applied to the standing idle workplan, but TM-ROOT-116 remains OPEN
+  pending later disposition after PR/merge evidence. The TM-ROOT-105 drift
+  analysis remains derivative evidence for the owner-ruled mechanical
+  EvidenceSha re-pin; the archived row's existing ruling and closure meaning
+  are unchanged and it was not re-closed. The session report is derivative
+  closeout support, not authority.
 
 ## 3. Closure verdict
 
@@ -75,6 +90,20 @@ agent/tool, tests, manifest, and notices became repository state at effective
 merge `2c25bd2c47c4b2f4190275ad39579a983f8786aa` after all required checks
 succeeded.
 
+`2026-08-09 BOUNDED GOVERNANCE-CURRENTNESS SESSION CLOSED — ROOT LOOP IDLE AND
+RESUMABLE.` Receipt 103 records the terminal Task Management breadcrumb.
+TM-ROOT-119 is ruled DEFERRED and recorded verbatim, with no partial
+convergence implementation. The stale register counts are refreshed above.
+The owner-accepted Step 0 is applied to the standing idle workplan while
+`CURRENT_WORKPLAN.md` remains unchanged; TM-ROOT-116 remains OPEN pending
+later disposition after publication/merge evidence. Archived TM-ROOT-105 now
+pins the current normalized bytes with both-hash/commit provenance; its
+EvidenceRef, Disposition, Closed date, EvidenceQuote, ruling text, and closure
+meaning are unchanged, and this was not a re-close. The bounded tranche is on
+`codex/root-governance-currentness-20260809` for CHANGE publication by
+non-draft PR; commit, push, PR, and merge are not closeout facts at this
+handoff, and merge remains prohibited in-session.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -89,3 +118,17 @@ The federation-survey rerun and publication requirement was discharged by
 PR #478 (Receipts 82 and 85). No further action is required for that tranche.
 Rerun its validation and federation matrix only if the shared Task Management
 instruction/tool contract or canonical register-discovery shapes change.
+
+After the human-gated PR merges, re-open the merged workplan and archived row,
+reproduce their accepted hashes, and return TM-ROOT-116 to the owner for a
+separate disposition; this session supplies no closure authority for that row.
+Rerun Root live/archive register validation, invocation-local federation,
+available App/Piping receipt validators, Root G0–G4, candidate-whitespace, and
+Git diff hygiene if publication rebasing changes any tranche byte. The
+repository still has no Root-specific receipt validator at this basis; do not
+misstate the App/Piping validators as Root coverage. Manual closeout checks
+confirm Receipt 103 is append-only, unique as a new ID, and follows the latest
+Receipt 102; they also expose two pre-existing historical headings numbered
+Receipt 80. That historical duplicate was not created or altered here and is
+outside this bounded repair. The loop remains idle; release requires a
+separately authorized bounded lane or an owner-selected successor phase.
