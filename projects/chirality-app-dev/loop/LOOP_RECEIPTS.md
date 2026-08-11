@@ -4639,3 +4639,51 @@
     hash, execution authority/action, product/runtime/system effect, register,
     lifecycle, decision, Task Management, ninth-lineage, or foreign-loop effect
     exists.
+
+- **2026-08-10 — Receipt 157** (D-APP-93 ninth-lineage N1 block closeout).
+  - Receipt-ID: `Receipt-157`
+  - Examined-Through: `c05fe2d6fbc3bd3d3b690f50075e2c878af0faf3`
+  - Parent-Receipt: `Receipt-156`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-10,
+    Ryan Tufts, in-session): `Owner direction, 2026-08-10. D-APP-93: start the
+    NINTH authoring lineage in a fresh run root. Eight lineages are closed
+    blocked evidence; every prior fix is retained; this direction adds the
+    two-tier probe partition that the eighth block proved necessary.`; `If
+    this lineage blocks, close out with preserved evidence, manager validation
+    record, receipt, and an updated nine-lineage causal analysis; return to me.
+    Do not begin a tenth lineage without my direction.`; `Everything lands by
+    PR at my merge gate; receipts chain after 156.`
+  - Pointers: ninth-lineage `FINAL_INVENTORY.sha256` identity
+    `90abbaa1c1df308d4118ac0550afa5f5c7c034b9ac5b5d252cf0f568c62cca04`;
+    manager validation / nine-lineage causal analysis / manager return /
+    handoff / runtime-summary / N1-return / two-tier-preflight identities
+    `b8fa907ba0114c8a85a22374831f0cee9b3638ea26f4caf3b324f3d301fd40e6`,
+    `922ba3273de832dc8aed452e8520cf90897518ee4a8a27749f89b47526bf1a7c`,
+    `409c1b55d0485c8abe9c5c94aa4ae4126411473a5d46d8c525bf6b345bcca6ef`,
+    `69843a2ccc7895cb63fcd3b28d623f0b08f2806b50f2666b7dd51e1833d4a5a5`,
+    `2aca337b2fc24192b7595176bb496666a2d60ad9ee4326fc0ec9ab609c2af3a6`,
+    `1cb873e6fd7a908a621fa9003d9272e0cb9b720166034c9fb60f75ed5f6aa16e`,
+    and `61dfaa4136b8c0d7465465f66bd2b72a19f8b348dfa574176b3175ef34e2385b`.
+    Candidate packet-index `73cc3b5dbc48a34446da00cddebbe585c2b0bf267d46dbc63803dd44e1544582`
+    is blocked evidence, not a frozen or approval-request identity.
+  - Checks: exact missing-output blocker reproduction; receipt contract; corpus v18/no
+    drift; practitioner status; clean-checkout repository self-check and full
+    practitioner suite; citation, allowlist, intake, binary-pin, two-tier,
+    80-row alignment, zero-historical-ID, packet-hash, strict-runtime,
+    transient-scratch, historical-preservation, text-hygiene, containment,
+    and diff-hygiene checks pass. Frontend gates skipped because no
+    product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    CHANGE Agent 1, and one N1 Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_NINTH_N1_PACKET_COMMAND_FORMS_MISSING`. M0 and N1's
+    substantive citation, intake, two-tier, alignment, zero-ID, and candidate
+    packet checks passed, but N1 omitted mandatory
+    `scratch/PACKET_COMMAND_FORMS.zsh`; manager syntax/form fan-in
+    therefore could not complete. A later manager closeout search also caused
+    `SECONDARY_BLOCK_DAPP93_NINTH_MANAGER_HISTORICAL_READ_FENCE_BREACH` by
+    displaying one non-authorized fifth-root line, with no historical-byte or
+    packet effect. Candidate outputs remain unaccepted blocked evidence; no
+    freeze, verifier, approval-request hash, execution authority/action,
+    product/runtime/source, register, lifecycle, Task Management, tenth
+    lineage, or foreign-loop effect exists.

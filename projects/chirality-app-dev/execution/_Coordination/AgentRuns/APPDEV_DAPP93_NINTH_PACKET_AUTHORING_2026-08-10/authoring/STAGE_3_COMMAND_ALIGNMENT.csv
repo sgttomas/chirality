@@ -1,0 +1,81 @@
+ledger_row,source_phase,fresh_semantic,packet_disposition,packet_surface,authority_gate,reason
+R001,preflight,bind one owner terminal to exact paths and private umask,RETAIN,runbook environment block,exact packet hash,required deterministic shell context
+R002,preflight,record every bound path,RETAIN,runbook intake record,exact packet hash,prevents implicit path substitution
+R003,preflight,prove disposable paths absent and subject present,RETAIN,runbook gates,exact packet hash,prevents collision and missing subject
+R004,reconstruction,create private diagnostic and evidence directories,REDUCE,runbook trace root creation,exact packet hash,only trace directories survive
+R005,preflight,bind host operating system identity,RETAIN,runbook host evidence,exact packet hash,trace is platform sensitive
+R006,preflight,bind host architecture identity,RETAIN,runbook architecture evidence,exact packet hash,binary and debugger identities are architecture sensitive
+R007,reconstruction,bind governed source baseline before mutation,OMIT_PRERUN,preparation prerequisite,separate preparation authority,packet mutates no governed source
+R008,reconstruction,preserve rollback copies of source,OMIT_PRERUN,preparation prerequisite,separate preparation authority,no product mutation occurs in trace packet
+R009,reconstruction,preserve rollback package manifests,OMIT_PRERUN,preparation prerequisite,separate preparation authority,no product mutation occurs in trace packet
+R010,reconstruction,preserve rollback build script,OMIT_PRERUN,preparation prerequisite,separate preparation authority,no build surface occurs in trace packet
+R011,reconstruction,preserve rollback tests,OMIT_PRERUN,preparation prerequisite,separate preparation authority,no test surface occurs in trace packet
+R012,reconstruction,ensure candidate source destinations,OMIT_PRERUN,preparation prerequisite,separate preparation authority,source installation is outside diagnostic trace
+R013,reconstruction,install helper builder configuration,OMIT_PRERUN,preparation prerequisite,separate preparation authority,builder configuration is not trace evidence
+R014,reconstruction,install candidate electron sources,OMIT_PRERUN,preparation prerequisite,separate preparation authority,packet consumes a prepared subject
+R015,reconstruction,install candidate package manifest,OMIT_PRERUN,preparation prerequisite,separate preparation authority,packet consumes a prepared subject
+R016,reconstruction,install candidate build scripts,OMIT_PRERUN,preparation prerequisite,separate preparation authority,build scripts are not trace tools
+R017,reconstruction,install candidate launcher test,OMIT_PRERUN,preparation prerequisite,separate preparation authority,test preparation does not strengthen causal trace
+R018,reconstruction,install candidate control test,OMIT_PRERUN,preparation prerequisite,separate preparation authority,test preparation does not strengthen causal trace
+R019,reconstruction,install helper packaging test,OMIT_PRERUN,preparation prerequisite,separate preparation authority,test preparation does not strengthen causal trace
+R020,reconstruction,bind candidate source bytes,OMIT_PRERUN,preparation handoff,separate preparation authority,subject identity is consumed instead
+R021,dependencies,materialize dependency tree,OMIT_PRERUN,preparation prerequisite,separate preparation authority,node toolchain removed from packet
+R022,dependencies,prove lockfile identity,OMIT_PRERUN,preparation prerequisite,separate preparation authority,dependency projection is outside trace
+R023,dependencies,capture installed dependency projection,OMIT_PRERUN,preparation prerequisite,separate preparation authority,dependency inventory is outside trace
+R024,archive,bind local electron archive,OMIT_PRERUN,preparation prerequisite,separate preparation authority,archive is not consumed by trace
+R025,archive,copy local electron archive,OMIT_PRERUN,preparation prerequisite,separate preparation authority,archive copy is convenience preparation
+R026,archive,apply temporary archive bindings,OMIT_PRERUN,preparation prerequisite,separate preparation authority,overlay is outside packet
+R027,archive,bind overlay results,OMIT_PRERUN,preparation prerequisite,separate preparation authority,overlay is outside packet
+R028,validation,run candidate tests,OMIT_PRERUN,preparation prerequisite,separate preparation authority,validation occurs before subject handoff
+R029,validation,typecheck candidate source,OMIT_PRERUN,preparation prerequisite,separate preparation authority,typecheck is not trace evidence
+R030,package,produce candidate build outputs,OMIT_PRERUN,preparation prerequisite,separate preparation authority,build is expressly removed
+R031,package,construct helper and gui packages,OMIT_PRERUN,preparation prerequisite,separate preparation authority,package construction is expressly removed
+R032,identity,bind prepared helper executable identity,RETAIN,runbook subject hash gate,exact packet hash,exact diagnostic subject must be proven
+R033,identity,bind public helper posture,ABSORB,preparation handoff gate,separate preparation authority,trace accepts only validated prepared subject
+R034,identity,bind helper topology,ABSORB,preparation handoff gate,separate preparation authority,topology belongs to subject preparation
+R035,keychain,record owner default keychain state without values,RETAIN,runbook owner-state evidence,exact packet hash,detects unintended owner state drift
+R036,keychain,record owner search list without values,RETAIN,runbook owner-state evidence,exact packet hash,detects unintended owner state drift
+R037,keychain,create disposable sealed-home login keychain,RETAIN,runbook isolated posture,exact packet hash,ruled baseline needed for helper launch
+R038,keychain,observe isolated default keychain path,RETAIN,runbook isolated posture gate,exact packet hash,proves expected sealed-home resolution
+R039,keychain,observe isolated search list path,RETAIN,runbook isolated posture gate,exact packet hash,proves one-element isolated search list
+R040,launch,launch only the prepared gui prerequisite,OMIT_PRERUN,preparation or owner context,separate preparation authority,gui is unnecessary for direct helper signal trace
+R041,launch,launch one sealed helper as owner-shell direct child,RETAIN,runbook helper launch,new exact approval,creates the sole causal-trace target
+R042,target,prove exact helper pid and parent relation,RETAIN,runbook ps and parse gate,new exact approval,prevents stale or alternate target
+R043,target,bind freshly authored debugger script,RETAIN,runbook script hash gate,debugger fence plus exact packet approval,binds exact trace semantics
+R044,stop,record universal fail-closed deviation,RETAIN,runbook stop record,new exact approval,forbids retry substitution and improvisation
+R045,trace,record attach start epoch,RETAIN,runbook timing fence,debugger fence plus exact packet approval,starts absolute duration bound
+R046,trace,attach pinned lldb and preserve raw transcript,RETAIN,runbook interactive command,debugger fence plus exact packet approval,observes causal seam on sole pid
+R047,signal,owner sends one graceful gui quit to exact pid,RETAIN,runbook Activity Monitor act,new exact approval,creates the first signal without second terminal automation
+R048,trace,interrupt the same debugger pty,RETAIN,runbook literal input,debugger fence plus exact packet approval,ends observation within bound
+R049,trace,detach exact target in same pty,RETAIN,runbook literal input,debugger fence plus exact packet approval,preserves exact target and session
+R050,trace,quit debugger in same pty,RETAIN,runbook literal input,debugger fence plus exact packet approval,returns terminal control without alternate command
+R051,trace,record attach end epoch,RETAIN,runbook timing evidence,debugger fence plus exact packet approval,closes absolute duration interval
+R052,trace,validate elapsed interval no greater than 150 seconds,RETAIN,runbook awk gate,debugger fence plus exact packet approval,enforces preserved maximum
+R053,return,wait for the exact direct child and record terminal status,RETAIN,runbook shell construct,new exact approval,proves target terminality without replacement pid
+R054,return,prove isolated control socket released,RETAIN,runbook socket gate,new exact approval,captures teardown consequence
+R055,replay,launch uninstrumented replay,OMIT_LATER,post-trace separate phase,separate future authority,replay is removed from minimal causal trace
+R056,replay,bind replay parent relation,OMIT_LATER,post-trace separate phase,separate future authority,no replay target exists in this packet
+R057,replay,bound replay readiness polling,OMIT_LATER,post-trace separate phase,separate future authority,polling and sleep surface are removed
+R058,replay,deliver replay graceful signal,OMIT_LATER,post-trace separate phase,separate future authority,no replay signal occurs
+R059,replay,collect replay terminal status,OMIT_LATER,post-trace separate phase,separate future authority,no replay child exists
+R060,replay,terminate gui and prove replay socket teardown,OMIT_LATER,post-trace separate phase,separate future authority,gui and replay are outside trace packet
+R061,owner_state,record post-run owner default keychain state,RETAIN,runbook owner-state evidence,new exact approval,enables no-drift comparison
+R062,owner_state,record post-run owner search list,RETAIN,runbook owner-state evidence,new exact approval,enables no-drift comparison
+R063,owner_state,prove owner default state unchanged,RETAIN,runbook hash comparison gate,new exact approval,blocks cleanup on unexplained drift
+R064,owner_state,prove owner search list unchanged,RETAIN,runbook hash comparison gate,new exact approval,blocks cleanup on unexplained drift
+R065,evidence,create deterministic declared evidence manifest,REDUCE,runbook explicit hash list,new exact approval,no broad walk sort or xargs surface
+R066,evidence,place credential-safe evidence in return area,REDUCE,runbook direct packet-owned paths,new exact approval,no tree copy tool is needed
+R067,evidence,independently bind returned evidence bytes,RETAIN,runbook explicit shasum forms,new exact approval,proves retained byte identities
+R068,cleanup,delete disposable isolated keychain,RETAIN,runbook isolated cleanup,new exact approval,removes only ruled disposable credential container
+R069,cleanup,prove disposable keychain absent,RETAIN,runbook absence gate,new exact approval,records cleanup result
+R070,rollback,restore governed electron source,OMIT,not applicable,no authority consumed,packet performs no source mutation
+R071,rollback,restore package manifests,OMIT,not applicable,no authority consumed,packet performs no package mutation
+R072,rollback,restore build script,OMIT,not applicable,no authority consumed,packet performs no build mutation
+R073,rollback,restore test source,OMIT,not applicable,no authority consumed,packet performs no test mutation
+R074,rollback,remove candidate source additions,OMIT,not applicable,no authority consumed,packet creates no candidate source additions
+R075,rollback,remove dependency and build derivatives,OMIT,not applicable,no authority consumed,packet creates no dependency or build derivatives
+R076,rollback,prove governed baseline restoration,ABSORB,pre-run subject handoff,separate preparation authority,preparation owns product restoration
+R077,rollback,prove frontend worktree clean,ABSORB,pre-run subject handoff,separate preparation authority,packet has no git tool or product writes
+R078,cleanup,remove only fixed disposable trace root,RETAIN,runbook terminal cleanup,new exact approval,runs only after evidence retention and safety gates
+R079,cleanup,prove fixed trace root absent,RETAIN,runbook absence gate,new exact approval,records terminal cleanup
+R080,terminal,record evidence returned with no causal claim,RETAIN,evidence return terminal status,new exact approval,preserves post-execution separation
