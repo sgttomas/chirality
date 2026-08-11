@@ -1,0 +1,21 @@
+event_id,phase,form_id,command_or_act,exit_code,read_paths,write_paths,context_telemetry,verdict
+B001,bootstrap,BOOTSTRAP,committed-plan and role reads,0,"agents/AGENT_WORKING_ITEMS.md;projects/chirality-app-dev/loop/LOOP_INIT.md;committed App workplan",,unavailable,PASS
+B002,bootstrap,BOOTSTRAP,git state/base checks,0,"git metadata",,unavailable,PASS
+B003,bootstrap,BOOTSTRAP,receipt validator and Receipt-158 read,0,"tools/validation/validate_app_dev_loop_receipts.py;projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",,unavailable,PASS
+B004,bootstrap,BOOTSTRAP,exact historical-root name inventory,0,"projects/chirality-app-dev/execution/_Coordination/AgentRuns directory names only",,unavailable,PASS
+B005,bootstrap,BOOTSTRAP,exact fifth citation identity observations,0,"authorized fifth citation exceptions only",,unavailable,PASS
+B006,bootstrap,BOOTSTRAP,exact live D-APP-93/D-APP-94 source reads,0,"exact decision files",,unavailable,PASS
+B007,bootstrap,BOOTSTRAP,exact live D-APP-92 trace-script read and identity,0,"exact live trace file",,unavailable,PASS
+B008,bootstrap,BOOTSTRAP,exact D-APP-92 C196/C197 adoption and request reads,0,"exact D-APP-92 files",,unavailable,PASS
+B009,bootstrap,BOOTSTRAP,tool path resolution and neutral lldb version probe,0,"host tool paths",,unavailable,PASS
+M001,predispatch,M01,manager materialization attempt 1,1,"exact declared inputs","inputs and validation outputs",unavailable,"EXPECTED ps sandbox denial surfaced as PermissionError; wrapper handling amended before freeze"
+M002,predispatch,M08,amend deterministic ps-denial capture,0,"manager/MATERIALIZE_INPUTS.py","manager/MATERIALIZE_INPUTS.py",unavailable,PASS
+M003,predispatch,M01,manager materialization final replay,0,"exact declared inputs","inputs/LIVE_SOURCE_CAPSULE.md;inputs/CLEARANCE_CITATIONS.md;inputs/TOOLCHAIN_PREFLIGHT.json;validation/M0_MATERIALIZATION.md",unavailable,PASS
+M004,predispatch,M07,sealed-artifact identity observations,0,"six exact predispatch files",,unavailable,PASS
+M005,predispatch,M06,packet stub telemetry,0,"six exact packet stubs",,unavailable,"6 UNFILLED; 1774 bytes"
+M006,predispatch,M10,fresh-root durable progress observation,0,"fresh eleventh root only",,unavailable,"27 files; 48431 bytes; 0 FILLED; 6 UNFILLED"
+M007,predispatch,M07,frozen graph/allowlist/observer identity observations,0,"four exact manager-control files",,unavailable,PASS
+M008,dispatch,M09,spawn sealed N1 no-shell author,0,"manager-injected complete capsule","eight exact N1 targets",unavailable,PASS
+M009,fanin,M10,fresh-root durable progress observation,0,"fresh eleventh root only",,unavailable,"27 files; 75862 bytes; validator still observed 0 FILLED and 6 UNFILLED"
+M010,fanin,M02,deterministic manager fan-in validation,1,"six exact packet files;N1 census","validation/MANAGER_FANIN_VALIDATION.md",unavailable,"BLOCK: six stub headers retained; census mismatch; historical-ID scan non-clean; authority phrase absent"
+M011,fanin,M09,N1 explanation request without tools or writes,0,"child retained context only",,unavailable,"child confirms bare-hunk patch inserted after stubs and claim exceeded evidence"

@@ -4734,3 +4734,49 @@
     hash, execution authority/action, product/runtime/system/source, register,
     lifecycle, decision, Task Management, eleventh lineage, or foreign-loop
     effect exists.
+
+- **2026-08-10 — Receipt 159** (D-APP-93 eleventh-lineage N1 block closeout).
+  - Receipt-ID: `Receipt-159`
+  - Examined-Through: `912e3a8c9c07e9b8359093f63feace1c7c9f4776`
+  - Parent-Receipt: `Receipt-158`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-10,
+    Ryan Tufts, in-session): `Owner direction, 2026-08-10. D-APP-93: start the ELEVENTH authoring lineage
+    in a fresh run root. Ten lineages are closed blocked evidence.`; `If this lineage blocks, close out with preserved evidence, manager
+    validation record, receipt, and an updated eleven-lineage causal
+    analysis; return to me. Do not begin a twelfth lineage without my
+    direction.`; `APPROVE: in APPDEV_DAPP93_ELEVENTH_PACKET_AUTHORING_2026-08-10, remove exactly one terminal LF from each of the 14 files enumerated in CHANGE’s report, requiring every reported pre-repair and expected post-repair SHA-256 to match. Add NORMALIZATION_AMENDMENT.md recording each path, both identities, the byte-exact one-LF relation, and pre-normalization inventory SHA-256 93259081631b715fa97866b5b7a4845e215443b8bb9b15ac9c8739806da5edd4. Do not edit existing hash citations. Recompute affected closeout identities and FINAL_INVENTORY.sha256; append and validate Receipt 159 after Receipt 158; run the required closeout checks; stage only the complete eleventh-lineage run root and projects/chirality-app-dev/loop/LOOP_RECEIPTS.md; and commit locally. Never execute the packet, dispatch a verifier, or begin a twelfth lineage. After commit, report the exact commit SHA and publication payload, then stop for payload-specific publication approval.`
+  - Pointers: eleventh-lineage `FINAL_INVENTORY.sha256` / normalization
+    amendment / manager validation / eleven-lineage causal analysis / manager
+    return / handoff / runtime-summary / N1-return / M0-materialization /
+    deterministic fan-in identities
+    `81806d6a6a0f4254bc41edafb086a803e1f22510e7d40c5f13b31d77fa433ba8`,
+    `e0e391e366b945123c85eee69e7f9cadefa759d435f319d040cfe821dfd04d99`,
+    `46c520a8f45ca4cbc44850dadd78687a7cb6cd0407c7b174d2c812997123eb5b`,
+    `c26b0356ba17cd261d71bd55ba86f378fb832bcb27acc8bd346423cc8a4a70c9`,
+    `8b8070afd27f88d11c9b29feea1928b6f97ac97cc78b88995ca974a40877bdb5`,
+    `137b7245453189587144a121fef45c590dc00ada1480dabcd09699e912f94a6c`,
+    `99a645b612a7936a86714ab156ffe3e3fcffccfc50bedebb97af375d8582e7b6`,
+    `7262aa400114a3e5671529485e487d04e95c7d428821f96c8675c9ad21b72793`,
+    `f2c6c829f3fb05478c7e7ec277dd1c99bda0e907526a5ba15be7e46d231f5e98`,
+    and `b1d0c92070c9f39cd595cdef70ef2654d8dea46103631171281e75d5a19a2284`.
+  - Checks: exact 14-file one-byte normalization and all pre/post relations;
+    receipt contract; corpus v18/no drift; practitioner status; clean-checkout
+    repository self-check and full practitioner suite; strict inventory/runtime,
+    blocked-fan-in reproduction, historical preservation, containment,
+    candidate-whitespace, and diff-hygiene checks pass. Existing pre-repair
+    citations remain unchanged and resolvable through the amendment. Frontend
+    gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    CHANGE Agent 1, and one N1 Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_ELEVENTH_N1_STUB_REPLACEMENT_FAILURE`. M0 citation, intake,
+    host-preflight, OWNER_PREFLIGHT, and exact-skeleton preparation passed, but
+    N1's accepted bare-hunk patch appended after all six stubs and duplicated
+    census rows; all packet files remained unfilled, the historical-ID scan was
+    non-clean, and manager fan-in rejected the return. Secondary self-audit also
+    found the embedded `rg` binary absent from the M0 pin table and no
+    pre-dispatch end-to-end fan-in replay; manager symmetry therefore did not
+    pass. N1 bytes remain blocked evidence; no accepted/frozen packet, fresh
+    verifier, approval identity, execution authority/action, product/runtime/
+    system/source, register, lifecycle, Task Management, twelfth lineage, or
+    foreign-loop effect exists.
