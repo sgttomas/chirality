@@ -1,0 +1,180 @@
+sequence,phase,form_id,command_or_operation,exact_scope,result
+1,bootstrap,BBOOT,"git status --short --branch",repo,clean tenth branch
+2,bootstrap,BBOOT,"git rev-parse HEAD",repo,e141579e885a2a0a9fcd17ee4619451918edef84
+3,bootstrap,BBOOT,"git rev-parse origin/main",repo,e141579e885a2a0a9fcd17ee4619451918edef84
+4,bootstrap,BBOOT,"zsh whence -p python3",host,/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3
+5,bootstrap,BBOOT,"which git; which shasum; which rg",host,resolved
+6,construction,BBOOT,"stat/ls/shasum exact resolved binaries",pinned binaries,pass
+7,construction,B01,"apply_patch initial control and stub tranche",tenth root,pass
+8,construction,B01,"apply_patch create 18 exact N1 stubs",tenth root,pass
+9,construction,B01,"apply_patch create exact manager and N1 read allowlists",tenth root,pass
+10,construction,B01,"apply_patch create manager validation program",tenth root,pass
+11,construction,B01,"apply_patch correct validator repository anchor",manager/MANAGER_VALIDATION.py,pass
+12,construction,B01,"apply_patch correct validator log-audit result",manager/MANAGER_VALIDATION.py,pass
+13,construction,B01,"apply_patch create catalog capsule and sealed N1 brief",tenth root,pass
+14,construction,B01,"apply_patch add exact Receipt-157 command form",manager contract and validator,pass
+15,predispatch,B13,"python3.13 validate_app_dev_loop_receipts.py --repo-root .",loop receipt,pass
+16,predispatch,B17,"rg -n -F Receipt-157 exact LOOP_RECEIPTS.md",loop receipt,one exact match
+17,predispatch,B04,"shasum fifth FINAL_INVENTORY.sha256",authorized citation,pass
+18,predispatch,B04,"shasum fifth NORMALIZATION_AMENDMENT.md",authorized citation,pass
+19,predispatch,B04,"shasum fifth STAGE_1_SALVAGE_HASHES.md",authorized citation,pass
+20,predispatch,B04,"shasum fifth STAGE_2_HISTORICAL_ID_SCAN.md",authorized citation,pass
+21,predispatch,B04,"shasum fifth STAGE_3_LIVE_SOURCE_PROVENANCE.md",authorized citation,pass
+22,predispatch,B04,"shasum fifth STAGE_4_LEDGER_ROW_PROVENANCE.csv",authorized citation,pass
+23,predispatch,B04,"shasum fifth STAGE_5_STRUCTURAL_VALIDATION.md",authorized citation,pass
+24,predispatch,B04,"shasum fifth STAGE_6_TAINT_CLEARANCE_VERDICT.md",authorized citation,pass
+25,predispatch,B04,"shasum third STAGE_5_COMMAND_AUTHORITY_LEDGER.csv",authorized ledger,pass
+26,predispatch,B04,"shasum sixth intake capsule template",authorized template,pass
+27,predispatch,B04,"shasum sixth intake preflight template",authorized template,pass
+28,predispatch,B04,"shasum seventh approved probe forms template",authorized template,pass
+29,predispatch,B04,"shasum seventh preflight template",authorized template,pass
+30,predispatch,B04,"shasum seventh brief template",authorized template,pass
+31,predispatch,B04,"shasum eighth intake capsule template",authorized template,pass
+32,predispatch,B04,"shasum eighth minimal catalog template",authorized template,pass
+33,predispatch,B04,"shasum ninth intake capsule template",authorized template,pass
+34,predispatch,B04,"shasum ninth two-tier catalog template",authorized template,pass
+35,predispatch,B04,"shasum ninth two-tier preflight template",authorized template,pass
+36,construction,B01,"apply_patch synchronize manager command log through preflight citations",manager/MANAGER_COMMAND_LOG.csv,pass
+37,predispatch,B12,"MANAGER_VALIDATION.py preflight",tenth root,"pass 30 files 44553 bytes 18 stubs"
+38,construction,B01,"apply_patch create manager safe-probe script/output and log",tenth root,pass
+39,predispatch,B05,"cat tenth intake capsule",exact tenth control,pass
+40,predispatch,B05,"cat tenth N1 brief",exact tenth control,pass
+41,predispatch,B05,"cat tenth N1 read allowlist",exact tenth control,pass
+42,predispatch,B05,"cat tenth historical fence",exact tenth control,pass
+43,predispatch,B05,"cat tenth tool catalog",exact tenth control,pass
+44,predispatch,B05,"cat tenth stub contract",exact tenth control,pass
+45,predispatch,B04,"shasum tenth intake capsule",exact tenth control,pass
+46,predispatch,B04,"shasum tenth N1 brief",exact tenth control,pass
+47,predispatch,B04,"shasum tenth N1 read allowlist",exact tenth control,pass
+48,predispatch,B04,"shasum tenth historical fence",exact tenth control,pass
+49,predispatch,B04,"shasum tenth tool catalog",exact tenth control,pass
+50,predispatch,B04,"shasum tenth stub contract",exact tenth control,pass
+51,predispatch,B09,"zero-ID full-pattern scan one tenth stub",authoring/STAGE_1_DIAGNOSTIC_NECESSITY.md,"exit 1 zero stdout"
+52,predispatch,B08,"wc -c one tenth stub",authoring/STAGE_1_DIAGNOSTIC_NECESSITY.md,177
+53,predispatch,B07,"stat -f %z one tenth stub",authoring/STAGE_1_DIAGNOSTIC_NECESSITY.md,177
+54,predispatch,B06,"test -x /bin/cat",pinned binary,pass
+55,predispatch,B06,"test -x /usr/bin/shasum",pinned binary,pass
+56,predispatch,B06,"test -x /usr/bin/perl",pinned binary,pass
+57,predispatch,B06,"test -x rg real path",pinned binary,pass
+58,predispatch,B06,"test -x /usr/bin/wc",pinned binary,pass
+59,predispatch,B06,"test -x /usr/bin/stat",pinned binary,pass
+60,predispatch,B06,"test -x /bin/test",pinned binary,pass
+61,predispatch,B06,"test -x /usr/bin/env",pinned binary,pass
+62,predispatch,B06,"test -x /bin/zsh",pinned binary,pass
+63,predispatch,B06,"test -x Python real path",pinned binary,pass
+64,predispatch,B06,"test -x /usr/bin/printf",pinned binary,pass
+65,predispatch,B06,"test -x /bin/mkdir",pinned binary,pass
+66,predispatch,B06,"test -x /usr/bin/sw_vers",pinned binary,pass
+67,predispatch,B06,"test -x /usr/bin/uname",pinned binary,pass
+68,predispatch,B06,"test -x /usr/bin/security",pinned binary,pass
+69,predispatch,B06,"test -x /bin/ps",pinned binary,pass
+70,predispatch,B06,"test -x /usr/bin/awk",pinned binary,pass
+71,predispatch,B06,"test -x /bin/date",pinned binary,pass
+72,predispatch,B06,"test -x /usr/bin/xcrun",pinned binary,pass
+73,predispatch,B06,"test -x exact Xcode lldb",pinned binary,pass
+74,predispatch,B06,"test -x /usr/bin/tee",pinned binary,pass
+75,predispatch,B06,"test -x /bin/kill",pinned binary,pass
+76,predispatch,B06,"test -x /bin/sleep",pinned binary,pass
+77,predispatch,B06,"test -x /bin/rm",pinned binary,pass
+78,predispatch,B10,"zsh -n M0_SAFE_PROBES.zsh",tenth scratch,pass
+79,predispatch,B11,"exact restricted env execute M0_SAFE_PROBES.zsh",tenth scratch,"script 0; ps 127 denial; all other probes 0"
+80,predispatch,B05,"cat M0_SAFE_PROBE_OUTPUT.txt",tenth scratch,pass
+81,construction,B01,"apply_patch synchronize manager log through executable probes",manager/MANAGER_COMMAND_LOG.csv,pass
+82,predispatch,B12,"MANAGER_VALIDATION.py preflight after probes",tenth root,"pass 32 files 54827 bytes 18 stubs"
+83,predispatch,B12,"MANAGER_VALIDATION.py log-audit",manager command log,"pass zero errors"
+84,construction,B01,"apply_patch create preflight validation and runtime records",tenth root,pass
+85,predispatch,B05,"cat manager/MANAGER_COMMAND_ALLOWLIST.md",exact tenth control,pass
+86,predispatch,B05,"cat manager/MANAGER_COMMAND_LOG.csv",exact tenth control,pass
+87,predispatch,B04,"shasum WORK_GRAPH.md",exact tenth control,pass
+88,predispatch,B04,"shasum allowlists/HISTORICAL_ROOT_FENCE.txt",exact tenth control,pass
+89,predispatch,B04,"shasum allowlists/MANAGER_READ_ALLOWLIST.txt",exact tenth control,pass
+90,predispatch,B04,"shasum allowlists/N1_READ_ALLOWLIST.txt",exact tenth control,pass
+91,predispatch,B04,"shasum manager/MANAGER_COMMAND_ALLOWLIST.md",exact tenth control,pass
+92,predispatch,B04,"shasum manager/STUB_CONTRACT.txt",exact tenth control,pass
+93,predispatch,B04,"shasum manager/MANAGER_VALIDATION.py",exact tenth control,pass
+94,predispatch,B04,"shasum intake/CANDIDATE_DIAGNOSTIC_TOOL_CATALOG.md",exact tenth control,pass
+95,predispatch,B04,"shasum intake/N1_NONCIRCULAR_INTAKE_CAPSULE.md",exact tenth control,pass
+96,predispatch,B04,"shasum briefs/N1_PACKET_AUTHOR_BRIEF.md",exact tenth control,pass
+97,predispatch,B04,"shasum scratch/M0_SAFE_PROBES.zsh",exact tenth control,pass
+98,predispatch,B04,"shasum scratch/M0_SAFE_PROBE_OUTPUT.txt",exact tenth control,pass
+99,predispatch,B04,"shasum validation/CITATION_IDENTITY_VERIFICATION.md",exact tenth control,pass
+100,predispatch,B04,"shasum validation/EXECUTABLE_NONCIRCULAR_TWO_TIER_PREFLIGHT.md",exact tenth control,pass
+101,predispatch,B04,"shasum validation/MANAGER_COMMAND_PREFLIGHT.md",exact tenth control,pass
+102,construction,B01,"apply_patch create sealed pre-dispatch identities and synchronize command log",tenth root,pass
+103,predispatch,B05,"cat validation/SEALED_PRE_DISPATCH_IDENTITIES.sha256",exact tenth control,pass
+104,predispatch,B12,"MANAGER_VALIDATION.py preflight after identity seal",tenth root,"pass 37 files 62750 bytes 18 stubs"
+105,predispatch,B12,"MANAGER_VALIDATION.py log-audit after identity seal",manager command log,"pass zero errors"
+106,predispatch,B05,"cat ACTIVATION.md",exact tenth control,pass
+107,predispatch,B05,"cat RUNTIME_EVENTS.jsonl",exact tenth control,pass
+108,construction,B01,"apply_patch mark exact N1 dispatch authorization and log",tenth root,pass
+109,dispatch,B01,"apply_patch record governed N1 dispatch state",tenth root,pass
+110,fanin,B12,"MANAGER_VALIDATION.py census",18 exact stubs,"2 FILLED 16 UNFILLED"
+111,fanin,B12,"MANAGER_VALIDATION.py fanin",18 exact stubs,"reject four errors"
+112,fanin,B05,"cat returns/N1_OUTPUT_CENSUS.csv",exact tenth child return,pass
+113,fanin,B05,"cat returns/N1_AUTHOR_RETURN.md",exact tenth child return,pass
+114,fanin,B12,"MANAGER_VALIDATION.py preflight after terminal child return",tenth root,"expected fail 37 files 70518 bytes 2 filled"
+115,closeout,B01,"apply_patch record terminal BLOCK and manager fan-in rejection",tenth root,pass
+116,closeout,B17,"rg -n -F Receipt-157 exact LOOP_RECEIPTS.md",loop receipt,one exact match
+117,closeout,B05,"cat LOOP_RECEIPTS.md",exact live receipt ledger,"Receipt-153 through Receipt-157 causal facts observed"
+118,closeout,B05,"cat allowlists/HISTORICAL_ROOT_FENCE.txt",exact tenth control,pass
+119,closeout,B01,"apply_patch create causal analysis manager return and handoff",tenth root,pass
+120,closeout,B12,"MANAGER_VALIDATION.py log-audit before closeout assembly",manager command log,"pass zero errors"
+121,closeout,B13,"python3.13 validate_app_dev_loop_receipts.py --repo-root .",loop receipt,pass
+122,closeout,B14,"reconcile_authority_corpus.py status",App authority corpus,"pass v18 no drift"
+123,closeout,B15,"git diff --check",repository,pass
+124,closeout,B12,"MANAGER_VALIDATION.py preflight after closeout records",tenth root,"expected fail 41 files 83261 bytes 2 filled"
+125,closeout,B01,"apply_patch add runtime summary receipt-ready placeholders and freeze terminal command log",tenth root,pass
+126,inventory,B04,"shasum ACTIVATION.md",exact tenth file,pass
+127,inventory,B04,"shasum WORK_GRAPH.md",exact tenth file,pass
+128,inventory,B04,"shasum RUNTIME_EVENTS.jsonl",exact tenth file,pass
+129,inventory,B04,"shasum TEN_LINEAGE_CAUSAL_ANALYSIS.md",exact tenth file,pass
+130,inventory,B04,"shasum MANAGER_RETURN.md",exact tenth file,pass
+131,inventory,B04,"shasum HANDOFF_STATE.md",exact tenth file,pass
+132,inventory,B04,"shasum RECEIPT_READY_FACTS.md placeholder identity",exact tenth file,pass
+133,inventory,B04,"shasum RUNTIME_SUMMARY.json placeholder identity",exact tenth file,pass
+134,inventory,B04,"shasum allowlists/HISTORICAL_ROOT_FENCE.txt",exact tenth file,pass
+135,inventory,B04,"shasum allowlists/MANAGER_READ_ALLOWLIST.txt",exact tenth file,pass
+136,inventory,B04,"shasum allowlists/N1_READ_ALLOWLIST.txt",exact tenth file,pass
+137,inventory,B04,"shasum manager/MANAGER_COMMAND_ALLOWLIST.md",exact tenth file,pass
+138,inventory,B04,"shasum manager/MANAGER_COMMAND_LOG.csv",exact tenth file,pass
+139,inventory,B04,"shasum manager/MANAGER_VALIDATION.py",exact tenth file,pass
+140,inventory,B04,"shasum manager/STUB_CONTRACT.txt",exact tenth file,pass
+141,inventory,B04,"shasum intake/CANDIDATE_DIAGNOSTIC_TOOL_CATALOG.md",exact tenth file,pass
+142,inventory,B04,"shasum intake/N1_NONCIRCULAR_INTAKE_CAPSULE.md",exact tenth file,pass
+143,inventory,B04,"shasum briefs/N1_PACKET_AUTHOR_BRIEF.md",exact tenth file,pass
+144,inventory,B04,"shasum scratch/M0_SAFE_PROBES.zsh",exact tenth file,pass
+145,inventory,B04,"shasum scratch/M0_SAFE_PROBE_OUTPUT.txt",exact tenth file,pass
+146,inventory,B04,"shasum scratch/N1_SAFE_PROBES.zsh",exact tenth file,pass
+147,inventory,B04,"shasum scratch/N1_SAFE_PROBE_OUTPUT.txt",exact tenth file,pass
+148,inventory,B04,"shasum scratch/PACKET_COMMAND_FORMS.zsh",exact tenth file,pass
+149,inventory,B04,"shasum validation/CITATION_IDENTITY_VERIFICATION.md",exact tenth file,pass
+150,inventory,B04,"shasum validation/EXECUTABLE_NONCIRCULAR_TWO_TIER_PREFLIGHT.md",exact tenth file,pass
+151,inventory,B04,"shasum validation/MANAGER_COMMAND_PREFLIGHT.md",exact tenth file,pass
+152,inventory,B04,"shasum validation/SEALED_PRE_DISPATCH_IDENTITIES.sha256",exact tenth file,pass
+153,inventory,B04,"shasum validation/MANAGER_FANIN_VALIDATION.md",exact tenth file,pass
+154,inventory,B04,"shasum authoring/STAGE_1_DIAGNOSTIC_NECESSITY.md",exact tenth file,pass
+155,inventory,B04,"shasum authoring/STAGE_2_REQUIREMENTS_MATRIX.md",exact tenth file,pass
+156,inventory,B04,"shasum authoring/STAGE_3_COMMAND_ALIGNMENT.csv",exact tenth file,pass
+157,inventory,B04,"shasum authoring/STAGE_4_TWO_TIER_PROBE_LEDGER.csv",exact tenth file,pass
+158,inventory,B04,"shasum authoring/STAGE_5_LITERAL_RUNBOOK.md",exact tenth file,pass
+159,inventory,B04,"shasum authoring/STAGE_6_LLDB_COMMAND_SCRIPT.txt",exact tenth file,pass
+160,inventory,B04,"shasum authoring/STAGE_7_EVIDENCE_RETURN_PACKET.md",exact tenth file,pass
+161,inventory,B04,"shasum authoring/STAGE_8_PACKET_INDEX.md",exact tenth file,pass
+162,inventory,B04,"shasum packet/DAPP93_TENTH_EXACT_EXECUTION_PACKET.md",exact tenth file,pass
+163,inventory,B04,"shasum packet/DAPP93_TENTH_LLDB_COMMAND_SCRIPT.txt",exact tenth file,pass
+164,inventory,B04,"shasum packet/DAPP93_TENTH_EVIDENCE_RETURN_TEMPLATE.md",exact tenth file,pass
+165,inventory,B04,"shasum packet/TWO_TIER_PROBE_LEDGER.csv",exact tenth file,pass
+166,inventory,B04,"shasum packet/PACKET_INDEX.md",exact tenth file,pass
+167,inventory,B04,"shasum returns/N1_OUTPUT_CENSUS.csv",exact tenth file,pass
+168,inventory,B04,"shasum returns/N1_AUTHOR_RETURN.md",exact tenth file,pass
+169,inventory,B01,"apply_patch create preliminary 43-member FINAL_INVENTORY.sha256",tenth root,pass
+170,inventory,B12,"MANAGER_VALIDATION.py preflight after inventory creation",tenth root,"expected fail; exact final file count and byte total recorded"
+171,inventory,B01,"apply_patch fill fixed-width runtime-summary byte total",RUNTIME_SUMMARY.json,pass
+172,inventory,B04,"shasum final RUNTIME_SUMMARY.json",exact tenth file,pass
+173,inventory,B01,"apply_patch fill fixed-width receipt-ready totals and pointer identities",RECEIPT_READY_FACTS.md,pass
+174,inventory,B04,"shasum final RECEIPT_READY_FACTS.md",exact tenth file,pass
+175,inventory,B01,"apply_patch replace two preliminary inventory identities",FINAL_INVENTORY.sha256,pass
+176,closeout,B16,"shasum -a 256 -c FINAL_INVENTORY.sha256 from tenth root",43 inventory members,pass
+177,closeout,B12,"MANAGER_VALIDATION.py log-audit after immutable command-log freeze",manager command log,"pass zero errors"
+178,closeout,B15,"git diff --check after immutable closeout",repository,pass
+179,closeout,B04,"shasum FINAL_INVENTORY.sha256",exact tenth file,pass

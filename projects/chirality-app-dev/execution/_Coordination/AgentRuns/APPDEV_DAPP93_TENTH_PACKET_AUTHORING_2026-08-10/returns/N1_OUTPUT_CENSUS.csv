@@ -1,0 +1,19 @@
+path,status,reason,bytes,sha256
+authoring/STAGE_1_DIAGNOSTIC_NECESSITY.md,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",177,c71f871a5460591c3ed7bff16725d4dda1ea1b81d58ed713058ad3d959cbe819
+authoring/STAGE_2_REQUIREMENTS_MATRIX.md,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",233,4295a25366996caca99b90d8c353de5e50ce4f6a44c80776a35b7e04894b7935
+authoring/STAGE_3_COMMAND_ALIGNMENT.csv,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",190,9ba10b5f134af76073f2dfddb461c0bd795ebb1043816991f5c8b28fd3c56f6e
+authoring/STAGE_4_TWO_TIER_PROBE_LEDGER.csv,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",253,1e85b3ae82335feceed07d39abcb237fa4ddc8eb510caec3224e532aff15ad89
+authoring/STAGE_5_LITERAL_RUNBOOK.md,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",222,a7dea5d330cce84f4109beb0d90063a6697a989f5ea30699aa588d91fd2815fa
+authoring/STAGE_6_LLDB_COMMAND_SCRIPT.txt,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",171,b5b16c4399bd38ff8fa4652d9d1b29a12f900644360c3a682bc6ff0037e8bc79
+authoring/STAGE_7_EVIDENCE_RETURN_PACKET.md,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",190,3e648d48701f8589ba1d135aaa6a2bedaeb1053dcb467071e62ff3a017f287c3
+authoring/STAGE_8_PACKET_INDEX.md,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",175,9e1085febdfb11208cdce81a8b9b32642794fd00361c9bb82c46cdfdf70e8c76
+packet/DAPP93_TENTH_EXACT_EXECUTION_PACKET.md,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",176,3e4859b3b7f17ef62a4f76eb42088c5493119a8dc97ef87ff8a2e4fb9755d859
+packet/DAPP93_TENTH_LLDB_COMMAND_SCRIPT.txt,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",87,67cd0ecb854cedf1dc905fa311c4fa6b40a60c87a967a2d738d84b799bfcbeac
+packet/DAPP93_TENTH_EVIDENCE_RETURN_TEMPLATE.md,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",86,b26de5f8f0a31242b57c16028df0b740414cec701b184e90258709a355590f01
+packet/TWO_TIER_PROBE_LEDGER.csv,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",115,8d1ba3a4a5ab24ed3553d1d380ff664155901369cc53d021604d259f872da15d
+packet/PACKET_INDEX.md,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",179,99cc8d4e98d305976e9953915614de8e489504e643ff5b27fb3bba692de89e79
+scratch/N1_SAFE_PROBES.zsh,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",189,42927880646d80ef18f615fc0d90bbf66ec12ab431780ecca880a3cf2d2e3eca
+scratch/N1_SAFE_PROBE_OUTPUT.txt,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",155,33297a8c669ef6072f43b8919b7489b41318191fa7aca4185b25b1a3530e91fa
+scratch/PACKET_COMMAND_FORMS.zsh,UNFILLED,"terminal BLOCK: initial intake read did not conform to one-file frozen F01",152,e546835c9bd2f8314774654ca59074e18130ba3fa4aff6edcf992884fca85784
+returns/N1_OUTPUT_CENSUS.csv,UNFILLED,"stub marker present at deterministic pre-write F11 census; this file is the blocker record",176,819fb39d725d09ac89dd52e10c5e929a720c06c9bc9bd25fba005f721830232c
+returns/N1_AUTHOR_RETURN.md,UNFILLED,"stub marker present at deterministic pre-write F11 census; terminal return written after census",196,a42e51807a1029942b8eecfdad374405de8a29bda06abea2bbf0d4e22d7e8d67

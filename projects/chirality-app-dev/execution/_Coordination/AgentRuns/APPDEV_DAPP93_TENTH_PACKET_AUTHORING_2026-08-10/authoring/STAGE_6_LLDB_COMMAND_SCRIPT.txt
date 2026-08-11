@@ -1,0 +1,2 @@
+STUB_UNFILLED
+Required content: fresh exact LLDB command script for the causal trace, with required breakpoint and backtrace semantics and no historical command identity.

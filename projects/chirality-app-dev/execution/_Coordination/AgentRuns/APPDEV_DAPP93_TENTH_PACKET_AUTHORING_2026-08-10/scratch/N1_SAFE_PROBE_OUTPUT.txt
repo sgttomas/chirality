@@ -1,0 +1,2 @@
+STUB_UNFILLED
+Required content: durable exact/normalized probe observations including command-level exits, output shapes, and any sandbox denial evidence.

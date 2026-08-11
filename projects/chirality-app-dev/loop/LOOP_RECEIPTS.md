@@ -4687,3 +4687,50 @@
     freeze, verifier, approval-request hash, execution authority/action,
     product/runtime/source, register, lifecycle, Task Management, tenth
     lineage, or foreign-loop effect exists.
+
+- **2026-08-10 — Receipt 158** (D-APP-93 tenth-lineage N1 block closeout).
+  - Receipt-ID: `Receipt-158`
+  - Examined-Through: `e141579e885a2a0a9fcd17ee4619451918edef84`
+  - Parent-Receipt: `Receipt-157`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-10,
+    Ryan Tufts, in-session): `Owner direction, 2026-08-10. D-APP-93: start the TENTH authoring lineage in
+    a fresh run root. Nine lineages are closed blocked evidence. The structural
+    gates from lineages one through eight all held in lineage nine; its two
+    defects were variance, not structure. This direction therefore adds no new
+    gate — it adds two constructions that make the lineage-nine defects
+    impossible, and frames the work accordingly: this is assembly of
+    already-validated components, not invention.`; `If this lineage blocks, close out with preserved evidence, manager
+    validation record, receipt, and an updated ten-lineage causal analysis;
+    return to me. Do not begin an eleventh lineage without my direction. If
+    it freezes, present the frozen packet identity, verifier return, the
+    two-tier probe ledger, the skeleton self-census, and the
+    approval-request surface, and stop.`; `Everything lands by PR at my merge gate; receipts chain after 157.`
+  - Pointers: tenth-lineage `FINAL_INVENTORY.sha256` identity
+    `1dfb3793f0a1d23206020184bf912cd4744cfaf4d22426cf217a0697483f6a57`;
+    manager validation / ten-lineage causal analysis / manager return /
+    handoff / runtime-summary / N1-return / receipt-ready-facts identities
+    `83b413b6e1e041aa6b6cbe290c45ca763af990f4e8111bb5bc8609362b4172a9`,
+    `4864ce30e11370bf539e1eff566c4ce9cb5a454573a74b9fa82292a6e94267f8`,
+    `13dfcc0a53966d763cad5dbe6b4dfc1ca146d1cc43dc590ea2a45c81f3ebff1e`,
+    `81469a59664410861279d1b1e111deda2c7576e48a26a6b4756d18e14cdf4f97`,
+    `2ea2d6c0806f52d139ce8b9fe73b9fde1fc4f16952e04b21adff6a03d1973f9c`,
+    `303fe176c99c28a3593e6451c7d23a59d88920dd532fd7ef591b05b60da7acf3`,
+    and `65bb1174049fb703bdfb5fb3bbe2cdb8414d0f09987f9d7eb5162c162ac29862`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status;
+    clean-checkout repository self-check and full practitioner suite; strict
+    inventory/runtime, citation, ledger/template identity, manager-command
+    log, executable brief/intake/two-tier preflight, deterministic fan-in,
+    containment, historical preservation, whitespace, and diff-hygiene checks
+    pass. Frontend gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    CHANGE Agent 1, and one N1 Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_TENTH_N1_FROZEN_INTAKE_FORM_VIOLATION`. Predispatch passed,
+    but N1's first intake grouped the exact allowlisted files into one
+    `/bin/cat --` invocation outside frozen one-file F01; later exact replay
+    could not cure the earlier out-of-form event. Manager fan-in rejected the
+    return; only blocker records were filled and all packet/payload stubs
+    remained unfilled. No authored packet, freeze, verifier, approval-request
+    hash, execution authority/action, product/runtime/system/source, register,
+    lifecycle, decision, Task Management, eleventh lineage, or foreign-loop
+    effect exists.

@@ -1,0 +1,19 @@
+# Exact N1 output contract: 18 pre-created stubs; N1 fills only these paths.
+authoring/STAGE_1_DIAGNOSTIC_NECESSITY.md|stage=1|required=all candidate dispositions; minimal trace necessity; npm/node removed
+authoring/STAGE_2_REQUIREMENTS_MATRIX.md|stage=2|required=all authority/fence/approval/credential/timing obligations
+authoring/STAGE_3_COMMAND_ALIGNMENT.csv|stage=3|required=header plus exactly 80 rows R001-R080
+authoring/STAGE_4_TWO_TIER_PROBE_LEDGER.csv|stage=4|required=every authored form; chains; pins; tier; probe; owner expected result
+authoring/STAGE_5_LITERAL_RUNBOOK.md|stage=5|required=fresh exact owner runbook; Step 0; stops; no execution token
+authoring/STAGE_6_LLDB_COMMAND_SCRIPT.txt|stage=6|required=fresh debugger commands only
+authoring/STAGE_7_EVIDENCE_RETURN_PACKET.md|stage=7|required=credential-safe return and deviation/cleanup evidence
+authoring/STAGE_8_PACKET_INDEX.md|stage=8|required=all payload hashes and author candidate identity
+packet/DAPP93_TENTH_EXACT_EXECUTION_PACKET.md|stage=8|required=fresh literal runbook payload
+packet/DAPP93_TENTH_LLDB_COMMAND_SCRIPT.txt|stage=8|required=exact debugger payload
+packet/DAPP93_TENTH_EVIDENCE_RETURN_TEMPLATE.md|stage=8|required=evidence return payload
+packet/TWO_TIER_PROBE_LEDGER.csv|stage=8|required=unified two-tier payload
+packet/PACKET_INDEX.md|stage=8|required=transitive packet index
+scratch/N1_SAFE_PROBES.zsh|stage=4|required=restricted neutral probe script
+scratch/N1_SAFE_PROBE_OUTPUT.txt|stage=4|required=exact observed exits/output including denial
+scratch/PACKET_COMMAND_FORMS.zsh|stage=5|required=complete shell command-form syntax mirror
+returns/N1_OUTPUT_CENSUS.csv|stage=8|required=18 rows path FILLED/UNFILLED reason bytes sha256
+returns/N1_AUTHOR_RETURN.md|stage=8|required=terminal return including disk-checked 18/18 census verdict
