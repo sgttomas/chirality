@@ -1,0 +1,11 @@
+MANAGER_INVOCATION_INVENTORY.json
+MANAGER_INVOCATION_INVENTORY.sha256
+MANAGER_TOOL_PINS.sha256
+manager/THIRTEENTH_MANAGER.py
+packet/**
+validation/**
+scratch/**
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/packet/{APPROVAL_REQUEST.md,EVIDENCE_CAPTURE.md,LEDGER_CITATION.md,OWNER_RUNBOOK.md,scripts/CAPTURE_TRACE_EVIDENCE.zsh,scripts/OWNER_ENVIRONMENT_PREFLIGHT.zsh}
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/specs/SPEC__*
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_[1-6]*
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRD_PACKET_AUTHORING_2026-08-09/source_reconstruction/STAGE_5_COMMAND_AUTHORITY_LEDGER.csv

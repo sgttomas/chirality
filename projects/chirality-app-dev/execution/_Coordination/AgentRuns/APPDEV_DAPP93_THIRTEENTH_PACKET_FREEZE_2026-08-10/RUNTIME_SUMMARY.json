@@ -1,0 +1,10 @@
+{
+  "run_id": "APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10",
+  "status": "BLOCKED_BEFORE_SUBSTANTIVE_ACT",
+  "attempts": 1,
+  "children_dispatched": 0,
+  "verifiers_dispatched": 0,
+  "native_context_telemetry": "unavailable",
+  "durable_growth_telemetry": "not initialized because the mandatory first-act invocation preflight itself failed",
+  "reason": "BLOCK_DAPP93_THIRTEENTH_MANAGER_INVENTORY_INTERPRETER_REALPATH_MISMATCH"
+}

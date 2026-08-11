@@ -1,0 +1,36 @@
+{
+  "frozen_at": "2026-08-11T00:00:00Z",
+  "status": "FROZEN_BEFORE_SUBSTANTIVE_RUN_ACT",
+  "cwd_rule": "Every manager subprocess runs at the literal cwd recorded here; all other literal command invocations are prohibited.",
+  "manager_invocations": [
+    {"id":"M01","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13","/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/manager/THIRTEENTH_MANAGER.py","preflight"]},
+    {"id":"M02","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13","/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/manager/THIRTEENTH_MANAGER.py","verify-citations"]},
+    {"id":"M03","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13","/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/manager/THIRTEENTH_MANAGER.py","salvage"]},
+    {"id":"M04","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13","/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/manager/THIRTEENTH_MANAGER.py","reverify"]},
+    {"id":"M05","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13","/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/manager/THIRTEENTH_MANAGER.py","assemble"]},
+    {"id":"M06","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13","/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/manager/THIRTEENTH_MANAGER.py","close-block"]}
+  ],
+  "external_invocations": [
+    {"id":"X01","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/scratch/preflight","argv":["/bin/zsh","-n","packet/scripts/OWNER_ENVIRONMENT_PREFLIGHT.zsh"]},
+    {"id":"X02","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/scratch/preflight","argv":["/bin/zsh","-n","packet/scripts/CAPTURE_TRACE_EVIDENCE.zsh"]},
+    {"id":"X03","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/scratch/preflight","argv":["/usr/bin/lldb","--version"]},
+    {"id":"X04","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/scratch/preflight","argv":["/bin/ps","-p","1","-o","pid="]},
+    {"id":"X05","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/scratch/preflight","argv":["/bin/zsh","packet/scripts/CAPTURE_TRACE_EVIDENCE.zsh","/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/scratch/preflight/evidence","/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/scratch/preflight/evidence/transcript.txt"]},
+    {"id":"X06","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/scratch/preflight","argv":["/bin/zsh","packet/scripts/OWNER_ENVIRONMENT_PREFLIGHT.zsh","/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10/scratch/preflight/evidence"]},
+    {"id":"X07","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/bin/zsh","-n","packet/scripts/OWNER_ENVIRONMENT_PREFLIGHT.zsh"]},
+    {"id":"X08","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/bin/zsh","-n","packet/scripts/CAPTURE_TRACE_EVIDENCE.zsh"]},
+    {"id":"X09","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/usr/bin/lldb","--version"]},
+    {"id":"X10","cwd":"/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRTEENTH_PACKET_FREEZE_2026-08-10","argv":["/bin/ps","-p","1","-o","pid="]}
+  ],
+  "tool_pins": {
+    "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3":"1a2e543a5426f665b9f321d391995b46e985fbea8df2a5bea86d7210c603460a",
+    "/bin/zsh":"528da649cc69510bd3c0bc565298cb602076b74a8ac3f18e793211b2a3c725e8",
+    "/usr/bin/lldb":"44a68ddc1983d6cff3fd35ba3f9ba5f82004216f1dcde69892b3d1b06e408698",
+    "/bin/ps":"a1d8c4a0a96fb6159f09d8f520f54df829db5f2eae9b9f3448e18f0bee61115c",
+    "/usr/bin/shasum":"0812595f981a26f813d98dc380af14d4af427626c9339eda29eb849ae13de1e3",
+    "/usr/bin/perl":"626702a74f85d2664872f6a7aa9b639306a2035211d442a24ea32ef0d48c8afd"
+  },
+  "non_command_invocations": [
+    {"id":"V01","kind":"fresh Agent-2 verifier dispatch","status":"ONLY_AFTER_FREEZE; not reached on assembly BLOCK","declared_read_root":"run-root packet, freeze manifest, validation records, probe ledger, sealed brief only","write_target":"returns/N2_VERIFIER_RETURN.md"}
+  ]
+}

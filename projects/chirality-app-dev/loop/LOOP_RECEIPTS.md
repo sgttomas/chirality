@@ -4822,3 +4822,49 @@
     approval identity, execution authority/action, product/runtime/system/
     source, decision/register/ruling, lifecycle, Task Management, thirteenth
     lineage, or foreign-loop effect exists.
+
+- **2026-08-11 — Receipt 161** (D-APP-93 thirteenth-lineage total-invocation preflight block closeout).
+  - Receipt-ID: `Receipt-161`
+  - Examined-Through: `c0ff9fe2d7ac5b5e529c01e8c01aa5f924cba2d4`
+  - Parent-Receipt: `Receipt-160`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-10,
+    Ryan Tufts, in-session): `Owner direction, 2026-08-10. D-APP-93: start the THIRTEENTH lineage in a
+    fresh run root. Twelve lineages are closed blocked evidence. The twelfth
+    proved both halves: the sentinel/SPEC construction produced a complete,
+    clean candidate packet, and the manager-symmetry rule caught the last
+    unfrozen actor. This lineage authors nothing — it verifies, freezes, and
+    presents. No authoring child is dispatched.`; `If this lineage blocks, close out with preserved evidence, manager
+    validation record, receipt, and an updated thirteen-lineage causal
+    analysis; return to me. Do not begin a fourteenth lineage without my
+    direction.`; `Everything lands by PR at my merge gate; receipts chain after 160.`
+  - Pointers: thirteenth-lineage `FINAL_INVENTORY.sha256` / manager validation /
+    thirteen-lineage causal analysis / manager return / handoff / runtime-summary /
+    Receipt-161-ready-facts / runtime-events / frozen manager-invocation
+    inventory / inventory-pin / manager-tool-pins identities
+    `a7c6f99c150d4b5740442c2ca5c227b959e52e6aa4832eaff8c6df92984d21e0`,
+    `c5b1ae5814fcbc626633f25dc05f66f12859590b331535cd843864a9ee27a2aa`,
+    `93d50991d44d5c268834e7f77a6ec6b7f57f28b4b40767aa37eb16fede695397`,
+    `a28be8b9d96d95c0de4da3b03b6b0934fc365f764ff802a064414a0c5ba4af2a`,
+    `1c755ebedc6a9a48cce0c6fffa47e39d91c3903619546591d7e5fdffb5990322`,
+    `59c3db4ac3582c00c7043796e0a1e72f10e82096cce2c302b67e8a77d0f494fa`,
+    `f33b76a1255384aaca7b4924500a9b1095d338288f0311d95c330d4ef26aa743`,
+    `afd377a221ea9ef3f16f0973801662ebf981d25041c7a79e5aaedb6f6a6d8e98`,
+    `488b56143486a9baf8c1441233134fddddbbfdef76292f1cc05c1381f5a89efb`,
+    `1c2593ab4c5b540a6d08cb42ac04111f4d2d6828842e5fc2ec5853cf32938d47`,
+    and `c23505498db9e18f7dfb08640dae4e4d74b62ca1712743907f56fad566a38406`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status,
+    repository self-check, and full practitioner/validation suite; strict
+    inventory/runtime, exact blocker reproduction, historical-root
+    preservation, downstream absence, containment, candidate-whitespace, and
+    diff hygiene pass. Frontend gates skipped because no product/runtime source
+    changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS and
+    CHANGE Agent 1; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_THIRTEENTH_MANAGER_INVENTORY_INTERPRETER_REALPATH_MISMATCH`.
+    The first total-invocation self-probe exited 1 because the cataloged Python
+    path resolved to a different real absolute interpreter path; the manager
+    rejected the invocation before citation verification, candidate salvage,
+    packet acceptance/freeze, or child/verifier dispatch. No packet execution,
+    Step 0, product/runtime/system/source, register, lifecycle, Task Management,
+    fourteenth-lineage, or foreign-loop effect exists.
