@@ -1,0 +1,39 @@
+# D-APP-93 sixth-lineage LLDB command script
+# Text only. Execution requires fresh verification and exact frozen-packet hash approval.
+# Target must be the one sealed numeric direct-child helper PID bound by the runbook.
+# Unresolved breakpoints are UNKNOWN evidence; they do not prove a seam was not entered.
+
+settings set auto-confirm false
+settings set target.inline-breakpoint-strategy always
+settings set target.process.stop-on-sharedlibrary-events false
+
+# Native signal-delivery entry.
+breakpoint set --name __sigtramp
+breakpoint command add 1 -o "thread backtrace all -c 40" -o "continue"
+
+# libuv and Node signal-dispatch candidates.
+breakpoint set --name uv__signal_handler
+breakpoint command add 2 -o "thread backtrace all -c 40" -o "continue"
+breakpoint set --name "node::SignalWrap::OnSignal"
+breakpoint command add 3 -o "thread backtrace all -c 40" -o "continue"
+
+# Cocoa/Electron application termination funnel candidates.
+breakpoint set --name "-[NSApplication terminate:]"
+breakpoint command add 4 -o "thread backtrace all -c 40" -o "continue"
+breakpoint set --name "-[NSApplication _terminate:]"
+breakpoint command add 5 -o "thread backtrace all -c 40" -o "continue"
+
+# Outbound signal and terminal process seams.
+breakpoint set --name kill
+breakpoint command add 6 -o "thread backtrace all -c 40" -o "continue"
+breakpoint set --name pthread_kill
+breakpoint command add 7 -o "thread backtrace all -c 40" -o "continue"
+breakpoint set --name exit
+breakpoint command add 8 -o "thread backtrace all -c 40" -o "continue"
+breakpoint set --name _exit
+breakpoint command add 9 -o "thread backtrace all -c 40" -o "continue"
+
+# Make resolution state part of the raw transcript, then resume the exact target.
+breakpoint list
+process status
+continue
