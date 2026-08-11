@@ -1,0 +1,101 @@
+# D-APP-93 LLDB Trace Evidence Capture
+
+This is a blank owner-fill form. Do not treat a blank field as a negative observation. Keep observed facts separate from interpretation.
+
+## Run identity
+
+- Owner/operator:
+- Date and time started:
+- Date and time completed or stopped:
+- Exact final frozen packet SHA-256 approved by owner:
+- Packet directory:
+- Evidence directory:
+
+## Host facts
+
+- Host identifier:
+- Operating-system version:
+- Architecture:
+- Shell and working-directory facts:
+- Other relevant environment facts:
+
+## Step 0 — exact commands and results
+
+- Exact invocation:
+- Exit code:
+- Output path:
+- Output shape observed:
+- Step 0 overall result:
+
+### Actual binary identities
+
+| Absolute path | Expected SHA-256 | Actual SHA-256 | Match |
+| --- | --- | --- | --- |
+| `/bin/zsh` | `528da649cc69510bd3c0bc565298cb602076b74a8ac3f18e793211b2a3c725e8` |  |  |
+| `/usr/bin/lldb` | `44a68ddc1983d6cff3fd35ba3f9ba5f82004216f1dcde69892b3d1b06e408698` |  |  |
+| `/bin/ps` | `a1d8c4a0a96fb6159f09d8f520f54df829db5f2eae9b9f3448e18f0bee61115c` |  |  |
+| `/usr/bin/shasum` | `0812595f981a26f813d98dc380af14d4af427626c9339eda29eb849ae13de1e3` |  |  |
+| `/usr/bin/perl` | `626702a74f85d2664872f6a7aa9b639306a2035211d442a24ea32ef0d48c8afd` |  |  |
+
+### Probe results
+
+- LLDB version command, exit code, and first line:
+- Owner-side process-list command, exit code, and numeric output:
+- Any mismatch or variance:
+
+## Target selected at execution time
+
+- Owner-supplied target PID:
+- Pre-attach PID identity output:
+- Parent/process topology observed:
+- Basis for selecting this process:
+
+## LLDB transcript
+
+- Transcript path:
+- Transcript SHA-256:
+- Recording facility:
+- Attach command and exit/result:
+- LLDB signal-handling confirmation:
+
+## Observed process, thread, and backtrace facts
+
+- Pre-continue process status:
+- Pre-continue thread list:
+- Pre-continue backtrace facts:
+- Stop banner and reported stop reason:
+- Thread that stopped:
+- Process state after stop:
+- Thread state after stop:
+- Backtrace observations after stop:
+- Helper topology observations:
+- Signal-stop observations:
+
+## Stop, detach, and cleanup
+
+- Stop rule triggered (`none` or exact rule):
+- Point at which work stopped, if applicable:
+- Detach command response:
+- Quit response:
+- Post-detach PID identity output:
+- Transcript finalization evidence:
+- Cleanup evidence:
+- Cleanup failure or variance:
+
+## Unresolved variance or evidence gaps
+
+- Variance:
+- Missing evidence:
+- Consequence for reliance:
+
+## Observed facts
+
+-
+
+## Owner interpretation
+
+-
+
+The owner interpretation above is separate from the observed facts and does not replace the transcript or hashed outputs.
+
+## Transcript identity row appended by capture script

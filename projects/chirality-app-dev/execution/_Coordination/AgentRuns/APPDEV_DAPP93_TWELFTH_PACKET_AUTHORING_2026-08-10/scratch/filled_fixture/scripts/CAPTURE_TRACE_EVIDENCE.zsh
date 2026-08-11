@@ -1,0 +1,1 @@
+Harmless filled fixture capture.

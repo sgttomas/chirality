@@ -1,0 +1,8 @@
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/packet/OWNER_RUNBOOK.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/packet/scripts/OWNER_ENVIRONMENT_PREFLIGHT.zsh
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/packet/scripts/CAPTURE_TRACE_EVIDENCE.zsh
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/packet/EVIDENCE_CAPTURE.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/packet/LEDGER_CITATION.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/packet/APPROVAL_REQUEST.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/returns/N1_SELF_CENSUS.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/returns/N1_TERMINAL_RETURN.md
