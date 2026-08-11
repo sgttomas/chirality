@@ -1,0 +1,19 @@
+# Absolute no-read fence beyond explicitly authorized hash/candidate citations
+APPDEV_DAPP93_ATTEMPT3_PACKET_AUTHORING_2026-08-09
+APPDEV_DAPP93_FRESH_PACKET_AUTHORING_2026-08-09
+APPDEV_DAPP93_THIRD_PACKET_AUTHORING_2026-08-09
+APPDEV_DAPP93_FOURTH_PACKET_AUTHORING_2026-08-09
+APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10
+APPDEV_DAPP93_SIXTH_PACKET_AUTHORING_2026-08-10
+APPDEV_DAPP93_SEVENTH_PACKET_AUTHORING_2026-08-10
+APPDEV_DAPP93_EIGHTH_PACKET_AUTHORING_2026-08-10
+APPDEV_DAPP93_NINTH_PACKET_AUTHORING_2026-08-10
+APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10
+APPDEV_DAPP93_ELEVENTH_PACKET_AUTHORING_2026-08-10
+APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10
+
+Authorized exceptions only:
+- six twelfth `packet/**` files listed in the owner's direction, content read/copy by exact hash;
+- six twelfth `specs/SPEC__*` files, hash-only identity verification;
+- six fifth `taint_clearance/STAGE_[1-6]*` files, hash-only identity verification;
+- third `source_reconstruction/STAGE_5_COMMAND_AUTHORITY_LEDGER.csv`, hash-only identity verification.
