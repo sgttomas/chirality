@@ -4491,3 +4491,53 @@
     authorized normalization. No packet, freeze, verifier, approval hash,
     execution authority/action, product/runtime/source, register, lifecycle,
     decision, Task Management, sixth lineage, or foreign-loop effect exists.
+
+- **2026-08-10 — Receipt 154** (D-APP-93 sixth-lineage packet block closeout).
+  - Receipt-ID: `Receipt-154`
+  - Examined-Through: `9714bbd0cd42fb0646d877a198300a4cab129e68`
+  - Parent-Receipt: `Receipt-153`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-10,
+    Ryan Tufts, in-session): `D-APP-93: start the SIXTH authoring lineage in
+    a fresh run root.`; `The sixth lineage does NOT re-run taint clearance.`;
+    `Every obligation the sealed brief imposes on a child must be
+    dischargeable by the brief's own frozen command forms.`; `If this lineage
+    blocks, close out with preserved evidence, manager validation record,
+    receipt, and an updated six-lineage causal analysis; return to me. Do not
+    begin a seventh lineage without my direction.`; `remove exactly one
+    terminal LF from each of the 14 manager/control files enumerated in
+    CHANGE's report`; `add NORMALIZATION_AMENDMENT.md recording every path,
+    byte-exact one-LF relation, and both identities`; `do not edit any
+    N1-authored output or any existing hash citation.`
+  - Pointers: sixth-lineage `FINAL_INVENTORY.sha256` identity
+    `80b302b4c08f2442bb44a374a6f852d5b5eb43b723b4d9a4bf2ff953bae1caf1`;
+    normalization amendment / manager validation / six-lineage causal
+    analysis / manager return / handoff / runtime-summary identities
+    `a7fd2ef7504f142834280ae7a5ce44ccf989d0a5d4fb38179991f28eba57ed5e`,
+    `2cc92324f043c7c7c44589d23e8ffb4dcb463b0ed7355772af99e59fb99a3932`,
+    `a3744aed67207e65cd31584c740efb7e05087cd86af781c9b828125e89555812`,
+    `ee54a29b59b81ed935db28fd0ba3d4a5a5c143d62506541961fda4e2be92625a`,
+    `5bd767f81f8666ef5efa1e80fcab8aad5049f3ac5cc6915fb4023d43da1ab784`,
+    and `5165ab34250645314728b3a0b6a41cf6430c496d09dbf86c2fae43e0dcd28c62`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status,
+    repository self-check baseline, and 349-test suite; strict runtime JSONL/
+    summary and final-inventory verification; exact 14-file one-byte
+    normalization with all pre/post SHA-256 relations; N1-output identity
+    preservation; six-root historical preservation; blocker reproduction;
+    exact containment, candidate whitespace, and diff hygiene pass. Existing
+    pre-normalization citations remain unchanged and resolvable through the
+    amendment. Frontend gates skipped because no product/runtime source
+    changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    CHANGE Agent 1, and one N1 Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_SIXTH_PACKET_NONEXECUTABLE_HOST_PATHS`. Clearance citation
+    identities, executable non-circular intake, durable staged authoring,
+    structural ledger alignment, and the zero historical-ID criterion
+    passed. Manager fan-in rejected N1 because the literal packet freezes
+    absent `/bin/readlink` at P93-034 and absent `/bin/wait` at P93-053,
+    P93-059, and P93-060; packet-level host executability was outside the cleared
+    ledger's acceptance boundary. N1 outputs remain unaccepted blocked
+    evidence; no freeze, N2 verifier, approval-request hash, or execution
+    authority/action exists. No product/runtime/source, register, lifecycle,
+    decision, Task Management, seventh-lineage, or foreign-loop effect
+    occurred.
