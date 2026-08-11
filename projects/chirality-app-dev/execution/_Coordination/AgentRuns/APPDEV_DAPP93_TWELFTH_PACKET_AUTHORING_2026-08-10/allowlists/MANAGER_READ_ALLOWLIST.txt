@@ -1,0 +1,9 @@
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/**
+projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_1_SALVAGE_HASHES.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_2_HISTORICAL_ID_SCAN.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_3_LIVE_SOURCE_PROVENANCE.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_4_LEDGER_ROW_PROVENANCE.csv
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_5_STRUCTURAL_VALIDATION.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_6_TAINT_CLEARANCE_VERDICT.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRD_PACKET_AUTHORING_2026-08-09/source_reconstruction/STAGE_5_COMMAND_AUTHORITY_LEDGER.csv

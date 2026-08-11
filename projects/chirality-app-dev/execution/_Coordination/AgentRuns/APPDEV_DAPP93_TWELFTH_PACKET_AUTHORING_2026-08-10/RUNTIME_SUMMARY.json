@@ -1,0 +1,16 @@
+{
+  "run_id": "APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10",
+  "status": "BLOCK",
+  "reason_code": "BLOCK_DAPP93_TWELFTH_MANAGER_SYMMETRY_FROZEN_FORM_BREACH",
+  "sessions": {
+    "M0": {"status": "PASS", "retries": 1, "note": "Predispatch fixture path repair completed and re-pinned before child dispatch."},
+    "N1-TWELFTH-FRESH-AUTHOR": {"status": "RETURNED_UNACCEPTED", "attempts": 2, "transport_interruptions": 1, "durable_writes_before_retry": 0},
+    "M1": {"status": "BLOCK", "detection_layer": "manager closeout self-audit"},
+    "N2": {"status": "NOT_DISPATCHED"}
+  },
+  "candidate_packet": {"file_count": 6, "byte_total": 15504, "filled": 6, "remaining": 0, "historical_identity_hits": 0, "frozen": false},
+  "verifier_pass": false,
+  "execution_authority": false,
+  "packet_executed": false,
+  "native_context_telemetry": "unavailable"
+}

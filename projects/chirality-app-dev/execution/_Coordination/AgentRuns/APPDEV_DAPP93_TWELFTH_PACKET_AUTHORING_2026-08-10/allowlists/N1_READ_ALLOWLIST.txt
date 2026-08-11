@@ -1,0 +1,7 @@
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/capsule/N1_INTAKE_CAPSULE.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/specs/SPEC__OWNER_RUNBOOK.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/specs/SPEC__OWNER_ENVIRONMENT_PREFLIGHT.zsh.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/specs/SPEC__CAPTURE_TRACE_EVIDENCE.zsh.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/specs/SPEC__EVIDENCE_CAPTURE.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/specs/SPEC__LEDGER_CITATION.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TWELFTH_PACKET_AUTHORING_2026-08-10/specs/SPEC__APPROVAL_REQUEST.md
