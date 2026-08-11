@@ -1,0 +1,95 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 3
+  },
+  "counts": {
+    "category": {
+      "closeout": 2,
+      "executable_tool_preflight": 1,
+      "fan_in": 1,
+      "liveness": 1,
+      "orchestration": 1,
+      "preparation": 2,
+      "publication_hygiene": 1,
+      "taint_clearance": 6,
+      "tool_fence": 2,
+      "validation_environment": 1
+    },
+    "event_type": {
+      "CHECK": 5,
+      "FINISH": 3,
+      "MILESTONE": 5,
+      "REMEDIATION": 1,
+      "RETRY": 1,
+      "START": 3
+    },
+    "outcome": {
+      "BLOCKED": 5,
+      "INFO": 1,
+      "PASS": 8,
+      "RETRY": 1,
+      "STARTED": 3
+    },
+    "reason_code": {
+      "ALL_FROZEN_FORMS_EXECUTED": 1,
+      "ALL_LEDGER_ROWS_LIVE_PROVENANCE": 1,
+      "DURABLE_GROWTH_OBSERVED": 1,
+      "FIFTH_LINEAGE_CLOSED_BLOCKED": 1,
+      "HISTORICAL_ID_ZERO_HIT": 1,
+      "LEDGER_STRUCTURE_PASS": 1,
+      "LIVE_SOURCE_HASHES_MATCH": 1,
+      "MANAGER_PREFLIGHT_PASS": 1,
+      "N1_BLOCK_FANIN": 1,
+      "N1_RELEASED": 1,
+      "NON_FROZEN_INTAKE_READ_FORMS": 2,
+      "OWNER_AUTHORIZED_FIFTH_LINEAGE": 1,
+      "RESULT_FORMATTING_WRAPPER_FAILED": 1,
+      "SALVAGE_HASHES_MATCH": 1,
+      "SURPLUS_TERMINAL_BLANK_LINE": 1,
+      "TOOL_CONTRACT_BOOTSTRAP_DEFECT": 1,
+      "WRONG_PYTHON_AND_IGNORED_CLONE": 1
+    }
+  },
+  "events": 18,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 0.042,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "WORKING_ITEMS-DAPP93-L5-20260810",
+      "package_id": "D-APP-93",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "M0-PREFLIGHT"
+    },
+    {
+      "duration_seconds": 294.91,
+      "events": 5,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WORKING_ITEMS-DAPP93-L5-20260810",
+      "package_id": "D-APP-93",
+      "remediations": 1,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "M1-BLOCK-CLOSEOUT"
+    },
+    {
+      "duration_seconds": 619.496,
+      "events": 10,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP93-L5-N1-TAINT-01",
+      "package_id": "D-APP-93",
+      "remediations": 0,
+      "retries": 1,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "N1-TAINT-CLEARANCE"
+    }
+  ],
+  "sessions": 3,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

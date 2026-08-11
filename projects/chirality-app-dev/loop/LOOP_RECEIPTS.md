@@ -4445,3 +4445,49 @@
     TM-APP-025 remains `OPEN`. No PRD, scope, decomposition, reliance,
     lifecycle, adoption, ruling, register, product/runtime, or foreign-loop
     effect occurred.
+
+- **2026-08-10 — Receipt 153** (D-APP-93 fifth-lineage N1 block closeout).
+  - Receipt-ID: `Receipt-153`
+  - Examined-Through: `226e92a69125fe746d3e55e44414ec5afe15010d`
+  - Parent-Receipt: `Receipt-152`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-10,
+    Ryan Tufts, in-session): `D-APP-93: start the FIFTH authoring lineage in
+    a fresh run root.`; `if this lineage blocks, close out with preserved
+    evidence, manager validation record, receipt, and an updated five-lineage
+    causal analysis; return to me. Do not begin a sixth lineage without my
+    direction.`; `remove exactly one surplus terminal LF from
+    STAGE_4_LEDGER_ROW_PROVENANCE.csv, changing SHA-256 from
+    bdfdd3d98ca911947ebdb87b5d06ea749ac3f04ed6a034292c9cc83e81b78f3b to
+    3a0e8235b2a453c249ab9fd09894bc786833c33a985b1a65dfc4bd42db230985`;
+    `add a normalization amendment preserving both identities without
+    rewriting citations inside preserved records`; `Never execute the packet
+    or begin a sixth lineage.`
+  - Pointers: fifth-lineage `FINAL_INVENTORY.sha256` identity
+    `b2046842e7314add23c1b664f5f8fb8f5f336f218dc274cd27ac2796616e72fb`;
+    normalization amendment / manager validation / causal analysis / manager
+    return / handoff / runtime-summary identities
+    `3a67eca6b423d4b61a024cea1bbb6680aecba5ea5d6d50d44405de506999c6d9`,
+    `c72afbc668797d696887323a40bf63de5e98bb54a766c1be7622d31dba9070fb`,
+    `0fdffd0041d9d62d9652dd43753041280d10f198a3ed3105c0da733beca184ed`,
+    `4924060a8e32ed16aa4d501e4f123553cea7d7f458fe2e04dfbe0cbcc14f5d59`,
+    `e0f6f5fd47c4b32d694db6da92305b1e3e60a40e328e8fa96ca0eca3e4926736`,
+    and `cf5d704938d4b35b3006174ca98e45e8881f3073236900f7761d68db69d8fd46`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status,
+    repository self-check, full-suite closeout, strict runtime/manifest/hash,
+    CSV/ledger structure, five-root preservation, downstream absence,
+    exact containment, candidate whitespace, and diff hygiene pass. The
+    owner-authorized one-byte normalization and pre/post identity relation
+    pass; embedded preserved-child citations remain unchanged and resolvable.
+    Frontend gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    CHANGE Agent 1, and one N1 Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_FIFTH_N1_TOOL_CONTRACT_BOOTSTRAP_DEFECT`. Executable
+    preflight passed all 11 host-resolved, byte-pinned command forms and N1's
+    substantive taint evidence passed, but the child used non-frozen intake
+    forms because the sealed complete-intake obligation could not be met by
+    the single-line read form frozen inside the unread brief. N2/N3 stayed
+    held. The 31-file blocked-root evidence totals 130,125 bytes after the
+    authorized normalization. No packet, freeze, verifier, approval hash,
+    execution authority/action, product/runtime/source, register, lifecycle,
+    decision, Task Management, sixth lineage, or foreign-loop effect exists.
