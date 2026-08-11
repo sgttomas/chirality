@@ -1,0 +1,14 @@
+path,status,bytes,sha256,reason
+packet/OWNER_RUNBOOK.md,UNFILLED,0,,pre-dispatch stub
+packet/scripts/OWNER_PREFLIGHT.zsh,UNFILLED,0,,pre-dispatch stub
+packet/scripts/lldb-signal-trace.txt,UNFILLED,0,,pre-dispatch stub
+packet/EVIDENCE_CAPTURE.md,UNFILLED,0,,pre-dispatch stub
+packet/LEDGER_CITATION.md,UNFILLED,0,,pre-dispatch stub
+packet/APPROVAL_REQUEST.md,UNFILLED,0,,pre-dispatch stub
+path,status,bytes,sha256,reason
+packet/OWNER_RUNBOOK.md,FILLED,MANAGER_PENDING,MANAGER_PENDING,filled by no-shell N1; manager census pending
+packet/scripts/OWNER_PREFLIGHT.zsh,FILLED,MANAGER_PENDING,MANAGER_PENDING,filled by no-shell N1; manager census pending
+packet/scripts/lldb-signal-trace.txt,FILLED,MANAGER_PENDING,MANAGER_PENDING,filled by no-shell N1; manager census pending
+packet/EVIDENCE_CAPTURE.md,FILLED,MANAGER_PENDING,MANAGER_PENDING,filled by no-shell N1; manager census pending
+packet/LEDGER_CITATION.md,FILLED,MANAGER_PENDING,MANAGER_PENDING,filled by no-shell N1; manager census pending
+packet/APPROVAL_REQUEST.md,FILLED,MANAGER_PENDING,MANAGER_PENDING,filled by no-shell N1; manager census pending

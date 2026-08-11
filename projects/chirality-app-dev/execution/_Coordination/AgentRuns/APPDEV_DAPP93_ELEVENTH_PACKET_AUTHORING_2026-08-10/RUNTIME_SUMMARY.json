@@ -1,0 +1,26 @@
+{
+  "run_id": "APPDEV_DAPP93_ELEVENTH_PACKET_AUTHORING_2026-08-10",
+  "status": "BLOCKED",
+  "reason_code": "BLOCK_DAPP93_ELEVENTH_N1_STUB_REPLACEMENT_FAILURE",
+  "sessions": {
+    "manager": "finished_blocked",
+    "N1": "returned_unaccepted",
+    "N2": "not_dispatched"
+  },
+  "n1_tool_acts": {
+    "apply_patch_attempts": 2,
+    "first_result": "failed_no_write",
+    "second_result": "accepted_insertion_not_replacement",
+    "shell_or_command_execution": false
+  },
+  "last_observed_progress": {
+    "durable_file_count": 27,
+    "durable_byte_total": 75862,
+    "filled_stubs": 0,
+    "unfilled_stubs": 6
+  },
+  "native_context_telemetry": "unavailable",
+  "packet_frozen": false,
+  "packet_executed": false,
+  "twelfth_lineage_started": false
+}

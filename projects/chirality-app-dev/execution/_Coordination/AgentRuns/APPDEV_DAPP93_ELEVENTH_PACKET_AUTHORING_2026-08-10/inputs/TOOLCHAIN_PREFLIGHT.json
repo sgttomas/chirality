@@ -1,0 +1,95 @@
+{
+  "base": "912e3a8c9c07e9b8359093f63feace1c7c9f4776",
+  "binary_pins": {
+    "/usr/bin/python3": "44a68ddc1983d6cff3fd35ba3f9ba5f82004216f1dcde69892b3d1b06e408698",
+    "/bin/zsh": "528da649cc69510bd3c0bc565298cb602076b74a8ac3f18e793211b2a3c725e8",
+    "/usr/bin/xcrun": "4bc0cc7099775fbe35c653ceb09e0e393d2e5ada024db872e0eb8c43500b4dc6",
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/lldb": "0035650adb4c8278122f70771e2e052a2b6e6d644a76745ffecf8c3a0bd686ca",
+    "/bin/ps": "a1d8c4a0a96fb6159f09d8f520f54df829db5f2eae9b9f3448e18f0bee61115c",
+    "/usr/bin/shasum": "0812595f981a26f813d98dc380af14d4af427626c9339eda29eb849ae13de1e3",
+    "/usr/bin/perl": "626702a74f85d2664872f6a7aa9b639306a2035211d442a24ea32ef0d48c8afd"
+  },
+  "transitive_chains": {
+    "OWNER_PREFLIGHT.zsh": [
+      "/bin/zsh"
+    ],
+    "shasum": [
+      "/usr/bin/shasum",
+      "/usr/bin/perl"
+    ],
+    "xcrun-lldb": [
+      "/usr/bin/xcrun",
+      "/Applications/Xcode.app/Contents/Developer/usr/bin/lldb"
+    ],
+    "ps": [
+      "/bin/ps"
+    ]
+  },
+  "probes": [
+    {
+      "argv": [
+        "/bin/zsh",
+        "-n",
+        "/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ELEVENTH_PACKET_AUTHORING_2026-08-10/packet/scripts/OWNER_PREFLIGHT.zsh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/xcrun",
+        "--find",
+        "lldb"
+      ],
+      "exit_code": 0,
+      "stdout": "/Applications/Xcode.app/Contents/Developer/usr/bin/lldb\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/xcrun",
+        "lldb",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "lldb-2100.0.17.203\nApple Swift version 6.3.3 (swiftlang-6.3.3.1.3 clang-2100.1.1.101)\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/shasum",
+        "-a",
+        "256",
+        "/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ELEVENTH_PACKET_AUTHORING_2026-08-10/scratch/probe.txt"
+      ],
+      "exit_code": 0,
+      "stdout": "e030fb776812c81974ecef1d9ed0f2549a87faf51603d6e5abd91cad646abe84  /Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ELEVENTH_PACKET_AUTHORING_2026-08-10/scratch/probe.txt\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/usr/bin/perl",
+        "-e",
+        "print qq{DAPP93_L11_PERL_PROBE\\n}"
+      ],
+      "exit_code": 0,
+      "stdout": "DAPP93_L11_PERL_PROBE\n",
+      "stderr": ""
+    }
+  ],
+  "ps_probe": {
+    "argv": [
+      "/bin/ps",
+      "-p",
+      "46055",
+      "-o",
+      "pid=,ppid=,command="
+    ],
+    "exit_code": 126,
+    "stdout": "",
+    "stderr": "PermissionError: [Errno 1] Operation not permitted: '/bin/ps'"
+  },
+  "ps_tier": "OWNER_PREFLIGHT",
+  "operative_actions_executed": false
+}
