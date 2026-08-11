@@ -4541,3 +4541,42 @@
     authority/action exists. No product/runtime/source, register, lifecycle,
     decision, Task Management, seventh-lineage, or foreign-loop effect
     occurred.
+
+- **2026-08-10 — Receipt 155** (D-APP-93 seventh-lineage N1 block closeout).
+  - Receipt-ID: `Receipt-155`
+  - Examined-Through: `90da698013fe32f0cb22723081bffe9c2b6dc37a`
+  - Parent-Receipt: `Receipt-154`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-10,
+    Ryan Tufts, in-session): `Owner direction, 2026-08-10. D-APP-93: start the SEVENTH authoring lineage
+    in a fresh run root.`; `No execution authority exists until I
+    approve the frozen packet by its hash.`; `If this lineage blocks, close out with preserved evidence, manager
+    validation record, receipt, and an updated seven-lineage causal
+    analysis; return to me. Do not begin an eighth lineage without my
+    direction.`; `Everything lands by PR at my merge gate; receipts chain after 154.`
+  - Pointers: seventh-lineage `FINAL_INVENTORY.sha256` identity
+    `9687da7ce98b424743118e2e89aa08d1f418c62a3c95d493d92434dcfe18a885`;
+    manager validation / seven-lineage causal analysis / manager return /
+    handoff / runtime-summary / N1-return identities
+    `3631e79230db71b10a538019dd2a1b0d112497f6a96c34bf56ad25d768e6128b`,
+    `760e5dd9f844ce787dd2e219385adac63192ee211372a2f017282eb82e3fbb38`,
+    `f9a3aa0bb9c62af07e1913f738dee45c3305f6941344ec8f7e124628a9d411c2`,
+    `1be21b626c5d2e018bdb265439a4c3ebebf9d4b5c2c4d3ad42758b69433d0d65`,
+    `73d8db019426cf2fac538c335f9a22dc5fc22e142fa792a092852ebdf59c3516`,
+    and `d07c445d6223448797c952c01910b5be81413505c877a09ba43c5b13283b6170`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status,
+    repository self-check, and full-suite closeout; strict runtime/manifest/
+    hash, CSV/ledger structure, seven-root preservation, downstream absence,
+    exact containment, candidate whitespace, and diff hygiene pass. Frontend
+    gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    CHANGE Agent 1, and one N1 Agent 2; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_SEVENTH_NPM_INTERPRETER_CHAIN_UNPINNED`. Citation reuse,
+    non-circular intake, frozen-form preflight, durable partial authoring,
+    fresh structural mapping, and the zero historical-ID criterion passed.
+    Manager fan-in rejected N1 because the pinned npm wrapper requires a
+    `/usr/bin/env bash` interpreter chain but `/bin/bash` was not frozen; the
+    mandatory child probe exited 127. Partial N1 outputs remain unaccepted
+    blocked evidence; no freeze, verifier, approval-request hash, execution
+    authority/action, product/runtime/source, register, lifecycle, decision,
+    Task Management, eighth-lineage, or foreign-loop effect exists.

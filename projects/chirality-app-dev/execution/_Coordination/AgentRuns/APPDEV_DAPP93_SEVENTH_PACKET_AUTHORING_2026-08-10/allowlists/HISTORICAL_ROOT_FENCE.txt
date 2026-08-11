@@ -1,0 +1,12 @@
+# Absolute no-read roots except exact paths in N1_READ_ALLOWLIST.txt
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_2026-08-09/
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_ATTEMPT3_PACKET_PREPARATION_V2_2026-08-09/
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FRESH_PACKET_AUTHORING_2026-08-09/
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRD_PACKET_AUTHORING_2026-08-09/
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FOURTH_PACKET_AUTHORING_2026-08-09/
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_SIXTH_PACKET_AUTHORING_2026-08-10/
+
+# The two ATTEMPT3 roots are one first lineage. No listing, globbing, walking,
+# or searching of any historical root is permitted. Exact exceptions are the
+# ruled third/fifth citations and sixth template/control citations only.

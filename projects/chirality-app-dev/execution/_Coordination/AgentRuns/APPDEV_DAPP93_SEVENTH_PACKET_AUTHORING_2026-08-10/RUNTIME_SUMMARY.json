@@ -1,0 +1,69 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 2
+  },
+  "counts": {
+    "category": {
+      "AUTHORING": 2,
+      "CHECKPOINT": 1,
+      "CLOSEOUT": 1,
+      "FAN_IN": 1,
+      "INTAKE": 1,
+      "MANAGEMENT": 1,
+      "PREFLIGHT": 1
+    },
+    "event_type": {
+      "CHECK": 3,
+      "FINISH": 2,
+      "NOTICE": 1,
+      "START": 2
+    },
+    "outcome": {
+      "BLOCKED": 3,
+      "INFO": 1,
+      "PASS": 2,
+      "STARTED": 2
+    },
+    "reason_code": {
+      "CITATION_INTAKE_TOOL_PREFLIGHT_PASS": 1,
+      "DURABLE_OUTPUT_GROWTH": 1,
+      "EXACT_INTAKE_OPERANDS_RELAYED": 1,
+      "N1_RELEASED_AFTER_PREFLIGHT_PASS": 1,
+      "NPM_INTERPRETER_CHAIN_UNPINNED": 1,
+      "NPM_SAFE_PROBE_EXIT_127": 1,
+      "SEVENTH_LINEAGE_ACTIVATED": 1,
+      "SEVENTH_LINEAGE_BLOCKED_CLOSEOUT": 1
+    }
+  },
+  "events": 8,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 1125.669,
+      "events": 4,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-DAPP93-L7-20260810",
+      "package_id": "D-APP-93",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-L7-MGR-01"
+    },
+    {
+      "duration_seconds": 1101.167,
+      "events": 4,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-DAPP93-L7-AUTHOR-01",
+      "package_id": "D-APP-93",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_AUTHOR",
+      "session_id": "SES-L7-N1-01"
+    }
+  ],
+  "sessions": 2,
+  "status": "PASS",
+  "unmatched_sessions": []
+}
