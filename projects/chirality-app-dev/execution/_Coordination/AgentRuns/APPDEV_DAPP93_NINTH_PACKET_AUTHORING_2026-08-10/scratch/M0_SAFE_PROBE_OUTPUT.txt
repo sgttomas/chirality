@@ -1,0 +1,25 @@
+P01|printf|exit=0|P01_OK
+P02|test|exit=0
+P03|mkdir|exit=0
+P04|sw_vers|exit=0|26.6
+P05|uname|exit=0|arm64
+P06|shasum-perl|exit=0|438ec6c2fcdfe195b8acf0ab1c94356f1598e3c65d6bebe2552b288dae1f028c
+P07|security-help|exit=0|help-list-output
+P08|ps|exit=127|operation not permitted: /bin/ps
+P09|awk|exit=0|P09_AWK_OK
+P10|date|exit=0|UTC RFC3339 shape
+P11|xcrun-lldb|exit=0|lldb-2100.0.17.203 plus Swift version
+P12|tee|exit=0|P12_TEE_OK
+P13|kill-zero|exit=0
+P14|sleep|exit=0
+P15|rm-file|exit=0
+P16|rm-dir|exit=0
+M0_PROBES_COMPLETE
+SCRIPT_EXIT=0
+
+Exact stderr evidence for P08:
+`operation not permitted: /bin/ps`
+
+P11 also emitted sandbox/cache warnings while returning the expected LLDB
+version and exit 0. No operative debugger, product, keychain, signal, or
+runtime act occurred.
