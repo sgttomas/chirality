@@ -1,0 +1,46 @@
+# Tenth manager controls and exact sources
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/ACTIVATION.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/WORK_GRAPH.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/manager/MANAGER_COMMAND_ALLOWLIST.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/manager/MANAGER_COMMAND_LOG.csv
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/manager/STUB_CONTRACT.txt
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/allowlists/HISTORICAL_ROOT_FENCE.txt
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/allowlists/MANAGER_READ_ALLOWLIST.txt
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/allowlists/N1_READ_ALLOWLIST.txt
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/intake/N1_NONCIRCULAR_INTAKE_CAPSULE.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/intake/CANDIDATE_DIAGNOSTIC_TOOL_CATALOG.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/briefs/N1_PACKET_AUTHOR_BRIEF.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10/manager/MANAGER_VALIDATION.py
+
+# Fifth taint-clearance citations only
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/FINAL_INVENTORY.sha256
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/NORMALIZATION_AMENDMENT.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_1_SALVAGE_HASHES.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_2_HISTORICAL_ID_SCAN.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_3_LIVE_SOURCE_PROVENANCE.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_4_LEDGER_ROW_PROVENANCE.csv
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_5_STRUCTURAL_VALIDATION.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_FIFTH_PACKET_AUTHORING_2026-08-10/taint_clearance/STAGE_6_TAINT_CLEARANCE_VERDICT.md
+
+# Cleared ledger only
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_THIRD_PACKET_AUTHORING_2026-08-09/source_reconstruction/STAGE_5_COMMAND_AUTHORITY_LEDGER.csv
+
+# Exact design templates only; no authored packet content
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_SIXTH_PACKET_AUTHORING_2026-08-10/intake/N1_NONCIRCULAR_INTAKE_CAPSULE.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_SIXTH_PACKET_AUTHORING_2026-08-10/validation/EXECUTABLE_NONCIRCULAR_INTAKE_PREFLIGHT.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_SEVENTH_PACKET_AUTHORING_2026-08-10/intake/APPROVED_PROBE_FORMS.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_SEVENTH_PACKET_AUTHORING_2026-08-10/validation/EXECUTABLE_NONCIRCULAR_PREFLIGHT.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_SEVENTH_PACKET_AUTHORING_2026-08-10/briefs/N1_PACKET_AUTHOR_BRIEF.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_EIGHTH_PACKET_AUTHORING_2026-08-10/intake/N1_NONCIRCULAR_INTAKE_CAPSULE.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_EIGHTH_PACKET_AUTHORING_2026-08-10/intake/CANDIDATE_DIAGNOSTIC_TOOL_CATALOG.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_NINTH_PACKET_AUTHORING_2026-08-10/intake/N1_NONCIRCULAR_INTAKE_CAPSULE.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_NINTH_PACKET_AUTHORING_2026-08-10/intake/CANDIDATE_DIAGNOSTIC_TOOL_CATALOG.md
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_NINTH_PACKET_AUTHORING_2026-08-10/validation/EXECUTABLE_TWO_TIER_PREFLIGHT.md
+
+# Live governance and receipt
+projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
+projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-93_PACKET_SIMPLER_DIAGNOSTIC_ARCHITECTURE_2026-08-06.md
+projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-93_RULING_OWNER_OPERATED_INTERACTIVE_EXECUTION_ARCHITECTURE_2026-08-06.md
+projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-94_PACKET_POST_PROBE_FINAL_POSTURE_2026-08-09.md
+projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-94_RULING_FINAL_POSTURE_OPTION_A_2026-08-09.md
+projects/chirality-app-dev/loop/LOOP_RECEIPTS.md

@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-runtime-summary/v1",
+  "run_id": "APPDEV_DAPP93_TENTH_PACKET_AUTHORING_2026-08-10",
+  "base_commit": "e141579e885a2a0a9fcd17ee4619451918edef84",
+  "verdict": "BLOCK_N1_FROZEN_INTAKE_FORM_VIOLATION",
+  "durable_file_count": "000000000044",
+  "durable_byte_total": "000000095236",
+  "required_n1_outputs": 18,
+  "filled_n1_outputs": 2,
+  "unfilled_n1_outputs": 16,
+  "n1_stage_reached": "intake_before_stage_1",
+  "manager_fanin": "REJECT",
+  "freeze": "ABSENT",
+  "verifier": "NOT_DISPATCHED",
+  "packet_execution": "ABSENT",
+  "replacement_or_eleventh_lineage": "NOT_AUTHORIZED",
+  "native_context_telemetry": "unavailable"
+}
