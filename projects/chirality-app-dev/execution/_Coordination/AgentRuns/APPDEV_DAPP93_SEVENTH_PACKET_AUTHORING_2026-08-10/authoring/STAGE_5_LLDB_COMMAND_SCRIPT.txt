@@ -1,0 +1,12 @@
+settings set auto-confirm true
+settings set stop-disassembly-count 0
+breakpoint set --name uv__signal_handler
+breakpoint command add 1 -o "thread backtrace all -c 32" -o "continue"
+breakpoint set --name uv__signal_event
+breakpoint command add 2 -o "thread backtrace all -c 32" -o "continue"
+breakpoint set --name uv_signal_stop
+breakpoint command add 3 -o "thread backtrace all -c 32" -o "continue"
+breakpoint set --name node::SignalWrap::OnSignal
+breakpoint command add 4 -o "thread backtrace all -c 32" -o "continue"
+breakpoint list
+process continue
