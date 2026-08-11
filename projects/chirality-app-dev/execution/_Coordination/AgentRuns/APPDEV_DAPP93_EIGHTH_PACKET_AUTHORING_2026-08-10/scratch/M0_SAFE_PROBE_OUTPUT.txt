@@ -1,0 +1,6 @@
+printf:PASS
+26.6
+arm64
+4d9db00d0993befa957961f00591f3f54ab61befb06ac133becb615e019b767d  /Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_EIGHTH_PACKET_AUTHORING_2026-08-10/scratch/preflight-probe.txt
+/Users/ryan/.codex/worktrees/55d3/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP93_EIGHTH_PACKET_AUTHORING_2026-08-10/scratch/M0_SAFE_PROBES.zsh:35: operation not permitted: /bin/ps
+F09_OBSERVED_EXIT 127

@@ -4580,3 +4580,62 @@
     blocked evidence; no freeze, verifier, approval-request hash, execution
     authority/action, product/runtime/source, register, lifecycle, decision,
     Task Management, eighth-lineage, or foreign-loop effect exists.
+
+- **2026-08-10 — Receipt 156** (D-APP-93 eighth-lineage pre-dispatch block closeout).
+  - Receipt-ID: `Receipt-156`
+  - Examined-Through: `7d05b16dc7b48778856aa08a54c85f573887bea4`
+  - Parent-Receipt: `Receipt-155`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-10,
+    Ryan Tufts, in-session): `Owner direction, 2026-08-10. D-APP-93: start the
+    EIGHTH authoring lineage in a fresh run root. Seven lineages are closed
+    blocked evidence; every prior fix is retained; this direction adds two
+    requirements — one that shrinks the problem, one that closes the
+    environment class.`; `If this lineage blocks, close out with preserved
+    evidence, manager validation record, receipt, and an updated eight-lineage
+    causal analysis; return to me. Do not begin a ninth lineage without my
+    direction. If it freezes, present the frozen packet identity, verifier
+    return, and approval-request surface, and stop.`; `Everything lands by PR
+    at my merge gate; receipts chain after 155.`; `APPROVE: in
+    APPDEV_DAPP93_EIGHTH_PACKET_AUTHORING_2026-08-10, remove exactly one
+    terminal LF from each of the 15 files enumerated in CHANGE’s report,
+    requiring every reported pre-repair and expected post-repair SHA-256 to
+    match. Add NORMALIZATION_AMENDMENT.md recording each exact path, both
+    identities, the byte-exact one-LF relation, and pre-normalization inventory
+    SHA-256 ee130a9ce292c2f804d1d0acea6626d833f38a0771091dcc44724d99b7805bce.
+    Do not edit existing hash citations. Recompute all affected closeout
+    identities and FINAL_INVENTORY.sha256; append and validate Receipt 156
+    after Receipt 155; run the required closeout checks; stage only the
+    complete eighth-lineage run root and projects/chirality-app-dev/loop/
+    LOOP_RECEIPTS.md; and commit. Never execute the packet, begin a ninth
+    lineage, mark a PR ready, merge, or delete the branch. After commit, report
+    the exact commit SHA, final internal-file count and byte total, and stop for
+    payload-specific publication approval.`
+  - Pointers: eighth-lineage `FINAL_INVENTORY.sha256` identity
+    `2b58436c38b0d88889c5fe840120588ae43d6c399c34261f00d7241e9674c135`;
+    normalization amendment / manager validation / eight-lineage causal
+    analysis / manager return / handoff / runtime-summary identities
+    `0f2822b68a5158d7a19010ac3fc2e9d55e5930f891145b6de607f243889d78bd`,
+    `ee74288d67476e1e89ba41b1ef4e580aea1cc671c3a05b2dd906e7ea3eee16dc`,
+    `866e2ca161c1e4c610e28d79d0e3babeec83f20c63265b795aaddd40281be1f9`,
+    `cbbd691ef542dd44cb50dfe9215b6cabcc717db13979c180e74df26f5757b2a8`,
+    `25af31cecd066b355fc9c8b87199db0f70d2210ea94a16a0236a2221f93ccf44`,
+    and `091c1ce8f84e81d4aa98d1b16297ab6f8f389cf610e123ef059b259aa03a47d7`.
+  - Checks: receipt contract; corpus v18/no drift; practitioner status,
+    repository self-check, and full-suite closeout; strict runtime/manifest/
+    hash verification; authorized one-byte normalization with all pre/post
+    relations; eight-root preservation; downstream absence; exact containment,
+    candidate whitespace, and diff hygiene pass. Existing pre-normalization
+    citations remain unchanged and resolvable through the amendment. Frontend
+    gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS and
+    CHANGE Agent 1; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` —
+    `BLOCK_DAPP93_EIGHTH_PREDISPATCH_PS_PROBE_SANDBOX_DENIED`. Citation,
+    containment, intake, recursive-identity, syntax, and restricted-environment
+    gates passed before sealed F09 invoked `/bin/ps`; the managed sandbox
+    denied process observation with exit 127, and the no-system-state rule
+    required an operative reviewed-not-executed classification instead. N1 was
+    never dispatched. No authored packet, freeze, verifier, approval-request
+    hash, execution authority/action, product/runtime/system effect, register,
+    lifecycle, decision, Task Management, ninth-lineage, or foreign-loop effect
+    exists.

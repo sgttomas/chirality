@@ -1,0 +1,48 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 1
+  },
+  "counts": {
+    "category": {
+      "CLOSEOUT": 1,
+      "MANAGEMENT": 1,
+      "PREFLIGHT": 2
+    },
+    "event_type": {
+      "CHECK": 2,
+      "FINISH": 1,
+      "START": 1
+    },
+    "outcome": {
+      "BLOCKED": 2,
+      "PASS": 1,
+      "STARTED": 1
+    },
+    "reason_code": {
+      "CITATION_INTAKE_F01_F08_PASS": 1,
+      "EIGHTH_LINEAGE_ACTIVATED": 1,
+      "EIGHTH_LINEAGE_BLOCKED_PREDISPATCH": 1,
+      "PS_PROBE_SANDBOX_DENIED": 1
+    }
+  },
+  "events": 4,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 0.066,
+      "events": 4,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-DAPP93-L8-20260810",
+      "package_id": "D-APP-93",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-L8-MGR-01"
+    }
+  ],
+  "sessions": 1,
+  "status": "PASS",
+  "unmatched_sessions": []
+}
