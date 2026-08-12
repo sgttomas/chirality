@@ -1,0 +1,3 @@
+COMMAND     PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Chirality 44712 ryan   38u  unix 0x8ea958d4bb09609e      0t0      /private/tmp/chirality-dapp93-trace-20260811/user/runtime/control.sock
+Chirality 44712 ryan   39u  unix 0x24a238ab24cb7f0b      0t0      /private/tmp/chirality-dapp93-trace-20260811/user/runtime/control.sock
