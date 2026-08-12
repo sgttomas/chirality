@@ -4868,3 +4868,46 @@
     packet acceptance/freeze, or child/verifier dispatch. No packet execution,
     Step 0, product/runtime/system/source, register, lifecycle, Task Management,
     fourteenth-lineage, or foreign-loop effect exists.
+
+- **2026-08-11 — Receipt 162** (D-APP-93 owner-trace evidence tranche).
+  - Receipt-ID: `Receipt-162`
+  - Examined-Through: `f1e311fb7ab1c2a0800b1d32c59445368428dee9`
+  - Parent-Receipt: `Receipt-161`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-11,
+    Ryan Tufts, in-session): `DIRECTION — D-APP-93 owner-trace evidence tranche (Receipt 162)`;
+    `Context: Under the owner ruling of 2026-08-11 (packet freeze by owner assembly, aggregate SHA-256 \`db704c969143dad9ddfe832fa630748e091cb8a9b1524bb3d30d28dc74c56f83\`, superseding the twelfth-lineage manager freeze and the agent-verifier precondition under K-AUTH-1), the owner executed the D-APP-93 trace packet on 2026-08-11: Step 0 PASS, LLDB causal trace completed per the runbook with zero stop rules triggered, transcript bound by the packet's capture script. The trace target was rebuilt from the frozen D-APP-88 R2 candidate source (all 12 SOURCE_MANIFEST.md hashes reproduced) per the D-APP-92 register launch rows. This tranche lands the evidence; it makes no D-APP-93 disposition — that remains a separate owner act.`;
+    `Constraints: no packet byte changes; no product/runtime/source changes; copied evidence is immutable once verified; record observations without reinterpretation; touch no foreign-loop surfaces.`;
+    Earlier in-session whitespace-exception approvals are superseded by the
+    owner direction `Fix the files. Do it the right way.` External raw sources
+    and ingest identities remain preserved; the two repository copies are
+    canonically normalized with a durable provenance amendment.
+  - Pointers: owner-trace `FINAL_INVENTORY.sha256` / source-ingest manifest /
+    normalization amendment / normalized-repository manifest / owner execution
+    record / fresh pre-normalization verifier PASS / handoff / manager return /
+    closeout-validation identities
+    `d97be33438b67fd2ce632816e0af8fd51401b16534e14381a5fa5f9fb0a07b0a`,
+    `3bae2915dd21a0701ea4159dc5e60f4d26fd70d0e4cf12e74e78bb897b778888`,
+    `76b80e7672445f00c855c34750019d4af7cfc0c979a3226e34393e492493cc83`,
+    `d48fbf1d604753cbbc2be91cc136f4b3cb31456dcd4b769d85821240a0f2afb7`,
+    `339ac6f11bef919b0a33f77e6252654c2a015d075e74e5ed5e1ab64abc54c829`,
+    `99f2357445dcb1d87dd3761d279e1753cdbf6bdc4fc9d4d8fd866b4944eeb5f0`,
+    `0326a0f7f3fba80342b40fd9041e433ced03770e4e14ea3b6d3d0d437d63c581`,
+    `6f61260d9a2948bb24386aaf32676337691bd1191775f10b255a399d137d0f6b`,
+    and `720e98c3700e2443838b2553d42b8bc99ed5f5c7c3743298f62e4587f37914be`;
+    DEL-09-04 MEMORY, `_STATUS.md`, and R7 handoff.
+  - Checks: receipt contract; source-ingest manifest; unchanged external raw
+    identities; normalized-repository manifest; deterministic byte reproduction;
+    aggregate inventory; fresh pre-normalization evidence
+    verifier PASS plus post-normalization manager semantic verification; corpus
+    v18/no drift; practitioner status; clean-checkout repository self-check and
+    full practitioner/validation suite; lifecycle/Checking-Approval
+    preservation; containment and candidate whitespace pass with zero findings,
+    zero exceptions, and no validator change. Frontend gates skipped because no
+    product/runtime/source or packet byte changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    CHANGE Agent 1 and verifier Agent 2.
+  - Gate-Outcome: `EXECUTED` — owner-executed D-APP-93 packet evidence landed;
+    D-APP-93 evidence disposition remains reserved to the owner. DEL-09-04
+    remains `IN_PROGRESS` with Checking Approval SHA unchanged. No closure,
+    lifecycle, acceptance, D-APP-88 conclusion/remedy, product/runtime/source,
+    packet-byte, decision-register, Task Management, or foreign-loop effect.

@@ -1,0 +1,15 @@
+{
+  "run_id": "APPDEV_DAPP93_OWNER_TRACE_2026-08-11",
+  "status": "PASS_RETURNED_FOR_CHANGE",
+  "manager_nodes": 3,
+  "child_nodes": 1,
+  "child_attempts": 1,
+  "child_verdict": "PASS_DAPP93_OWNER_TRACE_EVIDENCE",
+  "retries": 0,
+  "repairs_after_verifier": 1,
+  "native_context_telemetry": "unavailable",
+  "copied_import_file_count": 11,
+  "copied_import_byte_total": 1002581,
+  "owner_authorized_normalized_file_count": 2,
+  "normalized_repository_copy_byte_total": 1001751
+}

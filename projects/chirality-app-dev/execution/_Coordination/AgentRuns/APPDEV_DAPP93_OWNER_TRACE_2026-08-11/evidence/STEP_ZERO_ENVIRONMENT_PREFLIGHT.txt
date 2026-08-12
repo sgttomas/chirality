@@ -1,0 +1,8 @@
+BINARY | /bin/zsh | expected=528da649cc69510bd3c0bc565298cb602076b74a8ac3f18e793211b2a3c725e8 | actual=528da649cc69510bd3c0bc565298cb602076b74a8ac3f18e793211b2a3c725e8
+BINARY | /usr/bin/lldb | expected=44a68ddc1983d6cff3fd35ba3f9ba5f82004216f1dcde69892b3d1b06e408698 | actual=44a68ddc1983d6cff3fd35ba3f9ba5f82004216f1dcde69892b3d1b06e408698
+BINARY | /bin/ps | expected=a1d8c4a0a96fb6159f09d8f520f54df829db5f2eae9b9f3448e18f0bee61115c | actual=a1d8c4a0a96fb6159f09d8f520f54df829db5f2eae9b9f3448e18f0bee61115c
+BINARY | /usr/bin/shasum | expected=0812595f981a26f813d98dc380af14d4af427626c9339eda29eb849ae13de1e3 | actual=0812595f981a26f813d98dc380af14d4af427626c9339eda29eb849ae13de1e3
+BINARY | /usr/bin/perl | expected=626702a74f85d2664872f6a7aa9b639306a2035211d442a24ea32ef0d48c8afd | actual=626702a74f85d2664872f6a7aa9b639306a2035211d442a24ea32ef0d48c8afd
+PROBE | /usr/bin/lldb --version | exit=0 | first_line=lldb-2100.0.17.203
+PROBE | /bin/ps -p CURRENT_SHELL_PID -o pid= | exit=0 | numeric_output=26772
+STEP_ZERO_RESULT | PASS | hashes and neutral probes matched

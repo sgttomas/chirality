@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-04
+**Last Updated:** 2026-08-11
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -49,9 +49,16 @@
   instrumented SINGLE-versus-STANDARD matrix passed all four pre/post-GUI arms
   identically, which excludes removal of `single-process` as a supported cause
   or remedy but may be timing-perturbed by its synchronous logger. No App-native
-  remedy or D-APP-88 acceptance follows. Further causal replay is held pending
-  owner-authorized interactive GUI-session native signal tracing and a sealed
-  uninstrumented launch/contact/timing transcript. All R3 product/config/test
+  remedy or D-APP-88 acceptance follows. The owner subsequently froze and
+  executed the D-APP-93 interactive LLDB packet. Exact landed evidence records
+  SIGTERM delivered to `CrBrowserMain` in `mach_msg2_trap` under the AppKit
+  event loop while two control-socket clients were live; no Node/libuv/V8
+  signal-handler frame appeared at the stop instant. LLDB intercepted the
+  signal with `PASS=false`, so unintercepted processing was not tested. The
+  helper was alive after detach and continued serving. Evidence:
+  `execution/_Coordination/AgentRuns/APPDEV_DAPP93_OWNER_TRACE_2026-08-11/`.
+  D-APP-93 evidence disposition, D-APP-88 conclusions, and any remedy or
+  acceptance remain reserved to the owner; do not infer closure. All R3 product/config/test
   bytes and generated/runtime residue were rolled back. Evidence:
   `execution/_Coordination/AgentRuns/APPDEV_DAPP88_HELPER_BUNDLE_RESUME_R3_2026-08-04/`.
 - Recover-on-start is the only answer to a SIGKILLed daemon's stale control
@@ -81,6 +88,7 @@
   decision.
 
 ## History
+- 2026-08-11 - The owner froze and executed the D-APP-93 owner-operated LLDB trace packet; Step 0 passed and the capture completed with zero stop rules. Landed evidence records SIGTERM delivered to `CrBrowserMain` in the AppKit event loop while two helper control-socket clients were live, with no Node/libuv/V8 signal-handler frames at the stop instant. LLDB intercepted the signal (`PASS=false`), so unintercepted processing was not tested. The helper remained alive after detach and continued serving. Evidence disposition and all D-APP-88 conclusion/remedy/acceptance acts remain reserved to the owner. DEL-09-04 remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-08-04 - D-APP-88 R3 accepted Root TM-ROOT-112 as fit to release the App rerun, reconstructed the exact source-aligned helper, and produced auditable authenticated post-GUI first-signal failure evidence: helper/GUI remained alive through 80 polls, socket/owner persisted, and App teardown/Root stop were not entered. An exact instrumented SINGLE/STANDARD matrix then passed all four credited first-signal arms identically, so `single-process` removal and every other App-native remedy remain unsupported; the instrumentation may perturb absolute timing and does not erase the earlier failure. Fresh verifier PASS accepted the calibrated blocker/handoff only. Product/config/test and local runtime/build residue were rolled back. DEL-09-04 remains IN_PROGRESS, D-APP-88 remains open, TM-APP-036 does not fire, and the next replay is held for owner-authorized interactive GUI-session native tracing plus a sealed uninstrumented command/timing transcript. Lifecycle and Checking Approval SHA are unchanged.
 - 2026-08-03 - D-APP-88 R2 evaluated the previously untried separately built full Electron helper. The standalone `com.chirality.app.runtime-helper` package, builder-generated child topology, whole-bundle embedding, relocatability, and fresh graceful-stop evidence passed. Acceptance remains BLOCKED because retained post-GUI evidence proves helper restart, GUI contact, no later daemon shutdown entry, and eventual transport loss but does not independently bind the operator-observed first-signal survival/socket retention. The mandatory post-GUI first-signal graceful-stop proof therefore failed. A Root-side live-connection/server-close interaction is recorded only as an investigation hypothesis. Exact candidate bytes were frozen under the R2 run root and all R2 product/config/test changes were rolled back while preserving D-APP-89. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-08-03 - D-APP-88 Option B bounded implementation produced a distinct LoginItems helper candidate with relocatable relative framework links and helper-routed LaunchAgent/CLI paths. Package, focused tests, typecheck, dependency boundary, instruction-root integrity, fresh helper SIGTERM, CLI status, GUI coexistence, and SIGKILL recovery were evidenced. Acceptance remains BLOCKED because first-signal graceful teardown failed after GUI coexistence and an alternate SIGUSR2 diagnostic failed likewise. Exact candidate bytes were frozen under the run root and all D-APP-88 product/config/test changes were rolled back while preserving D-APP-89. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
