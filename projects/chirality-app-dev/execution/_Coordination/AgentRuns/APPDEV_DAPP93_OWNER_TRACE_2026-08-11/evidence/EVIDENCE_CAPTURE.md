@@ -104,7 +104,7 @@ This is a blank owner-fill form. Do not treat a blank field as a negative observ
 
 ## Owner interpretation
 
-- 
+-
 
 The owner interpretation above is separate from the observed facts and does not replace the transcript or hashed outputs.
 

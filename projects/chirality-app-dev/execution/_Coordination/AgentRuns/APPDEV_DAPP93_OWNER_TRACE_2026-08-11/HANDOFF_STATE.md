@@ -2,9 +2,15 @@
 
 Status: `EVIDENCE TRANCHE VALIDATED — DISPOSITION RESERVED TO OWNER`
 
-The owner-executed D-APP-93 packet evidence is preserved under `evidence/**`
-at the exact imported identities, together with the owner ruling, minder
-review, rebuild card, and facts-only execution record under `records/**`.
+The owner-executed D-APP-93 packet evidence is preserved under `evidence/**`.
+The source-ingest identities remain recorded byte-exact in
+`records/IMPORTED_IDENTITIES.sha256`; the two owner-authorized canonical
+repository normalizations, both raw and normalized identities, and the exact
+reproducible transforms are recorded in `NORMALIZATION_AMENDMENT.md`. Current
+repository-copy identities are enumerated by
+`records/NORMALIZED_REPOSITORY_IDENTITIES.sha256`. The owner ruling, minder
+review, rebuild card, and facts-only execution record remain under
+`records/**`.
 Fresh verifier verdict is `PASS_DAPP93_OWNER_TRACE_EVIDENCE` at return SHA-256
 `99f2357445dcb1d87dd3761d279e1753cdbf6bdc4fc9d4d8fd866b4944eeb5f0`.
 
@@ -15,8 +21,9 @@ lifecycle, closure, D-APP-88 remedy/acceptance, or evidence-disposition act
 occurred.
 
 Derivative status: the facts-only execution record and this handoff derive
-from the immutable copied evidence and records; they do not replace those
-sources. The final inventory enumerates the complete run-root tranche.
+from the raw source-ingest evidence, authorized normalized repository copies,
+and source records; they do not replace those sources. The final inventory
+enumerates the complete run-root tranche.
 
 Next owner gate: determine the evidence disposition and any D-APP-88
 conclusion or follow-on. CHANGE may perform Receipt 162/Git/PR closeout after

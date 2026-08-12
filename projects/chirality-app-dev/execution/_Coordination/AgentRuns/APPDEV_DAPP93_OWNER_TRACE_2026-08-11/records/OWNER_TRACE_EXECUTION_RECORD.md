@@ -20,10 +20,16 @@ the owner-side process-list probe exited 0 with numeric output. The Step 0
 record is SHA-256
 `cda4b36b007ace33514a20479091a8053e6436c84f4cca36cca704878677f845`.
 The trace completed with zero stop rules triggered. The capture script bound
-the transcript into the completed evidence form. The transcript is SHA-256
-`43763e06b4d3536f48713cfc5b5d4a69b496d3fd4057212b5da3694262740536`;
-the completed evidence form is SHA-256
+the transcript into the completed evidence form. At capture and exact ingest,
+the raw transcript SHA-256 was
+`43763e06b4d3536f48713cfc5b5d4a69b496d3fd4057212b5da3694262740536`
+and the raw completed-form SHA-256 was
 `fe0f89eea64a294e1c050e6bc46cd6d2934fe185f98d149fe54cfd6a8191d707`.
+The canonically normalized repository copies are respectively SHA-256
+`358228ac79541b829f2c61f3bcd3e89983f150ea020a2e692c02d8e27623f522`
+and `314ee96db7d73552a1e41d1b88e6d5d32fcd8aa7ed9c19411c3e2e56844e6ef1`.
+`NORMALIZATION_AMENDMENT.md` preserves both identity sets and the complete,
+reproducible byte-transform record.
 
 The target was rebuilt from the frozen D-APP-88 R2 candidate source. The
 completed evidence form records reproduction of all 12/12

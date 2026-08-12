@@ -4877,28 +4877,33 @@
     Ryan Tufts, in-session): `DIRECTION — D-APP-93 owner-trace evidence tranche (Receipt 162)`;
     `Context: Under the owner ruling of 2026-08-11 (packet freeze by owner assembly, aggregate SHA-256 \`db704c969143dad9ddfe832fa630748e091cb8a9b1524bb3d30d28dc74c56f83\`, superseding the twelfth-lineage manager freeze and the agent-verifier precondition under K-AUTH-1), the owner executed the D-APP-93 trace packet on 2026-08-11: Step 0 PASS, LLDB causal trace completed per the runbook with zero stop rules triggered, transcript bound by the packet's capture script. The trace target was rebuilt from the frozen D-APP-88 R2 candidate source (all 12 SOURCE_MANIFEST.md hashes reproduced) per the D-APP-92 register launch rows. This tranche lands the evidence; it makes no D-APP-93 disposition — that remains a separate owner act.`;
     `Constraints: no packet byte changes; no product/runtime/source changes; copied evidence is immutable once verified; record observations without reinterpretation; touch no foreign-loop surfaces.`;
-    `APPROVE: preserve the manifest-matching trailing whitespace in evidence/EVIDENCE_CAPTURE.md line 107 as an immutable-evidence exception to candidate-whitespace validation. Do not modify the imported file or its identity. Continue Receipt 162 validation, commit, push, and ready-for-review PR preparation under the original direction.`;
-    `APPROVE: preserve all 552 manifest-matching CRLF/trailing-whitespace findings in evidence/LLDB_TRANSCRIPT.txt as an immutable raw-terminal-evidence exception to git diff whitespace validation. Do not modify the transcript or its SHA-256 43763e06b4d3536f48713cfc5b5d4a69b496d3fd4057212b5da3694262740536. Record this bounded exception alongside the already approved EVIDENCE_CAPTURE.md line 107 exception in validation evidence and Receipt 162, regenerate affected derivative hashes/inventory, revalidate, then commit, push, and create the ready-for-review PR under the original direction.`
-  - Pointers: owner-trace `FINAL_INVENTORY.sha256` / immutable-import manifest /
-    owner execution record / fresh verifier PASS / handoff / manager return /
+    Earlier in-session whitespace-exception approvals are superseded by the
+    owner direction `Fix the files. Do it the right way.` External raw sources
+    and ingest identities remain preserved; the two repository copies are
+    canonically normalized with a durable provenance amendment.
+  - Pointers: owner-trace `FINAL_INVENTORY.sha256` / source-ingest manifest /
+    normalization amendment / normalized-repository manifest / owner execution
+    record / fresh pre-normalization verifier PASS / handoff / manager return /
     closeout-validation identities
-    `88c0d3f0e3ff13338ddd9deed80d7fb7e660dff37ac156986ba35094b958f966`,
+    `d97be33438b67fd2ce632816e0af8fd51401b16534e14381a5fa5f9fb0a07b0a`,
     `3bae2915dd21a0701ea4159dc5e60f4d26fd70d0e4cf12e74e78bb897b778888`,
-    `1fbecb8b01aa64834cf1eaf569072f0085c77cb29f18ac207296103676cf2b62`,
+    `76b80e7672445f00c855c34750019d4af7cfc0c979a3226e34393e492493cc83`,
+    `d48fbf1d604753cbbc2be91cc136f4b3cb31456dcd4b769d85821240a0f2afb7`,
+    `339ac6f11bef919b0a33f77e6252654c2a015d075e74e5ed5e1ab64abc54c829`,
     `99f2357445dcb1d87dd3761d279e1753cdbf6bdc4fc9d4d8fd866b4944eeb5f0`,
-    `89e4ba81c3c5ea486e66099338f6fe54d363542620aca7bb834ebb498d1fb6f6`,
-    `efd2d55f513420138b95886c1f8e83ac6da2fb3533a880b47133232aa7a69fea`,
-    and `7bc54151425465bb4abfc33aee82450035bcca8cb8adf5366e3ae50cca8e3ddc`;
+    `0326a0f7f3fba80342b40fd9041e433ced03770e4e14ea3b6d3d0d437d63c581`,
+    `6f61260d9a2948bb24386aaf32676337691bd1191775f10b255a399d137d0f6b`,
+    and `720e98c3700e2443838b2553d42b8bc99ed5f5c7c3743298f62e4587f37914be`;
     DEL-09-04 MEMORY, `_STATUS.md`, and R7 handoff.
-  - Checks: receipt contract; exact 11-file immutable import manifest and
-    aggregate inventory; fresh evidence verifier PASS; corpus v18/no drift;
-    practitioner status; clean-checkout repository self-check and full
-    practitioner/validation suite; lifecycle/Checking-Approval preservation;
-    containment and diff hygiene pass with exact owner-approved immutable
-    exceptions for `EVIDENCE_CAPTURE.md` line 107 and all 552 CRLF findings in
-    `LLDB_TRANSCRIPT.txt`; `git diff --cached --check` reports exactly those 553
-    findings and no others. Frontend gates skipped because no product/runtime/
-    source or packet byte changed.
+  - Checks: receipt contract; source-ingest manifest; unchanged external raw
+    identities; normalized-repository manifest; deterministic byte reproduction;
+    aggregate inventory; fresh pre-normalization evidence
+    verifier PASS plus post-normalization manager semantic verification; corpus
+    v18/no drift; practitioner status; clean-checkout repository self-check and
+    full practitioner/validation suite; lifecycle/Checking-Approval
+    preservation; containment and candidate whitespace pass with zero findings,
+    zero exceptions, and no validator change. Frontend gates skipped because no
+    product/runtime/source or packet byte changed.
   - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
     CHANGE Agent 1 and verifier Agent 2.
   - Gate-Outcome: `EXECUTED` — owner-executed D-APP-93 packet evidence landed;
