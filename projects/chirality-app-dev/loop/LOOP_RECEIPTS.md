@@ -4911,3 +4911,31 @@
     remains `IN_PROGRESS` with Checking Approval SHA unchanged. No closure,
     lifecycle, acceptance, D-APP-88 conclusion/remedy, product/runtime/source,
     packet-byte, decision-register, Task Management, or foreign-loop effect.
+
+- **2026-08-13 — Receipt 163** (runtime-daemon held-connection graceful-stop hardening).
+  - Receipt-ID: `Receipt-163`
+  - Examined-Through: `f84f7b03b49ce1397b556c8e03ccc5b11c955802`
+  - Parent-Receipt: `Receipt-162`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-13,
+    Ryan Tufts, in-session): `STANDING DIRECTION — development pressure.`;
+    `Headline engineering target. Make the runtime helper's graceful stop robust under held client connections, landed as reviewed source changes plus an automated regression test that arms the held-connection condition and proves SIGTERM teardown completes within a bounded time.`;
+    `Fences: sealed briefs and disjoint write scopes for any dispatched work; changes confined to product source, tests, and the minimum run-record your instruments require; no packet, evidence, foreign-loop, or decision-register writes; one branch, one ready-for-review PR, no merge; publication gate as usual.`
+  - Pointers: DEL-09-04 `_STATUS.md` / `MEMORY.md` / R8 run record; managed
+    runtime-daemon held-connection AgentRuns `MANAGER_RETURN.md` /
+    `HANDOFF_STATE.md` / `VALIDATION.md` / two fresh review returns.
+  - Checks: runtime focused/full tests and typecheck pass; frontend focused/full
+    tests, application/Electron typechecks, and production build pass; fresh
+    terminal review pass after bounded native-quit-race remediation; receipt
+    contract, corpus v18/no drift, practitioner status, clean-checkout
+    repository self-check and full practitioner/validation suite, containment,
+    candidate-whitespace, and diff hygiene pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    CHANGE Agent 1, and bounded implementation/integration/review/remediation
+    Agent 2 instances; exact model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — reviewed runtime/frontend source hardening and
+    deterministic held-partial-request SIGTERM regression prepared as one
+    ready-for-review PR candidate. DEL-09-04 remains `IN_PROGRESS` with
+    Checking Approval SHA unchanged. No D-APP-93/D-APP-88 disposition,
+    acceptance, closure, lifecycle, packet/evidence, decision-register,
+    deployment/runtime-state, Task Management, or foreign-loop act occurred;
+    owner merge remains required.

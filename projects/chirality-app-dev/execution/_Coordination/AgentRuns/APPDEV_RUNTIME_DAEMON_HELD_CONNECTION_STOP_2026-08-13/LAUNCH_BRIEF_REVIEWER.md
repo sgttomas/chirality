@@ -1,0 +1,21 @@
+# Sealed Agent 2 brief — fresh runtime stop code review
+
+- RequestedBy: `HELP_HUMAN -> WORKING_ITEMS`
+- RunID: `APPDEV_RUNTIME_DAEMON_HELD_CONNECTION_STOP_2026-08-13`
+- ParentInstanceID: `WORKING_ITEMS-runtime-stop-fix`
+- ChildInstanceID: `A2-RUNTIME-STOP-REVIEW-01`
+- PackageID: `PKG-09`
+- DeliverableID: `DEL-09-04`
+- ScopePath: `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_RUNTIME_DAEMON_HELD_CONNECTION_STOP_2026-08-13`
+- TaskSkill: `software-code-review` method semantics, executed read-only.
+- Objective: independently review the complete frozen runtime plus Electron diff for correctness, signal/concurrency/error behavior, held-request regression fidelity, shipped-path integration, scope, and verification sufficiency.
+- AcceptedBasis: branch base `f84f7b03b49ce1397b556c8e03ccc5b11c955802`; frozen implementer/integrator briefs and returns; current worktree diff; manager validation results: runtime typecheck exit 0, frontend typecheck exit 0, runtime full tests 9 files/76 tests PASS including held-request SIGTERM 2146 ms, focused frontend 1 file/2 tests PASS, diff-check PASS.
+- DiffBasis: `git diff` plus untracked files named by the briefs.
+- DeclaredReads: `AGENTS.md`, `agents/AGENT_TASK.md`, `skills/software-code-review/{SKILL.md,BRIEF_SCHEMA.md,TOOL_POLICY.md,QA_CHECKS.md}`, the run root briefs/run records, `runtime/packages/daemon/src/{runtime-daemon.ts,signal-shutdown.ts,index.ts}`, `runtime/tests/{runtime-daemon-signal.test.ts,fixtures/runtime-daemon-signal-child.ts,daemon.test.ts}`, `projects/chirality-app-dev/frontend/electron/{main.ts,runtime-host.ts}`, the focused Electron test, and package/type configs necessary to evaluate resolution.
+- AllowedTools: read-only file reads/search and read-only Git diff/status. Do not execute tests; manager evidence is supplied.
+- ApplyEdits: false.
+- AllowedWriteTargets: none.
+- VerificationEvidence: exact results stated above and child run records.
+- ExpectedReturn: findings first with file/line/impact/evidence/remediation; scope/contract/check-coverage assessment; residual risk; `PASS_FOR_MANAGER_FAN_IN` or `BLOCK`.
+- AcceptanceCriteria: no blocking correctness/regression/scope/security/maintainability finding; regression genuinely uses OS SIGTERM after daemon-parsed incomplete request; binder is one-shot, failure-explicit, listener-safe, and shipped only in daemon mode through the complete teardown funnel; GUI behavior retained; tests and types cover public surface.
+- EXCLUSIONS: no edits, no test/app execution, no Git mutation, no D-APP disposition/acceptance/lifecycle claim.

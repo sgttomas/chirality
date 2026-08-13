@@ -6,6 +6,7 @@ import { createServer, type IncomingMessage, type ServerResponse } from 'node:ht
 import type { AddressInfo } from 'node:net';
 import path from 'node:path';
 import { RuntimeClient } from '@chirality/runtime-client';
+import { installRuntimeDaemonSignalShutdown } from '@chirality/runtime-daemon';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
 import { installBundledCliLauncher } from './cli-launcher';
 import {
@@ -41,6 +42,7 @@ import {
   createSocketPresenceWatcher,
   type SocketPresenceWatcher
 } from './runtime-socket-watch';
+import { shouldPreventNativeQuit } from './runtime-shutdown-policy';
 
 type RendererServer = {
   close: () => Promise<void>;
@@ -67,6 +69,7 @@ const RENDERER_EGRESS_FILTER_URLS = ['http://*/*', 'https://*/*', 'ws://*/*', 'w
 let rendererServer: RendererServer | undefined;
 let runtimeHost: RuntimeHost | undefined;
 let shutdownStarted = false;
+let shutdownCompleted = false;
 let bindingSupervisor: RuntimeBindingSupervisor | undefined;
 let socketWatcher: SocketPresenceWatcher | undefined;
 /** Monotonic timestamp of the last GUI spawned from daemon mode; see `activate`. */
@@ -684,6 +687,13 @@ async function initializeDaemon(): Promise<void> {
     pid: process.pid
   });
   runtimeHost = await startRuntimeHost();
+  installRuntimeDaemonSignalShutdown({
+    // Keep signal-driven shutdown inside the same Electron funnel as
+    // before-quit, initialization failure, and daemon retirement. The facade
+    // ultimately awaits the active host's RuntimeDaemon.stop() contract while
+    // preserving the surrounding cleanup, logging, and app exit.
+    stop: () => shutdown(0, 'runtime-daemon-signal')
+  });
   desktopLogger.info('runtime.daemon.started', {
     socketPath: runtimeHost.socketPath,
     runtimeDirectory: runtimeHost.runtimeDirectory
@@ -748,7 +758,9 @@ async function shutdown(exitCode = 0, reason = 'unspecified'): Promise<void> {
   if (shutdownStarted) {
     return;
   }
-  app.exit(await teardown(exitCode, reason));
+  const finalExitCode = await teardown(exitCode, reason);
+  shutdownCompleted = true;
+  app.exit(finalExitCode);
 }
 
 app
@@ -776,7 +788,7 @@ app.on('window-all-closed', () => {
 
 // The single quit funnel for both modes.
 //
-// This deliberately no longer vetoes quits in daemon mode. The veto was built to
+// This deliberately no longer vetoes an initial quit in daemon mode. The old veto was built to
 // refuse a quit AppleEvent thought to accompany a LaunchServices launch; three
 // reproductions showed the daemon receives `activate` and *no* quit at all, so
 // the veto never fired for its intended trigger — while it did swallow SIGTERM,
@@ -789,11 +801,18 @@ app.on('window-all-closed', () => {
 // The stay-dead bug is covered by the restart contract alone: `KeepAlive <true/>`
 // restarts the daemon after *any* exit, clean ones included. So a polite quit is
 // now honoured and made graceful — stop the runtime host (releasing the control
-// socket), then exit — and launchd brings the daemon straight back.
+// socket), then exit — and launchd brings the daemon straight back. A concurrent
+// native quit is still vetoed while that teardown is in flight; only our final
+// owned `app.exit()` is allowed through.
 app.on('before-quit', (event) => {
-  if (!shutdownStarted && (runtimeHost !== undefined || rendererServer !== undefined)) {
+  const hasOwnedResources = runtimeHost !== undefined || rendererServer !== undefined;
+  if (
+    shouldPreventNativeQuit({ shutdownStarted, shutdownCompleted, hasOwnedResources })
+  ) {
     event.preventDefault();
-    void shutdown(0, 'before-quit');
+    if (!shutdownStarted) {
+      void shutdown(0, 'before-quit');
+    }
   }
 });
 
@@ -873,12 +892,13 @@ if (runtimeDaemonMode) {
   });
 }
 
-// Retained for the contexts where JS signal handlers do run (unpackaged
-// `npm run desktop`, a plain-Node parent). In the packaged app Chromium's native
-// handler wins and the signal arrives as `before-quit` instead; both routes now
-// end in the same graceful `shutdown()`.
-for (const signal of ['SIGINT', 'SIGTERM'] as const) {
-  process.once(signal, () => {
-    void shutdown(signal === 'SIGINT' ? 130 : 0, `signal:${signal}`);
-  });
+// GUI mode retains its direct Node signal path. Daemon mode instead installs
+// the shared one-shot binder after the active RuntimeHost exists, so these
+// listeners cannot race or duplicate its stop operation.
+if (!runtimeDaemonMode) {
+  for (const signal of ['SIGINT', 'SIGTERM'] as const) {
+    process.once(signal, () => {
+      void shutdown(signal === 'SIGINT' ? 130 : 0, `signal:${signal}`);
+    });
+  }
 }

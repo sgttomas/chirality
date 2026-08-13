@@ -1,0 +1,46 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 1
+  },
+  "counts": {
+    "category": {
+      "CLOSEOUT": 2,
+      "TELEMETRY": 1
+    },
+    "event_type": {
+      "FINISH": 1,
+      "NOTICE": 1,
+      "START": 1
+    },
+    "outcome": {
+      "PASS": 1,
+      "STARTED": 1,
+      "UNKNOWN": 1
+    },
+    "reason_code": {
+      "PRE_CLOSEOUT_TELEMETRY_UNAVAILABLE": 1,
+      "READY_FOR_CHANGE": 1,
+      "TERMINAL_CLOSEOUT": 1
+    }
+  },
+  "events": 3,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 12.2,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "WI-RUNTIME-STOP-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-RUNTIME-STOP-CLOSEOUT-01"
+    }
+  ],
+  "sessions": 1,
+  "status": "PASS",
+  "unmatched_sessions": []
+}
