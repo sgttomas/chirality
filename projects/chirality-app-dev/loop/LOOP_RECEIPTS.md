@@ -4939,3 +4939,32 @@
     acceptance, closure, lifecycle, packet/evidence, decision-register,
     deployment/runtime-state, Task Management, or foreign-loop act occurred;
     owner merge remains required.
+
+- **2026-08-13 — Receipt 164** (D-APP-93 disposition and D-APP-88 closure).
+  - Receipt-ID: `Receipt-164`
+  - Examined-Through: `b0598328e44b108451d0f6263270bb590849d08a`
+  - Parent-Receipt: `Receipt-163`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (the full
+    verbatim owner ruling is governed at the first Pointers path; 2026-08-13,
+    Ryan Tufts, in-session): `D-APP-93 is disposed: evidence accepted, deliverable complete.`;
+    `D-APP-88 is concluded on the proven finding.`; `Record, don't relitigate.`;
+    `No byte of landed evidence or packet changes; no new investigation; no
+    product/runtime/source changes. One branch, one ready-for-review PR,
+    publication gate as usual, no merge.`
+  - Pointers: governed verbatim ruling and lifecycle application
+    `execution/_Coordination/_DECISIONS/D-APP-88_D-APP-93_OWNER_DISPOSITION_AND_CLOSURE_2026-08-13.md`;
+    decision `_REGISTER.md`; DEL-09-04 `_STATUS.md` / `MEMORY.md` / R9 run
+    record; PR #551 merge `f84f7b03`; PR #552 merge `b0598328e`.
+  - Checks: receipt contract; corpus v18/no drift; App status; clean-checkout
+    repository self-check and full practitioner/validation suite; exact
+    containment, candidate-whitespace, and diff hygiene pass. Frontend gates
+    skipped because no product/runtime/source or evidence/packet byte changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising TASK_MANAGEMENT and
+    CHANGE Agent 1; exact model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — owner ruling transcribed and applied: D-APP-93
+    is `RULED / DISPOSED — EVIDENCE ACCEPTED; DELIVERABLE COMPLETE`; D-APP-88
+    is `RULED / CONCLUDED — FAILURE MODE CLOSED`; their helper-stop residual
+    is removed. DEL-09-04 remains `IN_PROGRESS` with Checking Approval SHA and
+    unrelated residuals unchanged. No evidence/packet/product/runtime/source,
+    investigation, foreign-loop, release, issuance, or additional lifecycle
+    act occurred; owner PR merge remains required.
