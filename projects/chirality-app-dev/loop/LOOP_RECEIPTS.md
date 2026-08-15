@@ -5030,3 +5030,29 @@
     item removed; DEL-09-03 verification accepted; lifecycle unchanged. No
     release, provider, domain, decision, or foreign-loop act occurred; owner
     merge remains required.
+
+- **2026-08-15 — Receipt 167** (DEL-02-01 top-bar runtime reconnect action).
+  - Receipt-ID: `Receipt-167`
+  - Examined-Through: `4dfa1b4c1a894b309185702c013f8728fa444079`
+  - Parent-Receipt: `Receipt-166`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-15,
+    Ryan Tufts, in-session): `STANDING DIRECTION — development pressure`;
+    `This tranche's deliverable is product work: code, working features, executing cases, closed engineering gaps. Name one concrete engineering target up front and spend the tranche on it. Governance is a fence around the work, not the work — apply ruled decisions as-is, don't revisit them, and produce the minimum coordination artifacts your instruments require. If you find yourself planning, re-deriving, or writing records instead of building, stop and build. A return whose bulk is run-records and plans rather than product progress is a failed tranche even if every gate passes. Decisions that need the owner: park them in one list at the end, don't let them stall the work.`;
+    `Applied to Step 0: let Step 0 select the target from ruled state — but selection is a decision, not a deliverable. Pick the highest-value open engineering gap the instruments already authorize, state it in one line, and go build it. If Step 0 concludes that no authorized engineering work exists and only decisions remain, return that as a short parked-decisions list — do not manufacture a planning or records tranche to fill the session.`
+  - Pointers: product/test files `frontend/src/components/shell/shell-frame.tsx`,
+    `frontend/src/app/globals.css`,
+    `frontend/src/__tests__/components/shell-frame-runtime-connectivity.test.tsx`,
+    and `frontend/src/__tests__/electron/runtime-control-ipc.test.ts`; DEL-02-01
+    `_STATUS.md`, `MEMORY.md`, and D-APP-64 `SELECT_AND_ADVANCE` rationale at
+    `_run_records/TOP_BAR_RUNTIME_RECONNECT_2026-08-15.md`; managed RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_TOPBAR_RUNTIME_RECONNECT_2026-08-15/`.
+  - Checks: focused/full frontend tests, typecheck, build, fresh review,
+    practitioner pytest 349, self-check baseline, corpus v18/no drift, App
+    status, APP-HOLD, candidate-whitespace, receipt contract, diff hygiene, and
+    exact containment pass. Premerge N/A per validated route.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS, TASK,
+    and CHANGE Agent 1; exact model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — top-bar runtime reconnect product target complete;
+    exact DEL-02-01 Remaining item removed; lifecycle, approval fields, and
+    dependencies unchanged. No owner decision or waiver occurred; owner merge
+    remains required.

@@ -50,18 +50,44 @@ function snapshot(
 
 type BridgeHarness = {
   push: (next: RuntimeConnectivitySnapshot) => void;
+  status: ReturnType<typeof vi.fn>;
   unsubscribeCalls: () => number;
   listenerCount: () => number;
 };
 
+type RuntimeStatusSuccess = {
+  ok: true;
+  launchAgent: {
+    installed: boolean;
+    loaded: boolean;
+  };
+  daemon: {
+    running: boolean;
+    pid?: number;
+    startedAt?: string;
+  };
+};
+
+function daemonStatus(running = true): RuntimeStatusSuccess {
+  return {
+    ok: true,
+    launchAgent: { installed: true, loaded: true },
+    daemon: running ? { running: true, pid: 4242 } : { running: false }
+  };
+}
+
 /** Install a fake desktop connectivity bridge on the global `window`. */
-function installBridge(initial: RuntimeConnectivitySnapshot | null): BridgeHarness {
+function installBridge(
+  initial: RuntimeConnectivitySnapshot | null,
+  status: ReturnType<typeof vi.fn> = vi.fn().mockResolvedValue(daemonStatus())
+): BridgeHarness {
   const listeners = new Set<(value: RuntimeConnectivitySnapshot) => void>();
   let unsubscribeCalls = 0;
   Object.assign(globalThis, {
     window: {
       chirality: {
         runtime: {
+          daemon: { status },
           connectivity: {
             get: async () => initial,
             subscribe: (listener: (value: RuntimeConnectivitySnapshot) => void) => {
@@ -82,6 +108,7 @@ function installBridge(initial: RuntimeConnectivitySnapshot | null): BridgeHarne
         listener(next);
       }
     },
+    status,
     unsubscribeCalls: () => unsubscribeCalls,
     listenerCount: () => listeners.size
   };
@@ -156,8 +183,12 @@ describe('ShellFrame runtime connectivity indicator', () => {
 
     const chip = findRuntimeChip(tree);
     expect(chip?.props.className).toBe('shell-runtime-chip shell-runtime-chip--ready');
-    expect(chip?.props.title).toBe('Runtime daemon connected');
-    expect(chip?.props.role).toBe('status');
+    expect(chip?.props.title).toBe('Runtime daemon connected. Check connection now.');
+    expect(chip?.type).toBe('button');
+    expect(chip?.props.type).toBe('button');
+    expect(chip?.props['aria-label']).toBe(
+      'Check runtime connection; reported status: connected'
+    );
     expect(findRuntimeDot(tree)?.props.className).toBe(
       'shell-runtime-dot shell-runtime-dot--ready'
     );
@@ -173,7 +204,7 @@ describe('ShellFrame runtime connectivity indicator', () => {
     const chip = findRuntimeChip(tree);
     expect(chip?.props.className).toBe('shell-runtime-chip shell-runtime-chip--error');
     expect(chip?.props.title).toBe(
-      'Runtime daemon unreachable after 2 attempts: socket refused'
+      'Runtime daemon unreachable after 2 attempts: socket refused. Check connection now.'
     );
     expect(findRuntimeDot(tree)?.props.className).toBe(
       'shell-runtime-dot shell-runtime-dot--error'
@@ -196,7 +227,9 @@ describe('ShellFrame runtime connectivity indicator', () => {
     expect(findRuntimeChip(tree)?.props.className).toBe(
       'shell-runtime-chip shell-runtime-chip--ready'
     );
-    expect(findRuntimeChip(tree)?.props.title).toBe('Runtime daemon connected');
+    expect(findRuntimeChip(tree)?.props.title).toBe(
+      'Runtime daemon connected. Check connection now.'
+    );
   });
 
   it('shows the pending tone while the first bind is still in flight', async () => {
@@ -270,5 +303,93 @@ describe('ShellFrame runtime connectivity indicator', () => {
     );
     expect(rootDots).toHaveLength(1);
     expect(rootDots[0]?.props.className).toBe('shell-root-dot shell-root-dot--ready');
+  });
+
+  it('checks the existing daemon status path once when activated', async () => {
+    const bridge = installBridge(snapshot({ state: 'disconnected', failedAttempts: 1 }));
+    const tree = await renderShell();
+
+    await act(async () => {
+      findRuntimeChip(tree)?.props.onClick();
+    });
+
+    expect(bridge.status).toHaveBeenCalledTimes(1);
+    expect(findRuntimeChip(tree)?.props.className).toBe(
+      'shell-runtime-chip shell-runtime-chip--error'
+    );
+    expect(findRuntimeChip(tree)?.props['aria-busy']).toBe(false);
+  });
+
+  it('keeps the main-process snapshot as visual truth when a check fails', async () => {
+    const status = vi.fn().mockResolvedValue({ ok: false, error: 'socket refused' });
+    installBridge(snapshot({ state: 'connected' }), status);
+    const tree = await renderShell();
+
+    await act(async () => {
+      findRuntimeChip(tree)?.props.onClick();
+    });
+
+    const chip = findRuntimeChip(tree);
+    expect(chip?.props.className).toBe('shell-runtime-chip shell-runtime-chip--ready');
+    expect(textOf(chip as renderer.ReactTestInstance)).toBe('runtimeconnected');
+    expect(chip?.props.title).toBe(
+      'Runtime daemon connected. Last check failed: socket refused'
+    );
+    expect(chip?.props['data-runtime-check-error']).toBe(true);
+    const feedback = tree.root.findByProps({ role: 'status' });
+    expect(textOf(feedback)).toBe('Runtime connection check failed: socket refused');
+  });
+
+  it('reports a production-shaped non-running daemon without changing snapshot truth', async () => {
+    const status = vi.fn().mockResolvedValue(daemonStatus(false));
+    installBridge(snapshot({ state: 'connected' }), status);
+    const tree = await renderShell();
+
+    await act(async () => {
+      findRuntimeChip(tree)?.props.onClick();
+    });
+
+    const chip = findRuntimeChip(tree);
+    expect(chip?.props.className).toBe('shell-runtime-chip shell-runtime-chip--ready');
+    expect(textOf(chip as renderer.ReactTestInstance)).toBe('runtimeconnected');
+    expect(chip?.props.title).toBe(
+      'Runtime daemon connected. Last check failed: Runtime daemon is unreachable'
+    );
+    expect(chip?.props['data-runtime-check-error']).toBe(true);
+    const feedback = tree.root.findByProps({ role: 'status' });
+    expect(textOf(feedback)).toBe(
+      'Runtime connection check failed: Runtime daemon is unreachable'
+    );
+  });
+
+  it('bounds reentrancy while a status check is in flight', async () => {
+    let resolveStatus!: (value: RuntimeStatusSuccess) => void;
+    const status = vi.fn(
+      () => new Promise<RuntimeStatusSuccess>((resolve) => {
+        resolveStatus = resolve;
+      })
+    );
+    installBridge(snapshot({ state: 'disconnected' }), status);
+    const tree = await renderShell();
+    const chip = findRuntimeChip(tree) as renderer.ReactTestInstance;
+
+    await act(async () => {
+      chip.props.onClick();
+      chip.props.onClick();
+    });
+
+    expect(status).toHaveBeenCalledTimes(1);
+    expect(findRuntimeChip(tree)?.props.disabled).toBe(true);
+    expect(findRuntimeChip(tree)?.props['aria-busy']).toBe(true);
+    expect(findRuntimeChip(tree)?.props['aria-label']).toBe(
+      'Checking runtime connection; reported status: offline'
+    );
+
+    await act(async () => {
+      resolveStatus(daemonStatus());
+    });
+
+    expect(findRuntimeChip(tree)?.props.disabled).toBe(false);
+    expect(findRuntimeChip(tree)?.props['aria-busy']).toBe(false);
   });
 });
