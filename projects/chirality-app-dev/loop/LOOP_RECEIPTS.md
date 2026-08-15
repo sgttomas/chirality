@@ -4968,3 +4968,37 @@
     unrelated residuals unchanged. No evidence/packet/product/runtime/source,
     investigation, foreign-loop, release, issuance, or additional lifecycle
     act occurred; owner PR merge remains required.
+
+- **2026-08-15 — Receipt 165** (App Task Management generational pass).
+  - Receipt-ID: `Receipt-165`
+  - Examined-Through: `dab32a212a961af8430b08dbc417bf62d30ebc69`
+  - Parent-Receipt: `Receipt-164`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-15,
+    Ryan Tufts, in-session): `Mode: candidate harvest — full PRD §5.1 sweep`;
+    `HARVEST — PROMOTE NONE`; `DEFERRAL — TM-APP-027 ACTIVATABLE:
+    RESHARPEN + DRAFT ROUTE`; `DEFERRAL — TM-APP-028 ACTIVATABLE: RESHARPEN
+    + DRAFT ROUTE`; `DEFERRAL — TM-APP-032 STILL_BLOCKED: RETAIN`;
+    `Open the PR; do not merge — my merge is the gate.`
+  - Pointers: register delta — zero rows added, promoted, elevated, closed,
+    reopened, assigned, or reprioritized; three `DEFERRED` rows reviewed; two
+    triggers resharpened and routed to one undispatched draft; one trigger
+    retained. Archive moved zero rows. Final App totals: `OPEN=13`,
+    `DEFERRED=3`, `ELEVATED=0`, `CLOSED live=0`, `archived=26`.
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-15_GENERATIONAL_PASS.md`;
+    `execution/_Coordination/_TaskManagement/CANDIDATE_HARVEST_REPORT_2026-08-15_GEN_PASS.md`;
+    `execution/_Coordination/_TaskManagement/DEFERRAL_CLASSIFICATION_REPORT_2026-08-15_GEN_PASS.md`;
+    `execution/_Coordination/_TaskManagement/DRAFT_NOTICE_ROOT_TM-APP-027_TM-APP-028_COMPATIBILITY_COMPLETION_2026-08-15.md`;
+    `execution/_Coordination/_TaskManagement/CLOSEOUT_VALIDATION_REPORT_2026-08-15_GEN_PASS.md`;
+    live `execution/_Coordination/_TaskManagement/REGISTER.csv`; unchanged
+    `execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv`.
+  - Checks: mandatory and final federation `COMPLETE`; candidate scan plus
+    manual marker sweep; full live-deferral review; owner-ruling application;
+    archive no-op; live/archive validation; receipt contract; containment,
+    candidate-whitespace, and diff hygiene pass.
+  - Model-Attribution: OpenAI Codex TASK_MANAGEMENT and CHANGE Agent 1; exact
+    model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — owner-ruled App register maintenance and one
+    App-owned undispatched Root routing draft prepared for the owner-gated PR.
+    This receipt is a discovery breadcrumb only and creates no duty, priority,
+    selection, acceptance, lifecycle, foreign-register, or foreign-loop effect;
+    owner PR merge remains required.
