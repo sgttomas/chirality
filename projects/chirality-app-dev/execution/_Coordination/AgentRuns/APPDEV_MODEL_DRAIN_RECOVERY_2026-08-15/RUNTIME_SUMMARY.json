@@ -1,0 +1,78 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 3
+  },
+  "counts": {
+    "category": {
+      "environment": 1,
+      "implementation": 2,
+      "orchestration": 2,
+      "review": 2,
+      "verification": 3
+    },
+    "event_type": {
+      "CHECK": 3,
+      "FINISH": 3,
+      "REMEDIATION": 1,
+      "START": 3
+    },
+    "outcome": {
+      "PASS": 7,
+      "STARTED": 3
+    },
+    "reason_code": {
+      "DISPATCH_READY": 1,
+      "FOCUSED_PROOF_PASS": 1,
+      "FRONTEND_VITEST_PASS": 1,
+      "IMPLEMENTATION_FROZEN": 1,
+      "NO_ACTIONABLE_FINDINGS": 1,
+      "OWNER_DIRECTED_ENGINEERING": 1,
+      "PACKAGE_RETURN_ACCEPTED": 1,
+      "PRACTITIONER_HARNESS_PASS": 1,
+      "REGISTERED_ALWAYS_PASS": 1,
+      "STALE_DEPENDENCY_SYMLINK": 1
+    }
+  },
+  "events": 10,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 621.138,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG03-MODEL-DRAIN-IMPLEMENT-01",
+      "package_id": "PKG-03",
+      "remediations": 0,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-PKG03-MODEL-DRAIN-IMPLEMENT-01"
+    },
+    {
+      "duration_seconds": 276.94,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG03-MODEL-DRAIN-REVIEW-01",
+      "package_id": "PKG-03",
+      "remediations": 0,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-PKG03-MODEL-DRAIN-REVIEW-01"
+    },
+    {
+      "duration_seconds": 1044.603,
+      "events": 6,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG03-MODEL-DRAIN",
+      "package_id": "PKG-03",
+      "remediations": 1,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG03-MODEL-DRAIN"
+    }
+  ],
+  "sessions": 3,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

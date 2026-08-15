@@ -88,12 +88,18 @@ async function createProjectFixture(root: string): Promise<string> {
   return manifestPath;
 }
 
-async function createRuntime(root: string, engine?: AgentEnginePort, model = 'fixture-model') {
+async function createRuntime(
+  root: string,
+  engine?: AgentEnginePort,
+  model = 'fixture-model',
+  controlOverride?: OmlxControlPort,
+  activateModel = true
+) {
   const runtimeDirectory = join(root, 'runtime');
   const projects = new ProjectRegistry(runtimeDirectory);
   const sessions = new SessionStore(runtimeDirectory, projects);
   const engines = new EngineRegistry();
-  const control: OmlxControlPort = {
+  const control: OmlxControlPort = controlOverride ?? {
     async listStatus() {
       return [{ id: model, kind: 'llm' as const, loaded: true, loading: false }];
     },
@@ -115,7 +121,9 @@ async function createRuntime(root: string, engine?: AgentEnginePort, model = 'fi
   const turns = new TurnCoordinator(projects, sessions, engines, residency);
   if (engine) {
     engines.register(engine);
-    await residency.activate(model, 'D-APP-85-C04-C16');
+    if (activateModel) {
+      await residency.activate(model, 'D-APP-85-C04-C16');
+    }
   }
   const service = new RuntimeService(
     projects,
@@ -132,7 +140,7 @@ async function createRuntime(root: string, engine?: AgentEnginePort, model = 'fi
       async resolve() {
         return {
           role: 'agent0' as const,
-          engineSelection: { adapterId: 'pi', providerId: 'omlx', model: 'fixture-model' }
+          engineSelection: { adapterId: 'pi', providerId: 'omlx', model }
         };
       }
     }
@@ -235,6 +243,184 @@ describe('Desktop and CLI shared runtime daemon', () => {
     ]);
     expect(desktopSession.session).toEqual(cliSession);
     await expect(cliClient.listSessions('chirality-app-dev')).resolves.toEqual([cliSession]);
+  });
+
+  it('persists exactly one terminal outcome when daemon restart interrupts an in-flight model drain', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'ch-md-'));
+    tempRoots.push(root);
+    const projectRoot = join(root, 'chirality-app-dev');
+    const manifestPath = await createProjectFixture(projectRoot);
+    const currentModel = 'model-drain-current';
+    const replacementModel = 'model-drain-replacement';
+    const loadedModels = new Set([currentModel]);
+    const residencyCalls: string[] = [];
+    const control: OmlxControlPort = {
+      async listStatus() {
+        return [currentModel, replacementModel].map((id) => ({
+          id,
+          kind: 'llm' as const,
+          loaded: loadedModels.has(id),
+          loading: false
+        }));
+      },
+      async unload(modelId) {
+        residencyCalls.push(`unload:${modelId}`);
+        loadedModels.delete(modelId);
+      },
+      async load(modelId) {
+        residencyCalls.push(`load:${modelId}`);
+        loadedModels.add(modelId);
+      }
+    };
+    let markEngineStarted!: () => void;
+    let releaseEngine!: () => void;
+    const engineStarted = new Promise<void>((resolve) => {
+      markEngineStarted = resolve;
+    });
+    const engineReleased = new Promise<void>((resolve) => {
+      releaseEngine = resolve;
+    });
+    let interrupts = 0;
+    const engine: AgentEnginePort = {
+      descriptor: {
+        adapterId: 'pi',
+        providerId: 'omlx',
+        capabilities: {
+          credentials: false,
+          tools: false,
+          attachments: false,
+          interruption: true,
+          durableResume: false,
+          compaction: false
+        }
+      },
+      subject: 'pi',
+      async preflight() {},
+      async *startTurn(input) {
+        yield {
+          type: 'session:init',
+          data: {
+            engineSessionId: `engine-${input.session.sessionId}`,
+            adapterId: 'pi',
+            providerId: 'omlx',
+            model: input.opts.model
+          }
+        };
+        markEngineStarted();
+        await engineReleased;
+      },
+      async interrupt() {
+        interrupts += 1;
+        releaseEngine();
+      }
+    };
+    const firstRuntime = await createRuntime(root, engine, currentModel, control);
+    const registration = await firstRuntime.service.registerProject(
+      manifestPath,
+      'test',
+      'D-APP-85-C04-C16'
+    );
+    const socketPath = join(firstRuntime.runtimeDirectory, 'control.sock');
+    const firstDaemon = new RuntimeDaemon({
+      runtimeDirectory: firstRuntime.runtimeDirectory,
+      socketPath,
+      service: firstRuntime.service
+    });
+    activeDaemons.push(firstDaemon);
+    const firstDaemonStart = await firstDaemon.start();
+    const projectClient = new RuntimeClient({
+      socketPath,
+      tokenFile: registration.tokenFile
+    });
+    const operatorClient = new RuntimeClient({
+      socketPath,
+      tokenFile: firstDaemonStart.operatorTokenFile
+    });
+    const session = await projectClient.createSession('chirality-app-dev', {
+      projectId: 'chirality-app-dev',
+      persona: 'HELP_HUMAN',
+      mode: 'direct'
+    });
+    const turnId = 'model-drain-restart-turn';
+    const turn = await projectClient.turnSession('chirality-app-dev', session.sessionId, {
+      turnId,
+      message: 'Hold model work in flight while residency drains.',
+      opts: { model: currentModel, tools: [], maxTurns: 1, persona: 'HELP_HUMAN', mode: 'direct' }
+    });
+    const turnEvents = collect(turn).catch(() => undefined);
+    await engineStarted;
+
+    const activation = operatorClient.activateModel(
+      replacementModel,
+      'D-APP-85-C04-C16'
+    );
+    let draining = await projectClient.listModels();
+    for (let attempt = 0; attempt < 100 && draining.phase !== 'DRAINING'; attempt += 1) {
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      draining = await projectClient.listModels();
+    }
+    expect(draining).toMatchObject({
+      phase: 'DRAINING',
+      activeTurns: 1,
+      acceptingLocalTurns: false,
+      managedModelId: currentModel
+    });
+
+    await Promise.all([firstDaemon.stop(), activation, turnEvents]);
+    expect(interrupts).toBe(1);
+    expect(residencyCalls).toEqual([
+      `unload:${currentModel}`,
+      `load:${replacementModel}`
+    ]);
+
+    const restartedRuntime = await createRuntime(
+      root,
+      engine,
+      replacementModel,
+      control,
+      false
+    );
+    const restartedDaemon = new RuntimeDaemon({
+      runtimeDirectory: restartedRuntime.runtimeDirectory,
+      socketPath,
+      service: restartedRuntime.service
+    });
+    activeDaemons.push(restartedDaemon);
+    await restartedDaemon.start();
+    const restartedClient = new RuntimeClient({
+      socketPath,
+      tokenFile: registration.tokenFile
+    });
+    const replay = await restartedClient.replaySession(
+      'chirality-app-dev',
+      session.sessionId
+    );
+    const terminalTypes = new Set([
+      'turn.completed',
+      'turn.failed',
+      'turn.cancelled',
+      'turn.interrupted'
+    ]);
+    const acceptedForTurn = replay.events.filter(
+      (event) => event.turnId === turnId && event.type === 'turn.accepted'
+    );
+    const terminalForTurn = replay.events.filter(
+      (event) => event.turnId === turnId && terminalTypes.has(event.type)
+    );
+
+    expect(acceptedForTurn).toHaveLength(1);
+    expect(terminalForTurn).toHaveLength(1);
+    expect(terminalForTurn[0]?.type).toBe('turn.interrupted');
+    expect(replay.session).toMatchObject({
+      status: 'interrupted',
+      engineSelection: { adapterId: 'pi', providerId: 'omlx', model: currentModel }
+    });
+    await expect(restartedClient.listModels()).resolves.toMatchObject({
+      phase: 'READY',
+      managedModelId: replacementModel,
+      activeTurns: 0,
+      acceptingLocalTurns: true
+    });
   });
 
   it('rejects a CLI turn with the typed shared-session lock while Desktop is active', async () => {
