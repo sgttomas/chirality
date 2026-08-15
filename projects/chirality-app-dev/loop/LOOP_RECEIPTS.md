@@ -5002,3 +5002,31 @@
     This receipt is a discovery breadcrumb only and creates no duty, priority,
     selection, acceptance, lifecycle, foreign-register, or foreign-loop effect;
     owner PR merge remains required.
+
+- **2026-08-15 — Receipt 166** (DEL-03-04 model-drain recovery proof).
+  - Receipt-ID: `Receipt-166`
+  - Examined-Through: `910c02129811a005da9b180c31e3c18dd365df6f`
+  - Parent-Receipt: `Receipt-165`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-15,
+    Ryan Tufts, in-session): `STANDING DIRECTION — development pressure`;
+    `This tranche's deliverable is product work: code, working features, executing cases, closed engineering gaps. Name one concrete engineering target up front and spend the tranche on it. Governance is a fence around the work, not the work — apply ruled decisions as-is, don't revisit them, and produce the minimum coordination artifacts your instruments require. If you find yourself planning, re-deriving, or writing records instead of building, stop and build. A return whose bulk is run-records and plans rather than product progress is a failed tranche even if every gate passes. Decisions that need the owner: park them in one list at the end, don't let them stall the work.`;
+    `Applied to Step 0: let Step 0 select the target from ruled state — but selection is a decision, not a deliverable. Pick the highest-value open engineering gap the instruments already authorize, state it in one line, and go build it. If Step 0 concludes that no authorized engineering work exists and only decisions remain, return that as a short parked-decisions list — do not manufacture a planning or records tranche to fill the session.`
+  - Pointers: integration test
+    `frontend/src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts`;
+    DEL-03-04 `_STATUS.md`, `MEMORY.md`, and
+    `_run_records/MODEL_DRAIN_RECOVERY_PROOF_2026-08-15.md`; DEL-09-03
+    `MEMORY.md` and `_run_records/MODEL_DRAIN_RECOVERY_VERIFICATION_2026-08-15.md`;
+    managed run root
+    `execution/_Coordination/AgentRuns/APPDEV_MODEL_DRAIN_RECOVERY_2026-08-15/`.
+  - Checks: focused/full Vitest, typecheck, fresh implementation and
+    cross-package reviews, corpus v18/no drift, App status, repository
+    self-check, practitioner pytest 349, APP-HOLD integrity,
+    candidate-whitespace, receipt contract, diff hygiene, and exact containment
+    pass. Build/premerge skipped because only automated test/evidence changed;
+    no product/runtime executable source changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS, TASK,
+    and CHANGE Agent 1; exact model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — engineering target complete; DEL-03-04 Remaining
+    item removed; DEL-09-03 verification accepted; lifecycle unchanged. No
+    release, provider, domain, decision, or foreign-loop act occurred; owner
+    merge remains required.
