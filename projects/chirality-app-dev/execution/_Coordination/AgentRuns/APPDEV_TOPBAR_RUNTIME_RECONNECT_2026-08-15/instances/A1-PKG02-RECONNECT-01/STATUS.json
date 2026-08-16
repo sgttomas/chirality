@@ -1,0 +1,10 @@
+{
+  "schema": "chirality-managed-instance-status/v1",
+  "runId": "APPDEV_TOPBAR_RUNTIME_RECONNECT_2026-08-15",
+  "instanceId": "A1-PKG02-RECONNECT-01",
+  "role": "WORKING_ITEMS",
+  "packageId": "PKG-02",
+  "deliverableIds": ["DEL-02-01"],
+  "status": "COMPLETED",
+  "attempt": 1
+}

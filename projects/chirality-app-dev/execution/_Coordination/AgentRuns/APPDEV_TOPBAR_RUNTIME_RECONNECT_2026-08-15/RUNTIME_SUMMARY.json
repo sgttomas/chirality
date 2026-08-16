@@ -1,0 +1,109 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 5
+  },
+  "counts": {
+    "category": {
+      "authorization": 1,
+      "environment": 1,
+      "implementation": 5,
+      "orchestration": 2,
+      "review": 4,
+      "verification": 4
+    },
+    "event_type": {
+      "CHECK": 5,
+      "FINISH": 5,
+      "REMEDIATION": 2,
+      "START": 5
+    },
+    "outcome": {
+      "BLOCKED": 1,
+      "PASS": 10,
+      "STARTED": 6
+    },
+    "reason_code": {
+      "APP_HOLD_ALLOW": 1,
+      "COMMIT_SAFE_NO_FINDINGS": 1,
+      "DIFF_HYGIENE_PASS": 1,
+      "DISPATCH_READY": 1,
+      "FALSE_SECONDARY_SUCCESS": 1,
+      "FRONTEND_BUILD_PASS": 1,
+      "FRONTEND_TEST_TYPECHECK_PASS": 1,
+      "IMPLEMENTATION_FROZEN": 1,
+      "OWNER_DIRECTED_ENGINEERING": 1,
+      "PACKAGE_RETURN_ACCEPTED": 1,
+      "POST_REMEDIATION_REFUTATION": 1,
+      "PRODUCT_DIFF_FROZEN": 1,
+      "REGISTERED_CLOSEOUT_PASS": 1,
+      "REVIEW_BLOCK_REPAIR": 1,
+      "REVIEW_BLOCK_REPAIRED": 1,
+      "REVIEW_BLOCK_REPAIR_SESSION": 1,
+      "WORKTREE_DEPENDENCY_RESOLUTION": 1
+    }
+  },
+  "events": 17,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 1775.413,
+      "events": 8,
+      "final_outcome": "PASS",
+      "instance_id": "A1-PKG02-RECONNECT-01",
+      "package_id": "PKG-02",
+      "remediations": 1,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "A1-PKG02-RECONNECT-01"
+    },
+    {
+      "duration_seconds": 526.684,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG02-RECONNECT-IMPLEMENT-01",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-PKG02-RECONNECT-IMPLEMENT-01"
+    },
+    {
+      "duration_seconds": 277.394,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG02-RECONNECT-REMEDIATE-01",
+      "package_id": "PKG-02",
+      "remediations": 1,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-PKG02-RECONNECT-REMEDIATE-01"
+    },
+    {
+      "duration_seconds": 295.465,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PKG02-RECONNECT-REVIEW-01",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-PKG02-RECONNECT-REVIEW-01"
+    },
+    {
+      "duration_seconds": 635.586,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG02-RECONNECT-REVIEW-02",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-PKG02-RECONNECT-REVIEW-02"
+    }
+  ],
+  "sessions": 5,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

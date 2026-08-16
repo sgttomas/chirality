@@ -1,0 +1,10 @@
+{
+  "schema": "chirality-managed-instance-status/v1",
+  "runId": "APPDEV_TOPBAR_RUNTIME_RECONNECT_2026-08-15",
+  "instanceId": "A2-PKG02-RECONNECT-IMPLEMENT-01",
+  "parentInstanceId": "A1-PKG02-RECONNECT-01",
+  "role": "TASK",
+  "taskSkill": "software-bounded-implementation",
+  "status": "COMPLETED",
+  "attempt": 1
+}

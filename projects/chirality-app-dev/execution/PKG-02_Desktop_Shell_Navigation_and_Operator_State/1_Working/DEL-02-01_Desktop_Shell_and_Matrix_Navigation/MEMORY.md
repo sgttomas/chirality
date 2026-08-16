@@ -1,5 +1,7 @@
 # MEMORY - DEL-02-01
 
+- 2026-08-15 — Closed the top-bar runtime reconnect residual with an accessible guarded chip action that reuses the existing desktop daemon `status` control and `onDaemonAvailable -> bindingSupervisor.refreshNow()` path. Snapshot state remains authoritative; secondary check failures are separately visible and announced. A fresh review BLOCK exposed the production `{ ok: true, daemon.running: false }` case, a bounded remediation added truthful feedback and a production-shaped regression test, and a new independent reviewer returned COMMIT-SAFE. Full frontend Vitest (1,121 passed, 4 skipped), typecheck, and build passed. No lifecycle, approval-SHA, runtime-contract, provider, release, or dependency change occurred.
+
 - 2026-07-12 — D-APP-56 R4-P06 governed corpus transcription applied for DEL-02-01: live ruled behavior is reflected in authority/kit text without code or lifecycle change; the original D-APP-55 run remains immutable. D-APP-38 reconciliation is executed separately for this tranche.
 
 ## Decisions And Evidence
