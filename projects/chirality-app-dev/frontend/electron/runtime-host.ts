@@ -13,12 +13,21 @@ import {
   TurnCoordinator
 } from '@chirality/runtime-core';
 import { RuntimeDaemon } from '@chirality/runtime-daemon';
-import { OmlxClient } from '@chirality/engine-pi-omlx';
+import {
+  createClaudeEngineAdapter,
+  type ClaudeTurnRuntimePort
+} from '@chirality/engine-claude';
+import {
+  createPiOmlxEngineAdapter,
+  OmlxClient,
+  type PiTurnRuntimePort
+} from '@chirality/engine-pi-omlx';
 import {
   HarnessError,
   RuntimeError,
   type AgentEnginePort,
   type AgentEngineRunInput,
+  type EngineCapabilities,
   type EngineSelection,
   type RuntimeSessionRecord,
   type RuntimeToolDefinition,
@@ -41,6 +50,8 @@ import type { PiCustomToolDefinition } from '../src/lib/harness/pi-agent-engine-
 import { scaffoldExecutionRoot } from '../src/lib/harness/scaffold';
 import { SafeStorageCredentialStore } from './api-key-storage';
 
+const ANTHROPIC_SDK_PACKAGE_VERSION = '0.93.0';
+
 export type RuntimeHost = {
   daemon: RuntimeDaemon;
   operatorTokenFile: string;
@@ -58,6 +69,35 @@ function requireAnthropicCredential(credentials: SafeStorageCredentialStore) {
   return async (): Promise<void> => {
     if ((await credentials.get('anthropic')) === undefined) {
       throw new Error('Anthropic credential is not configured');
+    }
+  };
+}
+
+function asClaudeTurnRuntime(engine: AgentEnginePort): ClaudeTurnRuntimePort {
+  return {
+    preflight: (input) => engine.preflight(input),
+    startTurn: (input) => engine.startTurn(input),
+    interrupt: (sessionId) => engine.interrupt(sessionId)
+  };
+}
+
+function asPiTurnRuntime(engine: AgentEnginePort): PiTurnRuntimePort {
+  return {
+    preflight: (input) => engine.preflight(input),
+    startTurn: (input) => engine.startTurn(input),
+    interrupt: (sessionId) => engine.interrupt(sessionId)
+  };
+}
+
+function withPreservedCapabilities(
+  promoted: AgentEnginePort,
+  capabilities: EngineCapabilities
+): AgentEnginePort {
+  return {
+    ...promoted,
+    descriptor: {
+      ...promoted.descriptor,
+      capabilities
     }
   };
 }
@@ -88,10 +128,14 @@ function rejectLegacyDelegation(input: AgentEngineRunInput): void {
   }
 }
 
-function createEngines(
+export function createEngines(
   credentials: SafeStorageCredentialStore,
   personaManager: PersonaComposer,
-  runtimeTools: Map<string, readonly RuntimeToolDefinition[]>
+  runtimeTools: Map<string, readonly RuntimeToolDefinition[]>,
+  promotedRuntime: {
+    isExactlyResident(modelId: string): Promise<boolean>;
+    transcriptRootFor(sessionId: string): string;
+  }
 ): EngineRegistry {
   const engines = new EngineRegistry();
   const stub = new LegacyAgentEngineAdapter(
@@ -109,7 +153,7 @@ function createEngines(
     },
     new StubAgentSdkManager()
   );
-  const anthropicDirect = new LegacyAgentEngineAdapter(
+  const anthropicDirectRuntime = new LegacyAgentEngineAdapter(
     {
       adapterId: 'anthropic-direct',
       providerId: 'anthropic',
@@ -131,7 +175,7 @@ function createEngines(
     (projectRoot, persona, runtimeMode, tools) =>
       personaManager.buildSystemPrompt(projectRoot, persona, runtimeMode, tools)
   );
-  const claude: AgentEnginePort = {
+  const claudeRuntime: AgentEnginePort = {
     descriptor: concreteClaude.descriptor,
     subject: concreteClaude.subject,
     async preflight(input) {
@@ -151,7 +195,7 @@ function createEngines(
       return concreteClaude.interrupt(sessionId);
     }
   };
-  const pi = new PiAgentEngineAdapter({
+  const piRuntime = new PiAgentEngineAdapter({
     resolveProvider: async (input) => {
       try {
         const config = resolveOmlxProviderConfig({
@@ -228,10 +272,35 @@ function createEngines(
     }
   });
 
-  // The app adapters implement the promoted contract structurally. The cast is
-  // temporary until the compatibility package becomes a pure root re-export.
+  const anthropicDirect = withPreservedCapabilities(
+    createClaudeEngineAdapter({
+      adapterId: 'anthropic-direct',
+      packageName: '@anthropic-ai/sdk',
+      packageVersion: ANTHROPIC_SDK_PACKAGE_VERSION,
+      credentials,
+      runtime: asClaudeTurnRuntime(anthropicDirectRuntime)
+    }),
+    anthropicDirectRuntime.descriptor.capabilities
+  );
+  const claude = withPreservedCapabilities(
+    createClaudeEngineAdapter({
+      adapterId: 'claude-agent-sdk',
+      packageName: '@anthropic-ai/claude-agent-sdk',
+      packageVersion: concreteClaude.descriptor.packageVersion,
+      credentials,
+      runtime: asClaudeTurnRuntime(claudeRuntime)
+    }),
+    concreteClaude.descriptor.capabilities
+  );
+  const pi = createPiOmlxEngineAdapter({
+    credentials,
+    runtime: asPiTurnRuntime(piRuntime),
+    transcriptRootFor: promotedRuntime.transcriptRootFor,
+    isExactlyResident: promotedRuntime.isExactlyResident
+  });
+
   for (const engine of [stub, anthropicDirect, claude, pi]) {
-    engines.register(engine as unknown as AgentEnginePort);
+    engines.register(engine);
   }
   return engines;
 }
@@ -436,12 +505,19 @@ export async function startRuntimeHost(): Promise<RuntimeHost> {
   const auth = new AuthRegistry(runtimeDirectory);
   const personaManager = new PersonaComposer();
   const runtimeTools = new Map<string, readonly RuntimeToolDefinition[]>();
-  const engines = createEngines(credentials, personaManager, runtimeTools);
   const omlx = new OmlxClient({
     credentials,
     baseUrl: asNonEmptyString(process.env.CHIRALITY_OMLX_BASE_URL)
   });
   const residency = new ResidencyCoordinator(omlx, runtimeDirectory);
+  const engines = createEngines(credentials, personaManager, runtimeTools, {
+    async isExactlyResident(modelId) {
+      const status = await residency.status();
+      return status.phase === 'READY' && status.managedModelId === modelId;
+    },
+    transcriptRootFor: (sessionId) =>
+      path.join(runtimeDirectory, 'adapter-events', sessionId)
+  });
   const attachments = new AttachmentResolver();
   const turns = new TurnCoordinator(projects, sessions, engines, residency, attachments);
   const sessionPolicy = new CompatibilitySessionPolicy({

@@ -1,0 +1,40 @@
+{
+  "schema": "chirality-packaged-root-adapter-proof/v1",
+  "runId": "APPDEV_PACKAGED_ADAPTER_LOADING_2026-08-16",
+  "status": "PASS",
+  "command": ["npm", "run", "desktop:pack"],
+  "posture": "local unsigned macOS arm64 directory package; no release or distribution claim",
+  "packageBoundary": {
+    "localChiralityPackageEntries": 0,
+    "forbiddenDevelopmentPackagesPresent": [],
+    "requiredProductionPackagesPresent": [
+      "@anthropic-ai/claude-agent-sdk",
+      "@earendil-works/pi-coding-agent",
+      "next"
+    ]
+  },
+  "packagedRuntimeSourceProof": {
+    "status": "PASS",
+    "desktopSourceCount": 182,
+    "cliSourceCount": 15,
+    "desktopRequired": [
+      "electron/main.ts",
+      "electron/runtime-host.ts",
+      "runtime/packages/client/src/client.ts",
+      "runtime/packages/daemon/src/runtime-daemon.ts",
+      "runtime/packages/engine-claude/src/index.ts",
+      "runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts"
+    ],
+    "cliRequired": [
+      "runtime/packages/cli/src/bin.ts",
+      "runtime/packages/cli/src/cli.ts",
+      "runtime/packages/client/src/client.ts"
+    ],
+    "cliForbiddenPresent": []
+  },
+  "instructionRootIntegrity": {
+    "status": "PASS",
+    "checkedFiles": 43,
+    "existingSourceCompletenessLabel": "needs_remediation"
+  }
+}

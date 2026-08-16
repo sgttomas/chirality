@@ -2,7 +2,12 @@ import { mkdir, mkdtemp, realpath, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
-import type { AgentEnginePort, OmlxControlPort } from '@chirality/runtime-contracts';
+import type { AgentEnginePort, OmlxControlPort, UIEvent } from '@chirality/runtime-contracts';
+import {
+  createPiOmlxEngineAdapter,
+  PI_CODING_AGENT_PACKAGE_NAME,
+  PI_CODING_AGENT_PACKAGE_VERSION
+} from '@chirality/engine-pi-omlx';
 import {
   AuthRegistry,
   EngineRegistry,
@@ -48,10 +53,17 @@ afterEach(async () => {
   }
 });
 
-async function collect(source: AsyncIterable<unknown>): Promise<void> {
-  for await (const _value of source) {
-    // Drain the public SSE stream so cancellation and terminal persistence settle.
+async function collect(source: AsyncIterable<UIEvent>): Promise<UIEvent[]> {
+  const events: UIEvent[] = [];
+  try {
+    for await (const event of source) {
+      events.push(event);
+      // Drain the public SSE stream so cancellation and terminal persistence settle.
+    }
+  } catch {
+    // Cancellation may reject the client stream after yielding attributed events.
   }
+  return events;
 }
 
 async function createProjectFixture(root: string): Promise<string> {
@@ -153,8 +165,8 @@ function createPiAdapter(input: {
   apiKey: string;
   projectRoot: string;
   model: string;
-}): PiAgentEngineAdapter {
-  return new PiAgentEngineAdapter({
+}): AgentEnginePort {
+  const runtime = new PiAgentEngineAdapter({
     turnTimeoutMs: 5_000,
     resolveProvider: async (runInput) => {
       const config = resolveOmlxProviderConfig({
@@ -182,6 +194,23 @@ function createPiAdapter(input: {
           allowedToolNames: ['read_file']
         })
       )
+  });
+  return createPiOmlxEngineAdapter({
+    credentials: {
+      async get(providerId) {
+        return providerId === 'omlx' ? input.apiKey : undefined;
+      },
+      async status(providerId) {
+        return { configured: providerId === 'omlx' };
+      }
+    },
+    runtime: {
+      preflight: (runInput) => runtime.preflight(runInput),
+      startTurn: (runInput) => runtime.startTurn(runInput),
+      interrupt: (sessionId) => runtime.interrupt(sessionId)
+    },
+    transcriptRootFor: (sessionId) => join(input.projectRoot, 'adapter-events', sessionId),
+    isExactlyResident: async (modelId) => modelId === input.model
   });
 }
 
@@ -457,6 +486,12 @@ describe('Desktop and CLI shared runtime daemon', () => {
     });
     providers.push(provider);
     const adapter = createPiAdapter({ provider, apiKey, projectRoot: canonicalProjectRoot, model });
+    expect(adapter.descriptor).toMatchObject({
+      adapterId: 'pi',
+      providerId: 'omlx',
+      packageName: PI_CODING_AGENT_PACKAGE_NAME,
+      packageVersion: PI_CODING_AGENT_PACKAGE_VERSION
+    });
     const { runtimeDirectory, service } = await createRuntime(root, adapter, model);
     const registration = await service.registerProject(manifestPath, 'test', 'D-APP-85-C04-C16');
     const session = await service.sessions.create({
@@ -495,7 +530,15 @@ describe('Desktop and CLI shared runtime daemon', () => {
       })
     ).rejects.toMatchObject({ code: 'SESSION_TURN_IN_PROGRESS' });
     await desktopTurn.cancel();
-    await desktopEvents;
+    const emittedDesktopEvents = await desktopEvents;
+    expect(emittedDesktopEvents).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          type: 'session:init',
+          data: expect.objectContaining({ adapterId: 'pi', providerId: 'omlx', model })
+        })
+      ])
+    );
 
     let replay = await cliClient.replaySession('chirality-app-dev', session.sessionId);
     for (let attempt = 0; attempt < 100 && replay.session.status !== 'interrupted'; attempt += 1) {

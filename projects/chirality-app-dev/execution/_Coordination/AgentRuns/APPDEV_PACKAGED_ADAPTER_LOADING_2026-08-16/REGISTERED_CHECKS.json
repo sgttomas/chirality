@@ -1,0 +1,59 @@
+{
+  "schema": "chirality-software-check-evidence/v1",
+  "runId": "APPDEV_PACKAGED_ADAPTER_LOADING_2026-08-16",
+  "profile": "projects/chirality-app-dev/software-workflow.json",
+  "status": "PASS_WITH_ADVISORY",
+  "results": [
+    {
+      "id": "frontend-test",
+      "status": "PASS",
+      "command": ["npm", "test"],
+      "summary": "144 files passed, 1 skipped; 1124 tests passed, 4 skipped"
+    },
+    {
+      "id": "frontend-typecheck",
+      "status": "PASS",
+      "command": ["npm", "run", "typecheck"],
+      "summary": "renderer and Electron TypeScript checks passed"
+    },
+    {
+      "id": "frontend-build",
+      "status": "PASS",
+      "command": ["npm", "run", "build"],
+      "summary": "Next production build plus Electron and runtime-CLI bundles passed"
+    },
+    {
+      "id": "frontend-premerge",
+      "status": "ADVISORY_RERUN",
+      "command": ["npm", "run", "harness:validate:premerge"],
+      "summary": "owned Next service started and stopped; all eight Section 8 rows returned 503 because the registered profile supplies no shared-runtime socket/token/project binding after daemon-client migration",
+      "disposition": "known local isolated-profile advisory per Receipts 110-112; no waiver or product inference; authoritative PR-CI/live-runtime rerun remains owed"
+    },
+    {
+      "id": "harness-pytest",
+      "status": "PASS",
+      "command": ["python3", "-m", "pytest", "-q", "tools/practitioner_harness"],
+      "summary": "349 passed"
+    },
+    {
+      "id": "harness-self-check",
+      "status": "PASS",
+      "command": ["python3", "tools/practitioner_harness/harness.py", "self-check"],
+      "summary": "exit 0 at existing non-blocking baseline"
+    },
+    {
+      "id": "app-hold-integrity",
+      "status": "PASS",
+      "command": ["python3", "execution/_Scripts/app_hold.py", "scan", "--require-register-match"],
+      "summary": "held_count 0; register match; fingerprint b958ab0f4dda9e9a8c88b0d0d96901890fd52a79c571b410bcaf9fc73c20d9dc"
+    }
+  ],
+  "reruns": [
+    {
+      "reason": "clean frontend file: links initially resolved to unbuilt Root packages",
+      "resolution": "built a read-only Root copy under /private/tmp and repointed only transient node_modules links; Root runtime remained byte-unchanged",
+      "result": "frontend test, typecheck, and build passed"
+    }
+  ],
+  "uiRenderBar": "NOT_APPLICABLE: no UI behavior or rendering changed"
+}

@@ -8,6 +8,13 @@ const repositoryRoot = path.resolve(frontendRoot, '..', '..', '..');
 const runtimeRoot = path.join(repositoryRoot, 'runtime');
 
 const runtimeEntries = {
+  '@chirality/engine-claude': path.join(
+    runtimeRoot,
+    'packages',
+    'engine-claude',
+    'src',
+    'index.ts'
+  ),
   '@chirality/runtime-contracts': path.join(
     runtimeRoot,
     'packages',

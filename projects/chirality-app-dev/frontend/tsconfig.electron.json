@@ -13,6 +13,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@chirality/engine-claude": [
+        "../../../runtime/packages/engine-claude/src/index.ts"
+      ],
       "@chirality/runtime-contracts": [
         "../../../runtime/packages/contracts/src/index.ts"
       ],

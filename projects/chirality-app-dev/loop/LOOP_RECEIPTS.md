@@ -5101,3 +5101,38 @@
   - Gate-Outcome: `EXECUTED` — promotion records attention only, DEFERRED
     with recorded trigger; no dispatch, AgentRuns, instruction, lifecycle,
     release, or merge effect; PR opened for owner merge.
+- **2026-08-16 — Receipt 170** (DEL-04-01 packaged Root adapter loading).
+  - Receipt-ID: `Receipt-170`
+  - Examined-Through: `c7da5f32091b10e001e673e45ca68c2002841deb`
+  - Parent-Receipt: `Receipt-169`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-16,
+    Ryan Tufts, in-session): `STANDING DIRECTION — development pressure`;
+    `This tranche's deliverable is product work: code, working features, executing cases, closed engineering gaps.`;
+    `Engineering target selected from ruled state: close DEL-04-01's Remaining gap by making/proving promoted adapters load from the packaged Root runtime in GUI, daemon, and CLI paths with unchanged package/model attribution.`
+  - Pointers: product/test/build surfaces `frontend/electron/runtime-host.ts`,
+    `frontend/scripts/build-electron.mjs`,
+    `frontend/scripts/verify-packaged-dependency-boundary.mjs`, package/lock,
+    Electron tsconfig, and the three focused tests; DEL-04-01 `_STATUS.md`,
+    `MEMORY.md`, and
+    `_run_records/PACKAGED_ROOT_ADAPTER_LOADING_2026-08-16.md`; managed RunID
+    root `execution/_Coordination/AgentRuns/APPDEV_PACKAGED_ADAPTER_LOADING_2026-08-16/`.
+  - Checks: focused and full frontend tests, typecheck, production build,
+    fresh read-only full-diff review, final unsigned `desktop:pack`, packaged
+    GUI/daemon/CLI Root-source and package-boundary proof, instruction-root
+    integrity, corpus v18/no drift, repository self-check, practitioner pytest,
+    APP-HOLD, candidate whitespace, receipt contract, diff hygiene, and exact
+    App-only containment pass. Local isolated premerge ran and retains the
+    established daemon-binding PR-CI/live-runtime rerun advisory from Receipts
+    110–112; no waiver or passing inference was applied. D-APP-36 is not
+    applicable because no UI behavior or rendering changed.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS and
+    fresh TASK implementation/review Agent 2 instances; exact model builds not
+    exposed. Product attribution remains Anthropic SDK `0.93.0`, Claude Agent
+    SDK `0.3.150`, Pi coding agent `0.82.0`, and the selected runtime model.
+  - Gate-Outcome: `EXECUTED` — promoted Root Claude/Pi adapters now load in the
+    packaged daemon composition; Desktop and CLI client paths preserve package
+    and model attribution; the exact DEL-04-01 Remaining item is removed.
+    Lifecycle, Checking Approval SHA, dependency state, provider/network scope,
+    Root runtime bytes, and release/distribution posture are unchanged. No
+    owner decision, waiver, corpus repair, or issue plan occurred; owner-gated
+    CHANGE/PR-CI closeout remains required and no merge occurred.
