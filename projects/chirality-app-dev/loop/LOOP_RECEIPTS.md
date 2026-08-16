@@ -5080,3 +5080,24 @@
     verbatim on the single-manager path; no decision packet, Agent 2,
     AgentRuns package, corpus repair, issue plan, or product/runtime change was
     required. Owner-gated CHANGE closeout remains required; no merge occurred.
+
+- **2026-08-16 — Receipt 169** (TM-APP-043 minder-candidate promotion).
+  - Receipt-ID: `Receipt-169`
+  - Examined-Through: `65735390590e500dbbea6b63a4a79ba42944bf6d`
+  - Parent-Receipt: `Receipt-168`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-16,
+    Ryan Tufts, in-session): `OWNER RULING — promote minder-presented candidate MINDER-20260816-03 to TM-APP-043 as recorded in the owner-supplied row. Append the row byte-exact as the last line of projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv (row bytes SHA-256 e752e448153ffbda0ca9396cfba928e8efe70f6016bb5a5abdb78af1ad077ca4; verify before commit), record the ruling in the loop's ordinary ruling/receipt instrument, run the register validator, commit as a routine scoped closeout, open a ready-for-review PR; no merge. Promotion records attention only — no dispatch, edit, notice, or routing effect is created by this act.`
+  - Pointers: `execution/_Coordination/_TaskManagement/REGISTER.csv` (blob
+    `e9a159ea6becec791aeb016bfd7167129ccc5aea`, TM-APP-043 appended);
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-16_MINDER_PROMOTION_TM-APP-043.md`
+    (SHA-256 `acc251af5627c3f26c2953ca4f0a59eb12a3af200e59233ca851e132b9170742`).
+  - Checks: register validator, receipt validator, APP-HOLD integrity scan
+    (`check --operation` not applicable — no deliverable targeted),
+    self-check, diff --check, and exact three-path containment pass. Frontend
+    gates skipped because no runtime/product source changed.
+  - Model-Attribution: Claude Fable 5 ephemeral Agent 2 generalist under a
+    sealed brief from HELP_HUMAN (Claude Fable 5 session minder); no override
+    or mid-task substitution.
+  - Gate-Outcome: `EXECUTED` — promotion records attention only, DEFERRED
+    with recorded trigger; no dispatch, AgentRuns, instruction, lifecycle,
+    release, or merge effect; PR opened for owner merge.
