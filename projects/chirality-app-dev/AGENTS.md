@@ -67,6 +67,41 @@ WORKING_ITEMS instance. Terminal fan-out/fan-in is appropriate for independent
 children; supervised many-to-many agency is appropriate when active findings
 may affect siblings. Mixed sequential/concurrent stages are allowed.
 
+**Delegation posture (work-type conditioned).** "Every multi-agent tranche"
+does not mean every tranche is multi-agent. The package `WORKING_ITEMS`
+instance sizes delegation to the target:
+
+- *Independent-review path (default for product source).* Any tranche that
+  changes product source — `frontend/src/**` outside `__tests__/**`,
+  `frontend/electron/**`, `frontend/packages/**`, `frontend/scripts/**`, or
+  build/packaging configuration — dispatches at least one **fresh, read-only**
+  `TASK + software-code-review` child over 100% of the frozen diff before the
+  registered checks are treated as final and before push. The reviewer has no
+  write target and is not the implementer's context. A `PASS` with no
+  actionable finding is required to publish; findings are remediated and
+  re-reviewed. Registered checks (typecheck, Vitest, build/premerge, D-APP-36
+  render bar) remain the deterministic gates; review is additional, not a
+  substitute.
+- *Single-manager path (permitted).* Tranches confined to one deliverable that
+  change only automated tests, evidence, `_run_records`, deliverable state,
+  coordination, docs, or governance/control-plane surfaces — no product source
+  — may be executed directly by the `WORKING_ITEMS` instance under the
+  registered checks and APP-HOLD-1 preflight; the receipt plus deliverable-local
+  state are the record and no AgentRuns package is owed. The manager may still
+  choose the review path when a tests-only tranche asserts a product invariant
+  for the first time or its correctness is not self-evident from the checks.
+- *Multi-agent path (record contract).* Whenever children are dispatched, the
+  tranche uses the recorded work graph and freezes, under
+  `execution/_Coordination/AgentRuns/<RUN_ID>/`: activation or plan, work graph,
+  one sealed launch brief per child, each child's return and status, the manager
+  return, and a handoff state — the existing App convention, unchanged.
+  Registered-check JSON, runtime events, and summaries are written once per run,
+  not per child, unless a child's own return contract requires them.
+
+Cross-package verification ownership named in a deliverable's `Remaining` (for
+example DEL-09-03 for test-expansion claims) is honoured on either path by the
+existing notice route; it does not by itself require the multi-agent path.
+
 HELP_HUMAN owns cross-package dependencies and shared-surface ownership. Each
 WORKING_ITEMS instance owns exactly one package and coordinates its
 deliverable-scoped Agent 2 children. Shared reads are allowed. Concurrent

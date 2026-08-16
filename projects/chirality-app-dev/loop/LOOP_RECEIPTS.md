@@ -5056,3 +5056,27 @@
     exact DEL-02-01 Remaining item removed; lifecycle, approval fields, and
     dependencies unchanged. No owner decision or waiver occurred; owner merge
     remains required.
+
+- **2026-08-16 — Receipt 168** (App work-type-conditioned delegation posture).
+  - Receipt-ID: `Receipt-168`
+  - Examined-Through: `3f709aa25c8088d04326abbe728c18b02352834c`
+  - Parent-Receipt: `Receipt-167`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-16,
+    Ryan Tufts, in-session): `DIRECTION — App-local amendment: work-type-conditioned delegation posture (AGENTS.md)`;
+    `Owner direction (apply as ruled, do not revisit): App adopts the reciprocal of Piping's 2026-08-16 delegation contract (Piping AGENTS.md §"Agent Posture And Delegation", PR #562), tailored to App: independent fresh review stays the default for product source, because App's registered checks do not verify behavior the way Piping's DEC-025 sweep does; a single-manager path is opened for tranches that change no product source (tests-only, evidence, deliverable state, coordination, docs, governance), where the registered checks and APP-HOLD-1 preflight are the verifier; and the AgentRuns record contract is restated with per-run (not per-child) check artifacts.`;
+    `Basis on record: Receipts 166 and 167 both ran the full five-instance apparatus — the first for a single test file where the checks were the verifier, the second for product source where the reviewer found and remediated an issue.`;
+    `No new decision packet is required; record the direction in the receipt.`;
+    `Operational fences: exact one target file plus required receipt/corpus-if-needed/issue-plan-if-triggered; one branch from current origin/main; ready-for-review PR; no merge; frontend skipped; self-check exit 0 and practitioner pytest.`
+  - Pointers: `projects/chirality-app-dev/AGENTS.md`;
+    `projects/chirality-app-dev/loop/LOOP_RECEIPTS.md`.
+  - Checks: exact owner-block byte comparison and origin/main untouched-byte
+    proof, APP-HOLD integrity, corpus v18/no drift, repository self-check,
+    full practitioner-harness pytest, receipt contract, candidate whitespace,
+    diff hygiene, and exact containment pass. Frontend gates skipped because
+    no runtime/product source changed.
+  - Model-Attribution: OpenAI Codex WORKING_ITEMS Agent 1; exact model build
+    not exposed.
+  - Gate-Outcome: `EXECUTED` — owner-supplied delegation block inserted
+    verbatim on the single-manager path; no decision packet, Agent 2,
+    AgentRuns package, corpus repair, issue plan, or product/runtime change was
+    required. Owner-gated CHANGE closeout remains required; no merge occurred.
