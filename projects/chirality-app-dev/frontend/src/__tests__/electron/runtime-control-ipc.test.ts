@@ -179,6 +179,21 @@ describe('electron/runtime-control-ipc', () => {
     });
   });
 
+  it('immediately notifies the connectivity supervisor when status reaches the daemon', async () => {
+    const onDaemonAvailable = vi.fn<() => Promise<void>>().mockResolvedValue();
+    registerRuntimeControlHandlers({ ...dependencies, onDaemonAvailable });
+
+    await expect(
+      getHandler(RUNTIME_DAEMON_CONTROL_CHANNEL)(trustedEvent, 'status')
+    ).resolves.toMatchObject({
+      ok: true,
+      daemon: { running: true, pid: 4242 }
+    });
+
+    expect(client.daemonStatus).toHaveBeenCalledTimes(1);
+    expect(onDaemonAvailable).toHaveBeenCalledTimes(1);
+  });
+
   it('requires a model reported by oMLX and supplies a main-process approval reference', async () => {
     registerRuntimeControlHandlers(dependencies);
     const handler = getHandler(RUNTIME_MODEL_ACTIVATE_CHANNEL);

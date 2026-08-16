@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useId, useMemo, useRef, useState, type ReactNode } from 'react';
 import { deriveRuntimeConnectivityPresentation } from '../../lib/shell/runtime-connectivity';
 import { ApiKeySettings } from '../settings/api-key-settings';
 import { RuntimeSettings } from '../settings/runtime-settings';
@@ -16,6 +16,40 @@ type NavigationItem = {
   href: string;
   label: string;
 };
+
+type RuntimeStatusResult =
+  | {
+      ok: true;
+      launchAgent: {
+        installed: boolean;
+        loaded: boolean;
+      };
+      daemon: {
+        running: boolean;
+        pid?: number;
+        startedAt?: string;
+      };
+    }
+  | { ok: false; error: string };
+
+type RuntimeStatusBridge = {
+  status: () => Promise<RuntimeStatusResult>;
+};
+
+type RuntimeStatusWindow = typeof window & {
+  chirality?: {
+    runtime?: {
+      daemon?: RuntimeStatusBridge;
+    };
+  };
+};
+
+function getRuntimeStatusBridge(): RuntimeStatusBridge | undefined {
+  if (typeof window === 'undefined') {
+    return undefined;
+  }
+  return (window as RuntimeStatusWindow).chirality?.runtime?.daemon;
+}
 
 // The loop-first pivot keeps route entry points for deep links, but Workbench
 // and Pipeline are tertiary sidebar tabs rather than primary top-nav screens.
@@ -82,6 +116,45 @@ export function ShellFrame({
   // the two indicators stay independently addressable.
   const runtimeConnectivity = useRuntimeConnectivitySnapshot();
   const runtimeIndicator = deriveRuntimeConnectivityPresentation(runtimeConnectivity);
+  const [runtimeCheckPending, setRuntimeCheckPending] = useState(false);
+  const [runtimeCheckError, setRuntimeCheckError] = useState<string | null>(null);
+  const runtimeCheckActiveRef = useRef(false);
+  const runtimeFeedbackId = useId();
+
+  useEffect(() => {
+    // A new main-process snapshot supersedes any local probe failure. The chip's
+    // tone and visible label always remain derived from that snapshot alone.
+    setRuntimeCheckError(null);
+  }, [runtimeConnectivity?.changedAt]);
+
+  async function checkRuntimeConnection(): Promise<void> {
+    if (runtimeCheckActiveRef.current) {
+      return;
+    }
+
+    runtimeCheckActiveRef.current = true;
+    setRuntimeCheckPending(true);
+    setRuntimeCheckError(null);
+    try {
+      const bridge = getRuntimeStatusBridge();
+      if (!bridge) {
+        setRuntimeCheckError('Runtime control is unavailable');
+        return;
+      }
+
+      const result = await bridge.status();
+      if (!result.ok) {
+        setRuntimeCheckError(result.error);
+      } else if (!result.daemon.running) {
+        setRuntimeCheckError('Runtime daemon is unreachable');
+      }
+    } catch {
+      setRuntimeCheckError('Unable to contact the Chirality runtime');
+    } finally {
+      runtimeCheckActiveRef.current = false;
+      setRuntimeCheckPending(false);
+    }
+  }
 
   async function applyDraftPath(): Promise<void> {
     const nextPath = draftPath.trim();
@@ -123,17 +196,41 @@ export function ShellFrame({
 
         <div className="shell-header-controls">
           {runtimeIndicator ? (
-            <span
-              className={`shell-runtime-chip shell-runtime-chip--${runtimeIndicator.tone}`}
-              title={runtimeIndicator.title}
-              role="status"
-            >
+            <span className="shell-runtime-control">
+              <button
+                type="button"
+                className={`shell-runtime-chip shell-runtime-chip--${runtimeIndicator.tone}`}
+                title={
+                  runtimeCheckError
+                    ? `${runtimeIndicator.title}. Last check failed: ${runtimeCheckError}`
+                    : `${runtimeIndicator.title}. Check connection now.`
+                }
+                aria-label={`${runtimeCheckPending ? 'Checking' : 'Check'} runtime connection; reported status: ${runtimeIndicator.label}`}
+                aria-describedby={runtimeFeedbackId}
+                aria-busy={runtimeCheckPending}
+                data-runtime-check-error={runtimeCheckError ? true : undefined}
+                disabled={runtimeCheckPending}
+                onClick={() => void checkRuntimeConnection()}
+              >
+                <span
+                  className={`shell-runtime-dot shell-runtime-dot--${runtimeIndicator.tone}`}
+                  aria-hidden="true"
+                />
+                <span className="shell-runtime-chip-key">runtime</span>
+                <span className="shell-runtime-chip-value">{runtimeIndicator.label}</span>
+              </button>
               <span
-                className={`shell-runtime-dot shell-runtime-dot--${runtimeIndicator.tone}`}
-                aria-hidden="true"
-              />
-              <span className="shell-runtime-chip-key">runtime</span>
-              <span className="shell-runtime-chip-value">{runtimeIndicator.label}</span>
+                id={runtimeFeedbackId}
+                className="shell-runtime-feedback"
+                role="status"
+                aria-live="polite"
+              >
+                {runtimeCheckError
+                  ? `Runtime connection check failed: ${runtimeCheckError}`
+                  : runtimeCheckPending
+                    ? `Checking runtime connection; reported status remains ${runtimeIndicator.label}`
+                    : `Runtime reported ${runtimeIndicator.label}`}
+              </span>
             </span>
           ) : null}
 
