@@ -3336,3 +3336,34 @@ amendment; owner ruling required).
 - **Scope and gate:** no register, archive, candidate disposition, count,
   evidence-pin repair, or other tranche meaning changes in this correction.
   PR #532 remains on HOLD. Merge is prohibited until the owner re-verifies.
+
+### Receipt 107 — 2026-08-16 — Root TM-ROOT-124 minder-candidate promotion
+
+- **Basis and lane:** `origin/main@65735390590e500dbbea6b63a4a79ba42944bf6d`;
+  branch `codex/root-tm-root-124-promotion`. Bounded owner-ruled promotion of
+  minder-presented candidate `MINDER-20260816-01`; nothing else touched.
+- **Owner direction (CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD; the
+  ruling record file below is the ruling of record):** "OWNER RULING —
+  promote minder-presented candidate MINDER-20260816-01 to TM-ROOT-124 as
+  recorded in the owner-supplied row. Append the row byte-exact as the last
+  line of execution/_Coordination/_TaskManagement/REGISTER.csv (row bytes
+  SHA-256 e68672fbfe9000f9d8456aed1916e6fd9c43493fe8b5f08268c3c9137f7c9d36;
+  verify before commit), record the ruling in the loop's ordinary
+  ruling/receipt instrument, run the register validator, commit as a routine
+  scoped closeout, open a ready-for-review PR; no merge. Promotion records
+  attention only — no dispatch, edit, notice, or routing effect is created by
+  this act."
+- **Register append:** `TM-ROOT-124` (`OPEN` / `MEDIUM`) appended byte-exact
+  as the last line of `_TaskManagement/REGISTER.csv`; row SHA-256
+  `e68672fbfe9000f9d8456aed1916e6fd9c43493fe8b5f08268c3c9137f7c9d36`; register
+  blob `135022f1d51c7a452246abfed56086d742126c95` → `c956e29e4a4831c1cdd5320f748ddc25b65aadef`.
+- **Ruling record:**
+  `_TaskManagement/RULING_2026-08-16_ROOT_MINDER_PROMOTION_TM-ROOT-124.md`,
+  SHA-256 `f308d04b26cb58abdcee5ed7b7b3e004bd262dce0a32c5411b53c70c198c0784`.
+- **Checks:** row-source hash verified before append; `taskmgmt validate`
+  PASS (22 rows, schema and referential rules conform); practitioner harness
+  `self-check` exit 0; `git diff --check` clean; last row parses to 25 columns.
+- **Model-Attribution:** Claude Fable 5 ephemeral Agent 2 generalist under
+  sealed brief from HELP_HUMAN (Claude Fable 5 session minder); no substitution.
+- **Gate:** EXECUTED — promotion records attention only; no root edit, notice,
+  dispatch, or routing effect. PR opened for owner merge; no merge in-session.
