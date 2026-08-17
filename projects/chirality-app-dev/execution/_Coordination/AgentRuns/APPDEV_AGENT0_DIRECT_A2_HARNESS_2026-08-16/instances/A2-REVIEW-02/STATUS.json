@@ -1,0 +1,10 @@
+{
+  "instanceId": "A2-REVIEW-02",
+  "parentInstanceId": "WI-PKG08-DEL0804",
+  "status": "COMPLETED",
+  "verdict": "PASS",
+  "actionableFindings": 0,
+  "resolvedFinding": "canonical TASK class enforcement",
+  "correctedDiffSha256": "12488f7984ed8997f166f10b52847ee01ed5c381602b4d011063ef36414de15b",
+  "outputArtifact": "RETURN.md"
+}

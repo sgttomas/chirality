@@ -266,6 +266,127 @@ AGENT_TYPE: 1
     );
   });
 
+  it('allows configured Agent 0 managers and TASK while rejecting other Agent 2 roles', async () => {
+    process.env.CHIRALITY_INSTRUCTION_ROOT = await createInstructionRootFixture({
+      personaContent: `---
+description: test Agent 0
+subagents: PROJECT_SETUP, TASK, SPECIALIST
+---
+# AGENT HELP_HUMAN
+AGENT_TYPE: 0
+`,
+      additionalAgents: [
+        {
+          name: 'PROJECT_SETUP',
+          content: `---
+description: manager
+---
+# AGENT PROJECT_SETUP
+AGENT_TYPE: 1
+
+| Property | Value |
+|---|---|
+| **AGENT_CLASS** | PERSONA |
+`
+        },
+        {
+          name: 'TASK',
+          content: `---
+description: task
+---
+# AGENT TASK
+AGENT_TYPE: 2
+
+| Property | Value |
+|---|---|
+| **AGENT_CLASS** | TASK |
+`
+        },
+        {
+          name: 'SPECIALIST',
+          content: `---
+description: dedicated specialist
+---
+# AGENT SPECIALIST
+AGENT_TYPE: 2
+
+| Property | Value |
+|---|---|
+| **AGENT_CLASS** | PERSONA |
+`
+        }
+      ]
+    });
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    const result = await evaluateSubagentGovernance(
+      'WORKING_ITEMS',
+      validGovernance,
+      withSubagentEnv('true')
+    );
+
+    expect(result).toMatchObject({
+      allowed: true,
+      gate: 'ALLOW',
+      delegatedSubagents: ['PROJECT_SETUP', 'TASK']
+    });
+    expect(result.delegatedAgentInstructions?.TASK?.agentType).toBe(2);
+    expect(errorSpy).toHaveBeenCalledWith(
+      expect.stringContaining(
+        'Candidate subagent rejected: SPECIALIST declares AGENT_TYPE=TYPE 2; expected TYPE 1 or TASK Agent 2.'
+      )
+    );
+  });
+
+  it('does not synthesize TASK eligibility for Agent 0 when TASK is absent from its allowlist', async () => {
+    process.env.CHIRALITY_INSTRUCTION_ROOT = await createInstructionRootFixture({
+      personaContent: `---
+description: current-shaped Agent 0
+subagents: PROJECT_SETUP
+---
+# AGENT HELP_HUMAN
+AGENT_TYPE: 0
+`,
+      additionalAgents: [
+        {
+          name: 'PROJECT_SETUP',
+          content: `---
+description: manager
+---
+# AGENT PROJECT_SETUP
+AGENT_TYPE: 1
+`
+        },
+        {
+          name: 'TASK',
+          content: `---
+description: task
+---
+# AGENT TASK
+AGENT_TYPE: 2
+
+| Property | Value |
+|---|---|
+| **AGENT_CLASS** | TASK |
+`
+        }
+      ]
+    });
+
+    const result = await evaluateSubagentGovernance(
+      'WORKING_ITEMS',
+      validGovernance,
+      withSubagentEnv('true')
+    );
+
+    expect(result).toMatchObject({
+      allowed: true,
+      allowlistedSubagents: ['PROJECT_SETUP'],
+      delegatedSubagents: ['PROJECT_SETUP']
+    });
+    expect(result.delegatedAgentInstructions).not.toHaveProperty('TASK');
+  });
+
   it('warns but allows TYPE 2 subagents that are not TASK class', async () => {
     process.env.CHIRALITY_INSTRUCTION_ROOT = await createInstructionRootFixture({
       personaContent: `---

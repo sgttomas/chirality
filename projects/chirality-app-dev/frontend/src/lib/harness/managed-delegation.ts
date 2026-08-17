@@ -5,6 +5,7 @@ import type { EngineSelection, SessionRecord } from '@chirality/runtime-contract
 import { HarnessError } from '@chirality/runtime-contracts/errors';
 import { getHarnessToolDescriptor } from '@chirality/runtime-contracts/tool-descriptor';
 import {
+  parseAgentClass,
   parseAgentType,
   parseCommaSeparatedList,
   parseFrontmatter,
@@ -271,7 +272,7 @@ async function resolveChild(
   const allowlist = parseCommaSeparatedList(frontmatter.subagents);
 
   if (input.childKind === 'generalist') {
-    if (parentType !== 1 || frontmatter.allow_generalist_agent2 !== true) {
+    if (frontmatter.allow_generalist_agent2 !== true) {
       throw new HarnessError('INVALID_REQUEST', 400, 'Ephemeral generalist Agent 2 is not allowed');
     }
     return { parentType, child: { persona: GENERALIST_AGENT2_PERSONA, agentType: 2 } };
@@ -283,11 +284,22 @@ async function resolveChild(
   }
   const instruction = await readAgentInstruction(agentName, parentInstruction.instructionRoot);
   const childType = parseAgentType(instruction.content);
+  const childClass = parseAgentClass(instruction.content);
   if (childType !== 0 && childType !== 1 && childType !== 2) {
     throw new HarnessError('INVALID_REQUEST', 400, `${agentName} has no valid agent type`);
   }
-  if (parentType === 0 && childType !== 1) {
-    throw new HarnessError('INVALID_REQUEST', 400, 'Agent 0 may delegate only to named Agent 1 roles');
+  if (
+    parentType === 0 &&
+    !(
+      (input.childKind === 'named' && childType === 1) ||
+      (input.childKind === 'task' && agentName === 'TASK' && childType === 2 && childClass === 'TASK')
+    )
+  ) {
+    throw new HarnessError(
+      'INVALID_REQUEST',
+      400,
+      'Agent 0 may delegate only to named Agent 1 roles or the TASK Agent 2 declaring AGENT_CLASS=TASK'
+    );
   }
   if (parentType === 1 && childType !== 2) {
     throw new HarnessError('INVALID_REQUEST', 400, 'Agent 1 may delegate only to Agent 2');

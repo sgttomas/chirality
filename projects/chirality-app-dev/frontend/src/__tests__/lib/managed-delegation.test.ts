@@ -14,10 +14,15 @@ import {
 let root = '';
 let projectRoot = '';
 
-async function agent(name: string, type: number, frontmatter = ''): Promise<void> {
+async function agent(
+  name: string,
+  type: number,
+  frontmatter = '',
+  agentClass?: 'PERSONA' | 'TASK'
+): Promise<void> {
   await writeFile(
     path.join(root, 'agents', `AGENT_${name}.md`),
-    `---\ndescription: test\n${frontmatter}---\n# ${name}\nAGENT_TYPE: ${type}\n`,
+    `---\ndescription: test\n${frontmatter}---\n# ${name}\nAGENT_TYPE: ${type}\n${agentClass ? `AGENT_CLASS: ${agentClass}\n` : ''}`,
     'utf8'
   );
 }
@@ -81,9 +86,9 @@ beforeEach(async () => {
   for (const name of ['DIRECTIVE', 'CONTRACT', 'SPEC', 'TYPES', 'PLAN']) {
     await writeFile(path.join(root, 'docs', `${name}.md`), `# ${name}\n`, 'utf8');
   }
-  await agent('HELP_HUMAN', 0, 'subagents: WORKING_ITEMS, TASK, MISSING\n');
+  await agent('HELP_HUMAN', 0, 'subagents: WORKING_ITEMS, MISSING\n');
   await agent('WORKING_ITEMS', 1, 'subagents: TASK, WORKING_ITEMS\nallow_generalist_agent2: true\ntools: [read]\n');
-  await agent('TASK', 2, 'tools: [read]\n');
+  await agent('TASK', 2, 'tools: [read]\n', 'TASK');
   process.env.CHIRALITY_INSTRUCTION_ROOT = root;
   process.env.CHIRALITY_SESSION_ROOT = path.join(path.dirname(root), 'sessions');
 });
@@ -119,15 +124,33 @@ describe('managed delegation', () => {
     expect(plan).toContain('HumanDecisionPoints:');
   });
 
-  it('denies 0→2 and 1→1, but allows an authorized ephemeral generalist Agent 2', async () => {
+  it('allows configured Agent 0→TASK and keeps unsupported Agent 0/1 routes fail-closed', async () => {
     const service = new ManagedDelegationService(async () => ({
       sessionId: 'sess_child',
       status: 'COMPLETED',
       output: '# Return\ndone'
     }));
     await expect(
-      service.delegate(parent('HELP_HUMAN', 0), ['read'], request({ childKind: 'named', agentName: 'TASK' }))
-    ).rejects.toThrow('only to named Agent 1');
+      service.delegate(parent('HELP_HUMAN', 0), ['read'], request({ childKind: 'task', agentName: 'TASK' }))
+    ).rejects.toThrow('not allowlisted');
+    await agent('HELP_HUMAN', 0, 'subagents: WORKING_ITEMS, TASK, MISSING\n');
+    const task = await service.delegate(
+      parent('HELP_HUMAN', 0),
+      ['read'],
+      request({
+        runId: 'RUN-A0-TASK',
+        childKind: 'task',
+        agentName: 'TASK'
+      })
+    );
+    expect(task).toMatchObject({ status: 'COMPLETED', sessionId: 'sess_child' });
+    await expect(
+      service.delegate(
+        parent('HELP_HUMAN', 0),
+        ['read'],
+        request({ runId: 'RUN-A0-NAMED-TASK', childKind: 'named', agentName: 'TASK' })
+      )
+    ).rejects.toThrow('named Agent 1 roles or the TASK Agent 2');
     await expect(
       service.delegate(parent('WORKING_ITEMS', 1), ['read'], request())
     ).rejects.toThrow('only to Agent 2');
@@ -140,8 +163,72 @@ describe('managed delegation', () => {
     expect(result.instructionHash).toBeUndefined();
   });
 
+  it('requires canonical TASK class metadata for Agent 0→TASK launches', async () => {
+    const service = new ManagedDelegationService(async () => ({
+      sessionId: 'sess_task',
+      status: 'COMPLETED',
+      output: '# Return\ndone'
+    }));
+    await agent('HELP_HUMAN', 0, 'subagents: WORKING_ITEMS, TASK, MISSING\n');
+
+    await agent('TASK', 2, 'tools: [read]\n');
+    await expect(
+      service.delegate(
+        parent('HELP_HUMAN', 0),
+        ['read'],
+        request({ runId: 'RUN-A0-TASK-NO-CLASS', childKind: 'task', agentName: 'TASK' })
+      )
+    ).rejects.toThrow('AGENT_CLASS=TASK');
+
+    await agent('TASK', 2, 'tools: [read]\n', 'PERSONA');
+    await expect(
+      service.delegate(
+        parent('HELP_HUMAN', 0),
+        ['read'],
+        request({ runId: 'RUN-A0-TASK-WRONG-CLASS', childKind: 'task', agentName: 'TASK' })
+      )
+    ).rejects.toThrow('AGENT_CLASS=TASK');
+
+    await agent('TASK', 2, 'tools: [read]\n', 'TASK');
+    await expect(
+      service.delegate(
+        parent('HELP_HUMAN', 0),
+        ['read'],
+        request({ runId: 'RUN-A0-TASK-CANONICAL', childKind: 'task', agentName: 'TASK' })
+      )
+    ).resolves.toMatchObject({ status: 'COMPLETED', sessionId: 'sess_task' });
+  });
+
+  it('allows an Agent 0 ephemeral generalist only with explicit frontmatter opt-in', async () => {
+    const service = new ManagedDelegationService(async () => ({
+      sessionId: 'sess_generalist',
+      status: 'COMPLETED',
+      output: '# Return\ndone'
+    }));
+    await expect(
+      service.delegate(
+        parent('HELP_HUMAN', 0),
+        ['read'],
+        request({ runId: 'RUN-A0-GENERALIST-DENIED', childKind: 'generalist', agentName: undefined })
+      )
+    ).rejects.toThrow('Ephemeral generalist Agent 2 is not allowed');
+    await agent(
+      'HELP_HUMAN',
+      0,
+      'subagents: WORKING_ITEMS, TASK, MISSING\nallow_generalist_agent2: true\n'
+    );
+    const result = await service.delegate(
+      parent('HELP_HUMAN', 0),
+      ['read'],
+      request({ runId: 'RUN-A0-GENERALIST', childKind: 'generalist', agentName: undefined })
+    );
+    expect(result).toMatchObject({ status: 'COMPLETED', sessionId: 'sess_generalist' });
+    expect(result.instructionHash).toBeUndefined();
+  });
+
   it('fails closed for a dedicated Agent 2 whose qualification is not ruled', async () => {
     await agent('CANDIDATE', 2, 'dedicated_agent2_approval: D-GOV-13\ntools: [read]\n');
+    await agent('HELP_HUMAN', 0, 'subagents: WORKING_ITEMS, TASK, CANDIDATE\n');
     await agent('WORKING_ITEMS', 1, 'subagents: TASK, WORKING_ITEMS, CANDIDATE\nallow_generalist_agent2: true\ntools: [read]\n');
     await writeFile(
       path.join(root, 'docs/governance_harness/_DECISIONS/D-GOV-13_candidate.md'),
@@ -153,6 +240,15 @@ describe('managed delegation', () => {
       status: 'RUNNING',
       output: 'running'
     }));
+    await expect(service.delegate(
+      parent('HELP_HUMAN', 0),
+      ['read'],
+      request({
+        runId: 'RUN-A0-CANDIDATE',
+        childKind: 'named',
+        agentName: 'CANDIDATE'
+      })
+    )).rejects.toThrow('named Agent 1 roles or the TASK Agent 2');
     await expect(service.delegate(
       parent('WORKING_ITEMS', 1),
       ['read'],

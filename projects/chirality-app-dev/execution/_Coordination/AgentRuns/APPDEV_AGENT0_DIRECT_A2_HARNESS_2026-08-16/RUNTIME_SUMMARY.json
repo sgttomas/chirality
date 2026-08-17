@@ -1,0 +1,14 @@
+{
+  "runId": "APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16",
+  "status": "ACCEPTED_NODE",
+  "instances": {
+    "completed": 4,
+    "failed": 0,
+    "blocked": 0
+  },
+  "reviewVerdict": "PASS_AFTER_REMEDIATION",
+  "actionableFindings": 0,
+  "remediatedBlockFindings": 1,
+  "correctedDiffSha256": "12488f7984ed8997f166f10b52847ee01ed5c381602b4d011063ef36414de15b",
+  "integratedCloseoutRequired": true
+}

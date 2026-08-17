@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-08-16 - TM-APP-044 repair aligned the App harness runtime with root Agent 0 direct bounded-Agent-2 doctrine: configured canonical `TASK` and explicitly opted-in ephemeral generalist routes are lawful, while allowlists, dedicated-role qualification, tool/scope gates, and Agent 2 non-delegation remain fail-closed. An integrated review BLOCK exposed a missing canonical TASK-class check in managed launch; remediation now requires shared-parser `AGENT_CLASS: TASK`, and missing/non-TASK classes reject. Focused Vitest passed 30/30 and fresh corrected-diff review returned PASS with zero findings. Live use still depends on the separately owned root metadata/validator alignment; no lifecycle state or Checking Approval SHA changed.
 - 2026-06-21 - ADQ-12 closed the package-level child-output artifact evidence residual through DEL-08-05 without changing the Type 2 governance gate or expanding child capabilities. No lifecycle state advanced.
 - 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 
