@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-runtime-summary/v1",
+  "runId": "APPDEV_PACKAGED_ADAPTER_LOADING_2026-08-16",
+  "managerInstanceId": "WI-PKG04-DEL0401",
+  "status": "CHANGE_READY_WITH_PR_CI_ADVISORY",
+  "children": [
+    {"instanceId": "A2-IMPLEMENTER-01", "status": "SUCCESS"},
+    {"instanceId": "A2-REVIEWER-01", "status": "PASS", "actionableFindings": 0}
+  ],
+  "registeredChecks": "PASS_WITH_ADVISORY",
+  "packagedProof": "PASS",
+  "appHold": "PASS",
+  "corpus": "v18 no drift",
+  "model": "OpenAI Codex; exact builds not exposed",
+  "contextOccupancy": "not exposed by runtime",
+  "reruns": ["worktree-correct Root package resolution", "final packaged verifier after verifier-only remediation"],
+  "waivers": [],
+  "ownerDecisions": []
+}

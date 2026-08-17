@@ -12,7 +12,9 @@ vi.mock('electron', () => ({
 
 import type { RuntimeSessionRecord, UIEvent } from '@chirality/runtime-contracts';
 import type { Agent1ManagerHooks } from '@chirality/runtime-core';
-import { EngineBackedAgent1Manager } from '../../../electron/runtime-host';
+import { PersonaComposer } from '../../lib/harness/persona-manager';
+import { SafeStorageCredentialStore } from '../../../electron/api-key-storage';
+import { createEngines, EngineBackedAgent1Manager } from '../../../electron/runtime-host';
 
 const session: RuntimeSessionRecord = {
   schemaVersion: 'chirality.session/v2',
@@ -79,6 +81,65 @@ function hooks(): Agent1ManagerHooks & {
 }
 
 describe('EngineBackedAgent1Manager terminal enforcement', () => {
+  it('registers the promoted Root adapters with pinned package attribution', () => {
+    const engines = createEngines(
+      new SafeStorageCredentialStore(),
+      new PersonaComposer(),
+      new Map(),
+      {
+        isExactlyResident: async () => true,
+        transcriptRootFor: (sessionId) => `/tmp/adapter-events/${sessionId}`
+      }
+    );
+
+    expect(engines.descriptors()).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          adapterId: 'anthropic-direct',
+          providerId: 'anthropic',
+          packageName: '@anthropic-ai/sdk',
+          packageVersion: '0.93.0',
+          capabilities: {
+            credentials: true,
+            tools: false,
+            attachments: true,
+            interruption: true,
+            durableResume: true,
+            compaction: false
+          }
+        }),
+        expect.objectContaining({
+          adapterId: 'claude-agent-sdk',
+          providerId: 'anthropic',
+          packageName: '@anthropic-ai/claude-agent-sdk',
+          packageVersion: '0.3.150',
+          capabilities: {
+            credentials: true,
+            tools: true,
+            attachments: true,
+            interruption: true,
+            durableResume: true,
+            compaction: true
+          }
+        }),
+        expect.objectContaining({
+          adapterId: 'pi',
+          providerId: 'omlx',
+          packageName: '@earendil-works/pi-coding-agent',
+          packageVersion: '0.82.0',
+          capabilities: {
+            credentials: true,
+            tools: true,
+            attachments: false,
+            interruption: true,
+            durableResume: false,
+            compaction: true
+          }
+        })
+      ])
+    );
+  });
+
   it('turns manager preparation into a direct, tool-mandatory child brief', async () => {
     let runNumber = 0;
     const turns = {

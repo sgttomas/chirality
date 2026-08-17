@@ -1,0 +1,13 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "runId": "APPDEV_PACKAGED_ADAPTER_LOADING_2026-08-16",
+  "instanceId": "A2-REVIEWER-01",
+  "parentInstanceId": "WI-PKG04-DEL0401",
+  "role": "TASK software-code-review",
+  "status": "PASS",
+  "actionableFindings": 0,
+  "reviewedFrozenPaths": 9,
+  "writeTargets": [],
+  "delegated": false,
+  "needsHumanRuling": false
+}

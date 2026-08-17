@@ -1,0 +1,27 @@
+{
+  "schema": "chirality-working-items-work-graph/v1",
+  "runId": "APPDEV_PACKAGED_ADAPTER_LOADING_2026-08-16",
+  "version": 1,
+  "selectionAuthority": "HELP_HUMAN activation applying live DEL-04-01 ruled state",
+  "posture": "MIXED",
+  "integrationOwner": "WI-PKG04-DEL0401",
+  "nodes": [
+    {
+      "id": "IMPLEMENT_AND_VALIDATE",
+      "owner": "WI-PKG04-DEL0401",
+      "writes": "authorized App product/test/build/package and DEL-04-01 surfaces",
+      "return": "frozen candidate plus registered and target-specific check evidence"
+    },
+    {
+      "id": "FRESH_CODE_REVIEW",
+      "owner": "fresh TASK + software-code-review Agent 2",
+      "writes": [],
+      "return": "PASS with no actionable findings or BLOCK"
+    }
+  ],
+  "edges": [
+    { "from": "IMPLEMENT_AND_VALIDATE", "to": "FRESH_CODE_REVIEW" }
+  ],
+  "fanInGate": "review PASS, checks PASS, containment clean, state accurately closed",
+  "escalation": "owner-class boundary contact, review BLOCK, dependency drift, or required root-runtime write"
+}

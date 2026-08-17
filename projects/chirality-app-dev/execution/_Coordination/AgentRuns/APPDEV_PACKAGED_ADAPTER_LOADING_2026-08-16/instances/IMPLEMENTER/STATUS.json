@@ -1,0 +1,12 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "runId": "APPDEV_PACKAGED_ADAPTER_LOADING_2026-08-16",
+  "instanceId": "A2-IMPLEMENTER-01",
+  "parentInstanceId": "WI-PKG04-DEL0401",
+  "role": "TASK software-bounded-implementation",
+  "status": "SUCCESS",
+  "delegated": false,
+  "writeScope": "sealed nine-path App frontend product/test candidate",
+  "needsHumanRuling": false,
+  "rerunRequired": "final packaged verifier plus manager registered checks"
+}
