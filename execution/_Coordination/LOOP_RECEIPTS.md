@@ -3401,3 +3401,29 @@ amendment; owner ruling required).
 - **Gate:** EXECUTED — prose alignment only; frontmatter/validator/harness
   alignment parked (root + App follow-ons); PR opened for owner merge, no
   merge.
+
+### Receipt 109 — 2026-08-16 — Root TM-ROOT-125 minder-candidate promotion
+
+- **Basis and lane:** `origin/main@cb8fe7079a93fcc5432fde97a886d095616ddd23`;
+  branch `codex/root-tm-root-125-promotion`. Bounded owner-ruled promotion of
+  minder-presented candidate `MINDER-20260816-04` (validator/allowlist
+  follow-on surfaced by the PR #569 blocker); nothing else touched.
+- **Owner direction (CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD; the
+  ruling record file below is the ruling of record):** "Promote." — applied
+  to `MINDER-20260816-04` → `TM-ROOT-125` (`OPEN` / `MEDIUM`) as recorded in
+  the owner-supplied row.
+- **Register append:** `TM-ROOT-125` (`OPEN` / `MEDIUM`) appended byte-exact
+  as the last line of `_TaskManagement/REGISTER.csv`; row SHA-256
+  `5af385bb38bfc0ac4b7e6a659b6e47a00f21dcd843461f810b1784477b6aa3ad`; register
+  blob `c956e29e4a4831c1cdd5320f748ddc25b65aadef` → `697b148a465298cb341c486f923b73764116671d`.
+- **Ruling record:**
+  `_TaskManagement/RULING_2026-08-16_ROOT_MINDER_PROMOTION_TM-ROOT-125.md`,
+  SHA-256 `f213067d8fdeed9a4be7c83cfe547702a1c6df707418a6f144c1a13bf2ddacf9`.
+- **Checks:** row-source hash verified before append; `taskmgmt validate`
+  PASS (23 rows, schema and referential rules conform); practitioner harness
+  `self-check` exit 0; `git diff --check` clean; last row parses to 25 columns.
+- **Model-Attribution:** Claude Fable 5 ephemeral Agent 2 generalist under
+  sealed brief from HELP_HUMAN (Claude Fable 5 session minder); no substitution.
+- **Gate:** EXECUTED — promotion records attention only; no validator,
+  instruction, dispatch, or routing effect. PR opened for owner merge; no
+  merge in-session.
