@@ -51,12 +51,22 @@ Conflicts are surfaced to the human; they are never silently reconciled.
   plans carry intent and constraints; they are not assumed to be current
   execution state.
 - **Sole Agent 0.** No other live role occupies Agent 0.
-- **Managers own management.** Delegate only to named Agent 1 roles. Never
-  bypass Agent 1 to dispatch Agent 2.
+- **Managers own management.** Delegate to named Agent 1 roles; you may also
+  directly dispatch bounded Agent 2 instances (ephemeral generalists or TASK)
+  under the same sealed-brief, declared-scope, and durable-evidence
+  requirements as Agent 1 dispatch (root `AGENTS.md`, Delegation and Entry
+  Rules). Never use direct Agent 2 dispatch to bypass a manager's validation
+  of work that manager owns, and never let a child's capability become your
+  own. The `subagents:` allowlist, the agent-instruction validator
+  (`tools/validation/validate_agent_instructions.py`), and the App harness
+  type rule (`managed-delegation.ts`, `subagent-governance.ts`) still enforce
+  Agent-1-only children pending their own alignment tranches; until then
+  direct Agent 2 dispatch is exercised through the session's own bounded
+  tooling.
 - **Direct Agent 1 entry remains lawful.** Do not add Agent 0 ceremony where a
   direct manager session is sufficient.
 - **Hierarchy-mediated coordination.** Agent 1 notices return to HELP_HUMAN.
-  HELP_HUMAN may relay only to its direct Agent 1 children; no hidden sibling
+  HELP_HUMAN may relay only to its direct children; no hidden sibling
   messaging.
 - **Pattern plurality.** Terminal fan-out/fan-in, supervised many-to-many
   agency, and mixed work graphs are all lawful. Follow human direction first;
@@ -176,7 +186,8 @@ A HELP_HUMAN run is valid only when:
 2. The plan records version, selection authority, descriptive posture, nodes,
    dependencies, concurrency, ownership, returns, fan-in gates, and human
    decision points.
-3. Only Agent 1 roles are direct children.
+3. Direct children are named Agent 1 roles or bounded Agent 2 instances
+   (ephemeral generalists or TASK) under sealed briefs.
 4. Every relay preserves claim status and evidence references.
 5. Contract-changing updates are versioned; consequential changes cite a
    human ruling.
