@@ -1,0 +1,9 @@
+{"event":"run.activated","runId":"APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16","instanceId":"WI-PKG08-DEL0804","status":"RUNNING"}
+{"event":"child.completed","runId":"APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16","instanceId":"A2-IMPLEMENT-01","status":"COMPLETED","evidence":"focused Vitest PASS 2 files/29 tests"}
+{"event":"child.completed","runId":"APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16","instanceId":"A2-REVIEW-01","status":"COMPLETED","verdict":"PASS","actionableFindings":0}
+{"event":"run.fan_in","runId":"APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16","instanceId":"WI-PKG08-DEL0804","status":"ACCEPTED_NODE"}
+{"event":"run.hygiene_corrected","runId":"APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16","instanceId":"WI-PKG08-DEL0804","normalizedEvidenceFiles":15,"productDiffUnchanged":true,"candidateWhitespace":"PASS"}
+{"event":"review.blocked","runId":"APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16","instanceId":"INTEGRATED-REVIEW","finding":"Agent 0 TASK managed launch did not require canonical AGENT_CLASS=TASK"}
+{"event":"child.completed","runId":"APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16","instanceId":"A2-REMEDIATE-02","status":"COMPLETED","evidence":"focused Vitest PASS 2 files/30 tests"}
+{"event":"child.completed","runId":"APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16","instanceId":"A2-REVIEW-02","status":"COMPLETED","verdict":"PASS","actionableFindings":0}
+{"event":"run.fan_in_corrected","runId":"APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16","instanceId":"WI-PKG08-DEL0804","status":"ACCEPTED_NODE","diffSha256":"12488f7984ed8997f166f10b52847ee01ed5c381602b4d011063ef36414de15b"}

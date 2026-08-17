@@ -1,0 +1,22 @@
+{
+  "schema": "chirality-software-check-evidence/v1",
+  "selected": [
+    "app-hold-integrity",
+    "frontend-test",
+    "frontend-typecheck",
+    "harness-self-check"
+  ],
+  "nodeEvidence": {
+    "focused-frontend-test": "PASS: 2 files, 30 tests after canonical TASK-class remediation",
+    "app-hold-integrity": "PASS: 53 contracts, 0 held, register match",
+    "harness-self-check": "PASS: exit 0 with existing baseline findings",
+    "scope": "PASS: 0 violations",
+    "diff-check": "PASS",
+    "candidate-whitespace": "PASS: node scope and whole candidate; 15 evidence-file terminal blanks normalized",
+    "corrected-diff-review": "PASS: zero actionable findings; prior integrated BLOCK resolved"
+  },
+  "deferredToIntegratedCloseout": [
+    "frontend-test",
+    "frontend-typecheck"
+  ]
+}

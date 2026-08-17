@@ -1,14 +1,15 @@
 # Status: DEL-05-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-03
+**Last Updated:** 2026-08-17
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
-- Prove Desktop and CLI replay the same daemon-owned canonical session and preserve manager/child attribution across restart and lazy migration (gated: daemon/client vertical slice).
+- None recorded. The daemon/client vertical-slice residual was closed by the
+  accepted canonical replay/restart integration proof dated 2026-08-17.
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -49,3 +50,19 @@
   remains IN_PROGRESS; Authorization Basis, Directive, and Checking Approval
   SHA are preserved. Any later accepted D-APP-88 distinct-helper
   implementation remains a non-blocking parity-rerun trigger.
+- 2026-08-17 - The live daemon/client vertical-slice gate was confirmed
+  satisfied. A dedicated App integration case proved the authenticated Desktop
+  port and Root `runCli session replay --json` façade decode structurally equal
+  canonical manager/child sessions after
+  non-destructive lazy legacy migration and again after a fresh daemon/service
+  restart. Recorded `agent1`/`agent2` roles, exact `parentSessionId`, ordered
+  events, and engine/provider/model attribution survive. Focused Vitest and
+  worktree-correct typecheck passed. An integrated review identified and then
+  accepted remediation of record wording that had overstated structural
+  equality as byte equivalence. Evidence is recorded in
+  `_run_records/CANONICAL_REPLAY_RESTART_2026-08-17.md`. The sole Remaining
+  item is closed; lifecycle remains IN_PROGRESS and no release claim is made.
+  Integrated CLI-boundary review then required the actual Root `runCli` façade
+  rather than a second runtime client and raw-buffer comparisons for legacy
+  byte preservation. Final focused test/typecheck and independent backcheck
+  passed at blob `310e0c9539dbac6af89159bd312b2a93a082689b`; closure remains accepted.

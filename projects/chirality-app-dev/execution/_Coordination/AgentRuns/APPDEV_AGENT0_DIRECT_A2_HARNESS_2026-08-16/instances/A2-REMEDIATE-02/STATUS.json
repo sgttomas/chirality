@@ -1,0 +1,12 @@
+{
+  "instanceId": "A2-REMEDIATE-02",
+  "parentInstanceId": "WI-PKG08-DEL0804",
+  "status": "COMPLETED",
+  "trigger": "integrated-review BLOCK finding 1",
+  "checks": {
+    "focusedVitest": "PASS: 2 files, 30 tests",
+    "candidateWhitespace": "PASS",
+    "diffCheck": "PASS"
+  },
+  "outputArtifact": "RETURN.md"
+}

@@ -1,0 +1,95 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 4
+  },
+  "counts": {
+    "category": {
+      "implementation": 2,
+      "orchestration": 3,
+      "remediation": 2,
+      "review": 7,
+      "validation": 1
+    },
+    "event_type": {
+      "CHECKPOINT": 7,
+      "FINISH": 4,
+      "START": 4
+    },
+    "outcome": {
+      "ACCEPT": 3,
+      "BLOCK": 3,
+      "PASS": 5,
+      "STARTED": 4
+    },
+    "reason_code": {
+      "CLAIM_CALIBRATED": 1,
+      "CLAIM_CALIBRATION_REQUIRED": 1,
+      "CLI_BOUNDARY_EXERCISED": 1,
+      "CLI_BOUNDARY_NOT_EXERCISED": 1,
+      "CLI_REMEDIATION_FROZEN": 1,
+      "DISPATCH_READY": 1,
+      "FAN_IN_ACCEPTED": 1,
+      "FOCUSED_REPLAY_PROOF_PASS": 1,
+      "IMPLEMENTATION_FROZEN": 1,
+      "NARROW_CHECKS_PASS": 1,
+      "NO_FINDINGS": 1,
+      "NO_REMAINING_FINDINGS": 1,
+      "RAW_BYTE_EVIDENCE_MISMATCH": 1,
+      "REMEDIATED_FAN_IN_ACCEPTED": 1,
+      "SELECTABLE_REPLAY_RESIDUAL": 1
+    }
+  },
+  "events": 15,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 483.589,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG05-CANONICAL-REPLAY-IMPLEMENT-01",
+      "package_id": "PKG-05",
+      "remediations": 0,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-PKG05-CANONICAL-REPLAY-IMPLEMENT-01"
+    },
+    {
+      "duration_seconds": 2402.345,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG05-CANONICAL-REPLAY-REVIEW-01",
+      "package_id": "PKG-05",
+      "remediations": 0,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-PKG05-CANONICAL-REPLAY-REVIEW-01"
+    },
+    {
+      "duration_seconds": 300.0,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG05-CANONICAL-REPLAY-REVIEW-02",
+      "package_id": "PKG-05",
+      "remediations": 0,
+      "retries": 0,
+      "role": "TASK",
+      "session_id": "A2-PKG05-CANONICAL-REPLAY-REVIEW-02"
+    },
+    {
+      "duration_seconds": 5526.975,
+      "events": 8,
+      "final_outcome": "ACCEPT",
+      "instance_id": "WI-PKG05-CANONICAL-REPLAY",
+      "package_id": "PKG-05",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG05-CANONICAL-REPLAY"
+    }
+  ],
+  "sessions": 4,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

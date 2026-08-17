@@ -1,0 +1,10 @@
+{
+  "instanceId": "A2-IMPLEMENT-01",
+  "parentInstanceId": "WI-PKG08-DEL0804",
+  "status": "COMPLETED",
+  "outputArtifact": "RETURN.md",
+  "checks": {
+    "focusedVitest": "PASS: 2 files, 29 tests",
+    "diffCheck": "PASS"
+  }
+}

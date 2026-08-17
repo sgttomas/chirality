@@ -5161,3 +5161,31 @@
   - Gate-Outcome: `EXECUTED` — promotion records attention only; no dispatch,
     harness, instruction, lifecycle, release, or merge effect; PR opened for
     owner merge.
+
+- **2026-08-17 — Receipt 172** (parallel canonical-replay and Agent 0 delegation product nodes).
+  - Receipt-ID: `Receipt-172`
+  - Examined-Through: `44903bc69cf56d4ca794fe9629f26793a82bf1b3`
+  - Parent-Receipt: `Receipt-171`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-17,
+    Ryan Tufts, in-session): `STANDING DIRECTION — development pressure`;
+    `This tranche's deliverable is product work: code, working features, executing cases, closed engineering gaps. Name one concrete engineering target up front and spend the tranche on it. Governance is a fence around the work, not the work — apply ruled decisions as-is, don't revisit them, and produce the minimum coordination artifacts your instruments require. If you find yourself planning, re-deriving, or writing records instead of building, stop and build. A return whose bulk is run-records and plans rather than product progress is a failed tranche even if every gate passes. Decisions that need the owner: park them in one list at the end, don't let them stall the work.`;
+    `Applied to Step 0: let Step 0 select the target from ruled state — but selection is a decision, not a deliverable. Pick the highest-value open engineering gap the instruments already authorize, state it in one line, and go build it. If Step 0 concludes that no authorized engineering work exists and only decisions remain, return that as a short parked-decisions list — do not manufacture a planning or records tranche to fill the session.`
+  - Pointers: PKG-08 commit `ac2cd801a06a0679bc86830c627218ccca78b658`
+    and RunID root `execution/_Coordination/AgentRuns/APPDEV_AGENT0_DIRECT_A2_HARNESS_2026-08-16/`;
+    PKG-05 commit `d563af0aa7d5935260864d7e6084262eaee0b3d4`
+    and RunID root `execution/_Coordination/AgentRuns/APPDEV_CANONICAL_REPLAY_RESTART_2026-08-16/`;
+    shared handoff `execution/_Coordination/AgentRuns/APPDEV_PARALLEL_PRODUCT_NODES_INTEGRATION_2026-08-17/HANDOFF.md`.
+  - Checks: focused and full frontend Vitest, frontend plus Electron typecheck,
+    production build, fresh corrected integrated review, practitioner pytest,
+    self-check, App status, APP-HOLD, corpus v18, receipt contract,
+    candidate whitespace, JSON/JSONL parse, diff hygiene, and exact containment
+    pass. Local premerge remains exact `FAIL` after eight HTTP 503 responses
+    from absent registered runtime-daemon bindings; PR-CI rerun is required,
+    with no waiver or inferred pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    TASK, and CHANGE Agent 1 instances; exact model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — both engineering targets executed; DEL-05-04's
+    sole Remaining item removed; DEL-08-04 repair landed while its unrelated
+    gated Remaining item, lifecycle, and Checking Approval SHA remain
+    unchanged. TM-ROOT-125 remains an external residual. No register,
+    lifecycle, release, provider, authority, or foreign-loop write occurred.

@@ -157,30 +157,36 @@ async function resolveDelegatedSubagents(
     }
 
     const agentType = parseAgentType(instruction.content);
-    const expectedType = parentType === 0 ? 1 : 2;
-    if (agentType !== expectedType) {
+    const agentClass = parseAgentClass(instruction.content);
+    const allowedType =
+      parentType === 0
+        ? agentType === 1 ||
+          (subagentName === 'TASK' && agentType === 2 && agentClass === 'TASK')
+        : agentType === 2;
+    if (!allowedType) {
+      const expected = parentType === 0 ? 'TYPE 1 or TASK Agent 2' : 'TYPE 2';
       console.error(
         `[harness/subagent-governance] Candidate subagent rejected: ${subagentName} declares AGENT_TYPE=${formatAgentType(
           agentType
-        )}; expected TYPE ${expectedType}.`
+        )}; expected ${expected}.`
       );
       continue;
     }
 
-    const agentClass = parseAgentClass(instruction.content);
-    if (expectedType === 2 && agentClass !== 'TASK') {
+    if (parentType === 1 && agentClass !== 'TASK') {
       const renderedClass = agentClass ?? 'missing';
       console.warn(
         `[harness/subagent-governance] Candidate subagent warning: ${subagentName} declares AGENT_CLASS=${renderedClass}; TASK is preferred.`
       );
     }
 
+    const delegatedAgentType: 1 | 2 = agentType === 1 ? 1 : 2;
     delegated.push(subagentName);
     instructions[subagentName] = {
       path: instruction.path,
       content: instruction.content,
       sha256: createHash('sha256').update(instruction.content).digest('hex'),
-      agentType: expectedType
+      agentType: delegatedAgentType
     };
   }
 
