@@ -5136,3 +5136,28 @@
     Root runtime bytes, and release/distribution posture are unchanged. No
     owner decision, waiver, corpus repair, or issue plan occurred; owner-gated
     CHANGE/PR-CI closeout remains required and no merge occurred.
+
+- **2026-08-16 — Receipt 171** (TM-APP-044 minder-candidate promotion).
+  - Receipt-ID: `Receipt-171`
+  - Examined-Through: `cb8fe7079a93fcc5432fde97a886d095616ddd23`
+  - Parent-Receipt: `Receipt-170`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-16,
+    Ryan Tufts, in-session): `Promote.` — applied meaning: promote
+    minder-presented candidate MINDER-20260816-05 to TM-APP-044, OPEN /
+    MEDIUM, as recorded in the owner-supplied row (row bytes SHA-256
+    `d8a379d346b8786fb915ed421000fb1385a9bf0b3593820bcdaa69e103f52902`);
+    promotion records attention only.
+  - Pointers: `execution/_Coordination/_TaskManagement/REGISTER.csv` (blob
+    `c5c0d64948572748948d2f239d50ff96e8757838`, TM-APP-044 appended);
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-16_MINDER_PROMOTION_TM-APP-044.md`
+    (SHA-256 `3a8ec450cb97e1b919b0ba5701da5188173e834dad095833dae22eea3cddcd4e`).
+  - Checks: register validator, receipt validator, APP-HOLD integrity scan
+    (`check --operation` not applicable — no deliverable targeted),
+    self-check, diff --check, and exact three-path containment pass. Frontend
+    gates skipped because no runtime/product source changed.
+  - Model-Attribution: Claude Fable 5 ephemeral Agent 2 generalist under a
+    sealed brief from HELP_HUMAN (Claude Fable 5 session minder); no override
+    or mid-task substitution.
+  - Gate-Outcome: `EXECUTED` — promotion records attention only; no dispatch,
+    harness, instruction, lifecycle, release, or merge effect; PR opened for
+    owner merge.
