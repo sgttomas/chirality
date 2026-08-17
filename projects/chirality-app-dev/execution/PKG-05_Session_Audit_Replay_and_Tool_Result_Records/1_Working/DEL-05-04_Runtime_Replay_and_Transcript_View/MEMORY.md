@@ -2,6 +2,27 @@
 
 ## Decisions And Evidence
 
+- 2026-08-17 - Accepted the dedicated canonical replay/restart integration
+  proof at candidate blob `310e0c9539dbac6af89159bd312b2a93a082689b`.
+  A real daemon, authenticated Desktop compatibility port, and Root CLI
+  `runCli session replay --json` façade lazily migrate legacy manager/child
+  sessions without changing legacy bytes; both decoded surfaces then replay
+  structurally equal parsed canonical records before and
+  after a fresh service restart. Exact recorded role, parent session, ordered
+  events, and `pi` / `omlx` / `recorded-model` attribution survive, and the
+  Woven hierarchy remains manager-rooted even with child-first input. Focused
+  Vitest and worktree-correct typecheck passed. Integrated review corrected an
+  evidence-wording overclaim: the assertions establish structural/value
+  equality of parsed replay objects, while byte identity is proven only for the
+  preserved legacy source files. A second integrated finding that the original
+  fixture used only a second `RuntimeClient` was remediated by exercising and
+  decoding captured output from the actual Root `runCli` boundary. Fresh
+  review additionally required raw `Buffer` capture/comparison to support
+  legacy-byte preservation; that correction and backcheck passed. No App
+  product-source defect was exposed. Evidence:
+  `_run_records/CANONICAL_REPLAY_RESTART_2026-08-17.md`. Rerun on Root daemon,
+  client, session-migration, or replay contract changes, or App runtime-client
+  or Woven hierarchy changes. Lifecycle remains `IN_PROGRESS`.
 - 2026-08-03 - D-APP-86 Option A derivative evidence proves the exact
   real-daemon transcript-item-rendering residual for one admitted
   `WORKING_ITEMS` / `agent1` session: two canonical events produced one
