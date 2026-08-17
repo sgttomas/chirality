@@ -6,6 +6,29 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-08-17 - Parallel canonical-replay and Agent 0 delegation nodes landed
+
+Landed two accepted product nodes in sequence from base
+`44903bc69cf56d4ca794fe9629f26793a82bf1b3`: PKG-08 commit
+`ac2cd801a06a0679bc86830c627218ccca78b658` repairs the App harness so an
+authorized Agent 0 may dispatch a canonical `TASK` Agent 2 or an explicitly
+allowed ephemeral generalist while missing/non-`TASK` class declarations and
+unapproved routes remain fail-closed; PKG-05 commit
+`d563af0aa7d5935260864d7e6084262eaee0b3d4` adds the real Desktop/Root-CLI
+integration proof that daemon-owned canonical manager/child replay, lazy
+migration, attribution, ordering, and provider/model identity survive restart.
+
+DEL-05-04's sole Remaining item is removed. DEL-08-04 retains its unrelated
+D-APP-53-gated decision-replay Remaining item, `IN_PROGRESS` lifecycle, and
+Checking Approval SHA. Fresh corrected integrated review was `COMMIT-SAFE`
+with zero findings; full Vitest, frontend plus Electron typecheck, production
+build, practitioner pytest, self-check, App status, APP-HOLD, corpus, and
+hygiene gates passed. Local premerge remains exact `FAIL` because all eight
+requests returned HTTP 503 without registered runtime-daemon bindings; no
+waiver or passing inference applies and PR CI rerun is required. TM-ROOT-125
+remains externally owned. See
+`execution/_Coordination/AgentRuns/APPDEV_PARALLEL_PRODUCT_NODES_INTEGRATION_2026-08-17/HANDOFF.md`.
+
 ## 2026-08-02 - DEL-09-03 shared-daemon proof and C04 fan-in completed
 
 Added the direct App-owned fake-oMLX Desktop/CLI integration proof at

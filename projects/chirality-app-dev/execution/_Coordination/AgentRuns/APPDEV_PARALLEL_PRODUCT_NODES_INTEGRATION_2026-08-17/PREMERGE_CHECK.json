@@ -1,0 +1,51 @@
+{
+  "profile": "projects/chirality-app-dev/software-workflow.json",
+  "project_root": "projects/chirality-app-dev",
+  "integration_binding": {
+    "base": "44903bc69cf56d4ca794fe9629f26793a82bf1b3",
+    "pkg_08_commit": "ac2cd801a06a0679bc86830c627218ccca78b658",
+    "pkg_05_commit": "d563af0aa7d5935260864d7e6084262eaee0b3d4",
+    "inference": "NONE",
+    "required_rerun": "PR_CI"
+  },
+  "results": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "harness:validate:premerge"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 3.369,
+      "exit_code": 1,
+      "id": "frontend-premerge",
+      "service": {
+        "command": [
+          "node",
+          "node_modules/next/dist/bin/next",
+          "dev",
+          "--port",
+          "53404"
+        ],
+        "cwd": "projects/chirality-app-dev/frontend",
+        "exit_code": 0,
+        "port": 53404,
+        "ready_url": "http://127.0.0.1:53404",
+        "shutdown_timeout_seconds": 10,
+        "startup_duration_seconds": 2.769,
+        "startup_timeout_seconds": 90,
+        "status": "READY",
+        "stderr_tail": "",
+        "stdout_tail": "   \u25b2 Next.js 15.5.21\n   - Local:        http://localhost:53404\n   - Network:      http://192.168.0.15:53404\n\n \u2713 Starting...\n \u2713 Ready in 809ms\n \u25cb Compiling / ...\n \u2713 Compiled / in 1532ms (1374 modules)\n GET / 200 in 252ms\n \u2713 Compiled /api/harness/session/list in 140ms (1382 modules)\n GET /api/harness/session/list?projectRoot=%2Fvar%2Ffolders%2F96%2F1_3ww0012pv5ptwwsd1990yw0000gn%2FT%2Fchirality-harness-validation%2Flatest%2Fworkroots%2Fdefault-project-root 503 in 193ms\n \u2713 Compiled /api/harness/session/create in 75ms (1384 modules)\n POST /api/harness/session/create 503 in 97ms\n \u2713 Compiled /api/harness/session/boot in 78ms (1386 modules)\n POST /api/harness/session/boot 503 in 95ms\n POST /api/harness/session/create 503 in 5ms\n POST /api/harness/session/create 503 in 3ms\n POST /api/harness/session/create 503 in 3ms\n POST /api/harness/session/create 503 in 3ms\n POST /api/harness/session/create 503 in 2ms\n\u001b[?25h\n",
+        "stopped_after_run": true
+      },
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 harness:validate:premerge\n> node ./scripts/validate-harness-premerge.mjs\n\nHARNESS_VALIDATION_SUMMARY_PATH={TMPDIR}/chirality-harness-validation/latest/summary.json\nHARNESS_VALIDATION_STATUS=fail\nHARNESS_PREMERGE_ARTIFACT_PATH={WORKSPACE_ROOT}/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json\nHARNESS_PREMERGE_SOURCE_SUMMARY_PATH={TMPDIR}/chirality-harness-validation/latest/summary.json\nHARNESS_PREMERGE_STATUS=fail\nHARNESS_PREMERGE_TEST_COUNT=0\n",
+      "timeout_seconds": 180.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "FAIL",
+  "workspace_root": "."
+}

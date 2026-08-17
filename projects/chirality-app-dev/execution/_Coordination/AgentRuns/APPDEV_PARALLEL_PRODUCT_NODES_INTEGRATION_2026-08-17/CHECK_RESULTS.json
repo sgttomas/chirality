@@ -1,0 +1,145 @@
+{
+  "schema": "chirality-app-integration-checks/v1",
+  "run_id": "APPDEV_PARALLEL_PRODUCT_NODES_INTEGRATION_2026-08-17",
+  "base": "44903bc69cf56d4ca794fe9629f26793a82bf1b3",
+  "node_commits": {
+    "pkg_08": "ac2cd801a06a0679bc86830c627218ccca78b658",
+    "pkg_05": "d563af0aa7d5935260864d7e6084262eaee0b3d4"
+  },
+  "status": "ACCEPTED_WITH_PR_CI_RERUN",
+  "affected_check_selector": {
+    "status": "PASS",
+    "selected": [
+      "app-hold-integrity",
+      "frontend-test",
+      "frontend-typecheck",
+      "harness-self-check"
+    ],
+    "supplemental_product_source_gates": [
+      "frontend-build",
+      "frontend-premerge"
+    ]
+  },
+  "checks": [
+    {
+      "id": "frontend-test",
+      "status": "PASS",
+      "result": "145 files passed, 1 file skipped; 1129 tests passed, 4 tests skipped"
+    },
+    {
+      "id": "frontend-typecheck",
+      "status": "PASS",
+      "result": "frontend and Electron TypeScript checks exited 0"
+    },
+    {
+      "id": "frontend-build",
+      "status": "PASS",
+      "result": "Next production build plus Electron main, preload, and CLI bundles exited 0"
+    },
+    {
+      "id": "frontend-premerge",
+      "status": "FAIL",
+      "result": "service READY; 8 of 8 underlying requests returned HTTP 503; wrapper reported HARNESS_PREMERGE_STATUS=fail and HARNESS_PREMERGE_TEST_COUNT=0",
+      "attribution": "The registered local service profile does not provide runtime-daemon client socket, token, project, or instruction-root bindings. The fail-closed harness port therefore returns 'Chirality runtime daemon client is not configured'. No candidate-caused failure was identified.",
+      "established_advisory_basis": [
+        "Receipt 110: local premerge environment/profile advisory; authoritative rerun owned by PR CI",
+        "Receipt 111: live-runtime App premerge dependency-resolution advisory; PR-CI rerun required",
+        "Receipt 112: local session-creation HTTP 503 advisory; PR-CI rerun required"
+      ],
+      "waiver_or_pass_inference": "NONE",
+      "rerun": "REQUIRED_IN_PR_CI",
+      "evidence": "PREMERGE_CHECK.json"
+    },
+    {
+      "id": "practitioner-pytest",
+      "status": "PASS",
+      "result": "349 passed in 17.23 seconds"
+    },
+    {
+      "id": "harness-self-check",
+      "status": "PASS",
+      "result": "exit 0 at existing baseline: INFO 14, NOT_APPLICABLE 1, REVIEW 4, WARN 31"
+    },
+    {
+      "id": "app-status",
+      "status": "PASS",
+      "result": "53 status files; all 53 IN_PROGRESS; no finding severities"
+    },
+    {
+      "id": "app-hold-integrity",
+      "status": "PASS",
+      "result": "53 contracts, 0 held, register_match true",
+      "fingerprint": "0a5700083a175c1aaad8c9961ccf43bf861be9bbf8e96f40d7e4a66b0868f90b"
+    },
+    {
+      "id": "app-hold-reliance-del-05-04",
+      "status": "PASS",
+      "result": "ALLOW / NOT_HELD"
+    },
+    {
+      "id": "app-hold-reliance-del-08-04",
+      "status": "PASS",
+      "result": "ALLOW / NOT_HELD"
+    },
+    {
+      "id": "authority-corpus-v18",
+      "status": "PASS",
+      "result": "8 MATCH; no drift"
+    },
+    {
+      "id": "candidate-whitespace",
+      "status": "PASS",
+      "result": "whole candidate clean; 0 untracked binary or symlink paths skipped"
+    },
+    {
+      "id": "git-diff-check",
+      "status": "PASS",
+      "result": "exit 0"
+    },
+    {
+      "id": "exact-containment",
+      "status": "PASS",
+      "result": "50 candidate paths; 0 violations after correcting an initial validator invocation that supplied the App directory as a literal --path"
+    },
+    {
+      "id": "json-jsonl-parse",
+      "status": "PASS",
+      "result": "10 JSON files and 2 JSONL files parsed; every JSONL row is an object"
+    },
+    {
+      "id": "transient-cleanup",
+      "status": "PASS",
+      "result": "frontend node_modules, .next, dist, dist-electron, dist-runtime, artifacts, the temporary runtime copy, and the generated premerge temp-log root are absent"
+    }
+  ],
+  "dependency_overlay": {
+    "runtime_copy": "/private/tmp/chirality-integration-runtime.U7f3qs",
+    "runtime_npm_ci": "PASS",
+    "runtime_build": "PASS",
+    "frontend_npm_ci": "PASS after approved network rerun",
+    "frontend_audit_observation": "15 dependency audit findings reported by npm: 6 moderate and 9 high; no audit-fix mutation performed",
+    "cleanup": "PASS: transient runtime copy, frontend node_modules, .next, dist-electron, and dist-runtime removed; dist and artifacts absent"
+  },
+  "review": {
+    "verdict": "COMMIT-SAFE",
+    "actionable_findings": 0,
+    "coverage": "100% of the exact five integrated product/test files"
+  },
+  "skips": {
+    "required_gates_skipped": 0,
+    "suite_declared": "Vitest reported 1 skipped file and 4 skipped tests"
+  },
+  "closeout": {
+    "receipt": "Receipt-172 validator PASS",
+    "candidate_whitespace": "PASS",
+    "json_jsonl": "2 JSON files and 0 JSONL files in the shared integration root parsed successfully",
+    "git_diff_check": "PASS",
+    "exact_shared_surface_containment": "PASS: 8 paths, 0 violations",
+    "terminal_lf": "PASS",
+    "git_actions": "NONE"
+  },
+  "residuals": [
+    "PR CI must rerun the service-backed premerge gate with the required runtime-daemon bindings.",
+    "TM-ROOT-125 remains separately owned for live HELP_HUMAN direct Agent 2 validator/frontmatter alignment."
+  ]
+}
