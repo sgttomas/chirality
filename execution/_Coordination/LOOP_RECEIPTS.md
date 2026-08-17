@@ -3367,3 +3367,37 @@ amendment; owner ruling required).
   sealed brief from HELP_HUMAN (Claude Fable 5 session minder); no substitution.
 - **Gate:** EXECUTED — promotion records attention only; no root edit, notice,
   dispatch, or routing effect. PR opened for owner merge; no merge in-session.
+
+### Receipt 108 — 2026-08-16 — Root Agent 0 direct Agent 2 dispatch alignment (AGENT_HELP_HUMAN.md)
+
+- **Basis and lane:** `origin/main@b67197f5b647fbf0b972eee158e94c7215db9e6c`;
+  branch `codex/root-agent0-direct-agent2-alignment`; tranche
+  `docs/governance_harness/tranche_manifests/ROOT-AGENT0-DIRECT-A2-ALIGN-20260816.yaml`;
+  run `_Coordination/AgentRuns/ROOT_AGENT0_DIRECT_A2_ALIGN_2026-08-16/`
+  (`OWNER_RULING_TRANSCRIPT_2026-08-16.md`, `LAUNCH_BRIEF.md` v1+v2,
+  `BLOCKER_AND_RULING.md`, `PIN_SEARCH.md`, `RETURN.md`).
+- **Owner direction (CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING RECORD):**
+  "As Agent 0 dispatch a subagent to make those revisions accordingly." and,
+  after the validator/harness blocker was returned, "I want Option 1."
+  (prose alignment only; frontmatter/validator/harness parked).
+- **Change:** `agents/AGENT_HELP_HUMAN.md` blob
+  `503f70dbc00127d844e3a0327ed47655a9142278` →
+  `f3901408e7d5f040cb1d52e6033152ccb2bf3ade`; "Managers own management",
+  "Hierarchy-mediated coordination" relay clause, and SPEC 3 aligned to root
+  `AGENTS.md` (2026-08-02) direct Agent 2 dispatch doctrine; `subagents:`,
+  WRITE_SCOPE, and "No project-content writes" untouched.
+- **Notices:** App, Piping, and `_DomainEngines/_Coordination/`
+  `NOTICE_2026-08-16_ROOT_AGENT0_DIRECT_A2_DISPATCH_ALIGNMENT.md`; each states
+  the parked follow-ons (ROOT validator L270-280 + test L167-183 + allowlist;
+  APP `managed-delegation.ts` L274/L289-290, `subagent-governance.ts`
+  L160-168 + tests). Pin search: no live pin or mirror; App
+  `AUTHORITY_CORPUS.json` does not pin the file.
+- **Checks:** `validate_agent_instructions.py` 0 errors, exit 0; tranche
+  manifest validator PASS; practitioner harness `self-check` exit 0;
+  `pytest -q tools/validation` pass; `git diff --check` clean.
+- **Model-Attribution:** Claude Fable 5 ephemeral Agent 2 generalist directly
+  dispatched under sealed brief by HELP_HUMAN (Claude Fable 5 session minder);
+  no substitution.
+- **Gate:** EXECUTED — prose alignment only; frontmatter/validator/harness
+  alignment parked (root + App follow-ons); PR opened for owner merge, no
+  merge.
