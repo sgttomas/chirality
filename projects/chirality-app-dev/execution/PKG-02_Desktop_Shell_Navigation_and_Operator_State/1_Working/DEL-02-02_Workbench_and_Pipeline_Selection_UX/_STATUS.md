@@ -2,7 +2,7 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-08-03
+**Last Updated:** 2026-08-17
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -14,19 +14,21 @@ Pipeline re-host, the Artifacts fold into a Workbench Documents block, and the
 coordination/activity presentation are implemented and evidenced, with the
 semantic-owner boundaries independently re-proven (2026-07-24 redesign tranche;
 see `_run_records/R6_WOVEN_REDESIGN_2026-07-24.md` and
-`execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`). What
-remains:
-
-- Decide whether to re-style the navigator's "All sessions (N)" presentation:
-  it diverges from the approved mockup's per-group counts because N counts all
-  recorded sessions per Working Root, including unattributed ones. Ratified
-  deviation; the owner may keep or re-style it.
+`execution/_Coordination/AgentRuns/APPDEV_WOVEN_REDESIGN_2026-07-24/`). The
+owner accepted the current "All sessions (N)" presentation as final under
+D-APP-96; no presentation residual remains.
 
 Mandatory non-blocking rerun trigger: if a later accepted D-APP-88
 distinct-helper implementation lands, rerun the D-APP-86 packaged parity
 instrument against that changed package identity.
 
 ## History
+- 2026-08-17 - D-APP-96 accepted the current "All sessions (N)" presentation
+  as final: N counts all recorded sessions per Working Root, including
+  unattributed ones. The owner-reserved presentation item was removed from
+  Remaining; TM-APP-037 is resolved for later TASK_MANAGEMENT maintenance. No
+  product bytes, lifecycle state, dependencies, or Checking Approval SHA
+  changed.
 - 2026-08-03 - D-APP-86 Option A packaged Desktop evidence proved the
   re-hosted Workbench and Pipeline observations on one frozen unsigned/adhoc
   package: Workbench rendered the live 53-deliverable governed boundary,

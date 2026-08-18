@@ -1,15 +1,25 @@
 # Status: DEL-09-05
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-08-17
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Packaging/release evidence for DEL-09-05's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and CI-artifact gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
+- Execute DEL-09-05's open D-APP-97 release-preparation scope: reactivate
+  `.github/workflows/desktop-release-template.yml.disabled` as an unsigned-
+  artifact workflow; prove CI artifact and release-verification behavior; and
+  close the R4-P49 PARTIAL assessments. F-APP-2 continues to fence signing,
+  notarization, distribution, and release authority.
 
 ## History
+- 2026-08-17 - D-APP-97 converted DEL-09-05's D-APP-56-deferred R4-P49 claim
+  family into open unsigned local/CI-only release-preparation engineering,
+  including the disabled workflow's reactivation as an unsigned-artifact
+  workflow. No workflow/product byte, lifecycle, Checking Approval SHA,
+  release, signing, notarization, or distribution act occurred in this
+  recording tranche.
 - 2026-07-12 - D-APP-56 R5 P05 neutralized the desktop-release template by preserving it byte-for-byte as repo-root `.github/workflows/desktop-release-template.yml.disabled`; it is no longer an active GitHub workflow. State remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)
 - 2026-05-20 - State set to INITIALIZED (TASK+four-documents)

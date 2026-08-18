@@ -5229,3 +5229,26 @@
     register, product/runtime source, deliverable state, completion log,
     corpus snapshot, lifecycle, release, or merge act occurred; CHANGE
     closeout remains.
+
+- **2026-08-17 — Receipt 175** (App queue-replenishment owner rulings).
+  - Receipt-ID: `Receipt-175`
+  - Examined-Through: `e505fa0695e13b20f3d12e6439eb32d6ebf1f28a`
+  - Parent-Receipt: `Receipt-174`
+  - Pointers: D-APP-95, D-APP-96, D-APP-97, D-APP-98, D-APP-99,
+    D-APP-100, D-APP-101, D-APP-102, and D-APP-103 ruling records and
+    decision-register rows; DEL-02-02, DEL-03-01, DEL-05-05, DEL-08-04,
+    DEL-09-04, DEL-09-05, and DEL-09-06 `_STATUS.md` Remaining/History.
+  - Checks: exact owner-text fingerprints and decision/register/status proofs;
+    App status; practitioner-harness pytest and self-check; APP-HOLD integrity;
+    corpus v18/no drift; receipt contract; exact governed-path containment,
+    no product/runtime/dependency/lock/workflow bytes, and diff hygiene pass.
+    Frontend gates skipped because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS Agent 1 supervised by
+    HELP_HUMAN; exact model build not exposed.
+  - Gate-Outcome: `EXECUTED` — the owner rulings were recorded and applied to
+    the governed queue surface; TM-APP-037, TM-APP-041, TM-APP-035, and
+    TM-APP-031 each names its resolving ruling for later TASK_MANAGEMENT
+    maintenance. The owner-machine deploy is
+    recorded as a later owner act. No C1 or B1-B4 engineering/packet work,
+    Task Management register edit, product/runtime byte, lifecycle, release,
+    commit, push, PR, or merge act occurred; CHANGE closeout remains.
