@@ -81,11 +81,14 @@ jobs:
           --project=chromium-compact
         working-directory: projects/chirality-piping/apps/desktop
 
+      # The registered 120s ceiling is measured on local hosts; a fresh,
+      # serial hosted-Ubuntu runner needs 180s for the existing full journey.
       - name: Run source-mode desktop tests
         run: >-
           ../../node_modules/.bin/playwright test
           --project=chromium-desktop
           --project=chromium-compact
+          --timeout=180000
           --reporter=list,html
         working-directory: projects/chirality-piping/apps/desktop
 
