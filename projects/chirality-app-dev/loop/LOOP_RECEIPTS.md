@@ -5208,3 +5208,24 @@
     package, run record, plan, decision, product/runtime source, deliverable
     state, completion log, corpus snapshot, lifecycle, release, or merge act
     occurred; CHANGE closeout remains.
+
+- **2026-08-17 — Receipt 174** (App routine branch-creation discipline).
+  - Receipt-ID: `Receipt-174`
+  - Examined-Through: `81d7f1cd81bbbfbdc0e5bb019863a7b5e40244a9`
+  - Parent-Receipt: `Receipt-173`
+  - Pointers: App `AGENTS.md` §Closeout And Git Discipline; source Piping
+    `AGENTS.md` §Closeout And Git Discipline. Root `TM-ROOT-124` remains
+    the durable fix; this is the App-local bridge.
+  - Checks: Piping-source/App-insert byte equality and exact insertion-boundary
+    proof; instruction-entrypoint validator/tests; practitioner-harness pytest
+    and self-check; APP-HOLD integrity; corpus v18/no drift; receipt contract;
+    exact two-path containment and diff hygiene pass. Frontend gates skipped
+    because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS Agent 1 supervised by
+    HELP_HUMAN; exact model build not exposed.
+  - Gate-Outcome: `EXECUTED` — the Piping routine branch-creation paragraph
+    was copied byte-for-byte into the App closeout discipline on the
+    single-manager path. No AgentRuns package, run record, plan, decision or
+    register, product/runtime source, deliverable state, completion log,
+    corpus snapshot, lifecycle, release, or merge act occurred; CHANGE
+    closeout remains.
