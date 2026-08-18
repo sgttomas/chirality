@@ -121,6 +121,8 @@ rule below. Do not write root governance files, root agent instructions, root
 skills, or root tools unless the human explicitly directs that governance
 work.
 
+Host-capability execution. Some registered checks and evidence surfaces cannot run inside the session's sandbox because the sandbox denies process spawning, Mach bootstrap, network, or keychain access — packaged Electron launches, browser-driven proofs, LaunchAgent drills, and keychain-backed probes are the standing examples. For such a surface, the executing agent requests sandbox escalation for the exact command and runs it itself in the session; the human approves or declines per command. A sandbox denial is not an environment class to record and move past, and it is not a reason to park, hand off, waive, or infer a pass. Park with HOST_RERUN_REQUIRED only when the escalation request itself is declined, and record the exact command that was declined. Escalated runs are recorded once per run in the run record with the command, the reason escalation was required, and the result. A failure whose cause is a missing local profile or binding (for example the registered premerge's absent runtime-daemon bindings) is a different class: record it as such and defer to PR CI as today. Root harness CI is additional evidence where it exists; it does not replace a required host surface unless the owning decision says so.
+
 There may be other agents working in this monorepo with disjoint write scopes.
 Treat unrelated dirty files outside the selected tranche scope as external
 state. Do not fix, stage, revert, or interpret them unless the human directs
