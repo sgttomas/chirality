@@ -5189,3 +5189,22 @@
     gated Remaining item, lifecycle, and Checking Approval SHA remain
     unchanged. TM-ROOT-125 remains an external residual. No register,
     lifecycle, release, provider, authority, or foreign-loop write occurred.
+
+- **2026-08-17 — Receipt 173** (App host-capability execution discipline).
+  - Receipt-ID: `Receipt-173`
+  - Examined-Through: `1a995d571a6509d82321e4c982c7b788f16aff36`
+  - Parent-Receipt: `Receipt-172`
+  - Pointers: `projects/chirality-app-dev/AGENTS.md`
+    §Project-Wide Execution Discipline.
+  - Checks: owner-supplied paragraph byte-exact and insertion-position proof;
+    instruction-entrypoint validator/tests; practitioner-harness pytest and
+    self-check; APP-HOLD integrity; corpus v18/no drift; receipt contract;
+    exact two-path containment and diff hygiene pass. Frontend gates skipped
+    because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex HELPS_HUMANS Agent 1 supervised by
+    HELP_HUMAN; exact model build not exposed.
+  - Gate-Outcome: `EXECUTED` — the owner-directed host-capability execution
+    paragraph was inserted verbatim on the single-manager path. No AgentRuns
+    package, run record, plan, decision, product/runtime source, deliverable
+    state, completion log, corpus snapshot, lifecycle, release, or merge act
+    occurred; CHANGE closeout remains.
