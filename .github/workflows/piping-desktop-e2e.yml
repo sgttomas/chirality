@@ -58,13 +58,12 @@ jobs:
         run: npm ci
         working-directory: projects/chirality-piping
 
-      # The desktop build is deliberately offline. Populate the crate cache
-      # first so a fresh runner has every dependency the WASM build requires.
-      - name: Fetch WASM crate dependencies
+      # The desktop build is deliberately offline. Populate the complete
+      # locked graph, including host/transitive dependencies, before building.
+      - name: Fetch complete locked WASM dependency graph
         run: >-
           cargo fetch --locked
           --manifest-path core/model_operations/operation_applier/Cargo.toml
-          --target wasm32-unknown-unknown
         working-directory: projects/chirality-piping
 
       - name: Build desktop WASM engine
