@@ -5252,3 +5252,47 @@
     recorded as a later owner act. No C1 or B1-B4 engineering/packet work,
     Task Management register edit, product/runtime byte, lifecycle, release,
     commit, push, PR, or merge act occurred; CHANGE closeout remains.
+
+- **2026-08-19 — Receipt 176** (App Task Management generational pass).
+  - Receipt-ID: `Receipt-176`
+  - Examined-Through: `26e32f0f6813335ec06816a32826a2667d88ef6a`
+  - Parent-Receipt: `Receipt-175`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-19,
+    Ryan Tufts, in-session): invoke `TASK_MANAGEMENT` for the App register;
+    run mandatory federation, owner-gated resolution maintenance, full PRD
+    §5.1 candidate harvest, full deferral review, archive, final federation,
+    and owner-gated PR closeout without merge. Exact harvest and deferral
+    rulings are transcribed in
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-19_GENERATIONAL_PASS.md`.
+  - Pointers: modes completed were mandatory federation preflight, resolution
+    maintenance, candidate harvest, deferral review, archive, final federation,
+    and closeout; register deltas were zero rows added or elevated, five rows
+    closed and moved to the archive, three deferred rows reviewed and retained,
+    live population `18 -> 13`, and archive population `26 -> 31`; live/archive
+    `execution/_Coordination/_TaskManagement/{REGISTER.csv,REGISTER_CLOSED.csv}`;
+    reports
+    `execution/_Coordination/_TaskManagement/CANDIDATE_HARVEST_REPORT_2026-08-19_GEN_PASS.md`,
+    `execution/_Coordination/_TaskManagement/DEFERRAL_CLASSIFICATION_REPORT_2026-08-19_GEN_PASS.md`,
+    and
+    `execution/_Coordination/_TaskManagement/CLOSEOUT_VALIDATION_REPORT_2026-08-19_GEN_PASS.md`;
+    ruling record
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-08-19_GENERATIONAL_PASS.md`;
+    routed notice
+    `execution/_Coordination/NOTICE_2026-08-19_ROOT_TM-APP-027_TM-APP-028_COMPATIBILITY_COMPLETION.md`
+    carrying `TM-APP-027` and `TM-APP-028`. No other handoff package or notice
+    awaits routing.
+  - Checks: live/archive register validation, archive relocation, initial and
+    final federation, deterministic scan plus manual marker sweep, receipt
+    contract, App practitioner status, authority corpus v18/no drift,
+    repository self-check, practitioner-harness pytest, APP-HOLD integrity,
+    candidate whitespace, exact containment, and diff hygiene pass. Frontend
+    gates are not applicable because no product/runtime source changed.
+  - Model-Attribution: OpenAI Codex TASK_MANAGEMENT Agent 1; exact model build
+    not exposed.
+  - Gate-Outcome: `EXECUTED` — D-APP-101, D-APP-99, D-APP-96, and D-APP-98
+    resolved four named rows; the owner ruled harvest `PROMOTE NONE`; the full
+    deferral review retained three rows and closed `TM-APP-043`; five closed
+    rows were archived; one reciprocal Root coordination notice carries both
+    ruled ACTIVATABLE rows. No foreign register, product/runtime, dependency,
+    lock-file, lifecycle, release, reliance, or merge effect occurred. This
+    receipt is a discovery breadcrumb only under K-TM-3/K-TM-4/K-TM-5.
