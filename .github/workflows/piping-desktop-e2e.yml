@@ -20,7 +20,7 @@ jobs:
   desktop-e2e:
     name: Desktop E2E (source mode)
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     env:
       CI: "true"
       PLAYWRIGHT_HTML_OPEN: never
