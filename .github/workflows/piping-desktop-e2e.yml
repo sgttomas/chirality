@@ -1,14 +1,6 @@
 name: Piping Desktop E2E
 
 on:
-  # Bootstrap only: permit the owner-required pre-PR proof while this new
-  # workflow does not yet exist on the default branch.
-  push:
-    branches:
-      - "codex/piping-desktop-e2e-ci-20260817"
-    paths:
-      - ".github/workflows/piping-desktop-e2e.yml"
-      - "projects/chirality-piping/**"
   pull_request:
     paths:
       - ".github/workflows/piping-desktop-e2e.yml"
@@ -51,8 +43,26 @@ jobs:
           toolchain: 1.97.1
           targets: wasm32-unknown-unknown
 
+      - name: Cache pinned wasm-bindgen CLI
+        id: wasm-bindgen-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/wasm-bindgen
+          key: ${{ runner.os }}-wasm-bindgen-cli-0.2.123
+
       - name: Install pinned wasm-bindgen CLI
+        if: steps.wasm-bindgen-cache.outputs.cache-hit != 'true'
         run: cargo install wasm-bindgen-cli --version 0.2.123 --locked
+
+      - name: Cache Cargo registry and WASM target
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/
+            projects/chirality-piping/core/model_operations/operation_applier/target
+          key: ${{ runner.os }}-rust-1.97.1-${{ hashFiles('projects/chirality-piping/core/model_operations/operation_applier/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-rust-1.97.1-
 
       - name: Install project dependencies
         run: npm ci
@@ -70,7 +80,30 @@ jobs:
         run: npm run build:wasm:desktop
         working-directory: projects/chirality-piping
 
+      - name: Resolve pinned Playwright version
+        id: playwright-version
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(node -p "require('./package-lock.json').packages['node_modules/@playwright/test'].version")"
+          test -n "${version}"
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+        working-directory: projects/chirality-piping
+
+      - name: Cache Playwright Chromium
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Chromium system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
+        working-directory: projects/chirality-piping
+
       - name: Install Chromium and system dependencies
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
         working-directory: projects/chirality-piping
 
