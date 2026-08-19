@@ -2858,3 +2858,43 @@
   - Checks: focused host Playwright, mandatory fresh full-diff code review, work-type checks, complete five-surface DEC-025 host sweep, receipt contract, diff, and scoped containment: PASS.
   - Model-Attribution: HELP_HUMAN supervised HELPS_HUMANS, WORKING_ITEMS, CHANGE, and two fresh read-only code-review Agent 2 instances; HELP_HUMAN executed the escalated host checks. Inherited runtime capability was used without override; no exact runtime model string was exposed.
   - Gate-Outcome: `EXECUTED` — the host-capability discipline is active and DEL-09-04 N1 now has a reviewed product fix plus representative two-viewport GUI validation. The deliverable residual and lifecycle remain unchanged. One ready-for-review PR is intended; no merge, release, reliance, or professional-approval effect occurs.
+
+- **2026-08-17 — Receipt 112** (Piping desktop Playwright pull-request CI).
+  - Receipt-ID: `Receipt-112`
+  - Examined-Through: `e505fa0695e13b20f3d12e6439eb32d6ebf1f28a`
+  - Parent-Receipt: `Receipt-111`
+  - Owner-Direction: `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING` — “STEER — this iteration’s target is Fix 2: a root CI job that runs the Piping desktop Playwright e2e on pull requests. You are authorized to write .github/workflows/piping-desktop-e2e.yml (root surface, this iteration only), following the shape of the existing pec-tests.yml/harness-premerge.yml jobs: ubuntu-latest; path filter so it runs only when projects/chirality-piping/** or the workflow itself changes; pinned toolchain (Rust with wasm32-unknown-unknown, wasm-bindgen-cli at the pinned 0.2.123, Node matching the workspace); npm ci at the Piping workspace; npm run build:wasm; playwright install --with-deps chromium; run apps/desktop/e2e across the registered viewport projects; upload the Playwright report/traces as an artifact on failure. Prove it by pushing the branch and reading the run’s per-check verdicts before opening the PR. The job is additional evidence: do not change DEC-025, the sweep script, or how surface 4 is recorded. Park one decision for the owner: whether DEC-025 should accept a CI-produced surface-4 result, and what the summary would need to carry (run id, commit hash) for that to bind. Single node; N=1 is expected. Node commit + receipt; PR under the usual token; no merge.”
+  - Pointers: `.github/workflows/piping-desktop-e2e.yml`; node and fix commits `1180e2b9eafd96195899e660b558e3cc45b23791`, `144c9718b40eb33e602d19aa3301f8a0e0089c50`, and `c1289273361a3275e9b80fa28d8f2dc11eeeb79a`; final green pre-PR Actions run `32101110740` (<https://github.com/sgttomas/chirality/actions/runs/32101110740>).
+  - Checks: local workflow, build, discovery, and Vitest: PASS; pre-PR Actions proof: PASS; repository self-check and full practitioner harness: PASS; receipt validator: PASS.
+  - Model-Attribution: HELP_HUMAN supervised WORKING_ITEMS and CHANGE Agent 1 single-manager path. Inherited runtime capability was used; no exact model was exposed and no substitution occurred.
+  - Gate-Outcome: `EXECUTED` — root pull-request CI is additional evidence only; DEC-025, its sweep, surface-4 recording, lifecycle, and residuals are unchanged. The owner decision whether DEC-025 accepts a CI-produced surface-4 result and which run-ID/commit-hash binding its summary requires remains parked. One ready-for-review PR is intended; no merge occurs.
+
+- **2026-08-19 — Receipt 113** (CI cache/apt closeout).
+  - Receipt-ID: `Receipt-113`
+  - Examined-Through: `e505fa0695e13b20f3d12e6439eb32d6ebf1f28a`
+  - Parent-Receipt: `Receipt-112`
+  - Owner-Direction: `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING` — “STEER — amend PR [#578](https://github.com/sgttomas/chirality/pull/578) in place (same node, same branch): add caching to .github/workflows/piping-desktop-e2e.yml so steady-state runs stop paying the cold toolchain cost. Caching is an optimization only — the cold path must remain correct, and no step may change what the job proves.
+
+    Three caches, each keyed so a pin bump invalidates it:
+    1. wasm-bindgen CLI — cache ~/.cargo/bin/wasm-bindgen with actions/cache@v4, key including the pinned CLI version (e.g. wasm-bindgen-0.2.123-<runner os>). Run cargo install wasm-bindgen-cli --version 0.2.123 --locked only on cache miss (guard the step with the cache's cache-hit output). This is the single biggest saving — it compiles from source.
+    2. Cargo registry + build artifacts — cache ~/.cargo/registry/ and the wasm build's target directory (find the actual target path the build:wasm:desktop script produces before writing the key), key on runner OS + Rust 1.97.1 + the hash of the engine's Cargo.lock. Restore-keys fallback on OS+Rust prefix is acceptable for the registry, not for ~/.cargo/bin.
+    3. Playwright Chromium — cache ~/.cache/ms-playwright, key on runner OS + the Playwright version resolved from projects/chirality-piping/package-lock.json (read it, don't hardcode). On cache hit run npx playwright install-deps chromium only (apt libs aren't cacheable); on miss keep the existing npx playwright install --with-deps chromium.
+
+    Also in the same amendment: remove the bootstrap push: trigger block — the PR now exists, so pull_request runs prove every further commit; keep workflow_dispatch.
+
+    Prove it with two runs read from Actions, not inferred: the first PR run after the amendment (cold, populates caches) and a second run — rerun via workflow_dispatch on the branch or an empty-effect follow-up commit — showing cache hits in the cache-restore step logs and a materially shorter wall time. State both run IDs and wall times.
+
+    Bookkeeping: same node, additional commits in dependency order on the existing branch; update Receipt 112 in place if the receipt contract permits amendment of an unmerged receipt, otherwise append the successor receipt per contract, pointing to the new commits and both run IDs. No DEC-025, sweep, status, or manifest-scope changes; the tranche manifest already covers the workflow path. The surface-4 acceptance question remains parked. No merge.”
+  - Pointers: `.github/workflows/piping-desktop-e2e.yml`; commits `61450cd149dc74c0d22f2e82894a7aa18507650a`, `998bafa5b155c75993054114355f0ea6ec0caed3`, `f539d72924b86bd9e554005ddc415acb19b5eca3`, `a63931d57a5e0e89f37e8c6210a81ad4057c93ad`. Cold run/job `32237215217`/`96019764803`: PASS, 15m20s, three misses and saves, full suite PASS (10.5m). Warm `32238629368`/`96024090658`: PASS, 12m44s; exact hits `Linux-wasm-bindgen-cli-0.2.123`, `Linux-rust-1.97.1-c03eec8f97ef59e497ce70913804ea2292abde5394cd4689db30d84cd32c39e3`, `Linux-playwright-1.60.0`; miss-only skipped, hit-only install-deps and full suite PASS (11.4m), 2m36s (~17%) faster. Governance run `32238629484`: PASS, 1m29s.
+  - Checks: cold and warm Actions proofs, receipt validator, repository self-check, practitioner harness, G4, whitespace, diff, and containment: PASS.
+  - Model-Attribution: HELP_HUMAN supervised WORKING_ITEMS and CHANGE Agent 1 single-manager path; inherited runtime capability, no exact model exposed, no substitution.
+  - Gate-Outcome: `EXECUTED` — the implicit Azure mirrorlist caused cancelled hangs; canonical-source normalization repaired the workflow-owned apt path without changing proof. DEC-025, its sweep and surface-4 recording, lifecycle, residuals, and manifest scope are unchanged; the CI acceptance and run-ID/commit-hash summary-binding question remains parked. No merge occurs.
+
+- **2026-08-19 — Receipt 114** (DEC-025 CI surface-4 ruling record).
+  - Receipt-ID: `Receipt-114`
+  - Examined-Through: `011d0b055a5671c94ea1fcfe19df8a6eeb7fa66c`
+  - Parent-Receipt: `Receipt-113`
+  - Pointers: `D-65`; `DEC-093`; `execution/_Coordination/_DECISIONS/D-65_RULING_2026-08-19.md`; DEL-10-04 `_STATUS.md` `## Remaining` CI-binding implementation item.
+  - Checks: decision/register/codification consistency, deliverable-status discovery, receipt contract, repository self-check, practitioner harness, whitespace, diff, and containment: PASS.
+  - Model-Attribution: HELP_HUMAN supervised HELPS_HUMANS and CHANGE Agent 1 roles; inherited runtime capability, no exact model exposed, no substitution.
+  - Gate-Outcome: `EXECUTED` — the owner ruling is recorded and codified; no engineering work ran. The CI-binding implementation is selectable next, and until it lands sweeps continue on the host path. No workflow, sweep, schema, validator, manifest, lifecycle, release, publication, merge, or professional-reliance effect occurs.
