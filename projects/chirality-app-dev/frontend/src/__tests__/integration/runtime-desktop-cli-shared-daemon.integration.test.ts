@@ -27,6 +27,7 @@ import {
   resolveOmlxProviderConfig
 } from '../../lib/harness/omlx-provider-config';
 import { RuntimeDaemonHarnessPort } from '../../lib/runtime-client/runtime-daemon-harness-port';
+import { resolvePackagedDaemonInstructionRoot } from '../../../electron/daemon-instruction-root';
 import {
   startFakeOpenAiLoopback,
   type FakeOpenAiLoopback
@@ -66,12 +67,13 @@ async function collect(source: AsyncIterable<UIEvent>): Promise<UIEvent[]> {
   return events;
 }
 
-async function createProjectFixture(root: string): Promise<string> {
-  await mkdir(join(root, 'agents'), { recursive: true });
+async function createProjectFixture(root: string, instructionRoot = '.'): Promise<string> {
+  const resolvedInstructionRoot = join(root, instructionRoot);
+  await mkdir(join(resolvedInstructionRoot, 'agents'), { recursive: true });
   await mkdir(join(root, 'execution'), { recursive: true });
   await mkdir(join(root, 'legacy-sessions'), { recursive: true });
   await writeFile(
-    join(root, 'agents', 'AGENT_HELP_HUMAN.md'),
+    join(resolvedInstructionRoot, 'agents', 'AGENT_HELP_HUMAN.md'),
     '[[DOC:AGENT_INSTRUCTIONS]]\n# HELP_HUMAN\nAGENT_TYPE: 0\nAGENT_CLASS: SUPERVISING\n',
     'utf8'
   );
@@ -84,8 +86,8 @@ async function createProjectFixture(root: string): Promise<string> {
         projectId: 'chirality-app-dev',
         displayName: 'Chirality App Dev Fixture',
         workingRoot: '.',
-        instructionRoot: '.',
-        agentsOverlay: 'agents/AGENT_HELP_HUMAN.md',
+        instructionRoot,
+        agentsOverlay: join(instructionRoot, 'agents', 'AGENT_HELP_HUMAN.md'),
         defaultExecutionRoot: 'execution',
         profiles: { domain: [], capability: [], dataBoundary: [] },
         enabledAdapterIds: ['pi'],
@@ -157,7 +159,7 @@ async function createRuntime(
       }
     }
   );
-  return { runtimeDirectory, service };
+  return { runtimeDirectory, service, projects };
 }
 
 function createPiAdapter(input: {
@@ -218,7 +220,7 @@ describe('Desktop and CLI shared runtime daemon', () => {
   it('shares one daemon, project credential, and session across both public clients', async () => {
     const root = await mkdtemp(join(tmpdir(), 'chirality-desktop-cli-'));
     tempRoots.push(root);
-    const { runtimeDirectory, service } = await createRuntime(root);
+    const { runtimeDirectory, service, projects } = await createRuntime(root);
     const socketPath = join(runtimeDirectory, 'control.sock');
     const daemon = new RuntimeDaemon({ runtimeDirectory, socketPath, service });
     activeDaemons.push(daemon);
@@ -229,9 +231,10 @@ describe('Desktop and CLI shared runtime daemon', () => {
     });
 
     const projectRoot = join(root, 'chirality-app-dev');
-    const manifestPath = await createProjectFixture(projectRoot);
+    const manifestPath = await createProjectFixture(projectRoot, '..');
     const registration = await service.registerProject(manifestPath, 'test', 'D-APP-85-C04-C16');
     const canonicalProjectRoot = await realpath(projectRoot);
+    const canonicalInstructionRoot = await realpath(root);
 
     const desktopClient = new RuntimeClient({
       socketPath,
@@ -260,6 +263,18 @@ describe('Desktop and CLI shared runtime daemon', () => {
     ]);
     expect(desktopProject).toEqual(cliProject);
     expect(desktopProject.project.projectId).toBe('chirality-app-dev');
+
+    const packagedResourcesPath = join(root, 'packaged-resources');
+    const daemonInstructionRoot = await resolvePackagedDaemonInstructionRoot({
+      projectId: 'chirality-app-dev',
+      packagedResourcesPath,
+      resolveProjectRoots: (projectId) => projects.roots(projectId)
+    });
+    expect(daemonInstructionRoot).toEqual({
+      instructionRoot: canonicalInstructionRoot,
+      source: 'registered-project-manifest'
+    });
+    expect(daemonInstructionRoot.instructionRoot).not.toBe(packagedResourcesPath);
 
     const created = await desktop.createSession({
       projectRoot: canonicalProjectRoot,

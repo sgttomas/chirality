@@ -1,0 +1,25 @@
+# Sealed Agent 2 brief — D-APP-100 fresh code review 02
+
+- RequestedBy: `WORKING_ITEMS`
+- RunID: `APPDEV_PACKAGED_DAEMON_INSTRUCTION_ROOT_2026-08-19`
+- ParentInstanceID: `AGENT1-PKG09-WORKING-ITEMS`
+- ChildInstanceID: `A2-DAPP100-REVIEW-02`
+- PackageID: `PKG-09`
+- DeliverableID: `DEL-09-04`
+- TaskSkill: `software-code-review`
+- ApplyEdits: `false`
+- Objective: independently review 100% of the integrated D-APP-100 diff after remediation 02; verify every review-01 finding is actually closed and return PASS only with no actionable finding.
+- AcceptedBasis: base `219f695d348f1d83ba904ef4dd38781636b423a6`; D-APP-100 exact ruling; activation/work graph; implementation/remediation returns; `REVIEW_RETURN_01.md`.
+- Frozen product/test/proof hashes:
+  - `frontend/electron/main.ts` — `c54fafe8d08146339a69497262e0ed3c23c6e0b55565636230304a40aea5402f`
+  - `frontend/electron/daemon-instruction-root.ts` — `1fd3668fd04bff56cfd200d432cfef5f200c266eecf6d2ccaad7da82f11dd51e`
+  - `frontend/scripts/run-packaged-daemon-instruction-root-proof.mjs` — `a0c9adaa0d54506e8132264d7216089aa4aba69ea8507f384291da1edb8363f1`
+  - `frontend/src/__tests__/electron/daemon-instruction-root.test.ts` — `9a5996c30df9b2c64adaff2337d55e6aeb90bf2d7a6842615bfef9197bd7d67c`
+  - `frontend/src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts` — `4a5ff354a911e96fca08f892e825663399de85c102879f0b0281e9f028471c1d`
+  - `frontend/src/__tests__/scripts/run-packaged-daemon-instruction-root-proof.test.ts` — `27c24b48dfb06bc91357e9c55d559f19bb8c9fb2f12860de6267a7d774529982`
+- DeclaredReads: all six complete files and base/new-file diffs; D-APP-100; all run briefs/returns; relevant Electron/runtime/project-registry/package callers and configuration.
+- AllowedTools: read/search, git diff/show, hashes, read-only scope tools. No host proof and no edits.
+- AllowedWriteTargets: none; manager records the terminal return.
+- ReviewCriteria: all original review criteria from `LAUNCH_BRIEF_REVIEWER.md`, plus explicit closure of every finding in `REVIEW_RETURN_01.md`: bounded command deadlines and confirmed forced cleanup; exact current-invocation artifact identity/freshness; atomic PENDING/FAIL replacement preventing stale PASS; correct non-ASCII log offsets; focused tests that genuinely exercise each condition without false positives.
+- ExpectedReturn: `PASS` or `FAIL`; actionable findings with priority/path/line/impact/remediation; residual risks; hash and 100%-coverage confirmation; read-only compliance.
+- Escalation: return FAIL rather than infer missing packaged host proof.

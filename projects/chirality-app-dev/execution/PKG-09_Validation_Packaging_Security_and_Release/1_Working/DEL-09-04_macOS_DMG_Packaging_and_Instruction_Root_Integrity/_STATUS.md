@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-17
+**Last Updated:** 2026-08-19
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -30,14 +30,16 @@
   plist keeps the crash-only restart contract and carries no pinned environment
   until `daemon install` is re-run from a rebuilt app or the rebuilt CLI.
   Operator-facing behaviour changes are enumerated in the run record.
-- Implement D-APP-100 as one bounded engineering node: make the packaged
-  daemon resolve the manifest-resolved instruction root used by app and CLI;
-  permit and log packaged-resources fallback only when no manifest root
-  resolves; add the agreement regression and packaged-under-isolation proof.
-  Independent review is required; remove this item only when implementation
-  lands.
 
 ## History
+- 2026-08-19 - D-APP-100 landed as a bounded product-source node. The packaged
+  daemon now prefers the registered manifest-resolved instruction root shared
+  by app/CLI runtime requests and durably logs packaged-resources fallback only
+  when registration/manifest resolution is unavailable. Agreement regression,
+  unsigned packaged-under-isolation proof, full deterministic gates, and fresh
+  independent review passed. The exact D-APP-100 Remaining item was removed;
+  unrelated Remaining items, lifecycle, Checking Approval SHA, signing,
+  notarization, distribution, and release-readiness posture are unchanged.
 - 2026-08-17 - D-APP-95 accepted guarded recover-on-start as complete handling
   for a SIGKILLed daemon; the stale-socket residual was removed. D-APP-97
   opened the named unsigned release-preparation, `RunAtLoad`, packaged-SDK,

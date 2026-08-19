@@ -6,6 +6,7 @@ import { createServer, type IncomingMessage, type ServerResponse } from 'node:ht
 import type { AddressInfo } from 'node:net';
 import path from 'node:path';
 import { RuntimeClient } from '@chirality/runtime-client';
+import { ProjectRegistry } from '@chirality/runtime-core';
 import { installRuntimeDaemonSignalShutdown } from '@chirality/runtime-daemon';
 import { registerApiKeyHandlers, unregisterApiKeyHandlers } from './api-key-ipc';
 import { installBundledCliLauncher } from './cli-launcher';
@@ -22,9 +23,11 @@ import {
 } from './desktop-process-policy';
 import {
   applyDesktopProjectBinding,
+  DESKTOP_PROJECT_ID,
   prepareDesktopHarnessEnvironment,
   resolveDesktopProjectBinding
 } from './desktop-project-client';
+import { resolvePackagedDaemonInstructionRoot } from './daemon-instruction-root';
 import { startRuntimeHost, type RuntimeHost } from './runtime-host';
 import {
   createRuntimeBindingSupervisor,
@@ -679,7 +682,30 @@ async function initializeDaemon(): Promise<void> {
     directory: path.join(app.getPath('userData'), 'logs'),
     fileName: 'desktop-daemon.log'
   });
-  process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
+  if (app.isPackaged) {
+    const control = runtimeControlPaths();
+    const projects = new ProjectRegistry(control.runtimeDirectory);
+    const resolution = await resolvePackagedDaemonInstructionRoot({
+      projectId: DESKTOP_PROJECT_ID,
+      packagedResourcesPath: process.resourcesPath,
+      resolveProjectRoots: (projectId) => projects.roots(projectId)
+    });
+    process.env.CHIRALITY_INSTRUCTION_ROOT = resolution.instructionRoot;
+    if (resolution.source === 'packaged-resources-fallback') {
+      desktopLogger.warn('runtime.daemon.instruction_root.fallback', {
+        instructionRoot: resolution.instructionRoot,
+        reason: resolution.reason
+      });
+    } else {
+      desktopLogger.info('runtime.daemon.instruction_root.resolved', {
+        instructionRoot: resolution.instructionRoot,
+        projectId: DESKTOP_PROJECT_ID,
+        source: resolution.source
+      });
+    }
+  } else {
+    process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
+  }
   desktopLogger.info('runtime.daemon.starting', {
     activationPolicy: resolveDaemonActivationPolicy(process.env),
     packaged: app.isPackaged,
