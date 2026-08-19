@@ -1,16 +1,25 @@
 # Status: DEL-09-06
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-22
+**Last Updated:** 2026-08-17
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
-- Packaging/release evidence for DEL-09-06's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged renderer/security proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
+- Execute DEL-09-06's open D-APP-97 release-preparation scope: packaged-
+  artifact network, key-attachment, and renderer-security checks and closure of
+  the R4-P49 PARTIAL assessments. Artifacts remain unsigned and local/CI-only;
+  F-APP-2 continues to fence signing, notarization, distribution, and release
+  authority.
 
 ## History
+- 2026-08-17 - D-APP-97 converted DEL-09-06's D-APP-56-deferred R4-P49 claim
+  family into open unsigned local/CI-only release-preparation engineering over
+  the packaged artifact. No product/security byte, lifecycle, Checking
+  Approval SHA, release, signing, notarization, or distribution act occurred
+  in this recording tranche.
 - 2026-08-01 - SCA-APP-007 migrated 38 byte-identical historical network-policy proof files from the retired physical DEL-03-06 container into `Evidence/Historical_DEL-03-06/`, with a durable old/new path and SHA-256 provenance manifest. This is an evidence-routing correction only. State remains IN_PROGRESS; Remaining items, authorization basis, lifecycle, approval state, and Checking Approval SHA are unchanged.
 - 2026-07-22 - D-APP-72 authenticated `127.0.0.1` oMLX, redirect/credential rejection, provider-key isolation, redaction, and renderer-egress proofs completed. The unrelated D-APP-56 release-preparation item remains open. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added bounded oMLX network/key security proof to Remaining; release fence and state remain unchanged.

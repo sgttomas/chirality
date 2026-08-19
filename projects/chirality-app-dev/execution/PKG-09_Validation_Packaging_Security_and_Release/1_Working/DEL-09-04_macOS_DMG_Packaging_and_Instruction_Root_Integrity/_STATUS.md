@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-13
+**Last Updated:** 2026-08-17
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -14,36 +14,39 @@
   `_run_records/R6_DAEMON_SERVICE_2026-07-25.md`). What remains of the original
   item is the login-time `RunAtLoad` path, never exercised because the drill
   plist deliberately lived outside `~/Library/LaunchAgents`, and DMG/dist
-  packaging (gated: G5 packaging; no release authority; F-APP-2 fences signing,
-  notarization and distribution).
-- Packaging/release evidence for DEL-09-04's R4-P49 claim family is deferred on 2026-07-12 to a release-preparation phase; PARTIAL assessments and packaged-SDK proof gates remain open (D-APP-56 R4-P49; gate: owner-authorized release preparation).
-- Recover-on-start is the only answer to a SIGKILLed daemon's stale control
-  socket. SIGKILL is uncatchable, so no teardown runs; the next daemon start
-  unlinks the socket and owner record only when the path is a socket owned by
-  this uid and the recorded owner pid is demonstrably absent, and otherwise
-  refuses rather than replacing a live or ambiguous owner. Rebinding after a
-  killed daemon was observed in both drill rounds. Every other stop path is now
-  graceful; decide whether the SIGKILL case needs anything further.
-- Satisfy the release-quality premerge row for the daemon-service branch. The
-  local run records `pass_with_skips` with the documented evidence-skip reason;
-  no provider-backed Section 8 premerge run exists for the branch, and it is
-  owed from the CI harness pre-merge workflow on the pull request
-  (cross-reference DEL-09-01 for the Section 8 contract, DEL-09-05 for the CI
-  workflow).
-- Deploy the daemon service on the owner's machine post-merge (owner decision
-  gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
+  packaging. D-APP-97 authorizes this unsigned local/CI-only release-
+  preparation engineering; F-APP-2 continues to fence signing, notarization,
+  and distribution.
+- Execute DEL-09-04's open R4-P49 release-preparation scope under D-APP-97:
+  packaged-SDK and DMG/dist proofs over unsigned local/CI-only artifacts and
+  closure of the PARTIAL assessments.
+- Satisfy the DEL-09-04 release-quality premerge row under D-APP-97
+  (cross-reference DEL-09-01 for the Section 8 contract and DEL-09-05 for the
+  CI workflow).
+- After a rebuilt C1 artifact exists, the owner may deploy the daemon service
+  on the owner's machine and report the result (owner act, not agent work;
+  owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
   nothing on a machine whose LaunchAgent was installed earlier: the existing
   plist keeps the crash-only restart contract and carries no pinned environment
   until `daemon install` is re-run from a rebuilt app or the rebuilt CLI.
   Operator-facing behaviour changes are enumerated in the run record.
-- Decide the instruction-root divergence for the packaged daemon (pre-existing,
-  flagged 2026-07-24, deliberately not addressed in the 2026-07-25 tranche). The
-  daemon resolves its instruction root per-process from the packaged resources
-  path rather than from the manifest-resolved root; pinning it through the job
-  environment would silently change resolution semantics and needs its own
-  decision.
+- Implement D-APP-100 as one bounded engineering node: make the packaged
+  daemon resolve the manifest-resolved instruction root used by app and CLI;
+  permit and log packaged-resources fallback only when no manifest root
+  resolves; add the agreement regression and packaged-under-isolation proof.
+  Independent review is required; remove this item only when implementation
+  lands.
 
 ## History
+- 2026-08-17 - D-APP-95 accepted guarded recover-on-start as complete handling
+  for a SIGKILLed daemon; the stale-socket residual was removed. D-APP-97
+  opened the named unsigned release-preparation, `RunAtLoad`, packaged-SDK,
+  DMG/dist, and premerge scope while preserving F-APP-2 and APP-HOLD-1. The
+  owner-machine deploy remains a later owner act. D-APP-100 authorized the
+  packaged-daemon instruction-root engineering node, which remains in
+  Remaining until it lands. No engineering or product byte, lifecycle,
+  Checking Approval SHA, release, signing, notarization, or distribution act
+  occurred in this recording tranche.
 - 2026-08-13 - Owner ruling disposed D-APP-93 with the landed PR #551 normalized trace evidence accepted as its complete and sufficient product; no further packet execution or lineage is required or authorized. D-APP-88 is concluded: the accepted engineering explanation is that no SIGTERM handler was bound in the shipped helper at the stop instant combined with the retired `before-quit` veto that swallowed SIGTERM. The held-connection `server.close()` stall hypothesis is neither confirmed nor refuted and is not a cause. PR #552's signal binder, bounded teardown, and held-connection regression are accepted as closing the failure mode under either variant. The helper-stop residual is removed from Remaining. DEL-09-04 stays IN_PROGRESS on its unrelated residuals; lifecycle and Checking Approval SHA are unchanged.
 - 2026-08-13 - Runtime helper graceful-stop hardening prepared for review: a shared one-shot process-signal binder now drives the shipped daemon through the complete Electron teardown funnel, native `before-quit` remains vetoed until teardown completes, and the existing two-second grace/forced-transport close remains unchanged. A spawned-process regression arms a daemon-parsed complete-header/incomplete-body Unix-socket request, sends `SIGTERM`, and proves natural exit plus socket/owner cleanup in 2.146 s. Runtime tests passed 76/76; frontend tests passed 1113 with 6 skips; both typechecks and fresh code review passed. This is product implementation evidence only: DEL-09-04 remains IN_PROGRESS and no D-APP-93/D-APP-88 disposition, acceptance, closure, lifecycle, or Checking Approval SHA act is made.
 - 2026-08-11 - The owner froze and executed the D-APP-93 owner-operated LLDB trace packet; Step 0 passed and the capture completed with zero stop rules. Landed evidence records SIGTERM delivered to `CrBrowserMain` in the AppKit event loop while two helper control-socket clients were live, with no Node/libuv/V8 signal-handler frames at the stop instant. LLDB intercepted the signal (`PASS=false`), so unintercepted processing was not tested. The helper remained alive after detach and continued serving. Evidence disposition and all D-APP-88 conclusion/remedy/acceptance acts remain reserved to the owner. DEL-09-04 remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.

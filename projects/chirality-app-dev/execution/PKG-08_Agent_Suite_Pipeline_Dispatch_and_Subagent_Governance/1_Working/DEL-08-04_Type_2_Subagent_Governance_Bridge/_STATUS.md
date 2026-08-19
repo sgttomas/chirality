@@ -1,16 +1,21 @@
 # Status: DEL-08-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-16
+**Last Updated:** 2026-08-17
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
-- Produce the per-attempt subagent decision-replay artifact (needs its own decision packet before code) (source: insp05 addendum §5 separate-ruling items / D-APP-53 packet §3 Option C) (gated: new owner ruling required — D-APP-53 2026-07-10 ruled Option A only)
+- Prepare the D-APP-53 §3 Option C per-attempt subagent decision-replay
+  decision packet under D-APP-103 (packet authorized; awaiting ruling).
 
 ## History
+- 2026-08-17 - D-APP-103 authorized one bounded planning node to prepare the
+  per-attempt subagent decision-replay packet with at most three options and a
+  recommendation. Implementation remains gated on a later ruling; lifecycle
+  and Checking Approval SHA are unchanged.
 - 2026-08-16 - Repaired the App harness type rules so an Agent 0 with configured authority may dispatch allowlisted canonical `TASK` Agent 2 children and explicitly opted-in ephemeral generalists while unsupported routes remain fail-closed. Integrated review found that managed launch also needed canonical `AGENT_CLASS: TASK`; the guard and missing/non-TASK rejection tests were added, focused tests passed 30/30, and fresh corrected-diff review returned PASS with zero findings. The coordinated root metadata/validator alignment remains external to this node, and the unrelated D-APP-53-gated decision-replay item remains open. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-22 - D-APP-72 governed optional Agent 2 `EngineSelection` completed through Chirality `delegate_agent`; Pi-native delegation remains prohibited and managed-delegation tests pass. The unrelated D-APP-53-gated decision-replay item remains open. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added bounded Pi-child engine selection to Remaining; state remains IN_PROGRESS.
