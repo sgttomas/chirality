@@ -88,6 +88,8 @@ jobs:
           executable_path="${app_path}/Contents/MacOS/Chirality"
           instruction_summary="artifacts/harness/instruction-root-integrity/latest/summary.json"
           verification_root="artifacts/release-verification"
+          staged_sdk_proof_root="${verification_root}/packaged-agent-sdk/staged"
+          mounted_sdk_proof_root="${verification_root}/packaged-agent-sdk/mounted"
 
           [[ -d "${app_path}" ]] || {
             echo "::error::Missing packaged app at ${app_path}"
@@ -126,6 +128,37 @@ jobs:
               throw new Error(`instruction-root integrity status is ${summary.status}`);
             }
           ' "${instruction_summary}"
+
+          run_packaged_sdk_proof() {
+            local bundle_root="${1}"
+            local output_root="${2}"
+            local proof_label="${3}"
+            local summary_path="${output_root}/summary.json"
+
+            node ./scripts/verify-packaged-agent-sdk-runtime.mjs \
+              --bundle-root "${bundle_root}" \
+              --output-root "${output_root}"
+            [[ -f "${summary_path}" ]] || {
+              echo "::error::Missing ${proof_label} packaged Agent SDK summary at ${summary_path}."
+              exit 1
+            }
+            node -e '
+              const fs = require("node:fs");
+              const summary = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
+              const proofLabel = process.argv[2];
+              if (summary.status !== "pass") {
+                throw new Error(`${proofLabel} packaged Agent SDK status is ${summary.status}`);
+              }
+              if (summary.proofMode !== "scripted-no-live-provider") {
+                throw new Error(`${proofLabel} packaged Agent SDK proof mode is ${summary.proofMode}`);
+              }
+            ' "${summary_path}" "${proof_label}"
+          }
+
+          run_packaged_sdk_proof \
+            "${app_path}/Contents/Resources" \
+            "${staged_sdk_proof_root}" \
+            "staged app"
 
           archs="$(lipo -archs "${executable_path}")"
           [[ " ${archs} " == *" arm64 "* ]] || {
@@ -184,6 +217,10 @@ jobs:
             echo "::error::DMG does not contain Chirality.app."
             exit 1
           }
+          run_packaged_sdk_proof \
+            "${mounted_app}/Contents/Resources" \
+            "${mounted_sdk_proof_root}" \
+            "read-only mounted DMG app"
           assert_no_release_signature "${mounted_app}" "${verification_root}/mounted-app-codesign.txt"
           assert_no_notarization_ticket "${mounted_app}" "${verification_root}/mounted-app-stapler.txt"
 
@@ -228,7 +265,13 @@ jobs:
                 packagedDependencyBoundary:
                   'artifacts/release-verification/packaged-dependency-boundary.json',
                 instructionRootSummary:
-                  'artifacts/harness/instruction-root-integrity/latest/summary.json'
+                  'artifacts/harness/instruction-root-integrity/latest/summary.json',
+                packagedAgentSdkProofs: {
+                  staged:
+                    'artifacts/release-verification/packaged-agent-sdk/staged/summary.json',
+                  mounted:
+                    'artifacts/release-verification/packaged-agent-sdk/mounted/summary.json'
+                }
               },
               null,
               2

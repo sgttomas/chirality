@@ -32,6 +32,14 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-19 - Pre-CI D-APP-97 packaged-SDK workflow integration added
+  separate fail-closed scripted no-live-provider proofs for the staged app and
+  read-only mounted DMG app, with both summaries retained in the unsigned CI
+  artifact evidence. Local static and deterministic checks passed. Actual
+  macOS staged/mounted execution and candidate-range G4 remain PR-CI-owned, so
+  the packaged-SDK/R4-P49 Remaining item stays open; state remains IN_PROGRESS
+  and lifecycle, Checking Approval SHA, signing, notarization, distribution,
+  publication, and release-readiness posture are unchanged.
 - 2026-08-19 - D-APP-100 landed as a bounded product-source node. The packaged
   daemon now prefers the registered manifest-resolved instruction root shared
   by app/CLI runtime requests and durably logs packaged-resources fallback only

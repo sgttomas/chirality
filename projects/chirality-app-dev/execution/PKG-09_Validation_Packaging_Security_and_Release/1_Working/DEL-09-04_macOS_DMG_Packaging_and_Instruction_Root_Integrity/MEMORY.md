@@ -1,5 +1,15 @@
 # MEMORY - DEL-09-04
 
+- 2026-08-19 — Pre-CI D-APP-97 packaged-SDK workflow integration now invokes
+  the existing scripted no-live-provider verifier against both the staged app
+  resources and the read-only mounted DMG app resources. The two distinct
+  summaries are fail-closed on `status: pass` and
+  `proofMode: scripted-no-live-provider` and are retained under the unsigned
+  artifact evidence tree. Focused tests, typecheck, full Vitest, YAML/Bash
+  static validation, G4 schema validation, APP-HOLD integrity, practitioner
+  checks, receipt validation, and corpus status passed locally. The actual
+  staged/mounted proof and candidate-range G4 check remain PR-CI-owned;
+  DEL-09-04 stays IN_PROGRESS and the R4-P49 Remaining scope stays open.
 - 2026-08-19 — D-APP-100 implementation passed fresh independent review and an
   unsigned packaged-under-isolation run. The packaged daemon now resolves the
   registered manifest instruction root before falling back to packaged

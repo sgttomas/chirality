@@ -1,0 +1,14 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SDK_PROOF_2026-08-20",
+  "childInstanceId": "A2-DEL0904-PACKAGED-SDK-REVIEW-02",
+  "role": "TASK + software-code-review",
+  "status": "READY",
+  "basis": "d8c47d9fbc459b32c053c844be0fa789fd1ffab2",
+  "diffManifest": "FROZEN_DIFF_MANIFEST_V2.md",
+  "frozenPathCount": 23,
+  "candidateIdentitySha256": "94bc56814f74ae7ed23da008869fda278c5a814c7b13cae65ac9f85ce0e8d545",
+  "applyEdits": false,
+  "supersedesReviewForCloseout": "A2-DEL0904-PACKAGED-SDK-REVIEW-01",
+  "externalProof": "REQUIRED_PR_CI_OWED"
+}

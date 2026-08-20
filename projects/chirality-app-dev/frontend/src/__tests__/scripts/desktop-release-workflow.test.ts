@@ -87,12 +87,51 @@ describe('desktop unsigned artifact workflow', () => {
     );
   });
 
+  it('proves the packaged Agent SDK from both staged and read-only mounted app roots', async () => {
+    const workflow = await readWorkflow();
+
+    expect(workflow).toContain(
+      'staged_sdk_proof_root="${verification_root}/packaged-agent-sdk/staged"'
+    );
+    expect(workflow).toContain(
+      'mounted_sdk_proof_root="${verification_root}/packaged-agent-sdk/mounted"'
+    );
+    expect(workflow).toContain(
+      '"${app_path}/Contents/Resources" \\\n            "${staged_sdk_proof_root}"'
+    );
+    expect(workflow).toContain(
+      '"${mounted_app}/Contents/Resources" \\\n            "${mounted_sdk_proof_root}"'
+    );
+    expect(workflow).toContain('summary.status !== "pass"');
+    expect(workflow).toContain(
+      'summary.proofMode !== "scripted-no-live-provider"'
+    );
+
+    const mountIndex = workflow.indexOf('hdiutil attach -nobrowse -readonly');
+    const mountedProofIndex = workflow.indexOf(
+      '"${mounted_app}/Contents/Resources"'
+    );
+    const cleanupIndex = workflow.indexOf(
+      '\n          cleanup\n',
+      mountedProofIndex
+    );
+    expect(mountIndex).toBeGreaterThanOrEqual(0);
+    expect(mountedProofIndex).toBeGreaterThan(mountIndex);
+    expect(cleanupIndex).toBeGreaterThan(mountedProofIndex);
+  });
+
   it('uploads CI artifacts without a release-publication path', async () => {
     const workflow = await readWorkflow();
 
     expect(workflow).toContain('uses: actions/upload-artifact@v4');
     expect(workflow).toContain('chirality-desktop-macos-arm64-unsigned');
     expect(workflow).toContain('artifacts/release-verification/**');
+    expect(workflow).toContain(
+      'artifacts/release-verification/packaged-agent-sdk/staged/summary.json'
+    );
+    expect(workflow).toContain(
+      'artifacts/release-verification/packaged-agent-sdk/mounted/summary.json'
+    );
     expect(workflow).not.toContain('softprops/action-gh-release');
     expect(workflow).not.toContain('actions/create-release');
     expect(workflow).not.toMatch(/\bgh\s+release\b/);

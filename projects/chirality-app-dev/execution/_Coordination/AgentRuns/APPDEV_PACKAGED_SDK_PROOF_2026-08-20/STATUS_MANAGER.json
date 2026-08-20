@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "runId": "APPDEV_PACKAGED_SDK_PROOF_2026-08-20",
+  "managerInstanceId": "WI-PKG09-DEL0904-PACKAGED-SDK-01",
+  "status": "IMPLEMENTED_AND_REVIEWED_PRE_CI",
+  "closureVerdict": "EXTERNAL_PROOF_REQUIRED",
+  "basis": "d8c47d9fbc459b32c053c844be0fa789fd1ffab2",
+  "implementer": "SUCCESS",
+  "reviewer": "PASS",
+  "reviewFindings": 0,
+  "inSessionValidation": "PASS",
+  "writeContainment": "PASS",
+  "deliverableState": "IN_PROGRESS",
+  "remainingScope": "OPEN",
+  "externalProof": "REQUIRED_PR_CI_OWED",
+  "candidateRangeG4": "REQUIRED_AFTER_COMMIT",
+  "runtimeSummary": "NOT_REQUIRED_NOT_CREATED",
+  "nextOwner": "HELP_HUMAN_THEN_CHANGE"
+}
