@@ -59,3 +59,30 @@ This assessment does not satisfy or mutate any `Dependencies.csv` row. DEL-02-05
 ## Issuance-Gate-Process Observations
 
 DEL-02-05 is one of the stronger PKG-02 deliverables in runnable evidence. The remaining gate question is whether cross-package taxonomy ownership and render-level API-key UI evidence must be closed before issuance, or can be accepted as later hardening.
+
+## 2026-08-20 R03 Calibration
+
+The dated 2026-06-20 R03 row above overreached: its cited IPC test asserted
+`ui > env > none` but returned `env` whenever an environment key coexisted with
+the safeStorage/UI key, and the runtime resolver still preferred the
+compatibility alias over the canonical environment key. That historical
+assessment is preserved; it is superseded for R03 by this calibration.
+
+Current R03 status is **PASS** for the repaired product candidate. The daemon
+credential store is the sole resolver and reports a non-secret
+`source: ui | env | none` from the accepted order UI safeStorage,
+`ANTHROPIC_API_KEY`, then `CHIRALITY_ANTHROPIC_API_KEY`. Electron IPC validates
+and projects that source without reading environment variables itself. Direct
+tests cover UI plus both environment variables (`ui`), canonical-only and
+compatibility-alias-only (`env`), no credential (`none`), malformed or
+inconsistent daemon replies (fail closed), provider isolation, and
+non-disclosure.
+
+Evidence: `frontend/electron/api-key-storage.ts`,
+`frontend/electron/api-key-ipc.ts`, their focused tests, and
+`_run_records/TASK_RUN_2026-08-20_1004.md`. Focused Vitest passed 3 files / 47
+tests; the registered frontend suite passed 150 files / 1,174 tests with one
+file / four tests skipped; typecheck, build, 350 harness tests, harness
+self-check, APP-HOLD, scope, and whitespace checks passed. This calibration does not change any
+other requirement row, dependency, lifecycle state, Remaining item, or the
+Checking Approval SHA.

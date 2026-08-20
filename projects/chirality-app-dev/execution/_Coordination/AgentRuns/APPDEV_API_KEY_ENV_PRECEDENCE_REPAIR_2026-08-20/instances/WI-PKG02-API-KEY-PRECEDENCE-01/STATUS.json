@@ -1,0 +1,45 @@
+{
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "WI-PKG02-API-KEY-PRECEDENCE-01",
+  "role": "WORKING_ITEMS",
+  "parent": "HELP_HUMAN",
+  "package_id": "PKG-02",
+  "deliverable_id": "DEL-02-05",
+  "brief_version": 2,
+  "status": "COMPLETED",
+  "terminal": true,
+  "accepted": false,
+  "dependency": {
+    "instance_id": "WI-PKG04-API-KEY-PRECEDENCE-01",
+    "node": "N1",
+    "required_state": "accepted terminal handoff",
+    "received": true,
+    "accepted_by_agent_0": true,
+    "handoff_path": "../WI-PKG04-API-KEY-PRECEDENCE-01/HANDOFF_STATE.md"
+  },
+  "execution_released": true,
+  "phase": "TERMINAL_HANDOFF",
+  "app_hold_reliance": "ALLOW",
+  "writes": 2,
+  "product_or_deliverable_writes": 6,
+  "confirmed_finding": "IPC status reports env when safeStorage/UI and an Anthropic environment key coexist because daemon status lacks a source discriminator.",
+  "amendment": "execution/_Coordination/AgentRuns/APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20/amendments/WI-PKG02-API-KEY-PRECEDENCE-01/v2.md",
+  "amended_n1_identity": {
+    "api-key-storage.ts": "d810b1ef79d528ee86d09b879d76f2c1e46dec1517d77c4d8749c8d0741444db",
+    "api-key-storage.test.ts": "c9cadac32f892613a3a0b3e3f9afb8200b14ab375408f5ea89c23e53b817dac4"
+  },
+  "implementation_child": "TASK-PKG02-API-KEY-STATUS-CONSUMER-IMPLEMENT-01",
+  "review_child": "TASK-PKG02-API-KEY-STATUS-CONSUMER-REVIEW-02",
+  "checks": {
+    "focused_vitest": "PASS: 3 files, 47 tests",
+    "registered_checks": "PASS: 6/6",
+    "secret_scan": "PASS: 5846 files, 0 blocked",
+    "app_hold_reliance": "ALLOW",
+    "scope_and_whitespace": "PASS",
+    "fresh_review": "PASS: Review02, 14/14, 0 findings"
+  },
+  "output_artifact": "RETURN.md",
+  "handoff_artifact": "HANDOFF_STATE.md",
+  "blockers": [],
+  "next_action": "Agent 0 may accept N2 and release N3."
+}

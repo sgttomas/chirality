@@ -1,0 +1,24 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback",
+  "operation": "accepted-dependency-consumption",
+  "register_sha256": "e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f",
+  "repo_head": "45336238247f304bcdd3c718be2b1f8dcff6c387",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-04-05",
+      "entry_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback",
+      "hold_status": "NOT_HELD",
+      "operation": "accepted-dependency-consumption",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "bad1d1131a2aa2f4c49ac2cabc8962bc654de68c71fc338561cced396b730920",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "targets": [
+    "DEL-04-05"
+  ],
+  "verdict": "ALLOW"
+}
