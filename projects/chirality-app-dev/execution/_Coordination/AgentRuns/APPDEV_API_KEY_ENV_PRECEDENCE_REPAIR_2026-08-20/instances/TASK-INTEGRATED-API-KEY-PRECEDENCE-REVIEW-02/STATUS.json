@@ -1,0 +1,39 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "TASK-INTEGRATED-API-KEY-PRECEDENCE-REVIEW-02",
+  "role": "TASK",
+  "task_skill": "software-code-review",
+  "status": "FAILED",
+  "terminal": true,
+  "verdict": "FAIL",
+  "coverage": {
+    "candidate_paths_reviewed": 94,
+    "candidate_paths_total": 94,
+    "product_test_paths_reviewed": 4,
+    "evidence_state_control_paths_reviewed": 90,
+    "raw_host_proof_reviewed": true
+  },
+  "frozen_identity": {
+    "expected_subject_count": 94,
+    "actual_subject_count": 94,
+    "expected_aggregate_sha256": "eeda6c56d07326b0c30c186627d14a8319c3f8239b497b507f314724e544b788",
+    "actual_aggregate_sha256": "3c33705a267d938c6052869bfa064dc00ea734711ac90e755176f1ac1202d563",
+    "match": false
+  },
+  "actionable_findings": 1,
+  "findings": [
+    {
+      "id": "F0",
+      "severity": "blocking",
+      "summary": "Frozen candidate manifest v2 records an aggregate that does not match its exact 94-path reconstruction."
+    }
+  ],
+  "review_01_backcheck": {
+    "F1": "PASS",
+    "F2": "PASS",
+    "F3": "PASS"
+  },
+  "fan_in_valid": false,
+  "blockers": ["F0"]
+}
