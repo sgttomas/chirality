@@ -5434,3 +5434,42 @@
     dependency/lock, owner-machine, signing, notarization, distribution,
     publication, release, and provider fences remain unchanged. Owner merge is
     pending in order: PR #586, then PR #589.
+
+- **2026-08-20 — Receipt 182** (DEL-09-04 packaged LaunchAgent RunAtLoad proof).
+  - Receipt-ID: `Receipt-182`
+  - Examined-Through: `fae5e38ee60fd4c8d4a52ac7f663036a83cdbd7d`
+  - Parent-Receipt: `Receipt-181`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-20,
+    Ryan Tufts, in-session): `start a new branch for this work you are about to define, do not continue working in this current branch.`;
+    `This iteration's deliverable is product work: code, working features,
+    executing cases, closed engineering gaps.`; `When a node declares the
+    unsigned-artifact CI surface as its proof surface, apply the artifact-proof
+    label to the PR at final-verification time (the label itself triggers the
+    run) and cite that run in the receipt.`
+  - Pointers: product node `5ee3fc12fb73cdf90f6fa47455db70740a2d2f1f`;
+    G4 proof-loop commit `dcd10fa83bdff2ba89733bfd96176b6831591173`;
+    PR #591 based on `main` with no open predecessor; label-triggered Desktop
+    run `32410644968`, job `96560074456`, retained proof artifact id
+    `9422083629`; Harness pre-merge `32410644943` / `96560003227`;
+    governance Harness `32410644930` / `96560003072`; DEL-09-04
+    `_run_records/R11_DAPP97_RUNATLOAD_PR_CI_PROOF_2026-08-20.md`; RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_LAUNCHAGENT_RUNATLOAD_PROOF_2026-08-20/`.
+  - Checks: focused/full frontend, typecheck/build, package review 04 and final
+    integrated review 02,
+    candidate-range G4, APP-HOLD, all three current-head PR-CI jobs, downloaded
+    retained proof-summary assertions, receipt contract, corpus no-drift,
+    repository self-check, practitioner pytest, whitespace, and closeout
+    containment pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS, TASK
+    implementer/remediators/reviewers, and CHANGE; exact model builds not
+    exposed.
+  - Gate-Outcome: `EXECUTED` — automatic bootstrap-triggered RunAtLoad from the
+    real disposable-account LaunchAgents directory, exact loaded identity,
+    complete cleanup, and default protection close the narrower prior-evidence
+    defect and materially narrow the login residual. Because the proof invokes
+    bootstrap directly, actual login-session discovery/auto-start remains
+    unproved and parked for a logout/login-capable host surface. DEL-09-04
+    remains `IN_PROGRESS` on that residual and the owner-machine deployment
+    act; lifecycle, Checking Approval SHA, F-APP-2, dependency/lock, signing,
+    notarization, distribution, publication, release, reliance, and merge state
+    are unchanged. Owner merge of PR #591 is pending.

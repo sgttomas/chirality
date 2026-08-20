@@ -6,6 +6,27 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-08-20 - DEL-09-04 packaged LaunchAgent RunAtLoad proof landed
+
+PR #591 node `5ee3fc12fb73cdf90f6fa47455db70740a2d2f1f` adds a
+fail-closed packaged-service proof to the label-gated unsigned macOS workflow.
+Desktop run `32410644968` / job `96560074456` passed on `macos-15`; its
+retained summary proves automatic bootstrap-triggered RunAtLoad from the
+disposable account's canonical `~/Library/LaunchAgents`, exact loaded argv and
+packaged executable identity, complete cleanup, and default-job protection.
+Adjacent commit `dcd10fa83bdff2ba89733bfd96176b6831591173` supplies the
+required G4 tranche manifest. Both repository harness jobs also passed.
+
+This closes the narrower evidence defect that prior proof used a test plist
+outside the actual LaunchAgents directory and materially advances the login
+path. Because the proof invokes bootstrap directly, actual login-session
+discovery/auto-start remains unproved and parked for a future host-capability
+surface. DEL-09-04 remains `IN_PROGRESS` on that residual and the later
+owner-machine deployment act; lifecycle, Checking Approval SHA, F-APP-2,
+signing, notarization, distribution, publication, release, and reliance posture
+are unchanged. See
+`execution/_Coordination/AgentRuns/APPDEV_LAUNCHAGENT_RUNATLOAD_PROOF_2026-08-20/`.
+
 ## 2026-08-20 - API-key environment precedence repair published (stacked)
 
 Stacked PR #589 repairs API-key precedence across the packaged application:

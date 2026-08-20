@@ -1,0 +1,8 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_LAUNCHAGENT_RUNATLOAD_PROOF_2026-08-20",
+  "instance_id": "A2-PKG09-RUNATLOAD-REVIEW-04",
+  "status": "SUCCESS",
+  "manager_disposition": "ACCEPTED_FOR_FAN_IN",
+  "finding_count": 0
+}

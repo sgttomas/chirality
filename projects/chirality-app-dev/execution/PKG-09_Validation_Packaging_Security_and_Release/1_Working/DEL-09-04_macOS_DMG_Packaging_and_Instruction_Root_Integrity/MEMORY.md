@@ -1,5 +1,16 @@
 # MEMORY - DEL-09-04
 
+- 2026-08-20 — PR #591 Desktop run `32410644968` / job `96560074456`
+  materially narrowed the login-time `RunAtLoad` gap. Retained artifact
+  `chirality-packaged-launchagent-runatload-proof` reports PASS for automatic
+  bootstrap-triggered launch from the disposable account's canonical
+  `~/Library/LaunchAgents`, exact loaded argv and packaged executable identity,
+  complete process/job/plist/runtime cleanup, and unchanged default targets.
+  The proof invokes bootstrap directly and does not recreate login-session
+  discovery through a full logout/login. DEL-09-04 remains IN_PROGRESS on that
+  host-capability residual and the later owner-machine deployment act;
+  lifecycle, Checking Approval SHA, signing, notarization, distribution,
+  publication, release, and reliance posture are unchanged.
 - 2026-08-20 — The coordinated DEL-09-06 host proof closed DEL-09-04's
   selected REQ-009 / R4-P49 packaged-network residual against a fresh unsigned
   arm64 app and DMG. Compact D-APP-99 evidence identity-binds the packaged
