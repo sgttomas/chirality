@@ -2,6 +2,7 @@ name: Desktop Unsigned Artifact Verification
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, labeled]
     paths:
       - ".github/workflows/desktop-release-template.yml"
       - ".github/workflows/desktop-release-template.yml.disabled"
@@ -25,6 +26,7 @@ concurrency:
 jobs:
   verify-unsigned-macos:
     name: Verify unsigned macOS artifact
+    if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'artifact-proof') }}
     runs-on: macos-15
     timeout-minutes: 60
     env:

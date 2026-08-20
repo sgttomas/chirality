@@ -34,6 +34,31 @@ describe('desktop unsigned artifact workflow', () => {
     expect(workflow).toContain('cancel-in-progress:');
   });
 
+  it('label-gates the macOS artifact job behind artifact-proof or manual dispatch', async () => {
+    const workflow = await readWorkflow();
+
+    expect(workflow).toContain(
+      'types: [opened, synchronize, reopened, labeled]'
+    );
+    expect(workflow).toContain(
+      "if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'artifact-proof') }}"
+    );
+
+    const pullRequestIndex = workflow.indexOf('pull_request:');
+    const typesIndex = workflow.indexOf(
+      'types: [opened, synchronize, reopened, labeled]'
+    );
+    const dispatchIndex = workflow.indexOf('workflow_dispatch:');
+    const jobIndex = workflow.indexOf('verify-unsigned-macos:');
+    const gateIndex = workflow.indexOf(
+      "if: ${{ github.event_name == 'workflow_dispatch' || contains(github.event.pull_request.labels.*.name, 'artifact-proof') }}"
+    );
+    expect(pullRequestIndex).toBeGreaterThanOrEqual(0);
+    expect(typesIndex).toBeGreaterThan(pullRequestIndex);
+    expect(typesIndex).toBeLessThan(dispatchIndex);
+    expect(gateIndex).toBeGreaterThan(jobIndex);
+  });
+
   it('builds only the unsigned macOS arm64 target without credentials', async () => {
     const workflow = await readWorkflow();
 
