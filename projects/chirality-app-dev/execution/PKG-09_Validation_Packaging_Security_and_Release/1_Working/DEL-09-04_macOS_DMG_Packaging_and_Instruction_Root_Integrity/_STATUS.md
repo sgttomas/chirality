@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-19
+**Last Updated:** 2026-08-20
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -17,10 +17,6 @@
   portion passed on PR #585. D-APP-97 authorizes this unsigned local/CI-only release-
   preparation engineering; F-APP-2 continues to fence signing, notarization,
   and distribution.
-- Run and accept the packaged network-policy/security proof needed for
-  DEL-09-04 REQ-009 and its remaining R4-P49 PARTIAL assessment, coordinated
-  with DEL-09-06. PR #585's scripted packaged-SDK proof intentionally did not
-  exercise outbound network.
 - After a rebuilt C1 artifact exists, the owner may deploy the daemon service
   on the owner's machine and report the result (owner act, not agent work;
   owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
@@ -30,6 +26,15 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-20 - The coordinated DEL-09-06 fresh packaged-security proof passed
+  for the exact unsigned arm64 app identity and closed DEL-09-04 REQ-009 /
+  R4-P49 packaged-network evidence. Blocked renderer probes, five usable
+  descendant TCP snapshots, zero non-allowlisted outbound, provider isolation,
+  secret containment, and cleanup all passed. Only the named packaged-network
+  Remaining item is removed; login-time `RunAtLoad` and the later owner-machine
+  deployment act remain. State stays IN_PROGRESS; lifecycle, Checking Approval
+  SHA, signing, notarization, distribution, publication, and release readiness
+  remain unchanged.
 - 2026-08-19 - PR #585 external proof accepted for the exact selected
   D-APP-97 packaged-SDK/R4-P49 engineering gap. Desktop run `32332985341` /
   job `96317050414` passed separate scripted no-live-provider verifier runs

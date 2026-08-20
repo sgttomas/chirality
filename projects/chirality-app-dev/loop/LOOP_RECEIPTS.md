@@ -5399,3 +5399,38 @@
     DEL-04-05 RQ-001. F-APP-2 and all other release, signing, notarization,
     distribution, provider, credential, dependency/lock, and owner-machine
     fences remain unchanged; owner merge of PR #586 is pending.
+
+- **2026-08-20 — Receipt 181** (API-key precedence repair and packaged closure).
+  - Receipt-ID: `Receipt-181`
+  - Examined-Through: `6710ee6354debc201f6a454e2802897026cd4b38`
+  - Parent-Receipt: `Receipt-180`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-20,
+    Ryan Tufts, in-session): `start a new branch for this work you are about to define, do not continue working in this current branch.`;
+    `This iteration's deliverable is product work: code, working features, executing cases, closed engineering gaps.`;
+    `If the previous iteration's PR is not yet merged, branch this tranche from its head and open this PR with that branch declared as the PR's base — one PR per iteration, stacked and merged in order, never a single PR grown across iterations`.
+  - Pointers: PKG-04 node `45336238247f304bcdd3c718be2b1f8dcff6c387`;
+    PKG-02 node `4d1d927fa4a8df2672534dfd1206716c1e6cd7d4`; PKG-09 node
+    `675b87a56c4f2fbdd9aef332600b3088dd543738`; fan-in
+    `432577fcde3796933f30d9d10df86094d5282f7b`; PR #589 stacked on PR #586;
+    governance Harness run `32398779013`, job `96521728803`; Harness pre-merge
+    run `32398778692`, job `96521729491`; unsigned macOS artifact run
+    `32398778725`, job `96521727665`; packaged proof summary
+    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20_Precedence_Closure/SUMMARY.md`;
+    RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20/`.
+  - Checks: focused/full product gates, typecheck/build, packaged host proof,
+    integrated Review 03, N2 closeout-remediation review, APP-HOLD, all three
+    proving PR-CI jobs, receipt contract, corpus no-drift, repository
+    self-check, practitioner pytest, JSON parse, whitespace, and exact
+    closeout containment pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    TASK implementer/remediators/reviewers, and CHANGE; exact model builds not
+    exposed.
+  - Gate-Outcome: `EXECUTED` — persisted UI safeStorage now precedes both
+    environment-key fallbacks, typed source status is consumed without
+    renderer-side re-inference, and packaged credential/network/cleanup proof
+    closes the selected residuals. DEL-02-05, DEL-04-05, DEL-09-06, and
+    DEL-09-04 remain `IN_PROGRESS`; lifecycle, Checking Approval SHA, F-APP-2,
+    dependency/lock, owner-machine, signing, notarization, distribution,
+    publication, release, and provider fences remain unchanged. Owner merge is
+    pending in order: PR #586, then PR #589.

@@ -27,17 +27,8 @@ export type ApiKeyStoreResult = {
   error?: string;
 };
 
-function hasEnvironmentKey(providerId: ProviderCredentialId): boolean {
-  if (providerId === 'anthropic') {
-    return Boolean(
-      process.env.ANTHROPIC_API_KEY?.trim() || process.env.CHIRALITY_ANTHROPIC_API_KEY?.trim()
-    );
-  }
-  return Boolean(process.env.CHIRALITY_OMLX_API_KEY?.trim());
-}
-
 export interface DaemonCredentialClient {
-  credentialStatus(providerId: ProviderCredentialId): Promise<{ configured: boolean }>;
+  credentialStatus(providerId: ProviderCredentialId): Promise<unknown>;
   storeCredential(
     providerId: ProviderCredentialId,
     credential: string
@@ -68,21 +59,48 @@ function unavailableStatusResult(error: unknown): ApiKeyStatusResult {
   };
 }
 
+function parseCredentialStatus(status: unknown): Pick<ApiKeyStatusResult, 'hasKey' | 'source'> | null {
+  if (!status || typeof status !== 'object') {
+    return null;
+  }
+  const { configured, source } = status as { configured?: unknown; source?: unknown };
+  if (
+    typeof configured !== 'boolean' ||
+    (source !== 'ui' && source !== 'env' && source !== 'none') ||
+    configured !== (source !== 'none')
+  ) {
+    return null;
+  }
+  return { hasKey: configured, source };
+}
+
+function invalidStatusResult(): ApiKeyStatusResult {
+  return {
+    hasKey: false,
+    encryptionAvailable: false,
+    source: 'none',
+    error: 'Runtime daemon returned an invalid credential status'
+  };
+}
+
 async function credentialStatusResult(
   client: DaemonCredentialClient,
   providerId: ProviderCredentialId
 ): Promise<ApiKeyStatusResult> {
-  let status: { configured: boolean };
+  let status: unknown;
   try {
     status = await client.credentialStatus(providerId);
   } catch (error) {
     return unavailableStatusResult(error);
   }
-  const envKey = hasEnvironmentKey(providerId);
+  const parsed = parseCredentialStatus(status);
+  if (!parsed) {
+    return invalidStatusResult();
+  }
   return {
-    hasKey: status.configured,
+    hasKey: parsed.hasKey,
     encryptionAvailable: true,
-    source: status.configured ? (envKey ? 'env' : 'ui') : 'none'
+    source: parsed.source
   };
 }
 

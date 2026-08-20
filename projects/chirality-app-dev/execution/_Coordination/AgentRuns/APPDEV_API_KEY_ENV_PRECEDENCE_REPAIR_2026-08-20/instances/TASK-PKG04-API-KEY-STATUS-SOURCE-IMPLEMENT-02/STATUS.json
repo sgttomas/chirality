@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "TASK-PKG04-API-KEY-STATUS-SOURCE-IMPLEMENT-02",
+  "role": "TASK",
+  "task_skill": "software-bounded-implementation",
+  "status": "COMPLETED",
+  "updated_at": "2026-08-20T15:43:29Z",
+  "checks": {
+    "focused_vitest": "PASS: 1 file, 20 tests",
+    "frontend_test": "PASS: 150 passed files, 1 skipped; 1167 passed tests, 4 skipped",
+    "frontend_typecheck": "PASS",
+    "frontend_build": "PASS",
+    "diff_and_whitespace": "PASS",
+    "scope_validation": "PASS: zero violations"
+  },
+  "output_artifact": "RETURN.md",
+  "blockers": []
+}

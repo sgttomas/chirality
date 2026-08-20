@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "WI-PKG09-API-KEY-PRECEDENCE-01",
+  "role": "WORKING_ITEMS",
+  "package_id": "PKG-09",
+  "deliverable_ids": ["DEL-09-06", "DEL-09-04"],
+  "status": "COMPLETED",
+  "terminal": true,
+  "accepted": false,
+  "phase": "TERMINAL_CHANGE_HANDOFF",
+  "dependency_state": "N1_AND_N2_ACCEPTED_BY_AGENT_0",
+  "app_hold_dispatch": "ALLOW",
+  "app_hold_reliance": "ALLOW",
+  "implementation_child": "TASK-PKG09-PACKAGED-CLOSURE-IMPLEMENT-01",
+  "integrated_review_child": "TASK-INTEGRATED-API-KEY-PRECEDENCE-REVIEW-03",
+  "frozen_candidate_paths": 98,
+  "frozen_candidate_sha256": "7ea308cf90bac02a7c439c71d0f01d2024ecee2a90c1fc16cfd1f4fd95bc1959",
+  "packaged_subject_sha256": "1623b2971bcef5fc6a2ae80ce0baa747a6746e28a2b821cd1e6bf125574b4ce2",
+  "review": "PASS: zero actionable findings",
+  "blockers": [],
+  "next_action": "CHANGE closeout on stacked branch after Agent 0 acceptance."
+}

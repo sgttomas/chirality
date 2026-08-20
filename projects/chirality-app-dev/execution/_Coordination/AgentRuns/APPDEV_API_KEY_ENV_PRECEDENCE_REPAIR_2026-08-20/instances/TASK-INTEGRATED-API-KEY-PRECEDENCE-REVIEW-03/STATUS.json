@@ -1,0 +1,20 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "TASK-INTEGRATED-API-KEY-PRECEDENCE-REVIEW-03",
+  "role": "TASK",
+  "task_skill": "software-code-review",
+  "status": "COMPLETED_PASS",
+  "verdict": "PASS",
+  "candidate_path_count": 98,
+  "candidate_aggregate_sha256": "7ea308cf90bac02a7c439c71d0f01d2024ecee2a90c1fc16cfd1f4fd95bc1959",
+  "coverage": {
+    "product_test_paths": "4/4",
+    "evidence_state_control_paths": "94/94",
+    "candidate_json": "28/28",
+    "raw_host_json": "7/7"
+  },
+  "findings": [],
+  "blockers": [],
+  "fan_in": "VALID"
+}

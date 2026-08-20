@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "TASK-PKG04-API-KEY-PRECEDENCE-REVIEW-01",
+  "role": "TASK",
+  "task_skill": "software-code-review",
+  "status": "COMPLETED_BLOCK",
+  "updated_at": "2026-08-20T15:19:48Z",
+  "verdict": "FAIL",
+  "actionable_findings": 1,
+  "blocking_findings": 1,
+  "non_blocking_findings": 0,
+  "hash_validation": "PASS: 5/5 frozen artifacts match",
+  "scope_validation": "PASS: 2/2 declared product/test paths",
+  "implementation_review": "PASS: no code or test defect identified",
+  "evidence_coverage": "FAIL: harness-self-check and app-hold-integrity are absent",
+  "output_artifact": "RETURN.md",
+  "blockers": [
+    "Run and freeze passing harness-self-check and app-hold-integrity evidence, then dispatch a fresh review over the new manifest."
+  ]
+}

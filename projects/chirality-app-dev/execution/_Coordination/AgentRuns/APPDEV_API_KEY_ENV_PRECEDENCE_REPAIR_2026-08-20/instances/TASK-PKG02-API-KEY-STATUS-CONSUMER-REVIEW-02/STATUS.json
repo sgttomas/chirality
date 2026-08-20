@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "TASK-PKG02-API-KEY-STATUS-CONSUMER-REVIEW-02",
+  "role": "TASK",
+  "task_skill": "software-code-review",
+  "package_id": "PKG-02",
+  "deliverable_id": "DEL-02-05",
+  "status": "COMPLETED",
+  "terminal": true,
+  "accepted": false,
+  "updated_at": "2026-08-20T16:22:42Z",
+  "review_verdict": "PASS",
+  "frozen_identity": "PASS: 14/14",
+  "source_coverage": "PASS: 1050/1050 lines across N1/N2 product and focused tests",
+  "prior_finding_backcheck": "PASS: Review01 F1 closed by complete normalized six-check manager evidence",
+  "findings": {
+    "blocking": 0,
+    "non_blocking": 0,
+    "product_source": 0
+  },
+  "blockers": []
+}

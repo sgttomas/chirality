@@ -1,0 +1,51 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "agents/AGENT_WORKING_ITEMS.md",
+  "operation": "reliance",
+  "register_sha256": "e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f",
+  "repo_head": "6710ee6354debc201f6a454e2802897026cd4b38",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-02-05",
+      "entry_path": "agents/AGENT_WORKING_ITEMS.md",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-04-05",
+      "entry_path": "agents/AGENT_WORKING_ITEMS.md",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-09-04",
+      "entry_path": "agents/AGENT_WORKING_ITEMS.md",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    },
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-09-06",
+      "entry_path": "agents/AGENT_WORKING_ITEMS.md",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "8df9d9bd5151935d593ea5e6b51393aa31ed29d036dd15d9c1be476115d83c66",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "targets": [
+    "DEL-02-05",
+    "DEL-04-05",
+    "DEL-09-04",
+    "DEL-09-06"
+  ],
+  "verdict": "ALLOW"
+}

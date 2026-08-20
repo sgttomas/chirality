@@ -1,0 +1,22 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "TASK-PKG04-API-KEY-STATUS-SOURCE-REVIEW-03",
+  "role": "TASK",
+  "task_skill": "software-code-review",
+  "status": "COMPLETED_PASS",
+  "updated_at": "2026-08-20T15:52:28Z",
+  "verdict": "PASS",
+  "actionable_findings": 0,
+  "blocking_findings": 0,
+  "non_blocking_findings": 0,
+  "hash_validation": "PASS: 12/12 frozen v3 subjects match",
+  "scope_validation": "PASS: 2/2 declared product/test paths",
+  "implementation_review": "PASS: no code, test, contract, security, or scope defect identified",
+  "daemon_serialization": "PASS: source survives status spread, JSON serialization, and client parsing",
+  "n2_consumer_sufficiency": "PASS: non-secret source discriminator is sufficient for held N2 amendment",
+  "evidence_coverage": "PASS: combined frozen evidence covers selected and run-required checks",
+  "fan_in_validity": "VALID for amended N1 manager fan-in within the sealed review scope",
+  "output_artifact": "RETURN.md",
+  "blockers": []
+}

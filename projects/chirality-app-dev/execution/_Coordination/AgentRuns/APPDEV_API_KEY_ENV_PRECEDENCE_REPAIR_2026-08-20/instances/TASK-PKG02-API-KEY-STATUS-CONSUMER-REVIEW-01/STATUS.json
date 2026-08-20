@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "TASK-PKG02-API-KEY-STATUS-CONSUMER-REVIEW-01",
+  "role": "TASK",
+  "task_skill": "software-code-review",
+  "package_id": "PKG-02",
+  "deliverable_id": "DEL-02-05",
+  "status": "COMPLETED",
+  "terminal": true,
+  "accepted": false,
+  "verdict": "FAIL",
+  "frozen_identity": "13/13 MATCH",
+  "findings": {
+    "blocking": 1,
+    "non_blocking": 0,
+    "product_source": 0
+  },
+  "output_artifact": "RETURN.md",
+  "blockers": [
+    "F1: missing manager-owned normalized JSON for required registered checks"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "schema": "chirality-packaged-security-closure-evidence/v1",
+  "generatedAt": "2026-08-20T16:34:51.078Z",
+  "status": "pass",
+  "authority": {
+    "decision": "D-APP-97 C1",
+    "evidencePolicy": "D-APP-99 C3",
+    "sourceRevision": "6710ee6354debc201f6a454e2802897026cd4b38",
+    "acceptedProductInputs": {
+      "frontend/electron/api-key-storage.ts": "d810b1ef79d528ee86d09b879d76f2c1e46dec1517d77c4d8749c8d0741444db",
+      "frontend/src/__tests__/electron/api-key-storage.test.ts": "c9cadac32f892613a3a0b3e3f9afb8200b14ab375408f5ea89c23e53b817dac4",
+      "frontend/electron/api-key-ipc.ts": "3293cbf15164105ac61f7cc7e34da66c5c12701823a6e302f90d59c385eed3cb",
+      "frontend/src/__tests__/electron/api-key-ipc.test.ts": "818b7424ef1de3f4418486a4a7ae839cb837d84a23af6fdd73621f847d74b1a6"
+    }
+  },
+  "artifacts": [
+    {
+      "name": "Chirality-2.0.0-arm64.dmg",
+      "bytes": 349361596,
+      "sha256": "8e22c0976ada252f467ba55ece4395c27735f4eb0461d6cf8516f804032b519b"
+    },
+    {
+      "name": "Chirality.app/Contents/MacOS/Chirality",
+      "bytes": 33968,
+      "sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874"
+    },
+    {
+      "name": "Chirality.app/Contents/Resources/app.asar",
+      "bytes": 438448777,
+      "sha256": "5619d043e0a647b66ae2dc46a1888927f9f0d18f05a6babbfcad1b7362331d66"
+    },
+    {
+      "name": "Chirality.app/Contents/Resources/runtime-cli/chirality-cli.mjs",
+      "bytes": 75142,
+      "sha256": "3adc8490634427b814cbebbf93563851f0794f59715b82d4b26415a5aa0cc9a4"
+    }
+  ],
+  "packagedSubject": {
+    "identitySha256": "1623b2971bcef5fc6a2ae80ce0baa747a6746e28a2b821cd1e6bf125574b4ce2",
+    "extractedMainBytes": 1375977,
+    "extractedMainSha256": "aebac27fb52ab54c7158973828e91d90821a67677e795dcd04794c84f5190120",
+    "assertions": {
+      "storedUiCredentialPrecedesEnvironment": true,
+      "canonicalAnthropicEnvironmentPrecedesCompatibilityEnvironment": true,
+      "credentialStatusSourceVocabularyIsUiEnvNone": true,
+      "ipcConsumesCredentialStatusSource": true
+    }
+  },
+  "checks": {
+    "focusedStorageIpcPackagedProofTests": {
+      "status": "pass",
+      "filesPassed": 3,
+      "testsPassed": 47
+    },
+    "fullFrontendVitest": {
+      "status": "pass",
+      "filesPassed": 150,
+      "filesSkipped": 1,
+      "testsPassed": 1174,
+      "testsSkipped": 4
+    },
+    "frontendElectronTypecheck": "pass",
+    "frontendBuild": "pass",
+    "practitionerHarness": {
+      "status": "pass",
+      "testsPassed": 350
+    },
+    "rootSelfCheck": {
+      "status": "pass",
+      "baseline": {
+        "INFO": 14,
+        "NOT_APPLICABLE": 1,
+        "REVIEW": 4,
+        "WARN": 31
+      }
+    },
+    "appHold": {
+      "dispatch": "allow",
+      "reliance": "allow",
+      "integrity": "pass"
+    },
+    "desktopDist": "pass",
+    "packagedDependencyBoundary": "pass",
+    "instructionRootIntegrity": {
+      "status": "pass",
+      "checkedFiles": 43,
+      "summarySha256": "1789209efbf27610fb27796c56eac18a8ccc2d9a636c68c6a6796890307adaee"
+    }
+  },
+  "packagedProof": {
+    "status": "pass",
+    "safeStorageStoreStatusRemove": "pass",
+    "encryptedBlobOwnerOnlyAndNonPlaintext": "pass",
+    "providerIsolation": "pass",
+    "packagedPolicyMarkers": "pass",
+    "rendererBlockedDiagnostic": true,
+    "blockedProbeObserved": true,
+    "loopbackProbeObserved": true,
+    "tcpSnapshotCount": 5,
+    "nonAllowlistedOutboundTcpCount": 0,
+    "credentialLeakFindingCount": 0,
+    "metadataLeakFindingCount": 0,
+    "guiShutdown": "confirmed-code-0-stream-closed",
+    "daemonShutdown": "confirmed-code-0-stream-closed",
+    "temporaryUserDataRemoved": true,
+    "rawSummarySha256": "016f26c486777a4354af6607a6d1202e5b4ee1eedfb76a5faa53383e293f6471"
+  },
+  "secretScan": {
+    "status": "pass",
+    "scannedFiles": 5868,
+    "blockedFindings": 0,
+    "allowedFixtureFindings": 21,
+    "rawSummarySha256": "7293f98c28fe214bb92e94544f6b167b364c977ebc77b1eb9fa78fc64adafa00"
+  },
+  "rawEvidence": {
+    "reviewOnlyLocalPath": "/tmp/chirality-precedence-closure.pXvs6Z",
+    "committed": false,
+    "retention": "retain through fresh integrated review; bulk output is not project truth"
+  },
+  "exclusions": {
+    "realCredentialUsed": false,
+    "signingOrNotarization": false,
+    "distributionOrPublication": false,
+    "ownerUserDataTouched": false,
+    "providerScopeExpanded": false,
+    "lifecycleAdvanced": false
+  }
+}

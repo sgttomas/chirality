@@ -12,6 +12,7 @@ import path from 'node:path';
 
 export const PROVIDER_CREDENTIAL_IDS = ['anthropic', 'omlx'] as const;
 export type ProviderCredentialId = (typeof PROVIDER_CREDENTIAL_IDS)[number];
+export type ProviderCredentialSource = 'ui' | 'env' | 'none';
 
 const LEGACY_ANTHROPIC_STORAGE_FILENAME = 'api-key.enc';
 const PROVIDER_STORAGE_FILENAMES: Record<ProviderCredentialId, string> = {
@@ -161,27 +162,37 @@ export function getProviderUiApiKey(providerId: ProviderCredentialId): string | 
  * daemon control API except on an authenticated store request.
  */
 export class SafeStorageCredentialStore {
-  async get(providerId: string): Promise<string | undefined> {
+  private async resolve(
+    providerId: string
+  ): Promise<{ value: string | undefined; source: ProviderCredentialSource }> {
     if (!isProviderCredentialId(providerId)) {
-      return undefined;
+      return { value: undefined, source: 'none' };
     }
     const stored = await retrieveProviderApiKey(providerId);
     if (stored?.trim()) {
       setProviderGlobal(providerId, stored);
-      return stored;
+      return { value: stored, source: 'ui' };
     }
     if (providerId === 'omlx') {
-      return process.env.CHIRALITY_OMLX_API_KEY?.trim() || undefined;
+      const value = process.env.CHIRALITY_OMLX_API_KEY?.trim() || undefined;
+      return { value, source: value ? 'env' : 'none' };
     }
-    return (
-      process.env.CHIRALITY_ANTHROPIC_API_KEY?.trim() ||
+    const value =
       process.env.ANTHROPIC_API_KEY?.trim() ||
-      undefined
-    );
+      process.env.CHIRALITY_ANTHROPIC_API_KEY?.trim() ||
+      undefined;
+    return { value, source: value ? 'env' : 'none' };
   }
 
-  async status(providerId: string): Promise<{ configured: boolean }> {
-    return { configured: (await this.get(providerId)) !== undefined };
+  async get(providerId: string): Promise<string | undefined> {
+    return (await this.resolve(providerId)).value;
+  }
+
+  async status(
+    providerId: string
+  ): Promise<{ configured: boolean; source: ProviderCredentialSource }> {
+    const resolved = await this.resolve(providerId);
+    return { configured: resolved.value !== undefined, source: resolved.source };
   }
 
   async set(providerId: string, value: string): Promise<void> {

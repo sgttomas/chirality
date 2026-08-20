@@ -15,7 +15,7 @@ const mocks = vi.hoisted(() => {
     handlers,
     ipcMain,
     isProviderCredentialId: vi.fn((value: unknown) => value === 'anthropic' || value === 'omlx'),
-    credentialStatus: vi.fn<(providerId: 'anthropic' | 'omlx') => Promise<{ configured: boolean }>>(),
+    credentialStatus: vi.fn<(providerId: 'anthropic' | 'omlx') => Promise<unknown>>(),
     removeCredential: vi.fn<(providerId: 'anthropic' | 'omlx') => Promise<{ configured: boolean }>>(),
     storeCredential: vi.fn<
       (providerId: 'anthropic' | 'omlx', key: string) => Promise<{ configured: boolean }>
@@ -59,7 +59,7 @@ const credentialClient = {
 beforeEach(() => {
   mocks.handlers.clear();
   vi.clearAllMocks();
-  mocks.credentialStatus.mockResolvedValue({ configured: false });
+  mocks.credentialStatus.mockResolvedValue({ configured: false, source: 'none' });
   mocks.removeCredential.mockResolvedValue({ configured: false });
   mocks.storeCredential.mockResolvedValue({ configured: true });
   delete process.env.ANTHROPIC_API_KEY;
@@ -111,32 +111,73 @@ describe('electron/api-key-ipc', () => {
     expect(result).toEqual({ ok: false, error: 'Key must be a non-empty string' });
   });
 
-  it('returns status source precedence as ui > env > none', async () => {
+  it('consumes the daemon-owned source when UI and environment credentials coexist', async () => {
     registerApiKeyHandlers(credentialClient);
     const handler = getHandler(API_KEY_STATUS_CHANNEL);
 
-    mocks.credentialStatus.mockResolvedValue({ configured: true });
-    process.env.ANTHROPIC_API_KEY = 'env-key';
+    process.env.ANTHROPIC_API_KEY = 'canonical-environment-key';
+    process.env.CHIRALITY_ANTHROPIC_API_KEY = 'compatibility-environment-key';
+    mocks.credentialStatus.mockResolvedValue({ configured: true, source: 'ui' });
+
     await expect(handler({})).resolves.toEqual({
       hasKey: true,
       encryptionAvailable: true,
-      source: 'env'
+      source: 'ui'
     });
+  });
 
-    mocks.credentialStatus.mockResolvedValue({ configured: true });
+  it.each([
+    {
+      caseName: 'canonical environment credential',
+      environment: { ANTHROPIC_API_KEY: 'canonical-environment-key' },
+      status: { configured: true, source: 'env' }
+    },
+    {
+      caseName: 'compatibility-alias environment credential',
+      environment: { CHIRALITY_ANTHROPIC_API_KEY: 'compatibility-environment-key' },
+      status: { configured: true, source: 'env' }
+    },
+    {
+      caseName: 'no credential',
+      environment: {},
+      status: { configured: false, source: 'none' }
+    }
+  ])('reports $caseName from the daemon status', async ({ environment, status }) => {
+    registerApiKeyHandlers(credentialClient);
+    const handler = getHandler(API_KEY_STATUS_CHANNEL);
+    Object.assign(process.env, environment);
+    mocks.credentialStatus.mockResolvedValue(status);
+
     await expect(handler({})).resolves.toEqual({
-      hasKey: true,
+      hasKey: status.configured,
       encryptionAvailable: true,
-      source: 'env'
+      source: status.source
+    });
+  });
+
+  it.each([
+    { configured: true },
+    { configured: true, source: 'other' },
+    { configured: true, source: 'none' },
+    { configured: false, source: 'ui' }
+  ])('fails closed for an invalid daemon status %#', async (status) => {
+    registerApiKeyHandlers(credentialClient);
+    const handler = getHandler(API_KEY_STATUS_CHANNEL);
+    process.env.ANTHROPIC_API_KEY = 'must-not-be-inferred-or-disclosed';
+    mocks.credentialStatus.mockResolvedValue({
+      ...status,
+      credential: 'must-not-be-returned'
     });
 
-    delete process.env.ANTHROPIC_API_KEY;
-    mocks.credentialStatus.mockResolvedValue({ configured: false });
-    await expect(handler({})).resolves.toEqual({
+    const result = await handler({});
+
+    expect(result).toEqual({
       hasKey: false,
-      encryptionAvailable: true,
-      source: 'none'
+      encryptionAvailable: false,
+      source: 'none',
+      error: 'Runtime daemon returned an invalid credential status'
     });
+    expect(JSON.stringify(result)).not.toContain('must-not');
   });
 
   it('handles remove channel failures without throwing', async () => {
@@ -154,7 +195,7 @@ describe('electron/api-key-ipc', () => {
       .resolves.toEqual({ ok: true });
     expect(mocks.storeCredential).toHaveBeenCalledWith('omlx', 'local-secret');
 
-    mocks.credentialStatus.mockResolvedValueOnce({ configured: true });
+    mocks.credentialStatus.mockResolvedValueOnce({ configured: true, source: 'ui' });
     await expect(getHandler(PROVIDER_API_KEY_STATUS_CHANNEL)({}, 'omlx')).resolves.toEqual({
       hasKey: true,
       encryptionAvailable: true,
@@ -167,9 +208,10 @@ describe('electron/api-key-ipc', () => {
     expect(mocks.removeCredential).toHaveBeenCalledWith('omlx');
   });
 
-  it('uses only CHIRALITY_OMLX_API_KEY for oMLX status and rejects unknown providers', async () => {
+  it('consumes the daemon-owned oMLX source and rejects unknown providers', async () => {
     registerApiKeyHandlers(credentialClient);
     process.env.ANTHROPIC_API_KEY = 'anthropic-only';
+    process.env.CHIRALITY_OMLX_API_KEY = 'omlx-environment-key';
 
     await expect(getHandler(PROVIDER_API_KEY_STATUS_CHANNEL)({}, 'omlx')).resolves.toEqual({
       hasKey: false,
@@ -177,8 +219,7 @@ describe('electron/api-key-ipc', () => {
       source: 'none'
     });
 
-    process.env.CHIRALITY_OMLX_API_KEY = 'omlx-env';
-    mocks.credentialStatus.mockResolvedValue({ configured: true });
+    mocks.credentialStatus.mockResolvedValue({ configured: true, source: 'env' });
     await expect(getHandler(PROVIDER_API_KEY_STATUS_CHANNEL)({}, 'omlx')).resolves.toEqual({
       hasKey: true,
       encryptionAvailable: true,
@@ -223,7 +264,7 @@ describe('electron/api-key-ipc', () => {
 
   it('does not mark a real answer as unavailable', async () => {
     registerApiKeyHandlers(credentialClient);
-    mocks.credentialStatus.mockResolvedValue({ configured: true });
+    mocks.credentialStatus.mockResolvedValue({ configured: true, source: 'ui' });
 
     const result = await getHandler(API_KEY_STATUS_CHANNEL)({});
 

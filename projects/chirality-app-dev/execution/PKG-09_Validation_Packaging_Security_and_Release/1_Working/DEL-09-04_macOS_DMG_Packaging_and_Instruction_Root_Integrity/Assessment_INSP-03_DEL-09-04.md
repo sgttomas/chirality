@@ -8,6 +8,11 @@ Lifecycle: CHECKING
 Reviewed SHA: `d0766e0f24b923f7925c711fe05e0cf5d28fd1fb`
 Spec source: `Specification.md`
 
+Current calibration (2026-08-20): lifecycle is `IN_PROGRESS`. The selected
+REQ-009 / R4-P49 packaged-network residual is current at the DEL-09-06 compact
+evidence package; the historical inspection header remains the original
+inspection basis.
+
 ## Scope
 
 This assessment inspected the macOS arm64 unsigned DMG packaging path, instruction-root integrity resources, SDK subprocess/binary package layout checks, and release-target boundaries. It did not run `npm run desktop:dist` and found no current DMG/app bundle artifact in `frontend/dist`.
@@ -24,7 +29,7 @@ This assessment inspected the macOS arm64 unsigned DMG packaging path, instructi
 | REQ006 - Packaged builds contain required instruction-root resources and verify before distribution. | PASS | `frontend/package.json` `extraResources` bundles agents/docs/root files at lines 71-88; `frontend/src/__tests__/scripts/dmg-packaging-policy.test.ts` asserts bundled instruction-root resources at lines 78-94. | Resource packaging is covered by config and tests. |
 | REQ007 - Missing instruction-root assets are P0 blockers. | PASS | `frontend/scripts/verify-instruction-root-integrity.mjs` detects missing/mismatched files and exits fail at lines 300-344 and 530-567; tests prove missing SDK files fail at lines 203-238. | Fail-closed behavior exists. |
 | REQ008 - Package readiness verifies SDK subprocess/binary from app bundle layout without secret leakage or broader network. | PARTIAL | `frontend/scripts/verify-packaged-agent-sdk-runtime.mjs` validates SDK module/package/root and app.asar-unpacked placement at lines 270-393; no current app bundle proof was run. | This is the main packaged evidence gap. |
-| REQ009 - Packaged validation preserves Anthropic network guardrails. | PARTIAL | `frontend/scripts/run-network-policy-proof.mjs` defines loopback/Anthropic allowlist at lines 16-18 and computes non-allowlisted verdicts at lines 670-885. | Network proof exists, but no current packaged run artifact is present. |
+| REQ009 - Packaged validation preserves Anthropic network guardrails. | PASS | `../DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20_Precedence_Closure/summary.json` identity-binds the fresh packaged app and records the blocked renderer diagnostic/probes plus five descendant TCP snapshots. | Zero non-allowlisted outbound TCP was observed; provider scope remained unchanged. |
 | REQ010 - No Windows/Linux packaging without amendment. | PASS | Current build target is mac arm64 DMG in `frontend/package.json` lines 90-99; release docs state macOS 15+ Apple Silicon unsigned DMG as current target. | No broader packaging target is active. |
 
 ## Gap Inventory
@@ -34,7 +39,6 @@ This assessment inspected the macOS arm64 unsigned DMG packaging path, instructi
 | Current DMG/app artifacts absent | G6 / High | `frontend/dist` does not contain the expected DMG or app bundle during this inspection. | Packaging validation tranche |
 | Packaged SDK subprocess proof not current | G6 / High | The no-live and live packaged SDK proof scripts exist, but no current proof against a built app bundle was available. | Packaging/security tranche |
 | Instruction-root summary artifact absent | Medium | Integrity script exists and fails closed, but no current stable summary artifact was present. | Release validation tranche |
-| Packaged network proof not current | Medium | Network-policy proof exists, but it was not run against a packaged app for this wave. | Release/security tranche |
 
 ## Source-State Caveat
 
@@ -49,7 +53,6 @@ No dependency rows were marked satisfied or mutated by this assessment. DEL-09-0
 1. Run `npm run desktop:dist` in a clean environment and archive the DMG/app bundle path, architecture, minimum OS, and signing state. Type: packaging validation. Size: M. Strategic fit: ON-STRATEGY.
 2. Run instruction-root integrity against the packaged bundle and retain the stable summary artifact. Type: release validation. Size: S. Strategic fit: ON-STRATEGY.
 3. Run the packaged SDK resolver proof against the app bundle layout and record SDK command path under `app.asar.unpacked`. Type: packaging/security validation. Size: M. Strategic fit: ON-STRATEGY.
-4. Run packaged network-policy proof and preserve a redacted summary. Type: security validation. Size: M. Strategic fit: ON-STRATEGY.
 
 ## Issuance-Gate-Process Observations
 

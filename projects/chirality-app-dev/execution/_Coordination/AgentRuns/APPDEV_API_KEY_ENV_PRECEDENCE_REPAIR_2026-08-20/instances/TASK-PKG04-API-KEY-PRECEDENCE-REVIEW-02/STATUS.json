@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "TASK-PKG04-API-KEY-PRECEDENCE-REVIEW-02",
+  "role": "TASK",
+  "task_skill": "software-code-review",
+  "status": "COMPLETED_PASS",
+  "updated_at": "2026-08-20T15:27:53Z",
+  "verdict": "PASS",
+  "actionable_findings": 0,
+  "blocking_findings": 0,
+  "non_blocking_findings": 0,
+  "hash_validation": "PASS: 8/8 frozen v2 subjects match",
+  "scope_validation": "PASS: 2/2 declared product/test paths",
+  "implementation_review": "PASS: no code or test defect identified",
+  "review_01_backcheck": "PASS: missing always-check evidence is present and passing",
+  "evidence_coverage": "PASS: combined frozen evidence covers every profile-selected check",
+  "fan_in_validity": "VALID for N1 manager fan-in within the sealed review scope",
+  "output_artifact": "RETURN.md",
+  "blockers": []
+}
