@@ -1,10 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { buildAnalysisRunPreview, buildPreviewComparison, loadPreviewModel, runPreviewMechanics } from "../../services/previewService";
+import { canonicalSha256Hex } from "../../services/hashService";
 import { buildCurrentSessionInputManifest } from "../../services/inputManifestService";
+import type { PreviewModel } from "../../types";
 import { buildReportPackageRequest } from "./reportPackageRequest";
+import componentProvenanceProjection from "../../../../../fixtures/reports/invented/component_provenance_cross_layer_projection.json";
 
-async function currentSession() {
-  const model = await loadPreviewModel();
+async function currentSession(sourceModel?: PreviewModel) {
+  const model = structuredClone(sourceModel ?? (await loadPreviewModel()));
   const result = await runPreviewMechanics(model);
   const inputManifest = await buildCurrentSessionInputManifest({
     model,
@@ -29,6 +32,65 @@ async function currentSession() {
 }
 
 describe("report-package current-session request", () => {
+  it("matches the shared component-provenance projection at the production package boundary", async () => {
+    const modelWithMissingProvenance = structuredClone(await loadPreviewModel());
+    const missingComponent = modelWithMissingProvenance.components.find(
+      (component) => component.id === "component:C-140"
+    );
+    expect(missingComponent).toBeDefined();
+    missingComponent!.provenance = "";
+    const { model, result, inputManifest, analysisRun } = await currentSession(
+      modelWithMissingProvenance
+    );
+    const manifestComponent = inputManifest.manifest.model_basis.model_payload.components.find(
+      (component) => component.id === "component:C-140"
+    );
+
+    expect(inputManifest.manifest.model_basis.model_ref).toBe(model.project.id);
+    expect(inputManifest.manifest.model_basis.model_payload).toEqual(model);
+    expect(manifestComponent).toMatchObject({
+      id: "component:C-140",
+      provenance: ""
+    });
+
+    const request = await buildReportPackageRequest({
+      model,
+      result,
+      analysisRun,
+      inputManifest,
+      projectSummary: null,
+      comparison: null,
+      ruleCheckAggregate: null
+    });
+    const sections = request.report.report_sections;
+    const presentId = componentProvenanceProjection.present_component.value.value_id;
+    const missingId = componentProvenanceProjection.missing_component.value.value_id;
+
+    const actualProjection = {
+      schema_version: "1.0.0",
+      present_component: {
+        value: sections.user_supplied_values.find((value) => value.value_id === presentId),
+        provenance_note: sections.provenance_notes.find(
+          (note) => note.source_name === componentProvenanceProjection.present_component.provenance_note.source_name
+        )
+      },
+      missing_component: {
+        value: sections.user_supplied_values.find((value) => value.value_id === missingId),
+        provenance_note: sections.provenance_notes.find(
+          (note) => note.source_name === componentProvenanceProjection.missing_component.provenance_note.source_name
+        ),
+        diagnostic: sections.diagnostics.find(
+          (diagnostic) =>
+            diagnostic.code === "COMPONENT_PROVENANCE_MISSING" &&
+            diagnostic.affected_object.ref_id === "component:C-140"
+          )
+      }
+    };
+
+    expect(componentProvenanceProjection.schema_version).toBe("1.0.0");
+    expect(actualProjection).toEqual(componentProvenanceProjection);
+  });
+
   it("maps the actual manifest, source dimensions, private copies, and DEL-08-06 records without mutating sources", async () => {
     const { model, result, inputManifest, analysisRun } =
       await currentSession();
@@ -118,6 +180,51 @@ describe("report-package current-session request", () => {
     expect(model).toEqual(modelSnapshot);
     expect(result).toEqual(resultSnapshot);
     expect(analysisRun).toEqual(runSnapshot);
+  });
+
+  it("blocks a same-ID model whose canonical payload differs from the verified manifest", async () => {
+    const { model, result, inputManifest, analysisRun } = await currentSession();
+    const changedModel = structuredClone(model);
+    changedModel.project.description = `${changedModel.project.description} changed after manifest`;
+
+    expect(changedModel.project.id).toBe(inputManifest.manifest.model_basis.model_ref);
+    expect(await canonicalSha256Hex(changedModel)).not.toBe(
+      await canonicalSha256Hex(inputManifest.manifest.model_basis.model_payload)
+    );
+    await expect(
+      buildReportPackageRequest({
+        model: changedModel,
+        result,
+        analysisRun,
+        inputManifest,
+        projectSummary: null,
+        comparison: null,
+        ruleCheckAggregate: null
+      })
+    ).rejects.toThrow("REPORT-PACKAGE-INPUT-MANIFEST-MODEL-PAYLOAD-MISMATCH");
+  });
+
+  it("accepts canonically equal model payloads with reordered object keys", async () => {
+    const { model, result, inputManifest, analysisRun } = await currentSession();
+    const reorderedModel = structuredClone(model);
+    reorderedModel.project.units = Object.fromEntries(
+      Object.entries(reorderedModel.project.units).reverse()
+    );
+    const canonicalModelHash = await canonicalSha256Hex(model);
+
+    expect(JSON.stringify(reorderedModel)).not.toBe(JSON.stringify(model));
+    expect(await canonicalSha256Hex(reorderedModel)).toBe(canonicalModelHash);
+    const request = await buildReportPackageRequest({
+      model: reorderedModel,
+      result,
+      analysisRun,
+      inputManifest,
+      projectSummary: null,
+      comparison: null,
+      ruleCheckAggregate: null
+    });
+
+    expect(request.audit_manifest.model_hash?.value).toBe(canonicalModelHash);
   });
 
   it("blocks every non-null rule-check aggregate before assembly", async () => {

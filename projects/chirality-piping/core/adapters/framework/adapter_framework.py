@@ -8,7 +8,10 @@ parsing real external files or selecting a concrete import/export format.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
+import json
+import math
 import re
 from typing import Any
 
@@ -27,6 +30,29 @@ REQUIRED_TBD_DECISIONS = {
     "local_fea_package_format",
     "redaction_workflow",
 }
+
+ALLOWED_ADAPTER_CAPABILITIES = frozenset(
+    {
+        "import_model",
+        "export_model",
+        "import_library",
+        "export_library",
+        "import_rule_pack_ref",
+        "export_results",
+        "validate_payload",
+        "contribution_review",
+        "TBD",
+    }
+)
+
+REQUIRED_OPERATIONAL_ADAPTER_CAPABILITIES = frozenset(
+    {
+        "import_model",
+        "export_model",
+        "validate_payload",
+        "contribution_review",
+    }
+)
 
 REQUIRED_PROVENANCE_FIELDS = {
     "source_name",
@@ -91,6 +117,17 @@ FORBIDDEN_PERSISTENCE_PATTERNS = {
 }
 
 PUBLIC_REVIEWED = "public_permissive_reviewed"
+MAX_CALLER_JSON_DEPTH = 64
+MAX_CALLER_JSON_NODES = 100_000
+MAX_CALLER_JSON_BYTES = 4 * 1024 * 1024
+MAX_ADAPTER_FALLBACK_CAPABILITIES = 64
+MAX_ADAPTER_FALLBACK_IDENTIFIER_BYTES = 256
+MAX_DIAGNOSTIC_PATH_SEGMENT_BYTES = 256
+MAX_DIAGNOSTIC_PATH_BYTES = 4096
+ADAPTER_FALLBACK_IDENTIFIER_PATTERN = re.compile(
+    r"^ops\.adapter\.[a-z0-9_]+$"
+)
+DIAGNOSTIC_PATH_SEGMENT_PATTERN = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
 @dataclass(frozen=True)
@@ -120,7 +157,354 @@ class AdapterRuntimeGateResult:
     findings: tuple[AdapterFinding, ...]
 
 
-def gate_adapter_runtime_dispatch(payload: dict[str, Any]) -> AdapterRuntimeGateResult:
+@dataclass(frozen=True)
+class _AdapterPayloadNormalization:
+    snapshot: dict[str, Any] | None
+    findings: tuple[AdapterFinding, ...]
+    diagnostic_contexts: tuple[Mapping[str, Any], ...]
+    boundary_candidates: tuple[tuple[Any, Mapping[str, Any] | None], ...]
+
+
+def _bounded_diagnostic_child_path(path: str, key: Any, index: int) -> str:
+    """Append only a bounded canonical caller-key segment to a diagnostic path."""
+
+    segment = f"key_{index}"
+    if type(key) is str:
+        try:
+            if (
+                len(key.encode("utf-8")) <= MAX_DIAGNOSTIC_PATH_SEGMENT_BYTES
+                and DIAGNOSTIC_PATH_SEGMENT_PATTERN.fullmatch(key) is not None
+            ):
+                segment = key
+        except Exception:
+            pass
+    candidate = f"{path}.{segment}"
+    try:
+        if len(candidate.encode("utf-8")) <= MAX_DIAGNOSTIC_PATH_BYTES:
+            return candidate
+    except Exception:
+        pass
+    root = re.split(r"[.\[]", path, maxsplit=1)[0]
+    return f"{root}.path_limit.key_{index}"
+
+
+def _plain_json_snapshot(
+    value: Any,
+    path: str,
+) -> tuple[Any, str | None, str | None]:
+    """Detach bounded exact-JSON evidence without invoking caller overloads."""
+
+    stack: list[tuple[str, Any, str, int]] = [("visit", value, path, 0)]
+    active_containers: set[int] = set()
+    nodes = 0
+    text_characters = 0
+    current_path = path
+    try:
+        while stack:
+            action, current, current_path, depth = stack.pop()
+            if action == "exit":
+                active_containers.remove(current)
+                continue
+            nodes += 1
+            if nodes > MAX_CALLER_JSON_NODES:
+                return None, current_path, "node_limit"
+            if depth > MAX_CALLER_JSON_DEPTH:
+                return None, current_path, "depth_limit"
+
+            value_type = type(current)
+            if current is None or value_type in {bool, int}:
+                continue
+            if value_type is str:
+                text_characters += len(current)
+                if text_characters > MAX_CALLER_JSON_BYTES:
+                    return None, current_path, "byte_limit"
+                continue
+            if value_type is float:
+                if not math.isfinite(current):
+                    return None, current_path, "nonfinite_number"
+                continue
+            if value_type not in {dict, list}:
+                return None, current_path, "non_exact_json_value"
+
+            identity = id(current)
+            if identity in active_containers:
+                return None, current_path, "cycle"
+            active_containers.add(identity)
+            stack.append(("exit", identity, current_path, depth))
+            if len(current) > MAX_CALLER_JSON_NODES - nodes:
+                return None, current_path, "node_limit"
+            if value_type is list:
+                for index in range(len(current) - 1, -1, -1):
+                    stack.append(
+                        (
+                            "visit",
+                            current[index],
+                            f"{current_path}[{index}]",
+                            depth + 1,
+                        )
+                    )
+            else:
+                items = list(dict.items(current))
+                for index, (key, _) in enumerate(items):
+                    if type(key) is not str:
+                        return (
+                            None,
+                            _bounded_diagnostic_child_path(
+                                current_path, key, index
+                            ),
+                            "non_string_key",
+                        )
+                    text_characters += len(key)
+                    if text_characters > MAX_CALLER_JSON_BYTES:
+                        return None, current_path, "byte_limit"
+                for index in range(len(items) - 1, -1, -1):
+                    key, item = items[index]
+                    stack.append(
+                        (
+                            "visit",
+                            item,
+                            _bounded_diagnostic_child_path(
+                                current_path, key, index
+                            ),
+                            depth + 1,
+                        )
+                    )
+
+        serialized = json.dumps(
+            value,
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=False,
+            allow_nan=False,
+        ).encode("utf-8")
+        if len(serialized) > MAX_CALLER_JSON_BYTES:
+            return None, path, "byte_limit"
+        snapshot = json.loads(serialized)
+    except Exception:
+        return None, current_path, "serialization_failure"
+    return snapshot, None, None
+
+
+def _exact_child(value: Any, key: str) -> Any:
+    """Read an exact-string key without hashing/equality on hostile raw keys."""
+
+    if type(value) is not dict:
+        return None
+    text_characters = 0
+    try:
+        for index, (candidate, child) in enumerate(dict.items(value)):
+            if index >= MAX_CALLER_JSON_NODES:
+                return None
+            if type(candidate) is str:
+                text_characters += len(candidate)
+                if text_characters > MAX_CALLER_JSON_BYTES:
+                    return None
+                if candidate == key:
+                    return child
+    except Exception:
+        return None
+    return None
+
+
+def _safe_provenance_snapshot(provenance: Any) -> dict[str, Any] | None:
+    snapshot, invalid_path, _ = _plain_json_snapshot(provenance, "provenance")
+    if invalid_path is None and type(snapshot) is dict:
+        return snapshot
+    if type(provenance) is not dict:
+        return None
+    redistribution = _exact_child(provenance, "redistribution_status")
+    review = _exact_child(provenance, "review_status")
+    if type(redistribution) is str and redistribution == "protected_suspected":
+        return {"redistribution_status": redistribution, "review_status": "TBD"}
+    if type(review) is str and review == "quarantined":
+        return {"redistribution_status": "TBD", "review_status": review}
+    return None
+
+
+def _adapter_capabilities_malformed(capabilities: Any) -> bool:
+    """Inspect raw fallback capabilities within a fixed operation budget."""
+
+    if type(capabilities) is not list:
+        return True
+    try:
+        capability_count = len(capabilities)
+        if capability_count > MAX_ADAPTER_FALLBACK_CAPABILITIES:
+            return True
+        return any(
+            type(capabilities[index]) is not str
+            for index in range(capability_count)
+        )
+    except Exception:
+        return True
+
+
+def _safe_adapter_reference_id(adapter_id: Any) -> str:
+    """Return only a bounded canonical adapter identifier for diagnostics."""
+
+    if type(adapter_id) is not str:
+        return "TBD"
+    try:
+        if len(adapter_id.encode("utf-8")) > MAX_ADAPTER_FALLBACK_IDENTIFIER_BYTES:
+            return "TBD"
+        if ADAPTER_FALLBACK_IDENTIFIER_PATTERN.fullmatch(adapter_id) is None:
+            return "TBD"
+    except Exception:
+        return "TBD"
+    return adapter_id
+
+
+def _adapter_shape_finding(invalid_path: str | None, reason: str | None) -> AdapterFinding:
+    path = (invalid_path or "adapter_payload").removeprefix("adapter_payload.")
+    if ".provenance" in path:
+        object_path, _, _ = path.partition(".provenance")
+        return AdapterFinding(
+            "ADAPTER_PROVENANCE_INCOMPLETE",
+            "blocking",
+            f"{object_path}.provenance",
+            "Adapter provenance contains a noncanonical JSON value.",
+            "Provide exact JSON provenance without subclasses, cycles, excessive depth, or nonfinite values.",
+        )
+    if path.startswith("adapter_declaration.capabilities"):
+        return AdapterFinding(
+            "ADAPTER_CAPABILITIES_MALFORMED",
+            "blocking",
+            "adapter_declaration.capabilities",
+            "Adapter capabilities contain a noncanonical JSON value.",
+            "Declare capabilities as a bounded exact-JSON array of canonical strings.",
+        )
+    return AdapterFinding(
+        "ADAPTER_DECLARATION_MALFORMED",
+        "blocking",
+        path or "adapter_declaration",
+        f"Adapter declaration cannot be normalized to bounded exact JSON ({reason or 'invalid_shape'}).",
+        "Provide exact JSON objects, arrays, and primitive values without subclasses, cycles, excessive depth, or nonfinite numbers.",
+    )
+
+
+def _normalize_adapter_payload(
+    payload: Any,
+    *,
+    preflight: tuple[Any, str | None, str | None] | None = None,
+) -> _AdapterPayloadNormalization:
+    snapshot, invalid_path, reason = (
+        preflight
+        if preflight is not None
+        else _plain_json_snapshot(payload, "adapter_payload")
+    )
+    if invalid_path is None and type(snapshot) is dict:
+        return _AdapterPayloadNormalization(snapshot, (), (), ())
+
+    findings: list[AdapterFinding] = [_adapter_shape_finding(invalid_path, reason)]
+    contexts: list[Mapping[str, Any]] = [
+        {
+            "source": {"ref_type": "adapter", "ref_id": "TBD"},
+            "affected_object": {
+                "ref_type": "diagnostic",
+                "ref_id": findings[0].path,
+            },
+            "provenance": None,
+        }
+    ]
+    boundary_candidates: list[tuple[Any, Mapping[str, Any] | None]] = []
+    declaration_value = _exact_child(payload, "adapter_declaration")
+    capabilities = _exact_child(declaration_value, "capabilities")
+    if (
+        findings[0].code != "ADAPTER_CAPABILITIES_MALFORMED"
+        and _adapter_capabilities_malformed(capabilities)
+    ):
+        finding = AdapterFinding(
+            "ADAPTER_CAPABILITIES_MALFORMED",
+            "blocking",
+            "adapter_declaration.capabilities",
+            "Adapter capabilities are malformed.",
+            "Declare capabilities as a bounded exact-JSON array of canonical strings.",
+        )
+        findings.append(finding)
+        contexts.append(
+            {
+                "source": {"ref_type": "adapter", "ref_id": "TBD"},
+                "affected_object": {
+                    "ref_type": "diagnostic",
+                    "ref_id": finding.path,
+                },
+                "provenance": None,
+            }
+        )
+    for object_name in ("adapter_declaration", "operation_result"):
+        object_value = _exact_child(payload, object_name)
+        adapter_ref = _safe_adapter_reference_id(
+            _exact_child(object_value, "adapter_id")
+        )
+        provenance = _exact_child(object_value, "provenance")
+        provenance_snapshot = _safe_provenance_snapshot(provenance)
+        redistribution = _exact_child(provenance, "redistribution_status")
+        review = _exact_child(provenance, "review_status")
+        if (
+            type(redistribution) is str
+            and redistribution == "protected_suspected"
+        ) or (type(review) is str and review == "quarantined"):
+            finding = AdapterFinding(
+                "ADAPTER_PROTECTED_CONTENT_SUSPECTED",
+                "quarantine",
+                f"{object_name}.provenance",
+                "Adapter provenance indicates suspected protected content.",
+                "Quarantine the payload and request human/legal review.",
+            )
+            findings.append(finding)
+            contexts.append(
+                {
+                    "source": {"ref_type": "adapter", "ref_id": adapter_ref},
+                    "affected_object": {
+                        "ref_type": "diagnostic",
+                        "ref_id": finding.path,
+                    },
+                    "provenance": provenance_snapshot,
+                }
+            )
+            boundary_candidates.append((provenance_snapshot, None))
+
+        privacy = _exact_child(object_value, "privacy")
+        classification = _exact_child(privacy, "classification")
+        if type(classification) is str and classification == "protected_suspected":
+            finding = AdapterFinding(
+                "ADAPTER_PRIVACY_PROTECTED_CONTENT_SUSPECTED",
+                "quarantine",
+                f"{object_name}.privacy.classification",
+                "Adapter privacy classification indicates suspected protected content.",
+                "Quarantine the payload and request human/legal review.",
+            )
+            findings.append(finding)
+            contexts.append(
+                {
+                    "source": {"ref_type": "adapter", "ref_id": adapter_ref},
+                    "affected_object": {
+                        "ref_type": "diagnostic",
+                        "ref_id": finding.path,
+                    },
+                    "provenance": provenance_snapshot,
+                }
+            )
+            boundary_candidates.append(
+                (
+                    provenance_snapshot,
+                    {
+                        "classification": "protected_suspected",
+                        "local_first": True,
+                        "telemetry_allowed": False,
+                        "export_review_required": True,
+                        "private_payload_redacted": False,
+                    },
+                )
+            )
+    return _AdapterPayloadNormalization(
+        None,
+        tuple(findings),
+        tuple(contexts),
+        tuple(boundary_candidates),
+    )
+
+
+def gate_adapter_runtime_dispatch(payload: Any) -> AdapterRuntimeGateResult:
     """Gate the selected declaration-to-runtime seam without creating a loader.
 
     Invalid or quarantined declarations stop at their existing validation
@@ -152,8 +536,22 @@ def gate_adapter_runtime_dispatch(payload: dict[str, Any]) -> AdapterRuntimeGate
     )
 
 
-def validate_adapter_declaration(payload: dict[str, Any]) -> AdapterValidationResult:
+def validate_adapter_declaration(payload: Any) -> AdapterValidationResult:
     """Validate a format-neutral adapter declaration payload."""
+
+    normalized = _normalize_adapter_payload(payload)
+    if normalized.snapshot is None:
+        return AdapterValidationResult(
+            outcome=_determine_outcome(list(normalized.findings)),
+            findings=normalized.findings,
+        )
+    return _validate_adapter_declaration_snapshot(normalized.snapshot)
+
+
+def _validate_adapter_declaration_snapshot(
+    payload: dict[str, Any],
+) -> AdapterValidationResult:
+    """Validate a detached exact-JSON adapter payload snapshot."""
 
     findings: list[AdapterFinding] = []
     findings.extend(_validate_identity(payload))
@@ -178,8 +576,26 @@ def build_result(
     operation_id: str,
     operation_class: str,
     diagnostics: tuple[AdapterFinding, ...],
+    diagnostic_contexts: tuple[Mapping[str, Any], ...] | None = None,
+    privacy_context: Mapping[str, Any] | None = None,
+    provenance: Any = None,
 ) -> dict[str, Any]:
     """Build a deterministic operation result envelope for tests and callers."""
+
+    if diagnostic_contexts is None:
+        diagnostic_contexts = tuple(
+            {
+                "source": {"ref_type": "adapter", "ref_id": "ops.adapter.framework"},
+                "affected_object": {
+                    "ref_type": "diagnostic",
+                    "ref_id": finding.path,
+                },
+                "provenance": None,
+            }
+            for finding in diagnostics
+        )
+    if len(diagnostic_contexts) != len(diagnostics):
+        raise ValueError("diagnostic_contexts must align one-to-one with diagnostics")
 
     return {
         "operation_id": operation_id,
@@ -194,25 +610,16 @@ def build_result(
                 "code": finding.code,
                 "class": _diagnostic_class(finding),
                 "severity": finding.severity,
-                "source": {"ref_type": "adapter", "ref_id": "ops.adapter.framework"},
-                "affected_object": {
-                    "ref_type": "diagnostic",
-                    "ref_id": finding.path,
-                },
+                "source": dict(context["source"]),
+                "affected_object": dict(context["affected_object"]),
                 "message": finding.message,
                 "remediation": finding.remediation,
-                "provenance": invented_provenance(),
+                "provenance": _diagnostic_provenance(context.get("provenance")),
             }
-            for finding in diagnostics
+            for finding, context in zip(diagnostics, diagnostic_contexts, strict=True)
         ],
-        "privacy": {
-            "classification": PUBLIC_REVIEWED,
-            "local_first": True,
-            "telemetry_allowed": False,
-            "export_review_required": True,
-            "private_payload_redacted": True,
-        },
-        "provenance": invented_provenance(),
+        "privacy": _result_privacy(privacy_context),
+        "provenance": _diagnostic_provenance(provenance),
         "checksums": [],
         "audit_manifest_refs": [],
         "result_envelope_ref": {
@@ -222,6 +629,72 @@ def build_result(
         },
         "professional_boundary": professional_boundary(),
     }
+
+
+def _result_privacy(privacy: Mapping[str, Any] | None) -> dict[str, Any]:
+    """Return a schema-valid, local-first context without inventing clearance."""
+
+    source = privacy if isinstance(privacy, Mapping) else {}
+    classification = source.get("classification")
+    if classification not in {
+        PUBLIC_REVIEWED,
+        "private_local_only",
+        "protected_suspected",
+        "export_review_required",
+        "TBD",
+    }:
+        classification = "TBD"
+    return {
+        "classification": classification,
+        "local_first": True,
+        "telemetry_allowed": False,
+        "export_review_required": source.get("export_review_required") is not False,
+        "private_payload_redacted": source.get("private_payload_redacted") is True,
+    }
+
+
+def _diagnostic_provenance(provenance: Any) -> dict[str, str]:
+    """Preserve canonical input provenance and fail closed without invention."""
+
+    fields = (
+        "source_name",
+        "source_location",
+        "source_license",
+        "contributor",
+        "contributor_certification",
+        "redistribution_status",
+        "review_status",
+    )
+    source = provenance if isinstance(provenance, Mapping) else {}
+    values = {field: source.get(field) for field in fields}
+    complete = all(
+        type(value) is str and bool(value.strip()) for value in values.values()
+    )
+    result = {
+        field: value if type(value) is str and value.strip() else "TBD"
+        for field, value in values.items()
+    }
+    valid_redistribution = {
+        "public_permissive",
+        "private_only",
+        "unknown",
+        "protected_suspected",
+        "TBD",
+    }
+    valid_review = {"accepted", "needs_review", "quarantined", "rejected", "TBD"}
+    if result["redistribution_status"] not in valid_redistribution:
+        result["redistribution_status"] = "TBD"
+        complete = False
+    if result["review_status"] not in valid_review:
+        result["review_status"] = "TBD"
+        complete = False
+    quarantine_marker = (
+        result["redistribution_status"] == "protected_suspected"
+        or result["review_status"] == "quarantined"
+    )
+    if not complete and not quarantine_marker:
+        result["review_status"] = "rejected"
+    return result
 
 
 def invented_provenance() -> dict[str, str]:
@@ -369,8 +842,20 @@ def _validate_adapter(adapter: Any, path: str) -> list[AdapterFinding]:
                 "Do not select external formats in DEL-10-02.",
             )
         )
-    capabilities = set(adapter.get("capabilities", ()))
-    if not capabilities:
+    capabilities = adapter.get("capabilities")
+    if type(capabilities) is not list or any(
+        type(capability) is not str for capability in capabilities
+    ):
+        findings.append(
+            AdapterFinding(
+                "ADAPTER_CAPABILITIES_MALFORMED",
+                "blocking",
+                f"{path}.capabilities",
+                "Adapter capabilities are malformed.",
+                "Declare capabilities as a JSON-array-shaped list of canonical string values.",
+            )
+        )
+    elif not capabilities:
         findings.append(
             AdapterFinding(
                 "ADAPTER_CAPABILITIES_MISSING",
@@ -378,6 +863,32 @@ def _validate_adapter(adapter: Any, path: str) -> list[AdapterFinding]:
                 f"{path}.capabilities",
                 "Adapter capabilities are missing.",
                 "Declare bounded format-neutral capabilities.",
+            )
+        )
+    elif any(
+        capability not in ALLOWED_ADAPTER_CAPABILITIES
+        for capability in capabilities
+    ):
+        findings.append(
+            AdapterFinding(
+                "ADAPTER_CAPABILITY_INVALID",
+                "blocking",
+                f"{path}.capabilities",
+                "Adapter capabilities contain a noncanonical value.",
+                "Use only canonical AdapterCapability enum values.",
+            )
+        )
+    elif not any(
+        capability in REQUIRED_OPERATIONAL_ADAPTER_CAPABILITIES
+        for capability in capabilities
+    ):
+        findings.append(
+            AdapterFinding(
+                "ADAPTER_OPERATIONAL_CAPABILITY_MISSING",
+                "blocking",
+                f"{path}.capabilities",
+                "Adapter capabilities do not include an operational capability.",
+                "Include import_model, export_model, validate_payload, or contribution_review.",
             )
         )
     findings.extend(_validate_provenance(adapter.get("provenance"), f"{path}.provenance"))
@@ -478,18 +989,13 @@ def _validate_provenance(provenance: Any, path: str) -> list[AdapterFinding]:
                 "Record source, license, contributor, redistribution, and review metadata.",
             )
         ]
-    missing = sorted(field for field in REQUIRED_PROVENANCE_FIELDS if not provenance.get(field))
-    if missing:
-        return [
-            AdapterFinding(
-                "ADAPTER_PROVENANCE_INCOMPLETE",
-                "blocking",
-                path,
-                f"Required provenance fields are missing: {', '.join(missing)}.",
-                "Complete provenance before adapter declaration acceptance.",
-            )
-        ]
-    if provenance.get("redistribution_status") == "protected_suspected":
+    redistribution = dict.get(provenance, "redistribution_status")
+    review = dict.get(provenance, "review_status")
+    protected_marker = (
+        type(redistribution) is str and redistribution == "protected_suspected"
+    )
+    quarantined_marker = type(review) is str and review == "quarantined"
+    if protected_marker or quarantined_marker:
         return [
             AdapterFinding(
                 "ADAPTER_PROTECTED_CONTENT_SUSPECTED",
@@ -497,6 +1003,48 @@ def _validate_provenance(provenance: Any, path: str) -> list[AdapterFinding]:
                 path,
                 "Adapter provenance indicates suspected protected content.",
                 "Quarantine the payload and request human/legal review.",
+            )
+        ]
+    malformed = sorted(
+        field
+        for field in REQUIRED_PROVENANCE_FIELDS
+        if type((value := dict.get(provenance, field))) is not str
+        or not value.strip()
+    )
+    if malformed:
+        return [
+            AdapterFinding(
+                "ADAPTER_PROVENANCE_INCOMPLETE",
+                "blocking",
+                path,
+                f"Required provenance fields are missing or malformed: {', '.join(malformed)}.",
+                "Complete provenance before adapter declaration acceptance.",
+            )
+        ]
+    if redistribution not in {
+        "public_permissive",
+        "private_only",
+        "unknown",
+        "protected_suspected",
+        "TBD",
+    } or review not in {"accepted", "needs_review", "quarantined", "rejected", "TBD"}:
+        return [
+            AdapterFinding(
+                "ADAPTER_PROVENANCE_INVALID",
+                "blocking",
+                path,
+                "Adapter provenance contains an invalid redistribution or review status.",
+                "Use canonical provenance status values before adapter declaration acceptance.",
+            )
+        ]
+    if redistribution not in {"public_permissive", "private_only"} or review != "accepted":
+        return [
+            AdapterFinding(
+                "ADAPTER_PROVENANCE_NOT_CLEARED",
+                "blocking",
+                path,
+                "Adapter provenance is complete but not cleared for use.",
+                "Resolve redistribution and review status without importing protected content.",
             )
         ]
     return []
@@ -514,6 +1062,32 @@ def _validate_privacy(privacy: Any, path: str) -> list[AdapterFinding]:
             )
         ]
     findings: list[AdapterFinding] = []
+    classification = privacy.get("classification")
+    if classification == "protected_suspected":
+        findings.append(
+            AdapterFinding(
+                "ADAPTER_PRIVACY_PROTECTED_CONTENT_SUSPECTED",
+                "quarantine",
+                f"{path}.classification",
+                "Adapter privacy classification indicates suspected protected content.",
+                "Quarantine the payload and request human/legal review.",
+            )
+        )
+    elif classification not in {
+        PUBLIC_REVIEWED,
+        "private_local_only",
+        "export_review_required",
+        "TBD",
+    }:
+        findings.append(
+            AdapterFinding(
+                "ADAPTER_PRIVACY_CLASSIFICATION_INVALID",
+                "blocking",
+                f"{path}.classification",
+                "Privacy classification is missing or invalid.",
+                "Use a canonical privacy classification.",
+            )
+        )
     if privacy.get("local_first") is not True:
         findings.append(
             AdapterFinding(
@@ -534,6 +1108,17 @@ def _validate_privacy(privacy: Any, path: str) -> list[AdapterFinding]:
                 "Set telemetry_allowed to false.",
             )
         )
+    for field in ("export_review_required", "private_payload_redacted"):
+        if not isinstance(privacy.get(field), bool):
+            findings.append(
+                AdapterFinding(
+                    "ADAPTER_PRIVACY_FIELD_INVALID",
+                    "blocking",
+                    f"{path}.{field}",
+                    f"{field} must be an explicit boolean.",
+                    "Provide the complete canonical privacy context.",
+                )
+            )
     return findings
 
 
@@ -635,10 +1220,16 @@ def _determine_outcome(findings: list[AdapterFinding]) -> str:
 
 
 def _diagnostic_class(finding: AdapterFinding) -> str:
+    if "PROTECTED" in finding.code:
+        return "IP_BOUNDARY_WARNING"
+    if (
+        "UNIT" in finding.code
+        or "DIMENSION" in finding.code
+        or ("QUANTITY" in finding.code and "PROVENANCE" not in finding.code)
+    ):
+        return "UNIT_WARNING"
     if "PROVENANCE" in finding.code:
         return "PROVENANCE_WARNING"
     if "PRIVACY" in finding.code or "TELEMETRY" in finding.code:
         return "PRIVACY_WARNING"
-    if "PROTECTED" in finding.code:
-        return "IP_BOUNDARY_WARNING"
     return "ADAPTER_BLOCKING"

@@ -23,6 +23,12 @@ from core.adapters.framework import (  # noqa: E402
     gate_adapter_runtime_dispatch,
     validate_adapter_declaration,
 )
+from core.adapters.framework.adapter_framework import (  # noqa: E402
+    MAX_CALLER_JSON_BYTES,
+    MAX_CALLER_JSON_NODES,
+    MAX_DIAGNOSTIC_PATH_SEGMENT_BYTES,
+    _normalize_adapter_payload,
+)
 
 
 REQUIRED_ROOT = {
@@ -129,6 +135,61 @@ def current_authority_fixture():
 
 def codes(result):
     return {finding.code for finding in result.findings}
+
+
+class HostileDict(dict):
+    def __init__(self, value):
+        super().__init__(value)
+        self.accesses = 0
+
+    def get(self, key, default=None):
+        self.accesses += 1
+        raise RuntimeError("caller accessor must not execute")
+
+    def items(self):
+        self.accesses += 1
+        raise RuntimeError("caller iteration must not execute")
+
+    def __iter__(self):
+        self.accesses += 1
+        raise RuntimeError("caller iteration must not execute")
+
+
+class HostileList(list):
+    def __init__(self, value):
+        super().__init__(value)
+        self.accesses = 0
+
+    def __iter__(self):
+        self.accesses += 1
+        raise RuntimeError("caller iteration must not execute")
+
+    def __getitem__(self, index):
+        self.accesses += 1
+        raise RuntimeError("caller accessor must not execute")
+
+
+class CollidingHostileKey:
+    def __init__(self, target):
+        self.target = target
+        self.equality_calls = 0
+
+    def __hash__(self):
+        return hash(self.target)
+
+    def __eq__(self, other):
+        self.equality_calls += 1
+        raise RuntimeError("hostile raw-key equality must not execute")
+
+
+def deep_probe():
+    root = []
+    cursor = root
+    for _ in range(80):
+        child = []
+        cursor.append(child)
+        cursor = child
+    return root
 
 
 def test_schema_contract_shape_and_traceability():
@@ -284,6 +345,76 @@ def test_missing_provenance_blocks_adapter_declaration():
     assert "ADAPTER_PROVENANCE_INCOMPLETE" in codes(result)
 
 
+def test_uncleared_canonical_provenance_blocks_declaration_and_operation_result():
+    uncleared_cases = (
+        ("review_status", "rejected"),
+        ("review_status", "needs_review"),
+        ("review_status", "TBD"),
+        ("redistribution_status", "unknown"),
+        ("redistribution_status", "TBD"),
+    )
+    for object_name in ("adapter_declaration", "operation_result"):
+        for field, value in uncleared_cases:
+            fixture = current_authority_fixture()
+            fixture[object_name]["provenance"][field] = value
+
+            result = validate_adapter_declaration(fixture)
+
+            matching = [
+                finding
+                for finding in result.findings
+                if finding.code == "ADAPTER_PROVENANCE_NOT_CLEARED"
+            ]
+            assert result.accepted is False
+            assert result.outcome == "REJECTED"
+            assert [finding.path for finding in matching] == [
+                f"{object_name}.provenance"
+            ]
+
+
+def test_provenance_requires_exact_nonblank_plain_strings_without_throwing():
+    class UnhashableString(str):
+        __hash__ = None
+
+    malformed_cases = (
+        ("source_name", {"truthy": True}),
+        ("source_location", ["truthy"]),
+        ("source_license", 17),
+        ("contributor", object()),
+        ("contributor_certification", True),
+        ("redistribution_status", UnhashableString("public_permissive")),
+        ("review_status", UnhashableString("accepted")),
+    )
+    for object_name in ("adapter_declaration", "operation_result"):
+        for field, value in malformed_cases:
+            fixture = current_authority_fixture()
+            fixture[object_name]["provenance"][field] = value
+
+            result = validate_adapter_declaration(fixture)
+
+            assert result.accepted is False
+            assert result.outcome == "REJECTED"
+            assert "ADAPTER_PROVENANCE_INCOMPLETE" in codes(result)
+
+
+def test_provenance_quarantine_marker_precedes_truthy_malformed_fields():
+    for object_name in ("adapter_declaration", "operation_result"):
+        for marker_field, marker_value in (
+            ("redistribution_status", "protected_suspected"),
+            ("review_status", "quarantined"),
+        ):
+            fixture = current_authority_fixture()
+            provenance = fixture[object_name]["provenance"]
+            provenance[marker_field] = marker_value
+            provenance["source_license"] = {"truthy": True}
+
+            result = validate_adapter_declaration(fixture)
+
+            assert result.accepted is False
+            assert result.outcome == "QUARANTINE"
+            assert "ADAPTER_PROTECTED_CONTENT_SUSPECTED" in codes(result)
+
+
 def test_protected_suspected_fixture_quarantines():
     fixture = current_authority_fixture()
     fixture["adapter_declaration"]["provenance"][
@@ -295,6 +426,276 @@ def test_protected_suspected_fixture_quarantines():
     assert result.accepted is False
     assert result.outcome == "QUARANTINE"
     assert "ADAPTER_PROTECTED_CONTENT_SUSPECTED" in codes(result)
+
+
+def test_protected_privacy_quarantines_declaration_and_operation_result():
+    for object_name in ("adapter_declaration", "operation_result"):
+        fixture = current_authority_fixture()
+        fixture[object_name]["privacy"]["classification"] = "protected_suspected"
+
+        result = validate_adapter_declaration(fixture)
+
+        matching = [
+            finding
+            for finding in result.findings
+            if finding.code == "ADAPTER_PRIVACY_PROTECTED_CONTENT_SUSPECTED"
+        ]
+        assert result.accepted is False
+        assert result.outcome == "QUARANTINE"
+        assert [finding.path for finding in matching] == [
+            f"{object_name}.privacy.classification"
+        ]
+
+
+def test_protected_privacy_quarantine_survives_malformed_capabilities_directly():
+    for object_name in ("adapter_declaration", "operation_result"):
+        fixture = current_authority_fixture()
+        fixture["adapter_declaration"]["capabilities"] = None
+        fixture[object_name]["privacy"]["classification"] = "protected_suspected"
+
+        result = validate_adapter_declaration(fixture)
+
+        assert result.accepted is False
+        assert result.outcome == "QUARANTINE"
+        assert "ADAPTER_CAPABILITIES_MALFORMED" in codes(result)
+        assert "ADAPTER_PRIVACY_PROTECTED_CONTENT_SUSPECTED" in codes(result)
+
+
+def test_protected_privacy_dominates_hostile_provenance_and_capabilities_directly():
+    class UnhashableString(str):
+        __hash__ = None
+
+    for object_name in ("adapter_declaration", "operation_result"):
+        for status_field, status_value in (
+            ("redistribution_status", UnhashableString("public_permissive")),
+            ("review_status", UnhashableString("accepted")),
+        ):
+            fixture = current_authority_fixture()
+            fixture["adapter_declaration"]["capabilities"] = None
+            fixture[object_name]["provenance"][status_field] = status_value
+            fixture[object_name]["privacy"]["classification"] = "protected_suspected"
+
+            result = validate_adapter_declaration(fixture)
+
+            assert result.accepted is False
+            assert result.outcome == "QUARANTINE"
+            assert "ADAPTER_PROVENANCE_INCOMPLETE" in codes(result)
+            assert "ADAPTER_CAPABILITIES_MALFORMED" in codes(result)
+            assert "ADAPTER_PRIVACY_PROTECTED_CONTENT_SUSPECTED" in codes(result)
+
+
+def test_unhashable_string_capability_never_masks_direct_quarantine():
+    class UnhashableString(str):
+        __hash__ = None
+
+    for marker_field, marker_value in (
+        ("redistribution_status", "protected_suspected"),
+        ("review_status", "quarantined"),
+    ):
+        fixture = current_authority_fixture()
+        fixture["adapter_declaration"]["capabilities"] = [
+            UnhashableString("import_model")
+        ]
+        fixture["adapter_declaration"]["provenance"][marker_field] = marker_value
+
+        result = validate_adapter_declaration(fixture)
+
+        assert result.accepted is False
+        assert result.outcome == "QUARANTINE"
+        assert "ADAPTER_CAPABILITIES_MALFORMED" in codes(result)
+        assert "ADAPTER_PROTECTED_CONTENT_SUSPECTED" in codes(result)
+
+
+def test_direct_adapter_gate_rejects_hostile_exact_json_subclasses_without_access():
+    hostile_payload = HostileDict(current_authority_fixture())
+    gated = gate_adapter_runtime_dispatch(hostile_payload)
+
+    assert gated.outcome == "REJECTED"
+    assert gated.declaration_accepted is False
+    assert gated.runtime_dispatched is False
+    assert "ADAPTER_DECLARATION_MALFORMED" in {
+        finding.code for finding in gated.findings
+    }
+    assert hostile_payload.accesses == 0
+
+    fixture = current_authority_fixture()
+    hostile_capabilities = HostileList(["import_model"])
+    fixture["adapter_declaration"]["capabilities"] = hostile_capabilities
+    gated = gate_adapter_runtime_dispatch(fixture)
+
+    assert gated.outcome == "REJECTED"
+    assert gated.runtime_dispatched is False
+    assert "ADAPTER_CAPABILITIES_MALFORMED" in {
+        finding.code for finding in gated.findings
+    }
+    assert hostile_capabilities.accesses == 0
+
+
+def test_direct_adapter_gate_rejects_cycle_depth_nonfinite_and_serialization_failure():
+    cases = []
+    cyclic = []
+    cyclic.append(cyclic)
+    cases.append((cyclic, lambda value: value[0] is value))
+    deep = deep_probe()
+    cases.append((deep, lambda value: len(value) == 1))
+    cases.append((float("nan"), lambda value: value != value))
+    huge_integer = 10**5000
+    cases.append((huge_integer, lambda value: value == huge_integer))
+
+    for probe, unchanged in cases:
+        fixture = current_authority_fixture()
+        fixture["caller_probe"] = probe
+
+        gated = gate_adapter_runtime_dispatch(fixture)
+
+        assert gated.outcome == "REJECTED"
+        assert gated.declaration_accepted is False
+        assert gated.runtime_dispatched is False
+        assert "ADAPTER_DECLARATION_MALFORMED" in {
+            finding.code for finding in gated.findings
+        }
+        assert unchanged(probe)
+
+
+def test_direct_adapter_quarantine_precedes_safely_observable_marker_with_malformed_sibling():
+    for object_name in ("adapter_declaration", "operation_result"):
+        for failure_kind in ("hostile", "cycle", "depth", "nonfinite"):
+            fixture = current_authority_fixture()
+            fixture[object_name]["privacy"]["classification"] = (
+                "protected_suspected"
+            )
+            if failure_kind == "hostile":
+                probe = HostileDict({"untrusted": True})
+            elif failure_kind == "cycle":
+                probe = []
+                probe.append(probe)
+            elif failure_kind == "depth":
+                probe = deep_probe()
+            else:
+                probe = float("inf")
+            fixture["caller_probe"] = probe
+
+            gated = gate_adapter_runtime_dispatch(fixture)
+
+            assert gated.outcome == "QUARANTINE"
+            assert gated.declaration_accepted is False
+            assert gated.runtime_dispatched is False
+            assert "ADAPTER_DECLARATION_MALFORMED" in {
+                finding.code for finding in gated.findings
+            }
+            assert "ADAPTER_PRIVACY_PROTECTED_CONTENT_SUSPECTED" in {
+                finding.code for finding in gated.findings
+            }
+            if hasattr(probe, "accesses"):
+                assert probe.accesses == 0
+
+
+def test_direct_oversized_capability_fallback_is_bounded_and_quarantines():
+    fixture = current_authority_fixture()
+    capabilities = ["import_model"] * (MAX_CALLER_JSON_NODES + 1)
+    fixture["adapter_declaration"]["capabilities"] = capabilities
+    fixture["adapter_declaration"]["provenance"][
+        "review_status"
+    ] = "quarantined"
+
+    gated = gate_adapter_runtime_dispatch(fixture)
+
+    assert gated.outcome == "QUARANTINE"
+    assert gated.declaration_accepted is False
+    assert gated.runtime_dispatched is False
+    assert "ADAPTER_CAPABILITIES_MALFORMED" in {
+        finding.code for finding in gated.findings
+    }
+    assert "ADAPTER_PROTECTED_CONTENT_SUSPECTED" in {
+        finding.code for finding in gated.findings
+    }
+    assert fixture["adapter_declaration"]["capabilities"] is capabilities
+
+
+def test_direct_unsafe_adapter_reference_id_is_tbd_during_quarantine():
+    for adapter_id in (
+        "ops.adapter." + ("a" * (MAX_CALLER_JSON_BYTES + 1)),
+        "ops.adapter.NOT-CANONICAL",
+    ):
+        fixture = current_authority_fixture()
+        fixture["adapter_declaration"]["adapter_id"] = adapter_id
+        fixture["adapter_declaration"]["provenance"][
+            "redistribution_status"
+        ] = "protected_suspected"
+        cycle = []
+        cycle.append(cycle)
+        fixture["caller_probe"] = cycle
+
+        normalized = _normalize_adapter_payload(fixture)
+
+        assert normalized.snapshot is None
+        assert "ADAPTER_PROTECTED_CONTENT_SUSPECTED" in {
+            finding.code for finding in normalized.findings
+        }
+        marker_index = next(
+            index
+            for index, finding in enumerate(normalized.findings)
+            if finding.code == "ADAPTER_PROTECTED_CONTENT_SUSPECTED"
+        )
+        assert normalized.diagnostic_contexts[marker_index]["source"] == {
+            "ref_type": "adapter",
+            "ref_id": "TBD",
+        }
+        assert adapter_id not in repr(normalized.diagnostic_contexts)
+
+
+def test_direct_adapter_preflight_paths_sanitize_adversarial_raw_keys():
+    for raw_key in (
+        "raw key/../not-canonical",
+        "x" * (MAX_DIAGNOSTIC_PATH_SEGMENT_BYTES + 1),
+    ):
+        fixture = current_authority_fixture()
+        fixture[raw_key] = float("nan")
+        fixture["operation_result"]["privacy"]["classification"] = (
+            "protected_suspected"
+        )
+
+        gated = gate_adapter_runtime_dispatch(fixture)
+
+        assert gated.outcome == "QUARANTINE"
+        assert gated.declaration_accepted is False
+        assert gated.runtime_dispatched is False
+        malformed = next(
+            finding
+            for finding in gated.findings
+            if finding.code == "ADAPTER_DECLARATION_MALFORMED"
+        )
+        assert raw_key not in malformed.path
+        assert malformed.path.startswith("key_")
+        assert len(malformed.path.encode("utf-8")) <= (
+            MAX_DIAGNOSTIC_PATH_SEGMENT_BYTES
+        )
+        assert "ADAPTER_PRIVACY_PROTECTED_CONTENT_SUSPECTED" in {
+            finding.code for finding in gated.findings
+        }
+
+
+def test_direct_adapter_marker_fallback_skips_colliding_hostile_raw_key_equality():
+    fixture = current_authority_fixture()
+    del fixture["adapter_declaration"]
+    hostile_key = CollidingHostileKey("adapter_declaration")
+    fixture[hostile_key] = {"untrusted": True}
+    fixture["operation_result"]["privacy"]["classification"] = (
+        "protected_suspected"
+    )
+
+    gated = gate_adapter_runtime_dispatch(fixture)
+
+    assert gated.outcome == "QUARANTINE"
+    assert gated.declaration_accepted is False
+    assert gated.runtime_dispatched is False
+    assert "ADAPTER_DECLARATION_MALFORMED" in {
+        finding.code for finding in gated.findings
+    }
+    assert "ADAPTER_PRIVACY_PROTECTED_CONTENT_SUSPECTED" in {
+        finding.code for finding in gated.findings
+    }
+    assert hostile_key.equality_calls == 0
 
 
 def test_no_bypass_controls_are_enforced():
@@ -384,6 +785,10 @@ def test_operation_result_builder_preserves_boundaries():
     assert built["parse_status"] == "not_parsed_by_framework"
     assert built["privacy"]["local_first"] is True
     assert built["privacy"]["telemetry_allowed"] is False
+    assert built["privacy"]["classification"] == "TBD"
+    assert built["provenance"]["source_name"] == "TBD"
+    assert built["provenance"]["review_status"] == "rejected"
+    assert "Invented adapter framework fixture" not in built["provenance"].values()
     assert built["result_envelope_ref"]["schema_ref"] == "schemas/results.schema.yaml"
     assert built["professional_boundary"]["software_makes_compliance_claim"] is False
 
@@ -452,6 +857,7 @@ if __name__ == "__main__":
     test_direct_persistence_access_is_rejected()
     test_missing_provenance_blocks_adapter_declaration()
     test_protected_suspected_fixture_quarantines()
+    test_unhashable_string_capability_never_masks_direct_quarantine()
     test_no_bypass_controls_are_enforced()
     test_application_service_persistence_no_bypass_controls_are_enforced()
     test_operation_result_builder_preserves_boundaries()

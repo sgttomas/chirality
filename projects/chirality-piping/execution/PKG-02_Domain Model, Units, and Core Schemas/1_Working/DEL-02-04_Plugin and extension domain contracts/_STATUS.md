@@ -1,12 +1,20 @@
 # Status: DEL-02-04 Plugin and extension domain contracts
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-07-12
+**Last Updated:** 2026-08-20
 
 ## Remaining
-- Keep PDU-037's non-schema plugin verification layers open: executable unit-safety, provenance, diagnostics, protected-content, and adapter/plugin runtime regression remain downstream and unvalidated.
+- None for PDU-037's exact non-schema adapter/plugin verification-layer residual. Separately governed runtime, transport, capability, and permission-persistence choices remain owner-held and runtime dispatch stays blocked.
 
 ## History
+- 2026-08-20 - R6 N1 integrated-review Amendment 7 aligned normalized schema-valid quarantined metadata with fallback boundary derivation: top-level privacy/provenance is protected/quarantine across public, private, and protected companion evidence and is never public-reviewed. 324 tests passed; V34 reviewed all 23 frozen files/8,654 lines and the full original-basis amended diff with zero findings. Exact residual remains closed; lifecycle IN_PROGRESS; runtime blocked.
+- 2026-08-20 - R6 N1 integrated-review Amendment 6 canonicalized and byte-bounded post-snapshot schema mismatch paths/messages and all normalized manifest plugin diagnostic references. 318 tests passed; V33 reviewed all 22 frozen files/8,470 lines and the full original-basis amended diff with zero findings. Exact PDU-037 residual remains closed; lifecycle remains IN_PROGRESS and runtime dispatch remains blocked.
+- 2026-08-20 - R6 N1 integrated-review Amendment 5 now boundedly snapshots every caller manifest/adapter/catalog/evidence/schema input, contains hostile/deep/cyclic/nonfinite/oversized evidence, sanitizes all fallback references, and preserves safely observable quarantine markers without runtime dispatch. 306 tests passed and V31 full original-basis review returned PASS with zero findings over 20 frozen files/8,082 lines. Exact PDU-037 residual remains closed; lifecycle remains IN_PROGRESS and runtime dispatch remains blocked.
+- 2026-08-20 - R6 N1 integrated-review Amendment 4 now blocks non-cleared declaration/result provenance, quarantines protected privacy, and contains hostile/deep/cyclic/nonfinite manifest evidence through exact raw-JSON preflight plus snapshot-only verification. 190 tests passed and V26 full-diff review returned PASS with zero findings. Lifecycle remains IN_PROGRESS and runtime dispatch remains blocked.
+- 2026-08-20 - R6 N1 integrated-review Amendment 3 enforced canonical adapter capability array shape, enum membership, and operational capability presence without exception paths; hostile string-like inputs retain protected/quarantined provenance precedence. 129 tests passed and V20 full-diff review returned PASS with zero findings. Lifecycle remains IN_PROGRESS and runtime dispatch remains blocked.
+- 2026-08-20 - R6 N1 integrated-review Amendment 2 bound caller-supplied schema evidence to the exact canonical structural/content fingerprint and a snapshot-only evaluation path; weakened and hostile-accessor schemas fail closed. 112 tests passed and V18 full-diff review returned PASS with zero findings. Lifecycle remains IN_PROGRESS and runtime dispatch remains blocked.
+- 2026-08-20 - R6 N1 integrated-review Amendment 1 removed invented/public top-level result-envelope attribution, added conservative caller-bound privacy/provenance precedence, and closed all integrated/V13-V15 findings; 107 tests passed and V16 fresh full-diff review returned PASS with zero findings. Lifecycle remains IN_PROGRESS and runtime dispatch remains blocked.
+- 2026-08-20 - R6 N1 executed unit-safety, provenance, diagnostic-envelope, protected-content, malformed-input, and adapter/plugin regression layers; focused/adjacent tests passed and fresh 100% frozen-diff review returned PASS with zero findings. Exact PDU-037 residual closed; lifecycle remains IN_PROGRESS and runtime dispatch remains blocked.
 - 2026-07-12 - D-41 R5 T7 PDU-055 refreshed 2 cited declaration claims to current T1-T6 authority/evidence while preserving genuine residuals; cited-claim and Remaining backcheck closed the D-41 bootstrap.
 - 2026-07-12 - D-41 R5 T6 PDU-037 refreshed bounded fixture/harness evidence and preserved all validation, policy, review, and lifecycle holds.
 - 2026-04-30 - State set to OPEN (PREPARATION)
