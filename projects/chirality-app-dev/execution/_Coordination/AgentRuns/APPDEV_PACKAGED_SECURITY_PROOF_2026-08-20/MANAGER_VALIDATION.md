@@ -5,9 +5,16 @@
   PR base `main`.
 - N1 node revision: `605a0b7bc85e054d32221083e1f15a57b2d85dee`,
   published in PR #586. Product-source bytes are unchanged after this commit.
+- Final proved candidate revision:
+  `8c87b3da1a1e4bd1425d244ea83176a47a1242fa`; it is the adjacent
+  12-path governance/evidence remediation commit and changes no product blob.
 - CI attempt 01: governance run/job `32345362720 / 96352866416` failed only G4
   because the changed workflow had no newly added instruction-tranche
   manifest. See `CI_ATTEMPT_01.md`.
+- CI attempt 02: governance Harness `32347165247 / 96358222220`, Harness
+  pre-merge `32347165000 / 96358221713`, and unsigned macOS artifact
+  `32347165164 / 96358222058` all `PASS` at the final proved candidate. See
+  `CI_ATTEMPT_02.md`.
 - Remediation 03: the new APP-DEL0906 manifest records D-APP-97 C1 authority
   and grants none; YAML/schema and stock full candidate-range G4 validation
   `PASS`: 108 changed paths from accepted base, exactly two on the instruction
@@ -38,9 +45,9 @@
   confirmed GUI/daemon/stream/temp-root cleanup all `PASS`.
 - Secret scan: `PASS`, 5772 files / zero blocked findings.
 - Manager JSON/NDJSON parse and exact declared-write containment: `PASS`.
-  Adjacent remediation whitespace, including untracked files, is validated by
-  staging all eight contained remediation paths, running
-  `git diff --cached --check`, and restoring the clean index: `PASS`; no
+  Frozen-v4 remediation whitespace was validated across its eight pre-review
+  paths; the adjacent commit then included four terminal review controls for
+  12 paths total and passed `git diff --cached --check` plus stock G4. No
   production runtime, lockfile, lifecycle,
   Remaining, memory, Approval-SHA, release, credential, owner-machine,
   shared-log, governance, or foreign-loop write is present.

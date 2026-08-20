@@ -5367,3 +5367,35 @@
     packaged network-policy/REQ-009 proof, and owner-machine deployment remain;
     lifecycle, Checking Approval SHA, signing, notarization, publication,
     distribution, release-readiness posture, and merge state are unchanged.
+
+- **2026-08-20 — Receipt 180** (packaged security proof partial landing).
+  - Receipt-ID: `Receipt-180`
+  - Examined-Through: `357a58b56726feba49507534159c3fbc4656b818`
+  - Parent-Receipt: `Receipt-179`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-19,
+    Ryan Tufts, in-session): `start a new branch for this work you are about to define, do not continue working in this current branch.`;
+    `This iteration's deliverable is product work: code, working features, executing cases, closed engineering gaps.`;
+    `If a node fails its checks, land the nodes that passed, record the failed node's state, and stop; partial landing is a valid result.`
+  - Pointers: product node
+    `605a0b7bc85e054d32221083e1f15a57b2d85dee`; adjacent G4 remediation
+    `8c87b3da1a1e4bd1425d244ea83176a47a1242fa`; PR #586; governance Harness
+    run `32347165247`, job `96358222220`; Harness pre-merge run
+    `32347165000`, job `96358221713`; unsigned macOS artifact run
+    `32347165164`, job `96358222058`; packaged proof summary
+    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/SUMMARY.md`;
+    RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20/`.
+  - Checks: packaged host proof, focused/full product gates, review 04, G4,
+    APP-HOLD, all three proving PR-CI jobs, receipt contract, corpus no-drift,
+    repository self-check, practitioner pytest, JSON/NDJSON parse, candidate
+    whitespace, and exact five-path closeout containment pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS, TASK
+    implementer/remediators/reviewers, and CHANGE; exact model builds not
+    exposed.
+  - Gate-Outcome: `EXECUTED` — packaged security proof infrastructure landed
+    as valid partial engineering progress. DEL-09-06 and DEL-09-04 Remaining,
+    lifecycle, memory, and Checking Approval SHA remain unchanged on the
+    accepted `API_KEY_ENV_PRECEDENCE` blocker owned by DEL-02-05 R03 /
+    DEL-04-05 RQ-001. F-APP-2 and all other release, signing, notarization,
+    distribution, provider, credential, dependency/lock, and owner-machine
+    fences remain unchanged; owner merge of PR #586 is pending.
