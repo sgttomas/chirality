@@ -7,13 +7,18 @@
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Run and accept the PR-CI `Desktop Unsigned Artifact Verification` workflow
-  over the reactivated unsigned-artifact implementation, retain its CI artifact
-  proof, and close the applicable R4-P49 PARTIAL assessments if that run passes.
-  F-APP-2 continues to fence signing, notarization, distribution, and release
-  authority.
+None.
 
 ## History
+- 2026-08-19 - PR #583 proved the D-APP-97 C1 unsigned CI-artifact path in
+  `Desktop Unsigned Artifact Verification` run `32327128935`, job
+  `96300526868`; the bounded macOS build, DMG mount/posture verification, and
+  CI artifact upload passed. The adjacent G4 manifest remediation then passed
+  governance run `32327623630`, job `96301949909`. This closes DEL-09-05's
+  applicable R4-P49 unsigned-artifact evidence scope and removes its Remaining
+  item. State stays IN_PROGRESS; lifecycle, Checking Approval SHA, signing,
+  notarization, publication, distribution, release authority, and
+  professional claims are unchanged.
 - 2026-08-19 - D-APP-97 C1 implementation reactivated the disabled template as
   a least-privilege PR/manual macOS-only unsigned CI-artifact workflow. It
   verifies staged/DMG-mounted identity, unsigned/adhoc and non-notarized

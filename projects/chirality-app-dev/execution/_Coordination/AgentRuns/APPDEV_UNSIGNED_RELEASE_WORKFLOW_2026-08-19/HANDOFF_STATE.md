@@ -1,9 +1,9 @@
 # Handoff state
 
-- Status: `CHANGE_READY_FOR_CI_ATTEMPT_02`.
+- Status: `CHANGE_READY_FOR_AFTER_THE_FACT_FANIN`.
 - Accepted upstream: basis `57803893d1eb161f395e0574c256dd27920bf1d4`, D-APP-97 C1, APP-HOLD ALLOW.
-- Closure verdict: local implementation/review fan-in PASS; DEL-09-05 remains `IN_PROGRESS` until the named PR-CI artifact proof passes and its evidence is retained.
+- Closure verdict: implementation/review fan-in and named PR-CI artifact proof PASS; DEL-09-05 remains `IN_PROGRESS` with no Remaining item after the applicable R4-P49 unsigned-artifact evidence closure.
 - Current derivative package: this RunID root plus the single DEL-09-05 run record; generated artifacts remain ignored/non-authoritative.
-- Rerun: PR CI governance `harness` must prove the newly added manifest through `--added-manifests-only`; `Desktop Unsigned Artifact Verification / Verify unsigned macOS artifact` remains the product proof surface. Any source/test workflow change invalidates review 03; this manifest-only remediation did not change either frozen product hash.
-- Remaining blockers: external proof only; no owner decision required.
-- Requested action: HELP_HUMAN validates integrated containment, then CHANGE commits/pushes/opens the tranche PR so the named macOS check can prove the artifact. Shared receipt is written once at final fan-in, not by this manager.
+- Proving runs: product-node Desktop run `32327128935`, job `96300526868`; attempt-02 governance run `32327623630`, job `96301949909`; Harness pre-merge run `32327623713`, job `96301950424`. Any source/test workflow change invalidates review 03; neither proof-loop nor fan-in records changed a frozen product hash.
+- Remaining blockers: none for fan-in; merge remains human-gated.
+- Requested action: CHANGE commits/pushes the after-the-fact fan-in once and explicitly reads the resulting applicable PR-check verdicts. Do not merge.

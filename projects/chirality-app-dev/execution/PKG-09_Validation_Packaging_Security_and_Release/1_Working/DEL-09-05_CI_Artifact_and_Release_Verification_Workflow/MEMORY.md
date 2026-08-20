@@ -2,6 +2,16 @@
 
 ## Decisions And Evidence
 
+- 2026-08-19 - PR #583 retained the external proof for D-APP-97 C1: Desktop
+  run `32327128935`, job `96300526868` passed the unsigned macOS build,
+  DMG-mounted identity/posture checks, and bounded CI artifact upload. The
+  first governance attempt exposed missing instruction-tranche coverage; the
+  adjacent manifest-only remediation passed governance run `32327623630`, job
+  `96301949909`, without changing the reviewed workflow or regression hashes.
+  DEL-09-05's applicable R4-P49 unsigned-artifact evidence scope is complete.
+  No signing, notarization, publication, distribution, release authority,
+  lifecycle transition, or professional claim follows.
+
 - 2026-08-19 - D-APP-97 C1 product implementation replaced the inactive
   `.github/workflows/desktop-release-template.yml.disabled` with active
   `.github/workflows/desktop-release-template.yml`. The workflow is bounded to

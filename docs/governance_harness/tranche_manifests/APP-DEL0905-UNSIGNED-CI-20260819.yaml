@@ -30,10 +30,10 @@ m2_gate:
   self_merge: false
 
 m6_notice:
-  disposition: pending
+  disposition: none-required
   routed_to: []
   rationale: >-
-    The accepting Agent 0 completes the M6 disposition at final fan-in. The
-    changed workflow is App-specific, changes no agents, skills, root
-    governance prose, or project authority corpus, and creates no authority
-    for another loop; pending records rather than pre-empts that survey.
+    The accepting HELP_HUMAN Agent 0 survey at final fan-in found no cross-loop
+    notice obligation. The changed workflow is App-specific, changes no
+    agents, skills, root governance prose, or project authority corpus, and
+    creates no authority for another loop.

@@ -5318,3 +5318,24 @@
     DEL-09-04 remains `IN_PROGRESS` on unrelated Remaining scope. Lifecycle,
     Checking Approval SHA, release/signing/notarization/distribution posture,
     decision registers, dependencies, lockfiles, and merge state are unchanged.
+
+- **2026-08-19 — Receipt 178** (D-APP-97 unsigned Desktop CI artifact proof).
+  - Receipt-ID: `Receipt-178`
+  - Examined-Through: `ea1d6fd322d4cac794ad3f0ca817d09ef872ac54`
+  - Parent-Receipt: `Receipt-177`
+  - Pointers: product node `ea1d6fd322d4cac794ad3f0ca817d09ef872ac54`;
+    PR #583; Desktop run `32327128935`, job `96300526868`; adjacent G4
+    remediation `295f060783ac4c4fac9104a7d72f9d81b1af48d6`; DEL-09-05 run record
+    `_run_records/R6_DAPP97_UNSIGNED_ARTIFACT_WORKFLOW_2026-08-19.md`; manager
+    evidence `execution/_Coordination/AgentRuns/APPDEV_UNSIGNED_RELEASE_WORKFLOW_2026-08-19/`.
+  - Checks: focused/full frontend and static workflow gates, fresh review 03,
+    Desktop unsigned-artifact proof, governance harness, Harness pre-merge,
+    APP-HOLD, receipt contract, whitespace, and exact containment pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN, WORKING_ITEMS, TASK, and CHANGE;
+    exact model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — D-APP-97 C1 and its bounded PR-CI proof close
+    DEL-09-05's applicable R4-P49 unsigned-artifact evidence scope. DEL-09-05
+    remains `IN_PROGRESS`; lifecycle, Checking Approval SHA, signing,
+    notarization, publication, distribution, release authority, professional
+    claims, dependencies, lockfiles, decision registers, and merge state are
+    unchanged.
