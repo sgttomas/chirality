@@ -1,0 +1,177 @@
+{
+  "schema": "chirality-packaged-security-proof/v1",
+  "status": "pass",
+  "startedAt": "2026-08-20T06:19:03.740Z",
+  "completedAt": "2026-08-20T06:19:05.823Z",
+  "proofBoundary": "fresh-unsigned-packaged-app-network-safeStorage-and-security-byte-presence",
+  "artifactIdentity": {
+    "schema": "chirality-packaged-security-subject/v1",
+    "appPath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app",
+    "sourceRevision": "357a58b56726feba49507534159c3fbc4656b818",
+    "files": [
+      {
+        "relativePath": "Contents/MacOS/Chirality",
+        "bytes": 33968,
+        "sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874"
+      },
+      {
+        "relativePath": "Contents/Resources/app.asar",
+        "bytes": 438409989,
+        "sha256": "34642d31f49299ea1b7f9a8e1dfdd57b2b004e854f4240c629094b673b02ea24"
+      },
+      {
+        "relativePath": "Contents/Resources/runtime-cli/chirality-cli.mjs",
+        "bytes": 75142,
+        "sha256": "3adc8490634427b814cbebbf93563851f0794f59715b82d4b26415a5aa0cc9a4"
+      }
+    ],
+    "identitySha256": "4eba146b2f4a973c9f2b1e53629878502ecc76eace8508ad403dd959bcef5255"
+  },
+  "packagedPolicy": {
+    "markers": [
+      {
+        "marker": "REQ-NET-001",
+        "present": true
+      },
+      {
+        "marker": "api.anthropic.com",
+        "present": true
+      },
+      {
+        "marker": "anthropic_protocol_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "anthropic_port_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "host_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "Blocked renderer outbound request by network policy",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-file size limit",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-turn size budget",
+        "present": true
+      },
+      {
+        "marker": "symbolic links are rejected",
+        "present": true
+      },
+      {
+        "marker": "ATTACHMENT_FAILURE",
+        "present": true
+      }
+    ],
+    "allPresent": true
+  },
+  "credentialProof": {
+    "fixtureCredentialSha256": "2cab6d2b4e90de14e09479ad1cc41d1f0f00c50c21d0311dbd6a351ab5423b30",
+    "before": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": false
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false
+      }
+    },
+    "afterStore": {
+      "providerId": "anthropic",
+      "configured": true
+    },
+    "storedMutation": {
+      "providerId": "anthropic",
+      "configured": true
+    },
+    "encryptedBlob": {
+      "bytes": 67,
+      "sha256": "c357f79779ba1a7c9de8b8eb63748902f59369d211d3f84eae66251db02edd7e",
+      "ownerOnlyMode": true,
+      "excludesPlaintextFixture": true
+    },
+    "removedMutation": {
+      "providerId": "anthropic",
+      "configured": false
+    },
+    "afterRemove": {
+      "providerId": "anthropic",
+      "configured": false
+    },
+    "credentialFilePresentAfterRemove": false,
+    "retainedSecretFindings": [],
+    "providerIsolation": true,
+    "pass": true
+  },
+  "networkProof": {
+    "snapshotCount": 5,
+    "sampledProcessIds": [
+      18797,
+      18798,
+      18799,
+      18800,
+      18839,
+      18840,
+      18841
+    ],
+    "uniqueOutboundTcp": [
+      {
+        "endpoint": "127.0.0.1:50909",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:50910",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:50911",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:50912",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:50913",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:50914",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:50908",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      }
+    ],
+    "nonAllowlistedOutboundTcp": [],
+    "blockedRendererDiagnostics": 1,
+    "probePayloadCount": 1,
+    "blockedProbeObserved": true,
+    "loopbackProbeObserved": true,
+    "pass": true
+  },
+  "retainedMetadataLeakFindings": [],
+  "exclusions": {
+    "realCredentialsUsed": false,
+    "signingOrNotarization": false,
+    "distributionOrPublication": false,
+    "ownerUserDataTouched": false,
+    "providerScopeExpanded": false
+  }
+}

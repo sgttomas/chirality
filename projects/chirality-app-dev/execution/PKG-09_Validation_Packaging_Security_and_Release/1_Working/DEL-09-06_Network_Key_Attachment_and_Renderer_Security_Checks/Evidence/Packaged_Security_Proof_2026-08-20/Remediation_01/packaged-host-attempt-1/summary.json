@@ -1,0 +1,222 @@
+{
+  "schema": "chirality-packaged-security-proof/v1",
+  "status": "pass",
+  "startedAt": "2026-08-20T06:58:49.703Z",
+  "completedAt": "2026-08-20T06:58:54.611Z",
+  "proofBoundary": "fresh-unsigned-packaged-app-network-safeStorage-and-security-byte-presence",
+  "artifactIdentity": {
+    "schema": "chirality-packaged-security-subject/v1",
+    "appPath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app",
+    "sourceRevision": "357a58b56726feba49507534159c3fbc4656b818",
+    "files": [
+      {
+        "relativePath": "Contents/MacOS/Chirality",
+        "bytes": 33968,
+        "sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874"
+      },
+      {
+        "relativePath": "Contents/Resources/app.asar",
+        "bytes": 438433373,
+        "sha256": "4a625f95270209cba0174ff9d95a36373d20d5aa0391f8dbfa014ba3f2a34441"
+      },
+      {
+        "relativePath": "Contents/Resources/runtime-cli/chirality-cli.mjs",
+        "bytes": 75142,
+        "sha256": "3adc8490634427b814cbebbf93563851f0794f59715b82d4b26415a5aa0cc9a4"
+      }
+    ],
+    "identitySha256": "3da8cbbbd5cd543dce0c400975cf42b2bdfadd0b8dc6ccd61aab6489c38acee5"
+  },
+  "packagedPolicy": {
+    "markers": [
+      {
+        "marker": "REQ-NET-001",
+        "present": true
+      },
+      {
+        "marker": "api.anthropic.com",
+        "present": true
+      },
+      {
+        "marker": "anthropic_protocol_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "anthropic_port_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "host_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "Blocked renderer outbound request by network policy",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-file size limit",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-turn size budget",
+        "present": true
+      },
+      {
+        "marker": "symbolic links are rejected",
+        "present": true
+      },
+      {
+        "marker": "ATTACHMENT_FAILURE",
+        "present": true
+      }
+    ],
+    "allPresent": true
+  },
+  "credentialProof": {
+    "fixtureCredentialSha256": "312ee88695cbf8ce9127de485e5f6d3bf5d118fc0ad9615a47ebdb679d8e099a",
+    "before": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": false
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false
+      }
+    },
+    "afterStore": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": true
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false
+      }
+    },
+    "storedMutation": {
+      "providerId": "anthropic",
+      "configured": true
+    },
+    "encryptedBlob": {
+      "bytes": 67,
+      "sha256": "c3c91b704187e716faff11549118713d1dba572edc40ec918593db8f643debe3",
+      "ownerOnlyMode": true,
+      "excludesPlaintextFixture": true
+    },
+    "removedMutation": {
+      "providerId": "anthropic",
+      "configured": false
+    },
+    "afterRemove": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": false
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false
+      }
+    },
+    "credentialFilePresentAfterRemove": false,
+    "providerIsolation": true,
+    "mutationPass": true,
+    "retainedSecretFindings": [],
+    "evidenceSurfacesScannedAfterStreamClosure": [
+      "encryptedCredentialArtifact",
+      "emitted:cleanup.json",
+      "emitted:packaged-daemon.log",
+      "emitted:packaged-gui.log",
+      "emitted:tcp-snapshots.json"
+    ],
+    "pass": true
+  },
+  "networkProof": {
+    "snapshotCount": 5,
+    "sampledProcessIds": [
+      30404,
+      30416,
+      30417,
+      30418,
+      30457,
+      30458,
+      30459
+    ],
+    "uniqueOutboundTcp": [
+      {
+        "endpoint": "127.0.0.1:51395",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51396",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51397",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51398",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51399",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51400",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51394",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      }
+    ],
+    "nonAllowlistedOutboundTcp": [],
+    "blockedRendererDiagnostics": 1,
+    "probePayloadCount": 1,
+    "blockedProbeObserved": true,
+    "loopbackProbeObserved": true,
+    "pass": true
+  },
+  "cleanup": {
+    "gui": {
+      "label": "packaged GUI",
+      "started": true,
+      "pid": 30418,
+      "signalSent": "SIGTERM",
+      "exitCode": 0,
+      "signalCode": null,
+      "confirmedStopped": true,
+      "streamClosed": true
+    },
+    "daemon": {
+      "label": "packaged runtime daemon",
+      "started": true,
+      "pid": 30404,
+      "signalSent": "SIGTERM",
+      "exitCode": 0,
+      "signalCode": null,
+      "confirmedStopped": true,
+      "streamClosed": true
+    },
+    "tempRootRemoved": true,
+    "tempRootRemovalError": null,
+    "pass": true
+  },
+  "retainedMetadataLeakFindings": [],
+  "exclusions": {
+    "realCredentialsUsed": false,
+    "signingOrNotarization": false,
+    "distributionOrPublication": false,
+    "ownerUserDataTouched": false,
+    "providerScopeExpanded": false
+  }
+}

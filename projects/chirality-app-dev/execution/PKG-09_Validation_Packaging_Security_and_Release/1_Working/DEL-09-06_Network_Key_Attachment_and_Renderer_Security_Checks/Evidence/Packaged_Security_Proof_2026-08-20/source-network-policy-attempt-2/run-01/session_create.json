@@ -1,0 +1,11 @@
+{
+  "status": 503,
+  "ok": false,
+  "raw": "{\"error\":{\"type\":\"ENGINE_UNAVAILABLE\",\"message\":\"Chirality runtime daemon is unavailable\"}}",
+  "parsed": {
+    "error": {
+      "type": "ENGINE_UNAVAILABLE",
+      "message": "Chirality runtime daemon is unavailable"
+    }
+  }
+}

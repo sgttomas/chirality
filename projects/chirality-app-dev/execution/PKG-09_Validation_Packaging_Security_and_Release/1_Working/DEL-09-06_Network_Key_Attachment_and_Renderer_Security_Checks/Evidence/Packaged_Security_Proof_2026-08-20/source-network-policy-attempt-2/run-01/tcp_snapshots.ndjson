@@ -1,0 +1,3 @@
+{"timestamp":"2026-08-20T06:09:27.405Z","label":"startup_next","processLabel":"next","pid":16300,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-08-20T06:09:27.481Z","label":"startup_daemon","processLabel":"daemon","pid":16283,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-08-20T06:09:27.530Z","label":"startup_electron","processLabel":"electron","pid":16302,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}

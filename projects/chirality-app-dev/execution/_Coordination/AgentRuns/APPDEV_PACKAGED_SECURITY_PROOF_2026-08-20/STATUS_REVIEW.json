@@ -1,0 +1,24 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20",
+  "childInstanceId": "A2-PKG09-PACKAGED-SECURITY-REVIEW-01",
+  "role": "TASK + software-code-review",
+  "status": "FAIL",
+  "basis": "357a58b56726feba49507534159c3fbc4656b818",
+  "graphVersion": 1,
+  "frozenSubjectPathCount": 47,
+  "frozenIdentity": "eeabad67107add91cea891b03c63d89c940244155d1d240082223119de80983c",
+  "appHoldDispatch": "ALLOW",
+  "writeAuthorization": "READ_ONLY",
+  "coverage": "47_OF_47_100_PERCENT",
+  "productCoverage": "9_OF_9_100_PERCENT",
+  "actionableFindings": 5,
+  "returnPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20/REVIEWER_RETURN.md",
+  "blockers": [
+    "SOURCE_TCP_CAPTURE_FAIL_OPEN",
+    "CREDENTIAL_LEAK_SCAN_TOO_EARLY",
+    "PACKAGED_CLEANUP_FAIL_OPEN",
+    "SOURCE_PROOF_LIVE_CREDENTIAL_INHERITANCE",
+    "OWNER_USER_DATA_CLAIM_OVERSTATED"
+  ]
+}

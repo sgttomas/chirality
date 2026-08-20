@@ -1,0 +1,9 @@
+[2026-08-20T06:07:54.241Z] START run-01:electron: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/node_modules/.bin/electron dist-electron/main.js
+Downloading Electron binary...
+[chirality-desktop] 2026-08-20T06:07:56.801Z [info] desktop.gui.starting {"packaged":false,"userData":"/Users/ryan/Library/Application Support/Electron","socketPath":"/Users/ryan/Library/Application Support/Electron/runtime/control.sock"}
+[chirality-desktop] 2026-08-20T06:07:56.802Z [info] runtime.socket_watch.started {"directory":"/Users/ryan/Library/Application Support/Electron/runtime"}
+[chirality-desktop] 2026-08-20T06:07:56.802Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-08-20T06:07:56.809Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unable to reach the Chirality runtime at /Users/ryan/Library/Application Support/Electron/runtime/control.sock","changedAt":"2026-08-20T06:07:56.809Z"}
+[chirality-desktop] 2026-08-20T06:07:56.809Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unable to reach the Chirality runtime at /Users/ryan/Library/Application Support/Electron/runtime/control.sock"}
+[chirality-desktop] 2026-08-20T06:07:57.812Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unable to reach the Chirality runtime at /Users/ryan/Library/Application Support/Electron/runtime/control.sock"}
+[2026-08-20T06:07:58.613Z] EXIT run-01:electron: code=0 signal=null

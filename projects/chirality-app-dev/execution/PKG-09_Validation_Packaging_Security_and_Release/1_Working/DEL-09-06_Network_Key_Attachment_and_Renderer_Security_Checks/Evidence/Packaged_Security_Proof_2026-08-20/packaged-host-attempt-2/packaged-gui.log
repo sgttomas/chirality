@@ -1,0 +1,23 @@
+[2026-08-20T06:19:04.180Z] START packaged-gui: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+[chirality-desktop] 2026-08-20T06:19:04.334Z [info] desktop.gui.starting {"packaged":true,"userData":"/tmp/chirality-psp-3B21jE/user-data","socketPath":"/tmp/chirality-psp-3B21jE/user-data/runtime/control.sock"}
+[chirality-desktop] 2026-08-20T06:19:04.335Z [info] desktop.cli_launcher.install {"status":"skipped","path":"/Users/ryan/.local/bin/chirality","reason":"opted-out"}
+[chirality-desktop] 2026-08-20T06:19:04.335Z [info] runtime.socket_watch.started {"directory":"/tmp/chirality-psp-3B21jE/user-data/runtime"}
+[chirality-desktop] 2026-08-20T06:19:04.335Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-08-20T06:19:04.344Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unknown project: chirality-app-dev","changedAt":"2026-08-20T06:19:04.344Z"}
+[chirality-desktop] 2026-08-20T06:19:04.344Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unknown project: chirality-app-dev"}
+(node:18800) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Chirality --trace-deprecation ...` to show where the warning was created)
+[chirality-desktop] 2026-08-20T06:19:04.675Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unknown project: chirality-app-dev"}
+Blocked renderer outbound request by network policy {
+  category: 'NETWORK_POLICY_VIOLATION',
+  policy: 'REQ-NET-001',
+  reason: 'host_not_allowlisted:example.com',
+  destination: { hostname: 'example.com', port: null, protocol: 'https:' },
+  method: 'GET',
+  resourceType: 'xhr',
+  webContentsId: 1
+}
+[network-policy-probe] {"policy":"REQ-NET-001","results":[{"url":"https://example.com/chirality-packaged-security-blocked","ok":false,"status":null,"type":null,"error":"Failed to fetch"},{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false,"status":null,"type":null,"error":"Failed to fetch"}]}
+[chirality-desktop] 2026-08-20T06:19:05.824Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":18800}
+[chirality-desktop] 2026-08-20T06:19:05.824Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}
+[2026-08-20T06:19:05.852Z] EXIT packaged-gui: code=0 signal=null

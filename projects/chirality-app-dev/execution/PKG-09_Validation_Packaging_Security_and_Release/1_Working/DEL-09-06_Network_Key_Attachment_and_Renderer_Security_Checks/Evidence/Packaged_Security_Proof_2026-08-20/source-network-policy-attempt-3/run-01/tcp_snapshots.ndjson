@@ -1,0 +1,4 @@
+{"timestamp":"2026-08-20T06:14:08.039Z","label":"startup_next","processLabel":"next","pid":17374,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-08-20T06:14:08.115Z","label":"startup_electron","processLabel":"electron","pid":17378,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-08-20T06:14:13.167Z","label":"idle_5s_next","processLabel":"next","pid":17374,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}
+{"timestamp":"2026-08-20T06:14:13.241Z","label":"idle_5s_electron","processLabel":"electron","pid":17378,"lsofExitCode":1,"raw":"","parsed":{"rawLineCount":0,"remoteEndpoints":[]}}

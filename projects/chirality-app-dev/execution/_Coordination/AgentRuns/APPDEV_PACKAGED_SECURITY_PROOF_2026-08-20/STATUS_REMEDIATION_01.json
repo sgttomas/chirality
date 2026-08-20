@@ -1,0 +1,27 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20",
+  "childInstanceId": "A2-PKG09-PACKAGED-SECURITY-REMEDIATION-01",
+  "role": "TASK + software-bounded-implementation",
+  "status": "SUCCESS",
+  "basis": "357a58b56726feba49507534159c3fbc4656b818",
+  "predecessorIdentity": "eeabad67107add91cea891b03c63d89c940244155d1d240082223119de80983c",
+  "graphVersion": 1,
+  "appHoldDispatch": "ALLOW",
+  "completedAt": "2026-08-20T07:01:52Z",
+  "findingCount": 5,
+  "findingsClosed": 5,
+  "remediationProofStatus": "PASS",
+  "packagedSecurityAcceptanceStatus": "FAILED_ACCEPTED_BLOCKER",
+  "hostRerunRequired": false,
+  "reviewRequired": true,
+  "checksPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20/REMEDIATION_CHECKS_01.json",
+  "returnPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20/REMEDIATION_RETURN_01.md",
+  "blockers": [
+    {
+      "id": "API_KEY_ENV_PRECEDENCE",
+      "disposition": "RECORD_HOLD_SCOPE_WIDENING",
+      "owner": "DEL-02-05 R03 / DEL-04-05 RQ-001"
+    }
+  ]
+}

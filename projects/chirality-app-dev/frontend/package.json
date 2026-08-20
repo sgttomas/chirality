@@ -30,6 +30,7 @@
     "instruction-root:integrity": "node ./scripts/verify-instruction-root-integrity.mjs",
     "proof:secret-scan": "node ./scripts/scan-secret-evidence.mjs",
     "proof:network-policy": "node ./scripts/run-network-policy-proof.mjs",
+    "proof:packaged-security": "node ./scripts/run-packaged-security-proof.mjs",
     "pi:lock-integrity": "node ./scripts/normalize-pi-lock-integrity.mjs",
     "pi:supply-chain": "node ./scripts/verify-pi-supply-chain.mjs",
     "desktop:verify-dependencies": "node ./scripts/verify-packaged-dependency-boundary.mjs",
