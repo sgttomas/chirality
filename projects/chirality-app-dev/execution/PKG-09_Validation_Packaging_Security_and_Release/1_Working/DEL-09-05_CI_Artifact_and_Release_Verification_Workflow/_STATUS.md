@@ -1,19 +1,32 @@
 # Status: DEL-09-05
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-17
+**Last Updated:** 2026-08-19
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
-- Execute DEL-09-05's open D-APP-97 release-preparation scope: reactivate
-  `.github/workflows/desktop-release-template.yml.disabled` as an unsigned-
-  artifact workflow; prove CI artifact and release-verification behavior; and
-  close the R4-P49 PARTIAL assessments. F-APP-2 continues to fence signing,
-  notarization, distribution, and release authority.
+None.
 
 ## History
+- 2026-08-19 - PR #583 proved the D-APP-97 C1 unsigned CI-artifact path in
+  `Desktop Unsigned Artifact Verification` run `32327128935`, job
+  `96300526868`; the bounded macOS build, DMG mount/posture verification, and
+  CI artifact upload passed. The adjacent G4 manifest remediation then passed
+  governance run `32327623630`, job `96301949909`. This closes DEL-09-05's
+  applicable R4-P49 unsigned-artifact evidence scope and removes its Remaining
+  item. State stays IN_PROGRESS; lifecycle, Checking Approval SHA, signing,
+  notarization, publication, distribution, release authority, and
+  professional claims are unchanged.
+- 2026-08-19 - D-APP-97 C1 implementation reactivated the disabled template as
+  a least-privilege PR/manual macOS-only unsigned CI-artifact workflow. It
+  verifies staged/DMG-mounted identity, unsigned/adhoc and non-notarized
+  posture, packaged-dependency and instruction-root evidence, and uploads only
+  bounded CI artifacts. Deterministic checks and fresh review passed; the
+  actual macOS workflow run remains PR-CI-owed. State remains IN_PROGRESS;
+  lifecycle, Checking Approval SHA, signing, notarization, distribution, and
+  release authority are unchanged.
 - 2026-08-17 - D-APP-97 converted DEL-09-05's D-APP-56-deferred R4-P49 claim
   family into open unsigned local/CI-only release-preparation engineering,
   including the disabled workflow's reactivation as an unsigned-artifact

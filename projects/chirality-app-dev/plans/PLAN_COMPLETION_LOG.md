@@ -6,6 +6,24 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-08-19 - Unsigned Desktop CI artifact verification landed
+
+D-APP-97 C1 replaced the inactive release template with a least-privilege
+PR/manual macOS workflow that builds with signing discovery disabled, verifies
+the staged app, DMG, and mounted app identity plus unsigned/non-notarized
+posture, retains dependency and instruction-root evidence, and uploads bounded
+CI artifacts only. Product node
+`ea1d6fd322d4cac794ad3f0ca817d09ef872ac54` passed the named Desktop proof on
+PR #583; adjacent commit `295f060783ac4c4fac9104a7d72f9d81b1af48d6`
+closed the governance G4 manifest gap without changing reviewed product hashes.
+
+DEL-09-05's applicable R4-P49 unsigned-artifact evidence scope is complete and
+its Remaining item is removed. The deliverable remains `IN_PROGRESS`;
+lifecycle, Checking Approval SHA, signing, notarization, publication,
+distribution, release authority, and professional-boundary posture are
+unchanged. See
+`execution/_Coordination/AgentRuns/APPDEV_UNSIGNED_RELEASE_WORKFLOW_2026-08-19/`.
+
 ## 2026-08-17 - Parallel canonical-replay and Agent 0 delegation nodes landed
 
 Landed two accepted product nodes in sequence from base
