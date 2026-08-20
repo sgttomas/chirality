@@ -8,15 +8,13 @@
 
 ## Remaining
 
-- Headless `--runtime-daemon`, the opt-in LaunchAgent, and bundled `chirality`
-  CLI execution without global Node are packaged and evidenced on the packed app
-  under isolation (2026-07-25 daemon-service tranche;
-  `_run_records/R6_DAEMON_SERVICE_2026-07-25.md`). What remains of the original
-  item is the login-time `RunAtLoad` path, never exercised because the drill
-  plist deliberately lived outside `~/Library/LaunchAgents`. The DMG/dist
-  portion passed on PR #585. D-APP-97 authorizes this unsigned local/CI-only release-
-  preparation engineering; F-APP-2 continues to fence signing, notarization,
-  and distribution.
+- The packaged CLI now passes a fail-closed proof from the disposable account's
+  real `~/Library/LaunchAgents`: bootstrap triggers `RunAtLoad` without
+  `kickstart`, exact job/process identity and cleanup pass, and default targets
+  remain untouched (PR #591). Actual login-session discovery and auto-start
+  remain unproved because the CI proof invokes `launchctl bootstrap` directly.
+  This residual is not selectable until a host-capability surface can recreate
+  logout/login or an equivalent fresh login session.
 - After a rebuilt C1 artifact exists, the owner may deploy the daemon service
   on the owner's machine and report the result (owner act, not agent work;
   owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
@@ -26,6 +24,18 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-20 - PR #591 Desktop run `32410644968` / job `96560074456`
+  passed the D-APP-97 packaged-service proof on `macos-15`. The packaged CLI
+  installed a unique non-default job in the disposable account's canonical
+  `~/Library/LaunchAgents`; one bootstrap relied on `RunAtLoad` without
+  `kickstart`; automatic launch, exact loaded argv and executable identity,
+  complete process/job/plist/runtime cleanup, and default job/plist protection
+  all passed in retained evidence. This materially narrows the login-time
+  `RunAtLoad` Remaining item to actual login-session discovery/auto-start; it
+  does not recreate a full logout/login session. `IN_PROGRESS`, lifecycle,
+  Checking Approval SHA, owner-machine deployment act, and all release fences
+  remain unchanged. See
+  `_run_records/R11_DAPP97_RUNATLOAD_PR_CI_PROOF_2026-08-20.md`.
 - 2026-08-20 - The coordinated DEL-09-06 fresh packaged-security proof passed
   for the exact unsigned arm64 app identity and closed DEL-09-04 REQ-009 /
   R4-P49 packaged-network evidence. Blocked renderer probes, five usable
