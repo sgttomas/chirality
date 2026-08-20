@@ -1,0 +1,310 @@
+{
+  "generatedAt": "2026-08-20T06:57:22.370Z",
+  "args": {
+    "runs": 1,
+    "idleSeconds": 5,
+    "idleSampleSeconds": 5,
+    "provider": "agentSdk",
+    "scriptedAgentSdk": true,
+    "outputDir": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-3"
+  },
+  "aggregate": {
+    "runCount": 1,
+    "failedRunCount": 0,
+    "passed": true,
+    "failedRuns": []
+  },
+  "runs": [
+    {
+      "runId": "run-01",
+      "generatedAt": "2026-08-20T06:57:22.060Z",
+      "timeline": [
+        {
+          "at": "2026-08-20T06:57:10.908Z",
+          "step": "next_start"
+        },
+        {
+          "at": "2026-08-20T06:57:12.712Z",
+          "step": "next_ready"
+        },
+        {
+          "at": "2026-08-20T06:57:12.713Z",
+          "step": "electron_start"
+        },
+        {
+          "at": "2026-08-20T06:57:22.060Z",
+          "step": "idle_window_complete"
+        }
+      ],
+      "scenario": {
+        "startup": true,
+        "providerMode": "agentSdk",
+        "scriptedAgentSdkProof": true,
+        "sessionRootPath": "/tmp/chirality-proof-sessions-run-01-2026-08-20_065710",
+        "userDataPath": "/tmp/chirality-proof-sessions-run-01-2026-08-20_065710/user-data",
+        "providerExecution": "not-exercised-by-renderer-egress-capture",
+        "resolvedAllowlistHosts": [
+          {
+            "hostname": "api.anthropic.com",
+            "address": "2607:6bc0::10",
+            "family": 6
+          },
+          {
+            "hostname": "api.anthropic.com",
+            "address": "160.79.104.10",
+            "family": 4
+          }
+        ],
+        "electronStayedRunning": true,
+        "nextStayedRunning": true,
+        "idleSeconds": 5,
+        "shutdown": true
+      },
+      "diagnostics": {
+        "blockedRendererDiagnosticsCount": 1,
+        "networkProbePayloadCount": 1,
+        "networkProbePayloads": [
+          {
+            "policy": "REQ-NET-001",
+            "results": [
+              {
+                "url": "https://example.com/chirality-network-policy-blocked-check",
+                "ok": false,
+                "status": null,
+                "type": null,
+                "error": "Failed to fetch"
+              },
+              {
+                "url": "https://api.anthropic.com/v1/messages",
+                "ok": true,
+                "status": 0,
+                "type": "opaque",
+                "error": null
+              },
+              {
+                "url": "http://127.0.0.1:3000/",
+                "ok": true,
+                "status": 200,
+                "type": "basic",
+                "error": null
+              }
+            ]
+          }
+        ]
+      },
+      "endpointSummary": {
+        "totalUniqueEndpoints": 9,
+        "allowlistedAnthropicEndpoints": [
+          {
+            "host": "2607:6bc0::10",
+            "endpoint": "[2607:6bc0::10]:443",
+            "class": "allowlisted",
+            "firstSeen": "2026-08-20T06:57:16.817Z",
+            "label": "startup_electron",
+            "processLabel": "electron"
+          }
+        ],
+        "nonAllowlistedEndpoints": [],
+        "uniqueEndpoints": [
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51365",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:57:16.716Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51366",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:57:16.716Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51367",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:57:16.716Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51368",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:57:16.716Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51369",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:57:16.716Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51370",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:57:16.716Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51371",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:57:16.716Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:3000",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:57:16.817Z",
+            "label": "startup_electron",
+            "processLabel": "electron"
+          },
+          {
+            "host": "2607:6bc0::10",
+            "endpoint": "[2607:6bc0::10]:443",
+            "class": "allowlisted",
+            "firstSeen": "2026-08-20T06:57:16.817Z",
+            "label": "startup_electron",
+            "processLabel": "electron"
+          }
+        ]
+      },
+      "captureIntegrity": {
+        "usableSnapshotCount": 4,
+        "unusableSnapshotCount": 0,
+        "electronDescendantPids": [
+          29160,
+          29161,
+          29162,
+          29163
+        ],
+        "electronDescendantTcp": [
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "[2607:6bc0::10]:443",
+            "host": "2607:6bc0::10",
+            "class": "allowlisted"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "[2607:6bc0::10]:443",
+            "host": "2607:6bc0::10",
+            "class": "allowlisted"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 29162,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          }
+        ],
+        "pass": true
+      },
+      "verdict": {
+        "noNonAllowlistedOutboundTcp": true,
+        "blockedRendererDiagnosticsObserved": true,
+        "networkProbePayloadObserved": true,
+        "usableDescendantCapture": true,
+        "rendererDescendantTrafficObserved": true,
+        "scenarioCompleted": true
+      },
+      "artifacts": {
+        "nextLogPath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-3/run-01/next.log",
+        "electronLogPath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-3/run-01/electron.log",
+        "tcpSnapshotsPath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-3/run-01/tcp_snapshots.ndjson"
+      },
+      "notes": {
+        "unresolvedConf002": "CONF-002 (OCSP/CRL infrastructure carve-out) remains unresolved; TCP-level summary flags only explicit non-allowlisted external endpoints."
+      }
+    }
+  ]
+}

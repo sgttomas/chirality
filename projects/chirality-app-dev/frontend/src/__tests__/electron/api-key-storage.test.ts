@@ -206,4 +206,21 @@ describe('electron/api-key-storage', () => {
     expect(fileMode & 0o777).toBe(0o600);
     expect(dirMode & 0o777).toBe(0o700);
   });
+
+  // D-APP-97 requires the canonical environment variable to precede the
+  // compatibility alias. The shipped daemon credential store currently has
+  // those two fallbacks reversed. The semantic-owner repair is outside the
+  // packaged-proof tranche, so retain this executable expected-failure until
+  // DEL-02-05 R03 / DEL-04-05 RQ-001 owns the production correction.
+  it.fails('uses UI storage, then ANTHROPIC_API_KEY, then CHIRALITY_ANTHROPIC_API_KEY', async () => {
+    process.env.ANTHROPIC_API_KEY = 'canonical-environment-key';
+    process.env.CHIRALITY_ANTHROPIC_API_KEY = 'compatibility-alias-key';
+    try {
+      const credentials = new SafeStorageCredentialStore();
+      await expect(credentials.get('anthropic')).resolves.toBe('canonical-environment-key');
+    } finally {
+      delete process.env.ANTHROPIC_API_KEY;
+      delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+    }
+  });
 });

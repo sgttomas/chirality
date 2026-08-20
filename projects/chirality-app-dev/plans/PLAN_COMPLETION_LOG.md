@@ -6,6 +6,26 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-08-20 - Packaged security proof infrastructure landed (partial)
+
+PR #586 node `605a0b7bc85e054d32221083e1f15a57b2d85dee` adds the
+identity-bound packaged security proof and Desktop CI integration, including
+encrypted safeStorage store/status/remove checks, complete Electron-descendant
+network capture, renderer-block evidence, credential isolation and leak scan,
+and required GUI/daemon/stream/temp-root cleanup. Adjacent remediation
+`8c87b3da1a1e4bd1425d244ea83176a47a1242fa` supplies the D-APP-97-authorized
+G4 tranche manifest without changing product blobs.
+
+The packaged host proof, fresh review 04, governance Harness run/job
+`32347165247 / 96358222220`, Harness pre-merge
+`32347165000 / 96358221713`, and unsigned macOS artifact
+`32347165164 / 96358222058` pass. This is valid partial engineering progress:
+`API_KEY_ENV_PRECEDENCE` remains the sole accepted blocker under DEL-02-05 R03
+/ DEL-04-05 RQ-001, so DEL-09-06 and DEL-09-04 stay `IN_PROGRESS` with
+Remaining, lifecycle, memory, and Checking Approval SHA unchanged. F-APP-2 and
+all release/signing/notarization/distribution fences remain unchanged. See
+`execution/_Coordination/AgentRuns/APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20/`.
+
 ## 2026-08-19 - DEL-09-04 packaged Agent SDK CI proof landed
 
 PR #585 node `3a02eeedeb3561748d96b10f57a1aa7f5546eeb5` added the

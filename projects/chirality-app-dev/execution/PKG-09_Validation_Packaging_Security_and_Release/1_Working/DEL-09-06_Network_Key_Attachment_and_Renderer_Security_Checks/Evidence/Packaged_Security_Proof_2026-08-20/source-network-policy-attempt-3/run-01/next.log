@@ -1,0 +1,16 @@
+[2026-08-20T06:14:02.187Z] START run-01:next: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/node_modules/.bin/next dev --port 3000 --hostname 127.0.0.1
+   ▲ Next.js 15.5.21
+   - Local:        http://127.0.0.1:3000
+   - Network:      http://127.0.0.1:3000
+
+ ✓ Starting...
+ ✓ Ready in 889ms
+ ○ Compiling / ...
+ ✓ Compiled / in 579ms (1333 modules)
+ GET / 200 in 783ms
+ GET / 200 in 34ms
+ ✓ Compiled /api/harness/agents in 156ms (1382 modules)
+ GET /api/harness/agents?directChat=1 503 in 210ms
+ GET / 200 in 139ms
+[?25h
+[2026-08-20T06:14:13.520Z] EXIT run-01:next: code=0 signal=null

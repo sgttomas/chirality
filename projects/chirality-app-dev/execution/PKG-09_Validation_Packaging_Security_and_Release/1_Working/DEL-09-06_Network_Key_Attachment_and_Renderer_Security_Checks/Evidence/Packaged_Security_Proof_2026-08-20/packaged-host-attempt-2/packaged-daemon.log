@@ -1,0 +1,7 @@
+[2026-08-20T06:19:03.959Z] START packaged-runtime-daemon: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon
+[chirality-desktop] 2026-08-20T06:19:04.121Z [warn] runtime.daemon.instruction_root.fallback {"instructionRoot":"/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources","reason":"PROJECT_NOT_FOUND"}
+[chirality-desktop] 2026-08-20T06:19:04.121Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/tmp/chirality-psp-3B21jE/user-data","pid":18797}
+[chirality-desktop] 2026-08-20T06:19:04.138Z [info] runtime.daemon.started {"socketPath":"/tmp/chirality-psp-3B21jE/user-data/runtime/control.sock","runtimeDirectory":"/tmp/chirality-psp-3B21jE/user-data/runtime"}
+[chirality-desktop] 2026-08-20T06:19:05.926Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":18797}
+[chirality-desktop] 2026-08-20T06:19:05.927Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}
+[2026-08-20T06:19:05.940Z] EXIT packaged-runtime-daemon: code=0 signal=null

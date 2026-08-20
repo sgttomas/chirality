@@ -1,0 +1,7 @@
+[2026-08-20T06:18:22.666Z] START packaged-runtime-daemon: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon
+[chirality-desktop] 2026-08-20T06:18:25.566Z [warn] runtime.daemon.instruction_root.fallback {"instructionRoot":"/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources","reason":"PROJECT_NOT_FOUND"}
+[chirality-desktop] 2026-08-20T06:18:25.567Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-packaged-security-proof-WmPMeu/user-data","pid":18697}
+[chirality-desktop] 2026-08-20T06:18:25.579Z [error] runtime.daemon.initialize_failed listen EINVAL: invalid argument /var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-packaged-security-proof-WmPMeu/user-data/runtime/control.sock
+[chirality-desktop] 2026-08-20T06:18:25.579Z [info] desktop.shutdown.started {"reason":"initialize-failed","exitCode":1,"daemonMode":true,"pid":18697}
+[chirality-desktop] 2026-08-20T06:18:25.579Z [info] desktop.shutdown.completed {"reason":"initialize-failed","exitCode":1}
+[2026-08-20T06:18:25.587Z] EXIT packaged-runtime-daemon: code=1 signal=null

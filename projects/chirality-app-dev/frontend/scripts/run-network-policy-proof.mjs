@@ -1,12 +1,15 @@
 #!/usr/bin/env node
 
 import { spawn } from 'node:child_process';
+import { lookup } from 'node:dns/promises';
 import { createWriteStream } from 'node:fs';
 import { appendFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import { fileURLToPath } from 'node:url';
 
-const FRONTEND_ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+const SCRIPT_PATH = fileURLToPath(import.meta.url);
+const FRONTEND_ROOT = path.resolve(path.dirname(SCRIPT_PATH), '..');
 const REPO_ROOT = path.resolve(FRONTEND_ROOT, '..');
 const DELIVERABLE_ROOT = path.resolve(
   REPO_ROOT,
@@ -14,13 +17,20 @@ const DELIVERABLE_ROOT = path.resolve(
 );
 
 const LOOPBACK_HOSTS = new Set(['localhost', '127.0.0.1', '::1', '[::1]']);
-const ALLOWLIST_HOSTS = new Set(['api.anthropic.com']);
+const ALLOWLIST_DNS_HOSTS = ['api.anthropic.com'];
+const ALLOWLIST_HOSTS = new Set(ALLOWLIST_DNS_HOSTS);
 
 const DEFAULT_RUN_COUNT = 3;
 const DEFAULT_IDLE_SECONDS = 600;
 const DEFAULT_IDLE_SAMPLE_SECONDS = 60;
 const DEFAULT_HTTP_TIMEOUT_MS = 120_000;
 const DEFAULT_STARTUP_WAIT_MS = 4000;
+const PROVIDER_CREDENTIAL_ENV_NAMES = [
+  'ANTHROPIC_API_KEY',
+  'CHIRALITY_ANTHROPIC_API_KEY',
+  'CHIRALITY_OMLX_API_KEY'
+];
+const NON_SECRET_PROVIDER_FIXTURE = 'chirality-proof-fixture-not-a-secret';
 
 function timestampForPath(date = new Date()) {
   return date.toISOString().replace(/[:]/g, '').replace(/\..+$/, '').replace('T', '_');
@@ -166,7 +176,7 @@ function classifyRemoteHost(host) {
   return 'external_non_allowlisted';
 }
 
-function parseLsofTcp(output) {
+export function parseLsofTcp(output) {
   const lines = output.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
   const remoteEndpoints = [];
   for (const line of lines) {
@@ -177,7 +187,9 @@ function parseLsofTcp(output) {
     const arrowIndex = line.indexOf('->');
     const remoteField = line.slice(arrowIndex + 2).split(' ')[0];
     const remoteHost = parseRemoteHost(remoteField);
+    const pidMatch = line.match(/^\S+\s+(\d+)\s+/);
     remoteEndpoints.push({
+      processId: pidMatch ? Number(pidMatch[1]) : null,
       endpoint: remoteField,
       host: remoteHost,
       class: classifyRemoteHost(remoteHost)
@@ -188,6 +200,47 @@ function parseLsofTcp(output) {
     rawLineCount: lines.length,
     remoteEndpoints
   };
+}
+
+function parseProcessTable(output) {
+  return output.split(/\r?\n/).flatMap((line) => {
+    const match = line.match(/^\s*(\d+)\s+(\d+)\s+(.*)$/);
+    return match ? [{ pid: Number(match[1]), ppid: Number(match[2]), command: match[3] }] : [];
+  });
+}
+
+export function descendantProcessIds(processRows, roots) {
+  const selected = new Set(roots.filter((pid) => Number.isSafeInteger(pid) && pid > 0));
+  let changed = true;
+  while (changed) {
+    changed = false;
+    for (const row of processRows) {
+      if (selected.has(row.ppid) && !selected.has(row.pid)) {
+        selected.add(row.pid);
+        changed = true;
+      }
+    }
+  }
+  return [...selected].sort((left, right) => left - right);
+}
+
+export function scrubProviderCredentialEnv(sourceEnv) {
+  const clean = { ...sourceEnv };
+  for (const name of PROVIDER_CREDENTIAL_ENV_NAMES) delete clean[name];
+  return clean;
+}
+
+async function resolveAllowlistedHosts() {
+  const resolved = [];
+  for (const hostname of ALLOWLIST_DNS_HOSTS) {
+    const addresses = await lookup(hostname, { all: true, verbatim: true });
+    if (addresses.length === 0) throw new Error(`Allowlist DNS resolution returned no addresses: ${hostname}`);
+    for (const { address, family } of addresses) {
+      ALLOWLIST_HOSTS.add(address.toLowerCase());
+      resolved.push({ hostname, address, family });
+    }
+  }
+  return resolved;
 }
 
 async function runCommand(command, args, options = {}) {
@@ -288,91 +341,15 @@ async function waitForHttpReady(url, timeoutMs, processToWatch) {
   throw new Error(`Timed out waiting for HTTP readiness at ${url}`);
 }
 
-async function postJson(url, payload) {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  });
-
-  const text = await response.text();
-  let parsed = null;
-  try {
-    parsed = JSON.parse(text);
-  } catch {
-    // no-op: preserve raw text
-  }
-
-  return {
-    status: response.status,
-    ok: response.ok,
-    raw: text,
-    parsed
-  };
-}
-
-async function postTurnSse(url, payload) {
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  });
-
-  const text = await response.text();
-  const events = [];
-
-  let currentEvent = null;
-  let currentData = [];
-
-  for (const line of text.split(/\r?\n/)) {
-    if (line.startsWith('event:')) {
-      currentEvent = line.slice('event:'.length).trim();
-      continue;
-    }
-
-    if (line.startsWith('data:')) {
-      currentData.push(line.slice('data:'.length).trim());
-      continue;
-    }
-
-    if (line.trim().length === 0 && currentEvent) {
-      const dataString = currentData.join('\n');
-      let parsed = null;
-      try {
-        parsed = JSON.parse(dataString);
-      } catch {
-        parsed = null;
-      }
-
-      events.push({
-        event: currentEvent,
-        rawData: dataString,
-        data: parsed
-      });
-
-      currentEvent = null;
-      currentData = [];
-    }
-  }
-
-  return {
-    status: response.status,
-    ok: response.ok,
-    raw: text,
-    events
-  };
-}
-
 async function captureTcpSnapshot({ runDir, label, processLabel, pid }) {
   const capture = {
     timestamp: toIsoNow(),
     label,
     processLabel,
-    pid,
+    rootPid: pid,
+    pids: [],
+    processes: [],
+    usable: false,
     lsofExitCode: 0,
     raw: '',
     parsed: {
@@ -383,13 +360,27 @@ async function captureTcpSnapshot({ runDir, label, processLabel, pid }) {
 
   if (!Number.isSafeInteger(pid) || pid <= 0) {
     capture.lsofExitCode = 1;
-    return capture;
+    capture.error = 'invalid root PID';
+    await appendFile(path.resolve(runDir, 'tcp_snapshots.ndjson'), `${JSON.stringify(capture)}\n`, 'utf8');
+    throw new Error(`Unusable TCP capture for ${processLabel}: invalid root PID`);
+  }
+
+  const ps = await runCommand('ps', ['-axo', 'pid=,ppid=,command=']);
+  if (ps.code !== 0) throw new Error(`ps failed for ${processLabel}: ${ps.stderr.trim()}`);
+  const processRows = parseProcessTable(ps.stdout);
+  capture.pids = descendantProcessIds(processRows, [pid]);
+  capture.processes = processRows.filter((row) => capture.pids.includes(row.pid));
+  if (!capture.pids.includes(pid)) {
+    capture.lsofExitCode = 1;
+    capture.error = 'root PID absent from process table';
+    await appendFile(path.resolve(runDir, 'tcp_snapshots.ndjson'), `${JSON.stringify(capture)}\n`, 'utf8');
+    throw new Error(`Unusable TCP capture for ${processLabel}: root PID absent from process table`);
   }
 
   const result = await runCommand('lsof', [
     '-P',
     '-a',
-    `-p${pid}`,
+    `-p${capture.pids.join(',')}`,
     '-iTCP',
     '-sTCP:LISTEN,ESTABLISHED,SYN_SENT,CLOSE_WAIT'
   ]);
@@ -397,8 +388,9 @@ async function captureTcpSnapshot({ runDir, label, processLabel, pid }) {
   capture.lsofExitCode = result.code;
   capture.raw = `${result.stdout}${result.stderr}`.trim();
 
-  if (result.code === 0 && result.stdout.trim().length > 0) {
+  if ((result.code === 0 || result.code === 1) && result.stdout.trim().length > 0) {
     capture.parsed = parseLsofTcp(result.stdout);
+    capture.usable = capture.parsed.rawLineCount > 0;
   }
 
   await appendFile(
@@ -407,7 +399,37 @@ async function captureTcpSnapshot({ runDir, label, processLabel, pid }) {
     'utf8'
   );
 
+  if (!capture.usable) {
+    throw new Error(
+      `Unusable TCP capture for ${processLabel}: lsof exit ${result.code} with no parseable output`
+    );
+  }
+
   return capture;
+}
+
+export function summarizeCaptureIntegrity(snapshots) {
+  const unusableSnapshots = snapshots.filter((snapshot) => snapshot.usable !== true);
+  const electronSnapshots = snapshots.filter((snapshot) => snapshot.processLabel === 'electron');
+  const electronDescendantPids = [...new Set(electronSnapshots.flatMap((snapshot) =>
+    (snapshot.pids ?? []).filter((pid) => pid !== snapshot.rootPid)
+  ))].sort((left, right) => left - right);
+  const electronDescendantTcp = electronSnapshots.flatMap((snapshot) =>
+    snapshot.parsed.remoteEndpoints.filter((endpoint) =>
+      Number.isSafeInteger(endpoint.processId) && endpoint.processId !== snapshot.rootPid
+    )
+  );
+  return {
+    usableSnapshotCount: snapshots.length - unusableSnapshots.length,
+    unusableSnapshotCount: unusableSnapshots.length,
+    electronDescendantPids,
+    electronDescendantTcp,
+    pass:
+      snapshots.length > 0 &&
+      unusableSnapshots.length === 0 &&
+      electronDescendantPids.length > 0 &&
+      electronDescendantTcp.length > 0
+  };
 }
 
 function summarizeSnapshotEndpoints(snapshots) {
@@ -461,25 +483,25 @@ async function runProofCycle({ runIndex, args, outputDir }) {
   const runId = `run-${String(runIndex).padStart(2, '0')}`;
   const runDir = path.resolve(outputDir, runId);
   await mkdir(runDir, { recursive: true });
-  // The shared runtime authorizes a registered project identity, not arbitrary
-  // per-run roots. This proof therefore uses the read-only app-dev registration
-  // while keeping legacy adapter sessions in an isolated temporary directory.
-  const workingRootPath = REPO_ROOT;
   const sessionRootPath = path.resolve('/tmp', `chirality-proof-sessions-${runId}-${timestampForPath()}`);
   await mkdir(sessionRootPath, { recursive: true });
+  const userDataPath = path.resolve(sessionRootPath, 'user-data');
   const providerMode = args.provider;
   const scriptedAgentSdkProof =
     providerMode === 'agentSdk' &&
     (args.scriptedAgentSdk || process.env.CHIRALITY_AGENTSDK_SCRIPTED_PROOF === '1');
+  const resolvedAllowlistHosts = await resolveAllowlistedHosts();
 
   const baseEnv = {
-    ...process.env,
+    ...scrubProviderCredentialEnv(process.env),
     NEXT_TELEMETRY_DISABLED: '1',
-    ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY || 'sk-ant-proof-placeholder',
     CHIRALITY_ANTHROPIC_STREAM_TIMEOUT_MS: process.env.CHIRALITY_ANTHROPIC_STREAM_TIMEOUT_MS || '15000',
     CHIRALITY_SESSION_ROOT: sessionRootPath,
-    CHIRALITY_HARNESS_PROVIDER: providerMode
+    CHIRALITY_HARNESS_PROVIDER: providerMode,
+    CHIRALITY_USER_DATA: userDataPath,
+    CHIRALITY_SKIP_CLI_LAUNCHER: '1'
   };
+  if (providerMode !== 'stub') baseEnv.ANTHROPIC_API_KEY = NON_SECRET_PROVIDER_FIXTURE;
   if (scriptedAgentSdkProof) {
     baseEnv.CHIRALITY_AGENTSDK_SCRIPTED_PROOF = '1';
   } else {
@@ -488,7 +510,7 @@ async function runProofCycle({ runIndex, args, outputDir }) {
 
   const nextLogPath = path.resolve(runDir, 'next.log');
   const electronLogPath = path.resolve(runDir, 'electron.log');
-
+  const electronCommand = path.resolve(FRONTEND_ROOT, 'node_modules/.bin/electron');
   const nextProcess = startLoggedProcess({
     label: `${runId}:next`,
     command: path.resolve(FRONTEND_ROOT, 'node_modules/.bin/next'),
@@ -515,7 +537,7 @@ async function runProofCycle({ runIndex, args, outputDir }) {
 
     electronProcess = startLoggedProcess({
       label: `${runId}:electron`,
-      command: path.resolve(FRONTEND_ROOT, 'node_modules/.bin/electron'),
+      command: electronCommand,
       args: ['dist-electron/main.js'],
       cwd: FRONTEND_ROOT,
       env: {
@@ -544,88 +566,6 @@ async function runProofCycle({ runIndex, args, outputDir }) {
       await captureTcpSnapshot({
         runDir,
         label: 'startup_electron',
-        processLabel: 'electron',
-        pid: electronProcess.child.pid
-      })
-    );
-
-    const createResponse = await postJson('http://127.0.0.1:3000/api/harness/session/create', {
-      projectRoot: workingRootPath,
-      persona: 'CHANGE',
-      mode: 'ask'
-    });
-
-    await writeFile(path.resolve(runDir, 'session_create.json'), JSON.stringify(createResponse, null, 2));
-
-    if (!createResponse.ok || !createResponse.parsed?.session?.sessionId) {
-      throw new Error(`Session create failed for ${runId}`);
-    }
-
-    const sessionId = createResponse.parsed.session.sessionId;
-
-    const bootResponse = await postJson('http://127.0.0.1:3000/api/harness/session/boot', {
-      sessionId,
-      opts: {
-        persona: 'CHANGE',
-        mode: 'ask'
-      }
-    });
-
-    await writeFile(path.resolve(runDir, 'session_boot.json'), JSON.stringify(bootResponse, null, 2));
-
-    snapshots.push(
-      await captureTcpSnapshot({
-        runDir,
-        label: 'post_boot_next',
-        processLabel: 'next',
-        pid: nextProcess.child.pid
-      })
-    );
-
-    snapshots.push(
-      await captureTcpSnapshot({
-        runDir,
-        label: 'post_boot_electron',
-        processLabel: 'electron',
-        pid: electronProcess.child.pid
-      })
-    );
-
-    const turnOptions = {
-      persona: 'CHANGE',
-      mode: 'ask'
-    };
-    if (providerMode === 'agentSdk') {
-      Object.assign(turnOptions, {
-        model: 'claude-test',
-        maxTurns: 1,
-        tools: []
-      });
-    }
-
-    const turnResponse = await postTurnSse('http://127.0.0.1:3000/api/harness/turn', {
-      sessionId,
-      message: `DEL-09-06 network-policy proof run ${runId}`,
-      opts: turnOptions,
-      attachments: []
-    });
-
-    await writeFile(path.resolve(runDir, 'turn_sse.txt'), turnResponse.raw, 'utf8');
-    await writeFile(path.resolve(runDir, 'turn_events.json'), JSON.stringify(turnResponse, null, 2), 'utf8');
-
-    snapshots.push(
-      await captureTcpSnapshot({
-        runDir,
-        label: 'post_turn_next',
-        processLabel: 'next',
-        pid: nextProcess.child.pid
-      })
-    );
-
-    snapshots.push(
-      await captureTcpSnapshot({
-        runDir,
-        label: 'post_turn_electron',
         processLabel: 'electron',
         pid: electronProcess.child.pid
       })
@@ -660,6 +600,7 @@ async function runProofCycle({ runIndex, args, outputDir }) {
     timeline.push({ at: toIsoNow(), step: 'idle_window_complete' });
 
     const uniqueEndpoints = summarizeSnapshotEndpoints(snapshots);
+    const captureIntegrity = summarizeCaptureIntegrity(snapshots);
 
     const nextLog = await readFile(nextLogPath, 'utf8').catch(() => '');
     const electronLog = await readFile(electronLogPath, 'utf8').catch(() => '');
@@ -677,7 +618,8 @@ async function runProofCycle({ runIndex, args, outputDir }) {
       (endpoint) => endpoint.class === 'allowlisted'
     );
 
-    const processExitEvents = turnResponse.events.filter((event) => event.event === 'process:exit');
+    const electronStayedRunning = electronProcess.child.exitCode === null;
+    const nextStayedRunning = nextProcess.child.exitCode === null;
 
     const summary = {
       runId,
@@ -687,12 +629,12 @@ async function runProofCycle({ runIndex, args, outputDir }) {
         startup: true,
         providerMode,
         scriptedAgentSdkProof,
-        workingRootPath,
         sessionRootPath,
-        sessionCreate: createResponse.ok,
-        sessionBoot: bootResponse.ok,
-        turnRequestStatus: turnResponse.status,
-        processExitEvents,
+        userDataPath,
+        providerExecution: 'not-exercised-by-renderer-egress-capture',
+        resolvedAllowlistHosts,
+        electronStayedRunning,
+        nextStayedRunning,
         idleSeconds: args.idleSeconds,
         shutdown: true
       },
@@ -707,23 +649,19 @@ async function runProofCycle({ runIndex, args, outputDir }) {
         nonAllowlistedEndpoints,
         uniqueEndpoints
       },
+      captureIntegrity,
       verdict: {
         noNonAllowlistedOutboundTcp: nonAllowlistedEndpoints.length === 0,
         blockedRendererDiagnosticsObserved: blockedDiagnostics > 0,
         networkProbePayloadObserved: probePayloads.length > 0,
-        scenarioCompleted:
-          createResponse.ok &&
-          bootResponse.ok &&
-          turnResponse.ok &&
-          processExitEvents.length > 0
+        usableDescendantCapture: captureIntegrity.pass,
+        rendererDescendantTrafficObserved: captureIntegrity.electronDescendantTcp.length > 0,
+        scenarioCompleted: electronStayedRunning && nextStayedRunning
       },
       artifacts: {
         nextLogPath,
         electronLogPath,
-        tcpSnapshotsPath: path.resolve(runDir, 'tcp_snapshots.ndjson'),
-        sessionCreatePath: path.resolve(runDir, 'session_create.json'),
-        sessionBootPath: path.resolve(runDir, 'session_boot.json'),
-        turnEventsPath: path.resolve(runDir, 'turn_events.json')
+        tcpSnapshotsPath: path.resolve(runDir, 'tcp_snapshots.ndjson')
       },
       notes: {
         unresolvedConf002:
@@ -753,6 +691,8 @@ function aggregateRunVerdicts(runs) {
       verdict.noNonAllowlistedOutboundTcp &&
       verdict.blockedRendererDiagnosticsObserved &&
       verdict.networkProbePayloadObserved &&
+      verdict.usableDescendantCapture &&
+      verdict.rendererDescendantTrafficObserved &&
       verdict.scenarioCompleted
     );
   });
@@ -793,6 +733,8 @@ function renderMarkdownSummary(args, outputDir, runSummaries, aggregate) {
       run.verdict.noNonAllowlistedOutboundTcp &&
       run.verdict.blockedRendererDiagnosticsObserved &&
       run.verdict.networkProbePayloadObserved &&
+      run.verdict.usableDescendantCapture &&
+      run.verdict.rendererDescendantTrafficObserved &&
       run.verdict.scenarioCompleted
         ? 'PASS'
         : 'FAIL';
@@ -819,7 +761,7 @@ async function main() {
   const buildResult = await runCommand('npm', ['run', 'build:electron'], {
     cwd: FRONTEND_ROOT,
     env: {
-      ...process.env,
+      ...scrubProviderCredentialEnv(process.env),
       NEXT_TELEMETRY_DISABLED: '1'
     }
   });
@@ -876,7 +818,9 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error('[proof] fatal:', error instanceof Error ? error.message : String(error));
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) {
+  main().catch((error) => {
+    console.error('[proof] fatal:', error instanceof Error ? error.message : String(error));
+    process.exitCode = 1;
+  });
+}

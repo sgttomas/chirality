@@ -1,4 +1,6 @@
-import { mkdtemp, mkdir, open, rm, symlink, writeFile } from 'node:fs/promises';
+import { mkdtemp, mkdir, open, rm, symlink, writeFile, chmod } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
@@ -6,6 +8,7 @@ import { AttachmentResolver } from '../../lib/harness/attachment-resolver';
 
 const BYTES_PER_MIB = 1024 * 1024;
 const MAX_ATTACHMENT_BYTES = 10 * BYTES_PER_MIB;
+const execFileAsync = promisify(execFile);
 
 let tmpDir = '';
 
@@ -96,6 +99,37 @@ describe('AttachmentResolver', () => {
         reason: 'Attachment path must reference a regular file (symbolic links are rejected)'
       }
     ]);
+  });
+
+  it('rejects unreadable regular files and special files', async () => {
+    const root = await createTmpDir();
+    const unreadablePath = path.join(root, 'unreadable.txt');
+    await writeFile(unreadablePath, 'not readable', 'utf8');
+    await chmod(unreadablePath, 0o000);
+    const socketPath = path.join(root, 'special.txt');
+    await execFileAsync('mkfifo', [socketPath]);
+
+    try {
+      const resolver = new AttachmentResolver();
+      const resolved = await resolver.resolveAttachmentsToContentBlocks('hello', [
+        unreadablePath,
+        socketPath
+      ]);
+
+      expect(resolved.contentBlocks).toEqual([{ type: 'text', text: 'hello' }]);
+      expect(resolved.errors).toEqual([
+        {
+          path: unreadablePath,
+          reason: `Attachment file is not readable: ${unreadablePath}`
+        },
+        {
+          path: socketPath,
+          reason: 'Attachment path must reference a regular file'
+        }
+      ]);
+    } finally {
+      await chmod(unreadablePath, 0o600);
+    }
   });
 
   it('rejects files that exceed the per-file limit', async () => {

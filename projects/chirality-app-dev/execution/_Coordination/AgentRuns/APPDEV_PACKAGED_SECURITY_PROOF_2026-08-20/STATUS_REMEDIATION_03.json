@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20",
+  "childInstanceId": "A2-PKG09-PACKAGED-SECURITY-REMEDIATION-03",
+  "role": "bounded governance-manifest implementation",
+  "status": "SUCCESS",
+  "basis": "357a58b56726feba49507534159c3fbc4656b818",
+  "nodeRevision": "605a0b7bc85e054d32221083e1f15a57b2d85dee",
+  "graphVersion": 1,
+  "appHoldDispatch": "ALLOW",
+  "writeAuthorization": "ONE_EXACT_ROOT_TRANCHE_MANIFEST",
+  "changedPathCount": 1,
+  "manifestSha256": "b10b6564437251083be92c7d246986fbaffc16569d23f61263b1df69756ff43f",
+  "productBytesChanged": false,
+  "hostRerunRequired": false,
+  "returnPath": "REMEDIATION_RETURN_03.md",
+  "blockers": []
+}

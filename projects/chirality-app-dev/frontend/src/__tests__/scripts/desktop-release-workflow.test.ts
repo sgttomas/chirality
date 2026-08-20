@@ -120,6 +120,28 @@ describe('desktop unsigned artifact workflow', () => {
     expect(cleanupIndex).toBeGreaterThan(mountedProofIndex);
   });
 
+  it('runs the packaged network, safeStorage, and renderer-security proof fail-closed', async () => {
+    const workflow = await readWorkflow();
+
+    expect(workflow).toContain(
+      'packaged_security_root="${verification_root}/packaged-security"'
+    );
+    expect(workflow).toContain('npm run proof:packaged-security --');
+    expect(workflow).toContain('--app-path "${app_path}"');
+    expect(workflow).toContain('--source-revision "${GITHUB_SHA}"');
+    expect(workflow).toContain('summary.status !== "pass"');
+    expect(workflow).toContain('summary.exclusions.realCredentialsUsed !== false');
+    expect(workflow).toContain(
+      "'artifacts/release-verification/packaged-security/summary.json'"
+    );
+
+    const appGuardIndex = workflow.indexOf('[[ -d "${app_path}" ]]');
+    const proofIndex = workflow.indexOf('npm run proof:packaged-security --');
+    const mountIndex = workflow.indexOf('hdiutil attach -nobrowse -readonly');
+    expect(proofIndex).toBeGreaterThan(appGuardIndex);
+    expect(mountIndex).toBeGreaterThan(proofIndex);
+  });
+
   it('uploads CI artifacts without a release-publication path', async () => {
     const workflow = await readWorkflow();
 
@@ -131,6 +153,9 @@ describe('desktop unsigned artifact workflow', () => {
     );
     expect(workflow).toContain(
       'artifacts/release-verification/packaged-agent-sdk/mounted/summary.json'
+    );
+    expect(workflow).toContain(
+      'artifacts/release-verification/packaged-security/summary.json'
     );
     expect(workflow).not.toContain('softprops/action-gh-release');
     expect(workflow).not.toContain('actions/create-release');

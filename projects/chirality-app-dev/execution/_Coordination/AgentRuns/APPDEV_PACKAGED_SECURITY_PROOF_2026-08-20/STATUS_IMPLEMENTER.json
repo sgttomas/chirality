@@ -1,0 +1,25 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20",
+  "childInstanceId": "A2-PKG09-PACKAGED-SECURITY-IMPLEMENT-01",
+  "role": "TASK + software-bounded-implementation",
+  "status": "FAILED",
+  "basis": "357a58b56726feba49507534159c3fbc4656b818",
+  "graphVersion": 1,
+  "appHoldDispatch": "ALLOW",
+  "reviewRequired": true,
+  "hostCapabilityRequired": true,
+  "completedAt": "2026-08-20T06:27:05Z",
+  "proofImplementationStatus": "PASS",
+  "packagedSecurityAcceptanceStatus": "FAILED",
+  "hostRerunRequired": false,
+  "checksPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20/N1_CHECKS.json",
+  "returnPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20/IMPLEMENTER_RETURN.md",
+  "blockers": [
+    {
+      "id": "API_KEY_ENV_PRECEDENCE",
+      "disposition": "RECORD_HOLD_SCOPE_WIDENING",
+      "owner": "DEL-02-05 R03 / DEL-04-05 RQ-001"
+    }
+  ]
+}

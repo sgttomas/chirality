@@ -128,6 +128,11 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
         value: 'node ./scripts/scan-secret-evidence.mjs'
       },
       {
+        kind: 'jsonPathEquals',
+        jsonPath: ['scripts', 'proof:packaged-security'],
+        value: 'node ./scripts/run-packaged-security-proof.mjs'
+      },
+      {
         kind: 'jsonPathContains',
         jsonPath: ['scripts', 'desktop:pack'],
         value: 'CSC_IDENTITY_AUTO_DISCOVERY=false'
@@ -218,6 +223,21 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
         value: "endpoint.class !== 'loopback' && endpoint.class !== 'allowlisted'"
       },
       { kind: 'contains', value: "'api.anthropic.com'" }
+    ]
+  },
+  {
+    file: 'scripts/run-packaged-security-proof.mjs',
+    description:
+      'Packaged artifact proof identity-binds real bundle bytes, exercises isolated safeStorage, and captures fail-closed renderer egress',
+    pins: [
+      { kind: 'contains', value: "schema: 'chirality-packaged-security-proof/v1'" },
+      { kind: 'contains', value: "CHIRALITY_USER_DATA: userDataRoot" },
+      { kind: 'contains', value: "CHIRALITY_SKIP_CLI_LAUNCHER: '1'" },
+      { kind: 'contains', value: "client.storeCredential('anthropic', fixtureCredential)" },
+      { kind: 'contains', value: 'nonAllowlistedOutboundTcp' },
+      { kind: 'contains', value: 'retainedMetadataLeakFindings' },
+      { kind: 'notContains', value: 'CSC_LINK' },
+      { kind: 'notContains', value: 'APPLE_ID' }
     ]
   },
   {

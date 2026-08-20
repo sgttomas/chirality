@@ -1,0 +1,16 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20",
+  "childInstanceId": "A2-PKG09-PACKAGED-SECURITY-REMEDIATION-02",
+  "role": "bounded mechanical evidence remediation",
+  "status": "SUCCESS",
+  "basis": "357a58b56726feba49507534159c3fbc4656b818",
+  "graphVersion": 1,
+  "appHoldDispatch": "ALLOW",
+  "writeAuthorization": "THREE_EXACT_EVIDENCE_PATHS",
+  "changedPathCount": 3,
+  "productBehaviorChanged": false,
+  "hostRerunRequired": false,
+  "returnPath": "REMEDIATION_RETURN_02.md",
+  "blockers": []
+}

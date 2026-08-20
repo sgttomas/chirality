@@ -1,0 +1,139 @@
+{
+  "schema": "chirality-n1-remediation-checks/v1",
+  "runId": "APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20",
+  "nodeId": "N1-REMEDIATION-01",
+  "childInstanceId": "A2-PKG09-PACKAGED-SECURITY-REMEDIATION-01",
+  "basis": "357a58b56726feba49507534159c3fbc4656b818",
+  "predecessorIdentity": "eeabad67107add91cea891b03c63d89c940244155d1d240082223119de80983c",
+  "completedAt": "2026-08-20T07:01:52Z",
+  "status": "SUCCESS",
+  "remediationProofStatus": "PASS",
+  "packagedSecurityAcceptanceStatus": "FAILED_ACCEPTED_BLOCKER",
+  "findings": [
+    {
+      "id": "SOURCE_TCP_CAPTURE_FAIL_OPEN",
+      "status": "CLOSED",
+      "result": "Complete Electron descendant tree recorded; 4/4 snapshots usable; renderer-child PID 29162 produced observed loopback and DNS-bound api.anthropic.com TCP; zero non-allowlisted endpoints; empty lsof exit 1 is fail-closed.",
+      "evidence": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-3/summary.json"
+    },
+    {
+      "id": "CREDENTIAL_LEAK_SCAN_TOO_EARLY",
+      "status": "CLOSED",
+      "result": "Anthropic store/remove rechecked oMLX after each mutation; complete closed GUI/daemon streams, encrypted credential bytes, and every emitted proof artifact were scanned; zero fixture findings.",
+      "evidence": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/packaged-host-attempt-1/summary.json"
+    },
+    {
+      "id": "PACKAGED_CLEANUP_FAIL_OPEN",
+      "status": "CLOSED",
+      "result": "GUI and daemon shutdown are propagated and recorded; both processes confirmed stopped and both log streams closed; temp root removal confirmed; cleanup is required by the final PASS predicate.",
+      "evidence": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/packaged-host-attempt-1/cleanup.json"
+    },
+    {
+      "id": "SOURCE_PROOF_LIVE_CREDENTIAL_INHERITANCE",
+      "status": "CLOSED",
+      "result": "All project provider credential variables are removed from inherited child environments; the non-stub proof sets only an unmistakable non-secret fixture.",
+      "evidence": "projects/chirality-app-dev/frontend/src/__tests__/scripts/run-network-policy-proof.test.ts"
+    },
+    {
+      "id": "OWNER_USER_DATA_CLAIM_OVERSTATED",
+      "status": "CLOSED",
+      "result": "The first attempt is preserved and explicitly calibrated as default-user-data/no-audit evidence; its global no-owner-write claim is retracted. Credited attempt 3 isolated CHIRALITY_USER_DATA before Electron launch.",
+      "evidence": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/ATTEMPT_HISTORY_CALIBRATION.md"
+    }
+  ],
+  "checks": [
+    {
+      "id": "focused-proof-regressions",
+      "status": "PASS",
+      "result": "2 files passed; 11 tests passed",
+      "command": "npm test -- src/__tests__/scripts/run-network-policy-proof.test.ts src/__tests__/scripts/run-packaged-security-proof.test.ts"
+    },
+    {
+      "id": "registered-checks-final",
+      "status": "PASS",
+      "result": "frontend-test 150 files passed / 1 skipped; 1158 tests passed / 1 expected accepted-precedence failure / 4 skipped; typecheck PASS; build PASS; harness pytest 350 passed; APP-HOLD integrity PASS",
+      "command": "env PATH=/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.local/share/mise/installs/node/24/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin python3 tools/software_workflow/run_registered_checks.py projects/chirality-app-dev/software-workflow.json --check frontend-test --check frontend-typecheck --check frontend-build --check harness-pytest --check app-hold-integrity --output projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/registered-checks-final-2.json --timeout-seconds 900",
+      "surface": "host-capability",
+      "escalation": "APPROVED",
+      "evidence": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/registered-checks-final-2.json"
+    },
+    {
+      "id": "harness-root-self-check",
+      "status": "PASS",
+      "command": "PYTHONDONTWRITEBYTECODE=1 /Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 tools/practitioner_harness/harness.py self-check"
+    },
+    {
+      "id": "source-network-policy-final",
+      "status": "PASS",
+      "command": "npm run proof:network-policy -- --runs 1 --idle-seconds 5 --idle-sample-seconds 5 --provider agentSdk --scripted-agent-sdk --output-dir /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-3",
+      "surface": "host-capability",
+      "escalation": "APPROVED",
+      "evidence": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-3/summary.json"
+    },
+    {
+      "id": "unsigned-desktop-dist",
+      "status": "PASS",
+      "command": "npm run desktop:dist",
+      "surface": "host-capability",
+      "escalation": "APPROVED"
+    },
+    {
+      "id": "instruction-root-integrity",
+      "status": "PASS",
+      "result": "43 files checked; zero missing, mismatched, or unexpected bundled agent files",
+      "evidence": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/instruction-root/summary.json"
+    },
+    {
+      "id": "packaged-host-final",
+      "status": "PASS",
+      "result": "Fresh identity 3da8cbbbd5cd543dce0c400975cf42b2bdfadd0b8dc6ccd61aab6489c38acee5; credential/provider-isolation PASS; network PASS; cleanup PASS",
+      "command": "npm run proof:packaged-security -- --app-path dist/mac-arm64/Chirality.app --output-root /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/packaged-host-attempt-1 --source-revision 357a58b56726feba49507534159c3fbc4656b818",
+      "surface": "host-capability",
+      "escalation": "APPROVED",
+      "evidence": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/packaged-host-attempt-1/summary.json"
+    },
+    {
+      "id": "secret-scan-final",
+      "status": "PASS",
+      "result": "5772 files scanned; 0 blocked findings; 21 allowed fixture findings",
+      "evidence": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/secret-scan-final/secret-scan-summary.json"
+    },
+    {
+      "id": "change-scope",
+      "status": "PASS",
+      "result": "9 declared paths checked against the exact remediation write fence; zero violations"
+    },
+    {
+      "id": "diff-whitespace",
+      "status": "PASS",
+      "command": "git diff --check"
+    },
+    {
+      "id": "accepted-api-key-precedence",
+      "status": "FAIL_ACCEPTED_BLOCKER",
+      "result": "Production SafeStorageCredentialStore.get('anthropic') precedence remains held outside this node under DEL-02-05 R03 / DEL-04-05 RQ-001; no production edit was made."
+    }
+  ],
+  "retainedAttempts": [
+    "Remediation_01/registered-checks.json",
+    "Remediation_01/registered-checks-final.json",
+    "Remediation_01/source-network-policy-attempt-1",
+    "Remediation_01/source-network-policy-attempt-2"
+  ],
+  "changedSourceHashes": {
+    "frontend/scripts/run-network-policy-proof.mjs": "1538aa1a9ea52ad8f01cb704b8aa966d999bffb6c92a7e8b99ba6f9732dabfbe",
+    "frontend/scripts/run-packaged-security-proof.mjs": "17e55db10d5411d7b2691e03a45f83590586aa1b844a4a4cba23cb3d48b4de53",
+    "frontend/src/__tests__/scripts/run-network-policy-proof.test.ts": "67fddd6fbdd33266f109d593d7bb5dc090139daaf9f1d849a67fe084bc243c43",
+    "frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts": "86bc12e5fce5c47f9df763999b93032ed35a4f42ff39ff4c05baf0ab38d9826d"
+  },
+  "hostRerunRequired": false,
+  "exclusionsPreserved": true,
+  "blockers": [
+    {
+      "id": "API_KEY_ENV_PRECEDENCE",
+      "owner": "DEL-02-05 R03 / DEL-04-05 RQ-001",
+      "disposition": "RECORD_HOLD_SCOPE_WIDENING",
+      "preserved": true
+    }
+  ]
+}

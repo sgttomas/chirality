@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SECURITY_PROOF_2026-08-20",
+  "childInstanceId": "A2-PKG09-PACKAGED-SECURITY-REVIEW-02",
+  "role": "TASK + software-code-review",
+  "status": "PASS",
+  "basis": "357a58b56726feba49507534159c3fbc4656b818",
+  "graphVersion": 1,
+  "frozenSubjectPathCount": 88,
+  "frozenIdentity": "db85316f5f5d711e4aa3b248368c62e5448c01b6716fc2b284075dc0754f8bc4",
+  "appHoldDispatch": "ALLOW",
+  "writeAuthorization": "READ_ONLY",
+  "coverage": {
+    "productPaths": "10/10",
+    "evidenceControlPaths": "78/78",
+    "actionableFindings": 0
+  },
+  "proofImplementationVerdict": "PASS",
+  "acceptedBlocker": "API_KEY_ENV_PRECEDENCE",
+  "hostRerunRequired": false,
+  "returnPath": "REVIEWER_RETURN_02.md",
+  "blockers": []
+}

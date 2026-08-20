@@ -1,0 +1,300 @@
+{
+  "generatedAt": "2026-08-20T06:56:24.194Z",
+  "args": {
+    "runs": 1,
+    "idleSeconds": 5,
+    "idleSampleSeconds": 5,
+    "provider": "agentSdk",
+    "scriptedAgentSdk": true,
+    "outputDir": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-2"
+  },
+  "aggregate": {
+    "runCount": 1,
+    "failedRunCount": 1,
+    "passed": false,
+    "failedRuns": [
+      "run-01"
+    ]
+  },
+  "runs": [
+    {
+      "runId": "run-01",
+      "generatedAt": "2026-08-20T06:56:23.884Z",
+      "timeline": [
+        {
+          "at": "2026-08-20T06:56:12.544Z",
+          "step": "next_start"
+        },
+        {
+          "at": "2026-08-20T06:56:14.365Z",
+          "step": "next_ready"
+        },
+        {
+          "at": "2026-08-20T06:56:14.365Z",
+          "step": "electron_start"
+        },
+        {
+          "at": "2026-08-20T06:56:23.884Z",
+          "step": "idle_window_complete"
+        }
+      ],
+      "scenario": {
+        "startup": true,
+        "providerMode": "agentSdk",
+        "scriptedAgentSdkProof": true,
+        "sessionRootPath": "/tmp/chirality-proof-sessions-run-01-2026-08-20_065612",
+        "userDataPath": "/tmp/chirality-proof-sessions-run-01-2026-08-20_065612/user-data",
+        "providerExecution": "not-exercised-by-renderer-egress-capture",
+        "electronStayedRunning": true,
+        "nextStayedRunning": true,
+        "idleSeconds": 5,
+        "shutdown": true
+      },
+      "diagnostics": {
+        "blockedRendererDiagnosticsCount": 1,
+        "networkProbePayloadCount": 1,
+        "networkProbePayloads": [
+          {
+            "policy": "REQ-NET-001",
+            "results": [
+              {
+                "url": "https://example.com/chirality-network-policy-blocked-check",
+                "ok": false,
+                "status": null,
+                "type": null,
+                "error": "Failed to fetch"
+              },
+              {
+                "url": "https://api.anthropic.com/v1/messages",
+                "ok": true,
+                "status": 0,
+                "type": "opaque",
+                "error": null
+              },
+              {
+                "url": "http://127.0.0.1:3000/",
+                "ok": true,
+                "status": 200,
+                "type": "basic",
+                "error": null
+              }
+            ]
+          }
+        ]
+      },
+      "endpointSummary": {
+        "totalUniqueEndpoints": 9,
+        "allowlistedAnthropicEndpoints": [],
+        "nonAllowlistedEndpoints": [
+          {
+            "host": "2607:6bc0::10",
+            "endpoint": "[2607:6bc0::10]:443",
+            "class": "external_non_allowlisted",
+            "firstSeen": "2026-08-20T06:56:18.477Z",
+            "label": "startup_electron",
+            "processLabel": "electron"
+          }
+        ],
+        "uniqueEndpoints": [
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51349",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:56:18.366Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51350",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:56:18.366Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51351",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:56:18.366Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51352",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:56:18.366Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51353",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:56:18.366Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51354",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:56:18.366Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:51355",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:56:18.366Z",
+            "label": "startup_next",
+            "processLabel": "next"
+          },
+          {
+            "host": "localhost",
+            "endpoint": "localhost:3000",
+            "class": "loopback",
+            "firstSeen": "2026-08-20T06:56:18.477Z",
+            "label": "startup_electron",
+            "processLabel": "electron"
+          },
+          {
+            "host": "2607:6bc0::10",
+            "endpoint": "[2607:6bc0::10]:443",
+            "class": "external_non_allowlisted",
+            "firstSeen": "2026-08-20T06:56:18.477Z",
+            "label": "startup_electron",
+            "processLabel": "electron"
+          }
+        ]
+      },
+      "captureIntegrity": {
+        "usableSnapshotCount": 4,
+        "unusableSnapshotCount": 0,
+        "electronDescendantPids": [
+          28770,
+          28771,
+          28772,
+          28773
+        ],
+        "electronDescendantTcp": [
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "[2607:6bc0::10]:443",
+            "host": "2607:6bc0::10",
+            "class": "external_non_allowlisted"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "[2607:6bc0::10]:443",
+            "host": "2607:6bc0::10",
+            "class": "external_non_allowlisted"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          },
+          {
+            "processId": 28772,
+            "endpoint": "localhost:3000",
+            "host": "localhost",
+            "class": "loopback"
+          }
+        ],
+        "pass": true
+      },
+      "verdict": {
+        "noNonAllowlistedOutboundTcp": false,
+        "blockedRendererDiagnosticsObserved": true,
+        "networkProbePayloadObserved": true,
+        "usableDescendantCapture": true,
+        "rendererDescendantTrafficObserved": true,
+        "scenarioCompleted": true
+      },
+      "artifacts": {
+        "nextLogPath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-2/run-01/next.log",
+        "electronLogPath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-2/run-01/electron.log",
+        "tcpSnapshotsPath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Packaged_Security_Proof_2026-08-20/Remediation_01/source-network-policy-attempt-2/run-01/tcp_snapshots.ndjson"
+      },
+      "notes": {
+        "unresolvedConf002": "CONF-002 (OCSP/CRL infrastructure carve-out) remains unresolved; TCP-level summary flags only explicit non-allowlisted external endpoints."
+      }
+    }
+  ]
+}

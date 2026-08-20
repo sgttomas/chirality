@@ -1,0 +1,19 @@
+[2026-08-20T06:09:23.403Z] START run-01:electron: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/node_modules/.bin/electron dist-electron/main.js
+[chirality-desktop] 2026-08-20T06:09:23.563Z [info] desktop.gui.starting {"packaged":false,"userData":"/tmp/chirality-proof-sessions-run-01-2026-08-20_060921/user-data","socketPath":"/tmp/chirality-proof-sessions-run-01-2026-08-20_060921/user-data/runtime/control.sock"}
+[chirality-desktop] 2026-08-20T06:09:23.564Z [info] runtime.socket_watch.started {"directory":"/tmp/chirality-proof-sessions-run-01-2026-08-20_060921/user-data/runtime"}
+[chirality-desktop] 2026-08-20T06:09:23.564Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-08-20T06:09:23.573Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"The app-dev project [redacted] the runtime [redacted]","changedAt":"2026-08-20T06:09:23.573Z"}
+[chirality-desktop] 2026-08-20T06:09:23.573Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"The app-dev project [redacted] the runtime [redacted]"}
+Blocked renderer outbound request by network policy {
+  category: 'NETWORK_POLICY_VIOLATION',
+  policy: 'REQ-NET-001',
+  reason: 'host_not_allowlisted:example.com',
+  destination: { hostname: 'example.com', port: null, protocol: 'https:' },
+  method: 'GET',
+  resourceType: 'xhr',
+  webContentsId: 1
+}
+[network-policy-probe] {"policy":"REQ-NET-001","results":[{"url":"https://example.com/chirality-network-policy-blocked-check","ok":false,"status":null,"type":null,"error":"Failed to fetch"},{"url":"https://api.anthropic.com/v1/messages","ok":true,"status":0,"type":"opaque","error":null},{"url":"http://127.0.0.1:3000/","ok":true,"status":200,"type":"basic","error":null}]}
+[chirality-desktop] 2026-08-20T06:09:54.580Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":2,"lastError":"Unable to reach the Chirality runtime at /tmp/chirality-proof-sessions-run-01-2026-08-20_060921/user-data/runtime/control.sock","changedAt":"2026-08-20T06:09:54.580Z"}
+[chirality-desktop] 2026-08-20T06:09:54.580Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unable to reach the Chirality runtime at /tmp/chirality-proof-sessions-run-01-2026-08-20_060921/user-data/runtime/control.sock"}
+[2026-08-20T06:09:57.892Z] EXIT run-01:electron: code=0 signal=null
