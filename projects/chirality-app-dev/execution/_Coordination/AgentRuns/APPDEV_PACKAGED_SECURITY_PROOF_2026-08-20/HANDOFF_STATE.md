@@ -12,7 +12,8 @@
   `db85316f5f5d711e4aa3b248368c62e5448c01b6716fc2b284075dc0754f8bc4`;
   packaged identity is
   `3da8cbbbd5cd543dce0c400975cf42b2bdfadd0b8dc6ccd61aab6489c38acee5`.
-- Final fresh review: see `REVIEWER_RETURN_03.md` and `STATUS_REVIEW_03.json`.
+- Final adjacent-remediation review: see `REVIEWER_RETURN_04.md` and
+  `STATUS_REVIEW_04.json`.
   This CHANGE handoff is released only if that review reconstructs the final
   frozen identity, covers 100% of product/evidence/control bytes, confirms the
   staged candidate-wide whitespace check, and returns `PASS` with zero
@@ -27,11 +28,14 @@
 
 ## CHANGE handoff
 
-Stage only the exact authorized product, deliverable evidence/run-record, and
-current AgentRuns paths; commit the one N1 partial-progress node after final
-candidate-wide whitespace/containment validation; push this branch; open the
-one tranche PR against `main`; and write the single receipt only after the
-fact. Preserve DEL-09-06/DEL-09-04 Remaining and lifecycle state, the accepted
+The N1 product node is already commit
+`605a0b7bc85e054d32221083e1f15a57b2d85dee` in PR #586. Stage only the new
+APP-DEL0906 tranche manifest and exact remediation-03/CI/fan-in records; create
+one adjacent remediation commit after final candidate-range G4,
+whitespace/containment, and review-04 PASS; push it to the existing PR; then
+rerun the registered CI surfaces. Do not amend the node commit or open another
+PR. Write the single receipt only after the proving CI result. Preserve
+DEL-09-06/DEL-09-04 Remaining and lifecycle state, the accepted
 precedence blocker, and every stated exclusion. Do not alter signing,
 notarization, distribution, release-readiness, provider scope, production
 credentials, dependency pins/locks, owner-machine state, RunAtLoad, decision
