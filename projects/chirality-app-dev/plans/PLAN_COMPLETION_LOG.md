@@ -6,6 +6,29 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-08-20 - API-key environment precedence repair published (stacked)
+
+Stacked PR #589 repairs API-key precedence across the packaged application:
+PKG-04 commit `45336238247f304bcdd3c718be2b1f8dcff6c387`
+selects persisted UI safeStorage before `ANTHROPIC_API_KEY` and
+`CHIRALITY_ANTHROPIC_API_KEY`; PKG-02 commit
+`4d1d927fa4a8df2672534dfd1206716c1e6cd7d4` consumes the typed source status
+without renderer-side environment re-inference; and PKG-09 commit
+`675b87a56c4f2fbdd9aef332600b3088dd543738` records the identity-bound
+packaged credential, network, cleanup, and secret-scan proof. Shared fan-in is
+`432577fcde3796933f30d9d10df86094d5282f7b`.
+
+Integrated Review 03 and the N2 closeout-remediation review pass with zero
+findings. Governance Harness `32398779013 / 96521728803`, Harness pre-merge
+`32398778692 / 96521729491`, and unsigned macOS artifact
+`32398778725 / 96521727665` pass. PR #589 is based on PR #586's branch and must
+merge after #586. The selected precedence and packaged-security/network
+residuals are closed, while DEL-02-05, DEL-04-05, DEL-09-06, and DEL-09-04
+remain `IN_PROGRESS`; lifecycle, Checking Approval SHAs, F-APP-2, signing,
+notarization, distribution, publication, release, and owner-machine fences are
+unchanged. See
+`execution/_Coordination/AgentRuns/APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20/`.
+
 ## 2026-08-20 - Packaged security proof infrastructure landed (partial)
 
 PR #586 node `605a0b7bc85e054d32221083e1f15a57b2d85dee` adds the
