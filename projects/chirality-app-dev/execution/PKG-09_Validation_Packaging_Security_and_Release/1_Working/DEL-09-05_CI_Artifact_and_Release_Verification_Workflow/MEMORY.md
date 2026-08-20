@@ -2,6 +2,28 @@
 
 ## Decisions And Evidence
 
+- 2026-08-19 - PR #583 retained the external proof for D-APP-97 C1: Desktop
+  run `32327128935`, job `96300526868` passed the unsigned macOS build,
+  DMG-mounted identity/posture checks, and bounded CI artifact upload. The
+  first governance attempt exposed missing instruction-tranche coverage; the
+  adjacent manifest-only remediation passed governance run `32327623630`, job
+  `96301949909`, without changing the reviewed workflow or regression hashes.
+  DEL-09-05's applicable R4-P49 unsigned-artifact evidence scope is complete.
+  No signing, notarization, publication, distribution, release authority,
+  lifecycle transition, or professional claim follows.
+
+- 2026-08-19 - D-APP-97 C1 product implementation replaced the inactive
+  `.github/workflows/desktop-release-template.yml.disabled` with active
+  `.github/workflows/desktop-release-template.yml`. The workflow is bounded to
+  PR/manual macOS CI, uses `contents: read`, disables signing identity
+  discovery, performs no signing/notarization/publication act, verifies the
+  staged app, DMG, and mounted app identity/posture, preserves dependency and
+  instruction-root JSON evidence, and uses `actions/upload-artifact` only.
+  Focused policy tests, full Vitest, typecheck, YAML/Bash static validation,
+  APP-HOLD, practitioner harness, and fresh review passed. Actual macOS
+  artifact execution/upload remains PR-CI-owed; no release or lifecycle claim
+  follows from the implementation evidence.
+
 - 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.
 - 2026-06-21 - ADQ-14 added `docs/RELEASE_QUALITY_RUNBOOK.md` and a runtime-premerge wrapper summary at `frontend/artifacts/harness/release-quality/latest/summary.json` (generated, git-ignored). The DEL-09-05 local kit now distinguishes Section 8 premerge summary, Section 9 summary, release-quality wrapper summary, and instruction-root packaging summary. No CI provider/ruling, packaging output, signing/notarization/publication, lifecycle issuance, professional approval, certification, sealing, authentication, code-compliance acceptance, or release-readiness claim changed.
 - 2026-06-21 - ADQ-15 produced fresh local packaging evidence: `npm run desktop:dist`, instruction-root integrity summaries for build-directory and mounted-DMG app resources, and scripted no-live packaged Agent SDK subprocess proofs for both layouts. The run records app/DMG artifacts, checksums, arm64/minimum-OS posture, and adhoc local-builder signing posture in `Evidence_ADQ-15_Packaging_Instruction_Root_Refresh.md`. Network-policy evidence remains assigned to ADQ-16; no CI provider/ruling, signing/notarization/publication, external distribution, lifecycle issuance, professional approval, certification, sealing, authentication, code-compliance acceptance, or release-readiness claim changed.

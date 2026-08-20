@@ -1,0 +1,22 @@
+# Sealed fresh Agent 2 brief — DEL-09-05 code review
+
+- RequestedBy: `HELP_HUMAN -> WORKING_ITEMS`
+- RunID: `APPDEV_UNSIGNED_RELEASE_WORKFLOW_2026-08-19`
+- ParentInstanceID: `WI-PKG09-DEL0905-01`
+- ChildInstanceID: `A2-DEL0905-REVIEW-01`
+- PackageID: `PKG-09`
+- DeliverableIDs: `DEL-09-05`
+- ScopePath: `{WORKING_ROOT}/execution/_Coordination/AgentRuns/APPDEV_UNSIGNED_RELEASE_WORKFLOW_2026-08-19`
+- PROFILE_PATH: `{WORKING_ROOT}/software-workflow.json`
+- TaskSkill: `software-code-review`
+- ApplyEdits: `false`
+- ImplementationBrief: `LAUNCH_BRIEF_IMPLEMENTER.md`, as narrowed by Agent-0 clarification already represented in the frozen implementation.
+- AcceptedBasis: `57803893d1eb161f395e0574c256dd27920bf1d4`; D-APP-97 C1; DEL-09-05 SOW/Remaining; frozen activation/work graph.
+- DiffBasis: review 100% of the replacement from accepted-basis `.github/workflows/desktop-release-template.yml.disabled` (SHA-256 `c3b41f8559f870af47110c4431e1bfd44da8109c156f179e4da69dddbe778255`, 203 lines) to working-tree `.github/workflows/desktop-release-template.yml` (SHA-256 `9caf6cc503e6c90c6efcf2244017c6de4d135c6017604505816c67b588feae12`, 214 lines), plus 100% of new `projects/chirality-app-dev/frontend/src/__tests__/scripts/desktop-release-workflow.test.ts` (SHA-256 `46250c73585cc0c8bf55a225845f586861bd0deb09d3e59cd4aad44309353173`, 76 lines). Verify hashes before and after review.
+- DeclaredReads: root/project instructions; TASK and complete software-code-review skill pack; D-APP-97; DEL-09-05 SOW/status/memory; frozen run records; full old/new workflow and test; frontend package/build scripts/config and related packaging/instruction-root tests needed to trace actual CI behavior; official GitHub Actions syntax may be inspected only from repo/local knowledge, with uncertainty reported rather than guessed.
+- AllowedWriteTargets: none. Managed review is read-only; return in conversation for manager persistence.
+- VerificationEvidence: `MANAGER_IMPLEMENTATION.md`; focused tests 9/9; YAML parse PASS; escalated full Vitest 1143 pass / four skip; typecheck PASS; practitioner 350 PASS; self-check exit 0; APP-HOLD PASS; static forbidden release-path and whitespace scans PASS. Actual macOS artifact job remains PR-CI-owed and must not be inferred.
+- ReviewFocus: GitHub Actions validity; trigger/permission least privilege; whether frontend/runtime install/build order can execute on `macos-15`; unsigned/adhoc and no-notarization assertions; shell correctness including heredoc/cleanup/path assumptions; package/instruction-root evidence preservation; artifact upload path correctness; deterministic regression strength; absence of secrets, signing/notarization act, publication/distribution path, Windows targets, release-authority wording, dependency/lockfile or scope drift.
+- AcceptanceCriteria: PASS only if there is no actionable correctness, security, workflow-execution, evidence, or containment finding; findings cite exact file/line and concrete remediation. Distinguish PR-CI residual risk from a code defect.
+- EXCLUSIONS: no edits, test execution requiring mutation, install, network, commit, push, PR, merge, lifecycle/release/professional-approval act, or review of unrelated paths.
+- ExpectedReturn: `PASS` or `FAIL`; actionable findings ordered by severity; 100% coverage and hash confirmation; evidence sufficiency; residual risk; read-only compliance.
