@@ -1,0 +1,48 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SDK_PROOF_2026-08-20",
+  "childInstanceId": "A2-DEL0904-PACKAGED-SDK-REVIEW-03",
+  "role": "TASK + software-code-review",
+  "status": "SUCCESS",
+  "verdict": "PASS",
+  "basis": "d8c47d9fbc459b32c053c844be0fa789fd1ffab2",
+  "sourceRevision": "3a02eeedeb3561748d96b10f57a1aa7f5546eeb5",
+  "pullRequest": 585,
+  "diffManifest": "POST_CI_FROZEN_DIFF_MANIFEST.md",
+  "frozenPathCount": 34,
+  "hashVerification": "PASS_34_OF_34",
+  "coverage": "100_PERCENT",
+  "preReturnFinding": "REMEDIATED_BY_POST_CI_REVIEW_AMENDMENT_01",
+  "recordConsistency": "PASS_AFTER_REMEDIATION",
+  "scopeValidation": "PASS",
+  "jsonValidation": "PASS",
+  "receiptUnchanged": true,
+  "appHold": "PASS_ALLOW_NOT_HELD",
+  "authorityCorpus": "V18_MATCH_NO_DRIFT",
+  "candidateWhitespace": "PASS",
+  "completionLogEntriesAdded": 1,
+  "externalProof": {
+    "status": "PASS",
+    "desktopRunId": 32332985341,
+    "desktopJobId": 96317050414,
+    "harnessRunId": 32332985346,
+    "harnessJobId": 96317050162,
+    "governanceRunId": 32332985350,
+    "governanceJobId": 96317050220,
+    "proofMode": "scripted-no-live-provider",
+    "mountedIdentityMatches": true
+  },
+  "actionableFindings": 0,
+  "authorizedOutputs": [
+    "REVIEWER_RETURN_03.md",
+    "STATUS_REVIEW_POST_CI.json"
+  ],
+  "unauthorizedWrites": 0,
+  "deliverableState": "IN_PROGRESS",
+  "remainingScope": [
+    "login-time RunAtLoad",
+    "packaged network-policy proof",
+    "owner-machine deployment act"
+  ],
+  "nextOwner": "WORKING_ITEMS_THEN_HELP_HUMAN_CHANGE"
+}

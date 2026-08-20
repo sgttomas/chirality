@@ -1,5 +1,33 @@
 # MEMORY - DEL-09-04
 
+- 2026-08-19 — PR #585 closed the selected D-APP-97 packaged-SDK/DMG proof
+  gap on exact source revision
+  `3a02eeedeb3561748d96b10f57a1aa7f5546eeb5`. Desktop run
+  `32332985341` / job `96317050414` executed the unchanged scripted
+  no-live-provider verifier successfully against both the staged packaged app
+  and the app mounted read-only from the unsigned DMG under `RUNNER_TEMP`.
+  Their separate summaries report `status: pass`,
+  `proofMode: scripted-no-live-provider`, distinct bundle roots, and matching
+  executable SHA-256
+  `79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874`.
+  The aggregate unsigned-artifact summary also passed and identity-bound the
+  mounted app to the staged app; Harness run `32332985346` / job
+  `96317050162` and governance run `32332985350` / job `96317050220` passed.
+  This closes only the selected packaged-SDK/DMG and premerge evidence gap.
+  The packaged network-policy proof, login-time `RunAtLoad`, and later
+  owner-machine LaunchAgent deployment remain open. DEL-09-04 stays
+  IN_PROGRESS; lifecycle, Checking Approval SHA, signing, notarization,
+  distribution, publication, and release-readiness posture are unchanged.
+- 2026-08-19 — Pre-CI D-APP-97 packaged-SDK workflow integration now invokes
+  the existing scripted no-live-provider verifier against both the staged app
+  resources and the read-only mounted DMG app resources. The two distinct
+  summaries are fail-closed on `status: pass` and
+  `proofMode: scripted-no-live-provider` and are retained under the unsigned
+  artifact evidence tree. Focused tests, typecheck, full Vitest, YAML/Bash
+  static validation, G4 schema validation, APP-HOLD integrity, practitioner
+  checks, receipt validation, and corpus status passed locally. The actual
+  staged/mounted proof and candidate-range G4 check remain PR-CI-owned;
+  DEL-09-04 stays IN_PROGRESS and the R4-P49 Remaining scope stays open.
 - 2026-08-19 — D-APP-100 implementation passed fresh independent review and an
   unsigned packaged-under-isolation run. The packaged daemon now resolves the
   registered manifest instruction root before falling back to packaged

@@ -13,16 +13,14 @@
   under isolation (2026-07-25 daemon-service tranche;
   `_run_records/R6_DAEMON_SERVICE_2026-07-25.md`). What remains of the original
   item is the login-time `RunAtLoad` path, never exercised because the drill
-  plist deliberately lived outside `~/Library/LaunchAgents`, and DMG/dist
-  packaging. D-APP-97 authorizes this unsigned local/CI-only release-
+  plist deliberately lived outside `~/Library/LaunchAgents`. The DMG/dist
+  portion passed on PR #585. D-APP-97 authorizes this unsigned local/CI-only release-
   preparation engineering; F-APP-2 continues to fence signing, notarization,
   and distribution.
-- Execute DEL-09-04's open R4-P49 release-preparation scope under D-APP-97:
-  packaged-SDK and DMG/dist proofs over unsigned local/CI-only artifacts and
-  closure of the PARTIAL assessments.
-- Satisfy the DEL-09-04 release-quality premerge row under D-APP-97
-  (cross-reference DEL-09-01 for the Section 8 contract and DEL-09-05 for the
-  CI workflow).
+- Run and accept the packaged network-policy/security proof needed for
+  DEL-09-04 REQ-009 and its remaining R4-P49 PARTIAL assessment, coordinated
+  with DEL-09-06. PR #585's scripted packaged-SDK proof intentionally did not
+  exercise outbound network.
 - After a rebuilt C1 artifact exists, the owner may deploy the daemon service
   on the owner's machine and report the result (owner act, not agent work;
   owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
@@ -32,6 +30,26 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-19 - PR #585 external proof accepted for the exact selected
+  D-APP-97 packaged-SDK/R4-P49 engineering gap. Desktop run `32332985341` /
+  job `96317050414` passed separate scripted no-live-provider verifier runs
+  against the staged packaged app and the read-only `RUNNER_TEMP`-mounted DMG
+  app; both retained summaries report `status: pass`, distinct bundle roots,
+  and the same packaged executable identity. Harness run `32332985346` / job
+  `96317050162` and governance run `32332985350` / job `96317050220` also
+  passed. The packaged-SDK/DMG and release-quality premerge Remaining items
+  are removed. Login-time `RunAtLoad`, packaged network-policy proof, and the
+  later owner-machine deployment act remain. State stays IN_PROGRESS;
+  lifecycle, Checking Approval SHA, signing, notarization, distribution,
+  publication, and release-readiness posture are unchanged.
+- 2026-08-19 - Pre-CI D-APP-97 packaged-SDK workflow integration added
+  separate fail-closed scripted no-live-provider proofs for the staged app and
+  read-only mounted DMG app, with both summaries retained in the unsigned CI
+  artifact evidence. Local static and deterministic checks passed. Actual
+  macOS staged/mounted execution and candidate-range G4 remain PR-CI-owned, so
+  the packaged-SDK/R4-P49 Remaining item stays open; state remains IN_PROGRESS
+  and lifecycle, Checking Approval SHA, signing, notarization, distribution,
+  publication, and release-readiness posture are unchanged.
 - 2026-08-19 - D-APP-100 landed as a bounded product-source node. The packaged
   daemon now prefers the registered manifest-resolved instruction root shared
   by app/CLI runtime requests and durably logs packaged-resources fallback only

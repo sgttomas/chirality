@@ -1,0 +1,39 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "runId": "APPDEV_PACKAGED_SDK_PROOF_2026-08-20",
+  "status": "COMPLETE",
+  "basis": "d8c47d9fbc459b32c053c844be0fa789fd1ffab2",
+  "graphVersion": 1,
+  "modelAttribution": "OpenAI Codex agents; exact builds not exposed",
+  "children": [
+    {
+      "childInstanceId": "A2-DEL0904-PACKAGED-SDK-IMPLEMENT-01",
+      "role": "TASK + software-bounded-implementation",
+      "status": "SUCCESS"
+    },
+    {
+      "childInstanceId": "A2-DEL0904-PACKAGED-SDK-REVIEW-01",
+      "role": "TASK + software-code-review",
+      "status": "PASS"
+    },
+    {
+      "childInstanceId": "A2-DEL0904-PACKAGED-SDK-REVIEW-03",
+      "role": "TASK + software-code-review",
+      "status": "PASS"
+    }
+  ],
+  "externalProof": "PASS",
+  "externalEvidence": {
+    "sourceRevision": "3a02eeedeb3561748d96b10f57a1aa7f5546eeb5",
+    "pullRequest": 585,
+    "desktopRunId": 32332985341,
+    "desktopJobId": 96317050414,
+    "harnessRunId": 32332985346,
+    "harnessJobId": 96317050162,
+    "governanceRunId": 32332985350,
+    "governanceJobId": 96317050220,
+    "artifactStatus": "pass",
+    "proofMode": "scripted-no-live-provider",
+    "mountedIdentityMatches": true
+  }
+}

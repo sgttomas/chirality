@@ -1,0 +1,22 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SDK_PROOF_2026-08-20",
+  "childInstanceId": "A2-DEL0904-PACKAGED-SDK-IMPLEMENT-01",
+  "role": "TASK + software-bounded-implementation",
+  "status": "SUCCESS",
+  "closureVerdict": "IMPLEMENTED_PRE_CI_EXTERNAL_PROOF_REQUIRED",
+  "basis": "d8c47d9fbc459b32c053c844be0fa789fd1ffab2",
+  "modelAttribution": "OpenAI Codex agent; exact build not exposed by runtime",
+  "registeredChecks": "PASS",
+  "writeContainment": "PASS",
+  "independentReview": "REQUIRED_MANAGER_OWNED",
+  "externalProof": "REQUIRED_PR_CI_OWED",
+  "candidateRangeG4": "REQUIRED_AFTER_COMMIT",
+  "deliverableState": "IN_PROGRESS",
+  "remainingScope": "OPEN",
+  "blockers": [],
+  "rerun": [
+    ".github/workflows/desktop-release-template.yml verify-unsigned-macos on macos-15",
+    "python3 tools/validation/validate_instruction_tranche_manifest.py --base <PR_BASE_SHA> --head HEAD --added-manifests-only"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schema": "chirality-agent-child-status/v1",
+  "runId": "APPDEV_PACKAGED_SDK_PROOF_2026-08-20",
+  "childInstanceId": "A2-DEL0904-PACKAGED-SDK-REVIEW-01",
+  "role": "TASK + software-code-review",
+  "status": "SUCCESS",
+  "verdict": "PASS",
+  "basis": "d8c47d9fbc459b32c053c844be0fa789fd1ffab2",
+  "frozenPathCount": 13,
+  "hashVerification": "PASS",
+  "coverage": "100_PERCENT",
+  "actionableFindings": 0,
+  "writes": 0,
+  "externalProof": "REQUIRED_PR_CI_OWED",
+  "candidateRangeG4": "REQUIRED_AFTER_COMMIT"
+}
