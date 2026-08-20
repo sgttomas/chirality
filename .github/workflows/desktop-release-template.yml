@@ -75,10 +75,29 @@ jobs:
           npm test --
           src/__tests__/scripts/dmg-packaging-policy.test.ts
           src/__tests__/scripts/desktop-release-workflow.test.ts
+          src/__tests__/scripts/run-packaged-launchagent-runatload-proof.test.ts
 
       - name: Build unsigned macOS DMG
         working-directory: projects/chirality-app-dev/frontend
         run: npm run desktop:dist
+
+      - name: Prove packaged LaunchAgent RunAtLoad
+        working-directory: projects/chirality-app-dev/frontend
+        run: >-
+          node ./scripts/run-packaged-launchagent-runatload-proof.mjs
+          --app-path dist/mac-arm64/Chirality.app
+          --output-root artifacts/release-verification/launchagent-runatload
+          --label com.chirality.ci.runatload.${GITHUB_RUN_ID}.${GITHUB_RUN_ATTEMPT}
+          --source-revision ${GITHUB_SHA}
+
+      - name: Upload packaged LaunchAgent RunAtLoad proof evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chirality-packaged-launchagent-runatload-proof
+          path: projects/chirality-app-dev/frontend/artifacts/release-verification/launchagent-runatload/summary.json
+          if-no-files-found: warn
+          retention-days: 7
 
       - name: Verify unsigned artifact
         shell: bash

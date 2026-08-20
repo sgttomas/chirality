@@ -1,0 +1,25 @@
+{
+  "schema": "chirality-agent0-work-graph/v1",
+  "run_id": "APPDEV_LAUNCHAGENT_RUNATLOAD_PROOF_2026-08-20",
+  "version": 1,
+  "selection_authority": "AGENT_0",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "branch": "codex/app-launchagent-runatload-proof-20260820",
+  "base": "origin/main@fae5e38ee60fd4c8d4a52ac7f663036a83cdbd7d",
+  "pr_base": "main",
+  "nodes": [
+    {
+      "id": "N1",
+      "manager_instance": "WI-PKG09-RUNATLOAD-01",
+      "package_id": "PKG-09",
+      "deliverables": ["DEL-09-04"],
+      "objective": "Close the authorized login-time RunAtLoad packaged-service proof gap",
+      "dependencies": [],
+      "write_owner": "WI-PKG09-RUNATLOAD-01",
+      "checks": ["in-session", "CI", "host-capability"],
+      "return_gate": "validated package return with proof isolation, cleanup, and release-fence preservation"
+    }
+  ],
+  "shared_surface_owner": "AGENT_0_CHANGE_FANIN",
+  "human_decision_points": []
+}

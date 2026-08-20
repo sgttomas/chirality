@@ -167,11 +167,46 @@ describe('desktop unsigned artifact workflow', () => {
     expect(mountIndex).toBeGreaterThan(proofIndex);
   });
 
+  it('proves packaged RunAtLoad in the disposable macOS account without a manual start', async () => {
+    const workflow = await readWorkflow();
+
+    expect(workflow).toContain('Prove packaged LaunchAgent RunAtLoad');
+    expect(workflow).toContain(
+      'node ./scripts/run-packaged-launchagent-runatload-proof.mjs'
+    );
+    expect(workflow).toContain('--app-path dist/mac-arm64/Chirality.app');
+    expect(workflow).toContain(
+      '--output-root artifacts/release-verification/launchagent-runatload'
+    );
+    expect(workflow).toContain(
+      '--label com.chirality.ci.runatload.${GITHUB_RUN_ID}.${GITHUB_RUN_ATTEMPT}'
+    );
+    expect(workflow).not.toContain('launchctl kickstart');
+
+    const buildIndex = workflow.indexOf('run: npm run desktop:dist');
+    const proofIndex = workflow.indexOf(
+      'node ./scripts/run-packaged-launchagent-runatload-proof.mjs'
+    );
+    const uploadIndex = workflow.indexOf('uses: actions/upload-artifact@v4');
+    expect(proofIndex).toBeGreaterThan(buildIndex);
+    expect(uploadIndex).toBeGreaterThan(proofIndex);
+    expect(workflow).toContain(
+      'projects/chirality-app-dev/frontend/artifacts/release-verification/**'
+    );
+    expect(workflow).toContain('Upload packaged LaunchAgent RunAtLoad proof evidence');
+    expect(workflow).toContain('if: always()');
+    expect(workflow).toContain(
+      'projects/chirality-app-dev/frontend/artifacts/release-verification/launchagent-runatload/summary.json'
+    );
+    expect(workflow).toContain('if-no-files-found: warn');
+  });
+
   it('uploads CI artifacts without a release-publication path', async () => {
     const workflow = await readWorkflow();
 
     expect(workflow).toContain('uses: actions/upload-artifact@v4');
     expect(workflow).toContain('chirality-desktop-macos-arm64-unsigned');
+    expect(workflow).toContain('chirality-packaged-launchagent-runatload-proof');
     expect(workflow).toContain('artifacts/release-verification/**');
     expect(workflow).toContain(
       'artifacts/release-verification/packaged-agent-sdk/staged/summary.json'
@@ -186,5 +221,6 @@ describe('desktop unsigned artifact workflow', () => {
     expect(workflow).not.toContain('actions/create-release');
     expect(workflow).not.toMatch(/\bgh\s+release\b/);
     expect(workflow).not.toMatch(/^\s+publish-release:/m);
+    expect(workflow).toContain('if-no-files-found: error');
   });
 });

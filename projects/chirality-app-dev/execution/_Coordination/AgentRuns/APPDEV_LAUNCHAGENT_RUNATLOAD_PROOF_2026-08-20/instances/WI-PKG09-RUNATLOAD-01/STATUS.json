@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_LAUNCHAGENT_RUNATLOAD_PROOF_2026-08-20",
+  "instance_id": "WI-PKG09-RUNATLOAD-01",
+  "package_id": "PKG-09",
+  "deliverable_id": "DEL-09-04",
+  "status": "VALIDATED_PRODUCT_READY_FOR_CHANGE_AND_PR_CI",
+  "review_verdict": "PASS",
+  "external_proof": "PENDING_LABEL_GATED_PR_CI",
+  "next_owner": "HELP_HUMAN_THEN_CHANGE",
+  "runtime_summary": {
+    "path": null,
+    "status": "NOT_INITIALIZED_NOT_REQUIRED_BY_ACTIVATION"
+  }
+}
