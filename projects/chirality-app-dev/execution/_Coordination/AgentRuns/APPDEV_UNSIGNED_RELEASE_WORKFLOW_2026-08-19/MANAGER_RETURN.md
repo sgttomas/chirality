@@ -7,6 +7,6 @@
 - Deliverable effect: Remaining now names only PR-CI proof and R4-P49 evidence closure; lifecycle and Checking Approval SHA remain unchanged.
 - Validation: see `MANAGER_VALIDATION.md`.
 - Execution attribution: see `EXECUTION_ATTRIBUTION.md`; native child sessions inherited the parent configuration, while the runtime exposed no concrete identifier to the manager.
-- Blocker/rerun: PR CI must run `Desktop Unsigned Artifact Verification / Verify unsigned macOS artifact`; any product/test diff change requires fresh proportional checks and review.
+- Blocker/rerun: CI attempt 01 exposed missing G4 coverage for the workflow rename. The schema-valid manifest remediation is locally proven and CHANGE-ready; PR CI must rerun governance `harness` candidate-range coverage and `Desktop Unsigned Artifact Verification / Verify unsigned macOS artifact`. Any product/test diff change requires fresh proportional checks and review; none occurred in this remediation.
 - Derivative disposition: this AgentRuns root, deliverable run record, and future CI artifacts are derivative evidence bound to the source hashes and do not replace product/deliverable truth or create release authority.
-- Next owner: HELP_HUMAN for integrated containment and CHANGE closeout/PR CI proof. No commit, push, PR, merge, receipt, signing, notarization, publication, or distribution act occurred here.
+- Next owner: HELP_HUMAN for integrated containment and CHANGE remediation commit/push to PR #583, followed by CI attempt 02. No remediation commit, push, merge, receipt, signing, notarization, publication, or distribution act occurred here.
