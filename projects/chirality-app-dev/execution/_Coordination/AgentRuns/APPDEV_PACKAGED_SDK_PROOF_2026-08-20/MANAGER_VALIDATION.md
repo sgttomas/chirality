@@ -1,17 +1,43 @@
 # WORKING_ITEMS manager validation
 
 - Package/deliverable: `PKG-09 / DEL-09-04` only.
-- Accepted basis: `d8c47d9fbc459b32c053c844be0fa789fd1ffab2` on `codex/app-packaged-sdk-proof-20260820`.
-- Authority: D-APP-97 C1; APP-HOLD dispatch/review/fan-in checks `ALLOW/PASS`, zero held, register match.
-- Product result: the unsigned Desktop workflow invokes the unchanged scripted no-live-provider packaged SDK verifier against staged and read-only mounted app Resources; distinct summaries are fail-closed and retained/uploaded.
-- Focused regression: `PASS`, 1 file / 5 tests.
-- Workflow syntax: YAML parse `PASS`; all 6 `run:` blocks Bash syntax `PASS`.
-- Normalized registered checks: `PASS` — frontend/Electron typecheck; full Vitest 148 files passed / 1 skipped, 1,144 tests passed / 4 skipped; repo self-check exit 0; APP-HOLD integrity `PASS`; practitioner pytest 350 passed.
-- Governance/static: G4 corpus/schema `PASS` for 35 manifests; app receipt validator `PASS` and ledger unchanged; D-APP-38 authority corpus `MATCH`; `git diff --check` `PASS`.
-- Build decision: no separate local build. Workflow/test/control bytes changed, not application/build source; the named macOS PR workflow owns the actual `desktop:dist`, staged app, read-only DMG, and upload proof. This proof remains required and is not inferred.
-- Fresh review: `PASS`, all 13 frozen hashes matched, tracked-diff hash matched, 100% coverage, zero actionable findings, zero reviewer writes.
-- Containment: exact sealed write targets only. The packaged verifier, dependencies/locks/pins, runtime/product source, provider/network policy, credentials, foreign loops, shared receipt/completion log, lifecycle, and Checking Approval SHA are unchanged.
-- Existing self-check findings are unchanged cross-repository baseline findings outside this node; self-check exits 0 and no finding is caused or modified by this tranche.
-- Candidate-range G4: schema/corpus preflight passes; the authoritative candidate-range command remains required after CHANGE creates the commit.
+- Accepted basis: `d8c47d9fbc459b32c053c844be0fa789fd1ffab2`.
+- Landed proof-loop node:
+  `3a02eeedeb3561748d96b10f57a1aa7f5546eeb5` on PR #585.
+- Authority: D-APP-97 C1; APP-HOLD dispatch and fan-in checks `ALLOW/PASS`,
+  zero held, register match.
+- Product result: the unsigned Desktop workflow invokes the unchanged
+  scripted no-live-provider packaged SDK verifier against staged and read-only
+  mounted app Resources; distinct summaries are fail-closed and uploaded.
+- In-session implementation validation: focused workflow regression `PASS`, 1
+  file / 5 tests; YAML parse `PASS`; all 6 `run:` blocks Bash syntax `PASS`;
+  normalized registered checks `PASS`; G4 schema/corpus, receipt validator,
+  D-APP-38 corpus, containment, and whitespace checks `PASS`.
+- External Desktop proof: run `32332985341`, job `96317050414`, `PASS` on the
+  exact node revision. Staged and `RUNNER_TEMP` read-only mounted packaged-SDK
+  summaries both report `status: pass` and
+  `proofMode: scripted-no-live-provider`; roots are distinct, packaged
+  executable identities match, and aggregate `mountedIdentityMatches` is true.
+- External Harness proof: run `32332985346`, job `96317050162`, `PASS`.
+- External governance proof: run `32332985350`, job `96317050220`, `PASS`,
+  including committed candidate-range G4.
+- Artifact boundary: aggregate `status: pass`, `scope: ci-artifact-only`; DMG
+  SHA-256
+  `a6e9e43ae5f92d45967bc1871f918bc18f6be0088d9cab3166398e7e1f1ca916`;
+  unsigned/ad-hoc with no authority and no valid stapled notarization ticket.
+- DEL state: selected packaged-SDK/DMG and premerge evidence gap closed.
+  Login-time `RunAtLoad`, packaged network-policy proof, and owner-machine
+  deployment remain; DEL-09-04 stays `IN_PROGRESS` and Checking Approval SHA
+  is unchanged.
+- Fresh integrated post-CI review: `PASS`; 34/34 corrected frozen hashes,
+  100% accepted-basis-through-worktree coverage, zero actionable findings.
+  `REVIEWER_RETURN_03.md` SHA-256 is
+  `578149ce9e8f84b973bf393c694686c75520b8b30ea124f2d33c5fbaafd22a61`.
+- Review remediation: aggregate `STATUS.json` implementer child state was
+  corrected from stale `READY` to truthful `SUCCESS`, versioned in
+  `POST_CI_REVIEW_AMENDMENT_01.md`; no product, workflow, test, or deliverable
+  byte changed in that remediation.
+- Containment: no verifier, dependency/lock/pin, provider/network policy,
+  credential, foreign-loop, receipt, lifecycle, or approval-SHA write.
 
-Closure verdict: `IMPLEMENTED_AND_REVIEWED_PRE_CI / EXTERNAL_PROOF_REQUIRED`.
+Closure verdict: `CI_PROOF_ACCEPTED / SELECTED_NODE_COMPLETE`.

@@ -1,4 +1,38 @@
 {
+  "external_proof": {
+    "artifact": {
+      "aggregate_status": "pass",
+      "dmg_sha256": "a6e9e43ae5f92d45967bc1871f918bc18f6be0088d9cab3166398e7e1f1ca916",
+      "executable_sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874",
+      "mounted_identity_matches": true,
+      "mounted_proof_mode": "scripted-no-live-provider",
+      "mounted_status": "pass",
+      "notarization": "no-valid-stapled-ticket",
+      "scope": "ci-artifact-only",
+      "signing": "unsigned-or-adhoc-no-authority",
+      "staged_proof_mode": "scripted-no-live-provider",
+      "staged_status": "pass"
+    },
+    "desktop": {
+      "job_id": 96317050414,
+      "run_id": 32332985341,
+      "status": "PASS"
+    },
+    "governance": {
+      "candidate_range_g4": "PASS",
+      "job_id": 96317050220,
+      "run_id": 32332985350,
+      "status": "PASS"
+    },
+    "harness": {
+      "job_id": 96317050162,
+      "run_id": 32332985346,
+      "status": "PASS"
+    },
+    "pr": 585,
+    "source_revision": "3a02eeedeb3561748d96b10f57a1aa7f5546eeb5",
+    "status": "PASS"
+  },
   "profile": "projects/chirality-app-dev/software-workflow.json",
   "project_root": "projects/chirality-app-dev",
   "results": [

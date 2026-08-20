@@ -27,9 +27,10 @@ m2_gate:
   self_merge: false
 
 m6_notice:
-  disposition: pending
+  disposition: none-required
   routed_to: []
   rationale: >-
-    The accepting HELP_HUMAN Agent 0 will dispose any cross-loop notice need
-    once the integrated diff and independent review return are available at
-    final fan-in.
+    The accepting HELP_HUMAN Agent 0 survey at final fan-in found no cross-loop
+    notice obligation. The changed workflow is App-specific, changes no
+    agents, skills, root governance prose, authority corpus, or shared consumer
+    contract, and creates no authority for another loop.

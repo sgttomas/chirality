@@ -5339,3 +5339,31 @@
     notarization, publication, distribution, release authority, professional
     claims, dependencies, lockfiles, decision registers, and merge state are
     unchanged.
+
+- **2026-08-19 — Receipt 179** (DEL-09-04 packaged Agent SDK artifact proof).
+  - Receipt-ID: `Receipt-179`
+  - Examined-Through: `d8c47d9fbc459b32c053c844be0fa789fd1ffab2`
+  - Parent-Receipt: `Receipt-178`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-19,
+    Ryan Tufts, in-session): `STANDING DIRECTION — development pressure`;
+    `This iteration's deliverable is product work: code, working features,
+    executing cases, closed engineering gaps.`; `The iteration is one tranche:
+    one branch, one PR, one receipt.`
+  - Pointers: product node `3a02eeedeb3561748d96b10f57a1aa7f5546eeb5`;
+    PR #585; Desktop run `32332985341`, job `96317050414`; Harness run
+    `32332985346`, job `96317050162`; governance run `32332985350`, job
+    `96317050220`; DEL-09-04 `_run_records/TASK_RUN_2026-08-20_0404.md`;
+    `execution/_Coordination/AgentRuns/APPDEV_PACKAGED_SDK_PROOF_2026-08-20/`.
+  - Checks: focused/full frontend, typecheck, YAML/Bash, three PR-CI jobs,
+    downloaded staged/mounted artifact assertions, three fresh reviews,
+    committed-range G4, APP-HOLD, corpus v18, self-check, practitioner pytest,
+    receipt contract, candidate whitespace, and exact containment pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    TASK implementer/reviewers, and CHANGE; exact model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — the staged app and read-only mounted DMG now
+    carry passing scripted no-live-provider packaged-SDK proofs with distinct
+    bundle roots and matching executable identity; DEL-09-04's selected
+    packaged-SDK/DMG and premerge gap is closed. Login-time `RunAtLoad`,
+    packaged network-policy/REQ-009 proof, and owner-machine deployment remain;
+    lifecycle, Checking Approval SHA, signing, notarization, publication,
+    distribution, release-readiness posture, and merge state are unchanged.

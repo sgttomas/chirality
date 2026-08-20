@@ -6,6 +6,24 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-08-19 - DEL-09-04 packaged Agent SDK CI proof landed
+
+PR #585 node `3a02eeedeb3561748d96b10f57a1aa7f5546eeb5` added the
+existing scripted no-live-provider packaged Agent SDK verifier to both the
+staged packaged app and the read-only mounted unsigned DMG app in the Desktop
+workflow. Desktop run `32332985341` / job `96317050414` passed and retained
+distinct staged/mounted JSON summaries in the unsigned artifact; both report
+`status: pass`, their bundle roots are distinct, and their packaged executable
+identities match. Harness run `32332985346` / job `96317050162` and governance
+run `32332985350` / job `96317050220` also passed.
+
+The selected DEL-09-04 packaged-SDK/DMG and release-quality premerge evidence
+gap is closed. Login-time `RunAtLoad`, packaged network-policy proof, and the
+owner-machine deployment act remain; DEL-09-04 stays `IN_PROGRESS`.
+Lifecycle, Checking Approval SHA, signing, notarization, publication,
+distribution, and release-readiness posture are unchanged. See
+`execution/_Coordination/AgentRuns/APPDEV_PACKAGED_SDK_PROOF_2026-08-20/`.
+
 ## 2026-08-19 - Unsigned Desktop CI artifact verification landed
 
 D-APP-97 C1 replaced the inactive release template with a least-privilege
