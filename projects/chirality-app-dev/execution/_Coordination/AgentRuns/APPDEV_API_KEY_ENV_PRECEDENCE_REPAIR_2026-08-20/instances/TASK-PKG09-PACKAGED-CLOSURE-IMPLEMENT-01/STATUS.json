@@ -1,0 +1,31 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "run_id": "APPDEV_API_KEY_ENV_PRECEDENCE_REPAIR_2026-08-20",
+  "instance_id": "TASK-PKG09-PACKAGED-CLOSURE-IMPLEMENT-01",
+  "role": "TASK",
+  "task_skill": "software-bounded-implementation",
+  "package_id": "PKG-09",
+  "deliverable_ids": ["DEL-09-06", "DEL-09-04"],
+  "status": "COMPLETED",
+  "terminal": true,
+  "accepted": false,
+  "updated_at": "2026-08-20T16:41:59Z",
+  "checks": {
+    "predecessor_hashes": "PASS: 4/4 before and after",
+    "app_hold": "PASS: dispatch and reliance ALLOW; integrity PASS",
+    "focused_vitest": "PASS: 3 files, 47 tests",
+    "frontend_test": "PASS: 150 passed files, 1 skipped; 1174 passed tests, 4 skipped",
+    "frontend_typecheck": "PASS",
+    "frontend_build": "PASS",
+    "practitioner_harness": "PASS: 350 tests",
+    "harness_self_check": "PASS: established baseline",
+    "desktop_dist": "PASS: unsigned arm64 app and DMG",
+    "dependency_and_instruction_root": "PASS",
+    "packaged_security_proof": "PASS: subject 1623b2971bcef5fc6a2ae80ce0baa747a6746e28a2b821cd1e6bf125574b4ce2",
+    "secret_scan": "PASS: 5868 files, 0 blocked findings",
+    "json_whitespace_scope": "PASS"
+  },
+  "output_artifact": "RETURN.md",
+  "raw_host_output": "/tmp/chirality-precedence-closure.pXvs6Z",
+  "blockers": []
+}

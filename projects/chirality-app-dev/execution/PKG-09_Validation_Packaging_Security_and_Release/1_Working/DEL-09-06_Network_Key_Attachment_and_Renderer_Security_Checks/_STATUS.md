@@ -1,20 +1,29 @@
 # Status: DEL-09-06
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-17
+**Last Updated:** 2026-08-20
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
-- Execute DEL-09-06's open D-APP-97 release-preparation scope: packaged-
-  artifact network, key-attachment, and renderer-security checks and closure of
-  the R4-P49 PARTIAL assessments. Artifacts remain unsigned and local/CI-only;
-  F-APP-2 continues to fence signing, notarization, distribution, and release
-  authority.
+- None for the selected D-APP-97 packaged-artifact network, key-attachment,
+  and renderer-security scope. Deliverable lifecycle and dependency closure
+  remain separate and unchanged; F-APP-2 continues to fence signing,
+  notarization, distribution, and release authority.
 
 ## History
+- 2026-08-20 - Fresh unsigned arm64 packaging and the fail-closed packaged
+  security proof passed against the accepted N1/N2 API-key precedence bytes.
+  Compact evidence records exact artifact/source identities, UI/canonical-env/
+  compatibility-env precedence, safeStorage encryption/status/removal,
+  provider isolation, blocked renderer probes, five usable descendant TCP
+  snapshots with zero non-allowlisted outbound, confirmed cleanup, and a
+  5,868-file secret scan with zero blocked findings. The exact D-APP-97
+  packaged-security Remaining item is removed. State stays IN_PROGRESS;
+  Checking Approval SHA, dependencies, F-APP-2, and all release fences remain
+  unchanged.
 - 2026-08-17 - D-APP-97 converted DEL-09-06's D-APP-56-deferred R4-P49 claim
   family into open unsigned local/CI-only release-preparation engineering over
   the packaged artifact. No product/security byte, lifecycle, Checking

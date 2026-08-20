@@ -1,5 +1,14 @@
 # MEMORY - DEL-09-04
 
+- 2026-08-20 — The coordinated DEL-09-06 host proof closed DEL-09-04's
+  selected REQ-009 / R4-P49 packaged-network residual against a fresh unsigned
+  arm64 app and DMG. Compact D-APP-99 evidence identity-binds the packaged
+  subject and records blocked renderer probes, five usable descendant TCP
+  snapshots with zero non-allowlisted outbound, provider isolation, secret
+  containment, and confirmed cleanup. Login-time `RunAtLoad` and the later
+  owner-machine deployment act remain open. DEL-09-04 stays IN_PROGRESS;
+  lifecycle, Checking Approval SHA, signing, notarization, distribution,
+  publication, and release readiness remain unchanged.
 - 2026-08-19 — PR #585 closed the selected D-APP-97 packaged-SDK/DMG proof
   gap on exact source revision
   `3a02eeedeb3561748d96b10f57a1aa7f5546eeb5`. Desktop run
