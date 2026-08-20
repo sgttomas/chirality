@@ -78,10 +78,13 @@ describe('electron/api-key-storage', () => {
 
     await expect(credentials.get('anthropic')).resolves.toBe('daemon-anthropic');
     await expect(credentials.get('omlx')).resolves.toBe('daemon-omlx');
-    await expect(credentials.status('omlx')).resolves.toEqual({ configured: true });
+    await expect(credentials.status('omlx')).resolves.toEqual({ configured: true, source: 'ui' });
 
     await credentials.remove('omlx');
-    await expect(credentials.status('omlx')).resolves.toEqual({ configured: false });
+    await expect(credentials.status('omlx')).resolves.toEqual({
+      configured: false,
+      source: 'none'
+    });
     await expect(credentials.get('anthropic')).resolves.toBe('daemon-anthropic');
   });
 
@@ -207,20 +210,130 @@ describe('electron/api-key-storage', () => {
     expect(dirMode & 0o777).toBe(0o700);
   });
 
-  // D-APP-97 requires the canonical environment variable to precede the
-  // compatibility alias. The shipped daemon credential store currently has
-  // those two fallbacks reversed. The semantic-owner repair is outside the
-  // packaged-proof tranche, so retain this executable expected-failure until
-  // DEL-02-05 R03 / DEL-04-05 RQ-001 owns the production correction.
-  it.fails('uses UI storage, then ANTHROPIC_API_KEY, then CHIRALITY_ANTHROPIC_API_KEY', async () => {
+  it('prefers persisted UI storage over both Anthropic environment variables', async () => {
     process.env.ANTHROPIC_API_KEY = 'canonical-environment-key';
     process.env.CHIRALITY_ANTHROPIC_API_KEY = 'compatibility-alias-key';
     try {
       const credentials = new SafeStorageCredentialStore();
-      await expect(credentials.get('anthropic')).resolves.toBe('canonical-environment-key');
+      await credentials.set('anthropic', 'persisted-ui-key');
+
+      await expect(credentials.get('anthropic')).resolves.toBe('persisted-ui-key');
+      await expect(credentials.status('anthropic')).resolves.toEqual({
+        configured: true,
+        source: 'ui'
+      });
     } finally {
       delete process.env.ANTHROPIC_API_KEY;
       delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+    }
+  });
+
+  it.each([
+    {
+      canonical: 'canonical-environment-key',
+      compatibility: undefined,
+      expected: 'canonical-environment-key',
+      caseName: 'canonical variable alone'
+    },
+    {
+      canonical: undefined,
+      compatibility: 'compatibility-alias-key',
+      expected: 'compatibility-alias-key',
+      caseName: 'compatibility alias alone'
+    },
+    {
+      canonical: 'canonical-environment-key',
+      compatibility: 'compatibility-alias-key',
+      expected: 'canonical-environment-key',
+      caseName: 'canonical variable before compatibility alias'
+    },
+    {
+      canonical: '   ',
+      compatibility: 'compatibility-alias-key',
+      expected: 'compatibility-alias-key',
+      caseName: 'whitespace-only canonical variable falls through'
+    },
+    {
+      canonical: 'canonical-environment-key',
+      compatibility: '   ',
+      expected: 'canonical-environment-key',
+      caseName: 'whitespace-only compatibility alias does not mask canonical variable'
+    },
+    {
+      canonical: '   ',
+      compatibility: '\t',
+      expected: undefined,
+      caseName: 'whitespace-only variables resolve as unconfigured'
+    }
+  ])(
+    'resolves Anthropic environment keys: $caseName',
+    async ({ canonical, compatibility, expected }) => {
+      if (canonical === undefined) {
+        delete process.env.ANTHROPIC_API_KEY;
+      } else {
+        process.env.ANTHROPIC_API_KEY = canonical;
+      }
+      if (compatibility === undefined) {
+        delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+      } else {
+        process.env.CHIRALITY_ANTHROPIC_API_KEY = compatibility;
+      }
+
+      try {
+        const credentials = new SafeStorageCredentialStore();
+        await expect(credentials.get('anthropic')).resolves.toBe(expected);
+        await expect(credentials.status('anthropic')).resolves.toEqual({
+          configured: expected !== undefined,
+          source: expected === undefined ? 'none' : 'env'
+        });
+      } finally {
+        delete process.env.ANTHROPIC_API_KEY;
+        delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+      }
+    }
+  );
+
+  it('reports oMLX UI, environment, and none sources without consulting Anthropic variables', async () => {
+    process.env.ANTHROPIC_API_KEY = 'canonical-anthropic-key';
+    process.env.CHIRALITY_ANTHROPIC_API_KEY = 'compatibility-anthropic-key';
+    process.env.CHIRALITY_OMLX_API_KEY = 'omlx-environment-key';
+    try {
+      const credentials = new SafeStorageCredentialStore();
+      await credentials.set('omlx', 'omlx-persisted-key');
+
+      await expect(credentials.status('omlx')).resolves.toEqual({
+        configured: true,
+        source: 'ui'
+      });
+
+      await credentials.remove('omlx');
+      await expect(credentials.status('omlx')).resolves.toEqual({
+        configured: true,
+        source: 'env'
+      });
+
+      delete process.env.CHIRALITY_OMLX_API_KEY;
+      await expect(credentials.status('omlx')).resolves.toEqual({
+        configured: false,
+        source: 'none'
+      });
+    } finally {
+      delete process.env.ANTHROPIC_API_KEY;
+      delete process.env.CHIRALITY_ANTHROPIC_API_KEY;
+      delete process.env.CHIRALITY_OMLX_API_KEY;
+    }
+  });
+
+  it('reports unsupported providers as unconfigured without credential material', async () => {
+    process.env.ANTHROPIC_API_KEY = 'canonical-anthropic-key';
+    try {
+      const credentials = new SafeStorageCredentialStore();
+      const status = await credentials.status('unsupported');
+
+      expect(status).toEqual({ configured: false, source: 'none' });
+      expect(JSON.stringify(status)).not.toContain('canonical-anthropic-key');
+    } finally {
+      delete process.env.ANTHROPIC_API_KEY;
     }
   });
 });
