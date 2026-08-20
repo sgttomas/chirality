@@ -1,0 +1,21 @@
+# WORKING_ITEMS activation — packaged-daemon instruction root
+
+- RunID: `APPDEV_PACKAGED_DAEMON_INSTRUCTION_ROOT_2026-08-19`
+- InstanceID: `AGENT1-PKG09-WORKING-ITEMS`
+- PackageID: `PKG-09`
+- SelectedDeliverables: `DEL-09-04` only
+- Objective: implement D-APP-100 as one bounded engineering node so the packaged daemon uses the manifest-resolved instruction root shared by the app and CLI; allow the packaged-resources fallback only when no manifest root resolves, log that fallback, add an agreement regression, and prove the packaged app under isolation.
+- Selection authority: supervising HELP_HUMAN launch brief applying the exact owner ruling in `execution/_Coordination/_DECISIONS/D-APP-100_RULING_PACKAGED_DAEMON_INSTRUCTION_ROOT_2026-08-17.md` to the live DEL-09-04 Remaining item.
+- Accepted basis: clean detached `origin/main` at `219f695d348f1d83ba904ef4dd38781636b423a6`; Receipt-176 validated by the supervising run; D-APP-100 status `RULED — B1`; authority corpus v18 with no drift; project DAG acyclic.
+- Branch: `codex/app-packaged-daemon-instruction-root-20260819`, created from the accepted basis before activation writes.
+- Deliverable representation: `SOW_V1`; lifecycle stays `IN_PROGRESS`; Checking Approval SHA stays unchanged.
+- Software profile: `software-workflow.json` under `docs/SOFTWARE_WORKFLOW_PROFILE.md`.
+- APP-HOLD-1: dispatch preflight `ALLOW` for `DEL-09-04`; register SHA-256 `e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f`; scan fingerprint `a4dba986b41d8e4df88a986551c9a93e7413f2fc85c444d18160a7da1f90535a`.
+- Dependencies: D-APP-100 and the accepted registered project manifest/root-resolution contract. No cross-package write or authority dependency is activated.
+- Downstream consumer: CHANGE, after manager fan-in and independent review PASS.
+- Declared reads: project/root agent instructions; D-APP-100; DEL-09-04 SOW/status/context/memory/dependencies/references; `chirality.project.json`; software profile; relevant Electron app/daemon/CLI, runtime project-registry/client/contracts, packaging scripts/config, and tests.
+- Product write boundary: `projects/chirality-app-dev/frontend/electron/**`, `projects/chirality-app-dev/frontend/src/__tests__/**`, and `projects/chirality-app-dev/frontend/scripts/**` only where needed for D-APP-100 implementation and proof. No dependency or lockfile change is authorized.
+- Manager-owned closeout writes: DEL-09-04 `_STATUS.md`, `MEMORY.md`, one concise `_run_records` evidence file, and this run root. Shared closeout surfaces are deferred to final fan-in.
+- Required proof surfaces: in-session focused regression, full Vitest, typecheck, production build, applicable Section 9/release-quality checks, unsigned desktop pack, packaged dependency/instruction-root integrity, and escalated packaged-under-isolation execution when the sandbox cannot host Electron.
+- Exclusions: signing, notarization, distribution, release-readiness claims, lifecycle or Checking Approval SHA changes, provider/network expansion, owner-machine deployment, unrelated release preparation, foreign-loop/root/runtime source edits, decisions/registers, commit, push, or receipt writes.
+- Return contract: accepted implementation return, fresh read-only 100%-diff review PASS, exact changed paths/check results/blockers/reruns, derivative disposition, and CHANGE-ready handoff.

@@ -27,6 +27,7 @@ concurrency:
 jobs:
   harness:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -48,7 +49,29 @@ jobs:
         # numpy: tools/retrieval imports it; installed so those tests stay
         # gated here rather than skipping (coverage ruling 2026-07-31)
         run: python3 -m pip install --quiet pyyaml pytest pytest-xdist numpy
+      - name: Configure canonical Ubuntu package sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          source /etc/os-release
+          test -n "${VERSION_CODENAME}"
+          test -f /usr/share/keyrings/ubuntu-archive-keyring.gpg
+          sudo tee /etc/apt/sources.list.d/ubuntu.sources >/dev/null <<EOF
+          Types: deb
+          URIs: https://archive.ubuntu.com/ubuntu/
+          Suites: ${VERSION_CODENAME} ${VERSION_CODENAME}-updates ${VERSION_CODENAME}-backports
+          Components: main restricted universe multiverse
+          Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+          Types: deb
+          URIs: https://security.ubuntu.com/ubuntu/
+          Suites: ${VERSION_CODENAME}-security
+          Components: main restricted universe multiverse
+          Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+          EOF
+
       - name: Install zsh (write_status.sh guard is a zsh script)
+        timeout-minutes: 3
         run: command -v zsh >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq zsh; }
       - name: Candidate whitespace
         env:

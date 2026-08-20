@@ -5296,3 +5296,25 @@
     ruled ACTIVATABLE rows. No foreign register, product/runtime, dependency,
     lock-file, lifecycle, release, reliance, or merge effect occurred. This
     receipt is a discovery breadcrumb only under K-TM-3/K-TM-4/K-TM-5.
+
+- **2026-08-19 — Receipt 177** (D-APP-100 packaged-daemon instruction root).
+  - Receipt-ID: `Receipt-177`
+  - Examined-Through: `5d0500868ec2eadaa440b447f97fb74d2d3970a5`
+  - Parent-Receipt: `Receipt-176`
+  - Pointers: product node `5d0500868ec2eadaa440b447f97fb74d2d3970a5`;
+    DEL-09-04 run record
+    `_run_records/DAPP100_PACKAGED_DAEMON_INSTRUCTION_ROOT_2026-08-19.md`;
+    evidence root
+    `execution/_Coordination/AgentRuns/APPDEV_PACKAGED_DAEMON_INSTRUCTION_ROOT_2026-08-19/`.
+  - Checks: focused 13-test host regression, recorded full frontend/package
+    gates, packaged isolation, and fresh review 05 pass; receipt contract,
+    corpus v18/no drift, self-check, practitioner pytest, APP-HOLD parity,
+    whitespace, and exact App containment pass. Registered frontend-premerge
+    remains PR-CI-owed after local runtime-daemon binding HTTP 503; no pass is
+    inferred.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN, WORKING_ITEMS, TASK, and CHANGE;
+    exact model builds not exposed.
+  - Gate-Outcome: `EXECUTED` — D-APP-100 landed in the cited product node;
+    DEL-09-04 remains `IN_PROGRESS` on unrelated Remaining scope. Lifecycle,
+    Checking Approval SHA, release/signing/notarization/distribution posture,
+    decision registers, dependencies, lockfiles, and merge state are unchanged.
