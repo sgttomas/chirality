@@ -1,0 +1,6 @@
+79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+90b3b6a8d5c63a08f5ceec86ff7cf4e86d14f2ad5b843ef3aba1e0723cdd02a9  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar
+8bb6ab847fe5734d203316a73e576edb11e41787a0eaadcd3645f42bcd0d916d  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Info.plist
+aebac27fb52ab54c7158973828e91d90821a67677e795dcd04794c84f5190120  projects/chirality-app-dev/frontend/dist-electron/main.js
+c54fafe8d08146339a69497262e0ed3c23c6e0b55565636230304a40aea5402f  projects/chirality-app-dev/frontend/electron/main.ts
+d8fc1d8bf691deb5141bf08c00ce35495cf311b39dd19976074d738bb8f38b73  runtime/packages/daemon/src/signal-shutdown.ts
