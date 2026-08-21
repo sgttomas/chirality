@@ -1,0 +1,16 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-PKG09-LOGIN-PROOF-PREP-REVIEW-02",
+  "status": "FAILED",
+  "node": "N2-R1",
+  "verdict": "FAIL",
+  "actionable_findings": 1,
+  "blocking_findings": 1,
+  "reviewed_product_lines": 875,
+  "reviewed_test_lines": 437,
+  "hash_verification": "PASS",
+  "scope_validation": "PASS",
+  "host_proof_executed": false,
+  "owner_gate_preserved": true,
+  "return_path": "RETURN.md"
+}

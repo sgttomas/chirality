@@ -1,0 +1,7 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-PKG09-LOGIN-PROOF-PREP-DIRECT-01",
+  "runtime_task_name": "/root/login_proof_direct_fix",
+  "status": "COMPLETE",
+  "result": "SUCCESS_INTAKE_SUPERSEDED_BY_REMEDIATION"
+}

@@ -1,5 +1,23 @@
 # MEMORY - DEL-09-04
 
+- 2026-08-21 — The owner-authorized PREPARE-THEN-OWNER tranche produced a
+  reviewed two-phase actual-login proof candidate and minimal future procedure,
+  recorded in `_run_records/R12_LOGIN_SESSION_PROOF_PREPARATION_2026-08-21.md`.
+  Focused tests passed 15/15 and final fresh review passed with zero findings;
+  integrated gates exposed the external `RUNTIME_INSTRUCTION_ROOT_ENV`
+  alignment. The owner immediately superseded a stop with **“Push through
+  failures.”** Exact frozen diff 04 bytes are restored to live candidate paths.
+  Agent 0 rebuilt current runtime only under ignored frontend dependencies;
+  registered typecheck/build, host full Vitest (1,214 passed / 4 skipped), and
+  focused affected tests (35/35) now pass without tracked setup changes.
+  Local premerge reached a READY Next service but returned HTTP 503 without the
+  shared runtime/project registration lifecycle; it remains PR-CI-owned.
+  Fresh integrated review found only three record defects; amendment 10 fixed
+  them and the direct backcheck passed with zero actionable findings and
+  unchanged product hashes. Preparation and local fan-in are complete pending
+  Git/PR and PR-CI. The host proof remains unexecuted, state remains
+  IN_PROGRESS, and all
+  publication/release/lifecycle fences are unchanged.
 - 2026-08-20 — PR #591 Desktop run `32410644968` / job `96560074456`
   materially narrowed the login-time `RunAtLoad` gap. Retained artifact
   `chirality-packaged-launchagent-runatload-proof` reports PASS for automatic

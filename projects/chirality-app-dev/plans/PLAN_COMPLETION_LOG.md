@@ -6,6 +6,24 @@ This file is history, not authority. Project truth remains in governed docs, dec
 
 ---
 
+## 2026-08-21 - Login-session LaunchAgent proof preparation landed
+
+PR #601 nodes `5a527d6ff290b11b72ecf25e4907443f2fe9347a` and
+`329030651c1f1ff611c48fa00442f002ea50c151` apply the owner-ruling slate and
+add a fail-closed two-stage harness for a later owner-scheduled logout/login
+proof. The harness prepares a unique packaged LaunchAgent without loading it,
+then captures login-session source, job, argv, PID, and executable identity
+after the owner act while separating private one-shot state from redacted
+public evidence. Governance Harness `32451257565 / 96680075758` and Harness
+pre-merge `32451257373 / 96680074918` pass.
+
+This is preparation, not the LaunchAgent auto-start proof: the logout/login and
+subsequent capture remain an owner act. DEL-09-04 remains `IN_PROGRESS`; no
+launcher mutation, root-surface change, lifecycle action, signing,
+notarization, distribution, publication, release, or reliance decision was
+authorized or performed. See
+`execution/_Coordination/AgentRuns/APPDEV_LAUNCHAGENT_LOGIN_PROOF_PREP_2026-08-21/`.
+
 ## 2026-08-20 - DEL-09-04 packaged LaunchAgent RunAtLoad proof landed
 
 PR #591 node `5ee3fc12fb73cdf90f6fa47455db70740a2d2f1f` adds a

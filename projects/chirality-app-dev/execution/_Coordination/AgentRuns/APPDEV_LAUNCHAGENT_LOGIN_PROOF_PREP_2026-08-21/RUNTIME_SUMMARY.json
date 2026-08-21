@@ -1,0 +1,20 @@
+{
+  "schema": "chirality-runtime-summary/v1",
+  "run_id": "APPDEV_LAUNCHAGENT_LOGIN_PROOF_PREP_2026-08-21",
+  "status": "PARTIAL_MEASUREMENT",
+  "measurement_limitation": "The predecessor manager did not initialize RUNTIME_EVENTS.jsonl before dispatch. Session timing, token, and context occupancy are unavailable and are not inferred.",
+  "attempts": {
+    "implementation_interrupted": 3,
+    "direct_implementation_intake": 1,
+    "remediation_complete": 3,
+    "review_fail": 4,
+    "review_pass": 2,
+    "integrated_review_interrupted": 1
+  },
+  "terminal_product_state": "PREPARATION_COMPLETE_PUBLISHABLE_PENDING_GIT_PR_CI",
+  "interrupted_attempts_recorded": true,
+  "execution_attribution_path": "EXECUTION_ATTRIBUTION.md",
+  "rerun_required": true,
+  "integrated_review_chain": "DIRECT-01 FAIL with three record-only findings; amendment 10 remediation; DIRECT-02 PASS with zero actionable findings and unchanged product hashes.",
+  "rerun_basis": "PR-CI premerge after PR with full runtime build/start/register lifecycle; owner proof later after Git, CI, packaged identity, and owner scheduling."
+}
