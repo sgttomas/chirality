@@ -4,7 +4,7 @@
 - Plan version: `1`
 - Selection authority: `HUMAN`
 - Descriptive posture: `MIXED`
-- Repository basis: `origin/main@e3e18d277a4b902e2a3347235239e90e946b91f4`
+- Repository basis: `origin/main@e3e18d27740018efd12e73193c02395a9eca93c2`
 - Working branch: `codex/root-cross-loop-carriers-20260821`
 - Integration owner: `HELP_HUMAN`
 - Human gate owner: Ryan Tufts

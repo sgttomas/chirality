@@ -6,7 +6,7 @@
   that permits Agent 0 to allowlist canonical `TASK` and to opt into ephemeral
   generalist Agent 2 dispatch while preserving every other hierarchy
   rejection fail-closed.
-- Accepted basis: `origin/main@e3e18d277a4b902e2a3347235239e90e946b91f4`;
+- Accepted basis: `origin/main@e3e18d27740018efd12e73193c02395a9eca93c2`;
   Root `AGENTS.md`; `AGENT_HELP_HUMAN.md`; `TM-ROOT-125`; owner direction of
   2026-08-21.
 - Required reads: `agents/AGENT_HELPS_HUMANS.md`,

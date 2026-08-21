@@ -1,0 +1,24 @@
+{
+  "schema": "help-human-agent-instance-status/v1",
+  "run_id": "ROOT_CROSS_LOOP_CARRIERS_2026-08-21",
+  "instance_id": "H2-HELPS-BASIS-SHA-REPAIR",
+  "node": "H2",
+  "role": "HELPS_HUMANS",
+  "status": "PASS",
+  "brief_version": 1,
+  "return": "RETURN.md",
+  "targets_repaired": 4,
+  "incorrect_sha_remaining": 0,
+  "correct_sha_occurrences": 4,
+  "correct_commit_exists": true,
+  "incorrect_object_exists": false,
+  "checks": {
+    "g4_manifest_validator": "PASS_40",
+    "instruction_entrypoint_validator": "PASS",
+    "live_agent_validator": "PASS_34_FILES_0_ERRORS_0_WARNINGS",
+    "diff_check": "PASS"
+  },
+  "blockers": [],
+  "reruns_required": [],
+  "next_owner": "HELP_HUMAN"
+}

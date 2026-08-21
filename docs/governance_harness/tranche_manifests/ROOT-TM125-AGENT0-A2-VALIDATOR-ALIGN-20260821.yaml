@@ -2,7 +2,7 @@ schema: instruction-tranche-manifest/v1
 tranche_id: ROOT-TM125-AGENT0-A2-VALIDATOR-ALIGN-20260821
 title: TM-ROOT-125 Agent 0 direct Agent 2 validator and allowlist alignment
 date: 2026-08-21
-basis: e3e18d277a4b902e2a3347235239e90e946b91f4
+basis: e3e18d27740018efd12e73193c02395a9eca93c2
 
 instruction_surface_paths:
   - agents/AGENT_HELP_HUMAN.md

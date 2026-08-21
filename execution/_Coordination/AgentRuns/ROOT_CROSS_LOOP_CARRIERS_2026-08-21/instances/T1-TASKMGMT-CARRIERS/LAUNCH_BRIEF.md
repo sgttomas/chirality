@@ -6,7 +6,7 @@
 - Modes: mandatory read-only federation preflight; decision preparation for
   `TM-ROOT-117`; current-trigger/activation assessment for the App
   `TM-APP-027` / `TM-APP-028` inbound carrier and Root `DEL-02-06`.
-- Accepted basis: `origin/main@e3e18d277a4b902e2a3347235239e90e946b91f4`;
+- Accepted basis: `origin/main@e3e18d27740018efd12e73193c02395a9eca93c2`;
   owner direction of 2026-08-21; current Root/App registers and cited live
   authority.
 - Required reads: `agents/AGENT_TASK_MANAGEMENT.md`; all canonical registers
