@@ -1,0 +1,9 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-APPDEV-INTEGRATED-REVIEW-DIRECT-01",
+  "runtime_task_name": "/root/app_integrated_final_review",
+  "status": "FAILED",
+  "result": "THREE_ACTIONABLE_RECORD_CONSISTENCY_FINDINGS",
+  "product_findings": 0,
+  "record_findings": 3
+}

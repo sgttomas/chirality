@@ -1,0 +1,8 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-PKG09-LOGIN-PROOF-PREP-REMEDIATE-01",
+  "status": "SUCCESS",
+  "node": "N1-R3",
+  "finished_at": "2026-08-21T04:42:28Z",
+  "disposition": "Both blocking P1 findings remediated; focused 11-test suite and exact two-path scope validation pass; owner-gated host proof remains unexecuted."
+}

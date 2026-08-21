@@ -1,0 +1,44 @@
+{
+  "profile": "projects/chirality-app-dev/software-workflow.json",
+  "project_root": "projects/chirality-app-dev",
+  "results": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "harness:validate:premerge"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 2.446,
+      "exit_code": 1,
+      "id": "frontend-premerge",
+      "service": {
+        "command": [
+          "node",
+          "node_modules/next/dist/bin/next",
+          "dev",
+          "--port",
+          "56350"
+        ],
+        "cwd": "projects/chirality-app-dev/frontend",
+        "exit_code": 0,
+        "port": 56350,
+        "ready_url": "http://127.0.0.1:56350",
+        "shutdown_timeout_seconds": 10,
+        "startup_duration_seconds": 1.849,
+        "startup_timeout_seconds": 90,
+        "status": "READY",
+        "stderr_tail": "",
+        "stdout_tail": "   \u25b2 Next.js 15.5.21\n   - Local:        http://localhost:56350\n   - Network:      http://192.168.1.133:56350\n\n \u2713 Starting...\n \u2713 Ready in 861ms\n \u25cb Compiling / ...\n \u2713 Compiled / in 592ms (1333 modules)\n GET / 200 in 477ms\n \u2713 Compiled /api/harness/session/list in 164ms (1382 modules)\n GET /api/harness/session/list?projectRoot=%2Fvar%2Ffolders%2F96%2F1_3ww0012pv5ptwwsd1990yw0000gn%2FT%2Fchirality-harness-validation%2Flatest%2Fworkroots%2Fdefault-project-root 503 in 217ms\n \u2713 Compiled /api/harness/session/create in 77ms (1384 modules)\n POST /api/harness/session/create 503 in 98ms\n \u2713 Compiled /api/harness/session/boot in 76ms (1386 modules)\n POST /api/harness/session/boot 503 in 90ms\n POST /api/harness/session/create 503 in 4ms\n POST /api/harness/session/create 503 in 3ms\n POST /api/harness/session/create 503 in 3ms\n POST /api/harness/session/create 503 in 3ms\n POST /api/harness/session/create 503 in 3ms\n\u001b[?25h\n",
+        "stopped_after_run": true
+      },
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 harness:validate:premerge\n> node ./scripts/validate-harness-premerge.mjs\n\nHARNESS_VALIDATION_SUMMARY_PATH={TMPDIR}/chirality-harness-validation/latest/summary.json\nHARNESS_VALIDATION_STATUS=fail\nHARNESS_PREMERGE_ARTIFACT_PATH={WORKSPACE_ROOT}/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json\nHARNESS_PREMERGE_SOURCE_SUMMARY_PATH={TMPDIR}/chirality-harness-validation/latest/summary.json\nHARNESS_PREMERGE_STATUS=fail\nHARNESS_PREMERGE_TEST_COUNT=0\n",
+      "timeout_seconds": 1200.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "FAIL",
+  "workspace_root": "."
+}
