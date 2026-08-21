@@ -1,0 +1,46 @@
+{
+  "run_id": "ROOT_CROSS_LOOP_CARRIERS_2026-08-21",
+  "instance_id": "T1-TASKMGMT-CARRIERS",
+  "agent_role": "TASK_MANAGEMENT",
+  "terminal_status": "COMPLETED_WITH_HUMAN_DECISIONS_REQUIRED",
+  "federation": {
+    "coverage": "COMPLETE",
+    "canonical_registers": 4,
+    "presented_findings": 79,
+    "invalid_registers": 0,
+    "unreadable_registers": 0,
+    "ambiguous_references": 0,
+    "register_writes": 0
+  },
+  "tm_root_117": {
+    "current_status": "OPEN",
+    "accepted_successor_found": false,
+    "supportable_future_candidate": "root-runtime-1",
+    "recommended_option": "OPTION_R_RESCOPE",
+    "closure_executed": false,
+    "notice_routed": false
+  },
+  "del_02_06": {
+    "live_state": "INITIALIZED",
+    "production_now": "HELD_AT_HUMAN_GATE",
+    "missing_owner_field": "positive-decimal compatibility epoch",
+    "recommended_epoch": 1,
+    "preparation_activation_executed": false,
+    "prior_semantic_byte_acceptance_observed": true,
+    "compatibility_completion_acceptance_executed": false,
+    "implementation_executed": false
+  },
+  "write_effect": {
+    "return_written": true,
+    "status_written": true,
+    "registers": 0,
+    "receipts": 0,
+    "notices": 0,
+    "decisions": 0,
+    "deliverables": 0,
+    "packages": 0,
+    "runtime": 0,
+    "foreign_loop": 0,
+    "git": 0
+  }
+}

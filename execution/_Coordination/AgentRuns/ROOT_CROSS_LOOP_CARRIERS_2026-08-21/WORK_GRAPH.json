@@ -1,0 +1,47 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_CROSS_LOOP_CARRIERS_2026-08-21",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "integration_owner": "HELP_HUMAN",
+  "nodes": [
+    {
+      "id": "H1",
+      "role": "HELPS_HUMANS",
+      "status": "COMPLETE",
+      "depends_on": [],
+      "write_owner": "workflow-component engineering surfaces and affected-loop notices"
+    },
+    {
+      "id": "T1",
+      "role": "TASK_MANAGEMENT",
+      "status": "COMPLETE",
+      "depends_on": [],
+      "write_owner": "return record only"
+    },
+    {
+      "id": "I1",
+      "role": "HELP_HUMAN",
+      "status": "COMPLETE",
+      "depends_on": ["H1", "T1"],
+      "write_owner": "RunID fan-in and decision support"
+    },
+    {
+      "id": "C1",
+      "role": "TASK_MANAGEMENT",
+      "status": "READY",
+      "depends_on": ["H1", "I1"],
+      "write_owner": "Root register/archive and ordinary closeout only"
+    },
+    {
+      "id": "G1",
+      "role": "CHANGE",
+      "status": "ACTIVE",
+      "depends_on": ["C1"],
+      "write_owner": "Git metadata only"
+    }
+  ],
+  "shared_write_policy": "No concurrent overlapping writes; HELP_HUMAN serializes fan-in and closeout.",
+  "human_gates": ["TM-ROOT-117 ruling", "DEL-02-06 epoch and exact-byte acceptance", "PR review and merge"]
+}
