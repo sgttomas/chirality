@@ -5483,3 +5483,36 @@
   - Checks: focused parity tests, typecheck, build, isolated daemon fixture, source/package manifests, amended evidence-index hashes, receipt contract, corpus v18/no drift, repository self-check, APP-HOLD integrity, practitioner pytest, JSON, diff, and containment pass; packaged UI observations, packaged replay rendering, premerge, release-quality, and secret scan remain unrun/blocked.
   - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS, TASK/ephemeral Agent 2 executors and verifiers, and CHANGE; exact model builds not exposed.
   - Gate-Outcome: `STOPPED` — N1 returned validated `BLOCKED / PARTIAL` after packaged GUI startup omitted the verification-only `CHIRALITY_SKIP_CLI_LAUNCHER=1` opt-out and wrote `/Users/ryan/.local/bin/chirality` before any UI action. The launcher was left untouched at observed SHA-256 `f16bc2ba9228b5321deb9c66ba9526aa60fbe3bb02179d32fd66ce1de208384a`; all run-owned state was cleaned; no parity, deliverable, lifecycle, release, or reliance closure follows.
+
+- **2026-08-21 — Receipt 184** (owner slate and login-proof preparation).
+  - Receipt-ID: `Receipt-184`
+  - Examined-Through: `329030651c1f1ff611c48fa00442f002ea50c151`
+  - Parent-Receipt: `Receipt-183`
+  - Pointers: owner-ruling/TM node
+    `5a527d6ff290b11b72ecf25e4907443f2fe9347a`; DEL-09-04 product and evidence
+    node `329030651c1f1ff611c48fa00442f002ea50c151`; PR #601 based on `main`;
+    Harness pre-merge run `32451257373`, job `96680074918`; governance Harness
+    run `32451257565`, job `96680075758`; DEL-09-04 run record
+    `_run_records/R12_LOGIN_SESSION_PROOF_PREPARATION_2026-08-21.md`; RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_LAUNCHAGENT_LOGIN_PROOF_PREP_2026-08-21/`;
+    model attribution `EXECUTION_ATTRIBUTION.md` within that RunID root.
+  - Checks: focused harness tests, affected and full frontend suites,
+    typecheck, build, practitioner pytest, source review 04 and integrated
+    review 02 with zero
+    findings, task-management validation/federation, APP-HOLD, corpus v18/no
+    drift, repository self-check, hashes/JSON/diff hygiene, and both PR-CI
+    harness jobs pass. The local registered pre-merge attempt returned HTTP 503
+    without the shared runtime registration lifecycle; the cited PR-CI job
+    owned that lifecycle and supplied the passing external proof.
+  - Model-Attribution: OpenAI Codex desktop multi-agent runtime, GPT-5 family;
+    exact inherited model identifier was not exposed. See the cited execution
+    attribution record for manager, child, and substitution coverage.
+  - Gate-Outcome: `EXECUTED` — D-APP-86's recorded launcher state is accepted
+    as a provenance-backed, functionally stale drill baseline with no launcher
+    action; the distinct-helper rerun trigger is retired; TM-APP-044 is closed
+    through the DEL-08-04 amendment while `TM-ROOT-125` remains Root-owned; and
+    the two-stage packaged login-session proof harness is prepared. The actual
+    logout/login and capture remain an owner-scheduled act, so DEL-09-04 stays
+    `IN_PROGRESS`. No root-surface, launcher, lifecycle, release, signing,
+    notarization, distribution, publication, reliance, or merge action
+    occurred.
