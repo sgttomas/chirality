@@ -1,6 +1,0 @@
-Latest Batch 3 atomization: `domains/chirality/_Decomposition/phase2_batches/BATCH3_GOVERNANCE_THESIS_20260614T052705Z`
-BatchID: `BATCH3_GOVERNANCE_THESIS_20260614T052705Z`
-Status: GATE2_ACCEPTED_IN_PHASE2_CLOSURE
-Merged atom rows: 4006
-Vocabulary terms: 766
-Gate 2: GATE2_ACCEPTED_IN_PHASE2_CLOSURE

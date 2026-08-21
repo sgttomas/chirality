@@ -34,8 +34,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # domains/ (1.03 GB tracked) and execution/ (256 MB tracked) are
-          # ~90% of the checkout payload and are never read by this job
+          # execution/ is intentionally excluded and is never read by this job
           # (frontend code references _DomainEngines and project-local
           # execution/ dirs only, both listed below). Cone mode keeps all
           # root files. blob:none skips download of blobs outside the cone.

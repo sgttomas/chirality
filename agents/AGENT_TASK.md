@@ -104,7 +104,7 @@ The brief MAY contain generic fields, legacy fields, a file-based brief, or any 
 
 - `ScopePath` — preferred run/context anchor; also determines the run-record location
 - `DeliverablePath` — legacy compatibility field or skill/runtime input; does not activate a profile
-- `WorkingRoot` / `WORKING_ROOT` — optional explicit working-root anchor for `{WORKING_ROOT}` token expansion; must resolve to the selected `projects/<name>`, `domains/<name>`, or repo root scope
+- `WorkingRoot` / `WORKING_ROOT` — optional explicit working-root anchor for `{WORKING_ROOT}` token expansion; must resolve inside the active writable Git checkout
 
 ### Accepted behavior fields
 
@@ -124,8 +124,10 @@ The brief MAY contain generic fields, legacy fields, a file-based brief, or any 
 Before applying the numbered rules:
 
 - Derive `REPO_ROOT` by running `git rev-parse --show-toplevel` from the current checkout. If it cannot be resolved, STOP and return `ERROR: REPO_ROOT unavailable`.
+- Resolve `INSTRUCTION_ROOT` from the runtime-declared `CHIRALITY_INSTRUCTION_ROOT`. It is the read-only Chirality checkout or packaged instruction tree that owns `agents/`, `skills/`, and `tools/`. If it is absent or unreadable, STOP and return `ERROR: INSTRUCTION_ROOT unavailable`.
 - Resolve path tokens in `ScopePath`, `DeliverablePath`, `InitTaskPath`, `INIT_TASK_PATH`, `AllowedWriteTargets`, and `WorkingRoot` / `WORKING_ROOT`.
 - `{REPO_ROOT}` and `${REPO_ROOT}` expand only to the derived Git toplevel.
+- `{INSTRUCTION_ROOT}` and `${INSTRUCTION_ROOT}` expand only to the runtime-declared instruction root and never imply write authorization.
 - `{WORKING_ROOT}` and `${WORKING_ROOT}` expand only to the selected working scope:
   - an explicit `WorkingRoot` / `WORKING_ROOT` value, after `{REPO_ROOT}` expansion and containment validation;
   - otherwise the nearest ancestor matching `{REPO_ROOT}/projects/<name>` or `{REPO_ROOT}/domains/<name>` from a concrete `ScopePath` or `DeliverablePath`;
@@ -164,7 +166,7 @@ Before applying the numbered rules:
 8. If `ScopePath` does not resolve to an existing local path:
    - STOP and return `ERROR: ScopePath does not exist`
 
-   If resolved `ScopePath` is not under `REPO_ROOT`:
+   If resolved `ScopePath` is not under `WORKING_ROOT`:
    - STOP and return `ERROR: SCOPE_OUTSIDE_WORKTREE`
 
 9. If both `ScopePath` and `DeliverablePath` are provided and they do not resolve to the same path:
@@ -175,7 +177,8 @@ Before applying the numbered rules:
 
 11. If `AllowedWriteTargets` is present:
    - every target MUST resolve to an explicit local path or supported local path pattern
-   - every writable target MUST resolve under `REPO_ROOT`; otherwise STOP and return `ERROR: WRITE_TARGET_OUTSIDE_WORKTREE`
+   - every writable target MUST resolve under `WORKING_ROOT`; otherwise STOP and return `ERROR: WRITE_TARGET_OUTSIDE_WORKTREE`
+   - a sibling project or domain pack is outside the writable boundary even when it shares `REPO_ROOT`
    - the targets form a whitelist for non-run-record writes
 
 12. If `AllowedTools` is present:
@@ -186,7 +189,7 @@ Before applying the numbered rules:
 ## Skill loading (MAY)
 
 If `TaskSkill` is provided:
-- first try `skills/{TaskSkill}/SKILL.md`
+- first try `{INSTRUCTION_ROOT}/skills/{TaskSkill}/SKILL.md`
 - if that path does not exist and `TaskSkill` contains `_`, also try the legacy compatibility alias `skills/{TaskSkill with "_" replaced by "-"}/SKILL.md`
 - if a compatibility alias is used, treat the hyphenated folder token as the canonical skill identity for the run
 - if the resolved file exists, load it and follow it as a method contract subordinate to:
@@ -208,7 +211,7 @@ After resolving the skill folder, parse `SKILL.md` YAML frontmatter and resolve 
 
 1. **`name`** — confirm it matches the resolved folder name. If it does not match, emit `WARNING: skill name '<name>' does not match folder '<folder>'` in the run report and continue. (The skill metadata validator enforces this separately.)
 
-2. **`allowed-tools`** — if present, parse as a comma-space (`, `) delimited list of command specs. Each spec must be exactly `<interpreter> <repo-relative-tool-path>:<scope_glob>` with no flags or extra arguments. The tool path (second token of each spec) must resolve to an existing file under `tools/`. If `allowed-tools` is malformed or any tool path does not resolve, return `ERROR: Skill allowed-tools is malformed or contains unresolvable paths` — do not proceed. If `allowed-tools` is absent, no skill-level tool restriction applies.
+2. **`allowed-tools`** — if present, parse as a comma-space (`, `) delimited list of command specs. Each spec must be exactly `<interpreter> <instruction-root-relative-tool-path>:<scope_glob>` with no flags or extra arguments. The tool path (second token of each spec) must resolve to an existing file under `{INSTRUCTION_ROOT}/tools/`. If `allowed-tools` is malformed or any tool path does not resolve, return `ERROR: Skill allowed-tools is malformed or contains unresolvable paths` — do not proceed. If `allowed-tools` is absent, no skill-level tool restriction applies.
 
 3. **Effective tool allowlist merge** — when both the brief `AllowedTools` and the skill `allowed-tools` are present, the effective allowlist is their intersection: the brief cannot grant tools the skill forbids, and the skill cannot grant tools the brief forbids. When only one source provides a list, that list is the effective allowlist. When neither provides a list, no tool restriction applies.
 
@@ -283,12 +286,13 @@ The following checks are enforced at the points indicated. Most are already defi
 
 | Check | When | Failure mode |
 |---|---|---|
+| `INSTRUCTION_ROOT` is readable and supplies agent, skill, and tool contracts | Normalization preflight | `ERROR: INSTRUCTION_ROOT unavailable` — run stops |
 | Resolved skill folder exists | Skill loading | `ERROR: TaskSkill not found` — run stops |
-| Skill `allowed-tools` paths resolve to existing files under `tools/` | Skill frontmatter resolution | `ERROR: Skill allowed-tools is malformed or contains unresolvable paths` — run stops |
+| Skill `allowed-tools` paths resolve to existing files under `{INSTRUCTION_ROOT}/tools/` | Skill frontmatter resolution | `ERROR: Skill allowed-tools is malformed or contains unresolvable paths` — run stops |
 | Skill `chirality-task-profile` is recorded | Skill frontmatter resolution | Warning if non-`NONE`; no profile behavior is loaded |
-| `ScopePath` resolves under the current Git toplevel | Normalization rule 8 | `ERROR: SCOPE_OUTSIDE_WORKTREE` — run stops |
+| `ScopePath` resolves under the selected `WORKING_ROOT` | Normalization rule 8 | `ERROR: SCOPE_OUTSIDE_WORKTREE` — run stops |
 | `AllowedWriteTargets` resolve to explicit local paths or supported local path patterns | Normalization rule 11 | Error — run stops |
-| `AllowedWriteTargets` stay under the current Git toplevel | Normalization rule 11 | `ERROR: WRITE_TARGET_OUTSIDE_WORKTREE` — run stops |
+| `AllowedWriteTargets` stay under the selected `WORKING_ROOT` | Normalization rule 11 | `ERROR: WRITE_TARGET_OUTSIDE_WORKTREE` — run stops |
 | Write authorization is explicit when `ApplyEdits: true` | Write authorization resolution | `FAILED_INPUTS` or `NEEDS_HUMAN_RULING` when ambiguous |
 | Companion files explicitly checked | Skill loading | Report each file as `found` or `absent` in `CompanionFiles` — no error on absence |
 
@@ -476,13 +480,13 @@ InitTaskPath: <optional; explicit path to INIT-TASK.md>
 INIT_TASK_PATH: <optional; uppercase alias for InitTaskPath>
 
 # Context / run-record anchor
-WorkingRoot: <optional; {REPO_ROOT}/projects/<name>, {REPO_ROOT}/domains/<name>, or {REPO_ROOT}>
+WorkingRoot: <optional; selected writable project/domain pack within {REPO_ROOT}, or {REPO_ROOT}>
 ScopePath: <preferred; {WORKING_ROOT}- or {REPO_ROOT}-anchored path to run/context anchor>
 DeliverablePath: <legacy compatibility path or skill input; optional>
 
 # Optional method selectors
 TaskProfile: <deprecated compatibility label; optional>
-TaskSkill: <optional; skill folder name under skills/>
+TaskSkill: <optional; skill folder name under {INSTRUCTION_ROOT}/skills/>
 
 Tasks:
   - <specific asks>
@@ -492,7 +496,7 @@ ApplyEdits: <optional; default false>
 AllowedWriteTargets:
   - <optional explicit output paths/directories/patterns; narrows write authorization>
 AllowedTools:
-  - <optional; repo-relative tool paths>
+  - <optional; instruction-root-relative tool paths>
 
 # Behavioral modifiers
 RuntimeOverrides:
@@ -520,7 +524,7 @@ If `InitTaskPath` is provided, the file-based brief is merged with inline fields
 1. **Normalize the brief**
    - Resolve whether the control surface is inline, file-based, or merged.
    - If a file-based `INIT-TASK.md` is active, read it first and merge it with inline fields.
-   - Resolve `REPO_ROOT`, optional `WORKING_ROOT`, path tokens, and `ScopePath`.
+   - Resolve read-only `INSTRUCTION_ROOT`, writable `REPO_ROOT`, optional `WORKING_ROOT`, path tokens, and `ScopePath`.
    - Record deprecated compatibility labels when present.
    - Validate path containment, permissions, tool allowlist, and write target syntax.
    - Resolve write authorization as `RUN_RECORD_ONLY`, `ALLOWED_WRITE_TARGETS`, `EXPLICIT_BRIEF_TEXT`, or `AMBIGUOUS`.

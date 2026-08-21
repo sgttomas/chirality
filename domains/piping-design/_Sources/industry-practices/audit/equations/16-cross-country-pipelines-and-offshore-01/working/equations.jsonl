@@ -1,6 +1,0 @@
-{"page": 18, "index": 1, "latex": "S_{eq} = (S_h^2 + S_L^2 - S_h S_L + 3S_\\theta^2)^{1/2}", "hash": "27cc975db73c", "png": "page_0018.png"}
-{"page": 48, "index": 1, "latex": "d = Q \\left[ \\frac{D}{32{,}000} + \\frac{D}{180} + 11 \\right] \\left[ \\frac{P}{32} + 1.4 \\right]", "hash": "1281d7ed196e", "png": "page_0048.png"}
-{"page": 48, "index": 2, "latex": "d = Q \\left[ 0.7 + \\frac{1}{21}(P + 82) \\right]", "hash": "e4a69086a0c2", "png": "page_0048.png"}
-{"page": 49, "index": 1, "latex": "S_h = \\frac{PD}{2t}", "hash": "a566fbda351c", "png": "page_0049.png"}
-{"page": 49, "index": 2, "latex": "S_L = \\frac{S_h}{2} + \\frac{M_b}{Z}", "hash": "1164cf03353f", "png": "page_0049.png"}
-{"page": 49, "index": 3, "latex": "S_S = \\frac{T}{2Z} + \\frac{2F_s}{A}", "hash": "72cfc065018b", "png": "page_0049.png"}

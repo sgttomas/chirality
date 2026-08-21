@@ -1,6 +1,0 @@
-CheckID,Status,Evidence,Notes
-SOURCE_PREFIX_UNIQUENESS,PASS,96/96 unique,Per source unit.
-SKELETON_INVENTORY,PASS,units=96 failures=0,
-REVIEW_HTML_INVENTORY,PASS,ready=96/96,Structure-mode surfaces.
-CROSS_REPO_REPO_ROOT,RECORDED,/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev,"@repo resolves against source repo, not monorepo."
-PHASE_2_ATOMIZATION,NOT_RUN,Gate 1 pending,No domain-source-atomize dispatch started.

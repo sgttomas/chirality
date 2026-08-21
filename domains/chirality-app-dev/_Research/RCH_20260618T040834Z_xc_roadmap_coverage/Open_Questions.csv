@@ -1,3 +1,0 @@
-OpenQuestionID,ClaimID,Question,WhyItMatters,EvidenceNeeded,Status
-OQ-001,C-LIFECYCLE,"Should landed+proven runtime deliverables begin formal CHECKING->ISSUED advancement or remain IN_PROGRESS?","Determines whether 'no ISSUED deliverables' is a gap or intended steady state","Human ruling on lifecycle posture; actor HUMAN + approvalSha for any transition",OPEN
-OQ-002,C-D18-BLOCK,"Once D-APP-18 is ruled, does it also dispose of deferred R6-04 optional MCP module organization?","Clarifies whether any R6 residue reopens on cutover","D-APP-18 ruling text; R6-04 deferral note in PLAN_COMPLETION_LOG.md",OPEN

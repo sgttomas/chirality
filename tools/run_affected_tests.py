@@ -71,8 +71,8 @@ def select_checks(paths: list[str]) -> dict:
             "reasons": {},
         }
     result = subprocess.run(
-        [sys.executable, str(SELECTOR), str(PROFILE), *paths],
-        capture_output=True, text=True, check=True,
+        [sys.executable, str(SELECTOR), str(PROFILE), "--paths-json-stdin"],
+        input=json.dumps(paths), capture_output=True, text=True, check=True,
     )
     return json.loads(result.stdout)
 

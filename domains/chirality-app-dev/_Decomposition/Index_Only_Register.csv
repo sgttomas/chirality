@@ -1,2 +1,0 @@
-SourceDocID,SourceGroup,RepoRelPath,Sha256,Disposition,Notes
-SRC-DOCS-MANIFEST,PRODUCT_DOCS,docs/MANIFEST.json,5813829717ae59acb5f7a52b0744186a90866e230766e5bbe29be9d644df2b5d,INDEX_ONLY_NOT_ATOMIZED,Docs manifest sidecar; index-only.

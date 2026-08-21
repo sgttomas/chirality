@@ -29,7 +29,7 @@ This alignment ensures that project execution state (the filesystem) reflects th
 
 > Numbering note: this section is placed in the §0 preamble (rather than as a new §1) so the established §1–§13 numbers — and every cross-reference to them, e.g. `SPEC §1.2` (tool roots) and `SPEC §6.5` (provenance) — remain stable.
 
-Chirality runs in two deployment shapes that share one path model: the **canonical monorepo** (this repository) and the **desktop harness** (an app bundle pointed at a user-selected folder). The path model defines two roots and one containment rule.
+Chirality runs in deployment shapes that share one path model: root-product development in this repository, registered project or domain checkouts, and the desktop harness pointed at a user-selected folder. The instruction root and writable checkout may be the same repository only for explicitly governed in-tree work; external working repositories keep them physically disjoint.
 
 ### 0.2.1 `REPO_ROOT` — the active checkout
 
@@ -41,14 +41,16 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 `REPO_ROOT` MUST be resolved at session start and never hard-coded. In a linked **git worktree**, `git rev-parse --show-toplevel` returns *that worktree's* root — so a worktree is a fully isolated checkout, and every path derived from `REPO_ROOT` re-anchors to it automatically. This is the mechanism that makes worktree-based isolation safe.
 
-`REPO_ROOT` is the home of the **shared instruction surface** (`AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/`) — the release-managed agent operating system (the **instruction root**; see `DIRECTIVE.md` §2.6). `CLAUDE.md` is the session-initialization instruction pointer: it imports `AGENTS.md` and adds no instruction layer of its own, so editing it changes what every session loads. `.github/workflows/` holds the CI workflow definitions that gate merges, so editing them changes how governance is enforced rather than what it says. The instruction surface is read-mostly: changing it is a repo-wide governance action, not ordinary working-root execution.
+`REPO_ROOT` is the active writable Git checkout. For an external project or domain repository it is that repository, not the Chirality repository supplying instructions. In Chirality root-product development, `REPO_ROOT` is also the instruction root under the D-GOV-21 exception.
+
+`INSTRUCTION_ROOT` is the runtime-declared, read-only home of the **shared instruction surface** (`AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/`) — the release-managed agent operating system (see `DIRECTIVE.md` §2.6). The runtime resolves it from `CHIRALITY_INSTRUCTION_ROOT`; a V2 project registration fails if it is missing, unreadable, or overlaps the working root. `CLAUDE.md` imports `AGENTS.md` without adding another instruction layer. The instruction surface is read-mostly: changing it is a repo-wide governance action, not ordinary working-root execution.
 
 ### 0.2.2 `WORKING_ROOT` — the active workspace
 
-`WORKING_ROOT` is the project or domain workspace an agent is scoped to — `projects/<name>/` or `domains/<name>/` in this monorepo, or the user-selected folder under the desktop harness. It is where governed project truth lives (`{EXECUTION_ROOT}`, tool roots, deliverables, decomposition state). For the root product only, `WORKING_ROOT` is `REPO_ROOT` (D-GOV-21).
+`WORKING_ROOT` is the project or domain workspace an agent is scoped to — a selected pack in an external repository, an explicitly governed in-tree project, or the user-selected folder under the desktop harness. It is where governed project truth lives (`{EXECUTION_ROOT}`, tool roots, deliverables, decomposition state). For the root product only, `WORKING_ROOT` is `REPO_ROOT` (D-GOV-21).
 
-- `WORKING_ROOT` MUST resolve to an absolute path under `REPO_ROOT` (monorepo) or to the user-selected root (desktop harness).
-- One `REPO_ROOT` instruction surface serves **many** working roots without per-workspace instruction drift.
+- `WORKING_ROOT` MUST resolve to an absolute path under the active writable `REPO_ROOT`.
+- One `INSTRUCTION_ROOT` serves **many** working repositories without per-workspace instruction drift.
 - A working root MUST NOT be the shared instruction surface itself, except that the root product's working root is the repository root under D-GOV-21; agents operating in any working root MUST NOT write to `agents/`, `skills/`, `tools/`, or root `docs/` except through an explicit, separately-authorized repo-wide instruction change (root-product instruction changes obtain that authorization through an independently owner-authorized, human-gated repo-wide change tranche satisfying the D-GOV-21 M2 containment and evidence conditions; the M2 gate does not itself grant authorization).
 
 ### 0.2.3 ScopePath containment (binding)
@@ -56,13 +58,13 @@ REPO_ROOT="$(git rev-parse --show-toplevel)"
 Every `ScopePath` and every `AllowedWriteTarget` (see `AGENT_TASK.md`) MUST:
 
 1. normalize to an absolute path, and
-2. resolve **under `REPO_ROOT`** (the active checkout returned by `git rev-parse --show-toplevel`).
+2. resolve **under `WORKING_ROOT`**, which is itself contained by the active checkout returned by `git rev-parse --show-toplevel`.
 
-A `ScopePath` or write target that resolves outside the active checkout — including via symlink or `..` traversal — MUST be rejected (`SCOPE_OUTSIDE_WORKTREE`); the task stops rather than writing. This upgrades the existing `AGENT_TASK.md` rule ("`ScopePath` must resolve to an existing local path") to "…and must resolve within the active checkout," and is the deterministic backstop that prevents an agent launched in a worktree from writing back to the main checkout. It is a no-op in single-checkout (shared-monorepo) mode. This rule is bound as `CONTRACT.md` invariant **K-WRITE-2**.
+A `ScopePath` or write target that resolves outside the selected working root — including a sibling pack, the instruction root, a symlink escape, or `..` traversal — MUST be rejected (`SCOPE_OUTSIDE_WORKTREE` or `WRITE_TARGET_OUTSIDE_WORKTREE`); the task stops rather than writing. This is the deterministic backstop that prevents a run from writing into another checkout or pack. This rule is bound as `CONTRACT.md` invariant **K-WRITE-2**.
 
 ### 0.2.4 Path reference discipline
 
-- **Instruction-surface references** (to `agents/`, `skills/`, `tools/`, root `docs/`, `AGENTS.md`) resolve **`REPO_ROOT`-relative**.
+- **Instruction-surface references** (to `agents/`, `skills/`, `tools/`, root `docs/`, `AGENTS.md`) resolve **`INSTRUCTION_ROOT`-relative**.
 - **Working-root references** (to `{EXECUTION_ROOT}`, tool roots, deliverables, `_Coordination/`, decomposition state) resolve **`WORKING_ROOT`-relative**.
 - Instruction, coordination, and plan files MUST NOT embed machine-absolute paths (e.g. `/Users/<name>/...`). Absolute paths are permitted only in run records and evidence artifacts, where they record what actually happened and are never re-executed.
 
@@ -75,8 +77,8 @@ Agent instructions and skills reference roots through `{*_ROOT}` tokens. Each to
 | Token | Anchor | Resolves to |
 |---|---|---|
 | `{REPO_ROOT}` | self | `git rev-parse --show-toplevel` (the active checkout) |
-| `{INSTRUCTION_ROOT}` | `REPO_ROOT`-relative | the shared instruction surface; `= REPO_ROOT` in the monorepo, the app bundle in desktop builds |
-| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the active `projects/<name>/` or `domains/<name>/` (or user-selected folder); for the root product only, `REPO_ROOT` (D-GOV-21) |
+| `{INSTRUCTION_ROOT}` | runtime-declared | the shared instruction surface; the Chirality checkout, packaged app resources, or `REPO_ROOT` for root-product development |
+| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the selected project/domain pack or user-selected folder; for the root product only, `REPO_ROOT` (D-GOV-21) |
 | `{EXECUTION_ROOT}` | `WORKING_ROOT`-relative | the execution instance root (project-defined; often `WORKING_ROOT` or `WORKING_ROOT/execution`) |
 | `{COORDINATION_ROOT}` | `EXECUTION_ROOT`-relative | `{EXECUTION_ROOT}/_Coordination/` |
 | `{DECOMP_ROOT}` / `{DECOMPOSITION_ROOT}` | `EXECUTION_ROOT`-relative | `{EXECUTION_ROOT}/_Decomposition/` (or a domain pack's `_Decomposition/`) |
@@ -85,8 +87,8 @@ Agent instructions and skills reference roots through `{*_ROOT}` tokens. Each to
 | `{RECONCILIATION_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Reconciliation/` |
 | `{ESTIMATES_ROOT}` | tool-root-relative | `{EXECUTION_ROOT}/_Estimates/` |
 | `{SOURCE_AUDIT_ROOT}`, `{ASSETS_ROOT}`, `{PUBLICATION_ROOT}`, `{RESEARCH_ROOT}`, `{PLANNING_ROOT}`, `{RUN_ROOT}`, `{CONTEXT_ROOT}` | `WORKING_ROOT`-relative | domain/workspace-local roots bound by the owning agent/skill; MUST resolve under `WORKING_ROOT` |
-| `{SKILL_ROOT}` | `REPO_ROOT`-relative | `{REPO_ROOT}/skills/<name>/` |
-| `{TOOL_ROOT}` | context-dependent | `{REPO_ROOT}/tools/` when referring to the deterministic tool layer; a project tool root (`{EXECUTION_ROOT}/_<Name>/`) when referring to a derived-output root (see §1.2) |
+| `{SKILL_ROOT}` | `INSTRUCTION_ROOT`-relative | `{INSTRUCTION_ROOT}/skills/<name>/` |
+| `{TOOL_ROOT}` | context-dependent | `{INSTRUCTION_ROOT}/tools/` when referring to the deterministic tool layer; a project tool root (`{EXECUTION_ROOT}/_<Name>/`) when referring to a derived-output root (see §1.2) |
 
 The token vocabulary above is the registry; an agent that introduces a new `{*_ROOT}` token MUST declare its anchor in the agent's own instruction file and keep it consistent with this table.
 
@@ -935,9 +937,13 @@ promise a final HTTP/SSE frame; EOF versus reset is platform-dependent.
 
 ### 14.2 Project manifests and sessions
 
-Each registered checkout supplies `chirality.project.json` with schema
-`chirality.project/v1`, a stable project ID and display name, relative
-working/instruction/AGENTS/execution references, profile references, enabled
+Each registered checkout supplies `chirality.project.json`. Schema
+`chirality.project/v1` remains supported for in-tree manifests with relative
+working and instruction references. Schema `chirality.project/v2` declares
+`instructionRoot: {"mode":"runtime"}` so an external writable checkout can
+consume the read-only `CHIRALITY_INSTRUCTION_ROOT`. V2 registration requires
+that root to be readable and disjoint from the working root. Both schemas carry
+a stable project ID and display name, execution and profile references, enabled
 adapter IDs, and an embedded-UI declaration. Registration containment-checks
 the resolved paths and records the manifest hash and approval outside the
 checkout. Privileged execution stops on manifest drift until re-registration.

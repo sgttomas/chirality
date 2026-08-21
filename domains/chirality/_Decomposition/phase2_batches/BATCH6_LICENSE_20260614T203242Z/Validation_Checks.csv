@@ -1,9 +1,0 @@
-CheckID,Status,Evidence,Notes
-BATCH6_SOURCE_SELECTION,PASS,BATCH6_LICENSE_20260614T203242Z; source=SRC-LICENSE; dispatch_units=1,Selected previously deferred LICENSE.md by human direction; source file not modified.
-BATCH6_SYNTHETIC_DISPATCH,PASS,SEC-RT005-0001 in_scope_default=true; UNIT-RT005-0001 lines=1..23,Headingless license uses synthetic one-section skeleton and one dispatch unit.
-BATCH6_OUTPUT_QA,PASS,dispatch_units=1; atom_csvs=1; vocab_csvs=1; raw_atoms=12; IN=12; OUT=0; TBD=0; vocab_rows=8; schema_hash_ref_errors=0,"Per-unit CSV headers, LocalSeq, ContentHash, InOutStatus, SourceRef line anchors, SectionID, and DispatchUnitID validated."
-BATCH6_PER_SOURCE_MERGE,PASS,per_source_ledgers=1; merged_rows=12; dedupe_dropped=0,Per-source stable IDs assigned.
-BATCH6_CROSS_SOURCE_MERGE,PASS,BATCH6_Atomic_Domain_Ledger.csv rows=12; IN=12; OUT=0; TBD=0; unresolved_corrects=0,Batch-scoped cross-source ledger created; global Atomic_Domain_Ledger.csv was not overwritten.
-BATCH6_VOCAB_MERGE,PASS,BATCH6_Vocabulary_Map.csv terms=8; multi_source=0,Batch-scoped vocabulary map created; global Vocabulary_Map.csv was not overwritten.
-BATCH6_ATOM_REVIEW_HTML,PASS,atom_review_html=1; section_node_csvs=1,SRC-LICENSE review HTML regenerated in atom-review mode.
-BATCH6_GATE2_STATUS,GATE2_ACCEPTED,domains/chirality/_Decomposition/gate_snapshots/GATE2_PHASE2_20260614T204403Z; accepted in Phase 2 closure,Batch rows are accepted decomposition truth through the canonical Phase 2 ledger/vocabulary.

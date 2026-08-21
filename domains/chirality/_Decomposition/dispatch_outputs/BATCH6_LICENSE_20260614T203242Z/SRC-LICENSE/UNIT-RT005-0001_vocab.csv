@@ -1,9 +1,0 @@
-CandidateTerm,Synonyms,Definition,SourceRefs,Notes
-MIT License + Professional Engineering Clause,license,The license form declared by LICENSE.md.,@repo/LICENSE.md:L0001|domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html#SEC-RT005-0001,
-Software,software and associated documentation files,The licensed software and associated documentation files.,@repo/LICENSE.md:L0005|domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html#SEC-RT005-0001;@repo/LICENSE.md:L0006|domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html#SEC-RT005-0001,
-copyright notice,copyright,Notice that must be included in all copies or substantial portions of the Software.,@repo/LICENSE.md:L0012|domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html#SEC-RT005-0001,
-permission notice,permission,Notice that must be included in all copies or substantial portions of the Software.,@repo/LICENSE.md:L0012|domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html#SEC-RT005-0001,
-substantial portions,,Copies or substantial portions of the Software must include the copyright and permission notice.,@repo/LICENSE.md:L0013|domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html#SEC-RT005-0001,
-as is,AS IS,The Software is provided without warranty of any kind.,@repo/LICENSE.md:L0015|domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html#SEC-RT005-0001,
-professional engineering work,professional engineering,Work that must adhere to PROFESSIONAL_ENGINEERING.md in letter or spirit.,@repo/LICENSE.md:L0023|domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html#SEC-RT005-0001,
-PROFESSIONAL_ENGINEERING.md,professional engineering standards,The referenced standard for all professional engineering work.,@repo/LICENSE.md:L0023|domains/chirality/_Decomposition/source_review_html/SRC-LICENSE.html#SEC-RT005-0001,

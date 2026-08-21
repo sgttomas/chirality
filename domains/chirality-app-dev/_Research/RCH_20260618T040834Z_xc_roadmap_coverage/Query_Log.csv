@@ -1,3 +1,0 @@
-QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
-Q-bc7569d8cee7c0eb1713,2026-06-18T04:08:59Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,engine conformance suite reliance boundary register R0 R1 turn engine,,8,8,
-Q-14abd5bab82014e9f054,2026-06-18T04:09:01Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,governed subagent runtime Agent tool evaluateSubagentGovernance bash tool shell policy,,8,8,

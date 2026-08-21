@@ -1,7 +1,0 @@
-{"page": 10, "index": 1, "latex": "HI = K \\cdot \\frac{V \\cdot A}{S}", "hash": "1b1257c2dc93", "png": "page_0010.png"}
-{"page": 11, "index": 1, "latex": "P = \\frac{2S \\cdot F \\cdot E \\cdot T}{D}", "hash": "3d2226b28088", "png": "page_0011.png"}
-{"page": 12, "index": 1, "latex": "P = \\frac{2S_h \\cdot t}{D}", "hash": "b62be545e4be", "png": "page_0012.png"}
-{"page": 39, "index": 1, "latex": "\\text{MAL} = 7.88 \\times 10^{-5} \\, S_h \\left(\\frac{Dt}{2}\\right)^{0.333}", "hash": "efe0232dcce4", "png": "page_0039.png"}
-{"page": 39, "index": 2, "latex": "S_h = \\left[126.9 \\, \\text{MCV} \\left(\\frac{Dt}{2}\\right)^{-0.333}\\right]^{0.5}", "hash": "955728de0ac6", "png": "page_0039.png"}
-{"page": 40, "index": 1, "latex": "\\text{MAL} = 10.73 \\times 10^{-3} \\ S_h^2 \\left(\\frac{Dt}{2}\\right)^{0.284}", "hash": "5ceea1f95421", "png": "page_0040.png"}
-{"page": 40, "index": 2, "latex": "S_h = \\left[ 93.19 \\ \\text{MCV} \\left(\\frac{Dt}{2}\\right)^{-0.284} \\right]^{0.5}", "hash": "4c28ce893534", "png": "page_0040.png"}
