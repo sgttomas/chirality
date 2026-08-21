@@ -1,0 +1,29 @@
+{
+  "schema": "help-human-agent-instance-status/v1",
+  "run_id": "ROOT_CROSS_LOOP_CARRIERS_2026-08-21",
+  "instance_id": "G2-CHANGE-PR602-REPAIR-RULINGS",
+  "node": "G2",
+  "role": "CHANGE",
+  "status": "COMPLETE",
+  "branch": "codex/root-cross-loop-carriers-20260821",
+  "pr": 602,
+  "basis_repair_commit": "999126a36bdae39f12a64f0073773275a20c4682",
+  "corrected_basis": "e3e18d27740018efd12e73193c02395a9eca93c2",
+  "commit_order": [
+    "BASIS_REPAIR",
+    "OWNER_RULINGS_AND_GOVERNED_CLOSEOUT"
+  ],
+  "tm_root_117": "CLOSED_RESOLVED_BY_DECISION",
+  "successor_identity_accepted": false,
+  "compatibility_epoch": 1,
+  "candidate_identity": "root-runtime-1",
+  "preparation_output_attached": false,
+  "future_exact_byte_gate": "HUMAN_ACCEPTANCE_REQUIRED",
+  "final_commit_pr_check_reporting": "OUT_OF_BAND_TO_PARENT_AFTER_PUSH",
+  "new_pr_created": false,
+  "labels_added": 0,
+  "merge_performed": false,
+  "rebase_performed": false,
+  "force_push_performed": false,
+  "branch_deleted": false
+}

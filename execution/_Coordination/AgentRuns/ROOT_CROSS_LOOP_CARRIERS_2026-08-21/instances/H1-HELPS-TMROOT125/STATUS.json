@@ -1,0 +1,27 @@
+{
+  "schema": "help-human-agent-instance-status/v1",
+  "run_id": "ROOT_CROSS_LOOP_CARRIERS_2026-08-21",
+  "instance_id": "H1-HELPS-TMROOT125",
+  "node": "H1",
+  "role": "HELPS_HUMANS",
+  "status": "PASS_WITH_RECORDED_RESIDUALS",
+  "brief_version": 1,
+  "return": "RETURN.md",
+  "core_tests": {
+    "agent_validator_unit_tests": "PASS_19",
+    "live_agent_suite": "PASS_34_FILES_0_ERRORS_0_WARNINGS",
+    "g4_ci": "PASS_40_MANIFESTS",
+    "g4_unit_tests": "PASS_46",
+    "instruction_entrypoints": "PASS",
+    "instruction_entrypoint_tests": "PASS_22",
+    "app_focused_identical_bytes": "PASS_32"
+  },
+  "blockers": [],
+  "residuals": [
+    "OLDER_AGENT1_ONLY_PROSE_IN_TYPES_WORKFLOW_STANDARD_AND_DESIGN_BASIS",
+    "APP_DEL0804_POST_ROOT_INTEGRATION_CHECK_AFTER_LANDING",
+    "POST_COMMIT_G4_CANDIDATE_RANGE_RERUN"
+  ],
+  "derivative_status": "HISTORICAL_APP_PINS_PRESERVED_CURRENT_BYTE_PROOF_STALE",
+  "next_owner": "HELP_HUMAN"
+}

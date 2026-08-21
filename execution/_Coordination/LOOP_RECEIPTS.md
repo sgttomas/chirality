@@ -3427,3 +3427,172 @@ amendment; owner ruling required).
 - **Gate:** EXECUTED — promotion records attention only; no validator,
   instruction, dispatch, or routing effect. PR opened for owner merge; no
   merge in-session.
+
+### Receipt 110 — 2026-08-21 — Root cross-loop carriers and TM-ROOT-125 closure
+
+- **Mode and basis:** owner-directed Root `HELP_HUMAN` session with bounded
+  `HELPS_HUMANS`, `TASK_MANAGEMENT`, and `CHANGE` lanes; mandatory Task
+  Management federation, TM-ROOT-125 engineering and owner-ruled closure,
+  TM-ROOT-117 decision preparation, DEL-02-06 activation assessment, routed
+  change notices, validation, and non-merging Git closeout. Branch
+  `codex/root-cross-loop-carriers-20260821`; accepted run basis
+  `e3e18d27740018efd12e73193c02395a9eca93c2`; engineering evidence commit
+  `702d88a4c14a291f647c2a2e6e5fa40185839318`.
+- **Owner steer transcription (CHAT_TRANSCRIPTION — EVIDENCE, NOT A
+  SUBSTITUTE FOR HUMAN-ONLY RULINGS):** “STANDING DIRECTION — Root session
+  steer (cross-loop unblock: validator doctrine alignment + carrier
+  decisions).” The owner directed this session to (1) align the validator,
+  tests, and HELP_HUMAN allowlist with Agent 0 direct bounded Agent 2
+  dispatch; on landing close `TM-ROOT-125` and route the reciprocal App
+  notice; (2) prepare and stop on the `TM-ROOT-117` successor/re-scope
+  decision slate; (3) advance DEL-02-06 compatibility completion only as live
+  authority permits, otherwise return the exact owner slate; and close out as
+  “One tranche, one branch, one PR against main; commits in dependency order;
+  ... no artifact-proof label; no merge.” The full exact direction is
+  `AgentRuns/ROOT_CROSS_LOOP_CARRIERS_2026-08-21/OWNER_DIRECTION_TRANSCRIPT_2026-08-21.md`,
+  SHA-256
+  `88949cedbc1b20141b530275ccfef3dd0687f0a574fe9e1d94972f8c29ffdeff`.
+- **Objective 1 and register delta:** commit `702d88a4c` adds canonical
+  `TASK` and explicit generalist opt-in to HELP_HUMAN metadata, admits only
+  Agent 0 -> exact `TASK` Agent 2 in the named-child exception, permits
+  generalist opt-in on Agent 0/1, and preserves every other named-Agent-2,
+  unresolved-child, and Agent-2-parent rejection. The G4 manifest and policy
+  tests ship in the same commit. Under the quoted owner act,
+  `TM-ROOT-125` moved from live `OPEN` to archive `CLOSED /
+  RESOLVED_WITH_CHANGE`; no other row changed. Closure evidence:
+  `_TaskManagement/CLOSEOUT_2026-08-21_TM-ROOT-125.md`, SHA-256
+  `1768e9a8c1d98babf28662b31d5e9fb63a042d532e8cd909e4577062dd3bea34`.
+  Root changed from 23 live (`OPEN=13`, `DEFERRED=10`) / 102 archived to 22
+  live (`OPEN=12`, `DEFERRED=10`) / 103 archived. Final live/archive SHA-256:
+  `c9e25879908df2ba779ffdd123979df023736a5b97fedde2f8ed87de8095e05d` /
+  `ef34eb2205f6107c5249ffbbc427435bc971037620108ed610d11a315a63dafc`.
+- **Notices and derivative status:** the reciprocal App notice is
+  `projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_TM125_AGENT0_A2_VALIDATOR_ALIGNMENT.md`,
+  SHA-256
+  `eb765dc3bebbf9dd84842643fb22aa989539513843647b562098c96468547864`;
+  it names App commit `ac2cd801a06a0679bc86830c627218ccca78b658`
+  and Receipt 172 for the App-owned DEL-08-04 post-Root check. Piping and
+  Tier-0/domain-engine notices are routed at the same dated filename in their
+  ordinary coordination surfaces. All notices are coordination, not
+  authority. Historical App DEL-09-06 instruction-root and D-APP-86 parity
+  evidence pin the prior HELP_HUMAN bytes and remain immutable; regeneration
+  is deferred to App-owned workflows. Older Agent-1-only narrative in
+  `docs/TYPES.md` section 4.3, `docs/WORKFLOW_COMPONENT_STANDARD.md` section
+  4.1, and `docs/DBM_Agent_Instruction_Architecture.md` section 2 remains a
+  separate Root-owned concordance residual.
+- **Objective 2 held at owner:** no accepted D-APP-48 successor identity was
+  found. `TM-ROOT-117` remains `OPEN`; no disposition or App trigger change
+  occurred. The decision-support-only re-scope/wait slate is
+  `AgentRuns/ROOT_CROSS_LOOP_CARRIERS_2026-08-21/OWNER_DECISION_PACKET.md`,
+  SHA-256
+  `d81023b90ba406a5ea4fce391a6cfe6088fb1a8a4be1ede4df0f7f759a683a64`.
+  Its non-binding recommendation is re-scope; only a later exact owner ruling
+  may close `TM-ROOT-117` as `RESOLVED_BY_DECISION` and release the reciprocal
+  App notice.
+- **Objective 3 held at owner gates:** DEL-02-06 remains `INITIALIZED`; its
+  first WORKING_ITEMS production activation is unauthorized. The accepted
+  snapshot
+  `3fc56807c4cd83fd2b5f967848b770adfd226541880629493ddfe8ad3df989aa`
+  supplies the six-member semantics but mints no positive-decimal epoch or
+  complete binding manifest. The same decision packet offers epoch `1`
+  (`root-runtime-1`) plus one sealed preparation-only activation, another
+  exact positive decimal, or deferral. No epoch, activation, planning shell,
+  package, exact-byte acceptance, implementation, lifecycle, release,
+  publication, reliance, or foreign-loop act is inferred.
+- **Federation and closure echo:** mandatory preflight and postflight were
+  both `COMPLETE`; four canonical register pairs validated; federation wrote
+  zero registers. Final counts: PEC `OPEN=16/DEFERRED=1/CLOSED-live=1` (7
+  archived), Root `OPEN=12/DEFERRED=10` (103), App
+  `OPEN=9/DEFERRED=3/CLOSED-live=1` (31), Piping `OPEN=11/DEFERRED=23` (8).
+  Typed findings changed only as expected for this closure:
+  `REMOTE_CLOSED_LOCAL_OPEN` 3 -> 2; `FOREIGN_LINK_TO_LOCAL=49`,
+  `LOCAL_LINK_TO_FOREIGN=2`, `LOCAL_CLOSED_REMOTE_OPEN=21`, and
+  `MISSING_NOTICE=4` are unchanged. No foreign register was written and no
+  new evidence staleness was introduced.
+- **Checks:** live and archive register validation PASS before and after
+  archive; narrow validator policy rerun `19 passed`; live instruction
+  validator `34 files / 0 errors / 0 warnings`; full Root validation suite
+  `319 passed`; instruction entrypoints PASS; Root G0-G4 PASS; App focused
+  support checks `32 passed`; diff hygiene PASS. Post-commit G4 passes on the
+  governed branch-candidate range from merge base
+  `e3e18d27740018efd12e73193c02395a9eca93c2` (21 changed paths, four
+  instruction-surface paths, one applicable new manifest). The literal
+  two-dot `origin/main..HEAD` check blocks on four upstream-only instruction
+  paths after `origin/main` advanced 15 commits to
+  `7d5a3f558dfa2e8e902df25fc9a3e813a9ab7048`; final CHANGE closeout must
+  assess current-main mergeability without inferring a sync merge.
+- **Gate:** this receipt is a discovery breadcrumb only. No artifact-proof
+  label applies. One ready-for-review PR against `main` remains the session's
+  publication path; PR review and merge are owner acts, and no merge is
+  performed here.
+
+### Receipt 111 — 2026-08-21 — PR #602 basis repair and Root carrier rulings
+
+- **Mode and exact owner direction:** continuation of the owner-directed Root
+  cross-loop-carriers session; mandatory Task Management federation,
+  owner-ruled `TM-ROOT-117` resolution/row maintenance/archive, basis-SHA
+  repair fan-in, DEL-02-06 preparation-authorization handoff, validation, and
+  non-merging closeout. The complete direction is transcribed at
+  `AgentRuns/ROOT_CROSS_LOOP_CARRIERS_2026-08-21/OWNER_DIRECTION_TRANSCRIPT_PR602_REPAIR_AND_RULINGS_2026-08-21.md`,
+  SHA-256
+  `2d89d0aa1410e9bec74af54a1a8cb8b151cf60009c2214a3c682f925ba8ddb3e`.
+  That transcript is evidence of the quoted human acts and does not substitute
+  for or broaden them.
+- **Four-file basis repair:** the owner rejected nonexistent commit
+  `e3e18d277a4b902e2a3347235239e90e946b91f4` and supplied the true run basis
+  `e3e18d27740018efd12e73193c02395a9eca93c2`. The exact substitution was
+  applied once in each of the owner-named tranche manifest, orchestration
+  plan, H1 launch brief, and T1 launch brief; no other text changed. H2 return
+  `AgentRuns/ROOT_CROSS_LOOP_CARRIERS_2026-08-21/instances/H2-HELPS-BASIS-SHA-REPAIR/RETURN.md`,
+  SHA-256
+  `6bf3c4f83ca2f13909a33342a64dfae14c67bae570a31eb0746faba825736cc6`,
+  binds all four before/after file hashes, zero rejected-SHA occurrences,
+  four corrected-SHA occurrences, existing corrected commit, nonexistent
+  rejected object, and passing G4/entrypoint/agent-instruction/diff checks.
+- **TM-ROOT-117 ruling and register delta:** the owner ruled Option R:
+  close `TM-ROOT-117` `RESOLVED_BY_DECISION`, route the exact T1 trigger
+  re-scope to App, and accept no successor identity. Closure evidence is
+  `_TaskManagement/CLOSEOUT_2026-08-21_TM-ROOT-117.md`, SHA-256
+  `20421d4b7b06bcdab8f27e6bb01cbc6fced7d0a535375ca838128104309dd1b4`.
+  Only `TM-ROOT-117` moved from live `OPEN` to archive `CLOSED /
+  RESOLVED_BY_DECISION`; Root changed from 22 live (`OPEN=12`,
+  `DEFERRED=10`) / 103 archived to 21 live (`OPEN=11`, `DEFERRED=10`) /
+  104 archived. Final live/archive SHA-256:
+  `3f074f5781453874669281c9497bab5ec1cb3a8657a10543b20231c553b8c6d9` /
+  `feb4e17603917c03cb5fec517ab5ed8a61f1345025b8f1717a914bddec9e8338`.
+- **Reciprocal App route:** the parent already routed
+  `projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_TM117_TRIGGER_RESCOPE_AND_DEL0206_PREPARATION_AUTHORIZATION.md`,
+  SHA-256
+  `fd587b676a55c42feecd2c0e9dbcb96d67a1f2bcff3d5ab66d6fdb78826fdaf0`.
+  It carries the exact T1 replacement trigger and is coordination only; App
+  adopts, amends, declines, or defers under App instruments. Root wrote no App
+  register.
+- **Separate DEL-02-06 ruling:** the owner supplied positive-decimal epoch
+  `1`, yielding preparation candidate `root-runtime-1`, and authorized one
+  sealed `WORKING_ITEMS` activation against accepted snapshot
+  `3fc56807c4cd83fd2b5f967848b770adfd226541880629493ddfe8ad3df989aa`.
+  The ruling and exact boundary are recorded at
+  `AgentRuns/ROOT_CROSS_LOOP_CARRIERS_2026-08-21/DEL02_PREPARATION_AUTHORIZATION_HANDOFF.md`,
+  SHA-256
+  `a9b34030a8cece37eb20442241402d3553a383b598acc88f3de6e62280d0e562`.
+  The activation is a separate tranche/branch/PR and is not launched or
+  attached to PR #602. Epoch selection is not compatibility-package
+  acceptance: future prepared exact bytes and their SHA-256 return to the
+  accountable human for a separate acceptance decision.
+- **Validation and federation:** preflight and post-archive federation are
+  both `COMPLETE` over four canonical register pairs with zero register writes
+  by federation and no invalid, unreadable, or ambiguous input. Final counts:
+  PEC `OPEN=16/DEFERRED=1/CLOSED-live=1` (7 archived), Root
+  `OPEN=11/DEFERRED=10` (104), App
+  `OPEN=9/DEFERRED=3/CLOSED-live=1` (31), and Piping
+  `OPEN=11/DEFERRED=23` (8). Root live/archive validators pass; final typed
+  findings are `FOREIGN_LINK_TO_LOCAL=49`, `LOCAL_LINK_TO_FOREIGN=2`,
+  `REMOTE_CLOSED_LOCAL_OPEN=2`, `LOCAL_CLOSED_REMOTE_OPEN=22`, and
+  `MISSING_NOTICE=4`. The one expected closure echo is left for App-owned
+  adoption/disposition; no cross-loop closure is inferred.
+- **PR and no-effect boundary:** PR #602 remains for owner review and merge;
+  both are owner acts. No artifact-proof label applies. No rebase, force push,
+  branch deletion, DEL-02-06 preparation output, implementation, lifecycle
+  transition, release, publication, reliance, foreign-register disposition,
+  PR approval, or merge effect is created by this receipt or the bounded
+  continuation it records.
