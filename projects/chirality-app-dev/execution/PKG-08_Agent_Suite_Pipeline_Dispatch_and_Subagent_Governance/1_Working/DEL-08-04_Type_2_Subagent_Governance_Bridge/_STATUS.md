@@ -10,8 +10,26 @@
 
 - Prepare the D-APP-53 §3 Option C per-attempt subagent decision-replay
   decision packet under D-APP-103 (packet authorized; awaiting ruling).
+- After the Root loop lands its separately owned `TM-ROOT-125` metadata,
+  validator, test, and `HELP_HUMAN` allowlist alignment, run and evidence the
+  post-root cross-surface integration check against the already-landed App
+  harness implementation at commit
+  `ac2cd801a06a0679bc86830c627218ccca78b658`: confirm the configured
+  Agent 0 route admits an allowlisted canonical `TASK` Agent 2 and an
+  explicitly enabled ephemeral generalist, preserves fail-closed rejection
+  for unsupported routes, and passes the affected Root validator/tests plus
+  the App managed-delegation and subagent-governance checks. Root surfaces
+  remain Root-owned; no duplicate App implementation or App-to-Root write is
+  in scope.
 
 ## History
+- 2026-08-21 - Owner rehomed the TM-APP-044 residual to DEL-08-04. The
+  App-side harness code and tests already landed at
+  `ac2cd801a06a0679bc86830c627218ccca78b658` and were integrated under
+  Receipt 172; the only added Remaining work is post-root cross-surface
+  validation/integration after the Root-owned `TM-ROOT-125` alignment lands.
+  No duplicate App implementation, Root write, lifecycle change, or Checking
+  Approval SHA change is authorized.
 - 2026-08-17 - D-APP-103 authorized one bounded planning node to prepare the
   per-attempt subagent decision-replay packet with at most three options and a
   recommendation. Implementation remains gated on a later ruling; lifecycle
