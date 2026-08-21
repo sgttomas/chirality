@@ -691,6 +691,32 @@ def test_governance_harness_ci_wires_candidate_range_diff_mode():
     assert "--base HEAD^ --head HEAD --added-manifests-only" in workflow
 
 
+def test_governance_harness_bounds_candidate_whitespace_and_diagnoses_failure():
+    workflow = yaml.safe_load(
+        (
+            g4.repo_root() / ".github" / "workflows" / "governance-harness.yml"
+        ).read_text(encoding="utf-8")
+    )
+    steps = workflow["jobs"]["harness"]["steps"]
+    candidate = next(
+        step for step in steps if step.get("name") == "Candidate whitespace"
+    )
+    diagnostic = next(
+        step
+        for step in steps
+        if step.get("name") == "Diagnose Candidate whitespace failure"
+    )
+
+    assert candidate["id"] == "candidate-whitespace"
+    assert candidate["timeout-minutes"] == 3
+    assert (
+        diagnostic["if"]
+        == "failure() && steps.candidate-whitespace.outcome == 'failure'"
+    )
+    assert "3-minute step limit" in diagnostic["run"]
+    assert "Git lazy-fetch of base blobs" in diagnostic["run"]
+
+
 def test_live_repo_lane_b_manifest_exists_and_passes():
     """The G4 discipline applied to itself: this tranche's own manifest must be
     present and schema-valid in the live checkout (packet §5.3 G4)."""

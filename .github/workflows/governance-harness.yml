@@ -74,6 +74,8 @@ jobs:
         timeout-minutes: 3
         run: command -v zsh >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq zsh; }
       - name: Candidate whitespace
+        id: candidate-whitespace
+        timeout-minutes: 3
         env:
           WHITESPACE_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: |
@@ -84,6 +86,14 @@ jobs:
             python3 tools/validation/validate_candidate_whitespace.py \
               --base-ref HEAD^
           fi
+      - name: Diagnose Candidate whitespace failure
+        if: failure() && steps.candidate-whitespace.outcome == 'failure'
+        run: >-
+          echo "::error title=Candidate whitespace failed::The check failed or
+          exceeded its 3-minute step limit. Treat reported whitespace findings
+          as candidate defects; if the preceding log stopped during a Git
+          lazy-fetch of base blobs, treat that timeout as infrastructure and
+          inspect object-serving health before rerunning."
       # The tools/ test estate. PRs run only the suites the change set
       # touches, selected deterministically by tools/run_affected_tests.py
       # from tools/tools-test-routing.json (live-tree gate suites —
