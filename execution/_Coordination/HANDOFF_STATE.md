@@ -21,8 +21,8 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   §1.14 (effective `main@c8c2a6146`). Stage-A instruments: Receipts 66–73;
   workplan `WORKPLAN_2026-07-31_task_management_stage_a.md` (CLOSED) and
   its Amendments 1–2; program register at
-  `execution/_Coordination/_TaskManagement/REGISTER.csv` (21 live rows:
-  11 OPEN / 10 DEFERRED; 102 rows archived in `REGISTER_CLOSED.csv`). Receipt
+  `execution/_Coordination/_TaskManagement/REGISTER.csv` (22 live rows:
+  12 OPEN / 10 DEFERRED; 103 rows archived in `REGISTER_CLOSED.csv`). Receipt
   91 repaired the earlier stale handoff to the then-current generational-pass
   state of 27 live (16 OPEN / 11 DEFERRED) and 95 archived. Receipt 92 then
   recorded the separately owner-ruled closure and archival of TM-ROOT-105,
@@ -39,6 +39,12 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   owner-directed evidence-pin class closure changed only `EvidenceSha` and
   Notes on archived `TM-ROOT-109` and `TM-ROOT-121`; counts remain 21 live /
   102 archived and neither row was re-closed or reinterpreted.
+- Receipts 107 and 109 subsequently promoted `TM-ROOT-124` and
+  `TM-ROOT-125`, producing 23 live / 102 archived. Receipt 110 then records
+  the owner-directed validator/frontmatter tranche and the sole closure of
+  `TM-ROOT-125` as `RESOLVED_WITH_CHANGE`, producing the current 22 live
+  (`OPEN=12`, `DEFERRED=10`) / 103 archived state. `TM-ROOT-117` remains
+  `OPEN` pending its separate human-only successor/re-scope ruling.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -86,6 +92,12 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   and rationale are in
   `AMENDMENT_2026-08-09_CANDIDATE_HARVEST_POST_ACCEPTANCE_WHITESPACE.md`.
   The cleaned version is not treated as freshly accepted.
+- `AgentRuns/ROOT_CROSS_LOOP_CARRIERS_2026-08-21/` is the current derivative
+  run package. Its decision packet is decision support only: it neither
+  accepts a D-APP-48 successor nor supplies a DEL-02-06 compatibility epoch.
+  Historical App DEL-09-06 instruction-root evidence and the D-APP-86 parity
+  baseline pin pre-tranche HELP_HUMAN bytes; they remain immutable historical
+  evidence, and any current-byte regeneration is App-owned.
 
 ## 3. Closure verdict
 
@@ -136,6 +148,21 @@ accepted identity is `bee380de…3cab`; `3ca25470…bac1` is a distinct
 post-acceptance whitespace amendment. All other tranche work remains approved
 pending this repair, but merge is prohibited until the owner re-verifies.
 
+`2026-08-21 TM-ROOT-125 ENGINEERING AND REGISTER CLOSURE COMPLETE — PR
+PUBLICATION PENDING.` Engineering commit
+`702d88a4c14a291f647c2a2e6e5fa40185839318` narrowly aligns the Root
+validator, tests, and HELP_HUMAN metadata with the ratified Agent 0 direct
+canonical-TASK / opted-in-generalist doctrine while preserving the other
+fail-closed paths. `TM-ROOT-125` is archived `RESOLVED_WITH_CHANGE` under the
+owner's explicit in-session direction; Receipt 110 and
+`_TaskManagement/CLOSEOUT_2026-08-21_TM-ROOT-125.md` carry the closure.
+Required App/Piping/domain coordination notices are routed. No App adoption,
+semantic acceptance, lifecycle, release, reliance, PR approval, or merge is
+inferred. Older Agent-1-only narrative in `docs/TYPES.md` §4.3,
+`docs/WORKFLOW_COMPONENT_STANDARD.md` §4.1, and
+`docs/DBM_Agent_Instruction_Architecture.md` §2 remains a separately recorded
+Root concordance residual.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -170,3 +197,14 @@ slate. Do not mint a new row, fold it into `TM-ROOT-113`/`TM-ROOT-115`, or
 implement validator changes until the owner rules. Repeat the exact-path
 class sweep if any later tranche changes Root evidence identities or the
 validator contract.
+
+For the 2026-08-21 carrier session, rerun after either human-only decision:
+(1) if the owner selects the `TM-ROOT-117` re-scope option, close that row
+`RESOLVED_BY_DECISION` and route the reciprocal App notice; or (2) if the
+owner supplies a positive-decimal DEL-02-06 epoch and authorizes the sealed
+preparation-only activation, start WORKING_ITEMS only against accepted
+snapshot `3fc56807c4cd83fd2b5f967848b770adfd226541880629493ddfe8ad3df989aa`
+and return exact candidate bytes for a separate human acceptance. Until then,
+DEL-02-06 remains `INITIALIZED`; do not manufacture planning records or infer
+an epoch, activation, compatibility identity, acceptance, implementation,
+release, or foreign-loop disposition.

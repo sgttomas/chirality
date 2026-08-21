@@ -30,14 +30,14 @@
     {
       "id": "C1",
       "role": "TASK_MANAGEMENT",
-      "status": "READY",
+      "status": "COMPLETE",
       "depends_on": ["H1", "I1"],
       "write_owner": "Root register/archive and ordinary closeout only"
     },
     {
       "id": "G1",
       "role": "CHANGE",
-      "status": "ACTIVE",
+      "status": "COMPLETE",
       "depends_on": ["C1"],
       "write_owner": "Git metadata only"
     }

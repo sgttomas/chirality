@@ -1,0 +1,21 @@
+{
+  "run_id": "ROOT_CROSS_LOOP_CARRIERS_2026-08-21",
+  "node_id": "C1",
+  "role": "TASK_MANAGEMENT",
+  "status": "COMPLETE",
+  "invoking_loop": "ROOT",
+  "mode": "OWNER_RULED_RESOLUTION_CLOSEOUT",
+  "action_item_id": "TM-ROOT-125",
+  "disposition": "RESOLVED_WITH_CHANGE",
+  "engineering_commit": "702d88a4c14a291f647c2a2e6e5fa40185839318",
+  "return_sha256": "cd8c1178cebd896bb834cf6086c8250e440e39cede432bc8eeee6270c7c6d799",
+  "evidence_sha256": "1768e9a8c1d98babf28662b31d5e9fb63a042d532e8cd909e4577062dd3bea34",
+  "federation_preflight": "COMPLETE",
+  "federation_postflight": "COMPLETE",
+  "live_rows_after": 22,
+  "archived_rows_after": 103,
+  "receipt": 110,
+  "foreign_writes": 0,
+  "human_only_options_selected": false,
+  "git_writes": 0
+}
