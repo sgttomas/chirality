@@ -1,0 +1,8 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-PKG09-LOGIN-PROOF-PREP-IMPLEMENT-03",
+  "status": "INTERRUPTED",
+  "node": "N1-R2",
+  "finished_at": "2026-08-21",
+  "disposition": "Interrupted by Agent 0 after analysis did not advance to a patch; no accepted return; product/test ownership transferred to direct bounded Agent 2 login_proof_direct_fix."
+}

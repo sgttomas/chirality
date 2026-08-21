@@ -1,0 +1,17 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-PKG09-LOGIN-PROOF-PREP-REMEDIATE-02",
+  "status": "COMPLETE",
+  "node": "N1-R4",
+  "verdict": "PASS",
+  "syntax_check": "PASS",
+  "focused_vitest": {
+    "test_files": 1,
+    "tests": 13,
+    "status": "PASS"
+  },
+  "scope_validation": "PASS",
+  "host_proof_executed": false,
+  "owner_gate_preserved": true,
+  "return_path": "RETURN.md"
+}

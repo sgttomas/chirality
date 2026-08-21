@@ -1,0 +1,7 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-APPDEV-INTEGRATED-REVIEW-01",
+  "status": "INTERRUPTED",
+  "node": "N4-INTEGRATED-REVIEW",
+  "disposition": "Interrupted immediately because Agent 0 directly dispatched the sole final integrated reviewer; no review verdict returned."
+}

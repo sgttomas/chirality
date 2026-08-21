@@ -1,20 +1,27 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-20
+**Last Updated:** 2026-08-21
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
 ## Remaining
 
-- The packaged CLI now passes a fail-closed proof from the disposable account's
-  real `~/Library/LaunchAgents`: bootstrap triggers `RunAtLoad` without
-  `kickstart`, exact job/process identity and cleanup pass, and default targets
-  remain untouched (PR #591). Actual login-session discovery and auto-start
-  remain unproved because the CI proof invokes `launchctl bootstrap` directly.
-  This residual is not selectable until a host-capability surface can recreate
-  logout/login or an equivalent fresh login session.
+- Actual login-session discovery and auto-start remain unproved. The exact
+  reviewed two-phase harness/test candidate is restored at live frontend paths
+  under the owner's superseding **“Push through failures”** direction.
+  Implementation preparation is complete: Agent 0 repaired only the ignored
+  dependency workspace, and mandatory integrated Vitest/typecheck/build plus
+  the focused affected trio now pass. Fresh integrated review found only three
+  record defects; amendment 10 fixed them and the direct backcheck passed with
+  zero actionable findings and unchanged product hashes. The local managed premerge attempt reached
+  a READY Next service but returned HTTP 503 because the shared runtime
+  daemon/project registration lifecycle was absent; premerge is PR-CI-owned and
+  must rerun after PR. Root runtime writes, unrelated App mocks, and tracked
+  setup files remain untouched. See
+  `_run_records/R12_LOGIN_SESSION_PROOF_PREPARATION_2026-08-21.md`. Logout/login
+  and capture remain unexecuted owner acts; no proof or publication is claimed.
 - After a rebuilt C1 artifact exists, the owner may deploy the daemon service
   on the owner's machine and report the result (owner act, not agent work;
   owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
@@ -24,6 +31,22 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-21 - Owner-authorized PREPARE-THEN-OWNER work produced a reviewed
+  fail-closed two-phase candidate and minimal future owner procedure. Focused
+  tests, syntax, exact scope, practitioner checks, APP-HOLD integrity, and final
+  fresh review passed, while mandatory integrated gates exposed the external
+  `RUNTIME_INSTRUCTION_ROOT_ENV` alignment. The owner immediately superseded a
+  stop disposition with **“Push through failures.”** Exact frozen diff 04 bytes
+  were restored to live candidate paths. Agent 0 rebuilt current runtime only
+  inside ignored frontend dependencies; registered typecheck/build, host full
+  Vitest (1,214 passed / 4 skipped), and focused affected tests (35/35) now pass
+  without tracked root/App setup changes. Local premerge reached a READY Next
+  service but returned HTTP 503 without shared runtime/project registration, so
+  it remains PR-CI-owned. Preparation and local fan-in are complete pending
+  Git/PR and PR-CI. Logout/login and capture remain unexecuted,
+  DEL-09-04 stays IN_PROGRESS, and no proof, publication, lifecycle, release,
+  signing, notarization, distribution, or reliance claim is made. See
+  `_run_records/R12_LOGIN_SESSION_PROOF_PREPARATION_2026-08-21.md`.
 - 2026-08-20 - PR #591 Desktop run `32410644968` / job `96560074456`
   passed the D-APP-97 packaged-service proof on `macos-15`. The packaged CLI
   installed a unique non-default job in the disposable account's canonical

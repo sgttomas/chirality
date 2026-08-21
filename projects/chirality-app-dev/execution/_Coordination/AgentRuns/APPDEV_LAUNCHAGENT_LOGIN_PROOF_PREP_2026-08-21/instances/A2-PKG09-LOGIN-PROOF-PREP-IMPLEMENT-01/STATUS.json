@@ -1,0 +1,8 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-PKG09-LOGIN-PROOF-PREP-IMPLEMENT-01",
+  "status": "INTERRUPTED",
+  "node": "N1",
+  "finished_at": "2026-08-20T22:15:00-06:00",
+  "disposition": "No product or test file was written by this child; superseded by N1-R1."
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-APPDEV-INTEGRATED-REVIEW-DIRECT-02",
+  "runtime_task_name": "/root/app_integrated_final_review",
+  "status": "SUCCESS",
+  "result": "PASS_ZERO_ACTIONABLE_FINDINGS",
+  "reviewed_findings": 3,
+  "remaining_findings": 0,
+  "product_hashes_unchanged": true,
+  "engine": "Codex desktop multi-agent runtime",
+  "provider": "OpenAI",
+  "model": "GPT-5 family inherited from parent; exact model/build identifier unavailable"
+}

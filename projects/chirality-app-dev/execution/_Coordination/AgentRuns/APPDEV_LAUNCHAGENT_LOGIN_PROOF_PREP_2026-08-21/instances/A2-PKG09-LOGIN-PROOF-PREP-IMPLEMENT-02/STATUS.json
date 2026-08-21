@@ -1,0 +1,8 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "instance_id": "A2-PKG09-LOGIN-PROOF-PREP-IMPLEMENT-02",
+  "status": "INTERRUPTED",
+  "node": "N1-R1",
+  "finished_at": "2026-08-21",
+  "disposition": "Stopped by Agent 0 to prevent overlapping writes; no acceptable return; superseded by N1-R2."
+}

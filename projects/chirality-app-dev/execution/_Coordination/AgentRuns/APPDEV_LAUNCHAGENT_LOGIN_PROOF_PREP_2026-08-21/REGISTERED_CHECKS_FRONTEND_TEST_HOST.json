@@ -1,0 +1,23 @@
+{
+  "profile": "projects/chirality-app-dev/software-workflow.json",
+  "project_root": "projects/chirality-app-dev",
+  "results": [
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 4.211,
+      "exit_code": 0,
+      "id": "frontend-test",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 test\n> vitest run\n\n\n RUN  v4.1.10 {WORKSPACE_ROOT}/projects/chirality-app-dev/frontend\n\n{\"status\":\"FAIL\",\"summaryPath\":\"{TMPDIR}/chirality-daemon-proof-test-AISdGv/evidence/summary.json\"}\n\n Test Files  152 passed | 1 skipped (153)\n      Tests  1214 passed | 4 skipped (1218)\n   Start at  23:18:02\n   Duration  3.99s (transform 3.68s, setup 0ms, import 6.71s, tests 18.12s, environment 6ms)\n\n",
+      "timeout_seconds": 1200.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "PASS",
+  "workspace_root": "."
+}
