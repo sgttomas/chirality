@@ -1,7 +1,0 @@
-CandidateTerm,Synonyms,Definition,SourceRefs,Notes
-Source Hash Audit,,Audit comparing expected and actual SHA256 hashes of decomposition source files.,@repo/execution/_Sources/SOURCE_HASH_AUDIT.md:L1|_Decomposition/source_review_html/SRC-EGOV-SOURCES.html#SEC-EG026-0003,
-HASH_MISMATCH,,Row status indicating the actual SHA256 of a source file differs from the expected value; treated as a source-state warning.,@repo/execution/_Sources/SOURCE_HASH_AUDIT.md:L13|_Decomposition/source_review_html/SRC-EGOV-SOURCES.html#SEC-EG026-0003;@repo/execution/_Sources/SOURCE_HASH_AUDIT.md:L18|_Decomposition/source_review_html/SRC-EGOV-SOURCES.html#SEC-EG026-0004,
-MATCH,,Row status indicating the actual SHA256 of a source file equals the expected value.,@repo/execution/_Sources/SOURCE_HASH_AUDIT.md:L8|_Decomposition/source_review_html/SRC-EGOV-SOURCES.html#SEC-EG026-0003,
-RefID,,Identifier (REF-NNN) for a tracked source file in the hash audit table.,@repo/execution/_Sources/SOURCE_HASH_AUDIT.md:L6|_Decomposition/source_review_html/SRC-EGOV-SOURCES.html#SEC-EG026-0003,
-ExpectedSHA256,,The recorded baseline SHA256 hash a source file is expected to match.,@repo/execution/_Sources/SOURCE_HASH_AUDIT.md:L6|_Decomposition/source_review_html/SRC-EGOV-SOURCES.html#SEC-EG026-0003,
-ActualSHA256,,The currently computed SHA256 hash of a source file.,@repo/execution/_Sources/SOURCE_HASH_AUDIT.md:L6|_Decomposition/source_review_html/SRC-EGOV-SOURCES.html#SEC-EG026-0003,

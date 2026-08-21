@@ -54,7 +54,7 @@ Its core ideas are:
 
 ## Repository Contents
 
-This repository is the sanitized public Chirality source boundary.
+This repository is the curated Chirality desktop release projection.
 
 | Path | Contents |
 | --- | --- |
@@ -65,12 +65,12 @@ This repository is the sanitized public Chirality source boundary.
 | `docs/` | Architecture, governance, contracts, specifications, and roadmap |
 | `init/` | Public session bootstrap guidance |
 
-The desktop application source is not currently included in this public
-export. The downloadable desktop application is produced from a separately
-maintained app-development workspace and published here as a signed,
-notarized release asset. The public repository does not contain credentials,
-machine registration state, downloaded models, private project workspaces, or
-local runtime data.
+The desktop application source is not currently included in this release
+projection. The downloadable desktop application is produced from the public
+canonical Chirality source repository and published here as a signed,
+notarized release asset. This repository does not contain credentials,
+machine registration state, downloaded models, non-release project workspaces,
+private domain repositories, or local runtime data.
 
 ## Working with the Public Runtime
 

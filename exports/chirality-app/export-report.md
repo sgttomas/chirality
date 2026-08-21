@@ -1,28 +1,28 @@
-# chirality-app Public Export Report
+# chirality-app Release Projection Report
 
-Generated from private `chirality` export profile `exports/chirality-app`.
+Generated from the public `chirality` source profile `exports/chirality-app`.
 
 - Staging path: `exports/chirality-app/staging`
-- Manifest rows: 812
-- Text files sanitized for private absolute paths: 0
+- Manifest rows: 833
+- Text files sanitized for machine-absolute paths: 0
 - Boundary findings: 0
 
 ## Top-Level File Counts
 
 | Path | Files |
 |---|---:|
-| `.github` | 3 |
+| `.github` | 4 |
 | `.gitignore` | 1 |
 | `AGENTS.md` | 1 |
 | `CLAUDE.md` | 1 |
 | `LICENSE.md` | 1 |
 | `README.md` | 1 |
 | `agents` | 34 |
-| `docs` | 145 |
-| `init` | 2 |
-| `runtime` | 76 |
+| `docs` | 161 |
+| `init` | 1 |
+| `runtime` | 79 |
 | `skills` | 185 |
-| `tools` | 362 |
+| `tools` | 364 |
 
 ## Boundary Findings
 

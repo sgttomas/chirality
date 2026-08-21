@@ -5473,3 +5473,13 @@
     act; lifecycle, Checking Approval SHA, F-APP-2, dependency/lock, signing,
     notarization, distribution, publication, release, reliance, and merge state
     are unchanged. Owner merge of PR #591 is pending.
+
+- **2026-08-20 — Receipt 183** (D-APP-86 helper-parity rerun blocked).
+  - Receipt-ID: `Receipt-183`
+  - Examined-Through: `89758a32634ee6cedbd1dbadf35e3728fb48d2eb`
+  - Parent-Receipt: `Receipt-182`
+  - Stale-Map-Delta: DEL-02-02 and DEL-08-02 name a later accepted D-APP-88 distinct-helper implementation as their rerun trigger; the live D-APP-88/D-APP-93 closure and frozen package instead prove the accepted signal-binder remedy in the main Chirality executable launched with `--runtime-daemon`, with no distinct helper `.app`. The trigger is not established and PKG-08 remained held.
+  - Pointers: blocked node evidence `execution/_Coordination/AgentRuns/APPDEV_DAPP86_HELPER_PARITY_RERUN_2026-08-20/`; manager `RETURN.md`; fresh amended verifier `instances/A2-PKG02-PARITY-FINAL-VERIFIER-06/RETURN.md`; branch `codex/app-dapp86-helper-parity-rerun-20260820`.
+  - Checks: focused parity tests, typecheck, build, isolated daemon fixture, source/package manifests, amended evidence-index hashes, receipt contract, corpus v18/no drift, repository self-check, APP-HOLD integrity, practitioner pytest, JSON, diff, and containment pass; packaged UI observations, packaged replay rendering, premerge, release-quality, and secret scan remain unrun/blocked.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS, TASK/ephemeral Agent 2 executors and verifiers, and CHANGE; exact model builds not exposed.
+  - Gate-Outcome: `STOPPED` — N1 returned validated `BLOCKED / PARTIAL` after packaged GUI startup omitted the verification-only `CHIRALITY_SKIP_CLI_LAUNCHER=1` opt-out and wrote `/Users/ryan/.local/bin/chirality` before any UI action. The launcher was left untouched at observed SHA-256 `f16bc2ba9228b5321deb9c66ba9526aa60fbe3bb02179d32fd66ce1de208384a`; all run-owned state was cleaned; no parity, deliverable, lifecycle, release, or reliance closure follows.

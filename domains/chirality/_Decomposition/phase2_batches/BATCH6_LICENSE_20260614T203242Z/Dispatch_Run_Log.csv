@@ -1,2 +1,0 @@
-BatchID,BatchName,GlobalUnitSequence,SourceDocID,SourcePrefix,DispatchUnitID,RunStatus,AtomRows,IN,OUT,TBD,VocabRows,OutputLedgerPath,OutputVocabSeedPath,Notes
-BATCH6_LICENSE_20260614T203242Z,Batch 6 - License,1,SRC-LICENSE,RT005,UNIT-RT005-0001,SUCCESS,12,12,0,0,8,domains/chirality/_Decomposition/dispatch_outputs/BATCH6_LICENSE_20260614T203242Z/SRC-LICENSE/UNIT-RT005-0001_atoms.csv,domains/chirality/_Decomposition/dispatch_outputs/BATCH6_LICENSE_20260614T203242Z/SRC-LICENSE/UNIT-RT005-0001_vocab.csv,QA=PASS; local small-source atomization accepted for merge.

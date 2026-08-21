@@ -1,8 +1,0 @@
-RuleID,Decision,AppliesTo,Rule
-G3BR-001,PKG routing,EXECUTION_DELIVERABLE,PKG-NN deliverable atoms route to CAT-0(NN+1); one category per author package (PKG-00..17 -> CAT-001..018).
-G3BR-002,Product-doc map,PRODUCT_DOCS,Explicit unit map: requirements/spec/architecture -> CAT-019; process/build/release/validation -> CAT-020; IP/security policy -> CAT-021; guides/examples -> CAT-022; docs/_ScopeChange -> CAT-024; governance/ -> CAT-025.
-G3BR-003,Governance split,EXECUTION_GOVERNANCE,execution/_Decomposition -> CAT-023; execution/_ScopeChange (SCA-NNN) -> CAT-024.
-G3BR-004,Code grouping,CODE_*,core/ -> CAT-026; apps/ -> CAT-027; tests/ -> CAT-028; tools/ -> CAT-029; validation/ -> CAT-030.
-G3BR-005,Root posture,ROOT_DOCS,AGENTS/CONTRIBUTING/README operating posture routes to CAT-025.
-G3BR-006,Lossless,ALL,No atom splits; UnitStatement and ContentHash unchanged; forced source-routing decisions only.
-G3BR-007,IN-only,ALL,Only InOutStatus==IN atoms are assigned a CategoryID; TBD/OUT left blank.

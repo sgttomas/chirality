@@ -1,0 +1,5 @@
+2026-08-20T21:25:57.641Z [warn] runtime.daemon.instruction_root.fallback {"instructionRoot":"/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources","reason":"PROJECT_NOT_FOUND"}
+2026-08-20T21:25:57.642Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/private/tmp/chirality-d86pkg02.VWKLGL/userdata","pid":67623}
+2026-08-20T21:25:57.658Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-d86pkg02.VWKLGL/userdata/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-d86pkg02.VWKLGL/userdata/runtime"}
+2026-08-20T21:27:25.302Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":67623}
+2026-08-20T21:27:25.303Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}

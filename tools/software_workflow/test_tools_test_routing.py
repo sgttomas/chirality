@@ -11,6 +11,7 @@ the profile.
 from __future__ import annotations
 
 import json
+import importlib.util
 import subprocess
 import sys
 from pathlib import Path
@@ -18,6 +19,14 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[2]
 PROFILE_PATH = REPO_ROOT / "tools" / "tools-test-routing.json"
 RUNNER = REPO_ROOT / "tools" / "run_affected_tests.py"
+
+
+def load_runner():
+    spec = importlib.util.spec_from_file_location("chirality_run_affected_tests", RUNNER)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def load_profile() -> dict:
@@ -128,3 +137,11 @@ def test_runner_routing_infrastructure_change_selects_everything():
 def test_runner_all_flag_covers_the_full_estate():
     selection = _dry_run("--all")
     assert set(selection["checks"]) == set(load_profile()["checks"])
+
+
+def test_runner_streams_path_sets_larger_than_linux_argmax():
+    runner = load_runner()
+    paths = [f"domains/demo/deep/path/file-{index:05d}.md" for index in range(40_000)]
+    selection = runner.select_checks(paths)
+    assert selection["paths"] == paths
+    assert set(selection["checks"]) == set(load_profile()["always_checks"])

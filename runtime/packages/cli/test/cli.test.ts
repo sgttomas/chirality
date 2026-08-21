@@ -585,6 +585,17 @@ describe("resolveRuntimeLaunchAgentOptions", () => {
     });
   });
 
+  it("pins the configured instruction root into the managed daemon", () => {
+    const options = resolveRuntimeLaunchAgentOptions(
+      { CHIRALITY_INSTRUCTION_ROOT: "relative/instructions" },
+      userData
+    );
+
+    expect(options.environmentVariables?.CHIRALITY_INSTRUCTION_ROOT).toBe(
+      resolve("relative/instructions")
+    );
+  });
+
   it("accepts the documented false spellings for RunAtLoad", () => {
     for (const value of ["0", "false", "no", "OFF"]) {
       expect(

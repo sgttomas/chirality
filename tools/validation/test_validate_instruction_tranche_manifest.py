@@ -369,6 +369,42 @@ def test_pass_when_routed_notice_exists(tmp_path):
     assert code == 0, lines
 
 
+def test_pass_when_missing_routed_notice_has_commit_pinned_external_route(tmp_path):
+    data = _manifest()
+    data["m6_notice"]["disposition"] = "routed"
+    data["m6_notice"]["routed_to"] = ["domains/demo/NOTICE.md"]
+    data["external_notice_routes"] = [
+        {
+            "source": "domains/demo/NOTICE.md",
+            "repository": "example/private-domains",
+            "path": "domains/demo/NOTICE.md",
+            "commit": "a" * 40,
+        }
+    ]
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 0, lines
+    assert any("externalized to example/private-domains" in line for line in lines)
+
+
+def test_block_when_external_route_is_not_commit_pinned(tmp_path):
+    data = _manifest()
+    data["m6_notice"]["disposition"] = "routed"
+    data["m6_notice"]["routed_to"] = ["domains/demo/NOTICE.md"]
+    data["external_notice_routes"] = [
+        {
+            "source": "domains/demo/NOTICE.md",
+            "repository": "example/private-domains",
+            "path": "domains/demo/NOTICE.md",
+            "commit": "main",
+        }
+    ]
+    _write_manifest(tmp_path, data)
+    code, lines = g4.check(tmp_path)
+    assert code == 1
+    assert any("commit must be a full 40-hex SHA" in line for line in lines)
+
+
 def test_pending_disposition_passes_with_note(tmp_path):
     data = _manifest()
     data["m6_notice"]["disposition"] = "pending"

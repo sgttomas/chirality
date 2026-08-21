@@ -1,0 +1,3 @@
+# branch.oid 89758a32634ee6cedbd1dbadf35e3728fb48d2eb
+# branch.head codex/app-dapp86-helper-parity-rerun-20260820
+? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DAPP86_HELPER_PARITY_RERUN_2026-08-20/

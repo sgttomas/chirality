@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, writeFile } from "node:fs/promises";
+import { mkdtemp, readFile, realpath, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -24,6 +24,93 @@ describe("standalone promoted contracts", () => {
 });
 
 describe("project registry", () => {
+  it("registers a V2 working repository against a disjoint runtime instruction root", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-v2-"));
+    const working = join(root, "working");
+    const instructions = join(root, "instructions");
+    const { mkdir } = await import("node:fs/promises");
+    await mkdir(join(working, "execution"), { recursive: true });
+    await mkdir(join(instructions, "agents"), { recursive: true });
+    await writeFile(join(working, "domain-pack.yaml"), "id: external\n", "utf8");
+    await writeFile(join(instructions, "agents", "AGENT_TASK.md"), "AGENT_TYPE: 2\n", "utf8");
+    const manifestPath = join(working, "chirality.project.json");
+    await writeFile(
+      manifestPath,
+      JSON.stringify({
+        schemaVersion: "chirality.project/v2",
+        projectId: "external-domain",
+        displayName: "External Domain",
+        workingRoot: ".",
+        instructionRoot: { mode: "runtime" },
+        defaultExecutionRoot: "execution",
+        profiles: {
+          domain: ["domain-pack.yaml"],
+          capability: [],
+          dataBoundary: []
+        },
+        enabledAdapterIds: ["anthropic-direct", "claude-agent-sdk", "pi"],
+        embeddedUi: { declared: false },
+        legacySessionRoots: []
+      }),
+      "utf8"
+    );
+    const registry = new ProjectRegistry(join(root, "user-data", "runtime"), {
+      CHIRALITY_INSTRUCTION_ROOT: instructions
+    });
+    await registry.register(manifestPath, {
+      approvedBy: "test",
+      approvalReference: "D-TEST"
+    });
+    await expect(registry.roots("external-domain")).resolves.toEqual({
+      workingRoot: await realpath(working),
+      instructionRoot: await realpath(instructions)
+    });
+  });
+
+  it("rejects V2 when the runtime instruction root is missing or overlaps the working root", async () => {
+    const root = await mkdtemp(join(tmpdir(), "chirality-v2-invalid-"));
+    const { mkdir } = await import("node:fs/promises");
+    await mkdir(join(root, "execution"), { recursive: true });
+    await writeFile(join(root, "domain-pack.yaml"), "id: invalid\n", "utf8");
+    const manifestPath = join(root, "chirality.project.json");
+    await writeFile(
+      manifestPath,
+      JSON.stringify({
+        schemaVersion: "chirality.project/v2",
+        projectId: "invalid-v2",
+        displayName: "Invalid V2",
+        workingRoot: ".",
+        instructionRoot: { mode: "runtime" },
+        defaultExecutionRoot: "execution",
+        profiles: { domain: ["domain-pack.yaml"], capability: [], dataBoundary: [] },
+        enabledAdapterIds: ["pi"],
+        embeddedUi: { declared: false },
+        legacySessionRoots: []
+      }),
+      "utf8"
+    );
+    await expect(
+      new ProjectRegistry(join(root, "runtime-missing"), {}).register(manifestPath, {
+        approvedBy: "test",
+        approvalReference: "D-TEST"
+      })
+    ).rejects.toMatchObject({
+      code: "PROJECT_MANIFEST_INVALID",
+      message: "CHIRALITY_INSTRUCTION_ROOT is required for chirality.project/v2"
+    });
+    await expect(
+      new ProjectRegistry(join(root, "runtime-overlap"), {
+        CHIRALITY_INSTRUCTION_ROOT: root
+      }).register(manifestPath, {
+        approvedBy: "test",
+        approvalReference: "D-TEST"
+      })
+    ).rejects.toMatchObject({
+      code: "PROJECT_MANIFEST_INVALID",
+      message: "Runtime instruction root must be disjoint from the working root"
+    });
+  });
+
   it("allows profile references under a distinct declared instruction root and detects drift", async () => {
     const repository = await mkdtemp(join(tmpdir(), "chirality-project-"));
     const project = join(repository, "projects", "pec");

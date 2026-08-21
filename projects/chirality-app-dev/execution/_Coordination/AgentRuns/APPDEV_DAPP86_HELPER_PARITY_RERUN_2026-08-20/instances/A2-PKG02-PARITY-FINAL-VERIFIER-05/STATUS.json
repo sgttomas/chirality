@@ -1,0 +1,14 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_DAPP86_HELPER_PARITY_RERUN_2026-08-20",
+  "parent_instance_id": "WI-PKG02-DAPP86-RERUN-01-AMEND04",
+  "instance_id": "A2-PKG02-PARITY-FINAL-VERIFIER-05",
+  "role": "AGENT2_GENERALIST",
+  "status": "BLOCKED",
+  "outcome": "REJECT_FINAL_RECORDS_V5",
+  "manager_disposition": "BLOCKED_BY_STALE_PACKAGED_UI_PROOF_HASH",
+  "return_path": "instances/A2-PKG02-PARITY-FINAL-VERIFIER-05/RETURN.md",
+  "return_sha256": "54658dbbf634280575132821db1ecdc7a487829c5811c3034c66abcc0a92d19d",
+  "repair_performed": false,
+  "terminal": true
+}
