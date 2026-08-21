@@ -1,4 +1,0 @@
-Latest: GATE3_CATEGORY_REFINEMENT_20260615T021906Z
-Updated: 2026-06-15T03:08:33Z
-Status: ACCEPTED_BY_GATE3
-Accepted snapshot: domains/chirality/_Decomposition/gate_snapshots/GATE3_CATEGORIES_20260615T030833Z

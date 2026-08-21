@@ -1,3 +1,0 @@
-QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
-Q-da145a47850c88446985,2026-06-18T04:14:22Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,dependency closure SCC issuance order topological,,8,8,
-Q-068be98d42f54438bced,2026-06-18T04:14:24Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,six node SCC resolution decompose invert cut merge human gated,,8,8,

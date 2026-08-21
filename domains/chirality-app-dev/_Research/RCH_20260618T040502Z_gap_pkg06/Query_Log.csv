@@ -1,3 +1,0 @@
-QueryID,UTC,DomainRoot,Snapshot,Mode,Query,Filters,K,ResultCount,Notes
-Q-436975a16e1dc370253e,2026-06-18T04:05:22Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,permission overlay canUseTool decision allow deny ask mode mapping,,8,8,
-Q-93ca8c60f106d895168e,2026-06-18T04:05:24Z,domains/chirality-app-dev,SRCIDX_20260616T043733Z,hybrid,SDK read tool surface validation unknown tool deterministic ordering,,8,8,

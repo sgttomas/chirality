@@ -30,7 +30,7 @@ def test_public_export_excludes_private_runtime_surfaces(tmp_path: Path) -> None
     assert not (stage / "tools/practitioner_harness/BACKLOG.md").exists()
 
     prompt = (stage / "init/init-prompt.md").read_text(encoding="utf-8")
-    assert "private project loop entrypoints" in prompt
+    assert "does not include project loop entrypoints" in prompt
     assert "projects/chirality-app-dev" not in prompt
     assert "projects/chirality-piping" not in prompt
 

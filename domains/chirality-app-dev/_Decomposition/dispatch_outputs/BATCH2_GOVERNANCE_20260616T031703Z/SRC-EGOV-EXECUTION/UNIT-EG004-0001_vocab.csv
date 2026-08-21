@@ -1,5 +1,0 @@
-CandidateTerm,Synonyms,Definition,SourceRefs,Notes
-SOFTWARE_DECOMP,,The decomposition variant used for the Execution Init.,@repo/execution/INIT.md:L7|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0003,Decomposition variant value
-FULL_GRAPH,,The coordination representation mode.,@repo/execution/INIT.md:L12|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0004,Coordination representation value
-SEMANTIC_READY,,The dependency satisfaction threshold.,@repo/execution/INIT.md:L13|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0004,Threshold value
-Source Corpus,,The set of source documents feeding the decomposition.,@repo/execution/INIT.md:L18|_Decomposition/source_review_html/SRC-EGOV-EXECUTION.html#SEC-EG004-0005,

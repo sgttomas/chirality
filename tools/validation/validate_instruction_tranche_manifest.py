@@ -56,6 +56,14 @@ that do not intersect the instruction surface are recorded as over-declaration
 note — the M6 routing decision is completed by the accepting agent at fan-in,
 and this guard records rather than pre-empts that act.
 
+When a repository-separation tranche moves a routed notice to another
+repository, it may record an `external_notice_routes` list. Each entry names
+the former repo-relative `source`, the destination `repository` and
+repo-relative `path`, and the immutable full `commit` that contains it. A
+missing local routed notice PASSes only when an exact, well-formed relocation
+record exists; the guard reports the external route as INFO. The guard checks
+recorded provenance and syntax, not remote availability.
+
 `m2_gate.self_merge: false` remains the schema default and the unconditional
 requirement absent an owner direction. Under the D-GOV-31 merge-gate policy
 as simplified by owner direction of 2026-07-29 (PRD annex §5.3.1),
@@ -241,7 +249,11 @@ def manifest_paths(root: Path) -> list[Path]:
     )
 
 
-def validate_manifest(root: Path, path: Path) -> tuple[list[str], list[str], dict | None]:
+def validate_manifest(
+    root: Path,
+    path: Path,
+    external_notice_routes: dict[str, dict[str, str]] | None = None,
+) -> tuple[list[str], list[str], dict | None]:
     """Returns (failures, notes, data). `data` is None when unreadable/unparseable."""
     failures: list[str] = []
     notes: list[str] = []
@@ -394,6 +406,12 @@ def validate_manifest(root: Path, path: Path) -> tuple[list[str], list[str], dic
                         f"manifest {rel}: routed notice {notice!r} is not a "
                         "repo-relative POSIX path"
                     )
+                elif not (root / notice).exists() and notice in (external_notice_routes or {}):
+                    route = (external_notice_routes or {})[notice]
+                    notes.append(
+                        f"manifest {rel}: routed notice {notice!r} is externalized to "
+                        f"{route['repository']}:{route['path']} at commit {route['commit']}"
+                    )
                 elif not (root / notice).exists():
                     failures.append(
                         f"manifest {rel}: routed notice {notice!r} does not exist"
@@ -405,6 +423,71 @@ def validate_manifest(root: Path, path: Path) -> tuple[list[str], list[str], dic
             )
 
     return failures, notes, data
+
+
+def collect_external_notice_routes(
+    manifests: list[Path],
+) -> tuple[dict[str, dict[str, str]], list[str]]:
+    """Collect exact, commit-pinned notice relocations from the manifest corpus."""
+    import yaml  # type: ignore
+
+    routes: dict[str, dict[str, str]] = {}
+    failures: list[str] = []
+    required = {"source", "repository", "path", "commit"}
+    for manifest in manifests:
+        try:
+            data = yaml.safe_load(manifest.read_text(encoding="utf-8"))
+        except Exception:  # validate_manifest reports the parse failure.
+            continue
+        if not isinstance(data, dict) or "external_notice_routes" not in data:
+            continue
+        entries = data.get("external_notice_routes")
+        if not isinstance(entries, list):
+            failures.append(
+                f"manifest {manifest.name}: external_notice_routes must be a list"
+            )
+            continue
+        for index, entry in enumerate(entries):
+            prefix = f"manifest {manifest.name}: external_notice_routes[{index}]"
+            if not isinstance(entry, dict):
+                failures.append(f"{prefix} must be a mapping")
+                continue
+            missing = required - set(entry)
+            if missing:
+                failures.append(f"{prefix} missing keys: {sorted(missing)}")
+                continue
+            source = entry.get("source")
+            repository = entry.get("repository")
+            destination = entry.get("path")
+            commit = entry.get("commit")
+            valid = True
+            if not isinstance(source, str) or not is_repo_relative(source):
+                failures.append(f"{prefix}.source must be a repo-relative POSIX path")
+                valid = False
+            if (
+                not isinstance(repository, str)
+                or not re.match(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$", repository)
+            ):
+                failures.append(f"{prefix}.repository must be an owner/repository slug")
+                valid = False
+            if not isinstance(destination, str) or not is_repo_relative(destination):
+                failures.append(f"{prefix}.path must be a repo-relative POSIX path")
+                valid = False
+            if not isinstance(commit, str) or not re.match(r"^[0-9a-f]{40}$", commit):
+                failures.append(f"{prefix}.commit must be a full 40-hex SHA")
+                valid = False
+            if not valid:
+                continue
+            route = {
+                "repository": repository,
+                "path": destination,
+                "commit": commit,
+            }
+            if source in routes and routes[source] != route:
+                failures.append(f"{prefix}.source {source!r} has a conflicting route")
+                continue
+            routes[source] = route
+    return routes, failures
 
 
 def validate_owner_direction(rel: str, direction: object) -> tuple[list[str], bool]:
@@ -531,8 +614,12 @@ def check(
     notes: list[str] = []
     by_id: dict[str, dict] = {}
     by_path: dict[str, dict] = {}
+    external_notice_routes, route_failures = collect_external_notice_routes(manifests)
+    failures.extend(route_failures)
     for path in manifests:
-        manifest_failures, manifest_notes, data = validate_manifest(root, path)
+        manifest_failures, manifest_notes, data = validate_manifest(
+            root, path, external_notice_routes
+        )
         failures.extend(manifest_failures)
         notes.extend(manifest_notes)
         if data is not None and isinstance(data.get("tranche_id"), str):

@@ -1,9 +1,0 @@
-{"page": 12, "index": 1, "latex": "\\lambda = \\frac{\\rho_G}{\\sqrt{\\rho_L - \\rho_G}} \\cdot \\sqrt{q}", "hash": "814bb62fcac9", "png": "page_0012.png"}
-{"page": 13, "index": 1, "latex": "v_{SG} = \\frac{\\left(\\frac{1.2}{n_{p0}}\\right) Q_{pipeline}}{m \\frac{\\pi}{4} D_{riser}^2}", "hash": "24b25eebf80c", "png": "page_0013.png"}
-{"page": 13, "index": 2, "latex": "v_{SG\\,5.0} = \\frac{\\sqrt{\\Omega_{5.0}}}{n_{p0}}", "hash": "ec92d042cf86", "png": "page_0013.png"}
-{"page": 37, "index": 1, "latex": "Re = \\frac{V_s \\rho_G d}{\\eta_G}", "hash": "62031e97cdcd", "png": "page_0037.png"}
-{"page": 37, "index": 2, "latex": "V_S = \\frac{(\\rho_L - \\rho_G) g d^2}{18 \\eta_G}", "hash": "a52636568d75", "png": "page_0037.png"}
-{"page": 37, "index": 3, "latex": "C_W Re^2 = \\frac{4}{3} \\cdot \\frac{d^3 \\rho_G (\\rho_L - \\rho_G) g}{\\eta_G^2}", "hash": "8c43e7212d14", "png": "page_0037.png"}
-{"page": 37, "index": 4, "latex": "V_s = 1.76 \\sqrt{\\frac{(\\rho_L - \\rho_G) g d}{\\rho_G}}", "hash": "97b6020329ed", "png": "page_0037.png"}
-{"page": 37, "index": 5, "latex": "(V_s)_{swarm} = Vs\\ (1 - H)^n", "hash": "e17cf51d6c38", "png": "page_0037.png"}
-{"page": 37, "index": 6, "latex": "t_s = \\frac{D}{(V_s)_{swarm}}", "hash": "7723f2fb6f30", "png": "page_0037.png"}
