@@ -56,25 +56,27 @@ def live_self_check():
 
 
 @live
-def test_live_drift_baseline_0_of_101_and_0_of_53():
+def test_live_drift_baseline_0_of_102_and_0_of_53():
     # Conscious pin update 2026-07-02 (was 92/101): the STATUS_HISTORY_MISMATCH
     # class was resolved by the owner's class-wide K-CONFLICT-1 ruling ("all
     # shall be IN_PROGRESS"); one parser-verified reversal history line was
     # appended per file. Ruling record: projects/chirality-piping/execution/
     # _Reconciliation/LifecycleCorrection/LIFECYCLE_CORRECTION_2026-07-02_2050/
-    # Decision_Log.md. Pin updates here are conscious, never silent.
+    # Decision_Log.md. Pin updates here are conscious, never silent. SCA-009
+    # added DEL-07-09 as the 102nd Piping status file on 2026-08-21; it has no
+    # asserted lifecycle state, so matches remain 101 and mismatches remain 0.
     report = cmd_drift.run_drift(LIVE_REPO, [
         LIVE_REPO / "projects" / "chirality-app-dev",
         LIVE_REPO / "projects" / "chirality-piping",
     ])
     piping = _fact(report, "drift.chirality-piping").value
-    assert "files=101" in piping
+    assert "files=102" in piping
     assert "mismatches=0" in piping
     assert "unparseable_docs=0" in piping
     app_dev = _fact(report, "drift.chirality-app-dev").value
     assert "files=53" in app_dev
     assert "mismatches=0" in app_dev
-    assert report.summary["files_total"] == 154
+    assert report.summary["files_total"] == 155
     assert report.summary["mismatches_total"] == 0
 
 
