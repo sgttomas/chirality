@@ -40,8 +40,11 @@
 - Frontend typecheck: PASS.
 - Frontend full Vitest suite: 1,199 passed, 4 skipped.
 - Python validation/source-catalog set: 320 passed.
-- Full `tools/` Pytest estate: 1,142 passed, 3 skipped, 1 pre-existing
+- Full `tools/` Pytest estate: 1,143 passed, 3 skipped, 1 pre-existing
   `PytestReturnNotNoneWarning`.
+- PR-sized affected-test routing dry-run: PASS with 36,000+ changed paths
+  streamed as JSON on standard input; the selector no longer depends on the
+  operating system's command-line argument limit.
 - Agent-instruction validator: 34 files, 0 errors, 0 warnings.
 - Skill metadata validator: 45 valid, 0 invalid.
 - G4 instruction-tranche validator: PASS, including commit-pinned external
@@ -54,6 +57,12 @@ The first sandboxed runtime/frontend test attempts could not bind local Unix
 sockets or loopback listeners (`EPERM`). Both complete suites were rerun with
 the required local IPC permission and passed; the sandbox failures were
 environmental, not test failures in the candidate.
+
+PR #596's first governance-harness run exposed a routing-infrastructure limit:
+the runner supplied every changed path to the selector as a command-line
+argument and Linux rejected the 36,000+ argument vector with `E2BIG`. The
+runner now streams the exact path list as JSON on standard input. A 40,000-path
+regression test, the actual PR-sized dry-run, and the full tools estate pass.
 
 ## Publication audit
 

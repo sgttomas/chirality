@@ -15,6 +15,9 @@ instruction_surface_paths:
   - tools/decomp/
   - tools/source_catalog/
   - tools/retrieval/
+  - tools/run_affected_tests.py
+  - tools/software_workflow/select_affected_checks.py
+  - tools/software_workflow/test_tools_test_routing.py
   - tools/validation/validate_instruction_tranche_manifest.py
   - tools/validation/test_validate_instruction_tranche_manifest.py
   - tools/validation/test_public_export_profile.py
