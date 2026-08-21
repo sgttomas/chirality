@@ -1,6 +1,6 @@
 # Validation — Root cross-loop carriers (2026-08-21)
 
-Verdict: `PASS WITH HUMAN DECISION GATES PRESERVED`
+Verdict: `PASS — OWNER RULINGS RECEIVED; EXACT-BYTE AND MERGE GATES PRESERVED`
 
 ## Engineering and instruction surface
 
@@ -14,18 +14,25 @@ Verdict: `PASS WITH HUMAN DECISION GATES PRESERVED`
   `PASS` over 21 changed paths, four instruction-surface paths, and one
   applicable new manifest.
 - App focused support checks on byte-identical inputs: `32 passed`.
+- PR #602 basis repair: exactly four owner-named one-line substitutions;
+  nonexistent SHA has zero target occurrences and does not resolve, corrected
+  SHA has four target occurrences and resolves as a commit. G4, entrypoints,
+  live agent validation, and diff hygiene pass after repair.
 
 ## Task Management closure
 
 - Mandatory federation preflight and postflight: `COMPLETE`; four canonical
   register pairs valid; zero register writes by the federation helper.
-- Root live register: `PASS`, 22 rows (`OPEN=12`, `DEFERRED=10`).
-- Root archive: `PASS`, 103 rows.
-- Exact mutation: only `TM-ROOT-125`, from live `OPEN` to archived `CLOSED /
-  RESOLVED_WITH_CHANGE`.
+- Root live register: `PASS`, 21 rows (`OPEN=11`, `DEFERRED=10`).
+- Root archive: `PASS`, 104 rows.
+- Continuation mutation: only `TM-ROOT-117`, from live `OPEN` to archived
+  `CLOSED / RESOLVED_BY_DECISION`.
 - Closure evidence SHA-256:
   `1768e9a8c1d98babf28662b31d5e9fb63a042d532e8cd909e4577062dd3bea34`.
-- `TM-ROOT-117` remains `OPEN`; no owner-only decision was selected.
+- TM-ROOT-117 closure evidence SHA-256:
+  `20421d4b7b06bcdab8f27e6bb01cbc6fced7d0a535375ca838128104309dd1b4`.
+- Final mandatory federation: `COMPLETE`, four canonical register pairs,
+  zero federation writes.
 
 ## Integration hygiene
 
@@ -42,7 +49,8 @@ Verdict: `PASS WITH HUMAN DECISION GATES PRESERVED`
 
 - PR review and merge remain owner acts; no merge is performed.
 - No artifact-proof label applies.
-- The TM-ROOT-117 and DEL-02-06 choices remain human-only.
+- TM-ROOT-117 Option R and DEL-02-06 epoch/preparation are owner-ruled. The
+  future prepared exact-byte acceptance remains human-only.
 - App adoption, exact-byte acceptance, implementation, lifecycle, release,
   publication, reliance, and foreign-register effects remain outside this
   tranche.

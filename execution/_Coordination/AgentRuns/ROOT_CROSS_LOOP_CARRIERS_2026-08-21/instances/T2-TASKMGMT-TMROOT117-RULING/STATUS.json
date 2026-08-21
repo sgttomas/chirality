@@ -1,0 +1,45 @@
+{
+  "run_id": "ROOT_CROSS_LOOP_CARRIERS_2026-08-21",
+  "instance_id": "T2-TASKMGMT-TMROOT117-RULING",
+  "agent_role": "TASK_MANAGEMENT",
+  "terminal_status": "COMPLETED",
+  "federation": {
+    "preflight": "COMPLETE",
+    "preflight_findings": 78,
+    "final": "COMPLETE",
+    "final_findings": 79,
+    "canonical_registers": 4,
+    "register_writes_by_federation": 0,
+    "invalid_unreadable_ambiguous": 0
+  },
+  "tm_root_117": {
+    "occurrences": 1,
+    "location": "execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+    "status": "CLOSED",
+    "disposition": "RESOLVED_BY_DECISION",
+    "evidence_sha256": "20421d4b7b06bcdab8f27e6bb01cbc6fced7d0a535375ca838128104309dd1b4",
+    "successor_identity_accepted": false,
+    "app_notice_routed": true
+  },
+  "root_register_post_state": {
+    "live_rows": 21,
+    "open": 11,
+    "deferred": 10,
+    "archive_rows": 104,
+    "live_sha256": "3f074f5781453874669281c9497bab5ec1cb3a8657a10543b20231c553b8c6d9",
+    "archive_sha256": "feb4e17603917c03cb5fec517ab5ed8a61f1345025b8f1717a914bddec9e8338"
+  },
+  "receipt": {
+    "id": 111,
+    "count": 1,
+    "terminal": true,
+    "ledger_sha256": "f1467d72600d30841682d62fa5a8cb6fab3687ce1c2b72dbc458c41c93a4a910"
+  },
+  "del_02_06": {
+    "epoch_supplied": 1,
+    "candidate_identity": "root-runtime-1",
+    "preparation_activation_launched": false,
+    "exact_bytes_accepted": false
+  },
+  "git_effect": "NONE"
+}

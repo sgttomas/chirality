@@ -10,34 +10,38 @@
 
 ## Derivative-package status
 
-- The run package and `OWNER_DECISION_PACKET.md` are derivative decision and
-  validation support; they grant no authority and select no option.
+- The run package and `OWNER_DECISION_PACKET.md` remain derivative decision and
+  validation support. The later owner acts are transcribed separately in
+  `OWNER_DIRECTION_TRANSCRIPT_PR602_REPAIR_AND_RULINGS_2026-08-21.md`.
 - Root/App/Piping/domain notices are routed coordination only.
 - Historical App instruction-root/parity evidence remains immutable and pins
   prior HELP_HUMAN bytes; current-byte regeneration is deferred to App.
 
 ## Closure verdict
 
-- Objective 1: `COMPLETE`. TM-ROOT-125 is archived
-  `RESOLVED_WITH_CHANGE`; Root now has 22 live and 103 archived rows.
-- Objective 2: `READY FOR HUMAN DECISION`. No accepted D-APP-48 successor
-  identity exists; TM-ROOT-117 remains open.
-- Objective 3: `READY FOR HUMAN DECISION`. DEL-02-06 remains `INITIALIZED`;
-  no positive-decimal epoch or complete six-member binding manifest is
-  accepted or authorized for production.
-- Publication: final scoped closeout commit, push, and one ready-for-review PR
-  against `main` remain; merge is prohibited in this run.
+- Objective 1: `COMPLETE AND BASIS REPAIRED`. TM-ROOT-125 is archived
+  `RESOLVED_WITH_CHANGE`; the four bad basis citations now name the existing
+  run-basis commit exactly.
+- Objective 2: `COMPLETE`. TM-ROOT-117 is archived
+  `RESOLVED_BY_DECISION`; the reciprocal App notice carries the exact T1
+  trigger re-scope, and no D-APP-48 successor identity is accepted. Root now
+  has 21 live and 104 archived rows.
+- Objective 3: `OWNER EPOCH AND PREPARATION AUTHORIZATION RECORDED`.
+  DEL-02-06 remains `INITIALIZED`; epoch `1` yields candidate identity
+  `root-runtime-1`, and one sealed preparation-only WORKING_ITEMS activation
+  is authorized as a separate tranche/PR. No complete binding manifest or
+  package bytes exist or are accepted here.
+- Publication: PR #602 is the repair/ruling-record tranche. Required checks at
+  `b2f9f1cdc` completed green; a repair commit and rerun remain before return
+  to owner review. Merge is prohibited in this run.
 
 ## Rerun requirements and blockers
 
-- On a TM-ROOT-117 re-scope ruling, close the row
-  `RESOLVED_BY_DECISION` and route the reciprocal App notice with the exact
-  replacement trigger in the T1 return.
-- On a DEL-02-06 epoch/preparation ruling, dispatch one sealed WORKING_ITEMS
-  preparation-only activation against the accepted snapshot and return exact
-  candidate bytes to a separate human acceptance gate.
-- If neither is ruled, both carriers remain parked without simulated planning
-  progress.
+- App decides whether to adopt, amend, decline, or defer the exact replacement
+  trigger routed by Root; Root performs no App register write.
+- Launch the authorized DEL-02-06 WORKING_ITEMS preparation only in a separate
+  Root session, branch, tranche, and PR. Return exact prepared bytes and
+  SHA-256 to a separate owner acceptance gate; attach no output to PR #602.
 - Separately disposition the older Agent-1-only prose in `docs/TYPES.md`
   §4.3, `docs/WORKFLOW_COMPONENT_STANDARD.md` §4.1, and
   `docs/DBM_Agent_Instruction_Architecture.md` §2.

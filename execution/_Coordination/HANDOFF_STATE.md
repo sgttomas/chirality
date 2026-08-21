@@ -21,8 +21,8 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   §1.14 (effective `main@c8c2a6146`). Stage-A instruments: Receipts 66–73;
   workplan `WORKPLAN_2026-07-31_task_management_stage_a.md` (CLOSED) and
   its Amendments 1–2; program register at
-  `execution/_Coordination/_TaskManagement/REGISTER.csv` (22 live rows:
-  12 OPEN / 10 DEFERRED; 103 rows archived in `REGISTER_CLOSED.csv`). Receipt
+  `execution/_Coordination/_TaskManagement/REGISTER.csv` (21 live rows:
+  11 OPEN / 10 DEFERRED; 104 rows archived in `REGISTER_CLOSED.csv`). Receipt
   91 repaired the earlier stale handoff to the then-current generational-pass
   state of 27 live (16 OPEN / 11 DEFERRED) and 95 archived. Receipt 92 then
   recorded the separately owner-ruled closure and archival of TM-ROOT-105,
@@ -42,9 +42,12 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
 - Receipts 107 and 109 subsequently promoted `TM-ROOT-124` and
   `TM-ROOT-125`, producing 23 live / 102 archived. Receipt 110 then records
   the owner-directed validator/frontmatter tranche and the sole closure of
-  `TM-ROOT-125` as `RESOLVED_WITH_CHANGE`, producing the current 22 live
-  (`OPEN=12`, `DEFERRED=10`) / 103 archived state. `TM-ROOT-117` remains
-  `OPEN` pending its separate human-only successor/re-scope ruling.
+  `TM-ROOT-125` as `RESOLVED_WITH_CHANGE`, producing 22 live
+  (`OPEN=12`, `DEFERRED=10`) / 103 archived. Receipt 111 then records the
+  owner-selected Option-R re-scope and the sole closure of `TM-ROOT-117` as
+  `RESOLVED_BY_DECISION`, producing the current 21 live (`OPEN=11`,
+  `DEFERRED=10`) / 104 archived state. No D-APP-48 successor identity was
+  accepted.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -163,6 +166,19 @@ inferred. Older Agent-1-only narrative in `docs/TYPES.md` §4.3,
 `docs/DBM_Agent_Instruction_Architecture.md` §2 remains a separately recorded
 Root concordance residual.
 
+`2026-08-21 PR #602 BASIS REPAIR AND CARRIER RULINGS COMPLETE — OWNER REVIEW
+AND MERGE REMAIN.` Receipt 111 binds the exact four-file correction from the
+nonexistent basis SHA to existing commit
+`e3e18d27740018efd12e73193c02395a9eca93c2`; archives `TM-ROOT-117`
+`RESOLVED_BY_DECISION`; and routes the exact App trigger-re-scope notice with
+no successor identity accepted. The owner also supplied DEL-02-06 epoch `1`,
+yielding preparation candidate `root-runtime-1`, and authorized one sealed
+preparation-only WORKING_ITEMS activation against accepted snapshot
+`3fc56807c4cd83fd2b5f967848b770adfd226541880629493ddfe8ad3df989aa`.
+That activation and all candidate output are excluded from PR #602 and must
+run as a separate tranche/PR; exact prepared bytes and SHA-256 return to a
+later owner acceptance gate.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -198,13 +214,15 @@ implement validator changes until the owner rules. Repeat the exact-path
 class sweep if any later tranche changes Root evidence identities or the
 validator contract.
 
-For the 2026-08-21 carrier session, rerun after either human-only decision:
-(1) if the owner selects the `TM-ROOT-117` re-scope option, close that row
-`RESOLVED_BY_DECISION` and route the reciprocal App notice; or (2) if the
-owner supplies a positive-decimal DEL-02-06 epoch and authorizes the sealed
-preparation-only activation, start WORKING_ITEMS only against accepted
-snapshot `3fc56807c4cd83fd2b5f967848b770adfd226541880629493ddfe8ad3df989aa`
-and return exact candidate bytes for a separate human acceptance. Until then,
-DEL-02-06 remains `INITIALIZED`; do not manufacture planning records or infer
-an epoch, activation, compatibility identity, acceptance, implementation,
-release, or foreign-loop disposition.
+For the 2026-08-21 carrier session, the owner has now selected the
+`TM-ROOT-117` re-scope option and supplied DEL-02-06 epoch `1`, yielding
+candidate identity `root-runtime-1`, with authorization for one sealed
+preparation-only WORKING_ITEMS activation. Close `TM-ROOT-117`
+`RESOLVED_BY_DECISION` and route the reciprocal App trigger-re-scope notice in
+PR #602. Run the DEL-02-06 preparation only as a separate Root session,
+branch, tranche, and PR against accepted snapshot
+`3fc56807c4cd83fd2b5f967848b770adfd226541880629493ddfe8ad3df989aa`;
+return exact candidate bytes and SHA-256 for a separate owner acceptance.
+DEL-02-06 remains `INITIALIZED` until that separately governed activation;
+do not infer package acceptance, implementation, lifecycle, release,
+publication, reliance, or foreign-loop disposition.
