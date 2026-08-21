@@ -97,6 +97,8 @@ export const RUNTIME_LAUNCH_AGENT_ENV = {
 
 /** Variable pinned into the job so the daemon shares the caller's runtime directory. */
 export const RUNTIME_USER_DATA_ENV = "CHIRALITY_USER_DATA";
+/** Read-only instruction package used by V2 external working repositories. */
+export const RUNTIME_INSTRUCTION_ROOT_ENV = "CHIRALITY_INSTRUCTION_ROOT";
 
 function parseBoolean(value: string): boolean | undefined {
   const normalized = value.trim().toLowerCase();
@@ -156,6 +158,14 @@ export function resolveRuntimeLaunchAgentOptions(
     [RUNTIME_LAUNCH_AGENT_ENV.label]: options.label ?? RUNTIME_LAUNCH_AGENT_LABEL,
     [RUNTIME_LAUNCH_AGENT_ENV.keepAlive]: options.keepAlive ?? DEFAULT_KEEP_ALIVE
   };
+
+  const instructionRoot = environment[RUNTIME_INSTRUCTION_ROOT_ENV]?.trim();
+  if (instructionRoot) {
+    options.environmentVariables = {
+      ...options.environmentVariables,
+      [RUNTIME_INSTRUCTION_ROOT_ENV]: resolve(instructionRoot)
+    };
+  }
 
   const runAtLoadRaw = environment[RUNTIME_LAUNCH_AGENT_ENV.runAtLoad];
   const runAtLoad = runAtLoadRaw === undefined ? undefined : parseBoolean(runAtLoadRaw);

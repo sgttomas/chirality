@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  RUNTIME_INSTRUCTION_ROOT_ENV,
   resolveRuntimeLaunchAgentOptions,
   renderRuntimeLaunchAgent,
   RUNTIME_LAUNCH_AGENT_ENV
@@ -60,6 +61,18 @@ describe('electron/desktop-daemon-posture', () => {
       CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL: 'com.chirality.runtime',
       CHIRALITY_RUNTIME_KEEP_ALIVE: 'always'
     });
+  });
+
+  it('pins the resolved instruction root for launcher and LaunchAgent installs', () => {
+    const instructionRoot = '/Applications/Chirality.app/Contents/Resources';
+    const environment = daemonPostureEnvironment(
+      resolveDesktopDaemonPosture(
+        { [RUNTIME_INSTRUCTION_ROOT_ENV]: instructionRoot },
+        USER_DATA
+      )
+    );
+
+    expect(environment.CHIRALITY_INSTRUCTION_ROOT).toBe(instructionRoot);
   });
 
   // The V-D2 acceptance, expressed as a test: a shell holding only the values the

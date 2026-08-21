@@ -15,8 +15,10 @@ decision is not in a versioned file, it does not exist for purposes of
 reliance. Agents propose, deterministic tools compute, humans rule. No agent
 may certify, approve, sign, seal, or issue professional work product.
 
-This repository is the private canonical source tree, upstream of the public
-`chirality-app` export.
+This repository is the public canonical instruction and product source tree.
+Private domain knowledge is versioned separately in `sgttomas/chirality-domains`
+and selected as an external working repository when needed. The public
+`chirality-app` repository remains a curated desktop release projection.
 
 ## Orientation
 
@@ -42,14 +44,18 @@ Explanatory background (not required reading for agents) lives in
 | `docs/` | Governance, specifications, standards, roadmap, and thesis |
 | `init/` | Bootstrap and next-session notes |
 | `runtime/` | Shared agent-runtime substrate (daemon, clients, contracts) |
-| `exports/` | Public export profiles, manifests, and reports (private) |
-| `projects/` | Private project workspaces |
-| `domains/` | Private domain packs and local corpora |
+| `exports/` | Curated release profiles, manifests, and reports |
+| `projects/` | In-tree product and project workspaces |
 | `plans/` | Non-governing planning material |
 
-`projects/`, `domains/`, `plans/`, and `exports/` are not part of the public
-export. The export profile in `exports/chirality-app/` is the boundary
-contract; do not infer public package contents from the root listing.
+Domain packs are not stored in this repository. Clone the private domain
+repository separately and register one of its `domains/<name>/chirality.project.json`
+manifests. Runtime schema V2 reads agents, skills, and tools from
+`CHIRALITY_INSTRUCTION_ROOT` while containing writes inside the selected pack.
+
+The profile in `exports/chirality-app/` defines the curated desktop release
+projection. It is a packaging contract, not the privacy boundary for this
+public repository.
 
 ## Validation and Export
 
@@ -60,7 +66,7 @@ python3 exports/chirality-app/export_public.py
 ```
 
 Run skill metadata validation after skill changes, test discovery when test
-surfaces change, and the export tool after changing any public-exported
+surfaces change, and the export tool after changing any release-projected
 surface.
 
 ## License

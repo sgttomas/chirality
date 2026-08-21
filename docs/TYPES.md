@@ -46,15 +46,15 @@ The path model is specified in `SPEC.md` §0.2. The entities it defines:
 
 | Entity | Definition |
 |---|---|
-| **Repo Root** (`REPO_ROOT`) | The root of the active git checkout, resolved as `git rev-parse --show-toplevel`. Home of the shared instruction surface. In a git worktree it is the worktree's own root. |
-| **Instruction Root** | The shared, release-managed agent operating system — `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/` (enumeration per `SPEC.md` §0.2.1, D-GOV-26/D-GOV-27). `= REPO_ROOT` in this monorepo; the app bundle in desktop builds (see `DIRECTIVE.md` §2.6). |
-| **Working Root** (`WORKING_ROOT`) | The active project or domain workspace — `projects/<name>/` or `domains/<name>/`, or a user-selected folder under the desktop harness. Where governed project truth lives. One instruction root serves many working roots. For the root product only, the repository root is its own working root (D-GOV-21). |
+| **Repo Root** (`REPO_ROOT`) | The root of the active writable Git checkout, resolved as `git rev-parse --show-toplevel`. In a git worktree it is the worktree's own root; for an external project/domain it is not the Chirality instruction repository. |
+| **Instruction Root** (`INSTRUCTION_ROOT`) | The shared, release-managed agent operating system — `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/` (enumeration per `SPEC.md` §0.2.1, D-GOV-26/D-GOV-27). Runtime-declared through `CHIRALITY_INSTRUCTION_ROOT` for V2 external projects; the app bundle in desktop builds; `= REPO_ROOT` for root-product development (see `DIRECTIVE.md` §2.6). |
+| **Working Root** (`WORKING_ROOT`) | The selected writable project or domain pack within `REPO_ROOT`, an explicitly governed in-tree project, or a user-selected folder under the desktop harness. Where governed project truth lives. One instruction root serves many working roots. For the root product only, the repository root is its own working root (D-GOV-21). |
 | **Execution Root** (`EXECUTION_ROOT`) | The execution-instance root within a working root; contains packages and tool roots. For the root product, `REPO_ROOT/execution` (D-GOV-21). |
 | **Tool Root** | A workspace-level directory for derived outputs under `{EXECUTION_ROOT}` (e.g. `_Decomposition/`, `_Evaluation/`, `_Reconciliation/`), isolated from source truth. The registry is `SPEC.md` §1.2. |
 
 ### 1.5 Path Tokens
 
-Agent instructions and skills reference roots through `{*_ROOT}` tokens, each resolving against exactly one anchor. The authoritative registry — token → anchor → resolution — is `SPEC.md` §0.3. Key tokens: `{REPO_ROOT}`, `{INSTRUCTION_ROOT}`, `{WORKING_ROOT}`, `{EXECUTION_ROOT}`, `{COORDINATION_ROOT}`, `{DECOMP_ROOT}`, and the tool-root tokens (`{AGGREGATION_ROOT}`, `{EVALUATION_ROOT}`, `{RECONCILIATION_ROOT}`, `{ESTIMATES_ROOT}`, …). Instruction-surface tokens resolve `REPO_ROOT`-relative; workspace tokens resolve `WORKING_ROOT`-relative. Machine-absolute paths MUST NOT appear in instruction, coordination, or plan files (`SPEC.md` §0.2.4).
+Agent instructions and skills reference roots through `{*_ROOT}` tokens, each resolving against exactly one anchor. The authoritative registry — token → anchor → resolution — is `SPEC.md` §0.3. Key tokens: `{REPO_ROOT}`, `{INSTRUCTION_ROOT}`, `{WORKING_ROOT}`, `{EXECUTION_ROOT}`, `{COORDINATION_ROOT}`, `{DECOMP_ROOT}`, and the tool-root tokens (`{AGGREGATION_ROOT}`, `{EVALUATION_ROOT}`, `{RECONCILIATION_ROOT}`, `{ESTIMATES_ROOT}`, …). Instruction-surface tokens resolve `INSTRUCTION_ROOT`-relative; workspace tokens resolve `WORKING_ROOT`-relative. Machine-absolute paths MUST NOT appear in instruction, coordination, or plan files (`SPEC.md` §0.2.4).
 
 ---
 

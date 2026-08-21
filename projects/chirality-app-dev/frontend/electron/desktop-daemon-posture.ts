@@ -22,6 +22,7 @@
 import {
   RUNTIME_LAUNCH_AGENT_ENV,
   RUNTIME_LAUNCH_AGENT_LABEL,
+  RUNTIME_INSTRUCTION_ROOT_ENV,
   RUNTIME_USER_DATA_ENV,
   type LaunchAgentKeepAlivePolicy
 } from '@chirality/runtime-cli';
@@ -45,6 +46,7 @@ export type DesktopDaemonPosture = {
   keepAlive: LaunchAgentKeepAlivePolicy;
   runAtLoad: true;
   userDataDirectory: string;
+  instructionRoot?: string;
 };
 
 /**
@@ -57,11 +59,13 @@ export function resolveDesktopDaemonPosture(
   userDataDirectory: string
 ): DesktopDaemonPosture {
   const label = environment[RUNTIME_LAUNCH_AGENT_ENV.label]?.trim();
+  const instructionRoot = environment[RUNTIME_INSTRUCTION_ROOT_ENV]?.trim();
   return {
     label: label || RUNTIME_LAUNCH_AGENT_LABEL,
     keepAlive: DESKTOP_KEEP_ALIVE_POLICY,
     runAtLoad: true,
-    userDataDirectory
+    userDataDirectory,
+    ...(instructionRoot ? { instructionRoot } : {})
   };
 }
 
@@ -77,6 +81,9 @@ export function daemonPostureEnvironment(
   return {
     [RUNTIME_USER_DATA_ENV]: posture.userDataDirectory,
     [RUNTIME_LAUNCH_AGENT_ENV.label]: posture.label,
-    [RUNTIME_LAUNCH_AGENT_ENV.keepAlive]: posture.keepAlive
+    [RUNTIME_LAUNCH_AGENT_ENV.keepAlive]: posture.keepAlive,
+    ...(posture.instructionRoot === undefined
+      ? {}
+      : { [RUNTIME_INSTRUCTION_ROOT_ENV]: posture.instructionRoot })
   };
 }
