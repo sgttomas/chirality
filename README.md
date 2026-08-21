@@ -48,9 +48,8 @@ Explanatory background (not required reading for agents) lives in
 | `projects/` | In-tree product and project workspaces |
 | `plans/` | Non-governing planning material |
 
-Domain packs are not stored in this repository. Clone the private domain
-repository separately and register one of its `domains/<name>/chirality.project.json`
-manifests. Runtime schema V2 reads agents, skills, and tools from
+Domain packs are not stored in this repository. Runtime schema V2 reads agents,
+skills, and tools from
 `CHIRALITY_INSTRUCTION_ROOT` while containing writes inside the selected pack.
 
 The profile in `exports/chirality-app/` defines the curated desktop release
