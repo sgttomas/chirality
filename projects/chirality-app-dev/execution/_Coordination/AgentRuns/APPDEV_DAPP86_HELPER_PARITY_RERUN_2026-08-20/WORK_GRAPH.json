@@ -1,0 +1,55 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "version": 1,
+  "run_id": "APPDEV_DAPP86_HELPER_PARITY_RERUN_2026-08-20",
+  "selection_authority": "App HELP_HUMAN under owner standing development-pressure direction, D-APP-86 Option A, and the live DEL-02-02 post-D-APP-88 rerun trigger",
+  "posture": "MIXED",
+  "accepted_basis": {
+    "branch": "codex/app-dapp86-helper-parity-rerun-20260820",
+    "head": "89758a32634ee6cedbd1dbadf35e3728fb48d2eb",
+    "tree": "fe8ece104dd281e3219bd95fa8b121437d524520"
+  },
+  "shared_evidence_owner": "WI-PKG02-DAPP86-RERUN-01",
+  "nodes": [
+    {
+      "id": "N1",
+      "owner": "WI-PKG02-DAPP86-RERUN-01",
+      "package_id": "PKG-02",
+      "deliverable_id": "DEL-02-02",
+      "objective": "Execute and validate the integrated D-APP-86 packaged parity instrument on the accepted post-helper basis.",
+      "checks_surface": ["in-session", "local-macOS-host-capability", "isolated-packaged-app"],
+      "writes": ["run-root/**", "DEL-02-02/_run_records/**", "conditional DEL-02-02/_STATUS.md", "conditional DEL-02-02/MEMORY.md"],
+      "return": "accepted six-output evidence package, verifier return, runtime summary, manager RETURN.md",
+      "gate": "all enumerated observations and validation checks pass on one frozen source/package/helper identity"
+    },
+    {
+      "id": "N2",
+      "owner": "WI-PKG08-DAPP86-RERUN-01",
+      "package_id": "PKG-08",
+      "deliverable_id": "DEL-08-02",
+      "objective": "Consume accepted N1 evidence and disposition only the dependent guarded-navigator rerun residual.",
+      "checks_surface": ["in-session", "accepted-N1-evidence"],
+      "writes": ["PKG-08 deliverable-local allowed surfaces only"],
+      "return": "validated PKG-08 package return to Agent 0",
+      "gate": "N1 accepted by Agent 0"
+    }
+  ],
+  "edges": [{"from": "N1", "to": "N2", "kind": "evidence_dependency"}],
+  "n1_internal": {
+    "nodes": [
+      {"id": "E1", "owner": "A2-PKG02-PARITY-EXECUTOR-01", "writes": ["run-root/instances/A2-PKG02-PARITY-EXECUTOR-01/**", "six named shared evidence outputs"], "return": "sealed executor RETURN.md"},
+      {"id": "V1", "owner": "A2-PKG02-PARITY-VERIFIER-01", "writes": ["run-root/instances/A2-PKG02-PARITY-VERIFIER-01/**"], "return": "fresh verifier RETURN.md; no repairs"},
+      {"id": "M1", "owner": "WI-PKG02-DAPP86-RERUN-01", "writes": ["manager fan-in outputs and conditional DEL-02-02 state"], "return": "RETURN.md to Agent 0"}
+    ],
+    "edges": [{"from": "E1", "to": "V1"}, {"from": "V1", "to": "M1"}]
+  },
+  "human_decision_points": [
+    "product/runtime repair required",
+    "provider credential or network expansion required",
+    "packager must download an already-declared dependency",
+    "external permission or security prompt",
+    "release/signing/notarization/distribution action",
+    "partial or failed instrument"
+  ],
+  "shared_surfaces_forbidden": ["loop/LOOP_RECEIPTS.md", "decision register or packets", "Task Management registers", "completion log", "other package state", "root runtime", "lockfiles", "CI workflows", "Git closeout surfaces"]
+}

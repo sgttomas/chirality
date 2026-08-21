@@ -1,0 +1,202 @@
+{
+  "closeout_calibration": {
+    "distinct_helper_trigger_established": false,
+    "instrument_invocation_defect": "CHIRALITY_SKIP_CLI_LAUNCHER=1 verification opt-out omitted",
+    "launcher_after_recorded_write": "UNTOUCHED",
+    "network_retry_authorization_provenance": "UNKNOWN",
+    "parity_closure": false,
+    "rerun_authorized": false,
+    "successful_package_command_provenance": "UNKNOWN",
+    "verdict": "BLOCKED / PARTIAL"
+  },
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 11
+  },
+  "counts": {
+    "category": {
+      "amendment_verification": 2,
+      "claim_calibration": 1,
+      "closeout": 1,
+      "closeout_amendment": 3,
+      "containment": 1,
+      "execution": 2,
+      "orchestration": 2,
+      "preflight": 1,
+      "record_verification": 8,
+      "records_remediation": 4,
+      "verification": 2
+    },
+    "event_type": {
+      "CHECK": 2,
+      "FINISH": 11,
+      "MILESTONE": 1,
+      "NOTICE": 1,
+      "REMEDIATION": 1,
+      "START": 11
+    },
+    "outcome": {
+      "BLOCKED": 5,
+      "PASS": 11,
+      "STARTED": 11
+    },
+    "reason_code": {
+      "ACCEPT_AMENDED_FAN_IN": 1,
+      "ACCEPT_BLOCKED_FAN_IN": 1,
+      "ACCEPT_FINAL_RECORDS_V6": 1,
+      "ACCEPT_REPAIRED_FAN_IN_V4": 1,
+      "ACTIVATION_ACCEPTED": 1,
+      "AGENT0_FANIN_DISPOSITION": 1,
+      "AMENDED_RECORDS_GATES_PASS": 1,
+      "FAILED_INSTRUMENT_ACCEPTED": 1,
+      "FINAL_INTEGRATED_REVIEW_REMEDIATION": 1,
+      "FINAL_RECORDS_REMEDIATION_FROZEN": 1,
+      "FOCUSED_TESTS_TYPECHECK_PASS": 1,
+      "FRESH_BLOCKED_RETURN_REVIEW": 1,
+      "FRESH_FINAL_RECORD_VERIFIER_V5": 1,
+      "FRESH_FINAL_RECORD_VERIFIER_V6": 1,
+      "FRESH_INTEGRATED_REVIEW_V3": 1,
+      "FRESH_INTEGRATED_REVIEW_V4": 1,
+      "FRESH_RECORDS_VERIFIER": 1,
+      "MANAGER_GATES_PASS": 1,
+      "REJECT_FINAL_RECORDS_V5": 1,
+      "REJECT_REPAIRED_FAN_IN": 1,
+      "SEALED_BRIEF_DISPATCH": 1,
+      "UNAUTHORIZED_OWNER_STATE_WRITE": 2,
+      "UNSUPPORTED_PROVENANCE_REMOVED": 1,
+      "V5_ONE_FIELD_REMEDIATION": 1,
+      "V5_ONE_FIELD_REMEDIATION_COMPLETE": 1,
+      "VERIFIED_RECORDS_CLOSEOUT": 1
+    }
+  },
+  "events": 27,
+  "record_verification_scope": "V3, V4, V5, V6, Amendment 04, and Amendment 05 are records-only verification/remediation, not product execution",
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 266.881,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG02-PARITY-AMEND-VERIFIER-02",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SES-A2-PKG02-PARITY-AMEND-VERIFIER-02"
+    },
+    {
+      "duration_seconds": 718.743,
+      "events": 4,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PKG02-PARITY-EXECUTOR-01",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SES-A2-PKG02-PARITY-EXECUTOR-01"
+    },
+    {
+      "duration_seconds": 283.0,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PKG02-PARITY-FINAL-VERIFIER-05",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SES-A2-PKG02-PARITY-FINAL-VERIFIER-05"
+    },
+    {
+      "duration_seconds": 254.0,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG02-PARITY-FINAL-VERIFIER-06",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SES-A2-PKG02-PARITY-FINAL-VERIFIER-06"
+    },
+    {
+      "duration_seconds": 277.0,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PKG02-PARITY-INTEGRATED-VERIFIER-03",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SES-A2-PKG02-PARITY-INTEGRATED-VERIFIER-03"
+    },
+    {
+      "duration_seconds": 331.0,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG02-PARITY-INTEGRATED-VERIFIER-04",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SES-A2-PKG02-PARITY-INTEGRATED-VERIFIER-04"
+    },
+    {
+      "duration_seconds": 275.865,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG02-PARITY-VERIFIER-01",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "SES-A2-PKG02-PARITY-VERIFIER-01"
+    },
+    {
+      "duration_seconds": 1159.205,
+      "events": 3,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-PKG02-DAPP86-RERUN-01",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-WI-PKG02-DAPP86-RERUN-01"
+    },
+    {
+      "duration_seconds": 612.054,
+      "events": 4,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG02-DAPP86-RERUN-01-AMEND01",
+      "package_id": "PKG-02",
+      "remediations": 1,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-WI-PKG02-DAPP86-RERUN-01-AMEND01"
+    },
+    {
+      "duration_seconds": 275.529,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG02-DAPP86-RERUN-01-AMEND04",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-WI-PKG02-DAPP86-RERUN-01-AMEND04"
+    },
+    {
+      "duration_seconds": 61.238,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG02-DAPP86-RERUN-01-AMEND05",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "SES-WI-PKG02-DAPP86-RERUN-01-AMEND05"
+    }
+  ],
+  "sessions": 11,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

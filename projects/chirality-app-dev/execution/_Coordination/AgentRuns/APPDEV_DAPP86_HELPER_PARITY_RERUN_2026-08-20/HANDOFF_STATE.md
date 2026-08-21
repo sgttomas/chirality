@@ -1,0 +1,17 @@
+# Manager Handoff State
+
+- Verdict: `BLOCKED / PARTIAL — N2 HELD`
+- Accepted upstream: D-APP-86 Option A; commit `89758a32634ee6cedbd1dbadf35e3728fb48d2eb`; accepted D-APP-88/D-APP-93 closure limited to its recorded signal-binder remedy.
+- Accepted derivative result: the executor truthfully stopped after packaged GUI startup wrote `/Users/ryan/.local/bin/chirality`; the daemon-side two-event/one-item fixture and run-owned cleanup are valid partial evidence. Initial verifier verdict: `ACCEPT_BLOCKED_FAN_IN`; Closeout Amendment 01 verifier verdict: `ACCEPT_AMENDED_FAN_IN`; final run-local verifier verdict: `ACCEPT_FINAL_RECORDS_V6`.
+- Preserved verifier provenance: V3 returned `REJECT_REPAIRED_FAN_IN` solely under an over-strict Receipt-183 containment criterion. Amendment 03 records Agent 0's disposition that the receipt is parent-owned fan-in state excluded from WI attribution; V3 remains preserved and V4 does not erase it.
+- Preserved V5 provenance: V5 returned `REJECT_FINAL_RECORDS_V5` solely because the registered packaged-UI proof hash lagged the whitespace-normalized evidence hash. Agent 0 authorized the one-field correction and dependent binding refresh; V5 remains preserved and no product execution is inferred.
+- Closure: none of the four packaged UI observations or packaged replay rendering is proved; DEL-02-02 is unchanged; dependent PKG-08 node N2 is not released.
+- Agent 0 disposition: accept the truthful blocked/partial facts, hold N2, and do not rerun. The launcher write was caused by omission of live source's verification opt-out `CHIRALITY_SKIP_CLI_LAUNCHER=1`; it is an instrument invocation defect. The launcher remains untouched after the write.
+- Trigger determination: current `desktop:pack` output runs the main Chirality executable with `--runtime-daemon` and contains no distinct D-APP-88 headless helper `.app`; the task's asserted distinct-helper trigger is not established by the live package. No rerun is authorized on this basis.
+- Provenance limit: package existence and hashes are established; retry authorization and successful package-command provenance are `UNKNOWN`.
+- Machine closeout: terminal E1/V1/V2/V3/V4/V5/V6 `STATUS.json` files exist; run-level `REGISTERED_CHECKS.json` is `BLOCKED_PARTIAL`; `RUNTIME_SUMMARY.json` is `PASS` only for ledger completeness with 27 events, 11 matched sessions, and zero unmatched sessions, while closeout remains `BLOCKED / PARTIAL`. V3/V4/V5/V6 and Amendment 04/05 telemetry are records-only sessions, not product execution. Waivers: none.
+- Evidence materialization: the four captured validation logs that carried candidate whitespace are preserved byte-for-byte as deterministic gzip; Amendment 04 binds original and gzip hashes. Authored-record whitespace normalization changes no claim or outcome.
+- Final state: overall `BLOCKED / PARTIAL`; no parity closure or distinct-helper trigger; N2 remains held and no rerun is authorized.
+- Verification handoff: the one-field V5 blocker is corrected and V6 accepted the final pre-finalization records without repair. The unavoidable V6 status/telemetry/hash fan-in is complete for independent Agent 0 review. No V7 is authorized.
+- Derivative status: all run files are evidence/control-plane material only and do not replace product, decomposition, decision, lifecycle, or owner truth.
+- Next owner: App `HELP_HUMAN` for records-tranche integration; `CHANGE` only if Agent 0 chooses to land this failed-node evidence tranche. No further WORKING_ITEMS execution is authorized.

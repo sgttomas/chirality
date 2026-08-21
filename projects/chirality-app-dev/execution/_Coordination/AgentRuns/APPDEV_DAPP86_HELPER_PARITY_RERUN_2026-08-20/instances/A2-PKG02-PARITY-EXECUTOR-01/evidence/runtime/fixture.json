@@ -1,0 +1,169 @@
+{
+  "session": {
+    "schemaVersion": "chirality.session/v2",
+    "projectId": "chirality-app-dev",
+    "projectRoot": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev",
+    "sessionId": "2900d411-0e02-4054-9dd4-5fe8c04716ac",
+    "createdAt": "2026-08-20T21:26:26.149Z",
+    "updatedAt": "2026-08-20T21:26:26.149Z",
+    "persona": "WORKING_ITEMS",
+    "mode": "readOnly",
+    "agentType": 1,
+    "role": "agent1",
+    "engineSelection": {
+      "adapterId": "stub",
+      "providerId": "stub"
+    },
+    "status": "idle",
+    "approvalRef": "D-APP-86"
+  },
+  "frames": [
+    {
+      "type": "harness:event",
+      "data": {
+        "sessionId": "2900d411-0e02-4054-9dd4-5fe8c04716ac",
+        "turnId": "0aae6771-bb6b-4c44-89c1-809619dba7a1",
+        "type": "turn.accepted",
+        "data": {
+          "message": "D-APP-86 post-helper parity fixture transcript item."
+        },
+        "schemaVersion": 1,
+        "eventId": "fd591faf-752f-4c63-975e-ffee28d634c3",
+        "timestamp": "2026-08-20T21:26:26.158Z"
+      }
+    },
+    {
+      "type": "session:init",
+      "data": {
+        "engineSessionId": "stub_54b1e0ae-e42c-4144-986a-d354839e025f",
+        "adapterId": "stub",
+        "providerId": "stub",
+        "model": "stub-parity"
+      }
+    },
+    {
+      "type": "chat:delta",
+      "data": {
+        "text": "D-APP-86 post-helper par"
+      }
+    },
+    {
+      "type": "chat:delta",
+      "data": {
+        "text": "ity fixture transcript i"
+      }
+    },
+    {
+      "type": "chat:delta",
+      "data": {
+        "text": "tem."
+      }
+    },
+    {
+      "type": "chat:complete",
+      "data": {
+        "text": "D-APP-86 post-helper parity fixture transcript item."
+      }
+    },
+    {
+      "type": "session:complete",
+      "data": {}
+    },
+    {
+      "type": "harness:event",
+      "data": {
+        "sessionId": "2900d411-0e02-4054-9dd4-5fe8c04716ac",
+        "turnId": "0aae6771-bb6b-4c44-89c1-809619dba7a1",
+        "type": "turn.completed",
+        "data": {},
+        "schemaVersion": 1,
+        "eventId": "471df70c-adb5-41b8-b70e-d6e543b6da54",
+        "timestamp": "2026-08-20T21:26:26.282Z"
+      }
+    },
+    {
+      "type": "process:exit",
+      "data": {
+        "exitCode": 0
+      }
+    }
+  ],
+  "replay": {
+    "session": {
+      "schemaVersion": "chirality.session/v2",
+      "projectId": "chirality-app-dev",
+      "projectRoot": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev",
+      "sessionId": "2900d411-0e02-4054-9dd4-5fe8c04716ac",
+      "createdAt": "2026-08-20T21:26:26.149Z",
+      "updatedAt": "2026-08-20T21:26:26.287Z",
+      "persona": "WORKING_ITEMS",
+      "mode": "readOnly",
+      "agentType": 1,
+      "role": "agent1",
+      "engineSelection": {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "model": "stub-parity"
+      },
+      "status": "completed",
+      "approvalRef": "D-APP-86",
+      "engineSessionId": "stub_54b1e0ae-e42c-4144-986a-d354839e025f",
+      "adapterSession": {
+        "engineSessionId": "stub_54b1e0ae-e42c-4144-986a-d354839e025f"
+      }
+    },
+    "events": [
+      {
+        "sessionId": "2900d411-0e02-4054-9dd4-5fe8c04716ac",
+        "turnId": "0aae6771-bb6b-4c44-89c1-809619dba7a1",
+        "type": "turn.accepted",
+        "data": {
+          "message": "D-APP-86 post-helper parity fixture transcript item."
+        },
+        "schemaVersion": 1,
+        "eventId": "fd591faf-752f-4c63-975e-ffee28d634c3",
+        "timestamp": "2026-08-20T21:26:26.158Z"
+      },
+      {
+        "sessionId": "2900d411-0e02-4054-9dd4-5fe8c04716ac",
+        "turnId": "0aae6771-bb6b-4c44-89c1-809619dba7a1",
+        "type": "turn.completed",
+        "data": {},
+        "schemaVersion": 1,
+        "eventId": "471df70c-adb5-41b8-b70e-d6e543b6da54",
+        "timestamp": "2026-08-20T21:26:26.282Z"
+      }
+    ],
+    "malformedLineCount": 0,
+    "summary": {
+      "eventCount": 2,
+      "malformedLineCount": 0,
+      "eventTypeCounts": {
+        "turn.accepted": 1,
+        "turn.completed": 1
+      },
+      "firstTimestamp": "2026-08-20T21:26:26.158Z",
+      "lastTimestamp": "2026-08-20T21:26:26.282Z"
+    },
+    "transcript": {
+      "sessionId": "2900d411-0e02-4054-9dd4-5fe8c04716ac",
+      "itemCount": 1,
+      "items": [
+        {
+          "key": "471df70c-adb5-41b8-b70e-d6e543b6da54",
+          "kind": "terminal",
+          "status": "completed",
+          "title": "Turn completed",
+          "timestamp": "2026-08-20T21:26:26.282Z",
+          "eventId": "471df70c-adb5-41b8-b70e-d6e543b6da54",
+          "eventType": "turn.completed",
+          "turnId": "0aae6771-bb6b-4c44-89c1-809619dba7a1"
+        }
+      ],
+      "terminalStatus": "completed",
+      "sdkLinkage": {
+        "engineSessionId": "stub_54b1e0ae-e42c-4144-986a-d354839e025f"
+      }
+    }
+  }
+}
