@@ -1,0 +1,239 @@
+{
+  "binding_groups": {
+    "1_compatibility_and_semantic_package": {
+      "compatibility_identity": "root-runtime-1",
+      "semantic_members": [
+        {
+          "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/AFFECTED_CLIENT_CENSUS_CANDIDATE_V2.md",
+          "sha256": "2bff966d3806078472370cfd0e7f1546064660f325d4a0e2534a71a1a67c7d13"
+        },
+        {
+          "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/DEGRADED_MODE_CONTRACT_COMPOSITE_CANDIDATE_V2.md",
+          "sha256": "7f64cfd2ef567bbceab2d89046137b9d6fbf7ccd49920fa34a76f373547f9153"
+        },
+        {
+          "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/EVIDENCE_AND_CUTOVER_PLAN_CANDIDATE_V2.md",
+          "sha256": "d7c1838cf244595cb287173e44b073dfe73db2bdecd9b9946e851978ed89d95a"
+        },
+        {
+          "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/OWNER_DECISION_RECORD_CANDIDATE_V2.md",
+          "sha256": "2ce3aeae17212c87fa60f02c96ae5cbb0e6d3b9bf2f734417039178230af2e6c"
+        },
+        {
+          "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/ROOT_COMPATIBILITY_CONTRACT_CANDIDATE_V2.md",
+          "sha256": "cbe36a275bfe882c575673c8c70d8598b7f0c724b96fdf9ccae962a036677bc1"
+        },
+        {
+          "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/ROOT_RECOVERY_SEMANTIC_CANDIDATE_V2.md",
+          "sha256": "9b023b347dca4bd255e6c7f2fb499e5654d3ab455f90004be29dd1b545eaf5f8"
+        }
+      ],
+      "sorted_package_manifest": {
+        "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/manifests/V2_CANDIDATE_PACKAGE_MANIFEST.sha256",
+        "sha256": "6005a00695a96eb46e59896f01653d3504ef85b35a7d28509bba8d33171425e2"
+      },
+      "status": "AVAILABLE_ACCEPTED_SEMANTIC_BASIS"
+    },
+    "2_source_and_release_identities": {
+      "release_identity": {
+        "blocking_posture": "BLOCKS_IMPLEMENTATION_CUTOVER_AND_RELEASE",
+        "gate": "Accountable-human release act after implementation, evidence, client-conformance, and cutover fan-in",
+        "identity": null,
+        "owner": "Root accountable human",
+        "reason": "No release commit, distributable identity, or accepted release record exists for root-runtime-1; preparation cannot infer one from the repository basis or semantic package.",
+        "status": "HELD_UNAVAILABLE"
+      },
+      "source_identity": {
+        "blocking_posture": "BLOCKS_IMPLEMENTATION_CUTOVER_AND_RELEASE",
+        "gate": "Separately sealed Root implementation activation with exact accepted source bytes and hashes",
+        "identity": null,
+        "owner": "Root implementation owner under accountable-human gate",
+        "reason": "Repository basis 1b375af4f1219ecfc00fc2755854aa7fd4220901 is the preparation basis only; no exact implemented source identity for root-runtime-1 has been accepted.",
+        "status": "HELD_UNAVAILABLE"
+      }
+    },
+    "3_affected_clients": {
+      "census_member_sha256": "2bff966d3806078472370cfd0e7f1546064660f325d4a0e2534a71a1a67c7d13",
+      "clients": [
+        {
+          "accepted_bases": [
+            {
+              "clauses": [
+                "REQ-004",
+                "REQ-005",
+                "REQ-009",
+                "REQ-048"
+              ],
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+              "sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146"
+            }
+          ],
+          "classification": "AFFECTED",
+          "client": "Root CLI and generic-client path",
+          "exact_operation": "Before each consequential runtime-dependent CLI operation, obtain and exactly compare the daemon compatibility identity; stop on mismatch or any failed precondition without alternate transport, daemon, model, downgrade, or automatic replay; preserve exact machine-readable behavior."
+        },
+        {
+          "accepted_bases": [
+            {
+              "clauses": [
+                "SOW-037",
+                "OI-007",
+                "DEC-021"
+              ],
+              "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+              "sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-005_2026-07-26_2334_Root_Runtime_Client_Boundary/RUN_SUMMARY.md",
+              "sha256": "bce5b987049d08476988fe705bfcaeb1d723f68cc1cd11928c726fbb059c7621"
+            }
+          ],
+          "classification": "AFFECTED",
+          "client": "Chirality App",
+          "exact_operation": "Conform App client session, proxy, compatibility, error/presentation, interruption, and runtime-evidence surfaces to the Root-owned generic contract while preserving the ruled contract re-export and preventing silent fallback or replay."
+        }
+      ],
+      "status": "AVAILABLE_ACCEPTED_SEMANTIC_CENSUS"
+    },
+    "4_conformance_or_migration_evidence": {
+      "clients": [
+        {
+          "blocking_posture": "BLOCKS_CUTOVER_AND_RELEASE",
+          "client": "Chirality App",
+          "gate": "Separately accepted App-owned implementation/conformance tranche and acceptance evidence",
+          "identity": null,
+          "owner": "Chirality App owning authority",
+          "reason": "No App conformance or migration artifact for root-runtime-1 is accepted; SCA-APP-005 preserves later implementation and conformance work.",
+          "status": "HELD_UNAVAILABLE"
+        },
+        {
+          "blocking_posture": "BLOCKS_CUTOVER_AND_RELEASE",
+          "client": "Root CLI and generic-client path",
+          "gate": "Separately accepted Root CLI implementation/conformance gate",
+          "identity": null,
+          "owner": "Root implementation and conformance owner under accountable-human gate",
+          "reason": "The required Root client/CLI conformance matrix is designed but has not been produced, executed, or accepted for root-runtime-1.",
+          "status": "HELD_UNAVAILABLE"
+        }
+      ]
+    },
+    "5_root_semantic_and_regression_evidence": {
+      "blocking_posture": "BLOCKS_CUTOVER_AND_RELEASE",
+      "gate": "Exact Root implementation/check authorization followed by evidence acceptance",
+      "identity": null,
+      "owner": "Root runtime implementation and evidence owners under accountable-human gate",
+      "reason": "The accepted N3 evidence plan remains DESIGN_COMPLETE_NOT_EXECUTED; no complete Root semantic/regression evidence bundle or result hashes exist for root-runtime-1.",
+      "required_design_sha256": "e05b56d3b3a1bd349cd0b9da8e2df761126f2c46c44baf1c9282c6cf55180dd0",
+      "status": "HELD_UNAVAILABLE"
+    },
+    "6_census_relationship_routing_notice_and_findings": {
+      "census": {
+        "identity": "2bff966d3806078472370cfd0e7f1546064660f325d4a0e2534a71a1a67c7d13",
+        "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-SEMANTIC-CANDIDATE-002/candidate_v2/AFFECTED_CLIENT_CENSUS_CANDIDATE_V2.md",
+        "status": "AVAILABLE_ACCEPTED_SEMANTIC_STATE",
+        "value": "ROOT_CLI_AND_APP_AFFECTED__PEC_UNRESOLVED__PIPING_AND_TIER0_NOT_AFFECTED"
+      },
+      "findings": {
+        "items": [
+          {
+            "finding": "REFUTER-V2-F01",
+            "identity": "0f49b9f9f6fa89e5a1a1d8e40d08d2fa0f6b7efe5bba237839cf9d74ba9bd564",
+            "state": "REPAIRED_NON_SEMANTIC_NO_REGENERATION"
+          },
+          {
+            "finding": "N2-F-001",
+            "identity": "14abde6b3b5eb188555c55749c4b6105d8b4fad08d21e9cf3998a76ea9f4ee52",
+            "state": "PEC_UNRESOLVED_NO_WORK_DEPENDENCY_OR_CLOSURE_VETO"
+          }
+        ],
+        "status": "AVAILABLE_ACCEPTED_FINDING_STATE"
+      },
+      "notice": {
+        "blocking_posture": "BLOCKS_CUTOVER_AND_RELEASE",
+        "gate": "Authorized release-fan-in notice issuance and acceptance after exact implementation and client evidence",
+        "identity": null,
+        "owner": "Root release owner and each affected client owner",
+        "reason": "Preparation authorization notices do not constitute the required compatibility cutover/release notice state; no such accepted notice identity exists for root-runtime-1.",
+        "status": "HELD_UNAVAILABLE"
+      },
+      "pec_routing": {
+        "identity": "2ce3aeae17212c87fa60f02c96ae5cbb0e6d3b9bf2f734417039178230af2e6c",
+        "status": "AVAILABLE_ACCEPTED_SEMANTIC_DISPOSITION",
+        "value": "PRESERVE_UNRESOLVED_AND_ROUTE_PEC_OWNED_EXACT_OPERATION_OR_NO_EFFECT_RULING"
+      },
+      "tier_0_relationship": {
+        "blocking_posture": "BLOCKS_CUTOVER_AND_RELEASE_FAN_IN",
+        "gate": "Independent Tier-0 owner relationship act",
+        "identity": null,
+        "owner": "Tier-0 domain coordination authority",
+        "reason": "The accepted semantic selection authorizes preparation and routing of a continue-separate candidate only; no Tier-0 relationship record has been adopted for root-runtime-1.",
+        "status": "HELD_UNAVAILABLE"
+      }
+    },
+    "7_cutover_rollback_replay_and_indeterminate_disposition": {
+      "cutover": {
+        "identity": "d7c1838cf244595cb287173e44b073dfe73db2bdecd9b9946e851978ed89d95a",
+        "status": "AVAILABLE_ACCEPTED_SEMANTIC_DISPOSITION",
+        "value": "Require a separate accountable-human cutover act after exact identities, implementation, complete evidence execution and acceptance, and client fan-in; stop on any failed precondition or drift."
+      },
+      "indeterminate_operation": {
+        "identity": "9b023b347dca4bd255e6c7f2fb499e5654d3ab455f90004be29dd1b545eaf5f8",
+        "status": "AVAILABLE_ACCEPTED_SEMANTIC_DISPOSITION",
+        "value": "Preserve partial output as indeterminate evidence; use turn.recovery_indeterminate for process loss after durable acceptance without a valid durable terminal; never infer completion."
+      },
+      "replay": {
+        "identity": "9b023b347dca4bd255e6c7f2fb499e5654d3ab455f90004be29dd1b545eaf5f8",
+        "status": "AVAILABLE_ACCEPTED_SEMANTIC_DISPOSITION",
+        "value": "Never retry, resume, replay, resend, or infer completion of an indeterminate turn; a later authorized operation is an independent turn with a new identity."
+      },
+      "rollback": {
+        "identity": "d7c1838cf244595cb287173e44b073dfe73db2bdecd9b9946e851978ed89d95a",
+        "status": "AVAILABLE_ACCEPTED_SEMANTIC_DISPOSITION",
+        "value": "Permit source/runtime rollback only before the first recovery-corpus mutation; after that boundary preserve evidence and require proven old-reader safety or separately approved forward repair."
+      }
+    },
+    "8_accountable_human_acts": {
+      "cutover_act": {
+        "blocking_posture": "BLOCKS_CUTOVER_AND_RELEASE",
+        "gate": "Separate accountable-human cutover decision after accepted implementation and evidence fan-in",
+        "identity": null,
+        "owner": "Root accountable human",
+        "reason": "No cutover act has been authorized or recorded for root-runtime-1.",
+        "status": "HELD_UNAVAILABLE"
+      },
+      "implementation_act": {
+        "blocking_posture": "BLOCKS_IMPLEMENTATION_CUTOVER_AND_RELEASE",
+        "gate": "Separately sealed Root implementation activation with lawful Root-local profile, exact checks, reads, writes, rollback, and return contract",
+        "identity": null,
+        "owner": "Root accountable human",
+        "reason": "The 2026-08-21 grant authorizes preparation and validation only; no implementation act exists for root-runtime-1.",
+        "status": "HELD_UNAVAILABLE"
+      },
+      "release_act": {
+        "blocking_posture": "BLOCKS_RELEASE_PUBLICATION_AND_RELIANCE",
+        "gate": "Separate accountable-human release decision after complete accepted fan-in",
+        "identity": null,
+        "owner": "Root accountable human",
+        "reason": "No release act has been authorized or recorded for root-runtime-1.",
+        "status": "HELD_UNAVAILABLE"
+      },
+      "semantic_act": {
+        "accepted_package_manifest_sha256": "6005a00695a96eb46e59896f01653d3504ef85b35a7d28509bba8d33171425e2",
+        "accepted_semantic_snapshot_sha256": "3fc56807c4cd83fd2b5f967848b770adfd226541880629493ddfe8ad3df989aa",
+        "accountable_human": "Ryan Tufts",
+        "authority_transcript_sha256": "6396dd26c3fb8b6ed922c1cb7da584f67a08188d5b27525d650bf3ca1560c566",
+        "date": "2026-08-03",
+        "status": "AVAILABLE_ACCEPTED_SIX_MEMBER_SEMANTIC_ACT"
+      }
+    }
+  },
+  "candidate_identity": "root-runtime-1",
+  "compatibility_epoch": 1,
+  "prepared_against": {
+    "accepted_semantic_snapshot_sha256": "3fc56807c4cd83fd2b5f967848b770adfd226541880629493ddfe8ad3df989aa",
+    "repository_commit": "1b375af4f1219ecfc00fc2755854aa7fd4220901",
+    "scope_of_work_sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146"
+  },
+  "schema": "chirality-del02-compatibility-completion-candidate/v1",
+  "status": "PREPARATION_ONLY_UNACCEPTED"
+}

@@ -3596,3 +3596,60 @@ amendment; owner ruling required).
   transition, release, publication, reliance, foreign-register disposition,
   PR approval, or merge effect is created by this receipt or the bounded
   continuation it records.
+
+### Receipt 112 — 2026-08-21 — DEL-02-06 compatibility preparation and Root housekeeping
+
+- **Mode, basis, and owner direction:** owner-directed `HELP_HUMAN` run with
+  three nodes, exact base
+  `origin/main@1b375af4f1219ecfc00fc2755854aa7fd4220901`, required PR #602
+  ancestor `adf805e0d9ac55787e8ac815c3018467babb7f50`, and one branch/PR
+  closeout. The complete steer is transcribed as `CHAT_TRANSCRIPTION` at
+  `AgentRuns/ROOT_DEL0206_CHANGE_HOUSEKEEPING_2026-08-21/OWNER_DIRECTION_TRANSCRIPT_2026-08-21.md`.
+- **N1 product:** commit `a22ebb592b08969277b8a9faa54eaa649f3b18bf`
+  executed the authorized preparation-only DEL-02-06 WORKING_ITEMS activation.
+  Exact candidate bytes are 14,191 bytes at
+  `execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json`,
+  SHA-256
+  `e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c`.
+  Snapshot `3fc56807...989aa`, sorted manifest `6005a006...25e2`, and all six
+  accepted member hashes reproduce; deterministic, completeness, collision,
+  reserved-value, and 6/6 negative checks pass. Fresh refutation is
+  `ADMIT_FOR_OWNER_EXACT_BYTE_REVIEW` with zero findings. REM-001 is satisfied;
+  lifecycle remains `INITIALIZED`; REM-002/003 and ten honest later-gate holds
+  remain. The bytes are not accepted by this receipt.
+- **N2 isolated failure:** commit
+  `fc0cf67c1f869c641b43d42bdfdc0f8924dc0aab` records an independently
+  reviewed blocker: TM-ROOT-124 says only “under a D-GOV row” and names no
+  exact identity. Existing D-GOV-18/21/26/31 do not authorize the exact
+  amendment. `agents/AGENT_CHANGE.md` is unchanged; no G4 manifest, routed
+  notice, or TM-ROOT-124 closure landed. The row remains OPEN pending an exact
+  owner D-GOV ruling.
+- **N3 federation and register delta:** commit
+  `a8025993c205eb7625cd6d0cf919028fc304de19` ran mandatory preflight and final
+  federation, both COMPLETE over four canonical registers with 79 typed
+  findings and zero federation writes. TM-ROOT-116 moved to archive
+  `CLOSED / RESOLVED_WITH_CHANGE`; TM-ROOT-126/-127 were added OPEN as
+  attention only; every common row and every foreign register remained
+  byte-semantically unchanged. Final Root state is 22 live (`OPEN=12`,
+  `DEFERRED=10`) / 105 archived; hashes
+  `19227d842a7c21043c20b684ec3a25ef133def2aea6c3ce12450d52a227fe3de` /
+  `7185b82085f60ed8af669f3d6cdccb724b6d52624aa5585a171b6656d924c61b`.
+  TM-ROOT-035/-042 both classify `TRIGGER_FIRED` but remain unchanged pending
+  owner promotion rulings.
+- **Fan-in, decisions, checks, and Git closeout:** parent fan-in commit
+  `0f3de6875e2e30b227f824131cd29e9884949600` names the exact owner slate at
+  `AgentRuns/ROOT_DEL0206_CHANGE_HOUSEKEEPING_2026-08-21/OWNER_DECISION_SLATE.md`:
+  exact-byte accept/return/defer; independent TM-ROOT-035/-042 promote/retain;
+  TM-ROOT-124 exact D-GOV identity; and TM-ROOT-126/-127 triage. Root G0–G4,
+  agent instructions 34/0/0, instruction entrypoints, candidate/SOW/register
+  validators, 369 Task Management+validation tests, 350 practitioner tests,
+  practitioner self-check exit 0 with standing findings only, and Git hygiene
+  pass. Branch `codex/root-del0206-change-housekeeping-20260821` was explicitly
+  owner-approved for push to `git@github.com:sgttomas/chirality.git`; PR #605
+  is open against `main`. No artifact-proof label applies and no merge was
+  performed.
+- **Gate:** this receipt is a discovery breadcrumb, not semantic acceptance.
+  Candidate-byte acceptance, implementation, lifecycle promotion, release,
+  publication, reliance, foreign-loop action, PR approval, and merge remain
+  human acts. If `main` advances, a non-rewriting sync requires new owner
+  authorization.

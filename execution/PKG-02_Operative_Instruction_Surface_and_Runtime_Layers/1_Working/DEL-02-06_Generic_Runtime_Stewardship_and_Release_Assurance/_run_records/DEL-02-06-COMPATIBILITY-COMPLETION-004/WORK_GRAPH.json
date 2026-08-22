@@ -1,0 +1,66 @@
+{
+  "accepted_basis": {
+    "repository_commit": "1b375af4f1219ecfc00fc2755854aa7fd4220901",
+    "scope_of_work_sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146",
+    "semantic_snapshot_sha256": "3fc56807c4cd83fd2b5f967848b770adfd226541880629493ddfe8ad3df989aa"
+  },
+  "concurrency": "N0 precedes N1; N2 is released only after manager acceptance of N1; N3 follows accepted N2",
+  "deliverable_id": "DEL-02-06",
+  "edges": [
+    ["N0", "N1"],
+    ["N1", "N2"],
+    ["N2", "N3"]
+  ],
+  "escalation_points": [
+    "accepted member or snapshot drift",
+    "missing required field without an honest held disposition",
+    "identity collision or reserved-value failure",
+    "semantic or authority refutation finding",
+    "candidate acceptance or any scope expansion"
+  ],
+  "fan_in_gates": {
+    "N0": "exact basis, six member hashes, package manifest, lifecycle, dependency, profile, and containment checks pass",
+    "N1": "one deterministic candidate contains every required binding field and does not alter historical members",
+    "N2": "fresh read-only refutation returns ADMIT or enumerated findings for repair",
+    "N3": "all evidence is reconciled and the later accountable-human exact-byte gate is explicit"
+  },
+  "integration_owner": "N1-AUTHOR-COMPATIBILITY-COMPLETION",
+  "nodes": [
+    {
+      "id": "N0",
+      "owner": "WORKING_ITEMS manager",
+      "return": "BASIS_REPRODUCTION.md",
+      "status": "COMPLETED_ACCEPTED",
+      "writes": ["BASIS_REPRODUCTION.md"]
+    },
+    {
+      "id": "N1",
+      "owner": "bounded ephemeral Agent 2 generalist N1-AUTHOR-COMPATIBILITY-COMPLETION",
+      "return": "author/RETURN.md and candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+      "status": "COMPLETED_ACCEPTED_ATTEMPT_2",
+      "writes": ["author/**", "candidate/**"]
+    },
+    {
+      "id": "N2",
+      "owner": "fresh bounded ephemeral Agent 2 generalist N2-FRESH-REFUTER",
+      "return": "refuter/RETURN.md",
+      "status": "COMPLETED_ACCEPTED",
+      "writes": ["refuter/**"]
+    },
+    {
+      "id": "N3",
+      "owner": "WORKING_ITEMS manager",
+      "return": "VALIDATION.md, PACKAGE_MANIFEST.sha256, MANAGER_RETURN.md, HANDOFF_STATE.md",
+      "status": "COMPLETED_ACCEPTED",
+      "writes": ["validation/**", "VALIDATION.md", "PACKAGE_MANIFEST.sha256", "MANAGER_RETURN.md", "HANDOFF_STATE.md", "RUNTIME_EVENTS.jsonl", "RUNTIME_SUMMARY.json"]
+    }
+  ],
+  "package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+  "posture": "MIXED",
+  "retries": {
+    "maximum_repair_review_cycles": 2,
+    "rule": "repair enumerated findings and use a fresh reviewer; after two failed cycles return the failure and stop"
+  },
+  "selection_authority": "Owner E1 ruling dated 2026-08-21 and HELP_HUMAN sealed launch brief",
+  "version": 1
+}
