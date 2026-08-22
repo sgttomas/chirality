@@ -1,6 +1,22 @@
 # DRAFT NOTICE — Root D-APP-48 successor-identity activation request
 
-Status: `DRAFT — NOT ROUTED — NO FOREIGN WRITE`
+Status: `SUPERSEDED — RETAINED — NOT ROUTED — NO FOREIGN WRITE`
+
+## Supersession record
+
+The App-loop owner's 2026-08-21 standing direction adopts
+`projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_TM117_TRIGGER_RESCOPE_AND_DEL0206_PREPARATION_AUTHORIZATION.md`
+(SHA-256
+`fd587b676a55c42feecd2c0e9dbcb96d67a1f2bcff3d5ab66d6fdb78826fdaf0`)
+and makes this duplicate activation request permanently unnecessary.
+
+Root `TM-ROOT-117` closed `RESOLVED_BY_DECISION` through the re-scope option;
+the routed notice supplies the exact replacement trigger for `TM-APP-032` and
+accepts no successor identity. This draft remains in place as historical Task
+Management evidence only. It must not be routed or revived. The replacement
+trigger now awaits accountable-human acceptance of the exact Root
+`DEL-02-06` compatibility-completion package; the owner's separate epoch-1
+selection and preparation-only authorization do not satisfy that gate.
 
 Intended destination:
 `execution/_Coordination/`
