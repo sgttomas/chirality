@@ -21,7 +21,13 @@
   must rerun after PR. Root runtime writes, unrelated App mocks, and tracked
   setup files remain untouched. See
   `_run_records/R12_LOGIN_SESSION_PROOF_PREPARATION_2026-08-21.md`. Logout/login
-  and capture remain unexecuted owner acts; no proof or publication is claimed.
+  and capture remain unexecuted owner acts. A current unsigned app-directory
+  package has now been rebuilt from exact commit
+  `1b375af4f1219ecfc00fc2755854aa7fd4220901`; current-byte instruction-root
+  integrity, including the post-#602 HELP_HUMAN bytes, passed and the concrete
+  two-phase owner procedure is staged without execution in
+  `_run_records/R13_POST_ROOT_LOGIN_PROOF_ENABLEMENT_2026-08-21.md`. No proof or
+  publication is claimed.
 - After a rebuilt C1 artifact exists, the owner may deploy the daemon service
   on the owner's machine and report the result (owner act, not agent work;
   owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
@@ -31,6 +37,20 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-21 - Post-Root login-proof enablement rebuilt the unsigned arm64 app
+  directory with `npm run desktop:pack` from exact commit
+  `1b375af4f1219ecfc00fc2755854aa7fd4220901`. The dependency-boundary and
+  current-byte instruction-root checks passed; source and bundle
+  `AGENT_HELP_HUMAN.md` both match SHA-256
+  `0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981`.
+  The frontend-tree commit-to-HEAD diff is empty. R12's owner procedure is now
+  staged with concrete unique absent proof values, but prepare, logout/login,
+  capture, GUI launch, operator deployment, and proof remain unexecuted owner
+  acts. The accepted first-GUI-launch launcher rewrite is recorded as an
+  expected operator-facing effect, not a park condition. DEL-09-04 remains
+  IN_PROGRESS; no signing, notarization, distribution, publication,
+  release-readiness, issuance, or reliance claim is made. See
+  `_run_records/R13_POST_ROOT_LOGIN_PROOF_ENABLEMENT_2026-08-21.md`.
 - 2026-08-21 - Owner-authorized PREPARE-THEN-OWNER work produced a reviewed
   fail-closed two-phase candidate and minimal future owner procedure. Focused
   tests, syntax, exact scope, practitioner checks, APP-HOLD integrity, and final
