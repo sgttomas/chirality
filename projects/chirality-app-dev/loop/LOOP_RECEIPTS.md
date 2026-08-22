@@ -5526,6 +5526,7 @@
     (post-Root integration and login-proof enablement).`; `This iteration's
     shape is owner-directed; measure it against this direction, not default
     selection. N=3.`; `No merge.` Full transcription is in the RunID root.
+    CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-21, Ryan Tufts, in-session): "I approve a non-rewriting merge of current origin/main into the feature branch, followed by revalidation and push."
   - Pointers: N1 `4f86d690ef2ae737542f577e49e075b1feb72669`;
     N2 `2b0aa00a680f649bc49af528c9a9f3309d137c69`; N3
     `563c6751209177863f0c2fecbd48ad470dd94178`; PR #606; RunID root
