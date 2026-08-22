@@ -1,0 +1,17 @@
+{
+  "schema": "chirality-manager-instance-status/v1",
+  "runId": "APPDEV_POST_ROOT_LOGIN_ENABLEMENT_2026-08-21",
+  "instanceId": "WI-PKG08-POST-ROOT-INTEGRATION-01",
+  "role": "WORKING_ITEMS",
+  "packageId": "PKG-08",
+  "deliverableId": "DEL-08-04",
+  "status": "VALIDATED_PASS",
+  "acceptedBasis": "1b375af4f1219ecfc00fc2755854aa7fd4220901",
+  "workGraphVersion": 1,
+  "acceptedExecutor": "A2-PKG08-INTEGRATION-EXECUTE-02",
+  "freshReviewer": "A2-PKG08-INTEGRATION-REVIEW-01",
+  "actionableFindings": 0,
+  "blockers": [],
+  "rerunsRequired": [],
+  "measurementLimitation": "Runtime token and context occupancy are not exposed."
+}

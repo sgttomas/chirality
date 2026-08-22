@@ -48,8 +48,11 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   `RESOLVED_BY_DECISION`, producing 21 live (`OPEN=11`, `DEFERRED=10`) / 104
   archived. Receipt 112 then records the owner-directed closure/archive of
   `TM-ROOT-116` and creation of attention-only `TM-ROOT-126`/`TM-ROOT-127`,
-  producing the current 22 live (`OPEN=12`, `DEFERRED=10`) / 105 archived
-  state. No D-APP-48 successor identity was accepted.
+  producing 22 live (`OPEN=12`, `DEFERRED=10`) / 105 archived. Receipt 113
+  records the owner-directed promotion of `TM-ROOT-035`/`TM-ROOT-042` and
+  closure/archive of `TM-ROOT-124`, producing the current 21 live
+  (`OPEN=13`, `DEFERRED=8`) / 106 archived state. No D-APP-48 successor
+  identity was accepted.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -94,10 +97,11 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   and rationale are in
   `AMENDMENT_2026-08-09_CANDIDATE_HARVEST_POST_ACCEPTANCE_WHITESPACE.md`.
   The cleaned version is not treated as freshly accepted.
-- `AgentRuns/ROOT_DEL0206_CHANGE_HOUSEKEEPING_2026-08-21/` is the current
-  derivative run package. Its exact-byte and Task Management slate is decision
-  support only. Historical App DEL-09-06 instruction-root evidence and the
-  D-APP-86 parity baseline remain immutable historical evidence.
+- `AgentRuns/ROOT_DEL0206_ACCEPTANCE_DGOV34_2026-08-21/` is the current
+  derivative run package. The DEL-02-06 acceptance snapshot binds the owner's
+  exact-byte act; orchestration, validation, and receipt surfaces remain
+  derivative evidence. Historical App DEL-09-06 instruction-root evidence
+  and the D-APP-86 parity baseline remain immutable historical evidence.
 
 ## 3. Closure verdict
 
@@ -188,6 +192,19 @@ no CHANGE instruction tranche or notices landed. Candidate-byte acceptance,
 implementation, lifecycle promotion, release, publication, reliance, PR
 approval, and merge remain human-gated.
 
+`2026-08-21 DEL-02-06 EXACT-BYTE ACCEPTANCE, TM PROMOTIONS, AND D-GOV-34
+TRANCHE COMPLETE — PR #607 OPEN.` Receipt 113 records D1 acceptance of exactly
+14,191 bytes at SHA-256
+`e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c`;
+the immutable acceptance record SHA-256 is
+`f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4`.
+DEL-02-06 remains `INITIALIZED`; REM-002/003 and all ten held bindings remain.
+TM-ROOT-035/042 are OPEN without disposition; D-GOV-34 and its reviewed
+CHANGE amendment/notices landed in candidate commit `8e704f2b6`; and
+TM-ROOT-124 is archived `RESOLVED_WITH_CHANGE`. TM-ROOT-126/127 remain OPEN
+and unassigned. No implementation, release, publication, reliance, foreign-
+register act, artifact-proof label, or merge is created.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -235,10 +252,11 @@ DEL-02-06 remains `INITIALIZED` until that separately governed activation;
 do not infer package acceptance, implementation, lifecycle, release,
 publication, reliance, or foreign-loop disposition.
 
-For Receipt 112 / PR #605, return the exact candidate bytes and SHA-256 to the
-owner for `ACCEPT_EXACT_BYTES | RETURN_EXACT_BYTES | DEFER_EXACT_BYTES`; do not
-infer selection. Independently return TM-ROOT-035 and TM-ROOT-042 for
-`PROMOTE_TO_OPEN | RETAIN_DEFERRED_WITH_NEW_TRIGGER`, and return TM-ROOT-124
-for an exact D-GOV identity ruling. TM-ROOT-126/-127 await ordinary owner
-triage. Any post-PR main advancement requires explicit authorization before a
-non-rewriting sync; no merge is authorized.
+Receipt 113 discharges the Receipt 112 owner slate exactly: D1 accepted only
+the named bytes, D2/D3 promoted TM-ROOT-035/042 without disposition, and D4
+minted D-GOV-34 for only the TM-ROOT-124 instruction tranche. The accepted
+package's ten held bindings and REM-002/003 require separate future authority;
+do not implement, cut over, promote lifecycle, release, publish, or rely by
+inference. TM-ROOT-126/-127 await ordinary owner triage. PR #607 remains at
+the human merge gate. Any post-PR main sync requires explicit owner
+authorization; no sync or merge is authorized by Receipt 113.

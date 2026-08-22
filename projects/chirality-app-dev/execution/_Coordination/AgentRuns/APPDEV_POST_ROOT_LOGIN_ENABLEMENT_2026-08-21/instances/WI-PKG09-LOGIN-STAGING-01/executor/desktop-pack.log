@@ -1,0 +1,102 @@
+Command: npm run desktop:pack
+WorkingDirectory: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+StartedUTC: 2026-08-22T03:18:07.539Z
+EndedUTC: 2026-08-22T03:18:58.307Z
+ElapsedSeconds: 50.768
+ExitCode: 1
+TranscriptNote: stdout/stderr merged as captured by exec; carriage returns rendered as literal \\r.
+
+
+> chirality-frontend@2.0.0 desktop:pack
+> npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --arm64 --dir --publish never && npm run desktop:verify-dependencies && npm run instruction-root:integrity
+
+
+> chirality-frontend@2.0.0 build
+> NEXT_TELEMETRY_DISABLED=1 next build && npm run build:electron
+
+   ▲ Next.js 15.5.21
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 846ms
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/24) ...
+   Generating static pages (6/24) \r
+   Generating static pages (12/24) \r
+   Generating static pages (18/24) \r
+ ✓ Generating static pages (24/24)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                             Size  First Load JS
+┌ ○ /                                                  713 B         197 kB
+├ ○ /_not-found                                        168 B         103 kB
+├ ƒ /api/harness/agents                                168 B         103 kB
+├ ƒ /api/harness/interrupt                             168 B         103 kB
+├ ƒ /api/harness/permission                            168 B         103 kB
+├ ƒ /api/harness/scaffold                              168 B         103 kB
+├ ƒ /api/harness/session/[id]                          168 B         103 kB
+├ ƒ /api/harness/session/[id]/events                   168 B         103 kB
+├ ƒ /api/harness/session/boot                          168 B         103 kB
+├ ƒ /api/harness/session/create                        168 B         103 kB
+├ ƒ /api/harness/session/list                          168 B         103 kB
+├ ƒ /api/harness/turn                                  168 B         103 kB
+├ ƒ /api/project/deliverables                          168 B         103 kB
+├ ƒ /api/working-root/deliverable/content              168 B         103 kB
+├ ƒ /api/working-root/deliverable/dependencies         168 B         103 kB
+├ ƒ /api/working-root/deliverable/status               168 B         103 kB
+├ ƒ /api/working-root/deliverable/status/transition    168 B         103 kB
+├ ƒ /api/working-root/scope                            168 B         103 kB
+├ ƒ /api/working-root/tree                             168 B         103 kB
+├ ƒ /api/working-root/validate                         168 B         103 kB
+├ ○ /chat                                              589 B         197 kB
+├ ○ /icon.svg                                            0 B            0 B
+├ ○ /pipeline                                          676 B         197 kB
+└ ○ /workbench                                         665 B         197 kB
++ First Load JS shared by all                         102 kB
+  ├ chunks/255-62902f04efbdd792.js                   46.3 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js              54.2 kB
+  └ other shared chunks (total)                      1.93 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> chirality-frontend@2.0.0 build:electron
+> node ./scripts/build-electron.mjs
+
+
+  dist-electron/main.js      1.3mb ⚠️
+  dist-electron/main.js.map  2.4mb
+
+⚡ Done in 30ms
+
+  dist-electron/preload.js       3.5kb
+  dist-electron/preload.js.map  14.4kb
+
+⚡ Done in 1ms
+
+  dist-runtime/chirality-cli.mjs       73.7kb
+  dist-runtime/chirality-cli.mjs.map  180.9kb
+
+⚡ Done in 4ms
+  • electron-builder  version=26.15.3 os=25.6.0
+  • loaded configuration  file=package.json ("build" field)
+  • detected workspace root for project using lock file  pm=npm config=undefined resolved=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend projectDir=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+  • executing @electron/rebuild  electronVersion=43.2.0 arch=arm64 buildFromSource=false workspaceRoot=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend projectDir=./ appDir=./
+  • installing native dependencies  arch=arm64
+  • completed installing native dependencies
+  • packaging       platform=darwin arch=arm64 electron=43.2.0 appOutDir=dist/mac-arm64
+  ⨯ getaddrinfo ENOTFOUND github.com  failedTask=build stackTrace=RequestError: getaddrinfo ENOTFOUND github.com
+    at ClientRequest.<anonymous> (/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/node_modules/got/dist/source/core/index.js:970:111)
+    at Object.onceWrapper (node:events:631:26)
+    at ClientRequest.emit (node:events:521:24)
+    at ClientRequest.origin.emit (/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/node_modules/@szmarczak/http-timer/dist/source/index.js:43:20)
+    at emitErrorEvent (node:_http_client:109:11)
+    at TLSSocket.socketErrorListener (node:_http_client:593:5)
+    at TLSSocket.emit (node:events:509:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at processTicksAndRejections (node:internal/process/task_queues:90:21)
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26)

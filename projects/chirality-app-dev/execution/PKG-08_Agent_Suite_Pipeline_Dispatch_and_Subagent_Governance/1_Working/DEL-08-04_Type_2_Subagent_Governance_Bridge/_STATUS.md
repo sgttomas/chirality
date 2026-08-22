@@ -10,19 +10,21 @@
 
 - Prepare the D-APP-53 §3 Option C per-attempt subagent decision-replay
   decision packet under D-APP-103 (packet authorized; awaiting ruling).
-- After the Root loop lands its separately owned `TM-ROOT-125` metadata,
-  validator, test, and `HELP_HUMAN` allowlist alignment, run and evidence the
-  post-root cross-surface integration check against the already-landed App
-  harness implementation at commit
-  `ac2cd801a06a0679bc86830c627218ccca78b658`: confirm the configured
-  Agent 0 route admits an allowlisted canonical `TASK` Agent 2 and an
-  explicitly enabled ephemeral generalist, preserves fail-closed rejection
-  for unsupported routes, and passes the affected Root validator/tests plus
-  the App managed-delegation and subagent-governance checks. Root surfaces
-  remain Root-owned; no duplicate App implementation or App-to-Root write is
-  in scope.
 
 ## History
+- 2026-08-21 - Completed the post-Root cross-surface integration check on
+  accepted basis `1b375af4f1219ecfc00fc2755854aa7fd4220901` against the
+  unchanged Receipt 172 App harness implementation at
+  `ac2cd801a06a0679bc86830c627218ccca78b658`. The live configured Agent 0
+  route admits allowlisted canonical `TASK` Agent 2 and explicitly opted-in
+  ephemeral generalist Agent 2, while unsupported named Agent 2, unresolved,
+  missing-opt-in, noncanonical TASK-class, and Agent-2-parent routes remain
+  fail-closed. Root validator 34/0/0, Root tests 19/19, App focused tests
+  19/19 and 11/11, and combined App backcheck 30/30 passed. The App loop
+  acknowledges the routed TM-ROOT-125 notice as `INCORPORATED` through this
+  deliverable record; no Root or product-source write occurred. The unrelated
+  D-APP-103 packet item remains. State stays IN_PROGRESS; lifecycle and
+  Checking Approval SHA are unchanged.
 - 2026-08-21 - Owner rehomed the TM-APP-044 residual to DEL-08-04. The
   App-side harness code and tests already landed at
   `ac2cd801a06a0679bc86830c627218ccca78b658` and were integrated under

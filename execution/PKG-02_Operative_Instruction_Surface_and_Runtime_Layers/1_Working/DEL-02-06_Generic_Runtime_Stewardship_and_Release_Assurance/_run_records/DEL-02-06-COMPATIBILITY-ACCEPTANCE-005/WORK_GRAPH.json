@@ -1,0 +1,70 @@
+{
+  "accepted_basis": {
+    "candidate_bytes": 14191,
+    "candidate_sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c",
+    "repository_commit": "33e871fc38d8ef4bb51f7c25cdc6ca2e8dcb69e0",
+    "scope_of_work_sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146",
+    "transcript_sha256": "f38f725f38ab82df105976eb11dc344192b7ffca58bbad3672a1f3d7c6ce36af"
+  },
+  "concurrency": "P0 precedes P1; after P1, P2 review and P3A deterministic evidence assembly may proceed concurrently; P3B terminal manager fan-in follows accepted P2 and completed P3A",
+  "deliverable_id": "DEL-02-06",
+  "edges": [
+    ["P0", "P1"],
+    ["P1", "P2"],
+    ["P1", "P3A"],
+    ["P2", "P3B"],
+    ["P3A", "P3B"]
+  ],
+  "escalation_points": [
+    "candidate byte-length or SHA-256 drift",
+    "authority transcript drift or non-verbatim D1",
+    "historical member or source-manifest drift",
+    "held-binding mutation or inferred lifecycle effect",
+    "App register or other excluded write"
+  ],
+  "fan_in_gates": {
+    "P0": "basis, transcript, candidate bytes, source manifest, Scope of Work, lifecycle, and write boundary reproduce",
+    "P1": "one immutable exact-byte acceptance record, member manifest, status update, and routed App notice preserve every hold",
+    "P2": "fresh read-only reviewer returns PASS with zero actionable findings",
+    "P3A": "snapshot manifest, deterministic validation, and handoff reconcile without claiming reviewer fan-in",
+    "P3B": "manager return accepts the P2 return and records terminal fan-in"
+  },
+  "nodes": [
+    {
+      "id": "P0",
+      "owner": "WORKING_ITEMS manager",
+      "status": "COMPLETED_ACCEPTED",
+      "writes": ["ACTIVATION_RECORD.md", "WORK_GRAPH.json"]
+    },
+    {
+      "id": "P1",
+      "owner": "WORKING_ITEMS manager",
+      "status": "COMPLETED_AWAITING_REVIEW",
+      "writes": ["ACCEPTED_COMPATIBILITY_SNAPSHOT.md", "MEMBER_VERIFICATION.sha256", "_STATUS.md", "App notice"]
+    },
+    {
+      "id": "P2",
+      "owner": "fresh bounded ephemeral Agent 2 generalist",
+      "status": "ACTIVE_REVIEWING",
+      "writes": ["supervising instance review/STATUS.md", "supervising instance review/RETURN.md"]
+    },
+    {
+      "id": "P3A",
+      "owner": "WORKING_ITEMS manager",
+      "status": "COMPLETED_AWAITING_REVIEW",
+      "writes": ["SNAPSHOT_MANIFEST.sha256", "VALIDATION.md", "HANDOFF_STATE.md"]
+    },
+    {
+      "id": "P3B",
+      "owner": "WORKING_ITEMS manager",
+      "status": "HELD_PENDING_ACCEPTED_P2",
+      "writes": ["MANAGER_RETURN.md", "instance STATUS.md", "instance RETURN.md"]
+    }
+  ],
+  "package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+  "posture": "MIXED",
+  "review_rule": "repair every enumerated finding and re-review with a fresh reviewer until PASS",
+  "selection_authority": "D1 owner ruling in transcript f38f725f38ab82df105976eb11dc344192b7ffca58bbad3672a1f3d7c6ce36af and HELP_HUMAN sealed launch brief",
+  "status_semantics": "This version is the immutable pre-terminal-review graph freeze. P2 terminal status is recorded in the external review return and P3B terminal status in the manager/instance return; this file is not mutated after fresh review.",
+  "version": 2
+}

@@ -1,0 +1,138 @@
+Command: npm run desktop:pack
+WorkingDirectory: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+BuildCommit: 1b375af4f1219ecfc00fc2755854aa7fd4220901
+Branch: codex/app-post-root-login-proof
+ToolReportedWallTimeSeconds: approximately 58.016 across the initial exec yield and completion wait
+CompletionAnchorUTC: 2026-08-22T03:25:09.387Z (instruction-root summary generatedAt)
+ExitCode: 0
+TranscriptNote: stdout/stderr were merged by the execution tool. The very long,
+non-fatal electron-builder `duplicate dependency references` diagnostic is
+summarized below; all command stages, verdicts, artifact paths, and failures
+(none) are retained.
+
+> chirality-frontend@2.0.0 desktop:pack
+> npm run build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac --arm64 --dir --publish never && npm run desktop:verify-dependencies && npm run instruction-root:integrity
+
+> chirality-frontend@2.0.0 build
+> NEXT_TELEMETRY_DISABLED=1 next build && npm run build:electron
+
+   ▲ Next.js 15.5.21
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 858ms
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/24) ...
+   Generating static pages (6/24)
+   Generating static pages (12/24)
+   Generating static pages (18/24)
+ ✓ Generating static pages (24/24)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                             Size  First Load JS
+┌ ○ /                                                  713 B         197 kB
+├ ○ /_not-found                                        168 B         103 kB
+├ ƒ /api/harness/agents                                168 B         103 kB
+├ ƒ /api/harness/interrupt                             168 B         103 kB
+├ ƒ /api/harness/permission                            168 B         103 kB
+├ ƒ /api/harness/scaffold                              168 B         103 kB
+├ ƒ /api/harness/session/[id]                          168 B         103 kB
+├ ƒ /api/harness/session/[id]/events                   168 B         103 kB
+├ ƒ /api/harness/session/boot                          168 B         103 kB
+├ ƒ /api/harness/session/create                        168 B         103 kB
+├ ƒ /api/harness/session/list                          168 B         103 kB
+├ ƒ /api/harness/turn                                  168 B         103 kB
+├ ƒ /api/project/deliverables                          168 B         103 kB
+├ ƒ /api/working-root/deliverable/content              168 B         103 kB
+├ ƒ /api/working-root/deliverable/dependencies         168 B         103 kB
+├ ƒ /api/working-root/deliverable/status               168 B         103 kB
+├ ƒ /api/working-root/deliverable/status/transition    168 B         103 kB
+├ ƒ /api/working-root/scope                            168 B         103 kB
+├ ƒ /api/working-root/tree                             168 B         103 kB
+├ ƒ /api/working-root/validate                         168 B         103 kB
+├ ○ /chat                                              589 B         197 kB
+├ ○ /icon.svg                                            0 B            0 B
+├ ○ /pipeline                                          676 B         197 kB
+└ ○ /workbench                                         665 B         197 kB
++ First Load JS shared by all                         102 kB
+  ├ chunks/255-62902f04efbdd792.js                   46.3 kB
+  ├ chunks/4bd1b696-c023c6e3521b1417.js              54.2 kB
+  └ other shared chunks (total)                      1.93 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+> chirality-frontend@2.0.0 build:electron
+> node ./scripts/build-electron.mjs
+
+  dist-electron/main.js      1.3mb ⚠️
+  dist-electron/main.js.map  2.4mb
+
+⚡ Done in 31ms
+
+  dist-electron/preload.js       3.5kb
+  dist-electron/preload.js.map  14.4kb
+
+⚡ Done in 1ms
+
+  dist-runtime/chirality-cli.mjs       73.7kb
+  dist-runtime/chirality-cli.mjs.map  180.9kb
+
+⚡ Done in 3ms
+  • electron-builder  version=26.15.3 os=25.6.0
+  • loaded configuration  file=package.json ("build" field)
+  • detected workspace root for project using lock file  pm=npm config=undefined resolved=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend projectDir=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+  • executing @electron/rebuild  electronVersion=43.2.0 arch=arm64 buildFromSource=false workspaceRoot=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend projectDir=./ appDir=./
+  • installing native dependencies  arch=arm64
+  • completed installing native dependencies
+  • packaging       platform=darwin arch=arm64 electron=43.2.0 appOutDir=dist/mac-arm64
+  • downloaded      label=electron progress=100%
+  • downloaded electron zip extracted successfully  output=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64
+  • searching for node modules  pm=npm searchDir=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+  • duplicate dependency references  dependencies=[long non-fatal electron-builder diagnostic list emitted]
+  • skipped macOS application code signing  reason=, see https://electron.build/code-signing CSC_IDENTITY_AUTO_DISCOVERY=false
+
+> chirality-frontend@2.0.0 desktop:verify-dependencies
+> node ./scripts/verify-packaged-dependency-boundary.mjs
+
+{
+  "status": "PASS",
+  "bundlePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar",
+  "localPackageEntries": 0,
+  "forbiddenDevelopmentPackagesPresent": [],
+  "requiredPackagesPresent": [
+    "@anthropic-ai/claude-agent-sdk",
+    "@earendil-works/pi-coding-agent",
+    "next"
+  ],
+  "packagedRuntimeSourceProof": {
+    "status": "PASS",
+    "desktopSourceCount": 184,
+    "cliSourceCount": 15,
+    "requiredDesktopSources": [
+      "electron/main.ts",
+      "electron/runtime-host.ts",
+      "runtime/packages/client/src/client.ts",
+      "runtime/packages/daemon/src/runtime-daemon.ts",
+      "runtime/packages/engine-claude/src/index.ts",
+      "runtime/packages/engine-pi-omlx/src/pi-omlx-engine.ts"
+    ],
+    "requiredCliSources": [
+      "runtime/packages/cli/src/bin.ts",
+      "runtime/packages/cli/src/cli.ts",
+      "runtime/packages/client/src/client.ts"
+    ]
+  },
+  "failures": []
+}
+
+> chirality-frontend@2.0.0 instruction-root:integrity
+> node ./scripts/verify-instruction-root-integrity.mjs
+
+instruction-root integrity status: pass
+checked files: 43
+source completeness status: needs_remediation
+git sha: 1b375af4f1219ecfc00fc2755854aa7fd4220901
+manifest: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/manifest.json
+summary: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json

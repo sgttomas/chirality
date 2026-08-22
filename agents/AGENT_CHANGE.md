@@ -69,6 +69,16 @@ CHANGE commits and pushes as a matter of course when **all** of the following ho
 
 When these hold, CHANGE does not ask for an `APPROVE:` token; it performs the closeout, then reports commit SHA, push target, remaining dirty files, and validation evidence. **If any condition fails, CHANGE stops with a State Report naming the blocker and the smallest approval or ruling needed.**
 
+Clean-basis branch and worktree-lane creation is also routine CHANGE
+execution. Creating a task branch, and when warranted its worktree lane, from
+a verified clean exact basis on the integration branch requires no `APPROVE:`
+token when status is clean, no Git operation is in progress, and the base SHA
+is recorded. CHANGE reports the branch or lane name and base SHA and proceeds.
+Basing a lane on a dirty worktree, or any switch that would discard or carry
+uncommitted work, remains non-routine and requires the applicable approval
+gate. This exception grants no routine authority for merge, rebase, reset,
+force push, cleanup, history rewrite, or any other state-changing action.
+
 ### Approval token (required for non-routine execution)
 CHANGE executes non-routine state-changing actions only after a human message containing `APPROVE:` followed by an explicit action list (e.g. `APPROVE: apply patch to Docs/Spec.md; git add -A; git commit -m "..."`, or `APPROVE: merge codex/domain-kty into main with --no-ff`). A bare "yes" without an explicit `APPROVE:` list is insufficient for a non-routine action; request the token. For merge execution alone, an owner direction to merge — given by the owner directly or executed by an agent as the owner's proxy — is sufficient for the exact merge it names; record the direction in the loop's ordinary closeout evidence per PRD annex §5.3.1. This token is not required for routine validated closeout.
 

@@ -3653,3 +3653,61 @@ amendment; owner ruling required).
   publication, reliance, foreign-loop action, PR approval, and merge remain
   human acts. If `main` advances, a non-rewriting sync requires new owner
   authorization.
+
+### Receipt 113 — 2026-08-21 — DEL-02-06 exact-byte acceptance, TM promotions, and D-GOV-34
+
+- **Mode and basis:** owner-directed `HELP_HUMAN` N=3 run on branch
+  `codex/root-del0206-acceptance-governance-20260821`, exact base
+  `33e871fc38d8ef4bb51f7c25cdc6ca2e8dcb69e0` containing PR #605 and
+  Receipt 112. The pre-dispatch candidate gate reproduced exactly 14,191
+  bytes at SHA-256
+  `e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c`.
+  The complete direction is `CHAT_TRANSCRIPTION` at
+  `AgentRuns/ROOT_DEL0206_ACCEPTANCE_DGOV34_2026-08-21/OWNER_DIRECTION_TRANSCRIPT_2026-08-21.md`,
+  SHA-256
+  `f38f725f38ab82df105976eb11dc344192b7ffca58bbad3672a1f3d7c6ce36af`.
+- **Four owner rulings, verbatim:**
+  - D1: "ACCEPT_EXACT_BYTES — I accept the file at the path above, exactly 14191 bytes, SHA-256 e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c, as the Root compatibility-completion package for root-runtime-1 (epoch 1). This accepts those bytes only. It authorizes no implementation, cutover, lifecycle promotion, release, publication, reliance, foreign-loop work, or merge; all ten HELD_UNAVAILABLE bindings remain held."
+  - D2: "PROMOTE_TO_OPEN — TM-ROOT-035: Status=OPEN, spent trigger cleared, firing evidence appended; no disposition."
+  - D3: "PROMOTE_TO_OPEN — TM-ROOT-042: Status=OPEN, spent trigger cleared, firing evidence appended; no disposition and no bundling-versus-composition cadence decision."
+  - D4: "Mint D-GOV-34 — I rule that clean-basis branch/worktree-lane creation is routine CHANGE execution and dirty-basis lanes remain non-routine, confirming my 2026-07-19 ruling (App LOOP_RECEIPTS.md Receipt-74 Owner-Direction). D-GOV-34 binds exactly the TM-ROOT-124 amendment to agents/AGENT_CHANGE.md §Routine closeout, its G4 tranche manifest, and routed notices to the App, Piping, and domain-engine loops. It grants nothing else."
+- **N1 / acceptance:** commit
+  `40bdff0928f47d24b44cd48522c3f6771bd5cd25` records the exact-byte
+  acceptance. The immutable
+  `DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md`
+  SHA-256 is
+  `f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4`;
+  its snapshot-manifest SHA-256 is
+  `160b29c1591f5c10889e090060a2a9c7c7e8719dc2ed7678b4027c91176858c7`.
+  Fresh review passed with zero findings. DEL-02-06 stays `INITIALIZED`;
+  REM-002/003 and all ten held bindings remain. The App carrier notice was
+  routed without an App register write.
+- **N2 / promotions:** commit
+  `275b524bc61139ebad96144b1811297b09a99e94` applies D2/D3 only.
+  TM-ROOT-035/042 are OPEN, spent triggers empty, firing evidence appended,
+  and dispositions empty. TM-ROOT-126/127 remain OPEN and unassigned.
+- **N3 / D-GOV-34:** commit
+  `8e704f2b63302c8568c48f8fee7c4681e3ec4262` authors and registers
+  `D-GOV-34_change_clean_basis_lane_routine.md`, amends only
+  `agents/AGENT_CHANGE.md` §Routine closeout, adds the real-base G4 manifest,
+  and routes App/Piping/domain-engine notices. `AGENT_CHANGE.md` pre/post
+  SHA-256 is `950e96f4...4120fa` / `bb2922c5...6a06`; fresh review passed with
+  zero findings.
+- **TM-ROOT-124 closure:** commit
+  `246e8fba0b0d1806cbeafc88b641ece79dc36e4c` closes and archives only
+  `TM-ROOT-124` `RESOLVED_WITH_CHANGE` against exact D-GOV-34, instruction,
+  G4, and N3-return hashes. Final Root state is 21 live (`OPEN=13`,
+  `DEFERRED=8`) / 106 archived; SHA-256
+  `cd0f1b96c500bcf7bc0886a0d5d20459129b10a86b4f106798a560432adcb5e9` /
+  `c05a15d4886ca57dba8460f85be196f239cccf5a1b2394748f1ae90ec91e686c`.
+- **Checks and Git closeout:** Root G0–G4, agent instructions 34/0/0,
+  entrypoints, registers/federation, DEL-02-06 SOW/candidate/6 negative cases,
+  manifests, whitespace, 719 tests, practitioner self-check exit 0, and Git
+  hygiene pass. PR #607 is open against `main`. `main` advanced after branch
+  creation through App-owned PR #606; no sync or rebase was performed. No
+  artifact-proof label applies and no merge was performed.
+- **Gate:** exact-byte acceptance does not authorize use of any held binding.
+  Implementation, cutover, lifecycle promotion, release, publication,
+  reliance, receiving-loop adoption/register work, PR approval, and merge
+  remain separately human-gated. This receipt is a discovery breadcrumb and
+  creates no broader effect.
