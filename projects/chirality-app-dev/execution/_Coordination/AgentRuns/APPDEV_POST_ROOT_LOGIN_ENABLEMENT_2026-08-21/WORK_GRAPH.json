@@ -1,0 +1,45 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "APPDEV_POST_ROOT_LOGIN_ENABLEMENT_2026-08-21",
+  "version": 1,
+  "status": "FROZEN_BEFORE_DISPATCH",
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "accepted_basis": "1b375af4f1219ecfc00fc2755854aa7fd4220901",
+  "nodes": [
+    {
+      "id": "N1",
+      "instance": "WI-PKG08-POST-ROOT-INTEGRATION-01",
+      "manager": "WORKING_ITEMS",
+      "package": "PKG-08",
+      "deliverables": ["DEL-08-04"],
+      "dependencies": [],
+      "write_owner": "DEL-08-04 state/run records plus unique instance records"
+    },
+    {
+      "id": "N2",
+      "instance": "TM-APP-032-RESCOPE-01",
+      "manager": "TASK_MANAGEMENT",
+      "package": "APP_TASK_MANAGEMENT",
+      "deliverables": [],
+      "dependencies": [],
+      "write_owner": "App _TaskManagement only plus unique instance records"
+    },
+    {
+      "id": "N3",
+      "instance": "WI-PKG09-LOGIN-STAGING-01",
+      "manager": "WORKING_ITEMS",
+      "package": "PKG-09",
+      "deliverables": ["DEL-09-04"],
+      "dependencies": [],
+      "write_owner": "DEL-09-04 state/run records plus unique instance records"
+    }
+  ],
+  "shared_surface_owner": "HELP_HUMAN_THEN_CHANGE",
+  "fan_in_gate": "validated manager returns, exact project-only containment, ordered commits N1/N2/N3, after-the-fact receipt, one PR, no merge",
+  "human_decision_points": [
+    "any main advance requiring a non-rewriting sync",
+    "all login/logout/capture and operator deployment acts",
+    "all hard-fence release or issuance acts"
+  ]
+}

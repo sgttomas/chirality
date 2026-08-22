@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-agent2-review-status/v1",
+  "runId": "APPDEV_POST_ROOT_LOGIN_ENABLEMENT_2026-08-21",
+  "parentInstanceId": "WI-PKG08-POST-ROOT-INTEGRATION-01",
+  "childInstanceId": "A2-PKG08-INTEGRATION-REVIEW-01",
+  "agentForm": "fresh-ephemeral-generalist-agent2-reviewer",
+  "status": "COMPLETED",
+  "verdict": "PASS",
+  "acceptedExecutor": "A2-PKG08-INTEGRATION-EXECUTE-02",
+  "acceptedExecutorReturnSha256": "3f51c39e3ddd386da9f34804f6f2379da69f42972821945a781c3248927b070f",
+  "attempt1Accepted": false,
+  "criteriaReviewed": 8,
+  "actionableFindings": [],
+  "reviewerRerun": {
+    "rootValidator": {"exitCode": 0, "files": 34, "errors": 0, "warnings": 0},
+    "rootValidatorTests": {"exitCode": 0, "testsPassed": 19},
+    "combinedAppFocusedTests": {"exitCode": 0, "filesPassed": 2, "testsPassed": 30}
+  },
+  "blockers": [],
+  "rerunsRequired": [],
+  "derivativeEvidence": true,
+  "completedAt": "2026-08-22T03:28:42Z"
+}

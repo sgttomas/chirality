@@ -1,0 +1,121 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 6
+  },
+  "counts": {
+    "category": {
+      "environment": 2,
+      "execution": 4,
+      "fan_in": 2,
+      "orchestration": 2,
+      "record": 1,
+      "review": 4
+    },
+    "event_type": {
+      "CHECK": 1,
+      "FINISH": 6,
+      "REMEDIATION": 1,
+      "RETRY": 1,
+      "START": 6
+    },
+    "outcome": {
+      "BLOCKED": 2,
+      "FAIL": 1,
+      "PASS": 5,
+      "RETRY": 1,
+      "STARTED": 6
+    },
+    "reason_code": {
+      "ACTIVATED": 1,
+      "BOUNDED_NETWORK_ESCALATION": 1,
+      "DISPATCHED": 1,
+      "ELECTRON_CACHE_MISS_NETWORK": 1,
+      "FRESH_RETRY_AFTER_CACHE_MISS": 1,
+      "FRESH_REVIEW": 1,
+      "FRESH_REVIEW_AFTER_REPAIR": 1,
+      "OWNER_BLOCK_CWD_ADDED": 1,
+      "OWNER_BLOCK_CWD_MISSING": 1,
+      "PACKAGE_BUILT": 1,
+      "PACKAGE_RETURN_READY": 1,
+      "RETRY_AFTER_CACHE_MISS": 1,
+      "REVIEW_PASS": 1,
+      "SUPERSEDED_BY_FRESH_EXECUTOR": 1,
+      "VALIDATED_FAN_IN": 1
+    }
+  },
+  "events": 15,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 346.306,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-PKG09-LOGIN-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "A2-PKG09-LOGIN-PACK-01"
+    },
+    {
+      "duration_seconds": 65.022,
+      "events": 3,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-PKG09-LOGIN-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 1,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "A2-PKG09-LOGIN-PACK-01-ATTEMPT2"
+    },
+    {
+      "duration_seconds": 422.683,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-LOGIN-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "A2-PKG09-LOGIN-PACK-02"
+    },
+    {
+      "duration_seconds": 295.771,
+      "events": 2,
+      "final_outcome": "FAIL",
+      "instance_id": "WI-PKG09-LOGIN-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_REVIEWER",
+      "session_id": "A2-PKG09-LOGIN-REVIEW-01"
+    },
+    {
+      "duration_seconds": 231.308,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-LOGIN-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_REVIEWER",
+      "session_id": "A2-PKG09-LOGIN-REVIEW-02"
+    },
+    {
+      "duration_seconds": 1424.973,
+      "events": 4,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-LOGIN-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 1,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG09-LOGIN-STAGING-01"
+    }
+  ],
+  "sessions": 6,
+  "status": "PASS",
+  "unmatched_sessions": []
+}
