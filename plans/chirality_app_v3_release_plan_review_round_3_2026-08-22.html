@@ -1,0 +1,253 @@
+<title>v3 Plan Review Return, Round 3</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F4F5F2; --bg-2:#EBEDE8; --ink:#1C2127; --ink-2:#3C454E; --slate:#5A6570; --line:#CFD4CE;
+  --accent:#136E6A; --accent-soft:#DCEBE9;
+  --p0:#A32D2D; --p0-soft:#F3DEDE; --p1:#A86A12; --p1-soft:#F5E8D2; --p2:#3A6A8F; --p2-soft:#DCE6EF;
+  --ok:#2F7A4E; --ok-soft:#DCEBE0;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151A1F; --bg-2:#1D242B; --ink:#E4E7E2; --ink-2:#C2C8C4; --slate:#97A1A8; --line:#343D45;
+    --accent:#58B8B2; --accent-soft:#1C3634;
+    --p0:#E07A7A; --p0-soft:#3A1F1F; --p1:#E0A85A; --p1-soft:#3A2C17; --p2:#7FB0D6; --p2-soft:#1B2C3A;
+    --ok:#7CC695; --ok-soft:#1B3325;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151A1F; --bg-2:#1D242B; --ink:#E4E7E2; --ink-2:#C2C8C4; --slate:#97A1A8; --line:#343D45;
+  --accent:#58B8B2; --accent-soft:#1C3634;
+  --p0:#E07A7A; --p0-soft:#3A1F1F; --p1:#E0A85A; --p1-soft:#3A2C17; --p2:#7FB0D6; --p2-soft:#1B2C3A;
+  --ok:#7CC695; --ok-soft:#1B3325;
+}
+*{box-sizing:border-box}
+html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code{font-family:var(--mono);font-size:.86em;background:var(--bg-2);padding:.05em .3em;border-radius:3px;word-break:break-all}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr);max-width:1180px;margin:0 auto;padding:0 1.25rem 4rem}
+@media (min-width:980px){.wrap{grid-template-columns:230px minmax(0,1fr);gap:3rem}}
+nav.toc{display:none}
+@media (min-width:980px){
+  nav.toc{display:block;position:sticky;top:1.5rem;align-self:start;font-size:.82rem;padding-top:2.5rem}
+  nav.toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+  nav.toc li a{display:block;padding:.3rem .8rem;color:var(--ink-2);text-decoration:none;border-left:2px solid transparent;margin-left:-1px}
+  nav.toc li a:hover{color:var(--accent);border-left-color:var(--accent)}
+  nav.toc .eyebrow{margin-bottom:.6rem}
+}
+main{max-width:78ch;min-width:0}
+header.masthead{padding:2.5rem 0 1.5rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);font-weight:600}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,2.7rem);line-height:1.1;margin:.4rem 0 .8rem;text-wrap:balance;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-weight:500;font-size:1.55rem;line-height:1.2;margin:2.6rem 0 .8rem;text-wrap:balance}
+h3{font-weight:600;font-size:1rem;margin:1.6rem 0 .5rem}
+p{margin:.6rem 0;max-width:70ch}
+.lede{font-size:1.05rem;color:var(--ink-2);max-width:70ch}
+.meta{display:grid;grid-template-columns:max-content 1fr;gap:.3rem 1rem;font-size:.86rem;margin-top:1.2rem;max-width:none}
+.meta dt{color:var(--slate);font-weight:600}
+.meta dd{margin:0;font-family:var(--mono);font-size:.8rem;word-break:break-all}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:1rem 1.4rem;align-items:start;background:var(--accent-soft);border:1px solid var(--accent);border-radius:6px;padding:1.1rem 1.3rem;margin:1.6rem 0}
+.verdict .word{font-family:var(--serif);font-size:1.55rem;font-weight:600;color:var(--accent);line-height:1.1;letter-spacing:-.01em;max-width:9ch}
+.verdict p{margin:.2rem 0;font-size:.95rem}
+.chip{display:inline-block;font-family:var(--mono);font-size:.72rem;font-weight:500;padding:.12em .5em;border-radius:3px;letter-spacing:.02em;white-space:nowrap}
+.chip.p0{background:var(--p0-soft);color:var(--p0)}
+.chip.p1{background:var(--p1-soft);color:var(--p1)}
+.chip.p2{background:var(--p2-soft);color:var(--p2)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.na{background:var(--bg-2);color:var(--slate)}
+.tbl{overflow-x:auto;margin:1rem 0;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:.55rem .7rem;border-bottom:1px solid var(--line)}
+th{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);background:var(--bg-2);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.id{font-family:var(--mono);font-size:.78rem;white-space:nowrap}
+.qa{border-left:3px solid var(--accent);padding:.1rem 0 .1rem 1rem;margin:1.2rem 0}
+.qa .q{font-weight:600;margin:0 0 .3rem}
+.qa .q .id{font-family:var(--mono);font-size:.78rem;color:var(--accent);margin-right:.5rem}
+.qa p{margin:.35rem 0}
+ul,ol{padding-left:1.3rem;max-width:70ch}
+li{margin:.3rem 0}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem;font-size:.9rem;margin:.8rem 0}
+.kv dt{color:var(--slate);font-weight:600}
+.kv dd{margin:0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--slate)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+  <div class="eyebrow">Contents</div>
+  <ol>
+    <li><a href="#verdict">Verdict and basis</a></li>
+    <li><a href="#checks">The eight requested checks</a></li>
+    <li><a href="#erratum">The erratum (revision 3.1)</a></li>
+    <li><a href="#findings">Findings</a></li>
+    <li><a href="#fidelity">R2-01 … R2-20 fidelity</a></li>
+    <li><a href="#upstream">Upstream facts established</a></li>
+    <li><a href="#corrections">Corrections to round 2</a></li>
+    <li><a href="#routing">Routing and order</a></li>
+    <li><a href="#method">Method</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="masthead">
+  <div class="eyebrow">Independent review return · round 3 · plan §15.4 format · non-governing</div>
+  <h1>Chirality App v3.0.0-rc.1 plan, revision 3: review return</h1>
+  <p class="lede">The owner asked whether revision 3 can be the first implementation candidate or needs another revision. This return answers that question. It does not accept, amend, implement, release, or merge anything; every act named below remains the owner's.</p>
+  <dl class="meta">
+    <dt>Repository SHA reviewed</dt><dd>e4c1ad25360b542389bd33331ed270eac0b88008 (main; PR #613 merge, parents c20d68184 + 3f4aa1064)</dd>
+    <dt>Plan reviewed</dt><dd>plans/chirality_app_v3_release_execution_plan_revision_3_2026-08-22.html · SHA-256 b4a37c705599191b… · evidence baseline c20d68184 (verified as the merge's first parent)</dd>
+    <dt>Prior returns</dt><dd>round 1 (REVISE) · round 2 (ACCEPT WITH REQUIRED CHANGES)</dd>
+    <dt>Reviewer</dt><dd>HELP_HUMAN with three bounded read-only reviewers (contracts/governance/fidelity, executability of the new process shape, upstream facts); decisive claims re-verified directly</dd>
+    <dt>Date</dt><dd>2026-08-22</dd>
+  </dl>
+</header>
+
+<section id="verdict">
+  <div class="verdict">
+    <div class="word">ACCEPT WITH REQUIRED CHANGES</div>
+    <div>
+      <p><strong>Revision 3 can be the first implementation candidate. No fourth revision is needed — a bounded erratum is.</strong> All three reviewers reached this independently. The architecture (launchd-owned supervisor, root-bound workers, hard outer envelope), the gate structure (G0.25/G0.5 plus the feasibility and authority proofs), and the owner rulings are sound and honestly stated as intent rather than authority. Fifteen of twenty round-2 findings are applied faithfully; the five owner amendments are each defensible against the repository, and one (keeping F-APP-2 untouched through preparation) is better grounded than the round-2 recommendation it answers. There is no P0 in the governance or contract review, and no unsupported repository claim in §4–§8 or the appendices.</p>
+      <p><strong>What remains</strong> are contradictions inside text that the gates would later test — so they cannot be carried as gate conditions, because a brief sealed against them would have ambiguous acceptance checks — plus a handful of upstream facts the plan did not have. They amount to a few paragraphs across §4.2, §6.2, §6.4, §8.2, §8.5, Appendix A, B.1, and three gate rows. That is the erratum below, to land before SCA-004 and SCA-APP-008 are drafted.</p>
+    </div>
+  </div>
+
+  <h3>Mechanical verification</h3>
+  <p>Embedded manifest parses (revision 3, baseline <code>c20d68184</code>, supersedes revision 2, cites the round-2 return); 24 manifest gates match §10.1 membership exactly; 26 unique IDs, no broken anchors; all 32 repository-relative links resolve on main; 52 acceptance scenarios contiguous; every AT's primary gate exists and every gate has at least one scenario (G-HELPER, G-ROLE, G-PROT, G-KEY and G-SBX all now have them); all R2-01…20 dispositioned in §14.2 and all V3-01…12 from the plan's own verification pass incorporated; main harness green on <code>e4c1ad253</code>. The frontend tree is still byte-identical to <code>1b375af4f</code>, so WP-00/G0.25 (the DEL-09-04 owner proof) is executable today and is invalidated by the first frontend commit.</p>
+</section>
+
+<section id="checks">
+  <h2>The eight checks §15.4 asked for</h2>
+
+  <div class="qa"><p class="q"><span class="id">1</span>Does revision 3 faithfully carry each R2-01…R2-20 disposition, including the stated amendments?</p><p><strong>Yes.</strong> Fifteen faithful, five amended with sound reasoning, none not-applied or contradicted. The round-2 "untyped may delegate" reversal is now an explicit, argued owner amendment rather than a silent one. Table in §Fidelity.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">2</span>Does the D-GOV-14 / D-APP-68 / DEL-02-03 / SCA route precede native-delegation implementation?</p><p><strong>Yes.</strong> §1.1 names all binding instruments; §8.1 routes a HELPS_HUMANS proposal superseding D-GOV-14 item 7, a separately authorized DEL-02-03 M2 tranche, Root SCA-004 and SCA-APP-008; G0.5's pass evidence lists them; WP-06 enters only after "D-GOV/DEL-02-03/App amendments". Every instrument verified on the checkout: D-GOV-14 item 7 (<code>docs/governance_harness/_DECISIONS/D-GOV-14_pr188_review_closure.md:36–38</code>), D-APP-68, DEL-08-04 SOW sole-mechanism clauses, DEL-02-03's M2 locus in the Root decomposition, SCA-004 and SCA-APP-008 as next-free IDs, D-APP-74 for SCA-APP-004, D-APP-97/F-APP-2, APP-HOLD-1. One residual: the untyped-delegation ruling still needs <code>subagent-governance.ts:205–213</code> (which hard-denies <code>UNTYPED_PERSONA</code>) named as a WP-06 change and the DEL-02-03 text change for untyped stated (R3-07).</p></div>
+
+  <div class="qa"><p class="q"><span class="id">3</span>Does G-ROLE preserve untyped/Agent 0/Agent 1 latitude while mechanically preventing Agent 2/TASK delegation without an invented App Server control?</p><p><strong>The intent is right; the mechanism needs two corrections.</strong> Upstream has no per-thread or per-turn way to disable spawning (per-turn overrides are a closed list); it is a config-layer control only, so the isolated role-specific worker with its own <code>CODEX_HOME</code> is the right shape. But <code>features.multi_agent_v2</code> — present in the 0.149.0 schema, absent from public docs — takes precedence over <code>[agents] enabled</code>, so the Agent 2 profile must set <code>features.multi_agent = false</code> as well as <code>[agents] enabled = false</code>. And Appendix A's <code>acquire()</code> already takes <code>rolePosture</code> unconditionally while §4.2 defers role-keyed workers to G-ROLE. Add the owner pre-decision for G-ROLE failure at G0, since §5.3 forbids both weakening Agent 2 and globally disabling native delegation and pre-decides no fallback (R3-04, R3-08).</p></div>
+
+  <div class="qa"><p class="q"><span class="id">4</span>Can the second LaunchAgent supervisor, root-bound workers, daemon re-attachment, and active-turn continuity be implemented and packaged safely?</p><p><strong>Supervisor and workers: yes, with the host and installer named. Re-attach with continuity: not as written.</strong> The non-Chromium host already exists in the repository — Electron under <code>ELECTRON_RUN_AS_NODE=1</code> (<code>electron/cli-launcher.ts:57</code>) — and no packaged Node binary does; the LaunchAgent renderer hard-codes <code>[exe, --runtime-daemon]</code> (<code>runtime/packages/cli/src/launch-agent.ts:250–254</code>) and needs amending; the install actor for a second job is unnamed. "Peer-UID verification" has no Node API and no addon in the repo; the daemon's own pattern (0700 dir, 0600 socket, owner record with uid, rotated bearer token — <code>runtime-daemon.ts:113–120,171</code>, <code>auth-registry.ts:57–74</code>) is the implementable equivalent. Continuity: turn state is in-memory only (<code>turn-coordinator.ts:71</code>); the daemon's force path returns the SSE iterator, skipping the generator's <code>catch</code>, so no terminal is persisted; there is no attach route; and AT-036 ("fresh threads after restart") contradicts §4.2/AT-048 (R3-01, R3-05, R3-06).</p></div>
+
+  <div class="qa"><p class="q"><span class="id">5</span>Do Root API v2, event schema v2, approval fallback, consent, protected paths, environment, and exact-pin assumptions fail closed at every boundary?</p><p><strong>Mostly, with one upstream fact that breaks a stated boundary.</strong> <code>includePlatformDefaults</code> is not read-only: the Seatbelt profile it appends grants <code>file-write*</code> to <code>/tmp</code>, <code>/private/tmp</code>, <code>/var/tmp</code>, <code>/private/var/tmp</code> after the write policy, so B.1's <code>exclude_slash_tmp = true</code> is cancelled by the <code>includePlatformDefaults: true</code> sent every turn (R3-02). The sibling terminal fan-out that G-SIG tests has no mechanism: the coordinator throws on any event from another session (<code>turn-coordinator.ts:181–191</code>) and <code>interrupt()</code> writes no terminal (R3-03). Consent's per-turn enforcement point has no seat in the coordinator or <code>bootSession</code> today and is missing from §8.5's breaking list; the cwd-rejection limb is cheap and real (<code>session-store.ts:108–110</code>) but a per-turn <code>cwd</code> override upstream is <em>sticky</em>, so client-side rejection is the only control (R3-09). Sentinels run via <code>command/exec</code>, which carries its own policy — proving that call's containment, not <code>turn/start</code>'s (R3-10). Everything else — restricted read envelopes, <code>sourceKinds</code>, <code>thread.sessionId</code>, <code>config/read</code>, <code>configRequirements/read</code>, managed-requirements sources being admin/MDM only, <code>email: null</code>, destination-grouped network prompts, <code>thread/shellCommand</code> and <code>process/*</code> running outside the sandbox — is confirmed.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">6</span>Are all ten Root held bindings and the separate App prerequisites routed without inferred authority?</p><p><strong>Yes.</strong> §8.3 lists all ten by exact snapshot name with owning act and target gate; <code>implementation_act</code> is an explicit WP-03/WP-05 entry condition; §8.3.1 carries F-APP-2, APP-HOLD-1 (register verified header-only, as the plan says), TM-APP-027/028/032. One triage note: the triggers on TM-APP-027/028/032 name the DEL-02-06 exact-bytes acceptance plus a routed Root notice — both occurred on 2026-08-21 — so these may have fired and need owner triage rather than carried deferral (R3-13).</p></div>
+
+  <div class="qa"><p class="q"><span class="id">7</span>Is unsigned preparation, including <code>identity: null</code>, fully separate from the owner release ruling, signing, G-KEY, notarization, and signed-byte reruns?</p><p><strong>Yes.</strong> This is revision 3's cleanest part: <code>identity: null</code> plus disabled auto-discovery at G5; F-APP-2 and D-APP-97 untouched through preparation; the K-RELEASE-1 amendment and fence lift bound to the exact candidate at G6a; the runbook an authored G6a input; G-KEY confined to the release lane; migration and regression rerun on signed bytes at G7. One correction: G-KEY names the Codex <code>keyring</code> store, which does not exist yet, and omits the store that does — Electron <code>safeStorage</code> (<code>electron/api-key-storage.ts</code>), which returns <code>null</code> on decrypt failure, so a re-sign silently degrades both native engines to "no API key" (R3-11). Release-procedure authoring is green-lit early in §9.1 but no work package owns it (R3-12).</p></div>
+
+  <div class="qa"><p class="q"><span class="id">8</span>Is every work package non-orphaned, and what P0/P1 findings or unsupported claims remain?</p><p>Nine of twelve work packages carry a deliverable seat or an explicit non-dispatchable posture; WP-08 names DEL-05-01 (session-folder migration) for outputs that exceed it, and WP-09/WP-10 carry no posture statement (R3-14). Findings below: 0 P0 in governance; 2 P0-class text contradictions from the executability review (R3-01, R3-03) and 1 from upstream (R3-02); the rest P1/P2. Unsupported claims: none about the repository; the upstream corrections in §Upstream.</p></div>
+</section>
+
+<section id="erratum">
+  <h2>The erratum: what revision 3.1 must change</h2>
+  <p>In priority order. Items 1–7 change what the SCA-004 / SCA-APP-008 assessments must cover and should land before those are drafted; 8–9 may ride along.</p>
+  <ol>
+    <li><strong>Reconcile <code>includePlatformDefaults</code> with the temporary-root exclusion</strong> (§6.2, §6.3, B.1, B.2, G-SENT). Either drop <code>includePlatformDefaults</code> and inventory the platform reads Chirality actually needs, or state that <code>/tmp</code> family writes are granted by the platform profile and make G-SENT's <code>/tmp</code> canary the proof that they are not. The two cannot both stand as written.</li>
+    <li><strong>Choose one restart semantic</strong> (§4.2, §6.4, AT-036, AT-048): terminal-on-retirement (today's behaviour, with a persisted terminal on the force path) or persisted turn state plus a new attach route. Write the AT for the chosen one and delete the other.</li>
+    <li><strong>Name the coordinator change for sibling terminalization</strong> (§6.4, §8.5, G-SIG): a coordinator-level API that can write a terminal for a session whose generator is not being pulled, and the failure mode when it cannot.</li>
+    <li><strong>Fix the G-ROLE mechanism</strong> (§5.2, §5.3, B.1, B.2, Appendix A): config-layer only; <code>features.multi_agent = false</code> in the Agent 2 profile in addition to <code>[agents] enabled = false</code>, with <code>multi_agent_v2</code> precedence recorded; make <code>rolePosture</code> optional in <code>acquire()</code> or delete "by default" in §4.2; define <code>closeProject(projectId)</code> against root keying; state how N <code>CODEX_HOME</code>s share one signed-in account; add the G0 owner pre-decision for G-ROLE failure.</li>
+    <li><strong>Name the supervisor host, installer, and socket authentication</strong> (§4.2, §4.3, WP-03, G-HELPER): Electron under <code>ELECTRON_RUN_AS_NODE</code> with a new supervisor entry in the CLI bundle; the <code>@chirality/runtime-cli</code> LaunchAgent-renderer amendment and proof-script re-authoring as WP-03 outputs; the first-run install actor for two jobs; replace "peer-UID verification" with the daemon's 0700/0600 + owner-record + rotated-token pattern (or make a native addon a deliverable with its signing consequence).</li>
+    <li><strong>G-KEY must name <code>safeStorage</code></strong> (§7.2, B.2, G-KEY, AT-051) with a distinguishable typed decrypt-failure state, and add a preparation-lane self-signed A→B dry run so a G-KEY failure is not first discovered on notarized bytes.</li>
+    <li><strong>Close the instrument gaps</strong> (§5.3, §8.2, §9): add K-CONTROL-1 (a second control socket) and K-ROLE-2 (role-keyed workers) rows; name <code>subagent-governance.ts:205–213</code> as a WP-06 change and the DEL-02-03 text change for untyped; seat release-procedure authoring on a carrier; consent port in §8.5.</li>
+    <li><strong>Upstream corrections</strong> (§5.4, §5.5, §7.1, Appendix B, B.1): <code>account/read</code> discriminates on <code>type</code>, not <code>authMode</code> (that field belongs to <code>account/updated</code>); a per-turn <code>cwd</code> override becomes the thread default for later turns; <code>thread/shellCommand</code> has no capability gate (client filtering only) while <code>process/*</code> is closed by not enabling <code>experimentalApi</code>; do not assert per-thread scope for network-prompt grouping, and note <code>port</code> is absent from <code>networkApprovalContext</code> though it participates in grouping; <code>network_access = false</code> is already the default; <code>configRequirements/read</code> returns <code>null</code> on unmanaged machines.</li>
+    <li><strong>Minor</strong>: port <code>isAuthorizedSender</code> to the six credential IPC channels before any second view exists and wire the per-window egress policy to it (G-CSP); add G-KEY to the §10.0 map and G-ENV/G-CSP/G-KEY to Figure 2; dispose <code>turn.cancelled</code> in schema v2; map RQG §13 Shared Runtime Gate; cite PRD_ROOT D-1 beside D-8; rename "supervisor" or note the existing <code>RuntimeBindingSupervisor</code>; restate DEL-02-06's limit as REQ-027 and its exclusion block rather than "an M-sized envelope"; name D-APP-103 as an interacting open item on DEL-08-04.</li>
+  </ol>
+</section>
+
+<section id="findings">
+  <h2>Findings</h2>
+  <p>Classified as the plan asks: <span class="chip na">plan defect</span>, <span class="chip na">governed decision</span>, <span class="chip na">proof pending</span>, <span class="chip na">vendor uncertainty</span>. Severity reflects consequence for sealing a brief, not for the product.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>ID</th><th>Sev</th><th>Plan §</th><th>Claim</th><th>Evidence</th><th>Required change</th><th>Class</th></tr></thead>
+    <tbody>
+    <tr><td class="id">R3-01</td><td><span class="chip p0">P0</span></td><td>§4.2, §6.4, AT-036 vs AT-048</td><td>Daemon retirement re-attaches with active-turn continuity and buffered terminal state.</td><td><code>turn-coordinator.ts:71,90,335,381</code> (in-memory active map; force path skips <code>catch</code>); <code>runtime-daemon.ts:417–467,666–692</code> (no attach route; <code>iterator.return()</code>); <code>main.ts:900</code>; AT-036 says fresh threads after restart.</td><td>Choose one semantic and write its AT; delete the other.</td><td>plan defect</td></tr>
+    <tr><td class="id">R3-02</td><td><span class="chip p0">P0</span></td><td>§6.2, §6.3, B.1, G-SENT</td><td>Workspace-write excludes <code>/tmp</code> and <code>$TMPDIR</code>.</td><td><code>restricted_read_only_platform_defaults.sbpl</code> (rust-v0.149.0) grants <code>file-write*</code> to <code>/tmp</code>, <code>/private/tmp</code>, <code>/var/tmp</code>, <code>/private/var/tmp</code>; appended after <code>file_write_policy</code> in <code>seatbelt.rs</code>; B.1 sends <code>includePlatformDefaults: true</code> every turn.</td><td>Reconcile; make the G-SENT <code>/tmp</code> canary the proof.</td><td>plan defect + vendor uncertainty (end-to-end effect needs a runtime test)</td></tr>
+    <tr><td class="id">R3-03</td><td><span class="chip p0">P0</span></td><td>§6.4, §8.5, G-SIG, AT-014/032</td><td>Exactly-once sibling terminal fan-out in one transaction.</td><td><code>turn-coordinator.ts:181–191</code> rejects cross-session events; <code>:387–392</code> <code>interrupt()</code> writes nothing; <code>session-store.ts:127–140</code>, <code>fs.ts:24–34</code> per-session appends, no cross-session primitive.</td><td>Specify the coordinator terminalization API and the not-being-pulled failure mode in §8.5.</td><td>plan defect</td></tr>
+    <tr><td class="id">R3-04</td><td><span class="chip p1">P1</span></td><td>§5.2, §5.3, B.1, B.2, G-ROLE, App. A</td><td>Agent 2/TASK workers are kept from delegating by a sealed config; "at most one worker per root by default".</td><td>Upstream: no per-thread disable; <code>features.multi_agent_v2</code> overrides <code>[agents] enabled</code> (0.149.0 schema); Appendix A <code>acquire()</code> takes <code>rolePosture</code> unconditionally; §6.3 "an app-specific CODEX_HOME" singular; <code>closeProject(projectId)</code> vs root keying.</td><td>Set <code>features.multi_agent = false</code> too; make <code>rolePosture</code> optional or drop "by default"; define close semantics; state account sharing across homes.</td><td>plan defect</td></tr>
+    <tr><td class="id">R3-05</td><td><span class="chip p1">P1</span></td><td>§4.2, G-HELPER</td><td>Peer-UID verification on the control socket.</td><td>No Node API for <code>LOCAL_PEERCRED</code>; no addon in repo; existing equivalent at <code>runtime-daemon.ts:113–120,171,900–916</code>, <code>auth-registry.ts:57–74</code>, <code>fs.ts:5–8</code>.</td><td>Restate as the daemon's pattern, or make an addon a WP-03 deliverable.</td><td>plan defect</td></tr>
+    <tr><td class="id">R3-06</td><td><span class="chip p1">P1</span></td><td>§4.2, §9 WP-03, G-HELPER, AT-048</td><td>A packaged second LaunchAgent starts the supervisor; migration retires the crash-only job.</td><td><code>build-electron.mjs:112–119</code> (no Node binary; esbuild bundle only); <code>cli-launcher.ts:57</code> (<code>ELECTRON_RUN_AS_NODE=1</code>); <code>launch-agent.ts:250–254</code> hard-coded arguments, pinned by <code>contract-pins.manifest.ts:64</code>; install is an operator IPC act (<code>runtime-control-ipc.ts:143–190</code>); <code>desktop-daemon-posture.ts:42</code> ships <code>always</code> while installed plists may carry crash-only.</td><td>Name host, renderer amendment, proof-script re-authoring, first-run install actor, and whether the daemon job is retained or replaced; key the <code>launchctl print</code> assertion on KeepAlive/arguments.</td><td>plan defect</td></tr>
+    <tr><td class="id">R3-07</td><td><span class="chip p1">P1</span></td><td>§5.3, §8.2, §9, App. C</td><td>Untyped native delegation needs no further instrument.</td><td><code>CONTRACT.md:116</code> K-SUBAGENT-1; DEL-08-04 <code>ScopeOfWork.md:422</code>; <code>subagent-governance.ts:205–208</code> denies <code>UNTYPED_PERSONA</code>; that file is not in §C.1.</td><td>Qualify §5.3 to the delegated-harness-native class; state the DEL-02-03 text change; name the code change as a WP-06 output.</td><td>plan defect + governed decision</td></tr>
+    <tr><td class="id">R3-08</td><td><span class="chip p1">P1</span></td><td>§5.3, G-ROLE</td><td>G-ROLE failure routes to a loop ruling.</td><td>§5.3 forbids both weakening Agent 2 and globally disabling native delegation; no fallback pre-decided, unlike §6.2's read-only fallback.</td><td>Owner pre-decision at G0 alongside TM-APP-025 and the App Sandbox decision.</td><td>governed decision</td></tr>
+    <tr><td class="id">R3-09</td><td><span class="chip p1">P1</span></td><td>§7.4, §8.5, AT-007, G-SENT</td><td>Consent enforced before worker/boot/thread and every turn; cwd changes rejected.</td><td><code>turn-coordinator.ts:73–79,88</code> and <code>runtime-service.ts:164–170,218</code> have no consent dependency; cwd rejection path exists at <code>session-store.ts:42,108–110</code>; upstream: a per-turn <code>cwd</code> override persists as the thread default.</td><td>Add the consent port to §8.5; name the cwd path; record the sticky-override fact.</td><td>plan defect + proof pending</td></tr>
+    <tr><td class="id">R3-10</td><td><span class="chip p1">P1</span></td><td>§6.1, §6.2, G-SENT, AT-018</td><td>Canary sentinels prove enforcement before each turn.</td><td><code>command/exec</code> carries its own <code>sandboxPolicy</code>; descendant canaries are model-driven; no latency budget.</td><td>Assert sentinels under the same <code>turn/start</code> policy; give the descendant limb a fixture pass criterion; state a budget.</td><td>plan defect + proof pending</td></tr>
+    <tr><td class="id">R3-11</td><td><span class="chip p1">P1</span></td><td>§7.2, B.2, G-KEY, AT-051</td><td>G-KEY covers the credential transitions.</td><td><code>safeStorage</code> absent from the plan; <code>api-key-storage.ts:36–38,66–77,83–85,100–105,164</code> returns <code>null</code> on decrypt failure; Codex <code>keyring</code> store exists only in plan prose.</td><td>Name <code>safeStorage</code>; typed decrypt-failure state; preparation-lane self-signed dry run.</td><td>plan defect</td></tr>
+    <tr><td class="id">R3-12</td><td><span class="chip p1">P1</span></td><td>§9.1, WP-09/11, §4.2, §8.2</td><td>Release-procedure authoring may proceed early; contract rows complete.</td><td>§9.1 vs WP-11 "never starts during preparation"; no carrier; Root <code>docs/CONTRACT.md:162</code> K-CONTROL-1 binds control to one socket; <code>:166</code> K-ROLE-2 vs role-keyed workers.</td><td>Seat the runbook; add K-CONTROL-1 and K-ROLE-2 rows.</td><td>plan defect</td></tr>
+    <tr><td class="id">R3-13</td><td><span class="chip p2">P2</span></td><td>§8.3.1</td><td>TM-APP-027/028/032 remain deferred.</td><td>Their triggers name the DEL-02-06 acceptance plus a routed Root notice; both occurred 2026-08-21.</td><td>Surface as owner triage of a possibly-fired trigger.</td><td>governed decision</td></tr>
+    <tr><td class="id">R3-14</td><td><span class="chip p2">P2</span></td><td>§9 WP-08/09/10, §10.0, §11, §15.3</td><td>Seats and maps complete.</td><td>WP-08 cites DEL-05-01 (session-folder migration) for larger outputs; WP-09/10 no posture; §10.0 omits G-KEY; Figure 2 omits G-ENV/G-CSP/G-KEY; no AT names G0–G1; RQG §13 unmapped; D-1 uncited; <code>turn.cancelled</code> undisposed; "supervisor" collides with <code>RuntimeBindingSupervisor</code>.</td><td>Editorial, as listed in erratum item 9.</td><td>plan defect</td></tr>
+    <tr><td class="id">R3-15</td><td><span class="chip p2">P2</span></td><td>§5.4, §5.5, §7.1, App. B</td><td>Upstream field and scope statements.</td><td><code>account/read</code> discriminator is <code>type</code>; <code>thread/shellCommand</code> ungated; grouping scope undocumented and <code>port</code> absent from the context; <code>network_access</code> default already <code>false</code>; device-code response has no expiry.</td><td>Erratum item 8.</td><td>vendor facts</td></tr>
+    <tr><td class="id">R3-16</td><td><span class="chip p2">P2</span></td><td>§12, G-SBX, G6a</td><td>Hardened runtime with an <code>ELECTRON_RUN_AS_NODE</code> host.</td><td>No entitlements plist or signing config exists; <code>cli-launcher.ts:57</code> already depends on the variable.</td><td>Add a G-SBX/G6a obligation to prove the Electron fuse and entitlement set permit <code>ELECTRON_RUN_AS_NODE</code> under Developer ID.</td><td>vendor uncertainty</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="fidelity">
+  <h2>Round-2 findings: how faithfully they were applied</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>R2</th><th>Disposition</th><th>Verdict</th><th>Note</th></tr></thead>
+    <tbody>
+    <tr><td class="id">R2-01</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>All instruments named and verified; "no App instrument can substitute for this Root act".</td></tr>
+    <tr><td class="id">R2-02</td><td>AMEND</td><td><span class="chip p1">partial</span></td><td>Amendment sound (no app-shipped <code>requirements.toml</code>; untyped kept by ruling); instrument set for untyped incomplete (R3-07); mechanism needs <code>multi_agent</code> correction (R3-04).</td></tr>
+    <tr><td class="id">R2-03</td><td>AMEND</td><td><span class="chip ok">faithful as amended</span></td><td>Launch mechanism named; G-HELPER carries the pre-freeze burden; host and installer still to name (R3-06).</td></tr>
+    <tr><td class="id">R2-04</td><td>AMEND</td><td><span class="chip ok">faithful</span></td><td>Took the stronger option: no union-of-roots worker.</td></tr>
+    <tr><td class="id">R2-05</td><td>AMEND</td><td><span class="chip ok">faithful; better grounded than round 2</span></td><td>D-APP-97:20 already permits unsigned preparation under F-APP-2; no narrowing needed.</td></tr>
+    <tr><td class="id">R2-06</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>Runbook as G6a input; <code>identity: null</code>.</td></tr>
+    <tr><td class="id">R2-07</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>All ten bindings by exact name; implementation act as entry condition; App prerequisites table.</td></tr>
+    <tr><td class="id">R2-08</td><td>AMEND</td><td><span class="chip ok">faithful</span></td><td>Spike-first; Root API v2 as a breaking change.</td></tr>
+    <tr><td class="id">R2-09</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>All required rows present; AT-020 exemption deleted. Two new rows needed (R3-12).</td></tr>
+    <tr><td class="id">R2-10</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>Closed schema v2 before the coordinator; full migration set named.</td></tr>
+    <tr><td class="id">R2-11</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>Host daemon, plist and launchd env covered.</td></tr>
+    <tr><td class="id">R2-12</td><td>AMEND</td><td><span class="chip ok">faithful</span></td><td>G-KEY defined, G-PROT reinstated as hard, G-SBX has AT-049, App Sandbox declined.</td></tr>
+    <tr><td class="id">R2-13</td><td>AMEND</td><td><span class="chip p1">partial</span></td><td>SCA-004/SCA-APP-008 named; WP-08/09/10 seats weak (R3-14).</td></tr>
+    <tr><td class="id">R2-14</td><td>ACCEPT</td><td><span class="chip p1">partial</span></td><td>§10.0 map added; G-KEY and RQG §13 missing.</td></tr>
+    <tr><td class="id">R2-15</td><td>AMEND</td><td><span class="chip ok">faithful as amended</span></td><td>D-8 correctly stated; D-1 should be cited beside it.</td></tr>
+    <tr><td class="id">R2-16</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>AT-047 at G5; AT-035/037/052 on signed bytes.</td></tr>
+    <tr><td class="id">R2-17</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>Live port shape restored character-for-character; supervisor port separate.</td></tr>
+    <tr><td class="id">R2-18</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>Enforcement point named; tracked manifest excluded; <code>email: null</code> handled. Code seat still missing (R3-09).</td></tr>
+    <tr><td class="id">R2-19</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>TM-ROOT-106/122 routed; five scenario families restored.</td></tr>
+    <tr><td class="id">R2-20</td><td>ACCEPT</td><td><span class="chip ok">faithful</span></td><td>Adds <code>launchctl print</code> proof beyond what was asked.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="upstream">
+  <h2>Upstream facts established this round</h2>
+  <ul>
+    <li><strong>Confirmed:</strong> the <code>turn/start</code> sandbox-policy shapes (<code>readOnlyAccess</code>/<code>access</code> with <code>restricted</code>, <code>includePlatformDefaults</code>, <code>readableRoots</code>, <code>writableRoots</code>, <code>networkAccess</code>); full read access is the documented default for both modes; <code>allow_login_shell</code> (default <code>true</code>), <code>[sandbox_workspace_write]</code> keys (all default <code>false</code>), <code>[features] multi_agent</code> (stable, on by default), <code>web_search</code> default <code>cached</code>; <code>config/read</code> and <code>configRequirements/read</code> (the latter <code>null</code> when unmanaged); <code>thread/list</code> <code>sourceKinds</code> defaulting to <code>cli</code>/<code>vscode</code> — an app-server client must pass <code>appServer</code> and the <code>subAgent*</code> kinds explicitly; <code>thread.sessionId</code> as the live session-tree root (shared by forks); managed-requirements sources are system, cloud bundle, legacy managed config, and MDM only — not app-shippable; destination-grouped network prompts (host, protocol, port; "may" coalesce); <code>thread/shellCommand</code> and <code>process/*</code> run outside the sandbox; <code>command/exec</code> runs under the server sandbox with its own policy; <code>account/read</code> may return <code>email: null</code>.</li>
+    <li><strong>Corrected:</strong> <code>includePlatformDefaults</code> grants temporary-directory writes (R3-02); no per-thread subagent disable exists and <code>features.multi_agent_v2</code> takes precedence over <code>[agents] enabled</code> (R3-04); a per-turn <code>cwd</code> override becomes the default for later turns on that thread (R3-09); <code>account/read</code>'s discriminator is <code>type</code>; <code>port</code> is not in <code>networkApprovalContext</code>; grouping scope is undocumented.</li>
+    <li><strong>Unverifiable without a runtime test:</strong> whether the temporary-root grant survives end-to-end with <code>exclude_slash_tmp</code>; whether <code>agents.enabled</code> is honoured inside a role config layer; the runtime behaviour of <code>multi_agent_v2</code>; the network-grouping scope; whether the server validates <code>cwd</code> against prior roots.</li>
+  </ul>
+</section>
+
+<section id="corrections">
+  <h2>Corrections to round 2</h2>
+  <ul>
+    <li><strong>Count.</strong> The round-2 return's prose said 15 faithful / 8 partial; its own table shows 10 faithful / 13 partial. Revision 3's §14.2 correction is right; the per-row judgments were unaffected.</li>
+    <li><strong>F-APP-2 narrowing.</strong> Round 2 asked to narrow the fence now. D-APP-97:20 already permits unsigned, local/CI-only preparation artifacts under F-APP-2, so no narrowing is needed until the exact-candidate lift at G6a. Revision 3's amendment is the correct reading.</li>
+    <li><strong><code>signal-shutdown.ts</code>.</strong> One round-2 reviewer claimed it did not exist; it does. The claim was dropped before the round-2 return and is not relied on here.</li>
+  </ul>
+</section>
+
+<section id="routing">
+  <h2>Routing and order</h2>
+  <dl class="kv">
+    <dt>Now, human-only</dt><dd>WP-00/G0.25 — the DEL-09-04 proof on the still-staged <code>1b375af4f</code> package, before any frontend commit; TM-APP-025 and TM-APP-030; the G0 pre-decisions (G-ROLE failure posture, read-only fallback, App Sandbox declined); triage of TM-APP-027/028/032 as possibly fired; authorisation of the 0.149.0 artifact download.</dd>
+    <dt>Plan author</dt><dd>Revision 3.1 erratum, items 1–9, before the scope changes are drafted.</dd>
+    <dt>Root loop</dt><dd>D-GOV supersession proposal (HELPS_HUMANS); DEL-02-03 M2 tranche; SCA-004 assessment creating the supervisor, supply/protocol, account, adapter/event/API-v2 and conformance carriers with a fresh exact-bytes SOW acceptance; TM-ROOT-106/122 dispositions; the G-HELPER, G-SBX, G-PROT, G-ROLE, G-APPR spikes once exact spike briefs are authorized.</dd>
+    <dt>App loop</dt><dd>SCA-APP-008 (new carriers; DEL-04-01/DEL-08-04 amendments with D-APP-103 named; K-RELEASE-1/K-KEY-1/K-SDK-5/K-NET-1/K-CONTROL-1/K-ROLE-2 drafts; <code>subagent-governance.ts</code> change seated); release-runbook authoring on a named carrier; <code>isAuthorizedSender</code> on the credential IPC channels; scanner extension; notices/SBOM tooling.</dd>
+    <dt>Then</dt><dd>G0.5 → G1 as the plan sequences them. Nothing in WP-03/WP-05 starts before the DEL-02-06 implementation activation and the accepted carriers exist.</dd>
+  </dl>
+</section>
+
+<section id="method">
+  <h2>Method and limits</h2>
+  <p>Read-only. Three bounded reviewers worked against a detached scratch checkout of <code>main@e4c1ad253</code>; decisive claims were re-verified directly (D-GOV-14 item 7; DEL-08-04 sole-mechanism clauses; the cross-session event rejection, <code>interrupt()</code>, and force-path iterator return in the coordinator and daemon; the LaunchAgent renderer's hard-coded arguments; <code>ELECTRON_RUN_AS_NODE</code> in the CLI launcher; <code>safeStorage</code> null returns; AT-036 vs AT-048; Appendix A's <code>acquire()</code>). Upstream claims were checked against the official documentation pages as raw Markdown, the <code>rust-v0.149.0</code> <code>config-schema.json</code> (byte-identical to the copy checked in round 2), and the published Seatbelt profile source in the <code>openai/codex</code> repository at that tag. No binary was downloaded; no repository file was modified.</p>
+  <p>Limits: the five runtime questions listed under Upstream; nested-Seatbelt behaviour in a hardened-runtime bundle; Keychain persistence across re-signing; whether the Electron fuse set permits <code>ELECTRON_RUN_AS_NODE</code> under Developer ID. Vendor documentation is quoted as of 2026-08-22.</p>
+</section>
+
+<footer>Round-3 review return for <code>plans/chirality_app_v3_release_execution_plan_revision_3_2026-08-22.html</code> · repo <code>e4c1ad253</code> · prepared 2026-08-22 · derivative decision support; not acceptance, authority, implementation, release, or merge.</footer>
+</main>
+</div>
