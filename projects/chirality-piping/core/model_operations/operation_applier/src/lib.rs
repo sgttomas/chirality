@@ -146,6 +146,14 @@ struct EnteredQuantity {
     unit: String,
 }
 
+#[derive(Debug, Clone, PartialEq)]
+struct EnteredVectorQuantity {
+    x: f64,
+    y: f64,
+    z: f64,
+    unit: String,
+}
+
 fn parse_positive_quantity(value: &Value) -> Option<EnteredQuantity> {
     let record = value.as_object()?;
     let magnitude = record.get("value")?.as_f64()?;
@@ -155,6 +163,23 @@ fn parse_positive_quantity(value: &Value) -> Option<EnteredQuantity> {
     }
     Some(EnteredQuantity {
         value: magnitude,
+        unit: unit.to_string(),
+    })
+}
+
+fn parse_finite_vector_quantity(value: &Value) -> Option<EnteredVectorQuantity> {
+    let record = value.as_object()?;
+    let x = record.get("x")?.as_f64()?;
+    let y = record.get("y")?.as_f64()?;
+    let z = record.get("z")?.as_f64()?;
+    let unit = record.get("unit")?.as_str()?.trim();
+    if !x.is_finite() || !y.is_finite() || !z.is_finite() || unit.is_empty() {
+        return None;
+    }
+    Some(EnteredVectorQuantity {
+        x,
+        y,
+        z,
         unit: unit.to_string(),
     })
 }
@@ -1822,12 +1847,15 @@ fn resolve_create_component(
         );
         return None;
     }
-    if kind != "bend" {
+    if !matches!(
+        kind,
+        "bend" | "tee" | "reducer" | "valve" | "flange" | "expansion_joint"
+    ) {
         checker.push(
             "OP-CREATE-COMPONENT-KIND-UNSUPPORTED",
             "blocking",
             format!("Component kind `{kind}` is not implemented by the bounded component-creation resolver."),
-            "Create a bend, or use a future kind-specific resolver with its own explicit geometry/connectivity contract.",
+            "Create a bend, tee, reducer, valve, flange, or expansion joint, or use a future kind-specific resolver with its own explicit geometry/connectivity contract.",
             vec![target_ref.to_string()],
         );
         return None;
@@ -1845,14 +1873,147 @@ fn resolve_create_component(
     }
     let Some(geometry) = record.get("geometry").and_then(Value::as_object) else {
         checker.push(
-            "OP-CREATE-BEND-GEOMETRY-INVALID",
+            "OP-CREATE-COMPONENT-GEOMETRY-INVALID",
             "blocking",
-            "Bend creation requires an explicit geometry object.".to_string(),
-            "Provide bend pipe mapping, radius, angle, plane orientation, and source reference.",
+            format!("{} creation requires an explicit geometry object.", component_kind_label(kind)),
+            "Provide every explicit geometry and connectivity field required by the selected component family.",
             vec![target_ref.to_string()],
         );
         return None;
     };
+    let canonical_geometry = match kind {
+        "bend" => resolve_bend_creation_geometry(model, target_ref, node, geometry, checker),
+        "tee" => resolve_tee_creation_geometry(model, target_ref, node, geometry, checker),
+        "reducer" | "valve" | "flange" => {
+            resolve_rigid_creation_geometry(model, target_ref, kind, node, geometry, checker)
+        }
+        "expansion_joint" => {
+            resolve_expansion_joint_creation_geometry(model, target_ref, node, geometry, checker)
+        }
+        _ => unreachable!("component kind allowlist checked above"),
+    }?;
+    let canonical_modifiers = if kind == "expansion_joint" {
+        let Some(modifiers) = record.get("modifiers").and_then(Value::as_object) else {
+            checker.push(
+                "OP-CREATE-EXPANSION-JOINT-MODIFIERS-INVALID",
+                "blocking",
+                "Expansion-joint creation requires an explicit modifiers object with four-axis user-entered stiffness data.".to_string(),
+                "Provide every explicit expansion-joint stiffness quantity and its source reference; values are never inferred.",
+                vec![target_ref.to_string()],
+            );
+            return None;
+        };
+        Some(resolve_expansion_joint_creation_modifiers(
+            target_ref, modifiers, checker,
+        )?)
+    } else {
+        None
+    };
+    checker.reference_state = "passed";
+    let mut canonical_record = serde_json::json!({
+        "id": id,
+        "label": label,
+        "kind": kind,
+        "node": node,
+        "geometry": canonical_geometry,
+        "provenance": provenance,
+    });
+    if let Some(modifiers) = canonical_modifiers {
+        canonical_record
+            .as_object_mut()
+            .expect("component record is an object")
+            .insert("modifiers".to_string(), modifiers);
+    }
+    Some(canonical_record)
+}
+
+fn component_kind_label(kind: &str) -> &str {
+    match kind {
+        "bend" => "Bend",
+        "tee" => "Tee",
+        "reducer" => "Reducer",
+        "valve" => "Valve",
+        "flange" => "Flange",
+        "expansion_joint" => "Expansion joint",
+        _ => "Component",
+    }
+}
+
+fn referenced_pipe_is_incident(
+    model: &Value,
+    target_ref: &str,
+    kind: &str,
+    node: &str,
+    pipe_ref: &str,
+    checker: &mut Checker,
+) -> bool {
+    let label = component_kind_label(kind);
+    let Some(pipe) = find_entity(model, "pipe_segments", pipe_ref) else {
+        checker.reference_state = "blocked";
+        checker.push(
+            "OP-COMPONENT-PIPE-NOT-FOUND",
+            "blocking",
+            format!("{label} `{target_ref}` references pipe `{pipe_ref}`, which is absent from the current model."),
+            "Select an existing realized pipe span before creating the component.",
+            vec![target_ref.to_string(), pipe_ref.to_string()],
+        );
+        return false;
+    };
+    let pipe_from = pipe.get("from").and_then(Value::as_str);
+    let pipe_to = pipe.get("to").and_then(Value::as_str);
+    if pipe_from != Some(node) && pipe_to != Some(node) {
+        checker.reference_state = "blocked";
+        checker.push(
+            "OP-COMPONENT-CONNECTIVITY-INVALID",
+            "blocking",
+            format!("{label} node `{node}` is not an endpoint of realized pipe span `{pipe_ref}`."),
+            "Select a component node that is an endpoint of every referenced pipe span.",
+            vec![
+                target_ref.to_string(),
+                node.to_string(),
+                pipe_ref.to_string(),
+            ],
+        );
+        return false;
+    }
+    true
+}
+
+fn entered_quantity_has_dimension(
+    quantity: &EnteredQuantity,
+    dimension: Dimension,
+    target_ref: &str,
+    field_label: &str,
+    checker: &mut Checker,
+) -> bool {
+    if quantity_value_in_unit(quantity, quantity.unit.as_str(), dimension).is_some() {
+        return true;
+    }
+    checker.unit_state = "blocked";
+    let remediation = format!(
+        "Select an accepted {} unit for {field_label}.",
+        dimension.as_str()
+    );
+    checker.push(
+        "OP-UNIT-MISMATCH-CONVERSION-UNAVAILABLE",
+        "blocking",
+        format!(
+            "{field_label} must use an accepted DEC-018 {} unit.",
+            dimension.as_str()
+        ),
+        &remediation,
+        vec![target_ref.to_string()],
+    );
+    false
+}
+
+fn resolve_bend_creation_geometry(
+    model: &Value,
+    target_ref: &str,
+    node: &str,
+    geometry: &serde_json::Map<String, Value>,
+    checker: &mut Checker,
+) -> Option<Value> {
     let pipe_ref = geometry
         .get("bend_pipe_ref")
         .and_then(Value::as_str)
@@ -1887,72 +2048,442 @@ fn resolve_create_component(
         );
         return None;
     }
-    let Some(pipe) = find_entity(model, "pipe_segments", pipe_ref) else {
-        checker.reference_state = "blocked";
-        checker.push(
-            "OP-COMPONENT-PIPE-NOT-FOUND",
-            "blocking",
-            format!("Bend `{target_ref}` references pipe `{pipe_ref}`, which is absent from the current model."),
-            "Select an existing realized pipe span before creating the bend.",
-            vec![target_ref.to_string(), pipe_ref.to_string()],
-        );
-        return None;
-    };
-    let pipe_from = pipe.get("from").and_then(Value::as_str);
-    let pipe_to = pipe.get("to").and_then(Value::as_str);
-    if pipe_from != Some(node) && pipe_to != Some(node) {
-        checker.reference_state = "blocked";
-        checker.push(
-            "OP-COMPONENT-CONNECTIVITY-INVALID",
-            "blocking",
-            format!("Bend node `{node}` is not an endpoint of realized pipe span `{pipe_ref}`."),
-            "Select a component node that is an endpoint of the referenced bend pipe span.",
-            vec![
-                target_ref.to_string(),
-                node.to_string(),
-                pipe_ref.to_string(),
-            ],
-        );
+    if !referenced_pipe_is_incident(model, target_ref, "bend", node, pipe_ref, checker) {
         return None;
     }
     let radius = radius.unwrap();
     let angle = angle.unwrap();
-    if quantity_value_in_unit(&radius, radius.unit.as_str(), Dimension::Length).is_none() {
-        checker.unit_state = "blocked";
-        checker.push(
-            "OP-UNIT-MISMATCH-CONVERSION-UNAVAILABLE",
-            "blocking",
-            "Bend radius must use an accepted DEC-018 length unit.".to_string(),
-            "Select an accepted length unit for bend radius.",
-            vec![target_ref.to_string()],
-        );
+    if !entered_quantity_has_dimension(
+        &radius,
+        Dimension::Length,
+        target_ref,
+        "Bend radius",
+        checker,
+    ) {
         return None;
     }
-    if quantity_value_in_unit(&angle, angle.unit.as_str(), Dimension::Angle).is_none() {
-        checker.unit_state = "blocked";
-        checker.push(
-            "OP-UNIT-MISMATCH-CONVERSION-UNAVAILABLE",
-            "blocking",
-            "Bend angle must use an accepted DEC-018 angle unit.".to_string(),
-            "Select an accepted angle unit for bend angle.",
-            vec![target_ref.to_string()],
-        );
+    if !entered_quantity_has_dimension(&angle, Dimension::Angle, target_ref, "Bend angle", checker)
+    {
         return None;
     }
-    checker.reference_state = "passed";
     Some(serde_json::json!({
-        "id": id,
-        "label": label,
-        "kind": "bend",
-        "node": node,
-        "geometry": {
-            "bend_pipe_ref": pipe_ref,
-            "bend_radius": { "value": radius.value, "unit": radius.unit },
-            "bend_angle": { "value": angle.value, "unit": angle.unit },
-            "bend_plane_orientation": plane,
-            "bend_geometry_source_reference": source,
+        "bend_pipe_ref": pipe_ref,
+        "bend_radius": { "value": radius.value, "unit": radius.unit },
+        "bend_angle": { "value": angle.value, "unit": angle.unit },
+        "bend_plane_orientation": plane,
+        "bend_geometry_source_reference": source,
+    }))
+}
+
+fn resolve_tee_creation_geometry(
+    model: &Value,
+    target_ref: &str,
+    node: &str,
+    geometry: &serde_json::Map<String, Value>,
+    checker: &mut Checker,
+) -> Option<Value> {
+    let header_pipe_ref = geometry
+        .get("branch_header_pipe_ref")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let branch_pipe_ref = geometry
+        .get("branch_branch_pipe_ref")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let connection_type = geometry
+        .get("branch_connection_type")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let reinforcement_reference = geometry
+        .get("branch_reinforcement_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let source = geometry
+        .get("branch_geometry_source_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let run_size = geometry
+        .get("branch_run_size")
+        .and_then(parse_positive_quantity);
+    let header_size = geometry
+        .get("branch_header_size")
+        .and_then(parse_positive_quantity);
+    let angle = geometry
+        .get("branch_connection_angle")
+        .and_then(parse_positive_quantity);
+    if header_pipe_ref.is_empty()
+        || branch_pipe_ref.is_empty()
+        || connection_type.is_empty()
+        || reinforcement_reference.is_empty()
+        || source.is_empty()
+        || run_size.is_none()
+        || header_size.is_none()
+        || angle.is_none()
+    {
+        checker.push(
+            "OP-CREATE-TEE-GEOMETRY-INVALID",
+            "blocking",
+            "Tee geometry requires non-empty header/branch pipe refs, connection type, reinforcement reference, source reference, and finite positive run size, header size, and connection angle quantities.".to_string(),
+            "Complete every explicit tee geometry field; geometry and connectivity are never inferred from the viewport symbol.",
+            vec![target_ref.to_string()],
+        );
+        return None;
+    }
+    if header_pipe_ref == branch_pipe_ref {
+        checker.reference_state = "blocked";
+        checker.push(
+            "OP-COMPONENT-CONNECTIVITY-INVALID",
+            "blocking",
+            format!(
+                "Tee `{target_ref}` must reference distinct header and branch pipe spans; both fields currently name `{header_pipe_ref}`."
+            ),
+            "Select different incident pipe spans for the tee header and branch roles.",
+            vec![target_ref.to_string(), header_pipe_ref.to_string()],
+        );
+        return None;
+    }
+    if !referenced_pipe_is_incident(model, target_ref, "tee", node, header_pipe_ref, checker)
+        || !referenced_pipe_is_incident(model, target_ref, "tee", node, branch_pipe_ref, checker)
+    {
+        return None;
+    }
+    let run_size = run_size.unwrap();
+    let header_size = header_size.unwrap();
+    let angle = angle.unwrap();
+    if !entered_quantity_has_dimension(
+        &run_size,
+        Dimension::Length,
+        target_ref,
+        "Tee run size",
+        checker,
+    ) || !entered_quantity_has_dimension(
+        &header_size,
+        Dimension::Length,
+        target_ref,
+        "Tee header size",
+        checker,
+    ) || !entered_quantity_has_dimension(
+        &angle,
+        Dimension::Angle,
+        target_ref,
+        "Tee connection angle",
+        checker,
+    ) {
+        return None;
+    }
+    Some(serde_json::json!({
+        "branch_header_pipe_ref": header_pipe_ref,
+        "branch_branch_pipe_ref": branch_pipe_ref,
+        "branch_run_size": { "value": run_size.value, "unit": run_size.unit },
+        "branch_header_size": { "value": header_size.value, "unit": header_size.unit },
+        "branch_connection_angle": { "value": angle.value, "unit": angle.unit },
+        "branch_connection_type": connection_type,
+        "branch_reinforcement_reference": reinforcement_reference,
+        "branch_geometry_source_reference": source,
+    }))
+}
+
+fn resolve_expansion_joint_creation_geometry(
+    model: &Value,
+    target_ref: &str,
+    node: &str,
+    geometry: &serde_json::Map<String, Value>,
+    checker: &mut Checker,
+) -> Option<Value> {
+    let pipe_ref = geometry
+        .get("expansion_joint_pipe_ref")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let hardware_reference = geometry
+        .get("hardware_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let manufacturer_reference = geometry
+        .get("manufacturer_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let pressure_thrust_reference = geometry
+        .get("pressure_thrust_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let source_reference = geometry
+        .get("expansion_joint_source_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let effective_area = geometry
+        .get("effective_area")
+        .and_then(parse_positive_quantity);
+    let movement_limit = geometry
+        .get("movement_limit")
+        .and_then(parse_positive_quantity);
+    if pipe_ref.is_empty()
+        || hardware_reference.is_empty()
+        || manufacturer_reference.is_empty()
+        || pressure_thrust_reference.is_empty()
+        || source_reference.is_empty()
+        || effective_area.is_none()
+        || movement_limit.is_none()
+    {
+        checker.push(
+            "OP-CREATE-EXPANSION-JOINT-GEOMETRY-INVALID",
+            "blocking",
+            "Expansion-joint geometry requires a non-empty pipe ref, hardware/manufacturer/pressure-thrust/source references, and finite positive effective-area and movement-limit quantities.".to_string(),
+            "Complete every explicit expansion-joint geometry and connectivity field; pipe roles and engineering values are never inferred.",
+            vec![target_ref.to_string()],
+        );
+        return None;
+    }
+    if !referenced_pipe_is_incident(
+        model,
+        target_ref,
+        "expansion_joint",
+        node,
+        pipe_ref,
+        checker,
+    ) {
+        return None;
+    }
+    let effective_area = effective_area.unwrap();
+    let movement_limit = movement_limit.unwrap();
+    if !entered_quantity_has_dimension(
+        &effective_area,
+        Dimension::Area,
+        target_ref,
+        "Expansion-joint effective area",
+        checker,
+    ) || !entered_quantity_has_dimension(
+        &movement_limit,
+        Dimension::Length,
+        target_ref,
+        "Expansion-joint movement limit",
+        checker,
+    ) {
+        return None;
+    }
+    Some(serde_json::json!({
+        "expansion_joint_pipe_ref": pipe_ref,
+        "effective_area": { "value": effective_area.value, "unit": effective_area.unit },
+        "movement_limit": { "value": movement_limit.value, "unit": movement_limit.unit },
+        "hardware_reference": hardware_reference,
+        "manufacturer_reference": manufacturer_reference,
+        "pressure_thrust_reference": pressure_thrust_reference,
+        "expansion_joint_source_reference": source_reference,
+    }))
+}
+
+fn resolve_expansion_joint_creation_modifiers(
+    target_ref: &str,
+    modifiers: &serde_json::Map<String, Value>,
+    checker: &mut Checker,
+) -> Option<Value> {
+    let axial = modifiers
+        .get("axial_stiffness_user_value")
+        .and_then(parse_positive_quantity);
+    let lateral = modifiers
+        .get("lateral_stiffness_user_value")
+        .and_then(parse_positive_quantity);
+    let angular = modifiers
+        .get("angular_stiffness_user_value")
+        .and_then(parse_positive_quantity);
+    let torsional = modifiers
+        .get("torsional_stiffness_user_value")
+        .and_then(parse_positive_quantity);
+    let source_reference = modifiers
+        .get("source_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    if axial.is_none()
+        || lateral.is_none()
+        || angular.is_none()
+        || torsional.is_none()
+        || source_reference.is_empty()
+    {
+        checker.push(
+            "OP-CREATE-EXPANSION-JOINT-MODIFIERS-INVALID",
+            "blocking",
+            "Expansion-joint modifiers require finite positive axial, lateral, angular, and torsional stiffness quantities plus a non-empty source reference.".to_string(),
+            "Complete all four explicit user-entered stiffness quantities and their source reference; no stiffness value is inferred.",
+            vec![target_ref.to_string()],
+        );
+        return None;
+    }
+    let axial = axial.unwrap();
+    let lateral = lateral.unwrap();
+    let angular = angular.unwrap();
+    let torsional = torsional.unwrap();
+    for (quantity, dimension, field_label) in [
+        (
+            &axial,
+            Dimension::LinearStiffness,
+            "Expansion-joint axial stiffness",
+        ),
+        (
+            &lateral,
+            Dimension::LinearStiffness,
+            "Expansion-joint lateral stiffness",
+        ),
+        (
+            &angular,
+            Dimension::RotationalStiffness,
+            "Expansion-joint angular stiffness",
+        ),
+        (
+            &torsional,
+            Dimension::RotationalStiffness,
+            "Expansion-joint torsional stiffness",
+        ),
+    ] {
+        if !entered_quantity_has_dimension(quantity, dimension, target_ref, field_label, checker) {
+            return None;
+        }
+    }
+    Some(serde_json::json!({
+        "axial_stiffness_user_value": { "value": axial.value, "unit": axial.unit },
+        "lateral_stiffness_user_value": { "value": lateral.value, "unit": lateral.unit },
+        "angular_stiffness_user_value": { "value": angular.value, "unit": angular.unit },
+        "torsional_stiffness_user_value": { "value": torsional.value, "unit": torsional.unit },
+        "source_reference": source_reference,
+    }))
+}
+
+fn resolve_rigid_creation_geometry(
+    model: &Value,
+    target_ref: &str,
+    kind: &str,
+    node: &str,
+    geometry: &serde_json::Map<String, Value>,
+    checker: &mut Checker,
+) -> Option<Value> {
+    let pipe_ref = geometry
+        .get("rigid_pipe_ref")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let end_a_reference = geometry
+        .get("connection_end_a_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let end_b_reference = geometry
+        .get("connection_end_b_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let stiffness_reference = geometry
+        .get("stiffness_behavior_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let source = geometry
+        .get("rigid_component_source_reference")
+        .and_then(Value::as_str)
+        .unwrap_or("")
+        .trim();
+    let body_length = geometry
+        .get("rigid_body_length")
+        .and_then(parse_positive_quantity);
+    let end_a_size = geometry.get("end_a_size").and_then(parse_positive_quantity);
+    let end_b_size = geometry.get("end_b_size").and_then(parse_positive_quantity);
+    let weight = geometry.get("weight").and_then(parse_positive_quantity);
+    let center_of_gravity = geometry
+        .get("center_of_gravity")
+        .and_then(parse_finite_vector_quantity);
+    if pipe_ref.is_empty()
+        || end_a_reference.is_empty()
+        || end_b_reference.is_empty()
+        || stiffness_reference.is_empty()
+        || source.is_empty()
+        || body_length.is_none()
+        || end_a_size.is_none()
+        || end_b_size.is_none()
+        || weight.is_none()
+        || center_of_gravity.is_none()
+    {
+        checker.push(
+            "OP-CREATE-RIGID-COMPONENT-GEOMETRY-INVALID",
+            "blocking",
+            format!("{} geometry requires a non-empty pipe ref, end references, stiffness-behavior reference, source reference, finite positive body length/end sizes/weight, and a finite center-of-gravity vector with an explicit unit.", component_kind_label(kind)),
+            "Complete every explicit rigid-component geometry field; geometry and connectivity are never inferred from the viewport symbol.",
+            vec![target_ref.to_string()],
+        );
+        return None;
+    }
+    if !referenced_pipe_is_incident(model, target_ref, kind, node, pipe_ref, checker) {
+        return None;
+    }
+    let body_length = body_length.unwrap();
+    let end_a_size = end_a_size.unwrap();
+    let end_b_size = end_b_size.unwrap();
+    let weight = weight.unwrap();
+    let center_of_gravity = center_of_gravity.unwrap();
+    let label = component_kind_label(kind);
+    if !entered_quantity_has_dimension(
+        &body_length,
+        Dimension::Length,
+        target_ref,
+        &format!("{label} body length"),
+        checker,
+    ) || !entered_quantity_has_dimension(
+        &end_a_size,
+        Dimension::Length,
+        target_ref,
+        &format!("{label} end A size"),
+        checker,
+    ) || !entered_quantity_has_dimension(
+        &end_b_size,
+        Dimension::Length,
+        target_ref,
+        &format!("{label} end B size"),
+        checker,
+    ) || !entered_quantity_has_dimension(
+        &weight,
+        Dimension::Force,
+        target_ref,
+        &format!("{label} weight"),
+        checker,
+    ) {
+        return None;
+    }
+    let center_unit_probe = EnteredQuantity {
+        value: 1.0,
+        unit: center_of_gravity.unit.clone(),
+    };
+    if !entered_quantity_has_dimension(
+        &center_unit_probe,
+        Dimension::Length,
+        target_ref,
+        &format!("{label} center of gravity"),
+        checker,
+    ) {
+        return None;
+    }
+    Some(serde_json::json!({
+        "rigid_pipe_ref": pipe_ref,
+        "rigid_body_length": { "value": body_length.value, "unit": body_length.unit },
+        "end_a_size": { "value": end_a_size.value, "unit": end_a_size.unit },
+        "end_b_size": { "value": end_b_size.value, "unit": end_b_size.unit },
+        "weight": { "value": weight.value, "unit": weight.unit },
+        "center_of_gravity": {
+            "x": center_of_gravity.x,
+            "y": center_of_gravity.y,
+            "z": center_of_gravity.z,
+            "unit": center_of_gravity.unit,
         },
-        "provenance": provenance,
+        "connection_end_a_reference": end_a_reference,
+        "connection_end_b_reference": end_b_reference,
+        "stiffness_behavior_reference": stiffness_reference,
+        "rigid_component_source_reference": source,
     }))
 }
 
@@ -7494,6 +8025,47 @@ mod tests {
             .collect()
     }
 
+    fn expansion_joint_payload() -> Value {
+        json!({
+            "id": "component:C-expansion-joint",
+            "label": "User expansion joint",
+            "kind": "expansion_joint",
+            "node": "node:N-2",
+            "geometry": {
+                "expansion_joint_pipe_ref": "pipe:P-1",
+                "effective_area": { "value": 27.9, "unit": "in^2" },
+                "movement_limit": { "value": 1.75, "unit": "in" },
+                "hardware_reference": "user_entered_tie_rod_limit_metadata",
+                "manufacturer_reference": "user_entered_manufacturer_reference",
+                "pressure_thrust_reference": "user_entered_pressure_thrust_review",
+                "expansion_joint_source_reference": "user_entered_expansion_joint_geometry"
+            },
+            "modifiers": {
+                "axial_stiffness_user_value": { "value": 3200000.0, "unit": "N/m" },
+                "lateral_stiffness_user_value": { "value": 900000.0, "unit": "N/m" },
+                "angular_stiffness_user_value": { "value": 480000.0, "unit": "N*m/rad" },
+                "torsional_stiffness_user_value": { "value": 620000.0, "unit": "N*m/rad" },
+                "source_reference": "user_entered_expansion_joint_stiffness"
+            },
+            "provenance": "user_entered_local_preview"
+        })
+    }
+
+    fn expansion_joint_intent(payload: &Value) -> Value {
+        let mut intent = modify_intent(
+            "Component",
+            "component:C-expansion-joint",
+            "insert_component_symbol",
+            "components",
+            "not_present",
+            &payload.to_string(),
+            "none",
+            "dimensionless",
+        );
+        intent["operation_kind"] = json!("insert");
+        intent
+    }
+
     #[test]
     fn validate_passes_and_never_mutates_for_a_current_quantity_edit() {
         let model = sample_model();
@@ -10861,6 +11433,335 @@ mod tests {
         let disconnected = apply_operation(&disconnected_model, &intent, None);
         assert!(codes(&disconnected).contains(&"OP-COMPONENT-CONNECTIVITY-INVALID"));
         assert!(disconnected.applied_model.is_none());
+    }
+
+    #[test]
+    fn explicit_tee_creation_applies_with_two_incident_pipes_and_explicit_geometry() {
+        let mut model = sample_model();
+        model["nodes"].as_array_mut().unwrap().push(json!({
+            "id": "node:N-3",
+            "label": "Branch end",
+            "position": { "x": 3.2, "y": 2.0, "z": 0.0 },
+            "provenance": "invented_example"
+        }));
+        model["pipe_segments"].as_array_mut().unwrap().push(json!({
+            "id": "pipe:P-2",
+            "label": "Branch",
+            "from": "node:N-2",
+            "to": "node:N-3",
+            "section": {
+                "outside_diameter": { "value": 0.114, "unit": "m" },
+                "wall_thickness": { "value": 0.006, "unit": "m" }
+            },
+            "material": "material:steel",
+            "provenance": "invented_example"
+        }));
+        let payload = json!({
+            "id": "component:C-tee",
+            "label": "User tee",
+            "kind": "tee",
+            "node": "node:N-2",
+            "geometry": {
+                "branch_header_pipe_ref": "pipe:P-1",
+                "branch_branch_pipe_ref": "pipe:P-2",
+                "branch_run_size": { "value": 168.0, "unit": "mm" },
+                "branch_header_size": { "value": 114.0, "unit": "mm" },
+                "branch_connection_angle": { "value": 90.0, "unit": "deg" },
+                "branch_connection_type": "user_entered_tee",
+                "branch_reinforcement_reference": "user_entered_no_reinforcement",
+                "branch_geometry_source_reference": "user_entered_component_form"
+            },
+            "provenance": "user_entered_local_preview"
+        });
+        let mut intent = modify_intent(
+            "Component",
+            "component:C-tee",
+            "insert_component_symbol",
+            "components",
+            "not_present",
+            &payload.to_string(),
+            "none",
+            "dimensionless",
+        );
+        intent["operation_kind"] = json!("insert");
+
+        let outcome = apply_operation(&model, &intent, None);
+        assert!(outcome.diagnostics.is_empty(), "{:?}", outcome.diagnostics);
+        let applied = outcome.applied_model.expect("applied model");
+        assert_eq!(applied["components"].as_array().unwrap().len(), 2);
+        assert_eq!(applied["components"][1], payload);
+    }
+
+    #[test]
+    fn explicit_reducer_valve_and_flange_creation_apply_through_rigid_geometry_contract() {
+        for kind in ["reducer", "valve", "flange"] {
+            let model = sample_model();
+            let component_id = format!("component:C-{kind}");
+            let payload = json!({
+                "id": component_id,
+                "label": format!("User {kind}"),
+                "kind": kind,
+                "node": "node:N-2",
+                "geometry": {
+                    "rigid_pipe_ref": "pipe:P-1",
+                    "rigid_body_length": { "value": 320.0, "unit": "mm" },
+                    "end_a_size": { "value": 168.0, "unit": "mm" },
+                    "end_b_size": { "value": 114.0, "unit": "mm" },
+                    "weight": { "value": 420.0, "unit": "N" },
+                    "center_of_gravity": { "x": 120.0, "y": 0.0, "z": 0.0, "unit": "mm" },
+                    "connection_end_a_reference": "user_entered_end_a",
+                    "connection_end_b_reference": "user_entered_end_b",
+                    "stiffness_behavior_reference": "user_entered_rigid_behavior",
+                    "rigid_component_source_reference": "user_entered_component_form"
+                },
+                "provenance": "user_entered_local_preview"
+            });
+            let mut intent = modify_intent(
+                "Component",
+                &component_id,
+                "insert_component_symbol",
+                "components",
+                "not_present",
+                &payload.to_string(),
+                "none",
+                "dimensionless",
+            );
+            intent["operation_kind"] = json!("insert");
+
+            let outcome = apply_operation(&model, &intent, None);
+            assert!(
+                outcome.diagnostics.is_empty(),
+                "{kind}: {:?}",
+                outcome.diagnostics
+            );
+            let applied = outcome.applied_model.expect("applied model");
+            assert_eq!(applied["components"].as_array().unwrap().len(), 2);
+            assert_eq!(applied["components"][1], payload);
+        }
+    }
+
+    #[test]
+    fn tee_and_rigid_component_creation_block_incomplete_or_disconnected_geometry() {
+        let model = sample_model();
+        let mut tee_intent = modify_intent(
+            "Component",
+            "component:C-tee",
+            "insert_component_symbol",
+            "components",
+            "not_present",
+            r#"{"id":"component:C-tee","label":"Tee","kind":"tee","node":"node:N-2","geometry":{"branch_header_pipe_ref":"pipe:P-1","branch_branch_pipe_ref":"pipe:missing","branch_run_size":{"value":0.168,"unit":"m"},"branch_header_size":{"value":0.114,"unit":"m"},"branch_connection_angle":{"value":90,"unit":"deg"},"branch_connection_type":"user","branch_reinforcement_reference":"user","branch_geometry_source_reference":"user"},"provenance":"user"}"#,
+            "none",
+            "dimensionless",
+        );
+        tee_intent["operation_kind"] = json!("insert");
+        let missing_pipe = apply_operation(&model, &tee_intent, None);
+        assert!(codes(&missing_pipe).contains(&"OP-COMPONENT-PIPE-NOT-FOUND"));
+        assert!(missing_pipe.applied_model.is_none());
+
+        let mut rigid_intent = modify_intent(
+            "Component",
+            "component:C-valve",
+            "insert_component_symbol",
+            "components",
+            "not_present",
+            r#"{"id":"component:C-valve","label":"Valve","kind":"valve","node":"node:N-2","geometry":{"rigid_pipe_ref":"pipe:P-1","rigid_body_length":{"value":0.32,"unit":"m"},"end_a_size":{"value":0.168,"unit":"m"},"end_b_size":{"value":0.168,"unit":"m"},"weight":{"value":420,"unit":"N"},"center_of_gravity":{"x":0.12,"y":0,"z":0,"unit":"s"},"connection_end_a_reference":"user","connection_end_b_reference":"user","stiffness_behavior_reference":"user","rigid_component_source_reference":"user"},"provenance":"user"}"#,
+            "none",
+            "dimensionless",
+        );
+        rigid_intent["operation_kind"] = json!("insert");
+        let invalid_cog_unit = apply_operation(&model, &rigid_intent, None);
+        assert!(codes(&invalid_cog_unit).contains(&"OP-UNIT-MISMATCH-CONVERSION-UNAVAILABLE"));
+        assert!(invalid_cog_unit.applied_model.is_none());
+    }
+
+    #[test]
+    fn tee_creation_blocks_equal_header_and_branch_pipe_refs_without_applied_model() {
+        let model = sample_model();
+        let mut intent = modify_intent(
+            "Component",
+            "component:C-tee",
+            "insert_component_symbol",
+            "components",
+            "not_present",
+            r#"{"id":"component:C-tee","label":"Tee","kind":"tee","node":"node:N-2","geometry":{"branch_header_pipe_ref":"pipe:P-1","branch_branch_pipe_ref":"pipe:P-1","branch_run_size":{"value":0.168,"unit":"m"},"branch_header_size":{"value":0.114,"unit":"m"},"branch_connection_angle":{"value":90,"unit":"deg"},"branch_connection_type":"user","branch_reinforcement_reference":"user","branch_geometry_source_reference":"user"},"provenance":"user"}"#,
+            "none",
+            "dimensionless",
+        );
+        intent["operation_kind"] = json!("insert");
+
+        let outcome = apply_operation(&model, &intent, None);
+        assert!(codes(&outcome).contains(&"OP-COMPONENT-CONNECTIVITY-INVALID"));
+        assert_eq!(outcome.validation.reference_validation, "blocked");
+        assert_eq!(outcome.validation.application_status, "blocked");
+        assert!(outcome.applied_model.is_none());
+    }
+
+    #[test]
+    fn explicit_expansion_joint_creation_applies_and_preserves_entered_refs_and_units() {
+        let model = sample_model();
+        let before_snapshot = model.clone();
+        let payload = expansion_joint_payload();
+        let intent = expansion_joint_intent(&payload);
+
+        let outcome = apply_operation(&model, &intent, None);
+
+        assert_eq!(
+            model, before_snapshot,
+            "apply must not mutate the input model in place"
+        );
+        assert!(
+            outcome.diagnostics.is_empty(),
+            "unexpected diagnostics: {:?}",
+            outcome.diagnostics
+        );
+        assert_eq!(
+            outcome.validation.application_status,
+            "applied_to_session_model"
+        );
+        assert_eq!(outcome.validation.reference_validation, "passed");
+        assert_eq!(outcome.validation.unit_validation, "passed");
+        let applied = outcome.applied_model.expect("applied model");
+        assert_eq!(applied["components"].as_array().unwrap().len(), 2);
+        assert_eq!(applied["components"][1], payload);
+        assert_eq!(
+            applied["components"][1]["geometry"]["expansion_joint_pipe_ref"],
+            json!("pipe:P-1")
+        );
+        assert_eq!(
+            applied["components"][1]["geometry"]["effective_area"]["unit"],
+            json!("in^2")
+        );
+        assert_eq!(
+            applied["components"][1]["geometry"]["movement_limit"]["unit"],
+            json!("in")
+        );
+        assert_eq!(
+            applied["components"][1]["geometry"]["pressure_thrust_reference"],
+            json!("user_entered_pressure_thrust_review")
+        );
+        assert_eq!(
+            applied["components"][1]["modifiers"]["source_reference"],
+            json!("user_entered_expansion_joint_stiffness")
+        );
+    }
+
+    #[test]
+    fn expansion_joint_creation_blocks_missing_geometry_or_stiffness_data() {
+        let model = sample_model();
+
+        let mut missing_pressure_reference = expansion_joint_payload();
+        missing_pressure_reference["geometry"]
+            .as_object_mut()
+            .unwrap()
+            .remove("pressure_thrust_reference");
+        let outcome = apply_operation(
+            &model,
+            &expansion_joint_intent(&missing_pressure_reference),
+            None,
+        );
+        assert!(codes(&outcome).contains(&"OP-CREATE-EXPANSION-JOINT-GEOMETRY-INVALID"));
+        assert_eq!(outcome.validation.application_status, "blocked");
+        assert!(outcome.applied_model.is_none());
+
+        let mut missing_axial_stiffness = expansion_joint_payload();
+        missing_axial_stiffness["modifiers"]
+            .as_object_mut()
+            .unwrap()
+            .remove("axial_stiffness_user_value");
+        let outcome = apply_operation(
+            &model,
+            &expansion_joint_intent(&missing_axial_stiffness),
+            None,
+        );
+        assert!(codes(&outcome).contains(&"OP-CREATE-EXPANSION-JOINT-MODIFIERS-INVALID"));
+        assert_eq!(outcome.validation.application_status, "blocked");
+        assert!(outcome.applied_model.is_none());
+    }
+
+    #[test]
+    fn expansion_joint_creation_blocks_unknown_or_nonincident_selected_pipe() {
+        let model = sample_model();
+        let mut unknown_pipe = expansion_joint_payload();
+        unknown_pipe["geometry"]["expansion_joint_pipe_ref"] = json!("pipe:missing");
+        let outcome = apply_operation(&model, &expansion_joint_intent(&unknown_pipe), None);
+        assert!(codes(&outcome).contains(&"OP-COMPONENT-PIPE-NOT-FOUND"));
+        assert_eq!(outcome.validation.reference_validation, "blocked");
+        assert_eq!(outcome.validation.application_status, "blocked");
+        assert!(outcome.applied_model.is_none());
+
+        let mut disconnected_model = model.clone();
+        disconnected_model["nodes"].as_array_mut().unwrap().extend([
+            json!({
+                "id": "node:N-3",
+                "label": "Disconnected start",
+                "position": { "x": 10.0, "y": 0.0, "z": 0.0 },
+                "provenance": "invented_example"
+            }),
+            json!({
+                "id": "node:N-4",
+                "label": "Disconnected end",
+                "position": { "x": 12.0, "y": 0.0, "z": 0.0 },
+                "provenance": "invented_example"
+            }),
+        ]);
+        disconnected_model["pipe_segments"]
+            .as_array_mut()
+            .unwrap()
+            .push(json!({
+                "id": "pipe:P-2",
+                "label": "Disconnected run",
+                "from": "node:N-3",
+                "to": "node:N-4",
+                "section": {
+                    "outside_diameter": { "value": 0.168, "unit": "m" },
+                    "wall_thickness": { "value": 0.007, "unit": "m" }
+                },
+                "material": "material:steel",
+                "provenance": "invented_example"
+            }));
+        let mut nonincident_pipe = expansion_joint_payload();
+        nonincident_pipe["geometry"]["expansion_joint_pipe_ref"] = json!("pipe:P-2");
+        let outcome = apply_operation(
+            &disconnected_model,
+            &expansion_joint_intent(&nonincident_pipe),
+            None,
+        );
+        assert!(codes(&outcome).contains(&"OP-COMPONENT-CONNECTIVITY-INVALID"));
+        assert_eq!(outcome.validation.reference_validation, "blocked");
+        assert_eq!(outcome.validation.application_status, "blocked");
+        assert!(outcome.applied_model.is_none());
+    }
+
+    #[test]
+    fn expansion_joint_creation_blocks_invalid_dimensions_and_nonpositive_values() {
+        let model = sample_model();
+
+        let mut invalid_area_unit = expansion_joint_payload();
+        invalid_area_unit["geometry"]["effective_area"]["unit"] = json!("m");
+        let outcome = apply_operation(&model, &expansion_joint_intent(&invalid_area_unit), None);
+        assert!(codes(&outcome).contains(&"OP-UNIT-MISMATCH-CONVERSION-UNAVAILABLE"));
+        assert_eq!(outcome.validation.unit_validation, "blocked");
+        assert_eq!(outcome.validation.application_status, "blocked");
+        assert!(outcome.applied_model.is_none());
+
+        let mut invalid_angular_unit = expansion_joint_payload();
+        invalid_angular_unit["modifiers"]["angular_stiffness_user_value"]["unit"] = json!("N/m");
+        let outcome = apply_operation(&model, &expansion_joint_intent(&invalid_angular_unit), None);
+        assert!(codes(&outcome).contains(&"OP-UNIT-MISMATCH-CONVERSION-UNAVAILABLE"));
+        assert_eq!(outcome.validation.unit_validation, "blocked");
+        assert_eq!(outcome.validation.application_status, "blocked");
+        assert!(outcome.applied_model.is_none());
+
+        let mut nonpositive_stiffness = expansion_joint_payload();
+        nonpositive_stiffness["modifiers"]["torsional_stiffness_user_value"]["value"] = json!(0.0);
+        let outcome = apply_operation(
+            &model,
+            &expansion_joint_intent(&nonpositive_stiffness),
+            None,
+        );
+        assert!(codes(&outcome).contains(&"OP-CREATE-EXPANSION-JOINT-MODIFIERS-INVALID"));
+        assert_eq!(outcome.validation.application_status, "blocked");
+        assert!(outcome.applied_model.is_none());
     }
 
     #[test]

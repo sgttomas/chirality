@@ -15041,76 +15041,543 @@ describe("OpenPipeStress desktop preview", () => {
     ).toContain("1 pending operation");
   });
 
-  it("queues explicit bend geometry and connectivity from the Inspector creation form", async () => {
+  function setComponentField(panel: HTMLElement, testId: string, value: string) {
+    fireEvent.change(within(panel).getByTestId(testId), { target: { value } });
+  }
+
+  function fillComponentForm(panel: HTMLElement, prefix: "create" | "viewport-create", kind: string) {
+    setComponentField(panel, `${prefix}-component-kind`, kind);
+    if (kind === "tee") {
+      setComponentField(panel, `${prefix}-component-node`, "node:N-110");
+      setComponentField(panel, `${prefix}-component-pipe`, "pipe:P-100");
+      setComponentField(panel, `${prefix}-component-secondary-pipe`, "pipe:P-110");
+      setComponentField(panel, `${prefix}-component-run-size`, "0.114");
+      setComponentField(panel, `${prefix}-component-header-size`, "0.168");
+      setComponentField(panel, `${prefix}-component-connection-angle`, "1.5708");
+      setComponentField(panel, `${prefix}-component-connection-type`, "user_entered_tee");
+      setComponentField(panel, `${prefix}-component-reinforcement`, "user_ref:tee-reinforcement");
+      return;
+    }
+    if (kind === "bend") {
+      setComponentField(panel, `${prefix}-component-radius`, "0.45");
+      setComponentField(panel, `${prefix}-component-angle`, "1.5708");
+      setComponentField(panel, `${prefix}-component-plane`, "+Z");
+      return;
+    }
+    if (kind === "expansion_joint") {
+      setComponentField(panel, `${prefix}-component-node`, "node:N-110");
+      fillExpansionJointDetailsWithoutPipe(panel, prefix);
+      setComponentField(panel, `${prefix}-component-pipe`, "pipe:P-110");
+      return;
+    }
+    setComponentField(panel, `${prefix}-component-node`, "node:N-120");
+    setComponentField(panel, `${prefix}-component-pipe`, "pipe:P-120");
+    setComponentField(panel, `${prefix}-component-body-length`, "0.35");
+    setComponentField(panel, `${prefix}-component-end-a-size`, "0.114");
+    setComponentField(panel, `${prefix}-component-end-b-size`, kind === "reducer" ? "0.089" : "0.114");
+    setComponentField(panel, `${prefix}-component-weight`, "245");
+    setComponentField(panel, `${prefix}-component-cog-x`, "0.175");
+    setComponentField(panel, `${prefix}-component-cog-y`, "0");
+    setComponentField(panel, `${prefix}-component-cog-z`, "0");
+    setComponentField(panel, `${prefix}-component-end-a-ref`, "user_ref:end-a");
+    setComponentField(panel, `${prefix}-component-end-b-ref`, "user_ref:end-b");
+    setComponentField(panel, `${prefix}-component-stiffness-ref`, "user_ref:rigid-behavior");
+  }
+
+  function fillComponentDetailsWithoutPipes(
+    panel: HTMLElement,
+    prefix: "create" | "viewport-create",
+    kind: string,
+  ) {
+    if (kind === "tee") {
+      setComponentField(panel, `${prefix}-component-run-size`, "0.114");
+      setComponentField(panel, `${prefix}-component-header-size`, "0.168");
+      setComponentField(panel, `${prefix}-component-connection-angle`, "1.5708");
+      setComponentField(panel, `${prefix}-component-connection-type`, "user_entered_tee");
+      setComponentField(panel, `${prefix}-component-reinforcement`, "user_ref:tee-reinforcement");
+      return;
+    }
+    if (kind === "expansion_joint") {
+      fillExpansionJointDetailsWithoutPipe(panel, prefix);
+      return;
+    }
+    setComponentField(panel, `${prefix}-component-body-length`, "0.35");
+    setComponentField(panel, `${prefix}-component-end-a-size`, "0.114");
+    setComponentField(panel, `${prefix}-component-end-b-size`, kind === "reducer" ? "0.089" : "0.114");
+    setComponentField(panel, `${prefix}-component-weight`, "245");
+    setComponentField(panel, `${prefix}-component-cog-x`, "0.175");
+    setComponentField(panel, `${prefix}-component-cog-y`, "0");
+    setComponentField(panel, `${prefix}-component-cog-z`, "0");
+    setComponentField(panel, `${prefix}-component-end-a-ref`, "user_ref:end-a");
+    setComponentField(panel, `${prefix}-component-end-b-ref`, "user_ref:end-b");
+    setComponentField(panel, `${prefix}-component-stiffness-ref`, "user_ref:rigid-behavior");
+  }
+
+  function fillExpansionJointDetailsWithoutPipe(
+    panel: HTMLElement,
+    prefix: "create" | "viewport-create",
+  ) {
+    setComponentField(panel, `${prefix}-component-effective-area`, "0.018");
+    setComponentField(panel, `${prefix}-component-area-unit`, "m^2");
+    setComponentField(panel, `${prefix}-component-movement-limit`, "0.045");
+    setComponentField(panel, `${prefix}-component-movement-unit`, "m");
+    setComponentField(panel, `${prefix}-component-hardware-ref`, "user_ref:tie-rod-limit");
+    setComponentField(panel, `${prefix}-component-manufacturer-ref`, "user_ref:manufacturer-data");
+    setComponentField(panel, `${prefix}-component-pressure-thrust-ref`, "user_ref:pressure-thrust-review");
+    setComponentField(panel, `${prefix}-component-axial-stiffness`, "3200000");
+    setComponentField(panel, `${prefix}-component-lateral-stiffness`, "900000");
+    setComponentField(panel, `${prefix}-component-linear-stiffness-unit`, "N/m");
+    setComponentField(panel, `${prefix}-component-angular-stiffness`, "480000");
+    setComponentField(panel, `${prefix}-component-torsional-stiffness`, "620000");
+    setComponentField(panel, `${prefix}-component-rotational-stiffness-unit`, "N*m/rad");
+    setComponentField(panel, `${prefix}-component-stiffness-source`, "user_ref:stiffness-data");
+    setComponentField(panel, `${prefix}-component-source`, "user_ref:expansion-joint-geometry");
+    setComponentField(panel, `${prefix}-component-provenance`, "user_entered_expansion_joint_no_catalog");
+  }
+
+  function fillAcceptedKindAfterExpansionTransition(
+    panel: HTMLElement,
+    prefix: "create" | "viewport-create",
+    kind: "bend" | "valve",
+  ) {
+    if (kind === "bend") {
+      setComponentField(panel, `${prefix}-component-radius`, "0.45");
+      setComponentField(panel, `${prefix}-component-angle`, "1.5708");
+      setComponentField(panel, `${prefix}-component-plane`, "+Z");
+      return;
+    }
+    fillComponentDetailsWithoutPipes(panel, prefix, kind);
+    setComponentField(panel, `${prefix}-component-pipe`, "pipe:P-100");
+  }
+
+  it.each(["bend", "valve"] as const)(
+    "restores Inspector %s common defaults after expansion-joint mode without inferring non-bend roles",
+    async (kind) => {
+      render(<App />);
+
+      const inspector = await screen.findByLabelText("Property inspector");
+      const panel = within(inspector).getByLabelText("Create component intent");
+      const queueButton = within(panel).getByTestId("queue-create-component-intent");
+      setComponentField(panel, "create-component-kind", "expansion_joint");
+      fillExpansionJointDetailsWithoutPipe(panel, "create");
+      setComponentField(panel, "create-component-pipe", "pipe:P-100");
+      expect(queueButton).not.toBeDisabled();
+
+      setComponentField(panel, "create-component-kind", kind);
+      expect(within(panel).getByTestId("create-component-source")).toHaveValue("user_entered_component_form");
+      expect(within(panel).getByTestId("create-component-provenance")).toHaveValue("user_entered_local_preview");
+      if (kind === "bend") {
+        expect(within(panel).getByTestId("create-component-pipe")).toHaveValue("pipe:P-100");
+      } else {
+        expect(within(panel).getByTestId("create-component-pipe")).toHaveValue("");
+      }
+      expect(queueButton).toBeDisabled();
+
+      fillAcceptedKindAfterExpansionTransition(panel, "create", kind);
+      expect(queueButton).not.toBeDisabled();
+      fireEvent.click(queueButton);
+      const applyPanel = screen.getByTestId("operation-apply-panel");
+      fireEvent.click(within(applyPanel).getByTestId("apply-intent-editor-intent-1"));
+      await waitFor(() =>
+        expect(within(applyPanel).getByTestId("operation-apply-message").textContent).toContain(
+          `Applied op:create-${kind}-component-C-1`,
+        ),
+      );
+    },
+  );
+
+  it.each(["bend", "valve"] as const)(
+    "restores viewport %s common defaults after expansion-joint mode without inferring non-bend roles",
+    async (kind) => {
+      render(<App />);
+
+      expect(await screen.findByLabelText("Three.js pipe centerline viewport")).toBeInTheDocument();
+      const commandBar = screen.getByTestId("command-bar");
+      fireEvent.click(within(commandBar).getByRole("button", { name: /Component/i }));
+      const panel = screen.getByTestId("viewport-create-component-form");
+      const queueButton = within(panel).getByTestId("queue-explicit-component-intent");
+      setComponentField(panel, "viewport-create-component-kind", "expansion_joint");
+      fillExpansionJointDetailsWithoutPipe(panel, "viewport-create");
+      setComponentField(panel, "viewport-create-component-pipe", "pipe:P-100");
+      expect(queueButton).not.toBeDisabled();
+
+      setComponentField(panel, "viewport-create-component-kind", kind);
+      expect(within(panel).getByTestId("viewport-create-component-source")).toHaveValue("user_entered_component_form");
+      expect(within(panel).getByTestId("viewport-create-component-provenance")).toHaveValue("user_entered_local_preview");
+      if (kind === "bend") {
+        expect(within(panel).getByTestId("viewport-create-component-pipe")).toHaveValue("pipe:P-100");
+      } else {
+        expect(within(panel).getByTestId("viewport-create-component-pipe")).toHaveValue("");
+      }
+      expect(queueButton).toBeDisabled();
+
+      fillAcceptedKindAfterExpansionTransition(panel, "viewport-create", kind);
+      expect(queueButton).not.toBeDisabled();
+      fireEvent.click(queueButton);
+      const applyPanel = screen.getByTestId("operation-apply-panel");
+      fireEvent.click(within(applyPanel).getByTestId("apply-intent-editor-intent-1"));
+      await waitFor(() =>
+        expect(within(applyPanel).getByTestId("operation-apply-message").textContent).toContain(
+          `Applied op:create-${kind}-component-C-1-001`,
+        ),
+      );
+    },
+  );
+
+  it.each(["tee", "reducer", "valve", "flange", "expansion_joint"])(
+    "keeps Inspector %s pipe roles empty after kind and node changes until deliberate selection",
+    async (kind) => {
+      render(<App />);
+
+      const inspector = await screen.findByLabelText("Property inspector");
+      const panel = within(inspector).getByLabelText("Create component intent");
+      const queueButton = within(panel).getByTestId("queue-create-component-intent");
+      setComponentField(panel, "create-component-kind", kind);
+      expect(within(panel).getByTestId("create-component-pipe")).toHaveValue("");
+      if (kind === "tee") {
+        expect(within(panel).getByTestId("create-component-secondary-pipe")).toHaveValue("");
+      }
+      expect(queueButton).toBeDisabled();
+
+      setComponentField(panel, "create-component-node", kind === "tee" || kind === "expansion_joint" ? "node:N-110" : "node:N-120");
+      expect(within(panel).getByTestId("create-component-pipe")).toHaveValue("");
+      if (kind === "tee") {
+        expect(within(panel).getByTestId("create-component-secondary-pipe")).toHaveValue("");
+      }
+      fillComponentDetailsWithoutPipes(panel, "create", kind);
+      expect(queueButton).toBeDisabled();
+
+      setComponentField(panel, "create-component-pipe", kind === "tee" ? "pipe:P-100" : kind === "expansion_joint" ? "pipe:P-110" : "pipe:P-120");
+      if (kind === "tee") {
+        expect(queueButton).toBeDisabled();
+        setComponentField(panel, "create-component-secondary-pipe", "pipe:P-110");
+      }
+      expect(queueButton).not.toBeDisabled();
+    },
+  );
+
+  it.each(["tee", "reducer", "valve", "flange", "expansion_joint"])(
+    "keeps viewport %s pipe roles empty after kind and node changes until deliberate selection",
+    async (kind) => {
+      render(<App />);
+
+      expect(await screen.findByLabelText("Three.js pipe centerline viewport")).toBeInTheDocument();
+      const commandBar = screen.getByTestId("command-bar");
+      fireEvent.click(within(commandBar).getByRole("button", { name: /Component/i }));
+      const panel = screen.getByTestId("viewport-create-component-form");
+      const queueButton = within(panel).getByTestId("queue-explicit-component-intent");
+      setComponentField(panel, "viewport-create-component-kind", kind);
+      expect(within(panel).getByTestId("viewport-create-component-pipe")).toHaveValue("");
+      if (kind === "tee") {
+        expect(within(panel).getByTestId("viewport-create-component-secondary-pipe")).toHaveValue("");
+      }
+      expect(queueButton).toBeDisabled();
+
+      setComponentField(panel, "viewport-create-component-node", kind === "tee" || kind === "expansion_joint" ? "node:N-110" : "node:N-120");
+      expect(within(panel).getByTestId("viewport-create-component-pipe")).toHaveValue("");
+      if (kind === "tee") {
+        expect(within(panel).getByTestId("viewport-create-component-secondary-pipe")).toHaveValue("");
+      }
+      fillComponentDetailsWithoutPipes(panel, "viewport-create", kind);
+      expect(queueButton).toBeDisabled();
+
+      setComponentField(panel, "viewport-create-component-pipe", kind === "tee" ? "pipe:P-100" : kind === "expansion_joint" ? "pipe:P-110" : "pipe:P-120");
+      if (kind === "tee") {
+        expect(queueButton).toBeDisabled();
+        setComponentField(panel, "viewport-create-component-secondary-pipe", "pipe:P-110");
+      }
+      expect(queueButton).not.toBeDisabled();
+    },
+  );
+
+  it.each(["tee", "valve", "expansion_joint"])(
+    "clears Inspector %s pipe roles after queue until a fresh deliberate selection",
+    async (kind) => {
+      render(<App />);
+
+      const inspector = await screen.findByLabelText("Property inspector");
+      const panel = within(inspector).getByLabelText("Create component intent");
+      fillComponentForm(panel, "create", kind);
+      const queueButton = within(panel).getByTestId("queue-create-component-intent");
+      expect(queueButton).not.toBeDisabled();
+      fireEvent.click(queueButton);
+
+      expect(within(panel).getByTestId("create-component-kind")).toHaveValue(kind);
+      expect(within(panel).getByTestId("create-component-pipe")).toHaveValue("");
+      if (kind === "tee") {
+        expect(within(panel).getByTestId("create-component-secondary-pipe")).toHaveValue("");
+      }
+      expect(queueButton).toBeDisabled();
+
+      setComponentField(panel, "create-component-node", kind === "tee" || kind === "expansion_joint" ? "node:N-110" : "node:N-120");
+      fillComponentDetailsWithoutPipes(panel, "create", kind);
+      expect(queueButton).toBeDisabled();
+      setComponentField(panel, "create-component-pipe", kind === "tee" ? "pipe:P-100" : kind === "expansion_joint" ? "pipe:P-110" : "pipe:P-120");
+      if (kind === "tee") {
+        expect(queueButton).toBeDisabled();
+        setComponentField(panel, "create-component-secondary-pipe", "pipe:P-110");
+      }
+      expect(queueButton).not.toBeDisabled();
+    },
+  );
+
+  it.each(["tee", "valve", "expansion_joint"])(
+    "clears viewport %s pipe roles after queue until a fresh deliberate selection",
+    async (kind) => {
+      render(<App />);
+
+      expect(await screen.findByLabelText("Three.js pipe centerline viewport")).toBeInTheDocument();
+      const commandBar = screen.getByTestId("command-bar");
+      fireEvent.click(within(commandBar).getByRole("button", { name: /Component/i }));
+      const panel = screen.getByTestId("viewport-create-component-form");
+      fillComponentForm(panel, "viewport-create", kind);
+      const queueButton = within(panel).getByTestId("queue-explicit-component-intent");
+      expect(queueButton).not.toBeDisabled();
+      fireEvent.click(queueButton);
+
+      expect(within(panel).getByTestId("viewport-create-component-kind")).toHaveValue(kind);
+      expect(within(panel).getByTestId("viewport-create-component-pipe")).toHaveValue("");
+      if (kind === "tee") {
+        expect(within(panel).getByTestId("viewport-create-component-secondary-pipe")).toHaveValue("");
+      }
+      expect(queueButton).toBeDisabled();
+
+      setComponentField(panel, "viewport-create-component-node", kind === "tee" || kind === "expansion_joint" ? "node:N-110" : "node:N-120");
+      fillComponentDetailsWithoutPipes(panel, "viewport-create", kind);
+      expect(queueButton).toBeDisabled();
+      setComponentField(panel, "viewport-create-component-pipe", kind === "tee" ? "pipe:P-100" : kind === "expansion_joint" ? "pipe:P-110" : "pipe:P-120");
+      if (kind === "tee") {
+        expect(queueButton).toBeDisabled();
+        setComponentField(panel, "viewport-create-component-secondary-pipe", "pipe:P-110");
+      }
+      expect(queueButton).not.toBeDisabled();
+    },
+  );
+
+  it.each([
+    ["tee", '"branch_branch_pipe_ref":"pipe:P-110"'],
+    ["reducer", '"kind":"reducer"'],
+    ["valve", '"kind":"valve"'],
+    ["flange", '"kind":"flange"'],
+    ["expansion_joint", '"pressure_thrust_reference":"user_ref:pressure-thrust-review"'],
+    ["bend", '"bend_radius":{"value":0.45,"unit":"m"}'],
+  ])("queues explicit %s geometry and connectivity from the Inspector creation form", async (kind, previewNeedle) => {
     render(<App />);
 
     const inspector = await screen.findByLabelText("Property inspector");
-    const panel = within(inspector).getByLabelText("Create bend component intent");
-    expect(within(panel).getByTestId("create-component-kind")).toHaveValue("bend");
-    expect(within(panel).getByTestId("create-component-node")).toHaveValue("node:N-100");
-    expect(within(panel).getByTestId("create-component-pipe")).toHaveValue("pipe:P-100");
-    expect(within(panel).getByTestId("queue-create-component-intent")).toBeDisabled();
+    const panel = within(inspector).getByLabelText("Create component intent");
+    fillComponentForm(panel, "create", kind);
 
-    fireEvent.change(within(panel).getByTestId("create-component-radius"), { target: { value: "0.45" } });
-    fireEvent.change(within(panel).getByTestId("create-component-angle"), { target: { value: "1.5708" } });
-    fireEvent.change(within(panel).getByTestId("create-component-plane"), { target: { value: "+Z" } });
-
-    expect(within(panel).getByTestId("queue-create-component-intent")).not.toBeDisabled();
-    expect(within(panel).getByTestId("editor-operation-preview").textContent).toContain(
-      "insert_component_symbol",
-    );
-    expect(within(panel).getByTestId("editor-operation-preview").textContent).toContain(
-      '"bend_pipe_ref":"pipe:P-100"',
-    );
-    expect(within(panel).getByTestId("editor-operation-preview").textContent).toContain(
-      '"bend_radius":{"value":0.45,"unit":"m"}',
-    );
-    fireEvent.click(within(panel).getByTestId("queue-create-component-intent"));
+    const queueButton = within(panel).getByTestId("queue-create-component-intent");
+    expect(queueButton).not.toBeDisabled();
+    const preview = within(panel).getByTestId("editor-operation-preview");
+    expect(preview.textContent).toContain("insert_component_symbol");
+    expect(preview.textContent).toContain(previewNeedle);
+    if (kind === "tee") {
+      expect(preview.textContent).toContain('"branch_header_pipe_ref":"pipe:P-100"');
+      expect(preview.textContent).toContain('"branch_geometry_source_reference":"user_entered_component_form"');
+    } else if (kind === "bend") {
+      expect(preview.textContent).toContain('"bend_pipe_ref":"pipe:P-100"');
+      expect(preview.textContent).toContain('"bend_geometry_source_reference":"user_entered_component_form"');
+    } else if (kind === "expansion_joint") {
+      expect(preview.textContent).toContain('"expansion_joint_pipe_ref":"pipe:P-110"');
+      expect(preview.textContent).toContain('"effective_area":{"value":0.018,"unit":"m^2"}');
+      expect(preview.textContent).toContain('"axial_stiffness_user_value":{"value":3200000,"unit":"N/m"}');
+      expect(preview.textContent).toContain('"torsional_stiffness_user_value":{"value":620000,"unit":"N*m/rad"}');
+      expect(preview.textContent).toContain('"provenance":"user_entered_expansion_joint_no_catalog"');
+    } else {
+      expect(preview.textContent).toContain('"rigid_pipe_ref":"pipe:P-120"');
+      expect(preview.textContent).toContain('"rigid_component_source_reference":"user_entered_component_form"');
+      expect(preview.textContent).toContain('"center_of_gravity":{"x":0.175,"y":0,"z":0,"unit":"m"}');
+    }
+    fireEvent.click(queueButton);
     expect(within(screen.getByTestId("operation-apply-panel")).getByTestId("operation-apply-summary")).toHaveTextContent(
       "1 queued; 0 applied",
     );
-    const viewportForm = screen.getByTestId("viewport-create-component-form");
-    expect(within(viewportForm).getByTestId("viewport-create-component-id")).toHaveValue("component:C-1");
-    fireEvent.change(within(viewportForm).getByTestId("viewport-create-component-radius"), {
-      target: { value: "0.45" },
-    });
-    fireEvent.change(within(viewportForm).getByTestId("viewport-create-component-angle"), {
-      target: { value: "1.5708" },
-    });
-    fireEvent.change(within(viewportForm).getByTestId("viewport-create-component-plane"), {
-      target: { value: "+Z" },
-    });
-    expect(within(viewportForm).getByTestId("queue-explicit-component-intent")).toBeDisabled();
   });
 
-  it("creates a bend end-to-end from the explicit viewport component tool", async () => {
+  it.each(["tee", "reducer", "valve", "flange", "expansion_joint", "bend"])(
+    "creates a %s end-to-end from the explicit viewport component tool",
+    async (kind) => {
+      render(<App />);
+
+      expect(await screen.findByLabelText("Three.js pipe centerline viewport")).toBeInTheDocument();
+      const commandBar = screen.getByTestId("command-bar");
+      fireEvent.click(within(commandBar).getByRole("button", { name: /Component/i }));
+      const panel = screen.getByTestId("viewport-create-component-form");
+      fillComponentForm(panel, "viewport-create", kind);
+
+      const queueButton = within(panel).getByTestId("queue-explicit-component-intent");
+      expect(queueButton).not.toBeDisabled();
+      fireEvent.click(queueButton);
+
+      const applyPanel = screen.getByTestId("operation-apply-panel");
+      fireEvent.click(within(applyPanel).getByTestId("apply-intent-editor-intent-1"));
+      await waitFor(() =>
+        expect(within(applyPanel).getByTestId("operation-apply-message").textContent).toContain(
+          `Applied op:create-${kind}-component-C-1-001`,
+        ),
+      );
+      expect(screen.getByTestId("tree-row-component:C-1").textContent).toContain(
+        `${kind.charAt(0).toUpperCase()}${kind.slice(1)} C-1`,
+      );
+      expect(screen.getByTestId("viewport-select-component:C-1")).toHaveAttribute("aria-pressed", "true");
+      expect(screen.getByLabelText("Property inspector").textContent).toContain(
+        kind === "tee" || kind === "expansion_joint" ? "pipe:P-110" : kind === "bend" ? "pipe:P-100" : "pipe:P-120",
+      );
+    },
+  );
+
+  it("creates an expansion joint on the exact selected pipe at a three-incident node and preserves every entered value", async () => {
     render(<App />);
 
     expect(await screen.findByLabelText("Three.js pipe centerline viewport")).toBeInTheDocument();
-    const commandBar = screen.getByTestId("command-bar");
-    fireEvent.click(within(commandBar).getByRole("button", { name: /Component/i }));
-    const panel = screen.getByTestId("viewport-create-component-form");
-    expect(within(panel).getByTestId("viewport-create-component-node")).toHaveValue("node:N-100");
-    expect(within(panel).getByTestId("viewport-create-component-pipe")).toHaveValue("pipe:P-100");
-
-    fireEvent.change(within(panel).getByTestId("viewport-create-component-radius"), { target: { value: "0.45" } });
-    fireEvent.change(within(panel).getByTestId("viewport-create-component-angle"), { target: { value: "1.5708" } });
-    fireEvent.change(within(panel).getByTestId("viewport-create-component-plane"), { target: { value: "+Z" } });
-    const queueButton = within(panel).getByTestId("queue-explicit-component-intent");
-    expect(queueButton).not.toBeDisabled();
-    fireEvent.click(queueButton);
+    const viewportIntentPanel = screen.getByLabelText("Viewport editor intents");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-id", "pipe:P-150");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-label", "Third expansion-joint candidate");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-from", "node:N-110");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-to", "node:N-130");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-material", "material:invented-carbon-steel");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-od", "0.114");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-wall", "0.006");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-yref-x", "0");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-yref-y", "0");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-yref-z", "1");
+    fireEvent.click(within(viewportIntentPanel).getByTestId("queue-explicit-pipe-intent"));
 
     const applyPanel = screen.getByTestId("operation-apply-panel");
     fireEvent.click(within(applyPanel).getByTestId("apply-intent-editor-intent-1"));
     await waitFor(() =>
       expect(within(applyPanel).getByTestId("operation-apply-message").textContent).toContain(
-        "Applied op:create-bend-component-C-1-001",
+        "Applied op:viewport-connect-pipe-pipe:P-150-001",
       ),
     );
-    expect(screen.getByTestId("tree-row-component:C-1").textContent).toContain("Bend C-1");
-    expect(screen.getByTestId("viewport-select-component:C-1")).toHaveAttribute("aria-pressed", "true");
-    expect(screen.getByLabelText("Property inspector").textContent).toContain("pipe:P-100");
-    expect(screen.getByLabelText("Property inspector").textContent).toContain("0.45 m");
-    expect(screen.getByLabelText("Property inspector").textContent).toContain("1.5708 rad");
+
+    const inspector = screen.getByLabelText("Property inspector");
+    const panel = within(inspector).getByLabelText("Create component intent");
+    setComponentField(panel, "create-component-kind", "expansion_joint");
+    setComponentField(panel, "create-component-node", "node:N-110");
+    fillExpansionJointDetailsWithoutPipe(panel, "create");
+    const pipeSelect = within(panel).getByTestId("create-component-pipe") as HTMLSelectElement;
+    expect(Array.from(pipeSelect.options).map((option) => option.value)).toEqual(
+      expect.arrayContaining(["pipe:P-100", "pipe:P-110", "pipe:P-150"]),
+    );
+    expect(pipeSelect).toHaveValue("");
+    const queueButton = within(panel).getByTestId("queue-create-component-intent");
+    expect(queueButton).toBeDisabled();
+    setComponentField(panel, "create-component-pipe", "pipe:P-150");
+    expect(queueButton).not.toBeDisabled();
+
+    const preview = within(panel).getByTestId("editor-operation-preview");
+    expect(preview.textContent).toContain('"expansion_joint_pipe_ref":"pipe:P-150"');
+    expect(preview.textContent).toContain('"effective_area":{"value":0.018,"unit":"m^2"}');
+    expect(preview.textContent).toContain('"movement_limit":{"value":0.045,"unit":"m"}');
+    expect(preview.textContent).toContain('"hardware_reference":"user_ref:tie-rod-limit"');
+    expect(preview.textContent).toContain('"manufacturer_reference":"user_ref:manufacturer-data"');
+    expect(preview.textContent).toContain('"pressure_thrust_reference":"user_ref:pressure-thrust-review"');
+    expect(preview.textContent).toContain('"axial_stiffness_user_value":{"value":3200000,"unit":"N/m"}');
+    expect(preview.textContent).toContain('"lateral_stiffness_user_value":{"value":900000,"unit":"N/m"}');
+    expect(preview.textContent).toContain('"angular_stiffness_user_value":{"value":480000,"unit":"N*m/rad"}');
+    expect(preview.textContent).toContain('"torsional_stiffness_user_value":{"value":620000,"unit":"N*m/rad"}');
+    expect(preview.textContent).toContain('"source_reference":"user_ref:stiffness-data"');
+    expect(preview.textContent).toContain('"provenance":"user_entered_expansion_joint_no_catalog"');
+    fireEvent.click(queueButton);
+
+    expect(within(panel).getByTestId("create-component-kind")).toHaveValue("expansion_joint");
+    expect(within(panel).getByTestId("create-component-pipe")).toHaveValue("");
+    expect(queueButton).toBeDisabled();
+    fireEvent.click(within(applyPanel).getByTestId("apply-intent-editor-intent-2"));
+    await waitFor(() =>
+      expect(within(applyPanel).getByTestId("operation-apply-message").textContent).toContain(
+        "Applied op:create-expansion_joint-component-C-1",
+      ),
+    );
+
+    const appliedInspector = screen.getByLabelText("Property inspector");
+    expect(appliedInspector.textContent).toContain("Mapped pipepipe:P-150");
+    expect(appliedInspector.textContent).toContain("Effective area0.018 m^2");
+    expect(appliedInspector.textContent).toContain("Movement limit0.045 m");
+    expect(appliedInspector.textContent).toContain("Axial stiffness3200000 N/m");
+    expect(appliedInspector.textContent).toContain("Torsional stiffness620000 N*m/rad");
+    expect(appliedInspector.textContent).toContain("user_ref:pressure-thrust-review");
+    expect(appliedInspector.textContent).toContain("user_entered_expansion_joint_no_catalog");
+  });
+
+  it("clears a queued tee at a three-incident node then applies the next exact user-selected roles", async () => {
+    render(<App />);
+
+    expect(await screen.findByLabelText("Three.js pipe centerline viewport")).toBeInTheDocument();
+    const viewportIntentPanel = screen.getByLabelText("Viewport editor intents");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-id", "pipe:P-150");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-label", "Third incident span");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-from", "node:N-110");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-to", "node:N-130");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-material", "material:invented-carbon-steel");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-od", "0.114");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-wall", "0.006");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-yref-x", "0");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-yref-y", "0");
+    setComponentField(viewportIntentPanel, "viewport-create-pipe-yref-z", "1");
+    const pipeQueueButton = within(viewportIntentPanel).getByTestId("queue-explicit-pipe-intent");
+    expect(pipeQueueButton).not.toBeDisabled();
+    fireEvent.click(pipeQueueButton);
+
+    const applyPanel = screen.getByTestId("operation-apply-panel");
+    fireEvent.click(within(applyPanel).getByTestId("apply-intent-editor-intent-1"));
+    await waitFor(() =>
+      expect(within(applyPanel).getByTestId("operation-apply-message").textContent).toContain(
+        "Applied op:viewport-connect-pipe-pipe:P-150-001",
+      ),
+    );
+
+    const inspector = screen.getByLabelText("Property inspector");
+    const componentPanel = within(inspector).getByLabelText("Create component intent");
+    setComponentField(componentPanel, "create-component-kind", "tee");
+    setComponentField(componentPanel, "create-component-node", "node:N-110");
+    fillComponentDetailsWithoutPipes(componentPanel, "create", "tee");
+    const headerSelect = within(componentPanel).getByTestId("create-component-pipe") as HTMLSelectElement;
+    const branchSelect = within(componentPanel).getByTestId("create-component-secondary-pipe") as HTMLSelectElement;
+    expect(Array.from(headerSelect.options).map((option) => option.value)).toEqual(
+      expect.arrayContaining(["pipe:P-100", "pipe:P-110", "pipe:P-150"]),
+    );
+    expect(headerSelect).toHaveValue("");
+    expect(branchSelect).toHaveValue("");
+    setComponentField(componentPanel, "create-component-pipe", "pipe:P-100");
+    setComponentField(componentPanel, "create-component-secondary-pipe", "pipe:P-110");
+
+    const queueButton = within(componentPanel).getByTestId("queue-create-component-intent");
+    expect(queueButton).not.toBeDisabled();
+    fireEvent.click(queueButton);
+
+    expect(within(componentPanel).getByTestId("create-component-kind")).toHaveValue("tee");
+    expect(within(componentPanel).getByTestId("create-component-pipe")).toHaveValue("");
+    expect(within(componentPanel).getByTestId("create-component-secondary-pipe")).toHaveValue("");
+    expect(queueButton).toBeDisabled();
+    setComponentField(componentPanel, "create-component-node", "node:N-110");
+    fillComponentDetailsWithoutPipes(componentPanel, "create", "tee");
+    expect(queueButton).toBeDisabled();
+    setComponentField(componentPanel, "create-component-pipe", "pipe:P-110");
+    expect(queueButton).toBeDisabled();
+    setComponentField(componentPanel, "create-component-secondary-pipe", "pipe:P-150");
+
+    const preview = within(componentPanel).getByTestId("editor-operation-preview");
+    expect(preview.textContent).toContain('"branch_header_pipe_ref":"pipe:P-110"');
+    expect(preview.textContent).toContain('"branch_branch_pipe_ref":"pipe:P-150"');
+    fireEvent.click(queueButton);
+    fireEvent.click(within(applyPanel).getByTestId("apply-intent-editor-intent-2"));
+    await waitFor(() =>
+      expect(within(applyPanel).getByTestId("operation-apply-message").textContent).toContain(
+        "Applied op:create-tee-component-C-1",
+      ),
+    );
+    fireEvent.click(within(applyPanel).getByTestId("apply-intent-editor-intent-3"));
+    await waitFor(() =>
+      expect(within(applyPanel).getByTestId("operation-apply-message").textContent).toContain(
+        "Applied op:create-tee-component-C-2",
+      ),
+    );
+    const appliedInspector = screen.getByLabelText("Property inspector");
+    expect(appliedInspector.textContent).toContain("Header pipepipe:P-110");
+    expect(appliedInspector.textContent).toContain("Branch pipepipe:P-150");
   });
 });

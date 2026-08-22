@@ -3027,3 +3027,13 @@
     was dependency-held and unstarted; N3 alone landed. PR #603 is open without
     merge and creates no lifecycle, release, reliance, issuance, or
     professional-approval effect.
+
+- **2026-08-21 — Receipt 124** (vocabulary round 3 repair, completion, and authorized sync).
+  - Receipt-ID: `Receipt-124`
+  - Examined-Through: `66efaf6b95605ef69f3e405b505f48506d3cbada`
+  - Parent-Receipt: `Receipt-123`
+  - Owner-Direction: `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING` — exact round-3 direction is transcribed in `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260821-VOCABULARY-R3/OWNER_DIRECTIONS.md`; subsequent exact user authorization: “yes perform a pure sync merge of that origin/main into the clean branch, then rerun G4/DEC-025 and open the PR”.
+  - Pointers: branch `codex/piping-vocabulary-r3-20260821`; WIP backup `764a459a1ce3d23c777ec1d5610c9f7852c8131d`; working lineage `2bee267300e571e4e8686f73aba6ad4ba8be4c54`; N1 `8ca1984db45a9a8f6f3111a905b07c7d3da47c33`; N2 `d1a8e20ae413be040b82428cdd0bdbef0809e8de`; failed-sweep evidence `5a73d9f0d2b21506ccd6b16564b00167f98a3690`; owner-authorized sync `721503365c2b7aae99998ec81167a86b7fc3b464` with parents `4f101737508957981875d2bf58fdae246a42de0b` / `adf805e0d9ac55787e8ac815c3018467babb7f50`; run `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260821-VOCABULARY-R3/`; failed and terminal N1/N2 reviews; coverage rows 14–16; post-sync summary `validation/evidence/sweeps/SWEEP_20260822T011539Z_721503365c2b.json` (SHA-256 `755cc3838b08f81344a02d589446f60eddbdc9228ee7afd7cb94ff1ea9db49f4`).
+  - Checks: node-local validation/reviews, clean fan-in checks, owner-authorized sync containment/hash preservation, and post-sync validation passed. Exact measurements and command outcomes are owned by `FAN_IN_CHECKS.json`, node records, and cited sweep summaries; dependency-failure evidence remains preserved.
+  - Model-Attribution: HELP_HUMAN supervised CHANGE and WORKING_ITEMS Agent 1 roles plus fresh bounded read-only Agent 2 reviews; inherited GPT-5.6 Codex runtime was used without substitution. Exact parentage and attribution are in the named AgentRuns package.
+  - Gate-Outcome: `EXECUTED` — both implementation nodes completed their selected vocabulary rows; the exact owner-authorized pure sync landed without conflict or product/evidence-byte change and passed post-sync gates. The previously closed support-family row remains unchanged; AUDIT_DECOMP remains parked. No `artifact-proof`, lifecycle promotion, release, reliance, issuance, professional approval, certification, sealing, authentication, code-compliance, or final PR merge effect is created.
