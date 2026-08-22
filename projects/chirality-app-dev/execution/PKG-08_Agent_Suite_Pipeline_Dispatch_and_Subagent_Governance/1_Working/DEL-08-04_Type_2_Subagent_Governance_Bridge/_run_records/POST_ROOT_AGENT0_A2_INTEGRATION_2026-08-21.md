@@ -98,4 +98,3 @@ implementation, lifecycle advance, or broader acceptance claim.
   validator/instructions or either affected App harness source/test changes.
 - No release, reliance, issuance, signing, notarization, distribution,
   publication, provider expansion, Git closeout, or merge claim follows.
-

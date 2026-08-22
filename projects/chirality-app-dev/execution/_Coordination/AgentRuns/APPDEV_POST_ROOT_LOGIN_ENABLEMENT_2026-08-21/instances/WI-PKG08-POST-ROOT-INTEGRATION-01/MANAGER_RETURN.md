@@ -72,4 +72,3 @@ instance directory.
   or close shared surfaces from this manager return.
 - No lifecycle, release, reliance, issuance, signing, notarization,
   distribution, publication, provider expansion, or merge claim follows.
-

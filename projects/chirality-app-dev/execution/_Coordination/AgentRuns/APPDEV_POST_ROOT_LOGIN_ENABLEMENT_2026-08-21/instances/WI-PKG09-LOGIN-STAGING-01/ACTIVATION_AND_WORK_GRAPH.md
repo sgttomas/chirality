@@ -65,4 +65,3 @@ returns only this node for at most two repair plus fresh-review cycles.
   loaded or installed.
 - No forbidden operator path or service changed; no owner procedure step ran.
 - DEL-09-04 stays `IN_PROGRESS`; all proof and release boundaries remain.
-

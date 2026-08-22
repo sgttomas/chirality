@@ -61,4 +61,3 @@ run the app, proof script, `launchctl` mutation, staging, commit, push, or PR.
 
 Write a concise matrix with evidence and a final verdict. A finding must be
 specific and actionable; do not repair it.
-

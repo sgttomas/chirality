@@ -19,4 +19,3 @@ For attempt 2:
 - retain every original brief boundary and return requirement;
 - if the narrowly escalated exact command still fails, return the calibrated
   blocker without broadening or using an alternate package command.
-

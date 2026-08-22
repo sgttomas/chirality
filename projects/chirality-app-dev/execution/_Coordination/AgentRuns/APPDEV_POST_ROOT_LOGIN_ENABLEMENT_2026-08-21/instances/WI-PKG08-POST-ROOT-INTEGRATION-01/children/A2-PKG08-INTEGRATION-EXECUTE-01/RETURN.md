@@ -9,4 +9,3 @@ no source, deliverable, or evidence file before interruption.
 
 The manager subsequently ran the required dispatch preflight and received
 `ALLOW`; a fresh child attempt is required and separately briefed.
-

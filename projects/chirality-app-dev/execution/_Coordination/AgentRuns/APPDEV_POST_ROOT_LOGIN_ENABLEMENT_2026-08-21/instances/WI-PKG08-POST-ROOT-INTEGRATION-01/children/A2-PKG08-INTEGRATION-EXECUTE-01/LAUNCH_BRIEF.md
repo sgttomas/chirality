@@ -47,4 +47,3 @@
   lifecycle/release/reliance/issuance; Git stage/commit/push/PR/merge.
 - Escalation: return `BLOCK` on any failing check, missing route evidence,
   basis drift, required write, scope conflict, or authority ambiguity.
-

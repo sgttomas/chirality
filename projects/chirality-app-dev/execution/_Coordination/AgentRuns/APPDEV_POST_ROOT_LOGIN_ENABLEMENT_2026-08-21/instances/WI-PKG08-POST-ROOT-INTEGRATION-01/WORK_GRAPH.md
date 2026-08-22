@@ -16,4 +16,3 @@ followed by a fresh reviewer, with no more than two repair/review cycles.
 
 Token/context occupancy is not exposed by this runtime and is recorded as an
 explicit telemetry measurement limitation rather than inferred.
-

@@ -117,4 +117,3 @@ authoritative App register remains `REGISTER.csv`.
 Shared receipt/fan-in surfaces are reserved to `HELP_HUMAN` and `CHANGE`.
 The parent must append the single after-the-fact App loop receipt after all
 three independent nodes have passed and landed in dependency order.
-

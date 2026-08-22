@@ -58,4 +58,3 @@ Stop if the command would require signing/notarization/distribution, dependency
 installation, GUI launch, operator deployment, `prepare`/`capture`,
 `launchctl` mutation, or mutation of the forbidden plist/launcher paths. Stop
 on any tracked write outside the declared persistent scope.
-

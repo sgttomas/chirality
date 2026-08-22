@@ -23,4 +23,3 @@ Write only
 or enumerated actionable findings with evidence. No product/package-truth or
 build-output edits; no GUI, proof, launchctl mutation, Git, or shared-surface
 actions.
-

@@ -55,4 +55,3 @@
   or reliance acts.
 - Escalation: any hash drift, missing criterion evidence, scope conflict,
   unsupported claim, or failing check is a `BLOCK` finding.
-

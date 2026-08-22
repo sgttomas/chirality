@@ -47,4 +47,3 @@ implementation `ac2cd801a06a0679bc86830c627218ccca78b658` both ancestors.
 - Derivative status: this review and the accepted executor package are
   derivative validation evidence and do not replace Root instruction truth,
   App product truth, Receipt 172, or DEL-08-04 lifecycle truth.
-

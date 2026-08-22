@@ -77,4 +77,3 @@ validator rather than by a synthetic governance-enumeration entry.
 - Claim boundary: validation only. This return makes no lifecycle, completion,
   release, reliance, issuance, signing, notarization, distribution, or merge
   claim.
-

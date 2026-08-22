@@ -30,4 +30,3 @@ Basis gate observed before dispatch:
   `0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981`;
 - TM117 notice SHA-256
   `fd587b676a55c42feecd2c0e9dbcb96d67a1f2bcff3d5ab66d6fdb78826fdaf0`.
-

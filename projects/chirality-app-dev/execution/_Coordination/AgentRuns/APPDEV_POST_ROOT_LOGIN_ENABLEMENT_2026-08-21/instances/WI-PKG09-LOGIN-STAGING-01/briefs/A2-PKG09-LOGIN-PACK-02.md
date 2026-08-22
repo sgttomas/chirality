@@ -62,4 +62,3 @@ plist, or `~/.local/bin/chirality`, signing/notarization/distribution,
 publication/release/issuance claims, provider expansion, tracked source
 mutation, or network use beyond the locked Electron download selected by the
 exact package command.
-

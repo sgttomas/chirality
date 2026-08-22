@@ -17,4 +17,3 @@
 - Acceptance: federation coverage reported; byte-exact Trigger; DEFERRED
   retained; closure echo dispositioned; held draft superseded; shared gate and
   epoch-1 non-trigger recorded; schema/hashes preserved; fresh review passes.
-
