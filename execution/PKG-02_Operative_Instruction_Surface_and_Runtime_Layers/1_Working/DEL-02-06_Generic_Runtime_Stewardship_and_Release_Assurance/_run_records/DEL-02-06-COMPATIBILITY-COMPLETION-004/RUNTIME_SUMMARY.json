@@ -1,0 +1,93 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 4
+  },
+  "counts": {
+    "category": {
+      "activation": 1,
+      "author": 2,
+      "basis": 1,
+      "closeout": 1,
+      "fanin": 2,
+      "orchestration": 3,
+      "refutation": 2
+    },
+    "event_type": {
+      "CHECK": 3,
+      "FINISH": 4,
+      "RETRY": 1,
+      "START": 4
+    },
+    "outcome": {
+      "PASS": 6,
+      "RETRY": 2,
+      "STARTED": 4
+    },
+    "reason_code": {
+      "ACCEPTED_SNAPSHOT_REPRODUCED": 1,
+      "ADMIT_FOR_OWNER_REVIEW": 1,
+      "AUTHOR_RETURN_ACCEPTED": 1,
+      "CANDIDATE_PREPARED": 1,
+      "FIRST_TURN_NO_TERMINAL_OUTPUT": 2,
+      "FRESH_REFUTATION_ACCEPTED": 1,
+      "FRESH_REVIEW": 1,
+      "INITIAL_DISPATCH": 1,
+      "OWNER_E1_AUTHORIZED": 1,
+      "OWNER_REVIEW_GATE_READY": 1,
+      "RETRY_AFTER_NO_OUTPUT": 1
+    }
+  },
+  "events": 12,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 0.019,
+      "events": 3,
+      "final_outcome": "RETRY",
+      "instance_id": "N1-AUTHOR-COMPATIBILITY-COMPLETION",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 1,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N1-AUTHOR"
+    },
+    {
+      "duration_seconds": 0.02,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "N1-AUTHOR-COMPATIBILITY-COMPLETION",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N1-AUTHOR-ATTEMPT-2"
+    },
+    {
+      "duration_seconds": 819.542,
+      "events": 5,
+      "final_outcome": "PASS",
+      "instance_id": "N1-WORKING-ITEMS-DEL0206",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "N1-MANAGER"
+    },
+    {
+      "duration_seconds": 0.02,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "N2-FRESH-REFUTER",
+      "package_id": "PKG-02",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT_2_GENERALIST",
+      "session_id": "N2-REFUTER"
+    }
+  ],
+  "sessions": 4,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

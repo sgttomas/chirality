@@ -45,9 +45,11 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   `TM-ROOT-125` as `RESOLVED_WITH_CHANGE`, producing 22 live
   (`OPEN=12`, `DEFERRED=10`) / 103 archived. Receipt 111 then records the
   owner-selected Option-R re-scope and the sole closure of `TM-ROOT-117` as
-  `RESOLVED_BY_DECISION`, producing the current 21 live (`OPEN=11`,
-  `DEFERRED=10`) / 104 archived state. No D-APP-48 successor identity was
-  accepted.
+  `RESOLVED_BY_DECISION`, producing 21 live (`OPEN=11`, `DEFERRED=10`) / 104
+  archived. Receipt 112 then records the owner-directed closure/archive of
+  `TM-ROOT-116` and creation of attention-only `TM-ROOT-126`/`TM-ROOT-127`,
+  producing the current 22 live (`OPEN=12`, `DEFERRED=10`) / 105 archived
+  state. No D-APP-48 successor identity was accepted.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -75,14 +77,11 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
 - Public export under `exports/chirality-app/` — stale derivative,
   deferred to the next export release (posture unchanged since SCA-002).
 - Current Root Task Management decision support under
-  `execution/_Coordination/_TaskManagement/`: the TM-ROOT-116 exact Step-0
-  draft remains derivative decision support; its exact bytes were owner-ruled
-  and applied to the standing idle workplan, but TM-ROOT-116 remains OPEN
-  pending later disposition after PR/merge evidence. The TM-ROOT-105 drift
-  analysis remains derivative evidence for the owner-ruled mechanical
-  EvidenceSha re-pin; the archived row's existing ruling and closure meaning
-  are unchanged and it was not re-closed. The session report is derivative
-  closeout support, not authority.
+  `execution/_Coordination/_TaskManagement/`: TM-ROOT-116 is now archived
+  `RESOLVED_WITH_CHANGE` against the exact live Step-0 workplan bytes;
+  TM-ROOT-126/-127 are attention-only OPEN rows; and the current session
+  report prepares, but does not rule, promotion of trigger-fired TM-ROOT-035
+  and TM-ROOT-042. The report is derivative closeout support, not authority.
 - `EVIDENCE_PIN_CLASS_CLOSURE_2026-08-09.md` is derivative audit evidence for
   the owner-ruled `TM-ROOT-109`/`TM-ROOT-121` mechanical re-pins. Its
   class-complete sweep found 11 exact-path-resolvable single-hash rows: 11
@@ -95,12 +94,10 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   and rationale are in
   `AMENDMENT_2026-08-09_CANDIDATE_HARVEST_POST_ACCEPTANCE_WHITESPACE.md`.
   The cleaned version is not treated as freshly accepted.
-- `AgentRuns/ROOT_CROSS_LOOP_CARRIERS_2026-08-21/` is the current derivative
-  run package. Its decision packet is decision support only: it neither
-  accepts a D-APP-48 successor nor supplies a DEL-02-06 compatibility epoch.
-  Historical App DEL-09-06 instruction-root evidence and the D-APP-86 parity
-  baseline pin pre-tranche HELP_HUMAN bytes; they remain immutable historical
-  evidence, and any current-byte regeneration is App-owned.
+- `AgentRuns/ROOT_DEL0206_CHANGE_HOUSEKEEPING_2026-08-21/` is the current
+  derivative run package. Its exact-byte and Task Management slate is decision
+  support only. Historical App DEL-09-06 instruction-root evidence and the
+  D-APP-86 parity baseline remain immutable historical evidence.
 
 ## 3. Closure verdict
 
@@ -179,6 +176,18 @@ That activation and all candidate output are excluded from PR #602 and must
 run as a separate tranche/PR; exact prepared bytes and SHA-256 return to a
 later owner acceptance gate.
 
+`2026-08-21 DEL-02-06 COMPATIBILITY PREPARATION AND ROOT HOUSEKEEPING COMPLETE
+WITH NODE-2 AUTHORITY BLOCKER — PR #605 OPEN.` Receipt 112 records exact
+candidate bytes SHA-256
+`e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c`,
+fresh zero-finding refutation, REM-001 satisfaction with lifecycle remaining
+`INITIALIZED`, TM-ROOT-116 closure, and attention-only TM-ROOT-126/-127.
+TM-ROOT-035/-042 are trigger-fired but unchanged pending owner rulings.
+TM-ROOT-124 remains OPEN because its Assignment names no exact D-GOV identity;
+no CHANGE instruction tranche or notices landed. Candidate-byte acceptance,
+implementation, lifecycle promotion, release, publication, reliance, PR
+approval, and merge remain human-gated.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -194,10 +203,9 @@ PR #478 (Receipts 82 and 85). No further action is required for that tranche.
 Rerun its validation and federation matrix only if the shared Task Management
 instruction/tool contract or canonical register-discovery shapes change.
 
-After the human-gated PR merges, re-open the merged workplan and archived row,
-reproduce their accepted hashes, and return TM-ROOT-116 to the owner for a
-separate disposition; this session supplies no closure authority for that row.
-Rerun Root live/archive register validation, invocation-local federation,
+TM-ROOT-116 is closed under the exact 2026-08-21 owner direction and requires
+no later disposition-by-inference. Rerun Root live/archive register validation,
+invocation-local federation,
 available App/Piping receipt validators, Root G0–G4, candidate-whitespace, and
 Git diff hygiene if publication rebasing changes any tranche byte. The
 repository still has no Root-specific receipt validator at this basis; do not
@@ -226,3 +234,11 @@ return exact candidate bytes and SHA-256 for a separate owner acceptance.
 DEL-02-06 remains `INITIALIZED` until that separately governed activation;
 do not infer package acceptance, implementation, lifecycle, release,
 publication, reliance, or foreign-loop disposition.
+
+For Receipt 112 / PR #605, return the exact candidate bytes and SHA-256 to the
+owner for `ACCEPT_EXACT_BYTES | RETURN_EXACT_BYTES | DEFER_EXACT_BYTES`; do not
+infer selection. Independently return TM-ROOT-035 and TM-ROOT-042 for
+`PROMOTE_TO_OPEN | RETAIN_DEFERRED_WITH_NEW_TRIGGER`, and return TM-ROOT-124
+for an exact D-GOV identity ruling. TM-ROOT-126/-127 await ordinary owner
+triage. Any post-PR main advancement requires explicit authorization before a
+non-rewriting sync; no merge is authorized.
