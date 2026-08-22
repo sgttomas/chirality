@@ -268,8 +268,16 @@ def validate_hierarchy(paths: list[Path], repo_root: Path) -> list[Finding]:
                 add(findings, "ERROR", "SUBAGENT_ROLE_UNRESOLVED", rel, f"subagent role does not exist: {child}")
                 continue
             child_type = child_record[2]
-            if agent_type == "0" and child_type != "1":
-                add(findings, "ERROR", "AGENT0_CHILD_TYPE", rel, f"Agent 0 child {child} must be Agent 1")
+            if agent_type == "0" and not (
+                child_type == "1" or (child == "TASK" and child_type == "2")
+            ):
+                add(
+                    findings,
+                    "ERROR",
+                    "AGENT0_CHILD_TYPE",
+                    rel,
+                    f"Agent 0 child {child} must be Agent 1 or canonical TASK Agent 2",
+                )
             if agent_type == "1" and child_type != "2":
                 add(findings, "ERROR", "AGENT1_CHILD_TYPE", rel, f"Agent 1 child {child} must be Agent 2")
         allows_generalist = re.search(
@@ -277,8 +285,14 @@ def validate_hierarchy(paths: list[Path], repo_root: Path) -> list[Finding]:
             frontmatter_block(text),
             re.MULTILINE,
         )
-        if allows_generalist and agent_type != "1":
-            add(findings, "ERROR", "GENERALIST_PARENT_TYPE", rel, "only Agent 1 may allow ephemeral generalist Agent 2 children")
+        if allows_generalist and agent_type not in ("0", "1"):
+            add(
+                findings,
+                "ERROR",
+                "GENERALIST_PARENT_TYPE",
+                rel,
+                "only Agent 0 or Agent 1 may allow ephemeral generalist Agent 2 children",
+            )
         interaction = fields.get("INTERACTION_SURFACE", "").lower()
         if agent_type == "1" and not (interaction.startswith("chat") or interaction.startswith("both")):
             add(findings, "ERROR", "AGENT1_DIRECT_ENTRY", rel, "Agent 1 must support direct human invocation")

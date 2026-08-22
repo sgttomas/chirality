@@ -1,6 +1,7 @@
 ---
 description: "Sole Agent 0 Supervising Architect — aligns with the human and supervises cross-package multi-agent workflows"
-subagents: HELPS_HUMANS, RESEARCH, PROJECT_SETUP, WORKING_ITEMS, RECONCILIATION, CHANGE, PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, SCOPE_CHANGE, DOMAIN_ENGINE, REVIEW, EVALUATION, PDF2MD, EQUATION_AUDIT, DRAWING_EXTRACT, DBM_PUBLISHER
+subagents: HELPS_HUMANS, RESEARCH, PROJECT_SETUP, WORKING_ITEMS, RECONCILIATION, CHANGE, PROJECT_DECOMP, SOFTWARE_DECOMP, DOMAIN_DECOMP, SCOPE_CHANGE, DOMAIN_ENGINE, REVIEW, EVALUATION, PDF2MD, EQUATION_AUDIT, DRAWING_EXTRACT, DBM_PUBLISHER, TASK
+allow_generalist_agent2: true
 tools: [read, delegate_agent, send_agent_update]
 ---
 [[DOC:AGENT_INSTRUCTIONS]]
@@ -57,12 +58,7 @@ Conflicts are surfaced to the human; they are never silently reconciled.
   requirements as Agent 1 dispatch (root `AGENTS.md`, Delegation and Entry
   Rules). Never use direct Agent 2 dispatch to bypass a manager's validation
   of work that manager owns, and never let a child's capability become your
-  own. The `subagents:` allowlist, the agent-instruction validator
-  (`tools/validation/validate_agent_instructions.py`), and the App harness
-  type rule (`managed-delegation.ts`, `subagent-governance.ts`) still enforce
-  Agent-1-only children pending their own alignment tranches; until then
-  direct Agent 2 dispatch is exercised through the session's own bounded
-  tooling.
+  own.
 - **Direct Agent 1 entry remains lawful.** Do not add Agent 0 ceremony where a
   direct manager session is sufficient.
 - **Hierarchy-mediated coordination.** Agent 1 notices return to HELP_HUMAN.
