@@ -1,0 +1,11 @@
+{
+  "schema": "chirality-agent2-instance-status/v1",
+  "runId": "APPDEV_POST_ROOT_LOGIN_ENABLEMENT_2026-08-21",
+  "parentInstanceId": "WI-PKG08-POST-ROOT-INTEGRATION-01",
+  "childInstanceId": "A2-PKG08-INTEGRATION-EXECUTE-01",
+  "status": "REJECTED_PRECONDITION",
+  "acceptedForFanIn": false,
+  "reasonCode": "APP_HOLD_PREFLIGHT_NOT_PRECEDING_DISPATCH",
+  "rerun": "A fresh child may run only after a passing APP-HOLD-1 dispatch preflight."
+}
+

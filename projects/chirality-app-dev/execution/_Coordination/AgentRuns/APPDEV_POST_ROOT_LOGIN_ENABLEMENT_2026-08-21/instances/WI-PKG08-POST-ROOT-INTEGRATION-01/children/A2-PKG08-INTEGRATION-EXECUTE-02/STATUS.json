@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-managed-agent-instance-status/v1",
+  "run_id": "APPDEV_POST_ROOT_LOGIN_ENABLEMENT_2026-08-21",
+  "parent_instance_id": "WI-PKG08-POST-ROOT-INTEGRATION-01",
+  "instance_id": "A2-PKG08-INTEGRATION-EXECUTE-02",
+  "agent_form": "ephemeral-generalist-agent2",
+  "status": "COMPLETED",
+  "verdict": "PASS",
+  "accepted_basis": "1b375af4f1219ecfc00fc2755854aa7fd4220901",
+  "required_check_groups": {
+    "root_validator": {"exit_code": 0, "files": 34, "errors": 0, "warnings": 0},
+    "root_validator_tests": {"exit_code": 0, "tests_passed": 19},
+    "app_managed_delegation": {"exit_code": 0, "tests_passed": 19},
+    "app_subagent_governance": {"exit_code": 0, "tests_passed": 11}
+  },
+  "combined_app_backcheck": {"exit_code": 0, "files_passed": 2, "tests_passed": 30},
+  "blockers": [],
+  "reruns_required": [],
+  "derivative_evidence": true,
+  "completed_at": "2026-08-22T03:21:31Z"
+}

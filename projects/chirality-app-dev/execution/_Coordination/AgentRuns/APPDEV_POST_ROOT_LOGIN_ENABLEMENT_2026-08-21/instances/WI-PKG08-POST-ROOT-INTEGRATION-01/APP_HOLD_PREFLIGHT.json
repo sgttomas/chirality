@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-app-hold-check/v1",
+  "repo_head": "1b375af4f1219ecfc00fc2755854aa7fd4220901",
+  "operation": "dispatch",
+  "entry_path": "../../agents/AGENT_WORKING_ITEMS.md",
+  "targets": ["DEL-08-04"],
+  "active_hold_deliverables": [],
+  "scan_held_deliverables": [],
+  "register_sha256": "e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f",
+  "scan_fingerprint_sha256": "7f9cc294f286f7b91ee972d615ee9ec59430575c65c200ece57dfe6042476daa",
+  "results": [
+    {
+      "deliverable_id": "DEL-08-04",
+      "contract_status": "CLEAR",
+      "hold_status": "NOT_HELD",
+      "verdict": "ALLOW"
+    }
+  ],
+  "verdict": "ALLOW"
+}
+

@@ -1,0 +1,26 @@
+{
+  "schema": "chirality-software-check-evidence/v1",
+  "runId": "APPDEV_POST_ROOT_LOGIN_ENABLEMENT_2026-08-21",
+  "instanceId": "WI-PKG08-POST-ROOT-INTEGRATION-01",
+  "basis": "1b375af4f1219ecfc00fc2755854aa7fd4220901",
+  "checks": {
+    "appHoldDispatchPreflight": {"status": "PASS", "verdict": "ALLOW", "target": "DEL-08-04"},
+    "rootAgentInstructionValidator": {"status": "PASS", "files": 34, "errors": 0, "warnings": 0},
+    "rootAgentInstructionTests": {"status": "PASS", "passed": 19},
+    "appManagedDelegationFocused": {"status": "PASS", "passed": 19},
+    "appHarnessSubagentGovernanceFocused": {"status": "PASS", "passed": 11},
+    "appCombinedFocused": {"status": "PASS", "files": 2, "passed": 30},
+    "freshReviewIndependentRerun": {"status": "PASS", "rootValidator": "34/0/0", "rootTests": "19/19", "appCombined": "30/30"},
+    "appHoldIntegrity": {"status": "PASS", "contracts": 53, "held": 0, "registerMatch": true},
+    "practitionerPytest": {"status": "PASS", "passed": 350},
+    "harnessSelfCheck": {"status": "PASS", "exitCode": 0, "note": "pre-existing non-App baseline findings only"},
+    "nodeDiffCheck": {"status": "PASS"},
+    "jsonJsonlParse": {"status": "PASS"},
+    "staging": {"status": "PASS", "stagedPaths": 0}
+  },
+  "skipped": {
+    "fullFrontendTestTypecheckBuild": "No product/runtime source changed; owner required the two exact focused App checks, which passed together.",
+    "releaseChecks": "Outside authority and hard-fenced."
+  }
+}
+

@@ -1,0 +1,93 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 4
+  },
+  "counts": {
+    "category": {
+      "FAN_IN": 1,
+      "ORCHESTRATION": 1,
+      "PRECONDITION": 2,
+      "REGISTERED_CHECKS": 2,
+      "REVIEW": 2,
+      "VALIDATION": 3
+    },
+    "event_type": {
+      "CHECK": 2,
+      "FINISH": 4,
+      "RETRY": 1,
+      "START": 4
+    },
+    "outcome": {
+      "BLOCKED": 1,
+      "PASS": 5,
+      "RETRY": 1,
+      "STARTED": 4
+    },
+    "reason_code": {
+      "ACTIVATION_ACCEPTED": 1,
+      "ALL_REQUIRED_CHECKS_PASS": 1,
+      "APP_HOLD_PREFLIGHT_ALLOW": 1,
+      "APP_HOLD_PREFLIGHT_NOT_PRECEDING_DISPATCH": 1,
+      "APP_PROJECT_CHECKS_PASS": 1,
+      "FRESH_REVIEW_DISPATCH": 1,
+      "ROOT_APP_MATRIX_PASS": 1,
+      "SEALED_BRIEF_DISPATCH": 1,
+      "SEALED_BRIEF_DISPATCH_AFTER_PREFLIGHT": 1,
+      "VALIDATED_NODE_PASS": 1,
+      "ZERO_ACTIONABLE_FINDINGS": 1
+    }
+  },
+  "events": 11,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 118.038,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PKG08-INTEGRATION-EXECUTE-01",
+      "package_id": "PKG-08",
+      "remediations": 0,
+      "retries": 0,
+      "role": "GENERALIST_AGENT2",
+      "session_id": "A2-PKG08-INTEGRATION-EXECUTE-01"
+    },
+    {
+      "duration_seconds": 296.494,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG08-INTEGRATION-EXECUTE-02",
+      "package_id": "PKG-08",
+      "remediations": 0,
+      "retries": 1,
+      "role": "GENERALIST_AGENT2",
+      "session_id": "A2-PKG08-INTEGRATION-EXECUTE-02"
+    },
+    {
+      "duration_seconds": 308.09,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG08-INTEGRATION-REVIEW-01",
+      "package_id": "PKG-08",
+      "remediations": 0,
+      "retries": 0,
+      "role": "GENERALIST_AGENT2",
+      "session_id": "A2-PKG08-INTEGRATION-REVIEW-01"
+    },
+    {
+      "duration_seconds": 885.503,
+      "events": 4,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG08-POST-ROOT-INTEGRATION-01",
+      "package_id": "PKG-08",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG08-POST-ROOT-INTEGRATION-01"
+    }
+  ],
+  "sessions": 4,
+  "status": "PASS",
+  "unmatched_sessions": []
+}
