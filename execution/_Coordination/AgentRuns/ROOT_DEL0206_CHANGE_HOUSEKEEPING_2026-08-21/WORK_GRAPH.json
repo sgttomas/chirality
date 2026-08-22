@@ -1,0 +1,15 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_DEL0206_CHANGE_HOUSEKEEPING_2026-08-21",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "basis": "1b375af4f1219ecfc00fc2755854aa7fd4220901",
+  "nodes": [
+    {"id":"N1","role":"WORKING_ITEMS","dependencies":[],"concurrent_with":["N2"],"writes":["execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/**","execution/_Coordination/AgentRuns/ROOT_DEL0206_CHANGE_HOUSEKEEPING_2026-08-21/instances/N1-WORKING-ITEMS-DEL0206/**"]},
+    {"id":"N2","role":"HELPS_HUMANS","dependencies":[],"concurrent_with":["N1"],"writes":["agents/AGENT_CHANGE.md","docs/governance_harness/tranche_manifests/ROOT-TM124-CHANGE-ROUTINE-BRANCH-20260821.yaml","projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_TM124_CHANGE_ROUTINE_BRANCH.md","projects/chirality-piping/execution/_Coordination/NOTICE_2026-08-21_ROOT_TM124_CHANGE_ROUTINE_BRANCH.md","_DomainEngines/_Coordination/NOTICE_2026-08-21_ROOT_TM124_CHANGE_ROUTINE_BRANCH.md","execution/_Coordination/AgentRuns/ROOT_DEL0206_CHANGE_HOUSEKEEPING_2026-08-21/instances/N2-HELPS-HUMANS-CHANGE/**"]},
+    {"id":"N3","role":"TASK_MANAGEMENT","dependencies":["N1","N2"],"concurrent_with":[],"writes":["execution/_Coordination/_TaskManagement/**","execution/_Coordination/LOOP_RECEIPTS.md","execution/_Coordination/HANDOFF_STATE.md","execution/_Coordination/AgentRuns/ROOT_DEL0206_CHANGE_HOUSEKEEPING_2026-08-21/instances/N3-TASK-MANAGEMENT-HOUSEKEEPING/**"]}
+  ],
+  "human_decision_points": ["accept-or-decline exact root-runtime-1 prepared bytes","rule any TM-ROOT-035/TM-ROOT-042 promotion proposal"],
+  "exclusions": ["implementation","lifecycle change","release","publication","reliance","foreign register write","artifact-proof label","merge","silent main sync"]
+}
