@@ -1,0 +1,30 @@
+{
+  "schema": "working-items-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_MACOS26_REPAIR_2026-08-22",
+  "instance_id": "WI-PKG09-MACOS26-LOGIN-REPAIR-01",
+  "version": 1,
+  "status": "FROZEN_BEFORE_DISPATCH",
+  "selection_authority": "OWNER",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "accepted_basis": "9bfe529352afb8bb43a8f0c6afd9a4b3945453b1",
+  "package": "PKG-09",
+  "deliverables": ["DEL-09-04"],
+  "nodes": [
+    {
+      "id": "IMPLEMENT-01",
+      "instance": "A2-PKG09-MACOS26-IMPLEMENT-01",
+      "agent_type": 2,
+      "dependencies": [],
+      "write_owner": "two frontend harness paths, DEL-09-04 R14/R15/status, executor records"
+    },
+    {
+      "id": "REVIEW-01",
+      "instance": "A2-PKG09-MACOS26-REVIEW-01",
+      "agent_type": 2,
+      "dependencies": ["IMPLEMENT-01"],
+      "write_owner": "review records only"
+    }
+  ],
+  "integration_owner": "WI-PKG09-MACOS26-LOGIN-REPAIR-01",
+  "fan_in_gate": "source/tests/read-only live preflight plus fresh review PASS; no rebuild or proof execution"
+}

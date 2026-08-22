@@ -32,6 +32,7 @@ export const SESSION_SCHEMA = 'chirality-packaged-launchagent-login-proof-sessio
 const CAPTURE_STATE_SCHEMA = 'chirality-packaged-launchagent-login-proof-capture-state/v1';
 export const SUMMARY_SCHEMA = 'chirality-packaged-launchagent-login-proof/v1';
 export const EVIDENCE_SCHEMA = 'chirality-packaged-launchagent-login-proof-evidence/v1';
+export const PREFLIGHT_SCHEMA = 'chirality-packaged-launchagent-login-proof-preflight/v1';
 
 const frontendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const defaultAppPath = path.join(frontendRoot, 'dist', 'mac-arm64', 'Chirality.app');
@@ -54,8 +55,12 @@ const optionNames = new Map([
 
 function parseArgs(argv) {
   const [command, ...tokens] = argv;
-  if (command !== 'prepare' && command !== 'capture') {
-    throw new Error('First argument must be prepare or capture');
+  if (command !== 'prepare' && command !== 'capture' && command !== 'preflight') {
+    throw new Error('First argument must be prepare, capture, or preflight');
+  }
+  if (command === 'preflight') {
+    if (tokens.length !== 0) throw new Error('Preflight accepts no options');
+    return { command, options: {} };
   }
   const options = {};
   for (let index = 0; index < tokens.length; index += 1) {
@@ -252,18 +257,37 @@ async function canonicalPackagedExecutables(paths) {
   return [...new Set(candidates)];
 }
 
-async function validateAccount(deps) {
+function validateIdentityAccount(deps) {
   if (deps.platform !== 'darwin') throw new Error('LaunchAgent login proof requires macOS');
   const uid = deps.uid();
   if (!Number.isSafeInteger(uid) || uid < 1) throw new Error('A non-root GUI user is required');
-  const accountHome = deps.userInfo().homedir;
+  const userInfo = deps.userInfo();
+  if (userInfo.uid !== uid) throw new Error('Process UID does not match the current account UID');
+  const username = userInfo.username;
+  if (
+    typeof username !== 'string' ||
+    username === '' ||
+    username === 'root' ||
+    username === 'loginwindow' ||
+    username === '_mbsetupuser' ||
+    /[:\r\n]/u.test(username)
+  ) {
+    throw new Error('Current account does not identify a real non-loginwindow GUI user');
+  }
+  return { uid, username, userInfo };
+}
+
+async function validateAccount(deps) {
+  const account = validateIdentityAccount(deps);
+  const { uid } = account;
+  const accountHome = account.userInfo.homedir;
   if (!accountHome || !deps.environment.HOME) throw new Error('HOME and account home are required');
   const canonicalAccountHome = await realpath(accountHome);
   const canonicalEnvironmentHome = await realpath(deps.environment.HOME);
   if (canonicalAccountHome !== canonicalEnvironmentHome) {
     throw new Error('HOME does not resolve to the current account home');
   }
-  return { uid, home: canonicalAccountHome };
+  return { uid, home: canonicalAccountHome, username: account.username };
 }
 
 function redact(message, replacements) {
@@ -292,37 +316,172 @@ function validateSourceRevision(value) {
   return revision;
 }
 
-async function loginSessionIdentity(uid, deps) {
+function parsePositiveSafeInteger(raw, label) {
+  if (!/^[1-9][0-9]*$/u.test(raw)) throw new Error(`${label} is missing or malformed`);
+  const value = Number(raw);
+  if (!Number.isSafeInteger(value)) throw new Error(`${label} is not a safe integer`);
+  return value;
+}
+
+function requireCommandOutput(result, description) {
+  if (result.exitCode !== 0 || result.signal || result.stderr !== '') {
+    throw new Error(`Unable to inspect ${description} (exit ${result.exitCode})`);
+  }
+  return result.stdout;
+}
+
+async function consoleOwnerIdentity(expectedAccount, deps) {
   const result = await deps.runCommand({
-    executable: '/usr/bin/osascript',
-    args: [
-      '-l',
-      'JavaScript',
-      '-e',
-      'ObjC.import("CoreGraphics"); JSON.stringify(ObjC.deepUnwrap($.CGSessionCopyCurrentDictionary()))'
-    ]
+    executable: '/usr/bin/stat',
+    args: ['-f', '%Su:%u', '/dev/console']
   });
-  if (result.exitCode !== 0 || result.stderr.trim() !== '') {
-    throw new Error(`Unable to inspect the current GUI login session (exit ${result.exitCode})`);
-  }
-  let record;
-  try {
-    record = JSON.parse(result.stdout);
-  } catch {
-    throw new Error('Current GUI login-session identity is not valid JSON');
-  }
-  const sessionId = record?.kCGSSessionIDKey;
-  const sessionUid = record?.kCGSessionUserIDKey;
+  const output = requireCommandOutput(result, '/dev/console owner metadata');
+  const match = /^([^:\r\n]+):([0-9]+)\n?$/u.exec(output);
+  if (!match) throw new Error('/dev/console owner metadata is missing, ambiguous, or malformed');
+  const [, username, rawUid] = match;
+  const uid = parsePositiveSafeInteger(rawUid, '/dev/console owner UID');
   if (
-    record?.kCGSessionOnConsoleKey !== true ||
-    record?.kCGSessionLoginDoneKey !== true ||
-    !Number.isSafeInteger(sessionId) ||
-    sessionId < 1 ||
-    sessionUid !== uid
+    username === 'root' ||
+    username === 'loginwindow' ||
+    username === '_mbsetupuser' ||
+    username !== expectedAccount.username ||
+    uid !== expectedAccount.uid
   ) {
-    throw new Error('Current GUI login-session identity is missing, ambiguous, or incomplete');
+    throw new Error('/dev/console owner does not match the current non-loginwindow account');
   }
-  return createHash('sha256').update(`${uid}:${sessionId}`).digest('hex');
+  return { username, uid };
+}
+
+function parseLoginDomain(output, expectedUid) {
+  if (typeof output !== 'string' || output === '' || output.includes('\0')) {
+    throw new Error('Top-level GUI login domain output is missing or malformed');
+  }
+  const lines = output.split(/\r?\n/u);
+  if (lines.at(-1) === '') lines.pop();
+  const identifier = /^gui\/([0-9]+) = \{$/u.exec(lines[0] ?? '');
+  if (!identifier) throw new Error('Top-level GUI login domain identifier is missing or malformed');
+  const identifierUid = parsePositiveSafeInteger(identifier[1], 'GUI login domain UID');
+  if (identifierUid !== expectedUid) {
+    throw new Error('Top-level GUI login domain identifier does not match the current account UID');
+  }
+
+  const values = { type: [], handle: [], session: [], securityUid: [], asid: [] };
+  let depth = 1;
+  let securityContextDepth;
+  let securityContextCount = 0;
+  let closedAt;
+  for (let index = 1; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+    if (depth === 0) {
+      if (line !== '') throw new Error('Top-level GUI login domain has trailing output');
+      continue;
+    }
+    if (line === '}') {
+      if (securityContextDepth === depth) securityContextDepth = undefined;
+      depth -= 1;
+      if (depth < 0) throw new Error('Top-level GUI login domain braces are malformed');
+      if (depth === 0) closedAt = index;
+      continue;
+    }
+    if (depth === 1) {
+      const field = /^(type|handle|session) = (.*)$/u.exec(line);
+      if (field) values[field[1]].push(field[2]);
+      if (line === 'security context = {') {
+        securityContextCount += 1;
+        depth += 1;
+        securityContextDepth = depth;
+        continue;
+      }
+    } else if (securityContextDepth === depth) {
+      const field = /^(uid|asid) = (.*)$/u.exec(line);
+      if (field) values[field[1] === 'uid' ? 'securityUid' : 'asid'].push(field[2]);
+    }
+    if (/= \{$/u.test(line)) depth += 1;
+  }
+  if (depth !== 0 || closedAt !== lines.length - 1) {
+    throw new Error('Top-level GUI login domain braces are incomplete or ambiguous');
+  }
+  if (
+    values.type.length !== 1 ||
+    values.handle.length !== 1 ||
+    values.session.length !== 1 ||
+    securityContextCount !== 1 ||
+    values.securityUid.length !== 1 ||
+    values.asid.length !== 1
+  ) {
+    throw new Error('Top-level GUI login domain identity fields are missing or ambiguous');
+  }
+  if (values.type[0] !== 'login' || values.session[0] !== 'Aqua') {
+    throw new Error('Top-level GUI domain is not an Aqua login session');
+  }
+  const handle = parsePositiveSafeInteger(values.handle[0], 'GUI login domain handle');
+  const securityUid = parsePositiveSafeInteger(
+    values.securityUid[0],
+    'GUI login domain security-context UID'
+  );
+  const asid = parsePositiveSafeInteger(values.asid[0], 'GUI login domain security-context asid');
+  if (securityUid !== expectedUid) {
+    throw new Error('GUI login domain security-context UID does not match the current account UID');
+  }
+  if (handle !== asid) {
+    throw new Error('GUI login domain handle does not match its security-context asid');
+  }
+  return { uid: identifierUid, handle, securityUid, asid };
+}
+
+async function currentLoginSessionIdentity(expectedAccount, deps) {
+  const consoleOwner = await consoleOwnerIdentity(expectedAccount, deps);
+  const result = await deps.runCommand({
+    executable: '/bin/launchctl',
+    args: ['print', `gui/${expectedAccount.uid}`]
+  });
+  const output = requireCommandOutput(result, 'the top-level GUI login domain');
+  const domain = parseLoginDomain(output, expectedAccount.uid);
+  if (consoleOwner.uid !== domain.uid) {
+    throw new Error('/dev/console and GUI login domain UIDs are inconsistent');
+  }
+  return domain;
+}
+
+function loginSessionDigest(identity, salt) {
+  if (typeof salt !== 'string' || salt === '') throw new Error('Login-session digest salt is missing');
+  return createHash('sha256')
+    .update(
+      JSON.stringify({
+        schema: 'chirality-login-session-identity-digest/v1',
+        salt,
+        uid: identity.uid,
+        handle: identity.handle,
+        securityUid: identity.securityUid,
+        asid: identity.asid
+      })
+    )
+    .digest('hex');
+}
+
+async function preflight(deps) {
+  const account = validateIdentityAccount(deps);
+  const identity = await currentLoginSessionIdentity(account, deps);
+  return {
+    schema: PREFLIGHT_SCHEMA,
+    status: 'PASS',
+    mode: 'READ_ONLY_PREFLIGHT',
+    inspections: {
+      consoleOwnerMetadata: true,
+      topLevelGuiLoginDomain: true,
+      serviceOrJobInspection: false
+    },
+    validation: {
+      currentAccountMatchesConsoleOwner: true,
+      uidConsistent: true,
+      loginDomain: true,
+      aquaSession: true,
+      identifierConsistent: true
+    },
+    identitySha256: loginSessionDigest(identity, deps.randomId()),
+    mutationsPerformed: false,
+    sessionRootCreated: false
+  };
 }
 
 async function assertCleanupTargets({ uid, home, label, service, sessionRoot, plistPath, runtimeRoot }) {
@@ -459,7 +618,7 @@ async function cleanupProof({
 }
 
 async function prepare(options, deps, sessionRoot, sourceRevision) {
-  const { uid, home } = await validateAccount(deps);
+  const { uid, home, username } = await validateAccount(deps);
   const launchAgentsDirectory = path.join(home, 'Library', 'LaunchAgents');
   await mkdir(launchAgentsDirectory, { recursive: true, mode: 0o700 });
   const appPath = await realpath(path.resolve(options.appPath ?? defaultAppPath));
@@ -500,7 +659,11 @@ async function prepare(options, deps, sessionRoot, sourceRevision) {
   );
   const defaultService = `gui/${uid}/${DEFAULT_LAUNCH_AGENT_LABEL}`;
   const defaultBefore = await protectedState(defaultPlistPath, defaultService, deps);
-  const preparedLoginSessionSha256 = await loginSessionIdentity(uid, deps);
+  const loginSessionDigestSalt = deps.randomId();
+  const preparedLoginSessionSha256 = loginSessionDigest(
+    await currentLoginSessionIdentity({ uid, username }, deps),
+    loginSessionDigestSalt
+  );
   const runtimeRoot = path.join(sessionRoot, 'runtime-data');
   await mkdir(runtimeRoot, { recursive: true, mode: 0o700 });
 
@@ -578,6 +741,7 @@ async function prepare(options, deps, sessionRoot, sourceRevision) {
       defaultBefore,
       preparedAt: prepared.preparedAt,
       preparedLoginSessionSha256,
+      loginSessionDigestSalt,
       sourceRevision
     });
     return {
@@ -651,7 +815,7 @@ async function capture(deps, sessionRoot) {
   if ((await sha256File(preparedPath)) !== captureState.preparedManifestSha256) {
     throw new Error('Prepared manifest does not match the bound capture state');
   }
-  const { uid, home } = await validateAccount(deps);
+  const { uid, home, username } = await validateAccount(deps);
   if (captureState.uid !== uid || captureState.home !== home) {
     throw new Error('Prepared session belongs to a different GUI account');
   }
@@ -749,7 +913,10 @@ async function capture(deps, sessionRoot) {
   let observedPid;
   let proofError;
   try {
-    const capturedLoginSessionSha256 = await loginSessionIdentity(uid, deps);
+    const capturedLoginSessionSha256 = loginSessionDigest(
+      await currentLoginSessionIdentity({ uid, username }, deps),
+      captureState.loginSessionDigestSalt
+    );
     summary.loginSession.capturedIdentitySha256 = capturedLoginSessionSha256;
     if (capturedLoginSessionSha256 === captureState.preparedLoginSessionSha256) {
       throw new Error('Current GUI login session is the same session recorded during preparation');
@@ -874,8 +1041,9 @@ async function capture(deps, sessionRoot) {
 
 export async function main(argv = process.argv.slice(2), dependencyOverrides = {}) {
   const deps = dependencies(dependencyOverrides);
-  const sessionRoot = await assertNoSymlinkAncestors(preparseSessionRoot(argv));
   const { command, options } = parseArgs(argv);
+  if (command === 'preflight') return preflight(deps);
+  const sessionRoot = await assertNoSymlinkAncestors(preparseSessionRoot(argv));
   if (command === 'prepare') {
     const sourceRevision = validateSourceRevision(options.sourceRevision);
     try {

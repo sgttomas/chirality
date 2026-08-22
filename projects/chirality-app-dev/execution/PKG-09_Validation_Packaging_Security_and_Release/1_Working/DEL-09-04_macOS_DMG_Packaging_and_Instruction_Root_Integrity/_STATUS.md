@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-21
+**Last Updated:** 2026-08-22
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -9,7 +9,20 @@
 ## Remaining
 
 - Actual login-session discovery and auto-start remain unproved. The exact
-  reviewed two-phase harness/test candidate is restored at live frontend paths
+  owner Terminal attempt failed before preparation completed with `Current GUI
+  login-session identity is not valid JSON`; owner-reported failure evidence is
+  recorded in `_run_records/R14_MACOS26_LOGIN_IDENTITY_PREPARE_FAILURE_2026-08-22.md`.
+  The obsolete JXA/CoreGraphics detector has now been replaced in the live
+  uncommitted source with a fail-closed `/dev/console` plus top-level
+  `launchctl print gui/<uid>` detector and an optionless read-only preflight.
+  Comprehensive focused/full tests, typecheck, APP-HOLD, practitioner
+  self-check, and the live macOS 26.6.2 preflight pass; see
+  `_run_records/R15_MACOS26_LOGIN_IDENTITY_REPAIR_2026-08-22.md`. The repair is
+  not yet committed or rebuilt, so the R13 package does not contain it and no
+  new exact `PROOF_REVISION` or `PROOF_APP` is available. Fresh review, Git
+  integration, and a later unsigned rebuild remain prerequisites before a new
+  owner procedure can be staged.
+  The prior reviewed two-phase harness/test candidate was restored at live frontend paths
   under the owner's superseding **“Push through failures”** direction.
   Implementation preparation is complete: Agent 0 repaired only the ignored
   dependency workspace, and mandatory integrated Vitest/typecheck/build plus
@@ -21,13 +34,14 @@
   must rerun after PR. Root runtime writes, unrelated App mocks, and tracked
   setup files remain untouched. See
   `_run_records/R12_LOGIN_SESSION_PROOF_PREPARATION_2026-08-21.md`. Logout/login
-  and capture remain unexecuted owner acts. A current unsigned app-directory
-  package has now been rebuilt from exact commit
+  and capture remain unexecuted owner acts. The prior unsigned app-directory
+  package was rebuilt from exact commit
   `1b375af4f1219ecfc00fc2755854aa7fd4220901`; current-byte instruction-root
   integrity, including the post-#602 HELP_HUMAN bytes, passed and the concrete
-  two-phase owner procedure is staged without execution in
-  `_run_records/R13_POST_ROOT_LOGIN_PROOF_ENABLEMENT_2026-08-21.md`. No proof or
-  publication is claimed.
+  two-phase owner procedure was staged without execution in
+  `_run_records/R13_POST_ROOT_LOGIN_PROOF_ENABLEMENT_2026-08-21.md`; that
+  package and procedure are now superseded for future execution because they
+  do not contain the repaired detector. No proof or publication is claimed.
 - After a rebuilt C1 artifact exists, the owner may deploy the daemon service
   on the owner's machine and report the result (owner act, not agent work;
   owner decision gate 3 of `TRB-APPDEV-DAEMON-SERVICE-2026-07-25`). Merging alone changes
@@ -37,6 +51,17 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-22 - Recorded the owner-reported macOS 26.6.2 prepare failure and
+  replaced the obsolete JXA/CoreGraphics login-session identity probe with a
+  fail-closed `/dev/console` plus top-level GUI login-domain detector. The new
+  optionless read-only preflight passed live without creating the proposed
+  root or issuing service/job-level or mutating launchctl operations. Focused
+  tests passed 46/46, full Vitest passed 1,245 with 4 skips after the exact
+  sandbox-denied socket fixture run was repeated with local socket permission,
+  and typecheck, APP-HOLD, practitioner self-check, syntax, and whitespace
+  checks passed. The repair remains uncommitted and unbuilt; DEL-09-04 remains
+  IN_PROGRESS and unproved, with prepare/logout/login/capture and operator
+  deployment still owner acts. See R14 and R15.
 - 2026-08-21 - Post-Root login-proof enablement rebuilt the unsigned arm64 app
   directory with `npm run desktop:pack` from exact commit
   `1b375af4f1219ecfc00fc2755854aa7fd4220901`. The dependency-boundary and
