@@ -1,0 +1,71 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_DEL0206_ACCEPTANCE_DGOV34_2026-08-21",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "basis": "33e871fc38d8ef4bb51f7c25cdc6ca2e8dcb69e0",
+  "nodes": [
+    {
+      "id": "N1",
+      "role": "WORKING_ITEMS",
+      "dependencies": [],
+      "concurrent_with": ["N2", "N3"],
+      "writes": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/**",
+        "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+        "execution/_Coordination/AgentRuns/ROOT_DEL0206_ACCEPTANCE_DGOV34_2026-08-21/instances/N1-WORKING-ITEMS-DEL0206/**"
+      ]
+    },
+    {
+      "id": "N2",
+      "role": "TASK_MANAGEMENT",
+      "dependencies": [],
+      "concurrent_with": ["N1", "N3"],
+      "writes": [
+        "execution/_Coordination/_TaskManagement/**",
+        "execution/_Coordination/AgentRuns/ROOT_DEL0206_ACCEPTANCE_DGOV34_2026-08-21/instances/N2-TASK-MANAGEMENT/**"
+      ]
+    },
+    {
+      "id": "N3",
+      "role": "HELPS_HUMANS",
+      "dependencies": [],
+      "concurrent_with": ["N1", "N2"],
+      "writes": [
+        "docs/governance_harness/_DECISIONS/D-GOV-34_*.md",
+        "docs/governance_harness/_DECISIONS/_REGISTER.md",
+        "agents/AGENT_CHANGE.md",
+        "docs/governance_harness/tranche_manifests/ROOT-TM124-CHANGE-ROUTINE-BRANCH-20260821.yaml",
+        "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DGOV34_CHANGE_ROUTINE_BRANCH.md",
+        "projects/chirality-piping/execution/_Coordination/NOTICE_2026-08-21_ROOT_DGOV34_CHANGE_ROUTINE_BRANCH.md",
+        "_DomainEngines/_Coordination/NOTICE_2026-08-21_ROOT_DGOV34_CHANGE_ROUTINE_BRANCH.md",
+        "execution/_Coordination/AgentRuns/ROOT_DEL0206_ACCEPTANCE_DGOV34_2026-08-21/instances/N3-HELPS-HUMANS-DGOV34/**"
+      ]
+    },
+    {
+      "id": "N4",
+      "role": "TASK_MANAGEMENT",
+      "dependencies": ["N3"],
+      "concurrent_with": [],
+      "writes": [
+        "execution/_Coordination/_TaskManagement/**",
+        "execution/_Coordination/AgentRuns/ROOT_DEL0206_ACCEPTANCE_DGOV34_2026-08-21/instances/N2-TASK-MANAGEMENT/**"
+      ]
+    }
+  ],
+  "commit_order": ["N1", "N2", "N3", "N4", "RECEIPT_113"],
+  "human_decision_points": [],
+  "exclusions": [
+    "implementation",
+    "cutover",
+    "unruled lifecycle change",
+    "release",
+    "publication",
+    "reliance",
+    "foreign register write",
+    "artifact-proof label",
+    "merge",
+    "silent main sync"
+  ]
+}
