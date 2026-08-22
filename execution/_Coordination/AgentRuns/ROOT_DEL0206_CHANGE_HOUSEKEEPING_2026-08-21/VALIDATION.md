@@ -43,6 +43,20 @@ contains required ancestor `adf805e0d9ac55787e8ac815c3018467babb7f50`.
 - No instruction-surface path differs from the base; no G4 tranche manifest is
   required for the failed/blocked N2 path.
 
+Final pre-receipt rerun at published PR head
+`0f3de6875e2e30b227f824131cd29e9884949600`:
+
+- Root G0–G4 PASS; agent instructions 34/0/0; instruction entrypoints PASS;
+- candidate validator and 6/6 negative cases PASS; SOW_V1 PASS;
+- Root live/archive Task Management validation PASS;
+- Task Management plus validation suites: 369 passed;
+- practitioner harness suite: 350 passed;
+- practitioner self-check exit 0 with standing findings only;
+- Git diff hygiene PASS; branch based on unchanged
+  `origin/main@1b375af4f1219ecfc00fc2755854aa7fd4220901`;
+- PR #605 opened ready for review against `main`; governance harness check was
+  in progress when the after-the-fact receipt was prepared.
+
 ## Holds and reruns
 
 Final Root G0–G4, instruction entrypoints, agent validation, Task Management
