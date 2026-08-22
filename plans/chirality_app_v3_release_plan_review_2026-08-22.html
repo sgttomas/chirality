@@ -1,0 +1,368 @@
+<title>v3 Plan Review Return</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F4F5F2; --bg-2:#EBEDE8; --ink:#1C2127; --ink-2:#3C454E; --slate:#5A6570; --line:#CFD4CE;
+  --accent:#136E6A; --accent-soft:#DCEBE9;
+  --p0:#A32D2D; --p0-soft:#F3DEDE; --p1:#A86A12; --p1-soft:#F5E8D2; --p2:#3A6A8F; --p2-soft:#DCE6EF;
+  --ok:#2F7A4E; --ok-soft:#DCEBE0;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#151A1F; --bg-2:#1D242B; --ink:#E4E7E2; --ink-2:#C2C8C4; --slate:#97A1A8; --line:#343D45;
+    --accent:#58B8B2; --accent-soft:#1C3634;
+    --p0:#E07A7A; --p0-soft:#3A1F1F; --p1:#E0A85A; --p1-soft:#3A2C17; --p2:#7FB0D6; --p2-soft:#1B2C3A;
+    --ok:#7CC695; --ok-soft:#1B3325;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#151A1F; --bg-2:#1D242B; --ink:#E4E7E2; --ink-2:#C2C8C4; --slate:#97A1A8; --line:#343D45;
+  --accent:#58B8B2; --accent-soft:#1C3634;
+  --p0:#E07A7A; --p0-soft:#3A1F1F; --p1:#E0A85A; --p1-soft:#3A2C17; --p2:#7FB0D6; --p2-soft:#1B2C3A;
+  --ok:#7CC695; --ok-soft:#1B3325;
+}
+*{box-sizing:border-box}
+html{font-size:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+code,kbd{font-family:var(--mono);font-size:.86em;background:var(--bg-2);padding:.05em .3em;border-radius:3px;word-break:break-all}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:0;max-width:1180px;margin:0 auto;padding:0 1.25rem 4rem}
+@media (min-width:980px){.wrap{grid-template-columns:230px minmax(0,1fr);gap:3rem}}
+nav.toc{display:none}
+@media (min-width:980px){
+  nav.toc{display:block;position:sticky;top:1.5rem;align-self:start;font-size:.82rem;padding-top:2.5rem}
+  nav.toc ol{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
+  nav.toc li a{display:block;padding:.3rem .8rem;color:var(--ink-2);text-decoration:none;border-left:2px solid transparent;margin-left:-1px}
+  nav.toc li a:hover{color:var(--accent);border-left-color:var(--accent)}
+  nav.toc .eyebrow{margin-bottom:.6rem}
+}
+main{max-width:78ch;min-width:0}
+header.masthead{padding:2.5rem 0 1.5rem;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);font-weight:600}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,4vw,2.7rem);line-height:1.1;margin:.4rem 0 .8rem;text-wrap:balance;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-weight:500;font-size:1.55rem;line-height:1.2;margin:2.6rem 0 .8rem;text-wrap:balance;padding-top:.4rem}
+h3{font-family:var(--sans);font-weight:600;font-size:1rem;margin:1.6rem 0 .5rem}
+p{margin:.6rem 0;max-width:70ch}
+.lede{font-size:1.05rem;color:var(--ink-2);max-width:70ch}
+.meta{display:grid;grid-template-columns:max-content 1fr;gap:.3rem 1rem;font-size:.86rem;margin-top:1.2rem;max-width:none}
+.meta dt{color:var(--slate);font-weight:600}
+.meta dd{margin:0;font-family:var(--mono);font-size:.8rem;word-break:break-all}
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:1rem 1.4rem;align-items:start;background:var(--accent-soft);border:1px solid var(--accent);border-radius:6px;padding:1.1rem 1.3rem;margin:1.6rem 0}
+.verdict .word{font-family:var(--serif);font-size:1.9rem;font-weight:600;color:var(--accent);line-height:1;letter-spacing:-.01em}
+.verdict p{margin:.2rem 0;font-size:.95rem}
+.chip{display:inline-block;font-family:var(--mono);font-size:.72rem;font-weight:500;padding:.12em .5em;border-radius:3px;letter-spacing:.02em;white-space:nowrap}
+.chip.p0{background:var(--p0-soft);color:var(--p0)}
+.chip.p1{background:var(--p1-soft);color:var(--p1)}
+.chip.p2{background:var(--p2-soft);color:var(--p2)}
+.chip.ok{background:var(--ok-soft);color:var(--ok)}
+.chip.na{background:var(--bg-2);color:var(--slate)}
+.tbl{overflow-x:auto;margin:1rem 0;border:1px solid var(--line);border-radius:6px}
+table{border-collapse:collapse;width:100%;font-size:.86rem;min-width:640px}
+th,td{text-align:left;vertical-align:top;padding:.55rem .7rem;border-bottom:1px solid var(--line)}
+th{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);background:var(--bg-2);font-weight:600}
+tr:last-child td{border-bottom:0}
+td.id{font-family:var(--mono);font-size:.78rem;white-space:nowrap}
+td.num,th.num{font-variant-numeric:tabular-nums}
+.qa{border-left:3px solid var(--accent);padding:.1rem 0 .1rem 1rem;margin:1.2rem 0}
+.qa .q{font-weight:600;margin:0 0 .3rem}
+.qa .q .id{font-family:var(--mono);font-size:.78rem;color:var(--accent);margin-right:.5rem}
+.qa p{margin:.35rem 0}
+ul,ol{padding-left:1.3rem;max-width:70ch}
+li{margin:.3rem 0}
+.note{background:var(--bg-2);border-radius:6px;padding:.9rem 1.1rem;margin:1rem 0;font-size:.92rem}
+.note strong{color:var(--ink)}
+.kv{display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem;font-size:.9rem;margin:.8rem 0}
+.kv dt{color:var(--slate);font-weight:600}
+.kv dd{margin:0}
+hr{border:0;border-top:1px solid var(--line);margin:2rem 0}
+footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--line);font-size:.82rem;color:var(--slate)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="Contents">
+  <div class="eyebrow">Contents</div>
+  <ol>
+    <li><a href="#verdict">Verdict and basis</a></li>
+    <li><a href="#findings">Findings</a></li>
+    <li><a href="#conflicts">Contract conflicts</a></li>
+    <li><a href="#gates">Missing gates</a></li>
+    <li><a href="#questions">Q-01 … Q-14</a></li>
+    <li><a href="#assumptions">A-01 … A-10</a></li>
+    <li><a href="#upstream">Upstream corrections</a></li>
+    <li><a href="#routing">Execution routing</a></li>
+    <li><a href="#uncertainties">Residual uncertainties</a></li>
+    <li><a href="#recommend">Recommendations</a></li>
+    <li><a href="#method">Method</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="masthead">
+  <div class="eyebrow">Independent review return · plan §15.3 format · non-governing</div>
+  <h1>Chirality App v3.0.0-rc.1 execution plan: review return</h1>
+  <p class="lede">The plan merged in PR #609 asked for an independent review that compares it with current Root/App authority and code, answers fourteen questions, revalidates ten assumptions, and returns a disposition with evidence. This is that return. It does not accept, amend, or implement anything; every disposition below remains the owner's act.</p>
+  <dl class="meta">
+    <dt>Repository SHA reviewed</dt><dd>9770206c0b61ffa667598c6ee8e3a228fea50e44 (main; the plan's own baseline 0b826f4d2… is its first parent)</dd>
+    <dt>Plan file SHA-256</dt><dd>1805db74638f38a8fd41c13aa622e915e085d521b7539edf0ebbe25e99a4f7ef</dd>
+    <dt>Reviewer</dt><dd>HELP_HUMAN (session minder) with four bounded read-only reviewers: contracts, release governance, upstream facts, security refutation</dd>
+    <dt>Date</dt><dd>2026-08-22</dd>
+  </dl>
+</header>
+
+<section id="verdict">
+  <div class="verdict">
+    <div class="word">REVISE</div>
+    <div>
+      <p><strong>The direction is sound; the plan as written is not fit for owner acceptance.</strong> The two-profile architecture, the stdio-only pinned adapter, the provider-neutral account port, the Preview label, and the gate-driven (not date-driven) release posture all hold up against the code and the upstream record.</p>
+      <p>What does not hold up: the plan's delegated-harness profile reverses a live App ruling and five current invariants without naming them; its process architecture assumes a child-supervising daemon that the repo has already measured as broken for exactly that use; its containment rests on a single upstream beta layer with nothing of Chirality's own behind it; its release gates are unreachable under the current release invariant and CI instrument; no gate names the owner acts that lift the ten held DEL-02-06 bindings; and its Claude-login provision is reversed by Anthropic's published terms. Each is repairable. None is repairable by wording alone.</p>
+    </div>
+  </div>
+
+  <h3>Authority and source files inspected</h3>
+  <p>App: <code>docs/CONTRACT.md</code>, <code>SPEC.md</code>, <code>TYPES.md</code>, <code>PLAN.md</code>, <code>BUILD_AND_RELEASE.md</code>, <code>RELEASE_QUALITY_GATES.md</code>, <code>RELEASE_QUALITY_RUNBOOK.md</code>, <code>VALIDATION_STRATEGY.md</code>, <code>ISSUE_READINESS_PROFILES.md</code>; all 53 App <code>DEL-*/_STATUS.md</code>; DEL-09-04 R12/R13 run records; DEL-09-05/06 status; App <code>REGISTER.csv</code>; Receipts 184–185; <code>frontend/package.json</code>, <code>electron/*</code>, <code>src/lib/harness/*</code>, <code>src/app/api/harness/turn/route.ts</code>; <code>.github/workflows/desktop-release-template.yml</code> and its pinning tests. Root: <code>AGENTS.md</code>, <code>docs/CONTRACT.md</code>, <code>agents/AGENT_HELP_HUMAN.md</code>, <code>agents/AGENT_TASK.md</code>, DEL-02-06 status and <code>DEL-02-06-COMPATIBILITY-ACCEPTANCE-005</code>; <code>runtime/packages/{contracts,core,daemon,engine-claude,engine-pi-omlx}</code>; <code>_DomainEngines/profiles/pec.yaml</code>; <code>tools/practitioner_harness</code>. Upstream: OpenAI Codex app-server, permissions, sandboxing, subagents, auth, config-reference and feature-maturity pages; the <code>rust-v0.149.0</code> GitHub release and its <code>config-schema.json</code> and <code>codex-package_SHA256SUMS</code> assets; npm registry metadata; Anthropic Agent SDK overview and two Help Center articles (2026-05-19, 2026-06-16).</p>
+  <p>The plan's own mechanical claims were reproduced: embedded manifest parses; 34 acceptance scenarios present and sequential; 37 unique IDs; no broken anchors; all 12 repository-relative links resolve on main; every numeric baseline claim in §3 that a repo record can support (version 2.0.0, Electron 43.2.0, macOS 15 arm64, 1,214/4 Vitest, package from <code>1b375af4f</code>, root-runtime-1 acceptance with ten held bindings) is verified.</p>
+</section>
+
+<section id="findings">
+  <h2>Findings, most severe first</h2>
+  <p>Severity is release-blocking (<span class="chip p0">P0</span>), required change before acceptance (<span class="chip p1">P1</span>), or note (<span class="chip p2">P2</span>). Evidence is <code>file:line</code> at the reviewed SHA; plan citations are to section numbers.</p>
+
+  <div class="tbl"><table>
+    <thead><tr><th>ID</th><th>Sev</th><th>Plan §</th><th>Claim in plan</th><th>Evidence</th><th>Consequence</th><th>Required change</th></tr></thead>
+    <tbody>
+    <tr><td class="id">F-01</td><td><span class="chip p0">P0</span></td><td>SC-15, §4.2, §5.1, §5.2, §6.1, AT-031–034</td><td>Codex-native subagents run uncapped, without allowlist, seal or topology; Agent 0/1/2 posture is "instruction-governed".</td><td><code>CONTRACT.md:82</code> K-PERM-2 ("subagents … require runtime enforcement"), <code>:83</code> K-PERM-3, <code>:114</code> K-SEAL-1, <code>:116–118</code> K-SUBAGENT-1/2/3; <code>src/lib/harness/subagent-bridge.ts:5–9</code> (native bridge <em>hard-denied</em> under D-APP-10 Option C, because it cannot record hierarchy, scopes, parentage, returns); <code>managed-delegation.ts:259–304</code> code-enforced 0→1/TASK, 1→2, 2→none; <code>permission-broker.ts:40–42</code> approvals keyed by session with no thread dimension.</td><td>Silently reverses a live ruling; five invariants literally violated and none named in §6.1; a descendant's approval request is unroutable or misattributed to the parent; the only non-semantic delegation boundary Chirality has is the one removed. R-16 rated "Medium" on a boundary <code>CONTRACT.md:8</code> calls P0.</td><td>Drop SC-15 from rc.1 (single-thread Codex turns; native delegation disabled via <code>[agents] enabled=false</code>) <em>or</em> open a dedicated scope change with a hard, non-semantic descendant boundary and per-descendant approval routing. Delete "untyped sessions … may use native delegation" (<code>subagent-governance.ts:205–208</code> denies it).</td></tr>
+    <tr><td class="id">F-02</td><td><span class="chip p0">P0</span></td><td>§5, §5.2, SC-03, WP-03, AT-018/019</td><td>The Runtime daemon owns a persistent App Server child with drain/kill deadlines and orphan verification.</td><td>The daemon is the Electron app relaunched with <code>--runtime-daemon</code> (<code>electron/main.ts:81</code>); <code>main.ts:856–859</code> records that after one <code>child_process.spawn</code> the packaged daemon "stopped receiving SIGTERM … 5.06 s SIGKILL escalation … stale control.sock"; on <code>activate</code> it spawns a detached GUI and retires itself (<code>:892–900</code>), orphaning any child; <code>runtime/packages/{core,daemon}/src</code> contain zero <code>spawn</code>/<code>child_process</code>/pgid/SIGKILL; <code>AgentEnginePort</code> has no <code>close()</code> (<code>agent-engine-port.ts:30–37</code>).</td><td>The plan's supervisor has no host. Graceful stop, single-instance, and orphan guarantees (AT-018, AT-019, R-07) are unattainable in the current process shape.</td><td>Move supervision into a dedicated non-Chromium helper the daemon owns by process group with a kill deadline, or fix and prove the post-spawn signal regression on the packaged daemon before G3. Add gates G-SIG and G-DUAL.</td></tr>
+    <tr><td class="id">F-03</td><td><span class="chip p0">P0</span></td><td>SC-08, §6.1 K-PERM, §11 R-02/R-05, AT-010–012</td><td>Codex permission profiles plus protected-path projection and command-network denial contain native file/command actions.</td><td>Upstream: profiles are <em>beta</em> and the app-server field is <em>experimental</em>; they are not mandatory (<code>sandbox_mode</code> + <code>approval_policy</code> is the supported alternative); Codex refuses to run commands when Seatbelt cannot enforce, and Apple does not let a child re-initialise its own sandbox. Chirality: <code>tool-path-policy.ts</code> inspects tool <em>arguments</em> only; zero <code>sandbox-exec</code>/entitlements/egress control; K-NET-1 enforced only on the renderer session (<code>main.ts:269–292</code>); <code>protected_write_paths</code> has no runtime consumer; PEC protected paths are suffix globs (<code>_DomainEngines/profiles/pec.yaml:34–45</code>) not prefix roots; <code>CHIRALITY_ALLOW_SDK_BYPASS</code> and <code>CHIRALITY_PERMISSION_TIMEOUT_MS=0</code> escape hatches are inherited by any child via full-env spawn (<code>main.ts:891–892</code>).</td><td>A single upstream beta layer is the only enforcement for writes and commands; a profile that silently no-ops is indistinguishable from one that works; the "projection" has neither source nor expressible target.</td><td>rc.1 ships a <em>read-only</em> Codex profile with no native writes or commands; add an OS-level containment layer Chirality owns (sandbox-exec profile or separate POSIX user) and a positive sentinel at every <code>thread/start</code> (G-SENT); pin the packaged env posture (G-ENV); add an App Sandbox × Seatbelt go/no-go test before WP-03.</td></tr>
+    <tr><td class="id">F-04</td><td><span class="chip p0">P0</span></td><td>SC-11, WP-08, G6, §12.4, §6.1</td><td>Signed, notarized, stapled DMG is the rc.1 target.</td><td><code>CONTRACT.md:127</code> K-RELEASE-1 "unsigned/unnotarized local-builder DMG unless amended"; <code>SPEC.md:1162</code>; fence F-APP-2 (D-APP-97 ruling); <code>.github/workflows/desktop-release-template.yml:62–69</code> hard-fails if <code>CSC_LINK</code>/<code>APPLE_ID</code>/… present and <code>:213–241</code> asserts <em>no</em> Authority/TeamIdentifier/ticket, pinned by <code>desktop-release-workflow.test.ts:76–99</code>; no <code>hardenedRuntime</code>, entitlements, notarize, SBOM or full-closure notice tooling anywhere; <code>BUILD_AND_RELEASE.md:146</code> forbids hosted signing credentials without a recorded human decision. Plan §6.1 omits K-RELEASE-1, K-PACKAGE-1, K-VALIDATE-1, K-SDK-1–4.</td><td>G6 is unreachable under current authority, and the only packaged-artifact CI instrument is designed to fail on the posture G6 requires.</td><td>Split G6 into G6a "signing basis" (K-RELEASE-1/K-PACKAGE-1 amendment, F-APP-2 disposition, Apple Developer enrollment, identity and credential custody decision, entitlements plist, notarization and SBOM tooling, amended workflow and pinning tests) and G6b "artifact integrity" (today's G6). Add the four invariants to §6.1.</td></tr>
+    <tr><td class="id">F-05</td><td><span class="chip p0">P0</span></td><td>§6.2, §9, §9.1 G1, Figure 4</td><td>"Existing holds are real"; five human decision points cover the path.</td><td><code>DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md:43–58</code> lists the ten <code>HELD_UNAVAILABLE</code> bindings; the plan's decision points (§9) omit <code>implementation_act</code>, <code>cutover_act</code>, <code>release_act</code>, <code>source_identity</code>, <code>release_identity</code>, <code>tier_0_relationship</code>, App conformance evidence. WP-02 edits <code>runtime/packages/contracts</code> — an implementation act on the held runtime; G8 is the release act.</td><td>As drafted, G1→G8 lift held bindings by implication, which the plan's own §6.2 says may never happen.</td><td>Insert G0.5 "Instruments and holds amended": name each held binding, its owner act, and the Root instrument (DEL-02-06 extension or successor) that records it, before any WP-02/03/04 brief is sealed.</td></tr>
+    <tr><td class="id">F-06</td><td><span class="chip p0">P0</span></td><td>§3, A-07, SC-01, WP-00</td><td>DEL-09-04 login-session proof is "completed unchanged or formally integrated".</td><td>DEL-09-04 <code>_STATUS.md:11–37</code> IN_PROGRESS; R13:10 "OWNER PROCEDURE STAGED ONLY"; R13:100–102 any frontend change "invalidates this staged package identity and requires a rebuild"; Receipt-185. Frontend tree is still identical to <code>1b375af4f</code> at HEAD. No plan gate row names the proof or the owner daemon-deployment act (TRB-APPDEV-DAEMON-SERVICE gate 3).</td><td>Neither branch of A-07 holds; the plan's early version bump destroys the staged artifact the proof depends on; two existing owner acts fall outside the gate set.</td><td>Run the prepare → logout/login → capture proof <em>now</em> against the staged package, then gate-bind it and the daemon-deployment act (G4.5 or G5) with an explicit re-stage rule for any later frontend change.</td></tr>
+    <tr><td class="id">F-07</td><td><span class="chip p0">P0</span></td><td>§6.1 K-RUNTIME-1</td><td>"Preserve unchanged."</td><td><code>CONTRACT.md:199</code>: the one daemon is "the exclusive owner of engines, <em>credentials</em>, sessions, <em>delegation</em>…". The Codex profile moves credentials to App Server's Keychain (§5 Zone C) and delegation to Codex (§5.1). Root's copy (<code>docs/CONTRACT.md:161</code>) is weaker; the App text binds.</td><td>G1 would freeze a self-assessed compatibility that is false.</td><td>Reword K-RUNTIME-1 in the same scope change: exclusive owner of engine selection, session identity, turn locks, interruption and credential <em>brokerage</em>; a delegated harness may hold provider-scoped secrets in adapter-private storage under daemon lifecycle control.</td></tr>
+    <tr><td class="id">F-08</td><td><span class="chip p0">P0</span></td><td>§1 "Claude-ready", §7.3, SC-13, Q-10, R-11</td><td>A supported Claude subscription login "can be added later" after an investigation.</td><td>Anthropic Agent SDK overview: "Unless previously approved, Anthropic does not allow third party developers to offer claude.ai login or rate limits for their products, including agents built on the Claude Agent SDK." Help Center 2026-05-19: products built for others must use API keys; 2026-06-16: metering changes paused, subscription draw still in flux. Branding: "Claude Code" is not a permitted product name; "{Name} Powered by Claude" is.</td><td>The provision is not "post-RC research"; it is disallowed by default. Any product copy, account-port design, or roadmap that implies it is misleading.</td><td>Reverse §7.3: Claude stays API-key; remove "Claude-ready" as a selling point from §1; if the owner wants the exception, a written approval from Anthropic is a blocking owner action; add the branding constraint to the copy review at G7.</td></tr>
+    <tr><td class="id">F-09</td><td><span class="chip p1">P1</span></td><td>WP-04, §8.1</td><td>Map lifecycle to <code>RuntimeEnginePort</code> and <code>HarnessEvent</code>.</td><td><code>runtime/packages/contracts/src/engine.ts:40</code> declares <code>RuntimeEnginePort</code>; it has zero implementers and zero consumers. The live, invariant-named seat is <code>AgentEnginePort</code> (<code>agent-engine-port.ts:30–37</code>; <code>SPEC.md:662</code>); both existing adapters are plain factories registered by <code>(adapterId, providerId)</code> (<code>engine-registry.ts:4–12</code>).</td><td>Work briefs would target dead code.</td><td>Retarget WP-04 to <code>AgentEnginePort</code>; extend <code>EngineDescriptor</code>/<code>EngineCapabilities</code> (<code>agent-engine-port.ts:5–12</code>) with <code>runtimeProfile</code> and the new capability flags. No new adapter category (see Q-01).</td></tr>
+    <tr><td class="id">F-10</td><td><span class="chip p1">P1</span></td><td>§5.1, §6.1 K-EVENT, AT-023, R-03</td><td>Tokens never reach renderer, logs or project truth.</td><td><code>src/app/api/harness/turn/route.ts:21</code> forwards <code>event.data</code> verbatim to SSE; <code>HarnessEvent.data</code> is <code>Record&lt;string, unknown&gt;</code> (<code>event-schema.ts:60</code>); daemon persists it unredacted (<code>runtime-daemon.ts:575–587</code>, <code>core/src/fs.ts:24–34</code>); zero <code>redact</code> in runtime core/daemon; the existing secret scan covers files on disk only.</td><td>Any App Server stderr, error payload, <code>authUrl</code> or device code mapped into an event lands in the renderer and in <code>events.jsonl</code>. AT-023 is unachievable as written.</td><td>Type and redact the event payload before any App Server output is mapped; add a wire-level (SSE + <code>events.jsonl</code>) secret scan (G-WIRE).</td></tr>
+    <tr><td class="id">F-11</td><td><span class="chip p1">P1</span></td><td>§4.2, §5.2 vs §7.1 step 6</td><td>"stdio only; no listener" and a localhost OAuth callback.</td><td>The browser login completes via a localhost callback received by App Server (§7.1); <code>SPEC.md:882</code> K-NET-1 names redirects and embedded URL credentials; upstream treats <code>chatgptDeviceCode</code> as a distinct login type.</td><td>Internal contradiction; an undeclared listener in the delegated lane.</td><td>Make device-code the rc.1 default, or declare the callback listener an explicit bounded K-NET-1 exception with its port, bind address and lifetime.</td></tr>
+    <tr><td class="id">F-12</td><td><span class="chip p1">P1</span></td><td>Appendix A, §6.3</td><td><code>codex-native</code>, <code>codex-native-primary</code>, <code>codex-native-subagent</code> in shared <code>ToolOrigin</code>/<code>ExecutionOrigin</code>.</td><td><code>CONTRACT.md:51</code> K-CORE-1, <code>:55</code> K-ENGINE-4 ("must not become provider/SDK-shaped except as adapter metadata"); adapter-metadata slot exists at <code>TYPES.md:543–550</code>; <code>tool-descriptor.ts:96–100</code> has exactly one adapter slot (<code>claudeAgentSdk</code>).</td><td>Vendor names enter core vocabulary; no slot for a second adapter today.</td><td>Use <code>delegated-harness-native</code>/<code>-child</code>; carry the vendor in <code>adapter.adapterName</code>; generalise the descriptor's adapter map in WP-02.</td></tr>
+    <tr><td class="id">F-13</td><td><span class="chip p1">P1</span></td><td>§6.1 K-GHOST-1, K-KEY-1; K-SDK absent</td><td>K-GHOST-1 covers ambient Codex home/config; K-KEY-1 "preserve and strengthen".</td><td>K-GHOST-1 (<code>CONTRACT.md:115</code>) is about Agent 2 declared read scopes; ambient-config isolation is K-SDK-1 (<code>:60</code>). K-KEY-1 (<code>:125</code>) covers API keys only — OAuth/refresh tokens are outside its literal scope. K-SDK-2/3/4 (<code>:61–63</code>) are the right homes for pin/upgrade, "Codex rollouts/SQLite are not audit records", and "Codex (Preview)" product-identity copy.</td><td>Wrong invariant amended; token material gets no actual protection; four relevant invariants unaddressed.</td><td>Add K-SDK-5 (Codex ambient isolation) modelled on K-SDK-1; widen K-KEY-1 to credential material including interactive-account tokens and callback parameters; map K-SDK-2/3/4 into WP-01/07/06.</td></tr>
+    <tr><td class="id">F-14</td><td><span class="chip p1">P1</span></td><td>SC-09, AT-020/021, Appendix A</td><td>Surface-identity hash gates resume.</td><td>The only fingerprint today hardcodes <code>mcpServers: []</code> and literal policy versions (<code>runtime-service.ts:347–372</code>); <code>SessionRecord.instructionHash</code>/<code>briefHash</code> are declared and never written; of the nine identity fields Chirality can hash five; the effective config after upstream defaults, the profile as the binary interprets it, and the AGENTS.md set the child loaded are unobservable.</td><td>AT-021 proves input drift, never effective drift.</td><td>Require a child-reported effective-configuration digest, or drop resume from rc.1.</td></tr>
+    <tr><td class="id">F-15</td><td><span class="chip p1">P1</span></td><td>AT-009, §11.3, K-PROJECT-1</td><td>Per-project hosted-engine consent precedes transmission.</td><td><code>enabledAdapterIds</code> lives in the git-tracked <code>chirality.project.json</code> (<code>contracts/src/project.ts:14,48</code>; <code>SPEC.md:1219–1226</code>; <code>CONTRACT.md:201</code> re-registration rule). App Server reads AGENTS.md up the tree, project <code>.codex</code> config and git metadata at <code>thread/start</code>, before any notice fires.</td><td>Consent either becomes project truth with a re-registration cost, or needs a new user-data consent contract; material can be read before the notice.</td><td>Choose and specify the consent store before the WP-02 freeze; gate <code>thread/start</code> cwd reads on recorded consent.</td></tr>
+    <tr><td class="id">F-16</td><td><span class="chip p1">P1</span></td><td>§4, §8, WP-08</td><td>Scope proceeds without two open owner decisions.</td><td>App <code>REGISTER.csv</code> TM-APP-025 (OPEN, human-only): rule how UI, packaging and runtime-contract planning serve <em>both</em> the standalone desktop target and the per-domain control-plane skin — the plan plans all three for one target and never cites the row. TM-APP-030 (OPEN, human-only): daemon/helper bundle identity is an owner residual — WP-08's exit condition depends on it.</td><td>An owner-only ruling is pre-empted; a signing identity hangs on an unruled bundle identity.</td><td>Name TM-APP-025 as a G0 precondition and TM-APP-030 as a G6a precondition.</td></tr>
+    <tr><td class="id">F-17</td><td><span class="chip p1">P1</span></td><td>§6.2, §9, SC-12</td><td>Sequencing relative to the accepted App objective; "currently authorized Pi/oMLX paths".</td><td><code>PLAN.md:106–111</code> SCA-APP-004 is the current objective and <code>:549–552</code> excludes multiple-child execution; the governed Pi pin is <code>0.80.10</code> (<code>CONTRACT.md:57,191</code>) while the shipped adapter pins <code>0.82.0</code> (<code>pi-omlx-engine.ts:11</code>).</td><td>The v3 tranche would run alongside and partly against the accepted tranche; SC-12's regression baseline rests on an unauthorised pin.</td><td>G0 must state the relationship to SCA-APP-004/D-APP-73; resolve the Pi pin drift before G0 (pre-existing defect, not created by the plan).</td></tr>
+    <tr><td class="id">F-18</td><td><span class="chip p1">P1</span></td><td>§8, Q-11</td><td>Work packages map onto existing deliverables.</td><td>All 53 App deliverables are IN_PROGRESS; none owns OAuth/interactive accounts (WP-02), daemon child supervision (WP-03, Root-only via DEL-02-06 which is INITIALIZED with no OUT-* produced), or tag/publication/rollback (WP-10). DEL-08-04's scope is <code>delegate_agent</code> managed delegation, which §4.2 excludes; DEL-09-04 and DEL-01-04 scope signing/notarization <em>out</em>.</td><td>WP-02/03/10 cannot be dispatched; WP-05 and WP-08 need scope changes.</td><td>One App scope change (next free ID, SCA-APP-008) creating the missing deliverables and amending DEL-08-04/DEL-09-04/DEL-01-04; a Root decision on whether DEL-02-06 absorbs WP-02/03/04 or a successor package is needed.</td></tr>
+    <tr><td class="id">F-19</td><td><span class="chip p1">P1</span></td><td>§14.2, §12.3, §13.2</td><td>DoR "AT-001 through AT-030"; SBOM; GitHub prerelease.</td><td>AT-031–034 are declared RC-blocking (§10.2); no SBOM generator, format or owner exists; all five workflows are <code>contents: read</code> with no publish job; <code>BUILD_AND_RELEASE.md:146</code>.</td><td>Delegation scenarios fall out of the release bar; G6/G8 have no mechanism.</td><td>§14.2 → AT-001..034; name the SBOM tool and format in WP-08; record the publication mechanism and credential-custody decision.</td></tr>
+    <tr><td class="id">F-20</td><td><span class="chip p1">P1</span></td><td>§5, Appendix B, Appendix C</td><td>Method names and login types; subagent inheritance; concurrency default.</td><td>Upstream: approvals are <code>item/commandExecution/requestApproval</code> and <code>item/fileChange/requestApproval</code>; escalation is <code>item/permissions/requestApproval</code>; <code>chatgptDeviceCode</code> is a separate login type; thread-hierarchy filters, <code>process/*</code>, the <code>permissions</code> field, dynamic tools all require <code>experimentalApi</code>; subagents inherit sandbox/permission posture <em>by default</em> and custom agents may override it; no numeric concurrency default is published; <code>features.multi_agent_v2</code> overrides <code>[agents] enabled</code>.</td><td>Appendix B would be coded against wrong names; "inheritance" is not an invariant the plan can lean on.</td><td>Correct the names; pin against <code>codex app-server generate-ts</code> output, not prose; list the <code>experimentalApi</code>-gated surfaces explicitly; never quote a concurrency number; add <code>features.multi_agent_v2</code> to the config allowlist.</td></tr>
+    <tr><td class="id">F-21</td><td><span class="chip p2">P2</span></td><td>§3, §12.1</td><td>"Reproducible probe" of the 0.149.0 package.</td><td>No repo record. The compressed size (93,775,517 B = 89.43 MiB) and SHA-256 <code>aaa3751e…</code> are confirmed from the GitHub Releases API digest and the release's <code>codex-package_SHA256SUMS</code>; the artifact is the release asset <code>codex-app-server-package-aarch64-apple-darwin.tar.gz</code>, <em>not</em> an npm package (<code>@openai/codex-app-server</code> and <code>@openai/codex-darwin-arm64</code> both 404). Unpacked size, contents, and "OpenAI Developer ID / hardened runtime" are unverifiable without download; the release ships sigstore attestations for linux-musl assets only.</td><td>Owner is asked to accept a size and signature posture on partly unverified numbers.</td><td>Relabel as "unreproduced external observation" except the two confirmed figures; cite the real source; make the WP-01 download an explicit owner-authorised act.</td></tr>
+    <tr><td class="id">F-22</td><td><span class="chip p2">P2</span></td><td>§3, §D.1, §6.1, §10.2</td><td>Baseline and source index completeness.</td><td>R13:79–82 <code>sourceCompleteness: needs_remediation</code> omitted from the "integrity passed" row; §D.1 omits BUILD_AND_RELEASE, RELEASE_QUALITY_GATES/RUNBOOK, VALIDATION_STRATEGY, ISSUE_READINESS_PROFILES, DEL-09-05/06 and the CI workflow; §6.1 folds K-ENGINE-5 (governed fallback path must remain) into "no fallback"; K-EVENT-4 still names the legacy session path; <code>harness_common.py:59–91</code> leaves K-RUNTIME-1/K-CONTROL-1/K-PROJECT-1/K-STORE-2 advisory (DRAFT), so they cannot block a finding.</td><td>Gate design was drafted without the instruments it replaces; an open derivative defect could pass AT-029.</td><td>Add the instruments and a supersession statement; disclose the remediation item; separate automatic substitution from governed fallback; refresh the ratified-invariant table before G1.</td></tr>
+    <tr><td class="id">F-23</td><td><span class="chip p2">P2</span></td><td>Appendix C</td><td>Config allowlist.</td><td>All eight keys exist in the 0.149.0 schema. Corrections: <code>cli_auth_credentials_store</code> enum is <code>file|keyring|auto|ephemeral</code>, default <code>file</code>, and <code>keyring</code> <em>fails hard</em> when unavailable; <code>web_search</code> default is <code>cached</code>; <code>check_for_update_on_startup</code>, <code>[analytics]</code>, <code>[feedback]</code> default <code>true</code>; <code>preferred_auth_method</code> is not in the schema.</td><td>A headless/bundled keyring failure is a startup failure, not a fallback.</td><td>Encode the enum and defaults; treat keyring unavailability as a typed <code>unavailable</code> state.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="conflicts">
+  <h2>Contract conflicts</h2>
+  <p>Current invariant text is quoted from <code>projects/chirality-app-dev/docs/CONTRACT.md</code>. "Scopable" means a profile-scoped exception is expressible without rewording the native path; "reword" means the invariant's own words must change; "blocking" means the plan's treatment cannot be reconciled by wording.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Invariant</th><th>Current text (abbrev.)</th><th>Plan treatment</th><th>Class</th><th>Recommended resolution</th></tr></thead>
+    <tbody>
+    <tr><td class="id">K-SUBAGENT-1 :116</td><td>Delegation fails closed unless hierarchy, named allowlist or declared generalist policy, context seal, run approval, approval reference, brief evidence, and path/write boundaries all pass.</td><td>Not mentioned; SC-15 removes cap, allowlist, seal.</td><td><span class="chip p0">blocking</span></td><td>Profile-scoped K-SUBAGENT-4: hierarchy/seal/approval enforced at the parent turn; descendants bounded by an OS/profile envelope; native children are a separate, weaker, labelled class — or drop SC-15.</td></tr>
+    <tr><td class="id">K-SEAL-1 :114</td><td>Every delegated child requires sealed context, approval at the human gate, a citation, declared inputs/tools/writes, a checkable return.</td><td>Not mentioned.</td><td><span class="chip p0">blocking</span></td><td>Define "delegated child" as Chirality-managed; native descendants cannot be represented as governed child runs.</td></tr>
+    <tr><td class="id">K-PERM-2 :82 / K-PERM-3 :83</td><td>Prompt text is not a safety boundary; subagents require runtime enforcement; an allowlist config is not the boundary.</td><td>§5.2/AT-032–033 posture is "instruction-governed" while SC-15 is P0.</td><td><span class="chip p0">blocking</span></td><td>Supply a runtime-enforced descendant envelope or demote SC-15 below rc.1.</td></tr>
+    <tr><td class="id">K-SUBAGENT-2 :117 / -3 :118</td><td>No capability is inherited implicitly; parentage, hashes and returns are reconstructible.</td><td>§5.1 "all descendants inherit"; <code>descendantObservation: "none"</code> allowed.</td><td><span class="chip p0">blocking</span></td><td>Require <code>descendantObservation ≥ "parentage"</code> for the profile to enable; inheritance as an explicit declared ceiling.</td></tr>
+    <tr><td class="id">K-RUNTIME-1 :199</td><td>One daemon is the exclusive owner of engines, credentials, sessions, delegation…</td><td>"Preserve unchanged."</td><td><span class="chip p1">reword</span></td><td>See F-07.</td></tr>
+    <tr><td class="id">K-RELEASE-1 :127</td><td>Release target is unsigned/unnotarized local-builder DMG unless amended.</td><td>Not named; G6 requires signed/notarized.</td><td><span class="chip p1">reword</span></td><td>Amend with SPEC §19.4, DEL-09-04 and DEL-01-04 in the same scope change.</td></tr>
+    <tr><td class="id">K-CORE-1 :51 / K-ENGINE-4 :55</td><td>Core vocabulary must not become provider-shaped except as adapter metadata.</td><td>Vendor names in shared enums.</td><td><span class="chip p1">reword</span></td><td>See F-12.</td></tr>
+    <tr><td class="id">K-KEY-1 :125</td><td>API keys never in project files, events, logs, transcripts, artifacts.</td><td>"Preserve and strengthen."</td><td><span class="chip p1">reword</span></td><td>Widen to credential material incl. tokens and callback parameters.</td></tr>
+    <tr><td class="id">K-GHOST-1 :115 / K-SDK-1..4 :60–63</td><td>Agent 2 context limited to declared read scopes; SDK ambient isolation, pin, transcript and product-identity rules.</td><td>K-GHOST-1 misapplied; K-SDK absent.</td><td><span class="chip p1">reword</span></td><td>See F-13.</td></tr>
+    <tr><td class="id">K-NET-1 :124</td><td>Remote providers prohibited without a new governed tranche; redirects and embedded URL credentials named.</td><td>Explicit exception; contradicts "no listener".</td><td><span class="chip p2">scopable</span></td><td>Enumerate the exception; resolve the callback listener (F-11).</td></tr>
+    <tr><td class="id">K-ENGINE-1/2/3/6, K-TOOL-1, K-EVENT-1/2/5/6/7</td><td>Ownership hatch ("requires a fresh governed tranche"), determinism basis, terminal and replay guarantees.</td><td>Profile-aware treatment.</td><td><span class="chip ok">scopable</span></td><td>Extend the determinism basis with the pinned binary and profile hash; define native child turns as non-accepted-turns for K-EVENT-3.</td></tr>
+    <tr><td class="id">K-TOOL-2 :88</td><td>A tool must pass tool-surface and permission resolution before exposure.</td><td>Codex-native tools by construction do not.</td><td><span class="chip p1">reword</span></td><td>Profile clause; rc.1 native tools only (Q-04).</td></tr>
+    <tr><td class="id">K-PROJECT-1 :201 / K-STORE-2 :202</td><td>Authority-affecting manifest changes require re-registration; migration is lazy and non-destructive.</td><td>Per-project consent as runtime state; "reversible" migration.</td><td><span class="chip p2">decide</span></td><td>See F-15; "reversible" is net-new — define downgrade semantics or drop it from rc.1.</td></tr>
+    <tr><td class="id">K-DOMAIN-1..4 :138–141</td><td>Domain truth, protected paths, professional-claim boundary.</td><td>"No weakening or exception."</td><td><span class="chip ok">no conflict</span></td><td>—</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="gates">
+  <h2>Missing gates</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Gate</th><th>Failure mode it catches</th><th>Proposed evidence</th></tr></thead>
+    <tbody>
+    <tr><td>G0.5 Instruments and holds amended</td><td>Implementation or release act inferred from technical completion; invariants edited without corpus reconciliation.</td><td>Named owner act per held binding; K-RELEASE-1/K-RUNTIME-1/K-KEY-1 amendments accepted; TM-APP-025/030 ruled; <code>reconcile_authority_corpus.py</code> status in the G1 packet (D-APP-38).</td></tr>
+    <tr><td>G-SIG Post-spawn signal integrity</td><td>Daemon stops receiving SIGTERM after spawning App Server; <code>bootout</code> escalates to SIGKILL; stale socket.</td><td>Packaged <code>launchctl bootout</code> with a live child: graceful stop &lt; 1 s, no residual socket.</td></tr>
+    <tr><td>G-DUAL Single App Server per user</td><td><code>activate</code>-triggered daemon retirement orphans one child and starts another.</td><td>Finder double-click during an active Codex turn; exactly one App Server process user-wide.</td></tr>
+    <tr><td>G-SENT Positive containment sentinel</td><td>Profile parses but silently no-ops; Seatbelt unavailable inside the bundle.</td><td>Child-executed write-outside-root and protected-canary read at every <code>thread/start</code>; turn fails closed unless both are denied.</td></tr>
+    <tr><td>G-ENV Packaged env posture</td><td><code>CHIRALITY_ALLOW_SDK_BYPASS</code> / <code>CHIRALITY_PERMISSION_TIMEOUT_MS=0</code> or proxy variables inherited by the child.</td><td>Assert absent in packaged main and in the child's environment dump; source-text negatives.</td></tr>
+    <tr><td>G-WIRE Event redaction</td><td>Auth URL, device code or token reaches renderer or <code>events.jsonl</code>.</td><td>Typed <code>HarnessEvent.data</code> allowlist; wire-level scan of SSE and the event log.</td></tr>
+    <tr><td>G-APPR Descendant approval routing</td><td>Child-thread approval attributed to the parent or dropped.</td><td>Two concurrent child threads request approval; distinct routing and correct attribution on the card. (Moot if SC-15 leaves rc.1.)</td></tr>
+    <tr><td>G-KEY Signed-build keychain</td><td>Keychain ACL invalidated by re-signing; re-login on every update; <code>keyring</code> hard-fails.</td><td>Login on signed build N, upgrade to signed N+1, no re-prompt; user's own <code>~/.codex</code> item unreadable; typed unavailable state when keyring is absent.</td></tr>
+    <tr><td>G-PROT Protected-path expressibility</td><td>Suffix-glob protected paths unrepresentable in a prefix-based profile.</td><td>Round trip: every protected entry → profile rule → denied-access proof.</td></tr>
+    <tr><td>G-SBX App Sandbox × Seatbelt compatibility</td><td>Codex refuses commands when the platform sandbox cannot enforce; child cannot re-init its sandbox.</td><td>Go/no-go on the exact bundled binary inside the signed bundle, before WP-03 design is frozen.</td></tr>
+    <tr><td>G6a Signing basis</td><td>No Developer ID, no credential-custody decision, no entitlements, no notarization/SBOM tooling, CI instrument fails on signed posture.</td><td>Enrollment recorded; custody decision satisfying <code>BUILD_AND_RELEASE.md:146</code>; entitlements plist; named SBOM tool and format; amended workflow and pinning tests; full-closure notice bundle; written Apache-2.0 §4/§6 redistribution determination (no trademark grant).</td></tr>
+    <tr><td>G-CSP Renderer hardening</td><td>No CSP, no window-open handler, unpinned <code>webPreferences</code>, IPC channels without sender checks.</td><td>Pinned <code>contextIsolation</code>/<code>sandbox</code>, CSP, window-open deny, <code>isAuthorizedSender</code> on every channel.</td></tr>
+    <tr><td>Accessibility, support, privacy copy, minimum-OS manifest field</td><td>Public-release concerns present only as outputs or posture, never as gates.</td><td>Keyboard + VoiceOver pass on account/consent/permission flows; named support route; privacy statement reviewed at G7; <code>LSMinimumSystemVersion</code> in the release manifest.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="questions">
+  <h2>Answers to Q-01 … Q-14</h2>
+
+  <div class="qa"><p class="q"><span class="id">Q-01</span>Is HarnessAdapter the correct category?</p><p><strong>No new category.</strong> <code>AgentEnginePort</code> is already provider-neutral (<code>preflight</code>/<code>startTurn</code>/<code>interrupt</code>) and both adapters are plain factories in one registry. What is missing is descriptor vocabulary: add <code>runtimeProfile</code> and the capability flags (<code>nativeDelegation</code>, <code>descendantObservation</code>, <code>interactiveAccount</code>, <code>permissionProfiles</code>) to <code>EngineDescriptor</code>. Retarget WP-04 away from the dead <code>RuntimeEnginePort</code>. <code>pi-omlx-engine.ts:56–73</code> already shows a profile-like constraint enforced inside a plain adapter.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-02</span>Can the scoped qualification avoid weakening native invariants?</p><p><strong>Partially.</strong> K-ENGINE-6 and K-NET-1 carry explicit "fresh governed tranche" hatches; K-ENGINE-2/3, K-TOOL-1, K-EVENT-*, K-DOMAIN-* scope cleanly. K-ENGINE-1, K-TOOL-2, K-KEY-1, K-RUNTIME-1 and K-GHOST-1/K-SDK need rewording. K-PERM-2/3, K-SEAL-1 and K-SUBAGENT-1/2/3 cannot be scoped without weakening the native path while SC-15 stands — that is the one place where the plan must choose.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-03</span>Should Codex permission profiles be mandatory for RC?</p><p><strong>Mandatory, and by themselves insufficient.</strong> Upstream they are not mandatory (<code>sandbox_mode</code>/<code>approval_policy</code> is the supported alternative) and they are beta with an experimental app-server field. Chirality has no second layer today: no OS sandbox, no separate user, no egress control, an overlay that inspects tool arguments only. The defensible rc.1 posture is a read-only Codex profile, no native writes or commands, a Chirality-owned OS-level envelope around the child, and a positive sentinel per thread.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-04</span>Dynamic tools in RC, or Codex-native only first?</p><p><strong>Codex-native tools only first.</strong> The descriptor registry has one adapter slot (<code>claudeAgentSdk</code>), the fingerprint records <code>mcpServers: []</code>, <code>getHarnessToolDescriptor</code> has no callers in <code>runtime/</code>, dotted aliases already occupy the namespace, and name-based aliasing is forgeable unless nonce-keyed. Defer <code>chirality.*</code> until those four are fixed.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-05</span>One App Server process per daemon?</p><p><strong>Yes — but not this daemon.</strong> One registry, one session store, one credential store per daemon (<code>runtime-service.ts:63–76</code>) and K-RUNTIME-1/K-CONTROL-1 make per-account or per-project processes wrong. The daemon process itself, however, is the Electron app, already measured to lose signal handling after one spawn (F-02). Keep the cardinality; move supervision to a helper the daemon owns by process group.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-06</span>Are app-specific CODEX_HOME and Keychain isolation sufficient and testable in a signed build?</p><p><strong>Not sufficient, not yet testable.</strong> Per-<code>CODEX_HOME</code> Keychain scoping holds in 0.149-era source (service "Codex Auth", key hashed from the canonical home path) but is undocumented and version-bound. Keychain ACLs key on <code>com.chirality.app</code>'s signing identity; nested re-signing changes the designated requirement across updates; <code>keyring</code> fails hard when unavailable. All existing credential evidence is against an unsigned package. A-03 is real, and scheduled too late (G5/G6) — pull it forward to a signed-build spike before WP-02 freezes.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-07</span>Deletion, logout separation, v2→v3 rollback?</p><p><strong>Lazy, non-destructive migration is supported (K-STORE-2); "reversible" is net-new.</strong> <code>HarnessEvent.data</code> carries origin/parentage additively, the <code>subagent.*</code> and <code>tool.permission</code> event types already exist, <code>adapterSession</code> is opaque. Against: <code>schemaVersion</code> is the literal <code>1</code>, the boot fingerprint hashes a fixed policy set (every existing session's fingerprint changes), nothing specifies downgrade, K-EVENT-4 still names the legacy session path, and hosted consent has no store (F-15). Logout separation is architecturally right (Zone C).</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-08</span>Gates complete and ordered relative to DEL-09-04 and daemon deployment?</p><p><strong>Incomplete and mis-ordered.</strong> G0–G8 are a parallel vocabulary to <code>RELEASE_QUALITY_GATES.md</code>'s eight families with no mapping or supersession; the login-session proof and the daemon-deployment act are not gate rows; the version bump is scheduled before the proof it would invalidate; K-RELEASE-1/F-APP-2/the CI instrument are not amended; D-APP-38 corpus reconciliation is not triggered. See F-04/F-05/F-06 and the missing-gates table.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-09</span>Package-size and third-party-notice treatment adequate?</p><p><strong>No.</strong> Notices today cover four Pi packages and say so; <code>desktop:verify-dependencies</code> is a presence check, not a licence tool; no SBOM tooling exists; the compressed size and SHA-256 are now confirmed but unpacked size, contents and signature are not; Apache-2.0 §4 permits redistribution in object form but §6 grants no trademark licence, and the licence governs the code, not the ChatGPT service terms the embedded login invokes. A written redistribution determination belongs in G6a.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-10</span>Claude interactive login post-RC; does the port avoid prejudging provider mechanics?</p><p><strong>Post-RC, and reframed.</strong> The port design is provider-neutral enough. The premise is not: Anthropic's Agent SDK documentation states that, unless previously approved, third-party developers may not offer claude.ai login or rate limits for their products; Help Center guidance directs products built for others to API keys; subscription metering is explicitly in flux. rc.1 says "API key" for Claude and "ChatGPT account" for Codex, as §7.3 already proposes — but "Claude-ready" should leave §1, and any future exception is a written Anthropic approval, not an investigation outcome. Branding rules ("{Name} Powered by Claude"; not "Claude Code") apply to product copy now.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-11</span>Which existing App deliverables own each work package?</p>
+    <div class="tbl"><table>
+      <thead><tr><th>WP</th><th>Best-fit existing deliverable (all IN_PROGRESS)</th><th>Fit</th><th>New instrument?</th></tr></thead>
+      <tbody>
+      <tr><td class="id">WP-00</td><td>DEL-01-04 (scope register) + Root DEL-02-06 (INITIALIZED)</td><td>Register seat only</td><td>SCA-APP-008 unavoidable</td></tr>
+      <tr><td class="id">WP-01</td><td>DEL-04-01 (probe and pinned adoption decision)</td><td>Strong</td><td>No</td></tr>
+      <tr><td class="id">WP-02</td><td>DEL-04-05, DEL-02-05 (API-key shaped)</td><td>Weak — no account deliverable exists</td><td>New DEL</td></tr>
+      <tr><td class="id">WP-03</td><td>none in App; Root via DEL-02-06</td><td>Root-only</td><td>Root decision: extend DEL-02-06 or successor</td></tr>
+      <tr><td class="id">WP-04</td><td>DEL-03-01, DEL-04-03, DEL-05-02</td><td>Strong (client side; SCA-APP-005 narrowed PKG-03)</td><td>No</td></tr>
+      <tr><td class="id">WP-05</td><td>DEL-04-04, DEL-06-01/02, DEL-07-01, DEL-08-04</td><td>DEL-08-04's scope is managed delegation, which §4.2 excludes</td><td>SCA to rescope DEL-08-04</td></tr>
+      <tr><td class="id">WP-06</td><td>DEL-02-05, DEL-02-01, DEL-02-02</td><td>Good</td><td>No</td></tr>
+      <tr><td class="id">WP-07</td><td>DEL-05-01, DEL-05-02, DEL-02-04</td><td>Good; reversibility net-new</td><td>Amend SOW</td></tr>
+      <tr><td class="id">WP-08</td><td>DEL-09-04, DEL-09-05</td><td>Both scope signing/notarization out</td><td>SCA unavoidable (amends K-RELEASE-1)</td></tr>
+      <tr><td class="id">WP-09</td><td>DEL-09-01/02/03/06</td><td>Strong</td><td>No</td></tr>
+      <tr><td class="id">WP-10</td><td>DEL-09-05 (closest)</td><td>No owner for tag/publish/rollback</td><td>New DEL or human/CHANGE act</td></tr>
+      </tbody>
+    </table></div>
+    <p>The Root/App split in §8.1 is right but mis-cited: neither App <code>CONTRACT.md</code> nor Root <code>AGENTS.md</code> mentions <code>runtime/packages</code>; the binding statements are SCA-APP-005 <code>Brief.md:20–21</code> and the App decomposition <code>:87–89</code>.</p>
+  </div>
+
+  <div class="qa"><p class="q"><span class="id">Q-12</span>Smallest material change before owner acceptance?</p>
+    <ol>
+      <li>Remove SC-15 from rc.1 (or carve it into its own scope change with a hard boundary); delete the untyped-delegation sentence; downgrade AT-031–034 to that scope change.</li>
+      <li>Replace "daemon spawns App Server" with a helper-supervisor design, and add G-SIG, G-DUAL, G-SBX, G-SENT, G-ENV, G-WIRE.</li>
+      <li>Restrict rc.1 Codex to read-only profile, Codex-native tools, device-code login first, no resume.</li>
+      <li>Insert G0.5 naming every held DEL-02-06 binding's owner act, TM-APP-025/030, and the K-RELEASE-1/K-RUNTIME-1/K-KEY-1 amendments; split G6 into G6a/G6b.</li>
+      <li>Gate-bind the DEL-09-04 proof and daemon-deployment act with a re-stage rule; run the proof before any version bump.</li>
+      <li>Reverse §7.3/§1 on Claude login; add branding constraints to G7 copy review.</li>
+      <li>Correct §6.1 (K-RUNTIME-1, K-GHOST-1→K-SDK-5, K-KEY-1 widening, add K-RELEASE/PACKAGE/VALIDATE/SDK rows), Appendix A/B names, §14.2 AT range, §3 "Reproducible probe" label, §D.1 index.</li>
+    </ol>
+  </div>
+
+  <div class="qa"><p class="q"><span class="id">Q-13</span>Does the 0.149.0 pin expose enough native-child parentage, status, approval and cancellation information?</p><p><strong>Not as a guarantee.</strong> <code>parentThreadId</code>/<code>ancestorThreadId</code> filters and the <code>subAgent*</code> source kinds exist but are experimental; inheritance is a default custom agents may override; no numeric concurrency default is published; approval routing per child thread has no Chirality-side key. If SC-15 leaves rc.1 the question is moot; if it stays, <code>descendantObservation ≥ "parentage"</code> must be a hard enablement condition proven at G3 on the exact binary.</p></div>
+
+  <div class="qa"><p class="q"><span class="id">Q-14</span>Are the role postures instruction-governed while descendants stay hard-contained regardless?</p><p><strong>No.</strong> Every mechanism the plan names for hard containment is either upstream-owned and unverifiable (beta profile, thread metadata), absent in Chirality (OS sandbox, process group, egress control), or semantic (AGENTS.md). The only hard, non-semantic delegation boundary Chirality owns today — the D-APP-10 hard deny plus code-enforced child-scope narrowing — is what SC-15 removes. A-10's disclaimer therefore has nothing left to stand on.</p></div>
+</section>
+
+<section id="assumptions">
+  <h2>Assumptions A-01 … A-10</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>ID</th><th>Assumption</th><th>Status now</th><th>What was checked / what remains</th></tr></thead>
+    <tbody>
+    <tr><td class="id">A-01</td><td>0.149.0 exposes managed ChatGPT, model, thread, turn, approval, dynamic-tool and permission-profile surfaces.</td><td><span class="chip ok">holds, with gates</span></td><td>All surfaces exist; two approval method names and the device-code login type are wrong in the plan; dynamic tools, thread-hierarchy filters, <code>permissions</code> field and <code>process/*</code> require <code>experimentalApi</code>; app-server is "experimental — may remove or change, use at your own risk" by OpenAI's own definition.</td></tr>
+    <tr><td class="id">A-02</td><td>The package may be redistributed with notices and preserved signatures.</td><td><span class="chip p1">partly</span></td><td>Apache-2.0 on repo and npm packages; §4 allows object-form redistribution; §6 grants no trademark; no macOS sigstore attestation exists; embedded ChatGPT login is governed by ChatGPT terms, on which no official permit/prohibit page was found (a staff forum comment is not policy). Owner decision plus written OpenAI answer.</td></tr>
+    <tr><td class="id">A-03</td><td>Signed/notarized Chirality can persist and refresh app-specific Keychain credentials.</td><td><span class="chip p1">open</span></td><td>Nothing signed exists to test against; ACL/re-signing hazard and <code>keyring</code> hard-fail identified. Pull forward to a spike.</td></tr>
+    <tr><td class="id">A-04</td><td>Permission profiles enforce inside the packaged app.</td><td><span class="chip p0">at risk</span></td><td>Seatbelt refuses rather than degrades; a child of a sandboxed parent cannot re-init; no repo evidence. Needs G-SBX before architecture freeze.</td></tr>
+    <tr><td class="id">A-05</td><td>Dynamic tools viable; resume never retains a stale surface.</td><td><span class="chip p1">not yet</span></td><td>Registry, fingerprint and alias gaps (F-12, F-14); recommend native tools only and no resume in rc.1.</td></tr>
+    <tr><td class="id">A-06</td><td>v2 data migrates without destructive rewrite.</td><td><span class="chip ok">plausible</span></td><td>K-STORE-2 and SPEC mandate lazy non-destructive migration; fingerprint invalidation and schemaVersion literal must be handled; "reversible" undefined.</td></tr>
+    <tr><td class="id">A-07</td><td>DEL-09-04 proof completed unchanged or integrated.</td><td><span class="chip p0">false</span></td><td>Neither branch holds (F-06).</td></tr>
+    <tr><td class="id">A-08</td><td>A stable app may contain a visibly Preview harness.</td><td><span class="chip na">owner</span></td><td>Policy choice at G0; defensible if isolation is real — which F-02/F-03 currently deny.</td></tr>
+    <tr><td class="id">A-09</td><td>Pin exposes enough child metadata for inspection and cleanup.</td><td><span class="chip p1">partly</span></td><td>Metadata exists but experimental; inheritance overridable; no cleanup guarantee from metadata alone (Q-13).</td></tr>
+    <tr><td class="id">A-10</td><td>AGENTS.md postures apply consistently; no hard claim depends on them.</td><td><span class="chip p0">vacuous</span></td><td>After SC-15 removes the code-enforced boundary, no non-semantic claim remains (Q-14).</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="upstream">
+  <h2>Upstream corrections to carry into the plan</h2>
+  <ul>
+    <li>Transport is JSON-RPC 2.0 over newline-delimited stdio (the <code>jsonrpc</code> member is omitted on the wire); generate types with <code>codex app-server generate-ts</code> / <code>generate-json-schema</code> for the pinned version.</li>
+    <li>Approvals: <code>item/commandExecution/requestApproval</code>, <code>item/fileChange/requestApproval</code>; escalation: <code>item/permissions/requestApproval</code> (client may grant a subset, optionally <code>scope: "session"</code>).</li>
+    <li>Login types: <code>apiKey</code>, <code>chatgpt</code>, <code>chatgptDeviceCode</code>, experimental <code>chatgptAuthTokens</code>.</li>
+    <li>Not in the plan but load-bearing: <code>turn/steer</code>, <code>thread/fork</code>, <code>thread/unsubscribe</code> (30-minute unload grace), <code>command/exec</code>, <code>model/rerouted</code>, <code>optOutNotificationMethods</code>, <code>permissionProfile/list</code>, <code>experimentalFeature/list</code> (stages <code>beta|underDevelopment|stable|deprecated|removed</code> — "experimental" is a doc label, not a stage value).</li>
+    <li>Permission-profile network rules filter sandboxed local commands only; Codex service traffic, MCP, web search and connectors are outside the allowlist.</li>
+    <li>Subagents: on by default (<code>[agents] enabled=true</code>); <code>features.multi_agent_v2</code> takes precedence; inheritance is a default; no published concurrency number.</li>
+    <li>Distribution: GitHub release asset <code>codex-app-server-package-aarch64-apple-darwin.tar.gz</code>, tag <code>rust-v0.149.0</code>, 93,775,517 B, SHA-256 <code>aaa3751e…</code> confirmed via the Releases API digest and <code>codex-package_SHA256SUMS</code>. npm publishes SHA-512/SHA-1 only; <code>@openai/codex@0.149.0-darwin-arm64</code> is a different artifact (full CLI, 269.4 MiB unpacked). All docs URLs now redirect from <code>developers.openai.com/codex/*</code> to <code>learn.chatgpt.com/docs/*</code>.</li>
+    <li><code>clientInfo.name</code> registration on OpenAI's known-clients list is manual and enterprise-scoped — freeze the name early; it is not an authorisation mechanism.</li>
+  </ul>
+</section>
+
+<section id="routing">
+  <h2>Recommended execution routing</h2>
+  <dl class="kv">
+    <dt>Root-owned</dt><dd><code>runtime/packages/{contracts,core,daemon,client}</code> (WP-02); the supervisor helper and adapter package (WP-03/04); the DEL-02-06 extension or successor naming owner acts for <code>source_identity</code>, <code>release_identity</code>, <code>tier_0_relationship</code>, App conformance evidence, implementation/cutover/release acts; K-RUNTIME-1 counterpart in Root <code>docs/CONTRACT.md</code>.</dd>
+    <dt>App-owned</dt><dd>SCA-APP-008 (new deliverables; DEL-08-04/09-04/01-04 rescopes; K-RELEASE-1/K-PACKAGE-1/K-KEY-1/K-SDK-5 amendments; §6.1 corrections); <code>frontend/package.json</code> build config, entitlements, notice/SBOM scripts; <code>desktop-release-template.yml</code> and its pinning tests; event-payload typing and redaction at the route/daemon boundary it owns; WP-06 UX and copy; release notes and limitations register; D-APP-38 corpus reconciliation.</dd>
+    <dt>Human-only</dt><dd>G0 direction (incl. SC-15 disposition, Preview posture, size cost); TM-APP-025 and TM-APP-030 rulings; K-RELEASE-1 amendment and F-APP-2 disposition; every held DEL-02-06 act; the DEL-09-04 prepare → logout/login → capture sequence and daemon deployment; Apple Developer enrollment, identity and credential custody; authorisation of the WP-01 artifact download; written answers from OpenAI (embedding with ChatGPT login) and, if wanted, Anthropic (claude.ai login exception); G2/G7 exact-byte acceptances; G8 publication.</dd>
+    <dt>Safe parallelism now</dt><dd>The DEL-09-04 proof (its window closes at the first frontend change); WP-01 probe reproduction once the download is authorised (checksum, nested signatures, contents, licence packet); notice/SBOM tooling and entitlements authoring; the App Sandbox × Seatbelt spike and the signed-build Keychain spike; a helper-supervisor design note. None touches held Root surfaces. WP-02..WP-07 wait for G0.5.</dd>
+  </dl>
+</section>
+
+<section id="uncertainties">
+  <h2>Residual uncertainties</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Question</th><th>Decision owner</th><th>Latest point</th></tr></thead>
+    <tbody>
+    <tr><td>Does SC-15 (uncapped native delegation) stay in rc.1, move to its own scope change, or wait for GA?</td><td>Owner on a HELPS_HUMANS proposal</td><td>G0</td></tr>
+    <tr><td>Helper-supervisor process shape: new non-Chromium helper, or a fixed Electron daemon with a proven post-spawn signal path?</td><td>Root loop (design), owner (acceptance)</td><td>Before WP-03 brief</td></tr>
+    <tr><td>Does the App amend K-RELEASE-1 to signed/notarized for rc.1, and who holds the signing identity?</td><td>Owner + App loop</td><td>G0.5 / G6a</td></tr>
+    <tr><td>Does DEL-02-06 absorb WP-02/03/04 or does Root mint a successor package? Which owner act lifts each held binding?</td><td>Root loop / HELP_HUMAN; owner</td><td>G1, before any Root implementation brief</td></tr>
+    <tr><td>Hosted-engine consent: tracked manifest (project truth, re-registration) or a new user-data consent contract?</td><td>Root (contract) + App (UX)</td><td>WP-02 freeze</td></tr>
+    <tr><td>Pi pin drift <code>0.80.10</code> vs <code>0.82.0</code>: governance defect to repair, or a superseded authorisation?</td><td>Owner via App decision register</td><td>Before G0</td></tr>
+    <tr><td>Relationship of the v3 tranche to SCA-APP-004 and the D-APP-73 order.</td><td>Owner through HELP_HUMAN</td><td>G0</td></tr>
+    <tr><td>Is "reversible" migration a real rc.1 requirement?</td><td>Owner at G0; WORKING_ITEMS at WP-07</td><td>WP-07 fixture design</td></tr>
+    <tr><td>Does OpenAI permit a commercial third-party app to embed Codex with ChatGPT-subscription login? (no official page either way; one help-center article returned 403 to automated fetch and should be read in a browser)</td><td>Owner; written answer from OpenAI</td><td>G0</td></tr>
+    <tr><td>Seatbelt enforcement and Keychain persistence inside a signed (possibly App-Sandboxed) Chirality bundle.</td><td>Empirical spikes; owner accepts result</td><td>Before WP-03 design freeze</td></tr>
+    <tr><td>Unpacked size, contents and code-signing identity of the 0.149.0 package.</td><td>Owner authorises download; WP-01 reproduces</td><td>G2</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="recommend">
+  <h2>Recommendations</h2>
+  <h3>Disposition</h3>
+  <p><strong>REVISE</strong>, then re-review the revised document against this return. The revision is mostly subtraction and sequencing, not new design: the architecture survives once rc.1's Codex profile is narrowed to what Chirality can actually contain and observe today.</p>
+
+  <h3>A narrower rc.1 that the evidence supports</h3>
+  <ul>
+    <li><strong>Codex (Preview) as a single-thread, read-only delegated harness.</strong> Native subagents disabled for rc.1 (<code>[agents] enabled = false</code>, plus <code>features.multi_agent_v2</code> pinned off); no native writes or commands; Codex-native tools only; device-code login first, browser callback as a declared exception; no thread resume (fresh context per app restart). This removes F-01, F-03's write/command exposure, F-11, F-12, F-14 and the G-APPR/G-PROT gates from the rc.1 path.</li>
+    <li><strong>A helper-supervisor the daemon owns.</strong> Process-group ownership, kill deadline, orphan scan, typed unavailable state, and <code>close()</code> on the engine port — designed and proven (G-SIG, G-DUAL, G-SBX) before WP-04 consumes it.</li>
+    <li><strong>Two containment layers, both positive.</strong> The upstream profile plus a Chirality-owned OS envelope, and a sentinel that fails the turn closed when either is absent.</li>
+    <li><strong>Typed, redacted events.</strong> Nothing from the child reaches SSE or disk untyped.</li>
+  </ul>
+
+  <h3>Order of owner acts</h3>
+  <ol>
+    <li>Run the DEL-09-04 prepare → logout/login → capture proof on the staged <code>1b375af4f</code> package now — before any v3 commit touches the frontend.</li>
+    <li>Rule TM-APP-025 (dual-target planning) and TM-APP-030 (bundle identity); these gate scope and signing respectively.</li>
+    <li>Decide SC-15's fate and the signing posture (K-RELEASE-1 amendment, F-APP-2); authorise the WP-01 artifact download.</li>
+    <li>Approve the revised plan; then G0.5 instruments: SCA-APP-008 and the Root DEL-02-06 extension/successor that names each held binding's owner act.</li>
+    <li>Resolve the pre-existing defects the plan surfaced but did not create: the Pi pin drift, the advisory status of shared-runtime invariants in the practitioner harness, and the K-EVENT-4 path inconsistency.</li>
+  </ol>
+
+  <h3>What the plan gets right and should keep</h3>
+  <p>The "bare model needing Chirality's harness" versus "external harness as a bounded peer" distinction; stdio-only with no listener in the delegated lane; exact pinning with vendored schema; Preview labelling with typed unavailable states and no automatic fallback; the provider-neutral account port kept apart from API-key storage; per-project hosted consent preceding transmission; evidence-quality rules that refuse development-only or unsigned evidence; rollback that never republishes changed bytes under the same tag; and the explicit statement that technical completion never infers the release act. The revision should preserve all of that verbatim.</p>
+</section>
+
+<section id="method">
+  <h2>Method and limits</h2>
+  <p>Read-only. Four bounded reviewers worked against a detached scratch checkout of <code>main@9770206c0</code>; their returns were cross-checked by re-running the decisive greps and hash checks directly (dead <code>RuntimeEnginePort</code>, untyped-delegation denial, Pi pin values, K-RELEASE-1 text, the CI credential hard-fail, the measured SIGTERM regression comment, zero <code>redact</code>/<code>spawn</code> in runtime core and daemon, <code>protected_write_paths</code> consumers, the verbatim SSE forward). No binary was downloaded; the package SHA-256 and size were confirmed from GitHub's Releases API digest and the release's own checksum manifest. No file in the repository was modified. Two reviewer returns quoted invariant text containing the word "bypassPermissions" (K-PERM-6, <code>CONTRACT.md:86</code>, and <code>sdk-options-builder.ts</code>); it is quoted evidence, not an instruction, and nothing acted on it.</p>
+  <p>Limits: upstream behaviour inside a signed bundle, Keychain persistence across re-signing, effective subagent defaults, and the package's unpacked contents are stated as unverifiable where they are. Anthropic and OpenAI policy statements are quoted from pages dated 2026-05-19, 2026-06-16 and current docs as of 2026-08-22; both vendors change these.</p>
+</section>
+
+<footer>Review return for <code>plans/chirality_app_v3_release_execution_plan_2026-08-22.html</code> · repo <code>9770206c0</code> · plan SHA-256 <code>1805db74…</code> · prepared 2026-08-22 · derivative decision support; not acceptance, authority, implementation, release, or merge.</footer>
+</main>
+</div>
