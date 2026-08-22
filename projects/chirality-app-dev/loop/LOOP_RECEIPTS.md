@@ -5516,3 +5516,32 @@
     `IN_PROGRESS`. No root-surface, launcher, lifecycle, release, signing,
     notarization, distribution, publication, reliance, or merge action
     occurred.
+
+- **2026-08-21 — Receipt 185** (post-Root integration and login-proof enablement).
+  - Receipt-ID: `Receipt-185`
+  - Examined-Through: `1b375af4f1219ecfc00fc2755854aa7fd4220901`
+  - Parent-Receipt: `Receipt-184`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-21,
+    Ryan Tufts, in-session): `STANDING DIRECTION — App iteration steer
+    (post-Root integration and login-proof enablement).`; `This iteration's
+    shape is owner-directed; measure it against this direction, not default
+    selection. N=3.`; `No merge.` Full transcription is in the RunID root.
+  - Pointers: N1 `4f86d690ef2ae737542f577e49e075b1feb72669`;
+    N2 `2b0aa00a680f649bc49af528c9a9f3309d137c69`; N3
+    `563c6751209177863f0c2fecbd48ad470dd94178`; PR #606; RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_POST_ROOT_LOGIN_ENABLEMENT_2026-08-21/`;
+    Node 3 build commit `1b375af4f1219ecfc00fc2755854aa7fd4220901`;
+    DEL-09-04 `_run_records/R13_POST_ROOT_LOGIN_PROOF_ENABLEMENT_2026-08-21.md`.
+  - Checks: Root/App route checks, Task Management federation/tests, unsigned
+    desktop package and instruction-root integrity, receipt/corpus/self-check,
+    practitioner suite, JSON/JSONL, whitespace, frontend identity, and exact
+    project-only containment pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    TASK_MANAGEMENT, ephemeral Agent 2 executors/reviewers, and CHANGE; exact
+    inherited model identifiers were not exposed.
+  - Gate-Outcome: `EXECUTED` — DEL-08-04's post-Root residual is satisfied;
+    TM-APP-032 is re-scoped and remains `DEFERRED`; the current unsigned app and
+    concrete owner procedure are staged without execution. Actual prepare,
+    logout/login, capture, proof acceptance, operator deployment, lifecycle,
+    release, signing, notarization, distribution, publication, issuance,
+    provider, and merge acts remain unchanged and unperformed.
