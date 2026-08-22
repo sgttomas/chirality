@@ -1,0 +1,10 @@
+AMENDMENT_02_EXACT_ABSENCE_GATE
+root_absence_exit=0
+plist_absence_exit=0
+launchctl_exit=113
+Bad request.
+Could not find service "com.chirality.ci.runatload.login.owner.macos26.00bc8f1a-0045-48a2-970f-be120cf7fc20" in domain for user gui: 501
+launchctl_exit_classification_gate=0
+launchctl_exact_output_gate=0
+PREFLIGHT_EXECUTED=false
+HOST_MUTATION_EXECUTED=false

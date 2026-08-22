@@ -1,0 +1,20 @@
+{
+  "schema": "chirality-packaged-launchagent-login-proof-preflight/v1",
+  "status": "PASS",
+  "mode": "READ_ONLY_PREFLIGHT",
+  "inspections": {
+    "consoleOwnerMetadata": true,
+    "topLevelGuiLoginDomain": true,
+    "serviceOrJobInspection": false
+  },
+  "validation": {
+    "currentAccountMatchesConsoleOwner": true,
+    "uidConsistent": true,
+    "loginDomain": true,
+    "aquaSession": true,
+    "identifierConsistent": true
+  },
+  "identitySha256": "ef0e80d4a8534a6c0aca0d336458ddabcf6d5173b22d810780d61a13b9da9f57",
+  "mutationsPerformed": false,
+  "sessionRootCreated": false
+}

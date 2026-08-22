@@ -5598,3 +5598,54 @@
     owner procedure are excluded and deferred to separate post-merge
     authorization. No prepare, capture, signing, notarization, deployment,
     bootstrap, kickstart, or merge occurred.
+
+- **2026-08-22 — Receipt 187** (DEL-09-04 unsigned rebuild and R16 staged procedure).
+  - Receipt-ID: `Receipt-187`
+  - Examined-Through: `fc4578b63ba1fe816814e9175a230a57b8147f54`
+  - Parent-Receipt: `Receipt-186`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING:
+    `OWNER DIRECTION — DEL-09-04 unsigned rebuild and R16 staged procedure.
+    PR #617 is merged; main is 06f60e42e35ea5c39abf9e33c4d3e877d77c4497. Non-rewriting
+    sync this worktree to that commit and confirm porcelain is empty. Then, in one
+    bounded tranche:
+
+    1. Overwrite — do not adopt — the local 12:50 rebuild and the superseded R16
+       material under /private/tmp/chirality-app-login-proof-r16-superseded-20260822/.
+       Record in R16 that an earlier unadopted local rebuild occurred and was
+       superseded by this one.
+    2. Rebuild the unsigned arm64 app directory with the same command as R13
+       (npm run desktop:pack) from exact commit 06f60e42e35ea5c39abf9e33c4d3e877d77c4497;
+       verify bundle id, version, min macOS, ad-hoc signature, main-executable
+       SHA-256, and that the packaged runtime-cli is present, as R13 did.
+    3. Stage, without executing, a new owner procedure in
+       *run_records/R16*..._2026-08-22.md with exact PROOF_APP, PROOF_REVISION
+       = 06f60e42e35ea5c39abf9e33c4d3e877d77c4497, and the proposed root/label from R15:
+       /private/tmp/chirality-login-proof-owner-macos26-00bc8f1a-0045-48a2-970f-be120cf7fc20
+       com.chirality.ci.runatload.login.owner.macos26.00bc8f1a-0045-48a2-970f-be120cf7fc20
+       Include the read-only preflight as step 0 of the procedure.
+    4. Update _STATUS.md, write Receipt 187, open one PR, stop. Do not merge.
+       No prepare, capture, logout/login, bootstrap, kickstart, signing, notarization,
+       deployment, or release-readiness claim. The proof remains my act.`
+  - Pointers: R16 commit `fc4578b63ba1fe816814e9175a230a57b8147f54`;
+    branch `codex/app-login-proof-r16-staging`; DEL-09-04 R16
+    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R16_MACOS26_LOGIN_PROOF_BUILD_AND_STAGING_2026-08-22.md`;
+    RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/`;
+    fresh main review
+    `instances/WI-PKG09-R16-STAGING-01/review/REVIEW.md`; whitespace repair-cycle
+    fresh review
+    `instances/WI-PKG09-R16-STAGING-01/repair-cycle-1/review/REVIEW.md`.
+  - Checks: exact-merge unsigned package and package identity, packaged
+    runtime-cli, desktop dependency and instruction-root integrity, frontend
+    identity, live read-only preflight, owner-procedure portability and shell
+    safety, fresh review, whitespace repair and fresh repair-cycle review,
+    APP-HOLD, repository self-check, practitioner suite, App-only containment,
+    and receipt validator pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    ephemeral Agent 2 executors/reviewers, and CHANGE; exact inherited model
+    identifiers were not exposed.
+  - Gate-Outcome: `EXECUTED` — staging-only. DEL-09-04 remains `IN_PROGRESS`
+    and unproved; the prior local build/R16 are superseded, and the owner proof
+    remains unexecuted. No prepare, capture, logout/login, bootstrap,
+    kickstart, signing, notarization, deployment, distribution,
+    release-readiness, proof-acceptance, or merge action or claim occurred.

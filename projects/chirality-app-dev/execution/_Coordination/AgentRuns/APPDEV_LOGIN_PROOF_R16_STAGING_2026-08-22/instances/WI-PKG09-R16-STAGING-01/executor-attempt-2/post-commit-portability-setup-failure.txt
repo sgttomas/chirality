@@ -1,0 +1,5 @@
+Synthetic portability scratch setup attempt 1
+Result: setup failure before synthetic tree/commit or source-gate execution
+Exit: 1
+Exact error: fatal: failed to create link '/private/tmp/chirality-r16-portability.uJpK0K/repo/.git/objects/61/8821d10830ab38b8751c5ab2908313508b23ad': Operation not permitted
+Disposition: repeated scratch setup using Git --no-hardlinks; live repository, package, preflight, and host state were not mutated.

@@ -1,0 +1,38 @@
+AMENDMENT_02_FINAL_QA
+SHELL_BLOCK_SYNTAX
+shell_syntax_exit=0
+STEP0_ASSERTION_SCAN
+head_equality_assertion_absent=true
+STEP0_REQUIRED_GATES
+16:test "$(git rev-parse --show-toplevel)" = "$REPO_ROOT"
+21:FRONTEND_DIFF="$(git diff --stat "$PROOF_REVISION"..HEAD -- projects/chirality-app-dev/frontend)"
+23:test ! -e "$PROOF_ROOT"
+24:test ! -e "$PROOF_PLIST"
+26:PROOF_JOB_OUTPUT="$(/bin/launchctl print "$PROOF_SERVICE" 2>&1)"
+27:PROOF_JOB_EXIT=$?
+29:EXPECTED_PROOF_JOB_NOT_FOUND="$(printf '%s\n%s' 'Bad request.' 'Could not find service "com.chirality.ci.runatload.login.owner.macos26.00bc8f1a-0045-48a2-970f-be120cf7fc20" in domain for user gui: 501')"
+30:test "$PROOF_JOB_EXIT" -eq 113
+31:test "$PROOF_JOB_OUTPUT" = "$EXPECTED_PROOF_JOB_NOT_FOUND"
+32:node projects/chirality-app-dev/frontend/scripts/run-packaged-launchagent-login-proof.mjs preflight
+33:test ! -e "$PROOF_ROOT"
+53:git diff --stat "$PROOF_REVISION"..HEAD -- projects/chirality-app-dev/frontend
+HASHES
+be2d98943b5f72af68d85952d4ae3622d53ee91b570d33e76fac1fcff7379bf7  projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R16_MACOS26_LOGIN_PROOF_BUILD_AND_STAGING_2026-08-22.md
+4f9e04a3d229b9d64c83a038ba980518709684b3ed36fbb5e1d96172653b21a6  projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md
+7dceb00dcd083c53ceb7ddda675d8672d6f41ecbede2bb8e0d08ef813a70b54d  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/RETURN.md
+79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874  projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+HEAD_AND_ORIGIN
+06f60e42e35ea5c39abf9e33c4d3e877d77c4497
+06f60e42e35ea5c39abf9e33c4d3e877d77c4497
+FRONTEND_DIFF_BEGIN
+FRONTEND_DIFF_END
+FRONTEND_PORCELAIN_BEGIN
+FRONTEND_PORCELAIN_END
+INDEX_BEGIN
+INDEX_END
+diff_check_exit=0
+app_containment_exit=0
+TRACKED_DIFF
+M	projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md
+PROOF_ROOT
+ABSENT

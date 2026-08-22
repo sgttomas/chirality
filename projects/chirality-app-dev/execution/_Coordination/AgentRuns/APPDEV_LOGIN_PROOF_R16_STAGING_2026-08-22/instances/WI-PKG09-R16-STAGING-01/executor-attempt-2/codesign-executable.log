@@ -1,0 +1,28 @@
+CODESIGN_DISPLAY_EXECUTABLE
+Executable=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+Identifier=Electron
+Format=app bundle with Mach-O thin (arm64)
+CodeDirectory v=20400 size=392 flags=0x20002(adhoc,linker-signed) hashes=9+0 location=embedded
+VersionPlatform=1
+VersionMin=786432
+VersionSDK=1704960
+Hash type=sha256 size=32
+CandidateCDHash sha256=5c22a19a764af33c82dfc3e3191db283a5b8e376
+CandidateCDHashFull sha256=5c22a19a764af33c82dfc3e3191db283a5b8e376c4cbcf3c581d8cdae95597be
+Hash choices=sha256
+CMSDigest=5c22a19a764af33c82dfc3e3191db283a5b8e376c4cbcf3c581d8cdae95597be
+CMSDigestType=2
+Executable Segment base=0
+Executable Segment limit=16384
+Executable Segment flags=0x1
+Page size=4096
+CDHash=5c22a19a764af33c82dfc3e3191db283a5b8e376
+Signature=adhoc
+Info.plist=not bound
+TeamIdentifier=not set
+Sealed Resources=none
+Internal requirements=none
+codesign_display_executable_exit=0
+CODESIGN_VERIFY_EXECUTABLE
+/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality: code has no resources but signature indicates they must be present
+codesign_verify_executable_exit=1
