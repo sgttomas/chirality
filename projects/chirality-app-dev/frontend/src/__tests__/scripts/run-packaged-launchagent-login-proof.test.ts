@@ -5,6 +5,7 @@ import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   EVIDENCE_SCHEMA,
+  PREFLIGHT_SCHEMA,
   SESSION_SCHEMA,
   SUMMARY_SCHEMA,
   main
@@ -28,6 +29,20 @@ async function fixture() {
   const state = {
     loaded: false,
     sessionId: 1001,
+    consoleUsername: 'fixture-user',
+    consoleUid: 501,
+    securityUid: 501,
+    securityAsid: undefined as number | undefined,
+    domainType: 'login',
+    domainSession: 'Aqua',
+    consoleOutput: undefined as string | undefined,
+    domainOutput: undefined as string | undefined,
+    statExitCode: 0,
+    statSignal: undefined as string | undefined,
+    statStderr: '',
+    domainExitCode: 0,
+    domainSignal: undefined as string | undefined,
+    domainStderr: '',
     loadedProgram: executablePath,
     loadedArguments: [executablePath, '--runtime-daemon'] as string[] | undefined,
     processExecutables: [executablePath] as string[],
@@ -59,16 +74,12 @@ async function fixture() {
   }) => {
     const entry = { executable: input.executable, args: [...input.args], env: input.env };
     state.commands.push(entry);
-    if (input.executable === '/usr/bin/osascript') {
+    if (input.executable === '/usr/bin/stat') {
       return {
-        exitCode: 0,
-        stdout: JSON.stringify({
-          kCGSSessionIDKey: state.sessionId,
-          kCGSessionUserIDKey: 501,
-          kCGSessionOnConsoleKey: true,
-          kCGSessionLoginDoneKey: true
-        }),
-        stderr: ''
+        exitCode: state.statExitCode,
+        signal: state.statSignal,
+        stdout: state.consoleOutput ?? `${state.consoleUsername}:${state.consoleUid}\n`,
+        stderr: state.statStderr
       };
     }
     if (input.executable === executablePath) {
@@ -86,6 +97,29 @@ async function fixture() {
     if (input.executable !== '/bin/launchctl') throw new Error(`Unexpected ${input.executable}`);
     if (input.args[0] === 'print') {
       const service = input.args[1];
+      if (service === 'gui/501') {
+        const asid = state.securityAsid ?? state.sessionId;
+        return {
+          exitCode: state.domainExitCode,
+          signal: state.domainSignal,
+          stdout:
+            state.domainOutput ??
+            `gui/501 = {
+\ttype = ${state.domainType}
+\thandle = ${state.sessionId}
+\tactive count = 12
+\tsession = ${state.domainSession}
+\tsecurity context = {
+\t\tuid = ${state.securityUid}
+\t\tasid = ${asid}
+\t}
+\tservices = {
+\t\thandle = 999999
+\t}
+}\n`,
+          stderr: state.domainStderr
+        };
+      }
       if (service.endsWith('/com.chirality.runtime')) {
         return { exitCode: 0, stdout: 'state = running\nprogram = /operator\npid = 77\n', stderr: '' };
       }
@@ -110,7 +144,7 @@ async function fixture() {
   const deps = {
     platform: 'darwin',
     environment: { HOME: home },
-    userInfo: () => ({ homedir: home }),
+    userInfo: () => ({ homedir: home, uid: 501, username: 'fixture-user' }),
     uid: () => 501,
     now: () => new Date(state.loaded ? '2026-08-22T14:00:00.000Z' : '2026-08-21T14:00:00.000Z'),
     randomId: () => 'fixture',
@@ -126,6 +160,275 @@ async function fixture() {
 
 afterEach(async () => {
   await Promise.all(roots.splice(0).map((root) => rm(root, { recursive: true, force: true })));
+});
+
+async function expectPreflightFailureWithoutMutation(
+  harness: Awaited<ReturnType<typeof fixture>>
+) {
+  let result: Awaited<ReturnType<typeof main>> | undefined;
+  let failure: unknown;
+  try {
+    result = await main(['preflight'], harness.deps);
+  } catch (error) {
+    failure = error;
+  }
+
+  expect(failure).toBeInstanceOf(Error);
+  expect(result).toBeUndefined();
+  expect(harness.state.commands.some((entry) => entry.executable === harness.executablePath)).toBe(
+    false
+  );
+  expect(
+    harness.state.commands
+      .filter((entry) => entry.executable === '/bin/launchctl')
+      .every(
+        (entry) =>
+          entry.args.length === 2 && entry.args[0] === 'print' && entry.args[1] === 'gui/501'
+      )
+  ).toBe(true);
+  await expect(realpath(harness.sessionRoot)).rejects.toThrow();
+}
+
+describe('macOS login-session identity preflight', () => {
+  it('accepts live-shaped Aqua login-domain output without raw identity or mutation', async () => {
+    const harness = await fixture();
+    const first = await main(['preflight'], harness.deps);
+    if (!('identitySha256' in first)) throw new Error('Expected preflight result');
+
+    expect(first).toMatchObject({
+      schema: PREFLIGHT_SCHEMA,
+      status: 'PASS',
+      mode: 'READ_ONLY_PREFLIGHT',
+      inspections: {
+        consoleOwnerMetadata: true,
+        topLevelGuiLoginDomain: true,
+        serviceOrJobInspection: false
+      },
+      validation: {
+        currentAccountMatchesConsoleOwner: true,
+        uidConsistent: true,
+        loginDomain: true,
+        aquaSession: true,
+        identifierConsistent: true
+      },
+      mutationsPerformed: false,
+      sessionRootCreated: false
+    });
+    expect(first.identitySha256).toMatch(/^[0-9a-f]{64}$/u);
+    expect(JSON.stringify(first)).not.toContain('fixture-user');
+    expect(JSON.stringify(first)).not.toContain('1001');
+    expect(harness.state.commands).toEqual([
+      { executable: '/usr/bin/stat', args: ['-f', '%Su:%u', '/dev/console'], env: undefined },
+      { executable: '/bin/launchctl', args: ['print', 'gui/501'], env: undefined }
+    ]);
+    expect(harness.state.commands.some((entry) => entry.executable === '/usr/bin/osascript')).toBe(
+      false
+    );
+    expect(
+      harness.state.commands.some(
+        (entry) =>
+          entry.executable === '/bin/launchctl' &&
+          (entry.args.length !== 2 || entry.args[0] !== 'print' || entry.args[1] !== 'gui/501')
+      )
+    ).toBe(false);
+    await expect(realpath(harness.sessionRoot)).rejects.toThrow();
+
+    harness.state.sessionId += 1;
+    harness.state.commands.length = 0;
+    const second = await main(['preflight'], harness.deps);
+    if (!('identitySha256' in second)) throw new Error('Expected preflight result');
+    expect(second.identitySha256).not.toBe(first.identitySha256);
+  });
+
+  it('refuses every option before inspection and does not create a proof root', async () => {
+    for (const option of [
+      ['--session-root', '/tmp/forbidden'],
+      ['--app-path', '/Applications/Chirality.app'],
+      ['--label', 'com.chirality.ci.runatload.login.forbidden'],
+      ['--source-revision', 'forbidden']
+    ]) {
+      const harness = await fixture();
+      await expect(main(['preflight', ...option], harness.deps)).rejects.toThrow(
+        'Preflight accepts no options'
+      );
+      expect(harness.state.commands).toHaveLength(0);
+      await expect(realpath(harness.sessionRoot)).rejects.toThrow();
+    }
+  });
+
+  it.each([
+    ['non-Darwin platform', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.deps.platform = 'linux';
+    }],
+    ['root process UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.deps.uid = () => 0;
+    }],
+    ['process/account UID mismatch', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.deps.userInfo = () => ({
+        homedir: harness.home,
+        uid: 502,
+        username: 'fixture-user'
+      });
+    }],
+    ['invalid current-account username root', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.deps.userInfo = () => ({ homedir: harness.home, uid: 501, username: 'root' });
+    }],
+    ['invalid current-account username loginwindow', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.deps.userInfo = () => ({ homedir: harness.home, uid: 501, username: 'loginwindow' });
+    }],
+    ['invalid current-account username _mbsetupuser', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.deps.userInfo = () => ({ homedir: harness.home, uid: 501, username: '_mbsetupuser' });
+    }]
+  ])('fails closed on %s before inspection', async (_caseName, mutate) => {
+    const harness = await fixture();
+    mutate(harness);
+    await expectPreflightFailureWithoutMutation(harness);
+  });
+
+  it.each([
+    ['malformed console output', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.consoleOutput = 'fixture-user:501\nsecond-record:501\n';
+    }],
+    ['loginwindow console owner', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.consoleUsername = 'loginwindow';
+    }],
+    ['setup console owner', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.consoleUsername = '_mbsetupuser';
+    }],
+    ['wrong console user', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.consoleUsername = 'another-user';
+    }],
+    ['wrong console UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.consoleUid = 502;
+    }],
+    ['console command failure', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.statExitCode = 1;
+    }],
+    ['signaled console command', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.statSignal = 'SIGTERM';
+    }],
+    ['console stderr-bearing success', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.statStderr = 'partial warning\n';
+    }]
+  ])('fails closed on %s', async (_caseName, mutate) => {
+    const harness = await fixture();
+    mutate(harness);
+    await expectPreflightFailureWithoutMutation(harness);
+  });
+
+  it.each([
+    ['malformed domain output', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainOutput = 'not a login domain\n';
+    }],
+    ['wrong domain identifier UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainOutput = `gui/502 = {
+\ttype = login
+\thandle = 1001
+\tsession = Aqua
+\tsecurity context = {
+\t\tuid = 501
+\t\tasid = 1001
+\t}
+}\n`;
+    }],
+    ['wrong security UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.securityUid = 502;
+    }],
+    ['non-login domain', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainType = 'user';
+    }],
+    ['non-Aqua session', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainSession = 'Background';
+    }],
+    ['mismatched handle and asid', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.securityAsid = 1002;
+    }],
+    ['unsafe-integer handle and asid', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainOutput = `gui/501 = {
+\ttype = login
+\thandle = 9007199254740992
+\tsession = Aqua
+\tsecurity context = {
+\t\tuid = 501
+\t\tasid = 9007199254740992
+\t}
+}\n`;
+    }],
+    ['duplicate handle', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainOutput = `gui/501 = {
+\ttype = login
+\thandle = 1001
+\thandle = 1001
+\tsession = Aqua
+\tsecurity context = {
+\t\tuid = 501
+\t\tasid = 1001
+\t}
+}\n`;
+    }],
+    ['ambiguous security contexts', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainOutput = `gui/501 = {
+\ttype = login
+\thandle = 1001
+\tsession = Aqua
+\tsecurity context = {
+\t\tuid = 501
+\t\tasid = 1001
+\t}
+\tsecurity context = {
+\t\tuid = 501
+\t\tasid = 1001
+\t}
+}\n`;
+    }],
+    ['trailing top-level domain output', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainOutput = `gui/501 = {
+\ttype = login
+\thandle = 1001
+\tsession = Aqua
+\tsecurity context = {
+\t\tuid = 501
+\t\tasid = 1001
+\t}
+}
+trailing output
+`;
+    }],
+    ['unclosed top-level domain brace', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainOutput = `gui/501 = {
+\ttype = login
+\thandle = 1001
+\tsession = Aqua
+\tsecurity context = {
+\t\tuid = 501
+\t\tasid = 1001
+\t}
+`;
+    }],
+    ['unclosed security-context braces', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainOutput = `gui/501 = {
+\ttype = login
+\thandle = 1001
+\tsession = Aqua
+\tsecurity context = {
+\t\tuid = 501
+\t\tasid = 1001
+`;
+    }],
+    ['launchctl command failure', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainExitCode = 113;
+    }],
+    ['signaled top-level launchctl command', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainSignal = 'SIGTERM';
+    }],
+    ['launchctl stderr-bearing success', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.domainStderr = 'partial warning\n';
+    }]
+  ])('fails closed on %s', async (_caseName, mutate) => {
+    const harness = await fixture();
+    mutate(harness);
+    await expectPreflightFailureWithoutMutation(harness);
+  });
 });
 
 describe('packaged LaunchAgent login-session proof preparation', () => {

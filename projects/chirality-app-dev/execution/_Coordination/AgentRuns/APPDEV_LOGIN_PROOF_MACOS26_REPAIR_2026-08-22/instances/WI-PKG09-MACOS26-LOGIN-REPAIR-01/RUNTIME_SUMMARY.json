@@ -1,0 +1,100 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 5
+  },
+  "counts": {
+    "category": {
+      "fan-in": 1,
+      "implementation": 2,
+      "orchestration": 2,
+      "remediation": 2,
+      "review": 4
+    },
+    "event_type": {
+      "CHECK": 1,
+      "FINISH": 5,
+      "START": 5
+    },
+    "outcome": {
+      "FAIL": 1,
+      "PASS": 5,
+      "STARTED": 5
+    },
+    "reason_code": {
+      "ACTIVATED": 1,
+      "DISPATCHED": 1,
+      "F01_REPAIRED": 1,
+      "FRESH_REVIEW": 1,
+      "FRESH_REVIEW_AFTER_REPAIR": 1,
+      "FULL_MATRIX_PASS": 1,
+      "IMPLEMENTATION_PASS": 1,
+      "REPAIR_CYCLE_1": 1,
+      "TEST_COVERAGE_GAPS": 1,
+      "VALIDATED_PASS": 2
+    }
+  },
+  "events": 11,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 950.269,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-MACOS26-LOGIN-REPAIR-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "A2-PKG09-MACOS26-IMPLEMENT-01"
+    },
+    {
+      "duration_seconds": 417.65,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-MACOS26-LOGIN-REPAIR-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "A2-PKG09-MACOS26-REMEDIATE-01"
+    },
+    {
+      "duration_seconds": 352.656,
+      "events": 2,
+      "final_outcome": "FAIL",
+      "instance_id": "WI-PKG09-MACOS26-LOGIN-REPAIR-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_REVIEWER",
+      "session_id": "A2-PKG09-MACOS26-REVIEW-01"
+    },
+    {
+      "duration_seconds": 237.27,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-MACOS26-LOGIN-REPAIR-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_REVIEWER",
+      "session_id": "A2-PKG09-MACOS26-REVIEW-02"
+    },
+    {
+      "duration_seconds": 2020.117,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-MACOS26-LOGIN-REPAIR-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG09-MACOS26-LOGIN-REPAIR-01"
+    }
+  ],
+  "sessions": 5,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

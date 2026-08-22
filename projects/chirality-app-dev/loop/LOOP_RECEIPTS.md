@@ -5562,3 +5562,39 @@
     logout/login, capture, proof acceptance, operator deployment, lifecycle,
     release, signing, notarization, distribution, publication, issuance,
     provider, and merge acts remain unchanged and unperformed.
+
+- **2026-08-22 — Receipt 186** (DEL-09-04 macOS 26 detector repair closeout).
+  - Receipt-ID: `Receipt-186`
+  - Examined-Through: `71c010fe39586e8470c2f85c9ae1daf94394b975`
+  - Parent-Receipt: `Receipt-185`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING:
+    `OWNER DIRECTION — DEL-09-04 macOS 26 detector repair closeout.
+    After F-01 is repaired and a fresh evidence-only review returns PASS: commit the
+    repair tranche on codex/app-login-proof-macos26-repair as one tranche, open a
+    PR against main with the R14/R15 records and a receipt, and stop. Do not merge.
+    Do not rebuild, prepare, capture, sign, notarize, deploy, bootstrap, or
+    kickstart. The unsigned rebuild and a new staged owner procedure (R16, exact
+    PROOF_REVISION/PROOF_APP, the proposed macos26 root and label) are a separate
+    authorization I will give after the PR merges and the worktree is synced to
+    the merged commit.`
+  - Pointers: repair commit `71c010fe39586e8470c2f85c9ae1daf94394b975`;
+    branch `codex/app-login-proof-macos26-repair`; DEL-09-04
+    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R14_MACOS26_LOGIN_IDENTITY_PREPARE_FAILURE_2026-08-22.md`;
+    DEL-09-04
+    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R15_MACOS26_LOGIN_IDENTITY_REPAIR_2026-08-22.md`;
+    RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_MACOS26_REPAIR_2026-08-22/`;
+    cycle-2 review
+    `instances/WI-PKG09-MACOS26-LOGIN-REPAIR-01/review-cycle-1/REVIEW.md`.
+  - Checks: focused/full frontend suites, syntax, typecheck, live read-only
+    preflight, APP-HOLD, self-check, containment, whitespace, and F-01 fresh
+    evidence-only review pass; exact measurements are in R15 and the cited
+    cycle-2 review.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    ephemeral Agent 2 executor/remediator/reviewers, and CHANGE; exact inherited
+    model identifiers were not exposed.
+  - Gate-Outcome: `EXECUTED` — repair-only closeout; DEL-09-04 stays
+    `IN_PROGRESS` and unproved. R16, the unsigned rebuild, and the new staged
+    owner procedure are excluded and deferred to separate post-merge
+    authorization. No prepare, capture, signing, notarization, deployment,
+    bootstrap, kickstart, or merge occurred.
