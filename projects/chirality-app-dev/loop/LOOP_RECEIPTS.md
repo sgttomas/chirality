@@ -5532,10 +5532,26 @@
     `execution/_Coordination/AgentRuns/APPDEV_POST_ROOT_LOGIN_ENABLEMENT_2026-08-21/`;
     Node 3 build commit `1b375af4f1219ecfc00fc2755854aa7fd4220901`;
     DEL-09-04 `_run_records/R13_POST_ROOT_LOGIN_PROOF_ENABLEMENT_2026-08-21.md`.
+    Hash-lineage note: accepted whitespace repair
+    `082b6dc01473c9a724d208cadeb0df18c7896a88` changed exactly one trailing
+    blank line in each named file: `EXECUTE-02/RETURN.md`
+    `3f51c39e3ddd386da9f34804f6f2379da69f42972821945a781c3248927b070f`
+    → `027ed22d38d572284e718e8bd766ad6786ffa4f06437744e01012bf32509e29e`;
+    `EXECUTE-01/RETURN.md`
+    `a611c0e9926ce83358b74dc1ceda0487c91b8bba778394a809757b2f12e51283`
+    → `4dfc2bbdba6e86eaef4a2647978e67cc3e024989e0ff584857d2edd75bea1a65`;
+    DEL-08-04 `_run_records/POST_ROOT_AGENT0_A2_INTEGRATION_2026-08-21.md`
+    `e5967b3eeac426807a4d6ecf8ad47a87b23055a9e1ad0707411bf32bd005f0f3`
+    → `d98a4eb96bf731742ec2ff7865fce4b6d6fe83bd32815a7615c180964a2d5253`;
+    and WI-PKG09 `executor/desktop-pack.log`
+    `22defdaf3e9685e92514b7ffce5c4b2792b2475fc23224e289ba112b28d2ed87`
+    → `caefb7731883c0d0b78c6bb5d9762f34f24d40af123d25c7b4e0888f15256c8f`.
+    The frozen review records remain unchanged.
   - Checks: Root/App route checks, Task Management federation/tests, unsigned
     desktop package and instruction-root integrity, receipt/corpus/self-check,
-    practitioner suite, JSON/JSONL, whitespace, frontend identity, and exact
-    project-only containment pass.
+    practitioner suite, JSON/JSONL, frontend identity, and exact project-only
+    containment pass; whitespace passed only after accepted repair
+    `082b6dc01473c9a724d208cadeb0df18c7896a88`.
   - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
     TASK_MANAGEMENT, ephemeral Agent 2 executors/reviewers, and CHANGE; exact
     inherited model identifiers were not exposed.
