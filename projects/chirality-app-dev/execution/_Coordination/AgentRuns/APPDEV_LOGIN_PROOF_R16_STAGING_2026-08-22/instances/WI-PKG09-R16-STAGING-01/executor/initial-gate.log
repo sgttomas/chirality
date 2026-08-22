@@ -1,0 +1,23 @@
+INITIAL_GATE
+06f60e42e35ea5c39abf9e33c4d3e877d77c4497
+codex/app-login-proof-r16-staging
+06f60e42e35ea5c39abf9e33c4d3e877d77c4497
+INDEX
+TRACKED
+FRONTEND_PORCELAIN
+ALL_PORCELAIN
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/CHAT_TRANSCRIPTION.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/ORCHESTRATION_PLAN.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/WORK_GRAPH.json
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/ACTIVATION_AND_WORK_GRAPH.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/RUNTIME_EVENTS.jsonl
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/briefs/A2-PKG09-R16-EXECUTE-01.md
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor/initial-gate.log
+PROOF_ROOT
+ABSENT
+PROOF_PLIST
+ABSENT
+EXACT_PROOF_JOB
+Bad request.
+Could not find service "com.chirality.ci.runatload.login.owner.macos26.00bc8f1a-0045-48a2-970f-be120cf7fc20" in domain for user gui: 501
+launchctl_exit=113

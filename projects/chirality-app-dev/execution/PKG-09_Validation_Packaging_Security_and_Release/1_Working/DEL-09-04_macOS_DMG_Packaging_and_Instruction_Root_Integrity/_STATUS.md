@@ -12,16 +12,20 @@
   owner Terminal attempt failed before preparation completed with `Current GUI
   login-session identity is not valid JSON`; owner-reported failure evidence is
   recorded in `_run_records/R14_MACOS26_LOGIN_IDENTITY_PREPARE_FAILURE_2026-08-22.md`.
-  The obsolete JXA/CoreGraphics detector has now been replaced in the live
-  uncommitted source with a fail-closed `/dev/console` plus top-level
+  The obsolete JXA/CoreGraphics detector has now been replaced in merged source
+  with a fail-closed `/dev/console` plus top-level
   `launchctl print gui/<uid>` detector and an optionless read-only preflight.
   Comprehensive focused/full tests, typecheck, APP-HOLD, practitioner
   self-check, and the live macOS 26.6.2 preflight pass; see
-  `_run_records/R15_MACOS26_LOGIN_IDENTITY_REPAIR_2026-08-22.md`. The repair is
-  not yet committed or rebuilt, so the R13 package does not contain it and no
-  new exact `PROOF_REVISION` or `PROOF_APP` is available. Fresh review, Git
-  integration, and a later unsigned rebuild remain prerequisites before a new
-  owner procedure can be staged.
+  `_run_records/R15_MACOS26_LOGIN_IDENTITY_REPAIR_2026-08-22.md`. The exact
+  merged revision `06f60e42e35ea5c39abf9e33c4d3e877d77c4497` has now been
+  rebuilt as the unsigned local arm64 app at
+  `/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app`;
+  the concrete unique absent macOS 26 proof root/label and owner-only procedure
+  are staged in
+  `_run_records/R16_MACOS26_LOGIN_PROOF_BUILD_AND_STAGING_2026-08-22.md`.
+  Preparation, owner logout/login, capture, proof handoff, and proof acceptance
+  remain unexecuted owner acts, so the deliverable remains unproved.
   The prior reviewed two-phase harness/test candidate was restored at live frontend paths
   under the owner's superseding **“Push through failures”** direction.
   Implementation preparation is complete: Agent 0 repaired only the ignored
@@ -51,6 +55,16 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-22 - Rebuilt the unsigned thin-arm64 local app from exact merged
+  revision `06f60e42e35ea5c39abf9e33c4d3e877d77c4497`. The tracked package
+  command's dependency boundary and current-byte instruction-root integrity
+  gates passed, independent package and Git identities passed, and the live
+  optionless read-only macOS 26 preflight passed without creating the proposed
+  proof root or inspecting a service/job. R16 stages concrete owner-only
+  prepare, logout/login, capture, PASS, preservation, and handoff documentation
+  without executing it. State remains IN_PROGRESS and unproved; all operator,
+  lifecycle, signing, notarization, distribution, publication, release, and
+  reliance fences remain.
 - 2026-08-22 - Recorded the owner-reported macOS 26.6.2 prepare failure and
   replaced the obsolete JXA/CoreGraphics login-session identity probe with a
   fail-closed `/dev/console` plus top-level GUI login-domain detector. The new

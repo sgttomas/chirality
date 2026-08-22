@@ -1,0 +1,98 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 4
+  },
+  "counts": {
+    "category": {
+      "build": 4,
+      "cleanup": 1,
+      "fan-in": 1,
+      "orchestration": 2,
+      "remediation": 3,
+      "review": 4
+    },
+    "event_type": {
+      "CHECK": 3,
+      "FINISH": 4,
+      "MILESTONE": 1,
+      "REMEDIATION": 1,
+      "RETRY": 2,
+      "START": 4
+    },
+    "outcome": {
+      "BLOCKED": 1,
+      "FAIL": 1,
+      "PASS": 7,
+      "STARTED": 6
+    },
+    "reason_code": {
+      "ACTIVATED": 1,
+      "DISPATCHED": 1,
+      "EXACT_MERGE_R16_PASS": 1,
+      "EXACT_TEMP_ROOT_REMOVED": 1,
+      "EXECUTOR_TERMINAL_PASS": 1,
+      "FRESH_POST_REPAIR_REVIEW": 1,
+      "FRESH_REVIEW": 1,
+      "FULL_MATRIX_PASS": 1,
+      "NARROW_NETWORK_RETRY": 1,
+      "NETWORK_CACHE_MISS": 1,
+      "PRE_DISPATCH_PORTABILITY_REPAIR": 1,
+      "STEP0_PORTABILITY_PASS": 1,
+      "STEP0_POST_COMMIT_PORTABILITY": 1,
+      "VALIDATED_PASS": 2
+    }
+  },
+  "events": 15,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 1687.738,
+      "events": 7,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-R16-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 1,
+      "retries": 2,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "A2-PKG09-R16-EXECUTE-01"
+    },
+    {
+      "duration_seconds": 77.398,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "WI-PKG09-R16-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_REVIEWER",
+      "session_id": "A2-PKG09-R16-REVIEW-01"
+    },
+    {
+      "duration_seconds": 491.507,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-R16-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_REVIEWER",
+      "session_id": "A2-PKG09-R16-REVIEW-02"
+    },
+    {
+      "duration_seconds": 1671.886,
+      "events": 4,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-R16-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG09-R16-STAGING-01"
+    }
+  ],
+  "sessions": 4,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

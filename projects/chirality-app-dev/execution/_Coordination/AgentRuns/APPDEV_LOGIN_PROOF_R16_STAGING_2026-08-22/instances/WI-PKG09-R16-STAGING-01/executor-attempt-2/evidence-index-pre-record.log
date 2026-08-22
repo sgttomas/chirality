@@ -1,0 +1,18 @@
+EVIDENCE_FILE_HASHES
+900a08787bdeaa946a85997f12824dcc73af0ad5cb18febad483cbcf6da8bf16  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor/desktop-pack.log
+4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor/desktop-pack.exit-status.txt
+e1f3bc133fb1a993611acf7952fcabd89bb5bdab09ae5e58519c5b1b01b262e9  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/desktop-pack.log
+9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/desktop-pack.exit-status.txt
+038429e3922bf116335c58867306d91bed941fa6e84da6a57a928636a4e61d18  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/package-identity.log
+708d914e9d96b6d2f3a5e20aa5cfe7427da1e83ea1184d0a0338b7b1f93f01f9  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/integrity-evidence.log
+2e530b21023c537d221ec4427ec13615f473f735f420ea844ac4197b1c24cc55  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/post-build-git.log
+61337ccf4dc63ff98578f37dce3bcfcb812881d97e15ec5823104fb87855b5c0  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/preflight.log
+9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/preflight.exit-status.txt
+30de2e3ec990035ab1934c782f59c0fb83bc084537cb62784b6d6a93d6b5747f  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/preflight-boundaries-before.log
+6b9908b811c5e8db749784dfc7f27100f160a79a0cce6ed96f3d9eca168f004b  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/preflight-boundaries-after.log
+RUNTIME_VERSIONS
+v24.18.0
+11.16.0
+ProductName:		macOS
+ProductVersion:		26.6.2
+BuildVersion:		25G83

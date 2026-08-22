@@ -1,0 +1,31 @@
+FINAL_CHECKS
+HEAD
+06f60e42e35ea5c39abf9e33c4d3e877d77c4497
+ORIGIN_MAIN
+06f60e42e35ea5c39abf9e33c4d3e877d77c4497
+BRANCH
+codex/app-login-proof-r16-staging
+FRONTEND_DIFF_STAT_BEGIN
+FRONTEND_DIFF_STAT_END
+FRONTEND_PORCELAIN_BEGIN
+FRONTEND_PORCELAIN_END
+INDEX_BEGIN
+INDEX_END
+diff_check_exit=0
+shell_syntax_exit=0
+app_containment_exit=0
+TRACKED_DIFF
+M	projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md
+R16_AND_STATUS_HASHES
+a5e9e2b2045617902deb758a701670b4e4f896dcd96c5b923a27dbf198b9e0ec  projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R16_MACOS26_LOGIN_PROOF_BUILD_AND_STAGING_2026-08-22.md
+4f9e04a3d229b9d64c83a038ba980518709684b3ed36fbb5e1d96172653b21a6  projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md
+RETURN_HASH
+b2191e4ce4afa391fd0b7e93b678fa7da1b382b39ef94baa5eca16c6bd91b983  projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/RETURN.md
+PROOF_ROOT
+ABSENT
+PROOF_PLIST
+ABSENT
+EXACT_PROOF_JOB
+Bad request.
+Could not find service "com.chirality.ci.runatload.login.owner.macos26.00bc8f1a-0045-48a2-970f-be120cf7fc20" in domain for user gui: 501
+launchctl_exit=113

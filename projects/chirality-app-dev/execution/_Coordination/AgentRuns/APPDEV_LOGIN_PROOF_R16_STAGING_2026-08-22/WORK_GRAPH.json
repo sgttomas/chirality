@@ -1,0 +1,37 @@
+{
+  "schema": "working-items-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22",
+  "instance_id": "WI-PKG09-R16-STAGING-01",
+  "version": 1,
+  "status": "FROZEN_BEFORE_DISPATCH",
+  "selection_authority": "OWNER",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "accepted_basis": "06f60e42e35ea5c39abf9e33c4d3e877d77c4497",
+  "package": "PKG-09",
+  "deliverables": ["DEL-09-04"],
+  "nodes": [
+    {
+      "id": "EXECUTE-01",
+      "instance": "A2-PKG09-R16-EXECUTE-01",
+      "agent_type": 2,
+      "dependencies": [],
+      "write_owner": "package-generated ignored outputs, R16, minimal DEL status, unique executor evidence"
+    },
+    {
+      "id": "REVIEW-01",
+      "instance": "A2-PKG09-R16-REVIEW-01",
+      "agent_type": 2,
+      "dependencies": ["EXECUTE-01"],
+      "write_owner": "unique review record only"
+    },
+    {
+      "id": "TEMP-CLOSEOUT",
+      "instance": "WI-PKG09-R16-STAGING-01",
+      "agent_type": 1,
+      "dependencies": ["REVIEW-01"],
+      "write_owner": "exact authorized /private/tmp recovery-root removal only"
+    }
+  ],
+  "integration_owner": "WI-PKG09-R16-STAGING-01",
+  "fan_in_gate": "exact-merge package and new R16 plus fresh review PASS before narrow temp-root removal"
+}

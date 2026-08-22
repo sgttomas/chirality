@@ -1,0 +1,11 @@
+POST_PREFLIGHT_ABSENCE
+PROOF_ROOT
+ABSENT
+PROOF_PLIST
+ABSENT
+EXACT_PROOF_JOB
+Bad request.
+Could not find service "com.chirality.ci.runatload.login.owner.macos26.00bc8f1a-0045-48a2-970f-be120cf7fc20" in domain for user gui: 501
+launchctl_exit=113
+PREFLIGHT_HASH
+61337ccf4dc63ff98578f37dce3bcfcb812881d97e15ec5823104fb87855b5c0  /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/preflight.log

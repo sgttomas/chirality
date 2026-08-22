@@ -1,0 +1,481 @@
+EVIDENCE_HASHES
+89ba0e597190205fd50e1216e9efeb9f6ea9dd53e920a27f31251ad8cfb5b468  /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/summary.json
+dfea68cf9b550848d5573a02c73b6647700e0543b6376bb61831c3d38d1c75d1  /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/artifacts/harness/instruction-root-integrity/latest/manifest.json
+e1f3bc133fb1a993611acf7952fcabd89bb5bdab09ae5e58519c5b1b01b262e9  /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R16_STAGING_2026-08-22/instances/WI-PKG09-R16-STAGING-01/executor-attempt-2/desktop-pack.log
+SUMMARY_JSON
+{
+  "generatedAt": "2026-08-22T21:48:15.883Z",
+  "gitSha": "06f60e42e35ea5c39abf9e33c4d3e877d77c4497",
+  "sourceLayout": "split",
+  "sourceRoot": null,
+  "sourceRoots": {
+    "rootFilesRoot": "/Users/ryan/.codex/worktrees/ef5e/chirality",
+    "agentsRoot": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents",
+    "docsRoot": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/docs"
+  },
+  "bundleRoot": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources",
+  "checkedFileCount": 43,
+  "status": "pass",
+  "missingInBundle": [],
+  "mismatchedFiles": [],
+  "unexpectedBundleAgentFiles": [],
+  "comparisons": [
+    {
+      "path": "AGENTS.md",
+      "sourceSha256": "268becd0bac9da8421b30089e4e4167a5e5f79bf3892d0f72ad41a63180a3aeb",
+      "bundleSha256": "268becd0bac9da8421b30089e4e4167a5e5f79bf3892d0f72ad41a63180a3aeb",
+      "sourceSizeBytes": 17355,
+      "bundleSizeBytes": 17355,
+      "match": true
+    },
+    {
+      "path": "CLAUDE.md",
+      "sourceSha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+      "bundleSha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+      "sourceSizeBytes": 11,
+      "bundleSizeBytes": 11,
+      "match": true
+    },
+    {
+      "path": "README.md",
+      "sourceSha256": "d61d9b0f898ccb29e569f218a288afebf12808058b5a8e84056d665dbef66899",
+      "bundleSha256": "d61d9b0f898ccb29e569f218a288afebf12808058b5a8e84056d665dbef66899",
+      "sourceSizeBytes": 15674,
+      "bundleSizeBytes": 15674,
+      "match": true
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "sourceSha256": "e1a3d00b18fa728f0886f036774c4825ad8f65f3245b56b4545da2714a903031",
+      "bundleSha256": "e1a3d00b18fa728f0886f036774c4825ad8f65f3245b56b4545da2714a903031",
+      "sourceSizeBytes": 23762,
+      "bundleSizeBytes": 23762,
+      "match": true
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "sourceSha256": "6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7",
+      "bundleSha256": "6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7",
+      "sourceSizeBytes": 27308,
+      "bundleSizeBytes": 27308,
+      "match": true
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sourceSha256": "eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990",
+      "bundleSha256": "eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990",
+      "sourceSizeBytes": 49454,
+      "bundleSizeBytes": 49454,
+      "match": true
+    },
+    {
+      "path": "docs/TYPES.md",
+      "sourceSha256": "998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169",
+      "bundleSha256": "998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169",
+      "sourceSizeBytes": 38458,
+      "bundleSizeBytes": 38458,
+      "match": true
+    },
+    {
+      "path": "docs/PLAN.md",
+      "sourceSha256": "c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff",
+      "bundleSha256": "c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff",
+      "sourceSizeBytes": 28168,
+      "bundleSizeBytes": 28168,
+      "match": true
+    },
+    {
+      "path": "docs/WHAT-IS-AN-AGENT.md",
+      "sourceSha256": "cddf8df4e8cbc45850c409dc4ea5a73a98ba5bae30881b4a9114a5b8efee9240",
+      "bundleSha256": "cddf8df4e8cbc45850c409dc4ea5a73a98ba5bae30881b4a9114a5b8efee9240",
+      "sourceSizeBytes": 3127,
+      "bundleSizeBytes": 3127,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_AGGREGATION.md",
+      "sourceSha256": "f4541eae6d9c787436c848b8135baae501dffa0ee467ea11548f0f772f9bf94a",
+      "bundleSha256": "f4541eae6d9c787436c848b8135baae501dffa0ee467ea11548f0f772f9bf94a",
+      "sourceSizeBytes": 12875,
+      "bundleSizeBytes": 12875,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_AUDIT_AGENTS.md",
+      "sourceSha256": "bf0bb0b1484a884cd61302b4f2a50b8332810f1c17715c358671b4a02b999b79",
+      "bundleSha256": "bf0bb0b1484a884cd61302b4f2a50b8332810f1c17715c358671b4a02b999b79",
+      "sourceSizeBytes": 7991,
+      "bundleSizeBytes": 7991,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_AUDIT_DECOMP.md",
+      "sourceSha256": "1f12e86e2f1dd3506fe1d1e46caf7f9be2d1b4b8acd75427f2876593dc2015cb",
+      "bundleSha256": "1f12e86e2f1dd3506fe1d1e46caf7f9be2d1b4b8acd75427f2876593dc2015cb",
+      "sourceSizeBytes": 31099,
+      "bundleSizeBytes": 31099,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "sourceSha256": "e233b8edbd202436328fdef96f731d69e9d24a6ae4dc8bd7fdf3e8620f3abb4c",
+      "bundleSha256": "e233b8edbd202436328fdef96f731d69e9d24a6ae4dc8bd7fdf3e8620f3abb4c",
+      "sourceSizeBytes": 11954,
+      "bundleSizeBytes": 11954,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_AUDIT_EPISTEMIC.md",
+      "sourceSha256": "4ece509c8f51b3ac547e593e425f8c3c7d3d98d0975a8a19aa4af239b9261b5e",
+      "bundleSha256": "4ece509c8f51b3ac547e593e425f8c3c7d3d98d0975a8a19aa4af239b9261b5e",
+      "sourceSizeBytes": 23976,
+      "bundleSizeBytes": 23976,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_AUDIT_GOVERNANCE.md",
+      "sourceSha256": "58c4f9e5dc4e1c3ae16f2e0bb70940e4400dcc3e07259f911f8e3b9af680a628",
+      "bundleSha256": "58c4f9e5dc4e1c3ae16f2e0bb70940e4400dcc3e07259f911f8e3b9af680a628",
+      "sourceSizeBytes": 23467,
+      "bundleSizeBytes": 23467,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "sourceSha256": "b7f20fae614cb1083eb9a8764ca0ada49f4b5147a4308a09c14e7e14c895d346",
+      "bundleSha256": "b7f20fae614cb1083eb9a8764ca0ada49f4b5147a4308a09c14e7e14c895d346",
+      "sourceSizeBytes": 14395,
+      "bundleSizeBytes": 14395,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+      "sourceSha256": "660c5f8604cdd0a101a3bb74e53ed5ae72e622f7c5aa438c1153329abf5d85fc",
+      "bundleSha256": "660c5f8604cdd0a101a3bb74e53ed5ae72e622f7c5aa438c1153329abf5d85fc",
+      "sourceSizeBytes": 30231,
+      "bundleSizeBytes": 30231,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_CHANGE.md",
+      "sourceSha256": "bb2922c5761395687caf120097276806769ec38f4fee8935d9e6c7bbb8506a06",
+      "bundleSha256": "bb2922c5761395687caf120097276806769ec38f4fee8935d9e6c7bbb8506a06",
+      "sourceSizeBytes": 17626,
+      "bundleSizeBytes": 17626,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_DBM_PUBLISHER.md",
+      "sourceSha256": "3abbe6e34f27a3f28d91cc6b48482a009d1ccc14fc596b31d35de4da506bb293",
+      "bundleSha256": "3abbe6e34f27a3f28d91cc6b48482a009d1ccc14fc596b31d35de4da506bb293",
+      "sourceSizeBytes": 65590,
+      "bundleSizeBytes": 65590,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_DECOMP.md",
+      "sourceSha256": "bd2eb97cf246d0c1f4bdaa5dd26580f5fc78470af6116072f8e3a65fac6dec29",
+      "bundleSha256": "bd2eb97cf246d0c1f4bdaa5dd26580f5fc78470af6116072f8e3a65fac6dec29",
+      "sourceSizeBytes": 72626,
+      "bundleSizeBytes": 72626,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_ENGINE.md",
+      "sourceSha256": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36",
+      "bundleSha256": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36",
+      "sourceSizeBytes": 45293,
+      "bundleSizeBytes": 45293,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "sourceSha256": "48bce547848c3666b01ae78505002f73f48dc8fefec00eb3b13727f44f47a32d",
+      "bundleSha256": "48bce547848c3666b01ae78505002f73f48dc8fefec00eb3b13727f44f47a32d",
+      "sourceSizeBytes": 28320,
+      "bundleSizeBytes": 28320,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_DRAWING_EXTRACT.md",
+      "sourceSha256": "cf2d59ccf60dfe63cd49e5da66ba064f43dd26d6920db78fab6f96e7802f394d",
+      "bundleSha256": "cf2d59ccf60dfe63cd49e5da66ba064f43dd26d6920db78fab6f96e7802f394d",
+      "sourceSizeBytes": 62643,
+      "bundleSizeBytes": 62643,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_EQUATION_AUDIT.md",
+      "sourceSha256": "f12fa8a303cc90bf24398bb69de51c1736ea977fbd01e4211818ffd1db8f77ec",
+      "bundleSha256": "f12fa8a303cc90bf24398bb69de51c1736ea977fbd01e4211818ffd1db8f77ec",
+      "sourceSizeBytes": 31991,
+      "bundleSizeBytes": 31991,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_EVALUATION.md",
+      "sourceSha256": "49f11c18efe3b2b88bdb2f6fb377d3f5013e84753e8fd1f074715a322b906cc7",
+      "bundleSha256": "49f11c18efe3b2b88bdb2f6fb377d3f5013e84753e8fd1f074715a322b906cc7",
+      "sourceSizeBytes": 8311,
+      "bundleSizeBytes": 8311,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md",
+      "sourceSha256": "e703c11e20179f2b101d7b8cb11577f4cb21c2f769b04a87360eb7be5323a231",
+      "bundleSha256": "e703c11e20179f2b101d7b8cb11577f4cb21c2f769b04a87360eb7be5323a231",
+      "sourceSizeBytes": 6654,
+      "bundleSizeBytes": 6654,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_EVALUATION_REPORT.md",
+      "sourceSha256": "747657cc3c86de5d6aa23af798cf8a017c74aed5004f821f0bff0bb69f15fd5b",
+      "bundleSha256": "747657cc3c86de5d6aa23af798cf8a017c74aed5004f821f0bff0bb69f15fd5b",
+      "sourceSizeBytes": 6432,
+      "bundleSizeBytes": 6432,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md",
+      "sourceSha256": "51eb017f64f6ad2797a95711543b5b60c570d4821246d299d9c013adecdd6100",
+      "bundleSha256": "51eb017f64f6ad2797a95711543b5b60c570d4821246d299d9c013adecdd6100",
+      "sourceSizeBytes": 6182,
+      "bundleSizeBytes": 6182,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sourceSha256": "47a30075b4286a7352d78aae9d033d8eead8ef125e4063d0cc7c1235b3e9101a",
+      "bundleSha256": "47a30075b4286a7352d78aae9d033d8eead8ef125e4063d0cc7c1235b3e9101a",
+      "sourceSizeBytes": 14061,
+      "bundleSizeBytes": 14061,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sourceSha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981",
+      "bundleSha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981",
+      "sourceSizeBytes": 10073,
+      "bundleSizeBytes": 10073,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_PDF2MD.md",
+      "sourceSha256": "2b4fe53d91bcc54ca61ce4a141d1f40a3117d8cfc91bb49a80ca3bea87a64edf",
+      "bundleSha256": "2b4fe53d91bcc54ca61ce4a141d1f40a3117d8cfc91bb49a80ca3bea87a64edf",
+      "sourceSizeBytes": 36054,
+      "bundleSizeBytes": 36054,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_PREPARATION.md",
+      "sourceSha256": "0bd1b2cf01abad570575fd9920a6f8bb296b7afcdb0834f85dd55524db5a760a",
+      "bundleSha256": "0bd1b2cf01abad570575fd9920a6f8bb296b7afcdb0834f85dd55524db5a760a",
+      "sourceSizeBytes": 22599,
+      "bundleSizeBytes": 22599,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_PROJECT_DECOMP.md",
+      "sourceSha256": "8348766462c99eb81423a4a474e53ababc4a92ecffa330695ded07bf2fbb09d9",
+      "bundleSha256": "8348766462c99eb81423a4a474e53ababc4a92ecffa330695ded07bf2fbb09d9",
+      "sourceSizeBytes": 19356,
+      "bundleSizeBytes": 19356,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_PROJECT_SETUP.md",
+      "sourceSha256": "8cd3af620af3b81ed3c9b1d967679ab0557bdcb6806f7a3302fc5f08dfd164d8",
+      "bundleSha256": "8cd3af620af3b81ed3c9b1d967679ab0557bdcb6806f7a3302fc5f08dfd164d8",
+      "sourceSizeBytes": 48244,
+      "bundleSizeBytes": 48244,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_RECONCILIATION.md",
+      "sourceSha256": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+      "bundleSha256": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+      "sourceSizeBytes": 19494,
+      "bundleSizeBytes": 19494,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_RESEARCH.md",
+      "sourceSha256": "a828037551c1c923fc3a1c122c6d6ed2bca46e6d6cea989d4bf66f4a57810870",
+      "bundleSha256": "a828037551c1c923fc3a1c122c6d6ed2bca46e6d6cea989d4bf66f4a57810870",
+      "sourceSizeBytes": 21551,
+      "bundleSizeBytes": 21551,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_RESEARCHER.md",
+      "sourceSha256": "4b1b022b9b97b245e4067c63c2bfb4e7b1e6dde6a5b0c5102a290a4d2b060341",
+      "bundleSha256": "4b1b022b9b97b245e4067c63c2bfb4e7b1e6dde6a5b0c5102a290a4d2b060341",
+      "sourceSizeBytes": 12191,
+      "bundleSizeBytes": 12191,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_REVIEW.md",
+      "sourceSha256": "40b7caec558c5019b942219a19451d19243d7dc31d626e3f18a72214c59c5bab",
+      "bundleSha256": "40b7caec558c5019b942219a19451d19243d7dc31d626e3f18a72214c59c5bab",
+      "sourceSizeBytes": 25946,
+      "bundleSizeBytes": 25946,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_SCOPE_CHANGE.md",
+      "sourceSha256": "fc46378b11c8d56e2c0caf170a76c8a459647848c7f39e50d4af48156b3d0167",
+      "bundleSha256": "fc46378b11c8d56e2c0caf170a76c8a459647848c7f39e50d4af48156b3d0167",
+      "sourceSizeBytes": 66945,
+      "bundleSizeBytes": 66945,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_SOFTWARE_DECOMP.md",
+      "sourceSha256": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+      "bundleSha256": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+      "sourceSizeBytes": 20751,
+      "bundleSizeBytes": 20751,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sourceSha256": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+      "bundleSha256": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+      "sourceSizeBytes": 28842,
+      "bundleSizeBytes": 28842,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_TASK_MANAGEMENT.md",
+      "sourceSha256": "e84d1dbdd2540e7667ecd6efc9022d8158fc2a0357be717660911bc5a9d7a2e0",
+      "bundleSha256": "e84d1dbdd2540e7667ecd6efc9022d8158fc2a0357be717660911bc5a9d7a2e0",
+      "sourceSizeBytes": 20141,
+      "bundleSizeBytes": 20141,
+      "match": true
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sourceSha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1",
+      "bundleSha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1",
+      "sourceSizeBytes": 14994,
+      "bundleSizeBytes": 14994,
+      "match": true
+    }
+  ],
+  "sourceCompleteness": {
+    "status": "needs_remediation",
+    "rows": [
+      {
+        "id": "SOW-073-OI-004-required-instruction-root-assets",
+        "source": "SOW-073; OI-004; docs/PRD.md KG-001 under D-APP-38",
+        "description": "Required instruction-root source assets are complete enough for source-to-bundle comparison.",
+        "status": "satisfied",
+        "remediationStatus": "not_required",
+        "evidence": {
+          "checkedFileCount": 43,
+          "missingInBundle": [],
+          "mismatchedFiles": [],
+          "unexpectedBundleAgentFiles": []
+        }
+      },
+      {
+        "id": "KG-001-tools-registry",
+        "source": "docs/PRD.md KG-001 under D-APP-38",
+        "description": "PRD KG-001 candidate source registry asset",
+        "path": "tools/REGISTRY.md",
+        "absolutePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/tools/REGISTRY.md",
+        "status": "satisfied",
+        "remediationStatus": "not_required",
+        "evidence": {
+          "present": true
+        }
+      },
+      {
+        "id": "KG-001-examples",
+        "source": "docs/PRD.md KG-001 under D-APP-38",
+        "description": "PRD KG-001 candidate examples source asset",
+        "path": "examples",
+        "absolutePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/examples",
+        "status": "remediation_required",
+        "remediationStatus": "required",
+        "evidence": {
+          "present": false
+        }
+      }
+    ]
+  },
+  "sdkBundle": {
+    "platformPackageName": "@anthropic-ai/claude-agent-sdk-darwin-arm64",
+    "selectedPlatformPackageRoot": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64",
+    "requiredFiles": [
+      {
+        "path": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/package.json",
+        "sizeBytes": 2299,
+        "present": true
+      },
+      {
+        "path": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/sdk.mjs",
+        "sizeBytes": 868551,
+        "present": true
+      },
+      {
+        "path": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/manifest.json",
+        "sizeBytes": 1467,
+        "present": true
+      }
+    ],
+    "platformPackageCandidates": [
+      {
+        "root": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64",
+        "found": true,
+        "files": [
+          {
+            "path": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/package.json",
+            "sizeBytes": 274,
+            "present": true
+          },
+          {
+            "path": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/claude",
+            "sizeBytes": 213070752,
+            "present": true
+          }
+        ]
+      },
+      {
+        "root": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64",
+        "found": false,
+        "files": [
+          {
+            "path": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/package.json",
+            "sizeBytes": null,
+            "present": false
+          },
+          {
+            "path": "app.asar.unpacked/node_modules/@anthropic-ai/claude-agent-sdk/node_modules/@anthropic-ai/claude-agent-sdk-darwin-arm64/claude",
+            "sizeBytes": null,
+            "present": false
+          }
+        ]
+      }
+    ],
+    "missingFiles": []
+  }
+}
+MANIFEST_COUNTS
+{
+  "generatedAt": "2026-08-22T21:48:15.882Z",
+  "gitSha": "06f60e42e35ea5c39abf9e33c4d3e877d77c4497",
+  "entryCount": null
+}
+BUILD_DEPENDENCY_BOUNDARY_MARKERS
+89:> chirality-frontend@2.0.0 desktop:verify-dependencies
+93:  "status": "PASS",
+95:  "localPackageEntries": 0,
+120:  "failures": []
+123:> chirality-frontend@2.0.0 instruction-root:integrity
+126:instruction-root integrity status: pass
+127:checked files: 43
+129:git sha: 06f60e42e35ea5c39abf9e33c4d3e877d77c4497
