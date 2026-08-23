@@ -1,0 +1,42 @@
+> chirality-frontend@2.0.0 test
+> vitest run
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+
+{"status":"FAIL","summaryPath":"/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-daemon-proof-test-J9ozdO/evidence/summary.json"}
+ ❯ src/__tests__/integration/pi-omlx-wire.integration.test.ts (11 tests | 1 failed) 2335ms
+     × discovers the exact model, executes one governed read tool, persists evidence, and finishes canonically 1187ms
+
+ FAIL  src/__tests__/integration/pi-omlx-wire.integration.test.ts > Pi/oMLX wire integration > discovers the exact model, executes one governed read tool, persists evidence, and finishes canonically
+AssertionError: expected [ Array(8) ] to deep equally contain { type: 'tool:result', …(1) }
+
+Expected event:
+{
+  "data": ObjectContaining {
+    "name": "read_file",
+    "ok": true,
+  },
+  "type": "tool:result",
+}
+
+Observed terminal path:
+
+- `turn.failed`
+- adapter: `pi`
+- provider: `omlx`
+- errorType: `PROVIDER_PROTOCOL_FAILURE`
+- message: `oMLX provider stream timed out.`
+- `turn:error` phase `mid-stream`, status `504`
+- `process:exit` exitCode `1`, status `504`
+
+ ❯ src/__tests__/integration/pi-omlx-wire.integration.test.ts:303:27
+
+ Test Files  1 failed | 154 passed | 1 skipped (156)
+      Tests  1 failed | 1266 passed | 4 skipped (1271)
+   Start at  00:31:39
+   Duration  4.58s (transform 8.31s, setup 0ms, import 16.81s, tests 32.83s, environment 18ms)
+
+exit: 1
+
+This was the one and only local-loopback/Unix-socket-permitted exact cure.
+No external network request or network tool was used. It was not rerun.
