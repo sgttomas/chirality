@@ -5953,3 +5953,196 @@ Record in the Decision_Log an R6-D entry (this direction verbatim) alongside G5-
 
 Then resume the steer's closeout unchanged: fresh review with zero actionable findings, Receipt 120 with both CHAT_TRANSCRIPTION blocks plus this R6-D direction, one branch codex/root-v3-phase0g-2026-08-23, push, one PR to main; do not merge. Everything else in the not-selectable list stays not selectable; the correct pointer already in the worktree is not re-derived.
 <!-- END RECEIPT-120 R6-D VERBATIM -->
+
+### Receipt 121 — 2026-08-23 — Root v3 Phase 1 first propagation tranche
+
+- **Authority and basis:** owner-carried Phase 1 steer SHA-256
+  `2bbd449330b25d2ab88cec4097d3e224b95305954d30196e94fbd21c21062452`;
+  branch `codex/root-v3-phase1-2026-08-23` from exact
+  `origin/main@e677edbe81188465eb36e700b6bd441715bcbccd`. The basis gate and
+  standing Step 0 passed before writes: applied-state validation 65/65 and
+  Root G0–G4 PASS. No sync, rebase, or force-push occurred.
+- **Ordered commits:** N1
+  `dab470e2f0c7345f10c34bcce9e489eb68bf0541`; N2
+  `fe41f17f07b149a5e8f4d1fe66c8de95920299e9`.
+- **N1 write set and result:** exactly the seven steer-named new deliverable
+  folders plus DEL-02-06 `_CONTEXT.md`; 7 × 4 = 28 new files, seven `OPEN`
+  statuses, initialized-empty/deferred dependencies, no SOW or extra file.
+  DEL-02-06 `_CONTEXT.md` changed only under the six-item propagation list,
+  SHA-256 `1e914009863fd67aca343eb2a1ae2cb5ca7ddefe698139b00614ad7e042cec45`
+  → `8b24522fa87c1903a6390c8b87bd8935e7c28c628564da455676c1147666cbf7`:
+  standing semantic integration/release assurance; preserved SOW-104,
+  OBJ-001/002/004/007, REQ-027, D-GOV-20, Context Envelope M, write locus,
+  accountable-human release disposition, client non-ownership, accepted
+  compatibility bytes and ten holds; named DEL-02-07..12 fan-in; added exact
+  SCA-004 evidence references.
+- **N1 created-file SHA-256 inventory:** each row is
+  `Deliverable | _CONTEXT | _DEPENDENCIES | _REFERENCES | _STATUS`.
+
+```text
+DEL-02-07 | 122bdc2f04c488ec2b8609fd76d79eed0f87f5aa1454edee37c5542bfe4c84be | d7369b6cec97e5682f916fddd17cae6fd9d125f54b49dec88c2d2911e25c5363 | 4a0eee9fd741931a09bbd3587027ab59acf9355abed06a365990f216cd6bd485 | af9ebcdb7da542787215ed42576dcbbea4dd369eda683198db8f34c878643b89
+DEL-02-08 | 052cbb5e5f5fa22b321b3fbf503e82f51219ae414b2bbaa50df07a75a47f589a | d339932c07937efdf06d32f0b1d587e5d2e05a5fcdf1124fe5e55287cdd4c6c3 | 30fd2fc109255c570977ed3b1e4961a0610542fb6ba5c02073d2bab89d7b7e04 | 5f23ed16cb7abc28365d5667b37fe06699f3c2a905281f23b2eb4514be84cf15
+DEL-02-09 | 5cd28abb04e88a62f6d908a3726f2b30c07cbd82e14233c26dad6c2869cd7d6f | d5483f9f5f16ad4255bbd1741e5e5ffc3b9c78fc2c07faea28a1bc9c9c7409a4 | a400c6171423eb2e7b2aef347bb28760e661d8fe6b9817a1f7f8fcb3865dc380 | 8383f027395d9e866ce5840915040638ef17bde7234567a6427ce69b48db8dd3
+DEL-02-10 | 8ac8c9662f5abc29d7e580964ef0cb6549e6350127480d4130150fb2599b2819 | 9f32b0e4ce08b7f6b212678f244df68e133592da12f1b3673a09946ae5796088 | 133430e6ac38a600be0c9a19981cf5d5e74e1a738046a921e5dce18ca5ca9801 | 957276abb79cf3fe34248a4223d88a54fdeb44fd9c5837a4e6b8dd567d54a376
+DEL-02-11 | de5c43da4e524b02636bd47a3ffe5e7077c37922787dc26f25096d3330e93c73 | dba4affd0ebdf739ff051bb8ecf29ccfca40acac8357d71410750882e723c5d9 | d5ce9cc0bee9a5bf5abc8ba8cf98f83966fdc8a49c82e349faecddeb488e33fc | e10b324ad1094bb0c49c3c97c8f52b0575826090c8ac69ea806b8f4cf458382b
+DEL-02-12 | bd15d23870014c286ddbc6cae3fa82b865b0a25d6dc3714fd87b5e7a45d8358b | b600948b6db7036c369982d4eae01025fa410e35ce8e2acec8f01af30fda09f4 | 50ca576b940d4dab44a0cd0603a6c4f73e878c86e05a1f4961a086b6ae9797da | 4e79ac00e44810cb45cb8fdc6292aeec1e086ce2d21183a8cf04a41f1c7c10f3
+DEL-04-11 | 4c44d7d88a1726d5db1190f7033d05ea16d490d03763ac2e7aecc49f88c2db23 | 5306b1c89024dc0a1eac68d528b97c01482b295e6b2375c632c226af61ab6b78 | ca3da01dfe2eb132fc0d530aa9fc478e40dc880332ef2825c591aab8353a3c1d | dcff1c5cd59575b29d2c0a5da5126bc317682af2f3183672ddc2b38149e3077b
+```
+
+- **N1 validation/review:** return SHA-256
+  `71a4d6b9089f4b7a01581ba7ce8787915dba9e10aaed7fdc92e1c8a77ad28e50`;
+  fresh review SHA-256
+  `9f567edcd6687b936838ad4b80204a4766b2635b6920cf524e034cf72bb569d2`,
+  `PASS — ZERO ACTIONABLE FINDINGS`.
+- **N2 write set and graph result:** only
+  `Evidence/DEP_GRAPH_POST_GATE5/` and
+  `Evidence/AUDIT_DEP_CLOSURE_POST_GATE5/`. The exact graph has 59 nodes
+  (53 deliverables + 6 packages), 53 non-gating package-membership edges,
+  zero declared sequencing edges, 59 singleton SCCs, no cycle edge, and no
+  cut/merge human gate. `WORK_GRAPH.json` SHA-256
+  `e36cac85ef02237db7e249a57f1b88f2cd06290db4c1d607de65b78d038cc52e`;
+  complete graph hash manifest SHA-256
+  `675357b85e806631014531de2df0fc6c02e026fc6c8bf82b4e6131d0ef416955`.
+- **N2 audit result:** `WARNING`, zero failures/blockers, 53/53 live folder
+  coverage, 7/7 new `OPEN` initialized-empty containers treated as expected,
+  and zero unresolved closure violations among the 46 pre-existing folders.
+  Warnings are limited to deferred `Dependencies.csv` schema and anchor
+  coverage. Complete audit hash manifest SHA-256
+  `d14bf4812cfdfa8d633eeeeff42349eb9ef49546b56b2ef7b542bdd1e1536234`;
+  final `closure_summary.json` SHA-256
+  `6dc2838ef5f354c00b7c31750212524a92aa67b0a5c26c7e07345749d3567660`.
+  The two `ARTIFACT_HASHES.csv` files record every N2-created file's SHA-256;
+  their complete inventories are the authoritative per-file table for this
+  receipt.
+- **N2 review/repair:** return SHA-256
+  `8c2a226cd54ce3e58023f13d1529210997e0282da1128e62e065f4426adcff49`.
+  Review cycle 1 SHA-256
+  `7c88f41964451f9f2adcbf248a9dbe50b027a8f78ee6c47130b2b5d75399b4c3`
+  found only six raw CRLF CSVs and one raw JSON without terminal LF. V2
+  normalized those preimages, replay remained deterministic, and fresh review
+  cycle 2 SHA-256
+  `31fcda1a9b31b7238f64447bf2197fc0a1a6168e3cd9646ff057d57a1fdf57d3`
+  returned `PASS — ZERO ACTIONABLE FINDINGS`.
+- **Protected state:** decomposition working surface remains
+  `546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986`;
+  `_LATEST.md` remains
+  `4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c`;
+  Gate-1 graph remains `86159f1e…78e9`; Gate-1 dependency-audit return
+  remains `14e131fe…0c71`; Task Management register remains
+  `89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518`
+  with 19 live rows. No existing `_STATUS.md`, SOW, or `_DEPENDENCIES.md`
+  changed; no tool/runtime/project/App/pin/hold act occurred.
+- **Validation:** candidate whitespace PASS; agent instructions PASS (34
+  files, 0 errors, 0 warnings); instruction entrypoints PASS; CI-form G4 PASS
+  (45 manifests, 83 committed changed paths, 0 instruction-surface paths, 0
+  covering manifests); Task Management PASS (19 rows); JSON structural checks
+  and `git diff --check` PASS.
+- **Handoff:** Root handoff SHA-256
+  `84fa44f23e79ccffd9558686969664ce8251eb8022b6840f4a88fe0fd69214f0`;
+  run handoff SHA-256
+  `780917f85796ee0f5385e23a1f5db27d06d9dfe556d1d678795665aa03d90340`.
+  Phase 1 is complete only for INIT/context and the post-INIT derivative
+  graph/audit. SOWs, dependency extraction, estimates, schedule, graph/audit
+  reruns, TM-ROOT-106/122, all ten holds, implementation, cutover, release,
+  publication, and reliance remain separately owner-gated.
+
+#### CHAT_TRANSCRIPTION — Root v3 Phase 1 owner steer
+
+Source: `plans/steers/chirality_app_v3_phase1_steer_root_2026-08-23.md`
+
+SHA-256: `2bbd449330b25d2ab88cec4097d3e224b95305954d30196e94fbd21c21062452`
+
+<!-- BEGIN RECEIPT-121 STEER VERBATIM -->
+# STANDING DIRECTION — Root governance loop — v3 release pathway, Phase 1 (SCA-004 propagation: seven PREPARATION INITs, DEL-02-06 context edit, graph re-derivation, dependency-closure audit)
+
+> **Plans-folder status:** ACTIVE owner-carried steer — non-governing. Owner: Ryan Tufts. Scope: Root Phase 1 of the v3 release pathway. Target workspace: Root governance loop. Paste whole; transcribe verbatim into the closeout receipt as CHAT_TRANSCRIPTION. The owner authorizes this tranche by carrying this steer; its authority derives from already-transcribed rulings — R3-B (Gate-4 propagation plan approval, Receipt 117) whose §2, §3, and §5 this steer executes, and R6-A (Gate-5 confirmation, Receipt 120). No new byte-approval is required: every output's form is prescribed by the approved `Propagation_Plan.md`.
+
+
+Owner-carried steer, drafted by HELP_HUMAN 2026-08-23 after PR #635 closed
+SCA-004 (Receipt 120). This is the first propagation tranche. SOW drafting,
+dependency extraction, estimates, scheduling, implementation, and activation
+remain later, separately gated acts and are NOT in this tranche.
+
+## Basis gate (check before any write; stop and report if any line fails)
+
+- `origin/main` contains merge commit `179f78fa91e66d1e1155552b03d6042df5461f7e` (PR #635). Branch from current `main`.
+- `AGENTS.md` SHA-256 `377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3`.
+- Live decomposition is applied revision 1.3: the seven files under `execution/_Decomposition/` carry exactly the R4-A applied identities (full values in the R4 record, Receipt 118/119); `validate_gate5_applied.py` reruns PASS 65/65 (the JSON's recorded absolute root path may differ; leave the committed JSON unchanged).
+- `execution/_ScopeChange/_LATEST.md` SHA-256 `4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c` (revision-1.3 pointer; untouched by this tranche).
+- `execution/_ScopeChange/SCA-004_2026-08-22_1749/`: `Propagation_Plan.md` `abf5ff142b351eef3c16a7d33525f5688db8826f3e0eda58810eb47637645a05` (the owner-approved plan this steer executes); `Decision_Log.md` `e123d3000bb087d3939d8e05582fbd75df7817cb685cc160944ec107e491e092`; `Handoff_State.md` `d7a63c8607e7b0f1b329da909d6aacc29e71a2cde5a1ff9cedff915172429644` (status `CLOSED_CONFIRMED_PROPAGATION_PENDING`).
+- `execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/` contains exactly DEL-02-01..DEL-02-06 and `execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/` exactly DEL-04-01..DEL-04-10; none of the seven new folders exists anywhere under `execution/`.
+- `execution/PKG-02_…/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_CONTEXT.md` SHA-256 `1e914009863fd67aca343eb2a1ae2cb5ca7ddefe698139b00614ad7e042cec45`.
+- `execution/_Coordination/_TaskManagement/REGISTER.csv` SHA-256 `89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518` (19 live; untouched by this tranche).
+- `execution/_Coordination/HANDOFF_STATE.md` SHA-256 `03eb195290bda6d7e173679ac9f65e9359b19defcfa400f259c4cae23bce1a39`.
+- Last Root receipt is 120. This tranche writes Receipt 121.
+
+## Objective
+
+Execute the approved `Propagation_Plan.md` §2, §3, and §5: materialize the
+seven new deliverable folders with initialized metadata, update DEL-02-06's
+`_CONTEXT.md` per the approved edit list, re-derive the objective-relative
+work graph from live Root nodes, and run a fresh dependency-closure audit.
+No SOW, dependency extraction, estimate, schedule, lifecycle transition
+beyond `OPEN` initialization, TM, tool, runtime, pin, or App surface
+changes. No hold is lifted; all ten DEL-02-06 bindings remain
+`HELD_UNAVAILABLE`.
+
+## Nodes (N=2, write-disjoint, N1 before N2; Agent 2 instances with sealed briefs under `execution/_Coordination/AgentRuns/ROOT_V3_PHASE1_2026-08-<DD>/instances/<NODE>/`)
+
+### N1 — PREPARATION (PROJECT_SETUP lane): seven INIT folders + DEL-02-06 context edit
+Write targets, exactly: the seven new folders below, and `execution/PKG-02_…/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_CONTEXT.md`.
+Create each folder at the exact path from the approved plan §2 table, under its existing package `1_Working/`:
+- `DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/` (PKG-02)
+- `DEL-02-08_Exact_Supply_and_Protocol_Pinning/` (PKG-02)
+- `DEL-02-09_Hosted_Account_and_Consent_Boundary/` (PKG-02)
+- `DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/` (PKG-02)
+- `DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/` (PKG-02)
+- `DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/` (PKG-02)
+- `DEL-04-11_Root_Loop_Receipt_Validator/` (PKG-04)
+Each folder gets exactly four files, per plan §2:
+- `_CONTEXT.md` — grounded in the accepted revision-1.3 candidate row for that DeliverableID (name, type, Context Envelope M, scope/objective mappings, description, anticipated artifacts, anticipated write locus as planning note never authorization) plus the plan-§2 boundary note for that row (e.g. DEL-02-07: daemon remains sole runtime broker, no TCP listener; DEL-02-08: no pin amendment, OpenAI service endpoints separate from command network; DEL-02-09: G0 A3/A7 carriage, ambient `~/.codex` excluded; DEL-02-10: G0 A7 and the exact four terminal identifiers; DEL-02-11: G0 A4, no in-flight re-attach claim; DEL-02-12: all ten bindings remain held; DEL-04-11: `tools/**` implementation requires separate M2 authority).
+- `_STATUS.md` — initialized `OPEN`; no other lifecycle state.
+- `_REFERENCES.md` — citing the SCA-004 accepted evidence: the approved candidate row (register SHA `2cdf1e68…`), R3-A and R6-A via Receipts 117/120, the applied working surface `546b6e4c…`, and `_LATEST.md` `4335593a…`.
+- `_DEPENDENCIES.md` — initialized without invented dependencies (explicitly states dependency extraction is a later act).
+No `ScopeOfWork.md` is created. Before relying on any sibling `_STATUS.md`, read sibling `_MEMORY.md`/`MEMORY.md` when present as non-authoritative context (plan §2).
+DEL-02-06 `_CONTEXT.md`: apply exactly the plan-§3 six-item edit list — (1) restate the role as standing semantic integration and release assurance; (2) preserve SOW-104, OBJ-001/002/004/007, REQ-027, D-GOV-20, and the accepted ten-binding hold matrix; (3) name DEL-02-07..DEL-02-12 as separately gated implementation/conformance carriers and require their evidence fan-in; (4) preserve the accountable-human release disposition and client non-ownership boundary; (5) retain ContextEnvelope M and the accepted anticipated write locus; (6) add SCA-004 accepted candidate/application evidence references. Do not change DEL-02-06 `_STATUS.md`, `ScopeOfWork.md`, `_DEPENDENCIES.md`, accepted compatibility bytes, or any held binding.
+Check surface: exactly 7 folders × 4 files created with recorded SHA-256 values; every `_CONTEXT.md` fact traceable to the applied register row or plan §2 (no invented scope); `_STATUS.md` files say `OPEN` and nothing more; DEL-02-06 `_CONTEXT.md` diff confined to the six items; no other `_STATUS.md`, SOW, or `_DEPENDENCIES.md` changed; each INIT return reports files, hashes, preserved package parent, `OPEN` lifecycle, and blockers rather than inventing SOW/dependency/estimate/schedule/activation state.
+
+### N2 — Graph re-derivation + dependency-closure audit (derivative evidence; runs after N1)
+Write targets, exactly: `execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/DEP_GRAPH_POST_GATE5/` (new folder: re-derived `WORK_GRAPH.json`, `DAG.md`, SCC report) and `execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/AUDIT_DEP_CLOSURE_POST_GATE5/` (new folder: fresh `AUDIT_DEP_CLOSURE` run). The Gate-1 `WORK_GRAPH.json` and `Evidence/AUDIT_DEP_CLOSURE/` baseline are preserved untouched.
+- Re-derive the objective-relative work graph from live Root nodes including the seven new folders, per plan §5; recompute SCCs; resolve or hold cycle-participating edges per the cycle-resolution rule (`docs/CYCLE_DRIVEN_RESOLUTION.md`); cuts/merges are human-gated — if one is needed, record it as a blocker and stop that step rather than deciding it.
+- Dispatch a fresh `AUDIT_DEP_CLOSURE` over the live state; expected shape: 53 deliverables present, the seven new folders in `OPEN` with initialized-empty declared dependencies (record that as the expected post-INIT state, not a defect), zero unresolved closure violations among pre-existing folders versus their prior audit.
+- Both outputs are derivative packages: cite the accepted SCA-004 snapshot, the applied revision-1.3 identities, and this tranche's N1 outputs; state explicitly that they must be re-derived after dependency extraction and SOW acceptance (the recorded downstream reruns per plan §6 item 6).
+Check surface: graph node set equals the 53 register rows plus packages; SCC report present; audit return, decision log, and summary recorded with hashes; no live decomposition, pointer, folder-metadata, or TM write.
+
+## Not selectable in this tranche
+`AGENTS.md`, `agents/**`, `docs/**`, the seven live decomposition files, `execution/_ScopeChange/_LATEST.md`, every SCA-004 file outside the two new `Evidence/` subfolders, any existing folder's `_STATUS.md`/`ScopeOfWork.md`/`_DEPENDENCIES.md` (except the DEL-02-06 `_CONTEXT.md` edit named in N1), estimates, schedules, dependency extraction, the Task Management register, `tools/**`, `runtime/**`, `projects/**`, `exports/**`, pins, and any App surface. No lifecycle state beyond initializing the seven new `_STATUS.md` files to `OPEN`.
+
+## Failure rule
+Unlimited repair with fresh re-review per node. A node that cannot complete
+returns its handoff state with blockers instead of narrowing silently. Never
+widen a node's write set; if a needed write falls outside it, report and stop
+that node. A human-gated graph cut/merge decision stops N2's affected step
+and returns the SCC evidence for owner ruling.
+
+## Closeout
+One tranche, one branch `codex/root-v3-phase1-2026-08-<DD>`, one PR to
+`main`, commits in order N1 → N2. Append Receipt 121 to
+`execution/_Coordination/LOOP_RECEIPTS.md` after the fact, in-PR, with: this
+steer as CHAT_TRANSCRIPTION (record its SHA-256); per-node write sets; every
+created file's SHA-256; the DEL-02-06 `_CONTEXT.md` before/after SHAs and
+diff summary; graph/SCC/audit results; validator outputs including the
+CI-form G4 output (expected: zero instruction-surface paths);
+`execution/_Coordination/HANDOFF_STATE.md` updated (SCA-004 propagation:
+INITs done, graph/audit re-derived; remaining: SOWs, dependency extraction,
+estimates, schedule, and their reruns). Run before pushing:
+`validate_candidate_whitespace.py --base-ref origin/main`,
+`validate_agent_instructions.py`, `validate_instruction_entrypoints.py`,
+`validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only`,
+`tools/taskmgmt/taskmgmt.py validate --register execution/_Coordination/_TaskManagement/REGISTER.csv`,
+`git diff --check`. Raw captured logs follow the evidence-whitespace
+convention (normalize or gzip preimages) before committing. Do not merge. If
+`main` advances, request sync authorization from the owner and record it in
+the receipt. HELP_HUMAN byte-verifies before endorsement; SOW drafting and
+all later propagation remain separately gated owner-routed work.
+<!-- END RECEIPT-121 STEER VERBATIM -->

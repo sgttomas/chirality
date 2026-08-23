@@ -118,6 +118,18 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   complete; `_LATEST.md` identifies accepted revision 1.3. Task Management
   remains 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived; all ten bindings
   remain `HELD_UNAVAILABLE`. Later propagation remains separately gated.
+- Phase 1 executes only approved `Propagation_Plan.md` §§2, 3, and 5. Seven
+  new deliverable folders are now materialized with exactly four metadata
+  files each and lifecycle `OPEN`; the prior 46 folders remain unchanged at
+  `INITIALIZED`. DEL-02-06's context mirror now records its standing semantic-
+  integration/release-assurance and evidence-fan-in role without changing its
+  status, SOW, dependencies, compatibility bytes, or ten held bindings. The
+  post-INIT derivative graph has 59 exact nodes (53 deliverables + 6 packages),
+  53 non-gating membership edges, zero declared sequencing edges, and 59
+  singleton SCCs; no cut/merge gate is implicated. The fresh closure audit is
+  `WARNING` only for deferred dependency/anchor extraction, with zero failures,
+  blockers, or pre-existing closure violations. Task Management remains 19
+  live (`OPEN=11`, `DEFERRED=8`) / 108 archived.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -202,6 +214,13 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   current. PREPARATION INIT ×7, DEL-02-06 context propagation, dependencies,
   estimates, schedule, work graph/DAG, AUDIT_DEP_CLOSURE, and public export
   remain stale or deferred to later owning acts.
+- `AgentRuns/ROOT_V3_PHASE1_2026-08-23/` records the two ordered propagation
+  nodes, their sealed briefs, returns, one bounded N2 evidence-whitespace
+  repair, and fresh terminal reviews. The new
+  `Evidence/DEP_GRAPH_POST_GATE5/` and
+  `Evidence/AUDIT_DEP_CLOSURE_POST_GATE5/` packages are current only for the
+  post-INIT/pre-SOW/pre-extraction state and must be re-derived after accepted
+  SOWs and dependency extraction. Public export remains deferred.
 
 ## 3. Closure verdict
 
@@ -362,6 +381,16 @@ new deliverables remain unmaterialized, Task Management remains 19 live / 108
 archived, and all ten holds remain. Later propagation, pins, C1,
 implementation, release, publication, and reliance are not inferred.
 
+`2026-08-23 ROOT V3 PHASE 1 FIRST PROPAGATION TRANCHE COMPLETE — LATER
+PROPAGATION REMAINS GATED.` Receipt 121 records seven exact four-file INITs at
+`OPEN`, DEL-02-06 context propagation, a 59-node objective-relative graph with
+no declared sequencing edge or non-trivial SCC, and fresh dependency-closure
+evidence with expected coverage warnings only. The existing 46 statuses, all
+SOWs and pre-existing dependency files, decomposition, pointer, Task
+Management, tools, runtime, projects, pins, and all ten holds are unchanged.
+SOWs, dependency extraction, estimates, schedule, and graph/audit reruns remain
+separately owner-gated.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -447,3 +476,12 @@ INIT, DEL-02-06 context propagation, dependencies, estimates, schedule,
 work-graph/DAG regeneration, AUDIT_DEP_CLOSURE, hold lifts, implementation,
 cutover, release, publication, and reliance remain
 separately owned and gated.
+
+After Receipt 121, the PREPARATION INIT and DEL-02-06 context-propagation
+items in the preceding paragraph are discharged. Before any consumer treats
+the Phase-1 graph or closure audit as current after later work, require
+accepted SOWs, run dependency extraction, and re-derive both packages. Do not
+infer sequencing edges from shared objectives or initialized-empty dependency
+containers. Estimates and scheduling follow accepted SOW/dependency evidence;
+cut/merge, holds, pins, implementation, cutover, release, publication, and
+reliance remain human-gated.
