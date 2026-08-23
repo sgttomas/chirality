@@ -1,20 +1,21 @@
 import { chmod, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
-import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
 import {
   EVIDENCE_SCHEMA,
+  MACOS_UNIX_SOCKET_PATH_MAX_BYTES,
   PREFLIGHT_SCHEMA,
   SESSION_SCHEMA,
   SUMMARY_SCHEMA,
+  assertPrepareRuntimeSocketPathSupported,
   main
 } from '../../../scripts/run-packaged-launchagent-login-proof.mjs';
 
 const roots: string[] = [];
 
 async function fixture() {
-  const root = await realpath(await mkdtemp(path.join(os.tmpdir(), 'chirality-login-proof-')));
+  const root = await realpath(await mkdtemp('/tmp/chirality-login-proof-'));
   roots.push(root);
   const home = path.join(root, 'home');
   const appPath = path.join(root, 'dist', 'mac-arm64', 'Chirality.app');
@@ -43,14 +44,20 @@ async function fixture() {
     domainExitCode: 0,
     domainSignal: undefined as string | undefined,
     domainStderr: '',
-    loadedProgram: executablePath,
+    loadedService: `gui/501/${label}`,
+    loadedState: 'running',
+    loadedProgram: executablePath as string | undefined,
     loadedArguments: [executablePath, '--runtime-daemon'] as string[] | undefined,
+    loadedOutput: undefined as string | undefined,
+    runs: 16,
+    lastExitCode: 1,
     processExecutables: [executablePath] as string[],
+    processInspections: 0,
     processInspectionError: undefined as Error | undefined,
     installError: undefined as Error | undefined,
     installedPlist: undefined as string | undefined,
     processAlive: false,
-    pid: 8123,
+    pid: 8123 as number | undefined,
     commands: [] as Array<{ executable: string; args: string[]; env?: Record<string, string> }>
   };
 
@@ -126,11 +133,17 @@ async function fixture() {
       if (!state.loaded) return notFound(label);
       return {
         exitCode: 0,
-        stdout: `state = running\nprogram = ${state.loadedProgram}\n${
-          state.loadedArguments
-            ? `arguments = {\n${state.loadedArguments.join('\n')}\n}\n`
-            : ''
-        }pid = ${state.pid}\n`,
+        stdout:
+          state.loadedOutput ??
+          `${state.loadedService} = {\n\tstate = ${state.loadedState}\n${
+            state.loadedProgram === undefined ? '' : `\tprogram = ${state.loadedProgram}\n`
+          }${
+            state.loadedArguments
+              ? `\targuments = {\n${state.loadedArguments.map((value) => `\t\t${value}`).join('\n')}\n\t}\n`
+              : ''
+          }\truns = ${state.runs}\n\tlast exit code = ${state.lastExitCode}\n${
+            state.pid === undefined ? '' : `\tpid = ${state.pid}\n`
+          }}\n`,
         stderr: ''
       };
     }
@@ -151,11 +164,26 @@ async function fixture() {
     runCommand,
     processAlive: (pid: number) => pid === state.pid && state.processAlive,
     inspectProcessExecutables: async () => {
+      state.processInspections += 1;
       if (state.processInspectionError) throw state.processInspectionError;
       return state.processExecutables;
     }
   };
   return { root, home, appPath, executablePath, sessionRoot, label, plistPath, state, deps };
+}
+
+function sessionRootWithSocketBytes(anchor: string, targetBytes: number, unicode = false): string {
+  const suffix = `${path.sep}runtime-data${path.sep}runtime${path.sep}control.sock`;
+  const prefix = `${anchor}${path.sep}`;
+  const fixedBytes = Buffer.byteLength(`${prefix}${suffix}`, 'utf8');
+  const remaining = targetBytes - fixedBytes;
+  if (remaining < (unicode ? 2 : 1)) throw new Error('Anchor is too long for requested fixture');
+  const segment = unicode ? `${'a'.repeat(remaining - 2)}é` : 'a'.repeat(remaining);
+  const sessionRoot = path.join(anchor, segment);
+  expect(Buffer.byteLength(path.join(sessionRoot, 'runtime-data', 'runtime', 'control.sock'), 'utf8')).toBe(
+    targetBytes
+  );
+  return sessionRoot;
 }
 
 afterEach(async () => {
@@ -432,6 +460,100 @@ trailing output
 });
 
 describe('packaged LaunchAgent login-session proof preparation', () => {
+  it('enforces the exact macOS socket-path byte boundary before prepare mutation', async () => {
+    const accepted = await fixture();
+    accepted.sessionRoot = sessionRootWithSocketBytes(
+      accepted.root,
+      MACOS_UNIX_SOCKET_PATH_MAX_BYTES
+    );
+    expect(
+      assertPrepareRuntimeSocketPathSupported(accepted.sessionRoot, 'darwin')
+    ).toEqual({ measuredBytes: 103, maximumBytes: 103 });
+    await expect(
+      main(
+        [
+          'prepare',
+          '--app-path',
+          accepted.appPath,
+          '--session-root',
+          accepted.sessionRoot,
+          '--label',
+          accepted.label,
+          '--source-revision',
+          'fixture-sha'
+        ],
+        accepted.deps
+      )
+    ).resolves.toMatchObject({ status: 'PREPARED', proofClaimed: false });
+
+    const asciiRejected = await fixture();
+    const unicodeRejected = await fixture();
+    const rejectedCases = [
+      {
+        name: '104-byte ASCII path',
+        harness: asciiRejected,
+        sessionRoot: sessionRootWithSocketBytes(asciiRejected.root, 104),
+        expectedBytes: 104,
+        inspectRootAbsence: true
+      },
+      {
+        name: '104-byte Unicode path',
+        harness: unicodeRejected,
+        sessionRoot: sessionRootWithSocketBytes(unicodeRejected.root, 104, true),
+        expectedBytes: 104,
+        inspectRootAbsence: true
+      },
+      {
+        name: 'R16 path',
+        harness: await fixture(),
+        sessionRoot:
+          '/private/tmp/chirality-login-proof-owner-macos26-00bc8f1a-0045-48a2-970f-be120cf7fc20',
+        expectedBytes: 119,
+        inspectRootAbsence: false
+      },
+      {
+        name: 'R13 path',
+        harness: await fixture(),
+        sessionRoot:
+          '/private/tmp/chirality-login-proof-owner-2a38b15f-07de-48c4-87ef-ccd246bd92fa',
+        expectedBytes: 111,
+        inspectRootAbsence: false
+      }
+    ];
+    for (const { name, harness: rejected, sessionRoot, expectedBytes, inspectRootAbsence } of rejectedCases) {
+      const absentHome = path.join(rejected.root, 'guard-rejection-home');
+      rejected.deps.environment.HOME = absentHome;
+      rejected.deps.userInfo = () => ({ homedir: absentHome, uid: 501, username: 'fixture-user' });
+      expect(
+        Buffer.byteLength(path.join(sessionRoot, 'runtime-data', 'runtime', 'control.sock'), 'utf8'),
+        name
+      ).toBe(expectedBytes);
+      await expect(
+        main(
+          [
+            'prepare',
+            '--app-path',
+            rejected.appPath,
+            '--session-root',
+            sessionRoot,
+            '--label',
+            rejected.label,
+            '--source-revision',
+            'fixture-sha'
+          ],
+          rejected.deps
+        )
+      ).rejects.toThrow(
+        `Proof runtime control socket path is ${expectedBytes} UTF-8 bytes; macOS maximum is 103 bytes`
+      );
+      expect(rejected.state.commands, name).toHaveLength(0);
+      await expect(realpath(absentHome), name).rejects.toThrow();
+      if (inspectRootAbsence) {
+        await expect(realpath(sessionRoot), name).rejects.toThrow();
+      }
+    }
+  });
+
   it('prepares without bootstrap, kickstart, launcher mutation, or a proof claim', async () => {
     const harness = await fixture();
     const result = await main(
@@ -673,6 +795,131 @@ describe('packaged LaunchAgent login-session proof preparation', () => {
     expect(summary.status).toBe('FAIL');
     expect(summary.cleanup).toMatchObject({ jobAbsent: false, jobMutationRefused: true });
     expect(harness.state.loaded).toBe(true);
+    expect(harness.state.commands.some((entry) => entry.args[0] === 'bootout')).toBe(false);
+  });
+
+  it('boots out and cleans an exact proof-owned pid-less crash-loop job without lsof', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.loadedState = 'spawn scheduled';
+    harness.state.sessionId += 1;
+    harness.state.pid = undefined;
+
+    await expect(
+      main(['capture', '--session-root', harness.sessionRoot], harness.deps)
+    ).rejects.toThrow('Loaded job has ambiguous process identity');
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary).toMatchObject({
+      status: 'FAIL',
+      error: 'Loaded job has ambiguous process identity',
+      cleanup: {
+        jobAbsent: true,
+        jobMutationRefused: false,
+        plistAbsent: true,
+        runtimeDataRemoved: true
+      }
+    });
+    expect(harness.state.processInspections).toBe(0);
+    expect(harness.state.commands.some((entry) => entry.args[0] === 'bootout')).toBe(true);
+  });
+
+  it('refuses cleanup of a PID-bearing job whose state is not running', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.loadedState = 'spawn scheduled';
+    harness.state.sessionId += 1;
+    harness.state.processAlive = true;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow();
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.status).toBe('FAIL');
+    expect(summary.cleanup).toMatchObject({ jobAbsent: false, jobMutationRefused: true });
+    expect(harness.state.processInspections).toBe(0);
+    expect(harness.state.commands.some((entry) => entry.args[0] === 'bootout')).toBe(false);
+  });
+
+  it('refuses cleanup of a pid-less job whose state is running', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.loadedState = 'running';
+    harness.state.sessionId += 1;
+    harness.state.pid = undefined;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow();
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.status).toBe('FAIL');
+    expect(summary.cleanup).toMatchObject({ jobAbsent: false, jobMutationRefused: true });
+    expect(harness.state.processInspections).toBe(0);
+    expect(harness.state.commands.some((entry) => entry.args[0] === 'bootout')).toBe(false);
+  });
+
+  it.each([
+    ['missing launchctl program', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.loadedProgram = undefined;
+    }],
+    ['mismatched launchctl service', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.loadedService = `gui/501/${harness.label}.foreign`;
+    }],
+    ['ambiguous launchctl arguments', (harness: Awaited<ReturnType<typeof fixture>>) => {
+      harness.state.loadedOutput = `${harness.state.loadedService} = {\n\tstate = spawn scheduled\n\tprogram = ${harness.executablePath}\n\targuments = {\n\t\t${harness.executablePath}\n\t\t--runtime-daemon\n\t}\n\targuments = {\n\t\t${harness.executablePath}\n\t\t--runtime-daemon\n\t}\n}\n`;
+    }],
+    ['mismatched proof plist label', async (harness: Awaited<ReturnType<typeof fixture>>) => {
+      await writeFile(
+        harness.plistPath,
+        (await readFile(harness.plistPath, 'utf8')).replace(harness.label, `${harness.label}.foreign`)
+      );
+    }],
+    ['mismatched proof plist arguments', async (harness: Awaited<ReturnType<typeof fixture>>) => {
+      await writeFile(
+        harness.plistPath,
+        (await readFile(harness.plistPath, 'utf8')).replace('--runtime-daemon', '--foreign-daemon')
+      );
+    }],
+    ['mismatched proof plist RunAtLoad', async (harness: Awaited<ReturnType<typeof fixture>>) => {
+      await writeFile(
+        harness.plistPath,
+        (await readFile(harness.plistPath, 'utf8')).replace('<true/>', '<false/>')
+      );
+    }],
+    ['ambiguous proof plist label', async (harness: Awaited<ReturnType<typeof fixture>>) => {
+      await writeFile(
+        harness.plistPath,
+        (await readFile(harness.plistPath, 'utf8')).replace(
+          '</dict>',
+          `<key>Label</key><string>${harness.label}</string></dict>`
+        )
+      );
+    }]
+  ])('refuses pid-less proof-job cleanup with %s', async (_name, mutateIdentity) => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.loadedState = 'spawn scheduled';
+    harness.state.sessionId += 1;
+    harness.state.pid = undefined;
+    await mutateIdentity(harness);
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow();
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.status).toBe('FAIL');
+    expect(summary.cleanup).toMatchObject({ jobAbsent: false, jobMutationRefused: true });
+    expect(harness.state.loaded).toBe(true);
+    expect(harness.state.processInspections).toBe(0);
     expect(harness.state.commands.some((entry) => entry.args[0] === 'bootout')).toBe(false);
   });
 

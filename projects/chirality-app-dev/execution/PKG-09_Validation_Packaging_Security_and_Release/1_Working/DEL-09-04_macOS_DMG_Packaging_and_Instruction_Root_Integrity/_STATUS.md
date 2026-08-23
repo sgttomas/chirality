@@ -9,6 +9,24 @@
 ## Remaining
 
 - Actual login-session discovery and auto-start remain unproved. The exact
+  owner-operated R16 attempt reached a non-claiming `PREPARED` state and an
+  observed login-session transition, but capture failed nonzero at source
+  revision `06f60e42e35ea5c39abf9e33c4d3e877d77c4497` with `Loaded job has
+  ambiguous process identity`. Public failure evidence remains `FAIL`; cleanup
+  removed the proof plist and runtime data but refused to mutate the residual
+  loaded job. The owner reports `runs = 16` and a later manual residual
+  bootout; the current exact plist/job absence is independently recorded.
+  Repeated `listen EINVAL` evidence and exact 119-byte R16 / 111-byte R13 socket
+  paths identify the macOS pathname-boundary failure. R17 records the immutable
+  failure and an uncommitted, unbuilt repair candidate: fail-closed prepare-time
+  103-byte enforcement, exact-owned pid-less crash-loop cleanup, and the same
+  deterministic runtime-host guard. Fresh review, Git integration, a new exact
+  unsigned package, and separate owner authorization are required before any
+  future R18 attempt. The sole future proposal is the read-only-confirmed
+  absent/non-symlink 33-byte root `/private/tmp/ch-r18-91499728-51dd`; its
+  67-byte control-socket path leaves 36 bytes below the macOS maximum. See
+  `_run_records/R17_LOGIN_PROOF_FAILURE_AND_REPAIR_2026-08-22.md`.
+  The prior exact
   owner Terminal attempt failed before preparation completed with `Current GUI
   login-session identity is not valid JSON`; owner-reported failure evidence is
   recorded in `_run_records/R14_MACOS26_LOGIN_IDENTITY_PREPARE_FAILURE_2026-08-22.md`.
@@ -24,8 +42,10 @@
   the concrete unique absent macOS 26 proof root/label and owner-only procedure
   are staged in
   `_run_records/R16_MACOS26_LOGIN_PROOF_BUILD_AND_STAGING_2026-08-22.md`.
-  Preparation, owner logout/login, capture, proof handoff, and proof acceptance
-  remain unexecuted owner acts, so the deliverable remains unproved.
+  That R16 procedure has now been executed and failed as recorded in R17.
+  Any future preparation, owner logout/login, capture, proof handoff, and proof
+  acceptance remain separately authorized owner acts, so the deliverable
+  remains unproved.
   The prior reviewed two-phase harness/test candidate was restored at live frontend paths
   under the owner's superseding **“Push through failures”** direction.
   Implementation preparation is complete: Agent 0 repaired only the ignored
@@ -37,8 +57,8 @@
   daemon/project registration lifecycle was absent; premerge is PR-CI-owned and
   must rerun after PR. Root runtime writes, unrelated App mocks, and tracked
   setup files remain untouched. See
-  `_run_records/R12_LOGIN_SESSION_PROOF_PREPARATION_2026-08-21.md`. Logout/login
-  and capture remain unexecuted owner acts. The prior unsigned app-directory
+  `_run_records/R12_LOGIN_SESSION_PROOF_PREPARATION_2026-08-21.md`. Any future
+  logout/login and capture remain owner acts. The prior unsigned app-directory
   package was rebuilt from exact commit
   `1b375af4f1219ecfc00fc2755854aa7fd4220901`; current-byte instruction-root
   integrity, including the post-#602 HELP_HUMAN bytes, passed and the concrete
@@ -55,6 +75,22 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-22 - Preserved the owner-operated R16 attempt as immutable failed
+  evidence: prepared state made no proof claim, the login-session transition
+  was observed, and capture/evidence remained `FAIL` at exact source revision
+  `06f60e42e35ea5c39abf9e33c4d3e877d77c4497` after repeated runtime-daemon
+  `listen EINVAL` failures on the 119-byte control-socket path. R17 separates
+  owner-reported capture/run/manual-bootout facts from independent public
+  evidence and current absence checks. The bounded uncommitted repair rejects
+  macOS paths over 103 UTF-8 bytes before prepare mutation, permits only
+  exact-owned pid-less proof-job cleanup, and fails runtime-host startup before
+  daemon construction. The sole future proposal is the absent/non-symlink
+  33-byte root `/private/tmp/ch-r18-91499728-51dd`, whose 67-byte socket leaves
+  a 36-byte margin; it was not created or staged as R18. The future
+  short-socket and KeepAlive recommendations are evidence only. State remains
+  `IN_PROGRESS` and unproved; no R18 execution or mutation, build,
+  package, proof acceptance, operator mutation, signing, notarization,
+  deployment, distribution, or release act occurred.
 - 2026-08-22 - Rebuilt the unsigned thin-arm64 local app from exact merged
   revision `06f60e42e35ea5c39abf9e33c4d3e877d77c4497`. The tracked package
   command's dependency boundary and current-byte instruction-root integrity

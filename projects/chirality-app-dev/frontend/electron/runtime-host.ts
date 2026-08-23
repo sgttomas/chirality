@@ -51,6 +51,7 @@ import { scaffoldExecutionRoot } from '../src/lib/harness/scaffold';
 import { SafeStorageCredentialStore } from './api-key-storage';
 
 const ANTHROPIC_SDK_PACKAGE_VERSION = '0.93.0';
+export const MACOS_UNIX_SOCKET_PATH_MAX_BYTES = 103;
 
 export type RuntimeHost = {
   daemon: RuntimeDaemon;
@@ -59,6 +60,19 @@ export type RuntimeHost = {
   socketPath: string;
   stop(): Promise<void>;
 };
+
+export function assertRuntimeSocketPathSupported(
+  socketPath: string,
+  platform: NodeJS.Platform = process.platform
+): { measuredBytes: number; maximumBytes: number } {
+  const measuredBytes = Buffer.byteLength(socketPath, 'utf8');
+  if (platform === 'darwin' && measuredBytes > MACOS_UNIX_SOCKET_PATH_MAX_BYTES) {
+    throw new Error(
+      `Runtime control socket path is ${measuredBytes} UTF-8 bytes; macOS maximum is ${MACOS_UNIX_SOCKET_PATH_MAX_BYTES} bytes`
+    );
+  }
+  return { measuredBytes, maximumBytes: MACOS_UNIX_SOCKET_PATH_MAX_BYTES };
+}
 
 function asNonEmptyString(value: string | undefined): string | undefined {
   const normalized = value?.trim();
@@ -488,6 +502,7 @@ export class EngineBackedAgent1Manager implements Agent1ManagerRuntimePort {
 export async function startRuntimeHost(): Promise<RuntimeHost> {
   const runtimeDirectory = path.join(app.getPath('userData'), 'runtime');
   const socketPath = path.join(runtimeDirectory, 'control.sock');
+  assertRuntimeSocketPathSupported(socketPath);
   process.env.CHIRALITY_RUNTIME_SOCKET_PATH = socketPath;
   process.env.CHIRALITY_RUNTIME_TOKEN_FILE = path.join(
     runtimeDirectory,
