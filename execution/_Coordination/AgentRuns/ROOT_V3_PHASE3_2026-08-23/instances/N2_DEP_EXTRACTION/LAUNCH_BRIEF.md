@@ -25,4 +25,3 @@ Extract grounded dependencies into exactly the seven carrier `_DEPENDENCIES.md` 
 ## Return contract
 
 Report per-file edge counts (upstream/downstream/notice-fan-in), citations used, omitted candidates and reasons, hashes, changed paths, protected-byte checks, and fresh-review findings. Terminal status is `COMPLETE` or `BLOCKED`.
-

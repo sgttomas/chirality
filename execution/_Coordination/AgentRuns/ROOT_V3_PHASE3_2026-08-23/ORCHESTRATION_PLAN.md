@@ -24,4 +24,3 @@ Writes are serialized. Each node owns only its sealed brief's project-content ta
 ## Human gates and stops
 
 Stop for drift, an out-of-scope write, an ungrounded dependency that the requested result requires, a harness assertion not satisfiable by measured state, or any graph cut/merge. Estimates, schedule, implementation, activation, pins, App work, hold changes, and merge remain outside authority.
-

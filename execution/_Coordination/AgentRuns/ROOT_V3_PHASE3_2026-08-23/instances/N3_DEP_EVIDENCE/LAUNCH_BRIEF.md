@@ -29,4 +29,3 @@ Write only:
 ## Return contract
 
 Report file hashes, node/edge/SCC counts, SCC dispositions, closure verdict/reasons, audit findings, rerun trigger, protected-path checks, and review findings. Terminal status is `COMPLETE` or `BLOCKED`.
-

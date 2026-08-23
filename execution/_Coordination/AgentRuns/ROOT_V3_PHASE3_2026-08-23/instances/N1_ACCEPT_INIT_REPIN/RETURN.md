@@ -133,4 +133,3 @@ Only this `RETURN.md` and sibling `STATUS.json` are added as instance evidence.
   disposition agree with the steer;
 - no hold lift, implementation authorization, activation claim, estimate,
   schedule, dependency, runtime, project, App, pin, or foreign write was added.
-

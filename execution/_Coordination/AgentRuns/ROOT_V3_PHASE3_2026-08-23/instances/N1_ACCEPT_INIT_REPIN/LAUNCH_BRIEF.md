@@ -37,4 +37,3 @@ You may additionally write only this instance's `RETURN.md` and `STATUS.json`. D
 ## Return contract
 
 `RETURN.md` must report pre/post SOW hashes, status hashes and measured state, exact repin values, manifest hash, test/G4 outputs, changed paths, review findings, and blocker state. `STATUS.json` must be valid JSON with terminal `COMPLETE` or `BLOCKED`.
-
