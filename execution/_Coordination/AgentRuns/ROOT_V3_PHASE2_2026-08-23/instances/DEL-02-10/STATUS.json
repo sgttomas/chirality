@@ -1,0 +1,14 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "ROOT_V3_PHASE2_2026-08-23",
+  "instance_id": "DEL-02-10",
+  "role": "EPHEMERAL_AGENT_2",
+  "status": "COMPLETE",
+  "basis": "a7bf601cedda23b7fd2c99d4020f4b3c2a32654b",
+  "output": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/ScopeOfWork.md",
+  "output_sha256": "6cd0f49790023530afa2bc5e309346c0e6705f1a8bae7fcf01ac625f697f1e67",
+  "validation": "PASS",
+  "attempt": 2,
+  "attempt_2_disposition": "PASS_DIRECT_G0_A3_A7_SOURCE_CITATION_REPAIRED",
+  "blockers": []
+}

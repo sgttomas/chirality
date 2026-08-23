@@ -1,0 +1,12 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "ROOT_V3_PHASE2_2026-08-23",
+  "instance_id": "N1_WORKING_ITEMS",
+  "role": "WORKING_ITEMS",
+  "status": "COMPLETE_AWAITING_OWNER_SOW_ACCEPTANCE",
+  "basis": "a7bf601cedda23b7fd2c99d4020f4b3c2a32654b",
+  "children_complete": 7,
+  "sows_validated": 7,
+  "review_actionable_findings": 0,
+  "practitioner_harness": "PASS_56"
+}

@@ -1,0 +1,20 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "ROOT_V3_PHASE2_2026-08-23",
+  "instance_id": "DEL-02-11",
+  "parent_instance_id": "N1_WORKING_ITEMS",
+  "role": "EPHEMERAL_AGENT_2",
+  "role_enforcement": "instruction-asserted",
+  "status": "COMPLETE",
+  "verdict": "PASS",
+  "basis": "a7bf601cedda23b7fd2c99d4020f4b3c2a32654b",
+  "sow": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/ScopeOfWork.md",
+  "sow_sha256": "f02eb0ea9e0262d342a50f9632dcdef18828335a546b02b92e13d703fbb34f54",
+  "draft_status": "DRAFT_AWAITING_OWNER_ACCEPTANCE",
+  "lifecycle": "OPEN",
+  "repair_attempt": 2,
+  "repair_disposition": "SOURCE_BOUNDARY_OVERREACH_CLOSED",
+  "delegated": false,
+  "blockers": [],
+  "return": "RETURN.md"
+}
