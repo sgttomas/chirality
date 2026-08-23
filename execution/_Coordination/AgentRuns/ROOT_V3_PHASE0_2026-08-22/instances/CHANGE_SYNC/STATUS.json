@@ -1,0 +1,21 @@
+{
+  "run_id": "ROOT_V3_PHASE0_2026-08-22",
+  "instance": "CHANGE_SYNC",
+  "role": "CHANGE",
+  "status": "COMPLETE",
+  "branch": "codex/root-v3-phase0-2026-08-22",
+  "fetched_origin_main": "166efa82748133e90674be62304b81f8a0a8c1b4",
+  "merge_commit": "0bd042e5299c81301cc726bc54eea265285b4159",
+  "merge_parents": [
+    "7590c002b1dc9399e95029d51551895bb700b302",
+    "166efa82748133e90674be62304b81f8a0a8c1b4"
+  ],
+  "incoming_path_count": 34,
+  "app_only_path_count": 34,
+  "root_overlap_path_count": 0,
+  "conflicts": 0,
+  "push_performed": false,
+  "pr_opened": false,
+  "pr_merged": false,
+  "next_owner": "HELP_HUMAN"
+}

@@ -1,0 +1,4 @@
+ProductionUnitID,PartitionID,ConcreteProductionUnitLabel,ConcretePartitionLabel,FolderExists,ContextPresent,ContextMatch,ArtifactCoverage,ObjectivesMapped,LifecycleState,IssueCount
+DEL-02-06,PKG-02,Deliverable,Package,true,true,MATCH,0/5,4/4,INITIALIZED,5
+DEL-04-05,PKG-04,Deliverable,Package,true,true,MATCH,0/3,1/1,INITIALIZED,3
+DEL-05-02,PKG-05,Deliverable,Package,true,true,MATCH,0/3,1/1,INITIALIZED,3

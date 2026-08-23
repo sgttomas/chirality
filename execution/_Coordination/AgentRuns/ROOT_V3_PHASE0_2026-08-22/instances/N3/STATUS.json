@@ -1,0 +1,16 @@
+{
+  "node": "N3",
+  "status": "ACCEPTED_GATE_1_ASSESSMENT_AWAITING_OWNER_ACCEPTANCE",
+  "brief_version": 2,
+  "parent": "HELP_HUMAN",
+  "basis": "6b0c5219b6a2653e2fc491b1d998abcf78fcf776",
+  "return": "RETURN.md",
+  "return_sha256": "5163e1737bead5ddc3c4b201e4cf2434db6ca897c2d15f97b630acc3dff12d2a",
+  "accepted_review": "review-cycle-2/REVIEW.md",
+  "accepted_review_sha256": "0e8d7cacb1e9b24806249ec2f59ec2061f838271cac501b3ecdeaca85b69a6a7",
+  "blockers": [
+    "SCA-004 Gate 2 requires owner acceptance",
+    "TM-ROOT-106 and TM-ROOT-122 remain separate G1 blockers"
+  ],
+  "next_gate": "OWNER_ACCEPTANCE_OF_SCA_004_GATE_1"
+}

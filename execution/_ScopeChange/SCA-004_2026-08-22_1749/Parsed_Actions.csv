@@ -1,0 +1,9 @@
+AmendmentID,ActionSeq,ActionType,EntityType,EntityID,RequestedChange,AffectedSections,ValidationState
+SCA-004,1,MODIFY,DELIVERABLE,DEL-02-06,"Preserve the standing integration/release-assurance carrier while splitting implementation breadth into six exact bounded carriers and retaining REQ-027/exclusion controls","Deliverables;Scope Ledger;Coverage and Telemetry;Decision Log / Change Log",VALIDATED_FOR_GATE_1
+SCA-004,2,ADD,DELIVERABLE,DEL-02-07,"Add Process Supervisor and Purpose-Limited Control carrier under PKG-02","Deliverables;Scope Ledger;Coverage and Telemetry;Decision Log / Change Log",CANDIDATE_ID_COLLISION_FREE
+SCA-004,3,ADD,DELIVERABLE,DEL-02-08,"Add Exact Supply and Protocol Pinning carrier under PKG-02","Deliverables;Scope Ledger;Coverage and Telemetry;Decision Log / Change Log",CANDIDATE_ID_COLLISION_FREE
+SCA-004,4,ADD,DELIVERABLE,DEL-02-09,"Add Hosted Account and Consent Boundary carrier under PKG-02","Deliverables;Scope Ledger;Coverage and Telemetry;Decision Log / Change Log",CANDIDATE_ID_COLLISION_FREE
+SCA-004,5,ADD,DELIVERABLE,DEL-02-10,"Add Adapter Event Schema and Approval API v2 carrier under PKG-02","Deliverables;Scope Ledger;Coverage and Telemetry;Decision Log / Change Log",CANDIDATE_ID_COLLISION_FREE
+SCA-004,6,ADD,DELIVERABLE,DEL-02-11,"Add Worker Retirement Restart and Terminal Reconciliation carrier under PKG-02","Deliverables;Scope Ledger;Coverage and Telemetry;Decision Log / Change Log",CANDIDATE_ID_COLLISION_FREE
+SCA-004,7,ADD,DELIVERABLE,DEL-02-12,"Add Runtime Conformance Evidence and Shared-Release Fan-in carrier under PKG-02","Deliverables;Scope Ledger;Coverage and Telemetry;Decision Log / Change Log",CANDIDATE_ID_COLLISION_FREE
+SCA-004,8,ADD,DELIVERABLE,DEL-04-11,"Add a deterministic Root Loop Receipt Validator test-suite carrier under PKG-04 with a separately authorized tools write locus","Deliverables;Scope Ledger;Coverage and Telemetry;Decision Log / Change Log",CANDIDATE_ID_COLLISION_FREE
