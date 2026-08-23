@@ -1,0 +1,8 @@
+{
+  "instance_id": "N1_GATE5_PACKAGE",
+  "parent": "ROOT_V3_PHASE0D_2026-08-23",
+  "brief_version": 1,
+  "status": "COMPLETE",
+  "basis": "3da1eb38bff55deb6d08e2c5e44947fe1fb56315",
+  "role_enforcement": "instruction-asserted"
+}
