@@ -1,0 +1,29 @@
+PROOF_SOCKET_UTF8_BYTES=67
+PROOF_SOCKET_MAX_UTF8_BYTES=103
+PROOF_JOB_EXIT=113
+Bad request.
+Could not find service "com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933" in domain for user gui: 501
+{
+  "schema": "chirality-packaged-launchagent-login-proof-preflight/v1",
+  "status": "PASS",
+  "mode": "READ_ONLY_PREFLIGHT",
+  "inspections": {
+    "consoleOwnerMetadata": true,
+    "topLevelGuiLoginDomain": true,
+    "serviceOrJobInspection": false
+  },
+  "validation": {
+    "currentAccountMatchesConsoleOwner": true,
+    "uidConsistent": true,
+    "loginDomain": true,
+    "aquaSession": true,
+    "identifierConsistent": true
+  },
+  "identitySha256": "68d5cf944d6bab092a4e5839ca2222bbd5a4dba92cb0fde259eceb07663abd51",
+  "mutationsPerformed": false,
+  "sessionRootCreated": false
+}
+PROOF_JOB_EXIT_AFTER=113
+Bad request.
+Could not find service "com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933" in domain for user gui: 501
+PASS — exact R20 package/frontend tree, 67-byte socket, unique absent identity, and read-only preflight verified

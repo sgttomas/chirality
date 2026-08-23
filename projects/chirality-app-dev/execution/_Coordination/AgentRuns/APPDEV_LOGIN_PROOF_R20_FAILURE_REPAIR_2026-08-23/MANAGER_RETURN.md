@@ -1,42 +1,26 @@
-# WORKING_ITEMS manager return — Phase B validated PASS
+# WORKING_ITEMS manager return — PR #632 Phase D/E validated PASS
 
 - Run: `APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23`.
-- Basis: branch `codex/app-login-proof-r20-repair`; source/build/proof revision `cb008dc5d6aa9b249639c91f3453a18609530d0f`; parent `a702dd6ec5005b361c8c023b12b599a425e5e2b8`; frontend tree `b4c73edda1fe3346815ce75449b2327c80c79bf8`.
-- Verdict: `PHASE_B_VALIDATED_PASS`; ready for CHANGE to create the Phase-B content commit. Receipt 191 remains after that commit.
+- Exact source/build/proof revision: `b33858d33220538ce292f276a442792ecf8050b1`; parent `980f5951dbbfe88302514802384e4ffec33c38b9`; frontend tree `23315613d0d3e4d21580d928909816dc5aad92c7`.
+- Verdict: `PHASE_DE_VALIDATED_PASS_PENDING_CONTENT_COMMIT`; ready for CHANGE to create the Receipt-excluded Phase D/E content commit after the terminal candidate-whitespace PASS.
 
-## Accepted content and claim posture
+## Build and staged procedure
 
-- R19 is recorded as owner-reported `EXECUTED AND FAILED`; the promised raw manual-bootout output remains unsupplied and is not reconstructed. Owner Desktop evidence and private-root contents were not read.
-- R20 record is 21,938 bytes / `bc9d39ba804c59a4a1cc7b1b5de39785288e2fe6a8539ca2e3936c99c118303c`; `_STATUS.md` is 29,348 bytes / `6c864ceebd8769c47519a3fba338dc2932667efa6ad590bc1fd25b62851feb48`; TM candidate is 1,196 bytes / `45f164a70a54d6333f8c0be63deabef2d24b1739b4d3d48a380bdd2594726ab8`.
-- R20 is staged documentation only. Its exact package/revision/root/new-label/service/public/failed destinations are internally consistent; seven fresh-tab blocks are shell-safe; Step 0, capture failure handling, exact PASS checks, three-file public preservation, and handoff remain claim-calibrated. No R20 block ran.
-- DEL-09-04 remains `IN_PROGRESS` and unproved. TM is harvest-only. No proof acceptance, lifecycle, signing, notarization, distribution, deployment, release-readiness, reliance, or merge claim is made.
+- `npm run electron:supply-chain` and network-denied `npm run desktop:pack` each ran exactly once and exited zero. The pack used the frozen custom Electron directory exactly once and recorded no download/GitHub/release-assets indicator.
+- The rebuilt unsigned package is `com.chirality.app`, 2.0.0/2.0.0, minimum macOS 15.0.0, arm64/ad-hoc with no team. Main executable SHA-256 is `79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874`; runtime CLI is `0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989`; packaged main is `bfcf16002fc5132d0d96c68a5574927bfd0593b1ce905e71bea72a957bfc4ce1` and retains the R17 overlong-socket guard.
+- Instruction-root summary/manifest are `8760ac4557ce4e75d04d1beb1a972c11dae1891d5ec5dcbc865f99c3b494020d` / `e20a66a57833edc4a8e1ebb60ca570ae49027a410f9ac55d56fcefd0780c723c`, exact b338, 43 checked files, status pass. The known source-completeness remediation remains calibrated.
+- R20 keeps root `/private/tmp/ch-r18-91499728-51dd`, label `com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933`, and its existing destinations/structure. All five procedure blocks now use exact b338. Read-only Step 0 passed exact absence/non-symlink, exit-113/two-line not-found, 67/103-byte socket, optionless preflight, and unchanged-absence gates with zero mutation. No proof block ran.
 
-## Retained one-shot evidence
+## Tests, records, and review
 
-- Supply verifier exit 0 and offline pack exit 0 were each run exactly once. Pack log `d462b1efa4ab63a400b8e2efc96bd3b59a8eb9a0e173a6ff887aa9cb6f9fbdd2` contains one custom-`electronDist` line and no download/GitHub/release-assets indicator.
-- Unsigned package: `com.chirality.app`, 2.0.0/2.0.0, minimum macOS 15.0.0, arm64/ad-hoc; main `79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874`; CLI `0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989`; packaged main `bfcf16002fc5132d0d96c68a5574927bfd0593b1ce905e71bea72a957bfc4ce1` with R17 guard; instruction summary/manifest `3a9666d40235dfbaedf16dc3da29b0bc541b64298ae2faec05dcb27a202d3b36` / `c5b2bf101de6412ae63fd19ba76cac6c73cffa156357551c4203a54ce771135b`.
-- Exact-once disposable daemon precheck passed and restored exact root absence. Ordinary sandbox diagnostic retained 21 socket-denial failures / 1,261 pass / 4 skip; sole local-socket cure passed 1,282 / 4 skip. Focused 72/72, typecheck, practitioner 350, package verifier, prior receipt validator, corpus, and self-check are retained evidence and were not rerun during continuation/review.
+- Retained Phase-C evidence: ordinary focused 72/72 PASS; the single post-fix `umask 0002` focused run 72/72 PASS; typecheck, syntax, APP-HOLD, exact fixture-mode assertions, and fresh source review PASS. No product code or guard changed.
+- Phase-D/E ordinary sandbox diagnostic ran once: 22 failed / 1,260 passed / 4 skipped. It retained 21 local-socket-denial cases and the known synthetic-PID absence diagnostic without upgrading them. The sole local-test-socket-permitted, external-network-forbidden cure ran once and passed 1,282 / 4 skipped.
+- Executor return `615f8985e9feab5b57b27b5a8deba8b01d011bc8c7df0483ba6cc3eb57a9a5ae`; frozen R20/status/TM identities `6e449065ff7ef56ccfd71f1c4f3e7c97b20c691b3f40fc759bc680572c5a7013`, `3fe2541d3a488ee0948596101b0b8a513c3b343eb8fdeceb5e3268a8917f1080`, `7cc75f9ecdc93a770239261036a2e128fb681c7facc058725a372cc4eddeeb45`.
+- Fresh Phase D/E review PASS, no finding: activation `d304d34781d8f5435b70f3765b4050aeb5b7004d6b478a9d4cee8c11a2d36d9b`; review `35e5a8db0e7f3f1ead3561234a66a55e303b418b980cdfb671c1478114e0802b`; return `17c9fc4fd9a8425dab082662e87210cd05e5c42fd73811d5141faf93dc47c5c0`.
+- Governance fan-in PASS: routed practitioner/validation 670/670; practitioner self-check exit zero; G0–G4; receipt-prior ledger; corpus v18/no drift; APP-HOLD ALLOW; instruction-root current-byte identity; App scope; frontend identity; index; aggregate diff.
 
-## Exact repair and validation
+## Claim and handoff posture
 
-Owner-authorized one-byte repairs:
+R19 remains owner-reported `EXECUTED AND FAILED`. R20 is documentation-only, staged and not executed. DEL-09-04 remains `IN_PROGRESS` and unproved. The permission-mode/non-macOS-umask item is a harvested TM candidate only. No proof acceptance, lifecycle, signing, notarization, distribution, deployment, release-readiness, reliance, or merge claim exists.
 
-| File | Preimage | Postimage |
-|---|---|---|
-| VALIDATE-02 `ACTIVATION.md` | 1,668 / `3c50905cd730925da6ccf9374b8880a09c48b893b2ac2effb5795f2789ec2cb2` | 1,667 / `0eee8bf6ceb539797c418fc55411c8fbda2f6ee1c981bb7950bdf14e4c59e9bb` |
-| VALIDATE-02 `RETURN.md` | 5,937 / `9620af4620e4cbaae32ce22e06b2cc214b81149fc67542a2d340278ce322caaf` | 5,936 / `6257fccadf4062d7549b512abea5eebb0abcc5a4edfb69ee9021ecee564c80d3` |
-| VALIDATE-02 `VALIDATION.md` | 8,126 / `ef06190377bbba777089b70635575ff3e67642fadbf62eb40f3b161d6cd76440` | 8,125 / `d1a4f7788ed1a4b5fd865be4abc992ff1625134b38ae73327ce75f5c52c04d34` |
-
-Each delta is exactly one final LF; each postimage ends one LF and reconstructs its exact preimage when one LF is appended. Historical executor return `7d3b2ad4f49c2316dce7e1878ca4426ab5cb367e64a385ea2ee3137b37a5d399`, raw pack log, and all 15 raw logs remain unchanged.
-
-Every still-unreached gate passed: semantic whitespace under exact exemptions; 70-path App scope; empty index; aggregate diff; instruction-root current-byte identity; exact R20 metadata/service absence; App containment and frontend-empty porcelain; frontend revision identity; deterministic freeze; immutable postchecks. Wrapper construction incidents are retained as no-mutation/no-verdict diagnostics; the corrected same-gate predicate is controlling.
-
-WP-B1E evidence: activation `46f0834272acd94cc98ecaa456e1ed51142f63a0f1195f030a8e6c3762efecbc`; lineage `054b68cb5b93b9007abe52fbe72905f1c2e6470a6867fefb967fd7c8673bbf85`; validation `d14a785682be7e4c0d44142ecdd9e66b8a7488e1fd65a93cfd8a9b87342580f6`; return `d48115c9c3b05982b69592abc7ac1b11e9ab2f7d9eced36121a09ade57516292`.
-
-## Fresh review and candidate freeze
-
-Fresh review PASS, no finding. Activation 1,794 bytes / `4b813b6adf2a2ab09423ab6b7ad3698c8ffb3facd74cbf1bb879b598a0f03637`; review 14,287 bytes / `575bf06cedce30ad71c764d2c2a2ac611b81954ff7e73e8ade3ca8451953b9ea`.
-
-The independently reproduced WP-B1E 70-path manifest is 16,476 bytes / `fcc2bd1bd1a516a3b7de92846dea2739a1ccf381181c010cc263804284230b2b`, path stream `20b3e023de469b15d18bf28cb08cc58832ae826e8e06e86ec2f6568976160b45`. Adding only WP-B1E terminal validation/return yields the reviewed 72-path manifest 16,965 bytes / `7a890fd8a3cee6d6726080a7cf7498db0a9553d1c171630cbd615fb6375e5f1d`, path stream `3823b0ea52f3ddd5088d084b84d5e901364eaa06bb87f558bd41dd9cec2165fb`. Adding only the two authorized reviewer outputs yields the expected current 74-path content candidate before this manager fan-in; no product/semantic drift occurred.
-
-Current read-only gates: Receipt 191 absent; index empty; all current dirty paths App-contained. CHANGE must preserve exact bytes, verify the final 74-path candidate, create one content commit, and return its 40-character commit. Do not author Receipt 191 in the content commit and do not build, test, proof, fetch, push, PR, or merge in this handoff.
+Receipt 191 is absent and excluded. CHANGE must preserve exact bytes, create one App-only Phase D/E content commit, and return its exact 40-character commit before Receipt 191 is amended. No additional build, test, preflight, proof, fetch, push, PR, or merge is part of this handoff.

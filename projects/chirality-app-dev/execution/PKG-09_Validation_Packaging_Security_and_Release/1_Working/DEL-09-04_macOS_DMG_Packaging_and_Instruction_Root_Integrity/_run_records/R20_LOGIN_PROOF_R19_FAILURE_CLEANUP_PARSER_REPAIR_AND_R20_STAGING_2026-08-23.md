@@ -1,17 +1,17 @@
-# R20 — R19 failure record, cleanup-parser repair, offline rebuild, and staged login proof
+# R20 — R19 failure record, repair, PR #632 fixture portability, exact rebuild, and staged login proof
 
 - Date: `2026-08-23`
 - Run: `APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23`
-- Exact build / proof revision: `cb008dc5d6aa9b249639c91f3453a18609530d0f`
-- Parent: `a702dd6ec5005b361c8c023b12b599a425e5e2b8`
-- Frontend tree: `b4c73edda1fe3346815ce75449b2327c80c79bf8`
+- Exact build / proof revision: `b33858d33220538ce292f276a442792ecf8050b1`
+- Parent: `980f5951dbbfe88302514802384e4ffec33c38b9`
+- Frontend tree: `23315613d0d3e4d21580d928909816dc5aad92c7`
 - Branch: `codex/app-login-proof-r20-repair`
-- Result: `R19 EXECUTED AND FAILED (OWNER-REPORTED); REPAIR/OFFLINE BUILD/PRECHECK PASS; R20 STAGED ONLY AND NOT EXECUTED`
+- Result: `R19 EXECUTED AND FAILED (OWNER-REPORTED); REPAIR/FIXTURE PORTABILITY/OFFLINE BUILD/READ-ONLY STEP 0 PASS; R20 MUTATING AND OWNER ACTS NOT EXECUTED`
 - Deliverable state: `IN_PROGRESS`, unproved
 
 ## Claim boundary
 
-R19 remains executed-and-failed and is not upgraded. R20 is documentation-only staging bound to the exact source commit and one ignored unsigned local arm64 package. No R20 procedure block ran in this tranche. No proof acceptance, lifecycle, release-readiness, reliance, signing, notarization, distribution, publication, issuance, or professional-approval claim is made. No GUI, logout/login, LaunchAgent/plist, bootstrap, kickstart, default-operator query/mutation, or proof capture occurred.
+R19 remains executed-and-failed and is not upgraded. R20 is documentation-only staging bound to the exact source commit and one ignored unsigned local arm64 package. Only the read-only Step 0 identity/absence and optionless preflight block ran in this tranche; no preparation, capture, owner, mutating, or proof-producing block ran. No proof acceptance, lifecycle, release-readiness, reliance, signing, notarization, distribution, publication, issuance, or professional-approval claim is made. No GUI, logout/login, LaunchAgent/plist mutation, bootstrap, kickstart, default-operator query/mutation, or proof capture occurred.
 
 ## R19 executed-and-failed — owner-reported facts only
 
@@ -33,11 +33,13 @@ R19 is `EXECUTED AND FAILED`; DEL-09-04 remains `IN_PROGRESS` and unproved.
 
 The exact repository fixture is a regular 3,049-byte file with SHA-256 `9d8f02e4ad602c149b22ce013d1bf33dfe054c9820d1ece09ba80ecb23c90531`. Current source and focused tests independently establish that it parses as state `running`, PID `34924`, runs `1`, `lastExitCode=undefined`, and `neverExited=true`. The pre-repair integer-only cleanup parser rejected the exact `(never exited)` sentinel before exact-owned bootout, and destructive cleanup could then remove plist/runtime diagnostics while the job/process remained.
 
-Exact source commit `cb008dc5d6aa9b249639c91f3453a18609530d0f` implements the bounded repair: only exact `(never exited)` is accepted as a first-class state; all other noninteger/empty forms fail closed; exact-owned running PID/runs-1/never-exited proceeds to bootout; destructive cleanup is refused if mutation was refused, the job remains loaded, or an observed proof process remains alive; and every non-PASS capture preserves both token-cleared daemon logs before any allowed runtime removal, otherwise retaining private runtime state. Source review passed with no actionable finding.
+Exact source commit `cb008dc5d6aa9b249639c91f3453a18609530d0f` implements the bounded cleanup repair: only exact `(never exited)` is accepted as a first-class state; all other noninteger/empty forms fail closed; exact-owned running PID/runs-1/never-exited proceeds to bootout; destructive cleanup is refused if mutation was refused, the job remains loaded, or an observed proof process remains alive; and every non-PASS capture preserves both token-cleared daemon logs before any allowed runtime removal, otherwise retaining private runtime state. Source review passed with no actionable finding.
+
+PR #632 fixture-portability diagnosis then reproduced the exact CI failure once under `umask 0002`: 15 failed / 57 passed / 72 total, with the expected unsafe-permission diagnostic. Product paths already create runtime-data directories/files with explicit `0700`/`0600` modes and required no product change. Exact revision `b33858d33220538ce292f276a442792ecf8050b1` adds explicit matching modes only to test-created fixture paths. The ordinary focused suite and the post-fix `umask 0002` focused suite each passed 72/72; typecheck, syntax, APP-HOLD, exact-mode assertions, and fresh review passed. Those Phase-C gates are retained here and were not rerun.
 
 ## One-shot offline build and package identity
 
-`npm run electron:supply-chain` ran exactly once and exited 0, verifying `/Users/ryan/Library/Caches/chirality/electron-dist`. `npm run desktop:pack` then ran exactly once in the ordinary network-denied sandbox and exited 0 without escalation or retry. Its complete normalized 15,852-byte log has SHA-256 `d462b1efa4ab63a400b8e2efc96bd3b59a8eb9a0e173a6ff887aa9cb6f9fbdd2`, contains the exact custom `electronDist` line once, contains no case-insensitive download/GitHub/release-assets indicator, and records dependency-boundary `PASS` plus instruction-root `pass` for 43 files at the exact revision.
+`npm run electron:supply-chain` ran exactly once and exited 0, verifying `/Users/ryan/Library/Caches/chirality/electron-dist`; its 144-byte log has SHA-256 `5af72fdf79d96a79f68b7d81b118f437d266c0b73e803ac6b8e567cba1ce20ae`. `npm run desktop:pack` then ran exactly once in the ordinary network-denied sandbox and exited 0 without escalation or retry. Its complete raw 15,854-byte log has SHA-256 `5402cc5f5d24c1d33a6261d129f9ca3555df597babf483b9010facc1d04138e6`, contains the exact custom `electronDist` line once, contains no case-insensitive download/GitHub/release-assets indicator, and records dependency-boundary `PASS` plus instruction-root `pass` for 43 files at exact revision `b33858d33220538ce292f276a442792ecf8050b1`.
 
 Package: `/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app`.
 
@@ -52,7 +54,7 @@ Package: `/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev
 | runtime CLI | mode `0755`; SHA-256 `0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989` |
 | signature posture | ad-hoc linker-only; no team, sealed resources, or internal requirements |
 
-Strict codesign verification retained the calibrated exit 1 diagnostic `code has no resources but signature indicates they must be present`. Instruction summary / manifest SHA-256 are `3a9666d40235dfbaedf16dc3da29b0bc541b64298ae2faec05dcb27a202d3b36` / `c5b2bf101de6412ae63fd19ba76cac6c73cffa156357551c4203a54ce771135b`. The packaged `dist-electron/main.js` is 1,379,516 bytes at SHA-256 `bfcf16002fc5132d0d96c68a5574927bfd0593b1ce905e71bea72a957bfc4ce1` and contains the exact R17 103-byte macOS socket guard. The frontend diff from `PROOF_REVISION` to `HEAD` is empty.
+Strict codesign verification retained the calibrated exit 1 diagnostic `code has no resources but signature indicates they must be present`. Instruction summary / manifest SHA-256 are `8760ac4557ce4e75d04d1beb1a972c11dae1891d5ec5dcbc865f99c3b494020d` / `e20a66a57833edc4a8e1ebb60ca570ae49027a410f9ac55d56fcefd0780c723c`. The packaged `dist-electron/main.js` is 1,379,516 bytes at SHA-256 `bfcf16002fc5132d0d96c68a5574927bfd0593b1ce905e71bea72a957bfc4ce1` and contains exactly one declaration, byte-length check, Darwin predicate, and measured/maximum diagnostic for the R17 103-byte macOS socket guard. The frontend diff from `PROOF_REVISION` to `HEAD` is empty.
 
 ## One direct disposable daemon precheck
 
@@ -88,7 +90,7 @@ REPO_ROOT="/Users/ryan/.codex/worktrees/ef5e/chirality"
 PROOF_APP="$REPO_ROOT/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app"
 PROOF_EXECUTABLE="$PROOF_APP/Contents/MacOS/Chirality"
 PROOF_EXECUTABLE_SHA256="79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874"
-PROOF_REVISION="cb008dc5d6aa9b249639c91f3453a18609530d0f"
+PROOF_REVISION="b33858d33220538ce292f276a442792ecf8050b1"
 PROOF_ROOT="/private/tmp/ch-r18-91499728-51dd"
 PROOF_SOCKET="$PROOF_ROOT/runtime-data/runtime/control.sock"
 PROOF_LABEL="com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933"
@@ -144,7 +146,7 @@ set -euo pipefail
 PROOF_APP="/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app"
 PROOF_ROOT="/private/tmp/ch-r18-91499728-51dd"
 PROOF_LABEL="com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933"
-PROOF_REVISION="cb008dc5d6aa9b249639c91f3453a18609530d0f"
+PROOF_REVISION="b33858d33220538ce292f276a442792ecf8050b1"
 node projects/chirality-app-dev/frontend/scripts/run-packaged-launchagent-login-proof.mjs prepare --app-path "$PROOF_APP" --session-root "$PROOF_ROOT" --label "$PROOF_LABEL" --source-revision "$PROOF_REVISION"
 ```
 
@@ -154,7 +156,7 @@ node projects/chirality-app-dev/frontend/scripts/run-packaged-launchagent-login-
 cd /Users/ryan/.codex/worktrees/ef5e/chirality
 set -euo pipefail
 PROOF_ROOT="/private/tmp/ch-r18-91499728-51dd"
-PROOF_REVISION="cb008dc5d6aa9b249639c91f3453a18609530d0f"
+PROOF_REVISION="b33858d33220538ce292f276a442792ecf8050b1"
 node -e 'const fs = require("fs"); const value = JSON.parse(fs.readFileSync(process.argv[1], "utf8")); if (value.status !== "PREPARED" || value.proofClaimed !== false || value.sourceRevision !== process.argv[2]) throw new Error("Prepared state is not accepted"); console.log(JSON.stringify({status: value.status, proofClaimed: value.proofClaimed, sourceRevision: value.sourceRevision}, null, 2));' "$PROOF_ROOT/prepared.json" "$PROOF_REVISION"
 ```
 
@@ -224,7 +226,7 @@ On any capture error, stop. Never copy `.capture-state.json`, `.capture-state.co
 cd /Users/ryan/.codex/worktrees/ef5e/chirality
 set -euo pipefail
 PROOF_ROOT="/private/tmp/ch-r18-91499728-51dd"
-PROOF_REVISION="cb008dc5d6aa9b249639c91f3453a18609530d0f"
+PROOF_REVISION="b33858d33220538ce292f276a442792ecf8050b1"
 node -e 'const fs = require("fs"); const revision = process.argv[3]; const summary = JSON.parse(fs.readFileSync(process.argv[1], "utf8")); const evidence = JSON.parse(fs.readFileSync(process.argv[2], "utf8")); if (summary.status !== "PASS" || evidence.status !== "PASS") throw new Error("Login proof did not PASS"); if (summary.sourceRevision !== revision || evidence.sourceRevision !== revision) throw new Error("Login proof revision mismatch"); console.log(JSON.stringify({summaryStatus: summary.status, evidenceStatus: evidence.status, sourceRevision: revision}, null, 2));' "$PROOF_ROOT/summary.json" "$PROOF_ROOT/evidence-package.json" "$PROOF_REVISION"
 ```
 
@@ -257,7 +259,7 @@ printf '%s\n' 'PASS — exactly three public JSON files preserved mode 0600 in a
 ```sh
 cd /Users/ryan/.codex/worktrees/ef5e/chirality
 set -euo pipefail
-PROOF_REVISION="cb008dc5d6aa9b249639c91f3453a18609530d0f"
+PROOF_REVISION="b33858d33220538ce292f276a442792ecf8050b1"
 PROOF_LABEL="com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933"
 PUBLIC_EVIDENCE="/Users/ryan/Desktop/chirality-login-proof-owner-macos26-r20-bf0d2e6c-f705-446e-8e4f-a073c6645933-public-evidence"
 node -e 'const fs = require("fs"); const revision = process.argv[3]; const summary = JSON.parse(fs.readFileSync(process.argv[1], "utf8")); const evidence = JSON.parse(fs.readFileSync(process.argv[2], "utf8")); if (summary.status !== "PASS" || evidence.status !== "PASS" || summary.sourceRevision !== revision || evidence.sourceRevision !== revision) throw new Error("Public evidence is not exact-revision PASS");' "$PUBLIC_EVIDENCE/summary.json" "$PUBLIC_EVIDENCE/evidence-package.json" "$PROOF_REVISION"
@@ -280,8 +282,8 @@ Return the complete handoff verbatim. Preparation, owner logout/login, capture, 
 
 ## Validation and derivative handoff
 
-The Step 0 exact strings were re-tested live read-only for only the fresh R20 service: all four exact absence gates passed, service exit was 113, and the two-line not-found text matched. Procedure blocks were syntax/structured-safety checked without executing preflight, prepare, capture, preservation, or handoff.
+The exact Step 0 block was re-run live read-only for only the fresh R20 identity: package/revision/frontend/socket gates passed; optionless preflight passed; all four exact absence gates passed both before and after; both exact-service reads exited 113 and matched the two-line not-found text. No preparation, capture, preservation, handoff, proof, or mutating block ran.
 
-The one ordinary-sandbox exact `npm test` diagnostic exited 1 at 21 failed / 1,261 passed / 4 skipped. All failures are the established local TCP/Unix `listen EPERM` set and remain classified `ENVIRONMENT_SANDBOX_SOCKET_DENIAL`, not PASS. The sole exact `npm test` cure, with local test-socket binding permitted and external network forbidden, exited 0 at 1,282 passed / 4 skipped. The Pi/oMLX 200 ms timing case did not recur. No full-suite rerun occurred. The exact frontend tree and every frozen source/test/package hash matched before and after. Future pre-merge harness `full_test` plus typecheck remains independent confirmation and is not yet observed.
+The one ordinary-sandbox exact `npm test` diagnostic exited 1 at 22 failed / 1,260 passed / 4 skipped. Twenty-one failures are the established local TCP/Unix `listen EPERM` set and remain classified `ENVIRONMENT_SANDBOX_SOCKET_DENIAL`; the additional deterministic synthetic-PID SIGKILL absence case is retained under its prior environment/test-double classification. The diagnostic is not PASS and neither class is upgraded to a product regression. The sole exact `npm test` cure, with local test-socket binding permitted and external network forbidden, exited 0 at 1,282 passed / 4 skipped. The Pi/oMLX 200 ms timing case did not recur. No full-suite rerun occurred. The exact frontend tree and every frozen source/test/package hash matched before and after. Future pre-merge harness `full_test` plus typecheck remains independent confirmation and is not yet observed.
 
-This record, ignored package, generated instruction-root output, precheck evidence, and staged R20 procedure are derivative evidence bound to exact revision `cb008dc5d6aa9b249639c91f3453a18609530d0f`; they do not replace source truth. DEL-09-04 remains `IN_PROGRESS` and unproved.
+This record, ignored package, generated instruction-root output, retained precheck evidence, and staged R20 procedure are derivative evidence bound to exact revision `b33858d33220538ce292f276a442792ecf8050b1`; they do not replace source truth. DEL-09-04 remains `IN_PROGRESS` and unproved.

@@ -1,15 +1,12 @@
-# Handoff state — Phase B validated for content commit
+# Handoff state — PR #632 Phase D/E ready for content commit
 
-- Status: `READY_FOR_CHANGE_PHASE_B_CONTENT_COMMIT`.
-- Accepted upstream: source/build/proof revision `cb008dc5d6aa9b249639c91f3453a18609530d0f`, parent `a702dd6ec5005b361c8c023b12b599a425e5e2b8`, frontend tree `b4c73edda1fe3346815ce75449b2327c80c79bf8`, and Phase-A fresh review PASS.
-- Phase-B product evidence: exact-once frozen-supply verifier and offline unsigned pack passed; exact package identity/instruction-root/R17 guard passed; exact-once disposable direct-daemon precheck passed and restored root absence; retained diagnostic/cure disposition is calibrated; no evidence command was repeated during repair/review.
-- Deliverable truth: R19 is owner-reported `EXECUTED AND FAILED`; R20 is a documentation-only staged procedure and was not executed; DEL-09-04 remains `IN_PROGRESS` and unproved. No acceptance, lifecycle, release, or reliance claim exists.
-- Record repair: exactly one terminal LF was removed from each authorized VALIDATE-02 record. Postimages: activation `0eee8bf6ceb539797c418fc55411c8fbda2f6ee1c981bb7950bdf14e4c59e9bb`; return `6257fccadf4062d7549b512abea5eebb0abcc5a4edfb69ee9021ecee564c80d3`; validation `d1a4f7788ed1a4b5fd865be4abc992ff1625134b38ae73327ce75f5c52c04d34`. Appending one LF reconstructs each frozen preimage exactly.
-- Preserved evidence: historical executor return 16,439 bytes / `7d3b2ad4f49c2316dce7e1878ca4426ab5cb367e64a385ea2ee3137b37a5d399`; pack log 15,852 bytes / `d462b1efa4ab63a400b8e2efc96bd3b59a8eb9a0e173a6ff887aa9cb6f9fbdd2`; all 15 raw logs exact. Only the 15 logs and historical-return lines 23–25 hold the owner-approved whitespace exemptions.
-- Shared semantic identities: R20 `bc9d39ba804c59a4a1cc7b1b5de39785288e2fe6a8539ca2e3936c99c118303c`; status `6c864ceebd8769c47519a3fba338dc2932667efa6ad590bc1fd25b62851feb48`; TM candidate `45f164a70a54d6333f8c0be63deabef2d24b1739b4d3d48a380bdd2594726ab8`.
-- Remaining deterministic gates: PASS. The exact 70-path WP-B1E pre-return manifest is 16,476 bytes / `fcc2bd1bd1a516a3b7de92846dea2739a1ccf381181c010cc263804284230b2b`, path stream `20b3e023de469b15d18bf28cb08cc58832ae826e8e06e86ec2f6568976160b45`.
-- Fresh overall review: PASS with no finding. Activation 1,794 bytes / `4b813b6adf2a2ab09423ab6b7ad3698c8ffb3facd74cbf1bb879b598a0f03637`; review 14,287 bytes / `575bf06cedce30ad71c764d2c2a2ac611b81954ff7e73e8ade3ca8451953b9ea`.
-- Reviewed pre-review candidate: 72 App-only paths, 5 tracked and 67 untracked; manifest 16,965 bytes / `7a890fd8a3cee6d6726080a7cf7498db0a9553d1c171630cbd615fb6375e5f1d`; path stream `3823b0ea52f3ddd5088d084b84d5e901364eaa06bb87f558bd41dd9cec2165fb`. The final candidate adds only the two authorized reviewer records, for 74 paths before this content-preserving manager fan-in.
-- Current gates: index empty; every dirty path under `projects/chirality-app-dev/`; Receipt 191 absent. CHANGE must independently preserve the exact final inventory and bytes when creating the Phase-B content commit.
-- Next authorized action: CHANGE creates one App-only Phase-B content commit without rewriting validated bytes and returns its exact commit. Receipt 191 is sequenced only after that commit.
-- Hard fences: no Receipt yet, fetch, push, PR, merge, proof procedure, GUI, logout/login, launchd/bootstrap/kickstart/default-operator action, private-root/Desktop evidence read, signing, notarization, deployment, distribution, release-readiness, or acceptance claim.
+- Status: `READY_FOR_CHANGE_PHASE_DE_CONTENT_COMMIT` after terminal candidate-whitespace PASS.
+- Accepted upstream: source/build/proof revision `b33858d33220538ce292f276a442792ecf8050b1`, parent `980f5951dbbfe88302514802384e4ffec33c38b9`, frontend tree `23315613d0d3e4d21580d928909816dc5aad92c7`, and Phase-C source-review PASS.
+- Product evidence: single frozen-supply verifier and single network-denied unsigned pack PASS; package identity/instruction-root/R17 guard PASS; unchanged R20 Step-0 identity/absence/preflight gates PASS with no mutation.
+- Test evidence: retained focused/`umask 0002`/typecheck/APP-HOLD PASS; single sandbox diagnostic 22 failed / 1,260 passed / 4 skipped with retained classifications; single local-socket cure 1,282 passed / 4 skipped.
+- Deliverable truth: R19 owner-reported `EXECUTED AND FAILED`; R20 staged documentation only and not executed; DEL-09-04 `IN_PROGRESS` and unproved; TM candidate harvest-only.
+- Fresh review: PASS with no finding; review SHA-256 `35e5a8db0e7f3f1ead3561234a66a55e303b418b980cdfb671c1478114e0802b`.
+- Governance: routed checks 670/670, self-check, G0–G4, receipt-prior ledger, corpus, APP-HOLD, instruction-root current bytes, App containment, frontend identity, index, and aggregate diff PASS.
+- Receipt sequencing: Receipt 191 remains absent and excluded until CHANGE supplies the immutable Phase D/E content commit.
+- Next action: CHANGE independently verifies the frozen App-only candidate, creates the content commit without rewriting validated bytes, and returns the commit. No merge.
+- Hard fences: no additional supply/build/precheck/test; proof procedure; GUI/logout/login; launchd/bootstrap/kickstart/default-operator/private-root/Desktop action; network; signing/notarization/deployment/distribution/release claim; or Git publication/merge by WORKING_ITEMS.
