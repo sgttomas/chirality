@@ -5824,11 +5824,20 @@
     exempt evidence byte-for-byte; do not rerun prior checks or one-shot
     commands. Do not merge.` The full R19/R20 directions and the bounded raw-log
     and quoted-raw exemptions are transcribed in the cited RunID
-    `CHAT_TRANSCRIPTION.md`.
+    `CHAT_TRANSCRIPTION.md`. CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING
+    (2026-08-23, Ryan Tufts, in-session), verbatim: `APPROVE: non-rewriting
+    merge origin/main 119e08647afdb380704ff660fb32d714d7bd1dad into
+    codex/app-login-proof-r20-repair, record the authorization in Receipt 191,
+    revalidate only the post-sync gates, push, and open one unlabeled PR; do not
+    merge.`
   - Pointers: final frontend-touching/source/build revision
     `cb008dc5d6aa9b249639c91f3453a18609530d0f`; after-the-fact content commit
     `b499d3d9c3a8441271bf7b8b27405fe3596d18c0`; branch
-    `codex/app-login-proof-r20-repair`; DEL-09-04 R20 and adjacent status at
+    `codex/app-login-proof-r20-repair`; authorized conflict-free sync merge
+    `4a62272d50ced17481c0bb0c410a006664961970`, parents
+    `f57832e821d9783bff819d87ff8817fc282b7c5c` and
+    `119e08647afdb380704ff660fb32d714d7bd1dad`, whose incoming delta had zero
+    `projects/chirality-app-dev/` and zero frontend paths; DEL-09-04 R20 and adjacent status at
     `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/`;
     RunID `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/`,
     including `MANAGER_RETURN.md`, `HANDOFF_STATE.md`, exact three-byte
@@ -5852,5 +5861,6 @@
     staged/unexecuted. No proof acceptance, prepare, capture, logout/login,
     bootstrap, kickstart, operator/private-evidence action, signing,
     notarization, deployment, distribution, release-readiness, issuance,
-    fetch, push, PR, merge, or other lifecycle/reliance action or claim
-    occurred in this receipt-only append.
+    fetch, push, PR, merge-to-main, or other lifecycle/reliance action or claim
+    occurred in this receipt-only amendment; only the cited authorized
+    non-rewriting sync merge occurred.
