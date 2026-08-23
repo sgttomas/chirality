@@ -118,13 +118,18 @@ async function fixture() {
 </dict></plist>\n`
       );
       const runtimeDirectory = path.join(sessionRoot, 'runtime-data', 'runtime');
-      await mkdir(path.join(runtimeDirectory, 'logs'), { recursive: true });
-      await mkdir(path.join(runtimeDirectory, 'auth', 'tokens'), { recursive: true });
-      await writeFile(path.join(runtimeDirectory, 'logs', 'daemon.stdout.log'), state.stdoutLog);
-      await writeFile(path.join(runtimeDirectory, 'logs', 'daemon.stderr.log'), state.stderrLog);
+      await mkdir(path.join(runtimeDirectory, 'logs'), { recursive: true, mode: 0o700 });
+      await mkdir(path.join(runtimeDirectory, 'auth', 'tokens'), { recursive: true, mode: 0o700 });
+      await writeFile(path.join(runtimeDirectory, 'logs', 'daemon.stdout.log'), state.stdoutLog, {
+        mode: 0o600
+      });
+      await writeFile(path.join(runtimeDirectory, 'logs', 'daemon.stderr.log'), state.stderrLog, {
+        mode: 0o600
+      });
       await writeFile(
         path.join(runtimeDirectory, 'auth', 'tokens', 'operator.token'),
-        `${state.authToken}\n`
+        `${state.authToken}\n`,
+        { mode: 0o600 }
       );
       if (state.installError) throw state.installError;
       return { exitCode: 0, stdout: '', stderr: '' };

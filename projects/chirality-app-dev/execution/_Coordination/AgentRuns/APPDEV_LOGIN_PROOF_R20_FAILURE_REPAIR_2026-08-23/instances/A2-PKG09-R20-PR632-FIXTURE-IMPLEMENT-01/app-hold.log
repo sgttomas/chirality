@@ -1,0 +1,24 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/briefs/A2-PKG09-R20-PR632-FIXTURE-IMPLEMENT-01.md",
+  "operation": "dispatch",
+  "register_sha256": "e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f",
+  "repo_head": "980f5951dbbfe88302514802384e4ffec33c38b9",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-09-04",
+      "entry_path": "execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/briefs/A2-PKG09-R20-PR632-FIXTURE-IMPLEMENT-01.md",
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "24b67898b9e4a0b226afbe84838262fdfc7c4d538b8a52eba5ceceb345e78e8a",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "targets": [
+    "DEL-09-04"
+  ],
+  "verdict": "ALLOW"
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 10,
+  "selection_authority": "owner direction PR #632 CI test-portability repair dated 2026-08-23",
+  "posture": "SERIAL_DIAGNOSE_IMPLEMENT_REVIEW_COMMIT_BUILD_CLOSEOUT",
+  "nodes": [
+    {"id":"WP-C1","instance_id":"A2-PKG09-R20-PR632-FIXTURE-DIAGNOSE-01","objective":"reproduce and diagnose fixture-mode portability failure without frontend writes","write_owner":true,"status":"READY"},
+    {"id":"WP-C2","instance_id":"A2-PKG09-R20-PR632-FIXTURE-IMPLEMENT-01","objective":"implement explicit fixture modes and diagnosis-proven minimal product hardening","write_owner":true,"status":"BLOCKED_ON_WP_C1"},
+    {"id":"WP-C3","instance_id":"A2-PKG09-R20-PR632-FIXTURE-REVIEW-01","objective":"fresh source/evidence review","write_owner":false,"status":"BLOCKED_ON_WP_C2"},
+    {"id":"WP-C4","instance_id":"CHANGE-PR632-FIXTURE-SOURCE-COMMIT","objective":"create immutable frontend-touching source commit","write_owner":true,"status":"BLOCKED_ON_WP_C3"},
+    {"id":"WP-C5","instance_id":"A2-PKG09-R20-PR632-BUILD-RESTAGE-01","objective":"single offline build, package verification, and R20 revision restaging","write_owner":true,"status":"BLOCKED_ON_WP_C4"},
+    {"id":"WP-C6","instance_id":"A2-PKG09-R20-PR632-OVERALL-REVIEW-01","objective":"prescribed suites, TM harvest, governance gates, and fresh overall review","write_owner":true,"status":"BLOCKED_ON_WP_C5"},
+    {"id":"WP-C7","instance_id":"WI-PKG09-R20-PR632-RECEIPT-PUBLICATION","objective":"receipt validation and CHANGE publication handoff","write_owner":true,"status":"BLOCKED_ON_WP_C6"}
+  ],
+  "edges": [
+    {"from":"WP-C1","to":"WP-C2","gate":"diagnosis frozen and accepted"},
+    {"from":"WP-C2","to":"WP-C3","gate":"candidate/tests/checks frozen PASS"},
+    {"from":"WP-C3","to":"WP-C4","gate":"fresh review PASS"},
+    {"from":"WP-C4","to":"WP-C5","gate":"exact immutable frontend-touching commit supplied"},
+    {"from":"WP-C5","to":"WP-C6","gate":"single build/restage node PASS"},
+    {"from":"WP-C6","to":"WP-C7","gate":"overall review and pre-push governance gates PASS"}
+  ],
+  "fan_in_gate": "validated receipt and CHANGE-ready publication candidate",
+  "terminal_failure": "any failed diagnostic, implementation, review, build, suite, governance, receipt, scope, or fence gate stops dependants"
+}

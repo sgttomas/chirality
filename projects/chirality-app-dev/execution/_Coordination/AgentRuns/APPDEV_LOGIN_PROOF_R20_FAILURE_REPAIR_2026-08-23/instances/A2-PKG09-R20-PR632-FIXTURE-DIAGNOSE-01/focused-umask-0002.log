@@ -1,0 +1,326 @@
+COMMAND: umask 0002; ./node_modules/.bin/vitest run src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts
+WORKDIR: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+EXIT: 1
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts (72 tests | 15 failed) 3136ms
+     × cleans proof-owned side effects when packaged install times out after writing the plist 6ms
+     × cleans proof-owned side effects when post-install plist validation fails 3ms
+     × captures a login-discovered job in one invocation, packages evidence, and cleans up 164ms
+     × boots out an exact-owned running PID with runs 1 and never-exited state 163ms
+     × keeps final PASS irrevocable when PASS-only failed-log deletion fails 166ms
+     × fails closed and removes prepared state when the login session did not discover the job 15ms
+     × copies neither log and retains private runtime logs when either contains the auth token 10ms
+     × fails closed with private-only retention when both capture logs are missing 7ms
+     × fails closed with private-only retention when one log is missing before later default failure 162ms
+     × retains pre-removal log copies when final default protection fails later 164ms
+     × fails closed when launchctl omits the loaded daemon argument vector 17ms
+     × boots out and cleans an exact proof-owned pid-less crash-loop job without lsof 163ms
+     × preserves plist and runtime diagnostics when exact-owned bootout is refused 771ms
+     × preserves plist and runtime diagnostics when a process remains alive after bootout 165ms
+     × preserves diagnostics when successful bootout leaves the job loaded but process absent 775ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 15 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > cleans proof-owned side effects when packaged install times out after writing the plist
+AssertionError: expected [Function] to throw error matching /Command exceeded 60000ms.*install-at…/u but got 'Command exceeded 60000ms: packaged in…'
+
+- Expected:
+/Command exceeded 60000ms.*install-attempt cleanup complete \(job=absent, job-mutation-refused=false, plist=absent, runtime-data=absent\)/u
+
++ Received:
+"Command exceeded 60000ms: packaged install; install-attempt cleanup incomplete (job=absent, job-mutation-refused=false, plist=absent, runtime-data=present); cleanup errors: Failure-log identity or auth snapshot is unsafe; retained only in private runtime data: Failure-log directory identity or permissions are unsafe"
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:704:5
+    702|         harness.deps
+    703|       )
+    704|     ).rejects.toThrow(
+       |     ^
+    705|       /Command exceeded 60000ms.*install-attempt cleanup complete \(jo…
+    706|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > cleans proof-owned side effects when post-install plist validation fails
+AssertionError: expected [Function] to throw error matching /Installed plist.*install-attempt cle…/u but got 'Installed plist has ambiguous or miss…'
+
+- Expected:
+/Installed plist.*install-attempt cleanup complete \(job=absent, job-mutation-refused=false, plist=absent, runtime-data=absent\)/u
+
++ Received:
+"Installed plist has ambiguous or missing ProgramArguments; install-attempt cleanup incomplete (job=absent, job-mutation-refused=false, plist=absent, runtime-data=present); cleanup errors: Failure-log identity or auth snapshot is unsafe; retained only in private runtime data: Failure-log directory identity or permissions are unsafe"
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:721:5
+    719|         harness.deps
+    720|       )
+    721|     ).rejects.toThrow(
+       |     ^
+    722|       /Installed plist.*install-attempt cleanup complete \(job=absent,…
+    723|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > captures a login-discovered job in one invocation, packages evidence, and cleans up
+Error: Failure-log identity or auth snapshot is unsafe; retained only in private runtime data: Failure-log directory identity or permissions are unsafe
+ ❯ capture scripts/run-packaged-launchagent-login-proof.mjs:1481:40
+    1479|   };
+    1480|   await writeJsonAtomic(path.join(sessionRoot, 'evidence-package.json'…
+    1481|   if (summary.status !== 'PASS') throw new Error(summary.error ?? 'Log…
+       |                                        ^
+    1482|   return summary;
+    1483| }
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:751:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > boots out an exact-owned running PID with runs 1 and never-exited state
+AssertionError: promise rejected "Error: Failure-log identity or auth snaps…" instead of resolving
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:812:88
+    810|     harness.state.lastExitCode = '(never exited)';
+    811|
+    812|     await expect(main(['capture', '--session-root', harness.sessionRoo…
+       |                                                                                        ^
+    813|       status: 'PASS',
+    814|       cleanup: {
+
+Caused by: Error: Failure-log identity or auth snapshot is unsafe; retained only in private runtime data: Failure-log directory identity or permissions are unsafe
+ ❯ capture scripts/run-packaged-launchagent-login-proof.mjs:1481:40
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:812:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > keeps final PASS irrevocable when PASS-only failed-log deletion fails
+Error: Failure-log identity or auth snapshot is unsafe; retained only in private runtime data: Failure-log directory identity or permissions are unsafe
+ ❯ capture scripts/run-packaged-launchagent-login-proof.mjs:1481:40
+    1479|   };
+    1480|   await writeJsonAtomic(path.join(sessionRoot, 'evidence-package.json'…
+    1481|   if (summary.status !== 'PASS') throw new Error(summary.error ?? 'Log…
+       |                                        ^
+    1482|   return summary;
+    1483| }
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:838:21
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > fails closed and removes prepared state when the login session did not discover the job
+AssertionError: expected { processAbsent: false, …(8) } to match object { jobAbsent: true, …(4) }
+(4 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "destructiveCleanupRefused": false,
+-   "failureLogsCopied": true,
++   "failureLogsCopied": false,
+    "jobAbsent": true,
+    "plistAbsent": true,
+-   "runtimeDataRemoved": true,
++   "runtimeDataRemoved": false,
+  }
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:880:29
+    878|     expect(summary.status).toBe('FAIL');
+    879|     expect(summary.launchAgent.loginDiscoveredJobObserved).toBe(false);
+    880|     expect(summary.cleanup).toMatchObject({
+       |                             ^
+    881|       jobAbsent: true,
+    882|       destructiveCleanupRefused: false,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > copies neither log and retains private runtime logs when either contains the auth token
+AssertionError: expected [ Array(1) ] to include 'Runtime auth token was detected; reta…'
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:914:35
+    912|       runtimeDataRemoved: false
+    913|     });
+    914|     expect(summary.cleanupErrors).toContain(
+       |                                   ^
+    915|       'Runtime auth token was detected; retained failure logs only in …
+    916|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > fails closed with private-only retention when both capture logs are missing
+AssertionError: expected [ Array(1) ] to include 'Required failure logs are missing; re…'
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:947:35
+    945|       runtimeDataRemoved: false
+    946|     });
+    947|     expect(summary.cleanupErrors).toContain(
+       |                                   ^
+    948|       'Required failure logs are missing; retained only in private run…
+    949|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > fails closed with private-only retention when one log is missing before later default failure
+AssertionError: expected [ Array(1) ] to include 'Required failure logs are missing; re…'
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:983:35
+    981|       runtimeDataRemoved: false
+    982|     });
+    983|     expect(summary.cleanupErrors).toContain(
+       |                                   ^
+    984|       'Required failure logs are missing; retained only in private run…
+    985|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > retains pre-removal log copies when final default protection fails later
+AssertionError: expected [Function] to throw error including 'Capture or cleanup incomplete' but got 'Failure-log identity or auth snapshot…'
+
+Expected: "Capture or cleanup incomplete"
+Received: "Failure-log identity or auth snapshot is unsafe; retained only in private runtime data: Failure-log directory identity or permissions are unsafe"
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:1070:88
+    1068|     harness.state.changeDefaultJobOnBootout = true;
+    1069|
+    1070|     await expect(main(['capture', '--session-root', harness.sessionRoo…
+       |                                                                                        ^
+    1071|       'Capture or cleanup incomplete'
+    1072|     );
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > fails closed when launchctl omits the loaded daemon argument vector
+AssertionError: expected { processAbsent: false, …(8) } to match object { jobAbsent: false, …(5) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "destructiveCleanupRefused": true,
+-   "failureLogsCopied": true,
++   "failureLogsCopied": false,
+    "jobAbsent": false,
+    "jobMutationRefused": true,
+    "plistAbsent": false,
+    "runtimeDataRemoved": false,
+  }
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:1122:29
+    1120|     expect(summary.launchAgent.loadedArgumentsAvailable).toBe(false);
+    1121|     expect(summary.status).toBe('FAIL');
+    1122|     expect(summary.cleanup).toMatchObject({
+       |                             ^
+    1123|       jobAbsent: false,
+    1124|       jobMutationRefused: true,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > boots out and cleans an exact proof-owned pid-less crash-loop job without lsof
+AssertionError: expected { …(13) } to match object { status: 'FAIL', …(2) }
+(39 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "cleanup": {
+      "jobAbsent": true,
+      "jobMutationRefused": false,
+      "plistAbsent": true,
+-     "runtimeDataRemoved": true,
++     "runtimeDataRemoved": false,
+    },
+    "error": "Loaded job has ambiguous process identity",
+    "status": "FAIL",
+  }
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:1153:21
+    1151|     ).rejects.toThrow('Loaded job has ambiguous process identity');
+    1152|     const summary = JSON.parse(await readFile(path.join(harness.sessio…
+    1153|     expect(summary).toMatchObject({
+       |                     ^
+    1154|       status: 'FAIL',
+    1155|       error: 'Loaded job has ambiguous process identity',
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > preserves plist and runtime diagnostics when exact-owned bootout is refused
+AssertionError: expected { processAbsent: false, …(8) } to match object { processAbsent: false, …(5) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "destructiveCleanupRefused": true,
+-   "failureLogsCopied": true,
++   "failureLogsCopied": false,
+    "jobAbsent": false,
+    "plistAbsent": false,
+    "processAbsent": false,
+    "runtimeDataRemoved": false,
+  }
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:1218:29
+    1216|     await expect(main(['capture', '--session-root', harness.sessionRoo…
+    1217|     const summary = JSON.parse(await readFile(path.join(harness.sessio…
+    1218|     expect(summary.cleanup).toMatchObject({
+       |                             ^
+    1219|       processAbsent: false,
+    1220|       jobAbsent: false,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > preserves plist and runtime diagnostics when a process remains alive after bootout
+AssertionError: expected { processAbsent: false, …(8) } to match object { processAbsent: false, …(5) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "destructiveCleanupRefused": true,
+-   "failureLogsCopied": true,
++   "failureLogsCopied": false,
+    "jobAbsent": true,
+    "plistAbsent": false,
+    "processAbsent": false,
+    "runtimeDataRemoved": false,
+  }
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:1248:29
+    1246|     await expect(main(['capture', '--session-root', harness.sessionRoo…
+    1247|     const summary = JSON.parse(await readFile(path.join(harness.sessio…
+    1248|     expect(summary.cleanup).toMatchObject({
+       |                             ^
+    1249|       processAbsent: false,
+    1250|       jobAbsent: true,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/15]⎯
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts > packaged LaunchAgent login-session proof preparation > preserves diagnostics when successful bootout leaves the job loaded but process absent
+AssertionError: expected { processAbsent: true, …(8) } to match object { processAbsent: true, …(5) }
+(3 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "destructiveCleanupRefused": true,
+-   "failureLogsCopied": true,
++   "failureLogsCopied": false,
+    "jobAbsent": false,
+    "plistAbsent": false,
+    "processAbsent": true,
+    "runtimeDataRemoved": false,
+  }
+
+ ❯ src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts:1278:29
+    1276|     await expect(main(['capture', '--session-root', harness.sessionRoo…
+    1277|     const summary = JSON.parse(await readFile(path.join(harness.sessio…
+    1278|     expect(summary.cleanup).toMatchObject({
+       |                             ^
+    1279|       processAbsent: true,
+    1280|       jobAbsent: false,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/15]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  15 failed | 57 passed (72)
+   Start at  12:41:19
+   Duration  3.28s (transform 68ms, setup 0ms, import 80ms, tests 3.14s, environment 0ms)
