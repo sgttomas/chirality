@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-working-items-work-graph/v1",
+  "runId": "APPDEV_LOGIN_PROOF_R20_CLOSEOUT_2026-08-23",
+  "basis": "75c4e2ba401a6f5ad0c2f38846c39db6ab157405",
+  "posture": "MIXED",
+  "nodes": [
+    {"id":"WP-01","role":"Agent 2 ephemeral generalist","objective":"public proof snapshot and deliverable closeout records","writes":["DEL-09-04 Evidence/R20_Owner_Login_Proof_PASS_2026-08-23/**","DEL-09-04/_run_records/R21_*","DEL-09-04/_STATUS.md","run/instances/A2-PKG09-R20-CLOSEOUT-01/**"],"dependsOn":[]},
+    {"id":"WP-02","role":"TASK_MANAGEMENT Agent 1","objective":"federated supported row maintenance/harvest","writes":["execution/_Coordination/_TaskManagement/**","run/instances/TM-APP-R20-CLOSEOUT-01/**"],"dependsOn":[]},
+    {"id":"WP-03","role":"Agent 2 ephemeral generalist","objective":"fresh evidence-only review","writes":["run/instances/A2-PKG09-R20-CLOSEOUT-REVIEW-01/**"],"dependsOn":["WP-01","WP-02"]},
+    {"id":"WP-04","role":"WORKING_ITEMS","objective":"governance fan-in and Receipt-excluded handoff","writes":["run/MANAGER_RETURN.md","run/HANDOFF_STATE.md","run/instances/WI-PKG09-R20-CLOSEOUT-GOVERNANCE-01/**"],"dependsOn":["WP-03"]},
+    {"id":"WP-05","role":"WORKING_ITEMS","objective":"after-the-fact Receipt 194","writes":["loop/LOOP_RECEIPTS.md"],"dependsOn":["WP-04","CHANGE_CONTENT_COMMIT"]}
+  ],
+  "serialization": ["WP-01 and WP-02 are write-disjoint; WP-03 starts only after both freeze; WP-04 follows review; WP-05 follows content commit"],
+  "hardFences": ["private root no read/stat/list/traverse","no com.chirality.runtime query/touch","no proof execution","no frontend/package/procedure change","no signing/notarization/deployment/distribution/publication/release-readiness/acceptance claim","no direct Git integration"]
+}

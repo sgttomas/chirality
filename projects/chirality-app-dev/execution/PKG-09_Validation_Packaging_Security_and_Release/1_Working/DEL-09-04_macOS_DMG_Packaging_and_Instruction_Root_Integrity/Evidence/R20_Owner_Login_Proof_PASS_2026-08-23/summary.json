@@ -1,0 +1,56 @@
+{
+  "schema": "chirality-packaged-launchagent-login-proof/v1",
+  "status": "PASS",
+  "timestamp": "2026-08-23T21:38:47.963Z",
+  "scope": "owner-scheduled-login-session-packaged-app-only",
+  "sourceRevision": "2ee96958daf997b7a156f020739bde43ca78ebf9",
+  "launchAgent": {
+    "label": "com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933",
+    "launchAgentsDirectory": "~/Library/LaunchAgents",
+    "plist": "~/Library/LaunchAgents/com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933.plist",
+    "preparedJobAbsent": true,
+    "bootstrapInvoked": false,
+    "kickstartInvoked": false,
+    "runAtLoad": true,
+    "loginDiscoveredJobObserved": true,
+    "loadedProgramMatches": true,
+    "loadedArgumentsAvailable": true,
+    "loadedArgumentsMatch": true
+  },
+  "loginSession": {
+    "preparedIdentitySha256": "a8e185a222fb4101f0a5f0cc03788e2bc10179ede66cd715e065df84035a835d",
+    "capturedIdentitySha256": "2755c421922c033e87bc77e12e801204cd51f87228d01a4a74a72bce9de5307b",
+    "identityTransitionObserved": true
+  },
+  "process": {
+    "pidObserved": true,
+    "executableIdentityMatches": true
+  },
+  "cleanup": {
+    "processAbsent": true,
+    "jobAbsent": true,
+    "jobMutationRefused": false,
+    "destructiveCleanupRefused": false,
+    "failureLogsCopied": false,
+    "failureLogsPrivateOnly": false,
+    "passOnlyFailureLogCleanup": "REMOVED",
+    "plistAbsent": true,
+    "runtimeDataRemoved": true
+  },
+  "defaultProtection": {
+    "label": "com.chirality.runtime",
+    "plist": "~/Library/LaunchAgents/com.chirality.runtime.plist",
+    "plistUnchanged": true,
+    "jobLoadedStateUnchanged": true,
+    "mutationTargetsExcluded": true
+  },
+  "proofBoundary": {
+    "ownerLogoutLoginActRequired": true,
+    "harnessPerformedLogoutLogin": false,
+    "preparationClaimedProof": false
+  },
+  "app": {
+    "path": "dist/mac-arm64/Chirality.app",
+    "executableSha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874"
+  }
+}
