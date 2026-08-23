@@ -1,6 +1,6 @@
 # Handoff State — Root v3 Phase 0b
 
-Status: `TRANCHE COMPLETE — PR PUBLICATION PENDING; OWNER GATES REMAIN`
+Status: `TRANCHE COMPLETE — PR #622 OPEN; OWNER GATES REMAIN`
 
 ## Accepted upstream basis
 
@@ -57,5 +57,6 @@ created by this handoff.
   PublicationSHA/EffectiveSHA post-merge backfill; TM-ROOT-106/-122 G1 pin
   blockers; all ten `HELD_UNAVAILABLE` bindings; artifact download C1; App
   SCA-APP-008/WP-06 work; deferred public export.
-- Next owner after validated PR publication: Ryan Tufts at the PR review/merge
-  gate. This run must not merge.
+- Publication: ready-for-review PR #622 is open at
+  `https://github.com/sgttomas/chirality/pull/622`; auto-merge is disabled.
+- Next owner: Ryan Tufts at the PR review/merge gate. This run must not merge.

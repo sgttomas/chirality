@@ -4352,6 +4352,15 @@ D3 — D-APP-103: owner text: "I agree with your proposal." — SCA-APP-008 reco
   `execution/_Coordination/AgentRuns/ROOT_V3_PHASE0B_2026-08-22/FINAL_VALIDATION.md`,
   SHA-256
   `e954174ece0f6eca738d1d6b1392d11dad6e35892cfde66519c72ce6d7fe5997`.
+- **Git publication:** the validated four-commit branch was pushed normally
+  and ready-for-review PR #622 was opened against `main`:
+  `https://github.com/sgttomas/chirality/pull/622`. Its initial head was
+  closeout commit `dd0992d0bf57f2b4ff6fd1429aff0dd6d64f7927` after ordered
+  commits N1 `294e846bc762b96ac780d49f0137f61eb4dde779`, N2
+  `9c125f2ca8601f96d88867759e8ecf6275699ac0`, and N3
+  `04934179f998b3cc5c6113a37edfded3e6e60b71`. The PR is open,
+  non-draft, unmerged, and has no auto-merge request. This publication
+  breadcrumb is appended in-PR; no approval or merge is performed.
 - **Gate and derivative disposition:** D-GOV-35 is RULED and its instruction
   application is prepared in the candidate branch, but PublicationSHA and
   EffectiveSHA remain `TBD` for later routine post-merge backfill. The public
