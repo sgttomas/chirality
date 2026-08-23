@@ -1,0 +1,12 @@
+{
+  "schema": "chirality-agent0-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE2_2026-08-23",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basis": "a7bf601cedda23b7fd2c99d4020f4b3c2a32654b",
+  "nodes": [
+    {"id": "N1_WORKING_ITEMS", "role": "WORKING_ITEMS", "depends_on": [], "children": ["DEL-02-07", "DEL-02-08", "DEL-02-09", "DEL-02-10", "DEL-02-11", "DEL-02-12", "DEL-04-11"]}
+  ],
+  "fan_in_gate": "seven validated draft SOW returns; zero actionable review findings"
+}
