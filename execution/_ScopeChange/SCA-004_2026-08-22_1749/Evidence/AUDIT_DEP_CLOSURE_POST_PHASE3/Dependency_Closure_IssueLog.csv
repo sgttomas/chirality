@@ -1,0 +1,2 @@
+ID,Severity,Check,FromDeliverableID,TargetDeliverableID,DependencyID,Evidence,FixSuggestion
+DC-P3-001,WARNING,root_dependency_schema,,,,coverage.csv: 45 LEGACY_NOT_RUN_YET rows,Rerun dependency extraction for legacy deliverables only under separately accepted scope; not a blocker for the bounded SCA-004 carrier slice.
