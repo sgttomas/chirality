@@ -1,0 +1,37 @@
+{
+  "schema": "working-items-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22",
+  "instance_id": "WI-PKG09-R18-STAGING-01",
+  "version": 1,
+  "status": "FROZEN_BEFORE_DISPATCH",
+  "selection_authority": "OWNER",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "accepted_basis": "166efa82748133e90674be62304b81f8a0a8c1b4",
+  "package": "PKG-09",
+  "deliverables": ["DEL-09-04"],
+  "nodes": [
+    {
+      "id": "EXECUTE-01",
+      "instance": "A2-PKG09-R18-EXECUTE-01",
+      "agent_type": 2,
+      "dependencies": [],
+      "write_owner": "ignored frontend/dist package, R18, minimal DEL status, executor evidence"
+    },
+    {
+      "id": "MANAGER-FAN-IN",
+      "instance": "WI-PKG09-R18-STAGING-01",
+      "agent_type": 1,
+      "dependencies": ["EXECUTE-01"],
+      "write_owner": "manager return, reviewer brief, runtime summary"
+    },
+    {
+      "id": "REVIEW-01",
+      "instance": "A2-PKG09-R18-REVIEW-01",
+      "agent_type": 2,
+      "dependencies": ["MANAGER-FAN-IN"],
+      "write_owner": "unique review record only"
+    }
+  ],
+  "integration_owner": "A2-PKG09-R18-EXECUTE-01",
+  "fan_in_gate": "exact-merge offline package plus R18/status and fresh evidence-only review PASS"
+}

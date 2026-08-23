@@ -1,0 +1,16 @@
+authorized_url=https://github.com/electron/electron/releases/download/v43.2.0/SHASUMS256.txt
+network_request_count=1
+redirects_followed=0
+curl_exit=0
+http_code=302
+url_effective=https://github.com/electron/electron/releases/download/v43.2.0/SHASUMS256.txt
+num_redirects=0
+size_download=0
+body_bytes=0
+gate=FAILED_REDIRECT
+
+Before the request, one shell invocation failed locally because zsh expanded
+an unquoted `=https` protocol token and returned `https not found`; curl did not
+start and no request occurred. The corrected invocation above made the first
+and only network request. No redirect was followed and no second host was
+requested.

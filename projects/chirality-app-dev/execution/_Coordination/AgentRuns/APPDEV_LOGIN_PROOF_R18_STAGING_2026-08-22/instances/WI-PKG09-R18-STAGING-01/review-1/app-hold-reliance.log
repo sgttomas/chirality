@@ -1,0 +1,24 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22/instances/WI-PKG09-R18-STAGING-01/briefs/A2-PKG09-R18-REVIEW-01.md",
+  "operation": "reliance",
+  "register_sha256": "e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f",
+  "repo_head": "f59105ddb606bd46397c3b1aafa41b50ab4e9e8d",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-09-04",
+      "entry_path": "execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22/instances/WI-PKG09-R18-STAGING-01/briefs/A2-PKG09-R18-REVIEW-01.md",
+      "hold_status": "NOT_HELD",
+      "operation": "reliance",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "8ecab726d9c0973976add0e55a1a700f2c06b9cfb519733574af7ba920e7fe5f",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "targets": [
+    "DEL-09-04"
+  ],
+  "verdict": "ALLOW"
+}

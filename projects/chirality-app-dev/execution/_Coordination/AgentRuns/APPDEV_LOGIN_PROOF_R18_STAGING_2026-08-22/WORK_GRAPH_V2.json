@@ -1,0 +1,37 @@
+{
+  "schema": "working-items-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22",
+  "instance_id": "WI-PKG09-R18-STAGING-01",
+  "version": 2,
+  "status": "FROZEN_BEFORE_DISPATCH",
+  "supersedes": "WORK_GRAPH.json",
+  "selection_authority": "SUPERSEDING_OWNER_DIRECTION",
+  "accepted_basis": "166efa82748133e90674be62304b81f8a0a8c1b4",
+  "package": "PKG-09",
+  "deliverables": ["DEL-09-04"],
+  "nodes": [
+    {
+      "id": "WP02-EXECUTE-02",
+      "instance": "A2-PKG09-R18-WP02-EXECUTE-02",
+      "agent_type": 2,
+      "dependencies": ["EXECUTE-01-FAILED"],
+      "write_owner": "Electron verifier/wrapper/tests, R18, minimal status, executor-2 evidence"
+    },
+    {
+      "id": "MANAGER-FAN-IN-V2",
+      "instance": "WI-PKG09-R18-STAGING-01",
+      "agent_type": 1,
+      "dependencies": ["WP02-EXECUTE-02"],
+      "write_owner": "v2 manager return, reviewer brief, runtime summary"
+    },
+    {
+      "id": "WP02-REVIEW-01",
+      "instance": "A2-PKG09-R18-WP02-REVIEW-01",
+      "agent_type": 2,
+      "dependencies": ["MANAGER-FAN-IN-V2"],
+      "write_owner": "unique review record only"
+    }
+  ],
+  "integration_owner": "A2-PKG09-R18-WP02-EXECUTE-02",
+  "fan_in_gate": "one exact SHASUMS request, secure supply freeze, one offline evidence build, R18/status, fresh review PASS"
+}

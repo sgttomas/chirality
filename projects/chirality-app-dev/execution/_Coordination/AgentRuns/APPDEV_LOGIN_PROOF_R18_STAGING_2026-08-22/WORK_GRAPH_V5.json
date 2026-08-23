@@ -1,0 +1,28 @@
+{
+  "schema": "working-items-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22",
+  "instance_id": "WI-PKG09-R18-STAGING-01",
+  "version": 5,
+  "status": "FROZEN_BEFORE_WHITESPACE_REPAIR",
+  "supersedes": "WORK_GRAPH_V4.json",
+  "selection_authority": "CHANGE_REPAIR_CYCLE_1",
+  "accepted_basis": "f59105ddb606bd46397c3b1aafa41b50ab4e9e8d",
+  "nodes": [
+    {
+      "id": "WS-REPAIR-01",
+      "instance": "A2-PKG09-R18-WS-REPAIR-01",
+      "agent_type": 2,
+      "dependencies": ["REVIEW-01-ENV-LIMITED-PASS"],
+      "write_owner": "exact five evidence files plus repair-cycle-1 executor evidence"
+    },
+    {
+      "id": "WS-REVIEW-01",
+      "instance": "A2-PKG09-R18-WS-REVIEW-01",
+      "agent_type": 2,
+      "dependencies": ["WS-REPAIR-01"],
+      "write_owner": "review-cycle-1 evidence only"
+    }
+  ],
+  "integration_owner": "A2-PKG09-R18-WS-REPAIR-01",
+  "fan_in_gate": "exact normalization lineage plus fresh full candidate whitespace review PASS"
+}
