@@ -1,0 +1,50 @@
+{
+  "schema": "chirality-working-items-work-graph/v1",
+  "runId": "APPDEV_LOGIN_PROOF_R19_STAGING_2026-08-23",
+  "managerInstanceId": "WI-PKG09-R19-STAGING-01",
+  "packageId": "PKG-09",
+  "deliverableIds": ["DEL-09-04"],
+  "planVersion": 1,
+  "selectionAuthority": "owner direction transcribed in CHAT_TRANSCRIPTION.md",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {
+      "id": "WP-01",
+      "role": "WORKING_ITEMS",
+      "objective": "activate, inspect, preflight, and freeze the governed run",
+      "status": "completed",
+      "writeOwner": "manager"
+    },
+    {
+      "id": "WP-02",
+      "role": "ephemeral-generalist-agent2",
+      "objective": "execute the exact offline R19 package, empirical precheck, staged procedure, and validation tranche",
+      "status": "ready",
+      "writeOwner": "A2-PKG09-R19-EXECUTE-01",
+      "dependencies": ["WP-01"]
+    },
+    {
+      "id": "WP-03",
+      "role": "ephemeral-generalist-agent2",
+      "objective": "fresh evidence-only review over the frozen complete candidate",
+      "status": "blocked_on_wp02",
+      "writeOwner": "A2-PKG09-R19-REVIEW-01",
+      "dependencies": ["WP-02"]
+    },
+    {
+      "id": "WP-04",
+      "role": "WORKING_ITEMS",
+      "objective": "validated fan-in and terminal handoff",
+      "status": "blocked_on_wp03",
+      "writeOwner": "manager",
+      "dependencies": ["WP-03"]
+    }
+  ],
+  "edges": [
+    ["WP-01", "WP-02"],
+    ["WP-02", "WP-03"],
+    ["WP-03", "WP-04"]
+  ],
+  "concurrency": "none; overlapping package, R19, status, and evidence work is serialized",
+  "receipt190": "excluded until a separate content commit by CHANGE"
+}

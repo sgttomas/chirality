@@ -1,0 +1,43 @@
+> chirality-frontend@2.0.0 test
+> vitest run
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+
+ ❯ src/__tests__/integration/pi-omlx-wire.integration.test.ts (11 tests | 11 failed) 82ms
+ ❯ src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts (3 tests | 3 failed) 131ms
+ ❯ src/__tests__/integration/runtime-canonical-replay-restart.integration.test.ts (1 test | 1 failed) 95ms
+ ❯ src/__tests__/lib/omlx-provider-config.test.ts (14 tests | 6 failed) 17ms
+ ❯ src/__tests__/scripts/run-packaged-launchagent-runatload-proof.test.ts (22 tests | 1 failed) 3793ms
+
+Failed test outside the established 21-test local-bind set:
+
+ FAIL  src/__tests__/scripts/run-packaged-launchagent-runatload-proof.test.ts > packaged LaunchAgent RunAtLoad proof > waits for confirmed process absence after SIGKILL
+Error: Cleanup process termination failed: proof process 4242 remained alive after SIGKILL
+ ❯ main scripts/run-packaged-launchagent-runatload-proof.mjs:949:19
+ ❯ src/__tests__/scripts/run-packaged-launchagent-runatload-proof.test.ts:700:21
+
+Established local-bind-denied set:
+
+- 11 failures in `pi-omlx-wire.integration.test.ts`
+- 3 failures in `runtime-desktop-cli-shared-daemon.integration.test.ts`
+- 1 failure in `runtime-canonical-replay-restart.integration.test.ts`
+- 6 failures in `omlx-provider-config.test.ts`
+- Representative errors:
+  - `listen EPERM: operation not permitted 127.0.0.1`
+  - `listen EPERM: operation not permitted .../runtime/control.sock`
+  - dependent `Server is not running.`
+
+ Test Files  5 failed | 150 passed | 1 skipped (156)
+      Tests  22 failed | 1245 passed | 4 skipped (1271)
+   Start at  00:30:18
+   Duration  5.54s (transform 9.31s, setup 0ms, import 18.52s, tests 28.32s, environment 18ms)
+
+exit: 1
+
+This retained diagnostic is not PASS. The 21 local-bind failures are
+`ENVIRONMENT_SANDBOX_SOCKET_DENIAL`. The additional synthetic-PID cleanup
+failure is preserved separately and is not classified as environmental here.
+The complete per-test failure names and stack details remain in the immutable
+execution-tool transcript for this exact command; this file freezes all
+diagnostic counts, affected files, failure classes, representative exact
+errors, duration, and exit.
