@@ -1,0 +1,18 @@
+# Sealed brief — PR #632 postcommit governance-only validation
+
+- RequestedBy: `WORKING_ITEMS` instance `/root/node3_pkg09` under HELP_HUMAN.
+- RunID: `APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23`.
+- ParentInstanceID: `WI-PKG09-R20-PR632-REPAIR-MANAGER-01`.
+- ChildInstanceID: `A2-PKG09-R20-PR632-POSTCOMMIT-VALIDATE-01`.
+- Role: delegated-harness-native ephemeral generalist in explicit Agent-2 mode; role and non-delegation instruction-asserted. Do not delegate.
+- Objective: run every still-unreached governance/control-plane pre-push gate after exact candidate whitespace PASS, freeze exact evidence, and prove scope/identity preservation.
+- AcceptedBasis: branch `codex/app-login-proof-r20-repair`, intermediate commit `de2080a7ac82f636fca3f8be57b20dc0e9a80fa8`, parent `85caafd4882a2ffff204ed87334171608ce462be`, frontend tree `b4c73edda1fe3346815ce75449b2327c80c79bf8`. Manager-observed first gate: exact `python3 tools/validation/validate_candidate_whitespace.py --base-ref origin/main`, exit `0`, output `PASS: candidate whitespace is clean (untracked binary/symlink paths safely skipped: 0).`
+- DeclaredReads: current instructions/standing plan; owner transcription; amendments/plans/graphs/diagnostic; intermediate repair commit and exact 33 paths; child lineage/return; committed `.github/workflows/governance-harness.yml`; receipt and candidate validators; App corpus/self-check/APP-HOLD/practitioner governance tools; accepted instruction-root summary/manifest and their source paths.
+- AllowedTools: read-only shell/git/hash/JSON; Python governance validators/harnesses; no network or external provider.
+- AllowedWriteTargets: only `instances/A2-PKG09-R20-PR632-POSTCOMMIT-VALIDATE-01/` for activation, complete logs, validation matrix, and return. Do not edit shared RunID, Receipt, repair evidence, frontend, product, package, or proof bytes.
+- Required remaining gates: routed governance tools suite exactly as PR workflow (`python3 tools/run_affected_tests.py --base origin/main`); practitioner self-check; G0 root materialization fence; G1 root harness adapter; G2 root surface ownership; G3 root work-graph dispatch; G4 instruction tranche manifest with base `origin/main`, head `HEAD`, added manifests only; App receipt validator; `git diff --check`; App authority corpus status; APP-HOLD dispatch preflight for the repair brief/DEL-09-04; App-only changed-path containment and empty index; frontend tree exact and `cb008dc5..HEAD` frontend stat empty; read-only instruction-root current-byte comparison preserving accepted summary/manifest identities; JSON/JSONL syntax for new records; final exact candidate whitespace against `origin/main` after validation records freeze.
+- Explicit exclusions: do not run any frontend/runtime/product test or typecheck; no build, package, supply verifier, package verifier, daemon/precheck, proof/preflight/procedure, GUI, launchd, operator/private evidence, signing, release, network, or Git mutation.
+- ExpectedOutputs: `ACTIVATION.md`, complete command logs, `VALIDATION.md`, `RETURN.md`; exact commands/exits; retained-vs-rerun classification; file/hash inventory; blockers and rerun requirements.
+- AcceptanceCriteria: every authorized remaining gate PASS; exact repair/gzip identities retained; frontend tree/source unchanged; App-only containment and empty index; no forbidden command/action; final candidate whitespace PASS.
+- Escalation: stop on any gate failure, ambiguity about a command being product-facing, scope drift, instruction-root mismatch, frontend drift, or need for mutation outside instance records.
+- Git fence: no stage, commit, fetch, push, PR mutation, rebase, force-push, or merge.

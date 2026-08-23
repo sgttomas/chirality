@@ -5811,56 +5811,61 @@
     issuance, additional stage/commit/fetch, push, PR, or merge-to-main act or
     claim occurred in this receipt amendment.
 
-- **2026-08-23 — Receipt 191** (DEL-09-04 R19 failed-proof record, cleanup-parser repair, offline rebuild, and R20 staged procedure).
+- **2026-08-23 — Receipt 191** (DEL-09-04 R19/R20 repair, staging, and PR #632 record-only whitespace repair).
   - Receipt-ID: `Receipt-191`
-  - Examined-Through: `b499d3d9c3a8441271bf7b8b27405fe3596d18c0`
+  - Examined-Through: `de2080a7ac82f636fca3f8be57b20dc0e9a80fa8`
   - Parent-Receipt: `Receipt-190`
   - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-23,
-    Ryan Tufts, in-session), verbatim: `APPROVE record-only whitespace repair:
-    remove exactly one terminal LF from each of the three prior-validator
-    VALIDATE-02 files identified in VALIDATE-03, record pre→post hash lineage,
-    then run only the still-unreached gates and fresh review and continue
-    Receipt 191, commits, push, and one PR if all pass. Preserve all previously
-    exempt evidence byte-for-byte; do not rerun prior checks or one-shot
-    commands. Do not merge.` The full R19/R20 directions and the bounded raw-log
-    and quoted-raw exemptions are transcribed in the cited RunID
-    `CHAT_TRANSCRIPTION.md`. CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING
-    (2026-08-23, Ryan Tufts, in-session), verbatim: `APPROVE: non-rewriting
-    merge origin/main 119e08647afdb380704ff660fb32d714d7bd1dad into
-    codex/app-login-proof-r20-repair, record the authorization in Receipt 191,
-    revalidate only the post-sync gates, push, and open one unlabeled PR; do not
-    merge.`
+    Ryan Tufts, in-session), verbatim actionable direction: `OWNER DIRECTION —
+    PR #632 whitespace repair, record-only.` `I authorize a record-only repair
+    on the same branch, in one bounded step:` `1. For every file the whitespace
+    validator flags, either (a) normalize it (strip trailing whitespace and
+    terminal blank lines only; no content change) with pre→post SHA-256 lineage
+    recorded in the RunID, or (b) replace it with a gzip preimage per the
+    established R19 pattern (store <name>.gz, record the preimage SHA-256 and
+    byte count, delete the raw file). Choose per file by your established
+    evidence conventions; quoted-raw exemptions already recorded in Receipt
+    191 stay as they are if the validator passes them.` `2. Touch nothing under
+    projects/chirality-app-dev/frontend/ — the frontend tree must remain
+    b4c73edda1fe3346815ce75449b2327c80c79bf8 so the staged R20 procedure and
+    PROOF_REVISION cb008dc5d6aa9b249639c91f3453a18609530d0f stay valid.` `3.
+    Rerun the full pre-push gate set including
+    validate_candidate_whitespace.py --base-ref origin/main (must PASS), the
+    receipt validator, and git diff --check; amend Receipt 191 with this repair
+    (pre→post lineage, this authorization verbatim), commit, and push to
+    codex/app-login-proof-r20-repair. Do not rebase, force-push, or merge.` `Not
+    authorized: any frontend, packaging, daemon, test, or staged-procedure
+    change; any new proof claim.` Full direction and prior authority are in the
+    cited RunID `CHAT_TRANSCRIPTION.md`.
   - Pointers: final frontend-touching/source/build revision
-    `cb008dc5d6aa9b249639c91f3453a18609530d0f`; after-the-fact content commit
-    `b499d3d9c3a8441271bf7b8b27405fe3596d18c0`; branch
-    `codex/app-login-proof-r20-repair`; authorized conflict-free sync merge
-    `4a62272d50ced17481c0bb0c410a006664961970`, parents
-    `f57832e821d9783bff819d87ff8817fc282b7c5c` and
-    `119e08647afdb380704ff660fb32d714d7bd1dad`, whose incoming delta had zero
-    `projects/chirality-app-dev/` and zero frontend paths; DEL-09-04 R20 and adjacent status at
-    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/`;
-    RunID `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/`,
-    including `MANAGER_RETURN.md`, `HANDOFF_STATE.md`, exact three-byte
-    pre→post lineage in
-    `instances/A2-PKG09-R20-PHASEB-REPAIR-VALIDATE-04/REPAIR_LINEAGE.md`,
-    retained pack/precheck/full-suite counts and exemption identities in
-    `instances/A2-PKG09-R20-PHASEB-REPAIR-VALIDATE-04/VALIDATION.md`, and fresh
-    REVIEW-04 `instances/A2-PKG09-R20-PHASEB-REVIEW-04/REVIEW.md` SHA-256
-    `575bf06cedce30ad71c764d2c2a2ac611b81954ff7e73e8ade3ca8451953b9ea`.
-  - Checks: exact repair/reversal, semantic whitespace under the bounded
-    exemptions, App scope, empty index, aggregate diff, instruction-root,
-    exact metadata/service absence, containment/porcelain, frontend identity,
-    deterministic freeze, and immutable postchecks pass. Fresh REVIEW-04 is
-    `PASS` with no finding. Receipt validator and receipt-only whitespace/
-    containment pass after append.
+    `cb008dc5d6aa9b249639c91f3453a18609530d0f`; content commit
+    `b499d3d9c3a8441271bf7b8b27405fe3596d18c0`; PR #632 repair
+    commit `de2080a7ac82f636fca3f8be57b20dc0e9a80fa8`, parent
+    `85caafd4882a2ffff204ed87334171608ce462be`; branch
+    `codex/app-login-proof-r20-repair`; prior authorized sync merge
+    `4a62272d50ced17481c0bb0c410a006664961970` had no App/frontend path changes.
+    DEL-09-04 R20/status and RunID
+    `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/`
+    remain controlling. The diagnostic, `RETURN.md` whitespace normalization
+    lineage, gzip preimage/recovery identities, and validator EOF lineage are in
+    `PR632_WHITESPACE_DIAGNOSTIC.md`, the cited amendments, and
+    `instances/A2-PKG09-R20-PR632-WHITESPACE-REPAIR-01/REPAIR_LINEAGE.md` plus
+    `instances/A2-PKG09-R20-PR632-POSTCOMMIT-VALIDATE-01/`. Fresh review is
+    `instances/A2-PKG09-R20-PR632-POSTCOMMIT-REVIEW-01/REVIEW.md`, SHA-256
+    `9df506713ecdf730efbd848ee17d3d7fc814d2f8361995c994ae3c7082907c83`.
+  - Checks: candidate whitespace, routed governance, self-check, G0–G4,
+    receipt, diff, corpus, APP-HOLD, scope/index, instruction-root, frontend,
+    gzip, JSON/JSONL, and fresh review pass.
   - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
     delegated-harness-native ephemeral Agent 2 executors/validators/reviewers,
     and CHANGE; exact inherited model identifiers were not exposed.
-  - Gate-Outcome: `EXECUTED` — repair/build/staging evidence only. DEL-09-04
+  - Gate-Outcome: `EXECUTED` — record-only repair plus prior repair/build/staging
+    evidence. DEL-09-04
     remains `IN_PROGRESS` and unproved; R19 remains failed and R20 remains
-    staged/unexecuted. No proof acceptance, prepare, capture, logout/login,
-    bootstrap, kickstart, operator/private-evidence action, signing,
-    notarization, deployment, distribution, release-readiness, issuance,
-    fetch, push, PR, merge-to-main, or other lifecycle/reliance action or claim
-    occurred in this receipt-only amendment; only the cited authorized
-    non-rewriting sync merge occurred.
+    staged/unexecuted. No frontend/package/daemon/test/staged-procedure change,
+    proof acceptance, prepare, capture, logout/login, bootstrap, kickstart,
+    operator/private-evidence action, signing, notarization, deployment,
+    distribution, release-readiness, issuance, fetch, push, rebase,
+    force-push, merge-to-main, or lifecycle/reliance claim occurred; Git acts
+    were limited to the cited authorized prior sync and intermediate repair
+    commit.

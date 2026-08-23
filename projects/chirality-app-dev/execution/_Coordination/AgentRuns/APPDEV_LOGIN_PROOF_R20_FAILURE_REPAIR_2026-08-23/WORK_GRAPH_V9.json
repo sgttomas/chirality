@@ -1,0 +1,56 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 9,
+  "selection_authority": "owner-authorized PR #632 record-only repair and HELP_HUMAN postcommit sequencing disposition",
+  "posture": "POSTCOMMIT_GATES_THEN_FRESH_REVIEW_THEN_RECEIPT",
+  "nodes": [
+    {
+      "id": "WP-B4G",
+      "instance_id": "WI-PKG09-R20-PR632-POSTCOMMIT-WHITESPACE-01",
+      "objective": "run exact committed-range candidate whitespace gate first",
+      "write_owner": false,
+      "status": "PASS"
+    },
+    {
+      "id": "WP-B4V",
+      "instance_id": "A2-PKG09-R20-PR632-POSTCOMMIT-VALIDATE-01",
+      "objective": "run and freeze all remaining governance-only pre-push gates",
+      "write_owner": true,
+      "status": "READY"
+    },
+    {
+      "id": "WP-B4R",
+      "instance_id": "A2-PKG09-R20-PR632-POSTCOMMIT-REVIEW-01",
+      "objective": "fresh evidence-only review of repair, lineage, gates, scope, and claim calibration",
+      "write_owner": false,
+      "status": "BLOCKED_ON_WP_B4V"
+    },
+    {
+      "id": "WP-B4F",
+      "instance_id": "WI-PKG09-R20-PR632-RECEIPT191-01",
+      "objective": "minimally amend and validate Receipt 191 after fresh PASS",
+      "write_owner": true,
+      "status": "BLOCKED_ON_WP_B4R"
+    }
+  ],
+  "edges": [
+    {
+      "from": "WP-B4G",
+      "to": "WP-B4V",
+      "gate": "exact base-ref candidate whitespace PASS"
+    },
+    {
+      "from": "WP-B4V",
+      "to": "WP-B4R",
+      "gate": "remaining governance-only gates PASS and evidence frozen"
+    },
+    {
+      "from": "WP-B4R",
+      "to": "WP-B4F",
+      "gate": "fresh review PASS with no unresolved finding"
+    }
+  ],
+  "fan_in_gate": "Receipt 191 validator and receipt-only hygiene/containment PASS",
+  "terminal_failure": "any substantive gate, review, receipt, scope, identity, or fence failure stops exactly"
+}
