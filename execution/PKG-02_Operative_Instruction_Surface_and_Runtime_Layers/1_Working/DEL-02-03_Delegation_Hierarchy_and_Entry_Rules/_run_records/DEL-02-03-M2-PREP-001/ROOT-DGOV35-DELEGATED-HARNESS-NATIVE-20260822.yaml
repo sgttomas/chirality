@@ -1,0 +1,83 @@
+schema: instruction-tranche-manifest/v1
+tranche_id: ROOT-DGOV35-DELEGATED-HARNESS-NATIVE-20260822
+title: D-GOV-35 delegated-harness-native Root instruction application
+date: 2026-08-22
+basis: 13201dfe7dc3b97c9aa36f6305cae604b48ef80f
+
+instruction_surface_paths:
+  - AGENTS.md
+  - docs/WORKFLOW_COMPONENT_STANDARD.md
+  - docs/TYPES.md
+  - docs/DBM_Agent_Instruction_Architecture.md
+  - docs/governance_harness/tranche_manifests/ROOT-DGOV35-DELEGATED-HARNESS-NATIVE-20260822.yaml
+
+m2_gate:
+  authorization: >-
+    PENDING — NOT AN APPLICATION AUTHORIZATION. Ryan Tufts authorized only
+    preparation of this draft in the Root Phase-0 steer dated 2026-08-22. The
+    proposed D-GOV-35 ruling remains expressly AWAITING OWNER RULING. Before
+    this draft may enter the live manifest corpus, the application owner must
+    replace this field with the exact owner ruling and separately authorized
+    M2 application direction of record. This draft records the missing gate;
+    it does not grant it (K-AUTH-1).
+  authorized_by: >-
+    PENDING — Ryan Tufts is the human owner of record; no D-GOV-35 application
+    ruling is recorded in this preparation package
+  authorization_date: 2026-08-22
+  integration_owner: >-
+    PENDING — HELP_HUMAN is the planned serialized fan-in owner after the
+    owner rules D-GOV-35 and authorizes the application tranche
+  merge_gate: human-gated-pr
+  self_merge: false
+
+m6_notice:
+  disposition: pending
+  routed_to: []
+  rationale: >-
+    The App and Piping notices are prepared but intentionally remain inside
+    DEL-02-03-M2-PREP-001. They may be copied to the receiving coordination
+    surfaces only after the D-GOV-35 owner ruling and M2 application
+    authorization. The live application manifest must change this disposition
+    to routed and name the actual notice paths after routing. Coordination is
+    not authority.
+
+candidate_paths:
+  - AGENTS.md
+  - docs/WORKFLOW_COMPONENT_STANDARD.md
+  - docs/TYPES.md
+  - docs/DBM_Agent_Instruction_Architecture.md
+  - docs/governance_harness/tranche_manifests/ROOT-DGOV35-DELEGATED-HARNESS-NATIVE-20260822.yaml
+  - projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-22_ROOT_DGOV35_DELEGATION_CLASS.md
+  - projects/chirality-piping/execution/_Coordination/NOTICE_2026-08-22_ROOT_DGOV35_DELEGATION_CLASS.md
+  - execution/_Coordination/LOOP_RECEIPTS.md
+  - execution/_Coordination/HANDOFF_STATE.md
+
+scope_limits:
+  - >-
+    Apply the exact AGENTS.md delta only from the N1 patch at SHA-256
+    4455adda4199be5493e1f8d2171ebb4641f40666c35cf09e90adc935ff6355ee;
+    never reconstruct or silently vary the patch.
+  - >-
+    Propagate only the owner-ruled Agent 0 direct bounded-Agent-2 concordance
+    to the Workflow-Component Standard and its two named explanatory mirrors;
+    exact post-ruling bytes require separate review before application.
+  - >-
+    Preserve historical D-GOV-14, D-APP-68, corpus snapshots, packaged proof,
+    and run-basis evidence; do not rewrite them as current mirrors.
+  - >-
+    No App or Piping content write, product-source change, status or pointer
+    change, hold lift, pin change, release, reliance, self-merge, or merge.
+
+derivative_paths:
+  - exports/chirality-app/export-manifest.csv
+  - exports/chirality-app/export-report.md
+  - exports/chirality-app/staging/
+
+derivative_disposition:
+  status: deferred
+  rationale: >-
+    The Root-owned Chirality App public-export projection is a stale mutable
+    derivative after an AGENTS.md change. A later authorized application
+    handoff must regenerate it through exports/chirality-app/export_public.py
+    or explicitly defer it. Historical App and Piping evidence remains
+    immutable and is never regenerated in place.
