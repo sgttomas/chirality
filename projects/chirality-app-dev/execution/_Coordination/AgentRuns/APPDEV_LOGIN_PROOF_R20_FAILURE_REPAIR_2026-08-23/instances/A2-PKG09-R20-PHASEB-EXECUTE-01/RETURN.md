@@ -20,9 +20,9 @@ The combined mechanical validation command exited `1` immediately after its cand
 syntax=PASS
 fixture_fidelity=PASS bytes=3049 sha256=9d8f02e4ad602c149b22ce013d1bf33dfe054c9820d1ece09ba80ecb23c90531
 json_files_valid=5 jsonl_files_valid=1
-projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/instances/A2-PKG09-R20-PHASEB-EXECUTE-01/desktop-pack.full.log:16:   Generating static pages (6/24) 
-projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/instances/A2-PKG09-R20-PHASEB-EXECUTE-01/desktop-pack.full.log:17:   Generating static pages (12/24) 
-projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/instances/A2-PKG09-R20-PHASEB-EXECUTE-01/desktop-pack.full.log:18:   Generating static pages (18/24) 
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/instances/A2-PKG09-R20-PHASEB-EXECUTE-01/desktop-pack.full.log:16:   Generating static pages (6/24)
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/instances/A2-PKG09-R20-PHASEB-EXECUTE-01/desktop-pack.full.log:17:   Generating static pages (12/24)
+projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/instances/A2-PKG09-R20-PHASEB-EXECUTE-01/desktop-pack.full.log:18:   Generating static pages (18/24)
 candidate_whitespace=FAIL
 ```
 

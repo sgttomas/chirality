@@ -69,3 +69,17 @@ Attribution: exact owner continuation direction dated 2026-08-23, relayed by HEL
 Attribution: exact owner approval dated 2026-08-23, relayed by HELP_HUMAN.
 
 > APPROVE record-only whitespace repair: remove exactly one terminal LF from each of the three prior-validator VALIDATE-02 files identified in VALIDATE-03, record pre→post hash lineage, then run only the still-unreached gates and fresh review and continue Receipt 191, commits, push, and one PR if all pass. Preserve all previously exempt evidence byte-for-byte; do not rerun prior checks or one-shot commands. Do not merge.
+
+## PR #632 record-only whitespace repair — verbatim
+
+Attribution: exact owner direction dated 2026-08-23, relayed by HELP_HUMAN.
+
+> OWNER DIRECTION — PR #632 whitespace repair, record-only.
+>
+> The governance-harness CI run on head 85caafd4882a2ffff204ed87334171608ce462be failed at the Candidate whitespace step, and an independent run of tools/validation/validate_candidate_whitespace.py --base-ref origin/main on the same head reproduces it: the raw captured evidence logs committed under execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/instances/A2-PKG09-R20-PHASEB-EXECUTE-01/ (including desktop-pack.full.log, app_hold.log, corpus.log, focused.log, npm-test.sandboxed.log, npm-test.local-socket-cure.log, package_verify.log, pytest.log, receipt.log, self_check.log, typecheck.log) carry trailing whitespace and/or blank lines at EOF.
+>
+> I authorize a record-only repair on the same branch, in one bounded step:
+> 1. For every file the whitespace validator flags, either (a) normalize it (strip trailing whitespace and terminal blank lines only; no content change) with pre→post SHA-256 lineage recorded in the RunID, or (b) replace it with a gzip preimage per the established R19 pattern (store <name>.gz, record the preimage SHA-256 and byte count, delete the raw file). Choose per file by your established evidence conventions; quoted-raw exemptions already recorded in Receipt 191 stay as they are if the validator passes them.
+> 2. Touch nothing under projects/chirality-app-dev/frontend/ — the frontend tree must remain b4c73edda1fe3346815ce75449b2327c80c79bf8 so the staged R20 procedure and PROOF_REVISION cb008dc5d6aa9b249639c91f3453a18609530d0f stay valid.
+> 3. Rerun the full pre-push gate set including validate_candidate_whitespace.py --base-ref origin/main (must PASS), the receipt validator, and git diff --check; amend Receipt 191 with this repair (pre→post lineage, this authorization verbatim), commit, and push to codex/app-login-proof-r20-repair. Do not rebase, force-push, or merge.
+> Not authorized: any frontend, packaging, daemon, test, or staged-procedure change; any new proof claim.
