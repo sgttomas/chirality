@@ -5716,13 +5716,20 @@
     local-socket-permitted `npm test` once at 1,267 passed / 4 skipped with
     source and candidate diff identical.
     Full verbatim directions are in the cited RunID `CHAT_TRANSCRIPTION.md`.
+    CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-22, Ryan Tufts,
+    in-session): `APPROVE: non-rewriting merge origin/main 8deca1489a3e5921288f71d4960d555e183a6f3f into codex/app-login-proof-r18-staging, record the authorization in Receipt 189, revalidate, and push PR #623; do not merge.`
   - Pointers: content commit
     `6dbb7dfcf7f5c551adc734d7d7bf87fb6aed03f5`; branch
     `codex/app-login-proof-r18-staging`; sync merge
     `f59105ddb606bd46397c3b1aafa41b50ab4e9e8d`, parents
     `166efa82748133e90674be62304b81f8a0a8c1b4` and
     `b143444bd497eae1b1b638670a33e6df756d9084`, whose main delta contained no
-    `projects/chirality-app-dev/` path; DEL-09-04 R18
+    `projects/chirality-app-dev/` path; post-PR sync merge
+    `3871e414248097f68fc5de1b8f21d08f5d818524`, parents
+    `74d7585e100d248b4048847b1e3a1ebaa8557989` and
+    `8deca1489a3e5921288f71d4960d555e183a6f3f`; PR #622's main delta had
+    exactly one App coordination-notice path and no feature collision;
+    DEL-09-04 R18
     `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R18_ELECTRON_SUPPLY_FREEZE_AND_OFFLINE_BUILD_2026-08-22.md`;
     status beside that record; RunID root
     `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22/`;
