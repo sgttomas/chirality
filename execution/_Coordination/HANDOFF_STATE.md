@@ -73,6 +73,15 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   D-GOV-34 and D-GOV-35 Git-act SHA slots are backfilled from recorded commit,
   publication, and merge evidence. Task Management remains 19 live
   (`OPEN=11`, `DEFERRED=8`) / 108 archived.
+- Phase-0d transcribes owner approvals R3-A and R3-B into SCA-004 and drafts
+  the exact Gate-5 application append/package required by CONDITION R3-B-1.
+  Gate-5 package validation passes 64/64; the approved-candidate clean-scratch
+  and applied-state-equivalent Gate-3 lanes each pass 98/98. Gate 5 is not
+  executed: live decomposition revision 1.2, `_LATEST.md`, every folder and
+  lifecycle state, all ten held bindings, and Task Management remain unchanged
+  at 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived. The next owner acts are
+  append-byte approval, separate Gate-5 execution authorization, and later
+  pointer authority.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed

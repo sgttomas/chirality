@@ -1,0 +1,98 @@
+--- a/execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md
++++ b/execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md
+@@ -1 +1 @@
+-# Chirality Root — Software Decomposition (SCA-004 CANDIDATE v1.3)
++# Chirality Root — Software Decomposition (v1.3 — ACCEPTED CURRENT BASIS)
+@@ -6 +6 @@
+-**Revision:** v1.3 (SCA-004 Gate-3 candidate — not approved or applied) · **Date:** 2026-08-23
++**Revision:** v1.3 — ACCEPTED CURRENT BASIS · **Date:** 2026-08-23
+@@ -10,2 +10,2 @@
+-**Run:** `ROOT_V3_PHASE0C_2026-08-23/N1`; predecessor lineage `GOV-STEP4-SCA-20260729`; origin run `ROOT-STEP8-DECOMP-20260725`
+-**Amendment:** `SCA-004` exact Gate-3 candidate over accepted revision 1.2 SHA-256 `23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d`; owner Gate-3 and Gate-4 approvals are pending; no candidate byte has live effect
++**Run:** Gate-5 executed under owner authorization reference `TBD`; Git effect `TBD` (filled by a later recorded act, never inferred); application package drafted by `ROOT_V3_PHASE0D_2026-08-23/N1`; predecessor candidate run `ROOT_V3_PHASE0C_2026-08-23/N1`
++**Amendment:** `SCA-004` revision 1.3 applied from the exact Gate-3 bytes approved by owner R3-A plus the Gate-5 application append approved under reference `TBD`; Gate 4 approved by owner R3-B with CONDITION R3-B-1; Gate-5 execution authorization reference `TBD`; Git effect `TBD`
+@@ -13,5 +13,6 @@
+-> **Status: SCA-004 GATE-3 CANDIDATE — NOT APPROVED OR APPLIED.**
+-> Revision 1.2 at SHA-256
+-> `23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d`
+-> remains the accepted live basis. These candidate bytes narrow DEL-02-06 to
+-> standing semantic integration/release assurance, add six bounded PKG-02
++> **Status: SCA-004 REVISION 1.3 — ACCEPTED CURRENT BASIS.**
++> Gate 3 was approved by owner R3-A. Gate 4 was approved by owner R3-B with
++> CONDITION R3-B-1. Gate-5 was executed under owner authorization reference
++> `TBD`; Git effect `TBD`. The authorization and Git-effect slots are filled by
++> a later recorded act, never inferred. The applied revision narrows DEL-02-06
++> to standing semantic integration/release assurance, adds six bounded PKG-02
+@@ -19,3 +20,2 @@
+-> recompute the synchronized registers and telemetry. They take effect only
+-> after separate owner Gate-3 and Gate-4 approvals and a later authorized
+-> Gate-5 application. `_LATEST.md`, folders, SOWs, lifecycles, dependencies,
++> recomputes the synchronized registers and telemetry. `_LATEST.md` pointer
++> treatment pending its own authority. Folders, SOWs, lifecycles, dependencies,
+@@ -23 +23 @@
+-> unchanged.
++> unchanged by this application.
+@@ -285 +285 @@
+-assignment to DEL-02-06, and the seven SCA-004 candidate rows carry the
++assignment to DEL-02-06, and the seven applied SCA-004 rows carry the
+@@ -419 +419 @@
+-| Revision / Date | v1.3 SCA-004 candidate / 2026-08-23 |
++| Revision / Date | v1.3 applied revision 1.3 / 2026-08-23 |
+@@ -494 +494 @@
+-| OI-011 | `CLOSED_ASSIGNED_BY_D-GOV-27` | RESPONSIBILITY_UNASSIGNED | all 53 deliverables | `ResponsibleParty` is assigned to Ryan Tufts across the original 45, SCA-001 DEL-02-06, and the seven SCA-004 candidate rows. | D-GOV-27 assigned the original 45 deliverables; SCA-001 carried the assignment to DEL-02-06; SCA-004 carries the same assignment to its seven new rows, preserving complete assignment coverage across all 53 deliverables. |
++| OI-011 | `CLOSED_ASSIGNED_BY_D-GOV-27` | RESPONSIBILITY_UNASSIGNED | all 53 deliverables | `ResponsibleParty` is assigned to Ryan Tufts across the original 45, SCA-001 DEL-02-06, and the seven applied SCA-004 rows. | D-GOV-27 assigned the original 45 deliverables; SCA-001 carried the assignment to DEL-02-06; applied SCA-004 revision 1.3 carries the same assignment to its seven new rows, preserving complete assignment coverage across all 53 deliverables. |
+@@ -579 +579 @@
+-| DEC-025 | 2026-08-23 | **SCA-004 Gate-3 candidate narrows the standing runtime carrier and adds seven bounded leaf carriers.** Preserve DEL-02-06 and SOW-104 with OBJ-001/002/004/007 continuity; allocate implementation and conformance slices to DEL-02-07 through DEL-02-12 under PKG-02; add DEL-04-11 under PKG-04 as a TEST_SUITE mapped to SOW-041, SOW-053, and OBJ-003; retain every existing ID, package, scope item, objective, REQ-027 boundary, and ten-binding hold. | R2-A accepted Gate 2 drafting only. The split preserves package discipline and artifact-kind granularity, keeps all runtime work in PKG-02, separates executable receipt validation from DOC_UPDATE DEL-04-05, and creates no live authority until exact Gate-3 and Gate-4 approvals plus later Gate-5 application. |
++| DEC-025 | 2026-08-23 | **SCA-004 revision 1.3 narrows the standing runtime carrier and adds seven bounded leaf carriers.** Preserve DEL-02-06 and SOW-104 with OBJ-001/002/004/007 continuity; allocate implementation and conformance slices to DEL-02-07 through DEL-02-12 under PKG-02; add DEL-04-11 under PKG-04 as a TEST_SUITE mapped to SOW-041, SOW-053, and OBJ-003; retain every existing ID, package, scope item, objective, REQ-027 boundary, and ten-binding hold. | R3-A approved the exact Gate-3 bytes; R3-B approved Gate 4 with CONDITION R3-B-1; the application append was approved under reference `TBD`; Gate-5 execution authorization reference is `TBD`; Git effect is `TBD` and is filled by a later recorded act, never inferred. The split preserves package discipline and artifact-kind granularity, keeps all runtime work in PKG-02, and separates executable receipt validation from DOC_UPDATE DEL-04-05. |
+@@ -644,8 +644,10 @@
+-- 2026-08-23 — **SCA-004 revision 1.3 Gate-3 candidate.** Against the
+-  accepted revision 1.2 bytes, preserve DEL-02-06 as the standing
+-  semantic-integration and release-assurance carrier, add six bounded
+-  PKG-02 runtime carriers and one PKG-04 Root receipt-validator carrier,
+-  and recompute all companion mappings and telemetry. R2-A authorizes
+-  drafting only; owner Gate-3 and Gate-4 approvals and a later Gate-5
+-  application remain required. No folder, SOW, lifecycle, dependency,
+-  pointer, implementation, App truth, or held binding changes.
++- 2026-08-23 — **SCA-004 revision 1.3 applied.** Against the accepted
++  revision 1.2 bytes, preserve DEL-02-06 as the standing semantic-integration
++  and release-assurance carrier, add six bounded PKG-02 runtime carriers and
++  one PKG-04 Root receipt-validator carrier, and recompute all companion
++  mappings and telemetry. R3-A approved the exact Gate-3 bytes; R3-B approved
++  Gate 4 with CONDITION R3-B-1; the Gate-5 application append approval,
++  Gate-5 execution authorization, and Git effect are `TBD` pending their later
++  recorded acts. `_LATEST.md` pointer treatment pending its own authority. No
++  folder, SOW, lifecycle, dependency, implementation, App truth, or held
++  binding changes are part of the application.
+--- a/execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv
++++ b/execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv
+@@ -84 +84 @@
+-SOW-083,IN,"F4 - requirements drift: at the close of the first root decomposition, an accepted scope unit cannot be traced to a PRD requirement or objective, or a PRD requirement or objective has neither coverage nor a recorded deferral.",PRD §8.2 F4 [PROPOSED],PKG-04_Developmental_Machinery_and_Change_Control,DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration,,F4,DevelopmentalMachinery,,FALSE,This candidate's bidirectional traceability registers are the artifact F4 is checked against. Label effect: in effect per the D-GOV-22 adoption ruling; confirmed at the D-GOV-25 ruling (source label unchanged; F6 discipline — no label change without an instrument).
++SOW-083,IN,"F4 - requirements drift: at the close of the first root decomposition, an accepted scope unit cannot be traced to a PRD requirement or objective, or a PRD requirement or objective has neither coverage nor a recorded deferral.",PRD §8.2 F4 [PROPOSED],PKG-04_Developmental_Machinery_and_Change_Control,DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration,,F4,DevelopmentalMachinery,,FALSE,Applied revision 1.3's bidirectional traceability registers are the artifact F4 is checked against. Label effect: in effect per the D-GOV-22 adoption ruling; confirmed at the D-GOV-25 ruling (source label unchanged; F6 discipline — no label change without an instrument).
+@@ -104 +104 @@
+-SOW-103,OUT,"Adoption does not materialize anything under root execution/, does not create a root decomposition, and does not change the public-export boundary.",PRD §10.3 [TRANSCRIBED],PKG-03_Governed_Execution_Structure_and_Root_Containment,DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream,,adoption-10.3,DevelopmentalMachinery,DEC-007,FALSE,Boundary item; the present run is the decomposition candidate and accepts nothing.
++SOW-103,OUT,"Adoption does not materialize anything under root execution/, does not create a root decomposition, and does not change the public-export boundary.",PRD §10.3 [TRANSCRIBED],PKG-03_Governed_Execution_Structure_and_Root_Containment,DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream,,adoption-10.3,DevelopmentalMachinery,DEC-007,FALSE,Boundary item; applied revision 1.3 does not itself materialize any folder or change the public-export boundary.
+--- a/execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md
++++ b/execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md
+@@ -5,3 +5,5 @@
+-**Revision:** v1.3 SCA-004 Gate-3 candidate · **Date:** 2026-08-23
+-**Status:** candidate only; accepted revision 1.2 remains live until separate
+-Gate-3 and Gate-4 approvals and a later Gate-5 application.
++**Revision:** v1.3 — applied revision 1.3 · **Date:** 2026-08-23
++**Status:** applied revision 1.3; Gate 3 approved R3-A; Gate 4 approved R3-B
++with CONDITION R3-B-1; Gate-5 execution authorization reference `TBD`; Git
++effect `TBD` (filled by a later recorded act, never inferred); `_LATEST.md`
++pointer treatment pending its own authority.
+@@ -20 +22 @@
+-| Revision | v1.3 (SCA-004 Gate-3 candidate) |
++| Revision | v1.3 (applied revision 1.3) |
+@@ -126 +128 @@
+-Reverse trace is fully recomputed as the inverse of the candidate scope ledger
++Reverse trace is fully recomputed as the inverse of the applied scope ledger
+@@ -128,2 +130,2 @@
+-the candidate objective register and deliverable `SupportsObjectives`. Package
+-rows invert candidate `PackageIDs` and ledger ownership, so cross-package
++the applied objective register and deliverable `SupportsObjectives`. Package
++rows invert applied `PackageIDs` and ledger ownership, so cross-package
+@@ -162 +164 @@
+-| OI-011 | `CLOSED_ASSIGNED_BY_D-GOV-27` | Ryan Tufts assigned to all 53 deliverables: original 45 by D-GOV-27, DEL-02-06 by SCA-001, and seven SCA-004 candidate rows |
++| OI-011 | `CLOSED_ASSIGNED_BY_D-GOV-27` | Ryan Tufts assigned to all 53 deliverables: original 45 by D-GOV-27, DEL-02-06 by SCA-001, and seven applied SCA-004 rows |

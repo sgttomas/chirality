@@ -1,0 +1,27 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE0D_2026-08-23",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basis": "3da1eb38bff55deb6d08e2c5e44947fe1fb56315",
+  "nodes": [
+    {
+      "id": "N1_GATE5_PACKAGE",
+      "role": "ephemeral-agent2",
+      "dependencies": [],
+      "content_write_targets": [
+        "execution/_ScopeChange/SCA-004_2026-08-22_1749/**"
+      ],
+      "control_write_targets": [
+        "execution/_Coordination/AgentRuns/ROOT_V3_PHASE0D_2026-08-23/instances/N1_GATE5_PACKAGE/**"
+      ],
+      "return_contract": "Gate-5 draft package, validation evidence, protected-byte evidence, blockers"
+    }
+  ],
+  "human_gates": [
+    "Gate-5 application-append byte approval",
+    "Gate-5 execution authorization",
+    "_LATEST.md pointer authority"
+  ]
+}
