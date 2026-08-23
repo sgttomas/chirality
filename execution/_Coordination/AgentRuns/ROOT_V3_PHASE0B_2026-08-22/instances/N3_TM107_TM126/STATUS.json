@@ -1,0 +1,30 @@
+{
+  "instance_id": "N3_TM107_TM126",
+  "status": "COMPLETE",
+  "verdict": "PASS — ZERO ACTIONABLE FINDINGS",
+  "basis": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "brief_version": 1,
+  "agent_2_execution": {
+    "child": "children/A2_FEDERATION_ROW_ANALYSIS",
+    "status": "COMPLETE",
+    "verdict": "PASS",
+    "fan_in": "ACCEPTED_AFTER_MANAGER_REVALIDATION"
+  },
+  "closed_rows": [
+    "TM-ROOT-107",
+    "TM-ROOT-126"
+  ],
+  "live_after": 19,
+  "archive_after": 108,
+  "fresh_review": {
+    "cycle": 1,
+    "status": "COMPLETE",
+    "verdict": "PASS",
+    "actionable_findings": 0,
+    "review": "review-cycle-1/REVIEW.md",
+    "review_sha256": "1baf8e8fefd42459d1dbbdad38e0eeb5f83d87c66c815de13c52b16dc7f24b04",
+    "status_sha256": "afac7e4a454fc4fe44adf2162e511bfa6489dcd9345f98803cebd85d2ede81cd"
+  },
+  "blockers": [],
+  "return": "RETURN.md"
+}
