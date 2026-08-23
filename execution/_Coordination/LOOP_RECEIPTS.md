@@ -3711,3 +3711,434 @@ amendment; owner ruling required).
   reliance, receiving-loop adoption/register work, PR approval, and merge
   remain separately human-gated. This receipt is a discovery breadcrumb and
   creates no broader effect.
+
+### Receipt 114 — 2026-08-22 — Root v3 Phase 0 proposal, M2 preparation, and SCA-004 Gate 1
+
+- **Mode, branch, and authority:** owner-directed HELP_HUMAN run
+  ROOT_V3_PHASE0_2026-08-22 on branch
+  codex/root-v3-phase0-2026-08-22. The branch was created from local
+  main@6b0c5219b6a2653e2fc491b1d998abcf78fcf776, exactly as directed.
+  Owner steer SHA-256:
+  c348e9767db4af20787bbcb74c64791ef08d700b08dc19d86289a88a58f067e3.
+  Attached G0 record SHA-256:
+  86b9877c6bea08a9f79c2af2378d5d38722a09c1a10deb37f87211c76d2c290b.
+  The two CHAT_TRANSCRIPTION blocks below reproduce those source files
+  byte-for-byte between their BEGIN/END markers.
+- **Basis gate:** origin/main contains PR-615 merge commit
+  13201dfe7dc3b97c9aa36f6305cae604b48ef80f. Required SHA-256 values
+  reproduced: Revision 3.1 input
+  b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a;
+  round-3 review
+  447d407fe38c395d39e3481debc0d8c16317bbffe441a2c269eb194921aace95;
+  AGENTS.md
+  268becd0bac9da8421b30089e4e4167a5e5f79bf3892d0f72ad41a63180a3aeb;
+  D-GOV-14
+  9d6dd7e4fdf96219c74a6fc728f441ecc2eabbde9bc141b5cc40d909e088f74e;
+  ScopeChange _LATEST.md
+  b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1;
+  and DEL-02-03 ScopeOfWork.md
+  e3d4a4c862919acf00c777cb024f0c4f9456df25fa14448862830241d607460f.
+  Receipt 113 was the terminal Root receipt at preflight; this append creates
+  Receipt 114. The App harness blob cited by N1 remains
+  2b2d750be8fb3974593599631f64f920bc3b3fd4512640545bf1a22e61ec215c.
+- **N1 — D-GOV-35 proposal packet:** content write set was only
+  docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/;
+  commit 45eead4edf524b9b31293b4f8b8f59ec58b283d4. Folder file hashes:
+  AGENTS.proposed.patch
+  4455adda4199be5493e1f8d2171ebb4641f40666c35cf09e90adc935ff6355ee;
+  D-GOV-35.proposed.md
+  924c1b098f1510bca9189e1ac06e4c2fd8e9d358a9fc3c4e42fdd04a53b69c88;
+  IMPACT.md
+  565e651963b08f74622ca0e0d32b66d6d301c3ef95c159867b4e41a6fbd98435;
+  README.md
+  c972a3111c5eab5dfd5092210af3e8127b7270f0dfe18b78223e5c8ee1e8ef02.
+  N1 return SHA-256
+  dabe5c3826ff17801015301cb1ffec685d0fc96ffa96cf1f3178b5505949994e;
+  accepted cycle-3 review SHA-256
+  2bad195c74726c9ec203cb45a3149644536d3fe8883dba1f71d0f73b004a7c7f,
+  verdict PASS — ZERO ACTIONABLE FINDINGS. Literal git apply --check passes;
+  the patch remains inactive and AGENTS.md is byte-identical to the basis.
+  D-GOV-35 remains PROPOSED — AWAITING OWNER RULING.
+- **N2 — DEL-02-03 M2 preparation:** content write set was only
+  execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_run_records/DEL-02-03-M2-PREP-001/;
+  commit d329529cf07e255415edef0f2d3f3ceee357d5c1. Draft-manifest SHA-256
+  59f0ed42ce498a6d3fbed9148b70691a0e4ceda49e37c890ed8391c4861ef7da;
+  its basis 13201dfe7dc3b97c9aa36f6305cae604b48ef80f resolves as Git type
+  commit. The exact AGENTS.md delta is referenced only through the N1 patch
+  hash; App/Piping notices remain drafts in the run folder. N2 return SHA-256
+  3ac4e6356e21f0b2f680bcb1ed09fc4d04c57ef944195b3e9e80f4cb212c6047;
+  fresh-review SHA-256
+  6a22c65fed127115889eb95996fa912ba158ff49690f606fa1aab58939cf723b,
+  verdict PASS — ZERO ACTIONABLE FINDINGS. Status remains PREPARED — BLOCKED
+  ON D-GOV-35 RULING; DEL-02-03 _STATUS.md is untouched.
+- **N3 — SCA-004 Gate-1 assessment:** content write sets were only
+  execution/_ScopeChange/SCA-004_2026-08-22_1749/ and
+  execution/_Coordination/NOTICE_2026-08-22_ROOT_SCA-004_V3_RELEASE_PATHWAY_DAG.md;
+  commit 7590c002b1dc9399e95029d51551895bb700b302. WORK_GRAPH.json SHA-256
+  86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9;
+  AUDIT_DEP_CLOSURE return SHA-256
+  14e131fe90a725b3520efb2e2e90fcfedbf8f1898188859b421ea6e4c7460c71,
+  verdict PASS; AUDIT_DECOMP return SHA-256
+  d40132740638ff055403ee0ae143a382edd10e843ed94161535ea7e3241f42fd
+  with coverage-summary SHA-256
+  2210e77f989f29c11e005d7fe89944e2e0f0fe265e0a514f53042aaa89de9e45;
+  App notice SHA-256
+  0a6f3e34f833fd43ab0c417910e5aa61e1afe97c335221ae1a82ac599e8bb715.
+  N3 return SHA-256
+  5163e1737bead5ddc3c4b201e4cf2434db6ca897c2d15f97b630acc3dff12d2a;
+  accepted cycle-2 review SHA-256
+  0e8d7cacb1e9b24806249ec2f59ec2061f838271cac501b3ecdeaca85b69a6a7,
+  verdict PASS. SCA-004 remains AWAITING_OWNER_ACCEPTANCE; Gate 2 is closed
+  and _LATEST.md is byte-identical to the basis.
+- **Repair and review discipline:** N1 required two bounded repairs and three
+  fresh review cycles; N3 required one bounded repair and two fresh review
+  cycles; N2 passed its first fresh review. All repair amendments, sealed
+  briefs, returns, reviews, and parentage are retained under
+  execution/_Coordination/AgentRuns/ROOT_V3_PHASE0_2026-08-22/. No node write
+  set widened.
+- **Authorized current-main sync:** after node work began, origin/main advanced
+  to 166efa82748133e90674be62304b81f8a0a8c1b4. HELP_HUMAN stopped and obtained
+  the owner's exact authorization: “I authorize you to fetch and merge the
+  latest origin/main into this branch, then complete Receipt 114, validation,
+  push, and PR creation without merging the PR.” CHANGE fetched that exact
+  SHA, found 34/34 incoming paths App-owned with zero Root overlap, and merged
+  without conflict at 0bd042e5299c81301cc726bc54eea265285b4159
+  (parents 7590c002b1dc9399e95029d51551895bb700b302 and
+  166efa82748133e90674be62304b81f8a0a8c1b4). All node commits remain
+  ancestors and all protected Root hashes reproduce.
+- **Task Management and handoff:** the live and archived registers are
+  unchanged at 21 live (OPEN=13, DEFERRED=8) / 106 archived; SHA-256 values
+  cd0f1b96c500bcf7bc0886a0d5d20459129b10a86b4f106798a560432adcb5e9
+  and c05a15d4886ca57dba8460f85be196f239cccf5a1b2394748f1ae90ec91e686c.
+  execution/_Coordination/HANDOFF_STATE.md now records this run's accepted
+  proposal/preparation/assessment state and unchanged counts. Candidate
+  harvest was unnecessary because N3's Task_Management_Harvest.csv contains
+  the scoped dispositions/blocked carry-forwards and the live register was a
+  prohibited write surface.
+- **Validation:** the integrated pre-receipt pass recorded: candidate
+  whitespace clean; agent instructions 34 files / 0 errors / 0 warnings;
+  instruction entrypoints PASS; 42 live instruction-tranche manifests
+  schema-valid; the N2 draft direct validate_manifest result failures=[] with
+  its expected pending-M6 INFO; Task Management register PASS, 21 rows;
+  inactive proposal git apply --check PASS; git diff --check PASS.
+  The full set then passed again after the Receipt 114, Root handoff, run
+  handoff, publication-control, and validation-evidence bytes were present:
+  all eight required commands exited 0 with the same results. Exact command
+  outputs are retained in
+  execution/_Coordination/AgentRuns/ROOT_V3_PHASE0_2026-08-22/FINAL_VALIDATION.md,
+  SHA-256
+  281715b71990c49d4ef942c3adb7a012904800121eec94d819109ef53295fefe.
+  Receipt uniqueness, both transcription hashes, run JSON parsing, protected
+  identities, and the PR-615 ancestor/type check also pass.
+- **Git publication:** the validated branch was pushed normally and ready PR
+  #620 was opened against main:
+  https://github.com/sgttomas/chirality/pull/620. PR title is “Root v3 Phase
+  0: D-GOV-35 proposal, DEL-02-03 prep, and SCA-004”; initial PR head was
+  merge commit 0bd042e5299c81301cc726bc54eea265285b4159. Receipt 114, the
+  updated Root handoff, and closeout-control evidence are appended to that
+  same PR in the final closeout commit. No approval, auto-merge, or merge was
+  performed.
+- **Gate and no-effect boundary:** this tranche creates governed proposal,
+  preparation, assessment, audit, and coordination evidence only. It does not
+  amend AGENTS.md, agents/**, docs/CONTRACT.md, docs/PRD_ROOT.md,
+  docs/SPEC.md, docs/TYPES.md, any deliverable _STATUS.md, ScopeChange
+  _LATEST.md, DEL-02-06, runtime/**, project source, plans, tools, or pins.
+  D-GOV-35 requires an owner ruling; SCA-004 requires owner acceptance;
+  TM-ROOT-106 and TM-ROOT-122 remain separate G1 blockers; all ten DEL-02-06
+  bindings remain HELD_UNAVAILABLE. No implementation, lifecycle promotion,
+  release, reliance, receiving-loop adoption, PR approval, or merge is
+  inferred or authorized by this receipt.
+
+#### CHAT_TRANSCRIPTION — Root v3 Phase-0 owner steer
+
+Source: plans/steers/chirality_app_v3_phase0_steer_root_2026-08-22.md
+
+SHA-256: c348e9767db4af20787bbcb74c64791ef08d700b08dc19d86289a88a58f067e3
+
+<!-- BEGIN RECEIPT-114 STEER VERBATIM -->
+# STANDING DIRECTION — Root governance loop — v3 release pathway, Phase 0 (WP-01 Root half)
+
+> **Plans-folder status:** ACTIVE owner-carried steer — non-governing. Owner: Ryan Tufts. Scope: Root Phase 0 of the v3 release pathway. Target workspace: Root governance loop. Paste together with `plans/steers/chirality_app_v3_g0_record_2026-08-22.md`.
+
+
+Owner-carried steer, drafted by HELP_HUMAN 2026-08-22 and updated with the
+owner's G0 rulings of the same day. Paste whole, together with the attached
+`plans/steers/chirality_app_v3_g0_record_2026-08-22.md`. Transcribe both verbatim into the closeout receipt as
+CHAT_TRANSCRIPTION. The G0 record is the owner's direction of record; where it
+is marked AMENDS PLAN it supersedes Revision 3.1's text.
+
+## Basis gate (check before any write; stop and report if any line fails)
+
+- `origin/main` contains merge commit `13201dfe7dc3b97c9aa36f6305cae604b48ef80f` (PR #615).
+- `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` SHA-256
+  `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a` (Revision 3.1,
+  non-governing; input, never authority).
+- `plans/chirality_app_v3_release_plan_review_round_3_2026-08-22.html` SHA-256
+  `447d407fe38c395d39e3481debc0d8c16317bbffe441a2c269eb194921aace95`.
+- `AGENTS.md` SHA-256 `268becd0bac9da8421b30089e4e4167a5e5f79bf3892d0f72ad41a63180a3aeb`.
+- `docs/governance_harness/_DECISIONS/D-GOV-14_pr188_review_closure.md` SHA-256
+  `9d6dd7e4fdf96219c74a6fc728f441ecc2eabbde9bc141b5cc40d909e088f74e`.
+- `execution/_ScopeChange/_LATEST.md` SHA-256
+  `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1`
+  (latest applied snapshot SCA-002; SCA-003 closed zero-action) — SCA-004 is the next ID.
+- Last Root receipt is 113. This tranche writes Receipt 114.
+- `plans/steers/chirality_app_v3_g0_record_2026-08-22.md` is present in the paste; its SHA-256 is recorded in the receipt.
+
+## Objective
+
+Create the governed Root basis for the v3 release pathway without lifting any
+hold: a D-GOV proposal packet for the delegated-harness-native delegation class,
+a DEL-02-03 M2 tranche *preparation*, and the SCA-004 Gate-1 assessment carrying
+the refreshed objective-relative DAG. Nothing in this tranche amends
+`AGENTS.md`, `docs/CONTRACT.md`, `docs/PRD_ROOT.md`, any deliverable `_STATUS.md`,
+the `_LATEST.md` pointer, or DEL-02-06. The ten `HELD_UNAVAILABLE` bindings
+(plan §8.3) remain held.
+
+## Nodes (N=3, write-disjoint; Agent 2 instances with sealed briefs under `execution/_Coordination/AgentRuns/ROOT_V3_PHASE0_2026-08-<DD>/instances/<NODE>/`)
+
+### N1 — HELPS_HUMANS: D-GOV-35 proposal packet (delegated-harness-native class)
+Write target: `docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-<DD>_delegated_harness_native_class/` only.
+Produce:
+- `README.md` — status `PROPOSED — AWAITING OWNER RULING`, SHA table of every file in the folder.
+- `D-GOV-35.proposed.md` — decision text that (a) supersedes D-GOV-14 item 7's
+  "managed child sessions are the sole executable app-harness delegation path"
+  by adding a second class, *delegated-harness-native* (Codex App Server
+  descendants inside the hard outer envelope), (b) preserves managed children
+  as the sole *Chirality-managed* path, (c) permits untyped primary native entry
+  (G0 A1), (d) states native descendants are not automatically Agent 2 (G0 A2),
+  (e) records the **parity requirement**: Agent 0/1/2 role entry is always
+  offered for Codex sessions, and when G-ROLE cannot mechanically prove
+  non-delegation the explicit Agent 2/TASK mode is still offered, labelled
+  "role not mechanically enforced", with its governed-workflow evidence marked
+  instruction-asserted — i.e. for this class K-SUBAGENT non-delegation is
+  instruction+config asserted, not mechanism-proven (G0 A3, verbatim owner text
+  quoted in the proposal), (f) resolves TM-ROOT-126's prose-concordance concern
+  against `docs/WORKFLOW_COMPONENT_STANDARD.md` in the same text, (g) names
+  K-SUBAGENT-1/2/3, the D-APP-68 transcription, DEL-08-04's SOW, and
+  `projects/chirality-app-dev/frontend/src/lib/harness/subagent-governance.ts:205-213`
+  (blob SHA-256 `2b2d750be8fb3974593599631f64f920bc3b3fd4512640545bf1a22e61ec215c`)
+  as the surfaces the ruling would touch — the code change is App WP-06 work and
+  is *not* made here.
+- `AGENTS.proposed.patch` — inactive zero-context patch to the "Delegation and
+  Entry Rules" section of `AGENTS.md` (heading at line 80) at the SHA above.
+  Must pass `git apply --check` and must NOT be applied.
+- `IMPACT.md` — conformance statement against `docs/WORKFLOW_COMPONENT_STANDARD.md`
+  and `docs/DECOMPOSITION_STANDARD.md`; list of downstream pinned/mirrored
+  surfaces per the agent-index change-notice rule (corpus snapshots and
+  SHA-pinned mirrors in App and Piping).
+Check surface: `git apply --check` passes; `AGENTS.md` byte-identical to basis;
+`tools/validation/validate_agent_instructions.py` and
+`tools/validation/validate_instruction_entrypoints.py` pass unchanged;
+`tools/validation/validate_candidate_whitespace.py --base-ref origin/main` clean.
+
+### N2 — DEL-02-03 M2 tranche preparation
+Write target: `execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_run_records/DEL-02-03-M2-PREP-001/` only.
+Produce a preparation package (no lifecycle change, no `AGENTS.md` write):
+- draft instruction-tranche manifest with `basis` = `13201dfe7dc3b97c9aa36f6305cae604b48ef80f`;
+  verify it resolves as a commit with `git cat-file -t` and say so (TM-ROOT-127);
+- the exact `AGENTS.md` delta *by reference to N1's patch SHA* (no duplicated bytes);
+- draft routed notices to the App and Piping coordination surfaces stating what
+  would change in `AGENTS.md` and the follow-on each loop would carry (drafts
+  stay inside this run folder; routed only after the D-GOV-35 ruling);
+- the validator list the application tranche must run;
+- `HANDOFF_STATE.md` with status `PREPARED — BLOCKED ON D-GOV-35 RULING`.
+Check surface: `tools/validation/validate_instruction_tranche_manifest.py` on the
+draft manifest; DEL-02-03 `ScopeOfWork.md` SHA-256 still
+`e3d4a4c862919acf00c777cb024f0c4f9456df25fa14448862830241d607460f`; `_STATUS.md` untouched.
+
+### N3 — SCOPE_CHANGE: SCA-004 Gate-1 assessment + release-pathway DAG
+Write targets: `execution/_ScopeChange/SCA-004_2026-08-<DD>_<HHMM>/` and one notice
+`execution/_Coordination/NOTICE_2026-08-<DD>_ROOT_SCA-004_V3_RELEASE_PATHWAY_DAG.md`.
+Produce (assessment only; `_LATEST.md` untouched; status `AWAITING_OWNER_ACCEPTANCE`):
+- `Brief.md`, `Impact_Assessment.md` covering the plan's Root-side items as
+  amended by the G0 record: Root/App K-CONTROL-1 second purpose-limited socket;
+  K-ROLE-2 role-posture digest; K-NET-1 enumerated OpenAI service endpoints
+  **plus the three per-root command-network postures (G0 A7)**; Root runtime API
+  v2 (attributed approval request/decision, managed-network prompts routed with
+  the grouping caveat — no longer denied); HarnessEvent schema v2 closed union
+  with four terminals; `DelegatedHarnessProcessSupervisorPort`,
+  `WorkerRetirementCoordinatorPort`, `HostedEngineConsentPort`; **restart
+  semantics per G0 A4: terminalize active turns, `thread/resume` under
+  root/account/policy-digest continuity, fresh thread otherwise** (dispositions
+  TM-ROOT-108); `runtime/packages/cli/src/launch-agent.ts` two-job renderer
+  (dispositions TM-ROOT-042's bundling question as carried to G-HELPER per
+  G0 B2); a Root loop receipt validator (none exists — scope it); the
+  `source_identity` binding at G0.5 (dispositions TM-ROOT-035); TM-ROOT-107 as
+  the ancestor concern this SCA answers; DEL-02-06 ten-binding matrix keyed by
+  SOW REQ-027 and its exclusion block; TM-ROOT-106 and TM-ROOT-122 named as
+  G1 blockers only (G0 B4 — no pin amendment here).
+- `WORK_GRAPH.json` + `DAG.md`: objective-relative dependency graph for the
+  release pathway over Root deliverables, with cross-loop edges to App as
+  *notice edges* (never foreign writes). List every SCC with a proposed move
+  (decompose / invert / merge / cut; cut/merge flagged human-gated);
+  cycle-participating edges non-gating until resolved (`docs/CYCLE_DRIVEN_RESOLUTION.md`).
+- Dispatch `AUDIT_DEP_CLOSURE` over the graph; include its return.
+- `Handoff_State.md` in the SCA-003 four-state form.
+- The routed notice to App: names the notice edges, the held-binding matrix,
+  the G0 amendments App must mirror (A3/A4/A7), and that SCA-APP-008 is expected
+  to reciprocate; coordination, not authority.
+Check surface: `WORK_GRAPH.json` parses; every node id resolves to a live Root
+deliverable folder or a named App notice edge; AUDIT_DEP_CLOSURE return present
+with verdict; `execution/_ScopeChange/_LATEST.md` SHA unchanged.
+
+## Not selectable in this tranche
+`AGENTS.md`, `agents/**`, `docs/CONTRACT.md`, `docs/PRD_ROOT.md`, `docs/SPEC.md`,
+`docs/TYPES.md`, any `_STATUS.md`, `execution/_ScopeChange/_LATEST.md`,
+`execution/_Coordination/_TaskManagement/REGISTER.csv` (candidates go in a
+harvest file only), `execution/PKG-02_*/1_Working/DEL-02-06_**`, `runtime/**`,
+`projects/**`, `plans/**`, `tools/**`, `.github/**`. No spike execution, no
+artifact download (G0 C1 is not yet granted), no pin changes (G0 B4), no
+sync/rebase without owner authorization, no merge.
+
+## Failure rule
+Unlimited repair with fresh re-review per node. A node that cannot complete
+returns its handoff state with blockers instead of narrowing silently. Never
+widen a node's write set; if a needed write falls outside it, report and stop
+that node.
+
+## Closeout
+One tranche, one branch `codex/root-v3-phase0-2026-08-<DD>`, one PR to `main`,
+commits in dependency order N1 → N2 → N3. Append Receipt 114 to
+`execution/_Coordination/LOOP_RECEIPTS.md` after the fact, in-PR, with: this
+steer and `plans/steers/chirality_app_v3_g0_record_2026-08-22.md` as CHAT_TRANSCRIPTION (record its SHA-256);
+per-node write sets; every cited SHA/commit; validator outputs;
+`execution/_Coordination/HANDOFF_STATE.md` counts updated. Run before pushing:
+`validate_candidate_whitespace.py --base-ref origin/main`,
+`validate_agent_instructions.py`, `validate_instruction_entrypoints.py`,
+`validate_instruction_tranche_manifest.py` (N2 draft), `tools/taskmgmt/taskmgmt.py
+validate --register execution/_Coordination/_TaskManagement/REGISTER.csv`.
+Do not merge. If `main` advances, request sync authorization from the owner
+and record it in the receipt. HELP_HUMAN byte-verifies before endorsement.
+<!-- END RECEIPT-114 STEER VERBATIM -->
+
+#### CHAT_TRANSCRIPTION — G0 owner-ruling record
+
+Source: plans/steers/chirality_app_v3_g0_record_2026-08-22.md
+
+SHA-256: 86b9877c6bea08a9f79c2af2378d5d38722a09c1a10deb37f87211c76d2c290b
+
+<!-- BEGIN RECEIPT-114 G0 VERBATIM -->
+# G0 RECORD — Chirality App v3.0.0-rc.1 — owner rulings of 2026-08-22
+
+> **Plans-folder status:** ACTIVE owner-ruling record — non-governing transcription source. Owner: Ryan Tufts. Scope: Chirality App v3.0.0-rc.1 G0 decisions. Target workspaces: Root governance loop and App-dev loop (transcribed into their receipts). Supersedes nothing; the loops' instruments govern.
+
+
+Ruled by Ryan Tufts (K-AUTH-1) in the HELP_HUMAN session minder chat on
+2026-08-22, against Revision 3.1
+(`plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html`,
+SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`,
+main `13201dfe7dc3b97c9aa36f6305cae604b48ef80f`). Where the owner typed text it
+is quoted verbatim; "[click]" marks a selected slate option. Items marked
+AMENDS PLAN supersede the plan's text for the loops; the SCAs carry the change.
+
+A1 — Native Codex delegation: [click] "Required, no Chirality cap" — enabled for
+  untyped / Agent 0 / Agent 1 primaries; no child allowlist, fan-out cap, model
+  allocation or scheduling by Chirality; upstream/account limits apply.
+
+A2 — Native-descendant classification: [click] "Not automatically Agent 2".
+
+A3 — Explicit Codex Agent 2/TASK entry when G-ROLE cannot mechanically prove
+  non-delegation: [click] "Offer, labelled". Owner text: "I understand the
+  predicament, but I can also enforce within my local config file what the max
+  number of agents can be in Codex. I understand I'm losing some control and
+  potentially contradicting claims the project makes about itself, but that's a
+  price I can pay because Codex is both very reliable and the external config is
+  something reasonable to ask of a user (at this point in the product's
+  development). But it's very important that I be able to perform the full
+  Agent 0/1/2 functionality through the Codex App Session so that it can be
+  close to parity with native Chirality agents. So my choice would be something
+  like outcome 2."
+  Recorded form (AMENDS PLAN §5.3 "G0 failure pre-decision"): Agent 0/1/2 role
+  entry is always offered for Codex sessions (parity requirement). If G-ROLE
+  fails, the Agent 2/TASK mode is still offered, labelled "role not
+  mechanically enforced"; evidence from such sessions is marked
+  instruction-asserted for governed workflows (plan §5.3 "conformance
+  consequence"); D-GOV-35 states that for the delegated-harness-native class
+  K-SUBAGENT non-delegation is instruction+config asserted, not
+  mechanism-proven; hard filesystem/network/process containment is unchanged.
+  Note: the owner's user-level `~/.codex` config does not reach root-private
+  homes (A9); the equivalent controls live in Chirality's per-worker overlay.
+
+A4 — Restart semantics: owner text: "It seems that restart or re-attach is
+  something the Codex App Server offers? If so, let's incorporate it. If not,
+  then I agree with your recommendation here." Fact recorded: App Server offers
+  `thread/resume` / `thread/fork` over persisted JSONL rollouts; no in-flight
+  turn re-attach is documented. [click] confirmed final form (AMENDS PLAN §4.2
+  "Fresh recovery", AT-036, F-14): active turns terminalize on retirement or
+  crash; after restart the next action resumes the stored thread via
+  `thread/resume` when canonical root, account identity, and policy digest match
+  (cwd fixed to the canonical root); otherwise a fresh thread. No in-flight
+  re-attach claim.
+
+A5 — App Sandbox: [click] "Decline App Sandbox" — hardened runtime + Developer
+  ID + notarization only.
+
+A6 — G-SBX workspace-write failure: owner text: "Proceed as recommended now.
+  This sandboxing has been vexing in the past for other matters. Let's try to
+  work through it adhering as closely as possible to the intent of what I was
+  trying to achieve." Recorded form (AMENDS PLAN §6.2 third paragraph): repair
+  first under the unlimited-repair rule; if the exact pin is proven incapable of
+  expressing the envelope, return to the owner with the evidence for a decision
+  then. No pre-authorized read-only fallback.
+
+A7 — Command-network posture: [click] "Per-root consent, 3 postures" (AMENDS
+  PLAN §5.4 last paragraph, §6.2, G-APPR, AT-020, V3-05, K-NET-1 amendment
+  text): each canonical root chooses under consent (1) no command network
+  [default]; (2) ask per destination — managed-network prompts
+  (`networkApprovalContext`) routed through Root API v2 showing host/protocol
+  with the stated caveat that a grant may unblock queued requests to the same
+  destination, `acceptForSession` allowed only as an explicit user act; (3)
+  command network on (`network_access = true`), labelled. G-APPR must prove
+  prompt delivery and observe grouping empirically at the exact pin.
+
+A8 — Posture label: [click] "Opt-in Preview".
+
+A9 — Codex operational home: [click] "Root-private app-owned home" — per-root
+  `CODEX_HOME`; login per root unless G3 proves safe keyring reuse; ambient
+  `~/.codex` not read.
+
+B1 — TM-APP-025: [click] "macOS arm64 only; 2nd target deferred" — second
+  deployment target carried to a post-rc.1 scope change; row closes
+  RESOLVED_BY_DECISION when SCA-APP-008 applies.
+
+B2 — TM-APP-030 (bundle identity): owner text: "Let it resolve at G-HELPER."
+
+B3 — TM-APP-027/028/032: owner text: "Okay." — retain DEFERRED; not fired;
+  expected to fire at G6a–G7 when `release_act` completes the binding manifest.
+
+B4 — Pin drift (TM-ROOT-106 Pi 0.82.0; TM-ROOT-122 Electron 43.2.0): [click]
+  "Defer; resolve at G1 separately" — routine Task Management; the plan's
+  "resolve before G1 / AT-039" stays a named blocker; SCA-004 / SCA-APP-008 do
+  NOT carry pin amendments.
+
+B5 — Root rows: owner text: "I agree with your proposal." — D-GOV-35 resolves
+  TM-ROOT-126; the DEL-02-03 M2 draft manifest honours TM-ROOT-127; SCA-004
+  dispositions TM-ROOT-035, 042, 107, 108 (and names 106/122 as G1 blockers
+  per B4). TM-ROOT-037/039/040/041/104/111/113/114/115/118/119/120/123 are
+  untouched.
+
+C1 — App Server 0.149.0 artifact download: not yet authorized (requested with
+  the second Root steer).
+
+C2 — WP-00 / DEL-09-04 proof: owner text: "Agreed, I'll execute that sequence
+  first before any of this planned work impedes." No frontend writes until the
+  capture or an explicit deferral is transcribed.
+
+D1 — D-APP-74: owner text: "No I think I may have made a mistake with D-APP-74
+  excluding multi-child execution. The Agent 0/1/2 posture described in the
+  root AGENTS.md is what I want and requires that multi-child execution be
+  possible." then "I agree with your proposal." Recorded form: the D-APP-74
+  exclusion is tranche-scoped to SCA-APP-004; SCA-APP-008 authorizes
+  multi-child managed execution and the root AGENTS.md Agent 0/1/2 graph as App
+  capabilities for the v3 carriers (DEL-08-04 / DEL-08-05 amendments),
+  prospectively superseding that exclusion for those carriers; no retroactive
+  edit of D-APP-74.
+
+D2 — F-APP-2 / D-APP-97: owner text: "Yes, keep F-APP-2 active through
+  preparation and only list at G6a with exact candidate."
+
+D3 — D-APP-103: owner text: "I agree with your proposal." — SCA-APP-008 records
+  "defers": the per-attempt decision-replay packet is prepared after
+  SCA-APP-008 is applied so it covers both descendant classes once; one
+  sentence in the assessment, no new instrument.
+<!-- END RECEIPT-114 G0 VERBATIM -->

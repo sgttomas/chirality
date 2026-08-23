@@ -53,6 +53,13 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   closure/archive of `TM-ROOT-124`, producing the current 21 live
   (`OPEN=13`, `DEFERRED=8`) / 106 archived state. No D-APP-48 successor
   identity was accepted.
+- Receipt 114 records Root v3 Phase-0 node fan-in on PR #620: a proposed
+  D-GOV-35 packet, blocked DEL-02-03 M2 preparation, and SCA-004 Gate-1
+  assessment. It changes no Task Management row, so the current counts remain
+  21 live (`OPEN=13`, `DEFERRED=8`) / 106 archived. The owner-authorized
+  current-main merge is
+  `0bd042e5299c81301cc726bc54eea265285b4159`; the three node commits remain
+  its ancestors.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -79,12 +86,11 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   support and run evidence for the first triage; not current state.
 - Public export under `exports/chirality-app/` — stale derivative,
   deferred to the next export release (posture unchanged since SCA-002).
-- Current Root Task Management decision support under
-  `execution/_Coordination/_TaskManagement/`: TM-ROOT-116 is now archived
-  `RESOLVED_WITH_CHANGE` against the exact live Step-0 workplan bytes;
-  TM-ROOT-126/-127 are attention-only OPEN rows; and the current session
-  report prepares, but does not rule, promotion of trigger-fired TM-ROOT-035
-  and TM-ROOT-042. The report is derivative closeout support, not authority.
+- Current Root Task Management state under
+  `execution/_Coordination/_TaskManagement/`: TM-ROOT-116 and TM-ROOT-124
+  are archived `RESOLVED_WITH_CHANGE`; TM-ROOT-035/-042 are OPEN without
+  disposition; TM-ROOT-126/-127 are attention-only OPEN rows. Receipt 114
+  changes none of those rows.
 - `EVIDENCE_PIN_CLASS_CLOSURE_2026-08-09.md` is derivative audit evidence for
   the owner-ruled `TM-ROOT-109`/`TM-ROOT-121` mechanical re-pins. Its
   class-complete sweep found 11 exact-path-resolvable single-hash rows: 11
@@ -102,6 +108,13 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   exact-byte act; orchestration, validation, and receipt surfaces remain
   derivative evidence. Historical App DEL-09-06 instruction-root evidence
   and the D-APP-86 parity baseline remain immutable historical evidence.
+- `AgentRuns/ROOT_V3_PHASE0_2026-08-22/` is the current Root v3 Phase-0
+  derivative run package. The D-GOV-35 proposal folder is not a decision; the
+  DEL-02-03 M2 folder is draft preparation blocked on owner ruling/application
+  authority; SCA-004 is a Gate-1 assessment awaiting owner acceptance.
+  ScopeChange `_LATEST.md` remains unchanged. The public-export projection is
+  still stale and explicitly deferred to the later authorized instruction-
+  application handoff.
 
 ## 3. Closure verdict
 
@@ -205,6 +218,16 @@ TM-ROOT-124 is archived `RESOLVED_WITH_CHANGE`. TM-ROOT-126/127 remain OPEN
 and unassigned. No implementation, release, publication, reliance, foreign-
 register act, artifact-proof label, or merge is created.
 
+`2026-08-22 ROOT V3 PHASE-0 PREPARATION COMPLETE — PR #620 OPEN; GOVERNANCE
+GATES REMAIN.` Receipt 114 records the independently reviewed N1/N2/N3
+outputs and the owner-authorized current-main merge. D-GOV-35 remains
+`PROPOSED — AWAITING OWNER RULING`; DEL-02-03 M2 application is blocked on
+that ruling and separate application authority; SCA-004 remains
+`AWAITING_OWNER_ACCEPTANCE` with Gate 2 closed. AGENTS.md, every deliverable
+`_STATUS.md`, ScopeChange `_LATEST.md`, DEL-02-06, all pins, and all ten
+`HELD_UNAVAILABLE` bindings are unchanged. PR review and merge remain human
+acts; the session performs neither.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -260,3 +283,13 @@ do not implement, cut over, promote lifecycle, release, publish, or rely by
 inference. TM-ROOT-126/-127 await ordinary owner triage. PR #607 remains at
 the human merge gate. Any post-PR main sync requires explicit owner
 authorization; no sync or merge is authorized by Receipt 113.
+
+For Receipt 114, a future owner ruling on D-GOV-35 must precede any
+instruction application or notice routing; a separate authorized M2 tranche
+must finalize the live manifest and documentary concordance. A future owner
+acceptance of SCA-004 Gate 1 must precede Gate 2 and any `_LATEST.md` pointer
+update. TM-ROOT-106/-122 remain independent G1 pin blockers. Rerun the full
+instruction/entrypoint/manifest/whitespace/register suite after any later
+base, proposal, application, or SCA byte change. PR #620 remains at the human
+review/merge gate; do not infer adoption, implementation, lifecycle,
+release, reliance, or merge.

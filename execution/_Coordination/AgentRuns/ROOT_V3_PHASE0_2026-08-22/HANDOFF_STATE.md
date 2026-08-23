@@ -2,7 +2,7 @@
 
 Run ID: `ROOT_V3_PHASE0_2026-08-22`
 
-State: `NODE_FAN_IN_ACCEPTED — PUBLICATION BLOCKED ON OWNER SYNC AUTHORIZATION`
+State: `NODE_FAN_IN_ACCEPTED — PR #620 OPEN; GOVERNANCE GATES REMAIN`
 
 ## Accepted upstream state
 
@@ -24,6 +24,14 @@ State: `NODE_FAN_IN_ACCEPTED — PUBLICATION BLOCKED ON OWNER SYNC AUTHORIZATION
   `5163e1737bead5ddc3c4b201e4cf2434db6ca897c2d15f97b630acc3dff12d2a`;
   accepted cycle-2 review SHA-256:
   `0e8d7cacb1e9b24806249ec2f59ec2061f838271cac501b3ecdeaca85b69a6a7`.
+- Owner-authorized current-main merge:
+  `0bd042e5299c81301cc726bc54eea265285b4159`, with parents N3
+  `7590c002b1dc9399e95029d51551895bb700b302` and
+  `origin/main@166efa82748133e90674be62304b81f8a0a8c1b4`. Incoming paths were
+  34/34 App-owned with zero Root overlap.
+- Final integrated validation evidence:
+  `FINAL_VALIDATION.md`, SHA-256
+  `281715b71990c49d4ef942c3adb7a012904800121eec94d819109ef53295fefe`.
 
 ## Derivative-package status
 
@@ -44,16 +52,18 @@ Node production and fresh-review fan-in: `COMPLETE`.
 
 Governance/lifecycle closure: `NOT ENTERED`.
 
-Publication closeout: `BLOCKED`. During execution, `origin/main` advanced from
-the authorized basis to `166efa82748133e90674be62304b81f8a0a8c1b4`. No sync,
-rebase, push, PR, or merge has been performed. The owner steer requires
-explicit sync authorization before publication can proceed.
+Publication closeout: `COMPLETE TO PR REVIEW GATE`. The owner explicitly
+authorized the current-main sync, push, and PR creation. The branch was merged
+without conflict, pushed normally, and opened as ready PR #620:
+`https://github.com/sgttomas/chirality/pull/620`. Receipt 114 and the final
+Root handoff are included in its closeout commit. No PR approval, auto-merge,
+or merge was performed.
 
 ## Holds and remaining blockers
 
-1. Owner sync authorization is required before bringing the branch onto the
-   current `main` line and performing the final Receipt 114 / PR closeout.
-2. D-GOV-35 remains `PROPOSED — AWAITING OWNER RULING`.
+1. D-GOV-35 remains `PROPOSED — AWAITING OWNER RULING`.
+2. DEL-02-03 M2 application requires that ruling and separate application
+   authority.
 3. SCA-004 remains `AWAITING_OWNER_ACCEPTANCE`; Gate 2 is closed.
 4. All ten DEL-02-06 `HELD_UNAVAILABLE` bindings remain held.
 5. TM-ROOT-106 and TM-ROOT-122 remain separate G1 blockers; no pin amendment
@@ -61,18 +71,17 @@ explicit sync authorization before publication can proceed.
 
 ## Rerun requirements
 
-- After any owner-authorized sync, reproduce every basis/protected-surface
-  identity that the new base can affect and fresh-review any semantic conflict.
-- Run the full owner-specified closeout validator set against the integrated
-  candidate before push.
-- Append Receipt 114 only after the node commits are known, transcribe the
-  complete steer and G0 record byte-for-byte, record sync authority and
-  validator outputs, and update the owning Root handoff counts/state.
-- Do not merge. Owner review remains the final Git gate.
+- After any later base or candidate-byte change, reproduce every protected
+  identity and rerun the complete validator set.
+- If D-GOV-35 is ruled, separately authorize and execute the M2 application;
+  finalize documentary concordance, route notices, and regenerate or
+  explicitly defer the Root-owned public-export derivative.
+- If SCA-004 Gate 1 is accepted, enter Gate 2 only through SCOPE_CHANGE and
+  update `_LATEST.md` only when that workflow permits.
+- Do not merge PR #620 in-session. Owner review remains the final Git gate.
 
 ## Next lawful owner
 
-Ryan Tufts decides whether HELP_HUMAN may sync this accepted preparation branch
-to the advanced `main`. If authorized, HELP_HUMAN resumes byte verification and
-routes Git publication through CHANGE; otherwise this handoff remains the
-durable stopped state.
+Ryan Tufts is the next lawful owner for the D-GOV-35 ruling, SCA-004 Gate-1
+acceptance, and PR #620 review/merge decision. Each is an independent gate;
+none is inferred from preparation or validator success.

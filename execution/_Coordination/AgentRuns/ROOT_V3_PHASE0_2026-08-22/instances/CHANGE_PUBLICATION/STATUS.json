@@ -1,0 +1,32 @@
+{
+  "run_id": "ROOT_V3_PHASE0_2026-08-22",
+  "instance": "CHANGE_PUBLICATION",
+  "role": "CHANGE",
+  "status": "COMPLETE",
+  "branch": "codex/root-v3-phase0-2026-08-22",
+  "head": "0bd042e5299c81301cc726bc54eea265285b4159",
+  "remote_preflight": {
+    "origin_main": "166efa82748133e90674be62304b81f8a0a8c1b4",
+    "origin_main_matches_merge_second_parent": true,
+    "remote_branch_existed_before_publication": false,
+    "existing_pr_count_before_publication": 0,
+    "index_clean": true
+  },
+  "publication": {
+    "initial_child_push_attempt": "REJECTED_BEFORE_EXECUTION_BY_EXTERNAL_WRITE_APPROVAL_POLICY",
+    "successful_actor": "PARENT_HELP_HUMAN_USING_EXPLICIT_OWNER_AUTHORIZATION",
+    "remote_branch": "origin/codex/root-v3-phase0-2026-08-22",
+    "remote_head": "0bd042e5299c81301cc726bc54eea265285b4159",
+    "upstream_configured": true,
+    "pr_number": 620,
+    "pr_url": "https://github.com/sgttomas/chirality/pull/620",
+    "pr_state": "OPEN",
+    "pr_is_draft": false,
+    "pr_base": "main",
+    "pr_head": "codex/root-v3-phase0-2026-08-22",
+    "pr_head_oid": "0bd042e5299c81301cc726bc54eea265285b4159",
+    "auto_merge_enabled": false,
+    "pr_merged": false
+  },
+  "next_owner": "HELP_HUMAN_FOR_RECEIPT_114_CLOSEOUT"
+}

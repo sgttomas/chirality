@@ -1,0 +1,21 @@
+{
+  "instance": "CHANGE_CLOSEOUT",
+  "status": "READY",
+  "branch": "codex/root-v3-phase0-2026-08-22",
+  "pr": 620,
+  "expected_remote_main": "166efa82748133e90674be62304b81f8a0a8c1b4",
+  "authorized_actions": [
+    "fetch_for_drift_preflight",
+    "commit_exact_closeout_set",
+    "push_closeout_commit"
+  ],
+  "forbidden_actions": [
+    "merge_main_if_advanced",
+    "rebase",
+    "force_push",
+    "approve_pr",
+    "enable_auto_merge",
+    "merge_pr",
+    "delete_branch"
+  ]
+}
