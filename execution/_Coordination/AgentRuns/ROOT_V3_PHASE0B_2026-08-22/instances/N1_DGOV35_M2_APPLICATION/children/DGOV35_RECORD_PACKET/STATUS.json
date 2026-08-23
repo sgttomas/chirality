@@ -1,0 +1,10 @@
+{
+  "instance_id": "DGOV35_RECORD_PACKET",
+  "status": "COMPLETE",
+  "parent": "N1_DGOV35_M2_APPLICATION",
+  "delegation": "PROHIBITED",
+  "result": "D-GOV-35 ruled record, register row, and proposal-packet disposition completed",
+  "return": "RETURN.md",
+  "repair_cycles": 1,
+  "blockers": []
+}

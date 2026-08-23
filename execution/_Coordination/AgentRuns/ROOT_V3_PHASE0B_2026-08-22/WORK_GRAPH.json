@@ -1,0 +1,15 @@
+{
+  "schema_version": "help-human-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE0B_2026-08-22",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "accepted_basis": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "nodes": [
+    {"id": "N1", "instance": "N1_DGOV35_M2_APPLICATION", "depends_on": [], "concurrent_authoring": true, "commit_order": 1},
+    {"id": "N2", "instance": "N2_SCA004_GATE2", "depends_on": [], "concurrent_authoring": true, "commit_order": 2},
+    {"id": "N3", "instance": "N3_TM107_TM126", "depends_on": ["N1"], "concurrent_authoring": true, "commit_order": 3}
+  ],
+  "human_gates": ["main-advance-sync", "sca004-gate2-acceptance", "pr-merge"],
+  "fan_in": "all nodes reviewed PASS; ordered commits N1 -> N2 -> N3; final validation PASS"
+}

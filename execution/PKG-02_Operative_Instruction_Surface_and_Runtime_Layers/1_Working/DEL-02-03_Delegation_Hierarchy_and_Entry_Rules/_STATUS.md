@@ -8,5 +8,6 @@
 ## Remaining
 
 ## History
+- 2026-08-22 — D-GOV-35 DEL-02-03 M2 instruction tranche applied; lifecycle state unchanged (see `_run_records/DEL-02-03-M2-APPLY-001/`)
 - 2026-07-25 - State set to OPEN (PROJECT_SETUP, step-9 materialization, D-GOV-25)
 - 2026-07-25 — State set to INITIALIZED (TASK+scope-of-work)

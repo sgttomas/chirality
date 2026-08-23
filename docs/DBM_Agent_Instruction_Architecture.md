@@ -28,7 +28,7 @@ Human ↔ Agent 0 → Agent 1 → Agent 2
 
 HELP_HUMAN is the sole canonical Agent 0. Every Agent 1 is also a valid direct human entry point. A human may start an untyped session and adopt the hierarchy through steering instructions.
 
-Agent 0 delegates only to named Agent 1 roles. Agent 1 delegates to Agent 2.
+Agent 0 dispatches named Agent 1 managers and may directly dispatch bounded Agent 2 instances under the same sealed-brief, declared-scope, and durable-evidence requirements.
 Agent 2 does not delegate. Capabilities are not inherited: a named child uses
 its approved role policy, a generalist is bounded by its parent and brief, and
 no child capability becomes available to the parent.

@@ -1,0 +1,19 @@
+{
+  "instance_id": "N1_DGOV35_M2_APPLICATION_REVIEW_CYCLE_1",
+  "parent_instance_id": "N1_DGOV35_M2_APPLICATION",
+  "role": "fresh read-only Agent-2 reviewer",
+  "status": "COMPLETE",
+  "terminal": true,
+  "verdict": "FAIL_REPAIR_REQUIRED",
+  "basis": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "actionable_findings": 1,
+  "finding_ids": [
+    "N1-R1-F1-VALIDATION-EVIDENCE-EXACT-OUTPUTS-AND-EXIT-CODES"
+  ],
+  "content_checks": "PASS",
+  "scope_containment": "PASS",
+  "fresh_re_review_required": true,
+  "commit_authorized": false,
+  "merge_authorized": false,
+  "review": "REVIEW.md"
+}
