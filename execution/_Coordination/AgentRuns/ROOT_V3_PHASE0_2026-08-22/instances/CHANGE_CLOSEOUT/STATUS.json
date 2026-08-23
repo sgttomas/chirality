@@ -1,14 +1,26 @@
 {
   "instance": "CHANGE_CLOSEOUT",
-  "status": "READY",
+  "status": "CLOSEOUT_COMMITTED_AND_PUSHED",
   "branch": "codex/root-v3-phase0-2026-08-22",
   "pr": 620,
   "expected_remote_main": "166efa82748133e90674be62304b81f8a0a8c1b4",
-  "authorized_actions": [
-    "fetch_for_drift_preflight",
-    "commit_exact_closeout_set",
-    "push_closeout_commit"
-  ],
+  "closeout_commit": "4dcdb5d7b7fe5cf56ac0c1dfee686535ce9ed77e",
+  "closeout_parent": "0bd042e5299c81301cc726bc54eea265285b4159",
+  "remote_head": "4dcdb5d7b7fe5cf56ac0c1dfee686535ce9ed77e",
+  "push_provenance": {
+    "initial_child_attempt": "REJECTED_BEFORE_EXECUTION_BY_EXTERNAL_WRITE_APPROVAL_POLICY",
+    "successful_actor": "PARENT_HELP_HUMAN_USING_EXPLICIT_OWNER_AUTHORIZATION",
+    "remote_update": "0bd042e5299c81301cc726bc54eea265285b4159..4dcdb5d7b7fe5cf56ac0c1dfee686535ce9ed77e"
+  },
+  "pr_state": {
+    "number": 620,
+    "state": "OPEN",
+    "head_oid": "4dcdb5d7b7fe5cf56ac0c1dfee686535ce9ed77e",
+    "is_draft": false,
+    "auto_merge_enabled": false,
+    "merged": false
+  },
+  "next_owner": "HELP_HUMAN_FOR_FINAL_CONTROL_RECORD_COMMIT",
   "forbidden_actions": [
     "merge_main_if_advanced",
     "rebase",
@@ -16,6 +28,7 @@
     "approve_pr",
     "enable_auto_merge",
     "merge_pr",
-    "delete_branch"
+    "delete_branch",
+    "commit_return_or_completed_status_under_this_brief"
   ]
 }
