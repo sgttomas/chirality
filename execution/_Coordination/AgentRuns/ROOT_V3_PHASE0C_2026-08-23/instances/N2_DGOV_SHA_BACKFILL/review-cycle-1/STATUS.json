@@ -1,0 +1,25 @@
+{
+  "instance_id": "N2_DGOV_SHA_BACKFILL_REVIEW_1",
+  "parent_instance_id": "N2_DGOV_SHA_BACKFILL",
+  "role": "fresh read-only Agent-2 reviewer",
+  "status": "COMPLETE",
+  "terminal": true,
+  "verdict": "PASS_ZERO_ACTIONABLE_FINDINGS",
+  "basis": "8635e40995b05f494ae35c6083dabdd50068bb52",
+  "actionable_findings": 0,
+  "dgov34_evidence_derivation": "PASS",
+  "dgov35_prescribed_values": "PASS",
+  "record_diff_shape": "PASS",
+  "manifest_authorization_exact": "PASS",
+  "manifest_schema": "PASS",
+  "instruction_path_coverage": "PASS",
+  "scope_containment": "PASS",
+  "post_commit_g4_rerun_required": true,
+  "merge_authorized": false,
+  "delegated": false,
+  "modified_reviewed_outputs": false,
+  "outputs": [
+    "REVIEW.md",
+    "STATUS.json"
+  ]
+}

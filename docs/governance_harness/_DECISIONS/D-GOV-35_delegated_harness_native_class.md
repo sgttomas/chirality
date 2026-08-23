@@ -1,6 +1,6 @@
 # D-GOV-35 — Delegated-Harness-Native Delegation Class
 
-Status: RULED — APPLICATION TRANCHE PREPARED; PUBLICATION PENDING
+Status: RULED — APPLIED 2026-08-22; EFFECTIVE 8deca1489…
 HumanRuling: `[click] "Approve as proposed"` — all eight proposed ruling items are ruled as written; complete recorded form transcribed below
 Date: 2026-08-22
 FramedBy: HELP_HUMAN managed run `ROOT_V3_PHASE0B_2026-08-22`, N1
@@ -8,9 +8,9 @@ AcceptedBasis: `main@abf3c1bf5996cd9333ad706df14e62df32fbbf0f`
 RecordConvention: owner ruling recorded before publication; candidate, publication, and effective SHAs remain `TBD` until their respective Git acts
 DecisionKey: `delegated_harness_native_class`
 Supersedes: D-GOV-14 item 7 (exclusivity sentence only)
-CandidateSHA: TBD
-PublicationSHA: TBD
-EffectiveSHA: TBD
+CandidateSHA: 294e846bc762b96ac780d49f0137f61eb4dde779
+PublicationSHA: ade6ecf33d4e10dab1441aeedb240061e140ff1b
+EffectiveSHA: 8deca1489a3e5921288f71d4960d555e183a6f3f
 
 ## Recorded ruling
 

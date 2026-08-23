@@ -1,0 +1,30 @@
+{
+  "review_id": "N1_SCA004_GATE3_GATE4_REVIEW_2",
+  "parent_instance_id": "N1_SCA004_GATE3_GATE4_DRAFT",
+  "role": "fresh read-only Agent-2 reviewer",
+  "status": "COMPLETE",
+  "terminal": true,
+  "verdict": "FAIL_REPAIR_REQUIRED",
+  "basis": "8635e40995b05f494ae35c6083dabdd50068bb52",
+  "actionable_findings": 1,
+  "finding_ids": [
+    "N1-R2-F1-AMENDMENT-ACTIONS-SUPERSESSION-FIELD"
+  ],
+  "cycle_1_findings_closed": [
+    "N1-R1-F1",
+    "N1-R1-F2",
+    "N1-R1-F3"
+  ],
+  "deterministic_rebuild": "PASS",
+  "exact_diff_reconstruction": "PASS",
+  "isolated_validator": "PASS_85_OF_85",
+  "full_reverse_inverse": "PASS_59_OF_59",
+  "topology_and_mappings": "PASS",
+  "g0_a3_a4_a7_carriage": "PASS",
+  "protected_byte_fences": "PASS",
+  "gate_5_closed": true,
+  "fresh_re_review_required": true,
+  "commit_authorized": false,
+  "merge_authorized": false,
+  "review": "REVIEW.md"
+}

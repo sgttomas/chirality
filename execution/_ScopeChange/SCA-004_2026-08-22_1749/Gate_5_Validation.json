@@ -1,0 +1,486 @@
+{
+  "amendment": "SCA-004",
+  "gate": 5,
+  "posture": "DRAFT_APPLICATION_PACKAGE_NOT_EXECUTED",
+  "result": "PASS",
+  "check_count": 64,
+  "failure_count": 0,
+  "approved_candidate_gate3_clean_scratch": {
+    "result": "PASS",
+    "check_count": 98,
+    "failure_count": 0,
+    "method": "unmodified Phase-0c validator in a clean temporary Phase-0c layout with Gate-5 artifacts absent; protected live report remains read-only",
+    "report_sha256": "dc5fe4355322a96b7da61606fff7d8dd51943a7d606f132966705bfb70b9f129"
+  },
+  "applied_state_gate3_equivalent": {
+    "result": "PASS",
+    "check_count": 98,
+    "failure_count": 0,
+    "method": "Phase-0c validator in a clean temporary repository with current-posture literals inverted and only SOW-083/SOW-103 status-Notes admitted by changed-row isolation; all mapping/trace/count/basis/containment checks unchanged"
+  },
+  "repair_evidence": {
+    "observed_live_legacy_invocation": "FAIL 98 checks / 1 failure at gate5_artifacts_absent; expected context mismatch after Phase-0d Gate-5 draft artifacts existed",
+    "disposition": "not a product or candidate failure; protected Gate_3_Validation.json restored exactly and legacy validator constrained to clean scratch Phase-0c layouts"
+  },
+  "candidate_sha256": {
+    "Chirality_Root_SOFTWARE_DECOMP_v1_0.md": "0696190db9fb9319ccee40232d1a5ed77133030fea1361716ae1c05c4d8a9641",
+    "chirality_root_deliverable_register_v1_0.csv": "2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba",
+    "chirality_root_scope_ledger_v1_0.csv": "54287bad4a9561e7dc38bea305ecb232ce081d51d49c05b94d8d86a44017a3cc",
+    "chirality_root_objective_register_v1_0.csv": "b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f",
+    "chirality_root_prd_coverage_forward_v1_0.csv": "9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f",
+    "chirality_root_trace_reverse_v1_0.csv": "750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438",
+    "chirality_root_coverage_telemetry_v1_0.md": "316185be54ec75f0ddaad847a00427a9051527ce9b94019cad2a3b4c2120d765"
+  },
+  "applied_sha256": {
+    "Chirality_Root_SOFTWARE_DECOMP_v1_0.md": "546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986",
+    "chirality_root_deliverable_register_v1_0.csv": "2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba",
+    "chirality_root_scope_ledger_v1_0.csv": "63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417",
+    "chirality_root_objective_register_v1_0.csv": "b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f",
+    "chirality_root_prd_coverage_forward_v1_0.csv": "9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f",
+    "chirality_root_trace_reverse_v1_0.csv": "750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438",
+    "chirality_root_coverage_telemetry_v1_0.md": "bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c"
+  },
+  "append_sha256": "336405845dde5a3ae406b46c750c38a88c1b366f69bdaa74b4078679e04fe6a8",
+  "checks": [
+    {
+      "check": "live_basis_untouched::Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "status": "PASS",
+      "details": "observed=23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d expected=23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d"
+    },
+    {
+      "check": "live_basis_untouched::chirality_root_deliverable_register_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395 expected=a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395"
+    },
+    {
+      "check": "live_basis_untouched::chirality_root_scope_ledger_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2 expected=3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2"
+    },
+    {
+      "check": "live_basis_untouched::chirality_root_objective_register_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55 expected=c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55"
+    },
+    {
+      "check": "live_basis_untouched::chirality_root_prd_coverage_forward_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84 expected=adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84"
+    },
+    {
+      "check": "live_basis_untouched::chirality_root_trace_reverse_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0 expected=6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0"
+    },
+    {
+      "check": "live_basis_untouched::chirality_root_coverage_telemetry_v1_0.md",
+      "status": "PASS",
+      "details": "observed=6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282 expected=6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282"
+    },
+    {
+      "check": "protected_approved_bytes::execution/_ScopeChange/_LATEST.md",
+      "status": "PASS",
+      "details": "observed=b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1 expected=b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1"
+    },
+    {
+      "check": "protected_approved_bytes::execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "status": "PASS",
+      "details": "observed=89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518 expected=89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518"
+    },
+    {
+      "check": "protected_approved_bytes::execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_3_Exact_Amendment.diff",
+      "status": "PASS",
+      "details": "observed=0724668f6fb85189f4c3ee142a21cef938c8dd47373be543d8b108c8e934637b expected=0724668f6fb85189f4c3ee142a21cef938c8dd47373be543d8b108c8e934637b"
+    },
+    {
+      "check": "protected_approved_bytes::execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_3_Validation.json",
+      "status": "PASS",
+      "details": "observed=dc5fe4355322a96b7da61606fff7d8dd51943a7d606f132966705bfb70b9f129 expected=dc5fe4355322a96b7da61606fff7d8dd51943a7d606f132966705bfb70b9f129"
+    },
+    {
+      "check": "protected_approved_bytes::execution/_ScopeChange/SCA-004_2026-08-22_1749/Amendment_Preview.md",
+      "status": "PASS",
+      "details": "observed=ff7743554270aee177feed4226a4fa35fd503ce34760f69644176878bcffdca4 expected=ff7743554270aee177feed4226a4fa35fd503ce34760f69644176878bcffdca4"
+    },
+    {
+      "check": "protected_approved_bytes::execution/_ScopeChange/SCA-004_2026-08-22_1749/Propagation_Plan.md",
+      "status": "PASS",
+      "details": "observed=abf5ff142b351eef3c16a7d33525f5688db8826f3e0eda58810eb47637645a05 expected=abf5ff142b351eef3c16a7d33525f5688db8826f3e0eda58810eb47637645a05"
+    },
+    {
+      "check": "protected_approved_bytes::execution/_ScopeChange/SCA-004_2026-08-22_1749/Amendment_Actions.csv",
+      "status": "PASS",
+      "details": "observed=4e623bcc5e69d056f71d9ed860ff729a0dfc9b8d8c635e7dd23b3c6b10d2871d expected=4e623bcc5e69d056f71d9ed860ff729a0dfc9b8d8c635e7dd23b3c6b10d2871d"
+    },
+    {
+      "check": "approved_candidate_sha::Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "status": "PASS",
+      "details": "observed=0696190db9fb9319ccee40232d1a5ed77133030fea1361716ae1c05c4d8a9641 expected=0696190db9fb9319ccee40232d1a5ed77133030fea1361716ae1c05c4d8a9641"
+    },
+    {
+      "check": "approved_candidate_sha::chirality_root_deliverable_register_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba expected=2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba"
+    },
+    {
+      "check": "approved_candidate_sha::chirality_root_scope_ledger_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=54287bad4a9561e7dc38bea305ecb232ce081d51d49c05b94d8d86a44017a3cc expected=54287bad4a9561e7dc38bea305ecb232ce081d51d49c05b94d8d86a44017a3cc"
+    },
+    {
+      "check": "approved_candidate_sha::chirality_root_objective_register_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f expected=b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f"
+    },
+    {
+      "check": "approved_candidate_sha::chirality_root_prd_coverage_forward_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f expected=9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f"
+    },
+    {
+      "check": "approved_candidate_sha::chirality_root_trace_reverse_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438 expected=750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438"
+    },
+    {
+      "check": "approved_candidate_sha::chirality_root_coverage_telemetry_v1_0.md",
+      "status": "PASS",
+      "details": "observed=316185be54ec75f0ddaad847a00427a9051527ce9b94019cad2a3b4c2120d765 expected=316185be54ec75f0ddaad847a00427a9051527ce9b94019cad2a3b4c2120d765"
+    },
+    {
+      "check": "applied_preview_sha::Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "status": "PASS",
+      "details": "observed=546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986 expected=546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986"
+    },
+    {
+      "check": "applied_preview_sha::chirality_root_deliverable_register_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba expected=2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba"
+    },
+    {
+      "check": "applied_preview_sha::chirality_root_scope_ledger_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417 expected=63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417"
+    },
+    {
+      "check": "applied_preview_sha::chirality_root_objective_register_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f expected=b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f"
+    },
+    {
+      "check": "applied_preview_sha::chirality_root_prd_coverage_forward_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f expected=9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f"
+    },
+    {
+      "check": "applied_preview_sha::chirality_root_trace_reverse_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438 expected=750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438"
+    },
+    {
+      "check": "applied_preview_sha::chirality_root_coverage_telemetry_v1_0.md",
+      "status": "PASS",
+      "details": "observed=bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c expected=bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c"
+    },
+    {
+      "check": "approved_candidate_exact_file_set",
+      "status": "PASS",
+      "details": [
+        "Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+        "chirality_root_coverage_telemetry_v1_0.md",
+        "chirality_root_deliverable_register_v1_0.csv",
+        "chirality_root_objective_register_v1_0.csv",
+        "chirality_root_prd_coverage_forward_v1_0.csv",
+        "chirality_root_scope_ledger_v1_0.csv",
+        "chirality_root_trace_reverse_v1_0.csv"
+      ]
+    },
+    {
+      "check": "applied_candidate_exact_file_set",
+      "status": "PASS",
+      "details": [
+        "Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+        "chirality_root_coverage_telemetry_v1_0.md",
+        "chirality_root_deliverable_register_v1_0.csv",
+        "chirality_root_objective_register_v1_0.csv",
+        "chirality_root_prd_coverage_forward_v1_0.csv",
+        "chirality_root_scope_ledger_v1_0.csv",
+        "chirality_root_trace_reverse_v1_0.csv"
+      ]
+    },
+    {
+      "check": "gate3_exact_diff_reproduces_approved_candidate",
+      "status": "PASS",
+      "details": "mismatches=[]"
+    },
+    {
+      "check": "gate5_append_check_and_apply_reproduces_applied_candidate",
+      "status": "PASS",
+      "details": "mismatches=[]"
+    },
+    {
+      "check": "only_three_surfaces_have_status_slots",
+      "status": "PASS",
+      "details": [
+        "Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+        "chirality_root_scope_ledger_v1_0.csv",
+        "chirality_root_coverage_telemetry_v1_0.md"
+      ]
+    },
+    {
+      "check": "every_append_change_inside_inventoried_candidate_lines",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "slot_inventory_all_18_ids_present",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "slot_inventory_structural_exclusion_explicit",
+      "status": "PASS",
+      "details": "boundary present"
+    },
+    {
+      "check": "csv_header_identical::chirality_root_deliverable_register_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "DeliverableID",
+        "Name",
+        "ParentPackageID",
+        "ResponsibleParty",
+        "Type",
+        "Description",
+        "AnticipatedArtifacts",
+        "CoversScopeItems",
+        "SupportsObjectives",
+        "ContextEnvelope",
+        "ContextEnvelopeNotes",
+        "AnticipatedWriteLocus"
+      ]
+    },
+    {
+      "check": "csv_row_count_identical::chirality_root_deliverable_register_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        53,
+        53
+      ]
+    },
+    {
+      "check": "csv_id_set_identical::chirality_root_deliverable_register_v1_0.csv",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "csv_header_identical::chirality_root_scope_ledger_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "ScopeItemID",
+        "InOutStatus",
+        "ScopeItemStatement",
+        "SourceRef",
+        "PackageID",
+        "DeliverableIDs",
+        "ObjectiveIDs",
+        "PRDItem",
+        "Categories",
+        "DecisionRef",
+        "OpenIssue",
+        "Notes"
+      ]
+    },
+    {
+      "check": "csv_row_count_identical::chirality_root_scope_ledger_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        104,
+        104
+      ]
+    },
+    {
+      "check": "csv_id_set_identical::chirality_root_scope_ledger_v1_0.csv",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "csv_header_identical::chirality_root_objective_register_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "ObjectiveID",
+        "PRDObjective",
+        "Statement",
+        "MappedDeliverables",
+        "MappedScopeItems",
+        "Notes"
+      ]
+    },
+    {
+      "check": "csv_row_count_identical::chirality_root_objective_register_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        7,
+        7
+      ]
+    },
+    {
+      "check": "csv_id_set_identical::chirality_root_objective_register_v1_0.csv",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "csv_header_identical::chirality_root_prd_coverage_forward_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "PRDItem",
+        "ItemKind",
+        "PRDSection",
+        "ObjectiveID",
+        "ScopeItemIDs",
+        "PackageIDs",
+        "DeliverableIDs",
+        "CoverageStatus",
+        "DeferralReason"
+      ]
+    },
+    {
+      "check": "csv_row_count_identical::chirality_root_prd_coverage_forward_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        85,
+        85
+      ]
+    },
+    {
+      "check": "csv_id_set_identical::chirality_root_prd_coverage_forward_v1_0.csv",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "csv_header_identical::chirality_root_trace_reverse_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "UnitID",
+        "UnitKind",
+        "ParentPackageID",
+        "PRDItems",
+        "ScopeItemIDs",
+        "TraceStatus"
+      ]
+    },
+    {
+      "check": "csv_row_count_identical::chirality_root_trace_reverse_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        59,
+        59
+      ]
+    },
+    {
+      "check": "csv_id_set_identical::chirality_root_trace_reverse_v1_0.csv",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "csv_only_two_inventoried_notes_cells_change",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "parent_package_distribution_identical",
+      "status": "PASS",
+      "details": {
+        "PKG-01_Product_Definition_Normative_Basis_and_Authority": 8,
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers": 12,
+        "PKG-03_Governed_Execution_Structure_and_Root_Containment": 6,
+        "PKG-04_Developmental_Machinery_and_Change_Control": 11,
+        "PKG-05_Evidence_Provenance_and_Audit": 8,
+        "PKG-06_Self_Application_Variants_and_Release": 8
+      }
+    },
+    {
+      "check": "scope_objective_parent_and_trace_mappings_identical",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "trace_unit_count_identical_59",
+      "status": "PASS",
+      "details": [
+        59,
+        59
+      ]
+    },
+    {
+      "check": "applied_deliverable_count_53",
+      "status": "PASS",
+      "details": 53
+    },
+    {
+      "check": "applied_pkg02_count_12",
+      "status": "PASS",
+      "details": {
+        "PKG-01_Product_Definition_Normative_Basis_and_Authority": 8,
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers": 12,
+        "PKG-03_Governed_Execution_Structure_and_Root_Containment": 6,
+        "PKG-04_Developmental_Machinery_and_Change_Control": 11,
+        "PKG-05_Evidence_Provenance_and_Audit": 8,
+        "PKG-06_Self_Application_Variants_and_Release": 8
+      }
+    },
+    {
+      "check": "applied_pkg04_count_11",
+      "status": "PASS",
+      "details": {
+        "PKG-01_Product_Definition_Normative_Basis_and_Authority": 8,
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers": 12,
+        "PKG-03_Governed_Execution_Structure_and_Root_Containment": 6,
+        "PKG-04_Developmental_Machinery_and_Change_Control": 11,
+        "PKG-05_Evidence_Provenance_and_Audit": 8,
+        "PKG-06_Self_Application_Variants_and_Release": 8
+      }
+    },
+    {
+      "check": "applied_scope_count_104",
+      "status": "PASS",
+      "details": 104
+    },
+    {
+      "check": "applied_objective_count_7",
+      "status": "PASS",
+      "details": 7
+    },
+    {
+      "check": "applied_status_tokens_complete",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "current_candidate_only_posture_removed",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "approved_candidate_gate3_clean_scratch_pass_98_of_98",
+      "status": "PASS",
+      "details": {
+        "result": "PASS",
+        "check_count": 98,
+        "failure_count": 0,
+        "output": "PASS: 98 checks, 0 failures -> Gate_3_Validation.json",
+        "boundary": "clean scratch Phase-0c layout; Gate-5 artifacts absent; protected live Gate_3_Validation.json not written"
+      }
+    },
+    {
+      "check": "applied_state_gate3_equivalent_pass_98_of_98",
+      "status": "PASS",
+      "details": {
+        "result": "PASS",
+        "check_count": 98,
+        "failure_count": 0,
+        "output": "PASS: 98 checks, 0 failures -> Gate_3_Validation.json"
+      }
+    }
+  ]
+}

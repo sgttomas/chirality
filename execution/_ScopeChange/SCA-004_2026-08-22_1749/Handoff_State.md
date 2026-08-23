@@ -1,105 +1,93 @@
-# SCA-004 Gate-2 handoff state
+# SCA-004 R3 transcription and Gate-5 package handoff state
 
-Status: `AWAITING_OWNER_GATE_2_ACCEPTANCE`
+Status: `AWAITING_OWNER_GATE_5_APPEND_APPROVAL`
 
 ## Four-state handoff
 
 | State | Value |
 |---|---|
-| Accepted upstream state | R1-C records `G1-ACCEPTED` against `Brief.md` SHA-256 `cdd14b18…59126`, `Gate_1_Validation.md` SHA-256 `812d0d3a…c99c14`, and `WORK_GRAPH.json` SHA-256 `86159f1e…e78e9`; Root SOFTWARE decomposition revision 1.2 remains accepted at SHA-256 `23f6ae0f…64f3d`; `_LATEST.md` remains applied SCA-002 at SHA-256 `b2849c6e…80a1`; DEL-02-06 `root-runtime-1` epoch 1 compatibility bytes remain accepted with ten bindings held. |
-| Authoritative truth state | `UNCHANGED` — Gate 2 is impact assessment only. No decomposition, companion register, PRD/contract/spec/type, deliverable SOW/status/dependency, runtime, project truth, tool, Task Management register, or pointer byte is changed by N2. |
-| Derivative package state | SCA-004 Gate-2 impact/decision/handoff records are updated and await owner acceptance. The protected Gate-1 graph, DAG, parsed actions, validation, AUDIT_DEP_CLOSURE return, and AUDIT_DECOMP baseline remain byte-current for their exact bases. None substitutes for decomposition truth or App authority. |
-| Closure / next state | `OPEN_PENDING_OWNER_GATE_2_ACCEPTANCE`; Gate 3 is closed. Next owner is Ryan Tufts through HELP_HUMAN. |
+| Accepted upstream state | R1-C records Gate 1 accepted; R2-A records Gate 2 accepted; R3-A approves the exact seven Gate-3 candidate bytes plus exact diff/validation/preview; R3-B approves the Gate-4 propagation plan with CONDITION R3-B-1. Live SOFTWARE decomposition revision 1.2 remains accepted at SHA-256 `23f6ae0f…64f3d`; `_LATEST.md` remains SCA-002 at SHA-256 `b2849c6e…80a1`. |
+| Authoritative truth state | `UNCHANGED` — Gate 5 is not executed. No live decomposition/companion register, pointer, folder, SOW, lifecycle, dependency, estimate, schedule, runtime, tool, App, or held-binding byte changed. |
+| Derivative package state | `Gate_5_Application_Append.diff` is the exact draft application append over the R3-A-approved bytes; `Gate_5_Applied_Candidate/` and `Gate_5_Applied_Preview.md` identify the resulting seven surfaces; `Gate_5_Validation.json` records deterministic package validation. `Gate_5_Brief.md` and `Gate_5_Pointer_Candidate.md` remain drafts. |
+| Closure / next state | `OPEN_PENDING_OWNER_GATE_5_APPEND_APPROVAL`; after append approval, Gate-5 execution authorization is a separate owner act; pointer authority remains separate. Next owner is Ryan Tufts through HELP_HUMAN. |
 
 ## Fixed state fields
 
 | Field | Value |
 |---|---|
 | AmendmentID | `SCA-004` |
-| DecompositionTruthState | `INCOMPLETE` — eight accepted actions remain unapplied candidates; live truth is unchanged |
-| DerivativePackageState | `INCOMPLETE` — exact Gate-2 assessment awaits owner acceptance; later topology derivatives cannot be rebuilt before application |
+| DecompositionTruthState | `INCOMPLETE` — owner-approved revision 1.3 bytes exist only in the snapshot; live revision 1.2 is unchanged |
+| DerivativePackageState | `INCOMPLETE` — exact Gate-5 package drafted and validated; append-byte approval and execution authorization remain pending |
 | ContentRemediationState | `NOT_REQUIRED` |
-| DownstreamRerunState | `FROZEN` — no Gate-3 drafting, PREPARATION, dependency, estimate, schedule, graph rebuild, or implementation act is authorized by Gate 2 |
+| DownstreamRerunState | `FROZEN` — no application, PREPARATION, SOW, dependency, estimate, schedule, graph, audit, implementation, pointer, or App act is authorized |
 | MetadataAlignmentState | `NOT_REQUIRED` |
-| AuditState | `NON_BLOCKING_PASS` — existing AUDIT_DEP_CLOSURE passed graph SHA-256 `86159f1e…e78e9`; scoped Gate-1 AUDIT_DECOMP returned `OK`, 0 BLOCKER, 0 WARNING, 11 lifecycle-appropriate INFO at coverage SHA-256 `2210e77f…de9e45`; no rerun because protected graph/decomposition bytes are unchanged |
+| AuditState | `NON_BLOCKING_PASS` — original Gate-3 validator PASS 98/98 in a clean scratch Phase-0c layout with byte-identical protected JSON; Gate-5 validator PASS 64/64 with zero failures; applied-state Gate-3 equivalent PASS 98/98 |
 | ReadyForNextPhase | `NO` |
-| ClosureVerdict | `OPEN_PENDING_OWNER_GATE_2_ACCEPTANCE` |
+| ClosureVerdict | `OPEN_PENDING_OWNER_GATE_5_APPEND_APPROVAL` |
+
+## Exact approved candidate and applied preview identities
+
+| Surface | R3-A-approved SHA-256 | Applied-preview SHA-256 |
+|---|---|---|
+| Working surface | `0696190db9fb9319ccee40232d1a5ed77133030fea1361716ae1c05c4d8a9641` | `546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986` |
+| Deliverable register | `2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba` | `2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba` |
+| Scope ledger | `54287bad4a9561e7dc38bea305ecb232ce081d51d49c05b94d8d86a44017a3cc` | `63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417` |
+| Objective register | `b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f` | `b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f` |
+| Forward trace | `9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f` | `9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f` |
+| Reverse trace | `750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438` | `750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438` |
+| Coverage telemetry | `316185be54ec75f0ddaad847a00427a9051527ce9b94019cad2a3b4c2120d765` | `bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c` |
+
+Applied topology remains 53 deliverables: PKG-02=12, PKG-04=11, packages=6,
+scope items=104, objectives=7, zero unmapped IN items, zero unsupported
+objectives, and zero untraced reverse units.
 
 ## Derivative-package state
 
-| Package | Owner | Current status | Evidence | Next required action |
+| Package | Owner | Status | Evidence | Next required action |
 |---|---|---|---|---|
-| SCA-004 Gate-2 assessment | SCOPE_CHANGE | `AWAITING_OWNER_GATE_2_ACCEPTANCE` | `Impact_Assessment.md`; `Decision_Log.md` | Owner accepts, corrects, or declines exact bytes. |
-| Gate-1 release-pathway graph | SCOPE_CHANGE / AUDIT_DEP_CLOSURE | `CURRENT_FOR_UNCHANGED_GRAPH` | `WORK_GRAPH.json` SHA-256 `86159f1e…e78e9`; existing audit return | Re-derive and audit only after accepted carrier topology is materialized, or earlier if graph bytes drift. |
-| Gate-1 decomposition baseline | AUDIT_DECOMP / SCOPE_CHANGE consumer | `CURRENT_FOR_PROTECTED_BASIS` | `Evidence/AUDIT_DECOMP/coverage_summary.json` SHA-256 `2210e77f…de9e45` | Rerun before application if a bound input drifts; always run post-change backcheck after application. |
-| Decomposition trace/coverage surfaces | SCOPE_CHANGE at later application | `CURRENT_NOW` | accepted revision 1.2 working/companion surfaces | Recompute from separately approved exact Gate-3 bytes after application. |
-| DEL-02-06 compatibility package | DEL-02-06 owner | `CURRENT_UNCHANGED_WITH_TEN_HOLDS` | accepted JSON SHA-256 `e5ae4e87…0467c` | Only named later implementation, conformance, fan-in, cutover, and release acts may populate held bindings. |
-| Seven candidate carrier folders/SOWs/dependencies | PROJECT_SETUP / PREPARATION / WORKING_ITEMS | `NOT_CREATED_NOT_AUTHORIZED` | R1-C explicitly creates no folder, SOW, mapping, or implementation authority | Wait for separately accepted Gate-3/4/5 amendment and exact downstream briefs. |
-| App SCA-APP-008 carrier/contract work | App owning loop | `FOREIGN_AUTHORITY_NOTICE_ONLY` | Root/App notice edges only | App reciprocates under its own SCA and returns accepted coordination evidence. |
+| Exact Gate-3 candidate | SCOPE_CHANGE | `APPROVED_BY_OWNER_R3-A_NOT_APPLIED` | protected Gate-3 files and R3-A record | Preserve exact bytes until separately authorized Gate 5. |
+| Gate-4 propagation plan | SCOPE_CHANGE | `APPROVED_BY_OWNER_R3-B_WITH_CONDITION_R3-B-1` | protected plan/action bytes and R3-B record | Condition package returns to owner. |
+| Gate-5 application append | SCOPE_CHANGE | `AWAITING_OWNER_APPROVAL` | slot inventory, exact append, applied preview, deterministic validation | Owner approves, corrects, or declines exact append bytes. |
+| Gate-5 execution | SCOPE_CHANGE | `NOT_AUTHORIZED` | `Gate_5_Brief.md` draft | After append approval, owner separately authorizes or declines execution. |
+| Pointer candidate | SCOPE_CHANGE | `DRAFT_REQUIRES_OWN_AUTHORITY` | `Gate_5_Pointer_Candidate.md` | Owner rules only after Gate-5 confirmation. |
+| Live decomposition package | SOFTWARE_DECOMP / SCOPE_CHANGE | `CURRENT_REVISION_1_2_UNCHANGED` | seven protected live SHA-256 identities | Later authorized Gate-5 act only. |
+| Downstream folders/SOWs/dependencies/estimates/schedule/graph/audits | owning workflows | `NOT_STARTED_NOT_AUTHORIZED` | approved plan only | Later acts under their own authority. |
 
-## Active derivative-surface state
+## Held bindings and blockers
 
-| Surface | Classification | Status | Evidence / authority |
-|---|---|---|---|
-| `Decision_Log.md`, `Impact_Assessment.md`, `Handoff_State.md` | `DIRECT_EDIT` | Gate-2 state updated | R1-C and Phase-0b N2 authority |
-| `Brief.md`, `Gate_1_Validation.md`, `Parsed_Actions.csv`, `WORK_GRAPH.json`, `DAG.md` | `NO_CHANGE` | protected and current | R1-C subjects plus Phase-0b check surface |
-| `Evidence/AUDIT_DEP_CLOSURE/**`, `Evidence/AUDIT_DECOMP/**` | `NO_CHANGE` | current for exact Gate-1 bases | existing immutable returns |
-| Root working surface and six companion register/trace/telemetry files | `DIRECT_EDIT` / `RECOMPUTE` later | unchanged now | exact Gate-3 preview and acceptance required before application |
-| `execution/_ScopeChange/_LATEST.md` | `NO_CHANGE` | still identifies applied SCA-002 | explicit Phase-0b prohibition |
-| DEL-02-06 SOW/status/compatibility bytes | `NO_CHANGE` | accepted/current with holds | REQ-027 and exact compatibility acceptance |
-| Root `docs/**`, `runtime/**`, `tools/**`; App/Piping truth | `NO_CHANGE` by N2 | outside N2 authority | separately governed Root tranches or foreign-loop authority |
+All ten DEL-02-06 compatibility objects remain `HELD_UNAVAILABLE`.
 
-## Held bindings and authority boundary
-
-All ten `HELD_UNAVAILABLE` objects in the accepted DEL-02-06 compatibility
-package remain held: source identity, release identity, App conformance, Root
-CLI conformance, Root semantic/regression evidence, fan-in notice, Tier-0
-relationship, implementation act, cutover act, and release act.
-
-G0 A3/A4/A7 remain controlling: full Codex role-entry parity with labelled
-instruction-asserted Agent-2 evidence where mechanism proof is unavailable,
-with hard filesystem/network/process containment unchanged;
-terminalize then conditional `thread/resume` under root/account/policy-digest
-continuity or fresh thread; and the three consented per-root command-network
-postures with managed prompt routing, the caveat that a grant may unblock
-queued requests to the same destination, and empirical exact-pin proof.
-
-## Blockers / human decisions
-
-1. Owner acceptance or correction of exact Gate-2 `Impact_Assessment.md`.
-2. Gate 3 remains closed; it must present exact synchronized decomposition,
-   companion-register, trace, and telemetry bytes, including all seven scope
-   and objective mappings, types, artifacts, Context Envelopes, and loci.
-3. D-GOV-35 is now `RULED` by R1-A. Its exact DEL-02-03 M2 application is
-   executing in sibling N1 and must remain the accepted role-entry basis for
-   any later carrier/implementation claim; N2 does not perform or validate
-   that application.
-4. Gate 4 must enumerate PREPARATION, SOW, dependency, estimate/schedule,
-   notice, graph-regeneration, audit, and exact write/return obligations.
-5. TM-ROOT-106 and TM-ROOT-122 remain separate G1 blockers; no pin amendment
-   occurs here.
-6. SCA-APP-008 must reciprocate under App authority; Root notices grant no
-   foreign authority.
-7. C1 artifact download, implementation, cutover, release, and every hold
-   lift remain unauthorized.
+1. Owner approval of the exact `Gate_5_Application_Append.diff` bytes.
+2. Separate owner authorization of Gate-5 execution.
+3. Separate owner authority for `_LATEST.md` pointer treatment after Gate-5 confirmation.
+4. TM-ROOT-106 and TM-ROOT-122 remain unchanged G1 blockers; no pin change.
+5. PREPARATION INIT, SOW, context propagation, dependency, estimate,
+   schedule, graph, audit reruns, implementation, App work, cutover, release,
+   C1 artifact download, and every hold lift remain unauthorized.
 
 ## Rerun requirements
 
-- Before Gate-3 drafting, reverify the bound decomposition/register/pointer
-  hashes and candidate-ID absence; rerun Gate-1 AUDIT_DECOMP first if any
-  accepted input drifted.
-- After separately approved amendment application, run deterministic
-  register/coverage validation and a fresh scoped AUDIT_DECOMP backcheck
-  against the Gate-1 baseline.
-- After candidate carrier folders are live, re-derive the objective-relative
-  graph, recompute SCCs, and rerun AUDIT_DEP_CLOSURE.
-- Produce dependency extraction before estimates/schedule; then reassess the
-  narrowed DEL-02-06 role and estimate each new carrier from accepted SOWs.
-- `_LATEST.md` remains unchanged until a later owning accepted application or
-  closure act explicitly authorizes the pointer update.
+- Before Gate 5, reverify the seven live basis and seven approved candidate
+  SHAs, then require a fresh zero-failure Gate-5 validation.
+- Apply only after append-byte approval and separate Gate-5 authorization,
+  following `Gate_5_Brief.md` exactly.
+- Run the owner-approved closure lane, then return applied state to Ryan
+  Tufts for Gate-5 confirmation.
+- Do not update `_LATEST.md` absent its own accepted authority.
+
+## Repair evidence — legacy live invocation
+
+During parent fan-in, the protected Phase-0c validator was invoked directly
+in the live Phase-0d tree. It returned 98 checks with one expected failure at
+`gate5_artifacts_absent` because this tranche's Gate-5 draft artifacts were
+present, and it rewrote its report. This was a validator-context mismatch,
+not a product or candidate failure. The protected report was restored exactly
+to SHA-256 `dc5fe4355322a96b7da61606fff7d8dd51943a7d606f132966705bfb70b9f129`.
+The original validator now runs only in a clean scratch Phase-0c layout;
+the applied-state equivalent remains the separate 98-check run described in
+`validate_gate5_package.py`.
 
 ## Next owner
 
-Ryan Tufts through HELP_HUMAN: accept, correct, or decline the Gate-2 impact
-assessment. No Gate 3, downstream dispatch, or implementation authority is
-inferred.
+Ryan Tufts through HELP_HUMAN: decide the exact append bytes. Approval of
+those bytes does not itself authorize Gate-5 execution or pointer treatment.

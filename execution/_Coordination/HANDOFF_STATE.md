@@ -66,6 +66,32 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   `TM-ROOT-107` as `SUPERSEDED_BY_SCOPE_CHANGE` with `ScaRef=SCA-004` and
   `TM-ROOT-126` as `RESOLVED_BY_DECISION` through D-GOV-35. The current
   reconciled counts are 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived.
+- Phase-0c records the owner-accepted SCA-004 Gate-2 basis and publishes exact
+  Gate-3 candidate bytes plus a separate Gate-4 propagation-plan draft. Live
+  decomposition revision 1.2, all six live companion/trace/telemetry files,
+  `_LATEST.md`, all deliverable folders and lifecycle states remain unchanged.
+  D-GOV-34 and D-GOV-35 Git-act SHA slots are backfilled from recorded commit,
+  publication, and merge evidence. Task Management remains 19 live
+  (`OPEN=11`, `DEFERRED=8`) / 108 archived.
+- Phase-0d transcribes owner approvals R3-A and R3-B into SCA-004 and drafts
+  the exact Gate-5 application append/package required by CONDITION R3-B-1.
+  Gate-5 package validation passes 64/64; the approved-candidate clean-scratch
+  and applied-state-equivalent Gate-3 lanes each pass 98/98. Gate 5 is not
+  executed: live decomposition revision 1.2, `_LATEST.md`, every folder and
+  lifecycle state, all ten held bindings, and Task Management remain unchanged
+  at 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived. The next owner acts are
+  append-byte approval, separate Gate-5 execution authorization, and later
+  pointer authority.
+- Phase-0e records R4-A append approval, R4-B one-time Gate-5 authorization,
+  and R4-C pointer deferral. The one authorized application attempt stopped
+  at its intermediate R3-A identity fence before the approved append was
+  invoked: five materialized files mismatched, all seven live files were
+  restored and byte-verified at revision 1.2, and fresh review found zero
+  actionable record/recovery findings. Gate 5 remains unexecuted. `_LATEST.md`,
+  every folder/lifecycle, all ten held bindings, and Task Management remain
+  unchanged at 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived. Another
+  attempt requires fresh owner direction and an approved exact materialization
+  method; confirmation and pointer authority remain closed.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -126,6 +152,17 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   candidate. It is not the draft DEL-02-03 application manifest, a D-GOV-35
   ruling, or instruction-application authority. Its public-export derivative
   disposition is deferred.
+- `AgentRuns/ROOT_V3_PHASE0C_2026-08-23/` and
+  `execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_3_Candidate/` are
+  derivative candidate/evidence packages against accepted decomposition
+  revision 1.2. They are not applied decomposition truth. The Root-owned
+  Chirality App public export remains deferred; the SHA-backfill manifest's
+  M6 notice remains pending because no new receiving-loop act is inferred.
+- `AgentRuns/ROOT_V3_PHASE0E_2026-08-23/` is the current recovered-failure
+  evidence package. It records one consumed application attempt, exact
+  intermediate mismatches, exact revision-1.2 restoration, and a fresh
+  zero-finding read-only review. It is derivative evidence only; it does not
+  make the approved revision-1.3 candidate applied truth.
 
 ## 3. Closure verdict
 
@@ -242,6 +279,26 @@ records the reproduced G4 failure and the owner-directed proposal-manifest
 repair; the manifest cures candidate coverage only and does not move any
 governance or lifecycle gate.
 
+`2026-08-23 ROOT V3 PHASE-0C DRAFTING COMPLETE — GATE 3 AND GATE 4 OWNER
+ACTS REMAIN.` Receipt 116 records a deterministic 98-check Gate-3 candidate,
+separate Gate-4 propagation plan, six preserved failed review cycles ending
+in a fresh zero-finding review, and evidence-derived D-GOV-34/35 SHA backfill.
+The owner-authorized merge of current `origin/main` was disjoint and App-owned.
+Gate 3 and Gate 4 remain separately pending; Gate 5 is closed. No live
+decomposition, pointer, folder, SOW, lifecycle, dependency, estimate,
+schedule, runtime, tool, App, held-binding, pin, release, or reliance act is
+created. Task Management counts remain 19 live / 108 archived.
+
+`2026-08-23 ROOT V3 PHASE-0E GATE-5 ATTEMPT STOPPED AND RECOVERED — FRESH
+OWNER DIRECTION REQUIRED.` Receipt 118 records that the one R4-B-authorized
+attempt passed its full pre-write identity/validator fence but failed the
+intermediate R3-A identity check before the approved append was invoked. All
+seven live files were restored exactly to revision 1.2 and fresh review
+returned `PASS / BLOCKED_RECORDED` with zero actionable findings. Gate 5 is
+unexecuted; no post-Gate-5 audit exists. Confirmation, pointer, Git-effect
+backfill, every propagation act, all ten holds, TM-ROOT-106/122, C1, pins,
+runtime, tools, App acts, lifecycle, release, and reliance remain closed.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -307,3 +364,12 @@ instruction/entrypoint/manifest/whitespace/register suite after any later
 base, proposal, application, or SCA byte change. PR #620 remains at the human
 review/merge gate; do not infer adoption, implementation, lifecycle,
 release, reliance, or merge.
+
+For Receipt 116, the owner must approve or amend the exact Gate-3 candidate
+and the Gate-4 propagation plan as separate acts against their published
+bytes. Before any later application, reverify the seven live basis SHAs,
+candidate identities, ID absence, and `_LATEST.md`, then rerun the 98-check
+validator. Gate 5, PREPARATION, live decomposition copy, pointer treatment,
+SOWs, dependencies, estimates, scheduling, graph/audit reruns, implementation,
+hold lifts, pin changes, artifact download, App acts, release, and reliance
+remain unauthorized. Public export regeneration remains deferred.

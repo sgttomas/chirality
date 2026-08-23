@@ -8,9 +8,9 @@ AcceptedBasis: `main@33e871fc38d8ef4bb51f7c25cdc6ca2e8dcb69e0`
 RecordConvention: owner ruling recorded before publication; candidate, publication, and effective SHAs remain `TBD` until their respective Git acts
 DecisionKey:  `change_clean_basis_lane_routine`
 Supersedes:   none
-CandidateSHA: TBD
-PublicationSHA: TBD
-EffectiveSHA: TBD
+CandidateSHA: 8e704f2b63302c8568c48f8fee7c4681e3ec4262
+PublicationSHA: d1a53697e6b7f54dcdb5862357bd0b395f51fff2
+EffectiveSHA: 9f95250e4091a789ca82fb207deec6471d7044d1
 
 ## Recorded ruling
 
