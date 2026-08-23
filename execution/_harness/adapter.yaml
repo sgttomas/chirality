@@ -41,10 +41,10 @@ exclude_globs:
   - ".archive/**"
 
 baselines:
-  # Repinned by the SCA-004 Phase-1 propagation materialization (2026-08-23):
+  # Repinned by the SCA-004 Phase-3 R7 acceptance tranche (2026-08-23):
   # 6 packages and 53 deliverables at accepted decomposition revision 1.3,
-  # with 46 statuses INITIALIZED and the 7 new carriers OPEN. Count verified
-  # against the checkout via status_glob after the bounded PROJECT_SETUP INITs.
+  # with all 53 statuses INITIALIZED. Count and state distribution measured
+  # after the seven owner-accepted carrier lifecycle transitions.
   status_files: 53
   status_mismatch: 0
-  pinned_at: dab470e2f0c7345f10c34bcce9e489eb68bf0541
+  pinned_at: 3389adabfa2919b66f64bbd9cd04d7d29b9838b4

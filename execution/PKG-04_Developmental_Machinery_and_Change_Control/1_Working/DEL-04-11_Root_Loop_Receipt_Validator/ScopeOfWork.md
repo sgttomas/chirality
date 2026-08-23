@@ -5,7 +5,7 @@ package_id: PKG-04
 decomposition_basis: execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md@75c4e2ba401a6f5ad0c2f38846c39db6ab157405
 project_scope_refs: [SOW-041, SOW-053]
 package_objective_refs: [OBJ-003]
-status: DRAFT_AWAITING_OWNER_ACCEPTANCE
+status: ACCEPTED_BY_OWNER_R7 (record SHA-256 dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53)
 ---
 
 # Scope of Work — DEL-04-11

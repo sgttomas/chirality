@@ -238,6 +238,6 @@ def test_block_when_top_level_is_not_a_mapping(tmp_path):
 
 
 def test_live_repo_state_passes():
-    """G1 must PASS on the actual checkout at the consciously pinned live count."""
+    """G1 must PASS on the 53-file live tree after the seven R7 transitions."""
     code, _ = g1.check(g1.repo_root())
     assert code == 0

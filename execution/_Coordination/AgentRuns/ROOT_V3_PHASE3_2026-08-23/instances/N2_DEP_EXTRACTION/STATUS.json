@@ -1,0 +1,2 @@
+{"instance_id":"N2_DEP_EXTRACTION","agent_type":2,"role":"ephemeral-generalist","status":"WAITING","depends_on":["N1_ACCEPT_INIT_REPIN"]}
+
