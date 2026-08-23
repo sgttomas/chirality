@@ -1,0 +1,32 @@
+R18 DESKTOP PACK FAILURE SUMMARY
+cwd=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+command=npm run desktop:pack
+environment=npm_config_offline=true
+exit=1
+network_escalation=none
+
+The tracked command completed the Next, Electron, and runtime-CLI build stages.
+Electron Builder then reported:
+
+  electron-builder version=26.15.3
+  electronVersion=43.2.0
+  platform=darwin
+  arch=arm64
+  packaging appOutDir=dist/mac-arm64
+  getaddrinfo ENOTFOUND github.com
+  failedTask=build
+
+The transcript printed no retrieval URL. It identified only the DNS target
+`github.com` and the exact error `getaddrinfo ENOTFOUND github.com`; this record
+does not invent a more specific URL.
+
+This is the sealed brief's terminal cache-miss/download-attempt condition. No
+retry or escalation occurred. The embedded desktop:verify-dependencies and
+instruction-root:integrity stages were not reached.
+
+EVIDENCE LIMITATION: the intended full combined log was not persisted because
+the tee destination did not yet exist. The preceding evidence initialization
+stopped before mkdir when its exact-service expected-text assertion contained
+an erroneous literal backslash. The complete combined output remains only in
+the governed execution transcript. This summary does not claim to be the full
+log and does not upgrade the failed build.

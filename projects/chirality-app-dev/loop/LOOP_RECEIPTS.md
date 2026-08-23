@@ -5692,3 +5692,61 @@
     R18, rebuild, prepare, capture, logout/login, bootstrap, kickstart,
     signing, notarization, deployment, distribution, release-readiness, or
     merge action or claim occurred.
+
+- **2026-08-22 — Receipt 189** (R18 Electron supply freeze and offline evidence build).
+  - Receipt-ID: `Receipt-189`
+  - Examined-Through: `6dbb7dfcf7f5c551adc734d7d7bf87fb6aed03f5`
+  - Parent-Receipt: `Receipt-188`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-22,
+    Ryan Tufts, in-session): `Sync authorized: non-rewriting merge of origin/main at b143444bd497eae1b1b638670a33e6df756d9084 into the tranche branch`;
+    record the Electron 43.2.0 cache-miss cause, freeze its distribution supply,
+    prove one offline `desktop:pack` as evidence only, record R18, and stop
+    without merge; cure the sandboxed full-suite limitation with exactly one
+    local-socket-permitted `npm test`, harvest the deterministic sandbox-test
+    candidate without acting, and leave R19 to a separate post-merge tranche.
+    Record one official metadata request chain (`github.com` 302 to
+    `release-assets.githubusercontent.com` 200), response SHA-256
+    `823ec97893f00c3ab2a4d44811bc75f7dd582ff6086407109a179c2184c5702d`,
+    official arm64 hash
+    `ad4a0ae3c37ee05aa06c7e2ed0627608389790f0505a2b0d20319efbe33ffe28`,
+    and no artifact download; record the nested `@electron/get` 3.1.0
+    `Bypass` cause, the sole offline pack exit 0/custom `electronDist`/no
+    download indicators, diagnostic 21 failed / 1,246 passed / 4 skipped as
+    `ENVIRONMENT_SANDBOX_SOCKET_DENIAL`, and the exact later
+    local-socket-permitted `npm test` once at 1,267 passed / 4 skipped with
+    source and candidate diff identical.
+    Full verbatim directions are in the cited RunID `CHAT_TRANSCRIPTION.md`.
+    CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-22, Ryan Tufts,
+    in-session): `APPROVE: non-rewriting merge origin/main 8deca1489a3e5921288f71d4960d555e183a6f3f into codex/app-login-proof-r18-staging, record the authorization in Receipt 189, revalidate, and push PR #623; do not merge.`
+  - Pointers: content commit
+    `6dbb7dfcf7f5c551adc734d7d7bf87fb6aed03f5`; branch
+    `codex/app-login-proof-r18-staging`; sync merge
+    `f59105ddb606bd46397c3b1aafa41b50ab4e9e8d`, parents
+    `166efa82748133e90674be62304b81f8a0a8c1b4` and
+    `b143444bd497eae1b1b638670a33e6df756d9084`, whose main delta contained no
+    `projects/chirality-app-dev/` path; post-PR sync merge
+    `3871e414248097f68fc5de1b8f21d08f5d818524`, parents
+    `74d7585e100d248b4048847b1e3a1ebaa8557989` and
+    `8deca1489a3e5921288f71d4960d555e183a6f3f`; PR #622's main delta had
+    exactly one App coordination-notice path and no feature collision;
+    DEL-09-04 R18
+    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R18_ELECTRON_SUPPLY_FREEZE_AND_OFFLINE_BUILD_2026-08-22.md`;
+    status beside that record; RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22/`;
+    fresh repair review
+    `instances/WI-PKG09-R18-STAGING-01/review-cycle-1/REVIEW.md`; offline build
+    log `instances/WI-PKG09-R18-STAGING-01/executor-4/desktop-pack.full.log`, SHA-256
+    `e7f1ec32a50444c260697ca5bd9e4b10325cf4a1e61d95831331173f84f49b9f`.
+  - Checks: official metadata-chain and arm64 digest evidence pass with no
+    artifact download; nested `@electron/get` source-cause review passes.
+    Pinned verifier/wrapper fail-closed tests, syntax, typecheck, production
+    verifier, sole offline pack and embedded dependency/instruction-root
+    gates, APP-HOLD, practitioner suite, self-check, prior-ledger receipt
+    validator, whitespace repair/fresh review, and App-only containment pass.
+    Fresh repair-cycle review is `VALIDATED_PASS`.
+  - Gate-Outcome: `EXECUTED` — supply-freeze precursor and evidence-only,
+    non-adopted offline build. The sandbox-determinism TM candidate is
+    harvested only; DEL-09-04 remains `IN_PROGRESS` and unproved, and R19 is
+    separate. No proof/package adoption, owner procedure, prepare, capture,
+    logout/login, bootstrap, kickstart, signing, notarization, deployment,
+    distribution, release-readiness, or merge-to-main action or claim occurred.

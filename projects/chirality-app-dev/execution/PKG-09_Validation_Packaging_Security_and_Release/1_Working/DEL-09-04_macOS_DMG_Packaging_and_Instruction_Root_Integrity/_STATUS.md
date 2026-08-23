@@ -18,11 +18,19 @@
   bootout; the current exact plist/job absence is independently recorded.
   Repeated `listen EINVAL` evidence and exact 119-byte R16 / 111-byte R13 socket
   paths identify the macOS pathname-boundary failure. R17 records the immutable
-  failure and an uncommitted, unbuilt repair candidate: fail-closed prepare-time
-  103-byte enforcement, exact-owned pid-less crash-loop cleanup, and the same
-  deterministic runtime-host guard. Fresh review, Git integration, a new exact
-  unsigned package, and separate owner authorization are required before any
-  future R18 attempt. The sole future proposal is the read-only-confirmed
+  failure; its fail-closed prepare-time 103-byte enforcement, exact-owned
+  pid-less crash-loop cleanup, and deterministic runtime-host guard are merged.
+  R18 now records a candidate Electron supply freeze and one successful offline
+  evidence build only; it does not adopt a package or stage/execute proof. The
+  ordinary-sandbox full frontend diagnostic remains not PASS and is classified
+  `ENVIRONMENT_SANDBOX_SOCKET_DENIAL`: 21 failed / 1,246 passed / 4 skipped on
+  local TCP/Unix-socket `listen EPERM`. The exact owner-authorized `npm test`
+  cure with local test-socket permission passed once at 1,267 passed / 4
+  skipped, exit 0, with identical before/after source, test, package-script,
+  and complete candidate-diff hashes. The PR pre-merge release-quality
+  wrapper's `full_test` plus typecheck is future independent confirmation and
+  has not yet been observed. Fresh review remains required. R19 requires
+  separate post-merge owner authorization. The sole future proposal remains the read-only-confirmed
   absent/non-symlink 33-byte root `/private/tmp/ch-r18-91499728-51dd`; its
   67-byte control-socket path leaves 36 bytes below the macOS maximum. See
   `_run_records/R17_LOGIN_PROOF_FAILURE_AND_REPAIR_2026-08-22.md`.
@@ -75,6 +83,26 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-22 - Added the candidate Electron 43.2.0 arm64 supply freeze after
+  preserving the first cache-miss failure, the terminal redirect attempt, and
+  the accepted two-host official SHASUMS response. The fail-closed verifier
+  pins the exact version, filename, size, hash, official line, and source; the
+  argv-safe wrapper passes one verified electronDist directory to Electron
+  Builder. One network-denied `npm run desktop:pack` exited zero with custom
+  electronDist, no download indicator, and dependency/instruction-root gates
+  passing. The ignored build is evidence only and not adopted. Deterministic,
+  governance, and focused checks pass. The ordinary-sandbox full frontend
+  diagnostic remains not PASS and is classified
+  `ENVIRONMENT_SANDBOX_SOCKET_DENIAL` at 21 failed / 1,246 passed / 4 skipped.
+  One exact owner-authorized `npm test` cure with local loopback/Unix-socket
+  permission passed at 1,267 passed / 4 skipped, exit 0; pre/post semantic
+  hashes and the complete candidate diff are identical. Future PR pre-merge
+  `full_test` plus typecheck confirmation has not yet been observed. Fresh
+  review remains required. DEL-09-04 stays `IN_PROGRESS` and unproved; R19 is a separate
+  post-merge owner act. No proof procedure, operator mutation, signing,
+  notarization, deployment, distribution, release claim, or Git integration
+  occurred. See
+  `_run_records/R18_ELECTRON_SUPPLY_FREEZE_AND_OFFLINE_BUILD_2026-08-22.md`.
 - 2026-08-22 - Preserved the owner-operated R16 attempt as immutable failed
   evidence: prepared state made no proof claim, the login-session transition
   was observed, and capture/evidence remained `FAIL` at exact source revision

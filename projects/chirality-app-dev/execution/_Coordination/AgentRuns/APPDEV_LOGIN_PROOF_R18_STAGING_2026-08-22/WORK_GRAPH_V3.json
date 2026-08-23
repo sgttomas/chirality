@@ -1,0 +1,36 @@
+{
+  "schema": "working-items-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22",
+  "instance_id": "WI-PKG09-R18-STAGING-01",
+  "version": 3,
+  "status": "NETWORK_ONLY_SYNC_ACK_HOLD",
+  "supersedes": "WORK_GRAPH_V2.json",
+  "selection_authority": "OWNER_TRANCHE_A_CONTINUATION",
+  "accepted_branch_head": "166efa82748133e90674be62304b81f8a0a8c1b4",
+  "authorized_sync_target": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "nodes": [
+    {
+      "id": "NETWORK-03",
+      "instance": "A2-PKG09-R18-NETWORK-03",
+      "agent_type": 2,
+      "dependencies": ["WP02-EXECUTE-02-REDIRECT_STOP"],
+      "write_owner": "unique executor-3 network evidence only"
+    },
+    {
+      "id": "SYNC-ACK-HOLD",
+      "instance": "WI-PKG09-R18-STAGING-01",
+      "agent_type": 1,
+      "dependencies": ["NETWORK-03"],
+      "write_owner": "network fan-in and pause only"
+    },
+    {
+      "id": "WP02-IMPLEMENTATION-FUTURE",
+      "instance": "UNRELEASED",
+      "agent_type": 2,
+      "dependencies": ["SYNC-ACK-HOLD"],
+      "write_owner": "none until exact acknowledgment"
+    }
+  ],
+  "integration_owner": "WI-PKG09-R18-STAGING-01",
+  "fan_in_gate": "network evidence PASS then pause for exact sync acknowledgment"
+}

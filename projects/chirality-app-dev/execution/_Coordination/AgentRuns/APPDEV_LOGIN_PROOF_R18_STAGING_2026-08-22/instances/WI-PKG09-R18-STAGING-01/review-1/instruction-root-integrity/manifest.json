@@ -1,0 +1,271 @@
+{
+  "generatedAt": "2026-08-23T02:12:24.628Z",
+  "gitSha": "f59105ddb606bd46397c3b1aafa41b50ab4e9e8d",
+  "sourceLayout": "split",
+  "sourceRoot": null,
+  "sourceRoots": {
+    "rootFilesRoot": "/Users/ryan/.codex/worktrees/ef5e/chirality",
+    "agentsRoot": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents",
+    "docsRoot": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/docs"
+  },
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/AGENTS.md",
+      "sha256": "268becd0bac9da8421b30089e4e4167a5e5f79bf3892d0f72ad41a63180a3aeb",
+      "sizeBytes": 17355
+    },
+    {
+      "path": "CLAUDE.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/CLAUDE.md",
+      "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+      "sizeBytes": 11
+    },
+    {
+      "path": "README.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/README.md",
+      "sha256": "d61d9b0f898ccb29e569f218a288afebf12808058b5a8e84056d665dbef66899",
+      "sizeBytes": 15674
+    },
+    {
+      "path": "docs/DIRECTIVE.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/docs/DIRECTIVE.md",
+      "sha256": "e1a3d00b18fa728f0886f036774c4825ad8f65f3245b56b4545da2714a903031",
+      "sizeBytes": 23762
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/docs/CONTRACT.md",
+      "sha256": "6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7",
+      "sizeBytes": 27308
+    },
+    {
+      "path": "docs/SPEC.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/docs/SPEC.md",
+      "sha256": "eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990",
+      "sizeBytes": 49454
+    },
+    {
+      "path": "docs/TYPES.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/docs/TYPES.md",
+      "sha256": "998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169",
+      "sizeBytes": 38458
+    },
+    {
+      "path": "docs/PLAN.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/docs/PLAN.md",
+      "sha256": "c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff",
+      "sizeBytes": 28168
+    },
+    {
+      "path": "docs/WHAT-IS-AN-AGENT.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/docs/WHAT-IS-AN-AGENT.md",
+      "sha256": "cddf8df4e8cbc45850c409dc4ea5a73a98ba5bae30881b4a9114a5b8efee9240",
+      "sizeBytes": 3127
+    },
+    {
+      "path": "agents/AGENT_AGGREGATION.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_AGGREGATION.md",
+      "sha256": "f4541eae6d9c787436c848b8135baae501dffa0ee467ea11548f0f772f9bf94a",
+      "sizeBytes": 12875
+    },
+    {
+      "path": "agents/AGENT_AUDIT_AGENTS.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_AUDIT_AGENTS.md",
+      "sha256": "bf0bb0b1484a884cd61302b4f2a50b8332810f1c17715c358671b4a02b999b79",
+      "sizeBytes": 7991
+    },
+    {
+      "path": "agents/AGENT_AUDIT_DECOMP.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_AUDIT_DECOMP.md",
+      "sha256": "1f12e86e2f1dd3506fe1d1e46caf7f9be2d1b4b8acd75427f2876593dc2015cb",
+      "sizeBytes": 31099
+    },
+    {
+      "path": "agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_AUDIT_DEP_CLOSURE.md",
+      "sha256": "e233b8edbd202436328fdef96f731d69e9d24a6ae4dc8bd7fdf3e8620f3abb4c",
+      "sizeBytes": 11954
+    },
+    {
+      "path": "agents/AGENT_AUDIT_EPISTEMIC.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_AUDIT_EPISTEMIC.md",
+      "sha256": "4ece509c8f51b3ac547e593e425f8c3c7d3d98d0975a8a19aa4af239b9261b5e",
+      "sizeBytes": 23976
+    },
+    {
+      "path": "agents/AGENT_AUDIT_GOVERNANCE.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_AUDIT_GOVERNANCE.md",
+      "sha256": "58c4f9e5dc4e1c3ae16f2e0bb70940e4400dcc3e07259f911f8e3b9af680a628",
+      "sizeBytes": 23467
+    },
+    {
+      "path": "agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_AUDIT_HYPERGRAPH_CLOSURE.md",
+      "sha256": "b7f20fae614cb1083eb9a8764ca0ada49f4b5147a4308a09c14e7e14c895d346",
+      "sizeBytes": 14395
+    },
+    {
+      "path": "agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_AUDIT_SCOPE_CLOSURE.md",
+      "sha256": "660c5f8604cdd0a101a3bb74e53ed5ae72e622f7c5aa438c1153329abf5d85fc",
+      "sizeBytes": 30231
+    },
+    {
+      "path": "agents/AGENT_CHANGE.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_CHANGE.md",
+      "sha256": "bb2922c5761395687caf120097276806769ec38f4fee8935d9e6c7bbb8506a06",
+      "sizeBytes": 17626
+    },
+    {
+      "path": "agents/AGENT_DBM_PUBLISHER.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_DBM_PUBLISHER.md",
+      "sha256": "3abbe6e34f27a3f28d91cc6b48482a009d1ccc14fc596b31d35de4da506bb293",
+      "sizeBytes": 65590
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_DECOMP.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_DOMAIN_DECOMP.md",
+      "sha256": "bd2eb97cf246d0c1f4bdaa5dd26580f5fc78470af6116072f8e3a65fac6dec29",
+      "sizeBytes": 72626
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_ENGINE.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_DOMAIN_ENGINE.md",
+      "sha256": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36",
+      "sizeBytes": 45293
+    },
+    {
+      "path": "agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_DOMAIN_HYPERGRAPH.md",
+      "sha256": "48bce547848c3666b01ae78505002f73f48dc8fefec00eb3b13727f44f47a32d",
+      "sizeBytes": 28320
+    },
+    {
+      "path": "agents/AGENT_DRAWING_EXTRACT.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_DRAWING_EXTRACT.md",
+      "sha256": "cf2d59ccf60dfe63cd49e5da66ba064f43dd26d6920db78fab6f96e7802f394d",
+      "sizeBytes": 62643
+    },
+    {
+      "path": "agents/AGENT_EQUATION_AUDIT.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_EQUATION_AUDIT.md",
+      "sha256": "f12fa8a303cc90bf24398bb69de51c1736ea977fbd01e4211818ffd1db8f77ec",
+      "sizeBytes": 31991
+    },
+    {
+      "path": "agents/AGENT_EVALUATION.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_EVALUATION.md",
+      "sha256": "49f11c18efe3b2b88bdb2f6fb377d3f5013e84753e8fd1f074715a322b906cc7",
+      "sizeBytes": 8311
+    },
+    {
+      "path": "agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_EVALUATION_DEPENDENCY_AUDIT.md",
+      "sha256": "e703c11e20179f2b101d7b8cb11577f4cb21c2f769b04a87360eb7be5323a231",
+      "sizeBytes": 6654
+    },
+    {
+      "path": "agents/AGENT_EVALUATION_REPORT.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_EVALUATION_REPORT.md",
+      "sha256": "747657cc3c86de5d6aa23af798cf8a017c74aed5004f821f0bff0bb69f15fd5b",
+      "sizeBytes": 6432
+    },
+    {
+      "path": "agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_EVALUATION_STRUCTURE_AUDIT.md",
+      "sha256": "51eb017f64f6ad2797a95711543b5b60c570d4821246d299d9c013adecdd6100",
+      "sizeBytes": 6182
+    },
+    {
+      "path": "agents/AGENT_HELPS_HUMANS.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_HELPS_HUMANS.md",
+      "sha256": "47a30075b4286a7352d78aae9d033d8eead8ef125e4063d0cc7c1235b3e9101a",
+      "sizeBytes": 14061
+    },
+    {
+      "path": "agents/AGENT_HELP_HUMAN.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_HELP_HUMAN.md",
+      "sha256": "0285715cbe41ac2c8b7bfd8b6dbd56ad1f0cbb1a970a4f7afed290fc30d1e981",
+      "sizeBytes": 10073
+    },
+    {
+      "path": "agents/AGENT_PDF2MD.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_PDF2MD.md",
+      "sha256": "2b4fe53d91bcc54ca61ce4a141d1f40a3117d8cfc91bb49a80ca3bea87a64edf",
+      "sizeBytes": 36054
+    },
+    {
+      "path": "agents/AGENT_PREPARATION.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_PREPARATION.md",
+      "sha256": "0bd1b2cf01abad570575fd9920a6f8bb296b7afcdb0834f85dd55524db5a760a",
+      "sizeBytes": 22599
+    },
+    {
+      "path": "agents/AGENT_PROJECT_DECOMP.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_PROJECT_DECOMP.md",
+      "sha256": "8348766462c99eb81423a4a474e53ababc4a92ecffa330695ded07bf2fbb09d9",
+      "sizeBytes": 19356
+    },
+    {
+      "path": "agents/AGENT_PROJECT_SETUP.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_PROJECT_SETUP.md",
+      "sha256": "8cd3af620af3b81ed3c9b1d967679ab0557bdcb6806f7a3302fc5f08dfd164d8",
+      "sizeBytes": 48244
+    },
+    {
+      "path": "agents/AGENT_RECONCILIATION.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_RECONCILIATION.md",
+      "sha256": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7",
+      "sizeBytes": 19494
+    },
+    {
+      "path": "agents/AGENT_RESEARCH.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_RESEARCH.md",
+      "sha256": "a828037551c1c923fc3a1c122c6d6ed2bca46e6d6cea989d4bf66f4a57810870",
+      "sizeBytes": 21551
+    },
+    {
+      "path": "agents/AGENT_RESEARCHER.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_RESEARCHER.md",
+      "sha256": "4b1b022b9b97b245e4067c63c2bfb4e7b1e6dde6a5b0c5102a290a4d2b060341",
+      "sizeBytes": 12191
+    },
+    {
+      "path": "agents/AGENT_REVIEW.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_REVIEW.md",
+      "sha256": "40b7caec558c5019b942219a19451d19243d7dc31d626e3f18a72214c59c5bab",
+      "sizeBytes": 25946
+    },
+    {
+      "path": "agents/AGENT_SCOPE_CHANGE.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_SCOPE_CHANGE.md",
+      "sha256": "fc46378b11c8d56e2c0caf170a76c8a459647848c7f39e50d4af48156b3d0167",
+      "sizeBytes": 66945
+    },
+    {
+      "path": "agents/AGENT_SOFTWARE_DECOMP.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_SOFTWARE_DECOMP.md",
+      "sha256": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+      "sizeBytes": 20751
+    },
+    {
+      "path": "agents/AGENT_TASK.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_TASK.md",
+      "sha256": "80ed9374095b65c8f0ee221ec674ae1a0fa41cbf9ad2727c46853dd7f9ce9983",
+      "sizeBytes": 28842
+    },
+    {
+      "path": "agents/AGENT_TASK_MANAGEMENT.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_TASK_MANAGEMENT.md",
+      "sha256": "e84d1dbdd2540e7667ecd6efc9022d8158fc2a0357be717660911bc5a9d7a2e0",
+      "sizeBytes": 20141
+    },
+    {
+      "path": "agents/AGENT_WORKING_ITEMS.md",
+      "sourcePath": "/Users/ryan/.codex/worktrees/ef5e/chirality/agents/AGENT_WORKING_ITEMS.md",
+      "sha256": "57ec736545a843a671111ad86b858ed964675a4a4a6ef49e9bfce759b1ab44d1",
+      "sizeBytes": 14994
+    }
+  ]
+}

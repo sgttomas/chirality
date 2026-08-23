@@ -1,0 +1,35 @@
+{
+  "schema": "working-items-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22",
+  "instance_id": "WI-PKG09-R18-STAGING-01",
+  "version": 4,
+  "status": "FROZEN_BEFORE_IMPLEMENTATION_DISPATCH",
+  "supersedes": "WORK_GRAPH_V3.json",
+  "selection_authority": "OWNER_TRANCHE_A_PLUS_SYNC_ACKNOWLEDGMENT",
+  "accepted_basis": "f59105ddb606bd46397c3b1aafa41b50ab4e9e8d",
+  "nodes": [
+    {
+      "id": "IMPLEMENT-04",
+      "instance": "A2-PKG09-R18-IMPLEMENT-04",
+      "agent_type": 2,
+      "dependencies": ["NETWORK-03-PASS", "SYNC-ACK-PASS"],
+      "write_owner": "verifier/wrapper/tests/package script, R18/status, executor-4 evidence"
+    },
+    {
+      "id": "MANAGER-FREEZE-V4",
+      "instance": "WI-PKG09-R18-STAGING-01",
+      "agent_type": 1,
+      "dependencies": ["IMPLEMENT-04"],
+      "write_owner": "manager fan-in, review brief, runtime summary"
+    },
+    {
+      "id": "REVIEW-01",
+      "instance": "A2-PKG09-R18-REVIEW-01",
+      "agent_type": 2,
+      "dependencies": ["MANAGER-FREEZE-V4"],
+      "write_owner": "unique review record only"
+    }
+  ],
+  "integration_owner": "A2-PKG09-R18-IMPLEMENT-04",
+  "fan_in_gate": "secure supply freeze plus one offline evidence build, R18/status, full checks and fresh review PASS"
+}

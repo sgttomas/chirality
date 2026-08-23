@@ -1,0 +1,10 @@
+HTTP/2 302
+content-type: text/html; charset=utf-8
+location: https://release-assets.githubusercontent.com/[TRANSIENT-SIGNED-QUERY-REDACTED]
+server: github.com
+content-length: 0
+
+Evidence hygiene note: the complete raw response headers were observed
+transiently. The Location value contained a time-limited signed query/JWT and
+was not retained in repository evidence. This claim-calibrated record preserves
+the terminal status, redirect host, origin server, and zero-byte response body.

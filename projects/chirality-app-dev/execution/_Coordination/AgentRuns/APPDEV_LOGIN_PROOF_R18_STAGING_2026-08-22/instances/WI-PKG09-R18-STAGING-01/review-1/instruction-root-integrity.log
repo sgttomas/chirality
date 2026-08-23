@@ -1,0 +1,6 @@
+instruction-root integrity status: pass
+checked files: 43
+source completeness status: needs_remediation
+git sha: f59105ddb606bd46397c3b1aafa41b50ab4e9e8d
+manifest: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22/instances/WI-PKG09-R18-STAGING-01/review-1/instruction-root-integrity/manifest.json
+summary: /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R18_STAGING_2026-08-22/instances/WI-PKG09-R18-STAGING-01/review-1/instruction-root-integrity/summary.json
