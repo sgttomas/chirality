@@ -199,7 +199,7 @@ A `tool-root-only` scope MAY be parameterized to a registered tool root or subtr
 ### 4.3 Authority Model
 
 - Normative governance documents and domain standards constrain Agent 0, Agent 1, and Agent 2; they are not runtime agents.
-- Agent 0 supervises only named Agent 1 managers.
+- Agent 0 dispatches named Agent 1 managers and may directly dispatch bounded Agent 2 instances under the same sealed-brief, declared-scope, and durable-evidence requirements.
 - Agent 1 may delegate to named Agent 2 specialists, TASK, or an explicitly permitted ephemeral generalist.
 - Agent 2 executes within its sealed brief and may not delegate.
 - Human authority remains the halting condition at consequential gates.

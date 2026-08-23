@@ -1,0 +1,31 @@
+{
+  "instance_id": "N1_DGOV35_M2_APPLICATION",
+  "status": "READY_FOR_FRESH_REVIEW",
+  "verdict": "SUCCESS — REVIEW-CYCLE-1 EVIDENCE REPAIR COMPLETE",
+  "basis": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "brief_version": 1,
+  "agent_2_execution": {
+    "child": "children/DGOV35_RECORD_PACKET",
+    "status": "COMPLETE",
+    "delegation": "PROHIBITED",
+    "repair_cycles": 1,
+    "fan_in": "ACCEPTED AFTER FRESH MANAGER RE-REVIEW"
+  },
+  "fresh_review": {
+    "cycle_1": "FAIL_REPAIR_REQUIRED",
+    "finding": "N1-R1-F1-VALIDATION-EVIDENCE-EXACT-OUTPUTS-AND-EXIT-CODES",
+    "repair_cycles": 1,
+    "repair_scope": [
+      "DEL-02-03-M2-APPLY-001/VALIDATION_RESULTS.md",
+      "DEL-02-03-M2-APPLY-001/HASHES.sha256",
+      "RETURN.md",
+      "STATUS.json"
+    ],
+    "next_gate": "FRESH_RE_REVIEW"
+  },
+  "blockers": [],
+  "commit_bound_reruns": [
+    "validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only"
+  ],
+  "return": "RETURN.md"
+}

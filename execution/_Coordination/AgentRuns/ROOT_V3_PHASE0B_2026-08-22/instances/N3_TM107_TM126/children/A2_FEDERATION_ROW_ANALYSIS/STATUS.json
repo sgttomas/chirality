@@ -1,0 +1,21 @@
+{
+  "instance_id": "A2_FEDERATION_ROW_ANALYSIS",
+  "status": "COMPLETE",
+  "verdict": "PASS",
+  "basis": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "federation_coverage": "COMPLETE",
+  "register_writes": 0,
+  "live_before": 21,
+  "archive_before": 106,
+  "live_after_expected": 19,
+  "archive_after_expected": 108,
+  "owner_closed_rows": [
+    "TM-ROOT-107",
+    "TM-ROOT-126"
+  ],
+  "archive_required": true,
+  "outputs": [
+    "RETURN.md",
+    "STATUS.json"
+  ]
+}

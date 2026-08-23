@@ -1,0 +1,18 @@
+{
+  "instance_id": "N1_DGOV35_M2_APPLICATION_REVIEW_CYCLE_2",
+  "parent_instance_id": "N1_DGOV35_M2_APPLICATION",
+  "role": "fresh read-only Agent-2 reviewer",
+  "status": "COMPLETE",
+  "terminal": true,
+  "verdict": "PASS_ZERO_ACTIONABLE_FINDINGS",
+  "basis": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "actionable_findings": 0,
+  "cycle_1_finding": "CLOSED",
+  "content_checks": "PASS",
+  "validation_evidence_exact_match": "PASS",
+  "scope_containment": "PASS",
+  "commit_gate": "READY_FOR_SERIALIZED_CHANGE_FAN_IN",
+  "post_commit_g4_rerun_required": true,
+  "merge_authorized": false,
+  "review": "REVIEW.md"
+}

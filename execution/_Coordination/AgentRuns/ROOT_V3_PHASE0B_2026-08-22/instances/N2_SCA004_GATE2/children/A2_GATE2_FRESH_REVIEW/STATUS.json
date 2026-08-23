@@ -1,0 +1,28 @@
+{
+  "instance_id": "A2_GATE2_FRESH_REVIEW",
+  "parent": "N2_SCA004_GATE2",
+  "status": "COMPLETE",
+  "basis": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "mode": "FRESH_READ_ONLY_GATE2_REVIEW",
+  "verdict": "NOT_READY_FOR_GATE_2_OWNER_REVIEW",
+  "blocking_findings": 2,
+  "structural_gate2_check": "PASS",
+  "r1_c_verbatim_check": "PASS",
+  "eight_action_four_lens_check": "PASS",
+  "g0_checks": {
+    "A3": "BLOCKED_MISSING_HARD_CONTAINMENT_UNCHANGED_CLAUSE",
+    "A4": "PASS",
+    "A7": "BLOCKED_MISSING_EXACT_GROUPING_AND_EMPIRICAL_G_APPR_PROOF"
+  },
+  "held_binding_check": "PASS_EXACTLY_TEN_HELD_UNAVAILABLE",
+  "protected_hash_check": "PASS",
+  "graph_rerun_required": false,
+  "gate_boundary_check": "PASS_GATE3_CLOSED",
+  "outputs": [
+    "RETURN.md",
+    "STATUS.json"
+  ],
+  "writes_outside_child_folder": false,
+  "delegated": false,
+  "next_owner": "N2_SCA004_GATE2"
+}

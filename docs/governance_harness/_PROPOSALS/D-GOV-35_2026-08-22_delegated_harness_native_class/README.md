@@ -19,11 +19,11 @@ propagation and validation.
 
 | File | SHA-256 convention | SHA-256 |
 |---|---|---|
-| `D-GOV-35.proposed.md` | Exact file bytes | `924c1b098f1510bca9189e1ac06e4c2fd8e9d358a9fc3c4e42fdd04a53b69c88` |
+| `D-GOV-35.proposed.md` | Exact file bytes | `cf992fe4a01956c5df4ecec6bdbd386c3c2c084cd323ab8f7361a611800a27b3` |
 | `AGENTS.proposed.patch` | Exact file bytes | `4455adda4199be5493e1f8d2171ebb4641f40666c35cf09e90adc935ff6355ee` |
 | `IMPACT.md` | Exact file bytes | `565e651963b08f74622ca0e0d32b66d6d301c3ef95c159867b4e41a6fbd98435` |
 | `docs/governance_harness/tranche_manifests/ROOT-DGOV35-PROPOSAL-20260822.yaml` | Exact file bytes | `9e3d5798078ceb8e00736ec5e9db6f8d8080bcb8e9f792d781c5efde958a5a91` |
-| `README.md` | Normalized self-hash defined below | `9a278aa67680836ee9c77a4a4056b9380fd163c69d703be66579c0c8b2dc1016` |
+| `README.md` | Normalized self-hash defined below | `0eafd816f7da5252a6439b58fec21f2ef22295871629912715c276dd8a27ba86` |
 
 ### README self-hash convention
 
@@ -59,3 +59,5 @@ anchor is inside `## Delegation and Entry Rules`, and there is zero unchanged
 context outside that section. It does not delete and re-add unchanged rules to
 manufacture context and does not claim to be a conventional `-U0` patch. No
 proposed byte is applied to live `AGENTS.md` here.
+
+RULED 2026-08-22 — see `_DECISIONS/D-GOV-35_delegated_harness_native_class.md`
