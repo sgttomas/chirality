@@ -1,0 +1,70 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE0_2026-08-22",
+  "plan_version": 3,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "basis": "6b0c5219b6a2653e2fc491b1d998abcf78fcf776",
+  "nodes": [
+    {
+      "id": "N1",
+      "role": "HELPS_HUMANS",
+      "dependencies": [],
+      "concurrency_group": "A",
+      "write_targets": [
+        "docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/"
+      ],
+      "return": "instances/N1/RETURN.md"
+    },
+    {
+      "id": "N2",
+      "role": "EPHEMERAL_GENERALIST_AGENT_2",
+      "dependencies": ["N1"],
+      "concurrency_group": "B",
+      "write_targets": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_run_records/DEL-02-03-M2-PREP-001/"
+      ],
+      "return": "instances/N2/RETURN.md"
+    },
+    {
+      "id": "N3",
+      "role": "SCOPE_CHANGE",
+      "dependencies": [],
+      "concurrency_group": "A",
+      "write_targets": [
+        "execution/_ScopeChange/SCA-004_2026-08-22_1749/",
+        "execution/_Coordination/NOTICE_2026-08-22_ROOT_SCA-004_V3_RELEASE_PATHWAY_DAG.md"
+      ],
+      "nested_dependencies": ["AUDIT_DEP_CLOSURE", "AUDIT_DECOMP"],
+      "return": "instances/N3/RETURN.md"
+    }
+  ],
+  "edges": [
+    {
+      "from": "N1",
+      "to": "N2",
+      "type": "gating",
+      "reason": "N2 must bind the accepted N1 patch SHA without duplicating bytes"
+    },
+    {
+      "from": "N3_GRAPH",
+      "to": "N3_AUDIT_DEP_CLOSURE",
+      "type": "gating",
+      "reason": "the audit consumes the drafted objective-relative graph"
+    },
+    {
+      "from": "N3_AUDIT_DEP_CLOSURE",
+      "to": "N3_RETURN",
+      "type": "gating",
+      "reason": "N3 must include the audit verdict before return"
+    }
+  ],
+  "fan_in_order": ["N1", "N2", "N3"],
+  "human_gates": [
+    "D-GOV-35 owner ruling",
+    "SCA-004 Gate-2 acceptance",
+    "instruction application authorization",
+    "sync authorization if main advances",
+    "PR review and merge"
+  ]
+}

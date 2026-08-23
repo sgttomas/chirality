@@ -1,0 +1,7 @@
+ActionItemID,CurrentStatus,ProposedTreatment,ProposedClosureState,ClosureCondition,AuthorityBasis,RegisterEffectNow
+TM-ROOT-035,OPEN,"Route exact source_identity acceptance to G0.5 before implementation","RESOLVED_BY_DECISION","Accountable human accepts exact implemented source bytes and hashes; planning or repository basis is insufficient","G0 B5; DEL-02-06 held binding 1",NONE
+TM-ROOT-042,OPEN,"Carry physical bundling and cadence to empirical G-HELPER","RESOLVED_BY_DECISION","Accepted G-HELPER evidence and owner disposition; no answer inferred by SCA-004","G0 B2/B5",NONE
+TM-ROOT-107,OPEN,"Record SCA-004 as the ancestor scope-change response","SUPERSEDED_BY_SCOPE_CHANGE","Owner accepts exact SCA-004 Gate-1 package and Task Management records its ScaRef","G0 B5",NONE
+TM-ROOT-108,OPEN,"Carry terminalize plus conditional thread/resume or fresh-thread semantics into the terminal-reconciliation carrier","RESOLVED_WITH_CHANGE","Accepted implementation plus restart/replay evidence meets the existing row closure target","G0 A4/B5",NONE
+TM-ROOT-106,OPEN,"Retain as G1 blocker only; no Pi pin amendment in SCA-004","UNCHANGED_OPEN","Separate routine Task Management decision and validation evidence","G0 B4",NONE
+TM-ROOT-122,OPEN,"Retain as G1 blocker only; no Electron pin amendment in SCA-004","UNCHANGED_OPEN","Separate App-owned pin disposition and Root closure evidence","G0 B4",NONE

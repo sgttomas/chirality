@@ -1,0 +1,16 @@
+{
+  "node": "N1",
+  "status": "ACCEPTED_AFTER_FRESH_REVIEW",
+  "brief_version": 2,
+  "parent": "HELP_HUMAN",
+  "basis": "6b0c5219b6a2653e2fc491b1d998abcf78fcf776",
+  "return": "RETURN.md",
+  "content_status": "PROPOSED_AWAITING_OWNER_RULING",
+  "return_sha256": "dabe5c3826ff17801015301cb1ffec685d0fc96ffa96cf1f3178b5505949994e",
+  "accepted_review": "review-cycle-3/REVIEW.md",
+  "accepted_review_sha256": "2bad195c74726c9ec203cb45a3149644536d3fe8883dba1f71d0f73b004a7c7f",
+  "blockers": [
+    "D-GOV-35 remains PROPOSED — AWAITING OWNER RULING"
+  ],
+  "next_gate": "OWNER_RULING_ON_D_GOV_35"
+}

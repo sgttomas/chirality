@@ -1,0 +1,16 @@
+{
+  "node": "N2",
+  "status": "ACCEPTED_PREPARATION_BLOCKED_ON_D_GOV_35_RULING",
+  "brief_version": 1,
+  "parent": "HELP_HUMAN",
+  "basis": "6b0c5219b6a2653e2fc491b1d998abcf78fcf776",
+  "n1_patch_sha256": "4455adda4199be5493e1f8d2171ebb4641f40666c35cf09e90adc935ff6355ee",
+  "n1_review": "../N1/review-cycle-3/REVIEW.md",
+  "completed_at": "2026-08-22",
+  "content_return": "RETURN.md",
+  "return_sha256": "3ac4e6356e21f0b2f680bcb1ed09fc4d04c57ef944195b3e9e80f4cb212c6047",
+  "accepted_review": "review/REVIEW.md",
+  "accepted_review_sha256": "6a22c65fed127115889eb95996fa912ba158ff49690f606fa1aab58939cf723b",
+  "content_write_root": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_run_records/DEL-02-03-M2-PREP-001/",
+  "blocker": "D-GOV-35 requires the owner's explicit ruling before instruction application or notice routing"
+}
