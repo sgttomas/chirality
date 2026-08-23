@@ -5077,3 +5077,280 @@ dispatch; C1 (App Server 0.149.0 artifact download) remains not
 authorized; no pin change (G0 B4; TM-ROOT-106/122 stay G1 blockers); no
 App-loop act — SCA-APP-008 reciprocates under App authority.
 <!-- END RECEIPT-117 R3 VERBATIM -->
+
+### Receipt 118 — 2026-08-23 — Root v3 Phase 0e Gate-5 attempt stopped and recovered
+
+- **Basis and authority:** fresh branch
+  `codex/root-v3-phase0e-2026-08-23` from
+  `origin/main@6da0b548d4ec5d303adecdd448ad1a5517c9e27b` (PR #629),
+  containing PR #628 merge
+  `4fbbb57999f1acf390fc2218a78b1a30249fd600`. The Phase-0e steer and R4
+  record match SHA-256
+  `ad97af5e1871a01df87930777717f4325f8dac7019a25731e386261b7ca16eb4`
+  and `5916aa599bf5953324636b8c5e0b0a5e2b9e6a793fd6dd9b1cac1c7e19e0755a`.
+  Every cited basis-gate identity passed before the attempt; Root G0–G4 and
+  Task Management passed. R4-A approved the published append/result
+  identities, R4-B authorized the exact sequence once, and R4-C deferred the
+  pointer.
+- **N1 terminal result:** commit
+  `31d6dae95c57e8ccd1661cd6f1c64c8ecf077edb` records the sole sealed
+  Agent-2 attempt and control evidence under
+  `execution/_Coordination/AgentRuns/ROOT_V3_PHASE0E_2026-08-23/`.
+  Pre-write `validate_gate5_package.py` passed 64/64 with zero failures;
+  its clean-scratch and applied-state-equivalent Gate-3 lanes each passed
+  98/98, and `Gate_5_Validation.json` remained
+  `4831fb2757bfcdeb2faa0dff51a15d4f04ec68d4c9716928a36f1ea8844df966`.
+  Intermediate candidate materialization then failed its mandatory R3-A
+  identity fence on five surfaces. The owner-approved Gate-5 append check and
+  application were not invoked. Per the mismatch rule, the executor restored
+  all seven live files to exact revision-1.2 bytes and stopped without retry.
+- **Observed intermediate identities:** working surface
+  `00c35044872f3a8722a39e84bb028ee087d378190d3a108314d23ab5e9e739c8`
+  (mismatch); deliverable register
+  `5f99b33e1f08ff23e74b874e11ef3884f30c9a6562a0500299d14676d7e29ca0`
+  (mismatch); scope ledger
+  `2fa252ab9be4759f1510578512c866c8029e60df9b157d91ae542eab30705484`
+  (mismatch); objective register
+  `b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f`
+  (match); forward trace
+  `9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f`
+  (match); reverse trace
+  `734c030494a00018cd501bbbfb5f36de2a180a802a6c76ecca8831365b8f0785`
+  (mismatch); telemetry
+  `316185be54ec75f0ddaad847a00427a9051527ce9b94019cad2a3b4c2120d765`
+  (match). The executor classifies this as a patch-format conversion failure;
+  that causal detail is instruction-asserted because required recovery
+  discarded the intermediate bytes.
+- **Before → terminal live identities:** working surface
+  `23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d`
+  → same; deliverable register
+  `a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395`
+  → same; scope ledger
+  `3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2`
+  → same; objective register
+  `c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55`
+  → same; forward trace
+  `adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84`
+  → same; reverse trace
+  `6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0`
+  → same; telemetry
+  `6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282`
+  → same. No `Gate_5_Application_Record.md` or
+  `Evidence/AUDIT_DECOMP_POST_GATE5/` exists because Gate 5 did not execute.
+- **Fresh review and evidence:** final N1 return SHA-256 is
+  `abb62c193a501e5113ae40ae3af885f30f94945b6ba826885391930c7db952eb`;
+  terminal status SHA-256 is
+  `51ae0d3e259c06720cd9cfb40a4d84a5414631ad4c11677c08189701356b5146`.
+  Fresh read-only review SHA-256 is
+  `e6e72860b85740164c5119ebfee6209ceb1e5a150f17b1f7ef4293e074b298c6`,
+  verdict `PASS / BLOCKED_RECORDED`, zero actionable findings. The run
+  handoff SHA-256 is
+  `ee10c833380eb3e081b60958b608f31816979c5ad562a3cb35c47fdb92248e4b`.
+- **Write set and protected state:** the tranche publishes only the Phase-0e
+  run tree, this Receipt 118, and the Root coordination handoff update. No
+  tracked SCA-004, decomposition, pointer, deliverable, Task Management,
+  instruction, docs, tools, runtime, project, export, pin, lifecycle, or
+  foreign-loop byte differs from `origin/main`. The Root handoff records
+  unchanged Task Management counts of 19 live
+  (`OPEN=11`, `DEFERRED=8`) / 108 archived. All ten
+  `HELD_UNAVAILABLE` bindings remain held.
+- **Validation:** `FINAL_CLOSEOUT_VALIDATION_PENDING`.
+- **Gate and derivative disposition:** `BLOCKED_RECOVERED`. Gate 5 remains
+  unexecuted; the approved Gate-5 package remains derivative evidence and the
+  accepted live truth remains revision 1.2. The R4-B one-attempt authority is
+  consumed. Fresh owner direction is required before another attempt and must
+  name an exact materialization method. Gate-5 confirmation, pointer authority,
+  Git-effect backfill, every later propagation act, TM-ROOT-106/122, C1, pin
+  changes, runtime/tool/App work, lifecycle, hold lifts, cutover, release,
+  publication, and reliance remain closed. This receipt creates no semantic
+  acceptance, application, confirmation, PR approval, merge authority, or
+  release effect.
+
+#### CHAT_TRANSCRIPTION — Root v3 Phase-0e owner steer
+
+Source: `plans/steers/chirality_app_v3_phase0e_steer_root_2026-08-23.md`
+
+SHA-256: `ad97af5e1871a01df87930777717f4325f8dac7019a25731e386261b7ca16eb4`
+
+<!-- BEGIN RECEIPT-118 STEER VERBATIM -->
+# STANDING DIRECTION — Root governance loop — v3 release pathway, Phase 0e (SCA-004 Gate-5 execution and closure lane)
+
+> **Plans-folder status:** ACTIVE owner-carried steer — non-governing. Owner: Ryan Tufts. Scope: Root Phase 0e of the v3 release pathway. Target workspace: Root governance loop. Paste together with `plans/steers/chirality_app_v3_root_ruling_record_r4_2026-08-23.md`; the G0, R1, R2, and R3 records are already transcribed in Receipts 114–117 and are cited, not re-pasted.
+
+
+Owner-carried steer, drafted by HELP_HUMAN 2026-08-23 from the owner's R4
+ruling. Paste whole, together with the attached
+`plans/steers/chirality_app_v3_root_ruling_record_r4_2026-08-23.md`.
+Transcribe both verbatim into the closeout receipt as CHAT_TRANSCRIPTION. The
+R4 record is the owner's direction of record for this tranche: R4-A approves
+the append bytes, R4-B authorizes one Gate-5 execution, R4-C defers the
+pointer.
+
+## Basis gate (check before any write; stop and report if any line fails)
+
+- `origin/main` contains merge commit `4fbbb57999f1acf390fc2218a78b1a30249fd600` (PR #628). Branch from current `main`.
+- `AGENTS.md` SHA-256 `377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3`.
+- `execution/_ScopeChange/SCA-004_2026-08-22_1749/`: `Gate_5_Application_Append.diff` `336405845dde5a3ae406b46c750c38a88c1b366f69bdaa74b4078679e04fe6a8`; `Gate_5_Applied_Preview.md` `eb4a9236e7b6d007ebf11aff75bc3e86884d7158d7b753933b3130d523423d03`; `Gate_5_Slot_Inventory.md` `79929dfd8a299904d95fa0ab83b7b044452528ecf6e39bc57717675e39928e22`; `Gate_5_Validation.json` `4831fb2757bfcdeb2faa0dff51a15d4f04ec68d4c9716928a36f1ea8844df966`; `validate_gate5_package.py` `8dd6e92577fceba1693e6c1605c9863d33c97002ea47e36a3f05d724d7a157e3`; `Gate_5_Brief.md` `7f0ab64a16d70c7b48c7f51ed4bbfc3bbd5569bed3fdd05343de1ffe2b7d01de`; `Gate_5_Pointer_Candidate.md` `5918e7bff305bfc0a22c4a4fd172a2ad7bf013a217a778d6ca3797ce773dfabf`; `Decision_Log.md` `c0e45e18b06ee2f415552aee10c6053e5dd887649bb3dc5accf6411943a23375`; `Handoff_State.md` `86825f84d6c9e7c6b38efe98319b67fb000676f37027d0c89b666216c3ab1d12` (status `AWAITING_OWNER_GATE_5_APPEND_APPROVAL`); `Gate_3_Exact_Amendment.diff` `0724668f6fb85189f4c3ee142a21cef938c8dd47373be543d8b108c8e934637b`; `Propagation_Plan.md` `abf5ff142b351eef3c16a7d33525f5688db8826f3e0eda58810eb47637645a05`.
+- The seven `Gate_3_Candidate/` files carry exactly the R3-A SHA-256 values; the seven `Gate_5_Applied_Candidate/` files carry exactly the R4-A applied identities.
+- Live revision 1.2, to be replaced by this tranche and nothing else under `execution/_Decomposition/`: `Chirality_Root_SOFTWARE_DECOMP_v1_0.md` `23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d`; `chirality_root_deliverable_register_v1_0.csv` `a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395`; `chirality_root_scope_ledger_v1_0.csv` `3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2`; `chirality_root_objective_register_v1_0.csv` `c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55`; `chirality_root_prd_coverage_forward_v1_0.csv` `adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84`; `chirality_root_trace_reverse_v1_0.csv` `6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0`; `chirality_root_coverage_telemetry_v1_0.md` `6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282`.
+- `execution/_ScopeChange/_LATEST.md` `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1` (unchanged by this tranche; R4-C).
+- Gate-1 `AUDIT_DECOMP` baseline `execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/AUDIT_DECOMP/coverage_summary.json` `2210e77f989f29c11e005d7fe89944e2e0f0fe265e0a514f53042aaa89de9e45` (preserved; the backcheck writes a new folder).
+- `execution/_Coordination/_TaskManagement/REGISTER.csv` `89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518` (19 live; untouched by this tranche).
+- `execution/_Coordination/HANDOFF_STATE.md` `7a88c6f5d8d36ec4242428cc1442ba483f17ca55508f8e6ba82f2ef1504be164`.
+- Last Root receipt is 117. This tranche writes Receipt 118.
+- `plans/steers/chirality_app_v3_root_ruling_record_r4_2026-08-23.md` is present in the paste; its SHA-256 is recorded in the receipt.
+
+## Objective
+
+Execute SCA-004 Gate 5 exactly once, exactly as `Gate_5_Brief.md` steps 1–9
+prescribe and R4-B authorizes: the seven live decomposition surfaces become
+the R4-A applied identities; `Gate_5_Application_Record.md` records every
+before/after SHA; the closure-validation lane of `Propagation_Plan.md` §6
+items 1–6 runs and is recorded; the applied state returns to the owner for
+Gate-5 confirmation. No pointer, folder, SOW, `_STATUS.md`, lifecycle,
+dependency, estimate, schedule, graph, TM, tool, runtime, or App surface
+changes. No hold is lifted; the ten `HELD_UNAVAILABLE` bindings stay held.
+
+## Nodes (N=1; Agent 2 instance with a sealed brief under `execution/_Coordination/AgentRuns/ROOT_V3_PHASE0E_2026-08-<DD>/instances/<NODE>/`)
+
+### N1 — SCOPE_CHANGE: Gate-5 application and closure lane
+Write targets, exactly: the seven live files under `execution/_Decomposition/` named in the basis gate; `execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_5_Application_Record.md` (new); `execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/AUDIT_DECOMP_POST_GATE5/` (new folder for the post-application backcheck; the Gate-1 `Evidence/AUDIT_DECOMP/` baseline is not overwritten); `Decision_Log.md` and `Handoff_State.md` in the SCA folder. Every other SCA-004 file, including `Gate_3_Candidate/`, `Gate_5_Applied_Candidate/`, the append, preview, brief, inventory, validators, and validation JSONs, is approved bytes and is not rewritten.
+Pre-write: reverify every bound-input SHA above and run `validate_gate5_package.py` fresh (PASS, zero failures, `Gate_5_Validation.json` byte-identical); if anything differs, stop and report — no partial application.
+Sequence (the brief's steps, restated as check surfaces):
+1. Copy the seven exact `Gate_3_Candidate/` files to their live paths; hash and require equality with the seven R3-A SHAs.
+2. From repository root, `git apply --unidiff-zero --check` then `git apply --unidiff-zero` of `Gate_5_Application_Append.diff`; hash the seven live files and require exact equality with the R4-A applied identities (`546b6e4c…`, `2cdf1e68…`, `63e6fa6b…`, `b65da0f8…`, `9fcfa2a5…`, `750aed6c…`, `bdd6bc08…`). Any mismatch: revert the seven files to revision 1.2 bytes, stop, and report.
+3. `Gate_5_Application_Record.md`: per-file before (1.2) → after (applied) SHA table; R4-A and R4-B references with the R4 record SHA; validator result; Git-effect slot `TBD` (D-GOV-34 backfill convention; never inferred); explicit statement that `_LATEST.md` is unchanged by R4-C.
+4. Closure lane (`Propagation_Plan.md` §6 items 1–6), each recorded with its output: (1) applied live hashes reverified against R4-A; (2) applied-state Gate-3 equivalent via `validate_gate5_package.py` against the live files — PASS 98/98 (the protected Phase-0c `validate_gate3_candidate.py` is not run against the applied live state; say so); (3) post-application scoped `AUDIT_DECOMP` backcheck into `Evidence/AUDIT_DECOMP_POST_GATE5/`, compared to the Gate-1 baseline `coverage_summary.json` `2210e77f…`, expected applied topology 53 deliverables, PKG-02=12, PKG-04=11, packages=6, scope items=104, objectives=7, zero unmapped IN items, zero unmapped objectives, zero untraced reverse units; (4) `git diff --name-only` against the branch basis shows only the write targets above — no folder, SOW, `_STATUS.md`, or `_DEPENDENCIES.md` created or changed; (5) all ten DEL-02-06 bindings `HELD_UNAVAILABLE`, cited by file and line; (6) derivative disposition table: which derivatives are current, which are stale and await their later acts (PREPARATION INIT ×7, DEL-02-06 `_CONTEXT.md` edit list, dependency extraction, estimates, schedule, `WORK_GRAPH.json`/`DAG.md`, `AUDIT_DEP_CLOSURE`, pointer).
+5. `Decision_Log.md`: append `G5-APPEND-APPROVED-001` (R4-A verbatim with the append and applied SHAs), `G5-AUTHORIZED-001` (R4-B verbatim), `G5-POINTER-DEFERRED-001` (R4-C verbatim), and `G5-EXECUTED-001` with the application-record SHA; `Gate 5 (application)` → `EXECUTED_AWAITING_OWNER_CONFIRMATION`.
+6. `Handoff_State.md`: four-state form, status `AWAITING_OWNER_GATE_5_CONFIRMATION`; blockers: owner Gate-5 confirmation; pointer ruling (R4-C); Git-effect backfill after merge; the later propagation acts listed in item 4(6); TM-ROOT-106/122 unchanged as G1 blockers.
+Check surface: the seven live SHAs equal R4-A exactly; `validate_gate5_package.py` applied-state PASS; backcheck counts as expected; `git diff --name-only origin/main..HEAD` ⊆ the write targets plus run tree, coordination handoff, and receipt; `_LATEST.md`, every `_STATUS.md`, every live folder, and the TM register byte-identical; fresh review with zero actionable findings. If any closure-lane item fails, do not revert the application silently: record the failure in the application record and handoff state, stop, and return the blocker — reversal is the owner's call.
+
+## Not selectable in this tranche
+`AGENTS.md`, `agents/**`, `docs/**`, `execution/_ScopeChange/_LATEST.md`, any `_STATUS.md`, `execution/PKG-*/1_Working/**` folders (no INIT; no DEL-02-06 `_CONTEXT.md` edit yet), SOWs, `_DEPENDENCIES.md`, estimates, schedules, `WORK_GRAPH.json`/`DAG.md` regeneration, `AUDIT_DEP_CLOSURE`, the Gate-1 `Evidence/AUDIT_DECOMP/` baseline, the Task Management register, `tools/**`, `runtime/**`, `projects/**`, `exports/**`, pins, and any App surface. The approved SCA-004 bytes named above are read-only.
+
+## Failure rule
+Unlimited repair with fresh re-review for evidence and record writes. The
+application itself (steps 1–2) is executed once against exact identities; a
+mismatch reverts to revision 1.2 bytes and stops. Never widen the write set;
+if a needed write falls outside it, report and stop.
+
+## Closeout
+One tranche, one branch `codex/root-v3-phase0e-2026-08-<DD>`, one PR to
+`main`. Append Receipt 118 to `execution/_Coordination/LOOP_RECEIPTS.md`
+after the fact, in-PR, with: this steer and
+`plans/steers/chirality_app_v3_root_ruling_record_r4_2026-08-23.md` as
+CHAT_TRANSCRIPTION (record both SHA-256 values); the write set; every cited
+SHA/commit; the per-file before→after live SHA table; `Gate_5_Validation.json`
+and backcheck results; validator outputs including the CI-form G4 output
+(expected: zero instruction-surface paths); `execution/_Coordination/HANDOFF_STATE.md`
+updated. Run before pushing: `validate_candidate_whitespace.py --base-ref origin/main`,
+`validate_agent_instructions.py`, `validate_instruction_entrypoints.py`,
+`validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only`,
+`tools/taskmgmt/taskmgmt.py validate --register execution/_Coordination/_TaskManagement/REGISTER.csv`,
+`git diff --check`. Do not merge. If `main` advances, request sync
+authorization from the owner and record it in the receipt. HELP_HUMAN
+byte-verifies the applied live bytes against R4-A before endorsement; Gate-5
+confirmation and the pointer ruling return to the owner as separate acts, and
+the Git-effect slots are backfilled by a later recorded act after merge.
+<!-- END RECEIPT-118 STEER VERBATIM -->
+
+#### CHAT_TRANSCRIPTION — Root R4 owner-ruling record
+
+Source: `plans/steers/chirality_app_v3_root_ruling_record_r4_2026-08-23.md`
+
+SHA-256: `5916aa599bf5953324636b8c5e0b0a5e2b9e6a793fd6dd9b1cac1c7e19e0755a`
+
+<!-- BEGIN RECEIPT-118 R4 VERBATIM -->
+# ROOT RULING RECORD R4 — SCA-004 Gate-5 append approval, Gate-5 execution authorization, pointer deferral — owner ruling of 2026-08-23
+
+> **Plans-folder status:** ACTIVE owner-ruling record — non-governing transcription source. Owner: Ryan Tufts. Scope: SCA-004 Gate 5 (application). Target workspace: Root governance loop (transcribed into Receipt 118). Supersedes nothing; the loop's instruments govern. Companion to `plans/steers/chirality_app_v3_root_ruling_record_r3_2026-08-23.md`.
+
+
+Ruled by Ryan Tufts (K-AUTH-1) in the HELP_HUMAN session minder chat, after
+PR #628 merged as `4fbbb57999f1acf390fc2218a78b1a30249fd600` (Root Phase 0d).
+HELP_HUMAN had byte-verified the published package on `main` before the
+slate: applying `Gate_5_Application_Append.diff` to the R3-A-approved
+`Gate_3_Candidate/` files with `git apply --unidiff-zero` reproduces all seven
+`Gate_5_Applied_Candidate/` files byte-for-byte; deliverable count, per-package
+distribution, deliverable-ID set, and the row counts of every companion and
+trace file are identical before and after the append; `validate_gate5_package.py`
+returned PASS 64/64 with `Gate_5_Validation.json` byte-identical. "[click]"
+marks the option the owner selected.
+
+R4-A — SCA-004 Gate-5 application append: [click] "Approve as published".
+  Subject bytes, all under `execution/_ScopeChange/SCA-004_2026-08-22_1749/`:
+    `Gate_5_Application_Append.diff`
+      `336405845dde5a3ae406b46c750c38a88c1b366f69bdaa74b4078679e04fe6a8`
+    `Gate_5_Slot_Inventory.md`
+      `79929dfd8a299904d95fa0ab83b7b044452528ecf6e39bc57717675e39928e22`
+    `Gate_5_Applied_Preview.md`
+      `eb4a9236e7b6d007ebf11aff75bc3e86884d7158d7b753933b3130d523423d03`
+    `Gate_5_Validation.json`
+      `4831fb2757bfcdeb2faa0dff51a15d4f04ec68d4c9716928a36f1ea8844df966`
+      (PASS, 64 checks, 0 failures)
+  Resulting applied identities (`Gate_5_Applied_Candidate/`), which Gate 5 must
+  produce exactly at the live paths under `execution/_Decomposition/`:
+    `Chirality_Root_SOFTWARE_DECOMP_v1_0.md`
+      `546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986`
+    `chirality_root_deliverable_register_v1_0.csv`
+      `2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba`
+    `chirality_root_scope_ledger_v1_0.csv`
+      `63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417`
+    `chirality_root_objective_register_v1_0.csv`
+      `b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f`
+    `chirality_root_prd_coverage_forward_v1_0.csv`
+      `9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f`
+    `chirality_root_trace_reverse_v1_0.csv`
+      `750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438`
+    `chirality_root_coverage_telemetry_v1_0.md`
+      `bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c`
+  Recorded form: the owner approves the append as published — all eighteen
+  hunks, being the status, revision, run, and amendment slots of the working
+  surface and telemetry, and the two inventoried scope-ledger `Notes` cells
+  (SL-001 `SOW-083`, SL-002 `SOW-103`). The owner was told, and approves with
+  knowledge, that those two cells carry wording inherited from revision 1.0
+  through 1.2 rather than SCA-004 candidate status, and that the append
+  modernizes them to applied-revision wording. The append changes no row,
+  mapping, count, ID, or trace. CONDITION R3-B-1 is satisfied by these bytes.
+
+R4-B — SCA-004 Gate-5 execution: [click] "Authorize now".
+  Subject bytes: `Gate_5_Brief.md`
+  `7f0ab64a16d70c7b48c7f51ed4bbfc3bbd5569bed3fdd05343de1ffe2b7d01de`, read
+  against `Decision_Log.md`
+  `c0e45e18b06ee2f415552aee10c6053e5dd887649bb3dc5accf6411943a23375` and
+  `Handoff_State.md`
+  `86825f84d6c9e7c6b38efe98319b67fb000676f37027d0c89b666216c3ab1d12`
+  (status `AWAITING_OWNER_GATE_5_APPEND_APPROVAL`).
+  Recorded form: the owner authorizes the Root loop to execute the brief's
+  exact sequence, steps 1–9, once: reverify the seven live revision-1.2 SHAs
+  and the seven approved candidate SHAs; fresh `validate_gate5_package.py`
+  PASS; copy the seven approved files to their live paths; apply the approved
+  append; require exact equality with the R4-A applied identities; write
+  `Gate_5_Application_Record.md` with every before/after SHA, the R4-A and
+  R4-B references, the validator result, and the Git-effect slot `TBD`; run
+  the closure-validation lane of `Propagation_Plan.md` §6 items 1–6 (applied
+  hashes, applied-state Gate-3 equivalent, post-application scoped
+  `AUDIT_DECOMP` backcheck against the Gate-1 baseline, no folder/SOW/status/
+  dependency created, all ten holds `HELD_UNAVAILABLE`, derivative
+  currentness); return the applied state for the owner's Gate-5 confirmation
+  (§6 item 7). This authorization is for this exact package identity only; any
+  SHA drift, validator failure, or out-of-scope write stops the act.
+  Gate-5 confirmation remains a later owner act against the applied live
+  bytes and the closure-lane evidence.
+
+R4-C — `_LATEST.md` pointer: [click] "Rule after Gate-5 confirmation".
+  Subject bytes: `Gate_5_Pointer_Candidate.md`
+  `5918e7bff305bfc0a22c4a4fd172a2ad7bf013a217a778d6ca3797ce773dfabf`.
+  Recorded form: the pointer is not written by the Gate-5 act. The candidate
+  returns for its own ruling after the owner confirms the applied state
+  (`Propagation_Plan.md` §7). `execution/_ScopeChange/_LATEST.md` remains
+  `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1` through
+  Phase 0e.
+
+Not ruled here: Gate-5 confirmation; pointer approval; any PREPARATION INIT
+dispatch, SOW, dependency, estimate, schedule, graph, or audit-snapshot act
+beyond the closure lane; the `AGENT_SCOPE_CHANGE.md` application-append
+Task Management candidate (routed to triage); C1 (App Server 0.149.0
+artifact download) remains not authorized; no pin change (G0 B4;
+TM-ROOT-106/122 stay G1 blockers); no App-loop act.
+<!-- END RECEIPT-118 R4 VERBATIM -->

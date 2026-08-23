@@ -77,4 +77,3 @@ sealed brief because the one application attempt entered the materialization
 stage and triggered the explicit identity-mismatch stop rule. A fresh owner
 direction is required to authorize another exact Gate-5 execution attempt and
 its materialization method.
-
