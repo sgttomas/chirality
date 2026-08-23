@@ -4142,3 +4142,89 @@ D3 — D-APP-103: owner text: "I agree with your proposal." — SCA-APP-008 reco
   SCA-APP-008 is applied so it covers both descendant classes once; one
   sentence in the assessment, no new instrument.
 <!-- END RECEIPT-114 G0 VERBATIM -->
+
+#### Receipt 114 — PR #620 G4 repair addendum (2026-08-22)
+
+- **Owner repair direction and exact widening:** the owner acknowledged the
+  steer gap and widened N1's content write set by exactly one file:
+  `docs/governance_harness/tranche_manifests/ROOT-DGOV35-PROPOSAL-20260822.yaml`.
+  The direction is transcribed verbatim in that manifest's
+  `m2_gate.authorization`. N1's effective content write set is therefore its
+  original four-file D-GOV-35 proposal folder plus that one manifest. The only
+  additional N1-folder mutation is the owner-required README inventory row;
+  it remains inside the original proposal-folder write root. N2 and N3 write
+  sets and bytes are unchanged.
+- **Sync disposition:** `OWNER-AUTHORIZED / LEFT IN PLACE`. Before the sync,
+  HELP_HUMAN stopped and requested authority. Ryan Tufts then wrote:
+  “I authorize you to fetch and merge the latest `origin/main` into this
+  branch, then complete Receipt 114, validation, push, and PR creation without
+  merging the PR.” CHANGE merged
+  `origin/main@166efa82748133e90674be62304b81f8a0a8c1b4` without conflict at
+  `0bd042e5299c81301cc726bc54eea265285b4159`; no rewrite, rebase, or
+  force-push is used by this repair.
+- **Pre-repair G4 failure:** at PR head
+  `51b0c09972f991adc4aa5e8b758b2d22fa1593c8`, the exact command
+  `python3 tools/validation/validate_instruction_tranche_manifest.py --base
+  origin/main --head HEAD --added-manifests-only` exited 1. Its blocking
+  output was:
+
+  ```text
+  G4 BLOCK (diff mode):
+    - diff origin/main..HEAD changes instruction-surface paths but adds no schema-readable tranche manifest
+    - instruction-surface path 'docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/AGENTS.proposed.patch' changed in origin/main..HEAD but is not covered by any declared tranche manifest path
+    - instruction-surface path 'docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/D-GOV-35.proposed.md' changed in origin/main..HEAD but is not covered by any declared tranche manifest path
+    - instruction-surface path 'docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/IMPACT.md' changed in origin/main..HEAD but is not covered by any declared tranche manifest path
+    - instruction-surface path 'docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/README.md' changed in origin/main..HEAD but is not covered by any declared tranche manifest path
+    INFO: diff origin/main..HEAD: 77 changed path(s), 4 on the instruction surface, checked against 0 manifest(s)
+  ```
+- **G4 repair:** the added manifest uses
+  `instruction-tranche-manifest/v1`, basis
+  `166efa82748133e90674be62304b81f8a0a8c1b4`, and covers the four D-GOV-35
+  packet files plus itself. It records `human-gated-pr`, `self_merge:
+  false`, pending/no routed M6 notices, proposal-candidate-only scope, no
+  ruling or AGENTS.md change, the separate DEL-02-03 M2 manifest remaining a
+  draft, and deferred public-export regeneration. Manifest SHA-256:
+  `9e3d5798078ceb8e00736ec5e9db6f8d8080bcb8e9f792d781c5efde958a5a91`.
+  Updated N1 README exact SHA-256:
+  `c8e1b1cac088d8b34f16b8cbd77ee468178ad5d4030b3e8041aa26c97c4353c5`;
+  normalized self-hash:
+  `9a278aa67680836ee9c77a4a4056b9380fd163c69d703be66579c0c8b2dc1016`.
+- **Receipt and handoff continuity:** Receipt 114's existing steer
+  CHAT_TRANSCRIPTION still hashes
+  `c348e9767db4af20787bbcb74c64791ef08d700b08dc19d86289a88a58f067e3`;
+  its G0 CHAT_TRANSCRIPTION still hashes
+  `86b9877c6bea08a9f79c2af2378d5d38722a09c1a10deb37f87211c76d2c290b`.
+  The live/closed registers remain byte-identical at 21 live
+  (`OPEN=13`, `DEFERRED=8`) / 106 archived, SHA-256
+  `cd0f1b96c500bcf7bc0886a0d5d20459129b10a86b4f106798a560432adcb5e9`
+  and
+  `c05a15d4886ca57dba8460f85be196f239cccf5a1b2394748f1ae90ec91e686c`.
+- **Post-repair validation:** the exact staged candidate tree was materialized
+  as an unattached commit in a clean detached worktree; branch HEAD was not
+  moved or rewritten. The detached shell initially resolved `python3` to
+  Xcode Python without PyYAML and correctly returned operational exit 2,
+  asserting nothing. With the repository's Python runtime resolved, the
+  owner-specified literal command
+  `python3 tools/validation/validate_instruction_tranche_manifest.py --base
+  origin/main --head HEAD --added-manifests-only` exited 0:
+
+  ```text
+  G4 PASS (diff mode): 43 tranche manifest(s) under docs/governance_harness/tranche_manifests are schema-valid (instruction-tranche-manifest/v1)
+    INFO: manifest ROOT-DGOV35-PROPOSAL-20260822.yaml: m6_notice.disposition is 'pending' — routing is completed by the accepting agent at fan-in; recorded, not pre-empted
+    INFO: diff origin/main..HEAD: 78 changed path(s), 5 on the instruction surface, checked against 1 manifest(s)
+  ```
+
+  The live-corpus G4 check also passed with 43 schema-valid manifests.
+  `validate_candidate_whitespace.py --base-ref origin/main` passed clean;
+  `validate_agent_instructions.py` passed 34 files / 0 errors / 0 warnings;
+  `validate_instruction_entrypoints.py` passed canonical entrypoints;
+  `taskmgmt.py validate` passed 21 rows; `git diff --check` passed; both
+  Receipt-114 CHAT_TRANSCRIPTION hashes and all protected-state hashes
+  reproduced. The same literal G4 command is required once more on the real
+  one-commit HEAD before the authorized normal push.
+- **Open gates:** D-GOV-35 remains `PROPOSED — AWAITING OWNER RULING`;
+  SCA-004 remains `AWAITING_OWNER_ACCEPTANCE`. The new G4 manifest cures
+  proposal-candidate coverage only. It creates no instruction application,
+  notice routing, hold lift, pin change, lifecycle, release, reliance, PR
+  approval, or merge effect. PR #620 remains open and must not be merged by
+  this session.

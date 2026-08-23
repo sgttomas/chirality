@@ -59,7 +59,9 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   21 live (`OPEN=13`, `DEFERRED=8`) / 106 archived. The owner-authorized
   current-main merge is
   `0bd042e5299c81301cc726bc54eea265285b4159`; the three node commits remain
-  its ancestors.
+  its ancestors. The owner-directed PR repair adds the proposal-only G4
+  manifest `ROOT-DGOV35-PROPOSAL-20260822.yaml` and widens N1's write set by
+  exactly that one file; counts and every N2/N3 byte remain unchanged.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -115,6 +117,11 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   ScopeChange `_LATEST.md` remains unchanged. The public-export projection is
   still stale and explicitly deferred to the later authorized instruction-
   application handoff.
+- `docs/governance_harness/tranche_manifests/ROOT-DGOV35-PROPOSAL-20260822.yaml`
+  is the current G4 coverage record for the five-path D-GOV-35 proposal
+  candidate. It is not the draft DEL-02-03 application manifest, a D-GOV-35
+  ruling, or instruction-application authority. Its public-export derivative
+  disposition is deferred.
 
 ## 3. Closure verdict
 
@@ -226,7 +233,10 @@ that ruling and separate application authority; SCA-004 remains
 `AWAITING_OWNER_ACCEPTANCE` with Gate 2 closed. AGENTS.md, every deliverable
 `_STATUS.md`, ScopeChange `_LATEST.md`, DEL-02-06, all pins, and all ten
 `HELD_UNAVAILABLE` bindings are unchanged. PR review and merge remain human
-acts; the session performs neither.
+acts; the session performs neither. The Receipt-114 terminal repair addendum
+records the reproduced G4 failure and the owner-directed proposal-manifest
+repair; the manifest cures candidate coverage only and does not move any
+governance or lifecycle gate.
 
 ## 4. Rerun requirement
 

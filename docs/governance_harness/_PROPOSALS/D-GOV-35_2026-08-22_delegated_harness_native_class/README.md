@@ -22,7 +22,8 @@ propagation and validation.
 | `D-GOV-35.proposed.md` | Exact file bytes | `924c1b098f1510bca9189e1ac06e4c2fd8e9d358a9fc3c4e42fdd04a53b69c88` |
 | `AGENTS.proposed.patch` | Exact file bytes | `4455adda4199be5493e1f8d2171ebb4641f40666c35cf09e90adc935ff6355ee` |
 | `IMPACT.md` | Exact file bytes | `565e651963b08f74622ca0e0d32b66d6d301c3ef95c159867b4e41a6fbd98435` |
-| `README.md` | Normalized self-hash defined below | `59bd2cd2b3e8a0812e5d509f22d52009048b0314dd8cf9ec9c7a43efe524c32d` |
+| `docs/governance_harness/tranche_manifests/ROOT-DGOV35-PROPOSAL-20260822.yaml` | Exact file bytes | `9e3d5798078ceb8e00736ec5e9db6f8d8080bcb8e9f792d781c5efde958a5a91` |
+| `README.md` | Normalized self-hash defined below | `9a278aa67680836ee9c77a4a4056b9380fd163c69d703be66579c0c8b2dc1016` |
 
 ### README self-hash convention
 
@@ -31,7 +32,7 @@ without requiring an impossible recursive fixed point. Its table therefore
 records a **normalized self-hash**: replace only the 64 lowercase hexadecimal
 characters inside the backticks of the `README.md` table row with 64 ASCII
 zeroes, preserve every other byte, and calculate SHA-256 over the resulting
-bytes. The other three rows are ordinary exact-byte SHA-256 values.
+bytes. The other four rows are ordinary exact-byte SHA-256 values.
 
 ## Validation posture
 
