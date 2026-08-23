@@ -1,6 +1,6 @@
-# SCA-004 decision log — Gates 1–2
+# SCA-004 decision log — Gates 1–4
 
-Status: `AWAITING_OWNER_GATE_2_ACCEPTANCE`
+Status: `AWAITING_OWNER_GATE_3_APPROVAL`
 
 | Ref | Date | Status | Record |
 |---|---|---|---|
@@ -14,6 +14,9 @@ Status: `AWAITING_OWNER_GATE_2_ACCEPTANCE`
 | G1-DRAFT-008 | 2026-08-22 | REQUIRED_BASELINE | Fresh scoped SOFTWARE AUDIT_DECOMP covered affected live carriers DEL-02-06, DEL-04-05, and DEL-05-02: 3/3 packages, deliverables, and contexts; 5/5 relevant objectives; 0 BLOCKER, 0 WARNING, 11 lifecycle-appropriate INFO. It is derivative evidence only and opens no later gate. |
 | G1-ACCEPTED-001 | 2026-08-22 | `G1-ACCEPTED` | Ryan Tufts accepted the eight parsed actions against the exact three subject identities reproduced verbatim below. This opens Gate 2 impact refinement only. |
 | G2-IMPACT-001 | 2026-08-22 | `PENDING_OWNER_ACCEPTANCE` | `Impact_Assessment.md` is the Gate-2 impact assessment. No Gate-3 exact amendment, decomposition write, companion-register write, folder/SOW creation, implementation authority, or hold lift is opened or inferred. |
+| G2-ACCEPTED-001 | 2026-08-23 | `G2-ACCEPTED` | Ryan Tufts accepted the Gate-2 impact assessment against the exact three subject identities reproduced verbatim below. This opens Gate-3 and Gate-4 drafting only. |
+| G3-AMENDMENT-001 | 2026-08-23 | `PENDING_OWNER_APPROVAL` | `Gate_3_Candidate/`, `Gate_3_Exact_Amendment.diff`, and `Amendment_Preview.md` carry the exact seven-surface amendment candidate. After review-cycle-1 through review-cycle-5 repairs, deterministic validation reports 98/98 PASS, including complete accepted socket controls and the exact closed HarnessEvent v2 terminal set. No live decomposition byte is changed. |
+| G4-PROPAGATION-001 | 2026-08-23 | `PENDING_OWNER_APPROVAL` | `Propagation_Plan.md` and `Amendment_Actions.csv` carry the separately approvable propagation plan. No PREPARATION, SOW, dependency, estimate, schedule, graph, audit, pointer, implementation, lifecycle, or Gate-5 act is executed. |
 
 ## G1-ACCEPTED owner record (verbatim)
 
@@ -39,7 +42,42 @@ R1-C — SCA-004 Gate 1 (v3 release-pathway Root carrier intake): [click]
   mapping, or implementation authority, and no later gate is inferred.
 <!-- END R1-C VERBATIM -->
 
-## Pending owner decision
+## G2-ACCEPTED owner record (verbatim)
 
-Accept, correct, or decline the exact Gate-2 `Impact_Assessment.md`. Gate 3 is
-not open until that ruling is recorded against exact Gate-2 bytes.
+Source:
+`plans/steers/chirality_app_v3_root_ruling_record_r2_2026-08-23.md`,
+SHA-256
+`63b174f00860cd31dbdde1f734a9e1ca08c44f7cd2ed51f7716612f3847a6bce`.
+
+<!-- BEGIN R2-A VERBATIM -->
+R2-A — SCA-004 Gate 2 (impact assessment): [click] "Accept".
+  Subject bytes: `execution/_ScopeChange/SCA-004_2026-08-22_1749/Impact_Assessment.md`
+  SHA-256 `ff370baaa72a871c2bf7f4c0ade0b41966f414ab8e3f1fb5ae1efe4ba91ed3d3`
+  (status `AWAITING_OWNER_GATE_2_ACCEPTANCE`, conclusion
+  `PASS_TO_OWNER_GATE_2_WITH_EXACT_GATE_3_REQUIREMENTS`), read against
+  `Decision_Log.md` SHA-256
+  `bfc184ff50af1f2ba9b9d18ab9d035f9abbaaadd41eae9e99660fcbb51f494dc` and
+  `Handoff_State.md` SHA-256
+  `971c63bbda66c420f3ffaf581967a9675ae82260a081e3caaaa373cb73e4947c`.
+  Recorded form: the owner accepts the Gate-2 impact assessment for the eight
+  Gate-1 actions (MODIFY DEL-02-06; ADD DEL-02-07..DEL-02-12; ADD DEL-04-11),
+  including its projected topology (46→53 deliverables; PKG-02 6→12; PKG-04
+  10→11; packages, objectives, and scope items unchanged), its G0 A3/A4/A7
+  carriage, the unchanged ten-binding hold matrix, and its derivative
+  classifications. Acceptance opens Gate 3 and Gate 4 *drafting* only: the
+  exact synchronized decomposition, companion-register, trace, and telemetry
+  bytes, and the propagation plan, return to the owner for approval. No
+  decomposition truth, register, pointer, folder, SOW, lifecycle, dependency,
+  estimate, schedule, tool, runtime, or App surface changes; Gate 5 is not
+  opened; all ten DEL-02-06 bindings remain `HELD_UNAVAILABLE`.
+<!-- END R2-A VERBATIM -->
+
+## Pending owner decisions
+
+1. Approve, correct, or decline the exact Gate-3 candidate bytes identified in
+   `Amendment_Preview.md` and `Gate_3_Validation.json`.
+2. Separately approve, correct, or decline `Propagation_Plan.md` and
+   `Amendment_Actions.csv`.
+
+Gate 5 is not open. Neither approval may be inferred from R2-A or from the
+existence of these drafts.

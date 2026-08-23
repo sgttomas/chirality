@@ -1,0 +1,39 @@
+{
+  "review_id": "N1_SCA004_GATE3_GATE4_REVIEW_5",
+  "parent_instance_id": "N1_SCA004_GATE3_GATE4_DRAFT",
+  "role": "fresh read-only Agent-2 reviewer",
+  "status": "COMPLETE",
+  "terminal": true,
+  "verdict": "FAIL_REPAIR_REQUIRED",
+  "basis": "8635e40995b05f494ae35c6083dabdd50068bb52",
+  "actionable_findings": 2,
+  "finding_ids": [
+    "N1-R5-F1-DEL0207-SOCKET-TOKEN-CONTROL",
+    "N1-R5-F2-DEL0210-EXACT-TERMINAL-EVENT-IDENTIFIERS"
+  ],
+  "prior_cycle_findings_closed": [
+    "N1-R1-F1",
+    "N1-R1-F2",
+    "N1-R1-F3",
+    "N1-R2-F1",
+    "N1-R3-F1",
+    "N1-R4-F1"
+  ],
+  "deterministic_rebuild": "PASS",
+  "exact_diff_reconstruction": "PASS",
+  "isolated_validator": "PASS_95_OF_95_INCOMPLETE_SEMANTIC_COVERAGE",
+  "full_reverse_inverse": "PASS_59_OF_59",
+  "topology_and_mappings": "PASS",
+  "g0_a3_a4_a7_carriage": "PASS",
+  "amendment_actions_schema": "PASS_9_COLUMNS_8_ROWS",
+  "oi011_responsibility_concordance": "PASS_53_OF_53",
+  "candidate_current_state_concordance": "PASS",
+  "exact_gate2_carrier_semantics": "FAIL_REPAIR_REQUIRED",
+  "protected_byte_fences": "PASS",
+  "gate_5_closed": true,
+  "fresh_re_review_required": true,
+  "commit_authorized": false,
+  "push_authorized": false,
+  "merge_authorized": false,
+  "review": "REVIEW.md"
+}

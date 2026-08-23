@@ -1,0 +1,14 @@
+{
+  "review_id": "N1_SCA004_GATE3_GATE4_REVIEW_6",
+  "status": "PASS",
+  "frozen_basis": "8635e40995b05f494ae35c6083dabdd50068bb52",
+  "actionable_finding_count": 0,
+  "gate_3_validation": {
+    "result": "PASS",
+    "check_count": 98,
+    "failure_count": 0,
+    "sha256": "dc5fe4355322a96b7da61606fff7d8dd51943a7d606f132966705bfb70b9f129"
+  },
+  "review_evidence": "REVIEW.md",
+  "terminal": true
+}

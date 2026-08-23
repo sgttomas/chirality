@@ -1,0 +1,27 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE0C_2026-08-23",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "MIXED",
+  "accepted_basis": "8635e40995b05f494ae35c6083dabdd50068bb52",
+  "nodes": [
+    {
+      "id": "N1_SCA004_GATE3_GATE4_DRAFT",
+      "role": "Agent 2 ephemeral generalist operating the SCOPE_CHANGE lane",
+      "write_scope": ["execution/_ScopeChange/SCA-004_2026-08-22_1749/**", "execution/_Coordination/AgentRuns/ROOT_V3_PHASE0C_2026-08-23/instances/N1_SCA004_GATE3_GATE4_DRAFT/**"],
+      "depends_on": [],
+      "status": "DISPATCH_READY"
+    },
+    {
+      "id": "N2_DGOV_SHA_BACKFILL",
+      "role": "Agent 2 ephemeral generalist operating the HELPS_HUMANS lane",
+      "write_scope": ["docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md", "docs/governance_harness/_DECISIONS/D-GOV-34_change_clean_basis_lane_routine.md", "docs/governance_harness/_DECISIONS/_REGISTER.md", "docs/governance_harness/tranche_manifests/ROOT-DGOV34-DGOV35-SHA-BACKFILL-2026-08-23.yaml", "execution/_Coordination/AgentRuns/ROOT_V3_PHASE0C_2026-08-23/instances/N2_DGOV_SHA_BACKFILL/**"],
+      "depends_on": [],
+      "status": "DISPATCH_READY"
+    }
+  ],
+  "commit_order": ["N1_SCA004_GATE3_GATE4_DRAFT", "N2_DGOV_SHA_BACKFILL"],
+  "human_gates": ["SCA-004 Gate 3 approval", "SCA-004 Gate 4 approval", "PR merge"],
+  "forbidden": ["Gate 5", "live decomposition writes", "_LATEST.md write", "new deliverable folders", "sync or rebase", "merge"]
+}
