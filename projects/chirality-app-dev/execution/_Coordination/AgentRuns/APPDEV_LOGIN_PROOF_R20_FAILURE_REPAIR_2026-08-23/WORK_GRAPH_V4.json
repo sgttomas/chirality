@@ -1,0 +1,28 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 4,
+  "selection_authority": "owner Phase-B direction plus exact source commit supplied by HELP_HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {
+      "id": "WP-B1",
+      "instance_id": "A2-PKG09-R20-PHASEB-EXECUTE-01",
+      "objective": "one-shot offline build, package/precheck evidence, R19 failed record, R20 staging, status, TM candidate, and validation",
+      "write_owner": true,
+      "status": "READY"
+    },
+    {
+      "id": "WP-B2",
+      "instance_id": "A2-PKG09-R20-PHASEB-REVIEW-01",
+      "objective": "genuinely fresh complete Phase-B evidence-only review",
+      "write_owner": false,
+      "status": "BLOCKED_ON_WP_B1"
+    }
+  ],
+  "edges": [
+    {"from": "WP-B1", "to": "WP-B2", "gate": "all required bytes and retained command evidence frozen"}
+  ],
+  "fan_in_gate": "fresh overall review PASS with no actionable semantic finding",
+  "terminal_failure": "any failed execution gate stops; review defects permit only record-formatting repair expressly classified by manager"
+}

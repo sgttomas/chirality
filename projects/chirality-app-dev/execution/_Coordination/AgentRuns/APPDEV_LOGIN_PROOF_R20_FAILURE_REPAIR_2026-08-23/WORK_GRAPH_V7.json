@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 7,
+  "selection_authority": "owner-approved record-only EOF repair dated 2026-08-23",
+  "posture": "THREE_BYTE_REPAIR_THEN_TERMINAL_REVIEW",
+  "nodes": [
+    {
+      "id": "WP-B1E",
+      "instance_id": "A2-PKG09-R20-PHASEB-REPAIR-VALIDATE-04",
+      "objective": "remove exactly three terminal LF bytes, freeze lineage, and run only still-unreached gates",
+      "write_owner": true,
+      "status": "READY"
+    },
+    {
+      "id": "WP-B2E",
+      "instance_id": "A2-PKG09-R20-PHASEB-REVIEW-04",
+      "objective": "genuinely fresh overall Phase-B review of the complete repaired candidate",
+      "write_owner": false,
+      "status": "BLOCKED_ON_WP_B1E"
+    }
+  ],
+  "edges": [
+    {
+      "from": "WP-B1E",
+      "to": "WP-B2E",
+      "gate": "exact three-byte lineage and every still-unreached gate PASS"
+    }
+  ],
+  "fan_in_gate": "fresh overall review PASS with no unresolved finding",
+  "terminal_failure": "any failed repair, validation, or review gate stops exactly"
+}

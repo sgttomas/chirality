@@ -6,6 +6,10 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+## Current R20 disposition
+
+- The owner reports that R19 was executed on 2026-08-23 and failed nonzero at cleanup with `Loaded cleanup job last exit code is invalid`; its proof assertions were true but cleanup refused job mutation and left the job/process present. The three failed JSON paths, hashes, modes, manual bootout/absence facts, and unchanged operator-daemon observations are owner-reported only; raw bootout output was promised but not supplied. Phase-A repaired the exact macOS 26 `(never exited)` parser/cleanup/evidence-loss failure and was committed at exact revision `cb008dc5d6aa9b249639c91f3453a18609530d0f`. Phase B ran one frozen-supply offline rebuild and one direct disposable daemon precheck: package identity and the 67-byte authenticated packaged-runtime path passed, and the exact disposable root is absent afterward. R20 is staged under fresh label `com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933` but no owner block was executed. The ordinary-sandbox exact `npm test` diagnostic remains non-PASS at 21 failed / 1,261 passed / 4 skipped, all classified `ENVIRONMENT_SANDBOX_SOCKET_DENIAL`; the sole local-socket cure passed at 1,282 passed / 4 skipped, exit 0, with unchanged source/test/package identities. The Pi/oMLX timing case did not recur. Future pre-merge `full_test` plus typecheck remains independent confirmation. DEL-09-04 remains `IN_PROGRESS` and unproved. Receipt 191, Git/publication, proof execution, default-operator mutation, signing, notarization, distribution, and release claims remain fenced.
+
 ## Remaining
 
 - Actual login-session discovery and auto-start remain unproved. The exact
@@ -92,6 +96,7 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-23 - Recorded the owner-reported R19 executed-and-failed result without inspecting private/Desktop evidence; raw manual-bootout output remains missing. Phase-A cleanup-parser/failure-evidence repair is committed at exact revision `cb008dc5d6aa9b249639c91f3453a18609530d0f`. One network-denied offline package rebuild and one exact disposable packaged-daemon precheck passed; the main executable remains `79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874`. The diagnostic retained 21 sandbox socket denials (1,261 passed / 4 skipped); the sole local-socket cure passed 1,282 / 4 skipped with unchanged semantic identities. R20 is documentation-only staging under a fresh UUID label and was not executed. DEL-09-04 remains `IN_PROGRESS` and unproved; all proof, Receipt 191, Git/publication, operator, signing, notarization, distribution, and release fences remain.
 - 2026-08-23 - Reverified the frozen Electron 43.2.0 arm64 supply and ran
   exactly one network-denied `npm run desktop:pack` from exact merged revision
   `d6861ae8251e2a81078577d4496e949735ff199d`. Custom `electronDist`, embedded

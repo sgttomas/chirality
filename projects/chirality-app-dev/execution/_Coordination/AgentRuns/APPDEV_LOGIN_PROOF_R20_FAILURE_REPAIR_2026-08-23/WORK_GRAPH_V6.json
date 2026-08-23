@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 6,
+  "selection_authority": "owner-approved exact quoted-raw exemption dated 2026-08-23",
+  "posture": "EXACT_EXEMPTION_TERMINAL_CONTINUATION",
+  "nodes": [
+    {
+      "id": "WP-B1D",
+      "instance_id": "A2-PKG09-R20-PHASEB-VALIDATE-03",
+      "objective": "validate every remaining candidate byte and run only still-unreached gates under exact exemptions",
+      "write_owner": false,
+      "status": "READY"
+    },
+    {
+      "id": "WP-B2D",
+      "instance_id": "A2-PKG09-R20-PHASEB-REVIEW-03",
+      "objective": "genuinely fresh overall retained-evidence and complete-candidate review",
+      "write_owner": false,
+      "status": "BLOCKED_ON_WP_B1D"
+    }
+  ],
+  "edges": [
+    {
+      "from": "WP-B1D",
+      "to": "WP-B2D",
+      "gate": "all still-unreached gates PASS and deterministic candidate freeze"
+    }
+  ],
+  "fan_in_gate": "fresh overall review PASS with no finding",
+  "terminal_failure": "any newly failed validation or review gate stops exactly"
+}

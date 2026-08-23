@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 5,
+  "selection_authority": "owner-approved R20 whitespace disposition Option 1 dated 2026-08-23",
+  "posture": "RAW_LOG_PRESERVING_TERMINAL_CONTINUATION",
+  "nodes": [
+    {
+      "id": "WP-B1C",
+      "instance_id": "A2-PKG09-R20-PHASEB-VALIDATE-02",
+      "objective": "run only unreached deterministic gates with immutable raw logs excluded from semantic whitespace",
+      "write_owner": false,
+      "status": "READY"
+    },
+    {
+      "id": "WP-B2C",
+      "instance_id": "A2-PKG09-R20-PHASEB-REVIEW-02",
+      "objective": "genuinely fresh overall retained-evidence and final-candidate review",
+      "write_owner": false,
+      "status": "BLOCKED_ON_WP_B1C"
+    }
+  ],
+  "edges": [
+    {
+      "from": "WP-B1C",
+      "to": "WP-B2C",
+      "gate": "all unreached gates PASS and final deterministic candidate freeze"
+    }
+  ],
+  "fan_in_gate": "fresh overall review PASS with no finding",
+  "terminal_failure": "any newly failed validation or review gate stops exactly"
+}
