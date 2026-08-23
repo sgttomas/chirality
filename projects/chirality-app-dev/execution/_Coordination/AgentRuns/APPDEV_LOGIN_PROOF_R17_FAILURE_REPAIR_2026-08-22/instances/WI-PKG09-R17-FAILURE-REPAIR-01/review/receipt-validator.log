@@ -1,0 +1,4 @@
+VALID /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied
+ledger_before=ba7757bcc34772cf27df47e58be573b276d206ec410587a77ecffe6252be62b2
+ledger_after=ba7757bcc34772cf27df47e58be573b276d206ec410587a77ecffe6252be62b2
+ledger_unchanged=PASS

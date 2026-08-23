@@ -1,0 +1,44 @@
+{
+  "basis": "6b0c5219b6a2653e2fc491b1d998abcf78fcf776",
+  "edges": [
+    ["N1_MANAGER_PREFLIGHT", "N2_SINGLE_WRITE_OWNER"],
+    ["N2_SINGLE_WRITE_OWNER", "N3_MANAGER_FAN_IN"],
+    ["N3_MANAGER_FAN_IN", "N4_FRESH_REVIEW"]
+  ],
+  "instance_id": "WI-PKG09-R17-FAILURE-REPAIR-01",
+  "nodes": [
+    {
+      "id": "N1_MANAGER_PREFLIGHT",
+      "owner": "WORKING_ITEMS",
+      "writes": ["run-root control files"]
+    },
+    {
+      "id": "N2_SINGLE_WRITE_OWNER",
+      "owner": "A2-PKG09-R17-EXECUTE-01",
+      "writes": [
+        "frontend/scripts/run-packaged-launchagent-login-proof.mjs",
+        "frontend/electron/runtime-host.ts",
+        "focused frontend tests",
+        "DEL-09-04 R17 record",
+        "DEL-09-04 _STATUS.md",
+        "executor evidence and return"
+      ]
+    },
+    {
+      "id": "N3_MANAGER_FAN_IN",
+      "owner": "WORKING_ITEMS",
+      "writes": ["run-root validation and review brief"]
+    },
+    {
+      "id": "N4_FRESH_REVIEW",
+      "owner": "A2-PKG09-R17-REVIEW-01",
+      "writes": ["fresh review return only"]
+    }
+  ],
+  "package_id": "PKG-09",
+  "posture": "SERIALIZED_SINGLE_WRITE_OWNER_THEN_FRESH_REVIEW",
+  "run_id": "APPDEV_LOGIN_PROOF_R17_FAILURE_REPAIR_2026-08-22",
+  "schema": "chirality-working-items-graph/v1",
+  "selected_deliverables": ["DEL-09-04"],
+  "version": 1
+}

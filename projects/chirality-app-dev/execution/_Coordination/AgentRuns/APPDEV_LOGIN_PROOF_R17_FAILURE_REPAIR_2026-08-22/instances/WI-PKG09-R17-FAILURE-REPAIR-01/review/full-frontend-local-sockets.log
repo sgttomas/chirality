@@ -1,0 +1,6 @@
+command=npm test
+permission=local loopback and Unix test sockets only
+network/provider=not authorized
+exit=0
+test_files=153 passed, 1 skipped, 154 total
+tests=1258 passed, 4 skipped, 1262 total

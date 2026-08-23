@@ -1,0 +1,75 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 3
+  },
+  "counts": {
+    "category": {
+      "fan-in": 1,
+      "implementation": 2,
+      "orchestration": 2,
+      "review": 2,
+      "security": 1
+    },
+    "event_type": {
+      "CHECK": 1,
+      "FINISH": 3,
+      "REMEDIATION": 1,
+      "START": 3
+    },
+    "outcome": {
+      "PASS": 4,
+      "STARTED": 4
+    },
+    "reason_code": {
+      "ACTIVATED": 1,
+      "DISPATCHED": 1,
+      "EXECUTOR_PASS": 1,
+      "FRESH_FULL_MATRIX": 1,
+      "FULL_MATRIX_PASS": 1,
+      "MANAGER_PREFREEZE_SECURITY": 1,
+      "VALIDATED_PASS": 2
+    }
+  },
+  "events": 8,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 1258.906,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-R17-FAILURE-REPAIR-01",
+      "package_id": "PKG-09",
+      "remediations": 1,
+      "retries": 0,
+      "role": "AGENT2_GENERALIST",
+      "session_id": "A2-PKG09-R17-EXECUTE-01"
+    },
+    {
+      "duration_seconds": 667.353,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-R17-FAILURE-REPAIR-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "AGENT2_REVIEWER",
+      "session_id": "A2-PKG09-R17-REVIEW-01"
+    },
+    {
+      "duration_seconds": 1926.375,
+      "events": 3,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-R17-FAILURE-REPAIR-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "WI-PKG09-R17-FAILURE-REPAIR-01"
+    }
+  ],
+  "sessions": 3,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

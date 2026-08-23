@@ -5649,3 +5649,46 @@
     remains unexecuted. No prepare, capture, logout/login, bootstrap,
     kickstart, signing, notarization, deployment, distribution,
     release-readiness, proof-acceptance, or merge action or claim occurred.
+
+- **2026-08-22 — Receipt 188** (DEL-09-04 R17 failed-proof record and bounded repair).
+  - Receipt-ID: `Receipt-188`
+  - Examined-Through: `b604b3a16950894a33696dbd16374c56bdef8629`
+  - Parent-Receipt: `Receipt-187`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-22,
+    Ryan Tufts, in-session): `APPROVE: fast-forward this worktree non-rewriting from f7df4c50c0c74a7654f3c917a20439ddd90e0fb4 to origin/main 6b0c5219b6a2653e2fc491b1d998abcf78fcf776, then create codex/app-login-proof-r17-repair and execute the bounded R17 repair direction. Do not merge.`
+    Record R17 as executed-and-failed, never upgrade it, and do not accept
+    proof. Add a prepare-time fail-closed guard that rejects the exact macOS
+    control-socket path above 103 UTF-8 bytes before any mutation, install,
+    plist, or job action. Permit pid-less crash-loop proof-job cleanup only
+    when the exact proof label/service, expected and byte-verified plist,
+    program, arguments, and packaged executable identity all match; retain
+    strict process-executable inspection whenever a PID exists. Make the
+    runtime host fail explicitly and deterministically before `listen` for an
+    over-long macOS socket path. Treat later relocation to a short,
+    permission-contained, symlink-safe socket location and mitigation of the
+    `KeepAlive=always` restart/log-churn hazard as recommendations only, with
+    no socket-location or plist/product-policy implementation here. After a
+    fresh evidence-only review, integrate one repair tranche in one PR and do
+    not merge; any R18 rebuild, staged procedure, or proof act is a separate
+    authorization after merge.
+  - Pointers: repair commit
+    `b604b3a16950894a33696dbd16374c56bdef8629`; branch
+    `codex/app-login-proof-r17-repair`; DEL-09-04 R17
+    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R17_LOGIN_PROOF_FAILURE_AND_REPAIR_2026-08-22.md`;
+    RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R17_FAILURE_REPAIR_2026-08-22/`;
+    fresh evidence review
+    `instances/WI-PKG09-R17-FAILURE-REPAIR-01/review/REVIEW.md`.
+  - Checks: focused harness/runtime-host tests, full frontend suite, syntax and
+    typecheck, APP-HOLD, practitioner suite, repository self-check,
+    prior-ledger receipt validator, candidate whitespace, and App-only
+    containment pass; exact measurements remain in the fresh review.
+    Socket-relocation and `KeepAlive` conclusions remain recommendations only.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    ephemeral Agent 2 executor/reviewer, and CHANGE; exact inherited model
+    identifiers were not exposed.
+  - Gate-Outcome: `EXECUTED` — repair-only. DEL-09-04 remains `IN_PROGRESS`
+    and unproved; R17 remains failed evidence and is not proof acceptance. No
+    R18, rebuild, prepare, capture, logout/login, bootstrap, kickstart,
+    signing, notarization, deployment, distribution, release-readiness, or
+    merge action or claim occurred.

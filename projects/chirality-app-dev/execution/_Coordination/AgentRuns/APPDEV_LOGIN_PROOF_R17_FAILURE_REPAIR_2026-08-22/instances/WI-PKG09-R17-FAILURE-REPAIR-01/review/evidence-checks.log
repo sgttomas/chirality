@@ -1,0 +1,79 @@
+fresh-evidence-checks
+branch=codex/app-login-proof-r17-repair
+head=6b0c5219b6a2653e2fc491b1d998abcf78fcf776
+origin_main=6b0c5219b6a2653e2fc491b1d998abcf78fcf776
+merge_base=6b0c5219b6a2653e2fc491b1d998abcf78fcf776
+index_entries=0
+public_dir_mode=700
+public_entry_count=6
+public_regular_count=6
+public_symlink_count=0
+prepared.json mode=600 type=Regular File sha256=1416d6d162df551163dcc3f90c88d4519b2662d2ba903883e60ece0715fe1476
+summary.json mode=600 type=Regular File sha256=f2f912bc35652e1b877a1eefdf511f9658a88e7ab69051ec637deb260bcfd230
+evidence-package.json mode=600 type=Regular File sha256=d3bf7c4c261916e6de4507f5be1728839ba7676bb9494d31433d00945ff358a4
+daemon.stdout.log mode=600 type=Regular File sha256=cb8f06c1bc2fa8e696fd45c1ca9fe7462373b92177393f0e8560fe15d70ae83c
+daemon.stderr.log mode=600 type=Regular File sha256=6fa805d99101b2f8074600289050b960042892d6312ebda559f2163f199147bb
+desktop-daemon.log mode=600 type=Regular File sha256=1bab152fccad435db691bec70dc159521e1c6d94b5435b0cfdeb2fc1e98196a6
+prepared_selected=
+{
+  "status": "PREPARED",
+  "proofClaimed": false,
+  "sourceRevision": "06f60e42e35ea5c39abf9e33c4d3e877d77c4497",
+  "bootstrapInvoked": false,
+  "kickstartInvoked": false,
+  "preparedJobAbsent": true
+}
+summary_selected=
+{
+  "status": "FAIL",
+  "sourceRevision": "06f60e42e35ea5c39abf9e33c4d3e877d77c4497",
+  "error": "Loaded job has ambiguous process identity",
+  "launchAgent": {
+    "runAtLoad": true,
+    "bootstrapInvoked": false,
+    "kickstartInvoked": false,
+    "loginDiscoveredJobObserved": false,
+    "loadedProgramMatches": false,
+    "loadedArgumentsAvailable": false,
+    "loadedArgumentsMatch": null
+  },
+  "loginSession": {
+    "identityTransitionObserved": true
+  },
+  "cleanup": {
+    "processAbsent": false,
+    "jobAbsent": false,
+    "jobMutationRefused": true,
+    "plistAbsent": true,
+    "runtimeDataRemoved": true
+  },
+  "proofBoundary": {
+    "ownerLogoutLoginActRequired": true,
+    "harnessPerformedLogoutLogin": false,
+    "preparationClaimedProof": false
+  }
+}
+evidence_selected=
+{
+  "status": "FAIL",
+  "sourceRevision": "06f60e42e35ea5c39abf9e33c4d3e877d77c4497",
+  "files": [
+    "prepared.json",
+    "summary.json"
+  ]
+}
+daemon.stdout.log initialize_failed=0 einval_socket=0 matched_lines=0
+daemon.stderr.log initialize_failed=80 einval_socket=80 matched_lines=80
+desktop-daemon.log initialize_failed=80 einval_socket=80 matched_lines=80
+forbidden_filename_count=0
+capture_state_schema_file_count=0
+credential_token_name_file_count=0
+private_key_file_count=0
+login_digest_salt_file_count=0
+r18_proposal_absent_non_symlink=PASS
+proof_plist_absent=PASS
+proof_service_absent_exact=PASS exit=113 lines=2
+private_root_exists_bit=1 traversal=NOT_PERFORMED
+{"root":"/private/tmp/chirality-login-proof-owner-macos26-00bc8f1a-0045-48a2-970f-be120cf7fc20","rootBytes":85,"socketBytes":119,"margin":-16}
+{"root":"/private/tmp/chirality-login-proof-owner-2a38b15f-07de-48c4-87ef-ccd246bd92fa","rootBytes":77,"socketBytes":111,"margin":-8}
+{"root":"/private/tmp/ch-r18-91499728-51dd","rootBytes":33,"socketBytes":67,"margin":36}
