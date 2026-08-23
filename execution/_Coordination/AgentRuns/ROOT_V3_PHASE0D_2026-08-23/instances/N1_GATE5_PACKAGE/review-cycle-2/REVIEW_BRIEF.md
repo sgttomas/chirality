@@ -25,4 +25,3 @@ structural parity; exact R3 transcription; Gate-5/pointer authority fences;
 protected hashes; path containment; applied-SHA table; RETURN consistency;
 and the preserved V2 failure/repair account. A PASS requires zero actionable
 findings. Otherwise list exact repair findings with severity and evidence.
-

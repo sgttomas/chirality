@@ -41,4 +41,3 @@ decomposition basis only after its separately authorized application,
 Gate-5 confirmation, and this pointer's own owner approval. It does not
 replace authoritative decomposition truth.
 ```
-

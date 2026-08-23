@@ -67,4 +67,3 @@ not executed.
 
 If completing the package would require a write outside scope or a change to
 an approved byte, stop and return the blocker without narrowing silently.
-

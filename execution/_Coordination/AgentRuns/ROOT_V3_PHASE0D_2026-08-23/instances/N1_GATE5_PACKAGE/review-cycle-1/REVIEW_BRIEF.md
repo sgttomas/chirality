@@ -30,4 +30,3 @@ authority fences, protected hashes, path containment, and every identity in
 the preview and RETURN. Check the Task Management candidate is reserved for
 Receipt 117 only. Report each actionable finding with exact path/evidence and
 severity. A PASS requires zero actionable findings.
-

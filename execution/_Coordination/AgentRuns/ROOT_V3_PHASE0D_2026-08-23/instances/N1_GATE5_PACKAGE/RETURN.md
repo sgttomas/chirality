@@ -63,7 +63,7 @@ Handoff status is `AWAITING_OWNER_GATE_5_APPEND_APPROVAL`.
 | `validate_gate5_package.py` | `8dd6e92577fceba1693e6c1605c9863d33c97002ea47e36a3f05d724d7a157e3` |
 | `Gate_5_Validation.json` | `4831fb2757bfcdeb2faa0dff51a15d4f04ec68d4c9716928a36f1ea8844df966` |
 | `Gate_5_Brief.md` | `7f0ab64a16d70c7b48c7f51ed4bbfc3bbd5569bed3fdd05343de1ffe2b7d01de` |
-| `Gate_5_Pointer_Candidate.md` | `75d647b942ce829c28c5e96f939ccb60860916e690cfcc1145350601ba0240f4` |
+| `Gate_5_Pointer_Candidate.md` | `5918e7bff305bfc0a22c4a4fd172a2ad7bf013a217a778d6ca3797ce773dfabf` |
 | `Handoff_State.md` | `86825f84d6c9e7c6b38efe98319b67fb000676f37027d0c89b666216c3ab1d12` |
 
 Applied-candidate file identities are the seven values in the preceding

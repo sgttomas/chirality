@@ -41,4 +41,3 @@ control-plane evidence is not project authority.
 
 Gate-5 append approval, Gate-5 execution authorization, and pointer authority
 remain separate future owner acts. Gate 5 is not executed in this run.
-
