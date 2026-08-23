@@ -1,0 +1,26 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE0F_2026-08-23",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basis": "119e08647afdb380704ff660fb32d714d7bd1dad",
+  "nodes": [
+    {
+      "id": "N1_GATE5_SECOND_ATTEMPT",
+      "agent_type": 2,
+      "construction": "ephemeral_generalist",
+      "dependencies": [],
+      "stage_order": ["STAGE_A", "STAGE_B"],
+      "stage_b_gate": "STAGE_A_R3A_7_OF_7_AND_R4A_7_OF_7_AND_APPLIED_VALIDATOR_PASS_ZERO_FAILURES",
+      "stage_b_attempt_limit": 1,
+      "brief": "instances/N1_GATE5_SECOND_ATTEMPT/LAUNCH_BRIEF.md",
+      "return": "instances/N1_GATE5_SECOND_ATTEMPT/RETURN.md",
+      "status": "instances/N1_GATE5_SECOND_ATTEMPT/STATUS.json"
+    }
+  ],
+  "human_gates": [
+    "OWNER_GATE_5_CONFIRMATION",
+    "LATEST_POINTER_RULING"
+  ]
+}

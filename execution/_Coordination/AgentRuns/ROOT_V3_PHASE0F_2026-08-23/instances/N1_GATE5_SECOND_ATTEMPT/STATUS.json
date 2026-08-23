@@ -1,0 +1,31 @@
+{
+  "schema": "agent-instance-status/v1",
+  "instance_id": "N1_GATE5_SECOND_ATTEMPT",
+  "parent": "HELP_HUMAN",
+  "agent_type": 2,
+  "status": "COMPLETE",
+  "plan_version": 1,
+  "basis": "119e08647afdb380704ff660fb32d714d7bd1dad",
+  "stage": "AWAITING_OWNER_GATE_5_CONFIRMATION",
+  "stage_a": {
+    "result": "PASS",
+    "r3_a_intermediate": "7/7",
+    "r4_a_final": "7/7",
+    "applied_validator": "PASS 65/65",
+    "failure_count": 0
+  },
+  "stage_b_attempts": 1,
+  "stage_b": {
+    "result": "PASS",
+    "live_r4_a_identities": "7/7",
+    "applied_validator": "PASS 65/65",
+    "audit_backcheck": "PASS_FOR_GATE5_APPLIED_PACKAGE_ONLY"
+  },
+  "blockers": [
+    "OWNER_GATE_5_CONFIRMATION",
+    "LATEST_POINTER_RULING_R4_C",
+    "GIT_EFFECT_BACKFILL_AFTER_MERGE",
+    "LATER_PROPAGATION_ACTS",
+    "TM_ROOT_106_AND_TM_ROOT_122_G1"
+  ]
+}

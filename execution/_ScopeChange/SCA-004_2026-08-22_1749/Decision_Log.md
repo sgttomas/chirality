@@ -1,6 +1,6 @@
 # SCA-004 decision log — Gates 1–5
 
-Status: `AWAITING_OWNER_GATE_5_APPEND_APPROVAL`
+Status: `EXECUTED_AWAITING_OWNER_CONFIRMATION`
 
 | Ref | Date | Status | Record |
 |---|---|---|---|
@@ -19,7 +19,13 @@ Status: `AWAITING_OWNER_GATE_5_APPEND_APPROVAL`
 | G4-PROPAGATION-001 | 2026-08-23 | `APPROVED_BY_OWNER_R3-B_WITH_CONDITION_R3-B-1` | `Propagation_Plan.md` and `Amendment_Actions.csv` carry the approved propagation plan, subject to the Gate-5 application-append condition. No PREPARATION, SOW, dependency, estimate, schedule, graph, audit, pointer, implementation, lifecycle, or Gate-5 act is executed. |
 | G3-APPROVED-001 | 2026-08-23 | `APPROVED_BY_OWNER_R3-A` | Ryan Tufts approved the exact seven Gate-3 candidate files, exact amendment diff, validation JSON, and preview against the identities reproduced verbatim below. Approval is of bytes, not application. |
 | G4-APPROVED-001 | 2026-08-23 | `APPROVED_BY_OWNER_R3-B_WITH_CONDITION_R3-B-1` | Ryan Tufts approved the propagation plan and action register subject to CONDITION R3-B-1, reproduced verbatim below. Gate 5 remains unauthorized. |
-| G5-APPLICATION-001 | 2026-08-23 | `PENDING_OWNER_AUTHORIZATION` | `Gate_5_Application_Append.diff`, its applied preview, deterministic validator, execution brief, and pointer candidate are drafts. Append-byte approval and Gate-5 execution authorization are separate owner acts; pointer treatment is a third separately accepted authority. |
+| G5-APPLICATION-001 | 2026-08-23 | `EXECUTED_AWAITING_OWNER_CONFIRMATION` | R4-A approved the append, R4-B authorized the first attempt, R5-A reauthorized one corrected second attempt, and the Stage-A gate passed. Gate 5 executed to the exact R4-A identities; owner confirmation and pointer ruling remain separate acts. |
+| G5-APPEND-APPROVED-001 | 2026-08-23 | `APPROVED_BY_OWNER_R4-A` | R4-A is reproduced verbatim below with the approved append and seven applied identities. |
+| G5-AUTHORIZED-001 | 2026-08-23 | `AUTHORIZED_BY_OWNER_R4-B` | R4-B is reproduced verbatim below. The first attempt stopped and recovered before append application. |
+| G5-POINTER-DEFERRED-001 | 2026-08-23 | `DEFERRED_BY_OWNER_R4-C` | R4-C is reproduced verbatim below; `_LATEST.md` remains unchanged. |
+| G5-ATTEMPT-1-STOPPED-001 | 2026-08-23 | `BLOCKED_RECOVERED` | Receipt 118 and `execution/_Coordination/AgentRuns/ROOT_V3_PHASE0E_2026-08-23/instances/N1_GATE5_EXECUTION/RETURN.md` record the patch-reexpression identity failure, no append invocation, and exact restoration of all seven revision-1.2 bytes. |
+| G5-REAUTHORIZED-001 | 2026-08-23 | `AUTHORIZED_BY_OWNER_R5-A` | R5-A is reproduced verbatim below and authorizes the second attempt only after the exact Stage-A rehearsal gate. |
+| G5-EXECUTED-001 | 2026-08-23 | `EXECUTED_AWAITING_OWNER_CONFIRMATION` | `Gate_5_Rehearsal_Record.md` SHA-256 `ea5d90e88ebc7528f758664bf354f815deb8c50b638276ead19a5f49f9f92532`; `Gate_5_Application_Record.md` SHA-256 `31207f122e9d64b4734a701cae364b2456df65d0605b2b1d0c6880ce5595760a`; all seven live hashes equal R4-A; applied validator PASS 65/65; post-Gate5 backcheck PASS. |
 
 ## G1-ACCEPTED owner record (verbatim)
 
@@ -159,15 +165,147 @@ R3-B — SCA-004 Gate 4 (propagation plan): [click] "Approve with Gate-5
   separate owner act after the append bytes are approved.
 <!-- END R3-B VERBATIM -->
 
+## G5-APPEND-APPROVED owner record (verbatim)
+
+Source:
+`plans/steers/chirality_app_v3_root_ruling_record_r4_2026-08-23.md`,
+SHA-256
+`5916aa599bf5953324636b8c5e0b0a5e2b9e6a793fd6dd9b1cac1c7e19e0755a`.
+
+<!-- BEGIN R4-A VERBATIM -->
+R4-A — SCA-004 Gate-5 application append: [click] "Approve as published".
+  Subject bytes, all under `execution/_ScopeChange/SCA-004_2026-08-22_1749/`:
+    `Gate_5_Application_Append.diff`
+      `336405845dde5a3ae406b46c750c38a88c1b366f69bdaa74b4078679e04fe6a8`
+    `Gate_5_Slot_Inventory.md`
+      `79929dfd8a299904d95fa0ab83b7b044452528ecf6e39bc57717675e39928e22`
+    `Gate_5_Applied_Preview.md`
+      `eb4a9236e7b6d007ebf11aff75bc3e86884d7158d7b753933b3130d523423d03`
+    `Gate_5_Validation.json`
+      `4831fb2757bfcdeb2faa0dff51a15d4f04ec68d4c9716928a36f1ea8844df966`
+      (PASS, 64 checks, 0 failures)
+  Resulting applied identities (`Gate_5_Applied_Candidate/`), which Gate 5 must
+  produce exactly at the live paths under `execution/_Decomposition/`:
+    `Chirality_Root_SOFTWARE_DECOMP_v1_0.md`
+      `546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986`
+    `chirality_root_deliverable_register_v1_0.csv`
+      `2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba`
+    `chirality_root_scope_ledger_v1_0.csv`
+      `63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417`
+    `chirality_root_objective_register_v1_0.csv`
+      `b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f`
+    `chirality_root_prd_coverage_forward_v1_0.csv`
+      `9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f`
+    `chirality_root_trace_reverse_v1_0.csv`
+      `750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438`
+    `chirality_root_coverage_telemetry_v1_0.md`
+      `bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c`
+  Recorded form: the owner approves the append as published — all eighteen
+  hunks, being the status, revision, run, and amendment slots of the working
+  surface and telemetry, and the two inventoried scope-ledger `Notes` cells
+  (SL-001 `SOW-083`, SL-002 `SOW-103`). The owner was told, and approves with
+  knowledge, that those two cells carry wording inherited from revision 1.0
+  through 1.2 rather than SCA-004 candidate status, and that the append
+  modernizes them to applied-revision wording. The append changes no row,
+  mapping, count, ID, or trace. CONDITION R3-B-1 is satisfied by these bytes.
+<!-- END R4-A VERBATIM -->
+
+## G5-AUTHORIZED owner record (verbatim)
+
+Source and SHA-256: same R4 record identified above.
+
+<!-- BEGIN R4-B VERBATIM -->
+R4-B — SCA-004 Gate-5 execution: [click] "Authorize now".
+  Subject bytes: `Gate_5_Brief.md`
+  `7f0ab64a16d70c7b48c7f51ed4bbfc3bbd5569bed3fdd05343de1ffe2b7d01de`, read
+  against `Decision_Log.md`
+  `c0e45e18b06ee2f415552aee10c6053e5dd887649bb3dc5accf6411943a23375` and
+  `Handoff_State.md`
+  `86825f84d6c9e7c6b38efe98319b67fb000676f37027d0c89b666216c3ab1d12`
+  (status `AWAITING_OWNER_GATE_5_APPEND_APPROVAL`).
+  Recorded form: the owner authorizes the Root loop to execute the brief's
+  exact sequence, steps 1–9, once: reverify the seven live revision-1.2 SHAs
+  and the seven approved candidate SHAs; fresh `validate_gate5_package.py`
+  PASS; copy the seven approved files to their live paths; apply the approved
+  append; require exact equality with the R4-A applied identities; write
+  `Gate_5_Application_Record.md` with every before/after SHA, the R4-A and
+  R4-B references, the validator result, and the Git-effect slot `TBD`; run
+  the closure-validation lane of `Propagation_Plan.md` §6 items 1–6 (applied
+  hashes, applied-state Gate-3 equivalent, post-application scoped
+  `AUDIT_DECOMP` backcheck against the Gate-1 baseline, no folder/SOW/status/
+  dependency created, all ten holds `HELD_UNAVAILABLE`, derivative
+  currentness); return the applied state for the owner's Gate-5 confirmation
+  (§6 item 7). This authorization is for this exact package identity only; any
+  SHA drift, validator failure, or out-of-scope write stops the act.
+  Gate-5 confirmation remains a later owner act against the applied live
+  bytes and the closure-lane evidence.
+<!-- END R4-B VERBATIM -->
+
+## G5-POINTER-DEFERRED owner record (verbatim)
+
+Source and SHA-256: same R4 record identified above.
+
+<!-- BEGIN R4-C VERBATIM -->
+R4-C — `_LATEST.md` pointer: [click] "Rule after Gate-5 confirmation".
+  Subject bytes: `Gate_5_Pointer_Candidate.md`
+  `5918e7bff305bfc0a22c4a4fd172a2ad7bf013a217a778d6ca3797ce773dfabf`.
+  Recorded form: the pointer is not written by the Gate-5 act. The candidate
+  returns for its own ruling after the owner confirms the applied state
+  (`Propagation_Plan.md` §7). `execution/_ScopeChange/_LATEST.md` remains
+  `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1` through
+  Phase 0e.
+<!-- END R4-C VERBATIM -->
+
+## G5-REAUTHORIZED owner record (verbatim)
+
+Source:
+`plans/steers/chirality_app_v3_root_ruling_record_r5_2026-08-23.md`,
+SHA-256
+`1f0a3358602fdfb4dff70607ad631130db55dcfd62d71a6fe7a3a13e18f0f42a`.
+
+<!-- BEGIN R5-A VERBATIM -->
+R5-A — Gate-5 second attempt: [click] "One tranche: rehearse, then execute".
+  Recorded form: the owner authorizes one further Gate-5 execution attempt,
+  in one tranche, under these conditions:
+  (1) Materialization method, mandatory: byte copy of the seven exact
+      `Gate_3_Candidate/` files to their live paths by shell copy
+      (`/bin/cp`) or by `git show <basis>:<candidate path>` redirected to the
+      live path; then `git apply --unidiff-zero --check` and one
+      `git apply --unidiff-zero` of `Gate_5_Application_Append.diff` from the
+      repository root. Patch editing, editor tools, `apply_patch`, or any
+      re-expression of the approved diffs is forbidden for these writes.
+  (2) Post-application validator: before the live act, the loop adds
+      `validate_gate5_applied.py` to the SCA-004 snapshot — deterministic,
+      reproducible — asserting that the seven live files equal the R4-A
+      applied identities byte-for-byte, the structural Gate-3 checks hold on
+      the applied state (53 deliverables; PKG-02 12; PKG-04 11; packages 6;
+      scope items 104; objectives 7; ID set, mappings, and 85/59 trace rows
+      identical to `Gate_5_Applied_Candidate/`), all approved package bytes
+      are unchanged, `_LATEST.md` is unchanged, and no folder, SOW,
+      `_STATUS.md`, or `_DEPENDENCIES.md` was created.
+  (3) Rehearsal gate: before the live act, the full sequence — copy, hash,
+      apply-check, apply, hash, `validate_gate5_applied.py` — is executed in
+      a scratch worktree outside the governed checkout and recorded in
+      `Gate_5_Rehearsal_Record.md` with every observed hash. The live act
+      proceeds only if the rehearsal's intermediate identities equal R3-A,
+      its final identities equal R4-A, and the applied validator passes with
+      zero failures. Otherwise the tranche stops at the rehearsal with no
+      live write and returns the blocker.
+  (4) The live act is executed once, exactly as R4-B's sequence with the
+      method of (1) and the validator of (2) substituted for the brief's
+      step 8 "applied-state equivalent"; a live identity mismatch restores
+      revision 1.2 bytes and stops; a closure-lane failure is recorded and
+      returned, not silently reverted.
+  R4-A (append bytes and applied identities) and R4-C (pointer deferred)
+  stand unchanged. Gate-5 confirmation remains a later owner act against the
+  applied live bytes and the closure-lane evidence.
+<!-- END R5-A VERBATIM -->
+
 ## Pending owner decisions
 
-1. Approve, correct, or decline the exact
-   `Gate_5_Application_Append.diff` bytes and resulting seven applied SHA-256
-   identities.
-2. After append approval, separately authorize or decline Gate-5 execution
-   against the exact published package.
-3. Separately approve, correct, or decline the proposed `_LATEST.md` pointer
-   replacement bytes after Gate 5 is confirmed.
+1. Confirm or decline the exact applied Gate-5 state and closure evidence.
+2. After Gate-5 confirmation, separately approve, correct, or decline the
+   proposed `_LATEST.md` pointer replacement bytes.
 
-Gate 5 is not open. No approval or authorization is inferred from R3-A,
-R3-B, or the existence of these drafts.
+No later propagation, implementation, hold-lift, cutover, release,
+publication, or reliance authority is inferred.

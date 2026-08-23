@@ -12,9 +12,14 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
 
 - Root PRD Revision 8 (`docs/PRD_ROOT.md`), merge-gate policy per annex
   §5.3.1 as simplified 2026-07-29 (Receipt 64).
-- Root SOFTWARE decomposition revision 1.2 (SCA-002 applied 2026-07-29;
-  snapshot `execution/_ScopeChange/SCA-002_2026-07-29_0800/`). All 46
-  deliverables `INITIALIZED`; none activated.
+- Root SOFTWARE decomposition revision 1.2 was the accepted basis entering
+  Phase 0f (SCA-002 applied 2026-07-29; snapshot
+  `execution/_ScopeChange/SCA-002_2026-07-29_0800/`). Under R5-A, Phase 0f
+  applied the R4-A-approved revision-1.3 bytes to all seven live decomposition
+  surfaces and validated them exactly; owner Gate-5 confirmation and pointer
+  treatment remain pending. The 46 materialized deliverable folders remain
+  `INITIALIZED`; none is activated. The seven newly registered deliverables
+  are not materialized.
 - Chirality Task Management PRD Revision 2, adopted by D-GOV-32 (subject
   SHA-256 `97e2ae6525ecbfdc52ff22aee85e1182a751c1090c2aa2f52faaf9e080f35d18`,
   effective `main@c1156837f`); K-TM-1..6 ratified at `docs/CONTRACT.md`
@@ -92,6 +97,20 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   unchanged at 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived. Another
   attempt requires fresh owner direction and an approved exact materialization
   method; confirmation and pointer authority remain closed.
+- Phase-0f records R5-A re-authorization and the corrected second Gate-5
+  attempt. Stage A passed R3-A 7/7, R4-A 7/7, and the applied validator 65/65
+  in scratch while live files remained revision 1.2. Stage B then ran exactly
+  once by seven `/bin/cp` operations plus the approved zero-context append,
+  producing R4-A 7/7 at the seven live paths. The post-Gate5 backcheck passes
+  at 53 deliverables, PKG-02=12, PKG-04=11, 6 packages, 104 scope items,
+  7 objectives, 85 forward rows, and 59 reverse units with zero mapping/trace
+  defects. Review cycle 1's evidence-only command-transcript finding was
+  repaired without another live act; fresh cycle 2 returns zero actionable
+  findings. `_LATEST.md`, all 46 `_STATUS.md` files, folders, all ten held
+  bindings, and Task Management remain unchanged at 19 live (`OPEN=11`,
+  `DEFERRED=8`) / 108 archived. The applied state awaits owner Gate-5
+  confirmation; pointer treatment, Git-effect backfill, and later propagation
+  acts remain separately gated.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -163,6 +182,13 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   intermediate mismatches, exact revision-1.2 restoration, and a fresh
   zero-finding read-only review. It is derivative evidence only; it does not
   make the approved revision-1.3 candidate applied truth.
+- `AgentRuns/ROOT_V3_PHASE0F_2026-08-23/` and the new SCA-004 Gate-5
+  rehearsal/application/validator/backcheck files are the current application
+  and closure-evidence package. The seven live decomposition surfaces are
+  applied revision-1.3 bytes awaiting owner confirmation. PREPARATION INIT ×7,
+  DEL-02-06 context propagation, dependencies, estimates, schedule, work
+  graph/DAG, AUDIT_DEP_CLOSURE, public export, and the pointer remain stale or
+  deferred to their later owning acts.
 
 ## 3. Closure verdict
 
@@ -299,6 +325,19 @@ unexecuted; no post-Gate-5 audit exists. Confirmation, pointer, Git-effect
 backfill, every propagation act, all ten holds, TM-ROOT-106/122, C1, pins,
 runtime, tools, App acts, lifecycle, release, and reliance remain closed.
 
+`2026-08-23 ROOT V3 PHASE-0F GATE-5 APPLIED — OWNER CONFIRMATION AND POINTER
+RULING REMAIN.` Receipt 119 records the R5-A-authorized second attempt,
+successful scratch rehearsal, one exact byte-copy-plus-append live act,
+65/65 applied-state validation, scoped post-Gate5 backcheck, evidence-only
+repair, and terminal fresh review with zero actionable findings. All seven
+live decomposition surfaces equal R4-A exactly. The applied state is not yet
+owner-confirmed; `_LATEST.md` remains unchanged under R4-C, the 46
+materialized deliverables remain `INITIALIZED`, the seven new deliverables
+remain unmaterialized, Task Management remains 19 live / 108 archived, and
+all ten holds remain. Confirmation, pointer, Git-effect backfill, later
+propagation, pins, C1, implementation, release, publication, and reliance are
+not inferred.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -373,3 +412,13 @@ validator. Gate 5, PREPARATION, live decomposition copy, pointer treatment,
 SOWs, dependencies, estimates, scheduling, graph/audit reruns, implementation,
 hold lifts, pin changes, artifact download, App acts, release, and reliance
 remain unauthorized. Public export regeneration remains deferred.
+
+For Receipt 119, rehash the seven live files against R4-A and rerun
+`execution/_ScopeChange/SCA-004_2026-08-22_1749/validate_gate5_applied.py`
+before presenting the applied state for owner confirmation. Do not rerun
+Stage B. Confirmation is a separate owner act; after confirmation, the
+`_LATEST.md` candidate returns for its own ruling under R4-C. PREPARATION
+INIT, DEL-02-06 context propagation, dependencies, estimates, schedule,
+work-graph/DAG regeneration, AUDIT_DEP_CLOSURE, Git-effect backfill, hold
+lifts, implementation, cutover, release, publication, and reliance remain
+separately owned and gated.
