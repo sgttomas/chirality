@@ -1,0 +1,39 @@
+{
+  "instance_id": "N1_SCA004_GATE3_GATE4_DRAFT",
+  "status": "COMPLETED",
+  "result": "PASS_REVIEW_CYCLES_1_THROUGH_5_REPAIRED",
+  "basis": "8635e40995b05f494ae35c6083dabdd50068bb52",
+  "parent": "HELP_HUMAN / ROOT_V3_PHASE0C_2026-08-23",
+  "validation": {
+    "result": "PASS",
+    "check_count": 98,
+    "failure_count": 0,
+    "exact_diff_sha256": "0724668f6fb85189f4c3ee142a21cef938c8dd47373be543d8b108c8e934637b"
+  },
+  "review_cycle": 5,
+  "review_findings_repaired": [
+    "N1-R1-F1",
+    "N1-R1-F2",
+    "N1-R1-F3",
+    "N1-R2-F1",
+    "N1-R3-F1",
+    "N1-R4-F1",
+    "N1-R5-F1",
+    "N1-R5-F2"
+  ],
+  "final_checks": {
+        "deterministic_rebuild": "PASS",
+        "exact_diff_apply_check": "PASS",
+        "scratch_apply_candidate_identity": "PASS_ALL_SEVEN",
+        "candidate_whitespace": "PASS",
+    "git_diff_check": "PASS",
+    "protected_live_surfaces": "UNCHANGED"
+  },
+  "sync_posture": "FROZEN_8635E409_ORIGIN_MAIN_ADVANCED_NO_FETCH_SYNC_REBASE_COMMIT_PUSH_OR_MERGE",
+  "return": "execution/_Coordination/AgentRuns/ROOT_V3_PHASE0C_2026-08-23/instances/N1_SCA004_GATE3_GATE4_DRAFT/RETURN.md",
+  "workflow_blockers": [
+    "OWNER_GATE_3_APPROVAL",
+    "OWNER_GATE_4_APPROVAL",
+    "GATE_5_CLOSED"
+  ]
+}

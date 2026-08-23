@@ -1,0 +1,813 @@
+{
+  "amendment": "SCA-004",
+  "gate": 3,
+  "posture": "CANDIDATE_ONLY_GATE_3_AND_GATE_4_OWNER_APPROVAL_PENDING",
+  "basis_commit": "8635e40995b05f494ae35c6083dabdd50068bb52",
+  "accepted_decomposition_revision": "1.2",
+  "result": "PASS",
+  "check_count": 98,
+  "failure_count": 0,
+  "candidate_sha256": {
+    "Chirality_Root_SOFTWARE_DECOMP_v1_0.md": "0696190db9fb9319ccee40232d1a5ed77133030fea1361716ae1c05c4d8a9641",
+    "chirality_root_deliverable_register_v1_0.csv": "2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba",
+    "chirality_root_scope_ledger_v1_0.csv": "54287bad4a9561e7dc38bea305ecb232ce081d51d49c05b94d8d86a44017a3cc",
+    "chirality_root_objective_register_v1_0.csv": "b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f",
+    "chirality_root_prd_coverage_forward_v1_0.csv": "9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f",
+    "chirality_root_trace_reverse_v1_0.csv": "750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438",
+    "chirality_root_coverage_telemetry_v1_0.md": "316185be54ec75f0ddaad847a00427a9051527ce9b94019cad2a3b4c2120d765"
+  },
+  "basis_sha256": {
+    "Chirality_Root_SOFTWARE_DECOMP_v1_0.md": "23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d",
+    "chirality_root_deliverable_register_v1_0.csv": "a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395",
+    "chirality_root_scope_ledger_v1_0.csv": "3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2",
+    "chirality_root_objective_register_v1_0.csv": "c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55",
+    "chirality_root_prd_coverage_forward_v1_0.csv": "adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84",
+    "chirality_root_trace_reverse_v1_0.csv": "6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0",
+    "chirality_root_coverage_telemetry_v1_0.md": "6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282"
+  },
+  "exact_diff_sha256": "0724668f6fb85189f4c3ee142a21cef938c8dd47373be543d8b108c8e934637b",
+  "checks": [
+    {
+      "check": "basis_untouched::Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+      "status": "PASS",
+      "details": "observed=23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d expected=23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d"
+    },
+    {
+      "check": "basis_untouched::chirality_root_deliverable_register_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395 expected=a29759be51aa749ebad22fd3f4d08a1c12ef8f477ae95b846cfc880cc2241395"
+    },
+    {
+      "check": "basis_untouched::chirality_root_scope_ledger_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2 expected=3deed192a6f760708f552891b74285f0157e66a9f86e25a1b3cecebf0baf59c2"
+    },
+    {
+      "check": "basis_untouched::chirality_root_objective_register_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55 expected=c645c3bd5457f3922640d2e9dfc4f315923a412fc098ad2d3bb9b2d0f8521f55"
+    },
+    {
+      "check": "basis_untouched::chirality_root_prd_coverage_forward_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84 expected=adde466ac0b7ea708084ed08ab16f10c5710473fd0c53a68e32c3eb53496cb84"
+    },
+    {
+      "check": "basis_untouched::chirality_root_trace_reverse_v1_0.csv",
+      "status": "PASS",
+      "details": "observed=6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0 expected=6cce13b19f27c3638fce5bd383423ee79e872bb5b1080441c3b525424e8ec3b0"
+    },
+    {
+      "check": "basis_untouched::chirality_root_coverage_telemetry_v1_0.md",
+      "status": "PASS",
+      "details": "observed=6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282 expected=6882c713763d31613ab22fe8122baf9d98739fe7cc8dbfdfead5bb84255da282"
+    },
+    {
+      "check": "protected_untouched::execution/_ScopeChange/_LATEST.md",
+      "status": "PASS",
+      "details": "observed=b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1 expected=b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1"
+    },
+    {
+      "check": "protected_untouched::execution/_ScopeChange/SCA-004_2026-08-22_1749/Brief.md",
+      "status": "PASS",
+      "details": "observed=cdd14b18bd865060398bd8aa22157a6b86d91d7906cdf6d0f68e7ade7d559126 expected=cdd14b18bd865060398bd8aa22157a6b86d91d7906cdf6d0f68e7ade7d559126"
+    },
+    {
+      "check": "protected_untouched::execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_1_Validation.md",
+      "status": "PASS",
+      "details": "observed=812d0d3a33f0c2740dc89be31566a7b1f30ec833bfd99f3afe45f7bc11c99c14 expected=812d0d3a33f0c2740dc89be31566a7b1f30ec833bfd99f3afe45f7bc11c99c14"
+    },
+    {
+      "check": "protected_untouched::execution/_ScopeChange/SCA-004_2026-08-22_1749/Parsed_Actions.csv",
+      "status": "PASS",
+      "details": "observed=a89b77dc1ce478f7ea5bbc3ebb12706d69e93876e6a7f4cca0cfd5ea5a9e738b expected=a89b77dc1ce478f7ea5bbc3ebb12706d69e93876e6a7f4cca0cfd5ea5a9e738b"
+    },
+    {
+      "check": "protected_untouched::execution/_ScopeChange/SCA-004_2026-08-22_1749/WORK_GRAPH.json",
+      "status": "PASS",
+      "details": "observed=86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9 expected=86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9"
+    },
+    {
+      "check": "protected_untouched::execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/AUDIT_DECOMP/coverage_summary.json",
+      "status": "PASS",
+      "details": "observed=2210e77f989f29c11e005d7fe89944e2e0f0fe265e0a514f53042aaa89de9e45 expected=2210e77f989f29c11e005d7fe89944e2e0f0fe265e0a514f53042aaa89de9e45"
+    },
+    {
+      "check": "candidate_exact_file_set",
+      "status": "PASS",
+      "details": [
+        "Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+        "chirality_root_coverage_telemetry_v1_0.md",
+        "chirality_root_deliverable_register_v1_0.csv",
+        "chirality_root_objective_register_v1_0.csv",
+        "chirality_root_prd_coverage_forward_v1_0.csv",
+        "chirality_root_scope_ledger_v1_0.csv",
+        "chirality_root_trace_reverse_v1_0.csv"
+      ]
+    },
+    {
+      "check": "amendment_actions_exact_structure_schema",
+      "status": "PASS",
+      "details": [
+        "AmendmentID",
+        "ActionSeq",
+        "ActionType",
+        "EntityType",
+        "EntityID",
+        "Description",
+        "AffectedFiles",
+        "DownstreamReruns",
+        "SupersessionBindingPresent"
+      ]
+    },
+    {
+      "check": "amendment_actions_eight_ordered_actions",
+      "status": "PASS",
+      "details": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "check": "amendment_actions_exact_entities_and_types",
+      "status": "PASS",
+      "details": [
+        [
+          "1",
+          "MODIFY",
+          "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+        ],
+        [
+          "2",
+          "ADD",
+          "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control"
+        ],
+        [
+          "3",
+          "ADD",
+          "DEL-02-08_Exact_Supply_and_Protocol_Pinning"
+        ],
+        [
+          "4",
+          "ADD",
+          "DEL-02-09_Hosted_Account_and_Consent_Boundary"
+        ],
+        [
+          "5",
+          "ADD",
+          "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2"
+        ],
+        [
+          "6",
+          "ADD",
+          "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation"
+        ],
+        [
+          "7",
+          "ADD",
+          "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+        ],
+        [
+          "8",
+          "ADD",
+          "DEL-04-11_Root_Loop_Receipt_Validator"
+        ]
+      ]
+    },
+    {
+      "check": "amendment_actions_structural_no_supersession_bindings",
+      "status": "PASS",
+      "details": [
+        "NO",
+        "NO",
+        "NO",
+        "NO",
+        "NO",
+        "NO",
+        "NO",
+        "NO"
+      ]
+    },
+    {
+      "check": "candidate_ids_absent_from_live_register",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "candidate_ids_unmaterialized",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "column_count::chirality_root_deliverable_register_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "DeliverableID",
+        "Name",
+        "ParentPackageID",
+        "ResponsibleParty",
+        "Type",
+        "Description",
+        "AnticipatedArtifacts",
+        "CoversScopeItems",
+        "SupportsObjectives",
+        "ContextEnvelope",
+        "ContextEnvelopeNotes",
+        "AnticipatedWriteLocus"
+      ]
+    },
+    {
+      "check": "column_count::chirality_root_scope_ledger_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "ScopeItemID",
+        "InOutStatus",
+        "ScopeItemStatement",
+        "SourceRef",
+        "PackageID",
+        "DeliverableIDs",
+        "ObjectiveIDs",
+        "PRDItem",
+        "Categories",
+        "DecisionRef",
+        "OpenIssue",
+        "Notes"
+      ]
+    },
+    {
+      "check": "column_count::chirality_root_objective_register_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "ObjectiveID",
+        "PRDObjective",
+        "Statement",
+        "MappedDeliverables",
+        "MappedScopeItems",
+        "Notes"
+      ]
+    },
+    {
+      "check": "column_count::chirality_root_prd_coverage_forward_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "PRDItem",
+        "ItemKind",
+        "PRDSection",
+        "ObjectiveID",
+        "ScopeItemIDs",
+        "PackageIDs",
+        "DeliverableIDs",
+        "CoverageStatus",
+        "DeferralReason"
+      ]
+    },
+    {
+      "check": "column_count::chirality_root_trace_reverse_v1_0.csv",
+      "status": "PASS",
+      "details": [
+        "UnitID",
+        "UnitKind",
+        "ParentPackageID",
+        "PRDItems",
+        "ScopeItemIDs",
+        "TraceStatus"
+      ]
+    },
+    {
+      "check": "deliverable_count_53",
+      "status": "PASS",
+      "details": 53
+    },
+    {
+      "check": "scope_item_count_104",
+      "status": "PASS",
+      "details": 104
+    },
+    {
+      "check": "objective_count_7",
+      "status": "PASS",
+      "details": 7
+    },
+    {
+      "check": "forward_count_85",
+      "status": "PASS",
+      "details": 85
+    },
+    {
+      "check": "reverse_count_59",
+      "status": "PASS",
+      "details": 59
+    },
+    {
+      "check": "deliverable_ids_unique",
+      "status": "PASS",
+      "details": "53 unique"
+    },
+    {
+      "check": "scope_ids_unique",
+      "status": "PASS",
+      "details": "104 unique"
+    },
+    {
+      "check": "objective_ids_unique",
+      "status": "PASS",
+      "details": "7 unique"
+    },
+    {
+      "check": "reverse_unit_ids_unique",
+      "status": "PASS",
+      "details": "59 unique"
+    },
+    {
+      "check": "line_endings::chirality_root_deliverable_register_v1_0.csv",
+      "status": "PASS",
+      "details": "crlf=0 lf=54"
+    },
+    {
+      "check": "line_endings::chirality_root_scope_ledger_v1_0.csv",
+      "status": "PASS",
+      "details": "crlf=105 lf=105"
+    },
+    {
+      "check": "line_endings::chirality_root_objective_register_v1_0.csv",
+      "status": "PASS",
+      "details": "crlf=0 lf=8"
+    },
+    {
+      "check": "line_endings::chirality_root_prd_coverage_forward_v1_0.csv",
+      "status": "PASS",
+      "details": "crlf=0 lf=86"
+    },
+    {
+      "check": "line_endings::chirality_root_trace_reverse_v1_0.csv",
+      "status": "PASS",
+      "details": "crlf=60 lf=60"
+    },
+    {
+      "check": "existing_deliverable_change_isolated",
+      "status": "PASS",
+      "details": [
+        "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+      ]
+    },
+    {
+      "check": "scope_changes_isolated",
+      "status": "PASS",
+      "details": [
+        "SOW-041",
+        "SOW-053",
+        "SOW-104"
+      ]
+    },
+    {
+      "check": "objective_changes_isolated",
+      "status": "PASS",
+      "details": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-003",
+        "OBJ-004",
+        "OBJ-007"
+      ]
+    },
+    {
+      "check": "forward_changes_isolated",
+      "status": "PASS",
+      "details": [
+        "D-7",
+        "E-2",
+        "O-11",
+        "OBJ-1",
+        "OBJ-2",
+        "OBJ-3",
+        "OBJ-4",
+        "OBJ-7"
+      ]
+    },
+    {
+      "check": "reverse_recompute_repairs_known_inverse_drift",
+      "status": "PASS",
+      "details": [
+        "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map",
+        "DEL-01-02_Invariant_Catalog_Conformance_Register",
+        "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance",
+        "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model",
+        "DEL-01-05_File_Native_Authority_Substrate_Conformance",
+        "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance",
+        "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register",
+        "DEL-02-01_Instruction_Surface_Membership_and_Release_Management",
+        "DEL-02-02_Three_Layer_Authority_Boundary_Conformance",
+        "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules",
+        "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls",
+        "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools",
+        "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+        "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance",
+        "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance",
+        "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary",
+        "DEL-03-04_Root_Working_Root_Exception_Conformance",
+        "DEL-03-05_Guard_State_Instantiation_and_Registration",
+        "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream",
+        "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline",
+        "DEL-04-02_Identity_Attribution_and_Refusal_Controls",
+        "DEL-04-03_Validation_Severity_and_Override_Controls",
+        "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing",
+        "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline",
+        "DEL-04-06_Change_Management_and_Human_Gated_Closeout",
+        "DEL-04-07_Public_Export_Boundary_Conformance",
+        "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control",
+        "DEL-04-09_PRD_Source_Currency_Check_Capability",
+        "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration",
+        "DEL-05-01_Run_Record_Tree_Conformance",
+        "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline",
+        "DEL-05-03_SHA_Role_Register",
+        "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle",
+        "DEL-05-05_Audit_and_Evaluation_Surface_Governance",
+        "DEL-05-06_Validation_Evidence_Mutation_Control",
+        "DEL-05-07_Closure_Criteria_Conformance",
+        "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation",
+        "DEL-06-04_Downward_Variant_Service_and_Non_Weakening",
+        "DEL-06-05_Domain_Engine_Truth_Boundary",
+        "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+        "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+        "PKG-04_Developmental_Machinery_and_Change_Control",
+        "PKG-05_Evidence_Provenance_and_Audit",
+        "PKG-06_Self_Application_Variants_and_Release"
+      ]
+    },
+    {
+      "check": "runtime_parent_pkg02",
+      "status": "PASS",
+      "details": [
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers"
+      ]
+    },
+    {
+      "check": "receipt_parent_pkg04",
+      "status": "PASS",
+      "details": "PKG-04_Developmental_Machinery_and_Change_Control"
+    },
+    {
+      "check": "receipt_artifact_kind_test_suite",
+      "status": "PASS",
+      "details": "TEST_SUITE"
+    },
+    {
+      "check": "new_artifact_kinds_exact",
+      "status": "PASS",
+      "details": [
+        "BACKEND_FEATURE_SLICE",
+        "API_CONTRACT",
+        "SECURITY_CONTROL",
+        "API_CONTRACT",
+        "BACKEND_FEATURE_SLICE",
+        "TEST_SUITE",
+        "TEST_SUITE"
+      ]
+    },
+    {
+      "check": "new_rows_complete",
+      "status": "PASS",
+      "details": [
+        "Name",
+        "Description",
+        "Type",
+        "ContextEnvelope",
+        "ContextEnvelopeNotes",
+        "AnticipatedArtifacts",
+        "SupportsObjectives",
+        "CoversScopeItems",
+        "AnticipatedWriteLocus"
+      ]
+    },
+    {
+      "check": "new_rows_bounded_m",
+      "status": "PASS",
+      "details": [
+        "M",
+        "M",
+        "M",
+        "M",
+        "M",
+        "M",
+        "M"
+      ]
+    },
+    {
+      "check": "runtime_loci_declared",
+      "status": "PASS",
+      "details": [
+        "runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/**",
+        "runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/**",
+        "runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/**",
+        "runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/**",
+        "runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/**",
+        "runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/**"
+      ]
+    },
+    {
+      "check": "receipt_tools_locus_separately_gated",
+      "status": "PASS",
+      "details": "tools/** (M2); execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/**"
+    },
+    {
+      "check": "del0206_retains_sow104",
+      "status": "PASS",
+      "details": "SOW-104"
+    },
+    {
+      "check": "del0206_retains_four_objectives",
+      "status": "PASS",
+      "details": "OBJ-001;OBJ-002;OBJ-004;OBJ-007"
+    },
+    {
+      "check": "del0206_req027_explicit",
+      "status": "PASS",
+      "details": "Provide the standing Root semantic-integration and release-assurance carrier for consequential generic runtime change: preserve the D-GOV-20 boundary and REQ-027, integrate the exact DEL-02-07 through DEL-02-12 carrier outputs, maintain the versioned contract and ten-binding hold matrix, fan in affected-client conformance or migration evidence, and return release disposition to an accountable human without transferring runtime ownership to a client."
+    },
+    {
+      "check": "sow104_exact_remap",
+      "status": "PASS",
+      "details": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance;DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control;DEL-02-08_Exact_Supply_and_Protocol_Pinning;DEL-02-09_Hosted_Account_and_Consent_Boundary;DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2;DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation;DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+    },
+    {
+      "check": "sow041_sow053_exact_receipt_allocation",
+      "status": "PASS",
+      "details": {
+        "SOW-041": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline;DEL-04-11_Root_Loop_Receipt_Validator",
+        "SOW-053": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline;DEL-04-11_Root_Loop_Receipt_Validator"
+      }
+    },
+    {
+      "check": "receipt_scope_objective_exact",
+      "status": "PASS",
+      "details": {
+        "CoversScopeItems": "SOW-041;SOW-053",
+        "SupportsObjectives": "OBJ-003"
+      }
+    },
+    {
+      "check": "runtime_scope_objective_exact",
+      "status": "PASS",
+      "details": "all six map SOW-104 and OBJ-001/002/004/007"
+    },
+    {
+      "check": "in_scope_count_95",
+      "status": "PASS",
+      "details": 95
+    },
+    {
+      "check": "zero_in_scope_items_without_mapping",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "zero_objectives_without_support",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "scope_to_deliverable_no_dangling",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "deliverable_to_scope_no_dangling",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "deliverable_to_objective_no_dangling",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "scope_deliverable_bidirectional",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "objective_deliverable_bidirectional",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "objective_deliverable_reverse_bidirectional",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "objective_register_forward_rows_exact",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "forward_no_dangling_deliverables",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "forward_all_covered_or_deferred",
+      "status": "PASS",
+      "details": {
+        "COVERED": 84,
+        "COVERED_WITH_RECORDED_DEFERRAL": 1
+      }
+    },
+    {
+      "check": "reverse_all_traced",
+      "status": "PASS",
+      "details": {
+        "TRACED": 59
+      }
+    },
+    {
+      "check": "reverse_covers_every_deliverable",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "reverse_exact_unit_set",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "reverse_full_inverse_of_candidate_forward_and_scope_truth",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "pkg04_reverse_carries_cross_package_e2_consequence",
+      "status": "PASS",
+      "details": "OBJ-1;OBJ-2;OBJ-3;D-1;D-2;D-4;D-5;D-6;D-7;D-8;D-9;D-10;D-11;D-12;D-13;D-14;D-15;D-16;E-2;v1-boundary;obj-discipline;cat-4.1;loop-4.2;cat-4.3;nongoals-8.1;F4;F6;RD-2;RD-4;annex-10.1;adoption-10.3"
+    },
+    {
+      "check": "g0_a3_complete_semantics",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "g0_a3_allocated_to_07_09_10_12",
+      "status": "PASS",
+      "details": {
+        "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control": [],
+        "DEL-02-09_Hosted_Account_and_Consent_Boundary": [],
+        "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2": [],
+        "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in": []
+      }
+    },
+    {
+      "check": "g0_a7_complete_semantics",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "g0_a7_allocated_to_08_09_10_12",
+      "status": "PASS",
+      "details": {
+        "DEL-02-08_Exact_Supply_and_Protocol_Pinning": [],
+        "DEL-02-09_Hosted_Account_and_Consent_Boundary": [],
+        "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2": [],
+        "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in": []
+      }
+    },
+    {
+      "check": "del0207_complete_accepted_socket_control_set",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "del0210_complete_accepted_api_approval_payload_a3_a7_persistence_boundaries",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "del0210_harnessevent_v2_exact_closed_terminal_set",
+      "status": "PASS",
+      "details": {
+        "observed": [
+          "turn.cancelled",
+          "turn.completed",
+          "turn.failed",
+          "turn.interrupted"
+        ],
+        "expected": [
+          "turn.cancelled",
+          "turn.completed",
+          "turn.failed",
+          "turn.interrupted"
+        ]
+      }
+    },
+    {
+      "check": "package_count_parity",
+      "status": "PASS",
+      "details": {
+        "PKG-01_Product_Definition_Normative_Basis_and_Authority": 8,
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers": 12,
+        "PKG-03_Governed_Execution_Structure_and_Root_Containment": 6,
+        "PKG-04_Developmental_Machinery_and_Change_Control": 11,
+        "PKG-05_Evidence_Provenance_and_Audit": 8,
+        "PKG-06_Self_Application_Variants_and_Release": 8
+      }
+    },
+    {
+      "check": "context_envelope_parity",
+      "status": "PASS",
+      "details": {
+        "M": 38,
+        "S": 14,
+        "L": 1
+      }
+    },
+    {
+      "check": "category_deliverable_counts_recomputed",
+      "status": "PASS",
+      "details": {
+        "OperativeProduct": 25,
+        "DevelopmentalMachinery": 26,
+        "NormativeBasis": 21,
+        "Evidence": 24
+      }
+    },
+    {
+      "check": "telemetry_projected_counts_exact",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "responsibility_assignment_complete_all_53",
+      "status": "PASS",
+      "details": {
+        "Ryan Tufts": 53
+      }
+    },
+    {
+      "check": "oi011_working_surface_affected_count_53",
+      "status": "PASS",
+      "details": "| OI-011 | `CLOSED_ASSIGNED_BY_D-GOV-27` | RESPONSIBILITY_UNASSIGNED | all 53 deliverables | `ResponsibleParty` is assigned to Ryan Tufts across the original 45, SCA-001 DEL-02-06, and the seven SCA-004 candidate rows. | D-GOV-27 assigned the original 45 deliverables; SCA-001 carried the assignment to DEL-02-06; SCA-004 carries the same assignment to its seven new rows, preserving complete assignment coverage across all 53 deliverables. |"
+    },
+    {
+      "check": "oi011_working_surface_telemetry_concordance",
+      "status": "PASS",
+      "details": {
+        "working_missing": [],
+        "telemetry_missing": []
+      }
+    },
+    {
+      "check": "working_surface_d12_pkg04_current_count_11",
+      "status": "PASS",
+      "details": "\u2014 developmental machinery is decomposed as product scope (PKG-04, 11"
+    },
+    {
+      "check": "telemetry_del0409_accepted_closed_current_state",
+      "status": "PASS",
+      "details": "| L | DEL-04-09_PRD_Source_Currency_Check_Capability | Accepted at Context Envelope L by D-GOV-25 Gate 5; OI-010 is CLOSED_ACCEPTED_AT_GATE_5. One checker plus one regenerable derivative package; splittable by check class (five mechanical, four semantic) if implementation review finds churn. |"
+    },
+    {
+      "check": "explicit_candidate_current_topology_status_scan",
+      "status": "PASS",
+      "details": {
+        "missing": [],
+        "stale": []
+      }
+    },
+    {
+      "check": "working_surface_candidate_posture",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "handoff_derivative_package_state_enum",
+      "status": "PASS",
+      "details": "| DerivativePackageState | `INCOMPLETE` \u2014 current candidate is bound to revision 1.2, but owner Gate-3/Gate-4 approval remains pending |"
+    },
+    {
+      "check": "exact_diff_covers_all_seven_surfaces",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "gate5_artifacts_absent",
+      "status": "PASS",
+      "details": []
+    },
+    {
+      "check": "protected_live_write_scope_clean",
+      "status": "PASS",
+      "details": []
+    }
+  ]
+}
