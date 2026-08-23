@@ -1,0 +1,28 @@
+{
+  "schema": "chirality-packaged-launchagent-login-proof-session/v1",
+  "status": "PREPARED",
+  "preparedAt": "2026-08-23T21:30:55.423Z",
+  "sourceRevision": "2ee96958daf997b7a156f020739bde43ca78ebf9",
+  "label": "com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933",
+  "service": "gui/501/com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933",
+  "plist": "~/Library/LaunchAgents/com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933.plist",
+  "plistSha256": "e1b7e743c8980fd2132646d4b78adb30062ceb8da40f9b9fcf04e423e024bd72",
+  "app": {
+    "path": "<packaged-app>",
+    "executableSha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874"
+  },
+  "runtimeData": "<proof-session>/runtime-data",
+  "preparedLoginSessionSha256": "a8e185a222fb4101f0a5f0cc03788e2bc10179ede66cd715e065df84035a835d",
+  "preparedJobAbsent": true,
+  "defaultProtection": {
+    "label": "com.chirality.runtime",
+    "plist": "~/Library/LaunchAgents/com.chirality.runtime.plist",
+    "recordedOnly": true
+  },
+  "prepareMutations": [
+    "packaged-cli-install"
+  ],
+  "bootstrapInvoked": false,
+  "kickstartInvoked": false,
+  "proofClaimed": false
+}

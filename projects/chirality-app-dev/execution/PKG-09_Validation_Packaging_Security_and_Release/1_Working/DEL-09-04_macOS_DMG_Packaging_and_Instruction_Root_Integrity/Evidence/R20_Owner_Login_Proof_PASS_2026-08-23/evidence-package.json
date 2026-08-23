@@ -1,0 +1,11 @@
+{
+  "schema": "chirality-packaged-launchagent-login-proof-evidence/v1",
+  "status": "PASS",
+  "sourceRevision": "2ee96958daf997b7a156f020739bde43ca78ebf9",
+  "preparedManifestSha256": "5961b2060b554dc12989947a45335422f48f9e953d5af60c2ece88f7fdcf0a88",
+  "summarySha256": "38a603c470a51209b463a4657448794f8500cb32bfd5f83c2e6c611fb0aa06b1",
+  "files": [
+    "prepared.json",
+    "summary.json"
+  ]
+}
