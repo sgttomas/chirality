@@ -5869,3 +5869,25 @@
     force-push, merge-to-main, or lifecycle/reliance claim occurred; Git acts
     were limited to the cited authorized prior sync and intermediate repair
     commit.
+
+- **2026-08-23 — Receipt 192** (DEL-09-04 PR #632 fixture-mode portability repair and R20 exact-revision restage).
+  - Receipt-ID: `Receipt-192`
+  - Examined-Through: `74525fb6b34f614c114e59a1bf09d20102fc6aac`
+  - Parent-Receipt: `Receipt-191`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-23, Ryan Tufts, in-session), verbatim:
+    `OWNER DIRECTION — PR #632 CI test-portability repair (fixture modes), bounded.
+
+    Harness pre-merge on head 980f5951dbbfe88302514802384e4ffec33c38b9 (ubuntu-latest) failed: 15 of 72 tests in frontend/src/**tests**/scripts/run-packaged-launchagent-login-proof.test.ts fail, each with first divergence \`Failure-log identity or auth snapshot is unsafe; retained only in private runtime data: Failure-log directory identity or permissions are unsafe\` (assertSafeSnapshotMetadata rejects group/other-writable modes). The suite passed on the macOS dev host (umask 022) and fails under the runner's umask, so the test fixtures are environment-dependent. The governance harness (whitespace) is green on this head.
+
+    I authorize one bounded repair on the same branch:
+
+    1. Diagnose from a local reproduction (e.g., run the suite with umask 0002 or with fixture directories created group-writable) and confirm the mechanism before changing anything.
+    2. Fix in the tests, not by weakening the product guard: every fixture-created runtime-data directory and file in this suite gets an explicit mode (0o700 directories, 0o600 files) at creation, matching what prepare/the daemon actually produce on the host. If the diagnosis shows any place where the PRODUCT itself creates a runtime directory without an explicit mode (relying on umask), fix that by passing the explicit mode — that is a hardening consistent with R17's guards, and record it distinctly.
+    3. Because this touches frontend/src/**tests**/, the frontend tree changes: amend the staged R20 procedure so PROOF_REVISION equals the new final frontend-touching commit, rerun exactly one offline desktop:pack from that revision (electron:supply-chain then desktop:pack, custom electronDist, no download), and record package identity — the main executable SHA-256 is expected to remain 79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874 since tests are not packaged; record whatever is observed. Re-run the read-only Step-0 gate checks for the unchanged r20 label and root.
+    4. Full-suite disposition per precedent: one sandbox diagnostic and one exact local-socket-permitted cure run; also run the login-proof suite once under umask 0002 to prove the Linux-shape passes; record exact counts; retained classifications unchanged.
+    5. Amend Receipt 191 (or append the next receipt per your convention) with this authorization verbatim, the diagnosis, the fix inventory, and the new PROOF_REVISION; revalidate the full pre-push gate set including whitespace against origin/main; commit and push to codex/app-login-proof-r20-repair. Do not rebase, force-push, or merge.
+    6. Record a Task Management candidate: test fixtures that exercise permission guards must pin modes explicitly; suites must be run once under a non-macOS umask before staging, since pre-merge CI is Linux.
+       Not authorized: weakening or removing any product guard; daemon, supply, or staged-procedure semantic changes beyond the PROOF_REVISION/package-identity re-stage; any proof claim.`
+  - Pointers: source/build `b33858d33220538ce292f276a442792ecf8050b1`; content `74525fb6b34f614c114e59a1bf09d20102fc6aac`; R20/status; RunID `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/` Amendment 10, manager/handoff, executor/review/governance, and TM-candidate records.
+  - Checks: cited diagnosis, test-only mode repair, unchanged guard, offline restage, read-only Step 0, suites, review, and governance gates pass.
+  - Gate-Outcome: `EXECUTED` — repair and R20 documentation restage only. DEL-09-04 remains `IN_PROGRESS` and unproved; R20 is unexecuted. No proof/release, operator/private-evidence, rebase, force-push, or merge-to-main act or claim occurred.
