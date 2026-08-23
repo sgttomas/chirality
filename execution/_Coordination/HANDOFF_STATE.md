@@ -66,6 +66,13 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   `TM-ROOT-107` as `SUPERSEDED_BY_SCOPE_CHANGE` with `ScaRef=SCA-004` and
   `TM-ROOT-126` as `RESOLVED_BY_DECISION` through D-GOV-35. The current
   reconciled counts are 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived.
+- Phase-0c records the owner-accepted SCA-004 Gate-2 basis and publishes exact
+  Gate-3 candidate bytes plus a separate Gate-4 propagation-plan draft. Live
+  decomposition revision 1.2, all six live companion/trace/telemetry files,
+  `_LATEST.md`, all deliverable folders and lifecycle states remain unchanged.
+  D-GOV-34 and D-GOV-35 Git-act SHA slots are backfilled from recorded commit,
+  publication, and merge evidence. Task Management remains 19 live
+  (`OPEN=11`, `DEFERRED=8`) / 108 archived.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -126,6 +133,12 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   candidate. It is not the draft DEL-02-03 application manifest, a D-GOV-35
   ruling, or instruction-application authority. Its public-export derivative
   disposition is deferred.
+- `AgentRuns/ROOT_V3_PHASE0C_2026-08-23/` and
+  `execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_3_Candidate/` are
+  derivative candidate/evidence packages against accepted decomposition
+  revision 1.2. They are not applied decomposition truth. The Root-owned
+  Chirality App public export remains deferred; the SHA-backfill manifest's
+  M6 notice remains pending because no new receiving-loop act is inferred.
 
 ## 3. Closure verdict
 
@@ -242,6 +255,16 @@ records the reproduced G4 failure and the owner-directed proposal-manifest
 repair; the manifest cures candidate coverage only and does not move any
 governance or lifecycle gate.
 
+`2026-08-23 ROOT V3 PHASE-0C DRAFTING COMPLETE — GATE 3 AND GATE 4 OWNER
+ACTS REMAIN.` Receipt 116 records a deterministic 98-check Gate-3 candidate,
+separate Gate-4 propagation plan, six preserved failed review cycles ending
+in a fresh zero-finding review, and evidence-derived D-GOV-34/35 SHA backfill.
+The owner-authorized merge of current `origin/main` was disjoint and App-owned.
+Gate 3 and Gate 4 remain separately pending; Gate 5 is closed. No live
+decomposition, pointer, folder, SOW, lifecycle, dependency, estimate,
+schedule, runtime, tool, App, held-binding, pin, release, or reliance act is
+created. Task Management counts remain 19 live / 108 archived.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -307,3 +330,12 @@ instruction/entrypoint/manifest/whitespace/register suite after any later
 base, proposal, application, or SCA byte change. PR #620 remains at the human
 review/merge gate; do not infer adoption, implementation, lifecycle,
 release, reliance, or merge.
+
+For Receipt 116, the owner must approve or amend the exact Gate-3 candidate
+and the Gate-4 propagation plan as separate acts against their published
+bytes. Before any later application, reverify the seven live basis SHAs,
+candidate identities, ID absence, and `_LATEST.md`, then rerun the 98-check
+validator. Gate 5, PREPARATION, live decomposition copy, pointer treatment,
+SOWs, dependencies, estimates, scheduling, graph/audit reruns, implementation,
+hold lifts, pin changes, artifact download, App acts, release, and reliance
+remain unauthorized. Public export regeneration remains deferred.
