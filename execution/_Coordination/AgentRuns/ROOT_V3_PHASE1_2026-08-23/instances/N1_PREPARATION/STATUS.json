@@ -1,0 +1,19 @@
+{
+  "instance_id": "N1_PREPARATION",
+  "parent": "HELP_HUMAN / ROOT_V3_PHASE1_2026-08-23",
+  "role": "PREPARATION",
+  "role_enforcement": "instruction-asserted",
+  "status": "COMPLETE",
+  "verdict": "PASS",
+  "basis": "e677edbe81188465eb36e700b6bd441715bcbccd",
+  "brief_version": 1,
+  "created_folders": 7,
+  "created_files": 28,
+  "modified_existing_files": 1,
+  "lifecycle": "OPEN_ONLY",
+  "dependency_state": "INITIALIZED_EMPTY_EXTRACTION_DEFERRED",
+  "delegated": false,
+  "blockers": [],
+  "return": "RETURN.md",
+  "next_owner": "HELP_HUMAN"
+}
