@@ -1,7 +1,15 @@
 {
   "instance_id": "N2_DEP_GRAPH_AUDIT",
   "role": "EPHEMERAL_AGENT_2_WITH_AUDIT_DEP_CLOSURE_SEMANTICS",
-  "status": "READY",
+  "status": "PASS_WITH_COVERAGE_WARNINGS",
   "basis": "e677edbe81188465eb36e700b6bd441715bcbccd",
-  "brief_version": 1
+  "brief_version": 1,
+  "n1_commit": "dab470e2f0c7345f10c34bcce9e489eb68bf0541",
+  "graph_manifest_sha256": "675357b85e806631014531de2df0fc6c02e026fc6c8bf82b4e6131d0ef416955",
+  "audit_manifest_sha256": "d14bf4812cfdfa8d633eeeeff42349eb9ef49546b56b2ef7b542bdd1e1536234",
+  "graph_verdict": "PASS",
+  "audit_verdict": "WARNING",
+  "repair_version": 2,
+  "repair": "EVIDENCE_WHITESPACE_NORMALIZED",
+  "blockers": []
 }

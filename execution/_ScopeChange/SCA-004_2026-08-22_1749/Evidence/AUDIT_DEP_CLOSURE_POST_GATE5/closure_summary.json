@@ -1,0 +1,110 @@
+{
+  "schema": "chirality-dependency-closure-summary/v2",
+  "run": "SCA-004-POST-GATE5-PHASE1",
+  "verdict": "WARNING",
+  "failures": [],
+  "basis": {
+    "branch_basis": "e677edbe81188465eb36e700b6bd441715bcbccd",
+    "n1_commit": "dab470e2f0c7345f10c34bcce9e489eb68bf0541",
+    "sca_snapshot": "SCA-004_2026-08-22_1749",
+    "pointer_sha256": "4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c",
+    "graph_sha256": "e36cac85ef02237db7e249a57f1b88f2cd06290db4c1d607de65b78d038cc52e",
+    "prior_graph_sha256": "86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9",
+    "prior_audit_return_sha256": "14e131fe90a725b3520efb2e2e90fcfedbf8f1898188859b421ea6e4c7460c71",
+    "decomposition_identities": {
+      "Chirality_Root_SOFTWARE_DECOMP_v1_0.md": "546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986",
+      "chirality_root_deliverable_register_v1_0.csv": "2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba",
+      "chirality_root_scope_ledger_v1_0.csv": "63e6fa6b800490201ba0880e5b21dd69f44365bc3a7bf5788d9d53adc3ec7417",
+      "chirality_root_objective_register_v1_0.csv": "b65da0f8e4ac5bc6fc1478eb6849cf9e7d5b8fa58be1d95c0963d83d430af27f",
+      "chirality_root_prd_coverage_forward_v1_0.csv": "9fcfa2a5d4f33cacf23d2ef2a9d4465335ecbbfe544ec653370afcb25ae90a4f",
+      "chirality_root_trace_reverse_v1_0.csv": "750aed6cd7891653b99ec9b04000b939dc999dc3260305dbd532ff743a57b438",
+      "chirality_root_coverage_telemetry_v1_0.md": "bdd6bc08d20c57666c03cc8f0c297cd4c000feb0150d4f2c327a263d483ecf0c"
+    },
+    "n1_return_sha256": "71a4d6b9089f4b7a01581ba7ce8787915dba9e10aaed7fdc92e1c8a77ad28e50",
+    "n1_review_sha256": "9f567edcd6687b936838ad4b80204a4766b2635b6920cf524e034cf72bb569d2"
+  },
+  "metrics": {
+    "packages": 6,
+    "deliverables": 53,
+    "pre_existing_deliverables": 46,
+    "new_open_initialized_empty": 7,
+    "dependencies_csv_present": 0,
+    "dependency_rows": 0,
+    "execution_edges": 0,
+    "orphan_dependency_targets": 0,
+    "isolated_deliverables": 53,
+    "scc_total": 53,
+    "non_trivial_sccs": 0,
+    "hubs": 0,
+    "bidirectional_pairs": 0,
+    "pre_existing_unresolved_closure_violations": 0
+  },
+  "generic_tool_observation": {
+    "command": "python3 tools/coordination/analyze_dep_closure.py execution --output-dir execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/AUDIT_DEP_CLOSURE_POST_GATE5/Generic_Tool_Raw",
+    "dependencies_csv_discovered": 0,
+    "interpretation": "The generic tool has no Root node source without Dependencies.csv; the run-specific analyzer binds the applied register to _DEPENDENCIES.md. Generic-tool CSV/JSON preimages are normalized to LF with a terminal newline."
+  },
+  "checks": [
+    {
+      "check": "live_node_coverage",
+      "result": "PASS",
+      "details": "53/53 live deliverables and 6/6 packages resolve from the applied register."
+    },
+    {
+      "check": "dependency_register_schema",
+      "result": "WARNING",
+      "details": "0/53 Dependencies.csv registers exist; extraction is a later separately gated act."
+    },
+    {
+      "check": "new_init_empty_state",
+      "result": "PASS",
+      "details": "7/7 new OPEN folders explicitly declare no edge and defer extraction; expected, not a defect."
+    },
+    {
+      "check": "orphan_dependency_targets",
+      "result": "PASS",
+      "details": "0 orphan targets because no dependency row exists."
+    },
+    {
+      "check": "circular_dependencies",
+      "result": "PASS",
+      "details": "53 singleton deliverable SCCs; 0 non-trivial SCCs and 0 cycle edges."
+    },
+    {
+      "check": "anchor_coverage",
+      "result": "WARNING",
+      "details": "0/53 have extracted ANCHOR rows because Dependencies.csv extraction has not run."
+    },
+    {
+      "check": "misplaced_fields",
+      "result": "PASS",
+      "details": "0 dependency rows; no misplaced TargetDeliverableID fields."
+    },
+    {
+      "check": "id_format_consistency",
+      "result": "PASS",
+      "details": "53 unique accepted register IDs; no dependency-row normalization required."
+    },
+    {
+      "check": "isolated_deliverables",
+      "result": "INFO",
+      "details": "53/53 are isolated in the dependency layer, expected before extraction."
+    },
+    {
+      "check": "hub_analysis",
+      "result": "PASS",
+      "details": "0 hubs at threshold 20."
+    },
+    {
+      "check": "bidirectional_pairs",
+      "result": "PASS",
+      "details": "0 bidirectional dependency pairs."
+    },
+    {
+      "check": "pre_existing_closure_comparison",
+      "result": "PASS",
+      "details": "0 unresolved closure violations among the 46 pre-existing folders; the prior Gate-1 audit also reported 0 blockers and 0 warnings."
+    }
+  ],
+  "derivative_disposition": "Re-run after accepted SOWs and dependency extraction; graph/audit are derivative evidence."
+}
