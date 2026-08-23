@@ -4,7 +4,7 @@ Status: `EXECUTED — AWAITING OWNER GATE-5 CONFIRMATION`
 
 Application date: `2026-08-23`
 
-Git effect: `TBD` — filled only by a later recorded Git act; never inferred.
+Git effect: content commit `4ad3fea7ef9e397852913c08e533e1846e264134`; PR head `17d3bc2af666005676a517c0a37e5ebd7b3a6614`; PR #633 merge `6d4438d8d3a580b65d6d50ad497dadfe07f177f2`. References: append approval R4-A and execution authorization R4-B (R4 record SHA-256 `5916aa599bf5953324636b8c5e0b0a5e2b9e6a793fd6dd9b1cac1c7e19e0755a`); re-authorization R5-A (R5 record SHA-256 `1f0a3358602fdfb4dff70607ad631130db55dcfd62d71a6fe7a3a13e18f0f42a`); confirmation R6-A (R6 record SHA-256 `4e39bf6df909d63b910db3d953db720d2bceb2d27f26ce7454c93551f2a822de`).
 
 ## Authority
 

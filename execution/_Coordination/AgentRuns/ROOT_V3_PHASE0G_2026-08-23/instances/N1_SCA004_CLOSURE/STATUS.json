@@ -1,0 +1,32 @@
+{
+  "schema": "agent-instance-status/v1",
+  "instance_id": "N1_SCA004_CLOSURE",
+  "parent": "HELP_HUMAN",
+  "agent_type": 2,
+  "status": "COMPLETE",
+  "plan_version": 1,
+  "basis": "d279bad6a5903678822ac8b3b85aec76f7a0cfed",
+  "stage": "RETURNED",
+  "verdict": "PASS",
+  "result_state": "CLOSED_CONFIRMED_PROPAGATION_PENDING",
+  "task_management_candidate": "Phase validators that pin post-state hashes should be phase-scoped or take expected state as recorded input; no register write.",
+  "return_path": "execution/_Coordination/AgentRuns/ROOT_V3_PHASE0G_2026-08-23/instances/N1_SCA004_CLOSURE/RETURN.md",
+  "changed_project_paths": [
+    "execution/_ScopeChange/_LATEST.md",
+    "execution/_ScopeChange/SCA-004_2026-08-22_1749/Decision_Log.md",
+    "execution/_ScopeChange/SCA-004_2026-08-22_1749/Handoff_State.md",
+    "execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_5_Application_Record.md",
+    "execution/_ScopeChange/SCA-004_2026-08-22_1749/validate_gate5_applied.py",
+    "execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_5_Applied_Validation.json"
+  ],
+  "validation": {
+    "prewrite_applied_validator": "PASS 65/65, 0 failures",
+    "pre_widening_completed_state": "FAIL 64/65 solely stale pointer expectation",
+    "r6d_completed_state": "PASS 65/65, 0 failures",
+    "validator_diff": "PASS, exactly one hash-literal line",
+    "pointer_three_slot_proof": "PASS",
+    "r6_verbatim_sections": "PASS 3/3 plus R6-D PASS",
+    "diff_check": "PASS",
+    "fresh_review": "PASS, 0 actionable findings"
+  }
+}

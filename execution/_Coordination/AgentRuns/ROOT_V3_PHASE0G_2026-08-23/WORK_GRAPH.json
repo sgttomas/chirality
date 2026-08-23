@@ -1,0 +1,23 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE0G_2026-08-23",
+  "plan_version": 2,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basis": "d279bad6a5903678822ac8b3b85aec76f7a0cfed",
+  "nodes": [
+    {
+      "id": "N1_SCA004_CLOSURE",
+      "agent_type": 2,
+      "construction": "ephemeral_generalist",
+      "dependencies": [],
+      "brief": "instances/N1_SCA004_CLOSURE/LAUNCH_BRIEF.md",
+      "return": "instances/N1_SCA004_CLOSURE/RETURN.md",
+      "status": "instances/N1_SCA004_CLOSURE/STATUS.json"
+    }
+  ],
+  "human_gates": [
+    "LATER_PROPAGATION_ACTS",
+    "TM_ROOT_106_AND_TM_ROOT_122_G1"
+  ]
+}

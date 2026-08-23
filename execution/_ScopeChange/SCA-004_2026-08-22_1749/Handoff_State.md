@@ -1,29 +1,29 @@
-# SCA-004 Gate-5 applied-state handoff
+# SCA-004 closed-confirmed handoff
 
-Status: `AWAITING_OWNER_GATE_5_CONFIRMATION`
+Status: `CLOSED_CONFIRMED_PROPAGATION_PENDING`
 
 ## Four-state handoff
 
 | State | Value |
 |---|---|
-| Accepted upstream state | R1-C accepts Gate 1; R2-A accepts Gate 2; R3-A approves the exact Gate-3 bytes; R3-B approves the propagation plan with CONDITION R3-B-1; R4-A approves the append/result identities; R4-C defers the pointer; R5-A authorizes the corrected second Gate-5 attempt. |
-| Authoritative truth state | `APPLIED_AWAITING_OWNER_CONFIRMATION` — the seven live revision-1.3 surfaces equal R4-A exactly. `_LATEST.md` remains unchanged under R4-C. |
-| Derivative package state | `CURRENT_FOR_GATE5_CLOSURE_LANE` — rehearsal, applied validator, application record, and post-Gate5 AUDIT_DECOMP backcheck are complete. Folder/context/dependency/estimate/schedule/graph/pointer propagation remains stale and deferred. |
-| Closure / next state | `OPEN_PENDING_OWNER_GATE_5_CONFIRMATION`; Ryan Tufts confirms or declines the applied bytes and evidence through HELP_HUMAN. Pointer treatment follows only under a separate ruling. |
+| Accepted upstream state | R1-C accepts Gate 1; R2-A accepts Gate 2; R3-A approves the exact Gate-3 bytes; R3-B approves the propagation plan with CONDITION R3-B-1; R4-A approves the append/result identities; R5-A authorizes the corrected second Gate-5 attempt; R6-A confirms Gate 5; R6-B approves the pointer with three named fills; R6-C authorizes the recorded Git-effect/reference backfill. |
+| Authoritative truth state | `COMPLETE_CONFIRMED` — the seven live revision-1.3 surfaces equal R4-A exactly and are the accepted current basis. `_LATEST.md` identifies SCA-004 revision 1.3 under R6-B. |
+| Derivative package state | `CURRENT_FOR_SCOPE_CHANGE_CLOSURE` — rehearsal, applied validator, application record, post-Gate5 AUDIT_DECOMP backcheck, and pointer are current. Folder/context/dependency/estimate/schedule/graph propagation remains stale and deferred. |
+| Closure / next state | `CLOSED_CONFIRMED_PROPAGATION_PENDING`; SCA-004 Gates 1–5 are complete. Later propagation proceeds only through separately gated owning workflows. |
 
 ## Fixed state fields
 
 | Field | Value |
 |---|---|
 | AmendmentID | `SCA-004` |
-| DecompositionTruthState | `COMPLETE` — exact approved bytes applied, owner confirmation pending |
+| DecompositionTruthState | `COMPLETE` — exact approved bytes applied and confirmed by owner R6-A |
 | DerivativePackageState | `INCOMPLETE` — Gate-5 closure evidence current; later propagation derivatives stale/deferred |
 | ContentRemediationState | `NOT_REQUIRED` |
-| DownstreamRerunState | `FROZEN` pending owner Gate-5 confirmation and later separately owned acts |
+| DownstreamRerunState | `FROZEN` pending later separately owned propagation acts |
 | MetadataAlignmentState | `NOT_REQUIRED` |
 | AuditState | `NON_BLOCKING_PASS` — applied validator 65/65; post-Gate5 backcheck PASS |
 | ReadyForNextPhase | `NO` |
-| ClosureVerdict | `OPEN_PENDING_OWNER_GATE_5_CONFIRMATION` |
+| ClosureVerdict | `CLOSED_CONFIRMED_PROPAGATION_PENDING` |
 
 ## Applied live identities
 
@@ -47,8 +47,9 @@ unmapped IN items, unsupported objectives, or untraced reverse units.
 |---|---|
 | `Gate_5_Rehearsal_Record.md` | Stage A PASS: R3-A 7/7 + R4-A 7/7 + applied validator PASS 65/65, zero failures |
 | `Gate_5_Applied_Validation.json` | Live applied state PASS 65/65, zero failures |
-| `Gate_5_Application_Record.md` | Exact before→after identities, commands, authority, closure lane, and derivative disposition recorded |
+| `Gate_5_Application_Record.md` | Exact before→after identities, commands, authority, closure lane, derivative disposition, and recorded Git-effect/reference backfill |
 | `Evidence/AUDIT_DECOMP_POST_GATE5/coverage_summary.json` | PASS for applied package; Gate-1 baseline preserved |
+| `execution/_ScopeChange/_LATEST.md` | SCA-004 revision 1.3 pointer applied under R6-B with exactly three named fills |
 
 ## Held bindings
 
@@ -62,35 +63,40 @@ The exact ten binding paths and states are cited at
 
 | Package/surface | State | Next required action |
 |---|---|---|
-| Seven live decomposition surfaces | `CURRENT_APPLIED_R4-A` | Owner Gate-5 confirmation |
-| Gate-5 rehearsal/application/validation/backcheck package | `CURRENT` | Preserve; backfill Git effect after merge through a later recorded act |
+| Seven live decomposition surfaces | `CURRENT_ACCEPTED_REVISION_1.3` | Preserve as read-only accepted basis |
+| Gate-5 rehearsal/application/validation/backcheck package | `CURRENT` | Preserve as SCA-004 closure evidence |
 | PREPARATION INIT ×7 | `STALE_NOT_MATERIALIZED` | Later PROJECT_SETUP/PREPARATION acts |
 | DEL-02-06 `_CONTEXT.md` mirror | `STALE` | Later approved edit |
 | Dependencies, estimates, schedule | `STALE` | Later owning workflows after folders/SOWs |
 | `WORK_GRAPH.json` / `DAG.md` and `AUDIT_DEP_CLOSURE` | `STALE_FOR_APPLIED_TOPOLOGY` | Re-derive/rerun after folders are live |
-| `_LATEST.md` | `UNCHANGED_R4-C_DEFERRED` | Separate owner ruling after Gate-5 confirmation |
+| `_LATEST.md` | `CURRENT_SCA-004_REVISION_1.3` | Preserve; no further pointer act required for SCA-004 closure |
+
+## Remaining propagation work
+
+1. PREPARATION INIT ×7 through later PROJECT_SETUP/PREPARATION acts.
+2. DEL-02-06 `_CONTEXT.md` edit list through its separately approved act.
+3. Dependency extraction after folders are live.
+4. Estimate snapshot and schedule after accepted SOWs and dependencies.
+5. `WORK_GRAPH.json` / `DAG.md` re-derivation after folders are live.
+6. `AUDIT_DEP_CLOSURE` after graph re-derivation.
 
 ## Blockers
 
-1. Owner Gate-5 confirmation of the exact applied live identities and closure
-   evidence.
-2. Separate pointer ruling under R4-C.
-3. Git-effect backfill after merge through a later recorded act.
-4. Later propagation acts listed above remain separately owned and gated.
-5. TM-ROOT-106 and TM-ROOT-122 remain unchanged G1 blockers; no pin change.
+1. TM-ROOT-106 remains an unchanged G1 blocker; no pin change.
+2. TM-ROOT-122 remains an unchanged G1 blocker; no pin change.
+3. All ten DEL-02-06 bindings remain `HELD_UNAVAILABLE`; no hold is lifted.
 
 ## Rerun requirements
 
-- Before owner confirmation, rehash all seven live surfaces against R4-A and
-  rerun `validate_gate5_applied.py`.
+- Before any downstream propagation consumes the accepted basis, rehash all
+  seven live surfaces against R4-A and rerun `validate_gate5_applied.py`.
 - Do not run the pre-application `validate_gate5_package.py` against the live
   applied state; its revision-1.2 assertions are intentionally inapplicable.
-- Do not write `_LATEST.md` before its separate owner ruling.
 - Do not initiate folders, SOWs, dependencies, estimates, schedule, graph,
   implementation, runtime/tool, App, hold-lift, cutover, release,
-  publication, or reliance work from this handoff alone.
+  publication, or reliance work without its separately accepted authority.
 
 ## Next owner
 
-Ryan Tufts through HELP_HUMAN: confirm or decline the exact applied Gate-5
-state. Confirmation does not itself approve the pointer or later propagation.
+Separately authorized propagation owners through HELP_HUMAN. SCA-004 is
+closed and confirmed; this handoff does not itself authorize propagation.

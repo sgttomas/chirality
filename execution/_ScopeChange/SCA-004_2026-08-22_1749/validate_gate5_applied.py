@@ -51,7 +51,7 @@ PROTECTED = {
     SNAPSHOT_REL / "Gate_5_Validation.json": "4831fb2757bfcdeb2faa0dff51a15d4f04ec68d4c9716928a36f1ea8844df966",
     SNAPSHOT_REL / "validate_gate5_package.py": "8dd6e92577fceba1693e6c1605c9863d33c97002ea47e36a3f05d724d7a157e3",
     SNAPSHOT_REL / "Gate_5_Brief.md": "7f0ab64a16d70c7b48c7f51ed4bbfc3bbd5569bed3fdd05343de1ffe2b7d01de",
-    Path("execution/_ScopeChange/_LATEST.md"): "b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1",
+    Path("execution/_ScopeChange/_LATEST.md"): "4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c",
 }
 
 NEW_DELIVERABLES = {
