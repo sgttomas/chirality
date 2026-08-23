@@ -1,0 +1,23 @@
+# Fresh review — N3 SCA-004 Gate 1
+
+Verdict: `RETURN_FOR_REPAIR`
+
+Basis reviewed: `main@6b0c5219b6a2653e2fc491b1d998abcf78fcf776`
+
+## Findings
+
+1. **BLOCKER — the required SOFTWARE Gate-1 pre-change decomposition baseline is missing.** `agents/AGENT_SCOPE_CHANGE.md:254-262` requires a `PROJECT/SOFTWARE` Gate-1 run to dispatch `AUDIT_DECOMP`, store its `coverage_summary.json` path, and present the pre-change coverage/telemetry summary with the parsed actions and validation. The SCA-004 package contains only the separately owner-required `AUDIT_DEP_CLOSURE` graph audit; no `AUDIT_DECOMP` brief, return, coverage summary, or pre-change coverage presentation exists. Nevertheless, `Gate_1_Validation.md:5-13` declares `PASS_TO_OWNER_GATE_1_WITH_LATER_EXACT_BYTE_REQUIREMENTS`, and lines 47-48 defer the decomposition audit to a later pre/post pair. A later pre-amendment audit does not satisfy the current Gate-1 baseline requirement. **Bounded repair:** while keeping Gate 2 closed, dispatch a fresh read-only `AUDIT_DECOMP` scoped to the affected Root packages/deliverables with `DECOMP_VARIANT=SOFTWARE`. Because the owner fenced writes to this SCA folder, seal the same kind of explicit output override used for the dependency audit and place its durable brief/return plus `coverage_summary.json` under this SCA's `Evidence/`. Add the exact coverage/telemetry summary and evidence path to the Gate-1 presentation and validation, then refresh dependent hashes and the N3 return. Do not amend decomposition truth or `_LATEST.md`.
+
+2. **BLOCKER — `Handoff_State.md` uses an invalid and currently over-broad `AuditState`.** `Handoff_State.md:24` records `AuditState = PASS`, but the fixed SCOPE_CHANGE state schema permits only `NOT_RUN`, `WARNINGS`, `NON_BLOCKING_PASS`, or `BLOCKED` (`agents/AGENT_SCOPE_CHANGE.md:678-690`). It also describes only the graph audit while finding 1's required Gate-1 decomposition audit has not run. **Bounded repair:** until the missing audit is complete, use an allowed value that truthfully exposes the missing required baseline (normally `BLOCKED`, while separately retaining the `AUDIT_DEP_CLOSURE = PASS` fact). After the fresh `AUDIT_DECOMP` return, set the aggregate field to the allowed value supported by both audit results and update all dependent hashes/returns.
+
+## Checks with no additional finding
+
+- Owner steer and G0 A3/A4/A7 amendments are carried without lifting a hold or opening Gate 2. The Root/App two-socket boundary, K-ROLE-2 posture digest, three per-root command-network postures and grouping caveat, attributed API v2, four-terminal closed event union, three named ports, conditional `thread/resume`, two-job renderer, Root receipt validator, `source_identity`, and required Task Management routing are all present.
+- The accepted DEL-02-06 package contains exactly the stated ten `HELD_UNAVAILABLE` bindings; the SCA matrix preserves all ten and correctly ties the boundary to REQ-027 and the first-activation exclusions.
+- TM-ROOT-035/042/107/108 are candidate dispositions only; TM-ROOT-106/122 remain separate G1 blockers; the live register is untouched.
+- `WORK_GRAPH.json` parses. Independent SCC recomputation yields 13 singleton SCCs and the declared three-node App-notice SCC. E-016/E-017/E-018 are exactly the cycle edges and are candidate-layer, notice-only, and non-gating. The strict layer is acyclic; all 14 Root node paths exist; both App pseudo-nodes name notice identifiers and have no foreign path. The dedicated dependency-audit return is bound to the verified graph SHA-256 `86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9`.
+- The Root-to-App notice is coordination-only, names both notice directions, preserves the held matrix, carries A3/A4/A7, and requests SCA-APP-008 reciprocity without foreign authority.
+- All N3 SHA-256 claims checked in `Brief.md`, `Impact_Assessment.md`, the audit evidence, and `RETURN.md` match current bytes. `_LATEST.md` remains SHA-256 `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1`. HEAD remains the accepted basis commit, and no tracked forbidden surface differs from that basis. N3 files are confined to its two owner-authorized content targets plus its declared control-plane folder.
+- JSON and both CSV artifacts parse. Candidate IDs `DEL-02-07` through `DEL-02-12` and `DEL-04-11` are absent from the live register and live deliverable folders. The only global whitespace finding is the already-reported N2 `STATUS.json` blank EOF, outside N3 authority.
+
+Fresh review must be repeated after both repairs because the repaired Gate-1 package and its hashes will be new bytes.
