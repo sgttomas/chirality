@@ -1,0 +1,26 @@
+{
+  "instance_id": "N2_SCA004_GATE2",
+  "parent": "HELP_HUMAN / ROOT_V3_PHASE0B_2026-08-22",
+  "role": "SCOPE_CHANGE",
+  "status": "COMPLETE",
+  "verdict": "PASS_TO_OWNER_GATE_2_REVIEW",
+  "basis": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "gate_state": "AWAITING_OWNER_GATE_2_ACCEPTANCE",
+  "gate_3_open": false,
+  "content_changed_paths": [
+    "execution/_ScopeChange/SCA-004_2026-08-22_1749/Decision_Log.md",
+    "execution/_ScopeChange/SCA-004_2026-08-22_1749/Impact_Assessment.md",
+    "execution/_ScopeChange/SCA-004_2026-08-22_1749/Handoff_State.md"
+  ],
+  "protected_hash_check": "PASS",
+  "work_graph_changed": false,
+  "audit_dep_closure_rerun_required": false,
+  "agent_2_dispatches": 3,
+  "final_fresh_review": "PASS_ZERO_FINDINGS",
+  "held_bindings": {
+    "count": 10,
+    "status": "HELD_UNAVAILABLE"
+  },
+  "return_sha256": "edbb53799675706acd0d4dc6f63e022ae07514763a9e16340521bfbad0db89e9",
+  "next_owner": "Ryan Tufts through HELP_HUMAN"
+}
