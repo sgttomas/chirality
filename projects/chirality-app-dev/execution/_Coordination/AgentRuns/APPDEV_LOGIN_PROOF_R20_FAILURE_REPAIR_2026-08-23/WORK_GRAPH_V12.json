@@ -1,0 +1,29 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 12,
+  "selection_authority": "owner direction PR #632 second CI portability repair dated 2026-08-23",
+  "posture": "SERIAL_DIAGNOSE_IMPLEMENT_REVIEW_COMMIT_BUILD_CLOSEOUT",
+  "basis": {
+    "head": "4a48aeaede2d050631006f8ff23fb11736752bef",
+    "parent": "74525fb6b34f614c114e59a1bf09d20102fc6aac",
+    "frontend_tree": "23315613d0d3e4d21580d928909816dc5aad92c7"
+  },
+  "nodes": [
+    {"id":"WP-F1","instance_id":"A2-PKG09-R20-PR632-UID-DIAGNOSE-01","objective":"read-only UID dataflow and complete host-entanglement inventory","write_owner":true,"status":"READY"},
+    {"id":"WP-F2","instance_id":"A2-PKG09-R20-PR632-UID-IMPLEMENT-01","objective":"complete test-only host-identity portability repair and source checks","write_owner":true,"status":"BLOCKED_ON_WP_F1"},
+    {"id":"WP-F3","instance_id":"A2-PKG09-R20-PR632-UID-REVIEW-01","objective":"fresh source/evidence review","write_owner":false,"status":"BLOCKED_ON_WP_F2"},
+    {"id":"WP-F4","instance_id":"CHANGE-PR632-UID-SOURCE-COMMIT","objective":"immutable final frontend-touching source/evidence commit","write_owner":true,"status":"BLOCKED_ON_WP_F3"},
+    {"id":"WP-F5","instance_id":"A2-PKG09-R20-PR632-UID-BUILD-RESTAGE-01","objective":"single offline build, package verification, and R20 revision restage","write_owner":true,"status":"BLOCKED_ON_WP_F4"},
+    {"id":"WP-F6","instance_id":"WI-PKG09-R20-PR632-UID-CLOSEOUT","objective":"TM extension, overall review, governance, content commit, receipt, and publication handoff","write_owner":true,"status":"BLOCKED_ON_WP_F5"}
+  ],
+  "edges": [
+    {"from":"WP-F1","to":"WP-F2","gate":"diagnosis and complete inventory accepted"},
+    {"from":"WP-F2","to":"WP-F3","gate":"test-only candidate and authorized checks PASS"},
+    {"from":"WP-F3","to":"WP-F4","gate":"fresh review PASS"},
+    {"from":"WP-F4","to":"WP-F5","gate":"exact immutable frontend-touching commit supplied"},
+    {"from":"WP-F5","to":"WP-F6","gate":"single package/restage node PASS"}
+  ],
+  "fan_in_gate": "fresh-reviewed source then exact-revision package/restage and governance-PASS closeout",
+  "terminal_failure": "any failed diagnosis, implementation, review, build, suite, governance, scope, receipt, or fence gate stops dependants"
+}

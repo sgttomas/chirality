@@ -1,0 +1,19 @@
+# Sealed brief — PR #632 UID portability implementation
+
+- RequestedBy: `WORKING_ITEMS` instance `/root/node3_pkg09` under HELP_HUMAN.
+- RunID: `APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23`.
+- ParentInstanceID: `WI-PKG09-R20-PR632-UID-MANAGER-01`.
+- ChildInstanceID: `A2-PKG09-R20-PR632-UID-IMPLEMENT-01`.
+- Role: delegated-harness-native ephemeral generalist in explicit Agent-2 mode; role/non-delegation instruction-asserted. Do not delegate.
+- Objective: implement the complete accepted host-identity portability repair in the focused test only, prove the authorized local behaviors, and freeze a source/evidence candidate for fresh review.
+- AcceptedBasis: branch/HEAD `codex/app-login-proof-r20-repair` / `4a48aeaede2d050631006f8ff23fb11736752bef`; frontend tree `23315613d0d3e4d21580d928909816dc5aad92c7`; Amendment 11, plan/graph v12, accepted `DISPOSITION_05_PR632_UID_DIAGNOSIS.md`, and the exact diagnosis instance.
+- AllowedWriteTargets: only `frontend/src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts` and `instances/A2-PKG09-R20-PR632-UID-IMPLEMENT-01/`. No other frontend/shared path.
+- Implementation: fail explicitly at module load if `process.getuid` is unavailable; define one file-level `const REAL_UID = process.getuid()`; use it for every coherent baseline/mock UID, console/security/account value, UID-bearing launchctl/domain/service text, stat output, not-found text, exact command expectation, and otherwise-valid UID field enumerated as `CHANGE`. Express every deliberate non-root UID mismatch as `REAL_UID + 1`; retain literal root `0`, session/asid/unsafe-integer/parser semantics, and all inventory `RETAIN`/`INERT_TEXT` rows. Do not create a second hardcoded UID surrogate.
+- Immutable controls: R19 fixture must remain 3,049 bytes / `9d8f02e4ad602c149b22ce013d1bf33dfe054c9820d1ece09ba80ecb23c90531`; product proof script must remain 56,144 bytes / `f2f886bdc9d1a296bb7851a5221448946b36bac54d83e426d0bd3ed6cd81f306`. No product write.
+- Authorized checks, each exactly once unless a read-only hash/diff postcheck: APP-HOLD dispatch; focused test under ordinary host environment; focused test under `umask 0002`; exact full `npm test` once with permission limited to local Unix/loopback test sockets and external network forbidden; typecheck; proof-script syntax; static whole-file inventory assertion; `git diff --check`; App/frontend containment; index; candidate whitespace after evidence freeze. Do not run an ordinary-sandbox diagnostic, supply, build, package, daemon, preflight, proof, GUI, launchctl, operator/private-root/Desktop action, or network.
+- Calibration: local passes establish no regression but cannot prove the UID class on the UID-501 host. State explicitly that Linux CI with a different UID is the host-identity arbiter.
+- Evidence hygiene: preserve complete command evidence; store raw test logs deterministically as gzip with raw byte/SHA lineage and decompression identity if needed. Governed Markdown/JSON must pass whitespace.
+- ExpectedOutputs: `ACTIVATION.md`, `IMPLEMENTATION_INVENTORY.md`, check/log lineage, and `RETURN.md` with exact diff, hashes, invocations, counts, and remaining CI limitation.
+- AcceptanceCriteria: sole frontend change is the focused test; every accepted `CHANGE` row uses the single real UID; deliberate mismatches/root/inert/retained semantics remain correct; both focused runs and the single full suite pass; typecheck/syntax/APP-HOLD/static assertions pass; immutable controls exact; App-only/index empty; no forbidden act.
+- Escalation: stop on any failed command, incomplete inventory coverage, product/fixture drift, need for additional source, ambiguous mismatch semantics, or scope/fence breach. No retry or repair without manager disposition.
+- Git fence: no stage, commit, fetch, push, PR mutation, rebase, force-push, or merge.

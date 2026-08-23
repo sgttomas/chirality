@@ -23,6 +23,11 @@ import {
   parseCleanupLaunchctlJob
 } from '../../../scripts/run-packaged-launchagent-login-proof.mjs';
 
+if (typeof process.getuid !== 'function') {
+  throw new Error('Packaged LaunchAgent login-proof tests require process.getuid()');
+}
+const REAL_UID = process.getuid();
+
 const roots: string[] = [];
 
 async function fixture() {
@@ -44,8 +49,8 @@ async function fixture() {
     changeDefaultJobOnBootout: false,
     sessionId: 1001,
     consoleUsername: 'fixture-user',
-    consoleUid: 501,
-    securityUid: 501,
+    consoleUid: REAL_UID,
+    securityUid: REAL_UID,
     securityAsid: undefined as number | undefined,
     domainType: 'login',
     domainSession: 'Aqua',
@@ -57,7 +62,7 @@ async function fixture() {
     domainExitCode: 0,
     domainSignal: undefined as string | undefined,
     domainStderr: '',
-    loadedService: `gui/501/${label}`,
+    loadedService: `gui/${REAL_UID}/${label}`,
     loadedState: 'running',
     loadedProgram: executablePath as string | undefined,
     loadedArguments: [executablePath, '--runtime-daemon'] as string[] | undefined,
@@ -91,7 +96,7 @@ async function fixture() {
   const notFound = (target: string) => ({
     exitCode: 113,
     stdout: '',
-    stderr: `Bad request.\nCould not find service "${target}" in domain for user gui: 501`
+    stderr: `Bad request.\nCould not find service "${target}" in domain for user gui: ${REAL_UID}`
   });
   const runCommand = async (input: {
     executable: string;
@@ -137,14 +142,14 @@ async function fixture() {
     if (input.executable !== '/bin/launchctl') throw new Error(`Unexpected ${input.executable}`);
     if (input.args[0] === 'print') {
       const service = input.args[1];
-      if (service === 'gui/501') {
+      if (service === `gui/${REAL_UID}`) {
         const asid = state.securityAsid ?? state.sessionId;
         return {
           exitCode: state.domainExitCode,
           signal: state.domainSignal,
           stdout:
             state.domainOutput ??
-            `gui/501 = {
+            `gui/${REAL_UID} = {
 \ttype = ${state.domainType}
 \thandle = ${state.sessionId}
 \tactive count = 12
@@ -192,8 +197,8 @@ async function fixture() {
   const deps = {
     platform: 'darwin',
     environment: { HOME: home },
-    userInfo: () => ({ homedir: home, uid: 501, username: 'fixture-user' }),
-    uid: () => 501,
+    userInfo: () => ({ homedir: home, uid: REAL_UID, username: 'fixture-user' }),
+    uid: () => REAL_UID,
     now: () => new Date(state.loaded ? '2026-08-22T14:00:00.000Z' : '2026-08-21T14:00:00.000Z'),
     randomId: () => 'fixture',
     runCommand,
@@ -248,7 +253,7 @@ async function expectPreflightFailureWithoutMutation(
       .filter((entry) => entry.executable === '/bin/launchctl')
       .every(
         (entry) =>
-          entry.args.length === 2 && entry.args[0] === 'print' && entry.args[1] === 'gui/501'
+          entry.args.length === 2 && entry.args[0] === 'print' && entry.args[1] === `gui/${REAL_UID}`
       )
   ).toBe(true);
   await expect(realpath(harness.sessionRoot)).rejects.toThrow();
@@ -319,7 +324,7 @@ describe('macOS login-session identity preflight', () => {
     expect(JSON.stringify(first)).not.toContain('1001');
     expect(harness.state.commands).toEqual([
       { executable: '/usr/bin/stat', args: ['-f', '%Su:%u', '/dev/console'], env: undefined },
-      { executable: '/bin/launchctl', args: ['print', 'gui/501'], env: undefined }
+      { executable: '/bin/launchctl', args: ['print', `gui/${REAL_UID}`], env: undefined }
     ]);
     expect(harness.state.commands.some((entry) => entry.executable === '/usr/bin/osascript')).toBe(
       false
@@ -328,7 +333,7 @@ describe('macOS login-session identity preflight', () => {
       harness.state.commands.some(
         (entry) =>
           entry.executable === '/bin/launchctl' &&
-          (entry.args.length !== 2 || entry.args[0] !== 'print' || entry.args[1] !== 'gui/501')
+          (entry.args.length !== 2 || entry.args[0] !== 'print' || entry.args[1] !== `gui/${REAL_UID}`)
       )
     ).toBe(false);
     await expect(realpath(harness.sessionRoot)).rejects.toThrow();
@@ -366,18 +371,18 @@ describe('macOS login-session identity preflight', () => {
     ['process/account UID mismatch', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.deps.userInfo = () => ({
         homedir: harness.home,
-        uid: 502,
+        uid: REAL_UID + 1,
         username: 'fixture-user'
       });
     }],
     ['invalid current-account username root', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.deps.userInfo = () => ({ homedir: harness.home, uid: 501, username: 'root' });
+      harness.deps.userInfo = () => ({ homedir: harness.home, uid: REAL_UID, username: 'root' });
     }],
     ['invalid current-account username loginwindow', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.deps.userInfo = () => ({ homedir: harness.home, uid: 501, username: 'loginwindow' });
+      harness.deps.userInfo = () => ({ homedir: harness.home, uid: REAL_UID, username: 'loginwindow' });
     }],
     ['invalid current-account username _mbsetupuser', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.deps.userInfo = () => ({ homedir: harness.home, uid: 501, username: '_mbsetupuser' });
+      harness.deps.userInfo = () => ({ homedir: harness.home, uid: REAL_UID, username: '_mbsetupuser' });
     }]
   ])('fails closed on %s before inspection', async (_caseName, mutate) => {
     const harness = await fixture();
@@ -387,7 +392,7 @@ describe('macOS login-session identity preflight', () => {
 
   it.each([
     ['malformed console output', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.consoleOutput = 'fixture-user:501\nsecond-record:501\n';
+      harness.state.consoleOutput = `fixture-user:${REAL_UID}\nsecond-record:${REAL_UID}\n`;
     }],
     ['loginwindow console owner', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.state.consoleUsername = 'loginwindow';
@@ -399,7 +404,7 @@ describe('macOS login-session identity preflight', () => {
       harness.state.consoleUsername = 'another-user';
     }],
     ['wrong console UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.consoleUid = 502;
+      harness.state.consoleUid = REAL_UID + 1;
     }],
     ['console command failure', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.state.statExitCode = 1;
@@ -421,18 +426,18 @@ describe('macOS login-session identity preflight', () => {
       harness.state.domainOutput = 'not a login domain\n';
     }],
     ['wrong domain identifier UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/502 = {
+      harness.state.domainOutput = `gui/${REAL_UID + 1} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 }\n`;
     }],
     ['wrong security UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.securityUid = 502;
+      harness.state.securityUid = REAL_UID + 1;
     }],
     ['non-login domain', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.state.domainType = 'user';
@@ -444,50 +449,50 @@ describe('macOS login-session identity preflight', () => {
       harness.state.securityAsid = 1002;
     }],
     ['unsafe-integer handle and asid', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 9007199254740992
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 9007199254740992
 \t}
 }\n`;
     }],
     ['duplicate handle', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 }\n`;
     }],
     ['ambiguous security contexts', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 }\n`;
     }],
     ['trailing top-level domain output', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 }
@@ -495,23 +500,23 @@ trailing output
 `;
     }],
     ['unclosed top-level domain brace', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 `;
     }],
     ['unclosed security-context braces', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 `;
     }],
@@ -595,7 +600,11 @@ describe('packaged LaunchAgent login-session proof preparation', () => {
     for (const { name, harness: rejected, sessionRoot, expectedBytes, inspectRootAbsence } of rejectedCases) {
       const absentHome = path.join(rejected.root, 'guard-rejection-home');
       rejected.deps.environment.HOME = absentHome;
-      rejected.deps.userInfo = () => ({ homedir: absentHome, uid: 501, username: 'fixture-user' });
+      rejected.deps.userInfo = () => ({
+        homedir: absentHome,
+        uid: REAL_UID,
+        username: 'fixture-user'
+      });
       expect(
         Buffer.byteLength(path.join(sessionRoot, 'runtime-data', 'runtime', 'control.sock'), 'utf8'),
         name
@@ -1309,7 +1318,7 @@ describe('packaged LaunchAgent login-session proof preparation', () => {
       harness.state.loadedProgram = undefined;
     }],
     ['mismatched launchctl service', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.loadedService = `gui/501/${harness.label}.foreign`;
+      harness.state.loadedService = `gui/${REAL_UID}/${harness.label}.foreign`;
     }],
     ['ambiguous launchctl arguments', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.state.loadedOutput = `${harness.state.loadedService} = {\n\tstate = spawn scheduled\n\tprogram = ${harness.executablePath}\n\targuments = {\n\t\t${harness.executablePath}\n\t\t--runtime-daemon\n\t}\n\targuments = {\n\t\t${harness.executablePath}\n\t\t--runtime-daemon\n\t}\n}\n`;
