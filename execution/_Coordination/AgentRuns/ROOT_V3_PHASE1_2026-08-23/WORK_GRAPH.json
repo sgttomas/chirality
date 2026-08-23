@@ -1,0 +1,32 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE1_2026-08-23",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basis": "e677edbe81188465eb36e700b6bd441715bcbccd",
+  "nodes": [
+    {
+      "id": "N1_PREPARATION",
+      "role": "PREPARATION",
+      "depends_on": [],
+      "status": "COMPLETE_REVIEWED",
+      "human_gate": "write-set widening or invented governed state"
+    },
+    {
+      "id": "N2_DEP_GRAPH_AUDIT",
+      "role": "EPHEMERAL_AGENT_2_WITH_AUDIT_DEP_CLOSURE_SEMANTICS",
+      "depends_on": ["N1_PREPARATION"],
+      "status": "COMPLETE_REVIEWED_WITH_COVERAGE_WARNINGS",
+      "human_gate": "graph cut or merge"
+    }
+  ],
+  "edges": [
+    {
+      "from": "N1_PREPARATION",
+      "to": "N2_DEP_GRAPH_AUDIT",
+      "kind": "gating",
+      "reason": "graph and audit consume the seven initialized live folders"
+    }
+  ]
+}

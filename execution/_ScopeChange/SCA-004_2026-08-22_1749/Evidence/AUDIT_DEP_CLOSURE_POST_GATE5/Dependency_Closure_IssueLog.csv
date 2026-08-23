@@ -1,0 +1,3 @@
+ID,Severity,Check,FromDeliverableID,TargetDeliverableID,DependencyID,Evidence,FixSuggestion
+DC-001,WARNING,Schema compliance,ALL,,N/A,coverage.csv: 0/53 Dependencies.csv; 46 PRE_EXISTING_NOT_RUN_YET and 7 EXPECTED_POST_INIT_EMPTY,"After SOW acceptance, run the separately gated dependency-extract act and rerun this audit."
+DC-002,WARNING,Anchor coverage,ALL,,N/A,"coverage.csv: no extracted dependency register exists, so no ANCHOR/IMPLEMENTS_NODE row can exist",Generate anchors during the separately gated dependency-extract act; do not invent them here.

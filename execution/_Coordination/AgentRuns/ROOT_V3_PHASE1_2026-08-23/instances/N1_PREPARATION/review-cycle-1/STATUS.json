@@ -1,0 +1,10 @@
+{
+  "review_id": "N1_PREPARATION_CYCLE_1",
+  "status": "COMPLETE",
+  "verdict": "PASS — ZERO ACTIONABLE FINDINGS",
+  "basis": "e677edbe81188465eb36e700b6bd441715bcbccd",
+  "actionable_findings": 0,
+  "non_actionable_observations": 1,
+  "delegated": false,
+  "review": "REVIEW.md"
+}
