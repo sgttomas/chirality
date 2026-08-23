@@ -6146,3 +6146,63 @@ convention (normalize or gzip preimages) before committing. Do not merge. If
 the receipt. HELP_HUMAN byte-verifies before endorsement; SOW drafting and
 all later propagation remain separately gated owner-routed work.
 <!-- END RECEIPT-121 STEER VERBATIM -->
+
+#### Receipt 121 — PR #637 harness repair addendum (2026-08-23)
+
+- **Owner repair direction:** Ryan Tufts wrote, verbatim: “Harness check
+  failed. Investigate and try to fix.” HELP_HUMAN reproduced the failure and
+  bounded the content repair to exactly three harness-owned files:
+  `execution/_harness/adapter.yaml`,
+  `tools/practitioner_harness/test_root_adoption.py`, and
+  `tools/validation/test_validate_root_harness_adapter.py`, plus the
+  schema-required tranche manifest
+  `docs/governance_harness/tranche_manifests/ROOT-HARNESS-53-PIN-20260823.yaml`.
+  No governed
+  decomposition, deliverable metadata, lifecycle, graph/audit evidence,
+  Task Management, instruction, runtime, project, App, pin, or hold byte
+  changed in the repair.
+- **Failure reproduced:** GitHub Actions run `32664477755`, job
+  `97255645924`, failed 3 of 670 tests. The three failures were the live Root
+  adapter G1 pin (`status_files: 46` versus 53 observed), the drift live-tree
+  assertion (`46` files / zero unparseable versus 53 files / seven
+  intentionally minimal OPEN histories), and the status-distribution assertion
+  (46 INITIALIZED / zero OPEN versus 46 INITIALIZED / seven OPEN). The other
+  667 tests passed. This was stale harness expectation after the authorized
+  Phase-1 materialization, not a governed-state defect.
+- **Repair commit and exact disposition:** commit
+  `b01be3fd1738ca10cbc00481359ec355452c7537` consciously repins the adapter
+  at the Phase-1 N1 materialization commit
+  `dab470e2f0c7345f10c34bcce9e489eb68bf0541`: 53 status files and zero
+  mismatches. The live tests now assert 46 `INITIALIZED`, seven `OPEN`, zero
+  mismatches, and seven unparseable documents. The latter is explicit and
+  expected: those seven steer-prescribed `_STATUS.md` files contain only the
+  `Current State` field, while frozen `prose-bullet-v1` requires `Last Updated`
+  and reports rather than guesses. The G1 live-test docstring was corrected
+  from its obsolete pre-materialization description.
+- **Harness file identities:** adapter SHA-256
+  `e9cac4e0fa704d168f41c5fe201051884fc1c9d4c5ba0663c1b03f0ec8ef54bc`
+  → `02f01e8a95e1190d0587c56444843fa3d6bc2bb03c4e64ec702ba20758369d41`;
+  Root adoption tests
+  `efc8f933c7ca1b080c92820d79517dbac926e2ef95c78e8eb77feff6b118cd56`
+  → `0c33ca2b0e2c8228fab75a5262b8f16eea62994a5a387343517c314f84930818`;
+  G1 tests
+  `fea5584c08ec9c5afbba6107f0dabe496bb21cb338faa77f5ea96b95985718c9`
+  → `8d6f22f926897e43086d6920386b7f111ca4ed3b8fb2f4c6391ff1915756c696`.
+- **G4 repair record:** the first terminal CI-form G4 run correctly blocked
+  because the two changed test files are instruction-surface paths and no new
+  manifest yet covered them. `ROOT-HARNESS-53-PIN-20260823.yaml` records the
+  owner's bounded repair direction, human-gated PR, no self-merge, no required
+  downstream notice, exact scope limits, the Phase-1-state/test-pin atomic
+  SCC, and deferred public-export regeneration. It changes no instruction or
+  production harness behavior. Manifest SHA-256:
+  `47f6b736afefaf058f7a6ddeda19b1484524292cc8514725c4da76602a8aa264`.
+- **Validation:** the four originally implicated focused tests pass 4/4;
+  `python3 -m pytest -q tools/practitioner_harness tools/validation` passes
+  670/670; Root adapter G1 passes with `status_files=53` and the reachable N1
+  pin; candidate whitespace, agent instructions (34 files, zero errors and
+  warnings), instruction entrypoints, CI-form G4 (46 manifests, 87 changed
+  paths, three instruction-surface paths covered by the added manifest), Task
+  Management (19 live rows), and
+  `git diff --check` all pass. `origin/main` remained
+  `e677edbe81188465eb36e700b6bd441715bcbccd`; no sync, rebase, or force-push
+  occurred.

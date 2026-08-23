@@ -129,7 +129,11 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   singleton SCCs; no cut/merge gate is implicated. The fresh closure audit is
   `WARNING` only for deferred dependency/anchor extraction, with zero failures,
   blockers, or pre-existing closure violations. Task Management remains 19
-  live (`OPEN=11`, `DEFERRED=8`) / 108 archived.
+  live (`OPEN=11`, `DEFERRED=8`) / 108 archived. PR #637's bounded harness
+  repair now consciously pins the materialized Root state at 53 status files,
+  46 `INITIALIZED`, 7 `OPEN`, and zero status/history mismatches; the seven
+  minimal OPEN records remain explicitly reported as unparseable by the frozen
+  drift dialect rather than guessed.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
