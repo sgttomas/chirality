@@ -6,7 +6,7 @@
   "posture": "ORDERED_TERMINAL_FAN_OUT_IN",
   "nodes": [
     {"id": "N1_ACCEPT_INIT_REPIN", "depends_on": [], "status": "COMPLETE"},
-    {"id": "N2_DEP_EXTRACTION", "depends_on": ["N1_ACCEPT_INIT_REPIN"], "status": "WAITING_OWNER_SYNC_AUTHORIZATION"},
-    {"id": "N3_DEP_EVIDENCE", "depends_on": ["N2_DEP_EXTRACTION"], "status": "WAITING"}
+    {"id": "N2_DEP_EXTRACTION", "depends_on": ["N1_ACCEPT_INIT_REPIN"], "status": "COMPLETE"},
+    {"id": "N3_DEP_EVIDENCE", "depends_on": ["N2_DEP_EXTRACTION"], "status": "READY"}
   ]
 }
