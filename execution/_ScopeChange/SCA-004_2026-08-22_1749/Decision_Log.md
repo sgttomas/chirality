@@ -1,6 +1,6 @@
 # SCA-004 decision log — Gates 1–5
 
-Status: `EXECUTED_AWAITING_OWNER_CONFIRMATION`
+Status: `CONFIRMED_BY_OWNER_R6-A`
 
 | Ref | Date | Status | Record |
 |---|---|---|---|
@@ -19,13 +19,17 @@ Status: `EXECUTED_AWAITING_OWNER_CONFIRMATION`
 | G4-PROPAGATION-001 | 2026-08-23 | `APPROVED_BY_OWNER_R3-B_WITH_CONDITION_R3-B-1` | `Propagation_Plan.md` and `Amendment_Actions.csv` carry the approved propagation plan, subject to the Gate-5 application-append condition. No PREPARATION, SOW, dependency, estimate, schedule, graph, audit, pointer, implementation, lifecycle, or Gate-5 act is executed. |
 | G3-APPROVED-001 | 2026-08-23 | `APPROVED_BY_OWNER_R3-A` | Ryan Tufts approved the exact seven Gate-3 candidate files, exact amendment diff, validation JSON, and preview against the identities reproduced verbatim below. Approval is of bytes, not application. |
 | G4-APPROVED-001 | 2026-08-23 | `APPROVED_BY_OWNER_R3-B_WITH_CONDITION_R3-B-1` | Ryan Tufts approved the propagation plan and action register subject to CONDITION R3-B-1, reproduced verbatim below. Gate 5 remains unauthorized. |
-| G5-APPLICATION-001 | 2026-08-23 | `EXECUTED_AWAITING_OWNER_CONFIRMATION` | R4-A approved the append, R4-B authorized the first attempt, R5-A reauthorized one corrected second attempt, and the Stage-A gate passed. Gate 5 executed to the exact R4-A identities; owner confirmation and pointer ruling remain separate acts. |
+| G5-APPLICATION-001 | 2026-08-23 | `CONFIRMED_BY_OWNER_R6-A` | R4-A approved the append, R4-B authorized the first attempt, R5-A reauthorized one corrected second attempt, and the Stage-A gate passed. Gate 5 executed to the exact R4-A identities; owner confirmation and pointer ruling remain separate acts. |
 | G5-APPEND-APPROVED-001 | 2026-08-23 | `APPROVED_BY_OWNER_R4-A` | R4-A is reproduced verbatim below with the approved append and seven applied identities. |
 | G5-AUTHORIZED-001 | 2026-08-23 | `AUTHORIZED_BY_OWNER_R4-B` | R4-B is reproduced verbatim below. The first attempt stopped and recovered before append application. |
 | G5-POINTER-DEFERRED-001 | 2026-08-23 | `DEFERRED_BY_OWNER_R4-C` | R4-C is reproduced verbatim below; `_LATEST.md` remains unchanged. |
 | G5-ATTEMPT-1-STOPPED-001 | 2026-08-23 | `BLOCKED_RECOVERED` | Receipt 118 and `execution/_Coordination/AgentRuns/ROOT_V3_PHASE0E_2026-08-23/instances/N1_GATE5_EXECUTION/RETURN.md` record the patch-reexpression identity failure, no append invocation, and exact restoration of all seven revision-1.2 bytes. |
 | G5-REAUTHORIZED-001 | 2026-08-23 | `AUTHORIZED_BY_OWNER_R5-A` | R5-A is reproduced verbatim below and authorizes the second attempt only after the exact Stage-A rehearsal gate. |
 | G5-EXECUTED-001 | 2026-08-23 | `EXECUTED_AWAITING_OWNER_CONFIRMATION` | `Gate_5_Rehearsal_Record.md` SHA-256 `ea5d90e88ebc7528f758664bf354f815deb8c50b638276ead19a5f49f9f92532`; `Gate_5_Application_Record.md` SHA-256 `31207f122e9d64b4734a701cae364b2456df65d0605b2b1d0c6880ce5595760a`; all seven live hashes equal R4-A; applied validator PASS 65/65; post-Gate5 backcheck PASS. |
+| G5-CONFIRMED-001 | 2026-08-23 | `CONFIRMED_BY_OWNER_R6-A` | R6-A is reproduced verbatim below. Revision 1.3 is the accepted current basis; SCA-004 Gates 1–5 are complete. |
+| G5-POINTER-APPLIED-001 | 2026-08-23 | `APPLIED_BY_OWNER_R6-B` | R6-B is reproduced verbatim below. Final `execution/_ScopeChange/_LATEST.md` SHA-256 `4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c`. |
+| G5-BACKFILL-001 | 2026-08-23 | `AUTHORIZED_BY_OWNER_R6-C` | R6-C is reproduced verbatim below. Recorded chain: content commit `4ad3fea7ef9e397852913c08e533e1846e264134`, PR head `17d3bc2af666005676a517c0a37e5ebd7b3a6614`, merge `6d4438d8d3a580b65d6d50ad497dadfe07f177f2`; references R4-A, R4-B, R5-A, and R6-A. |
+| G5-VALIDATOR-EXPECTATION-UPDATED-001 | 2026-08-23 | `AUTHORIZED_BY_OWNER_R6-D` | R6-D is reproduced verbatim below. The completed-state 64/65 result was solely the stale pointer expectation; the updated validator returns PASS 65/65, zero failures. |
 
 ## G1-ACCEPTED owner record (verbatim)
 
@@ -309,3 +313,93 @@ R5-A — Gate-5 second attempt: [click] "One tranche: rehearse, then execute".
 
 No later propagation, implementation, hold-lift, cutover, release,
 publication, or reliance authority is inferred.
+
+## G5-CONFIRMED owner record (verbatim)
+
+Source:
+`plans/steers/chirality_app_v3_root_ruling_record_r6_2026-08-23.md`,
+SHA-256
+`4e39bf6df909d63b910db3d953db720d2bceb2d27f26ce7454c93551f2a822de`.
+
+<!-- BEGIN R6-A VERBATIM -->
+R6-A — SCA-004 Gate-5 confirmation: [click] "Confirm".
+  Subject state: the seven live files at the R4-A identities
+  (`546b6e4c…`, `2cdf1e68…`, `63e6fa6b…`, `b65da0f8…`, `9fcfa2a5…`,
+  `750aed6c…`, `bdd6bc08…`; full values in the R4 record), read against
+  `Gate_5_Application_Record.md` SHA-256
+  `31207f122e9d64b4734a701cae364b2456df65d0605b2b1d0c6880ce5595760a`,
+  `Gate_5_Rehearsal_Record.md` SHA-256
+  `ea5d90e88ebc7528f758664bf354f815deb8c50b638276ead19a5f49f9f92532`,
+  `Gate_5_Applied_Validation.json` SHA-256
+  `f811bf1c08742833ef13ca0a503ecb8d5ac965a093b21f04767c4e8df6daa1b1`,
+  and the backcheck `coverage_summary.json` SHA-256
+  `70ed91a848c762d9afb778423220c53408e1e4d2273a4a8aa7d5d81fd25359e9`.
+  Recorded form: the owner confirms the SCA-004 Gate-5 application. Revision
+  1.3 is the accepted current basis. SCA-004 Gates 1–5 are complete.
+  Propagation remains later, separately gated work per the approved
+  `Propagation_Plan.md`: PREPARATION INIT ×7, the DEL-02-06 `_CONTEXT.md`
+  edit list, dependency extraction, estimates, schedule, `WORK_GRAPH.json`/
+  `DAG.md` re-derivation, and `AUDIT_DEP_CLOSURE`. No hold is lifted; all ten
+  DEL-02-06 bindings remain `HELD_UNAVAILABLE`.
+<!-- END R6-A VERBATIM -->
+
+## G5-POINTER-APPLIED owner record (verbatim)
+
+Source and SHA-256: same R6 record identified above.
+
+<!-- BEGIN R6-B VERBATIM -->
+R6-B — `_LATEST.md` pointer: [click] "Approve with named fills".
+  Subject bytes: `Gate_5_Pointer_Candidate.md` SHA-256
+  `5918e7bff305bfc0a22c4a4fd172a2ad7bf013a217a778d6ca3797ce773dfabf`.
+  Recorded form: the owner approves replacing
+  `execution/_ScopeChange/_LATEST.md` (currently SHA-256
+  `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1`) with
+  the candidate's fenced replacement bytes, with exactly three slot fills
+  from recorded acts and no other change:
+    application-append approval reference → `R4-A` (owner ruling record
+      `plans/steers/chirality_app_v3_root_ruling_record_r4_2026-08-23.md`,
+      SHA-256 `5916aa599bf5953324636b8c5e0b0a5e2b9e6a793fd6dd9b1cac1c7e19e0755a`);
+    Gate-5 confirmation reference → `R6-A` (this record);
+    Git effect → PR #633 merge
+      `6d4438d8d3a580b65d6d50ad497dadfe07f177f2` (content
+      `4ad3fea7ef9e397852913c08e533e1846e264134`, PR head `17d3bc2af666005676a517c0a37e5ebd7b3a6614`).
+  The applying tranche drafts the final pointer bytes; HELP_HUMAN
+  byte-verifies before endorsement that they differ from the candidate's
+  fenced block only at those three slots. The pointer identifies revision 1.3
+  as the accepted decomposition basis and SCA-004 as the latest snapshot.
+<!-- END R6-B VERBATIM -->
+
+## G5-BACKFILL owner record (verbatim)
+
+Source and SHA-256: same R6 record identified above.
+
+<!-- BEGIN R6-C VERBATIM -->
+R6-C — SCA-004 Git-effect backfill: [click] "Authorize".
+  Recorded form: the owner authorizes filling the `TBD` Git-effect and
+  reference slots in `Gate_5_Application_Record.md` and the SCA-004
+  `Decision_Log.md` (and only those slots) from the recorded chain, in the
+  D-GOV-34 backfill convention — nothing inferred: content commit
+  `4ad3fea7ef9e397852913c08e533e1846e264134` (full value from the PR #633 chain), PR head `17d3bc2af666005676a517c0a37e5ebd7b3a6614`,
+  merge `6d4438d8d3a580b65d6d50ad497dadfe07f177f2`; append-approval
+  reference R4-A; execution authorization R4-B; re-authorization R5-A;
+  confirmation R6-A. Each fill is shown as a one-line diff in the receipt.
+<!-- END R6-C VERBATIM -->
+
+## G5-VALIDATOR-EXPECTATION-UPDATED owner record (verbatim)
+
+Source:
+`execution/_Coordination/AgentRuns/ROOT_V3_PHASE0G_2026-08-23/amendments/N1_SCA004_CLOSURE/V2.md`.
+
+<!-- BEGIN R6-D VERBATIM -->
+OWNER DIRECTION — Phase 0g widening ruling R6-D (validator expectation update).
+
+Ruled by Ryan Tufts (K-AUTH-1) in the HELP_HUMAN session minder chat: [click] "Widen: update the validator". HELP_HUMAN independently verified, read-only in this worktree before the ruling, that the applied `execution/_ScopeChange/_LATEST.md` (SHA-256 4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c) differs from the approved candidate's fenced block only at the three R6-B slots, filled with exactly the ruled values (R4-A record 5916aa599bf5953324636b8c5e0b0a5e2b9e6a793fd6dd9b1cac1c7e19e0755a; R6-A record 4e39bf6df909d63b910db3d953db720d2bceb2d27f26ce7454c93551f2a822de; Git effect PR #633 merge 6d4438d8d3a580b65d6d50ad497dadfe07f177f2, content 4ad3fea7ef9e397852913c08e533e1846e264134, PR head 17d3bc2af666005676a517c0a37e5ebd7b3a6614).
+
+The Phase-0g write set is widened by exactly two targets, for exactly this purpose:
+1. `execution/_ScopeChange/SCA-004_2026-08-22_1749/validate_gate5_applied.py` — update only the `_LATEST.md` expectation: the old unchanged-pointer hash b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1 becomes the approved applied-pointer hash 4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c (adjusting the check's label/wording only as far as needed to describe the applied-pointer state). No other line of the validator changes; show the exact diff in Receipt 120.
+2. `execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_5_Applied_Validation.json` — regenerated by rerunning the updated validator; completed-state result must be PASS 65/65 with zero failures.
+
+Record in the Decision_Log an R6-D entry (this direction verbatim) alongside G5-CONFIRMED-001/G5-POINTER-APPLIED-001/G5-BACKFILL-001, and note in the receipt that the pre-widening completed-state run was FAIL 64/65 solely on the stale pointer expectation — a stale-expectation defect, not a state defect. Report as a Task Management candidate (no register write): phase validators that pin post-state hashes must either scope themselves to their phase or take expected state as recorded input, so a later authorized state change does not strand them red.
+
+Then resume the steer's closeout unchanged: fresh review with zero actionable findings, Receipt 120 with both CHAT_TRANSCRIPTION blocks plus this R6-D direction, one branch codex/root-v3-phase0g-2026-08-23, push, one PR to main; do not merge. Everything else in the not-selectable list stays not selectable; the correct pointer already in the worktree is not re-derived.
+<!-- END R6-D VERBATIM -->

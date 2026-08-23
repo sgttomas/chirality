@@ -1,0 +1,27 @@
+{
+  "schema": "review-status/v1",
+  "review_cycle": 1,
+  "reviewed_instance": "N1_SCA004_CLOSURE",
+  "role": "fresh read-only Agent-2 reviewer",
+  "status": "COMPLETE",
+  "terminal": true,
+  "verdict": "FAIL_REPAIR_OR_AUTHORITY_DISPOSITION_REQUIRED",
+  "basis": "d279bad6a5903678822ac8b3b85aec76f7a0cfed",
+  "actionable_findings": 1,
+  "finding_ids": [
+    "PHASE0G-N1-R1-F1-POST_POINTER_VALIDATOR_CONFLICT"
+  ],
+  "pointer_exact_three_slot_reconstruction": "PASS",
+  "application_record_slot_only_backfill": "PASS",
+  "r6_verbatim_transcription": "PASS_3_OF_3",
+  "handoff_four_state": "PASS",
+  "live_r4_a_identities": "PASS_7_OF_7",
+  "applied_validator": "FAIL_64_OF_65_POINTER_PRE_R6_HASH_INVARIANT",
+  "committed_validation_json_stable": true,
+  "protected_byte_fences": "PASS_EXCEPT_INTENTIONALLY_AUTHORIZED_LATEST_POINTER_REPLACEMENT",
+  "write_containment": "PASS",
+  "fresh_re_review_required": true,
+  "commit_authorized": false,
+  "merge_authorized": false,
+  "review": "REVIEW.md"
+}
