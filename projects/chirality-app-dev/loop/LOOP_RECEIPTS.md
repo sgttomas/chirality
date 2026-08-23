@@ -5891,3 +5891,24 @@
   - Pointers: source/build `b33858d33220538ce292f276a442792ecf8050b1`; content `74525fb6b34f614c114e59a1bf09d20102fc6aac`; R20/status; RunID `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/` Amendment 10, manager/handoff, executor/review/governance, and TM-candidate records.
   - Checks: cited diagnosis, test-only mode repair, unchanged guard, offline restage, read-only Step 0, suites, review, and governance gates pass.
   - Gate-Outcome: `EXECUTED` — repair and R20 documentation restage only. DEL-09-04 remains `IN_PROGRESS` and unproved; R20 is unexecuted. No proof/release, operator/private-evidence, rebase, force-push, or merge-to-main act or claim occurred.
+
+- **2026-08-23 — Receipt 193** (DEL-09-04 PR #632 UID portability repair and R20 exact-revision restage).
+  - Receipt-ID: `Receipt-193`
+  - Examined-Through: `458557a1c8e723610adc0cf730b778124f385428`
+  - Parent-Receipt: `Receipt-192`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-23, Ryan Tufts, in-session), verbatim:
+    `OWNER DIRECTION — PR #632 second CI portability repair (uid entanglement), bounded.
+
+    Harness pre-merge on head 4a48aeaede2d050631006f8ff23fb11736752bef still fails the same 15 login-proof tests with the same first divergence (`Failure-log directory identity or permissions are unsafe`). Diagnosis, verified by HELP_HUMAN from the test source: the mocked deps hardcode uid 501 (`userInfo: () => ({ …, uid: 501, … })`, `uid: () => 501`), and preserveFailureLogs passes that value as expectedUid into assertSafeSnapshotMetadata, which compares it to the REAL lstat() owner of the fixture files. On the macOS dev host the real uid is 501 so the mock coincidentally matches; on the ubuntu runner (uid 1001) it does not. The umask-0002 local repro cannot expose this because the host uid equals the hardcoded value — this class is provable only in CI.
+
+    I authorize one bounded repair on the same branch:
+    1. In the test file, derive every mocked uid from the real process: const REAL_UID = process.getuid(); use it in deps.uid, deps.userInfo, and every fixture string that embeds a uid the product compares against expectedUid (the launchctl fixture texts containing `uid = 501` and the gui/501 domain lines used by parseLoginDomain/securityUid paths must interpolate REAL_UID so the parsed value equals the expected one). Tests that deliberately exercise MISMATCH keep an explicitly different value (e.g. REAL_UID + 1), never a second hardcoded constant. The verified R19 never-exited fixture file is parsed as text only and stays byte-identical.
+    2. In the same pass, sweep the whole test file for any other host-entangled constant — uid, gid, hardcoded /Users or /home paths compared against real filesystem state, /tmp-symlink assumptions, homedir assumptions — and fix each by deriving from the real environment or the harness fixture, recording an inventory of what was found and changed. One sweep, not another single-defect fix.
+    3. Product scripts remain untouched; the guards are correct.
+    4. Restage as before: PROOF_REVISION moves to the new final frontend-touching commit; exactly one offline desktop:pack from it (electron:supply-chain then desktop:pack, custom electronDist, no download) with package identity recorded (main executable expected unchanged at 79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874); Step-0 read-only gate re-checks for the unchanged r20 label and root.
+    5. Validation: full local suite plus one umask-0002 run (both expected green), noting explicitly that the uid class is CI-proved, not host-provable; full pre-push gate set including whitespace; amend the receipt with this authorization verbatim, the diagnosis, and the sweep inventory; push to codex/app-login-proof-r20-repair. Do not rebase, force-push, or merge.
+    6. Extend the recorded TM candidate: portability sweeps for host-tool tests must cover uid/gid/path entanglement, not only umask/mode, and CI is the only arbiter for host-identity classes.
+    Not authorized: weakening any product guard; daemon, supply, or staged-procedure semantic changes beyond the PROOF_REVISION/package-identity restage; any proof claim.`
+  - Pointers: source/build `2ee96958daf997b7a156f020739bde43ca78ebf9`; content `458557a1c8e723610adc0cf730b778124f385428`; R20/status and RunID manager/handoff, UID work/review, build/governance/gzip/TM records.
+  - Checks: cited records cover the required sweep/repair, unchanged controls, retained tests/CI calibration, offline restage/Step 0, review, governance, and whitespace.
+  - Gate-Outcome: `EXECUTED` — repair/restage only; DEL-09-04 is `IN_PROGRESS`/unproved and R20 unexecuted. No proof/release/operator/private/Git-history/merge claim or act occurred.
