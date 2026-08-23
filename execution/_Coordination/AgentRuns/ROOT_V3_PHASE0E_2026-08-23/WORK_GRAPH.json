@@ -1,0 +1,38 @@
+{
+  "schema": "help-human-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE0E_2026-08-23",
+  "plan_version": 1,
+  "selection_authority": "HUMAN_R4",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basis": "6da0b548d4ec5d303adecdd448ad1a5517c9e27b",
+  "nodes": [
+    {
+      "id": "N1_GATE5_EXECUTION",
+      "role": "ephemeral-agent2",
+      "dependencies": [],
+      "content_write_targets": [
+        "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+        "execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv",
+        "execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv",
+        "execution/_Decomposition/chirality_root_objective_register_v1_0.csv",
+        "execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv",
+        "execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv",
+        "execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md",
+        "execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_5_Application_Record.md",
+        "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/AUDIT_DECOMP_POST_GATE5/**",
+        "execution/_ScopeChange/SCA-004_2026-08-22_1749/Decision_Log.md",
+        "execution/_ScopeChange/SCA-004_2026-08-22_1749/Handoff_State.md"
+      ],
+      "control_write_targets": [
+        "execution/_Coordination/AgentRuns/ROOT_V3_PHASE0E_2026-08-23/instances/N1_GATE5_EXECUTION/**"
+      ],
+      "return_contract": "Exact applied identities, closure-lane evidence, validations, protected-byte evidence, blockers"
+    }
+  ],
+  "human_gates": [
+    "Gate-5 confirmation",
+    "_LATEST.md pointer approval",
+    "Git-effect backfill after merge",
+    "later propagation acts"
+  ]
+}

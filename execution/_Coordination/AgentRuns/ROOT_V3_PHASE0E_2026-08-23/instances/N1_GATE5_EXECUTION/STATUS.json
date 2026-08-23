@@ -1,0 +1,12 @@
+{
+  "schema": "agent-run-status/v1",
+  "run_id": "ROOT_V3_PHASE0E_2026-08-23",
+  "node_id": "N1_GATE5_EXECUTION",
+  "state": "BLOCKED_RECOVERED",
+  "application_attempts": 1,
+  "basis": "6da0b548d4ec5d303adecdd448ad1a5517c9e27b",
+  "blockers": [
+    "Intermediate Gate-3 materialization did not reproduce all seven R3-A identities; exact revision-1.2 bytes were restored and Gate_5_Application_Append.diff was not applied.",
+    "Fresh owner direction is required before any second Gate-5 execution attempt."
+  ]
+}

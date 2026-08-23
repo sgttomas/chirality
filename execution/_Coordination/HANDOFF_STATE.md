@@ -82,6 +82,16 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   at 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived. The next owner acts are
   append-byte approval, separate Gate-5 execution authorization, and later
   pointer authority.
+- Phase-0e records R4-A append approval, R4-B one-time Gate-5 authorization,
+  and R4-C pointer deferral. The one authorized application attempt stopped
+  at its intermediate R3-A identity fence before the approved append was
+  invoked: five materialized files mismatched, all seven live files were
+  restored and byte-verified at revision 1.2, and fresh review found zero
+  actionable record/recovery findings. Gate 5 remains unexecuted. `_LATEST.md`,
+  every folder/lifecycle, all ten held bindings, and Task Management remain
+  unchanged at 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived. Another
+  attempt requires fresh owner direction and an approved exact materialization
+  method; confirmation and pointer authority remain closed.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -148,6 +158,11 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   revision 1.2. They are not applied decomposition truth. The Root-owned
   Chirality App public export remains deferred; the SHA-backfill manifest's
   M6 notice remains pending because no new receiving-loop act is inferred.
+- `AgentRuns/ROOT_V3_PHASE0E_2026-08-23/` is the current recovered-failure
+  evidence package. It records one consumed application attempt, exact
+  intermediate mismatches, exact revision-1.2 restoration, and a fresh
+  zero-finding read-only review. It is derivative evidence only; it does not
+  make the approved revision-1.3 candidate applied truth.
 
 ## 3. Closure verdict
 
@@ -273,6 +288,16 @@ Gate 3 and Gate 4 remain separately pending; Gate 5 is closed. No live
 decomposition, pointer, folder, SOW, lifecycle, dependency, estimate,
 schedule, runtime, tool, App, held-binding, pin, release, or reliance act is
 created. Task Management counts remain 19 live / 108 archived.
+
+`2026-08-23 ROOT V3 PHASE-0E GATE-5 ATTEMPT STOPPED AND RECOVERED — FRESH
+OWNER DIRECTION REQUIRED.` Receipt 118 records that the one R4-B-authorized
+attempt passed its full pre-write identity/validator fence but failed the
+intermediate R3-A identity check before the approved append was invoked. All
+seven live files were restored exactly to revision 1.2 and fresh review
+returned `PASS / BLOCKED_RECORDED` with zero actionable findings. Gate 5 is
+unexecuted; no post-Gate-5 audit exists. Confirmation, pointer, Git-effect
+backfill, every propagation act, all ten holds, TM-ROOT-106/122, C1, pins,
+runtime, tools, App acts, lifecycle, release, and reliance remain closed.
 
 ## 4. Rerun requirement
 
