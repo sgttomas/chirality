@@ -1,0 +1,36 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 1,
+  "selection_authority": "owner direction transcribed in CHAT_TRANSCRIPTION.md",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {
+      "id": "WP-A1",
+      "instance_id": "A2-PKG09-R20-IMPLEMENT-01",
+      "role": "ephemeral-generalist-agent2",
+      "delegation_class": "delegated-harness-native",
+      "objective": "implement and evidence the bounded R20 cleanup-parser repair",
+      "write_owner": true,
+      "status": "READY"
+    },
+    {
+      "id": "WP-A2",
+      "instance_id": "A2-PKG09-R20-REVIEW-01",
+      "role": "ephemeral-generalist-agent2",
+      "delegation_class": "delegated-harness-native",
+      "objective": "fresh read-only source and evidence review over the frozen Phase-A candidate",
+      "write_owner": false,
+      "status": "BLOCKED_ON_WP_A1"
+    }
+  ],
+  "edges": [
+    {
+      "from": "WP-A1",
+      "to": "WP-A2",
+      "gate": "executor terminal return, hashes, and candidate bytes frozen"
+    }
+  ],
+  "fan_in_gate": "fresh review PASS with no actionable finding",
+  "escalation": "failed review enters at most two bounded repair plus genuinely fresh re-review cycles; any scope, authority, private-surface, build, full-suite, or Git need stops"
+}

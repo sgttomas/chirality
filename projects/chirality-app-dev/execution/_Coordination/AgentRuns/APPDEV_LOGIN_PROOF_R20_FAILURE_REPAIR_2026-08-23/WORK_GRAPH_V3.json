@@ -1,0 +1,30 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 3,
+  "selection_authority": "owner authorization for final repair cycle 2",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {"id": "WP-A3-R1", "status": "BLOCKED_F02_MACOS_DEV_FD_ENOENT"},
+    {
+      "id": "WP-A5-R2",
+      "instance_id": "A2-PKG09-R20-IMPLEMENT-01",
+      "objective": "final bounded macOS-compatible F-02 repair and F-01..F-05 revalidation",
+      "write_owner": true,
+      "status": "READY"
+    },
+    {
+      "id": "WP-A6-R2",
+      "instance_id": "A2-PKG09-R20-REVIEW-R2-01",
+      "objective": "genuinely fresh final Phase-A review",
+      "write_owner": false,
+      "status": "BLOCKED_ON_WP_A5_R2"
+    }
+  ],
+  "edges": [
+    {"from": "WP-A3-R1", "to": "WP-A5-R2", "gate": "owner final-cycle authorization"},
+    {"from": "WP-A5-R2", "to": "WP-A6-R2", "gate": "all cycle-2 required checks PASS and bytes frozen"}
+  ],
+  "fan_in_gate": "fresh cycle-2 review PASS with no actionable finding",
+  "terminal_failure": "any cycle-2 execution or review failure stops Phase A; no additional repair cycle"
+}
