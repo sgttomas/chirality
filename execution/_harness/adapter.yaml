@@ -41,10 +41,10 @@ exclude_globs:
   - ".archive/**"
 
 baselines:
-  # Repinned at D-GOV-21 §6 step-9 materialization (2026-07-25): 6 packages and
-  # 46 deliverables materialized from accepted decomposition revision 1.1
-  # (SCA-001), with DEL-02-06 at OPEN. Count verified against the checkout via
-  # status_glob during the bounded PROJECT_SETUP refresh.
-  status_files: 46
+  # Repinned by the SCA-004 Phase-1 propagation materialization (2026-08-23):
+  # 6 packages and 53 deliverables at accepted decomposition revision 1.3,
+  # with 46 statuses INITIALIZED and the 7 new carriers OPEN. Count verified
+  # against the checkout via status_glob after the bounded PROJECT_SETUP INITs.
+  status_files: 53
   status_mismatch: 0
-  pinned_at: 2db2c712825af13d6b5425c34d31ff9daf470c89
+  pinned_at: dab470e2f0c7345f10c34bcce9e489eb68bf0541
