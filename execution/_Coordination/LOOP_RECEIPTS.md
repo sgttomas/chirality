@@ -5152,9 +5152,21 @@ App-loop act — SCA-APP-008 reciprocates under App authority.
   instruction, docs, tools, runtime, project, export, pin, lifecycle, or
   foreign-loop byte differs from `origin/main`. The Root handoff records
   unchanged Task Management counts of 19 live
-  (`OPEN=11`, `DEFERRED=8`) / 108 archived. All ten
+  (`OPEN=11`, `DEFERRED=8`) / 108 archived and has SHA-256
+  `16fe2090fd96e2a2033e4cfd48806cd233296e0a336632b4bdd1f9710608b7e9`.
+  All ten
   `HELD_UNAVAILABLE` bindings remain held.
-- **Validation:** `FINAL_CLOSEOUT_VALIDATION_PENDING`.
+- **Validation:** the first committed-range whitespace run found one terminal
+  blank line in the N1 return; the closeout commit removed that record-only
+  line and the fresh committed-head candidate-whitespace run passes. Agent
+  instructions pass 34 files / zero errors / zero warnings; instruction
+  entrypoints are canonical; CI-form G4 passes 45 schema-valid manifests,
+  10 changed paths, zero instruction-surface paths, and zero covering added
+  manifests; Task Management validates 19 live rows; Root G0–G3 pass; the
+  post-recovery Gate-5 package rerun passes 64/64 with both embedded 98/98
+  lanes; `git diff --check` passes. The exact changed-path set is the eight
+  Phase-0e run files plus Root handoff and Receipt 118. The post-Gate-5 audit
+  backcheck is `NOT_RUN_NOT_APPLICABLE` because Gate 5 did not execute.
 - **Gate and derivative disposition:** `BLOCKED_RECOVERED`. Gate 5 remains
   unexecuted; the approved Gate-5 package remains derivative evidence and the
   accepted live truth remains revision 1.2. The R4-B one-attempt authority is
