@@ -5810,3 +5810,47 @@
     notarization, deployment, distribution, publication, release-readiness,
     issuance, additional stage/commit/fetch, push, PR, or merge-to-main act or
     claim occurred in this receipt amendment.
+
+- **2026-08-23 — Receipt 191** (DEL-09-04 R19 failed-proof record, cleanup-parser repair, offline rebuild, and R20 staged procedure).
+  - Receipt-ID: `Receipt-191`
+  - Examined-Through: `b499d3d9c3a8441271bf7b8b27405fe3596d18c0`
+  - Parent-Receipt: `Receipt-190`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-23,
+    Ryan Tufts, in-session), verbatim: `APPROVE record-only whitespace repair:
+    remove exactly one terminal LF from each of the three prior-validator
+    VALIDATE-02 files identified in VALIDATE-03, record pre→post hash lineage,
+    then run only the still-unreached gates and fresh review and continue
+    Receipt 191, commits, push, and one PR if all pass. Preserve all previously
+    exempt evidence byte-for-byte; do not rerun prior checks or one-shot
+    commands. Do not merge.` The full R19/R20 directions and the bounded raw-log
+    and quoted-raw exemptions are transcribed in the cited RunID
+    `CHAT_TRANSCRIPTION.md`.
+  - Pointers: final frontend-touching/source/build revision
+    `cb008dc5d6aa9b249639c91f3453a18609530d0f`; after-the-fact content commit
+    `b499d3d9c3a8441271bf7b8b27405fe3596d18c0`; branch
+    `codex/app-login-proof-r20-repair`; DEL-09-04 R20 and adjacent status at
+    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/`;
+    RunID `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/`,
+    including `MANAGER_RETURN.md`, `HANDOFF_STATE.md`, exact three-byte
+    pre→post lineage in
+    `instances/A2-PKG09-R20-PHASEB-REPAIR-VALIDATE-04/REPAIR_LINEAGE.md`,
+    retained pack/precheck/full-suite counts and exemption identities in
+    `instances/A2-PKG09-R20-PHASEB-REPAIR-VALIDATE-04/VALIDATION.md`, and fresh
+    REVIEW-04 `instances/A2-PKG09-R20-PHASEB-REVIEW-04/REVIEW.md` SHA-256
+    `575bf06cedce30ad71c764d2c2a2ac611b81954ff7e73e8ade3ca8451953b9ea`.
+  - Checks: exact repair/reversal, semantic whitespace under the bounded
+    exemptions, App scope, empty index, aggregate diff, instruction-root,
+    exact metadata/service absence, containment/porcelain, frontend identity,
+    deterministic freeze, and immutable postchecks pass. Fresh REVIEW-04 is
+    `PASS` with no finding. Receipt validator and receipt-only whitespace/
+    containment pass after append.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    delegated-harness-native ephemeral Agent 2 executors/validators/reviewers,
+    and CHANGE; exact inherited model identifiers were not exposed.
+  - Gate-Outcome: `EXECUTED` — repair/build/staging evidence only. DEL-09-04
+    remains `IN_PROGRESS` and unproved; R19 remains failed and R20 remains
+    staged/unexecuted. No proof acceptance, prepare, capture, logout/login,
+    bootstrap, kickstart, operator/private-evidence action, signing,
+    notarization, deployment, distribution, release-readiness, issuance,
+    fetch, push, PR, merge, or other lifecycle/reliance action or claim
+    occurred in this receipt-only append.
