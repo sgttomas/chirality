@@ -33,6 +33,7 @@ const CAPTURE_STATE_SCHEMA = 'chirality-packaged-launchagent-login-proof-capture
 export const SUMMARY_SCHEMA = 'chirality-packaged-launchagent-login-proof/v1';
 export const EVIDENCE_SCHEMA = 'chirality-packaged-launchagent-login-proof-evidence/v1';
 export const PREFLIGHT_SCHEMA = 'chirality-packaged-launchagent-login-proof-preflight/v1';
+export const MACOS_UNIX_SOCKET_PATH_MAX_BYTES = 103;
 
 const frontendRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const defaultAppPath = path.join(frontendRoot, 'dist', 'mac-arm64', 'Chirality.app');
@@ -84,6 +85,20 @@ function preparseSessionRoot(argv) {
   return path.resolve(
     requested && !requested.startsWith('--') ? requested : defaultSessionRoot
   );
+}
+
+export function assertPrepareRuntimeSocketPathSupported(
+  sessionRoot,
+  platform = process.platform
+) {
+  const socketPath = path.join(sessionRoot, 'runtime-data', 'runtime', 'control.sock');
+  const measuredBytes = Buffer.byteLength(socketPath, 'utf8');
+  if (platform === 'darwin' && measuredBytes > MACOS_UNIX_SOCKET_PATH_MAX_BYTES) {
+    throw new Error(
+      `Proof runtime control socket path is ${measuredBytes} UTF-8 bytes; macOS maximum is ${MACOS_UNIX_SOCKET_PATH_MAX_BYTES} bytes`
+    );
+  }
+  return { measuredBytes, maximumBytes: MACOS_UNIX_SOCKET_PATH_MAX_BYTES };
 }
 
 function wait(delayMs) {
@@ -514,24 +529,156 @@ async function assertCleanupTargets({ uid, home, label, service, sessionRoot, pl
   }
 }
 
-async function assertProofOwnedLoadedJob({ result, executablePath, deps }) {
-  const job = parseLaunchctlJob(result.stdout);
-  if (job.state !== 'running') {
-    throw new Error(`Refusing proof-service bootout because loaded job state was ${job.state}`);
+function parseCleanupLaunchctlJob(source, service) {
+  if (typeof source !== 'string' || source === '' || source.includes('\0')) {
+    throw new Error('Loaded cleanup job output is missing or malformed');
   }
+  const lines = source.split(/\r?\n/u);
+  const firstContentIndex = lines.findIndex((line) => line.trim().length > 0);
+  if (firstContentIndex < 0 || lines[firstContentIndex].trim() !== `${service} = {`) {
+    throw new Error('Loaded cleanup job service identity is missing or mismatched');
+  }
+  const stateMatches = [];
+  const programMatches = [];
+  const pidMatches = [];
+  const runsMatches = [];
+  const lastExitCodeMatches = [];
+  const argumentBlocks = [];
+  let depth = 1;
+  let currentArguments;
+  let closedAt;
+  for (let index = firstContentIndex + 1; index < lines.length; index += 1) {
+    const line = lines[index];
+    const trimmed = line.trim();
+    if (depth === 0) {
+      if (trimmed !== '') throw new Error('Loaded cleanup job has trailing output');
+      continue;
+    }
+    if (currentArguments && depth === 2 && trimmed !== '}') {
+      currentArguments.push(trimmed);
+    }
+    if (depth === 1) {
+      const state = /^state = (.+)$/u.exec(trimmed)?.[1];
+      const program = /^program = (.+)$/u.exec(trimmed)?.[1];
+      const pid = /^pid = (.+)$/u.exec(trimmed)?.[1];
+      const runs = /^runs = (.+)$/u.exec(trimmed)?.[1];
+      const lastExitCode = /^last exit code = (.+)$/u.exec(trimmed)?.[1];
+      if (state !== undefined) stateMatches.push(state);
+      if (program !== undefined) programMatches.push(program);
+      if (pid !== undefined) pidMatches.push(pid);
+      if (runs !== undefined) runsMatches.push(runs);
+      if (lastExitCode !== undefined) lastExitCodeMatches.push(lastExitCode);
+      if (trimmed === 'arguments = {') {
+        currentArguments = [];
+        argumentBlocks.push(currentArguments);
+      }
+    }
+    depth += (line.match(/\{/gu) ?? []).length - (line.match(/\}/gu) ?? []).length;
+    if (depth < 0) throw new Error('Loaded cleanup job braces are malformed');
+    if (currentArguments && depth === 1) currentArguments = undefined;
+    if (depth === 0) closedAt = index;
+  }
+  if (
+    depth !== 0 ||
+    closedAt === undefined ||
+    stateMatches.length !== 1 ||
+    programMatches.length !== 1 ||
+    pidMatches.length > 1 ||
+    runsMatches.length > 1 ||
+    lastExitCodeMatches.length > 1 ||
+    argumentBlocks.length !== 1
+  ) {
+    throw new Error('Loaded cleanup job has missing or ambiguous identity');
+  }
+  let pid;
+  if (pidMatches.length === 1) {
+    if (!/^[1-9][0-9]*$/u.test(pidMatches[0])) {
+      throw new Error('Loaded cleanup job PID is invalid');
+    }
+    pid = Number(pidMatches[0]);
+    if (!Number.isSafeInteger(pid)) throw new Error('Loaded cleanup job PID is invalid');
+  }
+  const parseOptionalInteger = (matches, description) => {
+    if (matches.length === 0) return undefined;
+    if (!/^-?[0-9]+$/u.test(matches[0])) {
+      throw new Error(`Loaded cleanup job ${description} is invalid`);
+    }
+    const value = Number(matches[0]);
+    if (!Number.isSafeInteger(value)) {
+      throw new Error(`Loaded cleanup job ${description} is invalid`);
+    }
+    return value;
+  };
+  return {
+    state: stateMatches[0],
+    program: programMatches[0],
+    programArguments: argumentBlocks[0],
+    pid,
+    runs: parseOptionalInteger(runsMatches, 'run count'),
+    lastExitCode: parseOptionalInteger(lastExitCodeMatches, 'last exit code')
+  };
+}
+
+async function assertProofOwnedLoadedJob({
+  uid,
+  label,
+  service,
+  plistPath,
+  result,
+  executablePath,
+  deps
+}) {
+  validateProofLabel(label);
+  if (service !== `gui/${uid}/${label}` || label === DEFAULT_LAUNCH_AGENT_LABEL) {
+    throw new Error('Refusing proof-service bootout because service identity is mismatched');
+  }
+  let plist;
+  try {
+    const metadata = await lstat(plistPath);
+    if (!metadata.isFile() || metadata.isSymbolicLink()) {
+      throw new Error('not a regular non-symbolic-link file');
+    }
+    plist = inspectInstalledPlist(await readFile(plistPath, 'utf8'));
+  } catch {
+    throw new Error('Refusing proof-service bootout because proof plist bytes are missing or invalid');
+  }
+  if (plist.label !== label) {
+    throw new Error('Refusing proof-service bootout because proof plist label is mismatched');
+  }
+  if (!plist.runAtLoad) {
+    throw new Error('Refusing proof-service bootout because proof plist RunAtLoad is mismatched');
+  }
+  try {
+    assertExactRuntimeArguments(plist.programArguments, executablePath, 'Proof cleanup plist');
+  } catch {
+    throw new Error('Refusing proof-service bootout because proof plist arguments are mismatched');
+  }
+
+  const job = parseCleanupLaunchctlJob(result.stdout, service);
   if (typeof job.program !== 'string' || path.resolve(job.program) !== executablePath) {
     throw new Error('Refusing proof-service bootout because loaded job program is missing or mismatched');
-  }
-  if (job.programArguments === undefined) {
-    throw new Error('Refusing proof-service bootout because loaded job arguments are missing');
   }
   try {
     assertExactRuntimeArguments(job.programArguments, executablePath, 'Loaded cleanup job');
   } catch {
     throw new Error('Refusing proof-service bootout because loaded job arguments are mismatched');
   }
-  if (!Number.isSafeInteger(job.pid) || job.pid < 1) {
-    throw new Error('Refusing proof-service bootout because loaded job PID is missing or invalid');
+  if (job.pid === undefined) {
+    if (
+      !new Set(['spawn scheduled', 'waiting', 'exited']).has(job.state) ||
+      !Number.isSafeInteger(job.runs) ||
+      job.runs < 1 ||
+      !Number.isSafeInteger(job.lastExitCode) ||
+      job.lastExitCode === 0
+    ) {
+      throw new Error(
+        'Refusing proof-service bootout because pid-less job is not an identified crash-loop or scheduled state'
+      );
+    }
+    return;
+  }
+  if (job.state !== 'running') {
+    throw new Error('Refusing proof-service bootout because PID-bearing job is not running');
   }
   const processExecutables = await canonicalPackagedExecutables(
     await deps.inspectProcessExecutables(job.pid)
@@ -567,6 +714,10 @@ async function cleanupProof({
       }
       try {
         await assertProofOwnedLoadedJob({
+          uid,
+          label,
+          service,
+          plistPath,
           result: current.result,
           executablePath,
           deps
@@ -1043,9 +1194,11 @@ export async function main(argv = process.argv.slice(2), dependencyOverrides = {
   const deps = dependencies(dependencyOverrides);
   const { command, options } = parseArgs(argv);
   if (command === 'preflight') return preflight(deps);
-  const sessionRoot = await assertNoSymlinkAncestors(preparseSessionRoot(argv));
+  const requestedSessionRoot = preparseSessionRoot(argv);
   if (command === 'prepare') {
     const sourceRevision = validateSourceRevision(options.sourceRevision);
+    assertPrepareRuntimeSocketPathSupported(requestedSessionRoot, deps.platform);
+    const sessionRoot = await assertNoSymlinkAncestors(requestedSessionRoot);
     try {
       await lstat(sessionRoot);
       throw new Error('Session root already exists; choose a new proof session root');
@@ -1055,6 +1208,7 @@ export async function main(argv = process.argv.slice(2), dependencyOverrides = {
     await mkdir(sessionRoot, { recursive: false, mode: 0o700 });
     return prepare(options, deps, await realpath(sessionRoot), sourceRevision);
   }
+  const sessionRoot = await assertNoSymlinkAncestors(requestedSessionRoot);
   return capture(deps, await realpath(sessionRoot));
 }
 

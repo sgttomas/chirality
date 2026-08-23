@@ -1,0 +1,8 @@
+
+ RUN  v4.1.10 /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  59 passed (59)
+   Start at  17:50:31
+   Duration  936ms (transform 403ms, setup 0ms, import 616ms, tests 743ms, environment 0ms)
