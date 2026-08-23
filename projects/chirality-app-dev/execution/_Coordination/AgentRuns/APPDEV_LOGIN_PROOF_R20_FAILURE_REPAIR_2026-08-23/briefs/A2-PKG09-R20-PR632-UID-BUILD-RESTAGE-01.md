@@ -1,0 +1,19 @@
+# Sealed brief — PR #632 UID exact-revision build/restage
+
+- RequestedBy: `WORKING_ITEMS` instance `/root/node3_pkg09` under HELP_HUMAN.
+- RunID: `APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23`.
+- ParentInstanceID: `WI-PKG09-R20-PR632-UID-MANAGER-01`.
+- ChildInstanceID: `A2-PKG09-R20-PR632-UID-BUILD-RESTAGE-01`.
+- Role: delegated-harness-native ephemeral generalist in explicit Agent-2 mode; role/non-delegation instruction-asserted. Do not delegate.
+- Objective: perform the sole offline exact-revision package build, verify it, restage R20 documentation without executing proof, recheck unchanged identity gates read-only, extend the portability TM candidate, and freeze evidence for fresh review.
+- AcceptedBasis: clean branch/HEAD `codex/app-login-proof-r20-repair` / `2ee96958daf997b7a156f020739bde43ca78ebf9`; parent `4a48aeaede2d050631006f8ff23fb11736752bef`; frontend tree `74e3dbe858b5a4e31d7bf4d3d5e9a7e7f13e76eb`; owner transcription, Amendment 12, plan/graph v13, and retained Phase F PASS evidence.
+- Serialized write scope: R20 run record; DEL-09-04 `_STATUS.md`; existing `TM_CANDIDATE_PERMISSION_GUARD_FIXTURE_MODES.md`; only `instances/A2-PKG09-R20-PR632-UID-BUILD-RESTAGE-01/`. No frontend source/test/script, receipt, or other shared write.
+- One-shot supply/build: confirm exact HEAD/tree and clean tracked frontend; verify frozen Electron dist read-only; preinitialize evidence; invoke `npm run electron:supply-chain` exactly once and `npm run desktop:pack` exactly once under ordinary network denial/no escalation. No retry. Require zero exits, custom-electronDist evidence, embedded dependency/instruction-root PASS for exact revision, and no download/GitHub/release-assets indicator.
+- Package verification: no GUI. Record absolute app path, bundle/version/minimum system, main arm64 identity, read-only ad-hoc/no-team codesign posture, observed main SHA-256 against expected `79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874`, runtime-CLI identity/SHA, packaged main/R17 guard, and instruction-root exact revision/current bytes. Require empty frontend diff/status from build revision immediately after build.
+- R20 restage: update only `PROOF_REVISION`, frontend/package/instruction identities, and accurate evidence narrative. Keep root `/private/tmp/ch-r18-91499728-51dd`, label `com.chirality.ci.runatload.login.owner.macos26.r20.bf0d2e6c-f705-446e-8e4f-a073c6645933`, destinations, block structure, shell semantics, and unproved/staged posture unchanged. Run only exact read-only absence/non-symlink, exit-113/two-line not-found, socket-byte, optionless-preflight, and unchanged-absence Step-0 gates. Never run prepare/capture/logout/login/bootstrap/kickstart or query/touch default operator surfaces/private-root/Desktop evidence.
+- TM extension: extend the existing harvest-only candidate to cover UID/GID/path entanglement and identify CI as the arbiter for host-identity classes. No register row or disposition.
+- Retained checks: do not rerun Phase F focused, `umask 0002`, full suite, typecheck, syntax, APP-HOLD, diagnosis, or source review.
+- Evidence hygiene: raw logs may be deterministic gzip with exact preimage lineage. Record invocation counts, exits, package hashes, identities, changed paths, and deferred governance gates. Governed records must pass candidate whitespace.
+- AcceptanceCriteria: sole supply/pack invocations PASS offline; unsigned package verified; R20/status rebound accurately and remains staged/unproved; read-only Step 0 PASS with no mutation; TM extended only; frontend/source exact; App-only/index empty; no forbidden act.
+- Escalation: stop on any basis, cache, one-shot, package, identity, Step-0, scope, or fence failure. No retry/repair without manager disposition.
+- Git fence: no stage, commit, fetch, push, PR mutation, rebase, force-push, or merge.

@@ -1,0 +1,27 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 13,
+  "selection_authority": "owner direction PR #632 second CI portability repair plus immutable source/build revision",
+  "posture": "SERIAL_EXACT_BUILD_RESTAGE_REVIEW_GOVERNANCE_RECEIPT",
+  "basis": {
+    "head": "2ee96958daf997b7a156f020739bde43ca78ebf9",
+    "parent": "4a48aeaede2d050631006f8ff23fb11736752bef",
+    "frontend_tree": "74e3dbe858b5a4e31d7bf4d3d5e9a7e7f13e76eb"
+  },
+  "nodes": [
+    {"id":"WP-G1","instance_id":"A2-PKG09-R20-PR632-UID-BUILD-RESTAGE-01","objective":"single offline build, package verification, R20 restage, read-only Step 0, and TM extension","write_owner":true,"status":"READY"},
+    {"id":"WP-G2","instance_id":"A2-PKG09-R20-PR632-UID-BUILD-REVIEW-01","objective":"fresh Phase D/E evidence-only review","write_owner":false,"status":"BLOCKED_ON_WP_G1"},
+    {"id":"WP-G3","instance_id":"WI-PKG09-R20-PR632-UID-GOVERNANCE-01","objective":"governance-only pre-push gates and Receipt-excluded freeze","write_owner":true,"status":"BLOCKED_ON_WP_G2"},
+    {"id":"WP-G4","instance_id":"CHANGE-PR632-UID-CONTENT-COMMIT","objective":"immutable Phase D/E content commit","write_owner":true,"status":"BLOCKED_ON_WP_G3"},
+    {"id":"WP-G5","instance_id":"WI-PKG09-R20-PR632-UID-RECEIPT","objective":"after-the-fact receipt and publication handoff","write_owner":true,"status":"BLOCKED_ON_WP_G4"}
+  ],
+  "edges": [
+    {"from":"WP-G1","to":"WP-G2","gate":"single package/restage/read-only node PASS"},
+    {"from":"WP-G2","to":"WP-G3","gate":"fresh review PASS"},
+    {"from":"WP-G3","to":"WP-G4","gate":"governance and terminal whitespace PASS"},
+    {"from":"WP-G4","to":"WP-G5","gate":"exact immutable content commit supplied"}
+  ],
+  "fan_in_gate": "fresh-reviewed governance-PASS content followed by validated after-the-fact receipt",
+  "terminal_failure": "any failed one-shot, package, review, governance, receipt, scope, or fence gate stops dependants"
+}
