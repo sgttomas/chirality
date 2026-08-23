@@ -2,10 +2,11 @@
 
 **Package Role:** `authoritative companion register`
 **Belongs to:** `execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md` (working surface)
-**Revision:** v1.1 · **Date:** 2026-07-26
-**Status:** SCA-001 successor; current-basis effect is conditional on the
-Gate 5 owner confirmation recorded in
-`execution/_ScopeChange/SCA-001_2026-07-26_1454/Decision_Log.md`.
+**Revision:** v1.3 — applied revision 1.3 · **Date:** 2026-08-23
+**Status:** applied revision 1.3; Gate 3 approved R3-A; Gate 4 approved R3-B
+with CONDITION R3-B-1; Gate-5 execution authorization reference `TBD`; Git
+effect `TBD` (filled by a later recorded act, never inferred); `_LATEST.md`
+pointer treatment pending its own authority.
 
 
 This register is authoritative for the decomposition's counts, coverage
@@ -18,19 +19,19 @@ summarizes; this file holds the machine truth.
 
 | Metric | Value |
 |---|---:|
-| Revision | v1.1 (SCA-001 successor) |
-| Date | 2026-07-26 |
+| Revision | v1.3 (applied revision 1.3) |
+| Date | 2026-08-23 |
 | ScopeItemCount | 104 |
 | ScopeItemsIN | 95 |
 | ScopeItemsOUT | 9 |
 | ScopeItemsTBD | 0 |
 | PackageCount | 6 |
-| DeliverableCount | 46 |
+| DeliverableCount | 53 |
 | ObjectiveCount | 7 |
 | UnassignedScopeItems | 0 |
 | ScopeItemsWithoutDeliverableMapping | 0 |
 | UnmappedObjectives | 0 |
-| ContextEnvelopeCounts | S=14, M=31, L=1, XL=0 |
+| ContextEnvelopeCounts | S=14, M=38, L=1, XL=0 |
 | PRDForwardItemCount | 85 |
 | PRDItemsCovered | 84 |
 | PRDItemsCoveredWithRecordedDeferral | 1 (OBJ-2) |
@@ -52,9 +53,9 @@ that item, not as a `TBD` classification.
 | PackageID | Deliverables |
 |---|---:|
 | PKG-01_Product_Definition_Normative_Basis_and_Authority | 8 |
-| PKG-02_Operative_Instruction_Surface_and_Runtime_Layers | 6 |
+| PKG-02_Operative_Instruction_Surface_and_Runtime_Layers | 12 |
 | PKG-03_Governed_Execution_Structure_and_Root_Containment | 6 |
-| PKG-04_Developmental_Machinery_and_Change_Control | 10 |
+| PKG-04_Developmental_Machinery_and_Change_Control | 11 |
 | PKG-05_Evidence_Provenance_and_Audit | 8 |
 | PKG-06_Self_Application_Variants_and_Release | 8 |
 
@@ -64,7 +65,7 @@ that item, not as a `TBD` classification.
 |---|---|---|
 | S | DEL-01-05, DEL-01-06, DEL-01-07, DEL-01-08, DEL-02-05, DEL-03-03, DEL-04-02, DEL-04-06, DEL-04-07, DEL-05-03, DEL-05-05, DEL-05-07, DEL-06-03, DEL-06-05 | Acceptable small slices. |
 | M | All deliverables not listed as S or L | Acceptable bounded Agent 2 work; each is single-package and single artifact-shape. |
-| L | DEL-04-09_PRD_Source_Currency_Check_Capability | Proposed as large-but-single-domain, for owner acceptance at Gate 5/6: one checker plus one regenerable derivative package. Splittable by check class (five mechanical, four semantic) if implementation review finds churn. Recorded at OI-010. |
+| L | DEL-04-09_PRD_Source_Currency_Check_Capability | Accepted at Context Envelope L by D-GOV-25 Gate 5; OI-010 is CLOSED_ACCEPTED_AT_GATE_5. One checker plus one regenerable derivative package; splittable by check class (five mechanical, four semantic) if implementation review finds churn. |
 | XL | none | No XL deliverable is proposed. |
 
 ## 4. D-15 four-category coverage demonstration
@@ -77,9 +78,9 @@ Counts below are ledger-derived (`Categories` column).
 | §4.1 category | Scope items carrying it | Packages participating | Deliverables participating | Coverage status |
 |---|---:|---|---:|---|
 | Normative basis | 41 | PKG-01, PKG-02, PKG-03, PKG-04, PKG-05, PKG-06 | 21 | COVERED |
-| Operative product | 27 | PKG-01, PKG-02, PKG-03, PKG-04, PKG-06 | 19 | COVERED |
-| Developmental machinery | 59 | PKG-01, PKG-03, PKG-04, PKG-05, PKG-06 | 25 | COVERED |
-| Evidence | 19 | PKG-01, PKG-02, PKG-04, PKG-05, PKG-06 | 17 | COVERED |
+| Operative product | 27 | PKG-01, PKG-02, PKG-03, PKG-04, PKG-06 | 25 | COVERED |
+| Developmental machinery | 59 | PKG-01, PKG-03, PKG-04, PKG-05, PKG-06 | 26 | COVERED |
+| Evidence | 19 | PKG-01, PKG-02, PKG-04, PKG-05, PKG-06 | 24 | COVERED |
 
 **No category is deferred.** No reasoned deferral is therefore recorded, and
 none is claimed.
@@ -95,9 +96,9 @@ is a separate, work-domain judgment (DEC-003).
 Per-category deliverable membership:
 
 - **Normative basis** — DEL-01-01, DEL-01-02, DEL-01-03, DEL-01-04, DEL-01-05, DEL-01-06, DEL-01-07, DEL-01-08, DEL-02-02, DEL-02-04, DEL-02-05, DEL-03-01, DEL-03-04, DEL-04-08, DEL-04-10, DEL-05-02, DEL-05-04, DEL-06-04, DEL-06-05, DEL-06-06, DEL-06-07
-- **Operative product** — DEL-01-08, DEL-02-01, DEL-02-02, DEL-02-03, DEL-02-04, DEL-02-05, DEL-03-01, DEL-03-02, DEL-03-03, DEL-03-04, DEL-03-05, DEL-03-06, DEL-04-07, DEL-04-10, DEL-02-06, DEL-06-02, DEL-06-04, DEL-06-05, DEL-06-08
-- **Developmental machinery** — DEL-01-01, DEL-01-04, DEL-01-08, DEL-03-04, DEL-03-05, DEL-03-06, DEL-04-01, DEL-04-02, DEL-04-03, DEL-04-04, DEL-04-05, DEL-04-06, DEL-04-07, DEL-04-08, DEL-04-09, DEL-04-10, DEL-05-06, DEL-05-07, DEL-05-08, DEL-06-01, DEL-06-02, DEL-06-03, DEL-06-04, DEL-06-06, DEL-06-07
-- **Evidence** — DEL-01-03, DEL-01-08, DEL-04-05, DEL-04-08, DEL-04-09, DEL-04-10, DEL-05-01, DEL-05-02, DEL-05-03, DEL-05-04, DEL-05-05, DEL-05-06, DEL-05-07, DEL-05-08, DEL-02-06, DEL-06-02, DEL-06-06
+- **Operative product** — DEL-01-08, DEL-02-01, DEL-02-02, DEL-02-03, DEL-02-04, DEL-02-05, DEL-03-01, DEL-03-02, DEL-03-03, DEL-03-04, DEL-03-05, DEL-03-06, DEL-04-07, DEL-04-10, DEL-02-06, DEL-06-02, DEL-06-04, DEL-06-05, DEL-06-08, DEL-02-07, DEL-02-08, DEL-02-09, DEL-02-10, DEL-02-11, DEL-02-12
+- **Developmental machinery** — DEL-01-01, DEL-01-04, DEL-01-08, DEL-03-04, DEL-03-05, DEL-03-06, DEL-04-01, DEL-04-02, DEL-04-03, DEL-04-04, DEL-04-05, DEL-04-06, DEL-04-07, DEL-04-08, DEL-04-09, DEL-04-10, DEL-05-06, DEL-05-07, DEL-05-08, DEL-06-01, DEL-06-02, DEL-06-03, DEL-06-04, DEL-06-06, DEL-06-07, DEL-04-11
+- **Evidence** — DEL-01-03, DEL-01-08, DEL-04-05, DEL-04-08, DEL-04-09, DEL-04-10, DEL-05-01, DEL-05-02, DEL-05-03, DEL-05-04, DEL-05-05, DEL-05-06, DEL-05-07, DEL-05-08, DEL-02-06, DEL-06-02, DEL-06-06, DEL-02-07, DEL-02-08, DEL-02-09, DEL-02-10, DEL-02-11, DEL-02-12, DEL-04-11
 
 D-15 itself carries the source label **PROPOSED**; it is applied here as the
 PRD's only coverage obligation, and its status is visible wherever it is
@@ -112,7 +113,7 @@ coverage nor a recorded deferral. Both directions are computed, not asserted.
 | Direction | Register | Population | Result |
 |---|---|---:|---|
 | PRD item → decomposition | `chirality_root_prd_coverage_forward_v1_0.csv` | 85 | 84 COVERED, 1 COVERED_WITH_RECORDED_DEFERRAL (OBJ-2), 0 UNCOVERED |
-| decomposition unit → PRD | `chirality_root_trace_reverse_v1_0.csv` | 52 (6 packages + 46 deliverables) | 52 TRACED, 0 UNTRACED |
+| decomposition unit → PRD | `chirality_root_trace_reverse_v1_0.csv` | 59 (6 packages + 53 deliverables) | 59 TRACED, 0 UNTRACED |
 
 Forward population (85 items): OBJ-1..OBJ-7 (7); N-1..N-9 (9); O-1..O-11 (11);
 D-1, D-2, D-4..D-16 (15); E-1..E-8 (8); the §3 v1 boundary and objective
@@ -124,10 +125,12 @@ practice statement, §6.3 concurrency (4); §7.1 downward, §7.2 promotion (2);
 adoption mechanics (1). `D-3` is deliberately absent and never reassigned
 (PRD §5.3).
 
-Reverse trace resolves through scope items where a deliverable covers them and
-through `SupportsObjectives` where a deliverable exists to satisfy an
-objective's success condition — the F4 wording is "a PRD requirement **or**
-objective". `DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation`
+Reverse trace is fully recomputed as the inverse of the applied scope ledger
+and forward register; objective rows in the forward register are checked against
+the applied objective register and deliverable `SupportsObjectives`. Package
+rows invert applied `PackageIDs` and ledger ownership, so cross-package
+consequences such as PKG-04 coverage of E-2 are explicit. The F4 wording is "a
+PRD requirement **or** objective". `DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation`
 is the one deliverable that is objective-derived first (OBJ-3); it also covers
 SOW-009 (DEC-010).
 
@@ -158,7 +161,7 @@ from acceptance in general.
 | OI-008 | `OPEN_STANDING` | Reaffirmed by the ruling; §5.3 gate still governs materialization |
 | OI-009 | `OPEN` | Not ruled on; the item is OUT |
 | OI-010 | `CLOSED_ACCEPTED_AT_GATE_5` | Gate 5 took DEL-04-09 as proposed at `L` |
-| OI-011 | `CLOSED_ASSIGNED_BY_D-GOV-27` | Ryan Tufts assigned; carried to DEL-02-06 by SCA-001 |
+| OI-011 | `CLOSED_ASSIGNED_BY_D-GOV-27` | Ryan Tufts assigned to all 53 deliverables: original 45 by D-GOV-27, DEL-02-06 by SCA-001, and seven applied SCA-004 rows |
 | OI-012 | `CLOSED_CONFIRMED_AT_GATE_4` | Gate 4 acceptance was its stated resolution |
 | OI-013 | `CLOSED_DEFERRED_BY_RULING` | Owner decision 1 (reasoned deferral, §12.1) |
 

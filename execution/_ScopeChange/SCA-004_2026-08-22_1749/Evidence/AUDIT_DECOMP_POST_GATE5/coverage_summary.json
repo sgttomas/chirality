@@ -1,0 +1,51 @@
+{
+  "run_label": "SCA-004-POST-GATE5-ROOT-SOFTWARE",
+  "decomp_variant": "SOFTWARE",
+  "repository_basis": "119e08647afdb380704ff660fb32d714d7bd1dad",
+  "decomposition_revision": "v1.3 — ACCEPTED CURRENT BASIS",
+  "decomposition_sha256": "546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986",
+  "comparison_baseline_sha256": "2210e77f989f29c11e005d7fe89944e2e0f0fe265e0a514f53042aaa89de9e45",
+  "repository_topology": {
+    "packages": 6,
+    "deliverables": 53,
+    "pkg_02_deliverables": 12,
+    "pkg_04_deliverables": 11,
+    "objectives": 7,
+    "scope_items": 104,
+    "scope_items_in": 95,
+    "scope_items_out": 9,
+    "forward_rows": 85,
+    "reverse_units": 59
+  },
+  "coverage": {
+    "unmapped_in_scope_items": 0,
+    "unsupported_objectives": 0,
+    "untraced_reverse_units": 0,
+    "forward_covered": 84,
+    "forward_covered_with_recorded_deferral": 1
+  },
+  "baseline_delta": {
+    "packages": 0,
+    "deliverables": 7,
+    "pkg_02_deliverables": 6,
+    "pkg_04_deliverables": 1,
+    "objectives": 0,
+    "scope_items": 0
+  },
+  "checks": {
+    "applied_live_hashes_equal_r4_a": "PASS",
+    "package_and_deliverable_counts": "PASS",
+    "scope_mapping_integrity": "PASS",
+    "objective_support_integrity": "PASS",
+    "forward_trace_integrity": "PASS",
+    "reverse_trace_integrity": "PASS",
+    "telemetry_reconciliation": "PASS",
+    "baseline_preserved": "PASS",
+    "downstream_folder_propagation": "DEFERRED_BY_OWNER_APPROVED_PLAN"
+  },
+  "issues_blocker": 0,
+  "issues_warning": 0,
+  "issues_info": 0,
+  "overall_status": "OK",
+  "closure_readiness": "PASS_FOR_GATE5_APPLIED_PACKAGE_ONLY"
+}

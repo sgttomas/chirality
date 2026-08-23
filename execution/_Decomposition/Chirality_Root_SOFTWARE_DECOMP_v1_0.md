@@ -1,23 +1,26 @@
-# Chirality Root — Software Decomposition (v1.2 — ACCEPTED CURRENT BASIS)
+# Chirality Root — Software Decomposition (v1.3 — ACCEPTED CURRENT BASIS)
 
 **Package Role:** `working surface`
 **Agent Role:** `SOFTWARE_DECOMP` (Agent 1), under a sealed brief from Agent 0
 **Method basis:** `docs/DECOMPOSITION_STANDARD.md` (RATIFIED) extended by `agents/AGENT_SOFTWARE_DECOMP.md`
-**Revision:** v1.2 (SCA-002 accepted and applied; current-facing metadata reconciled by the SCA-003 basis-reconciliation candidate) · **Date:** 2026-07-29
+**Revision:** v1.3 — ACCEPTED CURRENT BASIS · **Date:** 2026-08-23
 **Source-basis commit:** `602dd71b8c123d8a47a36644db1453f515c0f778` (Receipt-64 policy effect; PRD Revision 8)
 **Predecessor (v1.1):** accepted by the SCA-001 Gate 5 owner confirmation, 2026-07-26; Git effect PR #366 merge `2db2c7128c32d32d197ae47660eb34ab2cef9660`
 **v1.0 acceptance:** AcceptedCandidateSHA `ec62af0700e530c1640698fa406398cb1cb45d29`; EffectiveSHA `ea0ad7a566ddb51d89297bfcf491636f1fc5dd15` (merge of PR #347); instrument `docs/governance_harness/_DECISIONS/D-GOV-25_root_decomposition_acceptance.md`
-**Run:** `GOV-STEP4-SCA-20260729` (SCA-002 drafting and application lineage); origin run `ROOT-STEP8-DECOMP-20260725`, node N1; current metadata candidate `ROOT_FOUR_LANES_2026-08-02/S2`
-**Amendment:** `SCA-002` accepted and applied on 2026-07-29; the exact SCA-003 basis-reconciliation candidate was accepted and applied under owner ruling SHA-256 `12f7c46e86ca19c1e065e96b05e09814b9806cd5b0742f74d8cce405ef389129`, with applied-file evidence SHA-256 `f2781dd2c33f01cbaf014b2bb97fbff0bcdf1db3c46a8969f195a7d320501cc8`; human confirmation status is recorded only in `execution/_ScopeChange/SCA-003_2026-08-02_2212/Decision_Log.md`
+**Run:** Gate-5 executed under owner authorization reference `TBD`; Git effect `TBD` (filled by a later recorded act, never inferred); application package drafted by `ROOT_V3_PHASE0D_2026-08-23/N1`; predecessor candidate run `ROOT_V3_PHASE0C_2026-08-23/N1`
+**Amendment:** `SCA-004` revision 1.3 applied from the exact Gate-3 bytes approved by owner R3-A plus the Gate-5 application append approved under reference `TBD`; Gate 4 approved by owner R3-B with CONDITION R3-B-1; Gate-5 execution authorization reference `TBD`; Git effect `TBD`
 
-> **Status: ACCEPTED CURRENT BASIS — revision 1.2.** The owner accepted the
-> SCA-002 package by exact token `ACCEPT SCA-002 271d456a` on 2026-07-29.
-> Its application append records Gates 1–4 accepted, Gate 5 executed and
-> validated, and the one separately ruled SOW-042 `SourceRef` delta. Git
-> effect is PR #417 merge
-> `6e21530f7182ca2a7e7831b9528f85889a4a4467` (Receipt 63). The current
-> pointer at `execution/_ScopeChange/_LATEST.md` identifies this revision as
-> the accepted decomposition basis.
+> **Status: SCA-004 REVISION 1.3 — ACCEPTED CURRENT BASIS.**
+> Gate 3 was approved by owner R3-A. Gate 4 was approved by owner R3-B with
+> CONDITION R3-B-1. Gate-5 was executed under owner authorization reference
+> `TBD`; Git effect `TBD`. The authorization and Git-effect slots are filled by
+> a later recorded act, never inferred. The applied revision narrows DEL-02-06
+> to standing semantic integration/release assurance, adds six bounded PKG-02
+> runtime carriers and one PKG-04 Root receipt-validator carrier, and
+> recomputes the synchronized registers and telemetry. `_LATEST.md` pointer
+> treatment pending its own authority. Folders, SOWs, lifecycles, dependencies,
+> runtime, tools, App truth, and all ten HELD_UNAVAILABLE bindings remain
+> unchanged by this application.
 >
 > **What the accepted amendment did.** SCA-002 restated the SOW-042 scope-ledger row
 > and the DEL-04-06 deliverable-register row from the superseded Rev 6
@@ -236,13 +239,13 @@ the source label **PROPOSED**.
 
 | ObjectiveID | PRD objective | Objective | Primary supporting deliverables |
 |---|---|---|---|
-| OBJ-001 | OBJ-1 | Coherent and discoverable normative authority — a reader can determine what governs, from the repository alone. | DEL-01-01, DEL-01-02, DEL-01-03, DEL-01-07, DEL-01-08, DEL-02-01, DEL-02-05, DEL-02-06, DEL-04-07, DEL-04-09 |
-| OBJ-002 | OBJ-2 | Governed production of professional knowledge work — the product carries work to an issuance decision that an accountable human makes. | DEL-01-04, DEL-01-06, DEL-02-02, DEL-02-03, DEL-02-06, DEL-03-02, DEL-03-06, DEL-04-02, DEL-04-06 |
-| OBJ-003 | OBJ-3 | The human evaluation and iteration loops close — linkage complete universally, retrievable within a pre-registered bound on a pre-registered sample. | DEL-01-04, DEL-04-01, DEL-04-03, DEL-04-04, DEL-04-05, DEL-04-08, DEL-04-10, DEL-05-02, DEL-05-03, DEL-05-04, DEL-05-05, DEL-05-07, DEL-05-08, DEL-06-03 |
-| OBJ-004 | OBJ-4 | Safe self-application without self-authorization — F1–F3 unobserved, capabilities accepted before consumption, guards registered and passing. | DEL-02-04, DEL-02-06, DEL-03-01, DEL-03-04, DEL-03-05, DEL-03-06, DEL-05-06, DEL-06-01, DEL-06-04, DEL-06-07 |
+| OBJ-001 | OBJ-1 | Coherent and discoverable normative authority — a reader can determine what governs, from the repository alone. | DEL-01-01, DEL-01-02, DEL-01-03, DEL-01-07, DEL-01-08, DEL-02-01, DEL-02-05, DEL-02-06, DEL-04-07, DEL-04-09, DEL-02-07, DEL-02-08, DEL-02-09, DEL-02-10, DEL-02-11, DEL-02-12 |
+| OBJ-002 | OBJ-2 | Governed production of professional knowledge work — the product carries work to an issuance decision that an accountable human makes. | DEL-01-04, DEL-01-06, DEL-02-02, DEL-02-03, DEL-02-06, DEL-03-02, DEL-03-06, DEL-04-02, DEL-04-06, DEL-02-07, DEL-02-08, DEL-02-09, DEL-02-10, DEL-02-11, DEL-02-12 |
+| OBJ-003 | OBJ-3 | The human evaluation and iteration loops close — linkage complete universally, retrievable within a pre-registered bound on a pre-registered sample. | DEL-01-04, DEL-04-01, DEL-04-03, DEL-04-04, DEL-04-05, DEL-04-08, DEL-04-10, DEL-05-02, DEL-05-03, DEL-05-04, DEL-05-05, DEL-05-07, DEL-05-08, DEL-06-03, DEL-04-11 |
+| OBJ-004 | OBJ-4 | Safe self-application without self-authorization — F1–F3 unobserved, capabilities accepted before consumption, guards registered and passing. | DEL-02-04, DEL-02-06, DEL-03-01, DEL-03-04, DEL-03-05, DEL-03-06, DEL-05-06, DEL-06-01, DEL-06-04, DEL-06-07, DEL-02-07, DEL-02-08, DEL-02-09, DEL-02-10, DEL-02-11, DEL-02-12 |
 | OBJ-005 | OBJ-5 | Situated specialization with governed convergence — one candidate reaches a complete promotion disposition; variant-derived changes used the governed path. | DEL-06-04, DEL-06-05, DEL-06-06, DEL-06-08 |
 | OBJ-006 | OBJ-6 | Coordination remains intelligible as concurrent activity grows — ownership, dependencies, and gates reconstructible; stale runs detectable. | DEL-03-03, DEL-05-01, DEL-06-02 |
-| OBJ-007 | OBJ-7 | File-native continuity and recoverability — nothing load-bearing lives outside the checkout. | DEL-01-05, DEL-02-06, DEL-03-01 |
+| OBJ-007 | OBJ-7 | File-native continuity and recoverability — nothing load-bearing lives outside the checkout. | DEL-01-05, DEL-02-06, DEL-03-01, DEL-02-07, DEL-02-08, DEL-02-09, DEL-02-10, DEL-02-11, DEL-02-12 |
 
 `UnmappedObjectives` is **0**. Full statements, notes, and scope-item mappings
 are in `chirality_root_objective_register_v1_0.csv`.
@@ -276,10 +279,11 @@ PKG-04, PKG-06). The partition is a work-domain judgment accepted at Gate 4
 
 ## 9. Deliverables
 
-46 deliverables, each belonging to exactly one package, each sized for a
+53 deliverables, each belonging to exactly one package, each sized for a
 bounded Agent 2 execution. `ResponsibleParty` is `Ryan Tufts` for every
-deliverable under the D-GOV-27 assignment; SCA-001 applies that existing
-assignment to the new carrier and closes the stale OI-011 statement. Descriptions, anticipated
+deliverable: D-GOV-27 assigned the original 45, SCA-001 carried that
+assignment to DEL-02-06, and the seven applied SCA-004 rows carry the
+same assignment. OI-011 therefore remains closed for all 53 deliverables. Descriptions, anticipated
 artifacts, covered scope items, and envelope notes are in
 `chirality_root_deliverable_register_v1_0.csv`.
 
@@ -314,6 +318,12 @@ executor.
 | DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls | Declared Write Scope and Capability-Boundary Controls | SECURITY_CONTROL | M | instruction-surface (M2); execution-tree for audit evidence | OBJ-004 |
 | DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools | Live Registry Discipline for Skills and Tools | REGISTER | S | instruction-surface (M2); execution-tree for drift reports | OBJ-001 |
 | DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance | Generic Runtime Stewardship and Release Assurance | REQ_SLICE | M | runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/**; client implementation only through separately authorized client-owned tranches | OBJ-001, OBJ-002, OBJ-004, OBJ-007 |
+| DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control | Process Supervisor and Purpose-Limited Control | BACKEND_FEATURE_SLICE | M | runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/** | OBJ-001, OBJ-002, OBJ-004, OBJ-007 |
+| DEL-02-08_Exact_Supply_and_Protocol_Pinning | Exact Supply and Protocol Pinning | API_CONTRACT | M | runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/** | OBJ-001, OBJ-002, OBJ-004, OBJ-007 |
+| DEL-02-09_Hosted_Account_and_Consent_Boundary | Hosted Account and Consent Boundary | SECURITY_CONTROL | M | runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/** | OBJ-001, OBJ-002, OBJ-004, OBJ-007 |
+| DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2 | Adapter Event Schema and Approval API v2 | API_CONTRACT | M | runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/** | OBJ-001, OBJ-002, OBJ-004, OBJ-007 |
+| DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation | Worker Retirement, Restart, and Terminal Reconciliation | BACKEND_FEATURE_SLICE | M | runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/** | OBJ-001, OBJ-002, OBJ-004, OBJ-007 |
+| DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in | Runtime Conformance Evidence and Shared-Release Fan-in | TEST_SUITE | M | runtime/**; execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/** | OBJ-001, OBJ-002, OBJ-004, OBJ-007 |
 
 ### PKG-03_Governed_Execution_Structure_and_Root_Containment
 
@@ -340,6 +350,7 @@ executor.
 | DEL-04-08_PRD_Amendment_and_Attributable_Change_Control | PRD Amendment and Attributable Change Control | REQ_SLICE | M | execution-tree; instruction-surface (M2) for any PRD amendment | OBJ-003 |
 | DEL-04-09_PRD_Source_Currency_Check_Capability | PRD Source-Currency Check Capability | TEST_SUITE | L | tools/ (M2); execution-tree for the annex and reports | OBJ-001 |
 | DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration | Decomposition Pipeline and Root Coverage Demonstration | REGISTER | M | execution-tree | OBJ-003 |
+| DEL-04-11_Root_Loop_Receipt_Validator | Root Loop Receipt Validator | TEST_SUITE | M | tools/** (M2); execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/** | OBJ-003 |
 
 ### PKG-05_Evidence_Provenance_and_Audit
 
@@ -398,14 +409,14 @@ Full telemetry is `chirality_root_coverage_telemetry_v1_0.md`. Summary:
 |---|---:|
 | ScopeItemCount | 104 (IN 95 / OUT 9 / TBD 0) |
 | PackageCount | 6 |
-| DeliverableCount | 46 |
+| DeliverableCount | 53 |
 | ObjectiveCount | 7 |
 | **UnassignedScopeItems** | **0** |
 | ScopeItemsWithoutDeliverableMapping | 0 |
 | UnmappedObjectives | 0 |
-| ContextEnvelopeCounts | S=14, M=31, L=1, XL=0 |
+| ContextEnvelopeCounts | S=14, M=38, L=1, XL=0 |
 | OpenIssuesByType | SOURCE_CURRENCY=2, FRAMING_STRAIN=3, UNBUILT_CAPABILITY=1, OWNER_RULING_PENDING=1, PARTITION_BOUNDARY=1, GATE_SEQUENCING=1, SCOPE_TBD=1, CONTEXT_ENVELOPE=1, RESPONSIBILITY_UNASSIGNED=1, OBJECTIVE_GRANULARITY=1 (total 13: 10 closed, 3 carried open) |
-| Revision / Date | v1.1 SCA-001 successor / 2026-07-26 |
+| Revision / Date | v1.3 applied revision 1.3 / 2026-08-23 |
 
 ### 11.1 Context Budget QA
 
@@ -413,7 +424,8 @@ No `XL` deliverable is proposed. One `L` deliverable —
 `DEL-04-09_PRD_Source_Currency_Check_Capability` — was accepted as
 large-but-single-domain under D-GOV-25 and retains its envelope notes; it is splittable by check class if implementation review finds
 churn (OI-010). Every other deliverable is `S`
-or `M`, single-package, and focused on one primary artifact shape.
+or `M`, single-package, and focused on one primary artifact shape. The seven
+SCA-004 additions are `M`; each remains a single PKG-02 or PKG-04 slice.
 
 ### 11.2 D-15 — four-category coverage demonstration
 
@@ -423,13 +435,13 @@ no reasoned deferral is recorded.**
 | §4.1 category | Scope items | Packages participating | Deliverables | Status |
 |---|---:|---|---:|---|
 | Normative basis | 41 | PKG-01, PKG-02, PKG-03, PKG-04, PKG-05, PKG-06 | 21 | COVERED |
-| Operative product | 27 | PKG-01, PKG-02, PKG-03, PKG-04, PKG-06 | 19 | COVERED |
-| Developmental machinery | 59 | PKG-01, PKG-03, PKG-04, PKG-05, PKG-06 | 25 | COVERED |
-| Evidence | 19 | PKG-01, PKG-02, PKG-04, PKG-05, PKG-06 | 17 | COVERED |
+| Operative product | 27 | PKG-01, PKG-02, PKG-03, PKG-04, PKG-06 | 25 | COVERED |
+| Developmental machinery | 59 | PKG-01, PKG-03, PKG-04, PKG-05, PKG-06 | 26 | COVERED |
+| Evidence | 19 | PKG-01, PKG-02, PKG-04, PKG-05, PKG-06 | 24 | COVERED |
 
 The spread is the point: the categories are non-exclusive functions, and the
 partition is not derived from them (§4.3, DEC-003). D-12 is honoured directly
-— developmental machinery is decomposed as product scope (PKG-04, 10
+— developmental machinery is decomposed as product scope (PKG-04, 11
 deliverables), not exempted as overhead.
 
 ### 11.3 F4 — bidirectional traceability
@@ -437,7 +449,7 @@ deliverables), not exempted as overhead.
 | Direction | Register | Population | Result |
 |---|---|---:|---|
 | PRD item → decomposition | `chirality_root_prd_coverage_forward_v1_0.csv` | 85 | 84 COVERED, 1 COVERED_WITH_RECORDED_DEFERRAL (OBJ-2), 0 UNCOVERED |
-| decomposition unit → PRD | `chirality_root_trace_reverse_v1_0.csv` | 52 | 52 TRACED, 0 UNTRACED |
+| decomposition unit → PRD | `chirality_root_trace_reverse_v1_0.csv` | 59 | 59 TRACED, 0 UNTRACED |
 
 The forward population is every addressable PRD item in the enumerated scope
 source: OBJ-1..OBJ-7; N-1..N-9; O-1..O-11; D-1, D-2, D-4..D-16; E-1..E-8; the
@@ -479,7 +491,7 @@ general.
 | OI-008 | `OPEN_STANDING` — reaffirmed, not closed | GATE_SEQUENCING | SOW-001, SOW-061, SOW-103, DEL-03-06 | Materialization of root packages sits behind the D-GOV-21 §5.3 gate, and this decomposition authorizes none of it. DEL-03-06 is readiness and evidence only. | **Reaffirmed by the ruling, not discharged by it.** Acceptance of the decomposition is a precondition of materialization, never the authorization for it; step 9 remains behind the §5.3 gate. This issue stays standing for as long as that gate does. |
 | OI-009 | `OPEN` — not ruled on; carried forward | SCOPE_TBD | SOW-094 | The referent of the database-backed attribution interface named in the RD-2 evolution path is `TBD` in the source. It is carried as an OUT boundary item without being resolved (I2). | Unchanged: the owner fixes the referent if and when that scope is opened. Acceptance did not resolve it and did not need to — the item is OUT. |
 | OI-010 | `CLOSED_ACCEPTED_AT_GATE_5` — D-GOV-25 | CONTEXT_ENVELOPE | DEL-04-09 | One `L` deliverable was proposed: a checker plus a regenerable derivative package. It is single-domain but multi-component. | **Closed by the Gate 5 acceptance**, which took the deliverable as proposed. `DEL-04-09` stands at `L` with its envelope notes; no split was directed. A split by check class remains available at revision if implementation review finds churn. |
-| OI-011 | `CLOSED_ASSIGNED_BY_D-GOV-27` | RESPONSIBILITY_UNASSIGNED | all 46 deliverables | `ResponsibleParty` is assigned to Ryan Tufts across the accepted register and the SCA-001 carrier. | D-GOV-27 assigned responsibility across the original 45 deliverables; SCA-001 carries that existing assignment to DEL-02-06 and closes the stale issue text. |
+| OI-011 | `CLOSED_ASSIGNED_BY_D-GOV-27` | RESPONSIBILITY_UNASSIGNED | all 53 deliverables | `ResponsibleParty` is assigned to Ryan Tufts across the original 45, SCA-001 DEL-02-06, and the seven applied SCA-004 rows. | D-GOV-27 assigned the original 45 deliverables; SCA-001 carried the assignment to DEL-02-06; applied SCA-004 revision 1.3 carries the same assignment to its seven new rows, preserving complete assignment coverage across all 53 deliverables. |
 | OI-012 | `CLOSED_CONFIRMED_AT_GATE_4` — D-GOV-25 | FRAMING_STRAIN | 9 OUT items | REF-002 permits a blank partition for OUT units; REF-003 requires every scope item to carry exactly one `PackageID`. The stricter rule was applied (no weakening of the base) and the divergence is surfaced rather than reconciled. | **Closed by the Gate 4 acceptance**, which took the ledger with every OUT item assigned. The instruction-file divergence stays surfaced; no change to either instruction file was proposed or directed. |
 | OI-013 | `CLOSED_DEFERRED_BY_RULING` — owner decision 1, D-GOV-25 | OBJECTIVE_GRANULARITY | OBJ-002 (PRD OBJ-2) | PRD §3 OBJ-2's success condition ends "Demonstrated at root and in at least one situated working root." No deliverable covers the situated-working-root half: `DEL-03-06` carries the deliverable stream **at root only**, and `DEL-06-08` — the one situated-root deliverable — is mapped to OBJ-005, covers only SOW-003, and concerns a *recorded convergence path* (v1 boundary (c)) rather than a deliverable stream reaching an issuance decision in a variant. F4 is not formally tripped, because objectives are traced as whole units and OBJ-2 has coverage at objective granularity; the gap is inside the objective, where the registers cannot see it. Raised by the adversarial verification of this candidate (V1, MAJOR-1). | **Ruled: reasoned deferral (owner decision 1, D-GOV-25).** See §12.1 for the recorded deferral and its rationale. The forward register's OBJ-2 row now reads `COVERED_WITH_RECORDED_DEFERRAL`, so F4 is satisfied by a **recorded deferral** rather than by a silent gap — which is the distinction F4 draws. No scope item and no deliverable was added. |
 
@@ -564,6 +576,8 @@ was added, removed, or renumbered.
 
 | DEC-024 | 2026-08-02 | **SCA-003 basis reconciliation aligns current-facing acceptance and source-control metadata without changing decomposition truth.** The title, header, status block, REF-001 pin, and downstream acceptance notes are reconciled to the already-recorded facts that SCA-002 revision 1.2 was accepted/applied and that Receipt 64 produced Root PRD Revision 8. DEC-023 and the original SCA-002 candidate Change Log entry remain unchanged as time-scoped proposal history. | SCA-002 `Decision_Log.md`, `Handoff_State.md`, `Applied_File_Hashes.json`, `_ScopeChange/_LATEST.md`, Receipt 63, Receipt 64, and the Root loop handoff agree on the current state. This is metadata-only: no scope item, package, deliverable, objective, ID, mapping, status row, count, topology, or substantive requirement changes. The exact SCA-003 candidate was accepted and applied under owner ruling SHA-256 `12f7c46e86ca19c1e065e96b05e09814b9806cd5b0742f74d8cce405ef389129`, with applied-file evidence SHA-256 `f2781dd2c33f01cbaf014b2bb97fbff0bcdf1db3c46a8969f195a7d320501cc8`; human confirmation status is recorded only in `execution/_ScopeChange/SCA-003_2026-08-02_2212/Decision_Log.md`. |
 
+| DEC-025 | 2026-08-23 | **SCA-004 revision 1.3 narrows the standing runtime carrier and adds seven bounded leaf carriers.** Preserve DEL-02-06 and SOW-104 with OBJ-001/002/004/007 continuity; allocate implementation and conformance slices to DEL-02-07 through DEL-02-12 under PKG-02; add DEL-04-11 under PKG-04 as a TEST_SUITE mapped to SOW-041, SOW-053, and OBJ-003; retain every existing ID, package, scope item, objective, REQ-027 boundary, and ten-binding hold. | R3-A approved the exact Gate-3 bytes; R3-B approved Gate 4 with CONDITION R3-B-1; the application append was approved under reference `TBD`; Gate-5 execution authorization reference is `TBD`; Git effect is `TBD` and is filled by a later recorded act, never inferred. The split preserves package discipline and artifact-kind granularity, keeps all runtime work in PKG-02, and separates executable receipt validation from DOC_UPDATE DEL-04-05. |
+
 ### Change Log
 
 - 2026-07-25 — v1.0 candidate authored from `docs/PRD_ROOT.md` at basis
@@ -626,6 +640,17 @@ was added, removed, or renumbered.
   `f2781dd2c33f01cbaf014b2bb97fbff0bcdf1db3c46a8969f195a7d320501cc8`;
   human confirmation status is recorded only in
   `execution/_ScopeChange/SCA-003_2026-08-02_2212/Decision_Log.md`.
+
+- 2026-08-23 — **SCA-004 revision 1.3 applied.** Against the accepted
+  revision 1.2 bytes, preserve DEL-02-06 as the standing semantic-integration
+  and release-assurance carrier, add six bounded PKG-02 runtime carriers and
+  one PKG-04 Root receipt-validator carrier, and recompute all companion
+  mappings and telemetry. R3-A approved the exact Gate-3 bytes; R3-B approved
+  Gate 4 with CONDITION R3-B-1; the Gate-5 application append approval,
+  Gate-5 execution authorization, and Git effect are `TBD` pending their later
+  recorded acts. `_LATEST.md` pointer treatment pending its own authority. No
+  folder, SOW, lifecycle, dependency, implementation, App truth, or held
+  binding changes are part of the application.
 
 ---
 
