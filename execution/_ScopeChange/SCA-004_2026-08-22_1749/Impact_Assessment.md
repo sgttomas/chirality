@@ -1,156 +1,207 @@
-# SCA-004 Gate-1 impact assessment
+---
+amendment_id: SCA-004
+doc_kind: scope_change.impact_assessment
+decomp_variant: SOFTWARE
+gate: 2
+created: 2026-08-22
+status: awaiting_owner_gate_2_acceptance
+accepted_basis: main@b143444bd497eae1b1b638670a33e6df756d9084
+gate_1_authority: R1-C; owner accepted eight parsed actions on 2026-08-22
+---
 
-Status: `AWAITING_OWNER_ACCEPTANCE`
-Assessment posture: preliminary Gate-1 impact trace; not an accepted Gate-2
-assessment and not an amendment.
+# SCA-004 Gate 2 — impact assessment
 
-## Summary
+Status: `AWAITING_OWNER_GATE_2_ACCEPTANCE`
 
-The v3 pathway is a consequential Root generic-runtime change whose accepted
-scope already exists but whose implementation breadth exceeds the single
-M-envelope carried by DEL-02-06. The lawful decomposition path is to preserve
-DEL-02-06 as standing integration/release assurance, split implementation into
-bounded PKG-02 deliverables, add a bounded PKG-04 Root receipt-validator
-carrier, and retain existing governance/evidence deliverables as gates and
-consumers rather than silently expanding a DOC_UPDATE into a test suite.
+This assessment refines the impact of the eight actions accepted at Gate 1.
+It changes no decomposition truth, companion register, deliverable contract,
+lifecycle state, dependency surface, estimate, schedule, runtime, tool, App
+truth, or `_LATEST.md`. It does not open Gate 3.
 
-The App is an actually affected client in the accepted DEL-02-06
-compatibility package. Root may send and consume coordination notices but may
-not write App truth. SCA-APP-008 must reciprocate under App authority.
+## Accepted Gate-1 basis and boundary
 
-## Root-side semantic change set
+R1-C accepted the parse against these exact subjects:
 
-| Concern | Required candidate effect | Current Root planning carrier / crosscheck | Gate / hold |
-|---|---|---|---|
-| Root/App K-CONTROL-1 | Authorize exactly the existing project-scoped daemon socket plus one private daemon-to-supervisor socket; both remain Unix-only under `0700`/`0600`, owner/generation records, rotated tokens, stale recovery; second socket is never renderer/CLI-callable | DEL-02-07 candidate; DEL-03-01 containment crosscheck; App mirror by notice | G0.5 contract acceptance; implementation held |
-| K-ROLE-2 | Add role-posture/effective-config digest to worker identity solely for selected authority posture; never durable model assignment; record actual adapter/provider/model/substitution | DEL-02-09/10 candidates; DEL-02-04 and DEL-02-03 governance predecessors | D-GOV-35/DEL-02-03 M2 plus G-ROLE; A3 evidence label applies |
-| K-NET-1 | Enumerate OpenAI account/model/turn service endpoints separately from command network. Each canonical root chooses: (1) no command network by default; (2) ask per destination with routed `networkApprovalContext`, visible host/protocol, grouping caveat, and `acceptForSession` only by explicit user act; or (3) labelled `network_access = true` | DEL-02-08/09/10 candidates; DEL-02-04/03-01 crosschecks; App K-NET-1 mirror by notice | G0 A7 supersedes plan denial; G-APPR exact-pin proof; no current network grant |
-| Root runtime API v2 | Version one attributed approval request/decision across project, Chirality session, source/root thread, turn, request/item, kind, ancestry, and decision actor; route managed-network prompts rather than deny them; preserve grouping caveat | DEL-02-10 candidate; DEL-04-02 attribution crosscheck | contract/API acceptance then implementation act |
-| HarnessEvent v2 | Closed type-indexed discriminated union before coordinator/persistence; map `turn.completed`, `turn.failed`, `turn.interrupted`, `turn.cancelled`; reject/project/redact unknown wire payloads | DEL-02-10 candidate; DEL-05-04/05-06 evidence and mutation crosschecks | G-WIRE and accepted migration |
-| `DelegatedHarnessProcessSupervisorPort` | Root/profile worker acquisition, inventory/reconnect, generation fencing, `closeRoot`/`closeAll`; lifecycle not forced onto every engine | DEL-02-07 candidate | G-HELPER/G-DUAL and implementation act |
-| `WorkerRetirementCoordinatorPort` | Prepared/committed/reconciliation-required journal, exactly-once terminalization of captured active turns outside engine generators, root quarantine on partial persistence | DEL-02-11 candidate | G-SIG/G-DUAL and implementation act |
-| `HostedEngineConsentPort` | Assert project/canonical-root/account-or-epoch/policy/role/generation/cwd continuity before worker, thread, and turn; root-private app-owned `CODEX_HOME`; fresh consent rules when identity cannot be proven | DEL-02-09 candidate | A9; G3/G-SENT/G4 and implementation act |
-| Restart semantics | Retirement/crash terminalizes active turns. Next action uses `thread/resume` only when canonical root, account identity, and policy digest match and cwd is fixed to the canonical root; otherwise starts fresh. No in-flight re-attach claim | DEL-02-11 candidate | A4; proposed TM-ROOT-108 route; evidence still required |
-| Two-job renderer | Amend `runtime/packages/cli/src/launch-agent.ts` and related launchd/install surfaces for daemon plus process supervisor; resolve physical bundle/cadence empirically at G-HELPER | DEL-02-07 candidate; App installer notice edge | B2; proposed TM-ROOT-042 route; no spike/download/implementation now |
-| Root receipt validator | Build a Root-specific validator over the shared receipt contract, append-only numbering, transcription/hash requirements, and Root loop conventions; do not reuse App/Piping validators as Root authority | DEL-04-11 candidate; DEL-04-05, DEL-05-02, and DEL-05-06 crosschecks | later M2 tool tranche and acceptance |
-| `source_identity` at G0.5 | Bind exact accepted implementation source bytes/hashes before WP-03/WP-05; repository/planning commit is not source identity | DEL-02-06 integration plus DEL-02-12 conformance candidate | remains `HELD_UNAVAILABLE`; proposed TM-ROOT-035 route |
+| Subject | Accepted SHA-256 |
+|---|---|
+| `Brief.md` | `cdd14b18bd865060398bd8aa22157a6b86d91d7906cdf6d0f68e7ade7d559126` |
+| `Gate_1_Validation.md` | `812d0d3a33f0c2740dc89be31566a7b1f30ec833bfd99f3afe45f7bc11c99c14` |
+| `WORK_GRAPH.json` | `86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9` |
 
-## Candidate decomposition actions and affected surfaces
+The accepted action family is one `MODIFY` plus seven `ADD` actions. There is
+no package, objective, PRD scope-item, removal, reclassification, merge,
+split, retirement, or renumbering action. Candidate IDs remain
+unmaterialized until later exact-byte gates.
 
-| Action | Decomposition sections / companions | Downstream workflow | Risk if omitted |
-|---|---|---|---|
-| Modify DEL-02-06 as standing integration carrier | Deliverables, Scope Ledger, deliverable register, forward/reverse trace, telemetry, change log | SCOPE_CHANGE exact-byte gates; WORKING_ITEMS only after acceptance/activation | one M-envelope silently absorbs six implementation domains; REQ-027 breached |
-| Add DEL-02-07..12 under PKG-02 | same surfaces; later PREPARATION folders and local dependency surfaces | PROJECT_SETUP/PREPARATION after accepted amendment | unseated implementation, overlapping write ownership, no bounded SOWs |
-| Add DEL-04-11 Root Loop Receipt Validator under PKG-04 | Deliverables, Scope Ledger, deliverable register, trace/telemetry, change log; later PREPARATION folder and dependency surface | later M2 tool tranche; DEL-04-05/05-02/05-06 validation fan-in | Root receipts remain unchecked or borrow a foreign-loop validator; artifact-kind granularity is blurred |
+If all eight actions are later approved and applied exactly, projected
+topology changes from 46 to 53 deliverables: PKG-02 from 6 to 12 and PKG-04
+from 10 to 11. Package count remains 6, scope-item count 104, and objective
+count 7. These are impact projections, not live counts.
 
-No Package, Objective, PRD, or scope-item addition is proposed. No current
-deliverable folder is deleted, moved, retired, or assigned a new parent.
+## Impact summary — all eight accepted actions
 
-## DEL-02-06 REQ-027 and exclusion boundary
+Abbreviations in the table: `WS` is the SOFTWARE decomposition working
+surface; `DR` is the deliverable register; `SL` is the scope ledger; `OR` is
+the objective register; `F/R/T` are forward trace, reverse trace, and coverage
+telemetry. Exact row bytes, final objective mappings, artifact lists, types,
+Context Envelopes, and write loci belong to Gate 3.
 
-REQ-027 limits the first activation to exact specification, read-only consumer
-inventory, evidence-matrix design, and change planning; it explicitly forbids
-implementation bytes. The accepted first-activation exclusion block keeps the
-DEL-02-06 clean contract/lifecycle surfaces, decomposition/governance, all
-`runtime/**`, agents, skills, tools, App, PEC, Piping, Tier-0, and product or
-release files read-only. SCA-004 does not weaken that boundary and does not
-edit DEL-02-06.
+| Seq / action | Decomposition structure | Variant-local files and metadata | Downstream consumers / workflows | Invariant and telemetry risk |
+|---|---|---|---|---|
+| 1 — `MODIFY DEL-02-06` | Preserve DEL-02-06 under PKG-02 as the standing semantic integration and release-assurance carrier; narrow its decomposition allocation so six implementation domains no longer collapse into its M envelope. `SOW-104` and OBJ-001/002/004/007 continuity must remain explicit. | Later exact `WS`, `DR`, `SL`, `OR`, `F/R/T` changes. Existing DEL-02-06 `ScopeOfWork.md`, `_CONTEXT.md`, `_STATUS.md`, `_DEPENDENCIES.md`, and accepted compatibility package are `NO_CHANGE` in this SCA. | SCOPE_CHANGE exact-byte gates; later WORKING_ITEMS fan-in only after accepted application/activation; re-derived dependency graph and conformance fan-in. | Highest risk is accidental semantic retirement or a silent weakening of REQ-027. Gate 3 must prove the standing carrier, accepted SOW-104 coverage, four objective mappings, M split requirement, and all ten holds survive. |
+| 2 — `ADD DEL-02-07` Process Supervisor and Purpose-Limited Control | Add one PKG-02 leaf carrier for `DelegatedHarnessProcessSupervisorPort`, the purpose-limited second private socket, worker acquisition/inventory/reconnect, generation fencing, and the daemon-plus-supervisor launch topology. | Later new rows in `WS`/`DR`, allocation in `SL`/`OR`, recomputed `F/R/T`; later PREPARATION-owned folder and local metadata/dependency surface. | G-HELPER, G-DUAL, containment crosscheck through DEL-03-01, two-job renderer/installer work, App installer notice edge. | Parent exists and ID is collision-free. Risk is creating a second runtime or renderer/CLI-callable socket; exact bytes must retain one daemon as runtime broker, Unix-only `0700`/`0600` controls, token/owner/generation/stale-recovery rules, and no TCP listener. |
+| 3 — `ADD DEL-02-08` Exact Supply and Protocol Pinning | Add one PKG-02 leaf carrier for exact App Server supply/protocol pinning and separately enumerated OpenAI account/model/turn service endpoints. | Same later `WS`/`DR`/`SL`/`OR` direct edits and `F/R/T` recomputation; later folder/SOW/dependency surfaces. | Exact-pin protocol/conformance gates, G-WIRE/G-SUPPLY evidence, downstream adapter and release consumers. | Risk is conflating service endpoints with command network or smuggling a pin change into SCA-004. TM-ROOT-106 and TM-ROOT-122 remain separate G1 blockers and no pin value changes here. |
+| 4 — `ADD DEL-02-09` Hosted Account and Consent Boundary | Add one PKG-02 leaf carrier for `HostedEngineConsentPort`, root-private app-owned `CODEX_HOME`, account/epoch and policy continuity, K-ROLE-2 role-posture digest, and per-root consent state. | Same later decomposition/register/trace/telemetry changes plus PREPARATION-owned local surfaces. | G3/G-SENT/G4 consent proof, account/root registration, worker identity consumers, App consent mirror by notice. | Risk is reading ambient `~/.codex`, treating role/model as durable assignment, or reusing consent across root/account/policy drift. Exact bytes must require fresh consent when continuity cannot be proven. |
+| 5 — `ADD DEL-02-10` Adapter Event Schema and Approval API v2 | Add one PKG-02 leaf carrier for Root runtime API v2, attributed approval request/decision, closed HarnessEvent schema v2, adapter projection, and approval routing. | Same later decomposition/register/trace/telemetry changes plus PREPARATION-owned local surfaces. | DEL-04-02 attribution, DEL-05-04 claim labels, DEL-05-06 mutation controls, daemon/Electron/client fixtures and compatibility tests. | Risk is provider-shaped persistence, unattributed decisions, unknown wire payload persistence, or erasing G0 A7 by denying prompts. The four terminal events remain `turn.completed`, `turn.failed`, `turn.interrupted`, and `turn.cancelled`; unknown payloads must be rejected/projected/redacted. |
+| 6 — `ADD DEL-02-11` Worker Retirement, Restart, and Terminal Reconciliation | Add one PKG-02 leaf carrier for `WorkerRetirementCoordinatorPort`, prepared/committed/reconciliation-required journal state, exactly-once terminalization, and restart semantics. | Same later decomposition/register/trace/telemetry changes plus PREPARATION-owned local surfaces. | G-SIG/G-DUAL, session-store/turn-coordinator migration, recovery and replay evidence, TM-ROOT-108 closure path. | G0 A4 controls: active turns terminalize on retirement/crash; the next action may use `thread/resume` only with canonical-root, account-identity, and policy-digest continuity and cwd fixed to canonical root; otherwise a fresh thread. No in-flight re-attach or automatic replay claim is permitted. |
+| 7 — `ADD DEL-02-12` Runtime Conformance Evidence and Shared-Release Fan-in | Add one PKG-02 leaf carrier for Root/client conformance, exact source identity at G0.5, shared-release evidence fan-in, and hold-aware disposition. | Same later decomposition/register/trace/telemetry changes plus PREPARATION-owned local surfaces. | DEL-05-04/05-06/05-07 evidence and closure, DEL-06-01 self-application, DEL-06-07 release authority, App reciprocal notice/evidence. | Risk is treating planning/repository identity as `source_identity`, instruction-asserted evidence as mechanism proof, or evidence completeness as release authority. All ten compatibility bindings remain held until their named acts. |
+| 8 — `ADD DEL-04-11` Root Loop Receipt Validator | Add one PKG-04 `TEST_SUITE` leaf carrier for a deterministic Root-specific validator; preserve DEL-04-05 as receipt doctrine and DEL-05-02 as evidence-discipline crosscheck. Gate 3 must decide exact SOW-041/SOW-053 allocation. | Later `WS`/`DR` row, exact `SL` and `OR` mappings, recomputed `F/R/T`; later PREPARATION folder and a separately authorized `tools/**` M2 write locus. | DEL-04-05, DEL-05-02, DEL-05-06; Root loop closeout and CI; future validator implementation tranche. | Risk is leaving a new deliverable unmapped, mixing a test suite into DOC_UPDATE DEL-04-05, or borrowing App/Piping validators as Root authority. No tool write is authorized at Gate 2. |
 
-The six proposed implementation carriers do not become a workaround around
-REQ-027. Each requires accepted decomposition/SOW bytes, lawful local profile
-and checks, explicit implementation activation, exact write ownership, and
-its own return/rollback contract before any source write.
+## G0 amendment carriage
 
-## Ten held bindings — unchanged matrix
+These amendments are controlling inputs to every later exact carrier:
 
-| # | Accepted binding key | Current state | Required owning act / routing |
-|---|---|---|---|
-| 1 | `binding_groups.2_source_and_release_identities.source_identity` | `HELD_UNAVAILABLE` | exact Root implementation source identity accepted at G0.5; SCA routes, does not populate |
-| 2 | `binding_groups.2_source_and_release_identities.release_identity` | `HELD_UNAVAILABLE` | exact release identity at G6a |
-| 3 | `binding_groups.4_conformance_or_migration_evidence.clients[0]` — App | `HELD_UNAVAILABLE` | App-owned conformance at G5 and exact-release rerun at G7 |
-| 4 | `binding_groups.4_conformance_or_migration_evidence.clients[1]` — Root CLI | `HELD_UNAVAILABLE` | Root CLI conformance at G5/G7 |
-| 5 | `binding_groups.5_root_semantic_and_regression_evidence` | `HELD_UNAVAILABLE` | accepted Root implementation/check evidence at G5/G7 |
-| 6 | `binding_groups.6_census_relationship_routing_notice_and_findings.notice` | `HELD_UNAVAILABLE` | accepted release-fan-in notice after implementation/client evidence |
-| 7 | `binding_groups.6_census_relationship_routing_notice_and_findings.tier_0_relationship` | `HELD_UNAVAILABLE` | independent Tier-0 owner act |
-| 8 | `binding_groups.8_accountable_human_acts.implementation_act` | `HELD_UNAVAILABLE` | exact implementation activation at G0.5 after accepted carriers/SOWs |
-| 9 | `binding_groups.8_accountable_human_acts.cutover_act` | `HELD_UNAVAILABLE` | accountable-human cutover after accepted G2–G5 fan-in |
-| 10 | `binding_groups.8_accountable_human_acts.release_act` | `HELD_UNAVAILABLE` | exact-artifact release act at G6a |
+| Amendment | Required impact disposition |
+|---|---|
+| G0 A3 — role parity | Agent 0/1/2 role entry is always offered for Codex sessions. When G-ROLE cannot mechanically prove Agent-2 non-delegation, explicit Agent 2/TASK remains offered as `role not mechanically enforced`; governed-workflow evidence is `instruction-asserted`, and delegated-harness-native K-SUBAGENT non-delegation is instruction+config asserted rather than mechanism-proven. Hard filesystem/network/process containment is unchanged. This affects DEL-02-07/09/10/12 and their conformance evidence. |
+| G0 A4 — restart | Active turns terminalize; a later action resumes the stored thread through `thread/resume` only under canonical-root, account-identity, and policy-digest continuity with canonical cwd, otherwise creates a fresh thread. No in-flight turn re-attach. This is centered in DEL-02-11 and crosschecked by DEL-02-10/12. |
+| G0 A7 — command network | Each canonical root chooses under consent: no command network by default; ask per destination with routed `networkApprovalContext`, visible host/protocol, the stated caveat that a grant may unblock queued requests to the same destination, and `acceptForSession` only by explicit user act; or labelled `network_access = true`. OpenAI account/model/turn service endpoints remain separately enumerated. G-APPR must prove prompt delivery and observe grouping empirically at the exact pin. This affects DEL-02-08/09/10/12. |
 
-Authority source: accepted compatibility snapshot
-`DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md`
+## DEL-02-06 REQ-027 and ten-binding hold matrix
+
+REQ-027 still limits the first DEL-02-06 activation to exact specification,
+read-only consumer inventory, evidence-matrix design, and change planning; it
+forbids implementation bytes. Adding candidate implementation carriers does
+not bypass that boundary: each later carrier needs accepted decomposition and
+SOW bytes, PREPARATION, exact activation, declared writes/checks, and its own
+return/rollback contract.
+
+The accepted `root-runtime-1` epoch-1 compatibility package remains unchanged:
+
+| # | Binding | Gate/owner that remains required | Gate-2 state |
+|---:|---|---|---|
+| 1 | `binding_groups.2_source_and_release_identities.source_identity` | exact Root implementation source bytes/hashes accepted at G0.5 | `HELD_UNAVAILABLE` |
+| 2 | `binding_groups.2_source_and_release_identities.release_identity` | exact release identity at G6a | `HELD_UNAVAILABLE` |
+| 3 | `binding_groups.4_conformance_or_migration_evidence.clients[0]` — App | App-owned conformance at G5 and exact-release rerun at G7 | `HELD_UNAVAILABLE` |
+| 4 | `binding_groups.4_conformance_or_migration_evidence.clients[1]` — Root CLI | Root CLI conformance at G5/G7 | `HELD_UNAVAILABLE` |
+| 5 | `binding_groups.5_root_semantic_and_regression_evidence` | accepted Root implementation/check evidence at G5/G7 | `HELD_UNAVAILABLE` |
+| 6 | `binding_groups.6_census_relationship_routing_notice_and_findings.notice` | release-fan-in notice after implementation/client evidence | `HELD_UNAVAILABLE` |
+| 7 | `binding_groups.6_census_relationship_routing_notice_and_findings.tier_0_relationship` | independent Tier-0 owner act | `HELD_UNAVAILABLE` |
+| 8 | `binding_groups.8_accountable_human_acts.implementation_act` | exact implementation activation at G0.5 | `HELD_UNAVAILABLE` |
+| 9 | `binding_groups.8_accountable_human_acts.cutover_act` | accountable-human cutover after G2–G5 fan-in | `HELD_UNAVAILABLE` |
+| 10 | `binding_groups.8_accountable_human_acts.release_act` | exact-artifact release act at G6a | `HELD_UNAVAILABLE` |
+
+Authority: `DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md`
 and accepted JSON SHA-256
 `e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c`.
 
-## Task Management disposition candidates
+## Derivative-package status
 
-These are candidate dispositions only. The register is untouched; see
-`Task_Management_Harvest.csv`.
-
-| Row | SCA-004 treatment | Closure condition |
-|---|---|---|
-| TM-ROOT-035 | route exact `source_identity` to G0.5 before code | remain OPEN until accountable-human identity act is recorded; then `RESOLVED_BY_DECISION` under Task Management |
-| TM-ROOT-042 | carry logical-composition/physical-bundling question to G-HELPER | remain OPEN until accepted G-HELPER evidence/ruling; no bundling answer inferred now |
-| TM-ROOT-107 | this is the ancestor concern answered by SCA-004 | after owner accepts the SCA Gate-1 intake, Task Management may set `SUPERSEDED_BY_SCOPE_CHANGE` with exact ScaRef; not before |
-| TM-ROOT-108 | carry A4 terminalize/resume-or-fresh semantics into DEL-02-11 | remain OPEN until implemented restart/replay evidence satisfies its existing closure target |
-| TM-ROOT-106 | named G1 blocker only; no Pi pin amendment | unchanged OPEN; separate routine Task Management decision + validation evidence |
-| TM-ROOT-122 | named G1 blocker only; no Electron pin amendment | unchanged OPEN; separate App-owned disposition/Root closure evidence |
-
-No other Task Management row is selected.
-
-## Package-role and derivative-state classification
-
-| Surface | Role | Current effect | Later owner/workflow action |
+| Package | Owner | Status at this Gate-2 assessment | Required rerun / closure action |
 |---|---|---|---|
-| Root decomposition + companion registers | working surface / authoritative companion registers | `NO_CHANGE` | exact Gate-3 candidate only after Gate 1 and Gate 2 acceptance |
-| SCA-004 snapshot | snapshot / handoff artifact; derivative assessment | new, `AWAITING_OWNER_ACCEPTANCE` | owner Gate-1 ruling |
-| WORK_GRAPH / DAG | derivative coordination package | current for this assessment only | re-derive after any accepted carrier topology change |
-| AUDIT_DEP_CLOSURE return | derivative audit evidence | current for exact graph hash only | rerun on graph drift or post-amendment graph |
-| DEL-02-06 accepted compatibility package | accepted derivative semantic/compatibility package | unchanged; all holds remain | owning acts only |
-| DEL-02-06 ScopeOfWork / status / run records | deliverable-local contract/evidence | `NO_CHANGE` | none in this tranche |
-| Root `docs/**`, `runtime/**`, `tools/**` | authoritative/operative downstream surfaces | `NO_CHANGE`, read-only | separate accepted tranches |
-| App surfaces | foreign authority | `NO_CHANGE`; notice only | SCA-APP-008 under App authority |
+| SCA-004 Gate-2 assessment | SCOPE_CHANGE | `AWAITING_OWNER_GATE_2_ACCEPTANCE` | Owner accepts, corrects, or declines exact Gate-2 bytes. |
+| Gate-1 `WORK_GRAPH.json` / `DAG.md` | SCOPE_CHANGE / AUDIT_DEP_CLOSURE | `CURRENT_FOR_UNCHANGED_GATE_1_GRAPH` | No rerun now because graph bytes are unchanged. Re-derive after any accepted carrier topology is materialized, then rerun AUDIT_DEP_CLOSURE. |
+| Gate-1 scoped AUDIT_DECOMP baseline | AUDIT_DECOMP / SCOPE_CHANGE consumer | `CURRENT_FOR_PROTECTED_GATE_1_BASIS` | Before application, rerun if any bound decomposition/register/pointer byte drifts; after application, run fresh post-change audit and exact delta. |
+| Root decomposition coverage/trace derivatives | SCOPE_CHANGE at application | `CURRENT_NOW`; `STALE_REBUILD_REQUIRED` after an accepted topology edit | Recompute forward trace, reverse trace, and telemetry from exact accepted rows; validate zero unmapped IN items/objectives/deliverables. |
+| DEL-02-06 accepted compatibility package | DEL-02-06 owner | `CURRENT_UNCHANGED_WITH_TEN_HOLDS` | No regeneration at Gate 2. Later implementation/conformance acts populate only their owned bindings. |
+| New deliverable folders, SOWs, local metadata, dependencies | PROJECT_SETUP / PREPARATION and later WORKING_ITEMS | `NOT_CREATED_NOT_AUTHORIZED` | Only after accepted Gate-3/4/5 amendment: prepare exact folders/SOW candidates, dependency extraction, validation, and separate activation. |
+| Root estimate/schedule packages | estimate-snapshot / PROJECT_SETUP scheduling | `NO_ACCEPTED_SURFACE_IDENTIFIED_FOR_CURRENT_CANDIDATES`; would be stale after topology application | Produce fresh estimates for seven new carriers and reassess DEL-02-06; recompute schedule only after exact dependencies and activation gates exist. |
+| App SCA-APP-008 carrier/contract package | App SCOPE_CHANGE and App owners | `FOREIGN_AUTHORITY_NOTICE_ONLY` | App reciprocates under its own SCA; Root consumes only accepted notice/evidence. |
 
-## Evidence basis for current-state claims
+## Derivative-surface classification
 
-| Surface | SHA-256 | Claim supported |
+Classification describes the later impact if Gate 3 exact bytes, Gate 4
+propagation, and Gate 5 application are separately approved. Nothing in the
+table authorizes those writes now.
+
+| Surface | Package role | Classification | Authority basis / Gate-2 disposition |
+|---|---|---|---|
+| `execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md` | working surface | `DIRECT_EDIT` later | Eight accepted actions; exact semantic-section diff required at Gate 3. `NO_CHANGE` now. |
+| `execution/_Decomposition/chirality_root_deliverable_register_v1_0.csv` | authoritative companion register | `DIRECT_EDIT` later | One modified plus seven added deliverable rows; exact bytes required at Gate 3. |
+| `execution/_Decomposition/chirality_root_scope_ledger_v1_0.csv` | authoritative companion register | `DIRECT_EDIT` later | Preserve SOW-104 and allocate carriers; decide exact SOW-041/SOW-053 receipt mapping at Gate 3. |
+| `execution/_Decomposition/chirality_root_objective_register_v1_0.csv` | authoritative companion register | `DIRECT_EDIT` later | Add exact accepted deliverable mappings without creating objectives. |
+| `execution/_Decomposition/chirality_root_prd_coverage_forward_v1_0.csv` | authoritative trace derivative | `RECOMPUTE` later | Recompute from accepted scope/deliverable/objective rows. |
+| `execution/_Decomposition/chirality_root_trace_reverse_v1_0.csv` | authoritative trace derivative | `RECOMPUTE` later | Add seven live deliverable traces and revalidate all existing units. |
+| `execution/_Decomposition/chirality_root_coverage_telemetry_v1_0.md` | authoritative telemetry derivative | `RECOMPUTE` later | Projected deliverable/package counts and envelope distribution must be generated from exact Gate-3 rows. |
+| `execution/_ScopeChange/SCA-004_2026-08-22_1749/Decision_Log.md`, `Impact_Assessment.md`, `Handoff_State.md` | snapshot / handoff artifacts | `DIRECT_EDIT` now | Owner R1-C opens Gate 2; this tranche owns only these Gate-2 state records. |
+| `Brief.md`, `Gate_1_Validation.md`, `Parsed_Actions.csv`, `WORK_GRAPH.json`, `DAG.md` | protected Gate-1 snapshot/evidence | `NO_CHANGE` | R1-C binds the first three subjects; steer requires all five byte-identical. |
+| `Evidence/AUDIT_DEP_CLOSURE/**` | derivative audit evidence | `NO_CHANGE` | Exact graph unchanged; existing return remains evidence only for graph SHA `86159f1e…78e9`. |
+| `execution/_ScopeChange/_LATEST.md` | snapshot pointer | `NO_CHANGE` in Phase 0b | Explicit tranche prohibition; future Gate-5 pointer treatment requires its own accepted authority. |
+| DEL-02-06 `ScopeOfWork.md`, `_STATUS.md`, accepted compatibility bytes | deliverable contract/lifecycle/accepted derivative | `NO_CHANGE` | R1-C changes no SOW/lifecycle/binding; REQ-027 and all ten holds remain. |
+| Root `docs/**`, `runtime/**`, `tools/**` | normative/operative downstream surfaces | `NO_CHANGE` by N2 | Later separately authorized contract, implementation, or M2 tool tranches only. N1's separately bounded D-GOV-35/DEL-02-03 application is not an N2 write. |
+| App and Piping truth | foreign authority | `NO_CHANGE` | Notices coordinate; they do not confer authority. |
+
+## Orphan, mapping, and structural risk
+
+| Risk measure | Current live state | Projected / required disposition |
+|---|---:|---|
+| Parentless live deliverables | 0 introduced | All six runtime additions bind to existing PKG-02; receipt validator binds to existing PKG-04. |
+| Removed/reused IDs | 0 | None permitted; all existing IDs stable. Candidate IDs remain reserved-only until application. |
+| Parent child-closure actions | 0 | Not triggered: no package or other parent is removed, moved, merged, split, or reclassified. |
+| Candidate deliverables awaiting exact scope mapping | 7 | They are not live or orphaned. Gate 3 must bind DEL-02-07..12 to retained SOW-104 allocation and bind DEL-04-11 to the exact accepted SOW-041/SOW-053 choice. |
+| Candidate deliverables awaiting exact objective mapping | 7 | Gate 3 must name the objective set for every row and update the objective register consistently. |
+| Candidate folders/SOW/dependency records absent | 7 | Expected and non-blocking at Gate 2; they remain forbidden until later accepted amendment and PREPARATION acts. |
+| Current IN scope items without mapping / objectives without support | 0 / 0 | Must remain zero after deterministic post-amendment register and AUDIT_DECOMP validation. |
+
+The main orphan risk is therefore not a current dangling row; it is applying
+candidate deliverables without the exact synchronized working-surface,
+register, trace, telemetry, and later folder/SOW/dependency set. Gate 3 and
+Gate 4 must show that full set before Gate 5 can be considered.
+
+## Estimate and schedule staleness
+
+No accepted estimate or schedule surface for these seven candidate
+deliverables exists, so Gate 2 does not mark a live estimate file stale.
+After topology application:
+
+1. DEL-02-06's prior M-envelope assumptions must be reassessed against its
+   narrowed integration/fan-in role.
+2. Each added carrier requires its own estimate only after exact SOW, Context
+   Envelope, anticipated artifacts, write locus, dependencies, and gates are
+   accepted.
+3. Dependency extraction precedes schedule recomputation. Cross-loop App
+   notices remain non-gating; only an accepted later fan-in criterion can
+   affect readiness sequencing.
+4. TM-ROOT-106 and TM-ROOT-122 remain G1 blockers and may change schedule risk
+   only through separate owner disposition; no pin assumption is embedded
+   here.
+
+## Active snapshot and handoff impact
+
+- The accepted decomposition basis remains revision 1.2 at SHA-256
+  `23f6ae0fd3088313d84b4f5bb2d36b207ba7a5442cfc5b776a3e4da2faa64f3d`.
+- `_LATEST.md` remains byte-identical at SHA-256
+  `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1`
+  and continues to identify applied SCA-002. SCA-004 is the single evolving
+  assessment folder but is not accepted decomposition truth.
+- D-GOV-35 is `RULED` by R1-A. Its DEL-02-03 M2 application belongs to sibling
+  N1 and does not itself accept this Gate-2 assessment or open Gate 3.
+- `Handoff_State.md` moves from the completed Gate-1 decision to
+  `AWAITING_OWNER_GATE_2_ACCEPTANCE`; `ReadyForNextPhase` remains `NO`.
+- TM-ROOT-107 and TM-ROOT-126 dispositions belong to sibling N3 routine Task
+  Management. They do not change SCA-004's decomposition authority.
+
+## Recommended reruns and later owning workflows
+
+| Trigger | Required action | Owner |
 |---|---|---|
-| `docs/CONTRACT.md` | `ed87eaff4e936bb76f94e1bf3018f708c54c23167e6b4884a7f17193c9dcf679` | current Root K-RUNTIME-1/K-CONTROL-1/K-ROLE-2 wording |
-| `projects/chirality-app-dev/docs/CONTRACT.md` | `6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7` | current App K-EVENT/K-NET and related contract posture |
-| `runtime/packages/contracts/src/harness/event-schema.ts` | `8c6d17f0547f9433d9a2b0892ba50c266b08918142e39984ecc0a7d479661a2f` | current open HarnessEvent shape requiring v2 closure |
-| `runtime/packages/contracts/src/harness/agent-engine-port.ts` | `c51d2b6a173f300acedee468f8e51b29cea2bd946bcdec300eaaa4a3d06a8e5d` | current live engine-port boundary |
-| `runtime/packages/core/src/session-store.ts` | `fe81bc9a51ad7ebbeb2c1486fc802dffafde434d4d56d677c17347893150ffad` | fixed-root/session persistence impact |
-| `runtime/packages/core/src/turn-coordinator.ts` | `992d501b49629b88cb72e42ad2c54d7934859da7e3a822259c68151e3ab3715b` | terminal and approval coordinator impact |
-| `runtime/packages/cli/src/launch-agent.ts` | `1c3992ff3ca595cedfb648c9cae0aebfd557c2bb9b68e620b8b89799ddfcea27` | current daemon-only renderer targeted by the later two-job change |
-| `tools/validation/loop_receipt_contract.py` | `1b6907f5cc9ec4506a9954562a99df3e43c4fa62fab120f1dbec2726c4f687aa` | shared receipt contract exists |
-| `tools/validation/validate_app_dev_loop_receipts.py` / `validate_piping_loop_receipts.py` | `daf01933ecade2e62db95cbb48cdb763ae99f64da85b31e0e8b934ebbfd62f64` / `b6891b75614a183e4f0e33be8315a8ac49a2a4baa9a9d11ccfd8f704504a7965` | foreign-loop validators exist while a Root-specific validator does not |
+| Before drafting Gate 3 | Reverify all bound decomposition/register/pointer hashes and candidate-ID absence; rerun the accepted Gate-1 AUDIT_DECOMP baseline if any bound input drifted. | SCOPE_CHANGE + AUDIT_DECOMP |
+| Gate 3 candidate | Draft exact synchronized bytes for the working surface, deliverable/scope/objective registers, forward/reverse trace, and telemetry; prove package discipline, artifact-kind granularity, Context Envelopes, mappings, and count parity. | SCOPE_CHANGE |
+| Gate 4 candidate | Enumerate PREPARATION handoffs, seven SOW candidates, dependency extraction, estimate/schedule follow-ons, notices, exact write ownership, and validation. | SCOPE_CHANGE → PROJECT_SETUP/PREPARATION and downstream owners |
+| After separately approved application | Run deterministic register/coverage checks and fresh scoped AUDIT_DECOMP; compare against Gate-1 baseline. | SCOPE_CHANGE + AUDIT_DECOMP |
+| After new folders become live | Re-derive `WORK_GRAPH.json`/`DAG.md` using live nodes, recompute SCCs, and rerun AUDIT_DEP_CLOSURE. | SCOPE_CHANGE + AUDIT_DEP_CLOSURE |
+| Before implementation | Resolve exact accepted SOWs, D-GOV-35/DEL-02-03 role basis, G-HELPER/G-SBX/G-PROT/G-ROLE/G-APPR/G-WIRE gates, TM-ROOT-106/122, and accountable-human implementation acts. | owning Root workflows / Ryan Tufts |
+| Cross-loop fan-in | Route/consume SCA-APP-008 notices and later accepted App conformance without Root writing App truth. | Root/App coordination under separate authorities |
 
-## Invariant and risk assessment
+## Gate-2 conclusion and question
 
-- Stable IDs are preserved; proposed IDs are collision-free and unmaterialized.
-- Package discipline remains flat: runtime carriers stay in PKG-02; loop
-  validator stays in PKG-04.
-- Existing scope coverage remains unchanged at this gate. Later exact bytes
-  must keep every IN scope item mapped and every objective supported.
-- The principal context risk is silent expansion of DEL-02-06 beyond M;
-  splitting is therefore a Gate-1 requirement, not implementation detail.
-- The principal authority risk is reading notices, plan prose, current code,
-  or a planning commit as an accepted contract/source/implementation act.
-- The principal cross-loop risk is circular readiness. All reciprocal App
-  edges are notice-only and non-gating until decomposed and accepted.
-- The principal network risk is erasing G0 A7 by retaining the plan's older
-  denial text. Later candidates must carry the three postures and grouping
-  caveat exactly.
-- The principal recovery risk is claiming in-flight re-attach. Only
-  terminalize plus conditional persisted-thread resume is in scope.
+`PASS_TO_OWNER_GATE_2_WITH_EXACT_GATE_3_REQUIREMENTS`.
 
-## G1 blockers and later reruns
+The eight accepted actions are impact-assessable without changing live truth.
+Their lawful path requires synchronized decomposition/register/trace/telemetry
+bytes, later PREPARATION and dependency work, explicit estimate/schedule
+refresh, and re-derived graph/audit evidence after topology is live. G0
+A3/A4/A7 and the ten held bindings remain explicit and unchanged.
 
-TM-ROOT-106 and TM-ROOT-122 remain explicit G1 blockers. They do not block the
-owner from accepting this Gate-1 intake, but they block G1 passage and identity
-freeze. SCA-004 carries no pin change.
-
-If Gate 1 is accepted, Gate 2 must refine exact carrier impacts. Later gates
-must run AUDIT_DECOMP before and after the exact amendment, regenerate the
-release-pathway graph, rerun dependency closure, create accepted SOWs and
-folders through their owning workflows, and route exact notices without
-foreign writes.
+Does the owner accept this Gate-2 impact assessment? Until that answer is
+recorded against these exact bytes, Gate 3 remains closed.

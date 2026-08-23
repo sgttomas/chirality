@@ -1,6 +1,6 @@
-# SCA-004 decision log — Gate 1
+# SCA-004 decision log — Gates 1–2
 
-Status: `AWAITING_OWNER_ACCEPTANCE`
+Status: `AWAITING_OWNER_GATE_2_ACCEPTANCE`
 
 | Ref | Date | Status | Record |
 |---|---|---|---|
@@ -12,8 +12,34 @@ Status: `AWAITING_OWNER_ACCEPTANCE`
 | G1-DRAFT-006 | 2026-08-22 | MANAGER_GRAPH_CALL | Cross-loop reciprocity is represented only as typed App notice edges. The non-trivial notice SCC is non-gating and proposed for `DECOMPOSE`; no cut/merge authority is inferred. |
 | G1-DRAFT-007 | 2026-08-22 | NO_EFFECT | All ten DEL-02-06 bindings remain `HELD_UNAVAILABLE`; `_LATEST.md`, Task Management, deliverable status, decomposition truth, runtime, tools, and App truth remain unchanged. |
 | G1-DRAFT-008 | 2026-08-22 | REQUIRED_BASELINE | Fresh scoped SOFTWARE AUDIT_DECOMP covered affected live carriers DEL-02-06, DEL-04-05, and DEL-05-02: 3/3 packages, deliverables, and contexts; 5/5 relevant objectives; 0 BLOCKER, 0 WARNING, 11 lifecycle-appropriate INFO. It is derivative evidence only and opens no later gate. |
+| G1-ACCEPTED-001 | 2026-08-22 | `G1-ACCEPTED` | Ryan Tufts accepted the eight parsed actions against the exact three subject identities reproduced verbatim below. This opens Gate 2 impact refinement only. |
+| G2-IMPACT-001 | 2026-08-22 | `PENDING_OWNER_ACCEPTANCE` | `Impact_Assessment.md` is the Gate-2 impact assessment. No Gate-3 exact amendment, decomposition write, companion-register write, folder/SOW creation, implementation authority, or hold lift is opened or inferred. |
+
+## G1-ACCEPTED owner record (verbatim)
+
+Source:
+`plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md`,
+SHA-256
+`a9879a87faaeb4cd4d5f16b2b4b0364543dff117e1b51c7e17d1efdcb20f377d`.
+
+<!-- BEGIN R1-C VERBATIM -->
+R1-C — SCA-004 Gate 1 (v3 release-pathway Root carrier intake): [click]
+  "Accept as parsed".
+  Subject bytes: `execution/_ScopeChange/SCA-004_2026-08-22_1749/Brief.md`
+  SHA-256 `cdd14b18bd865060398bd8aa22157a6b86d91d7906cdf6d0f68e7ade7d559126`;
+  `Gate_1_Validation.md` SHA-256
+  `812d0d3a33f0c2740dc89be31566a7b1f30ec833bfd99f3afe45f7bc11c99c14`;
+  `WORK_GRAPH.json` SHA-256
+  `86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9`.
+  Recorded form: the owner accepts the eight parsed actions — MODIFY
+  DEL-02-06 as the standing integration/release-assurance carrier; ADD
+  DEL-02-07 through DEL-02-12 under PKG-02; ADD DEL-04-11 under PKG-04 — with
+  all ten DEL-02-06 bindings held and App coupling as notice edges only.
+  Acceptance opens Gate 2 impact refinement only; it creates no folder, SOW,
+  mapping, or implementation authority, and no later gate is inferred.
+<!-- END R1-C VERBATIM -->
 
 ## Pending owner decision
 
-Accept, correct, or decline the exact Gate-1 intake package. No later gate or
-live effect exists until that ruling is recorded against exact package bytes.
+Accept, correct, or decline the exact Gate-2 `Impact_Assessment.md`. Gate 3 is
+not open until that ruling is recorded against exact Gate-2 bytes.

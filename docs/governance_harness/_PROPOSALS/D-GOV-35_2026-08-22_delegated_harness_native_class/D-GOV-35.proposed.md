@@ -161,3 +161,5 @@ publication, or merge act is contained in this record.
 
 Authorship, review, validation, Git state, or later citation must not replace
 the required owner act.
+
+RULED 2026-08-22 — see `_DECISIONS/D-GOV-35_delegated_harness_native_class.md`

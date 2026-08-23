@@ -1,0 +1,25 @@
+{
+  "instance_id": "A2_GATE2_TRACE",
+  "parent": "N2_SCA004_GATE2",
+  "status": "COMPLETE",
+  "basis": "b143444bd497eae1b1b638670a33e6df756d9084",
+  "mode": "READ_ONLY_COMPLETENESS_REVIEW",
+  "verdict": "NOT_READY_FOR_GATE_2_OWNER_REVIEW",
+  "action_rows_accounted": 8,
+  "four_lenses_per_action": true,
+  "blocking_findings": 5,
+  "g0_checks": {
+    "A3": "INCOMPLETE_IN_CURRENT_GATE2_TEXT",
+    "A4": "PASS_CURRENT_CONTENT",
+    "A7": "PASS_CURRENT_CONTENT"
+  },
+  "held_binding_check": "PASS_CURRENT_CONTENT_EXACTLY_TEN_HELD_UNAVAILABLE",
+  "gate_boundary_check": "NO_GATE_3_NO_HOLD_LIFT_NO_APP_AUTHORITY",
+  "outputs": [
+    "RETURN.md",
+    "STATUS.json"
+  ],
+  "writes_outside_child_folder": false,
+  "delegated": false,
+  "next_owner": "N2_SCA004_GATE2"
+}

@@ -4228,3 +4228,330 @@ D3 — D-APP-103: owner text: "I agree with your proposal." — SCA-APP-008 reco
   notice routing, hold lift, pin change, lifecycle, release, reliance, PR
   approval, or merge effect. PR #620 remains open and must not be merged by
   this session.
+
+### Receipt 115 — 2026-08-22 — Root v3 Phase 0b D-GOV-35 application, SCA-004 Gate 2, and TM dispositions
+
+- **Mode, branch, and authority:** owner-directed HELP_HUMAN run
+  `ROOT_V3_PHASE0B_2026-08-22` on
+  `codex/root-v3-phase0b-2026-08-22`, branched cleanly from current
+  `origin/main@b143444bd497eae1b1b638670a33e6df756d9084`.
+  The basis contains PR #620 merge
+  `abf3c1bf5996cd9333ad706df14e62df32fbbf0f`. Owner steer SHA-256 is
+  `c4b674327b78434561a42f93b8bb34e50921281459ec00ca6c8afaaa9ebb80e2`;
+  attached R1 ruling-record SHA-256 is
+  `a9879a87faaeb4cd4d5f16b2b4b0364543dff117e1b51c7e17d1efdcb20f377d`.
+  Receipt 114 was terminal at preflight. The two CHAT_TRANSCRIPTION blocks
+  below reproduce the source files byte-for-byte. Receipt 114's G0 record is
+  cited at SHA-256
+  `86b9877c6bea08a9f79c2af2378d5d38722a09c1a10deb37f87211c76d2c290b`
+  and is not re-pasted.
+- **Basis gate and currentness:** every required basis identity reproduced:
+  pre-application `AGENTS.md`
+  `268becd0bac9da8421b30089e4e4167a5e5f79bf3892d0f72ad41a63180a3aeb`;
+  proposal / patch / impact / README
+  `924c1b098f1510bca9189e1ac06e4c2fd8e9d358a9fc3c4e42fdd04a53b69c88`,
+  `4455adda4199be5493e1f8d2171ebb4641f40666c35cf09e90adc935ff6355ee`,
+  `565e651963b08f74622ca0e0d32b66d6d301c3ef95c159867b4e41a6fbd98435`,
+  `c8e1b1cac088d8b34f16b8cbd77ee468178ad5d4030b3e8041aa26c97c4353c5`;
+  the three concordance sources
+  `5de31f552bea356629ad29af9bc664f33d49392d1c63fc2fb4dc70614abd7df9`,
+  `c97e1d73d6ea495bcfd4d632ee3a8c6ba8ff3caabd9fa2e57a245b78416335fe`,
+  `65ce988c96422c3bc3236e50cd0aae3a264fb11a9e24a1cef0d8991da0f24bbc`;
+  decision register / D-GOV-14
+  `9250db21e6be962b46b28ee1085a218b1d111d2ed8c4b986e529402c077c9f8b` /
+  `9d6dd7e4fdf96219c74a6fc728f441ecc2eabbde9bc141b5cc40d909e088f74e`;
+  N2 draft / prep handoff / DEL-02-03 SOW / status
+  `59f0ed42ce498a6d3fbed9148b70691a0e4ceda49e37c890ed8391c4861ef7da`,
+  `91ba1b5685c654851bd40aec187a8c3aceb8ff21cd877c793476612d217fb83c`,
+  `e3d4a4c862919acf00c777cb024f0c4f9456df25fa14448862830241d607460f`,
+  `9fdd785881eef6ee4f210bcb381dedd757c5748f939743038541dd9e894cbdfa`;
+  SCA Brief / Gate 1 / graph / handoff
+  `cdd14b18bd865060398bd8aa22157a6b86d91d7906cdf6d0f68e7ade7d559126`,
+  `812d0d3a33f0c2740dc89be31566a7b1f30ec833bfd99f3afe45f7bc11c99c14`,
+  `86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9`,
+  `9a3193a2a55ab4a12d015d4ff859773233d063d0e4c566be04cb648cdc036c6a`;
+  ScopeChange `_LATEST.md`
+  `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1`;
+  and basis live register
+  `cd0f1b96c500bcf7bc0886a0d5d20459129b10a86b4f106798a560432adcb5e9`.
+  Step-0 guards G0-G4 passed; all 46 Root deliverables re-derived as
+  `INITIALIZED`. A terminal fetch found `origin/main` still exactly
+  `b143444bd497eae1b1b638670a33e6df756d9084`; no sync was required or made.
+- **N1 — ruled decision and M2 application:** commit
+  `294e846bc762b96ac780d49f0137f61eb4dde779`. Its content write set is
+  exactly `AGENTS.md`; the three named concordance documents; the D-GOV-35
+  decision record and decision register; the proposal README and proposed
+  decision status updates; live manifest
+  `ROOT-DGOV35-DELEGATED-HARNESS-NATIVE-20260822.yaml`; the two routed
+  App/Piping notices; `DEL-02-03-M2-APPLY-001/**`; the preparation handoff;
+  and one DEL-02-03 status History entry with Current State unchanged. Its
+  control write set is the run plan/graph and N1 instance tree. Post-apply
+  `AGENTS.md` SHA-256 is
+  `377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3`;
+  D-GOV-35 record SHA-256 is
+  `a21ba1fe6cc7277384b90755d9f925d61990ce7bdbee3794ce06b271a34fccc2`;
+  live-manifest SHA-256 is
+  `725761a66bdf698527c3dbe1cb9dc6825e78486e500f8dfbfc060915c5aadb03`.
+  Manager return SHA-256 is
+  `78d9fd32162958c4c7caca37827323aa7fd447da6e94a096640a8a24716514b2`.
+  The manager rejected an initial child return for a wrong normalized README
+  self-hash; independent review cycle 1 then found missing exact
+  stdout/stderr/exit-code evidence. Both failures and bounded repairs are
+  preserved. Fresh independent review cycle 2 passed with zero findings.
+  Literal scratch patch reproduction, three one-line concordance diffs,
+  direct manifest `failures=[]`, hashes, notices, containment, agent
+  validators, whitespace, and post-commit CI-form G4 all pass.
+- **N2 — SCA-004 Gate 2:** commit
+  `9c125f2ca8601f96d88867759e8ecf6275699ac0`. Its content write set is
+  exactly SCA-004 `Decision_Log.md`, `Impact_Assessment.md`, and
+  `Handoff_State.md`; its control write set is the N2 instance tree.
+  Result hashes are
+  `bfc184ff50af1f2ba9b9d18ab9d035f9abbaaadd41eae9e99660fcbb51f494dc`,
+  `ff370baaa72a871c2bf7f4c0ade0b41966f414ab8e3f1fb5ae1efe4ba91ed3d3`,
+  and
+  `971c63bbda66c420f3ffaf581967a9675ae82260a081e3caaaa373cb73e4947c`.
+  Manager return SHA-256 is
+  `edbb53799675706acd0d4dc6f63e022ae07514763a9e16340521bfbad0db89e9`;
+  independent review SHA-256 is
+  `6b276e9308cf11cb2128145eaef346105429bf558424dcd6f69e33124a6e72f0`,
+  verdict PASS / zero findings. Earlier child reviews found and repaired the
+  missing exact A3 and A7 consequences; their history remains. All eight
+  actions and four impact lenses pass. `Brief.md`, `Gate_1_Validation.md`,
+  `Parsed_Actions.csv`, `WORK_GRAPH.json`, `DAG.md`, and `_LATEST.md`
+  remain byte-identical; no dependency audit rerun was required and Gate 3
+  remains closed.
+- **N3 — Task Management dispositions:** commit
+  `04934179f998b3cc5c6113a37edfded3e6e60b71`. Its content write set is
+  exactly the new R1-D ruling record, live and closed Root registers, and the
+  Root handoff count paragraph; its control write set is the N3 instance tree.
+  The prescribed taskmgmt archive moved exactly TM-ROOT-107 to
+  `SUPERSEDED_BY_SCOPE_CHANGE` / `ScaRef=SCA-004` and TM-ROOT-126 to
+  `RESOLVED_BY_DECISION`, with reviewed evidence SHAs. Protected rows
+  TM-ROOT-035/-042/-108/-106/-122 are byte-identical. Final hashes are live
+  register
+  `89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518`,
+  closed register
+  `c8a58b08a30dea35fc361d08fec81e405fa08d40f04604709a6dd9b806e45e1c`,
+  ruling
+  `d7c28c4bbc1efd42dddc031a9ccb78e449ef30609eafb8aa8ebdd84d227eb722`,
+  and Root handoff
+  `ca300e2a49039577bc955bf91a315510c5630d10ac20a49b244a274da123938f`.
+  Counts reconcile to 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived.
+  Independent review cycle 2 SHA-256 is
+  `62d125b0635dee8d2492ef5d52e071a677ca6e89ce02ff966675d27f11766ae8`,
+  verdict PASS / zero findings. Federation preflight completed over four
+  canonical registers with zero errors/writes; both Root registers validate.
+- **Integrated validation:** candidate whitespace is clean; agent instructions
+  pass 34 files / 0 errors / 0 warnings; instruction entrypoints are canonical;
+  CI-form G4 passes 44 schema-valid manifests, 63 changed paths, nine
+  instruction-surface paths, one covering added manifest; Task Management
+  validates 19 live rows; `git diff --check` passes; run JSON parses.
+  Protected SCA hashes reproduce, including `_LATEST.md`
+  `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1`.
+  Exact command outputs are retained in
+  `execution/_Coordination/AgentRuns/ROOT_V3_PHASE0B_2026-08-22/FINAL_VALIDATION.md`,
+  SHA-256
+  `e954174ece0f6eca738d1d6b1392d11dad6e35892cfde66519c72ce6d7fe5997`.
+- **Git publication:** the validated four-commit branch was pushed normally
+  and ready-for-review PR #622 was opened against `main`:
+  `https://github.com/sgttomas/chirality/pull/622`. Its initial head was
+  closeout commit `dd0992d0bf57f2b4ff6fd1429aff0dd6d64f7927` after ordered
+  commits N1 `294e846bc762b96ac780d49f0137f61eb4dde779`, N2
+  `9c125f2ca8601f96d88867759e8ecf6275699ac0`, and N3
+  `04934179f998b3cc5c6113a37edfded3e6e60b71`. The PR is open,
+  non-draft, unmerged, and has no auto-merge request. This publication
+  breadcrumb is appended in-PR; no approval or merge is performed.
+- **Gate and derivative disposition:** D-GOV-35 is RULED and its instruction
+  application is prepared in the candidate branch, but PublicationSHA and
+  EffectiveSHA remain `TBD` for later routine post-merge backfill. The public
+  export remains deferred to the next export release. SCA-004 is
+  `AWAITING_OWNER_GATE_2_ACCEPTANCE`; Gate 3 is closed and `_LATEST.md`
+  is unchanged. All ten `HELD_UNAVAILABLE` bindings, TM-ROOT-106/-122 pin
+  blockers, artifact-download prohibition, and App-loop authority boundary
+  remain. This receipt creates no hold lift, implementation, lifecycle,
+  release, reliance, owner Gate-2 acceptance, App adoption, pin change, export,
+  PR approval, or merge effect.
+
+#### CHAT_TRANSCRIPTION — Root v3 Phase-0b owner steer
+
+Source: `plans/steers/chirality_app_v3_phase0b_steer_root_2026-08-22.md`
+
+SHA-256: `c4b674327b78434561a42f93b8bb34e50921281459ec00ca6c8afaaa9ebb80e2`
+
+<!-- BEGIN RECEIPT-115 STEER VERBATIM -->
+# STANDING DIRECTION — Root governance loop — v3 release pathway, Phase 0b (D-GOV-35 application, SCA-004 Gate 2, TM-ROOT-107)
+
+> **Plans-folder status:** ACTIVE owner-carried steer — non-governing. Owner: Ryan Tufts. Scope: Root Phase 0b of the v3 release pathway. Target workspace: Root governance loop. Paste together with `plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md`; the G0 record `plans/steers/chirality_app_v3_g0_record_2026-08-22.md` is already transcribed in Receipt 114 and is cited, not re-pasted.
+
+
+Owner-carried steer, drafted by HELP_HUMAN 2026-08-22 from the owner's R1
+rulings of the same day. Paste whole, together with the attached
+`plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md`.
+Transcribe both verbatim into the closeout receipt as CHAT_TRANSCRIPTION. The
+R1 record is the owner's direction of record for this tranche.
+
+## Basis gate (check before any write; stop and report if any line fails)
+
+- `origin/main` contains merge commit `abf3c1bf5996cd9333ad706df14e62df32fbbf0f` (PR #620). Branch from current `main`.
+- `AGENTS.md` SHA-256 `268becd0bac9da8421b30089e4e4167a5e5f79bf3892d0f72ad41a63180a3aeb`.
+- `docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/D-GOV-35.proposed.md` SHA-256 `924c1b098f1510bca9189e1ac06e4c2fd8e9d358a9fc3c4e42fdd04a53b69c88`;
+  `AGENTS.proposed.patch` SHA-256 `4455adda4199be5493e1f8d2171ebb4641f40666c35cf09e90adc935ff6355ee` (literal `git apply --check` passes at the `AGENTS.md` SHA above);
+  `IMPACT.md` SHA-256 `565e651963b08f74622ca0e0d32b66d6d301c3ef95c159867b4e41a6fbd98435`;
+  `README.md` SHA-256 `c8e1b1cac088d8b34f16b8cbd77ee468178ad5d4030b3e8041aa26c97c4353c5`.
+- `docs/WORKFLOW_COMPONENT_STANDARD.md` SHA-256 `5de31f552bea356629ad29af9bc664f33d49392d1c63fc2fb4dc70614abd7df9` (line 145: "- Agent 0 delegates only to named Agent 1 roles.");
+  `docs/TYPES.md` SHA-256 `c97e1d73d6ea495bcfd4d632ee3a8c6ba8ff3caabd9fa2e57a245b78416335fe` (line 202: "- Agent 0 supervises only named Agent 1 managers.");
+  `docs/DBM_Agent_Instruction_Architecture.md` SHA-256 `65ce988c96422c3bc3236e50cd0aae3a264fb11a9e24a1cef0d8991da0f24bbc` (line 31: "Agent 0 delegates only to named Agent 1 roles. Agent 1 delegates to Agent 2.").
+- `docs/governance_harness/_DECISIONS/_REGISTER.md` SHA-256 `9250db21e6be962b46b28ee1085a218b1d111d2ed8c4b986e529402c077c9f8b`; D-GOV-14 SHA-256 `9d6dd7e4fdf96219c74a6fc728f441ecc2eabbde9bc141b5cc40d909e088f74e`.
+- N2 draft manifest `…/_run_records/DEL-02-03-M2-PREP-001/ROOT-DGOV35-DELEGATED-HARNESS-NATIVE-20260822.yaml` SHA-256 `59f0ed42ce498a6d3fbed9148b70691a0e4ceda49e37c890ed8391c4861ef7da`; its `HANDOFF_STATE.md` SHA-256 `91ba1b5685c654851bd40aec187a8c3aceb8ff21cd877c793476612d217fb83c`; DEL-02-03 `ScopeOfWork.md` SHA-256 `e3d4a4c862919acf00c777cb024f0c4f9456df25fa14448862830241d607460f`; DEL-02-03 `_STATUS.md` SHA-256 `9fdd785881eef6ee4f210bcb381dedd757c5748f939743038541dd9e894cbdfa`.
+- `execution/_ScopeChange/SCA-004_2026-08-22_1749/`: `Brief.md` SHA-256 `cdd14b18bd865060398bd8aa22157a6b86d91d7906cdf6d0f68e7ade7d559126`; `Gate_1_Validation.md` `812d0d3a33f0c2740dc89be31566a7b1f30ec833bfd99f3afe45f7bc11c99c14`; `WORK_GRAPH.json` `86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9`; `Handoff_State.md` `9a3193a2a55ab4a12d015d4ff859773233d063d0e4c566be04cb648cdc036c6a`.
+- `execution/_ScopeChange/_LATEST.md` SHA-256 `b2849c6ee9466692e6f1f8b97a32391145093654e510b9a3c5f08fcd7dfc80a1` (unchanged by this tranche).
+- `execution/_Coordination/_TaskManagement/REGISTER.csv` SHA-256 `cd0f1b96c500bcf7bc0886a0d5d20459129b10a86b4f106798a560432adcb5e9` (21 live: OPEN=13, DEFERRED=8; TM-ROOT-107 OPEN, ScaRef NONE; TM-ROOT-126 OPEN).
+- Last Root receipt is 114. This tranche writes Receipt 115.
+- `plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md` is present in the paste; its SHA-256 is recorded in the receipt.
+
+## Objective
+
+Apply the owner's R1 rulings: mint the D-GOV-35 decision record and apply the
+DEL-02-03 M2 instruction tranche (exact patch, three concordance sentences,
+live manifest, routed notices, export deferral); refine SCA-004 to a Gate-2
+impact assessment; apply the TM-ROOT-107 and TM-ROOT-126 dispositions through
+routine Task Management. No hold lifts; the ten `HELD_UNAVAILABLE` bindings
+stay held; no pin change; no App-loop write beyond the one routed notice.
+
+## Nodes (N=3, write-disjoint; Agent 2 instances with sealed briefs under `execution/_Coordination/AgentRuns/ROOT_V3_PHASE0B_2026-08-<DD>/instances/<NODE>/`)
+
+### N1 — D-GOV-35 decision record + DEL-02-03 M2 application (HELPS_HUMANS lane, CHANGE integration)
+Write targets, exactly:
+- `AGENTS.md` — apply `AGENTS.proposed.patch` with literal `git apply`; no other edit. Record the post-apply SHA-256.
+- `docs/WORKFLOW_COMPONENT_STANDARD.md` line 145, `docs/TYPES.md` line 202, `docs/DBM_Agent_Instruction_Architecture.md` line 31 — replace each named sentence with the ruled hierarchy wording (R1-A recorded form); no other change to those files. The standard stays an external normative standard, not an agent.
+- `docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md` — new, D-GOV-34 convention: `Status: RULED — APPLICATION TRANCHE PREPARED; PUBLICATION PENDING`, `HumanRuling` = R1-A verbatim ("[click] Approve as proposed" plus the recorded form), Date 2026-08-22, FramedBy this run, AcceptedBasis `main@abf3c1bf5…`, `Supersedes: D-GOV-14 item 7 (exclusivity sentence only)`, CandidateSHA/PublicationSHA/EffectiveSHA `TBD`, the eight ruled items copied from the proposal, the concordance obligation and its disposition in this tranche.
+- `docs/governance_harness/_DECISIONS/_REGISTER.md` — one D-GOV-35 row in the existing row form.
+- Proposal packet: append a status line to `README.md` and `D-GOV-35.proposed.md` pointing at the decision record (`RULED 2026-08-22 — see _DECISIONS/…`); packet bytes otherwise untouched; update the README SHA table for the two changed files.
+- `docs/governance_harness/tranche_manifests/ROOT-DGOV35-DELEGATED-HARNESS-NATIVE-20260822.yaml` — finalized from the N2 draft: `basis` = current `main` at branch time (the draft's `13201dfe7…` stays cited as historical run-basis evidence, per TM-ROOT-127); `instruction_surface_paths` = every instruction-surface path this node changes, including `AGENTS.md`, the three docs, the decision record, the register, the two packet files, and this manifest; `m2_gate.authorization` = R1-B verbatim; `merge_gate: human-gated-pr`; `self_merge: false`; `m6_notice.disposition: routed` with the two notice paths below; `derivative_disposition: deferred` for `exports/chirality-app/**` with the R1-B rationale.
+- `projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-35_DELEGATED_HARNESS_NATIVE_CLASS.md` and `projects/chirality-piping/execution/_Coordination/NOTICE_D-GOV-35_DELEGATED_HARNESS_NATIVE_CLASS.md` — finalized from the N2 drafts: pre/post `AGENTS.md` SHA-256, the two classes, the `instruction-asserted` boundary, the pinned/mirrored surfaces from `IMPACT.md`, each loop's follow-on (App: SCA-APP-008 / WP-06; Piping: local `AGENTS.md` semantic-mirror assessment); "coordination, not authority".
+- `execution/PKG-02_…/DEL-02-03_…/_run_records/DEL-02-03-M2-APPLY-001/` — application evidence per `DEL-02-03-M2-PREP-001/VALIDATION_PLAN.md` (pre-gates reproduced, post-validators, hashes, notice paths); `DEL-02-03-M2-PREP-001/HANDOFF_STATE.md` status → `APPLIED — SEE DEL-02-03-M2-APPLY-001`; DEL-02-03 `_STATUS.md`: one History line only, `Current State` unchanged.
+Check surface: post-apply `AGENTS.md` equals basis + patch exactly (reproduce by `git apply` on a scratch copy and compare hashes); the three concordance edits are single-sentence replacements (show each as a one-line diff); no file under `agents/**` changes; `tools/validation/validate_agent_instructions.py`, `validate_instruction_entrypoints.py` pass; **G4 in the CI form** `validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only` passes and the direct `validate_manifest` call on the finalized manifest returns `failures=[]`; both notice files exist at the declared paths; no other `projects/**` path changes; `validate_candidate_whitespace.py --base-ref origin/main` clean.
+
+### N2 — SCOPE_CHANGE: SCA-004 Gate 2 impact assessment
+Write target: `execution/_ScopeChange/SCA-004_2026-08-22_1749/` only (the amendment's single snapshot folder, SCA-002 convention).
+Produce:
+- `Decision_Log.md` — append the owner's Gate-1 acceptance verbatim (R1-C, with the three subject SHAs) as a `G1-ACCEPTED` row, then a `Gate 2 (impact)` row `PENDING_OWNER_ACCEPTANCE`.
+- `Impact_Assessment.md` — rewritten as the Gate-2 assessment in the `AGENT_SCOPE_CHANGE.md` form: impact summary table (action → sections/files/workflows), derivative-package status table, derivative-surface classification (`DIRECT_EDIT | RECOMPUTE | NO_CHANGE` with authority basis), orphan-risk summary, estimate/schedule staleness, active snapshot/handoff impact, recommended reruns — for all eight parsed actions, carrying the G0 A3/A4/A7 amendments and the ten-binding matrix unchanged.
+- `Handoff_State.md` — four-state form, status `AWAITING_OWNER_GATE_2_ACCEPTANCE`; blockers updated (D-GOV-35 now RULED; application in N1).
+- `Evidence/` additions only as needed; re-run `AUDIT_DEP_CLOSURE` only if `WORK_GRAPH.json` bytes change (they should not).
+Check surface: `Brief.md`, `Gate_1_Validation.md`, `Parsed_Actions.csv`, `WORK_GRAPH.json`, `DAG.md` byte-identical to the basis SHAs; `_LATEST.md` unchanged; no decomposition, register, or `_STATUS.md` byte changes; Gate 3 not opened.
+
+### N3 — TASK_MANAGEMENT: TM-ROOT-107 and TM-ROOT-126 dispositions
+Write targets: `execution/_Coordination/_TaskManagement/RULING_2026-08-<DD>_ROOT_TM107_TM126_SCA004_DGOV35.md` (new, in the `RULING_2026-08-21_ROOT_DEL0206_TRIGGER_PROMOTIONS.md` form, quoting R1-D verbatim with the R1 record SHA), `execution/_Coordination/_TaskManagement/REGISTER.csv` rows TM-ROOT-107 and TM-ROOT-126 only, `REGISTER_CLOSED.csv` via `tools/taskmgmt/taskmgmt.py archive` if the resulting states are owner-closed under the Task Management PRD vocabulary, and the counts in `execution/_Coordination/HANDOFF_STATE.md`.
+Apply: TM-ROOT-107 → `SUPERSEDED_BY_SCOPE_CHANGE`, `ScaRef=SCA-004`, `EvidenceRef` = SCA-004 `Brief.md` with its SHA, `LastReviewed` = run date; TM-ROOT-126 → `RESOLVED_BY_DECISION`, `EvidenceRef` = the D-GOV-35 decision record path, `LastReviewed` = run date. No other row changes; TM-ROOT-035/042/108/106/122 untouched.
+Check surface: `tools/taskmgmt/taskmgmt.py validate --register execution/_Coordination/_TaskManagement/REGISTER.csv` passes; exactly two rows differ from the basis register (plus archival relocation if applicable); counts in `HANDOFF_STATE.md` reconcile to the register.
+
+## Not selectable in this tranche
+`agents/**`, `docs/CONTRACT.md`, `docs/PRD_ROOT.md`, `docs/SPEC.md`, any `docs/**` path not named in N1, any `_STATUS.md` `Current State`, `execution/_ScopeChange/_LATEST.md`, the Root decomposition and companion registers, `execution/PKG-02_*/1_Working/DEL-02-06_**`, `runtime/**`, `projects/**` beyond the two notice files, `plans/**`, `tools/**`, `.github/**`, `exports/**` (deferral is recorded, not performed). No SCA-004 Gate 3, no folder/SOW creation for DEL-02-07..12 / DEL-04-11, no spike, no artifact download (C1 not granted), no pin change (B4), no sync/rebase without owner authorization, no merge.
+
+## Failure rule
+Unlimited repair with fresh re-review per node. A node that cannot complete
+returns its handoff state with blockers instead of narrowing silently. Never
+widen a node's write set; if a needed write falls outside it, report and stop
+that node.
+
+## Closeout
+One tranche, one branch `codex/root-v3-phase0b-2026-08-<DD>`, one PR to
+`main`, commits in dependency order N1 → N2 → N3. Append Receipt 115 to
+`execution/_Coordination/LOOP_RECEIPTS.md` after the fact, in-PR, with: this
+steer and `plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md`
+as CHAT_TRANSCRIPTION (record its SHA-256); per-node write sets; pre/post
+`AGENTS.md` SHA-256; every cited SHA/commit; validator outputs including the
+CI-form G4 output; `execution/_Coordination/HANDOFF_STATE.md` counts updated.
+Run before pushing: `validate_candidate_whitespace.py --base-ref origin/main`,
+`validate_agent_instructions.py`, `validate_instruction_entrypoints.py`,
+`validate_instruction_tranche_manifest.py --base origin/main --head HEAD --added-manifests-only`,
+`tools/taskmgmt/taskmgmt.py validate --register execution/_Coordination/_TaskManagement/REGISTER.csv`,
+`git diff --check`. Do not merge. If `main` advances, request sync
+authorization from the owner and record it in the receipt. HELP_HUMAN
+byte-verifies before endorsement; the D-GOV-35 record's PublicationSHA /
+EffectiveSHA are backfilled by a later routine act after merge.
+<!-- END RECEIPT-115 STEER VERBATIM -->
+
+#### CHAT_TRANSCRIPTION — Root R1 owner-ruling record
+
+Source: `plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md`
+
+SHA-256: `a9879a87faaeb4cd4d5f16b2b4b0364543dff117e1b51c7e17d1efdcb20f377d`
+
+<!-- BEGIN RECEIPT-115 R1 VERBATIM -->
+# ROOT RULING RECORD R1 — D-GOV-35, DEL-02-03 M2 application, SCA-004 Gate 1, TM-ROOT-107 — owner rulings of 2026-08-22
+
+> **Plans-folder status:** ACTIVE owner-ruling record — non-governing transcription source. Owner: Ryan Tufts. Scope: Root decisions following PR #620 (Root v3 Phase 0). Target workspace: Root governance loop (transcribed into Receipt 115). Supersedes nothing; the loop's instruments govern. Companion to `plans/steers/chirality_app_v3_g0_record_2026-08-22.md`.
+
+
+Ruled by Ryan Tufts (K-AUTH-1) in the HELP_HUMAN session minder chat on
+2026-08-22, after PR #620 merged as `abf3c1bf5996cd9333ad706df14e62df32fbbf0f`.
+The rulings were presented as a four-item decision slate by HELP_HUMAN, who had
+byte-verified the packet on `main`; "[click]" marks the option the owner
+selected. Each ruled subject is identified by the exact bytes it was ruled
+against. Where a ruling has a recorded form, that form is what the loop
+transcribes and acts on.
+
+R1-A — D-GOV-35 (delegated-harness-native delegation class): [click]
+  "Approve as proposed".
+  Subject bytes: `docs/governance_harness/_PROPOSALS/D-GOV-35_2026-08-22_delegated_harness_native_class/D-GOV-35.proposed.md`
+  SHA-256 `924c1b098f1510bca9189e1ac06e4c2fd8e9d358a9fc3c4e42fdd04a53b69c88`;
+  exact delta `AGENTS.proposed.patch` SHA-256
+  `4455adda4199be5493e1f8d2171ebb4641f40666c35cf09e90adc935ff6355ee`
+  against `AGENTS.md` SHA-256
+  `268becd0bac9da8421b30089e4e4167a5e5f79bf3892d0f72ad41a63180a3aeb`.
+  Recorded form: all eight proposed ruling items are ruled as written. D-GOV-14
+  item 7 is superseded only in its sentence "managed child sessions are the
+  sole executable app-harness delegation path"; the record-less SDK `Agent`
+  bridge remains retired. Item 7 of D-GOV-35 resolves TM-ROOT-126 by
+  prospectively superseding `docs/WORKFLOW_COMPONENT_STANDARD.md` §4.1
+  ("Agent 0 delegates only to named Agent 1 roles."), `docs/TYPES.md` §4.3
+  ("Agent 0 supervises only named Agent 1 managers."), and
+  `docs/DBM_Agent_Instruction_Architecture.md` §2 ("Agent 0 delegates only to
+  named Agent 1 roles. Agent 1 delegates to Agent 2.") with the ruled
+  hierarchy: Agent 0 dispatches named Agent 1 managers and may directly
+  dispatch bounded Agent 2 instances under the same sealed-brief,
+  declared-scope, and durable-evidence requirements. The ruling is recorded
+  per the D-GOV-34 convention (owner ruling recorded before publication;
+  CandidateSHA / PublicationSHA / EffectiveSHA backfilled by their Git acts).
+
+R1-B — DEL-02-03 M2 application tranche: [click] "Authorize, one tranche,
+  export deferred".
+  Recorded form: one bounded instruction tranche applies the exact
+  `AGENTS.proposed.patch`, propagates the ruled wording to the three
+  concordance sentences named in R1-A, finalizes the N2 draft manifest
+  (`execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_run_records/DEL-02-03-M2-PREP-001/ROOT-DGOV35-DELEGATED-HARNESS-NATIVE-20260822.yaml`,
+  SHA-256 `59f0ed42ce498a6d3fbed9148b70691a0e4ceda49e37c890ed8391c4861ef7da`)
+  into the live manifest corpus, routes the App and Piping coordination
+  notices in the same tranche, and records the Root-owned Chirality App
+  public-export regeneration as an explicit deferral to the next export
+  release. No lifecycle state of DEL-02-03 changes; no hold is lifted.
+
+R1-C — SCA-004 Gate 1 (v3 release-pathway Root carrier intake): [click]
+  "Accept as parsed".
+  Subject bytes: `execution/_ScopeChange/SCA-004_2026-08-22_1749/Brief.md`
+  SHA-256 `cdd14b18bd865060398bd8aa22157a6b86d91d7906cdf6d0f68e7ade7d559126`;
+  `Gate_1_Validation.md` SHA-256
+  `812d0d3a33f0c2740dc89be31566a7b1f30ec833bfd99f3afe45f7bc11c99c14`;
+  `WORK_GRAPH.json` SHA-256
+  `86159f1eb56fd6dbe08e4133298b0a24aa35e30e443f1965579c229cfbbe78e9`.
+  Recorded form: the owner accepts the eight parsed actions — MODIFY
+  DEL-02-06 as the standing integration/release-assurance carrier; ADD
+  DEL-02-07 through DEL-02-12 under PKG-02; ADD DEL-04-11 under PKG-04 — with
+  all ten DEL-02-06 bindings held and App coupling as notice edges only.
+  Acceptance opens Gate 2 impact refinement only; it creates no folder, SOW,
+  mapping, or implementation authority, and no later gate is inferred.
+
+R1-D — TM-ROOT-107: [click] "Yes" — record TM-ROOT-107 as
+  `SUPERSEDED_BY_SCOPE_CHANGE` with `ScaRef` SCA-004 via routine Task
+  Management. TM-ROOT-035, TM-ROOT-042, and TM-ROOT-108 remain OPEN on the
+  closure conditions in `Task_Management_Harvest.csv`; TM-ROOT-106 and
+  TM-ROOT-122 are untouched. Consequential to R1-A and G0 B5: TM-ROOT-126 is
+  resolved by D-GOV-35 and may be recorded `RESOLVED_BY_DECISION` in the same
+  routine Task Management act.
+
+Not ruled here: C1 (App Server 0.149.0 artifact download) remains not
+authorized; no pin change (G0 B4); no App-loop act — SCA-APP-008 reciprocates
+under App authority when the App steer is issued.
+<!-- END RECEIPT-115 R1 VERBATIM -->

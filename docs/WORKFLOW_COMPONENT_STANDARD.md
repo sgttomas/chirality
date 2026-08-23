@@ -142,7 +142,7 @@ package does not acquire authority beyond its constituent records.
 
 - Humans may start an untyped session, Agent 0, or any Agent 1 directly.
 - HELP_HUMAN is the sole canonical Agent 0.
-- Agent 0 delegates only to named Agent 1 roles.
+- Agent 0 dispatches named Agent 1 managers and may directly dispatch bounded Agent 2 instances under the same sealed-brief, declared-scope, and durable-evidence requirements.
 - Agent 1 delegates to Agent 2 through TASK, ephemeral-generalist, or approved
   dedicated-specialist construction.
 - Agent 2 does not delegate.

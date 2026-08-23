@@ -80,6 +80,16 @@ agent file.
 ## Delegation and Entry Rules
 
 - Human entry: untyped session, Agent 0, or any Agent 1.
+- Executable delegation has two classes:
+  - **Chirality-managed** delegation uses `delegate_agent` and the managed
+    child rules below. Managed children remain the sole Chirality-managed
+    executable delegation path.
+  - **delegated-harness-native** delegation uses the Codex App Server's native
+    descendant facility inside Chirality's hard outer filesystem, network,
+    process, canonical-root, account-identity, and policy envelope. Untyped,
+    Agent 0, and Agent 1 primary Codex sessions may invoke it. Chirality adds
+    no native child allowlist, fan-out cap, model allocation, or scheduling;
+    upstream and account limits apply.
 - Agent 0 delegates to named Agent 1 managers and may directly dispatch
   bounded Agent 2 instances (ephemeral generalists or TASK) under the same
   sealed-brief, declared-scope, and durable-evidence requirements as Agent 1
@@ -87,19 +97,27 @@ agent file.
 - Agent 1 delegates to named Agent 2 specialists, TASK, or an allowed
   ephemeral generalist.
 - Agent 2 does not delegate.
+- Native descent does not assign an Agent 0/1/2 role. Agent 0, Agent 1, and
+  Agent 2 role entry is always offered for Codex sessions. When `G-ROLE`
+  cannot mechanically prove non-delegation, explicit Agent 2/TASK mode remains
+  offered, labelled `role not mechanically enforced`; its governed-workflow
+  evidence is marked `instruction-asserted`. For the delegated-harness-native
+  class, K-SUBAGENT non-delegation is instruction+config asserted, not
+  mechanism-proven.
 - Delegation never implies capability inheritance. Named children are bounded
   by their approved instruction policy; ephemeral generalists are additionally
   bounded by the parent's declared tools. A child's capability does not become
-  a parent capability. Every child remains subject to sealed context, pipeline
-  approval, path containment, enforced read/write scope, and durable evidence.
+  a parent capability. Every Chirality-managed child remains subject to sealed
+  context, pipeline approval, path containment, enforced read/write scope, and
+  durable evidence.
 - Managed delegation uses `delegate_agent`; named children load their actual
   instruction package, generalists use the Agent 2 base contract plus a sealed
   brief, and every run persists parentage, hashes, scopes, status, and returns.
   Multi-agent execution requires an actual governed child-session mechanism;
   durable launch briefs alone are never a substitute for execution. The app
-  harness uses `delegate_agent`. A project loop may use its platform's native
-  hierarchical TASK/subagent facility when the loop freezes equivalent briefs,
-  scopes, parentage, and returns. If no executable child mechanism is available,
+  harness uses `delegate_agent`. A project loop may use delegated-harness-native
+  execution inside the hard outer envelope and with the evidence calibration
+  above. If neither executable class is available,
   defer the multi-agent stage or continue only genuinely single-agent work.
 
 ---

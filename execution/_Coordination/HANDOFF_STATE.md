@@ -62,6 +62,10 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   its ancestors. The owner-directed PR repair adds the proposal-only G4
   manifest `ROOT-DGOV35-PROPOSAL-20260822.yaml` and widens N1's write set by
   exactly that one file; counts and every N2/N3 byte remain unchanged.
+- Phase-0b N3 records the owner-ruled closure and mechanical archival of
+  `TM-ROOT-107` as `SUPERSEDED_BY_SCOPE_CHANGE` with `ScaRef=SCA-004` and
+  `TM-ROOT-126` as `RESOLVED_BY_DECISION` through D-GOV-35. The current
+  reconciled counts are 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
