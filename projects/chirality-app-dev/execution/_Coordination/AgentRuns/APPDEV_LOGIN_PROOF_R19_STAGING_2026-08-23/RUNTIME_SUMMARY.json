@@ -1,0 +1,100 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 5
+  },
+  "counts": {
+    "category": {
+      "activation": 1,
+      "execution": 1,
+      "fan-in": 1,
+      "remediation": 2,
+      "review": 4,
+      "validation": 1
+    },
+    "event_type": {
+      "FINISH": 5,
+      "START": 5
+    },
+    "outcome": {
+      "BLOCKED": 2,
+      "PASS": 3,
+      "STARTED": 5
+    },
+    "reason_code": {
+      "FRESH_EVIDENCE_REVIEW": 1,
+      "FRESH_REPAIR_REVIEW": 1,
+      "FULL_SUITE_CURE_504": 1,
+      "OWNER_DIRECTED_R19": 1,
+      "R19_REV_01_02": 1,
+      "R19_REV_01_02_REPAIRED": 1,
+      "READY_FOR_CHANGE_CONTENT_COMMIT": 1,
+      "REPAIR_CYCLE_1_REQUIRED": 1,
+      "VALIDATED_PASS_WITH_RETAINED_TEST_LIMITATION": 1,
+      "WP02_DISPATCHED": 1
+    }
+  },
+  "events": 10,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 1014.128,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PKG09-R19-EXECUTE-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral-generalist-agent2",
+      "session_id": "a2-pkg09-r19-execute-01"
+    },
+    {
+      "duration_seconds": 494.549,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG09-R19-EXECUTE-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral-generalist-agent2",
+      "session_id": "a2-pkg09-r19-repair-01"
+    },
+    {
+      "duration_seconds": 528.494,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PKG09-R19-REVIEW-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral-generalist-agent2",
+      "session_id": "a2-pkg09-r19-review-01"
+    },
+    {
+      "duration_seconds": 597.871,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG09-R19-REVIEW-R1-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral-generalist-agent2",
+      "session_id": "a2-pkg09-r19-review-r1-01"
+    },
+    {
+      "duration_seconds": 2663.556,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-R19-STAGING-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "wi-pkg09-r19-staging-01"
+    }
+  ],
+  "sessions": 5,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

@@ -5750,3 +5750,63 @@
     separate. No proof/package adoption, owner procedure, prepare, capture,
     logout/login, bootstrap, kickstart, signing, notarization, deployment,
     distribution, release-readiness, or merge-to-main action or claim occurred.
+
+- **2026-08-23 — Receipt 190** (DEL-09-04 offline exact-merge package and R19 staged procedure).
+  - Receipt-ID: `Receipt-190`
+  - Examined-Through: `764aa927ff19372fec2aed8b2ce64a86e0fe755f`
+  - Parent-Receipt: `Receipt-189`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-23,
+    Ryan Tufts, in-session), verbatim excerpt: `OWNER DIRECTION — DEL-09-04
+    offline exact-merge rebuild and R19 staged procedure. Tranche A is merged;
+    main is d6861ae8251e2a81078577d4496e949735ff199d (frontend tree
+    9c1b1d9cec8c45a2a74e78c79ce37d784938a6e4). Non-rewriting sync this
+    worktree to that commit and confirm porcelain is empty. Then, in one
+    bounded tranche:` Remaining clauses/full-suite disposition: cited RunID
+    `CHAT_TRANSCRIPTION.md`. Execution evidence, not owner wording: the
+    sandbox diagnostic is 22 failed / 1,245 passed / 4 skipped;
+    the sole local-socket cure is `NOT PASS` at 1 failed / 1,266 passed / 4
+    skipped after clearing all 21 `ENVIRONMENT_SANDBOX_SOCKET_DENIAL` cases,
+    with the remaining test-only 200 ms Pi/oMLX 504 classified
+    `PRE_EXISTING_TEST_HARNESS_TIMING_FLAKE_ENVIRONMENT_LIMITATION`.
+    CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-23, Ryan Tufts,
+    in-session): ``I approve: non-rewriting merge `origin/main`
+    `8635e40995b05f494ae35c6083dabdd50068bb52` into
+    `codex/app-login-proof-r19-staging`, record the authorization in Receipt
+    190, revalidate, push, and open one unlabeled PR; do not merge.``
+  - Pointers: content commit `764aa927ff19372fec2aed8b2ce64a86e0fe755f`;
+    branch `codex/app-login-proof-r19-staging`; build basis
+    `d6861ae8251e2a81078577d4496e949735ff199d`; DEL-09-04 R19
+    `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R19_OFFLINE_EXACT_MERGE_BUILD_AND_LOGIN_PROOF_STAGING_2026-08-23.md`;
+    RunID root
+    `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R19_STAGING_2026-08-23/`,
+    including `MANAGER_RETURN.md`, `HANDOFF_STATE.md`, and cycle-1 review
+    `instances/WI-PKG09-R19-STAGING-01/repair-cycle-1/review/REVIEW.md`;
+    authorized sync merge `24df90e7d46da81af99f9da3de428b6a794e78e5`,
+    parents `6ce4bf87835c716a07a472f30c30fd5ac257042c` and
+    `8635e40995b05f494ae35c6083dabdd50068bb52`. The conflict-free main delta
+    was two root plans/steers files with 115 insertions and no
+    `projects/chirality-app-dev/` path.
+  - Checks: offline `desktop:pack` exit zero, custom `electronDist`, embedded
+    dependency/instruction-root passes, and no download indicator. Unsigned
+    arm64 main executable/module/runtime CLI SHA-256 values:
+    `79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874`,
+    `64b99b9a0c661dc53fe71aa6fed184a52220d8c61b4cc41989149c8a672b2947`,
+    and `0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989`.
+    Direct disposable precheck: healthy 67-byte socket, clean shutdown, root
+    absent at
+    `/private/tmp/ch-r18-91499728-51dd`; label
+    `com.chirality.ci.runatload.login.owner.macos26.r19.3951dfe9-ec03-421b-b376-fd5f0d96992b`
+    remained unloaded. The cited test records retain both non-PASS results and
+    their exact classifications without upgrading either execution. Fresh
+    cycle-1 review returned `VALIDATED_PASS_WITH_RETAINED_TEST_LIMITATION`.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    ephemeral Agent 2 executor/remediator/reviewers, and CHANGE; exact
+    inherited model identifiers were not exposed.
+  - Gate-Outcome: `EXECUTED` — after-the-fact R19 staging receipt only.
+    DEL-09-04 remains `IN_PROGRESS` and unproved; the owner procedure is staged
+    and unexecuted. The owner-authorized non-rewriting sync completed at the
+    cited merge without an App-path collision. Beyond that sync, no proof
+    acceptance, prepare, capture, logout/login, bootstrap, kickstart, signing,
+    notarization, deployment, distribution, publication, release-readiness,
+    issuance, additional stage/commit/fetch, push, PR, or merge-to-main act or
+    claim occurred in this receipt amendment.

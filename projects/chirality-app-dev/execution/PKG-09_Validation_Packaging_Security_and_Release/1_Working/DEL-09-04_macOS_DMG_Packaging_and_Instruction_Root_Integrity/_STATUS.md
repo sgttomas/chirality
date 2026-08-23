@@ -1,7 +1,7 @@
 # Status: DEL-09-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-22
+**Last Updated:** 2026-08-23
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -29,10 +29,19 @@
   skipped, exit 0, with identical before/after source, test, package-script,
   and complete candidate-diff hashes. The PR pre-merge release-quality
   wrapper's `full_test` plus typecheck is future independent confirmation and
-  has not yet been observed. Fresh review remains required. R19 requires
-  separate post-merge owner authorization. The sole future proposal remains the read-only-confirmed
-  absent/non-symlink 33-byte root `/private/tmp/ch-r18-91499728-51dd`; its
-  67-byte control-socket path leaves 36 bytes below the macOS maximum. See
+  has not yet been observed. R19 has now rebuilt the unsigned arm64 package
+  offline from exact merge `d6861ae8251e2a81078577d4496e949735ff199d`,
+  confirmed the packaged R17 guard, and passed one direct disposable daemon
+  precheck at the 67-byte socket with authenticated packaged-CLI health and
+  complete cleanup. The new exact owner procedure is staged as documentation
+  only and remains unexecuted. Validation is held after the sole
+  local-socket-permitted full-suite cure retained one non-socket Pi/oMLX wire
+  timeout failure at 1 failed / 1,266 passed / 4 skipped, with exact pre/post
+  source and candidate-diff identity. No full-suite rerun is authorized in
+  this executor; manager repair-cycle disposition and fresh review remain.
+  The proposed absent/non-symlink 33-byte root
+  `/private/tmp/ch-r18-91499728-51dd` and its 67-byte control-socket path leave
+  36 bytes below the macOS maximum. See
   `_run_records/R17_LOGIN_PROOF_FAILURE_AND_REPAIR_2026-08-22.md`.
   The prior exact
   owner Terminal attempt failed before preparation completed with `Current GUI
@@ -83,6 +92,25 @@
   Operator-facing behaviour changes are enumerated in the run record.
 
 ## History
+- 2026-08-23 - Reverified the frozen Electron 43.2.0 arm64 supply and ran
+  exactly one network-denied `npm run desktop:pack` from exact merged revision
+  `d6861ae8251e2a81078577d4496e949735ff199d`. Custom `electronDist`, embedded
+  dependency/instruction-root gates, package identity, current-byte evidence,
+  and the packaged R17 socket guard pass. Exactly one direct disposable
+  packaged daemon precheck bound the proposed 67-byte socket, returned
+  authenticated packaged-CLI `project list --json` health, exited gracefully,
+  and removed its exact process/socket/runtime/root state. R19 stages the
+  concrete owner procedure without executing any block. DEL-09-04 remains
+  `IN_PROGRESS` and unproved. The sandbox diagnostic retained 21 expected
+  socket-denial failures plus one separate synthetic-PID failure; the sole
+  local-socket-permitted cure cleared both sets but retained one Pi/oMLX wire
+  timeout (1 failed / 1,266 passed / 4 skipped) with unchanged semantic bytes.
+  Manager repair-cycle disposition and fresh review remain required. Owner
+  prepare/logout/login/capture/handoff and
+  acceptance remain future acts. No GUI, LaunchAgent/plist/bootstrap/kickstart,
+  default-operator, signing, notarization, deployment, distribution,
+  publication, release-readiness, Receipt 190, or Git integration act occurred.
+  See `_run_records/R19_OFFLINE_EXACT_MERGE_BUILD_AND_LOGIN_PROOF_STAGING_2026-08-23.md`.
 - 2026-08-22 - Added the candidate Electron 43.2.0 arm64 supply freeze after
   preserving the first cache-miss failure, the terminal redirect attempt, and
   the accepted two-host official SHASUMS response. The fail-closed verifier

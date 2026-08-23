@@ -1,0 +1,39 @@
+{
+  "schema": "chirality-working-items-work-graph/v1",
+  "runId": "APPDEV_LOGIN_PROOF_R19_STAGING_2026-08-23",
+  "managerInstanceId": "WI-PKG09-R19-STAGING-01",
+  "packageId": "PKG-09",
+  "deliverableIds": ["DEL-09-04"],
+  "planVersion": 2,
+  "predecessor": "WORK_GRAPH.json",
+  "disposition": "REPAIR_CYCLE_1",
+  "nodes": [
+    {
+      "id": "WP-02-R1",
+      "role": "ephemeral-generalist-agent2",
+      "objective": "restore retained pack-log bytes and calibrate R19 claims only",
+      "status": "ready",
+      "writeOwner": "A2-PKG09-R19-EXECUTE-01",
+      "dependencies": ["WP-03"]
+    },
+    {
+      "id": "WP-03-R1",
+      "role": "fresh-ephemeral-generalist-agent2",
+      "objective": "fresh evidence-only repair-cycle review",
+      "status": "blocked_on_wp02_r1",
+      "writeOwner": "A2-PKG09-R19-REVIEW-R1-01",
+      "dependencies": ["WP-02-R1"]
+    },
+    {
+      "id": "WP-04",
+      "role": "WORKING_ITEMS",
+      "objective": "validated fan-in and terminal handoff",
+      "status": "blocked_on_wp03_r1",
+      "writeOwner": "manager",
+      "dependencies": ["WP-03-R1"]
+    }
+  ],
+  "concurrency": "none; repair and fresh review are serialized",
+  "maximumRepairCycles": 2,
+  "currentRepairCycle": 1
+}
