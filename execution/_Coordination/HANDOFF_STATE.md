@@ -134,6 +134,13 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   46 `INITIALIZED`, 7 `OPEN`, and zero status/history mismatches; the seven
   minimal OPEN records remain explicitly reported as unparseable by the frozen
   drift dialect rather than guessed.
+- Phase 2 publishes seven exact `ScopeOfWork.md` candidates for DEL-02-07
+  through DEL-02-12 and DEL-04-11. Every candidate is
+  `DRAFT_AWAITING_OWNER_ACCEPTANCE`; all seven lifecycle files remain `OPEN`.
+  Fresh consolidated review returned zero actionable findings after bounded
+  source-grounding repairs, and the practitioner harness passes 56 tests.
+  Nothing is accepted, activated, implemented, scheduled, estimated, or
+  released; all ten DEL-02-06 bindings remain `HELD_UNAVAILABLE`.
 - Stage-A trailing merges (step 8, closure) record their own approved and
   effective SHAs in their PRs and Receipts 72–73 per §5.3.1.
 - D-GOV-33 invocation-local federation-survey ruling and completed managed
@@ -225,6 +232,11 @@ their run and snapshot directories per the AGENTS.md handoff-state rule.
   `Evidence/AUDIT_DEP_CLOSURE_POST_GATE5/` packages are current only for the
   post-INIT/pre-SOW/pre-extraction state and must be re-derived after accepted
   SOWs and dependency extraction. Public export remains deferred.
+- `AgentRuns/ROOT_V3_PHASE2_2026-08-23/` records one WORKING_ITEMS node,
+  seven write-disjoint Agent 2 author sessions, bounded repair attempts, exact
+  final SOW identities, and consolidated fresh review. It is current
+  derivative evidence for candidate drafting only; the seven SOWs are not
+  accepted contracts until separately ruled by the owner.
 
 ## 3. Closure verdict
 
@@ -395,6 +407,15 @@ Management, tools, runtime, projects, pins, and all ten holds are unchanged.
 SOWs, dependency extraction, estimates, schedule, and graph/audit reruns remain
 separately owner-gated.
 
+`2026-08-23 ROOT V3 PHASE 2 SOW DRAFTING COMPLETE — OWNER ACCEPTANCE
+REQUIRED.` Receipt 122 records seven exact draft SOW candidates, exact final
+hashes, write containment, 28/28 preserved Phase-1 metadata files, seven
+unchanged `OPEN` lifecycle states, practitioner-harness PASS, and fresh review
+with zero actionable findings. The drafts accept nothing and create no
+implementation or dispatch authority. Dependency extraction, estimates,
+schedule, evidence reruns, activation, pins, all ten holds, implementation,
+release, publication, and reliance remain separately owner-gated.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -489,3 +510,10 @@ infer sequencing edges from shared objectives or initialized-empty dependency
 containers. Estimates and scheduling follow accepted SOW/dependency evidence;
 cut/merge, holds, pins, implementation, cutover, release, publication, and
 reliance remain human-gated.
+
+After Receipt 122, obtain a separate owner acceptance, correction, or decline
+for each exact SOW identity before treating any candidate as a production
+contract. Only accepted SOWs may feed dependency extraction, estimates,
+scheduling, and the required graph/audit reruns. Preserve every carrier at
+`OPEN` until a distinct lifecycle act; do not infer implementation, dispatch,
+activation, pin change, hold lift, release, publication, or reliance.
