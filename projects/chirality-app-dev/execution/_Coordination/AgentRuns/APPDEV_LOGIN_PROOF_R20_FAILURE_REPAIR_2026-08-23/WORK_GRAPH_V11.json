@@ -1,0 +1,29 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 11,
+  "selection_authority": "owner direction PR #632 CI test-portability repair dated 2026-08-23 plus CHANGE-supplied immutable source/build revision",
+  "posture": "SERIAL_EXACT_BUILD_RESTAGE_SUITES_REVIEW_GOVERNANCE",
+  "basis": {
+    "head": "b33858d33220538ce292f276a442792ecf8050b1",
+    "parent": "980f5951dbbfe88302514802384e4ffec33c38b9",
+    "frontend_tree": "23315613d0d3e4d21580d928909816dc5aad92c7"
+  },
+  "nodes": [
+    {"id":"WP-D1","instance_id":"A2-PKG09-R20-PR632-BUILD-RESTAGE-01","objective":"single frozen-supply offline build, package verification, and R20 exact-revision restage","write_owner":true,"status":"READY"},
+    {"id":"WP-E1","instance_id":"A2-PKG09-R20-PR632-BUILD-RESTAGE-01","objective":"single diagnostic/cure suite pair, TM harvest, and evidence freeze","write_owner":true,"status":"BLOCKED_ON_WP_D1"},
+    {"id":"WP-E2","instance_id":"A2-PKG09-R20-PR632-OVERALL-REVIEW-02","objective":"fresh evidence-only Phase D/E review","write_owner":false,"status":"BLOCKED_ON_WP_E1"},
+    {"id":"WP-E3","instance_id":"WI-PKG09-R20-PR632-GOVERNANCE-01","objective":"unreached governance-only pre-push gates and final Receipt-excluded freeze","write_owner":true,"status":"BLOCKED_ON_WP_E2"},
+    {"id":"WP-E4","instance_id":"CHANGE-PR632-PHASE-DE-CONTENT-COMMIT","objective":"create immutable Phase D/E content commit excluding Receipt 191","write_owner":true,"status":"BLOCKED_ON_WP_E3"},
+    {"id":"WP-E5","instance_id":"WI-PKG09-R20-PR632-RECEIPT-PUBLICATION","objective":"after-the-fact Receipt 191 amendment and CHANGE publication handoff","write_owner":true,"status":"BLOCKED_ON_WP_E4"}
+  ],
+  "edges": [
+    {"from":"WP-D1","to":"WP-E1","gate":"sole offline build/package/restage/read-only gates PASS"},
+    {"from":"WP-E1","to":"WP-E2","gate":"suite pair/TM/candidate evidence frozen"},
+    {"from":"WP-E2","to":"WP-E3","gate":"fresh review PASS"},
+    {"from":"WP-E3","to":"WP-E4","gate":"all governance-only gates PASS and candidate frozen"},
+    {"from":"WP-E4","to":"WP-E5","gate":"exact immutable Phase D/E content commit supplied"}
+  ],
+  "fan_in_gate": "fresh-reviewed governance-PASS content candidate followed by after-the-fact Receipt 191",
+  "terminal_failure": "any failed one-shot, package, suite, review, governance, scope, or fence gate stops dependants without retry"
+}

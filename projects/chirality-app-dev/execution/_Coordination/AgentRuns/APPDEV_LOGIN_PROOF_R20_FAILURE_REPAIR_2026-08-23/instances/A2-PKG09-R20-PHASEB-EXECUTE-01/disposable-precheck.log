@@ -1,0 +1,17 @@
++started_at=2026-08-23T09:34:53Z
+executable=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+argv_0=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+argv_1=--runtime-daemon
+env_CHIRALITY_USER_DATA=/private/tmp/ch-r18-91499728-51dd/runtime-data
+env_CHIRALITY_SKIP_CLI_LAUNCHER=1
+env_CHIRALITY_DAEMON_GUI_SPAWN=0
+pid=48351
+socket=/private/tmp/ch-r18-91499728-51dd/runtime-data/runtime/control.sock
+socket_bytes=67
+process_command=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon
+cli_command=/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/runtime-cli/chirality-cli.mjs project list --json
+cli_output=[]
+stop_requested_at=2026-08-23T09:34:55Z
+daemon_exit=0
+stopped_at=2026-08-23T09:34:56Z
+cleanup=PASS — process, socket, runtime-data, and exact root absent

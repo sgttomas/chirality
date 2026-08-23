@@ -1,0 +1,22 @@
+# Sealed brief — final fresh repair-cycle review
+
+- RequestedBy / Parent: `WI-PKG09-R20-REPAIR-01`
+- ChildInstanceID: `A2-PKG09-R20-REVIEW-R2-01`
+- Role: new delegated-harness-native ephemeral-generalist Agent 2; role not mechanically enforced; evidence instruction-asserted; do not delegate.
+- Freshness: a new session with no implementer or prior-review conversation context. Read only frozen repository artifacts.
+- Objective: independently review 100% of the final Phase-A candidate and close or reject original F-01 through F-05.
+- FrozenInputs: script `f2f886bdc9d1a296bb7851a5221448946b36bac54d83e426d0bd3ed6cd81f306`; test `6750655e8c7150bce8e6d12bf0e968de9129b80598309c317bea044b40c6ef18`; fixture `9d8f02e4ad602c149b22ce013d1bf33dfe054c9820d1ece09ba80ecb23c90531`; cycle-2 return `490a3134301b7970d1bab9e043c6fbbe218df43c1e9a84d24a244d4bb7b974f1`; immutable review 01 `0134c2db5a9255236171880b95f66a5d93292cd41f71be458dc853dc5636ef76`.
+- ReviewMatrix:
+  - owner requirements and root cause from real fixture/current source;
+  - F-01 irrevocable PASS ordering, deletion failure, intact non-PASS evidence;
+  - F-02 exact ancestor canonical/non-symlink/containment/owner/mode checks, O_NOFOLLOW held descriptors, fstat/lstat dev/ino binding, revalidation before descriptor-only reads, race/symlink/final-substitution refusal, copy-neither/private-only/no removal;
+  - F-03 prepare-vs-capture missing-log distinction and zero/one-log non-PASS preservation;
+  - F-04 exact sentinel and all empty/whitespace/noninteger rejections;
+  - F-05 independent job-still-loaded/process-absent preservation;
+  - all non-PASS routes including later defaultProtection; actual operator-token path/scan and absence from copied/repo evidence;
+  - symlink/containment/permissions/security behavior and no default operator interaction;
+  - complexity: explain whether the remaining four helpers and net script +311/-19, test +443/-9 are the minimum justified bounded surface; flag unrelated or reducible implementation;
+  - test independence/realism, exact fixture fidelity, write containment, hashes, and fences.
+- AllowedChecks: syntax, exact focused Vitest, typecheck, fixture cmp/hash, deterministic source probes, diff/whitespace, JSON/JSONL, containment, index. No full suite/build/package/network/Git/proof/operator/private-root/Desktop/default-surface action.
+- AllowedWrite: only `instances/A2-PKG09-R20-REVIEW-R2-01/REVIEW.md`.
+- Verdict: `PASS` only with no actionable finding. Any actionable finding returns `BLOCKED`; because this is the final allowed repair cycle, do not repair and state Phase A stops.

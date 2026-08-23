@@ -7,6 +7,7 @@ import {
   constants,
   lstat,
   mkdir,
+  open,
   readFile,
   realpath,
   rename,
@@ -185,7 +186,11 @@ function dependencies(overrides = {}) {
     processAlive: overrides.processAlive ?? defaultProcessAlive,
     inspectProcessExecutables:
       overrides.inspectProcessExecutables ??
-      ((pid) => defaultInspectProcessExecutables(pid, runCommand))
+      ((pid) => defaultInspectProcessExecutables(pid, runCommand)),
+    beforeFailureLogSnapshot: overrides.beforeFailureLogSnapshot,
+    removePassFailureLogs:
+      overrides.removePassFailureLogs ??
+      ((failedLogsRoot) => rm(failedLogsRoot, { recursive: true, force: true }))
   };
 }
 
@@ -529,7 +534,7 @@ async function assertCleanupTargets({ uid, home, label, service, sessionRoot, pl
   }
 }
 
-function parseCleanupLaunchctlJob(source, service) {
+export function parseCleanupLaunchctlJob(source, service) {
   if (typeof source !== 'string' || source === '' || source.includes('\0')) {
     throw new Error('Loaded cleanup job output is missing or malformed');
   }
@@ -562,12 +567,12 @@ function parseCleanupLaunchctlJob(source, service) {
       const program = /^program = (.+)$/u.exec(trimmed)?.[1];
       const pid = /^pid = (.+)$/u.exec(trimmed)?.[1];
       const runs = /^runs = (.+)$/u.exec(trimmed)?.[1];
-      const lastExitCode = /^last exit code = (.+)$/u.exec(trimmed)?.[1];
+      const lastExitCodeField = /^last exit code =(.*)$/u.exec(trimmed);
       if (state !== undefined) stateMatches.push(state);
       if (program !== undefined) programMatches.push(program);
       if (pid !== undefined) pidMatches.push(pid);
       if (runs !== undefined) runsMatches.push(runs);
-      if (lastExitCode !== undefined) lastExitCodeMatches.push(lastExitCode);
+      if (lastExitCodeField !== null) lastExitCodeMatches.push(lastExitCodeField[1].trimStart());
       if (trimmed === 'arguments = {') {
         currentArguments = [];
         argumentBlocks.push(currentArguments);
@@ -609,13 +614,23 @@ function parseCleanupLaunchctlJob(source, service) {
     }
     return value;
   };
+  let lastExitCode;
+  let neverExited = false;
+  if (lastExitCodeMatches.length === 1 && lastExitCodeMatches[0] === '') {
+    throw new Error('Loaded cleanup job last exit code is invalid');
+  } else if (lastExitCodeMatches.length === 1 && lastExitCodeMatches[0] === '(never exited)') {
+    neverExited = true;
+  } else {
+    lastExitCode = parseOptionalInteger(lastExitCodeMatches, 'last exit code');
+  }
   return {
     state: stateMatches[0],
     program: programMatches[0],
     programArguments: argumentBlocks[0],
     pid,
     runs: parseOptionalInteger(runsMatches, 'run count'),
-    lastExitCode: parseOptionalInteger(lastExitCodeMatches, 'last exit code')
+    lastExitCode,
+    neverExited
   };
 }
 
@@ -675,7 +690,7 @@ async function assertProofOwnedLoadedJob({
         'Refusing proof-service bootout because pid-less job is not an identified crash-loop or scheduled state'
       );
     }
-    return;
+    return job;
   }
   if (job.state !== 'running') {
     throw new Error('Refusing proof-service bootout because PID-bearing job is not running');
@@ -688,6 +703,218 @@ async function assertProofOwnedLoadedJob({
       'Refusing proof-service bootout because executable identity is missing, ambiguous, or mismatched'
     );
   }
+  return job;
+}
+
+function assertSafeSnapshotMetadata(metadata, expectedType, expectedUid) {
+  const typeMatches =
+    expectedType === 'directory' ? metadata.isDirectory() : metadata.isFile();
+  if (
+    !typeMatches ||
+    metadata.isSymbolicLink() ||
+    metadata.uid !== expectedUid ||
+    (metadata.mode & 0o022) !== 0
+  ) {
+    throw new Error(`Failure-log ${expectedType} identity or permissions are unsafe`);
+  }
+}
+
+function sameSnapshotIdentity(left, right) {
+  return left.dev === right.dev && left.ino === right.ino;
+}
+
+async function validateSnapshotAncestors(runtimeRoot, expectedUid) {
+  const candidates = [
+    runtimeRoot,
+    path.join(runtimeRoot, 'runtime'),
+    path.join(runtimeRoot, 'runtime', 'logs'),
+    path.join(runtimeRoot, 'runtime', 'auth'),
+    path.join(runtimeRoot, 'runtime', 'auth', 'tokens')
+  ];
+  const snapshots = [];
+  for (const candidate of candidates) {
+    if (!isWithin(candidate, runtimeRoot) || (await realpath(candidate)) !== candidate) {
+      throw new Error('Failure-log directory escapes its canonical runtime root');
+    }
+    const metadata = await lstat(candidate);
+    assertSafeSnapshotMetadata(metadata, 'directory', expectedUid);
+    snapshots.push({ candidate, metadata });
+  }
+  return snapshots;
+}
+
+async function readFailureLogSnapshots({ runtimeRoot, expectedUid, deps }) {
+  const handles = [];
+  try {
+    const ancestorBefore = await validateSnapshotAncestors(runtimeRoot, expectedUid);
+    const entries = [
+      { kind: 'log', path: path.join(runtimeRoot, 'runtime', 'logs', 'daemon.stdout.log') },
+      { kind: 'log', path: path.join(runtimeRoot, 'runtime', 'logs', 'daemon.stderr.log') },
+      { kind: 'token', path: path.join(runtimeRoot, 'runtime', 'auth', 'tokens', 'operator.token') }
+    ];
+    const opened = [];
+    for (const entry of entries) {
+      let handle;
+      try {
+        handle = await open(entry.path, constants.O_RDONLY | constants.O_NOFOLLOW);
+      } catch (error) {
+        if (error?.code === 'ENOENT' && entry.kind === 'log') return { missingLogs: true };
+        if (error?.code === 'ENOENT') throw new Error('Runtime auth token is missing');
+        throw error;
+      }
+      handles.push(handle);
+      const descriptorMetadata = await handle.stat();
+      assertSafeSnapshotMetadata(descriptorMetadata, 'file', expectedUid);
+      const pathMetadata = await lstat(entry.path);
+      assertSafeSnapshotMetadata(pathMetadata, 'file', expectedUid);
+      if (!sameSnapshotIdentity(pathMetadata, descriptorMetadata)) {
+        throw new Error('Failure-log path and descriptor identities do not match');
+      }
+      opened.push({ ...entry, handle, descriptorMetadata });
+    }
+
+    await deps.beforeFailureLogSnapshot?.();
+    const ancestorAfter = await validateSnapshotAncestors(runtimeRoot, expectedUid);
+    for (let index = 0; index < ancestorBefore.length; index += 1) {
+      if (!sameSnapshotIdentity(ancestorBefore[index].metadata, ancestorAfter[index].metadata)) {
+        throw new Error('Failure-log directory identity changed before snapshot');
+      }
+    }
+    for (const entry of opened) {
+      const pathMetadata = await lstat(entry.path);
+      assertSafeSnapshotMetadata(pathMetadata, 'file', expectedUid);
+      if (!sameSnapshotIdentity(pathMetadata, entry.descriptorMetadata)) {
+        throw new Error('Failure-log path identity changed before snapshot');
+      }
+    }
+
+    const bytes = [];
+    for (const entry of opened) {
+      const value = await entry.handle.readFile();
+      const after = await entry.handle.stat();
+      if (
+        !sameSnapshotIdentity(entry.descriptorMetadata, after) ||
+        entry.descriptorMetadata.size !== after.size ||
+        entry.descriptorMetadata.mtimeMs !== after.mtimeMs ||
+        entry.descriptorMetadata.ctimeMs !== after.ctimeMs
+      ) {
+        throw new Error('Failure-log file changed during snapshot');
+      }
+      bytes.push(value);
+    }
+    return { stdoutBytes: bytes[0], stderrBytes: bytes[1], tokenBytes: bytes[2] };
+  } finally {
+    await Promise.all(handles.map((handle) => handle.close().catch(() => {})));
+  }
+}
+
+async function preserveFailureLogs({
+  sessionRoot,
+  runtimeRoot,
+  expectedUid,
+  requireLogs,
+  deps
+}) {
+  const failedLogsRoot = path.join(sessionRoot, 'failed-logs');
+  const logPaths = [
+    path.join(runtimeRoot, 'runtime', 'logs', 'daemon.stdout.log'),
+    path.join(runtimeRoot, 'runtime', 'logs', 'daemon.stderr.log')
+  ];
+  if (!requireLogs) {
+    const installAttemptLogs = await Promise.all(
+      logPaths.map((logPath) =>
+        lstat(logPath).catch((error) => {
+          if (error?.code === 'ENOENT') return undefined;
+          throw error;
+        })
+      )
+    );
+    if (installAttemptLogs.every((metadata) => metadata === undefined)) {
+      return { copied: false, privateOnly: false, failedLogsRoot, errors: [] };
+    }
+  }
+
+  let snapshots;
+  try {
+    snapshots = await readFailureLogSnapshots({ runtimeRoot, expectedUid, deps });
+  } catch (error) {
+    return {
+      copied: false,
+      privateOnly: true,
+      failedLogsRoot,
+      errors: [
+        `Failure-log identity or auth snapshot is unsafe; retained only in private runtime data: ${
+          error instanceof Error ? error.message : String(error)
+        }`
+      ]
+    };
+  }
+  if (snapshots.missingLogs) {
+    return {
+      copied: false,
+      privateOnly: true,
+      failedLogsRoot,
+      errors: ['Required failure logs are missing; retained only in private runtime data']
+    };
+  }
+  const token = snapshots.tokenBytes.toString('utf8').trim();
+  if (token === '' || token.includes('\0')) {
+    return {
+      copied: false,
+      privateOnly: true,
+      failedLogsRoot,
+      errors: ['Runtime auth token is malformed; retained failure logs only in private runtime data']
+    };
+  }
+  if (snapshots.stdoutBytes.includes(token) || snapshots.stderrBytes.includes(token)) {
+    return {
+      copied: false,
+      privateOnly: true,
+      failedLogsRoot,
+      errors: ['Runtime auth token was detected; retained failure logs only in private runtime data']
+    };
+  }
+
+  const failedLogsMetadata = await lstat(failedLogsRoot).catch((error) => {
+        if (error?.code === 'ENOENT') return undefined;
+        throw error;
+  });
+  if (failedLogsMetadata !== undefined) {
+    return {
+      copied: false,
+      privateOnly: true,
+      failedLogsRoot,
+      errors: ['Failure-log destination already exists; retained logs only in private runtime data']
+    };
+  }
+  let createdFailedLogsRoot = false;
+  try {
+    await mkdir(failedLogsRoot, { recursive: false, mode: 0o700 });
+    createdFailedLogsRoot = true;
+    await writeFile(path.join(failedLogsRoot, 'daemon.stdout.log'), snapshots.stdoutBytes, {
+      mode: 0o600,
+      flag: 'wx'
+    });
+    await writeFile(path.join(failedLogsRoot, 'daemon.stderr.log'), snapshots.stderrBytes, {
+      mode: 0o600,
+      flag: 'wx'
+    });
+  } catch (error) {
+    if (createdFailedLogsRoot) {
+      await rm(failedLogsRoot, { recursive: true, force: true }).catch(() => {});
+    }
+    return {
+      copied: false,
+      privateOnly: true,
+      failedLogsRoot,
+      errors: [
+        `Unable to preserve failure logs; retained only in private runtime data: ${
+          error instanceof Error ? error.message : String(error)
+        }`
+      ]
+    };
+  }
+  return { copied: true, privateOnly: false, failedLogsRoot, errors: [] };
 }
 
 async function cleanupProof({
@@ -699,12 +926,15 @@ async function cleanupProof({
   plistPath,
   runtimeRoot,
   executablePath,
+  observedPid,
+  requireFailureLogs = false,
   deps
 }) {
   await assertCleanupTargets({ uid, home, label, service, sessionRoot, plistPath, runtimeRoot });
   const errors = [];
   let jobAbsent = false;
   let jobMutationRefused = false;
+  const observedPids = new Set(observedPid === undefined ? [] : [observedPid]);
   for (let attempt = 0; attempt < cleanupAttempts; attempt += 1) {
     try {
       const current = await jobState(service, deps);
@@ -713,7 +943,7 @@ async function cleanupProof({
         break;
       }
       try {
-        await assertProofOwnedLoadedJob({
+        const job = await assertProofOwnedLoadedJob({
           uid,
           label,
           service,
@@ -722,6 +952,7 @@ async function cleanupProof({
           executablePath,
           deps
         });
+        if (job.pid !== undefined) observedPids.add(job.pid);
       } catch (error) {
         errors.push(error instanceof Error ? error.message : String(error));
         jobMutationRefused = true;
@@ -746,24 +977,68 @@ async function cleanupProof({
       errors.push(error instanceof Error ? error.message : String(error));
     }
   }
-  try {
-    await unlink(plistPath).catch((error) => {
-      if (error?.code !== 'ENOENT') throw error;
-    });
-  } catch (error) {
-    errors.push(`Unable to remove proof plist: ${error instanceof Error ? error.message : String(error)}`);
+  const processAbsent = [...observedPids].every((pid) => !deps.processAlive(pid));
+  const destructiveCleanupRefused = jobMutationRefused || !jobAbsent || !processAbsent;
+  if (destructiveCleanupRefused) {
+    errors.push(
+      `Refusing destructive cleanup while proof state is unsafe (job=${
+        jobAbsent ? 'absent' : 'present-or-unknown'
+      }, process=${processAbsent ? 'absent' : 'alive'}, job-mutation-refused=${jobMutationRefused})`
+    );
   }
+
+  let failureLogs;
   try {
-    await rm(runtimeRoot, { recursive: true, force: true });
+    failureLogs = await preserveFailureLogs({
+      sessionRoot,
+      runtimeRoot,
+      expectedUid: uid,
+      requireLogs: requireFailureLogs,
+      deps
+    });
+    errors.push(...failureLogs.errors);
   } catch (error) {
-    errors.push(`Unable to remove proof runtime data: ${error instanceof Error ? error.message : String(error)}`);
+    failureLogs = {
+      copied: false,
+      privateOnly: true,
+      failedLogsRoot: path.join(sessionRoot, 'failed-logs'),
+      errors: []
+    };
+    errors.push(
+      `Unable to inspect failure logs safely; retained only in private runtime data: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
+  }
+
+  if (!destructiveCleanupRefused) {
+    try {
+      await unlink(plistPath).catch((error) => {
+        if (error?.code !== 'ENOENT') throw error;
+      });
+    } catch (error) {
+      errors.push(`Unable to remove proof plist: ${error instanceof Error ? error.message : String(error)}`);
+    }
+    if (!failureLogs.privateOnly) {
+      try {
+        await rm(runtimeRoot, { recursive: true, force: true });
+      } catch (error) {
+        errors.push(`Unable to remove proof runtime data: ${error instanceof Error ? error.message : String(error)}`);
+      }
+    }
   }
   const plistAbsent = !(await fileSnapshot(plistPath)).present;
+  const runtimeDataRemoved = !(await stat(runtimeRoot).then(() => true).catch(() => false));
   return {
     jobAbsent,
     jobMutationRefused,
+    processAbsent,
+    destructiveCleanupRefused,
+    failureLogsCopied: failureLogs.copied,
+    failureLogsPrivateOnly: failureLogs.privateOnly,
+    failedLogsRoot: failureLogs.failedLogsRoot,
     plistAbsent,
-    runtimeDataRemoved: !(await stat(runtimeRoot).then(() => true).catch(() => false)),
+    runtimeDataRemoved,
     errors
   };
 }
@@ -1126,12 +1401,18 @@ async function capture(deps, sessionRoot) {
     plistPath: captureState.plistPath,
     runtimeRoot: captureState.runtimeRoot,
     executablePath: captureState.executablePath,
+    observedPid,
+    requireFailureLogs: true,
     deps
   });
   summary.cleanup = {
-    processAbsent: observedPid !== undefined && !deps.processAlive(observedPid),
+    processAbsent: observedPid !== undefined && cleanup.processAbsent,
     jobAbsent: cleanup.jobAbsent,
     jobMutationRefused: cleanup.jobMutationRefused,
+    destructiveCleanupRefused: cleanup.destructiveCleanupRefused,
+    failureLogsCopied: cleanup.failureLogsCopied,
+    failureLogsPrivateOnly: cleanup.failureLogsPrivateOnly,
+    passOnlyFailureLogCleanup: 'NOT_APPLICABLE',
     plistAbsent: cleanup.plistAbsent,
     runtimeDataRemoved: cleanup.runtimeDataRemoved
   };
@@ -1153,9 +1434,20 @@ async function capture(deps, sessionRoot) {
   const defaultProtected = Object.values(summary.defaultProtection)
     .filter((value) => typeof value === 'boolean')
     .every(Boolean);
-  if (!proofError && cleanup.errors.length === 0 && cleanupComplete && defaultProtected) {
+  const finalPass =
+    !proofError && cleanup.errors.length === 0 && cleanupComplete && defaultProtected;
+  if (finalPass) {
     summary.status = 'PASS';
-  } else {
+    try {
+      await deps.removePassFailureLogs(cleanup.failedLogsRoot);
+      summary.cleanup.failureLogsCopied = false;
+      summary.cleanup.passOnlyFailureLogCleanup = 'REMOVED';
+    } catch {
+      summary.cleanup.failureLogsCopied = null;
+      summary.cleanup.passOnlyFailureLogCleanup = 'INDETERMINATE_RETAINED_OR_PARTIAL';
+    }
+  }
+  if (!finalPass) {
     const errors = [proofError, ...cleanup.errors].filter(Boolean);
     summary.error = redact(errors[0] ?? new Error('Capture or cleanup incomplete'), [
       [home, '~'],

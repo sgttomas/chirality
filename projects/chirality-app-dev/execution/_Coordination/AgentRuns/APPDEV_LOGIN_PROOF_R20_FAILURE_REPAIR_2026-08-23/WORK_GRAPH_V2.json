@@ -1,0 +1,39 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 2,
+  "selection_authority": "owner failure rule and supervising disposition REPAIR cycle 1",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {
+      "id": "WP-A1",
+      "status": "PASS_SUPERSEDED_BY_REVIEW_FINDINGS"
+    },
+    {
+      "id": "WP-A2",
+      "status": "BLOCKED_F01_F05",
+      "evidence_sha256": "0134c2db5a9255236171880b95f66a5d93292cd41f71be458dc853dc5636ef76"
+    },
+    {
+      "id": "WP-A3-R1",
+      "instance_id": "A2-PKG09-R20-IMPLEMENT-01",
+      "session_id": "r20-phasea-implementation",
+      "objective": "repair exact F-01 through F-05",
+      "write_owner": true,
+      "status": "READY"
+    },
+    {
+      "id": "WP-A4-R1",
+      "instance_id": "A2-PKG09-R20-REVIEW-R1-01",
+      "objective": "genuinely fresh read-only repair-cycle review",
+      "write_owner": false,
+      "status": "BLOCKED_ON_WP_A3_R1"
+    }
+  ],
+  "edges": [
+    {"from": "WP-A2", "to": "WP-A3-R1", "gate": "F-01 through F-05 accepted for repair"},
+    {"from": "WP-A3-R1", "to": "WP-A4-R1", "gate": "repaired source/tests/evidence frozen"}
+  ],
+  "fan_in_gate": "fresh cycle-1 review PASS with no actionable finding",
+  "exclusions": "full npm test, build/package, Phase-B records, Git integration, proof/operator actions, network, prohibited private reads"
+}

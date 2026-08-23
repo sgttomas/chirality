@@ -1,0 +1,116 @@
+gui/501/com.chirality.ci.runatload.login.owner.macos26.r19.3951dfe9-ec03-421b-b376-fd5f0d96992b = {
+	active count = 5
+	path = /Users/ryan/Library/LaunchAgents/com.chirality.ci.runatload.login.owner.macos26.r19.3951dfe9-ec03-421b-b376-fd5f0d96992b.plist
+	type = LaunchAgent
+	state = running
+
+	program = /Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+	arguments = {
+		/Users/ryan/.codex/worktrees/ef5e/chirality/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+		--runtime-daemon
+	}
+
+	stdout path = /private/tmp/ch-r18-91499728-51dd/runtime-data/runtime/logs/daemon.stdout.log
+	stderr path = /private/tmp/ch-r18-91499728-51dd/runtime-data/runtime/logs/daemon.stderr.log
+	inherited environment = {
+		SSH_AUTH_SOCK => /var/run/com.apple.launchd.mA4pyGqBu1/Listeners
+	}
+
+	default environment = {
+		PATH => /usr/bin:/bin:/usr/sbin:/sbin
+	}
+
+	environment = {
+		OSLogRateLimit => 64
+		CHIRALITY_RUNTIME_LAUNCH_AGENT_LABEL => com.chirality.ci.runatload.login.owner.macos26.r19.3951dfe9-ec03-421b-b376-fd5f0d96992b
+		CHIRALITY_USER_DATA => /private/tmp/ch-r18-91499728-51dd/runtime-data
+		CHIRALITY_RUNTIME_KEEP_ALIVE => always
+		XPC_SERVICE_NAME => com.chirality.ci.runatload.login.owner.macos26.r19.3951dfe9-ec03-421b-b376-fd5f0d96992b
+	}
+
+	domain = gui/501 [100523]
+	asid = 100523
+	minimum runtime = 10
+	exit timeout = 5
+	runs = 1
+	pid = 34924
+	immediate reason = speculative
+	forks = 2
+	execs = 1
+	initialized = 1
+	trampolined = 1
+	started suspended = 0
+	proxy started suspended = 0
+	checked allocations = 0 (queried = 1)
+	checked allocations reason = no host
+	checked allocations flags = 0x0
+	last exit code = (never exited)
+
+	dynamic endpoints = {
+		"com.chirality.app.MachPortRendezvousServer.34924" = {
+			port = 0xdcee3
+			active = 1
+			managed = 0
+			reset = 0
+			hide = 0
+			watching = 0
+		}
+	}
+
+	pid-local endpoints = {
+		"com.apple.tsm.portname" = {
+			port = 0xabb57
+			active = 1
+			managed = 0
+			reset = 0
+			hide = 0
+			watching = 0
+		}
+		"com.apple.axserver" = {
+			port = 0x5c1f3
+			active = 1
+			managed = 0
+			reset = 0
+			hide = 0
+			watching = 0
+		}
+	}
+
+	event channels = {
+		"com.apple.locationd-events" = {
+			port = 0xadd2b
+			active = 1
+			managed = 1
+			reset = 0
+			hide = 0
+			watching = 0
+		}
+	}
+
+	resource coalition = {
+		ID = 38520
+		type = resource
+		state = active
+		active count = 1
+		name = com.chirality.ci.runatload.login.owner.macos26.r19.3951dfe9-ec03-421b-b376-fd5f0d96992b
+	}
+
+	jetsam coalition = {
+		ID = 38521
+		type = jetsam
+		state = active
+		active count = 1
+		name = com.chirality.ci.runatload.login.owner.macos26.r19.3951dfe9-ec03-421b-b376-fd5f0d96992b
+	}
+
+	spawn type = daemon (3)
+	jetsam priority = 40
+	jetsam memory limit (active) = (unlimited)
+	jetsam memory limit (inactive) = (unlimited)
+	jetsamproperties category = daemon
+	jetsam thread limit = 32
+	cpumon = default
+	job state = running
+
+	properties = keepalive | runatload | inferred program | managed LWCR | has LWCR
+}

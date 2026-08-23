@@ -1,0 +1,44 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23",
+  "version": 8,
+  "selection_authority": "owner direction PR #632 whitespace repair, record-only, dated 2026-08-23",
+  "posture": "DIAGNOSTIC_THEN_SERIAL_REPAIR_REVIEW",
+  "nodes": [
+    {
+      "id": "WP-B3D",
+      "instance_id": "WI-PKG09-R20-PR632-DIAGNOSTIC-01",
+      "objective": "run and freeze the sole pre-repair candidate whitespace diagnostic",
+      "write_owner": true,
+      "status": "READY"
+    },
+    {
+      "id": "WP-B3R",
+      "instance_id": "A2-PKG09-R20-PR632-WHITESPACE-REPAIR-01",
+      "objective": "repair exactly enumerated record whitespace findings, freeze lineage, and run authorized pre-push gates",
+      "write_owner": true,
+      "status": "BLOCKED_ON_WP_B3D"
+    },
+    {
+      "id": "WP-B3V",
+      "instance_id": "A2-PKG09-R20-PR632-WHITESPACE-REVIEW-01",
+      "objective": "fresh evidence-only review of the complete record-only repair candidate",
+      "write_owner": false,
+      "status": "BLOCKED_ON_WP_B3R"
+    }
+  ],
+  "edges": [
+    {
+      "from": "WP-B3D",
+      "to": "WP-B3R",
+      "gate": "complete exact validator diagnostic and flagged-file/line inventory frozen"
+    },
+    {
+      "from": "WP-B3R",
+      "to": "WP-B3V",
+      "gate": "repair lineage and all authorized pre-push gates PASS; candidate bytes frozen"
+    }
+  ],
+  "fan_in_gate": "fresh record-only review PASS with no unresolved finding",
+  "terminal_failure": "any substantive diagnostic, repair, validation, scope, identity, or review failure stops exactly"
+}

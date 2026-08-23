@@ -1,4 +1,14 @@
-import { chmod, mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises';
+import {
+  chmod,
+  mkdir,
+  mkdtemp,
+  readFile,
+  realpath,
+  rename,
+  rm,
+  symlink,
+  writeFile
+} from 'node:fs/promises';
 import path from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 
@@ -9,8 +19,14 @@ import {
   SESSION_SCHEMA,
   SUMMARY_SCHEMA,
   assertPrepareRuntimeSocketPathSupported,
-  main
+  main,
+  parseCleanupLaunchctlJob
 } from '../../../scripts/run-packaged-launchagent-login-proof.mjs';
+
+if (typeof process.getuid !== 'function') {
+  throw new Error('Packaged LaunchAgent login-proof tests require process.getuid()');
+}
+const REAL_UID = process.getuid();
 
 const roots: string[] = [];
 
@@ -29,10 +45,12 @@ async function fixture() {
   const defaultPlistPath = path.join(launchAgentsDirectory, `${defaultLabel}.plist`);
   const state = {
     loaded: false,
+    defaultJobLoaded: true,
+    changeDefaultJobOnBootout: false,
     sessionId: 1001,
     consoleUsername: 'fixture-user',
-    consoleUid: 501,
-    securityUid: 501,
+    consoleUid: REAL_UID,
+    securityUid: REAL_UID,
     securityAsid: undefined as number | undefined,
     domainType: 'login',
     domainSession: 'Aqua',
@@ -44,13 +62,16 @@ async function fixture() {
     domainExitCode: 0,
     domainSignal: undefined as string | undefined,
     domainStderr: '',
-    loadedService: `gui/501/${label}`,
+    loadedService: `gui/${REAL_UID}/${label}`,
     loadedState: 'running',
     loadedProgram: executablePath as string | undefined,
     loadedArguments: [executablePath, '--runtime-daemon'] as string[] | undefined,
     loadedOutput: undefined as string | undefined,
     runs: 16,
-    lastExitCode: 1,
+    lastExitCode: 1 as number | string,
+    authToken: 'fixture-runtime-auth-token',
+    stdoutLog: 'fixture daemon stdout\n',
+    stderrLog: 'fixture daemon stderr\n',
     processExecutables: [executablePath] as string[],
     processInspections: 0,
     processInspectionError: undefined as Error | undefined,
@@ -58,6 +79,9 @@ async function fixture() {
     installedPlist: undefined as string | undefined,
     processAlive: false,
     pid: 8123 as number | undefined,
+    bootoutExitCode: 0,
+    bootoutRemovesJob: true,
+    bootoutStopsProcess: true,
     commands: [] as Array<{ executable: string; args: string[]; env?: Record<string, string> }>
   };
 
@@ -72,7 +96,7 @@ async function fixture() {
   const notFound = (target: string) => ({
     exitCode: 113,
     stdout: '',
-    stderr: `Bad request.\nCould not find service "${target}" in domain for user gui: 501`
+    stderr: `Bad request.\nCould not find service "${target}" in domain for user gui: ${REAL_UID}`
   });
   const runCommand = async (input: {
     executable: string;
@@ -98,20 +122,34 @@ async function fixture() {
 <key>RunAtLoad</key><true/>
 </dict></plist>\n`
       );
+      const runtimeDirectory = path.join(sessionRoot, 'runtime-data', 'runtime');
+      await mkdir(path.join(runtimeDirectory, 'logs'), { recursive: true, mode: 0o700 });
+      await mkdir(path.join(runtimeDirectory, 'auth', 'tokens'), { recursive: true, mode: 0o700 });
+      await writeFile(path.join(runtimeDirectory, 'logs', 'daemon.stdout.log'), state.stdoutLog, {
+        mode: 0o600
+      });
+      await writeFile(path.join(runtimeDirectory, 'logs', 'daemon.stderr.log'), state.stderrLog, {
+        mode: 0o600
+      });
+      await writeFile(
+        path.join(runtimeDirectory, 'auth', 'tokens', 'operator.token'),
+        `${state.authToken}\n`,
+        { mode: 0o600 }
+      );
       if (state.installError) throw state.installError;
       return { exitCode: 0, stdout: '', stderr: '' };
     }
     if (input.executable !== '/bin/launchctl') throw new Error(`Unexpected ${input.executable}`);
     if (input.args[0] === 'print') {
       const service = input.args[1];
-      if (service === 'gui/501') {
+      if (service === `gui/${REAL_UID}`) {
         const asid = state.securityAsid ?? state.sessionId;
         return {
           exitCode: state.domainExitCode,
           signal: state.domainSignal,
           stdout:
             state.domainOutput ??
-            `gui/501 = {
+            `gui/${REAL_UID} = {
 \ttype = ${state.domainType}
 \thandle = ${state.sessionId}
 \tactive count = 12
@@ -128,6 +166,7 @@ async function fixture() {
         };
       }
       if (service.endsWith('/com.chirality.runtime')) {
+        if (!state.defaultJobLoaded) return notFound(defaultLabel);
         return { exitCode: 0, stdout: 'state = running\nprogram = /operator\npid = 77\n', stderr: '' };
       }
       if (!state.loaded) return notFound(label);
@@ -148,17 +187,18 @@ async function fixture() {
       };
     }
     if (input.args[0] === 'bootout') {
-      state.loaded = false;
-      state.processAlive = false;
-      return { exitCode: 0, stdout: '', stderr: '' };
+      if (state.bootoutExitCode === 0 && state.bootoutRemovesJob) state.loaded = false;
+      if (state.bootoutExitCode === 0 && state.bootoutStopsProcess) state.processAlive = false;
+      if (state.changeDefaultJobOnBootout) state.defaultJobLoaded = false;
+      return { exitCode: state.bootoutExitCode, stdout: '', stderr: '' };
     }
     throw new Error(`Unexpected launchctl call ${input.args.join(' ')}`);
   };
   const deps = {
     platform: 'darwin',
     environment: { HOME: home },
-    userInfo: () => ({ homedir: home, uid: 501, username: 'fixture-user' }),
-    uid: () => 501,
+    userInfo: () => ({ homedir: home, uid: REAL_UID, username: 'fixture-user' }),
+    uid: () => REAL_UID,
     now: () => new Date(state.loaded ? '2026-08-22T14:00:00.000Z' : '2026-08-21T14:00:00.000Z'),
     randomId: () => 'fixture',
     runCommand,
@@ -167,7 +207,9 @@ async function fixture() {
       state.processInspections += 1;
       if (state.processInspectionError) throw state.processInspectionError;
       return state.processExecutables;
-    }
+    },
+    beforeFailureLogSnapshot: undefined as (() => void | Promise<void>) | undefined,
+    removePassFailureLogs: undefined as ((failedLogsRoot: string) => Promise<void>) | undefined
   };
   return { root, home, appPath, executablePath, sessionRoot, label, plistPath, state, deps };
 }
@@ -211,11 +253,46 @@ async function expectPreflightFailureWithoutMutation(
       .filter((entry) => entry.executable === '/bin/launchctl')
       .every(
         (entry) =>
-          entry.args.length === 2 && entry.args[0] === 'print' && entry.args[1] === 'gui/501'
+          entry.args.length === 2 && entry.args[0] === 'print' && entry.args[1] === `gui/${REAL_UID}`
       )
   ).toBe(true);
   await expect(realpath(harness.sessionRoot)).rejects.toThrow();
 }
+
+describe('cleanup launchctl parser', () => {
+  const realService =
+    'gui/501/com.chirality.ci.runatload.login.owner.macos26.r19.3951dfe9-ec03-421b-b376-fd5f0d96992b';
+
+  it('parses the verified R19 never-exited fixture exactly', async () => {
+    const source = await readFile(
+      new URL('./fixtures/launchctl-print-r19-never-exited.txt', import.meta.url),
+      'utf8'
+    );
+
+    expect(parseCleanupLaunchctlJob(source, realService)).toMatchObject({
+      state: 'running',
+      pid: 34924,
+      runs: 1,
+      lastExitCode: undefined,
+      neverExited: true
+    });
+  });
+
+  it('preserves integer parsing and rejects every other noninteger last-exit form', async () => {
+    const source = await readFile(
+      new URL('./fixtures/launchctl-print-r19-never-exited.txt', import.meta.url),
+      'utf8'
+    );
+    expect(
+      parseCleanupLaunchctlJob(source.replace('(never exited)', '-9'), realService)
+    ).toMatchObject({ lastExitCode: -9, neverExited: false });
+    for (const malformed of ['', '   ', 'never exited', '(still running)', '1.5', '0x0']) {
+      expect(() =>
+        parseCleanupLaunchctlJob(source.replace('(never exited)', malformed), realService)
+      ).toThrow('Loaded cleanup job last exit code is invalid');
+    }
+  });
+});
 
 describe('macOS login-session identity preflight', () => {
   it('accepts live-shaped Aqua login-domain output without raw identity or mutation', async () => {
@@ -247,7 +324,7 @@ describe('macOS login-session identity preflight', () => {
     expect(JSON.stringify(first)).not.toContain('1001');
     expect(harness.state.commands).toEqual([
       { executable: '/usr/bin/stat', args: ['-f', '%Su:%u', '/dev/console'], env: undefined },
-      { executable: '/bin/launchctl', args: ['print', 'gui/501'], env: undefined }
+      { executable: '/bin/launchctl', args: ['print', `gui/${REAL_UID}`], env: undefined }
     ]);
     expect(harness.state.commands.some((entry) => entry.executable === '/usr/bin/osascript')).toBe(
       false
@@ -256,7 +333,7 @@ describe('macOS login-session identity preflight', () => {
       harness.state.commands.some(
         (entry) =>
           entry.executable === '/bin/launchctl' &&
-          (entry.args.length !== 2 || entry.args[0] !== 'print' || entry.args[1] !== 'gui/501')
+          (entry.args.length !== 2 || entry.args[0] !== 'print' || entry.args[1] !== `gui/${REAL_UID}`)
       )
     ).toBe(false);
     await expect(realpath(harness.sessionRoot)).rejects.toThrow();
@@ -294,18 +371,18 @@ describe('macOS login-session identity preflight', () => {
     ['process/account UID mismatch', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.deps.userInfo = () => ({
         homedir: harness.home,
-        uid: 502,
+        uid: REAL_UID + 1,
         username: 'fixture-user'
       });
     }],
     ['invalid current-account username root', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.deps.userInfo = () => ({ homedir: harness.home, uid: 501, username: 'root' });
+      harness.deps.userInfo = () => ({ homedir: harness.home, uid: REAL_UID, username: 'root' });
     }],
     ['invalid current-account username loginwindow', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.deps.userInfo = () => ({ homedir: harness.home, uid: 501, username: 'loginwindow' });
+      harness.deps.userInfo = () => ({ homedir: harness.home, uid: REAL_UID, username: 'loginwindow' });
     }],
     ['invalid current-account username _mbsetupuser', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.deps.userInfo = () => ({ homedir: harness.home, uid: 501, username: '_mbsetupuser' });
+      harness.deps.userInfo = () => ({ homedir: harness.home, uid: REAL_UID, username: '_mbsetupuser' });
     }]
   ])('fails closed on %s before inspection', async (_caseName, mutate) => {
     const harness = await fixture();
@@ -315,7 +392,7 @@ describe('macOS login-session identity preflight', () => {
 
   it.each([
     ['malformed console output', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.consoleOutput = 'fixture-user:501\nsecond-record:501\n';
+      harness.state.consoleOutput = `fixture-user:${REAL_UID}\nsecond-record:${REAL_UID}\n`;
     }],
     ['loginwindow console owner', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.state.consoleUsername = 'loginwindow';
@@ -327,7 +404,7 @@ describe('macOS login-session identity preflight', () => {
       harness.state.consoleUsername = 'another-user';
     }],
     ['wrong console UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.consoleUid = 502;
+      harness.state.consoleUid = REAL_UID + 1;
     }],
     ['console command failure', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.state.statExitCode = 1;
@@ -349,18 +426,18 @@ describe('macOS login-session identity preflight', () => {
       harness.state.domainOutput = 'not a login domain\n';
     }],
     ['wrong domain identifier UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/502 = {
+      harness.state.domainOutput = `gui/${REAL_UID + 1} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 }\n`;
     }],
     ['wrong security UID', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.securityUid = 502;
+      harness.state.securityUid = REAL_UID + 1;
     }],
     ['non-login domain', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.state.domainType = 'user';
@@ -372,50 +449,50 @@ describe('macOS login-session identity preflight', () => {
       harness.state.securityAsid = 1002;
     }],
     ['unsafe-integer handle and asid', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 9007199254740992
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 9007199254740992
 \t}
 }\n`;
     }],
     ['duplicate handle', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 }\n`;
     }],
     ['ambiguous security contexts', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 }\n`;
     }],
     ['trailing top-level domain output', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 }
@@ -423,23 +500,23 @@ trailing output
 `;
     }],
     ['unclosed top-level domain brace', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 \t}
 `;
     }],
     ['unclosed security-context braces', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.domainOutput = `gui/501 = {
+      harness.state.domainOutput = `gui/${REAL_UID} = {
 \ttype = login
 \thandle = 1001
 \tsession = Aqua
 \tsecurity context = {
-\t\tuid = 501
+\t\tuid = ${REAL_UID}
 \t\tasid = 1001
 `;
     }],
@@ -523,7 +600,11 @@ describe('packaged LaunchAgent login-session proof preparation', () => {
     for (const { name, harness: rejected, sessionRoot, expectedBytes, inspectRootAbsence } of rejectedCases) {
       const absentHome = path.join(rejected.root, 'guard-rejection-home');
       rejected.deps.environment.HOME = absentHome;
-      rejected.deps.userInfo = () => ({ homedir: absentHome, uid: 501, username: 'fixture-user' });
+      rejected.deps.userInfo = () => ({
+        homedir: absentHome,
+        uid: REAL_UID,
+        username: 'fixture-user'
+      });
       expect(
         Buffer.byteLength(path.join(sessionRoot, 'runtime-data', 'runtime', 'control.sock'), 'utf8'),
         name
@@ -730,6 +811,61 @@ describe('packaged LaunchAgent login-session proof preparation', () => {
     ).rejects.toThrow('already consumed');
   });
 
+  it('boots out an exact-owned running PID with runs 1 and never-exited state', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.sessionId += 1;
+    harness.state.processAlive = true;
+    harness.state.runs = 1;
+    harness.state.lastExitCode = '(never exited)';
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).resolves.toMatchObject({
+      status: 'PASS',
+      cleanup: {
+        processAbsent: true,
+        jobAbsent: true,
+        destructiveCleanupRefused: false,
+        plistAbsent: true,
+        runtimeDataRemoved: true
+      }
+    });
+    expect(harness.state.commands.some((entry) => entry.args[0] === 'bootout')).toBe(true);
+  });
+
+  it('keeps final PASS irrevocable when PASS-only failed-log deletion fails', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.sessionId += 1;
+    harness.state.processAlive = true;
+    harness.deps.removePassFailureLogs = async () => {
+      throw new Error('deterministic PASS-only deletion failure');
+    };
+
+    const summary = await main(['capture', '--session-root', harness.sessionRoot], harness.deps);
+    expect(summary).toMatchObject({
+      status: 'PASS',
+      cleanup: {
+        failureLogsCopied: null,
+        passOnlyFailureLogCleanup: 'INDETERMINATE_RETAINED_OR_PARTIAL',
+        runtimeDataRemoved: true
+      }
+    });
+    await expect(
+      readFile(path.join(harness.sessionRoot, 'failed-logs', 'daemon.stdout.log'), 'utf8')
+    ).resolves.toBe('fixture daemon stdout\n');
+    await expect(
+      readFile(path.join(harness.sessionRoot, 'failed-logs', 'daemon.stderr.log'), 'utf8')
+    ).resolves.toBe('fixture daemon stderr\n');
+  });
+
   it('fails closed and removes prepared state when the login session did not discover the job', async () => {
     const harness = await fixture();
     await main(
@@ -755,8 +891,212 @@ describe('packaged LaunchAgent login-session proof preparation', () => {
     );
     expect(summary.status).toBe('FAIL');
     expect(summary.launchAgent.loginDiscoveredJobObserved).toBe(false);
-    expect(summary.cleanup).toMatchObject({ jobAbsent: true, plistAbsent: true, runtimeDataRemoved: true });
+    expect(summary.cleanup).toMatchObject({
+      jobAbsent: true,
+      destructiveCleanupRefused: false,
+      failureLogsCopied: true,
+      plistAbsent: true,
+      runtimeDataRemoved: true
+    });
+    await expect(
+      readFile(path.join(harness.sessionRoot, 'failed-logs', 'daemon.stdout.log'), 'utf8')
+    ).resolves.toBe('fixture daemon stdout\n');
+    await expect(
+      readFile(path.join(harness.sessionRoot, 'failed-logs', 'daemon.stderr.log'), 'utf8')
+    ).resolves.toBe('fixture daemon stderr\n');
     expect(summary.proofBoundary.harnessPerformedLogoutLogin).toBe(false);
+  });
+
+  it('copies neither log and retains private runtime logs when either contains the auth token', async () => {
+    const harness = await fixture();
+    harness.state.stdoutLog = `before ${harness.state.authToken} after\n`;
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.sessionId += 1;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow(
+      'not discovered'
+    );
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.cleanup).toMatchObject({
+      failureLogsCopied: false,
+      failureLogsPrivateOnly: true,
+      runtimeDataRemoved: false
+    });
+    expect(summary.cleanupErrors).toContain(
+      'Runtime auth token was detected; retained failure logs only in private runtime data'
+    );
+    await expect(realpath(path.join(harness.sessionRoot, 'failed-logs'))).rejects.toThrow();
+    await expect(
+      readFile(
+        path.join(harness.sessionRoot, 'runtime-data', 'runtime', 'logs', 'daemon.stdout.log'),
+        'utf8'
+      )
+    ).resolves.toBe(harness.state.stdoutLog);
+    expect(JSON.stringify(summary)).not.toContain(harness.state.authToken);
+  });
+
+  it('fails closed with private-only retention when both capture logs are missing', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    const logsRoot = path.join(harness.sessionRoot, 'runtime-data', 'runtime', 'logs');
+    await rm(path.join(logsRoot, 'daemon.stdout.log'));
+    await rm(path.join(logsRoot, 'daemon.stderr.log'));
+    harness.state.sessionId += 1;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow(
+      'not discovered'
+    );
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.cleanup).toMatchObject({
+      failureLogsCopied: false,
+      failureLogsPrivateOnly: true,
+      runtimeDataRemoved: false
+    });
+    expect(summary.cleanupErrors).toContain(
+      'Required failure logs are missing; retained only in private runtime data'
+    );
+    await expect(realpath(path.join(harness.sessionRoot, 'runtime-data'))).resolves.toBe(
+      path.join(harness.sessionRoot, 'runtime-data')
+    );
+  });
+
+  it('fails closed with private-only retention when one log is missing before later default failure', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    await rm(
+      path.join(
+        harness.sessionRoot,
+        'runtime-data',
+        'runtime',
+        'logs',
+        'daemon.stderr.log'
+      )
+    );
+    harness.state.loaded = true;
+    harness.state.sessionId += 1;
+    harness.state.processAlive = true;
+    harness.state.changeDefaultJobOnBootout = true;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow();
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.defaultProtection.jobLoadedStateUnchanged).toBe(false);
+    expect(summary.cleanup).toMatchObject({
+      failureLogsCopied: false,
+      failureLogsPrivateOnly: true,
+      runtimeDataRemoved: false
+    });
+    expect(summary.cleanupErrors).toContain(
+      'Required failure logs are missing; retained only in private runtime data'
+    );
+  });
+
+  it.each(['logs', 'auth', 'tokens'])('rejects a symlinked %s ancestor without copying logs', async (ancestor) => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    const runtimeDirectory = path.join(harness.sessionRoot, 'runtime-data', 'runtime');
+    const target =
+      ancestor === 'logs'
+        ? path.join(runtimeDirectory, 'logs')
+        : ancestor === 'auth'
+          ? path.join(runtimeDirectory, 'auth')
+          : path.join(runtimeDirectory, 'auth', 'tokens');
+    const replacement = path.join(harness.root, `replacement-${ancestor}`);
+    if (ancestor === 'logs') {
+      await mkdir(replacement);
+      await writeFile(path.join(replacement, 'daemon.stdout.log'), harness.state.stdoutLog);
+      await writeFile(path.join(replacement, 'daemon.stderr.log'), harness.state.stderrLog);
+    } else if (ancestor === 'auth') {
+      await mkdir(path.join(replacement, 'tokens'), { recursive: true });
+      await writeFile(path.join(replacement, 'tokens', 'operator.token'), `${harness.state.authToken}\n`);
+    } else {
+      await mkdir(replacement);
+      await writeFile(path.join(replacement, 'operator.token'), `${harness.state.authToken}\n`);
+    }
+    await rm(target, { recursive: true });
+    await symlink(replacement, target, 'dir');
+    harness.state.sessionId += 1;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow();
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.cleanup).toMatchObject({
+      failureLogsCopied: false,
+      failureLogsPrivateOnly: true,
+      runtimeDataRemoved: false
+    });
+    expect(summary.cleanupErrors[0]).toContain('Failure-log identity or auth snapshot is unsafe');
+    await expect(realpath(path.join(harness.sessionRoot, 'failed-logs'))).rejects.toThrow();
+  });
+
+  it('rejects final-file substitution after identity inspection', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    const stdoutPath = path.join(
+      harness.sessionRoot,
+      'runtime-data',
+      'runtime',
+      'logs',
+      'daemon.stdout.log'
+    );
+    const originalPath = `${stdoutPath}.original`;
+    harness.deps.beforeFailureLogSnapshot = async () => {
+      await rename(stdoutPath, originalPath);
+      await symlink(originalPath, stdoutPath);
+    };
+    harness.state.sessionId += 1;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow();
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.cleanup).toMatchObject({
+      failureLogsCopied: false,
+      failureLogsPrivateOnly: true,
+      runtimeDataRemoved: false
+    });
+    expect(summary.cleanupErrors[0]).toContain('Failure-log identity or auth snapshot is unsafe');
+    await expect(realpath(path.join(harness.sessionRoot, 'failed-logs'))).rejects.toThrow();
+  });
+
+  it('retains pre-removal log copies when final default protection fails later', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.sessionId += 1;
+    harness.state.processAlive = true;
+    harness.state.changeDefaultJobOnBootout = true;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow(
+      'Capture or cleanup incomplete'
+    );
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.status).toBe('FAIL');
+    expect(summary.defaultProtection.jobLoadedStateUnchanged).toBe(false);
+    expect(summary.cleanup).toMatchObject({
+      failureLogsCopied: true,
+      runtimeDataRemoved: true
+    });
+    await expect(
+      readFile(path.join(harness.sessionRoot, 'failed-logs', 'daemon.stdout.log'), 'utf8')
+    ).resolves.toBe('fixture daemon stdout\n');
+    await expect(
+      readFile(path.join(harness.sessionRoot, 'failed-logs', 'daemon.stderr.log'), 'utf8')
+    ).resolves.toBe('fixture daemon stderr\n');
   });
 
   it('requires a different completed GUI login session than preparation', async () => {
@@ -793,7 +1133,18 @@ describe('packaged LaunchAgent login-session proof preparation', () => {
     const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
     expect(summary.launchAgent.loadedArgumentsAvailable).toBe(false);
     expect(summary.status).toBe('FAIL');
-    expect(summary.cleanup).toMatchObject({ jobAbsent: false, jobMutationRefused: true });
+    expect(summary.cleanup).toMatchObject({
+      jobAbsent: false,
+      jobMutationRefused: true,
+      destructiveCleanupRefused: true,
+      failureLogsCopied: true,
+      plistAbsent: false,
+      runtimeDataRemoved: false
+    });
+    await expect(readFile(harness.plistPath, 'utf8')).resolves.toContain(harness.label);
+    await expect(realpath(path.join(harness.sessionRoot, 'runtime-data'))).resolves.toBe(
+      path.join(harness.sessionRoot, 'runtime-data')
+    );
     expect(harness.state.loaded).toBe(true);
     expect(harness.state.commands.some((entry) => entry.args[0] === 'bootout')).toBe(false);
   });
@@ -865,12 +1216,109 @@ describe('packaged LaunchAgent login-session proof preparation', () => {
     expect(harness.state.commands.some((entry) => entry.args[0] === 'bootout')).toBe(false);
   });
 
+  it('preserves plist and runtime diagnostics when exact-owned bootout is refused', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.sessionId += 1;
+    harness.state.processAlive = true;
+    harness.state.bootoutExitCode = 5;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow();
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.cleanup).toMatchObject({
+      processAbsent: false,
+      jobAbsent: false,
+      destructiveCleanupRefused: true,
+      failureLogsCopied: true,
+      plistAbsent: false,
+      runtimeDataRemoved: false
+    });
+    expect(summary.cleanupErrors).toContain(
+      'Refusing destructive cleanup while proof state is unsafe (job=present-or-unknown, process=alive, job-mutation-refused=false)'
+    );
+    await expect(readFile(harness.plistPath, 'utf8')).resolves.toContain(harness.label);
+    await expect(realpath(path.join(harness.sessionRoot, 'runtime-data'))).resolves.toBe(
+      path.join(harness.sessionRoot, 'runtime-data')
+    );
+  });
+
+  it('preserves plist and runtime diagnostics when a process remains alive after bootout', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.sessionId += 1;
+    harness.state.processAlive = true;
+    harness.state.bootoutStopsProcess = false;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow();
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.cleanup).toMatchObject({
+      processAbsent: false,
+      jobAbsent: true,
+      destructiveCleanupRefused: true,
+      failureLogsCopied: true,
+      plistAbsent: false,
+      runtimeDataRemoved: false
+    });
+    expect(summary.cleanupErrors).toContain(
+      'Refusing destructive cleanup while proof state is unsafe (job=absent, process=alive, job-mutation-refused=false)'
+    );
+    await expect(readFile(harness.plistPath, 'utf8')).resolves.toContain(harness.label);
+    await expect(realpath(path.join(harness.sessionRoot, 'runtime-data'))).resolves.toBe(
+      path.join(harness.sessionRoot, 'runtime-data')
+    );
+  });
+
+  it('preserves diagnostics when successful bootout leaves the job loaded but process absent', async () => {
+    const harness = await fixture();
+    await main(
+      ['prepare', '--app-path', harness.appPath, '--session-root', harness.sessionRoot, '--label', harness.label, '--source-revision', 'fixture-sha'],
+      harness.deps
+    );
+    harness.state.loaded = true;
+    harness.state.sessionId += 1;
+    harness.state.processAlive = true;
+    harness.state.bootoutRemovesJob = false;
+
+    await expect(main(['capture', '--session-root', harness.sessionRoot], harness.deps)).rejects.toThrow();
+    const summary = JSON.parse(await readFile(path.join(harness.sessionRoot, 'summary.json'), 'utf8'));
+    expect(summary.cleanup).toMatchObject({
+      processAbsent: true,
+      jobAbsent: false,
+      destructiveCleanupRefused: true,
+      failureLogsCopied: true,
+      plistAbsent: false,
+      runtimeDataRemoved: false
+    });
+    expect(summary.cleanupErrors).toContain(
+      'Refusing destructive cleanup while proof state is unsafe (job=present-or-unknown, process=absent, job-mutation-refused=false)'
+    );
+    expect(harness.state.commands.some((entry) => entry.args[0] === 'bootout')).toBe(true);
+    await expect(readFile(harness.plistPath, 'utf8')).resolves.toContain(harness.label);
+    await expect(
+      readFile(path.join(harness.sessionRoot, 'failed-logs', 'daemon.stdout.log'), 'utf8')
+    ).resolves.toBe('fixture daemon stdout\n');
+    await expect(
+      readFile(path.join(harness.sessionRoot, 'failed-logs', 'daemon.stderr.log'), 'utf8')
+    ).resolves.toBe('fixture daemon stderr\n');
+    await expect(realpath(path.join(harness.sessionRoot, 'runtime-data'))).resolves.toBe(
+      path.join(harness.sessionRoot, 'runtime-data')
+    );
+  });
+
   it.each([
     ['missing launchctl program', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.state.loadedProgram = undefined;
     }],
     ['mismatched launchctl service', (harness: Awaited<ReturnType<typeof fixture>>) => {
-      harness.state.loadedService = `gui/501/${harness.label}.foreign`;
+      harness.state.loadedService = `gui/${REAL_UID}/${harness.label}.foreign`;
     }],
     ['ambiguous launchctl arguments', (harness: Awaited<ReturnType<typeof fixture>>) => {
       harness.state.loadedOutput = `${harness.state.loadedService} = {\n\tstate = spawn scheduled\n\tprogram = ${harness.executablePath}\n\targuments = {\n\t\t${harness.executablePath}\n\t\t--runtime-daemon\n\t}\n\targuments = {\n\t\t${harness.executablePath}\n\t\t--runtime-daemon\n\t}\n}\n`;

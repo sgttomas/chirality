@@ -1,0 +1,112 @@
+{
+  "context_telemetry": {
+    "measurement_limitation": "native context occupancy unavailable for one or more sessions",
+    "starts_with_context_occupancy": 0,
+    "starts_without_context_occupancy": 6
+  },
+  "counts": {
+    "category": {
+      "activation": 1,
+      "fan-in": 1,
+      "implementation": 2,
+      "remediation": 4,
+      "review": 4
+    },
+    "event_type": {
+      "FINISH": 6,
+      "START": 6
+    },
+    "outcome": {
+      "BLOCKED": 2,
+      "PASS": 4,
+      "STARTED": 6
+    },
+    "reason_code": {
+      "DELEGATED_HARNESS_NATIVE": 1,
+      "F01_F05_ACTIONABLE": 1,
+      "F01_F05_CLOSED_FOR_REVIEW": 1,
+      "F01_F05_CLOSED_NO_FINDINGS": 1,
+      "F01_F05_REPAIR_CYCLE_1": 1,
+      "FINAL_FRESH_REVIEW": 1,
+      "FINAL_REPAIR_CYCLE_2": 1,
+      "FRESH_SOURCE_EVIDENCE_REVIEW": 1,
+      "MACOS_DEV_FD_DIRECTORY_ENOENT": 1,
+      "OWNER_DIRECTED_R20_PHASE_A": 1,
+      "PHASE_A_CANDIDATE_FROZEN": 1,
+      "READY_FOR_CHANGE_SOURCE_COMMIT": 1
+    }
+  },
+  "events": 12,
+  "schema": "chirality-runtime-summary/v1",
+  "session_results": [
+    {
+      "duration_seconds": 573.164,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PKG09-R20-REVIEW-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral-generalist-agent2",
+      "session_id": "r20-phasea-fresh-review"
+    },
+    {
+      "duration_seconds": 709.517,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG09-R20-REVIEW-R2-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral-generalist-agent2",
+      "session_id": "r20-phasea-fresh-review-r2"
+    },
+    {
+      "duration_seconds": 797.655,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG09-R20-IMPLEMENT-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral-generalist-agent2",
+      "session_id": "r20-phasea-implementation"
+    },
+    {
+      "duration_seconds": 585.499,
+      "events": 2,
+      "final_outcome": "BLOCKED",
+      "instance_id": "A2-PKG09-R20-IMPLEMENT-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral-generalist-agent2",
+      "session_id": "r20-phasea-implementation-r1"
+    },
+    {
+      "duration_seconds": 283.865,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "A2-PKG09-R20-IMPLEMENT-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "ephemeral-generalist-agent2",
+      "session_id": "r20-phasea-implementation-r2"
+    },
+    {
+      "duration_seconds": 3023.461,
+      "events": 2,
+      "final_outcome": "PASS",
+      "instance_id": "WI-PKG09-R20-REPAIR-01",
+      "package_id": "PKG-09",
+      "remediations": 0,
+      "retries": 0,
+      "role": "WORKING_ITEMS",
+      "session_id": "wi-pkg09-r20-repair-01"
+    }
+  ],
+  "sessions": 6,
+  "status": "PASS",
+  "unmatched_sessions": []
+}

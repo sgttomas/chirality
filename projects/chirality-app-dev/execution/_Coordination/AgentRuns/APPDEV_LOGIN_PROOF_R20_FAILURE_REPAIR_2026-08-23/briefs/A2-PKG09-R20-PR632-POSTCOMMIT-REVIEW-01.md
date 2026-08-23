@@ -1,0 +1,18 @@
+# Sealed brief — fresh PR #632 record-only repair review
+
+- RequestedBy: `WORKING_ITEMS` instance `/root/node3_pkg09` under HELP_HUMAN.
+- RunID: `APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23`.
+- ParentInstanceID: `WI-PKG09-R20-PR632-REPAIR-MANAGER-01`.
+- ChildInstanceID: `A2-PKG09-R20-PR632-POSTCOMMIT-REVIEW-01`.
+- Role: genuinely fresh delegated-harness-native ephemeral generalist in explicit Agent-2 mode; role/non-delegation instruction-asserted. Do not delegate.
+- Objective: evidence-only review of the complete PR #632 record-only repair, postcommit governance gates, scope/fences, and Receipt 191 amendment readiness.
+- AcceptedBasis: intermediate repair commit `de2080a7ac82f636fca3f8be57b20dc0e9a80fa8`, parent `85caafd4882a2ffff204ed87334171608ce462be`, frontend tree `b4c73edda1fe3346815ce75449b2327c80c79bf8`; exact owner direction in `CHAT_TRANSCRIPTION.md`; repair and validation briefs/returns/lineage; manager-observed first exact whitespace PASS; validator final PASS and inventory SHA-256 `260ff0035bda9e54de995f3530c447302fe12a99286383ff4736e23768f48847`.
+- DeclaredReads: root/App instructions and standing plan; all PR632 amendments/plans/graphs/diagnostic/briefs/instances; commit diff and current status; Receipt 191 schema/current bytes; accepted R20/R19/status/source/package/instruction evidence only as needed to test no-drift/no-claim-upgrade.
+- AllowedTools: read-only Git/filesystem/hash/gzip/JSON/shell; final candidate whitespace after reviewer records freeze. No network.
+- AllowedWriteTargets: only `instances/A2-PKG09-R20-PR632-POSTCOMMIT-REVIEW-01/` for activation, review, and return. Evidence-only: do not repair reviewed candidate. Own-record terminal whitespace may be normalized before final freeze, with no semantic change.
+- Review matrix: exact owner authority and attribution; controlling 12-path diagnostic; exact three-byte RETURN normalization; 11 raw deletions and deterministic gzip additions with byte-identical recovery/preimage lineage; intermediate commit exact 33-path scope; precommit committed-range sequencing classification; postcommit first whitespace PASS; complete governance suite commands/exits/retained-vs-rerun classification; authorized two-file validator-record hygiene lineage; final whitespace PASS; instruction-root current-byte and frontend tree/revision identities; App-only containment/empty index; no product/frontend/runtime test/typecheck/build/package/supply/daemon/precheck/proof/staged-procedure/network/Git publication action; R19 remains failed/unproved and R20 staged/unexecuted; Receipt amendment schema/size feasibility and claim-calibrated pointer plan.
+- Independent checks: reproduce exact gzip decompression byte count/hash for all 11; reproduce RETURN three-byte-only relation against parent commit; inspect commit/path scope and current dirt; verify frontend tree/diff; verify record hashes/inventory; parse JSON/JSONL; run `git diff --check`; run exact final candidate whitespace only after reviewer records freeze. Do not rerun routed tests, self-check, G0–G4, corpus, APP-HOLD, receipt validator, instruction generator, product checks, or any prior one-shot command.
+- ExpectedOutputs: `ACTIVATION.md`, `REVIEW.md`, `RETURN.md`; finding matrix with severity/evidence; exact hashes; verdict `PASS` or `FAIL`; Receipt readiness/blockers.
+- AcceptanceCriteria: 100% matrix coverage, exact lossless lineage, all retained gate evidence coherent, no scope/claim/fence defect, reviewer own records clean, final candidate whitespace PASS.
+- Failure: report exact actionable findings and stop; no repair.
+- Git fence: do not stage, commit, fetch, push, PR mutation, rebase, force-push, or merge.

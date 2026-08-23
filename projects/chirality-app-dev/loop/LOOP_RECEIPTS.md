@@ -5810,3 +5810,105 @@
     notarization, deployment, distribution, publication, release-readiness,
     issuance, additional stage/commit/fetch, push, PR, or merge-to-main act or
     claim occurred in this receipt amendment.
+
+- **2026-08-23 — Receipt 191** (DEL-09-04 R19/R20 repair, staging, and PR #632 record-only whitespace repair).
+  - Receipt-ID: `Receipt-191`
+  - Examined-Through: `de2080a7ac82f636fca3f8be57b20dc0e9a80fa8`
+  - Parent-Receipt: `Receipt-190`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-23,
+    Ryan Tufts, in-session), verbatim actionable direction: `OWNER DIRECTION —
+    PR #632 whitespace repair, record-only.` `I authorize a record-only repair
+    on the same branch, in one bounded step:` `1. For every file the whitespace
+    validator flags, either (a) normalize it (strip trailing whitespace and
+    terminal blank lines only; no content change) with pre→post SHA-256 lineage
+    recorded in the RunID, or (b) replace it with a gzip preimage per the
+    established R19 pattern (store <name>.gz, record the preimage SHA-256 and
+    byte count, delete the raw file). Choose per file by your established
+    evidence conventions; quoted-raw exemptions already recorded in Receipt
+    191 stay as they are if the validator passes them.` `2. Touch nothing under
+    projects/chirality-app-dev/frontend/ — the frontend tree must remain
+    b4c73edda1fe3346815ce75449b2327c80c79bf8 so the staged R20 procedure and
+    PROOF_REVISION cb008dc5d6aa9b249639c91f3453a18609530d0f stay valid.` `3.
+    Rerun the full pre-push gate set including
+    validate_candidate_whitespace.py --base-ref origin/main (must PASS), the
+    receipt validator, and git diff --check; amend Receipt 191 with this repair
+    (pre→post lineage, this authorization verbatim), commit, and push to
+    codex/app-login-proof-r20-repair. Do not rebase, force-push, or merge.` `Not
+    authorized: any frontend, packaging, daemon, test, or staged-procedure
+    change; any new proof claim.` Full direction and prior authority are in the
+    cited RunID `CHAT_TRANSCRIPTION.md`.
+  - Pointers: final frontend-touching/source/build revision
+    `cb008dc5d6aa9b249639c91f3453a18609530d0f`; content commit
+    `b499d3d9c3a8441271bf7b8b27405fe3596d18c0`; PR #632 repair
+    commit `de2080a7ac82f636fca3f8be57b20dc0e9a80fa8`, parent
+    `85caafd4882a2ffff204ed87334171608ce462be`; branch
+    `codex/app-login-proof-r20-repair`; prior authorized sync merge
+    `4a62272d50ced17481c0bb0c410a006664961970` had no App/frontend path changes.
+    DEL-09-04 R20/status and RunID
+    `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/`
+    remain controlling. The diagnostic, `RETURN.md` whitespace normalization
+    lineage, gzip preimage/recovery identities, and validator EOF lineage are in
+    `PR632_WHITESPACE_DIAGNOSTIC.md`, the cited amendments, and
+    `instances/A2-PKG09-R20-PR632-WHITESPACE-REPAIR-01/REPAIR_LINEAGE.md` plus
+    `instances/A2-PKG09-R20-PR632-POSTCOMMIT-VALIDATE-01/`. Fresh review is
+    `instances/A2-PKG09-R20-PR632-POSTCOMMIT-REVIEW-01/REVIEW.md`, SHA-256
+    `9df506713ecdf730efbd848ee17d3d7fc814d2f8361995c994ae3c7082907c83`.
+  - Checks: candidate whitespace, routed governance, self-check, G0–G4,
+    receipt, diff, corpus, APP-HOLD, scope/index, instruction-root, frontend,
+    gzip, JSON/JSONL, and fresh review pass.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising WORKING_ITEMS,
+    delegated-harness-native ephemeral Agent 2 executors/validators/reviewers,
+    and CHANGE; exact inherited model identifiers were not exposed.
+  - Gate-Outcome: `EXECUTED` — record-only repair plus prior repair/build/staging
+    evidence. DEL-09-04
+    remains `IN_PROGRESS` and unproved; R19 remains failed and R20 remains
+    staged/unexecuted. No frontend/package/daemon/test/staged-procedure change,
+    proof acceptance, prepare, capture, logout/login, bootstrap, kickstart,
+    operator/private-evidence action, signing, notarization, deployment,
+    distribution, release-readiness, issuance, fetch, push, rebase,
+    force-push, merge-to-main, or lifecycle/reliance claim occurred; Git acts
+    were limited to the cited authorized prior sync and intermediate repair
+    commit.
+
+- **2026-08-23 — Receipt 192** (DEL-09-04 PR #632 fixture-mode portability repair and R20 exact-revision restage).
+  - Receipt-ID: `Receipt-192`
+  - Examined-Through: `74525fb6b34f614c114e59a1bf09d20102fc6aac`
+  - Parent-Receipt: `Receipt-191`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-23, Ryan Tufts, in-session), verbatim:
+    `OWNER DIRECTION — PR #632 CI test-portability repair (fixture modes), bounded.
+
+    Harness pre-merge on head 980f5951dbbfe88302514802384e4ffec33c38b9 (ubuntu-latest) failed: 15 of 72 tests in frontend/src/**tests**/scripts/run-packaged-launchagent-login-proof.test.ts fail, each with first divergence \`Failure-log identity or auth snapshot is unsafe; retained only in private runtime data: Failure-log directory identity or permissions are unsafe\` (assertSafeSnapshotMetadata rejects group/other-writable modes). The suite passed on the macOS dev host (umask 022) and fails under the runner's umask, so the test fixtures are environment-dependent. The governance harness (whitespace) is green on this head.
+
+    I authorize one bounded repair on the same branch:
+
+    1. Diagnose from a local reproduction (e.g., run the suite with umask 0002 or with fixture directories created group-writable) and confirm the mechanism before changing anything.
+    2. Fix in the tests, not by weakening the product guard: every fixture-created runtime-data directory and file in this suite gets an explicit mode (0o700 directories, 0o600 files) at creation, matching what prepare/the daemon actually produce on the host. If the diagnosis shows any place where the PRODUCT itself creates a runtime directory without an explicit mode (relying on umask), fix that by passing the explicit mode — that is a hardening consistent with R17's guards, and record it distinctly.
+    3. Because this touches frontend/src/**tests**/, the frontend tree changes: amend the staged R20 procedure so PROOF_REVISION equals the new final frontend-touching commit, rerun exactly one offline desktop:pack from that revision (electron:supply-chain then desktop:pack, custom electronDist, no download), and record package identity — the main executable SHA-256 is expected to remain 79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874 since tests are not packaged; record whatever is observed. Re-run the read-only Step-0 gate checks for the unchanged r20 label and root.
+    4. Full-suite disposition per precedent: one sandbox diagnostic and one exact local-socket-permitted cure run; also run the login-proof suite once under umask 0002 to prove the Linux-shape passes; record exact counts; retained classifications unchanged.
+    5. Amend Receipt 191 (or append the next receipt per your convention) with this authorization verbatim, the diagnosis, the fix inventory, and the new PROOF_REVISION; revalidate the full pre-push gate set including whitespace against origin/main; commit and push to codex/app-login-proof-r20-repair. Do not rebase, force-push, or merge.
+    6. Record a Task Management candidate: test fixtures that exercise permission guards must pin modes explicitly; suites must be run once under a non-macOS umask before staging, since pre-merge CI is Linux.
+       Not authorized: weakening or removing any product guard; daemon, supply, or staged-procedure semantic changes beyond the PROOF_REVISION/package-identity re-stage; any proof claim.`
+  - Pointers: source/build `b33858d33220538ce292f276a442792ecf8050b1`; content `74525fb6b34f614c114e59a1bf09d20102fc6aac`; R20/status; RunID `execution/_Coordination/AgentRuns/APPDEV_LOGIN_PROOF_R20_FAILURE_REPAIR_2026-08-23/` Amendment 10, manager/handoff, executor/review/governance, and TM-candidate records.
+  - Checks: cited diagnosis, test-only mode repair, unchanged guard, offline restage, read-only Step 0, suites, review, and governance gates pass.
+  - Gate-Outcome: `EXECUTED` — repair and R20 documentation restage only. DEL-09-04 remains `IN_PROGRESS` and unproved; R20 is unexecuted. No proof/release, operator/private-evidence, rebase, force-push, or merge-to-main act or claim occurred.
+
+- **2026-08-23 — Receipt 193** (DEL-09-04 PR #632 UID portability repair and R20 exact-revision restage).
+  - Receipt-ID: `Receipt-193`
+  - Examined-Through: `458557a1c8e723610adc0cf730b778124f385428`
+  - Parent-Receipt: `Receipt-192`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-08-23, Ryan Tufts, in-session), verbatim:
+    `OWNER DIRECTION — PR #632 second CI portability repair (uid entanglement), bounded.
+
+    Harness pre-merge on head 4a48aeaede2d050631006f8ff23fb11736752bef still fails the same 15 login-proof tests with the same first divergence (`Failure-log directory identity or permissions are unsafe`). Diagnosis, verified by HELP_HUMAN from the test source: the mocked deps hardcode uid 501 (`userInfo: () => ({ …, uid: 501, … })`, `uid: () => 501`), and preserveFailureLogs passes that value as expectedUid into assertSafeSnapshotMetadata, which compares it to the REAL lstat() owner of the fixture files. On the macOS dev host the real uid is 501 so the mock coincidentally matches; on the ubuntu runner (uid 1001) it does not. The umask-0002 local repro cannot expose this because the host uid equals the hardcoded value — this class is provable only in CI.
+
+    I authorize one bounded repair on the same branch:
+    1. In the test file, derive every mocked uid from the real process: const REAL_UID = process.getuid(); use it in deps.uid, deps.userInfo, and every fixture string that embeds a uid the product compares against expectedUid (the launchctl fixture texts containing `uid = 501` and the gui/501 domain lines used by parseLoginDomain/securityUid paths must interpolate REAL_UID so the parsed value equals the expected one). Tests that deliberately exercise MISMATCH keep an explicitly different value (e.g. REAL_UID + 1), never a second hardcoded constant. The verified R19 never-exited fixture file is parsed as text only and stays byte-identical.
+    2. In the same pass, sweep the whole test file for any other host-entangled constant — uid, gid, hardcoded /Users or /home paths compared against real filesystem state, /tmp-symlink assumptions, homedir assumptions — and fix each by deriving from the real environment or the harness fixture, recording an inventory of what was found and changed. One sweep, not another single-defect fix.
+    3. Product scripts remain untouched; the guards are correct.
+    4. Restage as before: PROOF_REVISION moves to the new final frontend-touching commit; exactly one offline desktop:pack from it (electron:supply-chain then desktop:pack, custom electronDist, no download) with package identity recorded (main executable expected unchanged at 79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874); Step-0 read-only gate re-checks for the unchanged r20 label and root.
+    5. Validation: full local suite plus one umask-0002 run (both expected green), noting explicitly that the uid class is CI-proved, not host-provable; full pre-push gate set including whitespace; amend the receipt with this authorization verbatim, the diagnosis, and the sweep inventory; push to codex/app-login-proof-r20-repair. Do not rebase, force-push, or merge.
+    6. Extend the recorded TM candidate: portability sweeps for host-tool tests must cover uid/gid/path entanglement, not only umask/mode, and CI is the only arbiter for host-identity classes.
+    Not authorized: weakening any product guard; daemon, supply, or staged-procedure semantic changes beyond the PROOF_REVISION/package-identity restage; any proof claim.`
+  - Pointers: source/build `2ee96958daf997b7a156f020739bde43ca78ebf9`; content `458557a1c8e723610adc0cf730b778124f385428`; R20/status and RunID manager/handoff, UID work/review, build/governance/gzip/TM records.
+  - Checks: cited records cover the required sweep/repair, unchanged controls, retained tests/CI calibration, offline restage/Step 0, review, governance, and whitespace.
+  - Gate-Outcome: `EXECUTED` — repair/restage only; DEL-09-04 is `IN_PROGRESS`/unproved and R20 unexecuted. No proof/release/operator/private/Git-history/merge claim or act occurred.

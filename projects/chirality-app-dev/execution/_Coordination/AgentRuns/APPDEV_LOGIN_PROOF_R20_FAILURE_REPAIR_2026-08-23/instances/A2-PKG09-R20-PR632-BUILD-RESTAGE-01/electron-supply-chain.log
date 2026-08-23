@@ -1,0 +1,5 @@
+
+> chirality-frontend@2.0.0 electron:supply-chain
+> node ./scripts/verify-electron-dist.mjs
+
+/Users/ryan/Library/Caches/chirality/electron-dist
