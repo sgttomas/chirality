@@ -6632,3 +6632,121 @@ Not ruled here: dependency extraction results (they return as recorded
 evidence); estimates and schedule (later acts after extraction); any
 implementation activation (G0.5); any App-loop act.
 <!-- END RECEIPT-123 R7 VERBATIM -->
+
+### Receipt 124 — 2026-08-23 — Root v3 Phase 4 estimate snapshot
+
+- **Selection authority:** owner-carried steer
+  `plans/steers/chirality_app_v3_phase4_steer_root_2026-08-23.md`, SHA-256
+  `54595fe5060bed81fb9b871d623d15505ee7ff42b4e7349d238b9c4d0f9cc644`.
+  The steer is incorporated by this immutable path and SHA-256, not
+  transcribed. Standing context: R7 ruling record SHA-256
+  `dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53`
+  and Phase-3 steer SHA-256
+  `9c8d3884f97733f674269014c1735977c9628be1d929f6859889c79710ae4186`.
+- **Branch and basis:** `codex/root-v3-phase4-2026-08-23` from
+  `origin/main@7974f2d4a456777f2132fb5726a67a042137ca78` (PR #646); that
+  basis contains Phase-3 merge `e245d54e399d19436124e46e21d353fa11e774ed`
+  and Receipt 123. The post-N3 fetch observed `origin/main` unchanged at the
+  branch basis, so no sync, rebase, or force-push occurred and no sync grant
+  was required.
+- **Pre-write gates:** every Phase-4 basis SHA matched; accepted register
+  contained 53 deliverables; the seven SOW identities and DEL-02-06 dependency
+  identity matched Receipt 123; candidate whitespace passed before any
+  hash-pinning artifact; Root guards G0, G1, G2, G3, and G4 all passed.
+- **Run control:**
+  `execution/_Coordination/AgentRuns/ROOT_V3_PHASE4_2026-08-23/` records the
+  frozen ordered work graph, sealed briefs, returns, terminal status, and
+  handoff. Run handoff SHA-256
+  `5ca34f3290fb60437b598566bcb36fe7b74b4945c4f7a2ca39535a182c335fcc`.
+
+#### N1 — seven carrier estimates
+
+- **Write set:** `ESTIMATE_METHOD.md` and seven carrier estimate files inside
+  the new snapshot folder, plus N1 instance evidence only.
+- **Commit:** `9d965fad5be1389c1853f21142a47f0b98f2ac36`.
+- **Result:** 36 accepted-output work elements; 896 base hours with a
+  497–1,295 range. Per carrier: DEL-02-07 180 / 94–266; DEL-02-08 100 /
+  57–143; DEL-02-09 148 / 82–214; DEL-02-10 144 / 88–200; DEL-02-11 136 /
+  72–200; DEL-02-12 currently estimable 96 / 51–141; DEL-04-11 92 /
+  53–131. All ten holds, TM-ROOT-106/122, C1, App-owned work, activation,
+  cutover, and release are explicit unpriced exclusions. N1 return SHA-256
+  `1e9e581bbf19f3c7cdc04e68a3b905593e943811021b99a61a520d9a095383c6`;
+  fresh self-review zero actionable findings.
+
+#### N2 — DEL-02-06 incremental fan-in reassessment
+
+- **Write set:** `DEL-02-06_ESTIMATE.md` inside the snapshot plus N2 instance
+  evidence only.
+- **Commit:** `7b8d6d68e6c02f75d873bffa44849d312a7cfeb9`.
+- **Result:** 10 DEL-02-06-owned intake, reconciliation, hold-aware
+  integration, and owner-handoff preparation elements; 116 base hours with a
+  63–169 range. Carrier production, DEL-04-11 production, accountable-human
+  disposition, and every held or foreign act remain unpriced. N2 return
+  SHA-256
+  `e8d666bd6bf68152f4b4a93577a6673c987fb486a91d789fdc1e3d3894795a42`;
+  arithmetic/no-double-count review zero actionable findings.
+
+#### N3 — independent review and immutable seal
+
+- **Write set:** `SUMMARY.md`, `INPUT_HASHES.csv`, `REVIEW.md`, package
+  `RETURN.md`, and `ARTIFACT_HASHES.csv` inside the snapshot, plus N3 instance
+  evidence. N3 had repair authority only inside the new snapshot; it changed
+  no N1/N2 estimate or method byte.
+- **Commit:** `b7a554d5d16a4b1ed245e784a4735a094410cb72`.
+- **Result:** 46 work elements total; combined 1,012 base hours and 560–1,464
+  range. `INPUT_HASHES.csv` has 31 reproducible pins; `ARTIFACT_HASHES.csv`
+  has 13/13 matching package pins and self-excludes. Package hashes:
+  `SUMMARY.md`
+  `788341ba427dcd9ee789de2a718ae15b93e8f2389d8ea3f8ee7de307fb9b27c5`,
+  `INPUT_HASHES.csv`
+  `a838553fe1dc8267702d5a9df3578cc6935ecdda819505ca6b22b5ecb8fe5df5`,
+  `REVIEW.md`
+  `2ae917a7531ea29870c1bb3792f2c00fe928754a2e64649883f12e1ff1db9aa7`,
+  package `RETURN.md`
+  `6ac93dc50bb5f6a0a45a5320283bb0a0de6cbc0e533fb6d481e23d106bf3953a`,
+  and `ARTIFACT_HASHES.csv`
+  `99c2a8bd011962b16b798dcdc7ab5b4755906aa2d3e286022e17905afda56f2d`.
+  The package return closes `AWAITING_OWNER_ACCEPTANCE`.
+- **Repair and fresh review:** parent final candidate-whitespace found five
+  blank EOF lines in N3-authored evidence. N3 removed exactly those five
+  lines, regenerated all affected pins, disclosed the repair, and ran a third
+  fresh review. Final result: zero actionable findings, 31/31 input pins,
+  13/13 artifact pins, and 46/46 calculations. N3 return SHA-256
+  `6df5b3326811722575ef157becd07d113ec2110095db0d50ed25d5dcf9a741c3`.
+
+#### Byte fences and validation
+
+- Protected identities remained byte-identical: deliverable register
+  `2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba`;
+  `_LATEST.md`
+  `4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c`;
+  harness adapter
+  `71f603ad463c14dbba6b02806d67cfc4d859219ff828812fb37de35e78025f3c`;
+  practitioner test
+  `acd0a21242a891a8223e7c5008aaf0415031f2a023ac993446f4d77167c63d38`;
+  G1 test
+  `90a681a4229e48bcdf68f0505480b505aca64328ebf4cd5f446fa9e26729f78c`;
+  Task Management register
+  `89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518`.
+  No deliverable-folder, register, pointer, harness, test, TM, plans, tools,
+  docs, agents, project, export, runtime, pin, lifecycle, or schedule byte was
+  written.
+- Candidate whitespace: PASS. Agent instructions: 34 files, zero errors and
+  warnings. Instruction entrypoints: PASS. CI-form G4: PASS, 47 manifests,
+  zero changed instruction-surface paths and zero required manifests. Task
+  Management: PASS, 19 live rows, register byte-identical. Focused practitioner
+  harness: 56 passed with no repin. `git diff --check`: PASS.
+- Root handoff dated append SHA-256
+  `b27ceb7870ea149f06fc93c296c11f26cb5ada5e3e7a492d3d8ea91376224408`.
+
+#### Handoff
+
+Phase 4 drafting is complete. The immutable estimate snapshot is derivative
+decision support awaiting an owner acceptance, correction, or decline; it is
+not an accepted estimate and grants no scheduling, seating, implementation,
+activation, lifecycle, hold-lift, cutover, release, reliance, or foreign-loop
+authority. After acceptance, seating accepted estimates and scheduling remain
+separately gated; graph/closure evidence reruns follow scheduling or any
+accepted dependency change. TM-ROOT-106/122, C1, App-owned obligations,
+DEL-04-11 `tools/**` M2 authority, and all ten `HELD_UNAVAILABLE` bindings
+remain unresolved.
