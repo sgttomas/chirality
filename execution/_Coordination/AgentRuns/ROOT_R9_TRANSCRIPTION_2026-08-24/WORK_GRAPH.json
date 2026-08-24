@@ -1,0 +1,22 @@
+{
+  "schema": "chirality-agent-work-graph/v1",
+  "run_id": "ROOT_R9_TRANSCRIPTION_2026-08-24",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basis": "fde84c94d95160bd71ec4ac084e90803b79ebdc1",
+  "nodes": [
+    {
+      "id": "N1_R9_TRANSCRIPTION",
+      "role": "EPHEMERAL_AGENT_2",
+      "dependencies": [],
+      "write_targets": [
+        "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/SCHEDULE_BASIS_POST_PHASE4/OWNER_ACCEPTANCE.md",
+        "execution/_Coordination/AgentRuns/ROOT_R9_TRANSCRIPTION_2026-08-24/instances/N1_R9_TRANSCRIPTION/RETURN.md",
+        "execution/_Coordination/AgentRuns/ROOT_R9_TRANSCRIPTION_2026-08-24/instances/N1_R9_TRANSCRIPTION/STATUS.json"
+      ],
+      "fan_in_gate": "EXACT_TRANSCRIPTION_AND_BYTE_PRESERVATION"
+    }
+  ],
+  "human_gates": ["PR_MERGE"]
+}
