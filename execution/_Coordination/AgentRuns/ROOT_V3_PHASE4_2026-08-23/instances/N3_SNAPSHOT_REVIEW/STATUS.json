@@ -1,0 +1,1 @@
+{"instance_id":"N3_SNAPSHOT_REVIEW","agent_type":2,"role":"ephemeral-generalist-reviewer","status":"PENDING","depends_on":["N1_CARRIER_ESTIMATES","N2_DEL0206_REASSESSMENT"],"blockers":[]}

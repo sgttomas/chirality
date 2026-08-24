@@ -1,0 +1,12 @@
+{
+  "schema": "chirality-agent-run-work-graph/v1",
+  "run_id": "ROOT_V3_PHASE4_2026-08-23",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "ORDERED_TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {"id": "N1_CARRIER_ESTIMATES", "depends_on": [], "status": "COMPLETE"},
+    {"id": "N2_DEL0206_REASSESSMENT", "depends_on": ["N1_CARRIER_ESTIMATES"], "status": "PENDING"},
+    {"id": "N3_SNAPSHOT_REVIEW", "depends_on": ["N1_CARRIER_ESTIMATES", "N2_DEL0206_REASSESSMENT"], "status": "PENDING"}
+  ]
+}
