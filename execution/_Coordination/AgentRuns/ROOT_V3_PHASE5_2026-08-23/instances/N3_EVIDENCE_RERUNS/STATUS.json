@@ -1,0 +1,48 @@
+{
+  "node": "N3_EVIDENCE_RERUNS",
+  "agent_type": 2,
+  "role_enforcement": "instruction-asserted",
+  "delegated": false,
+  "terminal_status": "COMPLETE",
+  "basis": "f7264975f63799912addbfe0442144ab5de26ca7",
+  "dependencies": {
+    "n1_commit": "289220033149f0c328fbc44b68b4bb135567b4b9",
+    "n2_sealed_commit": "c38f383c78a5aa71d2bf988f4a91e0a73779fd62"
+  },
+  "graph": {
+    "status": "PASS_PHASE3_SHAPE_EXACT_MATCH",
+    "nodes": 59,
+    "deliverables": 53,
+    "packages": 6,
+    "membership_edges": 53,
+    "local_declarations": 16,
+    "unique_root_relationships": 9,
+    "gating_relationships": 8,
+    "non_gating_root_relationships": 1,
+    "non_gating_app_notice_edges": 2,
+    "sccs": 59,
+    "non_trivial_sccs": 0,
+    "deviations": 0,
+    "human_gated_move_required": false,
+    "input_pins_reproduced": 69,
+    "artifact_pins_reproduced": 7,
+    "artifact_manifest_sha256": "61b26282f612424bd199b2b27b5d4ba3df4857c91d6641b4d5395e0bddbc1117"
+  },
+  "closure": {
+    "run_status": "WARNINGS",
+    "verdict": "PASS_ZERO_UNRESOLVED_VIOLATIONS",
+    "unresolved_violations": 0,
+    "initialized_empty_warnings_remaining": 0,
+    "initialized_empty_warnings_cleared": 7,
+    "legacy_not_run_yet_warnings": 45,
+    "phase3_exact_match": true,
+    "input_pins_reproduced": 77,
+    "artifact_pins_reproduced": 17,
+    "artifact_manifest_sha256": "302c6a167714997a5628970f50084e6b9832cf20454dd73e12d2419ebb83c4d4"
+  },
+  "current_phase3_return_pins": {
+    "n1": "42df2dbc5e02bf187e02a2db9bee63d0c917feb61c59ba56a0049643748962ea",
+    "n2": "2aa9b0f08b793fc1e7ffbb16de7bce686debeaf809918fed21ce7f36b2ec9734"
+  },
+  "fresh_review_actionable_findings": 0
+}

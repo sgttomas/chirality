@@ -1,0 +1,2184 @@
+{
+  "schema": "chirality-objective-relative-work-graph/v2",
+  "graph_id": "ROOT-V3-RELEASE-PATHWAY-SCA-004-POST-PHASE5",
+  "status": "IMMUTABLE_DERIVATIVE_POST_PHASE5_EVIDENCE_RERUN",
+  "basis": {
+    "branch_basis": "origin/main@f7264975f63799912addbfe0442144ab5de26ca7",
+    "n1_acceptance_commit": "289220033149f0c328fbc44b68b4bb135567b4b9",
+    "n2_schedule_seal_commit": "c38f383c78a5aa71d2bf988f4a91e0a73779fd62",
+    "sca_snapshot": "SCA-004_2026-08-22_1749",
+    "applied_revision": "1.3",
+    "latest_pointer_sha256": "4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c",
+    "phase5_steer_sha256": "3bb377aa8bb162fb1d596505e908e1c720e4e4a9344d6d53aac5e9eaf44ac1a9",
+    "r8_record_sha256": "b91ee877b6a6c168434e34389309dd2663026baca03c2d900d9df8d182308d0f",
+    "phase3_n1_return_sha256": "42df2dbc5e02bf187e02a2db9bee63d0c917feb61c59ba56a0049643748962ea",
+    "phase3_n2_return_sha256": "2aa9b0f08b793fc1e7ffbb16de7bce686debeaf809918fed21ce7f36b2ec9734",
+    "estimate_owner_acceptance_sha256": "ebee539fc3b6f911b1f1c8d41c5c5c0c8873f3e4b0f4f9cffbea8c794691ae29",
+    "sealed_schedule_review_return_sha256": "b71e6e765d8d5ffe986f6d35287a1706d13e6dd731f0062754e0ff8d29b343a0",
+    "phase3_graph_sha256": "2f89637c5d18f77698bacdbceb873127c1185596d945a6d8583c5346f007735b",
+    "dependency_file_sha256": {
+      "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance": "20773668bd8086164c1cd7ee4119d7744d0c2f9a045e546b5565791bc772537f",
+      "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control": "2cececdade0f58deadce326e14926e47dfd862b48694cb77bb57c14c1277e8bf",
+      "DEL-02-08_Exact_Supply_and_Protocol_Pinning": "2065317900f62f75a76081ce64593b5cf93dbcb53887f35e1b538c53893ebda9",
+      "DEL-02-09_Hosted_Account_and_Consent_Boundary": "20b6592c76b7a81ce0705a10daa34d7e4ed52730790c71688951c914e61f1a62",
+      "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2": "4fe6d9bc3d2852d3f43b916c848b56e50535af0a15e352b5ebf1ec23bfa9c28f",
+      "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation": "10c25130e663b6d29c25b5e543f4382302082c447ed82da2da68365607234f60",
+      "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in": "f4a635b3c65523dbe8c819f53b92d1889f3dc34a521e0658422d26e1f7ad2998",
+      "DEL-04-11_Root_Loop_Receipt_Validator": "750a0a83e8b93143d6bcf35251c3f716e12c289dc2e0c269f98d33f389279211"
+    }
+  },
+  "objective": "Represent final integration and release-assurance ordering for the accepted SCA-004 Root carriers after Phase-3 dependency extraction.",
+  "edge_semantics": {
+    "GATING_DEPENDENCY": "from must supply the accepted input or evidence before to can close for this objective",
+    "NON_GATING_RELATIONSHIP": "coordination or validation support that does not order or gate closure",
+    "PARENT_MEMBERSHIP": "package membership only; never readiness-gating",
+    "NOTICE_FAN_IN": "cross-loop coordination only; never foreign authority or a gating dependency"
+  },
+  "cycle_policy": "Cycle-participating edges stay non-gating pending a recorded decompose/invert/merge/cut move; cut and merge are human-gated.",
+  "dependency_source_state": {
+    "source_format": "authoritative deliverable-local _DEPENDENCIES.md",
+    "extracted_containers": 8,
+    "legacy_not_run_yet_containers": 45,
+    "local_declaration_rows": 16,
+    "unique_root_relationships": 9,
+    "gating_relationships": 8,
+    "non_gating_relationships": 1,
+    "phase1_initialized_empty_warning": "CLEARED_FOR_SEVEN_SCA004_CARRIERS"
+  },
+  "node_counts": {
+    "total": 59,
+    "packages": 6,
+    "deliverables": 53,
+    "deliverables_by_package": {
+      "PKG-01": 8,
+      "PKG-02": 12,
+      "PKG-03": 6,
+      "PKG-04": 11,
+      "PKG-05": 8,
+      "PKG-06": 8
+    }
+  },
+  "nodes": [
+    {
+      "id": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "canonical_id": "PKG-01",
+      "kind": "ROOT_PACKAGE",
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority"
+    },
+    {
+      "id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "canonical_id": "PKG-02",
+      "kind": "ROOT_PACKAGE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers"
+    },
+    {
+      "id": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "canonical_id": "PKG-03",
+      "kind": "ROOT_PACKAGE",
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment"
+    },
+    {
+      "id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "canonical_id": "PKG-04",
+      "kind": "ROOT_PACKAGE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control"
+    },
+    {
+      "id": "PKG-05_Evidence_Provenance_and_Audit",
+      "canonical_id": "PKG-05",
+      "kind": "ROOT_PACKAGE",
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit"
+    },
+    {
+      "id": "PKG-06_Self_Application_Variants_and_Release",
+      "canonical_id": "PKG-06",
+      "kind": "ROOT_PACKAGE",
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release"
+    },
+    {
+      "id": "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map",
+      "canonical_id": "DEL-01-01",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-01_Genus_Concordance_Closure_and_Standing_Map",
+      "parent_package_id": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-001"
+      ],
+      "scope_items": [
+        "SOW-084",
+        "SOW-088",
+        "SOW-089",
+        "SOW-090",
+        "SOW-091",
+        "SOW-095",
+        "SOW-098"
+      ],
+      "dependency_metadata": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-01_Genus_Concordance_Closure_and_Standing_Map/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-01-02_Invariant_Catalog_Conformance_Register",
+      "canonical_id": "DEL-01-02",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-02_Invariant_Catalog_Conformance_Register",
+      "parent_package_id": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "lifecycle": "INITIALIZED",
+      "type": "REGISTER",
+      "objectives": [
+        "OBJ-001"
+      ],
+      "scope_items": [
+        "SOW-016",
+        "SOW-025",
+        "SOW-099"
+      ],
+      "dependency_metadata": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-02_Invariant_Catalog_Conformance_Register/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance",
+      "canonical_id": "DEL-01-03",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance",
+      "parent_package_id": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-001"
+      ],
+      "scope_items": [
+        "SOW-018",
+        "SOW-022"
+      ],
+      "dependency_metadata": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model",
+      "canonical_id": "DEL-01-04",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model",
+      "parent_package_id": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-002",
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-010",
+        "SOW-011",
+        "SOW-017"
+      ],
+      "dependency_metadata": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-01-05_File_Native_Authority_Substrate_Conformance",
+      "canonical_id": "DEL-01-05",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-05_File_Native_Authority_Substrate_Conformance",
+      "parent_package_id": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-007"
+      ],
+      "scope_items": [
+        "SOW-014"
+      ],
+      "dependency_metadata": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-05_File_Native_Authority_Substrate_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance",
+      "canonical_id": "DEL-01-06",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance",
+      "parent_package_id": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "lifecycle": "INITIALIZED",
+      "type": "DOC_UPDATE",
+      "objectives": [
+        "OBJ-002"
+      ],
+      "scope_items": [
+        "SOW-023",
+        "SOW-024"
+      ],
+      "dependency_metadata": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register",
+      "canonical_id": "DEL-01-07",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register",
+      "parent_package_id": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "lifecycle": "INITIALIZED",
+      "type": "REGISTER",
+      "objectives": [
+        "OBJ-001"
+      ],
+      "scope_items": [
+        "SOW-006",
+        "SOW-092",
+        "SOW-094"
+      ],
+      "dependency_metadata": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register",
+      "canonical_id": "DEL-01-08",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register",
+      "parent_package_id": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "lifecycle": "INITIALIZED",
+      "type": "REGISTER",
+      "objectives": [
+        "OBJ-001"
+      ],
+      "scope_items": [
+        "SOW-007",
+        "SOW-077",
+        "SOW-078",
+        "SOW-079",
+        "SOW-100",
+        "SOW-101"
+      ],
+      "dependency_metadata": "execution/PKG-01_Product_Definition_Normative_Basis_and_Authority/1_Working/DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-01_Instruction_Surface_Membership_and_Release_Management",
+      "canonical_id": "DEL-02-01",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-01_Instruction_Surface_Membership_and_Release_Management",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "DOC_UPDATE",
+      "objectives": [
+        "OBJ-001"
+      ],
+      "scope_items": [
+        "SOW-026"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-01_Instruction_Surface_Membership_and_Release_Management/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-02_Three_Layer_Authority_Boundary_Conformance",
+      "canonical_id": "DEL-02-02",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-02_Three_Layer_Authority_Boundary_Conformance",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-002"
+      ],
+      "scope_items": [
+        "SOW-027",
+        "SOW-035"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-02_Three_Layer_Authority_Boundary_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules",
+      "canonical_id": "DEL-02-03",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "DOC_UPDATE",
+      "objectives": [
+        "OBJ-002"
+      ],
+      "scope_items": [
+        "SOW-028"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls",
+      "canonical_id": "DEL-02-04",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "SECURITY_CONTROL",
+      "objectives": [
+        "OBJ-004"
+      ],
+      "scope_items": [
+        "SOW-019",
+        "SOW-029"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools",
+      "canonical_id": "DEL-02-05",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "REGISTER",
+      "objectives": [
+        "OBJ-001"
+      ],
+      "scope_items": [
+        "SOW-013",
+        "SOW-030"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "canonical_id": "DEL-02-06",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ],
+      "scope_items": [
+        "SOW-104"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "canonical_id": "DEL-02-07",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "BACKEND_FEATURE_SLICE",
+      "objectives": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ],
+      "scope_items": [
+        "SOW-104"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "canonical_id": "DEL-02-08",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "API_CONTRACT",
+      "objectives": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ],
+      "scope_items": [
+        "SOW-104"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "canonical_id": "DEL-02-09",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "SECURITY_CONTROL",
+      "objectives": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ],
+      "scope_items": [
+        "SOW-104"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "canonical_id": "DEL-02-10",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "API_CONTRACT",
+      "objectives": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ],
+      "scope_items": [
+        "SOW-104"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "canonical_id": "DEL-02-11",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "BACKEND_FEATURE_SLICE",
+      "objectives": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ],
+      "scope_items": [
+        "SOW-104"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "canonical_id": "DEL-02-12",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "parent_package_id": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "lifecycle": "INITIALIZED",
+      "type": "TEST_SUITE",
+      "objectives": [
+        "OBJ-001",
+        "OBJ-002",
+        "OBJ-004",
+        "OBJ-007"
+      ],
+      "scope_items": [
+        "SOW-104"
+      ],
+      "dependency_metadata": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance",
+      "canonical_id": "DEL-03-01",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance",
+      "parent_package_id": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "lifecycle": "INITIALIZED",
+      "type": "SECURITY_CONTROL",
+      "objectives": [
+        "OBJ-004",
+        "OBJ-007"
+      ],
+      "scope_items": [
+        "SOW-020",
+        "SOW-031"
+      ],
+      "dependency_metadata": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance",
+      "canonical_id": "DEL-03-02",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-02_Execution_Structure_and_Lifecycle_Conformance",
+      "parent_package_id": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-002"
+      ],
+      "scope_items": [
+        "SOW-032"
+      ],
+      "dependency_metadata": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-02_Execution_Structure_and_Lifecycle_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary",
+      "canonical_id": "DEL-03-03",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary",
+      "parent_package_id": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-006"
+      ],
+      "scope_items": [
+        "SOW-033"
+      ],
+      "dependency_metadata": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-03-04_Root_Working_Root_Exception_Conformance",
+      "canonical_id": "DEL-03-04",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-04_Root_Working_Root_Exception_Conformance",
+      "parent_package_id": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-004"
+      ],
+      "scope_items": [
+        "SOW-034",
+        "SOW-063"
+      ],
+      "dependency_metadata": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-04_Root_Working_Root_Exception_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-03-05_Guard_State_Instantiation_and_Registration",
+      "canonical_id": "DEL-03-05",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-05_Guard_State_Instantiation_and_Registration",
+      "parent_package_id": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "lifecycle": "INITIALIZED",
+      "type": "DATA_MODEL_CHANGE",
+      "objectives": [
+        "OBJ-004"
+      ],
+      "scope_items": [
+        "SOW-001",
+        "SOW-034"
+      ],
+      "dependency_metadata": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-05_Guard_State_Instantiation_and_Registration/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream",
+      "canonical_id": "DEL-03-06",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream",
+      "parent_package_id": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-002",
+        "OBJ-004"
+      ],
+      "scope_items": [
+        "SOW-001",
+        "SOW-002",
+        "SOW-061",
+        "SOW-103"
+      ],
+      "dependency_metadata": "execution/PKG-03_Governed_Execution_Structure_and_Root_Containment/1_Working/DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline",
+      "canonical_id": "DEL-04-01",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "REGISTER",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-036",
+        "SOW-037"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-02_Identity_Attribution_and_Refusal_Controls",
+      "canonical_id": "DEL-04-02",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-02_Identity_Attribution_and_Refusal_Controls",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "SECURITY_CONTROL",
+      "objectives": [
+        "OBJ-002"
+      ],
+      "scope_items": [
+        "SOW-038",
+        "SOW-093"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-02_Identity_Attribution_and_Refusal_Controls/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-03_Validation_Severity_and_Override_Controls",
+      "canonical_id": "DEL-04-03",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-03_Validation_Severity_and_Override_Controls",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "CI_CD_CHANGE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-039"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-03_Validation_Severity_and_Override_Controls/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing",
+      "canonical_id": "DEL-04-04",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-040",
+        "SOW-045"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline",
+      "canonical_id": "DEL-04-05",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "DOC_UPDATE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-009",
+        "SOW-041"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-06_Change_Management_and_Human_Gated_Closeout",
+      "canonical_id": "DEL-04-06",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-06_Change_Management_and_Human_Gated_Closeout",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "CI_CD_CHANGE",
+      "objectives": [
+        "OBJ-002"
+      ],
+      "scope_items": [
+        "SOW-042"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-06_Change_Management_and_Human_Gated_Closeout/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-07_Public_Export_Boundary_Conformance",
+      "canonical_id": "DEL-04-07",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-07_Public_Export_Boundary_Conformance",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "SECURITY_CONTROL",
+      "objectives": [
+        "OBJ-001"
+      ],
+      "scope_items": [
+        "SOW-044",
+        "SOW-074"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-07_Public_Export_Boundary_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control",
+      "canonical_id": "DEL-04-08",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-08_PRD_Amendment_and_Attributable_Change_Control",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-047",
+        "SOW-051",
+        "SOW-085",
+        "SOW-096",
+        "SOW-102"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-08_PRD_Amendment_and_Attributable_Change_Control/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-09_PRD_Source_Currency_Check_Capability",
+      "canonical_id": "DEL-04-09",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-09_PRD_Source_Currency_Check_Capability",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "TEST_SUITE",
+      "objectives": [
+        "OBJ-001"
+      ],
+      "scope_items": [
+        "SOW-048",
+        "SOW-049",
+        "SOW-097"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-09_PRD_Source_Currency_Check_Capability/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration",
+      "canonical_id": "DEL-04-10",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "REGISTER",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-004",
+        "SOW-005",
+        "SOW-008",
+        "SOW-012",
+        "SOW-043",
+        "SOW-046",
+        "SOW-050",
+        "SOW-076",
+        "SOW-083"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-04-11_Root_Loop_Receipt_Validator",
+      "canonical_id": "DEL-04-11",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator",
+      "parent_package_id": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "lifecycle": "INITIALIZED",
+      "type": "TEST_SUITE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-041",
+        "SOW-053"
+      ],
+      "dependency_metadata": "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-05-01_Run_Record_Tree_Conformance",
+      "canonical_id": "DEL-05-01",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-01_Run_Record_Tree_Conformance",
+      "parent_package_id": "PKG-05_Evidence_Provenance_and_Audit",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-006"
+      ],
+      "scope_items": [
+        "SOW-052"
+      ],
+      "dependency_metadata": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-01_Run_Record_Tree_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline",
+      "canonical_id": "DEL-05-02",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline",
+      "parent_package_id": "PKG-05_Evidence_Provenance_and_Audit",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-021",
+        "SOW-053"
+      ],
+      "dependency_metadata": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-05-03_SHA_Role_Register",
+      "canonical_id": "DEL-05-03",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-03_SHA_Role_Register",
+      "parent_package_id": "PKG-05_Evidence_Provenance_and_Audit",
+      "lifecycle": "INITIALIZED",
+      "type": "REGISTER",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-054"
+      ],
+      "dependency_metadata": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-03_SHA_Role_Register/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle",
+      "canonical_id": "DEL-05-04",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle",
+      "parent_package_id": "PKG-05_Evidence_Provenance_and_Audit",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-055",
+        "SOW-059"
+      ],
+      "dependency_metadata": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-05-05_Audit_and_Evaluation_Surface_Governance",
+      "canonical_id": "DEL-05-05",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-05_Audit_and_Evaluation_Surface_Governance",
+      "parent_package_id": "PKG-05_Evidence_Provenance_and_Audit",
+      "lifecycle": "INITIALIZED",
+      "type": "DOC_UPDATE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-056"
+      ],
+      "dependency_metadata": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-05_Audit_and_Evaluation_Surface_Governance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-05-06_Validation_Evidence_Mutation_Control",
+      "canonical_id": "DEL-05-06",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-06_Validation_Evidence_Mutation_Control",
+      "parent_package_id": "PKG-05_Evidence_Provenance_and_Audit",
+      "lifecycle": "INITIALIZED",
+      "type": "SECURITY_CONTROL",
+      "objectives": [
+        "OBJ-004"
+      ],
+      "scope_items": [
+        "SOW-057"
+      ],
+      "dependency_metadata": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-06_Validation_Evidence_Mutation_Control/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-05-07_Closure_Criteria_Conformance",
+      "canonical_id": "DEL-05-07",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-07_Closure_Criteria_Conformance",
+      "parent_package_id": "PKG-05_Evidence_Provenance_and_Audit",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-058"
+      ],
+      "dependency_metadata": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-07_Closure_Criteria_Conformance/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation",
+      "canonical_id": "DEL-05-08",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation",
+      "parent_package_id": "PKG-05_Evidence_Provenance_and_Audit",
+      "lifecycle": "INITIALIZED",
+      "type": "OBSERVABILITY",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-009"
+      ],
+      "dependency_metadata": "execution/PKG-05_Evidence_Provenance_and_Audit/1_Working/DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation",
+      "canonical_id": "DEL-06-01",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation",
+      "parent_package_id": "PKG-06_Self_Application_Variants_and_Release",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-004"
+      ],
+      "scope_items": [
+        "SOW-060",
+        "SOW-062",
+        "SOW-080",
+        "SOW-081",
+        "SOW-082"
+      ],
+      "dependency_metadata": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction",
+      "canonical_id": "DEL-06-02",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction",
+      "parent_package_id": "PKG-06_Self_Application_Variants_and_Release",
+      "lifecycle": "INITIALIZED",
+      "type": "OBSERVABILITY",
+      "objectives": [
+        "OBJ-006"
+      ],
+      "scope_items": [
+        "SOW-065",
+        "SOW-066"
+      ],
+      "dependency_metadata": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-06-03_Approval_Vehicle_Practice_Record",
+      "canonical_id": "DEL-06-03",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-03_Approval_Vehicle_Practice_Record",
+      "parent_package_id": "PKG-06_Self_Application_Variants_and_Release",
+      "lifecycle": "INITIALIZED",
+      "type": "DOC_UPDATE",
+      "objectives": [
+        "OBJ-003"
+      ],
+      "scope_items": [
+        "SOW-064"
+      ],
+      "dependency_metadata": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-03_Approval_Vehicle_Practice_Record/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-06-04_Downward_Variant_Service_and_Non_Weakening",
+      "canonical_id": "DEL-06-04",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-04_Downward_Variant_Service_and_Non_Weakening",
+      "parent_package_id": "PKG-06_Self_Application_Variants_and_Release",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-004",
+        "OBJ-005"
+      ],
+      "scope_items": [
+        "SOW-067",
+        "SOW-068",
+        "SOW-069",
+        "SOW-075"
+      ],
+      "dependency_metadata": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-04_Downward_Variant_Service_and_Non_Weakening/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-06-05_Domain_Engine_Truth_Boundary",
+      "canonical_id": "DEL-06-05",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-05_Domain_Engine_Truth_Boundary",
+      "parent_package_id": "PKG-06_Self_Application_Variants_and_Release",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-005"
+      ],
+      "scope_items": [
+        "SOW-015"
+      ],
+      "dependency_metadata": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-05_Domain_Engine_Truth_Boundary/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-06-06_Governed_Promotion_Pathway",
+      "canonical_id": "DEL-06-06",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-06_Governed_Promotion_Pathway",
+      "parent_package_id": "PKG-06_Self_Application_Variants_and_Release",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-005"
+      ],
+      "scope_items": [
+        "SOW-070",
+        "SOW-071",
+        "SOW-072",
+        "SOW-073"
+      ],
+      "dependency_metadata": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-06_Governed_Promotion_Pathway/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-06-07_Release_Authority_Gate",
+      "canonical_id": "DEL-06-07",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-07_Release_Authority_Gate",
+      "parent_package_id": "PKG-06_Self_Application_Variants_and_Release",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-004"
+      ],
+      "scope_items": [
+        "SOW-086",
+        "SOW-087"
+      ],
+      "dependency_metadata": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-07_Release_Authority_Gate/_DEPENDENCIES.md"
+    },
+    {
+      "id": "DEL-06-08_Situated_Working_Root_Convergence_Demonstration",
+      "canonical_id": "DEL-06-08",
+      "kind": "ROOT_DELIVERABLE",
+      "path": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-08_Situated_Working_Root_Convergence_Demonstration",
+      "parent_package_id": "PKG-06_Self_Application_Variants_and_Release",
+      "lifecycle": "INITIALIZED",
+      "type": "REQ_SLICE",
+      "objectives": [
+        "OBJ-005"
+      ],
+      "scope_items": [
+        "SOW-003"
+      ],
+      "dependency_metadata": "execution/PKG-06_Self_Application_Variants_and_Release/1_Working/DEL-06-08_Situated_Working_Root_Convergence_Demonstration/_DEPENDENCIES.md"
+    }
+  ],
+  "membership_edges": [
+    {
+      "id": "M-001",
+      "from": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "to": "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-002",
+      "from": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "to": "DEL-01-02_Invariant_Catalog_Conformance_Register",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-003",
+      "from": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "to": "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-004",
+      "from": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "to": "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-005",
+      "from": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "to": "DEL-01-05_File_Native_Authority_Substrate_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-006",
+      "from": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "to": "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-007",
+      "from": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "to": "DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-008",
+      "from": "PKG-01_Product_Definition_Normative_Basis_and_Authority",
+      "to": "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-009",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-01_Instruction_Surface_Membership_and_Release_Management",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-010",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-02_Three_Layer_Authority_Boundary_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-011",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-012",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-013",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-014",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-015",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-016",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-017",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-018",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-019",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-020",
+      "from": "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers",
+      "to": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-021",
+      "from": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "to": "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-022",
+      "from": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "to": "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-023",
+      "from": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "to": "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-024",
+      "from": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "to": "DEL-03-04_Root_Working_Root_Exception_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-025",
+      "from": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "to": "DEL-03-05_Guard_State_Instantiation_and_Registration",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-026",
+      "from": "PKG-03_Governed_Execution_Structure_and_Root_Containment",
+      "to": "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-027",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-028",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-02_Identity_Attribution_and_Refusal_Controls",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-029",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-03_Validation_Severity_and_Override_Controls",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-030",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-031",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-032",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-06_Change_Management_and_Human_Gated_Closeout",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-033",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-07_Public_Export_Boundary_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-034",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-035",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-09_PRD_Source_Currency_Check_Capability",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-036",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-037",
+      "from": "PKG-04_Developmental_Machinery_and_Change_Control",
+      "to": "DEL-04-11_Root_Loop_Receipt_Validator",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-038",
+      "from": "PKG-05_Evidence_Provenance_and_Audit",
+      "to": "DEL-05-01_Run_Record_Tree_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-039",
+      "from": "PKG-05_Evidence_Provenance_and_Audit",
+      "to": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-040",
+      "from": "PKG-05_Evidence_Provenance_and_Audit",
+      "to": "DEL-05-03_SHA_Role_Register",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-041",
+      "from": "PKG-05_Evidence_Provenance_and_Audit",
+      "to": "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-042",
+      "from": "PKG-05_Evidence_Provenance_and_Audit",
+      "to": "DEL-05-05_Audit_and_Evaluation_Surface_Governance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-043",
+      "from": "PKG-05_Evidence_Provenance_and_Audit",
+      "to": "DEL-05-06_Validation_Evidence_Mutation_Control",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-044",
+      "from": "PKG-05_Evidence_Provenance_and_Audit",
+      "to": "DEL-05-07_Closure_Criteria_Conformance",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-045",
+      "from": "PKG-05_Evidence_Provenance_and_Audit",
+      "to": "DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-046",
+      "from": "PKG-06_Self_Application_Variants_and_Release",
+      "to": "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-047",
+      "from": "PKG-06_Self_Application_Variants_and_Release",
+      "to": "DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-048",
+      "from": "PKG-06_Self_Application_Variants_and_Release",
+      "to": "DEL-06-03_Approval_Vehicle_Practice_Record",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-049",
+      "from": "PKG-06_Self_Application_Variants_and_Release",
+      "to": "DEL-06-04_Downward_Variant_Service_and_Non_Weakening",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-050",
+      "from": "PKG-06_Self_Application_Variants_and_Release",
+      "to": "DEL-06-05_Domain_Engine_Truth_Boundary",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-051",
+      "from": "PKG-06_Self_Application_Variants_and_Release",
+      "to": "DEL-06-06_Governed_Promotion_Pathway",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-052",
+      "from": "PKG-06_Self_Application_Variants_and_Release",
+      "to": "DEL-06-07_Release_Authority_Gate",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    },
+    {
+      "id": "M-053",
+      "from": "PKG-06_Self_Application_Variants_and_Release",
+      "to": "DEL-06-08_Situated_Working_Root_Convergence_Demonstration",
+      "type": "PARENT_MEMBERSHIP",
+      "gating": false
+    }
+  ],
+  "dependency_edges": [
+    {
+      "id": "D-001",
+      "from": "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control",
+      "to": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "type": "EVIDENCE_FAN_IN",
+      "gating": true,
+      "cycle_participating": false,
+      "evidence": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md:25",
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control/_DEPENDENCIES.md:19"
+      ],
+      "accepted_grounding": [
+        "DEL-02-07 accepted SOW outputs `OUT-001`..`OUT-005`; DEL-02-06 applied register `Description`/`AnticipatedArtifacts` and `_CONTEXT.md` Standing Integration boundary require DEL-02-07..12 outputs and accepted evidence to fan in.",
+        "This accepted SOW defines `OUT-001`..`OUT-005`; the applied DEL-02-06 register `Description`/`AnticipatedArtifacts` and DEL-02-06 `_CONTEXT.md` Standing Integration boundary require DEL-02-07..12 outputs and accepted evidence to fan in."
+      ],
+      "declaration_count": 2
+    },
+    {
+      "id": "D-002",
+      "from": "DEL-02-08_Exact_Supply_and_Protocol_Pinning",
+      "to": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "type": "EVIDENCE_FAN_IN",
+      "gating": true,
+      "cycle_participating": false,
+      "evidence": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md:26",
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_DEPENDENCIES.md:20"
+      ],
+      "accepted_grounding": [
+        "DEL-02-08 accepted SOW outputs `OUT-001`..`OUT-005`; the same DEL-02-06 applied-row and `_CONTEXT.md` fan-in clauses.",
+        "This accepted SOW defines `OUT-001`..`OUT-005`; the applied DEL-02-06 register `Description`/`AnticipatedArtifacts` and DEL-02-06 `_CONTEXT.md` Standing Integration boundary require DEL-02-07..12 outputs and accepted evidence to fan in."
+      ],
+      "declaration_count": 2
+    },
+    {
+      "id": "D-003",
+      "from": "DEL-02-09_Hosted_Account_and_Consent_Boundary",
+      "to": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "type": "EVIDENCE_FAN_IN",
+      "gating": true,
+      "cycle_participating": false,
+      "evidence": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md:27",
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-09_Hosted_Account_and_Consent_Boundary/_DEPENDENCIES.md:19"
+      ],
+      "accepted_grounding": [
+        "DEL-02-09 accepted SOW outputs `OUT-001`..`OUT-006`; the same DEL-02-06 applied-row and `_CONTEXT.md` fan-in clauses.",
+        "This accepted SOW defines `OUT-001`..`OUT-006`; the applied DEL-02-06 register `Description`/`AnticipatedArtifacts` and DEL-02-06 `_CONTEXT.md` Standing Integration boundary require DEL-02-07..12 outputs and accepted evidence to fan in."
+      ],
+      "declaration_count": 2
+    },
+    {
+      "id": "D-004",
+      "from": "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2",
+      "to": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "type": "EVIDENCE_FAN_IN",
+      "gating": true,
+      "cycle_participating": false,
+      "evidence": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md:28",
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2/_DEPENDENCIES.md:19"
+      ],
+      "accepted_grounding": [
+        "DEL-02-10 accepted SOW outputs `OUT-001`..`OUT-005`; the same DEL-02-06 applied-row and `_CONTEXT.md` fan-in clauses.",
+        "This accepted SOW defines `OUT-001`..`OUT-005`; the applied DEL-02-06 register `Description`/`AnticipatedArtifacts` and DEL-02-06 `_CONTEXT.md` Standing Integration boundary require DEL-02-07..12 outputs and accepted evidence to fan in."
+      ],
+      "declaration_count": 2
+    },
+    {
+      "id": "D-005",
+      "from": "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation",
+      "to": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "type": "EVIDENCE_FAN_IN",
+      "gating": true,
+      "cycle_participating": false,
+      "evidence": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md:29",
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation/_DEPENDENCIES.md:21"
+      ],
+      "accepted_grounding": [
+        "DEL-02-11 accepted SOW outputs `OUT-001`..`OUT-005`; the same DEL-02-06 applied-row and `_CONTEXT.md` fan-in clauses.",
+        "This accepted SOW defines `OUT-001`..`OUT-005`; the applied DEL-02-06 register `Description`/`AnticipatedArtifacts` and DEL-02-06 `_CONTEXT.md` Standing Integration boundary require DEL-02-07..12 outputs and accepted evidence to fan in."
+      ],
+      "declaration_count": 2
+    },
+    {
+      "id": "D-006",
+      "from": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "to": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "type": "EVIDENCE_FAN_IN",
+      "gating": true,
+      "cycle_participating": false,
+      "evidence": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md:30",
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in/_DEPENDENCIES.md:22"
+      ],
+      "accepted_grounding": [
+        "DEL-02-12 accepted SOW outputs `OUT-001`..`OUT-007`; the same DEL-02-06 applied-row and `_CONTEXT.md` fan-in clauses.",
+        "This accepted SOW defines `OUT-001`..`OUT-007`, including shared-release evidence fan-in and the hold-aware disposition; the applied DEL-02-06 register `Description`/`AnticipatedArtifacts` and DEL-02-06 `_CONTEXT.md` Standing Integration boundary require DEL-02-07..12 outputs and accepted evidence to fan in."
+      ],
+      "declaration_count": 2
+    },
+    {
+      "id": "D-007",
+      "from": "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline",
+      "to": "DEL-04-11_Root_Loop_Receipt_Validator",
+      "type": "DOCTRINE_INPUT",
+      "gating": true,
+      "cycle_participating": false,
+      "evidence": [
+        "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_DEPENDENCIES.md:16"
+      ],
+      "accepted_grounding": [
+        "DEL-04-11 accepted SOW `CLM-002` and `AX-002` preserve DEL-04-05 as the D-7 governed-loop/receipt doctrine carrier; DEL-04-05's accepted SOW defines that doctrine and its receipt-discipline outputs."
+      ],
+      "declaration_count": 1
+    },
+    {
+      "id": "D-008",
+      "from": "DEL-04-11_Root_Loop_Receipt_Validator",
+      "to": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "type": "VALIDATION_RELATIONSHIP",
+      "gating": false,
+      "cycle_participating": false,
+      "evidence": [
+        "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md:31",
+        "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_DEPENDENCIES.md:23"
+      ],
+      "accepted_grounding": [
+        "Phase-3 steer N2 requires DEL-02-06 to record this relationship; DEL-04-11 accepted SOW `OUT-004` defines validation reports, while DEL-02-06 accepted SOW `OUT-008` identifies an evidence-bearing accountable-human release-disposition packet. This records validator support only, not a completion claim or `tools/**` authority.",
+        "Phase-3 steer N2 requires DEL-02-06 to record this relationship; this accepted SOW `OUT-004` defines validation reports, and DEL-02-06 accepted SOW `OUT-008` defines an evidence-bearing accountable-human release-disposition packet. The relationship is support evidence only."
+      ],
+      "declaration_count": 2
+    },
+    {
+      "id": "D-009",
+      "from": "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline",
+      "to": "DEL-04-11_Root_Loop_Receipt_Validator",
+      "type": "EVIDENCE_CROSSCHECK_INPUT",
+      "gating": true,
+      "cycle_participating": false,
+      "evidence": [
+        "execution/PKG-04_Developmental_Machinery_and_Change_Control/1_Working/DEL-04-11_Root_Loop_Receipt_Validator/_DEPENDENCIES.md:17"
+      ],
+      "accepted_grounding": [
+        "DEL-04-11 accepted SOW `CLM-002` and `AX-002` preserve DEL-05-02 as the E-2 evidence-discipline crosscheck; DEL-05-02's accepted SOW defines snapshot, handoff, and append-only receipt evidence."
+      ],
+      "declaration_count": 1
+    }
+  ],
+  "notice_edges": [
+    {
+      "id": "N-001",
+      "from": "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance",
+      "to": "APP_COORDINATION",
+      "type": "AFFECTED_CLIENT_REQUIREMENTS_NOTICE",
+      "gating": false,
+      "foreign_authority": false,
+      "evidence": "DEL-02-06 _DEPENDENCIES.md Cross-loop notice / fan-in table"
+    },
+    {
+      "id": "N-002",
+      "from": "APP_COORDINATION",
+      "to": "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in",
+      "type": "APP_CONFORMANCE_EVIDENCE_NOTICE_FAN_IN",
+      "gating": false,
+      "foreign_authority": false,
+      "evidence": "DEL-02-12 _DEPENDENCIES.md Cross-loop notice / fan-in table"
+    }
+  ],
+  "sccs": [
+    {
+      "id": "SCC-001",
+      "members": [
+        "DEL-01-01_Genus_Concordance_Closure_and_Standing_Map"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-002",
+      "members": [
+        "DEL-01-02_Invariant_Catalog_Conformance_Register"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-003",
+      "members": [
+        "DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-004",
+      "members": [
+        "DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-005",
+      "members": [
+        "DEL-01-05_File_Native_Authority_Substrate_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-006",
+      "members": [
+        "DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-007",
+      "members": [
+        "DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-008",
+      "members": [
+        "DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-009",
+      "members": [
+        "DEL-02-01_Instruction_Surface_Membership_and_Release_Management"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-010",
+      "members": [
+        "DEL-02-02_Three_Layer_Authority_Boundary_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-011",
+      "members": [
+        "DEL-02-03_Delegation_Hierarchy_and_Entry_Rules"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-012",
+      "members": [
+        "DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-013",
+      "members": [
+        "DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-014",
+      "members": [
+        "DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-015",
+      "members": [
+        "DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-016",
+      "members": [
+        "DEL-02-08_Exact_Supply_and_Protocol_Pinning"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-017",
+      "members": [
+        "DEL-02-09_Hosted_Account_and_Consent_Boundary"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-018",
+      "members": [
+        "DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-019",
+      "members": [
+        "DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-020",
+      "members": [
+        "DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-021",
+      "members": [
+        "DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-022",
+      "members": [
+        "DEL-03-02_Execution_Structure_and_Lifecycle_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-023",
+      "members": [
+        "DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-024",
+      "members": [
+        "DEL-03-04_Root_Working_Root_Exception_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-025",
+      "members": [
+        "DEL-03-05_Guard_State_Instantiation_and_Registration"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-026",
+      "members": [
+        "DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-027",
+      "members": [
+        "DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-028",
+      "members": [
+        "DEL-04-02_Identity_Attribution_and_Refusal_Controls"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-029",
+      "members": [
+        "DEL-04-03_Validation_Severity_and_Override_Controls"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-030",
+      "members": [
+        "DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-031",
+      "members": [
+        "DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-032",
+      "members": [
+        "DEL-04-06_Change_Management_and_Human_Gated_Closeout"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-033",
+      "members": [
+        "DEL-04-07_Public_Export_Boundary_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-034",
+      "members": [
+        "DEL-04-08_PRD_Amendment_and_Attributable_Change_Control"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-035",
+      "members": [
+        "DEL-04-09_PRD_Source_Currency_Check_Capability"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-036",
+      "members": [
+        "DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-037",
+      "members": [
+        "DEL-04-11_Root_Loop_Receipt_Validator"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-038",
+      "members": [
+        "DEL-05-01_Run_Record_Tree_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-039",
+      "members": [
+        "DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-040",
+      "members": [
+        "DEL-05-03_SHA_Role_Register"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-041",
+      "members": [
+        "DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-042",
+      "members": [
+        "DEL-05-05_Audit_and_Evaluation_Surface_Governance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-043",
+      "members": [
+        "DEL-05-06_Validation_Evidence_Mutation_Control"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-044",
+      "members": [
+        "DEL-05-07_Closure_Criteria_Conformance"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-045",
+      "members": [
+        "DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-046",
+      "members": [
+        "DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-047",
+      "members": [
+        "DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-048",
+      "members": [
+        "DEL-06-03_Approval_Vehicle_Practice_Record"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-049",
+      "members": [
+        "DEL-06-04_Downward_Variant_Service_and_Non_Weakening"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-050",
+      "members": [
+        "DEL-06-05_Domain_Engine_Truth_Boundary"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-051",
+      "members": [
+        "DEL-06-06_Governed_Promotion_Pathway"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-052",
+      "members": [
+        "DEL-06-07_Release_Authority_Gate"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-053",
+      "members": [
+        "DEL-06-08_Situated_Working_Root_Convergence_Demonstration"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-054",
+      "members": [
+        "PKG-01_Product_Definition_Normative_Basis_and_Authority"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-055",
+      "members": [
+        "PKG-02_Operative_Instruction_Surface_and_Runtime_Layers"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-056",
+      "members": [
+        "PKG-03_Governed_Execution_Structure_and_Root_Containment"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-057",
+      "members": [
+        "PKG-04_Developmental_Machinery_and_Change_Control"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-058",
+      "members": [
+        "PKG-05_Evidence_Provenance_and_Audit"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    },
+    {
+      "id": "SCC-059",
+      "members": [
+        "PKG-06_Self_Application_Variants_and_Release"
+      ],
+      "size": 1,
+      "non_trivial": false,
+      "proposed_move": "NONE",
+      "human_gate": false
+    }
+  ],
+  "strict_layer_acyclic": true,
+  "non_trivial_scc_count": 0,
+  "human_gated_cycle_decision_required": false,
+  "derivative_disposition": "Immutable derivative snapshot over accepted revision 1.3 and current live dependency truth; re-derive after any accepted dependency, register, pointer, estimate-acceptance, schedule-context, or governing-input change.",
+  "phase3_comparison": {
+    "node_set": "EXACT_MATCH",
+    "membership_edges": "EXACT_MATCH",
+    "dependency_edges": "EXACT_MATCH",
+    "gating_classification": "EXACT_MATCH",
+    "notice_edges": "EXACT_MATCH",
+    "scc_classification": "EXACT_MATCH",
+    "deviations": [],
+    "human_gated_move_required": false
+  }
+}
