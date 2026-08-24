@@ -416,6 +416,20 @@ implementation or dispatch authority. Dependency extraction, estimates,
 schedule, evidence reruns, activation, pins, all ten holds, implementation,
 release, publication, and reliance remain separately owner-gated.
 
+`2026-08-23 ROOT V3 PHASE 3 ACCEPTANCE/INITIALIZATION/DEPENDENCY PROPAGATION
+COMPLETE — ESTIMATES AND SCHEDULE REMAIN.` Receipt 123 records R7-A
+transcription into seven accepted SOW status lines, seven `OPEN` →
+`INITIALIZED` transitions, a conscious measured practitioner-harness repin at
+53/53/0 with zero mismatches and unparseable records, and grounded dependency
+extraction for the seven carriers plus DEL-02-06. Current derivative evidence
+contains 59 nodes, eight gating and one non-gating Root relationship, two
+non-gating App notice/fan-in edges, zero non-trivial SCCs, and zero unresolved
+closure violations. The seven Phase-1 empty-container warnings are cleared;
+45 legacy `NOT_RUN_YET` dependency containers remain a bounded coverage
+warning outside this tranche. Estimates, schedule, their evidence reruns,
+implementation activation, pins, App acts, release, publication, reliance,
+and all ten holds remain separately gated.
+
 ## 4. Rerun requirement
 
 Refresh this file only when a phase boundary moves: a Stage-B packet is
@@ -517,3 +531,12 @@ contract. Only accepted SOWs may feed dependency extraction, estimates,
 scheduling, and the required graph/audit reruns. Preserve every carrier at
 `OPEN` until a distinct lifecycle act; do not infer implementation, dispatch,
 activation, pin change, hold lift, release, publication, or reliance.
+
+After Receipt 123, the R7-A SOW-acceptance transcription, seven lifecycle
+initializations, bounded dependency extraction, and immediate graph/closure
+reruns are discharged. The Phase-3 graph and closure packages are current for
+the extracted SCA-004 carrier slice but must be rerun after estimates/schedule
+or any accepted dependency change. The 45 legacy dependency containers remain
+unextracted outside this tranche. Estimates, schedule, implementation
+activation, TM-ROOT-106/122, pin changes, App authority, hold lifts, release,
+publication, and reliance require their own governed acts.

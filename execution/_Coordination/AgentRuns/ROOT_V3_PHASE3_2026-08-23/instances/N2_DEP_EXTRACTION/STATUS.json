@@ -1,0 +1,1 @@
+{"instance_id":"N2_DEP_EXTRACTION","agent_type":2,"role":"ephemeral-generalist","status":"COMPLETE","depends_on":["N1_ACCEPT_INIT_REPIN"],"unique_root_edges":9,"root_edge_declarations":16,"notice_fan_in_edges":2,"review_findings":0,"blockers":[]}

@@ -6339,3 +6339,296 @@ authorization from the owner and record it in the receipt. HELP_HUMAN
 byte-verifies before endorsement; the owner accepts, corrects, or declines
 each SOW as a separate act against the exact published bytes.
 <!-- END RECEIPT-122 STEER VERBATIM -->
+
+
+### Receipt 123 — 2026-08-23 — Root v3 Phase 3 acceptance, initialization, dependency propagation
+
+- **Owner direction and authority:** Ryan Tufts carried the Phase 3 steer at
+  `plans/steers/chirality_app_v3_phase3_steer_root_2026-08-23.md`, SHA-256
+  `9c8d3884f97733f674269014c1735977c9628be1d929f6859889c79710ae4186`,
+  together with R7 record SHA-256
+  `dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53`.
+  R7-A accepts all seven exact SOW contracts and authorizes the house
+  initialization transition; no implementation, activation, pin, App, hold,
+  release, publication, or reliance act is inferred.
+- **Basis and preflight:** branch
+  `codex/root-v3-phase3-2026-08-23` began at
+  `origin/main@3389adabfa2919b66f64bbd9cd04d7d29b9838b4` (PR #641 merge),
+  containing PR #640 merge `f66bd7f5af7bdf5dc07579f3a507482aca85bd03`.
+  Both instrument SHAs, all seven R7-A SOW identities, all 28 Phase-1
+  metadata bytes, revision-1.3 register/pointer, harness adapter, TM register,
+  Root handoff, and Receipt 122 matched. Root G0-G4 passed before writes.
+- **Owner-authorized sync:** after the clean N1 boundary, `origin/main`
+  advanced to `3af765222bbd4f43a52dcbe17bd151c13942e5ac` (PR #642). The owner
+  wrote verbatim: “Yes, I authorize you to merge the latest `origin/main`
+  into this branch—without rebase or force-push—and then continue N2, N3,
+  Receipt 123, validation, push, and PR creation without merging the PR.
+  That's a standard git action that you can do without elevated approvals
+  from me. Proceed accordingly.” Sync merge
+  `31a7fe680e4d5f0fc4b4ad77687b807142fd9d6b` added only two App steer files
+  under `plans/steers/`; there was no Phase-3 overlap. No rebase or force-push
+  occurred.
+- **Ordered commits:** N1
+  `49844ad30d75171f96715e14065a51a65dbb6456`; owner-authorized sync
+  `31a7fe680e4d5f0fc4b4ad77687b807142fd9d6b`; N2
+  `5502aea661225e70bc2341b9eed551f16237c09b`; N3
+  `ea90ca7b09a93ea8a15eb260331e4986485fc2fe`; evidence-whitespace repair
+  `89e09b528022f438a575c1c2ecbcdfeb6567e533`. The repair removed only five
+  extra blank EOF lines found by the first terminal candidate-whitespace run.
+
+#### N1 — R7 transcription, lifecycle initialization, harness repin
+
+- **Write set:** seven carrier `ScopeOfWork.md` frontmatter status lines;
+  seven carrier `_STATUS.md` files; `execution/_harness/adapter.yaml`; the two
+  named practitioner-harness tests; live manifest
+  `ROOT-HARNESS-STATUS-REPIN-2026-08-23.yaml`; and N1/run control evidence.
+- **Exact SOW diff (all seven):**
+  `status: DRAFT_AWAITING_OWNER_ACCEPTANCE` →
+  `status: ACCEPTED_BY_OWNER_R7 (record SHA-256 dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53)`.
+- **SOW pre→post SHA-256:** DEL-02-07
+  `9619107473ef29dfa6a771f6687a981bd746ad0f7657e4cf0d04fee2058a43c8` →
+  `9fb8703bc2a130339d021d90b78648dfaa508de4bedd537b0eb4df756772f1f5`;
+  DEL-02-08 `fd08461564dda82de2ec62142dedb66b37faed37de70ddcc202043ad0328f6cf` →
+  `d9871a4a024ff3c48a70a3e6ae4b8eac37ece8873a5e00cbb0ea47dae861e430`;
+  DEL-02-09 `8711ac2d7822df5f040eb8559e1dbb725d7e84be8c74c08622f6d1521e4470cb` →
+  `e0cf3285f36c4397840d4875641d48bae53c493cff1bc065c3315e6575478176`;
+  DEL-02-10 `6cd0f49790023530afa2bc5e309346c0e6705f1a8bae7fcf01ac625f697f1e67` →
+  `bfe374aa986718860ebc8b0c877f3a849a25ce0f3246ce33df18d649e30e1b29`;
+  DEL-02-11 `f02eb0ea9e0262d342a50f9632dcdef18828335a546b02b92e13d703fbb34f54` →
+  `abd5dcef7a835bafac3e1dd29d7f7b6771ad0aeb60e4af9c25734bfa2534ab02`;
+  DEL-02-12 `635ba159bc54d85c9c32d7241f042d160371e1ddc5a7999297b1c1edd164dfc2` →
+  `62bcfbdd6a20b647f15594fdd35b312d62942f85cf96aedb4aae5db12ea04663`;
+  DEL-04-11 `716695d98bede3b249a5761ca6b63887cb590fd1347f01f3781a3266b53c4a67` →
+  `2d5cd066ddee42cd055e4c615078f07d7a91a53b7dddd4da9fa95f1eabc32f2b`.
+- **Lifecycle transitions:** every carrier moved `OPEN` → `INITIALIZED`,
+  gained exactly one dated R7-A history entry, and remained free of
+  implementation/activation claims. Status pre→post SHA-256:
+  DEL-02-07 `af9ebcdb7da542787215ed42576dcbbea4dd369eda683198db8f34c878643b89` →
+  `69e1e34a7ee9bc600586c1f10f5664ac58dde5d4425138d56882fc437e28eba1`;
+  DEL-02-08 `5f23ed16cb7abc28365d5667b37fe06699f3c2a905281f23b2eb4514be84cf15` →
+  `8f7fda734b6a8d2fb3d56ccf6181678f77f1b16e2bfeba1b77d815a4bd767613`;
+  DEL-02-09 `8383f027395d9e866ce5840915040638ef17bde7234567a6427ce69b48db8dd3` →
+  `801c35f13748900999d82449307631b1a6bb991ef969b611a1f526ab828c6f43`;
+  DEL-02-10 `957276abb79cf3fe34248a4223d88a54fdeb44fd9c5837a4e6b8dd567d54a376` →
+  `814a547b5527a693634601e3fb167911d759b2f81562937af0c8210c56218717`;
+  DEL-02-11 `e10b324ad1094bb0c49c3c97c8f52b0575826090c8ac69ea806b8f4cf458382b` →
+  `b821e34e191c4c3dccd7e294f57ea523bd1a56a5aa5bef43d33cbc6fc29affd0`;
+  DEL-02-12 `4e79ac00e44810cb45cb8fdc6292aeec1e086ce2d21183a8cf04a41f1c7c10f3` →
+  `81e440bef048fcd8cd98c03cfacf8e6940b4c2ba589e4c35bc077a3e6a305a6b`;
+  DEL-04-11 `dcff1c5cd59575b29d2c0a5da5126bc317682af2f3183672ddc2b38149e3077b` →
+  `10b0a106036462f22507416c4d531977227f768257b83ac3d88b98cf31d36dad`.
+- **Measured repin:** 53 status files, 53 `INITIALIZED`, 0 `OPEN`, 53
+  state/history matches, 0 mismatches, 0 unparseable. Adapter SHA-256
+  `71f603ad463c14dbba6b02806d67cfc4d859219ff828812fb37de35e78025f3c`;
+  practitioner test SHA-256
+  `acd0a21242a891a8223e7c5008aaf0415031f2a023ac993446f4d77167c63d38`;
+  G1 test SHA-256
+  `90a681a4229e48bcdf68f0505480b505aca64328ebf4cd5f446fa9e26729f78c`;
+  manifest SHA-256
+  `0c6f0acb7df18232cc03c88bc7de48a205692db1e6fc5fa14ccf3f244a8590b5`.
+  N1 return SHA-256
+  `30ff431a22d0250a290fa3c3800a4ba76385339ddd3e428c5f64a5df059c9ec2`;
+  fresh review: zero findings.
+
+#### N2 — dependency extraction
+
+- **Write set:** the seven carrier `_DEPENDENCIES.md` files, DEL-02-06
+  `_DEPENDENCIES.md`, and N2/run control evidence only.
+- **Result:** 16 reciprocal local declarations deduplicate to nine unique Root
+  relationships: eight gating and one explicitly non-gating validator
+  relationship. Six DEL-02-07..12 evidence edges fan into DEL-02-06;
+  DEL-04-05 and DEL-05-02 ground inputs to DEL-04-11; DEL-04-11 supports
+  DEL-02-06 non-gating validation. Two App couplings remain non-gating
+  notice/fan-in only. All other semantic-overlap candidates were omitted.
+- **Per-file counts (upstream/downstream/notice):** DEL-02-06 `7/0/1`;
+  DEL-02-07 `0/1/0`; DEL-02-08 `0/1/0`; DEL-02-09 `0/1/0`; DEL-02-10
+  `0/1/0`; DEL-02-11 `0/1/0`; DEL-02-12 `0/1/1`; DEL-04-11 `2/1/0`.
+  N2 return SHA-256
+  `2aa9b0f08b793fc1e7ffbb16de7bce686debeaf809918fed21ce7f36b2ec9734`;
+  fresh review: zero findings.
+
+#### N3 — current graph and dependency-closure evidence
+
+- **Write set:** new
+  `Evidence/DEP_GRAPH_POST_PHASE3/`, new
+  `Evidence/AUDIT_DEP_CLOSURE_POST_PHASE3/`, and N3/run control evidence.
+- **Graph:** exact 59 nodes = 53 deliverables + six packages; 53 non-gating
+  membership edges; nine Root relationships (eight gating); two non-gating
+  App notice edges; 59 singleton SCCs; zero non-trivial SCCs; no cut/merge.
+  `WORK_GRAPH.json` SHA-256
+  `2f89637c5d18f77698bacdbceb873127c1185596d945a6d8583c5346f007735b`;
+  `DAG.md` `1f5f9ff27e4b6af2ec7e74a6cb5c959b70ce374f38f2e71c21aad598d25762c9`;
+  SCC report `e152b9b25717a7d54fc39ae3614502d4cb0a68ec0bdd7d2e4f9e8058d81201f3`.
+- **Closure:** `PASS_ZERO_UNRESOLVED_VIOLATIONS`; zero orphan targets, cycles,
+  hubs, bidirectional gating pairs, and unresolved violations. All seven
+  Phase-1 empty-carrier warnings are cleared. One bounded warning remains:
+  45 legacy dependency containers are `NOT_RUN_YET` outside this tranche.
+  `closure_summary.json` SHA-256
+  `5ed74f32ca4898c66b1cb04697e21a3e6c4b9a2f79480cec188ba43e79226ab4`;
+  audit report `9c98619b653563d8ae071819046732d1305314a94f3c377e5eb82f755272fcdd`;
+  N3 return `8381147e19e2b3825d6655089240247104b60dd419539e93f016e641395be404`.
+  Deterministic rerun was byte-identical; fresh review: zero findings.
+
+#### Closeout validation and handoff
+
+- Focused practitioner harness: `56 passed`.
+- Root adapter G1: PASS at `status_files=53`, pin
+  `3389adabfa2919b66f64bbd9cd04d7d29b9838b4`.
+- Candidate whitespace: PASS after the recorded five-file EOF repair.
+- Agent instructions: PASS, 34 files, zero errors/warnings.
+- Instruction entrypoints: PASS.
+- CI-form G4: PASS, 47 manifests, 66 changed paths, three instruction-surface
+  paths, one covering added manifest.
+- Task Management: PASS, 19 live rows; register unchanged.
+- `git diff --check`: PASS.
+- Root handoff SHA-256
+  `3e41c7adbf4356bf234d45babe04762c569c63cec8ba3390d9bf6bbca023fa64`;
+  run handoff SHA-256
+  `9672d1440d202ed8395397d709bd4ae0566fc1b3a9548d490726e41c30f08bd7`.
+- **Handoff:** Phase 3 is complete. Estimates, schedule, their evidence reruns,
+  the separately gated implementation pathway, TM-ROOT-106/122, pins, App
+  acts, all ten `HELD_UNAVAILABLE` bindings, release, publication, and
+  reliance remain separately governed. The Phase-3 derivative packages must
+  rerun after estimates/schedule or any accepted dependency change.
+
+#### CHAT_TRANSCRIPTION — Root v3 Phase 3 owner steer
+
+Source: `plans/steers/chirality_app_v3_phase3_steer_root_2026-08-23.md`
+
+SHA-256: `9c8d3884f97733f674269014c1735977c9628be1d929f6859889c79710ae4186`
+
+<!-- BEGIN RECEIPT-123 STEER VERBATIM -->
+# STANDING DIRECTION — Root governance loop — v3 release pathway, Phase 3 (R7 SOW-acceptance transcription, lifecycle initialization, harness repin, dependency extraction, evidence reruns)
+
+> **Plans-folder status:** ACTIVE owner-carried steer — non-governing. Owner: Ryan Tufts. Scope: Root Phase 3 of the v3 release pathway. Target workspace: Root governance loop. Paste together with `plans/steers/chirality_app_v3_root_ruling_record_r7_2026-08-23.md`; earlier records are already transcribed in Receipts 114–122 and are cited, not re-pasted.
+
+
+Owner-carried steer, drafted by HELP_HUMAN 2026-08-23 from the owner's R7
+ruling. Paste whole with the attached R7 record; transcribe both verbatim
+into the closeout receipt as CHAT_TRANSCRIPTION. R7-A accepts the seven SOWs
+as published; this tranche transcribes that acceptance, initializes the seven
+carriers, consciously repins the practitioner-harness live baseline in the
+same PR, extracts dependencies per the approved plan §4.1, and re-derives the
+dependency evidence. Estimates and schedule remain later acts.
+
+## Basis gate (check before any write; stop and report if any line fails)
+
+- `origin/main` contains merge commit `f66bd7f5af7bdf5dc07579f3a507482aca85bd03` (PR #640). Branch from current `main`.
+- `AGENTS.md` SHA-256 `377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3`.
+- The seven `ScopeOfWork.md` files carry exactly the R7-A SHA-256 values (listed in the R7 record); every carrier `_STATUS.md` is `OPEN`; the four Phase-1 metadata files per carrier are unchanged from PR #637.
+- Live decomposition is applied revision 1.3; deliverable register `2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba`; `_LATEST.md` `4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c`.
+- `execution/_harness/adapter.yaml` SHA-256 `02f01e8a95e1190d0587c56444843fa3d6bc2bb03c4e64ec702ba20758369d41` (the current 53/46-INITIALIZED/7-OPEN pin basis).
+- `execution/_Coordination/_TaskManagement/REGISTER.csv` SHA-256 `89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518` (19 live; untouched by this tranche).
+- `execution/_Coordination/HANDOFF_STATE.md` SHA-256 `b545fc972e68d86ecb683b174346fb37d380be8f84fd9ee36c94a20d3b9a1ea9`.
+- Last Root receipt is 122. This tranche writes Receipt 123.
+- `plans/steers/chirality_app_v3_root_ruling_record_r7_2026-08-23.md` is present in the paste; its SHA-256 is recorded in the receipt.
+
+## Objective
+
+Make the R7 acceptance effective in governed state: each accepted SOW's
+frontmatter status becomes accepted-by-R7, each carrier's lifecycle
+initializes per the house convention, the practitioner-harness live-tree
+baseline is consciously repinned in the same PR under a live manifest,
+dependencies are extracted from accepted truth into the seven
+`_DEPENDENCIES.md` files with a DEL-02-06 fan-in reassessment, and the
+dependency graph and closure audit are re-derived as current derivative
+evidence. No estimate, schedule, implementation, activation, TM-register,
+pin, or App act. No hold is lifted.
+
+## Nodes (N=3, ordered N1 → N2 → N3; Agent 2 instances with sealed briefs under `execution/_Coordination/AgentRuns/ROOT_V3_PHASE3_2026-08-<DD>/instances/<NODE>/`)
+
+### N1 — Acceptance transcription, lifecycle initialization, harness repin
+Write targets, exactly: the seven `ScopeOfWork.md` frontmatter status lines; the seven carrier `_STATUS.md` files; `execution/_harness/adapter.yaml`; `tools/practitioner_harness/test_root_adoption.py`; `tools/validation/test_validate_root_harness_adapter.py`; one new live manifest `docs/governance_harness/tranche_manifests/ROOT-HARNESS-STATUS-REPIN-2026-08-<DD>.yaml`.
+1. In each accepted SOW, change only the frontmatter line `status: DRAFT_AWAITING_OWNER_ACCEPTANCE` → `status: ACCEPTED_BY_OWNER_R7 (record SHA-256 dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53)` (exact one-line diff per file, shown in the receipt; no other SOW byte changes).
+2. Transition each carrier `_STATUS.md` from `OPEN` to `INITIALIZED` per the house lifecycle convention, appending the dated history entry citing R7-A and the accepted SOW SHA; no other lifecycle content invented.
+3. Consciously repin the live practitioner-harness baseline in the same PR (the #637 precedent): update `execution/_harness/adapter.yaml` and the two pinned test files to the exactly measured post-transition values (expected shape: 53 status files, 53 INITIALIZED, 0 OPEN, zero mismatches; unparseable count as actually measured after the history entries are written — measure, never guess). Cover the three instruction-surface paths plus the manifest itself with the new live manifest (schema v1; basis = current `main`; `m2_gate` human-gated-pr, `self_merge: false`, authorization = this steer section verbatim; `m6_notice: pending`, `routed_to: []`; `derivative_disposition: deferred` for `exports/chirality-app/**`).
+Check surface: seven one-line SOW diffs; seven `_STATUS.md` transitions with exactly one new history entry each; `python3 -m pytest tools/practitioner_harness/test_root_adoption.py tools/validation/test_validate_root_harness_adapter.py -q` fully green on the post-transition tree; CI-form G4 PASS with the added manifest covering every instruction-surface path.
+
+### N2 — Dependency extraction (plan §4.1)
+Write targets, exactly: the seven carrier `_DEPENDENCIES.md` files and `execution/PKG-02_…/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_DEPENDENCIES.md`.
+- Extract dependencies only from accepted truth: the accepted SOWs, the applied register rows, the approved `Propagation_Plan.md`, and existing accepted carrier contracts. Record for each carrier its upstream/downstream edges among the 53 deliverables, with each edge citing the accepted source that grounds it. Cross-loop App coupling is recorded only as notice/fan-in edges, never foreign authority (plan §4.1).
+- Reassess DEL-02-06 as the integration/fan-in carrier: update only its `_DEPENDENCIES.md` to record the six DEL-02-07..12 evidence fan-in edges and DEL-04-11's validator relationship, citing the accepted SOWs; no `_CONTEXT.md`, SOW, or `_STATUS.md` change.
+- An edge that cannot be grounded in accepted truth is omitted and reported, never invented.
+Check surface: every recorded edge carries its grounding citation; no new deliverable, scope, or objective content; DEL-02-06's other files byte-identical.
+
+### N3 — Evidence reruns (derivative)
+Write targets, exactly: `execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/DEP_GRAPH_POST_PHASE3/` (new) and `…/Evidence/AUDIT_DEP_CLOSURE_POST_PHASE3/` (new). Earlier evidence folders are preserved untouched.
+- Re-derive the objective-relative `WORK_GRAPH.json`/`DAG.md` from live nodes including the extracted dependencies; recompute SCCs; a needed cut/merge is human-gated — record it as a blocker and stop that step.
+- Fresh `AUDIT_DEP_CLOSURE` over the post-extraction state; expected: 53 deliverables, zero unresolved closure violations, the Phase-1 initialized-empty warning cleared or explained.
+- Both outputs cite the accepted snapshot, R7, and this tranche's N1/N2 outputs, and name their next required rerun (after estimates/schedule or any dependency change).
+Check surface: graph node set equals the 53 register rows plus packages; SCC report present; closure verdict recorded with reasons; no write outside the two new folders.
+
+## Not selectable in this tranche
+`AGENTS.md`, `agents/**`, `docs/**` beyond the one named manifest, `tools/**` beyond the two named test files, the seven live decomposition files, `execution/_ScopeChange/**` beyond the two new Evidence folders, any `_CONTEXT.md` or `_REFERENCES.md`, DEL-02-06's `_CONTEXT.md`/`ScopeOfWork.md`/`_STATUS.md`, estimates, schedules, the Task Management register, `runtime/**`, `projects/**`, `exports/**`, pins, and any App surface. No lifecycle state beyond the seven OPEN → INITIALIZED transitions.
+
+## Failure rule
+Unlimited repair with fresh re-review per node. Never widen a node's write
+set; if a needed write falls outside it, report and stop that node. A
+harness assertion that cannot be satisfied by measured values is reported
+with the exact failure, not force-fitted.
+
+## Closeout
+One tranche, one branch `codex/root-v3-phase3-2026-08-<DD>`, one PR to
+`main`, commits in order N1 → N2 → N3. Append Receipt 123 with: this steer
+and the R7 record as CHAT_TRANSCRIPTION (record both SHA-256 values);
+per-node write sets; the seven one-line SOW diffs; the seven lifecycle
+transitions; the measured harness repin values; every extracted edge count;
+graph/SCC/closure results; validator outputs including the CI-form G4 output;
+`execution/_Coordination/HANDOFF_STATE.md` updated (Phase 3 done; remaining:
+estimates, schedule, their evidence reruns, and the separately gated
+implementation pathway). Run before pushing: the standard validator set and
+`git diff --check`. Evidence-whitespace convention applies to any captured
+logs. Do not merge. If `main` advances, request sync authorization from the
+owner and record it in the receipt. HELP_HUMAN byte-verifies before
+endorsement.
+<!-- END RECEIPT-123 STEER VERBATIM -->
+
+#### CHAT_TRANSCRIPTION — Root v3 R7 owner ruling record
+
+Source: `plans/steers/chirality_app_v3_root_ruling_record_r7_2026-08-23.md`
+
+SHA-256: `dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53`
+
+<!-- BEGIN RECEIPT-123 R7 VERBATIM -->
+# ROOT RULING RECORD R7 — SCA-004 carrier SOW acceptance — owner ruling of 2026-08-23
+
+> **Plans-folder status:** ACTIVE owner-ruling record — non-governing transcription source. Owner: Ryan Tufts. Scope: acceptance of the seven SCA-004 carrier Scope-of-Work contracts. Target workspace: Root governance loop (transcribed into Receipt 123). Supersedes nothing; the loop's instruments govern. Companion to `plans/steers/chirality_app_v3_root_ruling_record_r6_2026-08-23.md`.
+
+
+Ruled by Ryan Tufts (K-AUTH-1) in the HELP_HUMAN session minder chat, after
+PR #640 merged as `f66bd7f5af7bdf5dc07579f3a507482aca85bd03` (Root Phase 2;
+Receipt 122). HELP_HUMAN had read all seven published SOWs in full on `main`
+before the slate and verified: frontmatter parity with the applied register
+rows on every field; every claim traceable to the applied register row, the
+carrier `_CONTEXT.md`, `Propagation_Plan.md` §2, or the G0 A3/A4/A7 rulings;
+the standing constraints carried verbatim; no invented dependency, interface,
+tool, estimate, or schedule content; every draft marked
+`DRAFT_AWAITING_OWNER_ACCEPTANCE`; every `_STATUS.md` still `OPEN`;
+DEL-02-12's ten-binding hold table exact; DEL-04-11 preserving DEL-04-05 and
+DEL-05-02 and keeping `tools/**` behind separate M2 authority. "[click]"
+marks the option the owner selected.
+
+R7-A — Seven SOW acceptance: [click] "Accept all seven as published".
+  Subject bytes, each `ScopeOfWork.md` at its folder under `1_Working/`, on
+  `main` `f66bd7f5a…`:
+    DEL-02-07 `9619107473ef29dfa6a771f6687a981bd746ad0f7657e4cf0d04fee2058a43c8`
+    DEL-02-08 `fd08461564dda82de2ec62142dedb66b37faed37de70ddcc202043ad0328f6cf`
+    DEL-02-09 `8711ac2d7822df5f040eb8559e1dbb725d7e84be8c74c08622f6d1521e4470cb`
+    DEL-02-10 `6cd0f49790023530afa2bc5e309346c0e6705f1a8bae7fcf01ac625f697f1e67`
+    DEL-02-11 `f02eb0ea9e0262d342a50f9632dcdef18828335a546b02b92e13d703fbb34f54`
+    DEL-02-12 `635ba159bc54d85c9c32d7241f042d160371e1ddc5a7999297b1c1edd164dfc2`
+    DEL-04-11 `716695d98bede3b249a5761ca6b63887cb590fd1347f01f3781a3266b53c4a67`
+  Recorded form: the owner accepts each of the seven Scope-of-Work contracts
+  exactly as published. Acceptance is of the contract bytes: it makes each
+  SOW the accepted production contract for its carrier and permits the
+  lifecycle initialization transition under the house convention. It does
+  not lift any hold, authorize implementation, grant the DEL-04-11
+  `tools/**` M2 authority, create dispatch authority, change a pin, or make
+  any completion, conformance, release, or reliance claim. All ten DEL-02-06
+  bindings remain `HELD_UNAVAILABLE`; TM-ROOT-106/122 remain G1 blockers;
+  C1 remains not authorized.
+
+Not ruled here: dependency extraction results (they return as recorded
+evidence); estimates and schedule (later acts after extraction); any
+implementation activation (G0.5); any App-loop act.
+<!-- END RECEIPT-123 R7 VERBATIM -->

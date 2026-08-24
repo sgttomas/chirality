@@ -11,7 +11,7 @@ Covers the four surfaces the adoption touches:
    double registration refused;
 3. `status` / `drift` against a tmp fixture tree, and the refusals for the
    commands that cannot meaningfully operate on the root;
-4. LIVE-tree pins (53 status files, 0 mismatches, 46 INITIALIZED + 7 OPEN), the
+4. LIVE-tree pins (53 status files, 0 mismatches, 53 INITIALIZED + 0 OPEN), the
    same conscious pin discipline `test_live_baseline.py` applies to app-dev
    0/53 and piping 0/101 — a change here is a conscious pin update in the same
    PR, never a silent one.
@@ -416,8 +416,8 @@ def _fact(report, fact_id):
 
 @live_root
 def test_live_root_adapter_pins_53_files_0_mismatch():
-    """Conscious pin after the bounded SCA-004 Phase-1 PROJECT_SETUP INITs
-    (2026-08-23): 6 packages / 53 deliverables, 46 INITIALIZED and 7 OPEN.
+    """Conscious pin after the bounded SCA-004 Phase-3 R7 initialization
+    (2026-08-23): 6 packages / 53 deliverables, all 53 INITIALIZED.
     A live-root change updates this pin in the same PR — never silently."""
     manifest = adapter_loader.load_adapter(LIVE_REPO)
     assert manifest.kind == adapter_loader.KIND_ROOT
@@ -431,11 +431,11 @@ def test_live_root_drift_baseline_0_of_53():
     report = cmd_drift.run_drift(LIVE_REPO, [LIVE_REPO])
     value = _fact(report, "drift.chirality-root").value
     assert "files=53" in value
-    assert "matches=46" in value
+    assert "matches=53" in value
     assert "mismatches=0" in value
-    # The seven Phase-1 OPEN records intentionally contain only Current State;
-    # the frozen prose-bullet-v1 dialect reports them instead of guessing.
-    assert "unparseable_docs=7" in value
+    # The seven Phase-3 lifecycle records now carry the minimum parseable
+    # house fields and one state-bearing history entry each.
+    assert "unparseable_docs=0" in value
     assert "no_state_assertion=0" in value
     assert report.summary["files_total"] == 53
     assert report.summary["mismatches_total"] == 0
@@ -448,15 +448,15 @@ def test_live_root_drift_baseline_0_of_53():
 
 
 @live_root
-def test_live_root_status_reports_46_initialized_7_open_and_no_dag_pointer():
-    # Live pin: the prior 46 deliverables remain INITIALIZED and the seven
-    # SCA-004 Phase-1 propagation carriers are initialized at OPEN.
+def test_live_root_status_reports_53_initialized_0_open_and_no_dag_pointer():
+    # Live pin: the prior 46 deliverables and the seven R7-accepted SCA-004
+    # carriers are all INITIALIZED; no carrier remains OPEN.
     # A change to the live root tree updates this pin in the same PR.
     report = cmd_status.run_status_project(LIVE_REPO, LIVE_REPO)
     md = report.render_markdown()
     assert "# Status — chirality-root" in md
-    assert "| INITIALIZED | 46 |" in md
-    assert "| OPEN | 7 |" in md
+    assert "| INITIALIZED | 53 |" in md
+    assert "| OPEN |" not in md
     assert report.summary["status_files"] == 53
     assert "not declared by this adapter schema (root-harness-adapter/v1)" in md
 
