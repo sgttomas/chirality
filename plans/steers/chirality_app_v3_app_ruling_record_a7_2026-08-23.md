@@ -59,8 +59,24 @@ A7-A — Phase-2b candidate approval: [click] "Approve as published".
   approved candidate voids this approval for the changed candidate and
   requires regeneration, fresh independent review, and a new owner act.
 
-Not ruled here: C-03 notice routing; the Gate-5 act itself and any pointer
-move; Root schedule-basis transcription; TM-ROOT-106/122 and every held
-DEL-02-06 binding; C1; TM-APP-030; D-APP-97/F-APP-2; G1 and every later
-gate; any implementation, activation, release, publication, or reliance
-act.
+A7-B — C-03 notice routing: [click] "Route after Gate 5".
+  The owner rules that the SCA-APP-008 notice to the Root loop is routed
+  only after the Gate-5 application act, and only as a regenerated notice
+  describing applied state. The frozen draft
+  `projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/DRAFT_NOTICE_TO_ROOT.md`,
+  SHA-256
+  `8ebc728b6d6c408a3dfeb60ae07887dbe7d5b88ba8fe06c1b954e98e8a380f72`,
+  remains unrouted and is superseded for
+  routing purposes: it predates both the Root K-CONTROL-1 ratification and
+  the approved Phase-2b candidate bytes, so routing it would describe
+  superseded content. Regeneration and routing are to be directed as part
+  of the Gate-5 tranche, not as a separate earlier act. Routing is
+  coordination, not authority: the receiving Root loop adopts, amends, or
+  declines under its own instruments and cadence (AGENTS.md agent-index
+  change-notice rule).
+
+Not ruled here: the Gate-5 act itself and any pointer move; the exact
+regenerated notice bytes and their destination surface; Root schedule-basis
+transcription; TM-ROOT-106/122 and every held DEL-02-06 binding; C1;
+TM-APP-030; D-APP-97/F-APP-2; G1 and every later gate; any implementation,
+activation, release, publication, or reliance act.
