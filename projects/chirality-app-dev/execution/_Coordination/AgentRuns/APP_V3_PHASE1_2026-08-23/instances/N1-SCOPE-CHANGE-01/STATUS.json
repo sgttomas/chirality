@@ -1,0 +1,20 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "runId": "APP_V3_PHASE1_2026-08-23",
+  "instanceId": "N1-SCOPE-CHANGE-01",
+  "role": "SCOPE_CHANGE",
+  "basisCommit": "f485b5d3b663f42be8f8cab8432ced9024d7381b",
+  "state": "COMPLETE",
+  "phase": "VALIDATED_CANDIDATE_RETURNED",
+  "authorityState": "CANDIDATE_ONLY",
+  "candidatePath": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Gate3/GATE3_AMENDMENT_PACKAGE.md",
+  "candidateSHA256": "1a8048f4840cffd9932202d1822f497de5f7aa07aa1872e250c6e870846cf6df",
+  "decompositionCandidatePostSHA256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+  "contractQuestionBearingCandidatePostSHA256": "41cb6a62c6991c37559d1fcffeb75d9c76be2432ea84b1d1c5f864d8a3d9c9a6",
+  "readyForNextPhase": "NO",
+  "blockers": [],
+  "openQuestions": [
+    "K-EVENT-4 exact live Root session path and accepted schema/version identity",
+    "Cross-loop invariant-ID collision check for K-CONSENT-1 and K-UNTYPED-1"
+  ]
+}

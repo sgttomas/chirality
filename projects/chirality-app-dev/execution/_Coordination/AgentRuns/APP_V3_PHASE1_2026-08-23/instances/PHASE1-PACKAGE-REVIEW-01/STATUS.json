@@ -1,0 +1,19 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "runId": "APP_V3_PHASE1_2026-08-23",
+  "instanceId": "PHASE1-PACKAGE-REVIEW-01",
+  "role": "REVIEW",
+  "reviewClass": "EVIDENCE_ONLY_PACKAGE_REVIEW",
+  "basisCommit": "f485b5d3b663f42be8f8cab8432ced9024d7381b",
+  "state": "COMPLETE",
+  "verdict": "PASS",
+  "findingCount": 0,
+  "candidateState": "COMPLETE_AWAITING_OWNER_APPROVAL",
+  "readyForNextPhase": "NO",
+  "authorityEffect": "NONE",
+  "gate3Sha256": "1a8048f4840cffd9932202d1822f497de5f7aa07aa1872e250c6e870846cf6df",
+  "gate4Sha256": "47daaedf84ba4e9450bef3c12be3d1ab42316e0e3daabc37641d06f1040fd8d6",
+  "concordanceSha256": "c747a81b7fcca88dfebab8e2ed2345247af23063d9f48e3dd2e4bfa0a5af4185",
+  "decompositionPostSha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+  "contractQuestionBearingPostSha256": "41cb6a62c6991c37559d1fcffeb75d9c76be2432ea84b1d1c5f864d8a3d9c9a6"
+}

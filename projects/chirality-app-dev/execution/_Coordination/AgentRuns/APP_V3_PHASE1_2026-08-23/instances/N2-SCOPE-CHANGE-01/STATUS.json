@@ -1,0 +1,11 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "runId": "N2-SCOPE-CHANGE-01",
+  "role": "SCOPE_CHANGE",
+  "status": "COMPLETE_AWAITING_OWNER_APPROVAL",
+  "basisCommit": "f485b5d3b663f42be8f8cab8432ced9024d7381b",
+  "briefAmendment": "V2",
+  "finalN1Sha256": "1a8048f4840cffd9932202d1822f497de5f7aa07aa1872e250c6e870846cf6df",
+  "readyForNextPhase": "NO",
+  "verdict": "PASS"
+}
