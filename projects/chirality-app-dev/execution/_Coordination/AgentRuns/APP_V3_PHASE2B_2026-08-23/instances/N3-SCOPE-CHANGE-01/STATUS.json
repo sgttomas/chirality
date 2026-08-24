@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "chirality.agent-run-status/v1",
+  "runId": "APP_V3_PHASE2B_2026-08-23",
+  "instanceId": "N3-SCOPE-CHANGE-01",
+  "role": "SCOPE_CHANGE",
+  "status": "COMPLETE",
+  "verdict": "PASS",
+  "basisCommit": "ef92fab10f40aa95da484701982d83fa1abca874",
+  "consumedN1Sha256": "cf889103744df7fe4f20b85e9c8d4610a85af287cbfe60f0f6471a7bd642e3b8",
+  "consumedN2Sha256": "c6b6d31497f0399c319b9b1772964b5c003ca1b520289cd7238d14efd84ba463",
+  "resolvedEvent4RowSha256": "92c9d359f70a934fad07b399e18b93df07dc9573f0bf04ab4dd4d40d18eebf93",
+  "resolvedFullContractCandidateSha256": "842bf170e6737adf8eaa7a4a1acfd74e22390bc6e14c64eed9502195c68dbed9",
+  "companionRegisterCandidateSha256": "69abc8859cc10596f959527eb35a6620d7d4c536e8b415644a26e83cf74534a0",
+  "companionRegisterCandidateRows": 83,
+  "companionRegisterCandidateFamilies": 50,
+  "kControl1CoverageStatus": "MAPPED_WITH_OPEN_ISSUE",
+  "kControl1OpenIssueIDs": "RUNTIME-OPEN-005;DEL-02-07;WP-03",
+  "authorityEffect": "NONE",
+  "readyForNextPhase": "NO",
+  "nextNode": "N4-REVIEW-01"
+}
