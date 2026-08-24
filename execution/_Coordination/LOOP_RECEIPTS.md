@@ -6975,3 +6975,13 @@ Post-image, followed by one LF; row SHA-256
   ratification act. The supervisor socket remains unimplemented; App
   application, implementation, activation, pins, holds, release, publication,
   and reliance remain separately gated.
+
+### Receipt 127 — 2026-08-24 — R9 schedule-basis acceptance transcription
+
+- **Selection authority:** owner-carried steer `plans/steers/chirality_app_v3_r9_transcription_steer_root_2026-08-24.md`, SHA-256 `b8683bba0495a199de8b3a7c9d237165685c3d75bd01a8a91b3e4a28ea1ead9b`, and R10 `plans/steers/chirality_app_v3_root_ruling_record_r10_2026-08-24.md`, SHA-256 `68c8524dc2a84d8584b04969d7684fd6124f6a72399d1a80a499df6baaa0ae8f`; incorporated by immutable path and SHA-256.
+- **Basis:** fresh branch `codex/root-r9-transcription-2026-08-24` from `origin/main@fde84c94d95160bd71ec4ac084e90803b79ebdc1`, containing PR #663 merge `84fe4c6ce`; R9 SHA-256 `bc3a3bf414cfd64a5a650d633e942c2bb741a4562622857a79f5101c837e577b`, all seven schedule-package identities, and target absence matched before any write.
+- **Run control:** `execution/_Coordination/AgentRuns/ROOT_R9_TRANSCRIPTION_2026-08-24/`; bounded N1 return SHA-256 `5e0a3f362e6804d8b5af743b6e87f4a5458273df451d018d0c2efde5c724d7c5`; validated fan-in and fresh review found zero actionable findings.
+- **Governed result:** added only `Evidence/SCHEDULE_BASIS_POST_PHASE4/OWNER_ACCEPTANCE.md`, SHA-256 `b0d240b1f370a67e0d099fd48fccecdc9cfdacb6b8fcb3e9c188666571f3cf65`, recording R9-A's 1,012 base / 560–1,464 range, eight-edge ordering basis, nineteen exclusions, seven exact identities, negative grant, and rerun condition; every pre-existing snapshot byte remained unchanged.
+- **Authorized sync:** at the clean post-N1 boundary `origin/main` advanced to `4251530ec8a5d5b7abfc035cbdde63dab7fa80f3` (PR #665). The standing routine-sync authorization recorded in Receipt 125 permitted one non-rewriting sync; merge `088b9ba8e7d0ff22fe420779a02baab30736ae71` added only eight App pointer-act paths and changed no Root basis identity or tranche output.
+- **Checks:** candidate whitespace PASS; Root G0–G3 PASS; agent instructions 34 files with zero errors/warnings; instruction entrypoints PASS; CI-form G4 PASS with zero instruction-surface paths and no covering manifest; Task Management PASS with 19 rows; focused practitioner harness 56 passed; `git diff --check` PASS.
+- **State:** `PASS_TO_HUMAN_MERGE_GATE`; transcription seats schedule-basis truth only. Calendar, staffing, velocity, commitment, lifecycle, implementation, activation, pins, holds, cutover, release, publication, reliance, App authority, and blocker lifts remain outside this tranche; owner decides PR merge separately.

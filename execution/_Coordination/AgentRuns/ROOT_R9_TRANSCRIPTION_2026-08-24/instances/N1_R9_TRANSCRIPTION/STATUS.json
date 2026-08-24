@@ -1,0 +1,13 @@
+{
+  "instance_id": "N1_R9_TRANSCRIPTION",
+  "role": "bounded_ephemeral_agent_2",
+  "status": "COMPLETE",
+  "basis_commit": "fde84c94d95160bd71ec4ac084e90803b79ebdc1",
+  "output": {
+    "path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/SCHEDULE_BASIS_POST_PHASE4/OWNER_ACCEPTANCE.md",
+    "sha256": "b0d240b1f370a67e0d099fd48fccecdc9cfdacb6b8fcb3e9c188666571f3cf65"
+  },
+  "return": "RETURN.md",
+  "actionable_findings": [],
+  "blockers": []
+}
