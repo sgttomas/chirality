@@ -1,0 +1,15 @@
+{
+  "activeExecutionRows": 296,
+  "activeDeliverableEndpointRows": 112,
+  "resolvedDeliverableEndpointRows": 112,
+  "unresolvedDeliverableEndpointRows": 0,
+  "misplacedTargetDeliverableIdRows": 0,
+  "invalidDirectionRows": 0,
+  "distinctDirectedEdges": 98,
+  "graphNodes": 46,
+  "isolatedDeliverables": 5,
+  "directedSccs": 1,
+  "enumeratedRepresentativeCycles": 10,
+  "evidenceRowsPopulated": 564,
+  "evidenceRowsTotal": 564
+}

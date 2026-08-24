@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "chirality.agent-run-status/v1",
+  "runId": "N5-SCOPE-CHANGE-01",
+  "parentRunId": "APP_V3_GATE5_2026-08-24",
+  "role": "SCOPE_CHANGE",
+  "status": "PASS_REPAIR_CYCLE_1_AWAITING_FRESH_INDEPENDENT_REVIEW",
+  "basisCommit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "authorityEffect": "CANDIDATES_AND_HANDOFF_ONLY_POINTER_NOT_MOVED_NOTICE_NOT_ROUTED",
+  "pointerCandidate": {
+    "transactionSha256": "44c39e11b4de7621fe25d643d049443223ffbbcd8160855c3fb85d4a4186609a",
+    "proposedPayloadSha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b",
+    "applied": false
+  },
+  "rootNoticeCandidate": {
+    "sha256": "75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834",
+    "status": "READY_TO_ROUTE",
+    "routed": false
+  },
+  "phase5HandoffSha256": "2ba40bccd70ca3bb178e1c4eca9c0ba3096d2081ad85ce297290c3c65fa4f4d6",
+  "returnSha256": "450cfe548f0ebf660b386aa43c2f6e263c51a76add74d95b2235dd4962824c2a",
+  "auditManifestSha256": "7c30c9e2244beca0a9d8182e1908ce188cba48ea87b919b5da16f3a83423077d",
+  "n4RepairLineageSha256": "6d221501f2e13995d302c9b56e2e7578cb6e7546ef213a638280e53b4d871d07",
+  "review01Disposition": "HISTORICAL_PRE_REPAIR_SUPERSEDED_FOR_CURRENT_BYTES",
+  "auditVerdict": "WARNINGS_NON_BLOCKING",
+  "readyForNextPhase": "NO",
+  "next": "FRESH_INDEPENDENT_REVIEW_THEN_RECEIPT_199_AND_CHANGE_CLOSEOUT"
+}

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "chirality.agent-run-status/v1",
+  "runId": "N2-SCOPE-CHANGE-01",
+  "role": "SCOPE_CHANGE",
+  "node": "N2",
+  "status": "PASS",
+  "basisCommit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "authorityEffect": "AUTHORIZED_GATE5_DECOMPOSITION_POST_IMAGE_APPLIED",
+  "target": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "preImage": {
+    "sha256": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83",
+    "bytes": 108079,
+    "gitBlobOid": "48ae8edf982f3ce92e7a686993f3832501e42576"
+  },
+  "postImage": {
+    "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+    "bytes": 112419,
+    "candidateByteIdentical": true
+  },
+  "transactionMatcher": {
+    "removedLines": 4,
+    "removedLineOccurrences": [0, 0, 0, 0],
+    "addedLines": 6,
+    "addedLineOccurrences": [1, 1, 1, 1, 1, 1]
+  },
+  "topology": {
+    "packages": 10,
+    "deliverables": 51,
+    "stableIds": true,
+    "stableParents": true,
+    "stableObjectives": true,
+    "stableScopeLedger": true,
+    "stableSowRelations": true,
+    "stableContextEnvelopeRelations": true,
+    "stableScopeMappings": true
+  },
+  "dApp103": {
+    "disposition": "DEFERS",
+    "decisionReplayPacketCreated": false
+  },
+  "siblingStateAcknowledged": [
+    "projects/chirality-app-dev/docs/CONTRACT.md",
+    "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv",
+    "N3 evidence"
+  ],
+  "staged": false,
+  "committed": false,
+  "next": "N4_POST_APPLICATION_VALIDATION_AND_DEPENDENCY_RERUN",
+  "resumedPass": {
+    "ownerAuthorizedResume": true,
+    "liveTargetRestoredPreImageBeforeResume": "dd6027b4bc6861aac801c8777c76606326c952b75761f8dd082e5e341f1e5c83",
+    "reappliedPostImage": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+    "reappliedBytes": 112419,
+    "exactChecksRerun": "PASS",
+    "returnWhitespaceRepair": {
+      "scope": "EXACTLY_ONE_TERMINAL_BLANK_LINE_LF_REMOVED",
+      "preSha256": "94d9ee4dc4da060a270d8e07168c196dde9090bac1db0b7d6968692fefd012cc",
+      "postSha256": "db61ca1338aa2c6b550603c870ff245ee2d54e647d9a62da3ef32897a6395487",
+      "preBytes": 4316,
+      "postBytes": 4315,
+      "whitespaceAfterRepairBeforeLineageArtifact": "PASS"
+    }
+  }
+}

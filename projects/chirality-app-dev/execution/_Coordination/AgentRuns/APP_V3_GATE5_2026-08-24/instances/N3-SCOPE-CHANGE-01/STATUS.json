@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "chirality.agent-run-status/v1",
+  "runId": "N3-SCOPE-CHANGE-01",
+  "role": "SCOPE_CHANGE",
+  "node": "N3",
+  "status": "PASS",
+  "basisCommit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "authorityEffect": "LIVE_APP_CONTRACT_AND_COMPANION_REGISTER_APPLICATION_ONLY",
+  "atomicGroup": {
+    "contract": {
+      "preimageSha256": "6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7",
+      "postimageSha256": "842bf170e6737adf8eaa7a4a1acfd74e22390bc6e14c64eed9502195c68dbed9",
+      "postimageBytes": 34877
+    },
+    "companionRegister": {
+      "preimageSha256": "84d6fe0008c5ef210f8e70e583bb45251bf3170c01a5bbaea0c7bf752b88f5a1",
+      "postimageSha256": "62c9a318cf673b9b72bf31754aaf7dadb0f2db4b439eb79232c9e8d456d70bb3",
+      "postimageBytes": 98230,
+      "invariantIds": 83,
+      "families": 50
+    }
+  },
+  "approvedRows": {
+    "C01Sha256": "add623f40502dbf71bd2b7023ae50cfe4f10a398a3f127ac308eac05b3cef616",
+    "C06Sha256": "92c9d359f70a934fad07b399e18b93df07dc9573f0bf04ab4dd4d40d18eebf93"
+  },
+  "collisionCensus": {
+    "K-CONSENT-1": "PASS_COLLISION_FREE",
+    "K-UNTYPED-1": "PASS_COLLISION_FREE"
+  },
+  "sccConsumption": {
+    "SCC-DELEGATION-EVIDENCE": "DECOMPOSE_E020_NON_GATING",
+    "SCC-ACCOUNT-MIGRATION-UX": "DECOMPOSE_E018_NON_GATING",
+    "SCC-RUNBOOK-VALIDATION": "INVERT_E032_NON_GATING"
+  },
+  "siblingN2SurfaceObservedNotTouched": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "next": "N4_POST_APPLICATION_VALIDATION_DEPENDENCY_EXTRACTION_AND_NAMED_AUDIT"
+}

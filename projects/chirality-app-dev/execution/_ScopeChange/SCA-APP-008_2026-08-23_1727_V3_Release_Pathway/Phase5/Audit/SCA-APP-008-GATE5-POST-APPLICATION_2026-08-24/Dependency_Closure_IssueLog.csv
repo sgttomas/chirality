@@ -1,0 +1,9 @@
+ID,Severity,Check,FromDeliverableID,TargetDeliverableID,DependencyID,Evidence,FixSuggestion
+DC-001,WARNING,CIRCULAR_DEPENDENCIES,DEL-02-05,DEL-04-05,"DEP-02-05-004;DEP-04-05-010","Evidence/scc_summary.csv; Evidence/cycles_sample.csv; the nine-node SCC is distinct from the accepted objective-relative SCCs","Route to the cycle-resolution workflow; do not silently linearize or repair in this audit"
+DC-002,WARNING,ISOLATED_DELIVERABLE,DEL-01-01,,,Evidence/orphans.csv,"Review whether an explicit deliverable-to-deliverable execution edge is required; an anchor is already present"
+DC-003,WARNING,ISOLATED_DELIVERABLE,DEL-01-03,,,Evidence/orphans.csv,"Review whether an explicit deliverable-to-deliverable execution edge is required; an anchor is already present"
+DC-004,WARNING,ISOLATED_DELIVERABLE,DEL-02-04,,,Evidence/orphans.csv,"Review whether an explicit deliverable-to-deliverable execution edge is required; an anchor is already present"
+DC-005,WARNING,ISOLATED_DELIVERABLE,DEL-10-04,,,Evidence/orphans.csv,"Review whether an explicit deliverable-to-deliverable execution edge is required; an anchor is already present"
+DC-006,WARNING,ISOLATED_DELIVERABLE,DEL-10-05,,,Evidence/orphans.csv,"Review whether an explicit deliverable-to-deliverable execution edge is required; an anchor is already present"
+DC-007,INFO,BIDIRECTIONAL_PAIR,DEL-02-05,DEL-04-05,"DEP-02-05-004;DEP-04-05-010","Evidence/bidirectional_pairs.csv; DEL-02-05 and DEL-04-05 Dependencies.csv","Consume as part of DC-001; no independent source repair is authorized"
+DC-008,INFO,OBJECTIVE_RELATIVE_ORDERING,DEL-08-05,DEL-08-04,,"Gate4/GATE4_PROPAGATION_PLAN.md section 4; DAG.md; WORK_GRAPH.json","Preserve E-018/E-020/E-032 as non-gating and retain the accepted DECOMPOSE/DECOMPOSE/INVERT moves and downstream gates"

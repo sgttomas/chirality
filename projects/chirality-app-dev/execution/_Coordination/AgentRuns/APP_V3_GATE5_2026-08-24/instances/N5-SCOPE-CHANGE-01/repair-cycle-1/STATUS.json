@@ -1,0 +1,22 @@
+{
+  "schema": "chirality-repair-cycle-status/v1",
+  "runId": "N5-SCOPE-CHANGE-01-REPAIR-CYCLE-1",
+  "status": "PASS_AWAITING_FRESH_REVIEW_02",
+  "repairClass": "CURRENT_PIN_REGENERATION_AFTER_RECORD_ONLY_AUDIT_CSV_NORMALIZATION",
+  "semanticChange": false,
+  "auditManifestSha256": "7c30c9e2244beca0a9d8182e1908ce188cba48ea87b919b5da16f3a83423077d",
+  "lineageSha256": "9a8f0bad990c2728635fc1f18cfbb503c18b1097d291656d9df1db95c521f698",
+  "returnSha256": "2e15042b583063592629e28bedc0f47364b60fc279d4b3b165c0e1074337cf69",
+  "currentPhase5HandoffSha256": "2ba40bccd70ca3bb178e1c4eca9c0ba3096d2081ad85ce297290c3c65fa4f4d6",
+  "currentN5ReturnSha256": "450cfe548f0ebf660b386aa43c2f6e263c51a76add74d95b2235dd4962824c2a",
+  "currentN5StatusSha256": "ea18bc09158b9a13124ce48aed43672c71a358e2b5c039a9c1385c591f660e48",
+  "currentRunHandoffSha256": "67fabc1a66b7c108d87b29511eeec6a71861fa2f49851f62d57f035d609ddb02",
+  "currentWorkGraphSha256": "08ce7ac4334289716264d05c7da5ae442cdeda1ed8bb9ba31fcd6bf6102c77d1",
+  "review01Disposition": "HISTORICAL_PRE_REPAIR_SUPERSEDED_FOR_CURRENT_BYTES",
+  "pointerChanged": false,
+  "noticeChanged": false,
+  "candidateWhitespace": "PASS",
+  "manifestEntriesValidated": 16,
+  "staged": false,
+  "next": "N5_REVIEW_02_REQUIRED"
+}

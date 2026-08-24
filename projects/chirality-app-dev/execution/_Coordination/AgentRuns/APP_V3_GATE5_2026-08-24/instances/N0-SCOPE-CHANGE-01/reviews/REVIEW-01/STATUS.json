@@ -1,0 +1,37 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "runId": "APP_V3_GATE5_2026-08-24",
+  "instanceId": "N0-SCOPE-CHANGE-REVIEW-01",
+  "parentInstanceId": "N0-SCOPE-CHANGE-01",
+  "role": "REVIEW Agent 1",
+  "reviewType": "INDEPENDENT_VERIFICATION",
+  "status": "COMPLETED",
+  "result": "PASS",
+  "verdict": "PASS",
+  "actionableFindings": 0,
+  "advisoryFindings": 0,
+  "acceptedBasis": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "acceptedSourceSha256": "69abc8859cc10596f959527eb35a6620d7d4c536e8b415644a26e83cf74534a0",
+  "acceptedCandidateSha256": "62c9a318cf673b9b72bf31754aaf7dadb0f2db4b439eb79232c9e8d456d70bb3",
+  "candidateBytes": 98230,
+  "dataRows": 83,
+  "invariantFamilies": 50,
+  "changedCells": 83,
+  "changedColumns": [
+    "AppDecompositionBasis"
+  ],
+  "incorrectIdentityOccurrences": 0,
+  "trueIdentityOccurrences": 83,
+  "candidateWhitespace": "PASS",
+  "historicalArtifactsUnchanged": true,
+  "liveTruthWritten": false,
+  "forbiddenWriteDetected": false,
+  "readyForN1": true,
+  "needsHumanRuling": false,
+  "delegationPerformed": false,
+  "subjectModified": false,
+  "outputArtifact": "REVIEW.md",
+  "writeTargets": [
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_GATE5_2026-08-24/instances/N0-SCOPE-CHANGE-01/reviews/REVIEW-01"
+  ]
+}

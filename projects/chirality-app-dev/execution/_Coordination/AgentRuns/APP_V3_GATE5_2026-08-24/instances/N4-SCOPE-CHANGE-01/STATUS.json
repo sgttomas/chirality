@@ -1,0 +1,19 @@
+{
+  "run_id": "APP_V3_GATE5_2026-08-24",
+  "node": "N4-SCOPE-CHANGE-01",
+  "role": "SCOPE_CHANGE",
+  "status": "ROLLED_BACK_BLOCKED",
+  "verdict": "AUTHORITATIVE_TRUTH_RESTORED_AFTER_AUTHORITY_CORPUS_WRITE_SET_CONFLICT",
+  "basis_commit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "direct_validation": "PASS_EXCEPT_CORPUS_AND_WHITESPACE_GATES",
+  "dependency_extraction": "NOT_RUN_BLOCKED",
+  "closure_audit": "NOT_RUN_BLOCKED",
+  "pointer_changed": false,
+  "rollback_performed_by_n4": true,
+  "authoritative_truth": "RESTORED_TO_BASIS_PREIMAGES",
+  "authority_corpus_status": "V18_NO_DRIFT",
+  "n5": "NOT_RUN",
+  "pointer_candidate": "NOT_PRODUCED",
+  "notice_candidate": "NOT_PRODUCED",
+  "return": "RETURN.md"
+}

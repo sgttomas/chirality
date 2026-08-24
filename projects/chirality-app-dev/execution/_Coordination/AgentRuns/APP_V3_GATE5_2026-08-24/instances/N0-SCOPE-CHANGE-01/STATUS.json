@@ -1,0 +1,18 @@
+{
+  "run_id": "APP_V3_GATE5_2026-08-24",
+  "node": "N0",
+  "role": "SCOPE_CHANGE",
+  "status": "AWAITING_INDEPENDENT_REVIEW",
+  "basis_commit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "candidate_path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Phase5/CORRECTED_COMPANION_REGISTER_CANDIDATE.csv",
+  "candidate_sha256": "62c9a318cf673b9b72bf31754aaf7dadb0f2db4b439eb79232c9e8d456d70bb3",
+  "bytes": 98230,
+  "rows": 83,
+  "families": 50,
+  "changed_column": "AppDecompositionBasis",
+  "incorrect_identity_occurrences": 0,
+  "true_identity_occurrences": 83,
+  "candidate_whitespace": "PASS",
+  "live_truth_written": false,
+  "ready_for_n1": false
+}
