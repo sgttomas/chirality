@@ -587,3 +587,21 @@ schedule-basis bytes. TM-ROOT-106/122, C1, every App-owned obligation,
 DEL-04-11 `tools/**` M2 authority, all ten `HELD_UNAVAILABLE` bindings,
 implementation, activation, cutover, release, publication, and reliance remain
 unresolved and separately governed.
+
+### 2026-08-23 — K-CONTROL-1 design-amendment append
+
+The owner-directed Root K-CONTROL-1 design-amendment candidate is complete on
+branch `codex/root-kcontrol1-design-2026-08-23` and awaits the owner's PR merge
+as the ratification act. The candidate changes exactly the K-CONTROL-1 row:
+full-file `docs/CONTRACT.md` SHA-256 moves from
+`ed87eaff4e936bb76f94e1bf3018f708c54c23167e6b4884a7f17193c9dcf679` to
+`ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83`;
+the invariant catalog remains at 40 IDs. Live manifest
+`ROOT-CONTRACT-KCONTROL1-DESIGN-2026-08-23.yaml` is present at SHA-256
+`2d3b988643b57c7bc2b5ed50e0ca2e730f37fa14a399f394f7d7e41163f9a5a3`.
+
+The row records an accepted two-socket design while stating the current truth:
+one control socket is live, the supervisor socket is not implemented, and its
+DEL-02-07/WP-03 implementation remains separately gated. No third socket or TCP
+listener is permitted. App application, implementation, activation, pins,
+holds, release, publication, and reliance remain outside this tranche.

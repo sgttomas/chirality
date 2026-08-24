@@ -6878,3 +6878,100 @@ DEL-04-11 `tools/**` M2 authority, all ten `HELD_UNAVAILABLE` bindings,
 implementation, activation, lifecycle, cutover, release, publication, and
 reliance remain separately governed. The Phase-5 graph and closure packages
 must rerun after any accepted dependency or schedule-basis change.
+
+### Receipt 126 — 2026-08-23 — K-CONTROL-1 design amendment candidate
+
+- **Selection authority:** owner-carried steer
+  `plans/steers/chirality_app_v3_kcontrol1_amendment_steer_root_2026-08-23.md`,
+  SHA-256
+  `c0a9b1098fc9e36d1532dc1834424ee94f40b716d37f3c8b8c12dfb26a807c29`;
+  companion A4 record
+  `plans/steers/chirality_app_v3_app_ruling_record_a4_2026-08-23.md`,
+  SHA-256
+  `14db687762b9af099debbfe9cfcaab0879e7082922f6eda9897b3f4d61ff330d`;
+  companion A5 record
+  `plans/steers/chirality_app_v3_app_ruling_record_a5_2026-08-23.md`,
+  SHA-256
+  `1896d89200c4cd390b4606aed0229fe03bf7c5070f454e1dca5d6c6acde2bb9b`;
+  and canonical R7 record
+  `plans/steers/chirality_app_v3_root_ruling_record_r7_2026-08-23.md`,
+  SHA-256
+  `dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53`.
+  These instruments are incorporated by immutable path and SHA-256, not
+  transcribed. The launcher's supplied R7 path used date `2026-08-22`; no such
+  path exists on the basis. The canonical `2026-08-23` path above carries the
+  exact supplied SHA and is the file named by the live ruling chain.
+- **Branch and basis:** `codex/root-kcontrol1-design-2026-08-23` from
+  `origin/main@162fa3be8d62b042177d4a256ef54bf15bd74a03` (PR #654 merge,
+  Receipt 125 on main). `docs/CONTRACT.md` matched its bound pre-image
+  `ed87eaff4e936bb76f94e1bf3018f708c54c23167e6b4884a7f17193c9dcf679`;
+  all seven Receipt-123 SOW identities and the Task Management register
+  matched. Root G0-G4 and candidate whitespace passed before writes.
+- **Run control:**
+  `execution/_Coordination/AgentRuns/ROOT_KCONTROL1_DESIGN_2026-08-23/`
+  records the human-selected serial graph and the sealed HELPS_HUMANS return.
+  N1 return SHA-256
+  `275e377266ba53f094d7cb3f4c59a3dcb091c808a645cdec5e151f0f8a95e20d`;
+  terminal status SHA-256
+  `4d2eb40c4f797b6c0a8fde8ee3c95383700941075cb9ac00d1e3ff26af566a3d`;
+  run handoff SHA-256
+  `7495b94b67f8e289acb63e2ee036213f4163702ac1380e634f6de0f934c85edc`.
+  Fresh N1 and HELP_HUMAN reviews found zero actionable findings.
+- **Write set:** exactly the K-CONTROL-1 row in `docs/CONTRACT.md`; new live
+  manifest
+  `docs/governance_harness/tranche_manifests/ROOT-CONTRACT-KCONTROL1-DESIGN-2026-08-23.yaml`;
+  the run/control evidence above; this receipt append; and the dated Root
+  handoff append. No amendment note was needed because the contract contains
+  no convention requiring one.
+- **Implementation commit:** `776a78527` (`governance: amend K-CONTROL-1
+  design`). Full contract pre-image SHA-256
+  `ed87eaff4e936bb76f94e1bf3018f708c54c23167e6b4884a7f17193c9dcf679`;
+  post-image SHA-256
+  `ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83`.
+  The catalog remains at 40 invariant IDs. Programmatic reconstruction of the
+  pre-image with only line 162 replaced equals the post-image byte-for-byte.
+
+#### Exact K-CONTROL-1 row bytes
+
+Pre-image, followed by one LF; row SHA-256
+`bf5a41e23c95591c6de57e718158af6fede01e99d9cae688bd2fcfc68c285a71`:
+
+```text
+| **K-CONTROL-1** | Runtime control uses authenticated, project-scoped HTTP/1.1 over `{userData}/runtime/control.sock` beneath a `0700` directory with a `0600` socket. A TCP control listener is forbidden. | Socket-mode, authorization, stale-owner, and listener tests |
+```
+
+Post-image, followed by one LF; row SHA-256
+`2473b7eb8cadf4f8fb6e059bc593aa91585c21a1bc694c1a598d779196392a8a`:
+
+```text
+| **K-CONTROL-1** | Runtime control uses authenticated, project-scoped HTTP/1.1 over `{userData}/runtime/control.sock` beneath a `0700` directory with a `0600` socket. The accepted design adds exactly one private Unix-domain socket between the daemon and the Delegated-Harness Process Supervisor, never renderer- or CLI-callable, with a `0700` parent directory and a `0600` socket, as accepted by R7-A through the DEL-02-07 scope contract (record SHA-256 `dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53`). The supervisor socket is accepted design, not yet implemented: exactly one control socket is live today, and the second socket becomes live only through the separately gated DEL-02-07/WP-03 implementation pathway. No third socket and no TCP control listener are permitted under any configuration. | Socket-mode, authorization, stale-owner, and listener tests; design-gated supervisor-socket tests activating with DEL-02-07 implementation |
+```
+
+- **Manifest:** SHA-256
+  `2d3b988643b57c7bc2b5ed50e0ca2e730f37fa14a399f394f7d7e41163f9a5a3`;
+  its parsed `m2_gate.authorization` equals the complete steer N1 section;
+  human-gated PR, `self_merge: false`, notice pending with empty routing, and
+  public export deferred.
+- **Owner-authorized sync:** at the clean post-N1 boundary `origin/main`
+  advanced to `d8866e7bb078243a46e9516dc4a3a57f5ee9236c` (PR #655). Owner grant,
+  recorded verbatim: "You have my authorization to merge latest origin/main
+  without rebase or force-push, then finish Receipt 126, validation, push, and
+  PR creation without merging the PR." Merge commit
+  `9e5580f2cc217dfd1fc0698b5e9415facdda0f46` added only
+  `plans/steers/chirality_app_v3_root_ruling_record_r9_2026-08-23.md`; it had
+  no conflict or tranche/protected-surface overlap. No rebase or force-push
+  occurred.
+- **Post-sync validation:** G0-G3 PASS; candidate whitespace PASS; agent
+  instructions 34 files, zero errors/warnings; instruction entrypoints PASS;
+  CI-form G4 PASS with 48 manifests, eight changed paths, two instruction-
+  surface paths, and the one required covering manifest; Task Management PASS
+  with 19 rows and register SHA-256
+  `89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518`;
+  focused practitioner harness `56 passed` with no repin; `git diff --check`
+  PASS. The seven Receipt-123 SOW identities remained byte-identical.
+- **Root handoff:** dated append SHA-256
+  `82d92957b28f0f4d77dc13a3d0aad737e8150fb20b41ff26cb2bfda8894708d3`.
+  Result is `PASS_TO_HUMAN_MERGE_GATE`: the owner's PR merge is the
+  ratification act. The supervisor socket remains unimplemented; App
+  application, implementation, activation, pins, holds, release, publication,
+  and reliance remain separately gated.
