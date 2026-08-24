@@ -1,0 +1,51 @@
+{
+  "schema": "chirality-agent0-work-graph/v1",
+  "runId": "APP_V3_PHASE0_2026-08-23",
+  "version": 1,
+  "selectionAuthority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basisCommit": "3af765222bbd4f43a52dcbe17bd151c13942e5ac",
+  "nodes": [
+    {
+      "id": "N1",
+      "manager": "SCOPE_CHANGE",
+      "instance": "N1-SCOPE-CHANGE-01",
+      "dependencies": [],
+      "concurrent": true
+    },
+    {
+      "id": "N2",
+      "manager": "TASK_MANAGEMENT",
+      "instance": "N2-TASK-MANAGEMENT-01",
+      "dependencies": [],
+      "concurrent": true
+    },
+    {
+      "id": "N3",
+      "manager": "EVALUATION",
+      "instance": "N3-EVALUATION-01",
+      "dependencies": [],
+      "concurrent": true
+    },
+    {
+      "id": "FAN_IN",
+      "manager": "HELP_HUMAN",
+      "dependencies": ["N1", "N2", "N3"],
+      "concurrent": false
+    },
+    {
+      "id": "CLOSEOUT",
+      "manager": "CHANGE",
+      "dependencies": ["FAN_IN"],
+      "concurrent": false
+    }
+  ],
+  "commitOrder": ["N3", "N2", "N1", "RECEIPT_195"],
+  "humanDecisionPoints": [
+    "SCA_APP_008_ACCEPTANCE",
+    "TASK_MANAGEMENT_DISPOSITIONS",
+    "G0_5_AND_LATER_GATES",
+    "MAIN_SYNC_IF_ADVANCED",
+    "PR_MERGE"
+  ]
+}
