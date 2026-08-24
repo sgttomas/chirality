@@ -1,0 +1,31 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "runId": "APP_V3_PHASE0_2026-08-23",
+  "node": "N1",
+  "instance": "N1-SCOPE-CHANGE-01",
+  "role": "SCOPE_CHANGE",
+  "requestedBy": "HELP_HUMAN",
+  "basisCommit": "3af765222bbd4f43a52dcbe17bd151c13942e5ac",
+  "state": "COMPLETE",
+  "phase": "VALIDATED_CLOSURE",
+  "network": "FORBIDDEN",
+  "contentWriteRoot": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway",
+  "controlWriteRoot": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PHASE0_2026-08-23/instances/N1-SCOPE-CHANGE-01",
+  "audit": {
+    "role": "AUDIT_DEP_CLOSURE",
+    "verdict": "PASS",
+    "warnings": 0,
+    "blockers": 0
+  },
+  "review": {
+    "finalInstance": "N1-REVIEW-04",
+    "verdict": "PASS",
+    "closedFindings": ["N1-RF-001", "N1-RF-002"],
+    "openFindings": [],
+    "reviewSha256": "822fb45f6c223b030dc84737ea33687e1711987c0725171e7f0c3c42c3eedc61",
+    "returnSha256": "8fc4f692c8d11b38ba3274da81045deaceef008ebfa225069d88eea76bf0a2c1"
+  },
+  "candidateManifestDigest": "d122de82e1f9d9a40d88ece95e96e21d01617ea59cf7e3254e302260b0e226ce",
+  "nextHumanGate": "OWNER_REVIEW_SCA_APP_008_EXACT_BYTES",
+  "blockers": []
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "runId": "APP_V3_PHASE0_2026-08-23",
+  "instanceId": "N3-EVALUATION-REVIEW-03",
+  "parentInstanceId": "N3-EVALUATION-01",
+  "role": "ephemeral Agent 2 evidence reviewer",
+  "status": "COMPLETED",
+  "result": "PASS",
+  "verdict": "PASS",
+  "actionableFindings": 0,
+  "outputArtifact": "REVIEW.md",
+  "acceptedBasis": "3af765222bbd4f43a52dcbe17bd151c13942e5ac",
+  "reviewedReportSha256": "61640f586ea50854fc01eb3e83ef7cb58c4de27e0453a01b38efb80698cc3869",
+  "preRepairSha256": "d0992ab1d9110a94c9b6c6f4c7c38ade971fbd215a2076743c24860c2104cab8",
+  "writeTargets": [
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PHASE0_2026-08-23/instances/N3-EVALUATION-01/reviews/REVIEW-03"
+  ],
+  "delegated": false,
+  "needsHumanRuling": false,
+  "delegationPerformed": false,
+  "subjectModified": false,
+  "network": false
+}

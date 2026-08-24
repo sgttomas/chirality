@@ -1,0 +1,44 @@
+{
+  "run_id": "N2-TASK-MANAGEMENT-01",
+  "requested_by": "HELP_HUMAN",
+  "role": "TASK_MANAGEMENT",
+  "basis": "3af765222bbd4f43a52dcbe17bd151c13942e5ac",
+  "branch": "codex/app-v3-phase0-2026-08-23",
+  "status": "PASS",
+  "phase": "COMPLETE",
+  "network": "FORBIDDEN",
+  "federation_coverage": "COMPLETE",
+  "canonical_live_registers": 4,
+  "canonical_archives": 4,
+  "invalid_inputs": 0,
+  "unreadable_inputs": 0,
+  "ambiguous_inputs": 0,
+  "register_writes": 0,
+  "projection_outputs": 0,
+  "content_outputs": {
+    "triage_packet": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/TRIAGE_PACKET_2026-08-23_V3_G0.md",
+      "sha256": "b378d4b91d696d8cd16c5e21e4f9c8064838aa57f195e783459daa810e1bb617"
+    },
+    "harvest": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/HARVEST_2026-08-23_V3_G0.md",
+      "sha256": "8e8da03614572ec67f79428af82aacceb4a6d4881381458aae6eca4dbb67e261"
+    }
+  },
+  "register_sha256_before_after": "eb37fba1bdc46209bdbb576815c1161ffed81b375454a30b0022d5ef863320e6",
+  "archive_sha256_before_after": "8e75d44ab11b20877f86a3b57e7d27a47f60f0188d71181db120144cab51d1e6",
+  "checks": {
+    "taskmgmt_validate": "PASS",
+    "snapshot_manifest": "PASS",
+    "git_diff_check": "PASS",
+    "fresh_review": "PASS_ZERO_FINDINGS"
+  },
+  "owner_decisions": [
+    "G0 B1: TM-APP-025 closes RESOLVED_BY_DECISION only when SCA-APP-008 applies",
+    "G0 B2: TM-APP-030 resolves at G-HELPER",
+    "G0 B3: TM-APP-027/028/032 retain DEFERRED and are not fired"
+  ],
+  "new_owner_decisions_inferred": 0,
+  "blockers": [],
+  "return": "RETURN.md"
+}

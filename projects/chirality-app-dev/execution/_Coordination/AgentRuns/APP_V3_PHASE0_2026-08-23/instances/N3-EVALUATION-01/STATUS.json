@@ -1,0 +1,25 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "runId": "APP_V3_PHASE0_2026-08-23",
+  "instanceId": "N3-EVALUATION-01",
+  "parentInstanceId": "HELP_HUMAN",
+  "role": "EVALUATION",
+  "status": "PASS",
+  "acceptedBasis": "3af765222bbd4f43a52dcbe17bd151c13942e5ac",
+  "frontendTree": "74e3dbe858b5a4e31d7bf4d3d5e9a7e7f13e76eb",
+  "network": false,
+  "delegatedReviewer": true,
+  "reviewCycles": 3,
+  "actionableFindings": 0,
+  "reportSha256": "61640f586ea50854fc01eb3e83ef7cb58c4de27e0453a01b38efb80698cc3869",
+  "whitespaceRepair": {
+    "preSha256": "d0992ab1d9110a94c9b6c6f4c7c38ade971fbd215a2076743c24860c2104cab8",
+    "postSha256": "61640f586ea50854fc01eb3e83ef7cb58c4de27e0453a01b38efb80698cc3869",
+    "lines": 31,
+    "bytesRemoved": 62,
+    "reviewId": "N3-EVALUATION-REVIEW-03"
+  },
+  "derivativeStatus": "DERIVATIVE_EVIDENCE_REPORT",
+  "closureVerdict": "EVALUATION_COMPLETE_REVIEWED_PASS",
+  "needsHumanRuling": false
+}

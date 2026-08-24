@@ -1,0 +1,235 @@
+{
+  "schema": "chirality-objective-relative-work-graph/v1",
+  "graphId": "SCA-APP-008-V3-RELEASE-PATHWAY-APP-HALF",
+  "status": "AWAITING_OWNER_ACCEPTANCE",
+  "basisCommit": "3af765222bbd4f43a52dcbe17bd151c13942e5ac",
+  "objective": "Produce the App-side governed carrier, contract, and dependency basis for the v3 rc.1 pathway without activating implementation or release work.",
+  "topologyPosture": "REUSE_LIVE_10_PACKAGE_51_DELIVERABLE_TOPOLOGY",
+  "crossLoopPolicy": "NOTICE_EDGES_ONLY",
+  "frontendTree": "74e3dbe858b5a4e31d7bf4d3d5e9a7e7f13e76eb",
+  "nodes": [
+    {
+      "id": "ROOT_NOTICE_D_GOV_35",
+      "nodeType": "ROOT_NOTICE_EDGE",
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-35_DELEGATED_HARNESS_NATIVE_CLASS.md",
+      "sha256": "9b8ebfe16e5241bc2c58b4bbc71032837632f5b07d776e82f11a273d2469cee7",
+      "authorityEffect": "COORDINATION_NOT_AUTHORITY"
+    },
+    {
+      "id": "ROOT_NOTICE_SCA_004_APPLIED",
+      "nodeType": "ROOT_NOTICE_EDGE",
+      "path": "ROOT:SCA-004@revision-1.3",
+      "gate5Merge": "6d4438d8d3a580b65d6d50ad497dadfe07f177f2",
+      "ownerConfirmation": "R6-A",
+      "carrierAcceptance": "R7-A_SEVEN_ROOT_CARRIERS",
+      "authorityEffect": "ACCEPTED_ROOT_CONTEXT_NO_APP_WRITE"
+    },
+    {
+      "id": "DEL-01-01",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth",
+      "workPackages": ["WP-01"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-02-02",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX",
+      "workPackages": ["WP-07"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-02-05",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback",
+      "workPackages": ["WP-04", "WP-07"],
+      "carrierState": "PROPOSED_NEW_ACCOUNT_CONSENT_CARRIER_ASSIGNMENT_HELD"
+    },
+    {
+      "id": "DEL-03-01",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite",
+      "workPackages": ["WP-05", "WP-10"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-03-03",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter",
+      "workPackages": ["WP-05", "WP-08"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-04-01",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision",
+      "workPackages": ["WP-02"],
+      "carrierState": "PROBE_ONLY_HELD"
+    },
+    {
+      "id": "DEL-04-05",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge",
+      "workPackages": ["WP-04", "WP-07"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-05-01",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration",
+      "workPackages": ["WP-08"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-05-02",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL",
+      "workPackages": ["WP-05", "WP-10"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-05-03",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene",
+      "workPackages": ["WP-05", "WP-10"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-05-04",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View",
+      "workPackages": ["WP-08"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-08-04",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge",
+      "workPackages": ["WP-06"],
+      "carrierState": "MANAGED_CARRIER_PROPOSED_CLASS_AWARE_AMENDMENT_HELD",
+      "interactions": ["D-APP-103:see Brief.md"]
+    },
+    {
+      "id": "DEL-08-05",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts",
+      "workPackages": ["WP-06"],
+      "carrierState": "PROPOSED_BOTH_DESCENDANT_CLASS_EVIDENCE_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-09-01",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation",
+      "workPackages": ["WP-10"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-09-02",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions",
+      "workPackages": ["WP-06", "WP-10"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-09-03",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion",
+      "workPackages": ["WP-10"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    },
+    {
+      "id": "DEL-09-04",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity",
+      "workPackages": ["WP-00", "WP-03", "WP-09"],
+      "carrierState": "WP00_CLOSED_PROPOSED_WP03_WP09_AMENDMENT_HELD",
+      "restageRule": "ANY_FUTURE_FRONTEND_MUTATION_REQUIRES_NEW_STAGED_REVISION_AND_FRESH_OWNER_PROOF_FOR_FUTURE_CLAIMS"
+    },
+    {
+      "id": "DEL-09-05",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow",
+      "workPackages": ["WP-09", "WP-11"],
+      "carrierState": "PROPOSED_NEW_RELEASE_OPERATIONS_CARRIER_ASSIGNMENT_HELD"
+    },
+    {
+      "id": "DEL-09-06",
+      "nodeType": "APP_DELIVERABLE",
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks",
+      "workPackages": ["WP-04", "WP-07", "WP-09", "WP-10"],
+      "carrierState": "PROPOSED_AMENDMENT_HELD"
+    }
+  ],
+  "edges": [
+    {"id": "E-001", "from": "ROOT_NOTICE_D_GOV_35", "to": "DEL-08-04", "type": "NOTICE", "gating": true, "basis": "D-GOV-35 routed App follow-on"},
+    {"id": "E-002", "from": "ROOT_NOTICE_D_GOV_35", "to": "DEL-08-05", "type": "NOTICE", "gating": true, "basis": "native-class evidence calibration"},
+    {"id": "E-003", "from": "ROOT_NOTICE_SCA_004_APPLIED", "to": "DEL-04-01", "type": "NOTICE", "gating": true, "basis": "exact Root supply/protocol carrier context"},
+    {"id": "E-004", "from": "ROOT_NOTICE_SCA_004_APPLIED", "to": "DEL-03-01", "type": "NOTICE", "gating": true, "basis": "Root adapter/API/event carrier context"},
+    {"id": "E-005", "from": "ROOT_NOTICE_SCA_004_APPLIED", "to": "DEL-03-03", "type": "NOTICE", "gating": true, "basis": "Root API v2 consumption"},
+    {"id": "E-006", "from": "ROOT_NOTICE_SCA_004_APPLIED", "to": "DEL-02-05", "type": "NOTICE", "gating": true, "basis": "Root account/consent carrier context"},
+    {"id": "E-007", "from": "ROOT_NOTICE_SCA_004_APPLIED", "to": "DEL-05-01", "type": "NOTICE", "gating": true, "basis": "Root storage/consent migration context"},
+    {"id": "E-008", "from": "DEL-01-01", "to": "DEL-04-01", "type": "GOVERNANCE_BEFORE_PROBE", "gating": true},
+    {"id": "E-009", "from": "DEL-04-01", "to": "DEL-03-01", "type": "PROBE_BEFORE_EXACT_CONFORMANCE", "gating": true},
+    {"id": "E-010", "from": "DEL-03-01", "to": "DEL-03-03", "type": "CONTRACT_BEFORE_APP_ADAPTER", "gating": true},
+    {"id": "E-011", "from": "DEL-03-03", "to": "DEL-05-02", "type": "CODEC_BEFORE_EVENT_CONSUMER", "gating": true},
+    {"id": "E-012", "from": "DEL-05-02", "to": "DEL-05-03", "type": "SCHEMA_BEFORE_SINK_SCAN", "gating": true},
+    {"id": "E-013", "from": "DEL-02-05", "to": "DEL-04-05", "type": "CONSENT_UI_TO_CREDENTIAL_BRIDGE", "gating": true},
+    {"id": "E-014", "from": "DEL-04-05", "to": "DEL-09-06", "type": "SECURITY_EVIDENCE", "gating": true},
+    {"id": "E-015", "from": "DEL-05-01", "to": "DEL-05-04", "type": "MIGRATION_BEFORE_REPLAY_RESUME", "gating": true},
+    {"id": "E-016", "from": "DEL-03-03", "to": "DEL-05-04", "type": "RESUME_PROTOCOL_TO_UX", "gating": true},
+    {"id": "E-017", "from": "DEL-02-05", "to": "DEL-05-01", "type": "ACCOUNT_SCHEMA_TO_MIGRATION", "gating": true},
+    {"id": "E-018", "from": "DEL-05-04", "to": "DEL-02-05", "type": "UX_FEEDBACK", "gating": false, "cycle": "SCC-ACCOUNT-MIGRATION-UX"},
+    {"id": "E-019", "from": "DEL-08-04", "to": "DEL-08-05", "type": "CLASS_SEMANTICS_BEFORE_EVIDENCE", "gating": true},
+    {"id": "E-020", "from": "DEL-08-05", "to": "DEL-08-04", "type": "EVIDENCE_FEEDBACK", "gating": false, "cycle": "SCC-DELEGATION-EVIDENCE"},
+    {"id": "E-021", "from": "DEL-08-04", "to": "DEL-09-02", "type": "GOVERNANCE_TO_VALIDATION", "gating": true},
+    {"id": "E-022", "from": "DEL-08-05", "to": "DEL-09-02", "type": "RECORDS_TO_VALIDATION", "gating": true},
+    {"id": "E-023", "from": "DEL-02-02", "to": "DEL-09-03", "type": "ROLE_UX_TO_ACCESSIBILITY_TESTS", "gating": true},
+    {"id": "E-024", "from": "DEL-03-01", "to": "DEL-09-01", "type": "CONFORMANCE_FANIN", "gating": true},
+    {"id": "E-025", "from": "DEL-05-02", "to": "DEL-09-02", "type": "EVENT_VALIDATION", "gating": true},
+    {"id": "E-026", "from": "DEL-05-03", "to": "DEL-09-06", "type": "REDACTION_VALIDATION", "gating": true},
+    {"id": "E-027", "from": "DEL-09-04", "to": "DEL-09-05", "type": "PREPARATION_PACKAGE_TO_RUNBOOK", "gating": true},
+    {"id": "E-028", "from": "DEL-09-01", "to": "DEL-09-05", "type": "VALIDATION_TO_RELEASE_GATE", "gating": true},
+    {"id": "E-029", "from": "DEL-09-02", "to": "DEL-09-05", "type": "VALIDATION_TO_RELEASE_GATE", "gating": true},
+    {"id": "E-030", "from": "DEL-09-03", "to": "DEL-09-05", "type": "VALIDATION_TO_RELEASE_GATE", "gating": true},
+    {"id": "E-031", "from": "DEL-09-06", "to": "DEL-09-05", "type": "SECURITY_TO_RELEASE_GATE", "gating": true},
+    {"id": "E-032", "from": "DEL-09-05", "to": "DEL-09-06", "type": "RUNBOOK_REVIEW_FEEDBACK", "gating": false, "cycle": "SCC-RUNBOOK-VALIDATION"}
+  ],
+  "sccs": [
+    {
+      "id": "SCC-DELEGATION-EVIDENCE",
+      "members": ["DEL-08-04", "DEL-08-05"],
+      "objective": "Freeze descendant-class semantics and reconstructible evidence.",
+      "proposedMove": "DECOMPOSE",
+      "proposedOrdering": ["DEL-08-04", "DEL-08-05"],
+      "nonGatingEdges": ["E-020"],
+      "humanGate": "SCA_APP_008_ACCEPTANCE"
+    },
+    {
+      "id": "SCC-ACCOUNT-MIGRATION-UX",
+      "members": ["DEL-02-05", "DEL-05-01", "DEL-05-04"],
+      "objective": "Accept account/consent vocabulary, migrate state, and render honest resume behavior.",
+      "proposedMove": "DECOMPOSE",
+      "proposedOrdering": ["DEL-02-05", "DEL-05-01", "DEL-05-04"],
+      "nonGatingEdges": ["E-018"],
+      "humanGate": "ACCOUNT_CONSENT_CONTRACT_ACCEPTANCE"
+    },
+    {
+      "id": "SCC-RUNBOOK-VALIDATION",
+      "members": ["DEL-09-05", "DEL-09-06"],
+      "objective": "Author a preparation runbook, validate its security assumptions, and reserve execution for the owner release gate.",
+      "proposedMove": "INVERT",
+      "proposedOrdering": ["DEL-09-06", "DEL-09-05"],
+      "nonGatingEdges": ["E-032"],
+      "humanGate": "G6A_EXACT_CANDIDATE"
+    }
+  ],
+  "holds": [
+    "SCA_APP_008_OWNER_ACCEPTANCE",
+    "ROOT_APP_CONTRACT_CONCORDANCE",
+    "EXPLICIT_WP03_WP05_IMPLEMENTATION_ACT",
+    "TM_ROOT_122_G1_PIN_DRIFT",
+    "D_APP_97_F_APP_2_UNTIL_G6A_EXACT_CANDIDATE",
+    "TM_APP_030_G_HELPER",
+    "NO_SECOND_TARGET_BEFORE_POST_RC1_SCOPE_CHANGE"
+  ]
+}
