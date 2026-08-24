@@ -1,0 +1,24 @@
+{
+  "schema": "chirality-agent-run-work-graph/v1",
+  "runId": "APP_V3_PHASE1_2026-08-23",
+  "selection": "HUMAN_SELECTED",
+  "executionShape": "TERMINAL_FAN_OUT_IN",
+  "basisCommit": "f485b5d3b663f42be8f8cab8432ced9024d7381b",
+  "nodes": [
+    {"id": "N1", "role": "SCOPE_CHANGE", "output": "GATE3_AMENDMENT_PACKAGE", "state": "COMPLETED"},
+    {"id": "WHITESPACE", "role": "DETERMINISTIC_VALIDATION", "output": "N1_WHITESPACE_CLEAN", "state": "PASSED"},
+    {"id": "N2", "role": "SCOPE_CHANGE", "output": "GATE4_PROPAGATION_PLAN", "state": "COMPLETED"},
+    {"id": "N3", "role": "CONCORDANCE_PLANNING", "output": "CONCORDANCE_WORKPLAN", "state": "COMPLETED"},
+    {"id": "FAN_IN", "role": "HELP_HUMAN", "output": "INTEGRATED_CANDIDATE", "state": "COMPLETED"},
+    {"id": "REVIEW", "role": "INDEPENDENT_REVIEW", "output": "PACKAGE_VERDICT", "state": "PASSED"}
+  ],
+  "edges": [
+    {"from": "N1", "to": "WHITESPACE", "gating": true},
+    {"from": "WHITESPACE", "to": "N2", "gating": true},
+    {"from": "N2", "to": "FAN_IN", "gating": true},
+    {"from": "N3", "to": "FAN_IN", "gating": true},
+    {"from": "FAN_IN", "to": "REVIEW", "gating": true}
+  ],
+  "repairRule": "UNLIMITED_REPAIR_WITH_FRESH_REVIEW",
+  "ownerGates": ["GATE3_GATE4_OWNER_APPROVAL", "SEPARATE_GATE5_APPLICATION_APPROVAL"]
+}
