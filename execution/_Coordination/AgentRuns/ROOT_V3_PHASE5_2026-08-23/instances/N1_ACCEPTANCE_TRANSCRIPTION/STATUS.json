@@ -1,0 +1,24 @@
+{
+  "node": "N1_ACCEPTANCE_TRANSCRIPTION",
+  "agent_type": 2,
+  "role_enforcement": "instruction-asserted",
+  "terminal_status": "COMPLETE",
+  "basis": "f7264975f63799912addbfe0442144ab5de26ca7",
+  "phase5_steer_sha256": "3bb377aa8bb162fb1d596505e908e1c720e4e4a9344d6d53aac5e9eaf44ac1a9",
+  "r8_record_sha256": "b91ee877b6a6c168434e34389309dd2663026baca03c2d900d9df8d182308d0f",
+  "acceptance_date": "2026-08-23",
+  "accepted_effort_hours": {
+    "base": 1012,
+    "low": 560,
+    "high": 1464
+  },
+  "snapshot_inventory": {
+    "before_file_count": 14,
+    "after_file_count": 15,
+    "pre_existing_files_unchanged": 14,
+    "files_added": 1
+  },
+  "owner_acceptance_sha256": "ebee539fc3b6f911b1f1c8d41c5c5c0c8873f3e4b0f4f9cffbea8c794691ae29",
+  "r8_named_hashes_verified": 6,
+  "fresh_self_review_actionable_findings": 0
+}
