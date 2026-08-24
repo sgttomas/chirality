@@ -1,10 +1,17 @@
 # APP_V3_PHASE2_2026-08-23 — Run Handoff State
 
 **Basis:** `4c9fdb4cc9031b376f220ceb5c34afa3874eacb7`
-**Examined through:** authorized sync merge `13ed7c019e7d3d08ff2906d52ec379bb0c83f517`
+**Examined through:** latest non-rewriting sync merge `4e4b1fb828a58a808b3d05fbf5d44f3d72a73d32`
 **Fan-in:** complete
 **Fresh review:** `PASS`, zero findings; SHA-256 `7977592f07c7e85eafc81db62cc84a9522708ea15793fe1e72deb9b62a43e9e3`
 **Next owner:** Ryan Tufts
+
+## Sync chronology
+
+1. Initial authorized sync `13ed7c019e7d3d08ff2906d52ec379bb0c83f517`, parents content `4b629bc282f8ef8468b42a4a6f07a9d1747632df` and `origin/main` `162fa3be8d62b042177d4a256ef54bf15bd74a03`.
+2. Fan-in commit `517f25c8917eaece0dbb77693bf6c6db2fdf3228`, followed by late routine sync `4e4b1fb828a58a808b3d05fbf5d44f3d72a73d32`, parents that fan-in commit and `origin/main` `d8866e7bb078243a46e9516dc4a3a57f5ee9236c`.
+
+The late incoming delta since `162fa3be8d62b042177d4a256ef54bf15bd74a03` is exactly one Root steer, `plans/steers/chirality_app_v3_root_ruling_record_r9_2026-08-23.md`, with zero App paths and no collision. Full late-sync gates passed; candidate identities and authority state below are unchanged.
 
 ## Candidate identities
 
