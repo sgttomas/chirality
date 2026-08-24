@@ -38,7 +38,9 @@ REVIEW-01 returned `PASS` with zero findings against the applied pointer transac
 
 ## Fan-in and handoff state
 
-`origin/main` remained exact basis `84fe4c6cef3771da8ccf63a0a6fb1d81804e7dfd` after the supervising fetch, so no sync occurred.
+After the first closeout commit, a concurrent fetch advanced `origin/main` from basis `84fe4c6cef3771da8ccf63a0a6fb1d81804e7dfd` to `fde84c94d95160bd71ec4ac084e90803b79ebdc1`. The incoming delta added only `plans/steers/chirality_app_v3_r9_transcription_steer_root_2026-08-24.md` and `plans/steers/chirality_app_v3_root_ruling_record_r10_2026-08-24.md`; every pointer-act pinned identity remained exact. Under the Receipt-197 standing routine-sync authorization cited by the pointer-act steer, CHANGE made non-rewriting sync merge `934d1e6eaef86dfc251a0382eba432224d02d403` with parents `e1655a2d7cb5c4ac5fdc70845d45fcaf61d3ad1e` and `fde84c94d95160bd71ec4ac084e90803b79ebdc1`.
+
+The complete closeout gate set was rerun after the sync and reproduced PASS: candidate whitespace, corpus v19 no-drift, receipt validation, Git diff/containment, protected identities, practitioner self-check with the unchanged baseline, and all 350 practitioner-harness tests.
 
 | State | Value |
 | --- | --- |
