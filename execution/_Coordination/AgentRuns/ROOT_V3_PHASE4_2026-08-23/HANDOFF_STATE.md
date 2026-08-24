@@ -5,7 +5,8 @@
 - **Pre-write gates:** basis hashes PASS; candidate whitespace PASS; G0–G4 PASS.
 - **Completed node:** N1 — seven carrier estimates, 36 grounded work elements, 896 base hours and 497–1,295 range; zero actionable self-review findings.
 - **Completed node:** N2 — DEL-02-06 incremental fan-in reassessment, 10 grounded work elements, 116 base hours and 63–169 range; all held work unpriced; zero actionable self-review findings.
-- **Current node:** N3 pending.
-- **Derivative status:** eight draft estimates exist but the Phase 4 estimate snapshot is not sealed or accepted.
-- **Remaining:** N3 independent review and sealing; Receipt 124; validation; push and PR.
+- **Completed node:** N3 — immutable derivative package sealed at `ESTIMATE_SNAPSHOT_POST_PHASE3`; 31/31 input pins and 13/13 artifact pins reproduce; third fresh review returns zero actionable findings after five disclosed EOF-whitespace repairs.
+- **Status:** COMPLETE
+- **Derivative status:** Phase 4 estimate snapshot is sealed and `AWAITING_OWNER_ACCEPTANCE`; it is not accepted truth and grants no authority.
+- **Remaining:** owner acceptance/correction/decline; later accepted-estimate seating; separately gated scheduling and evidence reruns; Receipt 124, validation, push, and PR closeout.
 - **Blockers:** none at dispatch. TM-ROOT-106/122, C1, App-owned obligations, and all ten DEL-02-06 bindings remain excluded/held.
