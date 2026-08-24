@@ -1,0 +1,14 @@
+{
+  "schema": "chirality-independent-review-status/v1",
+  "run_id": "APP_V3_POINTER_ACT_2026-08-24",
+  "instance_id": "REVIEW-01",
+  "role": "REVIEW",
+  "review_type": "INDEPENDENT_VERIFICATION",
+  "date": "2026-08-24",
+  "status": "PASS",
+  "finding_count": 0,
+  "basis_commit": "84fe4c6cef3771da8ccf63a0a6fb1d81804e7dfd",
+  "applied_sha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b",
+  "applied_git_blob": "cdccf5e6740a18ea4ecb2d556fbe3b2704d2c617",
+  "return_state": "READY_FOR_RECEIPT_200_AND_CHANGE_CLOSEOUT"
+}
