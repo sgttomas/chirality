@@ -12,7 +12,7 @@
 | `ApplicationState` | `COMPLETE_ON_CANDIDATE_BRANCH` | The exact owner-authorized decomposition, App contract, corrected companion register, corpus reconciliation, dependency refreshes, and named audit are branch-applied and validated. The owner merge remains separate. |
 | `AuthorityState` | `GATE5_APPLICATION_ONLY_POINTER_AND_ROUTING_WITHHELD` | The owner authorized the exact Gate-5 application and resumed write set. `_LATEST.md` was not changed, the Root notice was not routed, and no activation, implementation, SOW, lifecycle, release, publication, readiness, or reliance authority is inferred. |
 | `DerivativeState` | `CURRENT_WITH_NON_BLOCKING_AUDIT_WARNINGS` | Authority corpus v19 has no drift, four carrier dependency records are refreshed, and the fresh named audit resolves every active endpoint while surfacing one nine-node SCC, five isolates, and one informational bidirectional pair. |
-| `NextGateState` | `OWNER_MERGE_POINTER_AND_NOTICE_ACTS_REMAIN_SEPARATE` | This branch may proceed only through fresh independent review, Receipt 199, and PR publication. The owner separately decides merge, exact pointer application, and notice routing. |
+| `NextGateState` | `REVIEW_02_PASS_READY_FOR_RECEIPT_AND_CHANGE` | Fresh independent REVIEW-02 passed the current bytes with zero findings. The branch may proceed only through Receipt 199 and PR publication. The owner separately decides merge, exact pointer application, and notice routing. |
 
 ## Authoritative branch-applied identities
 
@@ -72,9 +72,11 @@ Current lineage evidence is `N4-SCOPE-CHANGE-01/repair-cycle-1/LINEAGE.md`
 SHA-256 `6d221501f2e13995d302c9b56e2e7578cb6e7546ef213a638280e53b4d871d07`.
 The original N4 resume/audit-child evidence and N5 REVIEW-01 remain immutable
 historical pre-repair evidence. Their old-manifest occurrences are superseded
-for current-state use by that lineage and are not current pins. REVIEW-01 does
-not review the normalized current bytes; fresh REVIEW-02 is required before
-Receipt 199 or CHANGE closeout.
+for current-state use by that lineage and are not current pins. Fresh
+REVIEW-02 reviewed the normalized current bytes and returned `PASS` with zero
+blockers, major findings, minor findings, or open findings. Its exact review
+identity is
+`5803b0f2a2baf9a7bc7b85717dc4fdd6937e06e089340236f93586d9691e9916`.
 
 ## Withheld pointer and unrouted notice candidates
 
@@ -123,3 +125,16 @@ mutation; authority-corpus `status → bump → apply → audit` must be rerun a
 any governed corpus-source mutation. Any later pointer act must re-verify its
 exact live pre-image and proposed post-image. Any notice-byte change requires a
 new exact notice identity and fresh review.
+
+## Content commit and post-commit validation
+
+The reviewed Gate-5 content is committed on the candidate branch as
+`d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`, whose parent is the exact basis
+`cc196023a5532fe58955655c1144cd09ee88343a`. Post-commit validation is recorded
+at
+`execution/_Coordination/AgentRuns/APP_V3_GATE5_2026-08-24/POSTCOMMIT_VALIDATION.md`,
+SHA-256
+`a9005b947690102846b2d3ba563dda35199b00cf28553d20a6244240bbb16b85`.
+Those checks passed. `origin/main` remained the exact basis, so no sync
+occurred. The commit is branch evidence only: owner merge, pointer movement,
+and notice routing remain separate acts.

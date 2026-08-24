@@ -1,13 +1,13 @@
-# Gate-5 Run Handoff State — Repair Cycle 1 Complete, REVIEW-02 Pending
+# Gate-5 Run Handoff State — REVIEW-02 and Post-Commit Validation PASS
 
 | State | Value | Meaning |
 | --- | --- | --- |
 | `ApplicationState` | `APPLIED_AND_N4_VALIDATED` | The exact decomposition, App contract, and corrected companion-register post-images are live and reproduce their owner-approved identities. The earlier write-set block and mandatory rollback remain preserved history; the owner-authorized resume reapplied and validated the exact bytes. |
 | `AuthorityState` | `OWNER_AUTHORIZED_GATE5_APPLICATION_ONLY` | The application act is authorized and recorded. No pointer movement, Root-notice routing, carrier activation, implementation, SOW/status/lifecycle transition, signing, notarization, distribution, publication, release-readiness, or reliance effect is claimed. |
 | `DerivativeState` | `CURRENT_WITH_NON_BLOCKING_WARNINGS` | Authority corpus v19 is no-drift across exactly 51 reconciled reference rows; all four carrier dependency registers were refreshed through TASK + dependency-extract; the named closure audit resolves 112/112 ACTIVE endpoints and surfaces one nine-node SCC plus five isolates without linearization. |
-| `NextGateState` | `READY_FOR_FRESH_INDEPENDENT_REVIEW_02` | N4 normalized six audit CSVs and N5 regenerated every current downstream pin. REVIEW-01 is preserved historical pre-repair evidence and is superseded for current bytes. Fresh REVIEW-02 precedes Receipt 199 and CHANGE closeout. |
+| `NextGateState` | `READY_FOR_RECEIPT_199_AND_CHANGE_CLOSEOUT` | N4 normalized six audit CSVs and N5 regenerated every current downstream pin. REVIEW-01 remains superseded historical evidence. Fresh REVIEW-02 passed the current bytes, the content commit exists, and the post-commit validators passed. |
 
-`ReadyForNextPhase = YES_FOR_REVIEW_ONLY`
+`ReadyForNextPhase = YES_FOR_RECEIPT_AND_CHANGE_ONLY`
 `ClosureVerdict = OPEN_PENDING_FRESH_REVIEW_POINTER_AUTHORITY_AND_OWNER_MERGE`
 
 ## Current exact identities
@@ -50,7 +50,7 @@ orderings and E-018/E-020/E-032 non-gating posture remain in force.
   `75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834`;
   `READY_TO_ROUTE`, not routed.
 - Phase5 four-state handoff:
-  `2ba40bccd70ca3bb178e1c4eca9c0ba3096d2081ad85ce297290c3c65fa4f4d6`;
+  `f11446d1466f0a621e9021b034d86ce03793c839afd34def41cf90b5f51c3b32`;
   `ReadyForNextPhase = NO`.
 
 ## Record-only repair cycle 1
@@ -82,5 +82,14 @@ The pointer payload, pointer transaction, and Root notice remain byte-identical.
   `ea18bc09158b9a13124ce48aed43672c71a358e2b5c039a9c1385c591f660e48`.
 - N5 REVIEW-01: retained byte-identical as historical pre-repair evidence;
   superseded for current bytes.
-- Fresh independent Gate-5 REVIEW-02: not yet run.
-- Receipt 199, commit, push, and PR: not N4 outputs.
+- Fresh independent Gate-5 REVIEW-02: `PASS`, zero findings; review SHA-256
+  `5803b0f2a2baf9a7bc7b85717dc4fdd6937e06e089340236f93586d9691e9916`.
+- Content commit:
+  `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`, parent
+  `cc196023a5532fe58955655c1144cd09ee88343a`.
+- Post-commit validation:
+  `POSTCOMMIT_VALIDATION.md`, SHA-256
+  `a9005b947690102846b2d3ba563dda35199b00cf28553d20a6244240bbb16b85`,
+  `PASS`.
+- Receipt 199, push, and PR publication remain closeout acts. Owner merge,
+  pointer movement, and notice routing remain separate acts.

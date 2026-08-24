@@ -12,7 +12,7 @@
     {
       "id": "N5",
       "role": "SCOPE_CHANGE+REVIEW",
-      "status": "REPAIR_CYCLE_1_COMPLETE_AWAITING_FRESH_INDEPENDENT_REVIEW_02",
+      "status": "REVIEW_02_PASS_POSTCOMMIT_VALIDATED_READY_FOR_RECEIPT_199",
       "writes": ["SCA-APP-008 additions", "N5 run evidence", "Receipt 199 append"],
       "outputs": [
         "Phase5/LATEST_POINTER_CANDIDATE.md",
@@ -23,7 +23,9 @@
         "instances/N5-SCOPE-CHANGE-01/STATUS.json",
         "instances/N5-SCOPE-CHANGE-01/repair-cycle-1/LINEAGE.md",
         "instances/N5-SCOPE-CHANGE-01/repair-cycle-1/RETURN.md",
-        "instances/N5-SCOPE-CHANGE-01/repair-cycle-1/STATUS.json"
+        "instances/N5-SCOPE-CHANGE-01/repair-cycle-1/STATUS.json",
+        "instances/N5-REVIEW-02/REVIEW.md",
+        "POSTCOMMIT_VALIDATION.md"
       ]
     }
   ],
@@ -53,6 +55,9 @@
     "resumedN4Verdict": "PASS_WITH_NON_BLOCKING_AUDIT_WARNINGS",
     "n4RepairCycle1": "PASS_RECORD_ONLY_CRLF_TO_LF_MANIFEST_7c30c9e2",
     "n5Review01": "HISTORICAL_PRE_REPAIR_SUPERSEDED_FOR_CURRENT_BYTES",
-    "next": "N5_REVIEW_02_REQUIRED"
+    "n5Review02": "PASS_SHA256_5803b0f2a2baf9a7bc7b85717dc4fdd6937e06e089340236f93586d9691e9916",
+    "contentCommit": "d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f",
+    "postcommitValidation": "PASS_SHA256_a9005b947690102846b2d3ba563dda35199b00cf28553d20a6244240bbb16b85",
+    "next": "RECEIPT_199_AND_CHANGE_CLOSEOUT"
   }
 }
