@@ -1,0 +1,31 @@
+{
+  "node": "N2_SCHEDULE_REVIEW",
+  "agent_type": 2,
+  "role_enforcement": "instruction-asserted",
+  "delegated": false,
+  "terminal_status": "COMPLETE",
+  "basis": "f7264975f63799912addbfe0442144ab5de26ca7",
+  "package_status": "AWAITING_OWNER_ACCEPTANCE",
+  "review_cycles": 2,
+  "repairs": {
+    "actionable_findings_cycle_1": 1,
+    "files_repaired": 2,
+    "statements_repaired": 3,
+    "substantive_schedule_changes": 0
+  },
+  "accepted_effort_hours": {
+    "base": 1012,
+    "low": 560,
+    "high": 1464
+  },
+  "priced_work_streams": 8,
+  "gating_edges_verified": 8,
+  "non_gating_root_relationships_verified": 1,
+  "non_gating_app_notice_relationships_verified": 2,
+  "required_blocker_entries_verified": 19,
+  "input_pins_reproduced": 26,
+  "artifact_pins_reproduced": 6,
+  "package_file_count": 7,
+  "terminal_actionable_findings": 0,
+  "artifact_manifest_sha256": "7c4eb1478edb6aeea99886f87282806bd2634dd38b9aa811deae3a64746ecfaf"
+}
