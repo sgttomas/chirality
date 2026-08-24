@@ -7,25 +7,43 @@
       "id": "N1-SCOPE-CHANGE-01",
       "role": "SCOPE_CHANGE",
       "dependsOn": [],
-      "state": "COMPLETE"
+      "state": "COMPLETE",
+      "outputHashes": {
+        "candidateArtifactSha256": "cf889103744df7fe4f20b85e9c8d4610a85af287cbfe60f0f6471a7bd642e3b8",
+        "postRowSha256": "add623f40502dbf71bd2b7023ae50cfe4f10a398a3f127ac308eac05b3cef616"
+      }
     },
     {
       "id": "N2-SCOPE-CHANGE-01",
       "role": "SCOPE_CHANGE",
       "dependsOn": ["N1-SCOPE-CHANGE-01"],
-      "state": "PENDING"
+      "state": "COMPLETE",
+      "outputHashes": {
+        "candidateArtifactSha256": "c6b6d31497f0399c319b9b1772964b5c003ca1b520289cd7238d14efd84ba463",
+        "postRowSha256": "92c9d359f70a934fad07b399e18b93df07dc9573f0bf04ab4dd4d40d18eebf93"
+      }
     },
     {
       "id": "N3-SCOPE-CHANGE-01",
       "role": "SCOPE_CHANGE",
       "dependsOn": ["N1-SCOPE-CHANGE-01", "N2-SCOPE-CHANGE-01"],
-      "state": "PENDING"
+      "state": "COMPLETE",
+      "outputHashes": {
+        "resolvedContractSha256": "842bf170e6737adf8eaa7a4a1acfd74e22390bc6e14c64eed9502195c68dbed9",
+        "registerCandidateSha256": "69abc8859cc10596f959527eb35a6620d7d4c536e8b415644a26e83cf74534a0",
+        "reconstructionRecordSha256": "920a5f4091270d42048ab44161726ca87687624d97351d5a02840bf17617e2dd",
+        "transactionRecordSha256": "db1941c1c87ae7cd849dac3b32968a6911e74eaee8c56239725682e44b93603d"
+      }
     },
     {
       "id": "N4-REVIEW-01",
       "role": "REVIEW",
       "dependsOn": ["N1-SCOPE-CHANGE-01", "N2-SCOPE-CHANGE-01", "N3-SCOPE-CHANGE-01"],
-      "state": "PENDING"
+      "state": "COMPLETE",
+      "outputHashes": {
+        "reviewSha256": "61e0ab887d0b8fad091f7c086a997d70225a938e3ba8311006788a47216c6fd0",
+        "scaHandoffSha256": "92dc721be4744306bd9fe308d7bd4d490a2780f927106075136cc81fa493ec61"
+      }
     }
   ]
 }
