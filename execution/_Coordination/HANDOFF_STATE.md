@@ -562,3 +562,28 @@ acceptance/correction/decline, separately authorized seating of accepted
 estimates, scheduling, and their evidence reruns. TM-ROOT-106/122, C1, every
 App-owned obligation, DEL-04-11 `tools/**` M2 authority, and all ten
 `HELD_UNAVAILABLE` bindings remain unresolved and outside this phase.
+
+### 2026-08-23 — Phase 5 schedule-basis append
+
+R8-A acceptance is now recorded additively beside the immutable Phase-4
+estimate snapshot; no pre-existing estimate-snapshot byte changed. Phase 5
+drafted and independently sealed the immutable derivative package
+`execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/SCHEDULE_BASIS_POST_PHASE4/`.
+Its `RETURN.md` status is `AWAITING_OWNER_ACCEPTANCE`; the package re-derives
+1,012 base effort-hours with a 560–1,464 uncertainty range across eight work
+streams and uses only the eight accepted Root gating edges. It contains no
+calendar, staffing, velocity, commitment, lifecycle, or implementation claim.
+
+The Phase-5 dependency graph exactly matches the Phase-3 shape: 59 nodes,
+nine Root relationships with eight gating, two non-gating App notice edges,
+and zero non-trivial SCCs. The fresh dependency-closure audit records
+`PASS_ZERO_UNRESOLVED_VIOLATIONS`; seven initialized-empty warnings remain
+cleared and the 45 legacy `NOT_RUN_YET` containers remain explicitly outside
+the SCA-004 slice. Current evidence pins cure the repaired Phase-3 N1-return
+staleness.
+
+The next owner gate is acceptance, correction, or decline of the exact sealed
+schedule-basis bytes. TM-ROOT-106/122, C1, every App-owned obligation,
+DEL-04-11 `tools/**` M2 authority, all ten `HELD_UNAVAILABLE` bindings,
+implementation, activation, cutover, release, publication, and reliance remain
+unresolved and separately governed.

@@ -6750,3 +6750,131 @@ separately gated; graph/closure evidence reruns follow scheduling or any
 accepted dependency change. TM-ROOT-106/122, C1, App-owned obligations,
 DEL-04-11 `tools/**` M2 authority, and all ten `HELD_UNAVAILABLE` bindings
 remain unresolved.
+
+### Receipt 125 — 2026-08-23 — Root v3 Phase 5 acceptance, schedule basis, and evidence reruns
+
+- **Selection authority:** owner-carried steer
+  `plans/steers/chirality_app_v3_phase5_steer_root_2026-08-23.md`, SHA-256
+  `3bb377aa8bb162fb1d596505e908e1c720e4e4a9344d6d53aac5e9eaf44ac1a9`,
+  and owner ruling record R8
+  `plans/steers/chirality_app_v3_root_ruling_record_r8_2026-08-23.md`,
+  SHA-256
+  `b91ee877b6a6c168434e34389309dd2663026baca03c2d900d9df8d182308d0f`.
+  Both are incorporated by immutable path and SHA-256, not transcribed.
+  Standing context: R7 SHA-256
+  `dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53`.
+- **Branch and initial basis:** `codex/root-v3-phase5-2026-08-23` from
+  `origin/main@f7264975f63799912addbfe0442144ab5de26ca7`; that basis contains
+  required merge `1bd3eef47782f350de5714200206466c5d4b6b21` (PR #650), Phase-4
+  merge `5b2edfb895f79b00fa883c010ff9a9e8b4606bc9`, and Receipt 124.
+- **Basis gate:** every R8 estimate identity, all eight Phase-3 dependency
+  identities, register, `_LATEST.md`, 53/53 harness, and TM register matched.
+  Candidate whitespace passed before any new hash-pinning artifact; Root
+  guards G0–G4 and the focused 56-test practitioner pair passed.
+- **Run control:**
+  `execution/_Coordination/AgentRuns/ROOT_V3_PHASE5_2026-08-23/` records the
+  frozen ordered work graph, sealed briefs, returns, independent review, and
+  terminal handoff. Run handoff SHA-256
+  `e570ad9fb1f16c1e774d140f24aecd9967740f29a9757446f05774a48d90d566`.
+
+#### N1 — R8 acceptance transcription
+
+- **Write set:** one additive `OWNER_ACCEPTANCE.md` beside the immutable
+  estimate snapshot, plus N1 run evidence.
+- **Commit:** `289220033149f0c328fbc44b68b4bb135567b4b9`.
+- **Result:** R8-A, its six exact accepted artifact identities, and aggregate
+  1,012 / 560–1,464 effort-hours are recorded with the estimate-basis-only
+  boundary. `OWNER_ACCEPTANCE.md` SHA-256
+  `ebee539fc3b6f911b1f1c8d41c5c5c0c8873f3e4b0f4f9cffbea8c794691ae29`;
+  all 14 pre-existing snapshot artifacts remained byte-identical. N1 return
+  SHA-256
+  `0e1030311ff7349a2b962fac1fd28fa6b01211d8f97684cbbb8fffbdad73f9c7`;
+  fresh review zero actionable findings.
+
+#### N2 — schedule-basis derivation and independent seal
+
+- **Write set:** new
+  `Evidence/SCHEDULE_BASIS_POST_PHASE4/` plus N2 author/reviewer run evidence.
+- **Commit:** `c38f383c78a5aa71d2bf988f4a91e0a73779fd62`.
+- **Result:** eight streams reproduce 1,012 base / 560–1,464 range; exactly
+  eight accepted Root gating edges drive ordering. DEL-02-07..12 remain
+  parallelizable relative to one another; each accepted evidence packet and
+  all six collectively precede DEL-02-06 fan-in closure. DEL-04-11 validation
+  and both App notices remain non-gating. Nineteen required blockers and
+  exclusions remain unresolved/held/excluded. The independent reviewer made
+  one disclosed lifecycle-label repair across two files, changed no schedule
+  substance, then closed a fresh review with zero actionable findings.
+  Package `RETURN.md` is `AWAITING_OWNER_ACCEPTANCE`, SHA-256
+  `535918255cf89f77419b7c466f471e7645f83322ada33b97f235c6d16947aed4`;
+  26/26 input pins and 6/6 self-excluding artifact pins reproduce; artifact
+  manifest SHA-256
+  `7c4eb1478edb6aeea99886f87282806bd2634dd38b9aa811deae3a64746ecfaf`.
+  Author return SHA-256
+  `4956d10d3029e3fa7ae97214a2896e29e3e4fc977b57bad0a0657533a94ebdd9`;
+  reviewer return SHA-256
+  `b71e6e765d8d5ffe986f6d35287a1706d13e6dd731f0062754e0ff8d29b343a0`.
+
+#### N3 — current graph and dependency-closure evidence
+
+- **Write set:** new `Evidence/DEP_GRAPH_POST_PHASE5/`, new
+  `Evidence/AUDIT_DEP_CLOSURE_POST_PHASE5/`, plus N3 run evidence.
+- **Commit:** `e983e21b2c52c27b61912c1135e02151e7e2dbde`.
+- **Graph:** `PASS_PHASE3_SHAPE_EXACT_MATCH`: 59 nodes, 53 membership edges,
+  nine Root relationships/eight gating, two non-gating App notice edges, 59
+  singleton SCCs, zero non-trivial SCCs, and no human-gated cut/merge.
+  Current pins include repaired Phase-3 N1 return
+  `42df2dbc5e02bf187e02a2db9bee63d0c917feb61c59ba56a0049643748962ea`,
+  curing the historical stale pin. Graph inputs 69/69 and artifacts 7/7
+  reproduce; manifest SHA-256
+  `61b26282f612424bd199b2b27b5d4ba3df4857c91d6641b4d5395e0bddbc1117`.
+- **Closure:** `PASS_ZERO_UNRESOLVED_VIOLATIONS`; all seven initialized-empty
+  warnings remain cleared; 45 legacy containers remain bounded
+  `NOT_RUN_YET` warnings outside the SCA-004 slice. Audit inputs 77/77 and
+  artifacts 17/17 reproduce; manifest SHA-256
+  `302c6a167714997a5628970f50084e6b9832cf20454dd73e12d2419ebb83c4d4`.
+  N3 return SHA-256
+  `e4d2808f7a74462feddcb37623dd6aa21983acc9cef70e372a99273ae45c25f3`;
+  fresh review zero actionable findings.
+
+#### Authorized sync, protected state, and validation
+
+- At the clean post-N3 boundary, `origin/main` had advanced from the initial
+  basis to `4c9fdb4cc9031b376f220ceb5c34afa3874eacb7`. Owner grant, recorded
+  verbatim: "I authorize merging latest `origin/main` into this branch without
+  rebase or force-push, then continuing closeout, push, and PR creation without
+  merging the PR.  This can be considered a standard git action you can take
+  without escalating permissions to me." Merge commit
+  `128414f0937ec106224549f2162464d0231e0063` incorporated that basis without
+  conflict, rebase, or force-push. The merge added four `plans/steers/` files
+  and changed no Phase-5 input, output, or protected surface.
+- Protected identities remained byte-identical: deliverable register
+  `2cdf1e689f57459acacb56d7aa7824ec7bb4b1cba0d04a1daacc9f086062bfba`;
+  `_LATEST.md`
+  `4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c`;
+  harness adapter
+  `71f603ad463c14dbba6b02806d67cfc4d859219ff828812fb37de35e78025f3c`;
+  practitioner test
+  `acd0a21242a891a8223e7c5008aaf0415031f2a023ac993446f4d77167c63d38`;
+  G1 test
+  `90a681a4229e48bcdf68f0505480b505aca64328ebf4cd5f446fa9e26729f78c`;
+  TM register
+  `89ffd2ad3f85a97dd814e147c606ad3a6aef14a173678d65163445e7b096c518`.
+- Post-sync checks: candidate whitespace PASS; G0–G3 PASS; agent
+  instructions 34 files, zero errors/warnings; instruction entrypoints PASS;
+  CI-form G4 PASS, 47 manifests, 49 pre-closeout changed paths, zero
+  instruction-surface paths and zero required manifests; Task Management PASS,
+  19 rows; focused practitioner harness 56 passed with no repin; graph and
+  closure deterministic verifiers PASS; `git diff --check` PASS.
+- Root handoff dated append SHA-256
+  `dadcc0c77969e5589b33a5207692ab24d912e8cfb3c903e8739b9956770ad692`.
+
+#### Handoff
+
+Phase 5 drafting and evidence reruns are complete. The exact sealed schedule
+basis remains derivative decision support with status
+`AWAITING_OWNER_ACCEPTANCE`; the next gate is owner acceptance, correction,
+or decline of those bytes. TM-ROOT-106/122, C1, every App-owned obligation,
+DEL-04-11 `tools/**` M2 authority, all ten `HELD_UNAVAILABLE` bindings,
+implementation, activation, lifecycle, cutover, release, publication, and
+reliance remain separately governed. The Phase-5 graph and closure packages
+must rerun after any accepted dependency or schedule-basis change.
