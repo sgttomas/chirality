@@ -7,9 +7,9 @@
   "nodes": [
     {"id": "N1", "role": "SCOPE_CHANGE", "output": "K_EVENT_4_RESOLVED_CONTRACT_ROW_CANDIDATE", "state": "COMPLETED", "sha256": "779d4874adc2fc3669078a0431f676fe50d31acbd2dd82c8c405714343fa1df0"},
     {"id": "WHITESPACE", "role": "DETERMINISTIC_VALIDATION", "output": "N1_WHITESPACE_CLEAN", "state": "PASSED"},
-    {"id": "N2", "role": "SCOPE_CHANGE", "output": "COMPANION_REGISTER_POSTIMAGE_CANDIDATE", "state": "PENDING"},
-    {"id": "N3", "role": "INDEPENDENT_REVIEW", "output": "PHASE2_CANDIDATE_VERDICT", "state": "PENDING"},
-    {"id": "FAN_IN", "role": "HELP_HUMAN", "output": "HANDOFF_AND_RECEIPT_197", "state": "PENDING"}
+    {"id": "N2", "role": "SCOPE_CHANGE", "output": "COMPANION_REGISTER_POSTIMAGE_CANDIDATE", "state": "COMPLETED", "sha256": "f2d2e904d4f8b58da106fdcde7ed495146ea7d67de97f5b0535608879dab0079"},
+    {"id": "N3", "role": "INDEPENDENT_REVIEW", "output": "PHASE2_CANDIDATE_VERDICT", "state": "PASSED", "sha256": "7977592f07c7e85eafc81db62cc84a9522708ea15793fe1e72deb9b62a43e9e3"},
+    {"id": "FAN_IN", "role": "HELP_HUMAN", "output": "HANDOFF_AND_RECEIPT_197", "state": "AWAITING_OWNER_APPROVAL", "handoffSha256": "5138bd7bd0a24aa66eff0ccda0f00636bbcd34fbcd4f81f9395055a2234c1245", "postSyncValidationSha256": "a321b23ab5e5a1779e016afb09b14e48ed8675baa0ff75ef4219f00121c198ba"}
   ],
   "edges": [
     {"from": "N1", "to": "WHITESPACE", "gating": true},
