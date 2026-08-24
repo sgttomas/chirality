@@ -540,3 +540,25 @@ or any accepted dependency change. The 45 legacy dependency containers remain
 unextracted outside this tranche. Estimates, schedule, implementation
 activation, TM-ROOT-106/122, pin changes, App authority, hold lifts, release,
 publication, and reliance require their own governed acts.
+
+### 2026-08-23 — Phase 4 estimate-snapshot append
+
+Phase 4 has drafted and independently sealed the immutable derivative package
+`execution/_ScopeChange/SCA-004_2026-08-22_1749/Evidence/ESTIMATE_SNAPSHOT_POST_PHASE3/`.
+Its `RETURN.md` status is `AWAITING_OWNER_ACCEPTANCE`; it contains seven
+carrier estimates plus the incremental DEL-02-06 fan-in reassessment, totaling
+1,012 base effort-hours with a 560–1,464 uncertainty range across 46 grounded
+work elements. Thirty-one input pins and thirteen self-excluding artifact
+pins reproduce. Independent review closed with zero actionable findings after
+five disclosed EOF-whitespace repairs; no estimate or method bytes changed in
+that repair.
+
+This snapshot is decision support only, not accepted estimate truth, schedule,
+lifecycle, activation, implementation, release, or authority. The Phase-3
+graph/closure evidence remains current until an estimate is accepted or a
+schedule/dependency changes; rerun it after estimate acceptance and scheduling
+as the accepted propagation plan requires. Remaining gates are owner
+acceptance/correction/decline, separately authorized seating of accepted
+estimates, scheduling, and their evidence reruns. TM-ROOT-106/122, C1, every
+App-owned obligation, DEL-04-11 `tools/**` M2 authority, and all ten
+`HELD_UNAVAILABLE` bindings remain unresolved and outside this phase.

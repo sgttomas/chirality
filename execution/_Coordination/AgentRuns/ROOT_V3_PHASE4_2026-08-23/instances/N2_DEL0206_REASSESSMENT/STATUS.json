@@ -1,0 +1,25 @@
+{
+  "node": "N2_DEL0206_REASSESSMENT",
+  "agent_type": 2,
+  "role_enforcement": "instruction-asserted",
+  "terminal_status": "COMPLETE",
+  "basis": "7974f2d4a456777f2132fb5726a67a042137ca78",
+  "n1_dependency_commit": "9d965fad5",
+  "priced_element_count": 10,
+  "aggregate_hours": {
+    "base": 116,
+    "low": 63,
+    "high": 169
+  },
+  "held_binding_count": 10,
+  "fresh_self_review_actionable_findings": 0,
+  "omissions": [
+    "all ten held-binding satisfaction acts remain unpriced",
+    "TM-ROOT-106, TM-ROOT-122, C1, and App-owned obligations remain unpriced",
+    "carrier production and DEL-04-11 validator/report production are not duplicated",
+    "accountable-human disposition, activation, implementation, cutover, release, and schedule remain unpriced"
+  ],
+  "snapshot_artifact_hashes": {
+    "DEL-02-06_ESTIMATE.md": "0ffb02bb0aefdc9daecbcfe573a96856d9d2be4d0b33697d4b046d974bb7d929"
+  }
+}

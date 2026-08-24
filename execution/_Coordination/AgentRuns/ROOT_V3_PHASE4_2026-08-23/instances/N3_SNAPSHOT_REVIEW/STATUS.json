@@ -1,0 +1,29 @@
+{
+  "instance_id": "N3_SNAPSHOT_REVIEW",
+  "agent_type": 2,
+  "role": "ephemeral-generalist-reviewer",
+  "role_enforcement": "instruction-asserted",
+  "terminal_status": "COMPLETE",
+  "basis": "7974f2d4a456777f2132fb5726a67a042137ca78",
+  "depends_on_commits": {
+    "N1_CARRIER_ESTIMATES": "9d965fad5",
+    "N2_DEL0206_REASSESSMENT": "7b8d6d68e"
+  },
+  "package_status": "AWAITING_OWNER_ACCEPTANCE",
+  "review_cycles": 3,
+  "terminal_actionable_findings": 0,
+  "repair_count": 5,
+  "input_hash_entries": 31,
+  "priced_element_count": 46,
+  "aggregate_hours": {
+    "base": 1012,
+    "low": 560,
+    "high": 1464
+  },
+  "artifact_manifest_sha256": "99c2a8bd011962b16b798dcdc7ab5b4755906aa2d3e286022e17905afda56f2d",
+  "blockers": [
+    "owner acceptance correction or decline of the exact estimate snapshot",
+    "separate accepted-estimate seating and scheduling gates",
+    "TM-ROOT-106 TM-ROOT-122 C1 all ten held bindings and App-owned obligations remain unresolved"
+  ]
+}

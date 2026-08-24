@@ -1,0 +1,30 @@
+{
+  "node": "N1_CARRIER_ESTIMATES",
+  "agent_type": 2,
+  "role_enforcement": "instruction-asserted",
+  "terminal_status": "COMPLETE",
+  "basis": "7974f2d4a456777f2132fb5726a67a042137ca78",
+  "deliverable_count": 7,
+  "priced_element_count": 36,
+  "aggregate_hours": {
+    "base": 896,
+    "low": 497,
+    "high": 1295
+  },
+  "fresh_self_review_actionable_findings": 0,
+  "omissions": [
+    "DEL-02-12 OUT-002 exact source-identity packet population remains held and unpriced",
+    "DEL-02-12 OUT-005 exact-pin proof execution remains blocked by C1 and TM-ROOT-106/TM-ROOT-122 and unpriced",
+    "App-owned and all held-binding satisfaction acts are unpriced"
+  ],
+  "snapshot_artifact_hashes": {
+    "ESTIMATE_METHOD.md": "18ca936c77b573f1c29e530264d3505e1abf7a9047f4b3a8cb207d5ac574dd3d",
+    "DEL-02-07_ESTIMATE.md": "9079b3f42d4033e6ac0bdcfb36fa401c4a225ec1162a1af11e9ae55b27f2a23b",
+    "DEL-02-08_ESTIMATE.md": "44f4bd3df61d17edebba5a1fc8fdd3b0f963676d609299a6e2a6ce1e1d987573",
+    "DEL-02-09_ESTIMATE.md": "a17da203767d03375a80f05835cc2ebc121c5e04d963f5fe41756ec5b5967a72",
+    "DEL-02-10_ESTIMATE.md": "3e50fda3d4132a4eb632688492e120623549cdd84c28babde50ba53204617d6e",
+    "DEL-02-11_ESTIMATE.md": "e489e5bdfe9e9132855bfe1c142a985fbe77de6556e7b7cf75e96955795a8792",
+    "DEL-02-12_ESTIMATE.md": "0eaf3e1e35ac164ea4bff4cd98b886005c7a7b19d60139a083036dae6f17a1be",
+    "DEL-04-11_ESTIMATE.md": "c7766f1a0f61fc0d3c59d6c308436902c875849300568cb2056c80388d4dfb3d"
+  }
+}
