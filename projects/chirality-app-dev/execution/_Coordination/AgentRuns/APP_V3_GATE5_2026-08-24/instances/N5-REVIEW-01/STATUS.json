@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "chirality.agent-run-status/v1",
+  "runId": "N5-REVIEW-01",
+  "parentRunId": "APP_V3_GATE5_2026-08-24",
+  "role": "REVIEW",
+  "status": "PASS",
+  "basisCommit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "reviewedContentModified": false,
+  "findings": {
+    "blocker": 0,
+    "major": 0,
+    "minor": 0,
+    "open": 0
+  },
+  "authoritativeIdentities": {
+    "decompositionSha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+    "appContractSha256": "842bf170e6737adf8eaa7a4a1acfd74e22390bc6e14c64eed9502195c68dbed9",
+    "companionRegisterSha256": "62c9a318cf673b9b72bf31754aaf7dadb0f2db4b439eb79232c9e8d456d70bb3",
+    "authorityCorpusV19Sha256": "eaec3c0a3a1b7bf76a9a3ec922bf826772e9097441d5631126cb7a5e025e10ef"
+  },
+  "derivativeIdentities": {
+    "auditManifestSha256": "1b50536809996025f6476e08c475b242a2113932c9a8b2dbdbd9156d93ca7012",
+    "pointerTransactionSha256": "44c39e11b4de7621fe25d643d049443223ffbbcd8160855c3fb85d4a4186609a",
+    "proposedPointerSha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b",
+    "rootNoticeSha256": "75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834",
+    "phase5HandoffSha256": "55fc0063268293ae23bc897960a33ea665c01f4fb23f24d8b11a6855738e2e9f"
+  },
+  "authorityEffect": "REVIEW_ONLY_NO_POINTER_MOVE_NO_NOTICE_ROUTE",
+  "auditVerdict": "WARNINGS_NON_BLOCKING",
+  "instructionSurfaceChangedPaths": 0,
+  "g4DiffMode": "POSTCOMMIT_REQUIRED",
+  "reviewSha256": "3c84c96b9eb12f217431f165de72568bd644cc032e17f09cbfa8e3962172e499",
+  "readyForReceipt199AndChangeCloseout": true
+}

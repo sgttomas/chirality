@@ -1,0 +1,18 @@
+{
+  "agent": "TASK",
+  "agentType": 2,
+  "taskSkill": "dependency-extract",
+  "scope": "DEL-08-05_Subagent_Child_Run_Records_and_Artifacts",
+  "status": "FAILED_INPUTS",
+  "error": "INSTRUCTION_ROOT unavailable",
+  "timestamp": "2026-08-24T06:53:30Z",
+  "decompositionSha256Observed": "932b890e4de38c0fc59d1fcffeb75d9d436c74aeac6b2535a7d4f5185168716f",
+  "anchorPassExecuted": false,
+  "executionPassExecuted": false,
+  "deliverableArtifactsModified": false,
+  "runRecordWritten": false,
+  "writes": [
+    "RETURN.md",
+    "STATUS.json"
+  ]
+}

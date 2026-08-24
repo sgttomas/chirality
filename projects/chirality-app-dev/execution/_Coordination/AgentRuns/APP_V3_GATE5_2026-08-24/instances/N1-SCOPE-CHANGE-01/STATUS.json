@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "chirality.agent-run-status/v1",
+  "runId": "N1-SCOPE-CHANGE-01",
+  "role": "SCOPE_CHANGE",
+  "node": "N1",
+  "status": "PASS",
+  "basisCommit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "authorityEffect": "EVIDENCE_ONLY_NO_LIVE_AUTHORITATIVE_WRITE",
+  "recoveryRoot": "/private/tmp/chirality-gate5-n1-recovery.UzeIkF",
+  "recoveryRootMode": "0700",
+  "candidateRoot": "/private/tmp/chirality-gate5-n1-candidates.eJwTTx",
+  "candidateRootMode": "0700",
+  "outputs": {
+    "decomposition": {
+      "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+      "bytes": 112419
+    },
+    "contract": {
+      "sha256": "842bf170e6737adf8eaa7a4a1acfd74e22390bc6e14c64eed9502195c68dbed9",
+      "bytes": 34877
+    },
+    "companionRegister": {
+      "sha256": "62c9a318cf673b9b72bf31754aaf7dadb0f2db4b439eb79232c9e8d456d70bb3",
+      "bytes": 98230
+    }
+  },
+  "collisionCensus": {
+    "K-CONSENT-1": {
+      "appContractOccurrences": 0,
+      "registerOccurrences": 0,
+      "rootContractOccurrences": 0,
+      "result": "PASS"
+    },
+    "K-UNTYPED-1": {
+      "appContractOccurrences": 0,
+      "registerOccurrences": 0,
+      "rootContractOccurrences": 0,
+      "result": "PASS"
+    }
+  },
+  "liveAuthoritativeWrites": [],
+  "next": "N2_AND_N3_MAY_PROCEED_FAIL_CLOSED_AGAINST_EXACT_IDENTITIES"
+}

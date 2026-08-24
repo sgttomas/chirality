@@ -1,0 +1,17 @@
+{
+  "schema": "chirality-repair-cycle-status/v1",
+  "runId": "N4-SCOPE-CHANGE-01-REPAIR-CYCLE-1",
+  "status": "PASS",
+  "repairClass": "RECORD_ONLY_CRLF_TO_LF",
+  "filesNormalized": 6,
+  "parsedEquality": true,
+  "semanticChange": false,
+  "auditVerdictBefore": "WARNINGS",
+  "auditVerdictAfter": "WARNINGS",
+  "candidateWhitespaceBeforeManifest": "PASS",
+  "manifestEntriesValidated": 16,
+  "manifestPreSha256": "1b50536809996025f6476e08c475b242a2113932c9a8b2dbdbd9156d93ca7012",
+  "manifestPostSha256": "7c30c9e2244beca0a9d8182e1908ce188cba48ea87b919b5da16f3a83423077d",
+  "staleDownstreamPinPaths": 9,
+  "staged": false
+}

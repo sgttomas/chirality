@@ -1,0 +1,26 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "runId": "N4-SCOPE-CHANGE-01-RESUME",
+  "parentRunId": "APP_V3_GATE5_2026-08-24",
+  "agentRole": "SCOPE_CHANGE",
+  "status": "PASS_WITH_NON_BLOCKING_AUDIT_WARNINGS",
+  "basisCommit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "authorityCorpusVersion": "v19",
+  "authorityCorpusStatus": "NO_DRIFT",
+  "dependencyExtractions": {
+    "DEL-02-05": "PASS",
+    "DEL-08-04": "PASS",
+    "DEL-08-05": "PASS",
+    "DEL-09-05": "PASS"
+  },
+  "closureAudit": {
+    "name": "SCA-APP-008-GATE5-POST-APPLICATION",
+    "verdict": "WARNINGS",
+    "blocking": false,
+    "unresolvedActiveEndpoints": 0,
+    "surfacedSccCount": 1
+  },
+  "pointerMoved": false,
+  "noticeRouted": false,
+  "readyForN5": true
+}

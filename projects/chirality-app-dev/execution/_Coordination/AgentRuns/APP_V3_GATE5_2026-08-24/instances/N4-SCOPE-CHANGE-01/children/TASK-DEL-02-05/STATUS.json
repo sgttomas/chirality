@@ -1,0 +1,50 @@
+{
+  "run_id": "TASK_RUN_DEL-02-05_2026-08-24_0054",
+  "status": "SUCCESS",
+  "task_skill": "dependency-extract",
+  "scope": "DEL-02-05_API_Key_UI_and_Runtime_Feedback",
+  "basis_commit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "decomposition_sha256": "932b890e4de38c0fc59d1fcffeb75d9d436c74aeac6b2535a7d4f5185168716f",
+  "row_counts": {
+    "active": 10,
+    "retired": 0,
+    "anchor": 4,
+    "execution": 6,
+    "implements_node": 1
+  },
+  "outputs": {
+    "Dependencies.csv": {
+      "pre_sha256": "1004a810777042d47123fe469dee4bf949b9851416613f0dc0f2edcd5d93b47e",
+      "post_sha256": "c39a3d533bf5f811f35d3a3b7fbfd839e7c1baedc28607cc4d59ad9eb200b8d0",
+      "data_rows": 10,
+      "bytes": 7233
+    },
+    "_DEPENDENCIES.md": {
+      "pre_sha256": "85b9322cf8f690c6cfd37c37571b02a2a6e43d4722e01d6047d81c180f122922",
+      "post_sha256": "e172982d34981ce52f04d8776c53d2a09712559ae648f660923b4457d0fc080e",
+      "lines": 97,
+      "bytes": 7378
+    },
+    "TASK_RUN_2026-08-24_0054.md": {
+      "sha256": "e7e1327ab2f06c8edbb6e1971971eaae35420898b9b80f0f8f2a6e03524afa9b",
+      "lines": 84,
+      "bytes": 4473
+    }
+  },
+  "validation": {
+    "schema_v3_1": "PASS",
+    "canonical_enums": "PASS",
+    "dependency_id_unique": "PASS",
+    "evidence_provenance": "PASS",
+    "parent_anchor": "PASS",
+    "source_preservation": "PASS",
+    "id_format": "RECORDED_VALIDATOR_SHAPE_MISMATCH"
+  },
+  "e018": {
+    "emitted": false,
+    "reason": "No permitted scoped source states a DEL-05-04 to DEL-02-05 information-flow edge.",
+    "gating": false
+  },
+  "missing": [],
+  "needs_human_ruling": []
+}

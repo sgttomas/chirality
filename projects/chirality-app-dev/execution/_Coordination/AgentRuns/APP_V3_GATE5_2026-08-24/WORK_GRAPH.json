@@ -1,0 +1,63 @@
+{
+  "run_id": "APP_V3_GATE5_2026-08-24",
+  "basis_commit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "execution_posture": "MIXED",
+  "selection_authority": "HUMAN",
+  "nodes": [
+    {"id": "N0", "role": "SCOPE_CHANGE", "writes": ["SCA-APP-008 additions", "N0 run evidence"]},
+    {"id": "N1", "role": "SCOPE_CHANGE", "writes": ["N1 run evidence", "private temporary recovery and candidate files"]},
+    {"id": "N2", "role": "SCOPE_CHANGE", "writes": ["live App decomposition", "N2 run evidence"]},
+    {"id": "N3", "role": "SCOPE_CHANGE", "writes": ["live App contract", "live App companion register", "N3 run evidence"]},
+    {"id": "N4", "role": "SCOPE_CHANGE+TASK+AUDIT_DEP_CLOSURE", "writes": ["registered dependency extraction outputs", "immutable named audit package", "N4 run evidence"]},
+    {
+      "id": "N5",
+      "role": "SCOPE_CHANGE+REVIEW",
+      "status": "REVIEW_02_PASS_POSTCOMMIT_VALIDATED_READY_FOR_RECEIPT_199",
+      "writes": ["SCA-APP-008 additions", "N5 run evidence", "Receipt 199 append"],
+      "outputs": [
+        "Phase5/LATEST_POINTER_CANDIDATE.md",
+        "Phase5/_LATEST.proposed.md",
+        "Phase5/NOTICE_TO_ROOT_READY_TO_ROUTE.md",
+        "Phase5/Handoff_State.md",
+        "instances/N5-SCOPE-CHANGE-01/RETURN.md",
+        "instances/N5-SCOPE-CHANGE-01/STATUS.json",
+        "instances/N5-SCOPE-CHANGE-01/repair-cycle-1/LINEAGE.md",
+        "instances/N5-SCOPE-CHANGE-01/repair-cycle-1/RETURN.md",
+        "instances/N5-SCOPE-CHANGE-01/repair-cycle-1/STATUS.json",
+        "instances/N5-REVIEW-02/REVIEW.md",
+        "POSTCOMMIT_VALIDATION.md"
+      ]
+    }
+  ],
+  "edges": [
+    {"from": "N0", "to": "N1", "gate": "corrected candidate exact identity and independent review PASS"},
+    {"from": "N1", "to": "N2", "gate": "all pre-images and candidate reconstructions PASS"},
+    {"from": "N1", "to": "N3", "gate": "all pre-images, candidate reconstructions, and collision census PASS"},
+    {"from": "N2", "to": "N4", "gate": "decomposition atomic application PASS"},
+    {"from": "N3", "to": "N4", "gate": "contract/register atomic application PASS"},
+    {"from": "N4", "to": "N5", "gate": "post-write validation, dependency extraction, named audit, and full validators non-blocking"}
+  ],
+  "forbidden_writes": [
+    "execution/_ScopeChange/_LATEST.md",
+    "App Task Management registers",
+    "carrier SOW/context/status/lifecycle surfaces",
+    "projects/chirality-app-dev/frontend",
+    "Root-loop paths",
+    "plans",
+    "agents",
+    "tools",
+    "other projects"
+  ],
+  "history": {
+    "initialN4Block": "AUTHORITY_CORPUS_RECONCILIATION_WRITE_SET_CONFLICT",
+    "mandatoryRollback": "COMPLETE_AUTHORITATIVE_TRUTH_RESTORED",
+    "ownerResumeAuthorization": "OWNER_AUTHORIZATION_RESUME.md",
+    "resumedN4Verdict": "PASS_WITH_NON_BLOCKING_AUDIT_WARNINGS",
+    "n4RepairCycle1": "PASS_RECORD_ONLY_CRLF_TO_LF_MANIFEST_7c30c9e2",
+    "n5Review01": "HISTORICAL_PRE_REPAIR_SUPERSEDED_FOR_CURRENT_BYTES",
+    "n5Review02": "PASS_SHA256_5803b0f2a2baf9a7bc7b85717dc4fdd6937e06e089340236f93586d9691e9916",
+    "contentCommit": "d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f",
+    "postcommitValidation": "PASS_SHA256_a9005b947690102846b2d3ba563dda35199b00cf28553d20a6244240bbb16b85",
+    "next": "RECEIPT_199_AND_CHANGE_CLOSEOUT"
+  }
+}

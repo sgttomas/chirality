@@ -1,0 +1,35 @@
+{
+  "runId": "TASK-DEL-09-05",
+  "parent": "N4-SCOPE-CHANGE-01",
+  "role": "TASK",
+  "taskSkill": "dependency-extract",
+  "status": "SUCCESS",
+  "completedAt": "2026-08-24T01:00:02-0600",
+  "scope": "DEL-09-05_CI_Artifact_and_Release_Verification_Workflow",
+  "decompositionSha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+  "outputs": {
+    "dependenciesCsvSha256": "bde522ad79fb274157fe2bfa27ae527bb6c8715ed167235cf89a6576a8310afb",
+    "dependenciesMarkdownSha256": "7ef05ed38b1e15278d0331f6c4ace1dc994e69fb792e057b971d2d846a545b3f",
+    "taskRunRecordSha256": "c5f9b00bc1297565409ad66687cfdcf001ba7ae6b78ec905d6cf45ba0845f64a"
+  },
+  "counts": {
+    "total": 15,
+    "active": 15,
+    "retired": 0,
+    "anchor": 5,
+    "execution": 10,
+    "upstreamExecution": 10,
+    "downstreamExecution": 0,
+    "parentAnchors": 1
+  },
+  "validation": {
+    "schema": "PASS",
+    "enums": "PASS",
+    "sourcePreservation": "PASS",
+    "diffCheck": "PASS",
+    "idFormatHelper": "WARNING_PROJECT_VARIANT"
+  },
+  "e032": "NON_GATING_NO_DOWNSTREAM_ROW_INVENTED",
+  "wp09Wp11Separation": "PRESERVED",
+  "releaseAuthorityClaimed": false
+}

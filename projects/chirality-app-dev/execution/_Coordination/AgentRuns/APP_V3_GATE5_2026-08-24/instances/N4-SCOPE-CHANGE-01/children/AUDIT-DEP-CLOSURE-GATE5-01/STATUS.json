@@ -1,0 +1,40 @@
+{
+  "run_id": "AUDIT_DEP_CLOSURE_SCA-APP-008-GATE5-POST-APPLICATION_2026-08-24",
+  "status": "WARNINGS",
+  "role": "AUDIT_DEP_CLOSURE",
+  "basis_commit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "package": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Phase5/Audit/SCA-APP-008-GATE5-POST-APPLICATION_2026-08-24",
+  "manifest_sha256": "1b50536809996025f6476e08c475b242a2113932c9a8b2dbdbd9156d93ca7012",
+  "report_sha256": "540d50daaceaa5d09bcae41128c4f5b6eb2486649fdf41378b091e00fdbd4f7f",
+  "closure_summary_sha256": "88e07de9d40a9fa659c10301c1eef28bf48d0cd2ace8b5dcc120d2c38e72d662",
+  "metrics": {
+    "registers_total": 51,
+    "registers_schema_valid": 51,
+    "evidence_rows_total": 564,
+    "evidence_rows_populated": 564,
+    "active_deliverable_endpoint_rows": 112,
+    "resolved_deliverable_endpoint_rows": 112,
+    "directed_edges": 98,
+    "connected_graph_nodes": 46,
+    "directed_sccs": 1,
+    "directed_scc_size": 9,
+    "enumerated_cycles": 10,
+    "isolated_deliverables": 5,
+    "bidirectional_pairs": 1
+  },
+  "core_checks": {
+    "schema": "PASS",
+    "endpoint_resolution": "PASS",
+    "evidence_population": "PASS",
+    "anchor_coverage": "PASS",
+    "circular_dependencies": "WARNING",
+    "isolated_deliverables": "WARNING",
+    "descendant_class_parity": "PASS",
+    "accepted_ordering_posture": "PASS",
+    "write_containment": "PASS"
+  },
+  "source_repair": false,
+  "pointer_moved": false,
+  "evaluation_written": false,
+  "delegated": false
+}

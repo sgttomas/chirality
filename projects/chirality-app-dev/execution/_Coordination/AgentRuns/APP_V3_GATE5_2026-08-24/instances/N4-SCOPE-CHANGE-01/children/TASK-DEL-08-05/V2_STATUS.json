@@ -1,0 +1,49 @@
+{
+  "agent": "TASK",
+  "agentType": 2,
+  "taskSkill": "dependency-extract",
+  "scope": "DEL-08-05_Subagent_Child_Run_Records_and_Artifacts",
+  "status": "SUCCESS",
+  "timestamp": "2026-08-24T07:01:01Z",
+  "decompositionSha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+  "anchorPassExecuted": true,
+  "executionPassExecuted": true,
+  "rows": {
+    "pre": 10,
+    "post": 11,
+    "active": 11,
+    "retired": 0,
+    "anchor": 3,
+    "execution": 8,
+    "parentAnchors": 1,
+    "traceAnchors": 2
+  },
+  "classEvidence": {
+    "chiralityManaged": {
+      "count": 1,
+      "dependencyId": "DEP-08-05-004"
+    },
+    "delegatedHarnessNative": {
+      "count": 1,
+      "dependencyId": "DEP-08-05-011"
+    }
+  },
+  "e020Surfaced": false,
+  "e020Reason": "Absent from allowed source evidence; no edge invented and no schedule gate created.",
+  "validation": {
+    "schema": "PASS",
+    "enums": "PASS",
+    "diffCheck": "PASS",
+    "idFormat": "WARNING_PROJECT_CONVENTION_MISMATCH"
+  },
+  "sha256": {
+    "dependenciesPre": "a7357e2d2e5ce33c1f33efa83a2c1f63c990494718b2001b1bc808a05c00d440",
+    "dependenciesPost": "70b4ef79271978b1b6d99ed34d768f8970ca67307ea819c024a2fe9138634042",
+    "dependenciesIndexPre": "dd50eccc9eee031a3b9780718114533de14f6e938f6d0e811a40fc3b940a99e0",
+    "dependenciesIndexPost": "b2cb9b7a7f9d43bc65b290d775cf12e63a8642772f8214a57953e5abe901988d",
+    "taskRunRecord": "d8c42c239744bb595af5a0395540a56ece18ca19fc67e2547ebba8ef088eb0b8",
+    "referencesPreserved": "918f784aa8945b6029e126b1b2ab508b00379c6c1a1305c83049e1f2dac9b2ad",
+    "scopeOfWorkPreserved": "725a951db12ee938d49cc47ca91f3c7c9af8026e4d729a23e2a19d5d55408ebe",
+    "contextPreserved": "15452e9a59dbef2b7e33573bb11e31b3c7856c8951f7b238ba5a9c43ad3d3c1d"
+  }
+}

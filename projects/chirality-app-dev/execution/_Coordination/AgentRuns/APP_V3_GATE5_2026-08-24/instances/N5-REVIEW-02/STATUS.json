@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "chirality.agent-run-status/v1",
+  "runId": "N5-REVIEW-02",
+  "parentRunId": "APP_V3_GATE5_2026-08-24",
+  "role": "REVIEW",
+  "status": "PASS",
+  "basisCommit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "reviewedContentModified": false,
+  "findings": {
+    "blocker": 0,
+    "major": 0,
+    "minor": 0,
+    "open": 0
+  },
+  "repairVerification": {
+    "csvFiles": 6,
+    "transformation": "CRLF_TO_LF_ONLY",
+    "parsedArraysEqual": true,
+    "manifestEntriesValidated": 16,
+    "manifestPreSha256": "1b50536809996025f6476e08c475b242a2113932c9a8b2dbdbd9156d93ca7012",
+    "manifestPostSha256": "7c30c9e2244beca0a9d8182e1908ce188cba48ea87b919b5da16f3a83423077d",
+    "auditSemanticsChanged": false,
+    "review01Disposition": "HISTORICAL_PRE_REPAIR_SUPERSEDED_FOR_CURRENT_BYTES"
+  },
+  "authoritativeIdentities": {
+    "decompositionSha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+    "appContractSha256": "842bf170e6737adf8eaa7a4a1acfd74e22390bc6e14c64eed9502195c68dbed9",
+    "companionRegisterSha256": "62c9a318cf673b9b72bf31754aaf7dadb0f2db4b439eb79232c9e8d456d70bb3",
+    "authorityCorpusV19Sha256": "eaec3c0a3a1b7bf76a9a3ec922bf826772e9097441d5631126cb7a5e025e10ef"
+  },
+  "derivativeIdentities": {
+    "auditManifestSha256": "7c30c9e2244beca0a9d8182e1908ce188cba48ea87b919b5da16f3a83423077d",
+    "pointerTransactionSha256": "44c39e11b4de7621fe25d643d049443223ffbbcd8160855c3fb85d4a4186609a",
+    "proposedPointerSha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b",
+    "rootNoticeSha256": "75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834",
+    "phase5HandoffSha256": "2ba40bccd70ca3bb178e1c4eca9c0ba3096d2081ad85ce297290c3c65fa4f4d6"
+  },
+  "auditVerdict": "WARNINGS_NON_BLOCKING",
+  "instructionSurfaceChangedPaths": 0,
+  "g4DiffMode": "POSTCOMMIT_REQUIRED",
+  "launchBriefSha256": "ff51a80fe72379f4fb41236d02423ede5064838806d1795ed87d461a5ed11aa2",
+  "reviewSha256": "5803b0f2a2baf9a7bc7b85717dc4fdd6937e06e089340236f93586d9691e9916",
+  "readyForReceipt199AndChangeCloseout": true
+}

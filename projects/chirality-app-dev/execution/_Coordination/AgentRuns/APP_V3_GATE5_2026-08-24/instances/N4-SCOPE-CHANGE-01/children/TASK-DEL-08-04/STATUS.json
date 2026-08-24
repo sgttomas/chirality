@@ -1,0 +1,28 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "TASK-DEL-08-04",
+  "parentRunId": "N4-SCOPE-CHANGE-01",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "status": "PASS",
+  "basisCommit": "cc196023a5532fe58955655c1144cd09ee88343a",
+  "decompositionSha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f",
+  "outputs": {
+    "dependenciesCsvSha256": "6c838e527a0f45f26dd12ae8ff15724369be23a8fce2f15114c9abf46ad9c9ed",
+    "dependenciesIndexSha256": "7ab03891926a848b8f498505ee7895fe98324b26497c11defc591514881d0ba9",
+    "taskRunRecordSha256": "e73589123290faf0bf58aa47c4fb0caaedbf8066276b404e9b25c850d1899405",
+    "returnSha256": "284d339e83813e6241e70a4d6064ea5f12253947a6c14980a6773943faaaeab1"
+  },
+  "counts": {
+    "total": 10,
+    "active": 9,
+    "retired": 1,
+    "anchor": 3,
+    "execution": 7
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs",
+    "TARGET_UNRESOLVED: permission overlay and hook infrastructure has no single stable local target"
+  ],
+  "humanRulingRequired": false
+}
