@@ -1,0 +1,21 @@
+{
+  "schema": "chirality-agent-run-status/v1",
+  "runId": "APP_V3_PHASE2_2026-08-23",
+  "instanceId": "N1-SCOPE-CHANGE-01",
+  "role": "SCOPE_CHANGE",
+  "basisCommit": "4c9fdb4cc9031b376f220ceb5c34afa3874eacb7",
+  "state": "COMPLETE",
+  "verdict": "PASS",
+  "outputState": "COMPLETE_AWAITING_OWNER_APPROVAL",
+  "readyForNextPhase": "NO",
+  "authorityEffect": "NONE",
+  "candidatePath": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Phase2/K_EVENT_4_RESOLVED_CONTRACT_ROW_CANDIDATE.md",
+  "candidateSha256": "779d4874adc2fc3669078a0431f676fe50d31acbd2dd82c8c405714343fa1df0",
+  "liveContractSha256": "6d3a082c5f0821e11d22de37db2d65af950edbe30f403843534031b976a1e4d7",
+  "resolvedFullContractCandidateSha256": "a79282970bbd96d27e28846605be2ce0b3433c0f6c991bbc5911548c6f7e56c8",
+  "rootSourcePins": "PASS",
+  "candidateWhitespaceBeforeHashPin": "PASS",
+  "writeContainment": "PASS",
+  "protectedSurfaceIdentity": "PASS",
+  "nextNode": "N2-SCOPE-CHANGE-01"
+}
