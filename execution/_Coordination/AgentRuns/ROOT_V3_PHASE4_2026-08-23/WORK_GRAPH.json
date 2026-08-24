@@ -6,7 +6,7 @@
   "posture": "ORDERED_TERMINAL_FAN_OUT_IN",
   "nodes": [
     {"id": "N1_CARRIER_ESTIMATES", "depends_on": [], "status": "COMPLETE"},
-    {"id": "N2_DEL0206_REASSESSMENT", "depends_on": ["N1_CARRIER_ESTIMATES"], "status": "PENDING"},
+    {"id": "N2_DEL0206_REASSESSMENT", "depends_on": ["N1_CARRIER_ESTIMATES"], "status": "COMPLETE"},
     {"id": "N3_SNAPSHOT_REVIEW", "depends_on": ["N1_CARRIER_ESTIMATES", "N2_DEL0206_REASSESSMENT"], "status": "PENDING"}
   ]
 }
