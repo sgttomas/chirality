@@ -1,0 +1,25 @@
+{
+  "schema": "chirality-agent0-work-graph/v1",
+  "run_id": "ROOT_KCONTROL1_DESIGN_2026-08-23",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "nodes": [
+    {
+      "id": "N1_HELPS_HUMANS_KCONTROL1",
+      "role": "HELPS_HUMANS",
+      "depends_on": [],
+      "write_scope": [
+        "docs/CONTRACT.md",
+        "docs/governance_harness/tranche_manifests/ROOT-CONTRACT-KCONTROL1-DESIGN-2026-08-23.yaml",
+        "execution/_Coordination/AgentRuns/ROOT_KCONTROL1_DESIGN_2026-08-23/instances/N1_HELPS_HUMANS_KCONTROL1/RETURN.md",
+        "execution/_Coordination/AgentRuns/ROOT_KCONTROL1_DESIGN_2026-08-23/instances/N1_HELPS_HUMANS_KCONTROL1/STATUS.json"
+      ],
+      "fan_in_gate": "HELP_HUMAN byte-verification and zero-actionable-finding review"
+    }
+  ],
+  "human_decision_points": [
+    "Any write-set widening or substantive change",
+    "PR merge ratification"
+  ]
+}

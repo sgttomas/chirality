@@ -1,0 +1,19 @@
+{
+  "node": "N1_HELPS_HUMANS_KCONTROL1",
+  "agent_type": 1,
+  "role": "HELPS_HUMANS",
+  "delegated": false,
+  "terminal_status": "COMPLETE",
+  "basis": "162fa3be8d62b042177d4a256ef54bf15bd74a03",
+  "steer_sha256": "c0a9b1098fc9e36d1532dc1834424ee94f40b716d37f3c8b8c12dfb26a807c29",
+  "contract_pre_sha256": "ed87eaff4e936bb76f94e1bf3018f708c54c23167e6b4884a7f17193c9dcf679",
+  "contract_post_sha256": "ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83",
+  "pre_row_sha256": "bf5a41e23c95591c6de57e718158af6fede01e99d9cae688bd2fcfc68c285a71",
+  "post_row_sha256": "2473b7eb8cadf4f8fb6e059bc593aa91585c21a1bc694c1a598d779196392a8a",
+  "manifest_sha256": "2d3b988643b57c7bc2b5ed50e0ca2e730f37fa14a399f394f7d7e41163f9a5a3",
+  "contract_only_row_changed": true,
+  "invariant_id_count": 40,
+  "manifest_failures": 0,
+  "fresh_review_actionable_findings": 0,
+  "blockers": []
+}
