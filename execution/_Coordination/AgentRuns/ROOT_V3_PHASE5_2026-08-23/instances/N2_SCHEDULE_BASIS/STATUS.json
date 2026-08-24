@@ -1,0 +1,23 @@
+{
+  "node": "N2_SCHEDULE_BASIS",
+  "agent_type": 2,
+  "role_enforcement": "instruction-asserted",
+  "terminal_status": "COMPLETE",
+  "basis": "f7264975f63799912addbfe0442144ab5de26ca7",
+  "n1_terminal_commit": "289220033149f0c328fbc44b68b4bb135567b4b9",
+  "accepted_effort_hours": {
+    "base": 1012,
+    "low": 560,
+    "high": 1464
+  },
+  "priced_work_streams": 8,
+  "gating_edges_used": 8,
+  "non_gating_root_relationships_preserved": 1,
+  "required_blocker_entries": 19,
+  "required_blocker_entries_present": 19,
+  "input_pin_count": 26,
+  "input_pins_reproduced": 26,
+  "package_draft_file_count": 4,
+  "fresh_self_review_actionable_findings": 0,
+  "package_status": "DRAFT_AWAITING_INDEPENDENT_REVIEW_AND_OWNER_ACCEPTANCE"
+}
