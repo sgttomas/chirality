@@ -9,10 +9,13 @@
 - **Ancillary executed:** `codex-code-mode-host` SHA-256
   `8f9f6969cd5e69540482d58791f72e4e9b9888e576ae3ad446c422a058b70128`,
   help inventory only. Frozen `rg` and `zsh` were not relevant and not run.
-- **Containment:** every vendor invocation passed an executable/profile hash
-  gate and explicit sandbox-denial preflight; no connection completed, no
-  credential prompt/login/device flow occurred, no approval was granted, and
-  no write escaped disposable state.
+- **Containment:** nine of ten vendor invocations have committed per-run
+  executable/profile hash and explicit sandbox-denial evidence. The `version`
+  run has no committed per-run gate-hash record and empty preflight records;
+  this evidence gap is `UNAVAILABLE_UNDER_BOUNDS` and was not recreated by
+  vendor execution. No committed trace records a completed connection,
+  credential prompt/login/device flow, approval grant, or write outside
+  disposable state.
 - **Admitted denied egress:** featured plugin cache at
   `https://chatgpt.com/backend-api/plugins/featured?platform=codex`, curated
   GitHub sync at `https://api.github.com/repos/openai/plugins`, and curated
@@ -30,7 +33,8 @@
 - **Precise gaps:** generated JSON schema, generated TypeScript types, and the
   resulting exhaustive schema-derived method inventory are
   `UNAVAILABLE_UNDER_BOUNDS`; neither authorized package entrypoint exposes
-  the documented wrapper commands.
+  the documented wrapper commands. The version-run per-run identity/profile/
+  denial gate record is also `UNAVAILABLE_UNDER_BOUNDS`.
 - **Teardown:** disposable state, both current quarantines, all artifact bytes,
   and temporary static extracts deleted; exact absence verified.
 - **N4 gate:** `RELEASED_WITH_DOCUMENTED_GAPS`; N4 must carry every denied
@@ -39,6 +43,6 @@
 
 Key evidence identities are pinned by candidate
 `03_EMPIRICAL_EVIDENCE/ARTIFACT_HASHES.csv` (SHA-256
-`66453d9bfb62cb61edf10387ac11c76214209ab9d48e8907b0c39f49dd0a43a0`).
+`08cb623d7290b4e7b6aa334bb40889ab385cd1525ef585b1c48f472bb5341481`).
 No G2 acceptance, pin amendment, implementation, cutover, release,
 publication, or reliance claim is made.

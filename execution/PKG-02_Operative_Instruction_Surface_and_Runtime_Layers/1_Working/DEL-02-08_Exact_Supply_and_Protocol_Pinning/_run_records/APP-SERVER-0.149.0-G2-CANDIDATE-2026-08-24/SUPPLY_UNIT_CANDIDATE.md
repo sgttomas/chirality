@@ -29,8 +29,11 @@ were not run because they cannot produce the evidence R14-B names.
 
 ## Supply, signature, and redistribution findings
 
-The payload is Mach-O arm64 for macOS, minimum macOS 11.0, SDK 15.5, and
-identifies at runtime as `codex-app-server 0.149.0`.
+The payload is Mach-O arm64 for macOS, minimum macOS 11.0, and SDK 15.5. A
+captured version invocation reports `codex-app-server 0.149.0`; because that
+run lacks its committed per-run gate record, the runtime string is retained as
+an observation with that provenance qualification rather than as proof bound
+to the frozen executable/profile identities.
 
 Its embedded signature has Team Identifier `2DC432GLL2` and hardened runtime,
 but `codesign --verify --deep --strict` returns `invalid signature (code or
@@ -49,10 +52,14 @@ packet authorizes no redistribution.
 
 ## Exact-pin empirical result
 
-Every vendor invocation passed a binary-identity gate, the network-deny
-profile gate (`17a57916…`), and a sandboxed network-denial preflight. Ten
-bounded runs produced version/help, configuration readback, precedence,
+Nine of ten vendor invocations have committed binary/profile identity gates
+and run-specific sandboxed network-denial preflights. Ten bounded run outputs
+were captured, producing version/help, configuration readback, precedence,
 feature inventory, negative schema/type probes, and ancillary help evidence.
+The `version` run's preflight files are empty and its per-run gate-hash record
+is absent; a separate standalone denial record cannot be deterministically
+attributed to it. That gate record is `UNAVAILABLE_UNDER_BOUNDS`, and no new
+vendor execution is authorized to recreate it.
 
 The unmanaged disposable host returned `configRequirements/read = null`.
 The user layer made command networking off and the project fixture was
@@ -90,21 +97,23 @@ With the baseline enabled, the sandbox denied three attempts:
 
 All returned `SANDBOX_DENIED_NO_COMPLETED_CONNECTION`. The configured remote
 control base `https://chatgpt.com/backend-api/` was logged but not attempted;
-the process waited for authentication without prompting. Across the runs there
-were zero completed connections, credential prompts, login/device flows,
-approval grants, `auth.json` files, or writes outside the disposable tree.
+the process waited for authentication without prompting. No committed trace
+records a completed connection, credential prompt, login/device flow, approval
+grant, `auth.json` file, or write outside the disposable tree.
 
 ## Documented evidence gaps
 
-Generated JSON schema, generated TypeScript types, and the resulting
-schema-derived exhaustive method inventory are each
+Generated JSON schema, generated TypeScript types, the resulting
+schema-derived exhaustive method inventory, and the version-run per-run gate
+record are each
 `UNAVAILABLE_UNDER_BOUNDS`. Current documentation describes wrapper commands,
 but the pinned dedicated server rejects `generate-json-schema` and
 `generate-ts`, and the only relevant package ancillary executable exposes no
 such command. R14-B prohibits obtaining or executing a different binary. The
 observed bounded method inventory remains in
 `03_EMPIRICAL_EVIDENCE/METHOD_CONFIG_FEATURE_MATRIX.md`; it is not promoted to
-an exhaustive schema-derived inventory.
+an exhaustive schema-derived inventory. The version output is likewise not
+promoted to an identity-bound execution claim.
 
 ## Named G5 open finding — R13-B
 

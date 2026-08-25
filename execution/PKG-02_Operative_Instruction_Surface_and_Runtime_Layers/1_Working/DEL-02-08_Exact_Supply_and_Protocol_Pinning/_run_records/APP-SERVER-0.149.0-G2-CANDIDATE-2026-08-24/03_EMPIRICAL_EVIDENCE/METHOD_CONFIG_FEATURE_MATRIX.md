@@ -4,7 +4,7 @@
 
 | Surface | Exact 0.149.0 observation | Evidence state |
 | --- | --- | --- |
-| `--version` | `codex-app-server 0.149.0` | `OBSERVED` |
+| `--version` | captured stdout reports `codex-app-server 0.149.0` | `OBSERVED_WITH_UNAVAILABLE_PER_RUN_GATE_EVIDENCE` |
 | `--help` | transport, session-source, config-override, websocket-auth, and strict-config options; no schema/type subcommand | `OBSERVED` |
 | `initialize` | versioned user agent, disposable `codexHome`, Unix/macOS platform | `OBSERVED_STABLE_AND_EXPERIMENTAL_CLIENTS` |
 | `initialized` | accepted notification | `OBSERVED` |

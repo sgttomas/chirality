@@ -7042,13 +7042,14 @@ Post-image, followed by one LF; row SHA-256
   `3b37a25b50254ecedce1871e59515ce53c8de7e42f24cc9dca97e71853cfae20`,
   N2 `8a1691fc08df01cd98567aff21a81f687f3eb9b87943718ce233d5a54c9b6ecc`,
   N2b `91a287ddb2cf84529f2d602e806a509af2580ff661600ab5233a447ca2150e87`,
-  corrected N3
-  `726d5946eac74501d72511b7e576d7fd0f3fa656e49b15c970345fd1f5181da8`,
-  and N4 `54eefd8f55e39cbf2a4adbb4cd19b09f7ff2f229214fb5a59799d59fc737ce88`.
+  deterministically corrected N3
+  `181d594ad3b973bd5ac0defe6f6c91c59bf62c2fce4366f233247c77ca682743`,
+  and corrected N4
+  `2294086fa1933f93dd7c5bbe92460330bdcfdc0f5a1d85530f0333c6b4f922dd`.
   Run validation SHA-256 is
-  `2501ef165260d15c93c23bb212438c246d1aaa92fabbba8e878423e657bd174b`;
+  `e983e7af95e2854b5b48baff487ab1a88d62e3936ee67fae309134db14b93b8c`;
   handoff SHA-256 is
-  `6aa9550c20d03877e8c979033d2fff263b3b67344b9fabe26dc3d61a847c5313`.
+  `64bbb918f8bfb0e88140e3e9d1d7638c030499449685801fed89e9cb638f9f4b`.
 
 #### Exact supply and equivalence
 
@@ -7081,12 +7082,16 @@ Post-image, followed by one LF; row SHA-256
 
 #### R14 empirical result and containment
 
-- Every vendor invocation was preceded by executable identity verification,
-  network-deny profile verification at
-  `17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab`,
-  and an explicit denial preflight. Exact 0.149.0 configuration/readback,
-  unmanaged requirements (`null`), session-over-user precedence including
-  `multi_agent_v2`, and all 118 features were captured.
+- Nine of ten vendor invocations have committed executable/profile identity
+  verification at network-deny profile
+  `17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab`
+  plus attributable denial-preflight records. The `version` run has empty
+  preflight records and no per-run gate-hash record; its gate evidence is
+  `UNAVAILABLE_UNDER_BOUNDS`. A standalone denial record exists but is not
+  attributed to that run. Exact 0.149.0 configuration/readback, unmanaged
+  requirements (`null`), session-over-user precedence including
+  `multi_agent_v2`, and all 118 features were captured independently of that
+  version-run gap.
 - `features.plugins` is the exact-pin whole-plugin switch governing the
   observed startup work: baseline `enabled=true`, `defaultEnabled=true`;
   explicit session override/readback `false`; two false-override runs
@@ -7097,9 +7102,9 @@ Post-image, followed by one LF; row SHA-256
   `https://chatgpt.com/backend-api/plugins/featured?platform=codex`, curated
   repository sync `https://api.github.com/repos/openai/plugins`, and curated
   archive fallback
-  `https://chatgpt.com/backend-api/plugins/export/curated`. Completed
-  connections, credential prompts/login flows, approvals granted, and writes
-  outside disposable state were all zero.
+  `https://chatgpt.com/backend-api/plugins/export/curated`. Committed traces
+  record zero completed connections, credential prompts/login flows, approvals
+  granted, and writes outside disposable state.
 - Generated JSON schema, generated TypeScript types, and the resulting
   exhaustive schema-derived method inventory are
   `UNAVAILABLE_UNDER_BOUNDS`: neither the pinned app-server entrypoint nor the
@@ -7117,18 +7122,18 @@ Post-image, followed by one LF; row SHA-256
 - Candidate path:
   `execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/`.
   State is `CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE`. Core identities:
-  `README.md` `033710f82c4965ecf99ea009b4a8bc4ac04b5f838a45f001245d98c9631370a0`;
+  `README.md` `ff4ed9502b2b4ac843107cf14a9f5ff35983f6e9f70469f80610b960582bd897`;
   `SUPPLY_MANIFEST.json`
-  `03af2b616ee6e6d41747c22a06fe72c9209efffb00bcf59e9b5e7deacb21f0c2`;
-  synthesis `8a4d7293cb85ab218c20ca59759d2876adb33349148716a3d3bd12e02b175df9`;
+  `18a1fa0741b9d6d9466e2c5e4903aa9b87baab1b5259d6a1c2a36664d11ecc39`;
+  synthesis `238769718d71d62be8465d5d758c4fdacaf26a62da0aa60e471ce6e56de6890a`;
   config/method/features
-  `534a7a6a173531a5f90c3a1c7b59b8b233bd6db96c1843c1091b8068d268e009`;
-  gaps index `38a52c9d802b342fe7e4525a00fc36bf73731c4db2fd34cbcf11c0097af9409b`;
+  `c44656398ca7d1b5bdf84dbd0be65b32d9f33cba1fc241e05e5ceeab76bfd58d`;
+  gaps index `d5620ffde7ff42ee824648dfee8c2e02d5f92d370786cf97a692d1bab75ec1cf`;
   OUT-002 inventory
   `fd6bd4e4dd7c2a0dc477e567becd5d2d092514db36dfedaf2fa2a529798d9f47`;
-  G2 sheet `52ef0f5d83cf795266ef92346b8c8b3a5396cdc94738293fb2cc1292ff50e97e`;
+  G2 sheet `cec83abc2fc39358037600c883dd7b55ad09b154140d68a4d86346c309cda5ae`;
   evidence manifest
-  `b84888808f2a00eba89e9536e7d5209828cabfad9040a33cc684bada130f122d`.
+  `f255f3efd38aaa3043fff8c83f53bb193b58c70b540b4b36c9454eb48c11bb38`.
 - The candidate carries the R13-B G5 finding: the plan fails G5 on the invalid
   published signature and requires a corrected artifact or later owner ruling.
   It also carries the full destination inventory and every evidence gap.
@@ -7139,15 +7144,53 @@ Post-image, followed by one LF; row SHA-256
   hashes now agree. A suspected `.zst` archive/payload digest issue was a
   review false positive; inspection showed both values already occupied their
   correct slots, so no no-op edit was made. N4 restarted fresh review and
-  closed `PASS_WITH_DOCUMENTED_GAPS`, zero actionable findings; review SHA-256
-  `59045ab06571c673e42769858283ac03ea7b755a747f8ce897bafaddd31bf30c`.
+  closed `PASS_WITH_DOCUMENTED_GAPS`, zero actionable findings. The later
+  deterministic correction review is SHA-256
+  `ae8ade8f2c5866ef669861349492be82617577e54406dc731c8f8aed8c029115`.
 - Final checks: Root G0-G3 `PASS`; candidate whitespace `PASS`; agent
   instructions 34 files, zero errors/warnings; instruction entrypoints
   `PASS`; CI-form G4 `PASS` with 48 manifests, 122 changed paths, zero
   instruction-surface paths and zero required covering manifests; Task
   Management `PASS` with 19 rows; focused practitioner harness `56 passed`;
   candidate JSON, both evidence hash chains, 53 gzip files, and
-  `git diff --check` all `PASS`.
+  `git diff --check` all `PASS`. The deterministic correction audit passed 25
+  checks with zero failures.
+
+#### Deterministic evidence correction return — 2026-08-25
+
+- **Owner direction (verbatim):** “Return PR #673 for deterministic evidence
+  correction; do not merge. No new vendor execution is authorized.”
+- **Disposition:** the PR remained open and unmerged. No artifact download,
+  vendor execution, network probe, quarantine recreation, rebase, force-push,
+  or merge occurred during correction.
+- **Finding corrected:** committed evidence contains nine per-run gate-hash
+  records and nine attributable `Operation not permitted` preflights. The
+  `version` preflight stdout/stderr files are empty and no
+  `version.gate_hashes.txt.gz` exists. The separate explicit preflight cannot
+  be deterministically attributed to `version`. Former 10/10 claims were
+  replaced by nine complete records plus
+  `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS`; the captured version
+  string remains an observation with that provenance qualification.
+- **False positive rejected:** an initial correction audit resolved
+  candidate-relative `README.md` against the repository root and suspected a
+  stale hash. Correct path resolution proved the pre-correction
+  `033710f8…` hash was exact. No stale-hash defect existed; dependent hashes
+  changed only because the correction added calibrated evidence and a return
+  note.
+- **Raw preservation:** every file under `03_EMPIRICAL_EVIDENCE/raw/` remains
+  byte-identical to PR #673's returned head. All 53 gzip records pass
+  integrity checks. The 118-row structured feature inventory remains exactly
+  equal to the two baseline raw pages, with enabled/default counts `42/42`.
+- **Corrected empirical identities:** `ARTIFACT_HASHES.csv`
+  `08cb623d7290b4e7b6aa334bb40889ab385cd1525ef585b1c48f472bb5341481`;
+  execution-gate inventory
+  `997617defef60836cb3a211e397cc80ad96adf63dac1984587441f5f2e9c6023`;
+  N3 return
+  `181d594ad3b973bd5ac0defe6f6c91c59bf62c2fce4366f233247c77ca682743`;
+  top-level evidence manifest
+  `f255f3efd38aaa3043fff8c83f53bb193b58c70b540b4b36c9454eb48c11bb38`;
+  review hash table
+  `43a3eab1a55327a44147bc53a295d643cca902e1dadb56b941a998ce5086396c`.
 
 #### Handoff
 

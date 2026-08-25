@@ -6,6 +6,12 @@
 
 **Basis:** `5cb493a09bf336593d2ed7412cfdabdcbc4e09a1`
 
+**Correction return:** PR #673 was returned by the owner for deterministic
+evidence correction. No new vendor execution was authorized or performed.
+The corrected packet records nine complete per-run gates and one unavailable
+`version`-run gate record. Dependent candidate and review hashes are
+regenerated from the corrected bytes.
+
 This immutable run packet assembles exact-source, exact-supply, equivalence,
 license, signature, configuration, feature, containment, egress, and drift
 evidence for the macOS arm64 App Server 0.149.0 supply unit. It is a derivative

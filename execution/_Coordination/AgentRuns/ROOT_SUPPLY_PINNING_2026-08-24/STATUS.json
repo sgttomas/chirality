@@ -13,6 +13,7 @@
     "N4_CANDIDATE_ASSEMBLY": "COMPLETED_PASS_WITH_DOCUMENTED_GAPS"
   },
   "fresh_review_actionable_findings": 0,
+  "deterministic_correction_return": "COMPLETED_WITHOUT_VENDOR_EXECUTION",
   "artifact_bytes_retained": false,
   "pr_merge_authorized": false
 }

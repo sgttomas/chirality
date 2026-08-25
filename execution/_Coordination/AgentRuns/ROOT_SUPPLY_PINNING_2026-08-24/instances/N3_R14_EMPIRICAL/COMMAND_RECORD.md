@@ -14,9 +14,10 @@ identities before execution:
 - code-mode host: `8f9f6969cd5e69540482d58791f72e4e9b9888e576ae3ad446c422a058b70128`;
 - sandbox profile: `17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab`.
 
-## Per-run mandatory gate
+## Per-run mandatory gate and deterministic correction
 
-Before every vendor invocation the command sequence:
+The sealed brief required this command sequence before every vendor
+invocation:
 
 1. ran `shasum -a 256` on the exact executable and profile;
 2. invoked `/usr/bin/sandbox-exec -f <profile> /usr/bin/nc -z -v -G 1
@@ -25,8 +26,16 @@ Before every vendor invocation the command sequence:
 4. invoked the frozen executable with `/usr/bin/sandbox-exec` and
    `/usr/bin/env -i` using only disposable paths and the fixed local input.
 
-`EXECUTION_GATE_INVENTORY.json` and the per-run `raw/*.preflight.*.gz` and
-`raw/*.gate_hashes.txt.gz` records preserve all ten gate results.
+Deterministic reinspection on return of PR #673 found that this claim was too
+broad. Nine invocations have the required per-run
+`raw/*.gate_hashes.txt.gz` record and a preflight stderr record containing
+`Operation not permitted`. The committed `version.preflight.stdout.gz` and
+`version.preflight.stderr.gz` are empty, and no
+`version.gate_hashes.txt.gz` exists. The separate
+`preflight-explicit.stderr.gz` proves a denial occurred but cannot be
+deterministically attributed to `version`. The version-run gate is therefore
+recorded as `UNAVAILABLE_UNDER_BOUNDS`; it was not recreated because the owner
+authorized no new vendor execution.
 
 ## Vendor invocations
 

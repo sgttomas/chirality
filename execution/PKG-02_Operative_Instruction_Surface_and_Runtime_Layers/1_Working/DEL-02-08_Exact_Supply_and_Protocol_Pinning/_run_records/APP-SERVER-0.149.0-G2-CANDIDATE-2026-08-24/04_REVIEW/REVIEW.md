@@ -28,7 +28,8 @@ write scope.
 | signature/license/notice/redistribution facts | `PASS` |
 | exact `features.plugins` name/default/current/false override | `PASS` |
 | three denied destinations, triggers, and dispositions | `PASS` |
-| completed connections / credential prompts / external writes all zero | `PASS` |
+| committed traces record completed connections / credential prompts / external writes all zero | `PASS` |
+| per-run gate evidence | `PASS_WITH_DOCUMENTED_GAP` — 9 complete; `version` record unavailable |
 | configuration and `multi_agent_v2` precedence calibration | `PASS` |
 | feature pagination, 118 unique names, and stage/enable counts | `PASS` |
 | schema/type/schema-derived method gaps carried exactly | `PASS` |
@@ -57,19 +58,33 @@ write scope.
    `c4c31ecd…` was independently distinguished from the decompressed payload
    digest `b1d1a8c3…`; the evidence rows and consolidated manifest carry both in
    their correct slots.
+5. **Per-run gate calibration on owner return.** Deterministic reinspection of
+   the committed raw evidence found nine per-run gate-hash records and nine
+   attributable denial-preflight records, not ten. The `version` preflight
+   records are empty and no `version.gate_hashes.txt.gz` exists. The standalone
+   preflight cannot be attributed to that invocation. All dependent summaries
+   now carry `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS`; no vendor
+   code was rerun.
+6. **README hash false positive rejected.** An initial parent audit resolved
+   the candidate-relative `README.md` path against the repository root and
+   incorrectly suspected a stale hash. Correct candidate-relative resolution
+   proves the prior `033710f8…` value matched the pre-correction candidate
+   exactly. The table was regenerated only because this correction adds a
+   return note to the candidate README.
 
 ## Documented gaps, not review findings
 
-Generated JSON schema, generated TypeScript types, and the exhaustive
-schema-derived stable/experimental method inventories remain
-`UNAVAILABLE_UNDER_BOUNDS`. The invalid published vendor signature remains the
-named R13-B G5 finding. These are deliberately visible on the G2 decision
-surface and require owner disposition; they are not silently narrowed or
-misstated by N4.
+Generated JSON schema, generated TypeScript types, the exhaustive
+schema-derived stable/experimental method inventories, and the version-run
+gate record remain `UNAVAILABLE_UNDER_BOUNDS`. The invalid published vendor
+signature remains the named R13-B G5 finding. These are deliberately visible
+on the G2 decision surface and require owner disposition; they are not
+silently narrowed or misstated by N4.
 
 ## Final conclusion
 
-The candidate is internally consistent, hash-pinned, traceable to the exact
-0.149.0 bytes and bounded empirical evidence, and explicit about its gaps and
+After the deterministic correction return, the candidate is internally
+consistent, hash-pinned, traceable to the exact 0.149.0 supply bytes and the
+calibrated bounded empirical evidence, and explicit about its gaps and
 negative grants. Fresh review returns `PASS_WITH_DOCUMENTED_GAPS` with zero
 actionable findings. G2 acceptance remains the owner's separate act.

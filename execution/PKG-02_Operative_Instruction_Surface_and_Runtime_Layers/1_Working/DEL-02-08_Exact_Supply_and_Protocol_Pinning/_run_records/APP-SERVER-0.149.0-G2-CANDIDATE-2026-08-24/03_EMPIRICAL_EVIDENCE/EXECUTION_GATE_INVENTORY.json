@@ -1,13 +1,18 @@
 {
   "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "fully_recorded_gate_count": 9,
+  "gate_evidence_gap_count": 1,
   "run_count": 10,
   "runs": [
     {
       "executable": "codex-app-server",
-      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "gate_evidence": "UNAVAILABLE_UNDER_BOUNDS_NO_COMMITTED_PER_RUN_GATE_HASH_RECORD",
+      "preflight": "UNVERIFIED_EMPTY_COMMITTED_RECORD",
       "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "profile_sha256_calibration": "EXPECTED_PROFILE_IDENTITY_NOT_PROVEN_BY_A_VERSION_RUN_GATE_RECORD",
       "run": "version",
       "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "sha256_calibration": "EXPECTED_FROZEN_IDENTITY_NOT_PROVEN_BY_A_VERSION_RUN_GATE_RECORD",
       "vendor_exit": 0
     },
     {

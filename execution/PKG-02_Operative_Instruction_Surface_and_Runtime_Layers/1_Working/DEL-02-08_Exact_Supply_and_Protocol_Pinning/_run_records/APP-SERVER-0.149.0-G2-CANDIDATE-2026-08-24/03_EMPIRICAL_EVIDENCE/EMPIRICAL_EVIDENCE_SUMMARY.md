@@ -4,10 +4,13 @@
 
 **Node result:** `PASS_WITH_DOCUMENTED_GAPS_AND_ADMITTED_DENIED_EGRESS`
 
-The digest-exact arm64 App Server executed under the R14 containment envelope
-and identified itself as `codex-app-server 0.149.0`. Every vendor invocation
-was preceded by an executable-identity check, sandbox-profile identity check,
-and a network-denial preflight that returned `Operation not permitted`.
+The captured version output reports `codex-app-server 0.149.0`. Nine of ten
+vendor invocations have committed per-run executable/profile identity records
+and network-denial preflight evidence returning `Operation not permitted`.
+The `version` invocation lacks a committed gate-hash record and its committed
+preflight records are empty; its mandated per-run gate is therefore
+`UNAVAILABLE_UNDER_BOUNDS`, not inferred from the nine complete runs or the
+separate standalone preflight. No new vendor execution is authorized.
 
 The evidence establishes:
 
@@ -21,8 +24,12 @@ The evidence establishes:
   and featured plugin work: its runtime default is `true`; a session override
   reads back `false` and suppresses every observed plugin startup attempt;
 - three sandbox-denied plugin destinations with their triggering operations;
-- no completed connection, credential prompt, login/device flow, `auth.json`,
-  external write, or approval grant.
+- no committed trace of a completed connection, credential prompt,
+  login/device flow, `auth.json`, external write, or approval grant.
+
+The captured version string remains an observation with the gate-evidence
+qualification above; it is not promoted to proof that the version invocation
+used the frozen executable/profile identities.
 
 The package entrypoints do not expose the current documentation's schema/type
 generation commands. The dedicated app-server rejects both direct commands,

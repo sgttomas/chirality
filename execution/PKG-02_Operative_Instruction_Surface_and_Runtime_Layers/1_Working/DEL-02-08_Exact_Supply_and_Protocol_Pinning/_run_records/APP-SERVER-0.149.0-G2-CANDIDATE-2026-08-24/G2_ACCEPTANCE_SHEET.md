@@ -19,14 +19,17 @@ including:
 - all three sandbox-denied destinations and the OUT-002 handoff;
 - current official-document drift; and
 - the schema/type/schema-derived method gaps marked
-  `UNAVAILABLE_UNDER_BOUNDS`.
+  `UNAVAILABLE_UNDER_BOUNDS`; and
+- the `version` run's missing committed per-run gate-hash record and empty
+  preflight records, also marked `UNAVAILABLE_UNDER_BOUNDS`.
 
 ## What an acceptance would mean
 
 An owner acceptance would accept this exact evidence packet as the G2 supply
-unit, with the three unavailable generated-evidence classes and the G5
-signature finding expressly in view. It would accept no bytes other than the
-three exact assets and the equivalent payload identities recorded here.
+unit, with the three unavailable generated-evidence classes, the unavailable
+version-run gate record, and the G5 signature finding expressly in view. It
+would accept no bytes other than the three exact assets and the equivalent
+payload identities recorded here.
 
 ## What an acceptance would not mean
 

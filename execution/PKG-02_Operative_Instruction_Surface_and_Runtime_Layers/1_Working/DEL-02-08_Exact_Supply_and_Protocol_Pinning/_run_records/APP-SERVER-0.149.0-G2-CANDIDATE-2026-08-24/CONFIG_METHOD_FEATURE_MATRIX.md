@@ -22,11 +22,17 @@ was visible but disabled as untrusted; therefore this evidence does not claim
 trusted-project precedence. Exact fields and origins are pinned in
 `03_EMPIRICAL_EVIDENCE/CONFIG_READBACK_AND_PRECEDENCE.json`.
 
+Nine of ten run-specific executable/profile/preflight gates are committed.
+The `version` run has empty preflight records and no per-run gate-hash record;
+its output is therefore qualified as `UNAVAILABLE_UNDER_BOUNDS` for gate
+provenance. No configuration, precedence, or feature conclusion depends on
+that run.
+
 ## Methods and entrypoints
 
 | Method or entrypoint | Result | Calibration |
 | --- | --- | --- |
-| `--version` | `codex-app-server 0.149.0` | observed |
+| `--version` | captured stdout reports `codex-app-server 0.149.0` | observed with unavailable per-run gate evidence |
 | `--help` | transport, session, config, websocket, strict-config options | observed; no generation subcommand |
 | `initialize` / `initialized` | successful | observed with stable and experimental client declarations |
 | `config/read` | effective config, origins, layers | observed |

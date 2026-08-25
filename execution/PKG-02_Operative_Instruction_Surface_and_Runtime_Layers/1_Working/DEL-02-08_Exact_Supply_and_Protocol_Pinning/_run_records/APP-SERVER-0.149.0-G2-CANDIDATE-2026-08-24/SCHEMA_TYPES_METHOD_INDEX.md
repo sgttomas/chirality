@@ -10,6 +10,7 @@
 | schema-derived exhaustive experimental method inventory | `UNAVAILABLE_UNDER_BOUNDS` | cannot derive exhaustively without generated schema/types |
 | observed bounded method/config inventory | `AVAILABLE` | `03_EMPIRICAL_EVIDENCE/METHOD_CONFIG_FEATURE_MATRIX.md` |
 | exhaustive feature inventory | `AVAILABLE_118_OF_118` | `03_EMPIRICAL_EVIDENCE/FEATURE_INVENTORY.json` |
+| version-run per-run identity/profile/denial gate | `UNAVAILABLE_UNDER_BOUNDS` | captured version stdout exists; committed version preflight records are empty and no per-run gate-hash record exists |
 
 Current official App Server documentation describes wrapper invocations
 `codex app-server generate-json-schema` and `codex app-server generate-ts`.
@@ -19,6 +20,6 @@ run therefore stopped discovery at the authorized package boundary and did
 not download, install, or execute another program.
 
 These are candidate gaps, not inferred absences from the protocol itself. An
-owner accepting this candidate at G2 would do so with all four unavailable
-schema/type/method outputs explicitly in view; this file makes no such
-acceptance.
+owner accepting this candidate at G2 would do so with the unavailable
+schema/type/method outputs and version-run gate record explicitly in view;
+this file makes no such acceptance.

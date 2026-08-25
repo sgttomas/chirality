@@ -26,10 +26,28 @@ hash manifest without rerunning vendor code. Raw baseline and override traces
 now reconcile as `true/true` and `false/true`, respectively. N4 then restarted
 fresh review and closed with zero actionable findings.
 
+## Deterministic correction return — PR #673
+
+Owner direction: “Return PR #673 for deterministic evidence correction; do
+not merge. No new vendor execution is authorized.”
+
+Read-only reinspection found one actionable record defect. Nine runs
+had committed per-run gate-hash and attributable denial-preflight records; the
+`version` run had empty committed preflight files and no per-run gate-hash
+record. The former 10/10 claim was corrected to 9/10 plus
+`VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS`. The standalone explicit
+preflight remains evidence of a denial but is not attributed to `version`.
+An initially suspected stale README hash was rejected after correcting the
+verifier's candidate-relative path resolution; the pre-correction table was
+accurate. Dependent hashes were regenerated only for the actual correction.
+Raw evidence was not edited, downloaded, or regenerated, and no vendor
+executable was invoked.
+
 ## Containment and teardown
 
-- Every vendor invocation was preceded by executable SHA-256 verification,
-  sandbox-profile SHA-256 verification, and a bounded network-denial preflight.
+- Nine of ten vendor invocations have committed executable/profile SHA-256
+  verification and attributable bounded network-denial preflight records. The
+  `version` gate record is the documented unavailable evidence class above.
 - Sandbox profile SHA-256: `17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab`.
 - Completed connections: `0`.
 - Credential prompts, login/device flows, and approvals granted: `0`.
@@ -54,6 +72,10 @@ fresh review and closed with zero actionable findings.
 - Focused practitioner harness: `PASS` (56 passed).
 - Candidate JSON parse and evidence-hash manifests: `PASS`.
 - Candidate gzip integrity: `PASS` (53 files).
+- Deterministic correction audit: `PASS` (25 checks, zero failures), including
+  raw-tree immutability, exact 9+1 gate shape, version evidence-gap
+  calibration, raw-to-structured feature parity, JSON parse, and all three
+  hash manifests.
 - `git diff --check`: `PASS`.
 
 No instruction surface, pin, lifecycle, Task Management register, project,

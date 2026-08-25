@@ -24,9 +24,13 @@ zero actionable findings.
   operations; baseline/default is enabled and an explicit false override
   suppresses all three observed attempts.
 - The three sandbox-denied destinations and their triggering operations are
-  recorded for OUT-002. No connection completed.
+  recorded for OUT-002. No committed trace records a completed connection.
 - Generated JSON schema, generated TypeScript types, and the exhaustive
   schema-derived method inventory remain `UNAVAILABLE_UNDER_BOUNDS`.
+- Nine of ten vendor runs have complete attributable per-run gate records.
+  The `version` run's gate-hash record is absent and its committed preflight
+  files are empty; that gate evidence is `UNAVAILABLE_UNDER_BOUNDS`. No new
+  vendor execution was authorized or performed during correction.
 
 ## Owner decision and remaining blockers
 
