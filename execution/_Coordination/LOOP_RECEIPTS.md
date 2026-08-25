@@ -6998,3 +6998,163 @@ Post-image, followed by one LF; row SHA-256
 - **Sync:** the clean post-content fetch observed `origin/main` unchanged at the branch basis; no sync, rebase, or force-push occurred.
 - **Checks:** Root G0–G3 PASS; candidate whitespace PASS; agent instructions 34 files with zero errors/warnings; instruction entrypoints PASS; CI-form G4 PASS with zero instruction-surface paths and no covering manifest; Task Management PASS with 19 rows; focused practitioner harness 56 passed; source/destination byte comparison PASS; JSON validation and `git diff --check` PASS.
 - **State:** `PASS_TO_HUMAN_MERGE_GATE`. Recording the routed notice adopts, amends, or declines none of its content and lifts no blocker. TM-ROOT-106/122, C1, all ten `HELD_UNAVAILABLE` bindings, WP-03/WP-05, G1, G6a, every later implementation/release gate, notice-content disposition, and PR merge remain separately owner-governed.
+
+### Receipt 129 — 2026-08-24 — DEL-02-08 App Server 0.149.0 supply-unit candidate
+
+- **Selection authority:** the cumulative owner-carried supply instruments,
+  incorporated by immutable path and SHA-256, not transcribed:
+  - original steer
+    `plans/steers/chirality_app_v3_supply_pinning_steer_root_2026-08-24.md`,
+    `1384b216889d4357b332fa3507f573d887b11aa009f49ba9b29797b23d312391`;
+  - R12
+    `plans/steers/chirality_app_v3_root_ruling_record_r12_2026-08-24.md`,
+    `2ee282fc1330c466e17ce2791cb7cb8c66f2a7e13f455c2ab1750c42719321fd`;
+  - first resume steer
+    `plans/steers/chirality_app_v3_supply_resume_steer_root_2026-08-24.md`,
+    `248317951603551eafd54754e79fc04b1d8082906653136ff7042dfd5132c701`;
+  - R13
+    `plans/steers/chirality_app_v3_root_ruling_record_r13_2026-08-24.md`,
+    `0ba74959dac38f49f81f6ba8aff4020df520fd418bed2a3aa6617b19f3aa4960`;
+  - second resume steer
+    `plans/steers/chirality_app_v3_supply_resume2_steer_root_2026-08-24.md`,
+    `38b76ca27defd39507f6d9cfe9501d392b1e9ade7c5f107cd67cb4ce420ef164`;
+  - R14
+    `plans/steers/chirality_app_v3_root_ruling_record_r14_2026-08-24.md`,
+    `2633637bd68c7f4cb54457a3547b2bcab8933f19e021abf558b1ef2463d1b5e9`.
+- **Branch and basis:** fresh branch
+  `codex/root-supply-resume2-2026-08-24` from
+  `origin/main@5cb493a09bf336593d2ed7412cfdabdcbc4e09a1` (PR #672).
+  The basis contains Receipt 128, the exact notice
+  `75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834`,
+  accepted DEL-02-08 SOW
+  `d9871a4a024ff3c48a70a3e6ae4b8eac37ece8873a5e00cbb0ea47dae861e430`,
+  and blocker register
+  `9eccd494d7a93680ce644370150683c63e357c3c8bf202ed8291b429c29ce137`.
+  No prior supply-run addition or quarantine residue existed. The final
+  pre-closeout fetch found `origin/main` unchanged, so no sync, rebase, or
+  force-push occurred.
+- **Run control and commits:** ordered serial control and sealed briefs are at
+  `execution/_Coordination/AgentRuns/ROOT_SUPPLY_PINNING_2026-08-24/`.
+  N1 commit `3ad48dd75` recorded source currentness; N2/N2b commit
+  `d06bc2bdc` recorded supply inventory and equivalence; N3 commit
+  `ad88c5446` recorded contained empirical evidence; N4 commit `5a50e0adc`
+  assembled and reviewed the G2 candidate. Durable return identities are N1
+  `3b37a25b50254ecedce1871e59515ce53c8de7e42f24cc9dca97e71853cfae20`,
+  N2 `8a1691fc08df01cd98567aff21a81f687f3eb9b87943718ce233d5a54c9b6ecc`,
+  N2b `91a287ddb2cf84529f2d602e806a509af2580ff661600ab5233a447ca2150e87`,
+  corrected N3
+  `726d5946eac74501d72511b7e576d7fd0f3fa656e49b15c970345fd1f5181da8`,
+  and N4 `54eefd8f55e39cbf2a4adbb4cd19b09f7ff2f229214fb5a59799d59fc737ce88`.
+  Run validation SHA-256 is
+  `2501ef165260d15c93c23bb212438c246d1aaa92fabbba8e878423e657bd174b`;
+  handoff SHA-256 is
+  `6aa9550c20d03877e8c979033d2fff263b3b67344b9fabe26dc3d61a847c5313`.
+
+#### Exact supply and equivalence
+
+- Official release `openai/codex@rust-v0.149.0` remained published,
+  non-draft, and non-prerelease. Exact macOS arm64 assets:
+  - `codex-app-server-aarch64-apple-darwin.tar.gz`: 71,843,308 bytes,
+    `35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032`;
+  - `codex-app-server-aarch64-apple-darwin.zst`: 50,359,498 bytes,
+    `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`;
+  - `codex-app-server-package-aarch64-apple-darwin.tar.gz`: 93,775,517
+    bytes,
+    `aaa3751edfab80b887dbd1ca709c87a16495238e1f1a86cbcbbbb5a34e2b31a2`.
+- All three contain the same 179,721,344-byte arm64 App Server payload,
+  `b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2`;
+  both alternate comparisons and the alternate-to-alternate comparison were
+  byte-identical. Frozen ancillary identities are code-mode host
+  `8f9f6969cd5e69540482d58791f72e4e9b9888e576ae3ad446c422a058b70128`,
+  `rg` `b4a0ff402c26bf623ce5ddc8a806c65a29397ecca0d7210147b0f9224c70558c`,
+  and `zsh` `4707e28b5f2fc75ce07c5fa3ff32d76a0fc43812c7880f9a98005dbc65a77e32`.
+- The exact R13-admitted signature class was reproduced across the
+  byte-identical payloads: Team `2DC432GLL2`, hardened runtime, strict
+  modified-signature failure, invalid-entitlements warning, and `spctl`
+  failure. No additional identity, version, license, or signature disagreement
+  occurred. Apache-2.0 license identity is
+  `d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc`;
+  notice identity is
+  `9d71575ecfd9a843fc1677b0efb08053c6ba9fd686a0de1a6f5382fd3c220915`.
+  Neither ships in the binary archives, so future redistribution must add and
+  carry the applicable license/notice obligations.
+
+#### R14 empirical result and containment
+
+- Every vendor invocation was preceded by executable identity verification,
+  network-deny profile verification at
+  `17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab`,
+  and an explicit denial preflight. Exact 0.149.0 configuration/readback,
+  unmanaged requirements (`null`), session-over-user precedence including
+  `multi_agent_v2`, and all 118 features were captured.
+- `features.plugins` is the exact-pin whole-plugin switch governing the
+  observed startup work: baseline `enabled=true`, `defaultEnabled=true`;
+  explicit session override/readback `false`; two false-override runs
+  suppressed every observed plugin attempt. Current official configuration
+  documentation names no dedicated curated-sync-only switch.
+- Three exact sandbox-denied destinations were recorded with full traces and
+  triggering operations: featured cache
+  `https://chatgpt.com/backend-api/plugins/featured?platform=codex`, curated
+  repository sync `https://api.github.com/repos/openai/plugins`, and curated
+  archive fallback
+  `https://chatgpt.com/backend-api/plugins/export/curated`. Completed
+  connections, credential prompts/login flows, approvals granted, and writes
+  outside disposable state were all zero.
+- Generated JSON schema, generated TypeScript types, and the resulting
+  exhaustive schema-derived method inventory are
+  `UNAVAILABLE_UNDER_BOUNDS`: neither the pinned app-server entrypoint nor the
+  relevant packaged ancillary exposes the current documentation's wrapper
+  commands. Bounds were not loosened. The code-mode host was used only for
+  help inventory; frozen `rg` and `zsh` were not run because they cannot
+  produce the named evidence.
+- All three downloaded assets, both quarantines, the disposable `CODEX_HOME`,
+  disposable workspace, and temporary static extracts were deleted and
+  verified absent. Raw captured logs are normalized or deterministic gzip;
+  all 53 gzip files pass integrity checks.
+
+#### Candidate, review, and validation
+
+- Candidate path:
+  `execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/`.
+  State is `CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE`. Core identities:
+  `README.md` `033710f82c4965ecf99ea009b4a8bc4ac04b5f838a45f001245d98c9631370a0`;
+  `SUPPLY_MANIFEST.json`
+  `03af2b616ee6e6d41747c22a06fe72c9209efffb00bcf59e9b5e7deacb21f0c2`;
+  synthesis `8a4d7293cb85ab218c20ca59759d2876adb33349148716a3d3bd12e02b175df9`;
+  config/method/features
+  `534a7a6a173531a5f90c3a1c7b59b8b233bd6db96c1843c1091b8068d268e009`;
+  gaps index `38a52c9d802b342fe7e4525a00fc36bf73731c4db2fd34cbcf11c0097af9409b`;
+  OUT-002 inventory
+  `fd6bd4e4dd7c2a0dc477e567becd5d2d092514db36dfedaf2fa2a529798d9f47`;
+  G2 sheet `52ef0f5d83cf795266ef92346b8c8b3a5396cdc94738293fb2cc1292ff50e97e`;
+  evidence manifest
+  `b84888808f2a00eba89e9536e7d5209828cabfad9040a33cc684bada130f122d`.
+- The candidate carries the R13-B G5 finding: the plan fails G5 on the invalid
+  published signature and requires a corrected artifact or later owner ruling.
+  It also carries the full destination inventory and every evidence gap.
+- Fresh review repaired one real upstream calibration defect without new
+  vendor execution: explicit `plugins=false` data had initially been mixed
+  into the baseline structured feature row. Raw traces prove baseline
+  `true/true` and override `false/true`; corrected summaries and all dependent
+  hashes now agree. A suspected `.zst` archive/payload digest issue was a
+  review false positive; inspection showed both values already occupied their
+  correct slots, so no no-op edit was made. N4 restarted fresh review and
+  closed `PASS_WITH_DOCUMENTED_GAPS`, zero actionable findings; review SHA-256
+  `59045ab06571c673e42769858283ac03ea7b755a747f8ce897bafaddd31bf30c`.
+- Final checks: Root G0-G3 `PASS`; candidate whitespace `PASS`; agent
+  instructions 34 files, zero errors/warnings; instruction entrypoints
+  `PASS`; CI-form G4 `PASS` with 48 manifests, 122 changed paths, zero
+  instruction-surface paths and zero required covering manifests; Task
+  Management `PASS` with 19 rows; focused practitioner harness `56 passed`;
+  candidate JSON, both evidence hash chains, 53 gzip files, and
+  `git diff --check` all `PASS`.
+
+#### Handoff
+
+The exact packet returns for the owner's G2 acceptance, hold, correction, or
+rejection. This receipt records no G2 acceptance, pin amendment, G5
+disposition, implementation, cutover, activation, release, publication,
+redistribution, reliance, App adoption, endpoint-policy adoption, or blocker
+or hold lift. TM-ROOT-106/122 remain G1 blockers, all ten existing DEL-02-06
+bindings remain held, and every later act remains separately governed. The
+branch is ready for the human PR merge gate; this run does not merge.
