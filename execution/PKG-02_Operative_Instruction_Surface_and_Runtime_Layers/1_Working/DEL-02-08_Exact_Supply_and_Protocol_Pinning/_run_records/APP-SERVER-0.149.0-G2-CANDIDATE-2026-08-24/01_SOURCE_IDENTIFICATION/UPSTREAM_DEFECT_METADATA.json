@@ -1,0 +1,33 @@
+{
+  "candidate_status": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "retrieval_date": "2026-08-24",
+  "retrieved_at_local": "2026-08-24T21:58:34-06:00",
+  "query": "gh api repos/openai/codex/issues/37725 and comments",
+  "issue": {
+    "url": "https://github.com/openai/codex/issues/37725",
+    "number": 37725,
+    "title": "macOS arm64 0.147.0 canonical release binary fails strict codesign verification",
+    "state": "open",
+    "state_reason": null,
+    "created_at": "2026-08-09T18:49:41Z",
+    "updated_at": "2026-08-18T14:30:30Z",
+    "closed_at": null,
+    "comment_count": 3,
+    "reporter": "JohnnyGreen420",
+    "reporter_author_association": "NONE"
+  },
+  "thread_comment_author_associations": [
+    "CONTRIBUTOR",
+    "NONE",
+    "NONE"
+  ],
+  "maintainer_disposition_calibration": "The issue is open. The three returned thread comments contain no author_association of OWNER, MEMBER, or COLLABORATOR. This establishes no maintainer-associated response in the issue thread as retrieved; it does not establish that OpenAI has made no disposition elsewhere.",
+  "documented_failure_class": [
+    "TeamIdentifier=2DC432GLL2",
+    "invalid signature (code or signature have been modified)",
+    "warning: binary contains an invalid entitlements blob",
+    "spctl failure"
+  ],
+  "scope_calibration": "Issue #37725 directly reports checksum-verified 0.147.0 canonical CLI bytes, not the 0.149.0 app-server asset. R13 supplies the owner-ruling bridge admitting the same observed failure class on digest-exact 0.149.0 app-server bytes; this N1 record does not independently upgrade the issue to a maintainer-confirmed cause or fix status.",
+  "artifact_downloaded": false
+}

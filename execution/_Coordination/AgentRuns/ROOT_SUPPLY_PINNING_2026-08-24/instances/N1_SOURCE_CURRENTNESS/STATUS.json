@@ -1,0 +1,12 @@
+{
+  "instance_id": "N1_SOURCE_CURRENTNESS",
+  "parent": "ROOT_SUPPLY_PINNING_2026-08-24",
+  "role": "AGENT_2_EPHEMERAL_GENERALIST",
+  "status": "COMPLETED_PASS",
+  "delegation": "FORBIDDEN",
+  "basis": "5cb493a09bf336593d2ed7412cfdabdcbc4e09a1",
+  "completed_date": "2026-08-24",
+  "return": "RETURN.md",
+  "candidate_output": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/01_SOURCE_IDENTIFICATION/SOURCE_IDENTIFICATION.md",
+  "result": "PASS"
+}

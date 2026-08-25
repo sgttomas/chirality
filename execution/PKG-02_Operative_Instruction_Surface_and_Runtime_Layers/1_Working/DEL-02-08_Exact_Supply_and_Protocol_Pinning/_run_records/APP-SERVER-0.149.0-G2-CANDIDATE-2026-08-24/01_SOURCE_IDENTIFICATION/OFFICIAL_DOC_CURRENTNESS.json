@@ -1,0 +1,73 @@
+{
+  "candidate_status": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "retrieval_date": "2026-08-24",
+  "retrieved_at_local": "2026-08-24T21:58:34-06:00",
+  "official_pages": [
+    {
+      "topic": "Codex App Server",
+      "canonical_url": "https://learn.chatgpt.com/docs/app-server",
+      "retrieved_markdown_url": "https://learn.chatgpt.com/docs/app-server.md",
+      "http_date_utc": "Tue, 25 Aug 2026 03:58:13 GMT",
+      "content_type": "text/markdown; charset=utf-8",
+      "byte_size": 98321,
+      "sha256": "9194fc63fd56b8f49bf16c5ecc672eb50a4bc9c08370f3289c183d2a1133844a",
+      "direct_search_counts": {
+        "config/read": 3,
+        "generate-json-schema": 1,
+        "generate-ts": 1,
+        "api.github.com/repos/openai/plugins": 0,
+        "curated-plugin": 0,
+        "curated plugin": 0,
+        "plugin sync": 0,
+        "multi_agent_v2": 0
+      }
+    },
+    {
+      "topic": "Codex configuration reference",
+      "canonical_url": "https://learn.chatgpt.com/docs/config-file/config-reference",
+      "retrieved_markdown_url": "https://learn.chatgpt.com/docs/config-file/config-reference.md",
+      "http_date_utc": "Tue, 25 Aug 2026 03:58:13 GMT",
+      "content_type": "text/markdown; charset=utf-8",
+      "byte_size": 91395,
+      "sha256": "6464159e3897bbda6c81871500497bf79de35c62d7dfd7af354b2a33a158f687",
+      "direct_search_counts": {
+        "api.github.com/repos/openai/plugins": 0,
+        "curated-plugin": 0,
+        "curated plugin": 0,
+        "plugin sync": 0,
+        "synchronization": 0,
+        "check_for_update_on_startup": 2,
+        "multi_agent_v2": 0,
+        "plugins.": 20
+      },
+      "documented_update_switch": {
+        "name": "check_for_update_on_startup",
+        "documented_meaning": "Check for Codex updates on startup (set to false only when updates are centrally managed).",
+        "calibration": "The official reference describes Codex update checks, not curated-plugin synchronization."
+      }
+    },
+    {
+      "topic": "Codex open-source components",
+      "canonical_url": "https://learn.chatgpt.com/docs/open-source",
+      "retrieved_markdown_url": "https://learn.chatgpt.com/docs/open-source.md",
+      "http_date_utc": "Tue, 25 Aug 2026 03:58:14 GMT",
+      "content_type": "text/markdown; charset=utf-8",
+      "byte_size": 3701,
+      "sha256": "1bd29ea9f6d4148fb7a01d528f4985dc20ec25f109ac500b9f109a032afd399f",
+      "direct_search_counts": {
+        "openai/codex": 18,
+        "app-server": 3,
+        "Apache": 0,
+        "license": 0
+      }
+    }
+  ],
+  "search_queries": [
+    "site:developers.openai.com codex app server config reference plugins curated sync",
+    "site:learn.chatgpt.com docs app-server codex config reference"
+  ],
+  "source_channel_conclusion": "Official OpenAI documentation identifies Codex App Server as open source in openai/codex/codex-rs/app-server and openai/codex as the source repository; the official repository's rust-v0.149.0 GitHub release is therefore the release channel used for the exact-pin gate.",
+  "curated_plugin_sync_documentation_result": "NO_DEDICATED_SWITCH_DOCUMENTED",
+  "curated_plugin_sync_documentation_calibration": "Direct, case-insensitive exact searches of the current official configuration-reference Markdown found no 'curated', 'curated-plugin', 'curated plugin', 'plugin sync', 'synchronization', destination URL, or multi_agent_v2 occurrence. The page documents general plugin MCP controls and check_for_update_on_startup, but does not name a setting governing curated-plugin synchronization. This is a documentation-absence finding only; exact 0.149.0 artifact behavior must be probed separately under N3.",
+  "artifact_downloaded": false
+}
