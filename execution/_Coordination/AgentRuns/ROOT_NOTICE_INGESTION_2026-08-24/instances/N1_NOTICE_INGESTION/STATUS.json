@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-agent-return/v1",
+  "run_id": "ROOT_NOTICE_INGESTION_2026-08-24",
+  "instance_id": "N1_NOTICE_INGESTION",
+  "status": "PASS",
+  "terminal": true,
+  "basis_commit": "8884b143f3d8dbca49756e981e4e20299d55875d",
+  "source_notice_sha256": "75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834",
+  "destination_notice_sha256": "75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834",
+  "root_contract_sha256": "ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83",
+  "steer_sha256": "4c9bc1cd6382a47eb5ef1bd56f7aa9d6fa2cce2dda08bd1aded2b2f352a2c2c2",
+  "r11_sha256": "01d9ae6d42d25942ae4991b61385b8d1a70a8d54a82d88d17648c000d6622fbd",
+  "copy_identity": "BYTE_IDENTICAL",
+  "drift_verdict": "NO_EXACT_DIVERGENCE",
+  "ledger_disposition": "NO_LEDGER_ROW_REQUIRED",
+  "candidate_whitespace": "PASS",
+  "status_json_parse": "PASS",
+  "blockers": [],
+  "repairs": 0,
+  "delegated": false,
+  "non_delegation_evidence": "instruction-asserted",
+  "finished_utc": "2026-08-25T01:44:09Z"
+}
