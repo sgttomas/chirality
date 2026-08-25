@@ -1,0 +1,30 @@
+{
+  "schema": "chirality-independent-review-status/v1",
+  "run_id": "APP_TM_TRIAGE_2026-08-24",
+  "instance_id": "REVIEW-01",
+  "role": "REVIEW",
+  "review_type": "INDEPENDENT_VERIFICATION",
+  "date": "2026-08-24",
+  "status": "RETURN_FOR_REPAIR",
+  "verdict": "RETURN_FOR_REPAIR",
+  "finding_count": 1,
+  "findings_by_severity": {
+    "CRITICAL": 0,
+    "MAJOR": 1,
+    "MINOR": 0,
+    "OBSERVATION": 0
+  },
+  "basis_commit": "8884b143f3d8dbca49756e981e4e20299d55875d",
+  "live_register_sha256": "eb37fba1bdc46209bdbb576815c1161ffed81b375454a30b0022d5ef863320e6",
+  "live_register_changed": false,
+  "candidate_changed_cells": 12,
+  "candidate_changed_column": "LastReviewed",
+  "candidate_whitespace": "PASS",
+  "receipt_validator": "PASS",
+  "task_management_register_validator": "PASS",
+  "git_diff_check": "PASS",
+  "subject_modified": false,
+  "repair_required": true,
+  "fresh_re_review_required": true,
+  "return_state": "REPAIR_EXACT_EVIDENCE_BINDINGS"
+}

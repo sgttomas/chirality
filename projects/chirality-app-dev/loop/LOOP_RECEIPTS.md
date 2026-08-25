@@ -5986,3 +5986,65 @@
   - Checks: immediate pre-image re-verification, atomic snapshot-byte copy, post-image/snapshot identity, fresh independent review, exact post-sync containment, candidate whitespace, authority-corpus no-drift, receipt, Git, practitioner self-check, and full practitioner-harness suite pass; frontend gates skipped because no frontend or runtime source changed.
   - Model-Attribution: OpenAI Codex HELP_HUMAN supervising CHANGE and fresh independent REVIEW; exact inherited model identifiers were not exposed.
   - Gate-Outcome: `EXECUTED` — the exact pointer post-image is applied only on the branch content commit; owner merge remains separate. The Root notice remains unrouted, and no carrier activation, SOW/status/lifecycle change, implementation, blocker lift, signing, notarization, deployment, distribution, publication, release-readiness, acceptance, or reliance act or claim occurred.
+
+- **2026-08-24 — Receipt 201** (App v3 G0 Task Management triage preparation).
+  - Receipt-ID: `Receipt-201`
+  - Examined-Through: `8884b143f3d8dbca49756e981e4e20299d55875d`
+  - Parent-Receipt: `Receipt-200`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: immutable
+    sources incorporated by path and SHA-256 only:
+    `plans/steers/chirality_app_v3_tm_triage_steer_app_2026-08-24.md`
+    `8b7319421ddb09568fc02a2e5c0750ac725a81fafb6491951f396509e897373b`;
+    `plans/steers/chirality_app_v3_app_ruling_record_a10_2026-08-24.md`
+    `0908fee812919291979dd486dd9748fda21b9fb4b20afb13604a1a3e02bd8aa2`.
+    A10-A authorizes preparation only; every disposition, adoption, priority,
+    closure, route, and register mutation remains a later owner act.
+  - Pointers: branch `codex/app-tm-triage-2026-08-24`; basis
+    `8884b143f3d8dbca49756e981e4e20299d55875d`; RunID
+    `execution/_Coordination/AgentRuns/APP_TM_TRIAGE_2026-08-24/` with launch
+    brief `2efb6bcb3d9c12a9ffa1850d6e34056cdeb6c84e0eef5f7f6f38af4bbf4ff594`,
+    federation evidence
+    `e3a75f80de664a9a9f611e95a7446e8f6a1d104a51a466b41438f4c86b9aaac6`,
+    manager return
+    `53de3b2dcf009f650d9314b3244964f942bc7965f49a856759d1528732a3a95a`,
+    and four-state handoff
+    `4be8bc0148cba4e95fa314b5351d951905d9a8275b56ddfeb1015d1df0916409`.
+    Independent REVIEW-01 returned bounded evidence-binding finding RF-001;
+    repair cycle 1 is recorded at SHA-256
+    `aa36252d32f85ee8ba98be93593d38bd1b36f1056f4d21a4d6c67a0f615dd3cf`
+    with REVIEW-01 preserved byte-identical.
+    Fresh independent REVIEW-02 returned `PASS` with zero findings and closed
+    RF-001: `REVIEW.md`
+    `2e8b49bcd34a17da543a9fa5a94a3fcbe8781fd216d3bbe9fa1ce7510a6c2b1b`,
+    `RETURN.md`
+    `62d0f6aea9d3597b24e9ae8b557d67556be731d9867180ca9bad6df9b1b4e718`,
+    and `STATUS.json`
+    `61a08e250f0b01dbbc4cf3933b9f2d192661ce147b0c6744aad85cfe85bd9c82`.
+    Packet root
+    `execution/_Coordination/_TaskManagement/TRIAGE_2026-08-24_G0_V3_RELEASE/`:
+    owner triage `cb82835ddd9730c669e37fd49e0a155a8fb23aa6b789190a3e2bd5b2dcf97cc4`,
+    Electron candidate
+    `f9008f3cd2076e38572fc849c749c82aa8afbeec1863353944f721d4a3e9cca0`,
+    notice assessments
+    `3afe9bd524d3dc91e4fb4133a256a622b3418e41bdb587adad82a08fed242b74`,
+    staleness/closure echo
+    `bd43eb746f4bec0a65322641d758b8a6b5780b9e48e168e7cd9ee93a91ab33c4`,
+    unapplied review-only CSV candidate
+    `00f7754c4effe1cbd240976023834b891161fc8781373a63a94ae6fecc2db016`,
+    and exact row-diff record
+    `4607a9ee658996a8ce381c545337c390625f63bf4bd2fb8ca243c9b445f27a40`.
+  - Checks: mandatory invocation-local federation preflight is `COMPLETE`
+    across four canonical registers with zero register writes; exact basis
+    identities, 12-cell candidate-only `LastReviewed` diff, live App-register
+    identity/validation, candidate whitespace, receipt validation, exact
+    containment, and `git diff --check` pass. The live App register remains
+    SHA-256
+    `eb37fba1bdc46209bdbb576815c1161ffed81b375454a30b0022d5ef863320e6`.
+  - Model-Attribution: OpenAI Codex HELP_HUMAN supervising canonical
+    TASK_MANAGEMENT; exact inherited model identifier was not exposed.
+  - Gate-Outcome: `EXECUTED` — triage preparation only. No option is selected;
+    no live/closed register row, notice, SCA, contract, decomposition, corpus,
+    dependency, carrier, status, lifecycle, frontend, Root-loop surface,
+    implementation, supply, release, publication, reliance, or acceptance act
+    or claim occurred. Owner triage and every resulting disposition remain
+    separate later acts.
