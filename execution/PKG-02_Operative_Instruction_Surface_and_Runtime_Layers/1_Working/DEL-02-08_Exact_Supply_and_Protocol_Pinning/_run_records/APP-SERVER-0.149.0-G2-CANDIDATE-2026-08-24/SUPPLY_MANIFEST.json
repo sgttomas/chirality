@@ -1,0 +1,127 @@
+{
+  "schema": "chirality-del-02-08-supply-candidate/v1",
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "basis_commit": "5cb493a09bf336593d2ed7412cfdabdcbc4e09a1",
+  "release": {
+    "repository": "openai/codex",
+    "tag": "rust-v0.149.0",
+    "release_id": 374028976,
+    "release_url": "https://github.com/openai/codex/releases/tag/rust-v0.149.0",
+    "published_at": "2026-08-20T21:04:55Z",
+    "draft": false,
+    "prerelease": false
+  },
+  "assets": [
+    {
+      "name": "codex-app-server-aarch64-apple-darwin.tar.gz",
+      "size_bytes": 71843308,
+      "sha256": "35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032",
+      "url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-aarch64-apple-darwin.tar.gz"
+    },
+    {
+      "name": "codex-app-server-aarch64-apple-darwin.zst",
+      "size_bytes": 50359498,
+      "sha256": "c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677",
+      "url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-aarch64-apple-darwin.zst"
+    },
+    {
+      "name": "codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "size_bytes": 93775517,
+      "sha256": "aaa3751edfab80b887dbd1ca709c87a16495238e1f1a86cbcbbbb5a34e2b31a2",
+      "url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-package-aarch64-apple-darwin.tar.gz"
+    }
+  ],
+  "app_server_payload": {
+    "size_bytes": 179721344,
+    "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+    "format": "Mach-O 64-bit executable arm64",
+    "minimum_macos": "11.0",
+    "sdk": "15.5",
+    "equivalent_occurrences": 3,
+    "equivalence_result": "PASS_BYTE_IDENTICAL_ACROSS_ALL_THREE_PACKAGINGS"
+  },
+  "package_ancillary_members": [
+    {
+      "path": "bin/codex-code-mode-host",
+      "size_bytes": 57150048,
+      "sha256": "8f9f6969cd5e69540482d58791f72e4e9b9888e576ae3ad446c422a058b70128",
+      "execution": "HELP_INVENTORY_ONLY"
+    },
+    {
+      "path": "codex-path/rg",
+      "size_bytes": 4030432,
+      "sha256": "b4a0ff402c26bf623ce5ddc8a806c65a29397ecca0d7210147b0f9224c70558c",
+      "execution": "NOT_RUN_NOT_RELEVANT_TO_BOUNDED_EVIDENCE"
+    },
+    {
+      "path": "codex-resources/zsh/bin/zsh",
+      "size_bytes": 754208,
+      "sha256": "4707e28b5f2fc75ce07c5fa3ff32d76a0fc43812c7880f9a98005dbc65a77e32",
+      "execution": "NOT_RUN_NOT_RELEVANT_TO_BOUNDED_EVIDENCE"
+    },
+    {
+      "path": "codex-package.json",
+      "size_bytes": 222,
+      "sha256": "e29318e209d8d9d78c441c5f748365618ab4ebad82625f391e25eb67b4b50fac",
+      "execution": "NON_EXECUTABLE"
+    }
+  ],
+  "vendor_signature": {
+    "identifier": "codex-app-server",
+    "team_identifier": "2DC432GLL2",
+    "hardened_runtime": true,
+    "codesign_strict_exit": 1,
+    "codesign_result": "invalid signature (code or signature have been modified)",
+    "invalid_entitlements_blob": true,
+    "spctl_exit": 1,
+    "r13_class_match": true,
+    "candidate_disposition": "ADMITTED_SUPPLY_INVENTORY_UNDER_R13; OPEN_G5_FINDING"
+  },
+  "license": {
+    "identity": "Apache License 2.0",
+    "size_bytes": 10926,
+    "sha256": "d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc",
+    "git_blob": "4606e72e042564097e8780d66c1d4dcb611869bd",
+    "archive_contains_copy": false
+  },
+  "notice": {
+    "size_bytes": 242,
+    "sha256": "9d71575ecfd9a843fc1677b0efb08053c6ba9fd686a0de1a6f5382fd3c220915",
+    "git_blob": "2805899d56d0332d175cfc613c67d45d6f006db7",
+    "archive_contains_copy": false
+  },
+  "redistribution": {
+    "terms_identified": true,
+    "primary_archive_self_contained": false,
+    "later_package_must_add_license": true,
+    "later_package_must_carry_applicable_notice": true,
+    "this_candidate_authorizes_redistribution": false
+  },
+  "empirical_result": "PASS_WITH_DOCUMENTED_GAPS_AND_ADMITTED_DENIED_EGRESS",
+  "gaps": [
+    "GENERATED_JSON_SCHEMA_UNAVAILABLE_UNDER_BOUNDS",
+    "GENERATED_TYPESCRIPT_TYPES_UNAVAILABLE_UNDER_BOUNDS",
+    "SCHEMA_DERIVED_EXHAUSTIVE_METHOD_INVENTORY_UNAVAILABLE_UNDER_BOUNDS"
+  ],
+  "unchanged_blockers": [
+    "TM-ROOT-106",
+    "TM-ROOT-122"
+  ],
+  "unchanged_held_bindings": {
+    "carrier": "DEL-02-06",
+    "count": 10,
+    "disposition": "UNCHANGED_HELD"
+  },
+  "negative_grants": [
+    "NO_G2_ACCEPTANCE",
+    "NO_PIN_AMENDMENT",
+    "NO_G5_DISPOSITION",
+    "NO_IMPLEMENTATION",
+    "NO_CUTOVER",
+    "NO_RELEASE",
+    "NO_PUBLICATION",
+    "NO_RELIANCE",
+    "NO_APP_ADOPTION",
+    "NO_BLOCKER_OR_HOLD_LIFT"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "instance_id": "N4_CANDIDATE_ASSEMBLY",
+  "parent": "ROOT_SUPPLY_PINNING_2026-08-24",
+  "role": "AGENT_2_EPHEMERAL_GENERALIST",
+  "status": "PASS_WITH_DOCUMENTED_GAPS",
+  "delegation": "FORBIDDEN",
+  "basis": "5cb493a09bf336593d2ed7412cfdabdcbc4e09a1",
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "dependency_return": "execution/_Coordination/AgentRuns/ROOT_SUPPLY_PINNING_2026-08-24/instances/N3_R14_EMPIRICAL/RETURN.md",
+  "dependency_return_sha256": "726d5946eac74501d72511b7e576d7fd0f3fa656e49b15c970345fd1f5181da8",
+  "return": "RETURN.md",
+  "review": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/04_REVIEW/REVIEW.md",
+  "review_sha256": "59045ab06571c673e42769858283ac03ea7b755a747f8ce897bafaddd31bf30c",
+  "actionable_findings": 0,
+  "gaps": [
+    "GENERATED_JSON_SCHEMA_UNAVAILABLE_UNDER_BOUNDS",
+    "GENERATED_TYPESCRIPT_TYPES_UNAVAILABLE_UNDER_BOUNDS",
+    "SCHEMA_DERIVED_EXHAUSTIVE_METHOD_INVENTORY_UNAVAILABLE_UNDER_BOUNDS"
+  ],
+  "owner_decision": "PENDING_G2"
+}
