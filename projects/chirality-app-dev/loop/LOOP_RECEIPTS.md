@@ -5989,7 +5989,7 @@
 
 - **2026-08-24 — Receipt 201** (App v3 G0 Task Management triage preparation).
   - Receipt-ID: `Receipt-201`
-  - Examined-Through: `8884b143f3d8dbca49756e981e4e20299d55875d`
+  - Examined-Through: `747c10bd1d9179b7fb6a11d19f82a1c0d180702e`
   - Parent-Receipt: `Receipt-200`
   - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: immutable
     sources incorporated by path and SHA-256 only:
@@ -6013,13 +6013,17 @@
     repair cycle 1 is recorded at SHA-256
     `aa36252d32f85ee8ba98be93593d38bd1b36f1056f4d21a4d6c67a0f615dd3cf`
     with REVIEW-01 preserved byte-identical.
-    Fresh independent REVIEW-02 returned `PASS` with zero findings and closed
-    RF-001: `REVIEW.md`
-    `2e8b49bcd34a17da543a9fa5a94a3fcbe8781fd216d3bbe9fa1ce7510a6c2b1b`,
-    `RETURN.md`
-    `62d0f6aea9d3597b24e9ae8b557d67556be731d9867180ca9bad6df9b1b4e718`,
-    and `STATUS.json`
-    `61a08e250f0b01dbbc4cf3933b9f2d192661ce147b0c6744aad85cfe85bd9c82`.
+    Fresh REVIEW-02 closed RF-001 with `PASS`, zero findings: `REVIEW.md`
+    `2e8b49bcd34a17da543a9fa5a94a3fcbe8781fd216d3bbe9fa1ce7510a6c2b1b`;
+    `RETURN.md` `62d0f6aea9d3597b24e9ae8b557d67556be731d9867180ca9bad6df9b1b4e718`;
+    `STATUS.json` `61a08e250f0b01dbbc4cf3933b9f2d192661ce147b0c6744aad85cfe85bd9c82`.
+    CHANGE content commit `8806ec475d500d5b230f189ea4c11881ec2d096d`.
+    Under the Receipt-197 standing authorization, non-rewriting sync of exact
+    `origin/main` `85edd06e63af02e7f96749cddcab0b7eeddfa709` produced merge
+    `747c10bd1d9179b7fb6a11d19f82a1c0d180702e` with those two commits as
+    parents. Incoming Root AgentRuns/receipt/notice and two `plans/steers/`
+    files changed no App path; all six basis pins remained exact. Exact path
+    inventory is in RunID `CHANGE_CLOSEOUT.md`.
     Packet root
     `execution/_Coordination/_TaskManagement/TRIAGE_2026-08-24_G0_V3_RELEASE/`:
     owner triage `cb82835ddd9730c669e37fd49e0a155a8fb23aa6b789190a3e2bd5b2dcf97cc4`,
@@ -6037,7 +6041,8 @@
     across four canonical registers with zero register writes; exact basis
     identities, 12-cell candidate-only `LastReviewed` diff, live App-register
     identity/validation, candidate whitespace, receipt validation, exact
-    containment, and `git diff --check` pass. The live App register remains
+    containment, authorized non-rewriting sync identity, post-sync pin
+    re-verification, and `git diff --check` pass. The live App register remains
     SHA-256
     `eb37fba1bdc46209bdbb576815c1161ffed81b375454a30b0022d5ef863320e6`.
   - Model-Attribution: OpenAI Codex HELP_HUMAN supervising canonical

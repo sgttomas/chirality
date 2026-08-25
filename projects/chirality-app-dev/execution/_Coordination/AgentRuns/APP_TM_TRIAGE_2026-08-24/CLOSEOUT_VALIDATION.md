@@ -48,3 +48,23 @@ closed RF-001 with `PASS`. Every required gate plus the project-wide closeout
 gates was rerun successfully. No disposition, register mutation, notice
 adoption/routing, priority, closure, acceptance, or implementation effect
 occurred.
+
+## Authorized sync
+
+Under the steer's Receipt-197 standing authorization, CHANGE non-rewriting
+merged exact `origin/main` `85edd06e63af02e7f96749cddcab0b7eeddfa709`
+after reviewed content commit `8806ec475d500d5b230f189ea4c11881ec2d096d`.
+The merge is `747c10bd1d9179b7fb6a11d19f82a1c0d180702e`, with those two commits as
+its first and second parent respectively. The incoming eleven-file delta was
+Root-only: Root AgentRuns, Root Receipt/notice coordination, and two
+`plans/steers/` files. No App-owned path changed and every steer-pinned input
+retained its exact identity.
+
+The first post-sync receipt check rejected a 4,441-byte Receipt-201 draft
+against the 4,096-byte maximum. Only its review/sync wording was compacted;
+the exact identities, authorization, parents, and authority boundary remain.
+The final receipt validator, candidate whitespace against current and
+recorded bases, Task Management validator, corpus v19 status, practitioner
+status/self-check, full 350-test suite, identity checks, Git checks, and exact
+containment all pass. Frontend gates remain correctly skipped because no
+frontend or runtime source changed.
