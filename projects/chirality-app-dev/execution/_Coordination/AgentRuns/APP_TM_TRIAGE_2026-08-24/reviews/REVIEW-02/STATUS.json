@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-independent-review-status/v1",
+  "run_id": "APP_TM_TRIAGE_2026-08-24",
+  "instance_id": "REVIEW-02",
+  "role": "REVIEW",
+  "review_type": "INDEPENDENT_VERIFICATION",
+  "date": "2026-08-24",
+  "status": "PASS",
+  "verdict": "PASS",
+  "finding_count": 0,
+  "findings_by_severity": {
+    "CRITICAL": 0,
+    "MAJOR": 0,
+    "MINOR": 0,
+    "OBSERVATION": 0
+  },
+  "basis_commit": "8884b143f3d8dbca49756e981e4e20299d55875d",
+  "rf_001_closed": true,
+  "live_register_sha256": "eb37fba1bdc46209bdbb576815c1161ffed81b375454a30b0022d5ef863320e6",
+  "live_register_changed": false,
+  "candidate_changed_cells": 12,
+  "candidate_changed_column": "LastReviewed",
+  "federation_coverage": "COMPLETE",
+  "federation_register_writes": 0,
+  "candidate_whitespace": "PASS",
+  "receipt_validator": "PASS",
+  "task_management_register_validator": "PASS",
+  "git_diff_check": "PASS",
+  "subject_modified": false,
+  "repair_required": false,
+  "return_state": "READY_FOR_HELP_HUMAN_FAN_IN_AND_CLOSEOUT"
+}
