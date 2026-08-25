@@ -1,0 +1,47 @@
+{
+  "candidate_status": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "retrieval_date": "2026-08-24",
+  "retrieved_at_local": "2026-08-24T21:58:34-06:00",
+  "query": "gh api repos/openai/codex/releases/tags/rust-v0.149.0",
+  "repository": "openai/codex",
+  "release": {
+    "id": 374028976,
+    "url": "https://github.com/openai/codex/releases/tag/rust-v0.149.0",
+    "tag_name": "rust-v0.149.0",
+    "draft": false,
+    "prerelease": false,
+    "published_at": "2026-08-20T21:04:55Z"
+  },
+  "assets": [
+    {
+      "name": "codex-app-server-aarch64-apple-darwin.tar.gz",
+      "size": 71843308,
+      "digest": "sha256:35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032",
+      "browser_download_url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-aarch64-apple-darwin.tar.gz",
+      "state": "uploaded",
+      "created_at": "2026-08-20T21:03:22Z",
+      "updated_at": "2026-08-20T21:04:08Z"
+    },
+    {
+      "name": "codex-app-server-aarch64-apple-darwin.zst",
+      "size": 50359498,
+      "digest": "sha256:c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677",
+      "browser_download_url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-aarch64-apple-darwin.zst",
+      "state": "uploaded",
+      "created_at": "2026-08-20T21:03:22Z",
+      "updated_at": "2026-08-20T21:03:56Z"
+    },
+    {
+      "name": "codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "size": 93775517,
+      "digest": "sha256:aaa3751edfab80b887dbd1ca709c87a16495238e1f1a86cbcbbbb5a34e2b31a2",
+      "browser_download_url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "state": "uploaded",
+      "created_at": "2026-08-20T21:03:22Z",
+      "updated_at": "2026-08-20T21:04:17Z"
+    }
+  ],
+  "gate_result": "PASS",
+  "gate_basis": "The official openai/codex release is published, non-draft, non-prerelease, and still offers all three exact ruled 0.149.0 macOS arm64 assets at the ruled sizes and SHA-256 digests.",
+  "artifact_downloaded": false
+}

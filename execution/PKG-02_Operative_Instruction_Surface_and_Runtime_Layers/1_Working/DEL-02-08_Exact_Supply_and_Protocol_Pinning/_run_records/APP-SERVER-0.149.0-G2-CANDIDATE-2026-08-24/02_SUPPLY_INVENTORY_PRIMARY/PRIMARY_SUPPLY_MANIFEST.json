@@ -1,0 +1,73 @@
+{
+  "candidate_status": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "node": "N2_PRIMARY_REACQUISITION",
+  "basis_commit": "5cb493a09bf336593d2ed7412cfdabdcbc4e09a1",
+  "observed_at_utc": "2026-08-25T04:06:47Z",
+  "official_release": {
+    "repository": "openai/codex",
+    "tag": "rust-v0.149.0",
+    "release_url": "https://github.com/openai/codex/releases/tag/rust-v0.149.0"
+  },
+  "primary_archive": {
+    "name": "codex-app-server-aarch64-apple-darwin.tar.gz",
+    "url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-aarch64-apple-darwin.tar.gz",
+    "size_bytes": 71843308,
+    "sha256": "35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032",
+    "channel_size_match": true,
+    "channel_digest_match": true,
+    "member_count": 1,
+    "contains_license": false,
+    "contains_notice": false
+  },
+  "contained_app_server": {
+    "name": "codex-app-server-aarch64-apple-darwin",
+    "size_bytes": 179721344,
+    "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+    "format": "Mach-O 64-bit executable",
+    "architecture": "arm64",
+    "mach_o_filetype": "EXECUTE",
+    "minimum_macos": "11.0",
+    "sdk": "15.5",
+    "executed_by_n2": false
+  },
+  "signature": {
+    "identifier": "codex-app-server",
+    "team_identifier": "2DC432GLL2",
+    "hardened_runtime": true,
+    "cdhash_sha256": "58661040e933585cbea4128ad6314b7ca0bf54da",
+    "full_cdhash_sha256": "58661040e933585cbea4128ad6314b7ca0bf54dab3a58d666e0ac9c12b592f21",
+    "codesign_strict_exit": 1,
+    "codesign_strict_result": "invalid signature (code or signature have been modified)",
+    "invalid_entitlements_blob": true,
+    "spctl_exit": 1,
+    "spctl_result": "internal error in Code Signing subsystem",
+    "r13_class_match": true,
+    "disposition": "RECORDED_NOT_STOPPED_UNDER_R13"
+  },
+  "license": {
+    "identity": "Apache License 2.0",
+    "exact_tag_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.149.0/LICENSE",
+    "size_bytes": 10926,
+    "sha256": "d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc",
+    "git_blob": "4606e72e042564097e8780d66c1d4dcb611869bd"
+  },
+  "notice": {
+    "exact_tag_url": "https://raw.githubusercontent.com/openai/codex/rust-v0.149.0/NOTICE",
+    "size_bytes": 242,
+    "sha256": "9d71575ecfd9a843fc1677b0efb08053c6ba9fd686a0de1a6f5382fd3c220915",
+    "git_blob": "2805899d56d0332d175cfc613c67d45d6f006db7"
+  },
+  "redistribution_inventory": {
+    "terms_identified": true,
+    "archive_self_contained": false,
+    "future_package_must_add_license": true,
+    "future_package_must_carry_applicable_notice": true,
+    "result": "PASS_TERMS_IDENTIFIED_PACKAGING_OBLIGATION_RECORDED"
+  },
+  "quarantine": {
+    "path": "/private/tmp/chirality-root-supply-r14-primary.lTtHP2",
+    "outside_version_control": true,
+    "state": "RETAINED_FOR_N2B_AND_N3"
+  },
+  "verdict": "PASS_UNDER_R13_AMENDED_SIGNATURE_GATE"
+}

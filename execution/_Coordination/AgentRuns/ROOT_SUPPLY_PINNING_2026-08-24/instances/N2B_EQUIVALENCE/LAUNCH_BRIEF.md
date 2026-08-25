@@ -1,0 +1,3 @@
+# Sealed Brief — N2b Exact Packaging Equivalence and Ancillary Hash Freeze
+
+Bounded ephemeral Agent 2; do not delegate. Dependency: N2 PASS. Download only the R13-pinned zst and package tar.gz into the same quarantine. Require exact sizes/hashes, extract without execution, and prove each contained app-server is arm64, SHA-256 `b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2`, and byte-identical to the primary. Apply the R13 signature gate to each. Inventory every package member; for every executable member record path, size, format, architecture, executable mode, and SHA-256 before N3. No member is executed. Retain quarantine on PASS. Write only this instance folder, candidate `02B_EQUIVALENCE/`, and quarantine. Return PASS or STOP.

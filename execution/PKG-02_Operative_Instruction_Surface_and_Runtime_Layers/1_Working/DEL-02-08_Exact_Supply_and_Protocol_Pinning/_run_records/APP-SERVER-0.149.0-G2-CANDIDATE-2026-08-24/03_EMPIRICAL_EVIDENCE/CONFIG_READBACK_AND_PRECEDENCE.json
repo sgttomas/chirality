@@ -1,0 +1,75 @@
+{
+  "artifact_version": "0.149.0",
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "plugin_switch_behavior": {
+    "calibration": "Disables the whole plugins feature, not a dedicated curated-sync-only subfeature.",
+    "default_config_read_field": "ABSENT",
+    "default_current_enabled_runtime_readback": true,
+    "default_enabled_runtime_readback": true,
+    "disabled_config_readback": false,
+    "disabled_run_plugin_startup_attempt_count": 0,
+    "name": "features.plugins"
+  },
+  "schema": "chirality-app-server-config-readback/v1",
+  "session_flag_precedence": {
+    "agents.enabled": true,
+    "features.multi_agent": false,
+    "features.multi_agent_v2": true,
+    "features.plugins": false,
+    "origins": {
+      "agents.enabled": {
+        "name": {
+          "type": "sessionFlags"
+        },
+        "version": "sha256:73574bffea2cf008cd6a1c82024fe6b1bd9506a510c2f93889bd1b83dae80c8c"
+      },
+      "features.multi_agent": {
+        "name": {
+          "type": "sessionFlags"
+        },
+        "version": "sha256:73574bffea2cf008cd6a1c82024fe6b1bd9506a510c2f93889bd1b83dae80c8c"
+      },
+      "features.multi_agent_v2.enabled": {
+        "name": {
+          "type": "sessionFlags"
+        },
+        "version": "sha256:73574bffea2cf008cd6a1c82024fe6b1bd9506a510c2f93889bd1b83dae80c8c"
+      },
+      "features.plugins": {
+        "name": {
+          "type": "sessionFlags"
+        },
+        "version": "sha256:73574bffea2cf008cd6a1c82024fe6b1bd9506a510c2f93889bd1b83dae80c8c"
+      }
+    }
+  },
+  "unmanaged_requirements": null,
+  "untrusted_project_layer": {
+    "configured_values": {
+      "agents": {
+        "enabled": true
+      },
+      "features": {
+        "multi_agent": false,
+        "multi_agent_v2": true
+      }
+    },
+    "disabled_reason": "To load project-local config, hooks, and exec policies, add /private/tmp/chirality-root-supply-r14-n3.NQGDlu/work as a trusted project in /private/tmp/chirality-root-supply-r14-n3.NQGDlu/home/config.toml.",
+    "effective_override": "NONE"
+  },
+  "user_layer_effective": {
+    "agents.enabled": false,
+    "analytics.enabled": false,
+    "approval_policy": "on-request",
+    "check_for_update_on_startup": false,
+    "features.multi_agent": true,
+    "features.multi_agent_v2": false,
+    "features.plugins_config_read_field": "ABSENT_WHEN_DEFAULT",
+    "features.plugins_runtime_default_enabled": true,
+    "features.plugins_runtime_enabled": true,
+    "feedback.enabled": false,
+    "network_access": false,
+    "sandbox_mode": "workspace-write",
+    "web_search": "disabled"
+  }
+}

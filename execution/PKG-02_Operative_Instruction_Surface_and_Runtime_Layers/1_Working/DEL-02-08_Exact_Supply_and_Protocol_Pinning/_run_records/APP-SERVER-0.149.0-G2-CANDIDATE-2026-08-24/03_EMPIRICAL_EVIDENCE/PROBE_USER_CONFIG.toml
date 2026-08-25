@@ -1,0 +1,24 @@
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+allow_login_shell = false
+cli_auth_credentials_store = "keyring"
+check_for_update_on_startup = false
+web_search = "disabled"
+
+[sandbox_workspace_write]
+network_access = false
+exclude_slash_tmp = true
+exclude_tmpdir_env_var = true
+
+[features]
+multi_agent = true
+multi_agent_v2 = false
+
+[agents]
+enabled = false
+
+[analytics]
+enabled = false
+
+[feedback]
+enabled = false

@@ -6998,3 +6998,309 @@ Post-image, followed by one LF; row SHA-256
 - **Sync:** the clean post-content fetch observed `origin/main` unchanged at the branch basis; no sync, rebase, or force-push occurred.
 - **Checks:** Root G0–G3 PASS; candidate whitespace PASS; agent instructions 34 files with zero errors/warnings; instruction entrypoints PASS; CI-form G4 PASS with zero instruction-surface paths and no covering manifest; Task Management PASS with 19 rows; focused practitioner harness 56 passed; source/destination byte comparison PASS; JSON validation and `git diff --check` PASS.
 - **State:** `PASS_TO_HUMAN_MERGE_GATE`. Recording the routed notice adopts, amends, or declines none of its content and lifts no blocker. TM-ROOT-106/122, C1, all ten `HELD_UNAVAILABLE` bindings, WP-03/WP-05, G1, G6a, every later implementation/release gate, notice-content disposition, and PR merge remain separately owner-governed.
+
+### Receipt 129 — 2026-08-24 — DEL-02-08 App Server 0.149.0 supply-unit candidate
+
+- **Selection authority:** the cumulative owner-carried supply instruments,
+  incorporated by immutable path and SHA-256, not transcribed:
+  - original steer
+    `plans/steers/chirality_app_v3_supply_pinning_steer_root_2026-08-24.md`,
+    `1384b216889d4357b332fa3507f573d887b11aa009f49ba9b29797b23d312391`;
+  - R12
+    `plans/steers/chirality_app_v3_root_ruling_record_r12_2026-08-24.md`,
+    `2ee282fc1330c466e17ce2791cb7cb8c66f2a7e13f455c2ab1750c42719321fd`;
+  - first resume steer
+    `plans/steers/chirality_app_v3_supply_resume_steer_root_2026-08-24.md`,
+    `248317951603551eafd54754e79fc04b1d8082906653136ff7042dfd5132c701`;
+  - R13
+    `plans/steers/chirality_app_v3_root_ruling_record_r13_2026-08-24.md`,
+    `0ba74959dac38f49f81f6ba8aff4020df520fd418bed2a3aa6617b19f3aa4960`;
+  - second resume steer
+    `plans/steers/chirality_app_v3_supply_resume2_steer_root_2026-08-24.md`,
+    `38b76ca27defd39507f6d9cfe9501d392b1e9ade7c5f107cd67cb4ce420ef164`;
+  - R14
+    `plans/steers/chirality_app_v3_root_ruling_record_r14_2026-08-24.md`,
+    `2633637bd68c7f4cb54457a3547b2bcab8933f19e021abf558b1ef2463d1b5e9`.
+- **Branch and basis:** fresh branch
+  `codex/root-supply-resume2-2026-08-24` from
+  `origin/main@5cb493a09bf336593d2ed7412cfdabdcbc4e09a1` (PR #672).
+  The basis contains Receipt 128, the exact notice
+  `75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834`,
+  accepted DEL-02-08 SOW
+  `d9871a4a024ff3c48a70a3e6ae4b8eac37ece8873a5e00cbb0ea47dae861e430`,
+  and blocker register
+  `9eccd494d7a93680ce644370150683c63e357c3c8bf202ed8291b429c29ce137`.
+  No prior supply-run addition or quarantine residue existed. The final
+  pre-closeout fetch found `origin/main` unchanged, so no sync, rebase, or
+  force-push occurred.
+- **Run control and commits:** ordered serial control and sealed briefs are at
+  `execution/_Coordination/AgentRuns/ROOT_SUPPLY_PINNING_2026-08-24/`.
+  N1 commit `3ad48dd75` recorded source currentness; N2/N2b commit
+  `d06bc2bdc` recorded supply inventory and equivalence; N3 commit
+  `ad88c5446` recorded contained empirical evidence; N4 commit `5a50e0adc`
+  assembled and reviewed the G2 candidate. Durable return identities are N1
+  `3b37a25b50254ecedce1871e59515ce53c8de7e42f24cc9dca97e71853cfae20`,
+  N2 `8a1691fc08df01cd98567aff21a81f687f3eb9b87943718ce233d5a54c9b6ecc`,
+  N2b `442148d74e1553c14c12eef98e3e3f135b8d06c0dc9b365a8c9fdd2d8a5ce16a`,
+  deterministically corrected N3
+  `181d594ad3b973bd5ac0defe6f6c91c59bf62c2fce4366f233247c77ca682743`,
+  and corrected N4
+  `3f4e1e10856c94f2cc2b7f6a4ff7e81fb9fb12d87c8bdec25e4f39e4548bbd96`.
+  Run validation SHA-256 is
+  `ece45eef5d6ee7bec10f628ab2d9e6678e57f93c866bd24e8548a5e5bc7cb1db`;
+  handoff SHA-256 is
+  `f470116910ae7432d0f0b634d206bca4edeb08699dbc9ec0b622bb413e6f6fd4`.
+
+#### Exact supply and equivalence
+
+- Official release `openai/codex@rust-v0.149.0` remained published,
+  non-draft, and non-prerelease. Exact macOS arm64 assets:
+  - `codex-app-server-aarch64-apple-darwin.tar.gz`: 71,843,308 bytes,
+    `35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032`;
+  - `codex-app-server-aarch64-apple-darwin.zst`: 50,359,498 bytes,
+    `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`;
+  - `codex-app-server-package-aarch64-apple-darwin.tar.gz`: 93,775,517
+    bytes,
+    `aaa3751edfab80b887dbd1ca709c87a16495238e1f1a86cbcbbbb5a34e2b31a2`.
+- All three contain the same 179,721,344-byte arm64 App Server payload,
+  `b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2`;
+  both alternate comparisons and the alternate-to-alternate comparison were
+  byte-identical. Frozen ancillary identities are code-mode host
+  `8f9f6969cd5e69540482d58791f72e4e9b9888e576ae3ad446c422a058b70128`,
+  `rg` `b4a0ff402c26bf623ce5ddc8a806c65a29397ecca0d7210147b0f9224c70558c`,
+  and `zsh` `4707e28b5f2fc75ce07c5fa3ff32d76a0fc43812c7880f9a98005dbc65a77e32`.
+- The exact R13-admitted signature class was reproduced across the
+  byte-identical payloads: Team `2DC432GLL2`, hardened runtime, strict
+  modified-signature failure, invalid-entitlements warning, and `spctl`
+  failure. No additional identity, version, license, or signature disagreement
+  occurred. Apache-2.0 license identity is
+  `d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc`;
+  notice identity is
+  `9d71575ecfd9a843fc1677b0efb08053c6ba9fd686a0de1a6f5382fd3c220915`.
+  Neither ships in the binary archives, so future redistribution must add and
+  carry the applicable license/notice obligations.
+
+#### R14 empirical result and containment
+
+- Nine of ten vendor invocations have committed executable/profile identity
+  verification at network-deny profile
+  `17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab`
+  plus attributable denial-preflight records. The `version` run has empty
+  preflight records and no per-run gate-hash record; its gate evidence is
+  `UNAVAILABLE_UNDER_BOUNDS`. A standalone denial record exists but is not
+  attributed to that run. Exact 0.149.0 configuration/readback, unmanaged
+  requirements (`null`), session-over-user precedence including
+  `multi_agent_v2`, and all 118 features were captured independently of that
+  version-run gap.
+- `features.plugins` is the exact-pin whole-plugin switch governing the
+  observed startup work: baseline `enabled=true`, `defaultEnabled=true`;
+  explicit session override/readback `false`; two false-override runs
+  suppressed every observed plugin attempt. Current official configuration
+  documentation names no dedicated curated-sync-only switch.
+- Three exact sandbox-denied destinations were recorded with full traces and
+  triggering operations: featured cache
+  `https://chatgpt.com/backend-api/plugins/featured?platform=codex`, curated
+  repository sync `https://api.github.com/repos/openai/plugins`, and curated
+  archive fallback
+  `https://chatgpt.com/backend-api/plugins/export/curated`. Committed traces
+  record zero completed connections, credential prompts/login flows, approvals
+  granted, and writes outside disposable state.
+- Generated JSON schema, generated TypeScript types, and the resulting
+  exhaustive schema-derived method inventory are
+  `UNAVAILABLE_UNDER_BOUNDS`: neither the pinned app-server entrypoint nor the
+  relevant packaged ancillary exposes the current documentation's wrapper
+  commands. Bounds were not loosened. The code-mode host was used only for
+  help inventory; frozen `rg` and `zsh` were not run because they cannot
+  produce the named evidence.
+- All three downloaded assets, both quarantines, the disposable `CODEX_HOME`,
+  disposable workspace, and temporary static extracts were deleted and
+  verified absent. Raw captured logs are normalized or deterministic gzip;
+  all 53 gzip files pass integrity checks.
+
+#### Candidate, review, and validation
+
+- Candidate path:
+  `execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/`.
+  State is `CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE`. Core identities:
+  `README.md` `ff4ed9502b2b4ac843107cf14a9f5ff35983f6e9f70469f80610b960582bd897`;
+  `SUPPLY_MANIFEST.json`
+  `18a1fa0741b9d6d9466e2c5e4903aa9b87baab1b5259d6a1c2a36664d11ecc39`;
+  synthesis `238769718d71d62be8465d5d758c4fdacaf26a62da0aa60e471ce6e56de6890a`;
+  config/method/features
+  `c44656398ca7d1b5bdf84dbd0be65b32d9f33cba1fc241e05e5ceeab76bfd58d`;
+  gaps index `d5620ffde7ff42ee824648dfee8c2e02d5f92d370786cf97a692d1bab75ec1cf`;
+  OUT-002 inventory
+  `fd6bd4e4dd7c2a0dc477e567becd5d2d092514db36dfedaf2fa2a529798d9f47`;
+  G2 sheet `cec83abc2fc39358037600c883dd7b55ad09b154140d68a4d86346c309cda5ae`;
+  evidence manifest
+  `acbc96a61b35f6f5812ece08895586967ac571c5367753035d7def7d46a1ddfb`.
+- The candidate carries the R13-B G5 finding: the plan fails G5 on the invalid
+  published signature and requires a corrected artifact or later owner ruling.
+  It also carries the full destination inventory and every evidence gap.
+- Fresh review repaired one real upstream calibration defect without new
+  vendor execution: explicit `plugins=false` data had initially been mixed
+  into the baseline structured feature row. Raw traces prove baseline
+  `true/true` and override `false/true`; corrected summaries and all dependent
+  hashes now agree. The prior `.zst` archive row in
+  `EQUIVALENCE_INVENTORY.md` carried a malformed 65-hex-character splice
+  sharing material with the archive and payload identities; it matched
+  neither identity. It was corrected to `c4c31ecd…73677`, and the dependent
+  N2b/N4 hash chain was regenerated without download, vendor execution, or
+  network probe. N4
+  restarted fresh review and closed `PASS_WITH_DOCUMENTED_GAPS`, zero
+  actionable findings. The corrected review is SHA-256
+  `b3bb1f1d2e496c6ed484943033c87fdc9737379cc6c37aac1c571d286e897de9`.
+- Final checks: Root G0-G3 `PASS`; candidate whitespace `PASS`; agent
+  instructions 34 files, zero errors/warnings; instruction entrypoints
+  `PASS`; CI-form G4 `PASS` with 48 manifests, 122 changed paths, zero
+  instruction-surface paths and zero required covering manifests; Task
+  Management `PASS` with 19 rows; focused practitioner harness `56 passed`;
+  candidate JSON, both evidence hash chains, 53 gzip files, and
+  `git diff --check` all `PASS`. The deterministic correction audit passed 25
+  checks with zero failures. The subsequent digest-correction semantic audit
+  passed 38/38 checks with zero failures, explicitly proving the malformed
+  value's length and non-equality to both valid identities.
+
+#### Deterministic evidence correction return — 2026-08-25
+
+- **Owner direction (verbatim):** “Return PR #673 for deterministic evidence
+  correction; do not merge. No new vendor execution is authorized.”
+- **Disposition:** the PR remained open and unmerged. No artifact download,
+  vendor execution, network probe, quarantine recreation, rebase, force-push,
+  or merge occurred during correction.
+- **Finding corrected:** committed evidence contains nine per-run gate-hash
+  records and nine attributable `Operation not permitted` preflights. The
+  `version` preflight stdout/stderr files are empty and no
+  `version.gate_hashes.txt.gz` exists. The separate explicit preflight cannot
+  be deterministically attributed to `version`. Former 10/10 claims were
+  replaced by nine complete records plus
+  `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS`; the captured version
+  string remains an observation with that provenance qualification.
+- **False positive rejected:** an initial correction audit resolved
+  candidate-relative `README.md` against the repository root and suspected a
+  stale hash. Correct path resolution proved the pre-correction
+  `033710f8…` hash was exact. No stale-hash defect existed; dependent hashes
+  changed only because the correction added calibrated evidence and a return
+  note.
+- **Raw preservation:** every file under `03_EMPIRICAL_EVIDENCE/raw/` remains
+  byte-identical to PR #673's returned head. All 53 gzip records pass
+  integrity checks. The 118-row structured feature inventory remains exactly
+  equal to the two baseline raw pages, with enabled/default counts `42/42`.
+- **Corrected empirical identities:** `ARTIFACT_HASHES.csv`
+  `08cb623d7290b4e7b6aa334bb40889ab385cd1525ef585b1c48f472bb5341481`;
+  execution-gate inventory
+  `997617defef60836cb3a211e397cc80ad96adf63dac1984587441f5f2e9c6023`;
+  N3 return
+  `181d594ad3b973bd5ac0defe6f6c91c59bf62c2fce4366f233247c77ca682743`;
+  top-level evidence manifest
+  `f255f3efd38aaa3043fff8c83f53bb193b58c70b540b4b36c9454eb48c11bb38`;
+  review hash table
+  `43a3eab1a55327a44147bc53a295d643cca902e1dadb56b941a998ce5086396c`.
+
+#### Deterministic `.zst` inventory correction return — 2026-08-25
+
+- **Owner direction:** “PR #673 head
+  `e54020476f14f50080baa19966e1cdca29fed3e5` is still held; do not merge.
+  Preserve the completed version-run gate-provenance correction and
+  `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS` exactly. No download,
+  vendor execution, network probe, or authority expansion is authorized. The
+  original reported defect remains uncorrected at
+  `02B_EQUIVALENCE/EQUIVALENCE_INVENTORY.md` line 14. Replace exactly
+  `c4c31ecd562a834b01c057e9ecc2213b969a775ba76c424d812714a2911708de2`
+  with
+  `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`.
+  Then regenerate every dependent N2b return/status, evidence manifest,
+  review/hash table, N4 return/status, validation, handoff if affected, and
+  Receipt-129 identity/narrative. Remove every claim that this digest defect
+  was a false positive. Run a fresh semantic audit plus hosted CI, push an
+  ordinary follow-up commit to the same branch, and return without merging.”
+- **Exact repair:** the single archive-digest cell changed from a malformed
+  65-hex-character splice sharing material with the archive and payload
+  identities, but matching neither, to the official 64-character `.zst`
+  archive digest `c4c31ecd…73677`. `EQUIVALENCE_INVENTORY.md` is now SHA-256
+  `11ee3b41fd9dda8f4a33a7c6a77a6bb86c14e24f16781795b743110f336b4005`.
+  This was an actual deterministic record defect, not a false positive.
+- **Regenerated identities:** N2b return
+  `b346251b87db3d91c272923b7b174ff0fab9c7c4ba226cf6de41b0fffe2b9fe2`;
+  N2b status
+  `bdb2654a3400e1fd5b366973c540b948b0b393ed442f3a052cd51c04eccad862`;
+  evidence manifest
+  `0808752ae60270e483daa86774f896006da35f4d950804b1a3982e90c6ccdbe6`;
+  review hash table
+  `ab69a0e6054026425a0115ae039fe881cea03d7ae39c3d153620c080814bcf47`;
+  review
+  `80538b87008cb36db1664384f519fdeb22864bca6a1f2f56b4bc4c047ade1a67`;
+  N4 return
+  `e60e7858a7995b29a486a14c9d883942d62cee3eed090bd7bc8c83a72ea66c2f`;
+  N4 status
+  `197e9a7b8ad0562f0e01acb3f0b84a8d3ae775ca0d6098d494be3b893a459954`.
+- **Preservation and authority:** the execution-gate inventory, N3 return,
+  all committed raw evidence, the nine-complete-plus-one-unavailable gate
+  shape, and `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS` remain
+  byte-identical to held head `e54020476`. No artifact download, vendor
+  execution, network probe, authority expansion, rebase, force-push, or merge
+  occurred.
+- **Fresh audit and hosted CI:** semantic audit `PASS` (29/29 checks, zero
+  failures); validation
+  `30c30105ddd08fb37965a4c41fa483c1a05892e36f606d7b42666b3684cee9c6`;
+  handoff
+  `a4397137887947859ec0a85274a7806a6c04b1a3edafab29d6f05ff0837b34ba`.
+  Hosted `harness` passed in 1m11s at follow-up head `da3ca05e1`.
+
+#### Malformed-splice semantic correction return — 2026-08-25
+
+- **Owner direction:** PR #673 head `da3ca05e1f863aa6e00f1a9ed6763bed54471c46`
+  remains held and must not merge. Preserve the corrected archive digest, the
+  completed version-run provenance correction, and
+  `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS` exactly. Correct every
+  assertion equating the prior 65-character token with the payload digest;
+  regenerate the dependent identity chain; run a fresh semantic audit and
+  hosted CI; push one ordinary follow-up commit without rebase, force-push,
+  merge, vendor/network activity, or authority expansion.
+- **Semantic correction:** the prior value
+  `c4c31ecd562a834b01c057e9ecc2213b969a775ba76c424d812714a2911708de2`
+  is 65 hexadecimal characters. It equals neither the official archive digest
+  `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`
+  nor the decompressed payload digest
+  `b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2`.
+  Every affected passage now identifies it as a malformed splice sharing
+  material with both identities while matching neither.
+- **Required proofs:** old value length `65`; old value ≠ archive digest; old
+  value ≠ payload digest; current inventory value = official archive digest.
+  Fresh semantic audit: `PASS` (38/38 checks, zero failures).
+- **Final regenerated identities:** corrected inventory remains
+  `11ee3b41fd9dda8f4a33a7c6a77a6bb86c14e24f16781795b743110f336b4005`;
+  N2b return
+  `442148d74e1553c14c12eef98e3e3f135b8d06c0dc9b365a8c9fdd2d8a5ce16a`;
+  N2b status
+  `d1e876515de0c6e39607ea9e9b4f226046868d9eabb7f0b0c4fb962e9502b585`;
+  evidence manifest
+  `acbc96a61b35f6f5812ece08895586967ac571c5367753035d7def7d46a1ddfb`;
+  review hash table
+  `a3409fc41188875df0f0df92cdc43b5ead77df474da77a3b091381ad850d3960`;
+  review
+  `b3bb1f1d2e496c6ed484943033c87fdc9737379cc6c37aac1c571d286e897de9`;
+  N4 return
+  `3f4e1e10856c94f2cc2b7f6a4ff7e81fb9fb12d87c8bdec25e4f39e4548bbd96`;
+  N4 status
+  `f438a3eb79fc7d7bb15589b5b8c41b57d7994ea1f45e7a8be2a42713f29cadc0`;
+  validation
+  `ece45eef5d6ee7bec10f628ab2d9e6678e57f93c866bd24e8548a5e5bc7cb1db`;
+  handoff
+  `f470116910ae7432d0f0b634d206bca4edeb08699dbc9ec0b622bb413e6f6fd4`.
+- **Preservation:** `EQUIVALENCE_INVENTORY.md`, the execution-gate inventory,
+  N3 return/status, and every raw evidence byte remain identical to held head
+  `da3ca05e1`; the nine-complete-plus-one-unavailable gate shape and
+  `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS` are unchanged. No
+  prohibited action occurred. Hosted CI is reported after push rather than
+  inferred into this pre-push receipt.
+
+#### Handoff
+
+The exact packet returns for the owner's G2 acceptance, hold, correction, or
+rejection. This receipt records no G2 acceptance, pin amendment, G5
+disposition, implementation, cutover, activation, release, publication,
+redistribution, reliance, App adoption, endpoint-policy adoption, or blocker
+or hold lift. TM-ROOT-106/122 remain G1 blockers, all ten existing DEL-02-06
+bindings remain held, and every later act remains separately governed. The
+branch is ready for the human PR merge gate; this run does not merge.

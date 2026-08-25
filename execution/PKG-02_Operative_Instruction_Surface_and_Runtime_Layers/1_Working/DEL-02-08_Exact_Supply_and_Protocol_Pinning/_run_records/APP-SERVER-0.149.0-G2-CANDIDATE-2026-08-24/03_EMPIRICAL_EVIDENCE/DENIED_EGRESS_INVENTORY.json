@@ -1,0 +1,40 @@
+{
+  "attempts": [
+    {
+      "destination": "https://chatgpt.com/backend-api/plugins/featured?platform=codex",
+      "result": "SANDBOX_DENIED_NO_COMPLETED_CONNECTION",
+      "trace": "raw/stable.stderr.jsonl.gz",
+      "triggering_operation": "warm featured plugin IDs cache"
+    },
+    {
+      "destination": "https://api.github.com/repos/openai/plugins",
+      "result": "SANDBOX_DENIED_NO_COMPLETED_CONNECTION",
+      "trace": "raw/stable.stderr.jsonl.gz",
+      "triggering_operation": "curated plugin synchronization GitHub HTTP fallback after git executable unavailable"
+    },
+    {
+      "destination": "https://chatgpt.com/backend-api/plugins/export/curated",
+      "result": "SANDBOX_DENIED_NO_COMPLETED_CONNECTION",
+      "trace": "raw/stable.stderr.jsonl.gz",
+      "triggering_operation": "curated plugin synchronization export-archive fallback"
+    }
+  ],
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "completed_connections": 0,
+  "completed_connections_calibration": "NO_COMMITTED_TRACE_RECORDS_A_COMPLETED_CONNECTION",
+  "configured_not_attempted": [
+    {
+      "destination": "https://chatgpt.com/backend-api/",
+      "disposition": "WAITED_FOR_AUTHENTICATION; NO CONNECTION ATTEMPT; NO CREDENTIAL PROMPT",
+      "operation": "remote control websocket"
+    }
+  ],
+  "credential_prompts": 0,
+  "credential_prompts_calibration": "NO_COMMITTED_TRACE_RECORDS_A_CREDENTIAL_PROMPT",
+  "denied_attempt_count": 3,
+  "external_writes": 0,
+  "preflight": "Nine of ten vendor runs have a committed run-specific 1.1.1.1:443 denial record with Operation not permitted; one additional standalone denial record exists but is not deterministically attributable to the version run.",
+  "preflight_evidence_gap": "The committed version preflight stdout/stderr records are empty and no version gate-hash record exists; the mandated version-run gate cannot be proven from committed evidence without new vendor execution, which is not authorized.",
+  "sandbox_profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+  "schema": "chirality-denied-egress-inventory/v1"
+}

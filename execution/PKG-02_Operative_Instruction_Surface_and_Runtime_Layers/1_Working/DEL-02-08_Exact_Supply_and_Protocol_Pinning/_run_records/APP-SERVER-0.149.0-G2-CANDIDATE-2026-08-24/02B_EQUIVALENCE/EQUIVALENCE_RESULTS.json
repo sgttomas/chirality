@@ -1,0 +1,64 @@
+{
+  "schema": "chirality-supply-equivalence/v1",
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "basis": "5cb493a09bf336593d2ed7412cfdabdcbc4e09a1",
+  "observed_utc": "2026-08-25T04:18:11Z",
+  "release": "openai/codex@rust-v0.149.0",
+  "verdict": "PASS",
+  "quarantines": {
+    "primary": "/private/tmp/chirality-root-supply-r14-primary.lTtHP2",
+    "equivalence": "/private/tmp/chirality-root-supply-r14-equivalence.BmK7x0"
+  },
+  "assets": [
+    {
+      "name": "codex-app-server-aarch64-apple-darwin.tar.gz",
+      "url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-aarch64-apple-darwin.tar.gz",
+      "size": 71843308,
+      "sha256": "35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032",
+      "independently_reverified": true
+    },
+    {
+      "name": "codex-app-server-aarch64-apple-darwin.zst",
+      "url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-aarch64-apple-darwin.zst",
+      "size": 50359498,
+      "sha256": "c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677",
+      "independently_reverified": true
+    },
+    {
+      "name": "codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "url": "https://github.com/openai/codex/releases/download/rust-v0.149.0/codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "size": 93775517,
+      "sha256": "aaa3751edfab80b887dbd1ca709c87a16495238e1f1a86cbcbbbb5a34e2b31a2",
+      "independently_reverified": true
+    }
+  ],
+  "app_server_equivalence": {
+    "expected_size": 179721344,
+    "expected_sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+    "format": "Mach-O 64-bit executable arm64",
+    "primary_sha256_match": true,
+    "zst_sha256_match": true,
+    "package_sha256_match": true,
+    "zst_cmp_primary_exit": 0,
+    "package_cmp_primary_exit": 0,
+    "zst_cmp_package_exit": 0,
+    "required_alternate_packagings": 2,
+    "equivalent_alternate_packagings": 2
+  },
+  "app_server_signature_gate": {
+    "team_identifier": "2DC432GLL2",
+    "hardened_runtime": true,
+    "codesign_strict_exit": 1,
+    "codesign_result": "invalid signature (code or signature have been modified)",
+    "invalid_entitlements_blob": true,
+    "spctl_exit": 1,
+    "r13_class_match": true,
+    "r13_disposition": "RECORDED_NOT_STOPPED",
+    "g5_disposition": "OPEN_FINDING_REQUIRES_CORRECTED_ARTIFACT_OR_LATER_OWNER_RULING"
+  },
+  "package_member_count": 5,
+  "package_executable_count": 4,
+  "ancillary_executable_count": 3,
+  "vendor_binary_execution": "NONE",
+  "n3_gate": "RELEASED"
+}

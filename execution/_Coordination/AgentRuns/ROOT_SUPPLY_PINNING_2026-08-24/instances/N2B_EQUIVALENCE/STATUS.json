@@ -1,0 +1,27 @@
+{
+  "instance_id": "N2B_EQUIVALENCE",
+  "parent": "ROOT_SUPPLY_PINNING_2026-08-24",
+  "role": "AGENT_2_EPHEMERAL_GENERALIST",
+  "status": "PASS",
+  "delegation": "FORBIDDEN",
+  "basis": "5cb493a09bf336593d2ed7412cfdabdcbc4e09a1",
+  "dependency_return": "execution/_Coordination/AgentRuns/ROOT_SUPPLY_PINNING_2026-08-24/instances/N2_PRIMARY_REACQUISITION/RETURN.md",
+  "dependency_return_sha256": "8a1691fc08df01cd98567aff21a81f687f3eb9b87943718ce233d5a54c9b6ecc",
+  "primary_quarantine": "/private/tmp/chirality-root-supply-r14-primary.lTtHP2",
+  "equivalence_quarantine": "/private/tmp/chirality-root-supply-r14-equivalence.BmK7x0",
+  "verdict": "PASS_EQUIVALENT_2_OF_2",
+  "alternate_payloads_equal": 2,
+  "alternate_payloads_required": 2,
+  "ancillary_executable_hashes_frozen": 3,
+  "vendor_binary_execution": "NONE",
+  "n3_gate": "RELEASED",
+  "output_hashes": {
+    "EQUIVALENCE_INVENTORY.md": "11ee3b41fd9dda8f4a33a7c6a77a6bb86c14e24f16781795b743110f336b4005",
+    "EQUIVALENCE_RESULTS.json": "283e92d066028537157bdd5ac179fe505c10460647164048f358f664317111eb",
+    "EXECUTABLE_HASH_FREEZE.json": "ef40fa3be9a15e521bc9b30ba3b82c41f2ebe71d9f8ca6cf45a0cfa5308da5ec",
+    "PACKAGE_ANCILLARY_INVENTORY.md": "3f896705cb922966c974d57f25a0f496c8c1e95921ec4c86c78f6bbfe5e30ba2",
+    "SIGNATURE_INSPECTION_ALTERNATES.txt": "b5d7101ea7f259d47d3c4a587218b042ab66720826d5669c98666693f06f59ac",
+    "COMMAND_RECORD.md": "bc18c5994de24b15f5b1bdfc6091fcf9a3ec9e53ea14932f665485a70d99d1f6",
+    "RETURN.md": "442148d74e1553c14c12eef98e3e3f135b8d06c0dc9b365a8c9fdd2d8a5ce16a"
+  }
+}

@@ -1,0 +1,1077 @@
+{
+  "artifact_version": "0.149.0",
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "experimental_api_requested": true,
+  "feature_count": 118,
+  "features": [
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "undo",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "shell_tool",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "view_image",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "secret_auth_storage",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "unified_exec",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "shell_zsh_fork",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "unified_exec_zsh_fork",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "shell_snapshot",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "deferred_executor",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "cwd_relative_turn_diffs",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "js_repl",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "executed_tool_call_metadata",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "code_mode",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "code_mode_buffered_exec",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "code_mode_host",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "code_mode_interrupt",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "code_mode_only",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "js_repl_tools_only",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "terminal_resize_reflow",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "web_search_request",
+      "stage": "deprecated"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "web_search_cached",
+      "stage": "deprecated"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "standalone_web_search",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "search_tool",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "codex_git_commit",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "runtime_metrics",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "sqlite",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "memories",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "external_agent_memory_import",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "local_thread_store_compression",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "background_paginated_rollout_migration",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "chronicle",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "apply_patch_freeform",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "apply_patch_streaming_events",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "apply_patch_preserve_line_endings",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "exec_permission_approvals",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "hooks",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "request_permissions_tool",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "use_linux_sandbox_bwrap",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "use_legacy_landlock",
+      "stage": "deprecated"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "request_rule",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "experimental_windows_sandbox",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "elevated_windows_sandbox",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "remote_models",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "enable_request_compression",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "unbounded_connection_retries",
+      "stage": "stable"
+    },
+    {
+      "announcement": "NEW: Network proxy can now be enabled from /experimental. Restart Codex after enabling it.",
+      "defaultEnabled": false,
+      "description": "Apply network proxy restrictions to sandboxed sessions that already have network access.",
+      "displayName": "Network proxy",
+      "enabled": false,
+      "name": "network_proxy",
+      "stage": "beta"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "respect_system_proxy",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "multi_agent",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "multi_agent_v2",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "multi_agent_mode",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "enable_fanout",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "apps",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "psp",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "enable_mcp_apps",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "mcp_2026_07_28",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "apps_mcp_path_override",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "tool_search",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "tool_search_always_defer_mcp_tools",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "deferred_tool_world_state",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "non_prefixed_mcp_tool_names",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "unavailable_dummy_tools",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "tool_suggest",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "recommended_plugins",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "plugins",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "executor_capability_discovery",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "plugin_hooks",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "in_app_browser",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "in_app_chat",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "in_app_dictation",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "in_app_updates",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "browser_use",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "browser_use_full_cdp_access",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "browser_use_external",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "computer_use",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "remote_plugin",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "plugin_sharing",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "external_migration",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "image_generation",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "image_resize_notice",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "unified_image_budget",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "resize_all_images",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "item_ids",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "concurrent_reasoning_summaries",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "skill_mcp_dependency_install",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "skill_search",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "skill_env_var_dependency_prompt",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "mentions_v2",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "steer",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "default_mode_request_user_input",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "send_async_message",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "terminal_visualization_instructions",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "guardian_approval",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "guardian_reuse_parent_compaction",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "guardian_enhanced_node_repl_transcripts",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "guardian_node_repl_transcript_images",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "guardianv2",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "goals",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "token_budget",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "rollout_budget",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "current_time_reminder",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "collaboration_modes",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "tool_call_mcp_elicitation",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "auth_elicitation",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "personality",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "artifact",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "fast_mode",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "realtime_conversation",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "remote_control",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "image_detail_original",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "tui_app_server",
+      "stage": "removed"
+    },
+    {
+      "announcement": "NEW: Prevent sleep while running is now available in /experimental.",
+      "defaultEnabled": false,
+      "description": "Keep your computer awake while Codex is running a thread.",
+      "displayName": "Prevent sleep while running",
+      "enabled": false,
+      "name": "prevent_idle_sleep",
+      "stage": "beta"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "workspace_owner_usage_nudge",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "responses_websockets",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "responses_websockets_v2",
+      "stage": "removed"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "remote_compaction_v2",
+      "stage": "stable"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "retain_client_developer_messages",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": false,
+      "description": null,
+      "displayName": null,
+      "enabled": false,
+      "name": "use_agent_identity",
+      "stage": "underDevelopment"
+    },
+    {
+      "announcement": null,
+      "defaultEnabled": true,
+      "description": null,
+      "displayName": null,
+      "enabled": true,
+      "name": "workspace_dependencies",
+      "stage": "stable"
+    }
+  ],
+  "pagination": {
+    "page_1_count": 100,
+    "page_1_next_cursor": "100",
+    "page_2_count": 18,
+    "page_2_next_cursor": null
+  },
+  "schema": "chirality-app-server-feature-inventory/v1"
+}

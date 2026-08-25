@@ -1,0 +1,19 @@
+{
+  "run_id": "ROOT_SUPPLY_PINNING_2026-08-24",
+  "basis": "5cb493a09bf336593d2ed7412cfdabdcbc4e09a1",
+  "branch": "codex/root-supply-resume2-2026-08-24",
+  "status": "AWAITING_OWNER_G2_ACCEPTANCE",
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "result": "PASS_WITH_DOCUMENTED_GAPS",
+  "nodes": {
+    "N1_SOURCE_CURRENTNESS": "COMPLETED_PASS",
+    "N2_PRIMARY_REACQUISITION": "COMPLETED_PASS_UNDER_R13_AMENDED_SIGNATURE_GATE",
+    "N2B_EQUIVALENCE": "COMPLETED_PASS_EQUIVALENT_2_OF_2",
+    "N3_R14_EMPIRICAL": "COMPLETED_PASS_WITH_ADMITTED_DENIED_EGRESS_AND_DOCUMENTED_GAPS",
+    "N4_CANDIDATE_ASSEMBLY": "COMPLETED_PASS_WITH_DOCUMENTED_GAPS"
+  },
+  "fresh_review_actionable_findings": 0,
+  "deterministic_correction_return": "COMPLETED_WITHOUT_VENDOR_EXECUTION",
+  "artifact_bytes_retained": false,
+  "pr_merge_authorized": false
+}
