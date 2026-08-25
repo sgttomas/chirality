@@ -1,0 +1,24 @@
+{
+  "schema": "chirality-help-human-work-graph/v1",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basis": "8884b143f3d8dbca49756e981e4e20299d55875d",
+  "nodes": [
+    {
+      "id": "N1_NOTICE_INGESTION",
+      "role": "AGENT_2_EPHEMERAL_GENERALIST",
+      "dependencies": [],
+      "write_targets": [
+        "execution/_Coordination/NOTICE_2026-08-24_APP_SCA-APP-008_GATE5_APPLIED_STATE.md",
+        "execution/_Coordination/AgentRuns/ROOT_NOTICE_INGESTION_2026-08-24/instances/N1_NOTICE_INGESTION/"
+      ],
+      "fan_in_gate": "EXACT_COPY_AND_NO_CONTRACT_DRIFT"
+    }
+  ],
+  "human_decision_points": [
+    "ROOT_APP_CONTRACT_DIVERGENCE",
+    "NOTICE_CONTENT_DISPOSITION",
+    "PR_MERGE"
+  ]
+}
