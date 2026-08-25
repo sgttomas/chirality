@@ -1,0 +1,3 @@
+{"method":"initialize","id":21,"params":{"clientInfo":{"name":"chirality_root_supply_probe","title":"Chirality Root Supply Probe","version":"0.0.0"},"capabilities":{"experimentalApi":false}}}
+{"method":"initialized"}
+{"method":"config/read","id":22,"params":{"includeLayers":true,"cwd":"/private/tmp/chirality-root-supply-r14-n3.NQGDlu/work"}}

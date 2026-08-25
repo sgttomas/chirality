@@ -1,0 +1,28 @@
+{
+  "instance_id": "N3_R14_EMPIRICAL",
+  "parent": "ROOT_SUPPLY_PINNING_2026-08-24",
+  "role": "AGENT_2_EPHEMERAL_GENERALIST",
+  "status": "PASS_WITH_ADMITTED_DENIED_EGRESS_AND_DOCUMENTED_GAPS",
+  "delegation": "FORBIDDEN",
+  "basis": "5cb493a09bf336593d2ed7412cfdabdcbc4e09a1",
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "dependency_return_sha256": "91a287ddb2cf84529f2d602e806a509af2580ff661600ab5233a447ca2150e87",
+  "return_path": "execution/_Coordination/AgentRuns/ROOT_SUPPLY_PINNING_2026-08-24/instances/N3_R14_EMPIRICAL/RETURN.md",
+  "return_sha256": "726d5946eac74501d72511b7e576d7fd0f3fa656e49b15c970345fd1f5181da8",
+  "command_record_sha256": "bd7ca806e51906e695a048170d571bb5350bae4bf92eda96f4612d20d497cef6",
+  "teardown_record_sha256": "51c54f1b223945194c7643ae0bd3b9f62a47a4b71ab48b02aba32481ba76aeeb",
+  "artifact_hash_manifest_sha256": "66453d9bfb62cb61edf10387ac11c76214209ab9d48e8907b0c39f49dd0a43a0",
+  "denied_destination_count": 3,
+  "completed_connections": 0,
+  "credential_prompts": 0,
+  "external_writes": 0,
+  "feature_count": 118,
+  "plugin_switch": "features.plugins",
+  "gaps": [
+    "GENERATED_JSON_SCHEMA_UNAVAILABLE_UNDER_BOUNDS",
+    "GENERATED_TYPESCRIPT_TYPES_UNAVAILABLE_UNDER_BOUNDS",
+    "SCHEMA_DERIVED_EXHAUSTIVE_METHOD_INVENTORY_UNAVAILABLE_UNDER_BOUNDS"
+  ],
+  "n4_gate": "RELEASED_WITH_DOCUMENTED_GAPS",
+  "quarantine_teardown": "VERIFIED_ABSENT"
+}

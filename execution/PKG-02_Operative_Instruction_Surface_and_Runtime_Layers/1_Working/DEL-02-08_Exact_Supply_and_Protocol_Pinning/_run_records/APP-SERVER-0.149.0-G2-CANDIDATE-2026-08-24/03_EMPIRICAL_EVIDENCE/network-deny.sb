@@ -1,0 +1,7 @@
+(version 1)
+(allow default)
+(deny network*)
+(deny file-write*)
+(allow file-write* (subpath "/private/tmp/chirality-root-supply-r14-n3.NQGDlu"))
+(deny file-read* (subpath "/Users/ryan"))
+(deny mach-lookup (global-name "com.apple.securityd"))

@@ -1,0 +1,87 @@
+{
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "run_count": 10,
+  "runs": [
+    {
+      "executable": "codex-app-server",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "version",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "vendor_exit": 0
+    },
+    {
+      "executable": "codex-app-server",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "help",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "vendor_exit": 0
+    },
+    {
+      "executable": "codex-code-mode-host",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "codehost-help",
+      "sha256": "8f9f6969cd5e69540482d58791f72e4e9b9888e576ae3ad446c422a058b70128",
+      "vendor_exit": 0
+    },
+    {
+      "executable": "codex-app-server",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "stable",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "vendor_exit": 0
+    },
+    {
+      "executable": "codex-app-server",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "plugins-off",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "vendor_exit": 0
+    },
+    {
+      "executable": "codex-app-server",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "precedence",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "vendor_exit": 0
+    },
+    {
+      "executable": "codex-app-server",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "experimental",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "vendor_exit": 0
+    },
+    {
+      "executable": "codex-app-server",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "feature-page2",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "vendor_exit": 0
+    },
+    {
+      "executable": "codex-app-server",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "schema-attempt",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "vendor_exit": 2
+    },
+    {
+      "executable": "codex-app-server",
+      "preflight": "DENIED_OPERATION_NOT_PERMITTED",
+      "profile_sha256": "17a579161aa13d50b1f5f735c48408ce2ae45000a6fd1a26a4a0d58a045676ab",
+      "run": "types-attempt",
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "vendor_exit": 2
+    }
+  ],
+  "schema": "chirality-contained-vendor-run-gates/v1"
+}
