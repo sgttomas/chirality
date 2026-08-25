@@ -7041,15 +7041,15 @@ Post-image, followed by one LF; row SHA-256
   assembled and reviewed the G2 candidate. Durable return identities are N1
   `3b37a25b50254ecedce1871e59515ce53c8de7e42f24cc9dca97e71853cfae20`,
   N2 `8a1691fc08df01cd98567aff21a81f687f3eb9b87943718ce233d5a54c9b6ecc`,
-  N2b `91a287ddb2cf84529f2d602e806a509af2580ff661600ab5233a447ca2150e87`,
+  N2b `b346251b87db3d91c272923b7b174ff0fab9c7c4ba226cf6de41b0fffe2b9fe2`,
   deterministically corrected N3
   `181d594ad3b973bd5ac0defe6f6c91c59bf62c2fce4366f233247c77ca682743`,
   and corrected N4
-  `2294086fa1933f93dd7c5bbe92460330bdcfdc0f5a1d85530f0333c6b4f922dd`.
+  `e60e7858a7995b29a486a14c9d883942d62cee3eed090bd7bc8c83a72ea66c2f`.
   Run validation SHA-256 is
-  `e983e7af95e2854b5b48baff487ab1a88d62e3936ee67fae309134db14b93b8c`;
+  `30c30105ddd08fb37965a4c41fa483c1a05892e36f606d7b42666b3684cee9c6`;
   handoff SHA-256 is
-  `64bbb918f8bfb0e88140e3e9d1d7638c030499449685801fed89e9cb638f9f4b`.
+  `a4397137887947859ec0a85274a7806a6c04b1a3edafab29d6f05ff0837b34ba`.
 
 #### Exact supply and equivalence
 
@@ -7133,7 +7133,7 @@ Post-image, followed by one LF; row SHA-256
   `fd6bd4e4dd7c2a0dc477e567becd5d2d092514db36dfedaf2fa2a529798d9f47`;
   G2 sheet `cec83abc2fc39358037600c883dd7b55ad09b154140d68a4d86346c309cda5ae`;
   evidence manifest
-  `f255f3efd38aaa3043fff8c83f53bb193b58c70b540b4b36c9454eb48c11bb38`.
+  `0808752ae60270e483daa86774f896006da35f4d950804b1a3982e90c6ccdbe6`.
 - The candidate carries the R13-B G5 finding: the plan fails G5 on the invalid
   published signature and requires a corrected artifact or later owner ruling.
   It also carries the full destination inventory and every evidence gap.
@@ -7141,12 +7141,13 @@ Post-image, followed by one LF; row SHA-256
   vendor execution: explicit `plugins=false` data had initially been mixed
   into the baseline structured feature row. Raw traces prove baseline
   `true/true` and override `false/true`; corrected summaries and all dependent
-  hashes now agree. A suspected `.zst` archive/payload digest issue was a
-  review false positive; inspection showed both values already occupied their
-  correct slots, so no no-op edit was made. N4 restarted fresh review and
-  closed `PASS_WITH_DOCUMENTED_GAPS`, zero actionable findings. The later
-  deterministic correction review is SHA-256
-  `ae8ade8f2c5866ef669861349492be82617577e54406dc731c8f8aed8c029115`.
+  hashes now agree. The `.zst` archive row in `EQUIVALENCE_INVENTORY.md`
+  carried the decompressed payload digest in the archive slot; it was
+  corrected to `c4c31ecd…73677`, and the dependent N2b/N4 hash chain was
+  regenerated without download, vendor execution, or network probe. N4
+  restarted fresh review and closed `PASS_WITH_DOCUMENTED_GAPS`, zero
+  actionable findings. The corrected review is SHA-256
+  `80538b87008cb36db1664384f519fdeb22864bca6a1f2f56b4bc4c047ade1a67`.
 - Final checks: Root G0-G3 `PASS`; candidate whitespace `PASS`; agent
   instructions 34 files, zero errors/warnings; instruction entrypoints
   `PASS`; CI-form G4 `PASS` with 48 manifests, 122 changed paths, zero
@@ -7154,7 +7155,8 @@ Post-image, followed by one LF; row SHA-256
   Management `PASS` with 19 rows; focused practitioner harness `56 passed`;
   candidate JSON, both evidence hash chains, 53 gzip files, and
   `git diff --check` all `PASS`. The deterministic correction audit passed 25
-  checks with zero failures.
+  checks with zero failures. The subsequent digest-correction semantic audit
+  passed 29/29 checks with zero failures.
 
 #### Deterministic evidence correction return — 2026-08-25
 
@@ -7191,6 +7193,56 @@ Post-image, followed by one LF; row SHA-256
   `f255f3efd38aaa3043fff8c83f53bb193b58c70b540b4b36c9454eb48c11bb38`;
   review hash table
   `43a3eab1a55327a44147bc53a295d643cca902e1dadb56b941a998ce5086396c`.
+
+#### Deterministic `.zst` inventory correction return — 2026-08-25
+
+- **Owner direction:** “PR #673 head
+  `e54020476f14f50080baa19966e1cdca29fed3e5` is still held; do not merge.
+  Preserve the completed version-run gate-provenance correction and
+  `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS` exactly. No download,
+  vendor execution, network probe, or authority expansion is authorized. The
+  original reported defect remains uncorrected at
+  `02B_EQUIVALENCE/EQUIVALENCE_INVENTORY.md` line 14. Replace exactly
+  `c4c31ecd562a834b01c057e9ecc2213b969a775ba76c424d812714a2911708de2`
+  with
+  `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`.
+  Then regenerate every dependent N2b return/status, evidence manifest,
+  review/hash table, N4 return/status, validation, handoff if affected, and
+  Receipt-129 identity/narrative. Remove every claim that this digest defect
+  was a false positive. Run a fresh semantic audit plus hosted CI, push an
+  ordinary follow-up commit to the same branch, and return without merging.”
+- **Exact repair:** the single archive-digest cell changed from the
+  decompressed payload digest `b1d1a8c3…de2` to the official `.zst` archive
+  digest `c4c31ecd…73677`. `EQUIVALENCE_INVENTORY.md` is now SHA-256
+  `11ee3b41fd9dda8f4a33a7c6a77a6bb86c14e24f16781795b743110f336b4005`.
+  This was an actual deterministic record defect, not a false positive.
+- **Regenerated identities:** N2b return
+  `b346251b87db3d91c272923b7b174ff0fab9c7c4ba226cf6de41b0fffe2b9fe2`;
+  N2b status
+  `bdb2654a3400e1fd5b366973c540b948b0b393ed442f3a052cd51c04eccad862`;
+  evidence manifest
+  `0808752ae60270e483daa86774f896006da35f4d950804b1a3982e90c6ccdbe6`;
+  review hash table
+  `ab69a0e6054026425a0115ae039fe881cea03d7ae39c3d153620c080814bcf47`;
+  review
+  `80538b87008cb36db1664384f519fdeb22864bca6a1f2f56b4bc4c047ade1a67`;
+  N4 return
+  `e60e7858a7995b29a486a14c9d883942d62cee3eed090bd7bc8c83a72ea66c2f`;
+  N4 status
+  `197e9a7b8ad0562f0e01acb3f0b84a8d3ae775ca0d6098d494be3b893a459954`.
+- **Preservation and authority:** the execution-gate inventory, N3 return,
+  all committed raw evidence, the nine-complete-plus-one-unavailable gate
+  shape, and `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS` remain
+  byte-identical to held head `e54020476`. No artifact download, vendor
+  execution, network probe, authority expansion, rebase, force-push, or merge
+  occurred.
+- **Fresh audit and hosted CI:** semantic audit `PASS` (29/29 checks, zero
+  failures); validation
+  `30c30105ddd08fb37965a4c41fa483c1a05892e36f606d7b42666b3684cee9c6`;
+  handoff
+  `a4397137887947859ec0a85274a7806a6c04b1a3edafab29d6f05ff0837b34ba`.
+  Hosted CI is a post-push gate and is reported on return; it is not inferred
+  into this pre-push receipt.
 
 #### Handoff
 

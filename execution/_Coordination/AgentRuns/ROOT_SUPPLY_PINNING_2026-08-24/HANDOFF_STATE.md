@@ -16,6 +16,11 @@ zero actionable findings.
 - The three official macOS arm64 release assets are exact and contain the same
   App Server payload, SHA-256
   `b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2`.
+- The `.zst` archive inventory slot is corrected to the official archive
+  SHA-256 `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`;
+  the prior row had incorrectly repeated the decompressed payload digest. The
+  correction and dependent hash regeneration used no download, vendor
+  execution, or network probe.
 - The R13-admitted vendor-signature defect is reproduced with no additional
   supply disagreement and remains a named G5 open finding.
 - Exact 0.149.0 configuration, precedence, `multi_agent_v2`, and all 118

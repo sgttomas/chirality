@@ -11,7 +11,7 @@
 | Official `openai/codex@rust-v0.149.0` asset | Bytes | SHA-256 | Result |
 | --- | ---: | --- | --- |
 | `codex-app-server-aarch64-apple-darwin.tar.gz` | `71843308` | `35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032` | primary retained bytes independently reverified |
-| `codex-app-server-aarch64-apple-darwin.zst` | `50359498` | `c4c31ecd562a834b01c057e9ecc2213b969a775ba76c424d812714a2911708de2` | downloaded and exact |
+| `codex-app-server-aarch64-apple-darwin.zst` | `50359498` | `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677` | downloaded and exact |
 | `codex-app-server-package-aarch64-apple-darwin.tar.gz` | `93775517` | `aaa3751edfab80b887dbd1ca709c87a16495238e1f1a86cbcbbbb5a34e2b31a2` | downloaded and exact |
 
 The two R13 alternate assets were downloaded only from their canonical

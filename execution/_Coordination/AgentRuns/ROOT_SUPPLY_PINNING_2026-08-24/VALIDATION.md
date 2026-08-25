@@ -16,15 +16,16 @@ Candidate state: `CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE`
 - N4 fresh review: zero actionable findings
 - Parent byte and claim review: `PASS`
 
-N4's first review pass reported a possible `.zst` archive/payload digest mix-up.
-Parent and N2b reinspection showed the current N2b evidence was already correct:
-the archive digest is `c4c31ecd…73677` and the decompressed payload digest is
-`b1d1a8c3…de2`. No no-op repair was made. The same review found a real N3
-structured-summary calibration defect: the explicit `plugins=false` result had
-been mixed into the baseline feature row. N3 repaired only its summaries and
-hash manifest without rerunning vendor code. Raw baseline and override traces
-now reconcile as `true/true` and `false/true`, respectively. N4 then restarted
-fresh review and closed with zero actionable findings.
+N4's first review pass correctly reported a `.zst` archive/payload digest
+mix-up in `EQUIVALENCE_INVENTORY.md`: the archive row carried the decompressed
+payload digest `b1d1a8c3…de2`. The row is corrected to the official archive
+digest `c4c31ecd…73677`; N2b and N4 dependent identities were regenerated.
+No download, vendor execution, or network probe was used. The same review
+found an N3 structured-summary calibration defect: the explicit
+`plugins=false` result had been mixed into the baseline feature row. N3
+repaired only its summaries and hash manifest without rerunning vendor code.
+Raw baseline and override traces reconcile as `true/true` and `false/true`,
+respectively. Fresh N4 review closes with zero actionable findings.
 
 ## Deterministic correction return — PR #673
 
@@ -76,6 +77,10 @@ executable was invoked.
   raw-tree immutability, exact 9+1 gate shape, version evidence-gap
   calibration, raw-to-structured feature parity, JSON parse, and all three
   hash manifests.
+- Fresh digest-correction semantic audit: `PASS` (29/29 checks; zero
+  failures), including exact archive/payload
+  slot separation, the full N2b/N4 hash chain, preserved version-run gate
+  provenance, and absence of the superseded digest false-positive claim.
 - `git diff --check`: `PASS`.
 
 No instruction surface, pin, lifecycle, Task Management register, project,

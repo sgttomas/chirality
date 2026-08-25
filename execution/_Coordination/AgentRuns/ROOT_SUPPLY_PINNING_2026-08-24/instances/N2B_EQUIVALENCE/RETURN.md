@@ -28,12 +28,21 @@
 
 | Output | SHA-256 |
 | --- | --- |
-| `02B_EQUIVALENCE/EQUIVALENCE_INVENTORY.md` | `53b15d42c2c6d2c868d867c6d3211f8d9dac26da76c091fb75beeebc26e5023f` |
+| `02B_EQUIVALENCE/EQUIVALENCE_INVENTORY.md` | `11ee3b41fd9dda8f4a33a7c6a77a6bb86c14e24f16781795b743110f336b4005` |
 | `02B_EQUIVALENCE/EQUIVALENCE_RESULTS.json` | `283e92d066028537157bdd5ac179fe505c10460647164048f358f664317111eb` |
 | `02B_EQUIVALENCE/EXECUTABLE_HASH_FREEZE.json` | `ef40fa3be9a15e521bc9b30ba3b82c41f2ebe71d9f8ca6cf45a0cfa5308da5ec` |
 | `02B_EQUIVALENCE/PACKAGE_ANCILLARY_INVENTORY.md` | `3f896705cb922966c974d57f25a0f496c8c1e95921ec4c86c78f6bbfe5e30ba2` |
 | `02B_EQUIVALENCE/SIGNATURE_INSPECTION_ALTERNATES.txt` | `b5d7101ea7f259d47d3c4a587218b042ab66720826d5669c98666693f06f59ac` |
 | `instances/N2B_EQUIVALENCE/COMMAND_RECORD.md` | `bc18c5994de24b15f5b1bdfc6091fcf9a3ec9e53ea14932f665485a70d99d1f6` |
+
+## Deterministic evidence correction
+
+The `.zst` archive row in `EQUIVALENCE_INVENTORY.md` previously carried the
+decompressed payload digest in the archive-digest slot. It is corrected to the
+official, already-recorded archive SHA-256
+`c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`.
+This record-only correction used no download, vendor execution, or network
+probe and did not change the underlying equivalence result.
 
 No G2 acceptance, pin amendment, installation, cutover, implementation,
 publication, or reliance claim is made. The invalid vendor signature remains

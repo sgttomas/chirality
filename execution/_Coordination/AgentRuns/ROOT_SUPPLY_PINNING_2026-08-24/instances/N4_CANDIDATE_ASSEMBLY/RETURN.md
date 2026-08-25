@@ -17,6 +17,11 @@ notice obligations, exact-pin readback and `multi_agent_v2` precedence, all
 all three sandbox-denied destinations, OUT-002 policy handoff, current-doc
 drift, and every N3 evidence gap.
 
+The N2b `.zst` inventory row now carries the official archive digest
+`c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`
+rather than the decompressed payload digest. All dependent evidence and review
+hashes were regenerated without download, vendor execution, or network probe.
+
 Generated JSON schema, generated TypeScript types, schema-derived exhaustive
 method inventories, and the version-run per-run gate record remain
 `UNAVAILABLE_UNDER_BOUNDS`. Nine other runs have complete attributable gate
@@ -40,9 +45,9 @@ TM-ROOT-106/122 and all ten existing DEL-02-06 held bindings remain unchanged.
 | `SCHEMA_TYPES_METHOD_INDEX.md` | `d5620ffde7ff42ee824648dfee8c2e02d5f92d370786cf97a692d1bab75ec1cf` |
 | `OUT-002_ENDPOINT_INVENTORY.md` | `fd6bd4e4dd7c2a0dc477e567becd5d2d092514db36dfedaf2fa2a529798d9f47` |
 | `G2_ACCEPTANCE_SHEET.md` | `cec83abc2fc39358037600c883dd7b55ad09b154140d68a4d86346c309cda5ae` |
-| `EVIDENCE_HASH_MANIFEST.csv` | `f255f3efd38aaa3043fff8c83f53bb193b58c70b540b4b36c9454eb48c11bb38` |
-| `04_REVIEW/HASH_VERIFICATION.csv` | `43a3eab1a55327a44147bc53a295d643cca902e1dadb56b941a998ce5086396c` |
-| `04_REVIEW/REVIEW.md` | `ae8ade8f2c5866ef669861349492be82617577e54406dc731c8f8aed8c029115` |
+| `EVIDENCE_HASH_MANIFEST.csv` | `0808752ae60270e483daa86774f896006da35f4d950804b1a3982e90c6ccdbe6` |
+| `04_REVIEW/HASH_VERIFICATION.csv` | `ab69a0e6054026425a0115ae039fe881cea03d7ae39c3d153620c080814bcf47` |
+| `04_REVIEW/REVIEW.md` | `80538b87008cb36db1664384f519fdeb22864bca6a1f2f56b4bc4c047ade1a67` |
 
 ## Validation
 

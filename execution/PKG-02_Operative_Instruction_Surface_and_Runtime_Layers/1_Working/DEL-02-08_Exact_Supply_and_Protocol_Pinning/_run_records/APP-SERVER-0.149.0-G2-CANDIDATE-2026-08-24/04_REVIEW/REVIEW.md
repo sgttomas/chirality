@@ -54,10 +54,13 @@ write scope.
 3. **Hold boundary.** Draft prose said existing DEL-02-06 holds were unchanged
    without the accepted count. N4 now states explicitly that all ten bindings
    remain held and unchanged.
-4. **Packaging-versus-payload calibration.** The `.zst` archive digest
-   `c4c31ecd…` was independently distinguished from the decompressed payload
-   digest `b1d1a8c3…`; the evidence rows and consolidated manifest carry both in
-   their correct slots.
+4. **Packaging-versus-payload digest correction.** The `.zst` row in
+   `EQUIVALENCE_INVENTORY.md` incorrectly carried the decompressed payload
+   digest `b1d1a8c3…de2` in the archive slot. The row is corrected to the
+   official archive digest `c4c31ecd…73677`, and the dependent N2b and N4 hash
+   chains were regenerated without download, vendor execution, or network
+   probe. `EQUIVALENCE_RESULTS.json`, official release metadata, and the
+   consolidated supply manifest independently agree with the corrected value.
 5. **Per-run gate calibration on owner return.** Deterministic reinspection of
    the committed raw evidence found nine per-run gate-hash records and nine
    attributable denial-preflight records, not ten. The `version` preflight
@@ -83,8 +86,8 @@ silently narrowed or misstated by N4.
 
 ## Final conclusion
 
-After the deterministic correction return, the candidate is internally
-consistent, hash-pinned, traceable to the exact 0.149.0 supply bytes and the
-calibrated bounded empirical evidence, and explicit about its gaps and
-negative grants. Fresh review returns `PASS_WITH_DOCUMENTED_GAPS` with zero
-actionable findings. G2 acceptance remains the owner's separate act.
+After the deterministic corrections, the candidate is internally consistent,
+hash-pinned, traceable to the exact 0.149.0 supply bytes and the calibrated
+bounded empirical evidence, and explicit about its gaps and negative grants.
+Fresh review returns `PASS_WITH_DOCUMENTED_GAPS` with zero actionable
+findings. G2 acceptance remains the owner's separate act.
