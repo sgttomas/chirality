@@ -17,11 +17,12 @@ Candidate state: `CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE`
 - Parent byte and claim review: `PASS`
 
 N4's first review pass correctly reported a `.zst` archive/payload digest
-mix-up in `EQUIVALENCE_INVENTORY.md`: the archive row carried the decompressed
-payload digest `b1d1a8c3…de2`. The row is corrected to the official archive
-digest `c4c31ecd…73677`; N2b and N4 dependent identities were regenerated.
-No download, vendor execution, or network probe was used. The same review
-found an N3 structured-summary calibration defect: the explicit
+defect in `EQUIVALENCE_INVENTORY.md`. The prior row carried a malformed
+65-hex-character splice sharing material with the archive and payload
+identities; it matched neither identity. The row is corrected to the official
+64-character archive digest `c4c31ecd…73677`; N2b and N4 dependent identities
+were regenerated. No download, vendor execution, or network probe was used.
+The same review found an N3 structured-summary calibration defect: the explicit
 `plugins=false` result had been mixed into the baseline feature row. N3
 repaired only its summaries and hash manifest without rerunning vendor code.
 Raw baseline and override traces reconcile as `true/true` and `false/true`,
@@ -77,10 +78,11 @@ executable was invoked.
   raw-tree immutability, exact 9+1 gate shape, version evidence-gap
   calibration, raw-to-structured feature parity, JSON parse, and all three
   hash manifests.
-- Fresh digest-correction semantic audit: `PASS` (29/29 checks; zero
-  failures), including exact archive/payload
-  slot separation, the full N2b/N4 hash chain, preserved version-run gate
-  provenance, and absence of the superseded digest false-positive claim.
+- Fresh digest-correction semantic audit: `PASS` (38/38 checks; zero
+  failures), explicitly proving the prior
+  value's length and non-equality to both valid identities, current inventory
+  equality to the official archive digest, the full N2b/N4 hash chain,
+  preserved version-run gate provenance, and semantic-claim correction.
 - `git diff --check`: `PASS`.
 
 No instruction surface, pin, lifecycle, Task Management register, project,

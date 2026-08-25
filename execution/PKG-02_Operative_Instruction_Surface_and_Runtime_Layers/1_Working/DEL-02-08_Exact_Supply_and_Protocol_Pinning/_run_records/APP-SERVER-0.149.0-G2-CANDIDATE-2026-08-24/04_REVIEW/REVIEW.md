@@ -54,13 +54,14 @@ write scope.
 3. **Hold boundary.** Draft prose said existing DEL-02-06 holds were unchanged
    without the accepted count. N4 now states explicitly that all ten bindings
    remain held and unchanged.
-4. **Packaging-versus-payload digest correction.** The `.zst` row in
-   `EQUIVALENCE_INVENTORY.md` incorrectly carried the decompressed payload
-   digest `b1d1a8c3…de2` in the archive slot. The row is corrected to the
-   official archive digest `c4c31ecd…73677`, and the dependent N2b and N4 hash
-   chains were regenerated without download, vendor execution, or network
-   probe. `EQUIVALENCE_RESULTS.json`, official release metadata, and the
-   consolidated supply manifest independently agree with the corrected value.
+4. **Packaging-versus-payload digest correction.** The prior row carried a
+   malformed 65-hex-character splice sharing material with the archive and
+   payload identities; it matched neither identity. The row is corrected to
+   the official 64-character archive digest `c4c31ecd…73677`, and the
+   dependent N2b and N4 hash chains were regenerated without download, vendor
+   execution, or network probe. `EQUIVALENCE_RESULTS.json`, official release
+   metadata, and the consolidated supply manifest independently agree with the
+   corrected value.
 5. **Per-run gate calibration on owner return.** Deterministic reinspection of
    the committed raw evidence found nine per-run gate-hash records and nine
    attributable denial-preflight records, not ten. The `version` preflight

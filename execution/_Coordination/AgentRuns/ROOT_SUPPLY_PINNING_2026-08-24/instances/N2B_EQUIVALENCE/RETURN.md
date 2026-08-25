@@ -37,9 +37,10 @@
 
 ## Deterministic evidence correction
 
-The `.zst` archive row in `EQUIVALENCE_INVENTORY.md` previously carried the
-decompressed payload digest in the archive-digest slot. It is corrected to the
-official, already-recorded archive SHA-256
+The prior `.zst` archive row in `EQUIVALENCE_INVENTORY.md` carried a malformed
+65-hex-character splice sharing material with the archive and payload
+identities; it matched neither identity. It is corrected to the official,
+already-recorded 64-character archive SHA-256
 `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`.
 This record-only correction used no download, vendor execution, or network
 probe and did not change the underlying equivalence result.

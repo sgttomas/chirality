@@ -7041,15 +7041,15 @@ Post-image, followed by one LF; row SHA-256
   assembled and reviewed the G2 candidate. Durable return identities are N1
   `3b37a25b50254ecedce1871e59515ce53c8de7e42f24cc9dca97e71853cfae20`,
   N2 `8a1691fc08df01cd98567aff21a81f687f3eb9b87943718ce233d5a54c9b6ecc`,
-  N2b `b346251b87db3d91c272923b7b174ff0fab9c7c4ba226cf6de41b0fffe2b9fe2`,
+  N2b `442148d74e1553c14c12eef98e3e3f135b8d06c0dc9b365a8c9fdd2d8a5ce16a`,
   deterministically corrected N3
   `181d594ad3b973bd5ac0defe6f6c91c59bf62c2fce4366f233247c77ca682743`,
   and corrected N4
-  `e60e7858a7995b29a486a14c9d883942d62cee3eed090bd7bc8c83a72ea66c2f`.
+  `3f4e1e10856c94f2cc2b7f6a4ff7e81fb9fb12d87c8bdec25e4f39e4548bbd96`.
   Run validation SHA-256 is
-  `30c30105ddd08fb37965a4c41fa483c1a05892e36f606d7b42666b3684cee9c6`;
+  `ece45eef5d6ee7bec10f628ab2d9e6678e57f93c866bd24e8548a5e5bc7cb1db`;
   handoff SHA-256 is
-  `a4397137887947859ec0a85274a7806a6c04b1a3edafab29d6f05ff0837b34ba`.
+  `f470116910ae7432d0f0b634d206bca4edeb08699dbc9ec0b622bb413e6f6fd4`.
 
 #### Exact supply and equivalence
 
@@ -7133,7 +7133,7 @@ Post-image, followed by one LF; row SHA-256
   `fd6bd4e4dd7c2a0dc477e567becd5d2d092514db36dfedaf2fa2a529798d9f47`;
   G2 sheet `cec83abc2fc39358037600c883dd7b55ad09b154140d68a4d86346c309cda5ae`;
   evidence manifest
-  `0808752ae60270e483daa86774f896006da35f4d950804b1a3982e90c6ccdbe6`.
+  `acbc96a61b35f6f5812ece08895586967ac571c5367753035d7def7d46a1ddfb`.
 - The candidate carries the R13-B G5 finding: the plan fails G5 on the invalid
   published signature and requires a corrected artifact or later owner ruling.
   It also carries the full destination inventory and every evidence gap.
@@ -7141,13 +7141,15 @@ Post-image, followed by one LF; row SHA-256
   vendor execution: explicit `plugins=false` data had initially been mixed
   into the baseline structured feature row. Raw traces prove baseline
   `true/true` and override `false/true`; corrected summaries and all dependent
-  hashes now agree. The `.zst` archive row in `EQUIVALENCE_INVENTORY.md`
-  carried the decompressed payload digest in the archive slot; it was
-  corrected to `c4c31ecd…73677`, and the dependent N2b/N4 hash chain was
-  regenerated without download, vendor execution, or network probe. N4
+  hashes now agree. The prior `.zst` archive row in
+  `EQUIVALENCE_INVENTORY.md` carried a malformed 65-hex-character splice
+  sharing material with the archive and payload identities; it matched
+  neither identity. It was corrected to `c4c31ecd…73677`, and the dependent
+  N2b/N4 hash chain was regenerated without download, vendor execution, or
+  network probe. N4
   restarted fresh review and closed `PASS_WITH_DOCUMENTED_GAPS`, zero
   actionable findings. The corrected review is SHA-256
-  `80538b87008cb36db1664384f519fdeb22864bca6a1f2f56b4bc4c047ade1a67`.
+  `b3bb1f1d2e496c6ed484943033c87fdc9737379cc6c37aac1c571d286e897de9`.
 - Final checks: Root G0-G3 `PASS`; candidate whitespace `PASS`; agent
   instructions 34 files, zero errors/warnings; instruction entrypoints
   `PASS`; CI-form G4 `PASS` with 48 manifests, 122 changed paths, zero
@@ -7156,7 +7158,8 @@ Post-image, followed by one LF; row SHA-256
   candidate JSON, both evidence hash chains, 53 gzip files, and
   `git diff --check` all `PASS`. The deterministic correction audit passed 25
   checks with zero failures. The subsequent digest-correction semantic audit
-  passed 29/29 checks with zero failures.
+  passed 38/38 checks with zero failures, explicitly proving the malformed
+  value's length and non-equality to both valid identities.
 
 #### Deterministic evidence correction return — 2026-08-25
 
@@ -7211,9 +7214,10 @@ Post-image, followed by one LF; row SHA-256
   Receipt-129 identity/narrative. Remove every claim that this digest defect
   was a false positive. Run a fresh semantic audit plus hosted CI, push an
   ordinary follow-up commit to the same branch, and return without merging.”
-- **Exact repair:** the single archive-digest cell changed from the
-  decompressed payload digest `b1d1a8c3…de2` to the official `.zst` archive
-  digest `c4c31ecd…73677`. `EQUIVALENCE_INVENTORY.md` is now SHA-256
+- **Exact repair:** the single archive-digest cell changed from a malformed
+  65-hex-character splice sharing material with the archive and payload
+  identities, but matching neither, to the official 64-character `.zst`
+  archive digest `c4c31ecd…73677`. `EQUIVALENCE_INVENTORY.md` is now SHA-256
   `11ee3b41fd9dda8f4a33a7c6a77a6bb86c14e24f16781795b743110f336b4005`.
   This was an actual deterministic record defect, not a false positive.
 - **Regenerated identities:** N2b return
@@ -7241,8 +7245,55 @@ Post-image, followed by one LF; row SHA-256
   `30c30105ddd08fb37965a4c41fa483c1a05892e36f606d7b42666b3684cee9c6`;
   handoff
   `a4397137887947859ec0a85274a7806a6c04b1a3edafab29d6f05ff0837b34ba`.
-  Hosted CI is a post-push gate and is reported on return; it is not inferred
-  into this pre-push receipt.
+  Hosted `harness` passed in 1m11s at follow-up head `da3ca05e1`.
+
+#### Malformed-splice semantic correction return — 2026-08-25
+
+- **Owner direction:** PR #673 head `da3ca05e1f863aa6e00f1a9ed6763bed54471c46`
+  remains held and must not merge. Preserve the corrected archive digest, the
+  completed version-run provenance correction, and
+  `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS` exactly. Correct every
+  assertion equating the prior 65-character token with the payload digest;
+  regenerate the dependent identity chain; run a fresh semantic audit and
+  hosted CI; push one ordinary follow-up commit without rebase, force-push,
+  merge, vendor/network activity, or authority expansion.
+- **Semantic correction:** the prior value
+  `c4c31ecd562a834b01c057e9ecc2213b969a775ba76c424d812714a2911708de2`
+  is 65 hexadecimal characters. It equals neither the official archive digest
+  `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`
+  nor the decompressed payload digest
+  `b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2`.
+  Every affected passage now identifies it as a malformed splice sharing
+  material with both identities while matching neither.
+- **Required proofs:** old value length `65`; old value ≠ archive digest; old
+  value ≠ payload digest; current inventory value = official archive digest.
+  Fresh semantic audit: `PASS` (38/38 checks, zero failures).
+- **Final regenerated identities:** corrected inventory remains
+  `11ee3b41fd9dda8f4a33a7c6a77a6bb86c14e24f16781795b743110f336b4005`;
+  N2b return
+  `442148d74e1553c14c12eef98e3e3f135b8d06c0dc9b365a8c9fdd2d8a5ce16a`;
+  N2b status
+  `d1e876515de0c6e39607ea9e9b4f226046868d9eabb7f0b0c4fb962e9502b585`;
+  evidence manifest
+  `acbc96a61b35f6f5812ece08895586967ac571c5367753035d7def7d46a1ddfb`;
+  review hash table
+  `a3409fc41188875df0f0df92cdc43b5ead77df474da77a3b091381ad850d3960`;
+  review
+  `b3bb1f1d2e496c6ed484943033c87fdc9737379cc6c37aac1c571d286e897de9`;
+  N4 return
+  `3f4e1e10856c94f2cc2b7f6a4ff7e81fb9fb12d87c8bdec25e4f39e4548bbd96`;
+  N4 status
+  `f438a3eb79fc7d7bb15589b5b8c41b57d7994ea1f45e7a8be2a42713f29cadc0`;
+  validation
+  `ece45eef5d6ee7bec10f628ab2d9e6678e57f93c866bd24e8548a5e5bc7cb1db`;
+  handoff
+  `f470116910ae7432d0f0b634d206bca4edeb08699dbc9ec0b622bb413e6f6fd4`.
+- **Preservation:** `EQUIVALENCE_INVENTORY.md`, the execution-gate inventory,
+  N3 return/status, and every raw evidence byte remain identical to held head
+  `da3ca05e1`; the nine-complete-plus-one-unavailable gate shape and
+  `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS` are unchanged. No
+  prohibited action occurred. Hosted CI is reported after push rather than
+  inferred into this pre-push receipt.
 
 #### Handoff
 

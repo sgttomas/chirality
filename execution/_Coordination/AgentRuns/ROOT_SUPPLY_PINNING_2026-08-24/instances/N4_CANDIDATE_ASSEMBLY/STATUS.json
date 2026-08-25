@@ -10,7 +10,7 @@
   "dependency_return_sha256": "181d594ad3b973bd5ac0defe6f6c91c59bf62c2fce4366f233247c77ca682743",
   "return": "RETURN.md",
   "review": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/04_REVIEW/REVIEW.md",
-  "review_sha256": "80538b87008cb36db1664384f519fdeb22864bca6a1f2f56b4bc4c047ade1a67",
+  "review_sha256": "b3bb1f1d2e496c6ed484943033c87fdc9737379cc6c37aac1c571d286e897de9",
   "actionable_findings": 0,
   "gaps": [
     "GENERATED_JSON_SCHEMA_UNAVAILABLE_UNDER_BOUNDS",
