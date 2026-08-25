@@ -7304,3 +7304,116 @@ redistribution, reliance, App adoption, endpoint-policy adoption, or blocker
 or hold lift. TM-ROOT-106/122 remain G1 blockers, all ten existing DEL-02-06
 bindings remain held, and every later act remains separately governed. The
 branch is ready for the human PR merge gate; this run does not merge.
+
+### Receipt 130 — 2026-08-25 — R15 App Server 0.149.0 G2 acceptance transcription
+
+- **Selection authority:** R15-A, materialized at
+  `plans/steers/chirality_app_v3_root_ruling_record_r15_2026-08-25.md`,
+  recomputed SHA-256
+  `a8463a7f0392978325e8d25558332e72868271e9c4d99ac26c7425bb3a448301`,
+  and its full owner-carried steer at
+  `plans/steers/chirality_app_v3_g2_acceptance_transcription_steer_root_2026-08-25.md`,
+  recomputed SHA-256
+  `a0d14e05b7749c06605bdfce5d978058b4bea999569f94d0a918a5f2bad6eb76`.
+- **Basis gate:** fresh branch `codex/root-g2-acceptance-2026-08-25` from
+  exact `origin/main@baa29d22fa034784cda221b2929061213e83ec91`;
+  parents `5cb493a09bf336593d2ed7412cfdabdcbc4e09a1` and
+  `b46f41a858938f41e99f3e2abb487238b78ed875`; tree
+  `bd5fdf75a4c03df9f920a396489a0348cb03431c`. PR #673 is merged, its
+  remote head branch is absent after prune, and the post-merge hosted
+  `harness` passed in 1m18s. The pre-transcription ledger matched SHA-256
+  `47a0c384578bff69629ca6cbbd94eabcd5625bc645d0f7c44e67706150e2c4b2`.
+- **Run control:** bounded records are under
+  `execution/_Coordination/AgentRuns/ROOT_V3_G2_ACCEPTANCE_2026-08-25/`.
+  The owner directed one sequential mechanical transcription node; no child
+  agent or additional authority was inferred.
+
+#### CHAT_TRANSCRIPTION — OWNER ACT (verbatim)
+
+R15-A — [click] “Accept at G2 with documented gaps and G5 finding.”
+
+I accept as the G2 supply unit the exact App Server 0.149.0 candidate published
+by PR #673 at main merge commit
+`baa29d22fa034784cda221b2929061213e83ec91`, tree
+`bd5fdf75a4c03df9f920a396489a0348cb03431c`, with the following expressly
+in view:
+
+1. generated JSON schema is `UNAVAILABLE_UNDER_BOUNDS`;
+2. generated TypeScript types are `UNAVAILABLE_UNDER_BOUNDS`;
+3. the exhaustive schema-derived stable/experimental method inventory is
+   `UNAVAILABLE_UNDER_BOUNDS`;
+4. the `version` invocation’s committed per-run gate-hash record is absent and
+   its preflight records are empty, so that evidence is
+   `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS`;
+5. the invalid published vendor signature remains the named R13-B G5 finding.
+
+This acceptance applies only to the three exact recorded release assets and
+their recorded equivalent App Server payload identities.
+
+This acceptance does not amend a pin; dispose the G5 finding; approve the
+invalid signature for preparation or release; authorize implementation,
+cutover, activation, release, publication, redistribution, reliance, or App
+adoption; complete OUT-002 policy; lift TM-ROOT-106 or TM-ROOT-122; or lift
+any of the ten existing DEL-02-06 held bindings. Every later act remains
+separately governed.
+
+#### Accepted packet identities
+
+- Exact packet path:
+  `execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/`;
+  96 files; Git tree `20469afce1081ec7da274a359474ddf390d979ec`.
+- `G2_ACCEPTANCE_SHEET.md`
+  `cec83abc2fc39358037600c883dd7b55ad09b154140d68a4d86346c309cda5ae`;
+  `README.md`
+  `ff4ed9502b2b4ac843107cf14a9f5ff35983f6e9f70469f80610b960582bd897`;
+  `EVIDENCE_HASH_MANIFEST.csv`
+  `acbc96a61b35f6f5812ece08895586967ac571c5367753035d7def7d46a1ddfb`;
+  `04_REVIEW/REVIEW.md`
+  `b3bb1f1d2e496c6ed484943033c87fdc9737379cc6c37aac1c571d286e897de9`;
+  prior handoff
+  `f470116910ae7432d0f0b634d206bca4edeb08699dbc9ec0b622bb413e6f6fd4`.
+- Exact release assets:
+  - `codex-app-server-aarch64-apple-darwin.tar.gz`, 71,843,308 bytes,
+    `35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032`;
+  - `codex-app-server-aarch64-apple-darwin.zst`, 50,359,498 bytes,
+    `c4c31ecd562a834b01f9e1466da090279a9c4774b4d7f5ee1ee9fb0d31e73677`;
+  - `codex-app-server-package-aarch64-apple-darwin.tar.gz`, 93,775,517
+    bytes,
+    `aaa3751edfab80b887dbd1ca709c87a16495238e1f1a86cbcbbbb5a34e2b31a2`.
+- All three contain the same 179,721,344-byte arm64 App Server payload,
+  `b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2`.
+
+#### Documented gaps, G5 finding, and retained negative grants
+
+- Generated JSON schema, generated TypeScript types, and the exhaustive
+  schema-derived stable/experimental method inventory remain
+  `UNAVAILABLE_UNDER_BOUNDS`.
+- The `version` invocation has no committed per-run gate-hash record and its
+  preflight records are empty; the exact classification remains
+  `VERSION_RUN_GATE_EVIDENCE_UNAVAILABLE_UNDER_BOUNDS`.
+- The invalid published vendor signature remains the named R13-B G5 finding,
+  undisposed and unapproved for preparation or release.
+- This act changes no pin; grants no implementation, cutover, activation,
+  release, publication, redistribution, reliance, or App adoption authority;
+  does not complete OUT-002 policy; does not lift TM-ROOT-106 or TM-ROOT-122;
+  and does not lift any of the ten existing DEL-02-06 held bindings. Every
+  later act remains separately governed.
+
+#### Preservation and checks
+
+- The accepted candidate packet is byte-identical to `origin/main` before and
+  after transcription: its Git tree remains `20469afc…79ec`, and no candidate
+  path appears in the tranche diff. No candidate pre-acceptance state was
+  rewritten.
+- The R12–R14 instrument identities were recomputed from actual bytes and
+  matched all six subject pins recorded in the run basis file.
+- Receipt 130 is a pure append to the pinned Receipt-129 pre-image.
+- Local validation: candidate whitespace PASS; practitioner-harness self-check
+  completed without BLOCK findings; Root G0, G1, G2, and G3 PASS; agent
+  instructions PASS (34 files, zero errors/warnings); instruction entrypoints
+  PASS; commit-aware CI-form G4 PASS (48 manifests, 10 changed paths, zero
+  instruction-surface paths, no covering manifest required); Task Management
+  PASS (19 rows); focused practitioner harness PASS (56 tests); and
+  `git diff --check` PASS. Hosted governance CI is observed after PR creation.
+- **State:** `G2_ACCEPTED_WITH_DOCUMENTED_GAPS_AND_G5_FINDING`, pending only
+  the separate owner PR merge act for this transcription tranche.
