@@ -1,0 +1,61 @@
+Candidate state: CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE
+Inspection mode: static only; no vendor executable invoked
+
+zstd payload: codex-app-server-aarch64-apple-darwin
+Identifier=codex-app-server
+Format=Mach-O thin (arm64)
+CodeDirectory flags=0x10000(runtime)
+TeamIdentifier=2DC432GLL2
+Runtime Version=15.5.0
+codesign --verify --deep --strict: exit 1
+result: invalid signature (code or signature have been modified)
+entitlements: warning: binary contains an invalid entitlements blob; OS will ignore
+spctl --assess --type execute: exit 1; internal error in Code Signing subsystem
+
+package payload: bin/codex-app-server
+Identifier=codex-app-server
+Format=Mach-O thin (arm64)
+CodeDirectory flags=0x10000(runtime)
+TeamIdentifier=2DC432GLL2
+Runtime Version=15.5.0
+codesign --verify --deep --strict: exit 1
+result: invalid signature (code or signature have been modified)
+entitlements: warning: binary contains an invalid entitlements blob; OS will ignore
+spctl --assess --type execute: exit 1; internal error in Code Signing subsystem
+
+package ancillary: bin/codex-code-mode-host
+Identifier=codex-code-mode-host
+Format=Mach-O thin (arm64)
+CodeDirectory flags=0x10000(runtime)
+TeamIdentifier=2DC432GLL2
+Runtime Version=15.5.0
+codesign --verify --deep --strict: exit 1
+result: invalid signature (code or signature have been modified)
+entitlements: warning: binary contains an invalid entitlements blob; OS will ignore
+spctl --assess --type execute: exit 1; internal error in Code Signing subsystem
+
+package ancillary: codex-path/rg
+Identifier=com.openai.codex.rg
+Format=Mach-O thin (arm64)
+CodeDirectory flags=0x10000(runtime)
+TeamIdentifier=2DC432GLL2
+Runtime Version=26.5.0
+codesign --verify --deep --strict: exit 1
+result: invalid signature (code or signature have been modified)
+entitlements: no entitlements content exposed
+spctl --assess --type execute: exit 1; internal error in Code Signing subsystem
+
+package ancillary: codex-resources/zsh/bin/zsh
+Identifier=com.openai.codex.zsh
+Format=Mach-O thin (arm64)
+CodeDirectory flags=0x10000(runtime)
+TeamIdentifier=2DC432GLL2
+Runtime Version=15.5.0
+codesign --verify --deep --strict: exit 1
+result: invalid signature (code or signature have been modified)
+entitlements: no entitlements content exposed
+spctl --assess --type execute: exit 1; internal error in Code Signing subsystem
+
+Disposition: the two alternate app-server copies exactly match the R13-admitted
+published signature-defect class. Ancillary observations match the preserved
+prior N2b inventory and are recorded without an acceptance or reliance claim.

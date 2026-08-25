@@ -1,0 +1,80 @@
+{
+  "schema": "chirality-supply-executable-hash-freeze/v1",
+  "candidate_state": "CANDIDATE_AWAITING_G2_OWNER_ACCEPTANCE",
+  "release": "openai/codex@rust-v0.149.0",
+  "basis": "5cb493a09bf336593d2ed7412cfdabdcbc4e09a1",
+  "vendor_execution_during_inventory": "NONE",
+  "payload_occurrences": [
+    {
+      "source_asset": "codex-app-server-aarch64-apple-darwin.tar.gz",
+      "relative_path": "codex-app-server-aarch64-apple-darwin",
+      "role": "app-server",
+      "size": 179721344,
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "type": "Mach-O 64-bit executable arm64",
+      "archive_executable_mode": true,
+      "package_equivalence": "REFERENCE_PRIMARY"
+    },
+    {
+      "source_asset": "codex-app-server-aarch64-apple-darwin.zst",
+      "relative_path": "codex-app-server-aarch64-apple-darwin",
+      "role": "app-server",
+      "size": 179721344,
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "type": "Mach-O 64-bit executable arm64",
+      "archive_executable_mode": null,
+      "package_equivalence": "BYTE_IDENTICAL_TO_PRIMARY"
+    },
+    {
+      "source_asset": "codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "relative_path": "bin/codex-app-server",
+      "role": "app-server",
+      "size": 179721344,
+      "sha256": "b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2",
+      "type": "Mach-O 64-bit executable arm64",
+      "archive_executable_mode": true,
+      "package_equivalence": "BYTE_IDENTICAL_TO_PRIMARY"
+    },
+    {
+      "source_asset": "codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "relative_path": "bin/codex-code-mode-host",
+      "role": "ancillary-executable",
+      "size": 57150048,
+      "sha256": "8f9f6969cd5e69540482d58791f72e4e9b9888e576ae3ad446c422a058b70128",
+      "type": "Mach-O 64-bit executable arm64",
+      "archive_executable_mode": true,
+      "package_equivalence": "NOT_PRESENT_IN_PRIMARY_OR_ZST"
+    },
+    {
+      "source_asset": "codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "relative_path": "codex-path/rg",
+      "role": "ancillary-executable",
+      "size": 4030432,
+      "sha256": "b4a0ff402c26bf623ce5ddc8a806c65a29397ecca0d7210147b0f9224c70558c",
+      "type": "Mach-O 64-bit executable arm64",
+      "archive_executable_mode": true,
+      "package_equivalence": "NOT_PRESENT_IN_PRIMARY_OR_ZST"
+    },
+    {
+      "source_asset": "codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "relative_path": "codex-resources/zsh/bin/zsh",
+      "role": "ancillary-executable",
+      "size": 754208,
+      "sha256": "4707e28b5f2fc75ce07c5fa3ff32d76a0fc43812c7880f9a98005dbc65a77e32",
+      "type": "Mach-O 64-bit executable arm64",
+      "archive_executable_mode": true,
+      "package_equivalence": "NOT_PRESENT_IN_PRIMARY_OR_ZST"
+    }
+  ],
+  "non_executable_members": [
+    {
+      "source_asset": "codex-app-server-package-aarch64-apple-darwin.tar.gz",
+      "relative_path": "codex-package.json",
+      "size": 222,
+      "sha256": "e29318e209d8d9d78c441c5f748365618ab4ebad82625f391e25eb67b4b50fac",
+      "type": "JSON data",
+      "archive_executable_mode": false
+    }
+  ],
+  "r14_b_execution_gate": "N3_MUST_REVERIFY_THE_EXACT_SHA256_BEFORE_EACH_EXECUTION"
+}

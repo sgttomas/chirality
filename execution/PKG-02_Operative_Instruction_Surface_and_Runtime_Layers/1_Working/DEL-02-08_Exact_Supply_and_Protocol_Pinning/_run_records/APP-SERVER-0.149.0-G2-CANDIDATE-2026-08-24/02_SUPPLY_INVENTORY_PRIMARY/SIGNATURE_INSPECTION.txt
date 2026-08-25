@@ -1,0 +1,30 @@
+STATIC INSPECTION ONLY — VENDOR BINARY NEVER EXECUTED BY N2
+host: Darwin 25.6.0 arm64; macOS 26.6.2 (25G83)
+archive_sha256: 35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032
+archive_size: 71843308
+binary_sha256: b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2
+binary_size: 179721344
+file: Mach-O 64-bit executable arm64
+lipo_archs: arm64
+mach_o_filetype: EXECUTE
+lc_build_version: platform=1 minos=11.0 sdk=15.5
+identifier: codex-app-server
+team_identifier: 2DC432GLL2
+signature_flags: 0x10000(runtime)
+cdhash_sha256: 58661040e933585cbea4128ad6314b7ca0bf54da
+full_cdhash_sha256: 58661040e933585cbea4128ad6314b7ca0bf54dab3a58d666e0ac9c12b592f21
+signature_size: 9048
+lc_code_signature_offset: 178311296
+lc_code_signature_size: 1410048
+codesign_display_exit: 0
+codesign_verify_exit: 1
+codesign_verify_result: invalid signature (code or signature have been modified)
+codesign_architecture: arm64
+entitlements_inspection_exit: 0
+entitlements_inspection: binary contains an invalid entitlements blob; OS will ignore these entitlements
+spctl_exit: 1
+spctl_result: internal error in Code Signing subsystem
+r13_class_match: PASS
+r13_disposition: RECORDED_NOT_STOPPED
+upstream_reference: https://github.com/openai/codex/issues/37725
+g5_disposition: OPEN_FINDING_REQUIRES_CORRECTED_ARTIFACT_OR_LATER_OWNER_RULING
