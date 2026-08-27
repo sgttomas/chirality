@@ -7496,3 +7496,44 @@ passed.
   adoption, foreign-loop write, pin/configuration/runtime/tool change, or
   accepted-evidence rewrite is authorized or performed by N0.
 - **State:** `N0_TRANSCRIBED_SPIKES_PENDING`.
+
+#### Receipt 131 continuation — N1 through N4 bounded evidence
+
+- **N0 preservation:** immutable N0 commit
+  `9164d95456bd67576a1b1164fd08e52516edb368`, tree
+  `3184f5f899422458e39e435409b724a8cb1c94ef`, remains an ancestor. Its
+  pushed proof commit is `0246e92b4bfede52c226d58122e8ac4bb980e666`.
+- **Fresh supply:** only
+  `codex-app-server-aarch64-apple-darwin.tar.gz` was freshly downloaded from
+  the official `rust-v0.149.0` release channel: 71,843,308 bytes, SHA-256
+  `35892a576ec29edbbb766cfba002c57c7beea479c6c21715a134cab4a7352032`.
+  Its single 179,721,344-byte arm64 payload matched SHA-256
+  `b1d1a8c3146b16a01c057e9ecc2213b969a775ba76c424d812714a2911708de2`
+  before any use.
+- **OUT-002:** overall `UNAVAILABLE_UNDER_BOUNDS`. Account, model, and turn
+  destinations remain unenumerated and no endpoint is inferred. The three
+  exact sandbox-denied plugin destinations and configured-but-not-attempted
+  base are preserved. `features.plugins=false` is only the proposed RC
+  managed-profile posture; production configuration is unchanged.
+- **Feasibility states:** G-SBX `SUPPORTED_FOR_DESIGN`; G-PROT `REJECTED`;
+  G-ENV `SUPPORTED_FOR_DESIGN`; G-ROLE `SUPPORTED_FOR_DESIGN`; deterministic
+  G-APPR `SUPPORTED_FOR_DESIGN`; deterministic G-SENT
+  `SUPPORTED_FOR_DESIGN`; deterministic G-WIRE `SUPPORTED_FOR_DESIGN`.
+  None is a gate-pass claim.
+- **Material finding:** available protected-path representations failed all
+  ten contract-relevant primary/full-root-descendant rows; G-PROT rejects the
+  current representation rather than accepting a subset.
+- **Cleanup:** the fresh quarantine, archive, payload, release metadata,
+  static scan, App Server state/logs, and all disposable probe fixtures were
+  deleted; exact absence and zero-prefix scans passed; no artifact byte is
+  tracked.
+- **Evidence commit:** N1–N3 results were preserved and pushed ordinarily at
+  `661174b8834eb795cd368e06dec891caa9b021dc` before N4 closeout.
+- **Preservation:** the workplan remains idle; the Tier-0 relationship alone
+  remains substantively disposed; the other nine bindings remain held;
+  `source_identity` and `implementation_act` remain unavailable; G0.5 remains
+  incomplete; `TM-ROOT-106/122` remain open and unruled. No implementation,
+  WP-03/WP-05 code, G-HELPER, host mutation, authentication, credentials,
+  command-network approval, completed vendor connection, cutover, release,
+  accepted-evidence rewrite, foreign-loop write, or merge occurred.
+- **State:** `R16_BOUNDED_EVIDENCE_COMPLETE_PR_PENDING`.
