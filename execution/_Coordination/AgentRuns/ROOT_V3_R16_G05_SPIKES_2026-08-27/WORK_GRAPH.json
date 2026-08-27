@@ -1,0 +1,22 @@
+{
+  "schema": "chirality-agent-work-graph/v1",
+  "run_id": "ROOT_V3_R16_G05_SPIKES_2026-08-27",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "ORDERED_TRANSCRIPTION_THEN_BOUNDED_FEASIBILITY_FAN_OUT_IN",
+  "basis": "b0d975a9139eddebf5c1e728cf724b55c8a97cad",
+  "nodes": [
+    {"id":"N0_GOVERNED_TRANSCRIPTION","dependencies":[],"primary_write_owner":"DEL-02-06_AND_ROOT_RUN","fan_in_gate":"N0_PUSHED_ONLY_TIER0_DISPOSED"},
+    {"id":"N1_FRESH_ARTIFACT_IF_REQUIRED","dependencies":["N0_GOVERNED_TRANSCRIPTION"],"primary_write_owner":"UNTRACKED_QUARANTINE_AND_ROOT_RUN","fan_in_gate":"EXACT_0_149_0_IDENTITY_OR_STOP"},
+    {"id":"N2_OUT_002_ATTEMPT","dependencies":["N0_GOVERNED_TRANSCRIPTION"],"primary_write_owner":"DEL-02-08","fan_in_gate":"EXACT_ROWS_OR_UNAVAILABLE_UNDER_BOUNDS"},
+    {"id":"N3_1_G_SBX","dependencies":["N0_GOVERNED_TRANSCRIPTION"],"primary_write_owner":"DEL-02-07","fan_in_gate":"CALIBRATED_FEASIBILITY_VERDICT"},
+    {"id":"N3_2_G_PROT","dependencies":["N0_GOVERNED_TRANSCRIPTION"],"primary_write_owner":"DEL-02-07","fan_in_gate":"CALIBRATED_FEASIBILITY_VERDICT"},
+    {"id":"N3_3_G_ENV","dependencies":["N0_GOVERNED_TRANSCRIPTION"],"primary_write_owner":"DEL-02-09","fan_in_gate":"CALIBRATED_FEASIBILITY_VERDICT"},
+    {"id":"N3_4_G_ROLE","dependencies":["N0_GOVERNED_TRANSCRIPTION"],"primary_write_owner":"DEL-02-09","fan_in_gate":"CALIBRATED_FEASIBILITY_VERDICT"},
+    {"id":"N3_5_G_APPR_DETERMINISTIC","dependencies":["N0_GOVERNED_TRANSCRIPTION"],"primary_write_owner":"DEL-02-10","fan_in_gate":"CALIBRATED_FEASIBILITY_VERDICT"},
+    {"id":"N3_6_G_SENT_DETERMINISTIC","dependencies":["N0_GOVERNED_TRANSCRIPTION"],"primary_write_owner":"DEL-02-09","fan_in_gate":"CALIBRATED_FEASIBILITY_VERDICT"},
+    {"id":"N3_7_G_WIRE_DETERMINISTIC","dependencies":["N0_GOVERNED_TRANSCRIPTION"],"primary_write_owner":"DEL-02-10","fan_in_gate":"CALIBRATED_FEASIBILITY_VERDICT"},
+    {"id":"N4_FAN_IN","dependencies":["N2_OUT_002_ATTEMPT","N3_1_G_SBX","N3_2_G_PROT","N3_3_G_ENV","N3_4_G_ROLE","N3_5_G_APPR_DETERMINISTIC","N3_6_G_SENT_DETERMINISTIC","N3_7_G_WIRE_DETERMINISTIC"],"primary_write_owner":"DEL-02-12_AND_ROOT_RUN","fan_in_gate":"EXACT_EVIDENCE_CLEANUP_ANCESTRY_VALIDATION"}
+  ],
+  "human_gates": ["PR_MERGE", "ANY_IMPLEMENTATION_OR_AUTHORITY_EXPANSION"]
+}

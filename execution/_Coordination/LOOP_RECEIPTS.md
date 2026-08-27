@@ -7417,3 +7417,82 @@ separately governed.
   `git diff --check` PASS. Hosted governance CI is observed after PR creation.
 - **State:** `G2_ACCEPTED_WITH_DOCUMENTED_GAPS_AND_G5_FINDING`, pending only
   the separate owner PR merge act for this transcription tranche.
+
+### Receipt 131 — 2026-08-27 — R16 G0.5 routing and Tier-0 disposition transcription
+
+- **Selection authority:** R16-A through R16-F at
+  `plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md`,
+  recomputed SHA-256
+  `f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef`,
+  and the companion steer at
+  `plans/steers/chirality_app_v3_r16_g05_and_spikes_steer_root_2026-08-27.md`,
+  recomputed SHA-256
+  `aa598aea6a125d2e76e3c894e56c784fbddcd51da0484f33bfb42132f2a937ba`.
+- **Basis:** exact `origin/main`
+  `b0d975a9139eddebf5c1e728cf724b55c8a97cad`, tree
+  `6a3b804539b6c260abaf2fa62660576deff97250`, ordered parents
+  `b9960755bb7cbeed02e69591a2fcd51eaf2caf60` and
+  `f291bfe4600c1f2cbf36ab103a3f78106ff620ce`. The first-parent delta from
+  the verified predecessor is exactly the two R16 instruments.
+
+#### CHAT_TRANSCRIPTION — OWNER ACT (verbatim)
+
+I approve R16-A through R16-F as proposed, amended to require transcription
+node N0 before spike execution; fresh re-download only under the complete
+R12-A terms and accepted 0.149.0 identities; exact evidence citations for
+`features.plugins` and the three observed destinations; and explicit
+preservation of TM-ROOT-106 and TM-ROOT-122 as open, unruled G1 blockers. I
+knowingly adopt R16-B’s
+`CONTINUE_SEPARATE_WITH_EXPLICIT_COORDINATION_ONLY` Tier-0 relationship
+disposition.
+
+#### N0 governed successor state
+
+- Immutable packet:
+  `execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-R16-BINDING-DISPOSITION-006/`.
+- `2_source_and_release_identities.source_identity` remains
+  `HELD_UNAVAILABLE` pending exact proposed implementation bytes and Root
+  accountable-human acceptance of their source identity.
+- `2_source_and_release_identities.release_identity` remains
+  `HELD_UNAVAILABLE` for G6a.
+- App conformance remains `HELD_UNAVAILABLE` and routed to App-owned G5/G7
+  fan-in.
+- Root CLI conformance remains `HELD_UNAVAILABLE` and routed to Root-owned
+  G5/G7 fan-in.
+- Root semantic/regression evidence remains `HELD_UNAVAILABLE` pending
+  accepted implementation and G5/G7 evidence acceptance.
+- The release-fan-in notice remains `HELD_UNAVAILABLE` and routed to affected
+  owning loops before cutover/release fan-in.
+- The Tier-0 relationship alone is substantively disposed as
+  `CONTINUE_SEPARATE_WITH_EXPLICIT_COORDINATION_ONLY`.
+- `8_accountable_human_acts.implementation_act` remains `HELD_UNAVAILABLE`
+  pending frozen/rejected feasibility results, sealed WP-03/WP-05 briefs, and
+  a separate accountable-human act.
+- `8_accountable_human_acts.cutover_act` remains `HELD_UNAVAILABLE` pending
+  accepted G2–G5 fan-in.
+- `8_accountable_human_acts.release_act` remains `HELD_UNAVAILABLE` for G6a.
+
+The accepted compatibility-completion JSON and acceptance snapshot remain
+byte-identical. The Tier-0 relationship is the sole substantive disposition;
+the other nine bindings remain held with their owners and gates preserved.
+`source_identity` and `implementation_act` remain unavailable, so G0.5 has not
+passed.
+
+#### Verified inputs and retained boundaries
+
+- The complete recomputed predecessor, carrier, accepted-snapshot, candidate,
+  R12–R15, G2 packet, and four exact empirical identities are recorded in
+  `execution/_Coordination/AgentRuns/ROOT_V3_R16_G05_SPIKES_2026-08-27/BASIS_AND_INPUT_PINS.md`.
+- The workplan pointer remains idle at SHA-256
+  `efaea5b88a58e9fe408efffde3ac92ae3c4ec55fdde43b6c61f8add7d3913776`;
+  its target remains SHA-256
+  `f75497926a2ba74ae9038b4e09a06eb951bb8b86d41d6672894c79e6b9f3318d`.
+- `TM-ROOT-106` and `TM-ROOT-122` remain `OPEN`, unruled G1 blockers. Neither
+  row is commissioned, disposed, closed, or lifted.
+- No implementation, WP-03/WP-05 code, G-HELPER, launchd/plist/installer or
+  LaunchAgent mutation, authentication, login, device-code flow, Keychain or
+  credential access, command-network enablement or approval, completed vendor
+  connection, cutover, release, publication, redistribution, reliance, App
+  adoption, foreign-loop write, pin/configuration/runtime/tool change, or
+  accepted-evidence rewrite is authorized or performed by N0.
+- **State:** `N0_TRANSCRIBED_SPIKES_PENDING`.
