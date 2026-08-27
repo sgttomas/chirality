@@ -1,0 +1,23 @@
+{
+  "schema": "chirality-agent-work-graph/v1",
+  "run_id": "ROOT_V3_G2_ACCEPTANCE_2026-08-25",
+  "version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL_MECHANICAL_TRANSCRIPTION",
+  "basis": "baa29d22fa034784cda221b2929061213e83ec91",
+  "nodes": [
+    {
+      "id": "N1_R15_G2_ACCEPTANCE_TRANSCRIPTION",
+      "role": "HELP_HUMAN_OWNER_DIRECTED_TRANSCRIPTION",
+      "dependencies": [],
+      "write_targets": [
+        "plans/steers/chirality_app_v3_root_ruling_record_r15_2026-08-25.md",
+        "plans/steers/chirality_app_v3_g2_acceptance_transcription_steer_root_2026-08-25.md",
+        "execution/_Coordination/AgentRuns/ROOT_V3_G2_ACCEPTANCE_2026-08-25/",
+        "execution/_Coordination/LOOP_RECEIPTS.md"
+      ],
+      "fan_in_gate": "EXACT_R15_TRANSCRIPTION_PACKET_PRESERVATION_AND_VALIDATION"
+    }
+  ],
+  "human_gates": ["PR_MERGE"]
+}
