@@ -212,11 +212,9 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
   {
     file: 'electron/main.ts',
     description:
-      'G-CSP renderer hardening (DEL-09-06-V3-01): the main window is created with explicit context isolation, no Node integration, and the Chromium sandbox; the egress policy is registered per window; every privileged IPC module receives the exact renderer origin',
+      'G-CSP renderer hardening (DEL-09-06-V3-01): every window is created from the hardening policy (asserted context isolation, no Node integration, sandbox), the egress policy and the window policy (window-open denial, navigation containment, CSP) are installed per window, the packaged renderer server sets the CSP at the source, and every privileged IPC module receives the exact renderer origin',
     pins: [
-      { kind: 'contains', value: 'contextIsolation: true' },
-      { kind: 'contains', value: 'nodeIntegration: false' },
-      { kind: 'contains', value: 'sandbox: true' },
+      { kind: 'contains', value: "webPreferences: rendererWebPreferences({ preload: path.join(__dirname, 'preload.js') })" },
       { kind: 'notContains', value: 'contextIsolation: false' },
       { kind: 'notContains', value: 'nodeIntegration: true' },
       { kind: 'notContains', value: 'sandbox: false' },
@@ -225,11 +223,40 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'notContains', value: 'nodeIntegrationInWorker' },
       { kind: 'notContains', value: 'nodeIntegrationInSubFrames' },
       { kind: 'notContains', value: 'enableRemoteModule' },
-      { kind: 'contains', value: "preload: path.join(__dirname, 'preload.js')" },
+      { kind: 'notContains', value: 'webviewTag' },
       { kind: 'contains', value: 'registerRendererEgressPolicy(window);' },
+      { kind: 'contains', value: 'installRendererWindowPolicy(window, {' },
+      { kind: 'contains', value: "mode: app.isPackaged ? 'packaged' : 'development'" },
+      { kind: 'contains', value: 'res.setHeader(CONTENT_SECURITY_POLICY_HEADER, contentSecurityPolicy);' },
       { kind: 'contains', value: 'const rendererOrigin = new URL(rendererUrl).origin;' },
       { kind: 'contains', value: 'registerApiKeyHandlers(runtimeClient, {' },
       { kind: 'contains', value: 'registerRuntimeControlHandlers({' }
+    ]
+  },
+  {
+    file: 'electron/renderer-window-policy.ts',
+    description:
+      'Renderer window hardening policy (DEL-09-06-V3-01): explicit web preferences, deny-all window-open, renderer-origin-only navigation on both navigation events, CSP without eval outside development and closed to frames/objects/embedding',
+    pins: [
+      { kind: 'contains', value: 'contextIsolation: true,' },
+      { kind: 'contains', value: 'nodeIntegration: false,' },
+      { kind: 'contains', value: 'sandbox: true' },
+      { kind: 'contains', value: "return { action: 'deny' };" },
+      { kind: 'contains', value: "['will-navigate', 'will-redirect'] as const" },
+      { kind: 'contains', value: 'event.preventDefault();' },
+      { kind: 'contains', value: "parsed.origin === 'null' || parsed.origin !== rendererOrigin" },
+      { kind: 'contains', value: "\"default-src 'self'\"" },
+      { kind: 'contains', value: "`script-src 'self' 'unsafe-inline'${development ? \" 'unsafe-eval'\" : ''}`" },
+      { kind: 'contains', value: "\"frame-src 'none'\"" },
+      { kind: 'contains', value: "\"object-src 'none'\"" },
+      { kind: 'contains', value: "\"frame-ancestors 'none'\"" },
+      { kind: 'contains', value: "\"base-uri 'self'\"" },
+      { kind: 'contains', value: "\"form-action 'self'\"" },
+      { kind: 'contains', value: "[\"'self'\", 'https://api.anthropic.com:*']" },
+      { kind: 'contains', value: "parsed.protocol !== 'http:' && parsed.protocol !== 'https:'" },
+      { kind: 'contains', value: 'webRequest.onHeadersReceived(' },
+      { kind: 'notContains', value: 'unsafe-hashes' },
+      { kind: 'notContains', value: "'*'" }
     ]
   },
   {
@@ -301,6 +328,9 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: "client.storeCredential('anthropic', fixtureCredential)" },
       { kind: 'contains', value: 'nonAllowlistedOutboundTcp' },
       { kind: 'contains', value: 'retainedMetadataLeakFindings' },
+      { kind: 'contains', value: "CHIRALITY_RENDERER_SECURITY_PROBE: '1'" },
+      { kind: 'contains', value: 'rendererSecurityProofPass === true' },
+      { kind: 'contains', value: "'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'" },
       { kind: 'notContains', value: 'CSC_LINK' },
       { kind: 'notContains', value: 'APPLE_ID' }
     ]

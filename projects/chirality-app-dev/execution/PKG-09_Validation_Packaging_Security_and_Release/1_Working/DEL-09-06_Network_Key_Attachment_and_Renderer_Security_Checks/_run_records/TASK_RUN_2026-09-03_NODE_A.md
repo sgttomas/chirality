@@ -1,7 +1,7 @@
 ---
 run-id: TASK_RUN_DEL-09-06_2026-09-03_NODE_A
 timestamp: 2026-09-03
-run-status: SUCCESS (frozen for independent review; closure recorded at closeout)
+run-status: SUCCESS (frozen for independent review in two local commits; closure recorded at closeout)
 control-surface: FILE
 scope-path: projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks
 task-profile: NONE
@@ -16,43 +16,69 @@ basis: 0c683fb1657706316272951e4c3a0f7781b46009
 
 ## Requested Tasks
 
+Round 1 (commit `4e4c7e9090891fae98bb63ebf1ee8e3561d4f9ac`):
 - Adopt the `runtime-control-ipc.ts` sender-origin policy on all six credential IPC
   handlers through one shared module; plumb `rendererOrigin` from `main.ts`; deny with a
-  typed secret-free result and a desktop-log line.
-- Unit-test every channel with authorized and unauthorized senders.
-- Inventory G-CSP renderer-hardening test coverage; add unit-level tests only where
-  missing and testable; weaken nothing.
+  typed secret-free result and a desktop-log line; unit-test every channel both ways.
+- Inventory G-CSP renderer-hardening coverage.
+
+Round 2 (coordinator disposition: the seated item's write locus — `frontend/electron/**`
+window/CSP policy, packaged security tests — and its Return contract govern over the
+narrower launch-brief line; second local commit on the same branch):
+- `frontend/electron/renderer-window-policy.ts`: pure policy plus installer for every
+  BrowserWindow — asserted web preferences (fail closed), deny-all `setWindowOpenHandler`,
+  renderer-origin-only `will-navigate`/`will-redirect`, and the renderer CSP.
+- CSP on the packaged renderer server responses and via `onHeadersReceived` for both modes.
+- Unit tests, contract pins, and packaged-proof extension showing the CSP header on the
+  packaged page and denied `window.open`/navigation attempts.
 
 ## Outputs Produced
 
-- `frontend/electron/ipc-sender-policy.ts` (new shared policy + `describeIpcSender`);
-  `api-key-ipc.ts` (six guarded channels, `ApiKeyHandlerOptions { rendererOrigin, log }`);
-  `runtime-control-ipc.ts` (imports the shared policy); `main.ts` (registers credential
-  handlers after the renderer URL is known, passing origin and logger).
-- Tests: `ipc-sender-policy.test.ts` (17), `api-key-ipc.test.ts` (58, six-channel
-  authorization matrix), contract pins for context isolation / sandbox / egress
-  registration / shared-policy adoption.
+- Round 1: `ipc-sender-policy.ts`, `api-key-ipc.ts`, `runtime-control-ipc.ts`, `main.ts`
+  plumbing; tests (17 + 58; pins).
+- Round 2: `renderer-window-policy.ts` (new); `main.ts` window creation from the policy,
+  packaged server CSP header, probe hook; `scripts/run-packaged-security-proof.mjs`
+  (renderer-hardening evidence summarizer, `:8443` egress probe, three new markers,
+  truncating log writer); tests `renderer-window-policy.test.ts` (38),
+  `run-packaged-security-proof.test.ts` (+2), pins on three targets.
 - Evidence: `Evidence/Node_A_Credential_IPC_Sender_Authorization_2026-09-03/`
-  (`EVIDENCE.md`, packaged-security-proof bytes + `MANIFEST.sha256`).
+  (`EVIDENCE.md`; `packaged-security-proof/` round 1; `packaged-security-proof-2/`
+  round 2; each with `MANIFEST.sha256`).
+
+## Design decisions (recorded; disposition-class, inside the seated locus)
+
+- CSP `connect-src` lists `https://api.anthropic.com:*` rather than the exact egress origin
+  so the REQ-NET-001 egress layer remains reachable and independently observable in the
+  packaged proof (which now drives `https://api.anthropic.com:8443/…`); the egress layer
+  still enforces `https:443` exactly. Rejected: an exactly-equal CSP, which would have
+  turned the proof's egress observation into a CSP observation without anyone noticing.
+- `script-src 'unsafe-inline'` because Next's App Router ships 8 inline flight-payload
+  scripts per page and a nonce pipeline needs a middleware outside this locus; `'unsafe-eval'`
+  only in development. Rejected: `script-src 'self'` alone (verified to be incompatible
+  with the built HTML).
+- Navigation policy requires `http(s)` before origin equality because `blob:` URLs carry the
+  renderer's own origin — found by the unit matrix, not assumed.
+- Proof log writer changed from append to truncate: the new log-derived checks must never be
+  satisfiable by a stale earlier run's bytes (observed once during this run and re-run
+  into a clean output root).
 
 ## Checks
 
-Recorded with exact commands, cwd, exit status, and summaries in the parent run's
-`CHECKS.json`: typecheck pass; full Vitest pass (157 files / 1364 tests, 4 skipped);
-focused 151 pass; build pass; premerge FAIL in the absent-runtime-daemon-bindings
-class (deferred to PR CI, no pass inferred); desktop:pack pass; packaged security proof
-pass in-sandbox; diff --check, self-check, pytest (350), APP-HOLD scan, scope validation
-pass.
+Parent `CHECKS.json` (both rounds): typecheck pass; full Vitest pass (round 2: 158 files /
+1408 tests, 4 skipped); focused pass; build pass; premerge FAIL in the absent-runtime-
+daemon-bindings class both times (deferred to PR CI, no pass inferred); `desktop:pack`
+pass; packaged security proof pass in-sandbox with renderer-hardening evidence; diff
+--check, self-check, pytest, APP-HOLD scan, scope validation pass.
 
 ## A1 re-stage declaration
 
-Recorded in the parent run's `STEP0_DISCOVERY.md` §3: this tranche's `frontend/`
-mutation invalidates the staged R20 procedure for any future proof claim and requires a
-newly staged revision and a fresh owner-executed proof; the 2026-08-23 R20 PASS stands
-as historical evidence only.
+Recorded in the parent run's `STEP0_DISCOVERY.md` §3: this tranche's `frontend/` mutation
+invalidates the staged R20 procedure for any future proof claim and requires a newly
+staged revision and a fresh owner-executed proof; the 2026-08-23 R20 PASS stands as
+historical evidence only.
 
-## Residuals surfaced to the parent
+## Residuals
 
-Window-open denial, navigation constraint, and a renderer CSP are absent from source
-and outside this brief's write locus; they are reported in the parent `RETURN.md` as a
-scope need, not silently added.
+Recorded in the parent `RETURN.md` §5 (development-mode CSP not observable by the packaged
+proof harness; `will-redirect` and subframe navigation covered at unit level / by
+`frame-src 'none'` only; nonce-based script CSP as a possible follow-on).

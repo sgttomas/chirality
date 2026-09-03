@@ -1,0 +1,7 @@
+[2026-09-03T21:13:14.363Z] START packaged-runtime-daemon: /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeA/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon
+[chirality-desktop] 2026-09-03T21:13:14.607Z [warn] runtime.daemon.instruction_root.fallback {"instructionRoot":"/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeA/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources","reason":"PROJECT_NOT_FOUND"}
+[chirality-desktop] 2026-09-03T21:13:14.608Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":true,"userData":"/tmp/chirality-psp-TnQunK/user-data","pid":79260}
+[chirality-desktop] 2026-09-03T21:13:14.636Z [info] runtime.daemon.started {"socketPath":"/tmp/chirality-psp-TnQunK/user-data/runtime/control.sock","runtimeDirectory":"/tmp/chirality-psp-TnQunK/user-data/runtime"}
+[chirality-desktop] 2026-09-03T21:13:17.570Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":79260}
+[chirality-desktop] 2026-09-03T21:13:17.572Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}
+[2026-09-03T21:13:17.588Z] EXIT packaged-runtime-daemon: code=0 signal=null
