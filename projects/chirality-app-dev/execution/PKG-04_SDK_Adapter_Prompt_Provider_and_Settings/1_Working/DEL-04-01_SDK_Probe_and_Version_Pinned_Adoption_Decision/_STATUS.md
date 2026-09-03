@@ -1,7 +1,7 @@
 # Status: DEL-04-01
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-16
+**Last Updated:** 2026-09-03
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -9,6 +9,7 @@
 ## Remaining
 
 ## History
+- 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`. The SCA-APP-008 Carrier Map WP-02 App Server supply/protocol/config/role probe is not covered by this deliverable's unchanged first-adapter row text, so no v3 Remaining item is seated; the obligation is recorded as `SCOPE_AMENDMENT_REQUIRED` in `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md`. The Electron 43.2.0 drift observation is carried by the A11 E2 concordance tranche. No implementation, lifecycle, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-08-16 - The promoted Root Claude and Pi wrappers are now the adapters registered by the packaged runtime host while the existing App turn implementations and capability descriptors remain unchanged. Focused/live shared-daemon tests preserve Anthropic `0.93.0` / `0.3.150`, Pi `0.82.0`, and selected-model attribution; the final unsigned package proves Root adapter/client/daemon sources in Desktop and a client-only Root CLI. Fresh independent review returned PASS with no findings. The exact packaged-runtime Remaining item was removed; state remains IN_PROGRESS and lifecycle, Checking Approval SHA, provider scope, and release posture are unchanged.
 - 2026-07-22 - D-APP-72 bounded adoption evidence completed: Pi `0.80.10` is exact-pinned and the Electron `43.1.1` packaged production-route proof and supply-chain verifier pass. State remains IN_PROGRESS; prior adoption records, lifecycle, and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 opened the bounded second-adapter version/adoption evidence item; state remains IN_PROGRESS.

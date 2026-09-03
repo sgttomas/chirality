@@ -6164,3 +6164,43 @@
     under HELP_HUMAN (Claude Fable 5.1) with owner in-session.
   - Gate-Outcome: `EXECUTED` — E2 concordance applied on branch; echo
     prepared, not routed; G1 not passed; TM-ROOT-122 not lifted.
+
+- **2026-09-03 — Receipt 205** (App v3 pathway seating candidate, A12).
+  - Receipt-ID: `Receipt-205`
+  - Examined-Through: `8140daec7ab7165f8972451dbdd3a67b8bb2fd38`
+  - Parent-Receipt: `Receipt-203`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) multi-selected the App pathway-seating tranche in the
+    HELP_HUMAN session chat on 2026-09-03; the verbatim block with the
+    unselected option, applied meaning, and boundary is
+    `plans/steers/chirality_app_v3_app_ruling_record_a12_2026-09-03.md`.
+    The concurrent E2 tranche's Receipt 204 shares this parent (ledger rule 7).
+  - Pointers: branch `codex/app-v3-pathway-seating-2026-09-03`; basis
+    `8140daec7ab7165f8972451dbdd3a67b8bb2fd38` (branch cut at
+    `1537ddad1f9227dee1ba3233c0146694a779026a`, re-based before publication);
+    A12 record above; successor workplan
+    `loop/WORKPLAN_2026-09-03_app_dev_loop.md` (bytewise-last `WORKPLAN_*`,
+    selected by `LOOP_INIT.md` once merged); RunID
+    `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`
+    with `MAPPING.md` (WP/gate/AT mapping and `SCOPE_AMENDMENT_REQUIRED`
+    list), `COVERAGE_MATRIX.md`, `DEPENDENCY_REFRESH.md`,
+    `SOW_IDENTITY_LEDGER.md` (per-carrier SOW/status/dependency pre/post
+    SHA-256), `VALIDATION_EVIDENCE.md`, `HANDOFF_STATE.md`, and
+    `MANIFEST.sha256`; nineteen carriers re-pinned to decomposition commit
+    `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; Remaining items seeded:
+    thirty-one, of which nine `SELECTABLE`; eight additive dependency rows;
+    review remediation in PR #681 body and commit `ced10a6b1`.
+  - Checks: `git diff --check` over the full base-to-head range pass (after
+    LF normalization of the closure-audit CSVs); SOW validator pass on all carriers;
+    dependency schema and enum validation pass on the changed registers;
+    closure audit parity with the Gate-5 audit pass; APP-HOLD dispatch
+    preflight and register-match scan pass; authority corpus status no drift
+    at v20; harness self-check pass; harness pytest pass; deliverable
+    consistency scan pass; receipt validator pass; frontend gates skipped
+    because no product or runtime source changed.
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as ephemeral
+    Agent 2 generalist under HELP_HUMAN (Claude Fable 5.1) with owner
+    in-session.
+  - Gate-Outcome: `AWAITING_OWNER` — seating candidate prepared on branch for
+    owner byte review; no selection effect until merged; no implementation,
+    lifecycle, release, or Root act.

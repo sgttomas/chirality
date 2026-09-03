@@ -1,0 +1,363 @@
+{
+  "DEL-01-01": {
+    "folder": "execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth",
+    "ScopeOfWork.md": {
+      "sha256": "d0e18ff454fad1dc945a207e5e962bc9f2fd08a1f14779ce009d8b3cc0e0c3d3",
+      "bytes": 30604
+    },
+    "_STATUS.md": {
+      "sha256": "242f4ebcb4b78c7314a79fd54b6c963503b067f5f00f4fb2475cb8c94c3d8dd4",
+      "bytes": 2845
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "ca071c41b69eee34185423fa1250351b5ed7b8a80e271c1ab6a5933ed919a990",
+      "bytes": 5083
+    },
+    "Dependencies.csv": {
+      "sha256": "7ad581ac68854aba4c81342c5b8638dbdd298a8260545e2e1da8227dd3b45e9e",
+      "bytes": 10055
+    }
+  },
+  "DEL-02-02": {
+    "folder": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX",
+    "ScopeOfWork.md": {
+      "sha256": "025d2deb127e468e44c6bc8bfd908cae7c1a4dbfdc694ae52601631b8997a165",
+      "bytes": 32620
+    },
+    "_STATUS.md": {
+      "sha256": "2e732a0004e63e96c9a3b9bb727d7ee41f5db556352889768dcfdc6fd4b8abb8",
+      "bytes": 5424
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "77360b1b8f8ba69f594ba7ab10c013d21a01836d0d78fa0ae105e3867931a925",
+      "bytes": 3823
+    },
+    "Dependencies.csv": {
+      "sha256": "ccc6f4018a0c61eb3ff59105080bf3f6cd807c2a326a67d2a5f4d5998cafeb92",
+      "bytes": 5980
+    }
+  },
+  "DEL-02-05": {
+    "folder": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback",
+    "ScopeOfWork.md": {
+      "sha256": "8f35e235d31700262aca2d66108560eac7d9ade8b723c30c8781e737260ca318",
+      "bytes": 24067
+    },
+    "_STATUS.md": {
+      "sha256": "0a8026a73416f04948d2ed7d6c1671f9197f2caefbbb04985e86b981eb2aaad1",
+      "bytes": 3890
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "e172982d34981ce52f04d8776c53d2a09712559ae648f660923b4457d0fc080e",
+      "bytes": 7378
+    },
+    "Dependencies.csv": {
+      "sha256": "c39a3d533bf5f811f35d3a3b7fbfd839e7c1baedc28607cc4d59ad9eb200b8d0",
+      "bytes": 7233
+    }
+  },
+  "DEL-03-01": {
+    "folder": "execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite",
+    "ScopeOfWork.md": {
+      "sha256": "1a7f499140c373a7ccd0ce725b64321e22a45dc4a9f160f2b1f2730d3a6078e7",
+      "bytes": 28808
+    },
+    "_STATUS.md": {
+      "sha256": "a53f2f700c7457ce0d36ec10ce203fc952ce78936c1f32ec932df4f344ef67f0",
+      "bytes": 5083
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "447f238ab72db6445a7e79272bc4e4d82762f7b39f861ffd477a1e15ec915ae0",
+      "bytes": 4290
+    },
+    "Dependencies.csv": {
+      "sha256": "4bc58801f8ebe8d22b8af5914329e7a1623ae00b6fa6d94ec86217fbf30f82cd",
+      "bytes": 6176
+    }
+  },
+  "DEL-03-03": {
+    "folder": "execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter",
+    "ScopeOfWork.md": {
+      "sha256": "43fedd78ec4fa33e62a2b47f2180a4866f897d1eb4d84f05a1b69f2e46debba5",
+      "bytes": 29772
+    },
+    "_STATUS.md": {
+      "sha256": "2baf14877039f4f134b88779ba7ededc25b54704fc8bd826cf5dc25350362768",
+      "bytes": 2696
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "5ba376e5a1fb4cd12cb9aa17bad5f31d0550268c6e780803a4ab4b2d24598a32",
+      "bytes": 4460
+    },
+    "Dependencies.csv": {
+      "sha256": "9463cd422f31946ac4fbc6b4ee22f3e57e2808d686ddc692c212ba80a8cf298e",
+      "bytes": 6536
+    }
+  },
+  "DEL-04-01": {
+    "folder": "execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision",
+    "ScopeOfWork.md": {
+      "sha256": "3b888619d2d7a92e60f448164d1e265a845c901c5c5243f1cbc0f1b95708a187",
+      "bytes": 42025
+    },
+    "_STATUS.md": {
+      "sha256": "dba44126394ad5a349bfbbab2ba9c61a8548aec4315a361226d4f5a9c2fdff0f",
+      "bytes": 5620
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "cdbaed1600150d867502af67565a8c1e498e2b61e3226ededf56d3e1bfd23508",
+      "bytes": 8458
+    },
+    "Dependencies.csv": {
+      "sha256": "808bc1cca28391574c72690bab79f05b5b8e23d93ef3abd401d075a94f7f62f0",
+      "bytes": 16697
+    }
+  },
+  "DEL-04-05": {
+    "folder": "execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge",
+    "ScopeOfWork.md": {
+      "sha256": "8e2402e36d565c8869faf3fb10b866d76472f5cf5e37f2a93296e5e5d87f5953",
+      "bytes": 37051
+    },
+    "_STATUS.md": {
+      "sha256": "b4ff70127517d526156314ba6a4a9ac54086ff732195f3d3137a8041b1045792",
+      "bytes": 3314
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "f4acd2ed47baca792e2c9cf131ac7971f3efdc97df5534613efdfb72772233e3",
+      "bytes": 5522
+    },
+    "Dependencies.csv": {
+      "sha256": "3ec766a147205f72235758750ada4aa498a964598ea9e44ce556b12efdd57c91",
+      "bytes": 9692
+    }
+  },
+  "DEL-05-01": {
+    "folder": "execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration",
+    "ScopeOfWork.md": {
+      "sha256": "e2d7dd754f30c3d663982262c592c7a716374bad538a6a94f24661562dcd16f1",
+      "bytes": 34934
+    },
+    "_STATUS.md": {
+      "sha256": "2eda2ba5fbaa00c79bedef37b8d43dab8c0e77c3f5108de7c53ac2282d841fc1",
+      "bytes": 2432
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "5a62c8f9f908e1c20e162bd8ffacb54287de2c451c6c05e2551b81d42d52d3d7",
+      "bytes": 5596
+    },
+    "Dependencies.csv": {
+      "sha256": "dd301b76f40d96b4646ad10e25b986fe3d51149e8e4c072d69453e62eb5e32c0",
+      "bytes": 8677
+    }
+  },
+  "DEL-05-02": {
+    "folder": "execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL",
+    "ScopeOfWork.md": {
+      "sha256": "89285b904de6ef648ae30cd3cf71ef45f9fc82c90cfa5328abdd378860ba583b",
+      "bytes": 31446
+    },
+    "_STATUS.md": {
+      "sha256": "c0fcef9c7974a008b5600bf3f1feac6af53704c8ed7f94a5aefaccdfb96934d5",
+      "bytes": 2082
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "833721126ead7d8e39cb489921f1426843eabf8b0fc9be653169a9b5c9034de1",
+      "bytes": 4476
+    },
+    "Dependencies.csv": {
+      "sha256": "59afaae97e038138990716c8c9e696ac8ee429988897349dcb033f8a53b91b7e",
+      "bytes": 8078
+    }
+  },
+  "DEL-05-03": {
+    "folder": "execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene",
+    "ScopeOfWork.md": {
+      "sha256": "4b48f3e5ae7789e093590c4d200143e8ab98860bc88b9180480fe14abe7980ec",
+      "bytes": 32159
+    },
+    "_STATUS.md": {
+      "sha256": "d946840d50007d3430ba2eb2964a237bab1a03fd1f48426c9c27367496477605",
+      "bytes": 2720
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "138516ff541adc82eaf2690aaeda171aacf2647efe6434ffc6e44ec2c78da06c",
+      "bytes": 4776
+    },
+    "Dependencies.csv": {
+      "sha256": "bed557bd3f97e29955966092a543796dcfdbfcd5ec84a92a7772db4fa8da0fa9",
+      "bytes": 8366
+    }
+  },
+  "DEL-05-04": {
+    "folder": "execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View",
+    "ScopeOfWork.md": {
+      "sha256": "7bc53e710560f97cd595ebdc8c16461d28cf43cea008693322f49c18b3a97066",
+      "bytes": 37985
+    },
+    "_STATUS.md": {
+      "sha256": "cfaa722298f653792245ad40122021532bb6d0b5a45886a1d76e1aaeedc82e31",
+      "bytes": 4860
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "40a52fc8e9e53951ccf796c9d45e1cfdd07d6527c58dd93d59c1bdc1fce7a1e0",
+      "bytes": 4821
+    },
+    "Dependencies.csv": {
+      "sha256": "0c6a840c28a74ff2c4f1c108f8b116da1643a0ecd0331792dbff0fd542c8d1f7",
+      "bytes": 6881
+    }
+  },
+  "DEL-08-04": {
+    "folder": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge",
+    "ScopeOfWork.md": {
+      "sha256": "da325e43f2dbd0f252d52e34055c5cf400698616ec53b93445a64eb16e984e73",
+      "bytes": 29758
+    },
+    "_STATUS.md": {
+      "sha256": "0a60e895113bcfdf530e9c27b260ece9e7364b91a955523d1d2a4eeb6f2ac9bb",
+      "bytes": 5194
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "7ab03891926a848b8f498505ee7895fe98324b26497c11defc591514881d0ba9",
+      "bytes": 7875
+    },
+    "Dependencies.csv": {
+      "sha256": "6c838e527a0f45f26dd12ae8ff15724369be23a8fce2f15114c9abf46ad9c9ed",
+      "bytes": 7318
+    }
+  },
+  "DEL-08-05": {
+    "folder": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts",
+    "ScopeOfWork.md": {
+      "sha256": "725a951db12ee938d49cc47ca91f3c7c9af8026e4d729a23e2a19d5d55408ebe",
+      "bytes": 34687
+    },
+    "_STATUS.md": {
+      "sha256": "969d56ef7d6e02c8f2850676120a492f8bc2c287783fe0cee408c92cfa215379",
+      "bytes": 2314
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "b2cb9b7a7f9d43bc65b290d775cf12e63a8642772f8214a57953e5abe901988d",
+      "bytes": 9167
+    },
+    "Dependencies.csv": {
+      "sha256": "70b4ef79271978b1b6d99ed34d768f8970ca67307ea819c024a2fe9138634042",
+      "bytes": 7385
+    }
+  },
+  "DEL-09-01": {
+    "folder": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation",
+    "ScopeOfWork.md": {
+      "sha256": "f58ced516599f2318a616498910ad8ec101f6828d805c52d17507ecb308e5952",
+      "bytes": 26372
+    },
+    "_STATUS.md": {
+      "sha256": "30d6177329d62ff888fb37ab6b44b378151ede207c122c2511ef34845a23b284",
+      "bytes": 1889
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "2d6309d87c86b52d515804547f1506656e4f1b3708baccd9460f4b152c84f463",
+      "bytes": 4479
+    },
+    "Dependencies.csv": {
+      "sha256": "c47afa8ce601546877152feb767c4b1ed60c42750f25d277680ab832cf98f822",
+      "bytes": 6281
+    }
+  },
+  "DEL-09-02": {
+    "folder": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions",
+    "ScopeOfWork.md": {
+      "sha256": "693a17f32bfb9b1678fed9eb352790477e1d7acd559affd840b47f176dea321b",
+      "bytes": 33857
+    },
+    "_STATUS.md": {
+      "sha256": "fb57c95ec9f3c309a40119d823004d1272456f69fd625607c788a95ac4d85201",
+      "bytes": 2377
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "2afe0e4c97ad48a1421571c4e5ed744befdbe8a1299b76d9521f69a6927d1720",
+      "bytes": 5987
+    },
+    "Dependencies.csv": {
+      "sha256": "861ca0ee521fc90ab854c8863cb1843da53eab40d83b29cb72010094bf1ac6e2",
+      "bytes": 15853
+    }
+  },
+  "DEL-09-03": {
+    "folder": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion",
+    "ScopeOfWork.md": {
+      "sha256": "5ea9a8528c04af733e571152e240b365f559ea23c615e79bc4e5746d987c34d7",
+      "bytes": 31769
+    },
+    "_STATUS.md": {
+      "sha256": "f8b15304ba773442db1529d1617a49fe5cbf9aa446ef4020ad70982ba85c6cb3",
+      "bytes": 3450
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "3de09fcddb6f0bd1148211715af1bd11f25bb885f4f8f87a816801d3ea0a5a37",
+      "bytes": 5332
+    },
+    "Dependencies.csv": {
+      "sha256": "39760b186bae0ff8bd1809f149c6bc01dc146529d8074130dc3466575aa93be9",
+      "bytes": 11379
+    }
+  },
+  "DEL-09-04": {
+    "folder": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity",
+    "ScopeOfWork.md": {
+      "sha256": "3692eec8e5fc8720c5615e6e5bae970e84bb40afe4bb6a2c09c88c3c632bdd8d",
+      "bytes": 26461
+    },
+    "_STATUS.md": {
+      "sha256": "04f5199dda71876c8f3545d5917417e954f66bb97ebd8502150c1eb5c3b28f3e",
+      "bytes": 33750
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "20f8f5e35713d0f0bb1ffd629e75156c71321615f125a3e2ad5c04881fd0c7df",
+      "bytes": 4684
+    },
+    "Dependencies.csv": {
+      "sha256": "27b30fb0fb729b9194912094731d22d301fe7f3dcf5408e3211b7c35011c0cbe",
+      "bytes": 5724
+    }
+  },
+  "DEL-09-05": {
+    "folder": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow",
+    "ScopeOfWork.md": {
+      "sha256": "cd79f725ee5838991f352412a56f8d8d4be22ad640d28eab273a3c0c8c785305",
+      "bytes": 38791
+    },
+    "_STATUS.md": {
+      "sha256": "17c79dfecb8707c05eb46617f2da0df94bc04bb9bb3e10f1f0c35a14c5fcab86",
+      "bytes": 3597
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "7ef05ed38b1e15278d0331f6c4ace1dc994e69fb792e057b971d2d846a545b3f",
+      "bytes": 9689
+    },
+    "Dependencies.csv": {
+      "sha256": "bde522ad79fb274157fe2bfa27ae527bb6c8715ed167235cf89a6576a8310afb",
+      "bytes": 10036
+    }
+  },
+  "DEL-09-06": {
+    "folder": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks",
+    "ScopeOfWork.md": {
+      "sha256": "10db25a90079a50e78bd3129ff82013609ee337e1b3cbd9d9bd100eddf8490f1",
+      "bytes": 28429
+    },
+    "_STATUS.md": {
+      "sha256": "00e22f32f8bb54213c99910dc8f768aa94adb9593f071c9214cb439649f11488",
+      "bytes": 3811
+    },
+    "_DEPENDENCIES.md": {
+      "sha256": "e9a253266881488e7c61674f42ef2d268c621922ffe17254effa0b785cf3412c",
+      "bytes": 4091
+    },
+    "Dependencies.csv": {
+      "sha256": "d992c5005c257e303502a775476a7b04b3e86a17c83fcf7a3a71109b75f470ed",
+      "bytes": 5955
+    }
+  }
+}

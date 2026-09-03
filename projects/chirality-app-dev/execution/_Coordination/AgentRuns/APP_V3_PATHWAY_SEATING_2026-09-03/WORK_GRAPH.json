@@ -1,0 +1,28 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APP_V3_PATHWAY_SEATING_2026-09-03",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "supervisor": {"role": "HELP_HUMAN", "agent_type": 0, "model": "claude-fable-5-1"},
+  "executor": {"role": "EPHEMERAL_AGENT2_GENERALIST", "agent_type": 2, "model": "claude-fable-5-1", "delegates": false},
+  "basis": {
+    "branch": "codex/app-v3-pathway-seating-2026-09-03",
+    "cut_from": "1537ddad1f9227dee1ba3233c0146694a779026a",
+    "rebased_onto": "8140daec7ab7165f8972451dbdd3a67b8bb2fd38",
+    "required_ancestor": "1537ddad1f9227dee1ba3233c0146694a779026a"
+  },
+  "authorization": "plans/steers/chirality_app_v3_app_ruling_record_a12_2026-09-03.md",
+  "nodes": [
+    {"id": "N0", "name": "re-derive-and-map", "depends_on": [], "writes": ["execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md", "execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md"], "selection_effect": false},
+    {"id": "N1", "name": "successor-workplan", "depends_on": ["N0"], "writes": ["loop/WORKPLAN_2026-09-03_app_dev_loop.md"]},
+    {"id": "N2", "name": "seat-carriers", "depends_on": ["N0"], "writes": ["execution/PKG-*/1_Working/DEL-{01-01,02-02,02-05,03-01,03-03,04-01,04-05,05-01,05-02,05-03,05-04,08-04,08-05,09-01,09-02,09-03,09-04,09-05,09-06}_*/{ScopeOfWork.md,_STATUS.md,_DEPENDENCIES.md,Dependencies.csv}"]},
+    {"id": "N3", "name": "evidence-contracts", "depends_on": ["N2"], "writes": []},
+    {"id": "N4", "name": "validate-and-return", "depends_on": ["N1", "N2", "N3"], "writes": ["plans/steers/chirality_app_v3_app_ruling_record_a12_2026-09-03.md", "loop/LOOP_RECEIPTS.md (append Receipt 205)", "execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/**"]}
+  ],
+  "concurrent_siblings": [
+    {"tranche": "A11 E2 Electron concordance", "pr": 680, "merge": "8140daec7ab7165f8972451dbdd3a67b8bb2fd38", "write_set_overlap": "loop/LOOP_RECEIPTS.md append-only (Receipt 204 then Receipt 205, both Parent-Receipt Receipt-203)"}
+  ],
+  "human_gates": ["owner byte review and merge", "SCOPE_AMENDMENT_REQUIRED obligations", "every NOT_SELECTABLE_UNTIL gate or act"],
+  "fan_in": {"validated_returns_required": ["N0", "N1", "N2", "N3", "N4"], "independent_review": "dispatched separately by HELP_HUMAN over the PR"}
+}

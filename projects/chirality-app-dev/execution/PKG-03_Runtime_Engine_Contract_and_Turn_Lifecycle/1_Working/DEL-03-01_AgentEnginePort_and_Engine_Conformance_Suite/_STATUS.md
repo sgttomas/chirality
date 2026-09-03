@@ -2,7 +2,7 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-08-17
+**Last Updated:** 2026-09-03
 **blocked-on:** D-APP-47, D-APP-48, D-T0-09, D-30
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
@@ -17,7 +17,17 @@
   route the required D-APP-76 Root ruling request. Packet preparation is
   selectable; deletion remains gated on later App and Root rulings.
 
+- **DEL-03-01-V3-01** (`NOT_SELECTABLE_UNTIL: Root API v2 and event schema v2 acceptance routed to App (Root DEL-02-10); exact-pin claims until G2-accepted supply is consumable and G-WIRE passes`) — App client conformance consumption for Root API v2.
+  Trace: OUT-001, AC-001, VER-001; applied decomposition row L303 (verify the App client against Root-owned runtime contracts and produce conformance evidence without redefining generic runtime semantics).
+  Plan: WP-05/WP-10; G-WIRE, G2 for exact-pin claims; AT-013/AT-015/AT-017 App-client portions; RQG §13 Shared Runtime Gate evidence contribution. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
+  Depends: Root DEL-02-10 accepted API/event schema v2 and Root DEL-02-08 G2 supply unit (R15) consumable by App through routed notices; DEP-03-01-005/008. Fake App Server may be used before supply acceptance; exact-pin claims wait for G2/G-WIRE.
+  Write locus: `frontend/packages/**` re-export/conformance surfaces, `frontend/src/__tests__/**`, `Evidence_CODEV-*` records, and deliverable-local state.
+  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); Step 0 must carry the A1 re-stage declaration because `frontend/` is touched.
+  Return: Conformance evidence for exact adapter identity, the four explicit terminal outcomes, and no automatic fallback, bound to the accepted schema identity; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
+  Removed when: App conformance against the accepted v2 contracts lands with G-WIRE evidence.
+
 ## History
+- 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; v3 Remaining items seeded (1, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-08-17 - D-APP-101 authorized the bounded facade-retirement packet, not
   deletion. DEL-03-01 is its deliverable-local home; TM-APP-031 is resolved by
   this ruling for later TASK_MANAGEMENT maintenance. The facade remains the

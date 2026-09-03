@@ -2,7 +2,7 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-08-17
+**Last Updated:** 2026-09-03
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -22,7 +22,25 @@ Mandatory non-blocking rerun trigger: if a later accepted D-APP-88
 distinct-helper implementation lands, rerun the D-APP-86 packaged parity
 instrument against that changed package identity.
 
+- **DEL-02-02-V3-01** (`NOT_SELECTABLE_UNTIL: DEL-08-05-V3-01 landed (recorded managed/native descendant records exist to present)`) — Work/Agents presentation of managed and native descendant records with source, authority-class, responsible-reference, currency, and evidence provenance labels from recorded evidence.
+  Trace: OUT-001 (Work/Agents coordination presentation; provenance labels; stale/empty-state tests), AC-001, VER-001; applied decomposition row L294 (present explicitly recorded agent/session selections with source, authority class, responsible reference, currency, and evidence; DEL-08-05 retains child records, DEL-05-04 retains projection semantics).
+  Plan: WP-07; AT-028 presentation portion; G4 for any Preview-boundary claim; no live-account claim. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
+  Depends: DEL-08-05-V3-01 (the descendant record classes and attribution vocabulary this presentation labels). Row L294 was not amended at Gate 5: the Codex Agent 0/1/2 role-entry offer and the `role not mechanically enforced` / `Opt-in Preview` posture labels are not DEL-02-02 scope and are unseated here (`SCOPE_AMENDMENT_REQUIRED` S-7 in the seating packet MAPPING); they are seated on DEL-02-05 (row L297) and DEL-08-04 (row L357).
+  Write locus: `frontend/src/**` presentation components, fixtures, and tests for the Work/Agents/Workbench surfaces plus this deliverable's `_STATUS.md`/`MEMORY.md`/`_run_records/**`; no harness, IPC, or Root write.
+  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); Step 0 must carry the A1 re-stage declaration because `frontend/` is touched.
+  Return: Fixture bytes, component tests, and D-APP-36 render evidence proving descendant/status presentation from recorded evidence with provenance labels and no inferred parentage or role; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
+  Removed when: the presentation lands with review PASS; live wiring is DEL-02-02-V3-02.
+- **DEL-02-02-V3-02** (`NOT_SELECTABLE_UNTIL: Root API v2 and event schema v2 acceptance routed to App (Root DEL-02-10) and DEL-08-04-V3-01 landed`) — live descendant/status presentation.
+  Trace: OUT-001, AC-001, VER-001; applied decomposition row L294.
+  Plan: WP-07; G4 (owner accepts Preview boundary); AT-028 live presentation portion; live success claims wait for G3/G-WIRE. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
+  Depends: Root DEL-02-10 accepted API/event schema v2 (routed notice); DEL-08-04-V3-01; DEL-08-05-V3-01; DEL-02-02-V3-01; owner G4 acceptance for any Preview-boundary claim.
+  Write locus: `frontend/src/**` presentation surfaces and tests plus deliverable-local state.
+  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); Step 0 must carry the A1 re-stage declaration because `frontend/` is touched.
+  Return: Live-path presentation evidence bound to the accepted schema identity and to recorded descendant evidence; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
+  Removed when: live presentation lands under G4 evidence.
+
 ## History
+- 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; v3 Remaining items seeded (2, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-08-17 - D-APP-96 accepted the current "All sessions (N)" presentation
   as final: N counts all recorded sessions per Working Root, including
   unattributed ones. The owner-reserved presentation item was removed from

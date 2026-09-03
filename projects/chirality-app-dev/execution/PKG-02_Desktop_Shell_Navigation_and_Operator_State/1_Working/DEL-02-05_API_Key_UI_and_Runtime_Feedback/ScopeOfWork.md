@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-02-05
 package_id: PKG-02
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f
 project_scope_refs: [SOW-013, SOW-019, SOW-023]
 package_objective_refs: [OBJ-001, OBJ-008]
 ---
@@ -14,6 +14,7 @@ package_objective_refs: [OBJ-001, OBJ-008]
 This Scope of Work defines `DEL-02-05` in service of project scope [SOW-013, SOW-019, SOW-023] and package objectives [OBJ-001, OBJ-008].
 
 - **OUT-001** — API-key UI and runtime-feedback contract for DEL-02-05, traceable to SOW-013, SOW-019, SOW-023, OBJ-001, and OBJ-008.
+- **OUT-002** — The v3.0.0-rc.1 carrier outputs assigned to `DEL-02-05` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 297 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): API key and account settings panel; `HostedEngineConsentPort` UI adapter; per-root login and command-network consent controls; attachment picker and preview chips; typed storage/runtime error display; consent/revocation and retry-state tests. Traceable to SOW-013, SOW-019, SOW-023 and OBJ-001, OBJ-008.
 
 **D-APP-80 concordance note (2026-07-28):** SOW-023 is supported here
 through the selected-working-root attachment UI, including multi-select
@@ -110,6 +111,18 @@ security validation.
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-112 resolves the SOW-023 traceability delta in favor of inclusion because decomposition v3.2 explicitly maps SOW-023 to DEL-02-05; the new anchor is derivative traceability, not a lifecycle decision.
+
+### CLM-028 — Applied decomposition v3 carrier assignment (SCA-APP-008 Gate 5, 2026-09-03)
+
+> ##### Applied decomposition row for DEL-02-05 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`
+>
+> The accepted SCA-APP-008 Gate-5 application (PR #662) amended this deliverable's row. The row text below is transcribed verbatim from the applied decomposition and is the sole scope basis for the v3 outputs and requirements added on 2026-09-03; it adds no obligation beyond the row.
+>
+> | Column | Applied row text |
+> |---|---|
+> | Description | Provide API key entry/status UI, secure-storage feedback, selected-working-root attachment controls, typed runtime errors, and retry-preserving failure states; serve as the explicit App account/consent UX carrier by consuming `HostedEngineConsentPort`, explaining per-root login and root-private app-owned `CODEX_HOME`, presenting login/logout/account and consent/revocation state, distinguishing `missing`, `storageUnavailable`, `decryptFailed`, and `available`, and offering the three per-root command-network postures: no command network by default, ask per destination with host/protocol context and the queued-request caveat plus explicit-user-only `acceptForSession`, or labelled command network on through `network_access = true`. Agent 0/1/2 role entry remains available for Codex sessions; Agent 2/TASK is labelled `role not mechanically enforced` when G-ROLE fails, and the product posture is labelled `Opt-in Preview`. |
+> | Principal outputs | API key and account settings panel; `HostedEngineConsentPort` UI adapter; per-root login and command-network consent controls; attachment picker and preview chips; typed storage/runtime error display; consent/revocation and retry-state tests |
+> | Notes | Explicit App account/consent UX carrier; Root retains account/consent semantics. No ambient `~/.codex` read or project-truth secret persistence. DEL-09-06 retains server-side attachment, network, key, credential-IPC, and renderer security validation. Live claims remain gated by the accepted Root/App account/consent contract, G3, G-CSP, and G4. |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -212,7 +225,13 @@ security validation.
 > - Exact retry state owner for drafts and attachments.
 > - Final evidence paths or commands for key status precedence, key storage secrecy, runtime redaction, and non-authoritative UI state checks.
 
+- **REQ-001** — The deliverable shall serve as the explicit App account/consent UX carrier by consuming `HostedEngineConsentPort`, explaining per-root login and the root-private app-owned `CODEX_HOME`, and presenting login/logout/account and consent/revocation state; Root retains account/consent semantics, and no ambient `~/.codex` read or project-truth secret persistence occurs.
+- **REQ-002** — The UI shall distinguish the typed storage states `missing`, `storageUnavailable`, `decryptFailed`, and `available`.
+- **REQ-003** — The UI shall offer the three per-root command-network postures exactly as assigned: no command network by default; ask per destination with host/protocol context and the queued-request caveat plus explicit-user-only `acceptForSession`; or labelled command network on through `network_access = true`.
+- **REQ-004** — Agent 0/1/2 role entry shall remain available for Codex sessions; Agent 2/TASK shall be labelled `role not mechanically enforced` when G-ROLE fails; and the product posture shall be labelled `Opt-in Preview`.
+- **REQ-005** — Live claims remain gated by the accepted Root/App account/consent contract, G3, G-CSP, and G4; DEL-09-06 retains server-side attachment, network, key, credential-IPC, and renderer security validation.
 - **AC-001** — The Scope of Work preserves and traces all legacy source content to SOW-013, SOW-019, SOW-023, OBJ-001, and OBJ-008 without adding scope, reliance claims, lifecycle meaning, or obligations.
+- **AC-002** — The v3 account/consent outputs assigned by the applied decomposition row (API key and account settings panel, `HostedEngineConsentPort` UI adapter, per-root login and command-network consent controls, attachment picker and preview chips, typed storage/runtime error display, consent/revocation and retry-state tests) exist and satisfy REQ-001 through REQ-005, and any live-account claim carries the accepted Root/App account/consent contract and G3/G-CSP/G4 evidence rather than being inferred.
 
 ## Production and Verification Method — Praxeology
 
@@ -324,6 +343,7 @@ security validation.
 > | Secret hygiene and project-truth boundary | Static, unit, integration, or review evidence proving key material, logs, drafts, transcripts, and UI state do not become project truth. | TBD - final evidence paths or commands not yet accepted. |
 
 - **VER-001** — Run deterministic schema validation, source mapping, parity, checklist derivation, and render stability checks, followed by human review against the accepted legacy basis.
+- **VER-002** — Run the consent/revocation, retry-state, typed storage-state, command-network-posture, and role/posture-label tests behind fakes; inspect that no ambient `~/.codex` read or project-truth secret persistence occurs; and treat live-account evidence as unavailable until the accepted Root/App account/consent contract, G3, G-CSP, and G4 pass.
 
 ## Governing Values and Decisions — Axiology
 
@@ -398,3 +418,4 @@ security validation.
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-013 SOW-019 OBJ-001 OBJ-008 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-002 | SOW-013 SOW-019 SOW-023 OBJ-001 OBJ-008 | CLM-028 REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 | AC-002 | VER-002 | Fixture and test evidence behind fakes; typed storage-state and network-posture fixtures; gate-bound live-claim evidence only after the named gates |

@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-08-04
 package_id: PKG-08
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f
 project_scope_refs: [SOW-063]
 package_objective_refs: [OBJ-005, OBJ-007]
 ---
@@ -14,6 +14,7 @@ package_objective_refs: [OBJ-005, OBJ-007]
 This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and package objectives [OBJ-005, OBJ-007].
 
 - **OUT-001** — The managed-delegation admission bridge for DEL-08-04, including `delegate_agent`, fail-closed governance evaluation, parent-relative hierarchy checks, restricted child tools/cwd, and the DEL-08-05 handoff interface.
+- **OUT-002** — The v3.0.0-rc.1 carrier outputs assigned to `DEL-08-04` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 357 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): App project-authority and managed-delegation bridge; daemon-client dispatch; class-aware `subagent-governance` behavior; managed sibling-overlap checks; role/native-origin fixtures; sealed-brief, containment, approval, cancellation, and cleanup conformance tests. Traceable to SOW-063 and OBJ-005, OBJ-007.
 
 ## Deliverable Definition — Ontology
 
@@ -104,6 +105,18 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-135/136 record the landed `SubagentGovernanceDecision`, preflight `safeMetadata`, and `ChildRunRecord` shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.
+
+### CLM-033 — Applied decomposition v3 carrier assignment (SCA-APP-008 Gate 5, 2026-09-03)
+
+> ##### Applied decomposition row for DEL-08-04 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`
+>
+> The accepted SCA-APP-008 Gate-5 application (PR #662) amended this deliverable's row. The row text below is transcribed verbatim from the applied decomposition and is the sole scope basis for the v3 outputs and requirements added on 2026-09-03; it adds no obligation beyond the row.
+>
+> | Column | Applied row text |
+> |---|---|
+> | Description | Remain the Chirality-managed delegation bridge and prospectively carry multi-child managed execution plus the root `AGENTS.md` Agent 0/1/2 graph for v3 work, while consuming delegated-harness-native descent as a distinct Root-originated class. Enforce managed hierarchy, named allowlist or declared generalist policy, sealed brief, approvals, context/cwd/tool/write boundaries, active-sibling write-overlap fail-close, cancellation/cleanup, and class-aware routing; native descent assigns no Agent 0/1/2 role. Agent 0/1/2 role entry is offered for Codex sessions, with Agent 2/TASK labelled `role not mechanically enforced` and governed evidence marked `instruction-asserted` when G-ROLE cannot mechanically prove non-delegation. |
+> | Principal outputs | App project-authority and managed-delegation bridge; daemon-client dispatch; class-aware `subagent-governance` behavior; managed sibling-overlap checks; role/native-origin fixtures; sealed-brief, containment, approval, cancellation, and cleanup conformance tests |
+> | Notes | Project authority/client-dispatch slice; daemon owns operational managed delegation and Root owns delegated-harness-native semantics. The D-APP-74 exclusion remains historical and tranche-scoped to SCA-APP-004; this v3 carrier prospectively supersedes it without retroactive edit. D-GOV-35 is necessary but App carrier acceptance and WP-03/05 fixtures remain required. |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -231,7 +244,13 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 >
 > UPD-135/136 record the landed `SubagentGovernanceDecision`, preflight `safeMetadata`, and `ChildRunRecord` shapes plus implementation/test paths; only the separately gated approval-reference question remains open. UPD-137 aligns DEP-08-04-003 to that contract.
 
+- **REQ-001** — The deliverable shall remain the Chirality-managed delegation bridge and prospectively carry multi-child managed execution plus the root `AGENTS.md` Agent 0/1/2 graph for v3 work.
+- **REQ-002** — The deliverable shall consume delegated-harness-native descent as a distinct Root-originated class; native descent assigns no Agent 0/1/2 role, and Root owns delegated-harness-native semantics.
+- **REQ-003** — The bridge shall enforce managed hierarchy, named allowlist or declared generalist policy, sealed brief, approvals, context/cwd/tool/write boundaries, active-sibling write-overlap fail-close, cancellation/cleanup, and class-aware routing.
+- **REQ-004** — Agent 0/1/2 role entry shall be offered for Codex sessions, with Agent 2/TASK labelled `role not mechanically enforced` and governed evidence marked `instruction-asserted` when G-ROLE cannot mechanically prove non-delegation.
+- **REQ-005** — The D-APP-74 exclusion remains historical and tranche-scoped to SCA-APP-004 and is prospectively superseded without retroactive edit; D-GOV-35 is necessary, but App carrier acceptance and WP-03/05 fixtures remain required before v3 delegation work.
 - **AC-001** — The DEL-08-04 bridge is accepted when the complete preserved legacy source's denial, restriction, allowed-path, audit-safety, and DEL-08-05 handoff checks demonstrate fail-closed parent-relative managed delegation for SOW-063 and OBJ-005, OBJ-007.
+- **AC-002** — The v3 outputs assigned by the applied decomposition row (App project-authority and managed-delegation bridge, daemon-client dispatch, class-aware `subagent-governance` behavior, managed sibling-overlap checks, role/native-origin fixtures, and sealed-brief, containment, approval, cancellation, and cleanup conformance tests) exist and satisfy REQ-001 through REQ-005 without inferring an Agent role from native descent.
 
 ## Production and Verification Method — Praxeology
 
@@ -316,6 +335,7 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 > Do not create or modify `Dependencies.csv` during this procedure. Use `_DEPENDENCIES.md` only as current dependency context until declared edges are accepted.
 
 - **VER-001** — Review the complete preserved legacy source and execute its specified missing-metadata, approval-reference, unsealed-context, non-allowlisted, parent/child-hierarchy, launch-error, broad-capability, allowed-restricted-execution, audit-safety, and DEL-08-05 handoff checks; record concrete evidence.
+- **VER-002** — Run the class-aware routing, managed sibling-overlap, role/native-origin, sealed-brief, containment, approval, cancellation, and cleanup conformance tests; confirm native descent assigns no Agent 0/1/2 role and that the `role not mechanically enforced` and `instruction-asserted` labels appear whenever G-ROLE proof is absent.
 
 ## Governing Values and Decisions — Axiology
 
@@ -426,3 +446,4 @@ This Scope of Work defines `DEL-08-04` in service of project scope [SOW-063] and
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-063 OBJ-005 OBJ-007 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-002 | SOW-063 OBJ-005 OBJ-007 | CLM-033 REQ-001 REQ-002 REQ-003 REQ-004 REQ-005 | AC-002 | VER-002 | Class-aware routing and overlap fixtures; role/native-origin fixtures; conformance test evidence bound to the WP-03/05 fixtures they consume |
