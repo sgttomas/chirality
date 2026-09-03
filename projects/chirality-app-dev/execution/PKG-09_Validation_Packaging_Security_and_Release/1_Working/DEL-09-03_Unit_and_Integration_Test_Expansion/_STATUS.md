@@ -6,7 +6,11 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+## Remaining
+None.
+
 ## History
+- 2026-09-03 - Restored the structurally required `## Remaining` section with `None.` so deliverable-local discovery can represent the already-cleared scope; Current State, lifecycle, Checking Approval SHA, and dependencies are unchanged.
 - 2026-08-02 - Added the direct fake-oMLX Desktop/CLI shared-daemon integration proof at `frontend/src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts`: one daemon/socket/project credential and shared session visibility, real `PiAgentEngineAdapter`, typed same-session competition rejection, live-owner exclusion, exactly-one durable cancellation terminal, and distinct-session coexistence all pass. The scoped Remaining item is removed; state remains IN_PROGRESS and lifecycle/Checking Approval SHA are unchanged. Runtime-suite dependency resolution and shared-runtime-bound premerge remain non-blocking rerun advisories for PR CI.
 - 2026-07-22 - D-APP-72 mocked Pi, fake authenticated loopback, ambient-resource sentinel, mixed-engine concurrency, and deterministic recovery coverage completed; the fresh complete suite passes 106 files with 854 tests and 4 skips. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added second-engine unit/integration coverage to Remaining; state remains IN_PROGRESS.

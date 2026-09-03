@@ -6,7 +6,11 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+## Remaining
+None.
+
 ## History
+- 2026-09-03 - Restored the structurally required `## Remaining` section with `None.` so deliverable-local discovery can represent the already-cleared scope; Current State, lifecycle, Checking Approval SHA, and dependencies are unchanged.
 - 2026-08-15 - Added and independently reviewed an App-owned integration proof that an accepted turn interrupted while a model activation drains across daemon stop/restart replays exactly one durable terminal outcome; removed the completed Remaining item. Verification ownership remains with DEL-09-03; state remains IN_PROGRESS.
 - 2026-07-12 - D-APP-56 consolidated R5 decision application recorded; generic concordance Remaining retained for R6; state remains IN_PROGRESS.
 - 2026-05-20 - State set to OPEN (PREPARATION)

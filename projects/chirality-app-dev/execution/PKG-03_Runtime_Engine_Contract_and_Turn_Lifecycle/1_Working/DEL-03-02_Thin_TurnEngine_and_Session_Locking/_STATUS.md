@@ -6,7 +6,11 @@
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
 
+## Remaining
+None.
+
 ## History
+- 2026-09-03 - Restored the structurally required `## Remaining` section with `None.` so deliverable-local discovery can represent the already-cleared scope; Current State, lifecycle, Checking Approval SHA, and dependencies are unchanged.
 - 2026-08-02 - DEL-09-03 R2 directly proved that Desktop and CLI share one authenticated daemon/project/session boundary, same-session competition fails with `SESSION_TURN_IN_PROGRESS`, and a second live runtime owner is rejected. The C04 Remaining item is removed on accepted cross-package fan-in; state remains IN_PROGRESS and lifecycle, Checking Approval SHA, and dependencies are unchanged. C06 daemon-recovery/model-drain proof remains separate and open in DEL-03-04.
 - 2026-07-22 - D-APP-72 per-turn adapter resolution and preflight completed; failure/recovery tests prove accepted-input persistence, lock release, and no automatic fallback. State remains IN_PROGRESS; lifecycle and Checking Approval SHA are unchanged.
 - 2026-07-21 - SCA-APP-002 added per-turn second-engine routing to Remaining; state remains IN_PROGRESS.

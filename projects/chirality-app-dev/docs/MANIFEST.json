@@ -92,7 +92,7 @@
     },
     {
       "path": "plans/PLAN_2026-06-20_autonomous_development_queue.md",
-      "role": "active D-APP-39 autonomous development queue"
+      "role": "historical D-APP-39 autonomous development queue reference; not a work-selection surface"
     },
     {
       "path": "execution/_ScopeChange/_LATEST.md",
@@ -138,7 +138,7 @@
   "notes": [
     "This manifest is an index only; it is not release authorization, lifecycle approval, or project truth.",
     "docs/PLAN.md is strategic roadmap context, not the active queue.",
-    "The active queue is plans/PLAN_2026-06-20_autonomous_development_queue.md, released by D-APP-39. The D-APP-19 deliverable-inspection program is complete and its P0 governance cluster (D-APP-34/36/37 applied; D-APP-38 reference-integrity corpus v1 reconciled) landed in commit a5ccfc591.",
+    "Work is discovered from deliverable-local _STATUS.md ## Remaining sections under the owner-adopted 2026-07-10 convention; plans/ is historical reference, not a queue. The D-APP-19 deliverable-inspection program is complete and its P0 governance cluster (D-APP-34/36/37 applied; D-APP-38 reference-integrity corpus v1 reconciled) landed in commit a5ccfc591.",
     "Authority-doc edits trigger a D-APP-38 corpus version bump: run execution/_Reconciliation/References/reconcile_authority_corpus.py (status, bump, apply).",
     "plans/PLAN_2026-06-17_live_packaged_agentsdk_read_tool_proof.md is completed live packaged agentSdk read-tool proof history.",
     "plans/PLAN_2026-06-17_r6_extensibility_mcp_boundary.md is completed R6 Extensibility and MCP Boundary Maturity history; R6-04 was deferred as optional organization work.",
