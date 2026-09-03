@@ -1,0 +1,11 @@
+$ git apply --check projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Evidence/VERSION_IDENTITY_3.0.0-rc.1/staged_version_patch.diff
+exit=0 (patch applies cleanly to basis tree; NOT applied)
+
+$ git apply --stat
+ projects/chirality-app-dev/frontend/package.json   |    2 +-
+ .../chirality-app-dev/frontend/package-lock.json   |    4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+$ git apply --numstat
+1	1	projects/chirality-app-dev/frontend/package.json
+2	2	projects/chirality-app-dev/frontend/package-lock.json

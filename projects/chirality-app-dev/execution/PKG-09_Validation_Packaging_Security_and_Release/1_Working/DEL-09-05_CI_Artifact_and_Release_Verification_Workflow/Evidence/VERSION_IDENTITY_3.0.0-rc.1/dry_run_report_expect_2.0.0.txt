@@ -1,0 +1,21 @@
+Version identity dry-run report
+expected identity : 2.0.0
+frontend root     : {REPO_ROOT}/projects/chirality-app-dev/frontend
+mode              : dry-run (no product byte changed)
+
+| # | surface | observed | expected | status | note |
+|---|---|---|---|---|---|
+| 1 | package.json `version` (declared) | 2.0.0 | 2.0.0 | MATCH |  |
+| 2 | package-lock.json top-level `version` (declared) | 2.0.0 | 2.0.0 | MATCH |  |
+| 3 | package-lock.json `packages[""].version` (declared) | 2.0.0 | 2.0.0 | MATCH |  |
+| 4 | electron-builder `build.productName` (identity constant) | Chirality | Chirality | MATCH |  |
+| 5 | electron-builder `build.appId` (identity constant) | com.chirality.app | com.chirality.app | MATCH |  |
+| 6 | electron-builder artifact-name template | ${productName}-${version}-${arch}.${ext} | ${productName}-${version}-${arch}.${ext} | MATCH | electron-builder default (no explicit template) |
+| 7 | macOS arm64 DMG filename derived from package.json version | Chirality-2.0.0-arm64.dmg | Chirality-2.0.0-arm64.dmg | MATCH | derived: electron-builder names the DMG from productName, version, and arch |
+| 8 | staged app Info.plist `CFBundleShortVersionString`/`CFBundleVersion` (bundle metadata; `app.getVersion()` source) | — | 2.0.0 | DERIVED | no --app-path given; electron-builder derives both keys from package.json `version`, so this surface follows package.json:version |
+| 9 | named DMG file basename | — | Chirality-2.0.0-arm64.dmg | NOT_INSPECTED | no --dmg-path given |
+| 10 | UI/about string or runtime report that prints the product version (electron/**, src/**) | none found | 2.0.0 | ABSENT | no `app.getVersion()`, `npm_package_version`, `NEXT_PUBLIC_APP_VERSION`, or product-version token in product source; AT-043 UI/runtime surfaces do not yet exist |
+| 11 | release-manifest / proof-summary version field written by existing scripts (scripts/**) | none found | 2.0.0 | ABSENT | existing summaries carry digests, source revisions, and posture only; no script writes the product version |
+
+Result: PASS (0 mismatching surface(s); 3 absent/not-inspected/unchecked surface(s))
+Boundary: evidence only; no version byte changed; no signing, notarization, publication, distribution, or release act.

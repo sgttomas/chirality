@@ -1,0 +1,29 @@
+diff --git a/projects/chirality-app-dev/frontend/package.json b/projects/chirality-app-dev/frontend/package.json
+--- a/projects/chirality-app-dev/frontend/package.json
++++ b/projects/chirality-app-dev/frontend/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "chirality-frontend",
+-  "version": "2.0.0",
++  "version": "3.0.0-rc.1",
+   "private": true,
+   "workspaces": [
+     "packages/*"
+diff --git a/projects/chirality-app-dev/frontend/package-lock.json b/projects/chirality-app-dev/frontend/package-lock.json
+--- a/projects/chirality-app-dev/frontend/package-lock.json
++++ b/projects/chirality-app-dev/frontend/package-lock.json
+@@ -1,12 +1,12 @@
+ {
+   "name": "chirality-frontend",
+-  "version": "2.0.0",
++  "version": "3.0.0-rc.1",
+   "lockfileVersion": 3,
+   "requires": true,
+   "packages": {
+     "": {
+       "name": "chirality-frontend",
+-      "version": "2.0.0",
++      "version": "3.0.0-rc.1",
+       "workspaces": [
+         "packages/*"
+       ],

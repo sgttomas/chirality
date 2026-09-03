@@ -1,0 +1,1 @@
+sbom generation refused or failed: Syft binary not found ("syft"); install Syft v1.18.1 locally — this script does not download it

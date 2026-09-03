@@ -1,0 +1,33 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_V3_NODE_B_2026-09-03",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "selection_record": "owner-directed dev-slate selection via HELP_HUMAN, 2026-09-03; items seated by A12 (PR #681)",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "supervisor": {"role": "HELP_HUMAN", "agent_type": 0, "model": "claude-fable-5-1"},
+  "instances": [
+    {"id": "B1_IMPLEMENTER", "role": "EPHEMERAL_AGENT2_IMPLEMENTER", "agent_type": 2, "model": "claude-fable-5-1", "delegates": false, "brief": "instances/B1_IMPLEMENTER/LAUNCH_BRIEF.md"},
+    {"id": "B2_REVIEWER", "role": "READ_ONLY_CODE_REVIEWER", "agent_type": 2, "model": "claude-fable-5-1", "delegates": false, "write_targets": []}
+  ],
+  "basis": {
+    "branch": "codex/app-v3-nodeB-wp09-prep-2026-09-03",
+    "cut_from": "0c683fb1657706316272951e4c3a0f7781b46009",
+    "required_ancestor": "0c683fb1657706316272951e4c3a0f7781b46009"
+  },
+  "items": ["DEL-09-05-V3-01", "DEL-09-05-V3-02", "DEL-09-05-V3-03"],
+  "nodes": [
+    {"id": "N0", "name": "step0-discovery", "instance": "B1_IMPLEMENTER", "depends_on": [], "writes": ["execution/_Coordination/AgentRuns/APPDEV_V3_NODE_B_2026-09-03/**"]},
+    {"id": "N1", "name": "sbom-and-notices-tooling", "item": "DEL-09-05-V3-02", "instance": "B1_IMPLEMENTER", "depends_on": ["N0"], "writes": ["frontend/scripts/generate-sbom.mjs", "frontend/scripts/generate-third-party-notices.mjs", "frontend/package.json#scripts", "frontend/src/__tests__/scripts/generate-sbom.test.ts", "frontend/src/__tests__/scripts/generate-third-party-notices.test.ts"]},
+    {"id": "N2", "name": "version-identity-check-and-staged-patch", "item": "DEL-09-05-V3-03", "instance": "B1_IMPLEMENTER", "depends_on": ["N0"], "writes": ["frontend/scripts/verify-version-identity.mjs", "frontend/package.json#scripts", "frontend/src/__tests__/scripts/verify-version-identity.test.ts", "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Evidence/VERSION_IDENTITY_3.0.0-rc.1/**"]},
+    {"id": "N3", "name": "artifact-evidence-bundle", "item": "DEL-09-05-V3-02", "instance": "B1_IMPLEMENTER", "depends_on": ["N1"], "writes": ["execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Evidence/WP09_ARTIFACT_EVIDENCE_2026-09-03/**"]},
+    {"id": "N4", "name": "runbook-and-custody-checklist-candidates", "item": "DEL-09-05-V3-01", "instance": "B1_IMPLEMENTER", "depends_on": ["N0"], "writes": ["execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Release_Runbook_CANDIDATE_2026-09-03.md", "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Exact_Candidate_Identity_and_Custody_Checklist_CANDIDATE.md"]},
+    {"id": "N5", "name": "checks-freeze-return", "instance": "B1_IMPLEMENTER", "depends_on": ["N1", "N2", "N3", "N4"], "writes": ["execution/_Coordination/AgentRuns/APPDEV_V3_NODE_B_2026-09-03/CHECKS.json", "execution/_Coordination/AgentRuns/APPDEV_V3_NODE_B_2026-09-03/RETURN.md", "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_run_records/**"]},
+    {"id": "R1", "name": "independent-review", "instance": "B2_REVIEWER", "depends_on": ["N5"], "writes": []},
+    {"id": "N6", "name": "closeout-after-review-pass", "instance": "B1_IMPLEMENTER", "depends_on": ["R1"], "writes": ["execution/_Coordination/AgentRuns/APPDEV_V3_NODE_B_2026-09-03/instances/B2_REVIEWER/**", "execution/_Coordination/AgentRuns/APPDEV_V3_NODE_B_2026-09-03/HANDOFF_STATE.md", "execution/_Coordination/AgentRuns/APPDEV_V3_NODE_B_2026-09-03/MANIFEST.sha256", "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_STATUS.md", "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/MEMORY.md", "loop/LOOP_RECEIPTS.md (append Receipt 207)"]}
+  ],
+  "registered_checks": ["frontend-typecheck", "frontend-test", "frontend-build", "frontend-premerge", "harness-self-check", "harness-pytest", "app-hold-integrity"],
+  "additional_checks": ["verify:version-identity --expect 2.0.0 (pass)", "verify:version-identity --expect 3.0.0-rc.1 (mismatch report)", "notices:generate twice byte-identical", "git diff --check", "validate_change_scope.py", "corpus status", "receipts validator"],
+  "human_gates": ["owner merge", "DEL-09-05-V3-06 identity ruling", "G5 REVIEW", "G6a exact-candidate ruling", "G6b/G-KEY/G7/G8 owner acts", "V3-04 host act", "SCOPE_AMENDMENT S-6"],
+  "fences": ["F-APP-2", "D-APP-97", "no .github/workflows change", "no version byte change", "no signing identity", "no Apple service call", "no WP-11 act", "A1 re-stage rule declared"]
+}

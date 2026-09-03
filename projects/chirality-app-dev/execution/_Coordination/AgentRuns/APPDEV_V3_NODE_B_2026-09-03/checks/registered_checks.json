@@ -1,0 +1,137 @@
+{
+  "profile": "projects/chirality-app-dev/software-workflow.json",
+  "project_root": "projects/chirality-app-dev",
+  "results": [
+    {
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 5.529,
+      "exit_code": 0,
+      "id": "frontend-typecheck",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 typecheck\n> tsc --noEmit --incremental false && tsc -p tsconfig.electron.json --noEmit --incremental false\n\n",
+      "timeout_seconds": 1500.0
+    },
+    {
+      "command": [
+        "npm",
+        "test"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 5.216,
+      "exit_code": 0,
+      "id": "frontend-test",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 test\n> vitest run\n\n\n RUN  v4.1.10 {WORKSPACE_ROOT}/projects/chirality-app-dev/frontend\n\n{\"status\":\"FAIL\",\"summaryPath\":\"{TMPDIR}/chirality-daemon-proof-test-QtGJ5q/evidence/summary.json\"}\n\n Test Files  158 passed | 1 skipped (159)\n      Tests  1317 passed | 4 skipped (1321)\n   Start at  14:57:34\n   Duration  4.86s (transform 8.84s, setup 0ms, import 16.84s, tests 34.47s, environment 17ms)\n\n",
+      "timeout_seconds": 1500.0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 11.45,
+      "exit_code": 0,
+      "id": "frontend-build",
+      "status": "PASS",
+      "stderr": "\n  dist-electron/main.js      1.3mb \u26a0\ufe0f\n  dist-electron/main.js.map  2.4mb\n\n\u26a1 Done in 32ms\n\n  dist-electron/preload.js       3.5kb\n  dist-electron/preload.js.map  14.4kb\n\n\u26a1 Done in 1ms\n\n  dist-runtime/chirality-cli.mjs       73.7kb\n  dist-runtime/chirality-cli.mjs.map  180.9kb\n\n\u26a1 Done in 5ms\n",
+      "stdout": "\n> chirality-frontend@2.0.0 build\n> NEXT_TELEMETRY_DISABLED=1 next build && npm run build:electron\n\n   \u25b2 Next.js 15.5.21\n\n   Creating an optimized production build ...\n \u2713 Compiled successfully in 1377ms\n   Linting and checking validity of types ...\n   Collecting page data ...\n   Generating static pages (0/24) ...\n   Generating static pages (6/24) \n   Generating static pages (12/24) \n   Generating static pages (18/24) \n \u2713 Generating static pages (24/24)\n   Finalizing page optimization ...\n   Collecting build traces ...\n\nRoute (app)                                             Size  First Load JS\n\u250c \u25cb /                                                  713 B         197 kB\n\u251c \u25cb /_not-found                                        168 B         103 kB\n\u251c \u0192 /api/harness/agents                                168 B         103 kB\n\u251c \u0192 /api/harness/interrupt                             168 B         103 kB\n\u251c \u0192 /api/harness/permission                            168 B         103 kB\n\u251c \u0192 /api/harness/scaffold                              168 B         103 kB\n\u251c \u0192 /api/harness/session/[id]                          168 B         103 kB\n\u251c \u0192 /api/harness/session/[id]/events                   168 B         103 kB\n\u251c \u0192 /api/harness/session/boot                          168 B         103 kB\n\u251c \u0192 /api/harness/session/create                        168 B         103 kB\n\u251c \u0192 /api/harness/session/list                          168 B         103 kB\n\u251c \u0192 /api/harness/turn                                  168 B         103 kB\n\u251c \u0192 /api/project/deliverables                          168 B         103 kB\n\u251c \u0192 /api/working-root/deliverable/content              168 B         103 kB\n\u251c \u0192 /api/working-root/deliverable/dependencies         168 B         103 kB\n\u251c \u0192 /api/working-root/deliverable/status               168 B         103 kB\n\u251c \u0192 /api/working-root/deliverable/status/transition    168 B         103 kB\n\u251c \u0192 /api/working-root/scope                            168 B         103 kB\n\u251c \u0192 /api/working-root/tree                             168 B         103 kB\n\u251c \u0192 /api/working-root/validate                         168 B         103 kB\n\u251c \u25cb /chat                                              592 B         197 kB\n\u251c \u25cb /icon.svg                                            0 B            0 B\n\u251c \u25cb /pipeline                                          676 B         197 kB\n\u2514 \u25cb /workbench                                         666 B         197 kB\n+ First Load JS shared by all                         102 kB\n  \u251c chunks/255-62902f04efbdd792.js                   46.3 kB\n  \u251c chunks/4bd1b696-c023c6e3521b1417.js              54.2 kB\n  \u2514 other shared chunks (total)                      1.93 kB\n\n\n\u25cb  (Static)   prerendered as static content\n\u0192  (Dynamic)  server-rendered on demand\n\n\n> chirality-frontend@2.0.0 build:electron\n> node ./scripts/build-electron.mjs\n\n",
+      "timeout_seconds": 1500.0
+    },
+    {
+      "command": [
+        "npm",
+        "run",
+        "harness:validate:premerge"
+      ],
+      "cwd": "projects/chirality-app-dev/frontend",
+      "duration_seconds": 6.878,
+      "exit_code": 1,
+      "id": "frontend-premerge",
+      "service": {
+        "command": [
+          "node",
+          "node_modules/next/dist/bin/next",
+          "dev",
+          "--port",
+          "51578"
+        ],
+        "cwd": "projects/chirality-app-dev/frontend",
+        "exit_code": 0,
+        "port": 51578,
+        "ready_url": "http://127.0.0.1:51578",
+        "shutdown_timeout_seconds": 10,
+        "startup_duration_seconds": 4.605,
+        "startup_timeout_seconds": 90,
+        "status": "READY",
+        "stderr_tail": "",
+        "stdout_tail": "   \u25b2 Next.js 15.5.21\n   - Local:        http://localhost:51578\n   - Network:      http://192.168.0.15:51578\n\n \u2713 Starting...\n \u2713 Ready in 1155ms\n \u25cb Compiling / ...\n \u2713 Compiled / in 2.7s (1374 modules)\n GET / 200 in 847ms\n \u25cb Compiling /api/harness/session/list ...\n \u2713 Compiled /api/harness/session/list in 1486ms (1382 modules)\n GET /api/harness/session/list?projectRoot=%2Fvar%2Ffolders%2F96%2F1_3ww0012pv5ptwwsd1990yw0000gn%2FT%2Fchirality-harness-validation%2Flatest%2Fworkroots%2Fdefault-project-root 503 in 1576ms\n \u2713 Compiled /api/harness/session/create in 136ms (1384 modules)\n POST /api/harness/session/create 503 in 170ms\n \u2713 Compiled /api/harness/session/boot in 137ms (1386 modules)\n POST /api/harness/session/boot 503 in 165ms\n POST /api/harness/session/create 503 in 9ms\n POST /api/harness/session/create 503 in 5ms\n POST /api/harness/session/create 503 in 4ms\n POST /api/harness/session/create 503 in 5ms\n POST /api/harness/session/create 503 in 4ms\n\u001b[?25h\n",
+        "stopped_after_run": true
+      },
+      "status": "FAIL",
+      "stderr": "",
+      "stdout": "\n> chirality-frontend@2.0.0 harness:validate:premerge\n> node ./scripts/validate-harness-premerge.mjs\n\nHARNESS_VALIDATION_SUMMARY_PATH={TMPDIR}/chirality-harness-validation/latest/summary.json\nHARNESS_VALIDATION_STATUS=fail\nHARNESS_PREMERGE_ARTIFACT_PATH={WORKSPACE_ROOT}/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json\nHARNESS_PREMERGE_SOURCE_SUMMARY_PATH={TMPDIR}/chirality-harness-validation/latest/summary.json\nHARNESS_PREMERGE_STATUS=fail\nHARNESS_PREMERGE_TEST_COUNT=0\n",
+      "timeout_seconds": 1500.0
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "duration_seconds": 12.178,
+      "exit_code": 0,
+      "id": "harness-self-check",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\u2026[truncated to tail; full output regenerable by rerun]\u2026\nt in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.md:104` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-03-01-2026-07-03.json` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.md:88` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.md` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.md:89` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-01-2026-07-02.json` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.md:90` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.md` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | UNRESOLVED_SOURCE_REF | provenance | `docs/governance_harness/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.md:91` | K-PROV-1 (RATIFIED) | Reference `_harness_generated/briefs/TRB-chirality-app-dev-DEL-10-03-2026-07-02.json` is under the declared generated root `_harness_generated/`; generated artifacts are rebuildable and may be absent in fresh checkouts/worktrees. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-02_verifier_severity_and_override.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-03_pilot_scope.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-04_human_actor_identity.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-05_minimal_governance_basis.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-06_domain_profile_current_truth.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| INFO | DRAFT_BASIS_RULED_CLOSED | provenance | `docs/governance_harness/_DECISIONS/D-GOV-07_domain_gate_sha_binding.md:7` | K-CLAIM-1 (RATIFIED) | Cited basis self-declares 'merged plan of record candidate \u00b7 PROPOSAL, pending D-GOV-01' pending D-GOV-01; D-GOV-01 is RULED per docs/governance_harness/_DECISIONS/D-GOV-01_substrate_authority.md \u2014 closure recorded; sources govern on disagreement. |\n| NOT_APPLICABLE | POINTER_CHECK_NOT_APPLICABLE | staleness | `docs/governance_harness` | K-STALE-2 (RATIFIED) | No `_LATEST*` pointer files under this root; pointer-currency check skipped (preconditions absent). |\n\n## Summary\n\nFinding severities: INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=43\n- scope: ['projects/chirality-app-dev', 'projects/chirality-piping', 'projects/pec', '_DomainEngines', 'docs/governance_harness']\n- pointer_files_scanned: 36\n- checks_run: DE-1..8 (domain-engine surfaces incl. stale open issues vs later rulings), GEN-1 (abs-path), GEN-2 (ruling-SHA TBD), GEN-3 (generated labeling), GEN-4 (root governance status facts), GEN-5 (unresolved refs; control files only in v1), GEN-6 (draft-basis-used-as-binding; control files only in v1), GEN-7 (_LATEST pointer currency: target resolution outside .archive + newest-same-class-sibling by date-in-filename), GEN-8 (active-surface portability: structural roles + hash-bound historical exceptions + semantic invariants), GEN-9 (agent-registry currency: AGENTS.md file tokens vs live agents/ files, both directions), GEN-10 (bridge receipt labels + parked-lane carry-forward), GEN-11 (D-44 piping receipt contract), GEN-12 (D-APP-57 app-dev receipt contract), GEN-13 (claims-language DEC-081)\n",
+      "timeout_seconds": 1500.0
+    },
+    {
+      "command": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "scan",
+        "--require-register-match"
+      ],
+      "cwd": "projects/chirality-app-dev",
+      "duration_seconds": 1.333,
+      "exit_code": 0,
+      "id": "app-hold-integrity",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "\u2026[truncated to tail; full output regenerable by rerun]\u2026\n.md\",\n      \"status\": \"CLEAR\"\n    },\n    {\n      \"basis_commit\": \"d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f\",\n      \"basis_commit_resolves\": true,\n      \"basis_path\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md\",\n      \"basis_path_resolves\": true,\n      \"decomposition_basis\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f\",\n      \"deliverable_id\": \"DEL-09-05\",\n      \"package_id\": \"PKG-09\",\n      \"reason\": \"BASIS_RESOLVES\",\n      \"sow_path\": \"projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/ScopeOfWork.md\",\n      \"status\": \"CLEAR\"\n    },\n    {\n      \"basis_commit\": \"d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f\",\n      \"basis_commit_resolves\": true,\n      \"basis_path\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md\",\n      \"basis_path_resolves\": true,\n      \"decomposition_basis\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f\",\n      \"deliverable_id\": \"DEL-09-06\",\n      \"package_id\": \"PKG-09\",\n      \"reason\": \"BASIS_RESOLVES\",\n      \"sow_path\": \"projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/ScopeOfWork.md\",\n      \"status\": \"CLEAR\"\n    },\n    {\n      \"basis_commit\": \"7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"basis_commit_resolves\": true,\n      \"basis_path\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md\",\n      \"basis_path_resolves\": true,\n      \"decomposition_basis\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"deliverable_id\": \"DEL-10-01\",\n      \"package_id\": \"PKG-10\",\n      \"reason\": \"BASIS_RESOLVES\",\n      \"sow_path\": \"projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-01_DomainEngineProfile_Contract_Draft/ScopeOfWork.md\",\n      \"status\": \"CLEAR\"\n    },\n    {\n      \"basis_commit\": \"7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"basis_commit_resolves\": true,\n      \"basis_path\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md\",\n      \"basis_path_resolves\": true,\n      \"decomposition_basis\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"deliverable_id\": \"DEL-10-02\",\n      \"package_id\": \"PKG-10\",\n      \"reason\": \"BASIS_RESOLVES\",\n      \"sow_path\": \"projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-02_Protected_Path_and_Proposal_Path_Policy/ScopeOfWork.md\",\n      \"status\": \"CLEAR\"\n    },\n    {\n      \"basis_commit\": \"7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"basis_commit_resolves\": true,\n      \"basis_path\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md\",\n      \"basis_path_resolves\": true,\n      \"decomposition_basis\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"deliverable_id\": \"DEL-10-03\",\n      \"package_id\": \"PKG-10\",\n      \"reason\": \"BASIS_RESOLVES\",\n      \"sow_path\": \"projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-03_OperationProposal_Record_and_Human_Gate_Workflow/ScopeOfWork.md\",\n      \"status\": \"CLEAR\"\n    },\n    {\n      \"basis_commit\": \"7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"basis_commit_resolves\": true,\n      \"basis_path\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md\",\n      \"basis_path_resolves\": true,\n      \"decomposition_basis\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"deliverable_id\": \"DEL-10-04\",\n      \"package_id\": \"PKG-10\",\n      \"reason\": \"BASIS_RESOLVES\",\n      \"sow_path\": \"projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-04_Domain_Profile_Validation_and_OpenPipeStress_Fixture/ScopeOfWork.md\",\n      \"status\": \"CLEAR\"\n    },\n    {\n      \"basis_commit\": \"7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"basis_commit_resolves\": true,\n      \"basis_path\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md\",\n      \"basis_path_resolves\": true,\n      \"decomposition_basis\": \"projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca\",\n      \"deliverable_id\": \"DEL-10-05\",\n      \"package_id\": \"PKG-10\",\n      \"reason\": \"BASIS_RESOLVES\",\n      \"sow_path\": \"projects/chirality-app-dev/execution/PKG-10_Domain_Engine_Future_Boundary/1_Working/DEL-10-05_Domain_Boundary_Notices_and_Solver_Truth_Separation/ScopeOfWork.md\",\n      \"status\": \"CLEAR\"\n    }\n  ],\n  \"held_count\": 0,\n  \"held_deliverables\": [],\n  \"register\": {\n    \"active_hold_deliverables\": [],\n    \"extra_in_register\": [],\n    \"field_mismatches\": [],\n    \"match\": true,\n    \"missing_from_register\": [],\n    \"missing_repair_pending_from_register\": [],\n    \"register_path\": \"projects/chirality-app-dev/execution/_Coordination/APP_HOLD_REGISTER.csv\",\n    \"register_sha256\": \"e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f\",\n    \"status_mismatches\": []\n  },\n  \"repo_head\": \"0c683fb1657706316272951e4c3a0f7781b46009\",\n  \"scan_fingerprint_sha256\": \"c8cc4556356b227fba10d79f110d9efdcc26f408889a10824fe9736e97449747\",\n  \"schema\": \"chirality-app-hold-scan/v1\",\n  \"sow_root\": \"projects/chirality-app-dev/execution\",\n  \"verdict\": \"PASS\"\n}\n",
+      "timeout_seconds": 1500.0
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "cwd": ".",
+      "duration_seconds": 34.31,
+      "exit_code": 0,
+      "id": "harness-pytest",
+      "status": "PASS",
+      "stderr": "",
+      "stdout": "........................................................................ [ 20%]\n........................................................................ [ 41%]\n........................................................................ [ 61%]\n........................................................................ [ 82%]\n..............................................................           [100%]\n350 passed in 33.96s\n",
+      "timeout_seconds": 1500.0
+    }
+  ],
+  "schema": "chirality-software-check-evidence/v1",
+  "status": "FAIL",
+  "workspace_root": ".",
+  "note": "stdout/stderr trimmed to 6000-char tails after the run; statuses, exit codes, durations, commands, and service records are unmodified."
+}

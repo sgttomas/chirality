@@ -1,0 +1,255 @@
+{
+  "schema": "chirality-third-party-notices-summary/v1",
+  "rootPackage": {
+    "name": "chirality-frontend",
+    "version": "2.0.0"
+  },
+  "lockfileSha256": "717d541fe6ee090aae79d4a386bbde1c8ff6ee136a50242d956500d76e80a458",
+  "closureEntryCount": 504,
+  "thirdPartyDistinctCount": 420,
+  "firstPartyCount": 14,
+  "firstPartyEntries": [
+    {
+      "name": "@chirality/engine-claude",
+      "version": null,
+      "key": "node_modules/@chirality/engine-claude",
+      "link": true
+    },
+    {
+      "name": "@chirality/engine-claude",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/engine-claude",
+      "link": false
+    },
+    {
+      "name": "@chirality/engine-pi-omlx",
+      "version": null,
+      "key": "node_modules/@chirality/engine-pi-omlx",
+      "link": true
+    },
+    {
+      "name": "@chirality/engine-pi-omlx",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/engine-pi-omlx",
+      "link": false
+    },
+    {
+      "name": "@chirality/runtime-cli",
+      "version": null,
+      "key": "node_modules/@chirality/runtime-cli",
+      "link": true
+    },
+    {
+      "name": "@chirality/runtime-cli",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/cli",
+      "link": false
+    },
+    {
+      "name": "@chirality/runtime-client",
+      "version": null,
+      "key": "node_modules/@chirality/runtime-client",
+      "link": true
+    },
+    {
+      "name": "@chirality/runtime-client",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/client",
+      "link": false
+    },
+    {
+      "name": "@chirality/runtime-contracts",
+      "version": null,
+      "key": "node_modules/@chirality/runtime-contracts",
+      "link": true
+    },
+    {
+      "name": "@chirality/runtime-contracts",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/contracts",
+      "link": false
+    },
+    {
+      "name": "@chirality/runtime-core",
+      "version": null,
+      "key": "node_modules/@chirality/runtime-core",
+      "link": true
+    },
+    {
+      "name": "@chirality/runtime-core",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/core",
+      "link": false
+    },
+    {
+      "name": "@chirality/runtime-daemon",
+      "version": null,
+      "key": "node_modules/@chirality/runtime-daemon",
+      "link": true
+    },
+    {
+      "name": "@chirality/runtime-daemon",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/daemon",
+      "link": false
+    }
+  ],
+  "requiredPackages": [
+    {
+      "name": "@chirality/engine-claude",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/engine-claude"
+    },
+    {
+      "name": "@chirality/engine-pi-omlx",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/engine-pi-omlx"
+    },
+    {
+      "name": "@chirality/runtime-cli",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/cli"
+    },
+    {
+      "name": "@chirality/runtime-client",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/client"
+    },
+    {
+      "name": "@chirality/runtime-contracts",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/contracts"
+    },
+    {
+      "name": "@chirality/runtime-core",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/core"
+    },
+    {
+      "name": "@chirality/runtime-daemon",
+      "version": "0.1.0",
+      "key": "../../../runtime/packages/daemon"
+    },
+    {
+      "name": "@earendil-works/pi-agent-core",
+      "version": "0.82.0",
+      "key": "node_modules/@earendil-works/pi-agent-core"
+    },
+    {
+      "name": "@earendil-works/pi-ai",
+      "version": "0.82.0",
+      "key": "node_modules/@earendil-works/pi-ai"
+    },
+    {
+      "name": "@earendil-works/pi-coding-agent",
+      "version": "0.82.0",
+      "key": "node_modules/@earendil-works/pi-coding-agent"
+    },
+    {
+      "name": "@earendil-works/pi-tui",
+      "version": "0.82.0",
+      "key": "node_modules/@earendil-works/pi-coding-agent/node_modules/@earendil-works/pi-tui"
+    }
+  ],
+  "licenseCounts": {
+    "0BSD": 1,
+    "Apache-2.0": 89,
+    "Apache-2.0 AND LGPL-3.0-or-later": 3,
+    "Apache-2.0 AND LGPL-3.0-or-later AND MIT": 1,
+    "BSD-2-Clause": 1,
+    "BSD-3-Clause": 17,
+    "BlueOak-1.0.0": 5,
+    "CC-BY-4.0": 1,
+    "ISC": 15,
+    "LGPL-3.0-or-later": 10,
+    "MIT": 268,
+    "SEE LICENSE IN LICENSE.md": 8,
+    "SEE LICENSE IN README.md": 1
+  },
+  "missingLicenseFile": [
+    "@aws-sdk/credential-provider-http@3.972.39",
+    "@aws-sdk/credential-provider-http@3.972.62",
+    "@aws-sdk/credential-provider-login@3.972.41",
+    "@aws-sdk/credential-provider-login@3.972.67",
+    "@aws-sdk/nested-clients@3.997.34",
+    "@aws-sdk/nested-clients@3.997.9",
+    "@earendil-works/pi-agent-core@0.82.0",
+    "@earendil-works/pi-ai@0.82.0",
+    "@earendil-works/pi-coding-agent@0.82.0",
+    "@earendil-works/pi-tui@0.82.0",
+    "@img/sharp-libvips-darwin-arm64@1.3.2",
+    "@mariozechner/clipboard@0.3.9",
+    "@mariozechner/clipboard-darwin-arm64@0.3.9",
+    "@mariozechner/clipboard-darwin-universal@0.3.9",
+    "@mariozechner/clipboard-darwin-x64@0.3.9",
+    "@mariozechner/clipboard-linux-arm64-gnu@0.3.9",
+    "@mariozechner/clipboard-linux-arm64-musl@0.3.9",
+    "@mariozechner/clipboard-linux-riscv64-gnu@0.3.9",
+    "@mariozechner/clipboard-linux-x64-gnu@0.3.9",
+    "@mariozechner/clipboard-linux-x64-musl@0.3.9",
+    "@mariozechner/clipboard-win32-arm64-msvc@0.3.9",
+    "@mariozechner/clipboard-win32-x64-msvc@0.3.9",
+    "@next/env@15.5.21",
+    "@next/swc-darwin-arm64@15.5.21",
+    "@nodable/entities@2.1.0",
+    "client-only@0.0.1",
+    "data-uri-to-buffer@4.0.1",
+    "xml-naming@0.1.0"
+  ],
+  "optionalNotInstalled": [
+    "@anthropic-ai/claude-agent-sdk-darwin-x64@0.3.150",
+    "@anthropic-ai/claude-agent-sdk-linux-arm64@0.3.150",
+    "@anthropic-ai/claude-agent-sdk-linux-arm64-musl@0.3.150",
+    "@anthropic-ai/claude-agent-sdk-linux-x64@0.3.150",
+    "@anthropic-ai/claude-agent-sdk-linux-x64-musl@0.3.150",
+    "@anthropic-ai/claude-agent-sdk-win32-arm64@0.3.150",
+    "@anthropic-ai/claude-agent-sdk-win32-x64@0.3.150",
+    "@emnapi/runtime@1.11.2",
+    "@img/sharp-darwin-x64@0.35.3",
+    "@img/sharp-freebsd-wasm32@0.35.3",
+    "@img/sharp-libvips-darwin-x64@1.3.2",
+    "@img/sharp-libvips-linux-arm@1.3.2",
+    "@img/sharp-libvips-linux-arm64@1.3.2",
+    "@img/sharp-libvips-linux-ppc64@1.3.2",
+    "@img/sharp-libvips-linux-riscv64@1.3.2",
+    "@img/sharp-libvips-linux-s390x@1.3.2",
+    "@img/sharp-libvips-linux-x64@1.3.2",
+    "@img/sharp-libvips-linuxmusl-arm64@1.3.2",
+    "@img/sharp-libvips-linuxmusl-x64@1.3.2",
+    "@img/sharp-linux-arm@0.35.3",
+    "@img/sharp-linux-arm64@0.35.3",
+    "@img/sharp-linux-ppc64@0.35.3",
+    "@img/sharp-linux-riscv64@0.35.3",
+    "@img/sharp-linux-s390x@0.35.3",
+    "@img/sharp-linux-x64@0.35.3",
+    "@img/sharp-linuxmusl-arm64@0.35.3",
+    "@img/sharp-linuxmusl-x64@0.35.3",
+    "@img/sharp-wasm32@0.35.3",
+    "@img/sharp-webcontainers-wasm32@0.35.3",
+    "@img/sharp-win32-arm64@0.35.3",
+    "@img/sharp-win32-ia32@0.35.3",
+    "@img/sharp-win32-x64@0.35.3",
+    "@next/swc-darwin-x64@15.5.21",
+    "@next/swc-linux-arm64-gnu@15.5.21",
+    "@next/swc-linux-arm64-musl@15.5.21",
+    "@next/swc-linux-x64-gnu@15.5.21",
+    "@next/swc-linux-x64-musl@15.5.21",
+    "@next/swc-win32-arm64-msvc@15.5.21",
+    "@next/swc-win32-x64-msvc@15.5.21"
+  ],
+  "unresolvedOptional": [
+    "node_modules/@earendil-works/pi-coding-agent/node_modules/ws -> bufferutil",
+    "node_modules/@earendil-works/pi-coding-agent/node_modules/ws -> utf-8-validate",
+    "node_modules/@modelcontextprotocol/sdk -> @cfworker/json-schema",
+    "node_modules/next -> @playwright/test",
+    "node_modules/next -> babel-plugin-react-compiler",
+    "node_modules/next -> sass",
+    "node_modules/ws -> bufferutil",
+    "node_modules/ws -> utf-8-validate"
+  ],
+  "output": {
+    "path": "{REPO_ROOT}/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Evidence/WP09_ARTIFACT_EVIDENCE_2026-09-03/run2/THIRD_PARTY_NOTICES.md",
+    "sha256": "e66e210f962aa4e1a0bf8074c6a6cb8e188b968bbcb5a7e141d17d19417d739b"
+  },
+  "boundary": "Evidence only: no signing, notarization, publication, distribution, or release act; no release-readiness claim."
+}

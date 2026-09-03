@@ -1,0 +1,22 @@
+Version identity dry-run report
+expected identity : 3.0.0-rc.1
+frontend root     : {REPO_ROOT}/projects/chirality-app-dev/frontend
+mode              : dry-run (no product byte changed)
+
+| # | surface | observed | expected | status | note |
+|---|---|---|---|---|---|
+| 1 | package.json `version` (declared) | 2.0.0 | 3.0.0-rc.1 | MISMATCH |  |
+| 2 | package-lock.json top-level `version` (declared) | 2.0.0 | 3.0.0-rc.1 | MISMATCH |  |
+| 3 | package-lock.json `packages[""].version` (declared) | 2.0.0 | 3.0.0-rc.1 | MISMATCH |  |
+| 4 | electron-builder `build.productName` (identity constant) | Chirality | Chirality | MATCH |  |
+| 5 | electron-builder `build.appId` (identity constant) | com.chirality.app | com.chirality.app | MATCH |  |
+| 6 | electron-builder artifact-name template | ${productName}-${version}-${arch}.${ext} | ${productName}-${version}-${arch}.${ext} | MATCH | electron-builder default (no explicit template) |
+| 7 | macOS arm64 DMG filename derived from package.json version | Chirality-2.0.0-arm64.dmg | Chirality-3.0.0-rc.1-arm64.dmg | MISMATCH | derived: electron-builder names the DMG from productName, version, and arch |
+| 8 | staged app Info.plist `CFBundleShortVersionString`/`CFBundleVersion` (bundle metadata; `app.getVersion()` source) | — | 3.0.0-rc.1 | DERIVED | no --app-path given; electron-builder derives both keys from package.json `version`, so this surface follows package.json:version |
+| 9 | named DMG file basename | — | Chirality-3.0.0-rc.1-arm64.dmg | NOT_INSPECTED | no --dmg-path given |
+| 10 | UI/about string or runtime report that prints the product version (electron/**, src/**) | none found | 3.0.0-rc.1 | ABSENT | no `app.getVersion()`, `npm_package_version`, `NEXT_PUBLIC_APP_VERSION`, or product-version token in product source; AT-043 UI/runtime surfaces do not yet exist |
+| 11 | release-manifest / proof-summary version field written by existing scripts (scripts/**) | none found | 3.0.0-rc.1 | ABSENT | existing summaries carry digests, source revisions, and posture only; no script writes the product version |
+
+Result: MISMATCH (4 mismatching surface(s); 3 absent/not-inspected/unchecked surface(s))
+Staged patch: {REPO_ROOT}/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Evidence/VERSION_IDENTITY_3.0.0-rc.1/staged_version_patch.diff (956 bytes, SHA-256 311844f0a8b447085bf038ccbdda353a1240a5b44ae7a91df6754c9c154b1d82); NOT applied
+Boundary: evidence only; no version byte changed; no signing, notarization, publication, distribution, or release act.
