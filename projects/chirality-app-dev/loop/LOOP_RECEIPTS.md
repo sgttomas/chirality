@@ -6087,3 +6087,41 @@
   - Gate-Outcome: `EXECUTED` — bounded discovery/handoff cleanup only; no
     product source, authority-corpus member, plan, register, decision, frontend,
     Root, release, lifecycle, publication, reliance, or merge-to-main act.
+
+- **2026-09-03 — Receipt 203** (App v3 G0 Task Management triage dispositions).
+  - Receipt-ID: `Receipt-203`
+  - Examined-Through: `13d845ef822a935296b25aa5e574eda0373b4729`
+  - Parent-Receipt: `Receipt-202`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected in the HELP_HUMAN session chat on 2026-09-03:
+    Step 2a TM-APP-025 [click] "RESOLVED_BY_DECISION (Recommended)";
+    Step 2b remaining G0 rows [click] "Retain all as classified (Recommended)";
+    Step 2c Electron drift [click] "E2: fix the docs first, then echo".
+    The full verbatim block with unselected options, applied meaning, and
+    boundary is `plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md`.
+  - Pointers: branch `codex/app-tm-g0-rulings-2026-09-03`; basis
+    `13d845ef822a935296b25aa5e574eda0373b4729`; ruling record A11 at the
+    path above; owner-ruling file with exact pre/post row identities,
+    field-level diff proof, and archive post-state at
+    `execution/_Coordination/_TaskManagement/OWNER_RULING_2026-09-03_G0_V3_TRIAGE.md`;
+    register post-images `REGISTER.csv` SHA-256
+    `bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931` and
+    `REGISTER_CLOSED.csv` SHA-256
+    `7b0489dce6ae11de6453e59738006a81854912ef191d24627bd1de9094ccd19b`;
+    register deltas are one owner closure with relocation, one prior closure
+    relocated, three deferrals retained with Triggers byte-identical, one open
+    row retained, and a review-date refresh; the E2 docs-concordance tranche
+    and the combined Root echo for TM-ROOT-122 remain separate later acts.
+  - Checks: mandatory federation preflight complete before and after with zero
+    register writes; register validation on both files pass; field-level diff
+    proof pass; `git diff --check` pass; receipt validator pass; APP-HOLD scan
+    with register match pass; harness self-check pass; harness pytest pass;
+    authority corpus status no drift; frontend gates skipped because no product
+    or runtime source changed.
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as TASK_MANAGEMENT
+    under HELP_HUMAN (Claude Fable 5.1) with owner in-session.
+  - Gate-Outcome: `EXECUTED` — owner-ruled register dispositions applied; E2
+    concordance tranche authorized but not executed. No docs, corpus,
+    notice-routing, Root, deliverable, frontend, lifecycle, supply, release,
+    publication, or reliance act occurred; TM-ROOT-106 and TM-ROOT-122 are not
+    lifted; G1 is not passed; the ten held DEL-02-06 bindings are unchanged.
