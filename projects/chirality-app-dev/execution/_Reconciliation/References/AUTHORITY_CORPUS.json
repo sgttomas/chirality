@@ -1,6 +1,6 @@
 {
   "model": "D-APP-38 Option D hybrid: reconciliation tool feeding versioned corpus snapshots",
-  "current_version": "v19",
+  "current_version": "v20",
   "refs": [
     "docs/DIRECTIVE.md",
     "docs/CONTRACT.md",
@@ -309,6 +309,22 @@
         "docs/TYPES.md": "998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169",
         "docs/PLAN.md": "c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff",
         "docs/PRD.md": "3c357da78277f4c15ecee7cbba6c0a198bc1568b612229eeba63cb1d5972ea7b",
+        "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
+        "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
+      }
+    },
+    {
+      "version": "v20",
+      "date": "2026-09-03",
+      "binding_commit": "1537ddad1f9227dee1ba3233c0146694a779026a",
+      "reason": "D-APP-98 Electron authority concordance (A11 E2)",
+      "hashes": {
+        "docs/DIRECTIVE.md": "50b816d5be74021f173e19b39773b4f5d2cc3f434966dc9d6faf9399ddf26099",
+        "docs/CONTRACT.md": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517",
+        "docs/SPEC.md": "c2fb9ecbbc37a98577a64a3e7e641de8c26b3145ad8cc40dc4a9a014aa66a12b",
+        "docs/TYPES.md": "a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c",
+        "docs/PLAN.md": "3741bb7ec389c12f0856cf64acc27d4d17b77d1683275564b75182fcdbab5187",
+        "docs/PRD.md": "87ced649beae245e7b0290b3ef8afb46681d04e671964a0583fdce83a7ccb586",
         "AGENT_SOFTWARE_DECOMP.md": "ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409",
         "AGENT_DOMAIN_ENGINE.md": "bb2df7178d7b3bac7320c84333263e980dabe0432198c45fc2d83ee355643f36"
       }

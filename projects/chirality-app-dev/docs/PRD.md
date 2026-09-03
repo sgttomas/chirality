@@ -61,8 +61,9 @@ Runtime implementation direction:
   feature parity. Generic harness primitives the adapter provides well are governed, not
   reimplemented. D-APP-72 / SCA-APP-002 authorizes Pi `0.80.10` only as an opt-in,
   in-process second adapter over authenticated `127.0.0.1` oMLX for a governed read-only
-  Agent 2 child after Electron `43.1.1`; every other provider/harness path requires a fresh
-  governed tranche (CONTRACT K-ENGINE-6).
+  Agent 2 child after Electron `43.2.0` (D-APP-98 successor authority; D-APP-72's `43.1.1` is
+  historical); every other provider/harness path requires a fresh governed tranche (CONTRACT
+  K-ENGINE-6).
 - The Root-owned runtime should not reimplement generic primitives that a current
   adapter provides well when they can be governed through Root-owned contracts:
   model/tool loop, built-in file tools, bash surface, permission-mode machinery,
@@ -174,7 +175,7 @@ The product must not:
 - Use Claude Code branding, Claude Code visual identity, or user-facing copy that makes Chirality appear to be Claude Code or an Anthropic product.
 - Load ambient user/global Claude Code settings (`~/.claude/settings.json`) or local `.claude/settings.local.json` in shipped builds.
 - Use `bypassPermissions` in shipped builds or ordinary operator workflows. Any developer-only bypass remains guarded by explicit local configuration and Chirality deny hooks.
-- Import unpinned Pi packages, fork Pi, introduce a Pi sidecar, or expose Pi-native tools, subagents, extensions, skills, ambient discovery, direct supervisors, automatic fallback, or write/shell/network capabilities. The sole current Pi implementation authority is D-APP-72 / SCA-APP-002: pinned Pi `0.80.10` in-process after Electron `43.1.1`, authenticated loopback oMLX, and one governed read-only Agent 2 child.
+- Import unpinned Pi packages, fork Pi, introduce a Pi sidecar, or expose Pi-native tools, subagents, extensions, skills, ambient discovery, direct supervisors, automatic fallback, or write/shell/network capabilities. The sole current Pi implementation authority is D-APP-72 / SCA-APP-002: pinned Pi `0.80.10` in-process after Electron `43.2.0` (D-APP-98 successor authority; D-APP-72's `43.1.1` is historical), authenticated loopback oMLX, and one governed read-only Agent 2 child.
 - Implement concrete non-Anthropic providers under the strategic provider-adapter ruling without a bounded future implementation tranche.
 - Reopen retired execution-scope items such as unified **pipeline** run records, dependency graph generation, deliverable locks, or staleness tooling without a governed scope amendment. Harness session event logs are a runtime audit facility and do not by themselves reactivate retired pipeline deliverables.
 - Become OpenPipeStress, a pipe-stress solver, or any other domain-specific engineering solver.
@@ -1389,7 +1390,7 @@ control: Root owns the generic runtime/daemon and operational semantics; the App
 client integration, project policy/governance, packaging participation, and conformance
 evidence.
 
-The controlling architectural decision is provider-adapter generality, with Claude Agent SDK / Anthropic as the first concrete adapter, key-aware default provider (D-APP-18), and supervisor, while preserving Chirality-owned governance, auditability, filesystem rules, professional boundaries, and UI/API compatibility. Chirality builds the governance / UI / audit / lifecycle / adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6). D-APP-72 / SCA-APP-002 activates one bounded second-engine tranche: Electron `43.1.1` first, then in-process Pi `0.80.10`, authenticated `127.0.0.1` oMLX with exact `/v1/models` identity, provider-neutral contracts and tooling, and one governed read-only Agent 2 child. All other provider expansion remains human-gated.
+The controlling architectural decision is provider-adapter generality, with Claude Agent SDK / Anthropic as the first concrete adapter, key-aware default provider (D-APP-18), and supervisor, while preserving Chirality-owned governance, auditability, filesystem rules, professional boundaries, and UI/API compatibility. Chirality builds the governance / UI / audit / lifecycle / adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6). D-APP-72 / SCA-APP-002 activates one bounded second-engine tranche: Electron `43.2.0` first (D-APP-98 successor authority; D-APP-72's `43.1.1` is historical), then in-process Pi `0.80.10`, authenticated `127.0.0.1` oMLX with exact `/v1/models` identity, provider-neutral contracts and tooling, and one governed read-only Agent 2 child. All other provider expansion remains human-gated.
 
 ### 13.1 Bounded Pi/oMLX milestone
 

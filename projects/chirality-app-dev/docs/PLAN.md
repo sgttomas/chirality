@@ -63,7 +63,7 @@ The approved vNext direction is:
 
 > **Provider-adapter-general, contract-owned, and Chirality-governed.**
 
-Chirality should build a provider-adapter runtime where external SDKs and provider APIs remain implementation substrates behind Chirality-owned contracts. The Claude Agent SDK / Anthropic path remains the first concrete adapter, key-aware default provider per D-APP-18, and supervisor. D-APP-72 / SCA-APP-002 authorizes Pi `0.80.10` as an opt-in in-process second adapter over authenticated `127.0.0.1` oMLX, initially for one governed read-only Agent 2 child after Electron `43.1.1` validation. Chirality builds the governance, UI, audit, lifecycle, and adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6). Chirality must not let provider defaults, SDK transcript shape, SDK tool names, Claude Code/Pi product assumptions, ambient user settings, provider-specific APIs, or broad provider registries define product semantics.
+Chirality should build a provider-adapter runtime where external SDKs and provider APIs remain implementation substrates behind Chirality-owned contracts. The Claude Agent SDK / Anthropic path remains the first concrete adapter, key-aware default provider per D-APP-18, and supervisor. D-APP-72 / SCA-APP-002 authorizes Pi `0.80.10` as an opt-in in-process second adapter over authenticated `127.0.0.1` oMLX, initially for one governed read-only Agent 2 child after Electron `43.2.0` validation (D-APP-98 successor authority; D-APP-72's `43.1.1` is historical). Chirality builds the governance, UI, audit, lifecycle, and adapter layer **over** provider harness mechanics — not a standalone general agent harness, and not Claude Code / Pi / Codex feature parity (CONTRACT K-ENGINE-6). Chirality must not let provider defaults, SDK transcript shape, SDK tool names, Claude Code/Pi product assumptions, ambient user settings, provider-specific APIs, or broad provider registries define product semantics.
 
 2026-06-17 stabilization note: R0-R5 roadmap text below is retained as strategic history.
 Runtime Stabilization landed the runtime spine, validation surface, persona composer,
@@ -476,7 +476,7 @@ Create the R0/R1 implementation plan before code changes:
 - Direct protected-domain-path writes by agents.
 - Shipped `bypassPermissions` ordinary workflow.
 - Ambient user/global Claude Code settings.
-- Pi fork, Node sidecar, Pi-native tools/subagents/extensions/skills/ambient discovery, direct Pi supervisor, automatic fallback, or Pi write/shell/network capabilities. The sole current exception is the D-APP-72 / SCA-APP-002 pinned in-process Pi `0.80.10` read-only child tranche after Electron `43.1.1`.
+- Pi fork, Node sidecar, Pi-native tools/subagents/extensions/skills/ambient discovery, direct Pi supervisor, automatic fallback, or Pi write/shell/network capabilities. The sole current exception is the D-APP-72 / SCA-APP-002 pinned in-process Pi `0.80.10` read-only child tranche after Electron `43.2.0` (D-APP-98 successor authority; D-APP-72's `43.1.1` is historical).
 - Concrete non-Anthropic provider *implementation* without an explicit owner provider/residency configuration and its own governed implementation tranche (per D-T0-04 / D-APP-44, OPEN RESIDENCY: provider/residency is owner-configurable, but actually building non-Anthropic routing or private-data egress remains net-new work that must still pass the engine-conformance gate (K-ENGINE-2) and respect the release fence; absent owner configuration the Anthropic default stands and the app does not auto-egress).
 
 ---
@@ -499,7 +499,7 @@ This plan remains acceptable only if:
 | Scope Change | Date | Effect |
 |---|---|---|
 | `SCA-APP-001` | 2026-06-13 | Approved provider-adapter generality, retained Claude Agent SDK / Anthropic as first concrete adapter, ruled Pi pattern-corpus-only, and reframed permission governance as capability-forward with explicit hard-deny precedence. D-APP-12 later clarified that `agentSdk` remains opt-in pending further proof/ruling. |
-| `SCA-APP-002` | 2026-07-21 | Authorizes the bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche, subject to Electron `43.1.1` prerequisite proof, provider-neutral contracts, fail-closed conformance/security validation, and a governed read-only Agent 2 child milestone. |
+| `SCA-APP-002` | 2026-07-21 | Authorizes the bounded Pi `0.80.10` / authenticated loopback oMLX second-engine tranche, subject to Electron `43.1.1` prerequisite proof (Electron authority since superseded by D-APP-98: `43.2.0`), provider-neutral contracts, fail-closed conformance/security validation, and a governed read-only Agent 2 child milestone. |
 | `SCA-APP-003` | 2026-07-22 | Promotes the executable harness to root `runtime/`, then adds one shared daemon, authenticated Unix-socket client/CLI, explicit local-model residency, the app-dev Agent 1 → local Agent 2 pilot, PEC client migration, and public generic-runtime export. |
 | `SCA-APP-004` | 2026-07-23 | Selects Woven Dialogue with a Work/Agents Coordination Panel; preserves runtime/API/SSE/security/history and compatibility while adding provenance-labelled informational projection, explicit context/artifact anchors, and strict primary-dialogue/read-only-replay separation. |
 
