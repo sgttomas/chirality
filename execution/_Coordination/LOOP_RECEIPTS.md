@@ -7417,3 +7417,101 @@ separately governed.
   `git diff --check` PASS. Hosted governance CI is observed after PR creation.
 - **State:** `G2_ACCEPTED_WITH_DOCUMENTED_GAPS_AND_G5_FINDING`, pending only
   the separate owner PR merge act for this transcription tranche.
+
+### Receipt 131 — 2026-09-03 — R18 App Electron-authority notice ingestion and TM-ROOT-122 disposition
+
+- **Selection authority:** R18, materialized at
+  `plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md`,
+  SHA-256
+  `1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69`,
+  and its companion steer
+  `plans/steers/chirality_app_v3_r18_notice_ingestion_steer_root_2026-09-03.md`,
+  SHA-256
+  `757b718a83affd25196f065149bd5a972ec61ad2582ab24c81a6ebe38a71c633`;
+  incorporated by immutable path and SHA-256. The owner act (2026-09-03,
+  HELP_HUMAN session chat: `[click] "Route + Root TM disposition
+  (Recommended)"`) is transcribed verbatim in R18 and in the ruling file
+  below; it is not re-transcribed here. Session context: A11 E2 (SHA-256
+  `6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27`)
+  ruled earlier the same day; PRs #678, #679, and #680 merged by owner
+  direction.
+- **Basis gate:** fresh branch `codex/root-r18-tm-root-122-2026-09-03` from
+  exact `origin/main@8140daec7ab7165f8972451dbdd3a67b8bb2fd38`, which is the
+  PR #680 merge commit (parents `1537ddad1f9227dee1ba3233c0146694a779026a`
+  and `795900e5ad66758cab8db8e3a7e53df5f9233fcb`). App notice source SHA-256
+  `b68ed592b310fa996bb10d2aaf6889a25eb0481e6a57ce3fb2e414b775e4ee2b`,
+  D-APP-98 SHA-256
+  `71dfc1ae6369acea1e49f71d68e45aaf9da8f14c5f6a77733845c43f3ee7c020`,
+  and the Root destination's absence all verified before any write.
+- **Run control:** `execution/_Coordination/AgentRuns/ROOT_NOTICE_INGESTION_2026-09-03/`
+  (manifest SHA-256
+  `d46fe219b2713e4ccdd3d912cd8873837d413fba8c51efe8ea69ad831945a784`; N1
+  return SHA-256
+  `1b8d609168339ae31726ca31ed1595e26be8a07543978959d6e558f780e7762f`;
+  drift check SHA-256
+  `516350d8a26ef471ae39f62404e1f857e261bf075f3485ac364b51a0f6d94df3`; run
+  handoff SHA-256
+  `302b3f2456329ba2b86b33a67d55bf1bb6b39a7ae2f4b4fb293ac40a7fb21293`).
+  One instance, no delegation (instruction-asserted).
+- **N1 governed result:** added
+  `execution/_Coordination/NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md`,
+  SHA-256
+  `d7eb52af3fd3833b6af949e218c6c90b7566a751c90331fa643a1cc86bc40d78`:
+  a Root ingestion header (routed under R18; source identity; PR #680 merge
+  commit as the final concordance identity the App notice could not name;
+  `ADOPTED_AS_COORDINATION_INPUT`, not authority) followed by the App body
+  byte-identical to its source (`cmp` on the trailing 5228 bytes). Drift
+  verdict `NO_EXACT_DIVERGENCE` over 20 claims: D-APP-98/D-APP-72,
+  `frontend/package.json` pin `43.2.0`, lockfile, the frozen
+  `verify-electron-dist.mjs` supply identity, all eight post-image document
+  SHA-256 values, corpus v19→v20, candidate, A11, the Root 2026-08-03
+  notice, and content-commit ancestry all matched live bytes. No App path
+  was written. Divergence from the 2026-08-24 pure-copy precedent (header
+  added) is recorded in the header and drift check.
+- **N2 Task Management (TASK_MANAGEMENT, K-TM-1..6):** federation preflight
+  `COMPLETE` before any write (4 registers, 79 findings, 0 writes; ROOT
+  `OPEN=11/DEFERRED=8`/108 archived; PEC `16/1/1 live CLOSED`/7; APP
+  `8/3`/33; PIP `11/23`/8). Owner ruling R18-B applied to `TM-ROOT-122`
+  only: `CLOSED / RESOLVED_BY_DECISION`, `LastReviewed=Closed=2026-09-03`,
+  evidence D-APP-98 + the ingested notice + PR #680 merge; row pre-image
+  SHA-256 `6816c29c7b7414e66ff262b249f47bcab3cdcbca8cfb23480fb9ae39ba50c399`
+  (1118 B) → post-image
+  `82034f7f36206679394eb89c2adc6d27b4d33822f39576e000e4a9274e2608b4`
+  (2506 B); relocated by `taskmgmt archive` (1 row). `TM-ROOT-106` row
+  byte-identical
+  (`8c917730f4638366a4ced323170542db28089d35a182ef84ff8b9dc808ec8686`).
+  Root changed from 19 live (`OPEN=11`, `DEFERRED=8`) / 108 archived to 18
+  live (`OPEN=10`, `DEFERRED=8`) / 109 archived; live/archive SHA-256
+  `fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af` /
+  `995d7ffd46008e1f8a8e471105e799a89830ced97ff0a98b12b2f7b563692fbc`.
+  Final federation `COMPLETE` (78 findings, 0 writes;
+  `REMOTE_CLOSED_LOCAL_OPEN` 2→1 — the `TM-ROOT-122`↔`TM-APP-041` echo
+  resolved). Ruling of record:
+  `_TaskManagement/RULING_2026-09-03_ROOT_TM-ROOT-122_DISPOSITION.md`,
+  SHA-256
+  `78e73f3e8e7a23a90f5df3d3f64d20f145ee2ffd769ae864948db5554613f9f1`.
+- **Checks:** `git diff --check` PASS; candidate whitespace PASS against the
+  basis; Root G0, G1, G2, G3 PASS; CI-form G4 PASS (no instruction-surface
+  path, no covering manifest required); practitioner-harness self-check
+  completed with zero BLOCK findings (pre-existing WARN rows only);
+  practitioner harness 350 passed; agent instructions PASS (34 files, zero
+  errors/warnings); instruction entrypoints PASS; App-dev loop receipts
+  `VALID` (ledger untouched); `taskmgmt validate` PASS on both registers
+  (18 / 109 rows). Frontend gates skipped: no product source changed. No
+  Root receipt validator is named by the current workplan.
+- **Map deltas:** the R17 seating steer names "main-line Receipt 131" for
+  the future Root seating candidate; this receipt is Receipt 131, so that
+  reference must be read at seating time as the next free main-line receipt
+  (flagged for the owner in R18; not ruled). The live
+  `execution/_Coordination/HANDOFF_STATE.md` is unchanged (the idle
+  workplan does not require a per-tranche update); its register-count
+  narrative was already behind at the basis and is now 18 live / 109
+  archived — flagged, not repaired.
+- **Model attribution:** Claude Fable 5.1 (`claude-fable-5-1`) as
+  TASK_MANAGEMENT / Root session under HELP_HUMAN (Claude Fable 5.1) with
+  owner in-session.
+- **State:** `EXECUTED on branch — owner merge pending; TM-ROOT-122 closed
+  by owner ruling; TM-ROOT-106 and G1 unchanged`. No pin, supply,
+  implementation, lifecycle, release, publication, reliance, App-surface,
+  held-binding, or merge effect is created by this receipt; the ten
+  DEL-02-06 bindings, R16-A/B/C/E, and R17 stand unchanged.
