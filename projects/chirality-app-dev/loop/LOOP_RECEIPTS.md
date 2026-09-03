@@ -6189,7 +6189,7 @@
     `MANIFEST.sha256`; nineteen carriers re-pinned to decomposition commit
     `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; Remaining items seeded:
     thirty-one, of which nine `SELECTABLE`; eight additive dependency rows;
-    review remediation recorded in the PR body (receipt corrected before merge).
+    review remediation in PR #681 body and commit `ced10a6b1`.
   - Checks: `git diff --check` over the full base-to-head range pass (after
     LF normalization of the closure-audit CSVs); SOW validator pass on all carriers;
     dependency schema and enum validation pass on the changed registers;

@@ -54,7 +54,8 @@ acceptance, owner act, or gate. G5 gates none of the WP-09 items: it reviews
 the package and identity they produce. DEL-04-01 carries no v3 item (S-1).
 Pre-existing `Remaining` items are retained unchanged (DEL-03-01 D-APP-89
 packet, DEL-08-04 D-APP-103 packet, DEL-09-04 owner daemon-deployment act,
-DEL-02-02 D-APP-88 rerun trigger, DEL-05-04 and DEL-09-06 "none" notes).
+DEL-02-02 D-APP-88 rerun trigger); DEL-05-04 and DEL-09-06 closed-scope notes
+reworded as dated pointers to History (review MINOR-3); no scope meaning changed.
 
 ## Part 2 — plan-only rows are non-selectable
 

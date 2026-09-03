@@ -60,7 +60,7 @@ flow.
   - DEL-05-02: `EXECUTION rows` 7→8; `RETIRED rows`/Lifecycle `RETIRED` 0→1, `NOT_APPLICABLE` 5→6, `TBD` 7→6, added `PENDING` 1 — the retired DEP-05-02-007 had been uncounted (pre-existing drift, corrected); `ACTIVE rows` stays 12.
   - DEL-05-03: `ACTIVE rows` 12→13; `EXECUTION rows` 8→9; `UPSTREAM rows` 12→13; `PENDING` 3→4.
   - DEL-04-05: Counts line 12/10/6/6 → 13 rows total (11 ACTIVE, 2 RETIRED); 6 ANCHOR, 7 EXECUTION; Lifecycle `ACTIVE` 10→11; added `PENDING` 1.
-  Row bytes were not changed by the reconciliation. The 2026-09-03 Run History entry sits under `## Run History` in every file (a first-pass placement error that put it under `## Lifecycle Summary` in five files was corrected before publication; see the PR's review-remediation section).
+  Row bytes were not changed by the reconciliation. The 2026-09-03 Run History entry sits under `## Run History` in every file (a first-pass placement error that put it under `## Lifecycle Summary` in five files corrected in `ced10a6b1` before merge (PR #681 review remediation)).
 
 ## Closure audit (as in the Gate-5 run record)
 
