@@ -1,0 +1,27 @@
+{
+  "schema": "chirality-app-agentrun-work-graph/v1",
+  "run_id": "APPDEV_V3_NODE_E_2026-09-03",
+  "basis_commit": "0c683fb1657706316272951e4c3a0f7781b46009",
+  "branch": "codex/app-v3-nodeE-at053-evidence-2026-09-03",
+  "path": "single-manager (docs-only; no product source; no independent review child)",
+  "coordinator": {"role": "HELP_HUMAN", "model": "Claude Fable 5.1 (claude-fable-5-1)"},
+  "instances": [
+    {
+      "id": "E1_IMPLEMENTER",
+      "form": "ephemeral Agent 2 generalist (sealed brief)",
+      "model": "Claude Fable 5.1 (claude-fable-5-1)",
+      "brief": "instances/E1_IMPLEMENTER/LAUNCH_BRIEF.md",
+      "delegates": false
+    }
+  ],
+  "nodes": [
+    {"id": "E0", "title": "Step 0 discovery", "instance": "E1_IMPLEMENTER", "depends_on": [], "writes": ["STEP0_DISCOVERY.md"], "gate": "clean tree; receipts VALID; corpus no drift; APP-HOLD ALLOW/PASS; self-check exit 0; pytest pass"},
+    {"id": "E1", "title": "Generate AT-053 evidence record (MD + JSON)", "instance": "E1_IMPLEMENTER", "depends_on": ["E0"], "writes": ["<DEL-01-01>/Evidence_AT-053_Governed_Basis_2026-09-03.md", "<DEL-01-01>/Evidence_AT-053_Governed_Basis_2026-09-03.json", "build_at053_evidence.py", "verify_citations.py", "VERIFY_CITATIONS_RESULT.json"], "gate": "build --check PASS; verify_citations PASS"},
+    {"id": "E2", "title": "Deliverable closeout", "instance": "E1_IMPLEMENTER", "depends_on": ["E1"], "writes": ["<DEL-01-01>/_STATUS.md", "<DEL-01-01>/MEMORY.md", "<DEL-01-01>/_run_records/TASK_RUN_2026-09-03_V3-01_AT053_evidence.md"], "gate": "git diff --check"},
+    {"id": "E3", "title": "Receipt 209, run record closeout", "instance": "E1_IMPLEMENTER", "depends_on": ["E2"], "writes": ["projects/chirality-app-dev/loop/LOOP_RECEIPTS.md (append)", "RETURN.md", "CHECKS.json", "HANDOFF_STATE.md", "MANIFEST.sha256"], "gate": "receipts validator VALID; full check set pass"},
+    {"id": "E4", "title": "Push and open unmerged PR", "instance": "E1_IMPLEMENTER", "depends_on": ["E3"], "writes": ["remote branch", "PR"], "gate": "owner merge (not performed here)"}
+  ],
+  "concurrency": "none inside this run; concurrent sibling nodes append Receipts 206-208 with Parent-Receipt Receipt-205 (ledger rule 7) and disjoint write sets",
+  "holds": ["G0.5 unruled", "G1 unruled", "ten DEL-02-06 bindings HELD_UNAVAILABLE", "D-APP-97 / F-APP-2 active", "TM-ROOT-106 open"],
+  "escalation": "any owner-shaped fork stops for HELP_HUMAN; none arose"
+}
