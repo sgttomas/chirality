@@ -587,7 +587,6 @@ async function initializeGui(): Promise<void> {
     socketPath: control.socketPath,
     tokenFile: control.operatorTokenFile
   });
-  registerApiKeyHandlers(runtimeClient);
   await registerDirectorySelectionHandler();
   await registerRuntimeConnectivityHandler();
   process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
@@ -652,13 +651,23 @@ async function initializeGui(): Promise<void> {
   const rendererUrl = app.isPackaged
     ? (rendererServer = await startPackagedRendererServer()).url
     : process.env.ELECTRON_RENDERER_URL ?? 'http://localhost:3000';
+  const rendererOrigin = new URL(rendererUrl).origin;
+
+  // Credential channels are registered only once the renderer origin is known:
+  // every one of them rejects senders from any other origin, so they cannot
+  // exist before the origin does. The window is created after this, so no
+  // renderer can invoke them in the gap.
+  registerApiKeyHandlers(runtimeClient, {
+    rendererOrigin,
+    log: (level, event, detail) => desktopLogger.log(level, event, detail)
+  });
 
   registerRuntimeControlHandlers({
     client: runtimeClient,
     lifecycle: createDesktopDaemonLifecycle(),
     desktopExecutable: app.getPath('exe'),
     packaged: app.isPackaged,
-    rendererOrigin: new URL(rendererUrl).origin,
+    rendererOrigin,
     // An operator action that makes the daemon reachable should not have to wait
     // out the backoff ladder.
     onDaemonAvailable: async () => {

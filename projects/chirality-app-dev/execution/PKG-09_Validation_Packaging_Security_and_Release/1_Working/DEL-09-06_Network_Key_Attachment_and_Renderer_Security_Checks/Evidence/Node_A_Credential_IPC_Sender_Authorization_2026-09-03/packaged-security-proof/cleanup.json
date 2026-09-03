@@ -1,0 +1,25 @@
+{
+  "gui": {
+    "label": "packaged GUI",
+    "started": true,
+    "pid": 58785,
+    "signalSent": "SIGTERM",
+    "exitCode": 0,
+    "signalCode": null,
+    "confirmedStopped": true,
+    "streamClosed": true
+  },
+  "daemon": {
+    "label": "packaged runtime daemon",
+    "started": true,
+    "pid": 58729,
+    "signalSent": "SIGTERM",
+    "exitCode": 0,
+    "signalCode": null,
+    "confirmedStopped": true,
+    "streamClosed": true
+  },
+  "tempRootRemoved": true,
+  "tempRootRemovalError": null,
+  "pass": true
+}

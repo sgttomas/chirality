@@ -1,0 +1,234 @@
+{
+  "schema": "chirality-packaged-security-proof/v1",
+  "status": "pass",
+  "startedAt": "2026-09-03T20:49:14.852Z",
+  "completedAt": "2026-09-03T20:49:21.365Z",
+  "proofBoundary": "fresh-unsigned-packaged-app-network-safeStorage-and-security-byte-presence",
+  "artifactIdentity": {
+    "schema": "chirality-packaged-security-subject/v1",
+    "appPath": "/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeA/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app",
+    "sourceRevision": "0c683fb1657706316272951e4c3a0f7781b46009",
+    "files": [
+      {
+        "relativePath": "Contents/MacOS/Chirality",
+        "bytes": 33968,
+        "sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874"
+      },
+      {
+        "relativePath": "Contents/Resources/app.asar",
+        "bytes": 448803467,
+        "sha256": "f7913db43840a63d5ecebf40c373c4578d6e2b373e02cbb2f234612bde8e3e82"
+      },
+      {
+        "relativePath": "Contents/Resources/runtime-cli/chirality-cli.mjs",
+        "bytes": 75460,
+        "sha256": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+      }
+    ],
+    "identitySha256": "f8b954e1d926867f28aa961c9ba186303be5fc039f1dd47229988ad5e0988de6"
+  },
+  "packagedPolicy": {
+    "markers": [
+      {
+        "marker": "REQ-NET-001",
+        "present": true
+      },
+      {
+        "marker": "api.anthropic.com",
+        "present": true
+      },
+      {
+        "marker": "anthropic_protocol_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "anthropic_port_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "host_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "Blocked renderer outbound request by network policy",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-file size limit",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-turn size budget",
+        "present": true
+      },
+      {
+        "marker": "symbolic links are rejected",
+        "present": true
+      },
+      {
+        "marker": "ATTACHMENT_FAILURE",
+        "present": true
+      }
+    ],
+    "allPresent": true
+  },
+  "credentialProof": {
+    "fixtureCredentialSha256": "f937a6c30972f8b2b46ae0ee0c73bb44c4b6e67dae8cc4ee31239605828315fb",
+    "before": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      }
+    },
+    "afterStore": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": true,
+        "source": "ui",
+        "storage": "available"
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      }
+    },
+    "storedMutation": {
+      "providerId": "anthropic",
+      "configured": true
+    },
+    "encryptedBlob": {
+      "bytes": 67,
+      "sha256": "3ef72579585dd3de98ba2507c835d850997971a937d9c4d6f4b3b04f890b3a69",
+      "ownerOnlyMode": true,
+      "excludesPlaintextFixture": true
+    },
+    "removedMutation": {
+      "providerId": "anthropic",
+      "configured": false
+    },
+    "afterRemove": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      }
+    },
+    "credentialFilePresentAfterRemove": false,
+    "providerIsolation": true,
+    "mutationPass": true,
+    "retainedSecretFindings": [],
+    "evidenceSurfacesScannedAfterStreamClosure": [
+      "encryptedCredentialArtifact",
+      "emitted:cleanup.json",
+      "emitted:packaged-daemon.log",
+      "emitted:packaged-gui.log",
+      "emitted:tcp-snapshots.json"
+    ],
+    "pass": true
+  },
+  "networkProof": {
+    "snapshotCount": 5,
+    "sampledProcessIds": [
+      58729,
+      58783,
+      58784,
+      58785,
+      58840,
+      58841,
+      58890
+    ],
+    "uniqueOutboundTcp": [
+      {
+        "endpoint": "127.0.0.1:51252",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51253",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51254",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51255",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51256",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51257",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51251",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      }
+    ],
+    "nonAllowlistedOutboundTcp": [],
+    "blockedRendererDiagnostics": 1,
+    "probePayloadCount": 1,
+    "blockedProbeObserved": true,
+    "loopbackProbeObserved": true,
+    "pass": true
+  },
+  "cleanup": {
+    "gui": {
+      "label": "packaged GUI",
+      "started": true,
+      "pid": 58785,
+      "signalSent": "SIGTERM",
+      "exitCode": 0,
+      "signalCode": null,
+      "confirmedStopped": true,
+      "streamClosed": true
+    },
+    "daemon": {
+      "label": "packaged runtime daemon",
+      "started": true,
+      "pid": 58729,
+      "signalSent": "SIGTERM",
+      "exitCode": 0,
+      "signalCode": null,
+      "confirmedStopped": true,
+      "streamClosed": true
+    },
+    "tempRootRemoved": true,
+    "tempRootRemovalError": null,
+    "pass": true
+  },
+  "retainedMetadataLeakFindings": [],
+  "exclusions": {
+    "realCredentialsUsed": false,
+    "signingOrNotarization": false,
+    "distributionOrPublication": false,
+    "ownerUserDataTouched": false,
+    "providerScopeExpanded": false
+  }
+}

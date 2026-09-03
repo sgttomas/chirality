@@ -85,6 +85,26 @@ describe('ApiKeySettings rendering', () => {
     expect(html).not.toContain('Reveal');
   });
 
+  it.each([
+    { storage: 'missing', label: 'No API key configured', warning: false },
+    { storage: 'storageUnavailable', label: 'Secure storage is unavailable', warning: true },
+    { storage: 'decryptFailed', label: 'Stored key cannot be read', warning: true },
+    { storage: 'available', label: 'Key configured (stored in secure storage)', warning: false }
+  ] as const)('server-renders the $storage storage state distinctly', ({ storage, label, warning }) => {
+    const html = renderView({
+      status: {
+        hasKey: storage === 'available',
+        encryptionAvailable: storage !== 'storageUnavailable',
+        source: storage === 'available' ? 'ui' : 'none',
+        storage
+      }
+    });
+
+    expect(html).toContain(`data-storage="${storage}"`);
+    expect(html).toContain(label);
+    expect(html.includes(`data-storage-state="${storage}"`)).toBe(warning);
+  });
+
   it('renders saving state with the save control disabled', () => {
     const html = renderView({ keyInput: 'pending-value', saving: true });
 

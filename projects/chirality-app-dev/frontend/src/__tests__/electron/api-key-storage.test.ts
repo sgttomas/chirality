@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { chmod, mkdtemp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -26,6 +27,8 @@ import {
   hasStoredProviderApiKey,
   hasStoredApiKey,
   loadStoredKeyIntoGlobal,
+  probeProviderCredentialStorage,
+  readProviderCredential,
   removeProviderApiKey,
   removeApiKey,
   retrieveProviderApiKey,
@@ -78,12 +81,17 @@ describe('electron/api-key-storage', () => {
 
     await expect(credentials.get('anthropic')).resolves.toBe('daemon-anthropic');
     await expect(credentials.get('omlx')).resolves.toBe('daemon-omlx');
-    await expect(credentials.status('omlx')).resolves.toEqual({ configured: true, source: 'ui' });
+    await expect(credentials.status('omlx')).resolves.toEqual({
+      configured: true,
+      source: 'ui',
+      storage: 'available'
+    });
 
     await credentials.remove('omlx');
     await expect(credentials.status('omlx')).resolves.toEqual({
       configured: false,
-      source: 'none'
+      source: 'none',
+      storage: 'missing'
     });
     await expect(credentials.get('anthropic')).resolves.toBe('daemon-anthropic');
   });
@@ -220,7 +228,8 @@ describe('electron/api-key-storage', () => {
       await expect(credentials.get('anthropic')).resolves.toBe('persisted-ui-key');
       await expect(credentials.status('anthropic')).resolves.toEqual({
         configured: true,
-        source: 'ui'
+        source: 'ui',
+        storage: 'available'
       });
     } finally {
       delete process.env.ANTHROPIC_API_KEY;
@@ -284,7 +293,8 @@ describe('electron/api-key-storage', () => {
         await expect(credentials.get('anthropic')).resolves.toBe(expected);
         await expect(credentials.status('anthropic')).resolves.toEqual({
           configured: expected !== undefined,
-          source: expected === undefined ? 'none' : 'env'
+          source: expected === undefined ? 'none' : 'env',
+          storage: 'missing'
         });
       } finally {
         delete process.env.ANTHROPIC_API_KEY;
@@ -303,19 +313,22 @@ describe('electron/api-key-storage', () => {
 
       await expect(credentials.status('omlx')).resolves.toEqual({
         configured: true,
-        source: 'ui'
+        source: 'ui',
+        storage: 'available'
       });
 
       await credentials.remove('omlx');
       await expect(credentials.status('omlx')).resolves.toEqual({
         configured: true,
-        source: 'env'
+        source: 'env',
+        storage: 'missing'
       });
 
       delete process.env.CHIRALITY_OMLX_API_KEY;
       await expect(credentials.status('omlx')).resolves.toEqual({
         configured: false,
-        source: 'none'
+        source: 'none',
+        storage: 'missing'
       });
     } finally {
       delete process.env.ANTHROPIC_API_KEY;
@@ -330,10 +343,228 @@ describe('electron/api-key-storage', () => {
       const credentials = new SafeStorageCredentialStore();
       const status = await credentials.status('unsupported');
 
-      expect(status).toEqual({ configured: false, source: 'none' });
+      expect(status).toEqual({ configured: false, source: 'none', storage: 'missing' });
       expect(JSON.stringify(status)).not.toContain('canonical-anthropic-key');
     } finally {
       delete process.env.ANTHROPIC_API_KEY;
     }
+  });
+});
+
+/**
+ * DEL-04-05-V3-01 — typed safeStorage states with non-destructive proof.
+ *
+ * Fixtures: a corrupt ciphertext (bytes safeStorage cannot decrypt) and an
+ * unavailable store (encryption not available). For each failed read the
+ * stored bytes are proven byte-identical before and after (SHA-256 and raw
+ * buffer equality), the file still exists, no plaintext is returned, and no
+ * fallback store is consulted.
+ */
+describe('electron/api-key-storage typed storage states', () => {
+  const CORRUPT_CIPHERTEXT = Buffer.from([0x00, 0xff, 0x13, 0x37, 0x42, 0x00, 0x99, 0xab]);
+  const SECRET_PLAINTEXT = 'fixture-secret-must-not-leak';
+
+  async function fingerprint(filePath: string): Promise<{ sha256: string; bytes: Buffer }> {
+    const bytes = await readFile(filePath);
+    return { sha256: createHash('sha256').update(bytes).digest('hex'), bytes };
+  }
+
+  async function writeBlob(providerFile: string, bytes: Buffer): Promise<string> {
+    const blobPath = path.join(tmpDir, 'credentials', providerFile);
+    await mkdir(path.dirname(blobPath), { recursive: true });
+    await writeFile(blobPath, bytes);
+    return blobPath;
+  }
+
+  it('reports missing when no ciphertext exists, without touching the environment', async () => {
+    process.env.ANTHROPIC_API_KEY = SECRET_PLAINTEXT;
+    try {
+      await expect(readProviderCredential('anthropic')).resolves.toEqual({ state: 'missing' });
+      await expect(probeProviderCredentialStorage('anthropic')).resolves.toBe('missing');
+      await expect(readProviderCredential('omlx')).resolves.toEqual({ state: 'missing' });
+      expect(electronMock.safeStorage.decryptString).not.toHaveBeenCalled();
+    } finally {
+      delete process.env.ANTHROPIC_API_KEY;
+    }
+  });
+
+  it('reports available with the plaintext only on the read path, never on the probe', async () => {
+    await storeProviderApiKey('anthropic', SECRET_PLAINTEXT);
+
+    await expect(readProviderCredential('anthropic')).resolves.toEqual({
+      state: 'available',
+      value: SECRET_PLAINTEXT
+    });
+    const probe = await probeProviderCredentialStorage('anthropic');
+    expect(probe).toBe('available');
+    expect(JSON.stringify(probe)).not.toContain(SECRET_PLAINTEXT);
+  });
+
+  it('decryptFailed: corrupt ciphertext is classified, retained byte-identical, and never exposed', async () => {
+    const blobPath = await writeBlob('api-key.enc', CORRUPT_CIPHERTEXT);
+    const before = await fingerprint(blobPath);
+    electronMock.safeStorage.decryptString.mockImplementation(() => {
+      throw new Error(`decrypt failed for ${SECRET_PLAINTEXT}`);
+    });
+
+    const read = await readProviderCredential('anthropic');
+    const probe = await probeProviderCredentialStorage('anthropic');
+    const retrieved = await retrieveProviderApiKey('anthropic');
+
+    expect(read).toEqual({ state: 'decryptFailed' });
+    expect(probe).toBe('decryptFailed');
+    expect(retrieved).toBeNull();
+    expect(JSON.stringify({ read, probe, retrieved })).not.toContain(SECRET_PLAINTEXT);
+    expect(electronMock.safeStorage.decryptString).toHaveBeenCalledTimes(3);
+    expect(electronMock.safeStorage.encryptString).not.toHaveBeenCalled();
+
+    const after = await fingerprint(blobPath);
+    expect(after.sha256).toBe(before.sha256);
+    expect(after.bytes.equals(CORRUPT_CIPHERTEXT)).toBe(true);
+    expect(before.bytes.equals(after.bytes)).toBe(true);
+    await expect(hasStoredProviderApiKey('anthropic')).resolves.toBe(true);
+  });
+
+  it('decryptFailed: the store reports it beside the unchanged source precedence', async () => {
+    const blobPath = await writeBlob('api-key.enc', CORRUPT_CIPHERTEXT);
+    const before = await fingerprint(blobPath);
+    electronMock.safeStorage.decryptString.mockImplementation(() => {
+      throw new Error('corrupted');
+    });
+    const credentials = new SafeStorageCredentialStore();
+
+    await expect(credentials.status('anthropic')).resolves.toEqual({
+      configured: false,
+      source: 'none',
+      storage: 'decryptFailed'
+    });
+    await expect(credentials.get('anthropic')).resolves.toBeUndefined();
+    expect(getUiApiKey()).toBeUndefined();
+
+    process.env.ANTHROPIC_API_KEY = 'canonical-environment-key';
+    try {
+      await expect(credentials.status('anthropic')).resolves.toEqual({
+        configured: true,
+        source: 'env',
+        storage: 'decryptFailed'
+      });
+      await expect(credentials.get('anthropic')).resolves.toBe('canonical-environment-key');
+    } finally {
+      delete process.env.ANTHROPIC_API_KEY;
+    }
+
+    const after = await fingerprint(blobPath);
+    expect(after.sha256).toBe(before.sha256);
+    expect(after.bytes.equals(CORRUPT_CIPHERTEXT)).toBe(true);
+  });
+
+  it('decryptFailed: only an explicit store or remove replaces the retained blob', async () => {
+    const blobPath = await writeBlob('api-key.enc', CORRUPT_CIPHERTEXT);
+    electronMock.safeStorage.decryptString.mockImplementationOnce(() => {
+      throw new Error('corrupted');
+    });
+    const credentials = new SafeStorageCredentialStore();
+    await expect(credentials.status('anthropic')).resolves.toMatchObject({ storage: 'decryptFailed' });
+    expect((await readFile(blobPath)).equals(CORRUPT_CIPHERTEXT)).toBe(true);
+
+    await credentials.set('anthropic', 'replacement-key');
+    await expect(readFile(blobPath, 'utf8')).resolves.toBe('enc:replacement-key');
+    await expect(credentials.status('anthropic')).resolves.toEqual({
+      configured: true,
+      source: 'ui',
+      storage: 'available'
+    });
+
+    await credentials.remove('anthropic');
+    await expect(credentials.status('anthropic')).resolves.toEqual({
+      configured: false,
+      source: 'none',
+      storage: 'missing'
+    });
+  });
+
+  it('storageUnavailable: the blob is not opened and stays byte-identical', async () => {
+    const blobPath = await writeBlob('api-key.enc', Buffer.from(`enc:${SECRET_PLAINTEXT}`, 'utf8'));
+    const before = await fingerprint(blobPath);
+    electronMock.safeStorage.isEncryptionAvailable.mockReturnValue(false);
+
+    const read = await readProviderCredential('anthropic');
+    const probe = await probeProviderCredentialStorage('anthropic');
+    const retrieved = await retrieveProviderApiKey('anthropic');
+
+    expect(read).toEqual({ state: 'storageUnavailable' });
+    expect(probe).toBe('storageUnavailable');
+    expect(retrieved).toBeNull();
+    expect(JSON.stringify({ read, probe, retrieved })).not.toContain(SECRET_PLAINTEXT);
+    expect(electronMock.safeStorage.decryptString).not.toHaveBeenCalled();
+    expect(electronMock.safeStorage.encryptString).not.toHaveBeenCalled();
+
+    const after = await fingerprint(blobPath);
+    expect(after.sha256).toBe(before.sha256);
+    expect(after.bytes.equals(before.bytes)).toBe(true);
+    await expect(hasStoredProviderApiKey('anthropic')).resolves.toBe(true);
+  });
+
+  it('storageUnavailable: the store reports it, keeps environment precedence, and refuses writes', async () => {
+    electronMock.safeStorage.isEncryptionAvailable.mockReturnValue(false);
+    const credentials = new SafeStorageCredentialStore();
+
+    await expect(credentials.status('anthropic')).resolves.toEqual({
+      configured: false,
+      source: 'none',
+      storage: 'storageUnavailable'
+    });
+    await expect(credentials.status('omlx')).resolves.toEqual({
+      configured: false,
+      source: 'none',
+      storage: 'storageUnavailable'
+    });
+
+    process.env.CHIRALITY_OMLX_API_KEY = 'omlx-environment-key';
+    try {
+      await expect(credentials.status('omlx')).resolves.toEqual({
+        configured: true,
+        source: 'env',
+        storage: 'storageUnavailable'
+      });
+    } finally {
+      delete process.env.CHIRALITY_OMLX_API_KEY;
+    }
+
+    await expect(credentials.set('anthropic', 'new-key')).rejects.toThrow(
+      'Secure storage is not available on this platform'
+    );
+    await expect(hasStoredProviderApiKey('anthropic')).resolves.toBe(false);
+  });
+
+  it('treats a ciphertext that decrypts to nothing usable as missing', async () => {
+    await writeBlob('api-key.enc', Buffer.from('enc:   ', 'utf8'));
+
+    await expect(readProviderCredential('anthropic')).resolves.toEqual({ state: 'missing' });
+    await expect(new SafeStorageCredentialStore().status('anthropic')).resolves.toEqual({
+      configured: false,
+      source: 'none',
+      storage: 'missing'
+    });
+  });
+
+  it('keeps provider blobs independent across states', async () => {
+    await storeProviderApiKey('omlx', 'omlx-secret');
+    await writeBlob('api-key.enc', CORRUPT_CIPHERTEXT);
+    electronMock.safeStorage.decryptString.mockImplementation((value: Buffer) => {
+      const raw = value.toString('utf8');
+      if (!raw.startsWith('enc:')) {
+        throw new Error('corrupted');
+      }
+      return raw.slice(4);
+    });
+    const credentials = new SafeStorageCredentialStore();
+
+    await expect(credentials.status('anthropic')).resolves.toMatchObject({ storage: 'decryptFailed' });
+    await expect(credentials.status('omlx')).resolves.toEqual({
+      configured: true,
+      source: 'ui',
+      storage: 'available'
+    });
   });
 });

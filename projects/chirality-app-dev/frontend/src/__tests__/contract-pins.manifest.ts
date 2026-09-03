@@ -210,6 +210,71 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
     ]
   },
   {
+    file: 'electron/main.ts',
+    description:
+      'G-CSP renderer hardening (DEL-09-06-V3-01): the main window is created with explicit context isolation, no Node integration, and the Chromium sandbox; the egress policy is registered per window; every privileged IPC module receives the exact renderer origin',
+    pins: [
+      { kind: 'contains', value: 'contextIsolation: true' },
+      { kind: 'contains', value: 'nodeIntegration: false' },
+      { kind: 'contains', value: 'sandbox: true' },
+      { kind: 'notContains', value: 'contextIsolation: false' },
+      { kind: 'notContains', value: 'nodeIntegration: true' },
+      { kind: 'notContains', value: 'sandbox: false' },
+      { kind: 'notContains', value: 'webSecurity: false' },
+      { kind: 'notContains', value: 'allowRunningInsecureContent' },
+      { kind: 'notContains', value: 'nodeIntegrationInWorker' },
+      { kind: 'notContains', value: 'nodeIntegrationInSubFrames' },
+      { kind: 'notContains', value: 'enableRemoteModule' },
+      { kind: 'contains', value: "preload: path.join(__dirname, 'preload.js')" },
+      { kind: 'contains', value: 'registerRendererEgressPolicy(window);' },
+      { kind: 'contains', value: 'const rendererOrigin = new URL(rendererUrl).origin;' },
+      { kind: 'contains', value: 'registerApiKeyHandlers(runtimeClient, {' },
+      { kind: 'contains', value: 'registerRuntimeControlHandlers({' }
+    ]
+  },
+  {
+    file: 'electron/api-key-ipc.ts',
+    description:
+      'Credential IPC sender authorization (DEL-09-06-V3-01): all six channels adopt the shared origin policy and deny with a typed, secret-free result',
+    pins: [
+      { kind: 'contains', value: "from './ipc-sender-policy'" },
+      { kind: 'contains', value: 'isAuthorizedSender(event, rendererOrigin)' },
+      { kind: 'contains', value: "'Credential request was denied'" },
+      { kind: 'contains', value: 'if (denied(event, API_KEY_STORE_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, API_KEY_REMOVE_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, API_KEY_STATUS_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, PROVIDER_API_KEY_STORE_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, PROVIDER_API_KEY_REMOVE_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, PROVIDER_API_KEY_STATUS_CHANNEL))' },
+      { kind: 'contains', value: 'sender: describeIpcSender(event)' },
+      { kind: 'notContains', value: 'senderFrame.url' }
+    ]
+  },
+  {
+    file: 'electron/runtime-control-ipc.ts',
+    description:
+      'Runtime-control IPC keeps the shared sender policy (no private copy that could drift)',
+    pins: [
+      { kind: 'contains', value: "from './ipc-sender-policy'" },
+      { kind: 'contains', value: 'isAuthorizedSender(event, deps.rendererOrigin)' },
+      { kind: 'notContains', value: 'function isAuthorizedSender' }
+    ]
+  },
+  {
+    file: 'electron/api-key-storage.ts',
+    description:
+      'Typed safeStorage states are non-destructive (DEL-04-05-V3-01): a failed read never rewrites, truncates, or deletes the blob, and never falls back to another store',
+    pins: [
+      { kind: 'contains', value: "return { state: 'storageUnavailable' };" },
+      { kind: 'contains', value: "return { state: 'decryptFailed' };" },
+      { kind: 'contains', value: "return { state: 'missing' };" },
+      { kind: 'contains', value: "return { state: 'available', value: decrypted };" },
+      { kind: 'contains', value: 'Preserve corrupted blobs for operator investigation.' },
+      { kind: 'notContains', value: 'writeFileSync' },
+      { kind: 'notContains', value: 'keytar' }
+    ]
+  },
+  {
     file: 'scripts/run-network-policy-proof.mjs',
     description:
       'Scripted agentSdk network proof mode exists without broadening egress (from build-network-policy.test.ts)',

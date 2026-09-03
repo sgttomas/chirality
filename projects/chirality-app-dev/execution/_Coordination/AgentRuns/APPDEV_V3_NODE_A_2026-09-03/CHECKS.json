@@ -1,0 +1,158 @@
+{
+  "schema": "chirality-run-checks/v1",
+  "run_id": "APPDEV_V3_NODE_A_2026-09-03",
+  "recorded_at": "2026-09-03",
+  "basis": "0c683fb1657706316272951e4c3a0f7781b46009",
+  "toolchain": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "vitest": "4.1.10",
+    "next": "15.5.21",
+    "electron": "43.2.0",
+    "electron-builder": "26.15.3",
+    "typescript": "5.9.3",
+    "react-test-renderer": "18.3.1",
+    "platform": "darwin 25.6.0 (arm64)"
+  },
+  "environment_preparation": [
+    {"command": "npm ci", "cwd": "projects/chirality-app-dev/frontend", "exit": 0, "note": "warm cache; audit/allow-scripts warnings only; no lockfile edit"},
+    {"command": "npm ci && npm run build", "cwd": "runtime", "exit": 0, "note": "same preparation the root harness-premerge workflow performs before the frontend gates; required so the file:-linked @chirality/runtime-* packages resolve; outputs are gitignored"}
+  ],
+  "checks": [
+    {
+      "id": "receipts-validator",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "VALID; frozen through Receipt-52; versioned receipt contract satisfied (Step 0)"
+    },
+    {
+      "id": "authority-corpus",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "corpus v20; all eight [MATCH]; no drift (Step 0)"
+    },
+    {
+      "id": "app-hold-dispatch-preflight",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-06 --target DEL-04-05 --target DEL-02-05",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict ALLOW; all three targets NOT_HELD / CLEAR; register sha256 e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f (Step 0)"
+    },
+    {
+      "id": "frontend-typecheck",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "tsc --noEmit (app tsconfig) and tsc -p tsconfig.electron.json both clean"
+    },
+    {
+      "id": "frontend-test-full",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "Vitest 4.1.10: Test Files 157 passed | 1 skipped (158); Tests 1364 passed | 4 skipped (1368); duration 5.27s",
+      "log": "scratch logs/vitest-full.log (session-local; not retained in repo)"
+    },
+    {
+      "id": "frontend-test-focused",
+      "command": "npx vitest run src/__tests__/electron/ipc-sender-policy.test.ts src/__tests__/electron/api-key-ipc.test.ts src/__tests__/electron/api-key-storage.test.ts src/__tests__/electron/runtime-control-ipc.test.ts src/__tests__/components/api-key-settings.test.ts src/__tests__/components/api-key-settings-storage-states.test.ts src/__tests__/contract-pins.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "7 files, 151 tests passed: ipc-sender-policy 17; api-key-ipc 58; api-key-storage 29; runtime-control-ipc 11 (unchanged regression); api-key-settings 12; api-key-settings-storage-states 9; contract-pins 15"
+    },
+    {
+      "id": "frontend-build",
+      "command": "npm run build",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "next build + build:electron (dist-electron/main.js 1.3mb, preload.js 3.5kb, dist-runtime/chirality-cli.mjs 73.7kb)"
+    },
+    {
+      "id": "frontend-premerge",
+      "command": "CHIRALITY_HARNESS_PROVIDER=stub NEXT_TELEMETRY_DISABLED=1 node node_modules/next/dist/bin/next dev --port 51226 (ready in ~3s) ; HARNESS_BASE_URL=http://127.0.0.1:51226 npm run harness:validate:premerge ; server stopped (SIGTERM) before any later build/pack command",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 1,
+      "status": "fail",
+      "failure_class": "absent runtime-daemon bindings",
+      "summary": "HARNESS_VALIDATION_STATUS=fail; 8/8 results failed with HTTP 503 from the session routes (setup.server_reachable 'Expected 200; received 503'; every session create 'HTTP 503') because no runtime daemon is bound in the sandbox. Same class recorded in LOOP_RECEIPTS.md lines 5183 and 5313; per App AGENTS.md host-capability rule this class is recorded and deferred to PR CI (.github/workflows/harness-premerge.yml). No pass is inferred.",
+      "deferred_to": "PR CI"
+    },
+    {
+      "id": "desktop-pack",
+      "command": "npm run desktop:pack",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "build + pack-electron-with-supply + desktop:verify-dependencies (status PASS; forbiddenDevelopmentPackagesPresent []; packagedRuntimeSourceProof PASS, 186 desktop / 15 cli sources) + instruction-root:integrity (status pass, 43 files; 'source completeness status: needs_remediation' is a pre-existing bundle-vs-source completeness note introduced by root commit 3d522842e, not by this tranche). Ran inside the sandbox; no escalation was needed."
+    },
+    {
+      "id": "proof-packaged-security",
+      "command": "npm run proof:packaged-security",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "chirality-packaged-security-proof/v1 status pass; artifact identitySha256 f8b954e1d926867f28aa961c9ba186303be5fc039f1dd47229988ad5e0988de6 (Chirality 79019361…, app.asar f7913db4…, chirality-cli.mjs 0503c40a…); all 10 packaged policy markers present; credential proof pass with the daemon-owned status now carrying the typed state (before missing → afterStore available/ui → afterRemove missing), encrypted blob 67 bytes owner-only excluding the plaintext fixture, provider isolation true, retainedSecretFindings []; network proof pass (5 snapshots, 7 loopback endpoints, nonAllowlistedOutboundTcp [], 1 blocked renderer diagnostic host_not_allowlisted:example.com); cleanup pass (GUI and daemon exit 0, temp root removed). Ran inside the sandbox; no escalation was needed. The bundle was built from the pre-commit working tree (sourceRevision reports HEAD 0c683fb16); the artifact hashes above identify the proved bytes.",
+      "evidence": "execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Node_A_Credential_IPC_Sender_Authorization_2026-09-03/packaged-security-proof/ (summary.json, cleanup.json, tcp-snapshots.json, packaged-gui.log, packaged-daemon.log, MANIFEST.sha256)"
+    },
+    {
+      "id": "git-diff-check",
+      "command": "git add -A -N . && git diff --check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "no whitespace errors over the full working-tree diff including new files"
+    },
+    {
+      "id": "harness-self-check",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "exit 0; finding severities INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=43 (pre-existing repo-wide findings; none introduced here)"
+    },
+    {
+      "id": "harness-pytest",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q tools/practitioner_harness",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "350 passed in 32.22s"
+    },
+    {
+      "id": "app-hold-integrity",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict PASS; contract_count 53; held_count 0; register match true; repo_head 0c683fb16"
+    },
+    {
+      "id": "select-affected-checks",
+      "command": "git status --short | <changed paths as JSON> | python3 tools/software_workflow/select_affected_checks.py --paths-json-stdin projects/chirality-app-dev/software-workflow.json",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "selected: app-hold-integrity, frontend-test, frontend-typecheck, harness-pytest, harness-self-check — each executed above by its registered command (frontend-build and frontend-premerge additionally run per the brief); run_registered_checks.py not used"
+    },
+    {
+      "id": "validate-change-scope",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base HEAD --allowed <the brief's write locus, 14 roots>",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "status PASS; violations []; 17 changed paths at freeze all inside the fence (re-run after evidence/run-record writes; see RETURN.md)"
+    }
+  ],
+  "not_run": [
+    {"id": "run_registered_checks.py", "reason": "optional per brief; every registered check was executed directly by its registered command with exit status recorded above"}
+  ]
+}

@@ -1,5 +1,10 @@
 import { ipcMain } from 'electron';
 import { isProviderCredentialId, type ProviderCredentialId } from './api-key-storage';
+import { describeIpcSender, isAuthorizedSender, type IpcSenderEvent } from './ipc-sender-policy';
+import {
+  isCredentialStorageState,
+  type CredentialStorageState
+} from '../src/lib/credential-storage-state';
 
 // Existing Anthropic-only channels remain stable for renderer compatibility.
 export const API_KEY_STORE_CHANNEL = 'chirality:api-key-store';
@@ -10,10 +15,21 @@ export const PROVIDER_API_KEY_STORE_CHANNEL = 'chirality:provider-api-key-store'
 export const PROVIDER_API_KEY_REMOVE_CHANNEL = 'chirality:provider-api-key-remove';
 export const PROVIDER_API_KEY_STATUS_CHANNEL = 'chirality:provider-api-key-status';
 
+export const CREDENTIAL_IPC_DENIED_EVENT = 'desktop.credential_ipc.denied';
+const CREDENTIAL_REQUEST_DENIED = 'Credential request was denied';
+
+export type ApiKeyStorageState = CredentialStorageState;
+
 export type ApiKeyStatusResult = {
   hasKey: boolean;
   encryptionAvailable: boolean;
   source: 'ui' | 'env' | 'none';
+  /**
+   * Typed safeStorage state of the stored blob (DEL-04-05-V3-01). Present on
+   * every real answer from the daemon; absent only when no answer was obtained
+   * (`unavailable`, invalid status, or a denied sender).
+   */
+  storage?: ApiKeyStorageState;
   /**
    * Set when the daemon could not be reached at all, so the renderer can tell
    * "no key stored" apart from "cannot currently tell". Absent on a real answer.
@@ -36,8 +52,39 @@ export interface DaemonCredentialClient {
   removeCredential(providerId: ProviderCredentialId): Promise<{ configured: boolean }>;
 }
 
+export type ApiKeyHandlerLog = (
+  level: 'info' | 'warn' | 'error',
+  event: string,
+  detail?: unknown
+) => void;
+
+export type ApiKeyHandlerOptions = {
+  /**
+   * Exact origin of the renderer the main process created the window for.
+   * Every credential channel rejects senders from any other origin
+   * (DEL-09-06-V3-01); the policy is `ipc-sender-policy.ts`, shared with the
+   * runtime-control channels.
+   */
+  rendererOrigin: string;
+  /** Desktop log sink for denied requests. Receives no key material. */
+  log?: ApiKeyHandlerLog;
+};
+
 function invalidProviderResult(): ApiKeyStoreResult {
   return { ok: false, error: 'Unsupported credential provider' };
+}
+
+function deniedStoreResult(): ApiKeyStoreResult {
+  return { ok: false, error: CREDENTIAL_REQUEST_DENIED };
+}
+
+function deniedStatusResult(): ApiKeyStatusResult {
+  return {
+    hasKey: false,
+    encryptionAvailable: false,
+    source: 'none',
+    error: CREDENTIAL_REQUEST_DENIED
+  };
 }
 
 /**
@@ -59,11 +106,17 @@ function unavailableStatusResult(error: unknown): ApiKeyStatusResult {
   };
 }
 
-function parseCredentialStatus(status: unknown): Pick<ApiKeyStatusResult, 'hasKey' | 'source'> | null {
+function parseCredentialStatus(
+  status: unknown
+): Pick<ApiKeyStatusResult, 'hasKey' | 'source'> & { storage: ApiKeyStorageState } | null {
   if (!status || typeof status !== 'object') {
     return null;
   }
-  const { configured, source } = status as { configured?: unknown; source?: unknown };
+  const { configured, source, storage } = status as {
+    configured?: unknown;
+    source?: unknown;
+    storage?: unknown;
+  };
   if (
     typeof configured !== 'boolean' ||
     (source !== 'ui' && source !== 'env' && source !== 'none') ||
@@ -71,7 +124,27 @@ function parseCredentialStatus(status: unknown): Pick<ApiKeyStatusResult, 'hasKe
   ) {
     return null;
   }
-  return { hasKey: configured, source };
+
+  let storageState: ApiKeyStorageState;
+  if (storage === undefined) {
+    // Compatibility with a daemon that predates the typed storage state: it
+    // reported a decryptable UI blob as `ui` and everything else as not stored,
+    // so this is exactly what that daemon could distinguish — nothing more.
+    storageState = source === 'ui' ? 'available' : 'missing';
+  } else if (isCredentialStorageState(storage)) {
+    storageState = storage;
+  } else {
+    return null;
+  }
+
+  // A UI-sourced credential is by definition a decryptable stored blob, and a
+  // decryptable stored blob is always the winning source. Anything else is an
+  // inconsistent answer and fails closed rather than being guessed at.
+  if ((source === 'ui') !== (storageState === 'available')) {
+    return null;
+  }
+
+  return { hasKey: configured, source, storage: storageState };
 }
 
 function invalidStatusResult(): ApiKeyStatusResult {
@@ -99,15 +172,35 @@ async function credentialStatusResult(
   }
   return {
     hasKey: parsed.hasKey,
-    encryptionAvailable: true,
-    source: parsed.source
+    encryptionAvailable: parsed.storage !== 'storageUnavailable',
+    source: parsed.source,
+    storage: parsed.storage
   };
 }
 
-export function registerApiKeyHandlers(client: DaemonCredentialClient): void {
+export function registerApiKeyHandlers(
+  client: DaemonCredentialClient,
+  options: ApiKeyHandlerOptions
+): void {
   unregisterApiKeyHandlers();
 
-  ipcMain.handle(API_KEY_STORE_CHANNEL, async (_event, key: unknown): Promise<ApiKeyStoreResult> => {
+  const { rendererOrigin, log } = options;
+
+  const denied = (event: IpcSenderEvent, channel: string): boolean => {
+    if (isAuthorizedSender(event, rendererOrigin)) {
+      return false;
+    }
+    log?.('warn', CREDENTIAL_IPC_DENIED_EVENT, {
+      channel,
+      sender: describeIpcSender(event)
+    });
+    return true;
+  };
+
+  ipcMain.handle(API_KEY_STORE_CHANNEL, async (event, key: unknown): Promise<ApiKeyStoreResult> => {
+    if (denied(event, API_KEY_STORE_CHANNEL)) {
+      return deniedStoreResult();
+    }
     if (typeof key !== 'string' || key.trim().length === 0) {
       return { ok: false, error: 'Key must be a non-empty string' };
     }
@@ -119,7 +212,10 @@ export function registerApiKeyHandlers(client: DaemonCredentialClient): void {
     }
   });
 
-  ipcMain.handle(API_KEY_REMOVE_CHANNEL, async (): Promise<ApiKeyStoreResult> => {
+  ipcMain.handle(API_KEY_REMOVE_CHANNEL, async (event): Promise<ApiKeyStoreResult> => {
+    if (denied(event, API_KEY_REMOVE_CHANNEL)) {
+      return deniedStoreResult();
+    }
     try {
       await client.removeCredential('anthropic');
       return { ok: true };
@@ -128,14 +224,19 @@ export function registerApiKeyHandlers(client: DaemonCredentialClient): void {
     }
   });
 
-  ipcMain.handle(
-    API_KEY_STATUS_CHANNEL,
-    async (): Promise<ApiKeyStatusResult> => credentialStatusResult(client, 'anthropic')
-  );
+  ipcMain.handle(API_KEY_STATUS_CHANNEL, async (event): Promise<ApiKeyStatusResult> => {
+    if (denied(event, API_KEY_STATUS_CHANNEL)) {
+      return deniedStatusResult();
+    }
+    return credentialStatusResult(client, 'anthropic');
+  });
 
   ipcMain.handle(
     PROVIDER_API_KEY_STORE_CHANNEL,
-    async (_event, providerId: unknown, key: unknown): Promise<ApiKeyStoreResult> => {
+    async (event, providerId: unknown, key: unknown): Promise<ApiKeyStoreResult> => {
+      if (denied(event, PROVIDER_API_KEY_STORE_CHANNEL)) {
+        return deniedStoreResult();
+      }
       if (!isProviderCredentialId(providerId)) {
         return invalidProviderResult();
       }
@@ -153,7 +254,10 @@ export function registerApiKeyHandlers(client: DaemonCredentialClient): void {
 
   ipcMain.handle(
     PROVIDER_API_KEY_REMOVE_CHANNEL,
-    async (_event, providerId: unknown): Promise<ApiKeyStoreResult> => {
+    async (event, providerId: unknown): Promise<ApiKeyStoreResult> => {
+      if (denied(event, PROVIDER_API_KEY_REMOVE_CHANNEL)) {
+        return deniedStoreResult();
+      }
       if (!isProviderCredentialId(providerId)) {
         return invalidProviderResult();
       }
@@ -168,7 +272,10 @@ export function registerApiKeyHandlers(client: DaemonCredentialClient): void {
 
   ipcMain.handle(
     PROVIDER_API_KEY_STATUS_CHANNEL,
-    async (_event, providerId: unknown): Promise<ApiKeyStatusResult | ApiKeyStoreResult> => {
+    async (event, providerId: unknown): Promise<ApiKeyStatusResult | ApiKeyStoreResult> => {
+      if (denied(event, PROVIDER_API_KEY_STATUS_CHANNEL)) {
+        return deniedStatusResult();
+      }
       if (!isProviderCredentialId(providerId)) {
         return invalidProviderResult();
       }
