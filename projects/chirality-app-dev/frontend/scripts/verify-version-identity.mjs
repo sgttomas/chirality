@@ -36,9 +36,9 @@ import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const SCRIPT_DIRECTORY = path.dirname(new URL(import.meta.url).pathname);
+const SCRIPT_DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_FRONTEND_ROOT = path.resolve(SCRIPT_DIRECTORY, '..');
 
 export const DEFAULT_ARTIFACT_NAME_TEMPLATE = '${productName}-${version}-${arch}.${ext}';
@@ -402,7 +402,7 @@ export function buildStagedPatch({ current, next, packageJsonText, packageLockTe
   return files.map((file) => buildUnifiedDiff(file.path, file.before, file.after)).join('');
 }
 
-const SELF_BASENAME = path.basename(new URL(import.meta.url).pathname);
+const SELF_BASENAME = path.basename(fileURLToPath(import.meta.url));
 
 async function scanFiles(root, subdirectories, patterns, { skipTests = true, excludeBasenames = [SELF_BASENAME] } = {}) {
   const hits = [];

@@ -31,9 +31,9 @@
 import { createHash } from 'node:crypto';
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-const SCRIPT_DIRECTORY = path.dirname(new URL(import.meta.url).pathname);
+const SCRIPT_DIRECTORY = path.dirname(fileURLToPath(import.meta.url));
 const DEFAULT_FRONTEND_ROOT = path.resolve(SCRIPT_DIRECTORY, '..');
 export const DEFAULT_OUTPUT_RELATIVE = path.join(
   'artifacts',
@@ -340,6 +340,14 @@ export function renderNotices({
   requiredPackages
 }) {
   const firstParty = closure.entries.filter((entry) => entry.firstParty);
+  const missingLicenseFileCount = thirdParty.filter((group) => {
+    const artifacts = licenseArtifacts.get(group.id);
+    return artifacts && artifacts.status === 'NOT_PRESENT';
+  }).length;
+  const optionalNotInstalledCount = thirdParty.filter((group) => {
+    const artifacts = licenseArtifacts.get(group.id);
+    return group.optional && (!artifacts || artifacts.status === 'INSTALL_DIRECTORY_MISSING');
+  }).length;
   const lines = [];
   lines.push(`# Third-party notices — ${rootName}@${rootVersion} (production dependency closure)`);
   lines.push('');
@@ -369,6 +377,12 @@ export function renderNotices({
     `- Required notice packages present: ${requiredPackages
       .map((item) => `\`${item.name}@${item.version}\``)
       .join(', ')}`
+  );
+  lines.push(
+    `- Packages with no license file in the installed tarball (declared license only): ${missingLicenseFileCount} — see \`## Third-party packages\` entries marked NOT PRESENT`
+  );
+  lines.push(
+    `- Platform-conditional optional packages present in the lockfile closure but not installed on the generating host (declared license only): ${optionalNotInstalledCount}`
   );
   if (closure.unresolvedOptional.length > 0) {
     lines.push(`- Unresolved optional dependencies (not installed): ${closure.unresolvedOptional.length}`);

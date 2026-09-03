@@ -26,7 +26,13 @@ function fixtureLock(): { lockfileVersion: number; packages: Record<string, Lock
       '': {
         name: 'fixture-app',
         version: '1.0.0',
-        dependencies: { '@chirality/runtime-core': 'file:../runtime/core', zeta: '1.0.0', alpha: '2.0.0' },
+        dependencies: {
+          '@chirality/runtime-core': 'file:../runtime/core',
+          zeta: '1.0.0',
+          alpha: '2.0.0',
+          nolicense: '1.0.0',
+          undeclared: '1.0.0'
+        },
         optionalDependencies: { 'optional-native': '1.0.0' },
         devDependencies: { 'dev-only': '1.0.0' }
       },
@@ -52,7 +58,9 @@ function fixtureLock(): { lockfileVersion: number; packages: Record<string, Lock
       'node_modules/shared': { version: '1.0.0', license: 'MIT' },
       'node_modules/alpha/node_modules/shared': { version: '2.0.0', license: 'MIT' },
       'node_modules/optional-native': { version: '1.0.0', license: 'BSD-2-Clause', optional: true, os: ['linux'], cpu: ['x64'] },
-      'node_modules/dev-only': { version: '1.0.0', license: 'MIT', dev: true }
+      'node_modules/dev-only': { version: '1.0.0', license: 'MIT', dev: true },
+      'node_modules/nolicense': { version: '1.0.0' },
+      'node_modules/undeclared': { version: '1.0.0' }
     }
   };
 }
@@ -88,9 +96,11 @@ describe('generate-third-party-notices closure logic', () => {
       '../runtime/core',
       'node_modules/alpha',
       'node_modules/core-dep',
+      'node_modules/nolicense',
       'node_modules/optional-native',
       'node_modules/shared',
       'node_modules/alpha/node_modules/shared',
+      'node_modules/undeclared',
       'node_modules/zeta'
     ]);
     expect(keys).not.toContain('node_modules/dev-only');
@@ -124,9 +134,11 @@ describe('generate-third-party-notices closure logic', () => {
     expect(groups.map((group) => group.id)).toEqual([
       'alpha@2.0.0',
       'core-dep@1.0.0',
+      'nolicense@1.0.0',
       'optional-native@1.0.0',
       'shared@1.0.0',
       'shared@2.0.0',
+      'undeclared@1.0.0',
       'zeta@1.0.0'
     ]);
     expect(groups.every((group) => !group.id.startsWith('@chirality/'))).toBe(true);
@@ -184,11 +196,17 @@ describe('generate-third-party-notices end to end on a fixture tree', () => {
       ['node_modules/alpha', 'Apache License\nVersion 2.0, January 2004\n'],
       ['node_modules/shared', 'MIT License\n'],
       ['node_modules/alpha/node_modules/shared', 'MIT License\n'],
-      ['node_modules/core-dep', null]
+      ['node_modules/core-dep', null],
+      ['node_modules/nolicense', 'BSD text\n'],
+      ['node_modules/undeclared', null]
     ];
     for (const [key, license] of installs) {
       await mkdir(path.join(root, key), { recursive: true });
-      await writeFile(path.join(root, key, 'package.json'), JSON.stringify({ name: path.basename(key) }));
+      const manifest: Record<string, unknown> = { name: path.basename(key) };
+      if (key === 'node_modules/nolicense') {
+        manifest.license = { type: 'BSD-3-Clause' };
+      }
+      await writeFile(path.join(root, key, 'package.json'), JSON.stringify(manifest));
       if (license !== null) {
         await writeFile(path.join(root, key, 'LICENSE'), license);
       }
@@ -205,16 +223,30 @@ describe('generate-third-party-notices end to end on a fixture tree', () => {
     await generateNotices({ ...options, output: second, summary: null });
     const firstBytes = await readFile(first, 'utf8');
     expect(firstBytes).toBe(await readFile(second, 'utf8'));
-    expect(summary.thirdPartyDistinctCount).toBe(6);
+    expect(summary.thirdPartyDistinctCount).toBe(8);
     expect(summary.firstPartyCount).toBe(2);
-    expect(summary.missingLicenseFile).toEqual(['core-dep@1.0.0']);
+    expect(summary.missingLicenseFile).toEqual(['core-dep@1.0.0', 'undeclared@1.0.0']);
     expect(summary.optionalNotInstalled).toEqual(['optional-native@1.0.0']);
-    expect(summary.licenseCounts).toEqual({ 'Apache-2.0': 1, 'BSD-2-Clause': 1, ISC: 1, MIT: 3 });
+    expect(summary.licenseCounts).toEqual({
+      'Apache-2.0': 1,
+      'BSD-2-Clause': 1,
+      'BSD-3-Clause': 1,
+      ISC: 1,
+      MIT: 3,
+      UNDECLARED: 1
+    });
+    expect(firstBytes).toContain('### `nolicense@1.0.0`\n\n- Declared license: `BSD-3-Clause`');
+    expect(firstBytes).toContain('### `undeclared@1.0.0`\n\n- Declared license: `UNDECLARED`');
     expect(summary.output.sha256).toMatch(/^[0-9a-f]{64}$/);
     expect(firstBytes).toContain('### `zeta@1.0.0`');
     expect(firstBytes).toContain('Copyright (c) 2025 Zeta Authors');
     expect(firstBytes).toContain('- License file: NOT PRESENT in the installed package');
     expect(firstBytes).toContain('OPTIONAL PACKAGE NOT INSTALLED ON THIS HOST');
+    expect(firstBytes).toContain('- Packages with no license file in the installed tarball (declared license only): 2 —');
+    expect(firstBytes).toContain(
+      '- Platform-conditional optional packages present in the lockfile closure but not installed on the generating host (declared license only): 1'
+    );
+    expect(firstBytes.indexOf('declared license only): 2')).toBeLessThan(firstBytes.indexOf('## First-party'));
     expect(firstBytes).toContain('| `@chirality/runtime-core` | `0.1.0` | `../runtime/core` | link target |');
     expect(firstBytes.indexOf('### `alpha@2.0.0`')).toBeLessThan(firstBytes.indexOf('### `zeta@1.0.0`'));
     expect(firstBytes).not.toContain('dev-only');

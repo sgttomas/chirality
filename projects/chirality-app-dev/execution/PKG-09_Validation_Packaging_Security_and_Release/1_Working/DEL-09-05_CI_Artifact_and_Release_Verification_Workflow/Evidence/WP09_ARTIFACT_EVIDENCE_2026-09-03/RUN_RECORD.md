@@ -34,11 +34,11 @@ Absolute scratch-worktree paths inside the recorded outputs were replaced with t
 
 ### Third-party notices (always possible offline) — PASS
 
-- Output SHA-256 (both runs): `e66e210f962aa4e1a0bf8074c6a6cb8e188b968bbcb5a7e141d17d19417d739b`; 6905 lines.
+- Output SHA-256 (both runs): `384127cc4fc7f807f089c629160beeac4557ae71260bd1e51318bee032d70f52`; 6907 lines.
 - Closure: 504 lock entries (excluding root); 420 distinct third-party `name@version`; 14 first-party entries (7 `@chirality/*` `file:` links + their 7 link targets under `../../../runtime/packages/*`, whose transitive closure was walked — they declare only intra-`@chirality` dependencies).
 - Required packages present: `@earendil-works/pi-agent-core@0.82.0`, `@earendil-works/pi-ai@0.82.0`, `@earendil-works/pi-coding-agent@0.82.0`, `@earendil-works/pi-tui@0.82.0`, and the seven `@chirality/*` links (`notices-summary.json` → `requiredPackages`).
 - 28 installed packages carry no license file in their published tarball (`missingLicenseFile`; declared license retained from the lockfile); 39 optional platform-conditional packages are in the lockfile closure but not installed on this darwin/arm64 host (`optionalNotInstalled`; declared license from the lockfile). Both lists are in `run1/notices-summary.json` and must be reviewed by the owner before any distribution — this bundle makes no license-compliance claim.
-- D-APP-99 note: `THIRD_PARTY_NOTICES.md` exceeds the ~2,000-line guideline (6,905 lines). Reason: it is the notices artifact itself (420 packages × declared license + bounded 8-line excerpt + full-text SHA-256), not a capture; excerpts are bounded and the full license text is identified by hash and byte length rather than reproduced.
+- D-APP-99 note: `THIRD_PARTY_NOTICES.md` exceeds the ~2,000-line guideline (6,907 lines). Reason: it is the notices artifact itself (420 packages × declared license + bounded 8-line excerpt + full-text SHA-256), not a capture; excerpts are bounded and the full license text is identified by hash and byte length rather than reproduced.
 
 ### CycloneDX SBOM — `UNAVAILABLE_UNDER_BOUNDS`
 

@@ -12,6 +12,8 @@ This document is evidence produced during release preparation. It is not a signi
 - First-party workspace/file entries (not third-party): 14
 - License-text excerpt: first 8 lines; the full text is identified by file name, byte length, and SHA-256
 - Required notice packages present: `@chirality/engine-claude@0.1.0`, `@chirality/engine-pi-omlx@0.1.0`, `@chirality/runtime-cli@0.1.0`, `@chirality/runtime-client@0.1.0`, `@chirality/runtime-contracts@0.1.0`, `@chirality/runtime-core@0.1.0`, `@chirality/runtime-daemon@0.1.0`, `@earendil-works/pi-agent-core@0.82.0`, `@earendil-works/pi-ai@0.82.0`, `@earendil-works/pi-coding-agent@0.82.0`, `@earendil-works/pi-tui@0.82.0`
+- Packages with no license file in the installed tarball (declared license only): 28 — see `## Third-party packages` entries marked NOT PRESENT
+- Platform-conditional optional packages present in the lockfile closure but not installed on the generating host (declared license only): 39
 - Unresolved optional dependencies (not installed): 8
 
 ## First-party workspace and file dependencies (not third-party)

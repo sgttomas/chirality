@@ -279,6 +279,18 @@ describe('verify-version-identity CLI', () => {
     expect(report.stagedPatch.sha256).toMatch(/^[0-9a-f]{64}$/);
   });
 
+  it('fails with --require-all when absent or not-inspected surfaces remain', async () => {
+    const root = await makeFrontendRoot();
+    const stdout: string[] = [];
+    const code = await runCli({
+      argv: ['--expect', '2.0.0', '--root', root, '--require-all'],
+      stdout: { write: (text: string) => stdout.push(text) },
+      stderr: { write: () => undefined }
+    });
+    expect(code).toBe(1);
+    expect(stdout.join('')).toContain('Result: MISMATCH (0 mismatching surface(s)');
+  });
+
   it('returns the structured report through the library entry point', async () => {
     const root = await makeFrontendRoot();
     const report = await verifyVersionIdentity(parseArgs(['--expect', '2.0.0', '--root', root]));

@@ -66,7 +66,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 1,
       "status": "FAIL_DEFERRED_TO_PR_CI",
-      "summary": "stub next dev READY in 4.6s; every Section 8 probe failed with HTTP 503 from /api/harness/session/{list,create,boot} (setup.server_reachable 'Expected 200; received 503'); no harness test executed (HARNESS_PREMERGE_TEST_COUNT=0). Same class as the Receipt-193 precedent: HTTP 503 without the shared runtime registration lifecycle (absent runtime-daemon bindings on this host); the tranche changes no runtime source, so the PR-CI harness pre-merge job supplies the external proof. Evidence: checks/registered_checks.json (service record), checks/premerge_section8_summary.json.",
+      "summary": "stub next dev READY in 4.6s; every Section 8 probe failed with HTTP 503 from /api/harness/session/{list,create,boot} (setup.server_reachable 'Expected 200; received 503'); no harness test executed (HARNESS_PREMERGE_TEST_COUNT=0). Same class as the Receipt-172 and Receipt-177 precedents: HTTP 503 without the shared runtime registration lifecycle (absent runtime-daemon bindings on this host); the tranche changes no runtime source, so the PR-CI harness pre-merge job supplies the external proof. Evidence: checks/registered_checks.json (service record), checks/premerge_section8_summary.json.",
       "class": "absent-runtime-daemon-bindings"
     },
     {
@@ -91,7 +91,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 0,
       "status": "PASS",
-      "summary": "two runs byte-identical; output SHA-256 e66e210f962aa4e1a0bf8074c6a6cb8e188b968bbcb5a7e141d17d19417d739b; 420 third-party records, 14 first-party, required Pi + @chirality packages present"
+      "summary": "two runs byte-identical; output SHA-256 384127cc4fc7f807f089c629160beeac4557ae71260bd1e51318bee032d70f52; 420 third-party records, 14 first-party, required Pi + @chirality packages present"
     },
     {
       "id": "sbom:generate (closure)",
@@ -164,6 +164,79 @@
         "cwd": "(repo root)",
         "exit": 0,
         "summary": "clean"
+      }
+    ]
+  },
+  "post_review_01_rerun": {
+    "reason": "review 01 findings remediated (runbook MAJOR-1/2, MINOR-1/2; scripts MINOR-3/4; records MINOR-5/6); registered typecheck/Vitest/build rerun and evidence regenerated",
+    "registered_evidence": "checks/registered_checks_post_review_01.json",
+    "registered_checks_snapshot_note": "checks/registered_checks.json is the pre-amendment snapshot retained for its premerge service record and Section 8 summary; premerge classification unchanged (absent runtime-daemon bindings; deferred to PR CI)",
+    "checks": [
+      {
+        "id": "frontend-typecheck",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "frontend-test",
+        "exit": 0,
+        "status": "PASS",
+        "summary": "Test Files  158 passed | 1 skipped (159) Tests  1318 passed | 4 skipped (1322)"
+      },
+      {
+        "id": "frontend-build",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "verify:version-identity --expect 2.0.0",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "verify:version-identity --expect 3.0.0-rc.1 --stage-patch",
+        "exit": 1,
+        "status": "PASS (expected mismatch; patch SHA-256 unchanged 311844f0a8b447085bf038ccbdda353a1240a5b44ae7a91df6754c9c154b1d82)"
+      },
+      {
+        "id": "notices:generate x2",
+        "exit": 0,
+        "status": "PASS (byte-identical; new SHA-256 384127cc4fc7f807f089c629160beeac4557ae71260bd1e51318bee032d70f52, 6907 lines)"
+      },
+      {
+        "id": "sbom:generate --closure --dry-run",
+        "exit": 0,
+        "status": "PASS (DRY_RUN)"
+      },
+      {
+        "id": "sbom:generate --closure",
+        "exit": 2,
+        "status": "UNAVAILABLE_UNDER_BOUNDS (syft absent)"
+      },
+      {
+        "id": "git apply --check staged patch",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "git diff --check (worktree and full range)",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "validate_change_scope (base 0c683fb16)",
+        "exit": 0,
+        "status": "PASS (44 paths, 0 violations)"
+      },
+      {
+        "id": "harness self-check",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "corpus status",
+        "exit": 0,
+        "status": "no drift"
       }
     ]
   }
