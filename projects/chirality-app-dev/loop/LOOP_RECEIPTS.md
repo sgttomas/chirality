@@ -6125,3 +6125,42 @@
     notice-routing, Root, deliverable, frontend, lifecycle, supply, release,
     publication, or reliance act occurred; TM-ROOT-106 and TM-ROOT-122 are not
     lifted; G1 is not passed; the ten held DEL-02-06 bindings are unchanged.
+
+- **2026-09-03 — Receipt 204** (App Electron authority concordance, D-APP-98 / A11 E2).
+  - Receipt-ID: `Receipt-204`
+  - Examined-Through: `1537ddad1f9227dee1ba3233c0146694a779026a`
+  - Parent-Receipt: `Receipt-203`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected option E2 ("fix the docs first, then echo") in the
+    HELP_HUMAN session chat on 2026-09-03; the verbatim block, applied
+    meaning, and boundary are already governed in
+    `plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md`
+    (SHA-256 `6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27`);
+    this receipt points to that record and adds no new direction.
+  - Pointers: branch `codex/app-electron-concordance-2026-09-03`; content
+    commit `cd45390ae3331ea2748f5df5d934922ec90e8c55`; post-image SHA-256
+    `docs/CONTRACT.md` `51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517`,
+    `docs/DIRECTIVE.md` `50b816d5be74021f173e19b39773b4f5d2cc3f434966dc9d6faf9399ddf26099`,
+    `docs/PLAN.md` `3741bb7ec389c12f0856cf64acc27d4d17b77d1683275564b75182fcdbab5187`,
+    `docs/SPEC.md` `c2fb9ecbbc37a98577a64a3e7e641de8c26b3145ad8cc40dc4a9a014aa66a12b`,
+    `docs/PRD.md` `87ced649beae245e7b0290b3ef8afb46681d04e671964a0583fdce83a7ccb586`,
+    `docs/TYPES.md` `a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c`,
+    `docs/VALIDATION_STRATEGY.md` `37b6d1da8af4ace680673af7a22621b076c0138fcbebf6db897d98c9fbee9a73`,
+    `docs/harness/reliance_boundary_register.md` `5e53c5bd18ceefd164a8ab3003f0c3ce174b412ef534da4ccf18cbb16950eb6b`;
+    authority corpus v20 `8b5b5d21287144a03fdd5c204f0c473219d3f183f58974c6679c368c2e21b3b4`
+    (v19 `eaec3c0a3a1b7bf76a9a3ec922bf826772e9097441d5631126cb7a5e025e10ef`)
+    with deliverable `_REFERENCES.md` rows tool-reconciled; prepared echo
+    `execution/_Coordination/NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md`
+    (READY_TO_ROUTE, not routed); qualified historical `43.1.1` retained at
+    `docs/CONTRACT.md:199`, `docs/PLAN.md:502`,
+    `docs/harness/reliance_boundary_register.md:41`, and inside each
+    successor clause; per-reference before/after lines are in the PR body.
+  - Checks: `git diff --check` pass; harness self-check pass; harness pytest
+    pass; APP-HOLD scan with register match pass; authority corpus status and
+    audit pass with no drift and no mismatched row; deliverable consistency
+    scan pass; receipt validator pass; frontend gates skipped because no
+    product or runtime source changed.
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as WORKING_ITEMS
+    under HELP_HUMAN (Claude Fable 5.1) with owner in-session.
+  - Gate-Outcome: `EXECUTED` — E2 concordance applied on branch; echo
+    prepared, not routed; G1 not passed; TM-ROOT-122 not lifted.

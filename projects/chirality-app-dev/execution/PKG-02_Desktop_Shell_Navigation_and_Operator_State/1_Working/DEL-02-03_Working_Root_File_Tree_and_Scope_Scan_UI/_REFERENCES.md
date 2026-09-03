@@ -4,12 +4,12 @@
 
 | RefID | Path | Role | ExpectedSHA256 | ActualSHA256 | Status |
 |---|---|---|---|---|---|
-| REF-001 | `docs/DIRECTIVE.md` | Intent, authority, professional boundaries | `e1a3d00b18fa728f0886f036774c4825ad8f65f3245b56b4545da2714a903031` | `e1a3d00b18fa728f0886f036774c4825ad8f65f3245b56b4545da2714a903031` | MATCH |
-| REF-002 | `docs/CONTRACT.md` | Invariants and enforcement surfaces | `842bf170e6737adf8eaa7a4a1acfd74e22390bc6e14c64eed9502195c68dbed9` | `842bf170e6737adf8eaa7a4a1acfd74e22390bc6e14c64eed9502195c68dbed9` | MATCH |
-| REF-003 | `docs/SPEC.md` | Physical structures, runtime mechanics, API/file contracts | `eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990` | `eee520f783ce0161c84bb8c2bd570b7521b3f6926bceea8cde7d387bbc3df990` | MATCH |
-| REF-004 | `docs/TYPES.md` | Vocabulary, identifiers, enums, type targets | `998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169` | `998785af3a0f14a87424339ccb6b242b8932f7a572c4336ac47538c64f3e3169` | MATCH |
-| REF-005 | `docs/PLAN.md` | Roadmap and implementation sequencing | `c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff` | `c2196a1076a5e2de44faca7df506a72f0401d0a0161f77a8b583a1d0d7e239ff` | MATCH |
-| REF-006 | `docs/PRD.md` | Product requirements, runtime direction, and approved vNext scope | `3c357da78277f4c15ecee7cbba6c0a198bc1568b612229eeba63cb1d5972ea7b` | `3c357da78277f4c15ecee7cbba6c0a198bc1568b612229eeba63cb1d5972ea7b` | MATCH |
+| REF-001 | `docs/DIRECTIVE.md` | Intent, authority, professional boundaries | `50b816d5be74021f173e19b39773b4f5d2cc3f434966dc9d6faf9399ddf26099` | `50b816d5be74021f173e19b39773b4f5d2cc3f434966dc9d6faf9399ddf26099` | MATCH |
+| REF-002 | `docs/CONTRACT.md` | Invariants and enforcement surfaces | `51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517` | `51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517` | MATCH |
+| REF-003 | `docs/SPEC.md` | Physical structures, runtime mechanics, API/file contracts | `c2fb9ecbbc37a98577a64a3e7e641de8c26b3145ad8cc40dc4a9a014aa66a12b` | `c2fb9ecbbc37a98577a64a3e7e641de8c26b3145ad8cc40dc4a9a014aa66a12b` | MATCH |
+| REF-004 | `docs/TYPES.md` | Vocabulary, identifiers, enums, type targets | `a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c` | `a8cdc94d39e16271ec4ef7fde5be76969f23ca3fe9e1663ac53ad1915eefd56c` | MATCH |
+| REF-005 | `docs/PLAN.md` | Roadmap and implementation sequencing | `3741bb7ec389c12f0856cf64acc27d4d17b77d1683275564b75182fcdbab5187` | `3741bb7ec389c12f0856cf64acc27d4d17b77d1683275564b75182fcdbab5187` | MATCH |
+| REF-006 | `docs/PRD.md` | Product requirements, runtime direction, and approved vNext scope | `87ced649beae245e7b0290b3ef8afb46681d04e671964a0583fdce83a7ccb586` | `87ced649beae245e7b0290b3ef8afb46681d04e671964a0583fdce83a7ccb586` | MATCH |
 | REF-007 | `/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md` | Decomposition method and gate protocol | `ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409` | `ad849d9a927485d8749713070579cf072663a2efab63abef2b7db16efeb43409` | MATCH |
 
 ## Decomposition Entry

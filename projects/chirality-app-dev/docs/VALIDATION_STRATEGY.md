@@ -95,7 +95,7 @@ Evidence artifacts are derivative records. They support review and regression an
 - Hosted CI provider, workflow location, and public/private data handling remain governed future decisions.
 - Final release-label vocabulary, signing, notarization, publication, and attestation remain governed future decisions.
 - Final coverage, performance, and platform-matrix thresholds remain `TBD`.
-- D-APP-72 / SCA-APP-002 is the sole bounded provider/network exception beyond the current Anthropic path: pinned in-process Pi `0.80.10` over authenticated `127.0.0.1` oMLX for one governed read-only Agent 2 child after Electron `43.1.1` proof.
+- D-APP-72 / SCA-APP-002 is the sole bounded provider/network exception beyond the current Anthropic path: pinned in-process Pi `0.80.10` over authenticated `127.0.0.1` oMLX for one governed read-only Agent 2 child after Electron `43.2.0` proof (D-APP-98 successor authority; D-APP-72's `43.1.1` is historical).
 - D-APP-01 and D-APP-02 remain historical and continue to prohibit every Pi path outside that exact exception, including fork/sidecar/native capabilities/ambient discovery, remote providers, direct supervisors, automatic fallback, and write/shell/network tools.
 
 ## 7. Shared Runtime Validation Addendum

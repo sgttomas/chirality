@@ -507,7 +507,7 @@ Future domain tools use `mcp__chirality__domain_*` only after a governed domain-
 | `CLAUDE_CONFIG_DIR` | Environment mechanism that may redirect SDK local config/transcript behavior if empirically reliable. |
 | `permissionMode` | SDK permission posture translated from Chirality mode plus capability policy and explicit hard-deny precedence. |
 | `bypassPermissions` | SDK mode not permitted in shipped ordinary workflows. |
-| Pi pattern corpus / bounded adapter | D-APP-01 and D-APP-02 remain historical and govern all unamended Pi scope. D-APP-72 / SCA-APP-002 prospectively permits only Pi `0.80.10` in-process after Electron `43.1.1`, authenticated loopback oMLX, and a governed read-only Agent 2 child. |
+| Pi pattern corpus / bounded adapter | D-APP-01 and D-APP-02 remain historical and govern all unamended Pi scope. D-APP-72 / SCA-APP-002 prospectively permits only Pi `0.80.10` in-process after Electron `43.2.0` (D-APP-98 successor authority; D-APP-72's `43.1.1` is historical), authenticated loopback oMLX, and a governed read-only Agent 2 child. |
 
 SDK terms belong at the adapter boundary. Public Chirality APIs and canonical events use Chirality terms.
 
