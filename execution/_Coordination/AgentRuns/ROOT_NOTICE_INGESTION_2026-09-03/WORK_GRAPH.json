@@ -1,0 +1,54 @@
+{
+  "schema": "chirality-help-human-work-graph/v1",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "basis": "8140daec7ab7165f8972451dbdd3a67b8bb2fd38",
+  "authority": {
+    "ruling_record": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+    "steer": "plans/steers/chirality_app_v3_r18_notice_ingestion_steer_root_2026-09-03.md",
+    "pr_680_merge_commit": "8140daec7ab7165f8972451dbdd3a67b8bb2fd38"
+  },
+  "nodes": [
+    {
+      "id": "N1_NOTICE_INGESTION",
+      "role": "ROOT_SESSION_SINGLE_INSTANCE",
+      "dependencies": [],
+      "write_targets": [
+        "execution/_Coordination/NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md",
+        "execution/_Coordination/AgentRuns/ROOT_NOTICE_INGESTION_2026-09-03/instances/N1_NOTICE_INGESTION/"
+      ],
+      "fan_in_gate": "BODY_BYTE_IDENTICAL_AND_NO_CLAIM_DIVERGENCE"
+    },
+    {
+      "id": "N2_REGISTER_ACT",
+      "role": "TASK_MANAGEMENT_SAME_INSTANCE",
+      "dependencies": ["N1_NOTICE_INGESTION"],
+      "write_targets": [
+        "execution/_Coordination/_TaskManagement/REGISTER.csv",
+        "execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+        "execution/_Coordination/_TaskManagement/RULING_2026-09-03_ROOT_TM-ROOT-122_DISPOSITION.md"
+      ],
+      "fan_in_gate": "ONLY_TM-ROOT-122_CHANGED_AND_REGISTERS_VALID_AND_FEDERATION_COMPLETE"
+    },
+    {
+      "id": "N3_R18_PAIR",
+      "role": "ROOT_SESSION_SINGLE_INSTANCE",
+      "dependencies": ["N1_NOTICE_INGESTION", "N2_REGISTER_ACT"],
+      "write_targets": [
+        "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+        "plans/steers/chirality_app_v3_r18_notice_ingestion_steer_root_2026-09-03.md"
+      ],
+      "fan_in_gate": "RECEIPT_PINS_BOTH_SHA256"
+    }
+  ],
+  "human_decision_points": [
+    "APP_NOTICE_CLAIM_DIVERGENCE",
+    "TM-ROOT-122_DISPOSITION (ruled: R18-B)",
+    "TM-ROOT-106 (untouched, unruled)",
+    "G1 (not passed)",
+    "PR_MERGE"
+  ],
+  "delegated": false,
+  "non_delegation_evidence": "instruction-asserted"
+}
