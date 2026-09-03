@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { access, mkdir, mkdtemp, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -128,6 +129,14 @@ function sortedFailures(failures: readonly SessionAccessFailure[]): SessionAcces
   return [...failures].sort((a, b) => a.sessionId.localeCompare(b.sessionId));
 }
 
+function sha256(bytes: Buffer): string {
+  return createHash('sha256').update(bytes).digest('hex');
+}
+
+async function readCanonical(sessionId: string): Promise<Record<string, unknown>> {
+  return JSON.parse(await readFile(canonicalPath(sessionId), 'utf8')) as Record<string, unknown>;
+}
+
 beforeEach(async () => {
   tmpRoot = await mkdtemp(path.join(os.tmpdir(), 'chirality-session-v2-access-'));
   projectRoot = path.join(tmpRoot, 'project-root');
@@ -229,7 +238,12 @@ describe('typed lazy access (inspect)', () => {
       kind: 'ok',
       materialized: true,
       siblingFailures: [],
+      diagnostics: [],
       session: {
+        legacySource: {
+          sha256: sha256(seededBytes.get('sess_v2_readable.json') as Buffer),
+          materializedAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T/)
+        },
         sessionId: 'sess_v2_readable',
         projectRoot,
         persona: 'WORKING_ITEMS',
@@ -306,6 +320,7 @@ describe('list', () => {
       })
     ]);
 
+    expect(result.diagnostics).toEqual([]);
     await expect(manager.list(projectRoot)).resolves.toEqual(result.sessions);
 
     await expectBytesUnchanged(seededBytes, legacyFlatFiles(seededBytes));
@@ -340,6 +355,58 @@ describe('list', () => {
     expect(second).toEqual(first);
     expect(await listFilesRecursively(sessionRoot)).toEqual([...afterFirst.keys()]);
     await expectBytesUnchanged(afterFirst);
+  });
+
+  it('never aborts on a sibling whose materialization fails: lists it unmaterialized with a diagnostic', async () => {
+    const manager = new FileSessionManager();
+    const blockedId = 'sess_x';
+    const blockedLegacy = `${JSON.stringify(
+      {
+        sessionId: blockedId,
+        projectRoot,
+        persona: 'WORKING_ITEMS',
+        mode: 'direct',
+        createdAt: '2026-08-30T11:00:00.000Z',
+        updatedAt: '2026-08-30T11:00:00.000Z'
+      },
+      null,
+      2
+    )}\n`;
+    await writeFile(legacyPath(blockedId), blockedLegacy, 'utf8');
+    // An empty regular file occupies the canonical folder path, so mkdir fails.
+    await writeFile(canonicalDirectory(blockedId), '', 'utf8');
+    const filesBefore = await listFilesRecursively(sessionRoot);
+
+    const result = await manager.listWithDiagnostics(projectRoot);
+
+    expect(result.sessions.map((session) => session.sessionId)).toEqual([
+      blockedId,
+      'sess_v2_readable',
+      'sess_v2_duplicate'
+    ]);
+    expect(result.sessions[0]).not.toHaveProperty('legacySource');
+    expect(result.diagnostics).toEqual([
+      expect.objectContaining({
+        sessionId: blockedId,
+        code: 'materializationFailed',
+        shape: 'canonical',
+        filePath: canonicalPath(blockedId),
+        reason: expect.stringMatching(/could not be materialized/)
+      })
+    ]);
+    expect(sortedFailures(result.failures).map((failure) => failure.sessionId)).toEqual([
+      'sess_v2_malformed_truncated',
+      'sess_v2_missing_version_fields',
+      'sess_v2_unsupported_version'
+    ]);
+    await expect(readFile(legacyPath(blockedId), 'utf8')).resolves.toBe(blockedLegacy);
+    await expect(readFile(canonicalDirectory(blockedId), 'utf8')).resolves.toBe('');
+    expect(await listFilesRecursively(sessionRoot)).toEqual(
+      [...filesBefore, 'sess_v2_readable/session.json'].sort()
+    );
+    await expectBytesUnchanged(seededBytes, legacyFlatFiles(seededBytes));
+    // The throwing surfaces still surface the environment fault instead of hiding it.
+    await expect(manager.getById(blockedId)).rejects.toThrow();
   });
 });
 
@@ -443,11 +510,15 @@ describe('resume and getById', () => {
       packageVersion: '0.3.150'
     });
 
-    const persisted = JSON.parse(await readFile(canonicalPath('sess_v2_duplicate'), 'utf8'));
+    const persisted = await readCanonical('sess_v2_duplicate');
     expect(persisted).toMatchObject({
       engineSessionId: 'engine_fixture_duplicate_canonical',
       instructionPath: 'agents/AGENT_WORKING_ITEMS.md',
-      claudeSessionId: 'engine_fixture_duplicate_legacy'
+      claudeSessionId: 'engine_fixture_duplicate_legacy',
+      legacySource: {
+        sha256: sha256(seededBytes.get('sess_v2_duplicate.json') as Buffer),
+        materializedAt: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T/)
+      }
     });
     await expectBytesUnchanged(seededBytes, ['sess_v2_duplicate.json', 'sess_v2_duplicate/events.jsonl']);
 
@@ -457,6 +528,84 @@ describe('resume and getById', () => {
       materialized: false
     });
     await expectBytesUnchanged(afterFirst);
+  });
+
+  it('does not resurrect a legacy-only field removed from the canonical record once the legacy source is consumed', async () => {
+    const manager = new FileSessionManager();
+    const first = await manager.getById('sess_v2_duplicate');
+    expect(first).toHaveProperty('instructionPath', 'agents/AGENT_WORKING_ITEMS.md');
+    expect(first).toHaveProperty('legacySource');
+
+    // A writer clears the legacy-only field on the canonical record.
+    const saved = await manager.save('sess_v2_duplicate', { instructionPath: undefined });
+    expect(saved.instructionPath).toBeUndefined();
+    expect(await readCanonical('sess_v2_duplicate')).not.toHaveProperty('instructionPath');
+    const afterSave = await snapshotBytes(sessionRoot);
+
+    const again = await manager.getById('sess_v2_duplicate');
+    const inspected = await manager.inspect('sess_v2_duplicate');
+    const listed = await manager.listWithDiagnostics(projectRoot);
+
+    expect(again).not.toHaveProperty('instructionPath');
+    expect(again).toMatchObject({
+      instructionHash: 'fixture-instruction-hash',
+      claudeSessionId: 'engine_fixture_duplicate_legacy'
+    });
+    expect(inspected).toMatchObject({ kind: 'ok', materialized: false, diagnostics: [] });
+    expect(listed.sessions.find((session) => session.sessionId === 'sess_v2_duplicate')).not.toHaveProperty(
+      'instructionPath'
+    );
+    expect(listed.diagnostics).toEqual([]);
+    expect(await readCanonical('sess_v2_duplicate')).not.toHaveProperty('instructionPath');
+    await expectBytesUnchanged(afterSave);
+    await expectBytesUnchanged(seededBytes, ['sess_v2_duplicate.json', 'sess_v2_duplicate/events.jsonl']);
+  });
+
+  it('ignores a legacy flat record edited after it was consumed and reports a legacySourceChanged diagnostic', async () => {
+    const manager = new FileSessionManager();
+    const consumed = await manager.getById('sess_v2_readable');
+    expect(consumed).toHaveProperty('legacySource');
+    const afterFirst = await snapshotBytes(sessionRoot);
+
+    const edited = `${JSON.stringify(
+      {
+        ...JSON.parse(await readFile(legacyPath('sess_v2_readable'), 'utf8')),
+        resurrected: true,
+        model: 'edited-after-materialization'
+      },
+      null,
+      2
+    )}\n`;
+    await writeFile(legacyPath('sess_v2_readable'), edited, 'utf8');
+
+    const inspected = await manager.inspect('sess_v2_readable');
+    const session = await manager.resume('sess_v2_readable');
+    const listed = await manager.listWithDiagnostics(projectRoot);
+
+    expect(inspected).toMatchObject({
+      kind: 'ok',
+      materialized: false,
+      siblingFailures: [],
+      diagnostics: [
+        expect.objectContaining({
+          sessionId: 'sess_v2_readable',
+          code: 'legacySourceChanged',
+          shape: 'legacy',
+          filePath: legacyPath('sess_v2_readable'),
+          reason: expect.stringContaining(sha256(Buffer.from(edited, 'utf8')).slice(0, 12))
+        })
+      ]
+    });
+    expect(session).not.toHaveProperty('resurrected');
+    expect(session).toHaveProperty('model', 'fixture-model');
+    expect(listed.diagnostics).toEqual([
+      expect.objectContaining({ sessionId: 'sess_v2_readable', code: 'legacySourceChanged' })
+    ]);
+    expect(listed.sessions.find((candidate) => candidate.sessionId === 'sess_v2_readable')).not.toHaveProperty(
+      'resurrected'
+    );
+    await expect(readFile(legacyPath('sess_v2_readable'), 'utf8')).resolves.toBe(edited);
+    await expectBytesUnchanged(afterFirst, ['sess_v2_readable/session.json']);
   });
 
   it('fails closed on a corrupt canonical record and never overwrites it from the legacy sibling', async () => {
@@ -528,8 +677,9 @@ describe('save', () => {
       createdAt: '2026-08-30T12:00:00.000Z',
       model: 'fixture-model-2'
     });
-    expect(JSON.parse(await readFile(canonicalPath('sess_v2_readable'), 'utf8'))).toMatchObject({
-      model: 'fixture-model-2'
+    expect(await readCanonical('sess_v2_readable')).toMatchObject({
+      model: 'fixture-model-2',
+      legacySource: { sha256: sha256(seededBytes.get('sess_v2_readable.json') as Buffer) }
     });
     expect(await listFilesRecursively(sessionRoot)).toEqual(
       [...filesBefore, 'sess_v2_readable/session.json'].sort()

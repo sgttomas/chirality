@@ -2,7 +2,7 @@
   "schema": "chirality-app-dev/run-checks/v1",
   "run_id": "APPDEV_V3_NODE_D_2026-09-03",
   "basis_sha": "0c683fb1657706316272951e4c3a0f7781b46009",
-  "recorded_at": "2026-09-03",
+  "recorded_at": "2026-09-03 (second freeze after A13; first-freeze values retained where noted)",
   "environment": {
     "platform": "darwin 25.6.0 arm64",
     "node": "v24.18.0",
@@ -53,7 +53,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 0,
       "status": "PASS",
-      "summary": "tsc --noEmit (app) and tsc -p tsconfig.electron.json --noEmit: no errors"
+      "summary": "rerun after A13: tsc --noEmit (app) and tsc -p tsconfig.electron.json --noEmit: no errors"
     },
     {
       "id": "frontend-test",
@@ -61,7 +61,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 0,
       "status": "PASS",
-      "summary": "vitest run: Test Files 156 passed | 1 skipped (157); Tests 1300 passed | 4 skipped (1304)"
+      "summary": "rerun after A13: vitest run: Test Files 156 passed | 1 skipped (157); Tests 1303 passed | 4 skipped (1307)"
     },
     {
       "id": "frontend-test.focused",
@@ -69,7 +69,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 0,
       "status": "PASS",
-      "summary": "2 files, 35 tests passed, 0 failed; results in DEL-05-01 Evidence/V3-01_v2_lazy_access_2026-09-03/"
+      "summary": "rerun after A13: 2 files, 38 tests passed, 0 failed; results regenerated in DEL-05-01 Evidence/V3-01_v2_lazy_access_2026-09-03/"
     },
     {
       "id": "frontend-build",
@@ -77,7 +77,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 0,
       "status": "PASS",
-      "summary": "next build + build:electron (dist-electron, dist-runtime) completed; optional for src/** per software-workflow.json path rules"
+      "summary": "rerun after A13: next build + build:electron (dist-electron, dist-runtime) completed; optional for src/** per software-workflow.json path rules"
     },
     {
       "id": "frontend-premerge",
@@ -85,7 +85,15 @@
       "cwd": "projects/chirality-app-dev",
       "exit": 1,
       "status": "FAIL_DEFERRED_TO_PR_CI",
-      "summary": "next dev stub server READY on an auto port; harness:validate:premerge reported 8/8 fail, every session route HTTP 503 ENGINE_UNAVAILABLE 'Chirality runtime daemon client is not configured' (absent runtime-daemon bindings class; precedent LOOP_RECEIPTS.md:5183,5313). Not attributable to this change (routes call the daemon port, not FileSessionManager). Deferred to PR CI per the brief. Evidence: PREMERGE_RESULTS.json in this run record."
+      "summary": "first freeze only (not rerun; deferred class unchanged and unaffected by A13 changes): next dev stub server READY on an auto port; harness:validate:premerge reported 8/8 fail, every session route HTTP 503 ENGINE_UNAVAILABLE 'Chirality runtime daemon client is not configured' (absent runtime-daemon bindings class; precedent LOOP_RECEIPTS.md:5183,5313). Not attributable to this change (routes call the daemon port, not FileSessionManager). Deferred to PR CI per the brief. Evidence: PREMERGE_RESULTS.json in this run record."
+    },
+    {
+      "id": "sow-validator",
+      "command": "python3 tools/scope_of_work/validate_scope_of_work.py projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration",
+      "cwd": ".",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "after the A13 amendment of R010 / CLM-012 / CLM-032: PASS format=SOW_V1; ScopeOfWork.md SHA-256 pre 41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b, post 312cb00c36cf8b3bbfd0736c319c812ffbbe06a3a51918fd77fbd53fca259df6"
     },
     {
       "id": "git-diff-check",
@@ -93,7 +101,7 @@
       "cwd": ".",
       "exit": 0,
       "status": "PASS",
-      "summary": "no whitespace errors in working tree or staged form"
+      "summary": "rerun after A13: no whitespace errors in working tree or staged form"
     },
     {
       "id": "harness-self-check",
@@ -101,7 +109,7 @@
       "cwd": ".",
       "exit": 0,
       "status": "PASS",
-      "summary": "exit 0 (INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=43; pre-existing advisory findings, no failure)"
+      "summary": "rerun after A13: exit 0 (INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=43; pre-existing advisory findings, no failure)"
     },
     {
       "id": "harness-pytest",
@@ -109,7 +117,7 @@
       "cwd": ".",
       "exit": 0,
       "status": "PASS",
-      "summary": "350 passed in 40.54s"
+      "summary": "rerun after A13 (execution/** and plans/ changed): 350 passed in 34.29s"
     },
     {
       "id": "app-hold-integrity",
@@ -117,7 +125,7 @@
       "cwd": "projects/chirality-app-dev",
       "exit": 0,
       "status": "PASS",
-      "summary": "verdict PASS; register matches scan fingerprint c8cc4556356b227fba10d79f110d9efdcc26f408889a10824fe9736e97449747"
+      "summary": "rerun after A13: verdict PASS; register matches scan"
     },
     {
       "id": "corpus-status.post",
@@ -125,15 +133,23 @@
       "cwd": "projects/chirality-app-dev",
       "exit": 0,
       "status": "PASS",
-      "summary": "no drift (no authority document edited)"
+      "summary": "rerun after A13: no drift (no authority document edited; ScopeOfWork.md is not a corpus document)"
     },
     {
       "id": "write-scope",
-      "command": "python3 tools/software_workflow/validate_change_scope.py . --allowed projects/chirality-app-dev/frontend/src/lib/harness/session-manager.ts --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base 0c683fb1657706316272951e4c3a0f7781b46009 --allowed projects/chirality-app-dev/frontend/src/lib/harness/session-manager.ts --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md --allowed plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md",
       "cwd": ".",
       "exit": 0,
       "status": "PASS",
-      "summary": "see WRITE_SCOPE_VALIDATION.json in this run record (zero violations)"
+      "summary": "rerun after A13 over basis..working tree: PASS, 28 paths, zero violations (WRITE_SCOPE_VALIDATION.json)"
+    },
+    {
+      "id": "receipts-validator.post",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "rerun after A13: VALID (ledger unchanged; Receipt 208 is written only at closeout)"
     }
   ],
   "deferred": [
@@ -141,6 +157,16 @@
       "id": "frontend-premerge",
       "owner": "PR CI (.github/workflows/harness-premerge.yml builds and registers the shared runtime daemon before premerge)",
       "reason": "absent local runtime-daemon bindings"
+    }
+  ],
+  "freezes": [
+    {
+      "commit": "3b6b4758bca7cd0e4ac84f9685052a0548c4ca2e",
+      "note": "first freeze; review round 1 (0 blocking / 1 major / 2 minor)"
+    },
+    {
+      "commit": "HEAD (second local commit)",
+      "note": "A13 applied: SOW R010/CLM-012 amendment, legacySource marker (F2), list resilience (F3); all checks rerun except premerge (deferred class unchanged)"
     }
   ]
 }

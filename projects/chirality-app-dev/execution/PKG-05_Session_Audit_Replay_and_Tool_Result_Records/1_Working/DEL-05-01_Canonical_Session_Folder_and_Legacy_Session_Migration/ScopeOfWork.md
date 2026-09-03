@@ -224,7 +224,7 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 > | DEL-05-01-R007 | SDK session identifiers and transcript/store references MUST remain adapter metadata and MUST NOT redefine Chirality session identity. | `docs/SPEC.md` Section 10.3; `docs/TYPES.md` Section 7.2; `docs/CONTRACT.md` K-ENGINE-4 |
 > | DEL-05-01-R008 | `events.jsonl` MUST remain the canonical Chirality audit mirror; SDK transcripts are secondary unless imported into `HarnessEvent` form. | `docs/SPEC.md` Section 8.4; `docs/CONTRACT.md` K-SDK-3 and K-EVENT-4 |
 > | DEL-05-01-R009 | If SDK transcript storage remains outside the working root, Chirality MUST cross-reference the transcript path or store key from `session.json` and record residual reliance-boundary risk. | `docs/SPEC.md` Section 8.4 |
-> | DEL-05-01-R010 | If both canonical folder and legacy flat records exist for the same `sessionId`, resolution MUST prefer defined canonical values, preserve legacy-only fields, write the merged canonical `session.json`, and remove the flat record. | D-APP-41; `docs/SPEC.md` Section 8.1 |
+> | DEL-05-01-R010 | If both canonical folder and legacy flat records exist for the same `sessionId`, resolution MUST prefer defined canonical values, preserve legacy-only fields, and write the merged canonical `session.json` carrying a `legacySource` consumption marker (sha256 of the flat record bytes, `materializedAt`); the flat record MUST be retained byte-identical and MUST NOT be removed; later reads MUST use the canonical record (the flat record is not a standing read input once marked consumed, and a flat record changed after consumption is reported, not merged); a canonical record that cannot be opened MUST fail closed and MUST NOT be overwritten from the flat record. (Amended 2026-09-03 under A13; the pre-amendment text required removal of the flat record.) | A13 (`plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md`); `docs/SPEC.md` Section 8.1 and Section 25.4; applied decomposition row L322; D-APP-41 historical on this point |
 > | DEL-05-01-R011 | Session identifiers MUST remain stable across renames, path changes, and UI labels. | `docs/TYPES.md` Section 2; `docs/CONTRACT.md` K-ID-1 |
 > | DEL-05-01-R012 | Runtime records and project files MUST preserve stable IDs when paths change. | `docs/CONTRACT.md` K-PATH-1 |
 > | DEL-05-01-R013 | Secrets and API keys MUST NOT be stored in session metadata, runtime events, logs, SDK transcripts if avoidable, or tool artifacts. | `docs/CONTRACT.md` K-KEY-1; K-EVENT-6 |
@@ -254,7 +254,7 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 > | Requirement IDs | Verification Approach |
 > |---|---|
 > | R001, R002, R006, R014 | Unit tests for session root resolution and canonical folder creation, including `CHIRALITY_SESSION_ROOT`. |
-> | R003, R004, R005, R010, R016 | Legacy fixture tests proving flat `.json` records are converted through list, retrieve, resume, save, and delete surfaces; duplicate fixture tests proving merge precedence, legacy-only field preservation, and flat-file removal. |
+> | R003, R004, R005, R010, R016 | Legacy fixture tests proving flat `.json` records are converted through list, retrieve, resume, save, and delete surfaces; duplicate fixture tests proving merge precedence, legacy-only field preservation, and flat-file retention with byte identity and canonical precedence (including the `legacySource` consumption marker, no resurrection of a field removed from the canonical record, and fail-closed handling of a corrupt canonical record). (Amended 2026-09-03 under A13; the pre-amendment text required proof of flat-file removal.) |
 > | R007, R008, R009 | Metadata tests proving SDK identifiers/transcript references are stored as adapter metadata and `events.jsonl` remains canonical. |
 > | R011, R012 | Tests or scanner checks proving `sessionId` is the persisted identity and not inferred from path labels alone. |
 > | R013 | Redaction/security tests proving secret-like values are not written to session metadata or referenced artifacts; detailed redaction implementation belongs to DEL-05-03. |
@@ -583,6 +583,43 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 >
 > Source: D-APP-68 ruling 3; live contract evidence at
 > `frontend/packages/harness-contract/src/types.ts` (`SessionRecord`).
+
+### CLM-032 — A13 legacy-record retention amendment (2026-09-03)
+
+> ##### A13 legacy-record retention amendment (2026-09-03)
+>
+> Owner ruling A13 (`plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md`,
+> ruled 2026-09-03, K-AUTH-1) ratified retention of the legacy flat session
+> record after canonical materialization as the v3 posture for this
+> deliverable (AT-035 "opens without destructive rewrite"; applied
+> decomposition row L322; `docs/SPEC.md` Section 25.4 "no ... destructive
+> source move"). Under that ruling this amendment changes exactly two rows in
+> the same tranche (node D, `DEL-05-01-V3-01`):
+>
+> - CLM-010 `DEL-05-01-R010` — pre-amendment text: "If both canonical folder
+>   and legacy flat records exist for the same `sessionId`, resolution MUST
+>   prefer defined canonical values, preserve legacy-only fields, write the
+>   merged canonical `session.json`, and remove the flat record." — replaced
+>   by the retention posture stated in the row (merged canonical write with a
+>   `legacySource` marker; flat record retained byte-identical and not a
+>   standing read input once consumed; canonical wins on later reads; corrupt
+>   canonical fails closed).
+> - CLM-012 verification row for R003/R004/R005/R010/R016 — pre-amendment
+>   text ended "... legacy-only field preservation, and flat-file removal." —
+>   replaced by "flat-file retention with byte identity and canonical
+>   precedence" as stated in the row.
+>
+> D-APP-41 (Option D, eager legacy conversion; "migrating, archiving, or
+> removing the flat record according to the migration implementation") is
+> historical on this one point — flat-record removal — and otherwise
+> unchanged: canonical folder storage, first-touch conversion, canonical
+> precedence, and no field loss for supported legacy fields remain in force.
+> R004's "MUST NOT keep flat records as a standing parallel storage shape" is
+> read as a write-side rule satisfied by the marker (the flat record is never
+> written and is not a read input after consumption). The D-APP-41 packet and
+> ruling files are not edited. Implementation evidence:
+> `Evidence/V3-01_v2_lazy_access_2026-09-03/` and run record
+> `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/`.
 
 ## Output and Evaluation Matrix
 

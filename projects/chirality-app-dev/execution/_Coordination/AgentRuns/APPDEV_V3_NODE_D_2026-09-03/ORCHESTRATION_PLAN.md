@@ -1,6 +1,6 @@
 # APPDEV_V3_NODE_D_2026-09-03 — Orchestration Plan
 
-Status: `ACTIVE — IMPLEMENTATION`
+Status: `ACTIVE — RE-FROZEN AFTER REVIEW ROUND 1 (A13 APPLIED)`
 RunID: `APPDEV_V3_NODE_D_2026-09-03`
 Parent: HELP_HUMAN (Agent 0), owner in-session; standing plan
 `loop/WORKPLAN_2026-09-03_app_dev_loop.md` (selected from committed `HEAD`);
@@ -45,7 +45,12 @@ No new dependencies.
 - `projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/**`
   (`_STATUS.md`, `MEMORY.md`, `Evidence/**`, `_run_records/**`);
 - this run record `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/**`;
-- `projects/chirality-app-dev/loop/LOOP_RECEIPTS.md` (append only, at closeout).
+- `projects/chirality-app-dev/loop/LOOP_RECEIPTS.md` (append only, at closeout);
+- *(added under owner ruling A13, 2026-09-03)* DEL-05-01 `ScopeOfWork.md`
+  rows R010 / CLM-012 plus the dated note CLM-032 (inside the DEL-05-01
+  root above), and the new ruling record
+  `plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md`
+  (repo-root `plans/steers/`, the App ruling-record surface).
 
 Validated with `python3 tools/software_workflow/validate_change_scope.py`
 before freeze.

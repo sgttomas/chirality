@@ -81,18 +81,41 @@ claim. No proof claim is made by this tranche.
 
 ## Stale-map / instruction deltas found (live tree wins)
 
-- **Delta 1 — destructive legacy removal vs. non-destructive access.** The
-  live implementation and D-APP-41's "removing the flat record" wording
-  delete the legacy flat file on first touch; the later authority text
+- **Delta 1 — destructive legacy removal vs. non-destructive access
+  (re-classified after review: OWNER DECISION, ruled A13).** The live
+  implementation and D-APP-41's "removing the flat record" wording delete
+  the legacy flat file on first touch; the later authority text
   (`docs/SPEC.md` §25.4, applied decomposition row L322 as seated in
   `V3-01`) and the sealed brief require non-destructive first-touch access.
-  The seated item governs this tranche: legacy bytes are left intact and
-  materialization writes only to the canonical folder. Existing test
-  assertions that expect the flat file to disappear are updated to
-  byte-identity assertions. R004's "not a standing parallel storage shape"
-  is honoured operationally: after first touch, read/resume/save/delete
-  operate on the canonical record; the flat file is an untouched source, not
-  a written shape. Recorded for the receipt (`Stale-Map-Delta`).
+  The first freeze treated this as a stale-map delta plus agent latitude.
+  The independent reviewer (F1, MAJOR) correctly re-classified it as a
+  conflict between two sets of *accepted* authority, because DEL-05-01's
+  accepted Scope of Work also carried, verbatim (pre-amendment):
+  - `DEL-05-01-R010`: "If both canonical folder and legacy flat records
+    exist for the same `sessionId`, resolution MUST prefer defined canonical
+    values, preserve legacy-only fields, write the merged canonical
+    `session.json`, and remove the flat record." (source: D-APP-41;
+    `docs/SPEC.md` Section 8.1)
+  - CLM-012 verification row for R003/R004/R005/R010/R016: "Legacy fixture
+    tests proving flat `.json` records are converted through list, retrieve,
+    resume, save, and delete surfaces; duplicate fixture tests proving merge
+    precedence, legacy-only field preservation, and flat-file removal."
+
+  Both were superseded in this tranche by owner ruling **A13**
+  (`plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md`,
+  2026-09-03, K-AUTH-1: "Ratify retention"): retention is the v3 posture;
+  R010 and the CLM-012 row are amended in `ScopeOfWork.md` (dated note
+  CLM-032; pre-amendment SHA-256
+  `41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b`,
+  post-amendment
+  `312cb00c36cf8b3bbfd0736c319c812ffbbe06a3a51918fd77fbd53fca259df6`);
+  a `legacySource` consumption marker makes the flat file a non-read input
+  after materialization (reviewer F2); the list-abort regression is fixed
+  (F3); D-APP-41 is historical on this one point and its files are not
+  edited. Legacy bytes are left intact; materialization writes only to the
+  canonical folder; the four existing removal assertions are byte-identity
+  assertions. Recorded for the receipt as `Owner-Direction` (A13 pointer),
+  not as a stale-map delta.
 - **Delta 2 — closed `HarnessErrorType` union.** `HarnessErrorType` lives in
   `runtime/packages/contracts/src/harness/types.ts` (Root-owned, outside the
   write locus). No dedicated error type for an unreadable session record can

@@ -1,8 +1,25 @@
 # DEL-05-01-V3-01 — v2 session-data lazy non-destructive access: evidence packet
 
 **Epistemic status:** implementation evidence (derivative). Authority remains
-the accepted Scope of Work, `docs/SPEC.md` §8 and §25.4, and the D-APP-41
-ruling; on any disagreement those govern.
+the accepted Scope of Work (as amended under A13), `docs/SPEC.md` §8 and
+§25.4, owner ruling A13, and the D-APP-41 ruling (historical on flat-record
+removal); on any disagreement those govern.
+
+**Authority note (A13).** The pre-amendment Scope of Work required, verbatim,
+`DEL-05-01-R010`: "If both canonical folder and legacy flat records exist for
+the same `sessionId`, resolution MUST prefer defined canonical values,
+preserve legacy-only fields, write the merged canonical `session.json`, and
+remove the flat record." and (CLM-012) "duplicate fixture tests proving merge
+precedence, legacy-only field preservation, and flat-file removal." Both were
+superseded in this tranche by owner ruling A13
+(`plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md`,
+2026-09-03, "Ratify retention"); the amended rows are in `ScopeOfWork.md`
+CLM-010/CLM-012 with the dated note CLM-032 (pre-amendment SHA-256
+`41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b`,
+post-amendment
+`312cb00c36cf8b3bbfd0736c319c812ffbbe06a3a51918fd77fbd53fca259df6`). This
+packet proves retention with byte identity and canonical precedence, not
+removal.
 
 Run record: `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/`
 (basis `0c683fb1657706316272951e4c3a0f7781b46009`; branch
@@ -20,17 +37,27 @@ Run record: `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/`
   `unsupportedVersion` = a declared `schemaVersion` (2.0.0 project-local
   records carry none) or, with no `schemaVersion`, a record lacking the
   required v2 fields `projectRoot` and `createdAt`.
-- Access resolver: `resolveSessionRecord(sessionId, { materializeOnlyFor? })`
-  reads both shapes; canonical `session.json` wins field-by-field, legacy-only
-  fields are preserved; the canonical record is written only when absent or
-  when the legacy record contributes fields the canonical record lacks
-  (key-order-insensitive comparison, so a second access writes nothing). A
-  canonical record that cannot be opened fails closed and is never
-  overwritten from the legacy sibling. The legacy flat file is never written,
-  truncated, or removed by access.
+- Access resolver: `resolveSessionRecord(sessionId, { materializeOnlyFor?,
+  materialize? })` reads both shapes; canonical `session.json` wins
+  field-by-field. Legacy-only fields are merged exactly once — when the
+  canonical record carries no `legacySource: { sha256, materializedAt }`
+  marker — and the merged record is written back with the marker (sha256 of
+  the flat file bytes). Once the marker is present the flat file is not a
+  read input: an unchanged flat file is ignored (second access writes
+  nothing); a changed flat file is reported as a `legacySourceChanged`
+  diagnostic and ignored, so a field removed from the canonical record is
+  never resurrected (A13 / reviewer F2). A canonical record that cannot be
+  opened fails closed and is never overwritten from the legacy sibling. The
+  legacy flat file is never written, truncated, or removed by access.
+- List resilience (A13 / reviewer F3): a per-candidate materialization write
+  failure never aborts `listWithDiagnostics`; the candidate is re-resolved
+  read-only and, if readable, listed unmaterialized with a
+  `materializationFailed` diagnostic.
 - Public typed surface: `FileSessionManager.inspect(sessionId)` returns
-  `SessionAccessResult`; `listWithDiagnostics(projectRoot)` returns
-  `{ sessions, failures }`; `list` returns `sessions` (interface unchanged).
+  `SessionAccessResult` (`ok` carries `materialized`, `siblingFailures`,
+  `diagnostics`); `listWithDiagnostics(projectRoot)` returns
+  `{ sessions, failures, diagnostics }`; `list` returns `sessions`
+  (interface unchanged).
   `getById`/`resume`/`save`/`delete` throw `SessionRecordAccessError`
   (`HarnessError` subclass; wire type `SESSION_NOT_FOUND`; status 404 for
   `missing`, 422 for `malformed`/`unsupportedVersion`; `kind` mirrored in
@@ -79,7 +106,10 @@ Assertions by operation (all in the evaluator file):
 | `list` twice | identical | none on second run | results equal |
 | `resume` / `getById` readable | identical | canonical only | record fields |
 | `resume` malformed / unsupported (×3) | identical (whole root) | none | `SessionRecordAccessError` 422, `details.kind` |
-| `getById` duplicate | identical (`sess_v2_duplicate.json`, `events.jsonl`) | canonical gains legacy-only fields once | canonical precedence |
+| `getById` duplicate | identical (`sess_v2_duplicate.json`, `events.jsonl`) | canonical gains legacy-only fields + `legacySource` marker once; second access writes nothing | canonical precedence |
+| field removed from canonical after consumption (`save` clears `instructionPath`), then `getById`/`inspect`/`list` | identical | none | field not resurrected; `diagnostics: []` |
+| legacy flat file edited after consumption, then `inspect`/`resume`/`list` | edited bytes preserved; canonical byte-identical | none | `legacySourceChanged` diagnostic; edited fields not merged |
+| sibling `sess_x` whose canonical folder path is occupied by an empty file, then `list` | identical (all flat files incl. `sess_x.json`; empty file intact) | readable sibling only | `sess_x` listed unmaterialized + `materializationFailed` diagnostic; listing never aborts |
 | corrupt canonical + readable legacy | identical (both files) | none (corrupt bytes preserved) | `malformed`, `shape: 'canonical'` |
 | unreadable legacy beside readable canonical | garbage preserved | none | `ok` + `siblingFailures[0]` |
 | `save` | identical | canonical only | — |
@@ -94,8 +124,8 @@ bytes are returned unchanged; the delete contract test is unchanged.
 ## 4. Results (machine-readable and canonical stdout)
 
 - `focused_vitest_results.json` — Vitest JSON reporter over the two
-  evaluator files (35 tests, 35 passed, 0 failed); absolute worktree prefix
-  replaced by `{REPO_ROOT}`.
+  evaluator files (38 tests, 38 passed, 0 failed; regenerated after the A13
+  commit); absolute worktree prefix replaced by `{REPO_ROOT}`.
 - `focused_vitest_stdout.txt` — verbose reporter stdout for the same run
   (exit 0).
 - Full registered checks: `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/CHECKS.json`.

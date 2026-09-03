@@ -1,46 +1,49 @@
 
  RUN  v4.1.10 {REPO_ROOT}/projects/chirality-app-dev/frontend
 
- ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > creates new sessions as canonical folder records without writing legacy flat files 7ms
+ ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > creates new sessions as canonical folder records without writing legacy flat files 8ms
  ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: empty 3ms
  ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: whitespace-only 2ms
  ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: dot segment 2ms
  ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: parent segment 2ms
- ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: forward-slash traversal 2ms
+ ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: forward-slash traversal 1ms
  ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: forward-slash nesting 2ms
  ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: backslash traversal 2ms
- ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: backslash nesting 3ms
- ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > opens ambiguous legacy stub records without pinning them to Anthropic or touching the flat file 4ms
- ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > migrates a legacy direct-Anthropic record when package attribution is explicit 3ms
+ ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > rejects an unsafe session ID before resolving paths: backslash nesting 2ms
+ ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > opens ambiguous legacy stub records without pinning them to Anthropic or touching the flat file 3ms
+ ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > migrates a legacy direct-Anthropic record when package attribution is explicit 2ms
  ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > does not treat the SDK version once dual-written by stub boot as Claude attribution 2ms
- ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > migrates SDK-specific legacy linkage to the Claude Agent SDK adapter 3ms
- ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > resolves duplicate canonical and flat records with canonical precedence, no legacy field loss, and no flat-file removal 3ms
- ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > materializes canonical records during list traversal without touching the legacy file 3ms
+ ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > migrates SDK-specific legacy linkage to the Claude Agent SDK adapter 2ms
+ ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > resolves duplicate canonical and flat records with canonical precedence, no legacy field loss, and no flat-file removal 2ms
+ ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > materializes canonical records during list traversal without touching the legacy file 2ms
  ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > canonicalizes legacy records before saving updates and leaves the flat file byte-identical 3ms
- ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > removes canonical folders and stray flat files when deleting a session 3ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > v2 legacy session fixtures > inventories every fixture file in the manifest without secrets or user data 14ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > v2 legacy session fixtures > seeds the fixture root with only the fixture files 8ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > typed lazy access (inspect) > returns the expected typed state for every fixture without throwing on record content 15ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > typed lazy access (inspect) > is idempotent: a second access of an already materialized record writes nothing 11ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > list > reports unreadable records as typed failures instead of skipping them and leaves legacy bytes intact 18ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > list > does not materialize records bound to another project root 8ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > list > is idempotent across repeated listings 9ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > opens a readable legacy record lazily and writes only into the canonical folder 8ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > rejects sess_v2_malformed_truncated with a typed malformed error and leaves every byte untouched 7ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > rejects sess_v2_unsupported_version with a typed unsupportedVersion error and leaves every byte untouched 7ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > rejects sess_v2_missing_version_fields with a typed unsupportedVersion error and leaves every byte untouched 7ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > keeps SESSION_NOT_FOUND 404 for an absent session 5ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > prefers the canonical duplicate, preserves legacy-only fields, and materializes them into the canonical folder only 7ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > fails closed on a corrupt canonical record and never overwrites it from the legacy sibling 8ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > reports an unreadable legacy sibling beside a readable canonical record without failing the session 7ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > save > writes only the canonical folder and leaves the legacy flat file byte-identical 7ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > delete > removes the deleted session in both shapes and leaves every other legacy record byte-identical 10ms
- ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > delete > refuses to delete a record it cannot open and leaves its bytes untouched 7ms
+ ✓ src/__tests__/lib/session-manager.test.ts > FileSessionManager canonical session storage > removes canonical folders and stray flat files when deleting a session 2ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > v2 legacy session fixtures > inventories every fixture file in the manifest without secrets or user data 12ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > v2 legacy session fixtures > seeds the fixture root with only the fixture files 6ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > typed lazy access (inspect) > returns the expected typed state for every fixture without throwing on record content 12ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > typed lazy access (inspect) > is idempotent: a second access of an already materialized record writes nothing 8ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > list > reports unreadable records as typed failures instead of skipping them and leaves legacy bytes intact 16ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > list > does not materialize records bound to another project root 6ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > list > is idempotent across repeated listings 8ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > list > never aborts on a sibling whose materialization fails: lists it unmaterialized with a diagnostic 8ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > opens a readable legacy record lazily and writes only into the canonical folder 6ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > rejects sess_v2_malformed_truncated with a typed malformed error and leaves every byte untouched 6ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > rejects sess_v2_unsupported_version with a typed unsupportedVersion error and leaves every byte untouched 5ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > rejects sess_v2_missing_version_fields with a typed unsupportedVersion error and leaves every byte untouched 5ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > keeps SESSION_NOT_FOUND 404 for an absent session 4ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > prefers the canonical duplicate, preserves legacy-only fields, and materializes them into the canonical folder only 6ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > does not resurrect a legacy-only field removed from the canonical record once the legacy source is consumed 8ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > ignores a legacy flat record edited after it was consumed and reports a legacySourceChanged diagnostic 7ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > fails closed on a corrupt canonical record and never overwrites it from the legacy sibling 6ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > resume and getById > reports an unreadable legacy sibling beside a readable canonical record without failing the session 6ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > save > writes only the canonical folder and leaves the legacy flat file byte-identical 5ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > delete > removes the deleted session in both shapes and leaves every other legacy record byte-identical 7ms
+ ✓ src/__tests__/lib/session-manager-v2-legacy-access.test.ts > delete > refuses to delete a record it cannot open and leaves its bytes untouched 6ms
 
  Test Files  2 passed (2)
-      Tests  35 passed (35)
-   Start at  14:47:00
-   Duration  344ms (transform 161ms, setup 0ms, import 190ms, tests 214ms, environment 0ms)
+      Tests  38 passed (38)
+   Start at  15:28:33
+   Duration  296ms (transform 101ms, setup 0ms, import 128ms, tests 198ms, environment 0ms)
 
 JSON report written to {REPO_ROOT}/projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Evidence/V3-01_v2_lazy_access_2026-09-03/focused_vitest_results.json
 exit=0
