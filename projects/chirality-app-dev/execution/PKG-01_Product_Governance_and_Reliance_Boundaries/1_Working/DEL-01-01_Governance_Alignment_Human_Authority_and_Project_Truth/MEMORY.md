@@ -2,6 +2,7 @@
 
 ## Decisions And Evidence
 
+- 2026-09-03 - DEL-01-01-V3-01 (AT-053 App governed-basis evidence) executed at basis `0c683fb16` (content commit `b5c8fa067`): `Evidence_AT-053_Governed_Basis_2026-09-03.md` / `.json` map every v3 Root/App amendment, the ten held DEL-02-06 bindings, each RQG §13 condition, DEL-02-06 REQ-027 and its exclusion, the D-APP-103 interaction, every open App/Root Task Management row relevant to the pathway, and S-1..S-7 to accepted carriers or explicit unseated states, with every SHA-256 recomputed from the tree. Evidence for the G0.5/G1 REVIEW only; G0.5 and G1 remain unruled; no authority, closure, lifecycle, implementation, or release inference. Run record `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_E_2026-09-03/`.
 - 2026-07-12 - D-APP-56 R5 P43 executed UPD-085 by appending current-state annotations for INSP-03 REQ-006/REQ-010 and the missing-register gap while preserving the historical assessment. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P39 reconciled present-tense lifecycle wording to read current state from `_STATUS.md`; prior CHECKING evidence remains historical. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 R4-P38 refreshed current kit and dependency-register corpus-version wording to version-neutral D-APP-38 snapshot references. Historical dated evidence was preserved; no lifecycle transition or authority-corpus bump occurred.

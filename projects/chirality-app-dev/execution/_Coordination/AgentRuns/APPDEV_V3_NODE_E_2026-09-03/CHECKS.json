@@ -1,0 +1,177 @@
+{
+  "schema": "chirality-app-agentrun-checks/v1",
+  "run_id": "APPDEV_V3_NODE_E_2026-09-03",
+  "basis_commit": "0c683fb1657706316272951e4c3a0f7781b46009",
+  "content_commit": "b5c8fa0679ddab88a04c71ec96225921f5391d66",
+  "environment": {
+    "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.14",
+    "git": "git version 2.55.0",
+    "cwd_repo_root": "(REPO_ROOT = git rev-parse --show-toplevel)",
+    "effective_env": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "checks": [
+    {
+      "check": "git_diff_check",
+      "cwd": ".",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": []
+    },
+    {
+      "check": "git_diff_check_head_vs_basis",
+      "cwd": ".",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "0c683fb1657706316272951e4c3a0f7781b46009"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": []
+    },
+    {
+      "check": "harness_self_check",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "- scope: ['projects/chirality-app-dev', 'projects/chirality-piping', 'projects/pec', '_DomainEngines', 'docs/governance_harness']",
+        "- pointer_files_scanned: 36",
+        "- checks_run: DE-1..8 (domain-engine surfaces incl. stale open issues vs later rulings), GEN-1 (abs-path), GEN-2 (ruling-SHA TBD), GEN-3 (generated labeling), GEN-4 (root governance status facts), GEN-5 (unresolved refs; control files only in v1), GEN-6 (draft-basis-used-as-binding; control files only in v1), GEN-7 (_LATEST pointer currency: target resolution outside .archive + newest-same-class-sibling by date-in-filename), GEN-8 (active-surface portability: structural roles + hash-bound historical exceptions + semantic invariants), GEN-9 (agent-registry currency: AGENTS.md file tokens vs live agents/ files, both directions), GEN-10 (bridge receipt labels + parked-lane carry-forward), GEN-11 (D-44 piping receipt contract), GEN-12 (D-APP-57 app-dev receipt contract), GEN-13 (claims-language DEC-081)"
+      ]
+    },
+    {
+      "check": "harness_pytest",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "........................................................................ [ 82%]",
+        "..............................................................           [100%]",
+        "350 passed in 32.81s"
+      ]
+    },
+    {
+      "check": "app_hold_scan",
+      "cwd": "projects/chirality-app-dev",
+      "command": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "scan",
+        "--require-register-match"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "  \"sow_root\": \"projects/chirality-app-dev/execution\",",
+        "  \"verdict\": \"PASS\"",
+        "}"
+      ]
+    },
+    {
+      "check": "app_hold_dispatch_check",
+      "cwd": "projects/chirality-app-dev",
+      "command": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "check",
+        "--operation",
+        "dispatch",
+        "--entry-path",
+        "loop/LOOP_INIT.md",
+        "--target",
+        "DEL-01-01"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "  ],",
+        "  \"verdict\": \"ALLOW\"",
+        "}"
+      ]
+    },
+    {
+      "check": "corpus_status",
+      "cwd": "projects/chirality-app-dev",
+      "command": [
+        "python3",
+        "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+        "status"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "  [MATCH] AGENT_SOFTWARE_DECOMP.md     snapshot=ad849d9a9274 live=ad849d9a9274",
+        "  [MATCH] AGENT_DOMAIN_ENGINE.md       snapshot=bb2df7178d7b live=bb2df7178d7b",
+        "no drift."
+      ]
+    },
+    {
+      "check": "receipts_validator",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "VALID /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeE/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied"
+      ]
+    },
+    {
+      "check": "evidence_generator_check",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_E_2026-09-03/build_at053_evidence.py",
+        "--check"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "CHECK PASS"
+      ]
+    },
+    {
+      "check": "citation_verifier",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_E_2026-09-03/verify_citations.py"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "{\"verdict\": \"PASS\", \"digests_checked\": 436, \"manifest_entries\": 95, \"distinct_cited_paths\": 95, \"verified_at_head\": \"b5c8fa0679ddab88a04c71ec96225921f5391d66\"}"
+      ]
+    }
+  ],
+  "frontend_gates": "skipped \u2014 no product or runtime source changed (typecheck, Vitest, build/premerge, D-APP-36 render bar not applicable); no frontend/ path touched, A1 re-stage rule not fired",
+  "independent_review_child": "not required \u2014 single-manager docs-only path (App AGENTS.md delegation posture); HELP_HUMAN reviews the PR",
+  "overall": "pass",
+  "recorded_at": "2026-09-03"
+}
