@@ -58,8 +58,10 @@ dated historical map (pre-loop session entry; never authority).
 
 ## Status
 
-The active queue is `plans/PLAN_2026-06-20_autonomous_development_queue.md`. The live packaged
-`agentSdk` read-tool proof, R6 Extensibility & MCP Boundary Maturity, Runtime Stabilization, and
-SCC-resolution plans are completed history. Current runtime implementation truth remains in source,
-tests, validation artifacts, and git history. Current coordination state is discovered rather than
-tracked in a separate next-instance state file.
+There is no active plans queue. Work is discovered from deliverable-local `_STATUS.md`
+`## Remaining` sections; `plans/`, including
+`plans/PLAN_2026-06-20_autonomous_development_queue.md`, is historical reference only.
+The live packaged `agentSdk` read-tool proof, R6 Extensibility & MCP Boundary Maturity,
+Runtime Stabilization, and SCC-resolution plans are completed history. Current runtime
+implementation truth remains in source, tests, validation artifacts, and git history. Current
+coordination state is discovered rather than tracked in a separate next-instance state file.

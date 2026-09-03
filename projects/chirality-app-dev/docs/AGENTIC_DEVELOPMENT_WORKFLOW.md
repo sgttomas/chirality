@@ -137,7 +137,7 @@ A valid closeout identifies:
 - validation performed, including skipped checks and reasons;
 - files changed;
 - decision packets or human rulings pending;
-- next selected plan item, or state which loop-first pivot tranche (28a -> 28b -> 28c -> 28d -> 28e) is next in the active queue;
+- next selected deliverable-local `_STATUS.md` `## Remaining` item, or state that no selectable Remaining work exists; `plans/` is historical reference, not a queue;
 - `CHANGE` closeout result, including commit and push result when completed.
 
 For governance-only tranches, frontend runtime tests are normally skipped and the skip must be explicit. For runtime, SDK, permission, network, packaging, or release-significant tranches, use the applicable gate family before closeout.
