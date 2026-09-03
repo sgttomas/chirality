@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-09-05
 package_id: PKG-09
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f
 project_scope_refs: [SOW-035, SOW-036, SOW-072]
 package_objective_refs: [OBJ-008]
 ---
@@ -14,6 +14,7 @@ package_objective_refs: [OBJ-008]
 This Scope of Work defines `DEL-09-05` in service of project scope [SOW-035, SOW-036, SOW-072] and package objectives [OBJ-008].
 
 - **OUT-001** — A CI artifact and release verification workflow, local release-significant command sequence, stable validation artifact handling, manual macOS DMG verification checklist, and auditable requirement-to-evidence records for the current macOS 15+ Apple Silicon unsigned or unnotarized local-builder release target.
+- **OUT-002** — The v3.0.0-rc.1 carrier outputs assigned to `DEL-09-05` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 368 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): CI workflow and stable artifact evidence; WP-09 reviewed preparation/release runbook candidate; exact-candidate identity and custody checklist; separately authorized WP-11 owner/CHANGE execution record. Traceable to SOW-035, SOW-036, SOW-072 and OBJ-008.
 
 ## Deliverable Definition — Ontology
 
@@ -106,6 +107,18 @@ This Scope of Work defines `DEL-09-05` in service of project scope [SOW-035, SOW
 > ##### D-APP-56 R5 P45 current-state reconciliation (2026-07-12)
 >
 > UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.
+
+### CLM-034 — Applied decomposition v3 carrier assignment (SCA-APP-008 Gate 5, 2026-09-03)
+
+> ##### Applied decomposition row for DEL-09-05 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`
+>
+> The accepted SCA-APP-008 Gate-5 application (PR #662) amended this deliverable's row. The row text below is transcribed verbatim from the applied decomposition and is the sole scope basis for the v3 outputs and requirements added on 2026-09-03; it adds no obligation beyond the row.
+>
+> | Column | Applied row text |
+> |---|---|
+> | Description | Maintain CI premerge and stable artifact verification and serve as the explicit release-operations carrier with a strict phase boundary: WP-09 may author and review the exact signing, nested-signing-order, fuses/entitlements, notarization/stapling/Gatekeeper, recovery/rollback, version-identity, custody, GitHub-prerelease, and download-backcheck runbook, but WP-11 may execute release acts only after Ryan Tufts names and rules the exact candidate at G6a. |
+> | Principal outputs | CI workflow and stable artifact evidence; WP-09 reviewed preparation/release runbook candidate; exact-candidate identity and custody checklist; separately authorized WP-11 owner/CHANGE execution record |
+> | Notes | WP-09 authoring/review is not a signing, notarization, publication, distribution, release-readiness, or lifecycle act. D-APP-97/F-APP-2 remain active through preparation. WP-11 execution is a later owner act requiring G6a and the exact owner artifact ruling; no automatic transition from preparation is permitted. macOS arm64 is the rc.1 target and a second target requires a post-rc.1 scope change. |
 
 ## Completion and Reliance Basis — Epistemology
 
@@ -254,7 +267,12 @@ This Scope of Work defines `DEL-09-05` in service of project scope [SOW-035, SOW
 >
 > R4-P37 confirms DEL-09-05 as owner of `.github/workflows/harness-premerge.yml` and its `harness-validation-summaries` artifact. DEL-09-01 retains its Section 8 wrapper-preservation interest and verification contract but does not own the workflow.
 
+- **REQ-001** — The deliverable shall maintain CI premerge and stable artifact verification and serve as the explicit release-operations carrier with a strict phase boundary.
+- **REQ-002** — WP-09 may author and review the exact signing, nested-signing-order, fuses/entitlements, notarization/stapling/Gatekeeper, recovery/rollback, version-identity, custody, GitHub-prerelease, and download-backcheck runbook; authoring and review is not a signing, notarization, publication, distribution, release-readiness, or lifecycle act, and D-APP-97/F-APP-2 remain active through preparation.
+- **REQ-003** — WP-11 may execute release acts only after Ryan Tufts names and rules the exact candidate at G6a; no automatic transition from preparation is permitted, and WP-11 execution is a later owner act requiring G6a and the exact owner artifact ruling.
+- **REQ-004** — macOS arm64 is the rc.1 target; a second target requires a post-rc.1 scope change.
 - **AC-001** — Every DEL-09-05 requirement maps to a concrete artifact, checklist row, or explicit TBD blocker; all ten PRD Section 12.7 CI steps and each manual release item have present, absent, pass, fail, or TBD status; required local and packaging commands and stable summary paths are distinguished; secret-redaction, accepted network scope, release-target constraints, and professional-boundary checks are recorded without unsupported readiness claims.
+- **AC-002** — The v3 outputs assigned by the applied decomposition row (CI workflow and stable artifact evidence, WP-09 reviewed preparation/release runbook candidate, exact-candidate identity and custody checklist, and a separately authorized WP-11 owner/CHANGE execution record) exist and satisfy REQ-001 through REQ-004, with no release, signing, notarization, publication, distribution, release-readiness, or lifecycle act performed or implied before G6a.
 
 ## Production and Verification Method — Praxeology
 
@@ -415,6 +433,7 @@ This Scope of Work defines `DEL-09-05` in service of project scope [SOW-035, SOW
 > UPD-146/147 record repo-root `.github/workflows/harness-premerge.yml` as the executed workflow, indirect premerge via `validate:release-quality`, added typecheck/Vitest/instruction-root gates, and `harness-validation-summaries`; the project-local workflow is non-executing.
 
 - **VER-001** — Inspect the local command sequence, executed CI workflow and all ten required steps, stable Section 8, release-quality, and instruction-root summary handling, packaging outputs, manual macOS DMG checklist, requirement-to-evidence matrix, secret-redaction and network-scope inspections, release-target scope, professional-boundary language, and unresolved blockers.
+- **VER-002** — Inspect the runbook candidate and custody checklist for the exact procedure content and phase boundary, confirm independent review of the candidate, and confirm that no WP-11 act, signing identity, notary call, or distribution occurred before the owner's G6a exact-candidate ruling.
 
 ## Governing Values and Decisions — Axiology
 
@@ -545,3 +564,4 @@ This Scope of Work defines `DEL-09-05` in service of project scope [SOW-035, SOW
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-035 SOW-036 SOW-072 OBJ-008 | CLM-008 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-002 | SOW-035 SOW-036 SOW-072 OBJ-008 | CLM-034 REQ-001 REQ-002 REQ-003 REQ-004 | AC-002 | VER-002 | Reviewed runbook candidate and custody checklist bytes with independent review record; stable artifact evidence; WP-11 execution record only after G6a |

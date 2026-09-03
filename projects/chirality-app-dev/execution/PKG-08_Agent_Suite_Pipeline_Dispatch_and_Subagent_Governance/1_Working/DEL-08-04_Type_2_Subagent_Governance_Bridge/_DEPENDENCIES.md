@@ -22,7 +22,7 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 | Metric | Count |
 |---|---:|
 | Total rows | 10 |
-| ACTIVE rows | 9 |
+| ACTIVE rows | 10 |
 | RETIRED rows | 1 |
 | ANCHOR rows | 3 |
 | EXECUTION rows | 7 |
@@ -39,6 +39,7 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 | DEP-08-04-008 | ANCHOR | UPSTREAM | OTHER | REQUIREMENT | OBJ-007 Agent-suite integrity and project delegation authority | ACTIVE |
 | DEP-08-04-009 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | Chirality-managed delegation class | ACTIVE |
 | DEP-08-04-010 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | delegated-harness-native descent class | ACTIVE |
+| DEP-08-04-011 | EXECUTION | UPSTREAM | CONSTRAINT | EXTERNAL | Root WP-03/WP-05 fixtures: accepted DEL-02-07 process-supervisor and DEL-02-10 API v2 returns | ACTIVE |
 
 ## Run Notes
 
@@ -57,8 +58,21 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 - [WARNING] PROJECT_ID_FORMAT_PROFILE: the repository's generic `validate_id_format.sh` expects `PKG-NNN`, `DEL-NNN-NN`, `DEP-NNN-NN-NNN`, and `SOW-NNNN`; this accepted App decomposition uses `PKG-NN`, `DEL-NN-NN`, `DEP-NN-NN-NNN`, and `SOW-NNN`. Validation therefore reports the project IDs invalid by its generic profile. No accepted project ID was rewritten or invented.
 - Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present.
 
+## Run Notes - 2026-09-03 v3 pathway seating (additive UPDATE)
+
+- `TASK + dependency-extract` method applied in-line by the A12 seating tranche (ephemeral Agent 2 generalist; no TASK run record under `_run_records/` because that path is outside the tranche write set); `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`.
+- Decomposition: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`, SHA-256 `932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f`; `ScopeOfWork.md` re-pinned to that commit in the same tranche.
+- Scope of this pass: exactly one new row, `DEP-08-04-011`, making the v3 gate/interface edge consumed by the seated `Remaining` item explicit. Existing rows are preserved byte-identically (no `LastSeen` refresh, no retirement); the full two-pass re-extraction is not claimed for them.
+- Evidence: `ScopeOfWork.md` at `ScopeOfWork.md#REQ-005`; quote: "D-GOV-35 is necessary, but App carrier acceptance and WP-03/05 fixtures remain required before v3 delegation work".
+- Target resolution: Root-owned targets keep `TargetLocation=TBD` (no Root path is invented); deliverable targets resolve against the applied decomposition.
+- `[WARNING] PROJECT_ID_FORMAT_PROFILE`: the generic `validate_id_format.sh` three-digit profile rejects the accepted two-digit App identities; accepted decomposition IDs are preserved (same finding as the Gate-5 refresh).
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present.
+- A2-B / SCC posture: no objective-relative feedback edge was added or linearized; the post-application audit's nine-node SCC remains a warning-bearing derivative finding.
+- Schema validation: `python3 tools/validation/validate_dependencies_schema.py Dependencies.csv` PASS after the append; see `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/DEPENDENCY_REFRESH.md`.
+
 ## Run History
 
+- 2026-09-03T00:00:00-06:00: `TASK + dependency-extract` method in-line (A12 seating), `MODE=UPDATE` additive, `STRICTNESS=CONSERVATIVE`, applied decomposition `d6f6cadb2` verified; one row `DEP-08-04-011` added; existing rows preserved without LastSeen refresh; warnings: PROJECT_ID_FORMAT_PROFILE; ACTIVE=10; RETIRED=1.
 - 2026-08-24T00:53:16-06:00: `TASK + dependency-extract`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, applied decomposition verified, current v19 references preserved, E-020 retained non-gating without a source-invented edge. ACTIVE counts: ANCHOR=3, EXECUTION=6; RETIRED=1.
 - 2026-06-21T05:00: ADQ-12 recorded child-output artifact evidence closure for the DEL-08-04 downstream handoff; remaining warnings: TARGET_UNRESOLVED x2, TARGET_INFERRED x1. ACTIVE counts: ANCHOR=1, EXECUTION=5.
 - 2026-06-21T03:00: ADQ-05 applied D-APP-38 source-state reconciliation and D-APP-40 child-run handoff naming; remaining warnings: TARGET_UNRESOLVED x2, TARGET_INFERRED x1. ACTIVE counts: ANCHOR=1, EXECUTION=5.
@@ -68,13 +82,13 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 9 |
+| ACTIVE | 10 |
 | RETIRED | 1 |
 
 | SatisfactionStatus | Count |
 |---|---:|
 | SATISFIED | 5 |
-| PENDING | 2 |
+| PENDING | 3 |
 | TBD | 3 |
 
 ## Downstream Handoff Notes

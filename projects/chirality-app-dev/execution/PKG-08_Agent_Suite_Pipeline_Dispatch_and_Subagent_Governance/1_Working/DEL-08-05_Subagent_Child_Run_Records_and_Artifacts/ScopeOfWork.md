@@ -2,7 +2,7 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-08-05
 package_id: PKG-08
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f
 project_scope_refs: [SOW-063]
 package_objective_refs: [OBJ-003, OBJ-007]
 ---
@@ -14,6 +14,7 @@ package_objective_refs: [OBJ-003, OBJ-007]
 This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and package objectives [OBJ-003, OBJ-007].
 
 - **OUT-001** — The DEL-08-05 managed-child runtime record and artifact contract, including `ChildRunRecord` lifecycle, parent/declaration linkage, coordination-aware persistence, `artifacts/subagents/` child outputs, and replay fixtures, for SOW-063 and OBJ-003, OBJ-007.
+- **OUT-002** — The v3.0.0-rc.1 carrier outputs assigned to `DEL-08-05` by the applied decomposition row (`execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` line 358 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`): Checkout AgentRun and native-descendant evidence records; parentage/origin and daemon linkage metadata; role/config/model attribution; child output evidence paths; managed/native replay and reconstruction fixtures. Traceable to SOW-063 and OBJ-003, OBJ-007.
 
 ## Deliverable Definition — Ontology
 
@@ -135,6 +136,18 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 >
 > UPD-138 records the implemented ChildRunRecord fields: remove `completedAt`; include `mode`, `capabilityPolicy`, `governance`, and `contractVersion`; examples must not invent persona/sdkAgentId/model timestamps. UPD-139 marks only artifact-policy row DEP-08-05-006 satisfied.
 
+### CLM-037 — Applied decomposition v3 carrier assignment (SCA-APP-008 Gate 5, 2026-09-03)
+
+> ##### Applied decomposition row for DEL-08-05 at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`
+>
+> The accepted SCA-APP-008 Gate-5 application (PR #662) amended this deliverable's row. The row text below is transcribed verbatim from the applied decomposition and is the sole scope basis for the v3 outputs and requirements added on 2026-09-03; it adds no obligation beyond the row.
+>
+> | Column | Applied row text |
+> |---|---|
+> | Description | Preserve reconstructible checkout-contained records for Chirality-managed and delegated-harness-native descendants without conflating the classes: parentage, native origin/lineage, selected role-entry state, actual adapter/provider/model, instruction/brief and policy/configuration digests, approvals, status, return/output and accepted artifact paths, cancellation/cleanup, and truthful `instruction-asserted` calibration where G-ROLE cannot mechanically prove Agent 2/TASK non-delegation. |
+> | Principal outputs | Checkout AgentRun and native-descendant evidence records; parentage/origin and daemon linkage metadata; role/config/model attribution; child output evidence paths; managed/native replay and reconstruction fixtures |
+> | Notes | Project evidence slice; daemon operational state is non-authoritative, native descent assigns no Agent 0/1/2 role, and managed sealed-brief evidence remains distinct and required. Evidence schema follows accepted class semantics. |
+
 ## Completion and Reliance Basis — Epistemology
 
 ### CLM-010 — Specification: DEL-08-05 Subagent Child Run Records and Artifacts
@@ -245,7 +258,12 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 >
 > R4-P32 assigns `artifacts/subagents/` child-output storage to DEL-08-05 and makes the live thresholds normative for its child-run records: inline output is limited to 16 KiB and artifact-backed output to 512 KiB. These are distinct from DEL-05-05 `descriptor.resultBudget`.
 
+- **REQ-001** — The deliverable shall preserve reconstructible checkout-contained records for Chirality-managed and delegated-harness-native descendants without conflating the classes.
+- **REQ-002** — Each record shall carry parentage, native origin/lineage, selected role-entry state, actual adapter/provider/model, instruction/brief and policy/configuration digests, approvals, status, return/output and accepted artifact paths, and cancellation/cleanup.
+- **REQ-003** — Records shall carry truthful `instruction-asserted` calibration where G-ROLE cannot mechanically prove Agent 2/TASK non-delegation; native descent assigns no Agent 0/1/2 role.
+- **REQ-004** — Daemon operational state is non-authoritative; managed sealed-brief evidence remains distinct and required; the evidence schema follows accepted class semantics.
 - **AC-001** — DEL-08-05 is accepted when the complete preserved legacy source's schema/type, lifecycle-event, append/replay, artifact-reference, redaction, SDK-metadata-boundary, denied-allocation, and retired-scope checks demonstrate auditable governed child-run records for SOW-063 and OBJ-003, OBJ-007.
+- **AC-002** — The v3 outputs assigned by the applied decomposition row (checkout AgentRun and native-descendant evidence records, parentage/origin and daemon linkage metadata, role/config/model attribution, child output evidence paths, and managed/native replay and reconstruction fixtures) exist and satisfy REQ-001 through REQ-004 with the two descendant classes kept distinct.
 
 ## Production and Verification Method — Praxeology
 
@@ -337,6 +355,7 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 > - D-APP-40 ruling record for denied child-run allocation semantics.
 
 - **VER-001** — Review the complete preserved legacy source and execute its specified type/schema, status-enum, lifecycle-event, append-order, unique-event-ID, parent-child-linkage, artifact-metadata/path, redaction, replay, denied-allocation, and scope-boundary checks; record concrete evidence.
+- **VER-002** — Replay and reconstruct managed and native descendant records from checkout-contained evidence; confirm parentage, origin/lineage, role-entry state, adapter/provider/model, digests, approvals, status, artifact paths, cancellation/cleanup, and `instruction-asserted` calibration reproduce without class conflation.
 
 ## Governing Values and Decisions — Axiology
 
@@ -472,3 +491,4 @@ This Scope of Work defines `DEL-08-05` in service of project scope [SOW-063] and
 | Output | Objective refs | Requirement/claim refs | Acceptance refs | Verification refs | Evidence expectation |
 |---|---|---|---|---|---|
 | OUT-001 | SOW-063 OBJ-003 OBJ-007 | CLM-010 | AC-001 | VER-001 | Claim map, parity report, and applicable verification evidence |
+| OUT-002 | SOW-063 OBJ-003 OBJ-007 | CLM-037 REQ-001 REQ-002 REQ-003 REQ-004 | AC-002 | VER-002 | Managed/native replay and reconstruction fixtures; attribution and lineage records; sealed-brief evidence kept distinct from native-descent records |

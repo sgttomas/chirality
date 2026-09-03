@@ -46,6 +46,7 @@ TBD - no accepted dependency edges have been extracted yet.
 | DEP-04-05-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-05 | ACTIVE | `Specification.md` |
 | DEP-04-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-03 | RETIRED | `Specification.md` |
 | DEP-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | RETIRED | `Procedure.md` |
+| DEP-04-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 docs/CONTRACT.md K-NET-1 accepted endpoint set and K-KEY-1 | ACTIVE | `ScopeOfWork.md` |
 
 Counts: 12 rows total (10 ACTIVE, 2 RETIRED); 6 ANCHOR, 6 EXECUTION. (Corrected 2026-07-18; see Run Notes.)
 
@@ -53,19 +54,33 @@ Counts: 12 rows total (10 ACTIVE, 2 RETIRED); 6 ANCHOR, 6 EXECUTION. (Corrected 
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 10 |
+| ACTIVE | 11 |
 | RETIRED | 2 |
 
 | SatisfactionStatus | Count |
 |---|---:|
+| PENDING | 1 |
 | SATISFIED | 7 |
 | TBD | 3 |
+
+## Run Notes - 2026-09-03 v3 pathway seating (additive UPDATE)
+
+- `TASK + dependency-extract` method applied in-line by the A12 seating tranche (ephemeral Agent 2 generalist; no TASK run record under `_run_records/` because that path is outside the tranche write set); `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`.
+- Decomposition: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` at commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`, SHA-256 `932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f`; `ScopeOfWork.md` re-pinned to that commit in the same tranche.
+- Scope of this pass: exactly one new row, `DEP-04-05-013`, making the v3 gate/interface edge consumed by the seated `Remaining` item explicit. Existing rows are preserved byte-identically (no `LastSeen` refresh, no retirement); the full two-pass re-extraction is not claimed for them.
+- Evidence: `ScopeOfWork.md` at `ScopeOfWork.md#CLM-009-Requirements`; quote: "Remote MCP, plugins, and non-Anthropic network tools must remain out of current scope unless separately governed.".
+- Target resolution: Root-owned targets keep `TargetLocation=TBD` (no Root path is invented); deliverable targets resolve against the applied decomposition.
+- `[WARNING] PROJECT_ID_FORMAT_PROFILE`: the generic `validate_id_format.sh` three-digit profile rejects the accepted two-digit App identities; accepted decomposition IDs are preserved (same finding as the Gate-5 refresh).
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present.
+- A2-B / SCC posture: no objective-relative feedback edge was added or linearized; the post-application audit's nine-node SCC remains a warning-bearing derivative finding.
+- Schema validation: `python3 tools/validation/validate_dependencies_schema.py Dependencies.csv` PASS after the append; see `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/DEPENDENCY_REFRESH.md`.
 
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE Counts |
 |---|---|---|---|---|---|
 | 2026-05-20T19:35:58-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_STATE REF-006 HASH_MISMATCH | ANCHOR=6; EXECUTION=6 |
+| 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | ANCHOR=6; EXECUTION=5; ACTIVE=11; RETIRED=2 |
 
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 

@@ -1,0 +1,197 @@
+{
+  "DEL-01-01": {
+    "items": [
+      [
+        "DEL-01-01-V3-01",
+        "SELECTABLE"
+      ]
+    ]
+  },
+  "DEL-02-02": {
+    "items": [
+      [
+        "DEL-02-02-V3-01",
+        "SELECTABLE"
+      ],
+      [
+        "DEL-02-02-V3-02",
+        "NOT_SELECTABLE_UNTIL: Root API v2 and event schema v2 acceptance routed to App (Root DEL-02-10) and DEL-08-04-V3-01 landed"
+      ]
+    ]
+  },
+  "DEL-02-05": {
+    "items": [
+      [
+        "DEL-02-05-V3-01",
+        "SELECTABLE"
+      ],
+      [
+        "DEL-02-05-V3-02",
+        "SELECTABLE"
+      ],
+      [
+        "DEL-02-05-V3-03",
+        "NOT_SELECTABLE_UNTIL: accepted Root/App account/consent contract routed to App (Root DEL-02-09) and G3/G-CSP/G4 for live claims"
+      ]
+    ]
+  },
+  "DEL-03-01": {
+    "items": [
+      [
+        "DEL-03-01-V3-01",
+        "NOT_SELECTABLE_UNTIL: Root API v2 and event schema v2 acceptance routed to App (Root DEL-02-10); exact-pin claims until G2-accepted supply is consumable and G-WIRE passes"
+      ]
+    ]
+  },
+  "DEL-03-03": {
+    "items": [
+      [
+        "DEL-03-03-V3-01",
+        "NOT_SELECTABLE_UNTIL: Root API v2 and event schema v2 acceptance routed to App (Root DEL-02-10) with the migration path frozen; G-WIRE before any live claim"
+      ]
+    ]
+  },
+  "DEL-04-01": {
+    "items": []
+  },
+  "DEL-04-05": {
+    "items": [
+      [
+        "DEL-04-05-V3-01",
+        "SELECTABLE"
+      ],
+      [
+        "DEL-04-05-V3-02",
+        "NOT_SELECTABLE_UNTIL: accepted Root/App account/consent contract and the K-NET-1 exact endpoint set routed to App (Root DEL-02-09/DEL-02-10)"
+      ]
+    ]
+  },
+  "DEL-05-01": {
+    "items": [
+      [
+        "DEL-05-01-V3-01",
+        "SELECTABLE"
+      ],
+      [
+        "DEL-05-01-V3-02",
+        "NOT_SELECTABLE_UNTIL: accepted Root daemon session/storage schema routed to App (Root DEL-02-11) and the migration path frozen"
+      ]
+    ]
+  },
+  "DEL-05-02": {
+    "items": [
+      [
+        "DEL-05-02-V3-01",
+        "NOT_SELECTABLE_UNTIL: Root event schema v2 acceptance routed to App (Root DEL-02-10); G-WIRE before any claim"
+      ]
+    ]
+  },
+  "DEL-05-03": {
+    "items": [
+      [
+        "DEL-05-03-V3-01",
+        "NOT_SELECTABLE_UNTIL: Root event schema v2 and scanner-scope acceptance routed to App (Root DEL-02-10); G-WIRE before any claim"
+      ]
+    ]
+  },
+  "DEL-05-04": {
+    "items": [
+      [
+        "DEL-05-04-V3-01",
+        "NOT_SELECTABLE_UNTIL: accepted Root restart/resume and storage semantics routed to App (Root DEL-02-11) and DEL-05-01-V3-02 landed"
+      ]
+    ]
+  },
+  "DEL-08-04": {
+    "items": [
+      [
+        "DEL-08-04-V3-01",
+        "NOT_SELECTABLE_UNTIL: Root WP-03/WP-05 fixtures (accepted DEL-02-07 supervisor and DEL-02-10 API v2 returns routed to App); G-ROLE/G-APPR/G-SBX/G-SENT/G-PROT/G-ENV/G4 for claims"
+      ]
+    ]
+  },
+  "DEL-08-05": {
+    "items": [
+      [
+        "DEL-08-05-V3-01",
+        "NOT_SELECTABLE_UNTIL: Root WP-03/WP-05 fixtures (accepted DEL-02-07 and DEL-02-10 returns routed to App) and DEL-08-04-V3-01 landed; G4 for claims"
+      ]
+    ]
+  },
+  "DEL-09-01": {
+    "items": [
+      [
+        "DEL-09-01-V3-01",
+        "NOT_SELECTABLE_UNTIL: the first v3 product change merges on a sibling carrier (any of DEL-02-05-V3-01, DEL-04-05-V3-01, DEL-09-06-V3-01)"
+      ]
+    ]
+  },
+  "DEL-09-02": {
+    "items": [
+      [
+        "DEL-09-02-V3-01",
+        "NOT_SELECTABLE_UNTIL: Root WP-03/WP-05 fixtures and event schema v2 routed to App (Root DEL-02-07/DEL-02-10) and DEL-08-04-V3-01/DEL-08-05-V3-01 landed"
+      ]
+    ]
+  },
+  "DEL-09-03": {
+    "items": [
+      [
+        "DEL-09-03-V3-01",
+        "NOT_SELECTABLE_UNTIL: Root event schema v2 acceptance routed to App (Root DEL-02-10)"
+      ],
+      [
+        "DEL-09-03-V3-02",
+        "NOT_SELECTABLE_UNTIL: owner G6a exact-candidate ruling"
+      ]
+    ]
+  },
+  "DEL-09-04": {
+    "items": [
+      [
+        "DEL-09-04-V3-01",
+        "NOT_SELECTABLE_UNTIL: accepted Root supervisor/runtime bytes routed to App (Root DEL-02-07), the DEL-02-06 implementation act, and the G5 version-identity ruling"
+      ]
+    ]
+  },
+  "DEL-09-05": {
+    "items": [
+      [
+        "DEL-09-05-V3-01",
+        "SELECTABLE"
+      ],
+      [
+        "DEL-09-05-V3-02",
+        "SELECTABLE"
+      ],
+      [
+        "DEL-09-05-V3-03",
+        "SELECTABLE"
+      ],
+      [
+        "DEL-09-05-V3-04",
+        "NOT_SELECTABLE_UNTIL: owner authorization of the host self-signed identity creation (host act) and DEL-04-05-V3-01 landed"
+      ],
+      [
+        "DEL-09-05-V3-05",
+        "NOT_SELECTABLE_UNTIL: owner G6a exact-candidate ruling naming the exact artifact and lifting D-APP-97/F-APP-2 for that candidate"
+      ]
+    ]
+  },
+  "DEL-09-06": {
+    "items": [
+      [
+        "DEL-09-06-V3-01",
+        "SELECTABLE"
+      ],
+      [
+        "DEL-09-06-V3-02",
+        "NOT_SELECTABLE_UNTIL: accepted Root/App account/consent contract and the K-NET-1 exact endpoint set routed to App (Root DEL-02-09/DEL-02-10)"
+      ],
+      [
+        "DEL-09-06-V3-03",
+        "NOT_SELECTABLE_UNTIL: DEL-09-05-V3-04 authorized (owner host act) and DEL-04-05-V3-01 landed"
+      ]
+    ]
+  }
+}

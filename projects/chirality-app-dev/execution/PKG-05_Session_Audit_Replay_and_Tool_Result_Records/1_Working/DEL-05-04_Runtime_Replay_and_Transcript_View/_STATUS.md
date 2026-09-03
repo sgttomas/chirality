@@ -1,7 +1,7 @@
 # Status: DEL-05-04
 
 **Current State:** IN_PROGRESS
-**Last Updated:** 2026-08-17
+**Last Updated:** 2026-09-03
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -10,6 +10,15 @@
 
 - None recorded. The daemon/client vertical-slice residual was closed by the
   accepted canonical replay/restart integration proof dated 2026-08-17.
+
+- **DEL-05-04-V3-01** (`NOT_SELECTABLE_UNTIL: accepted Root restart/resume and storage semantics routed to App (Root DEL-02-11) and DEL-05-01-V3-02 landed`) — present restart/resume continuity truthfully in the read-only replay lens.
+  Trace: OUT-001, AC-001, VER-001; DEL-05-04-REQ-014/016/018/019; applied decomposition row L325 (live versus replayed state and primary versus observational authority remain explicit).
+  Plan: WP-08; AT-036 presentation portion; G5 fan-in. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
+  Depends: Root DEL-02-11 accepted semantics (routed notice); DEL-05-01-V3-02; DEL-03-03-V3-01; DEP-05-04-005/006.
+  Write locus: `frontend/src/**` replay/projection surfaces and tests plus deliverable-local state.
+  Checks: registered frontend gates (typecheck, Vitest, `npm run validate:release-quality` build/premerge, D-APP-36 render bar for UI), APP-HOLD-1 dispatch preflight, `git diff --check`, repo-wide harness self-check and pytest, and the independent-review path (fresh read-only `TASK + software-code-review` PASS over 100% of the frozen diff before push); Step 0 must carry the A1 re-stage declaration because `frontend/` is touched.
+  Return: Fixtures proving a stored thread is presented as resumable only on exact root/account/policy match, otherwise fresh, and that read-only replay never implies in-flight re-attach; durable non-secret bytes sufficient for independent recomputation per the successor workplan's Evidence contract: exact input/source identities and cited-byte inventory; fixture/evaluator/validator bytes; command, arguments, cwd, effective environment, tool/runtime versions, and exit status; canonical stdout/stderr and machine-readable results; sorted manifests with recomputable hashes; cleanup proof for disposable state; and a bounded rerun method.
+  Removed when: the truthful presentation lands with G5 evidence.
 
 ## History
 - 2026-05-20 - State set to OPEN (PREPARATION)
@@ -66,3 +75,4 @@
   rather than a second runtime client and raw-buffer comparisons for legacy
   byte preservation. Final focused test/typecheck and independent backcheck
   passed at blob `310e0c9539dbac6af89159bd312b2a93a082689b`; closure remains accepted.
+- 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; v3 Remaining items seeded (1, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
