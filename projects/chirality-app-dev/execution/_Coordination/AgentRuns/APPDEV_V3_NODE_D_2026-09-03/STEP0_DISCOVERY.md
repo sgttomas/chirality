@@ -108,7 +108,7 @@ claim. No proof claim is made by this tranche.
   CLM-032; pre-amendment SHA-256
   `41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b`,
   post-amendment
-  `312cb00c36cf8b3bbfd0736c319c812ffbbe06a3a51918fd77fbd53fca259df6`);
+  `38469c3f3abb15e72cb3105288d4c09b594d46cdee50b23facccf15834815366`);
   a `legacySource` consumption marker makes the flat file a non-read input
   after materialization (reviewer F2); the list-abort regression is fixed
   (F3); D-APP-41 is historical on this one point and its files are not
@@ -133,4 +133,7 @@ claim. No proof claim is made by this tranche.
 
 Receipts 206 and 207 are not present on `main` at basis; the brief assigns
 this tranche Receipt 208 (parent `Receipt-205`), consistent with concurrent
-sibling nodes sharing the parent under ledger rule 7.
+sibling nodes sharing the parent under ledger rule 7. *(Closeout note: node
+E's Receipt 209 landed on `main` first and the ledger validator requires
+increasing IDs in physical append order, so this tranche's receipt is
+recorded as Receipt 210 with parent `Receipt-205`.)*

@@ -50,7 +50,7 @@
         "DEL-05-01 _STATUS.md History/Remaining",
         "HANDOFF_STATE.md",
         "MANIFEST.sha256",
-        "Receipt 208"
+        "Receipt 210 (brief said 208; ledger ordering after node E Receipt 209)"
       ],
       "fan_in": "rebase on origin/main, rerun typecheck + vitest + receipts validator + diff --check, push, PR against main, owner merge"
     }

@@ -80,6 +80,14 @@ over commit `3b6b4758bca7cd0e4ac84f9685052a0548c4ca2e`: 0 blocking / 1 major
 applied in the second local commit; N2 error-type proposal carried as a
 Root-routed residual. Deterministic gates reproduced by the reviewer.
 
+## Scope of Work identity (A13)
+
+`ScopeOfWork.md` SHA-256 pre-amendment
+`41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b` (the
+A12 seating-ledger pin) → post-amendment `38469c3f3abb15e72cb3105288d4c09b594d46cdee50b23facccf15834815366`
+(R010, CLM-012, CLM-032 incl. the superseded-by-reference list); SOW
+validator `PASS format=SOW_V1`.
+
 ## Checks
 
 See run record `CHECKS.json` (exact commands, cwd, exit codes). Pass/fail

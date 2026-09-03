@@ -12,7 +12,7 @@ implementer (`D1_IMPLEMENTER`, `software-bounded-implementation` method),
 frozen local commit, then one fresh read-only reviewer (`D2_REVIEWER`,
 `software-code-review` method) dispatched by the parent over 100% of the
 frozen diff; remediation loops until `REVIEW_PASS`.
-Graph version: `1`
+Graph version: `2`
 
 ## Objective (sealed)
 

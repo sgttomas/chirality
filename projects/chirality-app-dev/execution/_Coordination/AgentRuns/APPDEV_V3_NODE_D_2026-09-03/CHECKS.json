@@ -93,7 +93,7 @@
       "cwd": ".",
       "exit": 0,
       "status": "PASS",
-      "summary": "after the A13 amendment of R010 / CLM-012 / CLM-032: PASS format=SOW_V1; ScopeOfWork.md SHA-256 pre 41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b, post 312cb00c36cf8b3bbfd0736c319c812ffbbe06a3a51918fd77fbd53fca259df6"
+      "summary": "after the A13 amendment of R010 / CLM-012 / CLM-032: PASS format=SOW_V1; ScopeOfWork.md SHA-256 pre 41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b, post 38469c3f3abb15e72cb3105288d4c09b594d46cdee50b23facccf15834815366"
     },
     {
       "id": "git-diff-check",
@@ -149,7 +149,7 @@
       "cwd": ".",
       "exit": 0,
       "status": "PASS",
-      "summary": "rerun after A13: VALID (ledger unchanged; Receipt 208 is written only at closeout)"
+      "summary": "rerun after A13: VALID (ledger unchanged; the closeout receipt is written only at closeout — recorded as Receipt 210 after node E's Receipt 209 landed on main; validator VALID after the append)"
     }
   ],
   "deferred": [

@@ -22,7 +22,7 @@ destructive rewrite"). Under it this tranche (a) amended DEL-05-01
 (pre-amendment SHA-256
 `41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b`,
 post-amendment
-`312cb00c36cf8b3bbfd0736c319c812ffbbe06a3a51918fd77fbd53fca259df6`; SOW
+`38469c3f3abb15e72cb3105288d4c09b594d46cdee50b23facccf15834815366`; SOW
 validator `PASS format=SOW_V1`); (b) added the `legacySource` consumption
 marker (reviewer F2); (c) fixed the list-abort regression (reviewer F3);
 (d) re-froze for a fresh review. D-APP-41 stays historical on the single
@@ -113,7 +113,7 @@ dependencies, bulk migration, backup/rollback/cleanup (S-4).
 |---|---|
 | `projects/chirality-app-dev/frontend/src/lib/harness/session-manager.ts` | typed reader (+sha256), `inspect`, `listWithDiagnostics` (+`diagnostics`, resilience), `SessionRecordAccessError`, `legacySource` marker, non-destructive materialization |
 | `projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/**` (9 files) | representative 2.0.0 fixtures (unchanged since first freeze; inventory matches `FIXTURE_INVENTORY.sha256`) |
-| `projects/chirality-app-dev/frontend/src/__tests__/lib/session-manager-v2-legacy-access.test.ts` | evaluator, 26 tests: typed states, byte identity, idempotence, list diagnostics, precedence, marker, no-resurrection (F2), edited-source diagnostic (F2), list resilience (F3), fail-closed canonical, save, delete |
+| `projects/chirality-app-dev/frontend/src/__tests__/lib/session-manager-v2-legacy-access.test.ts` | evaluator, 21 tests (18 `it` + one `it.each` × 3): typed states, byte identity, idempotence, list diagnostics, precedence, marker, no-resurrection (F2), edited-source diagnostic (F2), list resilience (F3), fail-closed canonical, save, delete |
 | `projects/chirality-app-dev/frontend/src/__tests__/lib/session-manager.test.ts` | four post-access assertions changed from "flat file removed" to "flat file byte-identical" (now authorized by A13); delete contract test unchanged |
 | `projects/chirality-app-dev/execution/PKG-05_.../DEL-05-01_.../ScopeOfWork.md` | A13 amendment: R010, CLM-012 row, new CLM-032 |
 | `projects/chirality-app-dev/execution/PKG-05_.../DEL-05-01_.../Evidence/V3-01_v2_lazy_access_2026-09-03/{BYTE_IDENTITY_PROOF.md, FIXTURE_INVENTORY.sha256, focused_vitest_results.json, focused_vitest_stdout.txt}` | evidence packet (results regenerated: 38/38) |
@@ -122,7 +122,7 @@ dependencies, bulk migration, backup/rollback/cleanup (S-4).
 | `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/**` | this run record incl. `instances/D2_REVIEWER/REVIEW_ROUND_1.md`, `CHECKS.json`, `PREMERGE_RESULTS.json`, `WRITE_SCOPE_VALIDATION.json` |
 
 Deliverable `_STATUS.md`, `HANDOFF_STATE.md`, `MANIFEST.sha256`, and
-Receipt 208 are written only after `REVIEW_PASS` (brief order).
+the closeout receipt (210; the brief's 208 was superseded by ledger ordering) are written only after `REVIEW_PASS` (brief order).
 
 ## Byte-identity proof
 

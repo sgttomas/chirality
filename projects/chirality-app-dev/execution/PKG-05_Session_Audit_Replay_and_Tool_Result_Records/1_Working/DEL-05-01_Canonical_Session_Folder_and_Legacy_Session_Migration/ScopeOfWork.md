@@ -609,6 +609,32 @@ This Scope of Work defines `DEL-05-01` in service of project scope [SOW-009, SOW
 >   replaced by "flat-file retention with byte identity and canonical
 >   precedence" as stated in the row.
 >
+> The following pre-existing statements elsewhere in this Scope of Work still
+> read "removed"/"cleanup" for the flat record. They are **not rewritten**
+> (the literal amendments under A13 are exactly the two rows above); on the
+> single point of flat-record removal each is superseded by reference by
+> A13 and by amended R010, and is to be read as "retained byte-identical
+> with a `legacySource` consumption marker":
+>
+> - CLM-003 Attributes row "Legacy migration behavior in scope" ("... and
+>   removed after conversion");
+> - CLM-009 Scope, the sentence "... and removes the flat record. If both
+>   shapes exist, defined canonical values win, ..." and its "replaces the
+>   duplicate pair" clause;
+> - CLM-013 Documentation bullet "Duplicate folder/flat merge and cleanup
+>   test fixture";
+> - CLM-018 Steps, step 5 bullets "... and then removed as flat records" and
+>   "... the merged canonical file is written, and the flat record is
+>   removed" (the delete-surface bullet that removes "any stray flat
+>   duplicate for the same `sessionId`" is the delete contract and stands);
+> - CLM-018 Steps, test bullet "... canonical-precedence merge and flat-file
+>   cleanup";
+> - CLM-019 Verification row "Duplicate-shape cleanup" ("... and remove the
+>   flat record");
+> - VER-001's phrase "duplicate merge and cleanup";
+> - CLM-029 Pass 3 Rulings row F-001 ("... the flat record is removed after
+>   merge").
+>
 > D-APP-41 (Option D, eager legacy conversion; "migrating, archiving, or
 > removing the flat record according to the migration implementation") is
 > historical on this one point — flat-record removal — and otherwise

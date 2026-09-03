@@ -17,7 +17,7 @@ superseded in this tranche by owner ruling A13
 CLM-010/CLM-012 with the dated note CLM-032 (pre-amendment SHA-256
 `41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b`,
 post-amendment
-`312cb00c36cf8b3bbfd0736c319c812ffbbe06a3a51918fd77fbd53fca259df6`). This
+`38469c3f3abb15e72cb3105288d4c09b594d46cdee50b23facccf15834815366`). This
 packet proves retention with byte identity and canonical precedence, not
 removal.
 
