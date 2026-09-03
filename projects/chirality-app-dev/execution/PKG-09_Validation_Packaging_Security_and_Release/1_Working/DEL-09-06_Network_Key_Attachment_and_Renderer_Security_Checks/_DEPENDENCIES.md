@@ -45,11 +45,12 @@ Counts:
 | Dimension | Value | Count |
 |---|---|---:|
 | DependencyClass | ANCHOR | 6 |
-| DependencyClass | EXECUTION | 4 |
+| DependencyClass | EXECUTION | 5 |
 | DependencyType | OTHER | 6 |
 | DependencyType | PREREQUISITE | 3 |
 | DependencyType | ENABLES | 1 |
-| Status | ACTIVE | 10 |
+| DependencyType | INTERFACE | 1 |
+| Status | ACTIVE | 11 |
 | Status | RETIRED | 0 |
 
 ## Run Notes - 2026-05-20 Dependency Extract
@@ -79,6 +80,7 @@ Counts:
 | Timestamp | Mode | Strictness | Decomposition Path | Warnings | Active Rows |
 |---|---|---|---|---|---:|
 | 2026-05-20T21:02:16-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_HASH_MISMATCH; TBD_TARGETS | 10 |
+| 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | 11 |
 
 ## Lifecycle Summary
 
@@ -91,7 +93,6 @@ Counts:
 |---|---:|
 | PENDING | 1 |
 | TBD | 10 |
-| 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | 11 |
 
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 

@@ -10,9 +10,9 @@
 
 | State | Value | Meaning |
 |---|---|---|
-| `ApplicationState` | `COMPLETE_ON_CANDIDATE_BRANCH` | SOW re-basis (nineteen carriers), decomposition-conformant amendment (four), Remaining seeding (thirty items, ten `SELECTABLE`), eight additive dependency rows, successor workplan, A12 record, receipt, and run evidence are branch-applied and validated. |
+| `ApplicationState` | `COMPLETE_ON_CANDIDATE_BRANCH` | SOW re-basis (nineteen carriers), decomposition-conformant amendment (four), Remaining seeding (thirty-one items, nine `SELECTABLE`), eight additive dependency rows, successor workplan, A12 record, receipt, and run evidence are branch-applied and validated. |
 | `AuthorityState` | `SEATING_ONLY_NO_ACT_INFERRED` | A12 authorizes preparation only. Merge confers selectability only. No implementation, lifecycle, host-mutation, signing, release, publication, reliance, dependency-acceptance, or Root act is inferred or performed. |
-| `DerivativeState` | `CURRENT_WITH_NON_BLOCKING_AUDIT_WARNINGS` | Closure audit reproduces the Gate-5 warning set (one nine-node SCC, five isolates, one bidirectional pair) with one added edge; no cycle linearized. `MAPPING.md` §D lists six `SCOPE_AMENDMENT_REQUIRED` obligations left unseated. |
+| `DerivativeState` | `CURRENT_WITH_NON_BLOCKING_AUDIT_WARNINGS` | Closure audit reproduces the Gate-5 warning set (one nine-node SCC, five isolates, one bidirectional pair) with one added edge; no cycle linearized. `MAPPING.md` §D lists seven `SCOPE_AMENDMENT_REQUIRED` obligations left unseated. |
 | `NextGateState` | `OWNER_BYTE_REVIEW_THEN_MERGE` | HELP_HUMAN dispatches an independent reviewer over the PR; the owner reviews and merges or rejects. After merge, `LOOP_INIT.md`'s committed-HEAD selector picks `WORKPLAN_2026-09-03_app_dev_loop.md` and normal iterations may select only `SELECTABLE` items. |
 
 ## Concurrent sibling
@@ -26,10 +26,10 @@ and both carry `Parent-Receipt: Receipt-203` (ledger rule 7).
 ## Open owner gates and blockers (none lifted here)
 
 - Owner byte review and merge of this candidate.
-- `SCOPE_AMENDMENT_REQUIRED` S-1 … S-6 (`MAPPING.md` §D): DEL-04-01 App Server probe; DEL-09-04 two-job installer through runtime-control IPC; DEL-03-03 resume-continuity decision logic; DEL-05-01 consent/root-home migration and account-change invalidation; DEL-04-05 OAuth/device-code/keyring extension; repo-root workflow wiring for SBOM/notice tooling (write-scope grant).
+- `SCOPE_AMENDMENT_REQUIRED` S-1 … S-7 (`MAPPING.md` §D): DEL-04-01 App Server probe; DEL-09-04 two-job installer through runtime-control IPC; DEL-03-03 resume-continuity decision logic; DEL-05-01 consent/root-home migration, account-change invalidation, and session-migration backup/rollback; DEL-04-05 OAuth/device-code/keyring extension; repo-root workflow wiring for SBOM/notice tooling (write-scope grant); DEL-02-02 Codex role-entry UX and posture labels.
 - Root acceptances that unpark App items (routed notices required): DEL-02-09 account/consent contract; DEL-02-10 API v2 / event schema v2; DEL-02-07 supervisor (WP-03 fixtures); DEL-02-11 storage/resume semantics; DEL-02-08 G2 supply consumable by App.
 - Root R16/R17 holds: the ten DEL-02-06 bindings (`source_identity`, `implementation_act`, `cutover_act`, `release_act` unavailable); G0.5 incomplete; TM-ROOT-106/122 open and unruled (App side of TM-ROOT-122 answered by PR #680; combined echo pending on Root).
-- App holds: TM-APP-030 (G-HELPER bundle identity); D-APP-97 / F-APP-2 through preparation; G1 REVIEW; G3, G4, G5 verdicts; G6a exact-candidate ruling; owner host act for the self-signed identity (DEL-09-05-V3-04); owner scope grant for repo-root workflow wiring.
+- App holds: TM-APP-030 (G-HELPER bundle identity); D-APP-97 / F-APP-2 through preparation; G1 REVIEW; G3, G4, G5 verdicts; G6a exact-candidate ruling; owner ruling applying the 3.0.0-rc.1 version identity to product (DEL-09-05-V3-06); owner host act for the self-signed identity (DEL-09-05-V3-04); owner scope grant for repo-root workflow wiring.
 - A1 re-stage rule: any `frontend/` mutation by a later selectable item invalidates the staged R20 procedure for future proof claims (standing Step 0 declaration in the successor workplan).
 
 ## Rerun requirements

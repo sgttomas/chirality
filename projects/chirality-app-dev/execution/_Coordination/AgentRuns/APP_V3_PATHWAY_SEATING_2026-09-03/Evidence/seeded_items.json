@@ -11,7 +11,7 @@
     "items": [
       [
         "DEL-02-02-V3-01",
-        "SELECTABLE"
+        "NOT_SELECTABLE_UNTIL: DEL-08-05-V3-01 landed (recorded managed/native descendant records exist to present)"
       ],
       [
         "DEL-02-02-V3-02",
@@ -150,7 +150,7 @@
     "items": [
       [
         "DEL-09-04-V3-01",
-        "NOT_SELECTABLE_UNTIL: accepted Root supervisor/runtime bytes routed to App (Root DEL-02-07), the DEL-02-06 implementation act, and the G5 version-identity ruling"
+        "NOT_SELECTABLE_UNTIL: accepted Root supervisor/runtime bytes routed to App (Root DEL-02-07) and the DEL-02-06 implementation act"
       ]
     ]
   },
@@ -175,6 +175,10 @@
       [
         "DEL-09-05-V3-05",
         "NOT_SELECTABLE_UNTIL: owner G6a exact-candidate ruling naming the exact artifact and lifting D-APP-97/F-APP-2 for that candidate"
+      ],
+      [
+        "DEL-09-05-V3-06",
+        "NOT_SELECTABLE_UNTIL: owner ruling applying the 3.0.0-rc.1 version identity to product (a recorded A-series ruling)"
       ]
     ]
   },

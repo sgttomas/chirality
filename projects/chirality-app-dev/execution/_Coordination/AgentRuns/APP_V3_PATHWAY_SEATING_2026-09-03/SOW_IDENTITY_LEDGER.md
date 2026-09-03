@@ -1,6 +1,6 @@
 # SOW IDENTITY LEDGER — per-carrier pre/post SHA-256 (basis `8140daec7ab7165f8972451dbdd3a67b8bb2fd38`; pre-images are byte-identical between `1537ddad1` and `8140daec7` for every listed file)
 
-Pre-images were recorded before any write (`Evidence/pre_images.json`); post-images are the final candidate bytes. `ScopeOfWork.md` changes: `decomposition_basis` re-pinned from `@7b0be4d8772a16e5a4774a17988479587d00acca` to `@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f` on all nineteen; DEL-02-05, DEL-08-04, DEL-08-05, and DEL-09-05 additionally carry the applied row text (`CLM-0nn`), `OUT-002`, `REQ-*`, `AC-002`, `VER-002`, and one matrix row.
+Pre-images were recorded before any write (`Evidence/pre_images.json`); post-images are the final candidate bytes after the review-remediation commit. `ScopeOfWork.md` changes: `decomposition_basis` re-pinned from `@7b0be4d8772a16e5a4774a17988479587d00acca` to `@d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f` on all nineteen; DEL-02-05, DEL-08-04, DEL-08-05, and DEL-09-05 additionally carry the applied row text (`CLM-0nn`), `OUT-002`, `REQ-*`, `AC-002`, `VER-002`, and one matrix row.
 
 | Carrier | File | Pre SHA-256 | Post SHA-256 | Changed |
 |---|---|---|---|---|
@@ -9,20 +9,20 @@ Pre-images were recorded before any write (`Evidence/pre_images.json`); post-ima
 | DEL-01-01 | `_DEPENDENCIES.md` | `ca071c41b69eee34185423fa1250351b5ed7b8a80e271c1ab6a5933ed919a990` | `ca071c41b69eee34185423fa1250351b5ed7b8a80e271c1ab6a5933ed919a990` | no |
 | DEL-01-01 | `Dependencies.csv` | `7ad581ac68854aba4c81342c5b8638dbdd298a8260545e2e1da8227dd3b45e9e` | `7ad581ac68854aba4c81342c5b8638dbdd298a8260545e2e1da8227dd3b45e9e` | no |
 | DEL-02-02 | `ScopeOfWork.md` | `025d2deb127e468e44c6bc8bfd908cae7c1a4dbfdc694ae52601631b8997a165` | `d2ebaa417669bc146cd5a05134f3c7b4cb9656a268a3decb24216fd4bc787b09` | yes |
-| DEL-02-02 | `_STATUS.md` | `2e732a0004e63e96c9a3b9bb727d7ee41f5db556352889768dcfdc6fd4b8abb8` | `2f18297e33e3ef8bbd439c26bdf1e02d3fb9fcac883202cc79d4e5893f5601e0` | yes |
+| DEL-02-02 | `_STATUS.md` | `2e732a0004e63e96c9a3b9bb727d7ee41f5db556352889768dcfdc6fd4b8abb8` | `d6f3f8f8ad0a9a3ded65f8d351335a37f94b7e3f56564da50a2bdc7afbb91bc6` | yes |
 | DEL-02-02 | `_DEPENDENCIES.md` | `77360b1b8f8ba69f594ba7ab10c013d21a01836d0d78fa0ae105e3867931a925` | `77360b1b8f8ba69f594ba7ab10c013d21a01836d0d78fa0ae105e3867931a925` | no |
 | DEL-02-02 | `Dependencies.csv` | `ccc6f4018a0c61eb3ff59105080bf3f6cd807c2a326a67d2a5f4d5998cafeb92` | `ccc6f4018a0c61eb3ff59105080bf3f6cd807c2a326a67d2a5f4d5998cafeb92` | no |
-| DEL-02-05 | `ScopeOfWork.md` | `8f35e235d31700262aca2d66108560eac7d9ade8b723c30c8781e737260ca318` | `f2c4c8f37abf30f10edab49127dd01c625e3554465606ab3a6af1c933a777087` | yes |
-| DEL-02-05 | `_STATUS.md` | `0a8026a73416f04948d2ed7d6c1671f9197f2caefbbb04985e86b981eb2aaad1` | `b8cc4d43162b711f231190ba1736a514c60234c6046c879f2135a037d62ec186` | yes |
+| DEL-02-05 | `ScopeOfWork.md` | `8f35e235d31700262aca2d66108560eac7d9ade8b723c30c8781e737260ca318` | `1ccd0af3e978ea524f949c342b5f557ace139bb419935acf1bfa4d67f68f641d` | yes |
+| DEL-02-05 | `_STATUS.md` | `0a8026a73416f04948d2ed7d6c1671f9197f2caefbbb04985e86b981eb2aaad1` | `52e1716cb892078e0bdc267cd22df3f159d12ddd994c8d8316a5558ede93c225` | yes |
 | DEL-02-05 | `_DEPENDENCIES.md` | `e172982d34981ce52f04d8776c53d2a09712559ae648f660923b4457d0fc080e` | `e172982d34981ce52f04d8776c53d2a09712559ae648f660923b4457d0fc080e` | no |
 | DEL-02-05 | `Dependencies.csv` | `c39a3d533bf5f811f35d3a3b7fbfd839e7c1baedc28607cc4d59ad9eb200b8d0` | `c39a3d533bf5f811f35d3a3b7fbfd839e7c1baedc28607cc4d59ad9eb200b8d0` | no |
 | DEL-03-01 | `ScopeOfWork.md` | `1a7f499140c373a7ccd0ce725b64321e22a45dc4a9f160f2b1f2730d3a6078e7` | `af937db155c3c16a9db11f1455037857204041965e60d1915dae84dc0dd37e25` | yes |
 | DEL-03-01 | `_STATUS.md` | `a53f2f700c7457ce0d36ec10ce203fc952ce78936c1f32ec932df4f344ef67f0` | `fb3c566317eaae03e28e90a8615119aa316a86a4a128485cb3a598833c3969db` | yes |
-| DEL-03-01 | `_DEPENDENCIES.md` | `447f238ab72db6445a7e79272bc4e4d82762f7b39f861ffd477a1e15ec915ae0` | `74082355c0d4dd72a2d4dcef51c5aad6bd6f11ea6e070a7771fa1650d720de24` | yes |
+| DEL-03-01 | `_DEPENDENCIES.md` | `447f238ab72db6445a7e79272bc4e4d82762f7b39f861ffd477a1e15ec915ae0` | `e5cd441b142acff2f78dcde2a0df530f2086d1d1adff6672964303ceb3f7a07a` | yes |
 | DEL-03-01 | `Dependencies.csv` | `4bc58801f8ebe8d22b8af5914329e7a1623ae00b6fa6d94ec86217fbf30f82cd` | `3392fdadb112cc11547275977146c4d61a9e71e72012fe552548e8b04e60604c` | yes |
 | DEL-03-03 | `ScopeOfWork.md` | `43fedd78ec4fa33e62a2b47f2180a4866f897d1eb4d84f05a1b69f2e46debba5` | `48d26af8b28b335e5606b610c8cd89c4fc093c45d0054f381e587a2d556d76be` | yes |
 | DEL-03-03 | `_STATUS.md` | `2baf14877039f4f134b88779ba7ededc25b54704fc8bd826cf5dc25350362768` | `238c7b64f6cc5e2217041f61d4cf2ae1ebcc49dd3d427c252bb7ca68aafedb91` | yes |
-| DEL-03-03 | `_DEPENDENCIES.md` | `5ba376e5a1fb4cd12cb9aa17bad5f31d0550268c6e780803a4ab4b2d24598a32` | `0e3089a1f770f85ae87c1a6602a27e380d789b862041444663d3ed7919b46e06` | yes |
+| DEL-03-03 | `_DEPENDENCIES.md` | `5ba376e5a1fb4cd12cb9aa17bad5f31d0550268c6e780803a4ab4b2d24598a32` | `7d710156423ea3da733a2c0198063477450ee9fc3361165fdca411fb59d650c4` | yes |
 | DEL-03-03 | `Dependencies.csv` | `9463cd422f31946ac4fbc6b4ee22f3e57e2808d686ddc692c212ba80a8cf298e` | `8f1414c2da3016be4b41642abcee245bebd390f52f73add8fcecca8cb9d0272e` | yes |
 | DEL-04-01 | `ScopeOfWork.md` | `3b888619d2d7a92e60f448164d1e265a845c901c5c5243f1cbc0f1b95708a187` | `8371ce85cec3f7bb04d743284a1450845719da4acdf7289dde8127a8fe508272` | yes |
 | DEL-04-01 | `_STATUS.md` | `dba44126394ad5a349bfbbab2ba9c61a8548aec4315a361226d4f5a9c2fdff0f` | `6fc7cd2d1fe645152b8b388c406e967edf0eb975c5889a9e3644fc0b7c061bd8` | yes |
@@ -30,27 +30,27 @@ Pre-images were recorded before any write (`Evidence/pre_images.json`); post-ima
 | DEL-04-01 | `Dependencies.csv` | `808bc1cca28391574c72690bab79f05b5b8e23d93ef3abd401d075a94f7f62f0` | `808bc1cca28391574c72690bab79f05b5b8e23d93ef3abd401d075a94f7f62f0` | no |
 | DEL-04-05 | `ScopeOfWork.md` | `8e2402e36d565c8869faf3fb10b866d76472f5cf5e37f2a93296e5e5d87f5953` | `5860e66f0e6199fec387c2a34e66d0ffc0c902af7a7b9a21ad17d9e3d9d28953` | yes |
 | DEL-04-05 | `_STATUS.md` | `b4ff70127517d526156314ba6a4a9ac54086ff732195f3d3137a8041b1045792` | `7055907391f55abda67cad6892ac0885ef234401504392ba950dde1dcf9596ee` | yes |
-| DEL-04-05 | `_DEPENDENCIES.md` | `f4acd2ed47baca792e2c9cf131ac7971f3efdc97df5534613efdfb72772233e3` | `6278e16c0d6bec98e6dcd0f58d7e9a33d87e3676a7b0a43a7a6bc7384fbf7df0` | yes |
+| DEL-04-05 | `_DEPENDENCIES.md` | `f4acd2ed47baca792e2c9cf131ac7971f3efdc97df5534613efdfb72772233e3` | `35b90b2bed48f51df5b7bf2b32e778bdbd4e481344d472eb4f120973b2d21152` | yes |
 | DEL-04-05 | `Dependencies.csv` | `3ec766a147205f72235758750ada4aa498a964598ea9e44ce556b12efdd57c91` | `a850ded5e25c19e332d3321642229ab1cb07abcd96ed5cea9d0a2310e1b06ae7` | yes |
 | DEL-05-01 | `ScopeOfWork.md` | `e2d7dd754f30c3d663982262c592c7a716374bad538a6a94f24661562dcd16f1` | `41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b` | yes |
-| DEL-05-01 | `_STATUS.md` | `2eda2ba5fbaa00c79bedef37b8d43dab8c0e77c3f5108de7c53ac2282d841fc1` | `820e0ca43fc975b2c605ec03f65be2b394eee6e03066d972ac7984486dc588da` | yes |
-| DEL-05-01 | `_DEPENDENCIES.md` | `5a62c8f9f908e1c20e162bd8ffacb54287de2c451c6c05e2551b81d42d52d3d7` | `ebc7d2608a6488ce5cc14fe594548b643b63102d24fceeffe587b7f90ecad790` | yes |
+| DEL-05-01 | `_STATUS.md` | `2eda2ba5fbaa00c79bedef37b8d43dab8c0e77c3f5108de7c53ac2282d841fc1` | `3fdcc6d2e47648a567596d4719c22bcc884d5c5d5be342cec17c04b5d18ac67c` | yes |
+| DEL-05-01 | `_DEPENDENCIES.md` | `5a62c8f9f908e1c20e162bd8ffacb54287de2c451c6c05e2551b81d42d52d3d7` | `6290adb28770259cb3d29b28ceeccab305ed6ce6015675b9d865704bcae33700` | yes |
 | DEL-05-01 | `Dependencies.csv` | `dd301b76f40d96b4646ad10e25b986fe3d51149e8e4c072d69453e62eb5e32c0` | `089a9b052fad02d1f84c43cfeb1b6459e5e95dddeaec68be84c3ff7d660cdf7b` | yes |
 | DEL-05-02 | `ScopeOfWork.md` | `89285b904de6ef648ae30cd3cf71ef45f9fc82c90cfa5328abdd378860ba583b` | `0f6fd40db00c4517b0c60220bcadb875396bf6788e4b973fe821f04e1d7ae3fc` | yes |
 | DEL-05-02 | `_STATUS.md` | `c0fcef9c7974a008b5600bf3f1feac6af53704c8ed7f94a5aefaccdfb96934d5` | `510126f072cab4ba3525ca7c828e30bb571f8dcdd725bb52d6e14129cad4a53f` | yes |
-| DEL-05-02 | `_DEPENDENCIES.md` | `833721126ead7d8e39cb489921f1426843eabf8b0fc9be653169a9b5c9034de1` | `bfb953864210a22a7bbdce9ac6079f4cd4282dc10e691ea1051a33047f76a187` | yes |
+| DEL-05-02 | `_DEPENDENCIES.md` | `833721126ead7d8e39cb489921f1426843eabf8b0fc9be653169a9b5c9034de1` | `f89e5f40240fac304aca71c49cfca965b38417693c4013e5717866152ff5b9af` | yes |
 | DEL-05-02 | `Dependencies.csv` | `59afaae97e038138990716c8c9e696ac8ee429988897349dcb033f8a53b91b7e` | `27ede0704416b2c0ffafeefd77fcd31a27ba7dc7d110c36bb26a90f876bb6269` | yes |
 | DEL-05-03 | `ScopeOfWork.md` | `4b48f3e5ae7789e093590c4d200143e8ab98860bc88b9180480fe14abe7980ec` | `42da11c5ee2a472e396d7a72a5825e5c77b6daeb3ee759bcc926bd7b36224c0e` | yes |
 | DEL-05-03 | `_STATUS.md` | `d946840d50007d3430ba2eb2964a237bab1a03fd1f48426c9c27367496477605` | `d5e44706afab6dc0a53ba37c137e38b761dece4787d89099a0b6094a47543fa7` | yes |
-| DEL-05-03 | `_DEPENDENCIES.md` | `138516ff541adc82eaf2690aaeda171aacf2647efe6434ffc6e44ec2c78da06c` | `dd7472cbaf9409ba2fd9c38906eb8721ed5521daa1263e1019160b85af3cfa23` | yes |
+| DEL-05-03 | `_DEPENDENCIES.md` | `138516ff541adc82eaf2690aaeda171aacf2647efe6434ffc6e44ec2c78da06c` | `add981e576d210ba70a28aa8e732fb1361953b902c4f1ce19aa70fe3c0edb5a2` | yes |
 | DEL-05-03 | `Dependencies.csv` | `bed557bd3f97e29955966092a543796dcfdbfcd5ec84a92a7772db4fa8da0fa9` | `53906f9fd9e8840f1b12f91ea5e411c18cee0c2c0a5d031d81a1844728ddf58a` | yes |
 | DEL-05-04 | `ScopeOfWork.md` | `7bc53e710560f97cd595ebdc8c16461d28cf43cea008693322f49c18b3a97066` | `ddc377750334179ceb5a0978569895421f8f643f233559349528bc4c5b76a0ec` | yes |
-| DEL-05-04 | `_STATUS.md` | `cfaa722298f653792245ad40122021532bb6d0b5a45886a1d76e1aaeedc82e31` | `5c25f260dfd0035542bda7226359751d569c736813570920824830eece297864` | yes |
+| DEL-05-04 | `_STATUS.md` | `cfaa722298f653792245ad40122021532bb6d0b5a45886a1d76e1aaeedc82e31` | `910d8b95ea611419fe42cf0a397e179d33c937004770e64c17001830b7bf1812` | yes |
 | DEL-05-04 | `_DEPENDENCIES.md` | `40a52fc8e9e53951ccf796c9d45e1cfdd07d6527c58dd93d59c1bdc1fce7a1e0` | `40a52fc8e9e53951ccf796c9d45e1cfdd07d6527c58dd93d59c1bdc1fce7a1e0` | no |
 | DEL-05-04 | `Dependencies.csv` | `0c6a840c28a74ff2c4f1c108f8b116da1643a0ecd0331792dbff0fd542c8d1f7` | `0c6a840c28a74ff2c4f1c108f8b116da1643a0ecd0331792dbff0fd542c8d1f7` | no |
 | DEL-08-04 | `ScopeOfWork.md` | `da325e43f2dbd0f252d52e34055c5cf400698616ec53b93445a64eb16e984e73` | `ccc5b98f45a8ac3b524cfee197b804fc6a28dc728ac00283125751c7befaec0b` | yes |
 | DEL-08-04 | `_STATUS.md` | `0a60e895113bcfdf530e9c27b260ece9e7364b91a955523d1d2a4eeb6f2ac9bb` | `144554389a19bc2e5cc1597d43b64804506a565855002a234966eb81af6180c5` | yes |
-| DEL-08-04 | `_DEPENDENCIES.md` | `7ab03891926a848b8f498505ee7895fe98324b26497c11defc591514881d0ba9` | `cdaa6bb5a2d6f05e84a2311805cea810322ae06981d36cdb73064159f8a18444` | yes |
+| DEL-08-04 | `_DEPENDENCIES.md` | `7ab03891926a848b8f498505ee7895fe98324b26497c11defc591514881d0ba9` | `e4c5ec7bc2efcffb534a04abf34054b64345ba10c075fb379ef833926199360b` | yes |
 | DEL-08-04 | `Dependencies.csv` | `6c838e527a0f45f26dd12ae8ff15724369be23a8fce2f15114c9abf46ad9c9ed` | `1f7c06a2d49689c9dc3ea7fb778c6763ab96b3ea929426e5d9269c3198612400` | yes |
 | DEL-08-05 | `ScopeOfWork.md` | `725a951db12ee938d49cc47ca91f3c7c9af8026e4d729a23e2a19d5d55408ebe` | `3c39bb4fac92625e114fc8df48acb028e087a7bc98575216b6d4d29ff0e88588` | yes |
 | DEL-08-05 | `_STATUS.md` | `969d56ef7d6e02c8f2850676120a492f8bc2c287783fe0cee408c92cfa215379` | `279f5e1448b0b5fe2be8de57bab6273dc5e73598186b79d688261f1f58dee700` | yes |
@@ -69,16 +69,16 @@ Pre-images were recorded before any write (`Evidence/pre_images.json`); post-ima
 | DEL-09-03 | `_DEPENDENCIES.md` | `3de09fcddb6f0bd1148211715af1bd11f25bb885f4f8f87a816801d3ea0a5a37` | `3de09fcddb6f0bd1148211715af1bd11f25bb885f4f8f87a816801d3ea0a5a37` | no |
 | DEL-09-03 | `Dependencies.csv` | `39760b186bae0ff8bd1809f149c6bc01dc146529d8074130dc3466575aa93be9` | `39760b186bae0ff8bd1809f149c6bc01dc146529d8074130dc3466575aa93be9` | no |
 | DEL-09-04 | `ScopeOfWork.md` | `3692eec8e5fc8720c5615e6e5bae970e84bb40afe4bb6a2c09c88c3c632bdd8d` | `c6372485300daf51aa3b6ce30192ee270e12ef3e7a4c79757ee2195d7860145d` | yes |
-| DEL-09-04 | `_STATUS.md` | `04f5199dda71876c8f3545d5917417e954f66bb97ebd8502150c1eb5c3b28f3e` | `2eae991affe10a9ad140ae62762c01adede942022b5a206e35c414df1ffefd16` | yes |
+| DEL-09-04 | `_STATUS.md` | `04f5199dda71876c8f3545d5917417e954f66bb97ebd8502150c1eb5c3b28f3e` | `8331ed1afa1811eb9a506363d6b33fc68338875336104f56942551720840128d` | yes |
 | DEL-09-04 | `_DEPENDENCIES.md` | `20f8f5e35713d0f0bb1ffd629e75156c71321615f125a3e2ad5c04881fd0c7df` | `20f8f5e35713d0f0bb1ffd629e75156c71321615f125a3e2ad5c04881fd0c7df` | no |
 | DEL-09-04 | `Dependencies.csv` | `27b30fb0fb729b9194912094731d22d301fe7f3dcf5408e3211b7c35011c0cbe` | `27b30fb0fb729b9194912094731d22d301fe7f3dcf5408e3211b7c35011c0cbe` | no |
 | DEL-09-05 | `ScopeOfWork.md` | `cd79f725ee5838991f352412a56f8d8d4be22ad640d28eab273a3c0c8c785305` | `c8fcb1c4bc64e9816bdddf21985112b71d4f63d6f92fc2b46352d859dbc44b1f` | yes |
-| DEL-09-05 | `_STATUS.md` | `17c79dfecb8707c05eb46617f2da0df94bc04bb9bb3e10f1f0c35a14c5fcab86` | `96047ef91bf2fa8ee52700123a7d62f36cc1c0e4ff39f8ed8ecee6a56a92a26b` | yes |
+| DEL-09-05 | `_STATUS.md` | `17c79dfecb8707c05eb46617f2da0df94bc04bb9bb3e10f1f0c35a14c5fcab86` | `f2674f7a43291d4acb0f6c86ee56d8d6542f41ee03ca280b66ab2dc90b4e03a7` | yes |
 | DEL-09-05 | `_DEPENDENCIES.md` | `7ef05ed38b1e15278d0331f6c4ace1dc994e69fb792e057b971d2d846a545b3f` | `7ef05ed38b1e15278d0331f6c4ace1dc994e69fb792e057b971d2d846a545b3f` | no |
 | DEL-09-05 | `Dependencies.csv` | `bde522ad79fb274157fe2bfa27ae527bb6c8715ed167235cf89a6576a8310afb` | `bde522ad79fb274157fe2bfa27ae527bb6c8715ed167235cf89a6576a8310afb` | no |
 | DEL-09-06 | `ScopeOfWork.md` | `10db25a90079a50e78bd3129ff82013609ee337e1b3cbd9d9bd100eddf8490f1` | `1fed47a10b3f480a545947e6cf1d60ef7e150f166caceb4a26c0267f92dde652` | yes |
-| DEL-09-06 | `_STATUS.md` | `00e22f32f8bb54213c99910dc8f768aa94adb9593f071c9214cb439649f11488` | `3db4a602316c59d0fca6563caeafd0d465a24e570b5e08093c0293b6a8952d26` | yes |
-| DEL-09-06 | `_DEPENDENCIES.md` | `e9a253266881488e7c61674f42ef2d268c621922ffe17254effa0b785cf3412c` | `fc0bba7f1403487f679673ca723aae6f83f34cb1a1f49e84dc305f3315176a9c` | yes |
+| DEL-09-06 | `_STATUS.md` | `00e22f32f8bb54213c99910dc8f768aa94adb9593f071c9214cb439649f11488` | `30d42967e441981a421dc3fc2e12436eab1b0341bdf59cf6b989d458db3661de` | yes |
+| DEL-09-06 | `_DEPENDENCIES.md` | `e9a253266881488e7c61674f42ef2d268c621922ffe17254effa0b785cf3412c` | `c91d2c1574fb314b1e643b146ebbb0d26727021038ee7e510713732e695e3738` | yes |
 | DEL-09-06 | `Dependencies.csv` | `d992c5005c257e303502a775476a7b04b3e86a17c83fcf7a3a71109b75f470ed` | `931fabd6aa7bc591865b7bd0e8b3446d5a9f2c53a82347ee784432265f9cbfb1` | yes |
 
 ## Seeded items per carrier
@@ -86,7 +86,7 @@ Pre-images were recorded before any write (`Evidence/pre_images.json`); post-ima
 | Carrier | Items seeded | SELECTABLE | IDs |
 |---|---:|---:|---|
 | DEL-01-01 | 1 | 1 | DEL-01-01-V3-01 |
-| DEL-02-02 | 2 | 1 | DEL-02-02-V3-01, DEL-02-02-V3-02 |
+| DEL-02-02 | 2 | 0 | DEL-02-02-V3-01, DEL-02-02-V3-02 |
 | DEL-02-05 | 3 | 2 | DEL-02-05-V3-01, DEL-02-05-V3-02, DEL-02-05-V3-03 |
 | DEL-03-01 | 1 | 0 | DEL-03-01-V3-01 |
 | DEL-03-03 | 1 | 0 | DEL-03-03-V3-01 |
@@ -102,5 +102,5 @@ Pre-images were recorded before any write (`Evidence/pre_images.json`); post-ima
 | DEL-09-02 | 1 | 0 | DEL-09-02-V3-01 |
 | DEL-09-03 | 2 | 0 | DEL-09-03-V3-01, DEL-09-03-V3-02 |
 | DEL-09-04 | 1 | 0 | DEL-09-04-V3-01 |
-| DEL-09-05 | 5 | 3 | DEL-09-05-V3-01, DEL-09-05-V3-02, DEL-09-05-V3-03, DEL-09-05-V3-04, DEL-09-05-V3-05 |
+| DEL-09-05 | 6 | 3 | DEL-09-05-V3-01, DEL-09-05-V3-02, DEL-09-05-V3-03, DEL-09-05-V3-04, DEL-09-05-V3-05, DEL-09-05-V3-06 |
 | DEL-09-06 | 3 | 1 | DEL-09-06-V3-01, DEL-09-06-V3-02, DEL-09-06-V3-03 |

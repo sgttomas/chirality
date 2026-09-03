@@ -54,10 +54,11 @@ TBD - no accepted dependency edges have been extracted yet.
 | ACTIVE rows | 8 |
 | RETIRED rows | 1 |
 | ANCHOR rows | 2 |
-| EXECUTION rows | 6 |
+| EXECUTION rows | 7 |
 | SATISFIED rows | 3 |
 | PENDING rows | 5 |
 | TBD satisfaction rows | 0 |
+| NOT_APPLICABLE rows (retired) | 1 |
 
 ## Run Notes - 2026-09-03 v3 pathway seating (additive UPDATE)
 

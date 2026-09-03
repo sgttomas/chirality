@@ -66,6 +66,7 @@ TBD - no accepted dependency edges have been extracted yet.
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE rows |
 |---|---|---|---|---|---:|
 | 2026-05-20T19:41:22-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | REF-006_HASH_MISMATCH; UNKNOWN_TBD_RETAINED | 13 |
+| 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | 13 |
 
 ## Lifecycle Summary
 
@@ -74,15 +75,14 @@ TBD - no accepted dependency edges have been extracted yet.
 | ACTIVE rows | 13 |
 | RETIRED rows | 1 |
 | ANCHOR rows | 5 |
-| EXECUTION rows | 8 |
-| UPSTREAM rows | 12 |
+| EXECUTION rows | 9 |
+| UPSTREAM rows | 13 |
 | DOWNSTREAM rows | 1 |
 
 | SatisfactionStatus | Count |
 |---|---:|
 | SATISFIED | 9 |
 | PENDING | 4 |
-| 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | 13 |
 
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 

@@ -8,8 +8,9 @@
 
 ## Remaining
 
-- None recorded. The daemon/client vertical-slice residual was closed by the
-  accepted canonical replay/restart integration proof dated 2026-08-17.
+- Prior scope note (closed 2026-08-17; see History): the daemon/client
+  vertical-slice residual was closed by the accepted canonical replay/restart
+  integration proof; no pre-v3 residual remains. The v3 items follow.
 
 - **DEL-05-04-V3-01** (`NOT_SELECTABLE_UNTIL: accepted Root restart/resume and storage semantics routed to App (Root DEL-02-11) and DEL-05-01-V3-02 landed`) — present restart/resume continuity truthfully in the read-only replay lens.
   Trace: OUT-001, AC-001, VER-001; DEL-05-04-REQ-014/016/018/019; applied decomposition row L325 (live versus replayed state and primary versus observational authority remain explicit).

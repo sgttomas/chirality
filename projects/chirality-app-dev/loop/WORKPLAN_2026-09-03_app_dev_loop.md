@@ -4,7 +4,8 @@
 > 2026-09-03 as the App counterpart of Root ruling R17 under the owner's A12
 > selection (`plans/steers/chirality_app_v3_app_ruling_record_a12_2026-09-03.md`);
 > supersedes `WORKPLAN_2026-07-18b_app_dev_loop.md` in this directory, carried
-> forward verbatim in substance except the clauses marked *(A12)*. This plan
+> forward verbatim except the clauses marked *(A12)*, with the carry-forward gated
+> by an independent verifier (the review over the seating PR). This plan
 > never authorizes work: owner rulings and directions do. Sources govern on any
 > disagreement. This file is the project's single development-loop instruction
 > surface — PROTOCOL plus pointer indexes; it carries NO status, NO work
@@ -238,13 +239,9 @@ prose summary or remembered digest is not acceptance evidence.
 - **F-APP-1 (provider/network):** no provider or network expansion beyond the Anthropic
   path; no remote MCP, plugin, or broad tool-search enablement without a fresh ruling
   (F1 as amended by D-APP-44: owner-permitted, default-closed provider/residency
-  configuration). The exact accepted OpenAI account, model, and turn service endpoints
-  named by App `docs/CONTRACT.md` K-NET-1 for the delegated-harness adapter become
-  usable only through the gates their carriers name; nothing else is added *(A12)*.
+  configuration).
 - **F-APP-2 (release/distribution):** no signing, notarization, publication, external
-  distribution, or release-readiness / professional / certification claims. D-APP-97
-  and F-APP-2 remain active through WP-09 preparation and lift only at G6a against the
-  exact owner-named candidate *(A12)*.
+  distribution, or release-readiness / professional / certification claims.
 - **F-APP-3 (domain-engine boundary):** domain-engine work happens only inside what the
   tier-0 bridge loop's ruled decisions grant (the `D-APP-4x` F-series rows); this loop
   never writes `_DomainEngines/**` or piping surfaces, and never advances integration
@@ -254,13 +251,22 @@ prose summary or remembered digest is not acceptance evidence.
   deliverable folders (`_STATUS.md` `## Remaining`); owner decisions live in
   `execution/_Coordination/_DECISIONS/_REGISTER.md`; no new standing plan, queue,
   register, or status surface is created without an owner ruling. `plans/` is a
-  historical archive — never select work from it; the pinned completion reference is
-  cited for meaning only *(A12)*.
+  historical archive — never select work from it.
 - **Fresh-ruling stops** (carried from the pre-consolidation coordination record):
   Pi-backed execution (unapproved after D-APP-01/02); concrete non-Anthropic provider
   implementation or routing; write/edit/bash/tool-execution exposure beyond the current
   approved item; changes to the project-truth model for sessions, transcripts, chats,
   runtime logs, or completion logs; professional-boundary or release-readiness posture.
+
+*A12 note (agent-authored observation beside the fences, not fence text; the fence
+bullets above are carried from the 2026-07-18b plan verbatim):* under F-APP-1, App
+`docs/CONTRACT.md` K-NET-1 names exact accepted OpenAI account, model, and turn
+service endpoints for the delegated-harness adapter; they become usable only through
+the gates their carriers' `Remaining` items name, and nothing else is added. Under
+F-APP-2, D-APP-97 and F-APP-2 remain active through WP-09 preparation and lift only at
+G6a against the exact owner-named candidate (G0 D2). Under F-APP-5, the pinned
+completion reference is cited for meaning only. Any change to fence wording itself is
+an owner act.
 
 ## Where live work is re-derived (pointer index — never a status surface)
 

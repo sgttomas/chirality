@@ -39,7 +39,7 @@ Source register: `Dependencies.csv` v3.1
 | ACTIVE rows | 12 |
 | RETIRED rows | 1 |
 | ANCHOR rows | 5 |
-| EXECUTION rows | 7 |
+| EXECUTION rows | 8 |
 
 ### Active Rows
 
@@ -76,6 +76,7 @@ Source register: `Dependencies.csv` v3.1
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE rows |
 |---|---|---|---|---|---:|
 | 2026-05-20T19:41:22-06:00 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` located and used | REF-006_HASH_MISMATCH | 12 |
+| 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | 12 |
 
 ## Lifecycle Summary
 
@@ -89,7 +90,6 @@ Source register: `Dependencies.csv` v3.1
 | PENDING | 1 |
 | NOT_APPLICABLE | 6 |
 | TBD | 6 |
-| 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | 12 |
 
 ## D-APP-56 R5 P45 current register summary (2026-07-12)
 

@@ -8,10 +8,10 @@
 
 ## Remaining
 
-- None for the selected D-APP-97 packaged-artifact network, key-attachment,
-  and renderer-security scope. Deliverable lifecycle and dependency closure
-  remain separate and unchanged; F-APP-2 continues to fence signing,
-  notarization, distribution, and release authority.
+- Prior D-APP-97 packaged-artifact network, key-attachment, and
+  renderer-security scope (closed 2026-08-20; see History): no pre-v3 residual
+  remains. F-APP-2 continues to fence signing, notarization, distribution, and
+  release authority. The v3 items follow.
 
 - **DEL-09-06-V3-01** (`SELECTABLE`) — sender authorization on all six credential IPC handlers plus G-CSP renderer-hardening evidence.
   Trace: OUT-001 (renderer network allowlisting; API key storage checks), AC-001, VER-001; DEL-09-06-REQ-002/003/005/006/014/015; applied decomposition row L369 (verify renderer allowlist, API key redaction/storage, endpoint policy, and no unauthorized expansion).

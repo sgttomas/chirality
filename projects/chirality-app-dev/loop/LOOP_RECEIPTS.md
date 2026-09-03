@@ -6188,8 +6188,10 @@
     SHA-256), `VALIDATION_EVIDENCE.md`, `HANDOFF_STATE.md`, and
     `MANIFEST.sha256`; nineteen carriers re-pinned to decomposition commit
     `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; Remaining items seeded:
-    thirty, of which ten `SELECTABLE`; eight additive dependency rows.
-  - Checks: `git diff --check` pass; SOW validator pass on all carriers;
+    thirty-one, of which nine `SELECTABLE`; eight additive dependency rows;
+    review remediation recorded in the PR body (receipt corrected before merge).
+  - Checks: `git diff --check` over the full base-to-head range pass (after
+    LF normalization of the closure-audit CSVs); SOW validator pass on all carriers;
     dependency schema and enum validation pass on the changed registers;
     closure audit parity with the Gate-5 audit pass; APP-HOLD dispatch
     preflight and register-match scan pass; authority corpus status no drift

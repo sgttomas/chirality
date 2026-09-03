@@ -26,7 +26,7 @@ Source register: `Dependencies.csv` v3.1
 | ACTIVE rows | 10 |
 | RETIRED rows | 1 |
 | ANCHOR rows | 5 |
-| EXECUTION rows | 5 |
+| EXECUTION rows | 6 |
 
 ### Active Rows
 
@@ -75,6 +75,7 @@ Source register: `Dependencies.csv` v3.1
 |---|---|---|---|---|---:|
 | 2026-06-21T03:00:20-06:00 | ADQ-05 | CONSERVATIVE | D-APP-38 current authority corpus and D-APP-40 runtime taxonomy applied | TBD_FIXTURE_CAPTURE | 10 |
 | 2026-05-20T19:30:40-06:00 | UPDATE | CONSERVATIVE | `Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` located and used | superseded source-state warning; TBD_FIXTURE_CAPTURE | 10 |
+| 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | 10 |
 
 ## Lifecycle Summary
 
@@ -88,7 +89,6 @@ Source register: `Dependencies.csv` v3.1
 | PENDING | 1 |
 | NOT_APPLICABLE | 6 |
 | TBD | 4 |
-| 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | 10 |
 
 ## D-APP-56 R5 P45 current register summary (2026-07-12)
 

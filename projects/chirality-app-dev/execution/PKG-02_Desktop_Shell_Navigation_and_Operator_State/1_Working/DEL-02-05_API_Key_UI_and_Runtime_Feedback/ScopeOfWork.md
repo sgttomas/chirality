@@ -231,7 +231,7 @@ security validation.
 - **REQ-004** — Agent 0/1/2 role entry shall remain available for Codex sessions; Agent 2/TASK shall be labelled `role not mechanically enforced` when G-ROLE fails; and the product posture shall be labelled `Opt-in Preview`.
 - **REQ-005** — Live claims remain gated by the accepted Root/App account/consent contract, G3, G-CSP, and G4; DEL-09-06 retains server-side attachment, network, key, credential-IPC, and renderer security validation.
 - **AC-001** — The Scope of Work preserves and traces all legacy source content to SOW-013, SOW-019, SOW-023, OBJ-001, and OBJ-008 without adding scope, reliance claims, lifecycle meaning, or obligations.
-- **AC-002** — The v3 account/consent outputs assigned by the applied decomposition row (API key and account settings panel, `HostedEngineConsentPort` UI adapter, per-root login and command-network consent controls, typed storage/runtime error display, consent/revocation and retry-state tests) exist and satisfy REQ-001 through REQ-005, and any live-account claim carries the accepted Root/App account/consent contract and G3/G-CSP/G4 evidence rather than being inferred.
+- **AC-002** — The v3 account/consent outputs assigned by the applied decomposition row (API key and account settings panel, `HostedEngineConsentPort` UI adapter, per-root login and command-network consent controls, attachment picker and preview chips, typed storage/runtime error display, consent/revocation and retry-state tests) exist and satisfy REQ-001 through REQ-005, and any live-account claim carries the accepted Root/App account/consent contract and G3/G-CSP/G4 evidence rather than being inferred.
 
 ## Production and Verification Method — Praxeology
 

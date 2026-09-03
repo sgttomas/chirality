@@ -48,7 +48,7 @@ TBD - no accepted dependency edges have been extracted yet.
 | DEP-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | RETIRED | `Procedure.md` |
 | DEP-04-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 docs/CONTRACT.md K-NET-1 accepted endpoint set and K-KEY-1 | ACTIVE | `ScopeOfWork.md` |
 
-Counts: 12 rows total (10 ACTIVE, 2 RETIRED); 6 ANCHOR, 6 EXECUTION. (Corrected 2026-07-18; see Run Notes.)
+Counts: 13 rows total (11 ACTIVE, 2 RETIRED); 6 ANCHOR, 7 EXECUTION. (Corrected 2026-07-18; recounted 2026-09-03 after DEP-04-05-013; see Run Notes.)
 
 ## Lifecycle Summary
 

@@ -8,7 +8,7 @@ only; detailed outputs live in the named evidence files.
 |---|---|---|---|
 | 1 | Basis gate | `git merge-base --is-ancestor 1537ddad1 origin/main`; `origin/main` = `8140daec7…` after PR #680 | PASS (branch re-based onto `8140daec7…`) |
 | 2 | Pin identities | `shasum -a 256` of the plan HTML (`b0a57a91…`), A11 (`6197bae1…`), `_LATEST.md` (`12c7758b…`); `git log -1 -- <decomposition>` = `d6f6cadb2` | PASS (all exact, re-verified after re-base) |
-| 3 | Whitespace | `git diff --check` | PASS |
+| 3 | Whitespace | `git diff --check 8140daec7ab7165f8972451dbdd3a67b8bb2fd38 HEAD` (full base-to-head range, exit 0, zero hits) | PASS — after the review-remediation commit; the first commit's closure-audit CSVs carried CR-at-EOL (the analyzer's `csv` writer emits `\r\n`), which fails this check (64 hits) and was normalized to LF to match the accepted Gate-5 audit evidence |
 | 4 | SOW validator | `python3 tools/scope_of_work/validate_scope_of_work.py <carrier>` for all nineteen carriers | PASS (`format=SOW_V1`) |
 | 5 | Deliverable consistency scan | `python3 tools/validation/scan_deliverable_consistency.py <carrier>` for all nineteen; baseline comparison for DEL-02-05 and DEL-09-06 against `HEAD` copies | PASS (exit 0; zero identity mismatches; marker counts unchanged versus baseline) |
 | 6 | Dependency schema | `python3 tools/validation/validate_dependencies_schema.py <Dependencies.csv>` for the eight changed registers | PASS |
@@ -28,5 +28,8 @@ only; detailed outputs live in the named evidence files.
 Deviations recorded: the receipt `Gate-Outcome` uses the validator's admissible
 token `AWAITING_OWNER` (the brief's `AWAITING_OWNER_BYTE_REVIEW` is not an
 admissible token under the D-APP-57 grammar); the count-table reconciliation
-in `_DEPENDENCIES.md` corrected pre-existing drift in six files (listed in
-`DEPENDENCY_REFRESH.md`).
+in `_DEPENDENCIES.md` corrected pre-existing drift in three files and the
+append-induced cells in all eight (listed exactly in `DEPENDENCY_REFRESH.md`);
+Receipt 205's `Checks` and `Pointers` records were corrected on the unmerged
+branch after the independent review (the first commit's whitespace claim did
+not hold for the base-to-head range).

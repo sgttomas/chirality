@@ -21,11 +21,11 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 | Metric | Count |
 |---|---:|
-| Total rows | 10 |
+| Total rows | 11 |
 | ACTIVE rows | 10 |
 | RETIRED rows | 1 |
 | ANCHOR rows | 3 |
-| EXECUTION rows | 7 |
+| EXECUTION rows | 8 |
 
 | DependencyID | Class | Direction | Type | TargetType | Target | Status |
 |---|---|---|---|---|---|---|

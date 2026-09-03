@@ -51,7 +51,16 @@ flow.
 - `python3 tools/validation/validate_enum.py <ENUM> <value>` on every enum field of each new row: PASS.
 - `tools/validation/validate_id_format.sh`: the generic three-digit profile rejects the accepted two-digit App identities (`[WARNING] PROJECT_ID_FORMAT_PROFILE`), the same finding recorded by the Gate-5 refresh; accepted decomposition IDs are preserved.
 - Parent anchor check: PASS on all eight (exactly one ACTIVE `IMPLEMENTS_NODE`).
-- `_DEPENDENCIES.md` count tables were reconciled to the CSV after the append. The reconciler also corrected pre-existing count drift that predates this tranche (recorded here rather than silently absorbed): DEL-03-01 (`ACTIVE rows`, `RETIRED rows`, `EXECUTION rows`, `PENDING rows` had not reflected the retired DEP-03-01-006), DEL-03-03 (retired DEP-03-03-009 uncounted), DEL-05-02 (retired DEP-05-02-007 uncounted), DEL-05-01 (`CONSTRAINT` type count), DEL-05-03 (`EXECUTION rows`, `UPSTREAM rows`), DEL-08-04 (`EXECUTION rows`, Lifecycle `ACTIVE`). Row bytes were not changed by the reconciler.
+- `_DEPENDENCIES.md` count tables were reconciled to the live CSV after the append, following each file's pre-existing convention (class, direction, type, and `Total rows` counts include RETIRED rows; `ACTIVE`/`RETIRED` count status; satisfaction counts follow the file's existing basis). Cells changed, exactly:
+  - DEL-08-04: `Total rows` 10→11; `ACTIVE rows` 9→10; `EXECUTION rows` 7→8; Lifecycle `ACTIVE` 9→10; `PENDING` 2→3.
+  - DEL-09-06: Counts `DependencyClass EXECUTION` 4→5; `Status ACTIVE` 10→11; added `DependencyType INTERFACE` 1; Lifecycle `ACTIVE` 10→11; added `PENDING` 1.
+  - DEL-05-01: `Total rows` 12→13; `ACTIVE rows` 11→12; `EXECUTION rows` 8→9; Lifecycle `ACTIVE` 11→12; added `PENDING` 1; added `DependencyType INTERFACE` 1 (`CONSTRAINT` stays 3).
+  - DEL-03-01: `EXECUTION rows` 6→7; `PENDING rows` 5→5 after correction (the pre-existing value 5 had over-counted by one and the new PENDING row restores it); `RETIRED rows` 0→1 and added `NOT_APPLICABLE rows (retired)` 1 — pre-existing drift from the retired DEP-03-01-006, corrected.
+  - DEL-03-03: `EXECUTION rows` 5→6; `RETIRED rows`/Lifecycle `RETIRED` 0→1, `NOT_APPLICABLE` 5→6, `TBD` 5→4, added `PENDING` 1 — the retired DEP-03-03-009 had been uncounted (pre-existing drift, corrected); `ACTIVE rows` stays 10 (9 pre-existing ACTIVE + 1).
+  - DEL-05-02: `EXECUTION rows` 7→8; `RETIRED rows`/Lifecycle `RETIRED` 0→1, `NOT_APPLICABLE` 5→6, `TBD` 7→6, added `PENDING` 1 — the retired DEP-05-02-007 had been uncounted (pre-existing drift, corrected); `ACTIVE rows` stays 12.
+  - DEL-05-03: `ACTIVE rows` 12→13; `EXECUTION rows` 8→9; `UPSTREAM rows` 12→13; `PENDING` 3→4.
+  - DEL-04-05: Counts line 12/10/6/6 → 13 rows total (11 ACTIVE, 2 RETIRED); 6 ANCHOR, 7 EXECUTION; Lifecycle `ACTIVE` 10→11; added `PENDING` 1.
+  Row bytes were not changed by the reconciliation. The 2026-09-03 Run History entry sits under `## Run History` in every file (a first-pass placement error that put it under `## Lifecycle Summary` in five files was corrected before publication; see the PR's review-remediation section).
 
 ## Closure audit (as in the Gate-5 run record)
 
