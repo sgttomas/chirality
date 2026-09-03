@@ -1,0 +1,45 @@
+{
+  "run_id": "APPDEV_V3_NODE_D_2026-09-03",
+  "version": 1,
+  "selection_authority": "OWNER_DEV_SLATE_SELECTION_2026-09-03",
+  "parent": "HELP_HUMAN",
+  "posture": "SEQUENTIAL_IMPL_THEN_INDEPENDENT_REVIEW",
+  "deliverable": "DEL-05-01",
+  "remaining_item": "DEL-05-01-V3-01",
+  "basis_sha": "0c683fb1657706316272951e4c3a0f7781b46009",
+  "branch": "codex/app-v3-nodeD-v2-session-access-2026-09-03",
+  "nodes": [
+    {
+      "id": "D1_IMPLEMENTER",
+      "role": "Agent 2 (ephemeral generalist)",
+      "method": "software-bounded-implementation",
+      "status": "IN_PROGRESS",
+      "depends_on": [],
+      "writes": [
+        "projects/chirality-app-dev/frontend/src/lib/harness/session-manager.ts",
+        "projects/chirality-app-dev/frontend/src/__tests__/**",
+        "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/**",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/**",
+        "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md (append only, closeout)"
+      ],
+      "fan_in": "typed failure states + byte-identity proof + preserved list/resume/delete; typecheck, full Vitest, diff --check, self-check, pytest, hold scan, corpus status pass; write-scope validation pass"
+    },
+    {
+      "id": "D2_REVIEWER",
+      "role": "Agent 2 (fresh read-only reviewer)",
+      "method": "software-code-review",
+      "status": "PENDING",
+      "depends_on": ["D1_IMPLEMENTER_FROZEN"],
+      "writes": ["instances/D2_REVIEWER/** (review evidence only, saved by D1 after relay)"],
+      "fan_in": "PASS with no actionable finding over 100% of the frozen diff"
+    },
+    {
+      "id": "CLOSEOUT",
+      "role": "D1_IMPLEMENTER after REVIEW_PASS",
+      "status": "PENDING",
+      "depends_on": ["D2_REVIEWER_PASS"],
+      "writes": ["DEL-05-01 _STATUS.md History/Remaining", "HANDOFF_STATE.md", "MANIFEST.sha256", "Receipt 208"],
+      "fan_in": "rebase on origin/main, rerun typecheck + vitest + receipts validator + diff --check, push, PR against main, owner merge"
+    }
+  ]
+}

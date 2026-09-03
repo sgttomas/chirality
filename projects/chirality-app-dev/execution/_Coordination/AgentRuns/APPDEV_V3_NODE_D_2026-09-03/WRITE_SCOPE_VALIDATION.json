@@ -1,0 +1,39 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/lib/harness/session-manager.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__",
+    "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03",
+    "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Evidence/V3-01_v2_lazy_access_2026-09-03/BYTE_IDENTITY_PROOF.md",
+    "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Evidence/V3-01_v2_lazy_access_2026-09-03/FIXTURE_INVENTORY.sha256",
+    "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Evidence/V3-01_v2_lazy_access_2026-09-03/focused_vitest_results.json",
+    "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/Evidence/V3-01_v2_lazy_access_2026-09-03/focused_vitest_stdout.txt",
+    "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/_run_records/TASK_RUN_2026-09-03_V3-01_v2_lazy_access.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/CHECKS.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/ORCHESTRATION_PLAN.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/PREMERGE_RESULTS.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/RETURN.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/STEP0_DISCOVERY.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/WORK_GRAPH.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/WRITE_SCOPE_VALIDATION.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/instances/D1_IMPLEMENTER/LAUNCH_BRIEF.md",
+    "projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/manifest.json",
+    "projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/sess_v2_duplicate.json",
+    "projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/sess_v2_duplicate/events.jsonl",
+    "projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/sess_v2_duplicate/session.json",
+    "projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/sess_v2_malformed_truncated.json",
+    "projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/sess_v2_missing_version_fields.json",
+    "projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/sess_v2_other_project.json",
+    "projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/sess_v2_readable.json",
+    "projects/chirality-app-dev/frontend/src/__tests__/fixtures/sessions/v2/sess_v2_unsupported_version.json",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/session-manager-v2-legacy-access.test.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/session-manager.test.ts",
+    "projects/chirality-app-dev/frontend/src/lib/harness/session-manager.ts"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}
