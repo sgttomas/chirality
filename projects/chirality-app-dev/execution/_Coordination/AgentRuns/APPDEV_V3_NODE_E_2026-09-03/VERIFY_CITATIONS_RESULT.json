@@ -1,0 +1,18 @@
+{
+  "schema": "chirality-app-at053-citation-verification/v1",
+  "json_path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/Evidence_AT-053_Governed_Basis_2026-09-03.json",
+  "json_sha256": "3da29396073cb4332cc4ccfb24e8f714fd995676378dce28f4c49fda1cbc6394",
+  "verified_at_head": "b5c8fa0679ddab88a04c71ec96225921f5391d66",
+  "recorded_basis": "0c683fb1657706316272951e4c3a0f7781b46009",
+  "digests_checked": 436,
+  "manifest_entries": 95,
+  "distinct_cited_paths": 95,
+  "mismatches": [],
+  "structural": {
+    "manifest_sorted": true,
+    "manifest_unique": true,
+    "cited_subset_of_manifest": true,
+    "manifest_extra_paths": []
+  },
+  "verdict": "PASS"
+}

@@ -6204,3 +6204,36 @@
   - Gate-Outcome: `AWAITING_OWNER` — seating candidate prepared on branch for
     owner byte review; no selection effect until merged; no implementation,
     lifecycle, release, or Root act.
+
+- **2026-09-03 — Receipt 209** (App v3 pathway node E: DEL-01-01-V3-01 AT-053 evidence).
+  - Receipt-ID: `Receipt-209`
+  - Examined-Through: `0c683fb1657706316272951e4c3a0f7781b46009`
+  - Parent-Receipt: `Receipt-205`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected development node E (DEL-01-01-V3-01) from the
+    2026-09-03 development slate in the HELP_HUMAN session chat; the selection
+    and its boundary are recorded in
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_E_2026-09-03/STEP0_DISCOVERY.md`;
+    this receipt points to that record and adds no new direction. Concurrent
+    nodes append Receipts 206–208 with this same parent (ledger rule 7).
+  - Pointers: branch `codex/app-v3-nodeE-at053-evidence-2026-09-03`; basis
+    `0c683fb1657706316272951e4c3a0f7781b46009` (PR #681 merge); content commit
+    `b5c8fa0679ddab88a04c71ec96225921f5391d66`; evidence
+    `execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/Evidence_AT-053_Governed_Basis_2026-09-03.md`
+    and `.json` (sorted cited-byte manifest inside); DEL-01-01 `_STATUS.md`
+    (V3-01 removed from Remaining; History line), `MEMORY.md`,
+    `_run_records/TASK_RUN_2026-09-03_V3-01_AT053_evidence.md`; RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_E_2026-09-03/` with
+    `build_at053_evidence.py`, `verify_citations.py`,
+    `VERIFY_CITATIONS_RESULT.json`, `CHECKS.json`, `HANDOFF_STATE.md`,
+    `MANIFEST.sha256`; no `frontend/` path touched (A1 re-stage rule not
+    fired); no `docs/**`, corpus, register, decision, Root, or product write.
+  - Checks: `git diff --check` pass; harness self-check pass; harness pytest
+    pass; APP-HOLD dispatch preflight and register-match scan pass; authority
+    corpus status no drift at v20; evidence generator `--check` pass;
+    citation verifier pass; receipt validator pass; frontend gates skipped
+    because no product or runtime source changed.
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as ephemeral
+    Agent 2 implementer under HELP_HUMAN (Claude Fable 5.1).
+  - Gate-Outcome: `EXECUTED` — App AT-053 evidence prepared; G0.5/G1 unruled;
+    awaiting owner merge.

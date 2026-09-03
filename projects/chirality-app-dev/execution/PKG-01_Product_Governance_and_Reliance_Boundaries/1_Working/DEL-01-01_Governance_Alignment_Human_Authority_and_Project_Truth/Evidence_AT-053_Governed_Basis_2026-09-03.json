@@ -1,0 +1,2829 @@
+{
+  "schema": "chirality-app-at053-governed-basis-evidence/v1",
+  "record_id": "DEL-01-01-V3-01-AT-053-EVIDENCE-2026-09-03",
+  "date": "2026-09-03",
+  "basis_commit": "0c683fb1657706316272951e4c3a0f7781b46009",
+  "epistemic_status": "EVIDENCE_NOT_VERDICT_NOT_ACCEPTANCE",
+  "plan_pin": {
+    "path": "plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+    "sha256": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a"
+  },
+  "plan_rows_extracted": {
+    "Contracts and carriers": [
+      "Contracts and carriers",
+      "Add K-CONTROL-1, K-ROLE-2, consent, untyped-code, release-procedure, RQG §13, and exact carrier amendments. Restate DEL-02-06 by REQ-027 and its exclusion block rather than by an informal size label.",
+      "G0.5, G1, AT-053."
+    ],
+    "WP-01": [
+      "WP-01",
+      "Create the governed basis and lift no hold implicitly.",
+      "D-GOV supersession; DEL-02-03 M2; Root SCA-004; SCA-APP-008; exact SOWs; ten-binding matrix; TM triage; receipts/snapshots/handoff.",
+      "Enter after G0/G0.25. Exit only at G0.5/G1 and AT-053.",
+      "Root governance/DEL-02-03/DEL-02-06 and App governance. Human-routed; no implementation dispatch."
+    ],
+    "G0": [
+      "G0",
+      "Owner records RC scope, native delegation outcome, native-descendant classification, explicit Agent-2 failure posture, Codex Preview label, no App Sandbox, command-network denial, root-home authentication posture, read-only fallback, TM-APP-025, and triage instruction for TM-APP-027/028/032.",
+      "Ambiguous target, inferred authority, or no pre-decided G-ROLE failure behavior.",
+      "Human owner"
+    ],
+    "G0.5": [
+      "G0.5",
+      "Superseding D-GOV decision; DEL-02-03 M2; Root SCA-004 exact carriers/SOWs; SCA-APP-008 amendments/carriers; Root/App K-CONTROL-1 and K-ROLE-2 disposition; ten bindings routed; implementation act for WP-03/05; D-APP-103 and App prerequisites recorded.",
+      "Authority inferred, carrier unseated, contract conflict unresolved, or held implementation field unavailable.",
+      "Human owner / owning loops"
+    ],
+    "G1": [
+      "G1",
+      "Accepted invariant/vocabulary/contract snapshots; AT-053; code ownership/briefs frozen; RQG §13 disposition recorded. Run authority-corpus status and required bump/apply/audit when authority docs change.",
+      "Stale mirror, unaccepted breaking version, unresolved Pi/event defect, or incomplete Shared Runtime mapping.",
+      "REVIEW + owner"
+    ],
+    "AT-053": [
+      "AT-053",
+      "Governed basis and shared-runtime gate",
+      "Accepted carriers map every Root/App amendment, held binding, RQG §13 Shared Runtime Gate condition, DEL-02-06 REQ-027/exclusion, D-APP-103 interaction, and open Task Management item without inferring authority or closure.",
+      "G0/G0.5/G1"
+    ]
+  },
+  "live_checks": {
+    "accepted_candidate": {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+      "byte_length": 14191,
+      "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c",
+      "embedded_status": "PREPARATION_ONLY_UNACCEPTED",
+      "candidate_identity": "root-runtime-1",
+      "compatibility_epoch": 1,
+      "held_unavailable_count": 10,
+      "held_unavailable_all_identity_null": true,
+      "held_unavailable_paths": [
+        "binding_groups.2_source_and_release_identities.release_identity",
+        "binding_groups.2_source_and_release_identities.source_identity",
+        "binding_groups.4_conformance_or_migration_evidence.clients[0]",
+        "binding_groups.4_conformance_or_migration_evidence.clients[1]",
+        "binding_groups.5_root_semantic_and_regression_evidence",
+        "binding_groups.6_census_relationship_routing_notice_and_findings.notice",
+        "binding_groups.6_census_relationship_routing_notice_and_findings.tier_0_relationship",
+        "binding_groups.8_accountable_human_acts.cutover_act",
+        "binding_groups.8_accountable_human_acts.implementation_act",
+        "binding_groups.8_accountable_human_acts.release_act"
+      ]
+    },
+    "accepted_snapshot": {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+      "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+    },
+    "notice_0206_states_candidate_sha": true,
+    "notice_0206_states_snapshot_sha": true,
+    "notice_0206_states_byte_length": true,
+    "root_0206_status_accepted_sow_sha_matches_live": true,
+    "root_0206_current_state_line": "**Current State:** INITIALIZED",
+    "plan_pin_sha_matches_workplan": true,
+    "root_agents_sha_matches_dgov35_notice_post_image": true,
+    "app_tm": {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931",
+      "rows": 11,
+      "OPEN": [
+        "TM-APP-029",
+        "TM-APP-030",
+        "TM-APP-033",
+        "TM-APP-034",
+        "TM-APP-036",
+        "TM-APP-038",
+        "TM-APP-040",
+        "TM-APP-042"
+      ],
+      "DEFERRED": [
+        "TM-APP-027",
+        "TM-APP-028",
+        "TM-APP-032"
+      ],
+      "other": []
+    },
+    "root_tm": {
+      "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af",
+      "rows": 18,
+      "by_status": {
+        "DEFERRED": [
+          "TM-ROOT-037",
+          "TM-ROOT-039",
+          "TM-ROOT-040",
+          "TM-ROOT-041",
+          "TM-ROOT-104",
+          "TM-ROOT-119",
+          "TM-ROOT-120",
+          "TM-ROOT-123"
+        ],
+        "OPEN": [
+          "TM-ROOT-035",
+          "TM-ROOT-042",
+          "TM-ROOT-106",
+          "TM-ROOT-108",
+          "TM-ROOT-111",
+          "TM-ROOT-113",
+          "TM-ROOT-114",
+          "TM-ROOT-115",
+          "TM-ROOT-118",
+          "TM-ROOT-127"
+        ]
+      },
+      "TM-ROOT-122_in_live_register": false
+    },
+    "TM-ROOT-122_closed_row": {
+      "Status": "CLOSED",
+      "Disposition": "RESOLVED_BY_DECISION",
+      "Closed": "2026-09-03"
+    },
+    "authority_corpus": {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/AUTHORITY_CORPUS.json",
+      "sha256": "8b5b5d21287144a03fdd5c204f0c473219d3f183f58974c6679c368c2e21b3b4",
+      "current_version": "v20"
+    },
+    "app_contract_sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517",
+    "rqg_section13_lines": [
+      161
+    ],
+    "app_contract_clause_lines": {
+      "K-CONTROL-1": 209,
+      "K-ROLE-2": 213,
+      "K-NET-1": 125,
+      "K-KEY-1": 126,
+      "K-EVENT-3": 71,
+      "K-EVENT-4": 72,
+      "K-EVENT-6": 74,
+      "K-CONSENT-1": 127,
+      "K-UNTYPED-1": 119,
+      "K-ENGINE-6": 57
+    },
+    "k_sdk_5_present_in": {
+      "app_contract": false,
+      "root_contract": false,
+      "sca8_contract_amendments_proposed": false
+    },
+    "dapp103_packet_artifacts_under_del0804_run_records": [],
+    "root_0206_run_record_dirs": [
+      "DEL-02-06-COMPATIBILITY-ACCEPTANCE-005",
+      "DEL-02-06-COMPATIBILITY-COMPLETION-004",
+      "DEL-02-06-RUNTIME-SPEC-001",
+      "DEL-02-06-SEMANTIC-BYTE-ACCEPTANCE-003",
+      "DEL-02-06-SEMANTIC-CANDIDATE-002",
+      "OD6_DEL0206_SOW_APPLICATION_INITIALIZATION_2026-07-27.md"
+    ]
+  },
+  "sections": [
+    {
+      "id": "1",
+      "title": "Root and App amendments in the v3 pathway → accepted carrier or explicit unseated state",
+      "rows": [
+        {
+          "subject": "D-GOV-35 — delegated-harness-native class (Root decision; supersedes D-GOV-14 item 7 for the native class only; Chirality-managed delegation preserved). R1 title: 'D-GOV-35, DEL-02-03 M2 application, SCA-004 Gate 1, TM-ROOT-107'.",
+          "class": "ROOT_DECISION",
+          "carrier_or_state": "ACCEPTED at Root (decision record; live Root `AGENTS.md` SHA-256 equals the post-image the routed notice states: MATCH). Routed to App as `NOTICE_D-GOV-35_...` (coordination, not App authority). App consumption seated: `docs/CONTRACT.md` v20 K-UNTYPED-1 (L119) and K-ROLE-2 (L213); carriers DEL-08-04-V3-01, DEL-08-05-V3-01, DEL-09-02-V3-01 — all `NOT_SELECTABLE_UNTIL` Root WP-03/WP-05 fixtures. The notice's App-local `AGENTS.md` / packaged instruction-root-mirror follow-on has no seated Remaining item and no S-row: TBD — resolves by a recorded App adopt/amend/decline act (SCOPE_CHANGE or an explicit no-change record).",
+          "note": "",
+          "citations": [
+            {
+              "path": "AGENTS.md",
+              "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+            },
+            {
+              "path": "docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+              "sha256": "e7c1e532a9d46cdc27957c85003515c46b5193e21438c905cf1cfb4e56433efa"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md",
+              "sha256": "a9879a87faaeb4cd4d5f16b2b4b0364543dff117e1b51c7e17d1efdcb20f377d"
+            },
+            {
+              "path": "projects/chirality-app-dev/AGENTS.md",
+              "sha256": "e6bf5ce4e3b8596d85df8f8d19cb2e3d963022447811239217b8e9e233ecd7aa"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+              "sha256": "144554389a19bc2e5cc1597d43b64804506a565855002a234966eb81af6180c5"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/_STATUS.md",
+              "sha256": "279f5e1448b0b5fe2be8de57bab6273dc5e73598186b79d688261f1f58dee700"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/_STATUS.md",
+              "sha256": "9af17f5f74d1c26bffa07a9ae912c2d0cb1c87662ef6f6edfd4a2b4e9dcfc32c"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-35_DELEGATED_HARNESS_NATIVE_CLASS.md",
+              "sha256": "9b8ebfe16e5241bc2c58b4bbc71032837632f5b07d776e82f11a273d2469cee7"
+            }
+          ]
+        },
+        {
+          "subject": "Root DEL-02-03 M2 — root `AGENTS.md` instruction tranche (untyped delegated-harness entry, two-class evidence rule, explicit-role semantics). R1.",
+          "class": "ROOT_INSTRUCTION",
+          "carrier_or_state": "APPLIED at Root: `_run_records/DEL-02-03-M2-APPLY-001/APPLICATION_RECORD.md`; the live Root `AGENTS.md` 'Delegation and Entry Rules' carries the two executable classes. App consumes it only through the D-GOV-35 notice; no App carrier item is owed for the Root instruction text itself.",
+          "note": "",
+          "citations": [
+            {
+              "path": "AGENTS.md",
+              "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_run_records/DEL-02-03-M2-APPLY-001/APPLICATION_RECORD.md",
+              "sha256": "5faca94878540d9373e16631d0930e359d74411fe86e712e667e27404443f111"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md",
+              "sha256": "a9879a87faaeb4cd4d5f16b2b4b0364543dff117e1b51c7e17d1efdcb20f377d"
+            }
+          ]
+        },
+        {
+          "subject": "Root SCA-004 — Gate 1 (R1), Gate 2 (R2), Gates 3/4 (R3), Gate-5 append/execution/re-authorization/confirmation (R4, R5, R6), carrier SOW acceptance (R7), estimate snapshot (R8), schedule basis (R9), schedule-basis transcription authorization (R10).",
+          "class": "ROOT_SCOPE_CHANGE",
+          "carrier_or_state": "ACCEPTED and APPLIED at Root: `execution/_ScopeChange/_LATEST.md` reads `CLOSED_FOR_SCOPE_CHANGE_ONLY` (revision 1.3; Git effect PR #633 merge `6d4438d8d3a580b65d6d50ad497dadfe07f177f2`); exact implementation carriers DEL-02-07 … DEL-02-12 (+ DEL-04-11) exist with SOWs accepted at R7-A. Root pathway seating was NOT SELECTED by the owner on 2026-09-03 (A12 record): at this basis the Root carriers carry no merged v3 `Remaining` items (seating packet MAPPING). App consumes SCA-004 only as `ROOT_OWNED` dependency targets; App writes no Root surface.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_5_Application_Record.md",
+              "sha256": "0d66859b98fe40c7e2b30278ea43760b9502e0ee6ffa821d24814a368753d19a"
+            },
+            {
+              "path": "execution/_ScopeChange/_LATEST.md",
+              "sha256": "4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a12_2026-09-03.md",
+              "sha256": "21b77b378a6511b48ea2e60e676ea1c9b7ee013d8c042769392decf57ceb29ec"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r10_2026-08-24.md",
+              "sha256": "68c8524dc2a84d8584b04969d7684fd6124f6a72399d1a80a499df6baaa0ae8f"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md",
+              "sha256": "a9879a87faaeb4cd4d5f16b2b4b0364543dff117e1b51c7e17d1efdcb20f377d"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r2_2026-08-23.md",
+              "sha256": "63b174f00860cd31dbdde1f734a9e1ca08c44f7cd2ed51f7716612f3847a6bce"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r3_2026-08-23.md",
+              "sha256": "88608e168aaab64a833e6c1742647969e726f2928ad9b9bc0a40932085d0e0b5"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r4_2026-08-23.md",
+              "sha256": "5916aa599bf5953324636b8c5e0b0a5e2b9e6a793fd6dd9b1cac1c7e19e0755a"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r5_2026-08-23.md",
+              "sha256": "1f0a3358602fdfb4dff70607ad631130db55dcfd62d71a6fe7a3a13e18f0f42a"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r6_2026-08-23.md",
+              "sha256": "4e39bf6df909d63b910db3d953db720d2bceb2d27f26ce7454c93551f2a822de"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r7_2026-08-23.md",
+              "sha256": "dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r8_2026-08-23.md",
+              "sha256": "b91ee877b6a6c168434e34389309dd2663026baca03c2d900d9df8d182308d0f"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r9_2026-08-23.md",
+              "sha256": "bc3a3bf414cfd64a5a650d633e942c2bb741a4562622857a79f5101c837e577b"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            }
+          ]
+        },
+        {
+          "subject": "Root K-CONTROL-1 amendment (two-socket accepted design; steer 2026-08-23; accepted through R7-A via the DEL-02-07 scope contract).",
+          "class": "ROOT_CONTRACT",
+          "carrier_or_state": "ACCEPTED as contract text: Root `docs/CONTRACT.md` K-CONTROL-1 (design accepted, second socket not implemented; exactly one control socket live); App `docs/CONTRACT.md` v20 K-CONTROL-1 (L209) mirrors it. Implementation HELD: DEL-02-07/WP-03 pathway and the DEL-02-06 `implementation_act` binding. App observation seat: DEL-09-04-V3-01 (`NOT_SELECTABLE_UNTIL`).",
+          "note": "",
+          "citations": [
+            {
+              "path": "docs/CONTRACT.md",
+              "sha256": "ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_kcontrol1_amendment_steer_root_2026-08-23.md",
+              "sha256": "c0a9b1098fc9e36d1532dc1834424ee94f40b716d37f3c8b8c12dfb26a807c29"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r7_2026-08-23.md",
+              "sha256": "dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md",
+              "sha256": "8331ed1afa1811eb9a506363d6b33fc68338875336104f56942551720840128d"
+            }
+          ]
+        },
+        {
+          "subject": "Root K-ROLE-2 (roles name authority, not a durable model assignment).",
+          "class": "ROOT_CONTRACT",
+          "carrier_or_state": "ACCEPTED as contract text in Root `docs/CONTRACT.md` and App `docs/CONTRACT.md` v20 (L213). G-ROLE proof is `ROOT_OWNED`, `OPEN`; App label seats DEL-02-05-V3-02 (`SELECTABLE`), DEL-08-04-V3-01 / DEL-08-05-V3-01 (parked); Work/Agents role-entry UX unseated (S-7).",
+          "note": "",
+          "citations": [
+            {
+              "path": "docs/CONTRACT.md",
+              "sha256": "ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+              "sha256": "52e1716cb892078e0bdc267cd22df3f159d12ddd994c8d8316a5558ede93c225"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+              "sha256": "144554389a19bc2e5cc1597d43b64804506a565855002a234966eb81af6180c5"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/_STATUS.md",
+              "sha256": "279f5e1448b0b5fe2be8de57bab6273dc5e73598186b79d688261f1f58dee700"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            }
+          ]
+        },
+        {
+          "subject": "R11 — routing of the SCA-APP-008 Gate-5 notice.",
+          "class": "ROOT_RULING",
+          "carrier_or_state": "ROUTED: Root `execution/_Coordination/NOTICE_2026-08-24_APP_SCA-APP-008_GATE5_APPLIED_STATE.md` (Root ingestion PR #668 merge `eb2ea19db5b86ad33760345d274b828d7a12e6cc` per the App closure addendum). No App carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/NOTICE_2026-08-24_APP_SCA-APP-008_GATE5_APPLIED_STATE.md",
+              "sha256": "75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r11_2026-08-24.md",
+              "sha256": "01d9ae6d42d25942ae4991b61385b8d1a70a8d54a82d88d17648c000d6622fbd"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Phase5/CLOSURE_ADDENDUM_2026-09-03.md",
+              "sha256": "3787e865625b70f8f0273113e2f14fa1dc44490b9ae70308c08a660def06ae15"
+            }
+          ]
+        },
+        {
+          "subject": "R12 (C1 supply authorization: App Server 0.149.0), R13 (resumption after the upstream signing defect), R14 (egress-inventory amendment and ancillary-executable grant), R15 (App Server 0.149.0 G2 acceptance).",
+          "class": "ROOT_SUPPLY",
+          "carrier_or_state": "G2 ACCEPTED at Root with documented gaps (R15; PR #673 merge `baa29d22fa034784cda221b2929061213e83ec91`): Root DEL-02-08 run record `APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/`. App consumption not yet routed: DEL-03-01-V3-01 exact-pin claims `NOT_SELECTABLE_UNTIL` consumable supply and G-WIRE; DEL-09-05-V3-02 SBOM/notices input `SELECTABLE`; the DEL-04-01 App Server probe is UNSEATED (S-1).",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/G2_ACCEPTANCE_SHEET.md",
+              "sha256": "cec83abc2fc39358037600c883dd7b55ad09b154140d68a4d86346c309cda5ae"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r12_2026-08-24.md",
+              "sha256": "2ee282fc1330c466e17ce2791cb7cb8c66f2a7e13f455c2ab1750c42719321fd"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r13_2026-08-24.md",
+              "sha256": "0ba74959dac38f49f81f6ba8aff4020df520fd418bed2a3aa6617b19f3aa4960"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r14_2026-08-24.md",
+              "sha256": "2633637bd68c7f4cb54457a3547b2bcab8933f19e021abf558b1ef2463d1b5e9"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r15_2026-08-25.md",
+              "sha256": "a8463a7f0392978325e8d25558332e72868271e9c4d99ac26c7425bb3a448301"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+              "sha256": "fb3c566317eaae03e28e90a8615119aa316a86a4a128485cb3a598833c3969db"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/_STATUS.md",
+              "sha256": "6fc7cd2d1fe645152b8b388c406e967edf0eb975c5889a9e3644fc0b7c061bd8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_STATUS.md",
+              "sha256": "f2674f7a43291d4acb0f6c86ee56d8d6542f41ee03ca280b66ab2dc90b4e03a7"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            }
+          ]
+        },
+        {
+          "subject": "R16 — G0.5 binding routing, Tier-0 disposition, OUT-002 completion attempt, and bounded feasibility spikes.",
+          "class": "ROOT_RULING",
+          "carrier_or_state": "R16-A routed the ten bindings (Section 2); R16-B adopted `CONTINUE_SEPARATE_WITH_EXPLICIT_COORDINATION_ONLY`; R16-C withheld implementation; R16-E preserved TM-ROOT-106/122 as open, unruled G1 blockers; R16-D's single execution attempt was spent and retired by R17-B. G0.5 not declared passed (`source_identity`, `implementation_act` unavailable).",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            }
+          ]
+        },
+        {
+          "subject": "R17 — reject the R16 execution candidate (PR #676) and adopt deliverable-seated v3 RC completion; pinned plan adoption (R17-C).",
+          "class": "ROOT_RULING",
+          "carrier_or_state": "Pinned completion and acceptance reference: `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` SHA-256 recomputed = `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a` (workplan pin MATCH); meaning only, never authority/status/queue. Root seating candidate: NOT SELECTED on 2026-09-03 — Root-side seating UNSEATED at this basis. App counterpart: A12 seating ACCEPTED (PR #681 merge `0c683fb1657706316272951e4c3a0f7781b46009`, this basis).",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+              "sha256": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a12_2026-09-03.md",
+              "sha256": "21b77b378a6511b48ea2e60e676ea1c9b7ee013d8c042769392decf57ceb29ec"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+              "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+            }
+          ]
+        },
+        {
+          "subject": "R18 — App Electron-authority notice ingestion and TM-ROOT-122 disposition.",
+          "class": "ROOT_RULING",
+          "carrier_or_state": "APPLIED at Root: App echo ingested as `ADOPTED_AS_COORDINATION_INPUT` (Root copy); TM-ROOT-122 `CLOSED` / `RESOLVED_BY_DECISION` on 2026-09-03 (PR #682 merge `fd55023e2`), archived in `REGISTER_CLOSED.csv` (live check: {'Status': 'CLOSED', 'Disposition': 'RESOLVED_BY_DECISION', 'Closed': '2026-09-03'}). TM-ROOT-106 untouched; G1 not passed.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md",
+              "sha256": "d7eb52af3fd3833b6af949e218c6c90b7566a751c90331fa643a1cc86bc40d78"
+            },
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            },
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+              "sha256": "995d7ffd46008e1f8a8e471105e799a89830ced97ff0a98b12b2f7b563692fbc"
+            },
+            {
+              "path": "execution/_Coordination/_TaskManagement/RULING_2026-09-03_ROOT_TM-ROOT-122_DISPOSITION.md",
+              "sha256": "78e73f3e8e7a23a90f5df3d3f64d20f145ee2ffd769ae864948db5554613f9f1"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            }
+          ]
+        },
+        {
+          "subject": "G0 record — Chirality App v3.0.0-rc.1 owner rulings of 2026-08-22 (RC scope, native delegation outcome, Codex Preview label, no App Sandbox, command-network denial, root-home posture, read-only fallback, TM-APP-025, triage instruction).",
+          "class": "APP_RULING",
+          "carrier_or_state": "ACCEPTED; seated through the accepted `Carrier_Map.md` 'Required owner-amendment seating' table (G0 D1, A3, A4, A5, A7, A8, A9, B1, B2, B4, D2, A1) and the A11 triage dispositions. TM-APP-030 (G0 B2) remains an owner decision at G-HELPER; TM-ROOT-122 (G0 B4) is now closed by R18.",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md",
+              "sha256": "6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_g0_record_2026-08-22.md",
+              "sha256": "86b9877c6bea08a9f79c2af2378d5d38722a09c1a10deb37f87211c76d2c290b"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Carrier_Map.md",
+              "sha256": "72a1b55b5307b6df5131011e30581e323737e95f3bcf85471121481ded25b619"
+            }
+          ]
+        },
+        {
+          "subject": "A1 — G0.25 gate ruling (WP-00 closure) and the A1 re-stage rule.",
+          "class": "APP_RULING",
+          "carrier_or_state": "ACCEPTED: DEL-09-04 `_run_records/R21_…` records the R20 owner proof; the A1 re-stage rule is a standing Step 0 declaration in the successor workplan. This tranche touches no `frontend/` path, so the rule does not fire here.",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a1_2026-08-23.md",
+              "sha256": "f9b02806eeab1a578e6729c41fc367074758a2b95cc0eda9c8d2edbda446f314"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R21_R20_OWNER_LOGIN_SESSION_PROOF_PASS_CLOSEOUT_2026-08-23.md",
+              "sha256": "4fa5e0a1d413c3b4e0413b9ad31a1c7a26b1278066732fc7b220ed23c9666bee"
+            },
+            {
+              "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+              "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+            }
+          ]
+        },
+        {
+          "subject": "SCA-APP-008 — Gate-1/2 acceptance (A2), Gate-3/4 approval (A3), concordance rulings C-01/C-02 (A4), post-concordance sequencing (A5), post-ratification concordance resolutions (A6), Phase-2b candidate approval (A7), Gate-5 authorization / register-anchor correction / pointer disposition (A8), `_LATEST.md` pointer act (A9).",
+          "class": "APP_SCOPE_CHANGE",
+          "carrier_or_state": "ACCEPTED and APPLIED for scope change only: App `_ScopeChange/_LATEST.md` reads `CLOSED_FOR_SCOPE_CHANGE_ONLY`; decomposition content commit `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f` (PR #662 merge `d5e40b3c25fe527919f1d2d2a31ea97ce2835795`); pointer act PR #665 (`4251530ec8a5d5b7abfc035cbdde63dab7fa80f3`); Root ingestion R11. App `docs/CONTRACT.md` amendment-history row `SCA-APP-008` carries the concordance-approved clauses (Section 1b). Post-application closure audit remains `WARNINGS` (one nine-node SCC surfaced, not linearized). Nineteen carriers re-pinned and seated by A12; seven obligations UNSEATED (Section 7).",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/NOTICE_2026-08-24_APP_SCA-APP-008_GATE5_APPLIED_STATE.md",
+              "sha256": "75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a2_2026-08-23.md",
+              "sha256": "37e6b6d60874ded0727cf65f25aea09cc961bd35b135b5b8eb33c0d20c1f6158"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a3_2026-08-23.md",
+              "sha256": "91d6867286de465f56bb41a6de9e9d8657e6b63ddb009f294d81b3e6dcccded9"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a4_2026-08-23.md",
+              "sha256": "14db687762b9af099debbfe9cfcaab0879e7082922f6eda9897b3f4d61ff330d"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a5_2026-08-23.md",
+              "sha256": "1896d89200c4cd390b4606aed0229fe03bf7c5070f454e1dca5d6c6acde2bb9b"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a6_2026-08-23.md",
+              "sha256": "66bd22a1b439979f74bbaedf2c182d222a6ba38952ec046f78fc2091885e4e63"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a7_2026-08-23.md",
+              "sha256": "56b9dc8ed8835a3220ccab10416cd9457d2a1d58b62c92582d84c773430e22d2"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a8_2026-08-23.md",
+              "sha256": "d4018737aa9ae33e5b26f2afd3fbb2ffc1e9c8d3fe0a2494cf64c951224b6c8f"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a9_2026-08-24.md",
+              "sha256": "6ce5534514b8298ab9cfff3c72ba7f0532a41f58278ef03cc6c4cdadf9b47178"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+              "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Carrier_Map.md",
+              "sha256": "72a1b55b5307b6df5131011e30581e323737e95f3bcf85471121481ded25b619"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Impact_Assessment.md",
+              "sha256": "068c7b29734ea7ca4a0af9bc63d6355beb23f2083b668725d93c951bf53f4cf0"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Phase5/CLOSURE_ADDENDUM_2026-09-03.md",
+              "sha256": "3787e865625b70f8f0273113e2f14fa1dc44490b9ae70308c08a660def06ae15"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+              "sha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b"
+            }
+          ]
+        },
+        {
+          "subject": "Plan §8.2 'K-SDK-5 (proposed)' — root-home isolation and exact-pin compatibility invariant.",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "UNSEATED: `K-SDK-5` is present in App `docs/CONTRACT.md` v20: False; Root `docs/CONTRACT.md`: False; SCA-APP-008 `Contract_Amendments.proposed.md`: False. No carrier names it. TBD — resolves only by a later contract-amendment act (Root or App instrument) that names the clause and its carrier, or by an explicit no-change record.",
+          "note": "",
+          "citations": [
+            {
+              "path": "docs/CONTRACT.md",
+              "sha256": "ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83"
+            },
+            {
+              "path": "plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+              "sha256": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Contract_Amendments.proposed.md",
+              "sha256": "8a6a799912eb9f610c8e1f6635d7eaf3f90e08614823ab3f715c3006bc0d1485"
+            }
+          ]
+        },
+        {
+          "subject": "A10 — G0 Task-Management triage authorization; A11 — G0 triage dispositions and Electron-drift E2 authorization.",
+          "class": "APP_RULING",
+          "carrier_or_state": "APPLIED: `OWNER_RULING_2026-09-03_G0_V3_TRIAGE.md`; live register SHA-256 recomputed = `bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931` (A11 post-state `OPEN=8 DEFERRED=3`; live count OPEN=8, DEFERRED=3). TM-APP-025 closed `RESOLVED_BY_DECISION`; 027/028/032 `DEFERRED` `STILL_BLOCKED`; 030 `OPEN` for G-HELPER. E2 concordance executed as PR #680 (corpus v20; App `docs/CONTRACT.md` SHA-256 recomputed = `51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517`); combined echo prepared `READY_TO_ROUTE` on the App surface and ingested at Root by R18.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md",
+              "sha256": "d7eb52af3fd3833b6af949e218c6c90b7566a751c90331fa643a1cc86bc40d78"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a10_2026-08-24.md",
+              "sha256": "0908fee812919291979dd486dd9748fda21b9fb4b20afb13604a1a3e02bd8aa2"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md",
+              "sha256": "6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md",
+              "sha256": "b68ed592b310fa996bb10d2aaf6889a25eb0481e6a57ce3fb2e414b775e4ee2b"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/OWNER_RULING_2026-09-03_G0_V3_TRIAGE.md",
+              "sha256": "42293b966670d5a6185c9c8b167e9564ada5431fa3ff4ebb08e88de3565b3397"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Reconciliation/References/AUTHORITY_CORPUS.json",
+              "sha256": "8b5b5d21287144a03fdd5c204f0c473219d3f183f58974c6679c368c2e21b3b4"
+            }
+          ]
+        },
+        {
+          "subject": "A12 — v3 pathway seating authorization (App counterpart of Root R17).",
+          "class": "APP_RULING",
+          "carrier_or_state": "ACCEPTED (selectability only): PR #681 merge `0c683fb1657706316272951e4c3a0f7781b46009` = this record's basis; nineteen carriers re-pinned to `d6f6cadb2…`; thirty-one `Remaining` items seeded, nine `SELECTABLE`; successor workplan selected by `LOOP_INIT.md`; DEL-01-01-V3-01 (this record) is the AT-053 App half. No implementation, lifecycle, host-mutation, signing, release, publication, reliance, or Root act.",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a12_2026-09-03.md",
+              "sha256": "21b77b378a6511b48ea2e60e676ea1c9b7ee013d8c042769392decf57ceb29ec"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/ScopeOfWork.md",
+              "sha256": "b19dbe506791aa31fb55c4629c188d1ec85234cf01b25d5934a03cb4ab2d44fd"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md",
+              "sha256": "1fbf008019fb2ba461c0cf0af930762d6933550c3a9ee9f123a3c4531aa84faa"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/SOW_IDENTITY_LEDGER.md",
+              "sha256": "8e68aa8e31c444f6ce9d2724474aa3fa5c14ebd2953e00f14a7938bb7b5b115b"
+            },
+            {
+              "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+              "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+            }
+          ]
+        },
+        {
+          "subject": "D-APP-97 (release preparation, C1) and hard fence F-APP-2.",
+          "class": "APP_DECISION",
+          "carrier_or_state": "HELD through preparation: `RULED (C1)`; lift only at G6a against the exact owner-named candidate (G0 D2). Carriers DEL-09-04/05/06 preparation items; DEL-09-05-V3-05 `NOT_SELECTABLE_UNTIL` G6a.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_STATUS.md",
+              "sha256": "f2674f7a43291d4acb0f6c86ee56d8d6542f41ee03ca280b66ab2dc90b4e03a7"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-97_RULING_RELEASE_PREPARATION_2026-08-17.md",
+              "sha256": "1493bca33fa67e3f89f95904efdf9ac9ba5f7bdb0a856f69f810980b43a453cc"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+              "sha256": "7d43bad441e53e42545d53bf3168e51f019968c028ed085fa35c8238469b861b"
+            },
+            {
+              "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+              "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+            }
+          ]
+        },
+        {
+          "subject": "D-APP-98 — Electron 43.2.0 App authority (D-APP-72 successor for that single fact).",
+          "class": "APP_DECISION",
+          "carrier_or_state": "ACCEPTED: carried in App `docs/CONTRACT.md` v20 K-ENGINE-6 (L57) after the A11 E2 concordance; TM-ROOT-122 closed on it (R18). No pin, lockfile, or supply change (A11 E3/E4 not selected).",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md",
+              "sha256": "6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-98_RULING_ELECTRON_AUTHORITY_2026-08-17.md",
+              "sha256": "71dfc1ae6369acea1e49f71d68e45aaf9da8f14c5f6a77733845c43f3ee7c020"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1b",
+      "title": "SCA-APP-008 contract amendments present at corpus v20 → enforcement carrier items",
+      "rows": [
+        {
+          "subject": "K-CONTROL-1 (App `docs/CONTRACT.md` v20 L209): Root daemon owns `{userData}/runtime` control surfaces; one live socket; accepted second supervisor socket not implemented; no third socket, no TCP.",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "DEL-09-04-V3-01 observation (`NOT_SELECTABLE_UNTIL` Root DEL-02-07 bytes + implementation act); Root DEL-02-07 implementation HELD.",
+          "note": "",
+          "citations": [
+            {
+              "path": "docs/CONTRACT.md",
+              "sha256": "ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md",
+              "sha256": "8331ed1afa1811eb9a506363d6b33fc68338875336104f56942551720840128d"
+            }
+          ]
+        },
+        {
+          "subject": "K-ROLE-2 (App `docs/CONTRACT.md` v20 L213): Roles name authority; `role not mechanically enforced` label; `instruction-asserted` evidence; actual adapter/provider/model recorded.",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "DEL-02-05-V3-02 labels (`SELECTABLE`); DEL-08-04-V3-01, DEL-08-05-V3-01 (parked); Work/Agents role-entry UX unseated (S-7).",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+              "sha256": "52e1716cb892078e0bdc267cd22df3f159d12ddd994c8d8316a5558ede93c225"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+              "sha256": "144554389a19bc2e5cc1597d43b64804506a565855002a234966eb81af6180c5"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/_STATUS.md",
+              "sha256": "279f5e1448b0b5fe2be8de57bab6273dc5e73598186b79d688261f1f58dee700"
+            }
+          ]
+        },
+        {
+          "subject": "K-NET-1 (App `docs/CONTRACT.md` v20 L125): Deny-by-default; enumerated transports incl. exact accepted OpenAI account/model/turn endpoints; three per-root command-network postures.",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "DEL-04-05-V3-02 and DEL-09-06-V3-02 (`NOT_SELECTABLE_UNTIL` Root DEL-02-09/DEL-02-10 returns); F-APP-1 remains a hard fence.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/_STATUS.md",
+              "sha256": "7055907391f55abda67cad6892ac0885ef234401504392ba950dde1dcf9596ee"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+              "sha256": "30d42967e441981a421dc3fc2e12436eab1b0341bdf59cf6b989d458db3661de"
+            },
+            {
+              "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+              "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+            }
+          ]
+        },
+        {
+          "subject": "K-KEY-1 (App `docs/CONTRACT.md` v20 L126): Credentials and ceremony data are private state; typed `missing` / `storageUnavailable` / `decryptFailed` / `available`; no ambient `~/.codex`.",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "DEL-04-05-V3-01, DEL-02-05-V3-01, DEL-09-06-V3-01 (`SELECTABLE`); DEL-09-06-V3-03 and DEL-09-05-V3-04 (parked on owner host act).",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+              "sha256": "52e1716cb892078e0bdc267cd22df3f159d12ddd994c8d8316a5558ede93c225"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/_STATUS.md",
+              "sha256": "7055907391f55abda67cad6892ac0885ef234401504392ba950dde1dcf9596ee"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_STATUS.md",
+              "sha256": "f2674f7a43291d4acb0f6c86ee56d8d6542f41ee03ca280b66ab2dc90b4e03a7"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+              "sha256": "30d42967e441981a421dc3fc2e12436eab1b0341bdf59cf6b989d458db3661de"
+            }
+          ]
+        },
+        {
+          "subject": "K-EVENT-3 (App `docs/CONTRACT.md` v20 L71): Exactly one durable terminal outcome in closed `HarnessEvent` schema v2 (completed / failed / interrupted / cancelled).",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "DEL-05-02-V3-01, DEL-09-03-V3-01 (`NOT_SELECTABLE_UNTIL` Root schema v2); Root TM-ROOT-108 carries the accepted-turn recovery defect.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_STATUS.md",
+              "sha256": "510126f072cab4ba3525ca7c828e30bb571f8dcdd725bb52d6e14129cad4a53f"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/_STATUS.md",
+              "sha256": "97ebd2c9bb95890812d7a5347bf2d976082d59dd59f948090ae11ee9faa14ede"
+            }
+          ]
+        },
+        {
+          "subject": "K-EVENT-4 (App `docs/CONTRACT.md` v20 L72): Root-owned shared-runtime session store is the canonical audit record; project-local store is a legacy lazily-migrated source.",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "DEL-05-01-V3-01 (`SELECTABLE`, lazy non-destructive access), DEL-05-01-V3-02 (parked); K-EVENT-4 live legacy path is a plan §8.4 Task Management candidate with no seated item (TBD).",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+              "sha256": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/_STATUS.md",
+              "sha256": "3fdcc6d2e47648a567596d4719c22bcc884d5c5d5be342cec17c04b5d18ac67c"
+            }
+          ]
+        },
+        {
+          "subject": "K-EVENT-6 (App `docs/CONTRACT.md` v20 L74): Only closed-schema fields cross sinks; structural redaction before every sink; unknown types become bounded diagnostic codes.",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "DEL-05-03-V3-01, DEL-03-03-V3-01 (`NOT_SELECTABLE_UNTIL` Root schema v2; G-WIRE).",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_STATUS.md",
+              "sha256": "238c7b64f6cc5e2217041f61d4cf2ae1ebcc49dd3d427c252bb7ca68aafedb91"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/_STATUS.md",
+              "sha256": "d5e44706afab6dc0a53ba37c137e38b761dece4787d89099a0b6094a47543fa7"
+            }
+          ]
+        },
+        {
+          "subject": "K-CONSENT-1 (App `docs/CONTRACT.md` v20 L127): `HostedEngineConsentPort` is the sole coordinator boundary; per-root consent; revocation retires the root generation.",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "DEL-02-05-V3-02 fixtures behind a fake port (`SELECTABLE`); DEL-02-05-V3-03 live consumption (`NOT_SELECTABLE_UNTIL` Root DEL-02-09 contract, G3/G-CSP/G4).",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+              "sha256": "52e1716cb892078e0bdc267cd22df3f159d12ddd994c8d8316a5558ede93c225"
+            }
+          ]
+        },
+        {
+          "subject": "K-UNTYPED-1 (App `docs/CONTRACT.md` v20 L119): Untyped native descent only inside the hard envelope; no role by descent; managed descendants keep their checks.",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "DEL-08-04-V3-01 (`NOT_SELECTABLE_UNTIL` Root WP-03/WP-05 fixtures); `subagent-governance.ts:205-213` changes only under the accepted native ruling.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+              "sha256": "144554389a19bc2e5cc1597d43b64804506a565855002a234966eb81af6180c5"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-35_DELEGATED_HARNESS_NATIVE_CLASS.md",
+              "sha256": "9b8ebfe16e5241bc2c58b4bbc71032837632f5b07d776e82f11a273d2469cee7"
+            }
+          ]
+        },
+        {
+          "subject": "K-ENGINE-6 (App `docs/CONTRACT.md` v20 L57): Strategic lens: governance/UI/audit/lifecycle/adapter layer over provider harness mechanics; bounded Pi 0.80.10 exception; Electron 43.2.0 prerequisite (D-APP-98 successor).",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "Applied to every selection (workplan Step 1). Note: the clause's governed Pi `0.80.10` versus the shipped `0.82.0` is exactly TM-ROOT-106 (open, unruled G1 blocker) — no App carrier; Root decision plus validation evidence required.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+              "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+            }
+          ]
+        },
+        {
+          "subject": "Enforcement-map rows added by SCA-APP-008 (delegated-harness supervisor/control sockets; `HostedEngineConsentPort`; role entry and descendant classification; event codec/sinks; renderer credential IPC; exact-candidate release validation).",
+          "class": "APP_CONTRACT",
+          "carrier_or_state": "Present in App `docs/CONTRACT.md` v20 §2 enforcement map; each row's runtime evidence follows the carrier items above; none is claimed proved here.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "title": "The ten held DEL-02-06 bindings (verbatim names) — current state and R16-A routing",
+      "rows": [
+        {
+          "subject": "binding_groups.2_source_and_release_identities.source_identity",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: Remains `HELD_UNAVAILABLE` until exact proposed implementation bytes exist and the Root accountable human accepts their exact source identity. App relation: Root owner at G0.5. App dependants parked: DEL-09-04-V3-01; source-based conformance (DEL-03-01-V3-01). Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        },
+        {
+          "subject": "binding_groups.2_source_and_release_identities.release_identity",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: Remains `HELD_UNAVAILABLE` for the G6a accountable-human release act. App relation: Owner at G6a. App dependants parked: DEL-09-05-V3-05 (WP-11); D-APP-97/F-APP-2 active. Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        },
+        {
+          "subject": "binding_groups.4_conformance_or_migration_evidence.clients[0]",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: Remains `HELD_UNAVAILABLE`; routed to the App-owned G5/G7 conformance fan-in. App relation: App G5/G7 fan-in carriers: DEL-09-01-V3-01, DEL-09-02-V3-01, DEL-09-03-V3-01/02, DEL-09-06-V3-02 (all parked); TM-APP-027/028/032 triggers name this acceptance lineage. Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        },
+        {
+          "subject": "binding_groups.4_conformance_or_migration_evidence.clients[1]",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: Remains `HELD_UNAVAILABLE`; routed to the Root-owned G5/G7 conformance fan-in. App relation: Root CLI; not an App carrier obligation. Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        },
+        {
+          "subject": "binding_groups.5_root_semantic_and_regression_evidence",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: Remains `HELD_UNAVAILABLE`; routed to accepted Root implementation followed by G5/G7 evidence acceptance. App relation: Root; App consumes via routed notice only. Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        },
+        {
+          "subject": "binding_groups.6_census_relationship_routing_notice_and_findings.notice",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: Remains `HELD_UNAVAILABLE`; routed to the affected owning loops before cutover/release fan-in. App relation: Owning loops (App included) accept the notice when routed; no such notice exists under App `NOTICE_*` at this basis. Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        },
+        {
+          "subject": "binding_groups.6_census_relationship_routing_notice_and_findings.tier_0_relationship",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: The relationship is substantively disposed by R16-B. Root may materialize an immutable successor relationship record and successor binding-disposition snapshot; it must not rewrite the previously accepted package bytes. App relation: Disposed `CONTINUE_SEPARATE_WITH_EXPLICIT_COORDINATION_ONLY` (R16-B; preserved by R17-B/R18-C). The accepted bytes still record the binding `HELD_UNAVAILABLE`; no successor binding-disposition snapshot exists under Root DEL-02-06 `_run_records/` at this basis (live listing: DEL-02-06-COMPATIBILITY-ACCEPTANCE-005, DEL-02-06-COMPATIBILITY-COMPLETION-004, DEL-02-06-RUNTIME-SPEC-001, DEL-02-06-SEMANTIC-BYTE-ACCEPTANCE-003, DEL-02-06-SEMANTIC-CANDIDATE-002, OD6_DEL0206_SOW_APPLICATION_INITIALIZATION_2026-07-27.md) — the R16-D N0 transcription was in the rejected PR #676. TBD: a Root successor snapshot. Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        },
+        {
+          "subject": "binding_groups.8_accountable_human_acts.implementation_act",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: Remains `HELD_UNAVAILABLE` until the feasibility results are frozen or rejected and exact sealed WP-03/WP-05 implementation briefs exist for a separate accountable-human act. App relation: Root owner. App dependants parked: DEL-09-04-V3-01; every WP-05 consumption item. Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        },
+        {
+          "subject": "binding_groups.8_accountable_human_acts.cutover_act",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: Remains `HELD_UNAVAILABLE` until the required G2-G5 fan-in is accepted. App relation: Owner; never inferred from implementation. No App carrier item. Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        },
+        {
+          "subject": "binding_groups.8_accountable_human_acts.release_act",
+          "class": "HELD_BINDING",
+          "carrier_or_state": "`HELD_UNAVAILABLE` (accepted bytes; `identity: null`). R16-A: Remains `HELD_UNAVAILABLE` for G6a. App relation: Owner at G6a; DEL-09-05-V3-05 fires only after the ruling. Lift inferred: NO.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "title": "RQG §13 Shared Runtime Gate conditions → App carrier(s) and evidence status",
+      "rows": [
+        {
+          "subject": "RQG §13 condition 1: runtime-package promotion preserves current Claude/stub/Pi behavior",
+          "class": "RQG13_CONDITION",
+          "carrier_or_state": "App carrier(s): DEL-09-01-V3-01 (`NOT_SELECTABLE_UNTIL` the first v3 product change merges; AT-037 native-engine regression); DEL-03-01-V3-01 (parked on Root API v2). Root/external: Root DEL-02-12 (Root conformance fan-in). Evidence status: gated — no v3 §13 evidence bytes exist; DEL-09-01's baseline Section 8 preservation evidence is pre-v3 and is not a §13 v3 mapping.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md",
+              "sha256": "dbfa56aa71ae9934f84247ec115721129e3aac4fb2cedfd5b5cab212c74bc382"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+              "sha256": "fb3c566317eaae03e28e90a8615119aa316a86a4a128485cb3a598833c3969db"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/_STATUS.md",
+              "sha256": "f4c353d8a44559c74b9c999d1602178f0df38d34405609c2dcfe7857204fb276"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            }
+          ]
+        },
+        {
+          "subject": "RQG §13 condition 2: Desktop and CLI use one daemon, session store, lock system, credential owner, and interruption state",
+          "class": "RQG13_CONDITION",
+          "carrier_or_state": "App carrier(s): DEL-03-01-V3-01 (client conformance), DEL-05-01-V3-02 (daemon session shape), DEL-09-01-V3-01 — all parked. Root/external: Root DEL-02-06/DEL-02-11/DEL-02-12 (K-RUNTIME-1 owner); Root CLI evidence is the held `clients[1]` binding. Evidence status: gated (Root-owned semantics; App consumption parked). Root TM-ROOT-108 (accepted-turn recovery across restart) is an open Root defect touching interruption/terminal state.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md",
+              "sha256": "dbfa56aa71ae9934f84247ec115721129e3aac4fb2cedfd5b5cab212c74bc382"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+              "sha256": "fb3c566317eaae03e28e90a8615119aa316a86a4a128485cb3a598833c3969db"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/_STATUS.md",
+              "sha256": "3fdcc6d2e47648a567596d4719c22bcc884d5c5d5be342cec17c04b5d18ac67c"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/_STATUS.md",
+              "sha256": "f4c353d8a44559c74b9c999d1602178f0df38d34405609c2dcfe7857204fb276"
+            }
+          ]
+        },
+        {
+          "subject": "RQG §13 condition 3: the control plane has correct Unix-socket permissions, project-scoped authorization, stale recovery, and no TCP listener",
+          "class": "RQG13_CONDITION",
+          "carrier_or_state": "App carrier(s): DEL-09-04-V3-01 (package/fuse/entitlement observation; parked). No App item owns socket tests: K-CONTROL-1 names Root daemon ownership. Root/external: Root DEL-02-07 (K-CONTROL-1 live single-socket tests; design-gated supervisor-socket tests). Evidence status: gated — Root-owned; App evidence absent by design (App is neither owner nor writer of control state).",
+          "note": "",
+          "citations": [
+            {
+              "path": "docs/CONTRACT.md",
+              "sha256": "ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md",
+              "sha256": "dbfa56aa71ae9934f84247ec115721129e3aac4fb2cedfd5b5cab212c74bc382"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md",
+              "sha256": "8331ed1afa1811eb9a506363d6b33fc68338875336104f56942551720840128d"
+            }
+          ]
+        },
+        {
+          "subject": "RQG §13 condition 4: model switching obeys explicit activation, drain, timeout, no-force, `NO_MODEL`, no-helper-unload, and no-fallback rules",
+          "class": "RQG13_CONDITION",
+          "carrier_or_state": "App carrier(s): DEL-03-01-V3-01 (AT-017 no automatic fallback, App-client portion; parked). Root/external: Root DEL-02-10/DEL-02-12; TM-ROOT-106 (Pi 0.82.0 vs 0.80.10) is the open G1 blocker on the Pi limb. Evidence status: gated — no App evidence bytes; Root decision + validation evidence outstanding (TM-ROOT-106).",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md",
+              "sha256": "dbfa56aa71ae9934f84247ec115721129e3aac4fb2cedfd5b5cab212c74bc382"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+              "sha256": "fb3c566317eaae03e28e90a8615119aa316a86a4a128485cb3a598833c3969db"
+            }
+          ]
+        },
+        {
+          "subject": "RQG §13 condition 5: the app-dev and PEC pilot paths pass with canonical evidence and actual-model attribution",
+          "class": "RQG13_CONDITION",
+          "carrier_or_state": "App carrier(s): app-dev pilot: DEL-09-01-V3-01 / DEL-09-02-V3-01 (parked). PEC pilot: no seated v3 item — TM-APP-029 (`OPEN`) records that a governed live PEC daemon-consumption proof remains absent. Root/external: Root DEL-02-12; PEC loop by notice. Evidence status: absent (PEC pilot) / gated (app-dev pilot). TBD — resolves by the TM-APP-029 bounded proof through ordinary selection plus the parked WP-10 items.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md",
+              "sha256": "dbfa56aa71ae9934f84247ec115721129e3aac4fb2cedfd5b5cab212c74bc382"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/_STATUS.md",
+              "sha256": "f4c353d8a44559c74b9c999d1602178f0df38d34405609c2dcfe7857204fb276"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/_STATUS.md",
+              "sha256": "9af17f5f74d1c26bffa07a9ae912c2d0cb1c87662ef6f6edfd4a2b4e9dcfc32c"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "RQG §13 condition 6: public export includes only generic runtime/CLI/contracts/safe adapters and excludes credentials, machine state, and private adapters",
+          "class": "RQG13_CONDITION",
+          "carrier_or_state": "App carrier(s): none — no App carrier item; DEL-09-05-V3-02 (SBOM/notices) is artifact-identity evidence for the App package, not the Root public export. Root/external: Root `exports/chirality-app/` projection; TM-ROOT-120 (`DEFERRED`, trigger: next export release act) records the export as stale; D-GOV-35 notice defers regeneration to the next Root export release. Evidence status: absent on App (not an App carrier obligation); Root-owned and deferred.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md",
+              "sha256": "dbfa56aa71ae9934f84247ec115721129e3aac4fb2cedfd5b5cab212c74bc382"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_STATUS.md",
+              "sha256": "f2674f7a43291d4acb0f6c86ee56d8d6542f41ee03ca280b66ab2dc90b4e03a7"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-35_DELEGATED_HARNESS_NATIVE_CLASS.md",
+              "sha256": "9b8ebfe16e5241bc2c58b4bbc71032837632f5b07d776e82f11a273d2469cee7"
+            }
+          ]
+        },
+        {
+          "subject": "RQG §13 preamble and closing sentence",
+          "class": "RQG13_CONDITION",
+          "carrier_or_state": "Preamble reads 'Before SCA-APP-003 closeout, prove:' while the active App scope-change pointer is SCA-APP-008 (`CLOSED_FOR_SCOPE_CHANGE_ONLY`); the seating packet maps §13 by condition, not by that preamble. Closing sentence: the gate is validation evidence only and grants no release, publication, signing, notarization, lifecycle, or professional-reliance authority. Recorded as an observation; not resolved here (a `docs/**` edit is outside this write locus).",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md",
+              "sha256": "dbfa56aa71ae9934f84247ec115721129e3aac4fb2cedfd5b5cab212c74bc382"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+              "sha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "title": "DEL-02-06 REQ-027 and its exclusion, as stated in the accepted Root SOW, and App consumption",
+      "rows": [
+        {
+          "subject": "DEL-02-06 REQ-027 (accepted Root SOW, 'Tranche, authority, evidence, and boundary requirements')",
+          "class": "ROOT_SOW_REQUIREMENT",
+          "carrier_or_state": "Verbatim: 'The first activation shall use Context Envelope M and shall be limited to exact specification, read-only consumer inventory, evidence-matrix design, and change planning. It shall not write implementation bytes.' Accepted SOW SHA-256 recomputed = `dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146`; equals the `Accepted ScopeOfWork SHA-256` line in Root DEL-02-06 `_STATUS.md`: MATCH. Root DEL-02-06 lifecycle: Current State: INITIALIZED; REM-002 (OUT-001…009 unproduced) and REM-003 remain.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+              "sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md",
+              "sha256": "d5209a64b3a2fc19480740fdf8821cdb7ade7106da69d896c06a264796713fc7"
+            }
+          ]
+        },
+        {
+          "subject": "DEL-02-06 first-activation exclusion block (accepted Root SOW, Praxeology)",
+          "class": "ROOT_SOW_REQUIREMENT",
+          "carrier_or_state": "Verbatim: 'The following remain read-only and excluded from the first activation: `ScopeOfWork.md`, `_STATUS.md`, `_CONTEXT.md`, `_REFERENCES.md`, `_DEPENDENCIES.md`, `_SEMANTIC.md`, all decomposition and governance files, `runtime/**`, `agents/**`, `skills/**`, `tools/**`, App, PEC, Piping, Tier-0, and all product or release files. No client-owned write may be added by brief amendment; it requires a separate client-owned tranche.'",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+              "sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146"
+            }
+          ]
+        },
+        {
+          "subject": "How App consumes REQ-027 and the exclusion",
+          "class": "ROOT_SOW_REQUIREMENT",
+          "carrier_or_state": "(a) App receives DEL-02-06 outputs only through routed Root notices: the 2026-08-21 acceptance notice cites the accepted candidate JSON (byte length 14191, SHA-256 recomputed = `e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c`, notice states it: True) and the acceptance snapshot (SHA-256 recomputed = `f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4`, notice states it: True). (b) Because the first activation writes no implementation bytes and keeps App read-only, every App item whose gate is 'accepted Root supervisor/runtime bytes' or the DEL-02-06 `implementation_act` (DEL-09-04-V3-01; the WP-05 consumption items) stays `NOT_SELECTABLE_UNTIL` a separate Root activation and implementation act produce and route those bytes. (c) TM-APP-027/028/032 triggers consume this acceptance lineage and are classified `STILL_BLOCKED` (A11). (d) App writes nothing to Root; the App loop consumes Root only as `ROOT_OWNED` dependency targets. (e) The candidate JSON's embedded `status` is `PREPARATION_ONLY_UNACCEPTED` because acceptance does not rewrite historical bytes; the snapshot is the acceptance act.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+              "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md",
+              "sha256": "6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+              "sha256": "fb3c566317eaae03e28e90a8615119aa316a86a4a128485cb3a598833c3969db"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md",
+              "sha256": "8331ed1afa1811eb9a506363d6b33fc68338875336104f56942551720840128d"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+              "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "title": "D-APP-103 interaction and its seat in DEL-08-04 Remaining",
+      "rows": [
+        {
+          "subject": "D-APP-103 — per-attempt subagent decision-replay packet (D-APP-53 §3 Option C)",
+          "class": "DECISION_INTERACTION",
+          "carrier_or_state": "Register: `RULED (B4 — packet authorized)`; 'Remaining posture is packet authorized / awaiting ruling'. Ruling file: authorizes the packet only; implementation follows a later ruling. DEL-08-04 `## Remaining` first bullet: 'Prepare the D-APP-53 §3 Option C per-attempt subagent decision-replay decision packet under D-APP-103 (packet authorized; awaiting ruling)' — it carries no `(gated: …)` suffix and no `NOT_SELECTABLE_UNTIL` state; DEL-08-04-V3-01's Depends line says 'the D-APP-103 packet item below stays separate'. SCA-APP-008 `Brief.md` interaction statement: 'D-APP-103 defers: the per-attempt decision-replay packet is prepared after SCA-APP-008 applies so it covers both descendant classes once.' Packet artifacts under DEL-08-04 `_run_records/` at this basis: none → packet not yet prepared. TBD — resolves by (1) the DEL-08-04 packet planning node landing and (2) a later D-APP ruling on it; the native evidence model of DEL-08-04-V3-01 does not consume the authorization.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+              "sha256": "144554389a19bc2e5cc1597d43b64804506a565855002a234966eb81af6180c5"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-103_RULING_PER_ATTEMPT_DECISION_REPLAY_PACKET_2026-08-17.md",
+              "sha256": "23c2b5b84f8dcfe5733db8b0ad44136c6fce1ed6f30df821fb50c92882affe8b"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+              "sha256": "7d43bad441e53e42545d53bf3168e51f019968c028ed085fa35c8238469b861b"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Brief.md",
+              "sha256": "4bf54dc38e91da03a7b21c36b0ba4b89a4d358dfa7ac974f06652328902071d5"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Carrier_Map.md",
+              "sha256": "72a1b55b5307b6df5131011e30581e323737e95f3bcf85471121481ded25b619"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Open App Task Management rows and open Root rows relevant to the App pathway → carrier/gate or 'not a carrier obligation'",
+      "rows": [
+        {
+          "subject": "TM-APP-027 — Shared-runtime version negotiation and incompatibility policy",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Root generic-contract gate (DEL-02-06 ten bindings; expected firing G6a–G7); classified `STILL_BLOCKED` at A11 with Trigger byte-identical. Not an App carrier obligation; eventual App consumers of a ruled negotiation policy are DEL-03-01-V3-01 / DEL-03-03-V3-01 (parked).",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md",
+              "sha256": "6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+              "sha256": "fb3c566317eaae03e28e90a8615119aa316a86a4a128485cb3a598833c3969db"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_STATUS.md",
+              "sha256": "238c7b64f6cc5e2217041f61d4cf2ae1ebcc49dd3d427c252bb7ca68aafedb91"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-19_ROOT_TM-APP-027_TM-APP-028_COMPATIBILITY_COMPLETION.md",
+              "sha256": "17f269567c3a5795799e5be92a9ac75281dc8ff553afa11376a055d3e78924ed"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-028 — Complete shared-runtime degraded-mode contract",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Same Root gate; `STILL_BLOCKED`. Not an App carrier obligation; App consumer of a ruled degraded-mode contract is DEL-03-01-V3-01 (typed-unavailable consumption; parked).",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md",
+              "sha256": "6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+              "sha256": "fb3c566317eaae03e28e90a8615119aa316a86a4a128485cb3a598833c3969db"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-19_ROOT_TM-APP-027_TM-APP-028_COMPATIBILITY_COMPLETION.md",
+              "sha256": "17f269567c3a5795799e5be92a9ac75281dc8ff553afa11376a055d3e78924ed"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-029 — Governed live PEC daemon-consumption proof",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `OPEN`. Maps to RQG §13 condition 5 (PEC pilot path). No seated v3 carrier item; bounded proof through ordinary selection with PEC coordination by notice. Evidence absent.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md",
+              "sha256": "dbfa56aa71ae9934f84247ec115721129e3aac4fb2cedfd5b5cab212c74bc382"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-030 — Daemon/helper bundle-identity decision",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `OPEN`. Daemon/helper bundle identity — owner decision at G-HELPER (G0 B2; A11 Step 2b). AssociatedWith DEL-09-04, but no seated item carries the decision; G-HELPER `HELD`. Not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md",
+              "sha256": "6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-032 — Accepted current Root successor identity for D-APP-48",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Root DEL-02-06 successor-identity acceptance for D-APP-48; `STILL_BLOCKED`. Not an App carrier obligation (the harness-contract pin is a coordination surface, not a seated v3 item).",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md",
+              "sha256": "6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_TM117_TRIGGER_RESCOPE_AND_DEL0206_PREPARATION_AUTHORIZATION.md",
+              "sha256": "fd587b676a55c42feecd2c0e9dbcb96d67a1f2bcff3d5ab66d6fdb78826fdaf0"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-033 — D-APP-49 focused-audit dependency and Node warnings",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `OPEN`. D-APP-49 focused-audit dependency/Node warnings — App maintenance; not a v3 carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-034 — DEL-03 historical stable-ID reuse provenance audit",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `OPEN`. DEL-03 stable-ID reuse provenance audit (SCA-APP-007) — not a v3 carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-036 — Parity-instrument follow-on: three-deliverable pointer review",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `OPEN`. D-APP-86 parity residue: DEL-02-02/DEL-08-02/DEL-05-04 pointer review — not a v3 carrier obligation (DEL-02-02-V3-01 and DEL-05-04-V3-01 are distinct seated items).",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+              "sha256": "d6f3f8f8ad0a9a3ded65f8d351335a37f94b7e3f56564da50a2bdc7afbb91bc6"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/_STATUS.md",
+              "sha256": "910d8b95ea611419fe42cf0a397e179d33c937004770e64c17001830b7bf1812"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-038 — SCC-001 case-surface reconciliation: open rulings vs Remaining-None status",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `OPEN`. CASE-SCC-001 case-surface reconciliation on DEL-00-02 (HIGH) — discovery-integrity concern; not a v3 carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-040 — Notice-ledger adoption and scanner scoping decision for the App loop",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `OPEN`. Notice-ledger adoption / scanner scoping — no notice ledger exists; this record cites notices by path and SHA-256 instead. Not a carrier obligation; owner decision pending.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-APP-042 — Retained D-APP-94 probe-root cleanup disposition",
+          "class": "TM_APP_ROW",
+          "carrier_or_state": "Live status `OPEN`. Retained D-APP-94 probe-root cleanup — owner-gated disposition; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-035 — 07-28 review ranked action 3: Name the runtime identity before touching the code",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Runtime identity before code (DEL-02-06 activation ladder) — Root; not an App carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-037 — 07-28 review ranked action 5: Give Piping's successor mechanism an owner and a carrier",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Not relevant to the App v3 pathway carriers; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-039 — 07-28 review held-open question: Reusable work surface: Root requirement, App capability, or both",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Reusable work surface: Root requirement, App capability, or both — DEFERRED; App-associated; not a v3 carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-040 — 07-28 review held-open question: Application-environment-profile authority and schema",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Not relevant to the App v3 pathway carriers; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-041 — 07-28 review held-open question: Resource governance: home, contract, lock/freeze authority, fallback",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Not relevant to the App v3 pathway carriers; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-042 — 07-28 review held-open question: Logical composition vs physical bundling and cadence",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Logical composition vs physical bundling and cadence (partially decided) — Root; not an App carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-104 — Product-delivery direction: Root product-basis disposition",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Product-delivery direction: Root product-basis disposition — DEFERRED; App-associated; not a v3 carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-106 — Root/App Pi 0.82.0 concordance and supply-chain validation",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Root/App Pi 0.82.0 concordance and supply-chain validation — open, unruled G1 blocker (R16-E, R17, R18-C); plan §8.4: resolve or isolate before G1. App `docs/CONTRACT.md` K-ENGINE-6 still governs Pi `0.80.10`. No App carrier item; closure needs a Root decision record plus validation evidence (`RESOLVED_BY_DECISION` target). App consumes via routed notice.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            },
+            {
+              "path": "plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+              "sha256": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+              "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-108 — Accepted-turn recovery across daemon restart",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Accepted-turn recovery across daemon restart (DEL-02-06; Chirality App associated) — Root-owned; touches K-EVENT-3 exactly-one-terminal semantics consumed by DEL-05-02-V3-01 / DEL-09-03-V3-01 (parked). Not an App carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-111 — Local pre-push execution of cheap deterministic CI guards",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Not relevant to the App v3 pathway carriers; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-113 — Shared receipt-validator count-detector false positive (answers TM-PIP-030)",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Not relevant to the App v3 pathway carriers; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-114 — Practitioner-harness decision-register parser silently reports zero",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Not relevant to the App v3 pathway carriers; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-115 — Instruction-entrypoint validator covers two of nine launcher surfaces",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Not relevant to the App v3 pathway carriers; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-118 — taskmgmt scanner coverage and attribution defects (consolidated)",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Not relevant to the App v3 pathway carriers; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-119 — Loop-pattern convergence: four options awaiting owner ruling",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Loop-pattern convergence options (App among the loops) — DEFERRED; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-120 — Public-export derivatives stale against applied Root PRD (Revision 8)",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. Public-export derivatives stale — DEFERRED until the next export release act; maps to RQG §13 condition 6 (Root-owned).",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-123 — TM105 evidence qualification and no-TBD successor gate",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `DEFERRED`. TM105 evidence qualification / no-TBD successor gate — DEFERRED; Root generic-contract lineage behind TM-APP-027/028; not an App carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-127 — Require G4 tranche-manifest basis to resolve as a commit",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "Live status `OPEN`. Not relevant to the App v3 pathway carriers; not a carrier obligation.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            }
+          ]
+        },
+        {
+          "subject": "TM-ROOT-122 — Electron authority drift (closed)",
+          "class": "TM_ROOT_ROW",
+          "carrier_or_state": "`CLOSED` / `RESOLVED_BY_DECISION` on 2026-09-03 by R18 (PR #682 merge `fd55023e2`); relocated to `REGISTER_CLOSED.csv` (live: {'Status': 'CLOSED', 'Disposition': 'RESOLVED_BY_DECISION', 'Closed': '2026-09-03'}; present in live register: False). Closure of one named blocker is not a G1 ruling.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+              "sha256": "995d7ffd46008e1f8a8e471105e799a89830ced97ff0a98b12b2f7b563692fbc"
+            },
+            {
+              "path": "execution/_Coordination/_TaskManagement/RULING_2026-09-03_ROOT_TM-ROOT-122_DISPOSITION.md",
+              "sha256": "78e73f3e8e7a23a90f5df3d3f64d20f145ee2ffd769ae864948db5554613f9f1"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "title": "SCOPE_AMENDMENT_REQUIRED list S-1..S-7 from the seating packet (unchanged)",
+      "rows": [
+        {
+          "subject": "S-1 — DEL-04-01: WP-02 App-side probe of the exact App Server supply/protocol/config/role behaviour with adoption evidence (AT-001/002/050 observation)",
+          "class": "SCOPE_AMENDMENT_REQUIRED",
+          "carrier_or_state": "UNSEATED (returned for a later SCOPE_CHANGE act). Why unseated (applied row text at `d6f6cadb2`): Row L312 covers the *first Root-runtime adapter* probe (version, messages, policy inputs, hooks, MCP, session linkage, interruption, packaging, conformance); the App Server is a different adapter and the Gate-5 application did not amend this row. The Electron 43.2.0 drift observation is carried by A11 E2 (PR #680). Verbatim row present in `MAPPING.md` §D: True.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md",
+              "sha256": "1fbf008019fb2ba461c0cf0af930762d6933550c3a9ee9f123a3c4531aa84faa"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+              "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f"
+            }
+          ]
+        },
+        {
+          "subject": "S-2 — DEL-09-04: WP-03 App-side two-job installer/migration/rollback through runtime-control IPC (AT-054 App entry; AT-035 installer half)",
+          "class": "SCOPE_AMENDMENT_REQUIRED",
+          "carrier_or_state": "UNSEATED (returned for a later SCOPE_CHANGE act). Why unseated (applied row text at `d6f6cadb2`): Row L367 covers producing the unsigned arm64 DMG and proving instruction-root/SDK packaging posture; it does not cover installer transactions through runtime-control IPC. Verbatim row present in `MAPPING.md` §D: True.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md",
+              "sha256": "1fbf008019fb2ba461c0cf0af930762d6933550c3a9ee9f123a3c4531aa84faa"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+              "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f"
+            }
+          ]
+        },
+        {
+          "subject": "S-3 — DEL-03-03: WP-08/G0 A4 App-side resume-continuity decision logic (`thread/resume` only on exact root/account/policy match, else fresh thread)",
+          "class": "SCOPE_AMENDMENT_REQUIRED",
+          "carrier_or_state": "UNSEATED (returned for a later SCOPE_CHANGE act). Why unseated (applied row text at `d6f6cadb2`): Row L305 covers keeping `/api/harness/*` shapes and SSE names stable while policy moves behind services; the resume decision is runtime policy. Root DEL-02-11 owns restart/fresh-thread policy and DEL-05-04-V3-01 carries truthful presentation, so the owner may find no amendment necessary. Verbatim row present in `MAPPING.md` §D: True.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md",
+              "sha256": "1fbf008019fb2ba461c0cf0af930762d6933550c3a9ee9f123a3c4531aa84faa"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+              "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f"
+            }
+          ]
+        },
+        {
+          "subject": "S-4 — DEL-05-01: WP-08 consent/root-home migration and account-change invalidation; backup-before-write and rollback for session migration (Carrier Map \"backup/rollback\", plan WP-08)",
+          "class": "SCOPE_AMENDMENT_REQUIRED",
+          "carrier_or_state": "UNSEATED (returned for a later SCOPE_CHANGE act). Why unseated (applied row text at `d6f6cadb2`): Row L322 covers lazy non-destructive access to and migration of legacy project-local *session records* while preserving list, resume, and delete behavior; consent, root-home, and account-change semantics are Root-owned (DEL-02-09/DEL-02-11), and neither the row nor the DEL-05-01 Scope of Work states backup or rollback obligations. DEL-05-01-V3-01 is limited to lazy non-destructive access with typed failure. Verbatim row present in `MAPPING.md` §D: True.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md",
+              "sha256": "1fbf008019fb2ba461c0cf0af930762d6933550c3a9ee9f123a3c4531aa84faa"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+              "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f"
+            }
+          ]
+        },
+        {
+          "subject": "S-5 — DEL-04-05: Carrier Map \"extend … to OAuth/device-code/keyring … and root-account transitions\" beyond typed transport conformance",
+          "class": "SCOPE_AMENDMENT_REQUIRED",
+          "carrier_or_state": "UNSEATED (returned for a later SCOPE_CHANGE act). Why unseated (applied row text at `d6f6cadb2`): Row L316 covers credential entry/status participation, safeStorage boundary participation, and verification of ruled provider/network behaviour; OAuth/device-code/keyring semantics stay Root-owned. Only the typed-transport and posture conformance portions are seated (DEL-04-05-V3-02). Verbatim row present in `MAPPING.md` §D: True.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md",
+              "sha256": "1fbf008019fb2ba461c0cf0af930762d6933550c3a9ee9f123a3c4531aa84faa"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+              "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f"
+            }
+          ]
+        },
+        {
+          "subject": "S-6 — DEL-09-05: CI wiring of SBOM/notice tooling into repo-root `.github/workflows/**`",
+          "class": "SCOPE_AMENDMENT_REQUIRED",
+          "carrier_or_state": "UNSEATED (returned for a later SCOPE_CHANGE act). Why unseated (applied row text at `d6f6cadb2`): Not a scope gap in the row but a write-scope limit: the loop's write scope is `projects/chirality-app-dev/**` unless the owner grants wider scope; tooling under `frontend/scripts/**` is seated (DEL-09-05-V3-02), workflow wiring is not. Verbatim row present in `MAPPING.md` §D: True.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md",
+              "sha256": "1fbf008019fb2ba461c0cf0af930762d6933550c3a9ee9f123a3c4531aa84faa"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+              "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f"
+            }
+          ]
+        },
+        {
+          "subject": "S-7 — DEL-02-02: WP-07 / G0 A3 / Carrier Map row: Codex Agent 0/1/2 role-entry UX and the `role not mechanically enforced` and `Opt-in Preview` posture labels on the Work/Agents surfaces",
+          "class": "SCOPE_AMENDMENT_REQUIRED",
+          "carrier_or_state": "UNSEATED (returned for a later SCOPE_CHANGE act). Why unseated (applied row text at `d6f6cadb2`): Row L294 was not amended at Gate 5 and states presentation of recorded agent/session selections with provenance labels only; a role-entry offer is new UX. Gate 5 seated role entry and both labels on DEL-02-05 (L297) and DEL-08-04 (L357) only. DEL-02-02-V3-01 is limited to presenting recorded descendant records with provenance labels and is parked until those records exist (DEL-08-05-V3-01). Verbatim row present in `MAPPING.md` §D: True.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md",
+              "sha256": "1fbf008019fb2ba461c0cf0af930762d6933550c3a9ee9f123a3c4531aa84faa"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+              "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Not claimed",
+      "rows": [
+        {
+          "subject": "G0.5",
+          "class": "NOT_CLAIMED",
+          "carrier_or_state": "UNRULED. Root R16 routed the ten bindings and did not declare G0.5 passed; `source_identity` and `implementation_act` remain `HELD_UNAVAILABLE`; R17-B and R18-C preserve that state. This record supplies App evidence only.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+              "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+              "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            }
+          ]
+        },
+        {
+          "subject": "G1",
+          "class": "NOT_CLAIMED",
+          "carrier_or_state": "UNRULED. G1 is a REVIEW + owner gate. TM-ROOT-106 remains an open, unruled G1 blocker; TM-ROOT-122's closure is not a ruling on the gate (R18-B). This record is an input to the G1 REVIEW, not its verdict.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            },
+            {
+              "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+              "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+              "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+            }
+          ]
+        },
+        {
+          "subject": "Authority",
+          "class": "NOT_CLAIMED",
+          "carrier_or_state": "Not claimed. The pinned plan, notices, ruling-record transcriptions, and this record are not authority; live sources govern on any disagreement (K-AUTH-1; workplan pin clause).",
+          "note": "",
+          "citations": [
+            {
+              "path": "plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+              "sha256": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a"
+            },
+            {
+              "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+              "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+            }
+          ]
+        },
+        {
+          "subject": "Closure",
+          "class": "NOT_CLAIMED",
+          "carrier_or_state": "Not claimed. No Task Management row, held binding, SCOPE_AMENDMENT_REQUIRED obligation, dependency row, or Root item is closed, lifted, satisfied, or dispositioned by this record.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+              "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+            },
+            {
+              "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+              "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+            }
+          ]
+        },
+        {
+          "subject": "Lifecycle",
+          "class": "NOT_CLAIMED",
+          "carrier_or_state": "Not claimed. DEL-01-01 `Current State`, `Checking Approval SHA`, `Authorization Basis`, and `Directive` lines are unchanged by this tranche (the live `_STATUS.md` is edited by this tranche for its Remaining/History lines and is therefore not a cited byte; its seating-time identity is in the seating packet `SOW_IDENTITY_LEDGER.md`); no `CHECKING → ISSUED` act (F-APP-4); Root DEL-02-06 remains `INITIALIZED`.",
+          "note": "",
+          "citations": [
+            {
+              "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md",
+              "sha256": "d5209a64b3a2fc19480740fdf8821cdb7ade7106da69d896c06a264796713fc7"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/ScopeOfWork.md",
+              "sha256": "b19dbe506791aa31fb55c4629c188d1ec85234cf01b25d5934a03cb4ab2d44fd"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/SOW_IDENTITY_LEDGER.md",
+              "sha256": "8e68aa8e31c444f6ce9d2724474aa3fa5c14ebd2953e00f14a7938bb7b5b115b"
+            }
+          ]
+        },
+        {
+          "subject": "Implementation",
+          "class": "NOT_CLAIMED",
+          "carrier_or_state": "Not claimed. No product, runtime, `frontend/**`, workflow, register, decision, corpus, `docs/**`, or Root byte changed in this tranche; the A1 re-stage rule did not fire.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/ScopeOfWork.md",
+              "sha256": "b19dbe506791aa31fb55c4629c188d1ec85234cf01b25d5934a03cb4ab2d44fd"
+            },
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/SOW_IDENTITY_LEDGER.md",
+              "sha256": "8e68aa8e31c444f6ce9d2724474aa3fa5c14ebd2953e00f14a7938bb7b5b115b"
+            },
+            {
+              "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+              "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+            }
+          ]
+        },
+        {
+          "subject": "Release",
+          "class": "NOT_CLAIMED",
+          "carrier_or_state": "Not claimed. D-APP-97 and F-APP-2 remain active; no signing, notarization, publication, distribution, release-readiness, professional, or certification claim (F-APP-2); G6a and every later gate are untouched.",
+          "note": "",
+          "citations": [
+            {
+              "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-97_RULING_RELEASE_PREPARATION_2026-08-17.md",
+              "sha256": "1493bca33fa67e3f89f95904efdf9ac9ba5f7bdb0a856f69f810980b43a453cc"
+            },
+            {
+              "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+              "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "manifest": [
+    {
+      "path": "AGENTS.md",
+      "bytes": 18466,
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "bytes": 20905,
+      "sha256": "ad0a4e6ae53853692205b34b2c4416e23d19dabb73079049e5acec09b5beeb83"
+    },
+    {
+      "path": "docs/governance_harness/_DECISIONS/D-GOV-35_delegated_harness_native_class.md",
+      "bytes": 7476,
+      "sha256": "e7c1e532a9d46cdc27957c85003515c46b5193e21438c905cf1cfb4e56433efa"
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-03_Delegation_Hierarchy_and_Entry_Rules/_run_records/DEL-02-03-M2-APPLY-001/APPLICATION_RECORD.md",
+      "bytes": 2579,
+      "sha256": "5faca94878540d9373e16631d0930e359d74411fe86e712e667e27404443f111"
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/ScopeOfWork.md",
+      "bytes": 46790,
+      "sha256": "dc78196e96ec79d74b80b712bbc2e3d047a2e322e8c588497603ec426fbb0146"
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_STATUS.md",
+      "bytes": 2752,
+      "sha256": "d5209a64b3a2fc19480740fdf8821cdb7ade7106da69d896c06a264796713fc7"
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-ACCEPTANCE-005/ACCEPTED_COMPATIBILITY_SNAPSHOT.md",
+      "bytes": 4177,
+      "sha256": "f497cbbd8b9e7af454a82beae0aaed530374476ae6e97ff64195554c20cfe6b4"
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance/_run_records/DEL-02-06-COMPATIBILITY-COMPLETION-004/candidate/COMPATIBILITY_COMPLETION_CANDIDATE.json",
+      "bytes": 14191,
+      "sha256": "e5ae4e874bdace43720db082a9bd1ae3ff81b9e731264c65039b02d7f720467c"
+    },
+    {
+      "path": "execution/PKG-02_Operative_Instruction_Surface_and_Runtime_Layers/1_Working/DEL-02-08_Exact_Supply_and_Protocol_Pinning/_run_records/APP-SERVER-0.149.0-G2-CANDIDATE-2026-08-24/G2_ACCEPTANCE_SHEET.md",
+      "bytes": 2640,
+      "sha256": "cec83abc2fc39358037600c883dd7b55ad09b154140d68a4d86346c309cda5ae"
+    },
+    {
+      "path": "execution/_Coordination/NOTICE_2026-08-24_APP_SCA-APP-008_GATE5_APPLIED_STATE.md",
+      "bytes": 4672,
+      "sha256": "75c9d5dde1b0c405181baf9b3ee1e8431e7bd5ae920355f3861a8bc51ce8e834"
+    },
+    {
+      "path": "execution/_Coordination/NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md",
+      "bytes": 7357,
+      "sha256": "d7eb52af3fd3833b6af949e218c6c90b7566a751c90331fa643a1cc86bc40d78"
+    },
+    {
+      "path": "execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "bytes": 34722,
+      "sha256": "fb7ef7d816d348fa55fee596fbe1a427b745dad7c9b787180d2a9e677e3627af"
+    },
+    {
+      "path": "execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv",
+      "bytes": 195499,
+      "sha256": "995d7ffd46008e1f8a8e471105e799a89830ced97ff0a98b12b2f7b563692fbc"
+    },
+    {
+      "path": "execution/_Coordination/_TaskManagement/RULING_2026-09-03_ROOT_TM-ROOT-122_DISPOSITION.md",
+      "bytes": 8844,
+      "sha256": "78e73f3e8e7a23a90f5df3d3f64d20f145ee2ffd769ae864948db5554613f9f1"
+    },
+    {
+      "path": "execution/_ScopeChange/SCA-004_2026-08-22_1749/Gate_5_Application_Record.md",
+      "bytes": 8956,
+      "sha256": "0d66859b98fe40c7e2b30278ea43760b9502e0ee6ffa821d24814a368753d19a"
+    },
+    {
+      "path": "execution/_ScopeChange/_LATEST.md",
+      "bytes": 2184,
+      "sha256": "4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c"
+    },
+    {
+      "path": "plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+      "bytes": 196082,
+      "sha256": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a10_2026-08-24.md",
+      "bytes": 3714,
+      "sha256": "0908fee812919291979dd486dd9748fda21b9fb4b20afb13604a1a3e02bd8aa2"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a11_2026-09-03.md",
+      "bytes": 8668,
+      "sha256": "6197bae1aad25e6fd7dfa6befb0212acb5da24654f49f97536dbc2d365aeca27"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a12_2026-09-03.md",
+      "bytes": 6660,
+      "sha256": "21b77b378a6511b48ea2e60e676ea1c9b7ee013d8c042769392decf57ceb29ec"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a1_2026-08-23.md",
+      "bytes": 2508,
+      "sha256": "f9b02806eeab1a578e6729c41fc367074758a2b95cc0eda9c8d2edbda446f314"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a2_2026-08-23.md",
+      "bytes": 5098,
+      "sha256": "37e6b6d60874ded0727cf65f25aea09cc961bd35b135b5b8eb33c0d20c1f6158"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a3_2026-08-23.md",
+      "bytes": 4149,
+      "sha256": "91d6867286de465f56bb41a6de9e9d8657e6b63ddb009f294d81b3e6dcccded9"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a4_2026-08-23.md",
+      "bytes": 5457,
+      "sha256": "14db687762b9af099debbfe9cfcaab0879e7082922f6eda9897b3f4d61ff330d"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a5_2026-08-23.md",
+      "bytes": 3248,
+      "sha256": "1896d89200c4cd390b4606aed0229fe03bf7c5070f454e1dca5d6c6acde2bb9b"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a6_2026-08-23.md",
+      "bytes": 3723,
+      "sha256": "66bd22a1b439979f74bbaedf2c182d222a6ba38952ec046f78fc2091885e4e63"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a7_2026-08-23.md",
+      "bytes": 5545,
+      "sha256": "56b9dc8ed8835a3220ccab10416cd9457d2a1d58b62c92582d84c773430e22d2"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a8_2026-08-23.md",
+      "bytes": 6813,
+      "sha256": "d4018737aa9ae33e5b26f2afd3fbb2ffc1e9c8d3fe0a2494cf64c951224b6c8f"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_app_ruling_record_a9_2026-08-24.md",
+      "bytes": 3573,
+      "sha256": "6ce5534514b8298ab9cfff3c72ba7f0532a41f58278ef03cc6c4cdadf9b47178"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_g0_record_2026-08-22.md",
+      "bytes": 7340,
+      "sha256": "86b9877c6bea08a9f79c2af2378d5d38722a09c1a10deb37f87211c76d2c290b"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_kcontrol1_amendment_steer_root_2026-08-23.md",
+      "bytes": 5679,
+      "sha256": "c0a9b1098fc9e36d1532dc1834424ee94f40b716d37f3c8b8c12dfb26a807c29"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r10_2026-08-24.md",
+      "bytes": 3661,
+      "sha256": "68c8524dc2a84d8584b04969d7684fd6124f6a72399d1a80a499df6baaa0ae8f"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r11_2026-08-24.md",
+      "bytes": 3791,
+      "sha256": "01d9ae6d42d25942ae4991b61385b8d1a70a8d54a82d88d17648c000d6622fbd"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r12_2026-08-24.md",
+      "bytes": 5047,
+      "sha256": "2ee282fc1330c466e17ce2791cb7cb8c66f2a7e13f455c2ab1750c42719321fd"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r13_2026-08-24.md",
+      "bytes": 5979,
+      "sha256": "0ba74959dac38f49f81f6ba8aff4020df520fd418bed2a3aa6617b19f3aa4960"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r14_2026-08-24.md",
+      "bytes": 4797,
+      "sha256": "2633637bd68c7f4cb54457a3547b2bcab8933f19e021abf558b1ef2463d1b5e9"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r15_2026-08-25.md",
+      "bytes": 1973,
+      "sha256": "a8463a7f0392978325e8d25558332e72868271e9c4d99ac26c7425bb3a448301"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r16_2026-08-27.md",
+      "bytes": 9699,
+      "sha256": "f1baab4a42874635fef39b8e7f69666d72c588e59056f55a10f2d4aceb9535ef"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md",
+      "bytes": 9849,
+      "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r18_2026-09-03.md",
+      "bytes": 8825,
+      "sha256": "1f315a482ddcaf253d13d6b219f8534c1ddcf7b9d818a72f94c988534d9b8d69"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r1_2026-08-22.md",
+      "bytes": 4950,
+      "sha256": "a9879a87faaeb4cd4d5f16b2b4b0364543dff117e1b51c7e17d1efdcb20f377d"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r2_2026-08-23.md",
+      "bytes": 2442,
+      "sha256": "63b174f00860cd31dbdde1f734a9e1ca08c44f7cd2ed51f7716612f3847a6bce"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r3_2026-08-23.md",
+      "bytes": 5755,
+      "sha256": "88608e168aaab64a833e6c1742647969e726f2928ad9b9bc0a40932085d0e0b5"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r4_2026-08-23.md",
+      "bytes": 5926,
+      "sha256": "5916aa599bf5953324636b8c5e0b0a5e2b9e6a793fd6dd9b1cac1c7e19e0755a"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r5_2026-08-23.md",
+      "bytes": 4976,
+      "sha256": "1f0a3358602fdfb4dff70607ad631130db55dcfd62d71a6fe7a3a13e18f0f42a"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r6_2026-08-23.md",
+      "bytes": 5022,
+      "sha256": "4e39bf6df909d63b910db3d953db720d2bceb2d27f26ce7454c93551f2a822de"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r7_2026-08-23.md",
+      "bytes": 2884,
+      "sha256": "dc62fb222bf2badd521e0b388f9cfa711b980a90f73db9c77de8726d7ec7cd53"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r8_2026-08-23.md",
+      "bytes": 3510,
+      "sha256": "b91ee877b6a6c168434e34389309dd2663026baca03c2d900d9df8d182308d0f"
+    },
+    {
+      "path": "plans/steers/chirality_app_v3_root_ruling_record_r9_2026-08-23.md",
+      "bytes": 3304,
+      "sha256": "bc3a3bf414cfd64a5a650d633e942c2bb741a4562622857a79f5101c837e577b"
+    },
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "bytes": 14148,
+      "sha256": "e6bf5ce4e3b8596d85df8f8d19cb2e3d963022447811239217b8e9e233ecd7aa"
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/CONTRACT.md",
+      "bytes": 35003,
+      "sha256": "51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517"
+    },
+    {
+      "path": "projects/chirality-app-dev/docs/RELEASE_QUALITY_GATES.md",
+      "bytes": 11185,
+      "sha256": "dbfa56aa71ae9934f84247ec115721129e3aac4fb2cedfd5b5cab212c74bc382"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-01_Product_Governance_and_Reliance_Boundaries/1_Working/DEL-01-01_Governance_Alignment_Human_Authority_and_Project_Truth/ScopeOfWork.md",
+      "bytes": 30604,
+      "sha256": "b19dbe506791aa31fb55c4629c188d1ec85234cf01b25d5934a03cb4ab2d44fd"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_STATUS.md",
+      "bytes": 10722,
+      "sha256": "d6f3f8f8ad0a9a3ded65f8d351335a37f94b7e3f56564da50a2bdc7afbb91bc6"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_STATUS.md",
+      "bytes": 11442,
+      "sha256": "52e1716cb892078e0bdc267cd22df3f159d12ddd994c8d8316a5558ede93c225"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+      "bytes": 7991,
+      "sha256": "fb3c566317eaae03e28e90a8615119aa316a86a4a128485cb3a598833c3969db"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-03_Harness_API_and_SSE_Compatibility_Adapter/_STATUS.md",
+      "bytes": 5463,
+      "sha256": "238c7b64f6cc5e2217041f61d4cf2ae1ebcc49dd3d427c252bb7ca68aafedb91"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-01_SDK_Probe_and_Version_Pinned_Adoption_Decision/_STATUS.md",
+      "bytes": 6332,
+      "sha256": "6fc7cd2d1fe645152b8b388c406e967edf0eb975c5889a9e3644fc0b7c061bd8"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge/_STATUS.md",
+      "bytes": 8532,
+      "sha256": "7055907391f55abda67cad6892ac0885ef234401504392ba950dde1dcf9596ee"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-01_Canonical_Session_Folder_and_Legacy_Session_Migration/_STATUS.md",
+      "bytes": 7665,
+      "sha256": "3fdcc6d2e47648a567596d4719c22bcc884d5c5d5be342cec17c04b5d18ac67c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_STATUS.md",
+      "bytes": 4678,
+      "sha256": "510126f072cab4ba3525ca7c828e30bb571f8dcdd725bb52d6e14129cad4a53f"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-03_Redacted_RunLogger_and_Secret_Hygiene/_STATUS.md",
+      "bytes": 5339,
+      "sha256": "d5e44706afab6dc0a53ba37c137e38b761dece4787d89099a0b6094a47543fa7"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-04_Runtime_Replay_and_Transcript_View/_STATUS.md",
+      "bytes": 7518,
+      "sha256": "910d8b95ea611419fe42cf0a397e179d33c937004770e64c17001830b7bf1812"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_STATUS.md",
+      "bytes": 8203,
+      "sha256": "144554389a19bc2e5cc1597d43b64804506a565855002a234966eb81af6180c5"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-05_Subagent_Child_Run_Records_and_Artifacts/_STATUS.md",
+      "bytes": 5080,
+      "sha256": "279f5e1448b0b5fe2be8de57bab6273dc5e73598186b79d688261f1f58dee700"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/_STATUS.md",
+      "bytes": 4599,
+      "sha256": "f4c353d8a44559c74b9c999d1602178f0df38d34405609c2dcfe7857204fb276"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-02_Section_9_Runtime_Validation_Additions/_STATUS.md",
+      "bytes": 5243,
+      "sha256": "9af17f5f74d1c26bffa07a9ae912c2d0cb1c87662ef6f6edfd4a2b4e9dcfc32c"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-03_Unit_and_Integration_Test_Expansion/_STATUS.md",
+      "bytes": 7508,
+      "sha256": "97ebd2c9bb95890812d7a5347bf2d976082d59dd59f948090ae11ee9faa14ede"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_STATUS.md",
+      "bytes": 37179,
+      "sha256": "8331ed1afa1811eb9a506363d6b33fc68338875336104f56942551720840128d"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity/_run_records/R21_R20_OWNER_LOGIN_SESSION_PROOF_PASS_CLOSEOUT_2026-08-23.md",
+      "bytes": 11156,
+      "sha256": "4fa5e0a1d413c3b4e0413b9ad31a1c7a26b1278066732fc7b220ed23c9666bee"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_STATUS.md",
+      "bytes": 16292,
+      "sha256": "f2674f7a43291d4acb0f6c86ee56d8d6542f41ee03ca280b66ab2dc90b4e03a7"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md",
+      "bytes": 10816,
+      "sha256": "30d42967e441981a421dc3fc2e12436eab1b0341bdf59cf6b989d458db3661de"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/COVERAGE_MATRIX.md",
+      "bytes": 10771,
+      "sha256": "1fbf008019fb2ba461c0cf0af930762d6933550c3a9ee9f123a3c4531aa84faa"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/MAPPING.md",
+      "bytes": 22231,
+      "sha256": "99ba8fb24a40a0eaafc37465a8f5c47b84d57cdc21eac3faa7280ba890b076c8"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/SOW_IDENTITY_LEDGER.md",
+      "bytes": 15270,
+      "sha256": "8e68aa8e31c444f6ce9d2724474aa3fa5c14ebd2953e00f14a7938bb7b5b115b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-19_ROOT_TM-APP-027_TM-APP-028_COMPATIBILITY_COMPLETION.md",
+      "bytes": 4564,
+      "sha256": "17f269567c3a5795799e5be92a9ac75281dc8ff553afa11376a055d3e78924ed"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_DEL0206_COMPATIBILITY_ACCEPTANCE.md",
+      "bytes": 2009,
+      "sha256": "5930ad2c1395918950aa02fd76635c2209966f02665ad2cd1e5f81e148e535ec"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-08-21_ROOT_TM117_TRIGGER_RESCOPE_AND_DEL0206_PREPARATION_AUTHORIZATION.md",
+      "bytes": 2497,
+      "sha256": "fd587b676a55c42feecd2c0e9dbcb96d67a1f2bcff3d5ab66d6fdb78826fdaf0"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_2026-09-03_APP_TM-ROOT-122_ELECTRON_AUTHORITY_DISPOSITION.md",
+      "bytes": 5228,
+      "sha256": "b68ed592b310fa996bb10d2aaf6889a25eb0481e6a57ce3fb2e414b775e4ee2b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/NOTICE_D-GOV-35_DELEGATED_HARNESS_NATIVE_CLASS.md",
+      "bytes": 2921,
+      "sha256": "9b8ebfe16e5241bc2c58b4bbc71032837632f5b07d776e82f11a273d2469cee7"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-103_RULING_PER_ATTEMPT_DECISION_REPLAY_PACKET_2026-08-17.md",
+      "bytes": 1551,
+      "sha256": "23c2b5b84f8dcfe5733db8b0ad44136c6fce1ed6f30df821fb50c92882affe8b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-97_RULING_RELEASE_PREPARATION_2026-08-17.md",
+      "bytes": 2087,
+      "sha256": "1493bca33fa67e3f89f95904efdf9ac9ba5f7bdb0a856f69f810980b43a453cc"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-98_RULING_ELECTRON_AUTHORITY_2026-08-17.md",
+      "bytes": 1020,
+      "sha256": "71dfc1ae6369acea1e49f71d68e45aaf9da8f14c5f6a77733845c43f3ee7c020"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "bytes": 92126,
+      "sha256": "7d43bad441e53e42545d53bf3168e51f019968c028ed085fa35c8238469b861b"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/OWNER_RULING_2026-09-03_G0_V3_TRIAGE.md",
+      "bytes": 12291,
+      "sha256": "42293b966670d5a6185c9c8b167e9564ada5431fa3ff4ebb08e88de3565b3397"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "bytes": 27318,
+      "sha256": "bae90ca564f45d51bbb94722cf64b3cda6bc0d614365a2c177b2b79c55844931"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "bytes": 112419,
+      "sha256": "932b890e4de38c0fc59c2bcf4830be9d436c74aeac6b2535a7d4f5185168716f"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Reconciliation/References/AUTHORITY_CORPUS.json",
+      "bytes": 22072,
+      "sha256": "8b5b5d21287144a03fdd5c204f0c473219d3f183f58974c6679c368c2e21b3b4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Brief.md",
+      "bytes": 8074,
+      "sha256": "4bf54dc38e91da03a7b21c36b0ba4b89a4d358dfa7ac974f06652328902071d5"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Carrier_Map.md",
+      "bytes": 16164,
+      "sha256": "72a1b55b5307b6df5131011e30581e323737e95f3bcf85471121481ded25b619"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Contract_Amendments.proposed.md",
+      "bytes": 11507,
+      "sha256": "8a6a799912eb9f610c8e1f6635d7eaf3f90e08614823ab3f715c3006bc0d1485"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Impact_Assessment.md",
+      "bytes": 12195,
+      "sha256": "068c7b29734ea7ca4a0af9bc63d6355beb23f2083b668725d93c951bf53f4cf0"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/Phase5/CLOSURE_ADDENDUM_2026-09-03.md",
+      "bytes": 3066,
+      "sha256": "3787e865625b70f8f0273113e2f14fa1dc44490b9ae70308c08a660def06ae15"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md",
+      "bytes": 1572,
+      "sha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b"
+    },
+    {
+      "path": "projects/chirality-app-dev/loop/WORKPLAN_2026-09-03_app_dev_loop.md",
+      "bytes": 23344,
+      "sha256": "d7210fe68ec832b91c553d982fb34c48ff7257e9bd028cfc0571e411f5c514ac"
+    }
+  ],
+  "not_claimed": [
+    "G0.5 unruled",
+    "G1 unruled",
+    "no authority",
+    "no closure",
+    "no lifecycle transition",
+    "no implementation",
+    "no release"
+  ]
+}
