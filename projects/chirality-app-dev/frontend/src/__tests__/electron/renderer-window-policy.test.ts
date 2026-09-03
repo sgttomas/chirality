@@ -8,6 +8,7 @@ import {
   evaluateWindowOpen,
   installRendererWindowPolicy,
   rendererWebPreferences,
+  runEgressLayerProbe,
   runRendererSecurityProbe,
   summarizeDestination,
   type RendererWindowLike
@@ -47,10 +48,41 @@ describe('renderer web preferences', () => {
 });
 
 describe('window-open policy', () => {
-  it('denies every request', () => {
-    expect(evaluateWindowOpen({ url: 'https://example.com/' })).toEqual({ action: 'deny' });
-    expect(evaluateWindowOpen({ url: `${RENDERER_ORIGIN}/settings` })).toEqual({ action: 'deny' });
-    expect(evaluateWindowOpen({ url: 'about:blank' })).toEqual({ action: 'deny' });
+  it('never creates a child window; hands http(s) targets to the system browser', () => {
+    expect(evaluateWindowOpen({ url: 'https://example.com/docs?x=1' })).toEqual({
+      action: 'deny',
+      external: true
+    });
+    expect(evaluateWindowOpen({ url: 'http://example.com/' })).toEqual({ action: 'deny', external: true });
+    expect(evaluateWindowOpen({ url: `${RENDERER_ORIGIN}/settings` })).toEqual({
+      action: 'deny',
+      external: true
+    });
+  });
+
+  it.each([
+    ['javascript:', 'javascript:alert(1)'],
+    ['file:', 'file:///etc/passwd'],
+    ['data:', 'data:text/html,<script>1</script>'],
+    ['blob:', `blob:${RENDERER_ORIGIN}/0000`],
+    ['about:', 'about:blank'],
+    ['custom scheme', 'chirality://open'],
+    ['ws:', 'ws://example.com/']
+  ])('drops %s without any external open', (_name, url) => {
+    expect(evaluateWindowOpen({ url })).toEqual({
+      action: 'deny',
+      external: false,
+      reason: 'SCHEME_NOT_HTTP'
+    });
+  });
+
+  it('drops a malformed URL', () => {
+    expect(evaluateWindowOpen({ url: 'not a url' })).toEqual({
+      action: 'deny',
+      external: false,
+      reason: 'INVALID_URL'
+    });
+    expect(evaluateWindowOpen({ url: '' })).toEqual({ action: 'deny', external: false, reason: 'INVALID_URL' });
   });
 });
 
@@ -100,7 +132,8 @@ describe('content security policy', () => {
     expect(csp).toContain("script-src 'self' 'unsafe-inline'");
     expect(csp).not.toContain("'unsafe-eval'");
     expect(csp).toContain("style-src 'self' 'unsafe-inline'");
-    expect(csp).toContain("connect-src 'self' https://api.anthropic.com:*");
+    expect(csp).toContain("connect-src 'self';");
+    expect(csp).not.toContain('api.anthropic.com');
     expect(csp).not.toContain('ws://');
     expect(csp).toContain("frame-src 'none'");
     expect(csp).toContain("object-src 'none'");
@@ -117,13 +150,12 @@ describe('content security policy', () => {
       rendererOrigin: 'http://localhost:3000'
     });
     expect(csp).toContain("script-src 'self' 'unsafe-inline' 'unsafe-eval'");
-    expect(csp).toContain(
-      "connect-src 'self' https://api.anthropic.com:* ws://localhost:3000 wss://localhost:3000"
-    );
+    expect(csp).toContain("connect-src 'self' ws://localhost:3000 wss://localhost:3000;");
+    expect(csp).not.toContain('api.anthropic.com');
     expect(csp).toContain("frame-src 'none'");
   });
 
-  it('never widens connect-src beyond self, the Anthropic host, and the dev websocket', () => {
+  it('never widens connect-src beyond self and the dev websocket', () => {
     for (const csp of [
       buildRendererContentSecurityPolicy({ mode: 'packaged' }),
       buildRendererContentSecurityPolicy({ mode: 'development', rendererOrigin: 'http://localhost:3000' }),
@@ -132,7 +164,7 @@ describe('content security policy', () => {
       const connect = csp.split('; ').find((directive) => directive.startsWith('connect-src '))!;
       const sources = connect.replace('connect-src ', '').split(' ');
       for (const source of sources) {
-        expect(source).toMatch(/^('self'|https:\/\/api\.anthropic\.com:\*|wss?:\/\/localhost:3000)$/);
+        expect(source).toMatch(/^('self'|wss?:\/\/localhost:3000)$/);
       }
     }
   });
@@ -148,17 +180,19 @@ describe('content security policy', () => {
       )
     ).toEqual({ 'content-type': ['text/html'], [CONTENT_SECURITY_POLICY_HEADER]: [csp] });
 
+    // Untouched responses yield null — never an echoed (possibly empty) header set.
     const existing = { 'content-security-policy': ["default-src 'none'"] };
     expect(
       applyContentSecurityPolicyHeader({ url: `${RENDERER_ORIGIN}/`, responseHeaders: existing }, RENDERER_ORIGIN, csp)
-    ).toBe(existing);
+    ).toBeNull();
 
     const foreign = { 'content-type': ['application/json'] };
     expect(
       applyContentSecurityPolicyHeader({ url: 'https://api.anthropic.com/v1/x', responseHeaders: foreign }, RENDERER_ORIGIN, csp)
-    ).toBe(foreign);
+    ).toBeNull();
 
-    expect(applyContentSecurityPolicyHeader({ url: 'not a url' }, RENDERER_ORIGIN, csp)).toEqual({});
+    expect(applyContentSecurityPolicyHeader({ url: 'not a url' }, RENDERER_ORIGIN, csp)).toBeNull();
+    expect(applyContentSecurityPolicyHeader({ url: 'https://evil.example/' }, RENDERER_ORIGIN, csp)).toBeNull();
     expect(applyContentSecurityPolicyHeader({ url: `${RENDERER_ORIGIN}/x` }, RENDERER_ORIGIN, csp)).toEqual({
       [CONTENT_SECURITY_POLICY_HEADER]: [csp]
     });
@@ -214,27 +248,94 @@ function fakeWindow(): FakeWindow {
 describe('installRendererWindowPolicy', () => {
   const csp = buildRendererContentSecurityPolicy({ mode: 'packaged' });
 
-  it('installs a deny-all window-open handler that logs a redacted destination', () => {
-    const window = fakeWindow();
-    const log = vi.fn();
-    installRendererWindowPolicy(window, { rendererOrigin: RENDERER_ORIGIN, contentSecurityPolicy: csp, log });
-
-    expect(window.handlers.windowOpen!({ url: 'https://evil.example/steal?key=sk-secret' })).toEqual({
-      action: 'deny'
+  function install(window: FakeWindow, log = vi.fn(), openExternal = vi.fn<(url: string) => Promise<void>>()) {
+    openExternal.mockResolvedValue();
+    installRendererWindowPolicy(window, {
+      rendererOrigin: RENDERER_ORIGIN,
+      contentSecurityPolicy: csp,
+      openExternal,
+      log
     });
-    expect(window.handlers.windowOpen!({ url: `${RENDERER_ORIGIN}/settings` })).toEqual({ action: 'deny' });
+    return { log, openExternal };
+  }
+
+  it('denies the child window and opens http(s) targets externally, exactly once, with the exact URL', async () => {
+    const window = fakeWindow();
+    const { log, openExternal } = install(window);
+
+    const url = 'https://docs.example/page?section=2#top';
+    expect(window.handlers.windowOpen!({ url })).toEqual({ action: 'deny' });
+    expect(openExternal).toHaveBeenCalledTimes(1);
+    expect(openExternal).toHaveBeenCalledWith(url);
+    expect(log).toHaveBeenCalledWith('info', 'renderer.window_open.external_opened', {
+      destination: { protocol: 'https:', hostname: 'docs.example' }
+    });
+
+    expect(window.handlers.windowOpen!({ url: 'http://plain.example/' })).toEqual({ action: 'deny' });
+    expect(openExternal).toHaveBeenCalledTimes(2);
+    expect(openExternal).toHaveBeenLastCalledWith('http://plain.example/');
+    expect(log).not.toHaveBeenCalledWith('warn', 'renderer.window_open.denied', expect.anything());
+    await Promise.resolve();
+  });
+
+  it.each([
+    ['javascript:', 'javascript:alert(document.cookie)'],
+    ['file:', 'file:///Users/someone/.ssh/id_rsa'],
+    ['data:', 'data:text/html,<script>1</script>'],
+    ['blob:', `blob:${RENDERER_ORIGIN}/0000`],
+    ['about:', 'about:blank#probe'],
+    ['custom scheme', 'chirality://open?key=sk-secret']
+  ])('denies %s without opening anything', (_name, url) => {
+    const window = fakeWindow();
+    const { log, openExternal } = install(window);
+
+    expect(window.handlers.windowOpen!({ url })).toEqual({ action: 'deny' });
+    expect(openExternal).not.toHaveBeenCalled();
+    expect(log).toHaveBeenCalledTimes(1);
     expect(log).toHaveBeenCalledWith('warn', 'renderer.window_open.denied', {
-      destination: { protocol: 'https:', hostname: 'evil.example' }
+      reason: 'SCHEME_NOT_HTTP',
+      destination: summarizeDestination(url)
     });
     expect(JSON.stringify(log.mock.calls)).not.toContain('sk-secret');
+  });
+
+  it('denies a malformed URL without opening anything', () => {
+    const window = fakeWindow();
+    const { log, openExternal } = install(window);
+
+    expect(window.handlers.windowOpen!({ url: 'not a url' })).toEqual({ action: 'deny' });
+    expect(openExternal).not.toHaveBeenCalled();
+    expect(log).toHaveBeenCalledWith('warn', 'renderer.window_open.denied', {
+      reason: 'INVALID_URL',
+      destination: null
+    });
+  });
+
+  it('logs a redacted line when the external open fails, without throwing', async () => {
+    const window = fakeWindow();
+    const log = vi.fn();
+    const openExternal = vi.fn<(url: string) => Promise<void>>().mockRejectedValue(new Error('no browser for sk-secret'));
+    installRendererWindowPolicy(window, {
+      rendererOrigin: RENDERER_ORIGIN,
+      contentSecurityPolicy: csp,
+      openExternal,
+      log
+    });
+
+    expect(window.handlers.windowOpen!({ url: 'https://docs.example/' })).toEqual({ action: 'deny' });
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(log).toHaveBeenCalledWith('warn', 'renderer.window_open.external_failed', {
+      destination: { protocol: 'https:', hostname: 'docs.example' },
+      error: 'no browser for sk-secret'
+    });
   });
 
   it.each(['will-navigate', 'will-redirect'] as const)(
     '%s allows only the renderer origin and prevents everything else',
     (eventName) => {
       const window = fakeWindow();
-      const log = vi.fn();
-      installRendererWindowPolicy(window, { rendererOrigin: RENDERER_ORIGIN, contentSecurityPolicy: csp, log });
+      const { log } = install(window);
       const listener = window.handlers.navigation.get(eventName)!;
 
       const allowed = { preventDefault: vi.fn() };
@@ -273,13 +374,13 @@ describe('installRendererWindowPolicy', () => {
 
   it('registers both navigation events', () => {
     const window = fakeWindow();
-    installRendererWindowPolicy(window, { rendererOrigin: RENDERER_ORIGIN, contentSecurityPolicy: csp });
+    install(window);
     expect([...window.handlers.navigation.keys()].sort()).toEqual(['will-navigate', 'will-redirect']);
   });
 
-  it('attaches the CSP through onHeadersReceived for renderer-origin responses only', () => {
+  it('attaches the CSP through onHeadersReceived and leaves every other response untouched', () => {
     const window = fakeWindow();
-    installRendererWindowPolicy(window, { rendererOrigin: RENDERER_ORIGIN, contentSecurityPolicy: csp });
+    install(window);
     expect(window.handlers.headerFilter).toEqual({ urls: ['http://*/*', 'https://*/*'] });
 
     const callback = vi.fn();
@@ -288,22 +389,29 @@ describe('installRendererWindowPolicy', () => {
       responseHeaders: { a: ['1'], [CONTENT_SECURITY_POLICY_HEADER]: [csp] }
     });
 
+    // Untouched responses get no override at all — `{}` — never an echoed set.
     const preset = { 'Content-Security-Policy': ["default-src 'none'"] };
     window.handlers.headers!({ url: `${RENDERER_ORIGIN}/`, responseHeaders: preset }, callback);
-    expect(callback).toHaveBeenLastCalledWith({ responseHeaders: preset });
+    expect(callback).toHaveBeenLastCalledWith({});
 
-    const foreign = { b: ['2'] };
-    window.handlers.headers!({ url: 'https://api.anthropic.com/v1/messages', responseHeaders: foreign }, callback);
-    expect(callback).toHaveBeenLastCalledWith({ responseHeaders: foreign });
+    window.handlers.headers!({ url: 'https://api.anthropic.com/v1/messages', responseHeaders: { b: ['2'] } }, callback);
+    expect(callback).toHaveBeenLastCalledWith({});
+
+    window.handlers.headers!({ url: 'https://evil.example/' }, callback);
+    expect(callback).toHaveBeenLastCalledWith({});
   });
 
   it('works without a log sink', () => {
     const window = fakeWindow();
-    installRendererWindowPolicy(window, { rendererOrigin: RENDERER_ORIGIN, contentSecurityPolicy: csp });
+    const openExternal = vi.fn<(url: string) => Promise<void>>().mockResolvedValue();
+    installRendererWindowPolicy(window, { rendererOrigin: RENDERER_ORIGIN, contentSecurityPolicy: csp, openExternal });
     const denied = { preventDefault: vi.fn() };
     window.handlers.navigation.get('will-navigate')!(denied, 'https://evil.example/');
     expect(denied.preventDefault).toHaveBeenCalled();
     expect(window.handlers.windowOpen!({ url: 'https://evil.example/' })).toEqual({ action: 'deny' });
+    expect(openExternal).toHaveBeenCalledWith('https://evil.example/');
+    expect(window.handlers.windowOpen!({ url: 'javascript:1' })).toEqual({ action: 'deny' });
+    expect(openExternal).toHaveBeenCalledTimes(1);
   });
 });
 
@@ -341,12 +449,110 @@ describe('runRendererSecurityProbe', () => {
       const [code, userGesture] = webContents.executeJavaScript.mock.calls[0];
       expect(userGesture).toBe(true);
       expect(code).toContain("securitypolicyviolation");
-      expect(code).toContain("window.open('https://example.com/chirality-renderer-security-window-open'");
+      // about:blank, not an http(s) URL: the proof must never open the host's browser.
+      expect(code).toContain("window.open('about:blank#chirality-renderer-security-window-open'");
+      expect(code).not.toContain("window.open('http");
       expect(code).toContain("location.assign(navigationTarget)");
       expect(code).toContain("headers.get('content-security-policy')");
       expect(info).toHaveBeenCalledWith(
         '[renderer-security-probe]',
         JSON.stringify({ policy: 'G-CSP', windowOpen: { returned: 'null' } })
+      );
+    } finally {
+      info.mockRestore();
+      vi.useRealTimers();
+    }
+  });
+});
+
+describe('runEgressLayerProbe', () => {
+  function egressWindow(loading: boolean) {
+    const fetch = vi.fn<(input: string, init?: unknown) => Promise<{ status: number }>>();
+    return {
+      webContents: {
+        isLoadingMainFrame: vi.fn(() => loading),
+        once: vi.fn<(event: 'did-finish-load', listener: () => void) => unknown>(),
+        session: { fetch }
+      },
+      fetch
+    };
+  }
+
+  it('does nothing without the gate and the probe URL', () => {
+    const noGate = egressWindow(false);
+    runEgressLayerProbe(noGate, { env: { CHIRALITY_EGRESS_LAYER_PROBE_URL: 'https://api.anthropic.com:8443/x' } });
+    const noUrl = egressWindow(false);
+    runEgressLayerProbe(noUrl, { env: { CHIRALITY_RENDERER_SECURITY_PROBE: '1' } });
+    const blankUrl = egressWindow(false);
+    runEgressLayerProbe(blankUrl, {
+      env: { CHIRALITY_RENDERER_SECURITY_PROBE: '1', CHIRALITY_EGRESS_LAYER_PROBE_URL: '   ' }
+    });
+    for (const window of [noGate, noUrl, blankUrl]) {
+      expect(window.webContents.isLoadingMainFrame).not.toHaveBeenCalled();
+      expect(window.fetch).not.toHaveBeenCalled();
+    }
+  });
+
+  it('issues the request through the window session and reports a rejection as the expected outcome', async () => {
+    vi.useFakeTimers();
+    const info = vi.spyOn(console, 'info').mockImplementation(() => undefined);
+    try {
+      const window = egressWindow(false);
+      window.fetch.mockRejectedValue(new Error('net::ERR_BLOCKED_BY_CLIENT'));
+      runEgressLayerProbe(window, {
+        env: {
+          CHIRALITY_RENDERER_SECURITY_PROBE: '1',
+          CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '10',
+          CHIRALITY_EGRESS_LAYER_PROBE_URL: 'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'
+        }
+      });
+      expect(window.fetch).not.toHaveBeenCalled();
+      await vi.advanceTimersByTimeAsync(600);
+      expect(window.fetch).toHaveBeenCalledTimes(1);
+      expect(window.fetch.mock.calls[0][0]).toBe(
+        'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'
+      );
+      expect(window.fetch.mock.calls[0][1]).toMatchObject({ method: 'GET', cache: 'no-store' });
+      expect(info).toHaveBeenCalledWith(
+        '[egress-layer-probe]',
+        JSON.stringify({
+          policy: 'REQ-NET-001',
+          destination: { protocol: 'https:', hostname: 'api.anthropic.com' },
+          outcome: 'rejected',
+          error: 'net::ERR_BLOCKED_BY_CLIENT'
+        })
+      );
+      expect(JSON.stringify(info.mock.calls)).not.toContain('chirality-packaged-security-egress-blocked');
+    } finally {
+      info.mockRestore();
+      vi.useRealTimers();
+    }
+  });
+
+  it('reports a response — the egress layer letting the request through — distinctly', async () => {
+    vi.useFakeTimers();
+    const info = vi.spyOn(console, 'info').mockImplementation(() => undefined);
+    try {
+      const window = egressWindow(true);
+      window.fetch.mockResolvedValue({ status: 200 });
+      runEgressLayerProbe(window, {
+        env: {
+          CHIRALITY_RENDERER_SECURITY_PROBE: '1',
+          CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '10',
+          CHIRALITY_EGRESS_LAYER_PROBE_URL: 'https://api.anthropic.com:8443/x'
+        }
+      });
+      expect(window.webContents.once).toHaveBeenCalledWith('did-finish-load', expect.any(Function));
+      window.webContents.once.mock.calls[0][1]();
+      await vi.advanceTimersByTimeAsync(600);
+      expect(info).toHaveBeenCalledWith(
+        '[egress-layer-probe]',
+        JSON.stringify({
+          policy: 'REQ-NET-001',
+          destination: { protocol: 'https:', hostname: 'api.anthropic.com' },
+          outcome: 'response',
+          status: 200
+        })
       );
     } finally {
       info.mockRestore();

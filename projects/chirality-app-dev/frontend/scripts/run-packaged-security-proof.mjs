@@ -48,9 +48,11 @@ const PACKAGED_POLICY_MARKERS = [
 ];
 const BLOCKED_PROBE_URL = 'https://example.com/chirality-packaged-security-blocked';
 const LOOPBACK_PROBE_URL = 'http://127.0.0.1:9/chirality-packaged-security-loopback';
-// CSP permits this host on any port while the REQ-NET-001 egress layer permits
-// only https:443, so this request is what reaches — and is denied by — the
-// egress layer. The example.com probe above is denied earlier, by the CSP.
+// The page can no longer reach the REQ-NET-001 egress layer for a foreign host
+// (the CSP's connect-src 'self' stops it first), so this request is issued from
+// the main process through the window's session, where onBeforeRequest denies
+// it (anthropic_port_not_allowlisted:8443). The example.com probe above is the
+// CSP-layer observation.
 const EGRESS_PROBE_URL = 'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked';
 
 function nowIso() {
@@ -352,7 +354,13 @@ export function summarizeNetworkEvidence(logText, snapshots) {
   const nonAllowlisted = unique.filter((entry) => entry.class !== 'loopback');
   const blockedProbeObserved = probeResultFailed(probePayloads, BLOCKED_PROBE_URL);
   const loopbackProbeObserved = probeResultFailed(probePayloads, LOOPBACK_PROBE_URL);
-  const egressProbeObserved = probeResultFailed(probePayloads, EGRESS_PROBE_URL);
+  const egressPayloads = extractMarkedPayloads(logText, '[egress-layer-probe]');
+  const egressProbeObserved = egressPayloads.some(
+    (payload) =>
+      payload?.policy === 'REQ-NET-001' &&
+      payload?.destination?.hostname === 'api.anthropic.com' &&
+      payload?.outcome === 'rejected'
+  );
   return {
     snapshotCount: snapshots.length,
     sampledProcessIds: [...new Set(snapshots.flatMap((snapshot) => snapshot.pids ?? []))].sort(),
@@ -361,6 +369,7 @@ export function summarizeNetworkEvidence(logText, snapshots) {
     blockedRendererDiagnostics: blockedDiagnostics,
     egressLayerDiagnostics: egressDiagnostics,
     probePayloadCount: probePayloads.length,
+    egressProbePayloadCount: egressPayloads.length,
     blockedProbeObserved,
     loopbackProbeObserved,
     egressProbeObserved,
@@ -577,11 +586,12 @@ export async function runProof(args) {
     ...cleanEnv,
     CHIRALITY_USER_DATA: userDataRoot,
     CHIRALITY_SKIP_CLI_LAUNCHER: '1',
-    CHIRALITY_NETWORK_POLICY_PROBE_URLS: [BLOCKED_PROBE_URL, LOOPBACK_PROBE_URL, EGRESS_PROBE_URL].join(','),
+    CHIRALITY_NETWORK_POLICY_PROBE_URLS: [BLOCKED_PROBE_URL, LOOPBACK_PROBE_URL].join(','),
     CHIRALITY_NETWORK_POLICY_PROBE_DELAY_MS: '1000',
     CHIRALITY_NETWORK_POLICY_PROBE_TIMEOUT_MS: '3000',
     CHIRALITY_RENDERER_SECURITY_PROBE: '1',
-    CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '1500'
+    CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '1500',
+    CHIRALITY_EGRESS_LAYER_PROBE_URL: EGRESS_PROBE_URL
   };
 
   let daemon;
@@ -622,6 +632,7 @@ export async function runProof(args) {
         combined.includes('Blocked renderer outbound request by network policy') &&
         combined.includes('[network-policy-probe]') &&
         combined.includes('[renderer-security-probe]') &&
+        combined.includes('[egress-layer-probe]') &&
         combined.includes('renderer.navigation.denied') &&
         snapshots.length >= 4
       ) break;

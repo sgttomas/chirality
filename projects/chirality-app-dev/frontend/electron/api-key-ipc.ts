@@ -108,7 +108,7 @@ function unavailableStatusResult(error: unknown): ApiKeyStatusResult {
 
 function parseCredentialStatus(
   status: unknown
-): Pick<ApiKeyStatusResult, 'hasKey' | 'source'> & { storage: ApiKeyStorageState } | null {
+): Pick<ApiKeyStatusResult, 'hasKey' | 'source'> & { storage?: ApiKeyStorageState } | null {
   if (!status || typeof status !== 'object') {
     return null;
   }
@@ -125,12 +125,14 @@ function parseCredentialStatus(
     return null;
   }
 
-  let storageState: ApiKeyStorageState;
+  let storageState: ApiKeyStorageState | undefined;
   if (storage === undefined) {
-    // Compatibility with a daemon that predates the typed storage state: it
-    // reported a decryptable UI blob as `ui` and everything else as not stored,
-    // so this is exactly what that daemon could distinguish — nothing more.
-    storageState = source === 'ui' ? 'available' : 'missing';
+    // Compatibility with a daemon that predates the typed storage state (the
+    // LaunchAgent may still run the previous build during an update): a `ui`
+    // source is by construction a decryptable stored blob, so that one state is
+    // certain; anything else is left unknown rather than asserted, because such
+    // a daemon cannot tell `missing` from `decryptFailed` or `storageUnavailable`.
+    storageState = source === 'ui' ? 'available' : undefined;
   } else if (isCredentialStorageState(storage)) {
     storageState = storage;
   } else {
@@ -144,7 +146,9 @@ function parseCredentialStatus(
     return null;
   }
 
-  return { hasKey: configured, source, storage: storageState };
+  return storageState === undefined
+    ? { hasKey: configured, source }
+    : { hasKey: configured, source, storage: storageState };
 }
 
 function invalidStatusResult(): ApiKeyStatusResult {
@@ -174,7 +178,7 @@ async function credentialStatusResult(
     hasKey: parsed.hasKey,
     encryptionAvailable: parsed.storage !== 'storageUnavailable',
     source: parsed.source,
-    storage: parsed.storage
+    ...(parsed.storage === undefined ? {} : { storage: parsed.storage })
   };
 }
 

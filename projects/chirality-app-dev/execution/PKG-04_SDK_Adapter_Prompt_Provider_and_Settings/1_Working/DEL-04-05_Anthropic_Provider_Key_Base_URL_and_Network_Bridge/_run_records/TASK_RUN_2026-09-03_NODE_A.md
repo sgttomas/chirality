@@ -55,3 +55,10 @@ pass; premerge deferred (absent runtime-daemon bindings class).
 ## A1 re-stage declaration
 
 Recorded in the parent run's `STEP0_DISCOVERY.md` §3 and applies to this item.
+
+## Round 3 (independent review, MINOR-1)
+
+The compatibility mapping for a pre-typed daemon answer no longer synthesises `missing`:
+`ui → available` stays (certain by construction); `env`/`none` answers carry no `storage`
+field and `encryptionAvailable: true` (basis shape), rendered as `unknown` by the panel.
+Test updated. Review: run record `instances/A2_REVIEWER/REVIEW_01_2026-09-03_over_6ac51e99b.md`.

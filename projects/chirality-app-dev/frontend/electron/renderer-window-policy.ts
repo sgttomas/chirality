@@ -6,12 +6,20 @@
  *
  * - web preferences are asserted at creation: `contextIsolation: true`,
  *   `nodeIntegration: false`, `sandbox: true`; anything else fails closed;
- * - `setWindowOpenHandler` denies every request (the app never opens windows
- *   from the renderer) and logs a redacted line;
+ * - `setWindowOpenHandler` never lets the renderer create a child
+ *   BrowserWindow. The renderer *does* ask for windows — every link in rendered
+ *   chat markdown (`src/components/shell/chat-markdown.tsx`) and the
+ *   navigator's "open legacy interface" link (`src/components/woven-dialogue/
+ *   navigator.tsx`) use `target="_blank"` — so an `http:`/`https:` target is
+ *   handed to the operating system's default browser (`shell.openExternal`,
+ *   injected by `main.ts`) instead of a child window that would inherit this
+ *   app's preload and IPC bridge; every other scheme is dropped. Before this
+ *   policy such a click created a child BrowserWindow at the link's URL; now it
+ *   opens the system browser (coordinator decision 2026-09-03, recorded in the
+ *   run record). This is not app egress: nothing leaves this process.
  * - `will-navigate` and `will-redirect` allow only the app's own renderer
- *   origin (the packaged loopback renderer server or the dev server) and deny
- *   everything else — `javascript:`, `file:`, `data:`, `about:`, foreign hosts,
- *   a different port or scheme;
+ *   origin over http(s) and deny everything else — `javascript:`, `file:`,
+ *   `data:`, `about:`, `blob:`, foreign hosts, a different port or scheme;
  * - a Content-Security-Policy is attached to responses from the renderer
  *   origin through `webRequest.onHeadersReceived` when the response carries
  *   none (the packaged renderer server sets it directly; the dev server does
@@ -19,7 +27,7 @@
  *
  * The CSP is defence in depth beside the REQ-NET-001 egress allowlist in
  * `main.ts`, not a replacement for it: the egress layer is what the packaged
- * proof observes on the wire.
+ * proof observes on the wire, through the main-process probe below.
  */
 
 export type RendererWindowLog = (
@@ -109,9 +117,27 @@ export function evaluateRendererNavigation(
   return { allowed: true };
 }
 
-/** The renderer never opens windows: every request is denied. */
-export function evaluateWindowOpen(_details: { url: string }): { action: 'deny' } {
-  return { action: 'deny' };
+export type WindowOpenDecision =
+  | { action: 'deny'; external: true }
+  | { action: 'deny'; external: false; reason: 'INVALID_URL' | 'SCHEME_NOT_HTTP' };
+
+/**
+ * A child BrowserWindow is never created (`action: 'deny'` for every request).
+ * An `http:`/`https:` target is instead opened in the system browser by the
+ * installer; a malformed URL or any other scheme (`javascript:`, `file:`,
+ * `data:`, `blob:`, `about:`, custom) is dropped.
+ */
+export function evaluateWindowOpen(details: { url: string }): WindowOpenDecision {
+  let parsed: URL;
+  try {
+    parsed = new URL(details.url);
+  } catch {
+    return { action: 'deny', external: false, reason: 'INVALID_URL' };
+  }
+  if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+    return { action: 'deny', external: false, reason: 'SCHEME_NOT_HTTP' };
+  }
+  return { action: 'deny', external: true };
 }
 
 export type RendererCspMode = 'packaged' | 'development';
@@ -123,19 +149,21 @@ export type RendererCspMode = 'packaged' | 'development';
  * and the dev server (recorded in the DEL-09-06 evidence):
  * - `script-src 'unsafe-inline'`: Next.js App Router delivers the React Server
  *   Components flight payload as inline `<script>self.__next_f.push(…)</script>`
- *   tags (8 per prerendered page in the production build). A nonce pipeline
- *   would need a Next middleware, which is outside this policy's scope, so the
- *   inline allowance stays; external scripts remain restricted to `'self'`.
+ *   tags with no nonce. A nonce pipeline needs a Next middleware or a request
+ *   header set before the packaged handler, plus a decision on prerendering —
+ *   outside this policy's scope — so the inline allowance stays; external
+ *   scripts remain restricted to `'self'`. With it, this CSP's value against an
+ *   injected inline script is limited to remote-script, eval, frame, object,
+ *   base, form, and connect containment.
  * - `'unsafe-eval'` only in development: Next's dev runtime and React Refresh
  *   evaluate source; the packaged renderer never gets it.
  * - `style-src 'unsafe-inline'`: two components set React `style` props (inline
  *   style attributes) and Next injects style elements in development.
- * - `connect-src`: `'self'` plus the REQ-NET-001 egress allowlist. The Anthropic
- *   host is listed with a port wildcard on purpose: an exactly-equal CSP would
- *   make the egress layer unreachable from the page and the packaged proof could
- *   no longer observe it independently; the egress policy still enforces
- *   https:443 exactly, and the proof drives a non-443 port to watch it deny.
- *   The dev server's HMR WebSocket needs the `ws:`/`wss:` form of its own origin.
+ * - `connect-src 'self'` in packaged mode: the renderer talks only to its own
+ *   Next server; the Anthropic and oMLX calls are made server-side by the Next
+ *   server process and the daemon, never by the page. This is stricter than the
+ *   REQ-NET-001 egress allowlist, which stays as the wire-level backstop. The
+ *   dev server's HMR WebSocket needs the `ws:`/`wss:` form of its own origin.
  * - everything else is closed: no frames, no plugins, no foreign forms or bases,
  *   no embedding.
  */
@@ -144,7 +172,7 @@ export function buildRendererContentSecurityPolicy(options: {
   rendererOrigin?: string;
 }): string {
   const development = options.mode === 'development';
-  const connectSources = ["'self'", 'https://api.anthropic.com:*'];
+  const connectSources = ["'self'"];
   if (development && options.rendererOrigin) {
     try {
       const origin = new URL(options.rendererOrigin);
@@ -183,23 +211,24 @@ function hasContentSecurityPolicy(headers: ResponseHeaders): boolean {
 }
 
 /**
- * Add the policy to a response from the renderer origin that carries none.
- * Pure: returns the headers to install (the same object when untouched).
+ * Headers to install on a response from the renderer origin that carries no
+ * policy, or `null` when the response must be left exactly as received (foreign
+ * origin, unparseable URL, or a policy already present). Pure.
  */
 export function applyContentSecurityPolicyHeader(
   details: { url: string; responseHeaders?: ResponseHeaders },
   rendererOrigin: string,
   contentSecurityPolicy: string
-): ResponseHeaders {
-  const headers = details.responseHeaders ?? {};
+): ResponseHeaders | null {
   let origin: string;
   try {
     origin = new URL(details.url).origin;
   } catch {
-    return headers;
+    return null;
   }
+  const headers = details.responseHeaders ?? {};
   if (origin !== rendererOrigin || hasContentSecurityPolicy(headers)) {
-    return headers;
+    return null;
   }
   return { ...headers, [CONTENT_SECURITY_POLICY_HEADER]: [contentSecurityPolicy] };
 }
@@ -238,24 +267,36 @@ export type RendererWindowLike = {
 export type RendererWindowPolicyOptions = {
   rendererOrigin: string;
   contentSecurityPolicy: string;
+  /** Opens an `http(s)` URL in the operating system's default browser. */
+  openExternal: (url: string) => Promise<void>;
   log?: RendererWindowLog;
 };
 
 const HEADER_FILTER_URLS = ['http://*/*', 'https://*/*'];
 
-/** Install window-open denial, navigation containment, and the CSP on one window. */
+/** Install window-open handling, navigation containment, and the CSP on one window. */
 export function installRendererWindowPolicy(
   window: RendererWindowLike,
   options: RendererWindowPolicyOptions
 ): void {
-  const { rendererOrigin, contentSecurityPolicy, log } = options;
+  const { rendererOrigin, contentSecurityPolicy, openExternal, log } = options;
   const { webContents } = window;
 
   webContents.setWindowOpenHandler((details) => {
-    log?.('warn', 'renderer.window_open.denied', {
-      destination: summarizeDestination(details.url)
-    });
-    return evaluateWindowOpen(details);
+    const decision = evaluateWindowOpen(details);
+    const destination = summarizeDestination(details.url);
+    if (decision.external) {
+      log?.('info', 'renderer.window_open.external_opened', { destination });
+      openExternal(details.url).catch((error: unknown) => {
+        log?.('warn', 'renderer.window_open.external_failed', {
+          destination,
+          error: error instanceof Error ? error.message : String(error)
+        });
+      });
+    } else {
+      log?.('warn', 'renderer.window_open.denied', { reason: decision.reason, destination });
+    }
+    return { action: 'deny' };
   });
 
   for (const eventName of ['will-navigate', 'will-redirect'] as const) {
@@ -276,24 +317,50 @@ export function installRendererWindowPolicy(
   webContents.session.webRequest.onHeadersReceived(
     { urls: HEADER_FILTER_URLS },
     (details, callback) => {
-      callback({
-        responseHeaders: applyContentSecurityPolicyHeader(
-          details,
-          rendererOrigin,
-          contentSecurityPolicy
-        )
-      });
+      const responseHeaders = applyContentSecurityPolicyHeader(
+        details,
+        rendererOrigin,
+        contentSecurityPolicy
+      );
+      // No override at all when untouched: echoing an empty header set would
+      // tell Chromium the server answered with no headers.
+      callback(responseHeaders === null ? {} : { responseHeaders });
     }
   );
+}
+
+type ProbeEnvironment = Record<string, string | undefined>;
+
+function probeDelayMs(env: ProbeEnvironment, fallback: number): number {
+  const parsed = Number.parseInt(env.CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS ?? '', 10);
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : fallback;
+}
+
+function afterLoad(
+  webContents: { isLoadingMainFrame(): boolean; once(event: 'did-finish-load', listener: () => void): unknown },
+  delayMs: number,
+  run: () => void
+): void {
+  const schedule = (): void => {
+    setTimeout(run, delayMs);
+  };
+  if (webContents.isLoadingMainFrame()) {
+    webContents.once('did-finish-load', schedule);
+  } else {
+    schedule();
+  }
 }
 
 /**
  * Optional in-page probe for the packaged security proof
  * (`CHIRALITY_RENDERER_SECURITY_PROBE=1`): reports the document's CSP header
- * (same-origin fetch of the page), a denied `window.open`, the
- * `securitypolicyviolation` events raised by a deliberately blocked fetch, and
- * finally attempts a foreign navigation so the main process logs its denial.
- * Nothing runs unless the environment asks for it.
+ * (same-origin fetch of the page), a denied `window.open` — deliberately of an
+ * `about:blank` target so the proof never opens the host's browser; the
+ * `http(s)` hand-off is unit-tested — the `securitypolicyviolation` events
+ * raised by a deliberately blocked fetch, and finally attempts a foreign
+ * navigation so the main process logs its denial. Nothing runs unless the
+ * environment asks for it. Results are written to the console under the
+ * `[renderer-security-probe]` marker the proof reads.
  */
 export function runRendererSecurityProbe(
   window: {
@@ -303,12 +370,11 @@ export function runRendererSecurityProbe(
       executeJavaScript(code: string, userGesture?: boolean): Promise<unknown>;
     };
   },
-  options: { env: Record<string, string | undefined>; log?: RendererWindowLog }
+  options: { env: ProbeEnvironment }
 ): void {
   if (options.env.CHIRALITY_RENDERER_SECURITY_PROBE !== '1') {
     return;
   }
-  const delayMs = Number.parseInt(options.env.CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS ?? '', 10);
   const script = `
 (() => {
   const violations = [];
@@ -329,7 +395,7 @@ export function runRendererSecurityProbe(
     }
     let windowOpen;
     try {
-      const opened = window.open('https://example.com/chirality-renderer-security-window-open', '_blank');
+      const opened = window.open('about:blank#chirality-renderer-security-window-open', '_blank');
       windowOpen = { returned: opened === null ? 'null' : typeof opened };
     } catch (error) {
       windowOpen = { error: error instanceof Error ? error.message : String(error) };
@@ -356,25 +422,69 @@ export function runRendererSecurityProbe(
   return run();
 })();
 `;
-  const runProbe = async (): Promise<void> => {
-    try {
-      const result = await window.webContents.executeJavaScript(script, true);
-      console.info('[renderer-security-probe]', JSON.stringify(result));
-    } catch (error) {
-      console.error(
-        '[renderer-security-probe]',
-        JSON.stringify({ policy: 'G-CSP', error: error instanceof Error ? error.message : String(error) })
-      );
-    }
-  };
-  const schedule = (): void => {
-    setTimeout(() => {
-      void runProbe();
-    }, Number.isSafeInteger(delayMs) && delayMs > 0 ? delayMs : 1500);
-  };
-  if (window.webContents.isLoadingMainFrame()) {
-    window.webContents.once('did-finish-load', schedule);
-  } else {
-    schedule();
+  afterLoad(window.webContents, probeDelayMs(options.env, 1500), () => {
+    void window.webContents
+      .executeJavaScript(script, true)
+      .then((result) => {
+        console.info('[renderer-security-probe]', JSON.stringify(result));
+      })
+      .catch((error: unknown) => {
+        console.error(
+          '[renderer-security-probe]',
+          JSON.stringify({ policy: 'G-CSP', error: error instanceof Error ? error.message : String(error) })
+        );
+      });
+  });
+}
+
+/**
+ * Optional main-process probe of the REQ-NET-001 egress layer for the packaged
+ * security proof (same gate, plus `CHIRALITY_EGRESS_LAYER_PROBE_URL`). The page
+ * cannot reach the egress layer for a foreign host any more — the CSP stops it
+ * first — so the proof issues the request from the main process through the
+ * window's session: `session.fetch` goes through `webRequest`, where
+ * `onBeforeRequest` cancels it and logs the denial. A rejected fetch is the
+ * expected outcome; a response would mean the egress layer let it through.
+ */
+export function runEgressLayerProbe(
+  window: {
+    webContents: {
+      isLoadingMainFrame(): boolean;
+      once(event: 'did-finish-load', listener: () => void): unknown;
+      session: {
+        fetch(
+          input: string,
+          init?: { method?: string; cache?: 'no-store'; signal?: AbortSignal }
+        ): Promise<{ status: number }>;
+      };
+    };
+  },
+  options: { env: ProbeEnvironment }
+): void {
+  const url = options.env.CHIRALITY_EGRESS_LAYER_PROBE_URL?.trim();
+  if (options.env.CHIRALITY_RENDERER_SECURITY_PROBE !== '1' || !url) {
+    return;
   }
+  const destination = summarizeDestination(url);
+  afterLoad(window.webContents, probeDelayMs(options.env, 1500) + 500, () => {
+    void window.webContents.session
+      .fetch(url, { method: 'GET', cache: 'no-store', signal: AbortSignal.timeout(3000) })
+      .then((response) => {
+        console.info(
+          '[egress-layer-probe]',
+          JSON.stringify({ policy: 'REQ-NET-001', destination, outcome: 'response', status: response.status })
+        );
+      })
+      .catch((error: unknown) => {
+        console.info(
+          '[egress-layer-probe]',
+          JSON.stringify({
+            policy: 'REQ-NET-001',
+            destination,
+            outcome: 'rejected',
+            error: error instanceof Error ? error.message : String(error)
+          })
+        );
+      });
+  });
 }

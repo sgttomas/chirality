@@ -63,8 +63,8 @@ describe('run-packaged-security-proof script', () => {
       "Blocked renderer outbound request by network policy { reason: 'anthropic_port_not_allowlisted:8443' }\n",
       '[network-policy-probe] {"policy":"REQ-NET-001","results":[',
       '{"url":"https://example.com/chirality-packaged-security-blocked","ok":false},',
-      '{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false},',
-      '{"url":"https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked","ok":false}]}'
+      '{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false}]}\n',
+      '[egress-layer-probe] {"policy":"REQ-NET-001","destination":{"protocol":"https:","hostname":"api.anthropic.com"},"outcome":"rejected","error":"net::ERR_BLOCKED_BY_CLIENT"}'
     ].join('');
     const snapshots = [
       { pids: [10, 11], endpoints: [{ endpoint: '127.0.0.1:6000', host: '127.0.0.1', class: 'loopback', line: 'fixture' }] }
@@ -76,12 +76,17 @@ describe('run-packaged-security-proof script', () => {
     expect(summary.egressProbeObserved).toBe(true);
     expect(summary.nonAllowlistedOutboundTcp).toEqual([]);
 
-    // The egress layer must be observed on its own: a CSP-only block of the
-    // example.com probe (no egress diagnostic) is not enough.
-    const cspOnly = logText
-      .replace("Blocked renderer outbound request by network policy { reason: 'anthropic_port_not_allowlisted:8443' }\n", '')
-      .replace('"https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked","ok":false', '"https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked","ok":true');
+    // The egress layer must be observed on its own, from the main-process
+    // probe: a CSP-only block of the example.com probe is not enough, and a
+    // probe that got a response means the egress layer let it through.
+    const cspOnly = logText.replace(
+      "Blocked renderer outbound request by network policy { reason: 'anthropic_port_not_allowlisted:8443' }\n",
+      ''
+    );
     expect(summarizeNetworkEvidence(cspOnly, snapshots).pass).toBe(false);
+    const responded = logText.replace('"outcome":"rejected"', '"outcome":"response","status":200');
+    expect(summarizeNetworkEvidence(responded, snapshots).egressProbeObserved).toBe(false);
+    expect(summarizeNetworkEvidence(responded, snapshots).pass).toBe(false);
   });
 
   it('requires the renderer hardening evidence from the packaged page', () => {

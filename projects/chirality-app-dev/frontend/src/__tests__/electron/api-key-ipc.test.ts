@@ -362,10 +362,11 @@ describe('electron/api-key-ipc typed storage state', () => {
     expect(JSON.stringify(result)).not.toContain('must-not');
   });
 
-  it('maps a pre-typed-state daemon answer to what that daemon could distinguish', async () => {
+  it('maps a pre-typed-state daemon answer to only what that daemon could distinguish', async () => {
     register();
     const handler = getHandler(API_KEY_STATUS_CHANNEL);
 
+    // A `ui` source is by construction a decryptable stored blob.
     mocks.credentialStatus.mockResolvedValueOnce({ configured: true, source: 'ui' });
     await expect(handler(trusted)).resolves.toEqual({
       hasKey: true,
@@ -374,21 +375,18 @@ describe('electron/api-key-ipc typed storage state', () => {
       storage: 'available'
     });
 
+    // Anything else is left unknown: such a daemon cannot tell `missing` from
+    // `decryptFailed` or `storageUnavailable`, so no state is asserted (the
+    // basis shape, which the panel renders as `unknown`).
     mocks.credentialStatus.mockResolvedValueOnce({ configured: true, source: 'env' });
-    await expect(handler(trusted)).resolves.toEqual({
-      hasKey: true,
-      encryptionAvailable: true,
-      source: 'env',
-      storage: 'missing'
-    });
+    const envResult = await handler(trusted);
+    expect(envResult).toEqual({ hasKey: true, encryptionAvailable: true, source: 'env' });
+    expect(envResult).not.toHaveProperty('storage');
 
     mocks.credentialStatus.mockResolvedValueOnce({ configured: false, source: 'none' });
-    await expect(handler(trusted)).resolves.toEqual({
-      hasKey: false,
-      encryptionAvailable: true,
-      source: 'none',
-      storage: 'missing'
-    });
+    const noneResult = await handler(trusted);
+    expect(noneResult).toEqual({ hasKey: false, encryptionAvailable: true, source: 'none' });
+    expect(noneResult).not.toHaveProperty('storage');
   });
 });
 

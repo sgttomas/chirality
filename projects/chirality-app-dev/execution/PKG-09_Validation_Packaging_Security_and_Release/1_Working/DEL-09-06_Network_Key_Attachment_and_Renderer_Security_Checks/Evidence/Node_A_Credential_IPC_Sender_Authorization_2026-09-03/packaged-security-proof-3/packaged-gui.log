@@ -1,0 +1,28 @@
+[2026-09-03T21:42:47.570Z] START packaged-gui: /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeA/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+[chirality-desktop] 2026-09-03T21:42:47.813Z [info] desktop.gui.starting {"packaged":true,"userData":"/tmp/chirality-psp-lBYfpe/user-data","socketPath":"/tmp/chirality-psp-lBYfpe/user-data/runtime/control.sock"}
+[chirality-desktop] 2026-09-03T21:42:47.814Z [info] desktop.cli_launcher.install {"status":"skipped","path":"/Users/ryan/.local/bin/chirality","reason":"opted-out"}
+[chirality-desktop] 2026-09-03T21:42:47.814Z [info] runtime.socket_watch.started {"directory":"/tmp/chirality-psp-lBYfpe/user-data/runtime"}
+[chirality-desktop] 2026-09-03T21:42:47.814Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-09-03T21:42:47.829Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unknown project: chirality-app-dev","changedAt":"2026-09-03T21:42:47.829Z"}
+[chirality-desktop] 2026-09-03T21:42:47.830Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unknown project: chirality-app-dev"}
+(node:2679) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Chirality --trace-deprecation ...` to show where the warning was created)
+[chirality-desktop] 2026-09-03T21:42:48.341Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unknown project: chirality-app-dev"}
+[network-policy-probe] {"policy":"REQ-NET-001","results":[{"url":"https://example.com/chirality-packaged-security-blocked","ok":false,"status":null,"type":null,"error":"Failed to fetch"},{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false,"status":null,"type":null,"error":"Failed to fetch"}]}
+[chirality-desktop] 2026-09-03T21:42:49.813Z [warn] renderer.window_open.denied {"reason":"SCHEME_NOT_HTTP","destination":{"protocol":"about:","hostname":""}}
+[renderer-security-probe] {"policy":"G-CSP","cspHeader":"default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'","windowOpen":{"returned":"null"},"violations":[{"blockedURI":"https://example.com/chirality-renderer-security-csp-blocked","effectiveDirective":"connect-src","disposition":"enforce"}],"navigationAttempted":"https://example.com/chirality-renderer-security-navigation"}
+[chirality-desktop] 2026-09-03T21:42:50.071Z [warn] renderer.navigation.denied {"event":"will-navigate","reason":"ORIGIN_NOT_RENDERER","destination":{"protocol":"https:","hostname":"example.com"}}
+Blocked renderer outbound request by network policy {
+  category: 'NETWORK_POLICY_VIOLATION',
+  policy: 'REQ-NET-001',
+  reason: 'anthropic_port_not_allowlisted:8443',
+  destination: { hostname: 'api.anthropic.com', port: '8443', protocol: 'https:' },
+  method: 'GET',
+  resourceType: 'other',
+  webContentsId: undefined
+}
+[egress-layer-probe] {"policy":"REQ-NET-001","destination":{"protocol":"https:","hostname":"api.anthropic.com"},"outcome":"rejected","error":"net::ERR_BLOCKED_BY_CLIENT"}
+[chirality-desktop] 2026-09-03T21:42:50.345Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"Unknown project: chirality-app-dev"}
+[chirality-desktop] 2026-09-03T21:42:50.629Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":2679}
+[chirality-desktop] 2026-09-03T21:42:50.630Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}
+[2026-09-03T21:42:50.668Z] EXIT packaged-gui: code=0 signal=null

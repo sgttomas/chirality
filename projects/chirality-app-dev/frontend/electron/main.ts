@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
@@ -33,6 +33,7 @@ import {
   CONTENT_SECURITY_POLICY_HEADER,
   installRendererWindowPolicy,
   rendererWebPreferences,
+  runEgressLayerProbe,
   runRendererSecurityProbe
 } from './renderer-window-policy';
 import { startRuntimeHost, type RuntimeHost } from './runtime-host';
@@ -538,14 +539,15 @@ function createMainWindow(rendererUrl: string): BrowserWindow {
       mode: app.isPackaged ? 'packaged' : 'development',
       rendererOrigin
     }),
+    // http(s) targets of a renderer window.open / target="_blank" go to the
+    // system browser rather than a child window carrying this app's bridge.
+    openExternal: (url) => shell.openExternal(url),
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
   });
   window.loadURL(rendererUrl);
   void runRendererNetworkProbe(window);
-  runRendererSecurityProbe(window, {
-    env: process.env,
-    log: (level, event, detail) => desktopLogger.log(level, event, detail)
-  });
+  runRendererSecurityProbe(window, { env: process.env });
+  runEgressLayerProbe(window, { env: process.env });
 
   return window;
 }

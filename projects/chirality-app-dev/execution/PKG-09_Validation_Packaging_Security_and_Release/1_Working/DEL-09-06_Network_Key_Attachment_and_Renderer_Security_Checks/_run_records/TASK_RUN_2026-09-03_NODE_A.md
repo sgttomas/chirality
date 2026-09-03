@@ -82,3 +82,23 @@ historical evidence only.
 Recorded in the parent `RETURN.md` §5 (development-mode CSP not observable by the packaged
 proof harness; `will-redirect` and subframe navigation covered at unit level / by
 `frame-src 'none'` only; nonce-based script CSP as a possible follow-on).
+
+## Round 3 (independent review: 0 blocking / 2 major / 4 minor; all applied)
+
+- MAJOR-1 / coordinator decision D2: child windows are still never created; `http(s)`
+  targets of the renderer's `target="_blank"` links (`chat-markdown.tsx:26`,
+  `navigator.tsx:321`) now open in the system browser via injected `shell.openExternal`;
+  other schemes are dropped; logs distinguish `external_opened` / `denied`; the false
+  "never opens windows" statements were corrected and the behaviour change disclosed.
+- MINOR-2 / D3: packaged `connect-src 'self'` (exact); egress-layer observation moved
+  to a main-process `session.fetch` probe (`[egress-layer-probe]`), cancelled by
+  `onBeforeRequest` with `ERR_BLOCKED_BY_CLIENT`; the `:*` pin replaced by the exact one.
+- MINOR-3: header helper returns `null` when untouched; installer calls `callback({})`.
+- MINOR-4: exact `validate_change_scope.py` invocation recorded in `CHECKS.json`.
+- NOTE-1: dead probe logger dropped. NOTE-2: inline-script count corrected (8 inline
+  elements per page, 6 of them flight pushes). Limitation of `'unsafe-inline'` stated
+  plainly in `EVIDENCE.md` §1.
+- Proof run 3 retained under `Evidence/.../packaged-security-proof-3/` (identity
+  `7f240a36…`); runs 1–2 retained as history.
+- Named residuals for the closeout `Remaining`: nonce-based script CSP follow-on (see
+  parent `RETURN.md` §5).

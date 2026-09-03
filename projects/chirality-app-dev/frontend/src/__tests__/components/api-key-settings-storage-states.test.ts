@@ -200,10 +200,13 @@ describe('ApiKeySettingsView typed storage states (D-APP-36 render bar)', () => 
   });
 
   it('maps a legacy status without a typed state conservatively', () => {
+    // Only an older bridge that reports neither a typed state nor a non-answer,
+    // and says encryption is unavailable, is read as storageUnavailable.
     const legacyUnavailable = render({
       status: { hasKey: false, encryptionAvailable: false, source: 'none' }
     });
     expect(statusNode(legacyUnavailable).props['data-storage']).toBe('storageUnavailable');
+    expect(statusNode(legacyUnavailable).props['data-answer']).toBe('status');
     expect(warningNodes(legacyUnavailable)).toHaveLength(1);
 
     const legacyKnown = render({ status: { hasKey: true, encryptionAvailable: true, source: 'ui' } });
@@ -214,5 +217,57 @@ describe('ApiKeySettingsView typed storage states (D-APP-36 render bar)', () => 
     const pending = render({ status: null });
     expect(statusNode(pending).props['data-storage']).toBe('unknown');
     expect(textOf(statusNode(pending))).toBe('Checking...');
+    expect(buttonLabels(pending)).toEqual(['Reveal', 'Save Key']);
+  });
+
+  it('unreachable daemon: says nothing is known, never blames the keychain, keeps entry hidden as before', () => {
+    const renderer = render({
+      status: {
+        hasKey: false,
+        encryptionAvailable: false,
+        source: 'none',
+        unavailable: true,
+        error: "ENOENT: no such file or directory, open '/runtime/auth/tokens/operator.token'"
+      }
+    });
+
+    const node = statusNode(renderer);
+    expect(node.props['data-storage']).toBe('unknown');
+    expect(node.props['data-answer']).toBe('unavailable');
+    expect(textOf(node)).toBe('Cannot determine credential status right now');
+    expect(warningNodes(renderer)).toHaveLength(0);
+    const json = JSON.stringify(renderer.toJSON());
+    expect(json).not.toContain('Secure storage is not available');
+    expect(json).not.toContain('keychain');
+    const errorNode = renderer.root.find(
+      (candidate) => candidate.type === 'p' && candidate.props['data-status-error'] === 'true'
+    );
+    expect(textOf(errorNode)).toContain('operator.token');
+    expect(renderer.root.findAllByType('input')).toHaveLength(0);
+    expect(buttonLabels(renderer)).toEqual([]);
+    assertNoSecret(renderer);
+  });
+
+  it('denied or invalid bridge answers render the same neutral line', () => {
+    for (const error of ['Credential request was denied', 'Runtime daemon returned an invalid credential status']) {
+      const renderer = render({
+        status: { hasKey: false, encryptionAvailable: false, source: 'none', error }
+      });
+      expect(statusNode(renderer).props['data-storage']).toBe('unknown');
+      expect(statusNode(renderer).props['data-answer']).toBe('unavailable');
+      expect(textOf(statusNode(renderer))).toBe('Cannot determine credential status right now');
+      expect(warningNodes(renderer)).toHaveLength(0);
+      expect(JSON.stringify(renderer.toJSON())).toContain(error);
+      renderer.unmount();
+    }
+  });
+
+  it('a typed state wins over a stray error field', () => {
+    const renderer = render({
+      status: { hasKey: true, encryptionAvailable: true, source: 'ui', storage: 'available', error: 'stale' }
+    });
+    expect(statusNode(renderer).props['data-storage']).toBe('available');
+    expect(statusNode(renderer).props['data-answer']).toBe('status');
+    expect(textOf(statusNode(renderer))).toBe('Key configured (stored in secure storage)');
   });
 });

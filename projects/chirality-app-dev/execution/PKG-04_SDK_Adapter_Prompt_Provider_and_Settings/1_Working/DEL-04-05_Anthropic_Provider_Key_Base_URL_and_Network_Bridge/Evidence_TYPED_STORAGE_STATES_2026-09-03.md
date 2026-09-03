@@ -66,9 +66,12 @@ Seven `(storage, source)` combinations are projected verbatim with
 unknown answers (`storage:'corrupt'`, non-string, `available` without `ui`, `ui`
 without `available`, `ui` with `storageUnavailable`) fail closed to the existing
 "Runtime daemon returned an invalid credential status" result without echoing any
-field; a pre-typed-state daemon answer (no `storage`) maps to `available` for `ui` and
-`missing` otherwise — exactly what such a daemon could distinguish — with a source
-comment recording that this is compatibility, not inference.
+field; a pre-typed-state daemon answer (no `storage`) maps to `available` for `ui` (by
+construction a decryptable stored blob) and is otherwise left **without** a `storage`
+field (`encryptionAvailable: true`, the basis shape) — such a daemon cannot tell
+`missing` from `decryptFailed` or `storageUnavailable`, so no state is asserted and the
+panel renders `unknown` (round-3 change on review MINOR-1; the round-1/2 behaviour had
+synthesised `missing`).
 
 ## 5. Packaged observation
 

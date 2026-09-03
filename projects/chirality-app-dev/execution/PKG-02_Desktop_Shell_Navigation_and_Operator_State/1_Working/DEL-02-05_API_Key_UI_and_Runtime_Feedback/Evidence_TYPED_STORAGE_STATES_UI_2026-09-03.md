@@ -22,8 +22,17 @@ and never places key material in the rendered tree:
 
 Source-first labelling is preserved: `source: ui` / `env` keep their existing labels,
 so an environment credential in use beside a `decryptFailed` blob shows both facts.
-A legacy bridge answer without `storage` maps `encryptionAvailable: false` →
-`storageUnavailable` (no regression of the prior warning) and otherwise `unknown`.
+
+**Non-answers are not storage states (round 3, review MAJOR-2).** The bridge also
+returns answers that say nothing about the keychain — daemon unreachable
+(`unavailable: true` + `error`), a denied sender, or an invalid daemon status (both
+`error`) — all with `encryptionAvailable: false` and no `storage`. `ApiKeyStatus` now
+carries `unavailable?` and `error?`; such an answer renders `data-storage="unknown"`,
+`data-answer="unavailable"`, the neutral line "Cannot determine credential status right
+now", the bridge's error text in a `p[data-status-error]`, **no** keychain remediation,
+and entry hidden as before the typed states (the daemon is routinely not yet bound when
+the window first asks). Only a legacy answer with neither field and
+`encryptionAvailable: false` maps to `storageUnavailable`; a typed `storage` always wins.
 Removal remains an explicit user act; nothing is deleted silently. The DEL-02-05 write
 was confined to `frontend/src/**`; `frontend/electron/api-key-ipc.ts` was written only
 under the DEL-04-05-V3-01 / DEL-09-06-V3-01 integration ownership of the same run.
@@ -39,7 +48,7 @@ under the DEL-04-05-V3-01 / DEL-09-06-V3-01 integration ownership of the same ru
 
 ## 3. Render evidence (D-APP-36 render bar; react-test-renderer 18.3.1; Vitest 4.1.10)
 
-`src/__tests__/components/api-key-settings-storage-states.test.ts` — 9 tests, header
+`src/__tests__/components/api-key-settings-storage-states.test.ts` — 12 tests, header
 cites D-APP-36 in the `chat-panel-empty-state.test.ts` style:
 
 1. all four states render with four distinct `data-storage` markers and no fixture
@@ -57,19 +66,26 @@ cites D-APP-36 in the `chat-panel-empty-state.test.ts` style:
 7. `available`: secure-storage label, no warning, Remove offered;
 8. key material appears only as the masked `input` `value` (`type="password"`), exactly
    once in the tree;
-9. legacy answers map conservatively (`encryptionAvailable:false` →
-   `storageUnavailable`; typed-less known → `unknown`; `null` → "Checking...").
+9. legacy answers map conservatively (`encryptionAvailable:false` with neither
+   `unavailable` nor `error` → `storageUnavailable`; typed-less known → `unknown`;
+   `null` → "Checking..." with entry available);
+10. unreachable daemon (`unavailable: true`, ENOENT operator-token error): `unknown`,
+    `data-answer="unavailable"`, the neutral line, the error text, no warning, no
+    "Secure storage is not available", no "keychain", no input, no buttons;
+11. denied and invalid answers (`error` only) render the same neutral line;
+12. a typed state wins over a stray `error` field.
 
-`src/__tests__/components/api-key-settings.test.ts` — 12 tests (8 existing unchanged
-plus a 4-case static-markup matrix asserting `data-storage`, label, and warning
-presence per state); the existing secret-absence guard runs on every render.
+`src/__tests__/components/api-key-settings.test.ts` — 13 tests (8 existing unchanged,
+a 4-case static-markup matrix asserting `data-storage`, label, and warning presence per
+state, and the unreachable-daemon static case); the existing secret-absence guard runs
+on every render.
 
 ## 4. Commands, environment, rerun
 
 cwd `projects/chirality-app-dev/frontend`; node v24.18.0. `npx vitest run
 src/__tests__/components/api-key-settings.test.ts
-src/__tests__/components/api-key-settings-storage-states.test.ts` → 21 passed, exit 0;
-`npm run typecheck` exit 0; `npm test` 1364 passed / 4 skipped, exit 0; `npm run build`
+src/__tests__/components/api-key-settings-storage-states.test.ts` → 25 passed, exit 0;
+`npm run typecheck` exit 0; `npm test` 1431 passed / 4 skipped, exit 0; `npm run build`
 exit 0. Full table: run record `CHECKS.json`. Rerun: same commands after `npm ci`
 (frontend) and `npm ci && npm run build` (runtime). Targeted visual review of the copy
 in a running app is not claimed here; the UI/claims gate wording review is the

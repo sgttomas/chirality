@@ -47,3 +47,14 @@ deferred (absent runtime-daemon bindings class); packaged proof pass.
 ## A1 re-stage declaration
 
 Recorded in the parent run's `STEP0_DISCOVERY.md` §3 and applies to this item.
+
+## Round 3 (independent review, MAJOR-2)
+
+A bridge non-answer (daemon unreachable `unavailable: true`, denied sender, invalid
+daemon status — all `encryptionAvailable: false` without `storage`) had been rendered as
+`storageUnavailable` with the keychain remediation. `ApiKeyStatus` now carries
+`unavailable?`/`error?`; such answers render `unknown` with a neutral line, the error
+text, no keychain copy, and entry hidden as before; the legacy mapping applies only when
+neither field is present. Three react-test-renderer cases and one static-markup case
+added; the legacy-mapping test adjusted. Review: run record
+`instances/A2_REVIEWER/REVIEW_01_2026-09-03_over_6ac51e99b.md`.
