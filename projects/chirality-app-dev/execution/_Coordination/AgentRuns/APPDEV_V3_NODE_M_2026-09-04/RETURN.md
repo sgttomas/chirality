@@ -1,6 +1,6 @@
 # RETURN — M1 — APPDEV_V3_NODE_M_2026-09-04
 
-**Status:** `REVIEW_READY_R4 — round-1 through round-3 FAIL findings accepted and remediated; awaiting fresh round-4 review`
+**Status:** `REVIEW_READY_R5 — round-1 through round-4 FAIL findings accepted and remediated; awaiting fresh round-5 review`
 
 **Basis:** `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f` (PR #693 merge)
 
@@ -35,7 +35,9 @@ asserted, not mechanism-proven; no descendants were observed.
   the owner-created disposable identity exists; DEL-04-05-V3-01 is already
   landed.
 - DEL-09-06-V3-03 is byte-unchanged. No item was removed, split, or completed.
-- Receipt 220 appends after Receipt 219 and names Receipt 219 as its parent.
+- Receipt 220 remains preserved earlier tranche evidence. Corrective Receipt
+  221 appends after it, names Receipt 220 as parent, and points to the active
+  R5 handoff.
 - Independent review round 1 over `f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c`
   returned FAIL with M-R1-F1/F2/F3. The immutable report is filed verbatim at
   `instances/M2_REVIEWER/REVIEW_NODE_M_R1.md` (SHA-256
@@ -46,12 +48,12 @@ asserted, not mechanism-proven; no descendants were observed.
   `instances/M3_REVIEWER/REVIEW_NODE_M_R2.md` (SHA-256
   `66f61ef9cf9c4d433f19d6959b8b546768116c4eb67e3de97d9836347454e8e4`).
   Both findings are accepted and remediated in `REVIEW_DISPOSITIONS.md`.
-- `ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M4 child records
-  now represent the actual sequential execution. M2 metadata is explicitly a
+- `ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M5 child records
+  represent the actual sequential execution. M2 metadata is explicitly a
   source-calibrated non-verbatim reconstruction; M3 metadata is an accurate
-  structured actual-dispatch record, not a byte-verbatim prompt claim. The
-  immutable review reports govern. The next fresh reviewer consumes
-  `REVIEW_R3_HANDOFF.md`.
+  structured actual-dispatch record; M4 and M5 metadata are
+  source-calibrated structured reconstructions. None claims byte-verbatim
+  prompt preservation. The immutable review reports govern.
 - Independent review round 3 over `52998709c5c19bc5c3df3944735593299d60be56`
   returned FAIL with M-R3-F1. The immutable report is filed verbatim at
   `instances/M4_REVIEWER/REVIEW_NODE_M_R3.md` (SHA-256
@@ -61,9 +63,18 @@ asserted, not mechanism-proven; no descendants were observed.
   Every Agent-2 role is qualified `role not mechanically enforced`, with
   governed-workflow role evidence `instruction-asserted`.
   K-SUBAGENT/non-delegation is instruction+config asserted, not
-  mechanism-proven; no descendants were observed. M4 launch/status/return
-  evidence is filed, and the next fresh reviewer consumes
-  `REVIEW_R4_HANDOFF.md`.
+  mechanism-proven; no descendants were observed.
+- Independent review round 4 over `c3c3b628203ccc949d3ee3b3573a96b45f472278`
+  returned FAIL with M-R4-F1. The immutable report is filed verbatim at
+  `instances/M5_REVIEWER/REVIEW_NODE_M_R4.md` (SHA-256
+  `ceb24881cf877fce9771c2b7dc9c820c8d34aed9d079f42ec6cee0f9392fd47a`).
+  The finding is accepted and remediated in `REVIEW_DISPOSITIONS.md`.
+- The sealed R2, R3, and R4 handoffs are spent historical dispatch
+  contracts. `REVIEW_R5_HANDOFF.md` is the only active next-review pointer.
+  The round-5 verdict/report does not yet exist and cannot be included in
+  this pre-review candidate. If round 5 passes, that immutable report and
+  final narrative closeout may be filed after PASS without changing ruling
+  or deliverable bytes.
 
 ## Changed paths
 
@@ -71,8 +82,8 @@ asserted, not mechanism-proven; no descendants were observed.
 2. DEL-09-05 `_STATUS.md`
 3. DEL-09-06 `_STATUS.md`
 4. `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`
-5. `loop/LOOP_RECEIPTS.md` (existing append-only Receipt 220 amended in
-   place; no second receipt)
+5. `loop/LOOP_RECEIPTS.md` (Receipt 220 preserved byte-for-byte; corrective
+   Receipt 221 appended)
 
 All project-relative paths in this return are under
 `projects/chirality-app-dev/` except the repo-root A15 record.
@@ -83,10 +94,11 @@ Receipt validation, authority-corpus status, APP-HOLD integrity/reliance/
 dispatch, harness self-check, harness pytest, exact change scope, manifest
 verification, F-APP-2/no-positive-claim scan, forbidden-path scan,
 DEL-09-06-V3-03 byte-section comparison, V3-04 selected-outcome coherence,
-multi-agent record completeness, all three review-report identities, and
-`git diff --check` pass. Round-1 through round-3 reviews failed; all reports
-and accepted/remediated disposition tables are filed, and round 4 remains
-pending. Native-descendant role/non-delegation evidence calibration passes.
+multi-agent record completeness, all four prior-review report identities,
+current-round/handoff coherence, and `git diff --check` pass. Round-1 through
+round-4 reviews failed; all reports and accepted/remediated disposition
+tables are filed, and round 5 remains pending. Native-descendant
+role/non-delegation evidence calibration passes.
 Earlier corrected check attempts remain recorded honestly in
 `CHECKS.json`. Frontend gates are skipped because no `frontend/` path changed;
 A1 is not applicable.
@@ -96,9 +108,9 @@ A1 is not applicable.
 No Developer ID signing, notarization, Apple call, distribution,
 publication, release-readiness, production identity, product, `frontend/`,
 host, Root, lifecycle, Checking Approval SHA, register, decomposition, or
-SCOPE_CHANGE act or claim occurred. Fresh round-4 review, HELP_HUMAN fan-in,
-and owner merge remain the gates. After merge, the newly selectable nonce implementation and the two
-separately authorized owner-host acts may proceed only through their own
-bounded work.
+SCOPE_CHANGE act or claim occurred. Fresh round-5 review under
+`REVIEW_R5_HANDOFF.md`, HELP_HUMAN fan-in, and owner merge remain the gates.
+After merge, the newly selectable nonce implementation and the two separately
+authorized owner-host acts may proceed only through their own bounded work.
 
 **Uncertainty:** none in the transcription or live-state observations.

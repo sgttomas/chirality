@@ -4,7 +4,7 @@
 
 **Basis:** `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
 
-**Status:** `REVIEW_READY_R4`
+**Status:** `REVIEW_READY_R5`
 
 **Execution evidence calibration:** `delegated-harness-native`; ephemeral
 Agent-2 implementer mode was instruction-assigned, `role not mechanically
@@ -13,7 +13,7 @@ K-SUBAGENT/non-delegation is instruction+config asserted, not
 mechanism-proven; no descendants were observed.
 
 M1 recorded the owner's three A15 rulings within the sealed write boundary,
-then accepted and remediated every finding from the three independent reviews.
+then accepted and remediated every finding from four independent reviews.
 The current candidate:
 
 - preserves the owner's exact questions and exact typed answer text while
@@ -25,9 +25,17 @@ The current candidate:
   implementation;
 - preserves DEL-09-06-V3-03 byte-for-byte from the accepted basis; and
 - includes the actual sequential work graph, calibrated per-child records,
-  both immutable review reports, and complete dispositions.
+  all four filed immutable prior-review reports, and complete dispositions:
+  `instances/M2_REVIEWER/REVIEW_NODE_M_R1.md`,
+  `instances/M3_REVIEWER/REVIEW_NODE_M_R2.md`,
+  `instances/M4_REVIEWER/REVIEW_NODE_M_R3.md`, and
+  `instances/M5_REVIEWER/REVIEW_NODE_M_R4.md`.
 
 Deterministic closeout checks pass as recorded in top-level `CHECKS.json`.
-Fresh round-4 review is still required; no review PASS, push, PR, merge, host
+Fresh round-5 review is still required under the active
+`REVIEW_R5_HANDOFF.md`. The round-5 verdict/report does not yet exist and
+cannot be included in this pre-review candidate; if round 5 passes, that
+immutable report and final narrative closeout may be filed after PASS without
+changing ruling or deliverable bytes. No review PASS, push, PR, merge, host
 act, product mutation, signing, notarization, publication, distribution, or
 release-readiness claim is made.

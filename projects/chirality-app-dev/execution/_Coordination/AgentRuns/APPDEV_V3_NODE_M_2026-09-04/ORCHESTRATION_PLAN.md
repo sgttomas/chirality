@@ -14,10 +14,10 @@
   governed-workflow role evidence `instruction-asserted`.
 - **Implementer:** M1, instructed to operate in bounded ephemeral Agent-2
   mode under that calibration.
-- **Reviewers:** M2, M3, and M4 were separate fresh, read-only descendants
-  instructed to operate in ephemeral Agent-2 reviewer mode under that same
-  calibration. M5 is the required next fresh reviewer over the complete
-  round-4 freeze.
+- **Reviewers:** M2, M3, M4, and M5 were separate fresh, read-only
+  descendants instructed to operate in ephemeral Agent-2 reviewer mode under
+  that same calibration. M6 is the required next fresh reviewer over the
+  complete round-5 freeze.
 - **K-SUBAGENT calibration:** each child was instructed and configured not to
   create descendants. Non-delegation is instruction+config asserted, not
   mechanism-proven; no descendants were observed.
@@ -46,8 +46,16 @@
 7. M1 accepted and remediated M4's evidence-calibration finding. The
    resulting Git commit is the round-4 review freeze; this record does not
    embed a self-referential commit identifier.
-8. M5 must independently review 100% of the accepted-basis-to-round-4-freeze
-   diff. Manager fan-in requires zero BLOCKER and zero MAJOR findings.
+8. M5 independently reviewed 100% of the accepted-basis-to-round-4-freeze
+   diff at `c3c3b628203ccc949d3ee3b3573a96b45f472278` and returned FAIL
+   with one MAJOR finding. Its immutable report is filed at
+   `instances/M5_REVIEWER/REVIEW_NODE_M_R4.md`.
+9. M1 accepted and remediated M5's current-round/handoff-coherence finding.
+   The resulting Git commit is the round-5 review freeze; this record does
+   not embed a self-referential commit identifier.
+10. M6 must independently review 100% of the
+    accepted-basis-to-round-5-freeze diff. Manager fan-in requires zero
+    BLOCKER and zero MAJOR findings.
 
 ## Write boundary
 
@@ -57,7 +65,8 @@ Only these paths may change:
 - DEL-09-05 `_STATUS.md`
 - DEL-09-06 `_STATUS.md`
 - `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/**`
-- append-only Receipt 220 in `loop/LOOP_RECEIPTS.md`
+- append-only corrective Receipt 221 in `loop/LOOP_RECEIPTS.md` (Receipt
+  220 remains preserved earlier tranche evidence)
 
 The two deliverable paths and every AgentRuns/ledger path above are relative
 to `projects/chirality-app-dev/`; A15 is repo-root. No product, `frontend/`,
@@ -76,11 +85,18 @@ they are explicitly labelled non-verbatim. M3's launch record is an accurate
 structured rendering of the actual dispatch supplied by the supervisor, not
 a claim of byte-verbatim prompt preservation. M4's launch record is an
 accurate structured reconstruction from the sealed R3 handoff, immutable R3
-report, and supervisor direction; it is not a byte-verbatim prompt claim. The
-M2, M3, and M4 review reports are immutable contemporaneous reviewer outputs
-and govern if a summary record differs.
+report, and supervisor direction; it is not a byte-verbatim prompt claim.
+M5's launch record is an accurate structured reconstruction from the spent
+historical R4 handoff, immutable R4 report, and supervisor direction; it is
+not a byte-verbatim prompt claim. The M2, M3, M4, and M5 review reports are
+immutable contemporaneous reviewer outputs and govern if a summary record
+differs.
 
 No child push, PR, merge, host act, or product-byte mutation was observed.
 No child descendants were observed, with K-SUBAGENT evidence limited to
 instruction+config assertion rather than mechanism proof. No PASS is inferred
-from deterministic checks or remediation; fresh M5 review remains required.
+from deterministic checks or remediation; fresh M6 review under the active
+`REVIEW_R5_HANDOFF.md` remains required. The pre-review candidate
+intentionally cannot include a future round-5 verdict/report. If round 5
+passes, its immutable report and final narrative closeout may be filed after
+PASS without changing ruling or deliverable bytes.

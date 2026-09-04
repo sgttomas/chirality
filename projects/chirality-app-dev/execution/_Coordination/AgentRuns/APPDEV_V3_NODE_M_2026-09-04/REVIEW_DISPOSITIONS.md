@@ -54,3 +54,25 @@ No second receipt is added; Receipt 220 retains its original cursor and
 parent. No product, `frontend/`, host, Root, lifecycle, Checking Approval SHA,
 register, decomposition, SCOPE_CHANGE, push, PR, or merge act occurred. Fresh
 round-4 review remains required before manager fan-in.
+
+## Round 4 over `c3c3b628203ccc949d3ee3b3573a96b45f472278`
+
+Immutable review:
+`instances/M5_REVIEWER/REVIEW_NODE_M_R4.md`
+(SHA-256 `ceb24881cf877fce9771c2b7dc9c820c8d34aed9d079f42ec6cee0f9392fd47a`).
+
+Verdict: **FAIL** — no BLOCKER findings and one MAJOR finding. The finding is
+accepted and remediated in the round-5 candidate.
+
+| Finding | Severity | Disposition | Remediation | Required fresh verification |
+|---|---|---|---|---|
+| M-R4-F1 | MAJOR | ACCEPTED / REMEDIATED | Advanced M1's live status to `review_ready_r5` with the actual R4 freeze/verdict/hash; made its return enumerate all four filed immutable prior-review reports; filed M5's calibrated launch/status/return and the verbatim R4 report; and changed every mutable current-state pointer to the active `REVIEW_R5_HANDOFF.md`. The sealed R2, R3, and R4 handoffs remain unchanged and are identified only as spent historical dispatch contracts. Receipt 220 remains byte-preserved earlier evidence; append-only corrective Receipt 221 identifies its stale-pointer delta and the current R5 surfaces. Orchestration, work graph, checks, return, handoff, manifest, and Receipt 221 now agree. | Verify M1 status and timeline, all four prior-report identities, M1/top-level report descriptions, M1–M5 child records, Receipt 220 byte preservation, Receipt 221 structure, and that `REVIEW_R5_HANDOFF.md` is the only active next-review pointer. Scan mutable records for stale R3/R4/current-review language and vague `both` report counts. |
+
+The R5 candidate contains the four filed prior reports and the sealed R5
+launch/handoff, but it cannot contain the future round-5 verdict/report. If
+round 5 passes, its immutable report and final narrative closeout may be
+filed after PASS under the standing narrative-only evidence rule without
+changing ruling or deliverable bytes. No product, `frontend/`, host, Root,
+lifecycle, Checking Approval SHA, register, decomposition, SCOPE_CHANGE,
+push, PR, merge, or release act occurred. Fresh round-5 review remains
+required before manager fan-in.

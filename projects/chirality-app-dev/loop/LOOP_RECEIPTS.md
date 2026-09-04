@@ -6693,3 +6693,35 @@
     Checking Approval SHA, register, decomposition, SCOPE_CHANGE, Developer
     ID signing, notarization, Apple call, distribution, publication,
     release-readiness, or production identity act or claim.
+
+- **2026-09-04 — Receipt 221** (Node M corrective closeout pointer).
+  - Receipt-ID: `Receipt-221`
+  - Examined-Through: `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
+  - Parent-Receipt: `Receipt-220`
+  - Stale-Map-Delta: Receipt 220 is preserved earlier tranche evidence; its
+    R4/current-review pointers are superseded by
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/{REVIEW_DISPOSITIONS.md,REVIEW_R5_HANDOFF.md,HANDOFF_STATE.md}`.
+  - Pointers: branch
+    `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`; basis above; RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`;
+    immutable R1–R4 reports under `instances/M2_REVIEWER/` through
+    `instances/M5_REVIEWER/`; active next-review contract
+    `REVIEW_R5_HANDOFF.md`; A15 and DEL-09-05/DEL-09-06 ruling semantics
+    remain as recorded by Receipt 220.
+  - Checks: receipt validator pass; authority corpus pass; APP-HOLD pass;
+    harness self-check and pytest pass; exact change-scope, manifest,
+    immutable-report identity, current-pointer coherence,
+    native-descendant evidence calibration, forbidden-path/F-APP-2, and
+    `git diff --check` pass; frontend and release-execution gates skipped.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact model identifier not exposed to the agent runtime); execution
+    class `delegated-harness-native`; Agent-2 roles are `role not
+    mechanically enforced` with `instruction-asserted` governed-workflow
+    evidence; non-delegation is instruction+config asserted, not
+    mechanism-proven.
+  - Gate-Outcome: `AWAITING_OWNER` — R1–R4 failed and are remediated; fresh
+    R5 review, PR creation, and owner merge remain gates. The pre-review
+    candidate cannot contain the future R5 verdict/report; no frontend,
+    product, host, Root, lifecycle, SCOPE_CHANGE, signing, notarization,
+    Apple call, distribution, publication, release-readiness, or production
+    identity act or claim occurred.

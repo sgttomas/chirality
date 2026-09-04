@@ -23,7 +23,7 @@
       "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
       "cwd": ".",
       "status": "pass",
-      "summary": "VALID after append-only Receipt 220"
+      "summary": "VALID after append-only corrective Receipt 221; Receipt 220 preserved"
     },
     {
       "id": "authority-corpus-status",
@@ -103,13 +103,25 @@
       "id": "multi-agent-record-contract",
       "cwd": ".",
       "status": "pass",
-      "summary": "orchestration plan, work graph, calibrated M1/M2/M3/M4 launch-status-return records, all three immutable reviews, dispositions, and the fresh-review handoff are present"
+      "summary": "orchestration plan, work graph, calibrated M1/M2/M3/M4/M5 launch-status-return records, all four immutable prior reviews, dispositions, and the active R5 handoff are present"
     },
     {
       "id": "review-report-byte-identities",
       "cwd": ".",
       "status": "pass",
-      "summary": "all three filed review reports are byte-identical to the immutable external reports and match their recorded SHA-256 values"
+      "summary": "all four filed prior-review reports are byte-identical to the immutable external reports and match their recorded SHA-256 values"
+    },
+    {
+      "id": "current-round-and-handoff-coherence",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "mutable current-state records agree on review_ready_r5 and REVIEW_R5_HANDOFF.md; R2/R3/R4 handoffs are labelled spent history; no stale vague report count remains"
+    },
+    {
+      "id": "r5-anti-self-reference",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "candidate includes filed R1-R4 reports plus the R5 launch/handoff and expressly excludes the future R5 verdict/report pending review"
     },
     {
       "id": "native-descendant-evidence-calibration",
@@ -190,9 +202,24 @@
     },
     {
       "round": 4,
+      "candidate": "c3c3b628203ccc949d3ee3b3573a96b45f472278",
+      "status": "fail",
+      "findings": {
+        "blocker": 0,
+        "major": 1,
+        "minor": 0,
+        "note": 0
+      },
+      "report": "instances/M5_REVIEWER/REVIEW_NODE_M_R4.md",
+      "report_sha256": "ceb24881cf877fce9771c2b7dc9c820c8d34aed9d079f42ec6cee0f9392fd47a",
+      "disposition": "M-R4-F1 accepted and remediated; see REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 5,
       "candidate": "the remediation freeze returned by Git after this run record is finalized",
       "status": "pending_fresh_review",
-      "handoff": "REVIEW_R4_HANDOFF.md"
+      "handoff": "REVIEW_R5_HANDOFF.md",
+      "anti_self_reference": "the future round-5 verdict/report cannot be included before review; it may be filed after PASS as narrative-only evidence"
     }
   ],
   "not_run": [
@@ -206,6 +233,6 @@
     }
   ],
   "a1": "not applicable: no frontend path changed; no re-stage declaration is needed",
-  "overall": "review_ready_r4: deterministic checks pass; round-1 through round-3 reviews failed and all findings are remediated; fresh round-4 review pending",
+  "overall": "review_ready_r5: deterministic checks pass; round-1 through round-4 reviews failed and all findings are remediated; fresh round-5 review pending",
   "recorded_at": "2026-09-04"
 }
