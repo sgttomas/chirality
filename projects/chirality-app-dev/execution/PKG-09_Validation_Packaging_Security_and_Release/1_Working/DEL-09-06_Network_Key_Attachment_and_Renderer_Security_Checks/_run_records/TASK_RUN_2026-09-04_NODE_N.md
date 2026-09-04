@@ -4,7 +4,7 @@ Date: 2026-09-04
 Run: `APPDEV_V3_NODE_N_2026-09-04`
 Basis: `307addfc259b046aeb2ed07d47086cd5686c35b8` (PR #694 merge)
 Item: `DEL-09-06-V3-04` only
-State: implementation frozen for independent review; no completion or acceptance claim
+State: independent review PASS; narrative/evidence closeout prepared for owner merge
 
 ## Execution calibration
 
@@ -30,4 +30,26 @@ Implementation decision: use the CSP request header itself as the single nonce s
 
 This `frontend/` mutation invalidates the staged R20 procedure for future proof reliance. Historical R20 remains historical only; a newly staged revision and fresh owner-executed proof are required before future reliance. Node N does not perform or claim the separate `DEL-09-01-V3-01` revision 3 that becomes owed only after this change lands.
 
-DEL-09-06 `_STATUS.md`, `MEMORY.md`, and `loop/LOOP_RECEIPTS.md` remain unchanged pending fresh independent review and separately authorized closeout. No signing, notarization, publication, external distribution, release-readiness, lifecycle issuance, or owner-merge act occurred.
+The independent N2 review passed over freeze
+`dca2ef103f9a22e38d815c5f21638220ad454223` with zero BLOCKER, zero
+MAJOR, zero MINOR, and two NOTE. Its immutable report is filed under the Node
+N AgentRuns record at SHA-256
+`e518d6472095814e5cf02c3b2e365e23adce485369b2616dc9c00497385a59fc`.
+The report's exact-freeze packaged proof passed with artifact identity
+`1c235d502ffd698e3db10d7bfe54911ace0e9692f406256dcd159a57f9bd8228`
+and summary SHA-256
+`2e79a0fb0c764c04a3add956a24f23a1f6de27cd5a7b110c9b5d2db2a2f26937`.
+Both NOTE dispositions are carried in `REVIEW_DISPOSITIONS.md` and seed no
+follow-on item.
+
+After fetch/rebase found `origin/main` unchanged at the basis, the unsigned
+package and real packaged proof were rerun without changing any reviewed
+product/test byte. The retained post-closeout proof passed with artifact
+identity `8ab0aed93eab899d747ac11b16c2ba3221bd0aab43a5cc1278ea3169c9ae0189`
+and summary SHA-256
+`ee98875b36b2f1b42f885b849119e772b14d666ba2c0a94d04acbe0ee332cfb2`.
+
+`DEL-09-06-V3-04` is removed from `_STATUS.md` under its Removed-when
+contract; Receipt 224 records the candidate and its owner-merge gate. No
+signing, notarization, publication, external distribution, release-readiness,
+lifecycle issuance, or owner-merge act occurred.

@@ -1,6 +1,6 @@
 # Node N — per-response packaged renderer CSP nonce evidence
 
-Status: implementation complete and awaiting independent review. This evidence is not acceptance, lifecycle issuance, release authority, signing/notarization, distribution, or a future-proof reliance claim.
+Status: implementation independently reviewed PASS and prepared for the owner-merge gate. This evidence is not lifecycle issuance, release authority, signing/notarization, distribution, or a future-proof reliance claim.
 
 ## Identity and boundary
 
@@ -93,6 +93,31 @@ The real Electron run reports:
 - GUI and daemon exit 0, stream closure confirmed, disposable root removed, and cleanup PASS.
 
 The first in-sandbox packaged attempt is retained separately as `packaged-security-proof-attempt1-sandbox-abort/`: the daemon aborted before any GUI launch, its cleanup record is FAIL, and no passing inference is made. The same command rerun with the required host permission produced the final PASS bundle.
+
+### Review and post-closeout packaged proof
+
+The fresh N2 review passed over exact freeze
+`dca2ef103f9a22e38d815c5f21638220ad454223` with zero BLOCKER, zero
+MAJOR, zero MINOR, and two NOTE. The immutable report is filed at
+`execution/_Coordination/AgentRuns/APPDEV_V3_NODE_N_2026-09-04/instances/N2_REVIEWER/REVIEW_NODE_N_R1.md`,
+SHA-256 `e518d6472095814e5cf02c3b2e365e23adce485369b2616dc9c00497385a59fc`.
+Its independent exact-freeze proof artifact identity was
+`1c235d502ffd698e3db10d7bfe54911ace0e9692f406256dcd159a57f9bd8228`
+and its summary SHA-256 was
+`2e79a0fb0c764c04a3add956a24f23a1f6de27cd5a7b110c9b5d2db2a2f26937`.
+
+After the required fetch/rebase check found `origin/main` unchanged at the
+basis, `desktop:pack` and the real packaged proof were rerun with all seven
+reviewed product/test blobs byte-identical to the PASS freeze. The retained
+`packaged-security-proof-post-closeout/` bundle passed: all four routes, 12
+globally unique nonces, matching inline scripts, unsafe script allowances
+absent, no unexpected or own-resource post-load violation, no
+non-allowlisted TCP, and cleanup PASS. Its artifact identity is
+`8ab0aed93eab899d747ac11b16c2ba3221bd0aab43a5cc1278ea3169c9ae0189`
+and `summary.json` SHA-256 is
+`ee98875b36b2f1b42f885b849119e772b14d666ba2c0a94d04acbe0ee332cfb2`.
+The recorded source revision remains the reviewed product/test freeze; later
+closeout commits contain narrative, state, receipt, and evidence only.
 
 ### Registered premerge/release-quality method
 

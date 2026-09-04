@@ -1,0 +1,353 @@
+{
+  "schema": "chirality-packaged-security-proof/v1",
+  "status": "pass",
+  "startedAt": "2026-09-04T17:07:21.544Z",
+  "completedAt": "2026-09-04T17:07:27.688Z",
+  "proofBoundary": "fresh-unsigned-packaged-app-network-safeStorage-renderer-hardening-and-security-byte-presence",
+  "artifactIdentity": {
+    "schema": "chirality-packaged-security-subject/v1",
+    "appPath": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app",
+    "sourceRevision": "dca2ef103f9a22e38d815c5f21638220ad454223",
+    "files": [
+      {
+        "relativePath": "Contents/MacOS/Chirality",
+        "bytes": 33968,
+        "sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874"
+      },
+      {
+        "relativePath": "Contents/Resources/app.asar",
+        "bytes": 430073568,
+        "sha256": "07d503bb9a2f064e461982fea456a7d6e11790aae33a9003bc18647739b04525"
+      },
+      {
+        "relativePath": "Contents/Resources/runtime-cli/chirality-cli.mjs",
+        "bytes": 75460,
+        "sha256": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+      }
+    ],
+    "identitySha256": "8ab0aed93eab899d747ac11b16c2ba3221bd0aab43a5cc1278ea3169c9ae0189"
+  },
+  "packagedPolicy": {
+    "markers": [
+      {
+        "marker": "REQ-NET-001",
+        "present": true
+      },
+      {
+        "marker": "api.anthropic.com",
+        "present": true
+      },
+      {
+        "marker": "anthropic_protocol_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "anthropic_port_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "host_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "Blocked renderer outbound request by network policy",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-file size limit",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-turn size budget",
+        "present": true
+      },
+      {
+        "marker": "symbolic links are rejected",
+        "present": true
+      },
+      {
+        "marker": "ATTACHMENT_FAILURE",
+        "present": true
+      },
+      {
+        "marker": "Content-Security-Policy",
+        "present": true
+      },
+      {
+        "marker": "renderer.window_open.denied",
+        "present": true
+      },
+      {
+        "marker": "renderer.navigation.denied",
+        "present": true
+      }
+    ],
+    "allPresent": true
+  },
+  "credentialProof": {
+    "fixtureCredentialSha256": "c7e6d7dfda8a1e4ec1e0cdbb7b16cdf28b4c578ddaf48e924a46a7ed81043392",
+    "before": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      }
+    },
+    "afterStore": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": true,
+        "source": "ui",
+        "storage": "available"
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      }
+    },
+    "storedMutation": {
+      "providerId": "anthropic",
+      "configured": true
+    },
+    "encryptedBlob": {
+      "bytes": 67,
+      "sha256": "d7473d0042433db3c7b3b8e07f4ad3c8da131450a69ad163c4f621998ee90724",
+      "ownerOnlyMode": true,
+      "excludesPlaintextFixture": true
+    },
+    "removedMutation": {
+      "providerId": "anthropic",
+      "configured": false
+    },
+    "afterRemove": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      }
+    },
+    "credentialFilePresentAfterRemove": false,
+    "providerIsolation": true,
+    "mutationPass": true,
+    "retainedSecretFindings": [],
+    "evidenceSurfacesScannedAfterStreamClosure": [
+      "encryptedCredentialArtifact",
+      "emitted:cleanup.json",
+      "emitted:packaged-daemon.log",
+      "emitted:packaged-gui.log",
+      "emitted:tcp-snapshots.json"
+    ],
+    "pass": true
+  },
+  "networkProof": {
+    "snapshotCount": 8,
+    "sampledProcessIds": [
+      75914,
+      75916,
+      75917,
+      75918,
+      75953,
+      75954,
+      75988,
+      75989,
+      75990,
+      75992
+    ],
+    "uniqueOutboundTcp": [
+      {
+        "endpoint": "127.0.0.1:64758",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:64759",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:64761",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:64760",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:64762",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:64763",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:64757",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      }
+    ],
+    "nonAllowlistedOutboundTcp": [],
+    "blockedRendererDiagnostics": 4,
+    "egressLayerDiagnostics": 4,
+    "probePayloadCount": 4,
+    "egressProbePayloadCount": 4,
+    "blockedProbeObserved": true,
+    "loopbackProbeObserved": true,
+    "egressProbeObserved": true,
+    "egressProbeUnexpectedDestinations": [],
+    "pass": true
+  },
+  "rendererSecurityProof": {
+    "probePayloadCount": 4,
+    "requiredRoutes": [
+      "/",
+      "/chat",
+      "/pipeline",
+      "/workbench"
+    ],
+    "routeResults": [
+      {
+        "route": "/",
+        "payloadCount": 1,
+        "documentNonce": "PyoBeSu46RSF+l1ucw3Wzw==",
+        "documentInlineScriptCount": 7,
+        "documentInlineScriptNoncesMatch": true,
+        "responseNonces": [
+          "OiPj7hTbdrCv3vQBh3ar8w==",
+          "maSolWjU/yjEozWjDd2onA=="
+        ],
+        "consecutiveNoncesUnique": true,
+        "scriptUnsafeInlineAbsent": true,
+        "scriptUnsafeEvalAbsent": true,
+        "responsesConform": true,
+        "expectedConnectViolation": true,
+        "unexpectedViolations": [],
+        "windowOpenReturnedNull": true,
+        "navigationAttempted": true,
+        "pass": true
+      },
+      {
+        "route": "/chat",
+        "payloadCount": 1,
+        "documentNonce": "X4EXMuYsGsgclM0J+WNZ+w==",
+        "documentInlineScriptCount": 7,
+        "documentInlineScriptNoncesMatch": true,
+        "responseNonces": [
+          "rwNGoB8t8Hrny+OKRo9OoQ==",
+          "x8V9ANMmg0X9jxR0oNRpiQ=="
+        ],
+        "consecutiveNoncesUnique": true,
+        "scriptUnsafeInlineAbsent": true,
+        "scriptUnsafeEvalAbsent": true,
+        "responsesConform": true,
+        "expectedConnectViolation": true,
+        "unexpectedViolations": [],
+        "windowOpenReturnedNull": true,
+        "navigationAttempted": true,
+        "pass": true
+      },
+      {
+        "route": "/pipeline",
+        "payloadCount": 1,
+        "documentNonce": "k1tGgDWC+hJaPTMmDF0GNw==",
+        "documentInlineScriptCount": 9,
+        "documentInlineScriptNoncesMatch": true,
+        "responseNonces": [
+          "HlcGw+7HXTLCCcsnA5jVXw==",
+          "rqbhTr3fszCwJAy2HDtBFw=="
+        ],
+        "consecutiveNoncesUnique": true,
+        "scriptUnsafeInlineAbsent": true,
+        "scriptUnsafeEvalAbsent": true,
+        "responsesConform": true,
+        "expectedConnectViolation": true,
+        "unexpectedViolations": [],
+        "windowOpenReturnedNull": true,
+        "navigationAttempted": true,
+        "pass": true
+      },
+      {
+        "route": "/workbench",
+        "payloadCount": 1,
+        "documentNonce": "7ke5PYyTOf5Rtu30Kk/B3Q==",
+        "documentInlineScriptCount": 7,
+        "documentInlineScriptNoncesMatch": true,
+        "responseNonces": [
+          "6JODYZN/wGPZmhssOy2Miw==",
+          "QUQhCx0slgtlp0gR+MYhow=="
+        ],
+        "consecutiveNoncesUnique": true,
+        "scriptUnsafeInlineAbsent": true,
+        "scriptUnsafeEvalAbsent": true,
+        "responsesConform": true,
+        "expectedConnectViolation": true,
+        "unexpectedViolations": [],
+        "windowOpenReturnedNull": true,
+        "navigationAttempted": true,
+        "pass": true
+      }
+    ],
+    "allObservedNoncesUnique": true,
+    "cspHeaderPresent": true,
+    "cspViolationObserved": true,
+    "unexpectedViolations": [],
+    "windowOpenReturnedNull": true,
+    "windowOpenDeniedLogged": true,
+    "navigationAttempted": true,
+    "navigationDeniedLogged": true,
+    "pass": true
+  },
+  "cleanup": {
+    "gui": {
+      "label": "packaged GUI",
+      "started": true,
+      "pid": 75918,
+      "signalSent": "SIGTERM",
+      "exitCode": 0,
+      "signalCode": null,
+      "confirmedStopped": true,
+      "streamClosed": true
+    },
+    "daemon": {
+      "label": "packaged runtime daemon",
+      "started": true,
+      "pid": 75914,
+      "signalSent": "SIGTERM",
+      "exitCode": 0,
+      "signalCode": null,
+      "confirmedStopped": true,
+      "streamClosed": true
+    },
+    "tempRootRemoved": true,
+    "tempRootRemovalError": null,
+    "pass": true
+  },
+  "retainedMetadataLeakFindings": [],
+  "exclusions": {
+    "realCredentialsUsed": false,
+    "signingOrNotarization": false,
+    "distributionOrPublication": false,
+    "ownerUserDataTouched": false,
+    "providerScopeExpanded": false
+  }
+}

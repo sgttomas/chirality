@@ -1,0 +1,2 @@
+# Preserve the immutable verbatim review's Markdown hard breaks and blank EOF.
+instances/N2_REVIEWER/REVIEW_NODE_N_R1.md whitespace=-trailing-space,-blank-at-eof

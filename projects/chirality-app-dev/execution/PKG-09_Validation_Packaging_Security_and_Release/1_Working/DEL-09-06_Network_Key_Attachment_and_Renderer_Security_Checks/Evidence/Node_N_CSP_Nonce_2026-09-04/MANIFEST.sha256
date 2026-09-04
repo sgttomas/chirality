@@ -1,7 +1,13 @@
-2874395de89cd1adfbea62d4a80c192b350da75de95a1f8e7e6530cd874e53e3  ./EVIDENCE.md
+93c1dcec92f76347bd539b8a60699c8511f4e2382310cdffd507264f9cb9d7ae  ./EVIDENCE.md
 ba4a518950d51f48e3e4392546209f7da1223336a00389b207488c7fafb48787  ./packaged-security-proof-attempt1-sandbox-abort/MANIFEST.sha256
 a1620038ba69a07ccee9330b871097d749b59882bd35987b6746d12d581c0cd7  ./packaged-security-proof-attempt1-sandbox-abort/cleanup.json
 2e46286a8d396455855254174505a08775e6c6e705a8982d89578e983d90668e  ./packaged-security-proof-attempt1-sandbox-abort/packaged-daemon.log
+8cf60266f3bb4449a881d40b2fa84a9cc38c0c2bb2d387077d8ea9c1fe9820d0  ./packaged-security-proof-post-closeout/MANIFEST.sha256
+d87089f6833ef233f9343b8f443876bc09c42c56cba6072dcfd1b8b06c77941d  ./packaged-security-proof-post-closeout/cleanup.json
+a240e8a8c07916fbbf7e48ddad3d8ecfac5a5acb705675270976d35e92dd5638  ./packaged-security-proof-post-closeout/packaged-daemon.log
+f113f84df7d545b0d123d8e56093d3517929834c5655b01ea4c56522b9fa39de  ./packaged-security-proof-post-closeout/packaged-gui.log
+ee98875b36b2f1b42f885b849119e772b14d666ba2c0a94d04acbe0ee332cfb2  ./packaged-security-proof-post-closeout/summary.json
+066c76a32e1ddb7936973f61c2c3a5fba6cfaa10def711eef5108163f5f7d968  ./packaged-security-proof-post-closeout/tcp-snapshots.json
 6a6762f9c8ac82dd0148d18e7607a372eae353787a086f2e829fb2ee501ae37b  ./packaged-security-proof/MANIFEST.sha256
 e2e655493c2961ec925f5eb1d56287dad31f36d0f7de248834263df69add8f30  ./packaged-security-proof/cleanup.json
 3b847ca78be7af8a41331d3923d2ba9b33bd3418bda6c5336700e88ea8507c75  ./packaged-security-proof/packaged-daemon.log
