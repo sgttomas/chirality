@@ -57,7 +57,7 @@ None of the following was done and none may be done by an agent on its own autho
 1. Seat the work: adopt, amend, or decline the proposed Remaining items in `04_IMPLEMENTATION_PLAN.md` §7 into the owning deliverables.
 2. Rule on the open questions in `04_IMPLEMENTATION_PLAN.md` §6, including Q8 on when the shared-login contract amendment is raised with the Root loop (SR-19).
 3. Merge each tranche's PR.
-4. Delete the superseded logo files listed in `05_LOGO_AND_BRAND.md` §6 from the git-ignored `frontend/artifacts/logos/generated/` folder, and replace `LOGO.jpg` for corporate use.
+4. (Done 2026-09-04.) The superseded logo files were removed and the corporate `LOGO*` set written; see `05_LOGO_AND_BRAND.md` §3 and §6.
 
 ## Asset integrity
 
