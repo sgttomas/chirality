@@ -236,7 +236,25 @@ Footer line: "Opt-in Preview · account is app-wide; consent and permissions are
 
 Workbench and Pipeline surfaces and navigator groups; the Work projection tab; the resizable activity region; the entire header row (icon, wordmark position, kicker, title, subtitle, root chip, status chip, gear, settings disclosure); the navigator's "Compatibility" footer (moved to the popover as "Legacy window"); all `woven-eyebrow` elements; the Coordination panel's evidence-only disclaimer paragraph (becomes the Who is working tooltip).
 
-## 10. Copy table
+## 10. Vocabulary and copy
+
+The surface uses the vocabulary ruled in SR-26; the doctrine keeps its terms in code, agents, and this package's plan. Where this specification says roadmap, brief, child, or Agent 1 it refers to the doctrine; the corresponding surface words are plan, delegated task, task, and role.
+
+| Surface term | Meaning |
+|---|---|
+| Assistant | The default agent (HELP_HUMAN) |
+| Role | An Agent 1 persona chosen for a chat, shown by what it does |
+| Chat · Choose agent and permissions… · Start a workflow… | The last item of the context line and its menu |
+| Workflow, Plan, step n of m, your decision | A governed workflow, its roadmap, its position, a human gate |
+| Permissions | Read only · Ask before changes · Approve each change · Make changes freely |
+| Delegation | No delegation · Ask before delegating · Delegate, approve changes · Delegate freely |
+| Delegated task, Tasks | A bounded Agent 2 brief; the Activity sub-tab and the Who is working rows |
+| Proposal from <agent> | The proposal card (events `proposal.*`) |
+| Start workflow · Continue in this chat · Create and start · Use in this folder | Workflow actions |
+| Network | Command-network posture; verbatim contract labels in the tooltip |
+| Session role: Supervisor · Manager · Specialist | K-ROLE posture; verbatim labels in the tooltip |
+
+### 10.1 Copy table
 
 | Where | Now | Target |
 |---|---|---|
