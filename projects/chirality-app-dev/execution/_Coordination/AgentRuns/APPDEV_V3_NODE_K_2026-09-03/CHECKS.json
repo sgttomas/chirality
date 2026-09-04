@@ -2,8 +2,11 @@
   "schema": "chirality-run-checks/v1",
   "run_id": "APPDEV_V3_NODE_K_2026-09-03",
   "recorded_at": "2026-09-03",
-  "status": "REVIEW_READY_ROUND_2",
+  "status": "CLOSEOUT_READY",
   "basis": "fe0ce926d4475fa41cb91933ad1218b95083889b",
+  "publication_basis": "42dddcfd7053a1f184aad2b0cf9d228acb0644bf",
+  "reviewed_round_2_freeze": "12d651ce6bc3af09ea2789d28e150d7d5790c1ad",
+  "rebased_round_2_head": "8c5d91dc07cface2d1f729268a2572fe188b63f4",
   "review_rounds": [
     {
       "round": 1,
@@ -13,8 +16,22 @@
       "report": "instances/K2_REVIEWER/REVIEW_01_2026-09-03_over_339418287.md",
       "report_sha256": "26f3cbcef78fb98412fb635992fe2c7e232c96a3c410bd76663b2e9543ba2eca",
       "disposition": "K1-F1 accepted and remediated; REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 2,
+      "candidate": "12d651ce6bc3af09ea2789d28e150d7d5790c1ad",
+      "verdict": "PASS",
+      "findings": {"blocker": 0, "major": 0, "minor": 0, "note": 0},
+      "report": "instances/K2_REVIEWER/REVIEW_02_2026-09-03_over_12d651ce6.md",
+      "report_sha256": "d95d9daec2532b0ce8263b407c8acc97aca736a23d3ce0799093929eda579774",
+      "disposition": "K1-F1 independently verified remediated and non-vacuous"
     }
   ],
+  "post_review_identity": {
+    "frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts": "922e7907428f5bf27c06cec3311bafadeac90539",
+    "matches_reviewed_freeze_after_rebase_and_closeout": true,
+    "product_test_css_changed_after_pass": false
+  },
   "toolchain": {
     "node": "v24.18.0",
     "npm": "11.16.0",
@@ -199,6 +216,59 @@
       "summary": "final pre-commit and post-commit diff/scope results returned with the round-2 freeze SHA"
     }
   ],
+  "closeout_checks": [
+    {
+      "id": "publication-rebase",
+      "status": "pass",
+      "summary": "reviewed commits rebased without conflict onto PR #691 merge 42dddcfd7053a1f184aad2b0cf9d228acb0644bf as 8861c2578 and 8c5d91dc0"
+    },
+    {
+      "id": "review-report-2-byte-copy",
+      "status": "pass",
+      "summary": "source and filed report SHA-256 both d95d9daec2532b0ce8263b407c8acc97aca736a23d3ce0799093929eda579774"
+    },
+    {
+      "id": "reviewed-test-blob-fence",
+      "status": "pass",
+      "summary": "test blob remains 922e7907428f5bf27c06cec3311bafadeac90539 after rebase and narrative closeout"
+    },
+    {
+      "id": "frontend-test-focused-post-rebase",
+      "command": "npx vitest run src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "1 file passed; 12 tests passed"
+    },
+    {
+      "id": "frontend-test-full-post-rebase",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass_after_escalation",
+      "summary": "165 files passed, 1 skipped; 1563 tests passed, 4 skipped after Node L landed"
+    },
+    {
+      "id": "frontend-typecheck-post-rebase",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "app and Electron TypeScript checks passed"
+    },
+    {
+      "id": "governance-post-rebase",
+      "status": "pass",
+      "summary": "APP-HOLD dispatch ALLOW and integrity PASS; corpus v20 no drift; Scope of Work PASS; receipt validator PASS before and after Receipt 218"
+    },
+    {
+      "id": "harness-post-rebase",
+      "status": "pass",
+      "summary": "self-check exit 0 at unchanged baseline; practitioner harness pytest passed"
+    },
+    {
+      "id": "closeout-structure-and-scope",
+      "status": "pass",
+      "summary": "strict JSON, exact change-scope, AgentRuns manifest, F-APP-2, and git diff hygiene pass"
+    }
+  ],
   "not_run": [
     {
       "id": "frontend-build",
@@ -217,6 +287,8 @@
     "No pass is inferred for a skipped, restricted, or environment-failed attempt; the final status names the successful rerun explicitly.",
     "The first run_registered_checks.py output argument was mistakenly project-relative although the helper resolves it from workspace_root, creating an untracked repo-root execution/ file; it was deleted immediately. No byte outside the sealed write set remains, and the final scope validator is clean.",
     "A1 re-stage consequence is recorded in STEP0_DISCOVERY.md. F-APP-2 remains intact.",
-    "Round 1 failed on K1-F1 because the new fixtures made unrelated network probes false; the round-2 fixtures repair that non-vacuity defect and add explicit prerequisite assertions."
+    "Round 1 failed on K1-F1 because the new fixtures made unrelated network probes false; the round-2 fixtures repair that non-vacuity defect and add explicit prerequisite assertions.",
+    "Node L landed first as PR #691 / Receipt 217. Node K appends Receipt 218 with Parent-Receipt Receipt-216 under the concurrent-sibling rule.",
+    "The full-suite stdout contains an expected negative-fixture status FAIL line while Vitest itself exits zero; no test failure is inferred from fixture output."
   ]
 }
