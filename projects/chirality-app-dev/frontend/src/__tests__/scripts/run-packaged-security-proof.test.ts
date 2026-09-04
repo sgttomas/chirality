@@ -90,7 +90,7 @@ describe('run-packaged-security-proof script', () => {
   });
 
   it('requires the renderer hardening evidence from the packaged page', () => {
-    const csp = "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.anthropic.com:*; frame-src 'none'; object-src 'none'";
+    const csp = "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'none'; object-src 'none'";
     const payload = {
       policy: 'G-CSP',
       cspHeader: csp,
@@ -121,6 +121,14 @@ describe('run-packaged-security-proof script', () => {
     expect(summarizeRendererSecurityEvidence(logText.replace('renderer.navigation.denied', 'x')).pass).toBe(false);
     expect(summarizeRendererSecurityEvidence(logText.replace('"returned":"null"', '"returned":"object"')).pass).toBe(false);
     expect(summarizeRendererSecurityEvidence(logText.replace("'unsafe-inline'", "'unsafe-inline' 'unsafe-eval'")).pass).toBe(false);
+    // Exact directives only: the superseded port-wildcard form must not pass.
+    const wildcard = summarizeRendererSecurityEvidence(
+      logText.replace("connect-src 'self';", "connect-src 'self' https://api.anthropic.com:*;")
+    );
+    expect(wildcard.cspHeaderPresent).toBe(false);
+    expect(wildcard.pass).toBe(false);
+    expect(summarizeRendererSecurityEvidence(logText.replace("connect-src 'self';", "connect-src 'self' https://example.com;")).cspHeaderPresent).toBe(false);
+    expect(summarizeRendererSecurityEvidence(logText.replace("frame-src 'none';", "frame-src 'self';")).cspHeaderPresent).toBe(false);
     const ownResourceViolation = JSON.stringify({
       ...payload,
       violations: [...payload.violations, { blockedURI: 'http://127.0.0.1:41234/_next/static/x.js', effectiveDirective: 'script-src-elem' }]

@@ -79,9 +79,9 @@ Why each allowance exists (verified, not assumed):
 | `img-src`/`font-src` `data:` | no `data:`/`blob:` use found in `src/`; kept for Next's dev overlay assets; no network reach |
 | `connect-src 'self'` (exact; packaged) | the page talks only to its own Next server; the Anthropic and oMLX calls are made by the Next server process and the daemon, never by the renderer (`grep api.anthropic.com src/` → server-side `src/lib/harness/anthropic-agent-sdk-manager.ts` only). Stricter than the REQ-NET-001 egress allowlist, which stays as the wire-level backstop and is observed independently by a main-process probe (§4). Round 2's port-wildcard interim was removed on review MINOR-2 / coordinator decision D3. |
 
-## 2. Source identities (SHA-256 at the round-2 freeze; the frozen commit tree is authoritative)
+## 2. Source identities (round-3 freeze and later; the frozen commit tree is authoritative)
 
-Round-1 identities are in the committed history of this file at `4e4c7e909`. Round-2 files:
+Round-1 identities are in the committed history of this file at `4e4c7e909`; round-2 identities at `6ac51e99b`. Files as of round 3 (the post-review-2 re-freeze changes only the proof summarizer's whole-directive CSP check, its test fixture, and the deferred `openExternal` call):
 
 | File | Note |
 |---|---|
@@ -110,7 +110,7 @@ them exactly; the run record `MANIFEST.sha256` (written at closeout) lists the f
   scheme, `localhost` alias of the same server, origin-in-path, origin-as-userinfo,
   unparseable, empty, empty renderer origin); CSP builder (packaged: no eval, closed
   frames/objects/embedding; development: eval + HMR websocket only; `connect-src` never
-  wider than `'self'`, the Anthropic host, and the dev websocket); header application
+  wider than `'self'` and the dev websocket); header application
   (added when absent; `null` — no override — when present, foreign, or unparseable);
   installer on a fake window (redacted logs; both navigation events registered;
   `preventDefault` on every denied form; CSP through `onHeadersReceived` with
@@ -122,7 +122,9 @@ them exactly; the run record `MANIFEST.sha256` (written at closeout) lists the f
   layer to be observed on its own from the main-process probe (a CSP-only block is
   rejected; a probe that received a response fails); the renderer-security
   summarizer requires CSP header presence without eval, the expected `connect-src`
-  violation, zero own-resource violations, `window.open` → `null` plus its log line, and
+  violation, zero own-resource violations — every CSP directive compared whole, so the
+  superseded `connect-src 'self' https://api.anthropic.com:*` form fails `cspHeaderPresent`
+  (post-review-2 re-freeze) — `window.open` → `null` plus its log line, and
   the navigation-denied line; the marker set gains `Content-Security-Policy`,
   `renderer.window_open.denied`, `renderer.navigation.denied`.
 - `contract-pins.test.ts` — 16 targets: `electron/renderer-window-policy.ts` (the three

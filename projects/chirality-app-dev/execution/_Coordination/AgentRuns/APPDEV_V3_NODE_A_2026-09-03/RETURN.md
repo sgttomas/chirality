@@ -1,8 +1,8 @@
-# RETURN — A1_IMPLEMENTER (frozen for independent review; two local commits)
+# RETURN — A1_IMPLEMENTER (frozen for independent review; four local commits)
 
 - **Run:** `APPDEV_V3_NODE_A_2026-09-03` · **Executor:** Claude Fable 5.1 (`claude-fable-5-1`), ephemeral Agent 2 under HELP_HUMAN · **Skill method:** `software-bounded-implementation`
 - **Basis:** `0c683fb1657706316272951e4c3a0f7781b46009` (PR #681 merge; exactly the required basis) · **Branch:** `codex/app-v3-nodeA-credential-ipc-2026-09-03`
-- **Commits:** round 1 `4e4c7e9090891fae98bb63ebf1ee8e3561d4f9ac`; round 2 `6ac51e99b21766c2a293e8282cfda9394e6da9f9` (both kept as-is); round 3 = the commit containing this file, applying the independent review's findings in full (`instances/A2_REVIEWER/REVIEW_01_2026-09-03_over_6ac51e99b.md`: 0 blocking / 2 major / 4 minor / 6 notes) under coordinator decisions D2 and D3 (`COORDINATOR_DECISIONS.md`); its SHA is reported in the freeze message and the reviewer takes the full basis→HEAD diff
+- **Commits:** round 1 `4e4c7e9090891fae98bb63ebf1ee8e3561d4f9ac`; round 2 `6ac51e99b21766c2a293e8282cfda9394e6da9f9`; round 3 `6f07556ac7898cec02a08aa7adaec644e6044484` (review 1 remediation: `instances/A2_REVIEWER/REVIEW_01_2026-09-03_over_6ac51e99b.md`, 0/2/4, under coordinator decisions D2 and D3 in `COORDINATOR_DECISIONS.md`); round 4 = the commit containing this file, applying review 2's two minors and NOTE-3 (`instances/A2_REVIEWER/REVIEW_02_2026-09-03_over_6f07556ac.md`: **PASS**, 0 blocking / 0 major / 2 minor / 7 notes, valid for fan-in). All earlier commits kept as-is; the SHA is reported in the freeze message
 - **Items:** DEL-09-06-V3-01, DEL-04-05-V3-01, DEL-02-05-V3-01 (one integration owner for the shared `frontend/electron/api-key-ipc.ts`)
 - **Status:** implementation complete for all three items including the renderer-hardening slice and the review remediation; every registered check passes except the premerge, which failed in the recorded absent-runtime-daemon-bindings class (rounds 1–2; not rerun in round 3, which touches no session route) and is deferred to PR CI; `REVIEW_READY` for the focused re-review. Nothing pushed; no `_STATUS.md`, receipt, `HANDOFF_STATE.md`, or `MANIFEST.sha256` written yet (those follow `REVIEW_PASS`).
 
@@ -39,6 +39,8 @@ Evidence/state: DEL-09-06 `Evidence/Node_A_Credential_IPC_Sender_Authorization_2
 | `validate_change_scope.py` (exact command in `CHECKS.json`) | PASS | PASS | PASS |
 | Receipts validator; corpus status | VALID; no drift (Step 0) | — | — |
 
+Post-review-2 re-freeze (round 4; test/proof/text only plus the deferred `openExternal` call): `npm run typecheck` pass; focused Vitest over `run-packaged-security-proof.test.ts` + `renderer-window-policy.test.ts` pass; `git diff --check` over the full range pass; the exact change-scope command with `--head <round-4 SHA>` PASS — recorded in `CHECKS.json` `post_review_02_refreeze`. No evidence regeneration: bundle 3 already carries the exact `connect-src 'self'` string and the reviewer's own rerun over `6f07556ac` reproduced it.
+
 ## 4. Write-scope validation
 
 Every changed path is inside the seated items' loci as extended by the coordinator's round-2 disposition (the exact reproducible `validate_change_scope.py` invocation with its 16 repeated `--allowed` roots is recorded in `CHECKS.json`): the named `electron/` files plus the two new modules, `scripts/run-packaged-security-proof.mjs` (it had to learn the header/denial evidence, and its log writer now truncates so the new checks cannot be satisfied by a stale file), the settings component, `src/lib/credential-storage-state.ts`, `src/__tests__/**`, the three deliverable folders (evidence + `_run_records` only; `_STATUS.md` untouched until `REVIEW_PASS`), and this AgentRuns record. `validate_change_scope.py` → `PASS`, `violations: []`. Not touched: `runtime/**`, `package.json`/lockfiles, `preload.ts`, `next.config.mjs`, any `docs/**`, register, receipts, or Root surface.
@@ -48,7 +50,8 @@ Every changed path is inside the seated items' loci as extended by the coordinat
 **Named residuals for the closeout `_STATUS.md` `Remaining` of DEL-09-06** (to be seeded when `REVIEW_PASS` is given, as new items beside the closed V3-01):
 
 - **R-A — nonce-based script CSP.** Packaged `script-src` carries `'unsafe-inline'` because Next 15.5 App Router emits inline flight-payload scripts without a nonce; until a nonce pipeline lands (a Next middleware or a `Content-Security-Policy` request header set before the packaged handler in `startPackagedRendererServer`, plus a decision on the prerendered routes that a nonce forces dynamic), the CSP's XSS value is limited to remote-script/eval/frame/object/base/form/connect containment. External scripts are already `'self'`-only. Owner-shaped because it changes rendering mode.
-- No exact-CSP residual: MINOR-2 was implemented in full (`connect-src 'self'` packaged; egress layer observed by the main-process probe).
+- **R-B — egress-probe URL not restricted (review 2 NOTE-2).** `CHIRALITY_EGRESS_LAYER_PROBE_URL` is read only inside the `CHIRALITY_RENDERER_SECURITY_PROBE=1` gate and still passes `onBeforeRequest`, so it adds no destination to REQ-NET-001 and carries no credential; but a launch environment that set it to an already-allowlisted URL would produce one unauthenticated main-process GET (and a `response` outcome that fails the proof). Optional hardening deferred by the coordinator: refuse URLs the egress policy would allow, or hard-code the `:8443` probe and drop the env var. Same class and reach as the pre-existing `CHIRALITY_NETWORK_POLICY_PROBE_URLS` hook.
+- No exact-CSP residual: MINOR-2 was implemented in full (`connect-src 'self'` packaged; egress layer observed by the main-process probe), and after review 2 the packaged proof itself compares the directive whole, so the interim wildcard form can no longer pass it.
 
 Other residuals and disclosures:
 

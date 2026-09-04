@@ -287,12 +287,16 @@ export function installRendererWindowPolicy(
     const destination = summarizeDestination(details.url);
     if (decision.external) {
       log?.('info', 'renderer.window_open.external_opened', { destination });
-      openExternal(details.url).catch((error: unknown) => {
-        log?.('warn', 'renderer.window_open.external_failed', {
-          destination,
-          error: error instanceof Error ? error.message : String(error)
+      // Deferred so a synchronous throw from the injected opener is caught the
+      // same way as a rejection and can never escape the handler.
+      Promise.resolve()
+        .then(() => openExternal(details.url))
+        .catch((error: unknown) => {
+          log?.('warn', 'renderer.window_open.external_failed', {
+            destination,
+            error: error instanceof Error ? error.message : String(error)
+          });
         });
-      });
     } else {
       log?.('warn', 'renderer.window_open.denied', { reason: decision.reason, destination });
     }

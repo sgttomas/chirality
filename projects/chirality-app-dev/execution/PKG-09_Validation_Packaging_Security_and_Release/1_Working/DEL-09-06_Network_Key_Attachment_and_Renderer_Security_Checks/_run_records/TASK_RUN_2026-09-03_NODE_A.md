@@ -47,7 +47,8 @@ narrower launch-brief line; second local commit on the same branch):
 
 ## Design decisions (recorded; disposition-class, inside the seated locus)
 
-- CSP `connect-src` lists `https://api.anthropic.com:*` rather than the exact egress origin
+- **(superseded in round 3 by D3 — exact `connect-src 'self'`; kept as the round-2 record)**
+  CSP `connect-src` lists `https://api.anthropic.com:*` rather than the exact egress origin
   so the REQ-NET-001 egress layer remains reachable and independently observable in the
   packaged proof (which now drives `https://api.anthropic.com:8443/…`); the egress layer
   still enforces `https:443` exactly. Rejected: an exactly-equal CSP, which would have
@@ -102,3 +103,14 @@ proof harness; `will-redirect` and subframe navigation covered at unit level / b
   `7f240a36…`); runs 1–2 retained as history.
 - Named residuals for the closeout `Remaining`: nonce-based script CSP follow-on (see
   parent `RETURN.md` §5).
+
+## Post-review-2 re-freeze (review PASS, 0/0/2; both minors applied)
+
+- R2-1: `summarizeRendererSecurityEvidence` compares whole CSP directives; fixture set to
+  the exact `connect-src 'self'` with negative cases for the wildcard and other widened forms.
+- R2-2: stale round-2 text corrected (EVIDENCE.md §2 heading and §3 connect-src sentence,
+  RETURN.md commit count, this file's superseded tag).
+- NOTE-3 applied: `openExternal` invoked via `Promise.resolve().then(...)` so a synchronous
+  throw is caught structurally; unit case added. NOTE-2 (probe URL not restricted to a
+  non-allowlisted destination) recorded as a residual, not changed.
+- Review: `instances/A2_REVIEWER/REVIEW_02_2026-09-03_over_6f07556ac.md`.

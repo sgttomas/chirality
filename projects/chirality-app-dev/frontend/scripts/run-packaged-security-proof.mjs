@@ -394,12 +394,15 @@ export function summarizeRendererSecurityEvidence(logText) {
   const payloads = extractMarkedPayloads(logText, '[renderer-security-probe]');
   const payload = payloads.find((entry) => entry && entry.policy === 'G-CSP' && !entry.error) ?? null;
   const cspHeader = typeof payload?.cspHeader === 'string' ? payload.cspHeader : null;
+  // Whole directives, never substrings: "connect-src 'self'" as a substring would
+  // also match the superseded "connect-src 'self' https://api.anthropic.com:*".
+  const cspDirectives = cspHeader === null ? [] : cspHeader.split(';').map((directive) => directive.trim());
   const cspHeaderPresent =
     cspHeader !== null &&
-    cspHeader.includes("default-src 'self'") &&
-    cspHeader.includes("connect-src 'self'") &&
-    cspHeader.includes("frame-src 'none'") &&
-    cspHeader.includes("object-src 'none'") &&
+    cspDirectives.includes("default-src 'self'") &&
+    cspDirectives.includes("connect-src 'self'") &&
+    cspDirectives.includes("frame-src 'none'") &&
+    cspDirectives.includes("object-src 'none'") &&
     !cspHeader.includes("'unsafe-eval'");
   const violations = Array.isArray(payload?.violations) ? payload.violations : [];
   const expectedViolation = (violation) =>

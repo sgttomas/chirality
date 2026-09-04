@@ -247,6 +247,9 @@ function fakeWindow(): FakeWindow {
 
 describe('installRendererWindowPolicy', () => {
   const csp = buildRendererContentSecurityPolicy({ mode: 'packaged' });
+  // The external open is deferred to a microtask so a synchronous throw is caught
+  // structurally; assertions on it wait for the task queue to drain.
+  const flush = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
 
   function install(window: FakeWindow, log = vi.fn(), openExternal = vi.fn<(url: string) => Promise<void>>()) {
     openExternal.mockResolvedValue();
@@ -265,17 +268,19 @@ describe('installRendererWindowPolicy', () => {
 
     const url = 'https://docs.example/page?section=2#top';
     expect(window.handlers.windowOpen!({ url })).toEqual({ action: 'deny' });
-    expect(openExternal).toHaveBeenCalledTimes(1);
-    expect(openExternal).toHaveBeenCalledWith(url);
     expect(log).toHaveBeenCalledWith('info', 'renderer.window_open.external_opened', {
       destination: { protocol: 'https:', hostname: 'docs.example' }
     });
+    await flush();
+    expect(openExternal).toHaveBeenCalledTimes(1);
+    expect(openExternal).toHaveBeenCalledWith(url);
 
     expect(window.handlers.windowOpen!({ url: 'http://plain.example/' })).toEqual({ action: 'deny' });
+    await flush();
     expect(openExternal).toHaveBeenCalledTimes(2);
     expect(openExternal).toHaveBeenLastCalledWith('http://plain.example/');
     expect(log).not.toHaveBeenCalledWith('warn', 'renderer.window_open.denied', expect.anything());
-    await Promise.resolve();
+    expect(log).not.toHaveBeenCalledWith('warn', 'renderer.window_open.external_failed', expect.anything());
   });
 
   it.each([
@@ -285,11 +290,12 @@ describe('installRendererWindowPolicy', () => {
     ['blob:', `blob:${RENDERER_ORIGIN}/0000`],
     ['about:', 'about:blank#probe'],
     ['custom scheme', 'chirality://open?key=sk-secret']
-  ])('denies %s without opening anything', (_name, url) => {
+  ])('denies %s without opening anything', async (_name, url) => {
     const window = fakeWindow();
     const { log, openExternal } = install(window);
 
     expect(window.handlers.windowOpen!({ url })).toEqual({ action: 'deny' });
+    await flush();
     expect(openExternal).not.toHaveBeenCalled();
     expect(log).toHaveBeenCalledTimes(1);
     expect(log).toHaveBeenCalledWith('warn', 'renderer.window_open.denied', {
@@ -299,15 +305,39 @@ describe('installRendererWindowPolicy', () => {
     expect(JSON.stringify(log.mock.calls)).not.toContain('sk-secret');
   });
 
-  it('denies a malformed URL without opening anything', () => {
+  it('denies a malformed URL without opening anything', async () => {
     const window = fakeWindow();
     const { log, openExternal } = install(window);
 
     expect(window.handlers.windowOpen!({ url: 'not a url' })).toEqual({ action: 'deny' });
+    await flush();
     expect(openExternal).not.toHaveBeenCalled();
     expect(log).toHaveBeenCalledWith('warn', 'renderer.window_open.denied', {
       reason: 'INVALID_URL',
       destination: null
+    });
+  });
+
+  it('catches a synchronous throw from the opener the same way as a rejection', async () => {
+    const window = fakeWindow();
+    const log = vi.fn();
+    const openExternal = vi.fn<(url: string) => Promise<void>>(() => {
+      throw new Error('sync failure for sk-secret');
+    });
+    installRendererWindowPolicy(window, {
+      rendererOrigin: RENDERER_ORIGIN,
+      contentSecurityPolicy: csp,
+      openExternal,
+      log
+    });
+
+    expect(() => window.handlers.windowOpen!({ url: 'https://docs.example/' })).not.toThrow();
+    expect(window.handlers.windowOpen!({ url: 'https://docs.example/' })).toEqual({ action: 'deny' });
+    await flush();
+    expect(openExternal).toHaveBeenCalledTimes(2);
+    expect(log).toHaveBeenCalledWith('warn', 'renderer.window_open.external_failed', {
+      destination: { protocol: 'https:', hostname: 'docs.example' },
+      error: 'sync failure for sk-secret'
     });
   });
 
@@ -323,8 +353,7 @@ describe('installRendererWindowPolicy', () => {
     });
 
     expect(window.handlers.windowOpen!({ url: 'https://docs.example/' })).toEqual({ action: 'deny' });
-    await Promise.resolve();
-    await Promise.resolve();
+    await flush();
     expect(log).toHaveBeenCalledWith('warn', 'renderer.window_open.external_failed', {
       destination: { protocol: 'https:', hostname: 'docs.example' },
       error: 'no browser for sk-secret'
@@ -401,7 +430,7 @@ describe('installRendererWindowPolicy', () => {
     expect(callback).toHaveBeenLastCalledWith({});
   });
 
-  it('works without a log sink', () => {
+  it('works without a log sink', async () => {
     const window = fakeWindow();
     const openExternal = vi.fn<(url: string) => Promise<void>>().mockResolvedValue();
     installRendererWindowPolicy(window, { rendererOrigin: RENDERER_ORIGIN, contentSecurityPolicy: csp, openExternal });
@@ -409,8 +438,9 @@ describe('installRendererWindowPolicy', () => {
     window.handlers.navigation.get('will-navigate')!(denied, 'https://evil.example/');
     expect(denied.preventDefault).toHaveBeenCalled();
     expect(window.handlers.windowOpen!({ url: 'https://evil.example/' })).toEqual({ action: 'deny' });
-    expect(openExternal).toHaveBeenCalledWith('https://evil.example/');
     expect(window.handlers.windowOpen!({ url: 'javascript:1' })).toEqual({ action: 'deny' });
+    await flush();
+    expect(openExternal).toHaveBeenCalledWith('https://evil.example/');
     expect(openExternal).toHaveBeenCalledTimes(1);
   });
 });
