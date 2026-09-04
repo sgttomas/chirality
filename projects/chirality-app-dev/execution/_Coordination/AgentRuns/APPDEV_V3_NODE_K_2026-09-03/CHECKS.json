@@ -1,0 +1,294 @@
+{
+  "schema": "chirality-run-checks/v1",
+  "run_id": "APPDEV_V3_NODE_K_2026-09-03",
+  "recorded_at": "2026-09-03",
+  "status": "CLOSEOUT_READY",
+  "basis": "fe0ce926d4475fa41cb91933ad1218b95083889b",
+  "publication_basis": "42dddcfd7053a1f184aad2b0cf9d228acb0644bf",
+  "reviewed_round_2_freeze": "12d651ce6bc3af09ea2789d28e150d7d5790c1ad",
+  "rebased_round_2_head": "8c5d91dc07cface2d1f729268a2572fe188b63f4",
+  "review_rounds": [
+    {
+      "round": 1,
+      "candidate": "3394182873e72249fe542f3bb2e20be8509f9d31",
+      "verdict": "FAIL",
+      "findings": {"blocker": 0, "major": 1, "minor": 0, "note": 0},
+      "report": "instances/K2_REVIEWER/REVIEW_01_2026-09-03_over_339418287.md",
+      "report_sha256": "26f3cbcef78fb98412fb635992fe2c7e232c96a3c410bd76663b2e9543ba2eca",
+      "disposition": "K1-F1 accepted and remediated; REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 2,
+      "candidate": "12d651ce6bc3af09ea2789d28e150d7d5790c1ad",
+      "verdict": "PASS",
+      "findings": {"blocker": 0, "major": 0, "minor": 0, "note": 0},
+      "report": "instances/K2_REVIEWER/REVIEW_02_2026-09-03_over_12d651ce6.md",
+      "report_sha256": "d95d9daec2532b0ce8263b407c8acc97aca736a23d3ce0799093929eda579774",
+      "disposition": "K1-F1 independently verified remediated and non-vacuous"
+    }
+  ],
+  "post_review_identity": {
+    "frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts": "922e7907428f5bf27c06cec3311bafadeac90539",
+    "matches_reviewed_freeze_after_rebase_and_closeout": true,
+    "product_test_css_changed_after_pass": false
+  },
+  "toolchain": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "vitest": "4.1.10",
+    "python_for_harness": "3.13.14",
+    "platform": "macOS 26.6.2 arm64"
+  },
+  "environment_preparation": [
+    {
+      "command": "npm ci --ignore-scripts --no-audit --no-fund",
+      "cwd": "runtime",
+      "status": "pass",
+      "summary": "61 packages installed; no tracked change"
+    },
+    {
+      "command": "npm run build",
+      "cwd": "runtime",
+      "status": "pass",
+      "summary": "tsc -b passed; generated output is ignored"
+    },
+    {
+      "command": "npm ci --ignore-scripts --no-audit --no-fund",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass_after_escalation",
+      "summary": "restricted attempt failed ENOTFOUND; exact command rerun with approved network access installed 753 packages; no tracked change"
+    }
+  ],
+  "checks": [
+    {
+      "id": "receipts-validator",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "VALID; versioned receipt contract satisfied"
+    },
+    {
+      "id": "authority-corpus",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "corpus v20; all eight members match; no drift"
+    },
+    {
+      "id": "pinned-completion-reference",
+      "command": "shasum -a 256 plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a matches the standing-plan pin"
+    },
+    {
+      "id": "app-hold-dispatch",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-06",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "ALLOW; DEL-09-06 clear and not held"
+    },
+    {
+      "id": "select-affected-checks",
+      "command": "python3 ../../tools/software_workflow/select_affected_checks.py software-workflow.json frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts execution/_Coordination/AgentRuns/APPDEV_V3_NODE_K_2026-09-03/ execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_run_records/TASK_RUN_2026-09-03_NODE_K.md",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "selected app-hold-integrity, frontend-test, frontend-typecheck, harness-pytest, and harness-self-check"
+    },
+    {
+      "id": "frontend-test-focused",
+      "command": "npx vitest run src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "1 file passed; 12 tests passed"
+    },
+    {
+      "id": "frontend-test-full",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass_after_escalation",
+      "summary": "restricted registered-check run failed on EPERM for required loopback/Unix-socket integration fixtures; exact command rerun with approved host access passed: 165 files passed, 1 skipped; 1560 tests passed, 4 skipped"
+    },
+    {
+      "id": "frontend-typecheck",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "app and Electron TypeScript checks passed"
+    },
+    {
+      "id": "app-hold-integrity",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "53 contracts; register match true; held count zero"
+    },
+    {
+      "id": "harness-self-check",
+      "command": "python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": ".",
+      "status": "pass_after_interpreter_resolution",
+      "summary": "host Python 3.13 passed at unchanged baseline: INFO 14, NOT_APPLICABLE 1, REVIEW 4, WARN 43; initial /usr/bin/python3 lacked PyYAML and was not treated as a pass"
+    },
+    {
+      "id": "harness-pytest",
+      "command": "python3 -m pytest -q tools/practitioner_harness",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "350 passed"
+    },
+    {
+      "id": "scope-of-work",
+      "command": "python3 tools/scope_of_work/validate_scope_of_work.py projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "PASS format=SOW_V1"
+    },
+    {
+      "id": "validate-change-scope",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base fe0ce926d4475fa41cb91933ad1218b95083889b --allowed projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_K_2026-09-03 --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_run_records/TASK_RUN_2026-09-03_NODE_K.md",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "nine changed paths; violations empty"
+    },
+    {
+      "id": "git-diff-check",
+      "command": "git diff --check",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "final pre-commit rerun passed after removing extra EOF blank lines from new records"
+    },
+    {
+      "id": "product-byte-fence",
+      "command": "git diff --name-only fe0ce926d4475fa41cb91933ad1218b95083889b -- projects/chirality-app-dev/frontend",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "the named test file is the only frontend path; summarizer and all product source are unchanged"
+    },
+    {
+      "id": "f-app-2-grep",
+      "command": "rg -n -i 'notariz|codesign|signed|release[- ]ready|publish' projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_K_2026-09-03 projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_run_records/TASK_RUN_2026-09-03_NODE_K.md",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "record hits are constraint/disclaimer wording only; target test has no hits"
+    }
+  ],
+  "remediation_checks": [
+    {
+      "id": "review-report-byte-copy",
+      "status": "pass",
+      "summary": "source and filed report SHA-256 both 26f3cbcef78fb98412fb635992fe2c7e232c96a3c410bd76663b2e9543ba2eca"
+    },
+    {
+      "id": "k1-f1-non-vacuity",
+      "status": "pass",
+      "summary": "both fixtures now contain one valid single-line network-policy marker and assert blockedProbeObserved and loopbackProbeObserved true before the egress failure assertions"
+    },
+    {
+      "id": "frontend-test-focused-round-2",
+      "command": "npx vitest run src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "1 file passed; 12 tests passed"
+    },
+    {
+      "id": "frontend-test-full-round-2",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass_after_escalation",
+      "summary": "165 files passed, 1 skipped; 1560 tests passed, 4 skipped"
+    },
+    {
+      "id": "frontend-typecheck-round-2",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "app and Electron TypeScript checks passed"
+    },
+    {
+      "id": "affected-checks-round-2",
+      "status": "pass",
+      "summary": "affected selection unchanged; APP-HOLD integrity, harness self-check, harness pytest, corpus, and receipts reran successfully"
+    },
+    {
+      "id": "freeze-fence-round-2",
+      "status": "pass",
+      "summary": "final pre-commit and post-commit diff/scope results returned with the round-2 freeze SHA"
+    }
+  ],
+  "closeout_checks": [
+    {
+      "id": "publication-rebase",
+      "status": "pass",
+      "summary": "reviewed commits rebased without conflict onto PR #691 merge 42dddcfd7053a1f184aad2b0cf9d228acb0644bf as 8861c2578 and 8c5d91dc0"
+    },
+    {
+      "id": "review-report-2-byte-copy",
+      "status": "pass",
+      "summary": "source and filed report SHA-256 both d95d9daec2532b0ce8263b407c8acc97aca736a23d3ce0799093929eda579774"
+    },
+    {
+      "id": "reviewed-test-blob-fence",
+      "status": "pass",
+      "summary": "test blob remains 922e7907428f5bf27c06cec3311bafadeac90539 after rebase and narrative closeout"
+    },
+    {
+      "id": "frontend-test-focused-post-rebase",
+      "command": "npx vitest run src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "1 file passed; 12 tests passed"
+    },
+    {
+      "id": "frontend-test-full-post-rebase",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass_after_escalation",
+      "summary": "165 files passed, 1 skipped; 1563 tests passed, 4 skipped after Node L landed"
+    },
+    {
+      "id": "frontend-typecheck-post-rebase",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "app and Electron TypeScript checks passed"
+    },
+    {
+      "id": "governance-post-rebase",
+      "status": "pass",
+      "summary": "APP-HOLD dispatch ALLOW and integrity PASS; corpus v20 no drift; Scope of Work PASS; receipt validator PASS before and after Receipt 218"
+    },
+    {
+      "id": "harness-post-rebase",
+      "status": "pass",
+      "summary": "self-check exit 0 at unchanged baseline; practitioner harness pytest passed"
+    },
+    {
+      "id": "closeout-structure-and-scope",
+      "status": "pass",
+      "summary": "strict JSON, exact change-scope, AgentRuns manifest, F-APP-2, and git diff hygiene pass"
+    }
+  ],
+  "not_run": [
+    {
+      "id": "frontend-build",
+      "reason": "not selected by the tests-only path rule or DEL-09-06-V3-06 Checks; no product or build-configuration byte changed"
+    },
+    {
+      "id": "frontend-premerge",
+      "reason": "not selected by the tests-only item or path rule; this unit tranche makes no packaged/runtime behavior claim"
+    },
+    {
+      "id": "D-APP-36-render-bar",
+      "reason": "no UI surface changed"
+    }
+  ],
+  "notes": [
+    "No pass is inferred for a skipped, restricted, or environment-failed attempt; the final status names the successful rerun explicitly.",
+    "The first run_registered_checks.py output argument was mistakenly project-relative although the helper resolves it from workspace_root, creating an untracked repo-root execution/ file; it was deleted immediately. No byte outside the sealed write set remains, and the final scope validator is clean.",
+    "A1 re-stage consequence is recorded in STEP0_DISCOVERY.md. F-APP-2 remains intact.",
+    "Round 1 failed on K1-F1 because the new fixtures made unrelated network probes false; the round-2 fixtures repair that non-vacuity defect and add explicit prerequisite assertions.",
+    "Node L landed first as PR #691 / Receipt 217. Node K appends Receipt 218 with Parent-Receipt Receipt-216 under the concurrent-sibling rule.",
+    "The full-suite stdout contains an expected negative-fixture status FAIL line while Vitest itself exits zero; no test failure is inferred from fixture output."
+  ]
+}

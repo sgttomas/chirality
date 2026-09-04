@@ -6587,3 +6587,44 @@
   - Checks: focused and full Vitest pass; typecheck pass; APP-HOLD preflight and integrity pass; harness self-check and pytest pass; `git diff --check` and exact change-scope pass; corpus v20 no drift; receipt validator pass; frontend build/premerge skipped because neither the live path rule nor V3-04 selected them; independent review pass.
   - Model-Attribution: provider OpenAI; engine Codex; implementer model GPT-5 family (exact model identifier not exposed to the agent runtime); reviewer attribution is recorded in the filed review.
   - Gate-Outcome: `EXECUTED` — awaiting owner merge. A1 re-stage applies to the touched `frontend/`; historical R20 evidence remains historical only and a new staged revision plus fresh owner-executed proof are required before any future proof claim. No lifecycle, live-account, signing, notarization, publication, distribution, release-readiness, host-mutation, or Root act.
+
+- **2026-09-03 — Receipt 218** (App v3 pathway node K: DEL-09-06-V3-06 packaged-security negative unit cases).
+  - Receipt-ID: `Receipt-218`
+  - Examined-Through: `fe0ce926d4475fa41cb91933ad1218b95083889b`
+  - Parent-Receipt: `Receipt-216`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected slate 3's recommended two-wave sequence in the
+    HELP_HUMAN session on 2026-09-03; nodes K and L run concurrently and node
+    J waits for both. Selection is recorded in
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_K_2026-09-03/ORCHESTRATION_PLAN.md`
+    and the sealed brief. Node L landed first as PR #691 / Receipt 217, so the
+    next unused physical number is 218; K and L share Parent-Receipt 216 under
+    ledger rule 7.
+  - Pointers: branch
+    `codex/app-v3-nodeK-security-proof-negative-tests-2026-09-03` (basis above;
+    reviewed freezes `339418287` and `12d651ce6`; rebased onto
+    `42dddcfd7053a1f184aad2b0cf9d228acb0644bf` as `8861c2578` and
+    `8c5d91dc0`); RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_K_2026-09-03/`
+    (`STEP0_DISCOVERY.md`, `CHECKS.json`, `RETURN.md`, `HANDOFF_STATE.md`,
+    `MANIFEST.sha256`, `REVIEW_DISPOSITIONS.md`, and immutable round-1/round-2
+    reviews); test
+    `frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts`;
+    DEL-09-06 `_STATUS.md`, `MEMORY.md`, and
+    `_run_records/TASK_RUN_2026-09-03_NODE_K.md`. V3-06 removed per its
+    `Removed when`; V3-02/V3-03/V3-04, lifecycle, and Checking Approval SHA
+    unchanged. No summarizer or other product byte changed.
+  - Checks: focused and full Vitest pass; typecheck pass; APP-HOLD dispatch
+    and integrity pass; harness self-check and pytest pass; Scope of Work,
+    corpus, receipts, exact change-scope, strict JSON, manifest, F-APP-2, and
+    `git diff --check` pass; build/premerge and the UI render bar skipped
+    because the tests-only item/path rule did not select them; independent review fail
+    remediated and final review pass.
+  - Model-Attribution: provider OpenAI; engine Codex; implementer model GPT-5
+    family (exact model identifier not exposed to the agent runtime); reviewer
+    attribution is recorded in the filed reviews.
+  - Gate-Outcome: `EXECUTED` — awaiting owner merge. A1 re-stage applies to
+    the touched `frontend/`; historical R20 evidence remains historical only
+    and a newly staged revision plus fresh owner-executed proof are required
+    before any future proof claim. No lifecycle, signing, notarization,
+    publication, distribution, release-readiness, host-mutation, or Root act.

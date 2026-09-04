@@ -1,0 +1,11 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_V3_NODE_K_2026-09-03",
+  "instance_id": "K1_IMPLEMENTER",
+  "status": "CLOSEOUT_READY",
+  "phase": "ROUND_2_PASS_NARRATIVE_CLOSEOUT_COMPLETE",
+  "basis": "fe0ce926d4475fa41cb91933ad1218b95083889b",
+  "publication_basis": "42dddcfd7053a1f184aad2b0cf9d228acb0644bf",
+  "review_state": "ROUND_2_PASS",
+  "reviewed_test_blob": "922e7907428f5bf27c06cec3311bafadeac90539"
+}
