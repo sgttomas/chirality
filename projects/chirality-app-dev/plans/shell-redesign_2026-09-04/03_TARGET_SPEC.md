@@ -87,7 +87,7 @@ Unchanged behaviour from `ChatPanel`; layout and copy change.
 
 ### 4.2 The specification tuple and the rung (SR-23, SR-24)
 
-The context line shows the specification tuple in order: **folder**, **agent**, **permission** (existing operator mode; fifth item pending owner agreement), **delegation policy** (*No delegation*, *Ask before each brief*, *Approve each brief's writes*, *Bounded briefs*), and the **rung**. The rung is derived, never set on its own:
+The context line shows the specification tuple in order: **folder**, **agent**, **permission** (the existing operator mode; ruled in, Q12), **delegation policy** (*No delegation*, *Ask before each brief*, *Approve each brief's writes*, *Bounded briefs*), and the **rung**. The rung is derived, never set on its own:
 
 | Rung | Condition | Label |
 |---|---|---|
@@ -108,7 +108,7 @@ The only inline object in the transcript besides messages and tool pills. Render
 - **Actions:** *Accept* (or *Accept and follow*; filled), *Adjust…*, *Not now*, and *Why this?* on the right, whose tooltip is the trigger sentence.
 - **Accepted:** the card collapses to a single line with a green check, the resulting tuple, "you · <time>". **Declined:** a dashed line with a grey dash, "Not now. <agent> will not propose this again in this chat.", "you · <time>". Both stay in the transcript.
 - **Behaviour:** Accept applies the tuple (and writes the workflow file under the write gate) and updates the context line; Adjust opens the corresponding form filled in; Not now records the decline and suppresses that trigger for the chat. One open card at a time; a new proposal replaces an unanswered one only if the trigger differs.
-- **Events:** `proposal.offered`, `proposal.accepted`, `proposal.adjusted`, `proposal.declined` in the session record with agent, trigger, and tuple; never in project files.
+- **Events:** `proposal.offered`, `proposal.accepted`, `proposal.adjusted`, `proposal.declined` as additive harness event types (ruled, Q13) in the session record with agent, trigger, and tuple; never in project files.
 - **Accessibility:** `role="group"` labelled by the title; actions are buttons; the collapsed line is `role="status"`.
 
 ### 4.1 Folder selector (SR-21)
@@ -185,7 +185,7 @@ Fourth tab in the right panel header, between Files and Who is working. Lists th
 
 **New workflow** (breadcrumb `‹ Workflows › New workflow`): Folder (fixed from the chat); Agent 1 role (required; the Type 1 roster); Delegation policy (required; *None*, *Ask before changes*, *Approve each write*, *Run bounded briefs*); Briefs run on (*Local model* when available, else the hosted account); Roadmap (*Draft from this chat*, or a template). The roadmap is editable before creation. *Create and follow* is disabled until role and policy are set. The file is written to `.chirality/workflows/<slug>.md` under the same write gate as any other write, and the chat follows it.
 
-**The workflow file.** Front matter: `agent`, `folder` (the canonical root), `policy`, `briefsRunOn`, `roadmapSource`, `acceptedAt`; body: the roadmap as an ordered list with `[gate]` markers and an optional `current: n` line the app maintains. It is a derivative package in the project's own vocabulary: it steers the agent and cites accepted truth; it never holds status, approvals, or evidence, which stay in the deliverable records.
+**The workflow file.** Front matter: `agent`, `folder` (the canonical root), `permission`, `policy`, `briefsRunOn`, `roadmapSource` (protocol or template identity **and hash**, so currency can be checked; Q15), `acceptedAt`; body: the roadmap as an ordered list with `[gate]` markers and an optional `current: n` line the app maintains. It is a derivative package in the project's own vocabulary: it steers the agent and cites accepted truth; it never holds status, approvals, or evidence, which stay in the deliverable records.
 
 ### 5.9 Pop-out window
 
