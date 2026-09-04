@@ -713,7 +713,6 @@ def write_launch_agent(
         "WorkingDirectory": str(working_directory),
         "RunAtLoad": True,
         "AbandonProcessGroup": True,
-        "ProcessType": "Background",
         "StandardOutPath": str(stdout_path),
         "StandardErrorPath": str(stderr_path),
     }
