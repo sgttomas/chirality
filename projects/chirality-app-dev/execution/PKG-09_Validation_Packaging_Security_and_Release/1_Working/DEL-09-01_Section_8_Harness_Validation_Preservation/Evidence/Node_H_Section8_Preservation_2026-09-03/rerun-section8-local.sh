@@ -17,7 +17,8 @@
 #   7. runs `npm run harness:validate:premerge` (Section 8 + report-only Section 9)
 #      and, with WITH_RELEASE_QUALITY=1, `npm run validate:release-quality`
 #   8. records containment observations (daemon listeners, socket mode, git status)
-#   9. atomically signals both controller-anchored process groups, removes state
+#   9. requires continuous descendant audits to show that no process left its
+#      anchored group, atomically signals both groups, removes state
 #      (KEEP=1 keeps it), and — as the LAST act of teardown, after
 #      teardown.txt/cleanup.txt exist and both processes are gone — writes
 #      RUN_ROOT/MANIFEST.sha256 over artifacts/** and logs/** (LC_ALL=C sorted)
@@ -86,6 +87,12 @@ HARNESS_TMP_ROOT="${HARNESS_TMP_BASE%/}/chirality-harness-validation/latest"
 
 export CHIRALITY_HARNESS_PROVIDER=stub
 export NEXT_TELEMETRY_DISABLED=1
+# The proof's supported process contract forbids detachment. The application
+# basis has one known detach route: daemon activation can spawn an unreferenced
+# GUI in a new session. Disable it explicitly; a continuous controller audit
+# independently fails the proof if any daemon/Next descendant changes PGID.
+export CHIRALITY_DAEMON_GUI_SPAWN=0
+export CHIRALITY_DAEMON_ACTIVATION_POLICY=prohibited
 export HARNESS_BASE_URL="http://127.0.0.1:$PORT"
 export CHIRALITY_RUNTIME_SOCKET_PATH="$USER_DATA/runtime/control.sock"
 export CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE="$USER_DATA/runtime/auth/tokens/operator.token"
@@ -96,9 +103,11 @@ DAEMON_CONTROLLER_PID=""
 DAEMON_PGID=""
 DAEMON_CHILD_PID=""
 DAEMON_ELECTRON_PID=""
+DAEMON_AUDIT_FILE=""
 NEXT_CONTROLLER_PID=""
 NEXT_PGID=""
 NEXT_CHILD_PID=""
+NEXT_AUDIT_FILE=""
 STARTED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 log() { printf '[%s] %s\n' "$(date -u +%H:%M:%S)" "$*" | tee -a "$LOGS/driver.log" >&2; }
@@ -123,6 +132,41 @@ await_controller_ready() {
 read_controller_ready() {
   local ready_file="$1"
   python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print(d["controllerPid"], d["processGroupId"], d["childPid"])' "$ready_file"
+}
+
+# Validate a controller's continuously written descendant audit. Any missing,
+# malformed, inspection-error, or escaped-descendant state is a hard failure.
+# Individual PIDs in the audit are evidence only; they are never signal input.
+assert_controller_contained() {
+  local audit_file="$1"
+  local controller_pid="$2"
+  local process_group_id="$3"
+  python3 - "$audit_file" "$controller_pid" "$process_group_id" <<'PY'
+import json
+import sys
+
+path, controller, pgid = sys.argv[1], int(sys.argv[2]), int(sys.argv[3])
+try:
+    with open(path, encoding="utf-8") as handle:
+        audit = json.load(handle)
+    valid = (
+        audit["schema"] == "chirality-section8-descendant-audit/v1"
+        and audit["controllerPid"] == controller
+        and audit["processGroupId"] == pgid
+        and audit["state"] == "ok"
+        and audit["violations"] == []
+        and audit["samples"] > 0
+        and all(item["pgid"] == pgid for item in audit["liveControlled"])
+    )
+except (OSError, KeyError, TypeError, ValueError):
+    valid = False
+raise SystemExit(0 if valid else 1)
+PY
+}
+
+controller_audit_state() {
+  local audit_file="$1"
+  python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["state"])' "$audit_file"
 }
 
 read_process_table() {
@@ -201,10 +245,26 @@ teardown() {
   local next_remaining="UNKNOWN"
   local socket_remaining=no
   local port_listener_count="UNKNOWN"
+  local daemon_audit_state="NOT_STARTED"
+  local next_audit_state="NOT_STARTED"
   local final_status
   trap - EXIT
   set +e
   log "teardown begin (incoming status $incoming_status)" || cleanup_failed=1
+  if [ -n "$DAEMON_CONTROLLER_PID" ]; then
+    daemon_audit_state="$(controller_audit_state "$DAEMON_AUDIT_FILE")" || {
+      daemon_audit_state="UNKNOWN"; cleanup_failed=1;
+    }
+    assert_controller_contained "$DAEMON_AUDIT_FILE" "$DAEMON_CONTROLLER_PID" "$DAEMON_PGID" \
+      || cleanup_failed=1
+  fi
+  if [ -n "$NEXT_CONTROLLER_PID" ]; then
+    next_audit_state="$(controller_audit_state "$NEXT_AUDIT_FILE")" || {
+      next_audit_state="UNKNOWN"; cleanup_failed=1;
+    }
+    assert_controller_contained "$NEXT_AUDIT_FILE" "$NEXT_CONTROLLER_PID" "$NEXT_PGID" \
+      || cleanup_failed=1
+  fi
   if [ -n "$NEXT_CONTROLLER_PID" ]; then
     send_anchored_group_signal "$NEXT_CONTROLLER_PID" "$NEXT_PGID" TERM || cleanup_failed=1
   fi
@@ -232,6 +292,22 @@ teardown() {
     if [ "$daemon_survivors" = "UNKNOWN" ] || [ "$next_survivors" = "UNKNOWN" ]; then break; fi
     sleep 1 || cleanup_failed=1
   done
+  # Re-read after the TERM grace period. A descendant that changed group while
+  # the run was live or while TERM was pending remains a permanent violation.
+  if [ -n "$DAEMON_CONTROLLER_PID" ]; then
+    daemon_audit_state="$(controller_audit_state "$DAEMON_AUDIT_FILE")" || {
+      daemon_audit_state="UNKNOWN"; cleanup_failed=1;
+    }
+    assert_controller_contained "$DAEMON_AUDIT_FILE" "$DAEMON_CONTROLLER_PID" "$DAEMON_PGID" \
+      || cleanup_failed=1
+  fi
+  if [ -n "$NEXT_CONTROLLER_PID" ]; then
+    next_audit_state="$(controller_audit_state "$NEXT_AUDIT_FILE")" || {
+      next_audit_state="UNKNOWN"; cleanup_failed=1;
+    }
+    assert_controller_contained "$NEXT_AUDIT_FILE" "$NEXT_CONTROLLER_PID" "$NEXT_PGID" \
+      || cleanup_failed=1
+  fi
   # The retained controller keeps each PGID allocated until this atomic KILL.
   # The group signal reaches every descendant still in the controlled group and
   # the controller itself. No individual PID is checked then signalled.
@@ -301,6 +377,8 @@ teardown() {
     echo "next_process_group_remaining=$next_remaining"
     echo "daemon_controller_pid=$DAEMON_CONTROLLER_PID pgid=$DAEMON_PGID"
     echo "next_controller_pid=$NEXT_CONTROLLER_PID pgid=$NEXT_PGID"
+    echo "daemon_descendant_audit=$daemon_audit_state"
+    echo "next_descendant_audit=$next_audit_state"
     echo "socket_present_after_stop=$socket_remaining"
     echo "port_${PORT}_listeners_after_stop=$port_listener_count"
     echo "forced_test_cleanup_failure=${RERUN_SECTION8_TEST_FORCE_CLEANUP_FAILURE:-0}"
@@ -352,6 +430,11 @@ if [ "${RERUN_SECTION8_LIBRARY_MODE:-0}" = "1" ]; then
 fi
 trap teardown EXIT
 
+if [ "$CHIRALITY_DAEMON_GUI_SPAWN" != "0" ] \
+   || [ "$CHIRALITY_DAEMON_ACTIVATION_POLICY" != "prohibited" ]; then
+  log "required no-detach daemon policy is not active; refusing to start"; exit 69
+fi
+
 # --- precondition: port is free before any build or daemon start -------------
 if ! INITIAL_PORT_LISTENER_COUNT="$(inspect_port_listener_count "$PORT")"; then
   log "could not inspect port $PORT; refusing to start"; exit 73
@@ -382,9 +465,11 @@ cd "$FRONTEND"
   echo "HARNESS_BASE_URL=$HARNESS_BASE_URL"
   echo "CHIRALITY_RUNTIME_SOCKET_PATH=$CHIRALITY_RUNTIME_SOCKET_PATH"
   echo "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE=$CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE"
+  echo "CHIRALITY_DAEMON_GUI_SPAWN=$CHIRALITY_DAEMON_GUI_SPAWN"
+  echo "CHIRALITY_DAEMON_ACTIVATION_POLICY=$CHIRALITY_DAEMON_ACTIVATION_POLICY"
   echo "with_release_quality=$WITH_RELEASE_QUALITY"
   echo "daemon_switches=--use-mock-keychain --user-data-dir=<USER_DATA> --runtime-daemon"
-  echo "process_lifecycle=retained POSIX session/process-group controllers; no individual PID signalling"
+  echo "process_lifecycle=retained POSIX session/process-group controllers plus continuous stable-identity descendant audit; detachment fails closed; no individual PID signalling"
 } > "$LOGS/environment.txt"
 git -C "$REPO_ROOT" status --porcelain > "$LOGS/git-status-before.txt" || true
 
@@ -409,7 +494,8 @@ log "starting runtime daemon under $USER_DATA"
 # either, so the switch keeps the evidence class identical. Chromium consumes
 # the switch; product code is unchanged.
 DAEMON_READY_FILE="$RUN_ROOT/private/daemon-controller-ready.json"
-python3 "$GROUP_CONTROLLER" --ready-file "$DAEMON_READY_FILE" -- \
+DAEMON_AUDIT_FILE="$LOGS/daemon-descendant-audit.json"
+python3 "$GROUP_CONTROLLER" --ready-file "$DAEMON_READY_FILE" --audit-file "$DAEMON_AUDIT_FILE" -- \
   ./node_modules/.bin/electron --use-mock-keychain "--user-data-dir=$USER_DATA" \
   dist-electron/main.js --runtime-daemon > "$LOGS/daemon.log" 2>&1 &
 DAEMON_CONTROLLER_PID=$!
@@ -421,6 +507,13 @@ if [ "$ready_controller" != "$DAEMON_CONTROLLER_PID" ] || [ "$ready_pgid" != "$D
   log "runtime-daemon controller identity/PGID mismatch"; exit 70
 fi
 DAEMON_PGID="$ready_pgid"
+for _ in $(seq 1 100); do
+  [ -f "$DAEMON_AUDIT_FILE" ] && break
+  sleep 0.1
+done
+assert_controller_contained "$DAEMON_AUDIT_FILE" "$DAEMON_CONTROLLER_PID" "$DAEMON_PGID" || {
+  log "runtime-daemon descendant audit did not establish containment"; exit 70;
+}
 for _ in $(seq 1 90); do
   if [ -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] && [ -f "$CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE" ]; then
     break
@@ -456,7 +549,8 @@ log "project registered; token file $PROJECT_TOKEN_FILE"
 # --- 4. dev server bound to the daemon ---------------------------------------
 log "starting next dev on $HARNESS_BASE_URL"
 NEXT_READY_FILE="$RUN_ROOT/private/next-controller-ready.json"
-python3 "$GROUP_CONTROLLER" --ready-file "$NEXT_READY_FILE" -- \
+NEXT_AUDIT_FILE="$LOGS/next-descendant-audit.json"
+python3 "$GROUP_CONTROLLER" --ready-file "$NEXT_READY_FILE" --audit-file "$NEXT_AUDIT_FILE" -- \
   npm run dev:next -- --hostname 127.0.0.1 --port "$PORT" > "$LOGS/next-dev.log" 2>&1 &
 NEXT_CONTROLLER_PID=$!
 await_controller_ready "$NEXT_READY_FILE" "$NEXT_CONTROLLER_PID" || {
@@ -467,6 +561,13 @@ if [ "$ready_controller" != "$NEXT_CONTROLLER_PID" ] || [ "$ready_pgid" != "$NEX
   log "Next controller identity/PGID mismatch"; exit 71
 fi
 NEXT_PGID="$ready_pgid"
+for _ in $(seq 1 100); do
+  [ -f "$NEXT_AUDIT_FILE" ] && break
+  sleep 0.1
+done
+assert_controller_contained "$NEXT_AUDIT_FILE" "$NEXT_CONTROLLER_PID" "$NEXT_PGID" || {
+  log "Next descendant audit did not establish containment"; exit 71;
+}
 READY=0
 for _ in $(seq 1 90); do
   status="$(curl -sS -o "$LOGS/harness-ready.json" -w "%{http_code}" --get \
@@ -481,6 +582,12 @@ log "harness API ready (controller/pgid $NEXT_PGID, child $NEXT_CHILD_PID)"
 # --- 5. containment observations (before) ------------------------------------
 DAEMON_GROUP_MEMBERS_BEFORE="$(inspect_process_group_members "$DAEMON_PGID")" || {
   log "could not inspect daemon process group before validation"; exit 70;
+}
+assert_controller_contained "$DAEMON_AUDIT_FILE" "$DAEMON_CONTROLLER_PID" "$DAEMON_PGID" || {
+  log "daemon descendant left its anchored group before validation"; exit 70;
+}
+assert_controller_contained "$NEXT_AUDIT_FILE" "$NEXT_CONTROLLER_PID" "$NEXT_PGID" || {
+  log "Next descendant left its anchored group before validation"; exit 71;
 }
 lsof -v >/dev/null 2>&1 || { log "lsof inspection unavailable"; exit 70; }
 {
@@ -554,6 +661,12 @@ fi
 # --- 8. containment observations (after) -------------------------------------
 DAEMON_GROUP_MEMBERS_AFTER="$(inspect_process_group_members "$DAEMON_PGID")" || {
   log "could not inspect daemon process group after validation"; exit 70;
+}
+assert_controller_contained "$DAEMON_AUDIT_FILE" "$DAEMON_CONTROLLER_PID" "$DAEMON_PGID" || {
+  log "daemon descendant left its anchored group during validation"; exit 70;
+}
+assert_controller_contained "$NEXT_AUDIT_FILE" "$NEXT_CONTROLLER_PID" "$NEXT_PGID" || {
+  log "Next descendant left its anchored group during validation"; exit 71;
 }
 lsof -v >/dev/null 2>&1 || { log "lsof inspection unavailable after validation"; exit 70; }
 {

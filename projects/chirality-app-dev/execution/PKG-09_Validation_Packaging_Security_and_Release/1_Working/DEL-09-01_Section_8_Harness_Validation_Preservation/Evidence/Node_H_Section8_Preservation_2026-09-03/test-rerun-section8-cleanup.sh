@@ -7,12 +7,16 @@ TEST_ROOT="$(mktemp -d /private/tmp/chirality-s8-cleanup-test.XXXXXX)"
 UNRELATED_A=""
 UNRELATED_B=""
 ACTIVE_CONTROLLER=""
+ESCAPED_TEST_PGID=""
 
 cleanup_test_processes() {
   set +e
   if [ -n "$ACTIVE_CONTROLLER" ]; then
     kill -KILL -- "-$ACTIVE_CONTROLLER" 2>/dev/null || true
     wait "$ACTIVE_CONTROLLER" 2>/dev/null || true
+  fi
+  if [ -n "$ESCAPED_TEST_PGID" ]; then
+    kill -KILL -- "-$ESCAPED_TEST_PGID" 2>/dev/null || true
   fi
   if [ -n "$UNRELATED_A" ]; then kill -KILL "$UNRELATED_A" 2>/dev/null || true; wait "$UNRELATED_A" 2>/dev/null || true; fi
   if [ -n "$UNRELATED_B" ]; then kill -KILL "$UNRELATED_B" 2>/dev/null || true; wait "$UNRELATED_B" 2>/dev/null || true; fi
@@ -31,13 +35,18 @@ start_test_group() {
   local name="$1"
   shift
   local ready_file="$TEST_ROOT/${name}.ready.json"
-  python3 "$GROUP_CONTROLLER" --ready-file "$ready_file" -- "$@" \
+  TEST_AUDIT_FILE="$TEST_ROOT/${name}.audit.json"
+  python3 "$GROUP_CONTROLLER" --ready-file "$ready_file" --audit-file "$TEST_AUDIT_FILE" -- "$@" \
     > "$TEST_ROOT/${name}.log" 2>&1 &
   ACTIVE_CONTROLLER=$!
   await_controller_ready "$ready_file" "$ACTIVE_CONTROLLER"
   read -r TEST_CONTROLLER TEST_PGID TEST_CHILD <<< "$(read_controller_ready "$ready_file")"
   [ "$TEST_CONTROLLER" = "$ACTIVE_CONTROLLER" ]
   [ "$TEST_PGID" = "$ACTIVE_CONTROLLER" ]
+  for _ in $(seq 1 100); do
+    [ -f "$TEST_AUDIT_FILE" ] && break
+    sleep 0.02
+  done
 }
 
 finish_test_group() {
@@ -65,6 +74,7 @@ done
 [ -n "$UNRELATED_A" ] && [ "$start_a" = "$start_b" ]
 
 start_test_group normal-child /bin/sleep 30
+assert_controller_contained "$TEST_AUDIT_FILE" "$TEST_CONTROLLER" "$TEST_PGID"
 send_anchored_group_signal "$TEST_CONTROLLER" "$TEST_PGID" TERM
 sleep 0.2
 finish_test_group
@@ -76,6 +86,7 @@ kill -0 "$UNRELATED_B"
 start_test_group term-resistant-child python3 -c \
   'import signal,time; signal.signal(signal.SIGTERM, signal.SIG_IGN); time.sleep(30)'
 sleep 0.3
+assert_controller_contained "$TEST_AUDIT_FILE" "$TEST_CONTROLLER" "$TEST_PGID"
 send_anchored_group_signal "$TEST_CONTROLLER" "$TEST_PGID" TERM
 sleep 0.2
 survivor_count="$(process_group_noncontroller_count "$TEST_PGID" "$TEST_CONTROLLER")"
@@ -100,6 +111,8 @@ reset_teardown_state() {
   export NEXT_CONTROLLER_PID=""
   export NEXT_PGID=""
   export NEXT_CHILD_PID=""
+  export DAEMON_AUDIT_FILE=""
+  export NEXT_AUDIT_FILE=""
   mkdir -p "$LOGS" "$ART" "$RUN_ROOT/private"
 }
 
@@ -113,6 +126,7 @@ reset_teardown_state process-inspection-failure-run
 NEXT_CONTROLLER_PID="$TEST_CONTROLLER"
 NEXT_PGID="$TEST_PGID"
 NEXT_CHILD_PID="$TEST_CHILD"
+NEXT_AUDIT_FILE="$TEST_AUDIT_FILE"
 read_process_table() { return 2; }
 set +e
 ( true; teardown )
@@ -124,6 +138,52 @@ grep -Fqx 'next_process_group_remaining=UNKNOWN' "$LOGS/teardown.txt"
 wait "$TEST_CONTROLLER" 2>/dev/null || true
 ACTIVE_CONTROLLER=""
 read_process_table() { ps -axo pid=,pgid= 2>/dev/null; }
+( cd "$RUN_ROOT" && shasum -a 256 -c MANIFEST.sha256 >/dev/null )
+
+# A controlled descendant that creates a new session has escaped the only
+# identity-safe automatic signal boundary available on this macOS host. The
+# continuous audit must retain the violation and teardown must fail closed;
+# it must never claim zero-descendant success. The test then explicitly kills
+# the disposable escapee's own process group, whose leader is known to be the
+# test child created here. This manual escalation is not used by the runner.
+start_test_group setsid-escape python3 -c \
+  'import os,time; os.setsid(); time.sleep(30)'
+ESCAPED_TEST_PGID="$TEST_CHILD"
+for _ in $(seq 1 100); do
+  [ "$(controller_audit_state "$TEST_AUDIT_FILE" 2>/dev/null || true)" = "violation" ] && break
+  sleep 0.02
+done
+[ "$(controller_audit_state "$TEST_AUDIT_FILE")" = "violation" ]
+python3 - "$TEST_AUDIT_FILE" "$TEST_CHILD" <<'PY'
+import json
+import sys
+
+audit = json.load(open(sys.argv[1], encoding="utf-8"))
+child = int(sys.argv[2])
+assert audit["state"] == "violation"
+assert any(item["pid"] == child and item["pgid"] == child for item in audit["violations"])
+PY
+reset_teardown_state setsid-escape-run
+NEXT_CONTROLLER_PID="$TEST_CONTROLLER"
+NEXT_PGID="$TEST_PGID"
+NEXT_CHILD_PID="$TEST_CHILD"
+NEXT_AUDIT_FILE="$TEST_AUDIT_FILE"
+set +e
+( true; teardown )
+setsid_escape_status=$?
+set -e
+[ "$setsid_escape_status" = "74" ]
+grep -Fqx 'next_descendant_audit=violation' "$LOGS/teardown.txt"
+kill -0 "$TEST_CHILD"
+kill -KILL -- "-$ESCAPED_TEST_PGID"
+for _ in $(seq 1 100); do
+  kill -0 "$TEST_CHILD" 2>/dev/null || break
+  sleep 0.02
+done
+! kill -0 "$TEST_CHILD" 2>/dev/null
+ESCAPED_TEST_PGID=""
+wait "$TEST_CONTROLLER" 2>/dev/null || true
+ACTIVE_CONTROLLER=""
 ( cd "$RUN_ROOT" && shasum -a 256 -c MANIFEST.sha256 >/dev/null )
 
 # A real lsof command failure is not interpreted as zero listeners.
@@ -158,6 +218,10 @@ echo "individual_pid_signal_authority=absent"
 echo "signal_boundary=controller_anchored_atomic_process_group"
 echo "term_resistant_descendants_before_kill=$survivor_count"
 echo "term_resistant_descendants_after_kill=0"
+echo "setsid_escape_audit=violation"
+echo "setsid_escape_cleanup_exit=$setsid_escape_status"
+echo "setsid_escape_after_automatic_group_kill=alive"
+echo "setsid_escape_after_explicit_test_group_kill=0"
 echo "process_inspection_failure_exit=$process_inspection_status"
 echo "process_inspection_diagnostic=UNKNOWN"
 echo "lsof_inspection_failure_exit=$lsof_inspection_status"

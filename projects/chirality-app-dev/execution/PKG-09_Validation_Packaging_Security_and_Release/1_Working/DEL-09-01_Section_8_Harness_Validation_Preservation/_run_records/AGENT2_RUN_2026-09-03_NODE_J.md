@@ -15,11 +15,12 @@ The original TASK form stopped before project-content writes because the delegat
 
 ## Implementation
 
-- Hardened `Evidence/Node_H_Section8_Preservation_2026-09-03/rerun-section8-local.sh` and added `section8-process-group-controller.py`. Each daemon/Next tree now runs in an isolated POSIX session/process group whose controller remains as an unreaped group leader until the final atomic group signal. The controller keeps its PID/PGID non-reusable across the controlled lifetime; descendants inherit the group; no descendant PID is signal authority.
+- Hardened `Evidence/Node_H_Section8_Preservation_2026-09-03/rerun-section8-local.sh` and added `section8-process-group-controller.py`. Each daemon/Next tree runs in an isolated POSIX session/process group whose controller remains as an unreaped group leader until the final atomic group signal. The controller keeps its PID/PGID non-reusable across the controlled lifetime; no descendant PID is signal authority.
+- Round-3 review proved that a descendant can call `setsid()` and leave that group. The replacement runner explicitly disables the application's known daemon GUI-detach route, then continuously inventories daemon/Next descendants through Darwin `libproc` with stable PID/start-time identities. Every observed actual descendant must remain in the anchored group. An escape or inspection error is a permanent cleanup failure; the runner does not signal an unstable bare PID or claim generic macOS containment.
 - Removed all command-line `pgrep -f` and individual-descendant signalling. Process inspection is diagnostic and tri-state; the Electron process that owns the control socket is identified by `lsof` on that exact socket.
 - Moved the occupied-port precondition ahead of the environment record, build, daemon start, and registration. A negative run returned 72, wrote no build/daemon log, and left the foreign listener alive.
 - Cleanup now preserves the incoming proof status, accumulates signal/invariant/state/evidence failures, writes `UNKNOWN` rather than inferring zero when process or port inspection fails, and explicitly exits 74 when cleanup fails after a successful proof. The script-written manifest remains the final teardown act.
-- Reworked `test-rerun-section8-cleanup.sh` plus its retained `CLEANUP_HARDENING_PROOF.txt`; the exact sourced cleanup helpers prove that same-command/same-second foreign processes survive, a TERM-resistant controlled descendant is removed by group KILL, forced process-table and `lsof` failures both fail closed, and incoming status 23 remains authoritative.
+- Reworked `test-rerun-section8-cleanup.sh`; in addition to the prior cases, the deterministic test now makes a controlled child call `setsid()`. The descendant audit records a permanent violation, automatic cleanup returns 74 rather than false success, foreign same-command processes remain untouched, and the test explicitly removes the disposable escapee's own group. Replacement retained proof bytes are pending execution from the clean runner commit.
 
 ## Revision-2 proof
 
@@ -81,6 +82,14 @@ Reviewed freeze: `26a1e43cd3177bb1fef9eff7ddf02310e413fb89`. Review report SHA-2
 | J2-F2 — observation failures inferred as clean | REMEDIATED | Required process-table and `lsof` observations are tri-state. The deterministic proof forces each failure class; both exit 74 and record `UNKNOWN`, while an incoming status 23 remains 23. The retained live proof reports group counts and the port at zero only after successful inspection and exits 0 with cleanup failure 0. |
 | J2-F3 — false exact-HEAD provenance | REMEDIATED | Two-phase topology: clean runner commit `b1f0d71f128e31fb2f0d10b579abf6523bae7d3c`, then this evidence commit. The accepted run's environment records that runner HEAD and zero dirty paths before execution. `EVALUATOR_BYTES_revision2.tsv` separately maps application/product bytes to basis `ede175910c67b384332324622b17695f69e6a715`. The old generated folder is preserved and explicitly marked never accepted; it is excluded from the current comparator. |
 
+## Review round 3 disposition
+
+Reviewed freeze: `2c42f919aa38546c5a4ad9eb692b450aa5c13d06`. Review report SHA-256: `3b66f126fb9270206b201306ff1bfbbaf56e81543996ffe5ea78affc1555de83`. The verbatim report is retained by HELP_HUMAN for filing after review acceptance.
+
+| Finding | Disposition | Exact proof |
+|---|---|---|
+| J3-F1 — a `setsid()` descendant escapes the anchored PGID | REMEDIATED IN RUNNER; CLEAN PROOF PENDING | The runner enforces and records `CHIRALITY_DAEMON_GUI_SPAWN=0`, continuously audits stable-identity descendant membership through macOS `libproc`, and fails with cleanup status 74 on escape or audit failure. The adversarial test proves a `setsid()` escape is recorded as `violation` and never converted to zero/success, while unrelated same-command processes survive. The test explicitly cleans its disposable escape group; production cleanup never uses a bare descendant PID. A new clean-runner proof and round-4 review remain mandatory. |
+
 The registered-check runner's first attempt used `/usr/bin/python3`, which lacked PyYAML and pytest; those outcomes were not treated as passes. The recorded rerun prepended the existing host Python 3.13 environment and passed all three selected checks. A non-selected direct `instruction-root:integrity` probe against the unpackaged build reported the expected missing packaged instruction bundle and SDK files; packaging was outside this evidence-only tranche, so no package/release act was taken and the result is not represented as a pass or as a selected gate.
 
 ## A1 and fences
@@ -91,4 +100,4 @@ This is validation evidence only. It makes no signing, notarization, publication
 
 ## Review state
 
-Pending fresh round-3 read-only review over 100% of the new frozen diff, with the round-1 and round-2 dispositions above. DEL-09-01-V3-02 removal, DEL-09-01-V3-01 revision, `_STATUS.md` History, `MEMORY.md`, review filing, final AgentRuns handoff/checks/manifest, and the loop receipt are all deferred until HELP_HUMAN sends `REVIEW_PASS`.
+Round-3 review failed on J3-F1. The replacement runner is ready for a new two-phase proof: first freeze runner/helper/test/control bytes, then execute from that clean commit and import generated evidence separately. A fresh round-4 read-only review over 100% of the resulting diff is mandatory. DEL-09-01-V3-02 removal, DEL-09-01-V3-01 revision, `_STATUS.md` History, `MEMORY.md`, review filing, final AgentRuns handoff/checks/manifest, and the loop receipt are all deferred until HELP_HUMAN sends `REVIEW_PASS`.
