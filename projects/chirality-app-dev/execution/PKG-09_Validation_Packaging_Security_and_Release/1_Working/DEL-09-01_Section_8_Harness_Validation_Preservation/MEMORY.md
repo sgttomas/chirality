@@ -2,6 +2,8 @@
 
 ## Decisions And Evidence
 
+- 2026-09-03 - DEL-09-01-V3-01 revision 1 (node H): Section 8 preservation evidence after the v3 landings PRs 683–686 recorded under `Evidence/Node_H_Section8_Preservation_2026-09-03/`; the local premerge's absent-runtime-daemon-bindings class (Receipts 172/177) is resolved by reproducing the CI binding lifecycle (`rerun-section8-local.sh`), which needs `--use-mock-keychain` on the disposable daemon because the unsigned development Electron binary blocks on the macOS Keychain when headless. Validation evidence only; no lifecycle transition, dependency acceptance, release, signing, notarization, or readiness claim.
+
 - 2026-07-12 - D-APP-56 final code tranche implemented UPD-140/UPD-141 with deterministic missing-runtime and removed-regression-key wrapper failure fixtures. No lifecycle transition occurred.
 
 - 2026-06-16 - Human project authority advanced this deliverable lifecycle from SEMANTIC_READY to IN_PROGRESS because active code implementation is underway. This does not imply CHECKING, ISSUED, release readiness, dependency satisfaction, professional approval, certification, sealing, authentication, or code-compliance acceptance.

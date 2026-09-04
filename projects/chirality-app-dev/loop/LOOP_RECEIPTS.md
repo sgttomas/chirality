@@ -6527,3 +6527,54 @@
     lifecycle, live-account, host-mutation, signing, notarization,
     distribution, or Root act; the A1 re-stage rule applies to the touched
     `frontend/`.
+
+- **2026-09-03 — Receipt 216** (App v3 pathway node H: DEL-09-01-V3-01 Section 8 preservation evidence after PRs 683–686).
+  - Receipt-ID: `Receipt-216`
+  - Examined-Through: `e59efa4830fb54143c86e511ec35a6d1a476f72e`
+  - Parent-Receipt: `Receipt-212`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected development node H (DEL-09-01-V3-01) from dev
+    slate 2 in the HELP_HUMAN session chat on 2026-09-03; the selection is
+    recorded at
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03/ORCHESTRATION_PLAN.md`
+    (Selection authority) and the sealed brief at
+    `instances/H1_IMPLEMENTER/LAUNCH_BRIEF.md`. Concurrent sibling nodes
+    F, G, I share this parent (ledger rule 7); Receipts 213–215 were on
+    `main` at rebase time, so the next unused number resolves to 216.
+    The item's `NOT_SELECTABLE_UNTIL` tag was replaced by `SELECTABLE` at
+    Step 0 under the committed workplan rule (named act PR #686 on `main`;
+    ruled WITHIN_AUTHORITY by the round-1 review). Coordinator decisions
+    D1–D2 (review dispositions, closeout) are transcribed in
+    `COORDINATOR_DECISIONS.md`.
+  - Pointers: branch `codex/app-v3-nodeH-section8-preservation-2026-09-03`
+    (basis above; reviewed freezes `021e1f186`, `da3ceb310`; rebased onto
+    `1d9b37970` as `faf5005aa` + `efad64029`); RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03/`
+    (`STEP0_DISCOVERY.md` incl. the A1 re-stage declaration and the
+    selectability re-derivation, `CHECKS.json`, `RETURN.md`,
+    `COORDINATOR_DECISIONS.md`, `HANDOFF_STATE.md`, `MANIFEST.sha256`,
+    `instances/H2_REVIEWER/REVIEW_0{1,2}_*.md`); DEL-09-01
+    `Evidence/Node_H_Section8_Preservation_2026-09-03/` (CI daemon-binding
+    lifecycle reproduced locally by `rerun-section8-local.sh`; three
+    retained run trees; CI summaries of PR #681 and PR #686;
+    `compare-section8-summaries.py`; `EVALUATOR_BYTES.tsv`; manifests),
+    `_run_records/TASK_RUN_2026-09-03_NODE_H.md`, `_STATUS.md` (V3-01
+    revised — not removed — per its `Removed when`; V3-02 seeded),
+    `MEMORY.md`. No product source, fixture, workflow, `runtime/**`, or
+    dependency byte changed.
+  - Checks: typecheck pass; full Vitest pass; build pass; premerge pass
+    (local, daemon-bound — resolves the absent-bindings class recorded by
+    Receipt-172 and Receipt-177, not deferred); `validate:release-quality` pass; Section 8 at
+    the pre-landing basis pass with behaviour projection equal to HEAD
+    and both CI runs; `git diff --check` pass; change-scope validator
+    pass; harness self-check pass; harness pytest pass; APP-HOLD dispatch
+    preflight and register-match scan pass; authority corpus status no
+    drift; receipts validator pass; independent review rounds 1–2: fail
+    (remediated), pass.
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as ephemeral
+    Agent 2 implementer under HELP_HUMAN (Claude Fable 5.1); reviewer
+    Claude Fable 5.1.
+  - Gate-Outcome: `EXECUTED` — awaiting owner merge; no release act. No
+    lifecycle, host-mutation, signing, notarization, distribution, or Root
+    act; the A1 re-stage rule applies (gitignored artifacts written under
+    `frontend/`); validation evidence only (RQG §13 posture).

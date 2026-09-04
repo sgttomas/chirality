@@ -5,7 +5,8 @@
   "basis": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
   "rounds": {
     "1": "Section 8 preservation evidence after PRs 683-686: CI daemon lifecycle reproduced locally, HEAD and pre-landing-basis runs, CI corroboration, RQG section 13 rows — first local commit",
-    "2": "review-1 remediation (instances/H2_REVIEWER/REVIEW_01_2026-09-03_over_021e1f186.md; coordinator decision D1): per-run manifest written last in teardown, both retained per-run manifests regenerated from unchanged bytes, port fail-fast and kill restriction, caller USER_DATA never removed, checkout_leftovers line, comparator pass assertion, probe runner retained, narrative corrections — second local commit"
+    "2": "review-1 remediation (instances/H2_REVIEWER/REVIEW_01_2026-09-03_over_021e1f186.md; coordinator decision D1): per-run manifest written last in teardown, both retained per-run manifests regenerated from unchanged bytes, port fail-fast and kill restriction, caller USER_DATA never removed, checkout_leftovers line, comparator pass assertion, probe runner retained, narrative corrections — second local commit",
+    "3": "closeout after review-2 PASS (coordinator decision D2): review 2 filed verbatim; H2-F2/F5 narrative clauses; H1-F9 History line quoting the pre-flip tag; V3-01 revised, V3-02 seeded; MEMORY/TASK_RUN/HANDOFF_STATE/run-record manifest; Receipt 216; rebased onto origin/main 1d9b37970 (PR #689) as faf5005aa + efad64029 before the closeout edits; wt-base removed"
   },
   "toolchain": {
     "node": "v24.18.0",
@@ -207,7 +208,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 0,
       "status": "pass",
-      "summary": "fixed script at HEAD e59efa483: HARNESS_PREMERGE_STATUS=pass 8/8; teardown/cleanup all clean incl. the new checkout_leftovers line; the script-written per-run manifest verifies (43 entries incl. teardown.txt/cleanup.txt); retained as run-head-e59efa483-round2/; five-way comparator incl. this run BEHAVIOUR_PROJECTIONS_EQUAL=true (COMPARE_RESULT_round2.txt)",
+      "summary": "fixed script, working tree checked out at the round-1 evidence commit 021e1f186 (product bytes identical to e59efa483; same built-bundles.sha256 as run-head-e59efa483/): HARNESS_PREMERGE_STATUS=pass 8/8; teardown/cleanup all clean incl. the new checkout_leftovers line; the script-written per-run manifest verifies (43 entries incl. teardown.txt/cleanup.txt); retained as run-head-e59efa483-round2/; five-way comparator incl. this run BEHAVIOUR_PROJECTIONS_EQUAL=true (COMPARE_RESULT_round2.txt)",
       "evidence": "DEL-09-01 Evidence/Node_H_Section8_Preservation_2026-09-03/run-head-e59efa483-round2/"
     },
     {
@@ -245,6 +246,60 @@
       "exit": 0,
       "status": "pass",
       "summary": "working tree clean before the round-2 commit; full basis..HEAD range re-checked after it (result in the freeze message)"
+    },
+    {
+      "id": "receipts-validator",
+      "round": "3",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "VALID after the rebase (Receipts 213-215 present) and again after appending Receipt 216 (result in the closeout message)"
+    },
+    {
+      "id": "authority-corpus",
+      "round": "3",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "no drift after the rebase onto 1d9b37970"
+    },
+    {
+      "id": "app-hold-dispatch-preflight",
+      "round": "3",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-01",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict ALLOW at the rebased head efad64029"
+    },
+    {
+      "id": "bundle-and-run-manifests",
+      "round": "3",
+      "command": "shasum -a 256 -c MANIFEST.sha256 (bundle, after regenerating it for the EVIDENCE.md clauses); shasum -a 256 -c in each run folder",
+      "cwd": "DEL-09-01 Evidence/Node_H_Section8_Preservation_2026-09-03",
+      "exit": 0,
+      "status": "pass",
+      "summary": "bundle manifest regenerated (EVIDENCE.md is pinned in it) and verifies; the three per-run manifests, the script, the comparator, and every captured byte are unchanged after PASS"
+    },
+    {
+      "id": "git-diff-check",
+      "round": "3",
+      "command": "git add -A -N . && git diff --check ; git diff --check 1d9b37970 HEAD",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "working tree before the closeout commit; full rebased range after it (result in the closeout message)"
+    },
+    {
+      "id": "validate-change-scope",
+      "round": "3",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base 1d9b37970b470d891fe2ea6ef8cacaa8471c3d3f --head <closeout SHA> --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "two deliverable/record roots plus the receipts ledger; PASS 0 violations over the working tree before the commit and with --head <closeout SHA> immediately after it (result in the closeout message)"
     }
   ],
   "not_run": [
@@ -255,6 +310,10 @@
     {
       "id": "desktop:pack / proof:packaged-security",
       "reason": "not named by the seated item's Checks line; packaged behaviour is outside Section 8 and not claimed"
+    },
+    {
+      "id": "frontend gates at closeout",
+      "reason": "no frontend byte changed after the reviewed freeze; the closeout commit touches only deliverable state, the run record, the evidence narrative/manifest, and the receipts ledger"
     }
   ],
   "scope_validation_command": {

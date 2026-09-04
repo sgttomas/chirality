@@ -39,3 +39,30 @@ Effect: round 2 applies H1-F1, F2, F3 and the NOTEs F4, F5, F6, F7, F8, F10, F12
 now; H1-F9 (quote the pre-flip tag in the History line) is a closeout act and is
 carried to the closeout commit. The retained run trees are unchanged; the two
 per-run manifests were regenerated from the retained bytes.
+
+## D2 — 2026-09-03 — closeout disposition after review-2 PASS
+
+Direction (verbatim gist): "REVIEW_PASS — round-2 head da3ceb310, verdict PASS
+(H1-F1 FIXED; zero BLOCKER/MAJOR/MINOR; five NOTEs H2-F1..F5). File it verbatim
+as `instances/H2_REVIEWER/REVIEW_02_2026-09-03_over_da3ceb310.md`. No reviewed
+script, comparator, captured-run, or manifest byte may change after PASS except
+where a narrative file is regenerated into the bundle manifest. H2-F2/H2-F5:
+one-clause narrative corrections in the closeout commit; regenerate the bundle
+manifest. H1-F9: quote the pre-flip tag verbatim in the `_STATUS.md` History
+line. H2-F1/F3/F4: record as residuals; if worth a bounded follow-on, seed one
+SELECTABLE evidence-only item with write locus limited to the rerun script and
+its evidence. Decide remove-vs-revise for V3-01 per its `Removed when`. Drop the
+DRAFT banner. Then HANDOFF_STATE.md, run-record MANIFEST.sha256, CHECKS.json
+closeout round, receipt (Receipt-216, Parent Receipt-212), rebase onto
+origin/main 1d9b37970, validators, `git diff --check`, change-scope with
+`--base 1d9b37970 --head <head>`, corpus status, APP-HOLD preflight. STOP before
+pushing: write the PR body to the scratchpad; HELP_HUMAN pushes and opens the
+PR. Remove wt-base now; keep wt-nodeH."
+
+Effect: applied as written. V3-01 is revised, not removed (its `Removed when`
+names revision after each v3 landing and removal only at G5 fan-in, which has
+not occurred); because PRs 687–689 already touched a named trigger surface, the
+revised item stays `SELECTABLE` with revision 2 owed instead of being parked.
+V3-02 seeded for H2-F1/F3/F4. The bundle manifest was regenerated because
+`EVIDENCE.md` is pinned in it; no captured-run, script, comparator, or
+per-run-manifest byte changed after PASS.
