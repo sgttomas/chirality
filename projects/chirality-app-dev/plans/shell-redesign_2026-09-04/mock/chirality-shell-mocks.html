@@ -53,6 +53,25 @@
   .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0 24px; }
   @media (max-width: 860px) { .compare { grid-template-columns: 1fr; } }
 
+  /* ---------- product page ---------- */
+  .journey { counter-reset: j; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 14px 0 30px; }
+  .journey > div { border: 1px solid var(--pg-rule); border-radius: 10px; background: var(--pg-surface); padding: 14px 14px 12px; position: relative; font-size: 13.5px; }
+  .journey > div::before { counter-increment: j; content: counter(j); position: absolute; top: -10px; left: 12px; background: var(--pg-accent); color: #fff; font: 500 11px/20px var(--mono); width: 20px; text-align: center; border-radius: 10px; }
+  .journey h4 { margin: 4px 0 6px; font: 600 13.5px var(--sans); }
+  .journey p { margin: 0 0 6px; max-width: none; color: var(--pg-soft); font-size: 13px; }
+  .journey .st { font: 11px var(--mono); color: var(--pg-accent); }
+  .feat { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 12px 0 30px; }
+  .feat > div { border-left: 3px solid var(--pg-accent); padding: 2px 0 2px 14px; }
+  .feat h4 { margin: 0 0 4px; font: 600 14px var(--sans); }
+  .feat p { margin: 0; max-width: none; font-size: 13.5px; color: var(--pg-soft); }
+  .feat .st { font: 11px var(--mono); color: var(--pg-faint); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 8px 0 24px; }
+  @media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 12px 0 28px; }
+  @media (max-width: 860px) { .pillars { grid-template-columns: 1fr; } }
+  .pillars > div { background: var(--pg-accent-soft); border-radius: 10px; padding: 14px 16px; font-size: 13.5px; }
+  .pillars h4 { margin: 0 0 6px; font: 600 14px var(--sans); }
+  .pillars p { margin: 0; max-width: none; color: var(--pg-soft); }
   /* ---------- walkthrough ---------- */
   .story { display: grid; grid-template-columns: 1fr 320px; gap: 24px; align-items: start; margin-top: 8px; }
   @media (max-width: 960px) { .story { grid-template-columns: 1fr; } }
@@ -355,7 +374,8 @@
   <p class="lede">Stone only. No header row. The left panel is where chats are kept and organised. The centre is the dialogue and it never leaves. The right panel is everything else, one view at a time: files, an open document, who is working, activity, a child session. The walkthrough tab clicks through it.</p>
 
   <div class="tabs" role="tablist" aria-label="Sections">
-    <button role="tab" aria-selected="true" data-tab="brief">What changed</button>
+    <button role="tab" aria-selected="true" data-tab="product">Product</button>
+    <button role="tab" aria-selected="false" data-tab="brief">What changed</button>
     <button role="tab" aria-selected="false" data-tab="shell">Shell</button>
     <button role="tab" aria-selected="false" data-tab="walk">Walkthrough</button>
     <button role="tab" aria-selected="false" data-tab="q">Activity, replay, expand</button>
@@ -363,8 +383,67 @@
     <button role="tab" aria-selected="false" data-tab="fn">Notes</button>
   </div>
 
+  <!-- ============ PRODUCT ============ -->
+  <div class="panel" id="p-product">
+    <h2>Chirality, in one page</h2>
+    <p class="lede">A desktop application in which a person directs AI agents inside their own folders, under permissions they set, along roadmaps that stop at the decisions that are theirs. It is the runtime for a method: decomposition, roles, governed workflows, and a record. The method arrives through a consulting engagement and stays behind as files the organisation owns.</p>
+
+    <div class="pillars">
+      <div><h4>The human declares</h4><p>Every chat says where it works, with which agent, under what permission, and how much delegation. Nothing is promoted silently; every step up is a deliberate act, proposed by the agent or chosen by you.</p></div>
+      <div><h4>The agent proposes, the record binds</h4><p>Agents answer, draft, and propose. Deterministic tools compute. Decisions are yours and are written against the exact content you decided on. Output is never confused with authority.</p></div>
+      <div><h4>Files are the truth</h4><p>Workflows, roadmaps, and records live in your folder, under your version control. No database, no tenancy, nothing you cannot read without the app.</p></div>
+    </div>
+
+    <h3>How work moves</h3>
+    <div class="journey">
+      <div><h4>Open a folder, ask</h4><p>A plain chat with Help, the default agent. Any folder, structured or not. Ask, read, summarise, draft.</p><span class="st">steps 1–7</span></div>
+      <div><h4>Documents beside the chat</h4><p>Files open in the side panel. Replies cite documents as chips; a selection in a document becomes a quote in your message.</p><span class="st">steps 2–7</span></div>
+      <div><h4>The work earns a role</h4><p>When a question is an Agent 1's work, Help proposes the specified chat: folder, agent, permission, delegation. Accept, adjust, or not now.</p><span class="st">steps 21–22</span></div>
+      <div><h4>A procedure becomes a workflow</h4><p>The Agent 1 recognises its own protocol and proposes a governed workflow: a roadmap with your gates marked, briefs run by bounded agents, on the local model if you have one.</p><span class="st">steps 23–24</span></div>
+      <div><h4>Steps, gates, decisions</h4><p>The agent works a step, stops at a gate, and says so. The current step is always in view. You accept or decline; the app records it against the content.</p><span class="st">steps 18–19</span></div>
+      <div><h4>The record stays</h4><p>Every session, child run, proposal, and decision is in the folder. Replay any child. Bind the workflow to the next folder. The method keeps applying itself.</p><span class="st">steps 8–9, 16–17</span></div>
+    </div>
+
+    <h3>Salient features</h3>
+    <div class="feat">
+      <div><h4>One dialogue, never displaced</h4><p>The centre is the interface with the agent and it never leaves. Everything else is a side panel, one view at a time.</p><span class="st">SR-01 · steps 1–4</span></div>
+      <div><h4>The specification tuple</h4><p>Folder, agent, permission, delegation, roadmap. Shown under the message at all times; declared per chat; fixed for a workflow.</p><span class="st">SR-21–24 · step 16</span></div>
+      <div><h4>The prompted ladder</h4><p>Plain chat → specified chat → governed workflow. The agent offers each rung once when the work earns it; declines are remembered and recorded; the direct route is the same form.</p><span class="st">SR-24 · steps 21–25</span></div>
+      <div><h4>Governed workflows as files</h4><p>A roadmap tied to an Agent 1 role, living in the folder, steering the chat by context injection and never holding the record. Library and Bind carry it to the next folder.</p><span class="st">SR-23 · steps 16–20</span></div>
+      <div><h4>Human gates, recorded</h4><p>Roadmap steps that are yours are marked. The agent stops there. Your decision is written against the content hash you saw.</p><span class="st">step 19</span></div>
+      <div><h4>Woven both ways</h4><p>Replies cite documents as chips that open beside the chat. Selections in documents quote into the message with file and lines.</p><span class="st">SR-09 · steps 5–7</span></div>
+      <div><h4>Agent 0 aligns, Agent 2 executes</h4><p>Help holds no write scope and keeps its context on you. Bounded briefs do the work, on a local model when available. Every child is visible and replayable.</p><span class="st">steps 8–9</span></div>
+      <div><h4>Permissions you can feel</h4><p>Read only, ask before changes, approve each write, run bounded briefs. Consent and permissions are per folder; the account is app-wide.</p><span class="st">SR-19 · steps 12–15</span></div>
+      <div><h4>Private by construction</h4><p>Folders never leave the machine unless you say so. A local model runs delegated work with nothing sent anywhere.</p><span class="st">steps 13–14</span></div>
+      <div><h4>Written for people who do not code</h4><p>Plain language everywhere: no identifiers, no subtitles, no disclaimers in the body. Tool calls read as sentences.</p><span class="st">SR-18</span></div>
+    </div>
+
+    <div class="two">
+      <div>
+        <h3>What the service leaves behind</h3>
+        <ul class="tight">
+          <li><b>Workflows</b> in each folder: roadmaps tied to roles, with the protocol version they were derived from, so the app can say when one is behind the method.</li>
+          <li><b>Agents and skills</b> in an organisation layer over the bundled instruction root, owned by the client, hash-pinned.</li>
+          <li><b>The record</b>: sessions, child runs, proposals offered and declined, decisions at gates. Evidence for the client's own duty of care, and for the follow-up.</li>
+          <li><b>The habit</b>: the ladder keeps proposing the method after the consultant has gone.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What it refuses to do</h3>
+        <ul class="tight">
+          <li>Promote a chat, create a workflow, or pass a gate without a human act.</li>
+          <li>Let an agent's capability become authority. Better models draft better; they do not decide.</li>
+          <li>Hold project truth anywhere but the folder.</li>
+          <li>Create a workflow with any of the declarations missing.</li>
+          <li>Ask twice. One proposal per chat per trigger.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">The twenty-second demonstration is the Walkthrough tab: a plain question, a proposal, a roadmap with a gate, a decision recorded.</p>
+  </div>
+
   <!-- ============ BRIEF ============ -->
-  <div class="panel" id="p-brief">
+  <div class="panel" id="p-brief" hidden>
     <h2>Applied from your review</h2>
     <div class="cols">
       <div>
@@ -956,9 +1035,9 @@
     try { localStorage.setItem('chirality-mock-tab-r3', id); } catch (e) {}
   }
   tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.dataset.tab); }); });
-  var initial = 'brief';
-  try { initial = localStorage.getItem('chirality-mock-tab-r3') || 'brief'; } catch (e) {}
-  if (!document.getElementById('p-' + initial)) initial = 'brief';
+  var initial = 'product';
+  try { initial = localStorage.getItem('chirality-mock-tab-r3') || 'product'; } catch (e) {}
+  if (!document.getElementById('p-' + initial)) initial = 'product';
   show(initial);
 
   document.querySelectorAll('[data-theme-of]').forEach(function (b) {
