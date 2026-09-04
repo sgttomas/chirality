@@ -1,0 +1,4 @@
+RELEASE_QUALITY_SUMMARY_PATH=/private/tmp/chirality-app-v3-section8-rev3-20260904/proof-source/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json
+RELEASE_QUALITY_STATUS=pass
+RELEASE_QUALITY_PREMERGE_SKIPPED=false
+RELEASE_QUALITY_SECTION9_POLICY=standalone-blocking,premerge-report-only

@@ -1,0 +1,275 @@
+
+> chirality-frontend@2.0.0 test
+> vitest run --testTimeout=15000
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-section8-rev3-20260904/proof-source/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/electron/renderer-window-policy.test.ts [2m([22m[2m68 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts [2m([22m[2m38 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/account-consent-settings-states.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/sdk-message-mapper.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/pec-bridge-client.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when the persona is not allowlisted for subagents
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=3.639 reason=Active persona is not allowlisted for subagents.
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when governance metadata is missing or invalid
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=METADATA_PRESENCE evaluationMs=1.985 reason=opts.subagentGovernance is missing or invalid.
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when strict governance booleans are not true
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=CONTEXT_SEALED evaluationMs=2.718 reason=contextSealed must be strictly true.
+
+ [32m✓[39m src/__tests__/lib/tool-descriptor.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when strict governance booleans are not true
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PIPELINE_RUN_APPROVED evaluationMs=2.002 reason=pipelineRunApproved must be strictly true.
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when approvalRef is empty
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=APPROVAL_REF evaluationMs=2.338 reason=approvalRef must be a non-empty string.
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mallows and resolves only TYPE 2 delegated subagents
+[22m[39m[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=3.696 delegated=TASK approvalRef=GATE-001 approvedBy=human-reviewer
+
+ [32m✓[39m src/__tests__/electron/api-key-storage.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 94[2mms[22m[39m
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mallows configured Agent 0 managers and TASK while rejecting other Agent 2 roles
+[22m[39m[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=4.530 delegated=PROJECT_SETUP,TASK approvalRef=GATE-001 approvedBy=human-reviewer
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdoes not synthesize TASK eligibility for Agent 0 when TASK is absent from its allowlist
+[22m[39m[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=2.096 delegated=PROJECT_SETUP approvalRef=GATE-001 approvedBy=human-reviewer
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mwarns but allows TYPE 2 subagents that are not TASK class
+[22m[39m[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=2.904 delegated=ALPHA approvalRef=GATE-001 approvedBy=human-reviewer
+
+ [32m✓[39m src/__tests__/lib/sdk-options-builder.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 71[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-subagent-governance.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 114[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/working-root/deliverable-contracts.test.ts [2m([22m[2m23 tests[22m[2m)[22m[33m 305[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/api-key-ipc.test.ts [2m([22m[2m58 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/chirality-read-mcp.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 181[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/engine-conformance.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 65[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/woven-workspace-state.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/session-manager-v2-legacy-access.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 459[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/domain-proposal-tools.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 200[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/run-packaged-security-proof.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/chirality-hooks.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 116[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/permission-overlay.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 75[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/session-manager.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 162[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/workspace-deliverable-contract-scanner.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 248[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-anthropic-agent-sdk-manager.test.ts [2m([22m[2m87 tests[22m[2m)[22m[33m 588[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mstreams ordered SSE events for turn execution
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.660 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/lib/managed-delegation.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 613[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mkeeps parent turn execution running when governance metadata is invalid
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=CONTEXT_SEALED evaluationMs=0.841 reason=contextSealed must be strictly true.
+
+ [32m✓[39m src/__tests__/scripts/verify-version-identity.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/runtime-connectivity.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/shell-frame-runtime-connectivity.test.tsx [2m([22m[2m13 tests[22m[2m)[22m[32m 58[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/runtime-daemon-harness-port.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/agent-sdk-mcp-behavior-probe.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/generate-third-party-notices.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 53[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mdoes not allow opts.subagentGovernance to bypass runtime environment gate
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=ENVIRONMENT evaluationMs=1.059 reason=CHIRALITY_ENABLE_SUBAGENTS is not set to "true".
+
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mdoes not treat Pipeline TASK selector state as Type 2 governance approval
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=METADATA_PRESENCE evaluationMs=1.132 reason=opts.subagentGovernance is missing or invalid.
+
+ [32m✓[39m src/__tests__/scripts/verify-instruction-root-integrity.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 385[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mpasses delegated subagents when governance gates are satisfied
+[22m[39m[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=4.039 delegated=TASK approvalRef=gate-ref-3 approvedBy=human-reviewer
+
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2memits typed process-exit metadata when runtime turn execution fails
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=0.795 reason=Only Agent 0 and Agent 1 may delegate.
+
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mreturns pre-stream MISSING_API_KEY when anthropic provider is selected without API key
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.155 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/components/api-key-settings-storage-states.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/__tests__/integration/runtime-canonical-replay-restart.integration.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 126[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mprepends attachment warning context when partial attachment resolution succeeds
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.203 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/lib/selected-session-replay.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/workspace-deliverable-api.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/session-events.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2muses string prompt mode when no executable attachments are present
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.763 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/components/runtime-reconnect-refresh.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mfalls back to string prompt mode with warning text when all attachments fail but text remains
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.159 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/lib/claude-agent-sdk-manager.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mincludes omission summary when warning detail entries exceed the configured cap
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=0.993 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/lib/tool-result-artifacts.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/project/deliverables-route.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 84[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mrejects overlapping turns for the same session and releases lock after completion
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.184 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/lib/turn-engine.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mrejects overlapping turns for the same session and releases lock after completion
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.329 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/scripts/generate-sbom.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/runtime-control-ipc.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-client.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2minterrupt endpoint returns ok and marks active turn as interrupted
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=2.479 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/electron/runtime-socket-watch.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/agent-sdk-dev-turn.test.ts[2m > [22m[2magentSdk scripted dev turn validation[2m > [22m[2mruns the route-level agentSdk turn through real SDK query with an offline subprocess
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.079 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/components/woven-dialogue-navigator.test.tsx [2m([22m[2m13 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/harness/agent-sdk-dev-turn.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 187[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mpersists accepted user text and non-user cancellation when the SSE reader disconnects
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.038 reason=Only Agent 0 and Agent 1 may delegate.
+
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mpersists accepted user text and non-user cancellation when the SSE reader disconnects
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.226 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/lib/harness-event-views.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+[90mstdout[2m | src/__tests__/api/harness/routes.test.ts[2m > [22m[2mHarness API baseline routes[2m > [22m[2mkeeps turn and interrupt routes coherent across module-bundle boundaries
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=1.321 reason=Only Agent 0 and Agent 1 may delegate.
+
+ [32m✓[39m src/__tests__/scripts/desktop-release-workflow.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-scaffold.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 122[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/pi-agent-engine-adapter.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 721[2mms[22m[39m
+     [33m[2m✓[22m[39m ignores ambient Pi, agent, prompt, extension, skill, settings, and context sentinels [33m 621[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/lifecycle-status.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/runtime-host-agent1-manager.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/domain-profile.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/chirality-mutating-mcp.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/harness/routes.test.ts [2m([22m[2m38 tests[22m[2m)[22m[33m 1156[2mms[22m[39m
+ [2m[90m↓[39m[22m src/__tests__/integration/pec-bridge.integration.test.ts [2m([22m[2m4 tests[22m[2m | [22m[33m4 skipped[39m[2m)[22m
+ [32m✓[39m src/__tests__/scripts/verify-packaged-agent-sdk-runtime.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 73[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-attachment-resolver.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/dependencies-register-contract.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/coordination-tools.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/pipeline-surface.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/run-live-packaged-agent-sdk-read-tool-proof.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 58[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/woven-dialogue-shell.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/cli-launcher.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/shell-frame.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/harness-stream-views.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/chat-panel-empty-state.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-options.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 280[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/chirality-tool-bridge.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/account-consent-settings.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/desktop-project-client.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/api-key-settings.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/persona-manager.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/desktop-daemon-posture.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-chat-draft.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/agent-runtime-contract.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/chat-panel-runtime-reconnect.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/shell-runtime-connectivity.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/operation-proposal.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/desktop-log.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-runtime.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/working-root/tree-route.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/omlx-provider-config.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/pipeline-dispatch-contract.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/workbench-surface.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/chat-panel-failed-send.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/verify-electron-dist.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+{"status":"FAIL","summaryPath":"/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-daemon-proof-test-ga9VLO/evidence/summary.json"}
+ [32m✓[39m src/__tests__/components/selected-session-replay-lens.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/run-packaged-daemon-instruction-root-proof.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 139[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/permission-broker.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/harness/daemon-proxy-boundary.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/harness/scaffold-route.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 170[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/agent-instruction-conformance.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/layout-state.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/permission-event-channel.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/guarded-session-selection.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/domain-profile-registry.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/transcript-replay.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/desktop-process-policy.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/operator-projection.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-error-display.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/recorded-agent-hierarchy.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/dmg-packaging-policy.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/run-logger.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/task-scope-selection.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/runtime-settings-reconnect.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/agent-roster.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/agent-matrix-cells.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-toolkit.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/runtime-settings.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/subagent-bridge.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/redaction-path-matrix.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/validate-harness-premerge.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 63[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/tool-evidence.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/pi-event-mapper.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/woven-dialogue-work-projection.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-event-buffer.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/daemon-instruction-root.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/runtime-daemon-signal-integration.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-instruction-root.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/__tests__/contract-pins.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/woven-dialogue-viewport.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/pi-lock-integrity.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/document-view-state.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/permission-cards.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/working-root/validate-route.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 48[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/ipc-sender-policy.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/persona-resolution.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-contract-rollback.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/harness/agents-route.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/pkg08-compatibility-boundaries.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-ui-bridge.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-ui-attachments.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/validate-harness-section9.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/domain-headless-preview-runner.test.ts [2m([22m[2m51 tests[22m[2m)[22m[33m 1662[2mms[22m[39m
+     [33m[2m✓[22m[39m maps exit 2, unsupported exits, signals, and result schema mismatch to stable refusals [33m 355[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/agents-projection.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/run-network-policy-proof.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/app-shell-resize.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/navigation-intent.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/docs/reliance-boundary-register.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/workspace-file-tree-refresh.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/atomic-write.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/agent-matrix-panel.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/verify-packaged-dependency-boundary.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/loop-first.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/workspace-sidebar.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/woven-dialogue-controls.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/__tests__/electron/runtime-host-socket-path.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/woven-dialogue-route.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/api/harness/permission-route.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/agent-sdk-manager.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 39[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/api-key-store.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/pack-electron-with-supply.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-errors.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/agent-matrix-launch.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/agent-engine-port.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/harness-sanitize.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/ansi.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/tool-catalog.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/loop-tertiary-routes.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 126[2mms[22m[39m
+ [32m✓[39m src/__tests__/integration/pi-omlx-wire.integration.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 1923[2mms[22m[39m
+     [33m[2m✓[22m[39m discovers the exact model, executes one governed read tool, persists evidence, and finishes canonically [33m 933[2mms[22m[39m
+ [32m✓[39m src/__tests__/components/chat-markdown.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/__tests__/integration/runtime-desktop-cli-shared-daemon.integration.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 2770[2mms[22m[39m
+     [33m[2m✓[22m[39m persists exactly one terminal outcome when daemon restart interrupts an in-flight model drain [33m 2139[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects a CLI turn with the typed shared-session lock while Desktop is active [33m 539[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/run-packaged-launchagent-login-proof.test.ts [2m([22m[2m72 tests[22m[2m)[22m[33m 3531[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves plist and runtime diagnostics when exact-owned bootout is refused [33m 775[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves diagnostics when successful bootout leaves the job loaded but process absent [33m 768[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/run-packaged-launchagent-runatload-proof.test.ts [2m([22m[2m22 tests[22m[2m)[22m[33m 3662[2mms[22m[39m
+     [33m[2m✓[22m[39m fails closed on permission/domain/transient launchctl print failures [33m 546[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects wrong or extra loaded argument identity and allows an unavailable block [33m 340[2mms[22m[39m
+     [33m[2m✓[22m[39m tracks KeepAlive replacement PIDs before retrying bootout [33m 316[2mms[22m[39m
+     [33m[2m✓[22m[39m waits for confirmed process absence after SIGKILL [33m 416[2mms[22m[39m
+     [33m[2m✓[22m[39m refuses SIGKILL and fails closed when executable identity changes after SIGTERM [33m 314[2mms[22m[39m
+     [33m[2m✓[22m[39m fails closed after the bounded cleanup loop cannot reclaim the service [33m 524[2mms[22m[39m
+     [33m[2m✓[22m[39m captures PID before a later identity failure and performs bounded cleanup [33m 515[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m165 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (166)[39m
+[2m      Tests [22m [1m[32m1567 passed[39m[22m[2m | [22m[33m4 skipped[39m[90m (1571)[39m
+[2m   Start at [22m 12:12:13
+[2m   Duration [22m 3.90s[2m (transform 4.71s, setup 0ms, import 8.78s, tests 22.17s, environment 8ms)[22m
+

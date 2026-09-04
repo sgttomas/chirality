@@ -1,0 +1,10 @@
+{
+  "id": "section8.smoke_stream",
+  "status": "pass",
+  "startedAt": "2026-09-04T18:12:05.166Z",
+  "endedAt": "2026-09-04T18:12:05.370Z",
+  "durationMs": 204,
+  "details": {
+    "eventCount": 8
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schema": "chirality-run-checks/v1",
+  "run_id": "APPDEV_V3_NODE_O_2026-09-04",
+  "basis": "e2f8317dadb8ac95b7aff5ac5637d967fb7e6d40",
+  "status": "REVIEW_READY",
+  "step0": {
+    "receipt_cursor": "Receipt-224",
+    "receipts_validator": "pass",
+    "authority_corpus": "pass; v20; no drift",
+    "decision_register_scan": "pass; no live ruling gate for revision 3",
+    "app_hold_dispatch": "pass; ALLOW",
+    "app_hold_integrity": "pass",
+    "pinned_completion_reference": "pass",
+    "practitioner_status": "pass",
+    "harness_self_check": "pass",
+    "selectability": "pass; PR #695 changed named frontend/electron trigger surfaces; PR #696 was plan-only and non-triggering"
+  },
+  "evidence": {
+    "successful_run": "run-app-e2f8317da-runner-9dfbb7962-revision3",
+    "premerge": "pass; exit 0; Section 8 rows pass; Section 9 report-only rows pass",
+    "release_quality": "pass; exit 0; full test, typecheck, Section 9, premerge, and summary consistency pass",
+    "section8_summary_sha256": "ee89c9ce35acbdfb09c7ba44b354e35a86aa9db7d557f92d85080081270bbc82",
+    "release_quality_summary_sha256": "c8599f2f5580b109718a854cf8ad19aef363d4eecaec703428e34b39a13b07ac",
+    "successful_run_manifest_sha256": "14291495dfb8f270631143a02cc869969af599e72b56b6848a4f196b9f0edb82",
+    "comparison": "pass; BEHAVIOUR_PROJECTIONS_EQUAL=true against accepted revision 2",
+    "cleanup": "pass; final coalition empty, listener zero, socket absent, transient root removed, three consecutive empty scans",
+    "sse_data_json": "pass; 5 files; 37 data records",
+    "failed_attempt": "run-attempt1-e2f8317da-missing-electron-revision3; exit 74 before build or daemon launch because Electron.app was absent; no pass inferred; cleanup evidence retained"
+  },
+  "checks": [
+    {"id": "runtime-npm-ci-build", "status": "pass"},
+    {"id": "frontend-npm-ci", "status": "pass", "note": "initial sandbox DNS failure was rerun with approved network access"},
+    {"id": "frontend-focused-vitest", "status": "pass", "note": "4 files; 83 tests"},
+    {"id": "frontend-full-vitest", "status": "pass", "note": "165 files passed; one suite-declared skip; 1567 tests passed; four suite-declared skips"},
+    {"id": "frontend-typecheck", "status": "pass"},
+    {"id": "frontend-build", "status": "pass"},
+    {"id": "registered-harness-self-check", "status": "pass"},
+    {"id": "registered-app-hold-integrity", "status": "pass"},
+    {"id": "registered-harness-pytest", "status": "pass", "note": "350 tests"},
+    {"id": "receipts-validator-read-only", "status": "pass"},
+    {"id": "authority-corpus", "status": "pass", "note": "v20; no drift"},
+    {"id": "scope-of-work", "status": "pass", "note": "SOW_V1"},
+    {"id": "exact-change-scope", "status": "pass"},
+    {"id": "app-hold-dispatch-and-reliance", "status": "pass", "note": "ALLOW"},
+    {"id": "evidence-manifests", "status": "pass", "note": "bundle and both revision-3 run manifests verify"},
+    {"id": "strict-json", "status": "pass", "note": "duplicate-key and non-finite rejection enabled"},
+    {"id": "secret-scan", "status": "pass", "note": "7469 files scanned; zero blocked; 26 allowed fixtures; output SHA-256 471650538962ecb810fb681aa58dbd20e1f7c57747ca9d8aba36e36bc2f5b484"},
+    {"id": "tracked-product-byte-check", "status": "pass", "note": "no tracked frontend, runtime, or workflow delta"},
+    {"id": "runner-comparator-byte-check", "status": "pass", "note": "unchanged from accepted revision-2 runner commit"},
+    {"id": "f-app-2-semantic-scan", "status": "pass", "note": "only explicit boundary text or validation-surface identifiers"},
+    {"id": "visual-comparison", "status": "skipped", "note": "no tracked UI, CSS, geometry, copy, control, or product byte changed"}
+  ],
+  "honest_attempts": [
+    "The first Node O frontend npm ci attempt failed in the sandbox with ENOTFOUND for registry.npmjs.org; the approved-network rerun passed.",
+    "The first proof attempt failed before build or daemon launch because Electron.app was absent. The cached archive matched Electron's pinned checksum, the package-native installer materialized it, and the unchanged runner then passed.",
+    "An initial source-identity helper used zsh's reserved lowercase path variable and emitted invalid empty rows to the console only; it wrote no file. The retained TSV was generated with a non-reserved variable and validated.",
+    "An initial bundle-manifest regeneration included its transient in-tree .next file and failed validation. The retained manifest was regenerated from an external temporary file and verifies; no transient file remains."
+  ],
+  "pending": ["fresh independent review over 100% of the frozen diff", "post-PASS narrative-only closeout and receipt"]
+}

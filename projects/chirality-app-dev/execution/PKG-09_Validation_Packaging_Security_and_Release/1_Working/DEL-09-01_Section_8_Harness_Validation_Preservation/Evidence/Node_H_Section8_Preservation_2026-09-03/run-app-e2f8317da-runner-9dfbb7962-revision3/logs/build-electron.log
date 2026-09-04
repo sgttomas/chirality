@@ -1,0 +1,19 @@
+
+> chirality-frontend@2.0.0 build:electron
+> node ./scripts/build-electron.mjs
+
+
+  dist-electron/main.js      1.3mb ⚠️
+  dist-electron/main.js.map  2.5mb
+
+⚡ Done in 25ms
+
+  dist-electron/preload.js       3.5kb
+  dist-electron/preload.js.map  14.4kb
+
+⚡ Done in 1ms
+
+  dist-runtime/chirality-cli.mjs       73.7kb
+  dist-runtime/chirality-cli.mjs.map  180.9kb
+
+⚡ Done in 3ms

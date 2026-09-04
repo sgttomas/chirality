@@ -1,0 +1,24 @@
+event: harness:event
+data: {"sessionId":"fdcc4a3a-00f4-48b0-a386-11a71d4b557b","turnId":"30c2b25f-28d5-46d7-98a4-2261a7da1393","type":"turn.accepted","data":{"message":"Smoke stream ordering validation"},"schemaVersion":1,"eventId":"734247bb-d7d2-4604-96c3-347647b5a9ce","timestamp":"2026-09-04T18:12:05.255Z"}
+
+event: session:init
+data: {"engineSessionId":"stub_0594a120-a2c1-4412-a64a-30c8ca58c4d5","adapterId":"stub","providerId":"stub","model":"haiku"}
+
+event: chat:delta
+data: {"text":"Smoke stream ordering va"}
+
+event: chat:delta
+data: {"text":"lidation"}
+
+event: chat:complete
+data: {"text":"Smoke stream ordering validation"}
+
+event: session:complete
+data: {}
+
+event: harness:event
+data: {"sessionId":"fdcc4a3a-00f4-48b0-a386-11a71d4b557b","turnId":"30c2b25f-28d5-46d7-98a4-2261a7da1393","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"0a6c0753-c0f4-49b9-9ce5-aa175a9eacdc","timestamp":"2026-09-04T18:12:05.343Z"}
+
+event: process:exit
+data: {"exitCode":0}
+

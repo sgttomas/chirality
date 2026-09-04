@@ -1,0 +1,13 @@
+{
+  "cleanupFailed": true,
+  "error": "SupervisorError: target binary missing: /private/tmp/chirality-app-v3-section8-rev3-20260904/proof-source/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+  "exitCode": 74,
+  "finalCoalitionMembers": [],
+  "finalPortListenerCount": 0,
+  "finalSocketPresent": false,
+  "label": "ai.chirality.section8.65040.7a7e61ed5763",
+  "schema": "chirality-section8-coalition-supervisor/v1",
+  "serviceTarget": "gui/501/ai.chirality.section8.65040.7a7e61ed5763",
+  "status": "FAIL",
+  "temporaryRootRemoved": true
+}

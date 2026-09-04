@@ -1,0 +1,7 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_V3_NODE_O_2026-09-04",
+  "instance_id": "O2_REVIEWER",
+  "status": "pending_dispatch",
+  "verdict": null
+}
