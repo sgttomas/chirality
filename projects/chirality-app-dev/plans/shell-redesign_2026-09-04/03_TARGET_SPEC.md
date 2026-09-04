@@ -13,7 +13,7 @@ The mock in `mock/chirality-shell-mocks.html` is the visual reference; this docu
 │ (all       │ ┌──────────────────────────────────────┐ │                  │
 │  folders)  │ │ message                        ⊕ (↑) │ │                  │
 │            │ └──────────────────────────────────────┘ │                  │
-│ ─────────  │  Working in [folder ⌄] · [agent ⌄] · [mode ⌄]│                  │
+│ ─────────  │  Working in [folder] · [agent] · [mode] · [rung] │              │
 │ account    │                                          │                  │
 ├────────────┴──────────────────────────────────────────┴──────────────────┤
 │ ● Idle · Last turn: 5 actions · 12 s                          Details ▸ │  strip
@@ -83,7 +83,11 @@ Unchanged behaviour from `ChatPanel`; layout and copy change.
 - Tool calls render as a pill with a dot and a sentence: "Read DEL-09-01 status", "Searched the working root", "Wrote the review record". The function name and raw arguments are in the pill's tooltip and in the Activity view.
 - **Reference chips** (SR-09): any token in assistant text that resolves to a path under the working root, a deliverable id (`DEL-nn-nn`), a receipt (`Receipt nnn`), or a ruling id renders as a chip with a document glyph. Hover shows "Open in side panel". Click opens the target in the right panel (document view for files and deliverable status files; the receipts ledger for receipts). Resolution is a pure function over the working-root tree and deliverable roster already loaded by the shell; no network call at render time.
 - **Composer** (SR-22): one box holding only the message field, the attach control, and the filled round Send arrow at its right (the only filled control; the word "Send" is its `aria-label`). The field is one line at rest and grows to a maximum of six lines. Above it, inside the same box, an optional **quote row**: left-rule quote of the selected text (single line, ellipsised), source `file · lines a–b`, and a remove control. Attachments render as chips in the quote row. Box height at rest is about 48px; padding 8px, radius 12px, strong hairline border.
-- **Context line** (SR-22): directly under the box, left-aligned with it, 12.5px in the faint colour: the word "Working in" (or "Start in" for a fresh chat), then the **folder** selector, a middle dot, the agent (persona) selector, a middle dot, the mode selector. Selectors are small pills with a chevron; a fixed folder is a plain label with a folder glyph. The line wraps rather than hides at narrow widths. It is part of the composer region for keyboard order and is announced as one group, "Chat context".
+- **Context line** (SR-22, SR-23): directly under the box, left-aligned with it, 12.5px in the faint colour: the word "Working in" ("Start in" for a fresh chat; "Following" when a workflow steers the chat), then the **folder** selector, the agent (persona) selector, the mode selector, and the **rung** (§4.2), separated by middle dots. Selectors are small pills with a chevron; a fixed folder is a plain label with a folder glyph; a followed workflow is an umber label with a diamond glyph and the step count. The line wraps rather than hides at narrow widths (the centre column is `minmax(0, 1fr)` so the line can never widen the grid). It is part of the composer region for keyboard order and is announced as one group, "Chat context".
+
+### 4.2 The rung (SR-23)
+
+The fourth item of the context line. In a fresh chat it is a select reading *Plain chat* whose menu offers *With a specification…* and *Governed workflow…*. *With a specification* opens a picker of skills and profiles (the `skills/` registry filtered to those a chat may apply directly); the chosen name replaces the label and the chat's system prompt gains the skill's method text. *Governed workflow…* opens the New workflow form (§5.10). When a workflow is followed the item becomes the label *<workflow> · step n of m* and is not a select; leaving the workflow is done from the Workflows view (*Pause*). Once a message has been sent, the rung can still be raised (a plain chat can adopt a specification or a workflow) but a workflow cannot be swapped for another in the same chat.
 
 ### 4.1 Folder selector (SR-21)
 
@@ -148,6 +152,16 @@ The recorded hierarchy for this working root: the live chat's persona first with
 ### 5.8 Session view (replay, SR-08)
 
 Breadcrumb `‹ Who is working › <persona>`. A read-only banner: "Read-only. Started by <parent persona> in this chat at <time>. Finished in <duration>." Key-value block: Purpose, Allowed, Result. Then the transcript rendered by the existing replay lens components, including the provenance block. Footer: Open parent, Copy summary. Uses the existing loader, selection guard, and reconnect recovery unchanged; only the mount point moves. Selection is still disabled while a live turn runs (guard `liveTurnActive`).
+
+### 5.10 Workflows view (SR-23)
+
+Fourth tab in the right panel header, between Files and Who is working. Lists the folder's governed workflows from `.chirality/workflows/*.md`: title, Agent 1 role, delegation policy, roadmap position as *step n of m* with a thin umber progress bar, and the next human gate if any. Beneath, *Available to start*: templates the folder qualifies for (a template declares what it needs, such as an accepted decomposition or PDF sources). Footer: *New workflow…* and a count. No folder: "Choose a folder to see its workflows."
+
+**Workflow open** (breadcrumb `‹ Workflows › <name>`): a key-value block (Agent, Folder, Policy with where briefs run, Roadmap source and acceptance date), then the roadmap as a numbered list with done, current, and pending states and *human gate* marked on the steps that have one. Footer: *Follow in this chat* (filled) and *Pause*. Following sets the chat's agent and policy from the file, injects the roadmap and current step into the system prompt, and switches the context line to *Following*. The agent is instructed to work the current step, stop at a gate, and say so; advancing past a gate is a human act recorded by the app against the content it accepted.
+
+**New workflow** (breadcrumb `‹ Workflows › New workflow`): Folder (fixed from the chat); Agent 1 role (required; the Type 1 roster); Delegation policy (required; *None*, *Ask before changes*, *Approve each write*, *Run bounded briefs*); Briefs run on (*Local model* when available, else the hosted account); Roadmap (*Draft from this chat*, or a template). The roadmap is editable before creation. *Create and follow* is disabled until role and policy are set. The file is written to `.chirality/workflows/<slug>.md` under the same write gate as any other write, and the chat follows it.
+
+**The workflow file.** Front matter: `agent`, `folder` (the canonical root), `policy`, `briefsRunOn`, `roadmapSource`, `acceptedAt`; body: the roadmap as an ordered list with `[gate]` markers and an optional `current: n` line the app maintains. It is a derivative package in the project's own vocabulary: it steers the agent and cites accepted truth; it never holds status, approvals, or evidence, which stay in the deliverable records.
 
 ### 5.9 Pop-out window
 
@@ -220,6 +234,8 @@ Workbench and Pipeline surfaces and navigator groups; the Work projection tab; t
 | Folder control | root chip in header | composer select "chirality-app-dev" → label after first message; "Choose folder"; "No folder" |
 | Empty transcript | current empty-state copy | "Ask <persona> something about <root>." |
 | No root | current | "Choose folder" in the composer select; "No folder" label |
+| Rung | (none) | "Plain chat" · "With a specification…" · "Governed workflow…" · "Following <workflow> · step n of m" |
+| Delegation policy | operator modes | "None" · "Ask before changes" · "Approve each write" · "Run bounded briefs" |
 | Session notice | "Session selection is paused while the primary dialogue is running." | "Paused while a turn is running." |
 
 Identifiers that must stay verbatim: `Opt-in Preview`; the three command-network labels; `role not mechanically enforced`; `instruction-asserted`; oMLX model ids. "For this root" is retired from account lines and survives only in consent and permission copy as "for <folder>" / "This folder".
@@ -245,6 +261,7 @@ Add to `WovenWorkspaceState` with sanitize-and-fallback readers:
 - `groupsCollapsed: string[]`
 - `knownRoots: { path: string; lastUsedAt: string }[]` (cap 50, app-scoped, not project-scoped): the folders whose chats the left panel lists and the composer offers. `chirality.projectRoot` is read once as the seed and then left in place for the legacy shells.
 - `activeChatRoot` is **not** persisted: it is derived from the active session record.
+- `chatRung: Record<sessionId, { kind: 'plain' | 'spec' | 'workflow'; ref?: string }>` (cap 500): which rung each chat is on and which specification or workflow file it references. The workflow's own state lives in its file, not here.
 
 Remove nothing; `sessionSurfaces` and `navigatorExpandedSurfaces` stay readable and become unused. `coordinationView` is read as before and mapped to `rightPanelView` on load when the new field is absent.
 
