@@ -1,0 +1,9 @@
+{
+  "adapterId": "stub",
+  "providerId": "stub",
+  "model": "haiku",
+  "firstEngineSessionId": "stub_f32ada90-c36b-4291-ae10-fce35f5decef",
+  "secondEngineSessionId": "stub_f32ada90-c36b-4291-ae10-fce35f5decef",
+  "persistedAfterFirst": "stub_f32ada90-c36b-4291-ae10-fce35f5decef",
+  "persistedAfterSecond": "stub_f32ada90-c36b-4291-ae10-fce35f5decef"
+}

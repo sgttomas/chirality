@@ -1,0 +1,11 @@
+{
+  "id": "section8.permissions_dontask",
+  "status": "pass",
+  "startedAt": "2026-09-04T05:36:50.193Z",
+  "endedAt": "2026-09-04T05:36:50.361Z",
+  "durationMs": 168,
+  "details": {
+    "denyEvents": 7,
+    "allowEvents": 9
+  }
+}

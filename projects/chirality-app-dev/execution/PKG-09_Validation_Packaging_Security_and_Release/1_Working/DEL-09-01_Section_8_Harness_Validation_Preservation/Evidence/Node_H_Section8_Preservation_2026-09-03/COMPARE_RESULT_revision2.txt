@@ -1,4 +1,4 @@
-== run-head-ede175910-revision2/artifacts/stable/section8-latest-summary.json
+== run-app-ede175910-runner-b1f0d71f1-revision2/artifacts/stable/section8-latest-summary.json
    status=pass testCount=8 staged=False
    setup.server_reachable                   pass  {"httpStatus": 200}
    regression.session_crud                  pass  {"listedCount": 1}

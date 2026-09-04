@@ -1,0 +1,22 @@
+started_at=2026-09-04T05:36:43Z
+repo_root=/private/tmp/chirality-app-v3-slate3-20260903/nodeJ
+head=b1f0d71f128e31fb2f0d10b579abf6523bae7d3c
+git_status_before=0 dirty paths
+platform=Darwin 25.6.0 arm64
+node=v24.18.0
+npm=11.16.0
+electron=43.2.0
+next=15.5.21
+vitest=4.1.10
+port=51845
+user_data=/private/tmp/chirality-s8.h69Qus
+user_data_created_by_script=1
+tmpdir=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/
+harness_tmp_root=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest
+CHIRALITY_HARNESS_PROVIDER=stub
+HARNESS_BASE_URL=http://127.0.0.1:51845
+CHIRALITY_RUNTIME_SOCKET_PATH=/private/tmp/chirality-s8.h69Qus/runtime/control.sock
+CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE=/private/tmp/chirality-s8.h69Qus/runtime/auth/tokens/operator.token
+with_release_quality=0
+daemon_switches=--use-mock-keychain --user-data-dir=<USER_DATA> --runtime-daemon
+process_lifecycle=retained POSIX session/process-group controllers; no individual PID signalling

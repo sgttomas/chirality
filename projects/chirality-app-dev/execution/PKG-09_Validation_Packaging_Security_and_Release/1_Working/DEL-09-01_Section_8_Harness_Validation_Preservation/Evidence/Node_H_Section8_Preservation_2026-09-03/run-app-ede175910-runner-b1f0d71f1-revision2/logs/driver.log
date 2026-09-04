@@ -1,0 +1,10 @@
+[05:36:44] npm run build:electron
+[05:36:44] starting runtime daemon under /private/tmp/chirality-s8.h69Qus
+[05:36:46] daemon ready (controller/pgid 10129, child 10132, electron pid 10133)
+[05:36:46] project registered; token file /private/tmp/chirality-s8.h69Qus/runtime/auth/tokens/project-7bfb8881-ee9e-4734-9e96-8db089550280.token
+[05:36:46] starting next dev on http://127.0.0.1:51845
+[05:36:48] harness API ready (controller/pgid 10156, child 10159)
+[05:36:48] npm run harness:validate:premerge
+[05:36:57] premerge exit 0
+[05:36:57] teardown begin (incoming status 0)
+[05:36:59] teardown done (cleanup_failed=0)

@@ -1,0 +1,11 @@
+{
+  "id": "regression.session_crud",
+  "status": "pass",
+  "startedAt": "2026-09-04T05:36:49.136Z",
+  "endedAt": "2026-09-04T05:36:49.480Z",
+  "durationMs": 344,
+  "details": {
+    "sessionId": "7d2869c6-798e-441e-8a89-c53a5adbd7d5",
+    "listedCount": 1
+  }
+}

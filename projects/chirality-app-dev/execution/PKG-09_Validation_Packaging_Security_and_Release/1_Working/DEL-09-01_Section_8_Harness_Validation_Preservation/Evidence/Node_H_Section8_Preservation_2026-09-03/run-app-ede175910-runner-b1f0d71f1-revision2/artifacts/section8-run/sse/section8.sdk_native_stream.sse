@@ -1,0 +1,24 @@
+event: harness:event
+data: {"sessionId":"1c04b5a9-1c49-4bf0-aafb-4d97ac99844a","turnId":"ae3dabd9-9d15-442d-b954-928d1f756ab8","type":"turn.accepted","data":{"message":"sdk-native-stream validation baseline"},"schemaVersion":1,"eventId":"dd13e493-473a-400b-8c52-8fbbbce8797e","timestamp":"2026-09-04T05:36:50.625Z"}
+
+event: session:init
+data: {"engineSessionId":"stub_896a07cc-dd4f-432a-9772-ebe15cb8769d","adapterId":"stub","providerId":"stub","model":"haiku"}
+
+event: chat:delta
+data: {"text":"sdk-native-stream valida"}
+
+event: chat:delta
+data: {"text":"tion baseline"}
+
+event: chat:complete
+data: {"text":"sdk-native-stream validation baseline"}
+
+event: session:complete
+data: {}
+
+event: harness:event
+data: {"sessionId":"1c04b5a9-1c49-4bf0-aafb-4d97ac99844a","turnId":"ae3dabd9-9d15-442d-b954-928d1f756ab8","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"5bb35257-e409-43a8-a7d5-541fbb8a2df6","timestamp":"2026-09-04T05:36:50.713Z"}
+
+event: process:exit
+data: {"exitCode":0}
+
