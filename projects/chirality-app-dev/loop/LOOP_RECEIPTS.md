@@ -6638,3 +6638,159 @@
   - Checks: receipt validator pass; corpus pass; Scope of Work pass; APP-HOLD reliance and dispatch pass; registered checks pass; manifests, comparator, and mapping pass; strict JSON and SSE pass; exact change-scope and diff check pass; F-APP-2, secret, product, and evaluator scans pass; reviewed byte-identity pass.
   - Model-Attribution: provider OpenAI; engine Codex; implementer model GPT-5 family (exact identifier unavailable); independent reviewer attribution is retained in each filed review.
   - Gate-Outcome: `EXECUTED` — awaiting owner merge. A1 applies because proof execution wrote ignored/generated `frontend/` paths; historical R20 remains historical and any future proof claim requires a newly staged revision plus fresh owner execution. No tracked product, evaluator, runtime, workflow, Root, plan, register, decision-record, lifecycle, G5, signing, notarization, publication, distribution, release-readiness, certification, or professional act or claim.
+
+- **2026-09-04 — Receipt 220** (App v3 pathway node M: owner ruling A15 record-only transcription).
+  - Receipt-ID: `Receipt-220`
+  - Examined-Through: `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
+  - Parent-Receipt: `Receipt-219`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: in the
+    HELP_HUMAN session on 2026-09-04 owner Ryan Tufts typed "Yes, so
+    authorized." through the plain-text mobile fallback in answer to each of
+    the three presented questions: the recommended
+    per-response CSP nonce with dynamic rendering for DEL-09-06-V3-04; the
+    owner-host Syft `v1.18.1` install for DEL-09-05-V3-02; and creation of
+    the disposable self-signed identity plus the seated credential-transition
+    drill for DEL-09-05-V3-04 under the question's express exclusion of
+    Developer ID signing, notarization, Apple calls, distribution, and
+    release-readiness claims. The durable ruling form is repo-root
+    `plans/steers/chirality_app_v3_app_ruling_record_a15_2026-09-04.md`.
+  - Pointers: branch
+    `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`; basis above; RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`
+    (`ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, `STEP0_DISCOVERY.md`,
+    `CHECKS.json`, `RETURN.md`, `HANDOFF_STATE.md`, `MANIFEST.sha256`,
+    calibrated launch/status/return records under `instances/M1/`,
+    `instances/M2_REVIEWER/`, `instances/M3_REVIEWER/`, and
+    `instances/M4_REVIEWER/`, immutable round-1 through round-3 reviews under
+    those reviewer instances, `REVIEW_DISPOSITIONS.md`, and
+    `REVIEW_R4_HANDOFF.md`); execution class is `delegated-harness-native`;
+    every Agent-2 role is `role not mechanically enforced` with
+    `instruction-asserted` governed-workflow evidence; K-SUBAGENT/
+    non-delegation is instruction+config asserted, not mechanism-proven, and
+    no descendants were observed; DEL-09-06
+    `_STATUS.md` makes V3-04 selectable under A15 with a nonce-only Return and
+    Removed-when contract while preserving V3-03;
+    DEL-09-05 `_STATUS.md` records the prospective host-act authorizations,
+    parks V3-02 until owner-installed Syft `v1.18.1` is observable, and keeps
+    V3-04 parked until the disposable identity is observable.
+  - Checks: receipt validator pass; authority corpus pass; APP-HOLD reliance,
+    dispatch, and integrity pass; harness self-check and pytest pass; exact
+    change-scope, manifest verification, F-APP-2 scan, forbidden-path scan,
+    native-descendant evidence calibration, and `git diff --check` pass.
+    Independent reviews fail and are remediated; fresh independent review
+    pending. Frontend gates skipped
+    because no `frontend/` path changed; A1 is not applicable.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact model identifier not exposed to the agent runtime); execution
+    class `delegated-harness-native`; ephemeral Agent-2 modes are `role not
+    mechanically enforced` with governed-workflow role evidence
+    `instruction-asserted`; non-delegation is instruction+config asserted,
+    not mechanism-proven.
+  - Gate-Outcome: `EXECUTED` — record-only transcription; R1, R2, and R3
+    reviews failed and all findings are remediated; awaiting fresh R4 review
+    and owner merge. A14 remains valid dated history; its host-act deferrals are lifted
+    prospectively only. No product, `frontend/`, host, Root, lifecycle,
+    Checking Approval SHA, register, decomposition, SCOPE_CHANGE, Developer
+    ID signing, notarization, Apple call, distribution, publication,
+    release-readiness, or production identity act or claim.
+
+- **2026-09-04 — Receipt 221** (Node M corrective closeout pointer).
+  - Receipt-ID: `Receipt-221`
+  - Examined-Through: `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
+  - Parent-Receipt: `Receipt-220`
+  - Stale-Map-Delta: Receipt 220 is preserved earlier tranche evidence; its
+    R4/current-review pointers are superseded by
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/{REVIEW_DISPOSITIONS.md,REVIEW_R5_HANDOFF.md,HANDOFF_STATE.md}`.
+  - Pointers: branch
+    `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`; basis above; RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`;
+    immutable R1–R4 reports under `instances/M2_REVIEWER/` through
+    `instances/M5_REVIEWER/`; active next-review contract
+    `REVIEW_R5_HANDOFF.md`; A15 and DEL-09-05/DEL-09-06 ruling semantics
+    remain as recorded by Receipt 220.
+  - Checks: receipt validator pass; authority corpus pass; APP-HOLD pass;
+    harness self-check and pytest pass; exact change-scope, manifest,
+    immutable-report identity, current-pointer coherence,
+    native-descendant evidence calibration, forbidden-path/F-APP-2, and
+    `git diff --check` pass; frontend and release-execution gates skipped.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact model identifier not exposed to the agent runtime); execution
+    class `delegated-harness-native`; Agent-2 roles are `role not
+    mechanically enforced` with `instruction-asserted` governed-workflow
+    evidence; non-delegation is instruction+config asserted, not
+    mechanism-proven.
+  - Gate-Outcome: `AWAITING_OWNER` — R1–R4 failed and are remediated; fresh
+    R5 review, PR creation, and owner merge remain gates. The pre-review
+    candidate cannot contain the future R5 verdict/report; no frontend,
+    product, host, Root, lifecycle, SCOPE_CHANGE, signing, notarization,
+    Apple call, distribution, publication, release-readiness, or production
+    identity act or claim occurred.
+
+- **2026-09-04 — Receipt 222** (Node M A15 provenance-calibration closeout pointer).
+  - Receipt-ID: `Receipt-222`
+  - Examined-Through: `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
+  - Parent-Receipt: `Receipt-221`
+  - Stale-Map-Delta: Receipts 220 and 221 remain preserved earlier evidence;
+    Receipt 221's R5/current-review pointer is superseded by
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/{REVIEW_DISPOSITIONS.md,REVIEW_R6_HANDOFF.md,HANDOFF_STATE.md}`.
+  - Pointers: branch
+    `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`; basis above; A15
+    provenance calibration at
+    `plans/steers/chirality_app_v3_app_ruling_record_a15_2026-09-04.md`;
+    RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`;
+    immutable R1–R5 reports under `instances/M2_REVIEWER/` through
+    `instances/M6_REVIEWER/`; active next-review contract
+    `REVIEW_R6_HANDOFF.md`; owner questions, answers, and substantive ruling
+    semantics remain unchanged.
+  - Checks: receipt validator pass; authority corpus pass; APP-HOLD pass;
+    harness self-check and pytest pass; exact change-scope, manifest,
+    immutable-report identity, A15/native-descendant evidence calibration,
+    preserved-receipt and current-pointer coherence, forbidden-path/F-APP-2,
+    and `git diff --check` pass; frontend and release-execution gates
+    skipped.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact model identifier not exposed to the agent runtime); execution
+    class `delegated-harness-native`; Agent-2 roles are `role not
+    mechanically enforced` with `instruction-asserted` governed-workflow
+    evidence; non-delegation is instruction+config asserted, not
+    mechanism-proven.
+  - Gate-Outcome: `AWAITING_OWNER` — R1–R5 failed and are remediated; fresh
+    R6 review, PR creation, and owner merge remain gates. The pre-review
+    candidate cannot contain the future R6 verdict/report; no frontend,
+    product, host, Root, lifecycle, SCOPE_CHANGE, signing, notarization,
+    Apple call, distribution, publication, release-readiness, or production
+    identity act or claim occurred.
+
+- **2026-09-04 — Receipt 223** (Node M A15 final reviewed closeout).
+  - Receipt-ID: `Receipt-223`
+  - Examined-Through: `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
+  - Parent-Receipt: `Receipt-222`
+  - Stale-Map-Delta: Receipts 220 through 222 remain preserved earlier
+    evidence; Receipt 222's pending-review posture is superseded by the
+    immutable PASS report at
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/instances/M7_REVIEWER/REVIEW_NODE_M_R6.md`
+    and the final `HANDOFF_STATE.md`.
+  - Pointers: branch
+    `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`; basis above; A15 at
+    `plans/steers/chirality_app_v3_app_ruling_record_a15_2026-09-04.md`;
+    RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`;
+    final `RETURN.md`, `HANDOFF_STATE.md`, `REVIEW_DISPOSITIONS.md`, and
+    `MANIFEST.sha256`; independent-review report SHA-256
+    `dc96448da18b81b1a3af333b63ade6eb6f6baa35e4453f9f2dcd7bf53bddb2c0`;
+    review NOTES are recorded residual context and seed no follow-on item.
+  - Checks: receipt validator pass; authority corpus pass; APP-HOLD pass;
+    harness self-check and pytest pass; exact change-scope, manifest,
+    independent-review identity, PASS-freeze byte identity,
+    forbidden-path/F-APP-2, and `git diff --check` pass; frontend and
+    release-execution gates skipped.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact model identifier not exposed to the agent runtime); execution
+    class `delegated-harness-native`; Agent-2 roles are `role not
+    mechanically enforced` with `instruction-asserted` governed-workflow
+    evidence; non-delegation is instruction+config asserted, not
+    mechanism-proven.
+  - Gate-Outcome: `AWAITING_OWNER` — independent review passed; PR creation,
+    push, and owner merge remain gates. No frontend, product, host, Root,
+    lifecycle, SCOPE_CHANGE, signing, notarization, Apple call, distribution,
+    publication, release-readiness, or production identity act or claim
+    occurred.

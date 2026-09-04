@@ -1,0 +1,278 @@
+{
+  "schema": "chirality-app-agentrun-checks/v1",
+  "run_id": "APPDEV_V3_NODE_M_2026-09-04",
+  "basis_commit": "719fe5e34cefc40fe0dab4b045f5f2a89341ae2f",
+  "content_commit": "freeze commit returned by Git after this run record is finalized; no self-referential SHA is embedded",
+  "environment": {
+    "os": "Darwin-25.6.0-arm64",
+    "python": "3.13.14",
+    "git": "git version 2.55.0",
+    "cwd_repo_root": "/private/tmp/chirality-app-v3-a15-20260904/nodeM",
+    "effective_env": {}
+  },
+  "checks": [
+    {
+      "id": "git-diff-check",
+      "command": "git diff --check",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "no whitespace errors"
+    },
+    {
+      "id": "receipts-validator",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "VALID after append-only final Receipt 223; Receipts 220 through 222 preserved"
+    },
+    {
+      "id": "authority-corpus-status",
+      "command": "python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "v20; every authority reference MATCH; no drift"
+    },
+    {
+      "id": "app-hold-integrity",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "PASS; no held deliverables; register match true"
+    },
+    {
+      "id": "app-hold-reliance",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation reliance --entry-path loop/LOOP_INIT.md --target DEL-09-05 --target DEL-09-06",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "ALLOW for DEL-09-05 and DEL-09-06"
+    },
+    {
+      "id": "app-hold-dispatch",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-05 --target DEL-09-06",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "ALLOW for DEL-09-05 and DEL-09-06"
+    },
+    {
+      "id": "harness-self-check",
+      "command": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "exit 0 at the unchanged repository baseline"
+    },
+    {
+      "id": "harness-pytest",
+      "command": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 -m pytest -q tools/practitioner_harness",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "350 passed"
+    },
+    {
+      "id": "change-scope-working-tree",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base 719fe5e34cefc40fe0dab4b045f5f2a89341ae2f --allowed plans/steers/chirality_app_v3_app_ruling_record_a15_2026-09-04.md --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_STATUS.md --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "exact write-set validation passed with no violations"
+    },
+    {
+      "id": "manifest-verification",
+      "command": "shasum -a 256 -c projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/MANIFEST.sha256",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "all recorded file identities verified"
+    },
+    {
+      "id": "f-app-2-and-forbidden-path-scans",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "all changed release-related wording is explicit no-act/no-claim posture; no frontend, product, host, Root, lifecycle, Checking Approval SHA, register, decomposition, SCOPE_CHANGE, or other forbidden path changed"
+    },
+    {
+      "id": "del-09-06-v3-03-byte-section-fence",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "the complete V3-03 item section is byte-identical to the basis"
+    },
+    {
+      "id": "del-09-06-v3-04-selected-outcome-coherence",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "gate, Depends, Return, and Removed-when select the per-response nonce outcome; Return and Removed-when are nonce-only; exact nonce attachment code shape remains open"
+    },
+    {
+      "id": "multi-agent-record-contract",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "orchestration plan, work graph, calibrated M1 through M7 launch-status-return records, all six immutable reviews, dispositions, and final closeout pointers are present"
+    },
+    {
+      "id": "review-report-byte-identities",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "all six filed review reports are byte-identical to the immutable external reports and match their recorded SHA-256 values"
+    },
+    {
+      "id": "final-review-and-handoff-coherence",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "mutable current-state records agree on R6 PASS and CLOSEOUT_READY; R2 through R6 handoffs are labelled spent history; no active review pointer remains"
+    },
+    {
+      "id": "post-pass-narrative-byte-fence",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "post-PASS edits are limited to immutable R6 review evidence, truthful final pointers/check metadata, manifest regeneration, and append-only Receipt 223; A15 and both status files retain PASS-freeze identities"
+    },
+    {
+      "id": "native-descendant-evidence-calibration",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "A15 and current execution records identify delegated-harness-native; Agent-2 roles are labelled role not mechanically enforced with instruction-asserted evidence; K-SUBAGENT non-delegation is instruction+config asserted, not mechanism-proven; no descendants were observed"
+    },
+    {
+      "id": "origin-main-closeout-basis",
+      "command": "git fetch origin main; git rev-parse origin/main",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "origin/main remained 719fe5e34cefc40fe0dab4b045f5f2a89341ae2f; no rebase required"
+    },
+    {
+      "id": "round-6-independent-review",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "immutable M7 report records PASS over 52d220ec44486bd62923aea1ecd2bfab02c693d2; its two NOTES are residual context and seeded no follow-on"
+    },
+    {
+      "id": "pass-freeze-substantive-identities",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "A15 SHA-256 5b99e308bd0e0affbc72ac7c8a727ca0aa5fa51d0de073f1d5cfeb35807ec817; DEL-09-05 status SHA-256 43cf5fb7762457131f1b2b34dbb479a15d27401f12aef23d253486ec839be584; DEL-09-06 status SHA-256 105b260aa0b212b97c1c6ecb65a9e1f7b5395c2742ead0ab6130c8f569efea85"
+    }
+  ],
+  "superseded_attempts": [
+    {
+      "id": "harness-status-input-shape",
+      "status": "fail",
+      "summary": "the first status invocation omitted --project and returned usage; corrected invocation with --project chirality-app-dev passed"
+    },
+    {
+      "id": "harness-self-check-system-python",
+      "status": "fail",
+      "summary": "system python3 lacked PyYAML; no pass inferred; the registered check was rerun with the repository's Python 3.13 runtime and passed"
+    },
+    {
+      "id": "status-field-fence-broad-pattern",
+      "status": "fail",
+      "summary": "the first post-freeze grep matched no-change History prose that named Current State and Checking Approval SHA; no pass inferred; the field-anchored diff check was rerun and passed with neither field changed"
+    },
+    {
+      "id": "receipt-review-detail-measurement-shape",
+      "status": "fail",
+      "summary": "the first remediation receipt check rejected round and finding identifiers in the Checks field as duplicated measurements; no pass inferred; review detail remains in Pointers and Gate-Outcome while Checks was corrected to pass/fail-only wording"
+    },
+    {
+      "id": "native-calibration-batch-regex-shape",
+      "status": "fail",
+      "summary": "the first batched calibration grep over-escaped the literal plus in instruction+config and exited nonzero without identifying a missing file; no pass inferred; the corrected per-file diagnostic verified every required calibration token"
+    }
+  ],
+  "reviews": [
+    {
+      "round": 1,
+      "candidate": "f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c",
+      "status": "fail",
+      "findings": {
+        "blocker": 0,
+        "major": 3,
+        "minor": 0,
+        "note": 0
+      },
+      "report": "instances/M2_REVIEWER/REVIEW_NODE_M_R1.md",
+      "report_sha256": "089204ef41625fa08a1eee915df08686be9e66f8b84ebb9d1390ae6a1025caf4",
+      "disposition": "M-R1-F1, M-R1-F2, and M-R1-F3 accepted and remediated; see REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 2,
+      "candidate": "4fa170341700e491dff8c72ce1229ba84735f073",
+      "status": "fail",
+      "findings": {
+        "blocker": 0,
+        "major": 2,
+        "minor": 0,
+        "note": 0
+      },
+      "report": "instances/M3_REVIEWER/REVIEW_NODE_M_R2.md",
+      "report_sha256": "66f61ef9cf9c4d433f19d6959b8b546768116c4eb67e3de97d9836347454e8e4",
+      "disposition": "M-R2-F1 and M-R2-F2 accepted and remediated; see REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 3,
+      "candidate": "52998709c5c19bc5c3df3944735593299d60be56",
+      "status": "fail",
+      "findings": {
+        "blocker": 0,
+        "major": 1,
+        "minor": 0,
+        "note": 0
+      },
+      "report": "instances/M4_REVIEWER/REVIEW_NODE_M_R3.md",
+      "report_sha256": "2c5ceb0c930f566b9f375d2f8f8b1f62b9123f55e175a438d37fcf9e160a8802",
+      "disposition": "M-R3-F1 accepted and remediated; see REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 4,
+      "candidate": "c3c3b628203ccc949d3ee3b3573a96b45f472278",
+      "status": "fail",
+      "findings": {
+        "blocker": 0,
+        "major": 1,
+        "minor": 0,
+        "note": 0
+      },
+      "report": "instances/M5_REVIEWER/REVIEW_NODE_M_R4.md",
+      "report_sha256": "ceb24881cf877fce9771c2b7dc9c820c8d34aed9d079f42ec6cee0f9392fd47a",
+      "disposition": "M-R4-F1 accepted and remediated; see REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 5,
+      "candidate": "085189ba093ec1705b68dc7f131692e132ff4cf4",
+      "status": "fail",
+      "findings": {
+        "blocker": 0,
+        "major": 1,
+        "minor": 0,
+        "note": 0
+      },
+      "report": "instances/M6_REVIEWER/REVIEW_NODE_M_R5.md",
+      "report_sha256": "08fb5bfc74abd294b47284fc5ebf836ee1b21ffb2051d30b81ff6db54234c88b",
+      "disposition": "M-R5-F1 accepted and remediated; see REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 6,
+      "candidate": "52d220ec44486bd62923aea1ecd2bfab02c693d2",
+      "status": "pass",
+      "findings": {
+        "blocker": 0,
+        "major": 0,
+        "minor": 0,
+        "note": 2
+      },
+      "report": "instances/M7_REVIEWER/REVIEW_NODE_M_R6.md",
+      "report_sha256": "dc96448da18b81b1a3af333b63ade6eb6f6baa35e4453f9f2dcd7bf53bddb2c0",
+      "disposition": "two NOTES recorded as residual context; no follow-on item seeded; see REVIEW_DISPOSITIONS.md"
+    }
+  ],
+  "not_run": [
+    {
+      "id": "frontend-gates",
+      "reason": "skipped because no frontend path changed; software-workflow selected no frontend check and A1 is not applicable"
+    },
+    {
+      "id": "signing-notarization-publication-release-readiness",
+      "reason": "prohibited and out of scope under F-APP-2; no pass, performance, or acceptance claim is inferred"
+    }
+  ],
+  "a1": "not applicable: no frontend path changed; no re-stage declaration is needed",
+  "overall": "closeout_ready: deterministic checks pass; round-1 through round-5 findings are remediated; round-6 review passed; PR creation and owner merge remain",
+  "recorded_at": "2026-09-04"
+}

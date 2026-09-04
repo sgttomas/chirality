@@ -1,0 +1,32 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_V3_NODE_M_2026-09-04",
+  "instance_id": "M6_REVIEWER",
+  "role": "EPHEMERAL_AGENT2_READ_ONLY_REVIEWER",
+  "execution_class": "delegated-harness-native",
+  "role_enforcement": "role not mechanically enforced",
+  "governed_workflow_role_evidence": "instruction-asserted",
+  "k_subagent_nondelegation": "instruction+config asserted; not mechanism-proven",
+  "record_provenance": "source-calibrated structured reconstruction from the sealed R5 handoff, immutable R5 report, and supervisor direction; not a byte-verbatim prompt transcript",
+  "basis": "719fe5e34cefc40fe0dab4b045f5f2a89341ae2f",
+  "freeze": "085189ba093ec1705b68dc7f131692e132ff4cf4",
+  "worktree": "/private/tmp/chirality-app-v3-a15-20260904/nodeM-review-r5",
+  "read_only": true,
+  "descendants_observed": false,
+  "status": "completed_fail",
+  "findings": {
+    "blocker": 0,
+    "major": 1,
+    "minor": 0,
+    "note": 0
+  },
+  "report": "REVIEW_NODE_M_R5.md",
+  "report_sha256": "08fb5bfc74abd294b47284fc5ebf836ee1b21ffb2051d30b81ff6db54234c88b",
+  "repository_write_performed": false,
+  "push_performed": false,
+  "pr_opened": false,
+  "merge_performed": false,
+  "host_act_performed": false,
+  "evidence_calibration": "Agent-2 mode is instruction-assigned; native descent does not mechanically assign the role. No descendant was observed, but non-delegation is not mechanism-proven.",
+  "recorded_at": "2026-09-04"
+}
