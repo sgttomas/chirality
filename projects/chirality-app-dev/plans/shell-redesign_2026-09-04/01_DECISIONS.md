@@ -179,6 +179,34 @@ Owner, 2026-09-04: "This is the product. This last bit of work we did to define 
 
 **Consequence for the design.** The app is the runtime for a method; the prompted ladder is what keeps the method applying itself after the consultant has left; the Workflows view is the catalogue of what an engagement left behind and should say where each workflow came from and which protocol version it instantiates. The mock's Product tab is the one-page statement. Three decisions the service model forces are opened as Q14 to Q16 in `04_IMPLEMENTATION_PLAN.md` §6: where client-owned agents and skills live relative to the protected bundled instruction root; how a leave-behind's currency against the method is detected; and how several people in one shared folder follow the same workflow.
 
+## SR-26 — Plain vocabulary on the surface; the doctrine keeps its terms underneath
+
+Owner, 2026-09-04: "You've used some very specific terminology like 'Section 8' and several others that appear to be idiosyncratic terms that you can probably state as a generic term and be understood better… instead of 'Help' (even though I named it HELP_HUMAN) I think we should use 'Assistant'… The concepts are there, but we need to make this a coherent and familiar surface for people to interact with. This is about Knowledge Work as such. That doesn't mean use jargon, it means it's generic as can possibly be without losing specificity." The owner adopted the table below, keeping "Proposal from Assistant" since the events are named `proposal.*`.
+
+| Doctrine / earlier mock | Surface | Note |
+|---|---|---|
+| HELP_HUMAN, "Help" | **Assistant** | Default agent display name |
+| Plain chat | **Chat** | The first rung needs no name |
+| Specified chat | (no label) | The chosen agent and permissions show it; menu item **Choose agent and permissions…** |
+| Governed workflow | **Workflow** | "Governed" stays in the doctrine; menu item **Start a workflow…** |
+| Roadmap | **Plan** | "step n of m" stays |
+| Bounded briefs, child sessions, children | **Delegated tasks**, **tasks** | Activity sub-tab "Tasks" |
+| Delegation policy | **Delegation** | No delegation · Ask before delegating · Delegate, approve changes · Delegate freely |
+| Permission mode | **Permissions** | Read only · Ask before changes · Approve each change · Make changes freely |
+| Proposal from Assistant | **Proposal from Assistant** | Kept; events are `proposal.*` |
+| Accept and follow / Follow in this chat / Create and follow | **Start workflow** / **Continue in this chat** / **Create and start** | |
+| Bind to this folder | **Use in this folder** | |
+| human gate / you decide | **your decision** | |
+| Agent 1 role | **Role** | Roster shows Assistant, then roles by what they do (Reviewer, Analyst, Writer, Reconciler, …); the doctrine name is the tooltip |
+| Agent 0 / 1 / 2 session role | **Supervisor / Manager / Specialist** | The K-ROLE labels stay verbatim in the tooltip |
+| Command network | **Network** | The verbatim contract label stays in the tooltip |
+| Working root | **folder** | already ruled |
+| Section 8, DEL-nn-nn, receipts, PR numbers, rulings | generic knowledge-work example | The mock now shows a design review in a folder called Northgate expansion |
+
+Kept as they are: **Consent** (it does legal work and "permission" is taken) and **Opt-in Preview** (required verbatim by the contract). Example content in the mock is a document review: a report whose findings are checked against their sources, a Reviewer role, and a seven-step plan with one decision that is the human's.
+
+**How proposals are made in the harness (recorded with SR-24, ruled direction).** Not hooks. Agent 0 and the Agent 1 roles get one registered deterministic tool, `propose`, that takes the tuple and, for a workflow, a plan reference from the role's own procedures; the tool validates against the roster, the folder, and the policy values, refuses a trigger already declined in the chat, and emits `proposal.offered`. The card is the UI's rendering of that event, as permission requests already are; Accept, Adjust, and Not now are events back, applied by the app. Triggers stay in instruction text; the tool call is the only mechanical part, and if the model never calls it nothing happens. PreToolUse may double-check the once-per-chat rule; the tool handler is the primary enforcement.
+
 ## Decisions explicitly deferred to the owner
 
 Listed in `04_IMPLEMENTATION_PLAN.md` §6. None of them blocks the first two tranches.

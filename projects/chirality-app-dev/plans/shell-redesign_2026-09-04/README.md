@@ -25,9 +25,9 @@ It exists so that another agent, in a new session with no memory of the design c
 | File | Purpose |
 |---|---|
 | `README.md` | This file. Index, boundary, inventory, reading order. |
-| `01_DECISIONS.md` | The owner's design decisions, numbered SR-01 to SR-25, with rationale and consequences. SR-19 to SR-24 (app-wide sign-in, chats across folders, folder chosen per chat, message box with a context line, Workflows view and the ladder, the prompted ladder with proposal cards) were added after the owner's markup of the round-3 mock. |
+| `01_DECISIONS.md` | The owner's design decisions, numbered SR-01 to SR-26, with rationale and consequences. SR-19 to SR-24 (app-wide sign-in, chats across folders, folder chosen per chat, message box with a context line, Workflows view and the ladder, the prompted ladder with proposal cards) were added after the owner's markup of the round-3 mock. |
 | `02_CURRENT_STATE.md` | What the shell does today at the basis commit: routes, components, state, APIs, tests, CSS, brand assets. Includes the places where the code contradicts the adopted design. |
-| `03_TARGET_SPEC.md` | The target shell, region by region: header, left panel, centre, right panel views, viewer controls, activity strip, account row, popover, settings, copy, tokens, keyboard, persistence, accessibility. |
+| `03_TARGET_SPEC.md` | The target shell, region by region (§10 carries the user-facing vocabulary ruled in SR-26; the doctrine keeps its own terms in code and agents): header, left panel, centre, right panel views, viewer controls, activity strip, account row, popover, settings, copy, tokens, keyboard, persistence, accessibility. |
 | `04_IMPLEMENTATION_PLAN.md` | Seven tranches in dependency order with file-level scope, acceptance checks, tests, evidence, deliverable ownership, fence and trigger analysis, open questions, and proposed Remaining-item text. |
 | `05_LOGO_AND_BRAND.md` | The adopted mark and wordmark, the asset inventory with hashes, how the assets were produced, where each is applied, and the cleanup of superseded files. |
 | `mock/chirality-shell-mocks.html` | The interactive mock the owner approved. Self-contained HTML. Open it in a browser. Tabs: Product (the one-page picture: pillars, how work moves, salient features, what the service leaves behind), What changed, Shell, Walkthrough (26 click-through states), Activity/replay/expand, Logo, Notes. |
@@ -77,5 +77,5 @@ dfe92ed3307e3394d402fceb6a6c939e824b630d8398d9ae2246cd3357060c2b  assets/painted
 4215f30a9088a9d712df52e3556f72d27ef0bafac6c6764e525f343812f339e3  assets/painted-field-64.png
 1f932536afd216d9f3fcd11feac3eb95595101cd69a945dcd9faf0b68f362d8b  assets/painted-field-square-1024.png
 adb22d8f286cbaf87a8da79dbbead589463a2c08bc71c26d9212ff863733c56a  assets/painted-field.icns
-d37caf9f5e9f674e47be05d54b4758ca82cd3df6eb016f95f220657f4916e121  mock/chirality-shell-mocks.html
+b2895107614da963b258d005d4fc1642a7dedd687bbae88c26287b04e8d0cea6  mock/chirality-shell-mocks.html
 ```
