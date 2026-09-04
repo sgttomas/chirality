@@ -6237,3 +6237,46 @@
     Agent 2 implementer under HELP_HUMAN (Claude Fable 5.1).
   - Gate-Outcome: `EXECUTED` — App AT-053 evidence prepared; G0.5/G1 unruled;
     awaiting owner merge.
+
+- **2026-09-03 — Receipt 210** (App v3 pathway node D: DEL-05-01-V3-01 v2 session lazy non-destructive access).
+  - Receipt-ID: `Receipt-210`
+  - Examined-Through: `0c683fb1657706316272951e4c3a0f7781b46009`
+  - Parent-Receipt: `Receipt-205`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected development node D from the dev slate in the
+    HELP_HUMAN session chat on 2026-09-03; the selection is recorded at
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/ORCHESTRATION_PLAN.md`
+    (Selection authority); owner ruling A13 "Ratify retention" transcribed
+    verbatim at `plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md`
+    (repo root). Concurrent sibling nodes share this parent (ledger rule 7).
+  - Stale-Map-Delta: DEL-05-01 `ScopeOfWork.md` identity moved from the A12
+    seating-ledger pin
+    (`execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/SOW_IDENTITY_LEDGER.md`,
+    `41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b`) to
+    `38469c3f3abb15e72cb3105288d4c09b594d46cdee50b23facccf15834815366` under A13 (R010, CLM-012,
+    CLM-032); the ledger is immutable history and is not edited. D-APP-41 is
+    historical on flat-record removal only; its files are unchanged.
+    The dispatch brief assigned this receipt number 208; Receipt 209 (node
+    E) was already appended on `main`, and the ledger validator requires
+    increasing IDs in physical append order, so it is recorded as 210.
+  - Pointers: branch `codex/app-v3-nodeD-v2-session-access-2026-09-03`
+    (basis above; reviewed pre-rebase freezes `3b6b4758b`, `9c2f88cff`);
+    RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/`
+    (`STEP0_DISCOVERY.md` incl. A1 re-stage declaration, `RETURN.md`,
+    `CHECKS.json`, `HANDOFF_STATE.md`, `MANIFEST.sha256`,
+    `instances/D2_REVIEWER/REVIEW_ROUND_{1,2}.md`); DEL-05-01
+    `Evidence/V3-01_v2_lazy_access_2026-09-03/`,
+    `_run_records/TASK_RUN_2026-09-03_V3-01_v2_lazy_access.md`, `_STATUS.md`
+    (V3-01 removed; V3-02 retained with A13 note); product source
+    `frontend/src/lib/harness/session-manager.ts` and
+    `frontend/src/__tests__/{fixtures/sessions/v2,lib}`.
+  - Checks: typecheck pass; full Vitest pass; focused Vitest pass; build
+    pass; SOW validator pass; `git diff --check` pass; harness self-check
+    pass; harness pytest pass; APP-HOLD dispatch preflight and register-match
+    scan pass; authority corpus status no drift; receipts validator pass;
+    write-scope pass; premerge fail in the absent-runtime-daemon-bindings
+    class, PR-CI-owed.
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as ephemeral
+    Agent 2 implementer under HELP_HUMAN (Claude Fable 5.1); reviewer Claude
+    Fable 5.1.
+  - Gate-Outcome: `EXECUTED` — node D landed on branch; awaiting owner merge; no lifecycle, release, or Root act.

@@ -96,22 +96,19 @@ describe('FileSessionManager canonical session storage', () => {
     await expect(access(wouldBeCanonicalPath)).rejects.toThrow();
   });
 
-  it('migrates ambiguous legacy stub records without pinning them to Anthropic', async () => {
+  it('opens ambiguous legacy stub records without pinning them to Anthropic or touching the flat file', async () => {
     const manager = new FileSessionManager();
     const sessionId = 'sess_legacy';
     await mkdir(sessionRoot, { recursive: true });
-    await writeFile(
-      legacyPath(sessionId),
-      `${JSON.stringify(
-        sessionRecord(sessionId, {
-          claudeSessionId: 'claude_legacy',
-          legacyOnly: 'preserved'
-        }),
-        null,
-        2
-      )}\n`,
-      'utf8'
-    );
+    const seededLegacy = `${JSON.stringify(
+      sessionRecord(sessionId, {
+        claudeSessionId: 'claude_legacy',
+        legacyOnly: 'preserved'
+      }),
+      null,
+      2
+    )}\n`;
+    await writeFile(legacyPath(sessionId), seededLegacy, 'utf8');
 
     const session = (await manager.resume(sessionId)) as PersistedSessionRecord;
 
@@ -122,7 +119,7 @@ describe('FileSessionManager canonical session storage', () => {
     });
     expect(session.engineSelection).toBeUndefined();
     expect(session.adapterSession).toBeUndefined();
-    await expect(access(legacyPath(sessionId))).rejects.toThrow();
+    await expect(readFile(legacyPath(sessionId), 'utf8')).resolves.toBe(seededLegacy);
     const persisted = await readPersistedSession(sessionId);
     expect(persisted).toMatchObject({
       claudeSessionId: 'claude_legacy',
@@ -234,25 +231,22 @@ describe('FileSessionManager canonical session storage', () => {
     });
   });
 
-  it('resolves duplicate canonical and flat records with canonical precedence and no legacy field loss', async () => {
+  it('resolves duplicate canonical and flat records with canonical precedence, no legacy field loss, and no flat-file removal', async () => {
     const manager = new FileSessionManager();
     const sessionId = 'sess_duplicate';
     await mkdir(path.dirname(canonicalPath(sessionId)), { recursive: true });
     await mkdir(sessionRoot, { recursive: true });
-    await writeFile(
-      legacyPath(sessionId),
-      `${JSON.stringify(
-        sessionRecord(sessionId, {
-          engineSessionId: 'engine_legacy',
-          claudeSessionId: 'claude_legacy',
-          sdkPackageVersion: 'legacy-sdk',
-          legacyOnly: { nested: true }
-        }),
-        null,
-        2
-      )}\n`,
-      'utf8'
-    );
+    const seededLegacy = `${JSON.stringify(
+      sessionRecord(sessionId, {
+        engineSessionId: 'engine_legacy',
+        claudeSessionId: 'claude_legacy',
+        sdkPackageVersion: 'legacy-sdk',
+        legacyOnly: { nested: true }
+      }),
+      null,
+      2
+    )}\n`;
+    await writeFile(legacyPath(sessionId), seededLegacy, 'utf8');
     await writeFile(
       canonicalPath(sessionId),
       `${JSON.stringify(
@@ -277,7 +271,7 @@ describe('FileSessionManager canonical session storage', () => {
       sdkPackageVersion: 'legacy-sdk',
       legacyOnly: { nested: true }
     });
-    await expect(access(legacyPath(sessionId))).rejects.toThrow();
+    await expect(readFile(legacyPath(sessionId), 'utf8')).resolves.toBe(seededLegacy);
     await expect(readPersistedSession(sessionId)).resolves.toMatchObject({
       engineSessionId: 'engine_canonical',
       sdkSessionId: 'sdk_canonical',
@@ -287,35 +281,37 @@ describe('FileSessionManager canonical session storage', () => {
     });
   });
 
-  it('canonicalizes legacy records during list traversal', async () => {
+  it('materializes canonical records during list traversal without touching the legacy file', async () => {
     const manager = new FileSessionManager();
     const sessionId = 'sess_listed';
     await mkdir(sessionRoot, { recursive: true });
-    await writeFile(
-      legacyPath(sessionId),
-      `${JSON.stringify(sessionRecord(sessionId, { model: 'claude-sonnet-4' }), null, 2)}\n`,
-      'utf8'
-    );
+    const seededLegacy = `${JSON.stringify(
+      sessionRecord(sessionId, { model: 'claude-sonnet-4' }),
+      null,
+      2
+    )}\n`;
+    await writeFile(legacyPath(sessionId), seededLegacy, 'utf8');
 
     const sessions = await manager.list(projectRoot);
 
     expect(sessions.map((session) => session.sessionId)).toEqual([sessionId]);
-    await expect(access(legacyPath(sessionId))).rejects.toThrow();
+    await expect(readFile(legacyPath(sessionId), 'utf8')).resolves.toBe(seededLegacy);
     await expect(readPersistedSession(sessionId)).resolves.toMatchObject({
       sessionId,
       model: 'claude-sonnet-4'
     });
   });
 
-  it('canonicalizes legacy records before saving updates', async () => {
+  it('canonicalizes legacy records before saving updates and leaves the flat file byte-identical', async () => {
     const manager = new FileSessionManager();
     const sessionId = 'sess_save';
     await mkdir(sessionRoot, { recursive: true });
-    await writeFile(
-      legacyPath(sessionId),
-      `${JSON.stringify(sessionRecord(sessionId, { claudeSessionId: 'claude_legacy' }), null, 2)}\n`,
-      'utf8'
-    );
+    const seededLegacy = `${JSON.stringify(
+      sessionRecord(sessionId, { claudeSessionId: 'claude_legacy' }),
+      null,
+      2
+    )}\n`;
+    await writeFile(legacyPath(sessionId), seededLegacy, 'utf8');
 
     const saved = await manager.save(sessionId, { model: 'claude-opus-4' });
 
@@ -325,7 +321,7 @@ describe('FileSessionManager canonical session storage', () => {
       model: 'claude-opus-4'
     });
     expect(saved.engineSelection).toBeUndefined();
-    await expect(access(legacyPath(sessionId))).rejects.toThrow();
+    await expect(readFile(legacyPath(sessionId), 'utf8')).resolves.toBe(seededLegacy);
     const persisted = await readPersistedSession(sessionId);
     expect(persisted).toMatchObject({
       claudeSessionId: 'claude_legacy',

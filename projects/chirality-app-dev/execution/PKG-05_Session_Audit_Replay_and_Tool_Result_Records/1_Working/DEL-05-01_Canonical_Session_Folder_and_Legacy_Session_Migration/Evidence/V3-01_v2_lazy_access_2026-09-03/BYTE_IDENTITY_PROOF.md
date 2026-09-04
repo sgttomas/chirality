@@ -1,0 +1,159 @@
+# DEL-05-01-V3-01 — v2 session-data lazy non-destructive access: evidence packet
+
+**Epistemic status:** implementation evidence (derivative). Authority remains
+the accepted Scope of Work (as amended under A13), `docs/SPEC.md` §8 and
+§25.4, owner ruling A13, and the D-APP-41 ruling (historical on flat-record
+removal); on any disagreement those govern.
+
+**Authority note (A13).** The pre-amendment Scope of Work required, verbatim,
+`DEL-05-01-R010`: "If both canonical folder and legacy flat records exist for
+the same `sessionId`, resolution MUST prefer defined canonical values,
+preserve legacy-only fields, write the merged canonical `session.json`, and
+remove the flat record." and (CLM-012) "duplicate fixture tests proving merge
+precedence, legacy-only field preservation, and flat-file removal." Both were
+superseded in this tranche by owner ruling A13
+(`plans/steers/chirality_app_v3_app_ruling_record_a13_2026-09-03.md`,
+2026-09-03, "Ratify retention"); the amended rows are in `ScopeOfWork.md`
+CLM-010/CLM-012 with the dated note CLM-032 (pre-amendment SHA-256
+`41d232f31ee5882721e87a97ebea30973ca412b8ba9268b89713b51118f6b40b`,
+post-amendment
+`38469c3f3abb15e72cb3105288d4c09b594d46cdee50b23facccf15834815366`). This
+packet proves retention with byte identity and canonical precedence, not
+removal.
+
+Run record: `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/`
+(basis `0c683fb1657706316272951e4c3a0f7781b46009`; branch
+`codex/app-v3-nodeD-v2-session-access-2026-09-03`).
+
+## 1. Active module and helper behavior (R015)
+
+- Active session storage module: `frontend/src/lib/harness/session-manager.ts`
+  (`FileSessionManager`, the in-process `ISessionManager` used by
+  `frontend/src/lib/harness/runtime.ts`).
+- Record reader: `readSessionRecordFile(filePath, shape)` returns a typed
+  `SessionRecordReadResult` (`ok | missing | malformed | unsupportedVersion`)
+  and never throws for record content. `missing` = `ENOENT`/`ENOTDIR`;
+  `malformed` = unreadable file, invalid JSON, or a non-object document;
+  `unsupportedVersion` = a declared `schemaVersion` (2.0.0 project-local
+  records carry none) or, with no `schemaVersion`, a record lacking the
+  required v2 fields `projectRoot` and `createdAt`.
+- Access resolver: `resolveSessionRecord(sessionId, { materializeOnlyFor?,
+  materialize? })` reads both shapes; canonical `session.json` wins
+  field-by-field. Legacy-only fields are merged exactly once — when the
+  canonical record carries no `legacySource: { sha256, materializedAt }`
+  marker — and the merged record is written back with the marker (sha256 of
+  the flat file bytes). Once the marker is present the flat file is not a
+  read input: an unchanged flat file is ignored (second access writes
+  nothing); a changed flat file is reported as a `legacySourceChanged`
+  diagnostic and ignored, so a field removed from the canonical record is
+  never resurrected (A13 / reviewer F2). A canonical record that cannot be
+  opened fails closed and is never overwritten from the legacy sibling. The
+  legacy flat file is never written, truncated, or removed by access.
+- List resilience (A13 / reviewer F3): a per-candidate materialization write
+  failure never aborts `listWithDiagnostics`; the candidate is re-resolved
+  read-only and, if readable, listed unmaterialized with a
+  `materializationFailed` diagnostic.
+- Public typed surface: `FileSessionManager.inspect(sessionId)` returns
+  `SessionAccessResult` (`ok` carries `materialized`, `siblingFailures`,
+  `diagnostics`); `listWithDiagnostics(projectRoot)` returns
+  `{ sessions, failures, diagnostics }`; `list` returns `sessions`
+  (interface unchanged).
+  `getById`/`resume`/`save`/`delete` throw `SessionRecordAccessError`
+  (`HarnessError` subclass; wire type `SESSION_NOT_FOUND`; status 404 for
+  `missing`, 422 for `malformed`/`unsupportedVersion`; `kind` mirrored in
+  `details.kind` with `shape`, `filePath`, `reason`, `schemaVersion?`,
+  `projectRoot?`).
+- Delete: opens the record first (typed failure leaves every byte as found),
+  then removes the deleted session's canonical folder and its legacy flat
+  file — the pre-existing contract — and touches nothing else.
+
+## 2. Fixture inventory (exact input identities)
+
+Fixture root: `frontend/src/__tests__/fixtures/sessions/v2/` (release
+`2.0.0` shape; placeholders `__PROJECT_ROOT__` / `__OTHER_PROJECT_ROOT__`
+are substituted with the test's temporary absolute roots when seeded; no
+secrets, credentials, or user data). Sorted SHA-256 inventory:
+`FIXTURE_INVENTORY.sha256` beside this file (recompute from the fixture root
+with `find . -type f | sed 's|^\./||' | LC_ALL=C sort | xargs shasum -a 256`).
+
+| Session id | Files | Case | Expected typed state |
+|---|---|---|---|
+| `sess_v2_readable` | `sess_v2_readable.json` | (a) readable, well-formed | `ok`, `materialized: true` on first touch |
+| `sess_v2_malformed_truncated` | `sess_v2_malformed_truncated.json` | (b) truncated mid-string | `malformed` (`invalid JSON: …`) |
+| `sess_v2_unsupported_version` | `sess_v2_unsupported_version.json` | (c) `schemaVersion: "chirality.session/v9"` | `unsupportedVersion` |
+| `sess_v2_missing_version_fields` | `sess_v2_missing_version_fields.json` | (c) no `schemaVersion`, no `projectRoot`/`createdAt` | `unsupportedVersion` |
+| `sess_v2_other_project` | `sess_v2_other_project.json` | readable, other project root | `ok`; excluded from list and not materialized by list |
+| `sess_v2_duplicate` | `sess_v2_duplicate.json`, `sess_v2_duplicate/session.json`, `sess_v2_duplicate/events.jsonl` | (d) legacy record with existing canonical counterpart | `ok`; canonical precedence, legacy-only fields materialized into canonical |
+
+## 3. Byte-identity proof
+
+Evaluator: `frontend/src/__tests__/lib/session-manager-v2-legacy-access.test.ts`.
+Each test seeds the fixture set into a fresh `CHIRALITY_SESSION_ROOT`, takes a
+full recursive byte snapshot (`snapshotBytes`), performs the access under
+test, then re-reads every legacy flat file (and `events.jsonl`) and asserts
+`Buffer.equals` against the snapshot (`expectBytesUnchanged`). File-set
+assertions (`listFilesRecursively` before/after) prove that the only new
+path is the materialized canonical `session.json` of the accessed readable
+session and that no folder is created for unreadable records.
+
+Assertions by operation (all in the evaluator file):
+
+| Operation | Legacy bytes | Canonical writes | Typed observation |
+|---|---|---|---|
+| `inspect` over every fixture | identical (6 flat files + `events.jsonl`) | readable/duplicate/other-project only | kinds match manifest `expectedKind` |
+| `inspect` twice | identical | second access writes nothing | `materialized: false` |
+| `listWithDiagnostics` / `list` | identical | `sess_v2_readable/session.json` only | 3 failures reported (malformed, 2× unsupportedVersion) |
+| `list` twice | identical | none on second run | results equal |
+| `resume` / `getById` readable | identical | canonical only | record fields |
+| `resume` malformed / unsupported (×3) | identical (whole root) | none | `SessionRecordAccessError` 422, `details.kind` |
+| `getById` duplicate | identical (`sess_v2_duplicate.json`, `events.jsonl`) | canonical gains legacy-only fields + `legacySource` marker once; second access writes nothing | canonical precedence |
+| field removed from canonical after consumption (`save` clears `instructionPath`), then `getById`/`inspect`/`list` | identical | none | field not resurrected; `diagnostics: []` |
+| legacy flat file edited after consumption, then `inspect`/`resume`/`list` | edited bytes preserved; canonical byte-identical | none | `legacySourceChanged` diagnostic; edited fields not merged |
+| sibling `sess_x` whose canonical folder path is occupied by an empty file, then `list` | identical (all flat files incl. `sess_x.json`; empty file intact) | readable sibling only | `sess_x` listed unmaterialized + `materializationFailed` diagnostic; listing never aborts |
+| corrupt canonical + readable legacy | identical (both files) | none (corrupt bytes preserved) | `malformed`, `shape: 'canonical'` |
+| unreadable legacy beside readable canonical | garbage preserved | none | `ok` + `siblingFailures[0]` |
+| `save` | identical | canonical only | — |
+| `delete` readable, then duplicate | siblings identical | deleted session's folder and flat file removed | remaining failures still reported |
+| `delete` malformed / unsupported / absent | identical (whole root) | none | 422 / 422 / 404 |
+
+Existing evaluator `frontend/src/__tests__/lib/session-manager.test.ts` was
+extended: the four assertions that previously expected the legacy flat file
+to disappear after resume/list/save/duplicate access now assert the seeded
+bytes are returned unchanged; the delete contract test is unchanged.
+
+## 4. Results (machine-readable and canonical stdout)
+
+- `focused_vitest_results.json` — Vitest JSON reporter over the two
+  evaluator files (38 tests, 38 passed, 0 failed; regenerated after the A13
+  commit); absolute worktree prefix replaced by `{REPO_ROOT}`.
+- `focused_vitest_stdout.txt` — verbose reporter stdout for the same run
+  (exit 0).
+- Full registered checks: `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_D_2026-09-03/CHECKS.json`.
+
+## 5. Environment
+
+macOS (darwin 25.6.0, arm64); Node `v24.18.0`; npm `11.16.0`; TypeScript
+`5.9.3`; Vitest `4.1.10`; Next `15.5.21`. Shared runtime built once with
+`cd runtime && npm ci && npm run build` (CI prerequisite for
+`@chirality/runtime-contracts` resolution; emits ignored `dist/` only).
+Effective environment for the evaluator: `CHIRALITY_SESSION_ROOT` set per
+test to a `mkdtemp` root under `os.tmpdir()`; no network; no credentials.
+
+## 6. Rerun method (bounded)
+
+```text
+cd {REPO_ROOT}/runtime && npm ci && npm run build
+cd {REPO_ROOT}/projects/chirality-app-dev/frontend && npm ci
+npx vitest run src/__tests__/lib/session-manager-v2-legacy-access.test.ts src/__tests__/lib/session-manager.test.ts
+npm run typecheck
+npm test
+cd src/__tests__/fixtures/sessions/v2 && find . -type f | sed 's|^\./||' | LC_ALL=C sort | xargs shasum -a 256 \
+  | diff - {this directory}/FIXTURE_INVENTORY.sha256
+```
+
+## 7. Cleanup proof
+
+Every evaluator test creates its session root with `mkdtemp` and removes it
+in `afterEach` (`rm -rf`) and unsets `CHIRALITY_SESSION_ROOT`; no state is
+left outside the temporary directory. No user-wide state, credentials, or
+binaries are preserved in this packet.
