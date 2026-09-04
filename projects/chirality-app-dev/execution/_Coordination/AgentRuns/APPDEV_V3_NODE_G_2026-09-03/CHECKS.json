@@ -1,0 +1,215 @@
+{
+  "schema": "chirality-run-checks/v1",
+  "run_id": "APPDEV_V3_NODE_G_2026-09-03",
+  "recorded_at": "2026-09-03",
+  "basis": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
+  "rounds": {
+    "1": "egress-layer probe destination fixed to EGRESS_LAYER_PROBE_URL and CHIRALITY_EGRESS_LAYER_PROBE_URL retired (decision D1); proof script exact-destination match with loopback decoy; tests and pins — one local commit (the commit containing this file)"
+  },
+  "toolchain": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "vitest": "4.1.10",
+    "next": "15.5.21",
+    "electron": "43.2.0",
+    "electron-builder": "26.15.3",
+    "typescript": "5.9.3",
+    "platform": "darwin 25.6.0 (arm64)"
+  },
+  "environment_preparation": [
+    {
+      "command": "npm ci && npm run build",
+      "cwd": "runtime",
+      "exit": 0,
+      "note": "fresh worktree; builds the file:-linked @chirality/runtime-* packages (tsc -b); allow-scripts warnings only; outputs are gitignored"
+    },
+    {
+      "command": "npm ci",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "note": "fresh worktree; allow-scripts warnings only; no lockfile edit"
+    }
+  ],
+  "checks": [
+    {
+      "id": "receipts-validator",
+      "round": "1",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "VALID; frozen through Receipt-52; versioned receipt contract satisfied (Step 0)"
+    },
+    {
+      "id": "authority-corpus",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "corpus v20; all eight [MATCH]; no drift (Step 0 and again after the edits — no docs/** touched)"
+    },
+    {
+      "id": "pinned-completion-reference",
+      "round": "1",
+      "command": "shasum -a 256 plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a — matches the workplan pin"
+    },
+    {
+      "id": "app-hold-dispatch-preflight",
+      "round": "1",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-06",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict ALLOW; DEL-09-06 NOT_HELD / CLEAR; register sha256 e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f; scan fingerprint a9bfb75515b8c4ced2707b38b5b31e1f9b6c272f5262ceea3064f7196bd75b9b (Step 0)"
+    },
+    {
+      "id": "frontend-test-focused-baseline",
+      "round": "1",
+      "command": "npx vitest run src/__tests__/electron/renderer-window-policy.test.ts src/__tests__/scripts/run-packaged-security-proof.test.ts src/__tests__/contract-pins.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "basis bytes before any edit: 3 files, 87 tests (renderer-window-policy 62; contract-pins 16; run-packaged-security-proof 9)"
+    },
+    {
+      "id": "frontend-test-focused",
+      "round": "1",
+      "command": "npx vitest run src/__tests__/electron/renderer-window-policy.test.ts src/__tests__/scripts/run-packaged-security-proof.test.ts src/__tests__/contract-pins.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "3 files, 91 tests (renderer-window-policy 65; contract-pins 16; run-packaged-security-proof 10) — per-file counts from --reporter=json assertionResults"
+    },
+    {
+      "id": "frontend-typecheck",
+      "round": "1",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "tsc --noEmit (app) and tsc -p tsconfig.electron.json clean"
+    },
+    {
+      "id": "frontend-test-full",
+      "round": "1",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "Test Files 162 passed | 1 skipped (163); Tests 1493 passed | 4 skipped (1497) — +4 over the post-node-A basis (1489)"
+    },
+    {
+      "id": "frontend-build",
+      "round": "1",
+      "command": "npm run build",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "next build + build:electron"
+    },
+    {
+      "id": "desktop-pack",
+      "round": "1",
+      "command": "npm run desktop:pack",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "build + pack + desktop:verify-dependencies PASS + instruction-root:integrity pass ('source completeness status: needs_remediation' pre-existing). In-sandbox; no escalation needed."
+    },
+    {
+      "id": "proof-packaged-security",
+      "round": "1",
+      "command": "rm -rf artifacts/release-verification/packaged-security && npm run proof:packaged-security",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "status pass; identity e716439fc797d2d7d5bb4021d5f940a9bc2de84ba7161444999030aeaeeb7452 (Chirality 33,968 B 79019361…; app.asar 407,600,367 B 010839f1…; chirality-cli.mjs 75,460 B 0503c40a…; sourceRevision HEAD e59efa483; built from the pre-commit working tree; unsigned bundles are not byte-deterministic across builds); 13/13 markers; credential proof pass; rendererSecurityProof pass; networkProof pass (7 snapshots, nonAllowlistedOutboundTcp [], blockedRendererDiagnostics 1 = egressLayerDiagnostics 1 (anthropic_port_not_allowlisted:8443), egressProbePayloadCount 1, [egress-layer-probe] destination {https:, api.anthropic.com, port 8443} outcome rejected net::ERR_BLOCKED_BY_CLIENT, egressProbeObserved true, egressProbeUnexpectedDestinations [] with CHIRALITY_EGRESS_LAYER_PROBE_URL set to the loopback decoy); cleanup pass. Retained gui log: raw sha256 f5a71eeefc123a4d8c859210a008b85f62b5d70b5213caae6610ece2eaecaf13 (3,710 B) → one trailing space removed → ba9d2379998dc61b0ee32337824f7faca26a2fe751b263922658beb9e9750288 (3,709 B); other four files byte-identical.",
+      "evidence": "DEL-09-06 Evidence/Node_G_Egress_Probe_Restriction_2026-09-03/packaged-security-proof/"
+    },
+    {
+      "id": "frontend-premerge",
+      "round": "1",
+      "command": "CHIRALITY_HARNESS_PROVIDER=stub NEXT_TELEMETRY_DISABLED=1 node node_modules/next/dist/bin/next dev --port 51931 ; HARNESS_BASE_URL=http://127.0.0.1:51931 npm run harness:validate:premerge ; server stopped",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 1,
+      "status": "fail",
+      "failure_class": "FAIL_DEFERRED_TO_PR_CI — absent runtime-daemon bindings",
+      "summary": "HARNESS_PREMERGE_STATUS=fail; 8/8 results HTTP 503 from the session routes (setup.server_reachable 'Expected 200; received 503'; session create 503; no runtime daemon bound in the sandbox) — same class as Receipt-172 and Receipt-177 and node A rounds 1-2; deferred to PR CI per App AGENTS.md; no pass inferred; the dev server was started only after desktop:pack and the packaged proof had completed and was stopped afterwards, so no build/package/proof command ran with a server up",
+      "deferred_to": "PR CI"
+    },
+    {
+      "id": "git-diff-check",
+      "round": "1",
+      "command": "git add -A -N . && git diff --check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "no whitespace errors over the full working-tree diff (retained packaged-gui.log normalized as recorded); the basis..HEAD range is re-checked immediately after the commit (result in the freeze message)"
+    },
+    {
+      "id": "harness-self-check",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "exit 0; pre-existing repo-wide findings only (INFO 14, NOT_APPLICABLE 1, REVIEW 4, WARN 43)"
+    },
+    {
+      "id": "harness-pytest",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q tools/practitioner_harness",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "350 passed"
+    },
+    {
+      "id": "app-hold-integrity",
+      "round": "1",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict PASS; held_count 0; scan fingerprint a9bfb75515b8c4ced2707b38b5b31e1f9b6c272f5262ceea3064f7196bd75b9b"
+    },
+    {
+      "id": "select-affected-checks",
+      "round": "1",
+      "command": "git diff --name-only --relative | <json array> | python3 ../../tools/software_workflow/select_affected_checks.py --paths-json-stdin software-workflow.json",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "selected app-hold-integrity, frontend-test, frontend-typecheck, harness-pytest, harness-self-check (project-relative paths; a first run with repo-relative paths matched only the always-checks — path_rules are project-relative) — each executed by its registered command above; frontend-build, frontend-premerge, desktop:pack and the packaged proof additionally run per the brief; run_registered_checks.py not used"
+    },
+    {
+      "id": "validate-change-scope",
+      "round": "1",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base e59efa4830fb54143c86e511ec35a6d1a476f72e --allowed projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts --allowed projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_G_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "status PASS; violations []; 16 paths over the working tree before the commit (frontend/electron/main.ts is deliberately absent from the fence — it is untouched); the --head <commit> form is run immediately after the commit (result in the freeze message)"
+    }
+  ],
+  "not_run": [
+    {
+      "id": "run_registered_checks.py",
+      "reason": "optional per brief; every selected registered check was executed directly by its registered command with exit status recorded above"
+    },
+    {
+      "id": "D-APP-36 render bar",
+      "reason": "no UI surface changed (electron main-process policy, proof script, tests, pins only)"
+    }
+  ],
+  "scope_validation_command": {
+    "cwd": ".",
+    "command": "python3 tools/software_workflow/validate_change_scope.py . --base e59efa4830fb54143c86e511ec35a6d1a476f72e --allowed projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts --allowed projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_G_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+    "note": "repeated --allowed roots (argparse); --head omitted = working tree at the freeze; the same command with --head <commit> reproduces it against a frozen commit. After a publication rebase onto a newer origin/main, --base must be the new merge-base or sibling nodes' files already on main are reported as out-of-fence."
+  }
+}

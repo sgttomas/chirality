@@ -202,6 +202,12 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: "'127.0.0.1'" },
       { kind: 'contains', value: "'[::1]'" },
       { kind: 'contains', value: 'Blocked renderer outbound request by network policy' },
+      // The egress-layer probe's fixed :8443 destination is denied by this port rule
+      // (DEL-09-06-V3-05); the probe's destination is never read from the environment.
+      { kind: 'contains', value: "if (parsed.port !== '' && parsed.port !== '443') {" },
+      { kind: 'contains', value: 'reason: `anthropic_port_not_allowlisted:${parsed.port}`' },
+      { kind: 'contains', value: 'runEgressLayerProbe(window, { env: process.env });' },
+      { kind: 'notContains', value: 'CHIRALITY_EGRESS_LAYER_PROBE_URL' },
       { kind: 'contains', value: 'destination: summarizeRendererRequestDestination(details.url)' },
       { kind: 'contains', value: 'hostname: parsed.hostname' },
       { kind: 'contains', value: 'port: parsed.port || null' },
@@ -237,7 +243,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
   {
     file: 'electron/renderer-window-policy.ts',
     description:
-      'Renderer window hardening policy (DEL-09-06-V3-01): explicit web preferences, deny-all window-open, renderer-origin-only navigation on both navigation events, CSP without eval outside development and closed to frames/objects/embedding',
+      'Renderer window hardening policy (DEL-09-06-V3-01): explicit web preferences, deny-all window-open, renderer-origin-only navigation on both navigation events, CSP without eval outside development and closed to frames/objects/embedding; egress-layer probe destination fixed to the policy-denied :8443 form and never read from the environment (DEL-09-06-V3-05)',
     pins: [
       { kind: 'contains', value: 'contextIsolation: true,' },
       { kind: 'contains', value: 'nodeIntegration: false,' },
@@ -258,7 +264,11 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'notContains', value: 'api.anthropic.com:*' },
       { kind: 'contains', value: "callback(responseHeaders === null ? {} : { responseHeaders });" },
       { kind: 'contains', value: 'window.webContents.session' },
-      { kind: 'contains', value: "CHIRALITY_EGRESS_LAYER_PROBE_URL" },
+      { kind: 'contains', value: 'export const EGRESS_LAYER_PROBE_URL =' },
+      { kind: 'contains', value: "'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'" },
+      { kind: 'contains', value: '.fetch(EGRESS_LAYER_PROBE_URL, {' },
+      { kind: 'notContains', value: 'CHIRALITY_EGRESS_LAYER_PROBE_URL' },
+      { kind: 'notContains', value: 'process.env' },
       { kind: 'contains', value: "parsed.protocol !== 'http:' && parsed.protocol !== 'https:'" },
       { kind: 'contains', value: 'webRequest.onHeadersReceived(' },
       { kind: 'notContains', value: 'unsafe-hashes' },
@@ -335,10 +345,14 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: 'nonAllowlistedOutboundTcp' },
       { kind: 'contains', value: 'retainedMetadataLeakFindings' },
       { kind: 'contains', value: "CHIRALITY_RENDERER_SECURITY_PROBE: '1'" },
-      { kind: 'contains', value: 'CHIRALITY_EGRESS_LAYER_PROBE_URL: EGRESS_PROBE_URL' },
       { kind: 'contains', value: 'rendererSecurityProofPass === true' },
-      { kind: 'contains', value: "'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'" },
+      { kind: 'contains', value: "export const EGRESS_PROBE_URL = 'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'" },
       { kind: 'contains', value: "'[egress-layer-probe]'" },
+      // DEL-09-06-V3-05: the proof no longer supplies the probe URL; it sets the retired
+      // variable to a loopback decoy the app must ignore and fails on any other destination.
+      { kind: 'contains', value: "export const EGRESS_PROBE_DECOY_URL = 'http://127.0.0.1:9/chirality-packaged-security-egress-probe-decoy'" },
+      { kind: 'contains', value: 'CHIRALITY_EGRESS_LAYER_PROBE_URL: EGRESS_PROBE_DECOY_URL' },
+      { kind: 'contains', value: 'egressProbeUnexpectedDestinations.length === 0' },
       { kind: 'notContains', value: 'CSC_LINK' },
       { kind: 'notContains', value: 'APPLE_ID' }
     ]

@@ -49,11 +49,22 @@ const PACKAGED_POLICY_MARKERS = [
 const BLOCKED_PROBE_URL = 'https://example.com/chirality-packaged-security-blocked';
 const LOOPBACK_PROBE_URL = 'http://127.0.0.1:9/chirality-packaged-security-loopback';
 // The page can no longer reach the REQ-NET-001 egress layer for a foreign host
-// (the CSP's connect-src 'self' stops it first), so this request is issued from
-// the main process through the window's session, where onBeforeRequest denies
-// it (anthropic_port_not_allowlisted:8443). The example.com probe above is the
-// CSP-layer observation.
-const EGRESS_PROBE_URL = 'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked';
+// (the CSP's connect-src 'self' stops it first), so the packaged app issues this
+// request itself, from the main process through the window's session, where
+// onBeforeRequest denies it (anthropic_port_not_allowlisted:8443). The
+// destination is fixed inside the app (renderer-window-policy.ts
+// EGRESS_LAYER_PROBE_URL) and is never read from the environment, so this proof
+// cannot point the probe anywhere else (DEL-09-06-V3-05); the constant below is
+// what the summarizer expects to observe, and the unit test checks it is
+// byte-equal to the app's. The example.com probe above is the CSP-layer
+// observation.
+export const EGRESS_PROBE_URL = 'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked';
+const EGRESS_PROBE_DESTINATION = new URL(EGRESS_PROBE_URL);
+// Negative control: the retired probe-URL variable is set to a destination the
+// egress policy WOULD allow (loopback; port 9 refuses the connection, so nothing
+// leaves the host). The app must ignore it: the only probe payload observed must
+// still name the :8443 destination, and any other destination fails the proof.
+export const EGRESS_PROBE_DECOY_URL = 'http://127.0.0.1:9/chirality-packaged-security-egress-probe-decoy';
 
 function nowIso() {
   return new Date().toISOString();
@@ -355,12 +366,21 @@ export function summarizeNetworkEvidence(logText, snapshots) {
   const blockedProbeObserved = probeResultFailed(probePayloads, BLOCKED_PROBE_URL);
   const loopbackProbeObserved = probeResultFailed(probePayloads, LOOPBACK_PROBE_URL);
   const egressPayloads = extractMarkedPayloads(logText, '[egress-layer-probe]');
+  const expectedEgressDestination = (payload) =>
+    payload?.destination?.protocol === EGRESS_PROBE_DESTINATION.protocol &&
+    payload?.destination?.hostname === EGRESS_PROBE_DESTINATION.hostname &&
+    payload?.destination?.port === EGRESS_PROBE_DESTINATION.port;
   const egressProbeObserved = egressPayloads.some(
     (payload) =>
       payload?.policy === 'REQ-NET-001' &&
-      payload?.destination?.hostname === 'api.anthropic.com' &&
+      expectedEgressDestination(payload) &&
       payload?.outcome === 'rejected'
   );
+  // The probe's destination is fixed in the app; a payload naming any other
+  // destination (for example the decoy) means the app took a URL from outside.
+  const egressProbeUnexpectedDestinations = egressPayloads
+    .filter((payload) => !expectedEgressDestination(payload))
+    .map((payload) => payload?.destination ?? null);
   return {
     snapshotCount: snapshots.length,
     sampledProcessIds: [...new Set(snapshots.flatMap((snapshot) => snapshot.pids ?? []))].sort(),
@@ -373,6 +393,7 @@ export function summarizeNetworkEvidence(logText, snapshots) {
     blockedProbeObserved,
     loopbackProbeObserved,
     egressProbeObserved,
+    egressProbeUnexpectedDestinations,
     pass:
       snapshots.length > 0 &&
       nonAllowlisted.length === 0 &&
@@ -380,7 +401,8 @@ export function summarizeNetworkEvidence(logText, snapshots) {
       egressDiagnostics > 0 &&
       blockedProbeObserved &&
       loopbackProbeObserved &&
-      egressProbeObserved
+      egressProbeObserved &&
+      egressProbeUnexpectedDestinations.length === 0
   };
 }
 
@@ -594,7 +616,7 @@ export async function runProof(args) {
     CHIRALITY_NETWORK_POLICY_PROBE_TIMEOUT_MS: '3000',
     CHIRALITY_RENDERER_SECURITY_PROBE: '1',
     CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '1500',
-    CHIRALITY_EGRESS_LAYER_PROBE_URL: EGRESS_PROBE_URL
+    CHIRALITY_EGRESS_LAYER_PROBE_URL: EGRESS_PROBE_DECOY_URL
   };
 
   let daemon;

@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import { EGRESS_LAYER_PROBE_URL } from '../../../electron/renderer-window-policy';
 import {
+  EGRESS_PROBE_DECOY_URL,
+  EGRESS_PROBE_URL,
   credentialProviderIsolation,
   descendantProcessIds,
   evaluateCredentialEvidence,
@@ -57,14 +60,31 @@ describe('run-packaged-security-proof script', () => {
     ]);
   });
 
+  it('expects exactly the egress-probe destination the app fixes, and sets only a loopback decoy in the environment', () => {
+    // DEL-09-06-V3-05: the app never reads the probe URL from the environment;
+    // the proof's expectation must be byte-equal to the app's constant.
+    expect(EGRESS_PROBE_URL).toBe(EGRESS_LAYER_PROBE_URL);
+    const destination = new URL(EGRESS_PROBE_URL);
+    expect(destination.hostname).toBe('api.anthropic.com');
+    expect(destination.port).toBe('8443');
+    // The decoy is a destination the egress policy would allow (loopback) but that
+    // refuses the connection on the host itself: nothing can leave the machine
+    // even if a regression made the app honour the variable again.
+    const decoy = new URL(EGRESS_PROBE_DECOY_URL);
+    expect(decoy.hostname).toBe('127.0.0.1');
+    expect(decoy.port).toBe('9');
+    expect(EGRESS_PROBE_DECOY_URL).not.toBe(EGRESS_PROBE_URL);
+  });
+
   it('requires blocked diagnostics, all three probes, and zero non-allowlisted TCP', () => {
+    const egressPayload = '{"policy":"REQ-NET-001","destination":{"protocol":"https:","hostname":"api.anthropic.com","port":"8443"},"outcome":"rejected","error":"net::ERR_BLOCKED_BY_CLIENT"}';
     const logText = [
       'Blocked renderer outbound request by network policy { destination: redacted }\n',
       "Blocked renderer outbound request by network policy { reason: 'anthropic_port_not_allowlisted:8443' }\n",
       '[network-policy-probe] {"policy":"REQ-NET-001","results":[',
       '{"url":"https://example.com/chirality-packaged-security-blocked","ok":false},',
       '{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false}]}\n',
-      '[egress-layer-probe] {"policy":"REQ-NET-001","destination":{"protocol":"https:","hostname":"api.anthropic.com"},"outcome":"rejected","error":"net::ERR_BLOCKED_BY_CLIENT"}'
+      `[egress-layer-probe] ${egressPayload}`
     ].join('');
     const snapshots = [
       { pids: [10, 11], endpoints: [{ endpoint: '127.0.0.1:6000', host: '127.0.0.1', class: 'loopback', line: 'fixture' }] }
@@ -74,6 +94,7 @@ describe('run-packaged-security-proof script', () => {
     expect(summary.pass).toBe(true);
     expect(summary.egressLayerDiagnostics).toBe(1);
     expect(summary.egressProbeObserved).toBe(true);
+    expect(summary.egressProbeUnexpectedDestinations).toEqual([]);
     expect(summary.nonAllowlistedOutboundTcp).toEqual([]);
 
     // The egress layer must be observed on its own, from the main-process
@@ -87,6 +108,36 @@ describe('run-packaged-security-proof script', () => {
     const responded = logText.replace('"outcome":"rejected"', '"outcome":"response","status":200');
     expect(summarizeNetworkEvidence(responded, snapshots).egressProbeObserved).toBe(false);
     expect(summarizeNetworkEvidence(responded, snapshots).pass).toBe(false);
+
+    // The probe destination is fixed in the app (DEL-09-06-V3-05): a payload for the
+    // allowlisted port, for a destination without the port, or for any other
+    // destination (the loopback decoy the proof sets in the environment) is not
+    // the expected observation and fails the proof.
+    const allowlistedPort = logText.replace('"port":"8443"', '"port":"443"');
+    expect(summarizeNetworkEvidence(allowlistedPort, snapshots).egressProbeObserved).toBe(false);
+    expect(summarizeNetworkEvidence(allowlistedPort, snapshots).egressProbeUnexpectedDestinations).toEqual([
+      { protocol: 'https:', hostname: 'api.anthropic.com', port: '443' }
+    ]);
+    expect(summarizeNetworkEvidence(allowlistedPort, snapshots).pass).toBe(false);
+    const portless = logText.replace(',"port":"8443"', '');
+    expect(summarizeNetworkEvidence(portless, snapshots).egressProbeObserved).toBe(false);
+    expect(summarizeNetworkEvidence(portless, snapshots).pass).toBe(false);
+    const decoyFollowed = logText.replace(
+      '{"protocol":"https:","hostname":"api.anthropic.com","port":"8443"}',
+      '{"protocol":"http:","hostname":"127.0.0.1","port":"9"}'
+    );
+    const decoySummary = summarizeNetworkEvidence(decoyFollowed, snapshots);
+    expect(decoySummary.egressProbeObserved).toBe(false);
+    expect(decoySummary.egressProbeUnexpectedDestinations).toEqual([
+      { protocol: 'http:', hostname: '127.0.0.1', port: '9' }
+    ]);
+    expect(decoySummary.pass).toBe(false);
+    // An extra payload for another destination fails even beside the expected one.
+    const extraDestination = `${logText}\n[egress-layer-probe] {"policy":"REQ-NET-001","destination":{"protocol":"http:","hostname":"127.0.0.1","port":"9"},"outcome":"rejected","error":"net::ERR_CONNECTION_REFUSED"}`;
+    const extraSummary = summarizeNetworkEvidence(extraDestination, snapshots);
+    expect(extraSummary.egressProbeObserved).toBe(true);
+    expect(extraSummary.egressProbeUnexpectedDestinations).toHaveLength(1);
+    expect(extraSummary.pass).toBe(false);
   });
 
   it('requires the renderer hardening evidence from the packaged page', () => {
