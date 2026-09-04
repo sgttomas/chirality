@@ -1,0 +1,13 @@
+[16:36:31] npm run build:electron
+[16:36:31] starting runtime daemon under /private/tmp/chirality-s8.jBc2e1
+[16:36:33] daemon ready (controller/pgid 53419, child 53422, electron pid 53423)
+[16:36:33] project registered; token file /private/tmp/chirality-s8.jBc2e1/runtime/auth/tokens/project-e49f79eb-cb8d-47a4-8e13-f1e1c5f2ab89.token
+[16:36:33] starting next dev on http://127.0.0.1:52124
+curl: (7) Failed to connect to 127.0.0.1 port 52124 after 0 ms: Couldn't connect to server
+[16:36:35] harness API ready (controller/pgid 53448, child 53451)
+[16:36:36] npm run harness:validate:premerge
+[16:36:44] premerge exit 0
+[16:36:44] npm run validate:release-quality
+[16:37:06] release-quality exit 0
+[16:37:07] teardown begin (incoming status 0)
+[16:37:08] teardown done (cleanup_failed=0)

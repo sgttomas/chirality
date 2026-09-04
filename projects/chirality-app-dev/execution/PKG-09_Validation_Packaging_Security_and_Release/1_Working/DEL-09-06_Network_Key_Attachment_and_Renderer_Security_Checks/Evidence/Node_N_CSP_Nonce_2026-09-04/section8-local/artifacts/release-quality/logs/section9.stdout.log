@@ -1,0 +1,289 @@
+
+> chirality-frontend@2.0.0 harness:validate:section9
+> node ./scripts/validate-harness-section9.mjs
+
+HARNESS_SECTION9_CHECK_START=section9.runtime_engine_contract
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/engine-conformance.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/engine-conformance.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m10 passed[39m[22m[90m (10)[39m
+[2m   Start at [22m 10:36:53
+[2m   Duration [22m 270ms[2m (transform 142ms, setup 0ms, import 204ms, tests 17ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.adapter_turn_engine_event_log
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/turn-engine.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/turn-engine.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m   Start at [22m 10:36:53
+[2m   Duration [22m 154ms[2m (transform 71ms, setup 0ms, import 88ms, tests 10ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.adapter_message_mapper
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-message-mapper.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/sdk-message-mapper.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m15 passed[39m[22m[90m (15)[39m
+[2m   Start at [22m 10:36:53
+[2m   Duration [22m 125ms[2m (transform 54ms, setup 0ms, import 67ms, tests 10ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.session_event_replay
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/session-events.test.ts src/__tests__/lib/transcript-replay.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/transcript-replay.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/session-events.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+[2m   Start at [22m 10:36:54
+[2m   Duration [22m 99ms[2m (transform 52ms, setup 0ms, import 65ms, tests 13ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.reliance_boundary_register
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/docs/reliance-boundary-register.test.ts src/__tests__/contract-pins.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/docs/reliance-boundary-register.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/contract-pins.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m19 passed[39m[22m[90m (19)[39m
+[2m   Start at [22m 10:36:54
+[2m   Duration [22m 84ms[2m (transform 38ms, setup 0ms, import 48ms, tests 7ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.settingsources_isolation
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-options-builder.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/sdk-options-builder.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m15 passed[39m[22m[90m (15)[39m
+[2m   Start at [22m 10:36:55
+[2m   Duration [22m 267ms[2m (transform 128ms, setup 0ms, import 190ms, tests 30ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.sdk_session_link_resume
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/session-manager.test.ts src/__tests__/lib/transcript-replay.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/transcript-replay.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/session-manager.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/sdk-options-builder.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m35 passed[39m[22m[90m (35)[39m
+[2m   Start at [22m 10:36:55
+[2m   Duration [22m 280ms[2m (transform 208ms, setup 0ms, import 287ms, tests 61ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.permission_overlay_hard_deny_precedence
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/permission-overlay.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/permission-overlay.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[2m   Start at [22m 10:36:56
+[2m   Duration [22m 129ms[2m (transform 50ms, setup 0ms, import 62ms, tests 15ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.tool_runtime_read_file
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/chirality-read-mcp.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/chirality-read-mcp.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m10 passed[39m[22m[90m (10)[39m
+[2m   Start at [22m 10:36:56
+[2m   Duration [22m 272ms[2m (transform 118ms, setup 0ms, import 178ms, tests 45ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.chirality_mcp_status_dependencies
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/chirality-read-mcp.test.ts src/__tests__/lib/dependencies-register-contract.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/dependencies-register-contract.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/chirality-read-mcp.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 44[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m20 passed[39m[22m[90m (20)[39m
+[2m   Start at [22m 10:36:56
+[2m   Duration [22m 272ms[2m (transform 149ms, setup 0ms, import 215ms, tests 47ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.path_containment_hook
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/permission-overlay.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/permission-overlay.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/chirality-hooks.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m20 passed[39m[22m[90m (20)[39m
+[2m   Start at [22m 10:36:57
+[2m   Duration [22m 141ms[2m (transform 111ms, setup 0ms, import 138ms, tests 39ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.instruction_root_protection_hook
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/harness-instruction-root.test.ts src/__tests__/scripts/verify-instruction-root-integrity.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/harness-instruction-root.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/__tests__/scripts/verify-instruction-root-integrity.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 130[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+[2m   Start at [22m 10:36:57
+[2m   Duration [22m 211ms[2m (transform 49ms, setup 0ms, import 63ms, tests 139ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.tool_result_budget
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/tool-result-artifacts.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/chirality-hooks.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/tool-evidence.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/tool-result-artifacts.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/sdk-message-mapper.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/chirality-hooks.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m33 passed[39m[22m[90m (33)[39m
+[2m   Start at [22m 10:36:58
+[2m   Duration [22m 145ms[2m (transform 196ms, setup 0ms, import 252ms, tests 52ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.context_compaction_boundary
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/session-events.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/session-events.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/sdk-message-mapper.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m21 passed[39m[22m[90m (21)[39m
+[2m   Start at [22m 10:36:58
+[2m   Duration [22m 123ms[2m (transform 83ms, setup 0ms, import 109ms, tests 22ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.subagent_governance_hook
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/harness-subagent-governance.test.ts src/__tests__/lib/agent-runtime-contract.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/lib/agent-runtime-contract.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when the persona is not allowlisted for subagents
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PERSONA_ALLOWLIST evaluationMs=0.418 reason=Active persona is not allowlisted for subagents.
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when governance metadata is missing or invalid
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=METADATA_PRESENCE evaluationMs=0.423 reason=opts.subagentGovernance is missing or invalid.
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when strict governance booleans are not true
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=CONTEXT_SEALED evaluationMs=0.392 reason=contextSealed must be strictly true.
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when strict governance booleans are not true
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=PIPELINE_RUN_APPROVED evaluationMs=0.378 reason=pipelineRunApproved must be strictly true.
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdenies when approvalRef is empty
+[22m[39m[harness/subagent-governance] DENY persona=WORKING_ITEMS gate=APPROVAL_REF evaluationMs=0.372 reason=approvalRef must be a non-empty string.
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mallows and resolves only TYPE 2 delegated subagents
+[22m[39m[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=0.904 delegated=TASK approvalRef=GATE-001 approvedBy=human-reviewer
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mallows configured Agent 0 managers and TASK while rejecting other Agent 2 roles
+[22m[39m[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=0.702 delegated=PROJECT_SETUP,TASK approvalRef=GATE-001 approvedBy=human-reviewer
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mdoes not synthesize TASK eligibility for Agent 0 when TASK is absent from its allowlist
+[22m[39m[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=0.445 delegated=PROJECT_SETUP approvalRef=GATE-001 approvedBy=human-reviewer
+
+[90mstdout[2m | src/__tests__/lib/harness-subagent-governance.test.ts[2m > [22m[2mevaluateSubagentGovernance[2m > [22m[2mwarns but allows TYPE 2 subagents that are not TASK class
+[22m[39m[harness/subagent-governance] ALLOW persona=WORKING_ITEMS gate=ALLOW evaluationMs=0.484 delegated=ALPHA approvalRef=GATE-001 approvedBy=human-reviewer
+
+ [32m✓[39m src/__tests__/lib/harness-subagent-governance.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m16 passed[39m[22m[90m (16)[39m
+[2m   Start at [22m 10:36:58
+[2m   Duration [22m 121ms[2m (transform 57ms, setup 0ms, import 73ms, tests 31ms, environment 0ms)[22m
+
+HARNESS_SECTION9_CHECK_START=section9.domain_profile_validation
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/domain-profile-registry.test.ts src/__tests__/contract-pins.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90m/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend[39m
+
+ [32m✓[39m src/__tests__/contract-pins.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/__tests__/lib/domain-profile-registry.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m20 passed[39m[22m[90m (20)[39m
+[2m   Start at [22m 10:36:59
+[2m   Duration [22m 86ms[2m (transform 50ms, setup 0ms, import 61ms, tests 8ms, environment 0ms)[22m
+
+HARNESS_SECTION9_SUMMARY_PATH=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json
+HARNESS_SECTION9_MANIFEST_PATH=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json
+HARNESS_SECTION9_SOURCE_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/summary.json
+HARNESS_SECTION9_STATUS=pass
+HARNESS_SECTION9_TEST_COUNT=16

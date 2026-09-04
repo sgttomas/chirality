@@ -1,0 +1,11 @@
+daemon_group_survivors_before_kill=0
+next_group_survivors_before_kill=0
+daemon_process_group_remaining=0
+next_process_group_remaining=0
+daemon_controller_pid=53419 pgid=53419
+next_controller_pid=53448 pgid=53448
+daemon_descendant_audit=ok
+next_descendant_audit=ok
+socket_present_after_stop=no
+port_52124_listeners_after_stop=0
+forced_test_cleanup_failure=0

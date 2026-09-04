@@ -1,0 +1,1583 @@
+{
+  "auditTokenSignal": "PASS",
+  "launchAgentProbe": {
+    "coalitionPair": [
+      89096,
+      89097
+    ],
+    "foreignAfterSweep": {
+      "command": "perl",
+      "idVersion": 4441019,
+      "jetsamCoalitionId": 85156,
+      "parentUniqueId": 2232929,
+      "pgid": 53296,
+      "pid": 53347,
+      "ppid": 53296,
+      "resourceCoalitionId": 85155,
+      "startSec": 1788539790,
+      "startUsec": 13260,
+      "uniqueId": 2232980
+    },
+    "foreignBefore": {
+      "command": "perl",
+      "idVersion": 4441019,
+      "jetsamCoalitionId": 85156,
+      "parentUniqueId": 2232929,
+      "pgid": 53296,
+      "pid": 53347,
+      "ppid": 53296,
+      "resourceCoalitionId": 85155,
+      "startSec": 1788539790,
+      "startUsec": 13260,
+      "uniqueId": 2232980
+    },
+    "label": "ai.chirality.section8.probe.53296.7d80ff48bc72",
+    "leader": {
+      "command": "Python",
+      "idVersion": 4441017,
+      "jetsamCoalitionId": 89097,
+      "parentUniqueId": 1,
+      "pgid": 53346,
+      "pid": 53346,
+      "ppid": 1,
+      "resourceCoalitionId": 89096,
+      "startSec": 1788539789,
+      "startUsec": 148882,
+      "uniqueId": 2232979
+    },
+    "members": [
+      {
+        "command": "Python",
+        "idVersion": 4441017,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 1,
+        "pgid": 53346,
+        "pid": 53346,
+        "ppid": 1,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539789,
+        "startUsec": 148882,
+        "uniqueId": 2232979
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441021,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53348,
+        "pid": 53348,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 65526,
+        "uniqueId": 2232981
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441023,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53349,
+        "pid": 53349,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 70078,
+        "uniqueId": 2232982
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441025,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53350,
+        "pid": 53350,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 73012,
+        "uniqueId": 2232983
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441027,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53351,
+        "pid": 53351,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 75880,
+        "uniqueId": 2232984
+      },
+      {
+        "command": "Python",
+        "idVersion": 4441030,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53352,
+        "pid": 53352,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 78928,
+        "uniqueId": 2232985
+      },
+      {
+        "command": "Python",
+        "idVersion": 4441033,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232985,
+        "pgid": 53353,
+        "pid": 53353,
+        "ppid": 53352,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 141892,
+        "uniqueId": 2232986
+      }
+    ],
+    "setsidChildren": [
+      {
+        "command": "perl",
+        "idVersion": 4441021,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53348,
+        "pid": 53348,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 65526,
+        "uniqueId": 2232981
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441023,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53349,
+        "pid": 53349,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 70078,
+        "uniqueId": 2232982
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441025,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53350,
+        "pid": 53350,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 73012,
+        "uniqueId": 2232983
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441027,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53351,
+        "pid": 53351,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 75880,
+        "uniqueId": 2232984
+      },
+      {
+        "command": "Python",
+        "idVersion": 4441030,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53352,
+        "pid": 53352,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 78928,
+        "uniqueId": 2232985
+      },
+      {
+        "command": "Python",
+        "idVersion": 4441033,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232985,
+        "pgid": 53353,
+        "pid": 53353,
+        "ppid": 53352,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 141892,
+        "uniqueId": 2232986
+      }
+    ],
+    "setsidChildrenAfterBootout": [
+      {
+        "command": "perl",
+        "idVersion": 4441021,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53348,
+        "pid": 53348,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 65526,
+        "uniqueId": 2232981
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441023,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53349,
+        "pid": 53349,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 70078,
+        "uniqueId": 2232982
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441025,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53350,
+        "pid": 53350,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 73012,
+        "uniqueId": 2232983
+      },
+      {
+        "command": "perl",
+        "idVersion": 4441027,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53351,
+        "pid": 53351,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 75880,
+        "uniqueId": 2232984
+      },
+      {
+        "command": "Python",
+        "idVersion": 4441030,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232979,
+        "pgid": 53352,
+        "pid": 53352,
+        "ppid": 53346,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 78928,
+        "uniqueId": 2232985
+      },
+      {
+        "command": "Python",
+        "idVersion": 4441033,
+        "jetsamCoalitionId": 89097,
+        "parentUniqueId": 2232985,
+        "pgid": 53353,
+        "pid": 53353,
+        "ppid": 53352,
+        "resourceCoalitionId": 89096,
+        "startSec": 1788539790,
+        "startUsec": 141892,
+        "uniqueId": 2232986
+      }
+    ],
+    "stalePidversion": "ESRCH",
+    "sweep": {
+      "consecutiveEmptyScans": 3,
+      "initialMembers": [
+        {
+          "command": "Python",
+          "idVersion": 4441017,
+          "jetsamCoalitionId": 89097,
+          "parentUniqueId": 1,
+          "pgid": 53346,
+          "pid": 53346,
+          "ppid": 1,
+          "resourceCoalitionId": 89096,
+          "startSec": 1788539789,
+          "startUsec": 148882,
+          "uniqueId": 2232979
+        },
+        {
+          "command": "perl",
+          "idVersion": 4441021,
+          "jetsamCoalitionId": 89097,
+          "parentUniqueId": 2232979,
+          "pgid": 53348,
+          "pid": 53348,
+          "ppid": 53346,
+          "resourceCoalitionId": 89096,
+          "startSec": 1788539790,
+          "startUsec": 65526,
+          "uniqueId": 2232981
+        },
+        {
+          "command": "perl",
+          "idVersion": 4441023,
+          "jetsamCoalitionId": 89097,
+          "parentUniqueId": 2232979,
+          "pgid": 53349,
+          "pid": 53349,
+          "ppid": 53346,
+          "resourceCoalitionId": 89096,
+          "startSec": 1788539790,
+          "startUsec": 70078,
+          "uniqueId": 2232982
+        },
+        {
+          "command": "perl",
+          "idVersion": 4441025,
+          "jetsamCoalitionId": 89097,
+          "parentUniqueId": 2232979,
+          "pgid": 53350,
+          "pid": 53350,
+          "ppid": 53346,
+          "resourceCoalitionId": 89096,
+          "startSec": 1788539790,
+          "startUsec": 73012,
+          "uniqueId": 2232983
+        },
+        {
+          "command": "perl",
+          "idVersion": 4441027,
+          "jetsamCoalitionId": 89097,
+          "parentUniqueId": 2232979,
+          "pgid": 53351,
+          "pid": 53351,
+          "ppid": 53346,
+          "resourceCoalitionId": 89096,
+          "startSec": 1788539790,
+          "startUsec": 75880,
+          "uniqueId": 2232984
+        },
+        {
+          "command": "Python",
+          "idVersion": 4441030,
+          "jetsamCoalitionId": 89097,
+          "parentUniqueId": 2232979,
+          "pgid": 53352,
+          "pid": 53352,
+          "ppid": 53346,
+          "resourceCoalitionId": 89096,
+          "startSec": 1788539790,
+          "startUsec": 78928,
+          "uniqueId": 2232985
+        },
+        {
+          "command": "Python",
+          "idVersion": 4441033,
+          "jetsamCoalitionId": 89097,
+          "parentUniqueId": 2232985,
+          "pgid": 53353,
+          "pid": 53353,
+          "ppid": 53352,
+          "resourceCoalitionId": 89096,
+          "startSec": 1788539790,
+          "startUsec": 141892,
+          "uniqueId": 2232986
+        }
+      ],
+      "jetsamCoalitionId": 89097,
+      "remainingMembers": [],
+      "resourceCoalitionId": 89096,
+      "rounds": 4,
+      "status": "PASS",
+      "stopKillRounds": [
+        {
+          "afterStop": [
+            {
+              "command": "Python",
+              "idVersion": 4441017,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 1,
+              "pgid": 53346,
+              "pid": 53346,
+              "ppid": 1,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539789,
+              "startUsec": 148882,
+              "uniqueId": 2232979
+            },
+            {
+              "command": "perl",
+              "idVersion": 4441021,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53348,
+              "pid": 53348,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 65526,
+              "uniqueId": 2232981
+            },
+            {
+              "command": "perl",
+              "idVersion": 4441023,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53349,
+              "pid": 53349,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 70078,
+              "uniqueId": 2232982
+            },
+            {
+              "command": "perl",
+              "idVersion": 4441025,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53350,
+              "pid": 53350,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 73012,
+              "uniqueId": 2232983
+            },
+            {
+              "command": "perl",
+              "idVersion": 4441027,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53351,
+              "pid": 53351,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 75880,
+              "uniqueId": 2232984
+            },
+            {
+              "command": "Python",
+              "idVersion": 4441030,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53352,
+              "pid": 53352,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 78928,
+              "uniqueId": 2232985
+            },
+            {
+              "command": "Python",
+              "idVersion": 4441033,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232985,
+              "pgid": 53353,
+              "pid": 53353,
+              "ppid": 53352,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 141892,
+              "uniqueId": 2232986
+            }
+          ],
+          "beforeStop": [
+            {
+              "command": "Python",
+              "idVersion": 4441017,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 1,
+              "pgid": 53346,
+              "pid": 53346,
+              "ppid": 1,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539789,
+              "startUsec": 148882,
+              "uniqueId": 2232979
+            },
+            {
+              "command": "perl",
+              "idVersion": 4441021,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53348,
+              "pid": 53348,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 65526,
+              "uniqueId": 2232981
+            },
+            {
+              "command": "perl",
+              "idVersion": 4441023,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53349,
+              "pid": 53349,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 70078,
+              "uniqueId": 2232982
+            },
+            {
+              "command": "perl",
+              "idVersion": 4441025,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53350,
+              "pid": 53350,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 73012,
+              "uniqueId": 2232983
+            },
+            {
+              "command": "perl",
+              "idVersion": 4441027,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53351,
+              "pid": 53351,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 75880,
+              "uniqueId": 2232984
+            },
+            {
+              "command": "Python",
+              "idVersion": 4441030,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53352,
+              "pid": 53352,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 78928,
+              "uniqueId": 2232985
+            },
+            {
+              "command": "Python",
+              "idVersion": 4441033,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232985,
+              "pgid": 53353,
+              "pid": 53353,
+              "ppid": 53352,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 141892,
+              "uniqueId": 2232986
+            }
+          ],
+          "kill": [
+            {
+              "identity": {
+                "command": "Python",
+                "idVersion": 4441017,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 1,
+                "pgid": 53346,
+                "pid": 53346,
+                "ppid": 1,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539789,
+                "startUsec": 148882,
+                "uniqueId": 2232979
+              },
+              "outcome": "signalled",
+              "signal": 9
+            },
+            {
+              "identity": {
+                "command": "perl",
+                "idVersion": 4441021,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53348,
+                "pid": 53348,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 65526,
+                "uniqueId": 2232981
+              },
+              "outcome": "signalled",
+              "signal": 9
+            },
+            {
+              "identity": {
+                "command": "perl",
+                "idVersion": 4441023,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53349,
+                "pid": 53349,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 70078,
+                "uniqueId": 2232982
+              },
+              "outcome": "signalled",
+              "signal": 9
+            },
+            {
+              "identity": {
+                "command": "perl",
+                "idVersion": 4441025,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53350,
+                "pid": 53350,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 73012,
+                "uniqueId": 2232983
+              },
+              "outcome": "signalled",
+              "signal": 9
+            },
+            {
+              "identity": {
+                "command": "perl",
+                "idVersion": 4441027,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53351,
+                "pid": 53351,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 75880,
+                "uniqueId": 2232984
+              },
+              "outcome": "signalled",
+              "signal": 9
+            },
+            {
+              "identity": {
+                "command": "Python",
+                "idVersion": 4441030,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53352,
+                "pid": 53352,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 78928,
+                "uniqueId": 2232985
+              },
+              "outcome": "signalled",
+              "signal": 9
+            },
+            {
+              "identity": {
+                "command": "Python",
+                "idVersion": 4441033,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232985,
+                "pgid": 53353,
+                "pid": 53353,
+                "ppid": 53352,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 141892,
+                "uniqueId": 2232986
+              },
+              "outcome": "signalled",
+              "signal": 9
+            }
+          ],
+          "round": 1,
+          "stop": [
+            {
+              "identity": {
+                "command": "Python",
+                "idVersion": 4441017,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 1,
+                "pgid": 53346,
+                "pid": 53346,
+                "ppid": 1,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539789,
+                "startUsec": 148882,
+                "uniqueId": 2232979
+              },
+              "outcome": "signalled",
+              "signal": 17
+            },
+            {
+              "identity": {
+                "command": "perl",
+                "idVersion": 4441021,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53348,
+                "pid": 53348,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 65526,
+                "uniqueId": 2232981
+              },
+              "outcome": "signalled",
+              "signal": 17
+            },
+            {
+              "identity": {
+                "command": "perl",
+                "idVersion": 4441023,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53349,
+                "pid": 53349,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 70078,
+                "uniqueId": 2232982
+              },
+              "outcome": "signalled",
+              "signal": 17
+            },
+            {
+              "identity": {
+                "command": "perl",
+                "idVersion": 4441025,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53350,
+                "pid": 53350,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 73012,
+                "uniqueId": 2232983
+              },
+              "outcome": "signalled",
+              "signal": 17
+            },
+            {
+              "identity": {
+                "command": "perl",
+                "idVersion": 4441027,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53351,
+                "pid": 53351,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 75880,
+                "uniqueId": 2232984
+              },
+              "outcome": "signalled",
+              "signal": 17
+            },
+            {
+              "identity": {
+                "command": "Python",
+                "idVersion": 4441030,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232979,
+                "pgid": 53352,
+                "pid": 53352,
+                "ppid": 53346,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 78928,
+                "uniqueId": 2232985
+              },
+              "outcome": "signalled",
+              "signal": 17
+            },
+            {
+              "identity": {
+                "command": "Python",
+                "idVersion": 4441033,
+                "jetsamCoalitionId": 89097,
+                "parentUniqueId": 2232985,
+                "pgid": 53353,
+                "pid": 53353,
+                "ppid": 53352,
+                "resourceCoalitionId": 89096,
+                "startSec": 1788539790,
+                "startUsec": 141892,
+                "uniqueId": 2232986
+              },
+              "outcome": "signalled",
+              "signal": 17
+            }
+          ]
+        },
+        {
+          "emptyScan": 1,
+          "round": 2
+        },
+        {
+          "emptyScan": 2,
+          "round": 3
+        },
+        {
+          "emptyScan": 3,
+          "round": 4
+        }
+      ],
+      "termRounds": [
+        [
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441017,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 1,
+              "pgid": 53346,
+              "pid": 53346,
+              "ppid": 1,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539789,
+              "startUsec": 148882,
+              "uniqueId": 2232979
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441021,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53348,
+              "pid": 53348,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 65526,
+              "uniqueId": 2232981
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441023,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53349,
+              "pid": 53349,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 70078,
+              "uniqueId": 2232982
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441025,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53350,
+              "pid": 53350,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 73012,
+              "uniqueId": 2232983
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441027,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53351,
+              "pid": 53351,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 75880,
+              "uniqueId": 2232984
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441030,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53352,
+              "pid": 53352,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 78928,
+              "uniqueId": 2232985
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441033,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232985,
+              "pgid": 53353,
+              "pid": 53353,
+              "ppid": 53352,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 141892,
+              "uniqueId": 2232986
+            },
+            "outcome": "signalled",
+            "signal": 15
+          }
+        ],
+        [
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441017,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 1,
+              "pgid": 53346,
+              "pid": 53346,
+              "ppid": 1,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539789,
+              "startUsec": 148882,
+              "uniqueId": 2232979
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441021,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53348,
+              "pid": 53348,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 65526,
+              "uniqueId": 2232981
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441023,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53349,
+              "pid": 53349,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 70078,
+              "uniqueId": 2232982
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441025,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53350,
+              "pid": 53350,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 73012,
+              "uniqueId": 2232983
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441027,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53351,
+              "pid": 53351,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 75880,
+              "uniqueId": 2232984
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441030,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53352,
+              "pid": 53352,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 78928,
+              "uniqueId": 2232985
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441033,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232985,
+              "pgid": 53353,
+              "pid": 53353,
+              "ppid": 53352,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 141892,
+              "uniqueId": 2232986
+            },
+            "outcome": "signalled",
+            "signal": 15
+          }
+        ],
+        [
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441017,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 1,
+              "pgid": 53346,
+              "pid": 53346,
+              "ppid": 1,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539789,
+              "startUsec": 148882,
+              "uniqueId": 2232979
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441021,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53348,
+              "pid": 53348,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 65526,
+              "uniqueId": 2232981
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441023,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53349,
+              "pid": 53349,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 70078,
+              "uniqueId": 2232982
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441025,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53350,
+              "pid": 53350,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 73012,
+              "uniqueId": 2232983
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441027,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53351,
+              "pid": 53351,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 75880,
+              "uniqueId": 2232984
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441030,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53352,
+              "pid": 53352,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 78928,
+              "uniqueId": 2232985
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441033,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232985,
+              "pgid": 53353,
+              "pid": 53353,
+              "ppid": 53352,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 141892,
+              "uniqueId": 2232986
+            },
+            "outcome": "signalled",
+            "signal": 15
+          }
+        ],
+        [
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441017,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 1,
+              "pgid": 53346,
+              "pid": 53346,
+              "ppid": 1,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539789,
+              "startUsec": 148882,
+              "uniqueId": 2232979
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441021,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53348,
+              "pid": 53348,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 65526,
+              "uniqueId": 2232981
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441023,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53349,
+              "pid": 53349,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 70078,
+              "uniqueId": 2232982
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441025,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53350,
+              "pid": 53350,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 73012,
+              "uniqueId": 2232983
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441027,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53351,
+              "pid": 53351,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 75880,
+              "uniqueId": 2232984
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441030,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53352,
+              "pid": 53352,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 78928,
+              "uniqueId": 2232985
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441033,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232985,
+              "pgid": 53353,
+              "pid": 53353,
+              "ppid": 53352,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 141892,
+              "uniqueId": 2232986
+            },
+            "outcome": "signalled",
+            "signal": 15
+          }
+        ],
+        [
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441017,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 1,
+              "pgid": 53346,
+              "pid": 53346,
+              "ppid": 1,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539789,
+              "startUsec": 148882,
+              "uniqueId": 2232979
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441021,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53348,
+              "pid": 53348,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 65526,
+              "uniqueId": 2232981
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441023,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53349,
+              "pid": 53349,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 70078,
+              "uniqueId": 2232982
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441025,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53350,
+              "pid": 53350,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 73012,
+              "uniqueId": 2232983
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "perl",
+              "idVersion": 4441027,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53351,
+              "pid": 53351,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 75880,
+              "uniqueId": 2232984
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441030,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232979,
+              "pgid": 53352,
+              "pid": 53352,
+              "ppid": 53346,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 78928,
+              "uniqueId": 2232985
+            },
+            "outcome": "signalled",
+            "signal": 15
+          },
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4441033,
+              "jetsamCoalitionId": 89097,
+              "parentUniqueId": 2232985,
+              "pgid": 53353,
+              "pid": 53353,
+              "ppid": 53352,
+              "resourceCoalitionId": 89096,
+              "startSec": 1788539790,
+              "startUsec": 141892,
+              "uniqueId": 2232986
+            },
+            "outcome": "signalled",
+            "signal": 15
+          }
+        ]
+      ]
+    }
+  },
+  "launchdDomain": "gui/501",
+  "platform": "darwin",
+  "schema": "chirality-section8-coalition-capability/v1",
+  "status": "PASS",
+  "supervisor": {
+    "command": "Python",
+    "idVersion": 4440966,
+    "jetsamCoalitionId": 85156,
+    "parentUniqueId": 1767904,
+    "pgid": 53296,
+    "pid": 53296,
+    "ppid": 83254,
+    "resourceCoalitionId": 85155,
+    "startSec": 1788539788,
+    "startUsec": 772842,
+    "uniqueId": 2232929
+  },
+  "targetBinaries": [
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node",
+      "path": "/Users/ryan/.local/share/mise/installs/node/24.18.0/bin/node"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/bin/bash",
+      "path": "/bin/bash"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Helpers/chrome_crashpad_handler"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libEGL.dylib"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libGLESv2.dylib"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libffmpeg.dylib"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libvk_swiftshader.dylib"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Helper (GPU).app/Contents/MacOS/Electron Helper (GPU)"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Helper (Plugin).app/Contents/MacOS/Electron Helper (Plugin)"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Helper (Renderer).app/Contents/MacOS/Electron Helper (Renderer)"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Electron Helper.app/Contents/MacOS/Electron Helper"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Mantle.framework/Versions/A/Mantle"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/ReactiveObjC"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources/ShipIt"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/Frameworks/Squirrel.framework/Versions/A/Squirrel"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app",
+      "path": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron"
+    },
+    {
+      "coalitionSpawnEntitlement": false,
+      "codesignExit": 0,
+      "declaredTarget": "/usr/bin/python3",
+      "path": "/usr/bin/python3"
+    }
+  ]
+}

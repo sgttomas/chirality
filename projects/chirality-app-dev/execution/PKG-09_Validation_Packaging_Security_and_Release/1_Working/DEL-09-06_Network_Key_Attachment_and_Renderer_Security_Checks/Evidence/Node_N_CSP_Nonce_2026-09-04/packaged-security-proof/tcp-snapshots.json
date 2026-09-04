@@ -1,0 +1,973 @@
+[
+  {
+    "at": "2026-09-04T16:30:28.973Z",
+    "pids": [
+      39956,
+      39957,
+      39958,
+      39959
+    ],
+    "processes": [
+      {
+        "pid": 39956,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon"
+      },
+      {
+        "pid": 39957,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31"
+      },
+      {
+        "pid": 39958,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31"
+      },
+      {
+        "pid": 39959,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+      }
+    ],
+    "endpoints": []
+  },
+  {
+    "at": "2026-09-04T16:30:29.364Z",
+    "pids": [
+      39956,
+      39957,
+      39958,
+      39959,
+      39994,
+      39995
+    ],
+    "processes": [
+      {
+        "pid": 39956,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon"
+      },
+      {
+        "pid": 39957,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31"
+      },
+      {
+        "pid": 39958,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31"
+      },
+      {
+        "pid": 39959,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+      },
+      {
+        "pid": 39994,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=27"
+      },
+      {
+        "pid": 39995,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=27"
+      }
+    ],
+    "endpoints": [
+      {
+        "endpoint": "127.0.0.1:63736",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   57u  IPv4 0x3ad77324a784399b      0t0  TCP 127.0.0.1:63735->127.0.0.1:63736 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63737",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   58u  IPv4 0xa5555739f4fe56ab      0t0  TCP 127.0.0.1:63735->127.0.0.1:63737 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63739",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   59u  IPv4 0x8885863e396433ef      0t0  TCP 127.0.0.1:63735->127.0.0.1:63739 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63738",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   61u  IPv4 0xb469f27173a42994      0t0  TCP 127.0.0.1:63735->127.0.0.1:63738 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   28u  IPv4 0x10f586e3e883a090      0t0  TCP 127.0.0.1:63736->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   30u  IPv4 0x62a2c6d774e3b856      0t0  TCP 127.0.0.1:63737->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   31u  IPv4 0x9f53f55f4644da41      0t0  TCP 127.0.0.1:63738->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   32u  IPv4 0x48ab60c1523d3b64      0t0  TCP 127.0.0.1:63739->127.0.0.1:63735 (ESTABLISHED)"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-04T16:30:29.761Z",
+    "pids": [
+      39956,
+      39957,
+      39958,
+      39959,
+      39994,
+      39995,
+      40012,
+      40013,
+      40014,
+      40032
+    ],
+    "processes": [
+      {
+        "pid": 39956,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon"
+      },
+      {
+        "pid": 39957,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31"
+      },
+      {
+        "pid": 39958,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31"
+      },
+      {
+        "pid": 39959,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+      },
+      {
+        "pid": 39994,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=27"
+      },
+      {
+        "pid": 39995,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=27"
+      },
+      {
+        "pid": 40012,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282977761 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990060038890 --seatbelt-client=57"
+      },
+      {
+        "pid": 40013,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282987526 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990997080739 --seatbelt-client=57"
+      },
+      {
+        "pid": 40014,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282994304 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708991934122588 --seatbelt-client=57"
+      },
+      {
+        "pid": 40032,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278283004232 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708992871164437 --seatbelt-client=57"
+      }
+    ],
+    "endpoints": [
+      {
+        "endpoint": "127.0.0.1:63736",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   57u  IPv4 0x3ad77324a784399b      0t0  TCP 127.0.0.1:63735->127.0.0.1:63736 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63737",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   58u  IPv4 0xa5555739f4fe56ab      0t0  TCP 127.0.0.1:63735->127.0.0.1:63737 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63739",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   59u  IPv4 0x8885863e396433ef      0t0  TCP 127.0.0.1:63735->127.0.0.1:63739 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63738",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   61u  IPv4 0xb469f27173a42994      0t0  TCP 127.0.0.1:63735->127.0.0.1:63738 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63740",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   65u  IPv4 0x6e45b2f1efd4f79c      0t0  TCP 127.0.0.1:63735->127.0.0.1:63740 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63741",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   66u  IPv4 0xb3e38b769a349baf      0t0  TCP 127.0.0.1:63735->127.0.0.1:63741 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   24u  IPv4 0xb24b073c4ef2ba73      0t0  TCP 127.0.0.1:63740->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   28u  IPv4 0x10f586e3e883a090      0t0  TCP 127.0.0.1:63736->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   29u  IPv4 0xb7786f6beafca6d3      0t0  TCP 127.0.0.1:63741->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   30u  IPv4 0x62a2c6d774e3b856      0t0  TCP 127.0.0.1:63737->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   31u  IPv4 0x9f53f55f4644da41      0t0  TCP 127.0.0.1:63738->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   32u  IPv4 0x48ab60c1523d3b64      0t0  TCP 127.0.0.1:63739->127.0.0.1:63735 (ESTABLISHED)"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-04T16:30:30.172Z",
+    "pids": [
+      39956,
+      39957,
+      39958,
+      39959,
+      39994,
+      39995,
+      40012,
+      40013,
+      40014,
+      40032
+    ],
+    "processes": [
+      {
+        "pid": 39956,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon"
+      },
+      {
+        "pid": 39957,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31"
+      },
+      {
+        "pid": 39958,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31"
+      },
+      {
+        "pid": 39959,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+      },
+      {
+        "pid": 39994,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=27"
+      },
+      {
+        "pid": 39995,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=27"
+      },
+      {
+        "pid": 40012,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282977761 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990060038890 --seatbelt-client=57"
+      },
+      {
+        "pid": 40013,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282987526 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990997080739 --seatbelt-client=57"
+      },
+      {
+        "pid": 40014,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282994304 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708991934122588 --seatbelt-client=57"
+      },
+      {
+        "pid": 40032,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278283004232 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708992871164437 --seatbelt-client=57"
+      }
+    ],
+    "endpoints": [
+      {
+        "endpoint": "127.0.0.1:63736",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   57u  IPv4 0x3ad77324a784399b      0t0  TCP 127.0.0.1:63735->127.0.0.1:63736 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63737",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   58u  IPv4 0xa5555739f4fe56ab      0t0  TCP 127.0.0.1:63735->127.0.0.1:63737 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63739",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   59u  IPv4 0x8885863e396433ef      0t0  TCP 127.0.0.1:63735->127.0.0.1:63739 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63738",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   61u  IPv4 0xb469f27173a42994      0t0  TCP 127.0.0.1:63735->127.0.0.1:63738 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63740",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   65u  IPv4 0x6e45b2f1efd4f79c      0t0  TCP 127.0.0.1:63735->127.0.0.1:63740 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63741",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   66u  IPv4 0xb3e38b769a349baf      0t0  TCP 127.0.0.1:63735->127.0.0.1:63741 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   24u  IPv4 0xb24b073c4ef2ba73      0t0  TCP 127.0.0.1:63740->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   28u  IPv4 0x10f586e3e883a090      0t0  TCP 127.0.0.1:63736->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   29u  IPv4 0xb7786f6beafca6d3      0t0  TCP 127.0.0.1:63741->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   30u  IPv4 0x62a2c6d774e3b856      0t0  TCP 127.0.0.1:63737->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   31u  IPv4 0x9f53f55f4644da41      0t0  TCP 127.0.0.1:63738->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   32u  IPv4 0x48ab60c1523d3b64      0t0  TCP 127.0.0.1:63739->127.0.0.1:63735 (ESTABLISHED)"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-04T16:30:30.585Z",
+    "pids": [
+      39956,
+      39957,
+      39958,
+      39959,
+      39994,
+      39995,
+      40012,
+      40013,
+      40014,
+      40032
+    ],
+    "processes": [
+      {
+        "pid": 39956,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon"
+      },
+      {
+        "pid": 39957,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31"
+      },
+      {
+        "pid": 39958,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31"
+      },
+      {
+        "pid": 39959,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+      },
+      {
+        "pid": 39994,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=27"
+      },
+      {
+        "pid": 39995,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=27"
+      },
+      {
+        "pid": 40012,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282977761 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990060038890 --seatbelt-client=57"
+      },
+      {
+        "pid": 40013,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282987526 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990997080739 --seatbelt-client=57"
+      },
+      {
+        "pid": 40014,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282994304 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708991934122588 --seatbelt-client=57"
+      },
+      {
+        "pid": 40032,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278283004232 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708992871164437 --seatbelt-client=57"
+      }
+    ],
+    "endpoints": [
+      {
+        "endpoint": "127.0.0.1:63736",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   57u  IPv4 0x3ad77324a784399b      0t0  TCP 127.0.0.1:63735->127.0.0.1:63736 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63737",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   58u  IPv4 0xa5555739f4fe56ab      0t0  TCP 127.0.0.1:63735->127.0.0.1:63737 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63739",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   59u  IPv4 0x8885863e396433ef      0t0  TCP 127.0.0.1:63735->127.0.0.1:63739 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63738",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   61u  IPv4 0xb469f27173a42994      0t0  TCP 127.0.0.1:63735->127.0.0.1:63738 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63740",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   65u  IPv4 0x6e45b2f1efd4f79c      0t0  TCP 127.0.0.1:63735->127.0.0.1:63740 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63741",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   66u  IPv4 0xb3e38b769a349baf      0t0  TCP 127.0.0.1:63735->127.0.0.1:63741 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   24u  IPv4 0xb24b073c4ef2ba73      0t0  TCP 127.0.0.1:63740->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   28u  IPv4 0x10f586e3e883a090      0t0  TCP 127.0.0.1:63736->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   29u  IPv4 0xb7786f6beafca6d3      0t0  TCP 127.0.0.1:63741->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   30u  IPv4 0x62a2c6d774e3b856      0t0  TCP 127.0.0.1:63737->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   31u  IPv4 0x9f53f55f4644da41      0t0  TCP 127.0.0.1:63738->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   32u  IPv4 0x48ab60c1523d3b64      0t0  TCP 127.0.0.1:63739->127.0.0.1:63735 (ESTABLISHED)"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-04T16:30:30.998Z",
+    "pids": [
+      39956,
+      39957,
+      39958,
+      39959,
+      39994,
+      39995,
+      40012,
+      40013,
+      40014,
+      40032
+    ],
+    "processes": [
+      {
+        "pid": 39956,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon"
+      },
+      {
+        "pid": 39957,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31"
+      },
+      {
+        "pid": 39958,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31"
+      },
+      {
+        "pid": 39959,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+      },
+      {
+        "pid": 39994,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=27"
+      },
+      {
+        "pid": 39995,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=27"
+      },
+      {
+        "pid": 40012,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282977761 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990060038890 --seatbelt-client=57"
+      },
+      {
+        "pid": 40013,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282987526 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990997080739 --seatbelt-client=57"
+      },
+      {
+        "pid": 40014,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282994304 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708991934122588 --seatbelt-client=57"
+      },
+      {
+        "pid": 40032,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278283004232 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708992871164437 --seatbelt-client=57"
+      }
+    ],
+    "endpoints": [
+      {
+        "endpoint": "127.0.0.1:63736",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   57u  IPv4 0x3ad77324a784399b      0t0  TCP 127.0.0.1:63735->127.0.0.1:63736 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63737",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   58u  IPv4 0xa5555739f4fe56ab      0t0  TCP 127.0.0.1:63735->127.0.0.1:63737 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63739",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   59u  IPv4 0x8885863e396433ef      0t0  TCP 127.0.0.1:63735->127.0.0.1:63739 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63738",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   61u  IPv4 0xb469f27173a42994      0t0  TCP 127.0.0.1:63735->127.0.0.1:63738 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63740",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   65u  IPv4 0x6e45b2f1efd4f79c      0t0  TCP 127.0.0.1:63735->127.0.0.1:63740 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63741",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   66u  IPv4 0xb3e38b769a349baf      0t0  TCP 127.0.0.1:63735->127.0.0.1:63741 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   24u  IPv4 0xb24b073c4ef2ba73      0t0  TCP 127.0.0.1:63740->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   28u  IPv4 0x10f586e3e883a090      0t0  TCP 127.0.0.1:63736->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   29u  IPv4 0xb7786f6beafca6d3      0t0  TCP 127.0.0.1:63741->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   30u  IPv4 0x62a2c6d774e3b856      0t0  TCP 127.0.0.1:63737->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   31u  IPv4 0x9f53f55f4644da41      0t0  TCP 127.0.0.1:63738->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   32u  IPv4 0x48ab60c1523d3b64      0t0  TCP 127.0.0.1:63739->127.0.0.1:63735 (ESTABLISHED)"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-04T16:30:31.386Z",
+    "pids": [
+      39956,
+      39957,
+      39958,
+      39959,
+      39994,
+      39995,
+      40012,
+      40013,
+      40014,
+      40032
+    ],
+    "processes": [
+      {
+        "pid": 39956,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon"
+      },
+      {
+        "pid": 39957,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31"
+      },
+      {
+        "pid": 39958,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31"
+      },
+      {
+        "pid": 39959,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+      },
+      {
+        "pid": 39994,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=27"
+      },
+      {
+        "pid": 39995,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=27"
+      },
+      {
+        "pid": 40012,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282977761 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990060038890 --seatbelt-client=57"
+      },
+      {
+        "pid": 40013,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282987526 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990997080739 --seatbelt-client=57"
+      },
+      {
+        "pid": 40014,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282994304 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708991934122588 --seatbelt-client=57"
+      },
+      {
+        "pid": 40032,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278283004232 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708992871164437 --seatbelt-client=57"
+      }
+    ],
+    "endpoints": [
+      {
+        "endpoint": "127.0.0.1:63736",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   57u  IPv4 0x3ad77324a784399b      0t0  TCP 127.0.0.1:63735->127.0.0.1:63736 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63737",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   58u  IPv4 0xa5555739f4fe56ab      0t0  TCP 127.0.0.1:63735->127.0.0.1:63737 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63739",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   59u  IPv4 0x8885863e396433ef      0t0  TCP 127.0.0.1:63735->127.0.0.1:63739 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63738",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   61u  IPv4 0xb469f27173a42994      0t0  TCP 127.0.0.1:63735->127.0.0.1:63738 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63740",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   65u  IPv4 0x6e45b2f1efd4f79c      0t0  TCP 127.0.0.1:63735->127.0.0.1:63740 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63741",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   66u  IPv4 0xb3e38b769a349baf      0t0  TCP 127.0.0.1:63735->127.0.0.1:63741 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   24u  IPv4 0xb24b073c4ef2ba73      0t0  TCP 127.0.0.1:63740->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   28u  IPv4 0x10f586e3e883a090      0t0  TCP 127.0.0.1:63736->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   29u  IPv4 0xb7786f6beafca6d3      0t0  TCP 127.0.0.1:63741->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   30u  IPv4 0x62a2c6d774e3b856      0t0  TCP 127.0.0.1:63737->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   31u  IPv4 0x9f53f55f4644da41      0t0  TCP 127.0.0.1:63738->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   32u  IPv4 0x48ab60c1523d3b64      0t0  TCP 127.0.0.1:63739->127.0.0.1:63735 (ESTABLISHED)"
+      }
+    ]
+  },
+  {
+    "at": "2026-09-04T16:30:31.777Z",
+    "pids": [
+      39956,
+      39957,
+      39958,
+      39959,
+      39994,
+      39995,
+      40012,
+      40013,
+      40014,
+      40032
+    ],
+    "processes": [
+      {
+        "pid": 39956,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon"
+      },
+      {
+        "pid": 39957,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=31"
+      },
+      {
+        "pid": 39958,
+        "ppid": 39956,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,7447160411162610348,8159405671133695197,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,14611194281545328126,970379580080537679,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=31"
+      },
+      {
+        "pid": 39959,
+        "ppid": 39943,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality"
+      },
+      {
+        "pid": 39994,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=gpu-process --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --gpu-preferences=UAAAAAAAAAAgAQAEAAAAAAAAAAAAAGAAOAAAAAAAAAADAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAABgAAAAAAAAAGAAAAAAAAAAIAAAAAAAAAAgAAAAAAAAACAAAAAAAAAA= --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708988185955192 --seatbelt-client=27"
+      },
+      {
+        "pid": 39995,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper.app/Contents/MacOS/Chirality Helper --type=utility --utility-sub-type=network.mojom.NetworkService --lang=en-US --service-sandbox-type=network --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708989122997041 --seatbelt-client=27"
+      },
+      {
+        "pid": 40012,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=4 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282977761 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990060038890 --seatbelt-client=57"
+      },
+      {
+        "pid": 40013,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282987526 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708990997080739 --seatbelt-client=57"
+      },
+      {
+        "pid": 40014,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278282994304 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708991934122588 --seatbelt-client=57"
+      },
+      {
+        "pid": 40032,
+        "ppid": 39959,
+        "command": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Frameworks/Chirality Helper (Renderer).app/Contents/MacOS/Chirality Helper (Renderer) --type=renderer --user-data-dir=/tmp/chirality-psp-lerD7i/user-data --app-path=/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/Resources/app.asar --enable-sandbox --lang=en-US --num-raster-threads=4 --enable-zero-copy --enable-gpu-memory-buffer-compositor-resources --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1787261146304982 --launch-time-ticks=1278283004232 --shared-files --field-trial-handle=1718379636,r,8767620357599208681,9159099718957844467,262144 --enable-features=PdfUseShowSaveFilePicker,ScreenCaptureKitPickerScreen,ScreenCaptureKitStreamPickerSonoma --disable-features=DropInputEventsWhilePaintHolding,LocalNetworkAccessChecks,ScreenAIOCREnabled,SpareRendererForSitePerProcess,TimeoutHangingVideoCaptureStarts,TraceSiteInstanceGetProcessCreation --variations-seed-version --pseudonymization-salt-handle=1935764596,r,8394833734003285497,9582834836544781024,4 --trace-process-track-uuid=3190708992871164437 --seatbelt-client=57"
+      }
+    ],
+    "endpoints": [
+      {
+        "endpoint": "127.0.0.1:63736",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   57u  IPv4 0x3ad77324a784399b      0t0  TCP 127.0.0.1:63735->127.0.0.1:63736 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63737",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   58u  IPv4 0xa5555739f4fe56ab      0t0  TCP 127.0.0.1:63735->127.0.0.1:63737 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63739",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   59u  IPv4 0x8885863e396433ef      0t0  TCP 127.0.0.1:63735->127.0.0.1:63739 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63738",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   61u  IPv4 0xb469f27173a42994      0t0  TCP 127.0.0.1:63735->127.0.0.1:63738 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63740",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   65u  IPv4 0x6e45b2f1efd4f79c      0t0  TCP 127.0.0.1:63735->127.0.0.1:63740 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63741",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39959 ryan   66u  IPv4 0xb3e38b769a349baf      0t0  TCP 127.0.0.1:63735->127.0.0.1:63741 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   24u  IPv4 0xb24b073c4ef2ba73      0t0  TCP 127.0.0.1:63740->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   28u  IPv4 0x10f586e3e883a090      0t0  TCP 127.0.0.1:63736->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   29u  IPv4 0xb7786f6beafca6d3      0t0  TCP 127.0.0.1:63741->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   30u  IPv4 0x62a2c6d774e3b856      0t0  TCP 127.0.0.1:63737->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   31u  IPv4 0x9f53f55f4644da41      0t0  TCP 127.0.0.1:63738->127.0.0.1:63735 (ESTABLISHED)"
+      },
+      {
+        "endpoint": "127.0.0.1:63735",
+        "host": "127.0.0.1",
+        "class": "loopback",
+        "line": "Chirality 39995 ryan   32u  IPv4 0x48ab60c1523d3b64      0t0  TCP 127.0.0.1:63739->127.0.0.1:63735 (ESTABLISHED)"
+      }
+    ]
+  }
+]

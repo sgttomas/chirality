@@ -1,0 +1,9 @@
+ M projects/chirality-app-dev/frontend/electron/main.ts
+ M projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts
+ M projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs
+ M projects/chirality-app-dev/frontend/src/__tests__/contract-pins.manifest.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/electron/renderer-window-policy.test.ts
+ M projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts
+ M projects/chirality-app-dev/frontend/src/app/layout.tsx
+?? projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/Evidence/Node_N_CSP_Nonce_2026-09-04/
+?? projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_N_2026-09-04/

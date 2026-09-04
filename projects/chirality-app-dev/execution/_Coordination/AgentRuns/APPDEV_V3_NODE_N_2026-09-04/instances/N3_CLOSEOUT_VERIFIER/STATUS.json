@@ -1,0 +1,29 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_V3_NODE_N_2026-09-04",
+  "instance_id": "N3_CLOSEOUT_VERIFIER",
+  "role": "EPHEMERAL_AGENT2_READ_ONLY_REVIEWER",
+  "execution_class": "delegated-harness-native",
+  "role_enforcement": "role not mechanically enforced",
+  "governed_workflow_role_evidence": "instruction-asserted",
+  "k_subagent_nondelegation": "instruction+config asserted; not mechanism-proven",
+  "record_provenance": "source-calibrated structured reconstruction from the external contemporaneous closeout report and supervisor direction; not a byte-verbatim prompt transcript",
+  "basis": "307addfc259b046aeb2ed07d47086cd5686c35b8",
+  "reviewed_freeze": "dca2ef103f9a22e38d815c5f21638220ad454223",
+  "closeout_head": "43d07e2e19700b604993eab233c15594980d8a64",
+  "read_only": true,
+  "descendants_observed": false,
+  "status": "completed_pass_with_minor",
+  "findings": {
+    "blocker": 0,
+    "major": 0,
+    "minor": 1
+  },
+  "report_source": "/private/tmp/chirality-app-v3-csp-20260904/reviews/CLOSEOUT_VERIFY_NODE_N.md",
+  "report_sha256": "7a2b11be8b17a2ff04159cc45ba20789a3123346a6ba503a7d8fd93558a2be85",
+  "repository_write_performed": false,
+  "push_performed": false,
+  "pr_opened": false,
+  "merge_performed": false,
+  "recorded_at": "2026-09-04"
+}

@@ -1,0 +1,268 @@
+{
+  "schema": "chirality-run-checks/v1",
+  "run_id": "APPDEV_V3_NODE_N_2026-09-04",
+  "basis": "307addfc259b046aeb2ed07d47086cd5686c35b8",
+  "status": "CLOSEOUT_READY_AFTER_CV_N_01",
+  "freeze": "dca2ef103f9a22e38d815c5f21638220ad454223",
+  "current_main": "307addfc259b046aeb2ed07d47086cd5686c35b8",
+  "receipt": "Receipt-224",
+  "step0": {
+    "receipts_validator": "pass",
+    "authority_corpus": "pass",
+    "app_hold_dispatch": "pass",
+    "pinned_completion_reference": "pass",
+    "harness_status": "pass_after_runtime_selection",
+    "harness_self_check": "pass_after_runtime_selection",
+    "initial_system_python_harness_attempt": "operational_failure_pyyaml_absent",
+    "runtime_dependencies": "pass",
+    "frontend_dependencies_initial_sandbox_attempt": "fail_network_enotfound",
+    "frontend_dependencies_approved_network_rerun": "pass",
+    "focused_baseline": "pass"
+  },
+  "checks": [
+    {
+      "name": "focused_vitest",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "npx vitest run src/__tests__/electron/renderer-window-policy.test.ts src/__tests__/scripts/run-packaged-security-proof.test.ts src/__tests__/contract-pins.test.ts",
+      "status": "pass",
+      "exit": 0,
+      "result": "3 files, 97 tests"
+    },
+    {
+      "name": "frontend_typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "npm run typecheck",
+      "status": "pass",
+      "exit": 0
+    },
+    {
+      "name": "frontend_full_vitest",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "npm test",
+      "status": "pass_after_host_permission",
+      "exit": 0,
+      "result": "165 files passed, 1 skipped; 1567 tests passed, 4 skipped",
+      "initial_attempt": "sandbox EPERM on loopback and Unix-socket listeners; exit nonzero; no pass inferred"
+    },
+    {
+      "name": "frontend_build",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "npm run build (also rerun within npm run desktop:pack)",
+      "status": "pass",
+      "exit": 0,
+      "result": "Next 15.5.21; /, /chat, /pipeline, /workbench all dynamic; Electron build pass"
+    },
+    {
+      "name": "desktop_pack",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "npm run desktop:pack",
+      "status": "pass",
+      "exit": 0,
+      "result": "unsigned arm64 app; dependency boundary pass; instruction-root integrity pass; pre-existing source-completeness needs_remediation note retained"
+    },
+    {
+      "name": "packaged_security_proof",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "/usr/bin/env -u ANTHROPIC_API_KEY -u CHIRALITY_ANTHROPIC_API_KEY -u CHIRALITY_OMLX_API_KEY npm run proof:packaged-security -- --app-path dist/mac-arm64/Chirality.app --output-root <disposable> --source-revision 307addfc259b046aeb2ed07d47086cd5686c35b8 --capture-seconds 20",
+      "status": "pass_after_host_permission",
+      "exit": 0,
+      "result": "four routes pass; 12 observed nonces globally unique; inline scripts match; packaged script-src unsafe allowances absent; unexpected CSP violations none; non-allowlisted TCP none; cleanup pass; artifact identity 21caf9abd8b0d90a31c6d784e48575e5a276a1ae9131106fd418790aa4be0686",
+      "initial_attempt": "sandboxed packaged daemon aborted before GUI launch; cleanup fail record retained; no pass inferred",
+      "evidence": "DEL-09-06/Evidence/Node_N_CSP_Nonce_2026-09-04/packaged-security-proof"
+    },
+    {
+      "name": "rendering_timing_observation",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "same-host npm run build; next start 127.0.0.1:52123; sequential curl of four routes; SIGINT",
+      "status": "complete_observation",
+      "exit": 0,
+      "result": "no threshold; pre static, post dynamic; timings retained for later G5 consideration",
+      "evidence": "DEL-09-06/Evidence/Node_N_CSP_Nonce_2026-09-04/timing-observations.json"
+    },
+    {
+      "name": "section8_premerge_and_release_quality",
+      "cwd": "repo root",
+      "command": "RUN_ROOT=<evidence>/section8-local PORT=52124 WITH_RELEASE_QUALITY=1 APPROVED_BY=node-n-implementer APPROVAL_REF=DEL-09-06-V3-04 bash projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/Evidence/Node_H_Section8_Preservation_2026-09-03/rerun-section8-local.sh",
+      "status": "pass",
+      "exit": 0,
+      "result": "premerge pass; release-quality pass; Section 8 pass; Section 9 pass/report-only under premerge; coalition cleanup pass",
+      "initial_attempts": [
+        "standalone validate:release-quality failed in the known absent-runtime-bindings class; no pass inferred",
+        "first lifecycle attempt failed before launch because Electron.app was not materialized; retained; no pass inferred"
+      ],
+      "evidence": "DEL-09-06/Evidence/Node_N_CSP_Nonce_2026-09-04/section8-local"
+    },
+    {
+      "name": "d_app_36_render_bar",
+      "status": "pass",
+      "result": "real packaged BrowserWindows rendered every required route with nonce-matched inline scripts and zero unexpected/own-resource CSP violations; no CSS, geometry, copy, control-state, or interaction change requiring screenshot comparison"
+    },
+    {
+      "name": "secret_scan",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "npm run proof:secret-scan -- --project-root .. --output-root <disposable>",
+      "status": "pass",
+      "exit": 0,
+      "result": "7381 files scanned; 0 blocked; 26 allowlisted fixture findings; result SHA-256 556808bb24125eb94dd062fcc3662e3feaaedb8716c02363b2676d36f4bea62c"
+    },
+    {
+      "name": "harness_self_check",
+      "cwd": "repo root",
+      "command": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 tools/practitioner_harness/harness.py self-check",
+      "status": "pass",
+      "exit": 0,
+      "result": "known repo-wide findings only, outside Node N"
+    },
+    {
+      "name": "harness_pytest",
+      "cwd": "repo root",
+      "command": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 -m pytest -q tools/practitioner_harness",
+      "status": "pass",
+      "exit": 0,
+      "result": "350 passed"
+    },
+    {
+      "name": "app_hold_dispatch",
+      "cwd": "projects/chirality-app-dev",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-06",
+      "status": "pass",
+      "exit": 0,
+      "result": "ALLOW"
+    },
+    {
+      "name": "app_hold_integrity",
+      "cwd": "projects/chirality-app-dev",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "status": "pass",
+      "exit": 0
+    },
+    {
+      "name": "authority_corpus",
+      "cwd": "projects/chirality-app-dev",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "status": "pass",
+      "exit": 0,
+      "result": "v20, no drift"
+    },
+    {
+      "name": "receipts_validator_read_only",
+      "cwd": "repo root",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "status": "pass",
+      "exit": 0,
+      "result": "VALID; Node N did not edit the ledger before review"
+    },
+    {
+      "name": "scope_of_work",
+      "cwd": "repo root",
+      "command": "python3 tools/scope_of_work/validate_scope_of_work.py projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks",
+      "status": "pass",
+      "exit": 0
+    },
+    {
+      "name": "exact_change_scope",
+      "cwd": "repo root",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base 307addfc259b046aeb2ed07d47086cd5686c35b8 --head <candidate-head> --allowed <seven exact implementation/test files> --allowed <Node N DEL evidence root> --allowed <Node N DEL task-run record> --allowed <Node N AgentRuns root> --allowed <DEL-09-06 _STATUS.md> --allowed <loop/LOOP_RECEIPTS.md>",
+      "status": "pass",
+      "exit": 0,
+      "result": "violations []"
+    },
+    {
+      "name": "f_app_2_scan",
+      "status": "pass",
+      "result": "all matches are fence/negation, disabled signing discovery, proof exclusion fields, or future PR mechanics; no signing/notarization/publication/distribution/release-readiness claim"
+    },
+    {
+      "name": "cleanup",
+      "status": "pass",
+      "result": "packaged proof GUI/daemon exit 0 and temp root removed; Section-8 coalition has no final members/listener/socket; production timing server exit 0"
+    },
+    {
+      "name": "git_diff_check",
+      "status": "pass",
+      "exit": 0
+    },
+    {
+      "name": "manifests",
+      "status": "pass",
+      "exit": 0,
+      "result": "run-level, evidence-level, packaged-proof, Section-8, and failed-attempt manifests all verify"
+    },
+    {
+      "name": "origin_main_and_rebase",
+      "status": "pass",
+      "exit": 0,
+      "result": "fetch found origin/main unchanged at the basis; git rebase origin/main reported the branch up to date"
+    },
+    {
+      "name": "independent_review",
+      "status": "pass",
+      "result": "N2 reviewed 100% of the basis-to-freeze diff; zero BLOCKER, zero MAJOR, zero MINOR, two NOTE; immutable report SHA-256 e518d6472095814e5cf02c3b2e365e23adce485369b2616dc9c00497385a59fc"
+    },
+    {
+      "name": "reviewed_product_test_byte_identity",
+      "status": "pass",
+      "result": "all seven git blob identities match the independent review report after rebase, closeout edits, rebuild, and proof rerun"
+    },
+    {
+      "name": "post_closeout_desktop_pack",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "npm run desktop:pack",
+      "status": "pass",
+      "exit": 0,
+      "result": "unsigned arm64 package; four operator routes dynamic; dependency boundary pass; instruction-root integrity pass with pre-existing source-completeness informational state"
+    },
+    {
+      "name": "post_closeout_packaged_security_proof",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "/usr/bin/env -u ANTHROPIC_API_KEY -u CHIRALITY_ANTHROPIC_API_KEY -u CHIRALITY_OMLX_API_KEY npm run proof:packaged-security -- --app-path dist/mac-arm64/Chirality.app --output-root <retained-post-closeout-evidence> --source-revision dca2ef103f9a22e38d815c5f21638220ad454223 --capture-seconds 20",
+      "status": "pass",
+      "exit": 0,
+      "result": "four routes pass; 12 observed nonces globally unique; inline scripts match; unsafe script allowances absent; unexpected and own-resource post-load violations none; non-allowlisted TCP none; cleanup pass; artifact identity 8ab0aed93eab899d747ac11b16c2ba3221bd0aab43a5cc1278ea3169c9ae0189; summary SHA-256 ee98875b36b2f1b42f885b849119e772b14d666ba2c0a94d04acbe0ee332cfb2"
+    },
+    {
+      "name": "post_closeout_node_h_lifecycle",
+      "cwd": "repo root",
+      "command": "RUN_ROOT=/private/tmp/chirality-app-v3-csp-20260904/nodeN-closeout-section8 PORT=52125 WITH_RELEASE_QUALITY=1 APPROVED_BY=node-n-implementer APPROVAL_REF=DEL-09-06-V3-04 bash projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation/Evidence/Node_H_Section8_Preservation_2026-09-03/rerun-section8-local.sh",
+      "status": "pass",
+      "exit": 0,
+      "result": "premerge and release quality pass; Section 8 and report-only premerge Section 9 pass; coalition cleanup has no final member, listener, or socket"
+    },
+    {
+      "name": "post_closeout_focused_vitest",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "command": "npx vitest run src/__tests__/electron/renderer-window-policy.test.ts src/__tests__/scripts/run-packaged-security-proof.test.ts src/__tests__/contract-pins.test.ts",
+      "status": "pass",
+      "exit": 0,
+      "result": "3 files, 97 tests"
+    },
+    {
+      "name": "receipt_224_validator",
+      "cwd": "repo root",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "status": "pass",
+      "exit": 0,
+      "result": "VALID after Receipt 224 append"
+    },
+    {
+      "name": "closeout_verifier",
+      "status": "pass_with_minor",
+      "result": "zero BLOCKER, zero MAJOR, one MINOR CV-N-01; report SHA-256 7a2b11be8b17a2ff04159cc45ba20789a3123346a6ba503a7d8fd93558a2be85"
+    },
+    {
+      "name": "cv_n_01_memory_remediation",
+      "status": "pass",
+      "result": "DEL-09-06 MEMORY.md now carries the required concise Node N closeout, A1 invalidation, review-note, and post-merge revision-3 echo; no product/test/CSS or Remaining item changed"
+    }
+  ],
+  "not_run": [
+    {
+      "name": "section8_revision_3",
+      "reason": "out of Node N scope and owed only after this product change lands on main"
+    },
+    {
+      "name": "signing_notarization_distribution",
+      "reason": "prohibited by F-APP-2 and not needed for this unsigned local proof"
+    }
+  ]
+}

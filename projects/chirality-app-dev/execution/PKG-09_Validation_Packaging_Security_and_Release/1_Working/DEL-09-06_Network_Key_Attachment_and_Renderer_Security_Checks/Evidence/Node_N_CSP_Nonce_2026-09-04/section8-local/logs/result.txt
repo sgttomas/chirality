@@ -1,0 +1,4 @@
+premerge_exit=0
+release_quality_exit=0
+ended_at=2026-09-04T16:37:07Z
+git_status_after=9 dirty paths

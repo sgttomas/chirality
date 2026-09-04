@@ -1,0 +1,15 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_V3_NODE_N_2026-09-04",
+  "instance_id": "N1_IMPLEMENTER",
+  "status": "REVIEW_READY",
+  "execution_class": "delegated-harness-native",
+  "role": "EPHEMERAL_AGENT2_GENERALIST",
+  "role_mechanical_enforcement": "not mechanically enforced",
+  "governed_workflow_role_evidence": "instruction-asserted",
+  "non_delegation_evidence": "instruction+config asserted, not mechanism-proven",
+  "descendants_observed": 0,
+  "basis": "307addfc259b046aeb2ed07d47086cd5686c35b8",
+  "branch": "codex/app-v3-nodeN-csp-nonce-2026-09-04",
+  "next": "fresh read-only N2 review over the committed freeze; retain worktree for remediation"
+}

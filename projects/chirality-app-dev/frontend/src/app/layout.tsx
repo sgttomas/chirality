@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { headers } from 'next/headers';
 import './globals.css';
 import { WorkspaceProvider } from '../components/workspace/workspace-provider';
 import { ToolkitProvider } from '../components/workspace/toolkit-provider';
@@ -57,11 +58,32 @@ export const metadata: Metadata = {
   description: 'PORTAL, PIPELINE, and WORKBENCH shell for local agent execution'
 };
 
-export default function RootLayout({
+const CSP_HEADER = 'content-security-policy';
+const CSP_NONCE_SOURCE_PATTERN = /^'nonce-([A-Za-z0-9+/_-]+={0,2})'$/;
+
+function nonceFromContentSecurityPolicy(policy: string | null): string | undefined {
+  const scriptDirective = policy
+    ?.split(';')
+    .map((directive) => directive.trim())
+    .find((directive) => directive.startsWith('script-src '));
+  for (const source of scriptDirective?.split(/\s+/).slice(1) ?? []) {
+    const match = source.match(CSP_NONCE_SOURCE_PATTERN);
+    if (match) return match[1];
+  }
+  return undefined;
+}
+
+export default async function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Reading request headers deliberately makes all four operator routes
+  // dynamic. The packaged server presents Next and this layout with the exact
+  // policy it attaches to the response; development sends no CSP request
+  // header and keeps its previous policy posture.
+  const nonce = nonceFromContentSecurityPolicy((await headers()).get(CSP_HEADER));
+
   return (
     <html
       lang="en"
@@ -70,7 +92,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
+        <script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />
         {/* Outermost so every runtime-backed pane below can depend on the
             reconnect epoch, and so the top bar and the data panes read one
             shared connectivity snapshot rather than two subscriptions that

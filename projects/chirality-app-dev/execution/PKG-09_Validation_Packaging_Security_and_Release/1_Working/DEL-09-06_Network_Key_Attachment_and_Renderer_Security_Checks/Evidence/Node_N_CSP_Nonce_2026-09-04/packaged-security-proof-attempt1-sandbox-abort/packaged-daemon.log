@@ -1,0 +1,2 @@
+[2026-09-04T16:26:39.559Z] START packaged-runtime-daemon: /private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality --runtime-daemon
+[2026-09-04T16:26:42.198Z] EXIT packaged-runtime-daemon: code=null signal=SIGABRT

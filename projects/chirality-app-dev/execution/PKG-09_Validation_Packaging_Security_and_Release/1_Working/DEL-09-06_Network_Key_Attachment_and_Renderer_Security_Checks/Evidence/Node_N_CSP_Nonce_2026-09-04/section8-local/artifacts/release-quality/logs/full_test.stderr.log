@@ -1,0 +1,3 @@
+[90mstderr[2m | src/__tests__/integration/pi-omlx-wire.integration.test.ts[2m > [22m[2mPi/oMLX wire integration[2m > [22m[2mmaps 'malformed SSE JSON' to one redacted canonical failure and releases the turn
+[22m[39mCould not parse message into JSON: [REDACTED_PROVIDER_PAYLOAD]
+From chunk: [REDACTED_PROVIDER_PAYLOAD]

@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-09-04T16:37:06.956Z",
+  "profile": "runtime-premerge-evidence",
+  "status": "pass",
+  "releaseClaim": false,
+  "section9Policy": {
+    "standaloneSection9IsBlockingForThisWrapper": true,
+    "premergeSection9IsReportOnly": true
+  },
+  "commands": [
+    {
+      "id": "full_test",
+      "status": "pass",
+      "command": "npm run test -- --testTimeout=15000",
+      "exitCode": 0,
+      "startedAt": "2026-09-04T16:36:44.727Z",
+      "endedAt": "2026-09-04T16:36:48.818Z",
+      "durationMs": 4090,
+      "stdoutLog": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stdout.log",
+      "stderrLog": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stderr.log"
+    },
+    {
+      "id": "typecheck",
+      "status": "pass",
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "startedAt": "2026-09-04T16:36:48.818Z",
+      "endedAt": "2026-09-04T16:36:52.800Z",
+      "durationMs": 3982,
+      "stdoutLog": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stdout.log",
+      "stderrLog": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stderr.log"
+    },
+    {
+      "id": "section9",
+      "status": "pass",
+      "command": "npm run harness:validate:section9",
+      "exitCode": 0,
+      "startedAt": "2026-09-04T16:36:52.800Z",
+      "endedAt": "2026-09-04T16:36:59.328Z",
+      "durationMs": 6528,
+      "stdoutLog": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stdout.log",
+      "stderrLog": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stderr.log"
+    },
+    {
+      "id": "premerge",
+      "status": "pass",
+      "command": "npm run harness:validate:premerge",
+      "exitCode": 0,
+      "startedAt": "2026-09-04T16:36:59.328Z",
+      "endedAt": "2026-09-04T16:37:06.954Z",
+      "durationMs": 7626,
+      "stdoutLog": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stdout.log",
+      "stderrLog": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stderr.log"
+    }
+  ],
+  "summaryConsistency": {
+    "id": "summary.consistency",
+    "status": "pass",
+    "checks": [
+      {
+        "id": "summary.section9",
+        "status": "pass",
+        "artifactPath": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+        "errors": []
+      },
+      {
+        "id": "summary.section8",
+        "status": "pass",
+        "artifactPath": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+        "errors": []
+      }
+    ]
+  },
+  "artifacts": {
+    "releaseQualitySummary": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json",
+    "section8Summary": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+    "section9Summary": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+    "section9Manifest": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json"
+  },
+  "boundaries": [
+    "No release publication authorization.",
+    "No lifecycle issuance.",
+    "No professional approval.",
+    "No certification, sealing, authentication, notarization, code-compliance acceptance, or release-readiness claim."
+  ]
+}

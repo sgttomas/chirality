@@ -1,0 +1,70 @@
+[2026-09-04T16:30:28.892Z] START packaged-gui: /private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app/Contents/MacOS/Chirality
+[chirality-desktop] 2026-09-04T16:30:29.061Z [info] desktop.gui.starting {"packaged":true,"userData":"/tmp/chirality-psp-lerD7i/user-data","socketPath":"/tmp/chirality-psp-lerD7i/user-data/runtime/control.sock"}
+[chirality-desktop] 2026-09-04T16:30:29.062Z [info] desktop.cli_launcher.install {"status":"skipped","path":"/Users/ryan/.local/bin/chirality","reason":"opted-out"}
+[chirality-desktop] 2026-09-04T16:30:29.062Z [info] runtime.socket_watch.started {"directory":"/tmp/chirality-psp-lerD7i/user-data/runtime"}
+[chirality-desktop] 2026-09-04T16:30:29.062Z [info] runtime.connectivity.supervisor_started
+[chirality-desktop] 2026-09-04T16:30:29.071Z [info] runtime.connectivity.state {"state":"disconnected","failedAttempts":1,"lastError":"Unknown project: chirality-app-dev","changedAt":"2026-09-04T16:30:29.071Z"}
+[chirality-desktop] 2026-09-04T16:30:29.071Z [warn] runtime.connectivity.bind_failed {"attempt":1,"reason":"Unknown project: chirality-app-dev"}
+(node:39959) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `Chirality --trace-deprecation ...` to show where the warning was created)
+[chirality-desktop] 2026-09-04T16:30:29.538Z [warn] runtime.connectivity.bind_failed {"attempt":2,"reason":"Unknown project: chirality-app-dev"}
+[chirality-desktop] 2026-09-04T16:30:29.539Z [warn] runtime.connectivity.bind_failed {"attempt":3,"reason":"Unknown project: chirality-app-dev"}
+[network-policy-probe] {"policy":"REQ-NET-001","results":[{"url":"https://example.com/chirality-packaged-security-blocked","ok":false,"status":null,"type":null,"error":"Failed to fetch"},{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false,"status":null,"type":null,"error":"Failed to fetch"}]}
+[network-policy-probe] {"policy":"REQ-NET-001","results":[{"url":"https://example.com/chirality-packaged-security-blocked","ok":false,"status":null,"type":null,"error":"Failed to fetch"},{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false,"status":null,"type":null,"error":"Failed to fetch"}]}
+[network-policy-probe] {"policy":"REQ-NET-001","results":[{"url":"https://example.com/chirality-packaged-security-blocked","ok":false,"status":null,"type":null,"error":"Failed to fetch"},{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false,"status":null,"type":null,"error":"Failed to fetch"}]}
+[network-policy-probe] {"policy":"REQ-NET-001","results":[{"url":"https://example.com/chirality-packaged-security-blocked","ok":false,"status":null,"type":null,"error":"Failed to fetch"},{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false,"status":null,"type":null,"error":"Failed to fetch"}]}
+[chirality-desktop] 2026-09-04T16:30:31.035Z [warn] renderer.window_open.denied {"reason":"SCHEME_NOT_HTTP","destination":{"protocol":"about:","hostname":""}}
+[chirality-desktop] 2026-09-04T16:30:31.045Z [warn] renderer.window_open.denied {"reason":"SCHEME_NOT_HTTP","destination":{"protocol":"about:","hostname":""}}
+[chirality-desktop] 2026-09-04T16:30:31.045Z [warn] renderer.window_open.denied {"reason":"SCHEME_NOT_HTTP","destination":{"protocol":"about:","hostname":""}}
+[chirality-desktop] 2026-09-04T16:30:31.045Z [warn] renderer.window_open.denied {"reason":"SCHEME_NOT_HTTP","destination":{"protocol":"about:","hostname":""}}
+[renderer-security-probe] {"policy":"G-CSP","route":"/pipeline","documentNonce":"njUXW7uWN8LnjkxVm6ugAg==","documentInlineScriptCount":9,"documentInlineScriptNoncesMatch":true,"consecutiveResponses":[{"status":200,"contentType":"text/html; charset=utf-8","cspHeader":"default-src 'self'; script-src 'self' 'nonce-YhE+C//lhnbtVijORwcMfA=='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'","responseNonce":"YhE+C//lhnbtVijORwcMfA==","inlineScriptCount":9,"inlineScriptNoncesMatch":true,"documentComplete":true},{"status":200,"contentType":"text/html; charset=utf-8","cspHeader":"default-src 'self'; script-src 'self' 'nonce-jsvQG0AdnmUkmG4+4viPQg=='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'","responseNonce":"jsvQG0AdnmUkmG4+4viPQg==","inlineScriptCount":9,"inlineScriptNoncesMatch":true,"documentComplete":true}],"responseError":null,"windowOpen":{"returned":"null"},"violations":[{"blockedURI":"https://example.com/chirality-renderer-security-csp-blocked","effectiveDirective":"connect-src","disposition":"enforce"}],"navigationAttempted":"https://example.com/chirality-renderer-security-navigation"}
+[chirality-desktop] 2026-09-04T16:30:31.291Z [warn] renderer.navigation.denied {"event":"will-navigate","reason":"ORIGIN_NOT_RENDERER","destination":{"protocol":"https:","hostname":"example.com"}}
+[renderer-security-probe] {"policy":"G-CSP","route":"/workbench","documentNonce":"w24mXnHU3oEl/10HuGqW0A==","documentInlineScriptCount":7,"documentInlineScriptNoncesMatch":true,"consecutiveResponses":[{"status":200,"contentType":"text/html; charset=utf-8","cspHeader":"default-src 'self'; script-src 'self' 'nonce-VrlunCJ2mqnN/bNLS+Szhw=='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'","responseNonce":"VrlunCJ2mqnN/bNLS+Szhw==","inlineScriptCount":7,"inlineScriptNoncesMatch":true,"documentComplete":true},{"status":200,"contentType":"text/html; charset=utf-8","cspHeader":"default-src 'self'; script-src 'self' 'nonce-I1AFqyUjw7roBlqpQAiljw=='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'","responseNonce":"I1AFqyUjw7roBlqpQAiljw==","inlineScriptCount":7,"inlineScriptNoncesMatch":true,"documentComplete":true}],"responseError":null,"windowOpen":{"returned":"null"},"violations":[{"blockedURI":"https://example.com/chirality-renderer-security-csp-blocked","effectiveDirective":"connect-src","disposition":"enforce"}],"navigationAttempted":"https://example.com/chirality-renderer-security-navigation"}
+[renderer-security-probe] {"policy":"G-CSP","route":"/chat","documentNonce":"G8IlLINcTuk5Vmqemnincg==","documentInlineScriptCount":7,"documentInlineScriptNoncesMatch":true,"consecutiveResponses":[{"status":200,"contentType":"text/html; charset=utf-8","cspHeader":"default-src 'self'; script-src 'self' 'nonce-7+CFroK4duR4feWThjkBGg=='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'","responseNonce":"7+CFroK4duR4feWThjkBGg==","inlineScriptCount":7,"inlineScriptNoncesMatch":true,"documentComplete":true},{"status":200,"contentType":"text/html; charset=utf-8","cspHeader":"default-src 'self'; script-src 'self' 'nonce-bhJqO3vaCxVooq6Vrt1iaQ=='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'","responseNonce":"bhJqO3vaCxVooq6Vrt1iaQ==","inlineScriptCount":7,"inlineScriptNoncesMatch":true,"documentComplete":true}],"responseError":null,"windowOpen":{"returned":"null"},"violations":[{"blockedURI":"https://example.com/chirality-renderer-security-csp-blocked","effectiveDirective":"connect-src","disposition":"enforce"}],"navigationAttempted":"https://example.com/chirality-renderer-security-navigation"}
+[chirality-desktop] 2026-09-04T16:30:31.297Z [warn] renderer.navigation.denied {"event":"will-navigate","reason":"ORIGIN_NOT_RENDERER","destination":{"protocol":"https:","hostname":"example.com"}}
+[chirality-desktop] 2026-09-04T16:30:31.298Z [warn] renderer.navigation.denied {"event":"will-navigate","reason":"ORIGIN_NOT_RENDERER","destination":{"protocol":"https:","hostname":"example.com"}}
+[chirality-desktop] 2026-09-04T16:30:31.299Z [warn] renderer.navigation.denied {"event":"will-navigate","reason":"ORIGIN_NOT_RENDERER","destination":{"protocol":"https:","hostname":"example.com"}}
+[renderer-security-probe] {"policy":"G-CSP","route":"/","documentNonce":"eAcjKBEcHWbZ3w7nM/QWvA==","documentInlineScriptCount":7,"documentInlineScriptNoncesMatch":true,"consecutiveResponses":[{"status":200,"contentType":"text/html; charset=utf-8","cspHeader":"default-src 'self'; script-src 'self' 'nonce-BPt8vaUta1KxXD01eo1NLw=='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'","responseNonce":"BPt8vaUta1KxXD01eo1NLw==","inlineScriptCount":7,"inlineScriptNoncesMatch":true,"documentComplete":true},{"status":200,"contentType":"text/html; charset=utf-8","cspHeader":"default-src 'self'; script-src 'self' 'nonce-nOFTm+J1VLZIt+s8TDcIdw=='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'","responseNonce":"nOFTm+J1VLZIt+s8TDcIdw==","inlineScriptCount":7,"inlineScriptNoncesMatch":true,"documentComplete":true}],"responseError":null,"windowOpen":{"returned":"null"},"violations":[{"blockedURI":"https://example.com/chirality-renderer-security-csp-blocked","effectiveDirective":"connect-src","disposition":"enforce"}],"navigationAttempted":"https://example.com/chirality-renderer-security-navigation"}
+Blocked renderer outbound request by network policy {
+  category: 'NETWORK_POLICY_VIOLATION',
+  policy: 'REQ-NET-001',
+  reason: 'anthropic_port_not_allowlisted:8443',
+  destination: { hostname: 'api.anthropic.com', port: '8443', protocol: 'https:' },
+  method: 'GET',
+  resourceType: 'other',
+  webContentsId: undefined
+}
+[egress-layer-probe] {"policy":"REQ-NET-001","destination":{"protocol":"https:","hostname":"api.anthropic.com","port":"8443"},"outcome":"rejected","error":"net::ERR_BLOCKED_BY_CLIENT"}
+Blocked renderer outbound request by network policy {
+  category: 'NETWORK_POLICY_VIOLATION',
+  policy: 'REQ-NET-001',
+  reason: 'anthropic_port_not_allowlisted:8443',
+  destination: { hostname: 'api.anthropic.com', port: '8443', protocol: 'https:' },
+  method: 'GET',
+  resourceType: 'other',
+  webContentsId: undefined
+}
+Blocked renderer outbound request by network policy {
+  category: 'NETWORK_POLICY_VIOLATION',
+  policy: 'REQ-NET-001',
+  reason: 'anthropic_port_not_allowlisted:8443',
+  destination: { hostname: 'api.anthropic.com', port: '8443', protocol: 'https:' },
+  method: 'GET',
+  resourceType: 'other',
+  webContentsId: undefined
+}
+Blocked renderer outbound request by network policy {
+  category: 'NETWORK_POLICY_VIOLATION',
+  policy: 'REQ-NET-001',
+  reason: 'anthropic_port_not_allowlisted:8443',
+  destination: { hostname: 'api.anthropic.com', port: '8443', protocol: 'https:' },
+  method: 'GET',
+  resourceType: 'other',
+  webContentsId: undefined
+}
+[egress-layer-probe] {"policy":"REQ-NET-001","destination":{"protocol":"https:","hostname":"api.anthropic.com","port":"8443"},"outcome":"rejected","error":"net::ERR_BLOCKED_BY_CLIENT"}
+[egress-layer-probe] {"policy":"REQ-NET-001","destination":{"protocol":"https:","hostname":"api.anthropic.com","port":"8443"},"outcome":"rejected","error":"net::ERR_BLOCKED_BY_CLIENT"}
+[egress-layer-probe] {"policy":"REQ-NET-001","destination":{"protocol":"https:","hostname":"api.anthropic.com","port":"8443"},"outcome":"rejected","error":"net::ERR_BLOCKED_BY_CLIENT"}
+[chirality-desktop] 2026-09-04T16:30:31.778Z [info] desktop.shutdown.started {"reason":"before-quit","exitCode":0,"daemonMode":false,"pid":39959}
+[chirality-desktop] 2026-09-04T16:30:31.779Z [info] desktop.shutdown.completed {"reason":"before-quit","exitCode":0}
+[2026-09-04T16:30:31.813Z] EXIT packaged-gui: code=0 signal=null

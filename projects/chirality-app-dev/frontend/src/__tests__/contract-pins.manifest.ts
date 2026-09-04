@@ -218,7 +218,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
   {
     file: 'electron/main.ts',
     description:
-      'G-CSP renderer hardening (DEL-09-06-V3-01): every window is created from the hardening policy (asserted context isolation, no Node integration, sandbox), the egress policy and the window policy (window-open denial, navigation containment, CSP) are installed per window, the packaged renderer server sets the CSP at the source, and every privileged IPC module receives the exact renderer origin',
+      'G-CSP renderer hardening (DEL-09-06-V3-01/V3-04): every window is created from the hardening policy; the packaged server attaches one request-specific nonce policy before Next renders and byte-identically on the response; Electron never fabricates a packaged fallback; all four proof routes use real BrowserWindows',
     pins: [
       { kind: 'contains', value: "webPreferences: rendererWebPreferences({ preload: path.join(__dirname, 'preload.js') })" },
       { kind: 'notContains', value: 'contextIsolation: false' },
@@ -233,8 +233,11 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: 'registerRendererEgressPolicy(window);' },
       { kind: 'contains', value: 'installRendererWindowPolicy(window, {' },
       { kind: 'contains', value: 'openExternal: (url) => shell.openExternal(url)' },
-      { kind: 'contains', value: "mode: app.isPackaged ? 'packaged' : 'development'" },
-      { kind: 'contains', value: 'res.setHeader(CONTENT_SECURITY_POLICY_HEADER, contentSecurityPolicy);' },
+      { kind: 'contains', value: 'applyPackagedRendererRequestPolicy(req, res);' },
+      { kind: 'contains', value: 'contentSecurityPolicy: app.isPackaged' },
+      { kind: 'contains', value: '? undefined' },
+      { kind: 'contains', value: "buildRendererContentSecurityPolicy({ mode: 'development', rendererOrigin })" },
+      { kind: 'contains', value: "const RENDERER_SECURITY_PROBE_ROUTES = ['/', '/chat', '/pipeline', '/workbench'] as const;" },
       { kind: 'contains', value: 'const rendererOrigin = new URL(rendererUrl).origin;' },
       { kind: 'contains', value: 'registerApiKeyHandlers(runtimeClient, {' },
       { kind: 'contains', value: 'registerRuntimeControlHandlers({' }
@@ -243,7 +246,7 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
   {
     file: 'electron/renderer-window-policy.ts',
     description:
-      'Renderer window hardening policy (DEL-09-06-V3-01): explicit web preferences, deny-all window-open, renderer-origin-only navigation on both navigation events, CSP without eval outside development and closed to frames/objects/embedding; egress-layer probe destination fixed to the policy-denied :8443 form and never read from the environment (DEL-09-06-V3-05)',
+      'Renderer window hardening policy (DEL-09-06-V3-01/V3-04): explicit web preferences, deny-all window-open, renderer-origin-only navigation, request-specific 128-bit packaged nonce shared by Next request and response CSP, development-only static fallback; fixed policy-denied egress probe (V3-05)',
     pins: [
       { kind: 'contains', value: 'contextIsolation: true,' },
       { kind: 'contains', value: 'nodeIntegration: false,' },
@@ -254,7 +257,11 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: 'event.preventDefault();' },
       { kind: 'contains', value: "parsed.origin === 'null' || parsed.origin !== rendererOrigin" },
       { kind: 'contains', value: "\"default-src 'self'\"" },
-      { kind: 'contains', value: "`script-src 'self' 'unsafe-inline'${development ? \" 'unsafe-eval'\" : ''}`" },
+      { kind: 'contains', value: '? "script-src \'self\' \'unsafe-inline\' \'unsafe-eval\'"' },
+      { kind: 'contains', value: ": `script-src 'self' 'nonce-${options.nonce}'`" },
+      { kind: 'contains', value: 'randomBytes(RENDERER_CSP_NONCE_BYTES)' },
+      { kind: 'contains', value: 'request.headers[CONTENT_SECURITY_POLICY_HEADER.toLowerCase()] = contentSecurityPolicy;' },
+      { kind: 'contains', value: 'response.setHeader(CONTENT_SECURITY_POLICY_HEADER, contentSecurityPolicy);' },
       { kind: 'contains', value: "\"frame-src 'none'\"" },
       { kind: 'contains', value: "\"object-src 'none'\"" },
       { kind: 'contains', value: "\"frame-ancestors 'none'\"" },
@@ -273,6 +280,17 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: 'webRequest.onHeadersReceived(' },
       { kind: 'notContains', value: 'unsafe-hashes' },
       { kind: 'notContains', value: "'*'" }
+    ]
+  },
+  {
+    file: 'src/app/layout.tsx',
+    description:
+      'A15 dynamic renderer root: reads the nonce from the packaged request CSP and applies it to the app-owned inline theme bootstrap while development remains nonce-optional',
+    pins: [
+      { kind: 'contains', value: "import { headers } from 'next/headers';" },
+      { kind: 'contains', value: "const CSP_HEADER = 'content-security-policy';" },
+      { kind: 'contains', value: 'nonceFromContentSecurityPolicy((await headers()).get(CSP_HEADER))' },
+      { kind: 'contains', value: '<script nonce={nonce} dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP_SCRIPT }} />' }
     ]
   },
   {
@@ -346,6 +364,9 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: 'retainedMetadataLeakFindings' },
       { kind: 'contains', value: "CHIRALITY_RENDERER_SECURITY_PROBE: '1'" },
       { kind: 'contains', value: 'rendererSecurityProofPass === true' },
+      { kind: 'contains', value: "export const PACKAGED_RENDERER_ROUTES = ['/', '/chat', '/pipeline', '/workbench']" },
+      { kind: 'contains', value: '!scriptSources.includes("\'unsafe-inline\'")' },
+      { kind: 'contains', value: 'allObservedNoncesUnique' },
       { kind: 'contains', value: "export const EGRESS_PROBE_URL = 'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'" },
       { kind: 'contains', value: "'[egress-layer-probe]'" },
       // DEL-09-06-V3-05: the proof no longer supplies the probe URL; it sets the retired

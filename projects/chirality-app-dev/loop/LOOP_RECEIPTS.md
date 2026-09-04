@@ -6794,3 +6794,35 @@
     lifecycle, SCOPE_CHANGE, signing, notarization, Apple call, distribution,
     publication, release-readiness, or production identity act or claim
     occurred.
+
+- **2026-09-04 — Receipt 224** (App v3 pathway Node N: per-response packaged CSP nonce).
+  - Receipt-ID: `Receipt-224`
+  - Examined-Through: `307addfc259b046aeb2ed07d47086cd5686c35b8`
+  - Parent-Receipt: `Receipt-223`
+  - Pointers: branch `codex/app-v3-nodeN-csp-nonce-2026-09-04`; reviewed
+    product/test freeze `dca2ef103f9a22e38d815c5f21638220ad454223`;
+    RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_N_2026-09-04/`
+    (final return/handoff/checks/manifest, review dispositions, and filed
+    independent report SHA-256
+    `e518d6472095814e5cf02c3b2e365e23adce485369b2616dc9c00497385a59fc`);
+    DEL-09-06 `Evidence/Node_N_CSP_Nonce_2026-09-04/`, `_STATUS.md`, and
+    `_run_records/TASK_RUN_2026-09-04_NODE_N.md`. V3-04 is removed under its
+    reviewed nonce-only closure contract; V3-02/V3-03 remain gated.
+  - Checks: receipt validator pass; authority corpus pass; APP-HOLD pass;
+    registered affected checks pass; build, packaged proof, and Node H local
+    lifecycle pass; Scope of Work, exact change-scope, strict JSON, manifest,
+    reviewed byte identity, F-APP-2, cleanup, and `git diff --check` pass;
+    independent review pass.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact model identifier not exposed to the implementer runtime);
+    execution class `delegated-harness-native`; Agent-2 roles are `role not
+    mechanically enforced` with `instruction-asserted` governed-workflow
+    evidence; non-delegation is instruction+config asserted, not
+    mechanism-proven.
+  - Gate-Outcome: `AWAITING_OWNER` — implementation and narrative/evidence
+    closeout are reviewed and validated; push, PR creation, and owner merge
+    remain gates. A1 prospectively invalidates staged R20 for future reliance;
+    historical R20 remains historical only, and owner merge will owe a
+    separate DEL-09-01-V3-01 revision 3. No lifecycle, signing,
+    notarization, Apple call, distribution, publication, release-readiness,
+    host, Root, SCOPE_CHANGE, register, or decision-record act or claim.
