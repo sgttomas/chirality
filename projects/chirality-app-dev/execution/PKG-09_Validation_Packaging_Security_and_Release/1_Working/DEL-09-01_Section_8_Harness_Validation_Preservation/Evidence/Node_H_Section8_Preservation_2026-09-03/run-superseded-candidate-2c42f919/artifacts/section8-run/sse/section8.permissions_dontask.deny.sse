@@ -1,0 +1,21 @@
+event: harness:event
+data: {"sessionId":"f52ad91d-5677-4ec0-bfcc-377b64515c16","turnId":"f5d47f70-9b26-4fa7-b816-dcfb9d57ee64","type":"turn.accepted","data":{"message":"UNAPPROVED_DENY_TEST run dangerous command"},"schemaVersion":1,"eventId":"ed9078d1-7c95-425f-be70-47ee3eda737d","timestamp":"2026-09-04T05:36:50.217Z"}
+
+event: session:init
+data: {"engineSessionId":"stub_b4ea4cc7-4111-48e2-b97e-5a2c973b29c6","adapterId":"stub","providerId":"stub","model":"haiku"}
+
+event: tool:result
+data: {"name":"bash","ok":false,"output":"permission denied"}
+
+event: chat:complete
+data: {"text":"Denied: unapproved Bash command under dontAsk."}
+
+event: session:complete
+data: {}
+
+event: harness:event
+data: {"sessionId":"f52ad91d-5677-4ec0-bfcc-377b64515c16","turnId":"f5d47f70-9b26-4fa7-b816-dcfb9d57ee64","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"f8f604a2-2f4f-4270-a85b-eaa1785bcb7e","timestamp":"2026-09-04T05:36:50.230Z"}
+
+event: process:exit
+data: {"exitCode":0}
+

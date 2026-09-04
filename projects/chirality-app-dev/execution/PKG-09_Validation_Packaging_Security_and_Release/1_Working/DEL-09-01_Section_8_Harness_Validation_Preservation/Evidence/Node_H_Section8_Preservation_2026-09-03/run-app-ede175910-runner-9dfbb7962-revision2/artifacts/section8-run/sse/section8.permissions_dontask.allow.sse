@@ -1,0 +1,27 @@
+event: harness:event
+data: {"sessionId":"7a3bc0a8-06b8-4b85-a2d4-b92add6a4c38","turnId":"5563ff6a-90e6-4c5a-8e24-786a6d534498","type":"turn.accepted","data":{"message":"UNAPPROVED_ALLOW_TEST run allow-list command"},"schemaVersion":1,"eventId":"081092b2-079b-4032-b25e-a8355ad9352e","timestamp":"2026-09-04T06:46:39.150Z"}
+
+event: session:init
+data: {"engineSessionId":"stub_5468f840-f469-4d87-ad05-9b0c8720a334","adapterId":"stub","providerId":"stub","model":"haiku"}
+
+event: tool:result
+data: {"name":"bash","ok":true,"output":"UNAPPROVED_ALLOW_TEST"}
+
+event: chat:delta
+data: {"text":"UNAPPROVED_ALLOW_TEST ru"}
+
+event: chat:delta
+data: {"text":"n allow-list command"}
+
+event: chat:complete
+data: {"text":"UNAPPROVED_ALLOW_TEST run allow-list command"}
+
+event: session:complete
+data: {}
+
+event: harness:event
+data: {"sessionId":"7a3bc0a8-06b8-4b85-a2d4-b92add6a4c38","turnId":"5563ff6a-90e6-4c5a-8e24-786a6d534498","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"06c017e5-6f8a-4487-a494-d5b8ce49fa1f","timestamp":"2026-09-04T06:46:39.238Z"}
+
+event: process:exit
+data: {"exitCode":0}
+

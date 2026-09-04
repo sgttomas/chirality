@@ -1,0 +1,9 @@
+daemon_group_survivors_before_kill=0
+next_group_survivors_before_kill=0
+daemon_process_group_remaining=0
+next_process_group_remaining=0
+daemon_controller_pid=10129 pgid=10129
+next_controller_pid=10156 pgid=10156
+socket_present_after_stop=no
+port_51845_listeners_after_stop=0
+forced_test_cleanup_failure=0

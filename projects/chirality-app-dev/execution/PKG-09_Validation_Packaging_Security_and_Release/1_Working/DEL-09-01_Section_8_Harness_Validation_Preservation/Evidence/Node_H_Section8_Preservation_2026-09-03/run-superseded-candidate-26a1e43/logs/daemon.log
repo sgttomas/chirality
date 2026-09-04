@@ -1,0 +1,4 @@
+[chirality-desktop] 2026-09-04T05:10:36.707Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":false,"userData":"/private/tmp/chirality-s8.TAS0YP","pid":98368}
+[chirality-desktop] 2026-09-04T05:10:36.724Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-s8.TAS0YP/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-s8.TAS0YP/runtime"}
+[chirality-desktop] 2026-09-04T05:10:51.939Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":98368}
+[chirality-desktop] 2026-09-04T05:10:51.940Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}

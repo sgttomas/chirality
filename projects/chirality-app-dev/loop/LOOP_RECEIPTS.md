@@ -6628,3 +6628,13 @@
     and a newly staged revision plus fresh owner-executed proof are required
     before any future proof claim. No lifecycle, signing, notarization,
     publication, distribution, release-readiness, host-mutation, or Root act.
+
+- **2026-09-04 — Receipt 219** (App v3 pathway node J: Section 8 rerun hardening and preservation revision 2).
+  - Receipt-ID: `Receipt-219`
+  - Examined-Through: `ede175910c67b384332324622b17695f69e6a715`
+  - Parent-Receipt: `Receipt-218`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: owner Ryan Tufts selected slate 3's recommended two-wave sequence through the HELP_HUMAN native clickable response; Node J followed the merged K/L wave. Selection authority and the sealed execution boundary are recorded in `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_J_2026-09-03/{ORCHESTRATION_PLAN.md,STEP0_DISCOVERY.md}`.
+  - Pointers: branch `codex/app-v3-nodeJ-section8-revision2-2026-09-03`; application basis above; final clean runner `9dfbb7962cd22b56b1899d10c05c3e97f2a10d2f`; reviewed PASS freeze `727e4bf51e545b2d01aa0979aaa1c9bda78b47e1`; RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_J_2026-09-03/` (four immutable reviews, dispositions, final checks/return/handoff/manifest); DEL-09-01 `Evidence/Node_H_Section8_Preservation_2026-09-03/`, `_run_records/AGENT2_RUN_2026-09-03_NODE_J.md`, `_STATUS.md`, and `MEMORY.md`. V3-02 is removed; V3-01 is revised to the accepted revision-2 evidence and parked until its next product trigger or G5 fan-in.
+  - Checks: receipt validator pass; corpus pass; Scope of Work pass; APP-HOLD reliance and dispatch pass; registered checks pass; manifests, comparator, and mapping pass; strict JSON and SSE pass; exact change-scope and diff check pass; F-APP-2, secret, product, and evaluator scans pass; reviewed byte-identity pass.
+  - Model-Attribution: provider OpenAI; engine Codex; implementer model GPT-5 family (exact identifier unavailable); independent reviewer attribution is retained in each filed review.
+  - Gate-Outcome: `EXECUTED` — awaiting owner merge. A1 applies because proof execution wrote ignored/generated `frontend/` paths; historical R20 remains historical and any future proof claim requires a newly staged revision plus fresh owner execution. No tracked product, evaluator, runtime, workflow, Root, plan, register, decision-record, lifecycle, G5, signing, notarization, publication, distribution, release-readiness, certification, or professional act or claim.

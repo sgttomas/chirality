@@ -1,0 +1,11 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_V3_NODE_J_2026-09-03",
+  "instance_id": "J1_IMPLEMENTER",
+  "status": "CLOSEOUT_READY",
+  "execution_form": "EPHEMERAL_AGENT2_GENERALIST",
+  "basis": "ede175910c67b384332324622b17695f69e6a715",
+  "task_preflight": "STOPPED_ZERO_WRITE_INSTRUCTION_ROOT_UNAVAILABLE",
+  "phase": "ROUND_4_PASS_NARRATIVE_CLOSEOUT_COMPLETE",
+  "review_state": "PASS_ZERO_BLOCKER_ZERO_MAJOR_ONE_MINOR_CORRECTED"
+}

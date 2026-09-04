@@ -1,0 +1,2 @@
+# daemon electron pid 98368 — TCP sockets after the run (expect none):
+# TCP listeners owned by any process under the disposable user-data root after the run (expect none):
