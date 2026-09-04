@@ -1,0 +1,83 @@
+
+> chirality-frontend@2.0.0 dev:next
+> NEXT_TELEMETRY_DISABLED=1 next dev --port 3000 --hostname 127.0.0.1 --port 52127
+
+   ▲ Next.js 15.5.21
+   - Local:        http://127.0.0.1:52127
+   - Network:      http://127.0.0.1:52127
+
+ ✓ Starting...
+ ✓ Ready in 1758ms
+ ○ Compiling /api/harness/session/list ...
+ ✓ Compiled /api/harness/session/list in 542ms (373 modules)
+ GET /api/harness/session/list?projectRoot=%2fprivate%2ftmp%2fchirality-app-v3-section8-rev3-20260904%2fproof-source%2fprojects%2fchirality-app-dev 200 in 611ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fchirality-app-v3-section8-rev3-20260904%2Fproof-source%2Fprojects%2Fchirality-app-dev 200 in 7ms
+ ✓ Compiled /api/harness/session/create in 40ms (375 modules)
+ POST /api/harness/session/create 200 in 93ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fchirality-app-v3-section8-rev3-20260904%2Fproof-source%2Fprojects%2Fchirality-app-dev 200 in 12ms
+ ✓ Compiled /api/harness/session/[id] in 35ms (377 modules)
+ GET /api/harness/session/af54e5b2-a5ca-459f-825d-f91dac7de687 200 in 185ms
+ DELETE /api/harness/session/af54e5b2-a5ca-459f-825d-f91dac7de687 200 in 13ms
+ GET /api/harness/session/af54e5b2-a5ca-459f-825d-f91dac7de687 404 in 6ms
+ ✓ Compiled /api/harness/session/boot in 40ms (379 modules)
+ POST /api/harness/session/boot 404 in 59ms
+ POST /api/harness/session/create 400 in 12ms
+ POST /api/harness/session/create 200 in 17ms
+ POST /api/harness/session/boot 200 in 84ms
+ DELETE /api/harness/session/5528fbd2-cf77-49c1-b9e4-25a3652ae16c 200 in 14ms
+ POST /api/harness/session/create 404 in 5ms
+ POST /api/harness/session/create 200 in 17ms
+ ✓ Compiled /api/harness/turn in 48ms (381 modules)
+ POST /api/harness/turn 200 in 167ms
+ DELETE /api/harness/session/fdcc4a3a-00f4-48b0-a386-11a71d4b557b 200 in 13ms
+ POST /api/harness/session/create 200 in 17ms
+ POST /api/harness/turn 200 in 139ms
+ GET /api/harness/session/27889b57-8fbb-4cc9-bff5-d85d137a01f1 200 in 8ms
+ POST /api/harness/turn 200 in 103ms
+ GET /api/harness/session/27889b57-8fbb-4cc9-bff5-d85d137a01f1 200 in 6ms
+ DELETE /api/harness/session/27889b57-8fbb-4cc9-bff5-d85d137a01f1 200 in 10ms
+ POST /api/harness/session/create 200 in 17ms
+ POST /api/harness/turn 200 in 28ms
+ POST /api/harness/turn 200 in 103ms
+ DELETE /api/harness/session/15eb6798-0e90-4110-9a23-028cb1c852cb 200 in 12ms
+ POST /api/harness/session/create 200 in 16ms
+ ✓ Compiled /api/harness/interrupt in 64ms (383 modules)
+ POST /api/harness/interrupt 200 in 81ms
+ POST /api/harness/turn 200 in 191ms
+ DELETE /api/harness/session/cd2498ab-1e02-4298-9f7d-cf29827f6dd9 200 in 13ms
+ POST /api/harness/session/create 200 in 17ms
+ POST /api/harness/turn 200 in 104ms
+ DELETE /api/harness/session/853efde0-7686-4580-be17-f56e01829f09 200 in 10ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fchirality-app-v3-section8-rev3-20260904%2Fproof-source%2Fprojects%2Fchirality-app-dev 200 in 10ms
+ POST /api/harness/session/create 200 in 25ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fchirality-app-v3-section8-rev3-20260904%2Fproof-source%2Fprojects%2Fchirality-app-dev 200 in 6ms
+ GET /api/harness/session/bf230f04-3c05-48a1-b483-6eb80eae0add 200 in 6ms
+ DELETE /api/harness/session/bf230f04-3c05-48a1-b483-6eb80eae0add 200 in 10ms
+ GET /api/harness/session/bf230f04-3c05-48a1-b483-6eb80eae0add 404 in 5ms
+ POST /api/harness/session/boot 404 in 7ms
+ POST /api/harness/session/create 400 in 10ms
+ POST /api/harness/session/create 200 in 16ms
+ POST /api/harness/session/boot 200 in 82ms
+ DELETE /api/harness/session/bd3af844-0a85-4047-9e6f-bcf093e867ed 200 in 10ms
+ POST /api/harness/session/create 404 in 4ms
+ POST /api/harness/session/create 200 in 19ms
+ POST /api/harness/turn 200 in 100ms
+ DELETE /api/harness/session/ba9bd847-6758-4013-b030-12adebec909a 200 in 10ms
+ POST /api/harness/session/create 200 in 16ms
+ POST /api/harness/turn 200 in 140ms
+ GET /api/harness/session/47db7cbf-5815-4d51-912b-c2f2960b4bd5 200 in 6ms
+ POST /api/harness/turn 200 in 100ms
+ GET /api/harness/session/47db7cbf-5815-4d51-912b-c2f2960b4bd5 200 in 8ms
+ DELETE /api/harness/session/47db7cbf-5815-4d51-912b-c2f2960b4bd5 200 in 11ms
+ POST /api/harness/session/create 200 in 16ms
+ POST /api/harness/turn 200 in 29ms
+ POST /api/harness/turn 200 in 101ms
+ DELETE /api/harness/session/71e387ad-4430-4202-8e2a-23dac27de515 200 in 13ms
+ POST /api/harness/session/create 200 in 17ms
+ POST /api/harness/interrupt 200 in 6ms
+ POST /api/harness/turn 200 in 137ms
+ DELETE /api/harness/session/08c45a68-04b7-4d1c-acc6-8fc1c96e8769 200 in 11ms
+ POST /api/harness/session/create 200 in 15ms
+ POST /api/harness/turn 200 in 101ms
+ DELETE /api/harness/session/e8392d5e-fe10-4895-8bd9-7f594fc207da 200 in 10ms
+[?25h

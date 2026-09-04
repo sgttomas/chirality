@@ -1,0 +1,371 @@
+{
+  "bootout": {
+    "exit": 0,
+    "injectedFailure": false,
+    "stderr": "",
+    "stdout": ""
+  },
+  "bootstrap": {
+    "exit": 0,
+    "stderr": "",
+    "stdout": ""
+  },
+  "cleanupFailed": false,
+  "exitCode": 0,
+  "finalCoalitionMembers": [],
+  "finalPortListenerCount": 0,
+  "finalSocketPresent": false,
+  "innerResult": {
+    "childPid": 65404,
+    "exitCode": 0,
+    "pid": 65403,
+    "schema": "chirality-section8-job-result/v1"
+  },
+  "label": "ai.chirality.section8.65340.536062b85e2a",
+  "leader": {
+    "command": "Python",
+    "idVersion": 4649555,
+    "jetsamCoalitionId": 89450,
+    "parentUniqueId": 1,
+    "pgid": 65403,
+    "pid": 65403,
+    "ppid": 1,
+    "resourceCoalitionId": 89449,
+    "startSec": 1788545517,
+    "startUsec": 660162,
+    "uniqueId": 2343952
+  },
+  "membersBeforeAck": [
+    {
+      "command": "Python",
+      "idVersion": 4649555,
+      "jetsamCoalitionId": 89450,
+      "parentUniqueId": 1,
+      "pgid": 65403,
+      "pid": 65403,
+      "ppid": 1,
+      "resourceCoalitionId": 89449,
+      "startSec": 1788545517,
+      "startUsec": 660162,
+      "uniqueId": 2343952
+    }
+  ],
+  "plistSha256": "6fbed2919255f5cfebd787763dc700ad33472222edf78bc780029044b2565778",
+  "schema": "chirality-section8-coalition-supervisor/v1",
+  "serviceTarget": "gui/501/ai.chirality.section8.65340.536062b85e2a",
+  "status": "PASS",
+  "supervisor": {
+    "command": "Python",
+    "idVersion": 4649474,
+    "jetsamCoalitionId": 85156,
+    "parentUniqueId": 1767904,
+    "pgid": 65340,
+    "pid": 65340,
+    "ppid": 83254,
+    "resourceCoalitionId": 85155,
+    "startSec": 1788545516,
+    "startUsec": 235410,
+    "uniqueId": 2343889
+  },
+  "sweep": {
+    "consecutiveEmptyScans": 3,
+    "initialMembers": [
+      {
+        "command": "Python",
+        "idVersion": 4649555,
+        "jetsamCoalitionId": 89450,
+        "parentUniqueId": 1,
+        "pgid": 65403,
+        "pid": 65403,
+        "ppid": 1,
+        "resourceCoalitionId": 89449,
+        "startSec": 1788545517,
+        "startUsec": 660162,
+        "uniqueId": 2343952
+      }
+    ],
+    "jetsamCoalitionId": 89450,
+    "remainingMembers": [],
+    "resourceCoalitionId": 89449,
+    "rounds": 4,
+    "status": "PASS",
+    "stopKillRounds": [
+      {
+        "afterStop": [
+          {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          }
+        ],
+        "beforeStop": [
+          {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          }
+        ],
+        "kill": [
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4649555,
+              "jetsamCoalitionId": 89450,
+              "parentUniqueId": 1,
+              "pgid": 65403,
+              "pid": 65403,
+              "ppid": 1,
+              "resourceCoalitionId": 89449,
+              "startSec": 1788545517,
+              "startUsec": 660162,
+              "uniqueId": 2343952
+            },
+            "outcome": "signalled",
+            "signal": 9
+          }
+        ],
+        "round": 1,
+        "stop": [
+          {
+            "identity": {
+              "command": "Python",
+              "idVersion": 4649555,
+              "jetsamCoalitionId": 89450,
+              "parentUniqueId": 1,
+              "pgid": 65403,
+              "pid": 65403,
+              "ppid": 1,
+              "resourceCoalitionId": 89449,
+              "startSec": 1788545517,
+              "startUsec": 660162,
+              "uniqueId": 2343952
+            },
+            "outcome": "signalled",
+            "signal": 17
+          }
+        ]
+      },
+      {
+        "emptyScan": 1,
+        "round": 2
+      },
+      {
+        "emptyScan": 2,
+        "round": 3
+      },
+      {
+        "emptyScan": 3,
+        "round": 4
+      }
+    ],
+    "termRounds": [
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ],
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ],
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ],
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ],
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ],
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ],
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ],
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ],
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ],
+      [
+        {
+          "identity": {
+            "command": "Python",
+            "idVersion": 4649555,
+            "jetsamCoalitionId": 89450,
+            "parentUniqueId": 1,
+            "pgid": 65403,
+            "pid": 65403,
+            "ppid": 1,
+            "resourceCoalitionId": 89449,
+            "startSec": 1788545517,
+            "startUsec": 660162,
+            "uniqueId": 2343952
+          },
+          "outcome": "signalled",
+          "signal": 15
+        }
+      ]
+    ]
+  },
+  "temporaryRootRemoved": true
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_V3_NODE_O_2026-09-04",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "execution_class": "delegated-harness-native",
+  "posture": "SEQUENTIAL_IMPLEMENT_REVIEW_CLOSEOUT",
+  "basis": {
+    "sha": "e2f8317dadb8ac95b7aff5ac5637d967fb7e6d40",
+    "branch": "codex/app-v3-nodeO-section8-rev3-2026-09-04",
+    "parent_receipt": "Receipt-224"
+  },
+  "items": ["DEL-09-01-V3-01 revision 3"],
+  "nodes": [
+    {
+      "id": "O1_IMPLEMENTER",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "role_mechanical_enforcement": "not mechanically enforced",
+      "governed_workflow_role_evidence": "instruction-asserted",
+      "non_delegation_evidence": "instruction+config asserted, not mechanism-proven",
+      "delegates": false,
+      "model": "GPT-5 family (exact identifier unavailable)",
+      "depends_on": [],
+      "returns": ["REVIEW_READY", "frozen commit", "CHECKS.json", "RETURN.md", "revision-3 evidence"]
+    },
+    {
+      "id": "O2_REVIEWER",
+      "role": "FRESH_READ_ONLY_REVIEWER",
+      "depends_on": ["O1_IMPLEMENTER"],
+      "writes": [],
+      "returns": ["verdict and findings over 100% of frozen diff"]
+    },
+    {
+      "id": "CLOSEOUT",
+      "depends_on": ["O2_REVIEWER"],
+      "requires": "REVIEW_PASS from HELP_HUMAN",
+      "returns": ["deliverable revision-state closeout", "receipt", "publication handoff"]
+    }
+  ],
+  "edges": [["O1_IMPLEMENTER", "O2_REVIEWER"], ["O2_REVIEWER", "CLOSEOUT"]],
+  "human_gates": ["any write-locus expansion", "owner merge", "G5 final acceptance/removal"]
+}

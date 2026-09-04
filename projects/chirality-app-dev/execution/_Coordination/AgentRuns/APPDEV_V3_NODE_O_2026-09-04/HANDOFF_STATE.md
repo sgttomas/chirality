@@ -1,0 +1,11 @@
+# Handoff state — APPDEV_V3_NODE_O_2026-09-04
+
+- **Accepted upstream product snapshot:** `e2f8317dadb8ac95b7aff5ac5637d967fb7e6d40`, PR #695 merge and revision-3 trigger. The accepted method is the unchanged runner from `9dfbb7962cd22b56b1899d10c05c3e97f2a10d2f`.
+- **Current publication basis:** `745e3b7ba088a0ffcc9c16030efcc48aa1e706d7`. The only advance after the product snapshot is PR #697's exact two plan-file changes; it is non-triggering and did not cause evidence remint.
+- **Reviewed snapshot:** frozen candidate `c32c5ae668b9d44115c28a96839917f2ffe4c950`; independent R1 PASS with zero BLOCKER, zero MAJOR, one MINOR, and three NOTEs. The immutable report SHA-256 is `5d73a9b1607489f00fafc40c1341999208299f7c47ca5bfac5f4e37cf0b47de8`.
+- **Closure verdict:** DEL-09-01-V3-01 revision 3 is accepted for the product snapshot above. The item remains in `## Remaining` and is `NOT_SELECTABLE_UNTIL` another named product trigger lands or G5 fan-in calls for final acceptance/removal. Lifecycle remains `IN_PROGRESS`; Checking Approval SHA is unchanged.
+- **Review disposition:** O-R1-M1's machine-absolute coordination locator was made portable after PASS. The three NOTEs are recorded without evidence mutation or follow-on item. All revision-3 runtime/evidence/result and tracked product/test/CSS/runner/comparator bytes remain frozen.
+- **Derivative packages:** the existing DEL-09-01 Node H evidence bundle extended by revision 3; the Node O deliverable run record; this AgentRuns package; Receipt 225. Their manifests and cited review identity verify.
+- **Rerun requirement:** no further revision is owed until the live V3-01 trigger or G5 condition becomes true. A1 remains active because proof execution wrote ignored/generated frontend paths; historical R20 remains historical, and this agent run is not fresh owner proof.
+- **Fences:** validation evidence only. No lifecycle, G5/G6a, host, live-provider, signing, notarization, Apple call, publication, distribution, certification, professional, release-readiness, Root, SCOPE_CHANGE, register, or decision act or claim.
+- **Next:** HELP_HUMAN pushes and opens the PR; owner merge is the gate. The branch and worktree remain retained until the supervisor confirms closure.

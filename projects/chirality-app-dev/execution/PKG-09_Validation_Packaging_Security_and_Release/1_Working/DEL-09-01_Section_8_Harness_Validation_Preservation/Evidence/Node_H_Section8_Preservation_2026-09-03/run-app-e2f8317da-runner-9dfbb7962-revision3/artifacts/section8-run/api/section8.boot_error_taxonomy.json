@@ -1,0 +1,20 @@
+{
+  "missingSession": {
+    "status": 404,
+    "type": "SESSION_NOT_FOUND"
+  },
+  "unknownPersona": {
+    "status": 400,
+    "type": "SDK_FAILURE",
+    "phase": "create"
+  },
+  "sdkFailure": {
+    "status": 200,
+    "type": "BOOT_CONFORMANT"
+  },
+  "rootBoundary": {
+    "status": 404,
+    "type": "WORKING_ROOT_INACCESSIBLE",
+    "mode": "registered-project-containment"
+  }
+}

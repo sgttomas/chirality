@@ -1,0 +1,6 @@
+[chirality-desktop] 2026-09-04T18:12:00.234Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":false,"userData":"/private/tmp/chirality-s8.OaKxJ2","pid":65475}
+[chirality-desktop] 2026-09-04T18:12:00.252Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-s8.OaKxJ2/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-s8.OaKxJ2/runtime"}
+[chirality-desktop] 2026-09-04T18:12:36.050Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":65475}
+[65475:0904/121236.051348:ERROR:content/browser/network_service_instance_impl.cc:721] Network service crashed or was terminated, restarting service.
+[65475:0904/121236.051814:ERROR:content/browser/gpu/gpu_process_host.cc:1089] GPU process exited unexpectedly: exit_code=15
+[chirality-desktop] 2026-09-04T18:12:36.052Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}

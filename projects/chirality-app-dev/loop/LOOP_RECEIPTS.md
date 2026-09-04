@@ -6826,3 +6826,13 @@
     separate DEL-09-01-V3-01 revision 3. No lifecycle, signing,
     notarization, Apple call, distribution, publication, release-readiness,
     host, Root, SCOPE_CHANGE, register, or decision-record act or claim.
+
+- **2026-09-04 — Receipt 225** (App v3 pathway Node O: Section 8 preservation revision 3).
+  - Receipt-ID: `Receipt-225`
+  - Examined-Through: `745e3b7ba088a0ffcc9c16030efcc48aa1e706d7`
+  - Parent-Receipt: `Receipt-224`
+  - Stale-Map-Delta: Receipt 224's prospective statement that the Node N owner merge would owe DEL-09-01-V3-01 revision 3 is now satisfied by PR #695 and the accepted Node O evidence; verify in DEL-09-01 `_STATUS.md` and this RunID.
+  - Pointers: branch `codex/app-v3-nodeO-section8-rev3-2026-09-04`; evidence product basis `e2f8317dadb8ac95b7aff5ac5637d967fb7e6d40` (PR #695); unchanged clean runner `9dfbb7962cd22b56b1899d10c05c3e97f2a10d2f`; reviewed freeze `c32c5ae668b9d44115c28a96839917f2ffe4c950`; current main above differs only by PR #697's two plan files and caused no evidence remint; RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_O_2026-09-04/` with immutable independent report SHA-256 `5d73a9b1607489f00fafc40c1341999208299f7c47ca5bfac5f4e37cf0b47de8`; DEL-09-01 evidence, `_STATUS.md`, `MEMORY.md`, and `_run_records/TASK_RUN_2026-09-04_NODE_O.md`. V3-01 remains parked until its next named product trigger or G5 fan-in.
+  - Checks: independent review pass; daemon-bound preservation pass; comparator, cleanup, manifests, registered checks, receipts, corpus, APP-HOLD, Scope of Work, exact change-scope, JSON/SSE, secret/F-APP-2, frozen-byte identity, and `git diff --check` pass; visual comparison skipped as not applicable because no tracked UI/product byte changed.
+  - Model-Attribution: provider OpenAI; engine Codex; implementer/reviewer model GPT-5 family (exact identifiers unavailable); execution class `delegated-harness-native`; Agent-2 roles are role not mechanically enforced with instruction-asserted governed-workflow evidence; non-delegation is instruction+config asserted, not mechanism-proven.
+  - Gate-Outcome: `AWAITING_OWNER` — revision 3 evidence and narrative closeout are independently reviewed; push, PR creation, and owner merge remain gates. A1 applies to ignored/generated frontend writes; this agent run is not owner proof. No tracked product/test/CSS/runner/comparator/runtime/workflow, lifecycle, G5/G6a, signing, notarization, publication, distribution, release-readiness, host, Root, SCOPE_CHANGE, register, or decision act or claim.
