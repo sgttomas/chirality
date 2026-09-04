@@ -28,9 +28,20 @@ SHA-256 for each file is in `README.md` "Asset integrity".
 
 Lockup geometry: wordmark cap height 0.56 × mark height, gap 0.26 × mark height, baseline aligned to the mark's optical centre. Keep these ratios if the lockup is ever re-rendered at another size.
 
-## 3. Where the owner's originals are
+## 3. The corporate logo folder (owner's machine)
 
-`frontend/artifacts/logos/` (git-ignored by `.gitignore:53`): `LOGO.jpg` (746×609, the drawing photographed), `1769814039333.jpeg` (100², same composition), `icon copy.png` (2048²), and photographs `IMG_1382`, `1402`, `1439`, `1449`, `1482`, `1483`, `1506.jpg`. The composed mark was built from `LOGO.jpg` only. Because the folder is ignored, **this package is the only tracked copy of the derived assets.** Do not regenerate from the photographs without the owner; the composition was reviewed and chosen.
+`frontend/artifacts/logos/` is git-ignored (`.gitignore:53`), so **this package is the only tracked copy of the derived assets.** Since 2026-09-04 the folder holds the corporate set in two forms, icon-only and with the name:
+
+| File | Form | Use |
+|---|---|---|
+| `LOGO-icon.png` | Icon only, rounded macOS icon shape, 1024² on transparent | App icon, avatars, favicons, anywhere a square-ish mark is wanted |
+| `LOGO-mark.png` | Icon only, square, 1024², no rounding | Print and layouts that want the full square image |
+| `LOGO.png`, `LOGO.svg` | Icon plus "Chirality", transparent | Corporate lockup on light grounds; the SVG is self-contained |
+| `LOGO-dark.png`, `LOGO-dark.svg` | Icon plus "Chirality", cream ink, transparent | Corporate lockup on dark grounds |
+| `LOGO.jpg` | Icon plus "Chirality", flattened on white | For anything that still expects a JPEG |
+| `LOGO-source-photo.jpg` | The drawing photographed (746×609); formerly `LOGO.jpg` | Source. Do not regenerate from it without the owner; the composition was reviewed and chosen. |
+
+Also in the folder, untouched: `1769814039333.jpeg`, `icon copy.png`, and photographs `IMG_1382`, `1402`, `1439`, `1449`, `1482`, `1483`, `1506.jpg`. The `assets/` folder of this package carries the same two forms: `painted-field-1024.png` (icon only, rounded), `painted-field-square-1024.png` (icon only, square), and the four `chirality-logo-lockup-400*` files (with the name).
 
 ## 4. How the mark was produced (reproducibility record)
 
@@ -59,9 +70,9 @@ The scratch scripts were not kept. Anyone re-deriving should reproduce the steps
 
 Any change to `build/icon.icns` is a DEL-09-04 packaging-integrity concern: regenerate whatever manifest or hash list pins it in the same PR, and note that Section 8 preservation is triggered by the `frontend/electron/**` changes that accompany T7, not by the icon bytes alone.
 
-## 6. Cleanup the owner may authorise (not done)
+## 6. Cleanup (done 2026-09-04 on the owner's instruction)
 
-In `frontend/artifacts/logos/generated/` (ignored, owner's machine), keep only:
+`frontend/artifacts/logos/generated/` was reduced from 145 entries to the 19 below; the `LOGO*` files in §3 were written from them and the original photograph was renamed to `LOGO-source-photo.jpg`. Kept:
 
 ```
 painted-field-square-1024.png  painted-field-1024.png  painted-field-{512,256,128,64,32,22,16}.png
@@ -69,4 +80,4 @@ painted-field.iconset/  painted-field.icns
 chirality-logo-lockup-400{,-dark}.{png,svg}  chirality-logo-lockup-600{,-dark}.{png,svg}
 ```
 
-Everything else there is superseded: `alt-window-*`, `chirality-icon-*`, `chirality-lockup*.svg`, `chirality-mark-*.svg`, `chirality-appicon-field6.svg`, `chirality-quincunx.*`, `chirality.icns`, `chirality.iconset`, `macos-*` (note `macos-painted-field-1024.png` is byte-identical to `painted-field-1024.png`), `painted-field-bordered-*`, `painted-field-dark-*`, `painted-field-grey-*`, `painted-grid-*`, `painted-window-*`, `quincunx-painted-*`. The owner also intends to replace `LOGO.jpg` for corporate use with the lockup; the original photograph should be kept as the source.
+Removed as superseded: `alt-window-*`, `chirality-icon-*`, `chirality-lockup*.svg`, `chirality-mark-*.svg`, `chirality-appicon-field6.svg`, `chirality-quincunx.*`, `chirality.icns`, `chirality.iconset`, `macos-*`, `painted-field-bordered-*`, `painted-field-dark-*`, `painted-field-grey-*`, `painted-grid-*`, `painted-window-*`, `quincunx-painted-*`.
