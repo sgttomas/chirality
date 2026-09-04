@@ -17,7 +17,7 @@
 #   7. runs `npm run harness:validate:premerge` (Section 8 + report-only Section 9)
 #      and, with WITH_RELEASE_QUALITY=1, `npm run validate:release-quality`
 #   8. records containment observations (daemon listeners, socket mode, git status)
-#   9. recursively signals both recorded process trees, removes disposable state
+#   9. atomically signals both controller-anchored process groups, removes state
 #      (KEEP=1 keeps it), and — as the LAST act of teardown, after
 #      teardown.txt/cleanup.txt exist and both processes are gone — writes
 #      RUN_ROOT/MANIFEST.sha256 over artifacts/** and logs/** (LC_ALL=C sorted)
@@ -40,8 +40,8 @@
 #              other Section 8 run on the host — the Section 8 script recreates
 #              it and this script removes it, so do not run two concurrently.
 #   PORT must be free at start; the script fails fast (exit 72) if anything
-#              already listens on it, and only ever stops the dev server it
-#              started (by pid), never a foreign listener.
+#              already listens on it, and only ever stops the controller-
+#              anchored process groups it started, never a foreign listener.
 #   WITH_RELEASE_QUALITY=1  also run npm run validate:release-quality
 #   KEEP=1     keep USER_DATA and the harness TMP root after the run
 #   SKIP_BUILD=1  reuse an existing dist-electron/main.js
@@ -90,208 +90,217 @@ export HARNESS_BASE_URL="http://127.0.0.1:$PORT"
 export CHIRALITY_RUNTIME_SOCKET_PATH="$USER_DATA/runtime/control.sock"
 export CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE="$USER_DATA/runtime/auth/tokens/operator.token"
 
-DAEMON_PID=""
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+GROUP_CONTROLLER="$SCRIPT_DIR/section8-process-group-controller.py"
+DAEMON_CONTROLLER_PID=""
+DAEMON_PGID=""
+DAEMON_CHILD_PID=""
 DAEMON_ELECTRON_PID=""
-DAEMON_ROOT_IDENTITY=""
-DAEMON_TREE_RECORDS=""
-NEXT_PID=""
-NEXT_ROOT_IDENTITY=""
-NEXT_TREE_RECORDS=""
+NEXT_CONTROLLER_PID=""
+NEXT_PGID=""
+NEXT_CHILD_PID=""
 STARTED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 log() { printf '[%s] %s\n' "$(date -u +%H:%M:%S)" "$*" | tee -a "$LOGS/driver.log" >&2; }
 
-# A process record is `<pid><TAB><identity>`, where identity hashes the process
-# start timestamp, uid, and executable path. The start timestamp distinguishes
-# PID reuse; the executable fingerprint prevents an unrelated same-second
-# process from being accepted while remaining stable when a runtime changes its
-# display title. Every signal re-reads and compares this identity immediately
-# before dispatch. Tests may override these two narrow adapters after sourcing
-# the script in library mode; production never does.
-read_process_identity() {
-  local process_id="$1"
-  local identity_material
-  local executable_path
-  identity_material="$(ps -p "$process_id" -o lstart= -o uid= 2>/dev/null)" || return 1
-  executable_path="$(lsof -a -p "$process_id" -d txt -Fn 2>/dev/null | sed -n 's/^n//p' | head -n 1)" || return 1
-  [ -n "$identity_material" ] && [ -n "$executable_path" ] || return 1
-  identity_material="${identity_material}"$'\n'"${executable_path}"
-  printf '%s' "$identity_material" | shasum -a 256 | awk '{print $1}'
+# Each command tree runs in its own POSIX session/process group. A Python child
+# is the session leader and remains alive even after its command exits. The
+# parent shell does not wait/reap that controller until after group signalling,
+# so its PID/PGID cannot be reallocated across the TERM/KILL boundary. Signals
+# target the kernel-owned group atomically; individual descendant PIDs are
+# diagnostic only and are never signal authority.
+await_controller_ready() {
+  local ready_file="$1"
+  local controller_pid="$2"
+  for _ in $(seq 1 100); do
+    [ -f "$ready_file" ] && return 0
+    kill -0 "$controller_pid" 2>/dev/null || return 1
+    sleep 0.1
+  done
+  return 1
 }
 
-send_process_signal() {
-  local signal_name="$1"
-  local process_id="$2"
-  kill "-$signal_name" "$process_id"
+read_controller_ready() {
+  local ready_file="$1"
+  python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); print(d["controllerPid"], d["processGroupId"], d["childPid"])' "$ready_file"
 }
 
-read_parent_pid() {
-  local process_id="$1"
-  ps -p "$process_id" -o ppid= 2>/dev/null | tr -d '[:space:]'
+read_process_table() {
+  ps -axo pid=,pgid= 2>/dev/null
 }
 
-# Print identity records for every descendant of a verified parent, deepest
-# first. Discovery is restricted to a parent identity already captured from a
-# script-started tree; no command-line regex is used to find unrelated tasks.
-descendant_identity_records() {
-  local parent_pid="$1"
-  local parent_identity="$2"
-  local child_pid
-  local child_identity
-  local current_parent_identity
-  current_parent_identity="$(read_process_identity "$parent_pid")" || return 0
-  [ "$current_parent_identity" = "$parent_identity" ] || return 0
-  while IFS= read -r child_pid; do
-    [ -n "$child_pid" ] || continue
-    child_identity="$(read_process_identity "$child_pid")" || continue
-    current_parent_identity="$(read_process_identity "$parent_pid")" || return 0
-    [ "$current_parent_identity" = "$parent_identity" ] || return 0
-    [ "$(read_parent_pid "$child_pid")" = "$parent_pid" ] || continue
-    descendant_identity_records "$child_pid" "$child_identity"
-    [ "$(read_process_identity "$child_pid" 2>/dev/null || true)" = "$child_identity" ] || continue
-    printf '%s\t%s\n' "$child_pid" "$child_identity"
-  done < <(pgrep -P "$parent_pid" 2>/dev/null || true)
+inspect_process_group_members() {
+  local process_group_id="$1"
+  local process_table
+  process_table="$(read_process_table)" || return 2
+  printf '%s\n' "$process_table" | awk -v wanted="$process_group_id" '$2 == wanted { print $1 }'
 }
 
-process_tree_identity_records() {
-  local root_pid="$1"
-  local root_identity="$2"
-  [ "$(read_process_identity "$root_pid" 2>/dev/null || true)" = "$root_identity" ] || return 0
-  descendant_identity_records "$root_pid" "$root_identity"
-  [ "$(read_process_identity "$root_pid" 2>/dev/null || true)" = "$root_identity" ] || return 0
-  printf '%s\t%s\n' "$root_pid" "$root_identity"
+process_group_member_count() {
+  local process_group_id="$1"
+  local members
+  members="$(inspect_process_group_members "$process_group_id")" || return 2
+  printf '%s\n' "$members" | awk 'NF { count++ } END { print count + 0 }'
 }
 
-merge_identity_records() {
-  awk -F '\t' 'NF >= 2 && !seen[$1 FS $2]++'
+process_group_noncontroller_count() {
+  local process_group_id="$1"
+  local controller_pid="$2"
+  local members
+  members="$(inspect_process_group_members "$process_group_id")" || return 2
+  printf '%s\n' "$members" | awk -v controller="$controller_pid" 'NF && $1 != controller { count++ } END { print count + 0 }'
 }
 
-verified_live_identity_records() {
-  local identity_records="$1"
-  local process_id
-  local expected_identity
-  local current_identity
-  while IFS=$'\t' read -r process_id expected_identity; do
-    [ -n "$process_id" ] && [ -n "$expected_identity" ] || continue
-    current_identity="$(read_process_identity "$process_id")" || continue
-    [ "$current_identity" = "$expected_identity" ] || continue
-    printf '%s\t%s\n' "$process_id" "$expected_identity"
-  done <<< "$identity_records"
+send_anchored_group_signal() {
+  local controller_pid="$1"
+  local process_group_id="$2"
+  local signal_name="$3"
+  local members
+  [ -n "$controller_pid" ] && [ "$controller_pid" = "$process_group_id" ] || return 2
+  if kill "-$signal_name" -- "-$process_group_id" 2>/dev/null; then
+    return 0
+  fi
+  members="$(inspect_process_group_members "$process_group_id")" || return 2
+  [ -z "$members" ] && return 0
+  return 1
 }
 
-signal_identity_records() {
-  local identity_records="$1"
-  local signal_name="$2"
-  local process_id
-  local expected_identity
-  local current_identity
-  local failed=0
-  while IFS=$'\t' read -r process_id expected_identity; do
-    [ -n "$process_id" ] && [ -n "$expected_identity" ] || continue
-    current_identity="$(read_process_identity "$process_id")" || continue
-    [ "$current_identity" = "$expected_identity" ] || continue
-    if ! send_process_signal "$signal_name" "$process_id" 2>/dev/null; then
-      # A process that exited or changed identity in the final interval is no
-      # longer ours and must not convert normal teardown into a false failure.
-      # A still-live matching identity that could not be signalled is a real
-      # cleanup failure.
-      current_identity="$(read_process_identity "$process_id")" || continue
-      [ "$current_identity" = "$expected_identity" ] && failed=1
-    fi
-  done <<< "$identity_records"
-  return "$failed"
-}
-
-live_identity_count() {
-  local identity_records="$1"
-  verified_live_identity_records "$identity_records" | awk 'END { print NR + 0 }'
-}
-
-identity_is_live() {
-  local process_id="$1"
-  local expected_identity="$2"
-  [ -n "$process_id" ] && [ -n "$expected_identity" ] \
-    && [ "$(read_process_identity "$process_id" 2>/dev/null || true)" = "$expected_identity" ]
+# Print a verified listener count. `lsof` returns 1 both for no matches and for
+# some command failures, so first verify the inspection capability and then
+# require an empty stderr for the no-match case. Return 2 means UNKNOWN/error.
+inspect_port_listener_count() {
+  local requested_port="$1"
+  local error_file="$RUN_ROOT/private/lsof-port-${requested_port}.stderr"
+  local output
+  local status
+  mkdir -p "$RUN_ROOT/private" || return 2
+  lsof -v >/dev/null 2>&1 || return 2
+  if output="$(lsof -nP -t -iTCP:"$requested_port" -sTCP:LISTEN 2>"$error_file")"; then
+    status=0
+  else
+    status=$?
+  fi
+  if [ "$status" = "0" ]; then
+    [ ! -s "$error_file" ] || return 2
+    printf '%s\n' "$output" | awk 'NF { if ($1 !~ /^[0-9]+$/) exit 2; count++ } END { print count + 0 }'
+    return $?
+  fi
+  if [ "$status" = "1" ] && [ -z "$output" ] && [ ! -s "$error_file" ]; then
+    printf '0\n'
+    return 0
+  fi
+  return 2
 }
 
 teardown() {
   local incoming_status=$?
   local cleanup_failed=0
-  local daemon_survivors=""
-  local next_survivors=""
-  local daemon_remaining=0
-  local next_remaining=0
+  local daemon_survivors="UNKNOWN"
+  local next_survivors="UNKNOWN"
+  local daemon_remaining="UNKNOWN"
+  local next_remaining="UNKNOWN"
   local socket_remaining=no
-  local port_listener_count=0
-  local daemon_alive=no
-  local next_alive=no
+  local port_listener_count="UNKNOWN"
   local final_status
   trap - EXIT
   set +e
   log "teardown begin (incoming status $incoming_status)" || cleanup_failed=1
-  if [ -n "$NEXT_PID" ]; then
-    NEXT_TREE_RECORDS="$(
-      {
-        printf '%s\n' "$NEXT_TREE_RECORDS"
-        process_tree_identity_records "$NEXT_PID" "$NEXT_ROOT_IDENTITY"
-      } | merge_identity_records
-    )"
-    signal_identity_records "$NEXT_TREE_RECORDS" TERM || cleanup_failed=1
+  if [ -n "$NEXT_CONTROLLER_PID" ]; then
+    send_anchored_group_signal "$NEXT_CONTROLLER_PID" "$NEXT_PGID" TERM || cleanup_failed=1
   fi
-  if [ -n "$DAEMON_PID" ]; then
-    DAEMON_TREE_RECORDS="$(
-      {
-        printf '%s\n' "$DAEMON_TREE_RECORDS"
-        process_tree_identity_records "$DAEMON_PID" "$DAEMON_ROOT_IDENTITY"
-      } | merge_identity_records
-    )"
-    signal_identity_records "$DAEMON_TREE_RECORDS" TERM || cleanup_failed=1
+  if [ -n "$DAEMON_CONTROLLER_PID" ]; then
+    send_anchored_group_signal "$DAEMON_CONTROLLER_PID" "$DAEMON_PGID" TERM || cleanup_failed=1
   fi
   for _ in $(seq 1 30); do
-    if [ "$(live_identity_count "$DAEMON_TREE_RECORDS")" = "0" ] \
-       && [ "$(live_identity_count "$NEXT_TREE_RECORDS")" = "0" ]; then
+    if [ -n "$DAEMON_CONTROLLER_PID" ]; then
+      daemon_survivors="$(process_group_noncontroller_count "$DAEMON_PGID" "$DAEMON_CONTROLLER_PID")" || {
+        daemon_survivors="UNKNOWN"; cleanup_failed=1;
+      }
+    else
+      daemon_survivors=0
+    fi
+    if [ -n "$NEXT_CONTROLLER_PID" ]; then
+      next_survivors="$(process_group_noncontroller_count "$NEXT_PGID" "$NEXT_CONTROLLER_PID")" || {
+        next_survivors="UNKNOWN"; cleanup_failed=1;
+      }
+    else
+      next_survivors=0
+    fi
+    if [ "$daemon_survivors" = "0" ] && [ "$next_survivors" = "0" ]; then
       break
     fi
+    if [ "$daemon_survivors" = "UNKNOWN" ] || [ "$next_survivors" = "UNKNOWN" ]; then break; fi
     sleep 1 || cleanup_failed=1
   done
-  # A daemon or dev server wedged on a blocking host call may ignore SIGTERM.
-  # Derive KILL targets only from identity-verified survivors after the grace
-  # period, then revalidate each identity immediately before its KILL signal.
-  # A stale or PID-reused record is therefore never signalled.
-  daemon_survivors="$(verified_live_identity_records "$DAEMON_TREE_RECORDS")"
-  next_survivors="$(verified_live_identity_records "$NEXT_TREE_RECORDS")"
-  signal_identity_records "$daemon_survivors" KILL || cleanup_failed=1
-  signal_identity_records "$next_survivors" KILL || cleanup_failed=1
+  # The retained controller keeps each PGID allocated until this atomic KILL.
+  # The group signal reaches every descendant still in the controlled group and
+  # the controller itself. No individual PID is checked then signalled.
+  if [ -n "$DAEMON_CONTROLLER_PID" ]; then
+    send_anchored_group_signal "$DAEMON_CONTROLLER_PID" "$DAEMON_PGID" KILL || cleanup_failed=1
+    wait "$DAEMON_CONTROLLER_PID" 2>/dev/null || true
+  fi
+  if [ -n "$NEXT_CONTROLLER_PID" ]; then
+    send_anchored_group_signal "$NEXT_CONTROLLER_PID" "$NEXT_PGID" KILL || cleanup_failed=1
+    wait "$NEXT_CONTROLLER_PID" 2>/dev/null || true
+  fi
   for _ in $(seq 1 10); do
-    daemon_remaining="$(live_identity_count "$DAEMON_TREE_RECORDS")"
-    next_remaining="$(live_identity_count "$NEXT_TREE_RECORDS")"
+    if [ -n "$DAEMON_PGID" ]; then
+      daemon_remaining="$(process_group_member_count "$DAEMON_PGID")" || {
+        daemon_remaining="UNKNOWN"; cleanup_failed=1;
+      }
+    else
+      daemon_remaining=0
+    fi
+    if [ -n "$NEXT_PGID" ]; then
+      next_remaining="$(process_group_member_count "$NEXT_PGID")" || {
+        next_remaining="UNKNOWN"; cleanup_failed=1;
+      }
+    else
+      next_remaining=0
+    fi
     socket_remaining=no
     [ -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] && socket_remaining=yes
-    port_listener_count="$(lsof -nP -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null | tail -n +2 | wc -l | tr -d ' ')"
+    port_listener_count="$(inspect_port_listener_count "$PORT")" || {
+      port_listener_count="UNKNOWN"; cleanup_failed=1;
+    }
     if [ "$daemon_remaining" = "0" ] && [ "$next_remaining" = "0" ] \
        && [ "$socket_remaining" = "no" ] && [ "$port_listener_count" = "0" ]; then
       break
     fi
+    if [ "$daemon_remaining" = "UNKNOWN" ] || [ "$next_remaining" = "UNKNOWN" ] \
+       || [ "$port_listener_count" = "UNKNOWN" ]; then break; fi
     sleep 1 || cleanup_failed=1
   done
-  daemon_remaining="$(live_identity_count "$DAEMON_TREE_RECORDS")"
-  next_remaining="$(live_identity_count "$NEXT_TREE_RECORDS")"
-  identity_is_live "$DAEMON_PID" "$DAEMON_ROOT_IDENTITY" && daemon_alive=yes
-  identity_is_live "$NEXT_PID" "$NEXT_ROOT_IDENTITY" && next_alive=yes
+  if [ -n "$DAEMON_PGID" ]; then
+    daemon_remaining="$(process_group_member_count "$DAEMON_PGID")" || {
+      daemon_remaining="UNKNOWN"; cleanup_failed=1;
+    }
+  else
+    daemon_remaining=0
+  fi
+  if [ -n "$NEXT_PGID" ]; then
+    next_remaining="$(process_group_member_count "$NEXT_PGID")" || {
+      next_remaining="UNKNOWN"; cleanup_failed=1;
+    }
+  else
+    next_remaining=0
+  fi
   [ -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] && socket_remaining=yes
-  port_listener_count="$(lsof -nP -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null | tail -n +2 | wc -l | tr -d ' ')"
+  port_listener_count="$(inspect_port_listener_count "$PORT")" || {
+    port_listener_count="UNKNOWN"; cleanup_failed=1;
+  }
   [ "$daemon_remaining" = "0" ] || cleanup_failed=1
   [ "$next_remaining" = "0" ] || cleanup_failed=1
-  [ "$daemon_alive" = "no" ] || cleanup_failed=1
-  [ "$next_alive" = "no" ] || cleanup_failed=1
   [ "$socket_remaining" = "no" ] || cleanup_failed=1
   [ "$port_listener_count" = "0" ] || cleanup_failed=1
   [ "${RERUN_SECTION8_TEST_FORCE_CLEANUP_FAILURE:-0}" != "1" ] || cleanup_failed=1
   {
-    echo "daemon_process_tree_remaining=$daemon_remaining"
-    echo "next_process_tree_remaining=$next_remaining"
-    echo "daemon_pid=$DAEMON_PID identity_alive=$daemon_alive"
-    echo "next_pid=$NEXT_PID identity_alive=$next_alive"
+    echo "daemon_group_survivors_before_kill=$daemon_survivors"
+    echo "next_group_survivors_before_kill=$next_survivors"
+    echo "daemon_process_group_remaining=$daemon_remaining"
+    echo "next_process_group_remaining=$next_remaining"
+    echo "daemon_controller_pid=$DAEMON_CONTROLLER_PID pgid=$DAEMON_PGID"
+    echo "next_controller_pid=$NEXT_CONTROLLER_PID pgid=$NEXT_PGID"
     echo "socket_present_after_stop=$socket_remaining"
     echo "port_${PORT}_listeners_after_stop=$port_listener_count"
     echo "forced_test_cleanup_failure=${RERUN_SECTION8_TEST_FORCE_CLEANUP_FAILURE:-0}"
@@ -344,7 +353,10 @@ fi
 trap teardown EXIT
 
 # --- precondition: port is free before any build or daemon start -------------
-if [ -n "$(lsof -nP -t -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null)" ]; then
+if ! INITIAL_PORT_LISTENER_COUNT="$(inspect_port_listener_count "$PORT")"; then
+  log "could not inspect port $PORT; refusing to start"; exit 73
+fi
+if [ "$INITIAL_PORT_LISTENER_COUNT" != "0" ]; then
   log "port $PORT is already in use; refusing to start (set PORT to a free port)"; exit 72
 fi
 
@@ -372,7 +384,7 @@ cd "$FRONTEND"
   echo "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE=$CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE"
   echo "with_release_quality=$WITH_RELEASE_QUALITY"
   echo "daemon_switches=--use-mock-keychain --user-data-dir=<USER_DATA> --runtime-daemon"
-  echo "process_matching=recorded pid + start/uid/executable identity trees"
+  echo "process_lifecycle=retained POSIX session/process-group controllers; no individual PID signalling"
 } > "$LOGS/environment.txt"
 git -C "$REPO_ROOT" status --porcelain > "$LOGS/git-status-before.txt" || true
 
@@ -396,13 +408,19 @@ log "starting runtime daemon under $USER_DATA"
 # touch the operator's real Keychain; CI's Linux runner has no real keychain
 # either, so the switch keeps the evidence class identical. Chromium consumes
 # the switch; product code is unchanged.
-nohup ./node_modules/.bin/electron --use-mock-keychain "--user-data-dir=$USER_DATA" \
+DAEMON_READY_FILE="$RUN_ROOT/private/daemon-controller-ready.json"
+python3 "$GROUP_CONTROLLER" --ready-file "$DAEMON_READY_FILE" -- \
+  ./node_modules/.bin/electron --use-mock-keychain "--user-data-dir=$USER_DATA" \
   dist-electron/main.js --runtime-daemon > "$LOGS/daemon.log" 2>&1 &
-DAEMON_PID=$!
-DAEMON_ROOT_IDENTITY="$(read_process_identity "$DAEMON_PID")" || {
-  log "could not capture runtime-daemon root identity"; exit 70;
+DAEMON_CONTROLLER_PID=$!
+await_controller_ready "$DAEMON_READY_FILE" "$DAEMON_CONTROLLER_PID" || {
+  log "runtime-daemon process-group controller did not become ready"; exit 70;
 }
-DAEMON_TREE_RECORDS="${DAEMON_PID}"$'\t'"${DAEMON_ROOT_IDENTITY}"
+read -r ready_controller ready_pgid DAEMON_CHILD_PID <<< "$(read_controller_ready "$DAEMON_READY_FILE")"
+if [ "$ready_controller" != "$DAEMON_CONTROLLER_PID" ] || [ "$ready_pgid" != "$DAEMON_CONTROLLER_PID" ]; then
+  log "runtime-daemon controller identity/PGID mismatch"; exit 70
+fi
+DAEMON_PGID="$ready_pgid"
 for _ in $(seq 1 90); do
   if [ -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] && [ -f "$CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE" ]; then
     break
@@ -412,16 +430,11 @@ done
 if [ ! -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] || [ ! -f "$CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE" ]; then
   log "daemon did not become ready"; exit 70
 fi
-# $DAEMON_PID is the node shim in node_modules/.bin/electron; the Electron
-# process that actually owns the socket is its child. Observe that one.
-DAEMON_TREE_RECORDS="$(
-  {
-    printf '%s\n' "$DAEMON_TREE_RECORDS"
-    process_tree_identity_records "$DAEMON_PID" "$DAEMON_ROOT_IDENTITY"
-  } | merge_identity_records
-)"
+# The controller's direct child is the node shim; the Electron process that
+# actually owns the socket is another group member. Observe that exact owner.
 DAEMON_ELECTRON_PID="$(lsof -nP -t "$CHIRALITY_RUNTIME_SOCKET_PATH" 2>/dev/null | head -n 1 || true)"
-log "daemon ready (shim pid $DAEMON_PID, electron pid ${DAEMON_ELECTRON_PID:-unknown})"
+[ -n "$DAEMON_ELECTRON_PID" ] || { log "could not inspect daemon socket owner"; exit 70; }
+log "daemon ready (controller/pgid $DAEMON_PGID, child $DAEMON_CHILD_PID, electron pid $DAEMON_ELECTRON_PID)"
 
 # --- 3. register the project -------------------------------------------------
 CHIRALITY_RUNTIME_TOKEN_FILE="$CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE" \
@@ -442,12 +455,18 @@ log "project registered; token file $PROJECT_TOKEN_FILE"
 
 # --- 4. dev server bound to the daemon ---------------------------------------
 log "starting next dev on $HARNESS_BASE_URL"
-nohup npm run dev:next -- --hostname 127.0.0.1 --port "$PORT" > "$LOGS/next-dev.log" 2>&1 &
-NEXT_PID=$!
-NEXT_ROOT_IDENTITY="$(read_process_identity "$NEXT_PID")" || {
-  log "could not capture Next root identity"; exit 71;
+NEXT_READY_FILE="$RUN_ROOT/private/next-controller-ready.json"
+python3 "$GROUP_CONTROLLER" --ready-file "$NEXT_READY_FILE" -- \
+  npm run dev:next -- --hostname 127.0.0.1 --port "$PORT" > "$LOGS/next-dev.log" 2>&1 &
+NEXT_CONTROLLER_PID=$!
+await_controller_ready "$NEXT_READY_FILE" "$NEXT_CONTROLLER_PID" || {
+  log "Next process-group controller did not become ready"; exit 71;
 }
-NEXT_TREE_RECORDS="$(process_tree_identity_records "$NEXT_PID" "$NEXT_ROOT_IDENTITY" | merge_identity_records)"
+read -r ready_controller ready_pgid NEXT_CHILD_PID <<< "$(read_controller_ready "$NEXT_READY_FILE")"
+if [ "$ready_controller" != "$NEXT_CONTROLLER_PID" ] || [ "$ready_pgid" != "$NEXT_CONTROLLER_PID" ]; then
+  log "Next controller identity/PGID mismatch"; exit 71
+fi
+NEXT_PGID="$ready_pgid"
 READY=0
 for _ in $(seq 1 90); do
   status="$(curl -sS -o "$LOGS/harness-ready.json" -w "%{http_code}" --get \
@@ -457,25 +476,23 @@ for _ in $(seq 1 90); do
   sleep 2
 done
 if [ "$READY" != "1" ]; then log "harness API did not become ready"; exit 71; fi
-NEXT_TREE_RECORDS="$(
-  {
-    printf '%s\n' "$NEXT_TREE_RECORDS"
-    process_tree_identity_records "$NEXT_PID" "$NEXT_ROOT_IDENTITY"
-  } | merge_identity_records
-)"
-log "harness API ready"
+log "harness API ready (controller/pgid $NEXT_PGID, child $NEXT_CHILD_PID)"
 
 # --- 5. containment observations (before) ------------------------------------
+DAEMON_GROUP_MEMBERS_BEFORE="$(inspect_process_group_members "$DAEMON_PGID")" || {
+  log "could not inspect daemon process group before validation"; exit 70;
+}
+lsof -v >/dev/null 2>&1 || { log "lsof inspection unavailable"; exit 70; }
 {
-  echo "# daemon electron pid ${DAEMON_ELECTRON_PID:-unknown} (shim $DAEMON_PID) — TCP sockets (expect none):"
-  lsof -nP -a -p "${DAEMON_ELECTRON_PID:-$DAEMON_PID}" -iTCP 2>/dev/null || true
-  echo "# daemon electron pid ${DAEMON_ELECTRON_PID:-unknown} — Unix sockets under the disposable user-data root:"
-  lsof -nP -a -p "${DAEMON_ELECTRON_PID:-$DAEMON_PID}" -U 2>/dev/null | grep -F "$USER_DATA" || true
-  echo "# all TCP listeners owned by any process under the disposable user-data root (expect none):"
-  while IFS=$'\t' read -r process_id _; do
+  echo "# daemon electron pid $DAEMON_ELECTRON_PID (controller/pgid $DAEMON_PGID) — TCP sockets (expect none):"
+  lsof -nP -a -p "$DAEMON_ELECTRON_PID" -iTCP 2>/dev/null || true
+  echo "# daemon electron pid $DAEMON_ELECTRON_PID — Unix sockets under the disposable user-data root:"
+  lsof -nP -a -p "$DAEMON_ELECTRON_PID" -U 2>/dev/null | grep -F "$USER_DATA" || true
+  echo "# all TCP listeners owned by daemon process-group members (expect none):"
+  while IFS= read -r process_id; do
     [ -n "$process_id" ] || continue
     lsof -nP -a -p "$process_id" -iTCP -sTCP:LISTEN 2>/dev/null | tail -n +2 || true
-  done <<< "$DAEMON_TREE_RECORDS"
+  done <<< "$DAEMON_GROUP_MEMBERS_BEFORE"
   echo "# control socket mode:"
   ls -l "$CHIRALITY_RUNTIME_SOCKET_PATH"
   echo "# runtime directory mode:"
@@ -535,14 +552,18 @@ if [ "$WITH_RELEASE_QUALITY" = "1" ]; then
 fi
 
 # --- 8. containment observations (after) -------------------------------------
+DAEMON_GROUP_MEMBERS_AFTER="$(inspect_process_group_members "$DAEMON_PGID")" || {
+  log "could not inspect daemon process group after validation"; exit 70;
+}
+lsof -v >/dev/null 2>&1 || { log "lsof inspection unavailable after validation"; exit 70; }
 {
-  echo "# daemon electron pid ${DAEMON_ELECTRON_PID:-unknown} — TCP sockets after the run (expect none):"
-  lsof -nP -a -p "${DAEMON_ELECTRON_PID:-$DAEMON_PID}" -iTCP 2>/dev/null || true
-  echo "# TCP listeners owned by any process under the disposable user-data root after the run (expect none):"
-  while IFS=$'\t' read -r process_id _; do
+  echo "# daemon electron pid $DAEMON_ELECTRON_PID — TCP sockets after the run (expect none):"
+  lsof -nP -a -p "$DAEMON_ELECTRON_PID" -iTCP 2>/dev/null || true
+  echo "# TCP listeners owned by daemon process-group members after the run (expect none):"
+  while IFS= read -r process_id; do
     [ -n "$process_id" ] || continue
     lsof -nP -a -p "$process_id" -iTCP -sTCP:LISTEN 2>/dev/null | tail -n +2 || true
-  done <<< "$DAEMON_TREE_RECORDS"
+  done <<< "$DAEMON_GROUP_MEMBERS_AFTER"
 } > "$LOGS/containment-after.txt"
 git -C "$REPO_ROOT" status --porcelain > "$LOGS/git-status-after.txt" || true
 {
