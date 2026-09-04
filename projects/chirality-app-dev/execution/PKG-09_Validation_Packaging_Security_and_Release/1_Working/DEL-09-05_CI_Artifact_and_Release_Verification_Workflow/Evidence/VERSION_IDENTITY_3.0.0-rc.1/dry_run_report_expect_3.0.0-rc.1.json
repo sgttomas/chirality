@@ -1,0 +1,130 @@
+{
+  "schema": "chirality-version-identity-report/v1",
+  "expected": "3.0.0-rc.1",
+  "frontendRoot": "{REPO_ROOT}/projects/chirality-app-dev/frontend",
+  "inputs": {
+    "packageJson": {
+      "path": "{REPO_ROOT}/projects/chirality-app-dev/frontend/package.json",
+      "sha256": "5f81bcb08c6fadf1f5f1cbd80020cf707e434184990dc5a0a4040fc6f933a9cc"
+    },
+    "packageLock": {
+      "path": "{REPO_ROOT}/projects/chirality-app-dev/frontend/package-lock.json",
+      "sha256": "717d541fe6ee090aae79d4a386bbde1c8ff6ee136a50242d956500d76e80a458"
+    },
+    "appPath": null,
+    "dmgPath": null
+  },
+  "surfaces": [
+    {
+      "id": "package.json:version",
+      "description": "package.json `version` (declared)",
+      "observed": "2.0.0",
+      "expected": "3.0.0-rc.1",
+      "status": "MISMATCH",
+      "note": ""
+    },
+    {
+      "id": "package-lock.json:version",
+      "description": "package-lock.json top-level `version` (declared)",
+      "observed": "2.0.0",
+      "expected": "3.0.0-rc.1",
+      "status": "MISMATCH",
+      "note": ""
+    },
+    {
+      "id": "package-lock.json:packages[\"\"].version",
+      "description": "package-lock.json `packages[\"\"].version` (declared)",
+      "observed": "2.0.0",
+      "expected": "3.0.0-rc.1",
+      "status": "MISMATCH",
+      "note": ""
+    },
+    {
+      "id": "package.json:build.productName",
+      "description": "electron-builder `build.productName` (identity constant)",
+      "observed": "Chirality",
+      "expected": "Chirality",
+      "status": "MATCH",
+      "note": ""
+    },
+    {
+      "id": "package.json:build.appId",
+      "description": "electron-builder `build.appId` (identity constant)",
+      "observed": "com.chirality.app",
+      "expected": "com.chirality.app",
+      "status": "MATCH",
+      "note": ""
+    },
+    {
+      "id": "electron-builder:artifactName",
+      "description": "electron-builder artifact-name template",
+      "observed": "${productName}-${version}-${arch}.${ext}",
+      "expected": "${productName}-${version}-${arch}.${ext}",
+      "status": "MATCH",
+      "note": "electron-builder default (no explicit template)"
+    },
+    {
+      "id": "dmg:filename(derived)",
+      "description": "macOS arm64 DMG filename derived from package.json version",
+      "observed": "Chirality-2.0.0-arm64.dmg",
+      "expected": "Chirality-3.0.0-rc.1-arm64.dmg",
+      "status": "MISMATCH",
+      "note": "derived: electron-builder names the DMG from productName, version, and arch"
+    },
+    {
+      "id": "app:bundle-metadata",
+      "description": "staged app Info.plist `CFBundleShortVersionString`/`CFBundleVersion` (bundle metadata; `app.getVersion()` source)",
+      "observed": null,
+      "expected": "3.0.0-rc.1",
+      "status": "DERIVED",
+      "note": "no --app-path given; electron-builder derives both keys from package.json `version`, so this surface follows package.json:version"
+    },
+    {
+      "id": "dmg:file",
+      "description": "named DMG file basename",
+      "observed": null,
+      "expected": "Chirality-3.0.0-rc.1-arm64.dmg",
+      "status": "NOT_INSPECTED",
+      "note": "no --dmg-path given"
+    },
+    {
+      "id": "source:version-reporting",
+      "description": "UI/about string or runtime report that prints the product version (electron/**, src/**)",
+      "observed": "none found",
+      "expected": "3.0.0-rc.1",
+      "status": "ABSENT",
+      "note": "no `app.getVersion()`, `npm_package_version`, `NEXT_PUBLIC_APP_VERSION`, or product-version token in product source; AT-043 UI/runtime surfaces do not yet exist"
+    },
+    {
+      "id": "scripts:release-manifest-version",
+      "description": "release-manifest / proof-summary version field written by existing scripts (scripts/**)",
+      "observed": "none found",
+      "expected": "3.0.0-rc.1",
+      "status": "ABSENT",
+      "note": "existing summaries carry digests, source revisions, and posture only; no script writes the product version"
+    }
+  ],
+  "evaluation": {
+    "result": "MISMATCH",
+    "mismatchCount": 4,
+    "incompleteCount": 3,
+    "mismatches": [
+      "package.json:version",
+      "package-lock.json:version",
+      "package-lock.json:packages[\"\"].version",
+      "dmg:filename(derived)"
+    ],
+    "incomplete": [
+      "dmg:file",
+      "source:version-reporting",
+      "scripts:release-manifest-version"
+    ]
+  },
+  "stagedPatch": {
+    "path": "{REPO_ROOT}/projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/Evidence/VERSION_IDENTITY_3.0.0-rc.1/staged_version_patch.diff",
+    "bytes": 956,
+    "sha256": "311844f0a8b447085bf038ccbdda353a1240a5b44ae7a91df6754c9c154b1d82",
+    "applied": false
+  },
+  "boundary": "Evidence only: no product byte changed; no signing, notarization, publication, distribution, or release act; no release-readiness claim."
+}

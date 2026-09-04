@@ -1,0 +1,258 @@
+{
+  "schema": "chirality-tranche-checks/v1",
+  "run_id": "APPDEV_V3_NODE_B_2026-09-03",
+  "basis": "0c683fb1657706316272951e4c3a0f7781b46009",
+  "registered_evidence": "checks/registered_checks.json",
+  "host": {
+    "os": "macOS 26.6.2 arm64",
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "python": "3.13.14",
+    "git": "2.55.0",
+    "syft": "absent"
+  },
+  "checks": [
+    {
+      "id": "frontend-typecheck",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "tsc frontend + electron configs clean"
+    },
+    {
+      "id": "frontend-test",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "Vitest 158 files passed, 1 skipped; 1317 tests passed, 4 skipped (baseline 155/1282 + 3 new files/35 tests)"
+    },
+    {
+      "id": "frontend-build",
+      "command": "npm run build",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "next build compiled successfully; electron main bundle built"
+    },
+    {
+      "id": "harness-self-check",
+      "command": "python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": "(repo root)",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "exit 0"
+    },
+    {
+      "id": "app-hold-integrity",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "scan verdict PASS with register match"
+    },
+    {
+      "id": "harness-pytest",
+      "command": "python3 -m pytest -q tools/practitioner_harness",
+      "cwd": "(repo root)",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "350 passed"
+    },
+    {
+      "id": "frontend-premerge",
+      "command": "npm run harness:validate:premerge  (service: node node_modules/next/dist/bin/next dev --port <auto>, CHIRALITY_HARNESS_PROVIDER=stub, HARNESS_BASE_URL=http://127.0.0.1:<port>)",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 1,
+      "status": "FAIL_DEFERRED_TO_PR_CI",
+      "summary": "stub next dev READY in 4.6s; every Section 8 probe failed with HTTP 503 from /api/harness/session/{list,create,boot} (setup.server_reachable 'Expected 200; received 503'); no harness test executed (HARNESS_PREMERGE_TEST_COUNT=0). Same class as the Receipt-172 and Receipt-177 precedents: HTTP 503 without the shared runtime registration lifecycle (absent runtime-daemon bindings on this host); the tranche changes no runtime source, so the PR-CI harness pre-merge job supplies the external proof. Evidence: checks/registered_checks.json (service record), checks/premerge_section8_summary.json.",
+      "class": "absent-runtime-daemon-bindings"
+    },
+    {
+      "id": "verify:version-identity --expect 2.0.0",
+      "command": "npm run -s verify:version-identity -- --expect 2.0.0 --json <evidence>",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "Result: PASS (0 mismatching; 3 absent/not-inspected/unchecked); Evidence/VERSION_IDENTITY_3.0.0-rc.1/dry_run_report_expect_2.0.0.*"
+    },
+    {
+      "id": "verify:version-identity --expect 3.0.0-rc.1",
+      "command": "npm run -s verify:version-identity -- --expect 3.0.0-rc.1 --stage-patch <evidence>/staged_version_patch.diff --json <evidence>",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 1,
+      "status": "PASS (expected mismatch report)",
+      "summary": "Result: MISMATCH (4 mismatching surfaces: package.json version, lock top-level version, lock packages[\"\"].version, derived DMG filename); staged patch SHA-256 311844f0a8b447085bf038ccbdda353a1240a5b44ae7a91df6754c9c154b1d82; git apply --check exit 0; NOT applied"
+    },
+    {
+      "id": "notices:generate determinism",
+      "command": "npm run -s notices:generate -- --output run{1,2}/THIRD_PARTY_NOTICES.md --summary run{1,2}/notices-summary.json; cmp run1 run2",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "two runs byte-identical; output SHA-256 384127cc4fc7f807f089c629160beeac4557ae71260bd1e51318bee032d70f52; 420 third-party records, 14 first-party, required Pi + @chirality packages present"
+    },
+    {
+      "id": "sbom:generate (closure)",
+      "command": "npm run -s sbom:generate -- --closure --output <evidence>/sbom/sbom.closure.cdx.json",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 2,
+      "status": "UNAVAILABLE_UNDER_BOUNDS",
+      "summary": "refused: Syft binary not found; pinned v1.18.1 not installed on host; no download performed; dry-run record of the exact command at Evidence/WP09_ARTIFACT_EVIDENCE_2026-09-03/sbom/dry-run.closure.json"
+    },
+    {
+      "id": "git diff --check",
+      "command": "git diff --check",
+      "cwd": "(repo root)",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "no whitespace errors"
+    },
+    {
+      "id": "validate_change_scope",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --allowed <write locus roots>",
+      "cwd": "(repo root)",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "all changed/untracked paths inside the sealed write locus; violations []"
+    },
+    {
+      "id": "corpus status",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "no drift (no authority doc touched)"
+    },
+    {
+      "id": "receipts validator (pre-mutation)",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": "(repo root)",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "VALID; no receipt appended before review"
+    },
+    {
+      "id": "APP-HOLD-1 dispatch preflight",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-05",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "PASS",
+      "summary": "verdict ALLOW"
+    }
+  ],
+  "overall": "PASS_WITH_ONE_DEFERRED (frontend-premerge deferred to PR CI: absent runtime-daemon bindings class)",
+  "boundary": "No signing, notarization, publication, distribution, version byte change, .github/workflows change, or release-readiness claim.",
+  "post_fix_rerun": {
+    "reason": "after the registered run, generate-third-party-notices.mjs was amended to drop a trailing blank line at EOF (git diff --check finding); evidence regenerated",
+    "commands": [
+      {
+        "command": "npx vitest run src/__tests__/scripts/",
+        "cwd": "projects/chirality-app-dev/frontend",
+        "exit": 0,
+        "summary": "19 files, 186 tests passed"
+      },
+      {
+        "command": "npx tsc --noEmit --incremental false",
+        "cwd": "projects/chirality-app-dev/frontend",
+        "exit": 0,
+        "summary": "clean"
+      },
+      {
+        "command": "git diff --check HEAD~1 HEAD",
+        "cwd": "(repo root)",
+        "exit": 0,
+        "summary": "clean"
+      }
+    ]
+  },
+  "post_review_01_rerun": {
+    "reason": "review 01 findings remediated (runbook MAJOR-1/2, MINOR-1/2; scripts MINOR-3/4; records MINOR-5/6); registered typecheck/Vitest/build rerun and evidence regenerated",
+    "registered_evidence": "checks/registered_checks_post_review_01.json",
+    "registered_checks_snapshot_note": "checks/registered_checks.json is the pre-amendment snapshot retained for its premerge service record and Section 8 summary; premerge classification unchanged (absent runtime-daemon bindings; deferred to PR CI)",
+    "checks": [
+      {
+        "id": "frontend-typecheck",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "frontend-test",
+        "exit": 0,
+        "status": "PASS",
+        "summary": "Test Files  158 passed | 1 skipped (159) Tests  1318 passed | 4 skipped (1322)"
+      },
+      {
+        "id": "frontend-build",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "verify:version-identity --expect 2.0.0",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "verify:version-identity --expect 3.0.0-rc.1 --stage-patch",
+        "exit": 1,
+        "status": "PASS (expected mismatch; patch SHA-256 unchanged 311844f0a8b447085bf038ccbdda353a1240a5b44ae7a91df6754c9c154b1d82)"
+      },
+      {
+        "id": "notices:generate x2",
+        "exit": 0,
+        "status": "PASS (byte-identical; new SHA-256 384127cc4fc7f807f089c629160beeac4557ae71260bd1e51318bee032d70f52, 6907 lines)"
+      },
+      {
+        "id": "sbom:generate --closure --dry-run",
+        "exit": 0,
+        "status": "PASS (DRY_RUN)"
+      },
+      {
+        "id": "sbom:generate --closure",
+        "exit": 2,
+        "status": "UNAVAILABLE_UNDER_BOUNDS (syft absent)"
+      },
+      {
+        "id": "git apply --check staged patch",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "git diff --check (worktree and full range)",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "validate_change_scope (base 0c683fb16)",
+        "exit": 0,
+        "status": "PASS (44 paths, 0 violations)"
+      },
+      {
+        "id": "harness self-check",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "corpus status",
+        "exit": 0,
+        "status": "no drift"
+      }
+    ]
+  },
+  "post_review_02_refreeze": {
+    "reason": "review 02 (0 blocking / 1 major / 1 minor) remediated as candidate text only: runbook --prepackaged bundle path, $DMG_UNSIGNED/$DMG split with archive step, explicit DMG sign step, blockmap exclusion, A14 binding; checklist A13/A17; run-record echo. No product byte, evidence, or test changed; per the coordinator only git diff --check and validate_change_scope were rerun.",
+    "checks": [
+      {
+        "id": "git diff --check (full range)",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "validate_change_scope (base 0c683fb16)",
+        "exit": 0,
+        "status": "PASS"
+      }
+    ]
+  }
+}

@@ -2,6 +2,20 @@
 
 ## Decisions And Evidence
 
+- 2026-09-03 - Node B (WP-09 preparation) landed the reviewed release runbook
+  candidate and exact-candidate identity/custody checklist (V3-01, both
+  `CANDIDATE — NOT ADOPTED`), the pinned-Syft SBOM and third-party notices
+  tooling with tests and a notices evidence bundle (V3-02; SBOM
+  `UNAVAILABLE_UNDER_BOUNDS` until an owner host act installs Syft `v1.18.1`),
+  and the version-identity check with the staged, unapplied `3.0.0-rc.1` patch
+  (V3-03). Three independent review rounds; round 3 PASS. Findings carried for
+  later items: no UI/about or runtime surface prints the product version
+  (AT-043), no script writes a release-manifest version field, 28 installed
+  packages ship no license file, `build.mac` declares no explicit
+  `identity: null`/entitlements/fuses/notarize keys (AT-038 config gap, G5
+  input). No signing, notarization, Apple call, distribution, product version
+  change, workflow change, lifecycle, or release-readiness claim.
+
 - 2026-08-19 - PR #583 retained the external proof for D-APP-97 C1: Desktop
   run `32327128935`, job `96300526868` passed the unsigned macOS build,
   DMG-mounted identity/posture checks, and bounded CI artifact upload. The

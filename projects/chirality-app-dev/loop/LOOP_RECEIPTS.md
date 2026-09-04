@@ -6280,3 +6280,53 @@
     Agent 2 implementer under HELP_HUMAN (Claude Fable 5.1); reviewer Claude
     Fable 5.1.
   - Gate-Outcome: `EXECUTED` — node D landed on branch; awaiting owner merge; no lifecycle, release, or Root act.
+
+- **2026-09-03 — Receipt 211** (App v3 pathway node B: DEL-09-05-V3-01/02/03 WP-09 release preparation candidates and tooling).
+  - Receipt-ID: `Receipt-211`
+  - Examined-Through: `0c683fb1657706316272951e4c3a0f7781b46009`
+  - Parent-Receipt: `Receipt-205`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected development node B (the three `SELECTABLE`
+    DEL-09-05 v3 items, WP-09 preparation only) from the dev slate in the
+    HELP_HUMAN session chat on 2026-09-03; the selection is recorded at
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_B_2026-09-03/ORCHESTRATION_PLAN.md`
+    (Selection authority). Concurrent sibling nodes D and E share this
+    parent (ledger rule 7). The dispatch brief assigned this receipt number
+    207; Receipts 209 (node E) and 210 (node D) were already appended on
+    `main`, and the ledger validator requires increasing IDs in physical
+    append order, so it is recorded as 211.
+  - Pointers: branch `codex/app-v3-nodeB-wp09-prep-2026-09-03` (basis
+    above; reviewed pre-rebase freezes `0e5480299`, `e61e546a7`,
+    `f7dead780`; rebased onto `9c99e4bf7972bcde0f639b0a7bf8fc2fb731b8da`);
+    RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_B_2026-09-03/`
+    (`STEP0_DISCOVERY.md` incl. A1 re-stage declaration, `CHECKS.json`,
+    `RETURN.md`, `HANDOFF_STATE.md`, `MANIFEST.sha256`,
+    `instances/B2_REVIEWER/REVIEW_0{1,2,3}_*.md`); DEL-09-05
+    `Release_Runbook_CANDIDATE_2026-09-03.md` SHA-256
+    `5c452dc1fdaf2be1a89b880b77dbba57e144fb1eaed4ddaddac45c12d8849821`,
+    `Exact_Candidate_Identity_and_Custody_Checklist_CANDIDATE.md` SHA-256
+    `b3332d5642c0591398058b608dc4398fe851ba82fa245cdc0cf8b1ac042b895d`,
+    `Evidence/WP09_ARTIFACT_EVIDENCE_2026-09-03/` (notices; SBOM
+    `UNAVAILABLE_UNDER_BOUNDS`, Syft `v1.18.1` absent on host),
+    `Evidence/VERSION_IDENTITY_3.0.0-rc.1/` (staged patch SHA-256
+    `311844f0a8b447085bf038ccbdda353a1240a5b44ae7a91df6754c9c154b1d82`,
+    not applied), `_run_records/TASK_RUN_2026-09-03_NODE_B.md`, `_STATUS.md`
+    (V3-01 and V3-03 removed; V3-02 retained with the SBOM blocker;
+    V3-04, V3-05, and V3-06 parked); product tooling `frontend/scripts/{generate-sbom,
+    generate-third-party-notices,verify-version-identity}.mjs`,
+    `frontend/package.json` scripts block, `frontend/src/__tests__/scripts/`.
+  - Checks: typecheck pass; full Vitest pass; build pass; `git diff --check`
+    pass; change-scope validator pass; harness self-check pass; harness
+    pytest pass; APP-HOLD dispatch preflight and register-match scan pass;
+    authority corpus status no drift; receipts validator pass;
+    version-identity check pass for the current identity and expected
+    mismatch report for `3.0.0-rc.1`; notices determinism pass; premerge
+    fail in the absent-runtime-daemon-bindings class, PR-CI-owed;
+    independent review round 3 pass.
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as ephemeral
+    Agent 2 implementer under HELP_HUMAN (Claude Fable 5.1); reviewer Claude
+    Fable 5.1.
+  - Gate-Outcome: `EXECUTED` — awaiting owner merge; no release act. No
+    signing identity, Apple service call, notarization, distribution,
+    product version byte, workflow, lifecycle, Checking Approval SHA, or
+    Root change; WP-11 untouched.
