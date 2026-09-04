@@ -1,10 +1,10 @@
-# RETURN — G1_IMPLEMENTER (frozen for independent review; one local commit)
+# RETURN — G1_IMPLEMENTER (reviewed freeze plus closeout)
 
 - **Run:** `APPDEV_V3_NODE_G_2026-09-03` · **Executor:** Claude Fable 5.1 (`claude-fable-5-1`), ephemeral Agent 2 under HELP_HUMAN · **Skill method:** `software-bounded-implementation`
 - **Basis:** `e59efa4830fb54143c86e511ec35a6d1a476f72e` (PR #686 merge; exactly the required basis) · **Branch:** `codex/app-v3-nodeG-egress-probe-restriction-2026-09-03`
-- **Commits:** one local commit (the commit containing this file); its SHA is reported in the freeze message.
+- **Commits:** reviewed freeze `39adfa6a6c5972d489dbe3b4cc6d60f0ade172d8` (one commit; independent review round 1 **PASS**, 0 blocking / 0 major / 1 minor / 7 notes — `instances/G2_REVIEWER/REVIEW_01_2026-09-03_over_39adfa6a6.md`, byte copy), rebased without conflict onto `origin/main` `40ab9b34beff3079402d01e336e8b72f8bd780f2` (PR #687 merge, node I) as `6947f4b9c` with an identical diff (20 files, +2,149 / −39), plus the closeout commit that carries this text (record-only: review copy, `_STATUS.md`/`MEMORY.md`, `HANDOFF_STATE.md`, `MANIFEST.sha256`, Receipt 214, the G1-F2 text widening).
 - **Item:** DEL-09-06-V3-05 (`SELECTABLE`) — egress-layer probe URL restriction (residual R-B of node A).
-- **Status:** `REVIEW_READY`. Implementation complete; every registered check passes except the premerge, which failed in the recorded absent-runtime-daemon-bindings class (`FAIL_DEFERRED_TO_PR_CI`, Receipts 172/177) and is deferred to PR CI with no pass inferred. Nothing pushed; no `_STATUS.md`, `MEMORY.md`, receipt, `HANDOFF_STATE.md`, or `MANIFEST.sha256` written yet (those follow `REVIEW_PASS`).
+- **Status:** `REVIEW_PASS` received from HELP_HUMAN 2026-09-03 over `39adfa6a6`; closeout executed. Every registered check passes except the premerge, which failed in the recorded absent-runtime-daemon-bindings class (`FAIL_DEFERRED_TO_PR_CI`, Receipts 172/177) and is deferred to PR CI with no pass inferred. Post-rebase typecheck and full Vitest re-run on `6947f4b9c` (results in `CHECKS.json` closeout round). No product or test byte changed after the reviewed freeze.
 
 ## 1. Behavioural summary
 
@@ -63,14 +63,15 @@ All changed paths lie inside the sealed fence (`CHECKS.json` `scope_validation_c
 
 ## 5. Residual risks and follow-ups (reported, not taken silently)
 
-1. **R-B is closed by construction; no successor residual.** The probe has no destination input; the proof's negative control would expose a regression on the wire.
-2. **R-A (DEL-09-06-V3-04, nonce-based script CSP)** is untouched and remains owner-gated.
-3. **Payload shape change** (`destination.port` added to the `[egress-layer-probe]` line): consumed only by the proof summarizer, which now requires it; retained node A bundles are history and are not re-evaluated.
-4. **Premerge** is PR-CI-owed (recorded class).
-5. **Packaged proof identity vs. commit:** the bundle was built from the pre-commit working tree (`sourceRevision e59efa483`); the artifact hashes identify the proved bytes; unsigned bundles are not byte-deterministic across builds. An `artifact-proof`-labelled CI run binds a proof to the merged SHA.
-6. **Absolute paths in the retained `packaged-gui.log`** (scratch-worktree `appPath`, launcher opt-out path) — verbatim proof output, same pattern as the bundles on `main`, no secret (node A review NOTE-7 class).
-7. **A1 re-stage rule** applies (declaration in `STEP0_DISCOVERY.md` §3).
-8. Concurrent nodes F/H/I: no shared write path except the append-only receipts ledger at closeout (Parent-Receipt `Receipt-212`; next unused number at rebase time).
+1. **R-B is closed by construction.** The probe has no destination input; the proof's negative control would expose a regression on the wire.
+2. **Review G1-F1 (MINOR, test coverage — recorded as a residual, deliberately not taken after PASS):** `run-packaged-security-proof.test.ts` has no case for an entirely absent or a malformed `[egress-layer-probe]` line. The summarizer already fails closed in both cases (`.some()` over no payloads → `egressProbeObserved false`; a parse error → `null` in `egressProbeUnexpectedDestinations` → `pass false`), shown empirically by the reviewer's direct call (review cmd 19). Adding the two test lines after `REVIEW_PASS` would have been unreviewed, so it is seeded into DEL-09-06 `Remaining` as a tests-only follow-on (coordinator disposition at closeout).
+3. **R-A (DEL-09-06-V3-04, nonce-based script CSP)** is untouched and remains owner-gated.
+4. **Payload shape change** (`destination.port` added to the `[egress-layer-probe]` line): consumed only by the proof summarizer, which now requires it; retained node A bundles are history and are not re-evaluated.
+5. **Premerge** is PR-CI-owed (recorded class).
+6. **Packaged proof identity vs. commit:** the bundle was built from the pre-commit working tree (`sourceRevision e59efa483`); the artifact hashes identify the proved bytes; unsigned bundles are not byte-deterministic across builds. An `artifact-proof`-labelled CI run binds a proof to the merged SHA (review G1-F7).
+7. **Absolute paths in the retained bundle** (review G1-F2): the scratch-worktree path appears in `summary.json` (`artifactIdentity.appPath`), `packaged-daemon.log`, `packaged-gui.log`, and `tcp-snapshots.json` (Electron helper command lines with the disposable `--user-data-dir` temp root), and the launcher opt-out path `/Users/ryan/.local/bin/chirality` in `packaged-gui.log` — verbatim proof output, same pattern as the bundles on `main`, no secret (node A review NOTE-7 class). `MANIFEST.sha256` entries are bare filenames, so `shasum -c` verifies from the bundle directory (review G1-F3; the convention question is the owner's).
+8. **A1 re-stage rule** applies (declaration in `STEP0_DISCOVERY.md` §3).
+9. Concurrent nodes: node I landed first (Receipt 213, PR #687); this node's receipt is 214 with Parent-Receipt `Receipt-212` (ledger rule 7). Nodes F/H had not landed at rebase time.
 
 ## 6. Fences
 
@@ -78,5 +79,5 @@ F-APP-1: no new destination, provider, dependency, or `runtime/**` change — th
 
 ## 7. Coordination notices
 
-- For HELP_HUMAN: dispatch the fresh read-only `TASK + software-code-review` over 100% of the frozen diff (basis `e59efa483` → the freeze SHA). No write-locus extension was needed.
-- For the owner at byte review: decision D1 (hard-code + retire the variable; loopback decoy as negative control) is the implementer's, recorded in `COORDINATOR_DECISIONS.md`.
+- Independent review dispatched by HELP_HUMAN over 100% of `e59efa483..39adfa6a6`: PASS (filed verbatim under `instances/G2_REVIEWER/`). Coordinator disposition at closeout (transcribed in `COORDINATOR_DECISIONS.md` D2): G1-F1 recorded as a residual, not fixed after PASS; G1-F2 text widened in the evidence docs; G1-F3..F8 no action. No write-locus extension was needed.
+- For the owner at byte review: decision D1 (hard-code + retire the variable; loopback decoy as negative control) is the implementer's, recorded in `COORDINATOR_DECISIONS.md`; the PR carries the `artifact-proof` label so CI binds a packaged proof to the merged SHA.

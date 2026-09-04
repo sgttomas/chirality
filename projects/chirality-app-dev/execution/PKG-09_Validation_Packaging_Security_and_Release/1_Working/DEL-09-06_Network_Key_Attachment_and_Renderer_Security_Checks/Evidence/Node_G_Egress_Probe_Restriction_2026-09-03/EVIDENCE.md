@@ -5,8 +5,10 @@
 > closeout, Receipt 212). Run record:
 > `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_G_2026-09-03/`. Executed by Claude
 > Fable 5.1 (`claude-fable-5-1`) as ephemeral Agent 2 implementer under HELP_HUMAN, in one
-> local commit on branch `codex/app-v3-nodeG-egress-probe-restriction-2026-09-03` (the
-> commit that contains this file). The design decision is recorded as D1 in the run
+> reviewed local commit on branch `codex/app-v3-nodeG-egress-probe-restriction-2026-09-03`
+> (frozen as `39adfa6a6`, rebased onto `origin/main` `40ab9b34b` as `6947f4b9c`; independent
+> review PASS, `instances/G2_REVIEWER/REVIEW_01_2026-09-03_over_39adfa6a6.md`) plus the
+> closeout commit that carries this text. The design decision is recorded as D1 in the run
 > record's `COORDINATOR_DECISIONS.md` (an implementer decision under the brief's
 > delegated latitude; not an owner ruling). This package makes no release-readiness,
 > signing, notarization, distribution, certification, or lifecycle claim.
@@ -151,10 +153,13 @@ trailing space that the repository's `git diff --check` gate rejects; the retain
 `f5a71eeefc123a4d8c859210a008b85f62b5d70b5213caae6610ece2eaecaf13`, retained 3,709 B
 `ba9d2379998dc61b0ee32337824f7faca26a2fe751b263922658beb9e9750288`. The other four files are
 byte-identical to the run output. `MANIFEST.sha256` (sorted by filename) lists the retained
-bytes; verify with `shasum -a 256 -c MANIFEST.sha256` in the directory. The retained
-`packaged-gui.log` carries the scratch-worktree `appPath` and the launcher opt-out path
-`/Users/ryan/.local/bin/chirality` — verbatim proof output, same pattern as the bundles
-already on `main`, no secret.
+bytes; verify with `shasum -a 256 -c MANIFEST.sha256` in the directory (entries are bare
+filenames). The retained bundle carries the scratch-worktree path — `summary.json`
+(`artifactIdentity.appPath`), `packaged-daemon.log`, `packaged-gui.log`, and
+`tcp-snapshots.json` (Electron helper command lines, with the disposable
+`--user-data-dir` temp root) — and the launcher opt-out path
+`/Users/ryan/.local/bin/chirality` in `packaged-gui.log`: verbatim proof output, same
+pattern as the bundles already on `main`, no secret (independent review G1-F2).
 
 ## 5. Environment, containment, and rerun method
 

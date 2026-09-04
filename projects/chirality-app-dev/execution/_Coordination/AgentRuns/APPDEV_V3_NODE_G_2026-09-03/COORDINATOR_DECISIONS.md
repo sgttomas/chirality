@@ -69,3 +69,22 @@ the two pins that required the retired variable name (in the policy module and i
 proof script's env block) are replaced by pins that forbid it in the policy module and
 `main.ts`, pin the exported constant and its use as the `fetch` argument, pin `main.ts`'s
 port rule, and pin the proof's decoy line. Listed file-by-file in `RETURN.md` §1.
+
+## D2 — 2026-09-03 — closeout disposition of the round-1 review findings (HELP_HUMAN direction)
+
+This one is a **HELP_HUMAN (coordinator) act**, transcribed by the implementer from the
+coordinator's `REVIEW_PASS` message; it is not an owner ruling. Direction (verbatim gist):
+"G1-F1 (MINOR, missing tests for absent/malformed egress line): DO NOT add tests now — any
+product/test change after PASS would be unreviewed. Record it as a residual in RETURN.md /
+_STATUS.md (the summarizer already fails closed; empirically shown by the reviewer's cmd
+19). G1-F2 (NOTE): you may widen the absolute-path declaration sentence in EVIDENCE.md and
+RETURN.md to name the whole bundle (text-only edit to evidence docs, allowed at closeout).
+G1-F3..F8: no action." Also: rebase onto `origin/main` `40ab9b34b` (PR #687, node I,
+Receipt 213), receipt number = next unused at rebase time with Parent-Receipt `Receipt-212`,
+Gate-Outcome from the validator's closed vocabulary, receipts validator after the rebase,
+push, PR with the `artifact-proof` label, never merge.
+
+Effect: review filed verbatim under `instances/G2_REVIEWER/`; G1-F1 recorded in `RETURN.md`
+§5 and seeded into DEL-09-06 `Remaining` as the tests-only item DEL-09-06-V3-06; G1-F2 text
+widened in `EVIDENCE.md` §4 and `RETURN.md` §5; no product or test byte changed after the
+reviewed freeze `39adfa6a6` (rebased as `6947f4b9c`, identical diff); Receipt 214.

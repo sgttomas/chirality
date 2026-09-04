@@ -4,7 +4,8 @@
   "recorded_at": "2026-09-03",
   "basis": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
   "rounds": {
-    "1": "egress-layer probe destination fixed to EGRESS_LAYER_PROBE_URL and CHIRALITY_EGRESS_LAYER_PROBE_URL retired (decision D1); proof script exact-destination match with loopback decoy; tests and pins — one local commit (the commit containing this file)"
+    "1": "egress-layer probe destination fixed to EGRESS_LAYER_PROBE_URL and CHIRALITY_EGRESS_LAYER_PROBE_URL retired (decision D1); proof script exact-destination match with loopback decoy; tests and pins \u2014 one local commit (the commit containing this file)",
+    "2": "closeout after review 1 PASS (39adfa6a6): review filed verbatim; rebased onto origin/main 40ab9b34b (PR #687, node I) as 6947f4b9c with an identical diff; G1-F1 recorded as residual V3-06 (no test change after PASS, coordinator D2); G1-F2 text widened; _STATUS.md/MEMORY.md closeout; Receipt 214; HANDOFF_STATE.md; MANIFEST.sha256"
   },
   "toolchain": {
     "node": "v24.18.0",
@@ -47,7 +48,7 @@
       "cwd": "projects/chirality-app-dev",
       "exit": 0,
       "status": "pass",
-      "summary": "corpus v20; all eight [MATCH]; no drift (Step 0 and again after the edits — no docs/** touched)"
+      "summary": "corpus v20; all eight [MATCH]; no drift (Step 0 and again after the edits \u2014 no docs/** touched)"
     },
     {
       "id": "pinned-completion-reference",
@@ -56,7 +57,7 @@
       "cwd": ".",
       "exit": 0,
       "status": "pass",
-      "summary": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a — matches the workplan pin"
+      "summary": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a \u2014 matches the workplan pin"
     },
     {
       "id": "app-hold-dispatch-preflight",
@@ -83,7 +84,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 0,
       "status": "pass",
-      "summary": "3 files, 91 tests (renderer-window-policy 65; contract-pins 16; run-packaged-security-proof 10) — per-file counts from --reporter=json assertionResults"
+      "summary": "3 files, 91 tests (renderer-window-policy 65; contract-pins 16; run-packaged-security-proof 10) \u2014 per-file counts from --reporter=json assertionResults"
     },
     {
       "id": "frontend-typecheck",
@@ -101,7 +102,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 0,
       "status": "pass",
-      "summary": "Test Files 162 passed | 1 skipped (163); Tests 1493 passed | 4 skipped (1497) — +4 over the post-node-A basis (1489)"
+      "summary": "Test Files 162 passed | 1 skipped (163); Tests 1493 passed | 4 skipped (1497) \u2014 +4 over the post-node-A basis (1489)"
     },
     {
       "id": "frontend-build",
@@ -128,7 +129,7 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 0,
       "status": "pass",
-      "summary": "status pass; identity e716439fc797d2d7d5bb4021d5f940a9bc2de84ba7161444999030aeaeeb7452 (Chirality 33,968 B 79019361…; app.asar 407,600,367 B 010839f1…; chirality-cli.mjs 75,460 B 0503c40a…; sourceRevision HEAD e59efa483; built from the pre-commit working tree; unsigned bundles are not byte-deterministic across builds); 13/13 markers; credential proof pass; rendererSecurityProof pass; networkProof pass (7 snapshots, nonAllowlistedOutboundTcp [], blockedRendererDiagnostics 1 = egressLayerDiagnostics 1 (anthropic_port_not_allowlisted:8443), egressProbePayloadCount 1, [egress-layer-probe] destination {https:, api.anthropic.com, port 8443} outcome rejected net::ERR_BLOCKED_BY_CLIENT, egressProbeObserved true, egressProbeUnexpectedDestinations [] with CHIRALITY_EGRESS_LAYER_PROBE_URL set to the loopback decoy); cleanup pass. Retained gui log: raw sha256 f5a71eeefc123a4d8c859210a008b85f62b5d70b5213caae6610ece2eaecaf13 (3,710 B) → one trailing space removed → ba9d2379998dc61b0ee32337824f7faca26a2fe751b263922658beb9e9750288 (3,709 B); other four files byte-identical.",
+      "summary": "status pass; identity e716439fc797d2d7d5bb4021d5f940a9bc2de84ba7161444999030aeaeeb7452 (Chirality 33,968 B 79019361\u2026; app.asar 407,600,367 B 010839f1\u2026; chirality-cli.mjs 75,460 B 0503c40a\u2026; sourceRevision HEAD e59efa483; built from the pre-commit working tree; unsigned bundles are not byte-deterministic across builds); 13/13 markers; credential proof pass; rendererSecurityProof pass; networkProof pass (7 snapshots, nonAllowlistedOutboundTcp [], blockedRendererDiagnostics 1 = egressLayerDiagnostics 1 (anthropic_port_not_allowlisted:8443), egressProbePayloadCount 1, [egress-layer-probe] destination {https:, api.anthropic.com, port 8443} outcome rejected net::ERR_BLOCKED_BY_CLIENT, egressProbeObserved true, egressProbeUnexpectedDestinations [] with CHIRALITY_EGRESS_LAYER_PROBE_URL set to the loopback decoy); cleanup pass. Retained gui log: raw sha256 f5a71eeefc123a4d8c859210a008b85f62b5d70b5213caae6610ece2eaecaf13 (3,710 B) \u2192 one trailing space removed \u2192 ba9d2379998dc61b0ee32337824f7faca26a2fe751b263922658beb9e9750288 (3,709 B); other four files byte-identical.",
       "evidence": "DEL-09-06 Evidence/Node_G_Egress_Probe_Restriction_2026-09-03/packaged-security-proof/"
     },
     {
@@ -138,8 +139,8 @@
       "cwd": "projects/chirality-app-dev/frontend",
       "exit": 1,
       "status": "fail",
-      "failure_class": "FAIL_DEFERRED_TO_PR_CI — absent runtime-daemon bindings",
-      "summary": "HARNESS_PREMERGE_STATUS=fail; 8/8 results HTTP 503 from the session routes (setup.server_reachable 'Expected 200; received 503'; session create 503; no runtime daemon bound in the sandbox) — same class as Receipt-172 and Receipt-177 and node A rounds 1-2; deferred to PR CI per App AGENTS.md; no pass inferred; the dev server was started only after desktop:pack and the packaged proof had completed and was stopped afterwards, so no build/package/proof command ran with a server up",
+      "failure_class": "FAIL_DEFERRED_TO_PR_CI \u2014 absent runtime-daemon bindings",
+      "summary": "HARNESS_PREMERGE_STATUS=fail; 8/8 results HTTP 503 from the session routes (setup.server_reachable 'Expected 200; received 503'; session create 503; no runtime daemon bound in the sandbox) \u2014 same class as Receipt-172 and Receipt-177 and node A rounds 1-2; deferred to PR CI per App AGENTS.md; no pass inferred; the dev server was started only after desktop:pack and the packaged proof had completed and was stopped afterwards, so no build/package/proof command ran with a server up",
       "deferred_to": "PR CI"
     },
     {
@@ -185,7 +186,7 @@
       "cwd": "projects/chirality-app-dev",
       "exit": 0,
       "status": "pass",
-      "summary": "selected app-hold-integrity, frontend-test, frontend-typecheck, harness-pytest, harness-self-check (project-relative paths; a first run with repo-relative paths matched only the always-checks — path_rules are project-relative) — each executed by its registered command above; frontend-build, frontend-premerge, desktop:pack and the packaged proof additionally run per the brief; run_registered_checks.py not used"
+      "summary": "selected app-hold-integrity, frontend-test, frontend-typecheck, harness-pytest, harness-self-check (project-relative paths; a first run with repo-relative paths matched only the always-checks \u2014 path_rules are project-relative) \u2014 each executed by its registered command above; frontend-build, frontend-premerge, desktop:pack and the packaged proof additionally run per the brief; run_registered_checks.py not used"
     },
     {
       "id": "validate-change-scope",
@@ -194,7 +195,7 @@
       "cwd": ".",
       "exit": 0,
       "status": "pass",
-      "summary": "status PASS; violations []; 16 paths over the working tree before the commit (frontend/electron/main.ts is deliberately absent from the fence — it is untouched); the --head <commit> form is run immediately after the commit (result in the freeze message)"
+      "summary": "status PASS; violations []; 16 paths over the working tree before the commit (frontend/electron/main.ts is deliberately absent from the fence \u2014 it is untouched); the --head <commit> form is run immediately after the commit (result in the freeze message)"
     }
   ],
   "not_run": [
@@ -211,5 +212,73 @@
     "cwd": ".",
     "command": "python3 tools/software_workflow/validate_change_scope.py . --base e59efa4830fb54143c86e511ec35a6d1a476f72e --allowed projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts --allowed projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_G_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
     "note": "repeated --allowed roots (argparse); --head omitted = working tree at the freeze; the same command with --head <commit> reproduces it against a frozen commit. After a publication rebase onto a newer origin/main, --base must be the new merge-base or sibling nodes' files already on main are reported as out-of-fence."
+  },
+  "post_review_01_closeout": {
+    "review": "instances/G2_REVIEWER/REVIEW_01_2026-09-03_over_39adfa6a6.md (byte copy; PASS, 0 blocking / 0 major / 1 minor / 7 notes)",
+    "product_or_test_bytes_changed_after_freeze": false,
+    "checks": [
+      {
+        "id": "git-rebase",
+        "command": "git fetch origin && git rebase origin/main",
+        "cwd": ".",
+        "exit": 0,
+        "status": "pass",
+        "summary": "39adfa6a6 -> 6947f4b9c onto 40ab9b34beff3079402d01e336e8b72f8bd780f2 (PR #687 merge); no conflict; diff still 20 files / +2149 / -39"
+      },
+      {
+        "id": "frontend-typecheck",
+        "round": "2",
+        "command": "npm run typecheck",
+        "cwd": "projects/chirality-app-dev/frontend",
+        "exit": 0,
+        "status": "pass",
+        "summary": "clean on the rebased tree"
+      },
+      {
+        "id": "frontend-test-full",
+        "round": "2",
+        "command": "npm test",
+        "cwd": "projects/chirality-app-dev/frontend",
+        "exit": 0,
+        "status": "pass",
+        "summary": "Test Files 162 passed | 1 skipped (163); Tests 1493 passed | 4 skipped (1497) on the rebased tree"
+      },
+      {
+        "id": "receipts-validator",
+        "round": "2",
+        "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+        "cwd": ".",
+        "exit": 0,
+        "status": "pass",
+        "summary": "VALID after appending Receipt 214 (run after the rebase, per coordinator direction); three Pointers phrasings first tripped the validator's count patterns ('one retained', 'V3-02/03/04', 'tests-only'/'test-coverage') and were reworded before this pass"
+      },
+      {
+        "id": "authority-corpus",
+        "round": "2",
+        "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+        "cwd": "projects/chirality-app-dev",
+        "exit": 0,
+        "status": "pass",
+        "summary": "corpus v20; no drift (no docs/** touched)"
+      },
+      {
+        "id": "git-diff-check",
+        "round": "2",
+        "command": "git add -A -N . && git diff --check ; git diff --check 40ab9b34beff3079402d01e336e8b72f8bd780f2 HEAD",
+        "cwd": ".",
+        "exit": null,
+        "status": "pending",
+        "summary": "working tree before the closeout commit, then the rebased-base..HEAD range after it; results in the closeout message"
+      },
+      {
+        "id": "validate-change-scope",
+        "round": "2",
+        "command": "python3 tools/software_workflow/validate_change_scope.py . --base 40ab9b34beff3079402d01e336e8b72f8bd780f2 <same --allowed roots as scope_validation_command> --head <closeout SHA>",
+        "cwd": ".",
+        "exit": null,
+        "status": "pending",
+        "summary": "rebased base per the scope_validation_command note; result in the closeout message (it cannot be recorded inside the commit it names)"
+      }
+    ]
   }
 }
