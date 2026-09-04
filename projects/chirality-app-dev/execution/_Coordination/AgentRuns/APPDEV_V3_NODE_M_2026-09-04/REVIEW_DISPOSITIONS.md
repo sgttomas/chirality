@@ -76,3 +76,25 @@ changing ruling or deliverable bytes. No product, `frontend/`, host, Root,
 lifecycle, Checking Approval SHA, register, decomposition, SCOPE_CHANGE,
 push, PR, merge, or release act occurred. Fresh round-5 review remains
 required before manager fan-in.
+
+## Round 5 over `085189ba093ec1705b68dc7f131692e132ff4cf4`
+
+Immutable review:
+`instances/M6_REVIEWER/REVIEW_NODE_M_R5.md`
+(SHA-256 `08fb5bfc74abd294b47284fc5ebf836ee1b21ffb2051d30b81ff6db54234c88b`).
+
+Verdict: **FAIL** — no BLOCKER findings and one MAJOR finding. The finding is
+accepted and remediated in the round-6 candidate.
+
+| Finding | Severity | Disposition | Remediation | Required fresh verification |
+|---|---|---|---|---|
+| M-R5-F1 | MAJOR | ACCEPTED / REMEDIATED | Rewrote only A15's mutable execution-attribution sentence to identify `delegated-harness-native` execution, an instruction-assigned ephemeral Agent-2 generalist role that was not mechanically enforced, `instruction-asserted` governed-workflow role evidence, and K-SUBAGENT/non-delegation that is instruction+config asserted rather than mechanism-proven; no child descendant was observed. Preserved every owner question, typed answer, and substantive ruling. Filed the owner's exact bounded protected-path authorization as `OWNER_AUTHORIZATION_2026-09-04_A15_PROVENANCE.md` with `CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING`; filed M6's calibrated launch/status/return and verbatim R5 report. Advanced all live pointers to `REVIEW_R6_HANDOFF.md`; Receipts 220 and 221 remain byte-preserved, and corrective Receipt 222 carries the current pointer. | Verify the A15 calibration sentence and bounded authorization evidence against AGENTS doctrine and M-R5-F1; compare all owner questions/answers and ruling clauses with the prior freeze; verify M1–M6 records, all five report identities, Receipts 220–221 byte preservation, Receipt 222 structure, and that `REVIEW_R6_HANDOFF.md` is the only active next-review pointer. |
+
+The R6 candidate contains the five filed prior reports and the sealed R6
+launch/handoff, but it cannot contain the future round-6 verdict/report. If
+round 6 passes, its immutable report and final narrative closeout may be
+filed after PASS under the standing narrative-only evidence rule without
+changing ruling or deliverable bytes. No product, `frontend/`, host, Root,
+lifecycle, Checking Approval SHA, register, decomposition, SCOPE_CHANGE,
+push, PR, merge, or release act occurred. Fresh round-6 review remains
+required before manager fan-in.

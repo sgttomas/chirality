@@ -6725,3 +6725,38 @@
     product, host, Root, lifecycle, SCOPE_CHANGE, signing, notarization,
     Apple call, distribution, publication, release-readiness, or production
     identity act or claim occurred.
+
+- **2026-09-04 — Receipt 222** (Node M A15 provenance-calibration closeout pointer).
+  - Receipt-ID: `Receipt-222`
+  - Examined-Through: `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
+  - Parent-Receipt: `Receipt-221`
+  - Stale-Map-Delta: Receipts 220 and 221 remain preserved earlier evidence;
+    Receipt 221's R5/current-review pointer is superseded by
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/{REVIEW_DISPOSITIONS.md,REVIEW_R6_HANDOFF.md,HANDOFF_STATE.md}`.
+  - Pointers: branch
+    `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`; basis above; A15
+    provenance calibration at
+    `plans/steers/chirality_app_v3_app_ruling_record_a15_2026-09-04.md`;
+    RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`;
+    immutable R1–R5 reports under `instances/M2_REVIEWER/` through
+    `instances/M6_REVIEWER/`; active next-review contract
+    `REVIEW_R6_HANDOFF.md`; owner questions, answers, and substantive ruling
+    semantics remain unchanged.
+  - Checks: receipt validator pass; authority corpus pass; APP-HOLD pass;
+    harness self-check and pytest pass; exact change-scope, manifest,
+    immutable-report identity, A15/native-descendant evidence calibration,
+    preserved-receipt and current-pointer coherence, forbidden-path/F-APP-2,
+    and `git diff --check` pass; frontend and release-execution gates
+    skipped.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact model identifier not exposed to the agent runtime); execution
+    class `delegated-harness-native`; Agent-2 roles are `role not
+    mechanically enforced` with `instruction-asserted` governed-workflow
+    evidence; non-delegation is instruction+config asserted, not
+    mechanism-proven.
+  - Gate-Outcome: `AWAITING_OWNER` — R1–R5 failed and are remediated; fresh
+    R6 review, PR creation, and owner merge remain gates. The pre-review
+    candidate cannot contain the future R6 verdict/report; no frontend,
+    product, host, Root, lifecycle, SCOPE_CHANGE, signing, notarization,
+    Apple call, distribution, publication, release-readiness, or production
+    identity act or claim occurred.

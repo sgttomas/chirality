@@ -23,22 +23,25 @@ not mechanism-proven; no descendants were observed.
 | `M1_REMEDIATION_R3` | Same bounded M1; calibrates native-descendant role and non-delegation evidence | `M4_REVIEWER` | `REVIEW_READY_R4`; freeze is the Git commit returned after these records are finalized |
 | `M5_REVIEWER` | Instructed fresh read-only ephemeral Agent-2 reviewer mode; role not mechanically enforced; 100% basis-to-round-4-freeze review | `M1_REMEDIATION_R3` | FAIL, one MAJOR; immutable report SHA-256 `ceb24881cf877fce9771c2b7dc9c820c8d34aed9d079f42ec6cee0f9392fd47a` |
 | `M1_REMEDIATION_R4` | Same bounded M1; corrects every mutable current-round, report-count, and handoff pointer | `M5_REVIEWER` | `REVIEW_READY_R5`; freeze is the Git commit returned after these records are finalized |
-| `M6_REVIEWER` | Planned fresh read-only descendant instructed for Agent-2 reviewer mode; role not mechanically enforced; 100% basis-to-round-5-freeze review | `M1_REMEDIATION_R4` | Pending; active contract `REVIEW_R5_HANDOFF.md`; PASS requires zero BLOCKER and zero MAJOR findings |
+| `M6_REVIEWER` | Instructed fresh read-only ephemeral Agent-2 reviewer mode; role not mechanically enforced; 100% basis-to-round-5-freeze review | `M1_REMEDIATION_R4` | FAIL, one MAJOR; immutable report SHA-256 `08fb5bfc74abd294b47284fc5ebf836ee1b21ffb2051d30b81ff6db54234c88b` |
+| `M1_REMEDIATION_R5` | Same bounded M1; calibrates the mutable A15 execution-attribution sentence and advances current pointers | `M6_REVIEWER` | `REVIEW_READY_R6`; freeze is the Git commit returned after these records are finalized |
+| `M7_REVIEWER` | Planned fresh read-only descendant instructed for Agent-2 reviewer mode; role not mechanically enforced; 100% basis-to-round-6-freeze review | `M1_REMEDIATION_R5` | Pending; active contract `REVIEW_R6_HANDOFF.md`; PASS requires zero BLOCKER and zero MAJOR findings |
 
 Edges:
 
-`M1_IMPLEMENTER → M2_REVIEWER → M1_REMEDIATION_R1 → M3_REVIEWER → M1_REMEDIATION_R2 → M4_REVIEWER → M1_REMEDIATION_R3 → M5_REVIEWER → M1_REMEDIATION_R4 → M6_REVIEWER`
+`M1_IMPLEMENTER → M2_REVIEWER → M1_REMEDIATION_R1 → M3_REVIEWER → M1_REMEDIATION_R2 → M4_REVIEWER → M1_REMEDIATION_R3 → M5_REVIEWER → M1_REMEDIATION_R4 → M6_REVIEWER → M1_REMEDIATION_R5 → M7_REVIEWER`
 
 The M2 launch/status/return metadata is a source-calibrated reconstruction,
 not a verbatim prompt claim. M3's launch metadata is an accurate structured
 record of the actual dispatch, not a byte-verbatim prompt claim. The filed
 immutable reviewer reports are contemporaneous and authoritative for their
-respective reviews. M4 and M5 launch metadata are source-calibrated structured
-reconstructions of their actual dispatches, not byte-verbatim prompt claims.
-All actual nodes used the `delegated-harness-native` execution class.
+respective reviews. M4, M5, and M6 launch metadata are source-calibrated
+structured reconstructions of their actual dispatches, not byte-verbatim
+prompt claims. All actual nodes used the `delegated-harness-native`
+execution class.
 Governed-role evidence is `instruction-asserted`; Agent-2 roles were not
 mechanically enforced. K-SUBAGENT/non-delegation is instruction+config
 asserted, not mechanism-proven, and no descendants were observed. The
-round-5 candidate cannot contain the future M6 verdict/report; after a PASS,
+round-6 candidate cannot contain the future M7 verdict/report; after a PASS,
 that immutable report and final narrative closeout may be filed without
 changing ruling or deliverable bytes.

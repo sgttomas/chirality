@@ -4,6 +4,9 @@
 - **Selection authority:** HUMAN — owner Ryan Tufts supplied three typed
   plain-text authorizations in the HELP_HUMAN session on 2026-09-04. A15 is
   the durable ruling form; this run record is evidence and coordination.
+- **Protected-path correction authority:** CHAT_TRANSCRIPTION — EVIDENCE, NOT
+  RULING — the owner's exact bounded authorization is preserved in
+  `OWNER_AUTHORIZATION_2026-09-04_A15_PROVENANCE.md`.
 - **Accepted basis:**
   `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f` (`origin/main`, PR #693
   merge).
@@ -14,10 +17,10 @@
   governed-workflow role evidence `instruction-asserted`.
 - **Implementer:** M1, instructed to operate in bounded ephemeral Agent-2
   mode under that calibration.
-- **Reviewers:** M2, M3, M4, and M5 were separate fresh, read-only
+- **Reviewers:** M2, M3, M4, M5, and M6 were separate fresh, read-only
   descendants instructed to operate in ephemeral Agent-2 reviewer mode under
-  that same calibration. M6 is the required next fresh reviewer over the
-  complete round-5 freeze.
+  that same calibration. M7 is the required next fresh reviewer over the
+  complete round-6 freeze.
 - **K-SUBAGENT calibration:** each child was instructed and configured not to
   create descendants. Non-delegation is instruction+config asserted, not
   mechanism-proven; no descendants were observed.
@@ -53,8 +56,15 @@
 9. M1 accepted and remediated M5's current-round/handoff-coherence finding.
    The resulting Git commit is the round-5 review freeze; this record does
    not embed a self-referential commit identifier.
-10. M6 must independently review 100% of the
-    accepted-basis-to-round-5-freeze diff. Manager fan-in requires zero
+10. M6 independently reviewed 100% of the accepted-basis-to-round-5-freeze
+    diff at `085189ba093ec1705b68dc7f131692e132ff4cf4` and returned FAIL
+    with one MAJOR finding. Its immutable report is filed at
+    `instances/M6_REVIEWER/REVIEW_NODE_M_R5.md`.
+11. M1 accepted and remediated M6's A15 provenance-calibration finding. The
+    resulting Git commit is the round-6 review freeze; this record does not
+    embed a self-referential commit identifier.
+12. M7 must independently review 100% of the
+    accepted-basis-to-round-6-freeze diff. Manager fan-in requires zero
     BLOCKER and zero MAJOR findings.
 
 ## Write boundary
@@ -65,8 +75,8 @@ Only these paths may change:
 - DEL-09-05 `_STATUS.md`
 - DEL-09-06 `_STATUS.md`
 - `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/**`
-- append-only corrective Receipt 221 in `loop/LOOP_RECEIPTS.md` (Receipt
-  220 remains preserved earlier tranche evidence)
+- append-only corrective Receipt 222 in `loop/LOOP_RECEIPTS.md` (Receipts
+  220 and 221 remain preserved earlier tranche evidence)
 
 The two deliverable paths and every AgentRuns/ledger path above are relative
 to `projects/chirality-app-dev/`; A15 is repo-root. No product, `frontend/`,
@@ -88,15 +98,17 @@ accurate structured reconstruction from the sealed R3 handoff, immutable R3
 report, and supervisor direction; it is not a byte-verbatim prompt claim.
 M5's launch record is an accurate structured reconstruction from the spent
 historical R4 handoff, immutable R4 report, and supervisor direction; it is
-not a byte-verbatim prompt claim. The M2, M3, M4, and M5 review reports are
-immutable contemporaneous reviewer outputs and govern if a summary record
-differs.
+not a byte-verbatim prompt claim. M6's launch record is an accurate structured
+reconstruction from the spent historical R5 handoff, immutable R5 report, and
+supervisor direction; it is not a byte-verbatim prompt claim. The M2 through
+M6 review reports are immutable contemporaneous reviewer outputs and govern
+if a summary record differs.
 
 No child push, PR, merge, host act, or product-byte mutation was observed.
 No child descendants were observed, with K-SUBAGENT evidence limited to
 instruction+config assertion rather than mechanism proof. No PASS is inferred
-from deterministic checks or remediation; fresh M6 review under the active
-`REVIEW_R5_HANDOFF.md` remains required. The pre-review candidate
-intentionally cannot include a future round-5 verdict/report. If round 5
+from deterministic checks or remediation; fresh M7 review under the active
+`REVIEW_R6_HANDOFF.md` remains required. The pre-review candidate
+intentionally cannot include a future round-6 verdict/report. If round 6
 passes, its immutable report and final narrative closeout may be filed after
 PASS without changing ruling or deliverable bytes.

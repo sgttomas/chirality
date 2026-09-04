@@ -13,23 +13,27 @@
   (meaning only, not authority, status, or queue).
 - Predecessor owner ruling A14, SHA-256
   `f5d332f2f3ba9d99ca33f821c9054cc3656ff8a59472eaaff2f7295f1c168e06`.
+- Bounded A15 provenance-correction authorization:
+  `OWNER_AUTHORIZATION_2026-09-04_A15_PROVENANCE.md`
+  (CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING).
 
 ## Candidate snapshot and derivative-package status
 
 - Candidate ruling snapshot: repo-root
   `plans/steers/chirality_app_v3_app_ruling_record_a15_2026-09-04.md`,
   SHA-256
-  `89633722ecefc3907c44e1c964353ed33c793f65ec1686afde3ae015d86f305c`.
+  `5b99e308bd0e0affbc72ac7c8a727ca0aa5fa51d0de073f1d5cfeb35807ec817`.
 - DEL-09-05 and DEL-09-06 state annotations are derived from that candidate
   ruling and remain candidate bytes until owner merge.
-- Receipt 220 is preserved earlier tranche evidence. Corrective Receipt 221
-  and this AgentRuns folder are current derivative coordination/evidence
-  surfaces. They do not substitute for the owner ruling or deliverable truth.
+- Receipts 220 and 221 are preserved earlier tranche evidence. Corrective
+  Receipt 222 and this AgentRuns folder are current derivative
+  coordination/evidence surfaces. They do not substitute for the owner
+  ruling or deliverable truth.
 - No authority-corpus derivative package changed; corpus v20 reports no drift.
 
 ## Closure verdict
 
-`REVIEW_READY_R5` for a fresh independent reviewer. Round 1 over
+`REVIEW_READY_R6` for a fresh independent reviewer. Round 1 over
 `f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c` returned FAIL with three MAJOR
 findings and no BLOCKER. The immutable report is filed at
 `instances/M2_REVIEWER/REVIEW_NODE_M_R1.md` (SHA-256
@@ -61,17 +65,26 @@ one MAJOR finding and no BLOCKER. Its immutable report is filed at
 M-R4-F1 is accepted and remediated: M1's live status/timeline, the complete
 four-report inventory, all current-state round pointers, M1–M5 child records,
 and derivative closeout surfaces now agree. The sealed R2, R3, and R4
-handoffs are spent historical dispatch contracts. The only active next-review
-contract is `REVIEW_R5_HANDOFF.md`.
+handoffs became spent historical dispatch contracts when R5 began.
 
-`ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M5 child records
+Round 5 over `085189ba093ec1705b68dc7f131692e132ff4cf4` returned FAIL with
+one MAJOR finding and no BLOCKER. Its immutable report is filed at
+`instances/M6_REVIEWER/REVIEW_NODE_M_R5.md` (SHA-256
+`08fb5bfc74abd294b47284fc5ebf836ee1b21ffb2051d30b81ff6db54234c88b`).
+M-R5-F1 is accepted and remediated by calibrating only A15's mutable
+execution-attribution sentence; all owner questions, answers, and substantive
+rulings remain unchanged. The sealed R2 through R5 handoffs are spent
+historical dispatch contracts. The only active next-review contract is
+`REVIEW_R6_HANDOFF.md`.
+
+`ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M6 child records
 represent the actual sequential execution with explicit provenance and
-native-descendant evidence calibration. The round-5 candidate intentionally
-cannot include the future R5 verdict/report. If R5 passes, its immutable
+native-descendant evidence calibration. The round-6 candidate intentionally
+cannot include the future R6 verdict/report. If R6 passes, its immutable
 report and final narrative closeout may be filed after PASS without changing
 ruling or deliverable bytes. No merge, push, host act, or implementation is
 performed by M1. Deterministic checks pass on the remediation candidate;
-round-5 review and owner merge remain acceptance gates.
+round-6 review and owner merge remain acceptance gates.
 
 ## Rerun requirements
 
@@ -82,9 +95,9 @@ round-5 review and owner merge remain acceptance gates.
   and `git diff --check` after any rebase or narrative edit.
 - Preserve the A15 bytes and recompute every dependent manifest hash after any
   authorized correction.
-- A fresh reviewer must inspect the complete basis-to-round-5-freeze diff,
-  verify every round-1 through round-4 disposition plus the child-record and
-  current-pointer evidence calibration, and file a round-5 report. Do not
+- A fresh reviewer must inspect the complete basis-to-round-6-freeze diff,
+  verify every round-1 through round-5 disposition plus A15, child-record,
+  and current-pointer evidence calibration, and file a round-6 report. Do not
   infer a PASS until that review returns zero BLOCKER and zero MAJOR findings.
 
 ## Remaining blockers and next gates

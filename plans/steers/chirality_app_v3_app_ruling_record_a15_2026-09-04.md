@@ -5,8 +5,12 @@
 Ruled by Ryan Tufts (K-AUTH-1) in the HELP_HUMAN session chat on
 2026-09-04. The owner typed each reply in plain text through the mobile
 fallback; no clickable response control was used. HELP_HUMAN relayed the
-three rulings to a sealed ephemeral Agent 2 generalist for a
-record-only transcription tranche (node M) on branch
+three rulings through `delegated-harness-native` execution to a descendant
+instructed to operate in ephemeral Agent-2 generalist mode for a record-only
+transcription tranche (node M). The Agent-2 role was not mechanically
+enforced and its governed-workflow role evidence is `instruction-asserted`;
+K-SUBAGENT/non-delegation is instruction+config asserted, not mechanism-proven;
+no descendant of that child was observed. The branch was
 `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04` from basis
 `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f` (PR #693 merge). The chat
 transcription is evidence of the owner acts; this record is their durable
