@@ -1,0 +1,84 @@
+{
+  "generatedAt": "2026-09-04T01:36:18.778Z",
+  "harnessBaseUrl": "http://127.0.0.1:51840",
+  "projectRoot": "/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev",
+  "requestedProjectRoot": "/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev",
+  "stagedFromInstructionRoot": false,
+  "status": "pass",
+  "testCount": 8,
+  "results": [
+    {
+      "id": "setup.server_reachable",
+      "status": "pass",
+      "durationMs": 29,
+      "details": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "id": "regression.session_crud",
+      "status": "pass",
+      "durationMs": 62,
+      "details": {
+        "sessionId": "66001dd1-3dac-4ebb-af76-6985c9e3668b",
+        "listedCount": 1
+      }
+    },
+    {
+      "id": "section8.boot_error_taxonomy",
+      "status": "pass",
+      "durationMs": 155,
+      "details": {
+        "checkedCodes": [
+          "SESSION_NOT_FOUND",
+          "SDK_FAILURE",
+          "BOOT_CONFORMANT",
+          "WORKING_ROOT_INACCESSIBLE"
+        ]
+      }
+    },
+    {
+      "id": "section8.smoke_stream",
+      "status": "pass",
+      "durationMs": 138,
+      "details": {
+        "eventCount": 8
+      }
+    },
+    {
+      "id": "section8.session_persistence_resume",
+      "status": "pass",
+      "durationMs": 307,
+      "details": {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "engineSessionId": "stub_fdb19650-b150-4201-a0fe-f267b07cb621"
+      }
+    },
+    {
+      "id": "section8.permissions_dontask",
+      "status": "pass",
+      "durationMs": 169,
+      "details": {
+        "denyEvents": 7,
+        "allowEvents": 9
+      }
+    },
+    {
+      "id": "section8.interrupt_sigint",
+      "status": "pass",
+      "durationMs": 123,
+      "details": {
+        "interruptStatus": 200
+      }
+    },
+    {
+      "id": "section8.sdk_native_stream",
+      "status": "pass",
+      "durationMs": 143,
+      "details": {
+        "eventCount": 8
+      }
+    }
+  ]
+}

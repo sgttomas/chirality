@@ -1,0 +1,244 @@
+
+> chirality-frontend@2.0.0 harness:validate:premerge
+> node ./scripts/validate-harness-premerge.mjs
+
+HARNESS_VALIDATION_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest/summary.json
+HARNESS_VALIDATION_STATUS=pass
+HARNESS_SECTION9_CHECK_START=section9.runtime_engine_contract
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/engine-conformance.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  19:36:19
+   Duration  292ms (transform 155ms, setup 0ms, import 222ms, tests 18ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.adapter_turn_engine_event_log
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/turn-engine.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  19:36:19
+   Duration  148ms (transform 71ms, setup 0ms, import 87ms, tests 11ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.adapter_message_mapper
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-message-mapper.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  19:36:19
+   Duration  131ms (transform 56ms, setup 0ms, import 68ms, tests 12ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.session_event_replay
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/session-events.test.ts src/__tests__/lib/transcript-replay.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  9 passed (9)
+   Start at  19:36:20
+   Duration  105ms (transform 55ms, setup 0ms, import 70ms, tests 14ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.reliance_boundary_register
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/docs/reliance-boundary-register.test.ts src/__tests__/contract-pins.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  18 passed (18)
+   Start at  19:36:20
+   Duration  88ms (transform 39ms, setup 0ms, import 50ms, tests 7ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.settingsources_isolation
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-options-builder.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  15 passed (15)
+   Start at  19:36:20
+   Duration  287ms (transform 137ms, setup 0ms, import 202ms, tests 32ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.sdk_session_link_resume
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-options-builder.test.ts src/__tests__/lib/session-manager.test.ts src/__tests__/lib/transcript-replay.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  3 passed (3)
+      Tests  35 passed (35)
+   Start at  19:36:21
+   Duration  307ms (transform 225ms, setup 0ms, import 314ms, tests 68ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.permission_overlay_hard_deny_precedence
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/permission-overlay.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  19:36:22
+   Duration  134ms (transform 54ms, setup 0ms, import 67ms, tests 15ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.tool_runtime_read_file
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/chirality-read-mcp.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  10 passed (10)
+   Start at  19:36:22
+   Duration  288ms (transform 127ms, setup 0ms, import 191ms, tests 45ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.chirality_mcp_status_dependencies
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/chirality-read-mcp.test.ts src/__tests__/lib/dependencies-register-contract.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  19:36:22
+   Duration  299ms (transform 162ms, setup 0ms, import 236ms, tests 50ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.path_containment_hook
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/chirality-hooks.test.ts src/__tests__/lib/permission-overlay.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  19:36:23
+   Duration  151ms (transform 119ms, setup 0ms, import 148ms, tests 39ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.instruction_root_protection_hook
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/harness-instruction-root.test.ts src/__tests__/scripts/verify-instruction-root-integrity.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  9 passed (9)
+   Start at  19:36:23
+   Duration  227ms (transform 53ms, setup 0ms, import 67ms, tests 149ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.tool_result_budget
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/tool-evidence.test.ts src/__tests__/lib/tool-result-artifacts.test.ts src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/chirality-hooks.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  4 passed (4)
+      Tests  33 passed (33)
+   Start at  19:36:24
+   Duration  157ms (transform 212ms, setup 0ms, import 273ms, tests 56ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.context_compaction_boundary
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/sdk-message-mapper.test.ts src/__tests__/lib/session-events.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  21 passed (21)
+   Start at  19:36:24
+   Duration  134ms (transform 93ms, setup 0ms, import 120ms, tests 24ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.subagent_governance_hook
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/harness-subagent-governance.test.ts src/__tests__/lib/agent-runtime-contract.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  16 passed (16)
+   Start at  19:36:24
+   Duration  131ms (transform 61ms, setup 0ms, import 78ms, tests 34ms, environment 0ms)
+
+HARNESS_SECTION9_CHECK_START=section9.domain_profile_validation
+
+> chirality-frontend@2.0.0 test
+> vitest run src/__tests__/lib/domain-profile-registry.test.ts src/__tests__/contract-pins.test.ts
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+
+ Test Files  2 passed (2)
+      Tests  19 passed (19)
+   Start at  19:36:25
+   Duration  166ms (transform 189ms, setup 0ms, import 206ms, tests 8ms, environment 0ms)
+
+HARNESS_SECTION9_SUMMARY_PATH=/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json
+HARNESS_SECTION9_MANIFEST_PATH=/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json
+HARNESS_SECTION9_SOURCE_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/summary.json
+HARNESS_SECTION9_STATUS=pass
+HARNESS_SECTION9_TEST_COUNT=16
+HARNESS_PREMERGE_ARTIFACT_PATH=/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json
+HARNESS_PREMERGE_SOURCE_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest/summary.json
+HARNESS_PREMERGE_STATUS=pass
+HARNESS_PREMERGE_TEST_COUNT=8
+HARNESS_PREMERGE_SECTION9_ARTIFACT_PATH=/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json
+HARNESS_PREMERGE_SECTION9_SOURCE_SUMMARY_PATH=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/summary.json
+HARNESS_PREMERGE_SECTION9_STATUS=pass
+HARNESS_PREMERGE_SECTION9_TEST_COUNT=16
+HARNESS_PREMERGE_SECTION9_REPORT_ONLY=true

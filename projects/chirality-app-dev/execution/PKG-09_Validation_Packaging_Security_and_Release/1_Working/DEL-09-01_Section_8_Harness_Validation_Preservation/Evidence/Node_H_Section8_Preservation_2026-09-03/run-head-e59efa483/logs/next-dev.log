@@ -1,0 +1,82 @@
+
+> chirality-frontend@2.0.0 dev:next
+> NEXT_TELEMETRY_DISABLED=1 next dev --port 3000 --hostname 127.0.0.1 --port 51840
+
+   ▲ Next.js 15.5.21
+   - Local:        http://127.0.0.1:51840
+   - Network:      http://127.0.0.1:51840
+
+ ✓ Starting...
+ ✓ Ready in 964ms
+ ✓ Compiled /api/harness/session/list in 175ms (373 modules)
+ GET /api/harness/session/list?projectRoot=%2fprivate%2ftmp%2fclaude-501%2f-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2%2f88f4d942-8887-44e9-b9df-8a72e2ed6f30%2fscratchpad%2fwt-nodeH%2fprojects%2fchirality-app-dev 200 in 251ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fclaude-501%2F-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2%2F88f4d942-8887-44e9-b9df-8a72e2ed6f30%2Fscratchpad%2Fwt-nodeH%2Fprojects%2Fchirality-app-dev 200 in 10ms
+ ✓ Compiled /api/harness/session/create in 41ms (375 modules)
+ POST /api/harness/session/create 200 in 84ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fclaude-501%2F-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2%2F88f4d942-8887-44e9-b9df-8a72e2ed6f30%2Fscratchpad%2Fwt-nodeH%2Fprojects%2Fchirality-app-dev 200 in 37ms
+ ✓ Compiled /api/harness/session/[id] in 54ms (377 modules)
+ GET /api/harness/session/e1f3864f-11a6-4880-ba0e-5efb1adeff75 200 in 219ms
+ DELETE /api/harness/session/e1f3864f-11a6-4880-ba0e-5efb1adeff75 200 in 13ms
+ GET /api/harness/session/e1f3864f-11a6-4880-ba0e-5efb1adeff75 404 in 6ms
+ ✓ Compiled /api/harness/session/boot in 56ms (379 modules)
+ POST /api/harness/session/boot 404 in 83ms
+ POST /api/harness/session/create 400 in 15ms
+ POST /api/harness/session/create 200 in 16ms
+ POST /api/harness/session/boot 200 in 87ms
+ DELETE /api/harness/session/8e46c5f4-e363-4f83-8d50-8c4234a0b740 200 in 16ms
+ POST /api/harness/session/create 404 in 6ms
+ POST /api/harness/session/create 200 in 16ms
+ ✓ Compiled /api/harness/turn in 49ms (381 modules)
+ POST /api/harness/turn 200 in 173ms
+ DELETE /api/harness/session/7ef9ba9a-c222-4a36-8822-dc8859a5bc30 200 in 14ms
+ POST /api/harness/session/create 200 in 19ms
+ POST /api/harness/turn 200 in 141ms
+ GET /api/harness/session/dc5d6928-226a-4db2-936a-35331f57bf72 200 in 7ms
+ POST /api/harness/turn 200 in 103ms
+ GET /api/harness/session/dc5d6928-226a-4db2-936a-35331f57bf72 200 in 7ms
+ DELETE /api/harness/session/dc5d6928-226a-4db2-936a-35331f57bf72 200 in 10ms
+ POST /api/harness/session/create 200 in 16ms
+ POST /api/harness/turn 200 in 27ms
+ POST /api/harness/turn 200 in 104ms
+ DELETE /api/harness/session/c0641672-136e-4cbd-8aa2-7e6a934755b5 200 in 13ms
+ POST /api/harness/session/create 200 in 17ms
+ ✓ Compiled /api/harness/interrupt in 53ms (383 modules)
+ POST /api/harness/interrupt 200 in 71ms
+ POST /api/harness/turn 200 in 193ms
+ DELETE /api/harness/session/bff243ee-1597-49f8-85c9-2efe0ecd95c2 200 in 14ms
+ POST /api/harness/session/create 200 in 18ms
+ POST /api/harness/turn 200 in 105ms
+ DELETE /api/harness/session/8bf517ad-bbde-4c72-aa08-15a23ef7097f 200 in 10ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fclaude-501%2F-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2%2F88f4d942-8887-44e9-b9df-8a72e2ed6f30%2Fscratchpad%2Fwt-nodeH%2Fprojects%2Fchirality-app-dev 200 in 12ms
+ POST /api/harness/session/create 200 in 20ms
+ GET /api/harness/session/list?projectRoot=%2Fprivate%2Ftmp%2Fclaude-501%2F-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2%2F88f4d942-8887-44e9-b9df-8a72e2ed6f30%2Fscratchpad%2Fwt-nodeH%2Fprojects%2Fchirality-app-dev 200 in 6ms
+ GET /api/harness/session/66001dd1-3dac-4ebb-af76-6985c9e3668b 200 in 7ms
+ DELETE /api/harness/session/66001dd1-3dac-4ebb-af76-6985c9e3668b 200 in 9ms
+ GET /api/harness/session/66001dd1-3dac-4ebb-af76-6985c9e3668b 404 in 6ms
+ POST /api/harness/session/boot 404 in 9ms
+ POST /api/harness/session/create 400 in 12ms
+ POST /api/harness/session/create 200 in 16ms
+ POST /api/harness/session/boot 200 in 88ms
+ DELETE /api/harness/session/4d848fc9-81cf-4b24-8017-49f847d0a346 200 in 11ms
+ POST /api/harness/session/create 404 in 4ms
+ POST /api/harness/session/create 200 in 16ms
+ POST /api/harness/turn 200 in 103ms
+ DELETE /api/harness/session/0494fdcd-3575-42e2-bb19-71b616790262 200 in 12ms
+ POST /api/harness/session/create 200 in 15ms
+ POST /api/harness/turn 200 in 143ms
+ GET /api/harness/session/ec89330a-87ed-4d4c-9451-2c10654047d2 200 in 10ms
+ POST /api/harness/turn 200 in 104ms
+ GET /api/harness/session/ec89330a-87ed-4d4c-9451-2c10654047d2 200 in 8ms
+ DELETE /api/harness/session/ec89330a-87ed-4d4c-9451-2c10654047d2 200 in 11ms
+ POST /api/harness/session/create 200 in 15ms
+ POST /api/harness/turn 200 in 29ms
+ POST /api/harness/turn 200 in 102ms
+ DELETE /api/harness/session/c1962477-a7a2-48cd-bc07-dd2c44d9bf0f 200 in 13ms
+ POST /api/harness/session/create 200 in 18ms
+ POST /api/harness/interrupt 200 in 6ms
+ POST /api/harness/turn 200 in 87ms
+ DELETE /api/harness/session/9d878d67-a709-4c76-8946-559d4b3dc56e 200 in 10ms
+ POST /api/harness/session/create 200 in 15ms
+ POST /api/harness/turn 200 in 105ms
+ DELETE /api/harness/session/64a9b943-7d2c-40b4-b6cf-05e8fcd66bf5 200 in 16ms
+[?25h

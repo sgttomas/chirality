@@ -1,0 +1,10 @@
+{
+  "id": "section8.sdk_native_stream",
+  "status": "pass",
+  "startedAt": "2026-09-04T01:35:55.919Z",
+  "endedAt": "2026-09-04T01:35:56.059Z",
+  "durationMs": 140,
+  "details": {
+    "eventCount": 8
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "generatedAt": "2026-09-03T20:14:10.530Z",
+  "harnessBaseUrl": "http://127.0.0.1:3000",
+  "projectRoot": "/home/runner/work/chirality/chirality/projects/chirality-app-dev",
+  "requestedProjectRoot": "/home/runner/work/chirality/chirality/projects/chirality-app-dev",
+  "stagedFromInstructionRoot": false,
+  "status": "pass",
+  "testCount": 8,
+  "results": [
+    {
+      "id": "setup.server_reachable",
+      "status": "pass",
+      "durationMs": 72,
+      "details": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "id": "regression.session_crud",
+      "status": "pass",
+      "durationMs": 1042,
+      "details": {
+        "sessionId": "5b51dfcf-8efe-4daa-9a19-dce27555b0be",
+        "listedCount": 1
+      }
+    },
+    {
+      "id": "section8.boot_error_taxonomy",
+      "status": "pass",
+      "durationMs": 463,
+      "details": {
+        "checkedCodes": [
+          "SESSION_NOT_FOUND",
+          "SDK_FAILURE",
+          "BOOT_CONFORMANT",
+          "WORKING_ROOT_INACCESSIBLE"
+        ]
+      }
+    },
+    {
+      "id": "section8.smoke_stream",
+      "status": "pass",
+      "durationMs": 400,
+      "details": {
+        "eventCount": 8
+      }
+    },
+    {
+      "id": "section8.session_persistence_resume",
+      "status": "pass",
+      "durationMs": 368,
+      "details": {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "engineSessionId": "stub_b122fe59-4805-4171-a7db-8e9473ad1f81"
+      }
+    },
+    {
+      "id": "section8.permissions_dontask",
+      "status": "pass",
+      "durationMs": 197,
+      "details": {
+        "denyEvents": 7,
+        "allowEvents": 9
+      }
+    },
+    {
+      "id": "section8.interrupt_sigint",
+      "status": "pass",
+      "durationMs": 356,
+      "details": {
+        "interruptStatus": 200
+      }
+    },
+    {
+      "id": "section8.sdk_native_stream",
+      "status": "pass",
+      "durationMs": 183,
+      "details": {
+        "eventCount": 8
+      }
+    }
+  ]
+}

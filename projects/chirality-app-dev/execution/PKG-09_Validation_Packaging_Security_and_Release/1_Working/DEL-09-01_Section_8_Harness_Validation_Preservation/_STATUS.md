@@ -8,7 +8,7 @@
 
 ## Remaining
 
-- **DEL-09-01-V3-01** (`NOT_SELECTABLE_UNTIL: the first v3 product change merges on a sibling carrier (any of DEL-02-05-V3-01, DEL-04-05-V3-01, DEL-09-06-V3-01)`) — Section 8 preservation and Shared Runtime Gate evidence across the v3 program.
+- **DEL-09-01-V3-01** (`SELECTABLE`; condition met by PR #686 / e59efa483 / Receipt-212) — Section 8 preservation and Shared Runtime Gate evidence across the v3 program.
   Trace: OUT-001, AC-001, VER-001; DEL-09-01-REQ-004/006/008; applied decomposition row L364 (preserve baseline harness validation, current local checks, and stable premerge summary behavior).
   Plan: WP-10; AT-037 native-engine regression on preparation bytes (G5); RQG §13 Shared Runtime Gate evidence contribution. Completion meaning from `plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html` (SHA-256 `b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a`, completion reference only); status from current `main`.
   Depends: A merged v3 product change on a sibling carrier; DEP-09-01-005/008/010.

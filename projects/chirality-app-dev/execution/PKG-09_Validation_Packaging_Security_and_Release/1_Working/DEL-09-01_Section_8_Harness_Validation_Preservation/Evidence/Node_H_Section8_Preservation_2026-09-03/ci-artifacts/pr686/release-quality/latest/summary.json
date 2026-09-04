@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-09-04T00:59:11.402Z",
+  "profile": "runtime-premerge-evidence",
+  "status": "pass",
+  "releaseClaim": false,
+  "section9Policy": {
+    "standaloneSection9IsBlockingForThisWrapper": true,
+    "premergeSection9IsReportOnly": true
+  },
+  "commands": [
+    {
+      "id": "full_test",
+      "status": "pass",
+      "command": "npm run test -- --testTimeout=15000",
+      "exitCode": 0,
+      "startedAt": "2026-09-04T00:58:00.147Z",
+      "endedAt": "2026-09-04T00:58:24.561Z",
+      "durationMs": 24413,
+      "stdoutLog": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stdout.log",
+      "stderrLog": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/full_test.stderr.log"
+    },
+    {
+      "id": "typecheck",
+      "status": "pass",
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "startedAt": "2026-09-04T00:58:24.561Z",
+      "endedAt": "2026-09-04T00:58:37.851Z",
+      "durationMs": 13290,
+      "stdoutLog": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stdout.log",
+      "stderrLog": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/typecheck.stderr.log"
+    },
+    {
+      "id": "section9",
+      "status": "pass",
+      "command": "npm run harness:validate:section9",
+      "exitCode": 0,
+      "startedAt": "2026-09-04T00:58:37.851Z",
+      "endedAt": "2026-09-04T00:58:52.968Z",
+      "durationMs": 15117,
+      "stdoutLog": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stdout.log",
+      "stderrLog": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/section9.stderr.log"
+    },
+    {
+      "id": "premerge",
+      "status": "pass",
+      "command": "npm run harness:validate:premerge",
+      "exitCode": 0,
+      "startedAt": "2026-09-04T00:58:52.968Z",
+      "endedAt": "2026-09-04T00:59:11.397Z",
+      "durationMs": 18429,
+      "stdoutLog": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stdout.log",
+      "stderrLog": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/logs/premerge.stderr.log"
+    }
+  ],
+  "summaryConsistency": {
+    "id": "summary.consistency",
+    "status": "pass",
+    "checks": [
+      {
+        "id": "summary.section9",
+        "status": "pass",
+        "artifactPath": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+        "errors": []
+      },
+      {
+        "id": "summary.section8",
+        "status": "pass",
+        "artifactPath": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+        "errors": []
+      }
+    ]
+  },
+  "artifacts": {
+    "releaseQualitySummary": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json",
+    "section8Summary": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section8/latest/summary.json",
+    "section9Summary": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json",
+    "section9Manifest": "/home/runner/work/chirality/chirality/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json"
+  },
+  "boundaries": [
+    "No release publication authorization.",
+    "No lifecycle issuance.",
+    "No professional approval.",
+    "No certification, sealing, authentication, notarization, code-compliance acceptance, or release-readiness claim."
+  ]
+}

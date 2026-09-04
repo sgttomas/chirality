@@ -1,0 +1,13 @@
+{
+  "interruptStatus": 200,
+  "interruptPayload": {
+    "ok": true
+  },
+  "eventTypes": [
+    "harness:event",
+    "session:init",
+    "harness:event",
+    "harness:event",
+    "process:exit"
+  ]
+}

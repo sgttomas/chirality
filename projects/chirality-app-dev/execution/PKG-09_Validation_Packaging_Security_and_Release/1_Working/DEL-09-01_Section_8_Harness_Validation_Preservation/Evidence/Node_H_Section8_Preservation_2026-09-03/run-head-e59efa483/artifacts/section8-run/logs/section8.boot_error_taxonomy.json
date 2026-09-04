@@ -1,0 +1,15 @@
+{
+  "id": "section8.boot_error_taxonomy",
+  "status": "pass",
+  "startedAt": "2026-09-04T01:35:54.770Z",
+  "endedAt": "2026-09-04T01:35:55.009Z",
+  "durationMs": 239,
+  "details": {
+    "checkedCodes": [
+      "SESSION_NOT_FOUND",
+      "SDK_FAILURE",
+      "BOOT_CONFORMANT",
+      "WORKING_ROOT_INACCESSIBLE"
+    ]
+  }
+}

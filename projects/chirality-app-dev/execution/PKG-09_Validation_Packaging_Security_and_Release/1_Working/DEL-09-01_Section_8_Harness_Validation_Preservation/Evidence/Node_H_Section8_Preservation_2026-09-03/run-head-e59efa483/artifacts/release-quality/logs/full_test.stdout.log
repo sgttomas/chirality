@@ -1,0 +1,14 @@
+
+> chirality-frontend@2.0.0 test
+> vitest run --testTimeout=15000
+
+
+ RUN  v4.1.10 /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend
+
+{"status":"FAIL","summaryPath":"/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-daemon-proof-test-EDPddb/evidence/summary.json"}
+
+ Test Files  162 passed | 1 skipped (163)
+      Tests  1489 passed | 4 skipped (1493)
+   Start at  19:36:03
+   Duration  3.92s (transform 5.00s, setup 0ms, import 8.57s, tests 22.49s, environment 7ms)
+

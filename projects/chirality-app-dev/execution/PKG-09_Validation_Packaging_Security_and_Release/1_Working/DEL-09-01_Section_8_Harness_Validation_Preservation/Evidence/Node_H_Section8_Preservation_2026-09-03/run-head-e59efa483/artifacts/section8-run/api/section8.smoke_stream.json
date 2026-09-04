@@ -1,0 +1,12 @@
+{
+  "eventTypes": [
+    "harness:event",
+    "session:init",
+    "chat:delta",
+    "chat:delta",
+    "chat:complete",
+    "session:complete",
+    "harness:event",
+    "process:exit"
+  ]
+}

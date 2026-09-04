@@ -1,0 +1,3 @@
+user_data_removed=yes path=/private/tmp/chirality-s8.4dWTHh
+harness_tmp_root_removed=yes path=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest
+private_dir_removed=yes

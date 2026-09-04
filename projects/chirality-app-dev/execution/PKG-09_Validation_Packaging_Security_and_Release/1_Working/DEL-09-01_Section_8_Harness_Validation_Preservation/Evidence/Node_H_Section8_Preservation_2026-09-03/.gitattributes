@@ -1,0 +1,8 @@
+# Captured evidence bytes are retained exactly as produced (SSE streams end in
+# the blank line that terminates their last event; captured stdout/stderr logs
+# end however the producing command ended them). Their SHA-256 values are
+# pinned in the per-run MANIFEST.sha256 files, so they must not be whitespace-
+# normalised. Exempt only these captured byte classes from the whitespace
+# check; authored files in this folder keep the default rules.
+*.sse -whitespace
+*.log -whitespace

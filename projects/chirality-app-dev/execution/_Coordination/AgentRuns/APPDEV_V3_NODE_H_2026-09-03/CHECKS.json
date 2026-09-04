@@ -1,0 +1,209 @@
+{
+  "schema": "chirality-run-checks/v1",
+  "run_id": "APPDEV_V3_NODE_H_2026-09-03",
+  "recorded_at": "2026-09-03",
+  "basis": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
+  "rounds": {
+    "1": "Section 8 preservation evidence after PRs 683-686: CI daemon lifecycle reproduced locally, HEAD and pre-landing-basis runs, CI corroboration, RQG section 13 rows — first local commit"
+  },
+  "toolchain": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "vitest": "4.1.10",
+    "next": "15.5.21",
+    "electron": "43.2.0",
+    "typescript": "5.9.3",
+    "platform": "darwin 25.6.0 (arm64)"
+  },
+  "environment_preparation": [
+    {
+      "command": "npm ci",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "note": "no lockfile edit; audit/allow-scripts warnings only"
+    },
+    {
+      "command": "npm ci && npm run build",
+      "cwd": "runtime",
+      "exit": 0,
+      "note": "same preparation the root harness-premerge workflow performs; required so the file:-linked @chirality/runtime-* packages resolve; outputs gitignored"
+    },
+    {
+      "command": "npm run build:electron",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "note": "dist-electron/main.js 4d56cc6fd9f5bc6e0bf9db50c90445bbd357116c431bd78480bec26a89d31a9e; dist-runtime/chirality-cli.mjs 0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989 (gitignored)"
+    },
+    {
+      "command": "git worktree add --detach <scratch>/wt-base 0c683fb1657706316272951e4c3a0f7781b46009; (runtime) npm ci && npm run build; (frontend) npm ci && npm run build:electron",
+      "cwd": ".",
+      "exit": 0,
+      "note": "second scratch worktree for the pre-landing baseline A/B run; removed after the tranche closes"
+    }
+  ],
+  "checks": [
+    {
+      "id": "receipts-validator",
+      "round": "1",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "VALID; frozen through Receipt-52; versioned receipt contract satisfied (Step 0)"
+    },
+    {
+      "id": "authority-corpus",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "corpus v20; all eight [MATCH]; no drift (Step 0)"
+    },
+    {
+      "id": "app-hold-dispatch-preflight",
+      "round": "1",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-01",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict ALLOW; DEL-09-01 NOT_HELD / CLEAR; register sha256 e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f; repo_head e59efa483 (Step 0)"
+    },
+    {
+      "id": "app-hold-integrity",
+      "round": "1",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "53 contracts; held_count 0; register match true"
+    },
+    {
+      "id": "pinned-completion-reference",
+      "round": "1",
+      "command": "shasum -a 256 plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a matches the workplan pin (Step 0)"
+    },
+    {
+      "id": "frontend-typecheck",
+      "round": "1",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "tsc --noEmit (app) and tsc -p tsconfig.electron.json clean"
+    },
+    {
+      "id": "frontend-test-full",
+      "round": "1",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "Test Files 162 passed | 1 skipped (163); Tests 1489 passed | 4 skipped (1493)"
+    },
+    {
+      "id": "frontend-build",
+      "round": "1",
+      "command": "npm run build",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "next build + build:electron; run after the dev server used by the premerge method had been stopped"
+    },
+    {
+      "id": "frontend-premerge",
+      "round": "1",
+      "command": "REPO_ROOT=<wt-nodeH> RUN_ROOT=<scratch>/s8-run-head PORT=51840 SKIP_BUILD=1 WITH_RELEASE_QUALITY=1 APPROVED_BY=claude-fable-5-1-nodeH APPROVAL_REF=APPDEV_V3_NODE_H_2026-09-03 bash <DEL-09-01 Evidence/Node_H_Section8_Preservation_2026-09-03>/rerun-section8-local.sh  (inside: electron --use-mock-keychain --user-data-dir=<disposable> dist-electron/main.js --runtime-daemon ; chirality-cli.mjs project register ; next dev --hostname 127.0.0.1 --port 51840 bound via CHIRALITY_RUNTIME_* ; npm run harness:validate:premerge)",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "classification": "PASS (local, daemon-bound) — the absent-runtime-daemon-bindings class of Receipts 172/177 is resolved by performing the CI binding lifecycle, not deferred",
+      "summary": "HARNESS_PREMERGE_STATUS=pass; HARNESS_PREMERGE_TEST_COUNT=8; HARNESS_PREMERGE_SECTION9_STATUS=pass (16, report-only); stable artifact frontend/artifacts/harness/section8/latest/summary.json written (SHA-256 386a0f189fa720fc48fccbad6ad85f09ca7fce90bd34e1e19fe175a3088dfea8); these ARE the Section 8 stable premerge summary bytes the item must prove; 7 sessions created and deleted; daemon exposes no TCP socket; teardown/cleanup proven",
+      "evidence": "DEL-09-01 Evidence/Node_H_Section8_Preservation_2026-09-03/run-head-e59efa483/"
+    },
+    {
+      "id": "validate-release-quality",
+      "round": "1",
+      "command": "npm run validate:release-quality (same daemon-bound dev server, via the rerun script with WITH_RELEASE_QUALITY=1)",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "RELEASE_QUALITY_STATUS=pass; full_test pass (162 files / 1489 tests, 4 skipped), typecheck pass, section9 pass, premerge pass; summaryConsistency pass (section8 + section9 no errors); releaseClaim false",
+      "evidence": "DEL-09-01 Evidence/Node_H_Section8_Preservation_2026-09-03/run-head-e59efa483/artifacts/release-quality/"
+    },
+    {
+      "id": "section8-baseline-ab",
+      "round": "1",
+      "command": "REPO_ROOT=<wt-base @0c683fb16> RUN_ROOT=<scratch>/s8-run-base PORT=51841 SKIP_BUILD=1 WITH_RELEASE_QUALITY=0 bash <same rerun-section8-local.sh> ; python3 compare-section8-summaries.py run-head-e59efa483/... run-base-0c683fb16/... ci-artifacts/pr681/... ci-artifacts/pr686/...",
+      "cwd": "<wt-base>/projects/chirality-app-dev/frontend ; then the Evidence folder",
+      "exit": 0,
+      "status": "pass",
+      "summary": "basis premerge pass 8/8 (summary SHA-256 a59a1549af861c91fd1966e0174fd9cff21d3e4eaebccf282eefa4031461a77b); comparator BEHAVIOUR_PROJECTIONS_EQUAL=true over HEAD-local, basis-local, CI PR #681 (run 33800866263), CI PR #686 (run 33823453656); EVALUATOR_BYTES.tsv: every evaluator/fixture/workflow blob SAME across the landings except package.json (three unrelated script entries added)",
+      "evidence": "DEL-09-01 Evidence/Node_H_Section8_Preservation_2026-09-03/{run-base-0c683fb16/,COMPARE_RESULT.txt,EVALUATOR_BYTES.tsv,ci-artifacts/}"
+    },
+    {
+      "id": "ci-artifact-corroboration",
+      "round": "1",
+      "command": "gh run download 33800866263 -n harness-validation-summaries ; gh run download 33823453656 -n harness-validation-summaries ; gh run view <id> --json headSha,headBranch,event,conclusion,createdAt,url",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "both workflow runs conclusion success; section8 summaries retained (security and instruction-root summaries dropped as out of Section 8 scope)"
+    },
+    {
+      "id": "git-diff-check",
+      "round": "1",
+      "command": "git add -A -N . && git diff --check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "clean; captured *.sse / *.log evidence bytes are retained raw and exempted by the Evidence-folder .gitattributes (EVIDENCE.md section 7); re-run over the committed range at the freeze"
+    },
+    {
+      "id": "harness-self-check",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "exit 0; pre-existing repo-wide findings only (INFO 14, REVIEW 4, WARN 43)"
+    },
+    {
+      "id": "harness-pytest",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q tools/practitioner_harness",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "350 passed"
+    },
+    {
+      "id": "validate-change-scope",
+      "round": "1",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base e59efa4830fb54143c86e511ec35a6d1a476f72e --allowed projects/chirality-app-dev/frontend/scripts --allowed projects/chirality-app-dev/frontend/src/__tests__/scripts --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "status PASS; violations []; the frontend roots are allowed but no path under them changed"
+    }
+  ],
+  "not_run": [
+    {
+      "id": "run_registered_checks.py / select_affected_checks.py",
+      "reason": "every registered check was executed directly by its registered command with exit status recorded above; no product source changed so the path rules select only the always-checks plus harness-pytest (execution/** changed)"
+    },
+    {
+      "id": "desktop:pack / proof:packaged-security",
+      "reason": "not named by the seated item's Checks line; packaged behaviour is outside Section 8 and not claimed"
+    }
+  ],
+  "scope_validation_command": {
+    "cwd": ".",
+    "command": "python3 tools/software_workflow/validate_change_scope.py . --base e59efa4830fb54143c86e511ec35a6d1a476f72e --allowed projects/chirality-app-dev/frontend/scripts --allowed projects/chirality-app-dev/frontend/src/__tests__/scripts --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+    "note": "--head omitted = working tree at the freeze; the same command with --head <commit> reproduces it against a frozen commit; after a publication rebase use --base <new merge-base>"
+  }
+}
