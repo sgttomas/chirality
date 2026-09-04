@@ -88,7 +88,7 @@ Round-1 identities are in the committed history of this file at `4e4c7e909`; rou
 | `frontend/electron/renderer-window-policy.ts` (new) | pure policy + installer (window-open hand-off via injected `openExternal`, navigation, CSP with `null`-when-untouched headers) + opt-in in-page security probe + opt-in main-process egress-layer probe |
 | `frontend/electron/main.ts` | window creation from the policy; `openExternal: (url) => shell.openExternal(url)`; packaged renderer server sets the CSP header; both probe hooks |
 | `frontend/scripts/run-packaged-security-proof.mjs` | learns the renderer-hardening evidence and the main-process egress probe (§4); log writer truncates instead of appending |
-| `frontend/src/__tests__/electron/renderer-window-policy.test.ts` (new) | 57 tests |
+| `frontend/src/__tests__/electron/renderer-window-policy.test.ts` (new) | 62 expanded test cases at the closeout head (61 at round 3; counts corrected on review 3 R3-1) |
 | `frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts` | new evidence summarizer tests and fixtures |
 | `frontend/src/__tests__/contract-pins.manifest.ts` | pins for the policy module, `main.ts` wiring, and the proof script |
 
@@ -99,7 +99,7 @@ them exactly; the run record `MANIFEST.sha256` (written at closeout) lists the f
 
 - `ipc-sender-policy.test.ts` — 17; `api-key-ipc.test.ts` — 58 incl. the six-channel
   authorized/unauthorized matrix; `runtime-control-ipc.test.ts` — 11 unchanged (round 1).
-- `renderer-window-policy.test.ts` — 57: hardened preferences produced and 8 weakening
+- `renderer-window-policy.test.ts` — 62 expanded cases (Vitest count; 61 at round 3, +1 synchronous-throw case in round 4): hardened preferences produced and 8 weakening
   variants rejected; window-open: child window always denied, `http`/`https` targets
   hand off to `openExternal` exactly once with the exact URL, each other scheme
   (`javascript:`, `file:`, `data:`, `blob:`, `about:`, custom, `ws:`) and a malformed URL

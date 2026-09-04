@@ -7,7 +7,8 @@
     "1": "sender authorization, typed safeStorage states, settings-panel states — local commit 4e4c7e9090891fae98bb63ebf1ee8e3561d4f9ac",
     "2": "renderer window hardening and CSP (coordinator disposition on RETURN.md §5 item 1) — second local commit on the same branch",
     "3": "independent-review remediation (window-open hand-off, exact CSP + main-process egress probe, settings non-answer state, MINOR-1/3/4, NOTE-1/2) — third local commit on the same branch",
-    "4": "post-review-2 re-freeze (review 2 PASS 0/0/2; R2-1 exact CSP directive compare in the proof summarizer + fixture/negative cases; R2-2 stale text; NOTE-3 deferred openExternal) — fourth local commit"
+    "4": "post-review-2 re-freeze (review 2 PASS 0/0/2; R2-1 exact CSP directive compare in the proof summarizer + fixture/negative cases; R2-2 stale text; NOTE-3 deferred openExternal) — fourth local commit",
+    "5": "closeout after review 3 PASS (R3-1 counts, R3-2 D4 record-only) — rebased onto origin/main e560ded1b; _STATUS.md/MEMORY.md closeout; Receipt 212; HANDOFF_STATE.md; MANIFEST.sha256"
   },
   "toolchain": {
     "node": "v24.18.0",
@@ -360,7 +361,8 @@
   "scope_validation_command": {
     "cwd": ".",
     "command": "python3 tools/software_workflow/validate_change_scope.py . --base 0c683fb1657706316272951e4c3a0f7781b46009 --allowed projects/chirality-app-dev/frontend/electron/api-key-ipc.ts --allowed projects/chirality-app-dev/frontend/electron/api-key-storage.ts --allowed projects/chirality-app-dev/frontend/electron/main.ts --allowed projects/chirality-app-dev/frontend/electron/preload.ts --allowed projects/chirality-app-dev/frontend/electron/ipc-sender-policy.ts --allowed projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts --allowed projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts --allowed projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs --allowed projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx --allowed projects/chirality-app-dev/frontend/src/lib/credential-storage-state.ts --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks --allowed projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge --allowed projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
-    "note": "repeated --allowed roots (argparse); --head omitted = working tree at the freeze; the same command with --head <commit> reproduces it against a frozen commit"
+    "note": "repeated --allowed roots (argparse); --head omitted = working tree at the freeze; the same command with --head <commit> reproduces it against a frozen commit",
+    "post_rebase_note": "After the publication rebase onto origin/main e560ded1b (PRs 683-685 merged), the same command must use --base e560ded1b1... (the merge-base): with --base 0c683fb16 the diff includes the sibling nodes' files already on main (B/D/E, A13 record) and reports them as out-of-fence. Closeout run: --base e560ded1b --head <closeout SHA> -> PASS, 0 violations, 51 paths (result in the closeout message)."
   },
   "post_review_02_refreeze": {
     "review": "instances/A2_REVIEWER/REVIEW_02_2026-09-03_over_6f07556ac.md (byte copy; PASS, 0 blocking / 0 major / 2 minor / 7 notes)",
@@ -386,7 +388,7 @@
         "cwd": "projects/chirality-app-dev/frontend",
         "exit": 0,
         "status": "pass",
-        "summary": "2 files, 71 tests (run-packaged-security-proof 14; renderer-window-policy 57 incl. the synchronous-throw case; three timing-bound assertions now flush the task queue before asserting the deferred openExternal call)"
+        "summary": "2 files, 71 tests (renderer-window-policy 62 incl. the synchronous-throw case; run-packaged-security-proof 9; per-file counts corrected on review 3 R3-1 — earlier records counted it() call sites, not expanded cases; three timing-bound assertions now flush the task queue before asserting the deferred openExternal call)"
       },
       {
         "id": "git-diff-check",

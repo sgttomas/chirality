@@ -28,7 +28,7 @@ Evidence/state: DEL-09-06 `Evidence/Node_A_Credential_IPC_Sender_Authorization_2
 |---|---|---|---|
 | `npm run typecheck` | pass | pass | pass |
 | `npm test` (full Vitest) | pass — 157 files / 1364 tests (4 skipped) | pass — 158 / 1408 (4 skipped) | pass — 158 / 1431 (4 skipped) |
-| focused Vitest | pass — 151 | pass — 67 | pass — 169 (renderer-window-policy 57, api-key-ipc 58, settings 13 + 12, pins 16, proof 13) |
+| focused Vitest | pass — 151 | pass — 67 | pass — 169 (renderer-window-policy 61, api-key-ipc 58, settings 13 + 12, pins 16, proof 9; per-file split corrected on review 3 R3-1 — the total was right) |
 | `npm run build` | pass | pass | pass (inline-script count re-verified) |
 | premerge | **FAIL — absent runtime-daemon bindings** (8/8 HTTP 503); PR-CI-owed | same | not rerun (no session-route change); PR-CI-owed |
 | `npm run desktop:pack` | pass (in-sandbox) | pass | pass |
@@ -50,7 +50,7 @@ Every changed path is inside the seated items' loci as extended by the coordinat
 **Named residuals for the closeout `_STATUS.md` `Remaining` of DEL-09-06** (to be seeded when `REVIEW_PASS` is given, as new items beside the closed V3-01):
 
 - **R-A — nonce-based script CSP.** Packaged `script-src` carries `'unsafe-inline'` because Next 15.5 App Router emits inline flight-payload scripts without a nonce; until a nonce pipeline lands (a Next middleware or a `Content-Security-Policy` request header set before the packaged handler in `startPackagedRendererServer`, plus a decision on the prerendered routes that a nonce forces dynamic), the CSP's XSS value is limited to remote-script/eval/frame/object/base/form/connect containment. External scripts are already `'self'`-only. Owner-shaped because it changes rendering mode.
-- **R-B — egress-probe URL not restricted (review 2 NOTE-2).** `CHIRALITY_EGRESS_LAYER_PROBE_URL` is read only inside the `CHIRALITY_RENDERER_SECURITY_PROBE=1` gate and still passes `onBeforeRequest`, so it adds no destination to REQ-NET-001 and carries no credential; but a launch environment that set it to an already-allowlisted URL would produce one unauthenticated main-process GET (and a `response` outcome that fails the proof). Optional hardening deferred by the coordinator: refuse URLs the egress policy would allow, or hard-code the `:8443` probe and drop the env var. Same class and reach as the pre-existing `CHIRALITY_NETWORK_POLICY_PROBE_URLS` hook.
+- **R-B — egress-probe URL not restricted (review 2 NOTE-2).** `CHIRALITY_EGRESS_LAYER_PROBE_URL` is read only inside the `CHIRALITY_RENDERER_SECURITY_PROBE=1` gate and still passes `onBeforeRequest`, so it adds no destination to REQ-NET-001 and carries no credential; but a launch environment that set it to an already-allowlisted URL would produce one unauthenticated main-process GET (and a `response` outcome that fails the proof). Optional hardening deferred to this residual under coordinator decision D4 (review 2: optional, not required for PASS): refuse URLs the egress policy would allow, or hard-code the `:8443` probe and drop the env var. Same class and reach as the pre-existing `CHIRALITY_NETWORK_POLICY_PROBE_URLS` hook.
 - No exact-CSP residual: MINOR-2 was implemented in full (`connect-src 'self'` packaged; egress layer observed by the main-process probe), and after review 2 the packaged proof itself compares the directive whole, so the interim wildcard form can no longer pass it.
 
 Other residuals and disclosures:

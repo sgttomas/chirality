@@ -42,3 +42,20 @@ Direction: packaged `connect-src 'self'`; move the egress-layer observation to a
 main-process `session.fetch` probe under the existing env gate; keep the in-page probe for
 the CSP violation evidence; pin the exact directive. Applied in full (no exact-CSP residual
 remains).
+
+## D4 — 2026-09-03 — round 4: NOTE-2 deferred to residual R-B; NOTE-3 applied
+
+Direction (verbatim gist): "Optional if trivial: NOTE-3 wrap openExternal as
+`Promise.resolve().then(() => openExternal(url))` … Do not do NOTE-2 hardening in this
+tranche; record it as a residual line in RETURN.md §5 alongside R-A." Effect: NOTE-2
+egress-probe URL hardening deferred to residual R-B (review 2: optional, not required for
+PASS) and seeded into DEL-09-06 `Remaining` at closeout; NOTE-3 applied in commit round 4.
+
+## D5 — 2026-09-03 — closeout deltas after review 3 PASS
+
+Direction: file review 3; fold R3-1 (per-file Vitest counts) and R3-2 (this D4 record)
+into the closeout commit as record-only fixes; rebase onto `origin/main` (`e560ded1b`,
+PRs 683–685 merged); the receipt is Receipt 212 with parent Receipt-205 (Receipts 209–211
+are on `main`; the validator requires increasing IDs in append order); update the three
+`_STATUS.md` per the brief; seed R-A and R-B into DEL-09-06 `Remaining`; push, open the
+PR, add the `artifact-proof` label; do not merge.
