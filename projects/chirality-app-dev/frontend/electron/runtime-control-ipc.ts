@@ -6,6 +6,7 @@ import {
   daemonPostureEnvironment,
   resolveDesktopDaemonPosture
 } from './desktop-daemon-posture';
+import { isAuthorizedSender } from './ipc-sender-policy';
 
 export const RUNTIME_DAEMON_CONTROL_CHANNEL = 'chirality:runtime-daemon-control';
 export const RUNTIME_MODEL_STATUS_CHANNEL = 'chirality:runtime-model-status';
@@ -80,19 +81,6 @@ function isSafeModelId(value: unknown): value is string {
     value.trim() === value &&
     !/[\u0000-\u001f\u007f]/u.test(value)
   );
-}
-
-function isAuthorizedSender(
-  event: { senderFrame?: { url?: string } | null },
-  rendererOrigin: string
-): boolean {
-  const senderUrl = event.senderFrame?.url;
-  if (!senderUrl) return false;
-  try {
-    return new URL(senderUrl).origin === rendererOrigin;
-  } catch {
-    return false;
-  }
 }
 
 async function daemonSnapshot(

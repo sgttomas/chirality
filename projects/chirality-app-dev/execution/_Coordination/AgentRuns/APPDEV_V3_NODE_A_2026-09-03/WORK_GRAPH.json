@@ -1,0 +1,80 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_V3_NODE_A_2026-09-03",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "supervisor": {"role": "HELP_HUMAN", "agent_type": 0, "model": "claude-fable-5-1"},
+  "basis": {
+    "branch": "codex/app-v3-nodeA-credential-ipc-2026-09-03",
+    "cut_from": "0c683fb1657706316272951e4c3a0f7781b46009",
+    "required_ancestor": "0c683fb1657706316272951e4c3a0f7781b46009"
+  },
+  "authorization": "instances/A1_IMPLEMENTER/LAUNCH_BRIEF.md (owner 2026-09-03 dev-slate selection via HELP_HUMAN; selectability from PR #681 / Receipt 205 / A12)",
+  "items": ["DEL-09-06-V3-01", "DEL-04-05-V3-01", "DEL-02-05-V3-01"],
+  "nodes": [
+    {
+      "id": "A1_IMPLEMENTER",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "agent_type": 2,
+      "model": "claude-fable-5-1",
+      "skill": "software-bounded-implementation",
+      "delegates": false,
+      "depends_on": [],
+      "writes": [
+        "frontend/electron/api-key-ipc.ts",
+        "frontend/electron/api-key-storage.ts",
+        "frontend/electron/ipc-sender-policy.ts",
+        "frontend/electron/runtime-control-ipc.ts",
+        "frontend/electron/main.ts",
+        "frontend/electron/preload.ts",
+        "frontend/src/components/settings/api-key-settings.tsx",
+        "frontend/src/lib/**",
+        "frontend/src/__tests__/**",
+        "execution/PKG-09_*/1_Working/DEL-09-06_*/**",
+        "execution/PKG-04_*/1_Working/DEL-04-05_*/**",
+        "execution/PKG-02_*/1_Working/DEL-02-05_*/**",
+        "execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03/**",
+        "loop/LOOP_RECEIPTS.md (append only, closeout)"
+      ],
+      "returns": ["RETURN.md", "CHECKS.json", "local frozen commit"]
+    },
+    {
+      "id": "A2_REVIEWER",
+      "role": "TASK",
+      "skill": "software-code-review",
+      "agent_type": 2,
+      "model": "claude-fable-5-1",
+      "delegates": false,
+      "read_only": true,
+      "depends_on": ["A1_IMPLEMENTER"],
+      "writes": [],
+      "returns": ["verdict + findings (filed under instances/A2_REVIEWER/ by A1)"]
+    },
+    {
+      "id": "CLOSEOUT",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "agent_type": 2,
+      "model": "claude-fable-5-1",
+      "depends_on": ["A2_REVIEWER"],
+      "requires": "REVIEW_PASS from HELP_HUMAN",
+      "writes": [
+        "three _STATUS.md (Remaining/History only)",
+        "execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03/{HANDOFF_STATE.md,MANIFEST.sha256}",
+        "loop/LOOP_RECEIPTS.md (append Receipt 206)"
+      ],
+      "returns": ["PR number", "head SHA"]
+    }
+  ],
+  "edges": [["A1_IMPLEMENTER", "A2_REVIEWER"], ["A2_REVIEWER", "CLOSEOUT"]],
+  "remediation_loop": "A2 findings -> A1 remediate + re-freeze -> A2 re-review, until PASS",
+  "concurrent_siblings": {
+    "note": "other v3 development nodes may run concurrently in disjoint write sets; shared surface is loop/LOOP_RECEIPTS.md append-only (Receipts 206-209, Parent-Receipt Receipt-205, ledger rule 7)"
+  },
+  "human_gates": [
+    "owner merge of the single PR",
+    "any write-locus extension surfaced as a scope need",
+    "packaged-proof host execution or artifact-proof label",
+    "A1 re-stage: newly staged R20 revision + fresh owner-executed proof before any future proof claim"
+  ]
+}

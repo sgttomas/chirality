@@ -2,11 +2,25 @@
 
 import React, { useCallback, useEffect, useState } from 'react';
 import type { ChangeEvent } from 'react';
+import type { CredentialStorageState } from '../../lib/credential-storage-state';
 
 export type ApiKeyStatus = {
   hasKey: boolean;
   encryptionAvailable: boolean;
   source: 'ui' | 'env' | 'none';
+  /**
+   * Typed safeStorage state of the stored blob (DEL-02-05-V3-01 REQ-002):
+   * `missing`, `storageUnavailable`, `decryptFailed`, or `available`. Absent
+   * only when the bridge could not obtain a real answer.
+   */
+  storage?: CredentialStorageState;
+  /**
+   * Set by the bridge when no real answer was obtained (runtime daemon not
+   * reachable). Distinct from every storage state: nothing is known.
+   */
+  unavailable?: boolean;
+  /** Bridge-side error text for a non-answer (daemon unreachable, invalid status, denied). */
+  error?: string;
 };
 
 export type ApiKeySettingsViewProps = {
@@ -205,6 +219,56 @@ function ProviderApiKeySettings({
   );
 }
 
+type RenderedStorageState = CredentialStorageState | 'unknown';
+
+/** True when the bridge answered without a real credential status. */
+function isNonAnswer(status: ApiKeyStatus): boolean {
+  return status.unavailable === true || typeof status.error === 'string';
+}
+
+/**
+ * The storage state the panel renders. A bridge that reports the typed state is
+ * used as-is. A non-answer (daemon unreachable, denied, invalid) is `unknown`
+ * — it says nothing about the keychain, so it must never be shown as
+ * `storageUnavailable`. Only an older bridge that reports neither a typed
+ * state nor a non-answer, and says `encryptionAvailable: false`, is mapped to
+ * `storageUnavailable`; anything else without a typed state is `unknown`.
+ */
+function resolveStorageState(status: ApiKeyStatus | null): RenderedStorageState {
+  if (!status) {
+    return 'unknown';
+  }
+  if (status.storage) {
+    return status.storage;
+  }
+  if (isNonAnswer(status)) {
+    return 'unknown';
+  }
+  return status.encryptionAvailable ? 'unknown' : 'storageUnavailable';
+}
+
+function statusLabel(status: ApiKeyStatus | null, storageState: RenderedStorageState): string {
+  if (!status) {
+    return 'Checking...';
+  }
+  if (!status.storage && isNonAnswer(status)) {
+    return 'Cannot determine credential status right now';
+  }
+  if (status.source === 'ui') {
+    return 'Key configured (stored in secure storage)';
+  }
+  if (status.source === 'env') {
+    return 'Key configured (from environment variable)';
+  }
+  if (storageState === 'decryptFailed') {
+    return 'Stored key cannot be read';
+  }
+  if (storageState === 'storageUnavailable') {
+    return 'Secure storage is unavailable';
+  }
+  return 'No API key configured';
+}
+
 export function ApiKeySettingsView({
   title = 'Anthropic API Key',
   environmentVariable = 'ANTHROPIC_API_KEY',
@@ -220,31 +284,56 @@ export function ApiKeySettingsView({
   onSave,
   onRemove
 }: ApiKeySettingsViewProps): JSX.Element {
-  const sourceLabel =
-    status?.source === 'ui'
-      ? 'Key configured (stored in secure storage)'
-      : status?.source === 'env'
-        ? 'Key configured (from environment variable)'
-        : 'No API key configured';
-
-  const encryptionWarning =
-    status && !status.encryptionAvailable
-      ? `Secure storage is not available on this platform. Use the ${environmentVariable} environment variable instead.`
-      : null;
+  const storageState = resolveStorageState(status);
+  const storageUnavailable = storageState === 'storageUnavailable';
+  const decryptFailed = storageState === 'decryptFailed';
+  const nonAnswer = status !== null && !status.storage && isNonAnswer(status);
+  // Entry stays available while the bridge is still checking, and is hidden
+  // when it reported that storage cannot be used or that it could not answer
+  // (the behaviour the panel had before the typed states).
+  const canUseStorage =
+    bridgeAvailable && !storageUnavailable && status?.encryptionAvailable !== false;
 
   return (
     <div className="api-key-settings">
       <h3 className="api-key-settings-title">{title}</h3>
 
-      <p className="api-key-status" data-source={status?.source ?? 'unknown'}>
-        {status ? sourceLabel : 'Checking...'}
+      <p
+        className="api-key-status"
+        data-source={status?.source ?? 'unknown'}
+        data-storage={storageState}
+        data-answer={nonAnswer ? 'unavailable' : 'status'}
+      >
+        {statusLabel(status, storageState)}
       </p>
 
-      {encryptionWarning ? (
-        <p className="api-key-warning">{encryptionWarning}</p>
+      {nonAnswer && status?.error ? (
+        <p className="api-key-hint" data-status-error="true">
+          {status.error}
+        </p>
       ) : null}
 
-      {bridgeAvailable && status?.encryptionAvailable !== false ? (
+      {storageUnavailable ? (
+        <p className="api-key-warning" data-storage-state="storageUnavailable">
+          Secure storage is not available on this platform. Chirality cannot read or save a
+          stored key until the operating system keychain is available, and any previously
+          stored key is left in place unread. To continue now, set the{' '}
+          <code>{environmentVariable}</code> environment variable and restart Chirality.
+        </p>
+      ) : null}
+
+      {decryptFailed ? (
+        <p className="api-key-warning" data-storage-state="decryptFailed">
+          The stored key could not be decrypted, so it cannot be used. The previous encrypted
+          entry has been kept unchanged and nothing was deleted. Re-enter the key below to
+          replace it, or remove the stored entry explicitly.
+          {status?.source === 'env'
+            ? ` Until then, Chirality is using the ${environmentVariable} environment variable.`
+            : ''}
+        </p>
+      ) : null}
+
+      {canUseStorage ? (
         <>
           <div className="api-key-input-row">
             <input
@@ -278,7 +367,7 @@ export function ApiKeySettingsView({
             </button>
           </div>
 
-          {status?.source === 'ui' ? (
+          {status?.source === 'ui' || decryptFailed ? (
             <button
               type="button"
               className="button-muted api-key-remove"

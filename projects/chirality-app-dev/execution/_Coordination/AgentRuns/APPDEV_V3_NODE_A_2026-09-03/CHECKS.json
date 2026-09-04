@@ -1,0 +1,411 @@
+{
+  "schema": "chirality-run-checks/v1",
+  "run_id": "APPDEV_V3_NODE_A_2026-09-03",
+  "recorded_at": "2026-09-03",
+  "basis": "0c683fb1657706316272951e4c3a0f7781b46009",
+  "rounds": {
+    "1": "sender authorization, typed safeStorage states, settings-panel states — local commit 4e4c7e9090891fae98bb63ebf1ee8e3561d4f9ac",
+    "2": "renderer window hardening and CSP (coordinator disposition on RETURN.md §5 item 1) — second local commit on the same branch",
+    "3": "independent-review remediation (window-open hand-off, exact CSP + main-process egress probe, settings non-answer state, MINOR-1/3/4, NOTE-1/2) — third local commit on the same branch",
+    "4": "post-review-2 re-freeze (review 2 PASS 0/0/2; R2-1 exact CSP directive compare in the proof summarizer + fixture/negative cases; R2-2 stale text; NOTE-3 deferred openExternal) — fourth local commit",
+    "5": "closeout after review 3 PASS (R3-1 counts, R3-2 D4 record-only) — rebased onto origin/main e560ded1b; _STATUS.md/MEMORY.md closeout; Receipt 212; HANDOFF_STATE.md; MANIFEST.sha256"
+  },
+  "toolchain": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "vitest": "4.1.10",
+    "next": "15.5.21",
+    "electron": "43.2.0",
+    "electron-builder": "26.15.3",
+    "typescript": "5.9.3",
+    "react-test-renderer": "18.3.1",
+    "platform": "darwin 25.6.0 (arm64)"
+  },
+  "environment_preparation": [
+    {
+      "command": "npm ci",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "note": "warm cache; audit/allow-scripts warnings only; no lockfile edit"
+    },
+    {
+      "command": "npm ci && npm run build",
+      "cwd": "runtime",
+      "exit": 0,
+      "note": "same preparation the root harness-premerge workflow performs before the frontend gates; required so the file:-linked @chirality/runtime-* packages resolve; outputs are gitignored"
+    }
+  ],
+  "checks": [
+    {
+      "id": "receipts-validator",
+      "round": "1",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "VALID; frozen through Receipt-52; versioned receipt contract satisfied (Step 0)"
+    },
+    {
+      "id": "authority-corpus",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "corpus v20; all eight [MATCH]; no drift (Step 0)"
+    },
+    {
+      "id": "app-hold-dispatch-preflight",
+      "round": "1",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-06 --target DEL-04-05 --target DEL-02-05",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict ALLOW; all three targets NOT_HELD / CLEAR; register sha256 e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f (Step 0)"
+    },
+    {
+      "id": "frontend-typecheck",
+      "round": "1",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "tsc --noEmit (app) and tsc -p tsconfig.electron.json clean"
+    },
+    {
+      "id": "frontend-test-full",
+      "round": "1",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "Test Files 157 passed | 1 skipped (158); Tests 1364 passed | 4 skipped (1368)"
+    },
+    {
+      "id": "frontend-test-focused",
+      "round": "1",
+      "command": "npx vitest run src/__tests__/electron/ipc-sender-policy.test.ts src/__tests__/electron/api-key-ipc.test.ts src/__tests__/electron/api-key-storage.test.ts src/__tests__/electron/runtime-control-ipc.test.ts src/__tests__/components/api-key-settings.test.ts src/__tests__/components/api-key-settings-storage-states.test.ts src/__tests__/contract-pins.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "7 files, 151 tests: ipc-sender-policy 17; api-key-ipc 58; api-key-storage 29; runtime-control-ipc 11; api-key-settings 12; api-key-settings-storage-states 9; contract-pins 15"
+    },
+    {
+      "id": "frontend-build",
+      "round": "1",
+      "command": "npm run build",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "next build + build:electron"
+    },
+    {
+      "id": "frontend-premerge",
+      "round": "1",
+      "command": "CHIRALITY_HARNESS_PROVIDER=stub NEXT_TELEMETRY_DISABLED=1 node node_modules/next/dist/bin/next dev --port 51226 ; HARNESS_BASE_URL=http://127.0.0.1:51226 npm run harness:validate:premerge ; server stopped",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 1,
+      "status": "fail",
+      "failure_class": "absent runtime-daemon bindings",
+      "summary": "8/8 results HTTP 503 from the session routes (no runtime daemon bound in the sandbox); same class as LOOP_RECEIPTS.md lines 5183 and 5313; deferred to PR CI per App AGENTS.md; no pass inferred",
+      "deferred_to": "PR CI"
+    },
+    {
+      "id": "desktop-pack",
+      "round": "1",
+      "command": "npm run desktop:pack",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "build + pack + desktop:verify-dependencies PASS + instruction-root:integrity pass ('source completeness status: needs_remediation' pre-existing from root commit 3d522842e). In-sandbox; no escalation needed."
+    },
+    {
+      "id": "proof-packaged-security",
+      "round": "1",
+      "command": "npm run proof:packaged-security",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "status pass; identity f8b954e1d926867f28aa961c9ba186303be5fc039f1dd47229988ad5e0988de6; daemon-owned status carries the typed storage state (missing → available/ui → missing); zero non-allowlisted TCP; cleanup pass. Retained gui log: raw sha256 a08669d17e92833c0858d2940f1fae914af012c1acf2d1e6853047c14dde24c9 (2,513 B) → one trailing space removed → 709b3378d5f9acee935d962b3bd449ce8e8f3fd54089e71147e6353c141a0d4f (2,512 B).",
+      "evidence": "DEL-09-06 Evidence/Node_A_Credential_IPC_Sender_Authorization_2026-09-03/packaged-security-proof/"
+    },
+    {
+      "id": "frontend-typecheck",
+      "round": "2",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "clean after the renderer-window-policy slice"
+    },
+    {
+      "id": "frontend-test-full",
+      "round": "2",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "Test Files 158 passed | 1 skipped (159); Tests 1408 passed | 4 skipped (1412)"
+    },
+    {
+      "id": "frontend-test-focused",
+      "round": "2",
+      "command": "npx vitest run src/__tests__/electron/renderer-window-policy.test.ts src/__tests__/contract-pins.test.ts src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "3 files, 67 tests (renderer-window-policy 38; contract-pins 16; run-packaged-security-proof 13)"
+    },
+    {
+      "id": "frontend-build",
+      "round": "2",
+      "command": "npm run build",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "next build + build:electron; the built HTML was inspected for the CSP allowances (8 inline flight scripts per page; no inline style tags; no data:/blob: use)"
+    },
+    {
+      "id": "frontend-premerge",
+      "round": "2",
+      "command": "CHIRALITY_HARNESS_PROVIDER=stub NEXT_TELEMETRY_DISABLED=1 node node_modules/next/dist/bin/next dev --port 51759 ; curl -s -D - http://127.0.0.1:51759/ (no Content-Security-Policy header from the dev server itself; the per-window hook supplies it) ; HARNESS_BASE_URL=http://127.0.0.1:51759 npm run harness:validate:premerge ; server stopped",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 1,
+      "status": "fail",
+      "failure_class": "absent runtime-daemon bindings",
+      "summary": "8/8 results HTTP 503 again — identical class and error set to round 1; deferred to PR CI; no pass inferred",
+      "deferred_to": "PR CI"
+    },
+    {
+      "id": "desktop-pack",
+      "round": "2",
+      "command": "npm run desktop:pack",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "PASS / PASS / instruction-root integrity pass (same pre-existing completeness note). In-sandbox."
+    },
+    {
+      "id": "proof-packaged-security",
+      "round": "2",
+      "command": "rm -rf artifacts/release-verification/packaged-security && npm run proof:packaged-security",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "status pass; identity eb23a0756253e6a01ab8d05da23fe5331c605dfd7b7e6108df45340c9e07673b (sourceRevision HEAD 4e4c7e909; built from the round-2 working tree); 13/13 markers; credential proof pass; rendererSecurityProof pass (cspHeaderPresent, cspViolationObserved connect-src for example.com, unexpectedViolations [], windowOpenReturnedNull + logged, navigationAttempted + denied logged); networkProof pass (7 snapshots, nonAllowlistedOutboundTcp [], blockedRendererDiagnostics 1 = egressLayerDiagnostics 1 from the :8443 probe, all three probes observed); cleanup pass. Run three times in this round: the first showed the script's append-mode log writer mixing an earlier run's lines into the counts, the second ran into a clean root, the third after the writer was changed to truncate is the retained one. Retained gui log trailing-space normalization recorded in the evidence MANIFEST.",
+      "evidence": "DEL-09-06 Evidence/Node_A_Credential_IPC_Sender_Authorization_2026-09-03/packaged-security-proof-2/"
+    },
+    {
+      "id": "git-diff-check",
+      "round": "1+2",
+      "command": "git add -A -N . && git diff --check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "no whitespace errors over the full working-tree diff (re-run at each freeze)"
+    },
+    {
+      "id": "harness-self-check",
+      "round": "1+2",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "exit 0 both rounds; pre-existing repo-wide findings only"
+    },
+    {
+      "id": "harness-pytest",
+      "round": "1+2",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q tools/practitioner_harness",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "350 passed both rounds"
+    },
+    {
+      "id": "app-hold-integrity",
+      "round": "1+2",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict PASS; held_count 0; register match true"
+    },
+    {
+      "id": "select-affected-checks",
+      "round": "1",
+      "command": "python3 tools/software_workflow/select_affected_checks.py --paths-json-stdin projects/chirality-app-dev/software-workflow.json",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "selected app-hold-integrity, frontend-test, frontend-typecheck, harness-pytest, harness-self-check — each executed by its registered command; frontend-build and frontend-premerge additionally run per the brief; run_registered_checks.py not used"
+    },
+    {
+      "id": "validate-change-scope",
+      "round": "1+2+3",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base 0c683fb1657706316272951e4c3a0f7781b46009 --allowed projects/chirality-app-dev/frontend/electron/api-key-ipc.ts --allowed projects/chirality-app-dev/frontend/electron/api-key-storage.ts --allowed projects/chirality-app-dev/frontend/electron/main.ts --allowed projects/chirality-app-dev/frontend/electron/preload.ts --allowed projects/chirality-app-dev/frontend/electron/ipc-sender-policy.ts --allowed projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts --allowed projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts --allowed projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs --allowed projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx --allowed projects/chirality-app-dev/frontend/src/lib/credential-storage-state.ts --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks --allowed projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge --allowed projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "status PASS; violations [] at every freeze (round 3: run over the full basis→working-tree set before the third commit; see RETURN.md)"
+    },
+    {
+      "id": "frontend-typecheck",
+      "round": "3",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "clean after the review remediation"
+    },
+    {
+      "id": "frontend-test-full",
+      "round": "3",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "Test Files 158 passed | 1 skipped (159); Tests 1431 passed | 4 skipped (1435)"
+    },
+    {
+      "id": "frontend-test-focused",
+      "round": "3",
+      "command": "npx vitest run src/__tests__/electron/renderer-window-policy.test.ts src/__tests__/electron/api-key-ipc.test.ts src/__tests__/components/api-key-settings.test.ts src/__tests__/components/api-key-settings-storage-states.test.ts src/__tests__/contract-pins.test.ts src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "6 files, 169 tests (renderer-window-policy 57; api-key-ipc 58; api-key-settings 13; api-key-settings-storage-states 12; contract-pins 16; run-packaged-security-proof 13)"
+    },
+    {
+      "id": "frontend-build",
+      "round": "3",
+      "command": "npm run build",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "built HTML re-inspected: .next/server/app/{index,chat}.html each 8 inline script elements (no src), 6 of them self.__next_f.push, 0 external scripts outside /_next/, no nonce (NOTE-2 corrected)"
+    },
+    {
+      "id": "frontend-premerge",
+      "round": "3",
+      "command": "(not rerun in round 3)",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": null,
+      "status": "not-rerun",
+      "failure_class": "absent runtime-daemon bindings",
+      "summary": "not requested for the remediation round; rounds 1 and 2 recorded the same 8/8 HTTP 503 class; nothing in round 3 touches the session routes; remains PR-CI-owed with no pass inferred",
+      "deferred_to": "PR CI"
+    },
+    {
+      "id": "desktop-pack",
+      "round": "3",
+      "command": "npm run desktop:pack",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "PASS / PASS / instruction-root integrity pass (same pre-existing completeness note). In-sandbox."
+    },
+    {
+      "id": "proof-packaged-security",
+      "round": "3",
+      "command": "rm -rf artifacts/release-verification/packaged-security && npm run proof:packaged-security",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "status pass; identity 7f240a36e64e0bd61c89b4b2ff03d7b00e95e88aa425cd3632bc2de6a317fd7d (Chirality 79019361…, app.asar 464,036,140 B 41854fc8…, chirality-cli.mjs 0503c40a…; sourceRevision HEAD 6ac51e99b; built from the round-3 working tree); 13/13 markers; credential proof pass; rendererSecurityProof pass with the exact CSP (connect-src 'self', no eval) seen by the page, connect-src violation for example.com, unexpectedViolations [], window.open('about:blank…') → null + renderer.window_open.denied {reason SCHEME_NOT_HTTP}, navigation denied + logged; networkProof pass (8 snapshots, nonAllowlistedOutboundTcp [], main-process [egress-layer-probe] outcome rejected net::ERR_BLOCKED_BY_CLIENT, egressLayerDiagnostics 1 = anthropic_port_not_allowlisted:8443, blockedRendererDiagnostics 1, both in-page probes observed); cleanup pass. Retained gui log: one trailing space normalized (raw/retained hashes printed at copy time; MANIFEST lists retained bytes).",
+      "evidence": "DEL-09-06 Evidence/Node_A_Credential_IPC_Sender_Authorization_2026-09-03/packaged-security-proof-3/"
+    },
+    {
+      "id": "git-diff-check",
+      "round": "3",
+      "command": "git add -A -N . && git diff --check ; git diff --check 0c683fb1657706316272951e4c3a0f7781b46009 HEAD",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "working tree and full basis→HEAD range clean (run before the third commit and again over the committed range)"
+    },
+    {
+      "id": "harness-self-check",
+      "round": "3",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "exit 0"
+    },
+    {
+      "id": "harness-pytest",
+      "round": "3",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q tools/practitioner_harness",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "350 passed"
+    },
+    {
+      "id": "app-hold-integrity",
+      "round": "3",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict PASS; held_count 0; register match true"
+    }
+  ],
+  "not_run": [
+    {
+      "id": "run_registered_checks.py",
+      "reason": "optional per brief; every registered check was executed directly by its registered command with exit status recorded above"
+    }
+  ],
+  "scope_validation_command": {
+    "cwd": ".",
+    "command": "python3 tools/software_workflow/validate_change_scope.py . --base 0c683fb1657706316272951e4c3a0f7781b46009 --allowed projects/chirality-app-dev/frontend/electron/api-key-ipc.ts --allowed projects/chirality-app-dev/frontend/electron/api-key-storage.ts --allowed projects/chirality-app-dev/frontend/electron/main.ts --allowed projects/chirality-app-dev/frontend/electron/preload.ts --allowed projects/chirality-app-dev/frontend/electron/ipc-sender-policy.ts --allowed projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts --allowed projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts --allowed projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs --allowed projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx --allowed projects/chirality-app-dev/frontend/src/lib/credential-storage-state.ts --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks --allowed projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge --allowed projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+    "note": "repeated --allowed roots (argparse); --head omitted = working tree at the freeze; the same command with --head <commit> reproduces it against a frozen commit",
+    "post_rebase_note": "After the publication rebase onto origin/main e560ded1b (PRs 683-685 merged), the same command must use --base e560ded1b1... (the merge-base): with --base 0c683fb16 the diff includes the sibling nodes' files already on main (B/D/E, A13 record) and reports them as out-of-fence. Closeout run: --base e560ded1b --head <closeout SHA> -> PASS, 0 violations, 51 paths (result in the closeout message)."
+  },
+  "post_review_02_refreeze": {
+    "review": "instances/A2_REVIEWER/REVIEW_02_2026-09-03_over_6f07556ac.md (byte copy; PASS, 0 blocking / 0 major / 2 minor / 7 notes)",
+    "changes": [
+      "frontend/scripts/run-packaged-security-proof.mjs (whole-directive CSP compare)",
+      "frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts (exact fixture; wildcard/widened negatives)",
+      "frontend/electron/renderer-window-policy.ts (Promise.resolve().then(() => openExternal(url)))",
+      "frontend/src/__tests__/electron/renderer-window-policy.test.ts (synchronous-throw case)",
+      "DEL-09-06 EVIDENCE.md, _run_records, RETURN.md, this file (text)"
+    ],
+    "evidence_regeneration": "none — bundle 3 (7f240a36…) already carries the exact connect-src 'self' string; reviewer rerun over 6f07556ac reproduced it",
+    "checks": [
+      {
+        "id": "frontend-typecheck",
+        "command": "npm run typecheck",
+        "cwd": "projects/chirality-app-dev/frontend",
+        "exit": 0,
+        "status": "pass"
+      },
+      {
+        "id": "frontend-test-focused",
+        "command": "npx vitest run src/__tests__/scripts/run-packaged-security-proof.test.ts src/__tests__/electron/renderer-window-policy.test.ts",
+        "cwd": "projects/chirality-app-dev/frontend",
+        "exit": 0,
+        "status": "pass",
+        "summary": "2 files, 71 tests (renderer-window-policy 62 incl. the synchronous-throw case; run-packaged-security-proof 9; per-file counts corrected on review 3 R3-1 — earlier records counted it() call sites, not expanded cases; three timing-bound assertions now flush the task queue before asserting the deferred openExternal call)"
+      },
+      {
+        "id": "git-diff-check",
+        "command": "git diff --check 0c683fb1657706316272951e4c3a0f7781b46009 HEAD",
+        "cwd": ".",
+        "exit": 0,
+        "status": "pass",
+        "summary": "working tree clean before the commit; full basis..HEAD range re-checked immediately after the commit (result in the freeze message)"
+      },
+      {
+        "id": "validate-change-scope",
+        "command": "python3 tools/software_workflow/validate_change_scope.py . --base 0c683fb1657706316272951e4c3a0f7781b46009 --allowed projects/chirality-app-dev/frontend/electron/api-key-ipc.ts --allowed projects/chirality-app-dev/frontend/electron/api-key-storage.ts --allowed projects/chirality-app-dev/frontend/electron/main.ts --allowed projects/chirality-app-dev/frontend/electron/preload.ts --allowed projects/chirality-app-dev/frontend/electron/ipc-sender-policy.ts --allowed projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts --allowed projects/chirality-app-dev/frontend/electron/runtime-control-ipc.ts --allowed projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs --allowed projects/chirality-app-dev/frontend/src/components/settings/api-key-settings.tsx --allowed projects/chirality-app-dev/frontend/src/lib/credential-storage-state.ts --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks --allowed projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge --allowed projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md --head <round-4 SHA>",
+        "cwd": ".",
+        "exit": 0,
+        "status": "pass",
+        "summary": "PASS over the working tree before the commit; the --head <round-4 SHA> form was run immediately after the commit (result in the freeze message) — it cannot be recorded inside the commit it names"
+      }
+    ]
+  }
+}

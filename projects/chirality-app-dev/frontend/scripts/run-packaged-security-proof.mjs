@@ -41,8 +41,19 @@ const PACKAGED_POLICY_MARKERS = [
   'Attachment exceeds per-file size limit',
   'Attachment exceeds per-turn size budget',
   'symbolic links are rejected',
-  'ATTACHMENT_FAILURE'
+  'ATTACHMENT_FAILURE',
+  'Content-Security-Policy',
+  'renderer.window_open.denied',
+  'renderer.navigation.denied'
 ];
+const BLOCKED_PROBE_URL = 'https://example.com/chirality-packaged-security-blocked';
+const LOOPBACK_PROBE_URL = 'http://127.0.0.1:9/chirality-packaged-security-loopback';
+// The page can no longer reach the REQ-NET-001 egress layer for a foreign host
+// (the CSP's connect-src 'self' stops it first), so this request is issued from
+// the main process through the window's session, where onBeforeRequest denies
+// it (anthropic_port_not_allowlisted:8443). The example.com probe above is the
+// CSP-layer observation.
+const EGRESS_PROBE_URL = 'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked';
 
 function nowIso() {
   return new Date().toISOString();
@@ -170,7 +181,10 @@ function startLoggedProcess({ label, command, args, env, logPath }) {
     env,
     stdio: ['ignore', 'pipe', 'pipe']
   });
-  const stream = createWriteStream(logPath, { flags: 'a', mode: 0o600 });
+  // Truncate, never append: every log-derived observation below must come from
+  // this run alone, or a stale file from an earlier run could satisfy a check
+  // the current bundle did not.
+  const stream = createWriteStream(logPath, { flags: 'w', mode: 0o600 });
   let captured = '';
   const append = (chunk) => {
     const text = chunk.toString();
@@ -307,9 +321,8 @@ async function captureTcpSnapshot(rootPids) {
   };
 }
 
-function extractProbePayloads(logText) {
+function extractMarkedPayloads(logText, marker) {
   return logText.split(/\r?\n/).flatMap((line) => {
-    const marker = '[network-policy-probe]';
     const index = line.indexOf(marker);
     if (index === -1) return [];
     try {
@@ -320,21 +333,33 @@ function extractProbePayloads(logText) {
   });
 }
 
+function extractProbePayloads(logText) {
+  return extractMarkedPayloads(logText, '[network-policy-probe]');
+}
+
+function probeResultFailed(probePayloads, url) {
+  return probePayloads.some((payload) =>
+    Array.isArray(payload.results) && payload.results.some((result) =>
+      result.url === url && result.ok === false
+    )
+  );
+}
+
 export function summarizeNetworkEvidence(logText, snapshots) {
   const blockedDiagnostics = (logText.match(/Blocked renderer outbound request by network policy/g) ?? []).length;
+  const egressDiagnostics = (logText.match(/anthropic_port_not_allowlisted:8443/g) ?? []).length;
   const probePayloads = extractProbePayloads(logText);
   const endpoints = snapshots.flatMap((snapshot) => snapshot.endpoints ?? []);
   const unique = [...new Map(endpoints.map((entry) => [entry.endpoint, entry])).values()];
   const nonAllowlisted = unique.filter((entry) => entry.class !== 'loopback');
-  const blockedProbeObserved = probePayloads.some((payload) =>
-    Array.isArray(payload.results) && payload.results.some((result) =>
-      result.url === 'https://example.com/chirality-packaged-security-blocked' && result.ok === false
-    )
-  );
-  const loopbackProbeObserved = probePayloads.some((payload) =>
-    Array.isArray(payload.results) && payload.results.some((result) =>
-      result.url === 'http://127.0.0.1:9/chirality-packaged-security-loopback' && result.ok === false
-    )
+  const blockedProbeObserved = probeResultFailed(probePayloads, BLOCKED_PROBE_URL);
+  const loopbackProbeObserved = probeResultFailed(probePayloads, LOOPBACK_PROBE_URL);
+  const egressPayloads = extractMarkedPayloads(logText, '[egress-layer-probe]');
+  const egressProbeObserved = egressPayloads.some(
+    (payload) =>
+      payload?.policy === 'REQ-NET-001' &&
+      payload?.destination?.hostname === 'api.anthropic.com' &&
+      payload?.outcome === 'rejected'
   );
   return {
     snapshotCount: snapshots.length,
@@ -342,15 +367,71 @@ export function summarizeNetworkEvidence(logText, snapshots) {
     uniqueOutboundTcp: unique.map(({ line: _line, ...entry }) => entry),
     nonAllowlistedOutboundTcp: nonAllowlisted.map(({ line: _line, ...entry }) => entry),
     blockedRendererDiagnostics: blockedDiagnostics,
+    egressLayerDiagnostics: egressDiagnostics,
     probePayloadCount: probePayloads.length,
+    egressProbePayloadCount: egressPayloads.length,
     blockedProbeObserved,
     loopbackProbeObserved,
+    egressProbeObserved,
     pass:
       snapshots.length > 0 &&
       nonAllowlisted.length === 0 &&
       blockedDiagnostics > 0 &&
+      egressDiagnostics > 0 &&
       blockedProbeObserved &&
-      loopbackProbeObserved
+      loopbackProbeObserved &&
+      egressProbeObserved
+  };
+}
+
+/**
+ * Renderer hardening evidence (G-CSP): the document's CSP header as the page
+ * itself sees it, a denied window.open, the CSP violation raised by a blocked
+ * fetch, the main-process denial lines, and — as important — no violation
+ * against the app's own resources.
+ */
+export function summarizeRendererSecurityEvidence(logText) {
+  const payloads = extractMarkedPayloads(logText, '[renderer-security-probe]');
+  const payload = payloads.find((entry) => entry && entry.policy === 'G-CSP' && !entry.error) ?? null;
+  const cspHeader = typeof payload?.cspHeader === 'string' ? payload.cspHeader : null;
+  // Whole directives, never substrings: "connect-src 'self'" as a substring would
+  // also match the superseded "connect-src 'self' https://api.anthropic.com:*".
+  const cspDirectives = cspHeader === null ? [] : cspHeader.split(';').map((directive) => directive.trim());
+  const cspHeaderPresent =
+    cspHeader !== null &&
+    cspDirectives.includes("default-src 'self'") &&
+    cspDirectives.includes("connect-src 'self'") &&
+    cspDirectives.includes("frame-src 'none'") &&
+    cspDirectives.includes("object-src 'none'") &&
+    !cspHeader.includes("'unsafe-eval'");
+  const violations = Array.isArray(payload?.violations) ? payload.violations : [];
+  const expectedViolation = (violation) =>
+    typeof violation?.blockedURI === 'string' && violation.blockedURI.startsWith('https://example.com');
+  const cspViolationObserved = violations.some(
+    (violation) => expectedViolation(violation) && violation.effectiveDirective === 'connect-src'
+  );
+  const unexpectedViolations = violations.filter((violation) => !expectedViolation(violation));
+  const windowOpenReturnedNull = payload?.windowOpen?.returned === 'null';
+  const windowOpenDeniedLogged = logText.includes('renderer.window_open.denied');
+  const navigationDeniedLogged = logText.includes('renderer.navigation.denied');
+  return {
+    probePayloadCount: payloads.length,
+    cspHeader,
+    cspHeaderPresent,
+    cspViolationObserved,
+    unexpectedViolations,
+    windowOpenReturnedNull,
+    windowOpenDeniedLogged,
+    navigationAttempted: typeof payload?.navigationAttempted === 'string',
+    navigationDeniedLogged,
+    pass:
+      payload !== null &&
+      cspHeaderPresent &&
+      cspViolationObserved &&
+      unexpectedViolations.length === 0 &&
+      windowOpenReturnedNull &&
+      windowOpenDeniedLogged &&
+      navigationDeniedLogged
   };
 }
 
@@ -382,6 +463,7 @@ export function packagedProofPass({
   packagedPolicyPass,
   credentialProofPass,
   networkProofPass,
+  rendererSecurityProofPass,
   cleanupPass,
   metadataLeakFindingCount
 }) {
@@ -390,6 +472,7 @@ export function packagedProofPass({
     packagedPolicyPass &&
     credentialProofPass &&
     networkProofPass &&
+    rendererSecurityProofPass === true &&
     cleanupPass &&
     metadataLeakFindingCount === 0
   );
@@ -506,12 +589,12 @@ export async function runProof(args) {
     ...cleanEnv,
     CHIRALITY_USER_DATA: userDataRoot,
     CHIRALITY_SKIP_CLI_LAUNCHER: '1',
-    CHIRALITY_NETWORK_POLICY_PROBE_URLS: [
-      'https://example.com/chirality-packaged-security-blocked',
-      'http://127.0.0.1:9/chirality-packaged-security-loopback'
-    ].join(','),
+    CHIRALITY_NETWORK_POLICY_PROBE_URLS: [BLOCKED_PROBE_URL, LOOPBACK_PROBE_URL].join(','),
     CHIRALITY_NETWORK_POLICY_PROBE_DELAY_MS: '1000',
-    CHIRALITY_NETWORK_POLICY_PROBE_TIMEOUT_MS: '3000'
+    CHIRALITY_NETWORK_POLICY_PROBE_TIMEOUT_MS: '3000',
+    CHIRALITY_RENDERER_SECURITY_PROBE: '1',
+    CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '1500',
+    CHIRALITY_EGRESS_LAYER_PROBE_URL: EGRESS_PROBE_URL
   };
 
   let daemon;
@@ -551,6 +634,9 @@ export async function runProof(args) {
       if (
         combined.includes('Blocked renderer outbound request by network policy') &&
         combined.includes('[network-policy-probe]') &&
+        combined.includes('[renderer-security-probe]') &&
+        combined.includes('[egress-layer-probe]') &&
+        combined.includes('renderer.navigation.denied') &&
         snapshots.length >= 4
       ) break;
       await sleep(300);
@@ -625,6 +711,7 @@ export async function runProof(args) {
     pass: credentialInternal.proof.mutationPass && retainedSecretFindings.length === 0
   };
   const networkProof = summarizeNetworkEvidence(combinedClosedLogs, snapshots);
+  const rendererSecurityProof = summarizeRendererSecurityEvidence(combinedClosedLogs);
   const genericSensitiveFindings = [
     /https?:\/\/[^\s/@:]+:[^\s/@]+@/u,
     /[?&](?:api[_-]?key|token|credential|password)=/iu
@@ -636,16 +723,18 @@ export async function runProof(args) {
       packagedPolicyPass: packagedPolicy.allPresent,
       credentialProofPass: credentialProof.pass,
       networkProofPass: networkProof.pass,
+      rendererSecurityProofPass: rendererSecurityProof.pass,
       cleanupPass: cleanup.pass,
       metadataLeakFindingCount: genericSensitiveFindings.length
     }) ? 'pass' : 'fail',
     startedAt,
     completedAt: nowIso(),
-    proofBoundary: 'fresh-unsigned-packaged-app-network-safeStorage-and-security-byte-presence',
+    proofBoundary: 'fresh-unsigned-packaged-app-network-safeStorage-renderer-hardening-and-security-byte-presence',
     artifactIdentity: identity,
     packagedPolicy,
     credentialProof,
     networkProof,
+    rendererSecurityProof,
     cleanup,
     retainedMetadataLeakFindings: genericSensitiveFindings,
     exclusions: {

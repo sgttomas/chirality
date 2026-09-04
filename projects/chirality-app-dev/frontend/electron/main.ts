@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, ipcMain } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import { spawn } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import { stat } from 'node:fs/promises';
@@ -28,6 +28,14 @@ import {
   resolveDesktopProjectBinding
 } from './desktop-project-client';
 import { resolvePackagedDaemonInstructionRoot } from './daemon-instruction-root';
+import {
+  buildRendererContentSecurityPolicy,
+  CONTENT_SECURITY_POLICY_HEADER,
+  installRendererWindowPolicy,
+  rendererWebPreferences,
+  runEgressLayerProbe,
+  runRendererSecurityProbe
+} from './renderer-window-policy';
 import { startRuntimeHost, type RuntimeHost } from './runtime-host';
 import {
   createRuntimeBindingSupervisor,
@@ -471,7 +479,12 @@ async function startPackagedRendererServer(): Promise<RendererServer> {
 
   await nextApp.prepare();
   const handle = nextApp.getRequestHandler();
+  // The packaged renderer document is served with the renderer CSP at the
+  // source; the per-window onHeadersReceived hook only fills in when a response
+  // (for example the dev server's) carries none.
+  const contentSecurityPolicy = buildRendererContentSecurityPolicy({ mode: 'packaged' });
   const server = createServer((req, res) => {
+    res.setHeader(CONTENT_SECURITY_POLICY_HEADER, contentSecurityPolicy);
     handle(req, res);
   });
 
@@ -505,16 +518,14 @@ async function startPackagedRendererServer(): Promise<RendererServer> {
 }
 
 function createMainWindow(rendererUrl: string): BrowserWindow {
+  const rendererOrigin = new URL(rendererUrl).origin;
+  // Web preferences come from the hardening policy and are asserted there:
+  // creation fails closed rather than producing a weaker window.
   const window = new BrowserWindow({
     width: 1280,
     height: 840,
     show: false,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: true,
-      nodeIntegration: false,
-      sandbox: true
-    }
+    webPreferences: rendererWebPreferences({ preload: path.join(__dirname, 'preload.js') })
   });
 
   window.once('ready-to-show', () => {
@@ -522,8 +533,21 @@ function createMainWindow(rendererUrl: string): BrowserWindow {
   });
 
   registerRendererEgressPolicy(window);
+  installRendererWindowPolicy(window, {
+    rendererOrigin,
+    contentSecurityPolicy: buildRendererContentSecurityPolicy({
+      mode: app.isPackaged ? 'packaged' : 'development',
+      rendererOrigin
+    }),
+    // http(s) targets of a renderer window.open / target="_blank" go to the
+    // system browser rather than a child window carrying this app's bridge.
+    openExternal: (url) => shell.openExternal(url),
+    log: (level, event, detail) => desktopLogger.log(level, event, detail)
+  });
   window.loadURL(rendererUrl);
   void runRendererNetworkProbe(window);
+  runRendererSecurityProbe(window, { env: process.env });
+  runEgressLayerProbe(window, { env: process.env });
 
   return window;
 }
@@ -587,7 +611,6 @@ async function initializeGui(): Promise<void> {
     socketPath: control.socketPath,
     tokenFile: control.operatorTokenFile
   });
-  registerApiKeyHandlers(runtimeClient);
   await registerDirectorySelectionHandler();
   await registerRuntimeConnectivityHandler();
   process.env.CHIRALITY_INSTRUCTION_ROOT = resolveInstructionRootForProcess();
@@ -652,13 +675,23 @@ async function initializeGui(): Promise<void> {
   const rendererUrl = app.isPackaged
     ? (rendererServer = await startPackagedRendererServer()).url
     : process.env.ELECTRON_RENDERER_URL ?? 'http://localhost:3000';
+  const rendererOrigin = new URL(rendererUrl).origin;
+
+  // Credential channels are registered only once the renderer origin is known:
+  // every one of them rejects senders from any other origin, so they cannot
+  // exist before the origin does. The window is created after this, so no
+  // renderer can invoke them in the gap.
+  registerApiKeyHandlers(runtimeClient, {
+    rendererOrigin,
+    log: (level, event, detail) => desktopLogger.log(level, event, detail)
+  });
 
   registerRuntimeControlHandlers({
     client: runtimeClient,
     lifecycle: createDesktopDaemonLifecycle(),
     desktopExecutable: app.getPath('exe'),
     packaged: app.isPackaged,
-    rendererOrigin: new URL(rendererUrl).origin,
+    rendererOrigin,
     // An operator action that makes the daemon reachable should not have to wait
     // out the backoff ladder.
     onDaemonAvailable: async () => {

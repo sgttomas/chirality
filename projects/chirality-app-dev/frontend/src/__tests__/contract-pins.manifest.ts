@@ -210,6 +210,104 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
     ]
   },
   {
+    file: 'electron/main.ts',
+    description:
+      'G-CSP renderer hardening (DEL-09-06-V3-01): every window is created from the hardening policy (asserted context isolation, no Node integration, sandbox), the egress policy and the window policy (window-open denial, navigation containment, CSP) are installed per window, the packaged renderer server sets the CSP at the source, and every privileged IPC module receives the exact renderer origin',
+    pins: [
+      { kind: 'contains', value: "webPreferences: rendererWebPreferences({ preload: path.join(__dirname, 'preload.js') })" },
+      { kind: 'notContains', value: 'contextIsolation: false' },
+      { kind: 'notContains', value: 'nodeIntegration: true' },
+      { kind: 'notContains', value: 'sandbox: false' },
+      { kind: 'notContains', value: 'webSecurity: false' },
+      { kind: 'notContains', value: 'allowRunningInsecureContent' },
+      { kind: 'notContains', value: 'nodeIntegrationInWorker' },
+      { kind: 'notContains', value: 'nodeIntegrationInSubFrames' },
+      { kind: 'notContains', value: 'enableRemoteModule' },
+      { kind: 'notContains', value: 'webviewTag' },
+      { kind: 'contains', value: 'registerRendererEgressPolicy(window);' },
+      { kind: 'contains', value: 'installRendererWindowPolicy(window, {' },
+      { kind: 'contains', value: 'openExternal: (url) => shell.openExternal(url)' },
+      { kind: 'contains', value: "mode: app.isPackaged ? 'packaged' : 'development'" },
+      { kind: 'contains', value: 'res.setHeader(CONTENT_SECURITY_POLICY_HEADER, contentSecurityPolicy);' },
+      { kind: 'contains', value: 'const rendererOrigin = new URL(rendererUrl).origin;' },
+      { kind: 'contains', value: 'registerApiKeyHandlers(runtimeClient, {' },
+      { kind: 'contains', value: 'registerRuntimeControlHandlers({' }
+    ]
+  },
+  {
+    file: 'electron/renderer-window-policy.ts',
+    description:
+      'Renderer window hardening policy (DEL-09-06-V3-01): explicit web preferences, deny-all window-open, renderer-origin-only navigation on both navigation events, CSP without eval outside development and closed to frames/objects/embedding',
+    pins: [
+      { kind: 'contains', value: 'contextIsolation: true,' },
+      { kind: 'contains', value: 'nodeIntegration: false,' },
+      { kind: 'contains', value: 'sandbox: true' },
+      { kind: 'contains', value: "return { action: 'deny' };" },
+      { kind: 'contains', value: "return { action: 'deny', external: false, reason: 'SCHEME_NOT_HTTP' };" },
+      { kind: 'contains', value: "['will-navigate', 'will-redirect'] as const" },
+      { kind: 'contains', value: 'event.preventDefault();' },
+      { kind: 'contains', value: "parsed.origin === 'null' || parsed.origin !== rendererOrigin" },
+      { kind: 'contains', value: "\"default-src 'self'\"" },
+      { kind: 'contains', value: "`script-src 'self' 'unsafe-inline'${development ? \" 'unsafe-eval'\" : ''}`" },
+      { kind: 'contains', value: "\"frame-src 'none'\"" },
+      { kind: 'contains', value: "\"object-src 'none'\"" },
+      { kind: 'contains', value: "\"frame-ancestors 'none'\"" },
+      { kind: 'contains', value: "\"base-uri 'self'\"" },
+      { kind: 'contains', value: "\"form-action 'self'\"" },
+      { kind: 'contains', value: "const connectSources = [\"'self'\"];" },
+      { kind: 'notContains', value: 'api.anthropic.com:*' },
+      { kind: 'contains', value: "callback(responseHeaders === null ? {} : { responseHeaders });" },
+      { kind: 'contains', value: 'window.webContents.session' },
+      { kind: 'contains', value: "CHIRALITY_EGRESS_LAYER_PROBE_URL" },
+      { kind: 'contains', value: "parsed.protocol !== 'http:' && parsed.protocol !== 'https:'" },
+      { kind: 'contains', value: 'webRequest.onHeadersReceived(' },
+      { kind: 'notContains', value: 'unsafe-hashes' },
+      { kind: 'notContains', value: "'*'" }
+    ]
+  },
+  {
+    file: 'electron/api-key-ipc.ts',
+    description:
+      'Credential IPC sender authorization (DEL-09-06-V3-01): all six channels adopt the shared origin policy and deny with a typed, secret-free result',
+    pins: [
+      { kind: 'contains', value: "from './ipc-sender-policy'" },
+      { kind: 'contains', value: 'isAuthorizedSender(event, rendererOrigin)' },
+      { kind: 'contains', value: "'Credential request was denied'" },
+      { kind: 'contains', value: 'if (denied(event, API_KEY_STORE_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, API_KEY_REMOVE_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, API_KEY_STATUS_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, PROVIDER_API_KEY_STORE_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, PROVIDER_API_KEY_REMOVE_CHANNEL))' },
+      { kind: 'contains', value: 'if (denied(event, PROVIDER_API_KEY_STATUS_CHANNEL))' },
+      { kind: 'contains', value: 'sender: describeIpcSender(event)' },
+      { kind: 'notContains', value: 'senderFrame.url' }
+    ]
+  },
+  {
+    file: 'electron/runtime-control-ipc.ts',
+    description:
+      'Runtime-control IPC keeps the shared sender policy (no private copy that could drift)',
+    pins: [
+      { kind: 'contains', value: "from './ipc-sender-policy'" },
+      { kind: 'contains', value: 'isAuthorizedSender(event, deps.rendererOrigin)' },
+      { kind: 'notContains', value: 'function isAuthorizedSender' }
+    ]
+  },
+  {
+    file: 'electron/api-key-storage.ts',
+    description:
+      'Typed safeStorage states are non-destructive (DEL-04-05-V3-01): a failed read never rewrites, truncates, or deletes the blob, and never falls back to another store',
+    pins: [
+      { kind: 'contains', value: "return { state: 'storageUnavailable' };" },
+      { kind: 'contains', value: "return { state: 'decryptFailed' };" },
+      { kind: 'contains', value: "return { state: 'missing' };" },
+      { kind: 'contains', value: "return { state: 'available', value: decrypted };" },
+      { kind: 'contains', value: 'Preserve corrupted blobs for operator investigation.' },
+      { kind: 'notContains', value: 'writeFileSync' },
+      { kind: 'notContains', value: 'keytar' }
+    ]
+  },
+  {
     file: 'scripts/run-network-policy-proof.mjs',
     description:
       'Scripted agentSdk network proof mode exists without broadening egress (from build-network-policy.test.ts)',
@@ -236,6 +334,11 @@ export const CONTRACT_PIN_MANIFEST: ContractPinTarget[] = [
       { kind: 'contains', value: "client.storeCredential('anthropic', fixtureCredential)" },
       { kind: 'contains', value: 'nonAllowlistedOutboundTcp' },
       { kind: 'contains', value: 'retainedMetadataLeakFindings' },
+      { kind: 'contains', value: "CHIRALITY_RENDERER_SECURITY_PROBE: '1'" },
+      { kind: 'contains', value: 'CHIRALITY_EGRESS_LAYER_PROBE_URL: EGRESS_PROBE_URL' },
+      { kind: 'contains', value: 'rendererSecurityProofPass === true' },
+      { kind: 'contains', value: "'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'" },
+      { kind: 'contains', value: "'[egress-layer-probe]'" },
       { kind: 'notContains', value: 'CSC_LINK' },
       { kind: 'notContains', value: 'APPLE_ID' }
     ]

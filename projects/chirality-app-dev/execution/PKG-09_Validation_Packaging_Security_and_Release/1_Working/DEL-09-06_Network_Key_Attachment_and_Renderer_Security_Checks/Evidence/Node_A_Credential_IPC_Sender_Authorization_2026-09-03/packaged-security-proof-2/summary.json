@@ -1,0 +1,261 @@
+{
+  "schema": "chirality-packaged-security-proof/v1",
+  "status": "pass",
+  "startedAt": "2026-09-03T21:13:14.008Z",
+  "completedAt": "2026-09-03T21:13:17.678Z",
+  "proofBoundary": "fresh-unsigned-packaged-app-network-safeStorage-renderer-hardening-and-security-byte-presence",
+  "artifactIdentity": {
+    "schema": "chirality-packaged-security-subject/v1",
+    "appPath": "/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeA/projects/chirality-app-dev/frontend/dist/mac-arm64/Chirality.app",
+    "sourceRevision": "4e4c7e9090891fae98bb63ebf1ee8e3561d4f9ac",
+    "files": [
+      {
+        "relativePath": "Contents/MacOS/Chirality",
+        "bytes": 33968,
+        "sha256": "79019361f697c1a81489dba3e94631b0977770c1ab15236f1f033f9de6238874"
+      },
+      {
+        "relativePath": "Contents/Resources/app.asar",
+        "bytes": 448840503,
+        "sha256": "133e7092115a42c2ab3b578491f583bb1119794dfb8d0d4d80520ffbbfa6a5e7"
+      },
+      {
+        "relativePath": "Contents/Resources/runtime-cli/chirality-cli.mjs",
+        "bytes": 75460,
+        "sha256": "0503c40afde2e3bc2522405305893698f5742687139d00e2fda7995a567af989"
+      }
+    ],
+    "identitySha256": "eb23a0756253e6a01ab8d05da23fe5331c605dfd7b7e6108df45340c9e07673b"
+  },
+  "packagedPolicy": {
+    "markers": [
+      {
+        "marker": "REQ-NET-001",
+        "present": true
+      },
+      {
+        "marker": "api.anthropic.com",
+        "present": true
+      },
+      {
+        "marker": "anthropic_protocol_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "anthropic_port_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "host_not_allowlisted",
+        "present": true
+      },
+      {
+        "marker": "Blocked renderer outbound request by network policy",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-file size limit",
+        "present": true
+      },
+      {
+        "marker": "Attachment exceeds per-turn size budget",
+        "present": true
+      },
+      {
+        "marker": "symbolic links are rejected",
+        "present": true
+      },
+      {
+        "marker": "ATTACHMENT_FAILURE",
+        "present": true
+      },
+      {
+        "marker": "Content-Security-Policy",
+        "present": true
+      },
+      {
+        "marker": "renderer.window_open.denied",
+        "present": true
+      },
+      {
+        "marker": "renderer.navigation.denied",
+        "present": true
+      }
+    ],
+    "allPresent": true
+  },
+  "credentialProof": {
+    "fixtureCredentialSha256": "0e3069e5f1046cead17ee591c5be3f015f699eca7b283b32a02fb1299b4e499a",
+    "before": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      }
+    },
+    "afterStore": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": true,
+        "source": "ui",
+        "storage": "available"
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      }
+    },
+    "storedMutation": {
+      "providerId": "anthropic",
+      "configured": true
+    },
+    "encryptedBlob": {
+      "bytes": 67,
+      "sha256": "1eeea94c0048fb6e3282f7bf66cd2cc7be7586789735b7d8b2b96c1de09618b1",
+      "ownerOnlyMode": true,
+      "excludesPlaintextFixture": true
+    },
+    "removedMutation": {
+      "providerId": "anthropic",
+      "configured": false
+    },
+    "afterRemove": {
+      "anthropic": {
+        "providerId": "anthropic",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      },
+      "omlx": {
+        "providerId": "omlx",
+        "configured": false,
+        "source": "none",
+        "storage": "missing"
+      }
+    },
+    "credentialFilePresentAfterRemove": false,
+    "providerIsolation": true,
+    "mutationPass": true,
+    "retainedSecretFindings": [],
+    "evidenceSurfacesScannedAfterStreamClosure": [
+      "encryptedCredentialArtifact",
+      "emitted:cleanup.json",
+      "emitted:packaged-daemon.log",
+      "emitted:packaged-gui.log",
+      "emitted:summary.json",
+      "emitted:tcp-snapshots.json"
+    ],
+    "pass": true
+  },
+  "networkProof": {
+    "snapshotCount": 7,
+    "sampledProcessIds": [
+      79260,
+      79261,
+      79262,
+      79263,
+      79310,
+      79311,
+      79358
+    ],
+    "uniqueOutboundTcp": [
+      {
+        "endpoint": "127.0.0.1:51776",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51777",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51778",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51779",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51780",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51781",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      },
+      {
+        "endpoint": "127.0.0.1:51775",
+        "host": "127.0.0.1",
+        "class": "loopback"
+      }
+    ],
+    "nonAllowlistedOutboundTcp": [],
+    "blockedRendererDiagnostics": 1,
+    "egressLayerDiagnostics": 1,
+    "probePayloadCount": 1,
+    "blockedProbeObserved": true,
+    "loopbackProbeObserved": true,
+    "egressProbeObserved": true,
+    "pass": true
+  },
+  "rendererSecurityProof": {
+    "probePayloadCount": 1,
+    "cspHeader": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.anthropic.com:*; worker-src 'self'; manifest-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+    "cspHeaderPresent": true,
+    "cspViolationObserved": true,
+    "unexpectedViolations": [],
+    "windowOpenReturnedNull": true,
+    "windowOpenDeniedLogged": true,
+    "navigationAttempted": true,
+    "navigationDeniedLogged": true,
+    "pass": true
+  },
+  "cleanup": {
+    "gui": {
+      "label": "packaged GUI",
+      "started": true,
+      "pid": 79263,
+      "signalSent": "SIGTERM",
+      "exitCode": 0,
+      "signalCode": null,
+      "confirmedStopped": true,
+      "streamClosed": true
+    },
+    "daemon": {
+      "label": "packaged runtime daemon",
+      "started": true,
+      "pid": 79260,
+      "signalSent": "SIGTERM",
+      "exitCode": 0,
+      "signalCode": null,
+      "confirmedStopped": true,
+      "streamClosed": true
+    },
+    "tempRootRemoved": true,
+    "tempRootRemovalError": null,
+    "pass": true
+  },
+  "retainedMetadataLeakFindings": [],
+  "exclusions": {
+    "realCredentialsUsed": false,
+    "signingOrNotarization": false,
+    "distributionOrPublication": false,
+    "ownerUserDataTouched": false,
+    "providerScopeExpanded": false
+  }
+}

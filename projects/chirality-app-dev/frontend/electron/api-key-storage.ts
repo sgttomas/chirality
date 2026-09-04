@@ -9,10 +9,23 @@
 import { app, safeStorage } from 'electron';
 import { chmod, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import type { CredentialStorageState } from '../src/lib/credential-storage-state';
 
 export const PROVIDER_CREDENTIAL_IDS = ['anthropic', 'omlx'] as const;
 export type ProviderCredentialId = (typeof PROVIDER_CREDENTIAL_IDS)[number];
 export type ProviderCredentialSource = 'ui' | 'env' | 'none';
+export type { CredentialStorageState as ProviderCredentialStorageState };
+
+/**
+ * Outcome of reading one provider's encrypted blob. Only `available` carries
+ * the plaintext; every other state is a bare discriminator so callers that
+ * merely want the typed state can never receive key material by accident.
+ */
+export type ProviderCredentialRead =
+  | { state: 'available'; value: string }
+  | { state: 'missing' }
+  | { state: 'storageUnavailable' }
+  | { state: 'decryptFailed' };
 
 const LEGACY_ANTHROPIC_STORAGE_FILENAME = 'api-key.enc';
 const PROVIDER_STORAGE_FILENAMES: Record<ProviderCredentialId, string> = {
@@ -77,11 +90,30 @@ export async function storeProviderApiKey(
   setProviderGlobal(providerId, key);
 }
 
-export async function retrieveProviderApiKey(
+/**
+ * Read one provider's encrypted blob and classify it (DEL-04-05-V3-01).
+ *
+ * Exact state definitions:
+ * - `storageUnavailable` — `safeStorage.isEncryptionAvailable()` is false. The
+ *   blob is not even opened; nothing can be read or written.
+ * - `missing` — no ciphertext could be read (no file, or the read failed), or
+ *   the ciphertext decrypts to an empty string (nothing usable is stored).
+ * - `decryptFailed` — ciphertext bytes were read but `safeStorage` threw while
+ *   decrypting them.
+ * - `available` — decrypted to a non-empty key.
+ *
+ * This read is strictly non-destructive: the blob's bytes are never rewritten,
+ * truncated, or deleted here, whatever the outcome. A `decryptFailed` blob is
+ * retained exactly as found so the operator can investigate and decide; only
+ * an explicit store or remove replaces it. There is no fallback to any plaintext
+ * or alternate store. The only mutation is the owner-only mode repair below,
+ * which touches permission bits, not content.
+ */
+export async function readProviderCredential(
   providerId: ProviderCredentialId
-): Promise<string | null> {
+): Promise<ProviderCredentialRead> {
   if (!safeStorage.isEncryptionAvailable()) {
-    return null;
+    return { state: 'storageUnavailable' };
   }
 
   const storagePath = getStoragePath(providerId);
@@ -89,7 +121,7 @@ export async function retrieveProviderApiKey(
   try {
     encrypted = await readFile(storagePath);
   } catch {
-    return null;
+    return { state: 'missing' };
   }
 
   // Repair credentials stored before the owner-only mode was enforced, so an
@@ -97,12 +129,31 @@ export async function retrieveProviderApiKey(
   await chmod(storagePath, 0o600).catch(() => undefined);
   await chmod(path.dirname(storagePath), 0o700).catch(() => undefined);
 
+  let decrypted: string;
   try {
-    return safeStorage.decryptString(encrypted);
+    decrypted = safeStorage.decryptString(encrypted);
   } catch {
     // Preserve corrupted blobs for operator investigation.
-    return null;
+    return { state: 'decryptFailed' };
   }
+  if (decrypted.trim().length === 0) {
+    return { state: 'missing' };
+  }
+  return { state: 'available', value: decrypted };
+}
+
+/** Typed storage state only — the plaintext, if any, is discarded here. */
+export async function probeProviderCredentialStorage(
+  providerId: ProviderCredentialId
+): Promise<CredentialStorageState> {
+  return (await readProviderCredential(providerId)).state;
+}
+
+export async function retrieveProviderApiKey(
+  providerId: ProviderCredentialId
+): Promise<string | null> {
+  const read = await readProviderCredential(providerId);
+  return read.state === 'available' ? read.value : null;
 }
 
 export async function removeProviderApiKey(providerId: ProviderCredentialId): Promise<void> {
@@ -154,6 +205,17 @@ export function getProviderUiApiKey(providerId: ProviderCredentialId): string | 
   return undefined;
 }
 
+export type ProviderCredentialStatus = {
+  configured: boolean;
+  source: ProviderCredentialSource;
+  /**
+   * Typed safeStorage state of the provider's stored blob. Non-secret and
+   * orthogonal to `source`: an environment credential can be in use while the
+   * stored blob is `decryptFailed`, and the renderer needs both facts.
+   */
+  storage: CredentialStorageState;
+};
+
 /**
  * Runtime-daemon credential port backed exclusively by Electron safeStorage.
  *
@@ -162,37 +224,44 @@ export function getProviderUiApiKey(providerId: ProviderCredentialId): string | 
  * daemon control API except on an authenticated store request.
  */
 export class SafeStorageCredentialStore {
-  private async resolve(
-    providerId: string
-  ): Promise<{ value: string | undefined; source: ProviderCredentialSource }> {
+  private async resolve(providerId: string): Promise<{
+    value: string | undefined;
+    source: ProviderCredentialSource;
+    storage: CredentialStorageState;
+  }> {
     if (!isProviderCredentialId(providerId)) {
-      return { value: undefined, source: 'none' };
+      return { value: undefined, source: 'none', storage: 'missing' };
     }
-    const stored = await retrieveProviderApiKey(providerId);
-    if (stored?.trim()) {
-      setProviderGlobal(providerId, stored);
-      return { value: stored, source: 'ui' };
+    const read = await readProviderCredential(providerId);
+    if (read.state === 'available') {
+      setProviderGlobal(providerId, read.value);
+      return { value: read.value, source: 'ui', storage: 'available' };
     }
+    // Source precedence is unchanged by the typed state: when the stored blob
+    // is not usable (for whatever reason) the environment remains the accepted
+    // compatibility source. The state travels alongside so nothing is hidden.
     if (providerId === 'omlx') {
       const value = process.env.CHIRALITY_OMLX_API_KEY?.trim() || undefined;
-      return { value, source: value ? 'env' : 'none' };
+      return { value, source: value ? 'env' : 'none', storage: read.state };
     }
     const value =
       process.env.ANTHROPIC_API_KEY?.trim() ||
       process.env.CHIRALITY_ANTHROPIC_API_KEY?.trim() ||
       undefined;
-    return { value, source: value ? 'env' : 'none' };
+    return { value, source: value ? 'env' : 'none', storage: read.state };
   }
 
   async get(providerId: string): Promise<string | undefined> {
     return (await this.resolve(providerId)).value;
   }
 
-  async status(
-    providerId: string
-  ): Promise<{ configured: boolean; source: ProviderCredentialSource }> {
+  async status(providerId: string): Promise<ProviderCredentialStatus> {
     const resolved = await this.resolve(providerId);
-    return { configured: resolved.value !== undefined, source: resolved.source };
+    return {
+      configured: resolved.value !== undefined,
+      source: resolved.source,
+      storage: resolved.storage
+    };
   }
 
   async set(providerId: string, value: string): Promise<void> {

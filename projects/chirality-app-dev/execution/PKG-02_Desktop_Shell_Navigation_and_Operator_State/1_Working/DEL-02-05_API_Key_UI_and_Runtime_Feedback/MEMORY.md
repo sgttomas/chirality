@@ -11,3 +11,4 @@
 
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-112: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-07-12 - D-APP-56 consolidated decision-application tranche recorded the applicable ruled ownership, mapping, gate-reaffirmation, or dated-deferral result for DEL-02-05; proposal-only source rows were not treated as human rulings, no unruled work was executed, and no lifecycle transition occurred.
+- 2026-09-03 - DEL-02-05-V3-01 (four typed storage states rendered distinctly with remediation copy; bridge non-answers rendered as unknown, never as a keychain state) landed via node A `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03/`. No lifecycle change.

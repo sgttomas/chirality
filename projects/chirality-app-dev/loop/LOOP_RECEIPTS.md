@@ -6330,3 +6330,56 @@
     signing identity, Apple service call, notarization, distribution,
     product version byte, workflow, lifecycle, Checking Approval SHA, or
     Root change; WP-11 untouched.
+
+- **2026-09-03 — Receipt 212** (App v3 pathway node A: DEL-09-06-V3-01, DEL-04-05-V3-01, DEL-02-05-V3-01).
+  - Receipt-ID: `Receipt-212`
+  - Examined-Through: `0c683fb1657706316272951e4c3a0f7781b46009`
+  - Parent-Receipt: `Receipt-205`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected development node A (the three `SELECTABLE` items
+    sharing `frontend/electron/api-key-ipc.ts`) from the dev slate in the
+    HELP_HUMAN session chat on 2026-09-03; the selection is recorded at
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03/ORCHESTRATION_PLAN.md`
+    (Selection authority) and the sealed brief at
+    `instances/A1_IMPLEMENTER/LAUNCH_BRIEF.md`. Concurrent sibling nodes
+    B, D, E share this parent (ledger rule 7). The dispatch brief assigned
+    this receipt number 206; Receipts 209–211 were already appended on
+    `main`, and the ledger validator requires increasing IDs in physical
+    append order, so it is recorded as 212. Coordinator decisions D1–D5
+    (seated-locus governance, window-open hand-off to the system browser,
+    exact CSP with a main-process egress probe, NOTE-2 deferral, closeout
+    deltas) are transcribed in the run record `COORDINATOR_DECISIONS.md`.
+  - Pointers: branch `codex/app-v3-nodeA-credential-ipc-2026-09-03` (basis
+    above; reviewed freezes `4e4c7e909`, `6ac51e99b`, `6f07556ac`,
+    `adef5c67d`; rebased onto `e560ded1b`); RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_A_2026-09-03/`
+    (`STEP0_DISCOVERY.md` incl. the A1 re-stage declaration, `CHECKS.json`,
+    `RETURN.md`, `COORDINATOR_DECISIONS.md`, `HANDOFF_STATE.md`,
+    `MANIFEST.sha256`, `instances/A2_REVIEWER/REVIEW_0{1,2,3}_*.md`);
+    product `frontend/electron/{ipc-sender-policy,renderer-window-policy}.ts`
+    (new), `{api-key-ipc,api-key-storage,main,runtime-control-ipc}.ts`,
+    `frontend/src/lib/credential-storage-state.ts` (new),
+    `frontend/src/components/settings/api-key-settings.tsx`,
+    `frontend/scripts/run-packaged-security-proof.mjs`, tests under
+    `frontend/src/__tests__/`; DEL-09-06
+    `Evidence/Node_A_Credential_IPC_Sender_Authorization_2026-09-03/` (three
+    retained packaged-proof bundles; closure bundle identity
+    `7f240a36e64e0bd61c89b4b2ff03d7b00e95e88aa425cd3632bc2de6a317fd7d`),
+    DEL-04-05 `Evidence_TYPED_STORAGE_STATES_2026-09-03.md`, DEL-02-05
+    `Evidence_TYPED_STORAGE_STATES_UI_2026-09-03.md`, the three
+    `_run_records/TASK_RUN_2026-09-03_NODE_A.md`, and the three `_STATUS.md`
+    (V3-01 removed from each; DEL-09-06 V3-04 nonce CSP and V3-05
+    egress-probe restriction seeded as residuals).
+  - Checks: typecheck pass; full Vitest pass; build pass; `desktop:pack`
+    pass; packaged security proof pass (in-sandbox); `git diff --check`
+    pass; change-scope validator pass; harness self-check pass; harness
+    pytest pass; APP-HOLD dispatch preflight and register-match scan pass;
+    authority corpus status no drift; receipts validator pass; premerge
+    fail in the absent-runtime-daemon-bindings class, PR-CI-owed;
+    independent review rounds 1–3: remediated, pass, pass.
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as ephemeral
+    Agent 2 implementer under HELP_HUMAN (Claude Fable 5.1); reviewer Claude
+    Fable 5.1.
+  - Gate-Outcome: `EXECUTED` — awaiting owner merge; no release act. No
+    lifecycle, host-mutation, signing, notarization, distribution, or Root
+    act; the A1 re-stage rule applies to the touched `frontend/`.

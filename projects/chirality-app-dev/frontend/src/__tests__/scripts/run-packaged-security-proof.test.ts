@@ -8,7 +8,8 @@ import {
   parseArgs,
   parseLsofOutbound,
   sensitiveMaterialFindings,
-  summarizeNetworkEvidence
+  summarizeNetworkEvidence,
+  summarizeRendererSecurityEvidence
 } from '../../../scripts/run-packaged-security-proof.mjs';
 
 describe('run-packaged-security-proof script', () => {
@@ -56,19 +57,86 @@ describe('run-packaged-security-proof script', () => {
     ]);
   });
 
-  it('requires blocked diagnostics, both probes, and zero non-allowlisted TCP', () => {
+  it('requires blocked diagnostics, all three probes, and zero non-allowlisted TCP', () => {
     const logText = [
-      'Blocked renderer outbound request by network policy { destination: redacted }',
+      'Blocked renderer outbound request by network policy { destination: redacted }\n',
+      "Blocked renderer outbound request by network policy { reason: 'anthropic_port_not_allowlisted:8443' }\n",
       '[network-policy-probe] {"policy":"REQ-NET-001","results":[',
       '{"url":"https://example.com/chirality-packaged-security-blocked","ok":false},',
-      '{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false}]}'
+      '{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false}]}\n',
+      '[egress-layer-probe] {"policy":"REQ-NET-001","destination":{"protocol":"https:","hostname":"api.anthropic.com"},"outcome":"rejected","error":"net::ERR_BLOCKED_BY_CLIENT"}'
     ].join('');
-    const summary = summarizeNetworkEvidence(logText, [
+    const snapshots = [
       { pids: [10, 11], endpoints: [{ endpoint: '127.0.0.1:6000', host: '127.0.0.1', class: 'loopback', line: 'fixture' }] }
-    ]);
+    ];
+    const summary = summarizeNetworkEvidence(logText, snapshots);
 
     expect(summary.pass).toBe(true);
+    expect(summary.egressLayerDiagnostics).toBe(1);
+    expect(summary.egressProbeObserved).toBe(true);
     expect(summary.nonAllowlistedOutboundTcp).toEqual([]);
+
+    // The egress layer must be observed on its own, from the main-process
+    // probe: a CSP-only block of the example.com probe is not enough, and a
+    // probe that got a response means the egress layer let it through.
+    const cspOnly = logText.replace(
+      "Blocked renderer outbound request by network policy { reason: 'anthropic_port_not_allowlisted:8443' }\n",
+      ''
+    );
+    expect(summarizeNetworkEvidence(cspOnly, snapshots).pass).toBe(false);
+    const responded = logText.replace('"outcome":"rejected"', '"outcome":"response","status":200');
+    expect(summarizeNetworkEvidence(responded, snapshots).egressProbeObserved).toBe(false);
+    expect(summarizeNetworkEvidence(responded, snapshots).pass).toBe(false);
+  });
+
+  it('requires the renderer hardening evidence from the packaged page', () => {
+    const csp = "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'none'; object-src 'none'";
+    const payload = {
+      policy: 'G-CSP',
+      cspHeader: csp,
+      windowOpen: { returned: 'null' },
+      violations: [
+        { blockedURI: 'https://example.com', effectiveDirective: 'connect-src', disposition: 'enforce' }
+      ],
+      navigationAttempted: 'https://example.com/chirality-renderer-security-navigation'
+    };
+    const logText = [
+      `[renderer-security-probe] ${JSON.stringify(payload)}`,
+      '[chirality-desktop] [warn] renderer.window_open.denied {"destination":{"protocol":"https:","hostname":"example.com"}}',
+      '[chirality-desktop] [warn] renderer.navigation.denied {"event":"will-navigate","reason":"ORIGIN_NOT_RENDERER"}'
+    ].join('\n');
+
+    const summary = summarizeRendererSecurityEvidence(logText);
+    expect(summary).toMatchObject({
+      cspHeaderPresent: true,
+      cspViolationObserved: true,
+      unexpectedViolations: [],
+      windowOpenReturnedNull: true,
+      windowOpenDeniedLogged: true,
+      navigationAttempted: true,
+      navigationDeniedLogged: true,
+      pass: true
+    });
+
+    expect(summarizeRendererSecurityEvidence(logText.replace('renderer.navigation.denied', 'x')).pass).toBe(false);
+    expect(summarizeRendererSecurityEvidence(logText.replace('"returned":"null"', '"returned":"object"')).pass).toBe(false);
+    expect(summarizeRendererSecurityEvidence(logText.replace("'unsafe-inline'", "'unsafe-inline' 'unsafe-eval'")).pass).toBe(false);
+    // Exact directives only: the superseded port-wildcard form must not pass.
+    const wildcard = summarizeRendererSecurityEvidence(
+      logText.replace("connect-src 'self';", "connect-src 'self' https://api.anthropic.com:*;")
+    );
+    expect(wildcard.cspHeaderPresent).toBe(false);
+    expect(wildcard.pass).toBe(false);
+    expect(summarizeRendererSecurityEvidence(logText.replace("connect-src 'self';", "connect-src 'self' https://example.com;")).cspHeaderPresent).toBe(false);
+    expect(summarizeRendererSecurityEvidence(logText.replace("frame-src 'none';", "frame-src 'self';")).cspHeaderPresent).toBe(false);
+    const ownResourceViolation = JSON.stringify({
+      ...payload,
+      violations: [...payload.violations, { blockedURI: 'http://127.0.0.1:41234/_next/static/x.js', effectiveDirective: 'script-src-elem' }]
+    });
+    const withOwnViolation = summarizeRendererSecurityEvidence(logText.replace(JSON.stringify(payload), ownResourceViolation));
+    expect(withOwnViolation.unexpectedViolations).toHaveLength(1);
+    expect(withOwnViolation.pass).toBe(false);
+    expect(summarizeRendererSecurityEvidence('no probe at all').pass).toBe(false);
   });
 
   it('requires every packaged security marker and reports only hashes for fixture leaks', () => {
@@ -82,9 +150,13 @@ describe('run-packaged-security-proof script', () => {
       'Attachment exceeds per-file size limit',
       'Attachment exceeds per-turn size budget',
       'symbolic links are rejected',
-      'ATTACHMENT_FAILURE'
+      'ATTACHMENT_FAILURE',
+      'Content-Security-Policy',
+      'renderer.window_open.denied',
+      'renderer.navigation.denied'
     ].join('\n');
     expect(inspectPackagedPolicyMarkers(packagedMain).allPresent).toBe(true);
+    expect(inspectPackagedPolicyMarkers(packagedMain.replace('renderer.navigation.denied', '')).allPresent).toBe(false);
 
     const findings = sensitiveMaterialFindings('log has proof-key-value', [
       { label: 'fixture', value: 'proof-key-value' }
@@ -126,6 +198,7 @@ describe('run-packaged-security-proof script', () => {
       packagedPolicyPass: true,
       credentialProofPass: true,
       networkProofPass: true,
+      rendererSecurityProofPass: true,
       metadataLeakFindingCount: 0
     };
 
