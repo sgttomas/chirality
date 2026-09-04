@@ -56,3 +56,13 @@ Frontend build/premerge were not selected by `software-workflow.json` for the ch
 - The separate V3-03 Root-owned questions remain open: configuration-digest semantics and whether real private-home invalidation logs out the account.
 - A fresh reviewer must inspect 100% of `git diff fe0ce926d..REVIEW_FREEZE`. No product or test byte may change after `REVIEW_PASS`.
 - `_STATUS.md`, `MEMORY.md`, final `CHECKS.json`, `HANDOFF_STATE.md`, `MANIFEST.sha256`, and `LOOP_RECEIPTS.md` remain untouched until `REVIEW_PASS`.
+
+## Closeout return — supersedes the pre-review status above
+
+- **Status:** `CLOSEOUT_READY` after HELP_HUMAN's round-1 `REVIEW_PASS`; nothing is pushed and owner merge remains the gate.
+- **Review:** PASS over `d2490633a3a156b9014efacf50bad56eecdd6a03` with no BLOCKER, MAJOR, or MINOR finding. The three NOTES are non-blocking evidence only and seed no scope. The verbatim filed report has SHA-256 `ba29337cf364081cb18eaf53f8ae0e3d89be9ac056ee598e7498da2c15185e33`.
+- **Post-PASS byte identity:** the fake implementation remains SHA-256 `9d43b0fdf38ab638b186046124ddf919d0bd03edc4557b2b04f0145527d5c5a1`; its focused test remains SHA-256 `54275c0b1e5a6d707017b09d6495211cccdae45adfffc2b719e765c5a6f3eb16`. Both are byte-identical to the PASS freeze.
+- **Narrative closeout:** the review is filed, V3-04 is removed exactly per its Removed-when, DEL-02-05 History and MEMORY carry the closure/A1 echo, Receipt 217 parents Receipt 216, and final checks/handoff/manifest are included in this run record.
+- **Current basis:** a closeout fetch confirmed `origin/main` remains `fe0ce926d4475fa41cb91933ad1218b95083889b`; no rebase was required.
+- **Closeout checks:** the affected registered frontend test/typecheck, harness self-check/pytest, APP-HOLD integrity and dispatch preflight, authority corpus status, receipt validator, exact change-scope, manifest verification, and diff hygiene pass. Build and premerge remain skipped because neither the path rule nor V3-04 selects them.
+- **Remaining gate:** HELP_HUMAN push/PR review followed by explicit owner merge. V3-03 and its Root-owned questions remain unchanged.

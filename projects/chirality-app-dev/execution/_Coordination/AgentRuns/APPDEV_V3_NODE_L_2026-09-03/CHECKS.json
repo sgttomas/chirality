@@ -1,0 +1,51 @@
+{
+  "schema": "chirality-app-node-checks/v1",
+  "run_id": "APPDEV_V3_NODE_L_2026-09-03",
+  "basis": "fe0ce926d4475fa41cb91933ad1218b95083889b",
+  "reviewed_freeze": "d2490633a3a156b9014efacf50bad56eecdd6a03",
+  "review": {
+    "status": "PASS",
+    "blocker": 0,
+    "major": 0,
+    "minor": 0,
+    "note": 3,
+    "report": "instances/L2_REVIEWER/REVIEW_01_2026-09-03_over_d2490633a.md",
+    "sha256": "ba29337cf364081cb18eaf53f8ae0e3d89be9ac056ee598e7498da2c15185e33"
+  },
+  "post_review_identity": {
+    "frontend/src/lib/consent/fake-hosted-engine-consent-port.ts": "9d43b0fdf38ab638b186046124ddf919d0bd03edc4557b2b04f0145527d5c5a1",
+    "frontend/src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts": "54275c0b1e5a6d707017b09d6495211cccdae45adfffc2b719e765c5a6f3eb16",
+    "matches_reviewed_freeze": true
+  },
+  "results": [
+    {"id": "runtime-dependency-install", "status": "PASS"},
+    {"id": "runtime-build", "status": "PASS"},
+    {"id": "frontend-dependency-install", "status": "PASS"},
+    {"id": "focused-consent-vitest", "status": "PASS"},
+    {"id": "frontend-test", "status": "PASS"},
+    {"id": "frontend-typecheck", "status": "PASS"},
+    {"id": "app-hold-integrity", "status": "PASS"},
+    {"id": "app-hold-dispatch", "status": "PASS"},
+    {"id": "harness-self-check", "status": "PASS"},
+    {"id": "harness-pytest", "status": "PASS"},
+    {"id": "authority-corpus-v20", "status": "PASS"},
+    {"id": "receipt-validator", "status": "PASS"},
+    {"id": "change-scope", "status": "PASS"},
+    {"id": "git-diff-check", "status": "PASS"},
+    {"id": "manifest-verify", "status": "PASS"},
+    {"id": "frontend-build", "status": "SKIPPED", "reason": "Not selected by the live path rule or DEL-02-05-V3-04."},
+    {"id": "frontend-premerge", "status": "SKIPPED", "reason": "Not selected by the live path rule or DEL-02-05-V3-04."}
+  ],
+  "environment_notes": [
+    "The initial frontend install was denied by sandbox DNS and passed after approved network access.",
+    "The initial full-suite attempt was denied local listener access and passed after approved host capability.",
+    "The repository venv interpreter supplied PyYAML for harness self-check; no pass was inferred from the superseded system-Python attempt.",
+    "The full suite prints an expected fixture summary containing status FAIL while the Vitest command itself passes; the test assertions validate that negative fixture."
+  ],
+  "fences": {
+    "a1_restage_required": true,
+    "historical_r20_only": true,
+    "f_app_2_intact": true,
+    "release_readiness_claim": false
+  }
+}

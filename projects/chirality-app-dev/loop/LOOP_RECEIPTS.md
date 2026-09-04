@@ -6578,3 +6578,12 @@
     lifecycle, host-mutation, signing, notarization, distribution, or Root
     act; the A1 re-stage rule applies (gitignored artifacts written under
     `frontend/`); validation evidence only (RQG §13 posture).
+
+- **2026-09-03 — Receipt 217** (App v3 pathway node L: DEL-02-05-V3-04 fake-state guards and post-revocation consistency).
+  - Receipt-ID: `Receipt-217`
+  - Examined-Through: `fe0ce926d4475fa41cb91933ad1218b95083889b`
+  - Parent-Receipt: `Receipt-216`
+  - Pointers: branch `codex/app-v3-nodeL-consent-fake-guards-2026-09-03` (basis above; reviewed freeze `d2490633a`, content/evidence `7a2c336b8`); RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_L_2026-09-03/` (`STEP0_DISCOVERY.md` with A1 declaration and D-APP-60/D-APP-64 rationale, `CHECKS.json`, `HANDOFF_STATE.md`, `MANIFEST.sha256`, verbatim review `instances/L2_REVIEWER/REVIEW_01_2026-09-03_over_d2490633a.md`); DEL-02-05 `_STATUS.md`, `MEMORY.md`, `_run_records/TASK_RUN_2026-09-03_NODE_L.md`; product/test paths under `frontend/src/lib/consent/` and `frontend/src/__tests__/lib/consent/`. V3-04 removed after review PASS; V3-03 and its Root-owned questions unchanged.
+  - Checks: focused and full Vitest pass; typecheck pass; APP-HOLD preflight and integrity pass; harness self-check and pytest pass; `git diff --check` and exact change-scope pass; corpus v20 no drift; receipt validator pass; frontend build/premerge skipped because neither the live path rule nor V3-04 selected them; independent review pass.
+  - Model-Attribution: provider OpenAI; engine Codex; implementer model GPT-5 family (exact model identifier not exposed to the agent runtime); reviewer attribution is recorded in the filed review.
+  - Gate-Outcome: `EXECUTED` — awaiting owner merge. A1 re-stage applies to the touched `frontend/`; historical R20 evidence remains historical only and a new staged revision plus fresh owner-executed proof are required before any future proof claim. No lifecycle, live-account, signing, notarization, publication, distribution, release-readiness, host-mutation, or Root act.
