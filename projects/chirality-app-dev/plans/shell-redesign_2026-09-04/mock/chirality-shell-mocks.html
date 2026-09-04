@@ -125,7 +125,7 @@
   .m .rail.drag { border-left: 2px solid var(--brand-accent); }
   .m .rail.drag::before { content: "⇔"; position: absolute; left: -14px; top: 50%; width: 26px; height: 26px; border-radius: 50%; background: var(--brand-accent); color: #fff; font-size: 14px; display: grid; place-items: center; transform: translateY(-50%); box-shadow: 0 2px 6px rgba(0,0,0,.25); z-index: 3; }
   .m .center { display: grid; grid-template-rows: 1fr auto; min-height: 0; background: var(--center); position: relative; }
-  .m .transcript { padding: 26px 40px 10px; overflow: hidden; display: flex; flex-direction: column; gap: 22px; }
+  .m .transcript { padding: 26px 40px 10px; overflow: hidden; display: flex; flex-direction: column; gap: 18px; }
   .m .narrow .transcript { padding: 22px 26px 8px; }
   .m .msg { max-width: 620px; }
   .m .msg .who { font: 500 12.5px var(--sans); color: var(--faint); margin-bottom: 3px; }
@@ -284,6 +284,25 @@
   .m .ro { margin: 10px 18px 0; font-size: 12px; color: var(--side-faint); border: 1px solid var(--rule); border-radius: 6px; padding: 5px 10px; }
   .m .kvs { padding: 10px 18px 4px; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 12.5px; color: var(--side-ink); }
   .m .kvs span:nth-child(odd) { color: var(--side-faint); }
+  /* proposal card (the one inline object the transcript gets) */
+  .m .card { max-width: 620px; border: 1px solid var(--rule-strong); border-radius: 10px; background: var(--center); padding: 10px 14px 10px; box-shadow: 0 1px 2px var(--shadow); font-size: 12.5px; }
+  .m .card .from { font-size: 11.5px; color: var(--faint); display: flex; justify-content: space-between; }
+  .m .card .from b { color: var(--brand-accent); font-weight: 500; }
+  .m .card .ti { font: 500 14px var(--sans); color: var(--ink); margin: 2px 0 6px; }
+  .m .card .tuple { display: grid; grid-template-columns: auto 1fr; gap: 2px 14px; margin: 0 0 6px; }
+  .m .card .tuple span:nth-child(odd) { color: var(--faint); }
+  .m .card .tuple span:nth-child(even) { color: var(--ink); }
+  .m .card .tuple .chg { color: var(--brand-accent); }
+  .m .card .rm { margin: 2px 0 8px; padding-left: 16px; color: var(--soft); line-height: 1.45; font-size: 12px; columns: 2; column-gap: 20px; }
+  .m .card .rm li { break-inside: avoid; }
+  .m .card .rm li.g { color: var(--ink); }
+  .m .card .rm li.g::after { content: "  · you decide"; color: var(--warn); font-size: 11px; }
+  .m .card .acts { display: flex; gap: 6px; align-items: center; }
+  .m .card .acts .why { margin-left: auto; color: var(--faint); font-size: 11.5px; }
+  .m .card.min { padding: 6px 12px; display: flex; gap: 10px; align-items: center; color: var(--soft); border-style: dashed; box-shadow: none; }
+  .m .card.min i { font-style: normal; width: 16px; height: 16px; border-radius: 50%; display: inline-grid; place-items: center; font-size: 10px; color: #fff; background: var(--ok); }
+  .m .card.min i.no { background: var(--faint); }
+  .m .card.min .when { margin-left: auto; color: var(--faint); font-size: 11.5px; }
   /* workflows */
   .m .wf { padding: 8px 18px 6px; border-bottom: 1px solid var(--rule); }
   .m .wf .t { font-weight: 500; color: var(--side-ink); font-size: 13px; display: flex; justify-content: space-between; gap: 8px; }
@@ -360,8 +379,8 @@
           <li><b>Document viewer that drags and expands.</b> The divider drags between 280 and about 60% of the window. The expand toggle jumps to a reading width and collapses the left panel to a strip. Pop-out puts the document in its own window. Close returns the panel to Files.</li>
           <li><b>Woven in both directions.</b> A reply names a document as a chip; click opens it beside the chat. Select text in the document; "Ask about this" quotes it into the composer with the file and line range attached.</li>
           <li><b>Account row pinned to the left panel.</b> Name plus two status dots, OpenAI and local model. Click for the portal popover: sign in or out, consent, the local model switch, Settings, Appearance, About. Settings open in the right panel. Steps 12 to 15.</li>
-          <li><b>Workbench returns as a view: Workflows.</b> The folder\'s governed workflows in the right panel with role, policy, roadmap position, and next human gate. Opening one steers the chat; the current step shows in the context line. Created from chat with three required declarations: folder, Agent 1 role, delegation policy. Steps 16 to 20.</li>
-          <li><b>The ladder.</b> Plain chat, chat with a specification, governed workflow. Each rung is a deliberate step in the context line; most work stays on the first.</li>
+          <li><b>Workbench returns as a view: Workflows.</b> The folder\'s governed workflows in the right panel with role, policy, roadmap position, and next human gate. Opening one steers the chat; the current step shows in the context line. Created from chat with three required declarations: folder, Agent 1 role, delegation policy. Steps 16 to 20; steps 21 to 25 show the rungs reached by proposal.</li>
+          <li><b>The ladder, prompted.</b> Plain chat, specified chat, governed workflow. The rung is derived from the five-item tuple (folder, agent, permission, delegation, roadmap). Help proposes the second rung and the Agent 1 proposes the third, once, as a card in the dialogue with Accept, Adjust, Not now; the direct route from the context line is the same form. Declines are remembered and recorded.</li>
           <li><b>Activity stays a strip.</b> One line at the bottom that says what is happening now. "Details" opens the Activity view in the right panel. No fourth panel.</li>
         </ul>
       </div>
@@ -411,7 +430,7 @@
   <!-- ============ WALKTHROUGH ============ -->
   <div class="panel" id="p-walk" hidden>
     <h2>Walkthrough</h2>
-    <p>Twenty-one states, one after another. The umber ring marks what was clicked to reach the next state. Use the list, the buttons, or the arrow keys.</p>
+    <p>Twenty-six states, one after another. The umber ring marks what was clicked to reach the next state. Use the list, the buttons, or the arrow keys.</p>
     <div class="stepbar"><button id="prev">‹ prev</button><button id="next">next ›</button><span class="sp"></span><span class="sw"><button aria-pressed="true" data-theme-of="walk" data-val="light">light</button><button aria-pressed="false" data-theme-of="walk" data-val="dark">dark</button></span></div>
     <div class="story">
       <div>
@@ -556,12 +575,38 @@
   function transcript(opts) {
     opts = opts || {};
     var ref1 = '<span class="ref' + (opts.hovRef ? ' hov' : '') + (opts.hitRef ? ' hit' : '') + '">DEL-09-01 status</span>';
+    function card(kind, state, hit) {
+      if (state === 'accepted') return '<div class="card min"><i>✓</i><span>' + (kind === 'wf' ? 'Governed workflow accepted: Section 8 preservation' : 'Specified: Working Items · Ask before changes · No delegation') + '</span><span class="when">you · 12:21</span></div>';
+      if (state === 'declined') return '<div class="card min"><i class="no">–</i><span>Not now. Help will not propose this again in this chat.</span><span class="when">you · 12:21</span></div>';
+      if (kind === 'spec') {
+        return '<div class="card"><div class="from"><span>Proposal from <b>Help</b></span><span>plain chat → specified chat</span></div>' +
+          '<div class="ti">Continue this as a Working Items chat?</div>' +
+          '<div class="tuple"><span>Folder</span><span>chirality-app-dev</span><span>Agent</span><span class="chg">Working Items · package production manager</span><span>Permission</span><span>Ask before changes</span><span>Delegation</span><span>No delegation</span></div>' +
+          '<div class="acts"><span class="btn primary' + (hit === 'accept' ? ' hit up' : '') + '"' + (hit === 'accept' ? ' data-tip="Your act; the chat becomes specified"' : '') + '>Accept</span><span class="btn">Adjust…</span><span class="btn' + (hit === 'no' ? ' hit up' : '') + '"' + (hit === 'no' ? ' data-tip="Remembered for this chat"' : '') + '>Not now</span><span class="why" title="Why: the question is about a deliverable\'s status and evidence, which is Working Items\' protocol.">Why this?</span></div></div>';
+      }
+      return '<div class="card"><div class="from"><span>Proposal from <b>Working Items</b></span><span>specified chat → governed workflow</span></div>' +
+        '<div class="ti">Run this as the Section 8 preservation workflow?</div>' +
+        '<div class="tuple"><span>Folder</span><span>chirality-app-dev</span><span>Agent</span><span>Working Items</span><span>Permission</span><span class="chg">Approve each write</span><span>Delegation</span><span class="chg">Bounded briefs · run on the local model</span><span>Roadmap</span><span>from the Working Items protocol for DEL-09-01 · 7 steps</span></div>' +
+        '<ol class="rm"><li>Confirm basis and trigger surfaces</li><li>Stage the rerun procedure</li><li>Rerun Section 8 locally</li><li>Compare against the accepted bundle</li><li class="g">Accept or decline the revision</li><li>Record the revision in the status file</li><li>Close and hand off</li></ol>' +
+        '<div class="acts"><span class="btn primary">Accept and follow</span><span class="btn' + (hit === 'adjust' ? ' hit up' : '') + '"' + (hit === 'adjust' ? ' data-tip="Same form, filled in"' : '') + '>Adjust…</span><span class="btn">Not now</span><span class="why">Why this?</span></div></div>';
+    }
+    if (opts.proposeSpec) {
+      return '<div class="msg"><div class="who">You</div><p>Is DEL-09-01 revision 3 owed after PR #693?</p></div>' +
+        '<div class="msg"><div class="who">Help</div><p>No. Revision 2 was accepted against the PR #692 merge, and PR #693 changed only evidence and harness material under the DEL-09-01 folder, so no trigger surface in <span class="ref">DEL-09-01 status</span> moved. It becomes owed when the CSP nonce change merges.</p><p>This is deliverable status work, which Working Items manages. If you want to keep going on it, I can hand the chat to that role with the permissions set.</p></div>' +
+        card('spec', opts.cardState, opts.hitCard);
+    }
+    if (opts.proposeWf) {
+      return card('spec', 'accepted') +
+        '<div class="msg"><div class="who">You</div><p>Rerun the Section 8 preservation check and tell me whether revision 3 holds.</p></div>' +
+        '<div class="msg"><div class="who">Working Items</div><p>That is the DEL-09-01 preservation procedure: seven steps, one gate that is yours. I would run it as a governed workflow so each step is recorded and the rerun goes to a bounded brief instead of through this chat.</p></div>' +
+        card('wf', opts.cardState, opts.hitCard);
+    }
     if (opts.wfChat) {
       return '<div class="msg"><div class="who">Working Items</div><p>Step 4 of 7, comparing the local rerun against the accepted bundle. The premerge summary bytes match revision 2 and the evaluator inventory is unchanged.</p><ul><li>8 of 8 Section 8 checks pass locally</li><li>Behaviour projection equal to <span class="ref">Revision 2 bundle</span></li></ul><p>Step 5 is yours: accept this as revision 3, or decline. I have not written anything to the status file.</p></div>' +
         '<div><span class="tool"><span class="dot"></span>Compared 3 manifests</span></div>' +
         '<div class="msg"><div class="who">You</div><p>Accept it.</p></div>';
     }
-    if (opts.fresh) { return '<div class="empty">Ask <b>Working Items</b> something about <b>chirality-app-dev</b>.<br>Pick a different folder or agent below before you start.</div>'; }
+    if (opts.fresh) { return '<div class="empty">Ask something about <b>chirality-app-dev</b>.<br>Pick a different folder, agent, or policy below before you start.</div>'; }
     var t = '<div class="msg"><div class="who">You</div><p>Assess DEL-09-01 revision 2 against the PR #692 basis and tell me whether revision 3 is owed after #693.</p></div>';
     if (opts.running) {
       t += '<div><span class="tool"><span class="dot run"></span>Reading DEL-09-01 status…</span></div>';
@@ -584,10 +629,12 @@
     var folder = opts.fresh
       ? '<span class="sel' + (opts.hitFolder ? ' hit up' : '') + '"' + (opts.hitFolder ? ' data-tip="Choose the folder this chat works in"' : '') + '><b>' + (opts.noFolder ? 'Choose folder' : 'chirality-app-dev') + '</b></span>'
       : '<span class="lbl" title="This chat works in chirality-app-dev">chirality-app-dev</span>';
-    var rung = opts.wf ? '<span class="lbl wfl" title="Section 8 preservation · step 4 of 7">Section 8 preservation · step 4 of 7</span>'
-      : (opts.spec ? '<span class="sel"><b>' + opts.spec + '</b></span>'
-      : (opts.fresh ? '<span class="sel' + (opts.hitRung ? ' hit up right' : '') + '"' + (opts.hitRung ? ' data-tip="Plain chat · With a specification… · Governed workflow…"' : '') + '>Plain chat</span>' : ''));
-    var controls = folder + '<span class="sel"><b>Working Items</b></span><span class="sel">' + (opts.wf ? 'Approve each write' : 'Ask before changes') + '</span>' + rung;
+    var agent = opts.agent || (opts.fresh ? 'Help' : 'Working Items');
+    var deleg = opts.deleg || (opts.wf ? 'Bounded briefs' : 'No delegation');
+    var rungLabel = opts.wf ? 'Following Section 8 preservation · step 4 of 7' : (opts.spec ? 'Governed workflow' : (opts.specified ? 'Specified' : 'Plain chat'));
+    var rung = opts.wf ? '<span class="lbl wfl">' + rungLabel + '</span>'
+      : '<span class="sel' + (opts.hitRung ? ' hit up right' : '') + '"' + (opts.hitRung ? ' data-tip="Plain chat · Specify… · Governed workflow…"' : '') + ' title="Plain chat · Specify… · Governed workflow…">' + (opts.specified ? '<b>' + rungLabel + '</b>' : rungLabel) + '</span>';
+    var controls = folder + '<span class="sel"><b>' + agent + '</b></span><span class="sel">' + (opts.wf ? 'Approve each write' : 'Ask before changes') + '</span><span class="sel">' + deleg + '</span>' + rung;
     return '<div class="composer">' + q + '<div class="row1"><span class="input' + (opts.text ? ' typed' : '') + '">' + (opts.text || 'Message Working Items…') + '</span><span class="btn icon" title="Attach">⊕</span><span class="send" title="Send">↑</span></div></div>' +
       '<div class="ctx"><span>' + (opts.fresh ? 'Start in' : (opts.wf ? 'Following' : 'Working in')) + '</span>' + controls + '</div>';
   }
@@ -810,44 +857,54 @@
   var STEPS = [
     { t: 'New chat', s: { fresh: true, hitFolder: true },
       c: '<span class="k">Start</span><h3>Folder and agent are chosen before the first message</h3><p>No header: the name sits at the top of the left panel and the window has its full height. A new chat opens with an empty centre and a message box that holds only the message. Under the box, a line reads \'Start in <folder> · <agent> · <permission level>\', each part a selector. Folder and agent are live until the first message is sent; after that the line reads \'Working in\' and the folder is fixed; changing it means a new chat. Chats from every folder are listed on the left with the folder under each title.</p>' },
-    { t: 'Resting state', s: { hitFile: true },
+    { t: 'Resting state', s: { specified: true, hitFile: true },
       c: '<span class="k">Start</span><h3>A chat in progress, Files on the right</h3><p>The reply names two documents as chips. The right panel shows the working root. The strip says the agent is idle. Click <b>_STATUS.md</b> in the tree.</p>' },
-    { t: 'Document opens in the panel', s: { rail: 'doc', selFile: true, drag: true },
+    { t: 'Document opens in the panel', s: { specified: true, rail: 'doc', selFile: true, drag: true },
       c: '<span class="k">Files → Document</span><h3>The file renders where the tree was</h3><p>Breadcrumb with a back arrow to Files; the four controls; the rendered status file; Ask and Attach at the foot. The dialogue did not move. Now drag the divider to the left.</p>' },
-    { t: 'Dragged wider', s: { rail: 'doc', railw: 470, drag: true, hitCtl: 'exp' },
+    { t: 'Dragged wider', s: { specified: true, rail: 'doc', railw: 470, drag: true, hitCtl: 'exp' },
       c: '<span class="k">Drag</span><h3>The panel takes what you give it</h3><p>Any width from 280px up to the expand width; the centre gives way and reflows. The width is remembered for documents separately from Files. Click <b>expand</b>.</p>' },
-    { t: 'Expanded for reading', s: { rail: 'doc', railw: 700, mini: true, expanded: true, wide: true },
+    { t: 'Expanded for reading', s: { specified: true, rail: 'doc', railw: 700, mini: true, expanded: true, wide: true },
       c: '<span class="k">Expand</span><h3>Reading width, left panel to a strip, dialogue still there</h3><p>The document gets a 640px measure with larger type. The left panel collapses to icons. The centre keeps its composer. The same button returns everything. Now select text in the document.</p>' },
-    { t: 'Select and ask', s: { rail: 'doc', railw: 700, mini: true, expanded: true, wide: true, selection: true, hitAsk: true },
+    { t: 'Select and ask', s: { specified: true, rail: 'doc', railw: 700, mini: true, expanded: true, wide: true, selection: true, hitAsk: true },
       c: '<span class="k">Document → Dialogue</span><h3>A selection offers Ask, Attach, Copy</h3><p>Ask quotes the passage into the composer with the file and line range. Attach adds the whole file. Click <b>Ask about this</b>.</p>' },
-    { t: 'Quote in the composer', s: { rail: 'doc', railw: 470, selection: true, quote: true, hitQuote: true, text: 'Is this gating still right after the SCC ruling?' },
+    { t: 'Quote in the composer', s: { specified: true, rail: 'doc', railw: 470, selection: true, quote: true, hitQuote: true, text: 'Is this gating still right after the SCC ruling?' },
       c: '<span class="k">Composer</span><h3>The quote rides with the message</h3><p>The runtime receives the file path, the line range, and the quoted text as an attachment, so the agent reads exactly what you pointed at. The panel returned from expanded to its dragged width when you started typing. Send.</p>' },
-    { t: 'Agent working, strip live', s: { running: true, followup: 'Is this gating still right after the SCC ruling?', rail: 'doc', railw: 470, hitDetails: true },
+    { t: 'Agent working, strip live', s: { specified: true, running: true, followup: 'Is this gating still right after the SCC ruling?', rail: 'doc', railw: 470, hitDetails: true },
       c: '<span class="k">Activity strip</span><h3>One line says what is happening</h3><p>Running action, counts, elapsed. The document stays open; the dialogue shows the working chip. Click <b>Details</b>.</p>' },
-    { t: 'Activity in the panel', s: { running: true, followup: 'Is this gating still right after the SCC ruling?', rail: 'activity', railw: 360 },
+    { t: 'Activity in the panel', s: { specified: true, running: true, followup: 'Is this gating still right after the SCC ruling?', rail: 'activity', railw: 360 },
       c: '<span class="k">Activity view</span><h3>The log, in the tertiary panel, not a fourth one</h3><p>Actions, Events, Children as sub-tabs. Rows are the same sentences the transcript uses, with the path underneath. A path opens the document; a child opens its session. Switch to <b>Who is working</b> and click the Researcher.</p>' },
-    { t: 'Child session replay', s: { rail: 'child', railw: 420 },
+    { t: 'Child session replay', s: { specified: true, rail: 'child', railw: 420 },
       c: '<span class="k">Replay</span><h3>A session you cannot type into, shown beside the one you can</h3><p>Read-only banner, purpose, permissions, result, then the transcript. Open parent jumps back to the chat that started it. Widen, expand, or pop out as with a document. This is the only replay case; your own chats open in the centre.</p>' },
-    { t: 'Organising chats', s: { hitChat: true, menu: true },
+    { t: 'Organising chats', s: { specified: true, hitChat: true, menu: true },
       c: '<span class="k">Left panel</span><h3>Right-click a chat</h3><p>Rename, Pin, Move to a group, Archive, Delete. Groups are folders you make; drag works too. Search covers titles and message text. Everything here is local annotation, not project truth.</p>' },
-    { t: 'Popped out', s: { popout: true },
+    { t: 'Popped out', s: { specified: true, popout: true },
       c: '<span class="k">Pop out</span><h3>The document in its own window</h3><p>Same viewer, same Ask and Attach, on a second screen if you have one. The panel goes back to Files. Closing the window changes nothing in the chat.</p>' },
-    { t: 'Account row', s: { hitAcct: true },
+    { t: 'Account row', s: { specified: true, hitAcct: true },
       c: '<span class="k">Left panel, pinned</span><h3>Who you are and what is on</h3><p>Bottom of the left panel, always visible: your name, and two dots for the two things that can be connected, OpenAI and the local model. Green is on, grey is off, amber needs you. The account is app-wide; the dot tooltip says which folder has consent. Click it.</p>' },
-    { t: 'Account popover', s: { pop: true, hitSettings: true },
+    { t: 'Account popover', s: { specified: true, pop: true, hitSettings: true },
       c: '<span class="k">Portal</span><h3>Everything quick, nothing deep</h3><p>OpenAI: one account for the app, with the consent state of the current chat\'s folder and a way to that folder\'s settings. Local model: what is running, one switch to stop or start it. Then Settings, Appearance, Legacy window, About with the Opt-in Preview label. There is no gear anywhere else. Click <b>Settings</b>.</p>' },
-    { t: 'Settings in the panel', s: { rail: 'settings', railw: 380 },
+    { t: 'Settings in the panel', s: { specified: true, rail: 'settings', railw: 380 },
       c: '<span class="k">Settings view</span><h3>The tertiary panel again, not a modal</h3><p>Five groups: OpenAI account, app-wide; This folder, with consent, command network, and role bound to the chat\'s folder; Local model with the server switch, the model list, and explicit Activate; Keys; Appearance. These are the existing account-consent, runtime, and API-key panels, restyled and split along the account-versus-folder line. Expand or pop out like any other view.</p>' },
-    { t: 'The ladder: plain chat, specification, workflow', s: { fresh: true, hitRung: true },
-      c: '<span class="k">Ladder</span><h3>Three rungs, each a deliberate step</h3><p>The context line under the message has a fourth item in a new chat: <b>Plain chat</b>. Its menu offers <b>With a specification…</b>, a skill or profile applied to this chat with no roadmap, and <b>Governed workflow…</b>, which needs an Agent 1 role, this folder, and a delegation policy before it exists. Most days stay on the first rung.</p>' },
-    { t: 'Workflows view', s: { rail: 'workflows', railw: 340, hitOpen: true },
+    { t: 'The ladder: plain, specified, governed', s: { fresh: true, hitRung: true },
+      c: '<span class="k">Ladder</span><h3>Three rungs, derived from what is declared</h3><p>The context line shows the specification tuple: folder, agent, permission, delegation, and the rung. A <b>plain chat</b> has declared nothing; a <b>specified chat</b> has an Agent 1 role and both policies chosen deliberately; a <b>governed workflow</b> adds a roadmap and lives as a file in the folder. The rung item names where you are and offers <b>Specify…</b> and <b>Governed workflow…</b>. Most days stay on the first rung. Steps 21 to 25 show the same rungs reached by proposal instead.</p>' },
+    { t: 'Workflows view', s: { specified: true, rail: 'workflows', railw: 340, hitOpen: true },
       c: '<span class="k">Right panel · Workflows</span><h3>The folder\'s governed workflows, in the side panel</h3><p>What Workbench becomes: a view, not a surface. Each workflow shows its Agent 1 role, delegation policy, roadmap position, and the next human gate. Templates the folder qualifies for are listed underneath. The dialogue stays the interface; a workflow steers it from here. Click one.</p>' },
-    { t: 'Roadmap open', s: { rail: 'workflow', railw: 380, hitFollow: true },
+    { t: 'Roadmap open', s: { specified: true, rail: 'workflow', railw: 380, hitFollow: true },
       c: '<span class="k">Roadmap</span><h3>Steps, gates, and who runs the briefs</h3><p>The roadmap is a file in the folder. It names the role, the policy, where briefs run, and the steps with their human gates marked. Nothing here is the record; the status file is. Click <b>Follow in this chat</b>.</p>' },
     { t: 'Chat steered by a workflow', s: { wf: true, wfChat: true, rail: 'workflow', railw: 340 },
       c: '<span class="k">Context injection</span><h3>The current step is always visible</h3><p>The context line now reads <b>Following</b> with the workflow and step, so you always know what the agent is steered toward. The agent works the step, stops at the gate, and says so. Accepting is your act; the app records it against the content it accepted.</p>' },
     { t: 'Create a workflow from chat', s: { fresh: true, spec: 'Governed workflow', rail: 'newwf', railw: 400, hitCreate: true },
       c: '<span class="k">From chat</span><h3>Three declarations, then a roadmap</h3><p>Choosing Governed workflow from the ladder opens this in the side panel. Folder is fixed from the chat. Agent 1 role and delegation policy, including <b>None</b>, are required; the app refuses to create a workflow with any of the three missing. The roadmap can be drafted from the conversation so far or taken from a template. It is written to the folder and the chat follows it.</p>' },
+    { t: 'Help proposes a specified chat', s: { proposeSpec: true, hitCard: 'accept', agent: 'Help' },
+      c: '<span class="k">Prompted, rung 1 → 2</span><h3>The work earned it; Help says so, once</h3><p>A plain chat with Help. The question is deliverable-status work, which is Working Items\' protocol, so Help answers it and posts a proposal card: the tuple filled in, the changed items in umber, and three choices. Accept is your act. Nothing is promoted silently. <b>Why this?</b> names the trigger in one sentence.</p>' },
+    { t: 'Specified chat', s: { proposeSpec: true, cardState: 'accepted', specified: true },
+      c: '<span class="k">Rung 2</span><h3>The card collapses to a record line; the context line changes</h3><p>Agent, permission, and delegation are now declared and shown in the context line, with <b>Specified</b> as the rung. The collapsed card stays in the transcript as the record of who proposed and who accepted, and when.</p>' },
+    { t: 'Working Items proposes a workflow', s: { proposeWf: true, hitCard: 'adjust', specified: true },
+      c: '<span class="k">Prompted, rung 2 → 3</span><h3>The Agent 1 proposes the last rung</h3><p>The request matches the DEL-09-01 preservation procedure in Working Items\' own protocol, so it proposes running it as a governed workflow: the roadmap is that protocol instantiated for this folder, seven steps, the gate marked "you decide". Delegation changes to bounded briefs on the local model, and the card says so in umber. Click <b>Adjust</b>.</p>' },
+    { t: 'Adjust: the same form, filled in', s: { proposeWf: true, specified: true, rail: 'newwf', railw: 400, hitCreate: true },
+      c: '<span class="k">One mechanism, two entry points</span><h3>Adjust opens the New workflow form with the proposal in it</h3><p>Exactly the form you get from the context line\'s <b>Governed workflow…</b>, but pre-filled by the proposal. Change the policy, edit the roadmap, or take a template instead. <b>Create and follow</b> writes the file to the folder under the same write gate as anything else, and the chat follows it. Step 19 shows the result.</p>' },
+    { t: 'Not now', s: { proposeSpec: true, cardState: 'declined' },
+      c: '<span class="k">Anti-nag</span><h3>Declining is remembered and recorded</h3><p>One proposal per chat per trigger. Not now collapses the card to a dashed line, Help does not raise it again in this chat, and the decline is in the record so an audit can see the offer was made. The direct route stays open: the rung control under the message still offers <b>Specify…</b> and <b>Governed workflow…</b> at any time.</p>' },
     { t: 'Signed out, no local model', s: { signedOut: true, localOff: true, pop: true, rail: 'settings', railw: 380 },
       c: '<span class="k">First run</span><h3>The row asks for the one thing you need</h3><p>Nothing connected: the avatar is a dashed circle, the row says Sign in, both dots are grey. The popover offers Sign in and Set up for the local model. In Settings the folder group reads "needs sign-in" because consent cannot be granted without an account. You can still use a stored API key without either.</p>' }
   ];

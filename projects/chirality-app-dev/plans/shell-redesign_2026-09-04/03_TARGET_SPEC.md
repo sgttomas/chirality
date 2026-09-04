@@ -85,9 +85,31 @@ Unchanged behaviour from `ChatPanel`; layout and copy change.
 - **Composer** (SR-22): one box holding only the message field, the attach control, and the filled round Send arrow at its right (the only filled control; the word "Send" is its `aria-label`). The field is one line at rest and grows to a maximum of six lines. Above it, inside the same box, an optional **quote row**: left-rule quote of the selected text (single line, ellipsised), source `file · lines a–b`, and a remove control. Attachments render as chips in the quote row. Box height at rest is about 48px; padding 8px, radius 12px, strong hairline border.
 - **Context line** (SR-22, SR-23): directly under the box, left-aligned with it, 12.5px in the faint colour: the word "Working in" ("Start in" for a fresh chat; "Following" when a workflow steers the chat), then the **folder** selector, the agent (persona) selector, the mode selector, and the **rung** (§4.2), separated by middle dots. Selectors are small pills with a chevron; a fixed folder is a plain label with a folder glyph; a followed workflow is an umber label with a diamond glyph and the step count. The line wraps rather than hides at narrow widths (the centre column is `minmax(0, 1fr)` so the line can never widen the grid). It is part of the composer region for keyboard order and is announced as one group, "Chat context".
 
-### 4.2 The rung (SR-23)
+### 4.2 The specification tuple and the rung (SR-23, SR-24)
 
-The fourth item of the context line. In a fresh chat it is a select reading *Plain chat* whose menu offers *With a specification…* and *Governed workflow…*. *With a specification* opens a picker of skills and profiles (the `skills/` registry filtered to those a chat may apply directly); the chosen name replaces the label and the chat's system prompt gains the skill's method text. *Governed workflow…* opens the New workflow form (§5.10). When a workflow is followed the item becomes the label *<workflow> · step n of m* and is not a select; leaving the workflow is done from the Workflows view (*Pause*). Once a message has been sent, the rung can still be raised (a plain chat can adopt a specification or a workflow) but a workflow cannot be swapped for another in the same chat.
+The context line shows the specification tuple in order: **folder**, **agent**, **permission** (existing operator mode; fifth item pending owner agreement), **delegation policy** (*No delegation*, *Ask before each brief*, *Approve each brief's writes*, *Bounded briefs*), and the **rung**. The rung is derived, never set on its own:
+
+| Rung | Condition | Label |
+|---|---|---|
+| Plain chat | default agent, no deliberate policy | *Plain chat* |
+| Specified chat | an Agent 1 role chosen and both policies set deliberately, by proposal or by hand | *Specified* (bold) |
+| Governed workflow | a specified chat following a workflow file | *Following <workflow> · step n of m* (accent, diamond glyph) |
+
+The rung item is a select on the first two rungs whose menu offers *Specify…* (opens the specification form with the tuple editable) and *Governed workflow…* (opens the New workflow form, §5.10). On the third rung it is a label; leaving the workflow is *Pause* in the Workflows view. A workflow cannot be swapped for another in the same chat. Delegation policy is a per-chat setting carried in the session record beside the operator mode; *No delegation* is the default on a plain chat.
+
+### 4.3 Proposal card (SR-24)
+
+The only inline object in the transcript besides messages and tool pills. Rendered as a bordered card at the transcript measure, immediately after the proposing agent's message.
+
+- **Header:** "Proposal from <agent>" with the agent name in the accent colour; right, the transition ("plain chat → specified chat" or "specified chat → governed workflow").
+- **Title:** one question, e.g. "Continue this as a Working Items chat?" or "Run this as the Section 8 preservation workflow?".
+- **Tuple:** folder, agent, permission, delegation, and for a workflow the roadmap source; items that would change are in the accent colour.
+- **Roadmap** (workflow proposals only): numbered steps in two columns, human gates marked "you decide"; the full protocol is one click away in the Workflows view.
+- **Actions:** *Accept* (or *Accept and follow*; filled), *Adjust…*, *Not now*, and *Why this?* on the right, whose tooltip is the trigger sentence.
+- **Accepted:** the card collapses to a single line with a green check, the resulting tuple, "you · <time>". **Declined:** a dashed line with a grey dash, "Not now. <agent> will not propose this again in this chat.", "you · <time>". Both stay in the transcript.
+- **Behaviour:** Accept applies the tuple (and writes the workflow file under the write gate) and updates the context line; Adjust opens the corresponding form filled in; Not now records the decline and suppresses that trigger for the chat. One open card at a time; a new proposal replaces an unanswered one only if the trigger differs.
+- **Events:** `proposal.offered`, `proposal.accepted`, `proposal.adjusted`, `proposal.declined` in the session record with agent, trigger, and tuple; never in project files.
+- **Accessibility:** `role="group"` labelled by the title; actions are buttons; the collapsed line is `role="status"`.
 
 ### 4.1 Folder selector (SR-21)
 
@@ -158,6 +180,8 @@ Breadcrumb `‹ Who is working › <persona>`. A read-only banner: "Read-only. S
 Fourth tab in the right panel header, between Files and Who is working. Lists the folder's governed workflows from `.chirality/workflows/*.md`: title, Agent 1 role, delegation policy, roadmap position as *step n of m* with a thin umber progress bar, and the next human gate if any. Beneath, *Available to start*: templates the folder qualifies for (a template declares what it needs, such as an accepted decomposition or PDF sources). Footer: *New workflow…* and a count. No folder: "Choose a folder to see its workflows."
 
 **Workflow open** (breadcrumb `‹ Workflows › <name>`): a key-value block (Agent, Folder, Policy with where briefs run, Roadmap source and acceptance date), then the roadmap as a numbered list with done, current, and pending states and *human gate* marked on the steps that have one. Footer: *Follow in this chat* (filled) and *Pause*. Following sets the chat's agent and policy from the file, injects the roadmap and current step into the system prompt, and switches the context line to *Following*. The agent is instructed to work the current step, stop at a gate, and say so; advancing past a gate is a human act recorded by the app against the content it accepted.
+
+**Library and Bind** (Q10): beneath *Available to start*, a *From other folders* group lists workflows found in other known folders' `.chirality/workflows/`, and the bundled templates derived from Agent 1 protocols. *Bind to this folder* copies the file in with `folder` rewritten and `current` reset, after checking the template's prerequisites; the copy is an ordinary write under the gate.
 
 **New workflow** (breadcrumb `‹ Workflows › New workflow`): Folder (fixed from the chat); Agent 1 role (required; the Type 1 roster); Delegation policy (required; *None*, *Ask before changes*, *Approve each write*, *Run bounded briefs*); Briefs run on (*Local model* when available, else the hosted account); Roadmap (*Draft from this chat*, or a template). The roadmap is editable before creation. *Create and follow* is disabled until role and policy are set. The file is written to `.chirality/workflows/<slug>.md` under the same write gate as any other write, and the chat follows it.
 
@@ -261,7 +285,7 @@ Add to `WovenWorkspaceState` with sanitize-and-fallback readers:
 - `groupsCollapsed: string[]`
 - `knownRoots: { path: string; lastUsedAt: string }[]` (cap 50, app-scoped, not project-scoped): the folders whose chats the left panel lists and the composer offers. `chirality.projectRoot` is read once as the seed and then left in place for the legacy shells.
 - `activeChatRoot` is **not** persisted: it is derived from the active session record.
-- `chatRung: Record<sessionId, { kind: 'plain' | 'spec' | 'workflow'; ref?: string }>` (cap 500): which rung each chat is on and which specification or workflow file it references. The workflow's own state lives in its file, not here.
+- `chatRung: Record<sessionId, { kind: 'plain' | 'spec' | 'workflow'; ref?: string; declined?: string[] }>` (cap 500): which rung each chat is on, which workflow file it references, and which proposal triggers have been declined in that chat. The workflow's own state lives in its file, not here.
 
 Remove nothing; `sessionSurfaces` and `navigatorExpandedSurfaces` stay readable and become unused. `coordinationView` is read as before and mapped to `rightPanelView` on load when the new field is absent.
 
