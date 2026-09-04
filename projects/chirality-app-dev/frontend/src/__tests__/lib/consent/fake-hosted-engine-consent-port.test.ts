@@ -293,7 +293,23 @@ describe('fake HostedEngineConsentPort — consent, staleness, and revocation (K
     if (snapshot.consent.status === 'granted') {
       expect(snapshot.consent.scope.workerGeneration).toBe(2);
     }
-    expect(snapshot.privateHome.status).toBe('invalidated');
+    expect(snapshot.privateHome.status).toBe('present');
+  });
+
+  it('a fresh grant recreates the invalidated private home for the new generation', async () => {
+    const port = await loginAndGrant();
+    await port.revokeConsent();
+    expect(port.getSnapshot().privateHome.status).toBe('invalidated');
+
+    expect(await port.grantConsent()).toEqual({ ok: true });
+    const snapshot = port.getSnapshot();
+    expect(snapshot.workerGeneration).toBe(2);
+    expect(snapshot.account.status).toBe('loggedIn');
+    expect(snapshot.privateHome).toEqual({
+      codexHome: FIXTURE_CODEX_HOME,
+      status: 'present',
+      ambientCodexRead: false
+    });
   });
 
   it('can revoke a stale grant', async () => {
@@ -399,6 +415,27 @@ describe('fake HostedEngineConsentPort — command-network postures (K-NET-1)', 
     ]);
   });
 
+  it('drops command networking and refuses prompt resolution when consent turns stale', async () => {
+    const port = await loginAndGrant();
+    await port.selectNetworkPosture('askPerDestination');
+    port.control.enqueueNetworkPrompt(PROMPT);
+    await port.resolveNetworkPrompt(PROMPT.promptId, 'acceptForSession');
+    const nextPrompt = { ...PROMPT, promptId: 'prompt-test-stale' };
+    port.control.enqueueNetworkPrompt(nextPrompt);
+
+    port.control.rotatePolicy('sha256:policy-rotated');
+    expect(port.getSnapshot().consent.status).toBe('stale');
+    expect(port.getSnapshot().network).toEqual({
+      posture: 'off',
+      pendingPrompt: null,
+      sessionAcceptedDestinations: []
+    });
+    expect(await port.resolveNetworkPrompt(nextPrompt.promptId, 'acceptForSession')).toEqual({
+      ok: false,
+      error: 'Grant consent for this root before resolving a command-network prompt.'
+    });
+  });
+
   it('allowOnce and deny resolve the prompt without a session acceptance', async () => {
     for (const decision of ['allowOnce', 'deny'] as const) {
       const port = await loginAndGrant();
@@ -430,6 +467,20 @@ describe('fake HostedEngineConsentPort — command-network postures (K-NET-1)', 
     expect(port.control.actLog.filter((entry) => entry.startsWith('resolveNetworkPrompt'))).toEqual([
       'resolveNetworkPrompt:acceptForSession'
     ]);
+  });
+
+  it('only enqueues runtime prompts while ask-per-destination is selected', async () => {
+    const port = await loginAndGrant();
+    port.control.enqueueNetworkPrompt(PROMPT);
+    expect(port.getSnapshot().network.pendingPrompt).toBeNull();
+
+    await port.selectNetworkPosture('on');
+    port.control.enqueueNetworkPrompt(PROMPT);
+    expect(port.getSnapshot().network.pendingPrompt).toBeNull();
+
+    await port.selectNetworkPosture('askPerDestination');
+    port.control.enqueueNetworkPrompt(PROMPT);
+    expect(port.getSnapshot().network.pendingPrompt).toEqual(PROMPT);
   });
 });
 

@@ -17,8 +17,9 @@
  *
  * - consent binds to the current scope at grant time and turns `stale` as
  *   soon as any validated field changes (account, policy, role, config,
- *   generation, root, project, adapter); a stale grant is never reused — only
- *   a fresh explicit `grantConsent()` returns it to `granted`;
+ *   generation, root, project, adapter); a stale grant is never reused, its
+ *   command-network posture falls back to `off`, and only a fresh explicit
+ *   `grantConsent()` returns it to `granted`;
  * - revocation retires the current root generation, starts the next one, and
  *   invalidates the private home; the network posture falls back to `off`
  *   and session acceptances are cleared;
@@ -140,7 +141,12 @@ export function createFakeHostedEngineConsentPort(
     if (mismatches.length > 0) {
       state = {
         ...state,
-        consent: { status: 'stale', grantedScope: state.consent.scope, mismatches }
+        consent: { status: 'stale', grantedScope: state.consent.scope, mismatches },
+        network: {
+          posture: DEFAULT_COMMAND_NETWORK_POSTURE,
+          pendingPrompt: null,
+          sessionAcceptedDestinations: []
+        }
       };
     }
   }
@@ -199,6 +205,10 @@ export function createFakeHostedEngineConsentPort(
         }
         state = {
           ...state,
+          privateHome:
+            state.privateHome.status === 'invalidated'
+              ? { ...state.privateHome, status: 'present', ambientCodexRead: false }
+              : state.privateHome,
           consent: { status: 'granted', scope: currentConsentScope(state), grantedAt: now() }
         };
         return { ok: true };
@@ -256,6 +266,12 @@ export function createFakeHostedEngineConsentPort(
 
     resolveNetworkPrompt: (promptId, decision) =>
       act(`resolveNetworkPrompt:${decision}`, () => {
+        if (state.consent.status !== 'granted') {
+          return {
+            ok: false,
+            error: 'Grant consent for this root before resolving a command-network prompt.'
+          };
+        }
         const prompt = state.network.pendingPrompt;
         if (state.network.posture !== 'askPerDestination' || !prompt || prompt.promptId !== promptId) {
           return { ok: false, error: 'That network prompt is no longer pending.' };
@@ -286,6 +302,9 @@ export function createFakeHostedEngineConsentPort(
 
     control: {
       enqueueNetworkPrompt(prompt) {
+        if (state.network.posture !== 'askPerDestination') {
+          return;
+        }
         state = { ...state, network: { ...state.network, pendingPrompt: clone(prompt) } };
         publish();
       },
