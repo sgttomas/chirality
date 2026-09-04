@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Deterministic adversarial proof for the Section 8 process-group teardown.
+# Deterministic adversarial proof for the layered Section 8 teardown.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -30,6 +30,7 @@ export RERUN_SECTION8_LIBRARY_MODE=1
 # shellcheck source=rerun-section8-local.sh
 source "$SCRIPT_DIR/rerun-section8-local.sh"
 unset RERUN_SECTION8_LIBRARY_MODE
+REAL_FRONTEND="$FRONTEND"
 
 start_test_group() {
   local name="$1"
@@ -140,12 +141,10 @@ ACTIVE_CONTROLLER=""
 read_process_table() { ps -axo pid=,pgid= 2>/dev/null; }
 ( cd "$RUN_ROOT" && shasum -a 256 -c MANIFEST.sha256 >/dev/null )
 
-# A controlled descendant that creates a new session has escaped the only
-# identity-safe automatic signal boundary available on this macOS host. The
-# continuous audit must retain the violation and teardown must fail closed;
-# it must never claim zero-descendant success. The test then explicitly kills
-# the disposable escapee's own process group, whose leader is known to be the
-# test child created here. This manual escalation is not used by the runner.
+# A controlled descendant that creates a new session escapes the inner PGID
+# layer. That layer must retain the violation and fail closed rather than claim
+# zero-descendant success. The outer LaunchAgent-coalition test below proves
+# that the authoritative cleanup still removes this class safely.
 start_test_group setsid-escape python3 -c \
   'import os,time; os.setsid(); time.sleep(30)'
 ESCAPED_TEST_PGID="$TEST_CHILD"
@@ -207,6 +206,60 @@ set -e
 ( cd "$RUN_ROOT" && shasum -a 256 -c MANIFEST.sha256 >/dev/null )
 unset -f lsof
 
+# Exercise the host-pinned authoritative boundary. The harmless LaunchAgent
+# fixture creates TERM-resistant setsid descendants, including a forker that
+# creates another setsid descendant. Ordinary bootout leaves those processes
+# alive; audit-token-bound coalition TERM/STOP/KILL sweeps remove all of them,
+# while an unrelated same-command/same-second process survives. Every required
+# observation/launch/signal failure must return nonzero and remove probe state.
+COALITION_TEST_ROOT="$TEST_ROOT/coalition"
+COALITION_TARGETS=(
+  --target-binary /bin/bash
+  --target-binary "$(command -v python3)"
+  --target-binary "$(command -v node)"
+  --target-binary "$REAL_FRONTEND/node_modules/electron/dist/Electron.app"
+)
+python3 "$COALITION_SUPERVISOR" self-test \
+  --root "$COALITION_TEST_ROOT" "${COALITION_TARGETS[@]}"
+python3 - "$COALITION_TEST_ROOT/coalition-capability.json" <<'PY'
+import json
+import sys
+
+report = json.load(open(sys.argv[1], encoding="utf-8"))
+probe = report["capability"]["launchAgentProbe"]
+assert report["status"] == "PASS" and report["exitCode"] == 0
+assert len(probe["setsidChildren"]) >= 6
+assert len(probe["setsidChildrenAfterBootout"]) == len(probe["setsidChildren"])
+assert probe["stalePidversion"] == "ESRCH"
+assert probe["sweep"]["status"] == "PASS"
+assert probe["sweep"]["consecutiveEmptyScans"] >= 3
+assert probe["foreignBefore"]["uniqueId"] == probe["foreignAfterSweep"]["uniqueId"]
+assert any(
+    child["command"] == probe["foreignBefore"]["command"]
+    and child["startSec"] == probe["foreignBefore"]["startSec"]
+    for child in probe["setsidChildren"]
+)
+PY
+for failure in enumeration unique coalition signal bootstrap bootout; do
+  set +e
+  python3 "$COALITION_SUPERVISOR" self-test \
+    --root "$COALITION_TEST_ROOT" "${COALITION_TARGETS[@]}" \
+    --inject-failure "$failure"
+  failure_status=$?
+  set -e
+  [ "$failure_status" = "74" ]
+  python3 - "$COALITION_TEST_ROOT/coalition-capability-${failure}-failure.json" <<'PY'
+import json
+import sys
+
+report = json.load(open(sys.argv[1], encoding="utf-8"))
+assert report["status"] == "FAIL"
+assert report["exitCode"] == 74
+assert report["temporaryRootRemoved"] is True
+assert "error" in report
+PY
+done
+
 kill -KILL "$UNRELATED_A" "$UNRELATED_B"
 wait "$UNRELATED_A" 2>/dev/null || true
 wait "$UNRELATED_B" 2>/dev/null || true
@@ -222,6 +275,14 @@ echo "setsid_escape_audit=violation"
 echo "setsid_escape_cleanup_exit=$setsid_escape_status"
 echo "setsid_escape_after_automatic_group_kill=alive"
 echo "setsid_escape_after_explicit_test_group_kill=0"
+echo "launchagent_coalition_preflight=PASS"
+echo "setsid_escape_after_bootout=alive"
+echo "setsid_escape_after_coalition_sweep=0"
+echo "forked_setsid_descendant_after_coalition_sweep=0"
+echo "audit_token_stale_pidversion=ESRCH"
+echo "same_command_same_second_foreign_after_coalition_sweep=alive"
+echo "coalition_empty_scans=3"
+echo "coalition_fault_injections=enumeration,unique,coalition,signal,bootstrap,bootout:exit-74"
 echo "process_inspection_failure_exit=$process_inspection_status"
 echo "process_inspection_diagnostic=UNKNOWN"
 echo "lsof_inspection_failure_exit=$lsof_inspection_status"

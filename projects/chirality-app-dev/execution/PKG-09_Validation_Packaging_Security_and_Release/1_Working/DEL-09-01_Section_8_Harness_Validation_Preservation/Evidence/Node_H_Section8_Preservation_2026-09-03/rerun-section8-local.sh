@@ -99,6 +99,7 @@ export CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE="$USER_DATA/runtime/auth/tokens/ope
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 GROUP_CONTROLLER="$SCRIPT_DIR/section8-process-group-controller.py"
+COALITION_SUPERVISOR="$SCRIPT_DIR/section8-coalition-supervisor.py"
 DAEMON_CONTROLLER_PID=""
 DAEMON_PGID=""
 DAEMON_CHILD_PID=""
@@ -443,6 +444,28 @@ if [ "$INITIAL_PORT_LISTENER_COUNT" != "0" ]; then
   log "port $PORT is already in use; refusing to start (set PORT to a free port)"; exit 72
 fi
 
+# Outer mode remains outside the transient LaunchAgent's resource/jetsam
+# coalition. The supervisor performs its private-ABI and harmless LaunchAgent
+# capability probes here, still before any build or daemon start. Inner mode
+# repeats the port check, runs the ordinary lifecycle with PGID cleanup as its
+# graceful first line, and returns its status to the retained launchd worker.
+if [ "${SECTION8_COALITION_INNER:-0}" != "1" ]; then
+  export REPO_ROOT RUN_ROOT PORT USER_DATA WITH_RELEASE_QUALITY KEEP SKIP_BUILD
+  export APPROVED_BY APPROVAL_REF USER_DATA_CREATED
+  PYTHON_BINARY="$(command -v python3)"
+  NODE_BINARY="$(command -v node)"
+  ELECTRON_APP="$FRONTEND/node_modules/electron/dist/Electron.app"
+  exec python3 "$COALITION_SUPERVISOR" run \
+    --run-root "$RUN_ROOT" \
+    --script "$SCRIPT_DIR/rerun-section8-local.sh" \
+    --repo-root "$REPO_ROOT" \
+    --port "$PORT" \
+    --target-binary /bin/bash \
+    --target-binary "$PYTHON_BINARY" \
+    --target-binary "$NODE_BINARY" \
+    --target-binary "$ELECTRON_APP"
+fi
+
 # --- 0. environment record ---------------------------------------------------
 cd "$FRONTEND"
 {
@@ -470,6 +493,7 @@ cd "$FRONTEND"
   echo "with_release_quality=$WITH_RELEASE_QUALITY"
   echo "daemon_switches=--use-mock-keychain --user-data-dir=<USER_DATA> --runtime-daemon"
   echo "process_lifecycle=retained POSIX session/process-group controllers plus continuous stable-identity descendant audit; detachment fails closed; no individual PID signalling"
+  echo "authoritative_cleanup=outer LaunchAgent resource/jetsam coalition sweep using audit-token-bound signals"
 } > "$LOGS/environment.txt"
 git -C "$REPO_ROOT" status --porcelain > "$LOGS/git-status-before.txt" || true
 
