@@ -239,5 +239,20 @@
         "status": "no drift"
       }
     ]
+  },
+  "post_review_02_refreeze": {
+    "reason": "review 02 (0 blocking / 1 major / 1 minor) remediated as candidate text only: runbook --prepackaged bundle path, $DMG_UNSIGNED/$DMG split with archive step, explicit DMG sign step, blockmap exclusion, A14 binding; checklist A13/A17; run-record echo. No product byte, evidence, or test changed; per the coordinator only git diff --check and validate_change_scope were rerun.",
+    "checks": [
+      {
+        "id": "git diff --check (full range)",
+        "exit": 0,
+        "status": "PASS"
+      },
+      {
+        "id": "validate_change_scope (base 0c683fb16)",
+        "exit": 0,
+        "status": "PASS"
+      }
+    ]
   }
 }

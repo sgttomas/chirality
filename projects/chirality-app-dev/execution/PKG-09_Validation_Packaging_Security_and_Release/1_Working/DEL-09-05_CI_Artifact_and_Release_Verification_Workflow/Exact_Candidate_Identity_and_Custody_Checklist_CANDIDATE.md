@@ -28,11 +28,11 @@ Values known from the committed tree are pre-filled; everything else is `<TBD-ow
 | A10 | Third-party notices SHA-256 | `<TBD-owner>` at freeze; preparation sample recorded in `Evidence/WP09_ARTIFACT_EVIDENCE_2026-09-03/` | `npm run notices:generate` | G6a | NOT PERFORMED |
 | A11 | CycloneDX SBOM SHA-256 (pinned Syft `v1.18.1`) | `<TBD-owner>` | `npm run sbom:generate -- --closure …` and `-- --artifact <app>` | G6a (closure) / G7 (artifact) | NOT PERFORMED |
 | A12 | Runbook SHA-256 (adopted bytes) | `<TBD-owner>` = SHA-256 of `Release_Runbook_CANDIDATE_2026-09-03.md` as reviewed at G5 | `shasum -a 256` | G6a | NOT PERFORMED |
-| A13 | Unsigned candidate DMG SHA-256 (pre-signing) | `<TBD-owner>` | `shasum -a 256 frontend/dist/Chirality-3.0.0-rc.1-arm64.dmg` | G6a | NOT PERFORMED |
+| A13 | Unsigned candidate DMG SHA-256 (pre-signing; runbook `$DMG_UNSIGNED`, archived under `$EVID/unsigned/` before step 3.F.4 overwrites the `dist/` path) | `<TBD-owner>` | `shasum -a 256 frontend/dist/Chirality-3.0.0-rc.1-arm64.dmg` at step 3.B, re-verified on the archived copy | G6a | NOT PERFORMED |
 | A14 | Unsigned candidate executable SHA-256 | `<TBD-owner>` | `shasum -a 256 …/Chirality.app/Contents/MacOS/Chirality` | G6a | NOT PERFORMED |
 | A15 | Nested-byte inventory SHA-256 (AT-047) | `<TBD-owner>` | Inventory file from runbook step 3.B | G6a | NOT PERFORMED |
 | A16 | Fuse/entitlement inventory SHA-256 (AT-058) | `<TBD-owner>` | Runbook step 3.C | G6a | NOT PERFORMED |
-| A17 | Signed DMG SHA-256 (post-staple) | `<TBD-owner>` | Runbook step 3.G | G6b | NOT PERFORMED |
+| A17 | Signed DMG SHA-256 (post-staple; runbook `$DMG`, a different artifact from A13 created by step 3.F.4 around the stapled app) | `<TBD-owner>` | Runbook step 3.G | G6b | NOT PERFORMED |
 | A18 | Signed executable SHA-256 | `<TBD-owner>` | Runbook step 3.G | G6b | NOT PERFORMED |
 | A19 | Notarization submission ids (app, DMG) | `<TBD-owner>` | `xcrun notarytool submit … --wait` | G6b | NOT PERFORMED |
 | A20 | Git tag and tag object SHA | `v3.0.0-rc.1` / `<TBD-owner>` | `git rev-parse v3.0.0-rc.1^{}` = A5 | G8 | NOT PERFORMED |
