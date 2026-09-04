@@ -6383,3 +6383,49 @@
   - Gate-Outcome: `EXECUTED` — awaiting owner merge; no release act. No
     lifecycle, host-mutation, signing, notarization, distribution, or Root
     act; the A1 re-stage rule applies to the touched `frontend/`.
+
+- **2026-09-03 — Receipt 213** (App v3 pathway node I: owner ruling A14 recorded — DEL-09-05-V3-06 deferred to G5 fan-in; host acts deferred).
+  - Receipt-ID: `Receipt-213`
+  - Examined-Through: `e59efa4830fb54143c86e511ec35a6d1a476f72e`
+  - Parent-Receipt: `Receipt-212`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected "Defer until G5 fan-in (Recommended)" for
+    DEL-09-05-V3-06 and answered "Defer both" to the host-acts question
+    (Syft `v1.18.1` install for DEL-09-05-V3-02; disposable self-signed
+    identity for DEL-09-05-V3-04) in the HELP_HUMAN session chat on
+    2026-09-03; the ruling's durable form is
+    `plans/steers/chirality_app_v3_app_ruling_record_a14_2026-09-03.md`
+    (repo root), transcribed verbatim with the `[click]` marker; this
+    receipt adds no new direction. Concurrent sibling nodes may share this
+    parent (ledger rule 7); at rebase time no sibling receipt had landed,
+    so the dispatch's "next unused number" resolves to 213.
+  - Pointers: branch
+    `codex/app-v3-nodeI-a14-version-identity-deferral-2026-09-03` (basis
+    above, PR #686 merge); RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_I_2026-09-03/`
+    (`RETURN.md` incl. the A14 record SHA-256 and the no-`frontend/` A1
+    statement, `CHECKS.json`, `MANIFEST.sha256`,
+    `instances/I1/LAUNCH_BRIEF.md`); DEL-09-05 `_STATUS.md` (V3-06 gate text
+    now `NOT_SELECTABLE_UNTIL: G5 fan-in per owner ruling A14`; V3-02 and
+    V3-04 carry the deferred-host-act clause; one History line; lifecycle
+    and Checking Approval SHA untouched); staged patch unchanged at
+    `Evidence/VERSION_IDENTITY_3.0.0-rc.1/staged_version_patch.diff`
+    (SHA-256
+    `311844f0a8b447085bf038ccbdda353a1240a5b44ae7a91df6754c9c154b1d82`,
+    not applied). No `frontend/` path touched (A1 re-stage rule not fired);
+    no `docs/**`, corpus, register, decision, host, Root, or product write.
+  - Checks: `git diff --check` pass; change-scope validator pass; harness
+    self-check pass; harness pytest pass; APP-HOLD dispatch preflight and
+    register-match scan pass; authority corpus status no drift at v20;
+    receipts validator pass; frontend gates skipped because no product or
+    runtime source changed; independent review not required (record-only;
+    HELP_HUMAN reviews the PR).
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as ephemeral
+    Agent 2 under HELP_HUMAN (Claude Fable 5.1).
+  - Stale-Map-Delta: the dispatch brief named the Gate-Outcome token
+    `RECORDED`; the ledger validator's closed vocabulary is `STOPPED`,
+    `EXECUTED`, `AWAITING_OWNER`, so the record-only outcome is carried as
+    `EXECUTED` with the record-only reason (live tree wins).
+  - Gate-Outcome: `EXECUTED` — record-only transcription of owner ruling
+    A14 (no product, lifecycle, release, host, signing, or Root act);
+    product stays `2.0.0`; awaiting owner merge.

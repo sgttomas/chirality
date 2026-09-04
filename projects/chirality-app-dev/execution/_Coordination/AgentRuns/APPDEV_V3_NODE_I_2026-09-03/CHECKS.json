@@ -1,0 +1,161 @@
+{
+  "schema": "chirality-app-agentrun-checks/v1",
+  "run_id": "APPDEV_V3_NODE_I_2026-09-03",
+  "basis_commit": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
+  "content_commit": "(recorded in the PR and Receipt 213 pointers; this file is committed with the content)",
+  "environment": {
+    "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.14",
+    "git": "git version 2.55.0",
+    "cwd_repo_root": "(REPO_ROOT = git rev-parse --show-toplevel)",
+    "effective_env": {
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "checks": [
+    {
+      "check": "git_diff_check",
+      "cwd": ".",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": []
+    },
+    {
+      "check": "harness_self_check",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "- pointer_files_scanned: 36",
+        "- checks_run: DE-1..8 (domain-engine surfaces incl. stale open issues vs later rulings), GEN-1 (abs-path), GEN-2 (ruling-SHA TBD), GEN-3 (generated labeling), GEN-4 (root governance status facts), GEN-5 (unresolved refs; control files only in v1), GEN-6 (draft-basis-used-as-binding; control files only in v1), GEN-7 (_LATEST pointer currency: target resolution outside .archive + newest-same-class-sibling by date-in-filename), GEN-8 (active-surface portability: structural roles + hash-bound historical exceptions + semantic invariants), GEN-9 (agent-registry currency: AGENTS.md file tokens vs live agents/ files, both directions), GEN-10 (bridge receipt labels + parked-lane carry-forward), GEN-11 (D-44 piping receipt contract), GEN-12 (D-APP-57 app-dev receipt contract), GEN-13 (claims-language DEC-081)"
+      ]
+    },
+    {
+      "check": "harness_pytest",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/practitioner_harness"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "350 passed in 21.35s"
+      ]
+    },
+    {
+      "check": "app_hold_scan",
+      "cwd": "projects/chirality-app-dev",
+      "command": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "scan",
+        "--require-register-match"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "  \"sow_root\": \"projects/chirality-app-dev/execution\",",
+        "  \"verdict\": \"PASS\"",
+        "}"
+      ]
+    },
+    {
+      "check": "app_hold_dispatch_check",
+      "cwd": "projects/chirality-app-dev",
+      "command": [
+        "python3",
+        "execution/_Scripts/app_hold.py",
+        "check",
+        "--operation",
+        "dispatch",
+        "--entry-path",
+        "loop/LOOP_INIT.md",
+        "--target",
+        "DEL-09-05"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "  ],",
+        "  \"verdict\": \"ALLOW\"",
+        "}"
+      ]
+    },
+    {
+      "check": "corpus_status",
+      "cwd": "projects/chirality-app-dev",
+      "command": [
+        "python3",
+        "execution/_Reconciliation/References/reconcile_authority_corpus.py",
+        "status"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "  [MATCH] AGENT_DOMAIN_ENGINE.md       snapshot=bb2df7178d7b live=bb2df7178d7b",
+        "no drift."
+      ]
+    },
+    {
+      "check": "receipts_validator",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "VALID {REPO_ROOT}/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied"
+      ],
+      "note": "first run returned INVALID_GATE_OUTCOME for the brief's `RECORDED` token; the receipt was corrected to the validator vocabulary (`EXECUTED` with a record-only reason) and the delta recorded in the receipt; rerun VALID"
+    },
+    {
+      "check": "change_scope_validator_working_tree",
+      "cwd": ".",
+      "command": [
+        "python3",
+        "tools/software_workflow/validate_change_scope.py",
+        ".",
+        "--base",
+        "e59efa4830fb54143c86e511ec35a6d1a476f72e",
+        "--allowed",
+        "plans/steers/chirality_app_v3_app_ruling_record_a14_2026-09-03.md",
+        "--allowed",
+        "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow",
+        "--allowed",
+        "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_I_2026-09-03",
+        "--allowed",
+        "projects/chirality-app-dev/loop/LOOP_RECEIPTS.md"
+      ],
+      "exit_status": 0,
+      "verdict": "pass",
+      "stdout_tail": [
+        "  \"status\": \"PASS\",",
+        "  \"violations\": []",
+        "}"
+      ],
+      "note": "run over the working tree (tracked diff + untracked) before the content commit; rerun with `--head <content commit>` after commit, result recorded in the PR body"
+    }
+  ],
+  "frontend_gates": "skipped — no product or runtime source changed (typecheck, Vitest, build/premerge, D-APP-36 render bar not applicable); no frontend/ path touched, A1 re-stage rule not fired and no A1 re-stage declaration is owed",
+  "independent_review_child": "not required — record-only tranche (no product bytes); HELP_HUMAN reviews the PR directly",
+  "overall": "pass",
+  "recorded_at": "2026-09-03"
+}
