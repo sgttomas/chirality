@@ -1,0 +1,126 @@
+{
+  "schema": "chirality-app-agentrun-checks/v1",
+  "run_id": "APPDEV_V3_NODE_M_2026-09-04",
+  "basis_commit": "719fe5e34cefc40fe0dab4b045f5f2a89341ae2f",
+  "content_commit": "freeze commit returned by Git after this run record is finalized; no self-referential SHA is embedded",
+  "environment": {
+    "os": "Darwin-25.6.0-arm64",
+    "python": "3.13.14",
+    "git": "git version 2.55.0",
+    "cwd_repo_root": "/private/tmp/chirality-app-v3-a15-20260904/nodeM",
+    "effective_env": {}
+  },
+  "checks": [
+    {
+      "id": "git-diff-check",
+      "command": "git diff --check",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "no whitespace errors"
+    },
+    {
+      "id": "receipts-validator",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "VALID after append-only Receipt 220"
+    },
+    {
+      "id": "authority-corpus-status",
+      "command": "python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "v20; every authority reference MATCH; no drift"
+    },
+    {
+      "id": "app-hold-integrity",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "PASS; no held deliverables; register match true"
+    },
+    {
+      "id": "app-hold-reliance",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation reliance --entry-path loop/LOOP_INIT.md --target DEL-09-05 --target DEL-09-06",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "ALLOW for DEL-09-05 and DEL-09-06"
+    },
+    {
+      "id": "app-hold-dispatch",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-09-05 --target DEL-09-06",
+      "cwd": "projects/chirality-app-dev",
+      "status": "pass",
+      "summary": "ALLOW for DEL-09-05 and DEL-09-06"
+    },
+    {
+      "id": "harness-self-check",
+      "command": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "exit 0 at the unchanged repository baseline"
+    },
+    {
+      "id": "harness-pytest",
+      "command": "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 -m pytest -q tools/practitioner_harness",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "350 passed"
+    },
+    {
+      "id": "change-scope-working-tree",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base 719fe5e34cefc40fe0dab4b045f5f2a89341ae2f --allowed plans/steers/chirality_app_v3_app_ruling_record_a15_2026-09-04.md --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-05_CI_Artifact_and_Release_Verification_Workflow/_STATUS.md --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-06_Network_Key_Attachment_and_Renderer_Security_Checks/_STATUS.md --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "exact write-set validation passed with no violations"
+    },
+    {
+      "id": "manifest-verification",
+      "command": "shasum -a 256 -c projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/MANIFEST.sha256",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "all recorded file identities verified"
+    },
+    {
+      "id": "f-app-2-and-forbidden-path-scans",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "all changed release-related wording is explicit no-act/no-claim posture; no frontend, product, host, Root, lifecycle, Checking Approval SHA, register, decomposition, SCOPE_CHANGE, or other forbidden path changed"
+    },
+    {
+      "id": "del-09-06-v3-03-byte-section-fence",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "the complete V3-03 item section is byte-identical to the basis"
+    }
+  ],
+  "superseded_attempts": [
+    {
+      "id": "harness-status-input-shape",
+      "status": "fail",
+      "summary": "the first status invocation omitted --project and returned usage; corrected invocation with --project chirality-app-dev passed"
+    },
+    {
+      "id": "harness-self-check-system-python",
+      "status": "fail",
+      "summary": "system python3 lacked PyYAML; no pass inferred; the registered check was rerun with the repository's Python 3.13 runtime and passed"
+    }
+  ],
+  "not_run": [
+    {
+      "id": "frontend-gates",
+      "reason": "skipped because no frontend path changed; software-workflow selected no frontend check and A1 is not applicable"
+    },
+    {
+      "id": "signing-notarization-publication-release-readiness",
+      "reason": "prohibited and out of scope under F-APP-2; no pass, performance, or acceptance claim is inferred"
+    },
+    {
+      "id": "independent-product-review",
+      "reason": "record-only tranche with no product, test, CSS, runtime, package, or workflow byte; HELP_HUMAN reviews the frozen record directly"
+    }
+  ],
+  "a1": "not applicable: no frontend path changed; no re-stage declaration is needed",
+  "overall": "pass",
+  "recorded_at": "2026-09-04"
+}

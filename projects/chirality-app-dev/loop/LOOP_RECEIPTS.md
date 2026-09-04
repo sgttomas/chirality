@@ -6638,3 +6638,41 @@
   - Checks: receipt validator pass; corpus pass; Scope of Work pass; APP-HOLD reliance and dispatch pass; registered checks pass; manifests, comparator, and mapping pass; strict JSON and SSE pass; exact change-scope and diff check pass; F-APP-2, secret, product, and evaluator scans pass; reviewed byte-identity pass.
   - Model-Attribution: provider OpenAI; engine Codex; implementer model GPT-5 family (exact identifier unavailable); independent reviewer attribution is retained in each filed review.
   - Gate-Outcome: `EXECUTED` — awaiting owner merge. A1 applies because proof execution wrote ignored/generated `frontend/` paths; historical R20 remains historical and any future proof claim requires a newly staged revision plus fresh owner execution. No tracked product, evaluator, runtime, workflow, Root, plan, register, decision-record, lifecycle, G5, signing, notarization, publication, distribution, release-readiness, certification, or professional act or claim.
+
+- **2026-09-04 — Receipt 220** (App v3 pathway node M: owner ruling A15 record-only transcription).
+  - Receipt-ID: `Receipt-220`
+  - Examined-Through: `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
+  - Parent-Receipt: `Receipt-219`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: in the
+    HELP_HUMAN session on 2026-09-04 owner Ryan Tufts answered "Yes, so
+    authorized." to each of the three presented questions: the recommended
+    per-response CSP nonce with dynamic rendering for DEL-09-06-V3-04; the
+    owner-host Syft `v1.18.1` install for DEL-09-05-V3-02; and creation of
+    the disposable self-signed identity plus the seated credential-transition
+    drill for DEL-09-05-V3-04 under the question's express exclusion of
+    Developer ID signing, notarization, Apple calls, distribution, and
+    release-readiness claims. The durable ruling form is repo-root
+    `plans/steers/chirality_app_v3_app_ruling_record_a15_2026-09-04.md`.
+  - Pointers: branch
+    `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`; basis above; RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`
+    (`STEP0_DISCOVERY.md`, `CHECKS.json`, `RETURN.md`, `HANDOFF_STATE.md`,
+    `MANIFEST.sha256`, and sealed `instances/M1/LAUNCH_BRIEF.md`); DEL-09-06
+    `_STATUS.md` makes V3-04 selectable under A15 while preserving V3-03;
+    DEL-09-05 `_STATUS.md` records the prospective host-act authorizations
+    while retaining the operational blockers until Syft and the disposable
+    identity are observable.
+  - Checks: receipt validator pass; authority corpus pass; APP-HOLD reliance,
+    dispatch, and integrity pass; harness self-check and pytest pass; exact
+    change-scope, manifest verification, F-APP-2 scan, forbidden-path scan,
+    and `git diff --check` pass. Frontend gates skipped because no
+    `frontend/` path changed; A1 is not applicable.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact model identifier not exposed to the agent runtime), as ephemeral
+    Agent 2 under HELP_HUMAN.
+  - Gate-Outcome: `EXECUTED` — record-only transcription awaiting owner
+    merge. A14 remains valid dated history; its host-act deferrals are lifted
+    prospectively only. No product, `frontend/`, host, Root, lifecycle,
+    Checking Approval SHA, register, decomposition, SCOPE_CHANGE, Developer
+    ID signing, notarization, Apple call, distribution, publication,
+    release-readiness, or production identity act or claim.
