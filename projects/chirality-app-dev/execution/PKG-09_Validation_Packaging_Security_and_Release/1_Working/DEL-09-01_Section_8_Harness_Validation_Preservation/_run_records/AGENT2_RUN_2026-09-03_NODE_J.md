@@ -69,7 +69,7 @@ The experimental basis is `/private/tmp/chirality-app-v3-slate3-20260903/reviews
 
 ## Review round 1 disposition (historical; superseded by round 2)
 
-Reviewed freeze: `9dd4b4ed04f5b99f6aa42a34ecd8ad6545e23089`. Review report SHA-256: `0c0372bdb2ade320bf086e808a7d23c053f89bd7285da0a00244db84bfa808b7`. The verbatim report is retained by HELP_HUMAN for filing after review acceptance.
+Reviewed freeze: `9dd4b4ed04f5b99f6aa42a34ecd8ad6545e23089`. Review report SHA-256: `0c0372bdb2ade320bf086e808a7d23c053f89bd7285da0a00244db84bfa808b7`. The verbatim report is filed under `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_J_2026-09-03/instances/J2_REVIEWER/`.
 
 | Finding | Disposition | Exact proof |
 |---|---|---|
@@ -78,7 +78,7 @@ Reviewed freeze: `9dd4b4ed04f5b99f6aa42a34ecd8ad6545e23089`. Review report SHA-2
 
 ## Review round 2 disposition
 
-Reviewed freeze: `26a1e43cd3177bb1fef9eff7ddf02310e413fb89`. Review report SHA-256: `e48e5c6e86698c32d778224a0ff65d813a2b8c05b6672846efb5775dca9a4601`. The verbatim report is retained by HELP_HUMAN for filing after review acceptance.
+Reviewed freeze: `26a1e43cd3177bb1fef9eff7ddf02310e413fb89`. Review report SHA-256: `e48e5c6e86698c32d778224a0ff65d813a2b8c05b6672846efb5775dca9a4601`. The verbatim report is filed under `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_J_2026-09-03/instances/J2_REVIEWER/`.
 
 | Finding | Disposition | Exact proof |
 |---|---|---|
@@ -88,11 +88,19 @@ Reviewed freeze: `26a1e43cd3177bb1fef9eff7ddf02310e413fb89`. Review report SHA-2
 
 ## Review round 3 disposition
 
-Reviewed freeze: `2c42f919aa38546c5a4ad9eb692b450aa5c13d06`. Review report SHA-256: `3b66f126fb9270206b201306ff1bfbbaf56e81543996ffe5ea78affc1555de83`. The verbatim report is retained by HELP_HUMAN for filing after review acceptance.
+Reviewed freeze: `2c42f919aa38546c5a4ad9eb692b450aa5c13d06`. Review report SHA-256: `3b66f126fb9270206b201306ff1bfbbaf56e81543996ffe5ea78affc1555de83`. The verbatim report is filed under `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_J_2026-09-03/instances/J2_REVIEWER/`.
 
 | Finding | Disposition | Exact proof |
 |---|---|---|
-| J3-F1 — a `setsid()` descendant escapes the anchored PGID | REMEDIATED; ROUND-4 REVIEW PENDING | The outer supervisor uses a uniquely labelled LaunchAgent coalition inherited by `setsid()` descendants and exact audit-token signals tied to kernel pidversion. The host preflight proved six TERM-resistant setsid descendants survived ordinary bootout, coalition sweep removed all target members with three consecutive empty scans, and a same-command/same-second foreign process survived. A wrong pidversion returned ESRCH. Forced enumeration, flavor-17 unique-ID, flavor-20 coalition, signal, bootstrap, and bootout failures each exited 74 and removed probe state. The retained premerge proof and separate release-quality lifecycle passed from clean runner `9dfbb7962`; each final coalition was empty and each manifest verified. The verified prototype memo SHA-256 is `6ccc89b1e4e3a7be196b208624f3b8e298c7d62d5f8f43a08885025e4ef4c5e6`. Round-4 review remains mandatory. |
+| J3-F1 — a `setsid()` descendant escapes the anchored PGID | CLOSED BY ROUND-4 PASS | The outer supervisor uses a uniquely labelled LaunchAgent coalition inherited by `setsid()` descendants and exact audit-token signals tied to kernel pidversion. The host preflight proved six TERM-resistant setsid descendants survived ordinary bootout, coalition sweep removed all target members with three consecutive empty scans, and a same-command/same-second foreign process survived. A wrong pidversion returned ESRCH. Forced enumeration, flavor-17 unique-ID, flavor-20 coalition, signal, bootstrap, and bootout failures each exited 74 and removed probe state. The retained premerge proof and separate release-quality lifecycle passed from clean runner `9dfbb7962`; each final coalition was empty and each manifest verified. The verified prototype memo SHA-256 is `6ccc89b1e4e3a7be196b208624f3b8e298c7d62d5f8f43a08885025e4ef4c5e6`. Round-4 review independently closed the finding. |
+
+## Review round 4 disposition
+
+Reviewed freeze: `727e4bf51e545b2d01aa0979aaa1c9bda78b47e1`. Review report SHA-256: `ed3aa8d4b0b424c4f5c525f26d032fcc4c2b06754aec2922f32acd84ec460d1e`. The verbatim report is filed under `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_J_2026-09-03/instances/J2_REVIEWER/`. Verdict: PASS with zero BLOCKER, zero MAJOR, one MINOR, and zero NOTE findings.
+
+| Finding | Disposition | Exact proof |
+|---|---|---|
+| J4-F1 — cleanup narrative cited the inner log for outer-owned user-data removal | CORRECTED AFTER PASS | `EVIDENCE.md` now states that the inner job truthfully reports its inherited user-data path as caller-supplied/retained and that the outer supervisor owns removal. The retained inner log, runner/helper/test/result bytes, and per-run manifest are unchanged. Only the narrative and its one bundle-manifest hash line changed mechanically; round-4 independently verified the path absent after return. |
 
 The registered-check runner's first attempt used `/usr/bin/python3`, which lacked PyYAML and pytest; those outcomes were not treated as passes. The recorded rerun prepended the existing host Python 3.13 environment and passed all three selected checks. A non-selected direct `instruction-root:integrity` probe against the unpackaged build reported the expected missing packaged instruction bundle and SDK files; packaging was outside this evidence-only tranche, so no package/release act was taken and the result is not represented as a pass or as a selected gate.
 
@@ -104,4 +112,4 @@ This is validation evidence only. It makes no signing, notarization, publication
 
 ## Review state
 
-Round-3 review failed on J3-F1. The coalition/audit-token replacement now has the required two-phase topology: runner/helper/test/control bytes through clean runner `9dfbb7962`, followed by this generated-evidence commit. A fresh round-4 read-only review over 100% of the resulting diff is mandatory. DEL-09-01-V3-02 removal, DEL-09-01-V3-01 revision, `_STATUS.md` History, `MEMORY.md`, review filing, final AgentRuns handoff/checks/manifest, and the loop receipt are all deferred until HELP_HUMAN sends `REVIEW_PASS`.
+Round-4 review passed over freeze `727e4bf51e545b2d01aa0979aaa1c9bda78b47e1`, closing every prior BLOCKER/MAJOR finding. J4-F1 was the sole residual and received the explicitly allowed narrative-only correction described above. DEL-09-01-V3-02 is removed per its `Removed when`; DEL-09-01-V3-01 is revised to the accepted basis/runner evidence and parked until its next trigger or G5 fan-in. No reviewed runner/helper/test/result or manifest-covered retained proof byte changed after PASS.
