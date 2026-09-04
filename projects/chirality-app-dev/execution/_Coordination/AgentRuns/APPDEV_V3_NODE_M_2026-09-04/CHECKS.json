@@ -104,6 +104,11 @@
       "id": "harness-self-check-system-python",
       "status": "fail",
       "summary": "system python3 lacked PyYAML; no pass inferred; the registered check was rerun with the repository's Python 3.13 runtime and passed"
+    },
+    {
+      "id": "status-field-fence-broad-pattern",
+      "status": "fail",
+      "summary": "the first post-freeze grep matched no-change History prose that named Current State and Checking Approval SHA; no pass inferred; the field-anchored diff check was rerun and passed with neither field changed"
     }
   ],
   "not_run": [

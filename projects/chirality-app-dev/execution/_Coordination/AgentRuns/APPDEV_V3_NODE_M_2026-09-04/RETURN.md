@@ -47,8 +47,8 @@ Receipt validation, authority-corpus status, APP-HOLD integrity/reliance/
 dispatch, harness self-check, harness pytest, exact change scope, manifest
 verification, F-APP-2/no-positive-claim scan, forbidden-path scan,
 DEL-09-06-V3-03 byte-section comparison, and `git diff --check` pass. The
-initial harness status and self-check input/runtime errors and their corrected
-passes are recorded honestly in `CHECKS.json`. Frontend gates are skipped
+initial harness status/self-check errors and the over-broad status-field grep,
+plus their corrected passes, are recorded honestly in `CHECKS.json`. Frontend gates are skipped
 because no `frontend/` path changed; A1 is not applicable.
 
 ## Boundaries and remaining actions
