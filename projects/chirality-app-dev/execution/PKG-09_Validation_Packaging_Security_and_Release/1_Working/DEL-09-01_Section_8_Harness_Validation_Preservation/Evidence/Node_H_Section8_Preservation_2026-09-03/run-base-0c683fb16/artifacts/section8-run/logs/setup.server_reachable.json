@@ -1,0 +1,10 @@
+{
+  "id": "setup.server_reachable",
+  "status": "pass",
+  "startedAt": "2026-09-04T01:43:33.615Z",
+  "endedAt": "2026-09-04T01:43:33.640Z",
+  "durationMs": 24,
+  "details": {
+    "httpStatus": 200
+  }
+}

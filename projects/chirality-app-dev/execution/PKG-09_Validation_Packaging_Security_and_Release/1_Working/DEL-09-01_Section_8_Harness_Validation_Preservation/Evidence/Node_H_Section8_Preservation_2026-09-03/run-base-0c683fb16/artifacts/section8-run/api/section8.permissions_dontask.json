@@ -1,0 +1,22 @@
+{
+  "denyEventTypes": [
+    "harness:event",
+    "session:init",
+    "tool:result",
+    "chat:complete",
+    "session:complete",
+    "harness:event",
+    "process:exit"
+  ],
+  "allowEventTypes": [
+    "harness:event",
+    "session:init",
+    "tool:result",
+    "chat:delta",
+    "chat:delta",
+    "chat:complete",
+    "session:complete",
+    "harness:event",
+    "process:exit"
+  ]
+}

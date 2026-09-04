@@ -1,0 +1,75 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_V3_NODE_H_2026-09-03",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "supervisor": {"role": "HELP_HUMAN", "agent_type": 0, "model": "claude-fable-5-1"},
+  "basis": {
+    "branch": "codex/app-v3-nodeH-section8-preservation-2026-09-03",
+    "cut_from": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
+    "required_ancestor": "e59efa4830fb54143c86e511ec35a6d1a476f72e"
+  },
+  "authorization": "instances/H1_IMPLEMENTER/LAUNCH_BRIEF.md (owner 2026-09-03 dev-slate-2 selection via HELP_HUMAN; selectability from the merged act PR #686 / e59efa483 / Receipt 212 re-derived under WORKPLAN_2026-09-03 Step 1; STEP0_DISCOVERY.md section 4)",
+  "items": ["DEL-09-01-V3-01"],
+  "nodes": [
+    {
+      "id": "H1_IMPLEMENTER",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "agent_type": 2,
+      "model": "claude-fable-5-1",
+      "skill": "software-bounded-implementation",
+      "delegates": false,
+      "depends_on": [],
+      "writes": [
+        "frontend/scripts/validate-harness-*.mjs (permitted; unchanged in this run)",
+        "frontend/src/__tests__/scripts/validate-harness-*.test.ts (Section 8 fixtures; permitted; unchanged in this run)",
+        "frontend/artifacts/harness/** (gitignored stable artifacts; exercised, never committed)",
+        "execution/PKG-09_*/1_Working/DEL-09-01_*/Evidence/**",
+        "execution/PKG-09_*/1_Working/DEL-09-01_*/_run_records/**",
+        "execution/PKG-09_*/1_Working/DEL-09-01_*/_STATUS.md (Step 0 selectability flip; closeout History + item revision)",
+        "execution/PKG-09_*/1_Working/DEL-09-01_*/MEMORY.md (closeout)",
+        "execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03/**",
+        "loop/LOOP_RECEIPTS.md (append only, closeout)"
+      ],
+      "returns": ["RETURN.md", "CHECKS.json", "evidence bundle", "local frozen commit"]
+    },
+    {
+      "id": "H2_REVIEWER",
+      "role": "TASK",
+      "skill": "software-code-review",
+      "agent_type": 2,
+      "model": "claude-fable-5-1",
+      "delegates": false,
+      "read_only": true,
+      "depends_on": ["H1_IMPLEMENTER"],
+      "writes": [],
+      "returns": ["verdict + findings (filed under instances/H2_REVIEWER/ by H1)"]
+    },
+    {
+      "id": "CLOSEOUT",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "agent_type": 2,
+      "model": "claude-fable-5-1",
+      "depends_on": ["H2_REVIEWER"],
+      "requires": "REVIEW_PASS from HELP_HUMAN",
+      "writes": [
+        "DEL-09-01 _STATUS.md (History line; V3-01 revised, not removed) and MEMORY.md",
+        "execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03/{HANDOFF_STATE.md,MANIFEST.sha256}",
+        "loop/LOOP_RECEIPTS.md (append the next unused receipt; Parent-Receipt Receipt-212)"
+      ],
+      "returns": ["PR number", "head SHA", "receipt ID"]
+    }
+  ],
+  "edges": [["H1_IMPLEMENTER", "H2_REVIEWER"], ["H2_REVIEWER", "CLOSEOUT"]],
+  "remediation_loop": "H2 findings -> H1 remediate + re-freeze -> H2 re-review, until PASS",
+  "concurrent_siblings": {
+    "note": "dev-slate-2 nodes F, G, I may run concurrently in disjoint write sets; shared surface is loop/LOOP_RECEIPTS.md append-only (Parent-Receipt Receipt-212, ledger rule 7; receipt number taken at rebase time)"
+  },
+  "human_gates": [
+    "owner merge of the single PR",
+    "any write-locus extension surfaced as a scope need",
+    "A1 re-stage: newly staged R20 revision + fresh owner-executed proof before any future proof claim",
+    "G5 fan-in acceptance of the preservation evidence (item removal point; not this tranche)"
+  ]
+}

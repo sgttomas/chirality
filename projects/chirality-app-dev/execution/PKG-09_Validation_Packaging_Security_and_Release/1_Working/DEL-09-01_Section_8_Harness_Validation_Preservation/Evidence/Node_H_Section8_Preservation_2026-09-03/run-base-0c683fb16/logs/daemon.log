@@ -1,0 +1,5 @@
+Downloading Electron binary...
+[chirality-desktop] 2026-09-04T01:43:28.028Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":false,"userData":"/private/tmp/chirality-s8.DX3XeN","pid":75196}
+[chirality-desktop] 2026-09-04T01:43:28.047Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-s8.DX3XeN/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-s8.DX3XeN/runtime"}
+[chirality-desktop] 2026-09-04T01:43:43.915Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":75196}
+[chirality-desktop] 2026-09-04T01:43:43.916Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}

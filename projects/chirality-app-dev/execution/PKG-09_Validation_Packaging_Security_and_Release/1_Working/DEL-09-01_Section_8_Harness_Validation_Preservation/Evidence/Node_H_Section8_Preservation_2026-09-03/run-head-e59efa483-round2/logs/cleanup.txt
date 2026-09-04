@@ -1,0 +1,4 @@
+user_data_removed=yes path=/private/tmp/chirality-s8.F8ehog
+harness_tmp_root_removed=yes path=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest
+private_dir_removed=yes
+checkout_leftovers=gitignored, intentionally not removed: /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend/artifacts/harness/** (stable artifacts; the deliverable surface) and /private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend/.chirality/sessions (legacySessionRoots entry required at registration)

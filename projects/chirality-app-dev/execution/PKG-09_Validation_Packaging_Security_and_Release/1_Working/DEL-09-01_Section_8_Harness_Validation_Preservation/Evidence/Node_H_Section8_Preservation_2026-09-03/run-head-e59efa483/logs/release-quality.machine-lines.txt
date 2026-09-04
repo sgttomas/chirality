@@ -1,0 +1,4 @@
+RELEASE_QUALITY_SUMMARY_PATH=/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH/projects/chirality-app-dev/frontend/artifacts/harness/release-quality/latest/summary.json
+RELEASE_QUALITY_STATUS=pass
+RELEASE_QUALITY_PREMERGE_SKIPPED=false
+RELEASE_QUALITY_SECTION9_POLICY=standalone-blocking,premerge-report-only

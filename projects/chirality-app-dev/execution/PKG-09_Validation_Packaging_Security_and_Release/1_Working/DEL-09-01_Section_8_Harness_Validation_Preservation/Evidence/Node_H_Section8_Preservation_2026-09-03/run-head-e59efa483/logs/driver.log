@@ -1,0 +1,11 @@
+[01:35:50] starting runtime daemon under /private/tmp/chirality-s8.4dWTHh
+[01:35:51] daemon ready (shim pid 67904, electron pid 67907)
+[01:35:51] project registered; token file /private/tmp/chirality-s8.4dWTHh/runtime/auth/tokens/project-f6d7a8de-df91-4556-8020-0cba52ea28d4.token
+[01:35:51] starting next dev on http://127.0.0.1:51840
+[01:35:53] harness API ready
+[01:35:54] npm run harness:validate:premerge
+[01:36:02] premerge exit 0
+[01:36:02] npm run validate:release-quality
+[01:36:25] release-quality exit 0
+[01:36:26] teardown begin (status so far 0)
+[01:36:28] teardown done

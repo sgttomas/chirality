@@ -1,0 +1,5 @@
+status 0 signal null error undefined
+stdout: ready; calling safeStorage.isEncryptionAvailable()
+isEncryptionAvailable=true in 1ms
+
+stderr: 

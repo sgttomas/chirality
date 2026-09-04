@@ -1,0 +1,12 @@
+# daemon electron pid 75196 (shim 75190) — TCP sockets (expect none):
+# daemon electron pid 75196 — Unix sockets under the disposable user-data root:
+Electron 75196 ryan   31u  unix  0x451db41cadb0044      0t0      /private/tmp/chirality-s8.DX3XeN/runtime/control.sock
+Electron 75196 ryan   34u  unix 0xd3171628cfe1895b      0t0      /private/tmp/chirality-s8.DX3XeN/runtime/control.sock
+# all TCP listeners owned by any process under the disposable user-data root (expect none):
+# control socket mode:
+srw-------@ 1 ryan  wheel  0 Sep  3 19:43 /private/tmp/chirality-s8.DX3XeN/runtime/control.sock
+# runtime directory mode:
+drwx------@ 6 ryan  wheel  192 Sep  3 19:43 /private/tmp/chirality-s8.DX3XeN/runtime
+# listeners on port 51841 (expect the next dev server only):
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+node    75247 ryan   13u  IPv4 0xfb24cc2c6b10c738      0t0  TCP 127.0.0.1:51841 (LISTEN)

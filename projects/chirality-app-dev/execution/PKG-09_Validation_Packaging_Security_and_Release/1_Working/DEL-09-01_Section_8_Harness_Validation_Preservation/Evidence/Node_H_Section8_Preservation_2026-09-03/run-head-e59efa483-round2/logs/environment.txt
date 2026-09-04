@@ -1,0 +1,21 @@
+started_at=2026-09-04T02:05:22Z
+repo_root=/private/tmp/claude-501/-Users-ryan-dev-chirality--claude-worktrees-task-management-gen-pass-518da2/88f4d942-8887-44e9-b9df-8a72e2ed6f30/scratchpad/wt-nodeH
+head=021e1f1863670f30cf81df909a417bf550cbc370
+git_status_before=10 dirty paths
+platform=Darwin 25.6.0 arm64
+node=v24.18.0
+npm=11.16.0
+electron=43.2.0
+next=15.5.21
+vitest=4.1.10
+port=51842
+user_data=/private/tmp/chirality-s8.F8ehog
+user_data_created_by_script=1
+tmpdir=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/
+harness_tmp_root=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest
+CHIRALITY_HARNESS_PROVIDER=stub
+HARNESS_BASE_URL=http://127.0.0.1:51842
+CHIRALITY_RUNTIME_SOCKET_PATH=/private/tmp/chirality-s8.F8ehog/runtime/control.sock
+CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE=/private/tmp/chirality-s8.F8ehog/runtime/auth/tokens/operator.token
+with_release_quality=0
+daemon_switches=--use-mock-keychain --user-data-dir=<USER_DATA> --runtime-daemon
