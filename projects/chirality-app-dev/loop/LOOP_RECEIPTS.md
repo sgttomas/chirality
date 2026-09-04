@@ -6760,3 +6760,37 @@
     product, host, Root, lifecycle, SCOPE_CHANGE, signing, notarization,
     Apple call, distribution, publication, release-readiness, or production
     identity act or claim occurred.
+
+- **2026-09-04 — Receipt 223** (Node M A15 final reviewed closeout).
+  - Receipt-ID: `Receipt-223`
+  - Examined-Through: `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
+  - Parent-Receipt: `Receipt-222`
+  - Stale-Map-Delta: Receipts 220 through 222 remain preserved earlier
+    evidence; Receipt 222's pending-review posture is superseded by the
+    immutable PASS report at
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/instances/M7_REVIEWER/REVIEW_NODE_M_R6.md`
+    and the final `HANDOFF_STATE.md`.
+  - Pointers: branch
+    `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`; basis above; A15 at
+    `plans/steers/chirality_app_v3_app_ruling_record_a15_2026-09-04.md`;
+    RunID `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`;
+    final `RETURN.md`, `HANDOFF_STATE.md`, `REVIEW_DISPOSITIONS.md`, and
+    `MANIFEST.sha256`; independent-review report SHA-256
+    `dc96448da18b81b1a3af333b63ade6eb6f6baa35e4453f9f2dcd7bf53bddb2c0`;
+    review NOTES are recorded residual context and seed no follow-on item.
+  - Checks: receipt validator pass; authority corpus pass; APP-HOLD pass;
+    harness self-check and pytest pass; exact change-scope, manifest,
+    independent-review identity, PASS-freeze byte identity,
+    forbidden-path/F-APP-2, and `git diff --check` pass; frontend and
+    release-execution gates skipped.
+  - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
+    (exact model identifier not exposed to the agent runtime); execution
+    class `delegated-harness-native`; Agent-2 roles are `role not
+    mechanically enforced` with `instruction-asserted` governed-workflow
+    evidence; non-delegation is instruction+config asserted, not
+    mechanism-proven.
+  - Gate-Outcome: `AWAITING_OWNER` — independent review passed; PR creation,
+    push, and owner merge remain gates. No frontend, product, host, Root,
+    lifecycle, SCOPE_CHANGE, signing, notarization, Apple call, distribution,
+    publication, release-readiness, or production identity act or claim
+    occurred.

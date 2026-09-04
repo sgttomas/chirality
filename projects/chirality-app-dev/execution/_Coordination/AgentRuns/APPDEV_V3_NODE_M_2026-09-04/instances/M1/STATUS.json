@@ -11,7 +11,7 @@
   "branch": "codex/app-v3-nodeM-a15-owner-rulings-2026-09-04",
   "worktree": "/private/tmp/chirality-app-v3-a15-20260904/nodeM",
   "descendants_observed": false,
-  "status": "review_ready_r6",
+  "status": "closeout_ready",
   "timeline": [
     {
       "phase": "initial_candidate",
@@ -45,8 +45,15 @@
     },
     {
       "phase": "round_5_remediation",
-      "freeze": "Git commit returned after the complete record is finalized; no self-referential SHA embedded",
-      "review": "pending_fresh_round_6"
+      "freeze": "52d220ec44486bd62923aea1ecd2bfab02c693d2",
+      "review": "pass",
+      "review_report_sha256": "dc96448da18b81b1a3af333b63ade6eb6f6baa35e4453f9f2dcd7bf53bddb2c0",
+      "review_notes": "two residual context notes recorded; no follow-on item seeded"
+    },
+    {
+      "phase": "post_pass_narrative_closeout",
+      "review": "complete",
+      "next_gate": "PR creation and owner merge"
     }
   ],
   "push_performed": false,

@@ -17,10 +17,9 @@
   governed-workflow role evidence `instruction-asserted`.
 - **Implementer:** M1, instructed to operate in bounded ephemeral Agent-2
   mode under that calibration.
-- **Reviewers:** M2, M3, M4, M5, and M6 were separate fresh, read-only
+- **Reviewers:** M2, M3, M4, M5, M6, and M7 were separate fresh, read-only
   descendants instructed to operate in ephemeral Agent-2 reviewer mode under
-  that same calibration. M7 is the required next fresh reviewer over the
-  complete round-6 freeze.
+  that same calibration.
 - **K-SUBAGENT calibration:** each child was instructed and configured not to
   create descendants. Non-delegation is instruction+config asserted, not
   mechanism-proven; no descendants were observed.
@@ -63,9 +62,15 @@
 11. M1 accepted and remediated M6's A15 provenance-calibration finding. The
     resulting Git commit is the round-6 review freeze; this record does not
     embed a self-referential commit identifier.
-12. M7 must independently review 100% of the
-    accepted-basis-to-round-6-freeze diff. Manager fan-in requires zero
-    BLOCKER and zero MAJOR findings.
+12. M7 independently reviewed 100% of the
+    accepted-basis-to-round-6-freeze diff at
+    `52d220ec44486bd62923aea1ecd2bfab02c693d2` and returned PASS with no
+    BLOCKER, MAJOR, or MINOR findings and two NOTES. Its immutable report is
+    filed at `instances/M7_REVIEWER/REVIEW_NODE_M_R6.md`.
+13. M1 filed the immutable R6 report and truthful M7 evidence, recorded both
+    NOTES as residual context without seeding follow-on work, appended final
+    Receipt 223, and prepared the owner-gated PR handoff. These are
+    narrative-only post-PASS edits.
 
 ## Write boundary
 
@@ -75,8 +80,8 @@ Only these paths may change:
 - DEL-09-05 `_STATUS.md`
 - DEL-09-06 `_STATUS.md`
 - `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/**`
-- append-only corrective Receipt 222 in `loop/LOOP_RECEIPTS.md` (Receipts
-  220 and 221 remain preserved earlier tranche evidence)
+- append-only corrective Receipts 222 and 223 in `loop/LOOP_RECEIPTS.md`
+  (Receipts 220 through 222 remain preserved earlier tranche evidence)
 
 The two deliverable paths and every AgentRuns/ledger path above are relative
 to `projects/chirality-app-dev/`; A15 is repo-root. No product, `frontend/`,
@@ -100,15 +105,17 @@ M5's launch record is an accurate structured reconstruction from the spent
 historical R4 handoff, immutable R4 report, and supervisor direction; it is
 not a byte-verbatim prompt claim. M6's launch record is an accurate structured
 reconstruction from the spent historical R5 handoff, immutable R5 report, and
-supervisor direction; it is not a byte-verbatim prompt claim. The M2 through
-M6 review reports are immutable contemporaneous reviewer outputs and govern
+supervisor direction; it is not a byte-verbatim prompt claim. M7's launch
+record is a source-calibrated reconstruction from the spent historical R6
+handoff, immutable R6 report, and supervisor direction, created under direct
+owner authorization; it is not a byte-verbatim prompt claim. The M2 through
+M7 review reports are immutable contemporaneous reviewer outputs and govern
 if a summary record differs.
 
 No child push, PR, merge, host act, or product-byte mutation was observed.
 No child descendants were observed, with K-SUBAGENT evidence limited to
-instruction+config assertion rather than mechanism proof. No PASS is inferred
-from deterministic checks or remediation; fresh M7 review under the active
-`REVIEW_R6_HANDOFF.md` remains required. The pre-review candidate
-intentionally cannot include a future round-6 verdict/report. If round 6
-passes, its immutable report and final narrative closeout may be filed after
-PASS without changing ruling or deliverable bytes.
+instruction+config assertion rather than mechanism proof. M7's immutable R6
+report establishes review PASS for freeze
+`52d220ec44486bd62923aea1ecd2bfab02c693d2`; no PASS is inferred merely from
+deterministic checks or remediation. The R6 handoff is now spent history.
+Only the PR and owner merge gate remain for this record-only tranche.

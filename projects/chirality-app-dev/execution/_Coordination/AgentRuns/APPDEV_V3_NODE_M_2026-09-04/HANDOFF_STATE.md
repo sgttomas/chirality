@@ -25,15 +25,16 @@
   `5b99e308bd0e0affbc72ac7c8a727ca0aa5fa51d0de073f1d5cfeb35807ec817`.
 - DEL-09-05 and DEL-09-06 state annotations are derived from that candidate
   ruling and remain candidate bytes until owner merge.
-- Receipts 220 and 221 are preserved earlier tranche evidence. Corrective
-  Receipt 222 and this AgentRuns folder are current derivative
+- Receipts 220 through 222 are preserved earlier tranche evidence. Final
+  Receipt 223 and this AgentRuns folder are current derivative
   coordination/evidence surfaces. They do not substitute for the owner
   ruling or deliverable truth.
 - No authority-corpus derivative package changed; corpus v20 reports no drift.
 
 ## Closure verdict
 
-`REVIEW_READY_R6` for a fresh independent reviewer. Round 1 over
+`REVIEW_PASS — CLOSEOUT_READY`: round 6 passed over the accepted substantive
+freeze; PR creation and owner merge remain. Round 1 over
 `f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c` returned FAIL with three MAJOR
 findings and no BLOCKER. The immutable report is filed at
 `instances/M2_REVIEWER/REVIEW_NODE_M_R1.md` (SHA-256
@@ -73,32 +74,38 @@ one MAJOR finding and no BLOCKER. Its immutable report is filed at
 `08fb5bfc74abd294b47284fc5ebf836ee1b21ffb2051d30b81ff6db54234c88b`).
 M-R5-F1 is accepted and remediated by calibrating only A15's mutable
 execution-attribution sentence; all owner questions, answers, and substantive
-rulings remain unchanged. The sealed R2 through R5 handoffs are spent
-historical dispatch contracts. The only active next-review contract is
-`REVIEW_R6_HANDOFF.md`.
+rulings remain unchanged.
 
-`ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M6 child records
+Round 6 over `52d220ec44486bd62923aea1ecd2bfab02c693d2` returned PASS with no
+BLOCKER, MAJOR, or MINOR findings and two NOTES. Its immutable report is filed
+at `instances/M7_REVIEWER/REVIEW_NODE_M_R6.md` (SHA-256
+`dc96448da18b81b1a3af333b63ade6eb6f6baa35e4453f9f2dcd7bf53bddb2c0`).
+The NOTES preserve the existing repo-wide harness self-check inventory as
+baseline context and constrain post-PASS filing to narrative-only evidence;
+no follow-on item was seeded. The sealed R2 through R6 handoffs are spent
+historical dispatch contracts. No active review pointer remains.
+
+`ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M7 child records
 represent the actual sequential execution with explicit provenance and
-native-descendant evidence calibration. The round-6 candidate intentionally
-cannot include the future R6 verdict/report. If R6 passes, its immutable
-report and final narrative closeout may be filed after PASS without changing
-ruling or deliverable bytes. No merge, push, host act, or implementation is
-performed by M1. Deterministic checks pass on the remediation candidate;
-round-6 review and owner merge remain acceptance gates.
+native-descendant evidence calibration. The immutable R6 report and final
+narrative closeout were filed after PASS without changing ruling or
+deliverable bytes. No merge, push, host act, or implementation is performed
+by M1. Deterministic checks and independent review pass; PR creation and owner
+merge remain acceptance gates.
 
 ## Rerun requirements
 
 - Reconfirm current `origin/main`, physical receipt tail, and exact change
-  scope before publishing if another tranche lands first.
+  scope before publishing if another tranche lands first. At closeout fetch,
+  `origin/main` remained
+  `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`; no rebase was required.
 - Rerun the receipt validator, corpus status, APP-HOLD checks, harness
   self-check and pytest, manifest verification, F-APP-2/forbidden-path scans,
   and `git diff --check` after any rebase or narrative edit.
-- Preserve the A15 bytes and recompute every dependent manifest hash after any
-  authorized correction.
-- A fresh reviewer must inspect the complete basis-to-round-6-freeze diff,
-  verify every round-1 through round-5 disposition plus A15, child-record,
-  and current-pointer evidence calibration, and file a round-6 report. Do not
-  infer a PASS until that review returns zero BLOCKER and zero MAJOR findings.
+- Preserve the PASS-freeze A15 and both deliverable-status bytes through PR
+  publication and owner merge.
+- No further review is owed unless substantive bytes change. Any such change
+  invalidates the R6 PASS and requires fresh review.
 
 ## Remaining blockers and next gates
 

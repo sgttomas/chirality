@@ -25,23 +25,25 @@ not mechanism-proven; no descendants were observed.
 | `M1_REMEDIATION_R4` | Same bounded M1; corrects every mutable current-round, report-count, and handoff pointer | `M5_REVIEWER` | `REVIEW_READY_R5`; freeze is the Git commit returned after these records are finalized |
 | `M6_REVIEWER` | Instructed fresh read-only ephemeral Agent-2 reviewer mode; role not mechanically enforced; 100% basis-to-round-5-freeze review | `M1_REMEDIATION_R4` | FAIL, one MAJOR; immutable report SHA-256 `08fb5bfc74abd294b47284fc5ebf836ee1b21ffb2051d30b81ff6db54234c88b` |
 | `M1_REMEDIATION_R5` | Same bounded M1; calibrates the mutable A15 execution-attribution sentence and advances current pointers | `M6_REVIEWER` | `REVIEW_READY_R6`; freeze is the Git commit returned after these records are finalized |
-| `M7_REVIEWER` | Planned fresh read-only descendant instructed for Agent-2 reviewer mode; role not mechanically enforced; 100% basis-to-round-6-freeze review | `M1_REMEDIATION_R5` | Pending; active contract `REVIEW_R6_HANDOFF.md`; PASS requires zero BLOCKER and zero MAJOR findings |
+| `M7_REVIEWER` | Fresh read-only descendant instructed for Agent-2 reviewer mode; role not mechanically enforced; 100% basis-to-round-6-freeze review | `M1_REMEDIATION_R5` | PASS over `52d220ec44486bd62923aea1ecd2bfab02c693d2`; no BLOCKER, MAJOR, or MINOR findings; two NOTES; immutable report SHA-256 `dc96448da18b81b1a3af333b63ade6eb6f6baa35e4453f9f2dcd7bf53bddb2c0` |
+| `M1_NARRATIVE_CLOSEOUT` | Same bounded M1; files immutable R6 report and calibrated M7 records, records NOTES as residual context, appends Receipt 223, and prepares PR handoff; no substantive byte | `M7_REVIEWER` | CLOSEOUT_READY; owner PR merge remains the gate |
 
 Edges:
 
-`M1_IMPLEMENTER → M2_REVIEWER → M1_REMEDIATION_R1 → M3_REVIEWER → M1_REMEDIATION_R2 → M4_REVIEWER → M1_REMEDIATION_R3 → M5_REVIEWER → M1_REMEDIATION_R4 → M6_REVIEWER → M1_REMEDIATION_R5 → M7_REVIEWER`
+`M1_IMPLEMENTER → M2_REVIEWER → M1_REMEDIATION_R1 → M3_REVIEWER → M1_REMEDIATION_R2 → M4_REVIEWER → M1_REMEDIATION_R3 → M5_REVIEWER → M1_REMEDIATION_R4 → M6_REVIEWER → M1_REMEDIATION_R5 → M7_REVIEWER → M1_NARRATIVE_CLOSEOUT`
 
 The M2 launch/status/return metadata is a source-calibrated reconstruction,
 not a verbatim prompt claim. M3's launch metadata is an accurate structured
 record of the actual dispatch, not a byte-verbatim prompt claim. The filed
 immutable reviewer reports are contemporaneous and authoritative for their
-respective reviews. M4, M5, and M6 launch metadata are source-calibrated
+respective reviews. M4, M5, M6, and M7 launch metadata are source-calibrated
 structured reconstructions of their actual dispatches, not byte-verbatim
-prompt claims. All actual nodes used the `delegated-harness-native`
+prompt claims; creation of the M7 records was directly authorized by the
+owner after the immutable PASS report existed. All actual nodes used the `delegated-harness-native`
 execution class.
 Governed-role evidence is `instruction-asserted`; Agent-2 roles were not
 mechanically enforced. K-SUBAGENT/non-delegation is instruction+config
-asserted, not mechanism-proven, and no descendants were observed. The
-round-6 candidate cannot contain the future M7 verdict/report; after a PASS,
-that immutable report and final narrative closeout may be filed without
-changing ruling or deliverable bytes.
+asserted, not mechanism-proven, and no descendants were observed. The R6
+handoff is spent history; M7 returned PASS, and its immutable report plus the
+final narrative-only closeout are now filed without changing ruling or
+deliverable bytes.

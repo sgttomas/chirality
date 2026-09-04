@@ -1,12 +1,15 @@
 # RETURN — M1 — APPDEV_V3_NODE_M_2026-09-04
 
-**Status:** `REVIEW_READY_R6 — round-1 through round-5 FAIL findings accepted and remediated; awaiting fresh round-6 review`
+**Status:** `CLOSEOUT_READY — round-6 PASS; PR creation and owner merge remain`
 
 **Basis:** `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f` (PR #693 merge)
 
 **Branch:** `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`
 
-**Freeze:** the Git HEAD returned with this record; no self-referential commit SHA is embedded.
+**Reviewed substantive freeze:** `52d220ec44486bd62923aea1ecd2bfab02c693d2`
+
+**Final narrative closeout:** the later Git HEAD returned with this record;
+no self-referential commit SHA is embedded.
 
 **Model and execution calibration:** provider OpenAI; engine Codex; model
 GPT-5 family (exact model identifier not exposed to the agent runtime);
@@ -41,9 +44,9 @@ asserted, not mechanism-proven; no descendants were observed.
   the owner-created disposable identity exists; DEL-04-05-V3-01 is already
   landed.
 - DEL-09-06-V3-03 is byte-unchanged. No item was removed, split, or completed.
-- Receipts 220 and 221 remain preserved earlier tranche evidence. Corrective
-  Receipt 222 appends after them, names Receipt 221 as parent, and points to
-  the active R6 handoff.
+- Receipts 220 through 222 remain preserved earlier tranche evidence. Final
+  Receipt 223 appends after them, names Receipt 222 as parent, and points to
+  the immutable R6 PASS report plus this owner-gated closeout.
 - Independent review round 1 over `f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c`
   returned FAIL with M-R1-F1/F2/F3. The immutable report is filed verbatim at
   `instances/M2_REVIEWER/REVIEW_NODE_M_R1.md` (SHA-256
@@ -54,10 +57,10 @@ asserted, not mechanism-proven; no descendants were observed.
   `instances/M3_REVIEWER/REVIEW_NODE_M_R2.md` (SHA-256
   `66f61ef9cf9c4d433f19d6959b8b546768116c4eb67e3de97d9836347454e8e4`).
   Both findings are accepted and remediated in `REVIEW_DISPOSITIONS.md`.
-- `ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M6 child records
+- `ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M7 child records
   represent the actual sequential execution. M2 metadata is explicitly a
   source-calibrated non-verbatim reconstruction; M3 metadata is an accurate
-  structured actual-dispatch record; M4, M5, and M6 metadata are
+  structured actual-dispatch record; M4, M5, M6, and M7 metadata are
   source-calibrated structured reconstructions. None claims byte-verbatim
   prompt preservation. The immutable review reports govern.
 - Independent review round 3 over `52998709c5c19bc5c3df3944735593299d60be56`
@@ -82,12 +85,17 @@ asserted, not mechanism-proven; no descendants were observed.
   The finding is accepted and remediated in `REVIEW_DISPOSITIONS.md`;
   only A15's execution-attribution sentence changed, and ruling substance is
   preserved.
-- The sealed R2 through R5 handoffs are spent historical dispatch contracts.
-  `REVIEW_R6_HANDOFF.md` is the only active next-review pointer. The
-  round-6 verdict/report does not yet exist and cannot be included in this
-  pre-review candidate. If round 6 passes, that immutable report and
-  final narrative closeout may be filed after PASS without changing ruling
-  or deliverable bytes.
+- Independent review round 6 over
+  `52d220ec44486bd62923aea1ecd2bfab02c693d2` returned PASS with no BLOCKER,
+  MAJOR, or MINOR findings and two NOTES. The immutable report is filed
+  verbatim at `instances/M7_REVIEWER/REVIEW_NODE_M_R6.md` (SHA-256
+  `dc96448da18b81b1a3af333b63ade6eb6f6baa35e4453f9f2dcd7bf53bddb2c0`).
+  Both NOTES are recorded as residual context: the unchanged repo-wide
+  harness self-check inventory is not accepted or remediated by this tranche,
+  and post-PASS filing is narrative-only. No follow-on item was seeded.
+- The sealed R2 through R6 handoffs are spent historical dispatch contracts.
+  No further review pointer is active; PR creation and owner merge are the
+  remaining gates.
 
 ## Changed paths
 
@@ -95,8 +103,8 @@ asserted, not mechanism-proven; no descendants were observed.
 2. DEL-09-05 `_STATUS.md`
 3. DEL-09-06 `_STATUS.md`
 4. `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`
-5. `loop/LOOP_RECEIPTS.md` (Receipts 220 and 221 preserved byte-for-byte;
-   corrective Receipt 222 appended)
+5. `loop/LOOP_RECEIPTS.md` (Receipts 220 through 222 preserved byte-for-byte;
+   final Receipt 223 appended)
 
 All project-relative paths in this return are under
 `projects/chirality-app-dev/` except the repo-root A15 record.
@@ -107,10 +115,10 @@ Receipt validation, authority-corpus status, APP-HOLD integrity/reliance/
 dispatch, harness self-check, harness pytest, exact change scope, manifest
 verification, F-APP-2/no-positive-claim scan, forbidden-path scan,
 DEL-09-06-V3-03 byte-section comparison, V3-04 selected-outcome coherence,
-multi-agent record completeness, all five prior-review report identities,
-current-round/handoff coherence, and `git diff --check` pass. Round-1 through
-round-5 reviews failed; all reports and accepted/remediated disposition
-tables are filed, and round 6 remains pending. Native-descendant
+multi-agent record completeness, all six review-report identities,
+final-review/handoff coherence, and `git diff --check` pass. Round-1 through
+round-5 reviews failed and their findings were remediated; round 6 passed.
+All reports and disposition records are filed. Native-descendant
 role/non-delegation evidence calibration passes.
 Earlier corrected check attempts remain recorded honestly in
 `CHECKS.json`. Frontend gates are skipped because no `frontend/` path changed;
@@ -121,8 +129,8 @@ A1 is not applicable.
 No Developer ID signing, notarization, Apple call, distribution,
 publication, release-readiness, production identity, product, `frontend/`,
 host, Root, lifecycle, Checking Approval SHA, register, decomposition, or
-SCOPE_CHANGE act or claim occurred. Fresh round-6 review under
-`REVIEW_R6_HANDOFF.md`, HELP_HUMAN fan-in, and owner merge remain the gates.
+SCOPE_CHANGE act or claim occurred. HELP_HUMAN publication and owner merge
+remain the gates.
 After merge, the newly selectable nonce implementation and the two separately
 authorized owner-host acts may proceed only through their own bounded work.
 

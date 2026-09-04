@@ -23,7 +23,7 @@
       "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
       "cwd": ".",
       "status": "pass",
-      "summary": "VALID after append-only corrective Receipt 222; Receipts 220 and 221 preserved"
+      "summary": "VALID after append-only final Receipt 223; Receipts 220 through 222 preserved"
     },
     {
       "id": "authority-corpus-status",
@@ -103,31 +103,50 @@
       "id": "multi-agent-record-contract",
       "cwd": ".",
       "status": "pass",
-      "summary": "orchestration plan, work graph, calibrated M1 through M6 launch-status-return records, all five immutable prior reviews, dispositions, and the active R6 handoff are present"
+      "summary": "orchestration plan, work graph, calibrated M1 through M7 launch-status-return records, all six immutable reviews, dispositions, and final closeout pointers are present"
     },
     {
       "id": "review-report-byte-identities",
       "cwd": ".",
       "status": "pass",
-      "summary": "all five filed prior-review reports are byte-identical to the immutable external reports and match their recorded SHA-256 values"
+      "summary": "all six filed review reports are byte-identical to the immutable external reports and match their recorded SHA-256 values"
     },
     {
-      "id": "current-round-and-handoff-coherence",
+      "id": "final-review-and-handoff-coherence",
       "cwd": ".",
       "status": "pass",
-      "summary": "mutable current-state records agree on review_ready_r6 and REVIEW_R6_HANDOFF.md; R2 through R5 handoffs are labelled spent history; no stale vague report count remains"
+      "summary": "mutable current-state records agree on R6 PASS and CLOSEOUT_READY; R2 through R6 handoffs are labelled spent history; no active review pointer remains"
     },
     {
-      "id": "r6-anti-self-reference",
+      "id": "post-pass-narrative-byte-fence",
       "cwd": ".",
       "status": "pass",
-      "summary": "candidate includes filed R1-R5 reports plus the R6 launch/handoff and expressly excludes the future R6 verdict/report pending review"
+      "summary": "post-PASS edits are limited to immutable R6 review evidence, truthful final pointers/check metadata, manifest regeneration, and append-only Receipt 223; A15 and both status files retain PASS-freeze identities"
     },
     {
       "id": "native-descendant-evidence-calibration",
       "cwd": ".",
       "status": "pass",
       "summary": "A15 and current execution records identify delegated-harness-native; Agent-2 roles are labelled role not mechanically enforced with instruction-asserted evidence; K-SUBAGENT non-delegation is instruction+config asserted, not mechanism-proven; no descendants were observed"
+    },
+    {
+      "id": "origin-main-closeout-basis",
+      "command": "git fetch origin main; git rev-parse origin/main",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "origin/main remained 719fe5e34cefc40fe0dab4b045f5f2a89341ae2f; no rebase required"
+    },
+    {
+      "id": "round-6-independent-review",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "immutable M7 report records PASS over 52d220ec44486bd62923aea1ecd2bfab02c693d2; its two NOTES are residual context and seeded no follow-on"
+    },
+    {
+      "id": "pass-freeze-substantive-identities",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "A15 SHA-256 5b99e308bd0e0affbc72ac7c8a727ca0aa5fa51d0de073f1d5cfeb35807ec817; DEL-09-05 status SHA-256 43cf5fb7762457131f1b2b34dbb479a15d27401f12aef23d253486ec839be584; DEL-09-06 status SHA-256 105b260aa0b212b97c1c6ecb65a9e1f7b5395c2742ead0ab6130c8f569efea85"
     }
   ],
   "superseded_attempts": [
@@ -230,10 +249,17 @@
     },
     {
       "round": 6,
-      "candidate": "the remediation freeze returned by Git after this run record is finalized",
-      "status": "pending_fresh_review",
-      "handoff": "REVIEW_R6_HANDOFF.md",
-      "anti_self_reference": "the future round-6 verdict/report cannot be included before review; it may be filed after PASS as narrative-only evidence"
+      "candidate": "52d220ec44486bd62923aea1ecd2bfab02c693d2",
+      "status": "pass",
+      "findings": {
+        "blocker": 0,
+        "major": 0,
+        "minor": 0,
+        "note": 2
+      },
+      "report": "instances/M7_REVIEWER/REVIEW_NODE_M_R6.md",
+      "report_sha256": "dc96448da18b81b1a3af333b63ade6eb6f6baa35e4453f9f2dcd7bf53bddb2c0",
+      "disposition": "two NOTES recorded as residual context; no follow-on item seeded; see REVIEW_DISPOSITIONS.md"
     }
   ],
   "not_run": [
@@ -247,6 +273,6 @@
     }
   ],
   "a1": "not applicable: no frontend path changed; no re-stage declaration is needed",
-  "overall": "review_ready_r6: deterministic checks pass; round-1 through round-5 reviews failed and all findings are remediated; fresh round-6 review pending",
+  "overall": "closeout_ready: deterministic checks pass; round-1 through round-5 findings are remediated; round-6 review passed; PR creation and owner merge remain",
   "recorded_at": "2026-09-04"
 }
