@@ -2,7 +2,7 @@
   "schema": "chirality-agent-instance-status/v1",
   "run_id": "APPDEV_V3_NODE_O_2026-09-04",
   "instance_id": "O1_IMPLEMENTER",
-  "status": "REVIEW_READY",
+  "status": "CLOSEOUT_READY",
   "execution_class": "delegated-harness-native",
   "role": "EPHEMERAL_AGENT2_GENERALIST",
   "role_mechanical_enforcement": "not mechanically enforced",
@@ -11,6 +11,9 @@
   "descendants_observed": 0,
   "basis": "e2f8317dadb8ac95b7aff5ac5637d967fb7e6d40",
   "branch": "codex/app-v3-nodeO-section8-rev3-2026-09-04",
-  "review_verdict": null,
-  "descendants_launched": 0
+  "review_verdict": "PASS",
+  "review_freeze": "c32c5ae668b9d44115c28a96839917f2ffe4c950",
+  "review_findings": {"blocker": 0, "major": 0, "minor": 1, "note": 3},
+  "descendants_launched": 0,
+  "phase": "R1_PASS_NARRATIVE_CLOSEOUT_COMPLETE"
 }

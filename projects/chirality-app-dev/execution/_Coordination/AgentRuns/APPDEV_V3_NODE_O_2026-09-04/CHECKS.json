@@ -2,7 +2,11 @@
   "schema": "chirality-run-checks/v1",
   "run_id": "APPDEV_V3_NODE_O_2026-09-04",
   "basis": "e2f8317dadb8ac95b7aff5ac5637d967fb7e6d40",
-  "status": "REVIEW_READY",
+  "status": "CLOSEOUT_READY",
+  "product_evidence_basis": "e2f8317dadb8ac95b7aff5ac5637d967fb7e6d40",
+  "current_main_basis": "745e3b7ba088a0ffcc9c16030efcc48aa1e706d7",
+  "reviewed_freeze": "c32c5ae668b9d44115c28a96839917f2ffe4c950",
+  "receipt": "Receipt-225",
   "step0": {
     "receipt_cursor": "Receipt-224",
     "receipts_validator": "pass",
@@ -27,34 +31,220 @@
     "sse_data_json": "pass; 5 files; 37 data records",
     "failed_attempt": "run-attempt1-e2f8317da-missing-electron-revision3; exit 74 before build or daemon launch because Electron.app was absent; no pass inferred; cleanup evidence retained"
   },
+  "review": {
+    "verdict": "PASS",
+    "findings": {
+      "blocker": 0,
+      "major": 0,
+      "minor": 1,
+      "note": 3
+    },
+    "report": "instances/O2_REVIEWER/REVIEW_NODE_O_R1.md",
+    "report_sha256": "5d73a9b1607489f00fafc40c1341999208299f7c47ca5bfac5f4e37cf0b47de8",
+    "minor_disposition": "O-R1-M1 corrected after PASS only in the coordination handoff by replacing a machine-absolute interpreter path with a portable Python 3.13 requirement",
+    "notes": [
+      "The outer evidence manifest covers the failed-attempt private diagnostic excluded by that attempt's deliberately narrower per-run manifest.",
+      "Reviewer sandbox network and listener denials were not treated as passes; exact approved reruns passed.",
+      "PR #697 changed exactly two plan files, so the reviewed candidate was rebased without evidence remint."
+    ]
+  },
   "checks": [
-    {"id": "runtime-npm-ci-build", "status": "pass"},
-    {"id": "frontend-npm-ci", "status": "pass", "note": "initial sandbox DNS failure was rerun with approved network access"},
-    {"id": "frontend-focused-vitest", "status": "pass", "note": "4 files; 83 tests"},
-    {"id": "frontend-full-vitest", "status": "pass", "note": "165 files passed; one suite-declared skip; 1567 tests passed; four suite-declared skips"},
-    {"id": "frontend-typecheck", "status": "pass"},
-    {"id": "frontend-build", "status": "pass"},
-    {"id": "registered-harness-self-check", "status": "pass"},
-    {"id": "registered-app-hold-integrity", "status": "pass"},
-    {"id": "registered-harness-pytest", "status": "pass", "note": "350 tests"},
-    {"id": "receipts-validator-read-only", "status": "pass"},
-    {"id": "authority-corpus", "status": "pass", "note": "v20; no drift"},
-    {"id": "scope-of-work", "status": "pass", "note": "SOW_V1"},
-    {"id": "exact-change-scope", "status": "pass"},
-    {"id": "app-hold-dispatch-and-reliance", "status": "pass", "note": "ALLOW"},
-    {"id": "evidence-manifests", "status": "pass", "note": "bundle and both revision-3 run manifests verify"},
-    {"id": "strict-json", "status": "pass", "note": "duplicate-key and non-finite rejection enabled"},
-    {"id": "secret-scan", "status": "pass", "note": "7469 files scanned; zero blocked; 26 allowed fixtures; output SHA-256 471650538962ecb810fb681aa58dbd20e1f7c57747ca9d8aba36e36bc2f5b484"},
-    {"id": "tracked-product-byte-check", "status": "pass", "note": "no tracked frontend, runtime, or workflow delta"},
-    {"id": "runner-comparator-byte-check", "status": "pass", "note": "unchanged from accepted revision-2 runner commit"},
-    {"id": "f-app-2-semantic-scan", "status": "pass", "note": "only explicit boundary text or validation-surface identifiers"},
-    {"id": "visual-comparison", "status": "skipped", "note": "no tracked UI, CSS, geometry, copy, control, or product byte changed"}
+    {
+      "id": "runtime-npm-ci-build",
+      "status": "pass"
+    },
+    {
+      "id": "frontend-npm-ci",
+      "status": "pass",
+      "note": "initial sandbox DNS failure was rerun with approved network access"
+    },
+    {
+      "id": "frontend-focused-vitest",
+      "status": "pass",
+      "note": "4 files; 83 tests"
+    },
+    {
+      "id": "frontend-full-vitest",
+      "status": "pass",
+      "note": "165 files passed; one suite-declared skip; 1567 tests passed; four suite-declared skips"
+    },
+    {
+      "id": "frontend-typecheck",
+      "status": "pass"
+    },
+    {
+      "id": "frontend-build",
+      "status": "pass"
+    },
+    {
+      "id": "registered-harness-self-check",
+      "status": "pass"
+    },
+    {
+      "id": "registered-app-hold-integrity",
+      "status": "pass"
+    },
+    {
+      "id": "registered-harness-pytest",
+      "status": "pass",
+      "note": "350 tests"
+    },
+    {
+      "id": "receipts-validator-read-only",
+      "status": "pass"
+    },
+    {
+      "id": "authority-corpus",
+      "status": "pass",
+      "note": "v20; no drift"
+    },
+    {
+      "id": "scope-of-work",
+      "status": "pass",
+      "note": "SOW_V1"
+    },
+    {
+      "id": "exact-change-scope",
+      "status": "pass"
+    },
+    {
+      "id": "app-hold-dispatch-and-reliance",
+      "status": "pass",
+      "note": "ALLOW"
+    },
+    {
+      "id": "evidence-manifests",
+      "status": "pass",
+      "note": "bundle and both revision-3 run manifests verify"
+    },
+    {
+      "id": "strict-json",
+      "status": "pass",
+      "note": "duplicate-key and non-finite rejection enabled"
+    },
+    {
+      "id": "secret-scan",
+      "status": "pass",
+      "note": "7469 files scanned; zero blocked; 26 allowed fixtures; output SHA-256 471650538962ecb810fb681aa58dbd20e1f7c57747ca9d8aba36e36bc2f5b484"
+    },
+    {
+      "id": "tracked-product-byte-check",
+      "status": "pass",
+      "note": "no tracked frontend, runtime, or workflow delta"
+    },
+    {
+      "id": "runner-comparator-byte-check",
+      "status": "pass",
+      "note": "unchanged from accepted revision-2 runner commit"
+    },
+    {
+      "id": "f-app-2-semantic-scan",
+      "status": "pass",
+      "note": "only explicit boundary text or validation-surface identifiers"
+    },
+    {
+      "id": "visual-comparison",
+      "status": "skipped",
+      "note": "no tracked UI, CSS, geometry, copy, control, or product byte changed"
+    },
+    {
+      "id": "independent-review",
+      "status": "pass",
+      "note": "zero BLOCKER; zero MAJOR; O-R1-M1 corrected after PASS"
+    },
+    {
+      "id": "review-report-byte-copy",
+      "status": "pass",
+      "note": "filed report is byte-identical to source and matches the cited SHA-256"
+    },
+    {
+      "id": "main-advance",
+      "status": "pass",
+      "note": "PR #697 is exactly two plan-file changes and does not touch a named revision trigger"
+    },
+    {
+      "id": "post-pass-frozen-byte-identity",
+      "status": "pass",
+      "note": "entire revision-3 evidence bundle and all tracked product/test/CSS/runner/comparator/runtime/workflow bytes equal the reviewed freeze"
+    },
+    {
+      "id": "closeout-registered-checks",
+      "status": "pass",
+      "note": "harness-self-check, app-hold-integrity, and harness-pytest"
+    },
+    {
+      "id": "closeout-receipts-validator",
+      "status": "pass",
+      "note": "Receipt-225 contract valid"
+    },
+    {
+      "id": "closeout-authority-corpus",
+      "status": "pass",
+      "note": "v20; no drift"
+    },
+    {
+      "id": "closeout-app-hold",
+      "status": "pass",
+      "note": "dispatch and reliance ALLOW"
+    },
+    {
+      "id": "closeout-scope-of-work",
+      "status": "pass",
+      "note": "SOW_V1"
+    },
+    {
+      "id": "closeout-comparator",
+      "status": "pass",
+      "note": "recomputed output byte-identical to retained comparison"
+    },
+    {
+      "id": "closeout-secret-scan",
+      "status": "pass",
+      "note": "7475 files scanned; zero blocked; 26 allowed fixtures"
+    },
+    {
+      "id": "closeout-absolute-path-scan",
+      "status": "pass",
+      "note": "no machine-absolute path remains in active instruction/coordination plan surfaces; completed-execution paths remain only in permitted run/evidence records"
+    },
+    {
+      "id": "closeout-manifests-membership-json-sse-f-app-2-diff-scope",
+      "status": "pass"
+    }
   ],
   "honest_attempts": [
     "The first Node O frontend npm ci attempt failed in the sandbox with ENOTFOUND for registry.npmjs.org; the approved-network rerun passed.",
     "The first proof attempt failed before build or daemon launch because Electron.app was absent. The cached archive matched Electron's pinned checksum, the package-native installer materialized it, and the unchanged runner then passed.",
     "An initial source-identity helper used zsh's reserved lowercase path variable and emitted invalid empty rows to the console only; it wrote no file. The retained TSV was generated with a non-reserved variable and validated.",
-    "An initial bundle-manifest regeneration included its transient in-tree .next file and failed validation. The retained manifest was regenerated from an external temporary file and verifies; no transient file remains."
+    "An initial bundle-manifest regeneration included its transient in-tree .next file and failed validation. The retained manifest was regenerated from an external temporary file and verifies; no transient file remains.",
+    "The first closeout registered-check invocation used an output outside the runner's workspace and was rejected before recording a result. The next used the default system Python, so dependency-bearing checks failed and were not treated as passes. The exact rerun with the repository Python 3.13 environment passed all selected checks."
   ],
-  "pending": ["fresh independent review over 100% of the frozen diff", "post-PASS narrative-only closeout and receipt"]
+  "relied_checks": [
+    {
+      "id": "independent-full-daemon-lifecycle",
+      "basis": "c32c5ae668b9d44115c28a96839917f2ffe4c950",
+      "reason": "the independent reviewer reran the full unchanged daemon-bound lifecycle at the exact reviewed freeze; only plan and narrative/control bytes changed afterward"
+    },
+    {
+      "id": "independent-runtime-frontend-build-test-suite",
+      "basis": "c32c5ae668b9d44115c28a96839917f2ffe4c950",
+      "reason": "the independent reviewer reran runtime build, frontend typecheck, focused/full Vitest, and frontend build; no relevant byte changed afterward"
+    }
+  ],
+  "not_run": [
+    {
+      "id": "post-closeout-real-daemon-and-full-frontend-rerun",
+      "status": "skipped",
+      "reason": "explicitly not required after the plan-only rebase and narrative/control closeout; relied on the independent exact-freeze rerun"
+    },
+    {
+      "id": "signing-notarization-publication-distribution-release-readiness",
+      "status": "skipped",
+      "reason": "prohibited and out of scope under F-APP-2; no pass or acceptance claim inferred"
+    }
+  ],
+  "pending": [
+    "HELP_HUMAN push and PR creation",
+    "owner merge"
+  ]
 }
