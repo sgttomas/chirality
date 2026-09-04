@@ -1,0 +1,27 @@
+{
+  "schema": "chirality-evidence-environment/v1",
+  "run_id": "APPDEV_V3_NODE_F_2026-09-03",
+  "item": "DEL-02-05-V3-02",
+  "basis": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
+  "platform": "Darwin 25.6.0 arm64 (macOS 26.6.2, build 25G83)",
+  "toolchain": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "vitest": "4.1.10",
+    "next": "15.5.21",
+    "electron": "43.2.0",
+    "electron-builder": "26.15.3",
+    "typescript": "5.9.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-test-renderer": "18.3.1",
+    "python3": "3.x (repo tools; see harness self-check output)"
+  },
+  "effective_environment": {
+    "focused_vitest": {"cwd": "projects/chirality-app-dev/frontend", "env": "inherited shell; no CHIRALITY_* or HARNESS_* variables set"},
+    "premerge_server": {"CHIRALITY_HARNESS_PROVIDER": "stub", "NEXT_TELEMETRY_DISABLED": "1", "HARNESS_BASE_URL": "http://127.0.0.1:51447"},
+    "python_checks": {"PYTHONDONTWRITEBYTECODE": "1"}
+  },
+  "network": "no network destination is contacted by any fixture, test, or the fake adapter; fixture hosts use the reserved .test TLD (RFC 2606)",
+  "disposable_state": "none created by the fixtures or tests; the premerge stub dev server (pid recorded in the run record CHECKS.json) was stopped with SIGTERM and its /var/folders harness workroot is the script's own, outside the repository"
+}

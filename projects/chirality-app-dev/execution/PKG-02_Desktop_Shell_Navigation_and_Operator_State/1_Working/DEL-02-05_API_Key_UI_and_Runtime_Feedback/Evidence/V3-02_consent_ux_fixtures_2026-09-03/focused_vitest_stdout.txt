@@ -1,0 +1,75 @@
+
+ RUN  v4.1.10 {REPO_ROOT}/projects/chirality-app-dev/frontend
+
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > consent UX fixtures (static bytes) > cover every consent status, every command-network posture, and both role-enforcement states 2ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > consent UX fixtures (static bytes) > default to no command network and never pre-accept a destination 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > consent UX fixtures (static bytes) > name only reserved-TLD hosts and app-owned paths 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > consent UX fixtures (static bytes) > are handed out as deep copies 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > consent UX fixtures (static bytes) > describe stale fixtures with the mismatches compareConsentScopes recomputes 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — login, logout, and account identity > starts signed out with no private home, nothing granted, and no command network 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — login, logout, and account identity > login creates the root-private app-owned home without touching ambient state; logout keeps it 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — login, logout, and account identity > supports an account without an email through a volatile null-email epoch 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — login, logout, and account identity > hands out snapshots that cannot mutate the port 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — login, logout, and account identity > notifies subscribers on every successful act and stops after unsubscribe 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — consent, staleness, and revocation (K-CONSENT-1) > refuses to grant consent while signed out 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — consent, staleness, and revocation (K-CONSENT-1) > binds a grant to the full current scope 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — consent, staleness, and revocation (K-CONSENT-1) > turns stale on logout and stays stale when a different account signs in (A → B) 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — consent, staleness, and revocation (K-CONSENT-1) > does not silently revive a stale grant when the original account returns; a fresh grant is required 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — consent, staleness, and revocation (K-CONSENT-1) > turns stale when the notice/policy digest rotates or the configuration changes 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — consent, staleness, and revocation (K-CONSENT-1) > turns stale when the selected role posture changes after the grant (K-ROLE-2 identity participation) 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — consent, staleness, and revocation (K-CONSENT-1) > revocation retires the generation, invalidates the private home, and drops the network posture to off 1ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — consent, staleness, and revocation (K-CONSENT-1) > a fresh grant after revocation binds to the new generation 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — consent, staleness, and revocation (K-CONSENT-1) > can revoke a stale grant 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — admission (K-CONSENT-1) > denies before any grant 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — admission (K-CONSENT-1) > admits a request matching the granted scope and ignores the caller-supplied cwd 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — admission (K-CONSENT-1) > denies a request whose canonical root differs even when its cwd matches the stored root 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — admission (K-CONSENT-1) > denies on each validated field independently 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — command-network postures (K-NET-1) > cannot select a posture until consent is granted; the default stays off 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — command-network postures (K-NET-1) > rejects an unknown posture 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — command-network postures (K-NET-1) > offers exactly the three postures and labels the on posture with network_access = true 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — command-network postures (K-NET-1) > acceptForSession happens only as an explicit act on a pending prompt 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — command-network postures (K-NET-1) > allowOnce and deny resolve the prompt without a session acceptance 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — command-network postures (K-NET-1) > refuses to resolve a prompt that is not pending or not under ask-per-destination 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — command-network postures (K-NET-1) > leaving ask-per-destination drops the pending prompt unanswered and clears session acceptances 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — role entry (K-ROLE-2) > offers all four role postures and rejects an unknown one 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — role entry (K-ROLE-2) > carries the G-ROLE enforcement state the runtime reports 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — status and failure surfaces > reports rate-limit and approval status changes 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — status and failure surfaces > a failed act changes nothing and notifies nobody 0ms
+ ✓ src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts > fake HostedEngineConsentPort — status and failure surfaces > can be seeded from any fixture 0ms
+ ✓ src/__tests__/components/account-consent-settings.test.ts > AccountConsentSettings static markup > server-renders the not-connected state without a port and without an account claim 2ms
+ ✓ src/__tests__/components/account-consent-settings.test.ts > AccountConsentSettings static markup > pins the verbatim G0 A8 posture label on every fixture 3ms
+ ✓ src/__tests__/components/account-consent-settings.test.ts > AccountConsentSettings static markup > pins the K-NET-1 posture labels and the network_access = true label 0ms
+ ✓ src/__tests__/components/account-consent-settings.test.ts > AccountConsentSettings static markup > pins the ask-per-destination prompt copy: host, protocol, queued-request caveat, explicit acceptForSession 0ms
+ ✓ src/__tests__/components/account-consent-settings.test.ts > AccountConsentSettings static markup > pins the verbatim K-ROLE-2 labels 0ms
+ ✓ src/__tests__/components/account-consent-settings.test.ts > AccountConsentSettings static markup > never renders an email, token, or full account digest 2ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > renders every fixture with the Opt-in Preview label, the per-root and private-home explanations, and no secret 9ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > gives every fixture a distinct marker tuple (account, identity, consent, mismatch, posture, role, enforcement, prompt, acceptance, rate limit, approvals) 2ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > not connected: explanations only, no account claim, no controls 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > loggedOutDefault: sign-in offered, consent and network gated, posture off, private home absent 1ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > loggedInNotGranted: shows the digest suffix only, offers sign-out and grant, keeps network gated 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > grantedNetworkOff: consent granted with generation, revoke offered, network enabled and off by default 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > askPerDestinationPending: prompt shows host, protocol, port, the queued-request caveat, and the three decisions 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > askPerDestinationSessionAccepted: lists the explicitly accepted destination and shows no prompt 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > networkOn: the on posture is checked and visibly labelled with network_access = true 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > accountTransitionStale: names the account change, refuses reuse, and offers a fresh grant 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > policyRotatedStale: names the policy change 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > revoked: names the retired generation and the invalidated private home; grant offered, revoke not 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > nullEmailEpoch: identifies the account by its volatile epoch, never an email 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > rateLimitedApprovalsPending: shows the rate-limit reset, its detail, the pending count, and the last decision subject only 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > roleAgent2NotMechanicallyEnforced: Agent 2 / TASK carries the label and the instruction-asserted note 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > roleAgent2MechanicallyProven: same role, no label, no note 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > the label follows the enforcement state even when Agent 2 is not selected 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettingsView fixtures (D-APP-36 render bar) > busy disables every control; an error renders on its own line 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettings with the fake port (explicit user acts only) > walks sign-in → grant → ask-per-destination → accept for session → revoke, re-rendering from the port 5ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettings with the fake port (explicit user acts only) > never calls the port on mount or on a port-driven update 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettings with the fake port (explicit user acts only) > selecting the on posture labels it, and choosing a role after the grant shows the consent as stale 1ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettings with the fake port (explicit user acts only) > shows a failed act on the error line and leaves the state unchanged 1ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > AccountConsentSettings with the fake port (explicit user acts only) > renders the not-connected state without a port and stops listening when the port goes away 0ms
+ ✓ src/__tests__/components/account-consent-settings-states.test.ts > fixture snapshot type coverage > every fixture is a complete snapshot the view accepts without a runtime guard 0ms
+
+ Test Files  3 passed (3)
+      Tests  65 passed (65)
+   Start at  19:32:51
+   Duration  132ms (transform 115ms, setup 0ms, import 154ms, tests 39ms, environment 0ms)
+
+JSON report written to {REPO_ROOT}/projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Evidence/V3-02_consent_ux_fixtures_2026-09-03/focused_vitest_results.json

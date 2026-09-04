@@ -3886,3 +3886,113 @@ button:disabled {
     padding: 0.22rem 0.4rem;
   }
 }
+
+/* Hosted engine account & consent panel (DEL-02-05-V3-02; Opt-in Preview) */
+
+.consent-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.consent-settings-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.consent-settings-header .api-key-settings-title {
+  margin: 0;
+}
+
+.consent-badge {
+  display: inline-block;
+  padding: 0.1em 0.5em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--ink-soft);
+  background: var(--ground);
+}
+
+.consent-badge--warn {
+  color: var(--rose-ink);
+  border-color: var(--rose-ink);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 0.4rem;
+}
+
+.consent-explainer code {
+  background: var(--ground);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  overflow-wrap: anywhere;
+}
+
+.consent-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0.5rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--rule);
+  min-width: 0;
+}
+
+.consent-section legend {
+  padding: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.consent-section[disabled] .consent-choice {
+  opacity: 0.55;
+}
+
+.consent-status {
+  margin: 0;
+}
+
+.consent-actions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.consent-choice {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.consent-choice code {
+  font-size: 0.85em;
+}
+
+.consent-network-prompt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--ground);
+}
+
+.consent-session-accepted {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
