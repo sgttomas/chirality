@@ -16,7 +16,10 @@
 #   6. runs `npm run harness:validate:premerge` (Section 8 + report-only Section 9)
 #      and, with WITH_RELEASE_QUALITY=1, `npm run validate:release-quality`
 #   7. records containment observations (daemon listeners, socket mode, git status)
-#   8. tears both processes down and removes the disposable state (KEEP=1 keeps it)
+#   8. tears both processes down, removes the disposable state it created
+#      (KEEP=1 keeps it), and — as the LAST act of teardown, after
+#      teardown.txt/cleanup.txt exist and both processes are gone — writes
+#      RUN_ROOT/MANIFEST.sha256 over artifacts/** and logs/** (LC_ALL=C sorted)
 #
 # It changes no product source and no tracked file. The only writes inside the
 # checkout are the gitignored stable artifacts under frontend/artifacts/harness/**
@@ -29,7 +32,15 @@
 #   TMPDIR     left as the host default (the Section 8 run tree lives under it)
 #   USER_DATA  daemon user-data dir; default mktemp under /private/tmp because
 #              macOS caps Unix socket paths at 104 bytes and the daemon derives
-#              <userData>/runtime/control.sock from it
+#              <userData>/runtime/control.sock from it. A caller-supplied
+#              USER_DATA is never removed by this script (only a mktemp-created
+#              one is); the harness's own run tree
+#              $TMPDIR/chirality-harness-validation/latest is SHARED with any
+#              other Section 8 run on the host — the Section 8 script recreates
+#              it and this script removes it, so do not run two concurrently.
+#   PORT must be free at start; the script fails fast (exit 72) if anything
+#              already listens on it, and only ever stops the dev server it
+#              started (by pid), never a foreign listener.
 #   WITH_RELEASE_QUALITY=1  also run npm run validate:release-quality
 #   KEEP=1     keep USER_DATA and the harness TMP root after the run
 #   SKIP_BUILD=1  reuse an existing dist-electron/main.js
@@ -55,7 +66,12 @@ mkdir -p "$RUN_ROOT/logs" "$RUN_ROOT/artifacts" "$RUN_ROOT/private"
 LOGS="$RUN_ROOT/logs"
 ART="$RUN_ROOT/artifacts"
 
-USER_DATA="${USER_DATA:-$(mktemp -d /private/tmp/chirality-s8.XXXXXX)}"
+if [ -n "${USER_DATA:-}" ]; then
+  USER_DATA_CREATED=0
+else
+  USER_DATA="$(mktemp -d /private/tmp/chirality-s8.XXXXXX)"
+  USER_DATA_CREATED=1
+fi
 # TMPDIR is deliberately NOT redirected under RUN_ROOT: the Vitest daemon
 # integration tests (run by validate:release-quality) bind Unix sockets under
 # TMPDIR and fail with `listen EINVAL` past the 104-byte macOS limit. The
@@ -94,9 +110,14 @@ teardown() {
     sleep 1
   done
   # A daemon wedged on a blocking host call ignores SIGTERM; never leave it behind.
+  # Only processes under the disposable user-data root and the dev server this
+  # script started (and its children) are ever signalled — never a foreign
+  # listener on the port.
   for p in $(pgrep -f -- "--user-data-dir=$USER_DATA" 2>/dev/null); do kill -9 "$p" 2>/dev/null || true; done
-  [ -n "$NEXT_PID" ] && kill -9 "$NEXT_PID" 2>/dev/null || true
-  for p in $(lsof -nP -t -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null); do kill -9 "$p" 2>/dev/null || true; done
+  if [ -n "$NEXT_PID" ]; then
+    for p in $(pgrep -P "$NEXT_PID" 2>/dev/null); do kill -9 "$p" 2>/dev/null || true; done
+    kill -9 "$NEXT_PID" 2>/dev/null || true
+  fi
   sleep 1
   {
     echo "daemon_process_tree_remaining=$(pgrep -f -- "--user-data-dir=$USER_DATA" 2>/dev/null | wc -l | tr -d ' ')"
@@ -106,16 +127,27 @@ teardown() {
     echo "port_${PORT}_listeners_after_stop=$(lsof -nP -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null | tail -n +2 | wc -l | tr -d ' ')"
   } > "$LOGS/teardown.txt"
   if [ "$KEEP" != "1" ]; then
-    rm -rf "$USER_DATA" "$HARNESS_TMP_ROOT"
+    if [ "$USER_DATA_CREATED" = "1" ]; then rm -rf "$USER_DATA"; fi
+    rm -rf "$HARNESS_TMP_ROOT"
     {
-      echo "user_data_removed=$([ -e "$USER_DATA" ] && echo no || echo yes) path=$USER_DATA"
+      if [ "$USER_DATA_CREATED" = "1" ]; then
+        echo "user_data_removed=$([ -e "$USER_DATA" ] && echo no || echo yes) path=$USER_DATA"
+      else
+        echo "user_data_retained=caller-supplied path=$USER_DATA"
+      fi
       echo "harness_tmp_root_removed=$([ -e "$HARNESS_TMP_ROOT" ] && echo no || echo yes) path=$HARNESS_TMP_ROOT"
       echo "private_dir_removed=$(rm -rf "$RUN_ROOT/private" && [ ! -e "$RUN_ROOT/private" ] && echo yes || echo no)"
+      echo "checkout_leftovers=gitignored, intentionally not removed: $FRONTEND/artifacts/harness/** (stable artifacts; the deliverable surface) and $FRONTEND/.chirality/sessions (legacySessionRoots entry required at registration)"
     } > "$LOGS/cleanup.txt"
   else
     echo "KEEP=1: disposable state retained at $USER_DATA and $HARNESS_TMP_ROOT" > "$LOGS/cleanup.txt"
   fi
   log "teardown done"
+  # Last act: the per-run manifest, so it pins the final bytes of every log
+  # (including this teardown's own lines) and includes teardown.txt/cleanup.txt.
+  if [ -d "$RUN_ROOT/artifacts" ] || [ -d "$RUN_ROOT/logs" ]; then
+    ( cd "$RUN_ROOT" && find artifacts logs -type f 2>/dev/null | LC_ALL=C sort | xargs shasum -a 256 ) > "$RUN_ROOT/MANIFEST.sha256"
+  fi
 }
 trap teardown EXIT
 
@@ -134,6 +166,7 @@ cd "$FRONTEND"
   echo "vitest=$(node -p "require('vitest/package.json').version")"
   echo "port=$PORT"
   echo "user_data=$USER_DATA"
+  echo "user_data_created_by_script=$USER_DATA_CREATED"
   echo "tmpdir=${TMPDIR:-/tmp}"
   echo "harness_tmp_root=$HARNESS_TMP_ROOT"
   echo "CHIRALITY_HARNESS_PROVIDER=$CHIRALITY_HARNESS_PROVIDER"
@@ -200,6 +233,9 @@ export HARNESS_PROJECT_ROOT="$WORKING_ROOT"
 log "project registered; token file $PROJECT_TOKEN_FILE"
 
 # --- 4. dev server bound to the daemon ---------------------------------------
+if [ -n "$(lsof -nP -t -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null)" ]; then
+  log "port $PORT is already in use; refusing to start (set PORT to a free port)"; exit 72
+fi
 log "starting next dev on $HARNESS_BASE_URL"
 nohup npm run dev:next -- --hostname 127.0.0.1 --port "$PORT" > "$LOGS/next-dev.log" 2>&1 &
 NEXT_PID=$!
@@ -291,8 +327,6 @@ git -C "$REPO_ROOT" status --porcelain > "$LOGS/git-status-after.txt" || true
   echo "ended_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
   echo "git_status_after=$(wc -l < "$LOGS/git-status-after.txt" | tr -d ' ') dirty paths"
 } > "$LOGS/result.txt"
-
-( cd "$RUN_ROOT" && find artifacts logs -type f | LC_ALL=C sort | xargs shasum -a 256 ) > "$RUN_ROOT/MANIFEST.sha256"
 
 if [ "$PREMERGE_EXIT" != "0" ]; then exit "$PREMERGE_EXIT"; fi
 if [ -n "$RQ_EXIT" ]; then exit "$RQ_EXIT"; fi

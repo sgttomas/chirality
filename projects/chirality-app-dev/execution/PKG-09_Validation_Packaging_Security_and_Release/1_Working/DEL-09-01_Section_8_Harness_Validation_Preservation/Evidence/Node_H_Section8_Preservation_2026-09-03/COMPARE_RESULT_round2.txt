@@ -1,0 +1,56 @@
+== run-head-e59efa483/artifacts/stable/section8-latest-summary.json
+   status=pass testCount=8 staged=False
+   setup.server_reachable                   pass  {"httpStatus": 200}
+   regression.session_crud                  pass  {"listedCount": 1}
+   section8.boot_error_taxonomy             pass  {"checkedCodes": ["SESSION_NOT_FOUND", "SDK_FAILURE", "BOOT_CONFORMANT", "WORKING_ROOT_INACCESSIBLE"]}
+   section8.smoke_stream                    pass  {"eventCount": 8}
+   section8.session_persistence_resume      pass  {"adapterId": "stub", "providerId": "stub"}
+   section8.permissions_dontask             pass  {"allowEvents": 9, "denyEvents": 7}
+   section8.interrupt_sigint                pass  {"interruptStatus": 200}
+   section8.sdk_native_stream               pass  {"eventCount": 8}
+   projection-json={"results":[{"details":{"httpStatus":200},"id":"setup.server_reachable","status":"pass"},{"details":{"listedCount":1},"id":"regression.session_crud","status":"pass"},{"details":{"checkedCodes":["SESSION_NOT_FOUND","SDK_FAILURE","BOOT_CONFORMANT","WORKING_ROOT_INACCESSIBLE"]},"id":"section8.boot_error_taxonomy","status":"pass"},{"details":{"eventCount":8},"id":"section8.smoke_stream","status":"pass"},{"details":{"adapterId":"stub","providerId":"stub"},"id":"section8.session_persistence_resume","status":"pass"},{"details":{"allowEvents":9,"denyEvents":7},"id":"section8.permissions_dontask","status":"pass"},{"details":{"interruptStatus":200},"id":"section8.interrupt_sigint","status":"pass"},{"details":{"eventCount":8},"id":"section8.sdk_native_stream","status":"pass"}],"stagedFromInstructionRoot":false,"status":"pass","testCount":8}
+== run-head-e59efa483-round2/artifacts/stable/section8-latest-summary.json
+   status=pass testCount=8 staged=False
+   setup.server_reachable                   pass  {"httpStatus": 200}
+   regression.session_crud                  pass  {"listedCount": 1}
+   section8.boot_error_taxonomy             pass  {"checkedCodes": ["SESSION_NOT_FOUND", "SDK_FAILURE", "BOOT_CONFORMANT", "WORKING_ROOT_INACCESSIBLE"]}
+   section8.smoke_stream                    pass  {"eventCount": 8}
+   section8.session_persistence_resume      pass  {"adapterId": "stub", "providerId": "stub"}
+   section8.permissions_dontask             pass  {"allowEvents": 9, "denyEvents": 7}
+   section8.interrupt_sigint                pass  {"interruptStatus": 200}
+   section8.sdk_native_stream               pass  {"eventCount": 8}
+   projection-json={"results":[{"details":{"httpStatus":200},"id":"setup.server_reachable","status":"pass"},{"details":{"listedCount":1},"id":"regression.session_crud","status":"pass"},{"details":{"checkedCodes":["SESSION_NOT_FOUND","SDK_FAILURE","BOOT_CONFORMANT","WORKING_ROOT_INACCESSIBLE"]},"id":"section8.boot_error_taxonomy","status":"pass"},{"details":{"eventCount":8},"id":"section8.smoke_stream","status":"pass"},{"details":{"adapterId":"stub","providerId":"stub"},"id":"section8.session_persistence_resume","status":"pass"},{"details":{"allowEvents":9,"denyEvents":7},"id":"section8.permissions_dontask","status":"pass"},{"details":{"interruptStatus":200},"id":"section8.interrupt_sigint","status":"pass"},{"details":{"eventCount":8},"id":"section8.sdk_native_stream","status":"pass"}],"stagedFromInstructionRoot":false,"status":"pass","testCount":8}
+== run-base-0c683fb16/artifacts/stable/section8-latest-summary.json
+   status=pass testCount=8 staged=False
+   setup.server_reachable                   pass  {"httpStatus": 200}
+   regression.session_crud                  pass  {"listedCount": 1}
+   section8.boot_error_taxonomy             pass  {"checkedCodes": ["SESSION_NOT_FOUND", "SDK_FAILURE", "BOOT_CONFORMANT", "WORKING_ROOT_INACCESSIBLE"]}
+   section8.smoke_stream                    pass  {"eventCount": 8}
+   section8.session_persistence_resume      pass  {"adapterId": "stub", "providerId": "stub"}
+   section8.permissions_dontask             pass  {"allowEvents": 9, "denyEvents": 7}
+   section8.interrupt_sigint                pass  {"interruptStatus": 200}
+   section8.sdk_native_stream               pass  {"eventCount": 8}
+   projection-json={"results":[{"details":{"httpStatus":200},"id":"setup.server_reachable","status":"pass"},{"details":{"listedCount":1},"id":"regression.session_crud","status":"pass"},{"details":{"checkedCodes":["SESSION_NOT_FOUND","SDK_FAILURE","BOOT_CONFORMANT","WORKING_ROOT_INACCESSIBLE"]},"id":"section8.boot_error_taxonomy","status":"pass"},{"details":{"eventCount":8},"id":"section8.smoke_stream","status":"pass"},{"details":{"adapterId":"stub","providerId":"stub"},"id":"section8.session_persistence_resume","status":"pass"},{"details":{"allowEvents":9,"denyEvents":7},"id":"section8.permissions_dontask","status":"pass"},{"details":{"interruptStatus":200},"id":"section8.interrupt_sigint","status":"pass"},{"details":{"eventCount":8},"id":"section8.sdk_native_stream","status":"pass"}],"stagedFromInstructionRoot":false,"status":"pass","testCount":8}
+== ci-artifacts/pr681/section8/latest/summary.json
+   status=pass testCount=8 staged=False
+   setup.server_reachable                   pass  {"httpStatus": 200}
+   regression.session_crud                  pass  {"listedCount": 1}
+   section8.boot_error_taxonomy             pass  {"checkedCodes": ["SESSION_NOT_FOUND", "SDK_FAILURE", "BOOT_CONFORMANT", "WORKING_ROOT_INACCESSIBLE"]}
+   section8.smoke_stream                    pass  {"eventCount": 8}
+   section8.session_persistence_resume      pass  {"adapterId": "stub", "providerId": "stub"}
+   section8.permissions_dontask             pass  {"allowEvents": 9, "denyEvents": 7}
+   section8.interrupt_sigint                pass  {"interruptStatus": 200}
+   section8.sdk_native_stream               pass  {"eventCount": 8}
+   projection-json={"results":[{"details":{"httpStatus":200},"id":"setup.server_reachable","status":"pass"},{"details":{"listedCount":1},"id":"regression.session_crud","status":"pass"},{"details":{"checkedCodes":["SESSION_NOT_FOUND","SDK_FAILURE","BOOT_CONFORMANT","WORKING_ROOT_INACCESSIBLE"]},"id":"section8.boot_error_taxonomy","status":"pass"},{"details":{"eventCount":8},"id":"section8.smoke_stream","status":"pass"},{"details":{"adapterId":"stub","providerId":"stub"},"id":"section8.session_persistence_resume","status":"pass"},{"details":{"allowEvents":9,"denyEvents":7},"id":"section8.permissions_dontask","status":"pass"},{"details":{"interruptStatus":200},"id":"section8.interrupt_sigint","status":"pass"},{"details":{"eventCount":8},"id":"section8.sdk_native_stream","status":"pass"}],"stagedFromInstructionRoot":false,"status":"pass","testCount":8}
+== ci-artifacts/pr686/section8/latest/summary.json
+   status=pass testCount=8 staged=False
+   setup.server_reachable                   pass  {"httpStatus": 200}
+   regression.session_crud                  pass  {"listedCount": 1}
+   section8.boot_error_taxonomy             pass  {"checkedCodes": ["SESSION_NOT_FOUND", "SDK_FAILURE", "BOOT_CONFORMANT", "WORKING_ROOT_INACCESSIBLE"]}
+   section8.smoke_stream                    pass  {"eventCount": 8}
+   section8.session_persistence_resume      pass  {"adapterId": "stub", "providerId": "stub"}
+   section8.permissions_dontask             pass  {"allowEvents": 9, "denyEvents": 7}
+   section8.interrupt_sigint                pass  {"interruptStatus": 200}
+   section8.sdk_native_stream               pass  {"eventCount": 8}
+   projection-json={"results":[{"details":{"httpStatus":200},"id":"setup.server_reachable","status":"pass"},{"details":{"listedCount":1},"id":"regression.session_crud","status":"pass"},{"details":{"checkedCodes":["SESSION_NOT_FOUND","SDK_FAILURE","BOOT_CONFORMANT","WORKING_ROOT_INACCESSIBLE"]},"id":"section8.boot_error_taxonomy","status":"pass"},{"details":{"eventCount":8},"id":"section8.smoke_stream","status":"pass"},{"details":{"adapterId":"stub","providerId":"stub"},"id":"section8.session_persistence_resume","status":"pass"},{"details":{"allowEvents":9,"denyEvents":7},"id":"section8.permissions_dontask","status":"pass"},{"details":{"interruptStatus":200},"id":"section8.interrupt_sigint","status":"pass"},{"details":{"eventCount":8},"id":"section8.sdk_native_stream","status":"pass"}],"stagedFromInstructionRoot":false,"status":"pass","testCount":8}
+BEHAVIOUR_PROJECTIONS_EQUAL=true

@@ -4,7 +4,8 @@
   "recorded_at": "2026-09-03",
   "basis": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
   "rounds": {
-    "1": "Section 8 preservation evidence after PRs 683-686: CI daemon lifecycle reproduced locally, HEAD and pre-landing-basis runs, CI corroboration, RQG section 13 rows — first local commit"
+    "1": "Section 8 preservation evidence after PRs 683-686: CI daemon lifecycle reproduced locally, HEAD and pre-landing-basis runs, CI corroboration, RQG section 13 rows — first local commit",
+    "2": "review-1 remediation (instances/H2_REVIEWER/REVIEW_01_2026-09-03_over_021e1f186.md; coordinator decision D1): per-run manifest written last in teardown, both retained per-run manifests regenerated from unchanged bytes, port fail-fast and kill restriction, caller USER_DATA never removed, checkout_leftovers line, comparator pass assertion, probe runner retained, narrative corrections — second local commit"
   },
   "toolchain": {
     "node": "v24.18.0",
@@ -189,6 +190,61 @@
       "exit": 0,
       "status": "pass",
       "summary": "status PASS; violations []; the frontend roots are allowed but no path under them changed"
+    },
+    {
+      "id": "per-run-manifests-regenerated",
+      "round": "2",
+      "command": "(cd run-head-e59efa483 && find artifacts logs -type f | LC_ALL=C sort | xargs shasum -a 256 > MANIFEST.sha256 && shasum -a 256 -c MANIFEST.sha256) ; same for run-base-0c683fb16",
+      "cwd": "DEL-09-01 Evidence/Node_H_Section8_Preservation_2026-09-03",
+      "exit": 0,
+      "status": "pass",
+      "summary": "H1-F1: run-head 56 entries OK, run-base 43 entries OK; both now include logs/teardown.txt and logs/cleanup.txt and the final bytes of driver/daemon/next-dev logs; retained run trees unchanged (no rerun of round-1 trees)"
+    },
+    {
+      "id": "rerun-script-round2-smoke",
+      "round": "2",
+      "command": "REPO_ROOT=<wt-nodeH> RUN_ROOT=<scratch>/s8-run-head-r2 PORT=51842 SKIP_BUILD=1 WITH_RELEASE_QUALITY=0 APPROVAL_REF=APPDEV_V3_NODE_H_2026-09-03-round2 bash rerun-section8-local.sh ; (cd RUN_ROOT && shasum -a 256 -c MANIFEST.sha256)",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "fixed script at HEAD e59efa483: HARNESS_PREMERGE_STATUS=pass 8/8; teardown/cleanup all clean incl. the new checkout_leftovers line; the script-written per-run manifest verifies (43 entries incl. teardown.txt/cleanup.txt); retained as run-head-e59efa483-round2/; five-way comparator incl. this run BEHAVIOUR_PROJECTIONS_EQUAL=true (COMPARE_RESULT_round2.txt)",
+      "evidence": "DEL-09-01 Evidence/Node_H_Section8_Preservation_2026-09-03/run-head-e59efa483-round2/"
+    },
+    {
+      "id": "rerun-script-port-fail-fast",
+      "round": "2",
+      "command": "python3 -m http.server-style listener on 127.0.0.1:51843 (foreign process) ; RUN_ROOT=<scratch>/s8-port-test PORT=51843 SKIP_BUILD=1 bash rerun-section8-local.sh",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 72,
+      "status": "pass",
+      "summary": "H1-F2: script refused to start the dev server on the occupied port (exit 72), tore its own daemon down (process tree 0, user-data removed), wrote a verifying manifest, and the foreign listener was still alive afterwards (stopped by the test itself); scratch output not retained"
+    },
+    {
+      "id": "comparator-negative-test",
+      "round": "2",
+      "command": "python3 compare-section8-summaries.py <mutated failing copy> <same copy>",
+      "cwd": "DEL-09-01 Evidence/Node_H_Section8_Preservation_2026-09-03",
+      "exit": 1,
+      "status": "pass",
+      "summary": "H1-F6: two identical failing summaries now exit 1 with PROBLEM lines for the overall status and the failing row; COMPARE_RESULT.txt regenerated with the strengthened comparator is byte-identical to round 1"
+    },
+    {
+      "id": "validate-change-scope",
+      "round": "1 (reviewer rerun) + 2",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base e59efa4830fb54143c86e511ec35a6d1a476f72e --allowed projects/chirality-app-dev/frontend/scripts --allowed projects/chirality-app-dev/frontend/src/__tests__/scripts --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md --head 021e1f1863670f30cf81df909a417bf550cbc370",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "H1-F12: --head form recorded; round-1 freeze SHA PASS 0 violations (also PASS under the reviewer's narrower two-root set); round-2 working tree PASS before the commit and the --head <round-2 SHA> form run immediately after it (result in the freeze message)"
+    },
+    {
+      "id": "git-diff-check",
+      "round": "2",
+      "command": "git add -A -N . && git diff --check ; git diff --check e59efa4830fb54143c86e511ec35a6d1a476f72e HEAD",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "working tree clean before the round-2 commit; full basis..HEAD range re-checked after it (result in the freeze message)"
     }
   ],
   "not_run": [
@@ -204,6 +260,6 @@
   "scope_validation_command": {
     "cwd": ".",
     "command": "python3 tools/software_workflow/validate_change_scope.py . --base e59efa4830fb54143c86e511ec35a6d1a476f72e --allowed projects/chirality-app-dev/frontend/scripts --allowed projects/chirality-app-dev/frontend/src/__tests__/scripts --allowed projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-01_Section_8_Harness_Validation_Preservation --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
-    "note": "--head omitted = working tree at the freeze; the same command with --head <commit> reproduces it against a frozen commit; after a publication rebase use --base <new merge-base>"
+    "note": "--head omitted = working tree at the freeze; the same command with --head <commit> reproduces it against a frozen commit; after a publication rebase use --base <new merge-base>; recorded at each freeze in the --head <freeze SHA> form per review H1-F12"
   }
 }

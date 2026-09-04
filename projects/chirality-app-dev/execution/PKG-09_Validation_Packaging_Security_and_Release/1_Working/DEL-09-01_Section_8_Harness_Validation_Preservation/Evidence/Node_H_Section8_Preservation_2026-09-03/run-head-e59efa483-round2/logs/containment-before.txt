@@ -1,0 +1,12 @@
+# daemon electron pid 84252 (shim 84249) — TCP sockets (expect none):
+# daemon electron pid 84252 — Unix sockets under the disposable user-data root:
+Electron 84252 ryan   31u  unix 0xdfd301aab96d0dc6      0t0      /private/tmp/chirality-s8.F8ehog/runtime/control.sock
+Electron 84252 ryan   34u  unix 0x15edf76f92528fe3      0t0      /private/tmp/chirality-s8.F8ehog/runtime/control.sock
+# all TCP listeners owned by any process under the disposable user-data root (expect none):
+# control socket mode:
+srw-------@ 1 ryan  wheel  0 Sep  3 20:05 /private/tmp/chirality-s8.F8ehog/runtime/control.sock
+# runtime directory mode:
+drwx------@ 6 ryan  wheel  192 Sep  3 20:05 /private/tmp/chirality-s8.F8ehog/runtime
+# listeners on port 51842 (expect the next dev server only):
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+node    84306 ryan   13u  IPv4 0xb61eb1233f2dee76      0t0  TCP 127.0.0.1:51842 (LISTEN)

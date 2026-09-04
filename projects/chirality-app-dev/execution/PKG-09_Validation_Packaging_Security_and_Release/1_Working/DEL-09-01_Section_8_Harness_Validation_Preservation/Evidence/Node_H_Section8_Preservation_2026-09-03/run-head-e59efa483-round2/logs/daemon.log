@@ -1,0 +1,4 @@
+[chirality-desktop] 2026-09-04T02:05:24.049Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":false,"userData":"/private/tmp/chirality-s8.F8ehog","pid":84252}
+[chirality-desktop] 2026-09-04T02:05:24.072Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-s8.F8ehog/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-s8.F8ehog/runtime"}
+[chirality-desktop] 2026-09-04T02:05:36.593Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":84252}
+[chirality-desktop] 2026-09-04T02:05:36.593Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}

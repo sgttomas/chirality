@@ -13,7 +13,8 @@ run legitimately regenerates (generatedAt, durationMs, harnessBaseUrl, the
 absolute project-root paths, per-run session and engine-session identifiers).
 
 Exit status: 0 when every projection is identical and every file passes the
-required-ID / legacy-ID checks; 1 otherwise. Usage:
+required-ID / legacy-ID checks and reports `pass` overall and per row (so two
+identical *failing* summaries never compare as a preserved pass); 1 otherwise. Usage:
 
     python3 compare-section8-summaries.py A.json B.json [C.json ...]
 """
@@ -47,6 +48,11 @@ def project(path):
         problems.append(f"contains legacy id {LEGACY_REMOVED_ID}")
     if seen != REQUIRED_IDS:
         problems.append(f"row order/inventory differs from REQUIRED_CHECK_ORDER: {seen}")
+    if summary.get("status") != "pass":
+        problems.append(f"summary status is {summary.get('status')!r}, expected 'pass'")
+    for row in summary.get("results", []):
+        if row.get("status") != "pass":
+            problems.append(f"row {row.get('id')} status is {row.get('status')!r}, expected 'pass'")
     for row in summary.get("results", []):
         details = dict(row.get("details") or {})
         for key in RUN_SPECIFIC_DETAIL_KEYS:
