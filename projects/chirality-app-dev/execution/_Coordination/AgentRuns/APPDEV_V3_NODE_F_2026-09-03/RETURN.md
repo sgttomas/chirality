@@ -62,3 +62,17 @@ Every changed path is inside the seated item's locus: `frontend/src/**` (the new
 ## 7. Coordination notices
 
 None owed beyond this return: no `agents/**`, corpus, register, or Root surface changed.
+
+## 8. Closeout after REVIEW_PASS (2026-09-03)
+
+- **Review:** `instances/F2_REVIEWER/REVIEW_01_2026-09-03_over_f5b936e78.md` — **PASS**, 0 blocking / 0 major / 4 minor / 6 notes; filed verbatim (byte-identical to the coordinator's copy). No product, test, or CSS byte changed after the freeze (coordinator disposition D1).
+- **Rebase:** onto `origin/main` `774b7ba00b474ba2e5e341cdddab848167d275f1` (PR #688 merge) with no conflict; reviewed commits are now `0ebeecd94` (content) and `64547069b` (record). Post-rebase typecheck pass; full Vitest 165 files / 1554 tests pass (4 skipped); corpus no drift; APP-HOLD preflight ALLOW / scan PASS; `git diff --check`, change-scope (`--base 774b7ba00`), receipts validator — results in `CHECKS.json` round "closeout".
+- **Receipt:** 215 (Receipt-213 node I on `main`; Receipt-214 node G in PR #688; no node H receipt on `origin`); Parent-Receipt `Receipt-212`; Gate-Outcome `EXECUTED` (validator vocabulary).
+- **Residuals from the review (recorded, not fixed here):**
+  - **F1** (`hosted-engine-consent-port.ts:216`) — the `configDigest` doc comment says the digest "includes the command-network posture"; the fake does not fold the posture in and K-CONSENT-1 says only "effective configuration digest". Whether the posture participates is Root-owned (DEP-02-05-008). V3-03 rewords the comment to the accepted contract (recorded as a V3-03 Note in `_STATUS.md`).
+  - **F2** (`fake…:257-276`) — once consent is `stale`, the previously selected posture and session acceptances are retained and `resolveNetworkPrompt(id,'acceptForSession')` still succeeds at the port level; the panel fails closed (network fieldset disabled unless `granted`). Port-level guard and the stale→posture policy: **DEL-02-05-V3-04** (fake-only). Whether the live port drops a stale consent's posture to `off`: V3-03 Note.
+  - **F3** (`account-consent-settings.tsx:145` vs fake) — after `revokeConsent → grantConsent` the fake keeps `privateHome: invalidated` while the copy says "a fresh consent creates a new one", and the account stays `loggedIn`. Fake-side self-consistency (fresh grant → `present`): **DEL-02-05-V3-04**. Whether invalidation logs the account out (K-KEY-1): V3-03 Note, Root-owned.
+  - **F4** (`fake…:288-291`) — `control.enqueueNetworkPrompt` seeds a prompt under any posture; the view masks it and `resolveNetworkPrompt` rejects it. Guard: **DEL-02-05-V3-04**.
+  - **F5–F10** — no action. F8 noted for future evidence bundles: anchor inventory paths at the repo root (or add a `# verify from:` first line) so one cwd verifies every manifest; this bundle's `EVIDENCE.md` §2/§6 state the cwd for each file.
+- **Deliverable state:** `_STATUS.md` — V3-02 removed from Remaining with a History line carrying the A1 re-stage echo; V3-03 gate, dependencies, locus, checks, and return unchanged with a Notes line added (F1–F4 as live-port questions, Root-owned parts named); V3-04 seeded `SELECTABLE`; lifecycle `IN_PROGRESS` and Checking Approval SHA untouched. `MEMORY.md` one line.
+- **Push/PR:** not performed by this instance (D1). PR body at `<scratchpad>/PR_BODY_NODE_F.md`; HELP_HUMAN pushes and opens the PR.

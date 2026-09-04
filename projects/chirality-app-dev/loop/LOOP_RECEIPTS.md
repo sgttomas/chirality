@@ -6476,3 +6476,54 @@
   - Gate-Outcome: `EXECUTED` — awaiting owner merge; no release act. No
     lifecycle, host-mutation, signing, notarization, distribution, or Root
     act; the A1 re-stage rule applies to the touched `frontend/`.
+
+- **2026-09-03 — Receipt 215** (App v3 pathway node F: DEL-02-05-V3-02 static account/consent UX fixtures behind a fake consent port).
+  - Receipt-ID: `Receipt-215`
+  - Examined-Through: `e59efa4830fb54143c86e511ec35a6d1a476f72e`
+  - Parent-Receipt: `Receipt-212`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected development node F (DEL-02-05-V3-02) from dev
+    slate 2 in the HELP_HUMAN session chat on 2026-09-03; the selection is
+    recorded at
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_F_2026-09-03/ORCHESTRATION_PLAN.md`
+    (Selection authority) and the sealed brief at
+    `instances/F1_IMPLEMENTER/LAUNCH_BRIEF.md`. Concurrent sibling nodes
+    G, H, I share this parent (ledger rule 7); at rebase time Receipt-213
+    (node I) and Receipt-214 (node G, PR #688) were both on `main` by the
+    final rebase, so the next unused number resolves to 215.
+    Coordinator disposition D1 (residuals recorded, no byte change after
+    PASS, push by HELP_HUMAN) is transcribed in `COORDINATOR_DECISIONS.md`.
+  - Pointers: branch `codex/app-v3-nodeF-consent-ux-fixtures-2026-09-03`
+    (basis above; reviewed freeze `f5b936e78`, content `1bda97f99`;
+    rebased onto `774b7ba00` as `0ebeecd94` + `64547069b`); RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_F_2026-09-03/`
+    (`STEP0_DISCOVERY.md` incl. the A1 re-stage declaration and the A8
+    source delta, `CHECKS.json`, `RETURN.md`, `COORDINATOR_DECISIONS.md`,
+    `HANDOFF_STATE.md`, `MANIFEST.sha256`,
+    `instances/F2_REVIEWER/REVIEW_01_2026-09-03_over_f5b936e78.md`);
+    product `frontend/src/lib/consent/{hosted-engine-consent-port,consent-ux-fixtures,fake-hosted-engine-consent-port}.ts`
+    (new), `frontend/src/components/settings/account-consent-settings.tsx`
+    (new, not mounted), `frontend/src/app/globals.css` (appended block),
+    tests under `frontend/src/__tests__/`; DEL-02-05
+    `Evidence/V3-02_consent_ux_fixtures_2026-09-03/`,
+    `_run_records/TASK_RUN_2026-09-03_NODE_F.md`, `_STATUS.md` (V3-02
+    removed; review F1–F4 as V3-03 Notes; DEL-02-05-V3-04 seeded as a
+    fake-only follow-on), `MEMORY.md`.
+  - Checks: typecheck pass; full Vitest pass (pre- and post-rebase);
+    focused Vitest pass; build pass; `git diff --check` pass;
+    change-scope validator pass; harness self-check pass; harness pytest
+    pass; APP-HOLD dispatch preflight and register-match scan pass;
+    authority corpus status no drift; receipts validator pass; premerge
+    fail in the absent-runtime-daemon-bindings class, PR-CI-owed;
+    independent review round 1: pass (findings in the filed review).
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as ephemeral
+    Agent 2 implementer under HELP_HUMAN (Claude Fable 5.1); reviewer
+    Claude Fable 5.1.
+  - Stale-Map-Delta: the brief cited ruling record A11 for the `Opt-in
+    Preview` label; the live source is the G0 record A8
+    (`plans/steers/chirality_app_v3_g0_record_2026-08-22.md` line 74) —
+    recorded in `STEP0_DISCOVERY.md` §6; no map edited.
+  - Gate-Outcome: `EXECUTED` — awaiting owner merge; no release act. No
+    lifecycle, live-account, host-mutation, signing, notarization,
+    distribution, or Root act; the A1 re-stage rule applies to the touched
+    `frontend/`.
