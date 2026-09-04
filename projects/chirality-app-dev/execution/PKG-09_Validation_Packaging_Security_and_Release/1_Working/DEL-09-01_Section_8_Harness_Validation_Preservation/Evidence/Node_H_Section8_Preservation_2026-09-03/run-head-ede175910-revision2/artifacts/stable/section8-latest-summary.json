@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T04:31:51.893Z",
+  "generatedAt": "2026-09-04T05:10:43.064Z",
   "harnessBaseUrl": "http://127.0.0.1:51845",
   "projectRoot": "/private/tmp/chirality-app-v3-slate3-20260903/nodeJ/projects/chirality-app-dev",
   "requestedProjectRoot": "/private/tmp/chirality-app-v3-slate3-20260903/nodeJ/projects/chirality-app-dev",
@@ -10,7 +10,7 @@
     {
       "id": "setup.server_reachable",
       "status": "pass",
-      "durationMs": 23,
+      "durationMs": 24,
       "details": {
         "httpStatus": 200
       }
@@ -18,16 +18,16 @@
     {
       "id": "regression.session_crud",
       "status": "pass",
-      "durationMs": 315,
+      "durationMs": 330,
       "details": {
-        "sessionId": "6f23068d-aa39-4983-85a6-62dde6d5863f",
+        "sessionId": "b48cd32c-c14d-49e6-905f-faa15462c812",
         "listedCount": 1
       }
     },
     {
       "id": "section8.boot_error_taxonomy",
       "status": "pass",
-      "durationMs": 212,
+      "durationMs": 214,
       "details": {
         "checkedCodes": [
           "SESSION_NOT_FOUND",
@@ -40,7 +40,7 @@
     {
       "id": "section8.smoke_stream",
       "status": "pass",
-      "durationMs": 200,
+      "durationMs": 196,
       "details": {
         "eventCount": 8
       }
@@ -48,11 +48,11 @@
     {
       "id": "section8.session_persistence_resume",
       "status": "pass",
-      "durationMs": 293,
+      "durationMs": 298,
       "details": {
         "adapterId": "stub",
         "providerId": "stub",
-        "engineSessionId": "stub_5f65d9d0-be43-4b8d-aa6b-d6979324e85b"
+        "engineSessionId": "stub_95a0f8e7-1637-426d-ac1f-c48f2ba8d179"
       }
     },
     {
@@ -67,7 +67,7 @@
     {
       "id": "section8.interrupt_sigint",
       "status": "pass",
-      "durationMs": 225,
+      "durationMs": 230,
       "details": {
         "interruptStatus": 200
       }
@@ -75,7 +75,7 @@
     {
       "id": "section8.sdk_native_stream",
       "status": "pass",
-      "durationMs": 139,
+      "durationMs": 138,
       "details": {
         "eventCount": 8
       }

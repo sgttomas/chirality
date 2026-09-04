@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T04:31:59.095Z",
+  "generatedAt": "2026-09-04T05:10:49.561Z",
   "status": "pass",
   "testCount": 16,
   "manifestPath": "/private/tmp/chirality-app-v3-slate3-20260903/nodeJ/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json",
@@ -7,7 +7,7 @@
     {
       "id": "section9.runtime_engine_contract",
       "status": "pass",
-      "durationMs": 1251,
+      "durationMs": 518,
       "testFiles": [
         "src/__tests__/lib/engine-conformance.test.ts"
       ],
@@ -25,13 +25,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.runtime_engine_contract.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.runtime_engine_contract.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:51.923Z",
-      "endedAt": "2026-09-04T04:31:53.174Z"
+      "startedAt": "2026-09-04T05:10:43.091Z",
+      "endedAt": "2026-09-04T05:10:43.609Z"
     },
     {
       "id": "section9.adapter_turn_engine_event_log",
       "status": "pass",
-      "durationMs": 379,
+      "durationMs": 383,
       "testFiles": [
         "src/__tests__/lib/turn-engine.test.ts"
       ],
@@ -49,13 +49,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.adapter_turn_engine_event_log.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.adapter_turn_engine_event_log.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:53.174Z",
-      "endedAt": "2026-09-04T04:31:53.553Z"
+      "startedAt": "2026-09-04T05:10:43.610Z",
+      "endedAt": "2026-09-04T05:10:43.993Z"
     },
     {
       "id": "section9.adapter_message_mapper",
       "status": "pass",
-      "durationMs": 364,
+      "durationMs": 366,
       "testFiles": [
         "src/__tests__/lib/sdk-message-mapper.test.ts"
       ],
@@ -73,13 +73,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.adapter_message_mapper.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.adapter_message_mapper.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:53.553Z",
-      "endedAt": "2026-09-04T04:31:53.917Z"
+      "startedAt": "2026-09-04T05:10:43.993Z",
+      "endedAt": "2026-09-04T05:10:44.359Z"
     },
     {
       "id": "section9.session_event_replay",
       "status": "pass",
-      "durationMs": 342,
+      "durationMs": 338,
       "testFiles": [
         "src/__tests__/lib/session-events.test.ts",
         "src/__tests__/lib/transcript-replay.test.ts"
@@ -98,13 +98,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.session_event_replay.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.session_event_replay.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:53.918Z",
-      "endedAt": "2026-09-04T04:31:54.260Z"
+      "startedAt": "2026-09-04T05:10:44.359Z",
+      "endedAt": "2026-09-04T05:10:44.697Z"
     },
     {
       "id": "section9.reliance_boundary_register",
       "status": "pass",
-      "durationMs": 326,
+      "durationMs": 328,
       "testFiles": [
         "src/__tests__/docs/reliance-boundary-register.test.ts",
         "src/__tests__/contract-pins.test.ts"
@@ -123,13 +123,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.reliance_boundary_register.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.reliance_boundary_register.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:54.261Z",
-      "endedAt": "2026-09-04T04:31:54.587Z"
+      "startedAt": "2026-09-04T05:10:44.697Z",
+      "endedAt": "2026-09-04T05:10:45.025Z"
     },
     {
       "id": "section9.settingsources_isolation",
       "status": "pass",
-      "durationMs": 497,
+      "durationMs": 499,
       "testFiles": [
         "src/__tests__/lib/sdk-options-builder.test.ts"
       ],
@@ -147,13 +147,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.settingsources_isolation.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.settingsources_isolation.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:54.588Z",
-      "endedAt": "2026-09-04T04:31:55.085Z"
+      "startedAt": "2026-09-04T05:10:45.025Z",
+      "endedAt": "2026-09-04T05:10:45.524Z"
     },
     {
       "id": "section9.sdk_session_link_resume",
       "status": "pass",
-      "durationMs": 504,
+      "durationMs": 508,
       "testFiles": [
         "src/__tests__/lib/sdk-options-builder.test.ts",
         "src/__tests__/lib/session-manager.test.ts",
@@ -173,13 +173,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.sdk_session_link_resume.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.sdk_session_link_resume.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:55.086Z",
-      "endedAt": "2026-09-04T04:31:55.590Z"
+      "startedAt": "2026-09-04T05:10:45.524Z",
+      "endedAt": "2026-09-04T05:10:46.032Z"
     },
     {
       "id": "section9.permission_overlay_hard_deny_precedence",
       "status": "pass",
-      "durationMs": 362,
+      "durationMs": 364,
       "testFiles": [
         "src/__tests__/lib/permission-overlay.test.ts"
       ],
@@ -197,13 +197,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.permission_overlay_hard_deny_precedence.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.permission_overlay_hard_deny_precedence.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:55.590Z",
-      "endedAt": "2026-09-04T04:31:55.952Z"
+      "startedAt": "2026-09-04T05:10:46.032Z",
+      "endedAt": "2026-09-04T05:10:46.396Z"
     },
     {
       "id": "section9.tool_runtime_read_file",
       "status": "pass",
-      "durationMs": 484,
+      "durationMs": 485,
       "testFiles": [
         "src/__tests__/lib/chirality-read-mcp.test.ts"
       ],
@@ -221,13 +221,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.tool_runtime_read_file.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.tool_runtime_read_file.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:55.953Z",
-      "endedAt": "2026-09-04T04:31:56.437Z"
+      "startedAt": "2026-09-04T05:10:46.397Z",
+      "endedAt": "2026-09-04T05:10:46.882Z"
     },
     {
       "id": "section9.chirality_mcp_status_dependencies",
       "status": "pass",
-      "durationMs": 479,
+      "durationMs": 484,
       "testFiles": [
         "src/__tests__/lib/chirality-read-mcp.test.ts",
         "src/__tests__/lib/dependencies-register-contract.test.ts"
@@ -246,13 +246,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.chirality_mcp_status_dependencies.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.chirality_mcp_status_dependencies.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:56.438Z",
-      "endedAt": "2026-09-04T04:31:56.917Z"
+      "startedAt": "2026-09-04T05:10:46.883Z",
+      "endedAt": "2026-09-04T05:10:47.367Z"
     },
     {
       "id": "section9.path_containment_hook",
       "status": "pass",
-      "durationMs": 366,
+      "durationMs": 367,
       "testFiles": [
         "src/__tests__/lib/chirality-hooks.test.ts",
         "src/__tests__/lib/permission-overlay.test.ts"
@@ -271,13 +271,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.path_containment_hook.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.path_containment_hook.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:56.918Z",
-      "endedAt": "2026-09-04T04:31:57.284Z"
+      "startedAt": "2026-09-04T05:10:47.368Z",
+      "endedAt": "2026-09-04T05:10:47.735Z"
     },
     {
       "id": "section9.instruction_root_protection_hook",
       "status": "pass",
-      "durationMs": 407,
+      "durationMs": 409,
       "testFiles": [
         "src/__tests__/lib/harness-instruction-root.test.ts",
         "src/__tests__/scripts/verify-instruction-root-integrity.test.ts"
@@ -296,8 +296,8 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.instruction_root_protection_hook.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.instruction_root_protection_hook.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:57.285Z",
-      "endedAt": "2026-09-04T04:31:57.692Z"
+      "startedAt": "2026-09-04T05:10:47.735Z",
+      "endedAt": "2026-09-04T05:10:48.144Z"
     },
     {
       "id": "section9.tool_result_budget",
@@ -323,13 +323,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.tool_result_budget.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.tool_result_budget.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:57.693Z",
-      "endedAt": "2026-09-04T04:31:58.069Z"
+      "startedAt": "2026-09-04T05:10:48.144Z",
+      "endedAt": "2026-09-04T05:10:48.520Z"
     },
     {
       "id": "section9.context_compaction_boundary",
       "status": "pass",
-      "durationMs": 358,
+      "durationMs": 364,
       "testFiles": [
         "src/__tests__/lib/sdk-message-mapper.test.ts",
         "src/__tests__/lib/session-events.test.ts"
@@ -348,13 +348,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.context_compaction_boundary.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.context_compaction_boundary.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:58.070Z",
-      "endedAt": "2026-09-04T04:31:58.428Z"
+      "startedAt": "2026-09-04T05:10:48.521Z",
+      "endedAt": "2026-09-04T05:10:48.885Z"
     },
     {
       "id": "section9.subagent_governance_hook",
       "status": "pass",
-      "durationMs": 339,
+      "durationMs": 345,
       "testFiles": [
         "src/__tests__/lib/harness-subagent-governance.test.ts",
         "src/__tests__/lib/agent-runtime-contract.test.ts"
@@ -373,13 +373,13 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.subagent_governance_hook.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.subagent_governance_hook.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:58.428Z",
-      "endedAt": "2026-09-04T04:31:58.767Z"
+      "startedAt": "2026-09-04T05:10:48.886Z",
+      "endedAt": "2026-09-04T05:10:49.231Z"
     },
     {
       "id": "section9.domain_profile_validation",
       "status": "pass",
-      "durationMs": 327,
+      "durationMs": 330,
       "testFiles": [
         "src/__tests__/lib/domain-profile-registry.test.ts",
         "src/__tests__/contract-pins.test.ts"
@@ -398,8 +398,8 @@
         "stdoutLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.domain_profile_validation.stdout.log",
         "stderrLog": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-section9-validation/latest/logs/section9.domain_profile_validation.stderr.log"
       },
-      "startedAt": "2026-09-04T04:31:58.767Z",
-      "endedAt": "2026-09-04T04:31:59.094Z"
+      "startedAt": "2026-09-04T05:10:49.231Z",
+      "endedAt": "2026-09-04T05:10:49.561Z"
     }
   ]
 }

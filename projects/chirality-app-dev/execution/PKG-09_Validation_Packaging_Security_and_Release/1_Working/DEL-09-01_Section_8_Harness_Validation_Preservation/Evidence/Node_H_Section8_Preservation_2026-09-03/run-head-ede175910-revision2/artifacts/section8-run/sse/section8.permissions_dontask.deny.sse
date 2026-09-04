@@ -1,8 +1,8 @@
 event: harness:event
-data: {"sessionId":"d338defc-0dd5-4c73-b585-ee6b49de1e9d","turnId":"e024e687-a404-4948-b396-e72525124c68","type":"turn.accepted","data":{"message":"UNAPPROVED_DENY_TEST run dangerous command"},"schemaVersion":1,"eventId":"61fa3ac0-84f8-4524-8250-ee49f0cbd349","timestamp":"2026-09-04T04:31:51.386Z"}
+data: {"sessionId":"d1c37913-7971-465d-84f7-a45bddee5b62","turnId":"51c6fecc-69da-4ef7-be48-aaeb461cebb2","type":"turn.accepted","data":{"message":"UNAPPROVED_DENY_TEST run dangerous command"},"schemaVersion":1,"eventId":"49819fc9-7320-4f62-a062-269cd10abab4","timestamp":"2026-09-04T05:10:42.553Z"}
 
 event: session:init
-data: {"engineSessionId":"stub_b53249f3-6108-4f09-9552-edf880c5ddf9","adapterId":"stub","providerId":"stub","model":"haiku"}
+data: {"engineSessionId":"stub_d1c8de63-c367-489c-b26a-d1c073974fe9","adapterId":"stub","providerId":"stub","model":"haiku"}
 
 event: tool:result
 data: {"name":"bash","ok":false,"output":"permission denied"}
@@ -14,7 +14,7 @@ event: session:complete
 data: {}
 
 event: harness:event
-data: {"sessionId":"d338defc-0dd5-4c73-b585-ee6b49de1e9d","turnId":"e024e687-a404-4948-b396-e72525124c68","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"8cf19136-b70f-4f99-a953-d2d5be0e21a5","timestamp":"2026-09-04T04:31:51.399Z"}
+data: {"sessionId":"d1c37913-7971-465d-84f7-a45bddee5b62","turnId":"51c6fecc-69da-4ef7-be48-aaeb461cebb2","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"3285a7a5-d876-40c6-ac4f-c7206c0d642c","timestamp":"2026-09-04T05:10:42.565Z"}
 
 event: process:exit
 data: {"exitCode":0}

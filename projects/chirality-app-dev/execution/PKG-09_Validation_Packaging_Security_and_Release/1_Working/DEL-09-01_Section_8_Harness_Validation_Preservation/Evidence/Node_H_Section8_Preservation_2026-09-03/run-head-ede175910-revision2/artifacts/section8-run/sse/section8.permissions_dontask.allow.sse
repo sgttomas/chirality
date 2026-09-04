@@ -1,8 +1,8 @@
 event: harness:event
-data: {"sessionId":"d338defc-0dd5-4c73-b585-ee6b49de1e9d","turnId":"d869cca0-f9fb-468a-8079-f70951a08f01","type":"turn.accepted","data":{"message":"UNAPPROVED_ALLOW_TEST run allow-list command"},"schemaVersion":1,"eventId":"75db3d9d-8566-493d-806d-d7edac4ee68a","timestamp":"2026-09-04T04:31:51.415Z"}
+data: {"sessionId":"d1c37913-7971-465d-84f7-a45bddee5b62","turnId":"af5cf5df-f93d-462d-a786-c2b177ac7b05","type":"turn.accepted","data":{"message":"UNAPPROVED_ALLOW_TEST run allow-list command"},"schemaVersion":1,"eventId":"2f211032-2e2c-4f60-818b-c2119d073f29","timestamp":"2026-09-04T05:10:42.581Z"}
 
 event: session:init
-data: {"engineSessionId":"stub_b53249f3-6108-4f09-9552-edf880c5ddf9","adapterId":"stub","providerId":"stub","model":"haiku"}
+data: {"engineSessionId":"stub_d1c8de63-c367-489c-b26a-d1c073974fe9","adapterId":"stub","providerId":"stub","model":"haiku"}
 
 event: tool:result
 data: {"name":"bash","ok":true,"output":"UNAPPROVED_ALLOW_TEST"}
@@ -20,7 +20,7 @@ event: session:complete
 data: {}
 
 event: harness:event
-data: {"sessionId":"d338defc-0dd5-4c73-b585-ee6b49de1e9d","turnId":"d869cca0-f9fb-468a-8079-f70951a08f01","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"c6e77578-ab56-420b-9eae-51c48e449f7b","timestamp":"2026-09-04T04:31:51.501Z"}
+data: {"sessionId":"d1c37913-7971-465d-84f7-a45bddee5b62","turnId":"af5cf5df-f93d-462d-a786-c2b177ac7b05","type":"turn.completed","data":{},"schemaVersion":1,"eventId":"0e7694ef-ca74-4d3c-9bbe-35b4d20b3d23","timestamp":"2026-09-04T05:10:42.668Z"}
 
 event: process:exit
 data: {"exitCode":0}

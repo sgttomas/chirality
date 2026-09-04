@@ -1,7 +1,4 @@
-Downloading Electron binary...
-[chirality-desktop] 2026-09-04T04:31:46.066Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":false,"userData":"/private/tmp/chirality-s8.60Fx5o","pid":59168}
-[chirality-desktop] 2026-09-04T04:31:46.088Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-s8.60Fx5o/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-s8.60Fx5o/runtime"}
-[59168:0903/223159.743202:ERROR:content/browser/gpu/gpu_process_host.cc:1089] GPU process exited unexpectedly: exit_code=15
-[59168:0903/223159.743567:ERROR:content/browser/network_service_instance_impl.cc:721] Network service crashed or was terminated, restarting service.
-[chirality-desktop] 2026-09-04T04:31:59.743Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":59168}
-[chirality-desktop] 2026-09-04T04:31:59.745Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}
+[chirality-desktop] 2026-09-04T05:10:36.707Z [info] runtime.daemon.starting {"activationPolicy":"prohibited","packaged":false,"userData":"/private/tmp/chirality-s8.TAS0YP","pid":98368}
+[chirality-desktop] 2026-09-04T05:10:36.724Z [info] runtime.daemon.started {"socketPath":"/private/tmp/chirality-s8.TAS0YP/runtime/control.sock","runtimeDirectory":"/private/tmp/chirality-s8.TAS0YP/runtime"}
+[chirality-desktop] 2026-09-04T05:10:51.939Z [info] desktop.shutdown.started {"reason":"runtime-daemon-signal","exitCode":0,"daemonMode":true,"pid":98368}
+[chirality-desktop] 2026-09-04T05:10:51.940Z [info] desktop.shutdown.completed {"reason":"runtime-daemon-signal","exitCode":0}

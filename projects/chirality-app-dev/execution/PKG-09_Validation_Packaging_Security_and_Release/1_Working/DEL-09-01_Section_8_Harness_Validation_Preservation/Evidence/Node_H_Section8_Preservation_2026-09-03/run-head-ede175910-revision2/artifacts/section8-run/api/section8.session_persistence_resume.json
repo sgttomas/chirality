@@ -2,8 +2,8 @@
   "adapterId": "stub",
   "providerId": "stub",
   "model": "haiku",
-  "firstEngineSessionId": "stub_5f65d9d0-be43-4b8d-aa6b-d6979324e85b",
-  "secondEngineSessionId": "stub_5f65d9d0-be43-4b8d-aa6b-d6979324e85b",
-  "persistedAfterFirst": "stub_5f65d9d0-be43-4b8d-aa6b-d6979324e85b",
-  "persistedAfterSecond": "stub_5f65d9d0-be43-4b8d-aa6b-d6979324e85b"
+  "firstEngineSessionId": "stub_95a0f8e7-1637-426d-ac1f-c48f2ba8d179",
+  "secondEngineSessionId": "stub_95a0f8e7-1637-426d-ac1f-c48f2ba8d179",
+  "persistedAfterFirst": "stub_95a0f8e7-1637-426d-ac1f-c48f2ba8d179",
+  "persistedAfterSecond": "stub_95a0f8e7-1637-426d-ac1f-c48f2ba8d179"
 }

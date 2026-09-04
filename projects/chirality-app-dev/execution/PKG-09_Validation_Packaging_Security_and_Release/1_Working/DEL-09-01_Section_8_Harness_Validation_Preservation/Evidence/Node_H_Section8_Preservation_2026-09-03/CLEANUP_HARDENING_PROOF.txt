@@ -1,0 +1,7 @@
+stale_identity_signalled=no
+kill_targets=identity-verified-survivors-only
+early_and_teardown_records=merged
+forced_cleanup_failure_exit=74
+incoming_failure_status_preserved=23
+manifest_after_failure=verified
+CLEANUP_HARDENING_PROOF=PASS

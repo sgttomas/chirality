@@ -15,8 +15,8 @@ HARNESS_SECTION9_CHECK_START=section9.runtime_engine_contract
 
  Test Files  1 passed (1)
       Tests  10 passed (10)
-   Start at  22:31:52
-   Duration  298ms (transform 157ms, setup 0ms, import 227ms, tests 18ms, environment 0ms)
+   Start at  23:10:43
+   Duration  289ms (transform 156ms, setup 0ms, import 222ms, tests 18ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.adapter_turn_engine_event_log
 
@@ -29,8 +29,8 @@ HARNESS_SECTION9_CHECK_START=section9.adapter_turn_engine_event_log
 
  Test Files  1 passed (1)
       Tests  4 passed (4)
-   Start at  22:31:53
-   Duration  146ms (transform 69ms, setup 0ms, import 85ms, tests 11ms, environment 0ms)
+   Start at  23:10:43
+   Duration  148ms (transform 69ms, setup 0ms, import 85ms, tests 11ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.adapter_message_mapper
 
@@ -43,8 +43,8 @@ HARNESS_SECTION9_CHECK_START=section9.adapter_message_mapper
 
  Test Files  1 passed (1)
       Tests  15 passed (15)
-   Start at  22:31:53
-   Duration  132ms (transform 58ms, setup 0ms, import 71ms, tests 12ms, environment 0ms)
+   Start at  23:10:44
+   Duration  129ms (transform 55ms, setup 0ms, import 68ms, tests 11ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.session_event_replay
 
@@ -57,8 +57,8 @@ HARNESS_SECTION9_CHECK_START=section9.session_event_replay
 
  Test Files  2 passed (2)
       Tests  9 passed (9)
-   Start at  22:31:54
-   Duration  106ms (transform 60ms, setup 0ms, import 75ms, tests 15ms, environment 0ms)
+   Start at  23:10:44
+   Duration  103ms (transform 55ms, setup 0ms, import 70ms, tests 14ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.reliance_boundary_register
 
@@ -71,8 +71,8 @@ HARNESS_SECTION9_CHECK_START=section9.reliance_boundary_register
 
  Test Files  2 passed (2)
       Tests  18 passed (18)
-   Start at  22:31:54
-   Duration  87ms (transform 43ms, setup 0ms, import 54ms, tests 7ms, environment 0ms)
+   Start at  23:10:44
+   Duration  85ms (transform 39ms, setup 0ms, import 50ms, tests 7ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.settingsources_isolation
 
@@ -85,8 +85,8 @@ HARNESS_SECTION9_CHECK_START=section9.settingsources_isolation
 
  Test Files  1 passed (1)
       Tests  15 passed (15)
-   Start at  22:31:54
-   Duration  283ms (transform 137ms, setup 0ms, import 202ms, tests 31ms, environment 0ms)
+   Start at  23:10:45
+   Duration  283ms (transform 136ms, setup 0ms, import 201ms, tests 32ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.sdk_session_link_resume
 
@@ -99,8 +99,8 @@ HARNESS_SECTION9_CHECK_START=section9.sdk_session_link_resume
 
  Test Files  3 passed (3)
       Tests  35 passed (35)
-   Start at  22:31:55
-   Duration  293ms (transform 220ms, setup 0ms, import 301ms, tests 64ms, environment 0ms)
+   Start at  23:10:45
+   Duration  296ms (transform 219ms, setup 0ms, import 302ms, tests 64ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.permission_overlay_hard_deny_precedence
 
@@ -113,8 +113,8 @@ HARNESS_SECTION9_CHECK_START=section9.permission_overlay_hard_deny_precedence
 
  Test Files  1 passed (1)
       Tests  13 passed (13)
-   Start at  22:31:55
-   Duration  132ms (transform 54ms, setup 0ms, import 68ms, tests 15ms, environment 0ms)
+   Start at  23:10:46
+   Duration  133ms (transform 54ms, setup 0ms, import 68ms, tests 15ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.tool_runtime_read_file
 
@@ -127,8 +127,8 @@ HARNESS_SECTION9_CHECK_START=section9.tool_runtime_read_file
 
  Test Files  1 passed (1)
       Tests  10 passed (10)
-   Start at  22:31:56
-   Duration  284ms (transform 126ms, setup 0ms, import 189ms, tests 46ms, environment 0ms)
+   Start at  23:10:46
+   Duration  286ms (transform 128ms, setup 0ms, import 190ms, tests 46ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.chirality_mcp_status_dependencies
 
@@ -141,8 +141,8 @@ HARNESS_SECTION9_CHECK_START=section9.chirality_mcp_status_dependencies
 
  Test Files  2 passed (2)
       Tests  20 passed (20)
-   Start at  22:31:56
-   Duration  283ms (transform 154ms, setup 0ms, import 224ms, tests 49ms, environment 0ms)
+   Start at  23:10:47
+   Duration  286ms (transform 157ms, setup 0ms, import 228ms, tests 48ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.path_containment_hook
 
@@ -155,8 +155,8 @@ HARNESS_SECTION9_CHECK_START=section9.path_containment_hook
 
  Test Files  2 passed (2)
       Tests  20 passed (20)
-   Start at  22:31:57
-   Duration  148ms (transform 117ms, setup 0ms, import 149ms, tests 39ms, environment 0ms)
+   Start at  23:10:47
+   Duration  146ms (transform 112ms, setup 0ms, import 144ms, tests 39ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.instruction_root_protection_hook
 
@@ -169,8 +169,8 @@ HARNESS_SECTION9_CHECK_START=section9.instruction_root_protection_hook
 
  Test Files  2 passed (2)
       Tests  9 passed (9)
-   Start at  22:31:57
-   Duration  214ms (transform 63ms, setup 0ms, import 77ms, tests 133ms, environment 0ms)
+   Start at  23:10:47
+   Duration  209ms (transform 53ms, setup 0ms, import 67ms, tests 132ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.tool_result_budget
 
@@ -183,8 +183,8 @@ HARNESS_SECTION9_CHECK_START=section9.tool_result_budget
 
  Test Files  4 passed (4)
       Tests  33 passed (33)
-   Start at  22:31:57
-   Duration  155ms (transform 218ms, setup 0ms, import 281ms, tests 56ms, environment 0ms)
+   Start at  23:10:48
+   Duration  151ms (transform 204ms, setup 0ms, import 264ms, tests 52ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.context_compaction_boundary
 
@@ -197,8 +197,8 @@ HARNESS_SECTION9_CHECK_START=section9.context_compaction_boundary
 
  Test Files  2 passed (2)
       Tests  21 passed (21)
-   Start at  22:31:58
-   Duration  127ms (transform 87ms, setup 0ms, import 113ms, tests 24ms, environment 0ms)
+   Start at  23:10:48
+   Duration  128ms (transform 87ms, setup 0ms, import 115ms, tests 23ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.subagent_governance_hook
 
@@ -211,8 +211,8 @@ HARNESS_SECTION9_CHECK_START=section9.subagent_governance_hook
 
  Test Files  2 passed (2)
       Tests  16 passed (16)
-   Start at  22:31:58
-   Duration  125ms (transform 60ms, setup 0ms, import 76ms, tests 32ms, environment 0ms)
+   Start at  23:10:49
+   Duration  127ms (transform 61ms, setup 0ms, import 78ms, tests 32ms, environment 0ms)
 
 HARNESS_SECTION9_CHECK_START=section9.domain_profile_validation
 
@@ -225,8 +225,8 @@ HARNESS_SECTION9_CHECK_START=section9.domain_profile_validation
 
  Test Files  2 passed (2)
       Tests  19 passed (19)
-   Start at  22:31:58
-   Duration  86ms (transform 51ms, setup 0ms, import 62ms, tests 7ms, environment 0ms)
+   Start at  23:10:49
+   Duration  87ms (transform 50ms, setup 0ms, import 63ms, tests 7ms, environment 0ms)
 
 HARNESS_SECTION9_SUMMARY_PATH=/private/tmp/chirality-app-v3-slate3-20260903/nodeJ/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/summary.json
 HARNESS_SECTION9_MANIFEST_PATH=/private/tmp/chirality-app-v3-slate3-20260903/nodeJ/projects/chirality-app-dev/frontend/artifacts/harness/section9/latest/manifest.json

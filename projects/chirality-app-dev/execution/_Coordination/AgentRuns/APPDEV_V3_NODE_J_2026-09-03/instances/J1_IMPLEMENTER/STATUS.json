@@ -2,10 +2,10 @@
   "schema": "chirality-agent-instance-status/v1",
   "run_id": "APPDEV_V3_NODE_J_2026-09-03",
   "instance_id": "J1_IMPLEMENTER",
-  "status": "REVIEW_READY",
+  "status": "REMEDIATED_REVIEW_READY",
   "execution_form": "EPHEMERAL_AGENT2_GENERALIST",
   "basis": "ede175910c67b384332324622b17695f69e6a715",
   "task_preflight": "STOPPED_ZERO_WRITE_INSTRUCTION_ROOT_UNAVAILABLE",
-  "phase": "FROZEN_FOR_INDEPENDENT_REVIEW",
-  "review_state": "AWAITING_HELP_HUMAN_DISPATCH"
+  "phase": "ROUND_1_FINDINGS_REMEDIATED_FROZEN_FOR_REVIEW",
+  "review_state": "AWAITING_ROUND_2_REVIEW"
 }

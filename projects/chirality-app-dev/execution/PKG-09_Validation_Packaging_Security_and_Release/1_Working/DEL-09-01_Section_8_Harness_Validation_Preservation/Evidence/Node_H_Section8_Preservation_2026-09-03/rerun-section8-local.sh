@@ -50,6 +50,8 @@
 #
 # Exit status: the premerge wrapper's exit status (0 pass / 1 fail), or the
 # release-quality wrapper's when WITH_RELEASE_QUALITY=1 and premerge passed.
+# Teardown preserves an incoming nonzero status and returns 74 when the proof
+# passed but any cleanup command or post-cleanup invariant failed.
 set -euo pipefail
 
 REPO_ROOT="${REPO_ROOT:-$(git rev-parse --show-toplevel)}"
@@ -66,6 +68,7 @@ APPROVAL_REF="${APPROVAL_REF:-DEL-09-01-V3-01}"
 mkdir -p "$RUN_ROOT/logs" "$RUN_ROOT/artifacts" "$RUN_ROOT/private"
 LOGS="$RUN_ROOT/logs"
 ART="$RUN_ROOT/artifacts"
+: > "$LOGS/driver.log"
 
 if [ -n "${USER_DATA:-}" ]; then
   USER_DATA_CREATED=0
@@ -89,107 +92,219 @@ export CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE="$USER_DATA/runtime/auth/tokens/ope
 
 DAEMON_PID=""
 DAEMON_ELECTRON_PID=""
-DAEMON_TREE_PIDS=""
+DAEMON_ROOT_IDENTITY=""
+DAEMON_TREE_RECORDS=""
 NEXT_PID=""
-NEXT_TREE_PIDS=""
+NEXT_ROOT_IDENTITY=""
+NEXT_TREE_RECORDS=""
 STARTED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 log() { printf '[%s] %s\n' "$(date -u +%H:%M:%S)" "$*" | tee -a "$LOGS/driver.log" >&2; }
 
-# Print every descendant of a recorded parent, deepest first. Matching stays
-# inside a tree rooted at a pid started by this script; no command-line regex is
-# used to discover unrelated processes.
-descendant_pids() {
+# A process record is `<pid><TAB><identity>`, where identity hashes the process
+# start timestamp, uid, and executable path. The start timestamp distinguishes
+# PID reuse; the executable fingerprint prevents an unrelated same-second
+# process from being accepted while remaining stable when a runtime changes its
+# display title. Every signal re-reads and compares this identity immediately
+# before dispatch. Tests may override these two narrow adapters after sourcing
+# the script in library mode; production never does.
+read_process_identity() {
+  local process_id="$1"
+  local identity_material
+  local executable_path
+  identity_material="$(ps -p "$process_id" -o lstart= -o uid= 2>/dev/null)" || return 1
+  executable_path="$(lsof -a -p "$process_id" -d txt -Fn 2>/dev/null | sed -n 's/^n//p' | head -n 1)" || return 1
+  [ -n "$identity_material" ] && [ -n "$executable_path" ] || return 1
+  identity_material="${identity_material}"$'\n'"${executable_path}"
+  printf '%s' "$identity_material" | shasum -a 256 | awk '{print $1}'
+}
+
+send_process_signal() {
+  local signal_name="$1"
+  local process_id="$2"
+  kill "-$signal_name" "$process_id"
+}
+
+read_parent_pid() {
+  local process_id="$1"
+  ps -p "$process_id" -o ppid= 2>/dev/null | tr -d '[:space:]'
+}
+
+# Print identity records for every descendant of a verified parent, deepest
+# first. Discovery is restricted to a parent identity already captured from a
+# script-started tree; no command-line regex is used to find unrelated tasks.
+descendant_identity_records() {
   local parent_pid="$1"
+  local parent_identity="$2"
   local child_pid
+  local child_identity
+  local current_parent_identity
+  current_parent_identity="$(read_process_identity "$parent_pid")" || return 0
+  [ "$current_parent_identity" = "$parent_identity" ] || return 0
   while IFS= read -r child_pid; do
     [ -n "$child_pid" ] || continue
-    descendant_pids "$child_pid"
-    printf '%s\n' "$child_pid"
+    child_identity="$(read_process_identity "$child_pid")" || continue
+    current_parent_identity="$(read_process_identity "$parent_pid")" || return 0
+    [ "$current_parent_identity" = "$parent_identity" ] || return 0
+    [ "$(read_parent_pid "$child_pid")" = "$parent_pid" ] || continue
+    descendant_identity_records "$child_pid" "$child_identity"
+    [ "$(read_process_identity "$child_pid" 2>/dev/null || true)" = "$child_identity" ] || continue
+    printf '%s\t%s\n' "$child_pid" "$child_identity"
   done < <(pgrep -P "$parent_pid" 2>/dev/null || true)
 }
 
-process_tree_pids() {
+process_tree_identity_records() {
   local root_pid="$1"
-  descendant_pids "$root_pid"
-  printf '%s\n' "$root_pid"
+  local root_identity="$2"
+  [ "$(read_process_identity "$root_pid" 2>/dev/null || true)" = "$root_identity" ] || return 0
+  descendant_identity_records "$root_pid" "$root_identity"
+  [ "$(read_process_identity "$root_pid" 2>/dev/null || true)" = "$root_identity" ] || return 0
+  printf '%s\t%s\n' "$root_pid" "$root_identity"
 }
 
-merge_pid_lists() {
-  awk 'NF && !seen[$0]++'
+merge_identity_records() {
+  awk -F '\t' 'NF >= 2 && !seen[$1 FS $2]++'
 }
 
-signal_pid_list() {
-  local pid_list="$1"
+verified_live_identity_records() {
+  local identity_records="$1"
+  local process_id
+  local expected_identity
+  local current_identity
+  while IFS=$'\t' read -r process_id expected_identity; do
+    [ -n "$process_id" ] && [ -n "$expected_identity" ] || continue
+    current_identity="$(read_process_identity "$process_id")" || continue
+    [ "$current_identity" = "$expected_identity" ] || continue
+    printf '%s\t%s\n' "$process_id" "$expected_identity"
+  done <<< "$identity_records"
+}
+
+signal_identity_records() {
+  local identity_records="$1"
   local signal_name="$2"
   local process_id
-  while IFS= read -r process_id; do
-    [ -n "$process_id" ] || continue
-    kill "-$signal_name" "$process_id" 2>/dev/null || true
-  done <<< "$pid_list"
+  local expected_identity
+  local current_identity
+  local failed=0
+  while IFS=$'\t' read -r process_id expected_identity; do
+    [ -n "$process_id" ] && [ -n "$expected_identity" ] || continue
+    current_identity="$(read_process_identity "$process_id")" || continue
+    [ "$current_identity" = "$expected_identity" ] || continue
+    if ! send_process_signal "$signal_name" "$process_id" 2>/dev/null; then
+      # A process that exited or changed identity in the final interval is no
+      # longer ours and must not convert normal teardown into a false failure.
+      # A still-live matching identity that could not be signalled is a real
+      # cleanup failure.
+      current_identity="$(read_process_identity "$process_id")" || continue
+      [ "$current_identity" = "$expected_identity" ] && failed=1
+    fi
+  done <<< "$identity_records"
+  return "$failed"
 }
 
-live_pid_count() {
-  local pid_list="$1"
-  local process_id
-  local count=0
-  while IFS= read -r process_id; do
-    [ -n "$process_id" ] || continue
-    if kill -0 "$process_id" 2>/dev/null; then count=$((count + 1)); fi
-  done <<< "$pid_list"
-  printf '%s\n' "$count"
+live_identity_count() {
+  local identity_records="$1"
+  verified_live_identity_records "$identity_records" | awk 'END { print NR + 0 }'
+}
+
+identity_is_live() {
+  local process_id="$1"
+  local expected_identity="$2"
+  [ -n "$process_id" ] && [ -n "$expected_identity" ] \
+    && [ "$(read_process_identity "$process_id" 2>/dev/null || true)" = "$expected_identity" ]
 }
 
 teardown() {
-  local status=$?
+  local incoming_status=$?
+  local cleanup_failed=0
+  local daemon_survivors=""
+  local next_survivors=""
+  local daemon_remaining=0
+  local next_remaining=0
+  local socket_remaining=no
+  local port_listener_count=0
+  local daemon_alive=no
+  local next_alive=no
+  local final_status
+  trap - EXIT
   set +e
-  log "teardown begin (status so far $status)"
+  log "teardown begin (incoming status $incoming_status)" || cleanup_failed=1
   if [ -n "$NEXT_PID" ]; then
-    NEXT_TREE_PIDS="$(process_tree_pids "$NEXT_PID" | merge_pid_lists)"
-    signal_pid_list "$NEXT_TREE_PIDS" TERM
+    NEXT_TREE_RECORDS="$(
+      {
+        printf '%s\n' "$NEXT_TREE_RECORDS"
+        process_tree_identity_records "$NEXT_PID" "$NEXT_ROOT_IDENTITY"
+      } | merge_identity_records
+    )"
+    signal_identity_records "$NEXT_TREE_RECORDS" TERM || cleanup_failed=1
   fi
   if [ -n "$DAEMON_PID" ]; then
-    DAEMON_TREE_PIDS="$(
+    DAEMON_TREE_RECORDS="$(
       {
-        printf '%s\n' "$DAEMON_TREE_PIDS"
-        process_tree_pids "$DAEMON_PID"
-      } | merge_pid_lists
+        printf '%s\n' "$DAEMON_TREE_RECORDS"
+        process_tree_identity_records "$DAEMON_PID" "$DAEMON_ROOT_IDENTITY"
+      } | merge_identity_records
     )"
-    signal_pid_list "$DAEMON_TREE_PIDS" TERM
+    signal_identity_records "$DAEMON_TREE_RECORDS" TERM || cleanup_failed=1
   fi
   for _ in $(seq 1 30); do
-    if [ "$(live_pid_count "$DAEMON_TREE_PIDS")" = "0" ] \
-       && [ "$(live_pid_count "$NEXT_TREE_PIDS")" = "0" ]; then
+    if [ "$(live_identity_count "$DAEMON_TREE_RECORDS")" = "0" ] \
+       && [ "$(live_identity_count "$NEXT_TREE_RECORDS")" = "0" ]; then
       break
     fi
-    sleep 1
+    sleep 1 || cleanup_failed=1
   done
   # A daemon or dev server wedged on a blocking host call may ignore SIGTERM.
-  # Signal every pid captured from the two script-started trees, including
-  # descendants that have since been re-parented. Never match by port or by an
-  # unanchored command-line substring.
-  signal_pid_list "$DAEMON_TREE_PIDS" KILL
-  if [ -n "$NEXT_PID" ]; then
-    NEXT_TREE_PIDS="$(
-      {
-        printf '%s\n' "$NEXT_TREE_PIDS"
-        process_tree_pids "$NEXT_PID"
-      } | merge_pid_lists
-    )"
-    signal_pid_list "$NEXT_TREE_PIDS" KILL
-  fi
-  sleep 1
+  # Derive KILL targets only from identity-verified survivors after the grace
+  # period, then revalidate each identity immediately before its KILL signal.
+  # A stale or PID-reused record is therefore never signalled.
+  daemon_survivors="$(verified_live_identity_records "$DAEMON_TREE_RECORDS")"
+  next_survivors="$(verified_live_identity_records "$NEXT_TREE_RECORDS")"
+  signal_identity_records "$daemon_survivors" KILL || cleanup_failed=1
+  signal_identity_records "$next_survivors" KILL || cleanup_failed=1
+  for _ in $(seq 1 10); do
+    daemon_remaining="$(live_identity_count "$DAEMON_TREE_RECORDS")"
+    next_remaining="$(live_identity_count "$NEXT_TREE_RECORDS")"
+    socket_remaining=no
+    [ -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] && socket_remaining=yes
+    port_listener_count="$(lsof -nP -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null | tail -n +2 | wc -l | tr -d ' ')"
+    if [ "$daemon_remaining" = "0" ] && [ "$next_remaining" = "0" ] \
+       && [ "$socket_remaining" = "no" ] && [ "$port_listener_count" = "0" ]; then
+      break
+    fi
+    sleep 1 || cleanup_failed=1
+  done
+  daemon_remaining="$(live_identity_count "$DAEMON_TREE_RECORDS")"
+  next_remaining="$(live_identity_count "$NEXT_TREE_RECORDS")"
+  identity_is_live "$DAEMON_PID" "$DAEMON_ROOT_IDENTITY" && daemon_alive=yes
+  identity_is_live "$NEXT_PID" "$NEXT_ROOT_IDENTITY" && next_alive=yes
+  [ -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] && socket_remaining=yes
+  port_listener_count="$(lsof -nP -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null | tail -n +2 | wc -l | tr -d ' ')"
+  [ "$daemon_remaining" = "0" ] || cleanup_failed=1
+  [ "$next_remaining" = "0" ] || cleanup_failed=1
+  [ "$daemon_alive" = "no" ] || cleanup_failed=1
+  [ "$next_alive" = "no" ] || cleanup_failed=1
+  [ "$socket_remaining" = "no" ] || cleanup_failed=1
+  [ "$port_listener_count" = "0" ] || cleanup_failed=1
+  [ "${RERUN_SECTION8_TEST_FORCE_CLEANUP_FAILURE:-0}" != "1" ] || cleanup_failed=1
   {
-    echo "daemon_process_tree_remaining=$(live_pid_count "$DAEMON_TREE_PIDS")"
-    echo "next_process_tree_remaining=$(live_pid_count "$NEXT_TREE_PIDS")"
-    echo "daemon_pid=$DAEMON_PID alive=$([ -n "$DAEMON_PID" ] && kill -0 "$DAEMON_PID" 2>/dev/null && echo yes || echo no)"
-    echo "next_pid=$NEXT_PID alive=$([ -n "$NEXT_PID" ] && kill -0 "$NEXT_PID" 2>/dev/null && echo yes || echo no)"
-    echo "socket_present_after_stop=$([ -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] && echo yes || echo no)"
-    echo "port_${PORT}_listeners_after_stop=$(lsof -nP -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null | tail -n +2 | wc -l | tr -d ' ')"
-  } > "$LOGS/teardown.txt"
+    echo "daemon_process_tree_remaining=$daemon_remaining"
+    echo "next_process_tree_remaining=$next_remaining"
+    echo "daemon_pid=$DAEMON_PID identity_alive=$daemon_alive"
+    echo "next_pid=$NEXT_PID identity_alive=$next_alive"
+    echo "socket_present_after_stop=$socket_remaining"
+    echo "port_${PORT}_listeners_after_stop=$port_listener_count"
+    echo "forced_test_cleanup_failure=${RERUN_SECTION8_TEST_FORCE_CLEANUP_FAILURE:-0}"
+  } > "$LOGS/teardown.txt" || cleanup_failed=1
   if [ "$KEEP" != "1" ]; then
-    if [ "$USER_DATA_CREATED" = "1" ]; then rm -rf "$USER_DATA"; fi
-    rm -rf "$HARNESS_TMP_ROOT"
+    if [ "$USER_DATA_CREATED" = "1" ]; then
+      rm -rf "$USER_DATA" || cleanup_failed=1
+    fi
+    rm -rf "$HARNESS_TMP_ROOT" || cleanup_failed=1
+    if [ "$USER_DATA_CREATED" = "1" ] && [ -e "$USER_DATA" ]; then cleanup_failed=1; fi
+    if [ -e "$HARNESS_TMP_ROOT" ]; then cleanup_failed=1; fi
+    rm -rf "$RUN_ROOT/private" || cleanup_failed=1
+    if [ -e "$RUN_ROOT/private" ]; then cleanup_failed=1; fi
     {
       if [ "$USER_DATA_CREATED" = "1" ]; then
         echo "user_data_removed=$([ -e "$USER_DATA" ] && echo no || echo yes) path=$USER_DATA"
@@ -197,19 +312,35 @@ teardown() {
         echo "user_data_retained=caller-supplied path=$USER_DATA"
       fi
       echo "harness_tmp_root_removed=$([ -e "$HARNESS_TMP_ROOT" ] && echo no || echo yes) path=$HARNESS_TMP_ROOT"
-      echo "private_dir_removed=$(rm -rf "$RUN_ROOT/private" && [ ! -e "$RUN_ROOT/private" ] && echo yes || echo no)"
+      echo "private_dir_removed=$([ ! -e "$RUN_ROOT/private" ] && echo yes || echo no)"
       echo "checkout_leftovers=gitignored, intentionally not removed: $FRONTEND/artifacts/harness/** (stable artifacts; the deliverable surface) and $FRONTEND/.chirality/sessions (legacySessionRoots entry required at registration)"
-    } > "$LOGS/cleanup.txt"
+    } > "$LOGS/cleanup.txt" || cleanup_failed=1
   else
-    echo "KEEP=1: disposable state retained at $USER_DATA and $HARNESS_TMP_ROOT" > "$LOGS/cleanup.txt"
+    echo "KEEP=1: disposable state retained at $USER_DATA and $HARNESS_TMP_ROOT" > "$LOGS/cleanup.txt" || cleanup_failed=1
   fi
-  log "teardown done"
+  log "teardown done (cleanup_failed=$cleanup_failed)" || cleanup_failed=1
   # Last act: the per-run manifest, so it pins the final bytes of every log
   # (including this teardown's own lines) and includes teardown.txt/cleanup.txt.
   if [ -d "$RUN_ROOT/artifacts" ] || [ -d "$RUN_ROOT/logs" ]; then
-    ( cd "$RUN_ROOT" && find artifacts logs -type f 2>/dev/null | LC_ALL=C sort | xargs shasum -a 256 ) > "$RUN_ROOT/MANIFEST.sha256"
+    ( cd "$RUN_ROOT" && find artifacts logs -type f 2>/dev/null | LC_ALL=C sort | xargs shasum -a 256 ) > "$RUN_ROOT/MANIFEST.sha256" || cleanup_failed=1
+  else
+    cleanup_failed=1
   fi
+  if [ "$incoming_status" != "0" ]; then
+    final_status="$incoming_status"
+  elif [ "$cleanup_failed" != "0" ]; then
+    final_status=74
+  else
+    final_status=0
+  fi
+  exit "$final_status"
 }
+
+# Enables the deterministic cleanup regression test to source the exact helper
+# and teardown implementation without executing the runtime proof lifecycle.
+if [ "${RERUN_SECTION8_LIBRARY_MODE:-0}" = "1" ]; then
+  return 0 2>/dev/null || exit 0
+fi
 trap teardown EXIT
 
 # --- precondition: port is free before any build or daemon start -------------
@@ -241,7 +372,7 @@ cd "$FRONTEND"
   echo "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE=$CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE"
   echo "with_release_quality=$WITH_RELEASE_QUALITY"
   echo "daemon_switches=--use-mock-keychain --user-data-dir=<USER_DATA> --runtime-daemon"
-  echo "process_matching=recorded pid trees"
+  echo "process_matching=recorded pid + start/uid/executable identity trees"
 } > "$LOGS/environment.txt"
 git -C "$REPO_ROOT" status --porcelain > "$LOGS/git-status-before.txt" || true
 
@@ -268,6 +399,10 @@ log "starting runtime daemon under $USER_DATA"
 nohup ./node_modules/.bin/electron --use-mock-keychain "--user-data-dir=$USER_DATA" \
   dist-electron/main.js --runtime-daemon > "$LOGS/daemon.log" 2>&1 &
 DAEMON_PID=$!
+DAEMON_ROOT_IDENTITY="$(read_process_identity "$DAEMON_PID")" || {
+  log "could not capture runtime-daemon root identity"; exit 70;
+}
+DAEMON_TREE_RECORDS="${DAEMON_PID}"$'\t'"${DAEMON_ROOT_IDENTITY}"
 for _ in $(seq 1 90); do
   if [ -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] && [ -f "$CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE" ]; then
     break
@@ -279,7 +414,12 @@ if [ ! -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] || [ ! -f "$CHIRALITY_RUNTIME_OPERA
 fi
 # $DAEMON_PID is the node shim in node_modules/.bin/electron; the Electron
 # process that actually owns the socket is its child. Observe that one.
-DAEMON_TREE_PIDS="$(process_tree_pids "$DAEMON_PID" | merge_pid_lists)"
+DAEMON_TREE_RECORDS="$(
+  {
+    printf '%s\n' "$DAEMON_TREE_RECORDS"
+    process_tree_identity_records "$DAEMON_PID" "$DAEMON_ROOT_IDENTITY"
+  } | merge_identity_records
+)"
 DAEMON_ELECTRON_PID="$(lsof -nP -t "$CHIRALITY_RUNTIME_SOCKET_PATH" 2>/dev/null | head -n 1 || true)"
 log "daemon ready (shim pid $DAEMON_PID, electron pid ${DAEMON_ELECTRON_PID:-unknown})"
 
@@ -304,7 +444,10 @@ log "project registered; token file $PROJECT_TOKEN_FILE"
 log "starting next dev on $HARNESS_BASE_URL"
 nohup npm run dev:next -- --hostname 127.0.0.1 --port "$PORT" > "$LOGS/next-dev.log" 2>&1 &
 NEXT_PID=$!
-NEXT_TREE_PIDS="$(process_tree_pids "$NEXT_PID" | merge_pid_lists)"
+NEXT_ROOT_IDENTITY="$(read_process_identity "$NEXT_PID")" || {
+  log "could not capture Next root identity"; exit 71;
+}
+NEXT_TREE_RECORDS="$(process_tree_identity_records "$NEXT_PID" "$NEXT_ROOT_IDENTITY" | merge_identity_records)"
 READY=0
 for _ in $(seq 1 90); do
   status="$(curl -sS -o "$LOGS/harness-ready.json" -w "%{http_code}" --get \
@@ -314,6 +457,12 @@ for _ in $(seq 1 90); do
   sleep 2
 done
 if [ "$READY" != "1" ]; then log "harness API did not become ready"; exit 71; fi
+NEXT_TREE_RECORDS="$(
+  {
+    printf '%s\n' "$NEXT_TREE_RECORDS"
+    process_tree_identity_records "$NEXT_PID" "$NEXT_ROOT_IDENTITY"
+  } | merge_identity_records
+)"
 log "harness API ready"
 
 # --- 5. containment observations (before) ------------------------------------
@@ -323,10 +472,10 @@ log "harness API ready"
   echo "# daemon electron pid ${DAEMON_ELECTRON_PID:-unknown} — Unix sockets under the disposable user-data root:"
   lsof -nP -a -p "${DAEMON_ELECTRON_PID:-$DAEMON_PID}" -U 2>/dev/null | grep -F "$USER_DATA" || true
   echo "# all TCP listeners owned by any process under the disposable user-data root (expect none):"
-  while IFS= read -r process_id; do
+  while IFS=$'\t' read -r process_id _; do
     [ -n "$process_id" ] || continue
     lsof -nP -a -p "$process_id" -iTCP -sTCP:LISTEN 2>/dev/null | tail -n +2 || true
-  done <<< "$DAEMON_TREE_PIDS"
+  done <<< "$DAEMON_TREE_RECORDS"
   echo "# control socket mode:"
   ls -l "$CHIRALITY_RUNTIME_SOCKET_PATH"
   echo "# runtime directory mode:"
@@ -356,7 +505,10 @@ if [ -f artifacts/harness/section9/latest/manifest.json ]; then
 fi
 if [ -d "$HARNESS_TMP_ROOT" ]; then
   for d in api sse logs cleanup; do
-    [ -d "$HARNESS_TMP_ROOT/$d" ] && cp -R "$HARNESS_TMP_ROOT/$d" "$ART/section8-run/$d"
+    if [ -d "$HARNESS_TMP_ROOT/$d" ]; then
+      rm -rf "$ART/section8-run/$d"
+      cp -R "$HARNESS_TMP_ROOT/$d" "$ART/section8-run/$d"
+    fi
   done
   [ -f "$HARNESS_TMP_ROOT/summary.json" ] && cp "$HARNESS_TMP_ROOT/summary.json" "$ART/section8-run/summary.json"
 fi
@@ -387,10 +539,10 @@ fi
   echo "# daemon electron pid ${DAEMON_ELECTRON_PID:-unknown} — TCP sockets after the run (expect none):"
   lsof -nP -a -p "${DAEMON_ELECTRON_PID:-$DAEMON_PID}" -iTCP 2>/dev/null || true
   echo "# TCP listeners owned by any process under the disposable user-data root after the run (expect none):"
-  while IFS= read -r process_id; do
+  while IFS=$'\t' read -r process_id _; do
     [ -n "$process_id" ] || continue
     lsof -nP -a -p "$process_id" -iTCP -sTCP:LISTEN 2>/dev/null | tail -n +2 || true
-  done <<< "$DAEMON_TREE_PIDS"
+  done <<< "$DAEMON_TREE_RECORDS"
 } > "$LOGS/containment-after.txt"
 git -C "$REPO_ROOT" status --porcelain > "$LOGS/git-status-after.txt" || true
 {
