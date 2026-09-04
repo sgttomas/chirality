@@ -85,3 +85,16 @@ additional dependency or cycle.
   and fail-closed outcome.
 - Recorded the bounded run; no product/summarizer, deliverable state, receipt,
   or Root byte changed.
+
+## Review Remediation
+
+- Round 1 candidate `3394182873e72249fe542f3bb2e20be8509f9d31`
+  received FAIL for K1-F1 MAJOR: the new fixtures split the network-policy JSON
+  across physical log lines, so unrelated network probes were false and the
+  overall failure assertion was vacuous.
+- Disposition: ACCEPTED / REMEDIATED. Each network-policy marker is now one
+  valid physical line, and both cases assert the blocked and loopback probes are
+  observed before checking the absent or malformed egress marker.
+- The immutable report and disposition table are filed in the parent AgentRuns
+  packet. Focused and full Vitest, typecheck, and every affected registered
+  check reran successfully before the round-2 freeze.

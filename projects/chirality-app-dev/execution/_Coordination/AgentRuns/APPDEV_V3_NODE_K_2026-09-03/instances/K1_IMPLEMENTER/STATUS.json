@@ -3,7 +3,7 @@
   "run_id": "APPDEV_V3_NODE_K_2026-09-03",
   "instance_id": "K1_IMPLEMENTER",
   "status": "REVIEW_READY",
-  "phase": "FROZEN_FOR_INDEPENDENT_REVIEW",
+  "phase": "REFROZEN_FOR_ROUND_2_REVIEW",
   "basis": "fe0ce926d4475fa41cb91933ad1218b95083889b",
-  "review_state": "AWAITING_HELP_HUMAN_DISPATCH"
+  "review_state": "ROUND_1_FAIL_REMEDIATED_AWAITING_ROUND_2_DISPATCH"
 }

@@ -144,9 +144,7 @@ describe('run-packaged-security-proof script', () => {
     const logText = [
       'Blocked renderer outbound request by network policy { destination: redacted }',
       "Blocked renderer outbound request by network policy { reason: 'anthropic_port_not_allowlisted:8443' }",
-      '[network-policy-probe] {"policy":"REQ-NET-001","results":[',
-      '{"url":"https://example.com/chirality-packaged-security-blocked","ok":false},',
-      '{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false}]}'
+      '[network-policy-probe] {"policy":"REQ-NET-001","results":[{"url":"https://example.com/chirality-packaged-security-blocked","ok":false},{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false}]}'
     ].join('\n');
     const snapshots = [
       { pids: [10], endpoints: [{ endpoint: '127.0.0.1:6000', host: '127.0.0.1', class: 'loopback', line: 'fixture' }] }
@@ -154,6 +152,8 @@ describe('run-packaged-security-proof script', () => {
 
     const summary = summarizeNetworkEvidence(logText, snapshots);
 
+    expect(summary.blockedProbeObserved).toBe(true);
+    expect(summary.loopbackProbeObserved).toBe(true);
     expect(summary.egressProbePayloadCount).toBe(0);
     expect(summary.egressProbeObserved).toBe(false);
     expect(summary.pass).toBe(false);
@@ -163,9 +163,7 @@ describe('run-packaged-security-proof script', () => {
     const logText = [
       'Blocked renderer outbound request by network policy { destination: redacted }',
       "Blocked renderer outbound request by network policy { reason: 'anthropic_port_not_allowlisted:8443' }",
-      '[network-policy-probe] {"policy":"REQ-NET-001","results":[',
-      '{"url":"https://example.com/chirality-packaged-security-blocked","ok":false},',
-      '{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false}]}',
+      '[network-policy-probe] {"policy":"REQ-NET-001","results":[{"url":"https://example.com/chirality-packaged-security-blocked","ok":false},{"url":"http://127.0.0.1:9/chirality-packaged-security-loopback","ok":false}]}',
       '[egress-layer-probe] not-json'
     ].join('\n');
     const snapshots = [
@@ -174,6 +172,10 @@ describe('run-packaged-security-proof script', () => {
 
     const summary = summarizeNetworkEvidence(logText, snapshots);
 
+    expect(summary.blockedProbeObserved).toBe(true);
+    expect(summary.loopbackProbeObserved).toBe(true);
+    expect(summary.egressProbePayloadCount).toBe(1);
+    expect(summary.egressProbeObserved).toBe(false);
     expect(summary.egressProbeUnexpectedDestinations).toEqual([null]);
     expect(summary.pass).toBe(false);
   });

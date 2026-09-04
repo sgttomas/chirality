@@ -2,8 +2,19 @@
   "schema": "chirality-run-checks/v1",
   "run_id": "APPDEV_V3_NODE_K_2026-09-03",
   "recorded_at": "2026-09-03",
-  "status": "REVIEW_READY",
+  "status": "REVIEW_READY_ROUND_2",
   "basis": "fe0ce926d4475fa41cb91933ad1218b95083889b",
+  "review_rounds": [
+    {
+      "round": 1,
+      "candidate": "3394182873e72249fe542f3bb2e20be8509f9d31",
+      "verdict": "FAIL",
+      "findings": {"blocker": 0, "major": 1, "minor": 0, "note": 0},
+      "report": "instances/K2_REVIEWER/REVIEW_01_2026-09-03_over_339418287.md",
+      "report_sha256": "26f3cbcef78fb98412fb635992fe2c7e232c96a3c410bd76663b2e9543ba2eca",
+      "disposition": "K1-F1 accepted and remediated; REVIEW_DISPOSITIONS.md"
+    }
+  ],
   "toolchain": {
     "node": "v24.18.0",
     "npm": "11.16.0",
@@ -145,6 +156,49 @@
       "summary": "record hits are constraint/disclaimer wording only; target test has no hits"
     }
   ],
+  "remediation_checks": [
+    {
+      "id": "review-report-byte-copy",
+      "status": "pass",
+      "summary": "source and filed report SHA-256 both 26f3cbcef78fb98412fb635992fe2c7e232c96a3c410bd76663b2e9543ba2eca"
+    },
+    {
+      "id": "k1-f1-non-vacuity",
+      "status": "pass",
+      "summary": "both fixtures now contain one valid single-line network-policy marker and assert blockedProbeObserved and loopbackProbeObserved true before the egress failure assertions"
+    },
+    {
+      "id": "frontend-test-focused-round-2",
+      "command": "npx vitest run src/__tests__/scripts/run-packaged-security-proof.test.ts",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "1 file passed; 12 tests passed"
+    },
+    {
+      "id": "frontend-test-full-round-2",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass_after_escalation",
+      "summary": "165 files passed, 1 skipped; 1560 tests passed, 4 skipped"
+    },
+    {
+      "id": "frontend-typecheck-round-2",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "status": "pass",
+      "summary": "app and Electron TypeScript checks passed"
+    },
+    {
+      "id": "affected-checks-round-2",
+      "status": "pass",
+      "summary": "affected selection unchanged; APP-HOLD integrity, harness self-check, harness pytest, corpus, and receipts reran successfully"
+    },
+    {
+      "id": "freeze-fence-round-2",
+      "status": "pass",
+      "summary": "final pre-commit and post-commit diff/scope results returned with the round-2 freeze SHA"
+    }
+  ],
   "not_run": [
     {
       "id": "frontend-build",
@@ -162,6 +216,7 @@
   "notes": [
     "No pass is inferred for a skipped, restricted, or environment-failed attempt; the final status names the successful rerun explicitly.",
     "The first run_registered_checks.py output argument was mistakenly project-relative although the helper resolves it from workspace_root, creating an untracked repo-root execution/ file; it was deleted immediately. No byte outside the sealed write set remains, and the final scope validator is clean.",
-    "A1 re-stage consequence is recorded in STEP0_DISCOVERY.md. F-APP-2 remains intact."
+    "A1 re-stage consequence is recorded in STEP0_DISCOVERY.md. F-APP-2 remains intact.",
+    "Round 1 failed on K1-F1 because the new fixtures made unrelated network probes false; the round-2 fixtures repair that non-vacuity defect and add explicit prerequisite assertions."
   ]
 }
