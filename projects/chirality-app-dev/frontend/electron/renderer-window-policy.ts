@@ -442,13 +442,30 @@ export function runRendererSecurityProbe(
 }
 
 /**
+ * The one destination the main-process egress-layer probe may request. It is
+ * fixed here and never read from the environment or taken from a caller, so
+ * nothing outside this module can point the probe at a destination the
+ * REQ-NET-001 egress policy in `main.ts` would allow (DEL-09-06-V3-05). The
+ * Anthropic API host is allowlisted only over `https:` on port 443, so the same
+ * host on port 8443 is denied by the policy's port rule
+ * (`anthropic_port_not_allowlisted:8443`) — exactly the denial the packaged
+ * proof counts. The proof script carries the same literal as its expectation
+ * and its unit test checks the two stay byte-equal.
+ */
+export const EGRESS_LAYER_PROBE_URL =
+  'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked';
+
+/**
  * Optional main-process probe of the REQ-NET-001 egress layer for the packaged
- * security proof (same gate, plus `CHIRALITY_EGRESS_LAYER_PROBE_URL`). The page
- * cannot reach the egress layer for a foreign host any more — the CSP stops it
- * first — so the proof issues the request from the main process through the
- * window's session: `session.fetch` goes through `webRequest`, where
- * `onBeforeRequest` cancels it and logs the denial. A rejected fetch is the
- * expected outcome; a response would mean the egress layer let it through.
+ * security proof (same gate as the in-page probe; the destination is
+ * `EGRESS_LAYER_PROBE_URL`, always). The page cannot reach the egress layer for
+ * a foreign host any more — the CSP stops it first — so the proof issues the
+ * request from the main process through the window's session: `session.fetch`
+ * goes through `webRequest`, where `onBeforeRequest` cancels it and logs the
+ * denial. A rejected fetch is the expected outcome; a response would mean the
+ * egress layer let it through. The logged destination carries protocol,
+ * hostname, and port (the port is what makes it a denied destination) and no
+ * path.
  */
 export function runEgressLayerProbe(
   window: {
@@ -465,14 +482,18 @@ export function runEgressLayerProbe(
   },
   options: { env: ProbeEnvironment }
 ): void {
-  const url = options.env.CHIRALITY_EGRESS_LAYER_PROBE_URL?.trim();
-  if (options.env.CHIRALITY_RENDERER_SECURITY_PROBE !== '1' || !url) {
+  if (options.env.CHIRALITY_RENDERER_SECURITY_PROBE !== '1') {
     return;
   }
-  const destination = summarizeDestination(url);
+  const parsed = new URL(EGRESS_LAYER_PROBE_URL);
+  const destination = { protocol: parsed.protocol, hostname: parsed.hostname, port: parsed.port };
   afterLoad(window.webContents, probeDelayMs(options.env, 1500) + 500, () => {
     void window.webContents.session
-      .fetch(url, { method: 'GET', cache: 'no-store', signal: AbortSignal.timeout(3000) })
+      .fetch(EGRESS_LAYER_PROBE_URL, {
+        method: 'GET',
+        cache: 'no-store',
+        signal: AbortSignal.timeout(3000)
+      })
       .then((response) => {
         console.info(
           '[egress-layer-probe]',

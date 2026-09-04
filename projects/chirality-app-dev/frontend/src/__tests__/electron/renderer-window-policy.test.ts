@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   CONTENT_SECURITY_POLICY_HEADER,
+  EGRESS_LAYER_PROBE_URL,
   applyContentSecurityPolicyHeader,
   assertRendererWebPreferences,
   buildRendererContentSecurityPolicy,
@@ -496,6 +497,27 @@ describe('runRendererSecurityProbe', () => {
 });
 
 describe('runEgressLayerProbe', () => {
+  /**
+   * DEL-09-06-V3-05: the probe's destination is fixed in the module and cannot be
+   * supplied from outside. It must be a destination the REQ-NET-001 egress policy
+   * in `main.ts` denies — the allowlisted Anthropic host on a port other than 443
+   * (the policy's port rule, pinned in contract-pins.manifest.ts) — so the probe
+   * can never produce a request the egress layer would let through.
+   */
+  const EXPECTED_DESTINATION = { protocol: 'https:', hostname: 'api.anthropic.com', port: '8443' };
+
+  // URLs the egress policy WOULD allow (Anthropic host over https on 443 / default
+  // port; loopback hosts) plus one foreign host: none of them may become the probe's
+  // destination, however the environment is set.
+  const NOT_PROBE_DESTINATIONS = [
+    'https://api.anthropic.com/v1/messages',
+    'https://api.anthropic.com:443/v1/messages',
+    'http://127.0.0.1:3000/api/session',
+    'http://localhost:3000/',
+    'http://[::1]:8080/',
+    'https://example.com/chirality-egress-probe-redirect'
+  ];
+
   function egressWindow(loading: boolean) {
     const fetch = vi.fn<(input: string, init?: unknown) => Promise<{ status: number }>>();
     return {
@@ -508,19 +530,71 @@ describe('runEgressLayerProbe', () => {
     };
   }
 
-  it('does nothing without the gate and the probe URL', () => {
-    const noGate = egressWindow(false);
-    runEgressLayerProbe(noGate, { env: { CHIRALITY_EGRESS_LAYER_PROBE_URL: 'https://api.anthropic.com:8443/x' } });
-    const noUrl = egressWindow(false);
-    runEgressLayerProbe(noUrl, { env: { CHIRALITY_RENDERER_SECURITY_PROBE: '1' } });
-    const blankUrl = egressWindow(false);
-    runEgressLayerProbe(blankUrl, {
-      env: { CHIRALITY_RENDERER_SECURITY_PROBE: '1', CHIRALITY_EGRESS_LAYER_PROBE_URL: '   ' }
-    });
-    for (const window of [noGate, noUrl, blankUrl]) {
+  it('fixes the destination to the allowlisted Anthropic host on a port the egress policy denies', () => {
+    const parsed = new URL(EGRESS_LAYER_PROBE_URL);
+    expect(parsed.protocol).toBe('https:');
+    expect(parsed.hostname).toBe('api.anthropic.com');
+    // The policy allows this host only with an empty or 443 port; anything else is
+    // `anthropic_port_not_allowlisted:<port>` — the diagnostic the packaged proof counts.
+    expect(parsed.port).not.toBe('');
+    expect(parsed.port).not.toBe('443');
+    expect(parsed.port).toBe('8443');
+    expect(['localhost', '127.0.0.1', '[::1]']).not.toContain(parsed.hostname);
+    expect(parsed.username).toBe('');
+    expect(parsed.password).toBe('');
+    expect(parsed.search).toBe('');
+    expect(EGRESS_LAYER_PROBE_URL).toBe(
+      'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'
+    );
+  });
+
+  it('does nothing without the gate, whatever else the environment says', () => {
+    const environments = [
+      {},
+      { CHIRALITY_RENDERER_SECURITY_PROBE: '0' },
+      { CHIRALITY_RENDERER_SECURITY_PROBE: 'true' },
+      { CHIRALITY_EGRESS_LAYER_PROBE_URL: EGRESS_LAYER_PROBE_URL }
+    ];
+    for (const env of environments) {
+      const window = egressWindow(false);
+      runEgressLayerProbe(window, { env });
       expect(window.webContents.isLoadingMainFrame).not.toHaveBeenCalled();
       expect(window.fetch).not.toHaveBeenCalled();
     }
+  });
+
+  it('cannot be pointed at any other destination by the environment', async () => {
+    vi.useFakeTimers();
+    const info = vi.spyOn(console, 'info').mockImplementation(() => undefined);
+    try {
+      for (const url of NOT_PROBE_DESTINATIONS) {
+        info.mockClear();
+        const window = egressWindow(false);
+        window.fetch.mockRejectedValue(new Error('net::ERR_BLOCKED_BY_CLIENT'));
+        runEgressLayerProbe(window, {
+          env: {
+            CHIRALITY_RENDERER_SECURITY_PROBE: '1',
+            CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '10',
+            CHIRALITY_EGRESS_LAYER_PROBE_URL: url
+          }
+        });
+        await vi.advanceTimersByTimeAsync(600);
+        expect(window.fetch).toHaveBeenCalledTimes(1);
+        expect(window.fetch.mock.calls[0][0]).toBe(EGRESS_LAYER_PROBE_URL);
+        expect(window.fetch.mock.calls[0][0]).not.toBe(url);
+        const logged = JSON.parse(info.mock.calls[0][1] as string) as { destination: unknown };
+        expect(logged.destination).toEqual(EXPECTED_DESTINATION);
+        expect(JSON.stringify(info.mock.calls)).not.toContain(new URL(url).pathname);
+      }
+    } finally {
+      info.mockRestore();
+      vi.useRealTimers();
+    }
+  });
+
+  it('takes no destination from its caller', () => {
+    // Signature: (window, { env }) — there is no URL parameter or option.
+    expect(runEgressLayerProbe.length).toBe(2);
   });
 
   it('issues the request through the window session and reports a rejection as the expected outcome', async () => {
@@ -532,8 +606,7 @@ describe('runEgressLayerProbe', () => {
       runEgressLayerProbe(window, {
         env: {
           CHIRALITY_RENDERER_SECURITY_PROBE: '1',
-          CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '10',
-          CHIRALITY_EGRESS_LAYER_PROBE_URL: 'https://api.anthropic.com:8443/chirality-packaged-security-egress-blocked'
+          CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '10'
         }
       });
       expect(window.fetch).not.toHaveBeenCalled();
@@ -547,7 +620,7 @@ describe('runEgressLayerProbe', () => {
         '[egress-layer-probe]',
         JSON.stringify({
           policy: 'REQ-NET-001',
-          destination: { protocol: 'https:', hostname: 'api.anthropic.com' },
+          destination: EXPECTED_DESTINATION,
           outcome: 'rejected',
           error: 'net::ERR_BLOCKED_BY_CLIENT'
         })
@@ -568,8 +641,7 @@ describe('runEgressLayerProbe', () => {
       runEgressLayerProbe(window, {
         env: {
           CHIRALITY_RENDERER_SECURITY_PROBE: '1',
-          CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '10',
-          CHIRALITY_EGRESS_LAYER_PROBE_URL: 'https://api.anthropic.com:8443/x'
+          CHIRALITY_RENDERER_SECURITY_PROBE_DELAY_MS: '10'
         }
       });
       expect(window.webContents.once).toHaveBeenCalledWith('did-finish-load', expect.any(Function));
@@ -579,7 +651,7 @@ describe('runEgressLayerProbe', () => {
         '[egress-layer-probe]',
         JSON.stringify({
           policy: 'REQ-NET-001',
-          destination: { protocol: 'https:', hostname: 'api.anthropic.com' },
+          destination: EXPECTED_DESTINATION,
           outcome: 'response',
           status: 200
         })

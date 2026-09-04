@@ -6429,3 +6429,50 @@
   - Gate-Outcome: `EXECUTED` — record-only transcription of owner ruling
     A14 (no product, lifecycle, release, host, signing, or Root act);
     product stays `2.0.0`; awaiting owner merge.
+
+- **2026-09-03 — Receipt 214** (App v3 pathway node G: DEL-09-06-V3-05 egress-layer probe destination restriction).
+  - Receipt-ID: `Receipt-214`
+  - Examined-Through: `e59efa4830fb54143c86e511ec35a6d1a476f72e`
+  - Parent-Receipt: `Receipt-212`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING: the owner
+    (Ryan Tufts) selected development node G (DEL-09-06-V3-05, the only
+    `SELECTABLE` DEL-09-06 item) from dev slate 2 in the HELP_HUMAN session
+    chat on 2026-09-03; the selection is recorded at
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_G_2026-09-03/ORCHESTRATION_PLAN.md`
+    (Selection authority) and the sealed brief at
+    `instances/G1_IMPLEMENTER/LAUNCH_BRIEF.md`. Concurrent sibling nodes
+    share this parent (ledger rule 7); node I landed first as Receipt 213,
+    so the dispatch's "next unused number" resolves to 214. Design decision
+    D1 (hard-code the `:8443` probe, retire the env var; implementer's own
+    under the brief's delegated latitude) and coordinator disposition D2
+    (review findings at closeout) are in the run record
+    `COORDINATOR_DECISIONS.md`.
+  - Pointers: branch `codex/app-v3-nodeG-egress-probe-restriction-2026-09-03`
+    (basis above; reviewed freeze `39adfa6a6`, rebased onto `40ab9b34b` as
+    `6947f4b9c`); RunID
+    `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_G_2026-09-03/`
+    (`STEP0_DISCOVERY.md` incl. the A1 re-stage declaration, `CHECKS.json`,
+    `RETURN.md`, `COORDINATOR_DECISIONS.md`, `HANDOFF_STATE.md`,
+    `MANIFEST.sha256`, `instances/G2_REVIEWER/REVIEW_01_*.md`); product
+    `frontend/electron/renderer-window-policy.ts`,
+    `frontend/scripts/run-packaged-security-proof.mjs`, tests and pins under
+    `frontend/src/__tests__/`; DEL-09-06
+    `Evidence/Node_G_Egress_Probe_Restriction_2026-09-03/` (retained
+    packaged-proof bundle with manifest; identity
+    `e716439fc797d2d7d5bb4021d5f940a9bc2de84ba7161444999030aeaeeb7452`),
+    `_run_records/TASK_RUN_2026-09-03_NODE_G.md`, and `_STATUS.md` (V3-05
+    removed; V3-06 seeded as the residual from review G1-F1; V3-02, V3-03
+    and V3-04 unchanged; lifecycle and Checking Approval SHA untouched).
+  - Checks: typecheck pass; full Vitest pass; build pass; `desktop:pack`
+    pass; packaged security proof pass (in-sandbox); `git diff --check`
+    pass; change-scope validator pass; harness self-check pass; harness
+    pytest pass; APP-HOLD dispatch preflight and register-match scan pass;
+    authority corpus status no drift; receipts validator pass; premerge
+    fail in the absent-runtime-daemon-bindings class, PR-CI-owed;
+    independent review round 1 pass.
+  - Model-Attribution: Claude Fable 5.1 (claude-fable-5-1) as ephemeral
+    Agent 2 implementer under HELP_HUMAN (Claude Fable 5.1); reviewer Claude
+    Fable 5.1.
+  - Gate-Outcome: `EXECUTED` — awaiting owner merge; no release act. No
+    lifecycle, host-mutation, signing, notarization, distribution, or Root
+    act; the A1 re-stage rule applies to the touched `frontend/`.
