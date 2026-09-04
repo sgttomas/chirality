@@ -36,3 +36,21 @@ are accepted and remediated in the round-3 candidate.
 The complete round-1 and round-2 history is preserved. No second receipt is
 added; Receipt 220 retains its original cursor and parent. Fresh round-3
 review remains required before manager fan-in.
+
+## Round 3 over `52998709c5c19bc5c3df3944735593299d60be56`
+
+Immutable review:
+`instances/M4_REVIEWER/REVIEW_NODE_M_R3.md`
+(SHA-256 `2c5ceb0c930f566b9f375d2f8f8b1f62b9123f55e175a438d37fcf9e160a8802`).
+
+Verdict: **FAIL** — no BLOCKER findings and one MAJOR finding. The finding is
+accepted and remediated in the round-4 candidate.
+
+| Finding | Severity | Disposition | Remediation | Required fresh verification |
+|---|---|---|---|---|
+| M-R3-F1 | MAJOR | ACCEPTED / REMEDIATED | Identified M1–M4 and the planned M5 reviewer as `delegated-harness-native`. Every Agent-2 role statement is now expressly `role not mechanically enforced`, with governed-workflow role evidence `instruction-asserted`. K-SUBAGENT/non-delegation is instruction+config asserted, not mechanism-proven; no descendants were observed. Unbounded `no delegation` and boolean-mechanism implications were removed or qualified in mutable orchestration/child records. M1's contemporaneous sealed launch brief and all three immutable review reports remain byte-unchanged and are governed by adjacent calibration records. | Confirm those exact calibration terms across `ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, M1/M2/M3/M4 status and return records, reconstructed reviewer launch records, `CHECKS.json`, top-level `RETURN.md`, `HANDOFF_STATE.md`, Receipt 220, and the round-4 handoff. Verify the sealed M1 brief and all immutable reports remain byte-identical. |
+
+No second receipt is added; Receipt 220 retains its original cursor and
+parent. No product, `frontend/`, host, Root, lifecycle, Checking Approval SHA,
+register, decomposition, SCOPE_CHANGE, push, PR, or merge act occurred. Fresh
+round-4 review remains required before manager fan-in.

@@ -3,10 +3,14 @@
   "run_id": "APPDEV_V3_NODE_M_2026-09-04",
   "instance_id": "M1",
   "role": "EPHEMERAL_AGENT2_IMPLEMENTER",
+  "execution_class": "delegated-harness-native",
+  "role_enforcement": "role not mechanically enforced",
+  "governed_workflow_role_evidence": "instruction-asserted",
+  "k_subagent_nondelegation": "instruction+config asserted; not mechanism-proven",
   "basis": "719fe5e34cefc40fe0dab4b045f5f2a89341ae2f",
   "branch": "codex/app-v3-nodeM-a15-owner-rulings-2026-09-04",
   "worktree": "/private/tmp/chirality-app-v3-a15-20260904/nodeM",
-  "delegated_descendants": false,
+  "descendants_observed": false,
   "status": "review_ready_r3",
   "timeline": [
     {
@@ -23,8 +27,14 @@
     },
     {
       "phase": "round_2_remediation",
+      "freeze": "52998709c5c19bc5c3df3944735593299d60be56",
+      "review": "fail",
+      "review_report_sha256": "2c5ceb0c930f566b9f375d2f8f8b1f62b9123f55e175a438d37fcf9e160a8802"
+    },
+    {
+      "phase": "round_3_remediation",
       "freeze": "Git commit returned after the complete record is finalized; no self-referential SHA embedded",
-      "review": "pending_fresh_round_3"
+      "review": "pending_fresh_round_4"
     }
   ],
   "push_performed": false,
@@ -32,5 +42,6 @@
   "merge_performed": false,
   "host_act_performed": false,
   "product_or_frontend_mutation": false,
+  "evidence_calibration": "Agent-2 mode is instruction-assigned; native descent does not mechanically assign the role. No descendant was observed, but non-delegation is not mechanism-proven.",
   "recorded_at": "2026-09-04"
 }

@@ -28,7 +28,7 @@
 
 ## Closure verdict
 
-`REVIEW_READY_R3` for a fresh independent reviewer. Round 1 over
+`REVIEW_READY_R4` for a fresh independent reviewer. Round 1 over
 `f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c` returned FAIL with three MAJOR
 findings and no BLOCKER. The immutable report is filed at
 `instances/M2_REVIEWER/REVIEW_NODE_M_R1.md` (SHA-256
@@ -39,12 +39,26 @@ findings and no BLOCKER. Its immutable report is filed at
 `instances/M3_REVIEWER/REVIEW_NODE_M_R2.md` (SHA-256
 `66f61ef9cf9c4d433f19d6959b8b546768116c4eb67e3de97d9836347454e8e4`);
 both findings are accepted and remediated. V3-04's closure contract is now
-nonce-only. `ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1/M2/M3 child
-records represent the actual sequential execution with explicit provenance
-calibration for reconstructed records. The sealed fresh-review contract is
-`REVIEW_R3_HANDOFF.md`. Deterministic checks pass on the remediation
-candidate; round-3 review and owner merge remain acceptance gates. No merge,
-push, host act, or implementation is performed by M1.
+nonce-only. The sealed historical round-3 contract is
+`REVIEW_R3_HANDOFF.md`; that review has now occurred. No merge, push, host
+act, or implementation is performed by M1.
+
+Round 3 over `52998709c5c19bc5c3df3944735593299d60be56` returned
+FAIL with one MAJOR finding and no BLOCKER. Its immutable report is filed at
+`instances/M4_REVIEWER/REVIEW_NODE_M_R3.md` (SHA-256
+`2c5ceb0c930f566b9f375d2f8f8b1f62b9123f55e175a438d37fcf9e160a8802`).
+M-R3-F1 is accepted and remediated: every execution node is identified as
+`delegated-harness-native`; Agent-2 roles are `role not mechanically
+enforced`; governed-workflow role evidence is `instruction-asserted`; and
+K-SUBAGENT/non-delegation is instruction+config asserted, not
+mechanism-proven. No descendants were observed. Preserved sealed or immutable
+text remains historical direction/output governed by this adjacent
+calibration. The sealed next-review contract is `REVIEW_R4_HANDOFF.md`.
+`ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M4 child records
+represent the actual sequential execution with explicit provenance and
+native-descendant evidence calibration. Deterministic checks pass on the
+remediation candidate; round-4 review and owner merge remain acceptance
+gates.
 
 ## Rerun requirements
 
@@ -55,10 +69,10 @@ push, host act, or implementation is performed by M1.
   and `git diff --check` after any rebase or narrative edit.
 - Preserve the A15 bytes and recompute every dependent manifest hash after any
   authorized correction.
-- A fresh reviewer must inspect the complete basis-to-round-3-freeze diff,
-  verify every round-1 and round-2 disposition plus the child-record evidence
-  calibration, and file a round-3 report. Do not infer a PASS until that
-  review returns zero BLOCKER and zero MAJOR findings.
+- A fresh reviewer must inspect the complete basis-to-round-4-freeze diff,
+  verify every round-1 through round-3 disposition plus the child-record
+  evidence calibration, and file a round-4 report. Do not infer a PASS until
+  that review returns zero BLOCKER and zero MAJOR findings.
 
 ## Remaining blockers and next gates
 

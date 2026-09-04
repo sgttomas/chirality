@@ -8,6 +8,12 @@
 
 **Findings:** zero BLOCKER, three MAJOR, zero MINOR, zero NOTE
 
+**Execution evidence calibration:** `delegated-harness-native`; Agent-2
+reviewer mode was instruction-assigned, `role not mechanically enforced`, and
+governed-workflow role evidence is `instruction-asserted`.
+K-SUBAGENT/non-delegation is instruction+config asserted, not
+mechanism-proven; no descendants were observed.
+
 M2 reviewed 100% of the complete basis-to-freeze diff and returned findings
 M-R1-F1 through M-R1-F3: false click provenance, an incorrectly selectable
 SBOM item despite the unperformed host prerequisite, and an incomplete

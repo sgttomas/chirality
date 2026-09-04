@@ -103,13 +103,19 @@
       "id": "multi-agent-record-contract",
       "cwd": ".",
       "status": "pass",
-      "summary": "orchestration plan, work graph, calibrated M1/M2/M3 launch-status-return records, both immutable reviews, dispositions, and the fresh-review handoff are present"
+      "summary": "orchestration plan, work graph, calibrated M1/M2/M3/M4 launch-status-return records, all three immutable reviews, dispositions, and the fresh-review handoff are present"
     },
     {
       "id": "review-report-byte-identities",
       "cwd": ".",
       "status": "pass",
-      "summary": "both filed review reports are byte-identical to the immutable external reports and match their recorded SHA-256 values"
+      "summary": "all three filed review reports are byte-identical to the immutable external reports and match their recorded SHA-256 values"
+    },
+    {
+      "id": "native-descendant-evidence-calibration",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "execution class delegated-harness-native is explicit; Agent-2 roles are labelled role not mechanically enforced with instruction-asserted evidence; K-SUBAGENT non-delegation is instruction+config asserted, not mechanism-proven; no descendants were observed"
     }
   ],
   "superseded_attempts": [
@@ -132,6 +138,11 @@
       "id": "receipt-review-detail-measurement-shape",
       "status": "fail",
       "summary": "the first remediation receipt check rejected round and finding identifiers in the Checks field as duplicated measurements; no pass inferred; review detail remains in Pointers and Gate-Outcome while Checks was corrected to pass/fail-only wording"
+    },
+    {
+      "id": "native-calibration-batch-regex-shape",
+      "status": "fail",
+      "summary": "the first batched calibration grep over-escaped the literal plus in instruction+config and exited nonzero without identifying a missing file; no pass inferred; the corrected per-file diagnostic verified every required calibration token"
     }
   ],
   "reviews": [
@@ -165,9 +176,23 @@
     },
     {
       "round": 3,
+      "candidate": "52998709c5c19bc5c3df3944735593299d60be56",
+      "status": "fail",
+      "findings": {
+        "blocker": 0,
+        "major": 1,
+        "minor": 0,
+        "note": 0
+      },
+      "report": "instances/M4_REVIEWER/REVIEW_NODE_M_R3.md",
+      "report_sha256": "2c5ceb0c930f566b9f375d2f8f8b1f62b9123f55e175a438d37fcf9e160a8802",
+      "disposition": "M-R3-F1 accepted and remediated; see REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 4,
       "candidate": "the remediation freeze returned by Git after this run record is finalized",
       "status": "pending_fresh_review",
-      "handoff": "REVIEW_R3_HANDOFF.md"
+      "handoff": "REVIEW_R4_HANDOFF.md"
     }
   ],
   "not_run": [
@@ -181,6 +206,6 @@
     }
   ],
   "a1": "not applicable: no frontend path changed; no re-stage declaration is needed",
-  "overall": "review_ready_r3: deterministic checks pass; round-1 and round-2 reviews failed and all findings are remediated; fresh round-3 review pending",
+  "overall": "review_ready_r4: deterministic checks pass; round-1 through round-3 reviews failed and all findings are remediated; fresh round-4 review pending",
   "recorded_at": "2026-09-04"
 }

@@ -6660,9 +6660,14 @@
     (`ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, `STEP0_DISCOVERY.md`,
     `CHECKS.json`, `RETURN.md`, `HANDOFF_STATE.md`, `MANIFEST.sha256`,
     calibrated launch/status/return records under `instances/M1/`,
-    `instances/M2_REVIEWER/`, and `instances/M3_REVIEWER/`, immutable
-    round-1 and round-2 reviews under those reviewer instances,
-    `REVIEW_DISPOSITIONS.md`, and `REVIEW_R3_HANDOFF.md`); DEL-09-06
+    `instances/M2_REVIEWER/`, `instances/M3_REVIEWER/`, and
+    `instances/M4_REVIEWER/`, immutable round-1 through round-3 reviews under
+    those reviewer instances, `REVIEW_DISPOSITIONS.md`, and
+    `REVIEW_R4_HANDOFF.md`); execution class is `delegated-harness-native`;
+    every Agent-2 role is `role not mechanically enforced` with
+    `instruction-asserted` governed-workflow evidence; K-SUBAGENT/
+    non-delegation is instruction+config asserted, not mechanism-proven, and
+    no descendants were observed; DEL-09-06
     `_STATUS.md` makes V3-04 selectable under A15 with a nonce-only Return and
     Removed-when contract while preserving V3-03;
     DEL-09-05 `_STATUS.md` records the prospective host-act authorizations,
@@ -6671,15 +6676,19 @@
   - Checks: receipt validator pass; authority corpus pass; APP-HOLD reliance,
     dispatch, and integrity pass; harness self-check and pytest pass; exact
     change-scope, manifest verification, F-APP-2 scan, forbidden-path scan,
-    and `git diff --check` pass. Independent reviews fail and are remediated;
-    fresh independent review pending. Frontend gates skipped
+    native-descendant evidence calibration, and `git diff --check` pass.
+    Independent reviews fail and are remediated; fresh independent review
+    pending. Frontend gates skipped
     because no `frontend/` path changed; A1 is not applicable.
   - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
-    (exact model identifier not exposed to the agent runtime), as ephemeral
-    Agent 2 under HELP_HUMAN.
-  - Gate-Outcome: `EXECUTED` — record-only transcription; R1 and R2 reviews
-    failed and all findings are remediated; awaiting fresh R3 review and owner
-    merge. A14 remains valid dated history; its host-act deferrals are lifted
+    (exact model identifier not exposed to the agent runtime); execution
+    class `delegated-harness-native`; ephemeral Agent-2 modes are `role not
+    mechanically enforced` with governed-workflow role evidence
+    `instruction-asserted`; non-delegation is instruction+config asserted,
+    not mechanism-proven.
+  - Gate-Outcome: `EXECUTED` — record-only transcription; R1, R2, and R3
+    reviews failed and all findings are remediated; awaiting fresh R4 review
+    and owner merge. A14 remains valid dated history; its host-act deferrals are lifted
     prospectively only. No product, `frontend/`, host, Root, lifecycle,
     Checking Approval SHA, register, decomposition, SCOPE_CHANGE, Developer
     ID signing, notarization, Apple call, distribution, publication,

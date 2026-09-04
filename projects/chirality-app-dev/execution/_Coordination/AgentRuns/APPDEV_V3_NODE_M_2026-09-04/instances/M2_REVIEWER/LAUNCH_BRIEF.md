@@ -4,8 +4,11 @@ This is **not a verbatim prompt transcript**. It was reconstructed after
 round 2 from M2's immutable contemporaneous review report and the
 supervisor's retained runtime evidence. The filed review report governs.
 
-- Act as a fresh, read-only ephemeral Agent 2 reviewer with no Node M
-  implementation participation and no delegation.
+- Execution class: `delegated-harness-native`. Act in fresh, read-only
+  ephemeral Agent-2 reviewer mode; the role is `role not mechanically
+  enforced` and governed-workflow role evidence is `instruction-asserted`.
+  The instruction not to delegate and K-SUBAGENT configuration are
+  instruction+config asserted, not mechanism-proven.
 - Use detached worktree
   `/private/tmp/chirality-app-v3-a15-20260904/nodeM-review-r1` at freeze
   `f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c`.
@@ -22,3 +25,5 @@ supervisor's retained runtime evidence. The filed review report governs.
 - Do not edit or commit repository bytes, push, open a PR, merge, perform a
   host act, install anything, or touch signing identity material. Retain the
   review worktree until tranche closure.
+
+Post-run observation recorded in `STATUS.json`: no descendants were observed.

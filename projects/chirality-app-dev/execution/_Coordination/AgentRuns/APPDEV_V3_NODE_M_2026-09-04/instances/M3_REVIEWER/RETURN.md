@@ -8,6 +8,12 @@
 
 **Findings:** zero BLOCKER, two MAJOR, zero MINOR, zero NOTE
 
+**Execution evidence calibration:** `delegated-harness-native`; Agent-2
+reviewer mode was instruction-assigned, `role not mechanically enforced`, and
+governed-workflow role evidence is `instruction-asserted`.
+K-SUBAGENT/non-delegation is instruction+config asserted, not
+mechanism-proven; no descendants were observed.
+
 M3 reviewed 100% of the complete live basis-to-freeze range and confirmed all
 round-1 dispositions. It returned M-R2-F1 because V3-04's Return and
 Removed-when clauses still permitted the non-selected hash outcome, and

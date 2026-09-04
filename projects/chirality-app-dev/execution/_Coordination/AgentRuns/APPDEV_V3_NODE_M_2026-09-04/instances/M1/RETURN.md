@@ -4,10 +4,16 @@
 
 **Basis:** `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f`
 
-**Status:** `REVIEW_READY_R3`
+**Status:** `REVIEW_READY_R4`
+
+**Execution evidence calibration:** `delegated-harness-native`; ephemeral
+Agent-2 implementer mode was instruction-assigned, `role not mechanically
+enforced`, and governed-workflow role evidence is `instruction-asserted`.
+K-SUBAGENT/non-delegation is instruction+config asserted, not
+mechanism-proven; no descendants were observed.
 
 M1 recorded the owner's three A15 rulings within the sealed write boundary,
-then accepted and remediated every finding from the two independent reviews.
+then accepted and remediated every finding from the three independent reviews.
 The current candidate:
 
 - preserves the owner's exact questions and exact typed answer text while
@@ -22,6 +28,6 @@ The current candidate:
   both immutable review reports, and complete dispositions.
 
 Deterministic closeout checks pass as recorded in top-level `CHECKS.json`.
-Fresh round-3 review is still required; no review PASS, push, PR, merge, host
+Fresh round-4 review is still required; no review PASS, push, PR, merge, host
 act, product mutation, signing, notarization, publication, distribution, or
 release-readiness claim is made.

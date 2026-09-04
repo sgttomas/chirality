@@ -1,6 +1,6 @@
 # RETURN — M1 — APPDEV_V3_NODE_M_2026-09-04
 
-**Status:** `REVIEW_READY_R3 — round-1 and round-2 FAIL findings accepted and remediated; awaiting fresh round-3 review`
+**Status:** `REVIEW_READY_R4 — round-1 through round-3 FAIL findings accepted and remediated; awaiting fresh round-4 review`
 
 **Basis:** `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f` (PR #693 merge)
 
@@ -8,7 +8,12 @@
 
 **Freeze:** the Git HEAD returned with this record; no self-referential commit SHA is embedded.
 
-**Model:** provider OpenAI; engine Codex; model GPT-5 family (exact model identifier not exposed to the agent runtime), as ephemeral Agent 2 under HELP_HUMAN.
+**Model and execution calibration:** provider OpenAI; engine Codex; model
+GPT-5 family (exact model identifier not exposed to the agent runtime);
+execution class `delegated-harness-native`. Ephemeral Agent-2 mode is `role
+not mechanically enforced`; governed-workflow role evidence is
+`instruction-asserted`. K-SUBAGENT/non-delegation is instruction+config
+asserted, not mechanism-proven; no descendants were observed.
 
 ## Result
 
@@ -41,12 +46,24 @@
   `instances/M3_REVIEWER/REVIEW_NODE_M_R2.md` (SHA-256
   `66f61ef9cf9c4d433f19d6959b8b546768116c4eb67e3de97d9836347454e8e4`).
   Both findings are accepted and remediated in `REVIEW_DISPOSITIONS.md`.
-- `ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1/M2/M3 child records
+- `ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1–M4 child records
   now represent the actual sequential execution. M2 metadata is explicitly a
   source-calibrated non-verbatim reconstruction; M3 metadata is an accurate
   structured actual-dispatch record, not a byte-verbatim prompt claim. The
   immutable review reports govern. The next fresh reviewer consumes
   `REVIEW_R3_HANDOFF.md`.
+- Independent review round 3 over `52998709c5c19bc5c3df3944735593299d60be56`
+  returned FAIL with M-R3-F1. The immutable report is filed verbatim at
+  `instances/M4_REVIEWER/REVIEW_NODE_M_R3.md` (SHA-256
+  `2c5ceb0c930f566b9f375d2f8f8b1f62b9123f55e175a438d37fcf9e160a8802`).
+  The finding is accepted and remediated in `REVIEW_DISPOSITIONS.md`.
+- All execution nodes are now identified as `delegated-harness-native`.
+  Every Agent-2 role is qualified `role not mechanically enforced`, with
+  governed-workflow role evidence `instruction-asserted`.
+  K-SUBAGENT/non-delegation is instruction+config asserted, not
+  mechanism-proven; no descendants were observed. M4 launch/status/return
+  evidence is filed, and the next fresh reviewer consumes
+  `REVIEW_R4_HANDOFF.md`.
 
 ## Changed paths
 
@@ -66,10 +83,11 @@ Receipt validation, authority-corpus status, APP-HOLD integrity/reliance/
 dispatch, harness self-check, harness pytest, exact change scope, manifest
 verification, F-APP-2/no-positive-claim scan, forbidden-path scan,
 DEL-09-06-V3-03 byte-section comparison, V3-04 selected-outcome coherence,
-multi-agent record completeness, both review-report identities, and
-`git diff --check` pass. Round-1 and round-2 reviews failed; both reports and
-accepted/remediated disposition tables are filed, and round 3 remains
-pending. Earlier corrected check attempts remain recorded honestly in
+multi-agent record completeness, all three review-report identities, and
+`git diff --check` pass. Round-1 through round-3 reviews failed; all reports
+and accepted/remediated disposition tables are filed, and round 4 remains
+pending. Native-descendant role/non-delegation evidence calibration passes.
+Earlier corrected check attempts remain recorded honestly in
 `CHECKS.json`. Frontend gates are skipped because no `frontend/` path changed;
 A1 is not applicable.
 
@@ -78,7 +96,7 @@ A1 is not applicable.
 No Developer ID signing, notarization, Apple call, distribution,
 publication, release-readiness, production identity, product, `frontend/`,
 host, Root, lifecycle, Checking Approval SHA, register, decomposition, or
-SCOPE_CHANGE act or claim occurred. Fresh round-3 review, HELP_HUMAN fan-in,
+SCOPE_CHANGE act or claim occurred. Fresh round-4 review, HELP_HUMAN fan-in,
 and owner merge remain the gates. After merge, the newly selectable nonce implementation and the two
 separately authorized owner-host acts may proceed only through their own
 bounded work.

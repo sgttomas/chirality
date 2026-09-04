@@ -3,8 +3,11 @@
 This record captures the actual supervisor dispatch in structured form. It
 does not claim byte-verbatim prompt preservation.
 
-- Act as a fresh, read-only ephemeral Agent 2 reviewer with no Node M
-  implementation participation and no delegation.
+- Execution class: `delegated-harness-native`. Act in fresh, read-only
+  ephemeral Agent-2 reviewer mode; the role is `role not mechanically
+  enforced` and governed-workflow role evidence is `instruction-asserted`.
+  The instruction not to delegate and K-SUBAGENT configuration are
+  instruction+config asserted, not mechanism-proven.
 - Use detached worktree
   `/private/tmp/chirality-app-v3-a15-20260904/nodeM-review-r2` at freeze
   `4fa170341700e491dff8c72ce1229ba84735f073`.
@@ -25,3 +28,5 @@ does not claim byte-verbatim prompt preservation.
 - Do not edit or commit repository bytes, push, open a PR, merge, perform a
   host act, install anything, or touch signing identity material. Retain the
   review worktree until tranche closure.
+
+Post-run observation recorded in `STATUS.json`: no descendants were observed.
