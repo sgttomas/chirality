@@ -28,16 +28,23 @@
 
 ## Closure verdict
 
-`REVIEW_READY_R2` for a fresh independent reviewer. Round 1 over
+`REVIEW_READY_R3` for a fresh independent reviewer. Round 1 over
 `f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c` returned FAIL with three MAJOR
 findings and no BLOCKER. The immutable report is filed at
 `instances/M2_REVIEWER/REVIEW_NODE_M_R1.md` (SHA-256
 `089204ef41625fa08a1eee915df08686be9e66f8b84ebb9d1390ae6a1025caf4`);
-all findings are accepted and remediated in `REVIEW_DISPOSITIONS.md`. The
-sealed fresh-review contract is `REVIEW_R2_HANDOFF.md`. Deterministic checks
-pass on the remediation candidate; round-2 review and owner merge remain
-acceptance gates. No merge, push, host act, or implementation is performed by
-M1.
+all findings are accepted and remediated in `REVIEW_DISPOSITIONS.md`. Round 2
+over `4fa170341700e491dff8c72ce1229ba84735f073` returned FAIL with two MAJOR
+findings and no BLOCKER. Its immutable report is filed at
+`instances/M3_REVIEWER/REVIEW_NODE_M_R2.md` (SHA-256
+`66f61ef9cf9c4d433f19d6959b8b546768116c4eb67e3de97d9836347454e8e4`);
+both findings are accepted and remediated. V3-04's closure contract is now
+nonce-only. `ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, and the M1/M2/M3 child
+records represent the actual sequential execution with explicit provenance
+calibration for reconstructed records. The sealed fresh-review contract is
+`REVIEW_R3_HANDOFF.md`. Deterministic checks pass on the remediation
+candidate; round-3 review and owner merge remain acceptance gates. No merge,
+push, host act, or implementation is performed by M1.
 
 ## Rerun requirements
 
@@ -48,9 +55,10 @@ M1.
   and `git diff --check` after any rebase or narrative edit.
 - Preserve the A15 bytes and recompute every dependent manifest hash after any
   authorized correction.
-- A fresh reviewer must inspect the complete basis-to-remediation-freeze diff,
-  verify every round-1 disposition, and file a round-2 report. Do not infer a
-  PASS until that review returns zero BLOCKER and zero MAJOR findings.
+- A fresh reviewer must inspect the complete basis-to-round-3-freeze diff,
+  verify every round-1 and round-2 disposition plus the child-record evidence
+  calibration, and file a round-3 report. Do not infer a PASS until that
+  review returns zero BLOCKER and zero MAJOR findings.
 
 ## Remaining blockers and next gates
 

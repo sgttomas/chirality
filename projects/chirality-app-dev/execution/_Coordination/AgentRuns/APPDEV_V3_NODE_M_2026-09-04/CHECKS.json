@@ -92,6 +92,24 @@
       "cwd": ".",
       "status": "pass",
       "summary": "the complete V3-03 item section is byte-identical to the basis"
+    },
+    {
+      "id": "del-09-06-v3-04-selected-outcome-coherence",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "gate, Depends, Return, and Removed-when select the per-response nonce outcome; Return and Removed-when are nonce-only; exact nonce attachment code shape remains open"
+    },
+    {
+      "id": "multi-agent-record-contract",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "orchestration plan, work graph, calibrated M1/M2/M3 launch-status-return records, both immutable reviews, dispositions, and the fresh-review handoff are present"
+    },
+    {
+      "id": "review-report-byte-identities",
+      "cwd": ".",
+      "status": "pass",
+      "summary": "both filed review reports are byte-identical to the immutable external reports and match their recorded SHA-256 values"
     }
   ],
   "superseded_attempts": [
@@ -133,9 +151,23 @@
     },
     {
       "round": 2,
+      "candidate": "4fa170341700e491dff8c72ce1229ba84735f073",
+      "status": "fail",
+      "findings": {
+        "blocker": 0,
+        "major": 2,
+        "minor": 0,
+        "note": 0
+      },
+      "report": "instances/M3_REVIEWER/REVIEW_NODE_M_R2.md",
+      "report_sha256": "66f61ef9cf9c4d433f19d6959b8b546768116c4eb67e3de97d9836347454e8e4",
+      "disposition": "M-R2-F1 and M-R2-F2 accepted and remediated; see REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 3,
       "candidate": "the remediation freeze returned by Git after this run record is finalized",
       "status": "pending_fresh_review",
-      "handoff": "REVIEW_R2_HANDOFF.md"
+      "handoff": "REVIEW_R3_HANDOFF.md"
     }
   ],
   "not_run": [
@@ -149,6 +181,6 @@
     }
   ],
   "a1": "not applicable: no frontend path changed; no re-stage declaration is needed",
-  "overall": "review_ready_r2: deterministic checks pass; round-1 review failed and all findings are remediated; fresh round-2 review pending",
+  "overall": "review_ready_r3: deterministic checks pass; round-1 and round-2 reviews failed and all findings are remediated; fresh round-3 review pending",
   "recorded_at": "2026-09-04"
 }

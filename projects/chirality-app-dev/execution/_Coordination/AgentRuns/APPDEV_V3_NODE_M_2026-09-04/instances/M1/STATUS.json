@@ -1,0 +1,36 @@
+{
+  "schema": "chirality-agent-instance-status/v1",
+  "run_id": "APPDEV_V3_NODE_M_2026-09-04",
+  "instance_id": "M1",
+  "role": "EPHEMERAL_AGENT2_IMPLEMENTER",
+  "basis": "719fe5e34cefc40fe0dab4b045f5f2a89341ae2f",
+  "branch": "codex/app-v3-nodeM-a15-owner-rulings-2026-09-04",
+  "worktree": "/private/tmp/chirality-app-v3-a15-20260904/nodeM",
+  "delegated_descendants": false,
+  "status": "review_ready_r3",
+  "timeline": [
+    {
+      "phase": "initial_candidate",
+      "freeze": "f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c",
+      "review": "fail",
+      "review_report_sha256": "089204ef41625fa08a1eee915df08686be9e66f8b84ebb9d1390ae6a1025caf4"
+    },
+    {
+      "phase": "round_1_remediation",
+      "freeze": "4fa170341700e491dff8c72ce1229ba84735f073",
+      "review": "fail",
+      "review_report_sha256": "66f61ef9cf9c4d433f19d6959b8b546768116c4eb67e3de97d9836347454e8e4"
+    },
+    {
+      "phase": "round_2_remediation",
+      "freeze": "Git commit returned after the complete record is finalized; no self-referential SHA embedded",
+      "review": "pending_fresh_round_3"
+    }
+  ],
+  "push_performed": false,
+  "pr_opened": false,
+  "merge_performed": false,
+  "host_act_performed": false,
+  "product_or_frontend_mutation": false,
+  "recorded_at": "2026-09-04"
+}

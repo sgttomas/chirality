@@ -6657,26 +6657,29 @@
   - Pointers: branch
     `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04`; basis above; RunID
     `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`
-    (`STEP0_DISCOVERY.md`, `CHECKS.json`, `RETURN.md`, `HANDOFF_STATE.md`,
-    `MANIFEST.sha256`, sealed `instances/M1/LAUNCH_BRIEF.md`, immutable
-    round-1 review `instances/M2_REVIEWER/REVIEW_NODE_M_R1.md`,
-    `REVIEW_DISPOSITIONS.md`, and `REVIEW_R2_HANDOFF.md`); DEL-09-06
-    `_STATUS.md` makes V3-04 selectable under A15 while preserving V3-03;
+    (`ORCHESTRATION_PLAN.md`, `WORK_GRAPH.md`, `STEP0_DISCOVERY.md`,
+    `CHECKS.json`, `RETURN.md`, `HANDOFF_STATE.md`, `MANIFEST.sha256`,
+    calibrated launch/status/return records under `instances/M1/`,
+    `instances/M2_REVIEWER/`, and `instances/M3_REVIEWER/`, immutable
+    round-1 and round-2 reviews under those reviewer instances,
+    `REVIEW_DISPOSITIONS.md`, and `REVIEW_R3_HANDOFF.md`); DEL-09-06
+    `_STATUS.md` makes V3-04 selectable under A15 with a nonce-only Return and
+    Removed-when contract while preserving V3-03;
     DEL-09-05 `_STATUS.md` records the prospective host-act authorizations,
     parks V3-02 until owner-installed Syft `v1.18.1` is observable, and keeps
     V3-04 parked until the disposable identity is observable.
   - Checks: receipt validator pass; authority corpus pass; APP-HOLD reliance,
     dispatch, and integrity pass; harness self-check and pytest pass; exact
     change-scope, manifest verification, F-APP-2 scan, forbidden-path scan,
-    and `git diff --check` pass. Independent review fail remediated; fresh
-    independent review pending. Frontend gates skipped
+    and `git diff --check` pass. Independent reviews fail and are remediated;
+    fresh independent review pending. Frontend gates skipped
     because no `frontend/` path changed; A1 is not applicable.
   - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family
     (exact model identifier not exposed to the agent runtime), as ephemeral
     Agent 2 under HELP_HUMAN.
-  - Gate-Outcome: `EXECUTED` — record-only transcription; round-1 review
-    failed and its findings are remediated; awaiting fresh round-2 review and
-    owner merge. A14 remains valid dated history; its host-act deferrals are lifted
+  - Gate-Outcome: `EXECUTED` — record-only transcription; R1 and R2 reviews
+    failed and all findings are remediated; awaiting fresh R3 review and owner
+    merge. A14 remains valid dated history; its host-act deferrals are lifted
     prospectively only. No product, `frontend/`, host, Root, lifecycle,
     Checking Approval SHA, register, decomposition, SCOPE_CHANGE, Developer
     ID signing, notarization, Apple call, distribution, publication,
