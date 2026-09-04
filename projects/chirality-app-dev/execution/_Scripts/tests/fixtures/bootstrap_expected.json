@@ -1,0 +1,20 @@
+{
+  "allowed_entry_paths": [
+    "SCA-APP-009:GATE5:PREPARATION:CANDIDATE_MIRROR",
+    "SCA-APP-009:GATE5:PREPARATION:ACTUAL_WORKTREE"
+  ],
+  "allowed_operation": "dispatch",
+  "allowed_scaffold_paths": [
+    "_CONTEXT.md",
+    "_STATUS.md",
+    "_REFERENCES.md",
+    "_DEPENDENCIES.md",
+    "_SEMANTIC.md"
+  ],
+  "companion_register_sha256": "e47fced6f0bea32b1d18f987a7e33af0432271c4ff49bb196cdad6fb91742b70",
+  "decomposition_sha256": "e46084abc0f85970dbe4ed49d1366a99e9930bbb9d9bd87b86f998f98155ab97",
+  "package_id": "PKG-09",
+  "pointer_sha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b",
+  "target": "DEL-09-07",
+  "target_folder": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback"
+}

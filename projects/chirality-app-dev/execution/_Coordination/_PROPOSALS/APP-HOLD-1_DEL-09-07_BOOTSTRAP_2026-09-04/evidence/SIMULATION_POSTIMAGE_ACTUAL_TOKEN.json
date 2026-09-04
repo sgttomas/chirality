@@ -1,0 +1,79 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "SCA-APP-009:GATE5:PREPARATION:ACTUAL_WORKTREE",
+  "operation": "dispatch",
+  "register_sha256": "e9160297b5d1e51d94ca17a3c45ea09206b6649631f1f9aad3c9cabff6ef148f",
+  "repo_head": "287b82f16c0d3970bac71e40b0e41fdd50569b08",
+  "results": [
+    {
+      "admission_kind": "STRUCTURAL_BOOTSTRAP",
+      "bootstrap": {
+        "admission_kind": "STRUCTURAL_BOOTSTRAP",
+        "allowed_scaffold_paths": [
+          "_CONTEXT.md",
+          "_DEPENDENCIES.md",
+          "_REFERENCES.md",
+          "_SEMANTIC.md",
+          "_STATUS.md"
+        ],
+        "authority": {
+          "companion_register": {
+            "actual_sha256": "e47fced6f0bea32b1d18f987a7e33af0432271c4ff49bb196cdad6fb91742b70",
+            "error": null,
+            "expected_sha256": "e47fced6f0bea32b1d18f987a7e33af0432271c4ff49bb196cdad6fb91742b70",
+            "match": true,
+            "path": "projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv"
+          },
+          "decomposition": {
+            "actual_sha256": "e46084abc0f85970dbe4ed49d1366a99e9930bbb9d9bd87b86f998f98155ab97",
+            "error": null,
+            "expected_sha256": "e46084abc0f85970dbe4ed49d1366a99e9930bbb9d9bd87b86f998f98155ab97",
+            "match": true,
+            "path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md"
+          },
+          "pointer": {
+            "actual_sha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b",
+            "error": null,
+            "expected_sha256": "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b",
+            "match": true,
+            "path": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md"
+          }
+        },
+        "conditions": {
+          "companion_register_hash_matches": true,
+          "decomposition_hash_matches": true,
+          "package_is_exact": true,
+          "pointer_preimage_hash_matches": true,
+          "scope_of_work_absent": true,
+          "target_folder_shape_allowed": true,
+          "target_is_exact": true,
+          "target_unknown_to_sow_scan": true
+        },
+        "eligible": true,
+        "folder_errors": [],
+        "observed_scaffold_paths": [],
+        "scope_of_work_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/ScopeOfWork.md",
+        "state": "ELIGIBLE",
+        "target_folder": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback"
+      },
+      "contract_status": "ABSENT",
+      "deliverable_id": "DEL-09-07",
+      "entry_path": "SCA-APP-009:GATE5:PREPARATION:ACTUAL_WORKTREE",
+      "entry_path_matches": true,
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "operation_matches": true,
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "52b5793f2bfa6fd38ecb7b0f2fc4b5b5d7e4d7d4e7faac00cacf8cb1c9466e90",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [
+    "DEL-09-07"
+  ],
+  "targets": [
+    "DEL-09-07"
+  ],
+  "verdict": "ALLOW"
+}

@@ -1,0 +1,14 @@
+{
+  "basis_commit": "7b0be4d8772a16e5a4774a17988479587d00acca",
+  "released_deliverables": [
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-04",
+    "DEL-05-04",
+    "DEL-08-02",
+    "DEL-08-03"
+  ],
+  "scan_held_deliverables": [],
+  "missing_basis_commit": "416b29033bbacb0bc3648d84033272b7ab4e6e11",
+  "unaffected_target": "DEL-03-01"
+}
