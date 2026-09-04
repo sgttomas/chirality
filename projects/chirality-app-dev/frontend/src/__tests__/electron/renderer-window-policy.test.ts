@@ -3,8 +3,10 @@ import {
   CONTENT_SECURITY_POLICY_HEADER,
   EGRESS_LAYER_PROBE_URL,
   applyContentSecurityPolicyHeader,
+  applyPackagedRendererRequestPolicy,
   assertRendererWebPreferences,
   buildRendererContentSecurityPolicy,
+  createRendererCspNonce,
   evaluateRendererNavigation,
   evaluateWindowOpen,
   installRendererWindowPolicy,
@@ -23,6 +25,7 @@ import {
  */
 
 const RENDERER_ORIGIN = 'http://127.0.0.1:41234';
+const PACKAGED_NONCE = 'AQIDBAUGBwgJCgsMDQ4PEA==';
 
 describe('renderer web preferences', () => {
   it('produces exactly the hardened preferences', () => {
@@ -127,11 +130,15 @@ describe('navigation policy', () => {
 });
 
 describe('content security policy', () => {
-  it('builds the packaged policy without eval and closed to frames, objects, and embedding', () => {
-    const csp = buildRendererContentSecurityPolicy({ mode: 'packaged' });
+  it('builds the packaged policy with one nonce, no inline/eval allowance, and closed directives', () => {
+    const csp = buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: PACKAGED_NONCE });
+    const scriptDirective = csp
+      .split('; ')
+      .find((directive) => directive.startsWith('script-src '));
     expect(csp).toContain("default-src 'self'");
-    expect(csp).toContain("script-src 'self' 'unsafe-inline'");
-    expect(csp).not.toContain("'unsafe-eval'");
+    expect(csp).toContain(`script-src 'self' 'nonce-${PACKAGED_NONCE}'`);
+    expect(scriptDirective).not.toContain("'unsafe-inline'");
+    expect(scriptDirective).not.toContain("'unsafe-eval'");
     expect(csp).toContain("style-src 'self' 'unsafe-inline'");
     expect(csp).toContain("connect-src 'self';");
     expect(csp).not.toContain('api.anthropic.com');
@@ -145,20 +152,70 @@ describe('content security policy', () => {
     expect(csp.split('; ').every((directive) => /^[a-z-]+ /.test(directive))).toBe(true);
   });
 
+  it('fails closed without a valid packaged nonce and creates fresh 128-bit nonces', () => {
+    expect(() => buildRendererContentSecurityPolicy({ mode: 'packaged' })).toThrow(
+      /requires a valid request nonce/
+    );
+    expect(() =>
+      buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: "bad'; script-src *" })
+    ).toThrow(/requires a valid request nonce/);
+
+    const first = createRendererCspNonce();
+    const second = createRendererCspNonce();
+    expect(first).toMatch(/^[A-Za-z0-9+/_-]+={0,2}$/);
+    expect(Buffer.from(first, 'base64')).toHaveLength(16);
+    expect(second).toMatch(/^[A-Za-z0-9+/_-]+={0,2}$/);
+    expect(Buffer.from(second, 'base64')).toHaveLength(16);
+    expect(second).not.toBe(first);
+  });
+
+  it('attaches one byte-identical per-request policy to Next and the response', () => {
+    const request = { headers: {} as Record<string, string | string[] | undefined> };
+    const response = { setHeader: vi.fn() };
+    const result = applyPackagedRendererRequestPolicy(request, response, PACKAGED_NONCE);
+
+    expect(result.nonce).toBe(PACKAGED_NONCE);
+    expect(request.headers['content-security-policy']).toBe(result.contentSecurityPolicy);
+    expect(response.setHeader).toHaveBeenCalledWith(
+      CONTENT_SECURITY_POLICY_HEADER,
+      result.contentSecurityPolicy
+    );
+    expect(
+      result.contentSecurityPolicy
+        .split('; ')
+        .find((directive) => directive.startsWith('script-src '))
+    ).not.toContain("'unsafe-inline'");
+  });
+
   it('adds eval and the HMR websocket only in development', () => {
     const csp = buildRendererContentSecurityPolicy({
       mode: 'development',
       rendererOrigin: 'http://localhost:3000'
     });
-    expect(csp).toContain("script-src 'self' 'unsafe-inline' 'unsafe-eval'");
-    expect(csp).toContain("connect-src 'self' ws://localhost:3000 wss://localhost:3000;");
+    expect(csp).toBe(
+      [
+        "default-src 'self'",
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+        "style-src 'self' 'unsafe-inline'",
+        "img-src 'self' data:",
+        "font-src 'self' data:",
+        "connect-src 'self' ws://localhost:3000 wss://localhost:3000",
+        "worker-src 'self'",
+        "manifest-src 'self'",
+        "media-src 'self'",
+        "frame-src 'none'",
+        "object-src 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+        "frame-ancestors 'none'"
+      ].join('; ')
+    );
     expect(csp).not.toContain('api.anthropic.com');
-    expect(csp).toContain("frame-src 'none'");
   });
 
   it('never widens connect-src beyond self and the dev websocket', () => {
     for (const csp of [
-      buildRendererContentSecurityPolicy({ mode: 'packaged' }),
+      buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: PACKAGED_NONCE }),
       buildRendererContentSecurityPolicy({ mode: 'development', rendererOrigin: 'http://localhost:3000' }),
       buildRendererContentSecurityPolicy({ mode: 'development', rendererOrigin: 'garbage' })
     ]) {
@@ -171,7 +228,7 @@ describe('content security policy', () => {
   });
 
   it('adds the header to renderer-origin responses that lack one and leaves others alone', () => {
-    const csp = buildRendererContentSecurityPolicy({ mode: 'packaged' });
+    const csp = buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: PACKAGED_NONCE });
 
     expect(
       applyContentSecurityPolicyHeader(
@@ -247,7 +304,7 @@ function fakeWindow(): FakeWindow {
 }
 
 describe('installRendererWindowPolicy', () => {
-  const csp = buildRendererContentSecurityPolicy({ mode: 'packaged' });
+  const csp = buildRendererContentSecurityPolicy({ mode: 'packaged', nonce: PACKAGED_NONCE });
   // The external open is deferred to a microtask so a synchronous throw is caught
   // structurally; assertions on it wait for the task queue to drain.
   const flush = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
@@ -429,6 +486,20 @@ describe('installRendererWindowPolicy', () => {
 
     window.handlers.headers!({ url: 'https://evil.example/' }, callback);
     expect(callback).toHaveBeenLastCalledWith({});
+  });
+
+  it('does not synthesize a packaged fallback without the request nonce', () => {
+    const window = fakeWindow();
+    installRendererWindowPolicy(window, {
+      rendererOrigin: RENDERER_ORIGIN,
+      openExternal: vi.fn()
+    });
+    const callback = vi.fn();
+    window.handlers.headers!(
+      { url: `${RENDERER_ORIGIN}/`, responseHeaders: { a: ['1'] } },
+      callback
+    );
+    expect(callback).toHaveBeenCalledWith({});
   });
 
   it('works without a log sink', async () => {

@@ -3,6 +3,7 @@ import { EGRESS_LAYER_PROBE_URL } from '../../../electron/renderer-window-policy
 import {
   EGRESS_PROBE_DECOY_URL,
   EGRESS_PROBE_URL,
+  PACKAGED_RENDERER_ROUTES,
   credentialProviderIsolation,
   descendantProcessIds,
   evaluateCredentialEvidence,
@@ -181,24 +182,50 @@ describe('run-packaged-security-proof script', () => {
   });
 
   it('requires the renderer hardening evidence from the packaged page', () => {
-    const csp = "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'none'; object-src 'none'";
-    const payload = {
-      policy: 'G-CSP',
-      cspHeader: csp,
-      windowOpen: { returned: 'null' },
-      violations: [
-        { blockedURI: 'https://example.com', effectiveDirective: 'connect-src', disposition: 'enforce' }
-      ],
-      navigationAttempted: 'https://example.com/chirality-renderer-security-navigation'
+    const policy = (nonce: string) =>
+      `default-src 'self'; script-src 'self' 'nonce-${nonce}'; connect-src 'self'; frame-src 'none'; object-src 'none'`;
+    const payloadFor = (route: string, index: number) => {
+      const documentNonce = `documentNonce${index}`;
+      const firstNonce = `responseNonce${index}a`;
+      const secondNonce = `responseNonce${index}b`;
+      return {
+        policy: 'G-CSP',
+        route,
+        documentNonce,
+        documentInlineScriptCount: 5,
+        documentInlineScriptNoncesMatch: true,
+        consecutiveResponses: [firstNonce, secondNonce].map((responseNonce) => ({
+          status: 200,
+          contentType: 'text/html; charset=utf-8',
+          cspHeader: policy(responseNonce),
+          responseNonce,
+          inlineScriptCount: 5,
+          inlineScriptNoncesMatch: true,
+          documentComplete: true
+        })),
+        responseError: null,
+        windowOpen: { returned: 'null' },
+        violations: [
+          { blockedURI: 'https://example.com', effectiveDirective: 'connect-src', disposition: 'enforce' }
+        ],
+        navigationAttempted: 'https://example.com/chirality-renderer-security-navigation'
+      };
     };
+    const payloads = PACKAGED_RENDERER_ROUTES.map(payloadFor);
     const logText = [
-      `[renderer-security-probe] ${JSON.stringify(payload)}`,
-      '[chirality-desktop] [warn] renderer.window_open.denied {"destination":{"protocol":"https:","hostname":"example.com"}}',
-      '[chirality-desktop] [warn] renderer.navigation.denied {"event":"will-navigate","reason":"ORIGIN_NOT_RENDERER"}'
+      ...payloads.map((payload) => `[renderer-security-probe] ${JSON.stringify(payload)}`),
+      ...PACKAGED_RENDERER_ROUTES.map(
+        () => '[chirality-desktop] [warn] renderer.window_open.denied {"destination":{"protocol":"about:","hostname":""}}'
+      ),
+      ...PACKAGED_RENDERER_ROUTES.map(
+        () => '[chirality-desktop] [warn] renderer.navigation.denied {"event":"will-navigate","reason":"ORIGIN_NOT_RENDERER"}'
+      )
     ].join('\n');
 
     const summary = summarizeRendererSecurityEvidence(logText);
     expect(summary).toMatchObject({
+      probePayloadCount: 4,
+      allObservedNoncesUnique: true,
       cspHeaderPresent: true,
       cspViolationObserved: true,
       unexpectedViolations: [],
@@ -208,10 +235,23 @@ describe('run-packaged-security-proof script', () => {
       navigationDeniedLogged: true,
       pass: true
     });
+    expect(summary.routeResults.map((result: { route: string; pass: boolean }) => [result.route, result.pass])).toEqual(
+      PACKAGED_RENDERER_ROUTES.map((route) => [route, true])
+    );
+    expect(
+      summary.routeResults.every(
+        (result: { scriptUnsafeInlineAbsent: boolean; scriptUnsafeEvalAbsent: boolean }) =>
+          result.scriptUnsafeInlineAbsent && result.scriptUnsafeEvalAbsent
+      )
+    ).toBe(true);
 
     expect(summarizeRendererSecurityEvidence(logText.replace('renderer.navigation.denied', 'x')).pass).toBe(false);
     expect(summarizeRendererSecurityEvidence(logText.replace('"returned":"null"', '"returned":"object"')).pass).toBe(false);
-    expect(summarizeRendererSecurityEvidence(logText.replace("'unsafe-inline'", "'unsafe-inline' 'unsafe-eval'")).pass).toBe(false);
+    const unsafeInline = summarizeRendererSecurityEvidence(
+      logText.replace("script-src 'self' 'nonce-responseNonce0a'", "script-src 'self' 'unsafe-inline'")
+    );
+    expect(unsafeInline.routeResults[0].scriptUnsafeInlineAbsent).toBe(false);
+    expect(unsafeInline.pass).toBe(false);
     // Exact directives only: the superseded port-wildcard form must not pass.
     const wildcard = summarizeRendererSecurityEvidence(
       logText.replace("connect-src 'self';", "connect-src 'self' https://api.anthropic.com:*;")
@@ -221,12 +261,30 @@ describe('run-packaged-security-proof script', () => {
     expect(summarizeRendererSecurityEvidence(logText.replace("connect-src 'self';", "connect-src 'self' https://example.com;")).cspHeaderPresent).toBe(false);
     expect(summarizeRendererSecurityEvidence(logText.replace("frame-src 'none';", "frame-src 'self';")).cspHeaderPresent).toBe(false);
     const ownResourceViolation = JSON.stringify({
-      ...payload,
-      violations: [...payload.violations, { blockedURI: 'http://127.0.0.1:41234/_next/static/x.js', effectiveDirective: 'script-src-elem' }]
+      ...payloads[0],
+      violations: [
+        ...payloads[0].violations,
+        {
+          blockedURI: 'http://127.0.0.1:41234/_next/static/x.js',
+          effectiveDirective: 'script-src-elem'
+        }
+      ]
     });
-    const withOwnViolation = summarizeRendererSecurityEvidence(logText.replace(JSON.stringify(payload), ownResourceViolation));
+    const withOwnViolation = summarizeRendererSecurityEvidence(
+      logText.replace(JSON.stringify(payloads[0]), ownResourceViolation)
+    );
     expect(withOwnViolation.unexpectedViolations).toHaveLength(1);
     expect(withOwnViolation.pass).toBe(false);
+    expect(
+      summarizeRendererSecurityEvidence(
+        logText.replace('responseNonce1a', 'responseNonce0a')
+      ).allObservedNoncesUnique
+    ).toBe(false);
+    expect(
+      summarizeRendererSecurityEvidence(
+        logText.replace(`[renderer-security-probe] ${JSON.stringify(payloads[3])}`, '')
+      ).pass
+    ).toBe(false);
     expect(summarizeRendererSecurityEvidence('no probe at all').pass).toBe(false);
   });
 

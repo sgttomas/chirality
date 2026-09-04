@@ -1,0 +1,49 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_V3_NODE_N_2026-09-04",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "execution_class": "delegated-harness-native",
+  "posture": "SEQUENTIAL_IMPLEMENT_REVIEW_CLOSEOUT",
+  "basis": {
+    "sha": "307addfc259b046aeb2ed07d47086cd5686c35b8",
+    "branch": "codex/app-v3-nodeN-csp-nonce-2026-09-04",
+    "parent_receipt": "Receipt-223"
+  },
+  "items": ["DEL-09-06-V3-04"],
+  "nodes": [
+    {
+      "id": "N1_IMPLEMENTER",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "role_mechanical_enforcement": "not mechanically enforced",
+      "governed_workflow_role_evidence": "instruction-asserted",
+      "non_delegation_evidence": "instruction+config asserted, not mechanism-proven",
+      "delegates": false,
+      "model": "GPT-5 family (exact identifier unavailable)",
+      "depends_on": [],
+      "returns": ["REVIEW_READY", "frozen commit", "CHECKS.json", "RETURN.md", "evidence manifest"]
+    },
+    {
+      "id": "N2_REVIEWER",
+      "role": "FRESH_READ_ONLY_REVIEWER",
+      "depends_on": ["N1_IMPLEMENTER"],
+      "writes": [],
+      "returns": ["verdict and findings over 100% of frozen diff"]
+    },
+    {
+      "id": "CLOSEOUT",
+      "depends_on": ["N2_REVIEWER"],
+      "requires": "REVIEW_PASS and separate supervisor authorization",
+      "returns": ["deliverable state closeout", "receipt", "publication handoff"]
+    }
+  ],
+  "edges": [
+    ["N1_IMPLEMENTER", "N2_REVIEWER"],
+    ["N2_REVIEWER", "CLOSEOUT"]
+  ],
+  "human_gates": [
+    "any write-locus or product-contract expansion",
+    "owner merge",
+    "future newly staged R20 revision and owner-executed proof"
+  ]
+}

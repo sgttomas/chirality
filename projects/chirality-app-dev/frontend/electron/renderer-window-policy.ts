@@ -1,3 +1,5 @@
+import { randomBytes } from 'node:crypto';
+
 /**
  * Renderer window hardening policy (DEL-09-06-V3-01, G-CSP).
  *
@@ -20,10 +22,12 @@
  * - `will-navigate` and `will-redirect` allow only the app's own renderer
  *   origin over http(s) and deny everything else — `javascript:`, `file:`,
  *   `data:`, `about:`, `blob:`, foreign hosts, a different port or scheme;
- * - a Content-Security-Policy is attached to responses from the renderer
- *   origin through `webRequest.onHeadersReceived` when the response carries
- *   none (the packaged renderer server sets it directly; the dev server does
- *   not), so both modes render under one policy.
+ * - the packaged server creates a fresh nonce and one policy per request,
+ *   presents that policy to Next before rendering, and returns the exact same
+ *   policy on the response; the response hook never fabricates a packaged
+ *   fallback whose nonce could disagree with the rendered document;
+ * - development keeps its static policy fallback through
+ *   `webRequest.onHeadersReceived`, including the allowances Next dev needs.
  *
  * The CSP is defence in depth beside the REQ-NET-001 egress allowlist in
  * `main.ts`, not a replacement for it: the egress layer is what the packaged
@@ -142,19 +146,32 @@ export function evaluateWindowOpen(details: { url: string }): WindowOpenDecision
 
 export type RendererCspMode = 'packaged' | 'development';
 
+const RENDERER_CSP_NONCE_BYTES = 16;
+const RENDERER_CSP_NONCE_PATTERN = /^[A-Za-z0-9+/_-]+={0,2}$/;
+
+/** A 128-bit, request-local nonce in the alphabet accepted by pinned Next. */
+export function createRendererCspNonce(): string {
+  return randomBytes(RENDERER_CSP_NONCE_BYTES).toString('base64');
+}
+
+function assertRendererCspNonce(nonce: string | undefined): asserts nonce is string {
+  if (!nonce || !RENDERER_CSP_NONCE_PATTERN.test(nonce)) {
+    throw new Error('Packaged renderer CSP requires a valid request nonce');
+  }
+}
+
 /**
  * Renderer Content-Security-Policy.
  *
  * What the renderer actually needs, verified against the `npm run build` output
  * and the dev server (recorded in the DEL-09-06 evidence):
- * - `script-src 'unsafe-inline'`: Next.js App Router delivers the React Server
- *   Components flight payload as inline `<script>self.__next_f.push(…)</script>`
- *   tags with no nonce. A nonce pipeline needs a Next middleware or a request
- *   header set before the packaged handler, plus a decision on prerendering —
- *   outside this policy's scope — so the inline allowance stays; external
- *   scripts remain restricted to `'self'`. With it, this CSP's value against an
- *   injected inline script is limited to remote-script, eval, frame, object,
- *   base, form, and connect containment.
+ * - packaged `script-src` uses the request nonce and never `'unsafe-inline'` or
+ *   `'unsafe-eval'`. The custom server gives the same policy to Next before it
+ *   renders, so Next's inline flight scripts carry the nonce. The root layout
+ *   reads the same request policy for the app-owned theme bootstrap. External
+ *   scripts remain restricted to `'self'`.
+ * - development retains `'unsafe-inline'` and `'unsafe-eval'`: Next's dev
+ *   runtime and React Refresh require them. No development posture changes.
  * - `'unsafe-eval'` only in development: Next's dev runtime and React Refresh
  *   evaluate source; the packaged renderer never gets it.
  * - `style-src 'unsafe-inline'`: two components set React `style` props (inline
@@ -170,8 +187,12 @@ export type RendererCspMode = 'packaged' | 'development';
 export function buildRendererContentSecurityPolicy(options: {
   mode: RendererCspMode;
   rendererOrigin?: string;
+  nonce?: string;
 }): string {
   const development = options.mode === 'development';
+  if (!development) {
+    assertRendererCspNonce(options.nonce);
+  }
   const connectSources = ["'self'"];
   if (development && options.rendererOrigin) {
     try {
@@ -183,7 +204,9 @@ export function buildRendererContentSecurityPolicy(options: {
   }
   const directives = [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${development ? " 'unsafe-eval'" : ''}`,
+    development
+      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+      : `script-src 'self' 'nonce-${options.nonce}'`,
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
     "font-src 'self' data:",
@@ -201,6 +224,29 @@ export function buildRendererContentSecurityPolicy(options: {
 }
 
 export const CONTENT_SECURITY_POLICY_HEADER = 'Content-Security-Policy';
+
+type RendererRequestHeaders = Record<string, string | string[] | undefined>;
+type RendererResponseHeaderSink = { setHeader(name: string, value: string): unknown };
+
+/**
+ * Establish the packaged renderer's one-policy invariant before Next handles a
+ * request. The policy is derived once and assigned byte-for-byte to both the
+ * incoming request and outgoing response. Next 15.5 reads the request CSP and
+ * applies its nonce to framework scripts; the app layout reads that same CSP
+ * for its own inline bootstrap. There is no second nonce-bearing header that
+ * could disagree with the enforced policy.
+ */
+export function applyPackagedRendererRequestPolicy(
+  request: { headers: RendererRequestHeaders },
+  response: RendererResponseHeaderSink,
+  nonce: string = createRendererCspNonce()
+): { nonce: string; contentSecurityPolicy: string } {
+  assertRendererCspNonce(nonce);
+  const contentSecurityPolicy = buildRendererContentSecurityPolicy({ mode: 'packaged', nonce });
+  request.headers[CONTENT_SECURITY_POLICY_HEADER.toLowerCase()] = contentSecurityPolicy;
+  response.setHeader(CONTENT_SECURITY_POLICY_HEADER, contentSecurityPolicy);
+  return { nonce, contentSecurityPolicy };
+}
 
 type ResponseHeaders = Record<string, string[]>;
 
@@ -266,7 +312,8 @@ export type RendererWindowLike = {
 
 export type RendererWindowPolicyOptions = {
   rendererOrigin: string;
-  contentSecurityPolicy: string;
+  /** Development-only fallback. Packaged responses must carry their request nonce. */
+  contentSecurityPolicy?: string;
   /** Opens an `http(s)` URL in the operating system's default browser. */
   openExternal: (url: string) => Promise<void>;
   log?: RendererWindowLog;
@@ -321,11 +368,9 @@ export function installRendererWindowPolicy(
   webContents.session.webRequest.onHeadersReceived(
     { urls: HEADER_FILTER_URLS },
     (details, callback) => {
-      const responseHeaders = applyContentSecurityPolicyHeader(
-        details,
-        rendererOrigin,
-        contentSecurityPolicy
-      );
+      const responseHeaders = contentSecurityPolicy
+        ? applyContentSecurityPolicyHeader(details, rendererOrigin, contentSecurityPolicy)
+        : null;
       // No override at all when untouched: echoing an empty header set would
       // tell Chromium the server answered with no headers.
       callback(responseHeaders === null ? {} : { responseHeaders });
@@ -382,6 +427,41 @@ export function runRendererSecurityProbe(
   const script = `
 (() => {
   const violations = [];
+  const noncePattern = /^[A-Za-z0-9+/_-]+={0,2}$/;
+  const nonceFromPolicy = (policy) => {
+    if (typeof policy !== 'string') return null;
+    const scriptDirective = policy
+      .split(';')
+      .map((directive) => directive.trim())
+      .find((directive) => directive.startsWith('script-src '));
+    if (!scriptDirective) return null;
+    for (const source of scriptDirective.split(/\\s+/).slice(1)) {
+      const match = source.match(/^'nonce-([A-Za-z0-9+/_-]+={0,2})'$/);
+      if (match) return match[1];
+    }
+    return null;
+  };
+  const inlineScriptNonces = (root) => Array.from(root.querySelectorAll('script'))
+    .filter((node) => !node.src && (node.textContent || '').trim().length > 0)
+    .map((node) => node.nonce || null);
+  const inspectResponse = async () => {
+    const response = await fetch(location.href, { cache: 'no-store' });
+    const cspHeader = response.headers.get('content-security-policy');
+    const html = await response.text();
+    const responseNonce = nonceFromPolicy(cspHeader);
+    const parsed = new DOMParser().parseFromString(html, 'text/html');
+    const scriptNonces = inlineScriptNonces(parsed);
+    return {
+      status: response.status,
+      contentType: response.headers.get('content-type'),
+      cspHeader,
+      responseNonce,
+      inlineScriptCount: scriptNonces.length,
+      inlineScriptNoncesMatch: scriptNonces.length > 0 &&
+        scriptNonces.every((value) => value === responseNonce),
+      documentComplete: html.includes('</html>')
+    };
+  };
   document.addEventListener('securitypolicyviolation', (event) => {
     violations.push({
       blockedURI: event.blockedURI,
@@ -390,12 +470,14 @@ export function runRendererSecurityProbe(
     });
   });
   const run = async () => {
-    let cspHeader = null;
+    const documentScriptNonces = inlineScriptNonces(document);
+    const documentNonce = documentScriptNonces.find((value) => noncePattern.test(value || '')) || null;
+    let consecutiveResponses = [];
+    let responseError = null;
     try {
-      const response = await fetch(location.href, { cache: 'no-store' });
-      cspHeader = response.headers.get('content-security-policy');
+      consecutiveResponses = [await inspectResponse(), await inspectResponse()];
     } catch (error) {
-      cspHeader = 'fetch-failed:' + (error instanceof Error ? error.message : String(error));
+      responseError = error instanceof Error ? error.message : String(error);
     }
     let windowOpen;
     try {
@@ -421,7 +503,19 @@ export function runRendererSecurityProbe(
         // Denied navigation surfaces in the main-process log.
       }
     }, 0);
-    return { policy: 'G-CSP', cspHeader, windowOpen, violations, navigationAttempted: navigationTarget };
+    return {
+      policy: 'G-CSP',
+      route: location.pathname,
+      documentNonce: noncePattern.test(documentNonce || '') ? documentNonce : null,
+      documentInlineScriptCount: documentScriptNonces.length,
+      documentInlineScriptNoncesMatch: documentScriptNonces.length > 0 &&
+        documentScriptNonces.every((value) => value === documentNonce),
+      consecutiveResponses,
+      responseError,
+      windowOpen,
+      violations,
+      navigationAttempted: navigationTarget
+    };
   };
   return run();
 })();

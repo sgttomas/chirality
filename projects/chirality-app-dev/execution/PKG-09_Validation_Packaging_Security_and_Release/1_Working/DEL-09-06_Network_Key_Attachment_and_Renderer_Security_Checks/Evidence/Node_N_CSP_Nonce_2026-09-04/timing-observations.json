@@ -1,0 +1,53 @@
+{
+  "schema": "chirality-renderer-timing-observations/v1",
+  "status": "complete_observation",
+  "acceptance_threshold": null,
+  "interpretation": "observations_only",
+  "host": {
+    "os": "macOS 26.6.2 build 25G83",
+    "kernel": "Darwin 25.6.0 arm64",
+    "node": "v24.18.0",
+    "next": "15.5.21"
+  },
+  "method": {
+    "build": "npm run build",
+    "server": "NEXT_TELEMETRY_DISABLED=1 node node_modules/next/dist/bin/next start --hostname 127.0.0.1 --port 52123",
+    "route_order": ["/", "/chat", "/pipeline", "/workbench"],
+    "measurement": "curl time_starttransfer and time_total after server-reported readiness"
+  },
+  "pre_change": {
+    "basis": "307addfc259b046aeb2ed07d47086cd5686c35b8",
+    "route_classification": {
+      "/": "static",
+      "/chat": "static",
+      "/pipeline": "static",
+      "/workbench": "static"
+    },
+    "server_ready_ms": 120,
+    "cold_start_to_first_response_descriptive_ms": 129.756,
+    "routes": [
+      {"path": "/", "status": 200, "ttfb_seconds": 0.009756, "total_seconds": 0.009792},
+      {"path": "/chat", "status": 200, "ttfb_seconds": 0.002051, "total_seconds": 0.002080},
+      {"path": "/pipeline", "status": 200, "ttfb_seconds": 0.001867, "total_seconds": 0.001897},
+      {"path": "/workbench", "status": 200, "ttfb_seconds": 0.001567, "total_seconds": 0.001587}
+    ],
+    "cleanup": {"signal": "SIGINT", "exit": 0}
+  },
+  "post_change": {
+    "route_classification": {
+      "/": "dynamic",
+      "/chat": "dynamic",
+      "/pipeline": "dynamic",
+      "/workbench": "dynamic"
+    },
+    "server_ready_ms": 139,
+    "cold_start_to_first_response_descriptive_ms": 164.740,
+    "routes": [
+      {"path": "/", "status": 200, "ttfb_seconds": 0.025740, "total_seconds": 0.026817},
+      {"path": "/chat", "status": 200, "ttfb_seconds": 0.007210, "total_seconds": 0.007657},
+      {"path": "/pipeline", "status": 200, "ttfb_seconds": 0.006604, "total_seconds": 0.007021},
+      {"path": "/workbench", "status": 200, "ttfb_seconds": 0.005114, "total_seconds": 0.005574}
+    ],
+    "cleanup": {"signal": "SIGINT", "process_session_closed": true}
+  }
+}

@@ -48,6 +48,7 @@ const PACKAGED_POLICY_MARKERS = [
 ];
 const BLOCKED_PROBE_URL = 'https://example.com/chirality-packaged-security-blocked';
 const LOOPBACK_PROBE_URL = 'http://127.0.0.1:9/chirality-packaged-security-loopback';
+export const PACKAGED_RENDERER_ROUTES = ['/', '/chat', '/pipeline', '/workbench'];
 // The page can no longer reach the REQ-NET-001 egress layer for a foreign host
 // (the CSP's connect-src 'self' stops it first), so the packaged app issues this
 // request itself, from the main process through the window's session, where
@@ -414,40 +415,132 @@ export function summarizeNetworkEvidence(logText, snapshots) {
  */
 export function summarizeRendererSecurityEvidence(logText) {
   const payloads = extractMarkedPayloads(logText, '[renderer-security-probe]');
-  const payload = payloads.find((entry) => entry && entry.policy === 'G-CSP' && !entry.error) ?? null;
-  const cspHeader = typeof payload?.cspHeader === 'string' ? payload.cspHeader : null;
-  // Whole directives, never substrings: "connect-src 'self'" as a substring would
-  // also match the superseded "connect-src 'self' https://api.anthropic.com:*".
-  const cspDirectives = cspHeader === null ? [] : cspHeader.split(';').map((directive) => directive.trim());
-  const cspHeaderPresent =
-    cspHeader !== null &&
-    cspDirectives.includes("default-src 'self'") &&
-    cspDirectives.includes("connect-src 'self'") &&
-    cspDirectives.includes("frame-src 'none'") &&
-    cspDirectives.includes("object-src 'none'") &&
-    !cspHeader.includes("'unsafe-eval'");
-  const violations = Array.isArray(payload?.violations) ? payload.violations : [];
-  const expectedViolation = (violation) =>
-    typeof violation?.blockedURI === 'string' && violation.blockedURI.startsWith('https://example.com');
-  const cspViolationObserved = violations.some(
-    (violation) => expectedViolation(violation) && violation.effectiveDirective === 'connect-src'
+  const validPayloads = payloads.filter(
+    (entry) => entry && entry.policy === 'G-CSP' && !entry.error && typeof entry.route === 'string'
   );
-  const unexpectedViolations = violations.filter((violation) => !expectedViolation(violation));
-  const windowOpenReturnedNull = payload?.windowOpen?.returned === 'null';
-  const windowOpenDeniedLogged = logText.includes('renderer.window_open.denied');
-  const navigationDeniedLogged = logText.includes('renderer.navigation.denied');
+  const expectedViolation = (violation) =>
+    typeof violation?.blockedURI === 'string' &&
+    violation.blockedURI.startsWith('https://example.com') &&
+    violation.effectiveDirective === 'connect-src' &&
+    violation.disposition === 'enforce';
+  const inspectPolicy = (cspHeader) => {
+    const directives = typeof cspHeader === 'string'
+      ? cspHeader.split(';').map((directive) => directive.trim())
+      : [];
+    const scriptDirective = directives.find((directive) => directive.startsWith('script-src ')) ?? '';
+    const scriptSources = scriptDirective.split(/\s+/).slice(1);
+    const nonceSources = scriptSources.filter((source) => /^'nonce-[A-Za-z0-9+/_-]+={0,2}'$/.test(source));
+    const unsafeInlineAbsent = !scriptSources.includes("'unsafe-inline'");
+    const unsafeEvalAbsent = !scriptSources.includes("'unsafe-eval'");
+    return {
+      header: typeof cspHeader === 'string' ? cspHeader : null,
+      nonce: nonceSources.length === 1 ? nonceSources[0].slice(7, -1) : null,
+      unsafeInlineAbsent,
+      unsafeEvalAbsent,
+      pass:
+        directives.includes("default-src 'self'") &&
+        directives.includes("connect-src 'self'") &&
+        directives.includes("frame-src 'none'") &&
+        directives.includes("object-src 'none'") &&
+        scriptSources.includes("'self'") &&
+        nonceSources.length === 1 &&
+        unsafeInlineAbsent &&
+        unsafeEvalAbsent
+    };
+  };
+  const routeResults = PACKAGED_RENDERER_ROUTES.map((route) => {
+    const matches = validPayloads.filter((entry) => entry.route === route);
+    const payload = matches.length === 1 ? matches[0] : null;
+    const responses = Array.isArray(payload?.consecutiveResponses)
+      ? payload.consecutiveResponses
+      : [];
+    const responsePolicies = responses.map((response) => inspectPolicy(response?.cspHeader));
+    const responseNonces = responsePolicies.map((policy) => policy.nonce);
+    const violations = Array.isArray(payload?.violations) ? payload.violations : [];
+    const expectedConnectViolation = violations.some(expectedViolation);
+    const unexpected = violations.filter((violation) => !expectedViolation(violation));
+    const consecutiveNoncesUnique =
+      responseNonces.length === 2 &&
+      responseNonces.every((nonce) => typeof nonce === 'string') &&
+      responseNonces[0] !== responseNonces[1];
+    const scriptUnsafeInlineAbsent =
+      responsePolicies.length === 2 && responsePolicies.every((policy) => policy.unsafeInlineAbsent);
+    const scriptUnsafeEvalAbsent =
+      responsePolicies.length === 2 && responsePolicies.every((policy) => policy.unsafeEvalAbsent);
+    const responsesConform =
+      responses.length === 2 &&
+      responses.every(
+        (response, index) =>
+          response?.status === 200 &&
+          typeof response?.contentType === 'string' &&
+          response.contentType.startsWith('text/html') &&
+          response.documentComplete === true &&
+          response.inlineScriptCount > 0 &&
+          response.inlineScriptNoncesMatch === true &&
+          responsePolicies[index]?.pass === true
+      );
+    return {
+      route,
+      payloadCount: matches.length,
+      documentNonce: payload?.documentNonce ?? null,
+      documentInlineScriptCount: payload?.documentInlineScriptCount ?? 0,
+      documentInlineScriptNoncesMatch: payload?.documentInlineScriptNoncesMatch === true,
+      responseNonces,
+      consecutiveNoncesUnique,
+      scriptUnsafeInlineAbsent,
+      scriptUnsafeEvalAbsent,
+      responsesConform,
+      expectedConnectViolation,
+      unexpectedViolations: unexpected,
+      windowOpenReturnedNull: payload?.windowOpen?.returned === 'null',
+      navigationAttempted: typeof payload?.navigationAttempted === 'string',
+      pass:
+        payload !== null &&
+        typeof payload.documentNonce === 'string' &&
+        payload.documentInlineScriptCount > 0 &&
+        payload.documentInlineScriptNoncesMatch === true &&
+        payload.responseError === null &&
+        consecutiveNoncesUnique &&
+        responsesConform &&
+        expectedConnectViolation &&
+        unexpected.length === 0 &&
+        payload.windowOpen?.returned === 'null' &&
+        typeof payload.navigationAttempted === 'string'
+    };
+  });
+  const allObservedNonces = routeResults.flatMap((result) => [
+    result.documentNonce,
+    ...result.responseNonces
+  ]).filter((nonce) => typeof nonce === 'string');
+  const allObservedNoncesUnique =
+    allObservedNonces.length === PACKAGED_RENDERER_ROUTES.length * 3 &&
+    new Set(allObservedNonces).size === allObservedNonces.length;
+  const unexpectedViolations = routeResults.flatMap((result) =>
+    result.unexpectedViolations.map((violation) => ({ route: result.route, violation }))
+  );
+  const windowOpenDeniedCount = (logText.match(/renderer\.window_open\.denied/g) ?? []).length;
+  const navigationDeniedCount = (logText.match(/renderer\.navigation\.denied/g) ?? []).length;
+  const cspHeaderPresent = routeResults.every((result) => result.responsesConform);
+  const cspViolationObserved = routeResults.every((result) => result.expectedConnectViolation);
+  const windowOpenReturnedNull = routeResults.every((result) => result.windowOpenReturnedNull);
+  const windowOpenDeniedLogged = windowOpenDeniedCount >= PACKAGED_RENDERER_ROUTES.length;
+  const navigationDeniedLogged = navigationDeniedCount >= PACKAGED_RENDERER_ROUTES.length;
   return {
     probePayloadCount: payloads.length,
-    cspHeader,
+    requiredRoutes: PACKAGED_RENDERER_ROUTES,
+    routeResults,
+    allObservedNoncesUnique,
     cspHeaderPresent,
     cspViolationObserved,
     unexpectedViolations,
     windowOpenReturnedNull,
     windowOpenDeniedLogged,
-    navigationAttempted: typeof payload?.navigationAttempted === 'string',
+    navigationAttempted: routeResults.every((result) => result.navigationAttempted),
     navigationDeniedLogged,
     pass:
-      payload !== null &&
+      payloads.length === PACKAGED_RENDERER_ROUTES.length &&
+      routeResults.every((result) => result.pass) &&
+      allObservedNoncesUnique &&
       cspHeaderPresent &&
       cspViolationObserved &&
       unexpectedViolations.length === 0 &&
@@ -653,12 +746,14 @@ export async function runProof(args) {
     while (Date.now() < deadline && gui.child.exitCode === null && gui.child.signalCode === null) {
       snapshots.push(await captureTcpSnapshot([daemon.child.pid, gui.child.pid]));
       const combined = `${gui.captured()}\n${daemon.captured()}`;
+      const rendererProbeCount = (combined.match(/\[renderer-security-probe\]/g) ?? []).length;
+      const navigationDenialCount = (combined.match(/renderer\.navigation\.denied/g) ?? []).length;
       if (
         combined.includes('Blocked renderer outbound request by network policy') &&
         combined.includes('[network-policy-probe]') &&
-        combined.includes('[renderer-security-probe]') &&
+        rendererProbeCount >= PACKAGED_RENDERER_ROUTES.length &&
         combined.includes('[egress-layer-probe]') &&
-        combined.includes('renderer.navigation.denied') &&
+        navigationDenialCount >= PACKAGED_RENDERER_ROUTES.length &&
         snapshots.length >= 4
       ) break;
       await sleep(300);

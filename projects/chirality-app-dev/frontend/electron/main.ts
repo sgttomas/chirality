@@ -29,8 +29,8 @@ import {
 } from './desktop-project-client';
 import { resolvePackagedDaemonInstructionRoot } from './daemon-instruction-root';
 import {
+  applyPackagedRendererRequestPolicy,
   buildRendererContentSecurityPolicy,
-  CONTENT_SECURITY_POLICY_HEADER,
   installRendererWindowPolicy,
   rendererWebPreferences,
   runEgressLayerProbe,
@@ -479,12 +479,10 @@ async function startPackagedRendererServer(): Promise<RendererServer> {
 
   await nextApp.prepare();
   const handle = nextApp.getRequestHandler();
-  // The packaged renderer document is served with the renderer CSP at the
-  // source; the per-window onHeadersReceived hook only fills in when a response
-  // (for example the dev server's) carries none.
-  const contentSecurityPolicy = buildRendererContentSecurityPolicy({ mode: 'packaged' });
   const server = createServer((req, res) => {
-    res.setHeader(CONTENT_SECURITY_POLICY_HEADER, contentSecurityPolicy);
+    // Derive the policy once per request and expose its nonce to Next before it
+    // renders. The helper attaches the byte-identical policy to the response.
+    applyPackagedRendererRequestPolicy(req, res);
     handle(req, res);
   });
 
@@ -517,8 +515,11 @@ async function startPackagedRendererServer(): Promise<RendererServer> {
   };
 }
 
-function createMainWindow(rendererUrl: string): BrowserWindow {
+const RENDERER_SECURITY_PROBE_ROUTES = ['/', '/chat', '/pipeline', '/workbench'] as const;
+
+function createMainWindow(rendererUrl: string, route = '/'): BrowserWindow {
   const rendererOrigin = new URL(rendererUrl).origin;
+  const rendererPageUrl = new URL(route, rendererUrl).toString();
   // Web preferences come from the hardening policy and are asserted there:
   // creation fails closed rather than producing a weaker window.
   const window = new BrowserWindow({
@@ -535,16 +536,19 @@ function createMainWindow(rendererUrl: string): BrowserWindow {
   registerRendererEgressPolicy(window);
   installRendererWindowPolicy(window, {
     rendererOrigin,
-    contentSecurityPolicy: buildRendererContentSecurityPolicy({
-      mode: app.isPackaged ? 'packaged' : 'development',
-      rendererOrigin
-    }),
+    // Packaged responses must keep the request nonce created by the custom
+    // server; synthesizing a static response fallback here would disagree with
+    // the rendered inline scripts. Development keeps its existing static
+    // fallback and allowances.
+    contentSecurityPolicy: app.isPackaged
+      ? undefined
+      : buildRendererContentSecurityPolicy({ mode: 'development', rendererOrigin }),
     // http(s) targets of a renderer window.open / target="_blank" go to the
     // system browser rather than a child window carrying this app's bridge.
     openExternal: (url) => shell.openExternal(url),
     log: (level, event, detail) => desktopLogger.log(level, event, detail)
   });
-  window.loadURL(rendererUrl);
+  window.loadURL(rendererPageUrl);
   void runRendererNetworkProbe(window);
   runRendererSecurityProbe(window, { env: process.env });
   runEgressLayerProbe(window, { env: process.env });
@@ -699,7 +703,16 @@ async function initializeGui(): Promise<void> {
     }
   });
 
-  createMainWindow(rendererUrl);
+  if (app.isPackaged && process.env.CHIRALITY_RENDERER_SECURITY_PROBE === '1') {
+    // The isolated packaged proof loads every operator route in a real
+    // BrowserWindow. Outside that explicit proof environment, startup remains
+    // one window at `/` as before.
+    for (const route of RENDERER_SECURITY_PROBE_ROUTES) {
+      createMainWindow(rendererUrl, route);
+    }
+  } else {
+    createMainWindow(rendererUrl);
+  }
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {

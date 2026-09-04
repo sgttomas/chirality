@@ -1,0 +1,84 @@
+{
+  "generatedAt": "2026-09-04T16:37:00.526Z",
+  "harnessBaseUrl": "http://127.0.0.1:52124",
+  "projectRoot": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev",
+  "requestedProjectRoot": "/private/tmp/chirality-app-v3-csp-20260904/nodeN/projects/chirality-app-dev",
+  "stagedFromInstructionRoot": false,
+  "status": "pass",
+  "testCount": 8,
+  "results": [
+    {
+      "id": "setup.server_reachable",
+      "status": "pass",
+      "durationMs": 26,
+      "details": {
+        "httpStatus": 200
+      }
+    },
+    {
+      "id": "regression.session_crud",
+      "status": "pass",
+      "durationMs": 67,
+      "details": {
+        "sessionId": "b5573c95-0afa-4156-9701-73389a8d8517",
+        "listedCount": 1
+      }
+    },
+    {
+      "id": "section8.boot_error_taxonomy",
+      "status": "pass",
+      "durationMs": 148,
+      "details": {
+        "checkedCodes": [
+          "SESSION_NOT_FOUND",
+          "SDK_FAILURE",
+          "BOOT_CONFORMANT",
+          "WORKING_ROOT_INACCESSIBLE"
+        ]
+      }
+    },
+    {
+      "id": "section8.smoke_stream",
+      "status": "pass",
+      "durationMs": 133,
+      "details": {
+        "eventCount": 8
+      }
+    },
+    {
+      "id": "section8.session_persistence_resume",
+      "status": "pass",
+      "durationMs": 288,
+      "details": {
+        "adapterId": "stub",
+        "providerId": "stub",
+        "engineSessionId": "stub_60306d77-c4c5-4cd5-aa32-6764897b7bc3"
+      }
+    },
+    {
+      "id": "section8.permissions_dontask",
+      "status": "pass",
+      "durationMs": 166,
+      "details": {
+        "denyEvents": 7,
+        "allowEvents": 9
+      }
+    },
+    {
+      "id": "section8.interrupt_sigint",
+      "status": "pass",
+      "durationMs": 120,
+      "details": {
+        "interruptStatus": 200
+      }
+    },
+    {
+      "id": "section8.sdk_native_stream",
+      "status": "pass",
+      "durationMs": 136,
+      "details": {
+        "eventCount": 8
+      }
+    }
+  ]
+}

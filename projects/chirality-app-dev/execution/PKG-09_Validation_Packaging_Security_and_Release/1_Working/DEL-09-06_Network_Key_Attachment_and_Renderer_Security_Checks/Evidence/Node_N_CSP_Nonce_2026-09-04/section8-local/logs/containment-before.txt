@@ -1,0 +1,12 @@
+# daemon electron pid 53423 (controller/pgid 53419) — TCP sockets (expect none):
+# daemon electron pid 53423 — Unix sockets under the disposable user-data root:
+Electron 53423 ryan   31u  unix 0x90972ead8b4d73e9      0t0      /private/tmp/chirality-s8.jBc2e1/runtime/control.sock
+Electron 53423 ryan   34u  unix 0xaa7f5290395bd508      0t0      /private/tmp/chirality-s8.jBc2e1/runtime/control.sock
+# all TCP listeners owned by daemon process-group members (expect none):
+# control socket mode:
+srw-------@ 1 ryan  wheel  0 Sep  4 10:36 /private/tmp/chirality-s8.jBc2e1/runtime/control.sock
+# runtime directory mode:
+drwx------@ 6 ryan  wheel  192 Sep  4 10:36 /private/tmp/chirality-s8.jBc2e1/runtime
+# listeners on port 52124 (expect the next dev server only):
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+node    53476 ryan   13u  IPv4 0xb648d472c688a501      0t0  TCP 127.0.0.1:52124 (LISTEN)
