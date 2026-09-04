@@ -115,7 +115,9 @@
   .m .chip b { font-weight: 500; color: var(--ink); }
   .m .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); display: inline-block; flex: none; }
   .m .dot.run { background: var(--brand-accent); box-shadow: 0 0 0 3px var(--hl); }
-  .m .body { display: grid; grid-template-columns: var(--navw) 1fr var(--railw); min-height: 0; }
+  .m .body { display: grid; grid-template-columns: var(--navw) minmax(0, 1fr) var(--railw); min-height: 0; }
+  .m .center { min-width: 0; }
+  .m .ctx { flex-wrap: wrap; row-gap: 4px; }
   .m .nav, .m .rail { min-height: 0; overflow: hidden; background: var(--side); color: var(--side-ink); position: relative; }
   .m .nav { border-right: 1px solid var(--rule); }
   .m .rail { border-left: 1px solid var(--rule); display: grid; grid-template-rows: auto 1fr auto; align-content: start; }
@@ -282,6 +284,32 @@
   .m .ro { margin: 10px 18px 0; font-size: 12px; color: var(--side-faint); border: 1px solid var(--rule); border-radius: 6px; padding: 5px 10px; }
   .m .kvs { padding: 10px 18px 4px; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 12.5px; color: var(--side-ink); }
   .m .kvs span:nth-child(odd) { color: var(--side-faint); }
+  /* workflows */
+  .m .wf { padding: 8px 18px 6px; border-bottom: 1px solid var(--rule); }
+  .m .wf .t { font-weight: 500; color: var(--side-ink); font-size: 13px; display: flex; justify-content: space-between; gap: 8px; }
+  .m .wf .t .st { font-weight: 400; font-size: 11.5px; color: var(--side-faint); white-space: nowrap; }
+  .m .wf .meta { font-size: 11.5px; color: var(--side-faint); margin-top: 2px; }
+  .m .wf .bar { height: 3px; background: var(--side-active); border-radius: 2px; margin-top: 7px; overflow: hidden; }
+  .m .wf .bar i { display: block; height: 100%; background: var(--brand-accent); }
+  .m .wf.sel { background: var(--side-active); }
+  .m .steps2 { padding: 6px 0 4px; }
+  .m .steps2 .stp { display: grid; grid-template-columns: 18px 1fr auto; gap: 8px; align-items: baseline; padding: 4px 18px; font-size: 12.5px; color: var(--side-soft); }
+  .m .steps2 .stp b { font-weight: 500; color: var(--side-ink); }
+  .m .steps2 .stp .n { font-size: 11px; color: var(--side-faint); width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--rule-strong); display: grid; place-items: center; transform: translateY(2px); }
+  .m .steps2 .stp.done .n { background: var(--ok); border-color: var(--ok); color: #fff; }
+  .m .steps2 .stp.cur { background: var(--hl); }
+  .m .steps2 .stp.cur .n { background: var(--brand-accent); border-color: var(--brand-accent); color: #fff; }
+  .m .steps2 .stp .gate { font-size: 11px; color: var(--warn); white-space: nowrap; }
+  .m .form { padding: 6px 18px; }
+  .m .form .fl { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12.5px; color: var(--side-ink); padding: 4px 0; min-width: 0; }
+  .m .form .fl > :last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .m .form .fl .sel { max-width: 200px; }
+  .m .form .fl small { color: var(--side-faint); }
+  .m .form .fl .sel { background: var(--side); }
+  .m .form .req { color: var(--warn); font-size: 11px; }
+  .m .form .ta { border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--center); color: var(--soft); font-size: 12px; padding: 8px 10px; line-height: 1.45; margin: 4px 0 6px; }
+  .m .ctx .lbl.wfl { color: var(--brand-accent); }
+  .m .ctx .lbl.wfl::before { content: "◆"; font-size: 9px; }
   /* activity strip */
   .m .activity { border-top: 1px solid var(--rule); background: var(--side); color: var(--side-soft); display: flex; align-items: center; gap: 18px; padding: 7px 18px; font-size: 12.5px; }
   .m .activity b { font-weight: 500; color: var(--side-ink); }
@@ -332,6 +360,8 @@
           <li><b>Document viewer that drags and expands.</b> The divider drags between 280 and about 60% of the window. The expand toggle jumps to a reading width and collapses the left panel to a strip. Pop-out puts the document in its own window. Close returns the panel to Files.</li>
           <li><b>Woven in both directions.</b> A reply names a document as a chip; click opens it beside the chat. Select text in the document; "Ask about this" quotes it into the composer with the file and line range attached.</li>
           <li><b>Account row pinned to the left panel.</b> Name plus two status dots, OpenAI and local model. Click for the portal popover: sign in or out, consent, the local model switch, Settings, Appearance, About. Settings open in the right panel. Steps 12 to 15.</li>
+          <li><b>Workbench returns as a view: Workflows.</b> The folder\'s governed workflows in the right panel with role, policy, roadmap position, and next human gate. Opening one steers the chat; the current step shows in the context line. Created from chat with three required declarations: folder, Agent 1 role, delegation policy. Steps 16 to 20.</li>
+          <li><b>The ladder.</b> Plain chat, chat with a specification, governed workflow. Each rung is a deliberate step in the context line; most work stays on the first.</li>
           <li><b>Activity stays a strip.</b> One line at the bottom that says what is happening now. "Details" opens the Activity view in the right panel. No fourth panel.</li>
         </ul>
       </div>
@@ -368,6 +398,7 @@
         <h3>Right panel: one view at a time</h3>
         <ul class="tight">
           <li><b>Files</b> is the default: the working root as a tree. Markdown, text, CSV, JSON, images, and PDF open in-app. Anything else shows a "Reveal in Finder" row instead of a viewer.</li>
+          <li><b>Workflows</b> lists the folder\'s governed workflows and the templates it qualifies for. Opening one shows its roadmap; Follow steers the chat.</li>
           <li><b>Who is working</b> lists the live session and its children with status. Clicking a child opens its replay here.</li>
           <li><b>Activity</b> is the full log: tools, events, children. The strip at the bottom is its summary.</li>
           <li><b>Document</b> and <b>Session</b> appear as a breadcrumb over whichever view they came from, with a back arrow, so the tab row never grows.</li>
@@ -380,7 +411,7 @@
   <!-- ============ WALKTHROUGH ============ -->
   <div class="panel" id="p-walk" hidden>
     <h2>Walkthrough</h2>
-    <p>Sixteen states, one after another. The umber ring marks what was clicked to reach the next state. Use the list, the buttons, or the arrow keys.</p>
+    <p>Twenty-one states, one after another. The umber ring marks what was clicked to reach the next state. Use the list, the buttons, or the arrow keys.</p>
     <div class="stepbar"><button id="prev">‹ prev</button><button id="next">next ›</button><span class="sp"></span><span class="sw"><button aria-pressed="true" data-theme-of="walk" data-val="light">light</button><button aria-pressed="false" data-theme-of="walk" data-val="dark">dark</button></span></div>
     <div class="story">
       <div>
@@ -525,6 +556,11 @@
   function transcript(opts) {
     opts = opts || {};
     var ref1 = '<span class="ref' + (opts.hovRef ? ' hov' : '') + (opts.hitRef ? ' hit' : '') + '">DEL-09-01 status</span>';
+    if (opts.wfChat) {
+      return '<div class="msg"><div class="who">Working Items</div><p>Step 4 of 7, comparing the local rerun against the accepted bundle. The premerge summary bytes match revision 2 and the evaluator inventory is unchanged.</p><ul><li>8 of 8 Section 8 checks pass locally</li><li>Behaviour projection equal to <span class="ref">Revision 2 bundle</span></li></ul><p>Step 5 is yours: accept this as revision 3, or decline. I have not written anything to the status file.</p></div>' +
+        '<div><span class="tool"><span class="dot"></span>Compared 3 manifests</span></div>' +
+        '<div class="msg"><div class="who">You</div><p>Accept it.</p></div>';
+    }
     if (opts.fresh) { return '<div class="empty">Ask <b>Working Items</b> something about <b>chirality-app-dev</b>.<br>Pick a different folder or agent below before you start.</div>'; }
     var t = '<div class="msg"><div class="who">You</div><p>Assess DEL-09-01 revision 2 against the PR #692 basis and tell me whether revision 3 is owed after #693.</p></div>';
     if (opts.running) {
@@ -548,9 +584,12 @@
     var folder = opts.fresh
       ? '<span class="sel' + (opts.hitFolder ? ' hit up' : '') + '"' + (opts.hitFolder ? ' data-tip="Choose the folder this chat works in"' : '') + '><b>' + (opts.noFolder ? 'Choose folder' : 'chirality-app-dev') + '</b></span>'
       : '<span class="lbl" title="This chat works in chirality-app-dev">chirality-app-dev</span>';
-    var controls = folder + '<span class="sel"><b>Working Items</b></span><span class="sel">Ask before changes</span>';
+    var rung = opts.wf ? '<span class="lbl wfl" title="Section 8 preservation · step 4 of 7">Section 8 preservation · step 4 of 7</span>'
+      : (opts.spec ? '<span class="sel"><b>' + opts.spec + '</b></span>'
+      : (opts.fresh ? '<span class="sel' + (opts.hitRung ? ' hit up right' : '') + '"' + (opts.hitRung ? ' data-tip="Plain chat · With a specification… · Governed workflow…"' : '') + '>Plain chat</span>' : ''));
+    var controls = folder + '<span class="sel"><b>Working Items</b></span><span class="sel">' + (opts.wf ? 'Approve each write' : 'Ask before changes') + '</span>' + rung;
     return '<div class="composer">' + q + '<div class="row1"><span class="input' + (opts.text ? ' typed' : '') + '">' + (opts.text || 'Message Working Items…') + '</span><span class="btn icon" title="Attach">⊕</span><span class="send" title="Send">↑</span></div></div>' +
-      '<div class="ctx"><span>' + (opts.fresh ? 'Start in' : 'Working in') + '</span>' + controls + '</div>';
+      '<div class="ctx"><span>' + (opts.fresh ? 'Start in' : (opts.wf ? 'Following' : 'Working in')) + '</span>' + controls + '</div>';
   }
 
   var CTL = function (opts) {
@@ -559,8 +598,9 @@
     return '<div class="ctl">' + c('⋮', 'menu', 'Menu') + c('↗', 'pop', 'Pop out') + c('⤢', 'exp', opts.on === 'exp' ? 'Return' : 'Expand') + c('×', 'close', 'Close') + '</div>';
   };
 
-  function railTabs(on) {
-    return '<div class="railtabs"><span class="' + (on === 'files' ? 'on' : '') + '">Files</span><span class="' + (on === 'agents' ? 'on' : '') + '">Who is working</span><span class="' + (on === 'activity' ? 'on' : '') + '">Activity</span></div>';
+  function railTabs(on, opts) {
+    opts = opts || {};
+    return '<div class="railtabs"><span class="' + (on === 'files' ? 'on' : '') + '">Files</span><span class="' + (on === 'workflows' ? 'on' : '') + (opts.hitWf ? ' hit' : '') + '"' + (opts.hitWf ? ' data-tip="The folder\'s governed workflows"' : '') + '>Workflows</span><span class="' + (on === 'agents' ? 'on' : '') + '">Who is working</span><span class="' + (on === 'activity' ? 'on' : '') + '">Activity</span></div>';
   }
 
   function tree(opts) {
@@ -599,7 +639,7 @@
 
   function railFiles(opts) {
     opts = opts || {};
-    return '<div class="railhead">' + railTabs('files') + CTL({}) + '</div>' + tree(opts) + '<div class="railfoot"><span class="btn">Choose folder</span><span class="n" style="color:var(--side-faint);font-size:12px">chirality-app-dev</span></div>';
+    return '<div class="railhead">' + railTabs('files', opts) + CTL({}) + '</div>' + tree(opts) + '<div class="railfoot"><span class="btn">Choose folder</span><span class="n" style="color:var(--side-faint);font-size:12px">chirality-app-dev</span></div>';
   }
 
   function railDoc(opts) {
@@ -670,6 +710,56 @@
       '<div class="railfoot"><span class="n" style="color:var(--side-faint);font-size:12px">Opt-in Preview · account is app-wide; consent and permissions are per folder</span></div>';
   }
 
+  function railWorkflows(opts) {
+    opts = opts || {};
+    return '<div class="railhead">' + railTabs('workflows') + CTL({}) + '</div>' +
+      '<div style="overflow:hidden">' +
+        '<div class="wf' + (opts.hitOpen ? ' hit' : '') + '"' + (opts.hitOpen ? ' data-tip="Opens the roadmap; the chat follows it"' : '') + '><div class="t"><span>Section 8 preservation</span><span class="st">step 4 of 7</span></div><div class="meta">Working Items · Approve each write · owner gate at step 5</div><div class="bar"><i style="width:50%"></i></div></div>' +
+        '<div class="wf"><div class="t"><span>PDF to Markdown: pump datasheets</span><span class="st">done</span></div><div class="meta">PDF2MD · Run bounded briefs · 14 pages</div><div class="bar"><i style="width:100%"></i></div></div>' +
+        '<div class="wf"><div class="t"><span>Equation audit: hydraulics handbook</span><span class="st">step 1 of 6</span></div><div class="meta">Equation Audit · Ask before changes</div><div class="bar"><i style="width:8%"></i></div></div>' +
+        '<div class="h">Available to start</div>' +
+        '<div class="srow"><i class="idle"></i><span>Deliverable corpus reconciliation<span class="sub">Reconciliation · needs a decomposition</span></span><span class="id">template</span></div>' +
+        '<div class="srow"><i class="idle"></i><span>Domain handbook decomposition<span class="sub">Domain Decomp · from sources in this folder</span></span><span class="id">template</span></div>' +
+      '</div>' +
+      '<div class="railfoot"><span class="btn primary">New workflow…</span><span class="n" style="color:var(--side-faint);font-size:12px">3 in this folder</span></div>';
+  }
+
+  function railWorkflowOpen(opts) {
+    opts = opts || {};
+    var steps = [
+      ['Confirm basis and trigger surfaces', 'done', ''],
+      ['Stage the rerun procedure', 'done', ''],
+      ['Rerun Section 8 locally', 'done', ''],
+      ['Compare against the accepted bundle', 'cur', ''],
+      ['Owner accepts or declines the revision', '', 'human gate'],
+      ['Record the revision in the status file', '', ''],
+      ['Close and hand off', '', '']
+    ];
+    var list = steps.map(function (st, i) { return '<div class="stp ' + st[1] + '"><span class="n">' + (st[1] === 'done' ? '✓' : (i + 1)) + '</span><span>' + (st[1] === 'cur' ? '<b>' + st[0] + '</b>' : st[0]) + '</span><span class="gate">' + st[2] + '</span></div>'; }).join('');
+    return '<div class="railhead"><div class="crumb"><span class="back">‹ Workflows</span><span>›</span><b>Section 8 preservation</b></div>' + CTL({}) + '</div>' +
+      '<div style="overflow:hidden">' +
+        '<div class="kvs"><span>Agent</span><span>Working Items</span><span>Folder</span><span>chirality-app-dev</span><span>Policy</span><span>Approve each write · briefs to local model</span><span>Roadmap</span><span>Section 8 preservation v2 · accepted 2026-09-03</span></div>' +
+        '<div class="h">Roadmap</div><div class="steps2">' + list + '</div>' +
+      '</div>' +
+      '<div class="railfoot"><span class="btn primary' + (opts.hitFollow ? ' hit up' : '') + '"' + (opts.hitFollow ? ' data-tip="This chat now follows the roadmap"' : '') + '>Follow in this chat</span><span class="btn">Pause</span></div>';
+  }
+
+  function railNewWorkflow(opts) {
+    opts = opts || {};
+    return '<div class="railhead"><div class="crumb"><span class="back">‹ Workflows</span><span>›</span><b>New workflow</b></div>' + CTL({}) + '</div>' +
+      '<div class="form" style="overflow:hidden">' +
+        '<p style="margin:4px 0 4px;font-size:12px;color:var(--side-soft);line-height:1.4">Needs all three declarations. Until then this stays a plain chat.</p>' +
+        '<div class="fl"><span>Folder</span><span class="lbl">chirality-app-dev</span></div>' +
+        '<div class="fl"><span>Agent 1 role</span><span class="sel"><b>Working Items</b></span></div>' +
+        '<div class="fl"><span>Delegation policy</span><span class="sel"><b>Approve each write</b></span></div>' +
+        '<div class="fl"><span>Briefs run on</span><span class="sel"><b>Local model</b></span></div>' +
+        '<div class="fl"><span>Roadmap</span><span class="sel"><b>Draft from this chat</b></span></div>' +
+        '<div class="ta">1. Confirm basis and trigger surfaces<br>2. Stage the rerun procedure<br>3. Rerun Section 8 locally<br>4. Compare against the accepted bundle<br>5. Owner accepts or declines — human gate<br>6. Record the revision<br>7. Close and hand off</div>' +
+        '<p style="margin:2px 0 0;font-size:11.5px;color:var(--side-faint);line-height:1.4">Written to <b>.chirality/workflows/section-8-preservation.md</b> in the folder. It steers; it is not the record.</p>' +
+      '</div>' +
+      '<div class="railfoot"><span class="btn primary' + (opts.hitCreate ? ' hit up' : '') + '"' + (opts.hitCreate ? ' data-tip="Enabled once all three are set"' : '') + '>Create and follow</span><span class="btn">Cancel</span></div>';
+  }
+
   function railChild() {
     return '<div class="railhead"><div class="crumb"><span class="back">‹ Who is working</span><span>›</span><b>Researcher</b></div>' + CTL({}) + '</div>' +
       '<div style="overflow:hidden">' +
@@ -702,6 +792,9 @@
       case 'agents': rail = railAgents(s); break;
       case 'child': rail = railChild(s); break;
       case 'settings': rail = railSettings(s); break;
+      case 'workflows': rail = railWorkflows(s); break;
+      case 'workflow': rail = railWorkflowOpen(s); break;
+      case 'newwf': rail = railNewWorkflow(s); break;
       default: rail = railFiles(s);
     }
     var narrow = (1180 - navw - railw) < 600;
@@ -745,6 +838,16 @@
       c: '<span class="k">Portal</span><h3>Everything quick, nothing deep</h3><p>OpenAI: one account for the app, with the consent state of the current chat\'s folder and a way to that folder\'s settings. Local model: what is running, one switch to stop or start it. Then Settings, Appearance, Legacy window, About with the Opt-in Preview label. There is no gear anywhere else. Click <b>Settings</b>.</p>' },
     { t: 'Settings in the panel', s: { rail: 'settings', railw: 380 },
       c: '<span class="k">Settings view</span><h3>The tertiary panel again, not a modal</h3><p>Five groups: OpenAI account, app-wide; This folder, with consent, command network, and role bound to the chat\'s folder; Local model with the server switch, the model list, and explicit Activate; Keys; Appearance. These are the existing account-consent, runtime, and API-key panels, restyled and split along the account-versus-folder line. Expand or pop out like any other view.</p>' },
+    { t: 'The ladder: plain chat, specification, workflow', s: { fresh: true, hitRung: true },
+      c: '<span class="k">Ladder</span><h3>Three rungs, each a deliberate step</h3><p>The context line under the message has a fourth item in a new chat: <b>Plain chat</b>. Its menu offers <b>With a specification…</b>, a skill or profile applied to this chat with no roadmap, and <b>Governed workflow…</b>, which needs an Agent 1 role, this folder, and a delegation policy before it exists. Most days stay on the first rung.</p>' },
+    { t: 'Workflows view', s: { rail: 'workflows', railw: 340, hitOpen: true },
+      c: '<span class="k">Right panel · Workflows</span><h3>The folder\'s governed workflows, in the side panel</h3><p>What Workbench becomes: a view, not a surface. Each workflow shows its Agent 1 role, delegation policy, roadmap position, and the next human gate. Templates the folder qualifies for are listed underneath. The dialogue stays the interface; a workflow steers it from here. Click one.</p>' },
+    { t: 'Roadmap open', s: { rail: 'workflow', railw: 380, hitFollow: true },
+      c: '<span class="k">Roadmap</span><h3>Steps, gates, and who runs the briefs</h3><p>The roadmap is a file in the folder. It names the role, the policy, where briefs run, and the steps with their human gates marked. Nothing here is the record; the status file is. Click <b>Follow in this chat</b>.</p>' },
+    { t: 'Chat steered by a workflow', s: { wf: true, wfChat: true, rail: 'workflow', railw: 340 },
+      c: '<span class="k">Context injection</span><h3>The current step is always visible</h3><p>The context line now reads <b>Following</b> with the workflow and step, so you always know what the agent is steered toward. The agent works the step, stops at the gate, and says so. Accepting is your act; the app records it against the content it accepted.</p>' },
+    { t: 'Create a workflow from chat', s: { fresh: true, spec: 'Governed workflow', rail: 'newwf', railw: 400, hitCreate: true },
+      c: '<span class="k">From chat</span><h3>Three declarations, then a roadmap</h3><p>Choosing Governed workflow from the ladder opens this in the side panel. Folder is fixed from the chat. Agent 1 role and delegation policy, including <b>None</b>, are required; the app refuses to create a workflow with any of the three missing. The roadmap can be drafted from the conversation so far or taken from a template. It is written to the folder and the chat follows it.</p>' },
     { t: 'Signed out, no local model', s: { signedOut: true, localOff: true, pop: true, rail: 'settings', railw: 380 },
       c: '<span class="k">First run</span><h3>The row asks for the one thing you need</h3><p>Nothing connected: the avatar is a dashed circle, the row says Sign in, both dots are grey. The popover offers Sign in and Set up for the local model. In Settings the folder group reads "needs sign-in" because consent cannot be granted without an account. You can still use a stored API key without either.</p>' }
   ];

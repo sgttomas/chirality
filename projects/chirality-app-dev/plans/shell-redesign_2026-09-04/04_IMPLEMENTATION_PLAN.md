@@ -18,7 +18,7 @@ Seven tranches in dependency order. Each is one PR, one independent review, one 
 |---|---|---|---|---|---|
 | T1 | Centre invariance and retirement | — | DEL-02-02 (retirement), DEL-02-04 (state) | no | no |
 | T2 | Header, Stone tokens, copy pass | T1 | DEL-02-01 (shell), DEL-01-03 (copy) | no | no |
-| T3 | Right panel switcher, Files, Document viewer | T1 | DEL-02-03 (tree/viewer), DEL-02-02 (Who is working), DEL-05-04 (Session view) | no (new `app/api/working-root/file` route) | verify |
+| T3 | Right panel switcher, Files, Document viewer, Workflows view | T1 | DEL-02-03 (tree/viewer), DEL-02-02 (Who is working, Workflows), DEL-05-04 (Session view), DEL-07-03 (workflow file contract) | no (new `app/api/working-root/file` and `workflows` routes) | verify |
 | T4 | Weaving: reference chips, Ask and Attach | T3 | DEL-02-03, DEL-02-01 | possibly `lib/harness/ui-attachments.ts` | yes if `lib/harness/**` changes |
 | T5 | Activity strip and Activity view | T3 | DEL-02-04 | no | no |
 | T6 | Left panel organisation, account row, popover, Settings view | T2, T3 | DEL-02-01 (left panel), DEL-02-05 (account, keys, runtime), DEL-02-04 (state) | no | no |
@@ -45,7 +45,7 @@ Deliverable folders: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_Sta
 
 **Scope.**
 - `shell-frame.tsx`: for `variant="workspace"` render no header at all. The wordmark moves into the Navigator's head. The runtime reconnect action moves to the activity strip's dot (T5; until T5 lands, keep the existing chip inside the activity shelf header so the action is never lost). The settings disclosure's contents move in T6; until then mount `RuntimeSettings` and `ApiKeySettings` behind a temporary "Settings" entry in the navigator footer. `ShellFrame` props `section`, `title`, `subtitle` become optional and unused by the woven route; the legacy shells keep their header.
-- Context line (SR-21, SR-22): a `ChatContextLine` under the composer box holding `FolderSelect`, `PersonaPicker`, and the mode select; the folder is live only while the active session has no messages and a read-only label afterwards. It writes through the existing `applyProjectRoot` for now (T6 makes the root per chat); "No folder" calls `clearProjectRoot`.
+- Context line (SR-21, SR-22, SR-23): a `ChatContextLine` under the composer box holding `FolderSelect`, `PersonaPicker`, the mode select, and the rung control; the folder is live only while the active session has no messages and a read-only label afterwards. In T2 the rung offers *Plain chat* and *With a specification…* (skills registry read through a new `GET /api/harness/skills?directChat=1`, filtered like the persona roster); *Governed workflow…* is wired in T3. It writes through the existing `applyProjectRoot` for now (T6 makes the root per chat); "No folder" calls `clearProjectRoot`.
 - `globals.css`: new token values (`03_TARGET_SPEC.md` §11) in the existing block; `.shell-wordmark` single colour, no `em` rule; hairline rules replace panel borders in the woven region; message box and context line rules per `03_TARGET_SPEC.md` §4 (SR-22); remove `.woven-eyebrow` usages from markup (rule may stay).
 - `chat-panel.tsx:52-57`: mode labels; `persona-picker.tsx`: display names with identifier tooltips.
 - All copy in `03_TARGET_SPEC.md` §10.
@@ -63,11 +63,12 @@ Deliverable folders: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_Sta
 - **New API** `app/api/working-root/file/route.ts`: `GET ?projectRoot=&path=` returning `{ path, size, mtime, mimeType, content | null, reason? }` for files under the validated working root only, using the same root validation and containment as `working-root/tree` and `readDeliverableContent`; 2MB default cap with `?force=1`; never follows symlinks outside the root; never reads dotfiles under `.git`. Add to the security-check inventory if `validate-harness-*` enumerates API routes (check `frontend/scripts/`).
 - `coordination-panel.tsx` → "Who is working" view using `AgentsProjection`; Work projection unmounted (component and test stay).
 - `selected-session-replay-lens.tsx` mounted as the Session view with the read-only banner and key-value block.
+- Workflows view (SR-23): `workflows-view.tsx`, `workflow-roadmap.tsx`, `new-workflow-form.tsx`; a bounded `GET/POST /api/working-root/workflows` route reading and writing `.chirality/workflows/*.md` under the same containment as the file route, with the front-matter contract owned by DEL-07-03; *Follow* sets persona and mode through the existing session boot path and injects the roadmap through the persona composer's existing instruction-assembly seam (DEL-04-04) as a clearly delimited block. Templates come from `skills/` entries that declare `workflow: true` and their prerequisites.
 - Resize: right handle bounds become `280..expandWidth`; expand toggle; per-view widths persisted (additive fields per `03_TARGET_SPEC.md` §12).
 
 **Tests.** Render tests for: each view's header row and controls; breadcrumb back; file row open; hand-off card for an unsupported type; size guard; expand/return restoring widths; Session view banner. API tests for the new route: containment (path outside root → 403), symlink escape, cap, dotfile, mime detection. Browser review: drag range, expand at 1180px and 1440px, dark theme.
 
-**Acceptance.** Every file in the tree either renders or shows the hand-off card; nothing shows an empty panel. The centre never drops below 420px.
+**Acceptance.** Every file in the tree either renders or shows the hand-off card; nothing shows an empty panel. The centre never drops below 420px. A workflow cannot be created with role or policy unset; following one changes the context line to *Following* and the next turn's system prompt carries the roadmap block; the workflow file never contains status, approval, or evidence fields.
 
 ### T4 — Weaving (SR-09)
 
@@ -151,6 +152,8 @@ Deliverable folders: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_Sta
 | Q7 | Does the account row show the OpenAI dot at all before DEL-02-05-V3-03 lands, or only the local model dot? Proposed: show it, driven by the fake port, labelled `Opt-in Preview` in the tooltip. | show | T6 |
 | Q8 | Root-loop routing for SR-19: does the owner want the shared-login amendment raised as a Root packet now (so DEL-02-05-V3-03 can consume it), or after T6 lands with the split UI on the fake port? | after T6 | DEL-02-05-V3-03 |
 | Q9 | Folder menu contents for a new chat: known folders only, or also a "Recent in Finder" list? Proposed: known folders plus "Choose folder…" only. | known + choose | T2 |
+| Q10 | Workflow file location: `.chirality/workflows/` inside the folder (proposed; travels with the project, git-tracked if the folder is) or the app's own state directory (not project truth, not portable)? | in the folder | T3 |
+| Q11 | Which skills may be applied as a specification from a plain chat? Proposed: those whose `SKILL.md` declares `directChat: true`, mirroring the Type 0/1 filter for personas. | declared opt-in | T2 |
 
 ## 7. Proposed Remaining items (for the owner to seat; PROPOSAL, not selectable)
 
@@ -161,6 +164,10 @@ Format follows the v3 items already in the PKG-02 statuses. Gates, loci, checks,
 **DEL-02-01-V3-01** (`NOT_SELECTABLE_UNTIL: DEL-02-02-V3-03 landed`) — Header removal, Stone tokens, composer folder control, and plain-language copy pass (T2). Write locus: `shell-frame.tsx`, `navigator.tsx`, `globals.css`, `chat-panel.tsx`, `persona-picker.tsx`, a new `folder-select.tsx`, tests. Return: no header in the woven route; wordmark in the left panel; folder select live before the first message and a label after; token block updated with measured contrast. Basis: SR-10 to SR-15, SR-18, SR-21.
 
 **DEL-02-03-V3-01** (`NOT_SELECTABLE_UNTIL: DEL-02-02-V3-03 landed`) — Right panel view switcher, clickable file tree, in-app document viewer with drag and expand, bounded file read endpoint (T3). Write locus: `components/woven-dialogue/**`, `components/shell/file-tree-panel.tsx`, `app/api/working-root/file/**`, `lib/woven-dialogue/woven-workspace-state.ts` (additive), tests. Return: every tree file opens or hands off; API containment tests. Basis: SR-02, SR-04, SR-05.
+
+**DEL-02-02-V3-04** (`NOT_SELECTABLE_UNTIL: DEL-02-03-V3-01 landed; Q10, Q11 ruled`) — Workflows view, roadmap, New workflow form, the ladder's specification and workflow rungs, and the workflow file read/write route (T3 part). Depends on DEL-07-03's front-matter contract for the workflow file. Basis: SR-23.
+
+**DEL-07-03-V3-0n** (`NOT_SELECTABLE_UNTIL: Q10 ruled`) — Governed workflow file contract: front matter, roadmap grammar with gate markers, the rule that it steers and never records. Basis: SR-23; `03_TARGET_SPEC.md` §5.10.
 
 **DEL-05-04-V3-01** (`NOT_SELECTABLE_UNTIL: DEL-02-03-V3-01 landed`) — Session view: replay lens mounted in the right panel with read-only banner and parent link (T3 part). Basis: SR-08.
 

@@ -143,6 +143,17 @@ Owner, adopting the recommendation: "list all folders with the name shown, since
 
 Two options were mocked: A, the three selectors as a second row inside the message box; B, the box holding only the message with the three choices under it as a sentence. The owner ruled: "I want Option B." **Consequence.** The message box contains the message field, the attach control, and the filled round Send arrow, on one line that grows as you type. Directly under the box, in the space that was empty, a **context line** reads "Working in <folder> · <agent> · <permission level>", each part a selector; in a fresh chat it reads "Start in …" and the folder and agent are live. After the first message the folder becomes a fixed label in the same line. Option A is removed from the mock and is not to be revived.
 
+## SR-23 — Workbench returns as the Workflows view; the ladder of plain chat, specification, governed workflow
+
+Owner, 2026-09-04, on what Workbench should be: "That's where the governed workflows are. Then in chat mode there's just options to do things in a working folder, with a particular agent, following any particular delegating policy. And one should be able to use chat mode to create governed workflows (the structure of which is tied to a particular Agent 1 type, must have a working directory selected, and will declare its delegation policy (including 'none'))." The owner agreed with two refinements: keep the centre invariant (Workflows is a right-panel view, not a surface), and offer a rung below a workflow (a specification applied to a plain chat).
+
+**Consequence.**
+- **The ladder.** Every chat sits on one of three rungs, shown as the fourth item of the context line: *Plain chat*; *With a specification* (a skill or profile applied to this chat, no roadmap, no Agent 1 commitment); *Governed workflow*. Each promotion is a deliberate act from that item. Most work stays on the first rung.
+- **A governed workflow** is a file in the folder (`.chirality/workflows/<name>.md`) declaring an Agent 1 role, the folder, a delegation policy (including *None*), where briefs run, and a roadmap of steps with human gates marked. It steers the chat by context injection; it is never the record. The app refuses to create one with any of the three declarations missing.
+- **Workflows view** in the right panel lists the folder's workflows with role, policy, roadmap position, and next human gate, plus templates the folder qualifies for. Opening one shows the roadmap; *Follow in this chat* sets the chat's agent and policy and injects the roadmap. The context line then reads *Following <workflow> · step n of m* so the current step is always visible.
+- **Created from chat** through the ladder's *Governed workflow…* entry, which opens the New workflow form in the right panel: folder fixed from the chat; role and policy required; roadmap drafted from the conversation or taken from a template.
+- SR-06 stands: the retired Workbench code is not revived; the Workflows view is new and small. The owner directed that this work falls into the same redesign tranches rather than a later revision.
+
 ## Decisions explicitly deferred to the owner
 
 Listed in `04_IMPLEMENTATION_PLAN.md` §6. None of them blocks the first two tranches.
