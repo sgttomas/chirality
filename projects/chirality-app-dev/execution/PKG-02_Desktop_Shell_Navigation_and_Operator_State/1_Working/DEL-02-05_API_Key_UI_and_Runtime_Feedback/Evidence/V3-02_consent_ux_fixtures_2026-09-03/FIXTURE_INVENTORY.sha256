@@ -1,0 +1,9 @@
+51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517  docs/CONTRACT.md
+9c9a6677a1bddafca1a74f4baa4f64e9d6149aa17bfd852458c859f1103444a6  frontend/src/__tests__/components/account-consent-settings-states.test.ts
+19c3de7eae88ecc1dcd6787431ae64ff2b43c276dd0b80ea0b794dd354fa5440  frontend/src/__tests__/components/account-consent-settings.test.ts
+b73746db701f572ea501fe66096f1a26a76e7a21e63e629d0888b4e4a41ff04a  frontend/src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts
+417c6fe0a95b20860b85487cd1bbae2177df29ac60c65b8605600456367a93fd  frontend/src/app/globals.css
+0f956ce10510985f0e7e49ff7602b48f04f6b12568b954640f08d69fe191cb69  frontend/src/components/settings/account-consent-settings.tsx
+2097a38736d2370720a4ccabb779d57d38d66e66c2541ae7f7adc88a27005a40  frontend/src/lib/consent/consent-ux-fixtures.ts
+5d3c52a41f041721cb8869100f01dac81cbfea914b9be3f6d0e0511e5db63499  frontend/src/lib/consent/fake-hosted-engine-consent-port.ts
+2caeff6a7a3f2aefa1ce4a167a734214f7ac916746e8c34d26b03c15f8ff006d  frontend/src/lib/consent/hosted-engine-consent-port.ts

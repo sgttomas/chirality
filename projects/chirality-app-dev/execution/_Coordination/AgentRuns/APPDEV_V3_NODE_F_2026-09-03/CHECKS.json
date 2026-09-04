@@ -1,0 +1,379 @@
+{
+  "schema": "chirality-run-checks/v1",
+  "run_id": "APPDEV_V3_NODE_F_2026-09-03",
+  "recorded_at": "2026-09-03",
+  "basis": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
+  "rounds": {
+    "1": "account/consent vocabulary, fake port, thirteen fixtures, settings panel, tests, evidence — content commit 1bda97f990f8c2c7a2b89122ec6e230690702a03 (+ record-only f5b936e78978d583ae6fb3cb560e6e36b50e43b4 adding RETURN.md) = the reviewed freeze",
+    "closeout": "after review 1 PASS (0/0/4/6; no byte under frontend/ changed) — rebased onto origin/main 774b7ba00 (reviewed commits now 0ebeecd94 + 64547069b); _STATUS.md/MEMORY.md closeout; Receipt 215; HANDOFF_STATE.md; MANIFEST.sha256; review filed verbatim",
+    "closeout-2": "PR #689 CONFLICTING after PR #688 (node G) merged; owner ruled #689 merges after the rebase without a second question — rebased onto origin/main 774b7ba00 (reviewed commits now 0ebeecd94 + 64547069b; closeout commit amended); the only conflict was the tail append of loop/LOOP_RECEIPTS.md (Receipt-214 kept first, Receipt-215 after, both intact); no frontend byte changed (all eight node F frontend blobs identical to the reviewed freeze f5b936e78; node G's five frontend files are disjoint); combined-tree gates rerun once"
+  },
+  "toolchain": {
+    "node": "v24.18.0",
+    "npm": "11.16.0",
+    "vitest": "4.1.10",
+    "next": "15.5.21",
+    "electron": "43.2.0",
+    "electron-builder": "26.15.3",
+    "typescript": "5.9.3",
+    "react-test-renderer": "18.3.1",
+    "platform": "darwin 25.6.0 (arm64)"
+  },
+  "environment_preparation": [
+    {
+      "command": "npm ci && npm run build",
+      "cwd": "runtime",
+      "exit": 0,
+      "note": "required so the seven file:-linked @chirality/runtime-* packages resolve; outputs are gitignored"
+    },
+    {
+      "command": "npm ci",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "note": "fresh worktree; no lockfile edit"
+    }
+  ],
+  "checks": [
+    {
+      "id": "receipts-validator",
+      "round": "1",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "VALID; frozen through Receipt-52; versioned receipt contract satisfied (Step 0)"
+    },
+    {
+      "id": "authority-corpus",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "corpus v20; all eight [MATCH]; no drift (Step 0)"
+    },
+    {
+      "id": "pinned-completion-reference",
+      "round": "1",
+      "command": "shasum -a 256 plans/chirality_app_v3_release_execution_plan_final_2026-08-22.html",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "b0a57a917643fbc850b033c043c91a480ea198af84eed213235f5893f257ab5a — matches the workplan pin (Step 0)"
+    },
+    {
+      "id": "app-hold-dispatch-preflight",
+      "round": "1",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-02-05",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict ALLOW; DEL-02-05 NOT_HELD / CLEAR; register sha256 e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f; scan fingerprint a9bfb75515b8c4ced2707b38b5b31e1f9b6c272f5262ceea3064f7196bd75b9b (Step 0; verbatim output in STEP0_DISCOVERY.md §2)"
+    },
+    {
+      "id": "frontend-typecheck",
+      "round": "1",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "tsc --noEmit (app) and tsc -p tsconfig.electron.json clean"
+    },
+    {
+      "id": "frontend-test-focused",
+      "round": "1",
+      "command": "npx vitest run src/__tests__/lib/consent/fake-hosted-engine-consent-port.test.ts src/__tests__/components/account-consent-settings-states.test.ts src/__tests__/components/account-consent-settings.test.ts --reporter=verbose --reporter=json --outputFile.json=<DEL-02-05 Evidence/V3-02_consent_ux_fixtures_2026-09-03>/focused_vitest_results.json",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "3 files, 65 tests (fake-hosted-engine-consent-port 35; account-consent-settings-states 24 [react-test-renderer, D-APP-36]; account-consent-settings 6 [static markup]); stdout + JSON retained in the evidence bundle with the scratch-worktree path normalized to {REPO_ROOT} (raw hashes in EVIDENCE.md §4). An earlier run of the same command before two assertion-side fixes (attribute order in one static-markup expectation; the fixture-distinctness tuple lacked the stale-mismatch marker) showed 63/65; no product change followed."
+    },
+    {
+      "id": "frontend-test-full",
+      "round": "1",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "Test Files 165 passed | 1 skipped (166); Tests 1554 passed | 4 skipped (1558)"
+    },
+    {
+      "id": "frontend-build",
+      "round": "1",
+      "command": "npm run build",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "next build + build:electron"
+    },
+    {
+      "id": "frontend-premerge",
+      "round": "1",
+      "command": "CHIRALITY_HARNESS_PROVIDER=stub NEXT_TELEMETRY_DISABLED=1 node node_modules/next/dist/bin/next dev --port 51447 (pid 52705, ready after 2 s) ; HARNESS_BASE_URL=http://127.0.0.1:51447 npm run harness:validate:premerge ; kill -TERM <pid> && wait",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 1,
+      "status": "fail",
+      "failure_class": "absent runtime-daemon bindings",
+      "summary": "HARNESS_PREMERGE_STATUS=fail; summary.json harnessBaseUrl http://127.0.0.1:51447, testCount 8, 8/8 results fail: setup.server_reachable 'Expected 200; received 503', regression.session_crud and the five section8 checks 'Session creation failed: HTTP 503', boot_error_taxonomy 'Missing-session boot should return 404' — the session routes answer 503 with no runtime daemon bound in the sandbox (dev-server log: POST /api/harness/session/create 503). Same class as Receipts 172 and 177 and node A rounds 1-2 (LOOP_RECEIPTS.md lines 5183, 5313, 6277); no runtime source changed; deferred to PR CI per App AGENTS.md; no pass inferred. Server stopped (SIGTERM, wait returned).",
+      "deferred_to": "PR CI",
+      "classification": "FAIL_DEFERRED_TO_PR_CI"
+    },
+    {
+      "id": "validate-release-quality",
+      "round": "1",
+      "command": "HARNESS_BASE_URL=http://127.0.0.1:51447 npm run validate:release-quality (same stub dev server as frontend-premerge; a first invocation without HARNESS_BASE_URL failed earlier at 'fetch failed' against :3000 with no server and is superseded by this one)",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 1,
+      "status": "fail",
+      "failure_class": "absent runtime-daemon bindings",
+      "summary": "harness contract dependency lint passed; embedded full Vitest 165/1554 pass; typecheck pass; HARNESS_SECTION9_STATUS=pass (16 tests); HARNESS_PREMERGE_STATUS=fail (same 8/8 HTTP 503 class as frontend-premerge) so RELEASE_QUALITY_STATUS=fail, RELEASE_QUALITY_PREMERGE_SKIPPED=false; no skip reason was supplied and no pass is inferred; deferred to PR CI. The '{\"status\":\"FAIL\",\"summaryPath\":\"…chirality-daemon-proof-test-…\"}' line in the embedded Vitest stdout is a passing test's own logged fixture output, not a failed test.",
+      "deferred_to": "PR CI",
+      "classification": "FAIL_DEFERRED_TO_PR_CI"
+    },
+    {
+      "id": "git-diff-check",
+      "round": "1",
+      "command": "git add -A -N . && git diff --check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "no whitespace errors over the full working-tree diff at the freeze"
+    },
+    {
+      "id": "harness-self-check",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "exit 0; pre-existing repo-wide findings only (INFO=14, NOT_APPLICABLE=1, REVIEW=4, WARN=43)"
+    },
+    {
+      "id": "harness-pytest",
+      "round": "1",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q tools/practitioner_harness",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "350 passed"
+    },
+    {
+      "id": "app-hold-integrity",
+      "round": "1",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict PASS; held_count 0; register.match true; register sha256 e7408516cb32ad4414f246b594bdc64a088773d7fd6e1c6629e2184c4ac82f7f"
+    },
+    {
+      "id": "validate-change-scope",
+      "round": "1",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base e59efa4830fb54143c86e511ec35a6d1a476f72e --allowed projects/chirality-app-dev/frontend/src/lib/consent --allowed projects/chirality-app-dev/frontend/src/components/settings/account-consent-settings.tsx --allowed projects/chirality-app-dev/frontend/src/app/globals.css --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_F_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "status PASS; violations [] over the working tree at the freeze (12 paths before the evidence/record files were added; re-run with --head <freeze SHA> immediately after the commit — result in the freeze message)"
+    },
+    {
+      "id": "rebase",
+      "round": "closeout",
+      "command": "git fetch origin && git rebase origin/main",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "onto 774b7ba00b474ba2e5e341cdddab848167d275f1 (PR #688 merge); ledger conflict in loop/LOOP_RECEIPTS.md resolved by keeping Receipt-214 first and Receipt-215 after it, both intact; no other conflict; 0ebeecd94 (content) + 64547069b (record)"
+    },
+    {
+      "id": "frontend-typecheck",
+      "round": "closeout",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "clean after the rebase"
+    },
+    {
+      "id": "frontend-test-full",
+      "round": "closeout",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "Test Files 165 passed | 1 skipped (166); Tests 1554 passed | 4 skipped (1558) after the rebase"
+    },
+    {
+      "id": "authority-corpus",
+      "round": "closeout",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "no drift"
+    },
+    {
+      "id": "app-hold-dispatch-preflight",
+      "round": "closeout",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-02-05",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict ALLOW at repo_head 64547069b"
+    },
+    {
+      "id": "app-hold-integrity",
+      "round": "closeout",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict PASS; held_count 0; register.match true"
+    },
+    {
+      "id": "receipts-validator",
+      "round": "closeout",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "VALID after appending Receipt 215 (a first draft carried the review finding counts in the Checks record and was rejected as DUPLICATED_MEASUREMENT; the counts now live only in the filed review and this file)"
+    },
+    {
+      "id": "git-diff-check",
+      "round": "closeout",
+      "command": "git add -A -N . && git diff --check",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "clean over the closeout working tree; re-run over 774b7ba00..HEAD after the closeout commit (result in the closeout message)"
+    },
+    {
+      "id": "validate-change-scope",
+      "round": "closeout",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base 774b7ba00b474ba2e5e341cdddab848167d275f1 --allowed <the same seven roots> [--head <closeout SHA>]",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "PASS; violations []; 27 paths over the closeout working tree (base = merge-base with origin/main after the rebase, node A post_rebase_note precedent); the --head form was run immediately after the closeout commit (result in the closeout message)"
+    },
+    {
+      "id": "frontend-premerge",
+      "round": "closeout",
+      "command": "(not rerun)",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": null,
+      "status": "not-rerun",
+      "failure_class": "absent runtime-daemon bindings",
+      "summary": "no runtime or session-route source changed by the rebase or the closeout; remains PR-CI-owed with no pass inferred",
+      "deferred_to": "PR CI"
+    },
+    {
+      "id": "rebase",
+      "round": "closeout-2",
+      "command": "git fetch origin && git rebase origin/main ; resolve loop/LOOP_RECEIPTS.md ; git add ; git rebase --continue",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "onto 774b7ba00b474ba2e5e341cdddab848167d275f1 (PR #688 merge); one conflict (LOOP_RECEIPTS.md tail append) resolved 214-then-215; git ls-tree blob ids of the eight node F frontend files equal at f5b936e78 and HEAD; comm of node G's vs node F's frontend paths is empty"
+    },
+    {
+      "id": "receipts-validator",
+      "round": "closeout-2",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "VALID with Receipt-214 then Receipt-215 (Receipt-ID 215, Parent-Receipt Receipt-212, Examined-Through unchanged)"
+    },
+    {
+      "id": "git-diff-check",
+      "round": "closeout-2",
+      "command": "git add -A -N . && git diff --check ; git diff --check 774b7ba00b474ba2e5e341cdddab848167d275f1 HEAD",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "clean over the working tree; range form re-run after the amended commit (result in the closeout message)"
+    },
+    {
+      "id": "validate-change-scope",
+      "round": "closeout-2",
+      "command": "python3 tools/software_workflow/validate_change_scope.py . --base 774b7ba00b474ba2e5e341cdddab848167d275f1 [--head <amended closeout SHA>] --allowed <the same seven roots>",
+      "cwd": ".",
+      "exit": 0,
+      "status": "pass",
+      "summary": "PASS; violations [] over the working tree; --head form run after the amended commit (result in the closeout message)"
+    },
+    {
+      "id": "authority-corpus",
+      "round": "closeout-2",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "no drift"
+    },
+    {
+      "id": "app-hold-dispatch-preflight",
+      "round": "closeout-2",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path loop/LOOP_INIT.md --target DEL-02-05",
+      "cwd": "projects/chirality-app-dev",
+      "exit": 0,
+      "status": "pass",
+      "summary": "verdict ALLOW at repo_head 8af7f2104 (pre-amend)"
+    },
+    {
+      "id": "frontend-typecheck",
+      "round": "closeout-2",
+      "command": "npm run typecheck",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "clean on the combined node F + node G tree"
+    },
+    {
+      "id": "frontend-test-full",
+      "round": "closeout-2",
+      "command": "npm test",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": 0,
+      "status": "pass",
+      "summary": "Test Files 165 passed | 1 skipped (166); Tests 1558 passed | 4 skipped (1562) — node G's four added cases included"
+    },
+    {
+      "id": "frontend-premerge",
+      "round": "closeout-2",
+      "command": "(not rerun)",
+      "cwd": "projects/chirality-app-dev/frontend",
+      "exit": null,
+      "status": "not-rerun",
+      "failure_class": "absent runtime-daemon bindings",
+      "summary": "remains PR-CI-owed; no session-route source changed by either node",
+      "deferred_to": "PR CI"
+    }
+  ],
+  "not_run": [
+    {
+      "id": "run_registered_checks.py",
+      "reason": "every registered check was executed directly by its registered command with exit status recorded above (frontend-test, frontend-typecheck, frontend-build, frontend-premerge, harness-self-check, harness-pytest, app-hold-integrity)"
+    },
+    {
+      "id": "desktop:pack / proof:packaged-security",
+      "reason": "not named by the item's Checks line or the brief; no electron/**, packaging, or network-policy surface changed; the A1 re-stage rule (STEP0_DISCOVERY.md §3) applies regardless"
+    }
+  ],
+  "scope_validation_command": {
+    "cwd": ".",
+    "command": "python3 tools/software_workflow/validate_change_scope.py . --base e59efa4830fb54143c86e511ec35a6d1a476f72e --head <head> --allowed projects/chirality-app-dev/frontend/src/lib/consent --allowed projects/chirality-app-dev/frontend/src/components/settings/account-consent-settings.tsx --allowed projects/chirality-app-dev/frontend/src/app/globals.css --allowed projects/chirality-app-dev/frontend/src/__tests__ --allowed projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback --allowed projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_F_2026-09-03 --allowed projects/chirality-app-dev/loop/LOOP_RECEIPTS.md",
+    "note": "repeated --allowed roots (argparse); --head omitted = working tree; after a publication rebase use --base <merge-base with origin/main> so sibling nodes' files already on main are not reported as out-of-fence (node A post_rebase_note precedent)",
+    "post_rebase_note": "After the final rebase onto origin/main 774b7ba00 (PR #688 merge) the command uses --base 774b7ba00b474ba2e5e341cdddab848167d275f1 (the merge-base); an older base would report node G's and node I's files already on main as out-of-fence."
+  },
+  "independent_review": {
+    "round_1": {
+      "file": "instances/F2_REVIEWER/REVIEW_01_2026-09-03_over_f5b936e78.md",
+      "over": "f5b936e78978d583ae6fb3cb560e6e36b50e43b4",
+      "verdict": "PASS",
+      "findings": "0 blocking / 0 major / 4 minor (F1-F4) / 6 notes (F5-F10)",
+      "disposition": "coordinator D1: residuals recorded in RETURN.md §8 and _STATUS.md V3-03 Notes; fake-only follow-on seeded as DEL-02-05-V3-04; no post-PASS byte change"
+    }
+  }
+}

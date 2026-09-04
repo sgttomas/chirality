@@ -1,0 +1,73 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_V3_NODE_F_2026-09-03",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "TERMINAL_FAN_OUT_IN",
+  "supervisor": {"role": "HELP_HUMAN", "agent_type": 0, "model": "claude-fable-5-1"},
+  "basis": {
+    "branch": "codex/app-v3-nodeF-consent-ux-fixtures-2026-09-03",
+    "cut_from": "e59efa4830fb54143c86e511ec35a6d1a476f72e",
+    "required_ancestor": "e59efa4830fb54143c86e511ec35a6d1a476f72e"
+  },
+  "authorization": "instances/F1_IMPLEMENTER/LAUNCH_BRIEF.md (owner 2026-09-03 dev-slate-2 node F selection via HELP_HUMAN; selectability from PR #681 / Receipt 205 / A12; chat transcription is evidence, not ruling)",
+  "items": ["DEL-02-05-V3-02"],
+  "nodes": [
+    {
+      "id": "F1_IMPLEMENTER",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "agent_type": 2,
+      "model": "claude-fable-5-1",
+      "skill": "software-bounded-implementation",
+      "delegates": false,
+      "depends_on": [],
+      "writes": [
+        "frontend/src/lib/consent/**",
+        "frontend/src/components/settings/account-consent-settings.tsx",
+        "frontend/src/app/globals.css (account/consent panel styles only)",
+        "frontend/src/__tests__/**",
+        "execution/PKG-02_*/1_Working/DEL-02-05_*/Evidence/**",
+        "execution/PKG-02_*/1_Working/DEL-02-05_*/_run_records/**",
+        "execution/_Coordination/AgentRuns/APPDEV_V3_NODE_F_2026-09-03/**"
+      ],
+      "returns": ["RETURN.md", "CHECKS.json", "local frozen commit"]
+    },
+    {
+      "id": "F2_REVIEWER",
+      "role": "TASK",
+      "skill": "software-code-review",
+      "agent_type": 2,
+      "model": "claude-fable-5-1",
+      "delegates": false,
+      "read_only": true,
+      "depends_on": ["F1_IMPLEMENTER"],
+      "writes": [],
+      "returns": ["verdict + findings (filed under instances/F2_REVIEWER/ by F1)"]
+    },
+    {
+      "id": "CLOSEOUT",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "agent_type": 2,
+      "model": "claude-fable-5-1",
+      "depends_on": ["F2_REVIEWER"],
+      "requires": "REVIEW_PASS from HELP_HUMAN",
+      "writes": [
+        "execution/PKG-02_*/1_Working/DEL-02-05_*/{_STATUS.md (Remaining/History only), MEMORY.md}",
+        "execution/_Coordination/AgentRuns/APPDEV_V3_NODE_F_2026-09-03/{HANDOFF_STATE.md,MANIFEST.sha256}",
+        "loop/LOOP_RECEIPTS.md (append one receipt; Parent-Receipt Receipt-212; ID = next unused at rebase time)"
+      ],
+      "returns": ["PR URL", "head SHA", "receipt ID"]
+    }
+  ],
+  "edges": [["F1_IMPLEMENTER", "F2_REVIEWER"], ["F2_REVIEWER", "CLOSEOUT"]],
+  "remediation_loop": "F2 findings -> F1 remediate + re-freeze -> F2 re-review, until PASS",
+  "concurrent_siblings": {
+    "note": "dev-slate-2 nodes G, H, I may run concurrently in disjoint write sets; shared surface is loop/LOOP_RECEIPTS.md append-only (Parent-Receipt Receipt-212, ledger rule 7; if a sibling lands first this node takes the next higher receipt number and says so)"
+  },
+  "human_gates": [
+    "owner merge of the single PR",
+    "any write-locus extension surfaced as a scope need",
+    "A1 re-stage: newly staged R20 revision + fresh owner-executed proof before any future proof claim",
+    "live account/consent flows (DEL-02-05-V3-03) stay gated on the routed Root DEL-02-09 contract and G3/G-CSP/G4"
+  ]
+}
