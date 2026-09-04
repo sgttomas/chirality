@@ -17,6 +17,13 @@ item. The independent exact-freeze packaged proof and the implementer's
 post-rebase/post-closeout packaged proof both passed; exact identities and
 hashes are in `HANDOFF_STATE.md` and `CHECKS.json`.
 
+A separate N3 closeout verifier passed head
+`43d07e2e19700b604993eab233c15594980d8a64` with zero BLOCKER, zero MAJOR,
+and one narrative-only MINOR. `CV-N-01` identified the missing paired
+DEL-09-06 `MEMORY.md` closeout echo. That entry is now present and agrees with
+`_STATUS.md`, the review-note boundaries, A1 invalidation, and post-merge
+revision-3 debt; no product/test/CSS or Remaining item changed.
+
 Fetch/rebase found `origin/main` unchanged at the basis. DEL-09-06 state now
 removes V3-04 under its Removed-when contract; Receipt 224 points to the
 reviewed candidate and records `AWAITING_OWNER` for publication/merge. A1 is

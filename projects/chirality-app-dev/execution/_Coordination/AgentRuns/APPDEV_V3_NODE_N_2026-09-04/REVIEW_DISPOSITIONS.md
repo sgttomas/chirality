@@ -35,3 +35,16 @@ packaged proof. No remediation or new item is required for
 `DEL-09-06-V3-04`. Document-start instrumentation remains a future option
 only if a later accepted requirement demands comprehensive initial-load
 violation telemetry.
+
+## CV-N-01 — remediated after closeout verification
+
+The independent closeout verifier passed the candidate with zero BLOCKER,
+zero MAJOR, and one MINOR: DEL-09-06 `MEMORY.md` still ended at Node K even
+though the standing workplan requires a paired memory closeout echo. The
+authorized narrative-only remediation appends one concise Node N entry that
+matches `_STATUS.md`, retains both non-blocking R1 note boundaries, repeats
+the A1 prospective R20 invalidation, and names the separate post-merge
+DEL-09-01-V3-01 revision-3 debt. No product/test/CSS byte or new Remaining
+item changed. The contemporaneous verifier report SHA-256 is
+`7a2b11be8b17a2ff04159cc45ba20789a3123346a6ba503a7d8fd93558a2be85`;
+the source-calibrated N3 records are under `instances/N3_CLOSEOUT_VERIFIER/`.

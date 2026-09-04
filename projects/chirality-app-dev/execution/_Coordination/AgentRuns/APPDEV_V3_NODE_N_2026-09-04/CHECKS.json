@@ -2,7 +2,7 @@
   "schema": "chirality-run-checks/v1",
   "run_id": "APPDEV_V3_NODE_N_2026-09-04",
   "basis": "307addfc259b046aeb2ed07d47086cd5686c35b8",
-  "status": "CLOSEOUT_READY",
+  "status": "CLOSEOUT_READY_AFTER_CV_N_01",
   "freeze": "dca2ef103f9a22e38d815c5f21638220ad454223",
   "current_main": "307addfc259b046aeb2ed07d47086cd5686c35b8",
   "receipt": "Receipt-224",
@@ -243,6 +243,16 @@
       "status": "pass",
       "exit": 0,
       "result": "VALID after Receipt 224 append"
+    },
+    {
+      "name": "closeout_verifier",
+      "status": "pass_with_minor",
+      "result": "zero BLOCKER, zero MAJOR, one MINOR CV-N-01; report SHA-256 7a2b11be8b17a2ff04159cc45ba20789a3123346a6ba503a7d8fd93558a2be85"
+    },
+    {
+      "name": "cv_n_01_memory_remediation",
+      "status": "pass",
+      "result": "DEL-09-06 MEMORY.md now carries the required concise Node N closeout, A1 invalidation, review-note, and post-merge revision-3 echo; no product/test/CSS or Remaining item changed"
     }
   ],
   "not_run": [
