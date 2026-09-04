@@ -3,8 +3,9 @@
 > **Plans-folder status:** ACTIVE owner-ruling record — non-governing transcription source. Owner: Ryan Tufts. Scope: (clause 1) the renderer-CSP rendering-mode decision gating `DEL-09-06-V3-04`; (clause 2) the owner-host Syft `v1.18.1` install needed by `DEL-09-05-V3-02`; and (clause 3) creation of the disposable self-signed identity and performance of the seated `DEL-09-05-V3-04` drill. Target workspace: App-dev loop. Supersedes nothing and changes no accepted Scope of Work row. A14 (`chirality_app_v3_app_ruling_record_a14_2026-09-03.md`, SHA-256 `f5d332f2f3ba9d99ca33f821c9054cc3656ff8a59472eaaff2f7295f1c168e06`) remains truthful dated history; its two host-act deferrals are lifted prospectively only by clauses 2 and 3 below. Run evidence: `projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_V3_NODE_M_2026-09-04/`.
 
 Ruled by Ryan Tufts (K-AUTH-1) in the HELP_HUMAN session chat on
-2026-09-04. "[click]" marks each answer selected by the owner. HELP_HUMAN
-relayed the three rulings to a sealed ephemeral Agent 2 generalist for a
+2026-09-04. The owner typed each reply in plain text through the mobile
+fallback; no clickable response control was used. HELP_HUMAN relayed the
+three rulings to a sealed ephemeral Agent 2 generalist for a
 record-only transcription tranche (node M) on branch
 `codex/app-v3-nodeM-a15-owner-rulings-2026-09-04` from basis
 `719fe5e34cefc40fe0dab4b045f5f2a89341ae2f` (PR #693 merge). The chat
@@ -32,21 +33,21 @@ Clause 1 — renderer CSP (`DEL-09-06-V3-04`):
 
 ```text
 Question: Do you authorize the recommended per-response CSP nonce with dynamic rendering for DEL-09-06-V3-04?
-  [click] Owner: Yes, so authorized.
+Answer (typed plain-text mobile fallback): Yes, so authorized.
 ```
 
 Clause 2 — Syft owner-host install (`DEL-09-05-V3-02`):
 
 ```text
 Question: Do you authorize installing Syft v1.18.1 on the owner host to unblock DEL-09-05-V3-02?
-  [click] Owner: Yes, so authorized.
+Answer (typed plain-text mobile fallback): Yes, so authorized.
 ```
 
 Clause 3 — disposable drill identity and seated drill (`DEL-09-05-V3-04`):
 
 ```text
 Question: Do you authorize creation of the disposable self-signed identity and the seated credential-transition drill, without authorizing Developer ID signing, notarization, Apple calls, distribution, or release-readiness claims?
-  [click] Owner: Yes, so authorized.
+Answer (typed plain-text mobile fallback): Yes, so authorized.
 ```
 
 ## Applied meaning

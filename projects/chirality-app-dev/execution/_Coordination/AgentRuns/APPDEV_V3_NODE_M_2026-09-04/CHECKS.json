@@ -109,6 +109,33 @@
       "id": "status-field-fence-broad-pattern",
       "status": "fail",
       "summary": "the first post-freeze grep matched no-change History prose that named Current State and Checking Approval SHA; no pass inferred; the field-anchored diff check was rerun and passed with neither field changed"
+    },
+    {
+      "id": "receipt-review-detail-measurement-shape",
+      "status": "fail",
+      "summary": "the first remediation receipt check rejected round and finding identifiers in the Checks field as duplicated measurements; no pass inferred; review detail remains in Pointers and Gate-Outcome while Checks was corrected to pass/fail-only wording"
+    }
+  ],
+  "reviews": [
+    {
+      "round": 1,
+      "candidate": "f8522fcfcc74e0dd4363afa06d5d2ccf6fcac34c",
+      "status": "fail",
+      "findings": {
+        "blocker": 0,
+        "major": 3,
+        "minor": 0,
+        "note": 0
+      },
+      "report": "instances/M2_REVIEWER/REVIEW_NODE_M_R1.md",
+      "report_sha256": "089204ef41625fa08a1eee915df08686be9e66f8b84ebb9d1390ae6a1025caf4",
+      "disposition": "M-R1-F1, M-R1-F2, and M-R1-F3 accepted and remediated; see REVIEW_DISPOSITIONS.md"
+    },
+    {
+      "round": 2,
+      "candidate": "the remediation freeze returned by Git after this run record is finalized",
+      "status": "pending_fresh_review",
+      "handoff": "REVIEW_R2_HANDOFF.md"
     }
   ],
   "not_run": [
@@ -119,13 +146,9 @@
     {
       "id": "signing-notarization-publication-release-readiness",
       "reason": "prohibited and out of scope under F-APP-2; no pass, performance, or acceptance claim is inferred"
-    },
-    {
-      "id": "independent-product-review",
-      "reason": "record-only tranche with no product, test, CSS, runtime, package, or workflow byte; HELP_HUMAN reviews the frozen record directly"
     }
   ],
   "a1": "not applicable: no frontend path changed; no re-stage declaration is needed",
-  "overall": "pass",
+  "overall": "review_ready_r2: deterministic checks pass; round-1 review failed and all findings are remediated; fresh round-2 review pending",
   "recorded_at": "2026-09-04"
 }
