@@ -1,0 +1,12 @@
+# daemon electron pid 59168 (shim 59162) — TCP sockets (expect none):
+# daemon electron pid 59168 — Unix sockets under the disposable user-data root:
+Electron 59168 ryan   31u  unix 0xe47161b8a97f6626      0t0      /private/tmp/chirality-s8.60Fx5o/runtime/control.sock
+Electron 59168 ryan   34u  unix 0x2e9c815592d076d7      0t0      /private/tmp/chirality-s8.60Fx5o/runtime/control.sock
+# all TCP listeners owned by any process under the disposable user-data root (expect none):
+# control socket mode:
+srw-------@ 1 ryan  wheel  0 Sep  3 22:31 /private/tmp/chirality-s8.60Fx5o/runtime/control.sock
+# runtime directory mode:
+drwx------@ 6 ryan  wheel  192 Sep  3 22:31 /private/tmp/chirality-s8.60Fx5o/runtime
+# listeners on port 51845 (expect the next dev server only):
+COMMAND   PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+node    59232 ryan   13u  IPv4 0x48ab60c1523d3b64      0t0  TCP 127.0.0.1:51845 (LISTEN)

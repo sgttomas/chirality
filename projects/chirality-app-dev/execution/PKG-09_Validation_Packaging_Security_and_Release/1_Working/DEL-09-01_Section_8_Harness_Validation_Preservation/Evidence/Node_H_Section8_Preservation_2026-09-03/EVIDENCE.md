@@ -1,8 +1,8 @@
-# DEL-09-01-V3-01 — Section 8 preservation evidence after the v3 landings (node H, 2026-09-03)
+# DEL-09-01-V3-01 — Section 8 preservation evidence across the v3 landings (revisions 1–2, 2026-09-03)
 
-- **Item:** DEL-09-01-V3-01 — Section 8 preservation and Shared Runtime Gate evidence across the v3 program (revision 1: after PRs 683–686).
+- **Item:** DEL-09-01-V3-01 — Section 8 preservation and Shared Runtime Gate evidence across the v3 program. Revision 1 covers PRs #683–#686; revision 2 covers PRs #687–#692 at `ede175910c67b384332324622b17695f69e6a715`.
 - **Run:** `execution/_Coordination/AgentRuns/APPDEV_V3_NODE_H_2026-09-03/` · Implementer: Claude Fable 5.1 (`claude-fable-5-1`), ephemeral Agent 2 under HELP_HUMAN.
-- **Claim under evidence:** on `main` at `e59efa4830fb54143c86e511ec35a6d1a476f72e` (PR #686 merge — after PRs #683 node E, #684 node D, #685 node B, #686 node A), the Section 8 harness validation surface preserved by DEL-09-01 behaves exactly as it did at the pre-landing basis `0c683fb1657706316272951e4c3a0f7781b46009` (PR #681 merge): the premerge wrapper produces the stable summary artifact with `status: pass`, `testCount: 8`, the eight accepted IDs in `REQUIRED_CHECK_ORDER`, the retired legacy ID absent, and identical behaviour-bearing row details.
+- **Claim under evidence:** revision 1 established the comparison from `0c683fb1657706316272951e4c3a0f7781b46009` through `e59efa4830fb54143c86e511ec35a6d1a476f72e`. Revision 2 extends the same behavior projection through `main` at `ede175910c67b384332324622b17695f69e6a715`: the premerge wrapper produces the stable summary artifact with `status: pass`, `testCount: 8`, the eight accepted IDs in `REQUIRED_CHECK_ORDER`, the retired legacy ID absent, and behavior-bearing row details equal to every retained revision-1 source.
 - **What this is not:** validation evidence only (RQG §13 posture; `docs/VALIDATION_STRATEGY.md` §1). No release-readiness, signing, notarization, publication, lifecycle, professional, or certification claim (F-APP-2, F-APP-4). No G5 acceptance is claimed; the item is revised, not removed.
 
 ## 1. Inputs and cited-byte inventory
@@ -114,6 +114,22 @@ Four-way comparator result (`COMPARE_RESULT.txt`, exit 0): `BEHAVIOUR_PROJECTION
 - Not proven, and not claimed: any live-provider (Anthropic/Pi) behaviour; packaged-app behaviour (the daemon here is the unpackaged development bundle, as in CI); G5 fan-in acceptance; anything under F-APP-2. The `--use-mock-keychain` switch means the *real* Keychain path of `safeStorage` is not exercised by this evidence — that path is DEL-04-05's typed-state evidence and node A's packaged proof, not Section 8.
 - Premerge classification for the registered check: **PASS (local, daemon-bound)** — not the `FAIL_DEFERRED_TO_PR_CI` class, which this method resolves rather than defers. PR CI remains additional evidence and will rerun on the PR.
 
-## 9. Next revision trigger
+## 9. Revision 2 — current mapping at `ede175910` after PRs #687–#692
 
-This item is revised after each v3 landing and removed only at G5 fan-in (`_STATUS.md` `Removed when`). The next revision is owed after the next merged v3 product change on `main` that touches `frontend/src/app/api/harness/**`, `frontend/src/lib/harness/**`, `frontend/src/lib/runtime-client/**`, `frontend/electron/**`, `runtime/**`, or the evaluator surfaces listed in `EVALUATOR_BYTES.tsv`; rerun `rerun-section8-local.sh` at the new `main` commit and add the run folder plus a `COMPARE_RESULT` line to this bundle.
+Node J executed one premerge-only run of the hardened recorded method at exact `main` basis `ede175910c67b384332324622b17695f69e6a715` (PR #692 merge, after PRs #687–#692). The trigger-surface delta from revision 1 is listed in `FRONTEND_TRIGGER_PATHS_CHANGED_e59efa483..ede175910.txt`: `frontend/electron/renderer-window-policy.ts`, `frontend/scripts/run-packaged-security-proof.mjs`, and `frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts` changed. The latter two reflect the security-proof work in PRs #688 and #692; the renderer policy changed in PR #689. The Section 8 evaluators, fixtures, workflow, manifest, package scripts, and lockfile listed in `EVALUATOR_BYTES_revision2.tsv` are byte-identical from `e59efa483` to `ede175910`; the three trigger rows are intentionally marked `CHANGED` and pin both Git blobs plus the current SHA-256.
+
+The retained run `run-head-ede175910-revision2/` was invoked from the current worktree with `PORT=51845`, `WITH_RELEASE_QUALITY=0`, and the same disposable daemon / project-registration / bound Next lifecycle described in §2. Its canonical outcomes are:
+
+- `logs/premerge.machine-lines.txt`: `HARNESS_PREMERGE_STATUS=pass`, `HARNESS_PREMERGE_TEST_COUNT=8`; Section 9 report-only status `pass` with its current recorded inventory.
+- `artifacts/stable/section8-latest-summary.json`: `status: pass`, `testCount: 8`, all eight accepted rows `pass`, SHA-256 `42e4e237333a199222eeafa76d86f94d0df9ab4ccc29cbbf4e65b936ba641f9c`.
+- `logs/teardown.txt`: daemon and Next recorded process trees remaining `0`, both recorded roots not alive, socket absent, and no listener left on port 51845.
+- `logs/cleanup.txt`: script-created user-data, harness temporary root, and private registration directory removed; only the declared gitignored checkout surfaces remain.
+- `MANIFEST.sha256`: written as the script's final teardown act and independently verified for every retained artifact/log byte.
+
+`COMPARE_RESULT_revision2.txt` adds the current run to the retained revision-1 local, remediation-smoke, baseline, and CI summaries. The comparator exits 0 with `BEHAVIOUR_PROJECTIONS_EQUAL=true`; it continues to enforce overall and per-row `pass`, exact required-ID order, and exclusion of the retired legacy ID. Revision 1 bytes and its comparison files remain preserved unchanged.
+
+DEL-09-01-V3-02's three hardening targets are reflected in the method used for this proof: it recursively records and signals every descendant of each script-started process tree; performs the occupied-port precondition before any build or daemon start; and discovers/observes processes only from recorded PID trees (the Electron socket owner is identified by `lsof`), with no `pgrep -f` command-line matching. `bash -n`, `shellcheck -S warning`, the successful proof, and a negative occupied-port run (exit 72 before build/daemon; foreign listener survived) provide the implementation evidence. No tracked evaluator, fixture, product, configuration, package, workflow, or runtime byte changes in Node J.
+
+## 10. Next revision trigger
+
+This item is revised after each v3 landing and removed only at G5 fan-in (`_STATUS.md` `Removed when`). After revision 2, the next revision is owed only after a later merged v3 product change on `main` touches `frontend/src/app/api/harness/**`, `frontend/src/lib/harness/**`, `frontend/src/lib/runtime-client/**`, `frontend/electron/**`, `runtime/**`, or the evaluator surfaces listed in `EVALUATOR_BYTES_revision2.tsv`; rerun `rerun-section8-local.sh` at that new `main` commit and add the run folder plus a new `COMPARE_RESULT` line to this bundle.

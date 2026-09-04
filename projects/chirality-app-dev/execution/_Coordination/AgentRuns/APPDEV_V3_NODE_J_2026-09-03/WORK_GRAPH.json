@@ -1,0 +1,44 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_V3_NODE_J_2026-09-03",
+  "selection_authority": "HUMAN",
+  "basis": "ede175910c67b384332324622b17695f69e6a715",
+  "posture": "SEQUENTIAL_IMPLEMENT_REVIEW_CLOSEOUT",
+  "nodes": [
+    {
+      "id": "J1_IMPLEMENTER",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "provider": "OpenAI",
+      "engine": "Codex",
+      "model": "GPT-5 family (exact identifier unavailable)",
+      "delegates": false,
+      "items": ["DEL-09-01-V3-02", "DEL-09-01-V3-01 revision 2"],
+      "depends_on": [],
+      "returns": ["review freeze commit", "revision-2 evidence", "REVIEW_READY"]
+    },
+    {
+      "id": "J2_REVIEWER",
+      "role": "EPHEMERAL_AGENT2_READ_ONLY_REVIEWER",
+      "read_only": true,
+      "depends_on": ["J1_IMPLEMENTER"],
+      "returns": ["verdict and findings over 100% of frozen diff"]
+    },
+    {
+      "id": "J1_CLOSEOUT",
+      "role": "EPHEMERAL_AGENT2_GENERALIST",
+      "depends_on": ["J2_REVIEWER"],
+      "requires": "REVIEW_PASS from HELP_HUMAN",
+      "returns": ["closeout state", "receipt", "PR body handoff"]
+    }
+  ],
+  "edges": [
+    ["J1_IMPLEMENTER", "J2_REVIEWER"],
+    ["J2_REVIEWER", "J1_CLOSEOUT"]
+  ],
+  "task_preflight": {
+    "status": "STOPPED",
+    "reason": "CHIRALITY_INSTRUCTION_ROOT unavailable",
+    "writes": 0,
+    "amendment": "execution form only; continued as bounded ephemeral Agent 2 generalist"
+  }
+}

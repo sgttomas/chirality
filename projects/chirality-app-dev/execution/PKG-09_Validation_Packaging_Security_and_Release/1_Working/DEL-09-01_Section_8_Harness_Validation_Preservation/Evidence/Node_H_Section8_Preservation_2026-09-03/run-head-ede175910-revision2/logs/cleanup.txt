@@ -1,0 +1,4 @@
+user_data_removed=yes path=/private/tmp/chirality-s8.60Fx5o
+harness_tmp_root_removed=yes path=/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest
+private_dir_removed=yes
+checkout_leftovers=gitignored, intentionally not removed: /private/tmp/chirality-app-v3-slate3-20260903/nodeJ/projects/chirality-app-dev/frontend/artifacts/harness/** (stable artifacts; the deliverable surface) and /private/tmp/chirality-app-v3-slate3-20260903/nodeJ/projects/chirality-app-dev/frontend/.chirality/sessions (legacySessionRoots entry required at registration)

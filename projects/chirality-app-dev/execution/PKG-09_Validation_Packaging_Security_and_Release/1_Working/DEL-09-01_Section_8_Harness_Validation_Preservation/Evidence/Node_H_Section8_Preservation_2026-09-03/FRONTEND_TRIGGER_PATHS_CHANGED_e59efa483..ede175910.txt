@@ -1,0 +1,3 @@
+projects/chirality-app-dev/frontend/electron/renderer-window-policy.ts
+projects/chirality-app-dev/frontend/scripts/run-packaged-security-proof.mjs
+projects/chirality-app-dev/frontend/src/__tests__/scripts/run-packaged-security-proof.test.ts

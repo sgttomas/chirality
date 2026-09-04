@@ -1,0 +1,10 @@
+{
+  "id": "section8.interrupt_sigint",
+  "status": "pass",
+  "startedAt": "2026-09-04T04:31:51.528Z",
+  "endedAt": "2026-09-04T04:31:51.753Z",
+  "durationMs": 225,
+  "details": {
+    "interruptStatus": 200
+  }
+}

@@ -4,19 +4,20 @@
 # .github/workflows/harness-premerge.yml performs in CI.
 #
 # What it does (mirrors the workflow step for step, on macOS without xvfb):
-#   1. builds the Electron runtime host + bundled CLI (npm run build:electron)
-#   2. starts dist-electron/main.js --runtime-daemon under a DISPOSABLE
+#   1. refuses to start unless the requested dev-server port is free
+#   2. builds the Electron runtime host + bundled CLI (npm run build:electron)
+#   3. starts dist-electron/main.js --runtime-daemon under a DISPOSABLE
 #      --user-data-dir (never the operator's real userData / LaunchAgent daemon)
 #      with Chromium's --use-mock-keychain so the dev binary never blocks on the
 #      operator's macOS Keychain (see the comment at the launch line)
-#   3. registers projects/chirality-app-dev/chirality.project.json with that
+#   4. registers projects/chirality-app-dev/chirality.project.json with that
 #      daemon through dist-runtime/chirality-cli.mjs project register
-#   4. starts `next dev` bound to the daemon (CHIRALITY_RUNTIME_* env)
-#   5. waits for /api/harness/session/list readiness
-#   6. runs `npm run harness:validate:premerge` (Section 8 + report-only Section 9)
+#   5. starts `next dev` bound to the daemon (CHIRALITY_RUNTIME_* env)
+#   6. waits for /api/harness/session/list readiness
+#   7. runs `npm run harness:validate:premerge` (Section 8 + report-only Section 9)
 #      and, with WITH_RELEASE_QUALITY=1, `npm run validate:release-quality`
-#   7. records containment observations (daemon listeners, socket mode, git status)
-#   8. tears both processes down, removes the disposable state it created
+#   8. records containment observations (daemon listeners, socket mode, git status)
+#   9. recursively signals both recorded process trees, removes disposable state
 #      (KEEP=1 keeps it), and — as the LAST act of teardown, after
 #      teardown.txt/cleanup.txt exist and both processes are gone — writes
 #      RUN_ROOT/MANIFEST.sha256 over artifacts/** and logs/** (LC_ALL=C sorted)
@@ -87,40 +88,100 @@ export CHIRALITY_RUNTIME_SOCKET_PATH="$USER_DATA/runtime/control.sock"
 export CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE="$USER_DATA/runtime/auth/tokens/operator.token"
 
 DAEMON_PID=""
+DAEMON_ELECTRON_PID=""
+DAEMON_TREE_PIDS=""
 NEXT_PID=""
+NEXT_TREE_PIDS=""
 STARTED_AT="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 log() { printf '[%s] %s\n' "$(date -u +%H:%M:%S)" "$*" | tee -a "$LOGS/driver.log" >&2; }
+
+# Print every descendant of a recorded parent, deepest first. Matching stays
+# inside a tree rooted at a pid started by this script; no command-line regex is
+# used to discover unrelated processes.
+descendant_pids() {
+  local parent_pid="$1"
+  local child_pid
+  while IFS= read -r child_pid; do
+    [ -n "$child_pid" ] || continue
+    descendant_pids "$child_pid"
+    printf '%s\n' "$child_pid"
+  done < <(pgrep -P "$parent_pid" 2>/dev/null || true)
+}
+
+process_tree_pids() {
+  local root_pid="$1"
+  descendant_pids "$root_pid"
+  printf '%s\n' "$root_pid"
+}
+
+merge_pid_lists() {
+  awk 'NF && !seen[$0]++'
+}
+
+signal_pid_list() {
+  local pid_list="$1"
+  local signal_name="$2"
+  local process_id
+  while IFS= read -r process_id; do
+    [ -n "$process_id" ] || continue
+    kill "-$signal_name" "$process_id" 2>/dev/null || true
+  done <<< "$pid_list"
+}
+
+live_pid_count() {
+  local pid_list="$1"
+  local process_id
+  local count=0
+  while IFS= read -r process_id; do
+    [ -n "$process_id" ] || continue
+    if kill -0 "$process_id" 2>/dev/null; then count=$((count + 1)); fi
+  done <<< "$pid_list"
+  printf '%s\n' "$count"
+}
 
 teardown() {
   local status=$?
   set +e
   log "teardown begin (status so far $status)"
   if [ -n "$NEXT_PID" ]; then
-    kill "$NEXT_PID" 2>/dev/null; pkill -P "$NEXT_PID" 2>/dev/null
+    NEXT_TREE_PIDS="$(process_tree_pids "$NEXT_PID" | merge_pid_lists)"
+    signal_pid_list "$NEXT_TREE_PIDS" TERM
   fi
   if [ -n "$DAEMON_PID" ]; then
-    kill "$DAEMON_PID" 2>/dev/null
+    DAEMON_TREE_PIDS="$(
+      {
+        printf '%s\n' "$DAEMON_TREE_PIDS"
+        process_tree_pids "$DAEMON_PID"
+      } | merge_pid_lists
+    )"
+    signal_pid_list "$DAEMON_TREE_PIDS" TERM
   fi
   for _ in $(seq 1 30); do
-    if ! { [ -n "$DAEMON_PID" ] && kill -0 "$DAEMON_PID" 2>/dev/null; } \
-       && ! { [ -n "$NEXT_PID" ] && kill -0 "$NEXT_PID" 2>/dev/null; }; then
+    if [ "$(live_pid_count "$DAEMON_TREE_PIDS")" = "0" ] \
+       && [ "$(live_pid_count "$NEXT_TREE_PIDS")" = "0" ]; then
       break
     fi
     sleep 1
   done
-  # A daemon wedged on a blocking host call ignores SIGTERM; never leave it behind.
-  # Only processes under the disposable user-data root and the dev server this
-  # script started (and its children) are ever signalled — never a foreign
-  # listener on the port.
-  for p in $(pgrep -f -- "--user-data-dir=$USER_DATA" 2>/dev/null); do kill -9 "$p" 2>/dev/null || true; done
+  # A daemon or dev server wedged on a blocking host call may ignore SIGTERM.
+  # Signal every pid captured from the two script-started trees, including
+  # descendants that have since been re-parented. Never match by port or by an
+  # unanchored command-line substring.
+  signal_pid_list "$DAEMON_TREE_PIDS" KILL
   if [ -n "$NEXT_PID" ]; then
-    for p in $(pgrep -P "$NEXT_PID" 2>/dev/null); do kill -9 "$p" 2>/dev/null || true; done
-    kill -9 "$NEXT_PID" 2>/dev/null || true
+    NEXT_TREE_PIDS="$(
+      {
+        printf '%s\n' "$NEXT_TREE_PIDS"
+        process_tree_pids "$NEXT_PID"
+      } | merge_pid_lists
+    )"
+    signal_pid_list "$NEXT_TREE_PIDS" KILL
   fi
   sleep 1
   {
-    echo "daemon_process_tree_remaining=$(pgrep -f -- "--user-data-dir=$USER_DATA" 2>/dev/null | wc -l | tr -d ' ')"
+    echo "daemon_process_tree_remaining=$(live_pid_count "$DAEMON_TREE_PIDS")"
+    echo "next_process_tree_remaining=$(live_pid_count "$NEXT_TREE_PIDS")"
     echo "daemon_pid=$DAEMON_PID alive=$([ -n "$DAEMON_PID" ] && kill -0 "$DAEMON_PID" 2>/dev/null && echo yes || echo no)"
     echo "next_pid=$NEXT_PID alive=$([ -n "$NEXT_PID" ] && kill -0 "$NEXT_PID" 2>/dev/null && echo yes || echo no)"
     echo "socket_present_after_stop=$([ -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] && echo yes || echo no)"
@@ -151,6 +212,11 @@ teardown() {
 }
 trap teardown EXIT
 
+# --- precondition: port is free before any build or daemon start -------------
+if [ -n "$(lsof -nP -t -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null)" ]; then
+  log "port $PORT is already in use; refusing to start (set PORT to a free port)"; exit 72
+fi
+
 # --- 0. environment record ---------------------------------------------------
 cd "$FRONTEND"
 {
@@ -175,6 +241,7 @@ cd "$FRONTEND"
   echo "CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE=$CHIRALITY_RUNTIME_OPERATOR_TOKEN_FILE"
   echo "with_release_quality=$WITH_RELEASE_QUALITY"
   echo "daemon_switches=--use-mock-keychain --user-data-dir=<USER_DATA> --runtime-daemon"
+  echo "process_matching=recorded pid trees"
 } > "$LOGS/environment.txt"
 git -C "$REPO_ROOT" status --porcelain > "$LOGS/git-status-before.txt" || true
 
@@ -212,7 +279,8 @@ if [ ! -S "$CHIRALITY_RUNTIME_SOCKET_PATH" ] || [ ! -f "$CHIRALITY_RUNTIME_OPERA
 fi
 # $DAEMON_PID is the node shim in node_modules/.bin/electron; the Electron
 # process that actually owns the socket is its child. Observe that one.
-DAEMON_ELECTRON_PID="$(pgrep -f -- "Electron --use-mock-keychain --user-data-dir=$USER_DATA dist-electron/main.js --runtime-daemon" | head -n 1 || true)"
+DAEMON_TREE_PIDS="$(process_tree_pids "$DAEMON_PID" | merge_pid_lists)"
+DAEMON_ELECTRON_PID="$(lsof -nP -t "$CHIRALITY_RUNTIME_SOCKET_PATH" 2>/dev/null | head -n 1 || true)"
 log "daemon ready (shim pid $DAEMON_PID, electron pid ${DAEMON_ELECTRON_PID:-unknown})"
 
 # --- 3. register the project -------------------------------------------------
@@ -233,12 +301,10 @@ export HARNESS_PROJECT_ROOT="$WORKING_ROOT"
 log "project registered; token file $PROJECT_TOKEN_FILE"
 
 # --- 4. dev server bound to the daemon ---------------------------------------
-if [ -n "$(lsof -nP -t -iTCP:"$PORT" -sTCP:LISTEN 2>/dev/null)" ]; then
-  log "port $PORT is already in use; refusing to start (set PORT to a free port)"; exit 72
-fi
 log "starting next dev on $HARNESS_BASE_URL"
 nohup npm run dev:next -- --hostname 127.0.0.1 --port "$PORT" > "$LOGS/next-dev.log" 2>&1 &
 NEXT_PID=$!
+NEXT_TREE_PIDS="$(process_tree_pids "$NEXT_PID" | merge_pid_lists)"
 READY=0
 for _ in $(seq 1 90); do
   status="$(curl -sS -o "$LOGS/harness-ready.json" -w "%{http_code}" --get \
@@ -257,7 +323,10 @@ log "harness API ready"
   echo "# daemon electron pid ${DAEMON_ELECTRON_PID:-unknown} — Unix sockets under the disposable user-data root:"
   lsof -nP -a -p "${DAEMON_ELECTRON_PID:-$DAEMON_PID}" -U 2>/dev/null | grep -F "$USER_DATA" || true
   echo "# all TCP listeners owned by any process under the disposable user-data root (expect none):"
-  for p in $(pgrep -f -- "--user-data-dir=$USER_DATA" 2>/dev/null); do lsof -nP -a -p "$p" -iTCP -sTCP:LISTEN 2>/dev/null | tail -n +2 || true; done
+  while IFS= read -r process_id; do
+    [ -n "$process_id" ] || continue
+    lsof -nP -a -p "$process_id" -iTCP -sTCP:LISTEN 2>/dev/null | tail -n +2 || true
+  done <<< "$DAEMON_TREE_PIDS"
   echo "# control socket mode:"
   ls -l "$CHIRALITY_RUNTIME_SOCKET_PATH"
   echo "# runtime directory mode:"
@@ -318,7 +387,10 @@ fi
   echo "# daemon electron pid ${DAEMON_ELECTRON_PID:-unknown} — TCP sockets after the run (expect none):"
   lsof -nP -a -p "${DAEMON_ELECTRON_PID:-$DAEMON_PID}" -iTCP 2>/dev/null || true
   echo "# TCP listeners owned by any process under the disposable user-data root after the run (expect none):"
-  for p in $(pgrep -f -- "--user-data-dir=$USER_DATA" 2>/dev/null); do lsof -nP -a -p "$p" -iTCP -sTCP:LISTEN 2>/dev/null | tail -n +2 || true; done
+  while IFS= read -r process_id; do
+    [ -n "$process_id" ] || continue
+    lsof -nP -a -p "$process_id" -iTCP -sTCP:LISTEN 2>/dev/null | tail -n +2 || true
+  done <<< "$DAEMON_TREE_PIDS"
 } > "$LOGS/containment-after.txt"
 git -C "$REPO_ROOT" status --porcelain > "$LOGS/git-status-after.txt" || true
 {

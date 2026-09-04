@@ -1,0 +1,12 @@
+{
+  "id": "section8.session_persistence_resume",
+  "status": "pass",
+  "startedAt": "2026-09-04T04:31:51.068Z",
+  "endedAt": "2026-09-04T04:31:51.361Z",
+  "durationMs": 293,
+  "details": {
+    "adapterId": "stub",
+    "providerId": "stub",
+    "engineSessionId": "stub_5f65d9d0-be43-4b8d-aa6b-d6979324e85b"
+  }
+}
