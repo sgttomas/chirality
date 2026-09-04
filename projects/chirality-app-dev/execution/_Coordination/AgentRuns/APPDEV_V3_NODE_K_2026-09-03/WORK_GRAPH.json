@@ -1,0 +1,49 @@
+{
+  "schema": "chirality-work-graph/v1",
+  "run_id": "APPDEV_V3_NODE_K_2026-09-03",
+  "plan_version": 1,
+  "selection_authority": "HUMAN",
+  "posture": "SEQUENTIAL_IMPLEMENT_REVIEW_CLOSEOUT",
+  "supervisor": {"role": "HELP_HUMAN", "agent_type": 0},
+  "basis": {
+    "branch": "codex/app-v3-nodeK-security-proof-negative-tests-2026-09-03",
+    "cut_from": "fe0ce926d4475fa41cb91933ad1218b95083889b",
+    "required_ancestor": "fe0ce926d4475fa41cb91933ad1218b95083889b"
+  },
+  "items": ["DEL-09-06-V3-06"],
+  "nodes": [
+    {
+      "id": "K1_IMPLEMENTER",
+      "role": "TASK",
+      "agent_type": 2,
+      "provider": "OpenAI",
+      "engine": "Codex",
+      "model": "GPT-5 family (exact model identifier not exposed to the agent runtime)",
+      "skill": "software-bounded-implementation",
+      "delegates": false,
+      "depends_on": [],
+      "returns": ["REVIEW_READY", "RETURN.md", "CHECKS.json", "local frozen commit"]
+    },
+    {
+      "id": "K2_REVIEWER",
+      "role": "TASK",
+      "agent_type": 2,
+      "skill": "software-code-review",
+      "read_only": true,
+      "depends_on": ["K1_IMPLEMENTER"],
+      "returns": ["PASS or FAIL with findings"]
+    },
+    {
+      "id": "CLOSEOUT",
+      "role": "K1_IMPLEMENTER",
+      "depends_on": ["K2_REVIEWER"],
+      "requires": "REVIEW_PASS from HELP_HUMAN"
+    }
+  ],
+  "edges": [["K1_IMPLEMENTER", "K2_REVIEWER"], ["K2_REVIEWER", "CLOSEOUT"]],
+  "concurrent_siblings": {
+    "node": "L",
+    "write_overlap": false,
+    "downstream": "J waits until K and L land"
+  }
+}
