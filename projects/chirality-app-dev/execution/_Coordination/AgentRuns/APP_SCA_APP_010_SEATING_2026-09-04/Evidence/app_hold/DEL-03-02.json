@@ -1,0 +1,25 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking",
+  "operation": "dispatch",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "787a551e70d9fb33f6f9a9fe228443d890a8d02d",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-03-02",
+      "entry_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking",
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "f2aab9be545e73301da1f4dc67f3b61113492f55ca5f920794699e0e92512eb7",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-03-02"
+  ],
+  "verdict": "ALLOW"
+}

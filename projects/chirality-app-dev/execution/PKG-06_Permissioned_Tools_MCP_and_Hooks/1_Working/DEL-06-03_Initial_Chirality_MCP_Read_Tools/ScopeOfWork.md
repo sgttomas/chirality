@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-06-03
 package_id: PKG-06
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
-project_scope_refs: [SOW-048, SOW-050, SOW-064]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
+project_scope_refs: [SOW-048, SOW-050, SOW-064, SOW-082]
 package_objective_refs: [OBJ-005, OBJ-006]
 ---
 
@@ -11,13 +11,55 @@ package_objective_refs: [OBJ-005, OBJ-006]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-06-03` in service of project scope [SOW-048, SOW-050, SOW-064] and package objectives [OBJ-005, OBJ-006].
+This Scope of Work defines `DEL-06-03` in service of project scope [SOW-048, SOW-050, SOW-064, SOW-082] and package objectives [OBJ-005, OBJ-006].
 
 - **OUT-001** — Initial Chirality MCP read-tool slice comprising deterministic descriptors, wrapper metadata, status read, dependency read, bounded scope scan, scaffold preview/dry-run behavior, and associated verification evidence.
 
 **D-APP-80 concordance note (2026-07-28):** SOW-064 is supported here
 through in-process deterministic MCP wrappers and the App extension
 boundary. Remote MCP, plugin, and marketplace scope remain excluded.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-06-03 Initial Chirality MCP Read Tools` (BACKEND_FEATURE_SLICE, applied decomposition row L348):
+
+Expose in-process deterministic MCP wrappers for status read, dependency read,
+scope scan, scaffold preview/dry-run, and the `propose` specification-ladder
+tool, and document their in-process extension boundary without opening remote
+MCP, plugins, or marketplace scope.
+
+Applied row notes: In-process wrapper and extension-boundary share of SOW-064;
+catalog validation and collision prevention remain DEL-06-02.
+
+Applied row outputs: `mcp__chirality__*` definitions; wrapper metadata;
+in-process extension-boundary notes; `propose` tool schema, validation, and
+once-per-chat tests; MCP tool tests.
+
+### Current acceptance obligations
+
+1. MCP wrappers remain in-process and deterministic; no remote MCP, plugin, marketplace, provider, or network scope opens.
+2. The `propose` tool validates the specification tuple (folder, agent, delegation policy, roadmap, permission mode) against roster and policy values, resolves plan references from Agent 1 procedures, refuses a trigger already declined in the chat, and emits only `proposal.offered`.
+3. Catalog validation and collision prevention remain DEL-06-02's.
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-06-03-V3-01. Ruled
+questions applied here: Q11, Q12, Q13. Alignment writes WI-036, WI-037, WI-038,
+WI-039, WI-040 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`; dependency
+writes DEP-015, DEP-016 await the registered dependency-extract pass after owner
+acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 

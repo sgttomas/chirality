@@ -25,7 +25,14 @@
 
 ## Deliverable Scope
 
-Verify required instruction-root assets, agent metadata, write scopes, naming, and section markers.
+Verify required instruction-root assets, agent metadata, write scopes, naming,
+section markers, the proposal clauses and named triggers in Agent 0 and Agent 1
+packages, skill-declared workflow templates, and organisation-layer packaging
+and pins.
+
+Applied decomposition row L368 (SCA-APP-010 Gate 5, 2026-09-04) notes:
+Governance assets and checks; no runtime capability expansion; instruction-file
+changes under `agents/` or `skills/` ship the routed agent-index change notice.
 
 ## Anticipated Artifacts
 

@@ -25,7 +25,14 @@
 
 ## Deliverable Scope
 
-Expose in-process deterministic MCP wrappers for status read, dependency read, scope scan, and scaffold preview/dry-run, and document their in-process extension boundary without opening remote MCP, plugins, or marketplace scope.
+Expose in-process deterministic MCP wrappers for status read, dependency read,
+scope scan, scaffold preview/dry-run, and the `propose` specification-ladder
+tool, and document their in-process extension boundary without opening remote
+MCP, plugins, or marketplace scope.
+
+Applied decomposition row L348 (SCA-APP-010 Gate 5, 2026-09-04) notes:
+In-process wrapper and extension-boundary share of SOW-064; catalog validation
+and collision prevention remain DEL-06-02.
 
 ## Anticipated Artifacts
 

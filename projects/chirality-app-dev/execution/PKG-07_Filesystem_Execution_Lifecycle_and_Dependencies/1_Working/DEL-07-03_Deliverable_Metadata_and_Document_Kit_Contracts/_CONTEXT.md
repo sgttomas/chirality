@@ -25,7 +25,14 @@
 
 ## Deliverable Scope
 
-Scan and validate deliverable metadata files, canonical memory, semantic placeholders, and document kit buckets.
+Scan and validate deliverable metadata files, canonical memory, semantic
+placeholders, and document kit buckets; define the governed workflow file
+contract (front matter, roadmap grammar with gate markers, app-maintained
+position, library/bind copy semantics) and the rule that the file steers and
+never records.
+
+Applied decomposition row L359 (SCA-APP-010 Gate 5, 2026-09-04) notes: One
+deliverable-folder contract slice.
 
 ## Anticipated Artifacts
 

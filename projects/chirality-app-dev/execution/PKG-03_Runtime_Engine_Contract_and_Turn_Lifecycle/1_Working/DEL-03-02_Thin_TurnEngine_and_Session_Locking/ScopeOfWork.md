@@ -2,8 +2,8 @@
 schema: chirality-deliverable-sow/v1
 deliverable_id: DEL-03-02
 package_id: PKG-03
-decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@7b0be4d8772a16e5a4774a17988479587d00acca
-project_scope_refs: [SOW-009, SOW-010, SOW-011, SOW-038]
+decomposition_basis: projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md@dbd812a52d5ed0cb3ed173f3aaaa68703a914291
+project_scope_refs: [SOW-009, SOW-010, SOW-011, SOW-038, SOW-083]
 package_objective_refs: [OBJ-002]
 ---
 
@@ -11,9 +11,50 @@ package_objective_refs: [OBJ-002]
 
 ## Purpose and Objective Traceability
 
-This Scope of Work defines `DEL-03-02` in service of project scope [SOW-009, SOW-010, SOW-011, SOW-038] and package objectives [OBJ-002].
+This Scope of Work defines `DEL-03-02` in service of project scope [SOW-009, SOW-010, SOW-011, SOW-038, SOW-083] and package objectives [OBJ-002].
 
 - **OUT-001** — A thin TurnEngine and session-locking implementation for DEL-03-02 that fulfills SOW-009, SOW-010, SOW-011, and SOW-038 in support of OBJ-002.
+
+## SCA-APP-010 Gate-5 Current Contract (Controlling)
+
+The owner-approved SCA-APP-010 amendment (Gate 3 approved, Gate 5 applied
+2026-09-04 at content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`, merged
+as `7795b0972cac147869607d994173753e4a2fc232`; active pointer moved as
+`311a2f0b811d55315d6eb623130cad0be1417565`) makes the centre dialogue the
+invariant primary surface and seats the prompted specification ladder. Where any
+earlier current-contract section or older clause in this document disagrees with
+the applied row below, this section controls. Earlier sections, clauses, and
+evidence remain dated compatibility history and are not deleted.
+
+### Current responsibility
+
+`DEL-03-02 Thin TurnEngine and Session Locking` (BACKEND_FEATURE_SLICE, applied decomposition row L318):
+
+Keep App `/api/harness/*` and Desktop surfaces as daemon clients, bind
+project/persona/mode/delegation-policy/options requests, and verify daemon-owned
+session lifecycle and one-active-turn behavior.
+
+Applied row notes: App backend-integration slice; generic TurnEngine and lock
+ownership remain Root-owned; the stored delegation-policy field is Root-owned
+(SOW-083, OI-008).
+
+Applied row outputs: Daemon-client turn proxy; App session integration tests;
+daemon locking/lifecycle conformance evidence.
+
+### Current acceptance obligations
+
+1. App `/api/harness/*` and Desktop surfaces remain daemon clients; the daemon owns runtime session state.
+2. Boot and session-creation requests bind registered project identity/root, persona, mode, delegation policy, and options; the boot fingerprint reflects the real inputs.
+3. The delegation policy defaults to `none`, narrows managed delegation only, and adds no delegation class; the stored session-record field is Root DEL-02-11's (OI-008).
+
+### Seating and rulings
+
+Remaining items seated under D-APP-108 (2026-09-04): DEL-03-02-V3-01. Ruled
+questions applied here: none beyond SR-24. Alignment writes WI-021, WI-022,
+WI-023, WI-024, WI-025 performed in run `APP_SCA_APP_010_SEATING_2026-09-04`;
+dependency writes DEP-009, DEP-010 await the registered dependency-extract pass
+after owner acceptance of this alignment. No lifecycle, Checking Approval SHA,
+dependency-acceptance, product, or release act is implied.
 
 ## Deliverable Definition — Ontology
 

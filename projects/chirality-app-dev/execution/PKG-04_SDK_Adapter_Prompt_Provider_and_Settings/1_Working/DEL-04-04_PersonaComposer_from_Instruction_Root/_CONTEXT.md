@@ -25,7 +25,14 @@
 
 ## Deliverable Scope
 
-Replace stub prompt behavior with instruction-root governance, active persona, working-root policy, mode, and tool-surface composition.
+Replace stub prompt behavior with instruction-root governance composed from the
+bundled base and the client-owned organisation layer, active persona,
+working-root policy, mode, tool-surface composition, and a clearly delimited
+roadmap-injection block for a followed governed workflow.
+
+Applied decomposition row L329 (SCA-APP-010 Gate 5, 2026-09-04) notes: Prompt
+composition slice with bounded artifacts; injected roadmap content is steering
+context from a K-PATH-2-contained file, never authority.
 
 ## Anticipated Artifacts
 

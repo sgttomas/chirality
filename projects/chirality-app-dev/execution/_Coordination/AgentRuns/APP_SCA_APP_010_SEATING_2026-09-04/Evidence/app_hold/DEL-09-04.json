@@ -1,0 +1,25 @@
+{
+  "active_hold_deliverables": [],
+  "entry_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity",
+  "operation": "dispatch",
+  "register_sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+  "repo_head": "787a551e70d9fb33f6f9a9fe228443d890a8d02d",
+  "results": [
+    {
+      "contract_status": "CLEAR",
+      "deliverable_id": "DEL-09-04",
+      "entry_path": "projects/chirality-app-dev/execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-04_macOS_DMG_Packaging_and_Instruction_Root_Integrity",
+      "hold_status": "NOT_HELD",
+      "operation": "dispatch",
+      "verdict": "ALLOW"
+    }
+  ],
+  "scan_fingerprint_sha256": "f2aab9be545e73301da1f4dc67f3b61113492f55ca5f920794699e0e92512eb7",
+  "scan_held_deliverables": [],
+  "schema": "chirality-app-hold-check/v1",
+  "structural_bootstrap_deliverables": [],
+  "targets": [
+    "DEL-09-04"
+  ],
+  "verdict": "ALLOW"
+}

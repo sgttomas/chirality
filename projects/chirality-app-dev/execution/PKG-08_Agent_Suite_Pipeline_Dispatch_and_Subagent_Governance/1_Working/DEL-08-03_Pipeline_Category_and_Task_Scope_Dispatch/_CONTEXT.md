@@ -26,9 +26,13 @@
 ## Deliverable Scope
 
 Own presentation-neutral DECOMP/PREP/TASK/AUDIT lane semantics,
-category/task-scope interpretation, dynamic scope, and disabled-option rules
-for contextual Run consumers. DEL-02-02 presents these semantics without
-acquiring dispatch authority.
+category/task-scope interpretation, dynamic scope, and disabled-option rules for
+contextual Run consumers.
+
+Applied decomposition row L370 (SCA-APP-010 Gate 5, 2026-09-04) notes: Semantic
+dispatch owner; the contextual Pipeline presentation is retired from the active
+shell by SCA-APP-010 (code retained), so no active presentation consumer exists;
+any later consumer may not infer plans/tasks from conversational prose.
 
 ## Anticipated Artifacts
 

@@ -31,3 +31,4 @@
   `_run_records/R8_DAPP86_PACKAGED_WORKBENCH_PIPELINE_2026-08-03.md`. No broad
   UI/API parity, deliverable closure, lifecycle, dependency, release,
   distribution, issuance, or professional-reliance claim is made.
+- 2026-09-04 - SCA-APP-010 seating and alignment (D-APP-108): Remaining items DEL-02-02-V3-03, DEL-02-02-V3-04; read `_STATUS.md` with this file before any write; the applied decomposition row and the SCA-APP-010 Gate-5 Current Contract section in `ScopeOfWork.md` state the current responsibility; nothing here is authority. No lifecycle, Checking Approval SHA, dependency, product, or release change.

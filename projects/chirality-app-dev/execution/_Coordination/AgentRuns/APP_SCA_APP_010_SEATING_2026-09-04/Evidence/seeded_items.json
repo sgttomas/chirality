@@ -1,0 +1,158 @@
+[
+  {
+    "carrier": "DEL-02-01",
+    "item": "DEL-02-01-V3-01",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-02-V3-03 landed",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-02-01",
+    "item": "DEL-02-01-V3-02",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-01-V3-01 landed",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-02-01",
+    "item": "DEL-02-01-V3-03",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-01-V3-01 landed",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-02-01",
+    "item": "DEL-02-01-V3-04",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-05-V3-05 landed",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-02-02",
+    "item": "DEL-02-02-V3-03",
+    "gate": "SELECTABLE",
+    "selectable": true,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-02-02",
+    "item": "DEL-02-02-V3-04",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-02-V3-03 landed; DEL-07-03-V3-01 landed",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-02-04",
+    "item": "DEL-02-04-V3-01",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-02-V3-03 landed",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-02-05",
+    "item": "DEL-02-05-V3-05",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-01-V3-01 landed",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-03-02",
+    "item": "DEL-03-02-V3-01",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-08-04-V3-02 selected",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-04-04",
+    "item": "DEL-04-04-V3-01",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-07-03-V3-01 landed; DEL-07-01-V3-01 selected",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-05-02",
+    "item": "DEL-05-02-V3-02",
+    "gate": "NOT_SELECTABLE_UNTIL: Root acceptance of the additive proposal.* event types against HarnessEvent schema v2 routed to App (Root DEL-02-10)",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-06-03",
+    "item": "DEL-06-03-V3-01",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-02-V3-04 selected",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-07-01",
+    "item": "DEL-07-01-V3-01",
+    "gate": "SELECTABLE",
+    "selectable": true,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-07-03",
+    "item": "DEL-07-03-V3-01",
+    "gate": "SELECTABLE",
+    "selectable": true,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-08-01",
+    "item": "DEL-08-01-V3-01",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-02-V3-04 selected",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-08-04",
+    "item": "DEL-08-04-V3-02",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-02-V3-04 selected",
+    "selectable": false,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-02-03",
+    "item": "DEL-02-03-V3-01",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-02-V3-03 landed",
+    "selectable": false,
+    "outside_thirteen": true
+  },
+  {
+    "carrier": "DEL-02-03",
+    "item": "DEL-02-03-V3-02",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-03-V3-01 landed",
+    "selectable": false,
+    "outside_thirteen": true
+  },
+  {
+    "carrier": "DEL-05-04",
+    "item": "DEL-05-04-V3-02",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-03-V3-01 landed",
+    "selectable": false,
+    "outside_thirteen": true
+  },
+  {
+    "carrier": "DEL-09-04",
+    "item": "DEL-09-04-V3-02",
+    "gate": "NOT_SELECTABLE_UNTIL: DEL-02-01-V3-04 selected",
+    "selectable": false,
+    "outside_thirteen": true
+  },
+  {
+    "carrier": "DEL-08-03",
+    "item": null,
+    "gate": null,
+    "selectable": false,
+    "record_only": true,
+    "outside_thirteen": false
+  },
+  {
+    "carrier": "DEL-01-03",
+    "item": null,
+    "gate": null,
+    "selectable": false,
+    "record_only": true,
+    "outside_thirteen": true
+  }
+]

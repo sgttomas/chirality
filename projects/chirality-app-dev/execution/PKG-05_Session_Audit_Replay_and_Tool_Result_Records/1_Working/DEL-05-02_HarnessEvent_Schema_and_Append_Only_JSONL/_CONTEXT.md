@@ -25,7 +25,13 @@
 
 ## Deliverable Scope
 
-Consume Root-owned daemon `HarnessEvent` records for App audit/replay surfaces and verify accepted-turn and terminal-event persistence without owning the generic event schema or writer.
+Consume Root-owned daemon `HarnessEvent` records for App audit/replay surfaces
+and verify accepted-turn and terminal-event persistence without owning the
+generic event schema or writer; consume the additive `proposal.*` event types
+for replay and the proposal card once Root accepts them (SOW-082).
+
+Applied decomposition row L337 (SCA-APP-010 Gate 5, 2026-09-04) notes: App
+event-consumption and conformance slice; generic persistence remains Root-owned.
 
 ## Anticipated Artifacts
 
