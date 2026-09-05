@@ -11,8 +11,10 @@ the owner has answered. Agent readings are labelled as such.
 
 | G2-CONFIRM | 2026-09-04 | Ryan Tufts | Verbatim: "retire the presentation half of SOW-007 now. accept the organisation-layer default from Q14. I accept the impact assessment, proceed to Gate 3." | Accepts the Gate-2 impact assessment. Rules A006: SOW-007 loses its presentation half (contextual Pipeline controls retired from the active shell, code retained); DEL-08-03 remains the semantic owner and sole mapped deliverable; DEL-02-02 drops SOW-007. Rules A012/A022: the Q14 organisation-layer default (bundled base plus a client-owned, hash-pinned layer under instruction-root protections) is the Gate-3 basis; Q14 is thereby ruled. Authorizes Gate-3 exact amendment preview only. No application, propagation, pointer, implementation, or release act. |
 
-**Current state:** Gate 2 accepted. Gate 3 exact amendment preview
-authorized and in preparation. No Gate-4 or Gate-5 work is authorized.
+| G3-CONFIRM | 2026-09-04 | Ryan Tufts | Verbatim: "I approve the amendments, proceed to Gate 4." | Formal amendment approval of the exact Gate-3 bytes: decomposition candidate post-image `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` and companion candidate post-image `63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca` as built by `Gate3/build_gate3_candidate.py` (SHA-256 `9d4774bffb9d29798bcd25a3f43475678c727136c93c9bc51f55ba26f88cc6cf`) from the basis pre-images. Authorizes Gate-4 propagation planning only. No application, pointer movement, deliverable write, implementation, Root, or release act. |
+
+**Current state:** Gate 3 approved. Gate 4 propagation plan authorized and
+in preparation. No Gate-5 application is authorized.
 
 ## Attribution
 

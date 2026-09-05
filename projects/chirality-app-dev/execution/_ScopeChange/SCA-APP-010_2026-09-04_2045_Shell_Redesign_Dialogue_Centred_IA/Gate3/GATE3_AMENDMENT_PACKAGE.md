@@ -21,7 +21,7 @@ lifecycle, release, or reliance state.
 | --- | --- | --- |
 | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | `e46084abc0f85970dbe4ed49d1366a99e9930bbb9d9bd87b86f998f98155ab97` | pre-image |
 | `execution/_Decomposition/contract_invariant_coverage_register.csv` | `e47fced6f0bea32b1d18f987a7e33af0432271c4ff49bb196cdad6fb91742b70` | pre-image |
-| `Brief.md` | `0823870769b5c36192389c167821ad6110b104acadc7e2385391ba44c0c6e318` | confirmed Gate-1 envelope (the `**Status:**` line is the only change since the Gate-1 commit; A001–A029 and warnings 1–8 unchanged) |
+| `Brief.md` | Gate-1 commit `726fd561e` bytes with the `**Status:**` line advanced at each gate; the envelope A001–A029 and warnings 1–8 are frozen and unchanged (verify with `git diff 726fd561e -- Brief.md`) | confirmed Gate-1 envelope |
 | `Impact_Assessment.md` | `350ced2224e6171d69cc279ef7d8ca534075a3db793938b6e2171d705946abf8` | accepted Gate-2 basis |
 | `Amendment_Actions.csv` | `8b579266d3a4f7b73c093467691f2f9d7fe140bf8a0cb6f5d7c6c1ac2ef0a109` | 30 actions (25 MODIFY, 5 ADD) |
 | `Supersession_Delta.csv` | `c610f49478e314aeda673ec67befcc3369a50d559f98a18ddf5484a9b8449562` | 11 bindings (6 SUPERSESSION, 5 SUPPLEMENTARY_EXTENSION) |
