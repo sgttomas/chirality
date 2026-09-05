@@ -1,0 +1,17 @@
+[
+  {
+    "path": "docs/PRD_ROOT.md",
+    "sha256": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+    "unchanged_from_reviewed_head": true
+  },
+  {
+    "path": "execution/_Decomposition/Chirality_Root_SOFTWARE_DECOMP_v1_0.md",
+    "sha256": "546b6e4c58278e2bee3f68fa5b4079b0862543ef03f87c154be545948a6c4986",
+    "unchanged_from_reviewed_head": true
+  },
+  {
+    "path": "execution/_ScopeChange/_LATEST.md",
+    "sha256": "4335593a4d85b701c8322f83937aca3259be58275195a6915e524a64f914410c",
+    "unchanged_from_reviewed_head": true
+  }
+]

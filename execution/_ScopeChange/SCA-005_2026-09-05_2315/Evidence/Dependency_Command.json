@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "python3",
+    "tools/coordination/analyze_dep_closure.py",
+    "execution",
+    "--output-dir",
+    "/private/tmp/root-runtime-migration-20260905/gate2/dependency"
+  ],
+  "exit_code": 0,
+  "scope": "Root execution only; scanner consumes Dependencies.csv not markdown declarations"
+}
