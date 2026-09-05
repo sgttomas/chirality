@@ -1,0 +1,28 @@
+{
+  "prior_receipt_bytes_sha256": "6f2ee3ce10cd8b20cc3482f0226f98bd351fb273360981b62e834e4b8cccdd05",
+  "prior_prefix_preserved": true,
+  "checks": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "shared_full_staged_check": "PENDING"
+}

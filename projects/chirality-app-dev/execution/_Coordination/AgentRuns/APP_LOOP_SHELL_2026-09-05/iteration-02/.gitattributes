@@ -1,0 +1,4 @@
+# Exact-byte artifact classes; see artifact-classification-01/BEFORE_EFFECT.json.
+discovery/receipt-head.stdout whitespace=-blank-at-eof
+discovery/upstream-app-script.stdout whitespace=-trailing-space
+instances/pkg02_dep/FROZEN_CARRIER.diff whitespace=-blank-at-eof,-trailing-space

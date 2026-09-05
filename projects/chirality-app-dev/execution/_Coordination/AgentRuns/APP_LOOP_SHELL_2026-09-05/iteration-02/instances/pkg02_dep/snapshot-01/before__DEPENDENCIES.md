@@ -142,15 +142,14 @@ Structured register: `Dependencies.csv` v3.1
 | SatisfactionStatus | Count |
 |---|---:|
 | NOT_APPLICABLE | 6 |
-| SATISFIED | 8 |
-| PENDING | 6 |
+| SATISFIED | 7 |
+| PENDING | 7 |
 | TBD | 1 |
 
 Closure notes:
 
 - The extracted register is schema-valid and evidence-first; project-level availability still follows the FULL_GRAPH closure snapshot. The five seated-item rows emitted under D-APP-109 (DEP-02-04-015..019; formerly held H-008..H-012) were resolved on 2026-09-05 by the owner-ruled `decompose` move (D-APP-110): the three handovers DEP-02-04-017..019 now target the DOCUMENT contract node DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 at `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)` with their deliverable relations to DEL-02-01, DEL-02-02, DEL-02-03 preserved in `Notes`, and the two prerequisites DEP-02-04-015..016 stay strict deliverable edges. The carrier holds no cycle-participating row; every row gates per its `SatisfactionStatus`. The seated item's `Depends` line and gate remain the executable ordering at item level.
-- DEP-02-04-015 is SATISFIED by committed DEL-02-02-V3-03 at `03e61f38f7b20145552023abd1cf673c2b2a3f61` and actual configured CI `33991362689` PASS at that head. WORKING_ITEMS records this evidence-against-existing-Statement judgment under D-APP-59 S1 Reach 2 and D-APP-60/64; LOOP_INIT Step 1 recognizes committed run-branch predecessors. See `_run_records/DEPENDENCY_SATISFACTION_2026-09-05_DEP015.md`. No lifecycle or owner acceptance is inferred.
-- DEP-02-04-016..019 remain PENDING: the seated items they gate on or hand over to (DEL-02-03-V3-01, DEL-02-01-V3-02, DEL-02-01-V3-03, DEL-02-02-V3-04) have not landed.
+- DEP-02-04-015..019 are PENDING: the seated items they gate on or hand over to (DEL-02-02-V3-03, DEL-02-03-V3-01, DEL-02-01-V3-02, DEL-02-01-V3-03, DEL-02-02-V3-04) have not landed.
 - DEP-02-04-007..013 are SATISFIED: all `_REFERENCES.md` authority-corpus rows report MATCH (v20) and the decomposition is present at the pinned identity.
 - DEP-02-04-014 remains `TBD` because the source explicitly leaves adjacent runtime option contracts and permission policy integration points unresolved.
 - DEP-02-04-020 and DEP-02-04-021 are PENDING: the DEL-07-03 workflow file contract is not yet accepted, and the Root session-record semantics await the OI-008 return.
@@ -159,7 +158,7 @@ Closure notes:
 
 - Consumer: `RECONCILIATION`.
 - Reconcile one parent anchor, three scope-item trace anchors (SOW-004, SOW-008, SOW-016), two objective trace anchors, seven SATISFIED source-basis prerequisites, one TBD-target prerequisite (DEP-02-04-014), two seated-item prerequisites (DEP-02-04-015 to DEL-02-02; DEP-02-04-016 to DEL-02-03), three additive-field handovers (DEP-02-04-017..019, DOCUMENT-targeted at the DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 contract under D-APP-110; deliverable relations to DEL-02-01, DEL-02-02, DEL-02-03 preserved in `Notes`), and two rung-truth constraints (DEP-02-04-020 to DEL-07-03; DEP-02-04-021 EXTERNAL Root).
-- The carrier no longer holds cycle-participating rows: the SCC that DEP-02-04-015..019 participated in was decomposed under D-APP-110 (2026-09-05), the two deliverable-level pairs (DEL-02-04 <-> DEL-02-02 via 015/018; DEL-02-04 <-> DEL-02-03 via 016/019) are dissolved by the DOCUMENT re-targeting of 017..019, and every row gates per its `SatisfactionStatus` like any other strict edge (015 is `SATISFIED` by the recorded T1 evidence; 016..019 remain `PENDING` until the named seated items land). Read the three DOCUMENT rows as contract consumption, not build sequencing; the deliverable relation each records is evidence in `Notes`, not a strict edge.
+- The carrier no longer holds cycle-participating rows: the SCC that DEP-02-04-015..019 participated in was decomposed under D-APP-110 (2026-09-05), the two deliverable-level pairs (DEL-02-04 <-> DEL-02-02 via 015/018; DEL-02-04 <-> DEL-02-03 via 016/019) are dissolved by the DOCUMENT re-targeting of 017..019, and every row gates per its `SatisfactionStatus` like any other strict edge (015..019 are `PENDING` until the named seated items land). Read the three DOCUMENT rows as contract consumption, not build sequencing; the deliverable relation each records is evidence in `Notes`, not a strict edge.
 - Keep DEP-02-04-021 at `TargetLocation=TBD` until the OI-008 Root return is routed to App; do not resolve it to a Root path.
 - The two F2 candidates (design basis plan; `loop/LOOP_INIT.md` section 7) are deliberately absent from the register; reconcile against the seated item's Plan and Return lines rather than against register rows.
 

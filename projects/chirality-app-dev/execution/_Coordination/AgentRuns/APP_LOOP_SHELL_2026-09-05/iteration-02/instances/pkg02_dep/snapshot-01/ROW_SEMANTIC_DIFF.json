@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "changed_rows": [
+    {
+      "DependencyID": "DEP-02-04-015",
+      "fields": {
+        "SatisfactionStatus": {
+          "before": "PENDING",
+          "after": "SATISFIED"
+        },
+        "Notes": {
+          "before": "FACT: owner-adopted gate and Depends line seated under D-APP-108 (2026-09-04); the sealed brief treats seated gate and Depends lines as information-flow signals, so this is not a schedule inference. Target item existence confirmed in DEL-02-02 `_STATUS.md` (existence check only; not used as a source). NEEDS_HUMAN_GRAPH_DECISION: with DEP-02-04-018 this row forms a deliverable-level bidirectional pair DEL-02-04 <-> DEL-02-02 that is acyclic at item level (DEL-02-02-V3-03 -> DEL-02-04-V3-01 -> DEL-02-02-V3-04); resolution (decompose / invert / merge / cut; cut and merge are human-gated) remains an owner act. TargetRefID=SOW-001 follows the carrier's DEP-02-04-020 scope-ID convention: the gated retirement (Workbench and Pipeline unmounted; centre dialogue invariant) is SOW-001 (L171; reverse view L404), cited by the DEL-02-02-V3-03 Trace line. EMITTED 2026-09-05 under D-APP-109 (H-008). CYCLE_PARTICIPATING: this edge lies inside the enlarged SCC-001 after emission and is non-gating (no blocker queue, wave, dispatch-readiness, or implementation-readiness effect) until that SCC is resolved by a recorded decompose, invert, merge, or cut move (docs/CYCLE_DRIVEN_RESOLUTION.md). RESOLVED 2026-09-05: the SCC this row participated in was decomposed under D-APP-110; this row is a strict edge of the acyclic approved graph and gates per its SatisfactionStatus.",
+          "after": "FACT: owner-adopted gate and Depends line seated under D-APP-108 (2026-09-04); the sealed brief treats seated gate and Depends lines as information-flow signals, so this is not a schedule inference. Target item existence confirmed in DEL-02-02 `_STATUS.md` (existence check only; not used as a source). NEEDS_HUMAN_GRAPH_DECISION: with DEP-02-04-018 this row forms a deliverable-level bidirectional pair DEL-02-04 <-> DEL-02-02 that is acyclic at item level (DEL-02-02-V3-03 -> DEL-02-04-V3-01 -> DEL-02-02-V3-04); resolution (decompose / invert / merge / cut; cut and merge are human-gated) remains an owner act. TargetRefID=SOW-001 follows the carrier's DEP-02-04-020 scope-ID convention: the gated retirement (Workbench and Pipeline unmounted; centre dialogue invariant) is SOW-001 (L171; reverse view L404), cited by the DEL-02-02-V3-03 Trace line. EMITTED 2026-09-05 under D-APP-109 (H-008). CYCLE_PARTICIPATING: this edge lies inside the enlarged SCC-001 after emission and is non-gating (no blocker queue, wave, dispatch-readiness, or implementation-readiness effect) until that SCC is resolved by a recorded decompose, invert, merge, or cut move (docs/CYCLE_DRIVEN_RESOLUTION.md). RESOLVED 2026-09-05: the SCC this row participated in was decomposed under D-APP-110; this row is a strict edge of the acyclic approved graph and gates per its SatisfactionStatus. RECONCILED 2026-09-05 by WORKING_ITEMS PKG-02 under D-APP-59 S1 Reach 2 and D-APP-60/64: existing Statement satisfied by DEL-02-02-V3-03 implementation and run record committed at 03e61f38f7b20145552023abd1cf673c2b2a3f61 on codex/app-loop-shell-20260905; actual configured CI workflow_dispatch 33991362689 PASS at that exact head (release-quality and premerge). LOOP_INIT Step 1 permits run-branch predecessor observability. Evidence: execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/ci-01/CI_RESULT.json and iteration-02/instances/pkg02_dep/snapshot-01/SATISFACTION_SNAPSHOT.json; local _run_records/DEPENDENCY_SATISFACTION_2026-09-05_DEP015.md. Agent evidence-against-criterion judgment only; no lifecycle promotion or owner acceptance or merge; RequiredMaturity and topology preserved."
+        }
+      }
+    }
+  ],
+  "other_rows_byte_identical": true,
+  "forbidden_fields_unchanged": true,
+  "row_count_before": 21,
+  "row_count_after": 21
+}

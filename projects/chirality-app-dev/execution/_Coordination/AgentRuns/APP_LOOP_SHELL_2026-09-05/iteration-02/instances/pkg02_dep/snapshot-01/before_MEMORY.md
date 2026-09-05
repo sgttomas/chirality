@@ -13,7 +13,3 @@
 - 2026-07-12 - D-APP-56 R5 P45 executed UPD-109, UPD-111: current kit/register metadata now reflects live ruled state; dated history and genuine TBD/gates remain preserved. No lifecycle transition occurred.
 - 2026-09-04 - SCA-APP-010 seating and alignment (D-APP-108): Remaining items DEL-02-04-V3-01; read `_STATUS.md` with this file before any write; the applied decomposition row and the SCA-APP-010 Gate-5 Current Contract section in `ScopeOfWork.md` state the current responsibility; nothing here is authority. No lifecycle, Checking Approval SHA, dependency, product, or release change.
 - 2026-09-05 - D-APP-109 dependency closure and context alignment: `Dependencies.csv` is current with the applied row L310; rows noted `CYCLE_PARTICIPATING` are non-gating until their SCC is resolved by a recorded move, so read the seated items' `Depends` lines and gates, not those rows, for executable ordering; `_CONTEXT.md` traceability and artifacts equal the applied row; read `_STATUS.md` with this file before any write; nothing here is authority.
-
-## 2026-09-05 — DEP-02-04-015 evidence reconciliation
-
-WORKING_ITEMS reconciled only DEP-02-04-015 from PENDING to SATISFIED against committed T1 `03e61f38f7b20145552023abd1cf673c2b2a3f61` and actual configured CI `33991362689` PASS, under D-APP-59 S1 Reach 2 and D-APP-60/64. See `_run_records/DEPENDENCY_SATISFACTION_2026-09-05_DEP015.md`. Frozen for fresh review; no lifecycle, owner acceptance, topology, Remaining, or source implementation change. Later consumption waits for parent review and iteration closeout.

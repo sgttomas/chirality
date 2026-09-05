@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "run_id": 33991362689,
+  "job_id": 101374068374,
+  "event": "workflow_dispatch",
+  "branch": "codex/app-loop-shell-20260905",
+  "head_sha": "03e61f38f7b20145552023abd1cf673c2b2a3f61",
+  "url": "https://github.com/sgttomas/chirality/actions/runs/33991362689",
+  "release_quality": "pass",
+  "premerge": "pass",
+  "premerge_exit_code": 0,
+  "section8_pass_count": 8,
+  "summary_consistency": "pass",
+  "artifact_id": 9976749587,
+  "artifact_digest_verified": true,
+  "local_failure_history_preserved": true,
+  "previous_missing_binding_ci_obligation": "resolved for this exact committed source by actual bound CI execution",
+  "new_failure": null,
+  "interpretation": "Evidence only; parent rederives next iteration and owns acceptance. No merge, release or lifecycle action."
+}

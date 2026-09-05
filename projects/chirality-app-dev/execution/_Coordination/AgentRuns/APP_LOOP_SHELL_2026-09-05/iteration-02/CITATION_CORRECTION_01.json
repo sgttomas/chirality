@@ -1,0 +1,32 @@
+{
+  "scope": "Receipt246 Pointers exact rationale citations only",
+  "before_sha256": "61a8d29ff138a532b93f997328de69aae2038acbd1ad0cbd0de82b504bb1f143",
+  "after_sha256": "8b9d2127fd97cc6d1551750a07103abd03daf958463b4ceec20f9639b0bec73a",
+  "before_pointer_line": "  - Pointers: `execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/HANDOFF_STATE.md`, `WORK_GRAPH_v2.json`, `instances/pkg02_dep/MANAGER_RETURN.md`, immutable `snapshot-01/`; prior run `validation/ci-01/CI_RESULT.json`; branch `codex/app-loop-shell-20260905`; no committed overlay.\n",
+  "after_pointer_line": "  - Pointers: `execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/HANDOFF_STATE.md`, `WORK_GRAPH_v2.json`, `instances/pkg02_dep/MANAGER_RETURN.md`, immutable `snapshot-01/`; prior run `validation/ci-01/CI_RESULT.json`; branch `codex/app-loop-shell-20260905`; no committed overlay. Rationale artifacts: `execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_run_records/DEPENDENCY_SATISFACTION_2026-09-05_DEP015.md`; `execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/artifact-classification-01/RATIONALE_AND_REVIEW_BLOCK.md`.\n",
+  "all_other_bytes_preserved": true,
+  "checks": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "final_review": "PENDING; no final PASS inferred from preliminary staged check"
+}

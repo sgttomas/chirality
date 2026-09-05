@@ -1,0 +1,38 @@
+{
+  "captured_by": "CHANGE",
+  "source_capture": "/private/tmp/app-loop-iteration2-whitespace.json",
+  "capture_sha256": "31f977c5b7017ff2a8cfe05e657f00bc63709656f2bc3747e77507fbe292587a",
+  "findings": 299,
+  "preimages": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/discovery/receipt-head.stdout",
+      "sha256": "5c5f2a2e50464136aedbad49162874550d2b323f1e48621cb548204a55ecab58",
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/discovery/upstream-app-script.stdout",
+      "sha256": "273214e640f662d840a1bf507177e67904b3c36b04a40095a50666d06e9dd064",
+      "observed_classes": [
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/iteration-02/instances/pkg02_dep/FROZEN_CARRIER.diff",
+      "sha256": "6c73b8e7255be90002911a870c4e7e64c55529e074b0d6362eae81a739a3acdc",
+      "observed_classes": [
+        "blank-at-eof",
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/ci-01/logs-01.stdout.log",
+      "sha256": "994f8edf8a6c8b7167dc4b3101e30b99202d1fae32585f8ac82e10e1ef8fb332",
+      "observed_classes": [
+        "trailing-space"
+      ]
+    }
+  ],
+  "review": "Parent-relayed reviewer BLOCK solely full staged whitespace check"
+}
