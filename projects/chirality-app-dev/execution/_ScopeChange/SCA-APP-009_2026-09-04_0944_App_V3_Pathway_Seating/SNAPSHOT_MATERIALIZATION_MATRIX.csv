@@ -1,0 +1,43 @@
+Order,Artifact,SourceOrGenerator,IdentityOrCompletionRule,MaterializationStage,Gate5StateBeforePointer
+1,Brief.md,"Gate-1 GATE1_INTAKE.md plus accepted partition decision","Whitespace-normalized exact content; SHA-256 ca604a1ca62a2a67e0f6456db0be2383cb95f98787df94d3c71a8a54bd13b8df",PRE_AUDIT_24,COMPLETE
+2,Impact_Assessment.md,"Accepted Gate-2 Impact_Assessment.md","Whitespace-normalized exact content; SHA-256 347b5dd375e64467a1ac656d6b6ecaa44baf2f079e766c2f3bbcb0da3f693748",PRE_AUDIT_24,COMPLETE
+3,Propagation_Plan.md,"Whitespace-normalized Gate-4 revision-5 Propagation_Plan.md","Exact normalized content; SHA-256 7245abe4df63e917f77f654bb5482eaf22b3c4952097ff90a1ddab75c45b9f8d",PRE_AUDIT_24,COMPLETE
+4,Amendment_Actions.csv,"Accepted Gate-3/Gate-4 Amendment_Actions.csv","SHA-256 46273d39b991551326688fac9d5f4f8381b181503bdf38aced4a94d46223c2b6; 16 rows",PRE_AUDIT_24,COMPLETE
+5,Pre_Change_Coverage.json,"Gate-3 Pre_Change_Coverage.json","SHA-256 c1cfe859fbf714899f80dc91e8060949350e83e4dce45933cdce296bd2727968",PRE_AUDIT_24,COMPLETE
+6,Post_Change_Coverage.json,"Fresh Gate-5 AUDIT_DECOMP candidate/post-state run after PREP-001..PREP-005","Fresh executed result; expected 10/52/80 and no new blocker/major; carried SCA-APP-008 blocker and explicit modified-context warnings preserved",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+7,Decision_Log.md,"Reviewed and owner-authorized Gate-4 revision-5 Decision_Log.md plus later exact owner decisions","Preserve the complete revision-5 decision chain; append later exact decisions only when made; no inferred rulings",PRE_AUDIT_24,COMPLETE
+8,Handoff_State.md,"Gate-5 executed results","All fixed fields use closed vocabulary; MetadataAlignmentState exactly NOT_STARTED; derivative table records structural scaffold; OPEN_PENDING_DERIVATIVE_CLOSURE",FINAL_PRE_POINTER_5,COMPLETE
+9,RUN_SUMMARY.md,"Gate-5 executed results","Actions paths hashes pre/post checks independent-review result downstream reruns CHANGE handoff",FINAL_PRE_POINTER_5,COMPLETE
+10,Supersession_Delta.csv,"Gate-3 approved preview","SHA-256 7c3b1899825ac3a208c6e0ca8fc5afacafdd02e1355ed8393bab042b949d9233; four SUPPLEMENTARY_EXTENSION rows",PRE_AUDIT_24,COMPLETE
+11,Supersession_Map.csv,"Normative accumulator after independent-review PASS","34 data rows; SHA-256 5f7f0176ac161ac14f1f4e70f02e7810df211a24ad0dbf4b240b17efbce3403b",POST_REVIEW_PRE_APPLICATION_2,COMPLETE
+12,Evidence/Gate3/GATE3_INDEPENDENT_REVIEW.md,"Gate-3 review","Whitespace-normalized exact content; SHA-256 dcd9eded999229a2d906bcf1837e13692d0a12326abb97a936421bdcfaf484c5",PRE_AUDIT_24,COMPLETE
+13,Evidence/Gate3/GATE3_INDEPENDENT_REVIEW_R2.md,"Gate-3 review R2","Whitespace-normalized exact content; SHA-256 3a7314d938f9bcdc00b0d097832889d11c772dfb6518393c54e0a1e1163a83d7; PASS",PRE_AUDIT_24,COMPLETE
+14,Evidence/Gate3/VALIDATION.md,"Gate-3 validation","Whitespace-normalized exact content; SHA-256 0994c2b58610914ae4f0c1a6de5bb2c42c5c550ab192eb8e742c6f49573e1baf",PRE_AUDIT_24,COMPLETE
+15,Evidence/Gate5/AUDIT_DECOMP/AUDIT_DECOMP_RETURN.md,"Fresh Gate-5 post-change audit","Whitespace-normalized actual return and verdict; SHA-256 4216ae9d3560a2e7d0ca102a36811e5c0992b4e0a178a090823b5a011238e8ca",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+16,Evidence/Gate5/AUDIT_DECOMP/Brief.md,"Fresh Gate-5 post-change audit","Sealed scope and exact candidate basis",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+17,Evidence/Gate5/AUDIT_DECOMP/Decision_Log.md,"Fresh Gate-5 post-change audit","Audit-local decisions only",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+18,Evidence/Gate5/AUDIT_DECOMP/Decomp_Coverage_IssueLog.csv,"Fresh Gate-5 post-change audit","All findings retained",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+19,Evidence/Gate5/AUDIT_DECOMP/Decomp_Coverage_Matrix.csv,"Fresh Gate-5 post-change audit","Full SOFTWARE coverage matrix",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+20,Evidence/Gate5/AUDIT_DECOMP/Decomp_Coverage_Report.md,"Fresh Gate-5 post-change audit","Whitespace-normalized; no suppressed blocker/major; SHA-256 9a6a258815ba6df6705dca19c02075d7f80aefc99ff7f8cc32145bcc04356699",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+21,Evidence/Gate5/AUDIT_DECOMP/QA_Report.md,"Fresh Gate-5 post-change audit","Actual QA checks",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+22,Evidence/Gate5/AUDIT_DECOMP/RUN_SUMMARY.md,"Fresh Gate-5 post-change audit","Whitespace-normalized; verdict matches return/report; SHA-256 5831c7869261bdd5683b5f4f69c8cd48c9d403a57ce1cd6c23f829d3839b06e9",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+23,Evidence/Gate5/AUDIT_DECOMP/coverage_summary.json,"Fresh Gate-5 post-change audit","Machine baseline used for Post_Change_Coverage.json",POST_AUDIT_PRE_REVIEW_10,COMPLETE
+24,Evidence/Gate5/RECONCILIATION_REPORT.md,"Gate-5 reconciliation after actual pair/scaffold application","Exact command/version and no-drift result",POST_APPLICATION_RECONCILIATION_1,COMPLETE
+25,Evidence/Gate5/Supersession_Map_Findings.csv,"Normative accumulator after independent-review PASS","Header only; zero findings",POST_REVIEW_PRE_APPLICATION_2,COMPLETE
+26,Evidence/Gate5/CHECKS.md,"Gate-5 checks","Every check actual PASS/FAIL/SKIPPED with reason; independent-review target/hash/verdict/counts recorded",FINAL_PRE_POINTER_5,COMPLETE
+27,Evidence/Gate5/POINTER_CANDIDATE_VALIDATION.md,"Precomputed literal pointer and complete candidate-mirror parity","Target identity complete artifact manifest and expected parity; no claim live pointer already moved",FINAL_PRE_POINTER_5,COMPLETE
+28,MANIFEST.sha256,"Deterministic hash pass after all other rows complete","Every snapshot file except MANIFEST.sha256 listed once and validates",FINAL_PRE_POINTER_5,COMPLETE
+29,OWNER_ACTION_MATRIX.csv,"Reviewed and owner-authorized Gate-4 revision-5 matrix","SHA-identical revision-5 approved attachment containing both D-APP-104 preflights",PRE_AUDIT_24,COMPLETE
+30,FUTURE_WRITE_SET.csv,"Reviewed and owner-authorized Gate-4 revision-5 FUTURE_WRITE_SET.csv inherited byte-identically from revision 4","SHA-identical revision-5 approved attachment; 116-row write ledger and final 49-path pre-pointer boundary unchanged; includes PREP-001..PREP-005",PRE_AUDIT_24,COMPLETE
+31,DOWNSTREAM_HANDOFFS.csv,"Accepted original Gate-4 handoff attachment","SHA-256 b44947749e3ba023b08f4cc4603604392e64b110b2138b0008cf7ab4180cfa1c; rows 1-2 preserved as superseded history; rows 3-9 remain post-pointer contracts",PRE_AUDIT_24,COMPLETE
+32,SNAPSHOT_MATERIALIZATION_MATRIX.csv,"This reviewed and owner-authorized Gate-4 revision-5 staged snapshot contract","Materialize these exact revision-5 bytes after package review and owner authorization; no package-manifest self-reference",PRE_AUDIT_24,COMPLETE
+33,VALIDATION_AND_ROLLBACK_MATRIX.csv,"Reviewed and owner-authorized Gate-4 revision-5 checks","SHA-identical revision-5 approved attachment containing both D-APP-104 preflights",PRE_AUDIT_24,COMPLETE
+34,INIT_TASK_DEL_09_07.md,"Owner-approved pre-pointer PREPARATION brief","Whitespace-normalized exact content; SHA-256 e47fada8983b3aa2c1fc42485fb6f39d4c8dbfa9b108765717c59980d890b8b0; dispatch and five-file hashes recorded before post-change audit",PRE_AUDIT_24,COMPLETE
+35,Evidence/Gate5/PRE_CHANGE_AUDIT/AUDIT_DECOMP_RETURN.md,"Fresh Gate-5 pre-change audit","Whitespace-normalized actual basis and verdict; SHA-256 efe02f01049f08c355b2e42dbde99a9b94283d5c9ebe5fc4307de943a9b659ab",PRE_AUDIT_24,COMPLETE
+36,Evidence/Gate5/PRE_CHANGE_AUDIT/Brief.md,"Fresh Gate-5 pre-change audit","Sealed scope and recorded actual basis",PRE_AUDIT_24,COMPLETE
+37,Evidence/Gate5/PRE_CHANGE_AUDIT/Decision_Log.md,"Fresh Gate-5 pre-change audit","Audit-local decisions only",PRE_AUDIT_24,COMPLETE
+38,Evidence/Gate5/PRE_CHANGE_AUDIT/Decomp_Coverage_IssueLog.csv,"Fresh Gate-5 pre-change audit","All baseline findings retained",PRE_AUDIT_24,COMPLETE
+39,Evidence/Gate5/PRE_CHANGE_AUDIT/Decomp_Coverage_Matrix.csv,"Fresh Gate-5 pre-change audit","Full SOFTWARE baseline matrix",PRE_AUDIT_24,COMPLETE
+40,Evidence/Gate5/PRE_CHANGE_AUDIT/Decomp_Coverage_Report.md,"Fresh Gate-5 pre-change audit","Whitespace-normalized protected state and baseline; SHA-256 4020f7c5d52132fae2c1e447a10111a5fe333e6c1f6b70d3795acbc9489f60b8",PRE_AUDIT_24,COMPLETE
+41,Evidence/Gate5/PRE_CHANGE_AUDIT/QA_Report.md,"Fresh Gate-5 pre-change audit","Actual checks and verdict",PRE_AUDIT_24,COMPLETE
+42,Evidence/Gate5/PRE_CHANGE_AUDIT/coverage_summary.json,"Fresh Gate-5 pre-change audit","Machine baseline at recorded actual basis",PRE_AUDIT_24,COMPLETE

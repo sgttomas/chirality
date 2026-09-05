@@ -1,3 +1,17 @@
+# SCA-APP-009 Literal Pointer Candidate Validation
+
+**State:** `POINTER_APPROVAL_READY`
+**Live pointer changed:** `NO`
+**Live pointer preimage SHA-256:** `12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b`
+
+The complete pre-pointer snapshot, authority pair, five-file scaffold, root
+conscious baseline pin, audit evidence, independent review, reconciliation,
+and validation checks are present. The literal proposed postimage below is a
+candidate only and has not been written to `_ScopeChange/_LATEST.md`.
+
+## Literal proposed `_LATEST.md` postimage
+
+```markdown
 # Active SCOPE_CHANGE Snapshot
 
 **Status:** `OPEN_PENDING_DERIVATIVE_CLOSURE`
@@ -18,3 +32,10 @@ release, signing, notarization, publication, distribution, readiness, or
 reliance claim. Downstream metadata alignment, dependency extraction, carrier
 work, Root-owned contracts, G5/G6a, and every gate named in
 `DOWNSTREAM_HANDOFFS.csv` remain separately governed and open.
+```
+
+**Literal postimage SHA-256:**
+`f235ced4526aac51c4e7f5307ac619f3500e824c3549960b106bb80b67a6e17c`
+
+Deterministic extraction of the fenced payload reproduces that identity.
+Owner approval must name this exact postimage before the live pointer may move.

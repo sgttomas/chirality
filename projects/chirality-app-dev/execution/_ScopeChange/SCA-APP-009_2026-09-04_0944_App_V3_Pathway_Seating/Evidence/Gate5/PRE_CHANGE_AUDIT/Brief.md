@@ -1,0 +1,5 @@
+# Brief — SCA-APP-009 Gate-5 pre-change audit R3
+
+Act as a fresh bounded read-only `AUDIT_DECOMP` Agent 2. Audit untouched current main `aa8554542e3d6d09a925f69e1114bea8e18532f8` before SCA-APP-009 Gate 5. Read the governing audit and scope-change instructions, App instructions, accepted Gate 3, Gate-4 revision-5 PASS, and prior Gate-1/pre-change methods. Recompute full-scope SOFTWARE decomposition coverage; verify topology, ledger distribution, context/status/MEMORY, package discipline, active SCA-APP-008 warnings/blocker, protected hashes, pointer, corpus status, and baseline parity. Write only the eight named derivative evidence files to this scratch directory. Do not modify the repository, apply Gate 5, move a pointer, delegate, or use the network.
+
+Normalized parameters: `EXECUTION_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `DECOMP_VARIANT=SOFTWARE`; `SCOPE=ALL`; `RUN_LABEL=SCA_APP_009_GATE5_PRECHANGE_R3`; `EXPECTED_HANDOFF_PHASE=Gate 5 pre-change`; `REQUESTED_BY=SCOPE_CHANGE`.

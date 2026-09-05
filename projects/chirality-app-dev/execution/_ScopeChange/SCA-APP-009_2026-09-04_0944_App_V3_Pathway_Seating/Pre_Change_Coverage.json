@@ -1,0 +1,48 @@
+{
+  "run_label": "SCA_APP_NEXT_GATE1_PRECHANGE",
+  "timestamp": "2026-09-04T07:54:28-06:00",
+  "decomp_variant": "SOFTWARE",
+  "expected_source_snapshot": "projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md -> execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/",
+  "expected_handoff_phase": "Gate 1 pre-change baseline",
+  "decomposition_path": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+  "decomposition_revision": "v3.2",
+  "basis_commit": "719fe5e34cefc40fe0dab4b045f5f2a89341ae2f",
+  "scope": "ALL",
+  "repository_topology": {
+    "packages": 10,
+    "deliverables": 51,
+    "objectives": 10,
+    "scope_items": 78,
+    "ledger_rows": 78
+  },
+  "partitions_declared": 10,
+  "partitions_found": 10,
+  "production_units_declared": 51,
+  "production_units_found": 51,
+  "forward_coverage_partitions_pct": 100.0,
+  "forward_coverage_production_units_pct": 100.0,
+  "reverse_coverage_pct": 96.2,
+  "context_fidelity_pct": 92.2,
+  "artifact_presence_pct": 6.6,
+  "objective_coverage_pct": 100.0,
+  "deliverables_without_objective_mapping": 0,
+  "in_ledger_rows_without_objective_mapping": 0,
+  "package_shape_conformance": "WARN",
+  "derivative_package_status": "SKIPPED",
+  "active_snapshot_status": "FAIL",
+  "handoff_state_status": "PASS",
+  "objective_evidence_integrity": "PASS",
+  "issues_blocker": 1,
+  "issues_warning": 58,
+  "issues_info": 1,
+  "check_count": 12,
+  "lifecycle_distribution": {
+    "IN_PROGRESS": 51
+  },
+  "overall_status": "BLOCKERS",
+  "closure_readiness": "FAIL",
+  "concrete_labels": {
+    "partition": "Package",
+    "production_unit": "Deliverable"
+  }
+}
