@@ -6845,3 +6845,14 @@
   - Checks: receipt validator pass; live and standalone APP-HOLD suites, approval suite, exact-token simulations and adversarial matrix pass; APP-HOLD integrity, harness self-check/pytest, corpus v20, exact scope, strict JSON/CSV/compile/manifests, F-APP-2/forbidden-scope, patch reconstruction, whitespace, and diff checks pass; frontend checks skipped because no frontend/runtime source changed.
   - Model-Attribution: provider OpenAI; engine Codex; model GPT-5 family (exact identifier unavailable); execution class `delegated-harness-native`; ephemeral Agent-2 role is `role not mechanically enforced` with `instruction-asserted` governed-workflow evidence; non-delegation is instruction+config asserted, not mechanism-proven; no descendant was launched.
   - Gate-Outcome: `EXECUTED` — the exact owner answer `Yes` and deterministic ruling are preserved verbatim in D-APP-104; exact approval and application occurred. Push, PR creation, CI, and owner merge remain separate gates. No SCA Gate 5, decomposition/companion/pointer, PREPARATION, DEL-09-07 scaffold/ScopeOfWork, product/frontend/runtime, plan, Root, Task Management, host/Syft/signing, lifecycle, release, or reliance act or claim occurred.
+
+- **2026-09-04 — Receipt 227** (development-loop instruction surface: LOOP_INIT as the generic loop; D-APP-105 reversal record).
+  - Receipt-ID: `Receipt-227`
+  - Examined-Through: `aa8554542e3d6d09a925f69e1114bea8e18532f8`
+  - Parent-Receipt: `Receipt-226`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-09-04, Ryan Tufts): "I made a mistake with D-APP-61 and 64. I don't recall why I did that but it goes against what I've been trying to get working through loops acting in the manner we've now defined here." Full text and the effect reading are in the D-APP-105 ruling record.
+  - Stale-Map-Delta: `WORKPLAN_2026-09-03_app_dev_loop.md` and D-APP-61 describe the workplan as the single loop-instruction surface; from PR #706 that surface is `loop/LOOP_INIT.md`; verify in D-APP-105 and `LOOP_INIT.md` §2.
+  - Pointers: PR #706, branch `claude/app-dev-loop-init-generic`; `loop/LOOP_INIT.md`; `loop/WORKPLAN_2026-09-04_app_dev_loop.md`; `execution/_Coordination/_DECISIONS/D-APP-105_RULING_LOOP_INSTRUCTION_SURFACE_REVERSAL_2026-09-04.md`; register rows D-APP-105 and D-APP-106 (residual validator/loader relaxation).
+  - Checks: receipt validator pass; instruction-entrypoint validator and its pytest pass; authority corpus status no drift; repo-wide self-check exit 0; frontend gates skipped because no runtime source changed.
+  - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; no child dispatched.
+  - Gate-Outcome: `EXECUTED` — owner directed the documentation and the merge of PR #706 in-session; the merge is performed on that direction. No deliverable `Remaining` item selected; no product, lifecycle, release, Root, or SCOPE_CHANGE act.

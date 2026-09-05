@@ -29,7 +29,9 @@ any clause that would do so is void and is reported as a stale-map delta.
 When the plan is silent, this file governs. When the plan names a focus,
 work inside that focus first and record why anything outside it was taken.
 Discovery does not depend on the plan: the work surface is always the
-deliverables' `## Remaining` sections (Step 0).
+deliverables' `## Remaining` sections (Step 0). (D-APP-105; it reverses
+the D-APP-61 M2-A / D-APP-64 arrangement in which the plan carried the
+protocol.)
 
 Plan selection is from committed `HEAD`, never the working tree (D-APP-64):
 from `REPO_ROOT`, enumerate the `HEAD` tree entries under
@@ -377,5 +379,6 @@ Receipt 5 (deliverables are the work surface; F-APP-5) · D-APP-59/D-APP-60
 separation; historical §7 mapping) · D-APP-64 (reasoned-selection overlay;
 committed-HEAD loader) · A1 2026-08-23 (re-stage rule) · Root R17 / A12
 2026-09-03 (calibrated pressure; evidence contract; selectability rule; one
-branch, one PR, one receipt) · 2026-09-04 owner direction (this file carries
-the generic loop; the workplan is an optional narrowing overlay).
+branch, one PR, one receipt) · D-APP-105 2026-09-04 (this file carries the
+generic loop; the workplan is an optional narrowing overlay; D-APP-106 holds
+the residual validator/loader relaxation).
