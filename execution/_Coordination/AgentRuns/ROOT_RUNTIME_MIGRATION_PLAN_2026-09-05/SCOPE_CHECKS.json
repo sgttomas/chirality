@@ -1,0 +1,9 @@
+{
+  "planning_only_paths": true,
+  "no_tracked_source_change_before_receipt": true,
+  "ten_proposed_dependencies_resolve_to_mapped_packages": true,
+  "runtime_file_map_unique": true,
+  "all_principal_source_hashes_unchanged": true,
+  "instruction_surface_change": false,
+  "new_project_created": false
+}

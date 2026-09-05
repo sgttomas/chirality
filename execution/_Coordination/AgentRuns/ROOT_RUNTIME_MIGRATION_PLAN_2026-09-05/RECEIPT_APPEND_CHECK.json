@@ -1,0 +1,9 @@
+{
+  "old_bytes": 532757,
+  "old_sha256": "2c20de30d3ee0f44df20ed3b7d92b72bc8817d3cabceed5a82ad27cb062fe22f",
+  "unchanged_prefix": true,
+  "single_next_free_header": true,
+  "new_receipt": 134,
+  "historical_duplicate_80_preserved": 2,
+  "ledger_sha256": "1c2566cf72611b49d3571ec45281a7b85eb1f0d72183a20b4fa1337292f52c58"
+}

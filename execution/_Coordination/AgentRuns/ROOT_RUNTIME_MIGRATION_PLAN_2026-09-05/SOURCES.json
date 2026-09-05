@@ -1,0 +1,87 @@
+{
+  "basis": "39f51f1cd712b86c67c57270457fc09066eadb1c",
+  "files": {
+    "AGENTS.md": {
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+      "bytes": 18466
+    },
+    "docs/SPEC.md": {
+      "sha256": "f666385e3d79a9634db58087d8b1bd4c4e60bd02ab0ab78fe866d7d911350143",
+      "bytes": 52514
+    },
+    "docs/PRD_ROOT.md": {
+      "sha256": "d4f97d7529f904ac46987eaf5ccaf751bfc73df35edd239166ca43170a275cc4",
+      "bytes": 90056
+    },
+    "projects/chirality-app-dev/chirality.project.json": {
+      "sha256": "5a79777038acd2b5fda3b0416c0092e2c980ff0eff7e84a019fdac3bac8fdc04",
+      "bytes": 568
+    },
+    "projects/chirality-app-dev/frontend/package.json": {
+      "sha256": "5f81bcb08c6fadf1f5f1cbd80020cf707e434184990dc5a0a4040fc6f933a9cc",
+      "bytes": 6464
+    },
+    "projects/chirality-app-dev/frontend/packages/harness-contract/package.json": {
+      "sha256": "6b6355d34bac7a1bbe211ca8d6f44fd10bacbb4a3a204bf638e715676323dc51",
+      "bytes": 1129
+    },
+    "projects/chirality-app-dev/frontend/tsconfig.electron.json": {
+      "sha256": "ee4d4461c38b1524290e4079ede3122c6307852f25b9c0a4cec69a229a731e0e",
+      "bytes": 1185
+    },
+    "projects/chirality-app-dev/frontend/scripts/build-electron.mjs": {
+      "sha256": "a0d6f87d1253cec386996db2d6998b3d81fe18f455dd18fcf94e1b6566f49ce1",
+      "bytes": 3348
+    },
+    "projects/chirality-app-dev/frontend/scripts/verify-packaged-dependency-boundary.mjs": {
+      "sha256": "bf7dad41d6e0fe105a77376820cfaabaa1eb3c3ed2723ce68dfcdc54f02bb076",
+      "bytes": 7401
+    },
+    "projects/pec/server/package.json": {
+      "sha256": "9489b31a4b916ce9a55cee02903603fc6478450046b0de0d6172367e1fd4cae3",
+      "bytes": 642
+    },
+    "projects/pec/server/src/shared-runtime-client.ts": {
+      "sha256": "bb016cf2d4ee0e2a56b7f297fc096f4c26a96a0dc02276a19e5770b0c4977da1",
+      "bytes": 5738
+    },
+    ".github/workflows/harness-premerge.yml": {
+      "sha256": "c6efe4b59d3d52bc937d8b008558f73424162b1aae1a71d6c716321a3679b881",
+      "bytes": 11793
+    },
+    ".github/workflows/desktop-release-template.yml": {
+      "sha256": "3642152e730e3b6c59d48d860cbf1fd49a5c999d25d505deba4112dde62db2dc",
+      "bytes": 14240
+    },
+    ".github/workflows/pec-tests.yml": {
+      "sha256": "96d3c824630baf251e248faecbf0f53e5ca296ce7831f59609c5e56be8486800",
+      "bytes": 1522
+    },
+    "tools/run_affected_tests.py": {
+      "sha256": "e6f20d65ae41db14603983e6215edb8f884d3251787074af7c9856dc1ded78b2",
+      "bytes": 5095
+    },
+    "tools/tools-test-routing.json": {
+      "sha256": "068310589635a8aa4b987fa89c76f69c3355510a53b07997516ea736cd753632",
+      "bytes": 3364
+    },
+    "execution/_Coordination/LOOP_INIT.md": {
+      "sha256": "04eb1ee1c31f4b13b870971163dccc91c08dad5826ca568606c5a6ab7975a3f2",
+      "bytes": 8296
+    },
+    "execution/_Coordination/HANDOFF_STATE.md": {
+      "sha256": "b4941d53940ec4c593fe7d21f2fcd308b51a1197d3b0d000c63b744a4aa65643",
+      "bytes": 4713
+    },
+    "execution/_Coordination/LOOP_RECEIPTS.md": {
+      "sha256": "2c20de30d3ee0f44df20ed3b7d92b72bc8817d3cabceed5a82ad27cb062fe22f",
+      "bytes": 532757
+    },
+    "execution/_Coordination/DESIGN_2026-09-05_RUNTIME_DELIVERY_SEPARATION.md": {
+      "sha256": "4befd139e096bd42415b188fe3ce7a122ac5b66263316174c2f2863c7f3b3fd9",
+      "bytes": 32352
+    }
+  },
+  "tracked_runtime_files": 79,
+  "direct_package_declarations": 10
+}

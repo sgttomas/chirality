@@ -1,0 +1,13 @@
+{
+  "all53_scope_hashes_and_names_match": true,
+  "classes": {
+    "G": 39,
+    "T": 7,
+    "D": 7
+  },
+  "governance_source_hashes_verified": 24,
+  "runtime_source_files_verified": 79,
+  "unique_proposed_targets": 79,
+  "runtime_project_not_created": true,
+  "formal_scope_change_gates_taken": 0
+}

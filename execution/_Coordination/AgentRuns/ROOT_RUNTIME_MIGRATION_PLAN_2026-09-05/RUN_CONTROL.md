@@ -1,0 +1,13 @@
+# Runtime project migration planning — v1
+
+Owner direction, verbatim: “I want to plan a deliberate migration of the runtime to its own project, letting the Root remain governance.” Date: 2026-09-05. This selects the planning objective of structural/product ownership separation. It supersedes the earlier study's management-only recommendation as the objective for this plan; it does not amend accepted product authority or authorize migration execution.
+
+Parent: /root HELP_HUMAN, OpenAI GPT-6; exact serving model ID unavailable; Agent 0 role not mechanically enforced. Explicit owner planning request plus root loop authorizes bounded plan/evidence/receipt and normal checked Git publication. Native descendant roles are instruction-asserted, not mechanism-proven. No formal SCOPE_CHANGE gate or owner ruling is fabricated.
+
+Basis: fresh codex/runtime-project-migration-plan from origin/main@39f51f1cd712b86c67c57270457fc09066eadb1c. Prior PR #723 merged at 944e2015fafc745f3949f447359a6dc44ad95372, accepting loop adoption and recording the earlier commissioned study. Current source truth must be reverified; old study is discovery aid. Scratchpad: /private/tmp/root-runtime-migration-plan-20260905 only.
+
+Working destination assumption pending owner preference: same repository, projects/chirality-runtime; no such project is created in this planning run. Root will retain governance/instruction stewardship; runtime semantics, product delivery and release evidence are intended to transfer. Human release decisions remain human acts regardless of record location.
+
+Work graph, selected by Agent 0 within HUMAN objective: TERMINAL_FAN_OUT_IN. Parent independently inventories code/client/tool migration surfaces and authors the integrated migration plan. HELPS_HUMANS child supplies governance/ownership and all-53-deliverable disposition analysis. Disjoint writes. Parent validates child's evidence and planning completeness before receipt/commit/push/one PR. Failed claims hold only dependent plan assertions. No migration implementation, authority amendments, new project, _LATEST pointer, product/status/register or foreign content writes.
+
+Parent writes: execution/_Coordination/PLAN_2026-09-05_RUNTIME_PROJECT_MIGRATION.md, this run evidence and one appended Root receipt. Child only the two named outputs in its brief. No protected instruction surface edit is intended; any later one requires separate M2/G4 in its owning tranche. No fresh owner ruling record is necessary for a planning request: this verbatim direction and receipt are provenance, not accepted amendment text. Owner merge remains explicit; prior direction to merge #723 does not cover this new PR.
