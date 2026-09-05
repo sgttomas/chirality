@@ -1,7 +1,8 @@
 # Root Governance Work Loop — session init
 
 Orientation, not authority. Live sources govern; record disagreements in the next receipt.
-Owner adoption: `plans/steers/root_loop_consolidation_ruling_2026-09-05.md`; releasing acts still require fetched `origin/main` under §2.
+Candidate pending owner ruling on the 2026-09-05 consolidation packet, items A–C.
+Until accepted, read `git show origin/main:execution/_Coordination/LOOP_INIT.md`; this branch grants nothing.
 
 ## 1. Map
 
@@ -35,8 +36,7 @@ A predecessor may satisfy an execution dependency on this run's branch only with
 
 ```bash
 set -euo pipefail
-REPO_ROOT=$(git rev-parse --show-toplevel)
-cd "$REPO_ROOT"
+cd "$(git rev-parse --show-toplevel)"
 git fetch origin
 git status --short --branch
 git worktree list

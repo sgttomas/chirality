@@ -1,0 +1,12 @@
+{
+  "basis": "49f9e148cbc5cc21b33368e071e33451ed1d1f33",
+  "preimage_sha256": "b89dcc54559e3848a08811d55c108758759847cbe15798450b8f9c8444d23b2f",
+  "preimage_bytes": 524186,
+  "prefix_equal": true,
+  "appended_headings": [
+    "### Receipt 132 \u2014 2026-09-05 \u2014 Root entry consolidation and separation decision support"
+  ],
+  "new_receipt_unique": true,
+  "historical_duplicate_80_preserved": 2,
+  "global_ledger_validity_claimed": false
+}

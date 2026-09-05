@@ -1,7 +1,8 @@
 # Root Governance Work Loop — session init
 
 Orientation, not authority. Live sources govern; record disagreements in the next receipt.
-Owner adoption: `plans/steers/root_loop_consolidation_ruling_2026-09-05.md`; releasing acts still require fetched `origin/main` under §2.
+Candidate pending owner ruling on the 2026-09-05 consolidation packet, items A–C.
+Until accepted, read `git show origin/main:execution/_Coordination/LOOP_INIT.md`; this branch grants nothing.
 
 ## 1. Map
 
@@ -35,8 +36,7 @@ A predecessor may satisfy an execution dependency on this run's branch only with
 
 ```bash
 set -euo pipefail
-REPO_ROOT=$(git rev-parse --show-toplevel)
-cd "$REPO_ROOT"
+cd "$(git rev-parse --show-toplevel)"
 git fetch origin
 git status --short --branch
 git worktree list
@@ -53,14 +53,13 @@ if Path(targets[0]).is_absolute(): raise SystemExit('BLOCK: target must be repo-
 p=(root/targets[0]).resolve()
 if not p.is_relative_to(root) or not p.is_file(): raise SystemExit('BLOCK: plan target')
 print(p.relative_to(root)); print(p.read_text())
-for notice in sorted((root/'execution/_Coordination').glob('NOTICE_*.md')): print(notice.relative_to(root))
 s=(root/'execution/_Coordination/LOOP_RECEIPTS.md').read_text(); h=list(re.finditer(r'^### Receipt [0-9]+ .*$',s,re.M))
 print(s[h[-1].start():] if h else 'No Root receipt')
 for row in csv.DictReader((root/'execution/_Coordination/_TaskManagement/REGISTER.csv').open()):
  if row['Status'] in ('OPEN','DEFERRED'): print({k:row[k] for k in ('ActionItemID','Status','Disposition','Trigger','EvidenceRef')})
 PYREAD
 rg -n '^\| D-GOV-[0-9]+ \|' docs/governance_harness/_DECISIONS/_REGISTER.md || test "$?" -eq 1
-rg --files plans/steers || test "$?" -eq 1
+rg --files execution/_Coordination plans/steers | rg '(NOTICE_|ruling_record|steer).*\.md$' || test "$?" -eq 1
 rg -n -A 12 '^## Remaining' execution/PKG-*/1_Working/DEL-*/_STATUS.md || test "$?" -eq 1
 python3 tools/practitioner_harness/harness.py status --project root
 for guard in root_materialization_fence root_harness_adapter root_surface_ownership root_work_graph_dispatch instruction_tranche_manifest; do

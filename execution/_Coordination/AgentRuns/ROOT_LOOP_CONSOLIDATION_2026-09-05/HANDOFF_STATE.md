@@ -1,0 +1,11 @@
+# Handoff — Root consolidation candidate
+
+Accepted upstream: main 49f9e148cbc5cc21b33368e071e33451ed1d1f33; PRD_ROOT Revision 8, decomposition 1.3/SCA-004, D-GOV-20/21/28/35, R15 G2 acceptance, genuine R16-A/B/C/E preserved through R17, and R18. Exact inspected source identities: SOURCES.json. No changed accepted snapshot or pointer.
+
+Derivative package: the consolidation packet, separation assessment, intent/history ruling candidate, unselected workplan, alternate pointer text and actual native dry-run/check evidence. None is decomposition truth or a recorded owner ruling. V1–V4 failed attempts preserved; V5 accepted for entry behavior. Root LOOP_INIT/init changes are unruled branch post-images. Current idle plan/pointer, registered authority and all product states remain accepted basis until the owner acts.
+
+Closure verdict: CANDIDATE_COMPLETE_FOR_OWNER_REVIEW, not R17_PATHWAY_SEATING_COMPLETE and not ROOT_PRODUCT_CLOSED. Publication phase: one receipt, one scoped candidate commit/push and one unmerged PR under current user direction; PR itself records commit and committed-range G4. No self-merge.
+
+Reruns: before any acceptance/execution, re-open live sources and main; recheck overlaps/pins/entrypoint/whitespace/G0–G4/self-check and affected tests as changes require. Full candidate text changes need a fresh read-only entry check. A later runtime move needs its own scope/identity/registration/client-conformance audit. Export remains deferred pending adoption; foreign mirrors/adoptions not asserted.
+
+Remaining owner slate: D launcher repair independently; A explicit R17 control-plane discovery exception; B exact N1 run-boundary supersession; C protocol-location amendment, intent acceptance and separate successor/pointer selection. R17's stale execution basis and unseated DEL-02-06–12 contracts need a successor steer. Nine binding holds remain unresolved; R16-B relationship meaning must be carried by an authorized successor record, not editing the frozen ten-marker package. Runtime/host/lifecycle/release/foreign-loop gates remain. Structural options1–3 unselected; assessment recommends narrow entry now and a bounded option2 design before any migration, with option3 deferred. Next owner: Ryan Tufts.

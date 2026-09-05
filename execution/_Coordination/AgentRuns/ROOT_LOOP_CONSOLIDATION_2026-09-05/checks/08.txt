@@ -1,0 +1,55 @@
+> **Generated view — not authority.** Produced by tools/practitioner_harness (command: status).
+> Sources cited per finding; on any disagreement the cited source files govern.
+> Regenerate from project files; safe to delete. Structural checks are not approval,
+> issue, authentication, or acceptance of residual risk (K-AUTH-1; D-GOV-01).
+
+# Status — chirality-root
+
+## PRD posture (the root adapter's `prd` fills the `plan` role)
+
+- `docs/PRD_ROOT.md`: artifact present
+- `docs/PRD_ROOT.md` (line 23): > **Status: `ADOPTION-READY — adopted only by the instrument named below`.
+- `execution/_Coordination/CURRENT_WORKPLAN.md`: artifact present
+- `execution/_Coordination/CURRENT_WORKPLAN.md` (line 3): Status: `IDLE — OWNER-GATED SUCCESSOR SELECTION`
+
+## Deliverable status distribution (Current State fields)
+
+| State | Count |
+|---|---|
+| INITIALIZED | 53 |
+
+Source: 53 file(s) matching `execution/PKG-*/1_Working/DEL-*/_STATUS.md` under `.` (the repository root — WORKING_ROOT == REPO_ROOT) (parser: prose-bullet-v1). Drift audit: run `drift`.
+
+## Decision register (counts by state)
+
+No rows parsed — source: `docs/governance_harness/_DECISIONS/_REGISTER.md`
+
+## DAG pointer
+
+- dag.pointer: not declared by this adapter schema (root-harness-adapter/v1) — `execution/_harness/adapter.yaml`
+
+## Validation surfaces (declared, not executed by this command)
+
+- none declared
+
+## Git state
+
+- git.branch: codex/root-loop-consolidation
+- git.head_sha: 49f9e148cbc5cc21b33368e071e33451ed1d1f33
+- git.dirty_paths: 8 dirty path(s) under .
+
+## Root governance status (self-declared)
+
+- `docs/DIRECTIVE.md`: > **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now  …[truncated]
+- `docs/CONTRACT.md`: > **Status: RATIFIED — owner ratification 2026-07-11 (K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now take all the `do …[truncated]
+- `docs/SPEC.md`: > **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now  …[truncated]
+- `docs/TYPES.md`: > **Status: RATIFIED — owner ratification 2026-07-11 (`CONTRACT.md` / K-AUTH-1).** Owner direction of record (2026-07-11, in-session, Ryan Tufts): "You can now  …[truncated]
+
+Per-invariant ratification (docs/CONTRACT.md, owner ratification 2026-07-11; partial basis D-GOV-05): GENERATED_OUTPUT=RATIFIED; K-AGENTS-1=RATIFIED; K-AUTH-1=RATIFIED; K-AUTH-2=RATIFIED; K-BIND-1=RATIFIED; K-CLAIM-1=RATIFIED; K-CONFLICT-1=RATIFIED; K-DEP-1=RATIFIED; K-DEP-2=RATIFIED; K-DOMAIN-1=RATIFIED; K-DOMAIN-2=RATIFIED; K-DOMAIN-3=RATIFIED; K-DOMAIN-4=RATIFIED; K-GATE-1=RATIFIED; K-GHOST-1=RATIFIED; K-HIER-1=RATIFIED; K-ID-1=RATIFIED; K-INVENT-1=RATIFIED; K-MERGE-1=RATIFIED; K-PROV-1=RATIFIED; K-SEAL-1=RATIFIED; K-SNAP-1=RATIFIED; K-STALE-1=RATIFIED; K-STALE-2=RATIFIED; K-STATUS-1=RATIFIED; K-VAL-1=RATIFIED; K-WRITE-1=RATIFIED; K-WRITE-2=RATIFIED; SEVERITY_TAXONOMY=RATIFIED; SOURCE_OF_TRUTH=RATIFIED
+
+
+## Summary
+
+Finding severities: none
+- project: chirality-root
+- status_files: 53

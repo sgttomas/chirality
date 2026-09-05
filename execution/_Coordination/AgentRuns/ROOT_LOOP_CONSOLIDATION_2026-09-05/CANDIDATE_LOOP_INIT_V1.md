@@ -1,7 +1,8 @@
 # Root Governance Work Loop — session init
 
 Orientation, not authority. Live sources govern; record disagreements in the next receipt.
-Owner adoption: `plans/steers/root_loop_consolidation_ruling_2026-09-05.md`; releasing acts still require fetched `origin/main` under §2.
+Candidate pending owner ruling on the 2026-09-05 consolidation packet, items A–C.
+Until accepted, use the accepted LOOP_INIT at `origin/main`; this branch grants nothing.
 
 ## 1. Map
 
@@ -34,33 +35,27 @@ A predecessor may satisfy an execution dependency on this run's branch only with
 ### Step 0 — Discover before selection, every iteration
 
 ```bash
-set -euo pipefail
-REPO_ROOT=$(git rev-parse --show-toplevel)
-cd "$REPO_ROOT"
+cd "$(git rev-parse --show-toplevel)"
 git fetch origin
-git status --short --branch
-git worktree list
-git rev-parse HEAD origin/main
-git rev-list --left-right --count HEAD...origin/main
+git status --short --branch && git worktree list
+git rev-parse HEAD origin/main && git rev-list --left-right --count HEAD...origin/main
 cat execution/_Coordination/CURRENT_WORKPLAN.md
 python3 - <<'PYREAD'
 from pathlib import Path
 import csv,re
 root=Path.cwd(); pointer=(root/'execution/_Coordination/CURRENT_WORKPLAN.md').read_text()
-targets=re.findall(r'^Target:[ \t]*\n`([^`\n]+)`[ \t]*$',pointer,re.M)
-if len(targets)!=1 or len(re.findall(r'^[ \t]*Target:',pointer,re.M))!=1: raise SystemExit('BLOCK: malformed or duplicate plan pointer')
-if Path(targets[0]).is_absolute(): raise SystemExit('BLOCK: target must be repo-relative')
-p=(root/targets[0]).resolve()
+m=re.search(r'^Target:\s*\n`([^`]+)`\s*$',pointer,re.M)
+if not m: raise SystemExit('BLOCK: malformed plan pointer')
+p=(root/m[1]).resolve()
 if not p.is_relative_to(root) or not p.is_file(): raise SystemExit('BLOCK: plan target')
 print(p.relative_to(root)); print(p.read_text())
-for notice in sorted((root/'execution/_Coordination').glob('NOTICE_*.md')): print(notice.relative_to(root))
 s=(root/'execution/_Coordination/LOOP_RECEIPTS.md').read_text(); h=list(re.finditer(r'^### Receipt [0-9]+ .*$',s,re.M))
 print(s[h[-1].start():] if h else 'No Root receipt')
 for row in csv.DictReader((root/'execution/_Coordination/_TaskManagement/REGISTER.csv').open()):
  if row['Status'] in ('OPEN','DEFERRED'): print({k:row[k] for k in ('ActionItemID','Status','Disposition','Trigger','EvidenceRef')})
 PYREAD
-rg -n '^\| D-GOV-[0-9]+ \|' docs/governance_harness/_DECISIONS/_REGISTER.md || test "$?" -eq 1
-rg --files plans/steers || test "$?" -eq 1
+rg -n '^\| D-GOV-[0-9]+ \|' docs/governance_harness/_DECISIONS/_REGISTER.md
+rg --files execution/_Coordination plans/steers | rg '(NOTICE_|ruling_record|steer).*\.md$'
 rg -n -A 12 '^## Remaining' execution/PKG-*/1_Working/DEL-*/_STATUS.md || test "$?" -eq 1
 python3 tools/practitioner_harness/harness.py status --project root
 for guard in root_materialization_fence root_harness_adapter root_surface_ownership root_work_graph_dispatch instruction_tranche_manifest; do

@@ -67,9 +67,8 @@ Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
 
 Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
 
-Read `{REPO_ROOT}/execution/_Coordination/LOOP_INIT.md` and follow it: pursue
-the loop's inherent goals — recorded in the workplan its selection rule
-names — as far as live authority permits.
+Read `{REPO_ROOT}/execution/_Coordination/LOOP_INIT.md` and follow its
+discovery pointers as far as live authority permits.
 
 Steer (this run): <none>
 </init-prompt>
@@ -78,7 +77,7 @@ Entry is typed, consistent with the project work-loop launchers (§§5–6):
 the launcher selects `HELP_HUMAN`, the sole canonical Agent 0, instantiated
 for the root governance scope. Root `execution/_Coordination/` is a
 governance control plane, not a project package or decomposition root.
-LOOP_INIT and the workplan it selects still govern which lanes open;
+LOOP_INIT points to the live sources from which lawful lanes are discovered;
 `HELP_HUMAN` delegates lane work to the named Agent 1 managers or bounded
 Agent 2 dispatches rather than becoming them, and root-wide WORKING_ITEMS
 entry is not permitted. For a deliberately single-lane session entered
@@ -155,8 +154,8 @@ Entry is typed: the launcher selects `HELP_HUMAN` under the owner's
 instruction-separation direction (recorded verbatim in
 `projects/chirality-piping/execution/_Coordination/AgentRuns/INSTRUCTION-SEPARATION-20260717/RUN_RECORD.md`).
 The goal, protocol, fences, and pointer index live in
-`projects/chirality-piping/loop/LOOP_INIT.md` → the committed-HEAD-selected
-`WORKPLAN_*.md` beside it → its receipts. This supersedes the older
+`projects/chirality-piping/loop/LOOP_INIT.md`; follow its live discovery
+pointers and receipt references. This supersedes the older
 status-laden entry (`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`), which
 remains as a historical map.
 
@@ -183,7 +182,7 @@ Steer (this run): <none>
 </init-prompt>
 
 Same thin-launcher rationale as §3: the goal, protocol, fences, and pointer
-index live in `projects/chirality-app-dev/loop/LOOP_INIT.md` → the newest
-standing `WORKPLAN_*.md` beside it → its receipts. This supersedes the older
+index live in `projects/chirality-app-dev/loop/LOOP_INIT.md`; follow its
+live discovery pointers and receipt references. This supersedes the older
 status-laden entry (`execution/_Coordination/NEXT_INSTANCE_PROMPT.md`), which
 remains as a historical map.
