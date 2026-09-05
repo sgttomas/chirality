@@ -1,0 +1,106 @@
+{
+  "basis": "49f9e148cbc5cc21b33368e071e33451ed1d1f33",
+  "cwd": "/Users/ryan/.codex/worktrees/341e/chirality",
+  "python": "Python 3.13.14",
+  "git": "git version 2.55.0",
+  "results": [
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_instruction_entrypoints.py"
+      ],
+      "exit": 0,
+      "output": "checks/01.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_candidate_whitespace.py",
+        "--base-ref",
+        "origin/main"
+      ],
+      "exit": 0,
+      "output": "checks/02.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_materialization_fence.py"
+      ],
+      "exit": 0,
+      "output": "checks/03.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_harness_adapter.py"
+      ],
+      "exit": 0,
+      "output": "checks/04.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_surface_ownership.py"
+      ],
+      "exit": 0,
+      "output": "checks/05.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_root_work_graph_dispatch.py"
+      ],
+      "exit": 0,
+      "output": "checks/06.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/validation/validate_instruction_tranche_manifest.py"
+      ],
+      "exit": 0,
+      "output": "checks/07.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "status",
+        "--project",
+        "root"
+      ],
+      "exit": 0,
+      "output": "checks/08.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "exit": 0,
+      "output": "checks/09.txt"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit": 0,
+      "output": "checks/10.txt"
+    },
+    {
+      "command": [
+        "python3",
+        "tools/run_affected_tests.py",
+        "--base",
+        "origin/main"
+      ],
+      "exit": 0,
+      "output": "checks/affected-tests.txt",
+      "result": "682 passed in 12.91s"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# N3 fresh V3 return — parent persistence
+
+Child `/root/loop_entry_dry_run_v3`, no history fork; only frozen V3 and read-only constraints. Exact model ID unavailable; GPT-6-based Codex. Native Agent 2/non-delegation instruction-asserted, not mechanically enforced. Complete returned finding inventory transcribed below; no raw tool transcript claimed.
+
+> V3 verdict: **live discovery passes; acceptance held for one executable failure-safety defect.** This is a mechanical dry run, not architecture adoption.
+
+> **What I would do first:** return the current owner-decision slate and hold execution. Under hypothetical adoption, I would use the expanded discovery order, starting with R17’s outstanding seating direction and the routed SCA-APP-010 notice. Adoption of the generic protocol alone would not release their substantive gates.
+
+Basis: codex/root-loop-consolidation, linked worktree, HEAD=origin/main=49f9e148cbc5cc21b33368e071e33451ed1d1f33, 0/0 divergence, eight parent-owned dirty entries. Fetch omitted under brief. Pointer resolves idle plan; accepted main LOOP_INIT governs, V3 unruled. Receipts Root131/App244/Piping130, foreign receipt not Root authority. PRD8/decomposition1.3/SCA-004, 6 packages/53 deliverables/104 scope/7 objectives. 53 INITIALIZED; 45 empty Remaining, seven absent, DEL-02-06 REM-002/003 nonempty. Register 10 OPEN/8 DEFERRED/109 archived. Step0/G0–G4/status/self-check all exit0; self-check INFO14/NOT_APPLICABLE1/REVIEW4/WARN55/no BLOCK. Root decision parser empty; historical PRD banner requires manual direct sources.
+
+Parked: R17 seating needs successor steer/current basis/pins/receipt/App reconciliation, then separate exact-byte acceptance/pointer/merge. Runtime implementation needs exact WP-03/WP-05 implementation act after feasibility disposition and source-identity acceptance; R16-C preserved, R16-D attempt retired. G1 needs TM-ROOT-106 owner disposition/evidence and coordinated App acceptance, not already-closed TM-ROOT-122. Host/auth/network need exact acts. Cutover/release need accepted G2–G5 fan-in and accountable-human cutover/G6a. SCA-APP-010 asks Root disposition of DEL-02-09 login home, DEL-02-10 proposal.* events, DEL-02-11 stored delegation policy and authorized return routing. TM/tooling need actual owner ruling/assignment/write scope/M2; TM-ROOT-119 observation deferral must be ended by owner.
+
+R17 merge e1619d5a7737f64dbc538e85a8388d1d97dd906f first parent/two-file delta match, but 157 subsequent commits violate basis gate. Owner fences match. Ruling/steer hashes 23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf / 8e96c8fc37e5ac21d93b846a2f1efce15fe6564ebad6fe07334571f473339de6. Completion HTML and all21 SOW/status/dependency pins match. Receipt/register/App pointer pins stale, old App plan absent. Handoff still has 46-folder/unmaterialized/register-count history. R18 leaves R17 unchanged. No SCA-APP-010 disposition found in Root receipt/register search (not an exhaustive authority audit).
+
+In-memory tests: valid pointer accepts; missing/inline/unquoted/duplicate/malformed-duplicate/absolute/escaping/missing-target reject. Required-command/direct-rg-operational/guard failures stop. Empty direct/piped discovery continues. One defect: `(exit 2) | rg zzz || test "$?" -eq 1` under `set -euo pipefail` exits0 and continues: downstream no-match masks upstream failure.
+
+Owner policies still pending: control-plane discovery, cadence/branch dependencies and R17 supersession. No writes/delegation/network/Git mutation; porcelain inventory unchanged. Limits: no hosted PR676 query, no production, no closeout estate, no real-filesystem symlink test; resolve() logic inspected only.
+
+Parent disposition: V3 failed final mechanical acceptance. V4 removes the discovery pipeline, enumerates only immediate coordination NOTICE_*.md within the existing Python block, and uses direct rg for plans/steers. A fresh child tests V4; V3 failure remains preserved.

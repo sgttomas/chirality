@@ -36,8 +36,7 @@ A predecessor may satisfy an execution dependency on this run's branch only with
 
 ```bash
 set -euo pipefail
-REPO_ROOT=$(git rev-parse --show-toplevel)
-cd "$REPO_ROOT"
+cd "$(git rev-parse --show-toplevel)"
 git fetch origin
 git status --short --branch
 git worktree list

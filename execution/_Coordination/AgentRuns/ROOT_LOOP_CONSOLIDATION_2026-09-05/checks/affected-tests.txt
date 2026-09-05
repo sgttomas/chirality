@@ -1,0 +1,39 @@
+{
+  "checks": [
+    "practitioner_harness",
+    "validation"
+  ],
+  "paths": [
+    "docs/governance_harness/tranche_manifests/ROOT-LOOP-CONSOLIDATION-20260905.yaml",
+    "execution/_Coordination/ASSESSMENT_2026-09-05_ROOT_PRODUCT_CONTROL_PLANE_SEPARATION.md",
+    "execution/_Coordination/AgentRuns/ROOT_LOOP_CONSOLIDATION_2026-09-05/CANDIDATE_LOOP_INIT_V1.md",
+    "execution/_Coordination/AgentRuns/ROOT_LOOP_CONSOLIDATION_2026-09-05/CANDIDATE_LOOP_INIT_V2.md",
+    "execution/_Coordination/AgentRuns/ROOT_LOOP_CONSOLIDATION_2026-09-05/CANDIDATE_LOOP_INIT_V3.md",
+    "execution/_Coordination/AgentRuns/ROOT_LOOP_CONSOLIDATION_2026-09-05/CURRENT_WORKPLAN_CANDIDATE.md",
+    "execution/_Coordination/AgentRuns/ROOT_LOOP_CONSOLIDATION_2026-09-05/LOOP_INIT_PREIMAGE.md",
+    "execution/_Coordination/AgentRuns/ROOT_LOOP_CONSOLIDATION_2026-09-05/RUN_CONTROL.md",
+    "execution/_Coordination/LOOP_INIT.md",
+    "execution/_Coordination/PACKET_2026-09-05_ROOT_LOOP_INIT_CONSOLIDATION.md",
+    "execution/_Coordination/WORKPLAN_2026-08-27_root_v3_rc.md",
+    "init/dev-loop-init-prompt.md",
+    "plans/steers/root_loop_intent_history_ruling_candidate_2026-09-05.md"
+  ],
+  "reasons": {},
+  "schema": "chirality-affected-checks/v1"
+}
+[run-affected] running 2 suite(s); skipping 15: analysis, coordination, decomp, drawing_extract, equation_audit, pdf2md, publication, reporting, retrieval, scope_of_work, software_workflow, source_audit, source_catalog, taskmgmt, workflow_runtime
+[run-affected] /Users/ryan/.local/share/mise/installs/python/3.13/bin/python3 -m pytest -q -n auto --dist loadscope tools/practitioner_harness tools/validation
+bringing up nodes...
+bringing up nodes...
+
+........................................................................ [ 10%]
+........................................................................ [ 21%]
+........................................................................ [ 31%]
+........................................................................ [ 42%]
+........................................................................ [ 52%]
+........................................................................ [ 63%]
+........................................................................ [ 73%]
+........................................................................ [ 84%]
+........................................................................ [ 95%]
+..................................                                       [100%]
+682 passed in 12.91s

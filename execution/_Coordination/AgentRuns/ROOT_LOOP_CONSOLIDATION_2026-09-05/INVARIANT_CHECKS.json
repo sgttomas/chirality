@@ -1,0 +1,11 @@
+{
+  "no_forbidden_tracked_changes": true,
+  "current_pointer_unchanged": true,
+  "idle_plan_unchanged": true,
+  "all_latest_pointers_unchanged": true,
+  "ledger_preimage_unchanged_before_append": true,
+  "final_loop_equals_sealed_V5": true,
+  "history_exact": true,
+  "R17_B_exact_quote": true,
+  "under100_lines": true
+}
