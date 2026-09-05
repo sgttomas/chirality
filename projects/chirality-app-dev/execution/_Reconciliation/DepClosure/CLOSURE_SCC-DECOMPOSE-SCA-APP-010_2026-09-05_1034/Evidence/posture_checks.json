@@ -1,0 +1,323 @@
+{
+  "descendantClasses": {
+    "DEL-08-04": {
+      "managedClassRows": [
+        "DEP-08-04-009"
+      ],
+      "nativeClassRows": [
+        "DEP-08-04-010"
+      ],
+      "nativeRowsDenyAgentRoleInference": [
+        "DEP-08-04-010"
+      ],
+      "managedOnce": true,
+      "nativeOnce": true
+    },
+    "DEL-08-05": {
+      "managedClassRows": [
+        "DEP-08-05-004"
+      ],
+      "nativeClassRows": [
+        "DEP-08-05-011"
+      ],
+      "nativeRowsDenyAgentRoleInference": [
+        "DEP-08-05-011"
+      ],
+      "managedOnce": true,
+      "nativeOnce": true
+    }
+  },
+  "acceptedObjectiveEdges": {
+    "E-018": {
+      "acceptedObjectiveEdge": "DEL-05-04 -> DEL-02-05 [NON-GATING]",
+      "liveEdge DEL-05-04->DEL-02-05": [],
+      "liveEdge DEL-02-05->DEL-05-04": [],
+      "pairInsideLiveSCC": false,
+      "liveSCC": null,
+      "pairInsideLiveSCCin0807": true
+    },
+    "E-020": {
+      "acceptedObjectiveEdge": "DEL-08-05 -> DEL-08-04 [NON-GATING]",
+      "liveEdge DEL-08-05->DEL-08-04": [
+        "DEP-08-04-006",
+        "DEP-08-05-004",
+        "DEP-08-05-011"
+      ],
+      "liveEdge DEL-08-04->DEL-08-05": [],
+      "pairInsideLiveSCC": false,
+      "liveSCC": null,
+      "pairInsideLiveSCCin0807": true
+    },
+    "E-032": {
+      "acceptedObjectiveEdge": "DEL-09-05 -> DEL-09-06 [NON-GATING]",
+      "liveEdge DEL-09-05->DEL-09-06": [
+        "DEP-09-05-009"
+      ],
+      "liveEdge DEL-09-06->DEL-09-05": [],
+      "pairInsideLiveSCC": false,
+      "liveSCC": null,
+      "pairInsideLiveSCCin0807": false
+    }
+  },
+  "acceptedDagPath": "projects/chirality-app-dev/execution/_ScopeChange/SCA-APP-008_2026-08-23_1727_V3_Release_Pathway/DAG.md",
+  "acceptedDagSha256": "0b721c2e4c461b134cf62baf9a6df87d3ee45257ddbb0bf58e3a4358a9266996",
+  "acceptedDagSha256Expected": "0b721c2e4c461b134cf62baf9a6df87d3ee45257ddbb0bf58e3a4358a9266996",
+  "acceptedDagMatch": true,
+  "carriersSwept": [
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-04",
+    "DEL-02-05",
+    "DEL-03-02",
+    "DEL-04-04",
+    "DEL-04-05",
+    "DEL-05-02",
+    "DEL-06-03",
+    "DEL-07-01",
+    "DEL-07-03",
+    "DEL-08-01",
+    "DEL-08-03",
+    "DEL-08-04"
+  ],
+  "externalRowsInSweptCarriers": [
+    {
+      "carrier": "DEL-02-01",
+      "DependencyID": "DEP-02-01-011",
+      "TargetRefID": "ROOT-DAEMON-SESSION-RECORD",
+      "TargetName": "Root-owned daemon session record (registered project identity/root; delegation-policy field per OI-008)",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-02-02",
+      "DependencyID": "DEP-02-02-016",
+      "TargetRefID": "ROOT-PROPOSAL-EVENT-ACCEPTANCE",
+      "TargetName": "Root DEL-02-10 acceptance of the additive `proposal.*` event types against the closed HarnessEvent schema v2 (K-EVENT-3)",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-02-04",
+      "DependencyID": "DEP-02-04-021",
+      "TargetRefID": "TBD",
+      "TargetName": "Root-owned daemon session record (session-record semantics retained by Root; OI-008)",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-02-05",
+      "DependencyID": "DEP-02-05-008",
+      "TargetRefID": "HostedEngineConsentPort",
+      "TargetName": "Root-owned HostedEngineConsentPort",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-02-05",
+      "DependencyID": "DEP-02-05-009",
+      "TargetRefID": "ROOT-APP-ACCOUNT-CONSENT-GATES",
+      "TargetName": "Accepted Root/App account/consent contract; G3; G-CSP; G4",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-02-05",
+      "DependencyID": "DEP-02-05-013",
+      "TargetRefID": "ROOT-DEL-02-09",
+      "TargetName": "Root DEL-02-09 root-private login home and shared-login amendment (OI-008)",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-03-02",
+      "DependencyID": "DEP-03-02-014",
+      "TargetRefID": "ROOT-DEL-02-11-DELEGATION-POLICY-FIELD",
+      "TargetName": "Root-owned delegation-policy field on the daemon session record (Root DEL-02-11)",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-03-02",
+      "DependencyID": "DEP-03-02-015",
+      "TargetRefID": "ROOT-DAEMON-SESSION-LIFECYCLE-AND-LOCK",
+      "TargetName": "Root-owned daemon session lifecycle and one-active-turn lock semantics (generic TurnEngine and lock)",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-05-02",
+      "DependencyID": "DEP-05-02-013",
+      "TargetRefID": "ROOT-HARNESSEVENT-V2",
+      "TargetName": "Root-owned daemon HarnessEvent records (closed schema v2)",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-05-02",
+      "DependencyID": "DEP-05-02-015",
+      "TargetRefID": "ROOT-DEL-02-10-PROPOSAL-EVENTS",
+      "TargetName": "Root DEL-02-10 acceptance of the additive proposal.* event types against HarnessEvent schema v2 (routed return notice)",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-06-03",
+      "DependencyID": "DEP-06-03-018",
+      "TargetRefID": "ROOT:DEL-02-10",
+      "TargetName": "Root DEL-02-10 acceptance of the additive proposal.* event types against the closed HarnessEvent schema v2 (K-EVENT-3)",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-07-03",
+      "DependencyID": "DEP-07-03-014",
+      "TargetRefID": "K-PATH-2",
+      "TargetName": "K-PATH-2 path-containment invariant for governed workflow file writes",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": false
+    },
+    {
+      "carrier": "DEL-08-01",
+      "DependencyID": "DEP-08-01-020",
+      "TargetRefID": "AGENTS.md#agent-index-change-notice-rule",
+      "TargetName": "Routed agent-index change notice and G4 instruction-tranche manifest under the Root AGENTS.md agent-index change-notice rule",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-08-01",
+      "DependencyID": "DEP-08-01-021",
+      "TargetRefID": "OWNER-WRITE-SCOPE-GRANT-AGENTS-SKILLS",
+      "TargetName": "Owner write-scope grant for agents/** and skills/** at selection of DEL-08-01-V3-01",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": false
+    },
+    {
+      "carrier": "DEL-08-04",
+      "DependencyID": "DEP-08-04-009",
+      "TargetRefID": "",
+      "TargetName": "Chirality-managed delegation class",
+      "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "locationIsTBD": false,
+      "rootNamed": false
+    },
+    {
+      "carrier": "DEL-08-04",
+      "DependencyID": "DEP-08-04-010",
+      "TargetRefID": "",
+      "TargetName": "delegated-harness-native descent class",
+      "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "locationIsTBD": false,
+      "rootNamed": false
+    },
+    {
+      "carrier": "DEL-08-04",
+      "DependencyID": "DEP-08-04-011",
+      "TargetRefID": "ROOT-WP03-WP05-FIXTURES",
+      "TargetName": "Root WP-03/WP-05 fixtures: accepted DEL-02-07 process-supervisor and DEL-02-10 API v2 returns",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    },
+    {
+      "carrier": "DEL-08-04",
+      "DependencyID": "DEP-08-04-014",
+      "TargetRefID": "ROOT-DEL-02-11-DELEGATION-POLICY-FIELD",
+      "TargetName": "Root DEL-02-11 daemon session-record delegation-policy field",
+      "TargetLocation": "TBD",
+      "locationIsTBD": true,
+      "rootNamed": true
+    }
+  ],
+  "externalRowsNotTBD": [
+    {
+      "carrier": "DEL-08-04",
+      "DependencyID": "DEP-08-04-009",
+      "TargetRefID": "",
+      "TargetName": "Chirality-managed delegation class",
+      "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "locationIsTBD": false,
+      "rootNamed": false
+    },
+    {
+      "carrier": "DEL-08-04",
+      "DependencyID": "DEP-08-04-010",
+      "TargetRefID": "",
+      "TargetName": "delegated-harness-native descent class",
+      "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+      "locationIsTBD": false,
+      "rootNamed": false
+    }
+  ],
+  "externalRowCounts": {
+    "external": 18,
+    "tbd": 16,
+    "rootNamedNotTBD": []
+  },
+  "retargetedRowsAreDocumentNotExternalOrRoot": true,
+  "absolutePathTargetLocationsInSweptCarriers": [
+    {
+      "carrier": "DEL-08-01",
+      "DependencyID": "DEP-08-01-013",
+      "TargetType": "DOCUMENT",
+      "TargetLocation": "/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md"
+    }
+  ],
+  "absolutePathTargetLocationsWorkspaceWide": [
+    {
+      "DependencyID": "DEP-01-01-011",
+      "deliverable": "DEL-01-01",
+      "TargetType": "DOCUMENT",
+      "Status": "ACTIVE",
+      "TargetLocation": "/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md"
+    },
+    {
+      "DependencyID": "DEP-01-02-013",
+      "deliverable": "DEL-01-02",
+      "TargetType": "DOCUMENT",
+      "Status": "ACTIVE",
+      "TargetLocation": "/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md"
+    },
+    {
+      "DependencyID": "DEP-07-02-004",
+      "deliverable": "DEL-07-02",
+      "TargetType": "DOCUMENT",
+      "Status": "ACTIVE",
+      "TargetLocation": "/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md"
+    },
+    {
+      "DependencyID": "DEP-07-05-025",
+      "deliverable": "DEL-07-05",
+      "TargetType": "UNKNOWN",
+      "Status": "ACTIVE",
+      "TargetLocation": "/api/working-root/deliverable/dependencies; mcp__chirality__deps_read; mcp__chirality__deps_write"
+    },
+    {
+      "DependencyID": "DEP-08-01-013",
+      "deliverable": "DEL-08-01",
+      "TargetType": "DOCUMENT",
+      "Status": "ACTIVE",
+      "TargetLocation": "/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md"
+    }
+  ],
+  "dep_08_01_013": {
+    "presentLive": true,
+    "TargetType": "DOCUMENT",
+    "TargetLocation": "/Users/ryan/ai-env/projects/chirality/agents/AGENT_SOFTWARE_DECOMP.md",
+    "identicalToBasis": true
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N14-TASK-DEL-06-03",
+  "parentRunId": "N14",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY",
+  "amendment": "v1.3",
+  "ruling": "D-APP-110",
+  "workbookRulingIds": ["SD-007"],
+  "status": "PASS",
+  "basisCommit": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "carrier": "DEL-06-03",
+  "preImages": {
+    "dependenciesCsvSha256": "15ea08e35b5d2dda40dfc417b3d0ff4e73318900ccab166f016b5dee3cb2f3cd",
+    "dependenciesIndexSha256": "9e3faf5dcaf6c02a3f88c39006ff830e24b90057b50d1cd37ba3ba4fb0a32cb0"
+  },
+  "retargeted": ["DEP-06-03-014"],
+  "notesUpdated": [],
+  "retargetDetail": [
+    {
+      "dependencyId": "DEP-06-03-014",
+      "rulingId": "SD-007",
+      "graphEdge": "DEL-06-03->DEL-08-01",
+      "previousTarget": "DELIVERABLE PKG-08/DEL-08-01",
+      "newTargetType": "DOCUMENT",
+      "newTargetRefId": "DEL-08-01-PROPOSAL_TRIGGER_CLAUSES",
+      "newTargetLocation": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)",
+      "contractAnchorVerified": true,
+      "unchangedFieldsAsserted": true
+    }
+  ],
+  "outputs": {
+    "dependenciesCsvSha256": "8b48a970881eb20460fc0d65db94d77f08d04a85cd2aaac3b90a9b9ba8b62135",
+    "dependenciesIndexSha256": "3599bc1d55ae52e12a65b252179b0d7e142f31973f5d224db6b033a619da2e9f",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_run_records/TASK_RUN_2026-09-05_1015.md",
+    "taskRunRecordSha256": "f9455d453e90b0bf7ee453243116896772c264c3d770b336b07b8deea7a841fa",
+    "returnSha256": "6a9236eba7b6489784c23d8da21bec1fd03c75d6cb4d1ac91742346f0abe9942"
+  },
+  "counts": {
+    "pre": { "total": 18, "active": 18, "retired": 0, "anchor": 7, "execution": 11 },
+    "post": { "total": 18, "active": 18, "retired": 0, "anchor": 7, "execution": 11 },
+    "targetTypePost": { "WBS_NODE": 1, "REQUIREMENT": 4, "DOCUMENT": 3, "DELIVERABLE": 4, "UNKNOWN": 5, "EXTERNAL": 1 }
+  },
+  "validators": {
+    "validate_dependencies_schema": "VALID (29 required + 0 extension columns; 18 data rows; exit 0)",
+    "validate_enum": "10 of 10 values of the re-targeted row VALID incl. TARGET_TYPE DOCUMENT (exit 0)",
+    "parentAnchor": "PASS (one ACTIVE IMPLEMENTS_NODE)",
+    "uniqueIds": true,
+    "idOrdered": true,
+    "otherRowsByteIdentical": true,
+    "rowsAddedOrRetired": 0,
+    "documentTargetDeliverableIdEmpty": true,
+    "gitDiffCheck": "exit 0",
+    "lineHygiene": "LF only; no trailing whitespace; final newline"
+  },
+  "sccNote": "The two-node SCC DEL-06-03/DEL-08-01 recorded under D-APP-109 is decomposed: DEP-06-03-014 now targets the DOCUMENT contract DEL-08-01-PROPOSAL_TRIGGER_CLAUSES; DEL-08-01's reciprocal DEP-08-01-018 stays a strict edge (D-APP-110 item 3). This carrier holds no cycle-participating row; every row gates per its SatisfactionStatus. Acyclic strict graph to be recorded by N16 AUDIT_DEP_CLOSURE.",
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: carried unchanged; no ID changed",
+    "TARGET_UNRESOLVED: DEP-06-03-008, -009, -015 carried unchanged",
+    "INSTRUCTION_ROOT_ASSUMED: CHIRALITY_INSTRUCTION_ROOT not exported; sealed-brief repository root used as instruction root"
+  ],
+  "toolPolicy": "COMPLIANT",
+  "carrierWritten": true,
+  "writesOutsideBrief": false,
+  "humanRulingRequired": false
+}

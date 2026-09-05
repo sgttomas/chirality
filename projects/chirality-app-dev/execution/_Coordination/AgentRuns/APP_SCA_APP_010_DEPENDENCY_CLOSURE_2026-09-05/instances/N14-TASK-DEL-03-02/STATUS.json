@@ -1,0 +1,67 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N14-TASK-DEL-03-02",
+  "parentRunId": "N14",
+  "orchestrationRunId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "D_APP_110_DECOMPOSE",
+  "amendment": "v1.3",
+  "ruling": "D-APP-110",
+  "workbookRulingIds": [],
+  "applyEdits": true,
+  "status": "PASS",
+  "basisCommit": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "carrier": "DEL-03-02",
+  "preImages": {
+    "dependenciesCsvSha256": "0e65c1a38383958ce83d4c77b6671efd24651ff6affc7d4694aaee4304c416ad",
+    "dependenciesIndexSha256": "0144084fff0696e0854e919ca831cf2ea0c3779d1c95ff81fb24a00daad50051",
+    "verified": true
+  },
+  "outputs": {
+    "dependenciesCsvSha256": "37dc1773fb3b55953167b9333187f7e6ebc486c43dafca3d899178181f0759d6",
+    "dependenciesIndexSha256": "89d7f78298b0d58c4b85c19e0e97c89c39e6901d8d454b4c94c03a5548b05a4e",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_run_records/TASK_RUN_2026-09-05_1012.md",
+    "taskRunRecordSha256": "ad6c93673f9cedbb7ec40f0b1baabe82e1fe7b0dada4999ef05cf35ec6005a74"
+  },
+  "retargeted": [],
+  "notesUpdated": ["DEP-03-02-013"],
+  "counts": {
+    "pre": { "total": 15, "active": 15, "retired": 0, "anchor": 7, "execution": 8, "satisfied": 5, "pending": 10, "tbd": 0, "documentTargets": 0 },
+    "post": { "total": 15, "active": 15, "retired": 0, "anchor": 7, "execution": 8, "satisfied": 5, "pending": 10, "tbd": 0, "documentTargets": 0 }
+  },
+  "changes": {
+    "added": [],
+    "retargeted": [],
+    "notesOnly": ["DEP-03-02-013"],
+    "retired": [],
+    "deleted": [],
+    "otherRowsByteIdentical": true
+  },
+  "validators": {
+    "validate_dependencies_schema": "VALID (29 columns, 15 data rows)",
+    "validate_enum": "no enum value changed; 10/10 values on DEP-03-02-013 VALID; TARGET_TYPE DOCUMENT VALID",
+    "implementsNodeActiveCount": 1,
+    "uniqueIds": true,
+    "indexTableIdsEqualCsvIds": true,
+    "gitDiffCheck": "clean",
+    "whitespace": "LF; no trailing whitespace; final newline"
+  },
+  "cycleParticipating": {
+    "dependencyIds": [],
+    "resolvedBy": "decompose under D-APP-110 (rows re-targeted in DEL-04-05, DEL-02-01, DEL-02-04, DEL-02-02, DEL-06-03; none in this carrier)",
+    "strictEdgesGatePerSatisfactionStatus": true
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs; no ID changed",
+    "TBD_IMPLEMENTATION_PATHS: Root locations for DEP-03-02-014 and DEP-03-02-015 are TBD by convention"
+  ],
+  "reviewerNotes": [
+    "Extracted-register table row for DEP-03-02-013 re-annotated (target column unchanged at DEL-08-04) so the table does not contradict the refreshed handoff notes",
+    "Existing 'EMITTED under D-APP-109' Run Notes bullet gained a resolution pointer rather than being rewritten"
+  ],
+  "humanRulingRequired": false,
+  "carrierWritten": true,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (D-APP-110 decompose), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched."
+}

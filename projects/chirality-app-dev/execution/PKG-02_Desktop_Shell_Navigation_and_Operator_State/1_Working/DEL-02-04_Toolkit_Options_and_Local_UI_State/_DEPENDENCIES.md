@@ -27,7 +27,8 @@ Structured register: `Dependencies.csv` v3.1
 | ANCHOR rows | 6 |
 | EXECUTION rows | 15 |
 | RETIRED rows | 0 |
-| Cycle-participating rows (emitted under D-APP-109; non-gating until the SCC is resolved) | 5 (DEP-02-04-015..019) |
+| Cycle-participating rows (non-gating) | 0 (the five D-APP-109 rows DEP-02-04-015..019 were resolved by decompose under D-APP-110 on 2026-09-05; DEP-02-04-017..019 now target the DOCUMENT contract node) |
+| DOCUMENT-target rows | 10 (REF-001..006, DECOMP-v3.2, and the three D-APP-110 contract rows DEP-02-04-017..019) |
 
 | DependencyID | Class | Type | Target | Status | Evidence |
 |---|---|---|---|---|---|
@@ -45,11 +46,11 @@ Structured register: `Dependencies.csv` v3.1
 | DEP-02-04-012 | EXECUTION | PREREQUISITE | REF-006 `docs/PRD.md` | ACTIVE | `ScopeOfWork.md#CLM-018` |
 | DEP-02-04-013 | EXECUTION | PREREQUISITE | DECOMP-v3.2 | ACTIVE | `ScopeOfWork.md#CLM-018` |
 | DEP-02-04-014 | EXECUTION | PREREQUISITE | TBD adjacent deliverables | ACTIVE | `ScopeOfWork.md#CLM-018` |
-| DEP-02-04-015 | EXECUTION | PREREQUISITE | DEL-02-02 (seated item DEL-02-02-V3-03 landed; cycle-participating, non-gating) | ACTIVE | `_STATUS.md#Remaining` |
-| DEP-02-04-016 | EXECUTION | PREREQUISITE | DEL-02-03 (right-panel view switcher from DEL-02-03-V3-01; cycle-participating, non-gating) | ACTIVE | `_STATUS.md#Remaining` |
-| DEP-02-04-017 | EXECUTION | HANDOVER | DEL-02-01 (additive v1 workspace-state fields to DEL-02-01-V3-02, DEL-02-01-V3-03; cycle-participating, non-gating) | ACTIVE | `_STATUS.md#Remaining` |
-| DEP-02-04-018 | EXECUTION | HANDOVER | DEL-02-02 (additive v1 workspace-state fields to DEL-02-02-V3-04; cycle-participating, non-gating) | ACTIVE | `_STATUS.md#Remaining` |
-| DEP-02-04-019 | EXECUTION | HANDOVER | DEL-02-03 (additive v1 workspace-state fields to DEL-02-03-V3-01; cycle-participating, non-gating) | ACTIVE | `_STATUS.md#Remaining` |
+| DEP-02-04-015 | EXECUTION | PREREQUISITE | DEL-02-02 (seated item DEL-02-02-V3-03 landed; SCC resolved under D-APP-110, gates per SatisfactionStatus) | ACTIVE | `_STATUS.md#Remaining` |
+| DEP-02-04-016 | EXECUTION | PREREQUISITE | DEL-02-03 (right-panel view switcher from DEL-02-03-V3-01; SCC resolved under D-APP-110, gates per SatisfactionStatus) | ACTIVE | `_STATUS.md#Remaining` |
+| DEP-02-04-017 | EXECUTION | HANDOVER | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 (DOCUMENT contract at `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`; consumed by DEL-02-01-V3-02, DEL-02-01-V3-03; decomposed under D-APP-110 SD-003, deliverable relation to DEL-02-01 preserved in Notes) | ACTIVE | `_STATUS.md#Remaining` |
+| DEP-02-04-018 | EXECUTION | HANDOVER | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 (DOCUMENT contract at `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`; consumed by DEL-02-02-V3-04; decomposed under D-APP-110 SD-006, deliverable relation to DEL-02-02 preserved in Notes) | ACTIVE | `_STATUS.md#Remaining` |
+| DEP-02-04-019 | EXECUTION | HANDOVER | DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 (DOCUMENT contract at `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`; consumed by DEL-02-03-V3-01; decomposed under D-APP-110 SD-004, deliverable relation to DEL-02-03 preserved in Notes) | ACTIVE | `_STATUS.md#Remaining` |
 | DEP-02-04-020 | EXECUTION | CONSTRAINT | DEL-07-03 (governed workflow file owns rung-related truth) | ACTIVE | `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)` |
 | DEP-02-04-021 | EXECUTION | CONSTRAINT | EXTERNAL Root-owned daemon session record (TargetLocation TBD) | ACTIVE | `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)` |
 
@@ -105,6 +106,23 @@ Structured register: `Dependencies.csv` v3.1
 - No `[WARNING] FLOATING_NODE`, `[WARNING] AMBIGUOUS_ANCHOR`, or `[WARNING] MISSING_DECOMPOSITION`.
 - Function 5: see the run record `_run_records/TASK_RUN_2026-09-05_0802.md` (schema VALID, 29 columns, 21 data rows; every emitted enum VALID; one ACTIVE `IMPLEMENTS_NODE`; 21 unique IDs; `FromDeliverableID=DEL-02-04` on every row; every emitted `EvidenceFile#SourceRef` resolves to live bytes and the quote is present; counts in this file reconciled to `Dependencies.csv`).
 
+## Run Notes - 2026-09-05 D-APP-110 decompose (N14-TASK-DEL-02-04)
+
+- Run: `TASK + dependency-extract` (apply mode), instance `N14-TASK-DEL-02-04` of `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/` (plan amendment v1.3, node N14), authorized by owner ruling D-APP-110 (`execution/_Coordination/_DECISIONS/D-APP-110_RULING_SCA_APP_010_SCC_DECOMPOSE_2026-09-05.md`) and the per-row workbook `SCC_DECOMPOSE_RULINGS.csv` rows SD-003, SD-004, SD-006. Move: `decompose` (`docs/CYCLE_DRIVEN_RESOLUTION.md` section 2.3) in the `SCC-SAFE-MOVES-001` form; no row retired, cut, merged, or inverted; no `PREREQUISITE` row re-targeted.
+- Runtime overrides: `SCOPE=DEL-02-04`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; `SOURCE_DOCS=[ScopeOfWork.md]` read only to verify the contract anchor (no new extraction from prose); row values taken exactly from the workbook.
+- Basis: candidate branch HEAD `7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985`; decomposition found at the pinned identity SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`); pre-images verified before writing: `Dependencies.csv` `abaf816695c2c6f13adfe03ad85b31ff0cbdef2db06b36873e519060f306bcb2` (21 rows); `_DEPENDENCIES.md` `1cefdede31815de94d3f18b2e5033fbc1ebf17722f4a4d53c8e22f5eb0ec23ca`.
+- Contract anchor verified in the live carrier bytes before writing: `ScopeOfWork.md` heading `## SCA-APP-010 Gate-5 Current Contract (Controlling)` (L68), applied row outputs "workspace-state schema (additive v1 fields)" (L94-L96), and acceptance obligation 1 "Workspace-state changes are additive v1 fields under the existing schema string" (L100).
+- DECOMPOSE under D-APP-110 (SD-003): DEP-02-04-017 now targets DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 (`TargetType=DOCUMENT`, `TargetLocation` = `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`); the coarse edge DEL-02-01->DEL-02-04 is replaced by the document-scoped contract and the deliverable relation to DEL-02-01 is preserved in `Notes`.
+- DECOMPOSE under D-APP-110 (SD-004): DEP-02-04-019 now targets DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 (`TargetType=DOCUMENT`, `TargetLocation` = `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`); the coarse edge DEL-02-03->DEL-02-04 is replaced by the document-scoped contract and the deliverable relation to DEL-02-03 is preserved in `Notes`.
+- DECOMPOSE under D-APP-110 (SD-006): DEP-02-04-018 now targets DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 (`TargetType=DOCUMENT`, `TargetLocation` = `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)`); the coarse edge DEL-02-02->DEL-02-04 is replaced by the document-scoped contract and the deliverable relation to DEL-02-02 is preserved in `Notes`.
+- RESOLVED under D-APP-110: DEP-02-04-015 and DEP-02-04-016 (the carrier's other D-APP-109 rows; `PREREQUISITE`, strict deliverable edges to DEL-02-02 and DEL-02-03) keep every field and gain a `Notes` clause stating that the SCC they participated in was decomposed and that each is a strict edge of the acyclic approved graph gating per its `SatisfactionStatus` (both `PENDING`). Their earlier `CYCLE_PARTICIPATING` and `NEEDS_HUMAN_GRAPH_DECISION` clauses remain as dated history.
+- Graph effect: DEL-02-04 now carries no deliverable edge into DEL-02-01, DEL-02-02, or DEL-02-03 in the strict deliverable graph (the three handovers point at the DOCUMENT node DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1); the two deliverable-level pairs recorded under D-APP-109 (DEL-02-04 <-> DEL-02-02 via 015/018; DEL-02-04 <-> DEL-02-03 via 016/019) are dissolved; the carrier's remaining deliverable rows (015, 016, 020) are strict edges of the acyclic graph. Per D-APP-110 ruling 2 the resulting strict graph is acyclic; the fresh `AUDIT_DEP_CLOSURE` snapshot (N16) records it.
+- Counts: ACTIVE 21, ANCHOR 6, EXECUTION 15, RETIRED 0 unchanged; `TargetType` tallies move DELIVERABLE 6 -> 3 and DOCUMENT 7 -> 10; satisfaction tallies unchanged (6 NOT_APPLICABLE / 7 SATISFIED / 7 PENDING / 1 TBD). Every other row byte-identical; no row added, retired, or renumbered.
+- [WARNING] PROJECT_ID_FORMAT_PROFILE: unchanged (generic three-digit profile rejects the accepted App two-digit identities; no ID changed).
+- [WARNING] INSTRUCTION_ROOT_DECLARED_BY_BRIEF: `CHIRALITY_INSTRUCTION_ROOT` not exported; `INSTRUCTION_ROOT=REPO_ROOT` taken from the sealed brief (ASSUMPTION recorded in the run record).
+- No `[WARNING] FLOATING_NODE`, `[WARNING] AMBIGUOUS_ANCHOR`, or `[WARNING] MISSING_DECOMPOSITION`.
+- Function 5: see the run record `_run_records/TASK_RUN_2026-09-05_1012.md` (schema VALID, 29 columns, 21 data rows; `TARGET_TYPE DOCUMENT` and every other distinct enum value VALID; DOCUMENT rows leave `TargetPackageID` and `TargetDeliverableID` empty; one ACTIVE `IMPLEMENTS_NODE`; 21 unique ordered IDs; `FromDeliverableID=DEL-02-04` on every row; `git diff --check` clean; counts in this file reconciled to `Dependencies.csv`).
+
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE Rows |
@@ -112,6 +130,7 @@ Structured register: `Dependencies.csv` v3.1
 | 2026-05-20T19:30:43-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | PRD_HASH_MISMATCH | 14 |
 | 2026-09-05T00:39:59-0600 (amended v1.1 at 2026-09-05T01:02-0600) | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found at pinned identity `c7c05169` (content commit `dbd812a5`) | PROJECT_ID_FORMAT_PROFILE; INSTRUCTION_ROOT_DECLARED_BY_BRIEF; HELD_EDGE_PROPOSALS x5 (DEP-02-04-015..019 reserved, amendment v1.1) | 16 |
 | 2026-09-05T08:02-0600 (D-APP-109 emission) | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found at pinned identity `c7c05169` (content commit `dbd812a5`) | PROJECT_ID_FORMAT_PROFILE; INSTRUCTION_ROOT_DECLARED_BY_BRIEF; CYCLE_PARTICIPATING x5 (DEP-02-04-015..019 emitted under D-APP-109, non-gating until the SCC is resolved) | 21 |
+| 2026-09-05T10:12-0600 (D-APP-110 decompose) | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found at pinned identity `c7c05169` (content commit `dbd812a5`) | PROJECT_ID_FORMAT_PROFILE; INSTRUCTION_ROOT_DECLARED_BY_BRIEF; DECOMPOSE x3 (DEP-02-04-017, -018, -019 re-targeted to the DOCUMENT contract DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 under D-APP-110 SD-003, SD-006, SD-004); RESOLVED x2 (DEP-02-04-015, -016 Notes only) | 21 |
 
 ## Lifecycle Summary
 
@@ -129,7 +148,7 @@ Structured register: `Dependencies.csv` v3.1
 
 Closure notes:
 
-- The extracted register is schema-valid and evidence-first, but project-level availability must still wait for FULL_GRAPH cycle checks. Under D-APP-109 the five seated-item edges to DEL-02-01, DEL-02-02, and DEL-02-03 (DEP-02-04-015..019; formerly held H-008..H-012) are emitted as cycle-participating rows: they lie inside the enlarged SCC-001 and are non-gating until that SCC is resolved by a recorded decompose, invert, merge, or cut move (`docs/CYCLE_DRIVEN_RESOLUTION.md`); the executable ordering stays with the seated item's `Depends` line and gate.
+- The extracted register is schema-valid and evidence-first; project-level availability still follows the FULL_GRAPH closure snapshot. The five seated-item rows emitted under D-APP-109 (DEP-02-04-015..019; formerly held H-008..H-012) were resolved on 2026-09-05 by the owner-ruled `decompose` move (D-APP-110): the three handovers DEP-02-04-017..019 now target the DOCUMENT contract node DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 at `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)` with their deliverable relations to DEL-02-01, DEL-02-02, DEL-02-03 preserved in `Notes`, and the two prerequisites DEP-02-04-015..016 stay strict deliverable edges. The carrier holds no cycle-participating row; every row gates per its `SatisfactionStatus`. The seated item's `Depends` line and gate remain the executable ordering at item level.
 - DEP-02-04-015..019 are PENDING: the seated items they gate on or hand over to (DEL-02-02-V3-03, DEL-02-03-V3-01, DEL-02-01-V3-02, DEL-02-01-V3-03, DEL-02-02-V3-04) have not landed.
 - DEP-02-04-007..013 are SATISFIED: all `_REFERENCES.md` authority-corpus rows report MATCH (v20) and the decomposition is present at the pinned identity.
 - DEP-02-04-014 remains `TBD` because the source explicitly leaves adjacent runtime option contracts and permission policy integration points unresolved.
@@ -138,8 +157,8 @@ Closure notes:
 ## Downstream Handoff Notes
 
 - Consumer: `RECONCILIATION`.
-- Reconcile one parent anchor, three scope-item trace anchors (SOW-004, SOW-008, SOW-016), two objective trace anchors, seven SATISFIED source-basis prerequisites, one TBD-target prerequisite (DEP-02-04-014), two seated-item prerequisites (DEP-02-04-015 to DEL-02-02; DEP-02-04-016 to DEL-02-03), three additive-field handovers (DEP-02-04-017..019 to DEL-02-01, DEL-02-02, DEL-02-03), and two rung-truth constraints (DEP-02-04-020 to DEL-07-03; DEP-02-04-021 EXTERNAL Root).
-- The carrier now carries five cycle-participating, non-gating rows (DEP-02-04-015..019, emitted under D-APP-109 from held proposals H-008..H-012) pending SCC resolution: count them in closure analysis and report the SCC change, but derive no blocker queue, wave, dispatch-readiness, or implementation-readiness claim from them, and do not linearize the two deliverable-level pairs they form (DEL-02-04 <-> DEL-02-02 via 015/018; DEL-02-04 <-> DEL-02-03 via 016/019) until the owner records a decompose, invert, merge, or cut move.
+- Reconcile one parent anchor, three scope-item trace anchors (SOW-004, SOW-008, SOW-016), two objective trace anchors, seven SATISFIED source-basis prerequisites, one TBD-target prerequisite (DEP-02-04-014), two seated-item prerequisites (DEP-02-04-015 to DEL-02-02; DEP-02-04-016 to DEL-02-03), three additive-field handovers (DEP-02-04-017..019, DOCUMENT-targeted at the DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1 contract under D-APP-110; deliverable relations to DEL-02-01, DEL-02-02, DEL-02-03 preserved in `Notes`), and two rung-truth constraints (DEP-02-04-020 to DEL-07-03; DEP-02-04-021 EXTERNAL Root).
+- The carrier no longer holds cycle-participating rows: the SCC that DEP-02-04-015..019 participated in was decomposed under D-APP-110 (2026-09-05), the two deliverable-level pairs (DEL-02-04 <-> DEL-02-02 via 015/018; DEL-02-04 <-> DEL-02-03 via 016/019) are dissolved by the DOCUMENT re-targeting of 017..019, and every row gates per its `SatisfactionStatus` like any other strict edge (015..019 are `PENDING` until the named seated items land). Read the three DOCUMENT rows as contract consumption, not build sequencing; the deliverable relation each records is evidence in `Notes`, not a strict edge.
 - Keep DEP-02-04-021 at `TargetLocation=TBD` until the OI-008 Root return is routed to App; do not resolve it to a Root path.
 - The two F2 candidates (design basis plan; `loop/LOOP_INIT.md` section 7) are deliberately absent from the register; reconcile against the seated item's Plan and Return lines rather than against register rows.
 

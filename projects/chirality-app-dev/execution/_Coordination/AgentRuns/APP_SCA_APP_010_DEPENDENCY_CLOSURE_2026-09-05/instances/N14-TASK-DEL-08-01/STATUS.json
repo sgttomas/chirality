@@ -1,0 +1,56 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "parentRunId": "N14",
+  "instanceId": "N14-TASK-DEL-08-01",
+  "role": "TASK + dependency-extract (apply; D-APP-110 decompose)",
+  "carrier": "DEL-08-01",
+  "status": "PASS",
+  "authority": [
+    "D-APP-110",
+    "AMENDMENT_v1.3_SCC_DECOMPOSE.md",
+    "SCC_DECOMPOSE_RULINGS.csv"
+  ],
+  "workbookRulingsForCarrier": [],
+  "basisHead": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "preImage": {
+    "Dependencies.csv": "e0e0102a6f743911d23c36892e8b6f7ff4d45c88820d705f1475c883d3836284",
+    "_DEPENDENCIES.md": "673460ea86ca6330067cdf7c5f30ef5fff35a308cdebb4beef2659394c33f7c4"
+  },
+  "outputs": {
+    "Dependencies.csv": {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/Dependencies.csv",
+      "sha256": "3cdd199b1fffe1be2cb7985d563a2f1be154aecfdaec6b3657a23c99751b0d96"
+    },
+    "_DEPENDENCIES.md": {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_DEPENDENCIES.md",
+      "sha256": "de76f73f3ecc9623013693ced29eed8f4e0efd71a5568a27c77887d1e9d1f7d8"
+    },
+    "runRecord": {
+      "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_run_records/TASK_RUN_2026-09-05_1013.md",
+      "sha256": "25c9b9dba20fc93c2780184a390fa269f391885c95dc451d42d0c868a7da98a4"
+    }
+  },
+  "retargeted": [],
+  "notesUpdated": [
+    "DEP-08-01-018"
+  ],
+  "census": {
+    "total": 21,
+    "active": 21,
+    "retired": 0,
+    "anchor": 8,
+    "execution": 13,
+    "cycleParticipating": 0
+  },
+  "function5": {
+    "validate_dependencies_schema": "VALID (29 columns, 21 data rows)",
+    "validate_enum": "24 distinct pairs VALID, 0 failures",
+    "implementsNodeActive": 1,
+    "uniqueIds": 21,
+    "gitDiffCheck": "clean",
+    "hygiene": "LF, no trailing whitespace, final newline"
+  },
+  "blockers": [],
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (D-APP-110 decompose), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched"
+}

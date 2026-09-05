@@ -1,0 +1,49 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "parentRunId": "N14",
+  "instanceId": "N14-TASK-DEL-02-05",
+  "role": "TASK",
+  "taskSkill": "dependency-extract",
+  "carrier": "DEL-02-05",
+  "authorization": ["D-APP-110", "AMENDMENT_v1.3_SCC_DECOMPOSE.md#N14", "SCC_DECOMPOSE_RULINGS.csv"],
+  "repoHead": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "status": "PASS",
+  "timestamp": "2026-09-05T10:13:24-06:00",
+  "retargeted": [],
+  "notesUpdated": ["DEP-02-05-014", "DEP-02-05-015"],
+  "workbookRulingIds": [],
+  "preimage": {
+    "Dependencies.csv": "09aaacc8894bd4ffb1cdd48f09416d19dca368fe4e64f890234855af9bd9c703",
+    "_DEPENDENCIES.md": "5d93d935017bb99aa24834560488c753f73a825af6e97441e519229cf4b3a501"
+  },
+  "outputs": {
+    "Dependencies.csv": {"path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv", "sha256": "1408edaa4cf79a1bf088cc187728eddf233f62112b35cdb770ea9a48fa50f9e7"},
+    "_DEPENDENCIES.md": {"path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_DEPENDENCIES.md", "sha256": "9eec756b146b38560a75524e604fb5cea6c6448f3d0d30bf443ef71d86f340e0"},
+    "runRecord": {"path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_run_records/TASK_RUN_2026-09-05_1013.md", "sha256": "beb9d8a697d54339e5c22b880130c17aa48b09386aff2e19a839f891286e0c66"},
+    "return": {"path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N14-TASK-DEL-02-05/RETURN.md"}
+  },
+  "census": {
+    "pre": {"total": 15, "active": 15, "retired": 0, "anchor": 6, "execution": 9, "satisfaction": {"TBD": 6, "PENDING": 8, "SATISFIED": 1}},
+    "post": {"total": 15, "active": 15, "retired": 0, "anchor": 6, "execution": 9, "satisfaction": {"TBD": 6, "PENDING": 8, "SATISFIED": 1}},
+    "retargeted": 0, "notesOnly": 2, "added": 0, "retiredThisRun": 0, "deleted": 0
+  },
+  "validators": {
+    "validate_dependencies_schema": "VALID (29 columns, 15 data rows, exit 0)",
+    "validate_enum": "12/12 VALID (TARGET_TYPE DOCUMENT plus every enum value on the two touched rows)",
+    "implementsNodeActive": 1,
+    "dependencyIdUnique": true,
+    "fromDeliverableIdMatches": true,
+    "documentRowsTargetDeliverableIdEmpty": true,
+    "untouchedRowsByteIdentical": true,
+    "gitDiffCheck": "clean",
+    "whitespace": "LF, no trailing whitespace, final newline",
+    "idFormatWarning": "PROJECT_ID_FORMAT_PROFILE (carried; no identifier changed)"
+  },
+  "sccEffect": "carrier holds no cycle-participating rows after the D-APP-110 decompose; DEP-02-05-014/-015 are strict edges gating per SatisfactionStatus",
+  "humanRulingRequired": false,
+  "descendantsLaunched": 0,
+  "roleEnforcement": "instruction-asserted; not mechanically enforced",
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (D-APP-110 decompose), dispatched by HELP_HUMAN"
+}

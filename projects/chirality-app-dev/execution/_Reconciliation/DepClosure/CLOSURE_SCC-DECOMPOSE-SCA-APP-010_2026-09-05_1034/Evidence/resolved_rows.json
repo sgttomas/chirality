@@ -1,0 +1,344 @@
+{
+  "emittedUnderDAPP109": [
+    "DEP-02-01-010",
+    "DEP-02-02-015",
+    "DEP-02-02-017",
+    "DEP-02-02-018",
+    "DEP-02-02-019",
+    "DEP-02-02-020",
+    "DEP-02-02-022",
+    "DEP-02-04-015",
+    "DEP-02-04-016",
+    "DEP-02-04-017",
+    "DEP-02-04-018",
+    "DEP-02-04-019",
+    "DEP-02-05-014",
+    "DEP-02-05-015",
+    "DEP-03-02-013",
+    "DEP-05-02-016",
+    "DEP-06-03-014",
+    "DEP-08-01-018",
+    "DEP-08-04-013"
+  ],
+  "emittedCount": 19,
+  "retargetedFromEmitted": [
+    "DEP-02-01-010",
+    "DEP-02-02-022",
+    "DEP-02-04-017",
+    "DEP-02-04-018",
+    "DEP-02-04-019",
+    "DEP-06-03-014"
+  ],
+  "retargetedPreExisting": [
+    "DEP-04-05-010"
+  ],
+  "resolvedNotesOnlyRows": [
+    "DEP-02-02-015",
+    "DEP-02-02-017",
+    "DEP-02-02-018",
+    "DEP-02-02-019",
+    "DEP-02-02-020",
+    "DEP-02-04-015",
+    "DEP-02-04-016",
+    "DEP-02-05-014",
+    "DEP-02-05-015",
+    "DEP-03-02-013",
+    "DEP-05-02-016",
+    "DEP-08-01-018",
+    "DEP-08-04-013"
+  ],
+  "resolvedCount": 13,
+  "retargetedFromEmittedPlusResolvedEqualsNineteen": true,
+  "notesOnlyRowsInRegistersEqualIdentitiesFile": true,
+  "rows": [
+    {
+      "DependencyID": "DEP-02-02-015",
+      "carrier": "DEL-02-02",
+      "edge": "DEL-02-02->DEL-05-02",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-02-02-017",
+      "carrier": "DEL-02-02",
+      "edge": "DEL-02-02->DEL-08-05",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-02-02-018",
+      "carrier": "DEL-02-02",
+      "edge": "DEL-02-02->DEL-05-04",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "SatisfactionStatus": "TBD",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-02-02-019",
+      "carrier": "DEL-02-02",
+      "edge": "DEL-02-02->DEL-08-04",
+      "Direction": "UPSTREAM",
+      "DependencyType": "CONSTRAINT",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-02-02-020",
+      "carrier": "DEL-02-02",
+      "edge": "DEL-02-02->DEL-08-02",
+      "Direction": "UPSTREAM",
+      "DependencyType": "CONSTRAINT",
+      "SatisfactionStatus": "TBD",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-02-04-015",
+      "carrier": "DEL-02-04",
+      "edge": "DEL-02-04->DEL-02-02",
+      "Direction": "UPSTREAM",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-02-04-016",
+      "carrier": "DEL-02-04",
+      "edge": "DEL-02-04->DEL-02-03",
+      "Direction": "UPSTREAM",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-02-05-014",
+      "carrier": "DEL-02-05",
+      "edge": "DEL-02-05->DEL-02-01",
+      "Direction": "UPSTREAM",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-02-05-015",
+      "carrier": "DEL-02-05",
+      "edge": "DEL-02-05->DEL-02-03",
+      "Direction": "UPSTREAM",
+      "DependencyType": "PREREQUISITE",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-03-02-013",
+      "carrier": "DEL-03-02",
+      "edge": "DEL-08-04->DEL-03-02",
+      "Direction": "DOWNSTREAM",
+      "DependencyType": "INTERFACE",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-05-02-016",
+      "carrier": "DEL-05-02",
+      "edge": "DEL-02-02->DEL-05-02",
+      "Direction": "DOWNSTREAM",
+      "DependencyType": "INTERFACE",
+      "SatisfactionStatus": "TBD",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-08-01-018",
+      "carrier": "DEL-08-01",
+      "edge": "DEL-08-01->DEL-06-03",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    },
+    {
+      "DependencyID": "DEP-08-04-013",
+      "carrier": "DEL-08-04",
+      "edge": "DEL-08-04->DEL-03-02",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "SatisfactionStatus": "PENDING",
+      "checks": {
+        "presentLive": true,
+        "statusActive": true,
+        "executionDeliverable": true,
+        "notesCarryResolvedClause": true,
+        "notesSayGatesPerSatisfactionStatus": true,
+        "notesOnlyChangeVsBasis": true,
+        "edgeInLiveStrictGraph": true,
+        "edgeInNoSCC": true,
+        "emittedUnderDAPP109": true
+      },
+      "allPass": true
+    }
+  ],
+  "allRowsPass": true,
+  "cycleParticipatingMarkerRows": [
+    "DEP-02-01-010",
+    "DEP-02-02-015",
+    "DEP-02-02-017",
+    "DEP-02-02-018",
+    "DEP-02-02-019",
+    "DEP-02-02-020",
+    "DEP-02-02-022",
+    "DEP-02-04-015",
+    "DEP-02-04-016",
+    "DEP-02-04-017",
+    "DEP-02-04-018",
+    "DEP-02-04-019",
+    "DEP-02-05-014",
+    "DEP-02-05-015",
+    "DEP-03-02-013",
+    "DEP-05-02-016",
+    "DEP-06-03-014",
+    "DEP-08-01-018",
+    "DEP-08-04-013"
+  ],
+  "cycleParticipatingMarkerCount": 19,
+  "cycleParticipatingRowsWithoutDAPP110Supersession": [],
+  "rowsStillCarryingUnsupersededNonGatingClause": [],
+  "satisfactionStatusHistogram": {
+    "PENDING": 10,
+    "TBD": 3
+  }
+}

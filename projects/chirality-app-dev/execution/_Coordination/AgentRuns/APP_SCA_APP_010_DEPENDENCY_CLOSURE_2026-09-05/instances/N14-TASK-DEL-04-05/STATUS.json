@@ -1,0 +1,36 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "instanceId": "N14-TASK-DEL-04-05",
+  "runId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "parentRunId": "N14",
+  "parent": "HELP_HUMAN",
+  "role": "TASK + dependency-extract (apply mode; D-APP-110 decompose)",
+  "status": "PASS",
+  "authority": "D-APP-110; AMENDMENT_v1.3_SCC_DECOMPOSE.md; SCC_DECOMPOSE_RULINGS.csv",
+  "rulingIds": ["SD-001"],
+  "carrier": "DEL-04-05",
+  "carrierPath": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-05_Anthropic_Provider_Key_Base_URL_and_Network_Bridge",
+  "head": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "preWrite": {
+    "Dependencies.csv": "a850ded5e25c19e332d3321642229ab1cb07abcd96ed5cea9d0a2310e1b06ae7",
+    "_DEPENDENCIES.md": "35b90b2bed48f51df5b7bf2b32e778bdbd4e481344d472eb4f120973b2d21152"
+  },
+  "outputs": {
+    "Dependencies.csv": "aec128ecb0369228520327eafe46a609facb6df3ec360bc5e3f3dcb42db2776a",
+    "_DEPENDENCIES.md": "d7ddb6c94f5366535362617891d2f0d41475ccd5e9229f1d9880aca7b1c1e695",
+    "runRecord": "_run_records/TASK_RUN_2026-09-05_1013.md",
+    "runRecordSha256": "eabddb332416c00fc84a4676880e30842d6a4833e09d2482ccdb5c933f20bf2d"
+  },
+  "retargeted": ["DEP-04-05-010"],
+  "notesUpdated": [],
+  "validation": {
+    "validate_dependencies_schema": "VALID (29 columns, 13 rows)",
+    "validate_enum TARGET_TYPE DOCUMENT": "VALID",
+    "git diff --check": "clean",
+    "uniqueIds": true,
+    "activeImplementsNode": 1,
+    "activeCount": 11,
+    "retiredCount": 2
+  },
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (D-APP-110 decompose), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched."
+}
