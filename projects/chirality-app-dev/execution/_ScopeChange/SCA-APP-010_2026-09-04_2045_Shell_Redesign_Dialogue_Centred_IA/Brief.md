@@ -1,6 +1,6 @@
 # SCA-APP-010 Brief — Shell Redesign: Dialogue-Centred Information Architecture
 
-**Status:** `GATE1_CONFIRMED_GATE2_IN_PREPARATION`
+**Status:** `GATE2_ACCEPTED_GATE3_CANDIDATE_AWAITING_OWNER_APPROVAL`
 **Date:** `2026-09-04`
 **Requested by:** Ryan Tufts (`ryan@chirality.ai`), owner, in-session direction relayed by HELP_HUMAN
 **Decomposition variant:** `SOFTWARE`

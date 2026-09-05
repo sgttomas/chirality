@@ -9,8 +9,10 @@ the owner has answered. Agent readings are labelled as such.
 
 | G1-CONFIRM | 2026-09-04 | Ryan Tufts | Verbatim: "Confirm the envelope as parsed, proceed to Gate 2. You have my approval to expand your write scope to the Root also, as required for this work throughout this session." | Confirms the Gate-1 envelope A001 to A029 as parsed with warnings 1 to 8 carried; authorizes Gate-2 impact assessment. Grants HELP_HUMAN Root write scope for this session as required for this work. No Gate-3 amendment approval, propagation, application, pointer movement, implementation, or release act. |
 
-**Current state:** Gate 1 confirmed. Gate 2 impact assessment authorized and
-in preparation. No Gate-3 work is authorized.
+| G2-CONFIRM | 2026-09-04 | Ryan Tufts | Verbatim: "retire the presentation half of SOW-007 now. accept the organisation-layer default from Q14. I accept the impact assessment, proceed to Gate 3." | Accepts the Gate-2 impact assessment. Rules A006: SOW-007 loses its presentation half (contextual Pipeline controls retired from the active shell, code retained); DEL-08-03 remains the semantic owner and sole mapped deliverable; DEL-02-02 drops SOW-007. Rules A012/A022: the Q14 organisation-layer default (bundled base plus a client-owned, hash-pinned layer under instruction-root protections) is the Gate-3 basis; Q14 is thereby ruled. Authorizes Gate-3 exact amendment preview only. No application, propagation, pointer, implementation, or release act. |
+
+**Current state:** Gate 2 accepted. Gate 3 exact amendment preview
+authorized and in preparation. No Gate-4 or Gate-5 work is authorized.
 
 ## Attribution
 

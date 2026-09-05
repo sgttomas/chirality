@@ -1,13 +1,13 @@
-# SCA-APP-010 Gate-1 Handoff State
+# SCA-APP-010 Handoff State
 
-**Phase:** Gate 2 impact assessment (Gate 1 confirmed G1-CONFIRM)
+**Phase:** Gate 3 exact amendment preview (Gate 1 confirmed G1-CONFIRM; Gate 2 accepted G2-CONFIRM)
 **Basis:** `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`
 **Next owner:** Ryan Tufts
 **Authority effect:** none
 
 | Field | Value |
 | --- | --- |
-| `SCAStatus` | `GATE2_ASSESSMENT_AWAITING_OWNER_ACCEPTANCE` |
+| `SCAStatus` | `GATE3_CANDIDATE_AWAITING_OWNER_APPROVAL` |
 | `DecompositionTruthState` | `INCOMPLETE` (no amendment applied; decomposition unchanged at `e46084ab…`) |
 | `DerivativePackageState` | `INCOMPLETE` (SCA-APP-009 derivative closure still open under `_LATEST.md`) |
 | `ContentRemediationState` | `NOT_REQUIRED` |
@@ -27,14 +27,16 @@
 
 ## Blockers and open items
 
-1. Owner answer to the Gate-2 question in `Impact_Assessment.md` (accept, with the A006 and A012 choices).
+1. Owner approval, revision, or rejection of the exact Gate-3 bytes in `Gate3/GATE3_AMENDMENT_PACKAGE.md` (candidate post-images `c7c05169…` and `63383f04…`; independent review under `Evidence/Gate3/`).
 2. SCA-APP-009 derivative closure, the carried SCA-APP-008 package-shape blocker, and the nine-node SCC remain open; SCA-APP-010 may not move the pointer or claim closure until they are dispositioned.
-3. Root-owned dependencies (login home, `proposal.*` schema, session-record delegation field) need a Root coordination notice at Gate 2.
-4. Q14 to Q16 unruled.
+3. Root-owned dependencies (login home, `proposal.*` schema, session-record delegation field) are carried in OI-008; one Root coordination notice is routed after Gate 5.
+4. Q15 and Q16 unruled (Q14 ruled at G2-CONFIRM); they shape the Workflows view acceptance text, not this amendment.
 
 ## Next act
 
-Ryan Tufts answers the Gate-2 question. On acceptance, SCOPE_CHANGE Gate 3
-drafts the exact amendment preview (decomposition and companion post-images,
-`Amendment_Actions.csv`, `Supersession_Delta.csv`); on modification, Gate 2
-re-traces the changed scope; on stop, this snapshot remains as dated history.
+Ryan Tufts approves, revises, or rejects the exact Gate-3 bytes. On
+approval, SCOPE_CHANGE Gate 4 drafts the propagation plan (deliverable
+context and ScopeOfWork amendments, dependency extraction, corpus and
+supersession regeneration, the Root notice, and the owner-seated Remaining
+items); on revision, Gate 3 re-issues the candidate; on rejection, this
+snapshot remains as dated history.
