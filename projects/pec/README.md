@@ -32,8 +32,9 @@ eleven-contract reconciliation remains historical under `D-PEC-69`, and
 `PEC-HOLD-001` was released by `D-PEC-70`. Current derivative state is recorded
 in `execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`
 and the WORKING_ITEMS currency-sweep handoff. Build phases P1–P4 remain
-separately owner-gated. See the standing plan at
-`_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md`.
+separately owner-gated. Follow `projects/pec/loop/LOOP_INIT.md` to discover
+work from deliverable `## Remaining` surfaces. Retired plans live in
+`projects/pec/plans/workplans/` as history only.
 
 Superseding owner direction on 2026-08-03 sends TM-PEC-023 to a dedicated
 SCOPE_CHANGE mapping session: neither mappings nor blanks are ruled, all nine
@@ -59,7 +60,7 @@ is closed here.
 | `execution/_Decomposition/` | Accepted software decomposition revision 1.4 and authoritative companion registers |
 | `execution/_ScopeChange/` | Immutable SCA-001/SCA-002/SCA-003/SCA-004 amendment evidence and active scope-change pointer |
 | `core/`, `server/`, `web/`, `agent-sidecar/`, `tools/`, `fixtures/` | **Frozen reference corpus** — the v0.4-baseline prototype; read/cite only, quarried by citation in build briefs (PRD §13); run instructions preserved at `docs/.archive/README_v0.4_prototype.md` |
-| `init/` | Loop launcher prompt (points at `_DomainEngines/pec/LOOP_INIT.md`) |
+| `init/` | Loop launcher prompt (points at `projects/pec/loop/LOOP_INIT.md`) |
 
 ## Principles the build must keep (PRD §6, PEC-K-01..11)
 
@@ -77,4 +78,4 @@ Decisions: `execution/_Coordination/_DECISIONS/_REGISTER.md` (pivot:
 consumer rows: `D-PEC-67`; v2.2 concordance: `D-PEC-68`; loop-registry ruling:
 `D-PEC-78`; accepted decomposition successor: `SCA-004`; historical contract
 reconciliation and hold release: `D-PEC-69`/`D-PEC-70`). Receipts:
-`_DomainEngines/pec/LOOP_RECEIPTS.md`. Project agent rules: `AGENTS.md`.
+`projects/pec/loop/LOOP_RECEIPTS.md`. Project agent rules: `AGENTS.md`.

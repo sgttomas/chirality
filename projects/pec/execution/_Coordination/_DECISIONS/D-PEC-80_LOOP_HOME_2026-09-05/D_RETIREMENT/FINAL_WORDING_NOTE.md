@@ -1,0 +1,1 @@
+After the fresh reader was dispatched, two historical-source descriptions in init changed from standing plan / supplies to retired plan / supplied. No command, fence, pointer, gate, or selection behavior changed. The literal tested input remains unchanged; final init hash is recorded in final checks.

@@ -1,0 +1,84 @@
+[
+  {
+    "command": [
+      "git",
+      "rev-parse",
+      "--show-toplevel"
+    ],
+    "cwd": "REPO_ROOT",
+    "exit_code": 0,
+    "stdout": "baseline-0.stdout",
+    "stderr": "baseline-0.stderr"
+  },
+  {
+    "command": [
+      "git",
+      "status",
+      "--short"
+    ],
+    "cwd": "REPO_ROOT",
+    "exit_code": 0,
+    "stdout": "baseline-1.stdout",
+    "stderr": "baseline-1.stderr"
+  },
+  {
+    "command": [
+      "git",
+      "log",
+      "--oneline",
+      "-20"
+    ],
+    "cwd": "REPO_ROOT",
+    "exit_code": 0,
+    "stdout": "baseline-2.stdout",
+    "stderr": "baseline-2.stderr"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/taskmgmt/taskmgmt.py",
+      "validate",
+      "--register",
+      "_DomainEngines/pec/_TaskManagement/REGISTER.csv"
+    ],
+    "cwd": "REPO_ROOT",
+    "exit_code": 0,
+    "stdout": "baseline-3.stdout",
+    "stderr": "baseline-3.stderr"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/taskmgmt/taskmgmt.py",
+      "validate",
+      "--register",
+      "_DomainEngines/pec/_TaskManagement/REGISTER_CLOSED.csv"
+    ],
+    "cwd": "REPO_ROOT",
+    "exit_code": 0,
+    "stdout": "baseline-4.stdout",
+    "stderr": "baseline-4.stderr"
+  },
+  {
+    "command": [
+      "python3",
+      "tools/practitioner_harness/harness.py",
+      "self-check"
+    ],
+    "cwd": "REPO_ROOT",
+    "exit_code": 0,
+    "stdout": "baseline-5.stdout",
+    "stderr": "baseline-5.stderr"
+  },
+  {
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "REPO_ROOT",
+    "exit_code": 0,
+    "stdout": "baseline-6.stdout",
+    "stderr": "baseline-6.stderr"
+  }
+]

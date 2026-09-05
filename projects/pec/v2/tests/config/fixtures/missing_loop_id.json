@@ -1,7 +1,7 @@
 {
   "loops": [
     {
-      "loop_init_path": "_DomainEngines/pec/LOOP_INIT.md"
+      "loop_init_path": "projects/pec/loop/LOOP_INIT.md"
     }
   ],
   "schema_version": 1

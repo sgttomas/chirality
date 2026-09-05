@@ -45,7 +45,7 @@ domain_profile:
     - "projects/pec/execution/**/ScopeOfWork.md"
 
   agent_writable_paths:
-    - "_DomainEngines/pec/**"
+    - "projects/pec/execution/_Coordination/AgentRuns/**"
     - "projects/pec/execution/_Coordination/** except _DECISIONS/** and owner-ruling records"
 
   deterministic_tools:
@@ -53,7 +53,7 @@ domain_profile:
       impl: "tools/software_workflow/run_registered_checks.py with projects/pec/software-workflow.json"
       mode: "summary_write"
       requires_human_confirmation: false
-      output_policy: "Normalized evidence only under an expressly authorized _DomainEngines/pec snapshot path"
+      output_policy: "Normalized evidence only under an expressly authorized projects/pec/execution/_Coordination/AgentRuns snapshot path"
       validate_result_schema: "chirality-software-check-evidence/v1"
       apply_result_schema: "TBD"
     - id: "pec.v2.harness_self_check"

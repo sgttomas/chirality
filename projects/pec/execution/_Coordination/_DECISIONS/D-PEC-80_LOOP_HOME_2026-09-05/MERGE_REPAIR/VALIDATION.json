@@ -1,0 +1,20 @@
+{
+  "schema_failures": [],
+  "notes": [
+    "manifest PEC-LOOP-CONSOLIDATION-20260905.yaml: m2_gate.self_merge is true under recorded owner direction by 'Ryan Tufts' on 2026-09-05 (PRD annex 5.3.1); the schema default remains self_merge false"
+  ],
+  "existing_changed_instruction_paths": [
+    "init/dev-loop-init-prompt.md",
+    "tools/practitioner_harness/BACKLOG.md",
+    "tools/practitioner_harness/cmd_bridge_status.py",
+    "tools/practitioner_harness/test_bridge_status.py",
+    "tools/taskmgmt/test_taskmgmt.py",
+    "tools/validation/test_validate_instruction_entrypoints.py",
+    "tools/validation/test_validate_pec_loop_receipts.py",
+    "tools/validation/validate_instruction_entrypoints.py",
+    "tools/validation/validate_pec_loop_receipts.py"
+  ],
+  "uncovered_paths": [],
+  "canonical_placement": "requires owner additional write-scope grant",
+  "CI_failure": "https://github.com/sgttomas/chirality/actions/runs/33989246618/job/101368380242"
+}

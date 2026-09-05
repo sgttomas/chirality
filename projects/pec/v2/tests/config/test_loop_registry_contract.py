@@ -18,7 +18,7 @@ from pec_v2.core.ports.loop_registry import LoopRegistry, RegisteredLoop  # noqa
 
 class LoopRegistryContractTests(unittest.TestCase):
     def test_registered_loop_is_immutable(self) -> None:
-        loop = RegisteredLoop("pec", "_DomainEngines/pec/LOOP_INIT.md")
+        loop = RegisteredLoop("pec", "projects/pec/loop/LOOP_INIT.md")
         with self.assertRaises(dataclasses.FrozenInstanceError):
             loop.loop_id = "root"  # type: ignore[misc]
 

@@ -1,0 +1,82 @@
+[
+  {
+    "path": "projects/pec/docs/PRD.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "projects/pec/execution/_Coordination/PRD_V2_CANDIDATE_2026-07-24_coordination_plane.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57_coordination_plane_pivot.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "_DomainEngines/_DECISIONS/_REGISTER.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "_DomainEngines/profiles/pec.yaml",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "projects/pec/AGENTS.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "projects/pec/execution/_Decomposition/_LATEST.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "projects/pec/execution/_ScopeChange/_LATEST.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "projects/pec/execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "projects/pec/execution/_Coordination/WORKING_ITEMS_SCA004_CURRENCY_SWEEP_2026-08-03/HANDOFF_STATE.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Review_Summary.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "_DomainEngines/pec/LOOP_RECEIPTS.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "docs/DECOMPOSITION_STANDARD.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "agents/AGENT_SOFTWARE_DECOMP.md",
+    "exists": true,
+    "exit_code": 0
+  },
+  {
+    "path": "tools/practitioner_harness/README.md",
+    "exists": true,
+    "exit_code": 0
+  }
+]

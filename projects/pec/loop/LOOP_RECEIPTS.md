@@ -1862,3 +1862,14 @@
   - Parked state: currency repair remains `COMPLETE`; TM-PEC-023 remains held for its dedicated owner session; TM-PEC-022 remains deferred; TM-PEC-013/014 dispositions, TM-PEC-011 ordinary archive, PRD v2.3 live application, and any exact-path P1/P2 packet remain later owner/scheduled acts.
   - Checks: Task Management live/archive validation, receipt/self-check, receipt-only containment, and whitespace pass; this branch changes only `_DomainEngines/pec/LOOP_RECEIPTS.md`.
   - Gate outcome: **PR #534 MERGED / CURRENCY REPAIR EFFECTIVE ON SHARED MAIN / RECEIPT CURRENT / NO SUBSTANTIVE TRANCHE OPEN / PARKED AT OWNER GATES / RECEIPT-ONLY PR IS OWNER MERGE GATE**.
+<!-- receipt-contract-v2 frozen-through=Receipt-166 prefix-bytes=426714 prefix-sha256=153732e389a1dd948805dd71150f63d865ef3c70cb8b8f8230a36b836dda0dd7 -->
+
+- **2026-09-05 — Receipt 167** (canonical loop migration and generic init candidate).
+  - Receipt-ID: `Receipt-167`
+  - Examined-Through: `7458e9c1eb9399ed259da464207d9a507acdea2e`
+  - Parent-Receipt: `Receipt-166`
+  - Pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_loop_home_and_instruction_surface_2026-09-05.md`; owner task and exact grant in its `OWNER_DIRECTIONS.md` evidence.
+  - Stale-Map-Delta: historical `_DomainEngines/pec/` locators and old init section numbers resolve through the packet’s relocation map and Git history; accepted plan bytes remain unchanged; D_RETIREMENT/RELOCATION_MAP.csv continues the map into plans/workplans/.
+  - Checks: migration and final verification evidence is indexed by the packet’s `VALIDATION.md` and `D_RETIREMENT/VALIDATION.md`; receipt and entrypoint checks pass; G4 manifest repair and grant are recorded in `MERGE_REPAIR/OWNER_GRANT.md`, with final checks in `MERGE_REPAIR/FINAL_CHECKS.json`.
+  - Model-Attribution: Codex acting as HELP_HUMAN; native read-only inventory and dry-run children; role not mechanically enforced.
+  - Gate-Outcome: `EXECUTED` — owner direction verbatim: “merge PR #721”; A/B/C/D ruled in `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_RULING_2026-09-05.md`; effective on origin/main after the authorized merge.

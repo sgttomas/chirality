@@ -1,0 +1,214 @@
+source,basis,start_line,end_line,section,clause,disposition,destination,rationale
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,1,1,# Work Loop — session init,# Work Loop — session init,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,3,7,# Work Loop — session init,"You are resuming, as the next bounded operator, the work loop that lives in
+this file's directory. The loop's goal and owner intent are recorded in its
+standing plan (step 2) — pursue them as far as live authority permits. Each
+iteration starts by discovering the live lawful work surface; make it
+explicit, work the widest lawful tranche(s), and stop at owner gates.",DROP,Header / §4,Plan-first explanatory preamble superseded by owner-directed generic init.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,9,13,# Work Loop — session init,"Treat this text as orientation, **not authority**: the standing plan (step 2)
+is newer and governs on any conflict — including anything here it contradicts.
+This init deliberately restates no facts, rulings, counts, SHAs, or lane
+names, so it does not go stale and any loop can reuse it verbatim; the
+load-bearing state is re-derived at Step 0.",DROP,Header / §4,Plan-first explanatory preamble superseded by owner-directed generic init.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,15,15,## 1. Bootstrap,## 1. Bootstrap,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,17,17,## 1. Bootstrap,- Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`; work from there.,KEEP,§1 Bootstrap,Portable root and local-surface resolution.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,18,18,## 1. Bootstrap,- The loop's standing surfaces resolve relative to this file's own directory.,KEEP,§1 Bootstrap,Portable root and local-surface resolution.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,20,20,## 2. Hand off to the plan,## 2. Hand off to the plan,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,22,30,## 2. Hand off to the plan,"The standing plan is the protocol — read it and do what it says: the newest
+`WORKPLAN_*.md` in this file's directory. Its **Step 0 (Discover)** runs
+before anything else. The plan carries the loop's recorded owner intent,
+protocol, standing constraints, and pointer indexes ONLY — no status, no
+history. Current state is re-derived from the live sources the plan names
+(registers, profile, git, harness commands); the handoff context (owner
+directions, gate outcomes, stale-map deltas) lives in the latest receipts in
+`LOOP_RECEIPTS.md` beside this file, whose local rules govern what a receipt
+may contain.",KEEP,§4 + Step 0,Replace mandatory-plan precedence with owner-directed optional overlay; retain committed-source discovery.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,32,32,## 3. First return from Step 0,## 3. First return from Step 0,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,34,35,## 3. First return from Step 0,"Your first substantive output is a live orientation return, not a copied plan
+or a recap of this file. It should name:",KEEP,§6,First-return contract retained; live gates and widest lawful work are discovered.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,37,37,## 3. First return from Step 0,- the live git state and newest applicable receipt;,KEEP,§6,First-return contract retained; live gates and widest lawful work are discovered.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,38,38,## 3. First return from Step 0,- the latest owner directions and register/profile gates that matter now;,KEEP,§6,First-return contract retained; live gates and widest lawful work are discovered.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,39,39,## 3. First return from Step 0,- the widest lawful tranche(s) currently open;,KEEP,§6,First-return contract retained; live gates and widest lawful work are discovered.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,40,40,## 3. First return from Step 0,"- any lane that is parked, and the owner action that would unpark it.",KEEP,§6,First-return contract retained; live gates and widest lawful work are discovered.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,42,44,## 3. First return from Step 0,"If the live state says the loop is parked pending owner direction, stop after
+that orientation return unless the owner has already provided new direction in
+the current session.",KEEP,§6,First-return contract retained; live gates and widest lawful work are discovered.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,46,46,## 4. The stance to carry into Step 0 (the hard-won lesson),## 4. The stance to carry into Step 0 (the hard-won lesson),DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,48,50,## 4. The stance to carry into Step 0 (the hard-won lesson),"The plan, the receipts, and any dated assessment are **maps with per-claim
+citations — not authority**. The recurring failure mode in this archive is a
+fluent draft grounded on stale facts. So:",DROP,Step 0 verify-before-relying rule,Motivation and recurring-failure narrative; operative rule survives once.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,52,57,## 4. The stance to carry into Step 0 (the hard-won lesson),"- Before you rely on any derivative statement — a map's claim, a receipt's
+  pointer, **or your own tasking and this init text** — open its cited source
+  in the live tree and confirm it still holds. On disagreement the **live tree
+  wins** — record the delta in your loop receipt, never by editing the map.
+  (Execution agents have repeatedly caught errors in their own instructions
+  this way; the discipline applies to prompts, not just files.)",KEEP,Step 0,One verify-before-relying rule retains live-source precedence and receipt delta.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,58,59,## 4. The stance to carry into Step 0 (the hard-won lesson),"- New owner rulings since the last receipt are how work unlocks. Check every
+  decision register the plan names, every iteration.",KEEP,Steps 0–1,Merged owner-act visibility is explicit under item C.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,60,64,## 4. The stance to carry into Step 0 (the hard-won lesson),"- Be ambitious inside the lawful surface: select the **widest lawful
+  tranche(s) now**, re-derived, not pre-assumed, and parallelize independent
+  reads, checks, and preparation where the plan permits. Let dependencies
+  resolve organically as you work rather than committing to a fixed plan of the
+  whole iteration up front.",KEEP,Step 4 + §7,Persistence/concurrency retained without repeating stale plan authority.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,66,66,## 5. Default posture (a per-run steer may override; the gate may not),## 5. Default posture (a per-run steer may override; the gate may not),DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,68,70,## 5. Default posture (a per-run steer may override; the gate may not),"- **Pacing:** continue until every lawful path of advancement is exhausted
+  except human decision; park gated items and keep independent lawful work
+  moving toward the loop's goals.",KEEP,§7 and Step 4,Retain persistence and terminus; adopted-brief condition folds into gated execution.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,71,72,## 5. Default posture (a per-run steer may override; the gate may not),"- **Terminus:** when only human-decision items remain, present them as a
+  decision slate and stop — never manufacture lower-value work to stay busy.",KEEP,§7 and Step 4,Retain persistence and terminus; adopted-brief condition folds into gated execution.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,73,75,## 5. Default posture (a per-run steer may override; the gate may not),"- **Adopted briefs:** an adopted-but-unexecuted brief is live authority —
+  execute it (branch-first, with the plan's work-type checks) unless this
+  run's steer says otherwise.",KEEP,§7 and Step 4,Retain persistence and terminus; adopted-brief condition folds into gated execution.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,77,77,## 6. The one gate you cannot cross,## 6. The one gate you cannot cross,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,79,87,## 6. The one gate you cannot cross,"**Adoption, ruling, and direction are the owner's acts** (K-AUTH-1; D-GOV-04)
+— no command and no agent performs them. For deliverable work, generate
+CANDIDATE brief(s); for coordination/control work, present a decision slate
+(options + non-binding recommendation + on-ruling mechanism). Surface what you
+would do once each is adopted/ruled, and **stop there** for the owner. Only
+after the owner acts do you execute inside the fence, run the plan's
+work-type checks, and append a minimal receipt to `LOOP_RECEIPTS.md` beside
+this file (per its local rules: verbatim owner directions, pointers to
+artifacts, gate outcomes, check pass/fail) so the next iteration starts clean.",KEEP,Steps 2–3,Human-only gate folds into Step 3; candidate preparation is not acceptance.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,89,89,"## 7. Session conventions, constraints, and any per-run steer","## 7. Session conventions, constraints, and any per-run steer",DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,91,92,"## 7. Session conventions, constraints, and any per-run steer","Standing constraints and the loop protocol live in the plan — follow them as
+written. The session conventions are:",KEEP,§10,Per-run steer precedence retained with historical numbering mapping.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,94,100,"## 7. Session conventions, constraints, and any per-run steer","- Subagent model assignments (owner-revised 2026-07-05; this section is the
+  convention's home — a per-run steer may override): `opus` agents for
+  discovery, research, summaries, running deterministic checks, and breadth
+  verification; `fable` agents at `high` reasoning effort for planning, for
+  adversarial verification of anything that will be recorded as fact, and for
+  execution that touches governed artifacts, fences, or rulings; `fable` at
+  `low` effort only for mechanical execution of fully specified changes.",OWNER,projects/pec/AGENTS.md Agent Posture,Owner-revised convention moves verbatim; no claimed execution-model assignment.
+_DomainEngines/pec/LOOP_INIT.md,7458e9c1eb9399ed259da464207d9a507acdea2e,102,104,"## 7. Session conventions, constraints, and any per-run steer","If the owner appended a steer for this run (the launcher's `Steer` line, their
+message, or a line below), honor it on top of the plan and over §5's defaults;
+the plan still governs the protocol, the fences, and the gate above.",KEEP,§10,Per-run steer precedence retained with historical numbering mapping.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,1,8,Header,"> **Standing plan.** Activated 2026-07-24 under `D-PEC-58`; replaces
+> `WORKPLAN_2026-07-09_pec_team_information_hub.md` (superseded, retained on
+> disk with its supersession note). Per `LOOP_INIT.md`, the newest
+> `WORKPLAN_*.md` in this directory governs.
+> Consumer-interface posture amended 2026-07-27 under `D-PEC-68`, preserving
+> the exact PEC-K-03/-11 rows adopted by `D-PEC-67`.
+> Loop-registry posture amended 2026-08-03 under `D-PEC-78` O-A and SCA-004:
+> revision 1.4 is the current decomposition basis and OI-003 is resolved.",DROP,§4 precedence,Historical activation/provenance preamble retained in plan only.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,10,10,# PEC Work Loop — coordination-plane standing plan,# PEC Work Loop — coordination-plane standing plan,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,12,16,# PEC Work Loop — coordination-plane standing plan,"> **Epistemic status: owner-directed standing plan.** Drafted 2026-07-24 from
+> the owner direction ruled in `D-PEC-57` (O-A). On adoption it replaces the
+> 2026-07-09 team-information-hub plan as the ordering map for PEC work.
+> Accepted decisions and the live tree remain authoritative; this file is not a
+> status ledger or an adoption act.",DROP,§4 precedence,Historical activation/provenance preamble retained in plan only.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,18,18,## Owner intent,## Owner intent,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,20,23,## Owner intent,"PEC is to become the **coordination plane** of Chirality: deterministic tooling
+over governed file truth, embodying **Step 0 (Discover)** and the deterministic
+parts of **Step 1 (gate review and decision-slate presentation)** of the
+canonical development loop. Owner direction of record (`D-PEC-57`):",POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,25,33,## Owner intent,"> PEC should morph into the core agentic workflow coordination substrate for
+> Chirality — deterministic tooling, data arriving from workflow/agent events,
+> the existing pages repurposed as dashboards/analytics. As a human-used
+> project-management tool it has no interest. It should embody Step 0 and the
+> deterministic parts of Step 1 of the canonical loop; polling is determined by
+> the harness, not agent behaviour; ruling capture remains file-native; it does
+> not subsume the practitioner harness; it is ""the coordination plane that
+> doesn't need to exist."" Old PEC is superseded wholesale; v2 is a greenfield
+> build through the governed pipeline with old PEC as a cited reference corpus.",POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,35,38,## Owner intent,"The quoted 2026-07-24 direction is retained as historical provenance.
+`D-PEC-67` later replaced its harness-owned polling interpretation with exact
+pull-oriented, consumer-owned-use and mode-capable, never-forced PRD rows.
+`D-PEC-68` reconciles this standing plan to those later ruled rows.",POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,40,45,## Owner intent,"Bounding every tranche: **graceful absence** — no governed act may require a PEC
+read or write; **consumer-owned use** — PEC serves orientation on request,
+never claims an external cadence, and injects nothing; an explicitly enabled
+consumer owns whether and when to consume and whether to inject labeled PEC
+data; **files govern** — the store is gitignored, rebuildable by one command,
+and never citable as authority.",POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,47,47,## Loop protocol,## Loop protocol,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,49,51,## Loop protocol,"0. **Discover.** Resolve the repo root; inspect git, receipts, both decision
+   registers, the profile, the candidate/adopted PRD, and live checks. Verify
+   every inherited claim against the live tree.",MECH,Step 0,Explicit executable read-only discovery replaces non-executable prose checklist.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,52,54,## Loop protocol,"1. **Review the product gate.** PRD v2.2 is the product definition of record
+   after `D-PEC-68`; its exact PEC-K-03/-11 rows were adopted by `D-PEC-67`.
+   No PRD adoption is an implementation or receiving-loop mandate.",POINT,§2 product/owner pointers,Read product/owner records; do not hardcode version or adoption status.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,55,58,## Loop protocol,"2. **Use accepted decomposition truth.** `SOFTWARE_DECOMP` revision 1.4 is the
+   accepted downstream basis after SCA-004. Post-acceptance product propagation uses
+   SCOPE_CHANGE with its own owner gates; no implementation tranche is scoped
+   from the PRD directly.",KEEP,§2 and Steps 1–2,"Accepted decomposition, not direct PRD tasking, supplies production scope."
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,59,61,## Loop protocol,"3. **Fence source work.** Each implementation tranche requires an owner-ruled
+   D-PEC packet naming exact paths, acts, verification, rollback, and any data
+   or authority implications. New source trees are named in their own packet.",OWNER,§3,Exact per-tranche path/act gate retained through verbatim fence text.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,62,64,## Loop protocol,"4. **Preserve human gates.** Adoption, ruling, and direction remain human acts
+   (K-AUTH-1). PEC provides no write path that records them; its own gate
+   verdicts are advisory and Explain-shaped, never dispositive.",KEEP,§3 and Step 3,Human-only acts and advisory PEC boundary retained.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,65,66,## Loop protocol,"5. **Execute branch-first.** Isolated branches, disjoint write scopes. Never
+   treat PEC output, or old-PEC demo state, as production truth.",KEEP,"Step 4, item C",Branch-first becomes one run branch; disjoint writes retained.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,67,69,## Loop protocol,"6. **Check and close.** Run work-type checks including the standing kill test
+   and the practitioner-harness parity diff, record a minimal receipt, and
+   surface unresolved product decisions rather than inventing them.",MECH,§8 and Step 5,Work-type checks and minimal closeout become explicit commands/requirements.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,71,71,## Target sequence after PRD v2 adoption,## Target sequence after PRD v2 adoption,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,73,73,## Target sequence after PRD v2 adoption,Phases map to PRD v2.2 §12.,POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,75,75,## Target sequence after PRD v2 adoption,| Order | Tranche | Completion test |,POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,76,76,## Target sequence after PRD v2 adoption,|---|---|---|,POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,77,77,## Target sequence after PRD v2 adoption,"| P0 | Governance | `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68` ruled; this plan remains live at `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` |",POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,78,78,## Target sequence after PRD v2 adoption,| D1 | Decomposition (`SOFTWARE_DECOMP` over PRD v2) | Gate 7 accepted; revision 1.4 is the authoritative downstream basis after SCA-004 until a separately accepted successor |,POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,79,79,## Target sequence after PRD v2 adoption,| P1 | One-loop reconciler + orientation store + read-only API | Parity diff vs practitioner harness clean or explained; rebuild-from-scratch within bound; kill test passes |,POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,80,80,## Target sequence after PRD v2 adoption,"| P2 | Dashboards across all registered loops | Under selected PRD v2.2 P2-B, owner use or non-use is recorded as uptake/falsification evidence; manual Step 0 remains available and no consumer is bound |",POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,81,81,## Target sequence after PRD v2 adoption,"| P3 | PEC-side opt-in integration interfaces/adapters usable by hooks CLI or daemon consumers, presence registry, Git/worktree scanner | Capability tests pass; consumer enablement/use measured without external conformance; overlap warnings fire on seeded conflicts; falsification clause armed |",POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,82,82,## Target sequence after PRD v2 adoption,"| P4 | PEC-side streams: daemon SSE bridge, optional hook-push interface, live hierarchy, optional cmux adapter; live use remains receiving-owner authorized | Stream loss demonstrably recovered by reconciliation; presence TTLs honest under kill/crash tests |",POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,84,84,## Target sequence after PRD v2 adoption,The first loop the P1 reconciler ingests is PEC v2's own build.,POINT,§4 committed-HEAD overlay,Intent/phase order stay in the immutable overlay; never copied as current status/work.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,86,86,## Parked work and owner gates,## Parked work and owner gates,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,88,90,## Parked work and owner gates,"- Runtime/source implementation remains parked until an exact per-tranche
+  packet opens the applicable PEC and Root fences; PRD adoption alone opens
+  none.",OWNER,§3,Hard-fence block copied byte-for-byte; no fence wording amended.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,91,96,## Parked work and owner gates,"- The open product decisions in PRD v2 §16 must not be guessed where they
+  materially affect architecture — register structuring at source, the daemon
+  global event feed, long-term placement, UI packaging, auth reuse, and the
+  name. The loop-registry home and shape is no longer open: D-PEC-78 O-A
+  selected the existing PEC-owned strict-version-1 JSON/schema paths and
+  core-owned typed port. The remaining open decisions do not block P0–P2.",POINT,§2 product/owner records,"Live product decisions must be read at source, not restated as open/closed."
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,97,98,## Parked work and owner gates,"- **`F-PEC-1..4` remain in force** as ruled in `D-T0-15` (F-PEC-4 as extended
+  by `D-T0-19`); they are amended only by an explicit per-tranche packet clause.",OWNER,§3,Hard-fence block copied byte-for-byte; no fence wording amended.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,99,100,## Parked work and owner gates,"- Implementation writes to `core/`, `server/`, `web/`, or any new source tree
+  require their own packets; F-PEC-1 is the outer fence until one opens it.",OWNER,§3,Hard-fence block copied byte-for-byte; no fence wording amended.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,101,104,## Parked work and owner gates,"- Old-PEC source trees (`projects/pec/{core,server,web,agent-sidecar,tools}`)
+  are **frozen reference corpus**: read and cite only, never edited, never
+  deleted (archival from the working tree once P2 is useful is its own packet).
+  Machinery carries as pattern, not as code (PRD v2 §7.3, §13).",OWNER,§3,Hard-fence block copied byte-for-byte; no fence wording amended.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,105,106,## Parked work and owner gates,"- `D-T0` data-residency rows are unchanged; PEC v2 is content-minimal (paths,
+  counts, SHAs, states, hashes — never file or diff content).",OWNER,§3,Hard-fence block copied byte-for-byte; no fence wording amended.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,107,108,## Parked work and owner gates,"- No second execution loop: the runtime daemon keeps session, delegation, and
+  turn-lock ownership (`D-GOV-20`, `D-PEC-56`). PEC dispatches nothing.",OWNER,§3,Hard-fence block copied byte-for-byte; no fence wording amended.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,109,110,## Parked work and owner gates,"- Rulings stay file-native (K-AUTH-1); PEC renders decision slates authored
+  elsewhere and provides no ruling write path.",OWNER,§3,Hard-fence block copied byte-for-byte; no fence wording amended.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,111,120,## Parked work and owner gates,"- Superseding owner direction of 2026-08-03 sends TM-PEC-023 to a dedicated
+  SCOPE_CHANGE mapping session. Neither mappings nor blanks are ruled; the nine
+  values and COV-062..COV-070 remain open, with no downstream gate or urgency.
+  RF-002 `REVISE` is resolved by exact successor SOW acceptance at
+  `REV_DEL-01-06_2026-08-04_1113`; RF-001 remains resolved and Gate 5 remains
+  HOLD at `INITIALIZED`. Metadata alignment is cleared. Derivative state
+  remains `INCOMPLETE` for exactly two categories: TM-PEC-023 amendment and
+  the SCA-004 / TM-PEC-013/014 DEL-02-07, DEL-03-01, DEL-04-01, and DEL-00-03
+  ordinary SOW/SPEC currency lane. TM-PEC-011 remains `OPEN`/stale pending a
+  separate TASK_MANAGEMENT disposition; no Task Management row closes here.",DROP,§2 source pointers; no status copied,"Dated current-state/follow-on assertions remain in immutable plan, not generic instructions."
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,121,124,## Parked work and owner gates,"- **Named open follow-on:** supersession of the `pec.yaml` profile (the L3
+  operation-proposal lane sunsets with the old product); the profile is
+  superseded when v2 has shape, and the `_DomainEngines/pec` loop continues as
+  the governing development loop meanwhile.",DROP,§2 source pointers; no status copied,"Dated current-state/follow-on assertions remain in immutable plan, not generic instructions."
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,126,126,## Live pointers,## Live pointers,DROP,New init §§1–10,Navigation heading replaced by the new ordered section structure.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,128,132,## Live pointers,"- Product definition: `projects/pec/docs/PRD.md` (v2.2; v2.0 adopted by
+  `D-PEC-58`, directed-bootstrap v2.1 by `D-PEC-61`, exact consumer rows by
+  `D-PEC-67`, surrounding concordance by `D-PEC-68`); original authoring
+  record at
+  `projects/pec/execution/_Coordination/PRD_V2_CANDIDATE_2026-07-24_coordination_plane.md`",POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,133,133,## Live pointers,- Direction/fence packet: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57_coordination_plane_pivot.md`,POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,134,135,## Live pointers,"- Decision registers: `projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md`
+  and `_DomainEngines/_DECISIONS/_REGISTER.md`",POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,136,136,## Live pointers,- Profile: `_DomainEngines/profiles/pec.yaml`,POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,137,137,## Live pointers,- Project agent posture: `projects/pec/AGENTS.md`,POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,138,138,## Live pointers,- Accepted decomposition pointer: `projects/pec/execution/_Decomposition/_LATEST.md` (revision 1.4),POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,139,139,## Live pointers,- Accepted scope-change pointer: `projects/pec/execution/_ScopeChange/_LATEST.md` (SCA-004),POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,140,140,## Live pointers,- SCA-004 metadata subset closure: `projects/pec/execution/_Coordination/PROJECT_SETUP_SCA004_METADATA_ALIGNMENT_2026-08-03/HANDOFF_STATE.md`,POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,141,141,## Live pointers,- SCA-004 currency-sweep closure: `projects/pec/execution/_Coordination/WORKING_ITEMS_SCA004_CURRENCY_SWEEP_2026-08-03/HANDOFF_STATE.md`,POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,142,142,## Live pointers,- DEL-01-06 RF-002 exact acceptance: `projects/pec/execution/_Evaluation/Reviews/REV_DEL-01-06_2026-08-04_1113/Review_Summary.md`,POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,143,143,## Live pointers,- Loop handoff: `_DomainEngines/pec/LOOP_RECEIPTS.md`,POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,144,144,## Live pointers,"- Frozen reference corpus: `projects/pec/{core,server,web,agent-sidecar,tools}`",POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,145,146,## Live pointers,"- Build pipeline: `docs/DECOMPOSITION_STANDARD.md` and
+  `agents/AGENT_SOFTWARE_DECOMP.md`",POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.
+_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md,7458e9c1eb9399ed259da464207d9a507acdea2e,147,147,## Live pointers,- Permanent parity peer: `tools/practitioner_harness/README.md`,POINT,§2,Keep locator with canonical relocation; source owns meaning and current state.

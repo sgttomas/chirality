@@ -1,0 +1,4 @@
+awk: nonterminated character class ^projects\/pec\/loop
+ source line number 1
+ context is
+	 >>> /^projects\/pec\/loop\/WORKPLAN_[^/ <<<

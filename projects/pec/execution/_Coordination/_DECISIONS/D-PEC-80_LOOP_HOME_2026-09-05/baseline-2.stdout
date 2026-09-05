@@ -1,0 +1,20 @@
+7458e9c1e Merge pull request #718 from sgttomas/claude/loop-init-d-app-113-residuals
+186015f05 loop(app): D-APP-113 residuals of the second dry run; state-anchored register grep at Step 0; explicit gating semantics at Step 1
+70041862b Merge pull request #717 from sgttomas/claude/loop-init-consolidation-d-app-112
+a8136f3e7 loop(app): D-APP-112 ruled on the owner's merge direction; register row RULED, ruling record, Receipt 241 gate outcome
+9abbbbe46 loop(app): D-APP-112 item B, run-based PR boundary; one branch per run, one commit and one receipt per iteration, one PR at terminus; predecessor items observable on the run's branch
+1aefb6d59 loop(app): D-APP-112 rewrap one Step 1 line; refresh candidate hash
+25476a6cb loop(app): D-APP-112 third cut from a fresh-operator dry run; repair the Step 0 harness status command; add the five clauses the operator lacked
+ec6296b56 loop(app): D-APP-112 packet byte-count formatting
+d44a4d7ea loop(app): D-APP-112 rewrap one Step 1 line; refresh candidate hash in packet and Receipt 241
+3821fcc39 loop(app): D-APP-112 second cut reorders LOOP_INIT.md map-then-limits-then-protocol; deliverable path named in the header and at Step 1
+81c39d9a8 loop(app): D-APP-112 proposal consolidates loop/LOOP_INIT.md to what the agent cannot discover (386 to 242 lines); candidate applied for owner ruling
+7cb41194f Merge pull request #716 from sgttomas/claude/sca-app-010-pointers-d-app-111
+709372736 pointers(app): D-APP-111 accept the SCA-APP-010 closure, coverage, and reconciliation snapshots as the loop's pointers
+4bd942827 Merge pull request #714 from sgttomas/claude/sca-app-010-dependency-closure
+c12713fd1 decompose(app): SCA-APP-010 SCCs decomposed under D-APP-110; seven rows re-targeted to three contract nodes; strict graph acyclic (48 nodes, 119 edges); closure snapshot 1034
+dc27e55d5 Merge pull request #715 from sgttomas/codex/piping-ui-toolkit-parity
+f4b223dd1 docs(piping): record clean menu repair sweep and review
+8e503b92e fix(piping): keep closed menu below issues drawer
+ade1d502a Anchor manifest runtime evidence and preserve original bytes
+7eb4b0c79 deps(app): D-APP-109 emit the fifteen held SCA-APP-010 edges as recorded non-gating rows; align thirteen carrier contexts; fresh closure and decomposition audits

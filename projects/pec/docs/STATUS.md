@@ -142,17 +142,18 @@ read and cite only, no further feature work, retired product docs under
    release, or professional reliance is authorized.
 2. P2 dashboards → P3 opt-in consumer-integration capability (falsification
    clause armed; receiving consumers retain their own authority and cadence) →
-   P4 streams, per the standing plan and the deliverables' PhaseHints.
+   P4 streams are historical phase orientation; live work is discovered from
+   deliverable `## Remaining` surfaces under `loop/LOOP_INIT.md`.
 
 ## Orient yourself (read-order)
 
 1. `docs/PRD.md` — the adopted product definition (v2.2), including the
    invariants (PEC-K-01..11), modes ladder, and release strategy.
-2. `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` — the
-   standing plan (loop protocol, gates, fences).
+2. `projects/pec/loop/LOOP_INIT.md` — protocol, gates, fences and deliverable
+   discovery. `projects/pec/plans/workplans/` is history only.
 3. `execution/_Coordination/_DECISIONS/_REGISTER.md` — decision register
    (D-PEC-57/58 are the pivot and adoption rows).
-4. `_DomainEngines/pec/LOOP_RECEIPTS.md` — handoff ledger.
+4. `projects/pec/loop/LOOP_RECEIPTS.md` — handoff ledger.
 
 ## Governance & agent harness
 

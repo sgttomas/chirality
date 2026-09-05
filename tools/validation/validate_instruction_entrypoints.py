@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 EXPECTED_CLAUDE = "@AGENTS.md\n"
-PROJECTS = ("chirality-app-dev", "chirality-piping")
+PROJECTS = ("chirality-app-dev", "chirality-piping", "pec")
 
 ROLE_PATTERNS = (
     re.compile(r"\bHELP_HUMAN\b"),

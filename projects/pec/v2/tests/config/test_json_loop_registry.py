@@ -25,7 +25,7 @@ class JsonLoopRegistryTests(unittest.TestCase):
         loops = JsonLoopRegistry(CONFIG_ROOT / "loops.json").registered_loops()
         self.assertEqual(
             loops,
-            (RegisteredLoop("pec", "_DomainEngines/pec/LOOP_INIT.md"),),
+            (RegisteredLoop("pec", "projects/pec/loop/LOOP_INIT.md"),),
         )
 
     def test_schema_documents_every_field_and_the_exact_default(self) -> None:

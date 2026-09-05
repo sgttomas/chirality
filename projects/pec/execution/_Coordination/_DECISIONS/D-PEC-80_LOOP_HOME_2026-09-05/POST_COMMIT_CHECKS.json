@@ -1,0 +1,39 @@
+{
+  "checked_commit": "6b9e0c11e533994e19ed567ad4abcd7af2cdc827",
+  "origin_main": "044a009e215e08b69c9e0887da424938a34aafcb",
+  "checks": [
+    {
+      "label": "candidate-whitespace",
+      "command": [
+        "python3",
+        "tools/validation/validate_candidate_whitespace.py",
+        "--base-ref",
+        "origin/main"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0
+    },
+    {
+      "label": "mergeability",
+      "command": [
+        "git",
+        "merge-tree",
+        "--write-tree",
+        "HEAD",
+        "origin/main"
+      ],
+      "exit_code": 0,
+      "stdout": "merge-tree.stdout",
+      "stderr": "merge-tree.stderr"
+    }
+  ],
+  "recording_note": "This post-commit evidence is appended by amending the unpublished B/C commit; substantive candidate bytes are unchanged."
+}

@@ -1,0 +1,7 @@
+{
+  "checked_commit": "b4df082cad1ac4b86fd0c8672952dfdb09c15506",
+  "full_step0_exit_code": 0,
+  "loader_message": "no committed plan: deliverables alone",
+  "candidate_whitespace_exit_code": 0,
+  "note": "Checks execute after the retirement commit. Evidence-only amendment follows; init bytes unchanged."
+}

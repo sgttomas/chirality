@@ -1,0 +1,29 @@
+{
+  "commit": "008e6ba0e3f04714eed640990cd3938532d3b135",
+  "checks": [
+    {
+      "check": "G4",
+      "command": [
+        "python3",
+        "tools/validation/validate_instruction_tranche_manifest.py",
+        "--base",
+        "origin/main",
+        "--head",
+        "HEAD",
+        "--added-manifests-only"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "whitespace",
+      "command": [
+        "python3",
+        "tools/validation/validate_candidate_whitespace.py",
+        "--base-ref",
+        "origin/main"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "note": "Evidence appended by amendment of unpublished manifest commit; substantive manifest unchanged."
+}
