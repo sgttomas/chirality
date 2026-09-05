@@ -1,0 +1,23 @@
+{
+  "main": "faf22452528b5ba895e88ba0ad3770855100de08",
+  "materialized_statuses": 53,
+  "census": {
+    "INITIALIZED": 53
+  },
+  "remaining": {
+    "empty": 45,
+    "absent": 7,
+    "nonempty": 1
+  },
+  "tm_live": 18,
+  "tm_status": {
+    "OPEN": 10,
+    "DEFERRED": 8
+  },
+  "tm_archived": 109,
+  "receipts": {
+    "Root": "### Receipt 132 \u2014 2026-09-05 \u2014 Root entry consolidation and separation decision support",
+    "App": "- **2026-09-05 \u2014 Receipt 244** (D-APP-115: owner intent of record captured from the retired workplan overlay into a ruling record).",
+    "Piping": "- **2026-09-05 \u2014 Receipt 130** (menu/drawer stacking repair)."
+  }
+}

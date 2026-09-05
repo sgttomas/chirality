@@ -1,0 +1,50 @@
+{
+  "proposal_commit": "d02feaae5f73cba3d7501efe9c1028a97b81c887",
+  "main": "faf22452528b5ba895e88ba0ad3770855100de08",
+  "files": {
+    "execution/_Coordination/LOOP_INIT.md": {
+      "sha256": "b92fedb004956efd7672700b6a56e754f8d04eedc4584d87b799a02bed1d6d2a",
+      "bytes": 8351
+    },
+    "execution/_Coordination/CURRENT_WORKPLAN.md": {
+      "sha256": "efaea5b88a58e9fe408efffde3ac92ae3c4ec55fdde43b6c61f8add7d3913776",
+      "bytes": 411
+    },
+    "execution/_Coordination/WORKPLAN_2026-08-27_root_v3_rc.md": {
+      "sha256": "44e36a310e39f8f3d9c33a118bf5ddca990b44c65cabb8e31bbd8a055c600d16",
+      "bytes": 1258
+    },
+    "execution/_Coordination/HANDOFF_STATE.md": {
+      "sha256": "82d92957b28f0f4d77dc13a3d0aad737e8150fb20b41ff26cb2bfda8894708d3",
+      "bytes": 39060
+    },
+    "execution/_Coordination/LOOP_RECEIPTS.md": {
+      "sha256": "e076c1497dca472ca07a9642a26488ff43b49e5d73de2d7920d3485a8cdafb06",
+      "bytes": 528579
+    },
+    "init/dev-loop-init-prompt.md": {
+      "sha256": "362c76de9ab5b599bb7c082b8a8ebefea3c5229bca0e6ca5b45620a5fb0344ff",
+      "bytes": 7195
+    },
+    "execution/_Coordination/PACKET_2026-09-05_ROOT_LOOP_INIT_CONSOLIDATION.md": {
+      "sha256": "5eb09790a752da3e254aba4910fe086e22aa6639c4622ae1a64c85058291b270",
+      "bytes": 24127
+    },
+    "execution/_Coordination/ASSESSMENT_2026-09-05_ROOT_PRODUCT_CONTROL_PLANE_SEPARATION.md": {
+      "sha256": "a1ba5b0349b9b31677efec67c35b6f837bdc33e6b449454a1bfe8f435326cb05",
+      "bytes": 19676
+    },
+    "plans/steers/root_loop_intent_history_ruling_candidate_2026-09-05.md": {
+      "sha256": "7d7b6c4a53ee68d73f96f77614f77d4140675be97e36770ad4eb4642b20c7562",
+      "bytes": 4066
+    },
+    "plans/steers/chirality_app_v3_root_ruling_record_r17_2026-08-27.md": {
+      "sha256": "23532e46893d8bd79f05775b4744f1438bbb29dbc58b6c70b04b3ae912752faf",
+      "bytes": 9849
+    },
+    "plans/steers/chirality_app_v3_r17_pathway_seating_steer_root_2026-08-27.md": {
+      "sha256": "8e96c8fc37e5ac21d93b846a2f1efce15fe6564ebad6fe07334571f473339de6",
+      "bytes": 22850
+    }
+  }
+}

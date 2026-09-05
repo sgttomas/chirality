@@ -1,0 +1,10 @@
+{
+  "old_seal_verified_at_reviewed_commit": 37,
+  "old_run_files_unchanged": true,
+  "no_forbidden_or_new_instruction_changes": true,
+  "idle_unchanged": true,
+  "step0_shell_unchanged_from_tested_V5": true,
+  "entry_lines": 86,
+  "history_byte_identical": true,
+  "receipt_prefix_before_append_unchanged": true
+}
