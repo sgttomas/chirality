@@ -1,0 +1,20 @@
+{
+  "status": "CANDIDATE_NOT_ACCEPTED",
+  "source_deliverables": 53,
+  "runtime_transfers": 7,
+  "retained_governance": 39,
+  "replacement_cases": 7,
+  "governance_successors": 46,
+  "source_packages": 6,
+  "source_scope_rows": 104,
+  "runtime_scope_partitions": 1,
+  "runtime_objectives": 4,
+  "unmapped_scope_rows": [],
+  "formal_gates_confirmed": [],
+  "accepted_truth_modified": false,
+  "source_contract_hashes_verified": 142,
+  "source_status_postimages": 53,
+  "full_postimages": 64,
+  "baseline_audit_status": "BLOCKERS",
+  "baseline_blockers": 4
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "app-runtime-migration-checks/v1",
+  "cwd": "projects/chirality-app-dev/frontend unless registered tool states otherwise",
+  "checks": [
+    {
+      "command": "npm ci --ignore-scripts --offline",
+      "exit_code": 1,
+      "result": "Dependency tarball ENOTCACHED; superseded by authorized network install"
+    },
+    {
+      "command": "npm ci --ignore-scripts",
+      "exit_code": 0,
+      "result": "Escalated pinned install; no package identity upgrade"
+    },
+    {
+      "command": "npm run typecheck",
+      "exit_code": 0,
+      "result": "Both frontend and Electron TS"
+    },
+    {
+      "command": "npm run build",
+      "exit_code": 0,
+      "result": "Next production and relocated Electron/CLI bundles"
+    },
+    {
+      "command": "npm test (sandbox)",
+      "exit_code": 1,
+      "result": "Local socket restrictions; escalated"
+    },
+    {
+      "command": "npm test (host initial)",
+      "exit_code": 1,
+      "result": "1567 pass, 1 stale CI-path fixture failure; corrected V2"
+    },
+    {
+      "command": "npm test (host V2)",
+      "exit_code": 0,
+      "result": "1568 passed, 4 skipped; 165 passed files, 1 skipped"
+    },
+    {
+      "command": "npm run desktop:pack",
+      "exit_code": 0,
+      "result": "Actual app archive dependency/runtime-source proof PASS; instruction integrity PASS 43 files; missing examples source-completeness advisory persists"
+    },
+    {
+      "command": "registered frontend-premerge (sandbox)",
+      "exit_code": 125,
+      "result": "Service socket denied; escalated"
+    },
+    {
+      "command": "registered frontend-premerge (host)",
+      "exit_code": 1,
+      "result": "Service READY; shared-runtime binding absent leads HTTP503; PR CI rerun required"
+    },
+    {
+      "command": "registered app-hold-integrity",
+      "exit_code": 0,
+      "result": "54 contracts, 0 holds; register/scan match"
+    }
+  ],
+  "operational_notes": [
+    "Two initial npm invocations were mistakenly issued from repository root and exited missing package before useful verification; corrected working-directory reruns above are authoritative.",
+    "Initial registered output in scratch was rejected by containment before check execution; project-run output rerun retained.",
+    "No signing, release, live account or login-state proof performed."
+  ]
+}

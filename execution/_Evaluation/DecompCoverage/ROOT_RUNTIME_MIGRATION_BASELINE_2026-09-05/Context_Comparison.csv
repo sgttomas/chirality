@@ -1,0 +1,319 @@
+DeliverableID,Field,Expected,Observed,ExactNormalizedMatch
+DEL-01-01_Genus_Concordance_Closure_and_Standing_Map,Name,Genus Concordance Closure and Standing Bidirectional Map,Genus Concordance Closure and Standing Bidirectional Map,True
+DEL-01-01_Genus_Concordance_Closure_and_Standing_Map,Type,REQ_SLICE,REQ_SLICE,True
+DEL-01-01_Genus_Concordance_Closure_and_Standing_Map,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-01-01_Genus_Concordance_Closure_and_Standing_Map,Package,PKG-01,"PKG-01 Product Definition, Normative Basis, and Authority",True
+DEL-01-01_Genus_Concordance_Closure_and_Standing_Map,ContextEnvelope,M,M,True
+DEL-01-01_Genus_Concordance_Closure_and_Standing_Map,Description,"Verify and hold closed the RD-1 genus concordance: obligations (a) DIRECTIVE §1 supersession, (b) README reword, (c) SPEC/TYPES/AGENTS.md prose propagation; maintain the bidirectional PRD <-> DIRECTIVE §1 concordance map (RD-3 form y) and keep F5 observable.","Verify and hold closed the RD-1 genus concordance: obligations (a) DIRECTIVE §1 supersession, (b) README reword, (c) SPEC/TYPES/AGENTS.md prose propagation; maintain the bidirectional PRD <-> DIRECTIVE §1 concordance map (RD-3 form y) and keep F5 observable.",True
+DEL-01-02_Invariant_Catalog_Conformance_Register,Name,Invariant Catalog Conformance Register,Invariant Catalog Conformance Register,True
+DEL-01-02_Invariant_Catalog_Conformance_Register,Type,REGISTER,REGISTER,True
+DEL-01-02_Invariant_Catalog_Conformance_Register,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-01-02_Invariant_Catalog_Conformance_Register,Package,PKG-01,"PKG-01 Product Definition, Normative Basis, and Authority",True
+DEL-01-02_Invariant_Catalog_Conformance_Register,ContextEnvelope,M,M,True
+DEL-01-02_Invariant_Catalog_Conformance_Register,Description,"Maintain the register showing that the running system continues to satisfy the invariant catalog: every K-* invariant mapped to a live enforcement point, with index-arithmetic consistency checked rather than asserted.","Maintain the register showing that the running system continues to satisfy the invariant catalog: every K-* invariant mapped to a live enforcement point, with index-arithmetic consistency checked rather than asserted.",True
+DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance,Name,Authority Chain and Conflict-Surfacing Conformance,Authority Chain and Conflict-Surfacing Conformance,True
+DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance,Type,REQ_SLICE,REQ_SLICE,True
+DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance,Package,PKG-01,"PKG-01 Product Definition, Normative Basis, and Authority",True
+DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance,ContextEnvelope,M,M,True
+DEL-01-03_Authority_Chain_and_Conflict_Surfacing_Conformance,Description,"Keep the DIRECTIVE -> CONTRACT -> SPEC -> TYPES chain plus the live instruction surface determinable from the repository alone, and keep epistemic discipline architectural: mandatory provenance, TBD over guessing, conflicts surfaced with pointers, claims calibrated.","Keep the DIRECTIVE -> CONTRACT -> SPEC -> TYPES chain plus the live instruction surface determinable from the repository alone, and keep epistemic discipline architectural: mandatory provenance, TBD over guessing, conflicts surfaced with pointers, claims calibrated.",True
+DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model,Name,Human Authority and Three-Judgment Gate Model,Human Authority and Three-Judgment Gate Model,True
+DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model,Type,REQ_SLICE,REQ_SLICE,True
+DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model,Package,PKG-01,"PKG-01 Product Definition, Normative Basis, and Authority",True
+DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model,ContextEnvelope,M,M,True
+DEL-01-04_Human_Authority_and_Three_Judgment_Gate_Model,Description,"Hold the human-authority commitments at every consequential gate and keep the evaluation, iteration, and release judgments distinct and undelegated, with deterministic tools supplying findings and gating objective preconditions only.","Hold the human-authority commitments at every consequential gate and keep the evaluation, iteration, and release judgments distinct and undelegated, with deterministic tools supplying findings and gating objective preconditions only.",True
+DEL-01-05_File_Native_Authority_Substrate_Conformance,Name,File-Native Authority Substrate Conformance,File-Native Authority Substrate Conformance,True
+DEL-01-05_File_Native_Authority_Substrate_Conformance,Type,REQ_SLICE,REQ_SLICE,True
+DEL-01-05_File_Native_Authority_Substrate_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-01-05_File_Native_Authority_Substrate_Conformance,Package,PKG-01,"PKG-01 Product Definition, Normative Basis, and Authority",True
+DEL-01-05_File_Native_Authority_Substrate_Conformance,ContextEnvelope,S,S,True
+DEL-01-05_File_Native_Authority_Substrate_Conformance,Description,"Keep authoritative governance and project-coordination state in git-tracked plain files, with rebuildable projections permitted and never citable as authority, and nothing load-bearing outside the checkout.","Keep authoritative governance and project-coordination state in git-tracked plain files, with rebuildable projections permitted and never citable as authority, and nothing load-bearing outside the checkout.",True
+DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance,Name,Four Pillars and Professional-Responsibility Conformance,Four Pillars and Professional-Responsibility Conformance,True
+DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance,Type,DOC_UPDATE,DOC_UPDATE,True
+DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance,Package,PKG-01,"PKG-01 Product Definition, Normative Basis, and Authority",True
+DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance,ContextEnvelope,S,S,True
+DEL-01-06_Four_Pillars_and_Professional_Responsibility_Conformance,Description,"Keep the four-pillar accountability ontology and the professional-responsibility model (drafts, retained professional rights, tool competence, hierarchy of authority) intact where they activate.","Keep the four-pillar accountability ontology and the professional-responsibility model (drafts, retained professional rights, tool competence, hierarchy of authority) intact where they activate.",True
+DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register,Name,"Jurisdiction, Accountability, and v1 User Scope Register","Jurisdiction, Accountability, and v1 User Scope Register",True
+DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register,Type,REGISTER,REGISTER,True
+DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register,Package,PKG-01,"PKG-01 Product Definition, Normative Basis, and Authority",True
+DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register,ContextEnvelope,S,S,True
+DEL-01-07_Jurisdiction_Accountability_and_v1_User_Scope_Register,Description,"Record and maintain the ruled jurisdiction (single root owner) and accountability (one accountable owner per root) model, the separability of the four human capacities, and the ruled v1 user scope with its staged A->B->C trajectory.","Record and maintain the ruled jurisdiction (single root owner) and accountability (one accountable owner per root) model, the separability of the four human capacities, and the ruled v1 user scope with its staged A->B->C trajectory.",True
+DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register,Name,"Non-Goal, Boundary, and Open-Conflict Register","Non-Goal, Boundary, and Open-Conflict Register",True
+DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register,Type,REGISTER,REGISTER,True
+DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register,Package,PKG-01,"PKG-01 Product Definition, Normative Basis, and Authority",True
+DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register,ContextEnvelope,S,S,True
+DEL-01-08_Non_Goal_Boundary_and_Open_Conflict_Register,Description,"Hold the PRD's non-goals as an enforced boundary set and carry the open conflicts whose ruling is the owner's, with each entry's status re-checked rather than assumed.","Hold the PRD's non-goals as an enforced boundary set and carry the open conflicts whose ruling is the owner's, with each entry's status re-checked rather than assumed.",True
+DEL-02-01_Instruction_Surface_Membership_and_Release_Management,Name,Instruction Surface Membership and Release Management,Instruction Surface Membership and Release Management,True
+DEL-02-01_Instruction_Surface_Membership_and_Release_Management,Type,DOC_UPDATE,DOC_UPDATE,True
+DEL-02-01_Instruction_Surface_Membership_and_Release_Management,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-01_Instruction_Surface_Membership_and_Release_Management,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-01_Instruction_Surface_Membership_and_Release_Management,ContextEnvelope,M,M,True
+DEL-02-01_Instruction_Surface_Membership_and_Release_Management,Description,"Keep the shared instruction surface membership explicit, release-managed, and read-mostly, so that changing it is a repo-wide governance action rather than ordinary working-root execution.","Keep the shared instruction surface membership explicit, release-managed, and read-mostly, so that changing it is a repo-wide governance action rather than ordinary working-root execution.",True
+DEL-02-02_Three_Layer_Authority_Boundary_Conformance,Name,Three-Layer Authority Boundary Conformance,Three-Layer Authority Boundary Conformance,True
+DEL-02-02_Three_Layer_Authority_Boundary_Conformance,Type,REQ_SLICE,REQ_SLICE,True
+DEL-02-02_Three_Layer_Authority_Boundary_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-02_Three_Layer_Authority_Boundary_Conformance,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-02_Three_Layer_Authority_Boundary_Conformance,ContextEnvelope,M,M,True
+DEL-02-02_Three_Layer_Authority_Boundary_Conformance,Description,"Keep the operative product bounded to instruction artifacts, deterministic tools, and the runtime substrate, with no fourth execution substrate claimed and no layer holding or granting project authority.","Keep the operative product bounded to instruction artifacts, deterministic tools, and the runtime substrate, with no fourth execution substrate claimed and no layer holding or granting project authority.",True
+DEL-02-03_Delegation_Hierarchy_and_Entry_Rules,Name,Delegation Hierarchy and Entry Rules,Delegation Hierarchy and Entry Rules,True
+DEL-02-03_Delegation_Hierarchy_and_Entry_Rules,Type,DOC_UPDATE,DOC_UPDATE,True
+DEL-02-03_Delegation_Hierarchy_and_Entry_Rules,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-03_Delegation_Hierarchy_and_Entry_Rules,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-03_Delegation_Hierarchy_and_Entry_Rules,ContextEnvelope,M,M,True
+DEL-02-03_Delegation_Hierarchy_and_Entry_Rules,Description,"Keep the Agent 0 -> Agent 1 -> Agent 2 hierarchy, entry rules, the no-delegation-below-Agent-2 rule, and the three Agent 2 construction forms live and consistent with the incorporated agent index.","Keep the Agent 0 -> Agent 1 -> Agent 2 hierarchy, entry rules, the no-delegation-below-Agent-2 rule, and the three Agent 2 construction forms live and consistent with the incorporated agent index.",True
+DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls,Name,Declared Write Scope and Capability-Boundary Controls,Declared Write Scope and Capability-Boundary Controls,True
+DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls,Type,SECURITY_CONTROL,SECURITY_CONTROL,True
+DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls,ContextEnvelope,M,M,True
+DEL-02-04_Declared_Write_Scope_and_Capability_Boundary_Controls,Description,"Keep every agent's declared write scope explicit and keep capability from conferring authority: sealed context, gate approval, path containment, enforced read/write scope, and durable evidence on every child.","Keep every agent's declared write scope explicit and keep capability from conferring authority: sealed context, gate approval, path containment, enforced read/write scope, and durable evidence on every child.",True
+DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools,Name,Live Registry Discipline for Skills and Tools,Live Registry Discipline for Skills and Tools,True
+DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools,Type,REGISTER,REGISTER,True
+DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools,ContextEnvelope,S,S,True
+DEL-02-05_Live_Registry_Discipline_for_Skills_and_Tools,Description,"Keep method packs and deterministic operations maintained as live registries that govern their own membership, with the live registry authoritative over any narrative list and discrepancies surfaced.","Keep method packs and deterministic operations maintained as live registries that govern their own membership, with the live registry authoritative over any narrative list and discrepancies surfaced.",True
+DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,Name,Generic Runtime Stewardship and Release Assurance,Generic Runtime Stewardship and Release Assurance,True
+DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,Type,REQ_SLICE,REQ_SLICE,True
+DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,ContextEnvelope,M,M,True
+DEL-02-06_Generic_Runtime_Stewardship_and_Release_Assurance,Description,"Provide the standing Root semantic-integration and release-assurance carrier for consequential generic runtime change: preserve the D-GOV-20 boundary and REQ-027, integrate the exact DEL-02-07 through DEL-02-12 carrier outputs, maintain the versioned contract and ten-binding hold matrix, fan in affected-client conformance or migration evidence, and return release disposition to an accountable human without transferring runtime ownership to a client.","Provide the standing Root semantic-integration and release-assurance carrier for consequential generic runtime change: preserve the D-GOV-20 boundary and REQ-027, integrate the exact DEL-02-07 through DEL-02-12 carrier outputs, maintain the versioned contract and ten-binding hold matrix, fan in affected-client conformance or migration evidence, and return release disposition to an accountable human without transferring runtime ownership to a client.",True
+DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,Name,Process Supervisor and Purpose-Limited Control,Process Supervisor and Purpose-Limited Control,True
+DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,Type,BACKEND_FEATURE_SLICE,BACKEND_FEATURE_SLICE,True
+DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,ContextEnvelope,M,M,True
+DEL-02-07_Process_Supervisor_and_Purpose_Limited_Control,Description,"Provide DelegatedHarnessProcessSupervisorPort, the purpose-limited second private Unix socket, worker acquisition/inventory/reconnect, generation fencing and stale recovery, and the daemon-plus-supervisor two-job launch topology while retaining one daemon as the sole runtime broker and no TCP listener. Require authentication-token validation for every socket request, with each token bound to the socket owner and worker generation and invalidated during stale-socket recovery. Preserve Agent 0/1/2 role-entry parity for primary Codex sessions inside unchanged hard filesystem/network/process containment.","Provide DelegatedHarnessProcessSupervisorPort, the purpose-limited second private Unix socket, worker acquisition/inventory/reconnect, generation fencing and stale recovery, and the daemon-plus-supervisor two-job launch topology while retaining one daemon as the sole runtime broker and no TCP listener. Require authentication-token validation for every socket request, with each token bound to the socket owner and worker generation and invalidated during stale-socket recovery. Preserve Agent 0/1/2 role-entry parity for primary Codex sessions inside unchanged hard filesystem/network/process containment.",True
+DEL-02-08_Exact_Supply_and_Protocol_Pinning,Name,Exact Supply and Protocol Pinning,Exact Supply and Protocol Pinning,True
+DEL-02-08_Exact_Supply_and_Protocol_Pinning,Type,API_CONTRACT,API_CONTRACT,True
+DEL-02-08_Exact_Supply_and_Protocol_Pinning,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-08_Exact_Supply_and_Protocol_Pinning,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-08_Exact_Supply_and_Protocol_Pinning,ContextEnvelope,M,M,True
+DEL-02-08_Exact_Supply_and_Protocol_Pinning,Description,"Define and verify exact App Server supply and protocol pinning plus the separately enumerated OpenAI account, model, and turn service endpoints, without treating those service endpoints as command-network authority or changing any deferred pin. Bind G-APPR to prompt-delivery and destination-grouping observation at the exact pin for all three consented per-root command-network postures.","Define and verify exact App Server supply and protocol pinning plus the separately enumerated OpenAI account, model, and turn service endpoints, without treating those service endpoints as command-network authority or changing any deferred pin. Bind G-APPR to prompt-delivery and destination-grouping observation at the exact pin for all three consented per-root command-network postures.",True
+DEL-02-09_Hosted_Account_and_Consent_Boundary,Name,Hosted Account and Consent Boundary,Hosted Account and Consent Boundary,True
+DEL-02-09_Hosted_Account_and_Consent_Boundary,Type,SECURITY_CONTROL,SECURITY_CONTROL,True
+DEL-02-09_Hosted_Account_and_Consent_Boundary,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-09_Hosted_Account_and_Consent_Boundary,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-09_Hosted_Account_and_Consent_Boundary,ContextEnvelope,M,M,True
+DEL-02-09_Hosted_Account_and_Consent_Boundary,Description,"Provide HostedEngineConsentPort and the per-root hosted-account boundary: root-private app-owned CODEX_HOME, account/epoch and policy continuity, and K-ROLE-2 role-posture digest. Always offer Agent 0/1/2 role entry for Codex sessions; when G-ROLE cannot mechanically prove Agent-2 non-delegation, still offer explicit Agent 2/TASK labelled role not mechanically enforced. Each canonical root chooses under consent: no command network by default; ask per destination through networkApprovalContext showing host/protocol, with a grant possibly unblocking queued requests to the same destination and acceptForSession allowed only by explicit user act; or labelled command network on with network_access = true.","Provide HostedEngineConsentPort and the per-root hosted-account boundary: root-private app-owned CODEX_HOME, account/epoch and policy continuity, and K-ROLE-2 role-posture digest. Always offer Agent 0/1/2 role entry for Codex sessions; when G-ROLE cannot mechanically prove Agent-2 non-delegation, still offer explicit Agent 2/TASK labelled role not mechanically enforced. Each canonical root chooses under consent: no command network by default; ask per destination through networkApprovalContext showing host/protocol, with a grant possibly unblocking queued requests to the same destination and acceptForSession allowed only by explicit user act; or labelled command network on with network_access = true.",True
+DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2,Name,Adapter Event Schema and Approval API v2,Adapter Event Schema and Approval API v2,True
+DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2,Type,API_CONTRACT,API_CONTRACT,True
+DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2,ContextEnvelope,M,M,True
+DEL-02-10_Adapter_Event_Schema_and_Approval_API_v2,Description,"Define Root runtime API v2 with attributed approval request/decision records, managed-network prompt routing, a closed HarnessEvent schema v2 with four terminal events, and adapter projection that rejects, redacts, or projects unknown provider payloads. Represent Agent 0/1/2 role-entry parity and the explicit Agent 2/TASK fallback labelled role not mechanically enforced, with governed-workflow evidence marked instruction-asserted when G-ROLE cannot mechanically prove non-delegation.","Define Root runtime API v2 with attributed approval request/decision records, managed-network prompt routing, a closed HarnessEvent schema v2 with four terminal events, and adapter projection that rejects, redacts, or projects unknown provider payloads. Represent Agent 0/1/2 role-entry parity and the explicit Agent 2/TASK fallback labelled role not mechanically enforced, with governed-workflow evidence marked instruction-asserted when G-ROLE cannot mechanically prove non-delegation.",True
+DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation,Name,"Worker Retirement, Restart, and Terminal Reconciliation","Worker Retirement, Restart, and Terminal Reconciliation",True
+DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation,Type,BACKEND_FEATURE_SLICE,BACKEND_FEATURE_SLICE,True
+DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation,ContextEnvelope,M,M,True
+DEL-02-11_Worker_Retirement_Restart_and_Terminal_Reconciliation,Description,"Provide WorkerRetirementCoordinatorPort, prepared/committed/reconciliation-required journal state, exactly-once active-turn terminalization, and restart behavior that uses thread/resume only under canonical-root, account-identity, and policy-digest continuity with canonical cwd, otherwise a fresh thread.","Provide WorkerRetirementCoordinatorPort, prepared/committed/reconciliation-required journal state, exactly-once active-turn terminalization, and restart behavior that uses thread/resume only under canonical-root, account-identity, and policy-digest continuity with canonical cwd, otherwise a fresh thread.",True
+DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in,Name,Runtime Conformance Evidence and Shared-Release Fan-in,Runtime Conformance Evidence and Shared-Release Fan-in,True
+DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in,Type,TEST_SUITE,TEST_SUITE,True
+DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in,Package,PKG-02,PKG-02 Operative Instruction Surface and Runtime Layers,True
+DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in,ContextEnvelope,M,M,True
+DEL-02-12_Runtime_Conformance_Evidence_and_Shared_Release_Fan_in,Description,"Produce Root/client conformance and shared-release evidence fan-in for the versioned runtime contract, bind source_identity only to exact accepted implementation bytes at G0.5, and keep all ten compatibility bindings held until their named acts. Prove Agent 0/1/2 role-entry parity; the explicit Agent 2/TASK fallback labelled role not mechanically enforced; governed-workflow evidence marked instruction-asserted; and delegated-harness-native K-SUBAGENT non-delegation instruction+config asserted rather than mechanism-proven, with hard filesystem/network/process containment unchanged.","Produce Root/client conformance and shared-release evidence fan-in for the versioned runtime contract, bind source_identity only to exact accepted implementation bytes at G0.5, and keep all ten compatibility bindings held until their named acts. Prove Agent 0/1/2 role-entry parity; the explicit Agent 2/TASK fallback labelled role not mechanically enforced; governed-workflow evidence marked instruction-asserted; and delegated-harness-native K-SUBAGENT non-delegation instruction+config asserted rather than mechanism-proven, with hard filesystem/network/process containment unchanged.",True
+DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance,Name,Path Model and ScopePath Containment Conformance,Path Model and ScopePath Containment Conformance,True
+DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance,Type,SECURITY_CONTROL,SECURITY_CONTROL,True
+DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance,Package,PKG-03,PKG-03 Governed Execution Structure and Root Containment,True
+DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance,ContextEnvelope,M,M,True
+DEL-03-01_Path_Model_and_ScopePath_Containment_Conformance,Description,"Keep the two-root path model, the containment rule, and the closed token registry enforced, with every scope path and write target resolving under the active checkout or the task stopping, and no machine-absolute paths in instruction, coordination, or plan files.","Keep the two-root path model, the containment rule, and the closed token registry enforced, with every scope path and write target resolving under the active checkout or the task stopping, and no machine-absolute paths in instruction, coordination, or plan files.",True
+DEL-03-02_Execution_Structure_and_Lifecycle_Conformance,Name,Execution Structure and Lifecycle Conformance,Execution Structure and Lifecycle Conformance,True
+DEL-03-02_Execution_Structure_and_Lifecycle_Conformance,Type,REQ_SLICE,REQ_SLICE,True
+DEL-03-02_Execution_Structure_and_Lifecycle_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-03-02_Execution_Structure_and_Lifecycle_Conformance,Package,PKG-03,PKG-03 Governed Execution Structure and Root Containment,True
+DEL-03-02_Execution_Structure_and_Lifecycle_Conformance,ContextEnvelope,M,M,True
+DEL-03-02_Execution_Structure_and_Lifecycle_Conformance,Description,"Keep governed work structured as execution instances of flat packages and deliverables with stable IDs, a canonical lifecycle state file, and human-triaged staleness propagation.","Keep governed work structured as execution instances of flat packages and deliverables with stable IDs, a canonical lifecycle state file, and human-triaged staleness propagation.",True
+DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary,Name,Dependency Register and Derived-Graph Boundary,Dependency Register and Derived-Graph Boundary,True
+DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary,Type,REQ_SLICE,REQ_SLICE,True
+DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary,Package,PKG-03,PKG-03 Governed Execution Structure and Root Containment,True
+DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary,ContextEnvelope,S,S,True
+DEL-03-03_Dependency_Register_and_Derived_Graph_Boundary,Description,"Keep deliverable-local dependency registers authoritative while allowing derived and aggregated graphs as lawful coordination state, including on-demand read-only aggregation and blocker computation.","Keep deliverable-local dependency registers authoritative while allowing derived and aggregated graphs as lawful coordination state, including on-demand read-only aggregation and blocker computation.",True
+DEL-03-04_Root_Working_Root_Exception_Conformance,Name,Root Working-Root Exception Conformance,Root Working-Root Exception Conformance,True
+DEL-03-04_Root_Working_Root_Exception_Conformance,Type,REQ_SLICE,REQ_SLICE,True
+DEL-03-04_Root_Working_Root_Exception_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-03-04_Root_Working_Root_Exception_Conformance,Package,PKG-03,PKG-03 Governed Execution Structure and Root Containment,True
+DEL-03-04_Root_Working_Root_Exception_Conformance,ContextEnvelope,M,M,True
+DEL-03-04_Root_Working_Root_Exception_Conformance,Description,"Keep the single governed exception exact: the root product's working root is the repository root and root execution/ is its execution root, eligible for packages and deliverables only from an accepted root decomposition derived from an adopted PRD and only while the guards pass, with the containment mechanisms incorporated by reference and containment never mistaken for authorization.","Keep the single governed exception exact: the root product's working root is the repository root and root execution/ is its execution root, eligible for packages and deliverables only from an accepted root decomposition derived from an adopted PRD and only while the guards pass, with the containment mechanisms incorporated by reference and containment never mistaken for authorization.",True
+DEL-03-05_Guard_State_Instantiation_and_Registration,Name,Guard State Instantiation and Registration,Guard State Instantiation and Registration,True
+DEL-03-05_Guard_State_Instantiation_and_Registration,Type,DATA_MODEL_CHANGE,DATA_MODEL_CHANGE,True
+DEL-03-05_Guard_State_Instantiation_and_Registration,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-03-05_Guard_State_Instantiation_and_Registration,Package,PKG-03,PKG-03 Governed Execution Structure and Root Containment,True
+DEL-03-05_Guard_State_Instantiation_and_Registration,ContextEnvelope,M,M,True
+DEL-03-05_Guard_State_Instantiation_and_Registration,Description,"Instantiate and maintain the root guard state surfaces the G0-G4 guards read - guard registration, harness adapter, surface-ownership register, and the accepted work graph - so that every materialization runs with guards registered and passing.","Instantiate and maintain the root guard state surfaces the G0-G4 guards read - guard registration, harness adapter, surface-ownership register, and the accepted work graph - so that every materialization runs with guards registered and passing.",True
+DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream,Name,Root Materialization Readiness and First Deliverable Stream,Root Materialization Readiness and First Deliverable Stream,True
+DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream,Type,REQ_SLICE,REQ_SLICE,True
+DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream,Package,PKG-03,PKG-03 Governed Execution Structure and Root Containment,True
+DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream,ContextEnvelope,M,M,True
+DEL-03-06_Root_Materialization_Readiness_and_Deliverable_Stream,Description,Hold materialization readiness behind the D-GOV-21 §5.3 gate - root execution/ carries control-plane records only until it closes - and carry one complete deliverable stream end to end once it does.,Hold materialization readiness behind the D-GOV-21 §5.3 gate - root execution/ carries control-plane records only until it closes - and carry one complete deliverable stream end to end once it does.,True
+DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline,Name,Decision Record and Terminal-Artifact Discipline,Decision Record and Terminal-Artifact Discipline,True
+DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline,Type,REGISTER,REGISTER,True
+DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline,ContextEnvelope,M,M,True
+DEL-04-01_Decision_Record_and_Terminal_Artifact_Discipline,Description,"Keep design change carried by one of two terminal artifacts - a superseding decision record or PR review - never a new plan document, and keep corrections to ruled content superseding acts within the two record classes where that convention governs.","Keep design change carried by one of two terminal artifacts - a superseding decision record or PR review - never a new plan document, and keep corrections to ruled content superseding acts within the two record classes where that convention governs.",True
+DEL-04-02_Identity_Attribution_and_Refusal_Controls,Name,Identity Attribution and Refusal Controls,Identity Attribution and Refusal Controls,True
+DEL-04-02_Identity_Attribution_and_Refusal_Controls,Type,SECURITY_CONTROL,SECURITY_CONTROL,True
+DEL-04-02_Identity_Attribution_and_Refusal_Controls,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-02_Identity_Attribution_and_Refusal_Controls,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-02_Identity_Attribution_and_Refusal_Controls,ContextEnvelope,S,S,True
+DEL-04-02_Identity_Attribution_and_Refusal_Controls,Description,"Keep attribution of rulings and adoptions matched against the owner-curated identity allowlist, with identity-dependent checks refusing rather than guessing and the list never extended programmatically.","Keep attribution of rulings and adoptions matched against the owner-curated identity allowlist, with identity-dependent checks refusing rather than guessing and the list never extended programmatically.",True
+DEL-04-03_Validation_Severity_and_Override_Controls,Name,Validation Severity and Override Controls,Validation Severity and Override Controls,True
+DEL-04-03_Validation_Severity_and_Override_Controls,Type,CI_CD_CHANGE,CI_CD_CHANGE,True
+DEL-04-03_Validation_Severity_and_Override_Controls,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-03_Validation_Severity_and_Override_Controls,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-03_Validation_Severity_and_Override_Controls,ContextEnvelope,M,M,True
+DEL-04-03_Validation_Severity_and_Override_Controls,Description,"Keep validation deterministic and severity-typed with exit-code semantics and human-only recorded BLOCK override, keep BLOCK bounded to its declared observation boundary, and keep validator findings from mechanically rejecting owner-ruled content.","Keep validation deterministic and severity-typed with exit-code semantics and human-only recorded BLOCK override, keep BLOCK bounded to its declared observation boundary, and keep validator findings from mechanically rejecting owner-ruled content.",True
+DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing,Name,Governance Integration Rules and Change-Notice Routing,Governance Integration Rules and Change-Notice Routing,True
+DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing,Type,REQ_SLICE,REQ_SLICE,True
+DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing,ContextEnvelope,M,M,True
+DEL-04-04_Governance_Integration_Rules_and_Change_Notice_Routing,Description,"Keep phase-crossing work bound by the governance integration rules and keep tranches that touch pinned or mirrored surfaces shipping routed coordination notices in the same tranche, as coordination and never authority.","Keep phase-crossing work bound by the governance integration rules and keep tranches that touch pinned or mirrored surfaces shipping routed coordination notices in the same tranche, as coordination and never authority.",True
+DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline,Name,Root Governed Loop and Receipt Discipline,Root Governed Loop and Receipt Discipline,True
+DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline,Type,DOC_UPDATE,DOC_UPDATE,True
+DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline,ContextEnvelope,M,M,True
+DEL-04-05_Root_Governed_Loop_and_Receipt_Discipline,Description,"Keep root-product development running through the governed loop - session-init contract, deterministic standing-plan pointer, append-only receipts - with coordination surfaces carrying no authority merely by existing.","Keep root-product development running through the governed loop - session-init contract, deterministic standing-plan pointer, append-only receipts - with coordination surfaces carrying no authority merely by existing.",True
+DEL-04-06_Change_Management_and_Human_Gated_Closeout,Name,Change Management and Human-Gated Closeout,Change Management and Human-Gated Closeout,True
+DEL-04-06_Change_Management_and_Human_Gated_Closeout,Type,CI_CD_CHANGE,CI_CD_CHANGE,True
+DEL-04-06_Change_Management_and_Human_Gated_Closeout,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-06_Change_Management_and_Human_Gated_Closeout,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-06_Change_Management_and_Human_Gated_Closeout,ContextEnvelope,S,S,True
+DEL-04-06_Change_Management_and_Human_Gated_Closeout,Description,"Keep git closeout running through the shared change-management role with human-gated pull requests as the standing default; beyond that default the owner may direct merge execution (typed by the owner directly or executed by an agent as the owner's proxy, identical authority either way), with the direction recorded in the loop's ordinary closeout evidence; preserve K-MERGE-1.","Keep git closeout running through the change-management role with human-gated pull requests as the standing default; beyond that default the owner may direct merge execution (typed by the owner directly or executed by an agent as the owner's proxy, identical authority either way), with the direction recorded in the loop's ordinary closeout evidence; preserve K-MERGE-1 (PRD §5.3 D-8, adopted by D-GOV-31 as simplified by owner direction 2026-07-29).",False
+DEL-04-07_Public_Export_Boundary_Conformance,Name,Public Export Boundary Conformance,Public Export Boundary Conformance,True
+DEL-04-07_Public_Export_Boundary_Conformance,Type,SECURITY_CONTROL,SECURITY_CONTROL,True
+DEL-04-07_Public_Export_Boundary_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-07_Public_Export_Boundary_Conformance,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-07_Public_Export_Boundary_Conformance,ContextEnvelope,S,S,True
+DEL-04-07_Public_Export_Boundary_Conformance,Description,"Keep the public-export boundary an explicit allowlist profile that copies allowlisted content, sanitizes private absolute paths, writes a manifest and report, and fails on forbidden paths or leaks - and keep the boundary itself unchanged absent a governed act.","Keep the public-export boundary an explicit allowlist profile that copies allowlisted content, sanitizes private absolute paths, writes a manifest and report, and fails on forbidden paths or leaks - and keep the boundary itself unchanged absent a governed act.",True
+DEL-04-08_PRD_Amendment_and_Attributable_Change_Control,Name,PRD Amendment and Attributable Change Control,PRD Amendment and Attributable Change Control,True
+DEL-04-08_PRD_Amendment_and_Attributable_Change_Control,Type,REQ_SLICE,REQ_SLICE,True
+DEL-04-08_PRD_Amendment_and_Attributable_Change_Control,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-08_PRD_Amendment_and_Attributable_Change_Control,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-08_PRD_Amendment_and_Attributable_Change_Control,ContextEnvelope,M,M,True
+DEL-04-08_PRD_Amendment_and_Attributable_Change_Control,Description,"Keep the adopted PRD amendable only by a superseding instrument bound to a git SHA, keep every change to approved content a new attributable act with prior bytes recoverable, keep declared-immutable classes never overwritten while living surfaces amend in place, and keep provenance labels from decaying.","Keep the adopted PRD amendable only by a superseding instrument bound to a git SHA, keep every change to approved content a new attributable act with prior bytes recoverable, keep declared-immutable classes never overwritten while living surfaces amend in place, and keep provenance labels from decaying.",True
+DEL-04-09_PRD_Source_Currency_Check_Capability,Name,PRD Source-Currency Check Capability,PRD Source-Currency Check Capability,True
+DEL-04-09_PRD_Source_Currency_Check_Capability,Type,TEST_SUITE,TEST_SUITE,True
+DEL-04-09_PRD_Source_Currency_Check_Capability,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-09_PRD_Source_Currency_Check_Capability,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-09_PRD_Source_Currency_Check_Capability,ContextEnvelope,L,L,True
+DEL-04-09_PRD_Source_Currency_Check_Capability,Description,"Build the standing source-currency check over the nine declared classes, with the five mechanical classes automated and the four semantic classes routed as REVIEW findings to the owner, together with the regenerable concordance annex it runs against.","Build the standing source-currency check over the nine declared classes, with the five mechanical classes automated and the four semantic classes routed as REVIEW findings to the owner, together with the regenerable concordance annex it runs against.",True
+DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration,Name,Decomposition Pipeline and Root Coverage Demonstration,Decomposition Pipeline and Root Coverage Demonstration,True
+DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration,Type,REGISTER,REGISTER,True
+DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration,ContextEnvelope,M,M,True
+DEL-04-10_Decomposition_Pipeline_and_Root_Coverage_Demonstration,Description,"Keep the decomposition pipeline non-waivable, keep developmental machinery inside product scope rather than exempt overhead, demonstrate coverage across all four functional categories, and maintain the bidirectional PRD-traceability register that F4 is checked against.","Keep the decomposition pipeline non-waivable, keep developmental machinery inside product scope rather than exempt overhead, demonstrate coverage across all four functional categories, and maintain the bidirectional PRD-traceability register that F4 is checked against.",True
+DEL-04-11_Root_Loop_Receipt_Validator,Name,Root Loop Receipt Validator,Root Loop Receipt Validator,True
+DEL-04-11_Root_Loop_Receipt_Validator,Type,TEST_SUITE,TEST_SUITE,True
+DEL-04-11_Root_Loop_Receipt_Validator,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-04-11_Root_Loop_Receipt_Validator,Package,PKG-04,PKG-04 Developmental Machinery and Change Control,True
+DEL-04-11_Root_Loop_Receipt_Validator,ContextEnvelope,M,M,True
+DEL-04-11_Root_Loop_Receipt_Validator,Description,Provide a deterministic Root-specific loop receipt validator for the D-7 governed-loop and E-2 minimal-receipt disciplines while preserving DEL-04-05 as doctrine and DEL-05-02 as the evidence-discipline crosscheck.,Provide a deterministic Root-specific loop receipt validator for the D-7 governed-loop and E-2 minimal-receipt disciplines while preserving DEL-04-05 as doctrine and DEL-05-02 as the evidence-discipline crosscheck.,True
+DEL-05-01_Run_Record_Tree_Conformance,Name,Run Record Tree Conformance,Run Record Tree Conformance,True
+DEL-05-01_Run_Record_Tree_Conformance,Type,REQ_SLICE,REQ_SLICE,True
+DEL-05-01_Run_Record_Tree_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-05-01_Run_Record_Tree_Conformance,Package,PKG-05,"PKG-05 Evidence, Provenance, and Audit",True
+DEL-05-01_Run_Record_Tree_Conformance,ContextEnvelope,M,M,True
+DEL-05-01_Run_Record_Tree_Conformance,Description,"Keep every orchestration run persisting a durable, versioned record tree capturing plan, work graph, briefs, returns, notices, dispositions, amendments, and final handoff state, with run IDs created only when a real run begins and no placeholder runs presented as executed children.","Keep every orchestration run persisting a durable, versioned record tree capturing plan, work graph, briefs, returns, notices, dispositions, amendments, and final handoff state, with run IDs created only when a real run begins and no placeholder runs presented as executed children.",True
+DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline,Name,"Snapshot, Handoff, and Receipt Discipline","Snapshot, Handoff, and Receipt Discipline",True
+DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline,Type,REQ_SLICE,REQ_SLICE,True
+DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline,Package,PKG-05,"PKG-05 Evidence, Provenance, and Audit",True
+DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline,ContextEnvelope,M,M,True
+DEL-05-02_Snapshot_Handoff_and_Receipt_Discipline,Description,"Keep phase-boundary decisions terminating in immutable snapshots, keep stopping work emitting an explicit handoff state, keep each lawful tranche appending a minimal receipt, and keep task outputs to tool roots immutable snapshots.","Keep phase-boundary decisions terminating in immutable snapshots, keep stopping work emitting an explicit handoff state, keep each lawful tranche appending a minimal receipt, and keep task outputs to tool roots immutable snapshots.",True
+DEL-05-03_SHA_Role_Register,Name,SHA Role Register,SHA Role Register,True
+DEL-05-03_SHA_Role_Register,Type,REGISTER,REGISTER,True
+DEL-05-03_SHA_Role_Register,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-05-03_SHA_Role_Register,Package,PKG-05,"PKG-05 Evidence, Provenance, and Audit",True
+DEL-05-03_SHA_Role_Register,ContextEnvelope,S,S,True
+DEL-05-03_SHA_Role_Register,Description,"Keep the three SHA roles distinct and recorded distinctly: the owner act binding approved content to its candidate SHA, the publication SHA identifying the durable ruling record, and the effective SHA identifying applied state.","Keep the three SHA roles distinct and recorded distinctly: the owner act binding approved content to its candidate SHA, the publication SHA identifying the durable ruling record, and the effective SHA identifying applied state.",True
+DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle,Name,Claim Provenance and Warrant Lifecycle,Claim Provenance and Warrant Lifecycle,True
+DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle,Type,REQ_SLICE,REQ_SLICE,True
+DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle,Package,PKG-05,"PKG-05 Evidence, Provenance, and Audit",True
+DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle,ContextEnvelope,M,M,True
+DEL-05-04_Claim_Provenance_and_Warrant_Lifecycle,Description,"Keep claims carrying epistemic labels through the warrant lifecycle, keep authentication a scoped, purpose-specific, SHA-bound act by an accountable actor, and keep evidence completeness from being read as evidence sufficiency.","Keep claims carrying epistemic labels through the warrant lifecycle, keep authentication a scoped, purpose-specific, SHA-bound act by an accountable actor, and keep evidence completeness from being read as evidence sufficiency.",True
+DEL-05-05_Audit_and_Evaluation_Surface_Governance,Name,Audit and Evaluation Surface Governance,Audit and Evaluation Surface Governance,True
+DEL-05-05_Audit_and_Evaluation_Surface_Governance,Type,DOC_UPDATE,DOC_UPDATE,True
+DEL-05-05_Audit_and_Evaluation_Surface_Governance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-05-05_Audit_and_Evaluation_Surface_Governance,Package,PKG-05,"PKG-05 Evidence, Provenance, and Audit",True
+DEL-05-05_Audit_and_Evaluation_Surface_Governance,ContextEnvelope,S,S,True
+DEL-05-05_Audit_and_Evaluation_Surface_Governance,Description,"Keep read-only audit and evaluation surfaces existing and governed, with membership incorporated by reference to the live agent index.","Keep read-only audit and evaluation surfaces existing and governed, with membership incorporated by reference to the live agent index.",True
+DEL-05-06_Validation_Evidence_Mutation_Control,Name,Validation Evidence Mutation Control,Validation Evidence Mutation Control,True
+DEL-05-06_Validation_Evidence_Mutation_Control,Type,SECURITY_CONTROL,SECURITY_CONTROL,True
+DEL-05-06_Validation_Evidence_Mutation_Control,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-05-06_Validation_Evidence_Mutation_Control,Package,PKG-05,"PKG-05 Evidence, Provenance, and Audit",True
+DEL-05-06_Validation_Evidence_Mutation_Control,ContextEnvelope,M,M,True
+DEL-05-06_Validation_Evidence_Mutation_Control,Description,"Keep validation evidence written only under declared generated paths under the mutation-control contract, keep the harness from writing governed authority files, and keep governed-file mutation by a validation command an unconditional BLOCK.","Keep validation evidence written only under declared generated paths under the mutation-control contract, keep the harness from writing governed authority files, and keep governed-file mutation by a validation command an unconditional BLOCK.",True
+DEL-05-07_Closure_Criteria_Conformance,Name,Closure Criteria Conformance,Closure Criteria Conformance,True
+DEL-05-07_Closure_Criteria_Conformance,Type,REQ_SLICE,REQ_SLICE,True
+DEL-05-07_Closure_Criteria_Conformance,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-05-07_Closure_Criteria_Conformance,Package,PKG-05,"PKG-05 Evidence, Provenance, and Audit",True
+DEL-05-07_Closure_Criteria_Conformance,ContextEnvelope,S,S,True
+DEL-05-07_Closure_Criteria_Conformance,Description,"Keep closure meaning accepted authoritative truth, regenerated or explicitly deferred derivatives, recorded audit status, and surfaced unresolved blockers - never merely that files were written.","Keep closure meaning accepted authoritative truth, regenerated or explicitly deferred derivatives, recorded audit status, and surfaced unresolved blockers - never merely that files were written.",True
+DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation,Name,Evidence Linkage Completeness and Retrieval Evaluation,Evidence Linkage Completeness and Retrieval Evaluation,True
+DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation,Type,OBSERVABILITY,OBSERVABILITY,True
+DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation,Package,PKG-05,"PKG-05 Evidence, Provenance, and Audit",True
+DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation,ContextEnvelope,M,M,True
+DEL-05-08_Evidence_Linkage_Completeness_and_Retrieval_Evaluation,Description,"Make the evidence -> ruling -> changed-state linkage retrievable from files alone for every accepted change, and run the sampled retrieval-usability evaluation with the time threshold and tranche sample fixed and recorded before the evaluation runs.","Make the evidence -> ruling -> changed-state linkage retrievable from files alone for every accepted change, and run the sampled retrieval-usability evaluation with the time threshold and tranche sample fixed and recorded before the evaluation runs.",True
+DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation,Name,Self-Application Discipline and Falsifier Observation,Self-Application Discipline and Falsifier Observation,True
+DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation,Type,REQ_SLICE,REQ_SLICE,True
+DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation,Package,PKG-06,"PKG-06 Self-Application, Variants, and Release",True
+DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation,ContextEnvelope,M,M,True
+DEL-06-01_Self_Application_Discipline_and_Falsifier_Observation,Description,"Keep root self-application disciplined - no root node consuming a capability produced by root development before that capability was accepted - and keep the containment falsifiers observable so a containment failure, loop bypass, or self-authorization would be detected rather than inferred.","Keep root self-application disciplined - no root node consuming a capability produced by root development before that capability was accepted - and keep the containment falsifiers observable so a containment failure, loop bypass, or self-authorization would be detected rather than inferred.",True
+DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction,Name,Concurrency Mechanism Legibility and Run-State Reconstruction,Concurrency Mechanism Legibility and Run-State Reconstruction,True
+DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction,Type,OBSERVABILITY,OBSERVABILITY,True
+DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction,Package,PKG-06,"PKG-06 Self-Application, Variants, and Release",True
+DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction,ContextEnvelope,M,M,True
+DEL-06-02_Concurrency_Mechanism_Legibility_and_Run_State_Reconstruction,Description,"Demonstrate that concurrent root-product activity stays legible: write ownership disjoint or serialized, a frozen instruction basis per run, worktree isolation, and pre-dispatch work-graph validation, with every run's ownership, dependencies, and pending gates reconstructible and stale or orphaned runs detectable.","Demonstrate that concurrent root-product activity stays legible: write ownership disjoint or serialized, a frozen instruction basis per run, worktree isolation, and pre-dispatch work-graph validation, with every run's ownership, dependencies, and pending gates reconstructible and stale or orphaned runs detectable.",True
+DEL-06-03_Approval_Vehicle_Practice_Record,Name,Approval Vehicle Practice Record,Approval Vehicle Practice Record,True
+DEL-06-03_Approval_Vehicle_Practice_Record,Type,DOC_UPDATE,DOC_UPDATE,True
+DEL-06-03_Approval_Vehicle_Practice_Record,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-06-03_Approval_Vehicle_Practice_Record,Package,PKG-06,"PKG-06 Self-Application, Variants, and Release",True
+DEL-06-03_Approval_Vehicle_Practice_Record,ContextEnvelope,S,S,True
+DEL-06-03_Approval_Vehicle_Practice_Record,Description,"Keep the exact-candidate-SHA procedure recorded as observed practice rather than a rule, keep the actual invariant (approval binds to a SHA) governing, and keep vehicle selection a matter of professional judgment unless evidence later warrants promotion.","Keep the exact-candidate-SHA procedure recorded as observed practice rather than a rule, keep the actual invariant (approval binds to a SHA) governing, and keep vehicle selection a matter of professional judgment unless evidence later warrants promotion.",True
+DEL-06-04_Downward_Variant_Service_and_Non_Weakening,Name,Downward Variant Service and Non-Weakening,Downward Variant Service and Non-Weakening,True
+DEL-06-04_Downward_Variant_Service_and_Non_Weakening,Type,REQ_SLICE,REQ_SLICE,True
+DEL-06-04_Downward_Variant_Service_and_Non_Weakening,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-06-04_Downward_Variant_Service_and_Non_Weakening,Package,PKG-06,"PKG-06 Self-Application, Variants, and Release",True
+DEL-06-04_Downward_Variant_Service_and_Non_Weakening,ContextEnvelope,M,M,True
+DEL-06-04_Downward_Variant_Service_and_Non_Weakening,Description,"Keep one instruction root serving many working roots without per-workspace drift, keep working roots free to extend the invariant catalog and specialize the agent suite but never to weaken framework governance, and keep the root working-root exception uninherited by any variant.","Keep one instruction root serving many working roots without per-workspace drift, keep working roots free to extend the invariant catalog and specialize the agent suite but never to weaken framework governance, and keep the root working-root exception uninherited by any variant.",True
+DEL-06-05_Domain_Engine_Truth_Boundary,Name,Domain Engine Truth Boundary,Domain Engine Truth Boundary,True
+DEL-06-05_Domain_Engine_Truth_Boundary,Type,REQ_SLICE,REQ_SLICE,True
+DEL-06-05_Domain_Engine_Truth_Boundary,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-06-05_Domain_Engine_Truth_Boundary,Package,PKG-06,"PKG-06 Self-Application, Variants, and Release",True
+DEL-06-05_Domain_Engine_Truth_Boundary,ContextEnvelope,S,S,True
+DEL-06-05_Domain_Engine_Truth_Boundary,Description,Keep engine-owned domain truth sanctioned and exempt from the rebuildable-projection rule while the product governs only the work around the engine and never becomes the solver or the source of accepted engineering truth.,Keep engine-owned domain truth sanctioned and exempt from the rebuildable-projection rule while the product governs only the work around the engine and never becomes the solver or the source of accepted engineering truth.,True
+DEL-06-06_Governed_Promotion_Pathway,Name,Governed Promotion Pathway,Governed Promotion Pathway,True
+DEL-06-06_Governed_Promotion_Pathway,Type,REQ_SLICE,REQ_SLICE,True
+DEL-06-06_Governed_Promotion_Pathway,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-06-06_Governed_Promotion_Pathway,Package,PKG-06,"PKG-06 Self-Application, Variants, and Release",True
+DEL-06-06_Governed_Promotion_Pathway,ContextEnvelope,M,M,True
+DEL-06-06_Governed_Promotion_Pathway,Description,"Make the upward half work: variant friction and successful patterns return as evidence-linked root candidates, no variant automatically changes or weakens root, and promotion occurs only through the root's human-governed developmental machinery, with at least one candidate reaching a complete disposition.","Make the upward half work: variant friction and successful patterns return as evidence-linked root candidates, no variant automatically changes or weakens root, and promotion occurs only through the root's human-governed developmental machinery, with at least one candidate reaching a complete disposition.",True
+DEL-06-07_Release_Authority_Gate,Name,Release Authority Gate,Release Authority Gate,True
+DEL-06-07_Release_Authority_Gate,Type,REQ_SLICE,REQ_SLICE,True
+DEL-06-07_Release_Authority_Gate,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-06-07_Release_Authority_Gate,Package,PKG-06,"PKG-06 Self-Application, Variants, and Release",True
+DEL-06-07_Release_Authority_Gate,ContextEnvelope,M,M,True
+DEL-06-07_Release_Authority_Gate,Description,"Keep release a separately human-gated lifecycle judgment over whether the current product state may be released, informed by operative and developmental evidence, validation, coverage, and guard state, and never performed mechanically or collapsed into iteration.","Keep release a separately human-gated lifecycle judgment over whether the current product state may be released, informed by operative and developmental evidence, validation, coverage, and guard state, and never performed mechanically or collapsed into iteration.",True
+DEL-06-08_Situated_Working_Root_Convergence_Demonstration,Name,Situated Working Root Convergence Demonstration,Situated Working Root Convergence Demonstration,True
+DEL-06-08_Situated_Working_Root_Convergence_Demonstration,Type,REQ_SLICE,REQ_SLICE,True
+DEL-06-08_Situated_Working_Root_Convergence_Demonstration,Responsible,Ryan Tufts,Ryan Tufts,True
+DEL-06-08_Situated_Working_Root_Convergence_Demonstration,Package,PKG-06,"PKG-06 Self-Application, Variants, and Release",True
+DEL-06-08_Situated_Working_Root_Convergence_Demonstration,ContextEnvelope,M,M,True
+DEL-06-08_Situated_Working_Root_Convergence_Demonstration,Description,Demonstrate at least one situated working root operating on the same instruction basis with a recorded convergence path.,Demonstrate at least one situated working root operating on the same instruction basis with a recorded convergence path.,True

@@ -14,28 +14,28 @@
     "baseUrl": ".",
     "paths": {
       "@chirality/engine-claude": [
-        "../../../runtime/packages/engine-claude/src/index.ts"
+        "../../chirality-runtime/packages/engine-claude/src/index.ts"
       ],
       "@chirality/runtime-contracts": [
-        "../../../runtime/packages/contracts/src/index.ts"
+        "../../chirality-runtime/packages/contracts/src/index.ts"
       ],
       "@chirality/runtime-contracts/*": [
-        "../../../runtime/packages/contracts/src/harness/*"
+        "../../chirality-runtime/packages/contracts/src/harness/*"
       ],
       "@chirality/runtime-core": [
-        "../../../runtime/packages/core/src/index.ts"
+        "../../chirality-runtime/packages/core/src/index.ts"
       ],
       "@chirality/runtime-daemon": [
-        "../../../runtime/packages/daemon/src/index.ts"
+        "../../chirality-runtime/packages/daemon/src/index.ts"
       ],
       "@chirality/runtime-client": [
-        "../../../runtime/packages/client/src/index.ts"
+        "../../chirality-runtime/packages/client/src/index.ts"
       ],
       "@chirality/runtime-cli": [
-        "../../../runtime/packages/cli/src/index.ts"
+        "../../chirality-runtime/packages/cli/src/index.ts"
       ],
       "@chirality/engine-pi-omlx": [
-        "../../../runtime/packages/engine-pi-omlx/src/index.ts"
+        "../../chirality-runtime/packages/engine-pi-omlx/src/index.ts"
       ]
     }
   },

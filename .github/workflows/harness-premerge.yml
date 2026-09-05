@@ -5,7 +5,7 @@ on:
     paths:
       - ".github/workflows/harness-premerge.yml"
       - "projects/chirality-app-dev/**"
-      - "runtime/**"
+      - "projects/chirality-runtime/**"
       - "exports/chirality-app/**"
       - "agents/**"
       - "AGENTS.md"
@@ -48,7 +48,7 @@ jobs:
             init
             plans
             projects
-            runtime
+            projects/chirality-runtime
             skills
             tools
 
@@ -73,18 +73,18 @@ jobs:
           node-version: "24"
           cache: npm
           cache-dependency-path: |
-            runtime/package-lock.json
+            projects/chirality-runtime/package-lock.json
             projects/chirality-app-dev/frontend/package-lock.json
 
       - name: Install and build shared runtime
         run: |
           npm ci
           npm run build
-        working-directory: runtime
+        working-directory: projects/chirality-runtime
 
       - name: Test shared runtime
         run: npm test
-        working-directory: runtime
+        working-directory: projects/chirality-runtime
 
       - name: Install frontend dependencies
         run: npm ci

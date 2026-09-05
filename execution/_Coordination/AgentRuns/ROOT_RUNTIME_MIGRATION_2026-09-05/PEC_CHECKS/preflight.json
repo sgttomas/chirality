@@ -1,0 +1,47 @@
+[
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "projects/pec/server/package.json",
+      "--operation",
+      "exact-correction-preparation"
+    ],
+    "exit": 0,
+    "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "projects/pec/package-lock.json",
+      "--operation",
+      "exact-correction-preparation"
+    ],
+    "exit": 0,
+    "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python3",
+      "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "--register",
+      "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "--target",
+      "projects/pec",
+      "--operation",
+      "candidate-validation"
+    ],
+    "exit": 0,
+    "stdout": "{\"operation\": \"candidate-validation\", \"status\": \"ALLOW\"}\n",
+    "stderr": ""
+  }
+]

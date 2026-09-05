@@ -1,0 +1,9 @@
+{
+  "projects/chirality-app-dev/frontend/package-lock.json": "89473868c8d28ce14e4256bad4218c6da4c145b2d1420f5fb9e4545799c156d3",
+  "projects/chirality-app-dev/frontend/package.json": "6631309a689a1eab981836f661a101471586999afe939ea3fa280a3fc025ff3c",
+  "projects/chirality-app-dev/frontend/packages/harness-contract/package.json": "9c636c5fb3dca0d548947c526365901e9690d14ffe5e3fd84d675d575c067d34",
+  "projects/chirality-app-dev/frontend/scripts/build-electron.mjs": "e2074b6c2dd67e19ad1c16240213b9d33d49569fd21c08e89c82ae4140003d5f",
+  "projects/chirality-app-dev/frontend/scripts/verify-packaged-dependency-boundary.mjs": "62ff948b80fe2dc45e8c529f07745c3bff768a06afe1ea3a8743af5a33ee7cd1",
+  "projects/chirality-app-dev/frontend/src/__tests__/scripts/verify-packaged-dependency-boundary.test.ts": "c04185065df0d5499923c12651d8548f6f3dd2543557396faaee7dbb8b2f0c32",
+  "projects/chirality-app-dev/frontend/tsconfig.electron.json": "8b8bfb49b7e9361cdbbcd94dbc4df31ccb16f3dda24c37b0859ef48639de23ec"
+}

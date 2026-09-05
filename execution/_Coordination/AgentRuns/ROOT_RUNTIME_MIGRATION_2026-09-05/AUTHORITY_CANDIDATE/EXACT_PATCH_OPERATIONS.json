@@ -1,0 +1,218 @@
+[
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "prospective document control",
+    "Before": "# Product Requirements Document \u2014 Chirality Root (the root product)",
+    "After": "# Product Requirements Document \u2014 Chirality Root (the root product)\n\n> PROSPECTIVE EXACT POST-IMAGE \u2014 NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.",
+    "BeforeSHA256": "7c8323d390d78b20c81894027260f7575c3116455f6428ffac5462bdae4dab81",
+    "AfterSHA256": "85f8631cffa749e8dcf0437e25e050d600016e996d31677dccb9eb85aa132c2d"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "ID-1/ID-1a",
+    "Before": "**ID-1 \u2014 Dual nature. [OWNER_DECLARED]** The root product both **governs the\nproduction of professional knowledge work** and is a **normative,\nself-applying instance of a generative development pattern**: it develops\nitself under the same governance it prescribes. This is the same duality the\nruled genus expresses as \"application environment **and** generative\noperating form\". *(Agent 0 synthesis of in-session owner framing carried\nthrough a context compaction; not warranted verbatim. Owner confirms or\ncorrects at adoption.)*\n\n**ID-1a \u2014 The self-application half is independently accepted. [TRANSCRIBED]**\nD-GOV-21 (RULED 2026-07-25) makes the repository root both the shared\ninstruction root and the working root for development of the root product\n(D-GOV-21 \u00a7Effects item 1; packet \u00a72 item 1; `docs/DIRECTIVE.md` \u00a72.6 as\namended). The owner ruling of record, verbatim from the decision record's\nruling fence:\n\n> I rule APPROVED for O-A against candidate SHA c038c493e871c95871823281b45890ba9404624b\n\nAcceptedCandidateSHA `c038c493e871c95871823281b45890ba9404624b`;\nPublicationSHA `75b7aa6d1fb019846ac76fb775df2fc1652ab8a8`;\nEffectiveSHA `ee42157290618e3f84be0e0b651c041387ad6ee0`. The owner's\n*characterization* of this as a \"generative development pattern\" remains\nOWNER_DECLARED.\n\n",
+    "After": "**PRD \u00a71 ID-1 replacement \u2014 Governance and instruction stewardship.** Chirality Root is the human-governed repository control plane and the steward of shared instructions, tools and governance. Project roots own their product contracts, implementations, delivery scope and product evidence. Root maintains its own instructions through governed change tranches; that responsibility does not require or create a continuing Root product decomposition.\n\n**PRD \u00a71 ID-1a replacement \u2014 Explicit retirement of the product exception.** D-GOV-21's independently accepted Root product working-root exception remains historical and governs temporary custody until the effective transfer and retirement acts. On effective retirement, Root ceases to be an active product working root and root execution/ ceases to be an active product materialization surface. It remains the home of governance coordination and preserved historical product evidence. Separately authorized instruction changes continue under M2/G4; they do not acquire authorization merely from containment or from this declaration.\n\n",
+    "BeforeSHA256": "ee1c1cf91d6a98706990f5d825c0c3a58f67fed0f540a6e1c60413f930803ed0",
+    "AfterSHA256": "0dacd0cf29931a4b04d9f1a75b5550185182d1e6f9228b868214b06335f7b5e8"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "O-2",
+    "Before": "| **O-2** | The product operates through **three layers**, each with a distinct authority boundary: **(a) instruction artifacts** \u2014 agent instruction packages, skills, and governance documents carrying semantic authority contracts, constraining behaviour by declared scope; **(b) deterministic tools** \u2014 computed, repeatable operations producing facts and findings, *never a substitute for semantic judgment*; **(c) the root `runtime/` executable substrate** \u2014 daemon, clients, adapters, sessions, and transport, which executes and carries work but whose **transport never grants project authority** and whose user-data state is operational, not project truth. | TRANSCRIBED \u2014 `AGENTS.md` (Tool row; \u00a7Shared Runtime Doctrine); `docs/DIRECTIVE.md` \u00a77; `docs/CONTRACT.md` \u00a71.13. |",
+    "After": "| **O-2** | Chirality operates through instruction artifacts, deterministic tools and executable runtime. Root owns shared instruction/tool governance; projects/chirality-runtime owns the runtime product. Tools compute findings and never substitute for semantic judgment. Runtime transport executes and carries work but never grants project authority; user-data runtime state remains operational rather than project truth. | PROSPECTIVE \u2014 exact runtime migration successor; inactive until accepted effect |",
+    "BeforeSHA256": "bb03cb52365fa1229a2b54dc21fcbf5765b6a1ba4500cc37efd7c163ade366a1",
+    "AfterSHA256": "03d605083e8e41b8a4743ee80bcb49d3c4275a8760cf79d301423b5831ea10d7"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "O-9",
+    "Before": "| **O-9** | The instruction root is separated from the working root, with **exactly one** governed exception \u2014 the root product's working root is the repository root, and root `execution/` is its execution root, **eligible** for `PKG-*`/`DEL-*` only from an accepted root decomposition derived from an adopted PRD and only while the guards pass. The replacement containment contract (mechanisms M1\u2013M7 and guards G0\u2013G4 with the \u00a75.3 gate ordering) is required and **incorporated by reference** to D-GOV-21 \u00a75. | TRANSCRIBED \u2014 D-GOV-21 \u00a7Effects 1\u20134; packet \u00a75; `docs/DIRECTIVE.md` \u00a72.6; `docs/SPEC.md` \u00a70.2.2, \u00a71; `docs/TYPES.md` \u00a71.4 |",
+    "After": "| **O-9** | Product work executes under its declared project working root. Root governance/instruction work executes only under separately authorized repository change scopes, with M2/G4 on shared instruction surfaces. After effective retirement, the D-GOV-21 Root product materialization exception is closed to new activation. Historical Root product files remain non-selectable evidence, and the runtime project does not inherit an instruction-write exception. | PROSPECTIVE \u2014 exact runtime migration successor; inactive until accepted effect |",
+    "BeforeSHA256": "82f4184b1ee6633c23589d3aa15fdcda6673f88957e9abedebef18c32b0a7532",
+    "AfterSHA256": "a4e45efa33dbd352c13b2d03b432dbacb2be3d081c6dc8ada4b5893e1e6d5b29"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "O-10",
+    "Before": "| **O-10** | The operative product's boundary is exactly the three layers of O-2. **No fourth machine execution substrate is claimed; none of the three operative layers holds or grants project authority, which remains with attributable human acts under the governed record.** This is why an instruction-surface change is a governance act rather than a code change. | CLARIFIED \u2014 interpretation of O-1, O-2 and the D-GOV-21 M2 gate, with K-AUTH-1. |",
+    "After": "| **O-10** | The instruction, tool and runtime layers remain distinct; no fourth machine substrate is claimed and no layer grants project authority. Shared governance responsibility is not runtime product ownership. Root instruction changes remain governance acts with accountable human acceptance. | PROSPECTIVE \u2014 exact runtime migration successor; inactive until accepted effect |",
+    "BeforeSHA256": "9bae59d2d9da618b96e68d96d496122c7b86d15a7444ed665ee52d05482d5d9f",
+    "AfterSHA256": "3b4f1c29a3d44396ec85c10d4d3653e419e43f35e281de6e78593c6b26404b2c"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "O-11",
+    "Before": "| **O-11** | **Continuing Root stewardship of the generic runtime.** Consequential work on generic `runtime/` semantics requires a Root-owned scope carrier and declared write locus; preserves all authority, security, residency, exclusion, and implementation-gate boundaries ruled by D-GOV-20, including the architecture transcribed below; produces versioned-contract, affected-client conformance or migration, and regression evidence proportionate to the change; and returns release disposition to an accountable human. App, PEC, or another client's implementation work does not transfer ownership of generic runtime semantics away from Root. | **PROPOSED \u2014 new in Rev 6; inert until a D-GOV-28 owner ruling.** Supports OBJ-1, OBJ-2, OBJ-4, and OBJ-7. D-GOV-20 is the ruled architectural basis; D-T0-23 is a coordinating Tier-0 counterpart, not incorporated as Root authority. |",
+    "After": "| **O-11** | Continuing stewardship of the generic runtime belongs to projects/chirality-runtime. Consequential runtime semantic work requires its accepted project scope carrier, declared write locus and actual implementation gates. The project owns versioned contracts, affected-client conformance or migration fan-in, regression and release evidence, and returns release disposition to its accountable human. App, PEC or another client's implementation does not transfer runtime ownership to that client. Root retains repository governance and cross-project coordination, not permanent runtime semantic or product-release custody. | PROSPECTIVE \u2014 exact runtime migration successor; inactive until accepted effect |",
+    "BeforeSHA256": "771c2360826015bb357087430bfa1a2d53a8a9af8aa1c0577bf6670a99fd9213",
+    "AfterSHA256": "7f2dc5836c7ffbe622ea42492f654ecbcd57e9660761cb25d9b7718de61cd29c"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "D-7",
+    "Before": "| **D-7** | Root-product development runs through a governed loop with a session-init contract, a deterministic standing-plan pointer, and an append-only receipts log. **Coordination surfaces carry no authority merely because they exist**; on disagreement with a live source, the live source governs and the delta is recorded. | TRANSCRIBED \u2014 `execution/_Coordination/LOOP_INIT.md`; `CURRENT_WORKPLAN.md`; standing workplan \u00a7Authority basis |",
+    "After": "| **D-7** | Root governance runs through its session-init contract, deterministic intent-plan pointer and append-only receipts. Coordination records do not acquire authority from existence. Current owner steers and accepted instruments govern; discrepancies are recorded. The runtime project maintains its own accepted product entry and evidence. | PROSPECTIVE \u2014 exact runtime migration successor; inactive until accepted effect |",
+    "BeforeSHA256": "38084ff658c8ee00afc62837d20453dc99ffbae452296808d1a2c36e958305d0",
+    "AfterSHA256": "a88640f794fa4945ce692385d1db10bc8375e69e943ee40d7bc9ca5756e593fb"
+  },
+  {
+    "Path": "docs/PRD_ROOT.md",
+    "Subject": "runtime architecture ownership/location",
+    "Before": "1. Chirality\u2019s executable agent harness becomes a root-owned `runtime/` workspace with provider-neutral contracts, orchestration, daemon, client, CLI, and safe engine adapters.",
+    "After": "1. Chirality's executable agent harness is the projects/chirality-runtime product workspace with provider-neutral contracts, orchestration, daemon, client, CLI and safe engine adapters. The runtime project owns product semantics, implementation and release evidence; Root owns shared governance and instruction policy. Items 2\u201310 and security, residency, preserved-authority, exclusions and implementation gates remain subject to their existing later accepted amendments; changing the location and owning project supplies no additional capability.",
+    "BeforeSHA256": "e7e3a62462f1c605e2ddd83636ec207e1aafe5ec03690d1f34cfbbf3cf28b6e8",
+    "AfterSHA256": "13dc9fe4dee8a77426abb17040a428ea2fc264fded7a457ffb9eb66366ff498f"
+  },
+  {
+    "Path": "docs/DIRECTIVE.md",
+    "Subject": "prospective document control",
+    "Before": "# DIRECTIVE \u2014 Founding Intent, Scope, and Constraints",
+    "After": "# DIRECTIVE \u2014 Founding Intent, Scope, and Constraints\n\n> PROSPECTIVE EXACT POST-IMAGE \u2014 NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.",
+    "BeforeSHA256": "5ffa05d40b6bc41d15ca2771b39b202d705bb94e1bbdeaa9e7af1d9d2041310a",
+    "AfterSHA256": "d9ba43754ca73bcb482a3bee4e197b4619b770d96aeb7ca5cba0ca8a542b2c90"
+  },
+  {
+    "Path": "docs/DIRECTIVE.md",
+    "Subject": "\u00a71 genus/ownership",
+    "Before": "Chirality Root is the canonical human-governed application environment and generative operating form for governed professional knowledge work. It contains a filesystem-native agent operating system together with the normative basis, developmental machinery, evidence, and human judgment by which that operating system is formed and governed (RD-1 ruled genus, adopted through D-GOV-22). It is maintained as the public canonical instruction and product repository whose root is the **shared instruction surface** \u2014 a release-managed agent operating system (`AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/`; enumeration per `SPEC.md` \u00a70.2.1, D-GOV-26/D-GOV-27) \u2014 that serves separately versioned project and domain **working roots**, explicitly governed in-tree projects, and \u2014 under the D-GOV-21 exception \u2014 the root product's own working root at the repository root. The same instruction surface is also packaged as a desktop harness that runs agents against a user-selected working folder.",
+    "After": "Chirality Root is the canonical human-governed instruction and governance repository for governed professional knowledge work. It maintains the release-managed agent operating system, normative basis, change machinery, evidence and accountable human decisions that serve project and domain working roots. Runtime product ownership belongs to projects/chirality-runtime. Root governance and instruction self-maintenance use separately authorized repository change scopes; historical Root product evidence remains preserved after its active product exception is retired.",
+    "BeforeSHA256": "7e9c49e94fffd093b3bcfa2cb3272a2df9b1a74e2913797f47809dfc013bef5f",
+    "AfterSHA256": "5210a8e5b6f8e0ff661f86c3bc41ae72047a9647f89533cde6c51170abe82521"
+  },
+  {
+    "Path": "docs/DIRECTIVE.md",
+    "Subject": "separation paragraph bcc4a2b3",
+    "Before": "The instruction root (release-managed agent operating system) is physically separated from the working root (user-controlled project state). This ensures that the rules governing agent behavior are stable across projects while execution remains fully filesystem-native. See \u00a72.6. The root product itself is the one governed exception: its working root is the repository root (D-GOV-21).",
+    "After": "Root governance/instruction self-maintenance is a separately authorized repository activity under M2/G4. Product work stays within its declared working root. Explicit in-tree v1 projects may read repository instructions while write containment excludes them; external v2 instruction roots remain physically disjoint. The former Root product exception is historical after accepted retirement and supplies no new activation.",
+    "BeforeSHA256": "bcc4a2b32f63b25e2d3cdd6e705506caa160fe633a76c6f5d84738377402a903",
+    "AfterSHA256": "14dd0ccbfb0904de9e28a71dd6e0e6ddfa6376b779616c43147121f08ce9d830"
+  },
+  {
+    "Path": "docs/DIRECTIVE.md",
+    "Subject": "separation paragraph 4a515e75",
+    "Before": "The system separates the **instruction root** (the release-managed agent operating system) from the **working root** (the project state agents read and write) \u2014 with the single D-GOV-21 exception that the root product's working root is the repository root:",
+    "After": "Root governance/instruction self-maintenance is a separately authorized repository activity under M2/G4. Product work stays within its declared working root. Explicit in-tree v1 projects may read repository instructions while write containment excludes them; external v2 instruction roots remain physically disjoint. The former Root product exception is historical after accepted retirement and supplies no new activation.",
+    "BeforeSHA256": "4a515e75146cb3069f521c7810af23051abd54cfa25707b5ddd35762220e67f0",
+    "AfterSHA256": "14dd0ccbfb0904de9e28a71dd6e0e6ddfa6376b779616c43147121f08ce9d830"
+  },
+  {
+    "Path": "docs/DIRECTIVE.md",
+    "Subject": "separation paragraph 18eb0e93",
+    "Before": "This preserves a single stable agent operating system across many projects and domains while keeping execution fully filesystem-native in user-controlled state. A working root MUST NOT be located inside the instruction root. Exception (D-GOV-21): the repository root is itself the working root for development of the root product, with root `execution/` as its execution root, under the replacement containment contract of D-GOV-21. No other working root may be located inside the instruction root.",
+    "After": "Root governance/instruction self-maintenance is a separately authorized repository activity under M2/G4. Product work stays within its declared working root. Explicit in-tree v1 projects may read repository instructions while write containment excludes them; external v2 instruction roots remain physically disjoint. The former Root product exception is historical after accepted retirement and supplies no new activation.",
+    "BeforeSHA256": "18eb0e93f4d2b0448461610fcd3976c4f60a64163139596b1b57c72acb87a42d",
+    "AfterSHA256": "14dd0ccbfb0904de9e28a71dd6e0e6ddfa6376b779616c43147121f08ce9d830"
+  },
+  {
+    "Path": "docs/DIRECTIVE.md",
+    "Subject": "\u00a72.6 working-root definition",
+    "Before": "- **Working root:** the filesystem location where agents execute and create or update governed state. One instruction root serves **many** separately versioned working repositories, selected project/domain packs, explicitly governed in-tree projects, or user-selected folders under the desktop harness. Under D-GOV-21, the repository root is additionally the working root for the root product itself.",
+    "After": "- **Working root:** the selected project/domain directory in which governed product state is read and written. Explicit in-tree v1 and disjoint external v2 registration retain their own validated containment contracts. Root governance changes use separately authorized scopes, not continuing product materialization.",
+    "BeforeSHA256": "a8255977a6c1cd573ef2df77c6c2d0b8ca4f3d7e99cb8e68c899b8b6dc0d1d73",
+    "AfterSHA256": "fa3647400d751622e1d33ab76b65b648770d1943a3078e1f1d823a93740fbce8"
+  },
+  {
+    "Path": "docs/DIRECTIVE.md",
+    "Subject": "\u00a75 separation row 59cbebd3",
+    "Before": "| Instruction root separate from working root (root product excepted per D-GOV-21) | Agent instructions are release-managed; project data is user-controlled; root-product development excepted per D-GOV-21 |",
+    "After": "| Shared instructions and scoped project execution | Root governs shared instructions through M2/G4; each project owns its product scope; explicit in-tree v1 and disjoint external v2 rules remain distinct |",
+    "BeforeSHA256": "59cbebd3e3beca8fba357ab3629435260d782a76f467517c32896e1e12d82516",
+    "AfterSHA256": "2ca922654bf204dded0c8b6577e2571ebccbd7f53153f3f8e587ee8563c67e5b"
+  },
+  {
+    "Path": "docs/DIRECTIVE.md",
+    "Subject": "\u00a75 separation row e7ffc24c",
+    "Before": "| One shared instruction root serves many working roots | A single release-managed agent OS governs many projects and domains without per-workspace instruction drift; the instruction root additionally serves as the root product's own working root (D-GOV-21) |",
+    "After": "| Shared instructions and scoped project execution | Root governs shared instructions through M2/G4; each project owns its product scope; explicit in-tree v1 and disjoint external v2 rules remain distinct |",
+    "BeforeSHA256": "e7ffc24cc7ead45625a994fa8907a7bdd774b045015a00086aa2058ffebd434e",
+    "AfterSHA256": "2ca922654bf204dded0c8b6577e2571ebccbd7f53153f3f8e587ee8563c67e5b"
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "prospective document control",
+    "Before": "# SPEC \u2014 Physical Structures and Mechanics",
+    "After": "# SPEC \u2014 Physical Structures and Mechanics\n\n> PROSPECTIVE EXACT POST-IMAGE \u2014 NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.",
+    "BeforeSHA256": "6e8bc04b455557e0d1c28b8eb1955bb66c01653416d65340c82566c2a39f8902",
+    "AfterSHA256": "213cda5eb888ec0271d4f4f2a775eb2ea6c0319705015ebe0f26e7283f59b4fe"
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "\u00a70.2 deployment 359e7c57",
+    "Before": "Chirality runs in deployment shapes that share one path model: root-product development in this repository, registered project or domain checkouts, and the desktop harness pointed at a user-selected folder. The instruction root and writable checkout may be the same repository only for explicitly governed in-tree work; external working repositories keep them physically disjoint.",
+    "After": "Chirality supports separately scoped Root governance/instruction changes, explicitly governed in-tree v1 projects, registered external v2 projects/domains and desktop-selected working folders. Root governance is not a continuing product working root after accepted retirement. Instruction reads and write containment follow the chosen deployment dialect.",
+    "BeforeSHA256": "359e7c5785e9f1840d80558e4d4035e09884a97f291ff03597befc94d5889ac5",
+    "AfterSHA256": "dc8c985c3cf94abf139b57e954382eee004e8c6d366e99a2b3cd11f0fefd5e09"
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "\u00a70.2 deployment 94d7b4c5",
+    "Before": "`REPO_ROOT` is the active writable Git checkout. For an external project or domain repository it is that repository, not the Chirality repository supplying instructions. In Chirality root-product development, `REPO_ROOT` is also the instruction root under the D-GOV-21 exception.",
+    "After": "`REPO_ROOT` is the active writable Git checkout. Root governance instruction changes act on the repository only under separate explicit scope/M2 authority. Product WORKING_ROOT remains the selected project directory; external projects use their own checkout with disjoint runtime-declared instructions.",
+    "BeforeSHA256": "94d7b4c571ed4ab2f0ecd84465332a3b77c63c90a63a12b51f10c117de292ab1",
+    "AfterSHA256": "1415a63eaeba23cc701e54048bcc7bac8b8b499b5cdb78d2ac1df784242d7a12"
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "\u00a70.2 deployment 9c3d64e7",
+    "Before": "`WORKING_ROOT` is the project or domain workspace an agent is scoped to \u2014 a selected pack in an external repository, an explicitly governed in-tree project, or the user-selected folder under the desktop harness. It is where governed project truth lives (`{EXECUTION_ROOT}`, tool roots, deliverables, decomposition state). For the root product only, `WORKING_ROOT` is `REPO_ROOT` (D-GOV-21).",
+    "After": "`WORKING_ROOT` is the selected project or domain workspace, explicitly governed in-tree project, or desktop-selected folder. It contains governed product truth and remains subject to ScopePath containment. Historical Root product execution is retained evidence after accepted retirement; Root governance maintenance uses separately authorized repository scopes.",
+    "BeforeSHA256": "9c3d64e7d58914c4c9bbd06423da4ef17950a636c43f0bb49132479903d238fc",
+    "AfterSHA256": "0687353902f6cb9b95f9769eda35bac09fdba448adc18ff7f207a58db814f967"
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "working-root instruction-write prohibition",
+    "Before": "- A working root MUST NOT be the shared instruction surface itself, except that the root product's working root is the repository root under D-GOV-21; agents operating in any working root MUST NOT write to `agents/`, `skills/`, `tools/`, or root `docs/` except through an explicit, separately-authorized repo-wide instruction change (root-product instruction changes obtain that authorization through an independently owner-authorized, human-gated repo-wide change tranche satisfying the D-GOV-21 M2 containment and evidence conditions; the M2 gate does not itself grant authorization).",
+    "After": "- Project writes MUST remain within the selected WORKING_ROOT. Explicit in-tree v1 instruction references may resolve outside it, but never grant instruction writes. External v2 instruction roots MUST be physically disjoint. Root instruction changes require independently owner-authorized M2/G4 tranches; containment itself grants no authority.",
+    "BeforeSHA256": "4613ac85f53cf15f2f82594174c4163339a0bab0bfa3b35fb5af20e43b8d2833",
+    "AfterSHA256": "aa4716632ca3449f84bb203e34ce8a537863c497e8ad880bd13dfc003fd5735b"
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "\u00a70.3 token 5aa1b982",
+    "Before": "| `{INSTRUCTION_ROOT}` | runtime-declared | the shared instruction surface; the Chirality checkout, packaged app resources, or `REPO_ROOT` for root-product development |",
+    "After": "| `{INSTRUCTION_ROOT}` | runtime-declared | the shared instruction surface; the Chirality checkout, packaged app resources, or the separately governed repository instruction root |",
+    "BeforeSHA256": "5aa1b9820a1158cb801514d068d6ef1dcc9dbe64a2f8f1a7a2137a2e9af3cbed",
+    "AfterSHA256": "087fd4343fb2c2d343fac3a6bf2e325d0b8c8a3f4a497a94e6a6f84ff2716e40"
+  },
+  {
+    "Path": "docs/SPEC.md",
+    "Subject": "\u00a70.3 token 549985e5",
+    "Before": "| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the selected project/domain pack or user-selected folder; for the root product only, `REPO_ROOT` (D-GOV-21) |",
+    "After": "| `{WORKING_ROOT}` | `REPO_ROOT`-relative | the selected project/domain pack or user-selected folder; Root governance maintenance is separately scoped and is not project product execution |",
+    "BeforeSHA256": "549985e57d0eaa0903d4a2e7d4f249f007a2b6b3a931a12399f83d95a43e51dc",
+    "AfterSHA256": "05ed021f015196f2170fef252b9c1d19a5c5f201719697af2579d5389c29768d"
+  },
+  {
+    "Path": "docs/TYPES.md",
+    "Subject": "prospective document control",
+    "Before": "# TYPES \u2014 Domain Vocabulary and Hierarchy",
+    "After": "# TYPES \u2014 Domain Vocabulary and Hierarchy\n\n> PROSPECTIVE EXACT POST-IMAGE \u2014 NOT APPLIED. The runtime migration authority contract controls the named successor clauses only after its actual owner acceptance and effective propagation. Prior ratification remains the basis for unaffected requirements; historical product completion/ownership statements are prospectively superseded as specified below. No product gate, release or Root retirement is declared complete by these draft bytes.",
+    "BeforeSHA256": "a10c1c049ae860881c1b822978cd653901e6ba0f5c2b295ecb92627e8886f5b9",
+    "AfterSHA256": "332af2bf840e443b75b4c5d94b0e5a6c818bf611fc4d102d476afae811d4b010"
+  },
+  {
+    "Path": "docs/TYPES.md",
+    "Subject": "\u00a71.4 526200c9",
+    "Before": "| **Instruction Root** (`INSTRUCTION_ROOT`) | The shared, release-managed agent operating system \u2014 `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/` (enumeration per `SPEC.md` \u00a70.2.1, D-GOV-26/D-GOV-27). Runtime-declared through `CHIRALITY_INSTRUCTION_ROOT` for V2 external projects; the app bundle in desktop builds; `= REPO_ROOT` for root-product development (see `DIRECTIVE.md` \u00a72.6). |",
+    "After": "| **Instruction Root** (`INSTRUCTION_ROOT`) | The shared, release-managed agent operating system \u2014 `AGENTS.md`, `CLAUDE.md`, `agents/`, `skills/`, `tools/`, root `docs/`, `init/`, `.github/workflows/` (enumeration per `SPEC.md` \u00a70.2.1, D-GOV-26/D-GOV-27). Runtime-declared through `CHIRALITY_INSTRUCTION_ROOT` for V2 external projects; the app bundle in desktop builds; the separately governed repository instruction root for Root instruction maintenance (see `DIRECTIVE.md` \u00a72.6). |",
+    "BeforeSHA256": "526200c9aaff5220caa0bc4a8e30160e64883f84e76c989e58757e69f8a1e8c3",
+    "AfterSHA256": "d0352735389aee087427a17ba0532ea88182a9bc13135a553fb243d11c1bb7fa"
+  },
+  {
+    "Path": "docs/TYPES.md",
+    "Subject": "\u00a71.4 d489ae15",
+    "Before": "| **Working Root** (`WORKING_ROOT`) | The selected writable project or domain pack within `REPO_ROOT`, an explicitly governed in-tree project, or a user-selected folder under the desktop harness. Where governed project truth lives. One instruction root serves many working roots. For the root product only, the repository root is its own working root (D-GOV-21). |",
+    "After": "| **Working Root** (`WORKING_ROOT`) | The selected writable project or domain pack within `REPO_ROOT`, an explicitly governed in-tree project, or a user-selected folder under the desktop harness. Where governed project truth lives. One instruction root serves many working roots. Root governance maintenance is separately scoped and is not a continuing product working root after accepted retirement. |",
+    "BeforeSHA256": "d489ae15aac13f9b88b937a45b22ffffbda90198c75e256be01f77e98bad248a",
+    "AfterSHA256": "55204635e5424c0379ace439462dcd119a3b844ad2f2a10e4afae0e814e0431f"
+  },
+  {
+    "Path": "docs/TYPES.md",
+    "Subject": "\u00a71.4 c8b8584d",
+    "Before": "| **Execution Root** (`EXECUTION_ROOT`) | The execution-instance root within a working root; contains packages and tool roots. For the root product, `REPO_ROOT/execution` (D-GOV-21). |",
+    "After": "| **Execution Root** (`EXECUTION_ROOT`) | The execution-instance root within a working root; contains packages and tool roots. Root execution/ retains governance coordination and historical product evidence; project execution roots own active product state. |",
+    "BeforeSHA256": "c8b8584de5bb1cdab62e317e5272df4a3a6cd89cb117cdd8591428c0f76e5057",
+    "AfterSHA256": "1cc984fb682cf6e83b8cb2f7e14dae08a4b3faf9b80e71b57f8bbd7849b334df"
+  }
+]

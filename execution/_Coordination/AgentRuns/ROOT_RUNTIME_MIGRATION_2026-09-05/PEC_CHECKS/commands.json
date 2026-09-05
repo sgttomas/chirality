@@ -1,0 +1,27 @@
+[
+  {
+    "command": "npm install --package-lock-only --ignore-scripts --offline --no-audit --no-fund",
+    "exit": 0
+  },
+  {
+    "command": "npm ci --offline --no-audit --no-fund",
+    "exit": 0
+  },
+  {
+    "command": "npm run typecheck",
+    "exit": 0
+  },
+  {
+    "command": "npm run build",
+    "exit": 0
+  },
+  {
+    "command": "npm test (approved escalation for local test sockets)",
+    "exit": 0
+  },
+  {
+    "command": "npm test (sandboxed)",
+    "exit": 130,
+    "outcome": "Local listen EPERM, then interrupted stalled runner; superseded by successful permitted rerun."
+  }
+]
