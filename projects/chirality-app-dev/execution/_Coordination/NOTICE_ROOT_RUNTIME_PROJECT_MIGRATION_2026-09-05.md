@@ -9,3 +9,7 @@ This notice routes coordination, not authority. Technical candidate and formal s
 Evidence and remaining transfer candidates: execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_2026-09-05/. Receiving loop may cite this notice and its scoped child return when the migration lands; follow-on acceptance remains with that loop’s instruments. If source paths change, rerun dependent checks. Rollback restores the tracked source move, consumer paths and CI together; there is no database conversion.
 
 Prepared by /root HELP_HUMAN, OpenAI GPT-6, exact serving model ID unavailable; Agent 0 role not mechanically enforced.
+
+## Export follow-on found by CI
+
+The public exporter also consumed the old source directory. This corrective iteration maps only runtime software into the existing public runtime/ layout, excluding new project governance. Focused tests and independent review pass. Evidence: execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_EXPORT_REPAIR_2026-09-05/ at repository root. App registered premerge passed on df7d623; new HEAD requires its own CI. No public release is performed.

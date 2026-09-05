@@ -1,0 +1,3 @@
+# Sealed export repair review brief
+
+Parent /root HELP_HUMAN dispatches /root/runtime_workspace_move as ephemeral Agent 2 for read-only review of the frozen current exporter, public-export regression test and G4-manifest diff following governance CI failure on df7d623. Objective: detect relocation bugs or public-boundary regressions. Read current diff, full exporter/test context and migration source map. Write only this brief and REVIEW.md in this new run; do not alter the sealed original migration run. No source edits, tests, Git operations, delegation, authority or publication acts. Return specific findings or scoped PASS. Native delegation and role are instruction-asserted, not mechanically enforced; OpenAI GPT-6, exact serving model ID unavailable.

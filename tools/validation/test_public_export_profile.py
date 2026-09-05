@@ -44,6 +44,18 @@ def test_public_export_excludes_private_runtime_surfaces(tmp_path: Path) -> None
     for marker in exporter.PUBLIC_README_FORBIDDEN_MARKERS:
         assert marker.casefold() not in public_readme.casefold()
 
+    # The private project's governance scaffold must not enter the public
+    # runtime workspace, and an ignored old runtime/ cannot mask an empty export.
+    assert (stage / "runtime/package.json").read_bytes() == (
+        REPO_ROOT / "projects/chirality-runtime/package.json"
+    ).read_bytes()
+    assert (stage / "runtime/packages/core/src/runtime-service.ts").is_file()
+    assert not (stage / "runtime/chirality.project.json").exists()
+    assert not (stage / "runtime/AGENTS.md").exists()
+    assert not (stage / "runtime/execution").exists()
+    assert not (stage / "runtime/loop").exists()
+    assert not (stage / "runtime/docs").exists()
+
     assert exporter.boundary_findings(stage) == []
 
 
