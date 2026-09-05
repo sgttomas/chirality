@@ -141,12 +141,15 @@ Rules the output does not show you:
 
 A `Remaining` item (deliverable `_STATUS.md`, §2) is selectable when it
 carries no `(gated: ...)`, `(stage-gated: ...)`, or `NOT_SELECTABLE_UNTIL:`
-marker, or its named gate or act is observable on `main` (`origin/main`
-after `git fetch`: a ruling record, a routed Root notice, or a merged act).
-Blockedness beyond gates is re-derived from the item's own `Depends` line,
-the deliverable's `Dependencies.csv` / `_DEPENDENCIES.md` (each `ACTIVE`
-row gates per its `SatisfactionStatus`), and the accepted DepClosure
-snapshot (§2), never from a hand-maintained summary. Precedence: (a) repair
+marker, or its named gate or act is observable. Owner acts, rulings, and
+routed Root notices are observable only on `origin/main` (after
+`git fetch`). A predecessor item is observable once its commit, checks, and
+run record are on the run's branch (Step 4), so a chain of dependent items
+proceeds within one run without a merge between links. Blockedness beyond
+gates is re-derived from the item's own `Depends` line, the deliverable's
+`Dependencies.csv` / `_DEPENDENCIES.md` (each `ACTIVE` row gates per its
+`SatisfactionStatus`), and the accepted DepClosure snapshot (§2), never from
+a hand-maintained summary. Precedence: (a) repair
 failing validation on landed work; (b) work that discharges a gate
 prerequisite; (c) owner-directed over agent-inferred; (d) the plan's focus
 and order; (e) the highest-value ungated item. Apply CONTRACT **K-ENGINE-6**
@@ -179,9 +182,14 @@ Record every gate outcome, including no-ops and their reason.
 
 ### Step 4 — Execute and check
 
-Branch-first plus PR; never self-merge; one branch, one PR, one receipt,
-owner merge per iteration (a tranche may carry several independent nodes
-under one recorded work graph, `AGENTS.md`); write scope stays inside
+One branch per run, cut from `origin/main`. Iterate Steps 0 to 5 on it:
+one commit and one receipt per iteration, the branch pushed after every
+closeout. Within an iteration, independent nodes run concurrently under one
+recorded work graph with disjoint write loci (`AGENTS.md`); dependent nodes
+run in later iterations of the same run. Open one PR when the run reaches
+terminus (§7) or when the next lawful step needs a merged act; never
+self-merge; the owner merges or rejects by commit, and a rejected commit's
+item returns to Step 0 on the next run. Write scope stays inside
 `projects/chirality-app-dev/**` unless the owner grants wider scope. An
 adopted-but-unexecuted brief is live authority. Run the checks for the work
 type (§8) and, for evidence items, meet the §9 bar. The independent-review
@@ -194,15 +202,18 @@ Write deliverable-local state: `_STATUS.md` (`Remaining` updated to what
 landed and what remains; lifecycle transitions only through ruled gates;
 `**Checking Approval SHA**` discipline intact), `MEMORY.md`,
 `_run_records/**`; landed narrative goes to `plans/PLAN_COMPLETION_LOG.md`.
-Append one receipt to `LOOP_RECEIPTS.md` per its rules and rerun the receipt
-validator before commit. The next iteration starts at Step 0.
+Append one receipt to `LOOP_RECEIPTS.md` per its rules (the run's first
+receipt names the base commit; each later one chains to the previous) and
+rerun the receipt validator before commit. Commit, push, and start the next
+iteration at Step 0 on the same branch.
 
 ## 6. First return from Step 0
 
-Your first substantive output is a live orientation return, not a recap of
-this file: the git state and newest applicable receipt; the owner directions
-and register gates that matter now; the plan's focus, if any; the widest
-lawful tranche(s) open; any parked lane and the owner act that unparks it.
+Your first substantive output in a run is a live orientation return, not a
+recap of this file: the git state and newest applicable receipt; the owner
+directions and register gates that matter now; the plan's focus, if any;
+the widest lawful tranche(s) open; any parked lane and the owner act that
+unparks it.
 If the loop is parked pending owner direction, stop there.
 
 ## 7. Default posture (a per-run steer may override; the gate may not)
@@ -210,7 +221,9 @@ If the loop is parked pending owner direction, stop there.
 - Select the widest lawful tranche(s), re-derived each iteration; execute
   independent nodes concurrently; a failed check is a repair loop, not a
   terminal state; each ordinary iteration reduces at least one accepted
-  deliverable obligation. Pressure never weakens a gate, evidence bar, fence,
+  deliverable obligation. Continue iterating on the run's branch until
+  every lawful path of advancement is exhausted except human decision; only
+  then open the PR. Pressure never weakens a gate, evidence bar, fence,
   ownership boundary, or write locus (Root R17-E as carried by A12).
 - When only owner decisions remain, present a slate and stop; never
   manufacture lower-value work to stay busy.

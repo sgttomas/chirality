@@ -1,4 +1,4 @@
-# D-APP-112 — `loop/LOOP_INIT.md` consolidation: keep what the agent cannot discover, point to the rest
+# D-APP-112 — `loop/LOOP_INIT.md` consolidation (item A) and run-based PR boundary (item B)
 
 Status: `PROPOSAL — AWAITING_RULING`
 
@@ -13,10 +13,12 @@ Owning loop: `Chirality App Dev`
 Candidate: branch `claude/loop-init-consolidation-d-app-112` from `origin/main`
 `7cb41194f55d7747f6c388e6afbedf88cfd1d9f4`; the candidate bytes are applied
 to `loop/LOOP_INIT.md` on the branch (SHA-256
-`8a7d680eefaea74eb0fd89bdaedc533ab7455dcd89c0261af570a72cb4b7cd4b`, 251
-lines, 14,926 bytes; the ruled D-APP-105 text is 386 lines, 23,838 bytes).
-The owner rules by reply; on acceptance the register row flips to `RULED`
-with a one-line ruling record on the same PR before merge.
+`3a6c0713d3d501f25e23760e1f7cb4335e5d5db902eae7f5ad97b4221ee55979`, 264
+lines, 15,758 bytes; the ruled D-APP-105 text is 386 lines, 23,838 bytes).
+Two separately rulable items: **A**, the consolidation and ordering; **B**,
+the run-based PR boundary (below). The owner rules by reply; on acceptance
+the register row flips to `RULED` with a one-line ruling record on the same
+PR before merge.
 
 ## Owner direction (verbatim, chat, 2026-09-05)
 
@@ -89,6 +91,68 @@ Each clause of the D-APP-105 text was assigned exactly one disposition:
 | 34 | §10 per-run steer; "LOOP_INIT §7 defaults" mapping | D-APP-61 M4-A | — | — | KEEP in substance; the mapping sentence generalized to cover the D-APP-105 numbering as well |
 | 35 | Appendix provenance | D-APP-105 | — | the register holds provenance; this table records it for the rewrite | DROP |
 
+## Item B — run-based PR boundary (amends the A12 "one branch, one PR, one receipt" rule)
+
+Owner direction (verbatim, chat, 2026-09-05), after the dry run showed the
+operator deciding on its own whether independent nodes ride one PR:
+
+<!-- BEGIN OWNER DIRECTION VERBATIM -->
+I read its response too.  I see that it made a decision about PRs and Nodes (and bundling or stacking work).  I do indeed want to maximize concurrency and persistence in work, before having to get the human to approve PR merger.  There's many pitfalls in this, but I've tried to put the scaffolding in place to make this possible.  How did you approach this in the LOOP_INIT?
+<!-- END OWNER DIRECTION VERBATIM -->
+
+<!-- BEGIN OWNER DIRECTION VERBATIM -->
+Conceptually (and I haven't mentioned where this breaks and why) I want to give the agent freedom to continue acting and working as far as the scaffolding and instructions permit, before stopping and opening a PR.  Considering that all work will be orchestrated by an Agent 0 instance, what do you recommend doing in this matter?
+<!-- END OWNER DIRECTION VERBATIM -->
+
+HELP_HUMAN recommended making the PR boundary the terminus rather than the
+iteration, with a gate-class split so dependency chains proceed within a
+run. The owner replied:
+
+<!-- BEGIN OWNER DIRECTION VERBATIM -->
+I agree.  Revise accordingly.  Include in PR #717.
+<!-- END OWNER DIRECTION VERBATIM -->
+
+### Rule as written in the candidate
+
+- **Step 4.** One branch per run, cut from `origin/main`; Steps 0 to 5
+  iterate on it with one commit and one receipt per iteration and a push
+  after every closeout. Independent nodes run concurrently within an
+  iteration under one work graph with disjoint write loci; dependent nodes
+  run in later iterations of the same run. One PR opens at terminus (§7) or
+  when the next lawful step needs a merged act. Never self-merge; the owner
+  merges or rejects by commit; a rejected commit's item returns to Step 0 on
+  the next run.
+- **Step 1.** Owner acts, rulings, and routed Root notices are observable
+  only on `origin/main`. A predecessor item is observable once its commit,
+  checks, and run record are on the run's branch.
+- **Step 5.** The run's first receipt names the base commit; each later
+  receipt chains to the previous; commit, push, and start the next iteration
+  at Step 0 on the same branch.
+- **§7.** Continue iterating on the run's branch until every lawful path of
+  advancement is exhausted except human decision; only then open the PR
+  (restores the D-APP-105 sentence item A had cut).
+
+### Why this shape
+
+Agent 0 is the sole author of receipts, register rows, and `_STATUS.md`
+state on the run's branch, so the three append-only surfaces that would
+conflict across parallel branches stay linear. Concurrency lives inside the
+iteration, where the work graph, sealed briefs, disjoint write loci, and
+APP-HOLD-1 preflight already govern it. Persistence lives across iterations
+on one branch, which the gate-class split makes possible for dependency
+chains. One commit and one receipt per iteration keep the PR reviewable and
+rejectable by commit. The independent-review path for product source runs
+per iteration before its commit, so review stays fresh and small however
+long the run.
+
+### What it does not change
+
+Owner merge remains the only path to `main`; no self-merge; fences, checks,
+and the APP-HOLD-1 preflight are unchanged; owner acts still count only on
+`origin/main`. The receipt validator needs no change for a linear chain on
+one branch; a run whose PR is rejected starts its next run from
+`origin/main` with the rejected items back at Step 0.
+
 ## Ordering (second cut)
 
 The first cut kept the D-APP-105 order. Read top-down, that order named the
@@ -128,7 +192,7 @@ fourteen frictions; dispositions:
 | 2 | The file at `HEAD` is itself an unruled candidate | dry-run artifact; no change |
 | 3 | APP-HOLD-1 `--entry-path` vocabulary undocumented | `AGENTS.md` residual, outside this file |
 | 4 | Blockedness re-derivation had no method | FIXED: Step 1 names the item's `Depends` line, `ACTIVE` rows gating per `SatisfactionStatus`, and the snapshot |
-| 5 | One PR per iteration versus concurrent independent nodes | FIXED: Step 4 says a tranche may carry several independent nodes under one work graph |
+| 5 | One PR per iteration versus concurrent independent nodes | FIXED, then superseded by item B: one branch per run, one PR at terminus |
 | 6 | Whether "observable on `main`" permits a fetch | FIXED: Step 1 says `origin/main` after `git fetch` |
 | 7 | D-APP-60 / D-APP-64 cited by ID with no path | FIXED: §2 names both packet files |
 | 8 | Legacy prose markers in some `Remaining` items ("packet authorized; awaiting ruling") | item-text residual, outside this file |
