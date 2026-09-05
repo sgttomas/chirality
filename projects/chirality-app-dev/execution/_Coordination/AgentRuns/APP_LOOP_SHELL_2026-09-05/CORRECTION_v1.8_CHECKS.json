@@ -1,0 +1,36 @@
+{
+  "completed_prior_evidence_bindings": [
+    {
+      "path": "validation/final-01/commands.json",
+      "sha256": "f80750633c0afc805fac559c6a559ce0c417e769ff8e21677f2312e7e18d3feb"
+    },
+    {
+      "path": "validation/record-selfcheck-02/command.json",
+      "sha256": "30bf0d213ec3361013d4fe953893a73f2f924079264624ebe5cc23266463f287"
+    }
+  ],
+  "correction_checks": [
+    {
+      "argv": [
+        "python3",
+        "tools/validation/validate_app_dev_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "exit_code": 0,
+      "stdout": "VALID /Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "final_governed_review": "PENDING"
+}

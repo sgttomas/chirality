@@ -2,7 +2,7 @@
 
 **Current State:** IN_PROGRESS
 **P06 Record:** 2026-07-12 — D-APP-56 R4-P06 authority/kit transcription applied; state remains IN_PROGRESS; generic concordance Remaining stays open for R6.
-**Last Updated:** 2026-09-04
+**Last Updated:** 2026-09-05
 **Authorization Basis:** D-APP-19 Option D ruling 2026-06-20; owner-approved SHA 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec recorded 2026-06-20
 **Directive:** owner inspection-phase directive 2026-06-20
 **Checking Approval SHA:** 8c6d55d3e8b07d8d3c8d98c510cf6672766d7bec
@@ -40,6 +40,7 @@ instrument against that changed package identity.
   Removed when: live presentation lands under G4 evidence.
 
 - **DEL-02-02-V3-03** (`SELECTABLE`) — retire Workbench and Pipeline from the woven route and make the primary dialogue invariant (T1).
+  Implementation status (2026-09-05): implemented and validated on the run branch in `APP_LOOP_SHELL_2026-09-05` (12-file source freeze, fresh review PASS, focused 29 tests PASS, revised D-APP-36 browser/render PASS). No product residual is known for this T1 slice. Item and its removal condition remain until owner merge; local premerge failed in the documented absent-daemon-bindings class and requires PR CI, not a local PASS claim. See `_run_records/TASK_RUN_2026-09-05_T1_SHELL_RETIREMENT.md`.
   Trace: OUT-001, AC-001, VER-001; applied decomposition row L308 (Workbench and Pipeline retired from the active shell with code, routes, and tests retained; the Work projection unmounted until an explicitly recorded plan/task source exists); SOW-001 L171 (the centre dialogue is never hidden, unmounted, or replaced; retired routes reachable but unmounted); SOW-007 L177 (presentation half retired by owner ruling, DEL-08-03 remains semantic owner); DEC-025 L634.
   Plan: T1; SR-01, SR-06, SR-08; Q3 ruled D-APP-108 (the retired `/workbench` and `/pipeline` routes stay reachable by URL and unlisted; no 404). Design basis `plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md` (SHA-256 `e25fbe82f675e9f282803599a497ab24c6aab3f763b1e7f6db97042fed1117bb`), cited only for what the tranche means when complete, never as a queue; status from current `main`.
   Depends: none (first tranche); DEL-08-03 dispatch semantics are consumed by nothing in the active shell and are not touched; no Root dependency.
@@ -57,6 +58,7 @@ instrument against that changed package identity.
   Removed when: merged with review PASS; live `proposal.*` consumption remains DEL-05-02-V3-02.
 
 ## History
+- 2026-09-05 - DEL-02-02-V3-03 T1 implemented on the run branch: primary dialogue stays visible and mounted, replay is in interim Session panel, Work/Workbench/Pipeline mounts retired, legacy URLs retained. Initial browser review found narrow metadata wrapping; scoped repair and fresh full review passed, then revised browser proof passed. Remaining item retained pending owner merge; Current State and Checking Approval SHA unchanged. See `_run_records/TASK_RUN_2026-09-05_T1_SHELL_RETIREMENT.md`.
 - 2026-09-05 - D-APP-109 (owner direction 2026-09-05): dependency register re-extracted against the applied decomposition row L308 with the held edge proposals emitted as cycle-participating, non-gating rows (run `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/`); `_CONTEXT.md` Traceability, Anticipated Artifacts, and Source Authority aligned to the applied row. No Remaining, lifecycle, Checking Approval SHA, product, or release change.
 - 2026-09-04 - SCA-APP-010 shell-redesign seating (D-APP-108; owner adopted the seating list as presented): Remaining items seeded DEL-02-02-V3-03, DEL-02-02-V3-04 (SELECTABLE: DEL-02-02-V3-03) with gate, dependency, write-locus, check, and return contracts; ruled questions cited by item. `ScopeOfWork.md` re-pinned to the applied decomposition at `dbd812a52d5ed0cb3ed173f3aaaa68703a914291` with a SCA-APP-010 Gate-5 Current Contract section; `_CONTEXT.md` and `_REFERENCES.md` aligned (WI-006, WI-007, WI-008, WI-009, WI-010). Display name is now `Right-Panel Coordination, Workflows, and Proposal UX`; existing DEL-02-02-V3-01 and V3-02 are read under the applied row (the Who is working view) without text change. Run evidence `execution/_Coordination/AgentRuns/APP_SCA_APP_010_SEATING_2026-09-04/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.
 - 2026-09-03 - v3.0.0-rc.1 pathway seating (A12; App counterpart of Root R17): `ScopeOfWork.md` re-pinned to the applied decomposition at `d6f6cadb2be0c6e2e9c5ba331a553a54c60a8a0f`; v3 Remaining items seeded (2, of which 0 SELECTABLE) with dependency, gate, write-locus, check, and return contracts; run evidence `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/`. No implementation, lifecycle, dependency-acceptance, release, or Root act; Current State, Checking Approval SHA, and lifecycle are unchanged.

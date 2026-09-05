@@ -1,0 +1,86 @@
+{
+  "schema": "pkg02-work-graph/v1",
+  "posture": "MIXED",
+  "selection_authority": "Parent accepted graph/source fence; D-APP-64 standing selection COMMIT-SAFE before implementation",
+  "materialization": "Explicit graph summary written at closeout from parent-approved graph and sealed author/reviewer briefs. Those briefs existed before the actual author/reviewer dispatches; no claim this summary file predated execution.",
+  "nodes": [
+    {
+      "id": "author",
+      "role": "TASK+software-bounded-implementation",
+      "write_owner": "Five original component paths and woven tests per AUTHOR_BRIEF; revision2 adds replay lens per v1.2",
+      "outputs": "author evidence and frozen source"
+    },
+    {
+      "id": "reviewer",
+      "role": "fresh TASK+software-code-review",
+      "write_owner": "none",
+      "outputs": "runtime return persisted by manager, v1 sourcePASS"
+    },
+    {
+      "id": "browser1",
+      "role": "WORKING_ITEMS deterministic/browser review",
+      "write_owner": "browser evidence subtree",
+      "outputs": "attempt3FAIL"
+    },
+    {
+      "id": "author-repair",
+      "role": "same TASK author, versioned brief",
+      "write_owner": "explicit v1.2 fence",
+      "outputs": "revision2source"
+    },
+    {
+      "id": "reviewer2",
+      "role": "fresh TASK+software-code-review",
+      "write_owner": "none",
+      "outputs": "runtime return persisted by manager,v2sourcePASS"
+    },
+    {
+      "id": "browser2",
+      "role": "WORKING_ITEMS deterministic/browser review",
+      "write_owner": "browser evidence subtree",
+      "outputs": "attempt4PASS,visualreview"
+    },
+    {
+      "id": "fanin",
+      "role": "WORKING_ITEMS",
+      "write_owner": "pkg02 records and selectedDEL02-02localstate",
+      "outputs": "MANAGER_RETURN,HANDOFF_STATE"
+    }
+  ],
+  "edges": [
+    [
+      "author",
+      "reviewer"
+    ],
+    [
+      "author",
+      "browser1"
+    ],
+    [
+      "browser1",
+      "author-repair"
+    ],
+    [
+      "author-repair",
+      "reviewer2"
+    ],
+    [
+      "author-repair",
+      "browser2"
+    ],
+    [
+      "reviewer2",
+      "fanin"
+    ],
+    [
+      "browser2",
+      "fanin"
+    ]
+  ],
+  "external_edges": [
+    "Both browser nodes wait for parent serialized build/server slot",
+    "Final closeout waits parent shared/gov/receipt/Git checks"
+  ],
+  "concurrency": "PKG07 disjoint author work concurrent; reviewers read-only concurrent with parent checks; source writes and parent final gates serialized",
+  "escalation": "Scope or semantic change -> parent; visualfailure -> controlled repair/refreeze/re-review; authorityfence -> owner; sandboxdenial -> exact-commandescalation"
+}

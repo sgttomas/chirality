@@ -7074,3 +7074,12 @@
   - Checks: receipt validator pass after this receipt; repo-wide self-check exit 0; candidate whitespace pass; `git diff --check` clean; changed-path scope exactly the ruling record, the register row, and this ledger; no product source changed so frontend and runtime gates skipped.
   - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; no child dispatched for this act.
   - Gate-Outcome: `EXECUTED` — record-only act on the owner's direction; merge confers record currency only.
+- **2026-09-05 — Receipt 245** (iteration 1; scoped outputs recorded on branch).
+  - Receipt-ID: `Receipt-245`
+  - Examined-Through: `044a009e215e08b69c9e0887da424938a34aafcb`
+  - Parent-Receipt: `Receipt-244`
+  - Stale-Map-Delta: DEL-08-02 parity trigger is retired by `OWNER_RULING_2026-08-21_APP_PARKED_DECISION_SLATE.md` §2; `_COORDINATION.md` retired-overlay guidance yields to `loop/LOOP_INIT.md`; see run `STALE_MAP_CANDIDATES.md`.
+  - Pointers: branch `codex/app-loop-shell-20260905`, run base `044a009e215e08b69c9e0887da424938a34aafcb`; no committed plan, deliverables alone; `execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/HANDOFF_STATE.md`, `WORK_GRAPH.json`, and amendments; D-APP-116, D-APP-117, D-APP-118, D-APP-119 proposal packets and register rows; selected carriers' local run records.
+  - Checks: source reviews, browser and typecheck/test/build/basic checks pass as bound in run evidence; wrapper/premerge FAIL from missing local daemon-client bindings, configured CI owed under project AGENTS, not PASS; final governed review PENDING; after reviewed commit/push dispatch existing isolated-daemon workflow on branch without PR, then rederive successors from actual CI result and branch checks. A1: frontend mutation invalidates staged login-proof procedure; future proof requires newly staged revision and fresh owner-executed proof.
+  - Model-Attribution: OpenAI GPT-6 per parent system; exact serving model ID unavailable; delegated-harness-native HELP_HUMAN and bounded children, role not mechanically enforced/instruction-asserted; see run attribution.
+  - Gate-Outcome: `EXECUTED` — initial lawful scope selected under D-APP-60 and D-APP-64; five bounded obligations recorded on branch await final shared review and Git closeout; org-layer scope question D-APP-119 awaits owner; proposal rulings and Root/live/release acts remain gated; branch CI handoff is not a pass, waiver or merge requirement.

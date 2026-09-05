@@ -1,0 +1,21 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/governed-workflow.test.ts",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/governed-workflow.test.ts",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/FROZEN_HASHES.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/typecheck.stdout.txt",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/focused.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/focused.stdout.txt",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/typecheck.stderr.txt",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/typecheck.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/focused.stderr.txt",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/RETURN_REPAIR03.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/_run_records/TASK_RUN_2026-09-05_repair03.md"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

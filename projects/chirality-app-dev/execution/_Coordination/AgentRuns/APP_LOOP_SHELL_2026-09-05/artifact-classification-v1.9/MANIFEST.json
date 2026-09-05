@@ -1,0 +1,196 @@
+{
+  "canonical_raw_unchanged": true,
+  "canonical_preimages": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-build-confirm.stdout.log",
+      "sha256": "121362c22d1e2b896902939fa5073ffb4cd1b57d8ab0b3edcc8588febc8d6285",
+      "bytes": 54,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-focused-test.stdout.log",
+      "sha256": "73d533a1baa0725459e9e06d7cd5d8737826be5f19272ac18f84624d13849bd0",
+      "bytes": 402,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-typecheck.stdout.log",
+      "sha256": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00",
+      "bytes": 73,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "sha256": "5e1bcd180c5826c868f1cb02ff794582b9d4369c52aff49a38849e4a2f44a99b",
+      "bytes": 54941,
+      "observed_classes": [
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "sha256": "111053aec7657de9c0dc4c6c13c212b6143a973c08370a65a4bf5b36ea7073a3",
+      "bytes": 56763,
+      "observed_classes": [
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log",
+      "sha256": "3a7244f52ef297dc426592524780a505f87277eedaf1c2c619c829fab3cce28b",
+      "bytes": 2078,
+      "observed_classes": [
+        "blank-at-eof",
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_2.log",
+      "sha256": "e9c731bd75f8f0985431d5595feac1952b0fcf705acc8bfb453bfa9799f912a0",
+      "bytes": 265,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_3.log",
+      "sha256": "f558ef7702a9f12d35fa08f77e1f52eba693622705b5c5a6196f5921ee15f94b",
+      "bytes": 265,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_revision2.log",
+      "sha256": "19b926de9c350360719f534a3b9229f3d05ef3e5f17f5a2da7fec1e024a50975",
+      "bytes": 266,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg03_packet/focused_test/stdout.log",
+      "sha256": "854b44b1b441bcdcfa69c597afc78ee5a601af1db49e2d29eaf4e759e9aa0d22",
+      "bytes": 364,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/focused.stdout.txt",
+      "sha256": "e370451e1ab2c49ba708add9e4b48607133ced5c4daa189d0159f6c259bb3989",
+      "bytes": 263,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/typecheck.stdout.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "bytes": 136,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log",
+      "sha256": "25a0b0506b54cc64b0f443145eb779d84e5e46c54c1306f88ed0152013422325",
+      "bytes": 2922,
+      "observed_classes": [
+        "blank-at-eof",
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log",
+      "sha256": "6d7e68628671f0a7c790cc3a2534bc62eb4bdcec7f4af53bfbddda442eab6be9",
+      "bytes": 2924,
+      "observed_classes": [
+        "blank-at-eof",
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/artifacts/release-quality/latest/logs/full_test.stderr.log",
+      "sha256": "112d5cec40ca20e4dbbdd4761c618c1a9b4f79610d8f535c8a344c747daa81d5",
+      "bytes": 4917,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/artifacts/release-quality/latest/logs/full_test.stdout.log",
+      "sha256": "3fc70905eae37a77373cec6d8b28cc3e30f0b1bc2921c7f081cc763fb2e02e80",
+      "bytes": 36248,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/release-quality.stderr.log",
+      "sha256": "112d5cec40ca20e4dbbdd4761c618c1a9b4f79610d8f535c8a344c747daa81d5",
+      "bytes": 4917,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/full_test.stderr.log",
+      "sha256": "6a88d83cfc968383a2832638bae1857d49c2204a506c829d88961bfb58a941e1",
+      "bytes": 328,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/full_test.stdout.log",
+      "sha256": "ee3b68572e87366f34f287b385c33d6e5924c676ba97d2700d204ab5dfe52310",
+      "bytes": 34683,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/typecheck.stdout.log",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "bytes": 136,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/release-quality.stderr.log",
+      "sha256": "6a88d83cfc968383a2832638bae1857d49c2204a506c829d88961bfb58a941e1",
+      "bytes": 328,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    }
+  ],
+  "new_files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/.gitattributes",
+      "sha256": "e82a8cb6615bd36e54f3ec915882127cfbc1be422378e012acc35704b9397979",
+      "bytes": 1917
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/AMENDMENT_v1.9.md",
+      "sha256": "ebe30e563c5956b42f8aa6c9923fc10d141e2e1d62b8e7fae2edf95b502de73d",
+      "bytes": 2781
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/artifact-classification-v1.9/BEFORE_EFFECT.json",
+      "sha256": "b8f35bc0300dadfd294d4cedde8fd5d909ecc58b6e55b4ee15698c432d40875a",
+      "bytes": 47228
+    }
+  ],
+  "staging": "CHANGE only; pending",
+  "full_cached_check_after_staging": "PENDING",
+  "independent_delta_review": "PENDING"
+}

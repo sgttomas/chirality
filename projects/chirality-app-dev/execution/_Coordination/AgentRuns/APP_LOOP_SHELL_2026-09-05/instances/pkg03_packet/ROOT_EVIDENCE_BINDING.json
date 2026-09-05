@@ -1,0 +1,47 @@
+{
+  "source_recheck": "PASS",
+  "source_count": 79,
+  "scope": "exact-source scratch runtime, not original Root execution or accepted supply",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/RUNTIME_CHECKS.json",
+      "sha256": "4caaec2508124b6510d9d78ddda41e4f1cb73808ec0bf02bf388a30e2f11e6d9"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/RUNTIME_SOURCE_RECHECK.json",
+      "sha256": "46d8d377b8df38ce1cf4cbf397b95788608e4a53fcd530b0a147ccbac2aeb4bc"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/INSTALL_RESULT.json",
+      "sha256": "b9062e66530e3f4df1092bbfd6cb7191d517f10c401bdbc4b51974765b49bfc4"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/MANIFEST.sha256",
+      "sha256": "5cfaddc8efc99ba3b17f6f5bafa726abf6224b50111238c6229f8c417cc43a0a"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-build-confirm.stdout.log",
+      "sha256": "121362c22d1e2b896902939fa5073ffb4cd1b57d8ab0b3edcc8588febc8d6285"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-build-confirm.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-typecheck.stdout.log",
+      "sha256": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-typecheck.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-focused-test.stdout.log",
+      "sha256": "73d533a1baa0725459e9e06d7cd5d8737826be5f19272ac18f84624d13849bd0"
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-focused-test.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

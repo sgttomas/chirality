@@ -18,8 +18,8 @@ describe('Woven Dialogue view controls', () => {
   it('uses ordinary pressed buttons rather than incomplete ARIA tab widgets', () => {
     const coordination = renderToStaticMarkup(
       <CoordinationPanel
-        activeView="work"
-        workItems={[]}
+        activeView="session"
+        replaySlot={<div>Selected replay</div>}
         hierarchy={{
           roots: [],
           detached: [],
@@ -40,6 +40,10 @@ describe('Woven Dialogue view controls', () => {
     );
 
     expect(coordination).toContain('aria-pressed="true"');
+    expect(coordination).toContain('Session</button>');
+    expect(coordination).toContain('Agents</button>');
+    expect(coordination).toContain('Selected replay');
+    expect(coordination).not.toContain('Work</button>');
     expect(activity).toContain('aria-pressed="true"');
     expect(coordination).not.toContain('role="tab"');
     expect(activity).not.toContain('role="tab"');

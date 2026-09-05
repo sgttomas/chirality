@@ -1,0 +1,10 @@
+{
+  "AGENTS.md": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3",
+  "projects/chirality-app-dev/AGENTS.md": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+  "projects/chirality-app-dev/docs/BUILD_AND_RELEASE.md": "903c96dbd72ebc3982c6886c831dd0754c461c9454dbebb119d1af931b39ba0c",
+  "projects/chirality-app-dev/docs/RELEASE_QUALITY_RUNBOOK.md": "1fdcf61fdb71f4b692ed0d5ddcf68a42e8e5dd0453fe9a5030128ef30f9a185c",
+  "projects/chirality-app-dev/docs/VALIDATION_STRATEGY.md": "37b6d1da8af4ace680673af7a22621b076c0138fcbebf6db897d98c9fbee9a73",
+  "projects/chirality-app-dev/loop/LOOP_INIT.md": "cdbf6e685ecb4d754cbf0028e42cc8ad3bb467c473ebdf08cd59df93b7ae5bcf",
+  "projects/chirality-app-dev/software-workflow.json": "97b6717a5991549367aa098629fbd7140bce7c7c226a15ef9419c0c3397f65e9",
+  "tools/software_workflow/run_registered_checks.py": "665a4ac138b92d0b0a7d4a2b03b47dc05118c8a4cb5c894155976e5eccc1c766"
+}

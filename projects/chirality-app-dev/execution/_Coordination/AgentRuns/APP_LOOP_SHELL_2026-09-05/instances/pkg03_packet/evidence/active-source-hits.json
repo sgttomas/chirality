@@ -1,0 +1,132 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/package-lock.json",
+    "line": 707,
+    "text": "    \"node_modules/@chirality/harness-contract\": {"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/package-lock.json",
+    "line": 708,
+    "text": "      \"resolved\": \"packages/harness-contract\","
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/package-lock.json",
+    "line": 11784,
+    "text": "    \"packages/harness-contract\": {"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/package-lock.json",
+    "line": 11785,
+    "text": "      \"name\": \"@chirality/harness-contract\","
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/package.json",
+    "line": 2,
+    "text": "  \"name\": \"@chirality/harness-contract\","
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs",
+    "line": 110,
+    "text": "if (packageJson.dependencies?.['@chirality/harness-contract'] !== undefined) {"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs",
+    "line": 111,
+    "text": "  failures.push('package.json retains load-bearing @chirality/harness-contract dependency');"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs",
+    "line": 115,
+    "text": "if (packageLock.packages?.['']?.dependencies?.['@chirality/harness-contract'] !== undefined) {"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs",
+    "line": 116,
+    "text": "  failures.push('package-lock.json root package retains load-bearing @chirality/harness-contract dependency');"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs",
+    "line": 121,
+    "text": "  if (source.includes('@chirality/harness-contract')) {"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/assert-harness-contract-deps.mjs",
+    "line": 122,
+    "text": "    failures.push(`${configName} retains load-bearing @chirality/harness-contract wiring`);"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/scripts/generate-tool-catalog.mjs",
+    "line": 6,
+    "text": "// imports the deprecated `@chirality/harness-contract/tool-catalog` facade,"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 4,
+    "text": "  ['root', () => import('@chirality/harness-contract'), () => import('@chirality/runtime-contracts')],"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 7,
+    "text": "    () => import('@chirality/harness-contract/agent-engine-port'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 12,
+    "text": "    () => import('@chirality/harness-contract/domain-profile'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 17,
+    "text": "    () => import('@chirality/harness-contract/engine-conformance'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 22,
+    "text": "    () => import('@chirality/harness-contract/errors'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 27,
+    "text": "    () => import('@chirality/harness-contract/event-schema'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 32,
+    "text": "    () => import('@chirality/harness-contract/mcp/tool-names'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 37,
+    "text": "    () => import('@chirality/harness-contract/operation-proposal'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 42,
+    "text": "    () => import('@chirality/harness-contract/sdk-version'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 47,
+    "text": "    () => import('@chirality/harness-contract/tool-catalog'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 52,
+    "text": "    () => import('@chirality/harness-contract/tool-descriptor'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 57,
+    "text": "    () => import('@chirality/harness-contract/transcript-replay'),"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/src/__tests__/lib/harness-contract-rollback.test.ts",
+    "line": 62,
+    "text": "    () => import('@chirality/harness-contract/types'),"
+  },
+  {
+    "path": "runtime/packages/contracts/src/harness/tool-catalog.ts",
+    "line": 101,
+    "text": "**Source:** \\`frontend/packages/harness-contract/src/tool-descriptor.ts\\`"
+  }
+]

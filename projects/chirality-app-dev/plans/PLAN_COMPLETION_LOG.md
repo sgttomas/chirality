@@ -3725,3 +3725,9 @@ Generalized persisted `HarnessEvent` type names away from SDK-prefixed names. SD
 Validation defaults were repaired for the nested app-dev workspace layout. Residual: continue preventing SDK-shaped names, transcript paths, and tool identifiers from becoming public or core Chirality semantics.
 
 Validation details are not restated in the compact coordination state; use the commit and associated test history as the evidence pointer.
+
+## 2026-09-05 — APP_LOOP_SHELL_2026-09-05 iteration 1 (candidate branch; owner merge pending)
+
+On codex/app-loop-shell-20260905, T1 dialogue-centred shell and governed workflow-contract implementations are recorded alongside D-APP-116/117/118 packet preparations. D-APP-119 records the unimplemented organisation-layer boot-scope question. All new decisions remain AWAITING_RULING; facade retirement remains HOLD. No main-merged, package/lifecycle closure or Root/release claim.
+
+Source review, browser, typecheck/tests/build/basic checks pass for recorded inputs. Local wrapper/premerge remains FAIL for missing daemon bindings; existing isolated-daemon workflow_dispatch CI on the branch must supply required evidence after reviewed commit/push, not a waiver or PR/merge prerequisite; rederive successors from the actual result. Final whole-tranche governed review and CHANGE closeout are pending. Evidence and remaining gates: execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/HANDOFF_STATE.md; Receipt-245.

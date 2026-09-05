@@ -1,0 +1,5 @@
+# Amendment 03 — registered typecheck repair
+
+Detection: parent registered frontend-typecheck failed TS2352 in governed-workflow.test.ts line106, direct assertion of a deliberately invalid nested roadmap status fixture. Earlier independent code review PASS remains dated evidence; it missed this test compile defect. Product source is unchanged.
+
+Parent opened source repair window after build PASS and globals stopped. TASK author may edit only the existing test fixture assertion for the invalid roadmap object to use `as unknown as typeof workflow`; do not change test intent or product code. Preserve original typecheck result through parent evidence. Re-run exact focused Vitest command previously authorized, capturing canonical stdout/stderr and command/version/environment/exit. Also authorized `npm run typecheck` from frontend; no full tests/build/global commands. Write repair evidence to own subtree, refreeze source/test hashes, return. Fresh reviewer will inspect changed full test file and unchanged source. Same write fence/authority, no lifecycle act.

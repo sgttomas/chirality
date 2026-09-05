@@ -1,0 +1,143 @@
+{
+  "facade_package_sha256": "6b6355d34bac7a1bbe211ca8d6f44fd10bacbb4a3a204bf638e715676323dc51",
+  "canonical_package_sha256": "4cc45f200987ec95bc2f766b0c5ce69ea94d8218a1bc1c10148f535e0766d541",
+  "exports": [
+    {
+      "facade_export": ".",
+      "facade_source": "./src/index.ts",
+      "source_sha256": "6223dc6297fe4de2ff4b1809517121a28c021d45f87c19c5e68ca25de904d9c6",
+      "canonical_export": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./agent-engine-port",
+      "facade_source": "./src/agent-engine-port.ts",
+      "source_sha256": "cdc8af2ec8d9d195ffe17e0c2e926d12aeadbfc93466e8945419c33dafb7514e",
+      "canonical_export": {
+        "types": "./dist/harness/agent-engine-port.d.ts",
+        "import": "./dist/harness/agent-engine-port.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./domain-profile",
+      "facade_source": "./src/domain-profile.ts",
+      "source_sha256": "5836be2fb166093e5e9bb56989732dfd351cde3d298dc2f265e8b4fcaf588b92",
+      "canonical_export": {
+        "types": "./dist/harness/domain-profile.d.ts",
+        "import": "./dist/harness/domain-profile.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./engine-conformance",
+      "facade_source": "./src/engine-conformance.ts",
+      "source_sha256": "6b2d30494f2c7979b2e1efde98a47dfe084a9ec220ca8a4d4d95be8ee98eed74",
+      "canonical_export": {
+        "types": "./dist/harness/engine-conformance.d.ts",
+        "import": "./dist/harness/engine-conformance.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./errors",
+      "facade_source": "./src/errors.ts",
+      "source_sha256": "00ccbceaf8521deeb6ca7f48f850428470f59489cabd3c0a6cbde84232653989",
+      "canonical_export": {
+        "types": "./dist/harness/errors.d.ts",
+        "import": "./dist/harness/errors.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./event-schema",
+      "facade_source": "./src/event-schema.ts",
+      "source_sha256": "ca78980f0919bb6e473e2df658efdefa325ca8f0df398d39fafcbad2ae8b61e2",
+      "canonical_export": {
+        "types": "./dist/harness/event-schema.d.ts",
+        "import": "./dist/harness/event-schema.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./mcp/tool-names",
+      "facade_source": "./src/mcp/tool-names.ts",
+      "source_sha256": "33760f8a59bab5f7667c0483bd6f6858b234536badc96b415020472f01d4e3b9",
+      "canonical_export": {
+        "types": "./dist/harness/mcp/tool-names.d.ts",
+        "import": "./dist/harness/mcp/tool-names.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./operation-proposal",
+      "facade_source": "./src/operation-proposal.ts",
+      "source_sha256": "b471fc0ae4ab4a32a304aaf4a719409c51d6615c7d6a125dc3416a56bd99ff9d",
+      "canonical_export": {
+        "types": "./dist/harness/operation-proposal.d.ts",
+        "import": "./dist/harness/operation-proposal.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./package.json",
+      "facade_source": "./package.json",
+      "source_sha256": "6b6355d34bac7a1bbe211ca8d6f44fd10bacbb4a3a204bf638e715676323dc51",
+      "canonical_export": null,
+      "disposition": "metadata-only; no canonical package.json export; no caller observed"
+    },
+    {
+      "facade_export": "./sdk-version",
+      "facade_source": "./src/sdk-version.ts",
+      "source_sha256": "a09c669db280deca775f5b9501f5d8aae271491752705617fe703232c4e908af",
+      "canonical_export": {
+        "types": "./dist/harness/sdk-version.d.ts",
+        "import": "./dist/harness/sdk-version.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./tool-catalog",
+      "facade_source": "./src/tool-catalog.ts",
+      "source_sha256": "9d275c74dce6bd652ad813eb51d43b3d4328249983275cb7489fb53be1226a68",
+      "canonical_export": {
+        "types": "./dist/harness/tool-catalog.d.ts",
+        "import": "./dist/harness/tool-catalog.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./tool-descriptor",
+      "facade_source": "./src/tool-descriptor.ts",
+      "source_sha256": "dbdb95d7f0b90ca8c22001b9b4057c1170110ec98beea99c555fdc64fb858fb0",
+      "canonical_export": {
+        "types": "./dist/harness/tool-descriptor.d.ts",
+        "import": "./dist/harness/tool-descriptor.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./transcript-replay",
+      "facade_source": "./src/transcript-replay.ts",
+      "source_sha256": "7c17017ca201ed2b4cff078c207dcba8aef7f4074254b26cceda64db00f62b76",
+      "canonical_export": {
+        "types": "./dist/harness/transcript-replay.d.ts",
+        "import": "./dist/harness/transcript-replay.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    },
+    {
+      "facade_export": "./types",
+      "facade_source": "./src/types.ts",
+      "source_sha256": "c44a88d4d08d688f9746bda75c96283926646cf207c44ace339c7cef57086073",
+      "canonical_export": {
+        "types": "./dist/harness/types.d.ts",
+        "import": "./dist/harness/types.js"
+      },
+      "disposition": "equivalent canonical subpath; focused_test records retained-facade identity evidence"
+    }
+  ]
+}

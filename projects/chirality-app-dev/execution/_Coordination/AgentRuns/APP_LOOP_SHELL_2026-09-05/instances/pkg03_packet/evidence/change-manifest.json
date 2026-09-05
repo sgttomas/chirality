@@ -1,0 +1,98 @@
+[
+  {
+    "path": "projects/chirality-app-dev/frontend/package-lock.json",
+    "operation": "edit",
+    "before_sha256": "717d541fe6ee090aae79d4a386bbde1c8ff6ee136a50242d956500d76e80a458",
+    "after_sha256": "a34c60fcf6cbe5efd0f7fd709ed57c740d9f1a372c481312029cbf1b15f72cee"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/package.json",
+    "operation": "edit",
+    "before_sha256": "5f81bcb08c6fadf1f5f1cbd80020cf707e434184990dc5a0a4040fc6f933a9cc",
+    "after_sha256": "678e498bfa58f533f39662d74a2d7e830d66e482c47296aec5f4e10dcf86912a"
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/package.json",
+    "operation": "delete",
+    "before_sha256": "6b6355d34bac7a1bbe211ca8d6f44fd10bacbb4a3a204bf638e715676323dc51",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/agent-engine-port.ts",
+    "operation": "delete",
+    "before_sha256": "cdc8af2ec8d9d195ffe17e0c2e926d12aeadbfc93466e8945419c33dafb7514e",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/domain-profile.ts",
+    "operation": "delete",
+    "before_sha256": "5836be2fb166093e5e9bb56989732dfd351cde3d298dc2f265e8b4fcaf588b92",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/engine-conformance.ts",
+    "operation": "delete",
+    "before_sha256": "6b2d30494f2c7979b2e1efde98a47dfe084a9ec220ca8a4d4d95be8ee98eed74",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/errors.ts",
+    "operation": "delete",
+    "before_sha256": "00ccbceaf8521deeb6ca7f48f850428470f59489cabd3c0a6cbde84232653989",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/event-schema.ts",
+    "operation": "delete",
+    "before_sha256": "ca78980f0919bb6e473e2df658efdefa325ca8f0df398d39fafcbad2ae8b61e2",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/index.ts",
+    "operation": "delete",
+    "before_sha256": "6223dc6297fe4de2ff4b1809517121a28c021d45f87c19c5e68ca25de904d9c6",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/mcp/tool-names.ts",
+    "operation": "delete",
+    "before_sha256": "33760f8a59bab5f7667c0483bd6f6858b234536badc96b415020472f01d4e3b9",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/operation-proposal.ts",
+    "operation": "delete",
+    "before_sha256": "b471fc0ae4ab4a32a304aaf4a719409c51d6615c7d6a125dc3416a56bd99ff9d",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/sdk-version.ts",
+    "operation": "delete",
+    "before_sha256": "a09c669db280deca775f5b9501f5d8aae271491752705617fe703232c4e908af",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-catalog.ts",
+    "operation": "delete",
+    "before_sha256": "9d275c74dce6bd652ad813eb51d43b3d4328249983275cb7489fb53be1226a68",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/tool-descriptor.ts",
+    "operation": "delete",
+    "before_sha256": "dbdb95d7f0b90ca8c22001b9b4057c1170110ec98beea99c555fdc64fb858fb0",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/transcript-replay.ts",
+    "operation": "delete",
+    "before_sha256": "7c17017ca201ed2b4cff078c207dcba8aef7f4074254b26cceda64db00f62b76",
+    "after_sha256": null
+  },
+  {
+    "path": "projects/chirality-app-dev/frontend/packages/harness-contract/src/types.ts",
+    "operation": "delete",
+    "before_sha256": "c44a88d4d08d688f9746bda75c96283926646cf207c44ace339c7cef57086073",
+    "after_sha256": null
+  }
+]

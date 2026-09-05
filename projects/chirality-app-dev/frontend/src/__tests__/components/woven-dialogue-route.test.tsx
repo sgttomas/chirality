@@ -31,6 +31,13 @@ describe('Woven Dialogue route selection', () => {
     expect(html).not.toContain('data-legacy="true"');
   });
 
+  it.each(['workbench', 'pipeline'] as const)('keeps /%s functional through its retained legacy slot', (surface) => {
+    const html = renderToStaticMarkup(<WovenDialogueRoute defaultSurface={surface} legacy={<main>{surface} retained route</main>} />);
+    expect(html).toContain('data-legacy="true"');
+    expect(html).toContain(`${surface} retained route`);
+    expect(html).not.toContain('data-woven-surface');
+  });
+
   it('keeps the direct legacy route available', () => {
     routerState.query = 'legacy=1';
     const html = renderToStaticMarkup(

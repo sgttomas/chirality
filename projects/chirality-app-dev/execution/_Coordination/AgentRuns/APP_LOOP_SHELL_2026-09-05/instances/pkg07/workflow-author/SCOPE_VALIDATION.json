@@ -1,0 +1,24 @@
+{
+  "allowed": [
+    "projects/chirality-app-dev/frontend/src/lib/workspace/governed-workflow.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/governed-workflow.test.ts",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author"
+  ],
+  "paths": [
+    "projects/chirality-app-dev/frontend/src/lib/workspace/governed-workflow.ts",
+    "projects/chirality-app-dev/frontend/src/__tests__/lib/governed-workflow.test.ts",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/AMENDMENT_01.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/SOURCE_IDENTITIES.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/RETURN.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/RELIANCE_PREFLIGHT.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/LAUNCH_BRIEF.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/FOCUSED_TEST.txt",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/PREFLIGHT.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/STATUS.json",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/AMENDMENT_02.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/_run_records/TASK_RUN_2026-09-05_workflow.md"
+  ],
+  "schema": "chirality-change-scope/v1",
+  "status": "PASS",
+  "violations": []
+}

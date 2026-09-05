@@ -1,0 +1,14 @@
+[
+  "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-controls.test.tsx",
+  "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-navigator.test.tsx",
+  "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-route.test.tsx",
+  "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-runtime-reconnect.test.tsx",
+  "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-shell.test.tsx",
+  "projects/chirality-app-dev/frontend/src/__tests__/components/woven-dialogue-viewport.test.tsx",
+  "projects/chirality-app-dev/frontend/src/components/woven-dialogue/coordination-panel.tsx",
+  "projects/chirality-app-dev/frontend/src/components/woven-dialogue/dialogue-viewport.tsx",
+  "projects/chirality-app-dev/frontend/src/components/woven-dialogue/navigator.tsx",
+  "projects/chirality-app-dev/frontend/src/components/woven-dialogue/selected-session-replay-lens.tsx",
+  "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-route.tsx",
+  "projects/chirality-app-dev/frontend/src/components/woven-dialogue/woven-dialogue-shell.tsx"
+]

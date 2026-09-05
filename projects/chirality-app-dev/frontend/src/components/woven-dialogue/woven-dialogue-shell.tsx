@@ -14,10 +14,7 @@ import {
 } from 'react';
 import type { SessionRecord } from '@chirality/runtime-contracts/types';
 import { listHarnessSessions, harnessApiErrorMessage } from '../../lib/harness/client';
-import type {
-  CoordinationWorkItem,
-  SelectedSessionReplayState
-} from '../../lib/woven-dialogue/contracts';
+import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contracts';
 import { buildRecordedAgentHierarchy } from '../../lib/woven-dialogue/recorded-agent-hierarchy';
 import { guardRecordedSessionSelection } from '../../lib/woven-dialogue/guarded-session-selection';
 import {
@@ -29,7 +26,6 @@ import {
   createDefaultWovenWorkspaceState,
   readWovenWorkspaceStateFromStorage,
   recordWovenSessionSurface,
-  toggleWovenNavigatorExpandedSurface,
   writeWovenWorkspaceStateToStorage,
   type WovenWorkspaceState
 } from '../../lib/woven-dialogue/woven-workspace-state';
@@ -39,11 +35,9 @@ import { ChatPanel } from '../shell/chat-panel';
 import { PersonaPicker } from '../shell/persona-picker';
 import { useRuntimeEpoch } from '../shell/runtime-connectivity-provider';
 import { ShellFrame } from '../shell/shell-frame';
-import { PipelineSurface } from '../pipeline/pipeline-surface';
-import { WorkbenchSurface } from '../workbench/workbench-surface';
 import { ActivityShelf } from './activity-shelf';
 import { CoordinationPanel } from './coordination-panel';
-import { DialogueViewport, type FocusedDialogueSurface } from './dialogue-viewport';
+import { DialogueViewport } from './dialogue-viewport';
 import { Navigator, type WovenSurface } from './navigator';
 import { SelectedSessionReplayLens } from './selected-session-replay-lens';
 
@@ -52,8 +46,6 @@ type WovenDialogueShellProps = {
 };
 
 type ResizeTarget = 'navigator' | 'coordination' | 'activity';
-
-const EMPTY_WORK_ITEMS: readonly CoordinationWorkItem[] = [];
 
 function selectedReplayId(state: SelectedSessionReplayState): string | undefined {
   if (state.status === 'READY') {
@@ -69,20 +61,17 @@ function clamp(value: number, minimum: number, maximum: number): number {
   return Math.max(minimum, Math.min(maximum, value));
 }
 
-export function WovenDialogueShell({
-  defaultSurface
-}: WovenDialogueShellProps): JSX.Element {
+export function WovenDialogueShell(_props: WovenDialogueShellProps): JSX.Element {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { projectRoot } = useWorkspace();
   const streaming = useHarnessStreaming();
   const runtimeEpoch = useRuntimeEpoch();
-  const [activeSurface, setActiveSurface] = useState<WovenSurface>(defaultSurface);
   const [primarySessionId, setPrimarySessionId] = useState<string>();
-  const [workspaceState, setWorkspaceState] = useState<WovenWorkspaceState>(() => ({
-    ...createDefaultWovenWorkspaceState(),
-    navigatorExpandedSurfaces: [defaultSurface]
-  }));
+  const [workspaceState, setWorkspaceState] = useState<WovenWorkspaceState>(
+    createDefaultWovenWorkspaceState
+  );
+  const [coordinationView, setCoordinationView] = useState<'session' | 'agents'>('agents');
   const [stateHydrated, setStateHydrated] = useState(false);
   const [sessions, setSessions] = useState<SessionRecord[]>([]);
   const [sessionsLoading, setSessionsLoading] = useState(false);
@@ -90,8 +79,6 @@ export function WovenDialogueShell({
   const [sessionRefreshToken, setSessionRefreshToken] = useState(0);
   const replayLoaderRef = useRef<SelectedSessionReplayLoader>();
   const previousProjectRootRef = useRef(projectRoot);
-  const activeSurfaceRef = useRef(defaultSurface);
-  const routeSurfaceRef = useRef(defaultSurface);
   const [replayState, setReplayState] = useState<SelectedSessionReplayState>({
     status: 'IDLE'
   });
@@ -121,14 +108,9 @@ export function WovenDialogueShell({
       return;
     }
     const stored = readWovenWorkspaceStateFromStorage(window.localStorage);
-    // The stored expansion set is honoured, but the mode group the route
-    // actually opened on is never left collapsed.
-    const routeSurface = routeSurfaceRef.current;
-    setWorkspaceState(
-      stored.navigatorExpandedSurfaces.includes(routeSurface)
-        ? stored
-        : { ...stored, navigatorExpandedSurfaces: [routeSurface] }
-    );
+    setWorkspaceState(stored);
+    // Retired Work preferences fall back to the recorded Agents projection.
+    setCoordinationView('agents');
     setStateHydrated(true);
   }, []);
 
@@ -139,12 +121,8 @@ export function WovenDialogueShell({
     writeWovenWorkspaceStateToStorage(window.localStorage, workspaceState);
   }, [stateHydrated, workspaceState]);
 
-  useEffect(() => {
-    activeSurfaceRef.current = activeSurface;
-  }, [activeSurface]);
-
   // The recorded session list carries no surface field, so the shell tags the
-  // surface that was active when a session was first observed. Local
+  // dialogue surface when a session is first observed. Local
   // annotation only (no project truth); first attribution wins, so this is a
   // no-op — same state reference — for every session already tagged.
   useEffect(() => {
@@ -152,13 +130,9 @@ export function WovenDialogueShell({
       return;
     }
     setWorkspaceState((current) =>
-      recordWovenSessionSurface(current, primarySessionId, activeSurfaceRef.current)
+      recordWovenSessionSurface(current, primarySessionId, 'dialogue')
     );
   }, [primarySessionId, stateHydrated]);
-
-  useEffect(() => {
-    setActiveSurface(defaultSurface);
-  }, [defaultSurface]);
 
   useEffect(() => {
     replayLoaderRef.current?.cancel();
@@ -209,7 +183,7 @@ export function WovenDialogueShell({
     return () => {
       cancelled = true;
     };
-    // `runtimeEpoch` re-lists after a reconnect. The Navigator's mode groups and
+    // `runtimeEpoch` re-lists after a reconnect. The Navigator's flat list and
     // the Coordination panel's hierarchy are both projections of `sessions`, so
     // one re-list repairs all three surfaces at once.
   }, [projectRoot, sessionRefreshToken, runtimeEpoch]);
@@ -273,20 +247,9 @@ export function WovenDialogueShell({
     []
   );
 
-  // On mount the stored expansion state governs; a later route change expands
-  // the newly active mode group and collapses the others.
-  useEffect(() => {
-    if (routeSurfaceRef.current === defaultSurface) {
-      return;
-    }
-    routeSurfaceRef.current = defaultSurface;
-    updateWorkspaceState({ navigatorExpandedSurfaces: [defaultSurface] });
-  }, [defaultSurface, updateWorkspaceState]);
-
   const returnToPrimaryDialogue = useCallback((): void => {
     replayLoaderRef.current?.cancel();
     updateWorkspaceState({ selectedReplaySessionId: null });
-    setActiveSurface('dialogue');
     window.requestAnimationFrame(() => {
       const input = document.querySelector<HTMLInputElement>('[data-chat-input="primary"]');
       dialogueInputRef.current = input;
@@ -308,11 +271,20 @@ export function WovenDialogueShell({
         returnToPrimaryDialogue();
         return;
       }
+      if (decision.outcome === 'UNCHANGED') {
+        updateWorkspaceState({ coordinationCollapsed: false });
+        setCoordinationView('session');
+        return;
+      }
       if (decision.outcome !== 'SELECT_REPLAY') {
         return;
       }
 
-      updateWorkspaceState({ selectedReplaySessionId: sessionId });
+      updateWorkspaceState({
+        selectedReplaySessionId: sessionId,
+        coordinationCollapsed: false
+      });
+      setCoordinationView('session');
       void replayLoaderRef.current?.load(sessionId, {
         observedAt: new Date().toISOString(),
         availableSessionIds: new Set(sessions.map((session) => session.sessionId))
@@ -439,24 +411,6 @@ export function WovenDialogueShell({
     }px`
   } as CSSProperties;
   const replayVisible = replayState.status !== 'IDLE';
-  const focusedSurfaceVisible = !replayVisible && activeSurface !== 'dialogue';
-  const focusedSurface = useMemo<FocusedDialogueSurface | undefined>(() => {
-    if (!focusedSurfaceVisible) {
-      return undefined;
-    }
-    if (activeSurface === 'workbench') {
-      return {
-        id: 'workbench',
-        title: 'Workbench',
-        content: <WorkbenchSurface />
-      };
-    }
-    return {
-      id: 'pipeline',
-      title: 'Pipeline',
-      content: <PipelineSurface />
-    };
-  }, [activeSurface, focusedSurfaceVisible]);
 
   return (
     <ShellFrame
@@ -465,8 +419,8 @@ export function WovenDialogueShell({
       subtitle="A shared professional workspace where dialogue produces inspectable artifacts and governed work."
       variant="workspace"
     >
-      <section className="woven-workspace" style={style} data-woven-surface={activeSurface}>
-        <main className="woven-dialogue-region" aria-label="Primary Dialogue and focused views">
+      <section className="woven-workspace" style={style} data-woven-surface="dialogue">
+        <main className="woven-dialogue-region" aria-label="Primary Dialogue">
           <DialogueViewport
             primaryDialogue={
               <>
@@ -482,23 +436,6 @@ export function WovenDialogueShell({
                 </Suspense>
               </>
             }
-            replayLens={
-              replayVisible ? (
-                <SelectedSessionReplayLens
-                  state={replayState}
-                  primarySessionId={primarySessionId}
-                  onReturnToPrimary={returnToPrimaryDialogue}
-                  onRetry={() => {
-                    const sessionId = selectedReplayId(replayState);
-                    if (sessionId) {
-                      loadReplay(sessionId);
-                    }
-                  }}
-                />
-              ) : undefined
-            }
-            focusedSurface={focusedSurface}
-            onReturnToPrimary={returnToPrimaryDialogue}
           />
         </main>
 
@@ -522,29 +459,16 @@ export function WovenDialogueShell({
           </button>
           {!workspaceState.navigatorCollapsed ? (
             <Navigator
-              activeSurface={activeSurface}
+              activeSurface="dialogue"
               legacyHref={legacyHref}
               sessions={sessions}
               sessionSurfaces={workspaceState.sessionSurfaces}
-              expandedSurfaces={workspaceState.navigatorExpandedSurfaces}
               liveSessionId={primarySessionId}
               selectedSessionId={selectedReplayId(replayState)}
               selectionDisabled={streaming}
               sessionsLoading={sessionsLoading}
               sessionsError={sessionsError}
-              onOpenSurface={(surface) => {
-                replayLoaderRef.current?.cancel();
-                updateWorkspaceState({
-                  selectedReplaySessionId: null,
-                  navigatorExpandedSurfaces: [surface]
-                });
-                setActiveSurface(surface);
-              }}
-              onToggleSurfaceExpanded={(surface) => {
-                setWorkspaceState((current) =>
-                  toggleWovenNavigatorExpandedSurface(current, surface)
-                );
-              }}
+              onOpenSurface={returnToPrimaryDialogue}
               onSelectSession={loadReplay}
             />
           ) : (
@@ -616,15 +540,32 @@ export function WovenDialogueShell({
           </button>
           {!workspaceState.coordinationCollapsed ? (
             <CoordinationPanel
-              activeView={workspaceState.coordinationView}
-              workItems={EMPTY_WORK_ITEMS}
+              activeView={coordinationView}
+              replaySlot={
+                replayVisible ? (
+                  <SelectedSessionReplayLens
+                    state={replayState}
+                    primarySessionId={primarySessionId}
+                    onReturnToPrimary={returnToPrimaryDialogue}
+                    onRetry={() => {
+                      const sessionId = selectedReplayId(replayState);
+                      if (sessionId) {
+                        void replayLoaderRef.current?.load(sessionId, {
+                          observedAt: new Date().toISOString(),
+                          availableSessionIds: new Set(sessions.map((session) => session.sessionId))
+                        });
+                      }
+                    }}
+                  />
+                ) : undefined
+              }
               hierarchy={hierarchy}
               sessionsLoading={sessionsLoading}
               sessionsError={sessionsError}
               selectedSessionId={selectedReplayId(replayState)}
               selectionDisabled={streaming}
               onSelectView={(coordinationView) => {
-                updateWorkspaceState({ coordinationView });
+                setCoordinationView(coordinationView);
               }}
               onRefreshSessions={() => {
                 setSessionRefreshToken((token) => token + 1);

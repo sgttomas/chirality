@@ -1,0 +1,22 @@
+{
+  "app-hold-preflight.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "app-hold-preflight.stdout.log": "1f28a38a60b0d479b3a4579f930ee1fe8c8ed4ad6d7c5d16ed009abe5e100814",
+  "commands.json": "3260d12936cfc6cbf844159019ee205bbeca2fb4d4661ecb746d00c3f09fdc68",
+  "environment.json": "031c89c5ab9b77a5d44146287c08d5ae5272afb3f57369d7137ac536d7af7c61",
+  "git-head.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "git-head.stdout.log": "f8587138cacf73fa6961556ca3556f80b3b9a36934c8726d9a02ebd6814b8345",
+  "git-status.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "git-status.stdout.log": "37bf0a2e4df24e15405dc3f99c6c53b721a78458d68dacadab2bfa1da0c483a7",
+  "node.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "node.stdout.log": "8f9258d5e9da5443c42966a661aee09292b49d1c64e718dcc5f72976500bac48",
+  "npm.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "npm.stdout.log": "041fb0a6f23ccf0102a18d4591e1bfa36eebc17d27d348727a5eee18806d1c3c",
+  "python.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "python.stdout.log": "c4a684e859efa868ffdfb4967e90ffd847a0fc1f293e16ed50ea18af8e3b95f6",
+  "registered-result.json": "c53fa428e080f73bc2d421f1d02a09f65c5c314a6b64c3d5e88d85b68295e0ef",
+  "release-quality.stderr.log": "833a920abf86285c6fbe619c8d71354fdaa45b9b3ecb58cfc92c394d07e2546d",
+  "release-quality.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "service-spec.json": "ce327f01d36f8943e6d5d357ef568c186fe28e2fb0f4f3c187d28434386f64e6",
+  "source-sha256.json": "12adb6251c82d36ed2e16f8ed0dfbe6bec1a2fa5dcf8c2d50c4cbe4bf983a705",
+  "source-stability.json": "5fda03920773a0600456d177dc487c83a7a523a90ac9a770b0579a5c17538317"
+}

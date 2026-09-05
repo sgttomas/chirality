@@ -1,0 +1,28 @@
+{
+  "packetOptions": 3,
+  "packetOnly": true,
+  "diffCheck": {
+    "command": "git diff --check -- <DEL-08-04> <instance> <packet>",
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "preflight": {
+    "command": [
+      "python3",
+      "execution/_Scripts/app_hold.py",
+      "check",
+      "--operation",
+      "reliance",
+      "--entry-path",
+      "WORKING_ITEMS:APP_LOOP_SHELL_2026-09-05:pkg08_packet",
+      "--target",
+      "DEL-08-04"
+    ],
+    "cwd": "projects/chirality-app-dev",
+    "exitCode": 0
+  },
+  "frontendGates": "SKIPPED: documentation only; no product source changed",
+  "globalChecksAndReview": "PENDING at parent fan-in",
+  "packetSha256": "8e4ef9bbaebdcbb9b23c938bebc46f670abebd7aae5201d6cf459f6db3c6866c"
+}

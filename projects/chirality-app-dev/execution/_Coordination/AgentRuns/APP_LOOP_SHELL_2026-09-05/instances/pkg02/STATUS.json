@@ -1,0 +1,28 @@
+{
+  "run_id": "APP_LOOP_SHELL_2026-09-05",
+  "node_id": "N2",
+  "instance_id": "pkg02",
+  "parent": "HELP_HUMAN /root",
+  "role": "WORKING_ITEMS",
+  "status": "COMPLETE_PARENT_FAN_IN",
+  "updated_at": "2026-09-05T20:35:04.033058+00:00",
+  "attribution": {
+    "execution_class": "delegated-harness-native",
+    "provider": "OpenAI",
+    "model": "GPT-6",
+    "exact_serving_model_id": null,
+    "engine_id": null,
+    "model_basis": "Parent session system attribution; exact serving ID unavailable.",
+    "role_enforcement": "role not mechanically enforced",
+    "evidence_calibration": "instruction-asserted",
+    "substitutions": []
+  },
+  "record_materialization": "after initial native tool launch; no pre-existing filesystem record claimed",
+  "verification": "Fresh12pathsourcePASS;focused29PASS;browser11groupsPASS;parentpremergeCIdeferralexplicit",
+  "return_path": "MANAGER_RETURN.md",
+  "children": [
+    "/root/pkg02/author",
+    "/root/pkg02/reviewer",
+    "/root/pkg02/reviewer2"
+  ]
+}

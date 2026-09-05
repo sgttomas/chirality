@@ -106,8 +106,12 @@ function ReadyReplay({
       <section
         className="woven-replay-provenance"
         aria-label="Replay provenance and status"
+        // The Session panel is narrower than the former full-width replay.
+        // Stack both the groups and their label/value tracks so values retain
+        // the panel's available width, including long canonical source paths.
+        style={{ gridTemplateColumns: 'minmax(0, 1fr)' }}
       >
-        <dl>
+        <dl style={{ gridTemplateColumns: 'minmax(0, 1fr)' }}>
           <dt>Source</dt>
           <dd>
             <code>{projection.sourceReference}</code>
@@ -130,7 +134,10 @@ function ReadyReplay({
           <dd>{projection.malformedLineCount}</dd>
         </dl>
         {attribution ? (
-          <dl aria-label="Recorded session attribution">
+          <dl
+            aria-label="Recorded session attribution"
+            style={{ gridTemplateColumns: 'minmax(0, 1fr)' }}
+          >
             {attribution.persona ? (
               <>
                 <dt>Persona</dt>
@@ -223,6 +230,7 @@ export function SelectedSessionReplayLens({
   return (
     <section
       className="woven-replay-lens"
+      style={{ overflowWrap: 'anywhere' }}
       aria-label="Selected-session read-only replay"
       data-replay-state={state.status}
       data-replay-disclosure={

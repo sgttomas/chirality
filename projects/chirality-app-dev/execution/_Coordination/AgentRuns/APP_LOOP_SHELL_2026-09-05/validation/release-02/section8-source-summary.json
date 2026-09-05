@@ -1,0 +1,59 @@
+{
+  "generatedAt": "2026-09-05T20:20:34.466Z",
+  "harnessBaseUrl": "http://127.0.0.1:52888",
+  "projectRoot": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest/workroots/default-project-root",
+  "requestedProjectRoot": "/var/folders/96/1_3ww0012pv5ptwwsd1990yw0000gn/T/chirality-harness-validation/latest/workroots/default-project-root",
+  "stagedFromInstructionRoot": false,
+  "status": "fail",
+  "testCount": 8,
+  "results": [
+    {
+      "id": "setup.server_reachable",
+      "status": "fail",
+      "durationMs": 521,
+      "error": "Expected 200; received 503"
+    },
+    {
+      "id": "regression.session_crud",
+      "status": "fail",
+      "durationMs": 236,
+      "error": "Session creation failed: HTTP 503"
+    },
+    {
+      "id": "section8.boot_error_taxonomy",
+      "status": "fail",
+      "durationMs": 169,
+      "error": "Missing-session boot should return 404"
+    },
+    {
+      "id": "section8.smoke_stream",
+      "status": "fail",
+      "durationMs": 12,
+      "error": "Session creation failed: HTTP 503"
+    },
+    {
+      "id": "section8.session_persistence_resume",
+      "status": "fail",
+      "durationMs": 9,
+      "error": "Session creation failed: HTTP 503"
+    },
+    {
+      "id": "section8.permissions_dontask",
+      "status": "fail",
+      "durationMs": 8,
+      "error": "Session creation failed: HTTP 503"
+    },
+    {
+      "id": "section8.interrupt_sigint",
+      "status": "fail",
+      "durationMs": 7,
+      "error": "Session creation failed: HTTP 503"
+    },
+    {
+      "id": "section8.sdk_native_stream",
+      "status": "fail",
+      "durationMs": 10,
+      "error": "Session creation failed: HTTP 503"
+    }
+  ]
+}

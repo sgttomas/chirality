@@ -45,12 +45,6 @@ type NavigatorProps = {
   onSelectSession?: (sessionId: string) => void;
 };
 
-const SURFACES: ReadonlyArray<{ id: WovenSurface; label: string; note: string }> = [
-  { id: 'dialogue', label: 'Dialogue', note: 'Primary human–agent conversation' },
-  { id: 'workbench', label: 'Workbench', note: 'Documents, evidence & contracts' },
-  { id: 'pipeline', label: 'Pipeline', note: 'DECOMP, PREP, TASK, and AUDIT intent' }
-];
-
 export const NAVIGATOR_RECENT_SESSION_LIMIT = 4;
 
 const EMPTY_SESSIONS: readonly SessionRecord[] = [];
@@ -167,6 +161,7 @@ function SessionRow({
         ) : null}
         <span className="woven-navigator-session-title">{entry.label}</span>
         <span className="woven-navigator-session-when">{entry.when}</span>
+        {entry.surface ? <small>Recorded surface: {entry.surface}</small> : null}
       </button>
     </li>
   );
@@ -178,20 +173,13 @@ export function Navigator({
   onOpenSurface,
   sessions = EMPTY_SESSIONS,
   sessionSurfaces = EMPTY_SESSION_SURFACES,
-  expandedSurfaces,
   liveSessionId,
   selectedSessionId,
   selectionDisabled = false,
   sessionsLoading = false,
   sessionsError = null,
-  onToggleSurfaceExpanded,
   onSelectSession
 }: NavigatorProps): JSX.Element {
-  // Which group, if any, has escaped its mode scope to show every recorded
-  // session. Transient by design: it is a reading affordance, not a preference.
-  const [allSessionsSurface, setAllSessionsSurface] =
-    React.useState<WovenSurface | null>(null);
-
   const groups = React.useMemo(
     () => buildNavigatorSessionGroups(sessions, sessionSurfaces),
     [sessions, sessionSurfaces]
@@ -207,109 +195,22 @@ export function Navigator({
       </header>
 
       <div className="woven-navigator-sections" aria-label="Workspace surfaces">
-        {SURFACES.map((surface) => {
-          const active = activeSurface === surface.id;
-          const expanded = expandedSurfaces
-            ? expandedSurfaces.includes(surface.id)
-            : active;
-          const showingAll = allSessionsSurface === surface.id;
-          const scoped = groups.bySurface[surface.id];
-          const visible = showingAll
-            ? groups.all
-            : scoped.slice(0, NAVIGATOR_RECENT_SESSION_LIMIT);
-
-          return (
-            <div
-              key={surface.id}
-              className={
-                expanded
-                  ? 'woven-navigator-group woven-navigator-group--expanded'
-                  : 'woven-navigator-group'
-              }
-            >
-              <button
-                type="button"
-                className={
-                  active ? 'woven-nav-item woven-nav-item--active' : 'woven-nav-item'
-                }
-                aria-current={active ? 'page' : undefined}
-                aria-expanded={expanded}
-                onClick={() => {
-                  if (active) {
-                    onToggleSurfaceExpanded?.(surface.id);
-                    return;
-                  }
-                  onOpenSurface(surface.id);
-                }}
-              >
-                <span>{surface.label}</span>
-                <small>{surface.note}</small>
-                <span className="woven-navigator-chevron" aria-hidden="true">
-                  {expanded ? '▾' : '▸'}
-                </span>
-              </button>
-
-              {expanded ? (
-                <div className="woven-navigator-sessions">
-                  {sessionsError ? (
-                    <p className="panel-error" role="alert">
-                      {sessionsError}
-                    </p>
-                  ) : null}
-                  {sessionsLoading ? (
-                    <p className="panel-empty">Loading recorded sessions…</p>
-                  ) : null}
-                  {selectionDisabled ? (
-                    <p className="woven-navigator-session-notice" role="status">
-                      Session selection is paused while the primary dialogue is
-                      running.
-                    </p>
-                  ) : null}
-                  {!sessionsLoading && !sessionsError && visible.length === 0 ? (
-                    <p className="panel-empty">
-                      No recorded sessions for this surface.
-                    </p>
-                  ) : null}
-                  {visible.length > 0 ? (
-                    <ul
-                      className="woven-navigator-session-list"
-                      aria-label={`${surface.label} sessions`}
-                    >
-                      {visible.map((entry) => (
-                        <SessionRow
-                          key={entry.sessionId}
-                          entry={entry}
-                          live={
-                            Boolean(liveSessionId) &&
-                            entry.sessionId === liveSessionId
-                          }
-                          selected={entry.sessionId === selectedSessionId}
-                          disabled={selectionDisabled}
-                          onSelectSession={onSelectSession}
-                        />
-                      ))}
-                    </ul>
-                  ) : null}
-                  {groups.all.length > 0 ? (
-                    <p className="woven-navigator-more">
-                      <button
-                        type="button"
-                        aria-expanded={showingAll}
-                        onClick={() => {
-                          setAllSessionsSurface(showingAll ? null : surface.id);
-                        }}
-                      >
-                        {showingAll
-                          ? 'Recent sessions'
-                          : `All sessions (${groups.all.length})`}
-                      </button>
-                    </p>
-                  ) : null}
-                </div>
-              ) : null}
-            </div>
-          );
-        })}
+        <button type="button" className="woven-nav-item woven-nav-item--active"
+          aria-current={activeSurface === 'dialogue' ? 'page' : undefined}
+          onClick={() => onOpenSurface('dialogue')}>
+          <span>Dialogue</span><small>Primary human–agent conversation</small>
+        </button>
+        <div className="woven-navigator-sessions">
+          {sessionsError ? <p className="panel-error" role="alert">{sessionsError}</p> : null}
+          {sessionsLoading ? <p className="panel-empty">Loading recorded sessions…</p> : null}
+          {selectionDisabled ? <p role="status">Session selection is paused while the primary dialogue is running.</p> : null}
+          {!sessionsLoading && !sessionsError && groups.all.length === 0 ? <p className="panel-empty">No recorded sessions.</p> : null}
+          <ul className="woven-navigator-session-list" aria-label="Recorded sessions">
+            {groups.all.map(entry => <SessionRow key={entry.sessionId} entry={entry}
+              live={entry.sessionId === liveSessionId} selected={entry.sessionId === selectedSessionId}
+              disabled={selectionDisabled} onSelectSession={onSelectSession} />)}
+          </ul>
+        </div>
       </div>
 
       <section className="woven-navigator-files" aria-label="Project files">

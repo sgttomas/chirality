@@ -1,0 +1,47 @@
+{
+  "register": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+  "preimage_sha256": "3cdd95feb65d91e999fb7e7a39edb40eefed98d1481fb510e8a4ba92cae0758f",
+  "postimage_sha256": "ece0628a9d35189f394750e10347be7332c8b42abb2e3ec4812e1506358297f3",
+  "historical_bytes_preserved": true,
+  "rows": [
+    {
+      "id": "D-APP-116",
+      "source": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg05_packet/PROPOSED_REGISTER_ROW.md",
+      "source_sha256": "9c55539ae4d4bee495119eb89f8771a7dabf40340912fcc8d157ca94949ad7f0",
+      "row": "| D-APP-116 | Whether to adopt the D-APP-102 full tool-result audit policy: per-session manifest, retention/deletion fields, explicit cleanup and non-destructive migration | DEL-05-05 App consumption/conformance only after later ruling, accepted Root-owned contract and owning scope alignment; no runtime implementation authorized by packet | AWAITING_RULING | A \u2014 explicit cleanup through Root owner, then gated App consumption (agent recommendation) | `execution/_Coordination/_DECISIONS/D-APP-116_PACKET_TOOL_RESULT_AUDIT_POLICY_2026-09-05.md`; alternative B retains D-APP-42 and defers full policy |",
+      "checks": [
+        "ID absent before integration",
+        "six register cells",
+        "AWAITING_RULING exact status",
+        "linked packet exists",
+        "manager row bytes unchanged"
+      ]
+    },
+    {
+      "id": "D-APP-117",
+      "source": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg08_packet/RETURN.md",
+      "source_sha256": "d0fe8dad4d0f07ea318cab2652115dc939062ffdda61826348d4564d62e0242f",
+      "row": "| D-APP-117 | Whether to adopt explicit per-attempt decision evidence and authorize the bounded DEL-08-04 capture/handoff slice | Candidate schema and proving checks; DEL-08-05 persistence, DEL-05-04 projection, DEL-02-02 Desktop and Root CLI remain separately activated | AWAITING_RULING | \u2014 | `execution/_Coordination/_DECISIONS/D-APP-117_PACKET_PER_ATTEMPT_DECISION_REPLAY_2026-09-05.md`; prepared under D-APP-103; implementation gated |",
+      "checks": [
+        "ID absent before integration",
+        "six register cells",
+        "AWAITING_RULING exact status",
+        "linked packet exists",
+        "manager row bytes unchanged"
+      ]
+    }
+  ],
+  "diff_check": {
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "--",
+      "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "final_governed_diff_verdict": "PENDING"
+}

@@ -1,0 +1,13 @@
+{
+  "command": [
+    "git",
+    "apply",
+    "--check",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/boundary-proposal/MAIN_BOOT_SEAM_CANDIDATE.diff"
+  ],
+  "cwd": "REPO_ROOT",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "",
+  "claim": "Candidate patch applies; no product edit or runtime test executed."
+}

@@ -1,0 +1,151 @@
+[90mstderr[2m | src/__tests__/integration/pi-omlx-wire.integration.test.ts[2m > [22m[2mPi/oMLX wire integration[2m > [22m[2mmaps 'malformed SSE JSON' to one redacted canonical failure and releases the turn
+[22m[39mCould not parse message into JSON: [REDACTED_PROVIDER_PAYLOAD]
+From chunk: [REDACTED_PROVIDER_PAYLOAD]
+
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/__tests__/integration/pi-omlx-wire.integration.test.ts[2m > [22mPi/oMLX wire integration[2m > [22mdiscovers the exact model, executes one governed read tool, persists evidence, and finishes canonically
+[31m[1mAssertionError[22m: expected [ Array(8) ] to deep equally contain { type: 'tool:result', …(1) }[39m
+
+[32m- Expected:[39m
+{
+  "data": ObjectContaining {
+    "name": "read_file",
+    "ok": true,
+  },
+  "type": "tool:result",
+}
+
+[31m+ Received:[39m
+[
+  {
+    "data": {
+      "adapterId": "pi",
+      "engineSessionId": "pi_c2d1e6fc-c3b1-447e-9494-e11030e0a549",
+      "model": "wire-exact-model",
+      "providerId": "omlx",
+    },
+    "type": "session:init",
+  },
+  {
+    "data": {
+      "data": {
+        "adapter": "pi",
+        "model": "wire-exact-model",
+        "provider": "omlx",
+        "turnId": "turn_sess_pi_wire_success",
+      },
+      "eventId": "evt_bcbb3b34-22dc-47c7-814b-88873b98e6e8",
+      "parentEventId": undefined,
+      "schemaVersion": 1,
+      "sessionId": "sess_pi_wire_success",
+      "timestamp": "2026-09-05T20:20:10.554Z",
+      "turnId": "turn_sess_pi_wire_success",
+      "type": "turn.accepted",
+    },
+    "type": "harness:event",
+  },
+  {
+    "data": {
+      "data": {
+        "adapter": "pi",
+        "model": "wire-exact-model",
+        "provider": "omlx",
+        "turnId": "turn_sess_pi_wire_success",
+      },
+      "eventId": "evt_f05a2829-b523-4859-8ef4-e9df4d851cdd",
+      "parentEventId": undefined,
+      "schemaVersion": 1,
+      "sessionId": "sess_pi_wire_success",
+      "timestamp": "2026-09-05T20:20:10.567Z",
+      "turnId": "turn_sess_pi_wire_success",
+      "type": "turn.started",
+    },
+    "type": "harness:event",
+  },
+  {
+    "data": {
+      "data": {
+        "source": "pi",
+        "turnId": "turn_sess_pi_wire_success",
+      },
+      "eventId": "evt_83382c5b-54a8-4751-9eee-4498d90a4c67",
+      "parentEventId": undefined,
+      "schemaVersion": 1,
+      "sessionId": "sess_pi_wire_success",
+      "timestamp": "2026-09-05T20:20:10.577Z",
+      "turnId": "turn_sess_pi_wire_success",
+      "type": "message.started",
+    },
+    "type": "harness:event",
+  },
+  {
+    "data": {
+      "data": {
+        "source": "pi",
+        "turnId": "turn_sess_pi_wire_success",
+      },
+      "eventId": "evt_da208368-d2ad-4c34-be4d-fc699ec98a12",
+      "parentEventId": undefined,
+      "schemaVersion": 1,
+      "sessionId": "sess_pi_wire_success",
+      "timestamp": "2026-09-05T20:20:10.779Z",
+      "turnId": "turn_sess_pi_wire_success",
+      "type": "model.request.started",
+    },
+    "type": "harness:event",
+  },
+  {
+    "data": {
+      "data": {
+        "adapter": "pi",
+        "errorType": "PROVIDER_PROTOCOL_FAILURE",
+        "message": "oMLX provider stream timed out.",
+        "provider": "omlx",
+        "turnId": "turn_sess_pi_wire_success",
+      },
+      "eventId": "evt_62f0f1da-4230-4d1f-a240-238ba40dc0c7",
+      "parentEventId": undefined,
+      "schemaVersion": 1,
+      "sessionId": "sess_pi_wire_success",
+      "timestamp": "2026-09-05T20:20:10.820Z",
+      "turnId": "turn_sess_pi_wire_success",
+      "type": "turn.failed",
+    },
+    "type": "harness:event",
+  },
+  {
+    "data": {
+      "errorType": "PROVIDER_PROTOCOL_FAILURE",
+      "fatal": true,
+      "message": "oMLX provider stream timed out.",
+      "phase": "mid-stream",
+      "severity": "error",
+      "status": 504,
+    },
+    "type": "turn:error",
+  },
+  {
+    "data": {
+      "error": "oMLX provider stream timed out.",
+      "errorType": "PROVIDER_PROTOCOL_FAILURE",
+      "exitCode": 1,
+      "fatal": true,
+      "severity": "error",
+      "status": 504,
+    },
+    "type": "process:exit",
+  },
+]
+
+[36m [2m❯[22m src/__tests__/integration/pi-omlx-wire.integration.test.ts:[2m303:27[22m[39m
+    [90m301|[39m       data[33m:[39m { adapterId[33m:[39m [32m'pi'[39m[33m,[39m providerId[33m:[39m [32m'omlx'[39m[33m,[39m model }
+    [90m302|[39m     })[33m;[39m
+    [90m303|[39m     [34mexpect[39m(report[33m.[39mevents)[33m.[39m[34mtoContainEqual[39m({
+    [90m   |[39m                           [31m^[39m
+    [90m304|[39m       type[33m:[39m [32m'tool:result'[39m[33m,[39m
+    [90m305|[39m       data[33m:[39m expect[33m.[39m[34mobjectContaining[39m({ name[33m:[39m [32m'read_file'[39m[33m,[39m ok[33m:[39m [35mtrue[39m })
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+

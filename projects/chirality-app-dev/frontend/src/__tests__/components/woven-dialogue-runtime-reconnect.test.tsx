@@ -7,7 +7,7 @@ import type { SelectedSessionReplayState } from '../../lib/woven-dialogue/contra
 /**
  * Reconnect coverage for the woven shell — the surface the operator actually
  * opens. Two stale-state paths live here: the recorded-session list that feeds
- * both the Navigator's mode groups and the Coordination panel, and a replay lens
+ * both the Navigator's recorded sessions and the Coordination panel, and a replay lens
  * left showing UNAVAILABLE.
  *
  * `woven-dialogue-shell.test.tsx` renders this shell to static markup for
@@ -85,8 +85,8 @@ vi.mock('../../components/pipeline/pipeline-surface', () => ({
   PipelineSurface: () => <div data-pipeline-surface="mounted" />
 }));
 vi.mock('../../components/woven-dialogue/coordination-panel', () => ({
-  CoordinationPanel: ({ sessionsError }: { sessionsError: string | null }) => (
-    <div data-coordination-panel="mounted" data-sessions-error={sessionsError ?? ''} />
+  CoordinationPanel: ({ sessionsError, replaySlot }: { sessionsError: string | null; replaySlot?: React.ReactNode }) => (
+    <div data-coordination-panel="mounted" data-sessions-error={sessionsError ?? ''}>{replaySlot}</div>
   )
 }));
 vi.mock('../../components/woven-dialogue/activity-shelf', () => ({

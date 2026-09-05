@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "npm",
+    "test",
+    "--",
+    "src/__tests__/lib/harness-contract-rollback.test.ts"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "exit_status": 0,
+  "timestamp": "2026-09-05T20:14:35.074249+00:00",
+  "source_test_sha256": "ffb3478a520c1796165f46c88d9df505927f44ae4208b77c47147b399750b12c",
+  "env_overrides": {},
+  "environment": "inherited host; exact-lock App dependencies and scratch Root contracts supplied by parent dependency_prep",
+  "PATH": "/Users/ryan/.local/share/mise/installs/node/24/bin:/Users/ryan/.local/share/mise/installs/python/3.13/bin:/Users/ryan/.cargo/bin:/Users/ryan/.local/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Users/ryan/.local/bin:/Users/ryan/.codex/tmp/arg0/codex-arg0xAPP6u:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/ryan/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources"
+}

@@ -1,0 +1,23 @@
+# Exact-byte captured output and frozen unified-diff artifacts only.
+# v1.9 inventory and rationale: artifact-classification-v1.9/BEFORE_EFFECT.json
+instances/dependency_prep/runtime-build-confirm.stdout.log whitespace=-blank-at-eof
+instances/dependency_prep/runtime-focused-test.stdout.log whitespace=-blank-at-eof
+instances/dependency_prep/runtime-typecheck.stdout.log whitespace=-blank-at-eof
+instances/pkg02/FROZEN_PRODUCT.diff whitespace=-trailing-space
+instances/pkg02/FROZEN_PRODUCT_v2.diff whitespace=-trailing-space
+instances/pkg02/author/FOCUSED_TESTS_1.log whitespace=-blank-at-eof,-trailing-space
+instances/pkg02/author/FOCUSED_TESTS_2.log whitespace=-blank-at-eof
+instances/pkg02/author/FOCUSED_TESTS_3.log whitespace=-blank-at-eof
+instances/pkg02/author/FOCUSED_TESTS_revision2.log whitespace=-blank-at-eof
+instances/pkg03_packet/focused_test/stdout.log whitespace=-blank-at-eof
+instances/pkg07/workflow-author/repair03/focused.stdout.txt whitespace=-blank-at-eof
+instances/pkg07/workflow-author/repair03/typecheck.stdout.txt whitespace=-blank-at-eof
+validation/build-01/frontend-build.stdout.log whitespace=-blank-at-eof,-trailing-space
+validation/build-02/frontend-build.stdout.log whitespace=-blank-at-eof,-trailing-space
+validation/release-02/artifacts/release-quality/latest/logs/full_test.stderr.log whitespace=-blank-at-eof
+validation/release-02/artifacts/release-quality/latest/logs/full_test.stdout.log whitespace=-blank-at-eof
+validation/release-02/release-quality.stderr.log whitespace=-blank-at-eof
+validation/release-03/artifacts/release-quality/latest/logs/full_test.stderr.log whitespace=-blank-at-eof
+validation/release-03/artifacts/release-quality/latest/logs/full_test.stdout.log whitespace=-blank-at-eof
+validation/release-03/artifacts/release-quality/latest/logs/typecheck.stdout.log whitespace=-blank-at-eof
+validation/release-03/release-quality.stderr.log whitespace=-blank-at-eof

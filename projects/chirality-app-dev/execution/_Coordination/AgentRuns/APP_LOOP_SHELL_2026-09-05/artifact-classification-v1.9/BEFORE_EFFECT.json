@@ -1,0 +1,716 @@
+{
+  "argv": [
+    "git",
+    "diff",
+    "--cached",
+    "--check"
+  ],
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality",
+  "recorded_at": "2026-09-05T20:49:43.568894+00:00",
+  "exit_code": 2,
+  "stdout": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-build-confirm.stdout.log:4: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-focused-test.stdout.log:14: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-typecheck.stdout.log:4: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:18: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:34: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:55: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:128: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:138: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:144: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:153: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:158: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:168: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:186: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:235: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:247: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:295: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:299: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:308: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:341: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:431: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:443: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:549: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:559: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:575: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:617: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:619: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:688: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:696: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:729: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:851: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:902: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:904: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:906: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:915: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:964: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:968: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:987: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:1007: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:1037: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:1069: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff:1106: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:18: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:34: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:55: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:128: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:138: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:144: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:153: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:158: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:168: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:186: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:235: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:247: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:295: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:299: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:308: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:341: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:431: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:443: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:549: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:559: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:575: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:617: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:619: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:688: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:696: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:729: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:851: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:940: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:942: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:944: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:953: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:1002: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:1006: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:1025: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:1045: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:1075: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:1107: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff:1144: trailing whitespace.\n+ \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log:14: trailing whitespace.\n+  \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log:22: trailing whitespace.\n+  \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log:29: trailing whitespace.\n+  440 |  \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log:30: trailing whitespace.\n+  \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log:44: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_2.log:9: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_3.log:9: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_revision2.log:9: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg03_packet/focused_test/stdout.log:13: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/focused.stdout.txt:9: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/typecheck.stdout.txt:4: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log:12: trailing whitespace.\n+   Generating static pages (6/24) \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log:13: trailing whitespace.\n+   Generating static pages (12/24) \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log:14: trailing whitespace.\n+   Generating static pages (18/24) \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log:56: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log:12: trailing whitespace.\n+   Generating static pages (6/24) \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log:13: trailing whitespace.\n+   Generating static pages (12/24) \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log:14: trailing whitespace.\n+   Generating static pages (18/24) \nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log:56: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/artifacts/release-quality/latest/logs/full_test.stderr.log:151: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/artifacts/release-quality/latest/logs/full_test.stdout.log:298: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/release-quality.stderr.log:151: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/full_test.stderr.log:4: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/full_test.stdout.log:287: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/typecheck.stdout.log:4: new blank line at EOF.\nprojects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/release-quality.stderr.log:4: new blank line at EOF.\n",
+  "stderr": "",
+  "stdout_sha256": "017ce54de2224008779b3ba3e96c68e5682cc366a2293a4c98811d602718634b",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "encoding": "UTF-8 command bytes represented losslessly as JSON strings",
+  "findings": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-build-confirm.stdout.log",
+      "line": 4,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-focused-test.stdout.log",
+      "line": 14,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-typecheck.stdout.log",
+      "line": 4,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 18,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 34,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 55,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 128,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 138,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 144,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 153,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 158,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 168,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 186,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 235,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 247,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 295,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 299,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 308,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 341,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 431,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 443,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 549,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 559,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 575,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 617,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 619,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 688,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 696,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 729,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 851,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 902,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 904,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 906,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 915,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 964,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 968,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 987,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 1007,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 1037,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 1069,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "line": 1106,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 18,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 34,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 55,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 128,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 138,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 144,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 153,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 158,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 168,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 186,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 235,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 247,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 295,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 299,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 308,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 341,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 431,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 443,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 549,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 559,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 575,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 617,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 619,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 688,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 696,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 729,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 851,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 940,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 942,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 944,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 953,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 1002,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 1006,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 1025,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 1045,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 1075,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 1107,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "line": 1144,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log",
+      "line": 14,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log",
+      "line": 22,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log",
+      "line": 29,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log",
+      "line": 30,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log",
+      "line": 44,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_2.log",
+      "line": 9,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_3.log",
+      "line": 9,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_revision2.log",
+      "line": 9,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg03_packet/focused_test/stdout.log",
+      "line": 13,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/focused.stdout.txt",
+      "line": 9,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/typecheck.stdout.txt",
+      "line": 4,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log",
+      "line": 12,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log",
+      "line": 13,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log",
+      "line": 14,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log",
+      "line": 56,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log",
+      "line": 12,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log",
+      "line": 13,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log",
+      "line": 14,
+      "kind": "trailing whitespace."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log",
+      "line": 56,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/artifacts/release-quality/latest/logs/full_test.stderr.log",
+      "line": 151,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/artifacts/release-quality/latest/logs/full_test.stdout.log",
+      "line": 298,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/release-quality.stderr.log",
+      "line": 151,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/full_test.stderr.log",
+      "line": 4,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/full_test.stdout.log",
+      "line": 287,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/typecheck.stdout.log",
+      "line": 4,
+      "kind": "new blank line at EOF."
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/release-quality.stderr.log",
+      "line": 4,
+      "kind": "new blank line at EOF."
+    }
+  ],
+  "affected_paths": [
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-build-confirm.stdout.log",
+      "sha256": "121362c22d1e2b896902939fa5073ffb4cd1b57d8ab0b3edcc8588febc8d6285",
+      "bytes": 54,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-focused-test.stdout.log",
+      "sha256": "73d533a1baa0725459e9e06d7cd5d8737826be5f19272ac18f84624d13849bd0",
+      "bytes": 402,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/dependency_prep/runtime-typecheck.stdout.log",
+      "sha256": "ee6e82cf50eb2a50f7033996ea25a1ced7b0951240c7dd854619bbd0a5c21c00",
+      "bytes": 73,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT.diff",
+      "sha256": "5e1bcd180c5826c868f1cb02ff794582b9d4369c52aff49a38849e4a2f44a99b",
+      "bytes": 54941,
+      "observed_classes": [
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/FROZEN_PRODUCT_v2.diff",
+      "sha256": "111053aec7657de9c0dc4c6c13c212b6143a973c08370a65a4bf5b36ea7073a3",
+      "bytes": 56763,
+      "observed_classes": [
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_1.log",
+      "sha256": "3a7244f52ef297dc426592524780a505f87277eedaf1c2c619c829fab3cce28b",
+      "bytes": 2078,
+      "observed_classes": [
+        "blank-at-eof",
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_2.log",
+      "sha256": "e9c731bd75f8f0985431d5595feac1952b0fcf705acc8bfb453bfa9799f912a0",
+      "bytes": 265,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_3.log",
+      "sha256": "f558ef7702a9f12d35fa08f77e1f52eba693622705b5c5a6196f5921ee15f94b",
+      "bytes": 265,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/author/FOCUSED_TESTS_revision2.log",
+      "sha256": "19b926de9c350360719f534a3b9229f3d05ef3e5f17f5a2da7fec1e024a50975",
+      "bytes": 266,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg03_packet/focused_test/stdout.log",
+      "sha256": "854b44b1b441bcdcfa69c597afc78ee5a601af1db49e2d29eaf4e759e9aa0d22",
+      "bytes": 364,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/focused.stdout.txt",
+      "sha256": "e370451e1ab2c49ba708add9e4b48607133ced5c4daa189d0159f6c259bb3989",
+      "bytes": 263,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg07/workflow-author/repair03/typecheck.stdout.txt",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "bytes": 136,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-01/frontend-build.stdout.log",
+      "sha256": "25a0b0506b54cc64b0f443145eb779d84e5e46c54c1306f88ed0152013422325",
+      "bytes": 2922,
+      "observed_classes": [
+        "blank-at-eof",
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/build-02/frontend-build.stdout.log",
+      "sha256": "6d7e68628671f0a7c790cc3a2534bc62eb4bdcec7f4af53bfbddda442eab6be9",
+      "bytes": 2924,
+      "observed_classes": [
+        "blank-at-eof",
+        "trailing-space"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/artifacts/release-quality/latest/logs/full_test.stderr.log",
+      "sha256": "112d5cec40ca20e4dbbdd4761c618c1a9b4f79610d8f535c8a344c747daa81d5",
+      "bytes": 4917,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/artifacts/release-quality/latest/logs/full_test.stdout.log",
+      "sha256": "3fc70905eae37a77373cec6d8b28cc3e30f0b1bc2921c7f081cc763fb2e02e80",
+      "bytes": 36248,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-02/release-quality.stderr.log",
+      "sha256": "112d5cec40ca20e4dbbdd4761c618c1a9b4f79610d8f535c8a344c747daa81d5",
+      "bytes": 4917,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/full_test.stderr.log",
+      "sha256": "6a88d83cfc968383a2832638bae1857d49c2204a506c829d88961bfb58a941e1",
+      "bytes": 328,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/full_test.stdout.log",
+      "sha256": "ee3b68572e87366f34f287b385c33d6e5924c676ba97d2700d204ab5dfe52310",
+      "bytes": 34683,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/artifacts/release-quality/latest/logs/typecheck.stdout.log",
+      "sha256": "dc2149dec385adf46be71c88c67ddcf056f04bdcdba97507bdc9056781a90d1f",
+      "bytes": 136,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/validation/release-03/release-quality.stderr.log",
+      "sha256": "6a88d83cfc968383a2832638bae1857d49c2204a506c829d88961bfb58a941e1",
+      "bytes": 328,
+      "observed_classes": [
+        "blank-at-eof"
+      ]
+    }
+  ]
+}

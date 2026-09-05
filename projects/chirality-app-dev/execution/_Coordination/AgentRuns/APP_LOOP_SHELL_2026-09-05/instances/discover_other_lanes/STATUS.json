@@ -1,0 +1,24 @@
+{
+  "run_id": "APP_LOOP_SHELL_2026-09-05",
+  "node_id": "N0",
+  "instance_id": "discover_other_lanes",
+  "parent": "HELP_HUMAN /root",
+  "role": "Ephemeral Agent 2",
+  "status": "COMPLETED_REPORTED",
+  "updated_at": "2026-09-05T20:07:35.929860+00:00",
+  "attribution": {
+    "execution_class": "delegated-harness-native",
+    "provider": "OpenAI",
+    "model": "GPT-6",
+    "exact_serving_model_id": null,
+    "engine_id": null,
+    "model_basis": "Parent session system attribution; exact serving ID unavailable.",
+    "role_enforcement": "role not mechanically enforced",
+    "evidence_calibration": "instruction-asserted",
+    "substitutions": []
+  },
+  "record_materialization": "after initial native tool launch; no pre-existing filesystem record claimed",
+  "verification": "PENDING",
+  "return_path": null,
+  "reported_result": "Three independent packet preparation nodes authorized; Root and owner lanes remain gated; no Section 8 revision trigger before new code."
+}

@@ -1,0 +1,20 @@
+{
+  "commands.json": "f80750633c0afc805fac559c6a559ce0c417e769ff8e21677f2312e7e18d3feb",
+  "diff-check.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "diff-check.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "environment.json": "031c89c5ab9b77a5d44146287c08d5ae5272afb3f57369d7137ac536d7af7c61",
+  "git-head.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "git-head.stdout.log": "f8587138cacf73fa6961556ca3556f80b3b9a36934c8726d9a02ebd6814b8345",
+  "git-status.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "git-status.stdout.log": "67c3760da216cb970a53645e83f3465978161757329727cb23dfc1ce8c6a5003",
+  "node.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "node.stdout.log": "8f9258d5e9da5443c42966a661aee09292b49d1c64e718dcc5f72976500bac48",
+  "npm.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "npm.stdout.log": "041fb0a6f23ccf0102a18d4591e1bfa36eebc17d27d348727a5eee18806d1c3c",
+  "python.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "python.stdout.log": "c4a684e859efa868ffdfb4967e90ffd847a0fc1f293e16ed50ea18af8e3b95f6",
+  "receipt-validator.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "receipt-validator.stdout.log": "910ba49406a7c19319d0ac52b538c2f4a763a89fcfeab57614a2de38785a5718",
+  "source-sha256.json": "19550164057f72fd6faaf19bec9faf03e94161cf430c4a2adbc300005cc65d7b",
+  "source-stability.json": "5fda03920773a0600456d177dc487c83a7a523a90ac9a770b0579a5c17538317"
+}

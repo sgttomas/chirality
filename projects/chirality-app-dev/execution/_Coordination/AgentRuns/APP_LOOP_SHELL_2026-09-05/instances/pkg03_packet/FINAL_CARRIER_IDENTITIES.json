@@ -1,0 +1,18 @@
+[
+  {
+    "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-118_PACKET_FACADE_RETIREMENT_2026-09-05.md",
+    "sha256": "8eb3f39185a879d67fceb5c031bc292f8e24eac7cc2d85c70124d10663fe0411"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_STATUS.md",
+    "sha256": "a71621abbed92abb07b9918fa8f9e15c4600e41b0f32beb97feaa89f171a0e2e"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/MEMORY.md",
+    "sha256": "644e78117293e8ba9e7a151858365285faa5acaf65c3bb28c341413bb800c966"
+  },
+  {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-01_AgentEnginePort_and_Engine_Conformance_Suite/_run_records/TASK_RUN_2026-09-05_DAPP118_PACKET.md",
+    "sha256": "6ecfb3fe3fbd63b41218f71bf343681a74a1f7c7e9211e2c2db0752b1912811c"
+  }
+]

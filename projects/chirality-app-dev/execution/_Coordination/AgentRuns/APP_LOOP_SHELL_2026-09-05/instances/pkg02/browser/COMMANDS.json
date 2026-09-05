@@ -1,0 +1,76 @@
+{
+  "schema": "pkg02-browser-proof/v1",
+  "cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg02/browser",
+  "node": "v24.18.0",
+  "playwright": "1.62.1",
+  "chromium": "148.0.7778.96",
+  "browser_executable": "/Users/ryan/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+  "module": "/Users/ryan/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/index.mjs",
+  "server_command": [
+    "env",
+    "NEXT_TELEMETRY_DISABLED=1",
+    "CHIRALITY_HARNESS_PROVIDER=stub",
+    "node",
+    "node_modules/next/dist/bin/next",
+    "start",
+    "--hostname",
+    "127.0.0.1",
+    "--port",
+    "43181"
+  ],
+  "server_cwd": "/Users/ryan/.codex/worktrees/85d6/chirality/projects/chirality-app-dev/frontend",
+  "final_command": [
+    "env",
+    "T1_BASE_URL=http://127.0.0.1:43181",
+    "PLAYWRIGHT_MODULE=/Users/ryan/.npm/_npx/e41f203b7505f1fb/node_modules/playwright/index.mjs",
+    "T1_CHROMIUM_EXECUTABLE=/Users/ryan/Library/Caches/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-mac-arm64/chrome-headless-shell",
+    "T1_ATTEMPT=attempt-4",
+    "node",
+    "render-proof.mjs"
+  ],
+  "effective_task_environment": "Only named env overrides; browser new isolated context; inherited node runtime; every /api request intercepted with local fixture or explicit unavailable response; no real session/turn/root changes.",
+  "final_exit_code": 0,
+  "canonical_stdout_stderr": "browser-attempt-4.log (empty)",
+  "final_result": "attempt-4/result.json",
+  "cleanup": "CLEANUP.json",
+  "attempts": [
+    {
+      "id": 1,
+      "exit": 1,
+      "reason": "Playwright default expected uncached1234; no install; explicit existing1223 chosen",
+      "log": "browser-attempt-1.log"
+    },
+    {
+      "id": 2,
+      "exit": 1,
+      "reason": "Sandbox Mach bootstrap denied; exact command host escalation subsequently granted",
+      "log": "browser-attempt-2.log"
+    },
+    {
+      "id": 3,
+      "exit": 1,
+      "reason": "Host browser ran: exact accessible-name locator mismatched collapsed control pseudo-element plus; visual review separately found narrow metadata layout defect",
+      "log": "browser-attempt-3.log",
+      "result": "attempt-3/result.json"
+    },
+    {
+      "id": 4,
+      "exit": 0,
+      "reason": "Rebuilt revised product; corrected fixture/control locator;11observationsPASS; six screenshots visually reviewed",
+      "log": "browser-attempt-4.log",
+      "result": "attempt-4/result.json"
+    }
+  ],
+  "host_escalations": [
+    "server bind (prior EPERM)",
+    "Chromium launch (prior Mach bootstrap permission denied)",
+    "revised server and browser exact commands",
+    "read-only post-stop connection probe (sandbox EPERM, host ECONNREFUSED61)"
+  ],
+  "non_claims": [
+    "No live account/provider/harness proof",
+    "No packaging or release proof",
+    "No browser-library compatibility claim beyond successful recorded command"
+  ],
+  "rerun": "Rebuild frozen source first, start exact loopback server, run final_command with new attempt directory, inspect screenshots, stop server and verify refusal; available cached browser/modules or equivalent explicitly recorded host runtime required."
+}

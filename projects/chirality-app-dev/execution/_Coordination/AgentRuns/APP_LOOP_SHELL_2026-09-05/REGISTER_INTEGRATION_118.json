@@ -1,0 +1,15 @@
+{
+  "source": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_LOOP_SHELL_2026-09-05/instances/pkg03_packet/RETURN.md",
+  "source_sha256": "d59279c763f3c9ebf1807a5cab45496770267aee885e3f09434adefaa82d6e72",
+  "exact_row": "| D-APP-118 | Disposition of D-APP-101 later facade-retirement packet; known consumers remain, recommend HOLD | Facade deletion; Root routing separately needs owner-granted write scope; later App and Root rulings required | AWAITING_RULING | `execution/_Coordination/_DECISIONS/D-APP-118_PACKET_FACADE_RETIREMENT_2026-09-05.md` | - |",
+  "preimage_sha256": "ece0628a9d35189f394750e10347be7332c8b42abb2e3ec4812e1506358297f3",
+  "postimage_sha256": "e99121d8767785eee45ddf1d138e962f412b3a4e2e14696c1256ac6e42f940db",
+  "checks": {
+    "id_absent_before": true,
+    "columns": 6,
+    "status": "AWAITING_RULING",
+    "historic_bytes_preserved": true,
+    "diff_check_exit": 0
+  },
+  "final_review": "PENDING"
+}

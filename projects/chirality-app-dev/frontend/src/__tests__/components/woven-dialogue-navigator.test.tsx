@@ -92,80 +92,26 @@ describe('Woven Dialogue Navigator', () => {
     expect(html).toContain('Open legacy interface in a new window');
   });
 
-  it('expands the active mode group and collapses the others', () => {
-    const html = renderNavigator({ activeSurface: 'workbench' });
-
-    expect(html).toContain('aria-expanded="true"');
-    expect(html).toContain('aria-expanded="false"');
-    expect(html).toContain('aria-current="page"');
-    // Only the expanded group lists sessions, and it lists only its own.
-    expect(sessionIds(html)).toEqual(['ses-w1']);
-    expect(html).toContain('Workbench sessions');
-    expect(html).not.toContain('Dialogue sessions');
+  it('lists every recorded session flat in updatedAt order, including historical annotations', () => {
+    const html = renderNavigator({ sessions: [...SESSIONS].reverse(), expandedSurfaces: ['pipeline'] });
+    expect(sessionIds(html)).toEqual(SESSIONS.map(entry => entry.sessionId));
+    expect(html).not.toContain('aria-expanded=');
+    expect(html).not.toContain('woven-navigator-chevron');
+    expect(html).not.toContain('<span>Workbench</span>');
+    expect(html).not.toContain('<span>Pipeline</span>');
+    expect(html).toContain('Recorded surface: workbench');
+    expect(html).toContain('Recorded surface: pipeline');
   });
 
-  it('honours an explicit expansion set over the active surface default', () => {
-    const collapsed = renderNavigator({ expandedSurfaces: [] });
-    expect(collapsed).not.toContain('aria-expanded="true"');
-    expect(sessionIds(collapsed)).toEqual([]);
-
-    const pipelineOnly = renderNavigator({ expandedSurfaces: ['pipeline'] });
-    expect(sessionIds(pipelineOnly)).toEqual(['ses-p1']);
-  });
-
-  it('caps the recent list at four and offers the full recorded list', () => {
-    const html = renderNavigator();
-
-    expect(sessionIds(html)).toEqual(['ses-d1', 'ses-d2', 'ses-d3', 'ses-d4']);
-    expect(html).not.toContain('data-session-id="ses-d5"');
-    expect(html).toContain(`All sessions (${SESSIONS.length})`);
-    // Unattributed sessions are reachable only through that affordance.
-    expect(html).not.toContain('data-session-id="ses-x1"');
-  });
-
-  it('toggles from recent to all recorded sessions and back through the actual control', () => {
-    const tree = renderer.create(
-      <Navigator
-        activeSurface="dialogue"
-        legacyHref="/?legacy=1"
-        onOpenSurface={vi.fn()}
-        sessions={SESSIONS}
-        sessionSurfaces={SURFACES}
-        onSelectSession={vi.fn()}
-        onToggleSurfaceExpanded={vi.fn()}
-      />
-    );
-    const visibleSessionIds = () =>
-      tree.root
-        .findAll((node) => typeof node.props['data-session-id'] === 'string')
-        .map((node) => node.props['data-session-id']);
-    const findSessionToggle = () =>
-      tree.root.findAllByType('button').find((button) =>
-        ['All sessions (8)', 'Recent sessions'].includes(
-          button.children.join('')
-        )
-      );
-
-    expect(visibleSessionIds()).toEqual(['ses-d1', 'ses-d2', 'ses-d3', 'ses-d4']);
-    expect(findSessionToggle()?.children.join('')).toBe('All sessions (8)');
-    expect(findSessionToggle()?.props['aria-expanded']).toBe(false);
-
-    act(() => {
-      findSessionToggle()?.props.onClick();
-    });
-
-    expect(visibleSessionIds()).toEqual(SESSIONS.map((entry) => entry.sessionId));
-    expect(visibleSessionIds()).toContain('ses-x1');
-    expect(findSessionToggle()?.children.join('')).toBe('Recent sessions');
-    expect(findSessionToggle()?.props['aria-expanded']).toBe(true);
-
-    act(() => {
-      findSessionToggle()?.props.onClick();
-    });
-
-    expect(visibleSessionIds()).toEqual(['ses-d1', 'ses-d2', 'ses-d3', 'ses-d4']);
-    expect(findSessionToggle()?.children.join('')).toBe('All sessions (8)');
-    expect(findSessionToggle()?.props['aria-expanded']).toBe(false);
+  it('selects historical and unattributed sessions directly', () => {
+    const select = vi.fn();
+    const tree = renderer.create(<Navigator activeSurface="dialogue" legacyHref="/?legacy=1"
+      onOpenSurface={vi.fn()} sessions={SESSIONS} sessionSurfaces={SURFACES} onSelectSession={select} />);
+    for (const id of ['ses-w1', 'ses-p1', 'ses-x1']) {
+      act(() => tree.root.findByProps({ 'data-session-id': id }).props.onClick());
+      expect(select).toHaveBeenLastCalledWith(id);
+    }
+    act(() => tree.unmount());
   });
 
   it('marks the live session and the selected replay session distinctly', () => {
@@ -202,14 +148,14 @@ describe('Woven Dialogue Navigator', () => {
       'Session selection is paused while the primary dialogue is running.'
     );
     expect((html.match(/data-session-id="[^"]+" disabled=""/g) ?? [])).toHaveLength(
-      4
+      SESSIONS.length
     );
   });
 
   it('renders the loading, error, and empty states of the expanded group', () => {
     const loading = renderNavigator({ sessions: [], sessionsLoading: true });
     expect(loading).toContain('Loading recorded sessions…');
-    expect(loading).not.toContain('No recorded sessions for this surface.');
+    expect(loading).not.toContain('No recorded sessions.');
 
     const failed = renderNavigator({
       sessions: [],
@@ -217,18 +163,18 @@ describe('Woven Dialogue Navigator', () => {
     });
     expect(failed).toContain('role="alert"');
     expect(failed).toContain('Working Root is not reachable.');
-    expect(failed).not.toContain('No recorded sessions for this surface.');
+    expect(failed).not.toContain('No recorded sessions.');
 
     const empty = renderNavigator({ sessions: [], sessionSurfaces: {} });
-    expect(empty).toContain('No recorded sessions for this surface.');
+    expect(empty).toContain('No recorded sessions.');
     expect(empty).not.toContain('All sessions (');
 
     const unattributedOnly = renderNavigator({
       sessions: [session('ses-x1', 'PDF2MD', '2026-07-17T10:00:00.000Z')],
       sessionSurfaces: {}
     });
-    expect(unattributedOnly).toContain('No recorded sessions for this surface.');
-    expect(unattributedOnly).toContain('All sessions (1)');
+    expect(unattributedOnly).not.toContain('No recorded sessions.');
+    expect(sessionIds(unattributedOnly)).toEqual(['ses-x1']);
   });
 
   it('uses disclosure and toggle ARIA only, and no resume-style verbs', () => {
@@ -238,7 +184,7 @@ describe('Woven Dialogue Navigator', () => {
     expect(html).not.toContain('role="tablist"');
     expect(html).not.toContain('Resume');
     expect(html).not.toContain('Continue');
-    expect(html).toContain('aria-expanded=');
+    expect(html).not.toContain('aria-expanded=');
     expect(html).toContain('aria-pressed="false"');
   });
 });
