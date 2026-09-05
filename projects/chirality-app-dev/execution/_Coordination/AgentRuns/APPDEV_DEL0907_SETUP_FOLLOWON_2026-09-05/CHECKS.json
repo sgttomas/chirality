@@ -1,0 +1,15 @@
+{
+  "basis": "4b6d2bb2c1b6e798c0000f51b38755d92055f65d",
+  "checks": [
+    {"command":"python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path PROJECT_SETUP --target DEL-09-07","cwd":"projects/chirality-app-dev","stage":"before repair","exit_code":2,"result":"FAIL","detail":"canonical-named negative fixture lacks YAML"},
+    {"command":"python3 execution/_Scripts/app_hold.py scan --require-register-match","cwd":"projects/chirality-app-dev","stage":"after fixture relocation","exit_code":0,"result":"PASS"},
+    {"command":"python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path PROJECT_SETUP --target DEL-09-07","cwd":"projects/chirality-app-dev","stage":"after fixture relocation","exit_code":0,"result":"PASS"},
+    {"command":"python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .","stage":"before mutation","exit_code":0,"result":"PASS"},
+    {"command":"python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status","cwd":"projects/chirality-app-dev","exit_code":0,"result":"PASS","detail":"v20 no drift"},
+    {"command":"/private/tmp/chirality-piping-dec093-venv/bin/python tools/practitioner_harness/harness.py self-check","exit_code":0,"result":"PASS"},
+    {"command":"/private/tmp/chirality-piping-dec093-venv/bin/python -m pytest -q -p no:cacheprovider tools/practitioner_harness","exit_code":0,"result":"PASS","detail":"350 passed"},
+    {"check":"dependency schema, emitted enums, evidence and identity consistency","result":"PASS","evidence":"DEL0907/_run_records/TASK_RUN_2026-09-05_0420.md"},
+    {"check":"legacy ID helper","result":"SKIPPED","reason":"skill allowlist and obsolete width constraints; canonical IDs verified against accepted decomposition"},
+    {"check":"frontend/runtime gates","result":"SKIPPED","reason":"no product paths changed"}
+  ]
+}

@@ -6993,3 +6993,13 @@
   - Checks: post-pointer read-only parity backcheck pass (pointer hash equals the literal post-image; target snapshot present with verified manifest; both authoritative hashes unchanged; SCA-APP-009 tree unchanged); receipt validator pass; repo-wide self-check exit 0; candidate whitespace pass; `git diff --check` clean; changed-path scope exactly the pointer, the snapshot's decision, handoff, checks, pointer-validation, and manifest files, and the receipts ledger; no product source changed so frontend and runtime gates skipped.
   - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN and as the pointer applicator; no child dispatched for this act.
   - Gate-Outcome: `EXECUTED` — the owner ruled SCA-APP-010 the active snapshot and directed the pointer update; the pointer write and its landing PR are performed on that direction. No seating, deliverable-local write, dependency extraction, Root routing, closure claim, product, lifecycle, or release act occurred.
+
+- **2026-09-05 — Receipt 237** (DEL-09-07 setup follow-on and negative-fixture correction).
+  - Receipt-ID: `Receipt-237`
+  - Examined-Through: `4b6d2bb2c1b6e798c0000f51b38755d92055f65d`
+  - Parent-Receipt: `Receipt-230`
+  - Pointers: `execution/_Coordination/AgentRuns/APPDEV_DEL0907_SETUP_FOLLOWON_2026-09-05/`; DEL-09-07 `Dependencies.csv`, `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`; landing basis `311a2f0b811d55315d6eb623130cad0be1417565`.
+  - Stale-Map-Delta: Prior scan evidence preceded the verifier's canonical-named invalid fixture; additive `FIXTURE_RELOCATION_2026-09-05.md` preserves and corrects that provenance. Concurrent SCA-APP-010 changes are preserved by clean rebase; DEL-09-07 source definitions and SOW pin remain unchanged.
+  - Checks: dependency schema pass; semantic validator pass; lens validator pass; P3 disposition pass; focused review pass; APP-HOLD pass; corpus pass; self-check pass; practitioner pytest pass; receipts pass; diff check pass; legacy ID helper skipped; frontend gates skipped.
+  - Model-Attribution: Codex/OpenAI/GPT-6 family per session, exact backend identifier unavailable; delegated-harness-native, role not mechanically enforced, instruction-asserted; non-delegation instruction/config asserted and not mechanism-proven. Actual launches/returns in AgentRuns.
+  - Gate-Outcome: `AWAITING_OWNER` — authorized setup completed and reviewed; no warranted enrichment requires a SOW change. OPEN lifecycle and Root implementation/input gates remain; owner integration is next.
