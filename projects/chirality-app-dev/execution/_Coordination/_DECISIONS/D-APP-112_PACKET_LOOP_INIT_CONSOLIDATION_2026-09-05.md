@@ -13,8 +13,8 @@ Owning loop: `Chirality App Dev`
 Candidate: branch `claude/loop-init-consolidation-d-app-112` from `origin/main`
 `7cb41194f55d7747f6c388e6afbedf88cfd1d9f4`; the candidate bytes are applied
 to `loop/LOOP_INIT.md` on the branch (SHA-256
-`466ae810425c052d222c05e22b32b6fde3c2442b926db87306291f7794204560`, 242
-lines, 14,142 bytes; the ruled D-APP-105 text is 386 lines, 23,838 bytes).
+`fb7eccb4bc404536f98e1696c9567b916bce749935b9c98850290d613bccfcc4`, 244
+lines, 14,394 bytes; the ruled D-APP-105 text is 386 lines, 23,838 bytes).
 The owner rules by reply; on acceptance the register row flips to `RULED`
 with a one-line ruling record on the same PR before merge.
 
@@ -28,8 +28,14 @@ I read the LOOP_INIT.md for this project and it is way too dense.  Section 9 and
 Proceed accordingly.  Remove as much as you can justify.
 <!-- END OWNER DIRECTION VERBATIM -->
 
-The second direction authorizes preparing this packet and candidate; it is
-not read as a ruling on the candidate bytes.
+On the first cut (386 to 242 lines, same section order):
+
+<!-- BEGIN OWNER DIRECTION VERBATIM -->
+It's much much much better.  Are you as timely and clear as you need to be about the location of the deliverables?  I'm not saying you aren't.  Just assess and make changes if you think it's warranted.  The agent ought to be reading the entire thing, but ordering and consistency, and repetition can matter.  Consider the overall ordering of the LOOP_INIT.md and if you want to change it to make it clearer and more cohesive.
+<!-- END OWNER DIRECTION VERBATIM -->
+
+These directions authorize preparing this packet and candidate; none is read
+as a ruling on the candidate bytes.
 
 ## Test applied
 
@@ -80,16 +86,34 @@ Each clause of the D-APP-105 text was assigned exactly one disposition:
 | 31 | §7 evidence contract | A12; Root R17 N3 | prose summaries offered as acceptance evidence | none mechanical | KEEP, compressed to one paragraph |
 | 32 | §8 checks table | D-APP-36/38; AGENTS.md | — | the rows are the check index | KEEP; the host-surface row shortened to its pointer |
 | 33 | §9 pointer index | D-APP-105 | — | pointer currency in `self-check` | KEEP; SCA-APP-008 post-application audit entry DROP (superseded by the accepted DepClosure snapshot under D-APP-111); AGENTS.md entry gains the concurrent-loop rule so item 7 has a home |
-| 34 | §10 per-run steer; "LOOP_INIT §7 defaults" mapping | D-APP-61 M4-A | — | — | KEEP verbatim in substance (the mapping sentence is retained by D-APP-105) |
+| 34 | §10 per-run steer; "LOOP_INIT §7 defaults" mapping | D-APP-61 M4-A | — | — | KEEP in substance; the mapping sentence generalized to cover the D-APP-105 numbering as well |
 | 35 | Appendix provenance | D-APP-105 | — | the register holds provenance; this table records it for the rewrite | DROP |
 
-Section numbers §1 to §10 are unchanged, so every receipt and record that
-cites a section by number still resolves.
+## Ordering (second cut)
+
+The first cut kept the D-APP-105 order. Read top-down, that order named the
+deliverable path only inside a Step 0 command and plainly only in the last
+content section, and placed the fences after the protocol that tells the
+agent to stop at them. The second cut orders the file map, then limits, then
+motion: §1 bootstrap, §2 pointer index (was §9), §3 fences (was §6), §4
+workplan overlay (was §2), §5 protocol (was §3), §6 first return (was §4),
+§7 posture (was §5), §8 checks (unchanged), §9 evidence contract (was §7),
+§10 steer (unchanged). The header names the deliverable path and the
+`## Remaining` surface in its second sentence; Step 1 names them again at
+the point of selection and points to §2. Cross-references inside the file
+are updated; one duplicated "drift is repair-first" line was removed from
+Step 0 (the §8 table carries it).
+
+Section numbers change. §10 now states that historical receipts cite the
+numbering of the revision current when they were written and that the
+D-APP-105 text remains in git history, so every earlier citation still
+resolves through that sentence.
 
 ## What the candidate does not do
 
 It changes no fence wording, no Step 0 command, no check in §8, and no
-pointer target other than the superseded SCA-APP-008 audit entry. It retains
+pointer target other than the superseded SCA-APP-008 audit entry. It moves
+sections (see "Ordering") but changes no rule by the move. It retains
 every D-APP-64 element that D-APP-105 listed as retained (§3 standing
 approval by pointer, §5 contract by pointer, the committed-HEAD reading in
 §2 and Step 0, the M4-A mapping sentence). It adds no rule.
