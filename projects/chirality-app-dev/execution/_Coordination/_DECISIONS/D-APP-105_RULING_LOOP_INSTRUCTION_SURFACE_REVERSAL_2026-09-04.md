@@ -64,11 +64,14 @@ decision-latitude instrument (D-APP-60), or any deliverable's scope.
 
 ## Residual (own row, per the residual-work convention)
 
-`tools/validation/validate_instruction_entrypoints.py` still requires at
-least one `WORKPLAN_*.md` per project, and `LOOP_INIT.md` §2 still stops
-before Step 0 when the loader finds none. Making the overlay optional in
-existence, not only in content, needs a root validator change and a loader
-amendment. Recorded as `D-APP-106`, `NOT_PREPARED`.
+`tools/validation/validate_instruction_entrypoints.py` required at least one
+`WORKPLAN_*.md` per project, and `LOOP_INIT.md` §2 stopped before Step 0
+when the loader found none. Recorded as `D-APP-106`. The owner then expanded
+this tranche's write scope to Root in-session (2026-09-04, verbatim: "Expand
+you write scope to Root also"), and D-APP-106 was applied in the same PR:
+the validator no longer reports a missing workplan (test
+`test_accepts_project_without_workplan` covers the case), and the loader
+runs on deliverables alone when no committed plan exists.
 
 ## Attribution
 

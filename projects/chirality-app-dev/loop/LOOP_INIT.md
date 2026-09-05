@@ -40,10 +40,11 @@ from `REPO_ROOT`, enumerate the `HEAD` tree entries under
 Require the selected path to resolve to exactly one `HEAD` tree entry of
 mode `100644`, type `blob`, and read the plan bytes only with
 `git show HEAD:<path>`. An untracked, staged-only, or worktree-only filename
-is never selectable. If enumeration, validation, or committed-byte reading
-fails, stop before Step 0 and report the loader failure; never silently
-select an older plan. Ruled plans are immutable; a change is a new dated
-file.
+is never selectable. If no committed plan exists, the loop runs on the
+deliverables alone and the receipt says so (D-APP-106). If a plan exists but
+validation or committed-byte reading fails, stop before Step 0 and report
+the loader failure; never silently select an older plan. Ruled plans are
+immutable; a change is a new dated file.
 
 ## 3. The loop protocol (every iteration)
 
@@ -55,7 +56,7 @@ Run from `REPO_ROOT` unless stated; `WORKING_ROOT` is
 ```bash
 git status --short && git log --oneline -20
 python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .
-git show HEAD:$(git ls-tree --name-only HEAD projects/chirality-app-dev/loop/ | grep -E '/WORKPLAN_.*\.md$' | LC_ALL=C sort | tail -1)
+p=$(git ls-tree --name-only HEAD projects/chirality-app-dev/loop/ | grep -E '/WORKPLAN_.*\.md$' | LC_ALL=C sort | tail -1); [ -n "$p" ] && git show "HEAD:$p" || echo "no committed plan: deliverables alone"
 tail -60 projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
 grep -n "AWAITING_RULING\|PROPOSAL" projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
 ls projects/chirality-app-dev/execution/_Coordination/NOTICE_* 2>/dev/null
@@ -74,7 +75,8 @@ What each line establishes, and the rules attached:
 - **Receipt validator, then the latest applicable receipt(s).** A validator
   failure blocks use of the cursor until the ledger is repaired through its
   governed path.
-- **Committed plan bytes** (§2). Apply its focus and order; nothing else.
+- **Committed plan bytes** (§2), if any. Apply its focus and order; nothing
+  else.
 - **Decision register.** Rulings newer than the last receipt are how work
   unlocks. Look every time.
 - **Routed Root notices** under `execution/_Coordination/NOTICE_*`. Root
@@ -380,5 +382,5 @@ separation; historical §7 mapping) · D-APP-64 (reasoned-selection overlay;
 committed-HEAD loader) · A1 2026-08-23 (re-stage rule) · Root R17 / A12
 2026-09-03 (calibrated pressure; evidence contract; selectability rule; one
 branch, one PR, one receipt) · D-APP-105 2026-09-04 (this file carries the
-generic loop; the workplan is an optional narrowing overlay; D-APP-106 holds
-the residual validator/loader relaxation).
+generic loop; the workplan is an optional narrowing overlay; D-APP-106 makes
+it optional in existence: validator and loader relaxed).

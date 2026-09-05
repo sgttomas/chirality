@@ -202,10 +202,9 @@ def validate(repo_root: Path) -> list[str]:
         for required in (project_agents, project_init, loop_init, profile):
             if not required.is_file():
                 findings.append(f"{required.relative_to(repo_root)} is missing")
-        if current_workplan is None:
-            findings.append(
-                f"{(project_root / 'loop').relative_to(repo_root)} has no WORKPLAN_*.md"
-            )
+        # A workplan is an optional narrowing overlay (app-dev D-APP-105 /
+        # D-APP-106); its absence is not a finding. When present, the newest
+        # one is checked for structural duplication below.
 
         if project_agents.is_file():
             text = project_agents.read_text(encoding="utf-8").lower()
