@@ -60,7 +60,7 @@ jobs:
           path: |
             ~/.cargo/registry/
             projects/chirality-piping/core/model_operations/operation_applier/target
-          key: ${{ runner.os }}-rust-1.97.1-${{ hashFiles('projects/chirality-piping/core/model_operations/operation_applier/Cargo.lock', 'projects/chirality-piping/core/loads/self_weight_wasm/Cargo.lock') }}
+          key: ${{ runner.os }}-rust-1.97.1-${{ hashFiles('projects/chirality-piping/core/model_operations/operation_applier/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-rust-1.97.1-
 
@@ -69,11 +69,11 @@ jobs:
         working-directory: projects/chirality-piping
 
       # The desktop build is deliberately offline. Populate the complete
-      # locked graphs, including host/transitive dependencies, before building.
-      - name: Fetch complete locked WASM dependency graphs
-        run: |
-          cargo fetch --locked --manifest-path core/model_operations/operation_applier/Cargo.toml
-          cargo fetch --locked --manifest-path core/loads/self_weight_wasm/Cargo.toml
+      # locked graph, including host/transitive dependencies, before building.
+      - name: Fetch complete locked WASM dependency graph
+        run: >-
+          cargo fetch --locked
+          --manifest-path core/model_operations/operation_applier/Cargo.toml
         working-directory: projects/chirality-piping
 
       - name: Build desktop WASM engine
