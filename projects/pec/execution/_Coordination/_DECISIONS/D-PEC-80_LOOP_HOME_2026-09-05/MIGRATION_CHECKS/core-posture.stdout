@@ -1,0 +1,16 @@
+{
+  "assertions": {
+    "dependency": "PASS",
+    "locality": "PASS",
+    "registration": "PASS"
+  },
+  "evaluated": {
+    "config_sha256": "20d64ff38122fa2f7b4bbe6478e42450ce6f9c8b03dc91c90b5095393ef309ed",
+    "core_tree_sha256": "2c830d1fe9bc7f550c47d5f22223f330a3a95118360e61bb6d9c785b47c151ca",
+    "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+  },
+  "findings": [],
+  "release_force": "PEC_RELEASE_BLOCKING",
+  "schema_version": 1,
+  "verdict": "PASS"
+}

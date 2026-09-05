@@ -186,7 +186,7 @@ APP_REGISTER = (
 DOMAIN_REGISTER = (
     "domains/handbook/execution/_Coordination/_TaskManagement/REGISTER.csv"
 )
-ENGINE_REGISTER = "_DomainEngines/pec/_TaskManagement/REGISTER.csv"
+ENGINE_REGISTER = "_DomainEngines/fixture-engine/_TaskManagement/REGISTER.csv"
 
 
 def closed_row(item_id: str, **overrides) -> dict:
@@ -573,7 +573,7 @@ class TestDedupLoopIdentity:
         assert taskmgmt.loop_of_source(
             "domains/handbook/file.md") == "domains/handbook"
         assert taskmgmt.loop_of_source(
-            "_DomainEngines/pec/_TaskManagement/x.csv") == "_DomainEngines/pec"
+            "_DomainEngines/fixture-engine/_TaskManagement/x.csv") == "_DomainEngines/fixture-engine"
 
     def test_same_named_notices_in_different_loops_stay_distinct(
             self, tmp_path):
@@ -820,3 +820,10 @@ class TestFederationCliCompatibility:
             "--out", str(federation_out)]) == 0
         assert federation_out.is_file()
         assert "federation COMPLETE" in capsys.readouterr().out
+
+
+def test_pec_canonical_home_matches_source_loop():
+    register = "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv"
+    assert taskmgmt.classify_register_paths([register], [])[0] == [register]
+    assert taskmgmt.loop_of_source(register) == "projects/pec"
+    assert taskmgmt.loop_of_source("projects/pec/execution/PKG-01/file.md") == "projects/pec"

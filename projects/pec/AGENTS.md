@@ -159,9 +159,9 @@ instance-content lane and creates no invocation by itself.
   (`SOFTWARE_DECOMP.md` working surface + companion registers;
   `_LATEST.md` is the revision pointer and handoff state — read it first)
 - `_DomainEngines/_DECISIONS/_REGISTER.md` — tier-0 register (`D-T0-*`)
-- `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` — the
+- `projects/pec/loop/WORKPLAN_2026-07-24_pec_coordination_plane.md` — the
   standing plan (loop protocol, target sequence, parked work, fences)
-- `_DomainEngines/pec/LOOP_RECEIPTS.md` — loop handoff ledger
+- `projects/pec/loop/LOOP_RECEIPTS.md` — loop handoff ledger
 - `docs/PRD.md` — adopted product definition; `docs/STATUS.md` — current state
 - `_DomainEngines/profiles/pec.yaml` — D-T0-27 O-A exact PEC v2 successor
   postimage, `ADOPTED / READ_ONLY` and effective through PR #459 merge

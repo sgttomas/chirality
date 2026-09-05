@@ -2,7 +2,7 @@
   "loops": [
     {
       "loop_id": "pec",
-      "loop_init_path": "_DomainEngines/pec/LOOP_INIT.md"
+      "loop_init_path": "projects/pec/loop/LOOP_INIT.md"
     },
     {
       "loop_id": "pec",

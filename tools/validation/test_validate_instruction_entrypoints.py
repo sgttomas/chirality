@@ -372,3 +372,10 @@ def test_help_human_activation_does_not_require_markdown_backticks(
 
 def test_entire_current_repository_passes() -> None:
     assert validator.validate(REPO_ROOT) == []
+
+
+def test_pec_entrypoint_and_catalog_are_covered(tmp_path: Path) -> None:
+    project = _write_project(tmp_path, project_name="pec")
+    assert validator.validate(tmp_path) == []
+    (project / "loop" / "LOOP_INIT.md").unlink()
+    assert "projects/pec/loop/LOOP_INIT.md is missing" in validator.validate(tmp_path)

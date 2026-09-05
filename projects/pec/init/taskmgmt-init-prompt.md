@@ -7,9 +7,8 @@ narrow the run (e.g. `deferral review only`, `triage of the open rows`, or
 session and land its closeout before the root session
 (`init/taskmgmt-init-prompt.md` at the repo root).
 
-PEC is the one loop whose register home and notice ledger live in different
-trees; the sweep scope below names both, while writes stay bound to the
-register home.
+PEC’s register and notice ledger live under its project coordination home;
+the receipt ledger lives under its project loop home.
 
 <init-prompt>
 Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
@@ -18,11 +17,11 @@ Read `{REPO_ROOT}/AGENTS.md`.
 Read `{REPO_ROOT}/agents/AGENT_TASK_MANAGEMENT.md` and follow it in full.
 
 Act as `TASK_MANAGEMENT` for the pec loop. Register home:
-`{REPO_ROOT}/_DomainEngines/pec/_TaskManagement/`. Write scope is that
+`{REPO_ROOT}/projects/pec/execution/_Coordination/_TaskManagement/`. Write scope is that
 register home, routed drafts shipped solely through closeout, and the single
 closeout receipt appended to the owning loop's receipts surface per
 `AGENT_TASK_MANAGEMENT.md` §Closeout. The
-sweep covers this loop's surfaces in both trees, including the notice ledger
+sweep covers this loop's project surfaces, including the notice ledger
 at `{REPO_ROOT}/projects/pec/execution/_Coordination/`.
 
 Run the generational pass, each step gated on my rulings before the next:
@@ -36,13 +35,13 @@ Run the generational pass, each step gated on my rulings before the next:
    minted in step 2. Present the classification report; await my rulings;
    apply them.
 4. Run `python3 tools/taskmgmt/taskmgmt.py archive --register
-   _DomainEngines/pec/_TaskManagement/REGISTER.csv` (a no-op when no rows
+   projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv` (a no-op when no rows
    are CLOSED); validate the live register and REGISTER_CLOSED.csv; run a
    final federation pass and quote its status counts as closeout evidence.
 5. Closeout: assemble this session's durable products on a branch — the
    register and archive, reports, and any ruled routed notices with
    reciprocal citations (inbound SHA, row ID, evidence refs); append one
-   closeout receipt to `_DomainEngines/pec/LOOP_RECEIPTS.md`, conforming to
+   closeout receipt to `projects/pec/loop/LOOP_RECEIPTS.md`, conforming to
    that ledger's stated receipt cap, per `AGENT_TASK_MANAGEMENT.md`
    §Closeout. The PR body
    carries the closeout record: every row changed and the ruling it cites,

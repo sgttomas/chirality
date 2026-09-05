@@ -148,11 +148,11 @@ read and cite only, no further feature work, retired product docs under
 
 1. `docs/PRD.md` — the adopted product definition (v2.2), including the
    invariants (PEC-K-01..11), modes ladder, and release strategy.
-2. `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` — the
+2. `projects/pec/loop/WORKPLAN_2026-07-24_pec_coordination_plane.md` — the
    standing plan (loop protocol, gates, fences).
 3. `execution/_Coordination/_DECISIONS/_REGISTER.md` — decision register
    (D-PEC-57/58 are the pivot and adoption rows).
-4. `_DomainEngines/pec/LOOP_RECEIPTS.md` — handoff ledger.
+4. `projects/pec/loop/LOOP_RECEIPTS.md` — handoff ledger.
 
 ## Governance & agent harness
 

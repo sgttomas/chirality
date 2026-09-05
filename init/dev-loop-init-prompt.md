@@ -25,7 +25,7 @@ Six alternative launcher entries are cataloged:
 4. **PEC work loop launcher** — enters the standing PEC coordination-plane
    loop. Its canonical paste-ready launcher is
    `projects/pec/init/dev-loop-init-prompt.md` and points to
-   `_DomainEngines/pec/LOOP_INIT.md`.
+   `projects/pec/loop/LOOP_INIT.md`.
 5. **Piping work loop launcher** — the chirality-piping project development
    loop. Its file is `projects/chirality-piping/loop/LOOP_INIT.md`.
 6. **App-dev work loop launcher** — the chirality-app-dev project development
@@ -109,19 +109,24 @@ pattern at that loop's own `<LOOP_DIR>/LOOP_INIT.md`.
 
 ---
 
-## 4. PEC work loop launcher (standing coordination-plane loop) — ACTIVE
+## 4. PEC work loop launcher — ACTIVE
 
-Copy the single paste-ready `<init-prompt>` block from
-`projects/pec/init/dev-loop-init-prompt.md`. Replace its `<none>` placeholder with a
-per-run steer if desired. Entry is typed (`HELP_HUMAN`, consistent with
-§§2, 5–6), scoped to both PEC trees: `projects/pec/` and the loop home
-`_DomainEngines/pec/`.
+Paste-ready as written; this block byte-matches the PEC project launcher.
 
-The launcher remains deliberately thin. `_DomainEngines/pec/LOOP_INIT.md`
-hands the session to the standing `WORKPLAN_*.md` it selects and to the
-live receipt/register discovery protocol. Those surfaces carry the current
-goal, gates, fences, and state pointers; pasted launcher text does not duplicate
-or override them.
+<init-prompt>
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+
+Set `WORKING_ROOT` to `{REPO_ROOT}/projects/pec`.
+
+Read `{REPO_ROOT}/AGENTS.md`.
+Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
+
+Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
+
+Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it.
+
+Steer (this run): <none>
+</init-prompt>
 
 ---
 

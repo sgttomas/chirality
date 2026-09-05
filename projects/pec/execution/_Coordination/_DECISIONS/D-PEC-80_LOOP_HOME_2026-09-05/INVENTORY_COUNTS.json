@@ -1,0 +1,18 @@
+{
+  "immutable record": {
+    "files": 325,
+    "matching_lines": 695
+  },
+  "launcher or catalog text": {
+    "files": 3,
+    "matching_lines": 8
+  },
+  "live doc or pointer": {
+    "files": 6,
+    "matching_lines": 10
+  },
+  "tool or validator code": {
+    "files": 8,
+    "matching_lines": 10
+  }
+}
