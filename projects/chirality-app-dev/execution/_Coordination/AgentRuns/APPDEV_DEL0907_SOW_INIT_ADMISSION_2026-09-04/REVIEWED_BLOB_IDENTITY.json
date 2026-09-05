@@ -1,0 +1,41 @@
+{
+  "reviewed_freeze": "e079cbc397e4208c4c82d6a55a6dffacf67165e4",
+  "verification": "git diff --exit-code REVIEWED_FREEZE -- [all listed paths] returned zero with no output at narrative closeout.",
+  "files": [
+    {
+      "path": "projects/chirality-app-dev/AGENTS.md",
+      "sha256": "00a8b1db0a3ab8288e7cccefae42272e56bb1b39a75c2f3e458e43bb51bd8fd5",
+      "matches_reviewed_freeze": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/APP_HOLD_REGISTER.csv",
+      "sha256": "c08a2948201cfcc09a661750f45148f9555d1ce38b925eeacf987de89ac5cafc",
+      "matches_reviewed_freeze": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-107_RULING_DEL_09_07_SOW_INITIALIZATION_2026-09-04.md",
+      "sha256": "817cb8d0dceb617c8df71ceb3640b4ef01b263588b08b1835b5083f09fc39155",
+      "matches_reviewed_freeze": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md",
+      "sha256": "970d23b5c793dde28efd3bd6d42d605bf1fe64e4a21b351919ca6c2904da38fd",
+      "matches_reviewed_freeze": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Scripts/README.md",
+      "sha256": "5d1e1a9804e1fd1edfff88d4ef8e7cfea336fd0793cabacbe077eb8f719f791c",
+      "matches_reviewed_freeze": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Scripts/app_hold.py",
+      "sha256": "92e6dd4c001e8715450e61f91073b49da6788de41f43606c812457c02e07c5bc",
+      "matches_reviewed_freeze": true
+    },
+    {
+      "path": "projects/chirality-app-dev/execution/_Scripts/tests/test_app_hold.py",
+      "sha256": "5c05f9a2ca601cd7d6fd0930bb1901f0c6daf0158a74aa9eeeaff9bfc0849414",
+      "matches_reviewed_freeze": true
+    }
+  ]
+}

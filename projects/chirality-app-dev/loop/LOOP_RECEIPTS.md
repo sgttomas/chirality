@@ -6907,3 +6907,13 @@
     implementation, host,
     Syft, signing, notarization, Apple call, distribution, publication,
     release-readiness, or reliance act or claim occurred.
+
+- **2026-09-04 — Receipt 229** (DEL-09-07 Scope of Work initialization admission repair).
+  - Receipt-ID: `Receipt-229`
+  - Examined-Through: `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`
+  - Parent-Receipt: `Receipt-228`
+  - Pointers: `execution/_Coordination/_DECISIONS/D-APP-107_RULING_DEL_09_07_SOW_INITIALIZATION_2026-09-04.md`; `execution/_Coordination/AgentRuns/APPDEV_DEL0907_SOW_INIT_ADMISSION_2026-09-04/`; reviewed freeze `e079cbc397e4208c4c82d6a55a6dffacf67165e4`; branch `codex/del0907-init-admission-2026-09-04`.
+  - Stale-Map-Delta: Receipt-228's awaiting-owner-merge claim is historical; PR #707 merged at the examined basis, expiring the D-APP-104 bootstrap; the prospective repair is recorded in D-APP-107.
+  - Checks: APP-HOLD tests pass; initialization preflight pass; hold integrity pass; practitioner pytest pass; self-check pass; independent review pass; corpus pass; receipt validator pass; diff check pass; G4 pass.
+  - Model-Attribution: Codex/OpenAI/GPT-6 per session instructions; exact backend identifier unavailable; delegated-harness-native, role not mechanically enforced, instruction-asserted, non-delegation instruction/config asserted and not mechanism-proven; execution evidence in the run record.
+  - Gate-Outcome: `AWAITING_OWNER` — repair reviewed; owner PR merge remains the gate, then PROJECT_SETUP resumes INIT under the already-given direction. No ScopeOfWork, acceptance, lifecycle, product, or release act occurred.

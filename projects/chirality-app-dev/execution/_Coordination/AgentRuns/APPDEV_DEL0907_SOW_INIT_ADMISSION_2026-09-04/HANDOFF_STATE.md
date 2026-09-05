@@ -2,12 +2,14 @@
 
 Upstream accepted snapshot: SCA-APP-009 at merge
 `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`. D-APP-107 records the repair
-direction. The implemented initializer is review-pending; this run is
+direction. The implemented initializer has independent review PASS; this run is
 derivative evidence and does not replace accepted decomposition truth.
 
-Closure verdict: REVIEW_PENDING. HELPS_HUMANS must fan in the fresh reviewer,
-then append the required receipt and return the tested branch to HELP_HUMAN.
-Root handles publication; owner integration remains a gate. No semantic
+Closure verdict: REVIEWED_AWAITING_OWNER_INTEGRATION. HELPS_HUMANS accepted
+the independent PASS at freeze `e079cbc397e4208c4c82d6a55a6dffacf67165e4`.
+Receipt-229 follows Receipt-228. Review report and CHECKS.json are current
+derivative evidence; reviewed implementation, instruction and decision bytes
+remain fixed. HELP_HUMAN handles publication; owner integration remains a gate. No semantic
 acceptance, product work, lifecycle promotion, or release claim is made.
 
 After integration, PROJECT_SETUP resumes Phase 2.2 using the exact preflight
