@@ -19,8 +19,12 @@ the owner has answered. Agent readings are labelled as such.
 
 | G5-POINTER | 2026-09-04 | Ryan Tufts | Verbatim: "update the LATEST pointer to the SCA-APP-010 once the PR #708 is merged." Given after PR #708 merged as `7795b0972`. | Rules SCA-APP-010 the active snapshot (`OWNER_ACTION_MATRIX.csv` step 14) and authorizes the pointer write (step 15) to the literal post-image validated in `Evidence/Gate5/POINTER_CANDIDATE_VALIDATION.md`, SHA-256 `b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0`. SCA-APP-009's own derivative closure is not closed by this ruling; it remains open under its snapshot and `DOWNSTREAM_HANDOFFS.csv` row 10 is satisfied by this ruling only as to pointer eligibility. No seating, downstream dispatch, Root routing, or release act. |
 
+| POST-CLOSURE-POINTERS | 2026-09-05 | Ryan Tufts | Verbatim: "Update all pointers as required." Given after PR #714 merged as `4bd942827` (register row D-APP-111). | Accepts `CLOSURE_SCC-DECOMPOSE-SCA-APP-010_2026-09-05_1034` as the loop's DepClosure pointer, `COV_SCA_APP_010_POST_D_APP_109_2026-09-05_0807` as the DecompCoverage pointer, and `RECON_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518` as the reconciliation pointer; this handoff's derivative fields updated accordingly. `_ScopeChange/_LATEST.md` unchanged. No scope-closure, seating, implementation, or release act. |
+
 **Current state:** Gate 5 applied and merged; pointer moved to SCA-APP-010
-under G5-POINTER. Downstream handoffs open.
+under G5-POINTER; downstream seating, dependency closure, and evidence-pointer
+acceptance recorded (D-APP-108 to D-APP-111). Scope closure audit and
+SCA-APP-009 disposition open.
 
 ## Attribution
 
