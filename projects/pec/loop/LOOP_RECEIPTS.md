@@ -1873,3 +1873,13 @@
   - Checks: migration and final verification evidence is indexed by the packet’s `VALIDATION.md` and `D_RETIREMENT/VALIDATION.md`; receipt and entrypoint checks pass; G4 manifest repair and grant are recorded in `MERGE_REPAIR/OWNER_GRANT.md`, with final checks in `MERGE_REPAIR/FINAL_CHECKS.json`.
   - Model-Attribution: Codex acting as HELP_HUMAN; native read-only inventory and dry-run children; role not mechanically enforced.
   - Gate-Outcome: `EXECUTED` — owner direction verbatim: “merge PR #721”; A/B/C/D ruled in `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_RULING_2026-09-05.md`; effective on origin/main after the authorized merge.
+
+- **2026-09-05 — Receipt 168** (D-PEC-81 owner activation and calibration handoff).
+  - Receipt-ID: `Receipt-168`
+  - Examined-Through: `ce84dfc2e73df230ff402c64e9aa25e88b7f96b9`
+  - Parent-Receipt: `Receipt-167`
+  - Pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md`; exact pinned proposal and preparation evidence at `D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/`; future R0 root `projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/`.
+  - Stale-Map-Delta: proposal's pending owner activation is superseded by the O-A ruling; its published bytes remain pinned and unchanged. Calibration results remain unaccepted. No missing Remaining section is treated as warranted NONE; current accepted currency completion is preserved over older pointer prose.
+  - Checks: published proposal hash reproduced from commit and worktree; accepted six-member sample unchanged; preparation census/pins and five currency objects are indexed in `D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/BASIS_AND_CHECKS.json`. Activation containment and candidate checks are recorded by CHANGE before merge.
+  - Model-Attribution: Codex acting as HELP_HUMAN, RECONCILIATION and CHANGE through delegated-harness-native execution; role evidence instruction-asserted, not mechanically enforced; actual runtime model identity not exposed. No calibration child dispatched at receipt authoring.
+  - Gate-Outcome: `EXECUTED` — activation ruling recorded, effective on merge; owner direction verbatim: “Approve D-PEC-81 O-A and merge PR #722 to start calibration”. Merge is authorized, not asserted complete by this receipt. R0 waits for the ruling/register on fetched origin/main; accepted calibration and separate scale-out/repair rulings remain required. This records activation preparation and handoff, not a productive R1–R6 iteration.

@@ -1,0 +1,24 @@
+{
+  "status": "READY_FOR_CHANGE",
+  "proposal_commit": "ce84dfc2e73df230ff402c64e9aa25e88b7f96b9",
+  "proposal_sha256": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626",
+  "changed_file_allowlist": [
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "projects/pec/loop/LOOP_RECEIPTS.md",
+    "projects/pec/execution/_Coordination/AgentRuns/PEC_REMAINING_PREPARATION_2026-09-05/ACTIVATION_AUTHORING_RETURN.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_REMAINING_ACTIVATION_PREP_2026-09-05/ACTIVATION_AUTHORING_CHECKS.json"
+  ],
+  "hashes": {
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md": "2947d99e09f20f05f42fed2db592690bc3d97739f19349a09a04a97dd0016c43",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "544a8cd97c2fabc13b79e317815b45f23f208c809b1ec1e9d8c0d6375423e6fb",
+    "projects/pec/loop/LOOP_RECEIPTS.md": "3ad9a8753756ad0a9f19084a78a4a5de35025054196c5e633866e709bb64fcfd",
+    "projects/pec/execution/_Coordination/AgentRuns/PEC_REMAINING_PREPARATION_2026-09-05/ACTIVATION_AUTHORING_RETURN.md": "a59fd487044e9fa86855f43257dce4ebb37747d2f48091e0651ea2ea196ef454"
+  },
+  "gate": "NO_R0_WRITES_OR_DISPATCH_BEFORE_FETCHED_ORIGIN_MAIN_ACTIVATION_AND_PARENT_C3_CLEAN_BRANCH_CLEARANCE",
+  "checks": {
+    "receipt_validator": "VALID exit 0",
+    "candidate_whitespace": "PASS isolated full-candidate index/object store",
+    "containment": "exact 5-file activation allowlist"
+  }
+}
