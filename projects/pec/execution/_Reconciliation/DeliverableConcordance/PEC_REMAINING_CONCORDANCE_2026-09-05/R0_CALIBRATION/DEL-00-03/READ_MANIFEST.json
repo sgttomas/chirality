@@ -1,0 +1,186 @@
+{
+  "source_commit": "faf22452528b5ba895e88ba0ad3770855100de08",
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "377a93c13dc8e727c2fb38b6ace5c0dd62833fff3ec50753ebe58d57937a9fc3"
+    },
+    {
+      "path": "agents/AGENT_RECONCILIATION.md",
+      "sha256": "46bca06f907c4da765b1b1177ecd51c6858fdf45bf7620341175c3b847a3e4f7"
+    },
+    {
+      "path": "docs/DELIVERABLE_CONCORDANCE_METHOD.md",
+      "sha256": "abf3e78fce606c4557d61cdbfbdb7292a3d858838f6526da6b433d1bcd0ef627"
+    },
+    {
+      "path": "projects/pec/AGENTS.md",
+      "sha256": "46689c36d5379029a34a5c5d26f109445e338fca82b86e590826bcbc39ad3846"
+    },
+    {
+      "path": "projects/pec/docs/PRD.md",
+      "sha256": "6833553c33aadca00e4ee6932d56ae4698c2ae7798c30b603bc17e60dae477ba"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/Dependencies.csv",
+      "sha256": "5b42f2de2a098fb8f833736ebaf15445bd50734a9341b7fb19e7fa1d0112cde2"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/Review_Findings.csv",
+      "sha256": "fd28bac592572edcdff196fb40fc8d6ebeaf1bab97f8cb207f67196cddc9301e"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md",
+      "sha256": "3e4f0efc775849b11ae5bdfa851e0d3c125804db87d70f55aac9bc7c77e65741"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_CONTEXT.md",
+      "sha256": "59fec8afea9544061dcd9fb0a6510c5492b2480e7d71b35624cf64ced9b81a8c"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_DEPENDENCIES.md",
+      "sha256": "abc95cc42c862ed8fb4a863e7e4ed1254e17416d9b7e1e6479fc77c5df6e2e9c"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REFERENCES.md",
+      "sha256": "481b34847cbbc9bb15d792e0990b0b8f0b2a5750c82a041d65bb50bff4ff615f"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_REVIEW.md",
+      "sha256": "200125240bbed6cd7e3dd2cc64d0cc8619348cf2cbdfaae3e5ee9d169f8c8b97"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_SEMANTIC.md",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_STATUS.md",
+      "sha256": "629ca0dda894954943b694680ebbaf8688615e0ca3fefa1a18ef84c2cd606cfb"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_run_records/D-PEC-72_CANDIDATE_VALIDATION.md",
+      "sha256": "b618692ee0e8c5ef4ea456104c30a6547e0cf1345a09b856eaa003420d704ef4"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_run_records/D-PEC-72_PKG-00_ACTIVATION.md",
+      "sha256": "5d117bde6a1a4853b5bee003e08d51d089d277b3da2db4ea0519702fa48dc076"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_run_records/TASK_RUN_2026-07-25_1408.md",
+      "sha256": "151cdeb5093b060d7ecbc458b572810a1e6fb392e61eebcb86859104dc0f1e12"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_run_records/TASK_RUN_2026-07-25_2035.md",
+      "sha256": "65b137d46e4f1d9e9e61db1a68c66db6e3b8d2e308d5b0cada7f08f5537b127c"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_run_records/TASK_RUN_2026-07-26_ac005_gap_D-PEC-66.md",
+      "sha256": "3833ca6463e9a8f46909411222cb9b18e1ad89e92595240d03a5462ddceeca7d"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_run_records/TASK_RUN_2026-07-26_qa20_D-PEC-66.md",
+      "sha256": "40e0e27c2720e77f97181c5485dd3bb76beae3bc4e93b891411482f2a2478cc4"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md",
+      "sha256": "cc9f4754ac3d8ab0901fb6099d469c4e8e4557507dd50683ec9389977b0f1bae"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+      "sha256": "f877d9316c7da76218399838aa6b69f1bb51bbd3e59b5b1d19b31f69ad741cbc"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/D-PEC-72_P1_ENTRY_FOUNDATION_2026-08-01/C05_CLOSURE_RULING_2026-08-01.md",
+      "sha256": "1db130d79ed49205a7842471629a1e554359a14e81aa65a95334f11ab9a3b9a4"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/PEC_CURRENCY_REPAIR_CLOSEOUT_2026-08-09/HANDOFF_STATE.md",
+      "sha256": "8a9957b4150143c9958083107982dd8e5538a8d1cb69aa436a0bab953d00d24f"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/TM-PEC-014_SPEC_CURRENCY_2026-08-09/REVISION_01_RF-002_RF-003_2026-08-09/REPAIR_EVIDENCE.md",
+      "sha256": "74843fffad135c5c610bf5ce81f5acfd5e46db2fa2b1291abce1e3b341e7d722"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-72_p1_entry_foundation_slice.md",
+      "sha256": "513f768c71d87e309980ec273014eb0213055490098c9eb30b234776c5dbaae8"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_RULING_2026-09-05.md",
+      "sha256": "2947d99e09f20f05f42fed2db592690bc3d97739f19349a09a04a97dd0016c43"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_remaining_concordance_activation_2026-09-05.md",
+      "sha256": "97b8bc73995ca415a530cbbec4a5e02111131e25faba2b3611aeac510c0e7626"
+    },
+    {
+      "path": "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv",
+      "sha256": "6f7eb2a528a8a38ee01b94f5a028632d95297c82f4fa197f4c62f7102fef9264"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/Deliverables.csv",
+      "sha256": "49f904488a7402e2124359b59b2fc0df9103bef39ee53a5ce8b74f7dc6cc6b72"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/SOFTWARE_DECOMP.md",
+      "sha256": "7cca5cdbb1ba4bd866391abf00998bc80f587a23505a6f5b6bceb8df48b65c81"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/ScopeLedger.csv",
+      "sha256": "2103afa279bc7df8e75f830326462d7575cf69a403ee7ef07880e0e9fe969e25"
+    },
+    {
+      "path": "projects/pec/execution/_Decomposition/_LATEST.md",
+      "sha256": "7abf65e641a5a247f0c783192808ae1f9186f76ebe0d09d6e84e2983fffcd7a3"
+    },
+    {
+      "path": "projects/pec/execution/_Evaluation/Reviews/REV_DEL-00-03_2026-08-09_2156/Review_Summary.md",
+      "sha256": "d02969276b6a470e1207e4d15073a1f7c184076f956dff52d03fe3f4332ec8cb"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-00-03/BRIEF.md",
+      "sha256": "8526eeef4cfbd99241e9bc810b413f16d241393b6e61750360504d5dc73b339b"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/RUN_BASIS.md",
+      "sha256": "265428e8e8dbf503f6cfc71e72cd406bb4af4bc4b4a763069810ed4b052d3c61"
+    },
+    {
+      "path": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/SOURCE_MANIFEST.json",
+      "sha256": "65e1b9d97961d0281a884a7cf344db13a65f5b6a56898d1ca4980320d2c58c3d"
+    },
+    {
+      "path": "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+      "sha256": "b1712e4b6e9f1476c577afd9170a4dd078beaa95878fa5f3b6c46a17b548cd0e"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_INIT.md",
+      "sha256": "3cf2aae9df12d7d0e0ec9a542a28a6e7597dce876dd823814ee5c59ba2a30570"
+    },
+    {
+      "path": "projects/pec/loop/LOOP_RECEIPTS.md",
+      "sha256": "3ad9a8753756ad0a9f19084a78a4a5de35025054196c5e633866e709bb64fcfd"
+    },
+    {
+      "path": "projects/pec/software-workflow.json",
+      "sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+    }
+  ],
+  "historical_sources": [
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md",
+      "commit": "411cbe6ce7b03477889adf50e3d1665a61387db6",
+      "sha256": "0e2cfad8fcb377381042fd63c7e73002ad93037bffd17b7a3b9eb58889469f54",
+      "use": "historical C-05 accepted source; not current August 9 review source"
+    },
+    {
+      "path": "projects/pec/execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/artifacts/v2/SPEC.md",
+      "commit": "411cbe6ce7b03477889adf50e3d1665a61387db6",
+      "sha256": "8b25a0d1f7ec7451ed3d19839904ee0c5f9a69b94df50f2122d9065c59a02315",
+      "use": "historical C-05 accepted source; not current August 9 review source"
+    }
+  ],
+  "manager_manifest_mismatches": [],
+  "source_unchanged_before_return": true,
+  "read_scope": "DEL-00-03 and declared governance/evidence only; full target files hashed for preservation"
+}

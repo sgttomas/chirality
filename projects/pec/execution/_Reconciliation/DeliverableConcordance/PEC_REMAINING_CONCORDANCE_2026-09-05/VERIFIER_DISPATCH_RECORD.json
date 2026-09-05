@@ -1,0 +1,8 @@
+{
+  "actual_task_id": "/root/pec_remaining_reconciliation/r0_independent_verifier",
+  "execution_class": "delegated-harness-native",
+  "role_evidence": "instruction-asserted",
+  "brief": "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/VERIFIER/BRIEF.md",
+  "brief_sha256": "6dda8def15be88caf1517052d45d8193e242db75cba83f597b5d33883a48bd3d",
+  "gate": "all six original final returns; 38 original files frozen; structural fan-in PASS"
+}

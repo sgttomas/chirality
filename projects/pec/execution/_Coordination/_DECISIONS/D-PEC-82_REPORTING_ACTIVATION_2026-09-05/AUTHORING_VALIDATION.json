@@ -1,0 +1,32 @@
+{
+  "status": "READY_FOR_CHANGE",
+  "publication_head": "bfbe4d356dcc322c36fcccff008df441f3c66331",
+  "checks": {
+    "receipt": "full PEC receipt validator PASS; Receipt169 and all earlier bytes retained as exact prefix",
+    "register": "all previous rows byte-stable; D82 only appended",
+    "accepted_R0_publication": "all pinned82-file artifact manifest hashes reproduced; originals unchanged",
+    "scope": "64 unique IDs /11 packages; exact census",
+    "hierarchy": "HELP_HUMAN directly dispatches package managers; integration manager no manager-of-managers role",
+    "candidate_whitespace": "full selected PR candidate PASS in isolated index/object store; no Git mutation",
+    "write_containment": "exact7-file acceptance/continuation authoring tranche",
+    "dispatch": "none; common-basis and package discovery wait for shared-main merge/CHANGE clearance"
+  },
+  "changed_file_allowlist": [
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_REPORTING_ACTIVATION_2026-09-05/ACCEPTED_BASIS.json",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_REPORTING_ACTIVATION_2026-09-05/AUTHORING_VALIDATION.json",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_REPORTING_ACTIVATION_2026-09-05/SCOPE_CENSUS.csv",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md",
+    "projects/pec/loop/LOOP_RECEIPTS.md"
+  ],
+  "hashes": {
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-81_CALIBRATION_ACCEPTANCE_2026-09-05.md": "778564e21ebc94d98310d78410a63e5fdce0a0dc40296a98711921fd0c1c2124",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_remaining_corpus_reporting_2026-09-05.md": "6cee576899129ef5ab86ee6a3f9608e3c859297ba0879f64a1f115ccb78e876d",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_REPORTING_ACTIVATION_2026-09-05/ACCEPTED_BASIS.json": "3321b370f6c6b0aae269868faa3a07020f51e9335ccf8d817fbdcce3c8f42fa3",
+    "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-82_REPORTING_ACTIVATION_2026-09-05/SCOPE_CENSUS.csv": "b2396dd6dafa23ffe3f3f53e586fbb487d3ae20f4b1b636c7da102c13544c87c",
+    "projects/pec/execution/_Coordination/_DECISIONS/_REGISTER.md": "80bc503c681ab8a7aa2f2771c6a377799d9f35fb8ad26e599d287085d810e3f8",
+    "projects/pec/loop/LOOP_RECEIPTS.md": "41d74244fef0e192caf3b47ca01f644a522ecb462ed8181eee58796b2ded85dd"
+  },
+  "self_exclusion": "AUTHORING_VALIDATION.json hash reported externally; no self-reference"
+}

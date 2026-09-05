@@ -1,0 +1,160 @@
+{
+  "scanner": [
+    {
+      "name": "udp_external",
+      "source": "import socket\ns = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)\ns.sendto(b\"probe\", (\"198.51.100.10\", 443))\n",
+      "sha256": "75257d5cfcdd23d0ae7876478652af2257d79af5f08e1da4a9f1f7bb1ea760f3",
+      "result": {
+        "schema_version": 1,
+        "verdict": "PASS",
+        "release_force": "PEC_RELEASE_BLOCKING",
+        "evaluated": {
+          "core_tree_sha256": "cf3759332a9d84a3ee989459c921bda566ebc812df22fed1f8ae18cd05ec2e40",
+          "config_sha256": "1d018661816617f8565cab018d77ac3faf5bd7943ba4481743f24dd340d7fe3e",
+          "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+        },
+        "assertions": {
+          "dependency": "PASS",
+          "locality": "PASS",
+          "registration": "PASS"
+        },
+        "findings": []
+      }
+    },
+    {
+      "name": "alias_dynamic",
+      "source": "from importlib import import_module as load\nload(\"requests\")\n",
+      "sha256": "b9bf8faa1bc575f9e5ffe3fb680a7bccc03c57681612fc94931f5666304eeeb2",
+      "result": {
+        "schema_version": 1,
+        "verdict": "PASS",
+        "release_force": "PEC_RELEASE_BLOCKING",
+        "evaluated": {
+          "core_tree_sha256": "b1e2adee3759d4b674a2cc5804d987286faa1df223d3df6cea9415072f29da83",
+          "config_sha256": "1d018661816617f8565cab018d77ac3faf5bd7943ba4481743f24dd340d7fe3e",
+          "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+        },
+        "assertions": {
+          "dependency": "PASS",
+          "locality": "PASS",
+          "registration": "PASS"
+        },
+        "findings": []
+      }
+    },
+    {
+      "name": "direct_third_party_control",
+      "source": "import requests\n",
+      "sha256": "333d1b652ae64febaa8b71b12c8fa33598ab9a6593d74ae7abf6bac592ef4884",
+      "result": {
+        "schema_version": 1,
+        "verdict": "BLOCK",
+        "release_force": "PEC_RELEASE_BLOCKING",
+        "evaluated": {
+          "core_tree_sha256": "d46040addc31bf7289569468d5bc59d800889da77329805d85614cc256f4dac4",
+          "config_sha256": "1d018661816617f8565cab018d77ac3faf5bd7943ba4481743f24dd340d7fe3e",
+          "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+        },
+        "assertions": {
+          "dependency": "BLOCK",
+          "locality": "PASS",
+          "registration": "PASS"
+        },
+        "findings": [
+          {
+            "assertion": "dependency",
+            "code": "THIRD_PARTY_RUNTIME_DEPENDENCY",
+            "message": "third-party runtime dependency 'requests' imported by core/probe.py:1",
+            "dependency": "requests",
+            "importer": "core/probe.py",
+            "line": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "external_tcp_control",
+      "source": "import socket\nsocket.create_connection((\"198.51.100.10\", 443))\n",
+      "sha256": "cc3c2dca2c48d96f8f555742792fe0d7fda2d0916fc6205ba1e6aa95c0189d56",
+      "result": {
+        "schema_version": 1,
+        "verdict": "BLOCK",
+        "release_force": "PEC_RELEASE_BLOCKING",
+        "evaluated": {
+          "core_tree_sha256": "10885558995a11ba1c4a1fa24cf6c88fe9635be939fdccace2192880763f4bd3",
+          "config_sha256": "1d018661816617f8565cab018d77ac3faf5bd7943ba4481743f24dd340d7fe3e",
+          "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+        },
+        "assertions": {
+          "dependency": "PASS",
+          "locality": "BLOCK",
+          "registration": "PASS"
+        },
+        "findings": [
+          {
+            "assertion": "locality",
+            "code": "EXTERNAL_NETWORK_CALL",
+            "message": "external or unclassifiable network call 'socket.create_connection' at core/probe.py:2",
+            "endpoint": "198.51.100.10",
+            "importer": "core/probe.py",
+            "line": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "loopback_control",
+      "source": "import socket\nsocket.create_connection((\"127.0.0.1\", 443))\n",
+      "sha256": "06b75a8f49791b692a16c11b53931eab826394def9cfd30544063e479c75a26a",
+      "result": {
+        "schema_version": 1,
+        "verdict": "PASS",
+        "release_force": "PEC_RELEASE_BLOCKING",
+        "evaluated": {
+          "core_tree_sha256": "12b2dc2b195b9f2bb0c13bdfe683b9cfb46d8cf55fa92269ec0a7ec681ab20a5",
+          "config_sha256": "1d018661816617f8565cab018d77ac3faf5bd7943ba4481743f24dd340d7fe3e",
+          "workflow_sha256": "cad1d94bff71ffbefae9e550f847a2bc2cabd2a2a090536d22210838b8760c0b"
+        },
+        "assertions": {
+          "dependency": "PASS",
+          "locality": "PASS",
+          "registration": "PASS"
+        },
+        "findings": []
+      }
+    }
+  ],
+  "registry": [
+    {
+      "input": "projects/pec/loop/LOOP_INIT.md",
+      "outcome": "ACCEPT",
+      "returned": "projects/pec/loop/LOOP_INIT.md"
+    },
+    {
+      "input": "projects//pec/loop/LOOP_INIT.md",
+      "outcome": "ACCEPT",
+      "returned": "projects//pec/loop/LOOP_INIT.md"
+    },
+    {
+      "input": "./projects/pec/loop/LOOP_INIT.md",
+      "outcome": "ACCEPT",
+      "returned": "./projects/pec/loop/LOOP_INIT.md"
+    },
+    {
+      "input": "projects/./pec/loop/LOOP_INIT.md",
+      "outcome": "ACCEPT",
+      "returned": "projects/./pec/loop/LOOP_INIT.md"
+    },
+    {
+      "input": "../pec/LOOP_INIT.md",
+      "outcome": "REJECT",
+      "error": "/tmp/not-read-r0.json:$.loops[0].loop_init_path: expected a normalized repository-relative path"
+    },
+    {
+      "input": "/pec/LOOP_INIT.md",
+      "outcome": "REJECT",
+      "error": "/tmp/not-read-r0.json:$.loops[0].loop_init_path: expected a normalized repository-relative path"
+    }
+  ],
+  "method": "AST-only scanner text; registry document validation only; no sockets, imports from fixture or service runs"
+}

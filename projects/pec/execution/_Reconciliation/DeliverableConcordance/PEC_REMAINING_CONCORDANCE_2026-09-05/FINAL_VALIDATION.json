@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "base": "faf22452528b5ba895e88ba0ad3770855100de08",
+  "checks": {
+    "frozen_run_sources": "131/131 unchanged",
+    "original_worker_files": "38/38 unchanged",
+    "worker_read_source_hashes": "339/339 unchanged",
+    "original_verifier_manifest": "findings/manifests unchanged; raw C05 diff reproduced losslessly via PACKAGING carrier at original logical hash",
+    "correction": "exact VER001 and REM001 derivative-only; independent BACKCHECK_V001 PASS",
+    "selected_population": "6 members,222 claims,21 proposals,66 nonaligned,21 unknown",
+    "independent_coverage": "67 original nonaligned,21 residuals,deterministic aligned sample,117/117 local REQ/AC/VER definitions",
+    "triage": "9 eligible later candidates/1 conditional/11 held; all21 nonselectable",
+    "source_mismatches": [],
+    "verifier_read_manifest_candidate_delta": {
+      "paths": [
+        "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/CONVENTIONS.md"
+      ],
+      "disposition": "manager candidate convention incorporated verifier advice; exact draft linkage CONVENTION_REVISION_NOTE.md; not product source drift"
+    },
+    "tracked_changes": [],
+    "untracked_outside_run": [],
+    "ignored_pec_paths": [],
+    "csv_newlines": "LF only",
+    "candidate_whitespace": "PASS full unsuppressed isolated candidate Git index/object store; raw diff packaged losslessly by verifier; real index unchanged",
+    "proposed_receipt_169": "PASS exact scratch append to accepted base through Receipt168 under full PEC receipt contract; owning measurements linked, live ledger untouched"
+  },
+  "limits": "Owner calibration and R1-R4 scaleout remain unaccepted; no production/Remaining/lifecycle writes; proposed receipt not appended"
+}

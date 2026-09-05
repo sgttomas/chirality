@@ -1,0 +1,9 @@
+# DEL-00-03 bounded return
+
+Completed R0 sample on faf22452528b5ba895e88ba0ad3770855100de08: 33 claim rows (all 32 REQ/AC/VER IDs plus CON-001), 32 ALIGNED and one DEFERRED_AGENT_WORKFLOW; one candidate residual, ASSESSED_WITH_RESIDUALS. All proposals NON_SELECTABLE_PENDING_OWNER_APPLICATION.
+
+The exact August 9 accepted SOW/SPEC hashes reproduce, identifier/range and semantic checks pass, and historical C-05 source hashes were separately reproduced. C-05 chronological claims are unchanged across the bounded currency diff; August 9 acceptance supplies current artifact fitness, while its no-C-05-act exclusion does not reverse August 1 closure. No product tests run because this is a document-output contract. Actual-target exact-correction-preparation hold preflight returned ALLOW.
+
+Owner choice: retain C-06 as deliberate non-resolution outside executable Remaining, or authorize a future named activation/ruling to resolve or explicitly retain consumers without invented edges. This is calibration uncertainty about residual placement, not unknown implementation. Do not re-open OI-003 currency, AC-011 acceptance, C-05, or lifecycle merely from dated candidate records, TM row state, or missing Remaining. CHECKING remains protected; any future application requires exact repair authority through its owning path.
+
+READ_MANIFEST.json binds 41 read/preservation inputs plus two historical source objects and confirms current sources unchanged. Worker writes are exactly CLAIMS.csv, RESIDUALS.csv, COVERAGE.md, READ_MANIFEST.json and RETURN.md under this sealed subtree. BRIEF.md unchanged. No Git mutation, production mutation, delegation or external communication occurred. Source drift requires affected rerun; independent verifier fan-in and owner convention/scale-out ruling are next. This derivative closes only worker calibration, not full discovery, Remaining application, lifecycle or release.

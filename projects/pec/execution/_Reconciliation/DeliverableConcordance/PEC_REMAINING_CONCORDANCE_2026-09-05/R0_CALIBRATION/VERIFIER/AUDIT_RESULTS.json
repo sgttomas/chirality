@@ -1,0 +1,380 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "coverage": [
+    {
+      "deliverable": "DEL-00-02",
+      "claims": 11,
+      "residuals": 4,
+      "REQ_AC_VER_definitions": 0,
+      "lowest_aligned": null,
+      "non_aligned": [
+        "DEL-00-02::SCOPE-001",
+        "DEL-00-02::SCOPE-002",
+        "DEL-00-02::SCOPE-003",
+        "DEL-00-02::SCOPE-004",
+        "DEL-00-02::SCOPE-005",
+        "DEL-00-02::SCOPE-006",
+        "DEL-00-02::SCOPE-007",
+        "DEL-00-02::SCOPE-008",
+        "DEL-00-02::SCOPE-009",
+        "DEL-00-02::HOME-001",
+        "DEL-00-02::MAP-001"
+      ]
+    },
+    {
+      "deliverable": "DEL-00-03",
+      "claims": 33,
+      "residuals": 1,
+      "REQ_AC_VER_definitions": 32,
+      "lowest_aligned": "DEL-00-03::AC-001",
+      "non_aligned": [
+        "DEL-00-03::CON-001"
+      ]
+    },
+    {
+      "deliverable": "DEL-01-05",
+      "claims": 61,
+      "residuals": 5,
+      "REQ_AC_VER_definitions": 32,
+      "lowest_aligned": "DEL-01-05::AC-002",
+      "non_aligned": [
+        "DEL-01-05::OUT-001",
+        "DEL-01-05::OUT-002",
+        "DEL-01-05::CLM-010",
+        "DEL-01-05::CON-002",
+        "DEL-01-05::REQ-001",
+        "DEL-01-05::REQ-003",
+        "DEL-01-05::REQ-004",
+        "DEL-01-05::REQ-006",
+        "DEL-01-05::REQ-012",
+        "DEL-01-05::AC-001",
+        "DEL-01-05::AC-003",
+        "DEL-01-05::AC-004",
+        "DEL-01-05::VER-004",
+        "DEL-01-05::AX-008",
+        "DEL-01-05::STATUS-CHECKING"
+      ]
+    },
+    {
+      "deliverable": "DEL-01-06",
+      "claims": 38,
+      "residuals": 3,
+      "REQ_AC_VER_definitions": 19,
+      "lowest_aligned": "DEL-01-06::AC-002",
+      "non_aligned": [
+        "DEL-01-06::CLM-007",
+        "DEL-01-06::TBD-001",
+        "DEL-01-06::REQ-001",
+        "DEL-01-06::AC-001",
+        "DEL-01-06::VER-001",
+        "DEL-01-06::GATE5-001"
+      ]
+    },
+    {
+      "deliverable": "DEL-02-07",
+      "claims": 51,
+      "residuals": 7,
+      "REQ_AC_VER_definitions": 23,
+      "lowest_aligned": "DEL-02-07::AC-008",
+      "non_aligned": [
+        "DEL-02-07::OUT-001",
+        "DEL-02-07::OUT-002",
+        "DEL-02-07::CLM-007",
+        "DEL-02-07::CLM-011",
+        "DEL-02-07::TBD-001",
+        "DEL-02-07::TBD-002",
+        "DEL-02-07::TBD-003",
+        "DEL-02-07::TBD-004",
+        "DEL-02-07::REQ-001",
+        "DEL-02-07::REQ-002",
+        "DEL-02-07::REQ-003",
+        "DEL-02-07::REQ-004",
+        "DEL-02-07::REQ-005",
+        "DEL-02-07::REQ-006",
+        "DEL-02-07::REQ-007",
+        "DEL-02-07::REQ-008",
+        "DEL-02-07::AC-001",
+        "DEL-02-07::AC-002",
+        "DEL-02-07::AC-003",
+        "DEL-02-07::AC-004",
+        "DEL-02-07::AC-005",
+        "DEL-02-07::AC-006",
+        "DEL-02-07::AC-007",
+        "DEL-02-07::CON-002",
+        "DEL-02-07::VER-001",
+        "DEL-02-07::VER-002",
+        "DEL-02-07::VER-003",
+        "DEL-02-07::VER-004",
+        "DEL-02-07::VER-005",
+        "DEL-02-07::VER-006",
+        "DEL-02-07::VER-007"
+      ]
+    },
+    {
+      "deliverable": "DEL-08-02",
+      "claims": 28,
+      "residuals": 1,
+      "REQ_AC_VER_definitions": 11,
+      "lowest_aligned": "DEL-08-02::AC-001",
+      "non_aligned": [
+        "DEL-08-02::CLM-002",
+        "DEL-08-02::AX-006",
+        "DEL-08-02::TM-PEC-022"
+      ]
+    }
+  ],
+  "structural_reproduction": {
+    "status": "PASS",
+    "kind": "structural_only_not_semantic_acceptance",
+    "summary": [
+      {
+        "deliverable": "DEL-00-02",
+        "claims": 11,
+        "residuals": 4,
+        "dispositions": {
+          "DEFERRED_AGENT_WORKFLOW": 2,
+          "UNKNOWN": 9
+        }
+      },
+      {
+        "deliverable": "DEL-00-03",
+        "claims": 33,
+        "residuals": 1,
+        "dispositions": {
+          "ALIGNED": 32,
+          "DEFERRED_AGENT_WORKFLOW": 1
+        }
+      },
+      {
+        "deliverable": "DEL-01-05",
+        "claims": 61,
+        "residuals": 5,
+        "dispositions": {
+          "ALIGNED": 46,
+          "LIFECYCLE_REASSESSMENT_REQUIRED": 1,
+          "PARTIALLY_IMPLEMENTED": 7,
+          "UNKNOWN": 7
+        }
+      },
+      {
+        "deliverable": "DEL-01-06",
+        "claims": 38,
+        "residuals": 3,
+        "dispositions": {
+          "ACCEPTED_DIVERGENCE": 1,
+          "ALIGNED": 32,
+          "DEFERRED_AGENT_WORKFLOW": 1,
+          "PARTIALLY_IMPLEMENTED": 3,
+          "UNKNOWN": 1
+        }
+      },
+      {
+        "deliverable": "DEL-02-07",
+        "claims": 51,
+        "residuals": 7,
+        "dispositions": {
+          "ALIGNED": 20,
+          "DEFERRED_AGENT_WORKFLOW": 3,
+          "DOCUMENTED_UNIMPLEMENTED": 24,
+          "UNKNOWN": 4
+        }
+      },
+      {
+        "deliverable": "DEL-08-02",
+        "claims": 28,
+        "residuals": 1,
+        "dispositions": {
+          "ACCEPTED_DIVERGENCE": 2,
+          "ALIGNED": 25,
+          "DEFERRED_AGENT_WORKFLOW": 1
+        }
+      }
+    ],
+    "errors": []
+  },
+  "holds": [
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-02_Event_contract_schema_v1/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-00_Architecture_Runway_Contracts/1_Working/DEL-00-03_v2_SPEC_seed/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-05_Zero_dependency_locality_enforcement/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-02_File_Truth_Parsers/1_Working/DEL-02-07_adapter_yaml_feed_manifest_consumer/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-08_API_Access/1_Working/DEL-08-02_Versioned_additive_API_schema/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    }
+  ],
+  "original_worker_files": 38,
+  "read_source_count": 208
+}

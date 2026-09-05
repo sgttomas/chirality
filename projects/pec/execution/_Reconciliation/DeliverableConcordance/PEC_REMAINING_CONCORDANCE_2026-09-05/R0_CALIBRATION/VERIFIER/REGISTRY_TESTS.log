@@ -1,0 +1,17 @@
+test_absent_file_is_rejected_explicitly (test_json_loop_registry.JsonLoopRegistryTests.test_absent_file_is_rejected_explicitly) ... ok
+test_checked_in_default_has_exactly_the_pec_loop (test_json_loop_registry.JsonLoopRegistryTests.test_checked_in_default_has_exactly_the_pec_loop) ... ok
+test_duplicate_loop_id_is_rejected_with_location (test_json_loop_registry.JsonLoopRegistryTests.test_duplicate_loop_id_is_rejected_with_location) ... ok
+test_invalid_document_never_returns_partial_or_empty_set (test_json_loop_registry.JsonLoopRegistryTests.test_invalid_document_never_returns_partial_or_empty_set) ... ok
+test_malformed_json_is_rejected_with_line_and_column (test_json_loop_registry.JsonLoopRegistryTests.test_malformed_json_is_rejected_with_line_and_column) ... ok
+test_missing_loop_id_is_rejected_with_location (test_json_loop_registry.JsonLoopRegistryTests.test_missing_loop_id_is_rejected_with_location) ... ok
+test_schema_documents_every_field_and_the_exact_default (test_json_loop_registry.JsonLoopRegistryTests.test_schema_documents_every_field_and_the_exact_default) ... ok
+test_unreadable_path_is_rejected_explicitly (test_json_loop_registry.JsonLoopRegistryTests.test_unreadable_path_is_rejected_explicitly) ... ok
+test_core_imports_no_adapter_or_outer_io_module (test_loop_registry_contract.LoopRegistryContractTests.test_core_imports_no_adapter_or_outer_io_module) ... ok
+test_implementation_uses_only_stdlib_and_no_network_module (test_loop_registry_contract.LoopRegistryContractTests.test_implementation_uses_only_stdlib_and_no_network_module) ... ok
+test_port_has_only_the_typed_capability_method (test_loop_registry_contract.LoopRegistryContractTests.test_port_has_only_the_typed_capability_method) ... ok
+test_registered_loop_is_immutable (test_loop_registry_contract.LoopRegistryContractTests.test_registered_loop_is_immutable) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.005s
+
+OK

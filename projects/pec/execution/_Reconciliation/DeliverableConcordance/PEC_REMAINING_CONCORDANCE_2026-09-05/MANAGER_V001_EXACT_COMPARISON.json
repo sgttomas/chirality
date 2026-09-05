@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "kind": "manager_structural_comparison_not_independent_backcheck",
+  "tables": {
+    "CLAIMS.csv": {
+      "rows": 38,
+      "changed_ids": [
+        "DEL-01-06::VER-001"
+      ]
+    },
+    "RESIDUALS.csv": {
+      "rows": 3,
+      "changed_ids": [
+        "DEL-01-06-REM-001"
+      ]
+    }
+  },
+  "final_counts": {
+    "claims": 222,
+    "raw_proposals": 21,
+    "unknown_claims": 21,
+    "non_aligned_claims": 66
+  },
+  "originals": "unchanged; derivative selected only for DEL01-06"
+}

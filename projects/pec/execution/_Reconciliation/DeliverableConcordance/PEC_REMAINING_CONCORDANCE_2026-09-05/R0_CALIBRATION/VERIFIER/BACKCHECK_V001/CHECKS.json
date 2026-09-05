@@ -1,0 +1,140 @@
+{
+  "original_workers": {
+    "count": 38,
+    "mismatches": []
+  },
+  "original_verifier": {
+    "count": 11,
+    "mismatches": []
+  },
+  "frozen_sources": {
+    "count": 131,
+    "mismatches": []
+  },
+  "correction_sources": {
+    "count": 69,
+    "mismatches": []
+  },
+  "correction_preimages": {
+    "count": 2,
+    "mismatches": []
+  },
+  "correction_postimages": {
+    "count": 2,
+    "mismatches": []
+  },
+  "status": "PASS",
+  "errors": [],
+  "population": {
+    "CLAIMS.csv": {
+      "count": 38,
+      "field_equal_rows": 37,
+      "schema_order_lf_preserved": true
+    },
+    "RESIDUALS.csv": {
+      "count": 3,
+      "field_equal_rows": 2,
+      "schema_order_lf_preserved": true
+    }
+  },
+  "independent_exact_field_changes": [
+    {
+      "file": "CLAIMS.csv",
+      "row_id": "DEL-01-06::VER-001",
+      "fields": {
+        "VerificationEvidence": {
+          "old": "projects/pec/v2/tests/config/test_json_loop_registry.py; projects/pec/v2/tests/config/test_loop_registry_contract.py; COVERAGE.md current registry 12/12 and posture PASS",
+          "new": "projects/pec/v2/tests/config/test_json_loop_registry.py; projects/pec/v2/tests/config/test_loop_registry_contract.py; COVERAGE.md current registry 12/12 and posture PASS; projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/VERIFIER/REGISTRY_TESTS.log existing independent current run: 12/12 PASS; finite checked-in default and registered malformed-fixture method only."
+        },
+        "Disposition": {
+          "old": "PARTIALLY_IMPLEMENTED",
+          "new": "ALIGNED"
+        },
+        "ProposedResidualID": {
+          "old": "DEL-01-06-REM-001",
+          "new": ""
+        },
+        "ProposedResidualText": {
+          "old": "Resolve the normalized loop_init_path gap: the current adapter returns ./ and repeated-separator locators unchanged. Confirm the accepted normalization interpretation and, under a separately authorized source/test packet, enforce it with located failures or governed canonicalization and regression coverage. Depends: NONE. (gated: exact-path D-PEC source/test repair ruling on origin/main after owner disposition of this finding)",
+          "new": ""
+        },
+        "ExactGate": {
+          "old": "NOT_SELECTABLE_UNTIL: owner accepts calibration and separately rules exact Remaining application on origin/main; any source/test repair additionally needs a new exact-path D-PEC packet and owner ruling on origin/main.",
+          "new": "No executable proposal; owner acts on origin/main required for later source/artifact/lifecycle changes."
+        },
+        "AuthorityNeeded": {
+          "old": "Owner; WORKING_ITEMS source/test repair; REVIEW for a new finding/acceptance path.",
+          "new": "No action authorized by concordance."
+        },
+        "EvidenceReferences": {
+          "old": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md;projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REVIEW.md;projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md;projects/pec/v2/src/pec_v2/core/ports/loop_registry.py;projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py;projects/pec/v2/config/loops.schema.json;projects/pec/v2/config/loops.json;projects/pec/v2/tests/config/test_json_loop_registry.py;projects/pec/v2/tests/config/test_loop_registry_contract.py;projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/COVERAGE.md",
+          "new": "projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md;projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_REVIEW.md;projects/pec/execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md;projects/pec/v2/src/pec_v2/core/ports/loop_registry.py;projects/pec/v2/src/pec_v2/adapters/config/loop_registry.py;projects/pec/v2/config/loops.schema.json;projects/pec/v2/config/loops.json;projects/pec/v2/tests/config/test_json_loop_registry.py;projects/pec/v2/tests/config/test_loop_registry_contract.py;projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/COVERAGE.md;projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/VERIFIER/VERIFICATION.md;projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/VERIFIER/FINDINGS.csv;projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/VERIFIER/REGISTRY_TESTS.log"
+        },
+        "Notes": {
+          "old": "Current default and registered malformed fixtures pass, but targeted read-only validation accepts ./, internal /./ and // unchanged. This conflicts with normalized-path wording of REQ-001; no traversal escape observed. AC/VER mapping carries the same bounded defect; owner confirms canonicalization semantics before repair.",
+          "new": "V-001 correction: ALIGNED only for the finite registered default/malformed-fixture method stated by VER-001. Existing current independent registry evidence passes all 12 tests, including located missing-field, duplicate-identifier and malformed-JSON failures. This is not an all-input normalization guarantee or artifact/lifecycle acceptance. Conditional lexical-normalization interpretation and proposed broader regression extension remain under REQ-001 / AC-001 and REM-001 pending owner interpretation; no resolved-containment failure is established."
+        }
+      }
+    },
+    {
+      "file": "RESIDUALS.csv",
+      "row_id": "DEL-01-06-REM-001",
+      "fields": {
+        "ClaimIDs": {
+          "old": "DEL-01-06::REQ-001;DEL-01-06::AC-001;DEL-01-06::VER-001",
+          "new": "DEL-01-06::REQ-001;DEL-01-06::AC-001"
+        },
+        "Notes": {
+          "old": "New calibration finding only; does not rewrite RF-001 or RF-002 and does not infer path traversal escape.",
+          "new": "New calibration finding only; does not rewrite RF-001 or RF-002 and does not infer path traversal escape. V-001 separates the passing finite registered VER-001 method from this proposed broader normalization regression extension. Owner interpretation of canonical lexical spelling remains pending; this proposal is not an accepted defect."
+        }
+      }
+    }
+  ],
+  "change_map_reproduces": true,
+  "reciprocity": true,
+  "preflights": [
+    {
+      "argv": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/ScopeOfWork.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3",
+        "projects/pec/execution/_Scripts/pec_reliance_hold.py",
+        "--register",
+        "projects/pec/execution/_Coordination/ACTIVE_RELIANCE_HOLDS.csv",
+        "--target",
+        "execution/PKG-01_Service_Core_Store/1_Working/DEL-01-06_Loop_registry_local_config_default/_STATUS.md",
+        "--operation",
+        "exact-correction-preparation"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"operation\": \"exact-correction-preparation\", \"status\": \"ALLOW\"}\n",
+      "stderr": ""
+    }
+  ],
+  "no_test_or_probe_rerun": true,
+  "original_output_manifest_sha256": "2ea9eac06e40db72db08093b9e06a11991a0f79984c1cec69469a57000c44825",
+  "original_worker_manifest_sha256": "a76093702086b9e98362dc964886c8751840b89f77f2969778f64b3bbe0d4c2b",
+  "correction_hashes": {
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/RETURN.md": "4efc67dbd1ae10afcb8ba91ff3e82cc620f7454bec093b5eec4e84427c1ad4cc",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/CLAIMS.csv": "9cc5f72e743a7dca4d94a535007194ed7d197eb69f152277e1e4f4b1c38fdf01",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/CHANGE_MAP.json": "15304a82564b2401a2484e03b29ad4b01bc49535991ad3e25fff1c10b41b2b2a",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/RESIDUALS.csv": "d101949fc28770910af5f436d190bc360cf01f9712782b85fd2654161aa2bb3c",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/BRIEF.md": "ce2a548fb364cf2f833d1b44e4ddbddc07af7de27bc95b03a421a31e2229266d",
+    "projects/pec/execution/_Reconciliation/DeliverableConcordance/PEC_REMAINING_CONCORDANCE_2026-09-05/R0_CALIBRATION/DEL-01-06/REVISION_V001/READ_MANIFEST.json": "c02370db0537cbdc20e0844777a21d3b00a4948dbfa8c9ed1d04fda6b13536d6"
+  },
+  "source_base": "faf22452528b5ba895e88ba0ad3770855100de08"
+}
