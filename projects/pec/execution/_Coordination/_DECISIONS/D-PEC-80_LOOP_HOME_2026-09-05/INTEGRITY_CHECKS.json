@@ -1,0 +1,13 @@
+{
+  "basis": "7458e9c1eb9399ed259da464207d9a507acdea2e",
+  "corrected_migration_commit": "aa17255b56f6b8e405cc633e9e88731f797bff31",
+  "moved_files": 337,
+  "all_migration_sha256_equal": true,
+  "final_historical_files_unchanged": 335,
+  "final_exceptions": [
+    "projects/pec/loop/LOOP_INIT.md",
+    "projects/pec/loop/LOOP_RECEIPTS.md"
+  ],
+  "receipt_frozen_prefix_unchanged": true,
+  "old_directory_absent": true
+}

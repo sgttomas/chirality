@@ -1,0 +1,19 @@
+{
+  "basis": "7458e9c1eb9399ed259da464207d9a507acdea2e",
+  "external_changed_paths": [
+    "_DomainEngines/profiles/pec.yaml",
+    "init/dev-loop-init-prompt.md",
+    "projects/chirality-app-dev/frontend/scripts/run-pec-bridge-rehearsal.ts",
+    "tools/practitioner_harness/BACKLOG.md",
+    "tools/practitioner_harness/cmd_bridge_status.py",
+    "tools/practitioner_harness/test_bridge_status.py",
+    "tools/taskmgmt/test_taskmgmt.py",
+    "tools/validation/test_validate_instruction_entrypoints.py",
+    "tools/validation/test_validate_pec_loop_receipts.py",
+    "tools/validation/validate_instruction_entrypoints.py",
+    "tools/validation/validate_pec_loop_receipts.py"
+  ],
+  "all_within_grant": true,
+  "agents_files_changed": false,
+  "project_fence_verbatim": true
+}

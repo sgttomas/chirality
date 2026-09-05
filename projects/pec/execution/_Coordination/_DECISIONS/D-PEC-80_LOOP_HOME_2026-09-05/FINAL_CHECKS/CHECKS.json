@@ -1,0 +1,151 @@
+{
+  "head": "aa17255b56f6b8e405cc633e9e88731f797bff31",
+  "python3": "Python 3.13.14",
+  "test_python": "Python 3.13.14",
+  "PYTHONDONTWRITEBYTECODE": "1",
+  "checks": [
+    {
+      "label": "entrypoints",
+      "command": [
+        "python3",
+        "tools/validation/validate_instruction_entrypoints.py",
+        "."
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "entrypoints.stdout",
+      "stderr": "entrypoints.stderr"
+    },
+    {
+      "label": "receipts",
+      "command": [
+        "python3",
+        "tools/validation/validate_pec_loop_receipts.py",
+        "--repo-root",
+        "."
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "receipts.stdout",
+      "stderr": "receipts.stderr"
+    },
+    {
+      "label": "task-live",
+      "command": [
+        "python3",
+        "tools/taskmgmt/taskmgmt.py",
+        "validate",
+        "--register",
+        "projects/pec/execution/_Coordination/_TaskManagement/REGISTER.csv"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "task-live.stdout",
+      "stderr": "task-live.stderr"
+    },
+    {
+      "label": "task-archive",
+      "command": [
+        "python3",
+        "tools/taskmgmt/taskmgmt.py",
+        "validate",
+        "--register",
+        "projects/pec/execution/_Coordination/_TaskManagement/REGISTER_CLOSED.csv"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "task-archive.stdout",
+      "stderr": "task-archive.stderr"
+    },
+    {
+      "label": "tests",
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13",
+        "-m",
+        "pytest",
+        "-q",
+        "tools/validation/test_validate_instruction_entrypoints.py",
+        "tools/validation/test_validate_pec_loop_receipts.py",
+        "tools/practitioner_harness/test_bridge_status.py",
+        "tools/taskmgmt/test_taskmgmt.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "tests.stdout",
+      "stderr": "tests.stderr"
+    },
+    {
+      "label": "self-check",
+      "command": [
+        "python3",
+        "tools/practitioner_harness/harness.py",
+        "self-check"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "self-check.stdout",
+      "stderr": "self-check.stderr"
+    },
+    {
+      "label": "api-contract",
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "v2/tests/contracts/api",
+        "-p",
+        "test_*.py"
+      ],
+      "cwd": "projects/pec",
+      "exit_code": 0,
+      "stdout": "api-contract.stdout",
+      "stderr": "api-contract.stderr"
+    },
+    {
+      "label": "loop-registry",
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "v2/tests/config",
+        "-p",
+        "test_*.py"
+      ],
+      "cwd": "projects/pec",
+      "exit_code": 0,
+      "stdout": "loop-registry.stdout",
+      "stderr": "loop-registry.stderr"
+    },
+    {
+      "label": "core-posture",
+      "command": [
+        "/Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13",
+        "v2/tools/check_service_core_posture.py",
+        "--config",
+        "v2/config/service_core_posture.json",
+        "--workflow",
+        "software-workflow.json"
+      ],
+      "cwd": "projects/pec",
+      "exit_code": 0,
+      "stdout": "core-posture.stdout",
+      "stderr": "core-posture.stderr"
+    },
+    {
+      "label": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "stdout": "whitespace.stdout",
+      "stderr": "whitespace.stderr"
+    }
+  ]
+}

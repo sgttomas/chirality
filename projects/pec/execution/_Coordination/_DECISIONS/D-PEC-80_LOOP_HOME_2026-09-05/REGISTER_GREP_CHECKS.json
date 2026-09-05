@@ -8,11 +8,19 @@
     "stderr": ""
   },
   {
-    "label": "historical",
-    "revision": "97678a841ef58345c73d3470ed8de57c9b1405d2",
+    "label": "historical pre-ruling D-PEC-75",
+    "revision": "5ea7c116d32aa8f133536a1a1de6c7c1cb4a9f88",
     "pattern": "^\\| D-PEC-[0-9]+ \\|([^|]*\\|){2} (AWAITING_RULING|NOT_PREPARED)",
     "exit_code": 0,
-    "stdout": "23:| D-PEC-02 | Post-pilot P3 scope selection after pilot feedback: monthly reconciliation loop, archive views, lessons learned, authority matrix/approval-route templates, and supersession-impact propagation. | P3 planning and implementation order. | NOT_PREPARED | - | - |\n24:| D-PEC-03 | Pointer row: PEC tier-0 integration decisions D-T0-11..16 are governed in `_DomainEngines/_DECISIONS/`, not duplicated here. | Local agents finding the tier-0 gate surface. | NOT_PREPARED | - | `_DomainEngines/_DECISIONS/_REGISTER.md` |\n",
+    "stdout": "23:| D-PEC-02 | Post-pilot P3 scope selection after pilot feedback: monthly reconciliation loop, archive views, lessons learned, authority matrix/approval-route templates, and supersession-impact propagation. | P3 planning and implementation order. | NOT_PREPARED | - | - |\n24:| D-PEC-03 | Pointer row: PEC tier-0 integration decisions D-T0-11..16 are governed in `_DomainEngines/_DECISIONS/`, not duplicated here. | Local agents finding the tier-0 gate surface. | NOT_PREPARED | - | `_DomainEngines/_DECISIONS/_REGISTER.md` |\n93:| D-PEC-75 | Second P1 source-slice packet: O-A DEL-01-06 typed local-loop-registry bootstrap (recommended) or O-B DEL-01-01 record-tier model/DDL, each preceded by bounded SOW currency review and held behind separately effective D-T0-27 PEC-v2 domain-profile adoption; amend and defer remain lawful. | Any second-slice SOW currency repair, source activation, additive project-workflow profile change, or F-PEC-1 opening; D-PEC-75 grants no domain-profile adoption. | AWAITING_RULING | `D-PEC-75_second_p1_source_slice.md` | Presented 2026-08-02. No option selected; no SOW/source/profile/lifecycle/fitness act. D-PEC-76 is the PEC-side D-T0-27 pointer/request row, following D-PEC-11 without duplicating profile adoption. DEL-01-05 is not executable before a live core target without scope amendment; DEL-08-03 remains later after SOW/schema-ownership repair. |\n",
+    "stderr": ""
+  },
+  {
+    "label": "final candidate live register",
+    "revision": "working candidate over aa17255b56f6b8e405cc633e9e88731f797bff31",
+    "pattern": "^\\| D-PEC-[0-9]+ \\|([^|]*\\|){2} (AWAITING_RULING|NOT_PREPARED)",
+    "exit_code": 0,
+    "stdout": "23:| D-PEC-02 | Post-pilot P3 scope selection after pilot feedback: monthly reconciliation loop, archive views, lessons learned, authority matrix/approval-route templates, and supersession-impact propagation. | P3 planning and implementation order. | NOT_PREPARED | - | - |\n24:| D-PEC-03 | Pointer row: PEC tier-0 integration decisions D-T0-11..16 are governed in `_DomainEngines/_DECISIONS/`, not duplicated here. | Local agents finding the tier-0 gate surface. | NOT_PREPARED | - | `_DomainEngines/_DECISIONS/_REGISTER.md` |\n97:| D-PEC-80 | Canonical PEC loop migration (A), generic init consolidation (B), and run-based PR boundary (C), separately rulable. | Adoption of the candidate instruction surface and prospective receipt/run contract; no product or lifecycle opening. | AWAITING_RULING | `D-PEC-80_loop_home_and_instruction_surface_2026-09-05.md` | PROPOSAL applied on the review branch under explicit task/write-scope grant; owner merge is the ruling. |\n",
     "stderr": ""
   }
 ]

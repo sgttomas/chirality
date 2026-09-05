@@ -1,3 +1,22 @@
+Read-only acceptance test. You receive only the new launcher and candidate init below, with no persona, AGENTS.md, or prior conversation. Do not read AGENTS.md or agent instruction files. Run the full Step 0 block (use host permission for git fetch if needed), give the first return, perform Step 1 and say what you would select and why, walk a prospective run forward on paper under Steps 4 and 5 to where you would open the PR. Stop before actually performing Step 2. Do not edit files, delegate, commit, push, or open a PR. End with Friction. In particular report whether you found deliverables, receipts, and Task Management without help. Read live sources as needed except excluded instruction files. Return exact command exit codes, and verify the decomposition accepted hash.
+
+NEW LAUNCHER
+<init-prompt>
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+
+Set `WORKING_ROOT` to `{REPO_ROOT}/projects/pec`.
+
+Read `{REPO_ROOT}/AGENTS.md`.
+Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
+
+Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
+
+Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it.
+
+Steer (this run): <none>
+</init-prompt>
+
+CANDIDATE INIT
 # PEC work loop — session init and generic loop
 
 This file is the PEC loop's generic instruction surface: protocol, fences,

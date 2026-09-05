@@ -1,3 +1,22 @@
+Steer (this run): Read-only acceptance dry run. You receive only the new launcher and literal candidate init below, with no prior conversation or persona package. For this test, do not load AGENTS.md or AGENT_HELP_HUMAN.md despite their appearance in the launcher; do not assume their contents. Run the candidate's full Step 0, give the first return, perform Step 1 and say what you would select and why, then walk the run forward on paper under Step 4 and Step 5 to the point where you would open the PR. Stop before Step 2: do not brief, write, stage, commit, push, open a PR, or change governed files. Git fetch is permitted for read-only remote-state discovery, not source writes. Use tools only for reading and discovery; do not delegate. End with a Friction list. Discover the deliverables, receipts, and Task Management register using only the candidate. State candidate versus merged authority honestly. If a check fails due to tool sandboxing, report it and continue independent reads without pretending it passed. Attribution: fresh Codex native child, role not mechanically enforced.
+
+NEW LAUNCHER
+<init-prompt>
+Resolve `REPO_ROOT` with `git rev-parse --show-toplevel`.
+
+Set `WORKING_ROOT` to `{REPO_ROOT}/projects/pec`.
+
+Read `{REPO_ROOT}/AGENTS.md`.
+Read `{REPO_ROOT}/agents/AGENT_HELP_HUMAN.md`.
+
+Act as `HELP_HUMAN` for `{WORKING_ROOT}`.
+
+Read `{WORKING_ROOT}/loop/LOOP_INIT.md` and follow it.
+
+Steer (this run): <none>
+</init-prompt>
+
+CANDIDATE INIT
 # PEC work loop — session init and generic loop
 
 This file is the PEC loop's generic instruction surface: protocol, fences,
@@ -128,9 +147,6 @@ the deliverables alone and record that fact in the receipt.
 
 Run this complete block from the checkout; it stops on command errors.
 Empty optional discoveries are reported explicitly, not treated as errors.
-If the host blocks a required command, use its permission mechanism for that
-exact command and rerun the block. If permission is denied, report the block
-as incomplete; do not claim fresh remote state or advance dependent work.
 
 ```bash
 set -e
@@ -218,11 +234,6 @@ owner-directed work, the plan's focus/order, and highest-value ungated work.
 Selection stays within recorded scope and exact granted paths; report a
 missing or contradictory contract instead of inventing work from an OPEN
 lifecycle, a Task Management concern, or a historical plan.
-
-An explicitly scoped owner request for preparation or correction may proceed
-to Step 2 even when no Remaining item exists. Record that request as the
-selection basis; do not create deliverable scope or treat preparation as
-production authorization or satisfaction of a merged owner prerequisite.
 
 ### Step 2 — Brief or slate
 

@@ -1,0 +1,6 @@
+{
+  "scan": "git ls-files --cached --others --exclude-standard; all regular UTF-8 files, including hidden repository paths; binary/symlink/excluded build artifacts omitted",
+  "matching_lines": 2306,
+  "matching_files": 349,
+  "unclassified": []
+}

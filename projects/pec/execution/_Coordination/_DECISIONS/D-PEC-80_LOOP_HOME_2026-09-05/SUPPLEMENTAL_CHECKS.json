@@ -1,0 +1,17 @@
+{
+  "full_step0": {
+    "command": "bash extracted first bash block of projects/pec/loop/LOOP_INIT.md",
+    "cwd": "/Users/ryan/.codex/worktrees/54fc/chirality",
+    "host_permission": "required git fetch approved",
+    "exit_code": 0,
+    "stdout": "step0-final.stdout",
+    "stderr": "step0-final.stderr"
+  },
+  "full_harness_pytest": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 /Users/ryan/.local/share/mise/installs/python/3.13/bin/python3.13 -m pytest -q tools/practitioner_harness",
+    "exit_code": 0,
+    "stdout": "harness-pytest.stdout",
+    "stderr": "harness-pytest.stderr"
+  },
+  "output_normalization": "Only step0-first-attempt.stderr trailing whitespace trimmed for candidate hygiene; diagnostic wording retained. Other command logs are raw captured text."
+}

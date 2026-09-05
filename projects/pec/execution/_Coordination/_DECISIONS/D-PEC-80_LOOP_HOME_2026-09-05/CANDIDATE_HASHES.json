@@ -1,0 +1,8 @@
+{
+  "projects/pec/loop/LOOP_INIT.md": "e1cda4cb4d363371c18191edcfe962c986b4b622acb5d42d9a03a4e75f87809d",
+  "projects/pec/AGENTS.md": "e053478d98a4f3f0274e7c4d521a1195d5f3290bcad89d58b89f07ce79b5991a",
+  "projects/pec/init/dev-loop-init-prompt.md": "6bc8f2a5e7a905561ea92e7366ea769e3381681203c5571f64c0fd52bd623874",
+  "tools/validation/validate_pec_loop_receipts.py": "8eb6299558a4038f5a62f5f979a86460f16fece6ed6e2fcb8dd00ce12952bad9",
+  "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/DRY_RUN_1_INPUT.txt": "876666fd6952985678403637bb9a408c7b8f6e0950a3210b2a6dc1f3f279d6ef",
+  "projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_LOOP_HOME_2026-09-05/DRY_RUN_2_INPUT.txt": "4fcd35350f348cefb29944a85019ef3a39baf0a722f922eb78252a0364cf8c95"
+}
