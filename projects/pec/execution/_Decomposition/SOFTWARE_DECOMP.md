@@ -149,7 +149,7 @@ membership will be carried as deliverable metadata/sequencing hints.
 | R1 | `projects/pec/docs/PRD.md` (v2.2; lineage ruled through `D-PEC-58`, `D-PEC-61`, `D-PEC-67`, and `D-PEC-68`) | Source corpus |
 | R2 | `docs/DECOMPOSITION_STANDARD.md` | Ratified 7-gate protocol |
 | R3 | `agents/AGENT_SOFTWARE_DECOMP.md` | Conforming method (software variant) |
-| R4 | `projects/pec/loop/WORKPLAN_2026-07-24_pec_coordination_plane.md` | Standing plan; D1 authorization context |
+| R4 | `_DomainEngines/pec/WORKPLAN_2026-07-24_pec_coordination_plane.md` | Standing plan; D1 authorization context |
 | R5 | `projects/pec/AGENTS.md` | Project agent posture, fences, write scopes |
 | R6 | `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-57..68` | Pivot, adoption, decomposition, directed bootstrap, exact consumer rows, and v2.2 concordance |
 | R7 | `tools/practitioner_harness/README.md` | Permanent parity peer |

@@ -93,10 +93,10 @@ classification, and disposition, including preserved historical references.
 
 Initial literal search: 723 matching lines across 342 tracked files. Final
 classification after independent review: tool/configuration/test 8 files /
-10 lines; launcher/catalog 3 / 8; live documents/pointers 6 / 10; immutable
-records/historical observations 325 / 695. The initial owner return listed
+10 lines; launcher/catalog 3 / 8; live documents/pointers 5 / 9; immutable
+records/historical observations 326 / 696. The initial owner return listed
 8 live and 323 historical files; the refinement preserves the two parser
-SOWs' dated observations rather than rewriting their recorded evidence.
+SOWs' dated observations and the decomposition’s R4 historical D1 context rather than rewriting their recorded evidence.
 Constructed paths are additionally recorded in `CONSTRUCTED_PATHS.md`.
 
 Historical references embedded in the Root TM-ROOT-118 concern, parser
@@ -207,3 +207,15 @@ on any changed candidate, and a fresh origin comparison is required before
 owner merge. Subsequent operators use the new init only as a candidate until
 its merge is observable. Post-merge instruction defects take their own
 residual ruling row, following D-APP-113.
+
+## Migration correction found by the fresh operator
+
+The initial migration checkpoint `ca49b846dabc563192caa0effd389265535a8598`
+passed the requested deterministic validators but incorrectly rewrote the
+accepted decomposition's R4 historical authorization-context locator. The
+fresh reader compared its exact live hash with `_LATEST.md` and caught the
+mismatch. A separate, reviewable migration repair restores the accepted
+decomposition byte-for-byte, rather than repinning or accepting a changed
+basis. The corrected A tree is independently rechecked before restoring the
+uncommitted B/C candidate. Both A commits remain visible; history is not
+rewritten after publication. No SCA or scope change is inferred.
