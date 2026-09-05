@@ -68,6 +68,12 @@ def test_accepts_help_human_entry_with_separated_loop(tmp_path: Path) -> None:
     assert validator.validate(tmp_path) == []
 
 
+def test_accepts_project_without_workplan(tmp_path: Path) -> None:
+    project = _write_project(tmp_path)
+    (project / "loop" / "WORKPLAN_2026-07-18_test.md").unlink()
+    assert validator.validate(tmp_path) == []
+
+
 def test_accepts_thin_project_agents_with_canonical_runtime_reference(
     tmp_path: Path,
 ) -> None:
