@@ -1,0 +1,14 @@
+{
+  "CODE_RELOCATION_CANDIDATE.csv": {
+    "before_sha256": "feb6c039148d3ffd96a27d761c325a32ddc68804e950e92d7647730b10060fca",
+    "after_sha256": "ee7cd1f00fe6101e6e8d64de6bba49b8c41bcc6e1d439782b16f5aaaaa1b6f06",
+    "parsed_rows_identical": true,
+    "only_CRLF_to_LF": true
+  },
+  "PACKAGE_CONSUMER_CANDIDATE.csv": {
+    "before_sha256": "c8c6af1e3c9ebacdceb88dadb785fb7df02b35811b8c7bac1ffca58393205ef9",
+    "after_sha256": "897b5cd4cb6a0355a5f5a431f891b9ecd4571d96b70726609a06ded7bfdca2da",
+    "parsed_rows_identical": true,
+    "only_CRLF_to_LF": true
+  }
+}

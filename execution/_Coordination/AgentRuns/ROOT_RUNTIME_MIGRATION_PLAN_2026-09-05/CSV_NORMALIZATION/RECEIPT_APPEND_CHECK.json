@@ -1,0 +1,8 @@
+{
+  "prior_commit": "077ec0de833e31c133f9cb178cd0ea9d31346079",
+  "old_bytes": 536456,
+  "old_sha256": "1c2566cf72611b49d3571ec45281a7b85eb1f0d72183a20b4fa1337292f52c58",
+  "unchanged_prefix": true,
+  "single_new_header": true,
+  "final_ledger_sha256": "de7c46a06f25afe66ad01afaaa64610cba2d4600c12561c108de6db5a37c6c5f"
+}
