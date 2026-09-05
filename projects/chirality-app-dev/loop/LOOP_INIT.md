@@ -56,8 +56,9 @@ authorize work; sources govern on any disagreement.
   `execution/_Coordination/_DECISIONS/D-APP-48_FLOW_A_PULL_CONTRACT_*.json`).
 - **Historical archive (never selection surfaces):** `plans/**`
   (`plans/PLAN_COMPLETION_LOG.md` holds landed narrative) ·
-  `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` · every superseded
-  `loop/WORKPLAN_*.md`.
+  `execution/_Coordination/NEXT_INSTANCE_PROMPT.md` · every retired
+  workplan under `plans/workplans/` (D-APP-114: no committed overlay; the
+  loop runs on the deliverables alone).
 
 ## 3. Standing constraints — hard fences (all iterations; always stop for a human ruling)
 
@@ -135,7 +136,7 @@ Rules the output does not show you:
 - A `_STATUS.md` without a `## Remaining` section has no recorded open scope.
 - A tranche that will touch `frontend/` declares at Step 0 the A1 re-stage
   consequence (`plans/steers/chirality_app_v3_app_ruling_record_a1_2026-08-23.md`
-  lines 28-36) in its run record and receipt.
+  lines 28-36) in its run record and the receipt's `Checks` record.
 
 ### Step 1 — Select, from `## Remaining` sections only
 
@@ -239,7 +240,7 @@ If the loop is parked pending owner direction, stop there.
 | Work type | Required before push | Notes |
 |---|---|---|
 | Any tranche | repo-wide `self-check` exit 0; practitioner-harness pytest at closeout; receipt validator pass before and after appending; `git diff --check` | Always. |
-| Product source (`frontend/src/**` outside `__tests__/**`, `frontend/electron/**`, `frontend/packages/**`, `frontend/scripts/**`, build/packaging config) | typecheck + vitest + build/premerge gates (`docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, `docs/BUILD_AND_RELEASE.md`); independent review per `AGENTS.md`; A1 re-stage declaration | Stop the dev server before build/package/premerge commands. |
+| Product source (`frontend/src/**` outside `__tests__/**`, `frontend/electron/**`, `frontend/packages/**`, `frontend/scripts/**`, build/packaging config) | typecheck + vitest + build/premerge gates (`docs/VALIDATION_STRATEGY.md`, `docs/RELEASE_QUALITY_GATES.md`, `docs/BUILD_AND_RELEASE.md`); independent review per `AGENTS.md`; A1 re-stage declaration | Stop the dev server before build/package/premerge commands; build, premerge, and render-bar runs need host escalation per `AGENTS.md` where the sandbox denies them. |
 | UI work | the above plus the D-APP-36 render bar (`docs/ISSUE_READINESS_PROFILES.md` §4) | Evidence per `docs/ui/UI_POLISH_EXECUTION_PLAN.md`. |
 | Authority docs (`docs/DIRECTIVE.md`, `CONTRACT.md`, `SPEC.md`, `TYPES.md`) | D-APP-38 corpus reconciliation (`execution/_Reconciliation/References/reconcile_authority_corpus.py`) | Drift is repair-first. |
 | Governance / control-plane only | record that frontend gates were skipped because no runtime source changed | |
