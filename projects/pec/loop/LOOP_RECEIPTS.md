@@ -1870,6 +1870,6 @@
   - Parent-Receipt: `Receipt-166`
   - Pointers: `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_loop_home_and_instruction_surface_2026-09-05.md`; owner task and exact grant in its `OWNER_DIRECTIONS.md` evidence.
   - Stale-Map-Delta: historical `_DomainEngines/pec/` locators and old init section numbers resolve through the packet’s relocation map and Git history; accepted plan bytes remain unchanged; D_RETIREMENT/RELOCATION_MAP.csv continues the map into plans/workplans/.
-  - Checks: migration and final verification evidence is indexed by the packet’s `VALIDATION.md` and `D_RETIREMENT/VALIDATION.md`; receipt and entrypoint checks pass.
+  - Checks: migration and final verification evidence is indexed by the packet’s `VALIDATION.md` and `D_RETIREMENT/VALIDATION.md`; receipt and entrypoint checks pass; G4 manifest repair and grant are recorded in `MERGE_REPAIR/OWNER_GRANT.md`, with final checks in `MERGE_REPAIR/FINAL_CHECKS.json`.
   - Model-Attribution: Codex acting as HELP_HUMAN; native read-only inventory and dry-run children; role not mechanically enforced.
   - Gate-Outcome: `EXECUTED` — owner direction verbatim: “merge PR #721”; A/B/C/D ruled in `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_RULING_2026-09-05.md`; effective on origin/main after the authorized merge.
