@@ -1,6 +1,6 @@
 # SCA-APP-010 Brief — Shell Redesign: Dialogue-Centred Information Architecture
 
-**Status:** `GATE1_INTAKE_AWAITING_OWNER_CONFIRMATION`
+**Status:** `GATE1_CONFIRMED_GATE2_IN_PREPARATION`
 **Date:** `2026-09-04`
 **Requested by:** Ryan Tufts (`ryan@chirality.ai`), owner, in-session direction relayed by HELP_HUMAN
 **Decomposition variant:** `SOFTWARE`
@@ -212,4 +212,5 @@ part of the shell redesign, with the direct items excluded as seated work?
   and A012); Gate 1 re-parses and re-validates.
 - **Stop:** no Gate-2 work begins.
 
-**Owner response:** pending.
+**Owner response:** Confirmed on 2026-09-04 ("Confirm the envelope as
+parsed, proceed to Gate 2."). See `Decision_Log.md` G1-CONFIRM.

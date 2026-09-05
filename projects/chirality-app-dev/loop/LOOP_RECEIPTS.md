@@ -6918,3 +6918,14 @@
   - Checks: fresh `AUDIT_DECOMP` pre-change baseline `WARNINGS` with zero blockers and closure `FAIL` on SCA-APP-009's open derivative state; receipt validator pass; authority corpus v20 no drift; repo-wide self-check exit 0; candidate whitespace and `git diff --check` pass; frontend and runtime gates skipped because no product source changed.
   - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; one bounded Claude Code subagent dispatched as AUDIT_DECOMP (read-only, wrote only the nine audit evidence files); role not mechanically enforced.
   - Gate-Outcome: `AWAITING_OWNER` — Gate-1 intake prepared; the owner's confirm/correct/stop answer is the gate to Gate 2. No decomposition, companion, pointer, register, product, lifecycle, Root, release, or implementation act or claim occurred.
+
+- **2026-09-04 — Receipt 230** (SCA-APP-010 Gate-1 confirmation recorded and Gate-2 impact assessment prepared).
+  - Receipt-ID: `Receipt-230`
+  - Examined-Through: `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`
+  - Parent-Receipt: `Receipt-229`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-09-04, Ryan Tufts): "Confirm the envelope as parsed, proceed to Gate 2. You have my approval to expand your write scope to the Root also, as required for this work throughout this session." Recorded verbatim as G1-CONFIRM in the SCA-APP-010 `Decision_Log.md`; the Root write-scope grant is session-bound and exercised only where the assessment names a Root surface.
+  - Stale-Map-Delta: none. `_ScopeChange/_LATEST.md` still points to SCA-APP-009; no authority surface changed.
+  - Pointers: branch `claude/sca-app-010-gate1-intake` (PR #708); basis above; `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/` (`Impact_Assessment.md` new; `Decision_Log.md`, `Brief.md`, `Handoff_State.md` updated); Gate-2 evidence cited from decomposition lines 168, 296, 397, D-APP-74 line 107, the carriers' `_STATUS.md` Remaining sections, `docs/CONTRACT.md` invariant rows, the companion register, and `frontend/src/lib/harness/mcp/`.
+  - Checks: receipt validator pass; repo-wide self-check exit 0; candidate whitespace and `git diff --check` pass; no product source changed so frontend and runtime gates skipped; no instruction-surface path touched so no G4 manifest.
+  - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; no child dispatched for this act.
+  - Gate-Outcome: `AWAITING_OWNER` — Gate 2 assessment presented; the owner's acceptance with the A006 and A012 choices is the gate to Gate 3. No decomposition, companion, contract, pointer, deliverable, Root, product, lifecycle, or release act or claim occurred.
