@@ -45,7 +45,7 @@ are seated as Remaining work by the owner, not by this row.
 
 ## Anticipated Artifacts
 
-Dialogue shell; inline artifact/focus views; Work/Agents panel; Activity Shelf;
+Dialogue shell; composer context line; chat navigator; account row host;
 route/query and compatibility tests
 
 ## Traceability
@@ -60,7 +60,10 @@ route/query and compatibility tests
 
 This folder was scaffolded by ORCHESTRATOR from the accepted v3.2
 SOFTWARE_DECOMP working surface and retains its physical name for compatibility.
-SCA-APP-004 and its owner-approved amendment prospectively control the current
-presentation target. Downstream TASK work must preserve `ResponsibleParty:
-TBD` until a human assigns ownership and must not treat this presentation slice
-as canonical work, session, replay, artifact, lifecycle, or runtime authority.
+SCA-APP-010 (applied at Gate 5, 2026-09-04; D-APP-108) controls the current
+presentation target through the applied decomposition row L307 and the
+SCA-APP-010 Gate-5 Current Contract section of `ScopeOfWork.md`; SCA-APP-004 and
+its owner-approved amendment remain dated history. Downstream TASK work must
+preserve `ResponsibleParty: TBD` until a human assigns ownership and must not
+treat this presentation slice as canonical work, session, replay, artifact,
+lifecycle, or runtime authority.

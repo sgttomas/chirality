@@ -1,0 +1,680 @@
+{
+  "heldRows": 19,
+  "distinctHeldEdges": 15,
+  "heldEdges": [
+    [
+      "DEL-02-01",
+      "DEL-02-04"
+    ],
+    [
+      "DEL-02-02",
+      "DEL-02-04"
+    ],
+    [
+      "DEL-02-02",
+      "DEL-05-02"
+    ],
+    [
+      "DEL-02-02",
+      "DEL-05-04"
+    ],
+    [
+      "DEL-02-02",
+      "DEL-08-02"
+    ],
+    [
+      "DEL-02-02",
+      "DEL-08-04"
+    ],
+    [
+      "DEL-02-02",
+      "DEL-08-05"
+    ],
+    [
+      "DEL-02-03",
+      "DEL-02-04"
+    ],
+    [
+      "DEL-02-04",
+      "DEL-02-02"
+    ],
+    [
+      "DEL-02-04",
+      "DEL-02-03"
+    ],
+    [
+      "DEL-02-05",
+      "DEL-02-01"
+    ],
+    [
+      "DEL-02-05",
+      "DEL-02-03"
+    ],
+    [
+      "DEL-06-03",
+      "DEL-08-01"
+    ],
+    [
+      "DEL-08-01",
+      "DEL-06-03"
+    ],
+    [
+      "DEL-08-04",
+      "DEL-03-02"
+    ]
+  ],
+  "allEmittedRowChecksPass": true,
+  "rows": [
+    {
+      "held": "H-001",
+      "carrier": "DEL-02-01",
+      "DependencyID": "DEP-02-01-010",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-02-04",
+      "edge": [
+        "DEL-02-01",
+        "DEL-02-04"
+      ],
+      "heldEdge": [
+        "DEL-02-01",
+        "DEL-02-04"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-002",
+      "carrier": "DEL-02-02",
+      "DependencyID": "DEP-02-02-015",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-05-02",
+      "edge": [
+        "DEL-02-02",
+        "DEL-05-02"
+      ],
+      "heldEdge": [
+        "DEL-02-02",
+        "DEL-05-02"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-003",
+      "carrier": "DEL-02-02",
+      "DependencyID": "DEP-02-02-017",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-08-05",
+      "edge": [
+        "DEL-02-02",
+        "DEL-08-05"
+      ],
+      "heldEdge": [
+        "DEL-02-02",
+        "DEL-08-05"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-004",
+      "carrier": "DEL-02-02",
+      "DependencyID": "DEP-02-02-018",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-05-04",
+      "edge": [
+        "DEL-02-02",
+        "DEL-05-04"
+      ],
+      "heldEdge": [
+        "DEL-02-02",
+        "DEL-05-04"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-005",
+      "carrier": "DEL-02-02",
+      "DependencyID": "DEP-02-02-019",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "CONSTRAINT",
+      "TargetDeliverableID": "DEL-08-04",
+      "edge": [
+        "DEL-02-02",
+        "DEL-08-04"
+      ],
+      "heldEdge": [
+        "DEL-02-02",
+        "DEL-08-04"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-006",
+      "carrier": "DEL-02-02",
+      "DependencyID": "DEP-02-02-020",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "CONSTRAINT",
+      "TargetDeliverableID": "DEL-08-02",
+      "edge": [
+        "DEL-02-02",
+        "DEL-08-02"
+      ],
+      "heldEdge": [
+        "DEL-02-02",
+        "DEL-08-02"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-007",
+      "carrier": "DEL-02-02",
+      "DependencyID": "DEP-02-02-022",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-02-04",
+      "edge": [
+        "DEL-02-02",
+        "DEL-02-04"
+      ],
+      "heldEdge": [
+        "DEL-02-02",
+        "DEL-02-04"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-008",
+      "carrier": "DEL-02-04",
+      "DependencyID": "DEP-02-04-015",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-02-02",
+      "edge": [
+        "DEL-02-04",
+        "DEL-02-02"
+      ],
+      "heldEdge": [
+        "DEL-02-04",
+        "DEL-02-02"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-009",
+      "carrier": "DEL-02-04",
+      "DependencyID": "DEP-02-04-016",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-02-03",
+      "edge": [
+        "DEL-02-04",
+        "DEL-02-03"
+      ],
+      "heldEdge": [
+        "DEL-02-04",
+        "DEL-02-03"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-010",
+      "carrier": "DEL-02-04",
+      "DependencyID": "DEP-02-04-017",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "DOWNSTREAM",
+      "DependencyType": "HANDOVER",
+      "TargetDeliverableID": "DEL-02-01",
+      "edge": [
+        "DEL-02-01",
+        "DEL-02-04"
+      ],
+      "heldEdge": [
+        "DEL-02-01",
+        "DEL-02-04"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-011",
+      "carrier": "DEL-02-04",
+      "DependencyID": "DEP-02-04-018",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "DOWNSTREAM",
+      "DependencyType": "HANDOVER",
+      "TargetDeliverableID": "DEL-02-02",
+      "edge": [
+        "DEL-02-02",
+        "DEL-02-04"
+      ],
+      "heldEdge": [
+        "DEL-02-02",
+        "DEL-02-04"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-012",
+      "carrier": "DEL-02-04",
+      "DependencyID": "DEP-02-04-019",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "DOWNSTREAM",
+      "DependencyType": "HANDOVER",
+      "TargetDeliverableID": "DEL-02-03",
+      "edge": [
+        "DEL-02-03",
+        "DEL-02-04"
+      ],
+      "heldEdge": [
+        "DEL-02-03",
+        "DEL-02-04"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-013",
+      "carrier": "DEL-02-05",
+      "DependencyID": "DEP-02-05-014",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-02-01",
+      "edge": [
+        "DEL-02-05",
+        "DEL-02-01"
+      ],
+      "heldEdge": [
+        "DEL-02-05",
+        "DEL-02-01"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-014",
+      "carrier": "DEL-02-05",
+      "DependencyID": "DEP-02-05-015",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "PREREQUISITE",
+      "TargetDeliverableID": "DEL-02-03",
+      "edge": [
+        "DEL-02-05",
+        "DEL-02-03"
+      ],
+      "heldEdge": [
+        "DEL-02-05",
+        "DEL-02-03"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-015",
+      "carrier": "DEL-03-02",
+      "DependencyID": "DEP-03-02-013",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "DOWNSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-08-04",
+      "edge": [
+        "DEL-08-04",
+        "DEL-03-02"
+      ],
+      "heldEdge": [
+        "DEL-08-04",
+        "DEL-03-02"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-016",
+      "carrier": "DEL-05-02",
+      "DependencyID": "DEP-05-02-016",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "DOWNSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-02-02",
+      "edge": [
+        "DEL-02-02",
+        "DEL-05-02"
+      ],
+      "heldEdge": [
+        "DEL-02-02",
+        "DEL-05-02"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-017",
+      "carrier": "DEL-06-03",
+      "DependencyID": "DEP-06-03-014",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-08-01",
+      "edge": [
+        "DEL-06-03",
+        "DEL-08-01"
+      ],
+      "heldEdge": [
+        "DEL-06-03",
+        "DEL-08-01"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-001",
+      "expectedFormOrJoin": "new two-node SCC DEL-06-03/DEL-08-01",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-018",
+      "carrier": "DEL-08-01",
+      "DependencyID": "DEP-08-01-018",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-06-03",
+      "edge": [
+        "DEL-08-01",
+        "DEL-06-03"
+      ],
+      "heldEdge": [
+        "DEL-08-01",
+        "DEL-06-03"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-001",
+      "expectedFormOrJoin": "new two-node SCC DEL-06-03/DEL-08-01",
+      "allChecksPass": true
+    },
+    {
+      "held": "H-019",
+      "carrier": "DEL-08-04",
+      "DependencyID": "DEP-08-04-013",
+      "occurrences": 1,
+      "inCarrierRegister": true,
+      "Status": "ACTIVE",
+      "DependencyClass": "EXECUTION",
+      "TargetType": "DELIVERABLE",
+      "Direction": "UPSTREAM",
+      "DependencyType": "INTERFACE",
+      "TargetDeliverableID": "DEL-03-02",
+      "edge": [
+        "DEL-08-04",
+        "DEL-03-02"
+      ],
+      "heldEdge": [
+        "DEL-08-04",
+        "DEL-03-02"
+      ],
+      "edgeMatchesHeld": true,
+      "directionMatchesHeld": true,
+      "typeMatchesHeld": true,
+      "targetMatchesHeld": true,
+      "notesCycleParticipating": true,
+      "notesNonGating": true,
+      "notesD_APP_109": true,
+      "sccNow": "SCC-002",
+      "expectedFormOrJoin": "joins SCC-001 into the simulated 20-node SCC (with the other held edges)",
+      "allChecksPass": true
+    }
+  ],
+  "cycleParticipatingRowsInCorpus": [
+    "DEP-02-01-010",
+    "DEP-02-02-015",
+    "DEP-02-02-017",
+    "DEP-02-02-018",
+    "DEP-02-02-019",
+    "DEP-02-02-020",
+    "DEP-02-02-022",
+    "DEP-02-04-015",
+    "DEP-02-04-016",
+    "DEP-02-04-017",
+    "DEP-02-04-018",
+    "DEP-02-04-019",
+    "DEP-02-05-014",
+    "DEP-02-05-015",
+    "DEP-03-02-013",
+    "DEP-05-02-016",
+    "DEP-06-03-014",
+    "DEP-08-01-018",
+    "DEP-08-04-013"
+  ],
+  "cycleParticipatingRowsAreExactlyTheNineteen": true
+}

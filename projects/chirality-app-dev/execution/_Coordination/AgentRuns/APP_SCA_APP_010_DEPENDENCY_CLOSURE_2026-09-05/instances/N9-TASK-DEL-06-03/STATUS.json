@@ -1,0 +1,52 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N9-TASK-DEL-06-03",
+  "parentRunId": "N9",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY",
+  "amendment": "v1.2",
+  "ruling": "D-APP-109",
+  "status": "PASS",
+  "basisCommit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "carrier": "DEL-06-03",
+  "preImages": {
+    "dependenciesCsvSha256": "89a579e740656560f565c41c9f536dbfe99038d86d65faae93f882134f682d02",
+    "dependenciesIndexSha256": "d9140c2f599150cd3f7ab82124b12a3aad6b0a137a6c5636d4cf37f89bba3800"
+  },
+  "emitted": ["DEP-06-03-014"],
+  "heldIds": ["H-017"],
+  "outputs": {
+    "dependenciesCsvSha256": "15ea08e35b5d2dda40dfc417b3d0ff4e73318900ccab166f016b5dee3cb2f3cd",
+    "dependenciesIndexSha256": "9e3faf5dcaf6c02a3f88c39006ff830e24b90057b50d1cd37ba3ba4fb0a32cb0",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_run_records/TASK_RUN_2026-09-05_0757.md",
+    "taskRunRecordSha256": "713a1902ff4f3a51987cffddd68fd9b7ac43fbd710e027d3a23114a6fe96b6e2",
+    "returnSha256": "af5b1562cee425671c4d51628102e3170515936fabca4a464074b339c11b3a92"
+  },
+  "counts": {
+    "pre": { "total": 17, "active": 17, "retired": 0, "anchor": 7, "execution": 10 },
+    "post": { "total": 18, "active": 18, "retired": 0, "anchor": 7, "execution": 11 }
+  },
+  "validators": {
+    "validate_dependencies_schema": "VALID (29 required + 0 extension columns; 18 data rows; exit 0)",
+    "validate_enum": "10 of 10 emitted values VALID (exit 0)",
+    "parentAnchor": "PASS (one ACTIVE IMPLEMENTS_NODE)",
+    "uniqueIds": true,
+    "idOrdered": true,
+    "preImageRowsByteIdentical": true,
+    "evidenceResolves": true,
+    "gitDiffCheck": "exit 0",
+    "lineHygiene": "LF only; no trailing whitespace; final newline"
+  },
+  "sccNote": "DEP-06-03-014 with DEL-08-01 DEP-08-01-018 forms the new two-node SCC DEL-06-03/DEL-08-01; cycle-participating and non-gating until a recorded decompose/invert/merge/cut move (docs/CYCLE_DRIVEN_RESOLUTION.md). D-APP-109 resolves no SCC.",
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: carried unchanged; no ID changed",
+    "TARGET_UNRESOLVED: DEP-06-03-008, -009, -015 carried unchanged",
+    "CYCLE_PARTICIPATING: DEP-06-03-014 inside the new two-node SCC DEL-06-03/DEL-08-01"
+  ],
+  "toolPolicy": "COMPLIANT",
+  "carrierWritten": true,
+  "writesOutsideBrief": false,
+  "humanRulingRequired": false
+}

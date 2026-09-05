@@ -1,0 +1,47 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "instanceId": "N9-TASK-DEL-02-04",
+  "runId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "parentRunId": "N9",
+  "parent": "HELP_HUMAN",
+  "role": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY",
+  "authorization": "D-APP-109; AMENDMENT_v1.2_OWNER_RULING.md N9; SCA-APP-010 FUTURE_WRITE_SET.csv DEP-005, DEP-006",
+  "status": "PASS",
+  "carrier": "DEL-02-04",
+  "carrierPath": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State",
+  "basisHead": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "Dependencies.csv": "c6bdffd1aef83f0c04764a8f8f01d5f67abc1928c9630866f6f48dd83d16ac62",
+    "_DEPENDENCIES.md": "1fffa1ec5e37709dcb26f0c1b0cd611e3ae474690db63593a85e6bd2c50ba35e"
+  },
+  "outputs": {
+    "Dependencies.csv": "abaf816695c2c6f13adfe03ad85b31ff0cbdef2db06b36873e519060f306bcb2",
+    "_DEPENDENCIES.md": "1cefdede31815de94d3f18b2e5033fbc1ebf17722f4a4d53c8e22f5eb0ec23ca",
+    "runRecord": "_run_records/TASK_RUN_2026-09-05_0802.md",
+    "runRecordSha256": "968ce71cc3bd4dbbaa122e370b27af31d6a0bd9c7c1a2720a0f5190f96e5c9ca"
+  },
+  "emitted": ["DEP-02-04-015", "DEP-02-04-016", "DEP-02-04-017", "DEP-02-04-018", "DEP-02-04-019"],
+  "heldIds": ["H-008", "H-009", "H-010", "H-011", "H-012"],
+  "counts": {
+    "pre": {"total": 16, "active": 16, "retired": 0, "anchor": 6, "execution": 10},
+    "post": {"total": 21, "active": 21, "retired": 0, "anchor": 6, "execution": 15},
+    "satisfactionPost": {"NOT_APPLICABLE": 6, "SATISFIED": 7, "PENDING": 7, "TBD": 1}
+  },
+  "function5": {
+    "schema": "VALID (29 columns, 21 data rows)",
+    "enums": "27/27 VALID",
+    "implementsNodeActive": 1,
+    "uniqueIds": true,
+    "fromDeliverableIdMatch": true,
+    "evidenceResolves": true,
+    "gitDiffCheck": "clean",
+    "hygiene": "LF only; no trailing whitespace; final newline"
+  },
+  "warnings": ["PROJECT_ID_FORMAT_PROFILE", "INSTRUCTION_ROOT_DECLARED_BY_BRIEF"],
+  "cycleParticipating": "DEP-02-04-015..019 lie inside the enlarged SCC-001 and are non-gating until a recorded decompose/invert/merge/cut move",
+  "writes": ["Dependencies.csv", "_DEPENDENCIES.md", "_run_records/TASK_RUN_2026-09-05_0802.md", "instances/N9-TASK-DEL-02-04/RETURN.md", "instances/N9-TASK-DEL-02-04/STATUS.json"],
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (D-APP-109 emission), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched"
+}

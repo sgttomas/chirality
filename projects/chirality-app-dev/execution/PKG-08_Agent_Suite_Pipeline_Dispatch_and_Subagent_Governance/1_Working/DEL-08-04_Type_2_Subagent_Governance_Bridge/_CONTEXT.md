@@ -46,13 +46,16 @@ acceptance and WP-03/05 fixtures remain required.
 
 ## Anticipated Artifacts
 
-App project-authority bridge; daemon-client dispatch; sealed-brief and restricted-child conformance tests
+App project-authority and managed-delegation bridge; daemon-client dispatch;
+class-aware `subagent-governance` behavior; managed sibling-overlap checks;
+role/native-origin fixtures; sealed-brief, containment, approval, cancellation,
+and cleanup conformance tests
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-063 |
+| CoversScopeItems | SOW-063, SOW-083 |
 | SupportsObjectives | OBJ-005, OBJ-007 |
 | ContextEnvelopeNotes | Project authority/client-dispatch slice; the daemon owns operational delegation execution. |
 

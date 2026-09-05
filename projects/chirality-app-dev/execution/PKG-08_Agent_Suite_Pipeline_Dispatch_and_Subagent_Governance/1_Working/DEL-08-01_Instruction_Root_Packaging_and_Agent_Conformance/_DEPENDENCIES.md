@@ -44,7 +44,7 @@ TBD - no accepted dependency edges have been extracted yet.
 - Decomposition authority found at the pinned identity: SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`, content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291` (the `ScopeOfWork.md` `decomposition_basis` pin); applied row L368; amended Scope Ledger rows SOW-082 L252/L485 and SOW-084 L254/L487; OI-008 L602; DEC-025 L634. Companion register `63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca`; pointer `b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0`.
 - Pass 1 — ANCHOR: DEP-08-01-001 (`IMPLEMENTS_NODE` to PKG-08) preserved with its `DependencyID`; SOW-030/SOW-031/SOW-073 and OBJ-007/OBJ-008 trace anchors preserved and re-pointed to live lines; SOW-082 (DEP-08-01-016) and SOW-084 (DEP-08-01-017) added because they are new on the applied row. No scope ref left the applied row, so no anchor was retired. `TargetType=REQUIREMENT` for objectives is this carrier's pre-existing convention and was preserved.
 - Pass 2 — EXECUTION: DEP-08-01-007 to DEP-08-01-015 re-evidenced from the retired four-document kit (`Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`) to `ScopeOfWork.md` CLM/REQ ids; every relation is still stated, so nothing was retired. New rows: DEP-08-01-019 (UPSTREAM INTERFACE, DEL-07-01 layer protections the checks verify), DEP-08-01-020 (DOWNSTREAM CONSTRAINT, routed agent-index change notice and G4 manifest under the Root `AGENTS.md` rule; `EXTERNAL`/`TBD`), DEP-08-01-021 (UPSTREAM PREREQUISITE, owner write-scope grant for `agents/**` and `skills/**` at selection; `EXTERNAL`/`TBD`). The v1 preview also proposed DEP-08-01-018 (UPSTREAM INTERFACE, DEL-06-03 `propose` tool contract the clauses invoke); it is held under amendment v1.1 and the ID is reserved, not renumbered.
-- HELD (non-emitted proposal, pending owner ruling): DEP-08-01-018 reserved — DEL-08-01 -> DEL-06-03 UPSTREAM INTERFACE (DEL-08-01's proposal-clause conformance checks consume the DEL-06-03 `propose` tool contract: the named triggers the Agent 0 and Agent 1 clauses invoke; once-per-chat refusal of an already-declined trigger; evidence `_STATUS.md#Remaining` DEL-08-01-V3-01 Depends, `ScopeOfWork.md#Current acceptance obligations`, decomposition L252/L485) — see AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/HELD_EDGE_PROPOSALS.csv H-018. Reason: the fan-in simulation (`Evidence/fanin_simulation_v1/`) shows this edge together with DEL-06-03's reciprocal proposal H-017 (DEP-06-03-014) forms a new two-node SCC DEL-06-03/DEL-08-01; SCA-APP-010 `DOWNSTREAM_HANDOFFS.csv` row 3 requires SCC unchanged unless separately ruled, and cut/merge are human-gated under `docs/CYCLE_DRIVEN_RESOLUTION.md`. The relation itself is unchanged and stays available for the owner's separate transaction.
+- EMITTED under D-APP-109 (H-018): DEP-08-01-018 — DEL-08-01 -> DEL-06-03 UPSTREAM INTERFACE (DEL-08-01's proposal-clause conformance checks consume the DEL-06-03 `propose` tool contract) — cycle-participating, non-gating until the SCC is resolved by a recorded move. The v1.1 hold reason (fan-in simulation `Evidence/fanin_simulation_v1/`: with DEL-06-03's reciprocal H-017, DEP-06-03-014, this edge forms a new two-node SCC DEL-06-03/DEL-08-01) is now the recorded SCC change under D-APP-109, not a reason to withhold the row.
 - Fence F1 (SCC-001 membership): NONE. No new row targets an SCC-001 member (DEL-02-05, DEL-03-02, DEL-03-03, DEL-03-04, DEL-04-03, DEL-04-05, DEL-05-02, DEL-05-03, DEL-05-05); no SCC-001 member holds an active row back to DEL-08-01. DEL-05-02's `proposal.*` consumption on SOW-082 is not a relation of this carrier.
 - Fence F2 (Root path): NONE emitted. Root-owned targets (the `AGENTS.md` change-notice rule and G4 manifest validator; the owner grant) are `EXTERNAL` with `TargetLocation=TBD`. Pre-existing DEP-08-01-013 keeps its `_REFERENCES.md`-pinned REF-007 absolute pointer unchanged; see the graph decision below.
 - Fence F3 (permitted effect): considered and not emitted — the `NOT_SELECTABLE_UNTIL: DEL-02-02-V3-04 selected` gate (a selection/schedule gate, not an information flow); DEL-07-03's governed workflow file contract (SOW-081 is not on this carrier's applied row and no source names it as an input to the template-discoverability check); DEL-06-02 catalog/collision validation, DEL-05-02 event consumption, DEL-02-02 proposal card, and DEL-09-04 packaging (ownership statements with no artifact this carrier consumes or supplies).
@@ -55,25 +55,37 @@ TBD - no accepted dependency edges have been extracted yet.
 - `[WARNING] CONTEXT_LAG`: `_CONTEXT.md` `CoversScopeItems` still lists SOW-030, SOW-031, SOW-073 (the known SCA-APP-010 Gate-5 audit warning); `ScopeOfWork.md` front matter and the applied row are the anchor authority for SOW-082 and SOW-084.
 - Function 5 (rerun under amendment v1.1): `validate_dependencies_schema.py` VALID (29 columns, 20 data rows); 24 distinct enum pairs VALID; exactly one ACTIVE `IMPLEMENTS_NODE` (no `FLOATING_NODE`, no `AMBIGUOUS_ANCHOR`); every ACTIVE row's `EvidenceFile` and `SourceRef` resolve to live bytes; `FromDeliverableID=DEL-08-01` on every row; `DependencyID`s unique (DEP-08-01-018 reserved, absent); no `Status=CANDIDATE`; no register row deleted (the held row was never written to the carrier).
 
+### 2026-09-05 — D-APP-109 held-edge emission (N9)
+
+- Run: `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/`, instance `N9-TASK-DEL-08-01`; `TASK + dependency-extract` apply (Claude Fable 5.1, `claude-fable-5-1`, as a Claude Code subagent dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched). Authority: owner ruling D-APP-109 (`_DECISIONS/D-APP-109_RULING_SCA_APP_010_HELD_EDGES_AND_CONTEXT_ALIGNMENT_2026-09-05.md`) and `AMENDMENT_v1.2_OWNER_RULING.md` node N9; SCA-APP-010 `FUTURE_WRITE_SET.csv` DEP-021/DEP-022 targets.
+- Runtime overrides: `SCOPE=DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; `ApplyEdits=true`. No new extraction from prose: the one row written is the held proposal H-018 exactly as `HELD_EDGE_PROPOSALS.csv` and `instances/N1-TASK-DEL-08-01/PREVIEW.md` recorded it, with the D-APP-109 non-gating `Notes` clause appended.
+- Decomposition authority found at the pinned identity: SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`); applied row L368; SOW-082 L252/L485; DEL-06-03 row L348 (`Initial Chirality MCP Read Tools`).
+- Row DEP-08-01-018 inserted at its numeric position (between DEP-08-01-017 and DEP-08-01-019); every pre-existing row byte-identical; no row retired or deleted. Conventions mirror the carrier's sibling DELIVERABLE row DEP-08-01-019: fully quoted fields, `TargetRefID` empty, `TargetLocation` the plain decomposition path (this register does not use the `#L<n>` pointer form on deliverable targets; the target row is L348).
+- Evidence re-verified against live bytes: `_STATUS.md` `## Remaining` seated item DEL-08-01-V3-01 `Depends` line carries the quote verbatim; `ScopeOfWork.md` `### Current acceptance obligations` obligation 2 states the proposal-clause conformance; decomposition L485 assigns the tool to DEL-06-03 and instruction-clause conformance to DEL-08-01.
+- Graph posture: with DEL-06-03's reciprocal DEP-06-03-014 (H-017) this row forms the new two-node SCC DEL-06-03/DEL-08-01. Under D-APP-109 and `docs/CYCLE_DRIVEN_RESOLUTION.md` the row is `CYCLE_PARTICIPATING` and non-gating (no blocker queue, wave, dispatch-readiness, or implementation-readiness effect) until that SCC is resolved by a recorded decompose, invert, merge, or cut move; no such move is recorded by this run. The seated item's own `Depends` line and named gates remain the executable ordering.
+- Carried unchanged: `NEEDS_HUMAN_GRAPH_DECISION` (1) DEL-04-04 reciprocal edge and (2) DEP-08-01-013 REF-007 pointer; `[WARNING] PROJECT_ID_FORMAT_PROFILE`; `[WARNING] UNRESOLVED_TARGET` (DEP-08-01-015). `[WARNING] CONTEXT_LAG` is being cleared by the D-APP-109 `_CONTEXT.md` alignment in the same pass (HELP_HUMAN's builder), outside this run's write set.
+- Function 5: `validate_dependencies_schema.py` VALID (29 columns, 21 data rows); every emitted enum value VALID; exactly one ACTIVE `IMPLEMENTS_NODE` (no `FLOATING_NODE`, no `AMBIGUOUS_ANCHOR`); 21 unique `DependencyID`s (DEP-08-01-018 now present exactly once); `FromDeliverableID=DEL-08-01` on every row; no `Status=CANDIDATE`; `git diff --check` clean; LF, no trailing whitespace, final newline.
+
 ## Extracted Dependency Register
 
 Structured register: `Dependencies.csv` v3.1
 
 | Metric | Count |
 |---|---:|
-| Total rows | 20 |
-| ACTIVE rows | 20 |
+| Total rows | 21 |
+| ACTIVE rows | 21 |
 | RETIRED rows | 0 |
 | ANCHOR rows | 8 |
-| EXECUTION rows | 12 |
+| EXECUTION rows | 13 |
 | Parent anchors (`IMPLEMENTS_NODE`) | 1 |
 | Trace anchors (`TRACES_TO_REQUIREMENT`) | 7 |
 | Upstream document prerequisites | 8 |
 | Upstream unresolved prerequisites | 1 |
-| Upstream deliverable interfaces | 1 |
+| Upstream deliverable interfaces | 2 |
 | Upstream external prerequisites | 1 |
 | Downstream external constraints | 1 |
-| Held non-emitted proposals (reserved IDs, not rows) | 1 |
+| Held non-emitted proposals (reserved IDs, not rows) | 0 |
+| Cycle-participating non-gating rows (D-APP-109) | 1 |
 
 | DependencyID | Class | Type | Direction | Target | Status | Satisfaction |
 |---|---|---|---|---|---|---|
@@ -94,6 +106,7 @@ Structured register: `Dependencies.csv` v3.1
 | DEP-08-01-015 | EXECUTION | PREREQUISITE | UPSTREAM | TBD current instruction-root source tree | ACTIVE | PENDING |
 | DEP-08-01-016 | ANCHOR | OTHER | UPSTREAM | SOW-082 | ACTIVE | SATISFIED |
 | DEP-08-01-017 | ANCHOR | OTHER | UPSTREAM | SOW-084 | ACTIVE | SATISFIED |
+| DEP-08-01-018 | EXECUTION | INTERFACE | UPSTREAM | DEL-06-03 `propose` tool contract the proposal clauses invoke (cycle-participating, non-gating; D-APP-109 H-018) | ACTIVE | PENDING |
 | DEP-08-01-019 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 organisation-layer protections (K-ROOT-1 on both layers) | ACTIVE | PENDING |
 | DEP-08-01-020 | EXECUTION | CONSTRAINT | DOWNSTREAM | EXTERNAL routed agent-index change notice and G4 manifest (Root `AGENTS.md` rule; location TBD) | ACTIVE | PENDING |
 | DEP-08-01-021 | EXECUTION | PREREQUISITE | UPSTREAM | EXTERNAL owner write-scope grant for `agents/**` and `skills/**` at selection (location TBD) | ACTIVE | PENDING |
@@ -102,6 +115,7 @@ Structured register: `Dependencies.csv` v3.1
 
 | Timestamp | Mode | Strictness | Decomposition status | Warnings | ACTIVE rows |
 |---|---|---|---|---|---:|
+| 2026-09-05T07:58-0600 (D-APP-109 emission) | UPDATE | CONSERVATIVE | Found at the pinned identity `c7c05169…` (content commit `dbd812a52…`, SCA-APP-010 applied row L368); held row DEP-08-01-018 (H-018) emitted under owner ruling D-APP-109 as cycle-participating and non-gating (new two-node SCC DEL-06-03/DEL-08-01 recorded, not resolved) | PROJECT_ID_FORMAT_PROFILE; UNRESOLVED_TARGET for instruction-root source tree; CYCLE_PARTICIPATING x1 (DEP-08-01-018); NEEDS_HUMAN_GRAPH_DECISION x2 (DEL-04-04 reciprocal edge; DEP-08-01-013 REF-007 pointer) | 21 |
 | 2026-09-05T01:01:17-0600 | UPDATE | CONSERVATIVE | Found at the pinned identity `c7c05169…` (content commit `dbd812a52…`, SCA-APP-010 applied row L368); report-only preview post-image rerun under brief amendment v1.1 (v1 preview 2026-09-05T00:40:02-0600 superseded in place), reviewed write pending (DEP-021/DEP-022) | PROJECT_ID_FORMAT_PROFILE; UNRESOLVED_TARGET for instruction-root source tree; CONTEXT_LAG; HELD x1 (DEP-08-01-018 reserved, H-018); NEEDS_HUMAN_GRAPH_DECISION x2 (DEL-04-04 reciprocal edge; DEP-08-01-013 REF-007 pointer) | 20 |
 | 2026-06-21T05:00:00-0600 | ADQ-12 | CONSERVATIVE | D-APP-38 current authority corpus, conformance-validator residuals, and source-completeness checklist applied | UNRESOLVED_TARGET for instruction-root source tree | 15 |
 | 2026-05-20T19:54:20-0600 | UPDATE | CONSERVATIVE | Located and read | superseded SOURCE_HASH_MISMATCH for REF-006; UNRESOLVED_TARGET for instruction-root source tree | 15 |
@@ -110,23 +124,23 @@ Structured register: `Dependencies.csv` v3.1
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 20 |
+| ACTIVE | 21 |
 | RETIRED | 0 |
 
 | SatisfactionStatus | Count |
 |---|---:|
 | SATISFIED | 8 |
-| PENDING | 12 |
+| PENDING | 13 |
 
-Closure-state breakdown: 8 anchors SATISFIED (1 parent, 7 trace); 12 EXECUTION rows PENDING (8 document prerequisites, 1 unresolved instruction-root source tree, 1 deliverable interface awaiting DEL-07-01-V3-01, 1 owner write-scope grant, 1 routed-notice/G4-manifest constraint that binds at the first instruction-file change). One held non-emitted proposal (DEP-08-01-018, DEL-06-03 interface, H-018) is not a row and carries no satisfaction state.
+Closure-state breakdown: 8 anchors SATISFIED (1 parent, 7 trace); 13 EXECUTION rows PENDING (8 document prerequisites, 1 unresolved instruction-root source tree, 2 deliverable interfaces awaiting DEL-06-03-V3-01 and DEL-07-01-V3-01, 1 owner write-scope grant, 1 routed-notice/G4-manifest constraint that binds at the first instruction-file change). Of these, DEP-08-01-018 (DEL-06-03 interface, emitted under D-APP-109 from held proposal H-018) is cycle-participating and non-gating until the two-node SCC DEL-06-03/DEL-08-01 is resolved by a recorded move; no held non-emitted proposal remains.
 
 ## Downstream Handoff Notes
 
 - Consumer: `RECONCILIATION`.
-- Reconcile one parent anchor (PKG-08), seven trace anchors (SOW-030, SOW-031, SOW-073, SOW-082, SOW-084, OBJ-007, OBJ-008), eight re-evidenced document prerequisites (REF-001 to REF-007, DEC-004), one unresolved instruction-root source-tree prerequisite, one new deliverable interface (DEL-07-01), one owner-grant prerequisite, and one routed-notice/G4-manifest constraint. The DEL-06-03 interface (DEP-08-01-018, reserved) is a held non-emitted proposal (H-018) and is not reconciled as a row until the owner rules.
-- Graph posture: DEL-08-01 is not an SCC-001 member and this post-image adds no edge into SCC-001; the one new deliverable edge points to a non-SCC node (DEL-07-01). The held DEL-06-03 edge would, with DEL-06-03's reciprocal H-017, form a new two-node SCC DEL-06-03/DEL-08-01 and is therefore outside this post-image pending the owner's separate transaction. The reciprocal DEL-04-04 question and the DEP-08-01-013 REF-007 pointer are recorded above as graph decisions, not as rows, and are carried to the owner slate.
+- Reconcile one parent anchor (PKG-08), seven trace anchors (SOW-030, SOW-031, SOW-073, SOW-082, SOW-084, OBJ-007, OBJ-008), eight re-evidenced document prerequisites (REF-001 to REF-007, DEC-004), one unresolved instruction-root source-tree prerequisite, two deliverable interfaces (DEL-06-03, DEL-07-01), one owner-grant prerequisite, and one routed-notice/G4-manifest constraint. The DEL-06-03 interface (DEP-08-01-018) was emitted under D-APP-109 from held proposal H-018 and is reconciled as a row.
+- Graph posture: DEL-08-01 is not an SCC-001 member and this register adds no edge into SCC-001. The carrier now carries one cycle-participating non-gating row: DEP-08-01-018 (DEL-06-03) together with DEL-06-03's reciprocal DEP-06-03-014 (H-017) forms the new two-node SCC DEL-06-03/DEL-08-01, recorded under D-APP-109 and pending resolution by a recorded decompose, invert, merge, or cut move (`docs/CYCLE_DRIVEN_RESOLUTION.md`); until then the row drives no blocker queue, wave, dispatch-readiness, or implementation-readiness claim. The DEL-07-01 edge points to a non-SCC node. The reciprocal DEL-04-04 question and the DEP-08-01-013 REF-007 pointer are recorded above as graph decisions, not as rows, and are carried to the owner slate.
 - Root boundary: the `AGENTS.md` agent-index change-notice rule and the G4 manifest validator are Root-owned; consume them as `EXTERNAL`/`TBD` until the owner routes the notice at the first instruction-file change (Propagation_Plan §6 item 9). No `proposal.*` (OI-008) edge belongs to this carrier.
-- `_CONTEXT.md` traceability lags the applied row; treat `ScopeOfWork.md` front matter and decomposition L368 as the anchor authority until the carrier's `_CONTEXT.md` is aligned.
+- `_CONTEXT.md` traceability is aligned to the applied row under D-APP-109 in the same pass (HELP_HUMAN's builder, outside this run's write set); `ScopeOfWork.md` front matter and decomposition L368 remain the anchor authority.
 
 ---
 

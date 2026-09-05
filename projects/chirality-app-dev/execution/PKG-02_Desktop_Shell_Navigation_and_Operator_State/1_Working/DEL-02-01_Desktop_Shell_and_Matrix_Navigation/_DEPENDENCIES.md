@@ -23,11 +23,11 @@ Summary:
 
 | Count Type | Value |
 |---|---:|
-| Total rows | 13 |
-| ACTIVE rows | 13 |
+| Total rows | 14 |
+| ACTIVE rows | 14 |
 | RETIRED rows | 0 |
 | ANCHOR rows | 4 |
-| EXECUTION rows | 9 |
+| EXECUTION rows | 10 |
 
 Compact register:
 
@@ -42,12 +42,26 @@ Compact register:
 | DEP-02-01-007 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-02-02 Right-Panel Coordination, Workflows, and Proposal UX | ACTIVE |
 | DEP-02-01-008 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-08-03 Pipeline Category and Task Scope Dispatch | ACTIVE |
 | DEP-02-01-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 Working Root Validation and Instruction Root Protection | ACTIVE |
+| DEP-02-01-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-04 Dialogue Toolkit, Context, and Local UI State | ACTIVE |
 | DEP-02-01-011 | EXECUTION | INTERFACE | UPSTREAM | EXTERNAL/TBD Root-owned daemon session record (registered project identity/root; delegation-policy field, OI-008) | ACTIVE |
 | DEP-02-01-012 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN/TBD existing redaction helper for derived chat titles (Q6) | ACTIVE |
 | DEP-02-01-013 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-04 macOS DMG Packaging and Instruction Root Integrity | ACTIVE |
 | DEP-02-01-014 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-01-03 Product Identity and Professional Boundary Copy | ACTIVE |
 
 ## Run Notes
+
+### 2026-09-05 D-APP-109 emission of the held row H-001 (UPDATE)
+
+- Run: `APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` instance `N9-TASK-DEL-02-01` (TASK + dependency-extract, apply mode, dispatched by HELP_HUMAN under owner ruling D-APP-109, `execution/_Coordination/_DECISIONS/D-APP-109_RULING_SCA_APP_010_HELD_EDGES_AND_CONTEXT_ALIGNMENT_2026-09-05.md`, and `AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/AMENDMENT_v1.2_OWNER_RULING.md` node N9; SCA-APP-010 `FUTURE_WRITE_SET.csv` DEP-001/DEP-002). Pre-images verified before the write: `Dependencies.csv` `4af3d115b79d403c190661ba57050abe9bda04539cadf09cf9b07edf2d49c254`, `_DEPENDENCIES.md` `26a99f29ef68e00a9cc02839802142f099f67f7c5816cb461971a9ccb9a3ef49`.
+- Runtime overrides: as the 2026-09-05 preview run (`SCOPE=DEL-02-01_Desktop_Shell_and_Matrix_Navigation`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`) with `ApplyEdits=true`. No new extraction from prose: the run authors only the reserved row DEP-02-01-010 from the held proposal H-001 (`instances/N1-TASK-DEL-02-01/PREVIEW.md` section "Held proposals (amendment v1.1)"; `HELD_EDGE_PROPOSALS.csv` H-001), with the epistemic note preserved verbatim and the D-APP-109 non-gating clause appended.
+- Decomposition authority: FOUND at the pinned identity, SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (`dbd812a52d5ed0cb3ed173f3aaaa68703a914291`); DEL-02-04 applied row L310 supplies `TargetName` "Dialogue Toolkit, Context, and Local UI State"; reverse view L407 (SOW-004) and L411 (SOW-008) map DEL-02-04. `TargetLocation` follows this register's sibling DELIVERABLE rows (plain decomposition path, no line pointer).
+- Emitted: DEP-02-01-010 (DEL-02-01 UPSTREAM INTERFACE on DEL-02-04) inserted at its numeric position; every existing row byte-identical; no row retired; `Status=CANDIDATE` not emitted; `FromDeliverableID=DEL-02-01` on every row.
+- Source-preservation gate: `ScopeOfWork.md` `0e64cb085ee7032844f3b09f05c5a3f29ba02344e3ce9369a8535657c793406b` read-only and unchanged; the evidence `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)` (L73), `### Current acceptance obligations` (L102), item 4 (L107) carries the `EvidenceQuote` verbatim.
+- Graph effect (recorded, not resolved): per D-APP-109 and the fan-in simulation `Evidence/fanin_simulation_v1/`, emitting the nineteen held rows across nine carriers merges the nine-node SCC-001 into an enlarged SCC that includes DEL-02-01 (through DEP-02-01-010 -> DEL-02-04 and the reciprocal DEP-02-04-017). DEP-02-01-010 is cycle-participating and non-gating (no blocker queue, wave placement, dispatch-readiness, or implementation-readiness effect) until that SCC is resolved by a recorded decompose, invert, merge, or cut move (`docs/CYCLE_DRIVEN_RESOLUTION.md`); the fresh AUDIT_DEP_CLOSURE run (amendment v1.2 node N11) records the post-emission picture. The "F1: DEL-02-04 reaches no SCC-001 member" statement in the row's `Notes` is the held proposal's pre-emission finding, preserved verbatim; the [INFO] SCC_EXPOSURE bullet below is dated to the preview.
+- HGD-1, HGD-2, HGD-3 and fenced candidates FC-1 to FC-3 are unchanged by this run; D-APP-109 rules none of them.
+- [WARNING] PROJECT_ID_FORMAT_PROFILE: unchanged (generic three-digit `validate_id_format.sh` profile rejects the accepted App two-digit identities; no ID changed).
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row.
+- Schema validation: PASS (`validate_dependencies_schema.py`: 29 columns, 14 data rows). Enum validation: all 10 enum values on the emitted row VALID. Evidence: the emitted `EvidenceFile#SourceRef` resolves to live bytes and the quote appears there.
 
 ### 2026-09-05 SCA-APP-010 dependency closure, report-only preview (UPDATE)
 
@@ -71,7 +85,7 @@ Compact register:
 - Graph check disclosure: reachability and SCC simulations reused the functions of `tools/coordination/analyze_dep_closure.py` from the session scratchpad (read-only; not a skill-allowlisted tool; no repository write).
 - Legacy warnings from 2026-05-20: PRD_HASH_MISMATCH resolved (REF-006 MATCH under D-APP-38); PACKAGE_PATH_MISMATCH resolved (physical folder name intentionally retained per `_REFERENCES.md` Notes); ROUTE_SEMANTICS_SOURCE_POINTER remains CLM-030 CONFLICT-003 for human ruling and is not a dependency edge.
 - Amendment v1.1 (HELP_HUMAN, `AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/AMENDMENT_v1.1_N1_PREVIEWS.md`, rerun instance `N1-TASK-DEL-02-01`): the fan-in simulation over all thirteen N1 post-images (`Evidence/fanin_simulation_v1/`) showed that the proposed DEL-02-01 -> DEL-02-04 edge lies on a cycle collectively with fourteen other newly proposed edges (with the DEL-02-04 preview's reciprocal DEP-02-04-017 it forms a new deliverable-level pair); choosing which to keep would be a cut, which `docs/CYCLE_DRIVEN_RESOLUTION.md` makes human-gated, so the row is held non-emitted and removed from this post-image. Counts in this file are reconciled to the thirteen-row post-image. HGD-1, HGD-2, and HGD-3 are unchanged and carried to the owner slate (amendment section C item 5).
-- HELD (non-emitted proposal, pending owner ruling): DEP-02-01-010 reserved — DEL-02-01 UPSTREAM INTERFACE on DEL-02-04 (chat navigator and composer read and write known folders, chat annotations, and the chat rung as DEL-02-04-owned local convenience state; `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling); Current acceptance obligations 4`; amended SOW-008 L178, SOW-004 L174) — see AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/HELD_EDGE_PROPOSALS.csv H-001
+- EMITTED under D-APP-109 (H-001): DEP-02-01-010 — DEL-02-01 UPSTREAM INTERFACE on DEL-02-04 (Dialogue Toolkit, Context, and Local UI State; chat navigator and composer read and write known folders, chat annotations, and the chat rung as DEL-02-04-owned local convenience state; `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling); Current acceptance obligations 4`; amended SOW-008 L178, SOW-004 L174; AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/HELD_EDGE_PROPOSALS.csv H-001) — cycle-participating, non-gating until the SCC is resolved by a recorded move
 
 ### 2026-05-20 initial extraction (retained as dated history)
 
@@ -95,28 +109,30 @@ Compact register:
 |---|---|---|---|---|---|---|
 | 2026-05-20T19:24:24-06:00 | UPDATE | CONSERVATIVE | `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | FOUND | PRD_HASH_MISMATCH; PACKAGE_PATH_MISMATCH; ROUTE_SEMANTICS_SOURCE_POINTER; UNKNOWN_IMPLEMENTATION_WORKSPACE | ANCHOR=4; EXECUTION=4; TOTAL=8 |
 | 2026-09-05 | UPDATE | CONSERVATIVE | `projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | FOUND at pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (`dbd812a52d5ed0cb3ed173f3aaaa68703a914291`) | PROJECT_ID_FORMAT_PROFILE; UNKNOWN_IMPLEMENTATION_WORKSPACE; TARGET_UNRESOLVED; NEEDS_HUMAN_GRAPH_DECISION HGD-1..HGD-3; FENCE_F1_CANDIDATES FC-1..FC-3; HELD H-001 (DEP-02-01-010 reserved, amendment v1.1) (report-only preview) | ANCHOR=4; EXECUTION=9; TOTAL=13 |
+| 2026-09-05T07:58-0600 (D-APP-109 emission) | UPDATE | CONSERVATIVE | `projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | FOUND at pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (`dbd812a52d5ed0cb3ed173f3aaaa68703a914291`) | PROJECT_ID_FORMAT_PROFILE; UNKNOWN_IMPLEMENTATION_WORKSPACE; TARGET_UNRESOLVED; NEEDS_HUMAN_GRAPH_DECISION HGD-1..HGD-3 (unchanged); FENCE_F1_CANDIDATES FC-1..FC-3 (unchanged); CYCLE_PARTICIPATING DEP-02-01-010 (H-001 emitted under D-APP-109; non-gating pending SCC resolution by a recorded move) | ANCHOR=4; EXECUTION=10; TOTAL=14 |
 
 ## Lifecycle Summary
 
 | Dimension | Value | Count |
 |---|---|---:|
-| Status | ACTIVE | 13 |
+| Status | ACTIVE | 14 |
 | Status | RETIRED | 0 |
 | SatisfactionStatus | NOT_APPLICABLE | 4 |
-| SatisfactionStatus | TBD | 8 |
+| SatisfactionStatus | TBD | 9 |
 | SatisfactionStatus | PENDING | 1 |
 | DependencyType | OTHER | 4 |
 | DependencyType | PREREQUISITE | 1 |
 | DependencyType | HANDOVER | 2 |
-| DependencyType | INTERFACE | 5 |
+| DependencyType | INTERFACE | 6 |
 | DependencyType | CONSTRAINT | 1 |
 | DependencyClass | ANCHOR | 4 |
-| DependencyClass | EXECUTION | 9 |
+| DependencyClass | EXECUTION | 10 |
 
 ## Downstream Handoff Notes
 
 - Consumer: `RECONCILIATION`.
-- Reconcile one parent anchor, three trace anchors, four legacy-kit rows re-evidenced to live `ScopeOfWork.md` claims (DEP-02-01-005 to 008), and five added rows (DEP-02-01-009 and 011 to 014); zero retired rows. DEP-02-01-010 is a reserved ID for the held proposal H-001 (DEL-02-04 convenience state) and must not be reused.
-- Owner rulings needed before the reviewed write pass: HGD-1 (DEP-02-01-006 direction), HGD-2 (DEP-02-01-007/008 retire or keep as compatibility-only), HGD-3 (DEL-02-02-V3-03 prerequisite, held non-gating), and the held edge H-001 in the owner's separate cycle transaction (`HELD_EDGE_PROPOSALS.csv`). Fenced candidates FC-1 to FC-3 stay out of the register unless the SCC-001 transaction is separately ruled.
-- Reconcile with the DEL-02-02 preview (SCA-APP-010 DEP-003/DEP-004): its reverse row DEP-02-02-005 and this register's DEP-02-01-007 are the matrix-era pair that HGD-2 and HGD-3 turn on.
-- SCC-001 remains nine nodes in the proposed post-image; DEL-02-01 is downstream of it (reachable from every member) and has no path into it.
+- Reconcile one parent anchor, three trace anchors, four legacy-kit rows re-evidenced to live `ScopeOfWork.md` claims (DEP-02-01-005 to 008), and six added rows (DEP-02-01-009 to 014); zero retired rows. DEP-02-01-010 (held proposal H-001, DEL-02-04 convenience state) is now emitted under D-APP-109; the ID is no longer reserved.
+- This carrier now carries one cycle-participating, non-gating row (DEP-02-01-010) pending SCC resolution: under D-APP-109 the emitted held edges enlarge SCC-001 to include DEL-02-01, and the row drives no blocker queue, wave placement, dispatch readiness, or implementation-readiness claim until that SCC is resolved by a recorded decompose, invert, merge, or cut move (`docs/CYCLE_DRIVEN_RESOLUTION.md`). The seated items' own Depends lines and named gates remain the executable ordering for LOOP_INIT Step 1.
+- Owner rulings still open: HGD-1 (DEP-02-01-006 direction), HGD-2 (DEP-02-01-007/008 retire or keep as compatibility-only), HGD-3 (DEL-02-02-V3-03 prerequisite, held non-gating, not emitted). Fenced candidates FC-1 to FC-3 stay out of the register unless the SCC transaction is separately ruled.
+- Reconcile with the DEL-02-02 register (its reverse row DEP-02-02-005 and this register's DEP-02-01-007 are the matrix-era pair that HGD-2 and HGD-3 turn on) and with the DEL-02-04 register (the reciprocal DEP-02-04-017, held proposal H-010, authorized for emission under the same ruling).
+- SCC picture: DEL-02-01 is inside the enlarged SCC after the D-APP-109 emission (recorded, not linearized); the fresh AUDIT_DEP_CLOSURE snapshot (amendment v1.2 node N11) is the authoritative post-emission record.

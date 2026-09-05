@@ -1,0 +1,188 @@
+{
+  "instance": "N11-AUDIT-DEP-CLOSURE",
+  "run": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "node": "N11",
+  "role": "AUDIT_DEP_CLOSURE",
+  "parent": "HELP_HUMAN",
+  "authority": "D-APP-109",
+  "run_label": "SCA-APP-010-GATE5-POST-APPLICATION",
+  "status": "WARNINGS",
+  "closure_verdict": "WARNINGS",
+  "snapshot": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807",
+  "manifest_sha256": "84d99978796844dbafc49a04890b73562dd9107605ee48b8b7e3932d317fc2c1",
+  "analyzer_sha256": "e10abf213925df3aae69353c3a8c0dd5cfbb0402957d37c3766a3a9858c97b91",
+  "analyzer_invocations": 1,
+  "basis_commit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "accepted_dag_sha256": "0b721c2e4c461b134cf62baf9a6df87d3ee45257ddbb0bf58e3a4358a9266996",
+  "post_emission_registers_all_match": true,
+  "registers_changed_vs_head": [
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-04",
+    "DEL-02-05",
+    "DEL-03-02",
+    "DEL-05-02",
+    "DEL-06-03",
+    "DEL-08-01",
+    "DEL-08-04"
+  ],
+  "graph": {
+    "registers": 52,
+    "rows": 654,
+    "active_execution_rows": 360,
+    "active_deliverable_endpoint_rows": 148,
+    "nodes": 48,
+    "edges": 124,
+    "isolates": [
+      "DEL-01-01",
+      "DEL-09-07",
+      "DEL-10-04",
+      "DEL-10-05"
+    ],
+    "scc_count": 2,
+    "scc_sizes": [
+      2,
+      20
+    ],
+    "scc_001": [
+      "DEL-06-03",
+      "DEL-08-01"
+    ],
+    "scc_002": [
+      "DEL-02-01",
+      "DEL-02-02",
+      "DEL-02-03",
+      "DEL-02-04",
+      "DEL-02-05",
+      "DEL-03-02",
+      "DEL-03-03",
+      "DEL-03-04",
+      "DEL-04-02",
+      "DEL-04-03",
+      "DEL-04-04",
+      "DEL-04-05",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-04",
+      "DEL-05-05",
+      "DEL-08-02",
+      "DEL-08-03",
+      "DEL-08-04",
+      "DEL-08-05"
+    ],
+    "scc_internal_edges": {
+      "SCC-001": 2,
+      "SCC-002": 41
+    },
+    "elementary_cycles": {
+      "SCC-001": 1,
+      "SCC-002": 64,
+      "max_cycles_bound": 10000,
+      "bound_reached": false,
+      "independently_cross_checked": true
+    },
+    "bidirectional_pairs": [
+      [
+        "DEL-02-02",
+        "DEL-02-04"
+      ],
+      [
+        "DEL-02-03",
+        "DEL-02-04"
+      ],
+      [
+        "DEL-02-05",
+        "DEL-04-05"
+      ],
+      [
+        "DEL-06-03",
+        "DEL-08-01"
+      ]
+    ],
+    "hubs": []
+  },
+  "scc_set_equals_fanin_simulation_v1": true,
+  "delta_vs_0518": {
+    "edges_added": 15,
+    "edges_removed": 0,
+    "edges_added_equal_held_edge_set": true,
+    "rows_added": 19,
+    "rows_removed": 0,
+    "rows_changed": 0,
+    "scc_internal_edges_retired": 0,
+    "former_scc_001_subset_of_live_scc_002": true,
+    "isolates_changed": false,
+    "hubs_changed": false
+  },
+  "emitted_rows": {
+    "count": 19,
+    "distinct_edges": 15,
+    "all_checks_pass": true,
+    "all_notes_cycle_participating": true,
+    "cycle_participating_rows_are_exactly_the_nineteen": true
+  },
+  "posture": {
+    "e018_e020_e032_no_live_feedback_row": true,
+    "e018_pair_inside_live_scc": "SCC-002",
+    "e020_pair_inside_live_scc": "SCC-002",
+    "e032_pair_inside_live_scc": null,
+    "descendant_classes_once_each": true,
+    "root_named_external_rows_all_tbd": true,
+    "dep_08_01_013_identical_to_head": true
+  },
+  "canonical_validator": {
+    "pass": 50,
+    "fail": 2,
+    "failing_registers": [
+      "DEL-05-01",
+      "DEL-05-05"
+    ]
+  },
+  "issues": {
+    "warning": 9,
+    "info": 9,
+    "blocker": 0
+  },
+  "resolution_move_proposed_or_performed": false,
+  "pointer_moved": false,
+  "evaluation_root_created": false,
+  "prior_snapshot_0518_modified": false,
+  "deliverables_modified": false,
+  "delegation": false,
+  "network": false,
+  "files_written": [
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Brief.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Decision_Log.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Dependency_Closure_IssueLog.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Dependency_Closure_Report.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/analyzer_stdout.txt",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/bidirectional_pairs.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/closure_summary.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/core_checks.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/coverage.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/cycle_edge_participation.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/cycles_sample.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/delta_vs_0518.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/delta_vs_baseline.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/edge_list.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/emitted_rows.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/fanin_agreement.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/hubs.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/id_normalization.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/normalization_lineage.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/orphans.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/posture_checks.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/refreshed_registers.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/scc_detail.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/scc_summary.csv",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence/schema_validation.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/QA_Report.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/RUN_SUMMARY.md",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/analyze_closure.py",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/closure_summary.json",
+    "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/MANIFEST.sha256",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N11-AUDIT-DEP-CLOSURE/RETURN.md",
+    "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/instances/N11-AUDIT-DEP-CLOSURE/STATUS.json"
+  ],
+  "attribution": "Claude Fable 5.1 (Anthropic, `claude-fable-5-1`) as a Claude Code subagent acting as AUDIT_DEP_CLOSURE, dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched"
+}

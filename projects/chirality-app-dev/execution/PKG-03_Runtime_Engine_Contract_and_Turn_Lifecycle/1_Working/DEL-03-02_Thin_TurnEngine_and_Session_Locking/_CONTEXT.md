@@ -35,13 +35,14 @@ Root-owned; the stored delegation-policy field is Root-owned (SOW-083, OI-008).
 
 ## Anticipated Artifacts
 
-Daemon-client turn proxy; App session integration tests; daemon locking/lifecycle conformance evidence
+Daemon-client turn proxy; App session integration tests; daemon
+locking/lifecycle conformance evidence
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-009, SOW-010, SOW-011, SOW-038 |
+| CoversScopeItems | SOW-009, SOW-010, SOW-011, SOW-038, SOW-083 |
 | SupportsObjectives | OBJ-002 |
 | ContextEnvelopeNotes | App backend-integration slice; generic TurnEngine and lock ownership remain Root-owned. |
 

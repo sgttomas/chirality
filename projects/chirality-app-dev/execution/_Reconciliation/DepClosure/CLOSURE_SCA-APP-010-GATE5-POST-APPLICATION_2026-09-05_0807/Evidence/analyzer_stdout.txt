@@ -1,0 +1,16 @@
+Found 52 Dependencies.csv files
+Loaded 654 total dependency rows
+Schema: 52 valid, 0 invalid
+ANCHOR rows: 273, EXECUTION rows: 381
+IMPLEMENTS_NODE: 52 present, 0 missing
+Evidence coverage: 654/654
+Graph: 48 nodes, 124 edges
+Orphans: 4
+SCCs (size > 1): 2
+  SCC-001: 2 nodes
+  SCC-002: 20 nodes
+Hubs (degree >= 20): 0
+Bidirectional pairs: 4
+ID normalizations: 0
+
+Outputs written to: projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807/Evidence

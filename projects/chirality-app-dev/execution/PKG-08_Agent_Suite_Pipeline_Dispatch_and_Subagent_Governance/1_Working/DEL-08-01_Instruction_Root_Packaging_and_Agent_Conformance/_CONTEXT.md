@@ -36,13 +36,15 @@ changes under `agents/` or `skills/` ship the routed agent-index change notice.
 
 ## Anticipated Artifacts
 
-Agent conformance validator; integrity fixtures; source-completeness checklist
+Agent conformance validator; integrity fixtures; source-completeness checklist;
+proposal-clause and template conformance checks; organisation-layer integrity
+checks
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-030, SOW-031, SOW-073 |
+| CoversScopeItems | SOW-030, SOW-031, SOW-073, SOW-082, SOW-084 |
 | SupportsObjectives | OBJ-007, OBJ-008 |
 | ContextEnvelopeNotes | Governance assets and checks; no runtime capability expansion. |
 

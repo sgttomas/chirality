@@ -1,0 +1,91 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N9-TASK-DEL-02-01",
+  "parentRunId": "N9",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY_HELD_ROWS",
+  "amendment": "v1.2",
+  "ruling": "D-APP-109",
+  "status": "PASS",
+  "carrier": "DEL-02-01",
+  "carrierPath": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation",
+  "basisCommit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "decompositionContentCommit": "dbd812a52d5ed0cb3ed173f3aaaa68703a914291",
+  "authorization": {
+    "rulingPath": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-109_RULING_SCA_APP_010_HELD_EDGES_AND_CONTEXT_ALIGNMENT_2026-09-05.md",
+    "amendmentPath": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/AMENDMENT_v1.2_OWNER_RULING.md",
+    "futureWriteSetRows": ["DEP-001", "DEP-002"],
+    "heldProposalSources": [
+      "instances/N1-TASK-DEL-02-01/PREVIEW.md#Held proposals (amendment v1.1)",
+      "HELD_EDGE_PROPOSALS.csv#H-001",
+      "instances/N1-TASK-DEL-02-01/POSTIMAGE__DEPENDENCIES.md"
+    ]
+  },
+  "preImages": {
+    "dependenciesCsvSha256": "4af3d115b79d403c190661ba57050abe9bda04539cadf09cf9b07edf2d49c254",
+    "dependenciesIndexSha256": "26a99f29ef68e00a9cc02839802142f099f67f7c5816cb461971a9ccb9a3ef49",
+    "verified": true
+  },
+  "emitted": ["DEP-02-01-010"],
+  "emittedRows": [
+    {
+      "dependencyId": "DEP-02-01-010",
+      "heldId": "H-001",
+      "edge": "DEL-02-01 -> DEL-02-04",
+      "direction": "UPSTREAM",
+      "dependencyType": "INTERFACE",
+      "targetType": "DELIVERABLE",
+      "targetDeliverableId": "DEL-02-04",
+      "confidence": "HIGH",
+      "satisfactionStatus": "TBD",
+      "sccClause": "enlarged SCC-001",
+      "nonGating": true
+    }
+  ],
+  "outputs": {
+    "carrierDependenciesCsvSha256": "8d5315713a86732e44b4a9287e8632be03347d50ceb1d2ed7889c2b90cc8883e",
+    "carrierDependenciesIndexSha256": "f6a50a4513cc2d5895d81fe93a4b9ee45e43714f1a16234adf7c188b52e2c517",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_run_records/TASK_RUN_2026-09-05_0758.md",
+    "taskRunRecordSha256": "feb1f61a7daf21a21b3b2f54bab601801ca32dfd2a568e377c09c8bd59084cb1",
+    "returnSha256": "a829f51f96ed598f299119a7c7251291a670b362fa76968d47b3227d12bff59f"
+  },
+  "counts": {
+    "pre": {"total": 13, "active": 13, "retired": 0, "anchor": 4, "execution": 9},
+    "post": {"total": 14, "active": 14, "retired": 0, "anchor": 4, "execution": 10}
+  },
+  "function5": {
+    "schema": "VALID (29 columns, 14 rows)",
+    "enumPairs": 10,
+    "enumInvalid": 0,
+    "activeImplementsNode": 1,
+    "uniqueIds": true,
+    "idOrdered": true,
+    "existingRowsByteIdentical": true,
+    "evidenceResolved": true,
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": [
+      "M Dependencies.csv",
+      "M _DEPENDENCIES.md",
+      "?? _run_records/TASK_RUN_2026-09-05_0758.md",
+      "M MEMORY.md (concurrent N8 context builder; not touched by this run)",
+      "M _CONTEXT.md (concurrent N8 context builder; not touched by this run)",
+      "M _STATUS.md (concurrent N8 context builder; not touched by this run)"
+    ]
+  },
+  "openRulings": [
+    "HGD-1 DEP-02-01-006 direction",
+    "HGD-2 DEP-02-01-007/008 retire or keep",
+    "HGD-3 DEL-02-02-V3-03 prerequisite (not emitted)",
+    "SCC resolution of the enlarged SCC-001 by a recorded decompose / invert / merge / cut move"
+  ],
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validate_id_format.sh profile rejects the accepted App two-digit IDs; no ID changed",
+    "INSTRUCTION_ROOT_ASSUMED: CHIRALITY_INSTRUCTION_ROOT not exported; sealed-brief repository root used as instruction root",
+    "TARGET_LOCATION_CONVENTION: brief lists a #L<n> line-pointer form; the register's sibling DELIVERABLE rows use the plain decomposition path, which the emitted row follows (applied row L310 recorded in Run Notes)"
+  ],
+  "humanRulingRequired": false,
+  "carrierWritten": true,
+  "descendantLaunched": false
+}

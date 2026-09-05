@@ -1,0 +1,405 @@
+[
+  {
+    "scc": "SCC-001",
+    "size": 2,
+    "nodes": [
+      "DEL-06-03",
+      "DEL-08-01"
+    ],
+    "internalEdgeCount": 2,
+    "internalEdges": [
+      {
+        "from": "DEL-06-03",
+        "to": "DEL-08-01",
+        "DependencyIDs": [
+          "DEP-06-03-014"
+        ]
+      },
+      {
+        "from": "DEL-08-01",
+        "to": "DEL-06-03",
+        "DependencyIDs": [
+          "DEP-08-01-018"
+        ]
+      }
+    ],
+    "shortestCycle": [
+      "DEL-06-03",
+      "DEL-08-01",
+      "DEL-06-03"
+    ],
+    "shortestCycleLength": 2,
+    "shortestCycleDependencyIDs": [
+      "DEP-06-03-014",
+      "DEP-08-01-018"
+    ],
+    "elementaryCyclesEnumerated": 1,
+    "maxCyclesBound": 10000,
+    "boundReached": false,
+    "elementaryCycleCountExact": 1,
+    "countCeiling": 1000000,
+    "countCeilingReached": false,
+    "enumeratedLengthHistogram": {
+      "2": 1
+    }
+  },
+  {
+    "scc": "SCC-002",
+    "size": 20,
+    "nodes": [
+      "DEL-02-01",
+      "DEL-02-02",
+      "DEL-02-03",
+      "DEL-02-04",
+      "DEL-02-05",
+      "DEL-03-02",
+      "DEL-03-03",
+      "DEL-03-04",
+      "DEL-04-02",
+      "DEL-04-03",
+      "DEL-04-04",
+      "DEL-04-05",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-04",
+      "DEL-05-05",
+      "DEL-08-02",
+      "DEL-08-03",
+      "DEL-08-04",
+      "DEL-08-05"
+    ],
+    "internalEdgeCount": 41,
+    "internalEdges": [
+      {
+        "from": "DEL-02-01",
+        "to": "DEL-02-04",
+        "DependencyIDs": [
+          "DEP-02-01-010",
+          "DEP-02-04-017"
+        ]
+      },
+      {
+        "from": "DEL-02-02",
+        "to": "DEL-02-01",
+        "DependencyIDs": [
+          "DEP-02-01-007",
+          "DEP-02-02-005"
+        ]
+      },
+      {
+        "from": "DEL-02-02",
+        "to": "DEL-02-03",
+        "DependencyIDs": [
+          "DEP-02-02-006",
+          "DEP-02-02-021"
+        ]
+      },
+      {
+        "from": "DEL-02-02",
+        "to": "DEL-02-04",
+        "DependencyIDs": [
+          "DEP-02-02-022",
+          "DEP-02-04-018"
+        ]
+      },
+      {
+        "from": "DEL-02-02",
+        "to": "DEL-05-02",
+        "DependencyIDs": [
+          "DEP-02-02-015",
+          "DEP-05-02-016"
+        ]
+      },
+      {
+        "from": "DEL-02-02",
+        "to": "DEL-05-04",
+        "DependencyIDs": [
+          "DEP-02-02-018"
+        ]
+      },
+      {
+        "from": "DEL-02-02",
+        "to": "DEL-08-02",
+        "DependencyIDs": [
+          "DEP-02-02-020"
+        ]
+      },
+      {
+        "from": "DEL-02-02",
+        "to": "DEL-08-03",
+        "DependencyIDs": [
+          "DEP-02-02-009"
+        ]
+      },
+      {
+        "from": "DEL-02-02",
+        "to": "DEL-08-04",
+        "DependencyIDs": [
+          "DEP-02-02-019"
+        ]
+      },
+      {
+        "from": "DEL-02-02",
+        "to": "DEL-08-05",
+        "DependencyIDs": [
+          "DEP-02-02-017"
+        ]
+      },
+      {
+        "from": "DEL-02-03",
+        "to": "DEL-02-04",
+        "DependencyIDs": [
+          "DEP-02-04-019"
+        ]
+      },
+      {
+        "from": "DEL-02-04",
+        "to": "DEL-02-02",
+        "DependencyIDs": [
+          "DEP-02-04-015"
+        ]
+      },
+      {
+        "from": "DEL-02-04",
+        "to": "DEL-02-03",
+        "DependencyIDs": [
+          "DEP-02-04-016"
+        ]
+      },
+      {
+        "from": "DEL-02-05",
+        "to": "DEL-02-01",
+        "DependencyIDs": [
+          "DEP-02-05-014"
+        ]
+      },
+      {
+        "from": "DEL-02-05",
+        "to": "DEL-02-03",
+        "DependencyIDs": [
+          "DEP-02-05-015"
+        ]
+      },
+      {
+        "from": "DEL-02-05",
+        "to": "DEL-03-03",
+        "DependencyIDs": [
+          "DEP-02-05-006"
+        ]
+      },
+      {
+        "from": "DEL-02-05",
+        "to": "DEL-04-05",
+        "DependencyIDs": [
+          "DEP-02-05-004"
+        ]
+      },
+      {
+        "from": "DEL-03-02",
+        "to": "DEL-05-02",
+        "DependencyIDs": [
+          "DEP-03-02-007"
+        ]
+      },
+      {
+        "from": "DEL-03-03",
+        "to": "DEL-03-02",
+        "DependencyIDs": [
+          "DEP-03-02-008"
+        ]
+      },
+      {
+        "from": "DEL-03-03",
+        "to": "DEL-03-04",
+        "DependencyIDs": [
+          "DEP-03-03-007"
+        ]
+      },
+      {
+        "from": "DEL-03-04",
+        "to": "DEL-03-02",
+        "DependencyIDs": [
+          "DEP-03-02-009",
+          "DEP-03-04-007"
+        ]
+      },
+      {
+        "from": "DEL-03-04",
+        "to": "DEL-05-02",
+        "DependencyIDs": [
+          "DEP-03-04-009"
+        ]
+      },
+      {
+        "from": "DEL-04-02",
+        "to": "DEL-04-04",
+        "DependencyIDs": [
+          "DEP-04-02-007"
+        ]
+      },
+      {
+        "from": "DEL-04-03",
+        "to": "DEL-04-02",
+        "DependencyIDs": [
+          "DEP-04-03-011"
+        ]
+      },
+      {
+        "from": "DEL-04-03",
+        "to": "DEL-04-05",
+        "DependencyIDs": [
+          "DEP-04-05-009"
+        ]
+      },
+      {
+        "from": "DEL-04-04",
+        "to": "DEL-08-02",
+        "DependencyIDs": [
+          "DEP-04-04-006",
+          "DEP-08-02-012"
+        ]
+      },
+      {
+        "from": "DEL-04-05",
+        "to": "DEL-02-05",
+        "DependencyIDs": [
+          "DEP-04-05-010"
+        ]
+      },
+      {
+        "from": "DEL-04-05",
+        "to": "DEL-04-02",
+        "DependencyIDs": [
+          "DEP-04-05-008"
+        ]
+      },
+      {
+        "from": "DEL-05-02",
+        "to": "DEL-04-03",
+        "DependencyIDs": [
+          "DEP-05-02-012"
+        ]
+      },
+      {
+        "from": "DEL-05-02",
+        "to": "DEL-05-03",
+        "DependencyIDs": [
+          "DEP-05-02-009"
+        ]
+      },
+      {
+        "from": "DEL-05-02",
+        "to": "DEL-05-05",
+        "DependencyIDs": [
+          "DEP-05-02-010"
+        ]
+      },
+      {
+        "from": "DEL-05-03",
+        "to": "DEL-04-05",
+        "DependencyIDs": [
+          "DEP-05-03-010"
+        ]
+      },
+      {
+        "from": "DEL-05-04",
+        "to": "DEL-05-02",
+        "DependencyIDs": [
+          "DEP-05-02-008",
+          "DEP-05-04-006"
+        ]
+      },
+      {
+        "from": "DEL-05-04",
+        "to": "DEL-05-05",
+        "DependencyIDs": [
+          "DEP-05-04-009"
+        ]
+      },
+      {
+        "from": "DEL-05-05",
+        "to": "DEL-05-03",
+        "DependencyIDs": [
+          "DEP-05-03-012"
+        ]
+      },
+      {
+        "from": "DEL-08-02",
+        "to": "DEL-02-01",
+        "DependencyIDs": [
+          "DEP-02-01-006"
+        ]
+      },
+      {
+        "from": "DEL-08-03",
+        "to": "DEL-02-01",
+        "DependencyIDs": [
+          "DEP-02-01-008"
+        ]
+      },
+      {
+        "from": "DEL-08-03",
+        "to": "DEL-02-03",
+        "DependencyIDs": [
+          "DEP-02-03-009"
+        ]
+      },
+      {
+        "from": "DEL-08-03",
+        "to": "DEL-08-02",
+        "DependencyIDs": [
+          "DEP-08-02-013"
+        ]
+      },
+      {
+        "from": "DEL-08-04",
+        "to": "DEL-03-02",
+        "DependencyIDs": [
+          "DEP-03-02-013",
+          "DEP-08-04-013"
+        ]
+      },
+      {
+        "from": "DEL-08-05",
+        "to": "DEL-08-04",
+        "DependencyIDs": [
+          "DEP-08-04-006",
+          "DEP-08-05-004",
+          "DEP-08-05-011"
+        ]
+      }
+    ],
+    "shortestCycle": [
+      "DEL-02-02",
+      "DEL-02-04",
+      "DEL-02-02"
+    ],
+    "shortestCycleLength": 2,
+    "shortestCycleDependencyIDs": [
+      "DEP-02-02-022;DEP-02-04-018",
+      "DEP-02-04-015"
+    ],
+    "elementaryCyclesEnumerated": 64,
+    "maxCyclesBound": 10000,
+    "boundReached": false,
+    "elementaryCycleCountExact": 64,
+    "countCeiling": 1000000,
+    "countCeilingReached": false,
+    "enumeratedLengthHistogram": {
+      "2": 3,
+      "3": 2,
+      "4": 3,
+      "5": 1,
+      "6": 4,
+      "7": 8,
+      "8": 10,
+      "9": 9,
+      "10": 11,
+      "11": 6,
+      "12": 3,
+      "13": 1,
+      "15": 2,
+      "16": 1
+    }
+  }
+]

@@ -21,11 +21,11 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 | Metric | Count |
 |---|---:|
-| Total rows | 13 |
-| ACTIVE rows | 12 |
+| Total rows | 14 |
+| ACTIVE rows | 13 |
 | RETIRED rows | 1 |
 | ANCHOR rows | 4 |
-| EXECUTION rows | 9 |
+| EXECUTION rows | 10 |
 
 | DependencyID | Class | Direction | Type | TargetType | Target | Status |
 |---|---|---|---|---|---|---|
@@ -41,6 +41,7 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 | DEP-08-04-010 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | delegated-harness-native descent class | ACTIVE |
 | DEP-08-04-011 | EXECUTION | UPSTREAM | CONSTRAINT | EXTERNAL | Root WP-03/WP-05 fixtures: accepted DEL-02-07 process-supervisor and DEL-02-10 API v2 returns | ACTIVE |
 | DEP-08-04-012 | ANCHOR | UPSTREAM | OTHER | REQUIREMENT | SOW-083 Per-chat delegation policy carried with the session and honoured by the managed delegation bridge | ACTIVE |
+| DEP-08-04-013 | EXECUTION | UPSTREAM | INTERFACE | DELIVERABLE | DEL-03-02 Thin TurnEngine and Session Locking | ACTIVE |
 | DEP-08-04-014 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | Root DEL-02-11 daemon session-record delegation-policy field | ACTIVE |
 
 ## Run Notes
@@ -79,7 +80,7 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 - Decomposition: found at the pinned identity, SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`); carrier row L371 (scope refs SOW-063, SOW-083; objectives OBJ-005, OBJ-007); amended Scope Ledger row SOW-083 L253; reverse view L486; OI-008 L602; DEC-025 L634. Companion register `63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca`; pointer `_LATEST.md` `b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0`.
 - Pass 1 (ANCHOR): DEP-08-04-001 (`IMPLEMENTS_NODE` SOW-063) preserved and re-validated; DEP-08-04-007/008 (OBJ-005/OBJ-007) re-evidenced to the live traceability line; DEP-08-04-012 added for SOW-083, which SCA-APP-010 placed on this carrier's applied row. No anchor points to a scope ref that left the row, so no anchor was retired. SOW-081, SOW-082, and SOW-084 are not on this carrier's row and receive no anchor here.
 - Pass 2 (EXECUTION): DEP-08-04-002/003/004/006/009/010/011 remain stated in the live sources and were refreshed (`LastSeen=2026-09-05`). One row was added for the relation SOW-083 introduces: DEP-08-04-014 (UPSTREAM INTERFACE, `EXTERNAL`, Root DEL-02-11 session-record delegation-policy field; `TargetLocation=TBD`, `SatisfactionStatus=PENDING`). The second SOW-083 relation, the DEL-03-02 per-chat delegation-policy binding, was extracted in the v1 preview as DEP-08-04-013 and is held under amendment v1.1 (next bullet).
-- HELD (non-emitted proposal, pending owner ruling): DEP-08-04-013 reserved — DEL-08-04 -> DEL-03-02 UPSTREAM INTERFACE (the managed delegation bridge consumes the per-chat delegation policy that DEL-03-02 binds into the App session boot request; SOW-010, SOW-083; evidence `_STATUS.md#Remaining` DEL-08-04-V3-02 Depends line, decomposition L371/L253/L318/L413) — see AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/HELD_EDGE_PROPOSALS.csv H-019. The ID is not reused; the row is not in this register until the owner rules on the held set (`docs/CYCLE_DRIVEN_RESOLUTION.md`: cut and merge are human-gated; cycle-participating edges stay non-gating until resolved).
+- EMITTED under D-APP-109 (H-019): DEP-08-04-013 — DEL-08-04 -> DEL-03-02 UPSTREAM INTERFACE — cycle-participating, non-gating until the SCC is resolved by a recorded move. Emitted 2026-09-05 by managed child `N9-TASK-DEL-08-04` under `execution/_Coordination/_DECISIONS/D-APP-109_RULING_SCA_APP_010_HELD_EDGES_AND_CONTEXT_ALIGNMENT_2026-09-05.md` (see the D-APP-109 emission Run Notes below); the held proposal remains recorded at AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/HELD_EDGE_PROPOSALS.csv H-019.
 - Legacy four-document kit: no row cites `Datasheet.md`, `Specification.md`, `Guidance.md`, or `Procedure.md`; no re-evidencing on that ground was needed. DEP-08-04-005 (RETIRED 2026-08-24) is preserved byte-identically.
 - Considered and not emitted (no named artifact, contract, tool, event, or policy transfer stated for this carrier): the SOW-006 / DEL-02-02 ownership boundary ("DEL-08-04 retains role/delegation semantics"; the view presents accepted state); the SOW-081 workflow-file delegation-policy declaration (DEL-07-03 owns the file contract; no consumption by this bridge is stated); the `NOT_SELECTABLE_UNTIL: DEL-02-02-V3-04 selected` gate on DEL-08-04-V3-02 (selection ordering, not information flow); the root `AGENTS.md` graph reference (unchanged since Gate 5; not re-derived). E-020 (DEL-08-05 feedback) remains non-gating and is not emitted, as at Gate 5.
 - Fence F1 (SCC-001 membership): NONE. After amendment v1.1 no row in this post-image targets an SCC-001 member; the nine SCC-001 registers hold no ACTIVE row to DEL-08-04 and the baseline closure graph has no path from any SCC-001 member to DEL-08-04 (only DEL-08-05 and DEL-09-02 depend on DEL-08-04), so this carrier stays outside SCC-001 and no SCC-internal edge or retirement is proposed. The held DEL-03-02 edge passed F1 in isolation (v1 preview) and is held only because of the collective fan-in cycle. `FENCE_F1_CANDIDATES`: none.
@@ -92,8 +93,22 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 - Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present.
 - Function 5 (re-run on the amended post-image): `validate_dependencies_schema.py` VALID (29 columns, 13 data rows); every emitted enum value VALID (29 distinct values); `DependencyID` unique (DEP-08-04-013 reserved, absent); `FromDeliverableID=DEL-08-04` on every row; every ACTIVE row carries `EvidenceFile` and `SourceRef` that resolve to live bytes; `Status=CANDIDATE` absent.
 
+## Run Notes - 2026-09-05 D-APP-109 emission of the held row (apply; UPDATE)
+
+- Dispatch: `TASK + dependency-extract` as managed child `N9-TASK-DEL-08-04` of run `APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` (amendment v1.2, node N9; parent HELP_HUMAN); authorization: owner ruling D-APP-109 (`execution/_Coordination/_DECISIONS/D-APP-109_RULING_SCA_APP_010_HELD_EDGES_AND_CONTEXT_ALIGNMENT_2026-09-05.md`) and `AMENDMENT_v1.2_OWNER_RULING.md`. Basis: candidate branch commit `f38f1448675b8e9f40f33932a11b7ffa4126fe69`; pre-image `Dependencies.csv` `902678b1…d84e5` and `_DEPENDENCIES.md` `8d66e9dd…d074c0` verified before the write.
+- Runtime overrides: `SCOPE=DEL-08-04`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `ApplyEdits=true`. No new extraction from prose: this pass writes exactly the one reserved row (`DEP-08-04-013`, HELD_EDGE_PROPOSALS.csv H-019) from the N1 preview's held-proposal section and the held-proposals register; every existing row is byte-identical; no `LastSeen` refresh and no retirement is claimed.
+- Decomposition: found at the pinned identity, SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`); DEL-03-02 carrier row L318 (`TargetName` and `TargetLocation` line pointer); DEL-08-04 row L371; SOW-083 L253; SOW-010 L413.
+- Row conventions: `TargetType=DELIVERABLE` with `TargetPackageID=PKG-03`, `TargetDeliverableID=DEL-03-02`, `TargetRefID` empty (the choice this carrier's DELIVERABLE rows DEP-08-04-005/006 make); `TargetLocation` in the sealed brief's line-pointer form `…#L318` (the two pre-existing DELIVERABLE rows carry the bare decomposition path from earlier passes and are preserved as dated prior state); `SatisfactionStatus=PENDING` and `Confidence=HIGH` as the held proposal recorded; `Notes` carries the held proposal's epistemic note (F1 sentence dated to the isolated pre-emission check) followed by the D-APP-109 `CYCLE_PARTICIPATING` non-gating clause.
+- Evidence resolved to live bytes: `_STATUS.md#Remaining` (L9; the DEL-08-04-V3-02 `Depends:` line, L26) carries the quote "Depends: DEL-03-02-V3-01 (the binding; selected together)". `_STATUS.md`, `_CONTEXT.md`, and `MEMORY.md` were written concurrently by the N8 context-alignment builder in this pass; this run read `_STATUS.md` only and wrote none of the three.
+- SCC posture (recorded, not linearized): with the nineteen held rows emitted across nine carriers under D-APP-109, the fan-in simulation's twenty-node SCC (SCC-001 enlarged) contains DEL-08-04 through this edge together with the other carriers' emitted edges (`Evidence/fanin_simulation_v1/edge_analysis.json`). The row is therefore cycle-participating and non-gating until a recorded decompose, invert, merge, or cut move resolves the SCC (`docs/CYCLE_DRIVEN_RESOLUTION.md`); the seated items' own `Depends` lines and named gates remain the executable ordering. No SCC is resolved here. `NEEDS_HUMAN_GRAPH_DECISION`: none beyond the SCC resolution the ruling defers.
+- [WARNING] TARGET_UNRESOLVED: permission overlay and hook infrastructure (DEP-08-04-004) remain an explicit prerequisite without one stable target deliverable in the local source (unchanged).
+- [WARNING] PROJECT_ID_FORMAT_PROFILE: the generic `validate_id_format.sh` three-digit profile rejects the accepted App two-digit IDs; no accepted ID was rewritten (unchanged finding).
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present (DEP-08-04-001).
+- Function 5: `validate_dependencies_schema.py` VALID (29 columns, 14 data rows); every enum value on the emitted row VALID (`EXECUTION`, `NOT_APPLICABLE`, `UPSTREAM`, `INTERFACE`, `DELIVERABLE`, `EXPLICIT`, `HIGH`, `EXTRACTED`, `ACTIVE`, `PENDING`); `DependencyID` unique (14 IDs, DEP-08-04-013 now present exactly once); `FromDeliverableID=DEL-08-04` on every row; `Status=CANDIDATE` absent; `git diff --check` clean; LF, no trailing whitespace, final newline.
+
 ## Run History
 
+- 2026-09-05T07:59-0600 (D-APP-109 emission): `TASK + dependency-extract` (managed child `N9-TASK-DEL-08-04`, apply), `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, applied decomposition found at the pinned identity `c7c05169…1e61` (commit `dbd812a52`); one held row emitted (DEP-08-04-013, HELD_EDGE_PROPOSALS.csv H-019) as cycle-participating and non-gating pending SCC resolution; every existing row byte-identical; warnings: TARGET_UNRESOLVED x1, PROJECT_ID_FORMAT_PROFILE; ACTIVE=13 (ANCHOR=4, EXECUTION=9); RETIRED=1.
 - 2026-09-05T00:59:00-06:00: `TASK + dependency-extract` (managed child `N1-TASK-DEL-08-04`, report-only preview; v1 pass 00:40, rerun under brief amendment v1.1), `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, applied decomposition found at the pinned identity `c7c05169…1e61` (commit `dbd812a52`); two rows added (DEP-08-04-012, DEP-08-04-014), one proposal held non-emitted with its ID reserved (DEP-08-04-013, HELD_EDGE_PROPOSALS.csv H-019), ten ACTIVE rows refreshed, DEP-08-04-005 preserved RETIRED; warnings: TARGET_UNRESOLVED x1, PROJECT_ID_FORMAT_PROFILE; fences F1/F2/F3 NONE; ACTIVE=12 (ANCHOR=4, EXECUTION=8); RETIRED=1.
 - 2026-09-03T00:00:00-06:00: `TASK + dependency-extract` method in-line (A12 seating), `MODE=UPDATE` additive, `STRICTNESS=CONSERVATIVE`, applied decomposition `d6f6cadb2` verified; one row `DEP-08-04-011` added; existing rows preserved without LastSeen refresh; warnings: PROJECT_ID_FORMAT_PROFILE; ACTIVE=10; RETIRED=1.
 - 2026-08-24T00:53:16-06:00: `TASK + dependency-extract`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, applied decomposition verified, current v19 references preserved, E-020 retained non-gating without a source-invented edge. ACTIVE counts: ANCHOR=3, EXECUTION=6; RETIRED=1.
@@ -105,23 +120,23 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 12 |
+| ACTIVE | 13 |
 | RETIRED | 1 |
 
 | SatisfactionStatus | Count |
 |---|---:|
 | SATISFIED | 6 |
-| PENDING | 4 |
+| PENDING | 5 |
 | TBD | 3 |
 
 ## Downstream Handoff Notes
 
 - Consumer: `RECONCILIATION`.
-- Reconcile one parent anchor (SOW-063), three trace anchors (OBJ-005, OBJ-007, SOW-083), four retained ACTIVE prerequisite/handover rows, one retired inferred SDK-probe edge, the two distinct class-interface rows, the Root WP-03/05 fixture constraint, and the one emitted SOW-083 delegation-policy interface row (Root DEL-02-11 session-record field, `EXTERNAL`/`TBD`/`PENDING`).
-- The DEL-03-02 delegation-policy binding edge (reserved DEP-08-04-013) is a held, non-emitted proposal (HELD_EDGE_PROPOSALS.csv H-019); do not reconcile it as a register row until the owner rules on the held set. Any reverse DEL-03-02 -> DEL-08-04 relation would need its own source statement and an owner ruling before emission.
+- Reconcile one parent anchor (SOW-063), three trace anchors (OBJ-005, OBJ-007, SOW-083), four retained ACTIVE prerequisite/handover rows, one retired inferred SDK-probe edge, the two distinct class-interface rows, the Root WP-03/05 fixture constraint, and the two SOW-083 delegation-policy interface rows: DEP-08-04-014 (Root DEL-02-11 session-record field, `EXTERNAL`/`TBD`/`PENDING`) and DEP-08-04-013 (DEL-03-02 binding, `DELIVERABLE`/`PENDING`, emitted under D-APP-109).
+- This carrier now carries a cycle-participating, non-gating row: DEP-08-04-013 (DEL-08-04 -> DEL-03-02, emitted under D-APP-109 from held proposal H-019) lies inside the enlarged SCC-001 together with the other carriers' D-APP-109 emissions. Reconcile it as a register row, but give it no blocker-queue, wave, dispatch-readiness, or implementation-readiness effect until that SCC is resolved by a recorded decompose, invert, merge, or cut move (`docs/CYCLE_DRIVEN_RESOLUTION.md`). Any reverse DEL-03-02 -> DEL-08-04 relation would need its own source statement and an owner ruling before emission.
 - DEP-08-04-014 and DEP-08-04-011 close only after the OI-008 Root returns are routed to App; do not treat either as satisfied on App-side evidence alone.
 - Preserve the non-gating E-020 posture outside this local register unless a future accepted DEL-08-04 source names a concrete reverse information artifact.
-- This pass is a report-only preview; the carrier register changes only after the reviewed write (SCA-APP-010 DEP-025/DEP-026).
+- Register currency: the SCA-APP-010 reviewed write (DEP-025/DEP-026) and the D-APP-109 emission are both applied; the register changes next only through a later extraction pass or a recorded SCC-resolution move.
 
 ## D-APP-56 R5 P45 current register summary (2026-07-12)
 
