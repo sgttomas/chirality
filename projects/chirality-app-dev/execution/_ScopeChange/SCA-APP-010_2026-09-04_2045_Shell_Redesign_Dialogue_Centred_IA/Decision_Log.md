@@ -17,8 +17,10 @@ the owner has answered. Agent readings are labelled as such.
 
 | G5-AUTHORIZE | 2026-09-04 | Ryan Tufts | Same verbatim statement as G4-CONFIRM: "I approve the propagation plan, proceed to Gate 5." | Recorded as the `OWNER_ACTION_MATRIX.csv` step-2 evidence row per the Gate-5 independent review (MINOR-001). The authorization is the agent's reading of "proceed to Gate 5"; the owner may amend by reply. Gate 5 executes on the candidate branch through §5 step 11 (freeze). The pointer sub-gate, merge, seating, downstream dispatch, and Root routing remain separate owner acts. |
 
-**Current state:** Gate-5 execution in progress under G5-AUTHORIZE. Pointer
-movement is not authorized.
+| G5-POINTER | 2026-09-04 | Ryan Tufts | Verbatim: "update the LATEST pointer to the SCA-APP-010 once the PR #708 is merged." Given after PR #708 merged as `7795b0972`. | Rules SCA-APP-010 the active snapshot (`OWNER_ACTION_MATRIX.csv` step 14) and authorizes the pointer write (step 15) to the literal post-image validated in `Evidence/Gate5/POINTER_CANDIDATE_VALIDATION.md`, SHA-256 `b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0`. SCA-APP-009's own derivative closure is not closed by this ruling; it remains open under its snapshot and `DOWNSTREAM_HANDOFFS.csv` row 10 is satisfied by this ruling only as to pointer eligibility. No seating, downstream dispatch, Root routing, or release act. |
+
+**Current state:** Gate 5 applied and merged; pointer moved to SCA-APP-010
+under G5-POINTER. Downstream handoffs open.
 
 ## Attribution
 

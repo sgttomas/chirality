@@ -63,3 +63,16 @@ on branch `claude/sca-app-010-gate1-intake` unless stated.
 4. **Receipt renumbering.** This branch's Receipts 229 to 232 were renumbered
    231 to 234 (parent 230) because main's PR #709 and #710 carry 229 and
    230. Content unchanged apart from the identifiers.
+
+## Pointer sub-gate (G5-POINTER, after PR #708 merged as `7795b0972`)
+
+| Check | Result |
+| --- | --- |
+| Owner ruling | `Decision_Log.md` G5-POINTER, verbatim "update the LATEST pointer to the SCA-APP-010 once the PR #708 is merged." |
+| Branch | `claude/sca-app-010-pointer` from `origin/main` `7795b0972cac147869607d994173753e4a2fc232` |
+| Live pointer post-image | SHA-256 `b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0` = literal candidate payload |
+| Target snapshot | exists; `MANIFEST.sha256` verified for every frozen file before regeneration; only `Decision_Log.md`, `Handoff_State.md`, and `POINTER_CANDIDATE_VALIDATION.md` changed, by design, and this file and the manifest |
+| Authoritative hashes | decomposition `c7c05169…`, companion `63383f04…` unchanged |
+| SCA-APP-009 tree | `1c5b9e68049460c3a9a6c1abadc1b8a64e2bc085` unchanged |
+| Changed-path scope | `_LATEST.md`, the five snapshot files above, `loop/LOOP_RECEIPTS.md` |
+| Validators | receipts VALID; self-check exit 0; candidate whitespace PASS; `git diff --check` clean |
