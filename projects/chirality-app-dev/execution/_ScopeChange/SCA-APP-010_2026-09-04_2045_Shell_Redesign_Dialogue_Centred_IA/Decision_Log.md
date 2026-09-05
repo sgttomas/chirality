@@ -13,8 +13,12 @@ the owner has answered. Agent readings are labelled as such.
 
 | G3-CONFIRM | 2026-09-04 | Ryan Tufts | Verbatim: "I approve the amendments, proceed to Gate 4." | Formal amendment approval of the exact Gate-3 bytes: decomposition candidate post-image `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` and companion candidate post-image `63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca` as built by `Gate3/build_gate3_candidate.py` (SHA-256 `9d4774bffb9d29798bcd25a3f43475678c727136c93c9bc51f55ba26f88cc6cf`) from the basis pre-images. Authorizes Gate-4 propagation planning only. No application, pointer movement, deliverable write, implementation, Root, or release act. |
 
-**Current state:** Gate 3 approved. Gate 4 propagation plan authorized and
-in preparation. No Gate-5 application is authorized.
+| G4-CONFIRM | 2026-09-04 | Ryan Tufts | Verbatim: "I approve the propagation plan, proceed to Gate 5." | Approves the Gate-4 propagation plan (`Propagation_Plan.md` and its four matrices as reviewed). HELP_HUMAN reads "proceed to Gate 5" as the separately explicit Gate-5 execution authorization required by `OWNER_ACTION_MATRIX.csv` step 2: execute the §5 sequence through step 11 (freeze) on the candidate branch. The reading is the agent's; the owner may amend by reply. The pointer sub-gate (steps 12 and 14 to 15) and commit/push staging remain separate acts; no seating, downstream dispatch, Root routing, or release act is authorized. |
+
+| G5-AUTHORIZE | 2026-09-04 | Ryan Tufts | Same verbatim statement as G4-CONFIRM: "I approve the propagation plan, proceed to Gate 5." | Recorded as the `OWNER_ACTION_MATRIX.csv` step-2 evidence row per the Gate-5 independent review (MINOR-001). The authorization is the agent's reading of "proceed to Gate 5"; the owner may amend by reply. Gate 5 executes on the candidate branch through §5 step 11 (freeze). The pointer sub-gate, merge, seating, downstream dispatch, and Root routing remain separate owner acts. |
+
+**Current state:** Gate-5 execution in progress under G5-AUTHORIZE. Pointer
+movement is not authorized.
 
 ## Attribution
 
