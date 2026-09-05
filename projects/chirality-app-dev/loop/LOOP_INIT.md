@@ -29,7 +29,9 @@ authorize work; sources govern on any disagreement.
   `execution/_Coordination/_COORDINATION.md` · discovery pointer
   `execution/_Coordination/_LATEST.md` · v3 owner rulings and steers under
   repo-root `plans/steers/` (transcription sources, not authority).
-- **Delegation instrument:** D-APP-60 as refined by D-APP-64 §5.
+- **Delegation instrument:** D-APP-60 as refined by D-APP-64 §5
+  (`execution/_Coordination/_DECISIONS/D-APP-60_PACKET_FROZEN_BLOCK_INSTRUMENT_2026-07-17.md`,
+  `D-APP-64_PACKET_REASONED_SELECTION_OVERLAY_2026-07-18.md` beside it).
 - **Dependency evidence:** the accepted snapshot named by
   `execution/_Reconciliation/DepClosure/_LATEST.md` · SCC work follows
   repo-root `docs/CYCLE_DRIVEN_RESOLUTION.md`.
@@ -110,12 +112,12 @@ Run from `REPO_ROOT`:
 git status --short && git log --oneline -20
 python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .
 p=$(git ls-tree --name-only HEAD projects/chirality-app-dev/loop/ | grep -E '/WORKPLAN_.*\.md$' | LC_ALL=C sort | tail -1); [ -n "$p" ] && git show "HEAD:$p" || echo "no committed plan: deliverables alone"
-tail -60 projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
+head -51 projects/chirality-app-dev/loop/LOOP_RECEIPTS.md && tail -60 projects/chirality-app-dev/loop/LOOP_RECEIPTS.md
 grep -n "AWAITING_RULING\|PROPOSAL" projects/chirality-app-dev/execution/_Coordination/_DECISIONS/_REGISTER.md
 ls projects/chirality-app-dev/execution/_Coordination/NOTICE_* 2>/dev/null
 cd projects/chirality-app-dev && PYTHONDONTWRITEBYTECODE=1 python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status; cd -
 grep -l '^## Remaining' projects/chirality-app-dev/execution/PKG-*/1_Working/DEL-*/_STATUS.md
-PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py status --project projects/chirality-app-dev
+PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py status --project chirality-app-dev
 PYTHONDONTWRITEBYTECODE=1 python3 tools/practitioner_harness/harness.py self-check
 ```
 
@@ -128,7 +130,9 @@ Rules the output does not show you:
 - Verify before relying: plans, receipts, dated assessments, and your own
   tasking are maps with citations. Open the cited source; on disagreement
   the live tree wins and the delta goes in the receipt, never into the map.
-- If the plan pins a reference by hash, recompute it and stop on a mismatch.
+- If the plan or a `Remaining` item pins a reference by hash, recompute it
+  and stop on a mismatch.
+- A `_STATUS.md` without a `## Remaining` section has no recorded open scope.
 - A tranche that will touch `frontend/` declares at Step 0 the A1 re-stage
   consequence (`plans/steers/chirality_app_v3_app_ruling_record_a1_2026-08-23.md`
   lines 28-36) in its run record and receipt.
@@ -137,14 +141,15 @@ Rules the output does not show you:
 
 A `Remaining` item (deliverable `_STATUS.md`, §2) is selectable when it
 carries no `(gated: ...)`, `(stage-gated: ...)`, or `NOT_SELECTABLE_UNTIL:`
-marker, or its named gate or act is observable on `main` (a ruling record,
-a routed Root notice, or a merged act). Blockedness beyond gates is
-re-derived from the deliverable's `Dependencies.csv` / `_DEPENDENCIES.md`
-and the accepted DepClosure snapshot (§2), never from a hand-maintained
-summary. Precedence: (a) repair failing
-validation on landed work; (b) work that discharges a gate prerequisite;
-(c) owner-directed over agent-inferred; (d) the plan's focus and order;
-(e) the highest-value ungated item. Apply CONTRACT **K-ENGINE-6** to every
+marker, or its named gate or act is observable on `main` (`origin/main`
+after `git fetch`: a ruling record, a routed Root notice, or a merged act).
+Blockedness beyond gates is re-derived from the item's own `Depends` line,
+the deliverable's `Dependencies.csv` / `_DEPENDENCIES.md` (each `ACTIVE`
+row gates per its `SatisfactionStatus`), and the accepted DepClosure
+snapshot (§2), never from a hand-maintained summary. Precedence: (a) repair
+failing validation on landed work; (b) work that discharges a gate
+prerequisite; (c) owner-directed over agent-inferred; (d) the plan's focus
+and order; (e) the highest-value ungated item. Apply CONTRACT **K-ENGINE-6** to every
 item: standalone-harness or feature-parity work is off-strategy. Never
 manufacture work outside recorded `Remaining` scope or revive a ruled-shut
 item (a revival takes a new register row).
@@ -175,7 +180,8 @@ Record every gate outcome, including no-ops and their reason.
 ### Step 4 — Execute and check
 
 Branch-first plus PR; never self-merge; one branch, one PR, one receipt,
-owner merge per iteration; write scope stays inside
+owner merge per iteration (a tranche may carry several independent nodes
+under one recorded work graph, `AGENTS.md`); write scope stays inside
 `projects/chirality-app-dev/**` unless the owner grants wider scope. An
 adopted-but-unexecuted brief is live authority. Run the checks for the work
 type (§8) and, for evidence items, meet the §9 bar. The independent-review
