@@ -46,8 +46,9 @@ workflow file and the session record own rung-related truth.
 
 ## Anticipated Artifacts
 
-Toolkit controls; workspace-state schema; resize/focus/anchor behavior;
-context-reference, draft/preset, isolation, and migration guards
+Toolkit controls; workspace-state schema (additive v1 fields);
+resize/expand/anchor behavior; activity strip; context-reference, draft/preset,
+annotation, and migration guards
 
 ## Traceability
 
@@ -61,7 +62,10 @@ context-reference, draft/preset, isolation, and migration guards
 
 This folder was scaffolded by ORCHESTRATOR from the accepted v3.2
 SOFTWARE_DECOMP working surface and retains its physical name for compatibility.
-SCA-APP-004 and its owner-approved amendment prospectively control the current
-presentation target. Downstream TASK work must preserve `ResponsibleParty:
-TBD` until a human assigns ownership and must preserve the authority boundary
-between convenience references and canonical project/runtime records.
+SCA-APP-010 (applied at Gate 5, 2026-09-04; D-APP-108) controls the current
+presentation target through the applied decomposition row L310 and the
+SCA-APP-010 Gate-5 Current Contract section of `ScopeOfWork.md`; SCA-APP-004 and
+its owner-approved amendment remain dated history. Downstream TASK work must
+preserve `ResponsibleParty: TBD` until a human assigns ownership and must
+preserve the authority boundary between convenience references and canonical
+project/runtime records.

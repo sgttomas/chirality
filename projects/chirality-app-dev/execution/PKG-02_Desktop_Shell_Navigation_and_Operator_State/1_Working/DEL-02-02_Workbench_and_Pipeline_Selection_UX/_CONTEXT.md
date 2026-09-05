@@ -52,14 +52,16 @@ workflow views, propose a split before widening the envelope.
 
 ## Anticipated Artifacts
 
-Workbench/Pipeline views; Work/Agents coordination presentation; provenance
-labels; stale/empty-state and query compatibility tests
+Who is working view; Workflows view, roadmap, and forms; proposal card;
+role-entry controls; exact `role not mechanically enforced` and `Opt-in Preview`
+posture labels; provenance labels; stale/empty-state, label, and query
+compatibility tests
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-006, SOW-007 |
+| CoversScopeItems | SOW-006, SOW-081, SOW-082 |
 | SupportsObjectives | OBJ-001, OBJ-007 |
 | ContextEnvelopeNotes | This deliverable composes presentation over admitted sources; it does not create plan, dispatch, parentage, lifecycle, approval, or runtime authority. |
 
@@ -67,8 +69,11 @@ labels; stale/empty-state and query compatibility tests
 
 This folder was scaffolded by ORCHESTRATOR from the accepted v3.2
 SOFTWARE_DECOMP working surface and retains its physical name for compatibility.
-SCA-APP-004 and its owner-approved amendment prospectively control the current
-presentation target. Downstream TASK work must preserve `ResponsibleParty:
-TBD` until a human assigns ownership. Work and Agents remain rebuildable,
-evidence-conditional projections; conversational prose and panel-local state
-must not be converted into project truth.
+SCA-APP-010 (applied at Gate 5, 2026-09-04; D-APP-108) controls the current
+presentation target through the applied decomposition row L308 and the
+SCA-APP-010 Gate-5 Current Contract section of `ScopeOfWork.md`; SCA-APP-004 and
+its owner-approved amendment remain dated history. Downstream TASK work must
+preserve `ResponsibleParty: TBD` until a human assigns ownership. The Who is
+working view, the Workflows view, and the proposal card present accepted state
+and never infer enforcement; conversational prose and panel-local state must not
+be converted into project truth.

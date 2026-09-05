@@ -35,13 +35,14 @@ event-consumption and conformance slice; generic persistence remains Root-owned.
 
 ## Anticipated Artifacts
 
-App runtime-event compatibility fixtures; accepted-turn and terminal persistence conformance tests; daemon evidence samples
+App runtime-event compatibility fixtures; accepted-turn and terminal persistence
+conformance tests; daemon evidence samples
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-014, SOW-015, SOW-039 |
+| CoversScopeItems | SOW-014, SOW-015, SOW-039, SOW-082 |
 | SupportsObjectives | OBJ-003 |
 | ContextEnvelopeNotes | App event-consumption and conformance slice; generic persistence remains Root-owned. |
 

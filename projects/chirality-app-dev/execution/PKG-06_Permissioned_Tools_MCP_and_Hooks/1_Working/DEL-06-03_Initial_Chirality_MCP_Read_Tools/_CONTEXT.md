@@ -36,13 +36,15 @@ and collision prevention remain DEL-06-02.
 
 ## Anticipated Artifacts
 
-`mcp__chirality__*` definitions; wrapper metadata; in-process extension-boundary notes; MCP tool tests
+`mcp__chirality__*` definitions; wrapper metadata; in-process extension-boundary
+notes; `propose` tool schema, validation, and once-per-chat tests; MCP tool
+tests
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-048, SOW-050, SOW-064 |
+| CoversScopeItems | SOW-048, SOW-050, SOW-064, SOW-082 |
 | SupportsObjectives | OBJ-005, OBJ-006 |
 | ContextEnvelopeNotes | In-process wrapper and extension-boundary share of SOW-064; catalog validation and collision prevention remain DEL-06-02. |
 

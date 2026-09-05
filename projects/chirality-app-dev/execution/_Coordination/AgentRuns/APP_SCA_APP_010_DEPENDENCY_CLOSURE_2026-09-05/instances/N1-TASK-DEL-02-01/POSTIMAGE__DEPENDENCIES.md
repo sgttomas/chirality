@@ -1,0 +1,122 @@
+# Dependencies: DEL-02-01 Woven Dialogue Shell and Compatibility Navigation
+
+## Dependency Tracking
+
+| Field | Value |
+|---|---|
+| ProjectMode | FULL_GRAPH |
+| SatisfactionThreshold | SEMANTIC_READY |
+| StructuredRegister | `Dependencies.csv` v3.1 |
+| InitialPopulationRule | Run `TASK + dependency-extract` after four-document authoring per human ruling on 2026-05-20; semantic lensing and P3 enrichment are skipped for dependency recording. |
+
+## Declared Upstream
+
+TBD - no accepted declared dependency edges have been provided.
+
+## Declared Downstream
+
+TBD - no accepted declared dependency edges have been provided.
+
+## Extracted Dependency Register
+
+Summary:
+
+| Count Type | Value |
+|---|---:|
+| Total rows | 13 |
+| ACTIVE rows | 13 |
+| RETIRED rows | 0 |
+| ANCHOR rows | 4 |
+| EXECUTION rows | 9 |
+
+Compact register:
+
+| DependencyID | Class | Type | Direction | Target | Status |
+|---|---|---|---|---|---|
+| DEP-02-01-001 | ANCHOR | OTHER | UPSTREAM | PKG-02 Woven Dialogue Shell, Navigation, and Operator State | ACTIVE |
+| DEP-02-01-002 | ANCHOR | OTHER | UPSTREAM | SOW-001 Dialogue-centred shell: invariant centre dialogue, left chat navigator, one-view-at-a-time right panel, no header row | ACTIVE |
+| DEP-02-01-003 | ANCHOR | OTHER | UPSTREAM | SOW-005 Semantic persona/agent/session routing, guarded dialogue selection, and legacy route/query/alias/matrix compatibility | ACTIVE |
+| DEP-02-01-004 | ANCHOR | OTHER | UPSTREAM | OBJ-001 Governed local desktop harness centred on human-agent dialogue as the invariant primary surface | ACTIVE |
+| DEP-02-01-005 | EXECUTION | PREREQUISITE | UPSTREAM | UNKNOWN/TBD existing implementation workspace | ACTIVE |
+| DEP-02-01-006 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-08-02 Persona Alias, Agent/Session Routing, and Legacy Matrix Compatibility Contract | ACTIVE |
+| DEP-02-01-007 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-02-02 Right-Panel Coordination, Workflows, and Proposal UX | ACTIVE |
+| DEP-02-01-008 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-08-03 Pipeline Category and Task Scope Dispatch | ACTIVE |
+| DEP-02-01-009 | EXECUTION | INTERFACE | UPSTREAM | DEL-07-01 Working Root Validation and Instruction Root Protection | ACTIVE |
+| DEP-02-01-011 | EXECUTION | INTERFACE | UPSTREAM | EXTERNAL/TBD Root-owned daemon session record (registered project identity/root; delegation-policy field, OI-008) | ACTIVE |
+| DEP-02-01-012 | EXECUTION | INTERFACE | UPSTREAM | UNKNOWN/TBD existing redaction helper for derived chat titles (Q6) | ACTIVE |
+| DEP-02-01-013 | EXECUTION | HANDOVER | DOWNSTREAM | DEL-09-04 macOS DMG Packaging and Instruction Root Integrity | ACTIVE |
+| DEP-02-01-014 | EXECUTION | CONSTRAINT | UPSTREAM | DEL-01-03 Product Identity and Professional Boundary Copy | ACTIVE |
+
+## Run Notes
+
+### 2026-09-05 SCA-APP-010 dependency closure, report-only preview (UPDATE)
+
+- Run: `APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` instance `N1-TASK-DEL-02-01` (TASK + dependency-extract, dispatched by HELP_HUMAN; SCA-APP-010 `FUTURE_WRITE_SET.csv` DEP-001/DEP-002). This text is the proposed post-image written under the instance folder; the carrier register was not written by this run (pre-images `Dependencies.csv` `5ca2d96b48ac962d4a9f9afef8bc07957fcac81889fc1ba441b94d899bcacd99`, `_DEPENDENCIES.md` `f60ddd1687e169bf3c0904f361d09601f4c9e7fa6a0966f939a92e90f8c83109`).
+- Runtime overrides: `SCOPE=DEL-02-01_Desktop_Shell_and_Matrix_Navigation`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; `SOURCE_DOCS=[ScopeOfWork.md, _CONTEXT.md, _STATUS.md]`; `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=[ScopeOfWork.md, _CONTEXT.md, _STATUS.md]`; `ApplyEdits=false`.
+- Decomposition authority: FOUND at the pinned identity, SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`, content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291` (the `ScopeOfWork.md` `decomposition_basis` pin); companion register `63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca`; pointer `_ScopeChange/_LATEST.md` `b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0` (SCA-APP-010); authority corpus v20 with no drift per `_REFERENCES.md`. Basis commit `d66395d101143df68d956984f7ab93f5027418ec`.
+- Source selection: `_STATUS.md` was read as an execution source only for `## Remaining` (seated items DEL-02-01-V3-01 to V3-04: Depends, Write locus, gate, and Return lines); `_REFERENCES.md` resolved pointers only; `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`, `MEMORY.md`, `Assessment_*`, `Evidence*`, and `_run_records/**` were excluded. Other deliverable folders were opened only to confirm target existence and quote applied rows.
+- Source-preservation gate: `ScopeOfWork.md` `0e64cb085ee7032844f3b09f05c5a3f29ba02344e3ce9369a8535657c793406b`, `_CONTEXT.md` `0d49f00c1970043e0143e2344256ccf27bd381f15326bdb994d49c29a8ddbb44`, `_STATUS.md` `95456161eb746267676eaf24759a542a3ec748980d863c49ced9fae343eca306`, `_REFERENCES.md` `97c89e3a36cdf3aff74f489312ac699617b49a33ac8e9903a8de5900759e9638` were read-only and unchanged.
+- Pass 1 (ANCHOR): parent anchor DEP-02-01-001 preserved and refreshed to the applied PKG-02 label (L280). Trace anchors DEP-02-01-002 (SOW-001), DEP-02-01-003 (SOW-005), and DEP-02-01-004 (OBJ-001) preserved with applied labels (L404, L408, L262). The applied carrier row L307 carries only SOW-001 and SOW-005; SOW-081 to SOW-084 are not on this carrier, so no anchor was added and no anchor was retired. The existing `TargetType=REQUIREMENT` convention for the objective anchor is preserved.
+- Pass 2 (EXECUTION): DEP-02-01-005 to DEP-02-01-008 re-evidenced from the retired legacy kit (`Procedure.md`, `Guidance.md`) to live `ScopeOfWork.md#CLM-018` and `#CLM-027`, `LastSeen=2026-09-05`; five rows added (DEP-02-01-009 and DEP-02-01-011 to DEP-02-01-014) from amended SOW-002/SOW-008/SOW-010, the applied row prose, and the owner-seated Remaining items; the ID DEP-02-01-010 is reserved for a held proposal (see the amendment v1.1 bullets below) and is not emitted. No row retired; every `DependencyID` preserved; `Status=CANDIDATE` not emitted; `FromDeliverableName` refreshed to the applied name on every row.
+- Fence F1 (SCC-001 membership): PASS for the emitted rows; simulation S0 keeps SCC-001 at its nine nodes and DEL-02-01 outside it. Candidates not emitted: FC-1 redaction helper resolved to DEL-05-03; FC-2 session-record binding resolved to DEL-03-02; FC-3 account-row host interface to DEL-02-05 and the DEL-02-05-V3-05 gate. Each would merge DEL-02-01, DEL-04-02, DEL-04-04, and DEL-08-02 into a thirteen-node SCC because every SCC-001 member already reaches DEL-02-01 through DEP-02-01-006 (DEL-04-04 to DEL-08-02 to DEL-02-01).
+- Fence F2 (Root path): NONE. Root-owned targets are `EXTERNAL` with `TargetLocation=TBD`; `frontend/**` implementation paths named by CLM-021 and the seated write loci are not placed in `TargetLocation`.
+- Fence F3 (permitted effect): NONE. No row was derived from SCC ordering, schedule, or keep-aligned statements; the Electron/D-APP-98 IPC constraint and the SOW-002 DEL-02-03 touchpoint split were not emitted.
+- NEEDS_HUMAN_GRAPH_DECISION: HGD-1 DEP-02-01-006 direction (recorded DOWNSTREAM HANDOVER versus UPSTREAM INTERFACE per reverse view L408 and CLM-015; inverting removes all SCC-001 reachability into DEL-02-01, simulation S1). HGD-2 DEP-02-01-007 and DEP-02-01-008 retire-or-keep after SCA-APP-010 retired Workbench and Pipeline presentation from the active shell (DEC-025; L171, L177, L308, L370, L410). HGD-3 the DEL-02-01-V3-01 prerequisite on DEL-02-02-V3-03 (woven route): emitting it with DEP-02-02-005 and DEP-02-01-007 present creates a new four-node SCC {DEL-02-01, DEL-02-02, DEL-08-02, DEL-08-03} (simulation S2); held non-gating and not emitted; resolution options decompose / invert / merge / cut per `docs/CYCLE_DRIVEN_RESOLUTION.md`.
+- [WARNING] PROJECT_ID_FORMAT_PROFILE: the generic `validate_id_format.sh` three-digit profile rejects the accepted App two-digit identities (`DEL-02-01`, `PKG-02`, `DEP-02-01-NNN`, `SOW-NNN`); no ID was changed.
+- [WARNING] UNKNOWN_IMPLEMENTATION_WORKSPACE: DEP-02-01-005 keeps `TargetType=UNKNOWN`, `TargetLocation=TBD`.
+- [WARNING] TARGET_UNRESOLVED: DEP-02-01-012 keeps `TargetType=UNKNOWN` because the only explicit resolution (DEL-05-03) is fenced by F1.
+- [INFO] SCC_EXPOSURE: DEL-02-01 has no path into SCC-001, but all nine SCC-001 members reach DEL-02-01 through DEP-02-01-006; any UPSTREAM row into SCC-001 or into a node that reaches it makes DEL-02-01 a member.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` row.
+- Schema validation: PASS (`validate_dependencies_schema.py`: 29 columns, 14 data rows). Enum validation: 25 distinct (enum, value) pairs VALID. Evidence: every ACTIVE row resolves to a live heading or claim ID.
+- Graph check disclosure: reachability and SCC simulations reused the functions of `tools/coordination/analyze_dep_closure.py` from the session scratchpad (read-only; not a skill-allowlisted tool; no repository write).
+- Legacy warnings from 2026-05-20: PRD_HASH_MISMATCH resolved (REF-006 MATCH under D-APP-38); PACKAGE_PATH_MISMATCH resolved (physical folder name intentionally retained per `_REFERENCES.md` Notes); ROUTE_SEMANTICS_SOURCE_POINTER remains CLM-030 CONFLICT-003 for human ruling and is not a dependency edge.
+- Amendment v1.1 (HELP_HUMAN, `AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/AMENDMENT_v1.1_N1_PREVIEWS.md`, rerun instance `N1-TASK-DEL-02-01`): the fan-in simulation over all thirteen N1 post-images (`Evidence/fanin_simulation_v1/`) showed that the proposed DEL-02-01 -> DEL-02-04 edge lies on a cycle collectively with fourteen other newly proposed edges (with the DEL-02-04 preview's reciprocal DEP-02-04-017 it forms a new deliverable-level pair); choosing which to keep would be a cut, which `docs/CYCLE_DRIVEN_RESOLUTION.md` makes human-gated, so the row is held non-emitted and removed from this post-image. Counts in this file are reconciled to the thirteen-row post-image. HGD-1, HGD-2, and HGD-3 are unchanged and carried to the owner slate (amendment section C item 5).
+- HELD (non-emitted proposal, pending owner ruling): DEP-02-01-010 reserved — DEL-02-01 UPSTREAM INTERFACE on DEL-02-04 (chat navigator and composer read and write known folders, chat annotations, and the chat rung as DEL-02-04-owned local convenience state; `ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling); Current acceptance obligations 4`; amended SOW-008 L178, SOW-004 L174) — see AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/HELD_EDGE_PROPOSALS.csv H-001
+
+### 2026-05-20 initial extraction (retained as dated history)
+
+- Runtime overrides: `SCOPE=DEL-02-01`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, `CONSUMER_CONTEXT=NONE`.
+- Decomposition authority used: `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`.
+- Source documents used: `_CONTEXT.md`, `_REFERENCES.md`, `Datasheet.md`, `Specification.md`, `Guidance.md`, `Procedure.md`, existing `_DEPENDENCIES.md`, and the decomposition authority.
+- `_SEMANTIC.md` was not read or consumed. Semantic lensing and P3 enrichment were skipped by human ruling.
+- Anchor doc selection: `Datasheet.md`, supplemented by `_CONTEXT.md` and decomposition validation.
+- Execution doc order: `Procedure.md`, `Guidance.md`, `Specification.md`, `Datasheet.md`.
+- No declared edges were found in the existing dependency index; all register rows in this run are `Origin=EXTRACTED`.
+- Parent anchor check: PASS. Exactly one ACTIVE `IMPLEMENTS_NODE` row exists.
+- Schema validation: PASS. `validate_dependencies_schema.py` reported 29 required columns and 8 data rows.
+- [WARNING] PRD_HASH_MISMATCH: `_REFERENCES.md` records `REF-006` with `Status=HASH_MISMATCH`; treated as a source warning, not a blocker, per local source instructions.
+- [WARNING] PACKAGE_PATH_MISMATCH: `Guidance.md` records a package path mismatch requiring later human ruling; this run wrote only inside the assigned `ScopePath`.
+- [WARNING] ROUTE_SEMANTICS_SOURCE_POINTER: `Guidance.md` records an unresolved PRD/SPEC/TYPES source-pointer issue; dependency extraction used only concrete local evidence and preserved open ruling status.
+- [WARNING] UNKNOWN_IMPLEMENTATION_WORKSPACE: `Procedure.md` requires an implementation workspace, but exact implementation paths are `TBD`; row `DEP-02-01-005` preserves `TargetType=UNKNOWN`.
+
+## Run History
+
+| Timestamp | Mode | Strictness | Decomposition Path | Decomposition Status | Warnings | ACTIVE Counts |
+|---|---|---|---|---|---|---|
+| 2026-05-20T19:24:24-06:00 | UPDATE | CONSERVATIVE | `/Users/ryan/ai-env/projects/chirality/projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | FOUND | PRD_HASH_MISMATCH; PACKAGE_PATH_MISMATCH; ROUTE_SEMANTICS_SOURCE_POINTER; UNKNOWN_IMPLEMENTATION_WORKSPACE | ANCHOR=4; EXECUTION=4; TOTAL=8 |
+| 2026-09-05 | UPDATE | CONSERVATIVE | `projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | FOUND at pinned identity `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (`dbd812a52d5ed0cb3ed173f3aaaa68703a914291`) | PROJECT_ID_FORMAT_PROFILE; UNKNOWN_IMPLEMENTATION_WORKSPACE; TARGET_UNRESOLVED; NEEDS_HUMAN_GRAPH_DECISION HGD-1..HGD-3; FENCE_F1_CANDIDATES FC-1..FC-3; HELD H-001 (DEP-02-01-010 reserved, amendment v1.1) (report-only preview) | ANCHOR=4; EXECUTION=9; TOTAL=13 |
+
+## Lifecycle Summary
+
+| Dimension | Value | Count |
+|---|---|---:|
+| Status | ACTIVE | 13 |
+| Status | RETIRED | 0 |
+| SatisfactionStatus | NOT_APPLICABLE | 4 |
+| SatisfactionStatus | TBD | 8 |
+| SatisfactionStatus | PENDING | 1 |
+| DependencyType | OTHER | 4 |
+| DependencyType | PREREQUISITE | 1 |
+| DependencyType | HANDOVER | 2 |
+| DependencyType | INTERFACE | 5 |
+| DependencyType | CONSTRAINT | 1 |
+| DependencyClass | ANCHOR | 4 |
+| DependencyClass | EXECUTION | 9 |
+
+## Downstream Handoff Notes
+
+- Consumer: `RECONCILIATION`.
+- Reconcile one parent anchor, three trace anchors, four legacy-kit rows re-evidenced to live `ScopeOfWork.md` claims (DEP-02-01-005 to 008), and five added rows (DEP-02-01-009 and 011 to 014); zero retired rows. DEP-02-01-010 is a reserved ID for the held proposal H-001 (DEL-02-04 convenience state) and must not be reused.
+- Owner rulings needed before the reviewed write pass: HGD-1 (DEP-02-01-006 direction), HGD-2 (DEP-02-01-007/008 retire or keep as compatibility-only), HGD-3 (DEL-02-02-V3-03 prerequisite, held non-gating), and the held edge H-001 in the owner's separate cycle transaction (`HELD_EDGE_PROPOSALS.csv`). Fenced candidates FC-1 to FC-3 stay out of the register unless the SCC-001 transaction is separately ruled.
+- Reconcile with the DEL-02-02 preview (SCA-APP-010 DEP-003/DEP-004): its reverse row DEP-02-02-005 and this register's DEP-02-01-007 are the matrix-era pair that HGD-2 and HGD-3 turn on.
+- SCC-001 remains nine nodes in the proposed post-image; DEL-02-01 is downstream of it (reachable from every member) and has no path into it.

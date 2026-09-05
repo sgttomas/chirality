@@ -1,0 +1,57 @@
+{
+  "activeExecutionRows": 341,
+  "retiredExecutionRows": 21,
+  "activeDeliverableEndpointRows": 129,
+  "resolvedDeliverableEndpointRows": 129,
+  "unresolvedDeliverableEndpointRows": 0,
+  "misplacedTargetDeliverableIdRows": 0,
+  "invalidDirectionRows": 0,
+  "evidenceRowsPopulated": 635,
+  "evidenceRowsTotal": 635,
+  "distinctDirectedEdges": 109,
+  "graphNodes": 48,
+  "isolatedDeliverables": 4,
+  "isolatedDeliverableIds": [
+    "DEL-01-01",
+    "DEL-09-07",
+    "DEL-10-04",
+    "DEL-10-05"
+  ],
+  "directedSccs": 1,
+  "sccMembership": [
+    [
+      "DEL-02-05",
+      "DEL-03-02",
+      "DEL-03-03",
+      "DEL-03-04",
+      "DEL-04-03",
+      "DEL-04-05",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-05"
+    ]
+  ],
+  "enumeratedRepresentativeCycles": 10,
+  "maxCyclesBound": 10000,
+  "bidirectionalPairs": [
+    [
+      "DEL-02-05",
+      "DEL-04-05"
+    ]
+  ],
+  "hubsAtThreshold20": [],
+  "unresolvedEndpoints": [],
+  "misplacedRows": [],
+  "invalidDirectionRows_list": [],
+  "registersDiscovered": 52,
+  "analyzerAgreement": {
+    "graph_nodes": true,
+    "graph_edges": true,
+    "orphan_count": true,
+    "scc_sizes": true,
+    "bidirectional_pair_count": true,
+    "hub_count": true,
+    "total_rows": true,
+    "execution_rows_active_plus_retired": true
+  }
+}

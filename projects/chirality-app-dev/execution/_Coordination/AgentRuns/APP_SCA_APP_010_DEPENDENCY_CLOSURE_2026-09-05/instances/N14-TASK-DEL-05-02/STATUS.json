@@ -1,0 +1,66 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N14-TASK-DEL-05-02",
+  "parentRunId": "N14",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY_D-APP-110_SCC_DECOMPOSE",
+  "amendment": "v1.3",
+  "ruling": "D-APP-110",
+  "workbookRulingIds": [],
+  "status": "PASS",
+  "basisCommit": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "branch": "claude/sca-app-010-dependency-closure",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "dependenciesCsvSha256": "c26d4653b0eacd1eea65bd23ba3b14e59c4749bb18a853f82cc8e3fdf949879d",
+    "dependenciesIndexSha256": "3c86ae3fbc52b5c84264c8656f58c7ba0decd3e52508cb07ca3aca041f4bdf51",
+    "matched": true
+  },
+  "outputs": {
+    "dependenciesCsvSha256": "090241fe899c9c57da14485b271fb3ed986ab2f9a12d8b95c87223b39023f4ca",
+    "dependenciesIndexSha256": "3a48e72adb46dfa7164a817b3f0ef1b1d3dc7eaabdec9590f6e71d83089373b2",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_1013.md",
+    "taskRunRecordSha256": "4d2cc1002d2482f0439cc389189416514626b5367fbb4de4fd54b2c42f2aec06",
+    "returnSha256": "038fde9d6aeeb43d0998d4f7f271010d6e1aff9b2bdafb6b44fa599f1a7384f9"
+  },
+  "retargeted": [],
+  "notesUpdated": ["DEP-05-02-016"],
+  "counts": {
+    "pre": { "total": 16, "active": 15, "retired": 1, "anchor": 6, "execution": 10 },
+    "post": { "total": 16, "active": 15, "retired": 1, "anchor": 6, "execution": 10 },
+    "satisfactionAllRows": { "NOT_APPLICABLE": 7, "TBD": 7, "PENDING": 2 },
+    "activeTargetTypes": { "WBS_NODE": 1, "REQUIREMENT": 5, "DELIVERABLE": 6, "DOCUMENT": 1, "EXTERNAL": 2 },
+    "changes": { "added": 0, "notesOnly": 1, "retargeted": 0, "unchanged": 15, "retired": 0, "deleted": 0 }
+  },
+  "validation": {
+    "schemaValidator": "VALID (29 columns, 16 data rows, rc=0)",
+    "enumValidatorRow016": "10/10 VALID (values unchanged)",
+    "enumValidatorTargetTypeDocument": "VALID (brief-named; no DOCUMENT value written by this run)",
+    "enumValidatorFileWide": "26 distinct checks, 0 failures",
+    "implementsNodeActive": 1,
+    "dependencyIdsUnique": true,
+    "idOrdered": true,
+    "otherRowsByteIdentical": true,
+    "row016DiffFields": ["Notes"],
+    "documentRowsTargetDeliverableIdEmpty": true,
+    "gitDiffCheck": "clean",
+    "lineEndings": "LF; no trailing whitespace; final newline"
+  },
+  "sccPosture": {
+    "cycleParticipatingRows": [],
+    "resolvedRows": ["DEP-05-02-016"],
+    "move": "decompose (D-APP-110; five edges / seven rows on other carriers re-targeted to DOCUMENT contract nodes; none on this carrier)",
+    "gating": "every ACTIVE row is a strict edge of the acyclic approved graph and gates per its SatisfactionStatus",
+    "linearized": false,
+    "rowsRetiredCutMergedInverted": 0
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs; no ID changed",
+    "Historical D-APP-109 Run Notes / Run History entries left as dated evidence; the new section, new Run History row, and refreshed Downstream Handoff Notes carry the current (no cycle-participating row) posture",
+    "LastSeen on DEP-05-02-016 untouched per Task B (already 2026-09-05)"
+  ],
+  "notWritten": ["_CONTEXT.md", "_STATUS.md", "MEMORY.md", "ScopeOfWork.md", "_REFERENCES.md", "decomposition", "pointers", "instances/N1-TASK-DEL-05-02/*", "instances/N9-TASK-DEL-05-02/*", "other carriers"],
+  "humanRulingRequired": false,
+  "descendantLaunched": false
+}

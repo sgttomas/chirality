@@ -1,0 +1,74 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N9-TASK-DEL-08-01",
+  "parentRunId": "N9",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "UPDATE",
+  "carrier": "DEL-08-01",
+  "status": "PASS",
+  "basisCommit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "authorization": {
+    "ruling": "D-APP-109",
+    "rulingPath": "projects/chirality-app-dev/execution/_Coordination/_DECISIONS/D-APP-109_RULING_SCA_APP_010_HELD_EDGES_AND_CONTEXT_ALIGNMENT_2026-09-05.md",
+    "amendment": "AMENDMENT_v1.2_OWNER_RULING.md (node N9)",
+    "futureWriteSetRows": ["DEP-021", "DEP-022"],
+    "heldProposals": ["H-018"]
+  },
+  "preimages": {
+    "dependenciesCsvSha256": "1f616ed9ed997a5cbd6e19114930e9c9055bd44313be7fe5954ac93d03c768f6",
+    "dependenciesIndexSha256": "09321d20219a27017c74f99da5d84f8c2f8bed10832b008304bf09d38ca3e57a",
+    "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+    "verified": true
+  },
+  "emitted": ["DEP-08-01-018"],
+  "outputs": {
+    "carrierDependenciesCsvPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/Dependencies.csv",
+    "carrierDependenciesCsvSha256": "e0e0102a6f743911d23c36892e8b6f7ff4d45c88820d705f1475c883d3836284",
+    "carrierDependenciesIndexPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_DEPENDENCIES.md",
+    "carrierDependenciesIndexSha256": "673460ea86ca6330067cdf7c5f30ef5fff35a308cdebb4beef2659394c33f7c4",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_run_records/TASK_RUN_2026-09-05_0757.md",
+    "taskRunRecordSha256": "0611aee8a98bba39c238e6f316fd105d490840b226148c80a6ad373e85d0f1de",
+    "returnSha256": "6189bce16901ceade9013b115b054747df5b28d6896fe6db274548c94ffa3bef"
+  },
+  "carrierBytesChanged": true,
+  "counts": {
+    "pre": { "total": 20, "active": 20, "retired": 0, "anchor": 8, "execution": 12, "satisfied": 8, "pending": 12 },
+    "post": { "total": 21, "active": 21, "retired": 0, "anchor": 8, "execution": 13, "satisfied": 8, "pending": 13 },
+    "changes": { "added": 1, "modified": 0, "retired": 0, "deleted": 0, "heldRemaining": 0 }
+  },
+  "graph": {
+    "sccFormed": "new two-node SCC DEL-06-03/DEL-08-01 (with DEP-06-03-014, H-017)",
+    "cycleParticipatingRows": ["DEP-08-01-018"],
+    "nonGatingUntilRecordedMove": true,
+    "moveRecorded": false
+  },
+  "fences": { "F1": "NONE", "F2": "NONE", "F3": "NONE" },
+  "validation": {
+    "schema": "VALID (29 columns, 21 data rows)",
+    "enums": "10 emitted values VALID; 24 register pairs VALID, 0 failures",
+    "activeImplementsNode": 1,
+    "uniqueDependencyIds": true,
+    "idOrdered": true,
+    "fromDeliverableIdUniform": true,
+    "registerSchemaVersionUniform": "v3.1",
+    "evidenceResolves": true,
+    "indexCountsReconcile": true,
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": "Dependencies.csv and _DEPENDENCIES.md modified by this run plus the untracked run record; _CONTEXT.md, _STATUS.md, MEMORY.md modified by the sibling D-APP-109 context builder",
+    "hygiene": "LF, no trailing whitespace, final newline"
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE (generic three-digit profile rejects App two-digit IDs; no ID changed)",
+    "UNRESOLVED_TARGET: DEP-08-01-015 (carried)",
+    "CYCLE_PARTICIPATING: DEP-08-01-018 non-gating pending SCC resolution",
+    "CONVENTION_CONFLICT: brief describes #L<n> TargetLocation for deliverable targets; sibling row DEP-08-01-019 uses the plain path, which was mirrored (target row L348)"
+  ],
+  "carriedToOwnerSlate": [
+    "NEEDS_HUMAN_GRAPH_DECISION 1: reciprocal DEL-08-01 -> DEL-04-04 edge, not invented",
+    "NEEDS_HUMAN_GRAPH_DECISION 2: DEP-08-01-013 TargetLocation pre-existing REF-007 Root pointer preserved",
+    "SCC resolution for DEL-06-03/DEL-08-01: decompose / invert / merge / cut (cut and merge human-gated)"
+  ],
+  "humanRulingRequired": false,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (D-APP-109 emission), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched."
+}

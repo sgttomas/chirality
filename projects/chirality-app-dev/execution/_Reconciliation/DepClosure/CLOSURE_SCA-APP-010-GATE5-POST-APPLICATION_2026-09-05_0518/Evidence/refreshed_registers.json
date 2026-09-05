@@ -1,0 +1,293 @@
+{
+  "DEL-02-01": {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/Dependencies.csv",
+    "csv_sha256": "4af3d115b79d403c190661ba57050abe9bda04539cadf09cf9b07edf2d49c254",
+    "csv_expected": "4af3d115b79d403c190661ba57050abe9bda04539cadf09cf9b07edf2d49c254",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-01_Desktop_Shell_and_Matrix_Navigation/_DEPENDENCIES.md",
+    "md_sha256": "26a99f29ef68e00a9cc02839802142f099f67f7c5816cb461971a9ccb9a3ef49",
+    "md_expected": "26a99f29ef68e00a9cc02839802142f099f67f7c5816cb461971a9ccb9a3ef49",
+    "md_match": true,
+    "rows": 13,
+    "activeRows": 13,
+    "retiredRows": 0,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-02-01-006:DOWNSTREAM:DEL-08-02",
+      "DEP-02-01-007:DOWNSTREAM:DEL-02-02",
+      "DEP-02-01-008:DOWNSTREAM:DEL-08-03",
+      "DEP-02-01-009:UPSTREAM:DEL-07-01",
+      "DEP-02-01-013:DOWNSTREAM:DEL-09-04",
+      "DEP-02-01-014:UPSTREAM:DEL-01-03"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-02-02": {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/Dependencies.csv",
+    "csv_sha256": "d4f6dad83cc9538186214b6ab9a116c85c6ae2a8578acfb5a65acd56e61c3cff",
+    "csv_expected": "d4f6dad83cc9538186214b6ab9a116c85c6ae2a8578acfb5a65acd56e61c3cff",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_DEPENDENCIES.md",
+    "md_sha256": "adeb89260b62b2a86268b99505f08a6df2ea2eb98a22185961767fbad09b1df0",
+    "md_expected": "adeb89260b62b2a86268b99505f08a6df2ea2eb98a22185961767fbad09b1df0",
+    "md_match": true,
+    "rows": 16,
+    "activeRows": 15,
+    "retiredRows": 1,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-02-02-005:UPSTREAM:DEL-02-01",
+      "DEP-02-02-006:UPSTREAM:DEL-02-03",
+      "DEP-02-02-007:UPSTREAM:DEL-07-04",
+      "DEP-02-02-008:UPSTREAM:DEL-07-05",
+      "DEP-02-02-009:UPSTREAM:DEL-08-03",
+      "DEP-02-02-013:UPSTREAM:DEL-07-03",
+      "DEP-02-02-014:UPSTREAM:DEL-06-03",
+      "DEP-02-02-021:UPSTREAM:DEL-02-03"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-02-04": {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/Dependencies.csv",
+    "csv_sha256": "c6bdffd1aef83f0c04764a8f8f01d5f67abc1928c9630866f6f48dd83d16ac62",
+    "csv_expected": "c6bdffd1aef83f0c04764a8f8f01d5f67abc1928c9630866f6f48dd83d16ac62",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/_DEPENDENCIES.md",
+    "md_sha256": "1fffa1ec5e37709dcb26f0c1b0cd611e3ae474690db63593a85e6bd2c50ba35e",
+    "md_expected": "1fffa1ec5e37709dcb26f0c1b0cd611e3ae474690db63593a85e6bd2c50ba35e",
+    "md_match": true,
+    "rows": 16,
+    "activeRows": 16,
+    "retiredRows": 0,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-02-04-020:UPSTREAM:DEL-07-03"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-02-05": {
+    "path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/Dependencies.csv",
+    "csv_sha256": "03d3d7bcf405e98e7096d24f6322b2a7bc0fd68a239e620f8d27191616c66f17",
+    "csv_expected": "03d3d7bcf405e98e7096d24f6322b2a7bc0fd68a239e620f8d27191616c66f17",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/_DEPENDENCIES.md",
+    "md_sha256": "5dfb3da66a0c128569e0fd9714a65a14df28c3d2ffa5cedf710cc3b40d21fcc9",
+    "md_expected": "5dfb3da66a0c128569e0fd9714a65a14df28c3d2ffa5cedf710cc3b40d21fcc9",
+    "md_match": true,
+    "rows": 13,
+    "activeRows": 13,
+    "retiredRows": 0,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-02-05-004:UPSTREAM:DEL-04-05",
+      "DEP-02-05-006:UPSTREAM:DEL-03-03",
+      "DEP-02-05-010:DOWNSTREAM:DEL-09-06"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-03-02": {
+    "path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/Dependencies.csv",
+    "csv_sha256": "be877cffd700069afae17a3f604af28bc2e666c5608b833aff814ce51c291458",
+    "csv_expected": "be877cffd700069afae17a3f604af28bc2e666c5608b833aff814ce51c291458",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_DEPENDENCIES.md",
+    "md_sha256": "dffe9d126bebeb967dc9e0a109c528b44b22b7daf374cda4079f3fc349da7eb8",
+    "md_expected": "dffe9d126bebeb967dc9e0a109c528b44b22b7daf374cda4079f3fc349da7eb8",
+    "md_match": true,
+    "rows": 14,
+    "activeRows": 14,
+    "retiredRows": 0,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-03-02-006:UPSTREAM:DEL-03-01",
+      "DEP-03-02-007:UPSTREAM:DEL-05-02",
+      "DEP-03-02-008:DOWNSTREAM:DEL-03-03",
+      "DEP-03-02-009:DOWNSTREAM:DEL-03-04",
+      "DEP-03-02-010:DOWNSTREAM:DEL-09-03"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-04-04": {
+    "path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/Dependencies.csv",
+    "csv_sha256": "1cb90e1ff30b50fb08c9f9f06aa65ad74ac63b92ab0ebbcecdf52ec93cde8034",
+    "csv_expected": "1cb90e1ff30b50fb08c9f9f06aa65ad74ac63b92ab0ebbcecdf52ec93cde8034",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-04_SDK_Adapter_Prompt_Provider_and_Settings/1_Working/DEL-04-04_PersonaComposer_from_Instruction_Root/_DEPENDENCIES.md",
+    "md_sha256": "1896ed236a76269842419a20021d9b1691da2e3b30dea3e5db9dbd2df42cb352",
+    "md_expected": "1896ed236a76269842419a20021d9b1691da2e3b30dea3e5db9dbd2df42cb352",
+    "md_match": true,
+    "rows": 14,
+    "activeRows": 13,
+    "retiredRows": 1,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-04-04-005:UPSTREAM:DEL-08-01",
+      "DEP-04-04-006:UPSTREAM:DEL-08-02",
+      "DEP-04-04-013:UPSTREAM:DEL-07-03",
+      "DEP-04-04-014:UPSTREAM:DEL-07-01"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-05-02": {
+    "path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/Dependencies.csv",
+    "csv_sha256": "7a6da98003c9fc93caf3c602c09e242abb6105e90a1e45cff25e67d4a18f5380",
+    "csv_expected": "7a6da98003c9fc93caf3c602c09e242abb6105e90a1e45cff25e67d4a18f5380",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_DEPENDENCIES.md",
+    "md_sha256": "8823be430d59a5060bff63a17d1474ff48c09ddc77a2ee7006dec0c7a91539a0",
+    "md_expected": "8823be430d59a5060bff63a17d1474ff48c09ddc77a2ee7006dec0c7a91539a0",
+    "md_match": true,
+    "rows": 15,
+    "activeRows": 14,
+    "retiredRows": 1,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-05-02-006:UPSTREAM:DEL-05-01",
+      "DEP-05-02-008:DOWNSTREAM:DEL-05-04",
+      "DEP-05-02-009:UPSTREAM:DEL-05-03",
+      "DEP-05-02-010:UPSTREAM:DEL-05-05",
+      "DEP-05-02-012:UPSTREAM:DEL-04-03"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-06-03": {
+    "path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/Dependencies.csv",
+    "csv_sha256": "89a579e740656560f565c41c9f536dbfe99038d86d65faae93f882134f682d02",
+    "csv_expected": "89a579e740656560f565c41c9f536dbfe99038d86d65faae93f882134f682d02",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-06_Permissioned_Tools_MCP_and_Hooks/1_Working/DEL-06-03_Initial_Chirality_MCP_Read_Tools/_DEPENDENCIES.md",
+    "md_sha256": "d9140c2f599150cd3f7ab82124b12a3aad6b0a137a6c5636d4cf37f89bba3800",
+    "md_expected": "d9140c2f599150cd3f7ab82124b12a3aad6b0a137a6c5636d4cf37f89bba3800",
+    "md_match": true,
+    "rows": 17,
+    "activeRows": 17,
+    "retiredRows": 0,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-06-03-006:UPSTREAM:DEL-06-01",
+      "DEP-06-03-007:UPSTREAM:DEL-07-05",
+      "DEP-06-03-016:DOWNSTREAM:DEL-02-02",
+      "DEP-06-03-017:DOWNSTREAM:DEL-05-02"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-07-01": {
+    "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/Dependencies.csv",
+    "csv_sha256": "9c8e0405599f5077d450d92e8934c0664e25b5c193bb12e90d1c11b2af6a982f",
+    "csv_expected": "9c8e0405599f5077d450d92e8934c0664e25b5c193bb12e90d1c11b2af6a982f",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-01_Working_Root_Validation_and_Instruction_Root_Protection/_DEPENDENCIES.md",
+    "md_sha256": "b6b1fbb7436f9d1ef10fdad5af82e04c48bb9a0f5fe5db64fe4d3bb2847adac9",
+    "md_expected": "b6b1fbb7436f9d1ef10fdad5af82e04c48bb9a0f5fe5db64fe4d3bb2847adac9",
+    "md_match": true,
+    "rows": 12,
+    "activeRows": 11,
+    "retiredRows": 1,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-07-01-010:DOWNSTREAM:DEL-04-04",
+      "DEP-07-01-011:DOWNSTREAM:DEL-02-03"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-07-03": {
+    "path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Dependencies.csv",
+    "csv_sha256": "54d8dc8cff7338b164264eee9a7dd6a48e6bd364177a38e50ee4991e166715ed",
+    "csv_expected": "54d8dc8cff7338b164264eee9a7dd6a48e6bd364177a38e50ee4991e166715ed",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_DEPENDENCIES.md",
+    "md_sha256": "8c8fe0324138c219493cae174545d6e5b4674f6db16ba8a6700059945fbfb297",
+    "md_expected": "8c8fe0324138c219493cae174545d6e5b4674f6db16ba8a6700059945fbfb297",
+    "md_match": true,
+    "rows": 14,
+    "activeRows": 14,
+    "retiredRows": 0,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-07-03-009:UPSTREAM:DEL-07-04",
+      "DEP-07-03-010:UPSTREAM:DEL-07-05",
+      "DEP-07-03-012:DOWNSTREAM:DEL-02-02",
+      "DEP-07-03-013:DOWNSTREAM:DEL-04-04"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-08-01": {
+    "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/Dependencies.csv",
+    "csv_sha256": "1f616ed9ed997a5cbd6e19114930e9c9055bd44313be7fe5954ac93d03c768f6",
+    "csv_expected": "1f616ed9ed997a5cbd6e19114930e9c9055bd44313be7fe5954ac93d03c768f6",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_DEPENDENCIES.md",
+    "md_sha256": "09321d20219a27017c74f99da5d84f8c2f8bed10832b008304bf09d38ca3e57a",
+    "md_expected": "09321d20219a27017c74f99da5d84f8c2f8bed10832b008304bf09d38ca3e57a",
+    "md_match": true,
+    "rows": 20,
+    "activeRows": 20,
+    "retiredRows": 0,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-08-01-019:UPSTREAM:DEL-07-01"
+    ],
+    "changedVsHEAD": true
+  },
+  "DEL-08-03": {
+    "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/Dependencies.csv",
+    "csv_sha256": "7981ea6078052e96eebbaed06dade989e094260d659347e2eb8812f8a3fb7727",
+    "csv_expected": "7981ea6078052e96eebbaed06dade989e094260d659347e2eb8812f8a3fb7727",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-03_Pipeline_Category_and_Task_Scope_Dispatch/_DEPENDENCIES.md",
+    "md_sha256": "d8fbef7de157f70276c0cc90bd752802f4b8f61ba8f820a80c6a4620c8cf9294",
+    "md_expected": "d8fbef7de157f70276c0cc90bd752802f4b8f61ba8f820a80c6a4620c8cf9294",
+    "md_match": true,
+    "rows": 10,
+    "activeRows": 10,
+    "retiredRows": 0,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [],
+    "changedVsHEAD": true
+  },
+  "DEL-08-04": {
+    "path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/Dependencies.csv",
+    "csv_sha256": "902678b137b5600f0cd2202519b7906122c29168d74ab48846ca99b2f41d84e5",
+    "csv_expected": "902678b137b5600f0cd2202519b7906122c29168d74ab48846ca99b2f41d84e5",
+    "csv_match": true,
+    "md_path": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_DEPENDENCIES.md",
+    "md_sha256": "8d66e9dd97d16e2746ca295f01dab051fb9ac981accced36ef76855e9cd074c0",
+    "md_expected": "8d66e9dd97d16e2746ca295f01dab051fb9ac981accced36ef76855e9cd074c0",
+    "md_match": true,
+    "rows": 13,
+    "activeRows": 12,
+    "retiredRows": 1,
+    "schemaVersions": [
+      "v3.1"
+    ],
+    "activeDeliverableEdgesFromThisRegister": [
+      "DEP-08-04-006:DOWNSTREAM:DEL-08-05"
+    ],
+    "changedVsHEAD": true
+  },
+  "_allMatch": true
+}

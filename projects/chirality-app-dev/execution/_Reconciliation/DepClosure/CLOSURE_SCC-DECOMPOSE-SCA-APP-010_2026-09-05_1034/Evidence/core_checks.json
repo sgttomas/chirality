@@ -1,0 +1,100 @@
+{
+  "activeExecutionRows": 360,
+  "retiredExecutionRows": 21,
+  "activeDeliverableEndpointRows": 141,
+  "resolvedDeliverableEndpointRows": 141,
+  "unresolvedDeliverableEndpointRows": 0,
+  "unresolvedEndpoints": [],
+  "misplacedTargetDeliverableIdRows": 0,
+  "misplacedRows": [],
+  "deliverableTypedRowsWithoutTarget": [],
+  "invalidDirectionRows": 0,
+  "invalidDirectionRows_list": [],
+  "evidenceRowsPopulated": 654,
+  "evidenceRowsTotal": 654,
+  "implementsNodePresent": 52,
+  "implementsNodeMissing": [],
+  "distinctDirectedEdges": 119,
+  "graphNodes": 48,
+  "isolatedDeliverables": 4,
+  "isolatedDeliverableIds": [
+    "DEL-01-01",
+    "DEL-09-07",
+    "DEL-10-04",
+    "DEL-10-05"
+  ],
+  "directedSccs": 0,
+  "sccMembership": [],
+  "acyclicByKahnTopologicalSort": true,
+  "topologicalOrderLength": 48,
+  "enumeratedRepresentativeCycles": 0,
+  "maxCyclesBound": 10000,
+  "cycleEnumerationBoundReached": false,
+  "bidirectionalPairs": [],
+  "hubsAtThreshold20": [],
+  "highestDegreeNodes": [
+    {
+      "node": "DEL-09-02",
+      "in": 2,
+      "out": 13,
+      "total": 15
+    },
+    {
+      "node": "DEL-02-02",
+      "in": 1,
+      "out": 12,
+      "total": 13
+    },
+    {
+      "node": "DEL-01-02",
+      "in": 12,
+      "out": 0,
+      "total": 12
+    },
+    {
+      "node": "DEL-05-02",
+      "in": 6,
+      "out": 6,
+      "total": 12
+    },
+    {
+      "node": "DEL-02-03",
+      "in": 4,
+      "out": 4,
+      "total": 8
+    },
+    {
+      "node": "DEL-04-02",
+      "in": 3,
+      "out": 5,
+      "total": 8
+    },
+    {
+      "node": "DEL-02-01",
+      "in": 5,
+      "out": 2,
+      "total": 7
+    },
+    {
+      "node": "DEL-03-02",
+      "in": 4,
+      "out": 3,
+      "total": 7
+    }
+  ],
+  "registersDiscovered": 52,
+  "analyzerAgreement": {
+    "graph_nodes": true,
+    "graph_edges": true,
+    "orphan_count": true,
+    "scc_count": true,
+    "scc_sizes": true,
+    "scc_summary_header_only": true,
+    "bidirectional_pairs": true,
+    "hub_count": true,
+    "total_rows": true,
+    "execution_rows_active_plus_retired": true,
+    "implements_node_present": true,
+    "evidence_populated": true
+  }
+}

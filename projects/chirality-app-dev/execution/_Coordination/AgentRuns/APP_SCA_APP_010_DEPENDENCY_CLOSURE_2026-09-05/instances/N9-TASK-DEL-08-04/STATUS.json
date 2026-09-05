@@ -1,0 +1,68 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N9-TASK-DEL-08-04",
+  "parentRunId": "N9",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY",
+  "amendment": "v1.2",
+  "authorization": "D-APP-109",
+  "status": "PASS",
+  "basisCommit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "dependenciesCsvSha256": "902678b137b5600f0cd2202519b7906122c29168d74ab48846ca99b2f41d84e5",
+    "dependenciesIndexSha256": "8d66e9dd97d16e2746ca295f01dab051fb9ac981accced36ef76855e9cd074c0"
+  },
+  "outputs": {
+    "dependenciesCsvSha256": "3eb0f762ccb4a59d7a92f64f1589a41e390680de21289289ed08f89198590aef",
+    "dependenciesIndexSha256": "b5123a21266a30b5e41892a2bc9bcc583f3fbebe3cbac481f3a4daff23ed6c2d",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_run_records/TASK_RUN_2026-09-05_0759.md",
+    "taskRunRecordSha256": "5dfb122a4124eec7c5a549ab8d531f4615a1f93fb48d3e2b5f535f8f6e492202",
+    "returnSha256": "fa0f88e4c101fb5a52075f515c2d5566b6934d2420aa078bde12fcfe63ec831b"
+  },
+  "emitted": [
+    "DEP-08-04-013"
+  ],
+  "heldIds": [
+    "H-019"
+  ],
+  "counts": {
+    "pre": {
+      "total": 13,
+      "active": 12,
+      "retired": 1,
+      "anchor": 4,
+      "execution": 9
+    },
+    "post": {
+      "total": 14,
+      "active": 13,
+      "retired": 1,
+      "anchor": 4,
+      "execution": 10,
+      "activeAnchor": 4,
+      "activeExecution": 9,
+      "satisfied": 6,
+      "pending": 5,
+      "tbd": 3
+    }
+  },
+  "validators": {
+    "validate_dependencies_schema": "VALID (29 columns, 14 data rows)",
+    "validate_enum": "VALID x10",
+    "validate_id_format": "PROJECT_ID_FORMAT_PROFILE (known; generic three-digit profile)",
+    "implementsNodeActive": 1,
+    "existingRowsByteIdentical": true,
+    "gitDiffCheck": "clean"
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE",
+    "TARGET_UNRESOLVED: DEP-08-04-004 (unchanged)",
+    "FUTURE_WRITE_SET.csv named by the brief is absent from the run folder; D-APP-109 and AMENDMENT_v1.2 relied on"
+  ],
+  "sccPosture": "DEP-08-04-013 is cycle-participating and non-gating inside the enlarged SCC-001 until a recorded decompose/invert/merge/cut move",
+  "humanRulingRequired": false,
+  "carrierBytesChanged": true,
+  "descendantLaunched": false
+}

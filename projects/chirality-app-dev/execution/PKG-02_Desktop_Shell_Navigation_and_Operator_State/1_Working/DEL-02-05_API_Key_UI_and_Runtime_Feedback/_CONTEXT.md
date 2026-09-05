@@ -55,7 +55,10 @@ DEL-02-09 (OI-008).
 
 ## Anticipated Artifacts
 
-API key settings panel; attachment picker and preview chips; remove/clear controls; typed error display; secure-storage error UI; retry-state preservation tests
+API key and account settings panel; account row and popover; Settings view
+account and folder groups; `HostedEngineConsentPort` UI adapter; per-root login
+and command-network consent controls; attachment picker and preview chips; typed
+storage/runtime error display; consent/revocation and retry-state tests
 
 ## Traceability
 

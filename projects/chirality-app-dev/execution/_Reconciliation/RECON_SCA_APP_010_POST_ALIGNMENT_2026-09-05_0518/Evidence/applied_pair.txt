@@ -1,0 +1,30 @@
+# Applied pair and pointer (read 2026-09-05 from the working tree at basis d66395d101143df68d956984f7ab93f5027418ec)
+
+## shasum -a 256
+c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61  projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md
+63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca  projects/chirality-app-dev/execution/_Decomposition/contract_invariant_coverage_register.csv
+b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0  projects/chirality-app-dev/execution/_ScopeChange/_LATEST.md
+51ec0d4872dd1eba7921e9419231c0d3dc1b3fb368fe6040623a28a16f788517  projects/chirality-app-dev/docs/CONTRACT.md
+
+## expected (LAUNCH_BRIEF.md check 2)
+c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61 decomposition
+63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca companion
+b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0 _ScopeChange/_LATEST.md
+
+## decomposition_basis pin resolution
+git cat-file -t dbd812a52d5ed0cb3ed173f3aaaa68703a914291 -> commit
+git log -1: dbd812a52d5ed0cb3ed173f3aaaa68703a914291 2026-09-04 wip: SCA-APP-010 Gate-5 application (pre-merge snapshot state)
+decomposition at pin: c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61
+companion at pin: 63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca
+pin is an ancestor of HEAD
+live decomposition git blob: 884475145089b5fb36b6a888c6f3b706aa55bda2 (origin/main blob: 884475145089b5fb36b6a888c6f3b706aa55bda2)
+
+## companion structure (python csv module)
+rows 83
+columns 18
+unique InvariantID 83
+families 50
+rows pinned #candidate-sha256=c7c05169... 83
+ContractSourceSHA256 values {'842bf170e6737adf8eaa7a4a1acfd74e22390bc6e14c64eed9502195c68dbed9': 83}
+K-PATH-2 AppDeliverableIDs DEL-06-04;DEL-07-01;DEL-07-03;DEL-07-05;DEL-09-03
+K-PATH-2 RationaleEvidenceAnchor contains #SOW-081: True

@@ -1,0 +1,83 @@
+{
+  "simulation": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/Evidence/fanin_simulation_v1",
+  "sccSetIdentical": true,
+  "simulationSCCs": [
+    [
+      "DEL-06-03",
+      "DEL-08-01"
+    ],
+    [
+      "DEL-02-01",
+      "DEL-02-02",
+      "DEL-02-03",
+      "DEL-02-04",
+      "DEL-02-05",
+      "DEL-03-02",
+      "DEL-03-03",
+      "DEL-03-04",
+      "DEL-04-02",
+      "DEL-04-03",
+      "DEL-04-04",
+      "DEL-04-05",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-04",
+      "DEL-05-05",
+      "DEL-08-02",
+      "DEL-08-03",
+      "DEL-08-04",
+      "DEL-08-05"
+    ]
+  ],
+  "liveSCCs": [
+    [
+      "DEL-06-03",
+      "DEL-08-01"
+    ],
+    [
+      "DEL-02-01",
+      "DEL-02-02",
+      "DEL-02-03",
+      "DEL-02-04",
+      "DEL-02-05",
+      "DEL-03-02",
+      "DEL-03-03",
+      "DEL-03-04",
+      "DEL-04-02",
+      "DEL-04-03",
+      "DEL-04-04",
+      "DEL-04-05",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-04",
+      "DEL-05-05",
+      "DEL-08-02",
+      "DEL-08-03",
+      "DEL-08-04",
+      "DEL-08-05"
+    ]
+  ],
+  "closureSummaryIdentical": true,
+  "metricDiffs": {},
+  "bidirectionalPairsIdentical": true,
+  "isolatesIdentical": true,
+  "expectedBidirectionalPairs": [
+    [
+      "DEL-02-02",
+      "DEL-02-04"
+    ],
+    [
+      "DEL-02-03",
+      "DEL-02-04"
+    ],
+    [
+      "DEL-02-05",
+      "DEL-04-05"
+    ],
+    [
+      "DEL-06-03",
+      "DEL-08-01"
+    ]
+  ],
+  "bidirectionalPairsEqualExpected": true
+}

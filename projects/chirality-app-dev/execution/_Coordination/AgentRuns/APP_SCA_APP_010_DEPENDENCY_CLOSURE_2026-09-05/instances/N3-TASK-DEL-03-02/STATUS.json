@@ -1,0 +1,86 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N3-TASK-DEL-03-02",
+  "parentRunId": "N3",
+  "orchestrationRunId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REVIEWED_WRITE",
+  "applyEdits": true,
+  "status": "PASS",
+  "timestamp": "2026-09-05T05:16:45-0600",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "carrier": "DEL-03-02",
+  "carrierPath": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking",
+  "sccMember": "SCC-001",
+  "authorization": {
+    "futureWriteSetRows": [
+      "DEP-009",
+      "DEP-010"
+    ],
+    "reviewSha256": "ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85",
+    "reviewVerdict": "PASS",
+    "previewInstance": "N1-TASK-DEL-03-02",
+    "previewRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0105.md",
+    "previewRunRecordSha256": "dc2a3bb96b4bb850523399bd7c8a25fa9decf8c8558082e1057c88e0a70a0a24"
+  },
+  "preImages": {
+    "dependenciesCsvSha256": "f8efee202c2e4f35fb3fea34b536b7d339abd52a1940a099320dff15f89758dd",
+    "dependenciesIndexSha256": "98fe53bec8b3b1c5d4199bd68e27c00f84a3d570034c8749bb650fbed44c9a40",
+    "verified": true
+  },
+  "outputs": {
+    "dependenciesCsvPath": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/Dependencies.csv",
+    "dependenciesCsvSha256": "be877cffd700069afae17a3f604af28bc2e666c5608b833aff814ce51c291458",
+    "dependenciesIndexPath": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_DEPENDENCIES.md",
+    "dependenciesIndexSha256": "dffe9d126bebeb967dc9e0a109c528b44b22b7daf374cda4079f3fc349da7eb8",
+    "parityWithReviewedPostImages": "byte-identical",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_run_records/TASK_RUN_2026-09-05_0515.md",
+    "taskRunRecordSha256": "1e759655ad475bc4bc349db79958c288d177fc5b1acd64c45a548af249c397a0"
+  },
+  "function5": {
+    "validateDependenciesSchema": "VALID (29 columns, 14 data rows, exit 0)",
+    "validateEnum": "23 distinct values checked, 23 VALID, 0 failures",
+    "parentAnchorCount": 1,
+    "parentAnchorId": "DEP-03-02-001",
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": [
+      "M Dependencies.csv",
+      "M _DEPENDENCIES.md",
+      "?? _run_records/TASK_RUN_2026-09-05_0515.md"
+    ]
+  },
+  "counts": {
+    "pre": {
+      "total": 10,
+      "active": 10,
+      "retired": 0,
+      "anchor": 5,
+      "execution": 5
+    },
+    "post": {
+      "total": 14,
+      "active": 14,
+      "retired": 0,
+      "anchor": 7,
+      "execution": 7
+    },
+    "postSatisfaction": {
+      "satisfied": 5,
+      "pending": 9,
+      "tbd": 0
+    }
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [],
+    "needsHumanGraphDecision": [],
+    "carriedFrom": "instances/N1-TASK-DEL-03-02/PREVIEW.md#3"
+  },
+  "humanRulingRequired": false,
+  "carrierWritten": true,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (reviewed write), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched."
+}

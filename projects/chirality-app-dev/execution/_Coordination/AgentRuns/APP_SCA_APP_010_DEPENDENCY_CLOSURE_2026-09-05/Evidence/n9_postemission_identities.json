@@ -1,0 +1,57 @@
+{
+  "stage": "post D-APP-109 emission",
+  "carriers": {
+    "DEL-02-01": {
+      "csv": "8d5315713a86732e44b4a9287e8632be03347d50ceb1d2ed7889c2b90cc8883e",
+      "md": "f6a50a4513cc2d5895d81fe93a4b9ee45e43714f1a16234adf7c188b52e2c517"
+    },
+    "DEL-02-02": {
+      "csv": "9feb11b0b1aa312eed09fa70de685c6a630f3b5fd717e2b6d774c75e336ec9a0",
+      "md": "2b6d3b9935c857b089a80453e5b6f1c8b18162a30c15a79024ad47499610341d"
+    },
+    "DEL-02-04": {
+      "csv": "abaf816695c2c6f13adfe03ad85b31ff0cbdef2db06b36873e519060f306bcb2",
+      "md": "1cefdede31815de94d3f18b2e5033fbc1ebf17722f4a4d53c8e22f5eb0ec23ca"
+    },
+    "DEL-02-05": {
+      "csv": "09aaacc8894bd4ffb1cdd48f09416d19dca368fe4e64f890234855af9bd9c703",
+      "md": "5d93d935017bb99aa24834560488c753f73a825af6e97441e519229cf4b3a501"
+    },
+    "DEL-03-02": {
+      "csv": "0e65c1a38383958ce83d4c77b6671efd24651ff6affc7d4694aaee4304c416ad",
+      "md": "0144084fff0696e0854e919ca831cf2ea0c3779d1c95ff81fb24a00daad50051"
+    },
+    "DEL-04-04": {
+      "csv": "1cb90e1ff30b50fb08c9f9f06aa65ad74ac63b92ab0ebbcecdf52ec93cde8034",
+      "md": "1896ed236a76269842419a20021d9b1691da2e3b30dea3e5db9dbd2df42cb352"
+    },
+    "DEL-05-02": {
+      "csv": "c26d4653b0eacd1eea65bd23ba3b14e59c4749bb18a853f82cc8e3fdf949879d",
+      "md": "3c86ae3fbc52b5c84264c8656f58c7ba0decd3e52508cb07ca3aca041f4bdf51"
+    },
+    "DEL-06-03": {
+      "csv": "15ea08e35b5d2dda40dfc417b3d0ff4e73318900ccab166f016b5dee3cb2f3cd",
+      "md": "9e3faf5dcaf6c02a3f88c39006ff830e24b90057b50d1cd37ba3ba4fb0a32cb0"
+    },
+    "DEL-07-01": {
+      "csv": "9c8e0405599f5077d450d92e8934c0664e25b5c193bb12e90d1c11b2af6a982f",
+      "md": "b6b1fbb7436f9d1ef10fdad5af82e04c48bb9a0f5fe5db64fe4d3bb2847adac9"
+    },
+    "DEL-07-03": {
+      "csv": "54d8dc8cff7338b164264eee9a7dd6a48e6bd364177a38e50ee4991e166715ed",
+      "md": "8c8fe0324138c219493cae174545d6e5b4674f6db16ba8a6700059945fbfb297"
+    },
+    "DEL-08-01": {
+      "csv": "e0e0102a6f743911d23c36892e8b6f7ff4d45c88820d705f1475c883d3836284",
+      "md": "673460ea86ca6330067cdf7c5f30ef5fff35a308cdebb4beef2659394c33f7c4"
+    },
+    "DEL-08-03": {
+      "csv": "7981ea6078052e96eebbaed06dade989e094260d659347e2eb8812f8a3fb7727",
+      "md": "d8fbef7de157f70276c0cc90bd752802f4b8f61ba8f820a80c6a4620c8cf9294"
+    },
+    "DEL-08-04": {
+      "csv": "3eb0f762ccb4a59d7a92f64f1589a41e390680de21289289ed08f89198590aef",
+      "md": "b5123a21266a30b5e41892a2bc9bcc583f3fbebe3cbac481f3a4daff23ed6c2d"
+    }
+  }
+}

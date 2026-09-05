@@ -1,0 +1,35 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "parentRunId": "N14",
+  "instanceId": "N14-TASK-DEL-02-02",
+  "role": "TASK + dependency-extract (apply mode; D-APP-110 decompose)",
+  "carrier": "DEL-02-02",
+  "status": "PASS",
+  "head": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "authorization": ["D-APP-110", "AMENDMENT_v1.3_SCC_DECOMPOSE.md node N14", "SCC_DECOMPOSE_RULINGS.csv SD-005"],
+  "preImages": {
+    "Dependencies.csv": "9feb11b0b1aa312eed09fa70de685c6a630f3b5fd717e2b6d774c75e336ec9a0",
+    "_DEPENDENCIES.md": "2b6d3b9935c857b089a80453e5b6f1c8b18162a30c15a79024ad47499610341d"
+  },
+  "outputs": {
+    "Dependencies.csv": "fd9b747956af24b6eba67ce670035aaf1b12d2d02e553f0ff504bfd2e0126dc4",
+    "_DEPENDENCIES.md": "29b2e46f990fd6683b46f2ee3e3ff4c37cad3f7dadc675a4730007a42c2763c5",
+    "runRecord": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_run_records/TASK_RUN_2026-09-05_1015.md",
+    "runRecordSha256": "cdc09276e76cf2d97533ca159cf9db92f14b67b09eb893b50120ea593c647778"
+  },
+  "retargeted": ["DEP-02-02-022"],
+  "notesUpdated": ["DEP-02-02-015", "DEP-02-02-017", "DEP-02-02-018", "DEP-02-02-019", "DEP-02-02-020"],
+  "validation": {
+    "validate_dependencies_schema": "VALID (29 columns, 22 data rows)",
+    "validate_enum": "24 distinct values, 0 invalid (TARGET_TYPE DOCUMENT VALID)",
+    "activeImplementsNode": 1,
+    "uniqueIds": true,
+    "otherRowsByteIdentical": true,
+    "gitDiffCheck": "clean",
+    "lineEndings": "LF, no trailing whitespace, final newline"
+  },
+  "warnings": ["INSTRUCTION_ROOT_ENV_UNSET", "PROJECT_ID_FORMAT_PROFILE", "CONTEXT_SOW_007_RESIDUE (carried)", "V3_01_ROLE_ENTRY_SEATING_CONFLICT (carried)"],
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (D-APP-110 decompose), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched",
+  "completedAt": "2026-09-05T10:15-0600"
+}

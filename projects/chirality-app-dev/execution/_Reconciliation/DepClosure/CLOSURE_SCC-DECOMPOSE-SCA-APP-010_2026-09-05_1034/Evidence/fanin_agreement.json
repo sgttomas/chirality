@@ -1,0 +1,15 @@
+{
+  "liveCheck": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/Evidence/fanin_live_v1.3",
+  "closureSummaryIdentical": true,
+  "metricDiffs": {},
+  "sccSummaryHeaderOnlyBoth": true,
+  "bidirectionalPairsIdentical": true,
+  "isolatesIdentical": true,
+  "hubsIdentical": true,
+  "expectedFromBrief": {
+    "scc_count": 0,
+    "graph_nodes": 48,
+    "graph_edges": 119
+  },
+  "expectedFromBriefMet": true
+}

@@ -1,0 +1,41 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N3-TASK-DEL-08-04",
+  "parentRunId": "N3",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REVIEWED_WRITE",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "reviewSha256": "ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85",
+  "previewInstance": "N1-TASK-DEL-08-04",
+  "previewRunRecordPath": "instances/N1-TASK-DEL-08-04/_run_records/TASK_RUN_2026-09-05_0059.md",
+  "authorization": ["DEP-025", "DEP-026"],
+  "preImages": {
+    "dependenciesCsvSha256": "1f7c06a2d49689c9dc3ea7fb778c6763ab96b3ea929426e5d9269c3198612400",
+    "dependenciesIndexSha256": "e4c5ec7bc2efcffb534a04abf34054b64345ba10c075fb379ef833926199360b"
+  },
+  "outputs": {
+    "carrierDependenciesCsvPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/Dependencies.csv",
+    "postimageDependenciesCsvSha256": "902678b137b5600f0cd2202519b7906122c29168d74ab48846ca99b2f41d84e5",
+    "carrierDependenciesIndexPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_DEPENDENCIES.md",
+    "postimageDependenciesIndexSha256": "8d66e9dd97d16e2746ca295f01dab051fb9ac981accced36ef76855e9cd074c0",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_run_records/TASK_RUN_2026-09-05_0513.md",
+    "taskRunRecordSha256": "9be67436b87873eeddad88604d83e7ac9fa76bde1b61fd25cee9e1aa04b3f730",
+    "returnSha256": "6b4ecd777d56c251d369c336615ced6d43d5e5f25283fa1d2cf7527853cf65ee"
+  },
+  "counts": {
+    "pre": { "total": 11, "active": 10, "retired": 1, "anchor": 3, "execution": 8 },
+    "post": { "total": 13, "active": 12, "retired": 1, "anchor": 4, "execution": 9 }
+  },
+  "function5": {
+    "schema": "VALID (29 columns, 13 data rows)",
+    "enums": "29 distinct values, 0 invalid",
+    "parentAnchor": "1 ACTIVE IMPLEMENTS_NODE (DEP-08-04-001)",
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": ["M Dependencies.csv", "M _DEPENDENCIES.md", "?? _run_records/TASK_RUN_2026-09-05_0513.md"]
+  },
+  "fences": { "F1": "NONE", "F2": "NONE", "F3": "NONE", "needsHumanGraphDecision": [] },
+  "humanRulingRequired": false,
+  "carrierBytesChanged": true
+}

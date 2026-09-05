@@ -1,0 +1,722 @@
+{
+  "priorSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0518",
+  "priorBasisCommit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "headCommitNow": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "metrics": {
+    "total_files": {
+      "prior_0518": 52,
+      "live": 52
+    },
+    "total_rows": {
+      "prior_0518": 635,
+      "live": 654
+    },
+    "anchor_rows": {
+      "prior_0518": 273,
+      "live": 273
+    },
+    "execution_rows": {
+      "prior_0518": 362,
+      "live": 381
+    },
+    "schema_valid": {
+      "prior_0518": 52,
+      "live": 52
+    },
+    "schema_invalid": {
+      "prior_0518": 0,
+      "live": 0
+    },
+    "implements_node_present": {
+      "prior_0518": 52,
+      "live": 52
+    },
+    "implements_node_missing": {
+      "prior_0518": 0,
+      "live": 0
+    },
+    "evidence_populated": {
+      "prior_0518": 635,
+      "live": 654
+    },
+    "evidence_total": {
+      "prior_0518": 635,
+      "live": 654
+    },
+    "graph_nodes": {
+      "prior_0518": 48,
+      "live": 48
+    },
+    "graph_edges": {
+      "prior_0518": 109,
+      "live": 124
+    },
+    "orphan_count": {
+      "prior_0518": 4,
+      "live": 4
+    },
+    "scc_count": {
+      "prior_0518": 1,
+      "live": 2
+    },
+    "scc_sizes": {
+      "prior_0518": [
+        9
+      ],
+      "live": [
+        2,
+        20
+      ]
+    },
+    "hub_count": {
+      "prior_0518": 0,
+      "live": 0
+    },
+    "bidirectional_pair_count": {
+      "prior_0518": 1,
+      "live": 4
+    },
+    "normalization_count": {
+      "prior_0518": 0,
+      "live": 0
+    }
+  },
+  "edgesAdded": [
+    {
+      "from": "DEL-02-01",
+      "to": "DEL-02-04",
+      "DependencyIDs": [
+        "DEP-02-01-010",
+        "DEP-02-04-017"
+      ]
+    },
+    {
+      "from": "DEL-02-02",
+      "to": "DEL-02-04",
+      "DependencyIDs": [
+        "DEP-02-02-022",
+        "DEP-02-04-018"
+      ]
+    },
+    {
+      "from": "DEL-02-02",
+      "to": "DEL-05-02",
+      "DependencyIDs": [
+        "DEP-02-02-015",
+        "DEP-05-02-016"
+      ]
+    },
+    {
+      "from": "DEL-02-02",
+      "to": "DEL-05-04",
+      "DependencyIDs": [
+        "DEP-02-02-018"
+      ]
+    },
+    {
+      "from": "DEL-02-02",
+      "to": "DEL-08-02",
+      "DependencyIDs": [
+        "DEP-02-02-020"
+      ]
+    },
+    {
+      "from": "DEL-02-02",
+      "to": "DEL-08-04",
+      "DependencyIDs": [
+        "DEP-02-02-019"
+      ]
+    },
+    {
+      "from": "DEL-02-02",
+      "to": "DEL-08-05",
+      "DependencyIDs": [
+        "DEP-02-02-017"
+      ]
+    },
+    {
+      "from": "DEL-02-03",
+      "to": "DEL-02-04",
+      "DependencyIDs": [
+        "DEP-02-04-019"
+      ]
+    },
+    {
+      "from": "DEL-02-04",
+      "to": "DEL-02-02",
+      "DependencyIDs": [
+        "DEP-02-04-015"
+      ]
+    },
+    {
+      "from": "DEL-02-04",
+      "to": "DEL-02-03",
+      "DependencyIDs": [
+        "DEP-02-04-016"
+      ]
+    },
+    {
+      "from": "DEL-02-05",
+      "to": "DEL-02-01",
+      "DependencyIDs": [
+        "DEP-02-05-014"
+      ]
+    },
+    {
+      "from": "DEL-02-05",
+      "to": "DEL-02-03",
+      "DependencyIDs": [
+        "DEP-02-05-015"
+      ]
+    },
+    {
+      "from": "DEL-06-03",
+      "to": "DEL-08-01",
+      "DependencyIDs": [
+        "DEP-06-03-014"
+      ]
+    },
+    {
+      "from": "DEL-08-01",
+      "to": "DEL-06-03",
+      "DependencyIDs": [
+        "DEP-08-01-018"
+      ]
+    },
+    {
+      "from": "DEL-08-04",
+      "to": "DEL-03-02",
+      "DependencyIDs": [
+        "DEP-03-02-013",
+        "DEP-08-04-013"
+      ]
+    }
+  ],
+  "edgesRemoved": [],
+  "edgesWithChangedCarryingRows": [],
+  "edgesAddedCount": 15,
+  "edgesRemovedCount": 0,
+  "edgesAddedEqualHeldEdgeSet": true,
+  "priorSCC": [
+    [
+      "DEL-02-05",
+      "DEL-03-02",
+      "DEL-03-03",
+      "DEL-03-04",
+      "DEL-04-03",
+      "DEL-04-05",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-05"
+    ]
+  ],
+  "liveSCCs": [
+    [
+      "DEL-06-03",
+      "DEL-08-01"
+    ],
+    [
+      "DEL-02-01",
+      "DEL-02-02",
+      "DEL-02-03",
+      "DEL-02-04",
+      "DEL-02-05",
+      "DEL-03-02",
+      "DEL-03-03",
+      "DEL-03-04",
+      "DEL-04-02",
+      "DEL-04-03",
+      "DEL-04-04",
+      "DEL-04-05",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-04",
+      "DEL-05-05",
+      "DEL-08-02",
+      "DEL-08-03",
+      "DEL-08-04",
+      "DEL-08-05"
+    ]
+  ],
+  "priorSCC001SubsetOfLiveSCC002": true,
+  "liveSCCInternalEdgeClasses": {
+    "SCC-001": {
+      "preExistingSCC001InternalEdges": [],
+      "preExistingEdgesNewlyEnclosed": [],
+      "emittedEdgesInside": [
+        {
+          "from": "DEL-06-03",
+          "to": "DEL-08-01",
+          "DependencyIDs": [
+            "DEP-06-03-014"
+          ]
+        },
+        {
+          "from": "DEL-08-01",
+          "to": "DEL-06-03",
+          "DependencyIDs": [
+            "DEP-08-01-018"
+          ]
+        }
+      ],
+      "counts": {
+        "preExistingSCC001Internal": 0,
+        "preExistingNewlyEnclosed": 0,
+        "emitted": 2
+      }
+    },
+    "SCC-002": {
+      "preExistingSCC001InternalEdges": [
+        {
+          "from": "DEL-02-05",
+          "to": "DEL-03-03",
+          "DependencyIDs": [
+            "DEP-02-05-006"
+          ]
+        },
+        {
+          "from": "DEL-02-05",
+          "to": "DEL-04-05",
+          "DependencyIDs": [
+            "DEP-02-05-004"
+          ]
+        },
+        {
+          "from": "DEL-03-02",
+          "to": "DEL-05-02",
+          "DependencyIDs": [
+            "DEP-03-02-007"
+          ]
+        },
+        {
+          "from": "DEL-03-03",
+          "to": "DEL-03-02",
+          "DependencyIDs": [
+            "DEP-03-02-008"
+          ]
+        },
+        {
+          "from": "DEL-03-03",
+          "to": "DEL-03-04",
+          "DependencyIDs": [
+            "DEP-03-03-007"
+          ]
+        },
+        {
+          "from": "DEL-03-04",
+          "to": "DEL-03-02",
+          "DependencyIDs": [
+            "DEP-03-02-009",
+            "DEP-03-04-007"
+          ]
+        },
+        {
+          "from": "DEL-03-04",
+          "to": "DEL-05-02",
+          "DependencyIDs": [
+            "DEP-03-04-009"
+          ]
+        },
+        {
+          "from": "DEL-04-03",
+          "to": "DEL-04-05",
+          "DependencyIDs": [
+            "DEP-04-05-009"
+          ]
+        },
+        {
+          "from": "DEL-04-05",
+          "to": "DEL-02-05",
+          "DependencyIDs": [
+            "DEP-04-05-010"
+          ]
+        },
+        {
+          "from": "DEL-05-02",
+          "to": "DEL-04-03",
+          "DependencyIDs": [
+            "DEP-05-02-012"
+          ]
+        },
+        {
+          "from": "DEL-05-02",
+          "to": "DEL-05-03",
+          "DependencyIDs": [
+            "DEP-05-02-009"
+          ]
+        },
+        {
+          "from": "DEL-05-02",
+          "to": "DEL-05-05",
+          "DependencyIDs": [
+            "DEP-05-02-010"
+          ]
+        },
+        {
+          "from": "DEL-05-03",
+          "to": "DEL-04-05",
+          "DependencyIDs": [
+            "DEP-05-03-010"
+          ]
+        },
+        {
+          "from": "DEL-05-05",
+          "to": "DEL-05-03",
+          "DependencyIDs": [
+            "DEP-05-03-012"
+          ]
+        }
+      ],
+      "preExistingEdgesNewlyEnclosed": [
+        {
+          "from": "DEL-02-02",
+          "to": "DEL-02-01",
+          "DependencyIDs": [
+            "DEP-02-01-007",
+            "DEP-02-02-005"
+          ]
+        },
+        {
+          "from": "DEL-02-02",
+          "to": "DEL-02-03",
+          "DependencyIDs": [
+            "DEP-02-02-006",
+            "DEP-02-02-021"
+          ]
+        },
+        {
+          "from": "DEL-02-02",
+          "to": "DEL-08-03",
+          "DependencyIDs": [
+            "DEP-02-02-009"
+          ]
+        },
+        {
+          "from": "DEL-04-02",
+          "to": "DEL-04-04",
+          "DependencyIDs": [
+            "DEP-04-02-007"
+          ]
+        },
+        {
+          "from": "DEL-04-03",
+          "to": "DEL-04-02",
+          "DependencyIDs": [
+            "DEP-04-03-011"
+          ]
+        },
+        {
+          "from": "DEL-04-04",
+          "to": "DEL-08-02",
+          "DependencyIDs": [
+            "DEP-04-04-006",
+            "DEP-08-02-012"
+          ]
+        },
+        {
+          "from": "DEL-04-05",
+          "to": "DEL-04-02",
+          "DependencyIDs": [
+            "DEP-04-05-008"
+          ]
+        },
+        {
+          "from": "DEL-05-04",
+          "to": "DEL-05-02",
+          "DependencyIDs": [
+            "DEP-05-02-008",
+            "DEP-05-04-006"
+          ]
+        },
+        {
+          "from": "DEL-05-04",
+          "to": "DEL-05-05",
+          "DependencyIDs": [
+            "DEP-05-04-009"
+          ]
+        },
+        {
+          "from": "DEL-08-02",
+          "to": "DEL-02-01",
+          "DependencyIDs": [
+            "DEP-02-01-006"
+          ]
+        },
+        {
+          "from": "DEL-08-03",
+          "to": "DEL-02-01",
+          "DependencyIDs": [
+            "DEP-02-01-008"
+          ]
+        },
+        {
+          "from": "DEL-08-03",
+          "to": "DEL-02-03",
+          "DependencyIDs": [
+            "DEP-02-03-009"
+          ]
+        },
+        {
+          "from": "DEL-08-03",
+          "to": "DEL-08-02",
+          "DependencyIDs": [
+            "DEP-08-02-013"
+          ]
+        },
+        {
+          "from": "DEL-08-05",
+          "to": "DEL-08-04",
+          "DependencyIDs": [
+            "DEP-08-04-006",
+            "DEP-08-05-004",
+            "DEP-08-05-011"
+          ]
+        }
+      ],
+      "emittedEdgesInside": [
+        {
+          "from": "DEL-02-01",
+          "to": "DEL-02-04",
+          "DependencyIDs": [
+            "DEP-02-01-010",
+            "DEP-02-04-017"
+          ]
+        },
+        {
+          "from": "DEL-02-02",
+          "to": "DEL-02-04",
+          "DependencyIDs": [
+            "DEP-02-02-022",
+            "DEP-02-04-018"
+          ]
+        },
+        {
+          "from": "DEL-02-02",
+          "to": "DEL-05-02",
+          "DependencyIDs": [
+            "DEP-02-02-015",
+            "DEP-05-02-016"
+          ]
+        },
+        {
+          "from": "DEL-02-02",
+          "to": "DEL-05-04",
+          "DependencyIDs": [
+            "DEP-02-02-018"
+          ]
+        },
+        {
+          "from": "DEL-02-02",
+          "to": "DEL-08-02",
+          "DependencyIDs": [
+            "DEP-02-02-020"
+          ]
+        },
+        {
+          "from": "DEL-02-02",
+          "to": "DEL-08-04",
+          "DependencyIDs": [
+            "DEP-02-02-019"
+          ]
+        },
+        {
+          "from": "DEL-02-02",
+          "to": "DEL-08-05",
+          "DependencyIDs": [
+            "DEP-02-02-017"
+          ]
+        },
+        {
+          "from": "DEL-02-03",
+          "to": "DEL-02-04",
+          "DependencyIDs": [
+            "DEP-02-04-019"
+          ]
+        },
+        {
+          "from": "DEL-02-04",
+          "to": "DEL-02-02",
+          "DependencyIDs": [
+            "DEP-02-04-015"
+          ]
+        },
+        {
+          "from": "DEL-02-04",
+          "to": "DEL-02-03",
+          "DependencyIDs": [
+            "DEP-02-04-016"
+          ]
+        },
+        {
+          "from": "DEL-02-05",
+          "to": "DEL-02-01",
+          "DependencyIDs": [
+            "DEP-02-05-014"
+          ]
+        },
+        {
+          "from": "DEL-02-05",
+          "to": "DEL-02-03",
+          "DependencyIDs": [
+            "DEP-02-05-015"
+          ]
+        },
+        {
+          "from": "DEL-08-04",
+          "to": "DEL-03-02",
+          "DependencyIDs": [
+            "DEP-03-02-013",
+            "DEP-08-04-013"
+          ]
+        }
+      ],
+      "counts": {
+        "preExistingSCC001Internal": 14,
+        "preExistingNewlyEnclosed": 14,
+        "emitted": 13
+      }
+    }
+  },
+  "sccInternalEdgesRetired": [],
+  "isolatesBefore": [
+    "DEL-01-01",
+    "DEL-09-07",
+    "DEL-10-04",
+    "DEL-10-05"
+  ],
+  "isolatesAfter": [
+    "DEL-01-01",
+    "DEL-09-07",
+    "DEL-10-04",
+    "DEL-10-05"
+  ],
+  "bidirectionalPairsBefore": [
+    [
+      "DEL-02-05",
+      "DEL-04-05"
+    ]
+  ],
+  "bidirectionalPairsAfter": [
+    [
+      "DEL-02-02",
+      "DEL-02-04"
+    ],
+    [
+      "DEL-02-03",
+      "DEL-02-04"
+    ],
+    [
+      "DEL-02-05",
+      "DEL-04-05"
+    ],
+    [
+      "DEL-06-03",
+      "DEL-08-01"
+    ]
+  ],
+  "hubsBefore": [],
+  "hubsAfter": [],
+  "registersChangedVsHEAD": [
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-04",
+    "DEL-02-05",
+    "DEL-03-02",
+    "DEL-05-02",
+    "DEL-06-03",
+    "DEL-08-01",
+    "DEL-08-04"
+  ],
+  "rowLevelDiffVsHEAD": {
+    "DEL-02-01": {
+      "rowsAdded": [
+        "DEP-02-01-010"
+      ],
+      "rowsRemoved": [],
+      "graphFieldChanged": [],
+      "otherFieldChanged": []
+    },
+    "DEL-02-02": {
+      "rowsAdded": [
+        "DEP-02-02-015",
+        "DEP-02-02-017",
+        "DEP-02-02-018",
+        "DEP-02-02-019",
+        "DEP-02-02-020",
+        "DEP-02-02-022"
+      ],
+      "rowsRemoved": [],
+      "graphFieldChanged": [],
+      "otherFieldChanged": []
+    },
+    "DEL-02-04": {
+      "rowsAdded": [
+        "DEP-02-04-015",
+        "DEP-02-04-016",
+        "DEP-02-04-017",
+        "DEP-02-04-018",
+        "DEP-02-04-019"
+      ],
+      "rowsRemoved": [],
+      "graphFieldChanged": [],
+      "otherFieldChanged": []
+    },
+    "DEL-02-05": {
+      "rowsAdded": [
+        "DEP-02-05-014",
+        "DEP-02-05-015"
+      ],
+      "rowsRemoved": [],
+      "graphFieldChanged": [],
+      "otherFieldChanged": []
+    },
+    "DEL-03-02": {
+      "rowsAdded": [
+        "DEP-03-02-013"
+      ],
+      "rowsRemoved": [],
+      "graphFieldChanged": [],
+      "otherFieldChanged": []
+    },
+    "DEL-05-02": {
+      "rowsAdded": [
+        "DEP-05-02-016"
+      ],
+      "rowsRemoved": [],
+      "graphFieldChanged": [],
+      "otherFieldChanged": []
+    },
+    "DEL-06-03": {
+      "rowsAdded": [
+        "DEP-06-03-014"
+      ],
+      "rowsRemoved": [],
+      "graphFieldChanged": [],
+      "otherFieldChanged": []
+    },
+    "DEL-08-01": {
+      "rowsAdded": [
+        "DEP-08-01-018"
+      ],
+      "rowsRemoved": [],
+      "graphFieldChanged": [],
+      "otherFieldChanged": []
+    },
+    "DEL-08-04": {
+      "rowsAdded": [
+        "DEP-08-04-013"
+      ],
+      "rowsRemoved": [],
+      "graphFieldChanged": [],
+      "otherFieldChanged": []
+    }
+  },
+  "rowLevelTotals": {
+    "rowsAdded": 19,
+    "rowsRemoved": 0,
+    "graphFieldChanged": 0,
+    "otherFieldChanged": 0
+  },
+  "rowsAddedAreExactlyTheNineteenReservedIDs": true,
+  "nineCarriersHEADIdentitiesEqual0518Brief": true
+}

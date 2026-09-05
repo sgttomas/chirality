@@ -1,0 +1,66 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N14-TASK-DEL-08-04",
+  "parentRunId": "N14",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY",
+  "amendment": "v1.3",
+  "authorization": "D-APP-110",
+  "status": "PASS",
+  "basisCommit": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "dependenciesCsvSha256": "3eb0f762ccb4a59d7a92f64f1589a41e390680de21289289ed08f89198590aef",
+    "dependenciesIndexSha256": "b5123a21266a30b5e41892a2bc9bcc583f3fbebe3cbac481f3a4daff23ed6c2d"
+  },
+  "outputs": {
+    "dependenciesCsvSha256": "8f482b56dd1e72cebf30615cb4104d8fbc8357a375cf29add648884d02e7e515",
+    "dependenciesIndexSha256": "c5d1d094b06e4e65b0b239a9d46780adf4668d1de441143ff430442735ddd4d6",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-04_Type_2_Subagent_Governance_Bridge/_run_records/TASK_RUN_2026-09-05_1013.md",
+    "taskRunRecordSha256": "b80295114e1f3e38994f260e0de736f2c105912da11c3cb1fa88d14f848aaff9",
+    "returnSha256": "d7b3eb70f8a125bbf2b4dd3baeb91cd6eaf6bc2d2a74489eab94c72403f48034"
+  },
+  "retargeted": [],
+  "notesUpdated": [
+    "DEP-08-04-013"
+  ],
+  "workbookRulingIds": [],
+  "counts": {
+    "pre": {
+      "total": 14,
+      "active": 13,
+      "retired": 1,
+      "anchor": 4,
+      "execution": 10
+    },
+    "post": {
+      "total": 14,
+      "active": 13,
+      "retired": 1,
+      "anchor": 4,
+      "execution": 10,
+      "activeAnchor": 4,
+      "activeExecution": 9,
+      "satisfied": 6,
+      "pending": 5,
+      "tbd": 3
+    }
+  },
+  "validators": {
+    "validate_dependencies_schema": "VALID (29 columns, 14 data rows)",
+    "validate_enum": "VALID x10 (DEP-08-04-013 enum values; none changed)",
+    "implementsNodeActive": 1,
+    "otherRowsByteIdentical": true,
+    "gitDiffCheck": "clean"
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE (carried; no ID changed)",
+    "TARGET_UNRESOLVED: DEP-08-04-004 (unchanged)",
+    "CHIRALITY_INSTRUCTION_ROOT unset; instruction root resolved to the declared repository root"
+  ],
+  "sccPosture": "no cycle-participating row remains on this carrier after D-APP-110; DEP-08-04-013 is a strict edge and gates per its SatisfactionStatus",
+  "humanRulingRequired": false,
+  "carrierBytesChanged": true,
+  "descendantLaunched": false
+}

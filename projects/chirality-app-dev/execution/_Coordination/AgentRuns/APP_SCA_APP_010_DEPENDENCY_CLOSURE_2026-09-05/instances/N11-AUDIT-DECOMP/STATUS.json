@@ -1,0 +1,96 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N11-AUDIT-DECOMP",
+  "parentRunId": "N11",
+  "agentRole": "AUDIT_DECOMP",
+  "agentForm": "named dedicated Agent 2 (D-GOV-13); fresh Claude Code subagent; role not mechanically enforced",
+  "model": "claude-fable-5-1",
+  "amendment": "v1.2",
+  "ruling": "D-APP-109",
+  "runLabel": "SCA_APP_010_POST_D_APP_109",
+  "status": "WARNINGS",
+  "runStatus": "WARNINGS",
+  "overallStatus": "WARNINGS",
+  "closureReadiness": "FAIL",
+  "basisCommit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "basisWorkingTree": "thirteen carriers' _CONTEXT.md, _STATUS.md, MEMORY.md modified (N8; pre/post-images 39/39 verified); nine carriers' Dependencies.csv and _DEPENDENCIES.md modified (N9; all 26 register files hash-exact to the sealed brief); nine untracked _run_records/TASK_RUN_2026-09-05_*.md; D-APP-109 ruling and _REGISTER.md row; run-packet additions and 18 LF-normalized evidence CSVs; sibling N11-AUDIT-DEP-CLOSURE snapshot written concurrently (not read)",
+  "inputs": {
+    "decompositionPath": "projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md",
+    "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+    "companionRegisterSha256": "63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca",
+    "scopeChangePointerSha256": "b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0",
+    "activeSnapshot": "SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA",
+    "priorRunLabel": "SCA_APP_010_POST_ALIGNMENT",
+    "priorRunPath": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_ALIGNMENT_2026-09-05_0518/",
+    "priorTotals": {
+      "blocker": 0,
+      "warning": 72,
+      "info": 10
+    },
+    "registerIdentitiesVerified": "13/13 Dependencies.csv and 13/13 _DEPENDENCIES.md equal to the sealed brief and Evidence/n9_postemission_identities.json",
+    "contextFixImagesVerified": "pre_images.json 39/39 equal to f38f1448 blobs; post_images.json 39/39 equal to live files"
+  },
+  "snapshotPath": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_D_APP_109_2026-09-05_0807/",
+  "outputs": {
+    "AUDIT_DECOMP_RETURN.md": "609b7a36fb61bbb2fc01532db03d7d7bc885e3ed33baf3504c4469482af388eb",
+    "Brief.md": "4ac61beaf7a042d62ed512aca964951b332e8707eb7dda4935174ca4648c810e",
+    "Decision_Log.md": "b1dc8a14f7d1484056ce332579054a0a4184e5c80c3dbe60767d1e13be3c3dff",
+    "Decomp_Coverage_IssueLog.csv": "2f43d52826988f105a18245f9ae4e324ddb651f8fd3ffc427c12a4496601c74e",
+    "Decomp_Coverage_Matrix.csv": "47a61a4c4eb62eb5265a6af436e097b126cc6022bc1d2ad0103676dc440d6f07",
+    "Decomp_Coverage_Report.md": "3f76120f85ef7505423e25166ba44c77786813af7782e2cadf200be038c95289",
+    "QA_Report.md": "80d725fa336e1837f31328660cac19904cf6f63b2ef7a946e3826e91727560cb",
+    "RUN_SUMMARY.md": "4b8ba296f603fc76ec6d2523f5d21c60775c0242437f03fe85265abbb8399287",
+    "coverage_summary.json": "c36f1ed9dbd35c5c143e5c9c8577eef36108fb8faad8bfff013b6a7737df6074"
+  },
+  "manifest": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/COV_SCA_APP_010_POST_D_APP_109_2026-09-05_0807/MANIFEST.sha256",
+  "totals": {
+    "blocker": 0,
+    "major": 0,
+    "warning": 59,
+    "info": 25
+  },
+  "comparison": {
+    "newBlockers": 0,
+    "newMajors": 0,
+    "newWarningOccurrences": 0,
+    "warningOccurrencesResolved": 13,
+    "infoOccurrencesAdded": 15,
+    "priorCov004": "RESOLVED (thirteen carriers MATCH on Traceability, Anticipated Artifacts, Source Authority, and the DEL-08-03 ownership section; recorded as INFO PD-010-COV-004, 13 occurrences, resolution record)",
+    "priorCov005": "RESOLVED_AT_CONTEXT, carried as INFO PD-010-COV-005 (folder label retained by design)",
+    "newInfoCondition": "PD-010-COV-017: DEL-05-01 and DEL-05-05 fail the full register validator on pre-existing legacy TargetType values (byte-identical to the basis; closure audit DC-007/DC-008); corrects the 0518 run's 52/52 statement; not a filesystem change"
+  },
+  "contextFidelity": {
+    "match": 48,
+    "partial": 4,
+    "partialCarried": ["DEL-04-01", "DEL-05-01", "DEL-08-05", "DEL-09-05"],
+    "carriersMatch": 13
+  },
+  "checks": {
+    "1": "PASS",
+    "2": "PASS",
+    "3": "WARNING",
+    "4": "PASS",
+    "5": "WARNING",
+    "6": "WARNING",
+    "7": "PASS",
+    "8": "PASS",
+    "9": "SKIPPED",
+    "9b": "WARNING",
+    "10": "WARNING",
+    "11": "PASS",
+    "12": "PASS"
+  },
+  "pointerMoved": false,
+  "latestPointerUntouched": "projects/chirality-app-dev/execution/_Evaluation/DecompCoverage/_LATEST.md",
+  "writesOutsideDeclaredSet": false,
+  "networkUsed": false,
+  "descendantLaunched": false,
+  "humanRulingRequired": true,
+  "humanRulingItems": [
+    "Byte review and merge of the PR #714 second commit (N8 context alignment and N9 emission)",
+    "Acceptance of this snapshot as the _Evaluation/DecompCoverage/_LATEST.md target",
+    "SCA-APP-010 Handoff_State.md derivative-field update on disposition",
+    "Later authorizations: the four carried PARTIAL contexts (DEL-04-01, DEL-05-01, DEL-08-05, DEL-09-05) and the DEL-05-01 / DEL-05-05 register TargetType repair"
+  ],
+  "timestamp": "2026-09-05T08:33:00-06:00"
+}

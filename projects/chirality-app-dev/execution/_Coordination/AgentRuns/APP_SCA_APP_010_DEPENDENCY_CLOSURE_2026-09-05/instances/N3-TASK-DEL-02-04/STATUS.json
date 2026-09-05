@@ -1,0 +1,73 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N3-TASK-DEL-02-04",
+  "parentRunId": "N3",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REVIEWED_WRITE",
+  "status": "PASS",
+  "carrier": "DEL-02-04",
+  "carrierPath": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "branch": "claude/sca-app-010-dependency-closure",
+  "previewInstance": "N1-TASK-DEL-02-04",
+  "previewTaskRunRecordPath": "instances/N1-TASK-DEL-02-04/_run_records/TASK_RUN_2026-09-05_0102.md",
+  "previewTaskRunRecordSha256": "d64f463d1c914ee987d4bb03619d752c178a81067f70da1fd3a72eb89a7fede5",
+  "reviewSha256": "ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85",
+  "reviewVerdictForCarrier": "PASS",
+  "authorization": [
+    "FUTURE_WRITE_SET.csv DEP-005",
+    "FUTURE_WRITE_SET.csv DEP-006",
+    "HANDOFF_STATE.md N2-gate PROCEED"
+  ],
+  "preImages": {
+    "dependenciesCsvSha256": "7f986d37a117f3e9812dd978a4ab00031878be50f2c351c4693713ae087c1010",
+    "dependenciesIndexSha256": "a81ae0ee95103979cfd923f6666e74680d3d69c66a43a86418d9a55424251b1d",
+    "rows": 14
+  },
+  "outputs": {
+    "dependenciesCsvSha256": "c6bdffd1aef83f0c04764a8f8f01d5f67abc1928c9630866f6f48dd83d16ac62",
+    "dependenciesIndexSha256": "1fffa1ec5e37709dcb26f0c1b0cd611e3ae474690db63593a85e6bd2c50ba35e",
+    "postimageParity": "byte-identical (cmp) to instances/N1-TASK-DEL-02-04/POSTIMAGE_Dependencies.csv and POSTIMAGE__DEPENDENCIES.md",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0513.md",
+    "taskRunRecordSha256": "9bf8d3ab62188951e3f6571489ca0f85024d92cb3bd31c503573ed8c4292f492",
+    "returnSha256": "12856b88498e87b297b5b443ad962c84bbb130575fdad549582d32d156001692"
+  },
+  "counts": {
+    "pre": { "total": 14, "active": 14, "retired": 0, "anchor": 6, "execution": 8 },
+    "post": { "total": 16, "active": 16, "retired": 0, "anchor": 6, "execution": 10 },
+    "changes": { "ADDED": 2, "RE-EVIDENCED": 14, "REFRESHED": 0, "RETIRED": 0, "UNCHANGED": 0, "HELD": 5 }
+  },
+  "function5": {
+    "schema": "VALID (29 columns, 16 data rows)",
+    "enumChecks": "25 run, 25 VALID, 0 invalid",
+    "parentAnchorCount": 1,
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": [
+      " M Dependencies.csv",
+      " M _DEPENDENCIES.md",
+      "?? _run_records/TASK_RUN_2026-09-05_0513.md"
+    ]
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [
+      "plans/shell-redesign_2026-09-04/04_IMPLEMENTATION_PLAN.md (design basis; not emitted; App-project path per R-007)",
+      "loop/LOOP_INIT.md section 7 Evidence contract (not emitted; App-project path per R-007)"
+    ],
+    "stopConditionStep19Triggered": false
+  },
+  "reviewFindingsCarriedNotApplied": ["R-006", "R-007", "R-008"],
+  "needsHumanGraphDecision": [],
+  "warnings": [
+    "INSTRUCTION_ROOT_DECLARED_BY_BRIEF: CHIRALITY_INSTRUCTION_ROOT unset; INSTRUCTION_ROOT=REPO_ROOT taken from the sealed brief",
+    "Stray empty file /tmp/_enum_pairs.txt created outside the repository by the enum-check script and deleted in the same run"
+  ],
+  "carrierWritten": true,
+  "humanRulingRequired": false,
+  "descendantLaunched": false,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (reviewed write), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched"
+}

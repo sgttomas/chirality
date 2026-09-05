@@ -36,13 +36,14 @@ context from a K-PATH-2-contained file, never authority.
 
 ## Anticipated Artifacts
 
-`persona-composer.ts`; persona content hash tests; boot fingerprint updates
+`persona-composer.ts`; persona content hash tests; layered-root composition
+tests; roadmap-block delimiting tests; boot fingerprint updates
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-017, SOW-030 |
+| CoversScopeItems | SOW-017, SOW-030, SOW-081, SOW-084 |
 | SupportsObjectives | OBJ-004, OBJ-007 |
 | ContextEnvelopeNotes | Prompt composition slice with bounded artifacts. |
 

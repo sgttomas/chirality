@@ -1,0 +1,77 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N3-TASK-DEL-08-01",
+  "parentRunId": "N3",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REVIEWED_WRITE",
+  "carrier": "DEL-08-01",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "authorization": {
+    "futureWriteSetRows": ["DEP-021", "DEP-022"],
+    "reviewSha256": "ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85",
+    "reviewVerdict": "PASS (WARNINGS, two items to owner slate)",
+    "previewInstance": "N1-TASK-DEL-08-01",
+    "previewAmendment": "v1.1",
+    "previewRunRecordPath": "../N1-TASK-DEL-08-01/_run_records/TASK_RUN_2026-09-05_0104.md"
+  },
+  "preimages": {
+    "dependenciesCsvSha256": "a3013604e7f6d918028dfcdf80918842fd399ce1abcfe31144beedec094bf4c4",
+    "dependenciesIndexSha256": "d1cf1551c0519da3faf215cd1b3324fbefc14fbc98271b218cb1eebeca3b7c42",
+    "verified": true
+  },
+  "reviewedPostimages": {
+    "postimageDependenciesCsvSha256": "1f616ed9ed997a5cbd6e19114930e9c9055bd44313be7fe5954ac93d03c768f6",
+    "postimageDependenciesIndexSha256": "09321d20219a27017c74f99da5d84f8c2f8bed10832b008304bf09d38ca3e57a",
+    "verified": true
+  },
+  "outputs": {
+    "carrierDependenciesCsvPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/Dependencies.csv",
+    "carrierDependenciesCsvSha256": "1f616ed9ed997a5cbd6e19114930e9c9055bd44313be7fe5954ac93d03c768f6",
+    "carrierDependenciesIndexPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_DEPENDENCIES.md",
+    "carrierDependenciesIndexSha256": "09321d20219a27017c74f99da5d84f8c2f8bed10832b008304bf09d38ca3e57a",
+    "parityWithReviewedPostimages": true,
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/_run_records/TASK_RUN_2026-09-05_0514.md",
+    "taskRunRecordSha256": "6f042037acda755150465c59570a2c2bb660c9edf89243b8b1eb76ae14fd44f1",
+    "returnSha256": "254e4b645f267ec9fdb27e85d3713e7708661a3fc8b7f09a88bce99892c909df"
+  },
+  "carrierBytesChanged": true,
+  "counts": {
+    "pre": { "total": 15, "active": 15, "retired": 0, "anchor": 6, "execution": 9 },
+    "post": { "total": 20, "active": 20, "retired": 0, "anchor": 8, "execution": 12 },
+    "changes": { "added": 5, "reEvidenced": 11, "refreshed": 4, "retired": 0, "unchanged": 0, "deleted": 0, "held": 1 }
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [],
+    "step19StopConditionTriggered": false
+  },
+  "validation": {
+    "schema": "VALID (29 columns, 20 data rows)",
+    "enums": "24 pairs VALID, 0 failures",
+    "activeImplementsNode": 1,
+    "uniqueDependencyIds": true,
+    "fromDeliverableIdUniform": true,
+    "registerSchemaVersionUniform": "v3.1",
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": "two modified files and the untracked run record only",
+    "hygiene": "LF, no trailing whitespace, final newline"
+  },
+  "carriedToOwnerSlate": [
+    "H-018: DEP-08-01-018 DEL-08-01 -> DEL-06-03 UPSTREAM INTERFACE held non-emitted (owner's separate held-edge transaction)",
+    "NEEDS_HUMAN_GRAPH_DECISION 1: reciprocal DEL-08-01 -> DEL-04-04 edge, not invented (disposition C.4)",
+    "NEEDS_HUMAN_GRAPH_DECISION 2: DEP-08-01-013 TargetLocation pre-existing REF-007 Root pointer preserved (disposition C.3; REVIEW.md R-004)"
+  ],
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE (carried from preview; no ID changed)",
+    "UNRESOLVED_TARGET: DEP-08-01-015 (carried from preview)",
+    "CONTEXT_LAG: _CONTEXT.md CoversScopeItems lags the applied row (carried from preview)",
+    "HELD: DEP-08-01-018 reserved and non-emitted (H-018)"
+  ],
+  "humanRulingRequired": false,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (reviewed write), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched."
+}

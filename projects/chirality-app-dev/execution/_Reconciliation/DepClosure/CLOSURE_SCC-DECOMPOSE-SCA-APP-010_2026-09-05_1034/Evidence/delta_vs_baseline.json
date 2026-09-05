@@ -1,0 +1,94 @@
+{
+  "baseline": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/Evidence/baseline_closure",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "metrics": {
+    "total_files": {
+      "baseline": 52,
+      "live": 52
+    },
+    "total_rows": {
+      "baseline": 580,
+      "live": 654
+    },
+    "anchor_rows": {
+      "baseline": 249,
+      "live": 273
+    },
+    "execution_rows": {
+      "baseline": 331,
+      "live": 381
+    },
+    "schema_valid": {
+      "baseline": 52,
+      "live": 52
+    },
+    "schema_invalid": {
+      "baseline": 0,
+      "live": 0
+    },
+    "implements_node_present": {
+      "baseline": 52,
+      "live": 52
+    },
+    "implements_node_missing": {
+      "baseline": 0,
+      "live": 0
+    },
+    "evidence_populated": {
+      "baseline": 580,
+      "live": 654
+    },
+    "evidence_total": {
+      "baseline": 580,
+      "live": 654
+    },
+    "graph_nodes": {
+      "baseline": 46,
+      "live": 48
+    },
+    "graph_edges": {
+      "baseline": 99,
+      "live": 119
+    },
+    "orphan_count": {
+      "baseline": 6,
+      "live": 4
+    },
+    "scc_count": {
+      "baseline": 1,
+      "live": 0
+    },
+    "scc_sizes": {
+      "baseline": [
+        9
+      ],
+      "live": []
+    },
+    "hub_count": {
+      "baseline": 0,
+      "live": 0
+    },
+    "bidirectional_pair_count": {
+      "baseline": 1,
+      "live": 0
+    },
+    "normalization_count": {
+      "baseline": 0,
+      "live": 0
+    }
+  },
+  "baselineSCC": [
+    [
+      "DEL-02-05",
+      "DEL-03-02",
+      "DEL-03-03",
+      "DEL-03-04",
+      "DEL-04-03",
+      "DEL-04-05",
+      "DEL-05-02",
+      "DEL-05-03",
+      "DEL-05-05"
+    ]
+  ],
+  "liveSCCs": []
+}

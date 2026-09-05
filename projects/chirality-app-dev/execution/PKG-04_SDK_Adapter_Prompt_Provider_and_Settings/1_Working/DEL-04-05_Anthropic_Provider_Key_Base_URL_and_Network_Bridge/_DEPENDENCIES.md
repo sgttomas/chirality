@@ -43,12 +43,12 @@ TBD - no accepted dependency edges have been extracted yet.
 | DEP-04-05-007 | EXECUTION | PREREQUISITE | UPSTREAM | DEL-04-01 | ACTIVE | `Procedure.md` |
 | DEP-04-05-008 | EXECUTION | INTERFACE | UPSTREAM | DEL-04-02 | ACTIVE | `Specification.md` |
 | DEP-04-05-009 | EXECUTION | INTERFACE | DOWNSTREAM | DEL-04-03 | ACTIVE | `Specification.md` |
-| DEP-04-05-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-05 | ACTIVE | `Specification.md` |
+| DEP-04-05-010 | EXECUTION | INTERFACE | UPSTREAM | DEL-02-05-KEY_STATUS_CONTRACT | ACTIVE | `Specification.md` |
 | DEP-04-05-011 | EXECUTION | INTERFACE | UPSTREAM | DEL-05-03 | RETIRED | `Specification.md` |
 | DEP-04-05-012 | EXECUTION | CONSTRAINT | UPSTREAM | REF-006 | RETIRED | `Procedure.md` |
 | DEP-04-05-013 | EXECUTION | CONSTRAINT | UPSTREAM | REF-002 docs/CONTRACT.md K-NET-1 accepted endpoint set and K-KEY-1 | ACTIVE | `ScopeOfWork.md` |
 
-Counts: 13 rows total (11 ACTIVE, 2 RETIRED); 6 ANCHOR, 7 EXECUTION. (Corrected 2026-07-18; recounted 2026-09-03 after DEP-04-05-013; see Run Notes.)
+Counts: 13 rows total (11 ACTIVE, 2 RETIRED); 6 ANCHOR, 7 EXECUTION. (Corrected 2026-07-18; recounted 2026-09-03 after DEP-04-05-013; unchanged by the 2026-09-05 D-APP-110 decompose, which re-targeted one row without adding, retiring, or reclassifying any; see Run Notes.)
 
 ## Lifecycle Summary
 
@@ -75,13 +75,31 @@ Counts: 13 rows total (11 ACTIVE, 2 RETIRED); 6 ANCHOR, 7 EXECUTION. (Corrected 
 - A2-B / SCC posture: no objective-relative feedback edge was added or linearized; the post-application audit's nine-node SCC remains a warning-bearing derivative finding.
 - Schema validation: `python3 tools/validation/validate_dependencies_schema.py Dependencies.csv` PASS after the append; see `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/DEPENDENCY_REFRESH.md`.
 
+## Run Notes - 2026-09-05 D-APP-110 SCC decompose (UPDATE, one row re-targeted)
+
+- `TASK + dependency-extract` apply run by instance `N14-TASK-DEL-04-05` of `execution/_Coordination/AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` (sealed brief; parent HELP_HUMAN); `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; run record `_run_records/TASK_RUN_2026-09-05_1013.md`.
+- Authority: owner ruling D-APP-110 (`_DECISIONS/D-APP-110_RULING_SCA_APP_010_SCC_DECOMPOSE_2026-09-05.md`), amendment v1.3, workbook `SCC_DECOMPOSE_RULINGS.csv`; move basis `docs/CYCLE_DRIVEN_RESOLUTION.md` section 2.3 `decompose` in the `SCC-SAFE-MOVES-001` form.
+- DECOMPOSE under D-APP-110 (SD-001): DEP-04-05-010 now targets `DEL-02-05-KEY_STATUS_CONTRACT` (`TargetType=DOCUMENT`; `TargetLocation` at DEL-02-05 `ScopeOfWork.md#CLM-003`; anchor verified present, with CLM-010 DEL-02-05-R03). The coarse deliverable edge `DEL-04-05->DEL-02-05` (cycle 39) is replaced by the document-scoped contract; the deliverable relation is preserved in the row's `Notes`; `LastSeen` refreshed to 2026-09-05; `DependencyType`, `Direction`, evidence, maturity, `SatisfactionStatus` (`TBD`), and `Status` (`ACTIVE`) unchanged.
+- Task B (resolution notes on other D-APP-109 rows held here): none — this carrier holds no other D-APP-109 rows, so no `RESOLVED 2026-09-05` note was appended.
+- Every other row is byte-identical; no row added, retired, or reordered. This file keeps no per-target-type tally, so ACTIVE, RETIRED, class, and SatisfactionStatus counts are unchanged (ACTIVE 11 / RETIRED 2; ANCHOR 6 / EXECUTION 7; PENDING 1 / SATISFIED 7 / TBD 3).
+- Decomposition: `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` found at the pinned identity SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present. `DependencyID` values unique.
+- Function 5: `validate_dependencies_schema.py Dependencies.csv` PASS; `validate_enum.py TARGET_TYPE DOCUMENT` PASS; `TargetDeliverableID` empty for the DOCUMENT target per schema rule; `git diff --check` clean.
+
 ## Run History
 
 | Timestamp | Mode | Strictness | Decomposition | Warnings | ACTIVE Counts |
 |---|---|---|---|---|---|
 | 2026-05-20T19:35:58-0600 | UPDATE | CONSERVATIVE | `execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md` | SOURCE_STATE REF-006 HASH_MISMATCH | ANCHOR=6; EXECUTION=6 |
 | 2026-09-03T00:00:00-06:00 | UPDATE (additive, one row) | CONSERVATIVE | applied `d6f6cadb2` SHA-256 `932b890e…168716f` | PROJECT_ID_FORMAT_PROFILE; existing rows preserved without LastSeen refresh | ANCHOR=6; EXECUTION=5; ACTIVE=11; RETIRED=2 |
+| 2026-09-05T10:13-0600 (D-APP-110 decompose) | UPDATE | CONSERVATIVE | found at the pinned identity SHA-256 `c7c05169…771e61` | none; one row (DEP-04-05-010) re-targeted to a DOCUMENT contract node, all other rows byte-identical | ANCHOR=6; EXECUTION=5; ACTIVE=11; RETIRED=2 |
 
 ## D-APP-56 R5 P40 register annotation (2026-07-12)
 
 REF-006 is MATCH under D-APP-38. Any HASH_MISMATCH token retained in the dated Run History is extraction provenance, not current dependency state. Structured-row status and summary counts above reflect Dependencies.csv after UPD-077..079.
+
+## Downstream Handoff Notes
+
+- As of 2026-09-05 (D-APP-110 decompose, SD-001) this carrier no longer holds any cycle-participating row: `DEP-04-05-010` is a document-scoped `DOCUMENT` edge to `DEL-02-05-KEY_STATUS_CONTRACT`, and every remaining EXECUTION row is a strict edge of the acyclic approved deliverable graph.
+- Every row gates per its `SatisfactionStatus`; no row in this register is held non-gating pending SCC resolution.
+- The resulting acyclic strict graph is recorded by the fresh `AUDIT_DEP_CLOSURE` snapshot produced under the same run (node N16); acceptance of that snapshot as the loop's DepClosure pointer remains a separate owner act.

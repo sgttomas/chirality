@@ -1,0 +1,7 @@
+cycle-participating edges: 43; eligible (no PREREQUISITE row): 33
+size 1: none after 33 combinations
+size 2: none after 528 combinations
+size 3: none after 5456 combinations
+size 4: none after 40920 combinations
+size 5: found after 4726 combinations
+size 5 (full enumeration, N15 reproduction): 2 acyclic-making sets among 237336 combinations; the alternative substitutes DEL-08-01->DEL-06-03 (DEP-08-01-018) for DEL-06-03->DEL-08-01 (DEP-06-03-014)

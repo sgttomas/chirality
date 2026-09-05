@@ -1,0 +1,187 @@
+# _CONTEXT.md, ScopeOfWork.md Gate-5 section, Scope Ledger reverse view, _REFERENCES.md against the applied rows (scratchpad helper surfaces.py sha256 8d4d57f7a13c2114...)
+=== DEL-02-01 L307
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems OK | SupportsObjectives OK
+  Ledger SOW-001 L404 names carrier
+  Ledger SOW-005 L408 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-02-01
+  STATUS H1 Status: DEL-02-01
+  REF applied ids True | REF H1 References: DEL-02-01 Woven Dialogue Shell and Compatibility Navigation
+=== DEL-02-02 L308
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems MISMATCH {'SOW-006', 'SOW-007'} vs ['SOW-006', 'SOW-081', 'SOW-082'] | SupportsObjectives OK
+  Ledger SOW-006 L409 names carrier
+  Ledger SOW-081 L484 names carrier
+  Ledger SOW-082 L485 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-02-02
+  STATUS H1 Status: DEL-02-02
+  REF applied ids True | REF H1 References: DEL-02-02 Right-Panel Coordination, Workflows, and Proposal UX
+=== DEL-02-04 L310
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems OK | SupportsObjectives OK
+  Ledger SOW-004 L407 names carrier
+  Ledger SOW-008 L411 names carrier
+  Ledger SOW-016 L419 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-02-04
+  STATUS H1 Status: DEL-02-04
+  REF applied ids True | REF H1 References: DEL-02-04 Dialogue Toolkit, Context, and Local UI State
+=== DEL-02-05 L311
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems OK | SupportsObjectives OK
+  Ledger SOW-013 L416 names carrier
+  Ledger SOW-019 L422 names carrier
+  Ledger SOW-023 L426 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-02-05
+  STATUS H1 Status: DEL-02-05
+  REF applied ids True | REF H1 References: DEL-02-05 API Key UI and Runtime Feedback
+=== DEL-03-02 L318
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems MISMATCH {'SOW-010', 'SOW-038', 'SOW-009', 'SOW-011'} vs ['SOW-009', 'SOW-010', 'SOW-011', 'SOW-038', 'SOW-083'] | SupportsObjectives OK
+  Ledger SOW-009 L412 names carrier
+  Ledger SOW-010 L413 names carrier
+  Ledger SOW-011 L414 names carrier
+  Ledger SOW-038 L441 names carrier
+  Ledger SOW-083 L486 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-03-02
+  STATUS H1 Status: DEL-03-02
+  REF applied ids True | REF H1 References: DEL-03-02 Thin TurnEngine and Session Locking
+=== DEL-04-04 L329
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems MISMATCH {'SOW-030', 'SOW-017'} vs ['SOW-017', 'SOW-030', 'SOW-081', 'SOW-084'] | SupportsObjectives OK
+  Ledger SOW-017 L420 names carrier
+  Ledger SOW-030 L433 names carrier
+  Ledger SOW-081 L484 names carrier
+  Ledger SOW-084 L487 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-04-04
+  STATUS H1 Status: DEL-04-04
+  REF applied ids True | REF H1 References: DEL-04-04 PersonaComposer from Instruction Root
+=== DEL-05-02 L337
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems MISMATCH {'SOW-039', 'SOW-015', 'SOW-014'} vs ['SOW-014', 'SOW-015', 'SOW-039', 'SOW-082'] | SupportsObjectives OK
+  Ledger SOW-014 L417 names carrier
+  Ledger SOW-015 L418 names carrier
+  Ledger SOW-039 L442 names carrier
+  Ledger SOW-082 L485 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-05-02
+  STATUS H1 Status: DEL-05-02
+  REF applied ids True | REF H1 References: DEL-05-02 HarnessEvent Schema and Append-Only JSONL
+=== DEL-06-03 L348
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems MISMATCH {'SOW-048', 'SOW-050', 'SOW-064'} vs ['SOW-048', 'SOW-050', 'SOW-064', 'SOW-082'] | SupportsObjectives OK
+  Ledger SOW-048 L451 names carrier
+  Ledger SOW-050 L453 names carrier
+  Ledger SOW-064 L467 names carrier
+  Ledger SOW-082 L485 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-06-03
+  STATUS H1 Status: DEL-06-03
+  REF applied ids True | REF H1 References: DEL-06-03 Initial Chirality MCP Read Tools
+=== DEL-07-01 L357
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems MISMATCH {'SOW-027', 'SOW-075', 'SOW-002'} vs ['SOW-002', 'SOW-027', 'SOW-075', 'SOW-084'] | SupportsObjectives OK
+  Ledger SOW-002 L405 names carrier
+  Ledger SOW-027 L430 names carrier
+  Ledger SOW-075 L478 names carrier
+  Ledger SOW-084 L487 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-07-01
+  STATUS H1 Status: DEL-07-01
+  REF applied ids True | REF H1 References: DEL-07-01 Working Root Validation and Instruction Root Protection
+=== DEL-07-03 L359
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems MISMATCH {'SOW-026'} vs ['SOW-026', 'SOW-081'] | SupportsObjectives OK
+  Ledger SOW-026 L429 names carrier
+  Ledger SOW-081 L484 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-07-03
+  STATUS H1 Status: DEL-07-03
+  REF applied ids True | REF H1 References: DEL-07-03 Deliverable Metadata and Document Kit Contracts
+=== DEL-08-01 L368
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems MISMATCH {'SOW-073', 'SOW-030', 'SOW-031'} vs ['SOW-030', 'SOW-031', 'SOW-073', 'SOW-082', 'SOW-084'] | SupportsObjectives OK
+  Ledger SOW-030 L433 names carrier
+  Ledger SOW-031 L434 names carrier
+  Ledger SOW-073 L476 names carrier
+  Ledger SOW-082 L485 names carrier
+  Ledger SOW-084 L487 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-08-01
+  STATUS H1 Status: DEL-08-01
+  REF applied ids True | REF H1 References: DEL-08-01 Instruction Root Packaging and Agent Conformance
+=== DEL-08-03 L370
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems OK | SupportsObjectives OK
+  Ledger SOW-007 L410 names carrier
+  Ledger SOW-026 L429 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-08-03
+  STATUS H1 Status: DEL-08-03
+  REF applied ids True | REF H1 References: DEL-08-03 Pipeline Category and Task Scope Dispatch
+=== DEL-08-04 L371
+  CTX DeliverableName OK
+  CTX PackageName OK
+  CTX Type OK | ContextEnvelope OK | Revision v3.2
+  CTX DeliverableScope==Description OK
+  CTX CoversScopeItems MISMATCH {'SOW-063'} vs ['SOW-063', 'SOW-083'] | SupportsObjectives OK
+  Ledger SOW-063 L466 names carrier
+  Ledger SOW-083 L486 names carrier
+  SOW G5 heading OK | type OK | row OK | responsibility==Description OK
+  SOW G5 outputs==ArtifactsOutputs OK
+  SOW H1 Scope of Work — DEL-08-04
+  STATUS H1 Status: DEL-08-04
+  REF applied ids True | REF H1 References: DEL-08-04 Type 2 Subagent Governance Bridge

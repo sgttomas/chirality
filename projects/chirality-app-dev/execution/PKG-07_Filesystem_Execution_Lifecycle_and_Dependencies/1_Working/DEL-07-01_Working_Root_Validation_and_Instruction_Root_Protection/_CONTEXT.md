@@ -34,13 +34,14 @@ Filesystem policy slice with security acceptance.
 
 ## Anticipated Artifacts
 
-Root validation tests; path policy helpers; instruction-root protection fixtures
+Root validation tests; path policy helpers; instruction-root protection
+fixtures; organisation-layer pin and protection fixtures
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-002, SOW-027, SOW-075 |
+| CoversScopeItems | SOW-002, SOW-027, SOW-075, SOW-084 |
 | SupportsObjectives | OBJ-006, OBJ-008 |
 | ContextEnvelopeNotes | Filesystem policy slice with security acceptance. |
 

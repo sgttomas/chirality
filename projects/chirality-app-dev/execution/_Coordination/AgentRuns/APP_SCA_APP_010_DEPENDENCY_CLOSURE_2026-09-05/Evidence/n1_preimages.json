@@ -1,0 +1,201 @@
+{
+  "basis": "d66395d101143df68d956984f7ab93f5027418ec",
+  "decomposition_sha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "carriers": [
+    {
+      "id": "N1-TASK-DEL-02-01",
+      "carrier": "DEL-02-01",
+      "row_line": 307,
+      "dep_write_ids": [
+        "DEP-001",
+        "DEP-002"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "5ca2d96b48ac962d4a9f9afef8bc07957fcac81889fc1ba441b94d899bcacd99",
+        "md": "f60ddd1687e169bf3c0904f361d09601f4c9e7fa6a0966f939a92e90f8c83109",
+        "rows": 8
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-02-02",
+      "carrier": "DEL-02-02",
+      "row_line": 308,
+      "dep_write_ids": [
+        "DEP-003",
+        "DEP-004"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "ccc6f4018a0c61eb3ff59105080bf3f6cd807c2a326a67d2a5f4d5998cafeb92",
+        "md": "77360b1b8f8ba69f594ba7ab10c013d21a01836d0d78fa0ae105e3867931a925",
+        "rows": 9
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-02-04",
+      "carrier": "DEL-02-04",
+      "row_line": 310,
+      "dep_write_ids": [
+        "DEP-005",
+        "DEP-006"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "7f986d37a117f3e9812dd978a4ab00031878be50f2c351c4693713ae087c1010",
+        "md": "a81ae0ee95103979cfd923f6666e74680d3d69c66a43a86418d9a55424251b1d",
+        "rows": 14
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-02-05",
+      "carrier": "DEL-02-05",
+      "row_line": 311,
+      "dep_write_ids": [
+        "DEP-007",
+        "DEP-008"
+      ],
+      "scc_001_member": true,
+      "pre_images": {
+        "csv": "c39a3d533bf5f811f35d3a3b7fbfd839e7c1baedc28607cc4d59ad9eb200b8d0",
+        "md": "e172982d34981ce52f04d8776c53d2a09712559ae648f660923b4457d0fc080e",
+        "rows": 10
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-03-02",
+      "carrier": "DEL-03-02",
+      "row_line": 318,
+      "dep_write_ids": [
+        "DEP-009",
+        "DEP-010"
+      ],
+      "scc_001_member": true,
+      "pre_images": {
+        "csv": "f8efee202c2e4f35fb3fea34b536b7d339abd52a1940a099320dff15f89758dd",
+        "md": "98fe53bec8b3b1c5d4199bd68e27c00f84a3d570034c8749bb650fbed44c9a40",
+        "rows": 10
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-04-04",
+      "carrier": "DEL-04-04",
+      "row_line": 329,
+      "dep_write_ids": [
+        "DEP-011",
+        "DEP-012"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "23a9370244149417f785706608f5507ef091b45d62a34365dfbdd0ce01a32850",
+        "md": "d418bf2e51b0e73676429af96a6cb94943aba147907d688c53588e64ee768c2d",
+        "rows": 8
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-05-02",
+      "carrier": "DEL-05-02",
+      "row_line": 337,
+      "dep_write_ids": [
+        "DEP-013",
+        "DEP-014"
+      ],
+      "scc_001_member": true,
+      "pre_images": {
+        "csv": "27ede0704416b2c0ffafeefd77fcd31a27ba7dc7d110c36bb26a90f876bb6269",
+        "md": "f89e5f40240fac304aca71c49cfca965b38417693c4013e5717866152ff5b9af",
+        "rows": 13
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-06-03",
+      "carrier": "DEL-06-03",
+      "row_line": 348,
+      "dep_write_ids": [
+        "DEP-015",
+        "DEP-016"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "b9802d035476e9781c89e71cb49415bcb98206c0ad310420ae61b1bf8361918c",
+        "md": "9dc38450f2525d2d59cd8356b94e4331ec789b0de41d070b3ebc451dbbc18e9c",
+        "rows": 9
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-07-01",
+      "carrier": "DEL-07-01",
+      "row_line": 357,
+      "dep_write_ids": [
+        "DEP-017",
+        "DEP-018"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "0584937814e740879a05178547536c49ba9d03ef36bbbc0e6a83c15b4726224c",
+        "md": "a40fe07268822d3247b0f8790c09f91b4a60857f8ab55c71b7e2640b7af2f5c9",
+        "rows": 5
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-07-03",
+      "carrier": "DEL-07-03",
+      "row_line": 359,
+      "dep_write_ids": [
+        "DEP-019",
+        "DEP-020"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "20d27430ebc0e7069a39820b692fb97068396600c1a9cd5fcceb757786a30487",
+        "md": "874220f71f851ff64eaabc387212ba40dc3231ce6348926b5c3da6400eebad77",
+        "rows": 10
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-08-01",
+      "carrier": "DEL-08-01",
+      "row_line": 368,
+      "dep_write_ids": [
+        "DEP-021",
+        "DEP-022"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "a3013604e7f6d918028dfcdf80918842fd399ce1abcfe31144beedec094bf4c4",
+        "md": "d1cf1551c0519da3faf215cd1b3324fbefc14fbc98271b218cb1eebeca3b7c42",
+        "rows": 15
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-08-03",
+      "carrier": "DEL-08-03",
+      "row_line": 370,
+      "dep_write_ids": [
+        "DEP-023",
+        "DEP-024"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "263656d18eee89339ceeca1f3cde386f88b98ba8369a7f21d96248eedd35d3fe",
+        "md": "ec4d6861aa2662326a7ede29c920825a8df9e299d307a4487d604dbb2d2a7b3f",
+        "rows": 10
+      }
+    },
+    {
+      "id": "N1-TASK-DEL-08-04",
+      "carrier": "DEL-08-04",
+      "row_line": 371,
+      "dep_write_ids": [
+        "DEP-025",
+        "DEP-026"
+      ],
+      "scc_001_member": false,
+      "pre_images": {
+        "csv": "1f7c06a2d49689c9dc3ea7fb778c6763ab96b3ea929426e5d9269c3198612400",
+        "md": "e4c5ec7bc2efcffb534a04abf34054b64345ba10c075fb379ef833926199360b",
+        "rows": 11
+      }
+    }
+  ]
+}

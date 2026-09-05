@@ -1,0 +1,63 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N9-TASK-DEL-03-02",
+  "parentRunId": "N9",
+  "orchestrationRunId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "D_APP_109_EMISSION",
+  "amendment": "v1.2",
+  "ruling": "D-APP-109",
+  "applyEdits": true,
+  "status": "PASS",
+  "basisCommit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "carrier": "DEL-03-02",
+  "sccMember": "SCC-001",
+  "preImages": {
+    "dependenciesCsvSha256": "be877cffd700069afae17a3f604af28bc2e666c5608b833aff814ce51c291458",
+    "dependenciesIndexSha256": "dffe9d126bebeb967dc9e0a109c528b44b22b7daf374cda4079f3fc349da7eb8",
+    "verified": true
+  },
+  "outputs": {
+    "dependenciesCsvSha256": "0e65c1a38383958ce83d4c77b6671efd24651ff6affc7d4694aaee4304c416ad",
+    "dependenciesIndexSha256": "0144084fff0696e0854e919ca831cf2ea0c3779d1c95ff81fb24a00daad50051",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-03_Runtime_Engine_Contract_and_Turn_Lifecycle/1_Working/DEL-03-02_Thin_TurnEngine_and_Session_Locking/_run_records/TASK_RUN_2026-09-05_0756.md",
+    "taskRunRecordSha256": "b2c47cac8fb71939be0e5d1ad2244159f805a4b20ac4cdad04143165a742fc95"
+  },
+  "emitted": ["DEP-03-02-013"],
+  "heldIds": ["H-015"],
+  "counts": {
+    "pre": { "total": 14, "active": 14, "retired": 0, "anchor": 7, "execution": 7, "satisfied": 5, "pending": 9, "tbd": 0 },
+    "post": { "total": 15, "active": 15, "retired": 0, "anchor": 7, "execution": 8, "satisfied": 5, "pending": 10, "tbd": 0 }
+  },
+  "changes": {
+    "added": ["DEP-03-02-013"],
+    "changed": [],
+    "retired": [],
+    "deleted": [],
+    "existingRowsByteIdentical": true
+  },
+  "validators": {
+    "validate_dependencies_schema": "VALID (29 columns, 15 data rows)",
+    "validate_enum": "10/10 VALID",
+    "implementsNodeActiveCount": 1,
+    "evidenceResolvesToLiveBytes": true,
+    "gitDiffCheck": "clean",
+    "whitespace": "LF; no trailing whitespace; final newline"
+  },
+  "cycleParticipating": {
+    "dependencyIds": ["DEP-03-02-013"],
+    "scc": "enlarged SCC-001",
+    "gating": false,
+    "resolvedBy": "none; pending a recorded decompose, invert, merge, or cut move"
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs; no ID changed",
+    "TBD_IMPLEMENTATION_PATHS: Root locations for DEP-03-02-014 and DEP-03-02-015 are TBD by convention",
+    "CONVENTION: TargetLocation uses the carrier's path:<line> form (:371), not the brief example's #L<n> form"
+  ],
+  "humanRulingRequired": false,
+  "carrierWritten": true,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (D-APP-109 emission), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched."
+}

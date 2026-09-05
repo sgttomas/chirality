@@ -1,0 +1,10 @@
+corpus current_version: v20
+  [MATCH] docs/DIRECTIVE.md            snapshot=50b816d5be74 live=50b816d5be74
+  [MATCH] docs/CONTRACT.md             snapshot=51ec0d4872dd live=51ec0d4872dd
+  [MATCH] docs/SPEC.md                 snapshot=c2fb9ecbbc37 live=c2fb9ecbbc37
+  [MATCH] docs/TYPES.md                snapshot=a8cdc94d39e1 live=a8cdc94d39e1
+  [MATCH] docs/PLAN.md                 snapshot=3741bb7ec389 live=3741bb7ec389
+  [MATCH] docs/PRD.md                  snapshot=87ced649beae live=87ced649beae
+  [MATCH] AGENT_SOFTWARE_DECOMP.md     snapshot=ad849d9a9274 live=ad849d9a9274
+  [MATCH] AGENT_DOMAIN_ENGINE.md       snapshot=bb2df7178d7b live=bb2df7178d7b
+no drift.

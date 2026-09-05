@@ -1,0 +1,62 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N9-TASK-DEL-05-02",
+  "parentRunId": "N9",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY_D-APP-109_HELD_ROW_EMISSION",
+  "amendment": "v1.2",
+  "ruling": "D-APP-109",
+  "status": "PASS",
+  "basisCommit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "branch": "claude/sca-app-010-dependency-closure",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "preImages": {
+    "dependenciesCsvSha256": "7a6da98003c9fc93caf3c602c09e242abb6105e90a1e45cff25e67d4a18f5380",
+    "dependenciesIndexSha256": "8823be430d59a5060bff63a17d1474ff48c09ddc77a2ee7006dec0c7a91539a0",
+    "matched": true
+  },
+  "outputs": {
+    "dependenciesCsvSha256": "c26d4653b0eacd1eea65bd23ba3b14e59c4749bb18a853f82cc8e3fdf949879d",
+    "dependenciesIndexSha256": "3c86ae3fbc52b5c84264c8656f58c7ba0decd3e52508cb07ca3aca041f4bdf51",
+    "taskRunRecordPath": "_run_records/TASK_RUN_2026-09-05_0758.md",
+    "taskRunRecordSha256": "0c8c4ef3f1f9bfd4bcdd2a4e9a99bfc343fc08883bc2524d11cdf6a735c77052",
+    "returnSha256": "b1dcb28db3ebd1155922fb6586a728adb00b09f30cf2e42aa507d042e78a37de"
+  },
+  "emitted": ["DEP-05-02-016"],
+  "heldIds": ["H-016"],
+  "counts": {
+    "pre": { "total": 15, "active": 14, "retired": 1, "anchor": 6, "execution": 9 },
+    "post": { "total": 16, "active": 15, "retired": 1, "anchor": 6, "execution": 10 },
+    "satisfactionAllRows": { "NOT_APPLICABLE": 7, "TBD": 7, "PENDING": 2 },
+    "changes": { "added": 1, "unchanged": 15, "retired": 0, "deleted": 0, "heldRemaining": 0 }
+  },
+  "validation": {
+    "schemaValidator": "VALID (29 columns, 16 data rows, rc=0)",
+    "enumValidatorRow016": "10/10 VALID",
+    "enumValidatorFileWide": "26 distinct checks, 0 failures",
+    "implementsNodeActive": 1,
+    "dependencyIdsUnique": true,
+    "idOrdered": true,
+    "preImageIsBytePrefixOfPostImage": true,
+    "evidenceResolvesToLiveBytes": true,
+    "gitDiffCheck": "clean",
+    "lineEndings": "LF; no trailing whitespace; final newline"
+  },
+  "sccPosture": {
+    "cycleParticipatingRows": ["DEP-05-02-016"],
+    "scc": "the enlarged SCC-001",
+    "gating": "non-gating until the SCC is resolved by a recorded decompose, invert, merge, or cut move",
+    "resolvedByThisRun": false
+  },
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs; no ID changed",
+    "CYCLE_PARTICIPATING: DEP-05-02-016 is inside an unresolved SCC after emission; non-gating pending a recorded move",
+    "CONFLICT corrected at emission: H-016 captured note said neither endpoint is an SCC-001 member; scc_summary.csv lists DEL-05-02 as a member (DEL-02-02 is not); corrected sentence written, no other captured text changed",
+    "TargetLocation follows the register's #8-deliverables section-anchor convention (all existing DELIVERABLE rows) rather than the brief's generic #L<n> form; L308 carried in Notes",
+    "EvidenceQuote verbatim once backticks around proposal.* are dropped and wrapped lines 35-36 joined (register convention; R-005 class)"
+  ],
+  "notWritten": ["_CONTEXT.md", "_STATUS.md", "MEMORY.md", "ScopeOfWork.md", "_REFERENCES.md", "instances/N1-TASK-DEL-05-02/*"],
+  "humanRulingRequired": false,
+  "descendantLaunched": false
+}

@@ -1,0 +1,1 @@
+VALID /Users/ryan/dev/chirality/.claude/worktrees/task-management-gen-pass-518da2/projects/chirality-app-dev/loop/LOOP_RECEIPTS.md: frozen through Receipt-52; versioned receipt contract satisfied

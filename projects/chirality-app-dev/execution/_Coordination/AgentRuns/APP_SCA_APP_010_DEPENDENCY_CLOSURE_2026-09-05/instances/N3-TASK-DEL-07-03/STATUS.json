@@ -1,0 +1,59 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N3-TASK-DEL-07-03",
+  "parentRunId": "N3",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REVIEWED_WRITE",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "carrier": "DEL-07-03",
+  "authorization": {
+    "futureWriteSetRows": ["DEP-019", "DEP-020"],
+    "reviewSha256": "ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85",
+    "reviewVerdict": "PASS",
+    "previewInstance": "N1-TASK-DEL-07-03"
+  },
+  "preImages": {
+    "dependenciesCsvSha256": "20d27430ebc0e7069a39820b692fb97068396600c1a9cd5fcceb757786a30487",
+    "dependenciesIndexSha256": "874220f71f851ff64eaabc387212ba40dc3231ce6348926b5c3da6400eebad77",
+    "rows": 10
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "54d8dc8cff7338b164264eee9a7dd6a48e6bd364177a38e50ee4991e166715ed",
+    "postimageDependenciesIndexSha256": "8c8fe0324138c219493cae174545d6e5b4674f6db16ba8a6700059945fbfb297",
+    "carrierDependenciesCsvPath": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/Dependencies.csv",
+    "carrierDependenciesIndexPath": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_DEPENDENCIES.md",
+    "taskRunRecordSha256": "aa38beb3e3e63f1df77ad7c6561680a5d5402820d81d5af18a4d43585eb3e0eb",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-07_Filesystem_Execution_Lifecycle_and_Dependencies/1_Working/DEL-07-03_Deliverable_Metadata_and_Document_Kit_Contracts/_run_records/TASK_RUN_2026-09-05_0513.md"
+  },
+  "counts": {
+    "total": 14,
+    "active": 14,
+    "retired": 0,
+    "anchor": 3,
+    "execution": 11,
+    "upstream": 12,
+    "downstream": 2
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [],
+    "needsHumanGraphDecision": []
+  },
+  "validators": {
+    "parity": "cmp identical for both carrier files against the reviewed post-images",
+    "schema": "VALID (29 columns, 14 data rows)",
+    "enums": "23/23 VALID",
+    "parentAnchor": "exactly one ACTIVE IMPLEMENTS_NODE",
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": "M Dependencies.csv; M _DEPENDENCIES.md; ?? _run_records/TASK_RUN_2026-09-05_0513.md"
+  },
+  "warnings": [
+    "INSTRUCTION_ROOT resolved from the sealed brief's repository root because CHIRALITY_INSTRUCTION_ROOT is unset"
+  ],
+  "humanRulingRequired": false
+}

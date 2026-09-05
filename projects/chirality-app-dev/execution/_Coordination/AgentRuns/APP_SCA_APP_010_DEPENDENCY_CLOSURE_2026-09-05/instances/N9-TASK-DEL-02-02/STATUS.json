@@ -1,0 +1,47 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N9-TASK-DEL-02-02",
+  "parentRunId": "N9",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY_D_APP_109_EMISSION",
+  "applyEdits": true,
+  "status": "PASS",
+  "authorization": "D-APP-109; AMENDMENT_v1.2_OWNER_RULING.md node N9; SCA-APP-010 FUTURE_WRITE_SET.csv DEP-003/DEP-004",
+  "basisCommit": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "carrier": "DEL-02-02",
+  "preImages": {
+    "dependenciesCsvSha256": "d4f6dad83cc9538186214b6ab9a116c85c6ae2a8578acfb5a65acd56e61c3cff",
+    "dependenciesIndexSha256": "adeb89260b62b2a86268b99505f08a6df2ea2eb98a22185961767fbad09b1df0"
+  },
+  "outputs": {
+    "dependenciesCsvSha256": "9feb11b0b1aa312eed09fa70de685c6a630f3b5fd717e2b6d774c75e336ec9a0",
+    "dependenciesIndexSha256": "2b6d3b9935c857b089a80453e5b6f1c8b18162a30c15a79024ad47499610341d",
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-02_Workbench_and_Pipeline_Selection_UX/_run_records/TASK_RUN_2026-09-05_0759.md",
+    "taskRunRecordSha256": "fb0c92af0f976661ff77ac71379d5e3d867d3874cbf7d1c333245a1feb3e6064"
+  },
+  "emitted": ["DEP-02-02-015", "DEP-02-02-017", "DEP-02-02-018", "DEP-02-02-019", "DEP-02-02-020", "DEP-02-02-022"],
+  "heldIds": ["H-002", "H-003", "H-004", "H-005", "H-006", "H-007"],
+  "counts": {
+    "pre": { "total": 16, "active": 15, "retired": 1, "anchor": 7, "execution": 9 },
+    "post": { "total": 22, "active": 21, "retired": 1, "anchor": 7, "execution": 15 },
+    "satisfaction": { "TBD": 14, "PENDING": 8 }
+  },
+  "validators": {
+    "validate_dependencies_schema": "VALID; 29 columns; 22 data rows",
+    "validate_enum": "23 values, 0 invalid",
+    "implementsNodeActive": 1,
+    "evidenceResolvesLive": true,
+    "preExistingRowsByteIdentical": true,
+    "gitDiffCheck": "clean"
+  },
+  "sccPosture": "CYCLE_PARTICIPATING_NON_GATING: six rows inside the enlarged SCC-001 pending a recorded decompose/invert/merge/cut move; N11 AUDIT_DEP_CLOSURE records the picture",
+  "warnings": [
+    "INSTRUCTION_ROOT_ENV_UNSET: CHIRALITY_INSTRUCTION_ROOT not exported; resolved to REPO_ROOT from the sealed brief",
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs",
+    "CONTEXT_SOW_007_RESIDUE and V3_01_ROLE_ENTRY_SEATING_CONFLICT carried; _CONTEXT.md not read (concurrent N8 write)",
+    "STALE_CROSSREF_REPORTED: Notes of DEP-02-02-011 and DEP-02-02-014 still describe DEP-02-02-015 as held/reserved; rows kept byte-identical per brief"
+  ],
+  "humanRulingRequired": false
+}

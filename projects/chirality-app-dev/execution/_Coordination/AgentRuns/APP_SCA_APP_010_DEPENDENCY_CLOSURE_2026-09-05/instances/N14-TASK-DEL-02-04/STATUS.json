@@ -1,0 +1,52 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "instanceId": "N14-TASK-DEL-02-04",
+  "runId": "APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05",
+  "parentRunId": "N14",
+  "parent": "HELP_HUMAN",
+  "role": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "APPLY",
+  "authorization": "D-APP-110; AMENDMENT_v1.3_SCC_DECOMPOSE.md N14; SCC_DECOMPOSE_RULINGS.csv SD-003, SD-004, SD-006",
+  "status": "PASS",
+  "carrier": "DEL-02-04",
+  "carrierPath": "projects/chirality-app-dev/execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State",
+  "basisHead": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "decompositionSha256": "c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61",
+  "contractAnchorVerified": "ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling) (L68; acceptance obligation 1 at L100)",
+  "preImages": {
+    "Dependencies.csv": "abaf816695c2c6f13adfe03ad85b31ff0cbdef2db06b36873e519060f306bcb2",
+    "_DEPENDENCIES.md": "1cefdede31815de94d3f18b2e5033fbc1ebf17722f4a4d53c8e22f5eb0ec23ca"
+  },
+  "outputs": {
+    "Dependencies.csv": "29694c0953ecb6169cb245339803f72e7928c03378176efd4b46b0157450eb18",
+    "_DEPENDENCIES.md": "4f878d5e1096f3a2fac2116c96928c061515a11b2146ff65ad13862e3d8e9624",
+    "runRecord": "_run_records/TASK_RUN_2026-09-05_1012.md",
+    "runRecordSha256": "617810e22bf9d10b8eb139267ac68705a8570b1de9d6b2c2e4a93ed57bcc7180"
+  },
+  "retargeted": ["DEP-02-04-017", "DEP-02-04-019", "DEP-02-04-018"],
+  "retargetedRulings": {"DEP-02-04-017": "SD-003", "DEP-02-04-019": "SD-004", "DEP-02-04-018": "SD-006"},
+  "newTargetRefID": "DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1",
+  "notesUpdated": ["DEP-02-04-015", "DEP-02-04-016"],
+  "counts": {
+    "pre": {"total": 21, "active": 21, "retired": 0, "anchor": 6, "execution": 15, "targetDeliverable": 6, "targetDocument": 7},
+    "post": {"total": 21, "active": 21, "retired": 0, "anchor": 6, "execution": 15, "targetDeliverable": 3, "targetDocument": 10},
+    "satisfactionPost": {"NOT_APPLICABLE": 6, "SATISFIED": 7, "PENDING": 7, "TBD": 1}
+  },
+  "function5": {
+    "schema": "VALID (29 columns, 21 data rows)",
+    "enums": "TARGET_TYPE DOCUMENT VALID; 27/27 distinct values VALID",
+    "documentRowsTargetDeliverableIdEmpty": true,
+    "implementsNodeActive": 1,
+    "uniqueIds": true,
+    "idOrderKept": true,
+    "fromDeliverableIdMatch": true,
+    "otherRowsByteIdentical": true,
+    "gitDiffCheck": "clean",
+    "hygiene": "LF only; no trailing whitespace; final newline"
+  },
+  "warnings": ["PROJECT_ID_FORMAT_PROFILE", "INSTRUCTION_ROOT_DECLARED_BY_BRIEF"],
+  "cycleParticipating": "none after the move; the D-APP-109 pairs 015/018 and 016/019 are dissolved by the DOCUMENT re-targeting of 017..019",
+  "writes": ["Dependencies.csv", "_DEPENDENCIES.md", "_run_records/TASK_RUN_2026-09-05_1012.md", "instances/N14-TASK-DEL-02-04/RETURN.md", "instances/N14-TASK-DEL-02-04/STATUS.json"],
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (D-APP-110 decompose), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched"
+}

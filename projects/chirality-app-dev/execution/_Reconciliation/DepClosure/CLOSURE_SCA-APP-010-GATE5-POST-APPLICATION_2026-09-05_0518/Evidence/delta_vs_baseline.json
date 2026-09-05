@@ -1,0 +1,358 @@
+{
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "basisReconstruction": {
+    "registers": 52,
+    "graph_nodes": 46,
+    "graph_edges": 99,
+    "isolates": [
+      "DEL-01-01",
+      "DEL-01-03",
+      "DEL-02-04",
+      "DEL-09-07",
+      "DEL-10-04",
+      "DEL-10-05"
+    ],
+    "scc": [
+      [
+        "DEL-02-05",
+        "DEL-03-02",
+        "DEL-03-03",
+        "DEL-03-04",
+        "DEL-04-03",
+        "DEL-04-05",
+        "DEL-05-02",
+        "DEL-05-03",
+        "DEL-05-05"
+      ]
+    ],
+    "bidirectional_pairs": [
+      [
+        "DEL-02-05",
+        "DEL-04-05"
+      ]
+    ]
+  },
+  "baselineSnapshotAgreement": {
+    "graph_nodes": true,
+    "graph_edges": true,
+    "orphan_count": true,
+    "isolates": true,
+    "scc": true
+  },
+  "changedRegisters": [
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-04",
+    "DEL-02-05",
+    "DEL-03-02",
+    "DEL-04-04",
+    "DEL-05-02",
+    "DEL-06-03",
+    "DEL-07-01",
+    "DEL-07-03",
+    "DEL-08-01",
+    "DEL-08-03",
+    "DEL-08-04"
+  ],
+  "registersNotInHEAD": [],
+  "metrics": {
+    "total_files": {
+      "baseline": 52,
+      "live": 52
+    },
+    "total_rows": {
+      "baseline": 580,
+      "live": 635
+    },
+    "anchor_rows": {
+      "baseline": 249,
+      "live": 273
+    },
+    "execution_rows": {
+      "baseline": 331,
+      "live": 362
+    },
+    "graph_nodes": {
+      "baseline": 46,
+      "live": 48
+    },
+    "graph_edges": {
+      "baseline": 99,
+      "live": 109
+    },
+    "orphan_count": {
+      "baseline": 6,
+      "live": 4
+    },
+    "scc_count": {
+      "baseline": 1,
+      "live": 1
+    },
+    "scc_sizes": {
+      "baseline": [
+        9
+      ],
+      "live": [
+        9
+      ]
+    },
+    "hub_count": {
+      "baseline": 0,
+      "live": 0
+    },
+    "bidirectional_pair_count": {
+      "baseline": 1,
+      "live": 1
+    },
+    "normalization_count": {
+      "baseline": 0,
+      "live": 0
+    },
+    "schema_valid": {
+      "baseline": 52,
+      "live": 52
+    },
+    "schema_invalid": {
+      "baseline": 0,
+      "live": 0
+    },
+    "implements_node_missing": {
+      "baseline": 0,
+      "live": 0
+    }
+  },
+  "nodesAdded": [
+    "DEL-01-03",
+    "DEL-02-04"
+  ],
+  "nodesRemoved": [],
+  "edgesAdded": [
+    {
+      "from": "DEL-02-01",
+      "to": "DEL-01-03",
+      "DependencyIDs": [
+        "DEP-02-01-014"
+      ]
+    },
+    {
+      "from": "DEL-02-01",
+      "to": "DEL-07-01",
+      "DependencyIDs": [
+        "DEP-02-01-009"
+      ]
+    },
+    {
+      "from": "DEL-02-02",
+      "to": "DEL-06-03",
+      "DependencyIDs": [
+        "DEP-02-02-014",
+        "DEP-06-03-016"
+      ]
+    },
+    {
+      "from": "DEL-02-02",
+      "to": "DEL-07-03",
+      "DependencyIDs": [
+        "DEP-02-02-013",
+        "DEP-07-03-012"
+      ]
+    },
+    {
+      "from": "DEL-02-04",
+      "to": "DEL-07-03",
+      "DependencyIDs": [
+        "DEP-02-04-020"
+      ]
+    },
+    {
+      "from": "DEL-04-04",
+      "to": "DEL-07-01",
+      "DependencyIDs": [
+        "DEP-04-04-014",
+        "DEP-07-01-010"
+      ]
+    },
+    {
+      "from": "DEL-04-04",
+      "to": "DEL-07-03",
+      "DependencyIDs": [
+        "DEP-04-04-013",
+        "DEP-07-03-013"
+      ]
+    },
+    {
+      "from": "DEL-05-02",
+      "to": "DEL-06-03",
+      "DependencyIDs": [
+        "DEP-06-03-017"
+      ]
+    },
+    {
+      "from": "DEL-08-01",
+      "to": "DEL-07-01",
+      "DependencyIDs": [
+        "DEP-08-01-019"
+      ]
+    },
+    {
+      "from": "DEL-09-04",
+      "to": "DEL-02-01",
+      "DependencyIDs": [
+        "DEP-02-01-013"
+      ]
+    }
+  ],
+  "edgesRemoved": [],
+  "sccInternalEdgesAdded": [],
+  "sccInternalEdgesRemoved": [],
+  "sccInternalEdgeIds": {
+    "DEL-02-05->DEL-03-03": {
+      "baseline": [
+        "DEP-02-05-006"
+      ],
+      "live": [
+        "DEP-02-05-006"
+      ]
+    },
+    "DEL-02-05->DEL-04-05": {
+      "baseline": [
+        "DEP-02-05-004"
+      ],
+      "live": [
+        "DEP-02-05-004"
+      ]
+    },
+    "DEL-03-02->DEL-05-02": {
+      "baseline": [
+        "DEP-03-02-007"
+      ],
+      "live": [
+        "DEP-03-02-007"
+      ]
+    },
+    "DEL-03-03->DEL-03-02": {
+      "baseline": [
+        "DEP-03-02-008"
+      ],
+      "live": [
+        "DEP-03-02-008"
+      ]
+    },
+    "DEL-03-03->DEL-03-04": {
+      "baseline": [
+        "DEP-03-03-007"
+      ],
+      "live": [
+        "DEP-03-03-007"
+      ]
+    },
+    "DEL-03-04->DEL-03-02": {
+      "baseline": [
+        "DEP-03-02-009",
+        "DEP-03-04-007"
+      ],
+      "live": [
+        "DEP-03-02-009",
+        "DEP-03-04-007"
+      ]
+    },
+    "DEL-03-04->DEL-05-02": {
+      "baseline": [
+        "DEP-03-04-009"
+      ],
+      "live": [
+        "DEP-03-04-009"
+      ]
+    },
+    "DEL-04-03->DEL-04-05": {
+      "baseline": [
+        "DEP-04-05-009"
+      ],
+      "live": [
+        "DEP-04-05-009"
+      ]
+    },
+    "DEL-04-05->DEL-02-05": {
+      "baseline": [
+        "DEP-04-05-010"
+      ],
+      "live": [
+        "DEP-04-05-010"
+      ]
+    },
+    "DEL-05-02->DEL-04-03": {
+      "baseline": [
+        "DEP-05-02-012"
+      ],
+      "live": [
+        "DEP-05-02-012"
+      ]
+    },
+    "DEL-05-02->DEL-05-03": {
+      "baseline": [
+        "DEP-05-02-009"
+      ],
+      "live": [
+        "DEP-05-02-009"
+      ]
+    },
+    "DEL-05-02->DEL-05-05": {
+      "baseline": [
+        "DEP-05-02-010"
+      ],
+      "live": [
+        "DEP-05-02-010"
+      ]
+    },
+    "DEL-05-03->DEL-04-05": {
+      "baseline": [
+        "DEP-05-03-010"
+      ],
+      "live": [
+        "DEP-05-03-010"
+      ]
+    },
+    "DEL-05-05->DEL-05-03": {
+      "baseline": [
+        "DEP-05-03-012"
+      ],
+      "live": [
+        "DEP-05-03-012"
+      ]
+    }
+  },
+  "sccMembershipIdentical": true,
+  "isolatesBefore": [
+    "DEL-01-01",
+    "DEL-01-03",
+    "DEL-02-04",
+    "DEL-09-07",
+    "DEL-10-04",
+    "DEL-10-05"
+  ],
+  "isolatesAfter": [
+    "DEL-01-01",
+    "DEL-09-07",
+    "DEL-10-04",
+    "DEL-10-05"
+  ],
+  "isolatesResolved": [
+    "DEL-01-03",
+    "DEL-02-04"
+  ],
+  "isolatesNew": [],
+  "bidirectionalPairsBefore": [
+    [
+      "DEL-02-05",
+      "DEL-04-05"
+    ]
+  ],
+  "bidirectionalPairsAfter": [
+    [
+      "DEL-02-05",
+      "DEL-04-05"
+    ]
+  ],
+  "hubsBefore": [],
+  "hubsAfter": []
+}

@@ -1,0 +1,729 @@
+{
+  "priorSnapshot": "projects/chirality-app-dev/execution/_Reconciliation/DepClosure/CLOSURE_SCA-APP-010-GATE5-POST-APPLICATION_2026-09-05_0807",
+  "priorBasisCommitOf0807": "f38f1448675b8e9f40f33932a11b7ffa4126fe69",
+  "basisCommitNow": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "headCommitNow": "7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985",
+  "metrics": {
+    "total_files": {
+      "prior_0807": 52,
+      "live": 52
+    },
+    "total_rows": {
+      "prior_0807": 654,
+      "live": 654
+    },
+    "anchor_rows": {
+      "prior_0807": 273,
+      "live": 273
+    },
+    "execution_rows": {
+      "prior_0807": 381,
+      "live": 381
+    },
+    "schema_valid": {
+      "prior_0807": 52,
+      "live": 52
+    },
+    "schema_invalid": {
+      "prior_0807": 0,
+      "live": 0
+    },
+    "implements_node_present": {
+      "prior_0807": 52,
+      "live": 52
+    },
+    "implements_node_missing": {
+      "prior_0807": 0,
+      "live": 0
+    },
+    "evidence_populated": {
+      "prior_0807": 654,
+      "live": 654
+    },
+    "evidence_total": {
+      "prior_0807": 654,
+      "live": 654
+    },
+    "graph_nodes": {
+      "prior_0807": 48,
+      "live": 48
+    },
+    "graph_edges": {
+      "prior_0807": 124,
+      "live": 119
+    },
+    "orphan_count": {
+      "prior_0807": 4,
+      "live": 4
+    },
+    "scc_count": {
+      "prior_0807": 2,
+      "live": 0
+    },
+    "scc_sizes": {
+      "prior_0807": [
+        2,
+        20
+      ],
+      "live": []
+    },
+    "hub_count": {
+      "prior_0807": 0,
+      "live": 0
+    },
+    "bidirectional_pair_count": {
+      "prior_0807": 4,
+      "live": 0
+    },
+    "normalization_count": {
+      "prior_0807": 0,
+      "live": 0
+    }
+  },
+  "basisRegistersReproduce0807EdgeList": true,
+  "edgesRemoved": [
+    {
+      "from": "DEL-02-01",
+      "to": "DEL-02-04",
+      "DependencyIDs": [
+        "DEP-02-01-010",
+        "DEP-02-04-017"
+      ],
+      "priorSCC": "SCC-002"
+    },
+    {
+      "from": "DEL-02-02",
+      "to": "DEL-02-04",
+      "DependencyIDs": [
+        "DEP-02-02-022",
+        "DEP-02-04-018"
+      ],
+      "priorSCC": "SCC-002"
+    },
+    {
+      "from": "DEL-02-03",
+      "to": "DEL-02-04",
+      "DependencyIDs": [
+        "DEP-02-04-019"
+      ],
+      "priorSCC": "SCC-002"
+    },
+    {
+      "from": "DEL-04-05",
+      "to": "DEL-02-05",
+      "DependencyIDs": [
+        "DEP-04-05-010"
+      ],
+      "priorSCC": "SCC-002"
+    },
+    {
+      "from": "DEL-06-03",
+      "to": "DEL-08-01",
+      "DependencyIDs": [
+        "DEP-06-03-014"
+      ],
+      "priorSCC": "SCC-001"
+    }
+  ],
+  "edgesAdded": [],
+  "commonEdgesWithChangedCarryingRows": [],
+  "edgesRemovedCount": 5,
+  "edgesAddedCount": 0,
+  "priorBidirectionalPairsDissolved": [
+    [
+      "DEL-02-02",
+      "DEL-02-04"
+    ],
+    [
+      "DEL-02-03",
+      "DEL-02-04"
+    ],
+    [
+      "DEL-02-05",
+      "DEL-04-05"
+    ],
+    [
+      "DEL-06-03",
+      "DEL-08-01"
+    ]
+  ],
+  "liveBidirectionalPairs": [],
+  "registersChangedVsBasis": [
+    "DEL-02-01",
+    "DEL-02-02",
+    "DEL-02-04",
+    "DEL-02-05",
+    "DEL-03-02",
+    "DEL-04-05",
+    "DEL-05-02",
+    "DEL-06-03",
+    "DEL-08-01",
+    "DEL-08-04"
+  ],
+  "rowLevelTotals": {
+    "rowsAdded": 0,
+    "rowsRemoved": 0,
+    "rowsRetargeted": 7,
+    "rowsNotesOnly": 13,
+    "rowsOtherwiseChanged": 0,
+    "statusChanged": 0,
+    "directionChanged": 0,
+    "prerequisiteRowsRetargetedOrGraphChanged": 0,
+    "prerequisiteRowsNotesOnly": 4
+  },
+  "rowsAdded": [],
+  "rowsRemoved": [],
+  "statusChangedRows": [],
+  "directionChangedRows": [],
+  "prerequisiteRowsRetargetedOrGraphChanged": [],
+  "prerequisiteRowsNotesOnly": [
+    "DEP-02-04-015",
+    "DEP-02-04-016",
+    "DEP-02-05-014",
+    "DEP-02-05-015"
+  ],
+  "retargetedRows": {
+    "DEP-02-01-010": {
+      "carrier": "DEL-02-01",
+      "changedFields": [
+        "TargetType",
+        "TargetPackageID",
+        "TargetDeliverableID",
+        "TargetRefID",
+        "TargetName",
+        "TargetLocation",
+        "Notes"
+      ],
+      "basisTarget": {
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-02",
+        "TargetDeliverableID": "DEL-02-04",
+        "TargetRefID": "DEL-02-04",
+        "TargetName": "Dialogue Toolkit, Context, and Local UI State",
+        "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md"
+      },
+      "liveTarget": {
+        "TargetType": "DOCUMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1",
+        "TargetName": "Additive v1 workspace-state field contract (per-view widths, expand state, chat annotations, known folders, chat rung, declined triggers)",
+        "TargetLocation": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)"
+      }
+    },
+    "DEP-02-02-022": {
+      "carrier": "DEL-02-02",
+      "changedFields": [
+        "TargetType",
+        "TargetPackageID",
+        "TargetDeliverableID",
+        "TargetRefID",
+        "TargetName",
+        "TargetLocation",
+        "Notes"
+      ],
+      "basisTarget": {
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-02",
+        "TargetDeliverableID": "DEL-02-04",
+        "TargetRefID": "DEL-02-04",
+        "TargetName": "Dialogue Toolkit, Context, and Local UI State",
+        "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md#L310"
+      },
+      "liveTarget": {
+        "TargetType": "DOCUMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1",
+        "TargetName": "Additive v1 workspace-state field contract (per-view widths, expand state, chat annotations, known folders, chat rung, declined triggers)",
+        "TargetLocation": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)"
+      }
+    },
+    "DEP-02-04-017": {
+      "carrier": "DEL-02-04",
+      "changedFields": [
+        "TargetType",
+        "TargetPackageID",
+        "TargetDeliverableID",
+        "TargetRefID",
+        "TargetName",
+        "TargetLocation",
+        "Notes"
+      ],
+      "basisTarget": {
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-02",
+        "TargetDeliverableID": "DEL-02-01",
+        "TargetRefID": "SOW-008",
+        "TargetName": "Woven Dialogue Shell and Compatibility Navigation",
+        "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md#L307"
+      },
+      "liveTarget": {
+        "TargetType": "DOCUMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1",
+        "TargetName": "Additive v1 workspace-state field contract (per-view widths, expand state, chat annotations, known folders, chat rung, declined triggers)",
+        "TargetLocation": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)"
+      }
+    },
+    "DEP-02-04-018": {
+      "carrier": "DEL-02-04",
+      "changedFields": [
+        "TargetType",
+        "TargetPackageID",
+        "TargetDeliverableID",
+        "TargetRefID",
+        "TargetName",
+        "TargetLocation",
+        "Notes"
+      ],
+      "basisTarget": {
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-02",
+        "TargetDeliverableID": "DEL-02-02",
+        "TargetRefID": "SOW-008",
+        "TargetName": "Right-Panel Coordination, Workflows, and Proposal UX",
+        "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md#L308"
+      },
+      "liveTarget": {
+        "TargetType": "DOCUMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1",
+        "TargetName": "Additive v1 workspace-state field contract (per-view widths, expand state, chat annotations, known folders, chat rung, declined triggers)",
+        "TargetLocation": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)"
+      }
+    },
+    "DEP-02-04-019": {
+      "carrier": "DEL-02-04",
+      "changedFields": [
+        "TargetType",
+        "TargetPackageID",
+        "TargetDeliverableID",
+        "TargetRefID",
+        "TargetName",
+        "TargetLocation",
+        "Notes"
+      ],
+      "basisTarget": {
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-02",
+        "TargetDeliverableID": "DEL-02-03",
+        "TargetRefID": "SOW-004",
+        "TargetName": "Working Root File Tree and Scope Scan UI",
+        "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md#L309"
+      },
+      "liveTarget": {
+        "TargetType": "DOCUMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "DEL-02-04-WORKSPACE_STATE_ADDITIVE_V1",
+        "TargetName": "Additive v1 workspace-state field contract (per-view widths, expand state, chat annotations, known folders, chat rung, declined triggers)",
+        "TargetLocation": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-04_Toolkit_Options_and_Local_UI_State/ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)"
+      }
+    },
+    "DEP-04-05-010": {
+      "carrier": "DEL-04-05",
+      "changedFields": [
+        "TargetType",
+        "TargetPackageID",
+        "TargetDeliverableID",
+        "TargetRefID",
+        "TargetName",
+        "TargetLocation",
+        "LastSeen",
+        "Notes"
+      ],
+      "basisTarget": {
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-02",
+        "TargetDeliverableID": "DEL-02-05",
+        "TargetRefID": "",
+        "TargetName": "API Key UI and Runtime Feedback",
+        "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md#DEL-02-05"
+      },
+      "liveTarget": {
+        "TargetType": "DOCUMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "DEL-02-05-KEY_STATUS_CONTRACT",
+        "TargetName": "Stored key-status and safe key-source contract (ui, env, none; UI safeStorage precedence)",
+        "TargetLocation": "execution/PKG-02_Desktop_Shell_Navigation_and_Operator_State/1_Working/DEL-02-05_API_Key_UI_and_Runtime_Feedback/ScopeOfWork.md#CLM-003"
+      }
+    },
+    "DEP-06-03-014": {
+      "carrier": "DEL-06-03",
+      "changedFields": [
+        "TargetType",
+        "TargetPackageID",
+        "TargetDeliverableID",
+        "TargetRefID",
+        "TargetName",
+        "TargetLocation",
+        "Notes"
+      ],
+      "basisTarget": {
+        "TargetType": "DELIVERABLE",
+        "TargetPackageID": "PKG-08",
+        "TargetDeliverableID": "DEL-08-01",
+        "TargetRefID": "",
+        "TargetName": "Instruction Root Packaging and Agent Conformance",
+        "TargetLocation": "execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md"
+      },
+      "liveTarget": {
+        "TargetType": "DOCUMENT",
+        "TargetPackageID": "",
+        "TargetDeliverableID": "",
+        "TargetRefID": "DEL-08-01-PROPOSAL_TRIGGER_CLAUSES",
+        "TargetName": "Proposal-trigger clauses contract (the named triggers and once-per-chat rule in Agent 0 and Agent 1 packages)",
+        "TargetLocation": "execution/PKG-08_Agent_Suite_Pipeline_Dispatch_and_Subagent_Governance/1_Working/DEL-08-01_Instruction_Root_Packaging_and_Agent_Conformance/ScopeOfWork.md#SCA-APP-010 Gate-5 Current Contract (Controlling)"
+      }
+    }
+  },
+  "notesOnlyRows": {
+    "DEP-02-02-015": {
+      "carrier": "DEL-02-02",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-02-02-017": {
+      "carrier": "DEL-02-02",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-02-02-018": {
+      "carrier": "DEL-02-02",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-02-02-019": {
+      "carrier": "DEL-02-02",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-02-02-020": {
+      "carrier": "DEL-02-02",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-02-04-015": {
+      "carrier": "DEL-02-04",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-02-04-016": {
+      "carrier": "DEL-02-04",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-02-05-014": {
+      "carrier": "DEL-02-05",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-02-05-015": {
+      "carrier": "DEL-02-05",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-03-02-013": {
+      "carrier": "DEL-03-02",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-05-02-016": {
+      "carrier": "DEL-05-02",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-08-01-018": {
+      "carrier": "DEL-08-01",
+      "changedFields": [
+        "Notes"
+      ]
+    },
+    "DEP-08-04-013": {
+      "carrier": "DEL-08-04",
+      "changedFields": [
+        "Notes"
+      ]
+    }
+  },
+  "otherwiseChangedRows": {},
+  "perRegister": {
+    "DEL-01-01": {
+      "basisRows": 12,
+      "liveRows": 12,
+      "byteIdentical": true
+    },
+    "DEL-01-02": {
+      "basisRows": 24,
+      "liveRows": 24,
+      "byteIdentical": true
+    },
+    "DEL-01-03": {
+      "basisRows": 12,
+      "liveRows": 12,
+      "byteIdentical": true
+    },
+    "DEL-01-04": {
+      "basisRows": 13,
+      "liveRows": 13,
+      "byteIdentical": true
+    },
+    "DEL-02-01": {
+      "basisRows": 14,
+      "liveRows": 14,
+      "byteIdentical": false
+    },
+    "DEL-02-02": {
+      "basisRows": 22,
+      "liveRows": 22,
+      "byteIdentical": false
+    },
+    "DEL-02-03": {
+      "basisRows": 9,
+      "liveRows": 9,
+      "byteIdentical": true
+    },
+    "DEL-02-04": {
+      "basisRows": 21,
+      "liveRows": 21,
+      "byteIdentical": false
+    },
+    "DEL-02-05": {
+      "basisRows": 15,
+      "liveRows": 15,
+      "byteIdentical": false
+    },
+    "DEL-03-01": {
+      "basisRows": 9,
+      "liveRows": 9,
+      "byteIdentical": true
+    },
+    "DEL-03-02": {
+      "basisRows": 15,
+      "liveRows": 15,
+      "byteIdentical": false
+    },
+    "DEL-03-03": {
+      "basisRows": 11,
+      "liveRows": 11,
+      "byteIdentical": true
+    },
+    "DEL-03-04": {
+      "basisRows": 10,
+      "liveRows": 10,
+      "byteIdentical": true
+    },
+    "DEL-04-01": {
+      "basisRows": 13,
+      "liveRows": 13,
+      "byteIdentical": true
+    },
+    "DEL-04-02": {
+      "basisRows": 11,
+      "liveRows": 11,
+      "byteIdentical": true
+    },
+    "DEL-04-03": {
+      "basisRows": 11,
+      "liveRows": 11,
+      "byteIdentical": true
+    },
+    "DEL-04-04": {
+      "basisRows": 14,
+      "liveRows": 14,
+      "byteIdentical": true
+    },
+    "DEL-04-05": {
+      "basisRows": 13,
+      "liveRows": 13,
+      "byteIdentical": false
+    },
+    "DEL-05-01": {
+      "basisRows": 13,
+      "liveRows": 13,
+      "byteIdentical": true
+    },
+    "DEL-05-02": {
+      "basisRows": 16,
+      "liveRows": 16,
+      "byteIdentical": false
+    },
+    "DEL-05-03": {
+      "basisRows": 14,
+      "liveRows": 14,
+      "byteIdentical": true
+    },
+    "DEL-05-04": {
+      "basisRows": 9,
+      "liveRows": 9,
+      "byteIdentical": true
+    },
+    "DEL-05-05": {
+      "basisRows": 10,
+      "liveRows": 10,
+      "byteIdentical": true
+    },
+    "DEL-06-01": {
+      "basisRows": 14,
+      "liveRows": 14,
+      "byteIdentical": true
+    },
+    "DEL-06-02": {
+      "basisRows": 11,
+      "liveRows": 11,
+      "byteIdentical": true
+    },
+    "DEL-06-03": {
+      "basisRows": 18,
+      "liveRows": 18,
+      "byteIdentical": false
+    },
+    "DEL-06-04": {
+      "basisRows": 10,
+      "liveRows": 10,
+      "byteIdentical": true
+    },
+    "DEL-06-05": {
+      "basisRows": 8,
+      "liveRows": 8,
+      "byteIdentical": true
+    },
+    "DEL-06-06": {
+      "basisRows": 8,
+      "liveRows": 8,
+      "byteIdentical": true
+    },
+    "DEL-07-01": {
+      "basisRows": 12,
+      "liveRows": 12,
+      "byteIdentical": true
+    },
+    "DEL-07-02": {
+      "basisRows": 7,
+      "liveRows": 7,
+      "byteIdentical": true
+    },
+    "DEL-07-03": {
+      "basisRows": 14,
+      "liveRows": 14,
+      "byteIdentical": true
+    },
+    "DEL-07-04": {
+      "basisRows": 8,
+      "liveRows": 8,
+      "byteIdentical": true
+    },
+    "DEL-07-05": {
+      "basisRows": 26,
+      "liveRows": 26,
+      "byteIdentical": true
+    },
+    "DEL-07-06": {
+      "basisRows": 13,
+      "liveRows": 13,
+      "byteIdentical": true
+    },
+    "DEL-08-01": {
+      "basisRows": 21,
+      "liveRows": 21,
+      "byteIdentical": false
+    },
+    "DEL-08-02": {
+      "basisRows": 13,
+      "liveRows": 13,
+      "byteIdentical": true
+    },
+    "DEL-08-03": {
+      "basisRows": 10,
+      "liveRows": 10,
+      "byteIdentical": true
+    },
+    "DEL-08-04": {
+      "basisRows": 14,
+      "liveRows": 14,
+      "byteIdentical": false
+    },
+    "DEL-08-05": {
+      "basisRows": 11,
+      "liveRows": 11,
+      "byteIdentical": true
+    },
+    "DEL-09-01": {
+      "basisRows": 10,
+      "liveRows": 10,
+      "byteIdentical": true
+    },
+    "DEL-09-02": {
+      "basisRows": 25,
+      "liveRows": 25,
+      "byteIdentical": true
+    },
+    "DEL-09-03": {
+      "basisRows": 13,
+      "liveRows": 13,
+      "byteIdentical": true
+    },
+    "DEL-09-04": {
+      "basisRows": 9,
+      "liveRows": 9,
+      "byteIdentical": true
+    },
+    "DEL-09-05": {
+      "basisRows": 15,
+      "liveRows": 15,
+      "byteIdentical": true
+    },
+    "DEL-09-06": {
+      "basisRows": 11,
+      "liveRows": 11,
+      "byteIdentical": true
+    },
+    "DEL-09-07": {
+      "basisRows": 8,
+      "liveRows": 8,
+      "byteIdentical": true
+    },
+    "DEL-10-01": {
+      "basisRows": 3,
+      "liveRows": 3,
+      "byteIdentical": true
+    },
+    "DEL-10-02": {
+      "basisRows": 5,
+      "liveRows": 5,
+      "byteIdentical": true
+    },
+    "DEL-10-03": {
+      "basisRows": 8,
+      "liveRows": 8,
+      "byteIdentical": true
+    },
+    "DEL-10-04": {
+      "basisRows": 8,
+      "liveRows": 8,
+      "byteIdentical": true
+    },
+    "DEL-10-05": {
+      "basisRows": 10,
+      "liveRows": 10,
+      "byteIdentical": true
+    }
+  },
+  "isolatesChanged": false,
+  "hubsChanged": false
+}

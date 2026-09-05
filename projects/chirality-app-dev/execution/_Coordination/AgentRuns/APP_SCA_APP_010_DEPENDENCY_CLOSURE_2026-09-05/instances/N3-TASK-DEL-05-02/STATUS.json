@@ -1,0 +1,60 @@
+{
+  "schema": "chirality-managed-child-status/v1",
+  "runId": "N3-TASK-DEL-05-02",
+  "parentRunId": "N3",
+  "agentRole": "TASK",
+  "taskSkill": "dependency-extract",
+  "mode": "REVIEWED_WRITE",
+  "status": "PASS",
+  "basisCommit": "d66395d101143df68d956984f7ab93f5027418ec",
+  "reviewSha256": "ece7d8ffae6f04efef337a98b675ec058d5713ecc60a426824e8e55d05bddd85",
+  "previewInstance": "N1-TASK-DEL-05-02",
+  "previewRunRecordPath": "instances/N1-TASK-DEL-05-02/_run_records/TASK_RUN_2026-09-05_0100.md",
+  "carrier": "DEL-05-02",
+  "carrierPath": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL",
+  "preImages": {
+    "dependenciesCsvSha256": "27ede0704416b2c0ffafeefd77fcd31a27ba7dc7d110c36bb26a90f876bb6269",
+    "dependenciesIndexSha256": "f89e5f40240fac304aca71c49cfca965b38417693c4013e5717866152ff5b9af"
+  },
+  "outputs": {
+    "postimageDependenciesCsvSha256": "7a6da98003c9fc93caf3c602c09e242abb6105e90a1e45cff25e67d4a18f5380",
+    "postimageDependenciesIndexSha256": "8823be430d59a5060bff63a17d1474ff48c09ddc77a2ee7006dec0c7a91539a0",
+    "carrierDependenciesCsvSha256": "7a6da98003c9fc93caf3c602c09e242abb6105e90a1e45cff25e67d4a18f5380",
+    "carrierDependenciesIndexSha256": "8823be430d59a5060bff63a17d1474ff48c09ddc77a2ee7006dec0c7a91539a0",
+    "parityWithReviewedPostImages": true,
+    "taskRunRecordPath": "projects/chirality-app-dev/execution/PKG-05_Session_Audit_Replay_and_Tool_Result_Records/1_Working/DEL-05-02_HarnessEvent_Schema_and_Append_Only_JSONL/_run_records/TASK_RUN_2026-09-05_0514.md",
+    "taskRunRecordSha256": "4632e96a9b9f426e19bf3521234b8ba28ccea4d5c29faf682932c706416b8943",
+    "returnSha256": "7898d668a76a008206de4eb34c1ce4112672209e4ad688eb36c6191aba5b8a98"
+  },
+  "function5": {
+    "schema": "VALID (29 columns, 15 data rows, rc=0)",
+    "enumChecks": { "distinct": 25, "failures": 0 },
+    "activeImplementsNodeAnchors": 1,
+    "dependencyIdUnique": true,
+    "candidateStatusAbsent": true,
+    "gitDiffCheck": "clean",
+    "gitStatusCarrier": ["M Dependencies.csv", "M _DEPENDENCIES.md", "?? _run_records/TASK_RUN_2026-09-05_0514.md"]
+  },
+  "counts": {
+    "pre": { "total": 13, "active": 12, "retired": 1, "anchor": 5, "execution": 8 },
+    "post": { "total": 15, "active": 14, "retired": 1, "anchor": 6, "execution": 9 },
+    "changes": { "added": 2, "reEvidenced": 9, "reEvidencedSccInternalEvidenceOnly": 3, "refreshed": 0, "unchanged": 1, "retired": 0, "deleted": 0, "held": 1 }
+  },
+  "fences": {
+    "F1": "NONE",
+    "F2": "NONE",
+    "F3": "NONE",
+    "fenceF1Candidates": [],
+    "fenceF2Candidates": [],
+    "needsHumanGraphDecision": []
+  },
+  "heldProposalIds": ["H-016"],
+  "reviewFindingsCarriedNotApplied": ["R-005", "R-008"],
+  "warnings": [
+    "PROJECT_ID_FORMAT_PROFILE: generic three-digit validator profile does not match accepted App two-digit IDs; no ID changed",
+    "ASSUMPTION: outbound notice NOTICE_2026-09-04_APP_SCA-APP-010_SHELL_REDESIGN_ROOT_DEPENDENCIES.md named by _STATUS.md not found at the basis commit"
+  ],
+  "carrierBytesChanged": true,
+  "humanRulingRequired": false,
+  "attribution": "Claude Fable 5.1 (Anthropic, claude-fable-5-1) as a Claude Code subagent acting as TASK + dependency-extract (reviewed write), dispatched by HELP_HUMAN; role not mechanically enforced; no descendant launched"
+}

@@ -21,11 +21,11 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 | Metric | Count |
 |---|---:|
-| Total rows | 11 |
-| ACTIVE rows | 10 |
+| Total rows | 14 |
+| ACTIVE rows | 13 |
 | RETIRED rows | 1 |
-| ANCHOR rows | 3 |
-| EXECUTION rows | 8 |
+| ANCHOR rows | 4 |
+| EXECUTION rows | 10 |
 
 | DependencyID | Class | Direction | Type | TargetType | Target | Status |
 |---|---|---|---|---|---|---|
@@ -40,6 +40,9 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 | DEP-08-04-009 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | Chirality-managed delegation class | ACTIVE |
 | DEP-08-04-010 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | delegated-harness-native descent class | ACTIVE |
 | DEP-08-04-011 | EXECUTION | UPSTREAM | CONSTRAINT | EXTERNAL | Root WP-03/WP-05 fixtures: accepted DEL-02-07 process-supervisor and DEL-02-10 API v2 returns | ACTIVE |
+| DEP-08-04-012 | ANCHOR | UPSTREAM | OTHER | REQUIREMENT | SOW-083 Per-chat delegation policy carried with the session and honoured by the managed delegation bridge | ACTIVE |
+| DEP-08-04-013 | EXECUTION | UPSTREAM | INTERFACE | DELIVERABLE | DEL-03-02 Thin TurnEngine and Session Locking | ACTIVE |
+| DEP-08-04-014 | EXECUTION | UPSTREAM | INTERFACE | EXTERNAL | Root DEL-02-11 daemon session-record delegation-policy field | ACTIVE |
 
 ## Run Notes
 
@@ -70,8 +73,57 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 - A2-B / SCC posture: no objective-relative feedback edge was added or linearized; the post-application audit's nine-node SCC remains a warning-bearing derivative finding.
 - Schema validation: `python3 tools/validation/validate_dependencies_schema.py Dependencies.csv` PASS after the append; see `execution/_Coordination/AgentRuns/APP_V3_PATHWAY_SEATING_2026-09-03/DEPENDENCY_REFRESH.md`.
 
+## Run Notes - 2026-09-05 SCA-APP-010 dependency closure (report-only preview; UPDATE)
+
+- Dispatch: `TASK + dependency-extract` as managed child `N1-TASK-DEL-08-04` of run `APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` (parent HELP_HUMAN; authorization SCA-APP-010 `FUTURE_WRITE_SET.csv` rows DEP-025 and DEP-026). This pass is a report-only preview: the post-images were written under the instance folder only; no carrier byte changed. The reviewed write is a separate act. Rerun under brief amendment v1.1 (`AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/AMENDMENT_v1.1_N1_PREVIEWS.md`, section A/D): the fan-in simulation of all thirteen previews showed the DEL-03-02 binding edge lies on a collective cycle with fourteen other newly proposed edges, so it is held as a non-emitted proposal for the owner's separate transaction and removed from this post-image; nothing else changed.
+- Runtime overrides: `SCOPE=DEL-08-04_Type_2_Subagent_Governance_Bridge`; `RUN_ROOT=projects/chirality-app-dev/execution`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; `SOURCE_DOCS=[ScopeOfWork.md, _CONTEXT.md, _STATUS.md]`; `ANCHOR_DOC=ScopeOfWork.md`; `EXECUTION_DOC_ORDER=[ScopeOfWork.md, _CONTEXT.md, _STATUS.md]`; `ApplyEdits=false`. `_STATUS.md` was read only for its `## Remaining` section; `_REFERENCES.md` resolved pointers; `_SEMANTIC.md`, `_SEMANTIC_LENSING.md`, `MEMORY.md`, `Assessment_*`, and `_run_records/**` were excluded.
+- Decomposition: found at the pinned identity, SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`); carrier row L371 (scope refs SOW-063, SOW-083; objectives OBJ-005, OBJ-007); amended Scope Ledger row SOW-083 L253; reverse view L486; OI-008 L602; DEC-025 L634. Companion register `63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca`; pointer `_LATEST.md` `b297f43e16a7de13b782c0a3f30589733398406312c82b613977489bda223fc0`.
+- Pass 1 (ANCHOR): DEP-08-04-001 (`IMPLEMENTS_NODE` SOW-063) preserved and re-validated; DEP-08-04-007/008 (OBJ-005/OBJ-007) re-evidenced to the live traceability line; DEP-08-04-012 added for SOW-083, which SCA-APP-010 placed on this carrier's applied row. No anchor points to a scope ref that left the row, so no anchor was retired. SOW-081, SOW-082, and SOW-084 are not on this carrier's row and receive no anchor here.
+- Pass 2 (EXECUTION): DEP-08-04-002/003/004/006/009/010/011 remain stated in the live sources and were refreshed (`LastSeen=2026-09-05`). One row was added for the relation SOW-083 introduces: DEP-08-04-014 (UPSTREAM INTERFACE, `EXTERNAL`, Root DEL-02-11 session-record delegation-policy field; `TargetLocation=TBD`, `SatisfactionStatus=PENDING`). The second SOW-083 relation, the DEL-03-02 per-chat delegation-policy binding, was extracted in the v1 preview as DEP-08-04-013 and is held under amendment v1.1 (next bullet).
+- EMITTED under D-APP-109 (H-019): DEP-08-04-013 — DEL-08-04 -> DEL-03-02 UPSTREAM INTERFACE — cycle-participating, non-gating until the SCC is resolved by a recorded move. Emitted 2026-09-05 by managed child `N9-TASK-DEL-08-04` under `execution/_Coordination/_DECISIONS/D-APP-109_RULING_SCA_APP_010_HELD_EDGES_AND_CONTEXT_ALIGNMENT_2026-09-05.md` (see the D-APP-109 emission Run Notes below); the held proposal remains recorded at AgentRuns/APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05/HELD_EDGE_PROPOSALS.csv H-019.
+- Legacy four-document kit: no row cites `Datasheet.md`, `Specification.md`, `Guidance.md`, or `Procedure.md`; no re-evidencing on that ground was needed. DEP-08-04-005 (RETIRED 2026-08-24) is preserved byte-identically.
+- Considered and not emitted (no named artifact, contract, tool, event, or policy transfer stated for this carrier): the SOW-006 / DEL-02-02 ownership boundary ("DEL-08-04 retains role/delegation semantics"; the view presents accepted state); the SOW-081 workflow-file delegation-policy declaration (DEL-07-03 owns the file contract; no consumption by this bridge is stated); the `NOT_SELECTABLE_UNTIL: DEL-02-02-V3-04 selected` gate on DEL-08-04-V3-02 (selection ordering, not information flow); the root `AGENTS.md` graph reference (unchanged since Gate 5; not re-derived). E-020 (DEL-08-05 feedback) remains non-gating and is not emitted, as at Gate 5.
+- Fence F1 (SCC-001 membership): NONE. After amendment v1.1 no row in this post-image targets an SCC-001 member; the nine SCC-001 registers hold no ACTIVE row to DEL-08-04 and the baseline closure graph has no path from any SCC-001 member to DEL-08-04 (only DEL-08-05 and DEL-09-02 depend on DEL-08-04), so this carrier stays outside SCC-001 and no SCC-internal edge or retirement is proposed. The held DEL-03-02 edge passed F1 in isolation (v1 preview) and is held only because of the collective fan-in cycle. `FENCE_F1_CANDIDATES`: none.
+- Fence F2 (Root path): NONE. Root DEL-02-11 is represented as `EXTERNAL` with `TargetLocation=TBD`. `FENCE_F2_CANDIDATES`: none. Observation: pre-existing DEP-08-04-003 keeps its Gate-5 `TargetLocation=frontend/src/lib/harness/subagent-governance.ts` (App-owned code, not a Root path; also the seated items' write locus); preserved as prior state.
+- Fence F3 (permitted effect): NONE. The two new rows derive from the amended SOW-083 row and the applied-row prose ("Honour the per-chat delegation policy carried with the session"); none derives from SCC ordering, schedule, or coordination statements.
+- `NEEDS_HUMAN_GRAPH_DECISION`: none.
+- [WARNING] TARGET_UNRESOLVED: permission overlay and hook infrastructure (DEP-08-04-004) remain an explicit prerequisite without one stable target deliverable in the local source.
+- [WARNING] PROJECT_ID_FORMAT_PROFILE: the generic `validate_id_format.sh` three-digit profile rejects the accepted App two-digit IDs (`PKG-NN`, `DEL-NN-NN`, `DEP-NN-NN-NNN`, `SOW-NNN`); no accepted ID was rewritten (same finding as Gate 5 and A12).
+- [NOTE] CONTEXT_TRACEABILITY_LAG: `_CONTEXT.md#Traceability` and `ScopeOfWork.md` CLM-002 still list `CoversScopeItems: SOW-063` only; the `ScopeOfWork.md` front matter (`project_scope_refs: [SOW-063, SOW-083]`) and the applied row control. No source document was edited.
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present.
+- Function 5 (re-run on the amended post-image): `validate_dependencies_schema.py` VALID (29 columns, 13 data rows); every emitted enum value VALID (29 distinct values); `DependencyID` unique (DEP-08-04-013 reserved, absent); `FromDeliverableID=DEL-08-04` on every row; every ACTIVE row carries `EvidenceFile` and `SourceRef` that resolve to live bytes; `Status=CANDIDATE` absent.
+
+## Run Notes - 2026-09-05 D-APP-109 emission of the held row (apply; UPDATE)
+
+- Dispatch: `TASK + dependency-extract` as managed child `N9-TASK-DEL-08-04` of run `APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` (amendment v1.2, node N9; parent HELP_HUMAN); authorization: owner ruling D-APP-109 (`execution/_Coordination/_DECISIONS/D-APP-109_RULING_SCA_APP_010_HELD_EDGES_AND_CONTEXT_ALIGNMENT_2026-09-05.md`) and `AMENDMENT_v1.2_OWNER_RULING.md`. Basis: candidate branch commit `f38f1448675b8e9f40f33932a11b7ffa4126fe69`; pre-image `Dependencies.csv` `902678b1…d84e5` and `_DEPENDENCIES.md` `8d66e9dd…d074c0` verified before the write.
+- Runtime overrides: `SCOPE=DEL-08-04`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `ApplyEdits=true`. No new extraction from prose: this pass writes exactly the one reserved row (`DEP-08-04-013`, HELD_EDGE_PROPOSALS.csv H-019) from the N1 preview's held-proposal section and the held-proposals register; every existing row is byte-identical; no `LastSeen` refresh and no retirement is claimed.
+- Decomposition: found at the pinned identity, SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`); DEL-03-02 carrier row L318 (`TargetName` and `TargetLocation` line pointer); DEL-08-04 row L371; SOW-083 L253; SOW-010 L413.
+- Row conventions: `TargetType=DELIVERABLE` with `TargetPackageID=PKG-03`, `TargetDeliverableID=DEL-03-02`, `TargetRefID` empty (the choice this carrier's DELIVERABLE rows DEP-08-04-005/006 make); `TargetLocation` in the sealed brief's line-pointer form `…#L318` (the two pre-existing DELIVERABLE rows carry the bare decomposition path from earlier passes and are preserved as dated prior state); `SatisfactionStatus=PENDING` and `Confidence=HIGH` as the held proposal recorded; `Notes` carries the held proposal's epistemic note (F1 sentence dated to the isolated pre-emission check) followed by the D-APP-109 `CYCLE_PARTICIPATING` non-gating clause.
+- Evidence resolved to live bytes: `_STATUS.md#Remaining` (L9; the DEL-08-04-V3-02 `Depends:` line, L26) carries the quote "Depends: DEL-03-02-V3-01 (the binding; selected together)". `_STATUS.md`, `_CONTEXT.md`, and `MEMORY.md` were written concurrently by the N8 context-alignment builder in this pass; this run read `_STATUS.md` only and wrote none of the three.
+- SCC posture (recorded, not linearized): with the nineteen held rows emitted across nine carriers under D-APP-109, the fan-in simulation's twenty-node SCC (SCC-001 enlarged) contains DEL-08-04 through this edge together with the other carriers' emitted edges (`Evidence/fanin_simulation_v1/edge_analysis.json`). The row is therefore cycle-participating and non-gating until a recorded decompose, invert, merge, or cut move resolves the SCC (`docs/CYCLE_DRIVEN_RESOLUTION.md`); the seated items' own `Depends` lines and named gates remain the executable ordering. No SCC is resolved here. `NEEDS_HUMAN_GRAPH_DECISION`: none beyond the SCC resolution the ruling defers.
+- [WARNING] TARGET_UNRESOLVED: permission overlay and hook infrastructure (DEP-08-04-004) remain an explicit prerequisite without one stable target deliverable in the local source (unchanged).
+- [WARNING] PROJECT_ID_FORMAT_PROFILE: the generic `validate_id_format.sh` three-digit profile rejects the accepted App two-digit IDs; no accepted ID was rewritten (unchanged finding).
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present (DEP-08-04-001).
+- Function 5: `validate_dependencies_schema.py` VALID (29 columns, 14 data rows); every enum value on the emitted row VALID (`EXECUTION`, `NOT_APPLICABLE`, `UPSTREAM`, `INTERFACE`, `DELIVERABLE`, `EXPLICIT`, `HIGH`, `EXTRACTED`, `ACTIVE`, `PENDING`); `DependencyID` unique (14 IDs, DEP-08-04-013 now present exactly once); `FromDeliverableID=DEL-08-04` on every row; `Status=CANDIDATE` absent; `git diff --check` clean; LF, no trailing whitespace, final newline.
+
+## Run Notes - 2026-09-05 D-APP-110 decompose (apply; UPDATE)
+
+- Dispatch: `TASK + dependency-extract` as managed child `N14-TASK-DEL-08-04` of run `APP_SCA_APP_010_DEPENDENCY_CLOSURE_2026-09-05` (amendment v1.3, node N14; parent HELP_HUMAN); authorization: owner ruling D-APP-110 (`execution/_Coordination/_DECISIONS/D-APP-110_RULING_SCA_APP_010_SCC_DECOMPOSE_2026-09-05.md`), `AMENDMENT_v1.3_SCC_DECOMPOSE.md`, and the workbook `SCC_DECOMPOSE_RULINGS.csv`. Basis: candidate branch commit `7eb4b0c79e9fda39a1599ef5ef0dcf4d9d846985`; pre-image `Dependencies.csv` `3eb0f762…90aef` and `_DEPENDENCIES.md` `b5123a21…ed2c6d` verified before the write.
+- Runtime overrides: `SCOPE=DEL-08-04`; `MODE=UPDATE`; `STRICTNESS=CONSERVATIVE`; `CONSUMER_CONTEXT=RECONCILIATION`; `DECOMPOSITION_PATH=projects/chirality-app-dev/execution/_Decomposition/Chirality_App_vNext_SOFTWARE_DECOMP_v3_2.md`; `ApplyEdits=true`. No new extraction from prose; no row added, retired, re-targeted, or refreshed.
+- Decomposition: found at the pinned identity, SHA-256 `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` (content commit `dbd812a52d5ed0cb3ed173f3aaaa68703a914291`); no decomposition topology changes under D-APP-110.
+- Task A (re-target to a `DOCUMENT` contract node): none. The workbook names no row of this carrier among the seven decomposed rows (SD-001..SD-007 on DEL-04-05, DEL-02-01, DEL-02-04, DEL-02-02, DEL-06-03); DEP-08-04-013 stays `TargetType=DELIVERABLE` (PKG-03 / DEL-03-02) and every field other than `Notes` is byte-identical.
+- Task B (resolution note): DEP-08-04-013 — the SCC this row participated in (the enlarged SCC-001) was decomposed under D-APP-110; the row is now a strict edge of the acyclic approved deliverable graph and gates per its `SatisfactionStatus` (`PENDING`). `Notes` appended with the `RESOLVED 2026-09-05` clause; no other field changed.
+- SCC posture: after the D-APP-110 move (five eligible edges, seven rows, re-targeted on other carriers) the strict deliverable graph is acyclic (`docs/CYCLE_DRIVEN_RESOLUTION.md` section 2.3, `SCC-SAFE-MOVES-001` form); this carrier holds no cycle-participating row. The acyclic graph is recorded by the fresh `AUDIT_DEP_CLOSURE` snapshot the amendment names (node N16), not by this run. `NEEDS_HUMAN_GRAPH_DECISION`: none.
+- [WARNING] TARGET_UNRESOLVED: permission overlay and hook infrastructure (DEP-08-04-004) remain an explicit prerequisite without one stable target deliverable in the local source (unchanged).
+- [WARNING] PROJECT_ID_FORMAT_PROFILE: the generic `validate_id_format.sh` three-digit profile rejects the accepted App two-digit IDs; no accepted ID was rewritten (unchanged finding).
+- Parent anchor check: PASS; exactly one ACTIVE `IMPLEMENTS_NODE` anchor is present (DEP-08-04-001).
+- Function 5: `validate_dependencies_schema.py` VALID (29 columns, 14 data rows); no enum value changed (`TARGET_TYPE DOCUMENT` was not written here; the ten enum values on DEP-08-04-013 re-validated VALID); `DependencyID` unique (14 IDs, order kept); `FromDeliverableID=DEL-08-04` on every row; `Status=CANDIDATE` absent; counts unchanged (total 14, ACTIVE 13, RETIRED 1, ANCHOR 4, EXECUTION 10; SATISFIED 6 / PENDING 5 / TBD 3); `git diff --check` clean; LF, no trailing whitespace, final newline.
+
 ## Run History
 
+- 2026-09-05T10:13-0600 (D-APP-110 decompose): `TASK + dependency-extract` (managed child `N14-TASK-DEL-08-04`, apply), `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, applied decomposition found at the pinned identity `c7c05169…1e61` (commit `dbd812a52`); no workbook row on this carrier (Task A none); DEP-08-04-013 `Notes` updated from cycle-participating non-gating to resolved by decompose under D-APP-110 (strict edge, gates per `SatisfactionStatus`); every other row byte-identical; warnings: TARGET_UNRESOLVED x1, PROJECT_ID_FORMAT_PROFILE; ACTIVE=13 (ANCHOR=4, EXECUTION=9); RETIRED=1.
+- 2026-09-05T07:59-0600 (D-APP-109 emission): `TASK + dependency-extract` (managed child `N9-TASK-DEL-08-04`, apply), `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, applied decomposition found at the pinned identity `c7c05169…1e61` (commit `dbd812a52`); one held row emitted (DEP-08-04-013, HELD_EDGE_PROPOSALS.csv H-019) as cycle-participating and non-gating pending SCC resolution; every existing row byte-identical; warnings: TARGET_UNRESOLVED x1, PROJECT_ID_FORMAT_PROFILE; ACTIVE=13 (ANCHOR=4, EXECUTION=9); RETIRED=1.
+- 2026-09-05T00:59:00-06:00: `TASK + dependency-extract` (managed child `N1-TASK-DEL-08-04`, report-only preview; v1 pass 00:40, rerun under brief amendment v1.1), `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, applied decomposition found at the pinned identity `c7c05169…1e61` (commit `dbd812a52`); two rows added (DEP-08-04-012, DEP-08-04-014), one proposal held non-emitted with its ID reserved (DEP-08-04-013, HELD_EDGE_PROPOSALS.csv H-019), ten ACTIVE rows refreshed, DEP-08-04-005 preserved RETIRED; warnings: TARGET_UNRESOLVED x1, PROJECT_ID_FORMAT_PROFILE; fences F1/F2/F3 NONE; ACTIVE=12 (ANCHOR=4, EXECUTION=8); RETIRED=1.
 - 2026-09-03T00:00:00-06:00: `TASK + dependency-extract` method in-line (A12 seating), `MODE=UPDATE` additive, `STRICTNESS=CONSERVATIVE`, applied decomposition `d6f6cadb2` verified; one row `DEP-08-04-011` added; existing rows preserved without LastSeen refresh; warnings: PROJECT_ID_FORMAT_PROFILE; ACTIVE=10; RETIRED=1.
 - 2026-08-24T00:53:16-06:00: `TASK + dependency-extract`, `MODE=UPDATE`, `STRICTNESS=CONSERVATIVE`, applied decomposition verified, current v19 references preserved, E-020 retained non-gating without a source-invented edge. ACTIVE counts: ANCHOR=3, EXECUTION=6; RETIRED=1.
 - 2026-06-21T05:00: ADQ-12 recorded child-output artifact evidence closure for the DEL-08-04 downstream handoff; remaining warnings: TARGET_UNRESOLVED x2, TARGET_INFERRED x1. ACTIVE counts: ANCHOR=1, EXECUTION=5.
@@ -82,20 +134,23 @@ TBD - no declared downstream dependency edges have been accepted outside the ext
 
 | Status | Count |
 |---|---:|
-| ACTIVE | 10 |
+| ACTIVE | 13 |
 | RETIRED | 1 |
 
 | SatisfactionStatus | Count |
 |---|---:|
-| SATISFIED | 5 |
-| PENDING | 3 |
+| SATISFIED | 6 |
+| PENDING | 5 |
 | TBD | 3 |
 
 ## Downstream Handoff Notes
 
 - Consumer: `RECONCILIATION`.
-- Reconcile one parent anchor, two objective trace anchors, four retained ACTIVE prerequisite/handover rows, one retired inferred SDK-probe edge, and the two distinct class-interface rows.
+- Reconcile one parent anchor (SOW-063), three trace anchors (OBJ-005, OBJ-007, SOW-083), four retained ACTIVE prerequisite/handover rows, one retired inferred SDK-probe edge, the two distinct class-interface rows, the Root WP-03/05 fixture constraint, and the two SOW-083 delegation-policy interface rows: DEP-08-04-014 (Root DEL-02-11 session-record field, `EXTERNAL`/`TBD`/`PENDING`) and DEP-08-04-013 (DEL-03-02 binding, `DELIVERABLE`/`PENDING`, emitted under D-APP-109; resolved by decompose under D-APP-110).
+- This carrier no longer holds a cycle-participating row. The SCC that DEP-08-04-013 (DEL-08-04 -> DEL-03-02, emitted under D-APP-109 from held proposal H-019) participated in was decomposed under D-APP-110 (`docs/CYCLE_DRIVEN_RESOLUTION.md` section 2.3; the re-targeted rows live on other carriers); the strict deliverable graph is acyclic and every row of this register, DEP-08-04-013 included, gates per its `SatisfactionStatus` like any other strict edge. Any reverse DEL-03-02 -> DEL-08-04 relation would still need its own source statement and an owner ruling before emission.
+- DEP-08-04-014 and DEP-08-04-011 close only after the OI-008 Root returns are routed to App; do not treat either as satisfied on App-side evidence alone.
 - Preserve the non-gating E-020 posture outside this local register unless a future accepted DEL-08-04 source names a concrete reverse information artifact.
+- Register currency: the SCA-APP-010 reviewed write (DEP-025/DEP-026), the D-APP-109 emission, and the D-APP-110 decompose resolution note are all applied; the register changes next only through a later extraction pass or a further recorded graph move.
 
 ## D-APP-56 R5 P45 current register summary (2026-07-12)
 

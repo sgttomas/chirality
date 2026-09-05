@@ -36,13 +36,14 @@ deliverable-folder contract slice.
 
 ## Anticipated Artifacts
 
-Metadata scanners; document kit detection; `_MEMORY.md` rejection tests
+Metadata scanners; document kit detection; `_MEMORY.md` rejection tests;
+workflow file contract and validator tests
 
 ## Traceability
 
 | Field | Value |
 |---|---|
-| CoversScopeItems | SOW-026 |
+| CoversScopeItems | SOW-026, SOW-081 |
 | SupportsObjectives | OBJ-006 |
 | ContextEnvelopeNotes | One deliverable-folder contract slice. |
 
