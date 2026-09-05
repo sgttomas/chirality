@@ -1,0 +1,117 @@
+{
+  "item_count": 4,
+  "items": [
+    {
+      "id": "AC-001",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-09-07-AC-001",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 54,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "0773d528d62e293443c08229f2933e3d50dcfa3de4d54abcaeb23fc1c2de6ebe"
+      },
+      "text": "The transaction artifact and its trace show staging of both Root-owned jobs through the accepted control boundary, with all concrete interface choices bound to the routed Root contract rather than invented locally. Verified by VER-001 against REQ-001 and REQ-004.",
+      "verification": [
+        {
+          "id": "VER-001",
+          "kind": "VER",
+          "qualified_id": "DEL-09-07-VER-001",
+          "source_line": 81,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Inspect the installer transaction and trace both job-staging paths to the accepted Root control contract. Check the caller boundary and compare concrete interface choices with that source. Evidence: artifact/source trace and verification observations for AC-001."
+        }
+      ]
+    },
+    {
+      "id": "AC-002",
+      "output_refs": [
+        "OUT-002",
+        "OUT-003"
+      ],
+      "qualified_id": "DEL-09-07-AC-002",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 55,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "0773d528d62e293443c08229f2933e3d50dcfa3de4d54abcaeb23fc1c2de6ebe"
+      },
+      "text": "The journal and effective-state evidence identify the transaction outcome and observed resulting state using the accepted semantic basis; incomplete or unresolved state is recorded without a successful-completion inference. Verified by VER-002 against REQ-002.",
+      "verification": [
+        {
+          "id": "VER-002",
+          "kind": "VER",
+          "qualified_id": "DEL-09-07-VER-002",
+          "source_line": 82,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Exercise the authorized transaction fixtures and compare journal outcome and inspector observations with accepted expected state, including any unresolved/reconciliation outcome carried by the routed contract. Evidence: source-bound fixture records, journal excerpts, and effective-state observations for AC-002."
+        }
+      ]
+    },
+    {
+      "id": "AC-003",
+      "output_refs": [
+        "OUT-004"
+      ],
+      "qualified_id": "DEL-09-07-AC-003",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 56,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "0773d528d62e293443c08229f2933e3d50dcfa3de4d54abcaeb23fc1c2de6ebe"
+      },
+      "text": "Fixtures and evidence account for each of rollback, upgrade, uninstall, and cleanup, comparing observed outcomes with contract-grounded expected states and preservation/removal rules. Verified by VER-003 against REQ-003.",
+      "verification": [
+        {
+          "id": "VER-003",
+          "kind": "VER",
+          "qualified_id": "DEL-09-07-VER-003",
+          "source_line": 83,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Exercise the contract-grounded rollback, upgrade, uninstall, and cleanup fixtures in the separately authorized environment; compare actual outcomes and preservation/removal evidence with the expected rules. Evidence: per-behavior fixture inputs, results, and discrepancy dispositions for AC-003."
+        }
+      ]
+    },
+    {
+      "id": "AC-004",
+      "output_refs": [
+        "OUT-001"
+      ],
+      "qualified_id": "DEL-09-07-AC-004",
+      "review_status": null,
+      "source_identity": {
+        "document": "ScopeOfWork.md",
+        "line": 57,
+        "section": "Completion and Reliance Basis — Epistemology",
+        "sha256": "0773d528d62e293443c08229f2933e3d50dcfa3de4d54abcaeb23fc1c2de6ebe"
+      },
+      "text": "The output/evidence review confirms the owner boundaries in REQ-004 and records any unresolved Root contract or gate as a limit on completion. Verified by VER-004 against REQ-004.",
+      "verification": [
+        {
+          "id": "VER-004",
+          "kind": "VER",
+          "qualified_id": "DEL-09-07-VER-004",
+          "source_line": 84,
+          "source_section": "Production and Verification Method — Praxeology",
+          "text": "Review all four outputs against CLM-001 and the declared completion gates. Account for each excluded act and its owner, unresolved TBD, and claim limitation. Evidence: owner-boundary and completion-limits review for AC-004."
+        }
+      ]
+    }
+  ],
+  "schema": "chirality-review-checklist/v1",
+  "source": {
+    "deliverable_id": "DEL-09-07",
+    "document": "ScopeOfWork.md",
+    "format": "SOW_V1",
+    "migration_authority": null,
+    "package_id": "PKG-09",
+    "schema": "chirality-deliverable-sow/v1",
+    "sha256": "0773d528d62e293443c08229f2933e3d50dcfa3de4d54abcaeb23fc1c2de6ebe"
+  },
+  "tool_version": "1"
+}

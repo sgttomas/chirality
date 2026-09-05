@@ -6917,3 +6917,13 @@
   - Checks: APP-HOLD tests pass; initialization preflight pass; hold integrity pass; practitioner pytest pass; self-check pass; independent review pass; corpus pass; receipt validator pass; diff check pass; G4 pass.
   - Model-Attribution: Codex/OpenAI/GPT-6 per session instructions; exact backend identifier unavailable; delegated-harness-native, role not mechanically enforced, instruction-asserted, non-delegation instruction/config asserted and not mechanism-proven; execution evidence in the run record.
   - Gate-Outcome: `AWAITING_OWNER` — repair reviewed; owner PR merge remains the gate, then PROJECT_SETUP resumes INIT under the already-given direction. No ScopeOfWork, acceptance, lifecycle, product, or release act occurred.
+
+- **2026-09-04 — Receipt 230** (PROJECT_SETUP DEL-09-07 Scope of Work initialization).
+  - Receipt-ID: `Receipt-230`
+  - Examined-Through: `740569598f9d00440636b8ea25264127f418e4ec`
+  - Parent-Receipt: `Receipt-229`
+  - Pointers: `execution/_Coordination/AgentRuns/APPDEV_DEL0907_SOW_INIT_2026-09-04/`; `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/ScopeOfWork.md`; D-APP-107.
+  - Stale-Map-Delta: The prior admission handoff's integration-pending statement is history after PR #709; LOOP_INIT's status command selector correction is documented in this run's ACTIVATION.md.
+  - Checks: SOW validation pass; checklist pass; boundary-owner pass; independent verification pass; self-check pass; practitioner pytest pass; APP-HOLD pass; corpus pass; receipt validator pass; diff check pass; frontend gates skipped.
+  - Model-Attribution: Codex/OpenAI/GPT-6 family per session; exact backend identifier unavailable; delegated-harness-native, role not mechanically enforced, instruction-asserted, non-delegation instruction/config asserted and not mechanism-proven; actual child evidence in AgentRuns.
+  - Gate-Outcome: `AWAITING_OWNER` — PROJECT_SETUP completed the authorized INIT and focused verification; concrete draft awaits owner consideration and integration. Lifecycle remains OPEN; implementation and release gates remain separate.
