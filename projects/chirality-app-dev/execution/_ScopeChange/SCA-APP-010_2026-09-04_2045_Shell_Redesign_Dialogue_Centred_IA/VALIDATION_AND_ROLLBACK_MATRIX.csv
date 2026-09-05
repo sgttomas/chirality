@@ -1,0 +1,16 @@
+Order,When,Check,Expected,FailureAction
+1,Prewrite,git HEAD ancestry and cleanliness,95b5687a7c9a4c6fe6e655f628495dec08ce04d8 or a verified fast-forward descendant; clean tree; actual basis recorded,STOP on non-fast-forward or dirty state
+2,Prewrite,Frozen pre-image hashes,Decomposition e46084ab...; companion e47fced6...; _LATEST.md f235ced4...,STOP; no repair
+3,Prewrite,SCA-APP-009 immutability,Tree of execution/_ScopeChange/SCA-APP-009_2026-09-04_0944_App_V3_Pathway_Seating/ unchanged versus the basis,STOP; no historical edit
+4,Prewrite,ID and path collision scan,"SOW-081..084, DEC-025, OI-008 absent from the live decomposition; no second SCA-APP-010 folder",STOP; return for a new approved preview
+5,Prewrite,Approved candidate identities,Builder regeneration yields c7c05169... and 63383f04...; Amendment_Actions.csv 8b579266...; Supersession_Delta.csv c610f494...,STOP; no regeneration by hand
+6,Prewrite,Fresh pre-change AUDIT_DECOMP at the actual basis,No new blocker relative to the Gate-1 baseline,STOP; owner review
+7,Candidate,Fresh post-change AUDIT_DECOMP,10/52/84; 79/4/1; S9 M41 L2 XL0; companion 83/50; no new blocker or major versus the fresh pre-change audit,STOP; discard candidate
+8,Candidate,Independent Gate-5 review,PASS; zero BLOCKER; zero MAJOR,STOP; remediate and re-review
+9,Candidate,Cumulative supersession map parity,45 rows; SHA-256 2045684e8d2d1aff5a46663016f07c16f0c60462c8c8d729ea3c3c1a64f8dbb6; zero findings,STOP
+10,Postwrite,Authoritative post-image hashes,c7c05169... and 63383f04... on the live files,ROLLBACK the pair from the scratch bundle
+11,Postwrite,RECONCILIATION,Authority corpus v20 no drift; companion 83/50 with only the K-PATH-2 mapping change beyond the pin,ROLLBACK the pair
+12,Postwrite,Changed-path scope,"Exactly D-001, D-002, and paths under the SCA-APP-010 snapshot; _LATEST.md unchanged",ROLLBACK; owner review
+13,Postwrite,Repository validators,Receipts validator VALID; harness self-check exit 0; git diff --check clean; candidate whitespace pass; G0-G4 pass; routed tools tests pass,STOP; remediate
+14,Pointer,Literal pointer post-image,Validated in the candidate; moved last only after the owner ruling in OWNER_ACTION_MATRIX step 14,"ROLLBACK pointer first, then nothing else"
+15,Post-pointer,Parity backcheck,"Pointer target, snapshot manifest, both authoritative hashes, SCA-APP-009 immutability",ROLLBACK pointer; owner review
