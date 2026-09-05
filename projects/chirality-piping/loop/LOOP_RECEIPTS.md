@@ -3047,3 +3047,47 @@
   - Checks: node-focused tests, fresh repaired 100%-diff review, authorized-sync containment and hash preservation, post-sync integration, practitioner harness, repository self-check, receipt contract, and complete clean integrated-head DEC-025/DEC-093 host sweep: PASS.
   - Model-Attribution: HELP_HUMAN supervised WORKING_ITEMS, bounded implementation and fresh read-only review Agent 2 roles, and CHANGE; inherited GPT-5-family Codex runtime was used without substitution. Exact parentage and attempt history are in the named AgentRuns package.
   - Gate-Outcome: `EXECUTED` — applicable Python and desktop persistence boundaries now fail closed on unknown or malformed local-first route evidence and require exact Boolean private intent. DEL-12-01 remains `IN_PROGRESS` for its recorded residuals. Both exact owner-authorized non-rewriting syncs landed without product/test overlap and passed post-sync gates. PR #608 is owner-authorized for protected merge after exact-head CI passes; no lifecycle, release, reliance, issuance, certification, sealing, authentication, code-compliance, or professional-approval effect is created.
+
+- **2026-09-05 — Receipt 126** (Piping toolkit and shared-operation implementation).
+  - Receipt-ID: `Receipt-126`
+  - Examined-Through: `740569598f9d00440636b8ea25264127f418e4ec`
+  - Parent-Receipt: `Receipt-125`
+  - Pointers: `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260905-UI-TOOLKIT-PARITY/OWNER_DIRECTION.md`; accepted parent fan-in `PRECOMMIT_PARENT_FAN_IN_V1.md` and `SECOND_SOURCE_COMMIT_PARENT_FAN_IN_V1.md` in that run; final review `instances/N7_FINAL_REVIEW/V3_BACKCHECK/REVIEW_RETURN_V3.md`; Git/evidence closeout `instances/N8_CHANGE/CLOSEOUT_EVIDENCE_V1.md` and `FINAL_SOURCE_EQUALITY_V1.json`; clean sweep `validation/evidence/sweeps/SWEEP_20260905T065705Z_d6a313fc41db.json`.
+  - Checks: focused and registered checks, fresh independent integrated review, complete clean committed-source DEC-025 host sweep, practitioner harness, repository self-check, receipt contract and exact source containment/equality: PASS.
+  - Model-Attribution: HELP_HUMAN supervised package-scoped WORKING_ITEMS, their implementation/review Agent 2 children, direct bounded Agent 2 instances and CHANGE. Actual role attribution, unavailable model details and native enforcement calibration are preserved in the named AgentRuns package; CHANGE dispatches no children.
+  - Gate-Outcome: `EXECUTED` — bounded implementation and compact-layout repair accepted through owning manager/parent handoffs. Initial sweep failure preserved; repaired source passed the complete clean sweep. Durable applied-batch history, D58, R1–R3 and other accepted residuals remain open; no lifecycle or release promotion. Ordinary branch publication and CI remain conditional on final evidence checks; owner merges.
+
+- **2026-09-05 — Receipt 127** (PR715 evidence-storage and CI provisioning repair).
+  - Receipt-ID: `Receipt-127`
+  - Examined-Through: `079f865bc5507fc28ad52bc4b3186e563bb26ce0`
+  - Parent-Receipt: `Receipt-126`
+  - Pointers: PR #715; `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260905-UI-TOOLKIT-PARITY/POST_PUBLICATION_CI_REPAIR_FAN_IN_V1.md`; within that run, `instances/N8_CHANGE/CI_REPAIR/ATTRIBUTE_ACCEPTED_SNAPSHOT_V1.json`, `CI_REPAIR_CLOSEOUT_V1.md`, `COMBINED_CHECKS_V2.json`, and `instances/N1_WI_PKG07/CI_PROVISIONING_V1/ACCEPTED_CI_REPAIR_SNAPSHOT_V1.json`.
+  - Checks: fresh independent configuration reviews, exact attribute scope and artifact/source equality, cold-cache locked offline builds, candidate whitespace, practitioner harness, baseline self-check and receipt contract: PASS.
+  - Model-Attribution: HELP_HUMAN supervised CHANGE, WORKING_ITEMS PKG07 and fresh independent Agent2 reviews; exact available attribution and native instruction/config enforcement calibration remain in the named AgentRuns records.
+  - Gate-Outcome: `EXECUTED` — parent accepted exact evidence attributes and the project-specific CI provisioning repair after actual failed PR checks. All reviewed product members preserve the clean DEC-025 source proof at `d6a313fc41db10b7e992381b173ce1ac5cbc956e`; the configuration commit is not represented as swept. Subsequent hosted CI remains required before merge; owner merges. Prior failures and residuals remain preserved.
+
+- **2026-09-05 — Receipt 128** (PR715 workflow manifest packaging).
+  - Receipt-ID: `Receipt-128`
+  - Examined-Through: `3c47362cc4663e8579475fefa00150b48c15b4fc`
+  - Parent-Receipt: `Receipt-127`
+  - Pointers: PR #715; `docs/governance_harness/tranche_manifests/PIPING-DUAL-WASM-CI-20260905.yaml`; `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260905-UI-TOOLKIT-PARITY/instances/N9_G4_MANIFEST/LOCAL_ACCEPTED_SNAPSHOT_V1.json` and `HANDOFF_V1.md`; owning CHANGE `instances/N8_CHANGE/G4_MANIFEST_CLOSEOUT_V1.md` in the same run.
+  - Checks: manifest corpus/schema, exact named-tranche coverage, whitespace, receipt and protected source/configuration equality: PASS. Actual committed-range added-manifests-only validation remains required before push; hosted CI remains required before merge.
+  - Model-Attribution: HELP_HUMAN supervised HELPS_HUMANS for bounded derivative manifest packaging and CHANGE for serialized closeout; actual available model and native enforcement calibration are preserved in the owning AgentRuns records.
+  - Gate-Outcome: `EXECUTED` — parent accepted a minimal derivative manifest recording prior authority after hosted G4 exposed the missing packaging. Precommit added-manifests-only BLOCK is preserved as expected; no new policy, product/configuration change, owner ruling or lifecycle promotion. User-authorized ordinary publication remains conditional on committed-range validation; owner merges.
+
+- **2026-09-05 — Receipt 129** (N9 active-control portability repair).
+  - Receipt-ID: `Receipt-129`
+  - Examined-Through: `4117a3d047ddf3474255b9091f95cea71195d135`
+  - Parent-Receipt: `Receipt-128`
+  - Pointers: PR #715; `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260905-UI-TOOLKIT-PARITY/instances/N9_G4_MANIFEST/PORTABILITY_REPAIR_V1/ACCEPTED_LOCAL_REPAIR.json` and `RELOCATION_MAP.json`; same run `instances/N8_CHANGE/G4_PORTABILITY_CLOSEOUT_V1.md`.
+  - Model-Attribution: HELP_HUMAN supervised HELPS_HUMANS for exact-byte evidence relocation and CHANGE for serialized final-tree validation/publication; actual attribution and native enforcement limitations remain in the owning records.
+  - Gate-Outcome: `EXECUTED` — parent accepted the evidence-only repair of two active control paths, preserving original bytes and all product/configuration/manifest hashes. All hosted-equivalent local gates on the final tree and committed-range G4 remain required before publication; hosted exact-head checks remain required before merge. No lifecycle, source or authority change; owner merges.
+
+- **2026-09-05 — Receipt 130** (menu/drawer stacking repair).
+  - Receipt-ID: `Receipt-130`
+  - Examined-Through: `8e503b92e297a50f037739b4bb2b43068490805c`
+  - Parent-Receipt: `Receipt-129`
+  - Pointers: PR #715; `execution/_Coordination/AgentRuns/HELP-HUMAN-PIPING-20260905-UI-TOOLKIT-PARITY/MENU_REPAIR_PARENT_FINAL_HANDOFF_V1.md`; same run `instances/N7_FINAL_REVIEW/V4_BACKCHECK/RETURN.md` and `instances/N8_CHANGE/MENU_REPAIR_CLOSEOUT_V1/HANDOFF.md`; clean summary `validation/evidence/sweeps/SWEEP_20260905T155659Z_8e503b92e297.json`.
+  - Checks: accepted focused positive/negative proofs, independent112-member review and full clean committed-source DEC025: PASS. Final-tree local hosted gates and committed G4 remain required before push; actual exact-head hosted CI remains required before merge.
+  - Model-Attribution: HELP_HUMAN supervised WORKING_ITEMS and bounded implementation/review Agent2 roles; CHANGE performed serialized closeout without children. Actual attribution and native enforcement calibration remain in the owning run records.
+  - Gate-Outcome: `EXECUTED` — closed menu now stays below shared drawers; open menu retains its backdrop priority. Earlier hosted failures are preserved. Evidence commit must preserve all112 reviewed source hashes; no lifecycle promotion or residual closure. User-authorized same-branch publication remains conditional on final gates; owner merges.
