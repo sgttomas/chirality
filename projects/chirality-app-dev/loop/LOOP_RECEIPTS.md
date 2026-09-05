@@ -6907,3 +6907,14 @@
     implementation, host,
     Syft, signing, notarization, Apple call, distribution, publication,
     release-readiness, or reliance act or claim occurred.
+
+- **2026-09-04 — Receipt 229** (SCA-APP-010 Gate-1 intake: shell redesign, dialogue-centred information architecture).
+  - Receipt-ID: `Receipt-229`
+  - Examined-Through: `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`
+  - Parent-Receipt: `Receipt-228`
+  - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-09-04, Ryan Tufts): "Then the scope change. Open a new SCA-APP-* through SCOPE_CHANGE, Gate 1 intake, with `projects/chirality-app-dev/plans/shell-redesign_2026-09-04/` as the input." and, after PR #706 and PR #707 merged, "Both are merged, fetch main and open the Gate 1 intake." Scope limited by the owner to the decomposition-changing items; direct items are seated separately.
+  - Stale-Map-Delta: none. `_ScopeChange/_LATEST.md` still points to SCA-APP-009 and is not moved; the SCA-APP-010 folder is Gate-1 intake history only.
+  - Pointers: branch `claude/sca-app-010-gate1-intake`; basis above; `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/` (`Brief.md`, `PARSED_ACTIONS.csv`, `Decision_Log.md`, `Handoff_State.md`, `Evidence/Gate1/PRE_CHANGE_AUDIT/`); intake package `plans/shell-redesign_2026-09-04/` at the hashes in `Brief.md`; decomposition `e46084abc0f85970dbe4ed49d1366a99e9930bbb9d9bd87b86f998f98155ab97`; companion `e47fced6f0bea32b1d18f987a7e33af0432271c4ff49bb196cdad6fb91742b70`; audit return `e5375d794357e422bb049721b7f9f8befedafd5d9c75136bbe1e04b86ca8ba44`.
+  - Checks: fresh `AUDIT_DECOMP` pre-change baseline `WARNINGS` with zero blockers and closure `FAIL` on SCA-APP-009's open derivative state; receipt validator pass; authority corpus v20 no drift; repo-wide self-check exit 0; candidate whitespace and `git diff --check` pass; frontend and runtime gates skipped because no product source changed.
+  - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; one bounded Claude Code subagent dispatched as AUDIT_DECOMP (read-only, wrote only the nine audit evidence files); role not mechanically enforced.
+  - Gate-Outcome: `AWAITING_OWNER` — Gate-1 intake prepared; the owner's confirm/correct/stop answer is the gate to Gate 2. No decomposition, companion, pointer, register, product, lifecycle, Root, release, or implementation act or claim occurred.
