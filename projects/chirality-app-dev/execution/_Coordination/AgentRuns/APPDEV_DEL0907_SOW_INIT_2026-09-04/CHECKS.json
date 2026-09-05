@@ -1,0 +1,15 @@
+{
+  "schema": "app-deliverable-init-checks/v1",
+  "basis": "740569598f9d00440636b8ea25264127f418e4ec",
+  "checks": [
+    {"command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .", "stage": "before mutation", "exit_code": 0, "result": "PASS"},
+    {"command": "python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status", "cwd": "projects/chirality-app-dev", "exit_code": 0, "result": "PASS", "detail": "v20; no drift"},
+    {"command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path PROJECT_SETUP:SCOPE_OF_WORK:INIT --target DEL-09-07", "cwd": "projects/chirality-app-dev", "exit_code": 0, "result": "PASS", "detail": "ALLOW/SOW_INITIALIZATION before author launch"},
+    {"command": "python3 tools/practitioner_harness/harness.py self-check", "exit_code": 2, "result": "FAIL", "detail": "default interpreter lacks PyYAML; existing environment retry below"},
+    {"command": "/private/tmp/chirality-piping-dec093-venv/bin/python tools/practitioner_harness/harness.py self-check", "exit_code": 0, "result": "PASS"},
+    {"command": "/private/tmp/chirality-piping-dec093-venv/bin/python -m pytest -q -p no:cacheprovider tools/practitioner_harness", "exit_code": 0, "result": "PASS", "detail": "350 passed"},
+    {"command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path PROJECT_SETUP:SCOPE_OF_WORK:VERIFY --target DEL-09-07", "cwd": "projects/chirality-app-dev", "exit_code": 0, "result": "PASS", "detail": "ALLOW/CLEAR before verifier launch"},
+    {"command": "python3 execution/_Scripts/app_hold.py scan --require-register-match", "cwd": "projects/chirality-app-dev", "exit_code": 0, "result": "PASS", "detail": "54 contracts; initialization admission CONSUMED"},
+    {"check": "frontend typecheck, tests, build, premerge", "result": "SKIPPED", "reason": "no frontend or runtime implementation paths"}
+  ]
+}

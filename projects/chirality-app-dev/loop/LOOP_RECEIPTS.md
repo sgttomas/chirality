@@ -6908,10 +6908,30 @@
     Syft, signing, notarization, Apple call, distribution, publication,
     release-readiness, or reliance act or claim occurred.
 
-- **2026-09-04 — Receipt 229** (SCA-APP-010 Gate-1 intake: shell redesign, dialogue-centred information architecture).
+- **2026-09-04 — Receipt 229** (DEL-09-07 Scope of Work initialization admission repair).
   - Receipt-ID: `Receipt-229`
   - Examined-Through: `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`
   - Parent-Receipt: `Receipt-228`
+  - Pointers: `execution/_Coordination/_DECISIONS/D-APP-107_RULING_DEL_09_07_SOW_INITIALIZATION_2026-09-04.md`; `execution/_Coordination/AgentRuns/APPDEV_DEL0907_SOW_INIT_ADMISSION_2026-09-04/`; reviewed freeze `e079cbc397e4208c4c82d6a55a6dffacf67165e4`; branch `codex/del0907-init-admission-2026-09-04`.
+  - Stale-Map-Delta: Receipt-228's awaiting-owner-merge claim is historical; PR #707 merged at the examined basis, expiring the D-APP-104 bootstrap; the prospective repair is recorded in D-APP-107.
+  - Checks: APP-HOLD tests pass; initialization preflight pass; hold integrity pass; practitioner pytest pass; self-check pass; independent review pass; corpus pass; receipt validator pass; diff check pass; G4 pass.
+  - Model-Attribution: Codex/OpenAI/GPT-6 per session instructions; exact backend identifier unavailable; delegated-harness-native, role not mechanically enforced, instruction-asserted, non-delegation instruction/config asserted and not mechanism-proven; execution evidence in the run record.
+  - Gate-Outcome: `AWAITING_OWNER` — repair reviewed; owner PR merge remains the gate, then PROJECT_SETUP resumes INIT under the already-given direction. No ScopeOfWork, acceptance, lifecycle, product, or release act occurred.
+
+- **2026-09-04 — Receipt 230** (PROJECT_SETUP DEL-09-07 Scope of Work initialization).
+  - Receipt-ID: `Receipt-230`
+  - Examined-Through: `740569598f9d00440636b8ea25264127f418e4ec`
+  - Parent-Receipt: `Receipt-229`
+  - Pointers: `execution/_Coordination/AgentRuns/APPDEV_DEL0907_SOW_INIT_2026-09-04/`; `execution/PKG-09_Validation_Packaging_Security_and_Release/1_Working/DEL-09-07_Two-Job_Runtime-Control_Installer_Migration_and_Rollback/ScopeOfWork.md`; D-APP-107.
+  - Stale-Map-Delta: The prior admission handoff's integration-pending statement is history after PR #709; LOOP_INIT's status command selector correction is documented in this run's ACTIVATION.md.
+  - Checks: SOW validation pass; checklist pass; boundary-owner pass; independent verification pass; self-check pass; practitioner pytest pass; APP-HOLD pass; corpus pass; receipt validator pass; diff check pass; frontend gates skipped.
+  - Model-Attribution: Codex/OpenAI/GPT-6 family per session; exact backend identifier unavailable; delegated-harness-native, role not mechanically enforced, instruction-asserted, non-delegation instruction/config asserted and not mechanism-proven; actual child evidence in AgentRuns.
+  - Gate-Outcome: `AWAITING_OWNER` — PROJECT_SETUP completed the authorized INIT and focused verification; concrete draft awaits owner consideration and integration. Lifecycle remains OPEN; implementation and release gates remain separate.
+
+- **2026-09-04 — Receipt 231** (SCA-APP-010 Gate-1 intake: shell redesign, dialogue-centred information architecture).
+  - Receipt-ID: `Receipt-231`
+  - Examined-Through: `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`
+  - Parent-Receipt: `Receipt-230`
   - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-09-04, Ryan Tufts): "Then the scope change. Open a new SCA-APP-* through SCOPE_CHANGE, Gate 1 intake, with `projects/chirality-app-dev/plans/shell-redesign_2026-09-04/` as the input." and, after PR #706 and PR #707 merged, "Both are merged, fetch main and open the Gate 1 intake." Scope limited by the owner to the decomposition-changing items; direct items are seated separately.
   - Stale-Map-Delta: none. `_ScopeChange/_LATEST.md` still points to SCA-APP-009 and is not moved; the SCA-APP-010 folder is Gate-1 intake history only.
   - Pointers: branch `claude/sca-app-010-gate1-intake`; basis above; `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/` (`Brief.md`, `PARSED_ACTIONS.csv`, `Decision_Log.md`, `Handoff_State.md`, `Evidence/Gate1/PRE_CHANGE_AUDIT/`); intake package `plans/shell-redesign_2026-09-04/` at the hashes in `Brief.md`; decomposition `e46084abc0f85970dbe4ed49d1366a99e9930bbb9d9bd87b86f998f98155ab97`; companion `e47fced6f0bea32b1d18f987a7e33af0432271c4ff49bb196cdad6fb91742b70`; audit return `e5375d794357e422bb049721b7f9f8befedafd5d9c75136bbe1e04b86ca8ba44`.
@@ -6919,10 +6939,10 @@
   - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; one bounded Claude Code subagent dispatched as AUDIT_DECOMP (read-only, wrote only the nine audit evidence files); role not mechanically enforced.
   - Gate-Outcome: `AWAITING_OWNER` — Gate-1 intake prepared; the owner's confirm/correct/stop answer is the gate to Gate 2. No decomposition, companion, pointer, register, product, lifecycle, Root, release, or implementation act or claim occurred.
 
-- **2026-09-04 — Receipt 230** (SCA-APP-010 Gate-1 confirmation recorded and Gate-2 impact assessment prepared).
-  - Receipt-ID: `Receipt-230`
+- **2026-09-04 — Receipt 232** (SCA-APP-010 Gate-1 confirmation recorded and Gate-2 impact assessment prepared).
+  - Receipt-ID: `Receipt-232`
   - Examined-Through: `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`
-  - Parent-Receipt: `Receipt-229`
+  - Parent-Receipt: `Receipt-231`
   - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-09-04, Ryan Tufts): "Confirm the envelope as parsed, proceed to Gate 2. You have my approval to expand your write scope to the Root also, as required for this work throughout this session." Recorded verbatim as G1-CONFIRM in the SCA-APP-010 `Decision_Log.md`; the Root write-scope grant is session-bound and exercised only where the assessment names a Root surface.
   - Stale-Map-Delta: none. `_ScopeChange/_LATEST.md` still points to SCA-APP-009; no authority surface changed.
   - Pointers: branch `claude/sca-app-010-gate1-intake` (PR #708); basis above; `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/` (`Impact_Assessment.md` new; `Decision_Log.md`, `Brief.md`, `Handoff_State.md` updated); Gate-2 evidence cited from decomposition lines 168, 296, 397, D-APP-74 line 107, the carriers' `_STATUS.md` Remaining sections, `docs/CONTRACT.md` invariant rows, the companion register, and `frontend/src/lib/harness/mcp/`.
@@ -6930,10 +6950,10 @@
   - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; no child dispatched for this act.
   - Gate-Outcome: `AWAITING_OWNER` — Gate 2 assessment presented; the owner's acceptance with the A006 and A012 choices is the gate to Gate 3. No decomposition, companion, contract, pointer, deliverable, Root, product, lifecycle, or release act or claim occurred.
 
-- **2026-09-04 — Receipt 231** (SCA-APP-010 Gate-2 acceptance recorded; Gate-3 exact amendment candidate prepared and independently reviewed).
-  - Receipt-ID: `Receipt-231`
+- **2026-09-04 — Receipt 233** (SCA-APP-010 Gate-2 acceptance recorded; Gate-3 exact amendment candidate prepared and independently reviewed).
+  - Receipt-ID: `Receipt-233`
   - Examined-Through: `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`
-  - Parent-Receipt: `Receipt-230`
+  - Parent-Receipt: `Receipt-232`
   - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-09-04, Ryan Tufts): "retire the presentation half of SOW-007 now. accept the organisation-layer default from Q14. I accept the impact assessment, proceed to Gate 3." Recorded verbatim as G2-CONFIRM in the SCA-APP-010 `Decision_Log.md`.
   - Stale-Map-Delta: none. Live decomposition, companion register, and `_ScopeChange/_LATEST.md` are unchanged; the candidate post-images exist only inside the SCA-APP-010 snapshot.
   - Pointers: branch `claude/sca-app-010-gate1-intake` (PR #708); basis above; `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/` (`Gate3/GATE3_AMENDMENT_PACKAGE.md`, `Gate3/build_gate3_candidate.py`, `Gate3/TRANSACTIONS.json`, `Gate3/DECOMP_POSTIMAGE_CANDIDATE.md`, `Gate3/COMPANION_POSTIMAGE_CANDIDATE.csv`, `Gate3/VALIDATION.md`, `Amendment_Actions.csv`, `Supersession_Delta.csv`, `Supersession_Map.csv`, `Pre_Change_Coverage.json`, `Evidence/Gate3/GATE3_INDEPENDENT_REVIEW.md`); candidate decomposition post-image `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61`; candidate companion post-image `63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca`; review `8c4b1ef94edbf2ecfbe5800a3d1a54dc801a98c3160a02b9bab81465920abec6`.
@@ -6941,10 +6961,10 @@
   - Model-Attribution: provider Anthropic; model Claude Fable 5.1 (`claude-fable-5-1`); untyped Claude Code session acting as HELP_HUMAN; one bounded Claude Code subagent dispatched as the independent Gate-3 reviewer (read-only, wrote only the review file); role not mechanically enforced.
   - Gate-Outcome: `AWAITING_OWNER` — Gate-3 exact bytes presented; the owner's approval, revision, or rejection is the gate to Gate 4. No decomposition, companion, contract, pointer, deliverable, Root, product, lifecycle, or release act or claim occurred.
 
-- **2026-09-04 — Receipt 232** (SCA-APP-010 Gate-3 approval recorded; Gate-4 propagation plan prepared and independently reviewed).
-  - Receipt-ID: `Receipt-232`
+- **2026-09-04 — Receipt 234** (SCA-APP-010 Gate-3 approval recorded; Gate-4 propagation plan prepared and independently reviewed).
+  - Receipt-ID: `Receipt-234`
   - Examined-Through: `95b5687a7c9a4c6fe6e655f628495dec08ce04d8`
-  - Parent-Receipt: `Receipt-231`
+  - Parent-Receipt: `Receipt-233`
   - Owner-Direction: CHAT_TRANSCRIPTION — EVIDENCE, NOT RULING (2026-09-04, Ryan Tufts): "I approve the amendments, proceed to Gate 4." Recorded verbatim as G3-CONFIRM in the SCA-APP-010 `Decision_Log.md`.
   - Stale-Map-Delta: none. Live decomposition, companion register, `_ScopeChange/_LATEST.md`, and every deliverable folder are unchanged.
   - Pointers: branch `claude/sca-app-010-gate1-intake` (PR #708); basis above; `execution/_ScopeChange/SCA-APP-010_2026-09-04_2045_Shell_Redesign_Dialogue_Centred_IA/` (`Propagation_Plan.md`, `FUTURE_WRITE_SET.csv`, `OWNER_ACTION_MATRIX.csv`, `VALIDATION_AND_ROLLBACK_MATRIX.csv`, `DOWNSTREAM_HANDOFFS.csv`, `DRAFT_NOTICE_TO_ROOT.md`, `Evidence/Gate4/GATE4_INDEPENDENT_REVIEW.md`); review SHA-256 `ccda76def5d0a8869fdfc118fa49f7ab7843d0b52449f2f6fd15aded91c663ee`; approved candidate post-images `c7c05169659bfab17b34440b818130e08a0dcb4660b6193c8bf7ea9285771e61` and `63383f0467f5419be5c417df9adbf63212958782f13989663279bc8c863feaca`.

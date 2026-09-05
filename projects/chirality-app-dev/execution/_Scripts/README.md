@@ -60,14 +60,14 @@ Add `--format json` for machine-readable CI consumption.
 
 Read-only, idempotent scan-authoritative reliance gate for App ScopeOfWork
 contracts. `scan` verifies every declared decomposition basis and exact hold
-register parity. Register records are typed as `HOLD` or
-`STRUCTURAL_BOOTSTRAP`; a hold always wins. `check` evaluates one of
+register parity. Register records are typed as `HOLD`,
+`STRUCTURAL_BOOTSTRAP`, or `SOW_INITIALIZATION`; a hold always wins. `check` evaluates one of
 `reliance`, `dispatch`, `checking-promotion`, or
 `accepted-dependency-consumption` for explicit deliverable targets and entry
 path. Exit 0 permits, 2 rejects invalid input or authority evidence, 3 blocks
-a hold or failed structural-bootstrap condition, and 4 blocks register drift.
+a hold or failed admission condition, and 4 blocks register drift.
 
-There is no generic runtime exception input. D-APP-104's sole structural row
+There is no generic runtime exception input. D-APP-104's historical structural row
 admits unknown `DEL-09-07` only for `dispatch` through the exact
 `SCA-APP-009:GATE5:PREPARATION:CANDIDATE_MIRROR` or
 `SCA-APP-009:GATE5:PREPARATION:ACTUAL_WORKTREE` token, and only while its two
@@ -78,6 +78,31 @@ appearance, authority drift, or folder-shape drift expires it. This does not
 authorize PREPARATION, repinning, scope change, or an audit waiver. Any other
 override requires a separately accepted and applied App-loop amendment before
 the act.
+
+D-APP-107 replaces the expired live bootstrap row with one initialization row.
+PROJECT_SETUP calls from the App root before its scope-of-work INIT dispatch:
+
+```bash
+python3 execution/_Scripts/app_hold.py check --operation dispatch \
+  --entry-path PROJECT_SETUP:SCOPE_OF_WORK:INIT --target DEL-09-07
+```
+
+The tool pins the exact target/package/folder, accepted decomposition and
+companion, post-SCA-009 pointer, and all five scaffold inputs. The production
+ScopeOfWork must be absent. Only a regular `_run_records/` subtree may coexist
+with those inputs; symlinks at any ancestor or descendant, special files,
+missing inputs, and unexpected folder entries block. The result is
+`admission_kind=SOW_INITIALIZATION`, with `BLOCK_SOW_INITIALIZATION` for an
+ineligible dispatch. This is read-only, stateless eligibility checking; a
+reported ALLOW is not a durable reservation or role authentication.
+
+After the exact target/package contract appears, the row is reported
+`CONSUMED` and ordinary scan/register checks govern every operation. A CLEAR
+basis permits ordinary preflight, including the verifier, but does not grant
+semantic acceptance. Malformed contracts, a HELD basis, mismatched identity,
+or symlinked contract paths block. The skill and sealed brief retain their
+write boundaries and lifecycle restrictions. D-APP-104 compatibility remains
+fixture-tested; its immutable ruling/proposal bytes are unchanged.
 
 ## Suggested CI Snippets
 
