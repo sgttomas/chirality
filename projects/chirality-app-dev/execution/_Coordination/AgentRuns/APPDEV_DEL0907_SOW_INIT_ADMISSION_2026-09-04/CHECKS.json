@@ -1,0 +1,100 @@
+{
+  "schema": "app-del0907-init-checks/v1",
+  "basis": "95b5687a7c9a4c6fe6e655f628495dec08ce04d8",
+  "reviewed_freeze": "e079cbc397e4208c4c82d6a55a6dffacf67165e4",
+  "note": "Execution summaries; unaffected wider suites were not repeated during narrative closeout. CLEAR checks structural basis only.",
+  "checks": [
+    {
+      "cwd": "REPO_ROOT",
+      "command": "python3 -m unittest discover -s projects/chirality-app-dev/execution/_Scripts/tests -p test_app_hold.py -q",
+      "result": "PASS",
+      "tests": 39
+    },
+    {
+      "cwd": "REPO_ROOT",
+      "command": "python3 -m unittest projects/chirality-app-dev/execution/_Scripts/tests/test_app_hold.py -k test_malformed_sow_and_symlink_sow_block -q",
+      "result": "PASS",
+      "tests": 1,
+      "note": "Latest regular-contract/FIFO addition checked separately after the full-suite process loaded its tests."
+    },
+    {
+      "cwd": "REPO_ROOT",
+      "command": "python3 tools/practitioner_harness/harness.py self-check",
+      "result": "FAILED_ENVIRONMENT",
+      "note": "PyYAML unavailable; retried using existing venv."
+    },
+    {
+      "cwd": "REPO_ROOT",
+      "command": "python3 -m pytest -q tools/practitioner_harness",
+      "result": "FAILED_ENVIRONMENT",
+      "note": "pytest unavailable; retried using existing venv."
+    },
+    {
+      "cwd": "REPO_ROOT",
+      "command": "/private/tmp/chirality-piping-dec093-venv/bin/python tools/practitioner_harness/harness.py self-check",
+      "result": "PASS",
+      "note": "Exit zero; existing REVIEW/WARN findings remain reported, not waived or repaired."
+    },
+    {
+      "cwd": "REPO_ROOT",
+      "command": "/private/tmp/chirality-piping-dec093-venv/bin/python -m pytest -q tools/practitioner_harness",
+      "result": "PASS",
+      "tests": 350
+    },
+    {
+      "cwd": "WORKING_ROOT",
+      "command": "python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path PROJECT_SETUP:SCOPE_OF_WORK:INIT --target DEL-09-07",
+      "result": "PASS",
+      "verdict": "ALLOW",
+      "admission_kind": "SOW_INITIALIZATION"
+    },
+    {
+      "cwd": "WORKING_ROOT",
+      "command": "python3 execution/_Scripts/app_hold.py scan --require-register-match",
+      "result": "PASS"
+    },
+    {
+      "cwd": "WORKING_ROOT",
+      "command": "python3 execution/_Reconciliation/References/reconcile_authority_corpus.py status",
+      "result": "PASS",
+      "note": "v20; no drift"
+    },
+    {
+      "cwd": "REPO_ROOT",
+      "command": "/private/tmp/chirality-piping-dec093-venv/bin/python tools/validation/validate_instruction_tranche_manifest.py --base 95b5687a7c9a4c6fe6e655f628495dec08ce04d8 --head HEAD --added-manifests-only",
+      "result": "PASS",
+      "head": "e079cbc397e4208c4c82d6a55a6dffacf67165e4",
+      "note": "No Root instruction-surface paths; no new manifest needed."
+    },
+    {
+      "cwd": "DETACHED_REVIEW_WORKTREE",
+      "command": "/private/tmp/chirality-piping-dec093-venv/bin/python -m pytest -q -p no:cacheprovider projects/chirality-app-dev/execution/_Scripts/tests/test_app_hold.py -k SowInitializationTests",
+      "result": "PASS",
+      "tests": 11,
+      "source": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DEL0907_SOW_INIT_ADMISSION_2026-09-04/REVIEW_R1.md"
+    },
+    {
+      "cwd": "DETACHED_REVIEW_WORKTREE",
+      "command": "git diff --check 95b5687a7c9a4c6fe6e655f628495dec08ce04d8..e079cbc397e4208c4c82d6a55a6dffacf67165e4",
+      "result": "PASS",
+      "source": "projects/chirality-app-dev/execution/_Coordination/AgentRuns/APPDEV_DEL0907_SOW_INIT_ADMISSION_2026-09-04/REVIEW_R1.md"
+    },
+    {
+      "cwd": "REPO_ROOT",
+      "command": "python3 tools/validation/validate_app_dev_loop_receipts.py --repo-root .",
+      "result": "PASS",
+      "phase": "baseline and post-append closeout"
+    },
+    {
+      "cwd": "REPO_ROOT",
+      "command": "git diff --check",
+      "result": "PASS",
+      "phase": "implementation and narrative closeout"
+    },
+    {
+      "command": "frontend/runtime checks",
+      "result": "SKIPPED",
+      "note": "No frontend or runtime paths changed; registered path rules do not select these checks."
+    }
+  ]
+}

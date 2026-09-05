@@ -139,8 +139,8 @@ workflow must run:
 from the App working root. `operation` is exactly one of `reliance`,
 `dispatch`, `checking-promotion`, or `accepted-dependency-consumption`.
 The execution-time scan and `execution/_Coordination/APP_HOLD_REGISTER.csv`
-must agree. Register rows distinguish `HOLD` from `STRUCTURAL_BOOTSTRAP`; a
-held target always fails closed and no structural-bootstrap row can override a
+must agree. Register rows distinguish `HOLD`, `STRUCTURAL_BOOTSTRAP`, and
+`SOW_INITIALIZATION`; a held target always fails closed and no admission can override a
 hold. APP-HOLD-1 has no generic runtime exception input and does not infer
 exceptions from owner prose.
 
@@ -161,9 +161,33 @@ unexpected or nested path, or a symlink expires the admission automatically.
 The row authorizes no PREPARATION act, scope amendment, repin, audit waiver,
 or sixth Scope of Work; it only allows the separately owner-authorized
 preflight for those two dispatch contexts. Row retirement after expiry is a
-separate maintenance act. Any other override still requires a separately
+separate maintenance act. D-APP-107 retires that expired live row after
+SCA-APP-009 pointer movement; D-APP-104 and its proposal remain immutable history.
+Any other override still requires a separately
 accepted and applied App-loop amendment to the live register, tool, and
 instruction surfaces before the prohibited act begins.
+
+D-APP-107 supplies the exact DEL-09-07 / PKG-09 `SOW_INITIALIZATION`
+preflight for PROJECT_SETUP Phase 2.2 (`TASK + scope-of-work`, `MODE=INIT`):
+
+`python3 execution/_Scripts/app_hold.py check --operation dispatch --entry-path PROJECT_SETUP:SCOPE_OF_WORK:INIT --target DEL-09-07`
+
+This admits only the separately owner-directed initialization while the exact
+ScopeOfWork is absent, the accepted decomposition/companion and post-SCA-009
+pointer hashes match, and all five scaffold input hashes match. The folder
+may additionally contain a regular `_run_records/` evidence subtree; symlinks,
+traversal, missing inputs, special files, or other root entries block dispatch.
+The caller must bind the scope-of-work skill's exact contract/evidence write
+targets and preserve underscore files. The token identifies the declared
+entry; it does not authenticate an agent role or authorize product work.
+
+When a contract appears at the exact path with the exact package/target,
+the initialization admission is consumed. Ordinary scan/register checks
+then govern, including reviewer preflight; there is no second initialization
+evaluation or permanent bootstrap collision. Malformed contracts, HELD
+bases, and register mismatches still block. An ordinary `CLEAR` result means
+the declared basis resolves, not that the contract is accepted. This admission
+grants no reliance, lifecycle promotion, acceptance, repinning, or product act.
 
 The prohibition binds held contracts regardless of entry path. WORKING_ITEMS
 preflight is the primary enforcement mechanism, not the source or limit of
