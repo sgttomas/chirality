@@ -44,7 +44,7 @@ REGISTER_FIELDS = (
     "target_folder",
     "allowed_scaffold_paths",
 )
-RECORD_KINDS = ("HOLD", "STRUCTURAL_BOOTSTRAP")
+RECORD_KINDS = ("HOLD", "STRUCTURAL_BOOTSTRAP", "SOW_INITIALIZATION")
 NONE = "NONE"
 BOOTSTRAP_TARGET = "DEL-09-07"
 BOOTSTRAP_PACKAGE = "PKG-09"
@@ -87,6 +87,15 @@ BOOTSTRAP_COMPANION_SHA256 = (
 BOOTSTRAP_POINTER_SHA256 = (
     "12c7758b4ec15c50379fcae1bf26670e26e281518687db4dc9200ff9dd23cc9b"
 )
+INIT_ENTRY_PATH = "PROJECT_SETUP:SCOPE_OF_WORK:INIT"
+INIT_POINTER_SHA256 = "f235ced4526aac51c4e7f5307ac619f3500e824c3549960b106bb80b67a6e17c"
+INIT_SCAFFOLD_HASHES = {
+    "_CONTEXT.md": "5d7b947877629933a0028eed9cec66a7e6257424b6197a38f12337c341c50e82",
+    "_DEPENDENCIES.md": "b0ef360385c7a2619fd1df2add22dbde41dca7ad8fb1989ad56a23b430a4aecb",
+    "_REFERENCES.md": "1449ed503ccafe13897f0e589104826ab4386b99fb4d18b42e382529a50a5f1d",
+    "_SEMANTIC.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "_STATUS.md": "b2602ef75ff4f9f57e722081849b0061cdc494a58c92b38a283175beb5323dab",
+}
 RELEASED_IDS = frozenset(
     {
         "DEL-02-01",
@@ -247,6 +256,9 @@ def split_basis(value: str, source: Path) -> tuple[str, str]:
 
 
 def inspect_contract(repo_root: Path, path: Path) -> dict[str, Any]:
+    if path == repo_root / BOOTSTRAP_SOW_PATH:
+        if not _no_symlink_components(repo_root, path) or not path.is_file():
+            raise HoldError(f"SOW-initialization contract path is not regular: {path}")
     values = parse_front_matter(path)
     basis_path, object_id = split_basis(values["decomposition_basis"], path)
     commit_check = git(repo_root, "cat-file", "-e", f"{object_id}^{{commit}}")
@@ -340,8 +352,10 @@ def load_register(path: Path) -> list[dict[str, str]]:
             raise HoldError(f"invalid repin posture: {row['deliverable_id']}")
         if row["record_kind"] == "HOLD":
             _validate_hold_row(row)
-        else:
+        elif row["record_kind"] == "STRUCTURAL_BOOTSTRAP":
             _validate_bootstrap_row(row)
+        else:
+            _validate_initialization_row(row)
     return rows
 
 
@@ -421,8 +435,120 @@ def partition_register_rows(
     return holds, bootstraps
 
 
+def _validate_initialization_row(row: dict[str, str]) -> None:
+    """One closed, typed admission; no caller-supplied exception parameters."""
+    expected = dict(row)
+    expected.update({
+        "record_kind": "STRUCTURAL_BOOTSTRAP",
+        "hold_id": f"APP-HOLD-1-BOOTSTRAP-{BOOTSTRAP_TARGET}",
+        "status": "STRUCTURAL_BOOTSTRAP",
+        "authority_basis": BOOTSTRAP_AUTHORITY,
+        "allowed_entry_paths": "|".join(BOOTSTRAP_ENTRY_PATHS),
+        "pointer_sha256": BOOTSTRAP_POINTER_SHA256,
+    })
+    _validate_bootstrap_row(expected)
+    for field, value in {
+        "record_kind": "SOW_INITIALIZATION",
+        "hold_id": "APP-HOLD-1-INIT-DEL-09-07",
+        "status": "SOW_INITIALIZATION",
+        "authority_basis": "D-APP-107",
+        "allowed_entry_paths": INIT_ENTRY_PATH,
+        "pointer_sha256": INIT_POINTER_SHA256,
+    }.items():
+        if row[field] != value:
+            raise HoldError(f"SOW-initialization {field} mismatch: {row['deliverable_id']}")
+
+
+def _no_symlink_components(root: Path, path: Path) -> bool:
+    """Reject lexical traversal and every symlink below the canonical checkout."""
+    try:
+        relative = path.relative_to(root)
+    except ValueError:
+        return False
+    if ".." in relative.parts:
+        return False
+    current = root
+    for part in relative.parts:
+        current = current / part
+        if current.is_symlink():
+            return False
+    return True
+
+
+def inspect_initialization_admission(
+    repo_root: Path, row: dict[str, str], known: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    _validate_initialization_row(row)
+    folder = repo_root / row["target_folder"]
+    sow = repo_root / row["sow_path"]
+    errors: list[str] = []
+    paths = {
+        BOOTSTRAP_DECOMPOSITION_PATH: row["decomposition_sha256"],
+        BOOTSTRAP_COMPANION_PATH: row["companion_register_sha256"],
+        BOOTSTRAP_POINTER_PATH: row["pointer_sha256"],
+        **{f"{row['target_folder']}/{name}": digest
+           for name, digest in INIT_SCAFFOLD_HASHES.items()},
+    }
+    for relative, expected in paths.items():
+        path = repo_root / relative
+        if not _no_symlink_components(repo_root, path):
+            errors.append(f"SYMLINK_OR_ESCAPE:{relative}")
+            continue
+        actual, error = _regular_file_sha256(path)
+        if error or actual != expected:
+            errors.append(f"SOURCE_HASH_MISMATCH:{relative}")
+    if not _no_symlink_components(repo_root, folder) or not folder.is_dir():
+        errors.append("TARGET_FOLDER_INVALID")
+    else:
+        # INIT may persist evidence before dispatch. Only regular files and
+        # directories inside _run_records are permitted beyond the five inputs.
+        for directory, directories, files in os.walk(
+            folder, followlinks=False,
+            onerror=lambda error: errors.append(f"UNREADABLE_DIRECTORY:{error.errno}"),
+        ):
+            parent = Path(directory)
+            for name in directories + files:
+                path = parent / name
+                relative = path.relative_to(folder)
+                if path.is_symlink():
+                    errors.append(f"SYMLINK:{relative}")
+                elif relative.parts[0] == "_run_records":
+                    if len(relative.parts) == 1 and not path.is_dir():
+                        errors.append("RUN_RECORDS_NOT_DIRECTORY")
+                    elif not (path.is_dir() or path.is_file()):
+                        errors.append(f"NOT_REGULAR:{relative}")
+                elif len(relative.parts) != 1 or name not in INIT_SCAFFOLD_HASHES:
+                    errors.append(f"EXTRA_PATH:{relative}")
+    absent = not sow.exists() and not sow.is_symlink()
+    eligible = absent and BOOTSTRAP_TARGET not in known and not errors
+    return {
+        "admission_kind": "SOW_INITIALIZATION",
+        "state": "ELIGIBLE" if eligible else "INACTIVE",
+        "eligible": eligible,
+        "scope_of_work_absent": absent,
+        "errors": errors,
+    }
+
+
+def evaluate_initialization_target(
+    repo_root: Path, row: dict[str, str], known: dict[str, dict[str, Any]],
+    *, operation: str, entry_path: str,
+) -> dict[str, Any]:
+    admission = inspect_initialization_admission(repo_root, row, known)
+    admitted = (admission["eligible"] and operation == "dispatch"
+                and entry_path == INIT_ENTRY_PATH)
+    return {
+        "deliverable_id": row["deliverable_id"],
+        "admission_kind": "SOW_INITIALIZATION",
+        "initialization": admission,
+        "operation": operation,
+        "entry_path": entry_path,
+        "verdict": "ALLOW" if admitted else "BLOCK_SOW_INITIALIZATION",
+    }
+
+
 def _regular_file_sha256(path: Path) -> tuple[str | None, str | None]:
-    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0)
+    flags = os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | os.O_NONBLOCK
     try:
         descriptor = os.open(path, flags)
     except FileNotFoundError:
@@ -572,6 +698,14 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
     extra = sorted(set(registered) - set(scanned_all))
     bootstrap_contract_collisions = sorted(set(bootstraps) & set(scanned_all))
     field_mismatches: list[dict[str, str]] = []
+    initializations = {row["deliverable_id"]: row for row in rows
+                       if row["record_kind"] == "SOW_INITIALIZATION"}
+    for target in sorted(set(initializations) & set(scanned_all)):
+        for field in ("package_id", "sow_path"):
+            if scanned_all[target][field] != initializations[target][field]:
+                field_mismatches.append({"deliverable_id": target, "field": field,
+                                         "scan": scanned_all[target][field],
+                                         "register": initializations[target][field]})
     status_mismatches: list[dict[str, str]] = []
     for deliverable_id in sorted(set(scanned_all) & set(registered)):
         source = scanned_all[deliverable_id]
@@ -631,6 +765,13 @@ def compare_register(scan: dict[str, Any], register_path: Path) -> dict[str, Any
         "structural_bootstrap_deliverables": sorted(bootstraps),
         "bootstrap_contract_collisions": bootstrap_contract_collisions,
         "bootstrap_admissions": bootstrap_admissions,
+        "sow_initialization_deliverables": sorted(initializations),
+        "sow_initialization_admissions": [
+            {"admission_kind": "SOW_INITIALIZATION", "state": "CONSUMED",
+             "eligible": False, "deliverable_id": target}
+            if target in scanned_all else inspect_initialization_admission(repo_root, row, scanned_all)
+            for target, row in initializations.items()
+        ],
     }
 
 
@@ -751,8 +892,11 @@ def command_check(args: argparse.Namespace) -> int:
         write_json(payload, args.output, repo_root)
         return 4
     known = {row["deliverable_id"]: row for row in scan["contracts"]}
-    registered, bootstraps = partition_register_rows(load_register(register))
-    unknown = sorted(set(args.target) - set(known) - set(bootstraps))
+    rows = load_register(register)
+    registered, bootstraps = partition_register_rows(rows)
+    initializations = {row["deliverable_id"]: row for row in rows
+                       if row["record_kind"] == "SOW_INITIALIZATION"}
+    unknown = sorted(set(args.target) - set(known) - set(bootstraps) - set(initializations))
     if unknown:
         raise HoldError(f"unknown target deliverables: {','.join(unknown)}")
     ordinary_targets = [target for target in args.target if target in known]
@@ -773,11 +917,18 @@ def command_check(args: argparse.Namespace) -> int:
                 entry_path=args.entry_path,
             )
         )
+    for target in sorted(set(args.target) & set(initializations) - set(known)):
+        results.append(evaluate_initialization_target(
+            repo_root, initializations[target], known,
+            operation=args.operation, entry_path=args.entry_path,
+        ))
     results.sort(key=lambda row: row["deliverable_id"])
     allowed = all(row["verdict"] == "ALLOW" for row in results)
     blocked_verdict = (
         "BLOCK_APP_HOLD"
         if any(row["verdict"] == "BLOCK_APP_HOLD" for row in results)
+        else "BLOCK_SOW_INITIALIZATION"
+        if any(row["verdict"] == "BLOCK_SOW_INITIALIZATION" for row in results)
         else "BLOCK_STRUCTURAL_BOOTSTRAP"
     )
     payload = {
