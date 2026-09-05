@@ -1,0 +1,12 @@
+# Sealed HELPS_HUMANS brief — governance-only Root migration planning
+
+Parent /root; Agent 1 HELPS_HUMANS. Read AGENTS.md, agents/AGENT_HELPS_HUMANS.md and RUN_CONTROL.md. No further delegation needed. Actual native task identity and truthful OpenAI GPT-6 / exact serving ID unavailable / role instruction-asserted attribution required.
+
+User wants to PLAN deliberate migration of runtime to its own project, letting Root remain governance. This changes the earlier study's objective: do not recommend keeping runtime semantic/release product ownership in Root as final state. Read earlier DESIGN_2026-09-05_RUNTIME_DELIVERY_SEPARATION.md only as source map, verify consequential facts live at main39f51f1cd712b86c67c57270457fc09066eadb1c. Location provisional projects/chirality-runtime in same repo; architectural responsibility analysis should work with either repository choice.
+
+Bounded task: identify exact accepted PRD/D-GOV clauses requiring amendment to transfer DEL-02-06–12 and narrow Root to governance/instruction stewardship. Inventory all 53 current Root deliverables by live register name; classify seven runtime transfers and remaining 46 into governance/control/instruction assurance duties to retain/rehome, other product obligations needing explicit decision, or genuine unknown. Do not pretend names alone establish full scope; inspect consequential ScopeOfWork and governing source. Provide source paths/hashes, proposed transition accounting, retained stable-ID/historical evidence rules, what Root G0–G4/adapter fixtures would require (do not assume 46 after retirement if retained historical statuses alter census). Identify whether partial ID-1/ID-1a/D-GOV-21 narrowing vs full Root product retirement is needed for stated goal. Distinguish end-state proposal from currently accepted truth and five-gate amendment workflow. No gate confirmations requested or invented in this planning subtask.
+
+Only writes:
+- execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/GOVERNANCE_IMPACT.md
+- execution/_Coordination/AgentRuns/ROOT_RUNTIME_MIGRATION_PLAN_2026-09-05/GOVERNANCE_RETURN.md
+Scratch only /private/tmp/root-runtime-migration-plan-20260905. Read/search/shell permitted. No Git mutation/network publication, no migration/code/project/authority/registry/pointer writes. Parent authors integrated plan, checks, receipts and publishes. Output decision-ready bounded planning evidence, not a new actual SCA or PRD amendment; conclude with concrete remaining decisions and handoff.

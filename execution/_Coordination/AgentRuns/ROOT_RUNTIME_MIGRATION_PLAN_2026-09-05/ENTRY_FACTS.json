@@ -1,0 +1,16 @@
+{
+  "branch": "codex/runtime-project-migration-plan",
+  "basis": "39f51f1cd712b86c67c57270457fc09066eadb1c",
+  "fetched_main": "39f51f1cd712b86c67c57270457fc09066eadb1c",
+  "receipts": {
+    "Root": "### Receipt 133 \u2014 2026-09-05 \u2014 Owner-selected Root loop adoption and runtime design",
+    "App": "- **2026-09-05 \u2014 Receipt 244** (D-APP-115: owner intent of record captured from the retired workplan overlay into a ruling record).",
+    "Piping": "- **2026-09-05 \u2014 Receipt 133** (complete clean source-bound sweep and bounded tranche technical closeout).",
+    "PEC": "- **2026-09-05 \u2014 Receipt 168** (D-PEC-81 owner activation and calibration handoff)."
+  },
+  "tm_status": {
+    "OPEN": 10,
+    "DEFERRED": 8
+  },
+  "materialized_status_files": 53
+}
