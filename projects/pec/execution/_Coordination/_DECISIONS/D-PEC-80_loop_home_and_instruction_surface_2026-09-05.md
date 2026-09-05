@@ -1,8 +1,12 @@
 # D-PEC-80 — PEC canonical loop home, generic init, and run-based PR boundary
 
-Status: `PROPOSAL — AWAITING_RULING`
+Status: `RULED — owner merge direction 2026-09-05; effective on merge`
 
 DecisionID: `D-PEC-80`
+
+Ruling: `D-PEC-80_RULING_2026-09-05.md`. The owner directed “merge PR #721”. This ruling
+supersedes the preparation-time awaiting-owner descriptions below; those
+retain the proposal history. A, B, C, and D are approved for this merge.
 
 Date: `2026-09-05`
 

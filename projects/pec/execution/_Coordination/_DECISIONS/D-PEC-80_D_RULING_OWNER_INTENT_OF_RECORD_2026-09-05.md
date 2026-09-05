@@ -1,6 +1,9 @@
 # D-PEC-80 D — Owner intent of record after workplan retirement
 
-Status: PROPOSAL — AWAITING_RULING (candidate ruling text; rules only with owner disposition of D)
+Status: RULED — owner merge direction 2026-09-05; effective on merge
+
+Ruling: `D-PEC-80_RULING_2026-09-05.md`; the owner directed “merge PR #721”.
+This disposition supersedes the preparation-time conditional language below.
 
 Owner: Ryan Tufts
 

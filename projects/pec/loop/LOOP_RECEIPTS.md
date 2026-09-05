@@ -1872,4 +1872,4 @@
   - Stale-Map-Delta: historical `_DomainEngines/pec/` locators and old init section numbers resolve through the packet’s relocation map and Git history; accepted plan bytes remain unchanged; D_RETIREMENT/RELOCATION_MAP.csv continues the map into plans/workplans/.
   - Checks: migration and final verification evidence is indexed by the packet’s `VALIDATION.md` and `D_RETIREMENT/VALIDATION.md`; receipt and entrypoint checks pass.
   - Model-Attribution: Codex acting as HELP_HUMAN; native read-only inventory and dry-run children; role not mechanically enforced.
-  - Gate-Outcome: `AWAITING_OWNER` — migration (A), generic init (B), run-based PR boundary (C), and workplan retirement (D) are separate candidate decisions; owner merge remains the gate.
+  - Gate-Outcome: `EXECUTED` — owner direction verbatim: “merge PR #721”; A/B/C/D ruled in `projects/pec/execution/_Coordination/_DECISIONS/D-PEC-80_RULING_2026-09-05.md`; effective on origin/main after the authorized merge.
